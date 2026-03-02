@@ -173,7 +173,15 @@ def artifact_expected_path(rule: dict, slug: str) -> Path:
 def collect_actual(rule: dict):
     fmt = rule['match']
     if fmt == 'skill_dir':
-        skill_root = ROOT / '.codex' / 'skills'
+        skill_root_value = rule.get('skill_root')
+        if skill_root_value:
+            skill_root = ROOT / skill_root_value
+        else:
+            path_template = rule.get('path', '')
+            if '{slug}' not in path_template:
+                return set()
+            prefix = path_template.split('{slug}', 1)[0].rstrip('/')
+            skill_root = ROOT / prefix
         return {
             str((p / 'SKILL.md').relative_to(ROOT))
             for p in sorted(skill_root.glob('*'))

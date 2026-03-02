@@ -20,4 +20,4 @@ jobs:
       - name: Run CLI startup smoke checks
         run: python3 scripts/smoke-clis.py
       - name: Validate generated surfaces
-        run: python3 scripts/validate-surfaces.py
+        run: python3 scripts/validate-surfaces.py --strict

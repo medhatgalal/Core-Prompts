@@ -41,7 +41,11 @@ def load_json(path: Path, default: Any):
 
 def fetch_url(url: str, timeout: int = 20) -> Dict[str, Any]:
     req = Request(url, headers={
-        'User-Agent': 'Core-Prompts Schema Sync (Python urllib)'
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.9',
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache',
     })
     with urlopen(req, timeout=timeout, context=ssl._create_unverified_context()) as resp:
         status = getattr(resp, 'status', 200)
@@ -51,7 +55,8 @@ def fetch_url(url: str, timeout: int = 20) -> Dict[str, Any]:
             'status': status,
             'ok': 200 <= status < 300,
             'status_text': getattr(resp, 'reason', ''),
-            'url': str(resp.url),
+            'requested_url': url,
+            'resolved_url': str(resp.url),
             'headers': {
                 'content_type': headers.get('content-type'),
                 'etag': headers.get('etag'),
@@ -119,7 +124,8 @@ def main(argv: list[str] | None = None) -> int:
                 snippet = data['content'][:2000].decode('utf-8', errors='replace')
                 title_match = re.search(r'<title>(.*?)</title>', snippet, flags=re.I | re.S)
                 payload = {
-                    'url': data['url'],
+                    'url': data['requested_url'],
+                    'resolved_url': data['resolved_url'],
                     'status': data['status'],
                     'status_text': data['status_text'],
                     'ok': bool(data['ok']),
