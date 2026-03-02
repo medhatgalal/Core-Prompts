@@ -121,7 +121,13 @@ def validate_json(path: Path, required_fields: list[str], slug: str, resource_pa
     return errors
 
 
-def validate_schema_artifact(rule: dict, slug: str, strict: bool, warnings: list[str]):
+def validate_schema_artifact(
+    rule: dict,
+    slug: str,
+    with_cli: bool,
+    strict: bool,
+    warnings: list[str],
+):
     path = artifact_expected_path(rule, slug)
     fmt = rule['format']
     errors: list[str] = []
@@ -135,7 +141,8 @@ def validate_schema_artifact(rule: dict, slug: str, strict: bool, warnings: list
         errors.extend(validate_frontmatter(path, rule.get('required_frontmatter', [])))
     elif fmt == 'json':
         errors.extend(validate_json(path, rule.get('required_fields', []), slug, rule.get('resource_uri_patterns')))
-        errors.extend(run_artifact_validator(path, rule, strict, warnings))
+        if with_cli:
+            errors.extend(run_artifact_validator(path, rule, strict, warnings))
     else:
         errors.append(f'unknown format in rules for {rule["name"]}: {fmt}')
 
@@ -356,7 +363,7 @@ def main():
 
     for slug in sorted(ssot_slugs):
         for rule in rules:
-            errors.extend(validate_schema_artifact(rule, slug, args.with_cli or args.strict, warnings))
+            errors.extend(validate_schema_artifact(rule, slug, args.with_cli, args.strict, warnings))
 
     # Extra / missing file checks
     expected = {}
