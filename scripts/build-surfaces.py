@@ -49,7 +49,7 @@ def read_md_metadata_and_body(path: Path):
                 continue
             key, value = line.split(':', 1)
             key = key.strip()
-            value = value.strip().strip('"')
+            value = value.strip().strip('"').strip("'")
             if key in ('name', 'description') and key not in front:
                 front[key] = value
 
