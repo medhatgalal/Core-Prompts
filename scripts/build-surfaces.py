@@ -90,7 +90,7 @@ def write_kiro_agent(slug: str, desc: str, body: str):
         'name': slug,
         'description': desc,
         'prompt': f'# {title_from_slug(slug)} (Prompt Mode)\n\n{body}\n',
-        'resources': [f'file://.kiro/prompts/{slug}.md'],
+        'resources': [f'file://../prompts/{slug}.md'],
         'hooks': {
             'agentSpawn': [
                 {
