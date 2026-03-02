@@ -1,5 +1,42 @@
 {
-  "version": "1.0",
+  "version": "1.1",
+  "generated_at": "",
+  "schema_cache_dir": ".meta/schema-cache",
+  "schema_cache_ttl_days": 14,
+  "tooling": [
+    {
+      "name": "codex",
+      "surface": "codex",
+      "command": "codex",
+      "version_args": ["--version"],
+      "smoke_args": ["--help"],
+      "required": false
+    },
+    {
+      "name": "gemini",
+      "surface": "gemini",
+      "command": "gemini",
+      "version_args": ["--version"],
+      "smoke_args": ["--help"],
+      "required": false
+    },
+    {
+      "name": "claude",
+      "surface": "claude",
+      "command": "claude",
+      "version_args": ["-v"],
+      "smoke_args": ["--help"],
+      "required": false
+    },
+    {
+      "name": "kiro",
+      "surface": "kiro",
+      "command": "kiro-cli",
+      "version_args": ["--version"],
+      "smoke_args": ["--help"],
+      "required": false
+    }
+  ],
   "artifacts": [
     {
       "name": "gemini_command",
@@ -8,7 +45,10 @@
       "format": "toml",
       "required_fields": ["name", "description", "prompt"],
       "match": "filename",
-      "source_of_truth": "local AGENTS.md and Gemini command format conventions"
+      "source_of_truth": [
+        "local"
+      ],
+      "schema_mode": "local"
     },
     {
       "name": "claude_command",
@@ -17,7 +57,10 @@
       "format": "frontmatter_markdown",
       "required_frontmatter": ["description"],
       "match": "filename",
-      "source_of_truth": "local AGENTS.md and Claude command conventions"
+      "source_of_truth": [
+        "local"
+      ],
+      "schema_mode": "local"
     },
     {
       "name": "codex_skill",
@@ -26,7 +69,10 @@
       "format": "frontmatter_markdown",
       "required_frontmatter": ["name", "description"],
       "match": "skill_dir",
-      "source_of_truth": "local Codex skill conventions and repo patterns"
+      "source_of_truth": [
+        "local"
+      ],
+      "schema_mode": "local"
     },
     {
       "name": "kiro_prompt",
@@ -35,8 +81,14 @@
       "format": "frontmatter_markdown",
       "required_frontmatter": ["description"],
       "match": "filename",
-      "source_of_truth": "Kiro CLI docs",
-      "source_url": "https://kiro.dev/docs/cli/custom-agents/"
+      "source_of_truth": [
+        "https://kiro.dev/docs/cli/custom-agents/"
+      ],
+      "source_urls": [
+        "https://kiro.dev/docs/cli/custom-agents/"
+      ],
+      "schema_mode": "remote",
+      "required": true
     },
     {
       "name": "kiro_agent",
@@ -45,16 +97,23 @@
       "format": "json",
       "required_fields": ["name", "description", "prompt", "resources", "hooks", "tools"],
       "match": "filename",
-      "source_of_truth": "Kiro CLI docs",
-      "source_url": "https://kiro.dev/docs/cli/custom-agents/configuration-reference/",
+      "source_of_truth": [
+        "https://kiro.dev/docs/cli/custom-agents/configuration-reference/"
+      ],
+      "source_urls": [
+        "https://kiro.dev/docs/cli/custom-agents/configuration-reference/"
+      ],
       "resource_uri_patterns": [
+        "^file://\\.kiro/prompts/.+\\.md$",
         "^file://\\.\\./prompts/.+\\.md$",
         "^file://\\.\\./skills/.+/SKILL\\.md$",
         "^skill:///?.*"
       ],
       "validator": {
         "command": ["kiro-cli", "agent", "validate", "--path"]
-      }
+      },
+      "schema_mode": "remote",
+      "required": true
     }
   ]
 }

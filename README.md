@@ -25,7 +25,16 @@ The legacy `clis/` folder is no longer source-of-truth; it is retained only for 
 
 - List SSOT files: `ls ssot/*.md`
 - Generate all surfaces: `python3 scripts/build-surfaces.py`
+- Refresh schema references from vendor docs: `python3 scripts/sync-surface-specs.py`
 - Validate outputs: `python3 scripts/validate-surfaces.py`
+- Optional smoke checks: `python3 scripts/smoke-clis.py`
+
+Recommended validation flow:
+
+1. `python3 scripts/sync-surface-specs.py`
+2. `python3 scripts/build-surfaces.py`
+3. `python3 scripts/validate-surfaces.py --strict`
+4. `python3 scripts/smoke-clis.py`
 
 ## One-file flow
 
@@ -33,6 +42,15 @@ The legacy `clis/` folder is no longer source-of-truth; it is retained only for 
 2. Run `python3 scripts/build-surfaces.py`.
 3. Run `python3 scripts/validate-surfaces.py`.
 4. Commit generated artifacts.
+
+## Validation commands
+
+- `python3 scripts/validate-surfaces.py --with-cli`  
+  Runs CLI-backed artifact validation where declared.
+- `python3 scripts/validate-surfaces.py --strict --with-cli`  
+  Fails on optional checks and CLI artifacts validation issues.
+- `python3 scripts/validate-surfaces.py --skip-schema`  
+  Skips schema cache freshness checks when offline.
 
 ## Surfaces generated
 

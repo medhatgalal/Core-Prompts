@@ -1,5 +1,11 @@
 {
-  "generated_at": "2026-03-02T15:33:50.628179Z",
+  "generated_at": "2026-03-02T15:55:46.909615+00:00",
+  "generator": {
+    "script": "scripts/build-surfaces.py",
+    "python": "3.11+",
+    "version": "3.2",
+    "generated_utc": "2026-03-02T15:55:46.909990+00:00"
+  },
   "ssot_sources": [
     {
       "file": "ssot/analyze-context.md",
@@ -79,5 +85,55 @@
       ".codex/skills/supercharge/SKILL.md",
       ".codex/skills/threader/SKILL.md"
     ]
+  },
+  "validation": {
+    "validated_at": "2026-03-02T15:56:08.069281+00:00",
+    "strict": false,
+    "with_cli": false,
+    "fail_on_cli_miss": false,
+    "rules_file": ".meta/surface-rules.json",
+    "rules_sha256": "83a74b7662fd40758cb709f7787fcc60d6470d008269cfd16e175e4777c03900",
+    "schema_cache_ttl_days": 14,
+    "schema_cache_sources_checked": [],
+    "validation_errors": 0,
+    "validation_warnings": 0,
+    "cli_versions": {
+      "codex": {
+        "command": "codex",
+        "required": false,
+        "available": true,
+        "version_exit_code": 0,
+        "version_output": [
+          "codex-cli 0.106.0"
+        ]
+      },
+      "gemini": {
+        "command": "gemini",
+        "required": false,
+        "available": true,
+        "version_exit_code": 0,
+        "version_output": [
+          "0.31.0"
+        ]
+      },
+      "claude": {
+        "command": "claude",
+        "required": false,
+        "available": true,
+        "version_exit_code": 0,
+        "version_output": [
+          "2.1.59 (Claude Code)"
+        ]
+      },
+      "kiro": {
+        "command": "kiro-cli",
+        "required": false,
+        "available": true,
+        "version_exit_code": 0,
+        "version_output": [
+          "kiro-cli 1.26.2"
+        ]
+      }
+    }
   }
 }

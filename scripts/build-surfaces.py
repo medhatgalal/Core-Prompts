@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import datetime
 import json
-import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -86,11 +85,12 @@ def write_kiro_prompt(slug: str, desc: str, body: str):
 
 def write_kiro_agent(slug: str, desc: str, body: str):
     path = KIRO_AGENT_DIR / f'{slug}.json'
+    prompt_title = f'{title_from_slug(slug)} (Prompt Mode)'
     obj = {
         'name': slug,
         'description': desc,
-        'prompt': f'# {title_from_slug(slug)} (Prompt Mode)\n\n{body}\n',
-        'resources': [f'file://../prompts/{slug}.md'],
+        'prompt': f'# {prompt_title}\n\n{body}\n',
+        'resources': [f'file://.kiro/prompts/{slug}.md'],
         'hooks': {
             'agentSpawn': [
                 {
@@ -142,7 +142,13 @@ def main():
         raise SystemExit('No SSOT files found in ssot/')
 
     generated = {
-        'generated_at': datetime.datetime.utcnow().isoformat() + 'Z',
+        'generated_at': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+        'generator': {
+            'script': 'scripts/build-surfaces.py',
+            'python': '3.11+',
+            'version': '3.2',
+            'generated_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+        },
         'ssot_sources': [],
         'surfaces': {
             'gemini': [],
