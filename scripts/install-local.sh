@@ -4,7 +4,7 @@ set -euo pipefail
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$REPO_ROOT"
 
-if [[ -f .git && -f .meta/manifest.json ]]; then
+if [[ -d .git && -f .meta/manifest.json ]]; then
   echo "manifest exists: .meta/manifest.json"
 else
   echo "Run build first: python3 scripts/build-surfaces.py"
