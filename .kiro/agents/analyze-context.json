@@ -1,0 +1,18 @@
+{
+  "name": "analyze-context",
+  "description": "'[Medhat] Iterative Analysis Workflow for multi-file processing'",
+  "prompt": "You are analyze-context. See resources.",
+  "resources": [
+    "file://../skills/analyze-context/SKILL.md"
+  ],
+  "hooks": {
+    "agentSpawn": [
+      {
+        "command": "if [ -x ./scripts/engos ]; then ./scripts/engos prime >/dev/null 2>&1 || true; elif [ -x ./engos ]; then ./engos context prime >/dev/null 2>&1 || true; fi"
+      }
+    ]
+  },
+  "tools": [
+    "*"
+  ]
+}

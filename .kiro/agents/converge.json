@@ -1,0 +1,18 @@
+{
+  "name": "converge",
+  "description": "'[Medhat] Universal Synthesis & Convergence Prompt (Portable)'",
+  "prompt": "You are converge. See resources.",
+  "resources": [
+    "file://../skills/converge/SKILL.md"
+  ],
+  "hooks": {
+    "agentSpawn": [
+      {
+        "command": "if [ -x ./scripts/engos ]; then ./scripts/engos prime >/dev/null 2>&1 || true; elif [ -x ./engos ]; then ./engos context prime >/dev/null 2>&1 || true; fi"
+      }
+    ]
+  },
+  "tools": [
+    "*"
+  ]
+}

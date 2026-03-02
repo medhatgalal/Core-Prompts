@@ -1,0 +1,18 @@
+{
+  "name": "auditor",
+  "description": "'[Medhat] EngOS extraction auditor + changelog curator'",
+  "prompt": "You are auditor. See resources.",
+  "resources": [
+    "file://../skills/auditor/SKILL.md"
+  ],
+  "hooks": {
+    "agentSpawn": [
+      {
+        "command": "if [ -x ./scripts/engos ]; then ./scripts/engos prime >/dev/null 2>&1 || true; elif [ -x ./engos ]; then ./engos context prime >/dev/null 2>&1 || true; fi"
+      }
+    ]
+  },
+  "tools": [
+    "*"
+  ]
+}

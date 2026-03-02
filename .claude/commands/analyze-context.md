@@ -1,0 +1,77 @@
+---
+description: "'[Medhat] Iterative Analysis Workflow for multi-file processing'"
+---
+
+# Iterative Analysis Workflow
+
+## Safety Check
+Before proceeding, you MUST check the current branch.
+```bash
+git status --short --branch
+```
+If you are on `main` or `master`, STOP. Request `start <slug>`.
+
+This steering file defines a standard workflow for any multi-step analysis task that requires:
+- Processing multiple files/items
+- Maintaining context across memory compactions
+- Accumulating insights iteratively
+
+## Required Memory Files
+
+Before starting any iterative analysis, create these three **Canonical Files** in `.engos/memory/` (or project root if `.engos` is missing).
+
+**CRITICAL RULE: ONE SET ONLY.**
+Do NOT create versioned files like `task-v1-context.md` or `task-v2-context.md`.
+Maintain **one** active set of files for the entire duration of the initiative. Update them in place.
+
+### 1. `<task>-context.md`
+Contains:
+- Goal of the analysis (what you're trying to achieve)
+- Success criteria (what "done" looks like)
+- Scope (what's included/excluded)
+- Key definitions or extraction criteria
+- Any constraints or rules
+
+### 2. `<task>-todo.md`
+Contains:
+- Full list of items to process (files, transcripts, etc.)
+- Checkbox for each item: `- [ ]` pending, `- [x]` complete
+- Notes on what was found per item (brief)
+- Current status and next item to process
+
+### 3. `<task>-insights.md`
+Contains:
+- Accumulated findings, updated after each item
+- Patterns emerging across items
+- Key quotes, phrases, or data points extracted
+- Summary sections that grow as analysis progresses
+
+## Workflow Rules
+
+### Maintenance & Anti-Sprawl
+1.  **Single Source of Truth:** Never fork memory files. If the scope changes, update `<task>-context.md`.
+2.  **Consolidation:** If you find scattered memory files, merge them back into the canonical set immediately.
+3.  **Archival:** Only move files to `docs/archive/` when the *entire initiative* is closed and a new one begins.
+
+### Before Starting
+1. Check if `<task>-context.md` already exists. Use it if so.
+2. If not, create all three memory files.
+
+### While Working
+1. Process one item at a time.
+2. After each item:
+   - Update insights with new findings.
+   - Check off the item in todo.
+   - Add brief notes to todo entry.
+3. **Critical:** Update files BEFORE memory compaction risk.
+
+### After Memory Compaction
+1. **First action:** Read context file to restore goal.
+2. **Second action:** Read todo file to find current position.
+3. **Third action:** Read insights to restore accumulated knowledge.
+4. Continue from where you left off.
+
+### Completion
+1. All items checked in todo.
+2. Insights contains complete analysis.
+3. Summary section in insights with key findings.

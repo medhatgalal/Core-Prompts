@@ -1,0 +1,177 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import datetime
+import json
+import re
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+SSOT_DIR = ROOT / 'ssot'
+META_DIR = ROOT / '.meta'
+MANIFEST_PATH = META_DIR / 'manifest.json'
+
+GEMINI_DIR = ROOT / '.gemini' / 'commands'
+CLAUDE_DIR = ROOT / '.claude' / 'commands'
+KIRO_PROMPT_DIR = ROOT / '.kiro' / 'prompts'
+KIRO_AGENT_DIR = ROOT / '.kiro' / 'agents'
+CODEX_SKILL_DIR = ROOT / '.codex' / 'skills'
+
+for d in [GEMINI_DIR, CLAUDE_DIR, KIRO_PROMPT_DIR, KIRO_AGENT_DIR, CODEX_SKILL_DIR, META_DIR]:
+    d.mkdir(parents=True, exist_ok=True)
+
+for old in [ROOT / 'clis', ROOT / '.kiro', ROOT / '.gemini', ROOT / '.claude', ROOT / '.codex']:
+    if old.exists() and old == ROOT / 'clis':
+        # legacy source kept untouched
+        pass
+
+
+def read_md_metadata_and_body(path: Path):
+    text = path.read_text(encoding='utf-8')
+    front = {}
+    # parse all YAML-like blocks at file head
+    blocks = []
+    remainder = text
+    while remainder.startswith('---\n'):
+        end = remainder.find('\n---', 3)
+        if end == -1:
+            break
+        block = remainder[4:end]
+        blocks.append(block)
+        remainder = remainder[end + 4 :]
+        if remainder.startswith('\n'):
+            remainder = remainder[1:]
+
+    for block in blocks:
+        for line in block.splitlines():
+            line = line.strip()
+            if not line or ':' not in line:
+                continue
+            key, value = line.split(':', 1)
+            key = key.strip()
+            value = value.strip().strip('"')
+            if key in ('name', 'description') and key not in front:
+                front[key] = value
+
+    body = remainder.strip('\n')
+    return front, body
+
+
+def to_toml_str(name: str, desc: str, prompt: str) -> str:
+    esc_desc = desc.replace('\\', '\\\\').replace('"', '\\"')
+    prompt_escaped = prompt.replace('\\', '\\\\').replace('"', '\\"')
+    return (
+        f'name = "{name}"\n'
+        f'description = "{esc_desc}"\n'
+        f'prompt = """\n{prompt_escaped}\n"""\n'
+    )
+
+
+def title_from_slug(slug: str) -> str:
+    return ' '.join(part.capitalize() for part in slug.replace('_', '-').split('-'))
+
+
+def write_kiro_prompt(slug: str, desc: str, body: str):
+    path = KIRO_PROMPT_DIR / f'{slug}.md'
+    txt = (
+        '---\n'
+        f'description: "{desc}"\n'
+        '---\n\n'
+        f'# {title_from_slug(slug)} (Prompt Mode)\n\n'
+        f'{body}\n'
+    )
+    path.write_text(txt, encoding='utf-8')
+    return str(path.relative_to(ROOT))
+
+
+def write_kiro_agent(slug: str, desc: str):
+    path = KIRO_AGENT_DIR / f'{slug}.json'
+    obj = {
+        'name': slug,
+        'description': desc,
+        'prompt': f'You are {slug}. See resources.',
+        'resources': [f'file://../skills/{slug}/SKILL.md'],
+        'hooks': {
+            'agentSpawn': [
+                {
+                    'command': 'if [ -x ./scripts/engos ]; then ./scripts/engos prime >/dev/null 2>&1 || true; elif [ -x ./engos ]; then ./engos context prime >/dev/null 2>&1 || true; fi'
+                }
+            ]
+        },
+        'tools': ['*'],
+    }
+    path.write_text(json.dumps(obj, indent=2) + '\n', encoding='utf-8')
+    return str(path.relative_to(ROOT))
+
+
+def write_codex_skill(slug: str, desc: str, body: str):
+    path = CODEX_SKILL_DIR / slug / 'SKILL.md'
+    path.parent.mkdir(parents=True, exist_ok=True)
+    txt = (
+        '---\n'
+        f'name: "{slug}"\n'
+        f'description: "{desc}"\n'
+        '---\n'
+        f'{body}\n'
+    )
+    path.write_text(txt, encoding='utf-8')
+    return str(path.relative_to(ROOT))
+
+
+def write_gemini_command(slug: str, desc: str, body: str):
+    path = GEMINI_DIR / f'{slug}.toml'
+    path.write_text(to_toml_str(slug, desc, body), encoding='utf-8')
+    return str(path.relative_to(ROOT))
+
+
+def write_claude_command(slug: str, desc: str, body: str):
+    path = CLAUDE_DIR / f'{slug}.md'
+    txt = (
+        '---\n'
+        f'description: "{desc}"\n'
+        '---\n\n'
+        f'{body}\n'
+    )
+    path.write_text(txt, encoding='utf-8')
+    return str(path.relative_to(ROOT))
+
+
+def main():
+    entries = sorted(SSOT_DIR.glob('*.md'))
+    if not entries:
+        raise SystemExit('No SSOT files found in ssot/')
+
+    generated = {
+        'generated_at': datetime.datetime.utcnow().isoformat() + 'Z',
+        'ssot_sources': [],
+        'surfaces': {
+            'gemini': [],
+            'claude': [],
+            'kiro_prompt': [],
+            'kiro_agent': [],
+            'codex_skill': [],
+        },
+    }
+
+    for entry in entries:
+        front, body = read_md_metadata_and_body(entry)
+        slug = front.get('name') or entry.stem
+        desc = front.get('description', f'Surface prompt for {slug}')
+        generated['ssot_sources'].append({
+            'file': f'ssot/{entry.name}',
+            'slug': slug,
+            'name': front.get('name', slug),
+            'description': desc,
+        })
+        generated['surfaces']['gemini'].append(write_gemini_command(slug, desc, body))
+        generated['surfaces']['claude'].append(write_claude_command(slug, desc, body))
+        generated['surfaces']['kiro_prompt'].append(write_kiro_prompt(slug, desc, body))
+        generated['surfaces']['kiro_agent'].append(write_kiro_agent(slug, desc))
+        generated['surfaces']['codex_skill'].append(write_codex_skill(slug, desc, body))
+
+    MANIFEST_PATH.write_text(json.dumps(generated, indent=2) + '\n', encoding='utf-8')
+    print('Generated', len(entries), 'ssot entries')
+
+
+if __name__ == '__main__':
+    main()

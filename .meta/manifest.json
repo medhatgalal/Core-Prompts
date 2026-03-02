@@ -1,0 +1,83 @@
+{
+  "generated_at": "2026-03-02T15:20:26.772199Z",
+  "ssot_sources": [
+    {
+      "file": "ssot/analyze-context.md",
+      "slug": "analyze-context",
+      "name": "analyze-context",
+      "description": "'[Medhat] Iterative Analysis Workflow for multi-file processing'"
+    },
+    {
+      "file": "ssot/auditor.md",
+      "slug": "auditor",
+      "name": "auditor",
+      "description": "'[Medhat] EngOS extraction auditor + changelog curator'"
+    },
+    {
+      "file": "ssot/converge.md",
+      "slug": "converge",
+      "name": "converge",
+      "description": "'[Medhat] Universal Synthesis & Convergence Prompt (Portable)'"
+    },
+    {
+      "file": "ssot/mentor.md",
+      "slug": "mentor",
+      "name": "mentor",
+      "description": "'[Medhat] Senior engineering oversight, planning, and workflow guidance.'"
+    },
+    {
+      "file": "ssot/supercharge.md",
+      "slug": "supercharge",
+      "name": "supercharge",
+      "description": "'[Medhat] Advanced AI behavior enhancement (ULT-Agent++, Catchup)'"
+    },
+    {
+      "file": "ssot/threader.md",
+      "slug": "threader",
+      "name": "threader",
+      "description": "'[Medhat] Context Threader & Exporter (Memory Management)'"
+    }
+  ],
+  "surfaces": {
+    "gemini": [
+      ".gemini/commands/analyze-context.toml",
+      ".gemini/commands/auditor.toml",
+      ".gemini/commands/converge.toml",
+      ".gemini/commands/mentor.toml",
+      ".gemini/commands/supercharge.toml",
+      ".gemini/commands/threader.toml"
+    ],
+    "claude": [
+      ".claude/commands/analyze-context.md",
+      ".claude/commands/auditor.md",
+      ".claude/commands/converge.md",
+      ".claude/commands/mentor.md",
+      ".claude/commands/supercharge.md",
+      ".claude/commands/threader.md"
+    ],
+    "kiro_prompt": [
+      ".kiro/prompts/analyze-context.md",
+      ".kiro/prompts/auditor.md",
+      ".kiro/prompts/converge.md",
+      ".kiro/prompts/mentor.md",
+      ".kiro/prompts/supercharge.md",
+      ".kiro/prompts/threader.md"
+    ],
+    "kiro_agent": [
+      ".kiro/agents/analyze-context.json",
+      ".kiro/agents/auditor.json",
+      ".kiro/agents/converge.json",
+      ".kiro/agents/mentor.json",
+      ".kiro/agents/supercharge.json",
+      ".kiro/agents/threader.json"
+    ],
+    "codex_skill": [
+      ".codex/skills/analyze-context/SKILL.md",
+      ".codex/skills/auditor/SKILL.md",
+      ".codex/skills/converge/SKILL.md",
+      ".codex/skills/mentor/SKILL.md",
+      ".codex/skills/supercharge/SKILL.md",
+      ".codex/skills/threader/SKILL.md"
+    ]
+  }
+}
