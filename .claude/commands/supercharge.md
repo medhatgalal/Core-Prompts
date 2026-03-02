@@ -1,5 +1,5 @@
 ---
-description: "'[Medhat] Advanced AI behavior enhancement (ULT-Agent++, Catchup)'"
+description: "[Medhat] Advanced AI behavior enhancement (ULT-Agent++, Catchup)"
 ---
 
 # SuperCharge - Kiro CLI Power Prompt

@@ -1,6 +1,6 @@
 ---
 name: "mentor"
-description: "'[Medhat] Senior engineering oversight, planning, and workflow guidance.'"
+description: "[Medhat] Senior engineering oversight, planning, and workflow guidance."
 ---
 # Mentor / Coach v3 — System Memory
 

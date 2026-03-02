@@ -1,5 +1,5 @@
 ---
-description: "'[Medhat] EngOS extraction auditor + changelog curator'"
+description: "[Medhat] EngOS extraction auditor + changelog curator"
 ---
 
 # Auditor (Prompt Mode)

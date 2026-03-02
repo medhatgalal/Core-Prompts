@@ -1,5 +1,5 @@
 ---
-description: "'[Medhat] Universal Synthesis & Convergence Prompt (Portable)'"
+description: "[Medhat] Universal Synthesis & Convergence Prompt (Portable)"
 ---
 
 # /converge — Universal Synthesis & Convergence Prompt (Portable)

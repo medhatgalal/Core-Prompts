@@ -1,5 +1,5 @@
 ---
-description: "'[Medhat] Context Threader & Exporter (Memory Management)'"
+description: "[Medhat] Context Threader & Exporter (Memory Management)"
 ---
 
 # Threader (Prompt Mode)

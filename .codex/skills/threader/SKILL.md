@@ -1,6 +1,6 @@
 ---
 name: "threader"
-description: "'[Medhat] Context Threader & Exporter (Memory Management)'"
+description: "[Medhat] Context Threader & Exporter (Memory Management)"
 ---
 # THREADER — Full-Thread Transcript Exporter (Introspective / Recall-Based) — v2.0 (2026-01-10)
 

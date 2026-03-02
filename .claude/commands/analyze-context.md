@@ -1,5 +1,5 @@
 ---
-description: "'[Medhat] Iterative Analysis Workflow for multi-file processing'"
+description: "[Medhat] Iterative Analysis Workflow for multi-file processing"
 ---
 
 # Iterative Analysis Workflow

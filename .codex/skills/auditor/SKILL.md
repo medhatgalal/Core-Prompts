@@ -1,6 +1,6 @@
 ---
 name: "auditor"
-description: "'[Medhat] EngOS extraction auditor + changelog curator'"
+description: "[Medhat] EngOS extraction auditor + changelog curator"
 ---
 ROLE: EngOS extraction auditor + changelog curator (recurring)
 

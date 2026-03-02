@@ -1,5 +1,5 @@
 ---
-description: "'[Medhat] Senior engineering oversight, planning, and workflow guidance.'"
+description: "[Medhat] Senior engineering oversight, planning, and workflow guidance."
 ---
 
 # Mentor (Prompt Mode)
