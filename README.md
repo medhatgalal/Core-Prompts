@@ -1,6 +1,6 @@
 # Core-Prompts Surface Registry
 
-This repository is the source-of-truth for CLI surface prompts/commands across Codex, Gemini, Claude, and Kiro.
+This repository is the source-of-truth for SSOT-driven prompt/skill/agent surfaces across Codex, Gemini, Claude, and Kiro.
 
 ## What this repo owns
 
@@ -14,10 +14,19 @@ This repository is the source-of-truth for CLI surface prompts/commands across C
 
 ## Invocation map
 
-- Gemini: slash commands via `/.gemini/commands`
-- Claude: slash commands via `/.claude/commands`
-- Kiro: prompts/agents in `/.kiro/prompts` and `/.kiro/agents`
-- Codex: skills under `/.codex/skills`
+- Gemini:
+  - skills via `.gemini/skills/<slug>/SKILL.md`
+  - custom commands via `.gemini/commands/<slug>.toml`
+  - subagents via `.gemini/agents/<slug>.md`
+- Claude:
+  - command-skills via `.claude/commands/<slug>.md`
+  - subagents via `.claude/agents/<slug>.md`
+- Kiro:
+  - skills via `.kiro/skills/<slug>/SKILL.md`
+  - prompts via `.kiro/prompts/<slug>.md`
+  - agents via `.kiro/agents/<slug>.json`
+- Codex:
+  - skills via `.codex/skills/<slug>/SKILL.md`
 
 The `clis/` folder is intentionally removed from this repo and not used as source-of-truth.
 
@@ -28,13 +37,16 @@ The `clis/` folder is intentionally removed from this repo and not used as sourc
 - Refresh schema references from vendor docs: `python3 scripts/sync-surface-specs.py`
 - Validate outputs: `python3 scripts/validate-surfaces.py`
 - Optional smoke checks: `python3 scripts/smoke-clis.py`
+- Install/link generated surfaces globally: `scripts/install-local.sh --mode link`
 
 Recommended validation flow:
 
 1. `python3 scripts/sync-surface-specs.py`
 2. `python3 scripts/build-surfaces.py`
 3. `python3 scripts/validate-surfaces.py --strict`
-4. `python3 scripts/smoke-clis.py`
+4. `python3 scripts/smoke-clis.py --strict`
+5. `scripts/install-local.sh --dry-run --mode link`
+6. `scripts/install-local.sh --mode link`
 
 ## One-file flow
 
@@ -51,14 +63,37 @@ Recommended validation flow:
   Fails on optional checks and CLI artifacts validation issues.
 - `python3 scripts/validate-surfaces.py --skip-schema`  
   Skips schema cache freshness checks when offline.
+- `python3 scripts/smoke-clis.py --strict`  
+  Verifies expected SSOT slugs are discoverable in local Gemini/Claude/Kiro CLIs.
+
+## Local deploy options
+
+- `scripts/install-local.sh --mode link`  
+  Symlinks managed SSOT surfaces into global CLI directories (default mode).
+- `scripts/install-local.sh --mode copy`  
+  Copies managed SSOT surfaces into global CLI directories.
+- `scripts/install-local.sh --dry-run --mode link`  
+  Shows planned operations without writing anything.
+
+The installer is non-destructive for unrelated content: it only touches exact files for SSOT-managed slugs.
+
+## Required CLI settings
+
+- Gemini subagents: enable `"experimental.enableAgents": true`.
+- Claude command-skills: do not run with `--disable-slash-commands` when testing command surfaces.
+- Kiro: keep `kiro-cli` updated for current custom-agent and resource handling.
 
 ## Surfaces generated
 
 For each SSOT file:
 
 - `.codex/skills/<slug>/SKILL.md`
+- `.gemini/skills/<slug>/SKILL.md`
 - `.gemini/commands/<slug>.toml`
+- `.gemini/agents/<slug>.md`
 - `.claude/commands/<slug>.md`
+- `.claude/agents/<slug>.md`
+- `.kiro/skills/<slug>/SKILL.md`
 - `.kiro/prompts/<slug>.md`
 - `.kiro/agents/<slug>.json`
 
