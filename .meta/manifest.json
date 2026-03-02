@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-03-02T16:26:29.808296+00:00",
+  "generated_at": "2026-03-02T16:27:38.820432+00:00",
   "generator": {
     "script": "scripts/build-surfaces.py",
     "python": "3.11+",
     "version": "3.2",
-    "generated_utc": "2026-03-02T16:26:29.809290+00:00"
+    "generated_utc": "2026-03-02T16:27:38.820705+00:00"
   },
   "ssot_sources": [
     {
@@ -76,14 +76,17 @@
     ]
   },
   "validation": {
-    "validated_at": "2026-03-02T16:26:45.351848+00:00",
+    "validated_at": "2026-03-02T16:28:09.755849+00:00",
     "strict": false,
-    "with_cli": false,
+    "with_cli": true,
     "fail_on_cli_miss": false,
     "rules_file": ".meta/surface-rules.json",
     "rules_sha256": "83a74b7662fd40758cb709f7787fcc60d6470d008269cfd16e175e4777c03900",
     "schema_cache_ttl_days": 14,
-    "schema_cache_sources_checked": [],
+    "schema_cache_sources_checked": [
+      "https://kiro.dev/docs/cli/custom-agents/",
+      "https://kiro.dev/docs/cli/custom-agents/configuration-reference/"
+    ],
     "validation_errors": 0,
     "validation_warnings": 0,
     "cli_versions": {

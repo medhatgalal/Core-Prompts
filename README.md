@@ -19,7 +19,7 @@ This repository is the source-of-truth for CLI surface prompts/commands across C
 - Kiro: prompts/agents in `/.kiro/prompts` and `/.kiro/agents`
 - Codex: skills under `/.codex/skills`
 
-The legacy `clis/` folder is no longer source-of-truth; it is retained only for compatibility only if needed during migration.
+The `clis/` folder is intentionally removed from this repo and not used as source-of-truth.
 
 ## Quick start
 
