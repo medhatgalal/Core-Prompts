@@ -14,5 +14,5 @@
 3. Run `python3 scripts/build-surfaces.py`.
 4. Run `python3 scripts/validate-surfaces.py --strict`.
 5. Run `python3 scripts/smoke-clis.py --strict` (if local CLIs installed).
-6. Optionally run `scripts/install-local.sh --dry-run --mode link` to verify global sync changes.
+6. Optionally run `scripts/deploy-surfaces.sh --dry-run --cli all` to verify global copy deployment.
 7. Commit SSOT + regenerated dot-surface files + manifest update.
