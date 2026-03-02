@@ -84,13 +84,13 @@ def write_kiro_prompt(slug: str, desc: str, body: str):
     return str(path.relative_to(ROOT))
 
 
-def write_kiro_agent(slug: str, desc: str):
+def write_kiro_agent(slug: str, desc: str, body: str):
     path = KIRO_AGENT_DIR / f'{slug}.json'
     obj = {
         'name': slug,
         'description': desc,
-        'prompt': f'You are {slug}. See resources.',
-        'resources': [f'file://../skills/{slug}/SKILL.md'],
+        'prompt': f'# {title_from_slug(slug)} (Prompt Mode)\n\n{body}\n',
+        'resources': [f'file://.kiro/prompts/{slug}.md'],
         'hooks': {
             'agentSpawn': [
                 {
@@ -166,7 +166,7 @@ def main():
         generated['surfaces']['gemini'].append(write_gemini_command(slug, desc, body))
         generated['surfaces']['claude'].append(write_claude_command(slug, desc, body))
         generated['surfaces']['kiro_prompt'].append(write_kiro_prompt(slug, desc, body))
-        generated['surfaces']['kiro_agent'].append(write_kiro_agent(slug, desc))
+        generated['surfaces']['kiro_agent'].append(write_kiro_agent(slug, desc, body))
         generated['surfaces']['codex_skill'].append(write_codex_skill(slug, desc, body))
 
     MANIFEST_PATH.write_text(json.dumps(generated, indent=2) + '\n', encoding='utf-8')
