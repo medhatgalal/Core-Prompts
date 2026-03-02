@@ -3,8 +3,9 @@ from __future__ import annotations
 
 import json
 import re
-from pathlib import Path
+import subprocess
 import sys
+from pathlib import Path
 
 if sys.version_info < (3, 11):
     print('Python 3.11+ required for tomllib')
@@ -15,14 +16,7 @@ import tomllib
 ROOT = Path(__file__).resolve().parent.parent
 SSOT_DIR = ROOT / 'ssot'
 META = ROOT / '.meta' / 'manifest.json'
-
-REQUIRED = {
-    '.gemini/commands': 1,
-    '.claude/commands': 1,
-    '.kiro/prompts': 1,
-    '.kiro/agents': 1,
-    '.codex/skills': 1,
-}
+RULES_PATH = ROOT / '.meta' / 'surface-rules.json'
 
 
 def parse_frontmatter(path: Path):
@@ -42,11 +36,24 @@ def parse_frontmatter(path: Path):
     return out
 
 
-def validate_gemini(path: Path, slug: str):
-    with path.open('rb') as f:
-        data = tomllib.load(f)
+def validate_frontmatter(path: Path, required: list[str]):
     errors = []
-    for key in ('name', 'description', 'prompt'):
+    fm = parse_frontmatter(path)
+    for key in required:
+        if key not in fm or not fm[key]:
+            errors.append(f'{path}: missing frontmatter {key}')
+    return errors
+
+
+def validate_gemini(path: Path, required: list[str], slug: str):
+    errors = []
+    try:
+        with path.open('rb') as f:
+            data = tomllib.load(f)
+    except Exception as exc:
+        return [f'{path}: invalid TOML ({exc})']
+
+    for key in required:
         if key not in data:
             errors.append(f'{path}: missing key {key}')
     if data.get('name') != slug:
@@ -54,84 +61,160 @@ def validate_gemini(path: Path, slug: str):
     return errors
 
 
-def validate_frontmatter(path: Path):
-    errors = []
-    fm = parse_frontmatter(path)
-    if not fm.get('description'):
-        errors.append(f'{path}: missing description in frontmatter')
-    return errors
-
-
-def validate_json(path: Path):
+def validate_json(path: Path, required_fields: list[str], slug: str, resource_patterns: list[str] | None = None):
     try:
         data = json.loads(path.read_text(encoding='utf-8'))
     except Exception as exc:
-        return [f'{path}: invalid json: {exc}']
-    missing = {'name', 'description', 'prompt', 'resources', 'hooks', 'tools'} - set(data)
-    return [f'{path}: missing keys: {', '.join(sorted(missing))}'] if missing else []
+        return [f'{path}: invalid json ({exc})']
+
+    missing = sorted(set(required_fields) - set(data.keys()))
+    errors = [f'{path}: missing keys: {", ".join(missing)}'] if missing else []
+
+    if data.get('name') and data.get('name') != slug:
+        errors.append(f'{path}: expected name {slug}, found {data.get("name")}')
+
+    if resource_patterns:
+        resources = data.get('resources')
+        if not isinstance(resources, list) or not resources:
+            errors.append(f'{path}: resources must be a non-empty list')
+        else:
+            for resource in resources:
+                if not isinstance(resource, str):
+                    errors.append(f'{path}: resources entries must be strings')
+                    continue
+                if not any(re.match(pattern, resource) for pattern in resource_patterns):
+                    errors.append(f'{path}: unsupported resource uri {resource}')
+
+    return errors
 
 
-def check_paths(root: Path, pattern: str):
-    return sorted(p.name for p in root.glob(pattern))
+def run_kiro_validator(path: Path, rule: dict):
+    cmd = rule.get('validator', {}).get('command')
+    if not cmd:
+        return []
+
+    full = [*cmd, str(path)]
+    proc = subprocess.run(full, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+    if proc.returncode != 0:
+        out = proc.stdout.strip() or 'no output'
+        return [f'{path}: kiro validation failed: {out}']
+    return []
+
+
+def artifact_expected_path(rule: dict, slug: str) -> Path:
+    return ROOT / rule['path'].format(slug=slug)
+
+
+def expected_dir(rule: dict) -> Path:
+    return ROOT / rule['path'].split('{')[0]
+
+
+def expected_basename(rule: dict, slug: str) -> str:
+    return Path(rule['path'].format(slug=slug)).name
+
+
+def validate_one(rule: dict, slug: str) -> list[str]:
+    path = artifact_expected_path(rule, slug)
+    fmt = rule['format']
+    errors: list[str] = []
+
+    if not path.exists():
+        return [f'missing {rule["surface"]} {rule["name"]}: {path.relative_to(ROOT)}']
+
+    if fmt == 'toml':
+        errors.extend(validate_gemini(path, rule.get('required_fields', []), slug))
+    elif fmt == 'frontmatter_markdown':
+        errors.extend(validate_frontmatter(path, rule.get('required_frontmatter', [])))
+    elif fmt == 'json':
+        errors.extend(validate_json(path, rule.get('required_fields', []), slug, rule.get('resource_uri_patterns')))
+        errors.extend(run_kiro_validator(path, rule))
+    else:
+        errors.append(f'unknown format in rules for {rule["name"]}: {fmt}')
+
+    return errors
+
+
+def collect_actual(rule: dict):
+    fmt = rule['match']
+    base_dir = ROOT / rule['path'].split('{')[0].rstrip('/')
+
+    if not base_dir.exists():
+        return set()
+
+    if fmt == 'skill_dir':
+        return {
+            str((base_dir / p.name / 'SKILL.md').relative_to(ROOT))
+            for p in sorted(base_dir.glob('*'))
+            if p.is_dir() and (p / 'SKILL.md').exists()
+        }
+
+    pattern = rule['path'].split('/')[-1].replace('{slug}', '*')
+    if '/' in rule['path'].split('/', 1)[1]:
+        prefix = '/'.join(rule['path'].split('/')[:-1])
+        return {
+            str((p).relative_to(ROOT))
+            for p in sorted((ROOT / prefix).glob(pattern))
+        }
+
+    return {
+        str((base_dir / p.name).relative_to(ROOT))
+        for p in sorted(base_dir.glob(pattern))
+    }
+
+
+def collect_expected(slugs: set[str], artifacts: list[dict]):
+    expected = {}
+    for art in artifacts:
+        for slug in ssot_slugs:
+            expected[art['name']].add(str(artifact_expected_path(art, slug).relative_to(ROOT)))
+    return expected
 
 
 def main():
     if not META.exists():
-        print('Missing manifest:', META)
+        print(f'Missing manifest: {META}')
+        return 2
+    if not RULES_PATH.exists():
+        print(f'Missing rules file: {RULES_PATH}')
         return 2
 
     manifest = json.loads(META.read_text(encoding='utf-8'))
+    rules = json.loads(RULES_PATH.read_text(encoding='utf-8')).get('artifacts', [])
     ssot_files = sorted(p.stem for p in SSOT_DIR.glob('*.md'))
+    ssot_slugs = set(ssot_files)
 
-    errors = []
+    errors: list[str] = []
 
-    # Ensure every SSOT has generated output in each surface
-    for slug in ssot_files:
-        if not (ROOT / '.gemini' / 'commands' / f'{slug}.toml').exists():
-            errors.append(f'missing gemini command: .gemini/commands/{slug}.toml')
-        if not (ROOT / '.claude' / 'commands' / f'{slug}.md').exists():
-            errors.append(f'missing claude command: .claude/commands/{slug}.md')
-        if not (ROOT / '.kiro' / 'prompts' / f'{slug}.md').exists():
-            errors.append(f'missing kiro prompt: .kiro/prompts/{slug}.md')
-        if not (ROOT / '.kiro' / 'agents' / f'{slug}.json').exists():
-            errors.append(f'missing kiro agent: .kiro/agents/{slug}.json')
-        if not (ROOT / '.codex' / 'skills' / slug / 'SKILL.md').exists():
-            errors.append(f'missing codex skill: .codex/skills/{slug}/SKILL.md')
+    if not rules:
+        errors.append('No artifact definitions in .meta/surface-rules.json')
 
-        errors.extend(validate_gemini(ROOT / '.gemini' / 'commands' / f'{slug}.toml', slug))
-        errors.extend(validate_frontmatter(ROOT / '.claude' / 'commands' / f'{slug}.md'))
-        errors.extend(validate_frontmatter(ROOT / '.kiro' / 'prompts' / f'{slug}.md'))
-        errors.extend(validate_frontmatter(ROOT / '.codex' / 'skills' / slug / 'SKILL.md'))
-        errors.extend(validate_json(ROOT / '.kiro' / 'agents' / f'{slug}.json'))
+    for slug in sorted(ssot_slugs):
+        for rule in rules:
+            errors.extend(validate_one(rule, slug))
 
-    # Ensure no extras
-    allowed_gemini = {f'{s}.toml' for s in ssot_files}
-    allowed_claude = {f'{s}.md' for s in ssot_files}
-    allowed_kiro_prompt = {f'{s}.md' for s in ssot_files}
-    allowed_kiro_agent = {f'{s}.json' for s in ssot_files}
-    allowed_codex = {s for s in ssot_files}
+    # Extra/missing artifact checks
+    expected = {}
+    for rule in rules:
+        expected_set = set()
+        for slug in ssot_slugs:
+            expected_set.add(str(artifact_expected_path(rule, slug).relative_to(ROOT)))
+        expected[rule['name']] = expected_set
 
-    actual_gemini = {p.name for p in (ROOT / '.gemini' / 'commands').glob('*.toml')}
-    actual_claude = {p.name for p in (ROOT / '.claude' / 'commands').glob('*.md')}
-    actual_kiro_prompt = {p.name for p in (ROOT / '.kiro' / 'prompts').glob('*.md')}
-    actual_kiro_agent = {p.name for p in (ROOT / '.kiro' / 'agents').glob('*.json')}
-    actual_codex = {p.name for p in (ROOT / '.codex' / 'skills').glob('*') if p.is_dir()}
+    for rule in rules:
+        actual = set(collect_actual(rule))
+        art_name = rule['name']
+        for extra in sorted(actual - expected[art_name]):
+            errors.append(f'unexpected {rule["surface"]} {art_name}: {extra}')
+        for missing in sorted(expected[art_name] - actual):
+            errors.append(f'missing {rule["surface"]} {art_name}: {missing}')
 
-    for extra in sorted(actual_gemini - allowed_gemini):
-        errors.append(f'unexpected gemini artifact: .gemini/commands/{extra}')
-    for extra in sorted(actual_claude - allowed_claude):
-        errors.append(f'unexpected claude artifact: .claude/commands/{extra}')
-    for extra in sorted(actual_kiro_prompt - allowed_kiro_prompt):
-        errors.append(f'unexpected kiro prompt: .kiro/prompts/{extra}')
-    for extra in sorted(actual_kiro_agent - allowed_kiro_agent):
-        errors.append(f'unexpected kiro agent: .kiro/agents/{extra}')
-    for extra in sorted(actual_codex - allowed_codex):
-        errors.append(f'unexpected codex skill dir: .codex/skills/{extra}')
-
-    # manifest sanity
     manifest_ssot = {entry['slug'] for entry in manifest.get('ssot_sources', [])}
-    if manifest_ssot != set(ssot_files):
+    if manifest_ssot != ssot_slugs:
         errors.append('manifest slugs do not match ssot directory')
+
+    for artifact_name in [a['name'] for a in rules]:
+        if artifact_name not in expected:
+            errors.append(f'No expected set produced for artifact: {artifact_name}')
 
     if errors:
         print('Validation failed:')

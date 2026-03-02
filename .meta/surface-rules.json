@@ -1,0 +1,60 @@
+{
+  "version": "1.0",
+  "artifacts": [
+    {
+      "name": "gemini_command",
+      "surface": "gemini",
+      "path": ".gemini/commands/{slug}.toml",
+      "format": "toml",
+      "required_fields": ["name", "description", "prompt"],
+      "match": "filename",
+      "source_of_truth": "local AGENTS.md and Gemini command format conventions"
+    },
+    {
+      "name": "claude_command",
+      "surface": "claude",
+      "path": ".claude/commands/{slug}.md",
+      "format": "frontmatter_markdown",
+      "required_frontmatter": ["description"],
+      "match": "filename",
+      "source_of_truth": "local AGENTS.md and Claude command conventions"
+    },
+    {
+      "name": "codex_skill",
+      "surface": "codex",
+      "path": ".codex/skills/{slug}/SKILL.md",
+      "format": "frontmatter_markdown",
+      "required_frontmatter": ["name", "description"],
+      "match": "skill_dir",
+      "source_of_truth": "local Codex skill conventions and repo patterns"
+    },
+    {
+      "name": "kiro_prompt",
+      "surface": "kiro",
+      "path": ".kiro/prompts/{slug}.md",
+      "format": "frontmatter_markdown",
+      "required_frontmatter": ["description"],
+      "match": "filename",
+      "source_of_truth": "Kiro CLI docs",
+      "source_url": "https://kiro.dev/docs/cli/custom-agents/"
+    },
+    {
+      "name": "kiro_agent",
+      "surface": "kiro",
+      "path": ".kiro/agents/{slug}.json",
+      "format": "json",
+      "required_fields": ["name", "description", "prompt", "resources", "hooks", "tools"],
+      "match": "filename",
+      "source_of_truth": "Kiro CLI docs",
+      "source_url": "https://kiro.dev/docs/cli/custom-agents/configuration-reference/",
+      "resource_uri_patterns": [
+        "^file://\\.\\./prompts/.+\\.md$",
+        "^file://\\.\\./skills/.+/SKILL\\.md$",
+        "^skill:///?.*"
+      ],
+      "validator": {
+        "command": ["kiro-cli", "agent", "validate", "--path"]
+      }
+    }
+  ]
+}
