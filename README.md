@@ -1,178 +1,165 @@
-# Core-Prompts Surface Registry
+# Core-Prompts
 
-This repository is the source-of-truth for SSOT-driven prompt/skill/agent surfaces across Codex, Gemini, Claude, and Kiro.
+Ship better AI work with prompts that are reusable, structured, and easy to run.
 
-## What this repo owns
+Core-Prompts is a practical prompt system for real workflows: prompt engineering, synthesis, planning, context analysis, and handoff. You can use the prompts directly, or maintain them as SSOT and generate CLI-specific surfaces.
 
-- SSOT prompt definitions in `ssot/`
-- Canonical generated outputs under:
-  - `.codex/`
-  - `.gemini/`
-  - `.claude/`
-  - `.kiro/`
-- Validation and CI checks in `scripts/`
-- CLI integration reference in `docs/CLI-REFERENCE.md`
-- Technical docs hub in `docs/README_TECHNICAL.md`
-- Docs evolution prompt pack in `docs/prompt-pack/README.md`
-
-## Key Files
-
-- [CLI integration reference](docs/CLI-REFERENCE.md)
-- [Technical docs hub](docs/README_TECHNICAL.md)
-- [Getting started](docs/GETTING-STARTED.md)
-- [Architecture](docs/ARCHITECTURE.md)
-- [FAQ](docs/FAQ.md)
-- [Docs evolution prompt pack](docs/prompt-pack/README.md)
-- [Deploy script](scripts/deploy-surfaces.sh)
-- [Packaging script](scripts/package-surfaces.sh)
-- [Surface rules](.meta/surface-rules.json)
-
-## Invocation map
-
-- Gemini:
-  - skills via `.gemini/skills/<slug>/SKILL.md`
-  - custom commands via `.gemini/commands/<slug>.toml`
-  - subagents via `.gemini/agents/<slug>.md`
-- Claude:
-  - command-skills via `.claude/commands/<slug>.md`
-  - subagents via `.claude/agents/<slug>.md`
-- Kiro:
-  - skills via `.kiro/skills/<slug>/SKILL.md`
-  - prompts via `.kiro/prompts/<slug>.md`
-  - agents via `.kiro/agents/<slug>.json`
-- Codex:
-  - skills via `.codex/skills/<slug>/SKILL.md`
-  - sub-agents via `.codex/agents/<slug>.toml` for SSOT entries marked `kind: agent` or `role: agent`
-
-The `clis/` folder is intentionally removed from this repo and not used as source-of-truth.
-
-## Quick start
-
-- List SSOT files: `ls ssot/*.md`
-- Generate all surfaces: `python3 scripts/build-surfaces.py`
-- Refresh schema references from vendor docs: `python3 scripts/sync-surface-specs.py`
-- Validate outputs: `python3 scripts/validate-surfaces.py`
-- Optional smoke checks: `python3 scripts/smoke-clis.py`
-- Deploy generated surfaces globally (copy-only): `scripts/deploy-surfaces.sh --cli all`
-- Package release artifacts: `scripts/package-surfaces.sh --version vX.Y.Z`
-
-Recommended validation flow:
-
-1. `python3 scripts/sync-surface-specs.py`
-2. `python3 scripts/build-surfaces.py`
-3. `python3 scripts/validate-surfaces.py --strict`
-4. `python3 scripts/smoke-clis.py --strict`
-5. `scripts/deploy-surfaces.sh --dry-run --cli all`
-6. `scripts/deploy-surfaces.sh --cli all`
-7. `scripts/package-surfaces.sh --version vX.Y.Z`
-
-## One-file flow
-
-1. Edit an SSOT source file in `ssot/`.
-2. Run `python3 scripts/build-surfaces.py`.
-3. Run `python3 scripts/validate-surfaces.py`.
-4. Commit generated artifacts.
-
-## Docs Evolution Prompt Pack
-
-If you want to evolve docs with an AI assistant while keeping claims factual:
-
-- Start with [docs/prompt-pack/README.md](docs/prompt-pack/README.md)
-- Single-pass mode: use `docs/prompt-pack/prompts/master-orchestrator.md`
-- Modular mode: run prompts A-E in order as needed
-
-## Validation commands
-
-- `python3 scripts/validate-surfaces.py --with-cli`  
-  Runs CLI-backed artifact validation where declared.
-- `python3 scripts/validate-surfaces.py --strict --with-cli`  
-  Fails on optional checks and CLI artifacts validation issues.
-- `python3 scripts/validate-surfaces.py --skip-schema`  
-  Skips schema cache freshness checks when offline.
-- `python3 scripts/smoke-clis.py --strict`  
-  Verifies expected SSOT slugs are discoverable in local Gemini/Claude/Kiro CLIs.
-
-## Local deploy options
-
-- `scripts/deploy-surfaces.sh --cli all`  
-  Copy-only deployment for all available CLIs; overwrites existing files in place.
-- `scripts/deploy-surfaces.sh --cli kiro`  
-  Copy-only deployment for one CLI target.
-- `scripts/deploy-surfaces.sh --dry-run --cli all`  
-  Shows planned operations without writing anything.
-- `scripts/deploy-surfaces.sh --cli all --strict-cli`  
-  Fails if a selected/required CLI binary is unavailable.
-- `scripts/deploy-surfaces.sh --cli all --target /tmp/llm-home`  
-  Copies into a custom destination root instead of `~` (for staging/test roots).
-
-Deployment is copy-only and never creates symlinks. If a destination file path is a symlink, deployment unlinks that path and replaces it with a regular file copy. It only touches exact files for SSOT-managed slugs.
-For Codex sub-agents, deployment also updates `<target>/.codex/config.toml` under managed `[agents.<slug>]` tables.
-
-## Packaging
-
-- `scripts/package-surfaces.sh --version v0.2.1`  
-  Builds `tar.gz` and `zip` assets in `dist/` containing generated surfaces plus deployment/docs metadata.
-- `scripts/package-surfaces.sh --version v0.2.1 --output-dir dist`  
-  Same behavior with explicit output directory.
-
-## CLI integration details
-
-- See `docs/CLI-REFERENCE.md` for:
-  - per-CLI discovery commands
-  - required runtime settings
-  - Kiro agent field explanations and resource URI conventions
-  - release validation/deploy workflow
-- `analyze-context` memory files now live in `.analyze-context-memory/` at project root.
-
-Symlink policy verification snippet:
+## Start In 2 Minutes
 
 ```bash
-python3 - <<'PY'
-import json
-from pathlib import Path
-h = Path.home()
-root = Path('/Users/medhat.galal/Desktop/Core-Prompts')
-slugs = [e['slug'] for e in json.loads((root/'.meta/manifest.json').read_text())['ssot_sources']]
-paths = []
-for s in slugs:
-    paths += [
-        h/f'.gemini/skills/{s}/SKILL.md', h/f'.gemini/agents/{s}.md', h/f'.gemini/commands/{s}.toml',
-        h/f'.claude/agents/{s}.md', h/f'.claude/commands/{s}.md',
-        h/f'.kiro/skills/{s}/SKILL.md', h/f'.kiro/agents/{s}.json', h/f'.kiro/prompts/{s}.md',
-        h/f'.codex/skills/{s}/SKILL.md',
-    ]
-for e in json.loads((root/'.meta/manifest.json').read_text())['ssot_sources']:
-    if (e.get('kind') or '').lower() == 'agent':
-        paths.append(h/f".codex/agents/{e['slug']}.toml")
-syms = [p for p in paths if p.is_symlink()]
-print(f'managed={len(paths)} symlinks={len(syms)}')
-for p in syms:
-    print(p)
-PY
+git clone https://github.com/medhatgalal/Core-Prompts.git
+cd Core-Prompts
+python3 scripts/build-surfaces.py
+python3 scripts/validate-surfaces.py --strict
 ```
 
-Legacy compatibility script:
-- `scripts/install-local.sh` is a copy-only wrapper over `scripts/deploy-surfaces.sh` (link mode removed).
+Optional local deployment to your CLI homes:
 
-## Required CLI settings
+```bash
+scripts/deploy-surfaces.sh --cli all
+```
 
-- Gemini subagents: enable `"experimental.enableAgents": true`.
-- Claude command-skills: do not run with `--disable-slash-commands` when testing command surfaces.
-- Kiro: keep `kiro-cli` updated for current custom-agent and resource handling.
+## Why This Is Valuable
 
-## Surfaces generated
+- Faster execution: fewer vague prompts, fewer retries.
+- Better outputs: structure, constraints, and quality gates are built in.
+- Cross-tool portability: one SSOT source generates Codex, Gemini, Claude, and Kiro surfaces.
+- Safer changes: deterministic build + validation + deploy workflow.
 
-For each SSOT file:
+## Prompt Set
 
-- `.codex/skills/<slug>/SKILL.md`
-- `.codex/agents/<slug>.toml` for SSOT entries with `kind/role: agent`
-- `.gemini/skills/<slug>/SKILL.md`
-- `.gemini/commands/<slug>.toml`
-- `.gemini/agents/<slug>.md`
-- `.claude/commands/<slug>.md`
-- `.claude/agents/<slug>.md`
-- `.kiro/skills/<slug>/SKILL.md`
-- `.kiro/prompts/<slug>.md`
-- `.kiro/agents/<slug>.json`
+| Prompt | Primary Value | Typical Use |
+|---|---|---|
+| `supercharge` | Multi-pass prompt hardening | Improve prompts, plans, and specs with explicit lenses |
+| `converge` | Strong synthesis | Merge multiple docs/sessions into one decision-ready direction |
+| `mentor` | Senior engineering guidance | Decide next actions, de-risk execution, improve process |
+| `analyze-context` | Iterative analysis workflow | Audit many files/items while preserving working memory |
+| `threader` | Context export | Create a clean transcript handoff for another AI/session |
 
-See `.meta/manifest.json` for generated mapping.
+## Full Run Examples (One For Each Prompt)
+
+These are full workflow examples with command + expected outcome. Invocation prefix differs by tool (`$supercharge`, `/supercharge`, etc.), but the run intent is the same.
+
+### 1) `supercharge` full run
+
+**Goal:** Turn a rough prompt into a robust execution prompt.
+
+**Run:**
+
+```text
+supercharge /ult /realism Improve this prompt:
+"Design our docs strategy."
+```
+
+**Expected result:**
+
+- Returns a copy-ready improved prompt.
+- Executes it immediately and returns output under clear sections.
+- Surfaces constraints/assumptions instead of inventing context.
+
+### 2) `converge` full run
+
+**Goal:** Merge three competing drafts into one final plan.
+
+**Run:**
+
+```text
+converge intent: "Choose one docs strategy for Q2."
+source A: <paste>
+source B: <paste>
+source C: <paste>
+```
+
+**Expected result:**
+
+- Produces a single stronger proposal, not a stitched summary.
+- Makes trade-offs explicit.
+- Calls out unresolved decisions and a recommended path.
+
+### 3) `mentor` full run
+
+**Goal:** Decide what to do next after a failed validation.
+
+**Run:**
+
+```text
+/mentor Validation failed after my SSOT edits. Here is output: <paste>
+```
+
+**Expected result:**
+
+- Triage of likely causes.
+- Recommended recovery sequence.
+- Clear "do this next" checklist with risk controls.
+
+### 4) `analyze-context` full run
+
+**Goal:** Audit prompt consistency across many files.
+
+**Run:**
+
+```text
+Use analyze-context to audit all ssot/*.md files for duplicated rules and drift.
+```
+
+**Expected result:**
+
+- Creates memory files under `.analyze-context-memory/`.
+- Tracks progress item-by-item.
+- Produces a final findings summary with actionable fixes.
+
+### 5) `threader` full run
+
+**Goal:** Export a complete thread for continuation in another model.
+
+**Run:**
+
+```text
+/threader export
+```
+
+**Expected result:**
+
+- Produces a transcript file when supported.
+- Falls back to inline transcript mode if file creation is not supported.
+- Preserves ordering and context for handoff.
+
+## Quick AI Handoff (Copy/Paste)
+
+```text
+You are working in /Users/medhat.galal/Desktop/Core-Prompts.
+This repo is prompt-first. Source of truth is ssot/.
+If behavior changes are needed, edit ssot files first, then run:
+1) python3 scripts/build-surfaces.py
+2) python3 scripts/validate-surfaces.py --strict
+Do not hand-edit generated files under .codex/.gemini/.claude/.kiro.
+```
+
+## How The Repo Works
+
+```mermaid
+flowchart LR
+  A["ssot/*.md"] --> B["scripts/build-surfaces.py"]
+  B --> C[".codex/.gemini/.claude/.kiro"]
+  C --> D["scripts/validate-surfaces.py"]
+  D --> E["scripts/deploy-surfaces.sh (optional)"]
+```
+
+## Docs Organization
+
+- Start here: [docs/README.md](docs/README.md)
+- Fast onboarding: [docs/GETTING-STARTED.md](docs/GETTING-STARTED.md)
+- Full run examples: [docs/EXAMPLES.md](docs/EXAMPLES.md)
+- Technical reference: [docs/README_TECHNICAL.md](docs/README_TECHNICAL.md)
+- CLI details: [docs/CLI-REFERENCE.md](docs/CLI-REFERENCE.md)
+- Architecture: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
+- Troubleshooting: [docs/FAQ.md](docs/FAQ.md)
+- Docs prompt-pack: [docs/prompt-pack/README.md](docs/prompt-pack/README.md)
+
+## Release Packaging
+
+```bash
+scripts/package-surfaces.sh --version vX.Y.Z
+```
+
+Creates release bundles in `dist/` (`.tar.gz` and `.zip`).

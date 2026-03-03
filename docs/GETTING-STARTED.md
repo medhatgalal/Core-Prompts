@@ -67,6 +67,8 @@ When making behavior changes, edit ssot files first, then run build and validate
 Do not hand-edit generated surfaces.
 ```
 
+For full workflow examples per prompt, see [EXAMPLES.md](EXAMPLES.md).
+
 ## Success Checklist
 
 - `python3 scripts/build-surfaces.py` completes without errors.

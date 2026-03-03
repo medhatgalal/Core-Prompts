@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.2.5 - 2026-03-03
+
+- Rewrote root `README.md` to be prompt-first and more approachable:
+  - stronger product-style intro and value framing
+  - quick install path and AI handoff block
+  - expanded prompt-centric examples
+- Added documentation navigation hub: `docs/README.md`.
+- Added full run examples page for each core prompt: `docs/EXAMPLES.md`.
+- Updated technical docs routing:
+  - `docs/GETTING-STARTED.md` now links to examples
+  - `docs/README_TECHNICAL.md` now includes examples in start-here paths
+
 ## 0.2.4 - 2026-03-03
 
 - Added Codex true sub-agent generation and registration flow:

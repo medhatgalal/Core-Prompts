@@ -5,6 +5,7 @@ Use this index when you need operational and implementation detail beyond the ro
 ## Start Here
 
 - [Getting Started](GETTING-STARTED.md): first-run setup, common command flow, and troubleshooting.
+- [Examples](EXAMPLES.md): full run examples for each prompt.
 - [CLI Integration Reference](CLI-REFERENCE.md): per-CLI surfaces, deployment targets, and verification commands.
 - [Architecture](ARCHITECTURE.md): SSOT model, generators, validators, manifest, and deployment design.
 - [FAQ](FAQ.md): common problems and practical fixes.
