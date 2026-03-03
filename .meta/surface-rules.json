@@ -177,10 +177,7 @@
       ],
       "resource_uri_patterns": [
         "^file://\\.kiro/prompts/.+\\.md$",
-        "^file://\\.kiro/skills/.+/SKILL\\.md$",
-        "^file://\\.\\./prompts/.+\\.md$",
-        "^file://\\.\\./skills/.+/SKILL\\.md$",
-        "^skill:///?.*"
+        "^skill://\\.kiro/skills/.+/SKILL\\.md$"
       ],
       "validator": {
         "command": ["kiro-cli", "agent", "validate", "--path"]

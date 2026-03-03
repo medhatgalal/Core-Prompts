@@ -6,6 +6,7 @@
   - `gemini`, `claude`, `kiro`, `codex`, or `all`
 - Added deployment flags:
   - `--cli gemini|claude|kiro|codex|all`
+  - `--target PATH` (custom destination root; default `~`)
   - `--dry-run`
   - `--strict-cli`
 - Deployment behavior is now documented as:

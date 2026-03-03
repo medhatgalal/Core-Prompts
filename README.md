@@ -76,6 +76,8 @@ Recommended validation flow:
   Shows planned operations without writing anything.
 - `scripts/deploy-surfaces.sh --cli all --strict-cli`  
   Fails if a selected/required CLI binary is unavailable.
+- `scripts/deploy-surfaces.sh --cli all --target /tmp/llm-home`  
+  Copies into a custom destination root instead of `~` (for staging/test roots).
 
 Deployment is non-destructive for path entries: no deletes and no symlink creation. It only touches exact files for SSOT-managed slugs.
 

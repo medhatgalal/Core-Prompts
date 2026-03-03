@@ -120,9 +120,8 @@ def write_kiro_agent(slug: str, desc: str, body: str):
         'description': desc,
         'prompt': f'# {prompt_title}\n\n{body}\n',
         'resources': [
-            f'skill://{slug}',
             f'file://.kiro/prompts/{slug}.md',
-            f'file://../skills/{slug}/SKILL.md',
+            f'skill://.kiro/skills/{slug}/SKILL.md',
         ],
         'hooks': {
             'agentSpawn': [

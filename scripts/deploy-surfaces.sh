@@ -3,14 +3,15 @@ set -euo pipefail
 
 usage() {
   cat <<'EOF'
-Usage: scripts/deploy-surfaces.sh [--cli gemini|claude|kiro|codex|all] [--dry-run] [--strict-cli]
+Usage: scripts/deploy-surfaces.sh [--cli gemini|claude|kiro|codex|all] [--target PATH] [--dry-run] [--strict-cli]
 
-Copy-only deployment of SSOT-managed generated surfaces to home CLI directories.
+Copy-only deployment of SSOT-managed generated surfaces to CLI directories under a target root.
 This script never deletes files and never creates symlinks.
 Existing files are overwritten in place with cp -f.
 
 Options:
   --cli gemini|claude|kiro|codex|all  Target CLI(s). Default: all
+  --target PATH                       Destination root path. Default: ~
   --dry-run                           Show copy actions without writing
   --strict-cli                        Fail when selected CLI binary is not installed
   -h, --help                          Show this help
@@ -18,6 +19,7 @@ EOF
 }
 
 CLI_TARGET="all"
+TARGET_ROOT="$HOME"
 DRY_RUN=0
 STRICT_CLI=0
 
@@ -26,6 +28,10 @@ while [[ $# -gt 0 ]]; do
     --cli)
       shift
       CLI_TARGET="${1:-}"
+      ;;
+    --target)
+      shift
+      TARGET_ROOT="${1:-}"
       ;;
     --dry-run)
       DRY_RUN=1
@@ -45,6 +51,19 @@ while [[ $# -gt 0 ]]; do
   esac
   shift
 done
+
+if [[ -z "$TARGET_ROOT" ]]; then
+  echo "error: --target requires a non-empty path"
+  usage
+  exit 1
+fi
+
+TARGET_ROOT="$(python3 - "$TARGET_ROOT" <<'PY'
+import os
+import sys
+print(os.path.abspath(os.path.expanduser(sys.argv[1])))
+PY
+)"
 
 case "$CLI_TARGET" in
   gemini|claude|kiro|codex|all) ;;
@@ -166,31 +185,32 @@ copy_file() {
 
 deploy_gemini() {
   local slug="$1"
-  copy_file "$REPO_ROOT/.gemini/skills/$slug/SKILL.md" "$HOME/.gemini/skills/$slug/SKILL.md" || return 1
-  copy_file "$REPO_ROOT/.gemini/agents/$slug.md" "$HOME/.gemini/agents/$slug.md" || return 1
-  copy_file "$REPO_ROOT/.gemini/commands/$slug.toml" "$HOME/.gemini/commands/$slug.toml" || return 1
+  copy_file "$REPO_ROOT/.gemini/skills/$slug/SKILL.md" "$TARGET_ROOT/.gemini/skills/$slug/SKILL.md" || return 1
+  copy_file "$REPO_ROOT/.gemini/agents/$slug.md" "$TARGET_ROOT/.gemini/agents/$slug.md" || return 1
+  copy_file "$REPO_ROOT/.gemini/commands/$slug.toml" "$TARGET_ROOT/.gemini/commands/$slug.toml" || return 1
 }
 
 deploy_claude() {
   local slug="$1"
-  copy_file "$REPO_ROOT/.claude/agents/$slug.md" "$HOME/.claude/agents/$slug.md" || return 1
-  copy_file "$REPO_ROOT/.claude/commands/$slug.md" "$HOME/.claude/commands/$slug.md" || return 1
+  copy_file "$REPO_ROOT/.claude/agents/$slug.md" "$TARGET_ROOT/.claude/agents/$slug.md" || return 1
+  copy_file "$REPO_ROOT/.claude/commands/$slug.md" "$TARGET_ROOT/.claude/commands/$slug.md" || return 1
 }
 
 deploy_kiro() {
   local slug="$1"
-  copy_file "$REPO_ROOT/.kiro/skills/$slug/SKILL.md" "$HOME/.kiro/skills/$slug/SKILL.md" || return 1
-  copy_file "$REPO_ROOT/.kiro/agents/$slug.json" "$HOME/.kiro/agents/$slug.json" || return 1
-  copy_file "$REPO_ROOT/.kiro/prompts/$slug.md" "$HOME/.kiro/prompts/$slug.md" || return 1
+  copy_file "$REPO_ROOT/.kiro/skills/$slug/SKILL.md" "$TARGET_ROOT/.kiro/skills/$slug/SKILL.md" || return 1
+  copy_file "$REPO_ROOT/.kiro/agents/$slug.json" "$TARGET_ROOT/.kiro/agents/$slug.json" || return 1
+  copy_file "$REPO_ROOT/.kiro/prompts/$slug.md" "$TARGET_ROOT/.kiro/prompts/$slug.md" || return 1
 }
 
 deploy_codex() {
   local slug="$1"
-  copy_file "$REPO_ROOT/.codex/skills/$slug/SKILL.md" "$HOME/.codex/skills/$slug/SKILL.md" || return 1
+  copy_file "$REPO_ROOT/.codex/skills/$slug/SKILL.md" "$TARGET_ROOT/.codex/skills/$slug/SKILL.md" || return 1
 }
 
 echo "Deploying managed slugs (${#SLUGS[@]}): ${SLUGS[*]}"
 echo "Target CLIs: ${TARGETS[*]}"
+echo "Target root: $TARGET_ROOT"
 if [[ "$DRY_RUN" -eq 1 ]]; then
   echo "Dry-run: enabled"
 fi

@@ -15,4 +15,5 @@
 4. Run `python3 scripts/validate-surfaces.py --strict`.
 5. Run `python3 scripts/smoke-clis.py --strict` (if local CLIs installed).
 6. Optionally run `scripts/deploy-surfaces.sh --dry-run --cli all` to verify global copy deployment.
-7. Commit SSOT + regenerated dot-surface files + manifest update.
+7. For non-home staging tests, use `scripts/deploy-surfaces.sh --dry-run --cli all --target /tmp/llm-home`.
+8. Commit SSOT + regenerated dot-surface files + manifest update.
