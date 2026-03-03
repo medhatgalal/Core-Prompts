@@ -3,6 +3,15 @@
   "generated_at": "",
   "schema_cache_dir": ".meta/schema-cache",
   "schema_cache_ttl_days": 14,
+  "deployment_policy": {
+    "copy_only": true,
+    "forbid_symlink_targets": true,
+    "replace_destination_symlink_with_regular_file": true,
+    "notes": [
+      "Deployment must not create symlinks.",
+      "If destination path is a symlink, unlink that path and copy a regular file."
+    ]
+  },
   "tooling": [
     {
       "name": "codex",

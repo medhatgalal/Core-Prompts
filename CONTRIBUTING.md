@@ -7,6 +7,7 @@
 - Run `python3 scripts/smoke-clis.py --strict` when local CLIs are available.
 - Keep PRs scoped to one behavior change and include a brief validation summary.
 - Keep `docs/CLI-REFERENCE.md` aligned when changing deployment flags, CLI settings, or discovery behavior.
+- Deployment policy is copy-only with symlinks forbidden at destination paths.
 
 ## Adding a new prompt
 

@@ -6,7 +6,8 @@ usage() {
 Usage: scripts/deploy-surfaces.sh [--cli gemini|claude|kiro|codex|all] [--target PATH] [--dry-run] [--strict-cli]
 
 Copy-only deployment of SSOT-managed generated surfaces to CLI directories under a target root.
-This script never deletes files and never creates symlinks.
+This script never creates symlinks.
+If destination file is a symlink, it is unlinked and replaced with a regular file copy.
 Existing files are overwritten in place with cp -f.
 
 Options:
@@ -151,6 +152,7 @@ fi
 COPIED=0
 MISSING_SOURCE=0
 SKIPPED_CLI=0
+REPLACED_SYMLINK=0
 
 copy_file() {
   local src="$1"
@@ -168,11 +170,19 @@ copy_file() {
   fi
 
   if [[ "$DRY_RUN" -eq 1 ]]; then
+    if [[ -L "$dst" ]]; then
+      echo "DRY-RUN REPLACE-SYMLINK $dst"
+    fi
     echo "DRY-RUN COPY $src -> $dst"
     return 0
   fi
 
   mkdir -p "$(dirname "$dst")"
+  if [[ -L "$dst" ]]; then
+    rm -f "$dst"
+    REPLACED_SYMLINK=$((REPLACED_SYMLINK + 1))
+    echo "REPLACED SYMLINK $dst"
+  fi
   if cp -f "$src" "$dst" 2>/dev/null; then
     echo "COPIED $src -> $dst"
     COPIED=$((COPIED + 1))
@@ -237,7 +247,7 @@ for cli in "${TARGETS[@]}"; do
 done
 
 if [[ "$DRY_RUN" -eq 1 ]]; then
-  echo "SUMMARY copied=0 missing_source=$MISSING_SOURCE skipped_cli=$SKIPPED_CLI"
+  echo "SUMMARY copied=0 missing_source=$MISSING_SOURCE skipped_cli=$SKIPPED_CLI replaced_symlink=0"
 else
-  echo "SUMMARY copied=$COPIED missing_source=$MISSING_SOURCE skipped_cli=$SKIPPED_CLI"
+  echo "SUMMARY copied=$COPIED missing_source=$MISSING_SOURCE skipped_cli=$SKIPPED_CLI replaced_symlink=$REPLACED_SYMLINK"
 fi
