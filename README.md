@@ -89,7 +89,7 @@ Recommended validation flow:
 - `scripts/deploy-surfaces.sh --cli all --target /tmp/llm-home`  
   Copies into a custom destination root instead of `~` (for staging/test roots).
 
-Deployment is non-destructive for path entries: no deletes and no symlink creation. It only touches exact files for SSOT-managed slugs.
+Deployment is copy-only and never creates symlinks. If a destination file path is a symlink, deployment unlinks that path and replaces it with a regular file copy. It only touches exact files for SSOT-managed slugs.
 
 ## Packaging
 
@@ -106,8 +106,32 @@ Deployment is non-destructive for path entries: no deletes and no symlink creati
   - Kiro agent field explanations and resource URI conventions
   - release validation/deploy workflow
 
+Symlink policy verification snippet:
+
+```bash
+python3 - <<'PY'
+import json
+from pathlib import Path
+h = Path.home()
+root = Path('/Users/medhat.galal/Desktop/Core-Prompts')
+slugs = [e['slug'] for e in json.loads((root/'.meta/manifest.json').read_text())['ssot_sources']]
+paths = []
+for s in slugs:
+    paths += [
+        h/f'.gemini/skills/{s}/SKILL.md', h/f'.gemini/agents/{s}.md', h/f'.gemini/commands/{s}.toml',
+        h/f'.claude/agents/{s}.md', h/f'.claude/commands/{s}.md',
+        h/f'.kiro/skills/{s}/SKILL.md', h/f'.kiro/agents/{s}.json', h/f'.kiro/prompts/{s}.md',
+        h/f'.codex/skills/{s}/SKILL.md',
+    ]
+syms = [p for p in paths if p.is_symlink()]
+print(f'managed={len(paths)} symlinks={len(syms)}')
+for p in syms:
+    print(p)
+PY
+```
+
 Legacy compatibility script:
-- `scripts/install-local.sh` still exists for explicit link/copy mode workflows.
+- `scripts/install-local.sh` is a copy-only wrapper over `scripts/deploy-surfaces.sh` (link mode removed).
 
 ## Required CLI settings
 

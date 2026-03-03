@@ -15,7 +15,8 @@ This document defines the generated surfaces, deployment behavior, verification 
 ## Deploy Script Contract
 
 - Script: `scripts/deploy-surfaces.sh`
-- Modes: copy-only, overwrite existing files in place, no deletions, no symlink creation
+- Modes: copy-only, overwrite existing files in place, no symlink creation
+- Symlink handling: if destination file is a symlink, deployment unlinks that path and writes a regular file
 - Flags:
   - `--cli gemini|claude|kiro|codex|all` (default: `all`)
   - `--target PATH` (default: `~`)
@@ -26,6 +27,8 @@ Examples:
 - Deploy all to home root: `scripts/deploy-surfaces.sh --cli all`
 - Deploy only Kiro to a staging root: `scripts/deploy-surfaces.sh --cli kiro --target /tmp/llm-home`
 - Verify planned writes only: `scripts/deploy-surfaces.sh --dry-run --cli all --target /tmp/llm-home`
+- Verify managed deployment targets are not symlinks:
+  - `python3 - <<'PY' ...` (see README verification snippet)
 
 ## Generated Surfaces By CLI
 

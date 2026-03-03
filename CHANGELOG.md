@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.2 - 2026-03-03
+
+- Enforced no-symlink deployment policy in `scripts/deploy-surfaces.sh`:
+  - deployment never creates symlinks
+  - if destination file is a symlink, the symlink path is unlinked and replaced with a regular file copy
+- Converted `scripts/install-local.sh` into a copy-only wrapper around `scripts/deploy-surfaces.sh`.
+  - link mode is removed and now errors if requested
+- Added explicit deployment policy to `.meta/surface-rules.json` (`deployment_policy`).
+- Updated docs (`README.md`, `docs/CLI-REFERENCE.md`) to document symlink replacement behavior.
+
 ## 0.2.1 - 2026-03-02
 
 - Normalized generated Kiro agent resource URIs to root-style skill references:
