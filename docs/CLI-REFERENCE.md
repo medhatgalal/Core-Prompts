@@ -118,6 +118,10 @@ Home deployment targets under `--target` root:
 Verify discovery:
 - `codex --help` and invoke skill by name in a session.
 
+## Skill-specific Memory Convention
+
+- `analyze-context` stores canonical memory files in `.analyze-context-memory/` at the project root.
+
 ## Validation and Release Flow
 
 1. `python3 scripts/sync-surface-specs.py`

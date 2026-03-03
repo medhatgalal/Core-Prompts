@@ -105,6 +105,7 @@ Deployment is copy-only and never creates symlinks. If a destination file path i
   - required runtime settings
   - Kiro agent field explanations and resource URI conventions
   - release validation/deploy workflow
+- `analyze-context` memory files now live in `.analyze-context-memory/` at project root.
 
 Symlink policy verification snippet:
 
