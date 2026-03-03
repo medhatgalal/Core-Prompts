@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.3 - 2026-03-03
+
+- Updated `analyze-context` memory location to `.analyze-context-memory/` (project root) in SSOT and all generated surfaces.
+- Updated docs to call out the `analyze-context` memory folder convention.
+
 ## 0.2.2 - 2026-03-03
 
 - Enforced no-symlink deployment policy in `scripts/deploy-surfaces.sh`:

@@ -22,7 +22,7 @@ This steering file defines a standard workflow for any multi-step analysis task 
 
 ## Required Memory Files
 
-Before starting any iterative analysis, create these three **Canonical Files** in `.engos/memory/` (or project root if `.engos` is missing).
+Before starting any iterative analysis, create these three **Canonical Files** in `.analyze-context-memory/` at the project root.
 
 **CRITICAL RULE: ONE SET ONLY.**
 Do NOT create versioned files like `task-v1-context.md` or `task-v2-context.md`.
