@@ -12,10 +12,17 @@ This repository is the source-of-truth for SSOT-driven prompt/skill/agent surfac
   - `.kiro/`
 - Validation and CI checks in `scripts/`
 - CLI integration reference in `docs/CLI-REFERENCE.md`
+- Technical docs hub in `docs/README_TECHNICAL.md`
+- Docs evolution prompt pack in `docs/prompt-pack/README.md`
 
 ## Key Files
 
 - [CLI integration reference](docs/CLI-REFERENCE.md)
+- [Technical docs hub](docs/README_TECHNICAL.md)
+- [Getting started](docs/GETTING-STARTED.md)
+- [Architecture](docs/ARCHITECTURE.md)
+- [FAQ](docs/FAQ.md)
+- [Docs evolution prompt pack](docs/prompt-pack/README.md)
 - [Deploy script](scripts/deploy-surfaces.sh)
 - [Packaging script](scripts/package-surfaces.sh)
 - [Surface rules](.meta/surface-rules.json)
@@ -35,6 +42,7 @@ This repository is the source-of-truth for SSOT-driven prompt/skill/agent surfac
   - agents via `.kiro/agents/<slug>.json`
 - Codex:
   - skills via `.codex/skills/<slug>/SKILL.md`
+  - sub-agents via `.codex/agents/<slug>.toml` for SSOT entries marked `kind: agent` or `role: agent`
 
 The `clis/` folder is intentionally removed from this repo and not used as source-of-truth.
 
@@ -65,6 +73,14 @@ Recommended validation flow:
 3. Run `python3 scripts/validate-surfaces.py`.
 4. Commit generated artifacts.
 
+## Docs Evolution Prompt Pack
+
+If you want to evolve docs with an AI assistant while keeping claims factual:
+
+- Start with [docs/prompt-pack/README.md](docs/prompt-pack/README.md)
+- Single-pass mode: use `docs/prompt-pack/prompts/master-orchestrator.md`
+- Modular mode: run prompts A-E in order as needed
+
 ## Validation commands
 
 - `python3 scripts/validate-surfaces.py --with-cli`  
@@ -90,6 +106,7 @@ Recommended validation flow:
   Copies into a custom destination root instead of `~` (for staging/test roots).
 
 Deployment is copy-only and never creates symlinks. If a destination file path is a symlink, deployment unlinks that path and replaces it with a regular file copy. It only touches exact files for SSOT-managed slugs.
+For Codex sub-agents, deployment also updates `<target>/.codex/config.toml` under managed `[agents.<slug>]` tables.
 
 ## Packaging
 
@@ -124,6 +141,9 @@ for s in slugs:
         h/f'.kiro/skills/{s}/SKILL.md', h/f'.kiro/agents/{s}.json', h/f'.kiro/prompts/{s}.md',
         h/f'.codex/skills/{s}/SKILL.md',
     ]
+for e in json.loads((root/'.meta/manifest.json').read_text())['ssot_sources']:
+    if (e.get('kind') or '').lower() == 'agent':
+        paths.append(h/f".codex/agents/{e['slug']}.toml")
 syms = [p for p in paths if p.is_symlink()]
 print(f'managed={len(paths)} symlinks={len(syms)}')
 for p in syms:
@@ -145,6 +165,7 @@ Legacy compatibility script:
 For each SSOT file:
 
 - `.codex/skills/<slug>/SKILL.md`
+- `.codex/agents/<slug>.toml` for SSOT entries with `kind/role: agent`
 - `.gemini/skills/<slug>/SKILL.md`
 - `.gemini/commands/<slug>.toml`
 - `.gemini/agents/<slug>.md`

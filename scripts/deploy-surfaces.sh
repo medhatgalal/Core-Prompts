@@ -107,6 +107,25 @@ if [[ ${#SLUGS[@]} -eq 0 ]]; then
   exit 1
 fi
 
+if ! mapfile -t AGENT_SLUGS < <(python3 - <<'PY'
+import json
+from pathlib import Path
+try:
+    manifest = json.loads(Path(".meta/manifest.json").read_text(encoding="utf-8"))
+except Exception as exc:
+    raise SystemExit(f"manifest_read_error: {exc}")
+
+for entry in manifest.get("ssot_sources", []):
+    slug = entry.get("slug")
+    kind = (entry.get("kind") or "").strip().lower()
+    if slug and kind == "agent":
+        print(slug)
+PY
+); then
+  echo "error: unreadable .meta/manifest.json for agent slugs"
+  exit 1
+fi
+
 is_cli_available() {
   local cli="$1"
   case "$cli" in
@@ -216,6 +235,77 @@ deploy_kiro() {
 deploy_codex() {
   local slug="$1"
   copy_file "$REPO_ROOT/.codex/skills/$slug/SKILL.md" "$TARGET_ROOT/.codex/skills/$slug/SKILL.md" || return 1
+  if [[ " ${AGENT_SLUGS[*]} " == *" $slug "* ]]; then
+    copy_file "$REPO_ROOT/.codex/agents/$slug.toml" "$TARGET_ROOT/.codex/agents/$slug.toml" || return 1
+  fi
+}
+
+register_codex_agents() {
+  if [[ ${#AGENT_SLUGS[@]} -eq 0 ]]; then
+    return 0
+  fi
+  local config_path="$TARGET_ROOT/.codex/config.toml"
+  if [[ "$DRY_RUN" -eq 1 ]]; then
+    echo "DRY-RUN REGISTER codex agents in $config_path: ${AGENT_SLUGS[*]}"
+    return 0
+  fi
+  mkdir -p "$(dirname "$config_path")"
+  python3 - "$config_path" "$TARGET_ROOT" "${AGENT_SLUGS[@]}" <<'PY'
+from pathlib import Path
+import sys
+
+config_path = Path(sys.argv[1]).expanduser()
+target_root = Path(sys.argv[2]).expanduser().resolve()
+agent_slugs = sorted(set(sys.argv[3:]))
+
+start_marker = "# >>> core-prompts codex agents start >>>"
+end_marker = "# <<< core-prompts codex agents end <<<"
+
+if config_path.exists():
+    original = config_path.read_text(encoding="utf-8")
+else:
+    original = ""
+
+lines = []
+if original:
+    lines = original.splitlines()
+
+start_idx = None
+end_idx = None
+for idx, line in enumerate(lines):
+    if line.strip() == start_marker:
+        start_idx = idx
+    if line.strip() == end_marker:
+        end_idx = idx
+        if start_idx is not None:
+            break
+
+managed = [start_marker]
+for slug in agent_slugs:
+    config_file = target_root / ".codex" / "agents" / f"{slug}.toml"
+    managed.extend(
+        [
+            f"[agents.{slug}]",
+            f'config_file = "{config_file}"',
+            "",
+        ]
+    )
+managed.append(end_marker)
+managed_text = "\n".join(managed)
+
+if start_idx is not None and end_idx is not None and end_idx >= start_idx:
+    new_lines = lines[:start_idx] + managed_text.splitlines() + lines[end_idx + 1 :]
+    updated = "\n".join(new_lines)
+else:
+    prefix = original.rstrip("\n")
+    if prefix:
+        updated = prefix + "\n\n" + managed_text + "\n"
+    else:
+        updated = managed_text + "\n"
+
+config_path.write_text(updated, encoding="utf-8")
+PY
+  echo "REGISTERED codex agents in $config_path: ${AGENT_SLUGS[*]}"
 }
 
 echo "Deploying managed slugs (${#SLUGS[@]}): ${SLUGS[*]}"
@@ -245,6 +335,10 @@ for cli in "${TARGETS[@]}"; do
     esac
   done
 done
+
+if [[ " ${TARGETS[*]} " == *" codex "* ]]; then
+  register_codex_agents
+fi
 
 if [[ "$DRY_RUN" -eq 1 ]]; then
   echo "SUMMARY copied=0 missing_source=$MISSING_SOURCE skipped_cli=$SKIPPED_CLI replaced_symlink=0"

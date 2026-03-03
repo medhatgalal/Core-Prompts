@@ -19,6 +19,7 @@ KIRO_PROMPT_DIR = ROOT / '.kiro' / 'prompts'
 KIRO_AGENT_DIR = ROOT / '.kiro' / 'agents'
 KIRO_SKILL_DIR = ROOT / '.kiro' / 'skills'
 CODEX_SKILL_DIR = ROOT / '.codex' / 'skills'
+CODEX_AGENT_DIR = ROOT / '.codex' / 'agents'
 
 for d in [
     GEMINI_COMMAND_DIR,
@@ -30,6 +31,7 @@ for d in [
     KIRO_AGENT_DIR,
     KIRO_SKILL_DIR,
     CODEX_SKILL_DIR,
+    CODEX_AGENT_DIR,
     META_DIR,
 ]:
     d.mkdir(parents=True, exist_ok=True)
@@ -64,7 +66,7 @@ def read_md_metadata_and_body(path: Path):
             key, value = line.split(':', 1)
             key = key.strip()
             value = value.strip().strip('"').strip("'")
-            if key in ('name', 'description') and key not in front:
+            if key in ('name', 'description', 'kind', 'role', 'tools', 'agent_tools') and key not in front:
                 front[key] = value
 
     body = remainder.strip('\n')
@@ -79,6 +81,15 @@ def to_toml_str(name: str, desc: str, prompt: str) -> str:
         f'description = "{esc_desc}"\n'
         f'prompt = """\n{prompt_escaped}\n"""\n'
     )
+
+
+def toml_escape_inline(value: str) -> str:
+    return value.replace('\\', '\\\\').replace('"', '\\"')
+
+
+def to_toml_array(values: list[str]) -> str:
+    escaped = [f'"{toml_escape_inline(v)}"' for v in values]
+    return '[' + ', '.join(escaped) + ']'
 
 
 def title_from_slug(slug: str) -> str:
@@ -140,6 +151,20 @@ def write_codex_skill(slug: str, desc: str, body: str):
     return write_skill(CODEX_SKILL_DIR, slug, desc, body)
 
 
+def write_codex_agent(slug: str, desc: str, body: str, tools: list[str]):
+    path = CODEX_AGENT_DIR / f'{slug}.toml'
+    esc_desc = toml_escape_inline(desc)
+    system_prompt = body.replace('\\', '\\\\')
+    txt = (
+        f'name = "{slug}"\n'
+        f'description = "{esc_desc}"\n'
+        f'system_prompt = """\n{system_prompt}\n"""\n'
+        f'tools = {to_toml_array(tools)}\n'
+    )
+    path.write_text(txt, encoding='utf-8')
+    return str(path.relative_to(ROOT))
+
+
 def write_gemini_command(slug: str, desc: str, body: str):
     path = GEMINI_COMMAND_DIR / f'{slug}.toml'
     path.write_text(to_toml_str(slug, desc, body), encoding='utf-8')
@@ -196,6 +221,20 @@ def write_kiro_skill(slug: str, desc: str, body: str):
     return write_skill(KIRO_SKILL_DIR, slug, desc, body)
 
 
+def is_agent_entry(front: dict[str, str]) -> bool:
+    value = (front.get('kind') or front.get('role') or '').strip().lower()
+    return value in {'agent', 'subagent', 'sub-agent'}
+
+
+def parse_tools(front: dict[str, str]) -> list[str]:
+    raw = (front.get('agent_tools') or front.get('tools') or '').strip()
+    if not raw:
+        return ['*']
+    normalized = raw.strip('[]')
+    tools = [part.strip().strip('"').strip("'") for part in normalized.split(',') if part.strip()]
+    return tools or ['*']
+
+
 def main():
     entries = sorted(SSOT_DIR.glob('*.md'))
     if not entries:
@@ -220,6 +259,7 @@ def main():
             'kiro_agent': [],
             'kiro_skill': [],
             'codex_skill': [],
+            'codex_agent': [],
         },
     }
 
@@ -227,11 +267,14 @@ def main():
         front, body = read_md_metadata_and_body(entry)
         slug = front.get('name') or entry.stem
         desc = front.get('description', f'Surface prompt for {slug}')
+        kind = 'agent' if is_agent_entry(front) else 'skill'
+        tools = parse_tools(front)
         generated['ssot_sources'].append({
             'file': f'ssot/{entry.name}',
             'slug': slug,
             'name': front.get('name', slug),
             'description': desc,
+            'kind': kind,
         })
         generated['surfaces']['gemini_command'].append(write_gemini_command(slug, desc, body))
         generated['surfaces']['gemini_skill'].append(write_gemini_skill(slug, desc, body))
@@ -242,6 +285,8 @@ def main():
         generated['surfaces']['kiro_agent'].append(write_kiro_agent(slug, desc, body))
         generated['surfaces']['kiro_skill'].append(write_kiro_skill(slug, desc, body))
         generated['surfaces']['codex_skill'].append(write_codex_skill(slug, desc, body))
+        if kind == 'agent':
+            generated['surfaces']['codex_agent'].append(write_codex_agent(slug, desc, body, tools))
 
     MANIFEST_PATH.write_text(json.dumps(generated, indent=2) + '\n', encoding='utf-8')
     print('Generated', len(entries), 'ssot entries')

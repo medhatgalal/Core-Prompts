@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.2.4 - 2026-03-03
+
+- Added Codex true sub-agent generation and registration flow:
+  - build now emits `.codex/agents/<slug>.toml` for SSOT entries marked `kind: agent` or `role: agent`
+  - deploy now registers managed `[agents.<slug>]` entries in `<target>/.codex/config.toml`
+  - validation now enforces `codex_agent` artifacts only for SSOT agent entries
+- Marked `mentor`, `converge`, and `supercharge` SSOT entries as `kind: agent`.
+- Added docs evolution prompt system under `docs/prompt-pack/`:
+  - one master orchestrator prompt
+  - modular prompts A-E plus adversarial ship gate prompt F
+  - operator guide for together vs modular usage
+- Added technical docs structure for progressive disclosure:
+  - `docs/README_TECHNICAL.md`
+  - `docs/GETTING-STARTED.md`
+  - `docs/ARCHITECTURE.md`
+  - `docs/FAQ.md`
+  - `docs/ASSETS/README.md`
+- Updated root and CLI reference docs to surface the new docs architecture and prompt-pack entry points.
+
 ## 0.2.3 - 2026-03-03
 
 - Updated `analyze-context` memory location to `.analyze-context-memory/` (project root) in SSOT and all generated surfaces.

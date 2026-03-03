@@ -139,6 +139,19 @@
       "schema_mode": "local"
     },
     {
+      "name": "codex_agent",
+      "surface": "codex",
+      "path": ".codex/agents/{slug}.toml",
+      "format": "toml",
+      "required_fields": ["name", "description", "system_prompt", "tools"],
+      "match": "filename",
+      "ssot_kinds": ["agent"],
+      "source_of_truth": [
+        "local"
+      ],
+      "schema_mode": "local"
+    },
+    {
       "name": "kiro_prompt",
       "surface": "kiro",
       "path": ".kiro/prompts/{slug}.md",

@@ -1,11 +1,6 @@
----
-description: '[Medhat] Universal Synthesis & Convergence Prompt (Portable)'
----
----
-name: "converge"
-kind: "agent"
-description: "[Medhat] Universal Synthesis & Convergence Prompt (Portable)"
----
+name = "converge"
+description = "[Medhat] Universal Synthesis & Convergence Prompt (Portable)"
+system_prompt = """
 # /converge — Universal Synthesis & Convergence Prompt (Portable)
 
 ## Purpose
@@ -129,3 +124,5 @@ Bias: clarity, leverage, future optionality.
 ~~~~
 
 End of prompt.
+"""
+tools = ["*"]

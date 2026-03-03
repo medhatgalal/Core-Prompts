@@ -11,6 +11,7 @@
 - Every SSOT file must produce artifacts for all required surfaces.
 - For each SSOT entry:
   - `.codex/skills/<slug>/SKILL.md` (primary surface for Codex)
+  - `.codex/agents/<slug>.toml` when SSOT frontmatter marks `kind: agent` or `role: agent`
   - `.gemini/commands/<slug>.toml`
   - `.claude/commands/<slug>.md`
   - `.kiro/prompts/<slug>.md`
@@ -18,6 +19,7 @@
 - Do not create ad-hoc prompt artifacts for Codex when a skill surface exists and is authoritative.
 - Classify invocation styles:
   - `codex`: skill (`$name`) inferred from `.codex/skills/<slug>/SKILL.md`
+  - `codex`: sub-agent registration via `.codex/agents/<slug>.toml` and `[agents.<slug>]` in `~/.codex/config.toml` for SSOT agent entries
   - `gemini`: slash command in `.gemini/commands/<slug>.toml`
   - `claude`: slash command in `.claude/commands/<slug>.md`
   - `kiro`: prompt in `.kiro/prompts/<slug>.md` and paired agent in `.kiro/agents/<slug>.json`

@@ -42,6 +42,30 @@ def parse_frontmatter(path: Path):
     return out
 
 
+def parse_ssot_metadata(path: Path):
+    text = path.read_text(encoding='utf-8')
+    front = {}
+    remainder = text
+    while remainder.startswith('---\n'):
+        end = remainder.find('\n---', 3)
+        if end == -1:
+            break
+        block = remainder[4:end]
+        remainder = remainder[end + 4 :]
+        if remainder.startswith('\n'):
+            remainder = remainder[1:]
+        for line in block.splitlines():
+            line = line.strip()
+            if not line or ':' not in line:
+                continue
+            key, value = line.split(':', 1)
+            key = key.strip()
+            value = value.strip().strip('"').strip("'")
+            if key in {'name', 'kind', 'role'} and key not in front:
+                front[key] = value
+    return front
+
+
 def parse_args():
     parser = argparse.ArgumentParser(description='Validate generated CLI surfaces from SSOT.')
     parser.add_argument('--strict', action='store_true', help='fail on optional checks and missing optional CLI tooling')
@@ -79,7 +103,7 @@ def validate_frontmatter(path: Path, required: list[str]):
     return errors
 
 
-def validate_gemini(path: Path, required: list[str], slug: str):
+def validate_toml(path: Path, required: list[str], slug: str):
     errors = []
     try:
         with path.open('rb') as f:
@@ -136,7 +160,7 @@ def validate_schema_artifact(
         return [f'missing {rule["surface"]} {rule["name"]}: {path.relative_to(ROOT)}']
 
     if fmt == 'toml':
-        errors.extend(validate_gemini(path, rule.get('required_fields', []), slug))
+        errors.extend(validate_toml(path, rule.get('required_fields', []), slug))
     elif fmt == 'frontmatter_markdown':
         errors.extend(validate_frontmatter(path, rule.get('required_frontmatter', [])))
     elif fmt == 'json':
@@ -175,6 +199,18 @@ def run_artifact_validator(path: Path, rule: dict, strict: bool, warnings: list[
 
 def artifact_expected_path(rule: dict, slug: str) -> Path:
     return ROOT / rule['path'].format(slug=slug)
+
+
+def eligible_slugs_for_rule(rule: dict, ssot_entries: list[dict[str, str]]) -> set[str]:
+    required_kinds = {k.lower() for k in rule.get('ssot_kinds', [])}
+    if not required_kinds:
+        return {entry['slug'] for entry in ssot_entries}
+    matched = set()
+    for entry in ssot_entries:
+        kind = (entry.get('kind') or '').strip().lower()
+        if kind in required_kinds:
+            matched.add(entry['slug'])
+    return matched
 
 
 def collect_actual(rule: dict):
@@ -349,8 +385,16 @@ def main():
 
     rules_obj = json.loads(RULES_PATH.read_text(encoding='utf-8'))
     rules = rules_obj.get('artifacts', [])
-    ssot_files = sorted(p.stem for p in SSOT_DIR.glob('*.md'))
-    ssot_slugs = set(ssot_files)
+    ssot_file_paths = sorted(SSOT_DIR.glob('*.md'))
+    ssot_files = [p.stem for p in ssot_file_paths]
+    ssot_entries = []
+    for path in ssot_file_paths:
+        meta = parse_ssot_metadata(path)
+        slug = meta.get('name') or path.stem
+        kind_value = (meta.get('kind') or meta.get('role') or 'skill').strip().lower()
+        kind = 'agent' if kind_value in {'agent', 'subagent', 'sub-agent'} else 'skill'
+        ssot_entries.append({'slug': slug, 'kind': kind})
+    ssot_slugs = {entry['slug'] for entry in ssot_entries}
 
     if not rules:
         print('No artifact definitions in .meta/surface-rules.json')
@@ -361,15 +405,16 @@ def main():
     errors: list[str] = []
     warnings: list[str] = []
 
-    for slug in sorted(ssot_slugs):
-        for rule in rules:
+    for rule in rules:
+        eligible_slugs = eligible_slugs_for_rule(rule, ssot_entries)
+        for slug in sorted(eligible_slugs):
             errors.extend(validate_schema_artifact(rule, slug, args.with_cli, args.strict, warnings))
 
     # Extra / missing file checks
     expected = {}
     for rule in rules:
         expected_set = set()
-        for slug in ssot_slugs:
+        for slug in eligible_slugs_for_rule(rule, ssot_entries):
             expected_set.add(str(artifact_expected_path(rule, slug).relative_to(ROOT)))
         expected[rule['name']] = expected_set
 

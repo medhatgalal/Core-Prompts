@@ -1,41 +1,46 @@
 {
-  "generated_at": "2026-03-03T11:47:19.823653+00:00",
+  "generated_at": "2026-03-03T21:49:17.700189+00:00",
   "generator": {
     "script": "scripts/build-surfaces.py",
     "python": "3.11+",
     "version": "4.0",
-    "generated_utc": "2026-03-03T11:47:19.823933+00:00"
+    "generated_utc": "2026-03-03T21:49:17.700672+00:00"
   },
   "ssot_sources": [
     {
       "file": "ssot/analyze-context.md",
       "slug": "analyze-context",
       "name": "analyze-context",
-      "description": "[Medhat] Iterative Analysis Workflow for multi-file processing"
+      "description": "[Medhat] Iterative Analysis Workflow for multi-file processing",
+      "kind": "skill"
     },
     {
       "file": "ssot/converge.md",
       "slug": "converge",
       "name": "converge",
-      "description": "[Medhat] Universal Synthesis & Convergence Prompt (Portable)"
+      "description": "[Medhat] Universal Synthesis & Convergence Prompt (Portable)",
+      "kind": "agent"
     },
     {
       "file": "ssot/mentor.md",
       "slug": "mentor",
       "name": "mentor",
-      "description": "[Medhat] Senior engineering oversight, planning, and workflow guidance."
+      "description": "[Medhat] Senior engineering oversight, planning, and workflow guidance.",
+      "kind": "agent"
     },
     {
       "file": "ssot/supercharge.md",
       "slug": "supercharge",
       "name": "supercharge",
-      "description": "[Medhat] SuperCharge \u2014 Prompt Engineering Swiss Army Knife (ULT-Agent++ \u2022 Catchup Deep \u2022 Simple \u2022 Invert \u2022 Adversarial \u2022 Contract+QA \u2022 Grade \u2022 GASLIGHT 13)"
+      "description": "[Medhat] SuperCharge \u2014 Prompt Engineering Swiss Army Knife (ULT-Agent++ \u2022 Catchup Deep \u2022 Simple \u2022 Invert \u2022 Adversarial \u2022 Contract+QA \u2022 Grade \u2022 GASLIGHT 13)",
+      "kind": "agent"
     },
     {
       "file": "ssot/threader.md",
       "slug": "threader",
       "name": "threader",
-      "description": "[Medhat] Context Threader & Exporter (Memory Management)"
+      "description": "[Medhat] Context Threader & Exporter (Memory Management)",
+      "kind": "skill"
     }
   ],
   "surfaces": {
@@ -101,15 +106,20 @@
       ".codex/skills/mentor/SKILL.md",
       ".codex/skills/supercharge/SKILL.md",
       ".codex/skills/threader/SKILL.md"
+    ],
+    "codex_agent": [
+      ".codex/agents/converge.toml",
+      ".codex/agents/mentor.toml",
+      ".codex/agents/supercharge.toml"
     ]
   },
   "validation": {
-    "validated_at": "2026-03-03T11:47:27.653216+00:00",
+    "validated_at": "2026-03-03T21:49:21.965443+00:00",
     "strict": true,
-    "with_cli": true,
+    "with_cli": false,
     "fail_on_cli_miss": false,
     "rules_file": ".meta/surface-rules.json",
-    "rules_sha256": "1392c29ec85f75631bb7e526e625ab1b0eb897672e4629141d05e715673ef078",
+    "rules_sha256": "5316af4304875ede9f781b0d31429160b12c404ac69d280fa52fd3e54f19f5ca",
     "schema_cache_ttl_days": 14,
     "schema_cache_sources_checked": [
       "https://docs.anthropic.com/en/docs/claude-code/skills",
@@ -131,7 +141,7 @@
         "available": true,
         "version_exit_code": 0,
         "version_output": [
-          "codex-cli 0.106.0"
+          "codex-cli 0.107.0"
         ]
       },
       "gemini": {

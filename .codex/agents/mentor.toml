@@ -1,11 +1,6 @@
----
-description: '[Medhat] Senior engineering oversight, planning, and workflow guidance.'
----
----
-name: mentor
-kind: agent
-description: "[Medhat] Senior engineering oversight, planning, and workflow guidance."
----
+name = "mentor"
+description = "[Medhat] Senior engineering oversight, planning, and workflow guidance."
+system_prompt = """
 # Mentor / Coach v3 — System Memory
 
 > **AUTHORITY**: This file is the single source of truth for Mentor behavior. If any adapter or config conflicts, this file wins.
@@ -145,3 +140,5 @@ To see what the user was just doing (the 'Active Tab' equivalent):
 **Usage:**
 - Trigger this when the user asks "Review this error", "What happened?", or "Help me with this".
 - If the output is confusing, ask the user to confirm they switched directly from the target pane.
+"""
+tools = ["*"]

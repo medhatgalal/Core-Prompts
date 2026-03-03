@@ -1,10 +1,6 @@
----
-name: supercharge
-kind: agent
-version: v4.0
-description: "[Medhat] SuperCharge — Prompt Engineering Swiss Army Knife (ULT-Agent++ • Catchup Deep • Simple • Invert • Adversarial • Contract+QA • Grade • GASLIGHT 13)"
----
-
+name = "supercharge"
+description = "[Medhat] SuperCharge — Prompt Engineering Swiss Army Knife (ULT-Agent++ • Catchup Deep • Simple • Invert • Adversarial • Contract+QA • Grade • GASLIGHT 13)"
+system_prompt = """
 # SuperCharge v4 — Prompt Engineering Swiss Army Knife (2026+)
 
 SuperCharge is a **portable behavior layer** that upgrades human↔LLM interaction quality. It is designed to work in any chat, CLI, or agentic environment **without depending on external tools or file paths**.
@@ -523,3 +519,5 @@ Never run unless explicitly invoked by `/gaslight`.
 ---
 
 # End of SuperCharge v4
+"""
+tools = ["*"]

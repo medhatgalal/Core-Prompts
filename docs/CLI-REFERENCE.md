@@ -6,6 +6,10 @@ This document defines the generated surfaces, deployment behavior, verification 
 
 - Surface rules: `.meta/surface-rules.json`
 - Generated mapping: `.meta/manifest.json`
+- Technical docs index: `docs/README_TECHNICAL.md`
+- Onboarding guide: `docs/GETTING-STARTED.md`
+- Architecture notes: `docs/ARCHITECTURE.md`
+- FAQ: `docs/FAQ.md`
 - Build: `scripts/build-surfaces.py`
 - Validate: `scripts/validate-surfaces.py`
 - Smoke checks: `scripts/smoke-clis.py`
@@ -111,12 +115,16 @@ Additional supported fields you can adopt later:
 
 Source paths:
 - `.codex/skills/<slug>/SKILL.md`
+- `.codex/agents/<slug>.toml` (only for SSOT entries marked `kind/role: agent`)
 
 Home deployment targets under `--target` root:
 - `<target>/.codex/skills/<slug>/SKILL.md`
+- `<target>/.codex/agents/<slug>.toml`
+- `<target>/.codex/config.toml` (managed `[agents.<slug>]` registration block)
 
 Verify discovery:
 - `codex --help` and invoke skill by name in a session.
+- For sub-agents, verify `~/.codex/config.toml` includes `[agents.<slug>]` entries with `config_file` paths.
 
 ## Skill-specific Memory Convention
 
