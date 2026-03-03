@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.2.1 - 2026-03-02
+
+- Normalized generated Kiro agent resource URIs to root-style skill references:
+  - `file://.kiro/prompts/<slug>.md`
+  - `skill://.kiro/skills/<slug>/SKILL.md`
+- Extended deploy script with custom destination root support:
+  - `scripts/deploy-surfaces.sh --target /path`
+- Added `docs/CLI-REFERENCE.md` with:
+  - per-CLI discovery checks
+  - required settings and behavior notes
+  - Kiro agent field explanations and resource conventions
+  - release/deploy validation flow
+- Added `scripts/package-surfaces.sh` for deterministic release packaging (`tar.gz` + `zip`).
+- Updated `README.md` and `CONTRIBUTING.md` to link CLI reference and packaging workflow.
+
 ## 0.2.0 - 2026-03-02
 
 - Added `scripts/deploy-surfaces.sh` for copy-only global deployment to:

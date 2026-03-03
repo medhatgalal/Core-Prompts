@@ -11,6 +11,14 @@ This repository is the source-of-truth for SSOT-driven prompt/skill/agent surfac
   - `.claude/`
   - `.kiro/`
 - Validation and CI checks in `scripts/`
+- CLI integration reference in `docs/CLI-REFERENCE.md`
+
+## Key Files
+
+- [CLI integration reference](docs/CLI-REFERENCE.md)
+- [Deploy script](scripts/deploy-surfaces.sh)
+- [Packaging script](scripts/package-surfaces.sh)
+- [Surface rules](.meta/surface-rules.json)
 
 ## Invocation map
 
@@ -38,6 +46,7 @@ The `clis/` folder is intentionally removed from this repo and not used as sourc
 - Validate outputs: `python3 scripts/validate-surfaces.py`
 - Optional smoke checks: `python3 scripts/smoke-clis.py`
 - Deploy generated surfaces globally (copy-only): `scripts/deploy-surfaces.sh --cli all`
+- Package release artifacts: `scripts/package-surfaces.sh --version vX.Y.Z`
 
 Recommended validation flow:
 
@@ -47,6 +56,7 @@ Recommended validation flow:
 4. `python3 scripts/smoke-clis.py --strict`
 5. `scripts/deploy-surfaces.sh --dry-run --cli all`
 6. `scripts/deploy-surfaces.sh --cli all`
+7. `scripts/package-surfaces.sh --version vX.Y.Z`
 
 ## One-file flow
 
@@ -80,6 +90,21 @@ Recommended validation flow:
   Copies into a custom destination root instead of `~` (for staging/test roots).
 
 Deployment is non-destructive for path entries: no deletes and no symlink creation. It only touches exact files for SSOT-managed slugs.
+
+## Packaging
+
+- `scripts/package-surfaces.sh --version v0.2.1`  
+  Builds `tar.gz` and `zip` assets in `dist/` containing generated surfaces plus deployment/docs metadata.
+- `scripts/package-surfaces.sh --version v0.2.1 --output-dir dist`  
+  Same behavior with explicit output directory.
+
+## CLI integration details
+
+- See `docs/CLI-REFERENCE.md` for:
+  - per-CLI discovery commands
+  - required runtime settings
+  - Kiro agent field explanations and resource URI conventions
+  - release validation/deploy workflow
 
 Legacy compatibility script:
 - `scripts/install-local.sh` still exists for explicit link/copy mode workflows.
