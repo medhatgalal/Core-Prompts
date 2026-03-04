@@ -2,7 +2,7 @@
 
 ## Scope and priority
 
-- Canonical source for all surface initialization: `/Users/medhat.galal/Desktop/Core-Prompts/ssot`.
+- Canonical source for all surface initialization: `ssot/`.
 - Canonical generated outputs: `.codex/`, `.gemini/`, `.claude/`, `.kiro/` in repository root.
 - `clis/` is legacy/deprecated and must not be treated as source-of-truth.
 

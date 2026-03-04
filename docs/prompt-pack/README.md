@@ -72,7 +72,7 @@ Use this before publishing docs updates:
 Use this when handing the repo to an AI assistant:
 
 ```text
-You are working in /Users/medhat.galal/Desktop/Core-Prompts.
+You are working in <repo_path>/Core-Prompts.
 Use docs/prompt-pack/prompts/master-orchestrator.md.
 Keep tone as balanced warmth, visuals as mixed strategy, and enforce factual claims from local files only.
 Output README_vNext.md, docs/README_TECHNICAL.md, visuals_plan.md, and factual_audit.json.

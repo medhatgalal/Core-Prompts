@@ -17,7 +17,7 @@ This guide is the fastest safe path to generate, validate, and optionally deploy
 1. Enter repo root:
 
 ```bash
-cd /Users/medhat.galal/Desktop/Core-Prompts
+cd Core-Prompts
 ```
 
 2. Build generated outputs:
@@ -61,7 +61,7 @@ scripts/deploy-surfaces.sh --dry-run --cli all
 Paste this into your AI tool when you want guided repo operation:
 
 ```text
-You are working in /Users/medhat.galal/Desktop/Core-Prompts.
+You are working in <repo_path>/Core-Prompts.
 Treat ssot/ as source of truth and generated outputs under .codex/, .gemini/, .claude/, .kiro/ as derived artifacts.
 When making behavior changes, edit ssot files first, then run build and validate.
 Do not hand-edit generated surfaces.
