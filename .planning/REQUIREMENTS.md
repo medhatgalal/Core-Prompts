@@ -1,0 +1,65 @@
+# Requirements: Local Intent Sanitizer
+
+**Defined:** 2026-03-04
+**Core Value:** Convert local file content into a safe, deterministic intent summary.
+
+## v1 Requirements
+
+### Ingestion
+
+- [ ] **INGEST-01**: System accepts input only from local filesystem files.
+- [ ] **INGEST-02**: System rejects URL/URI/network ingestion paths.
+
+### Sanitization
+
+- [ ] **SAN-01**: System runs sanitization pass 1 over raw ingested content.
+- [ ] **SAN-02**: System runs sanitization pass 2 over pass-1 output before summarization.
+
+### Intent Summary Output
+
+- [ ] **SUM-01**: System produces a clean intent summary from sanitized content.
+- [ ] **SUM-02**: Output is roleplay-free.
+- [ ] **SUM-03**: Output is deterministic for identical input and configuration.
+
+### Execution Boundary
+
+- [ ] **BOUND-01**: No downstream routing or execution occurs in Phase 1.
+- [ ] **BOUND-02**: Pipeline ends at summary output in this phase.
+
+## v2 Requirements
+
+### Future Extensions
+
+- **EXT-01**: URL ingestion with explicit validation and policy controls.
+- **EXT-02**: Downstream intent routing/execution after explicit approval.
+
+## Out of Scope
+
+| Feature | Reason |
+|---------|--------|
+| URL ingestion | Explicitly excluded from Phase 1 scope |
+| Downstream routing/execution | Explicitly excluded from Phase 1 scope |
+| Non-deterministic or roleplay output styles | Violates output contract for Phase 1 |
+
+## Traceability
+
+| Requirement | Phase | Status |
+|-------------|-------|--------|
+| INGEST-01 | Phase 1 | Pending |
+| INGEST-02 | Phase 1 | Pending |
+| SAN-01 | Phase 1 | Pending |
+| SAN-02 | Phase 1 | Pending |
+| SUM-01 | Phase 1 | Pending |
+| SUM-02 | Phase 1 | Pending |
+| SUM-03 | Phase 1 | Pending |
+| BOUND-01 | Phase 1 | Pending |
+| BOUND-02 | Phase 1 | Pending |
+
+**Coverage:**
+- v1 requirements: 9 total
+- Mapped to phases: 9
+- Unmapped: 0
+
+---
+*Requirements defined: 2026-03-04*
+*Last updated: 2026-03-04 after Phase 1 scope lock*

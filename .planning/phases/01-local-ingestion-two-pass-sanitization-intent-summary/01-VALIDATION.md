@@ -21,7 +21,7 @@ created: 2026-03-04
 | **Config file** | none — Wave 0 installs |
 | **Quick run command** | `pytest -q tests/test_phase1_pipeline.py -q` |
 | **Full suite command** | `pytest -q` |
-| **Estimated runtime** | ~30 seconds |
+| **Estimated runtime** | ~25 seconds |
 
 ---
 
@@ -30,7 +30,7 @@ created: 2026-03-04
 - **After every task commit:** Run `pytest -q tests/test_phase1_pipeline.py -q`
 - **After every plan wave:** Run `pytest -q`
 - **Before `$gsd-verify-work`:** Full suite must be green
-- **Max feedback latency:** 45 seconds
+- **Max feedback latency:** 30 seconds
 
 ---
 
@@ -76,7 +76,7 @@ created: 2026-03-04
 - [ ] Sampling continuity: no 3 consecutive tasks without automated verify
 - [ ] Wave 0 covers all MISSING references
 - [ ] No watch-mode flags
-- [ ] Feedback latency < 45s
+- [ ] Feedback latency <= 30s
 - [ ] `nyquist_compliant: true` set in frontmatter
 
 **Approval:** pending
