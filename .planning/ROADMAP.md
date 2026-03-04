@@ -24,11 +24,11 @@ Deliver a deterministic, summary-only intent pipeline in Phase 1 by constraining
 
 Plans:
 - [x] 01-01: Implement local-file ingestion boundary and validation
-- [ ] 01-02: Implement two-pass sanitization pipeline
+- [x] 01-02: Implement two-pass sanitization pipeline
 - [ ] 01-03: Implement deterministic roleplay-free intent summary output
 
 ## Progress
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Local Ingestion + Two-Pass Sanitization + Intent Summary | 1/3 | In Progress | - |
+| 1. Local Ingestion + Two-Pass Sanitization + Intent Summary | 2/3 | In Progress | - |

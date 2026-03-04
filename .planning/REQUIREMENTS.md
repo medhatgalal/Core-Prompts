@@ -12,8 +12,8 @@
 
 ### Sanitization
 
-- [ ] **SAN-01**: System runs sanitization pass 1 over raw ingested content.
-- [ ] **SAN-02**: System runs sanitization pass 2 over pass-1 output before summarization.
+- [x] **SAN-01**: System runs sanitization pass 1 over raw ingested content.
+- [x] **SAN-02**: System runs sanitization pass 2 over pass-1 output before summarization.
 
 ### Intent Summary Output
 
@@ -47,8 +47,8 @@
 |-------------|-------|--------|
 | INGEST-01 | Phase 1 | Complete |
 | INGEST-02 | Phase 1 | Complete |
-| SAN-01 | Phase 1 | Pending |
-| SAN-02 | Phase 1 | Pending |
+| SAN-01 | Phase 1 | Complete |
+| SAN-02 | Phase 1 | Complete |
 | SUM-01 | Phase 1 | Pending |
 | SUM-02 | Phase 1 | Pending |
 | SUM-03 | Phase 1 | Pending |
