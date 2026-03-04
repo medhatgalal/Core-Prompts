@@ -10,6 +10,18 @@ Phase 2 delivers the uplift engine that transforms sanitized input into a struct
 
 This phase clarifies HOW to implement this engine. It does not add unrelated capabilities beyond the phase boundary.
 
+In scope for Phase 2 only:
+- Context Layer
+- Intent Layer
+- Task Decomposition
+- Constraint Architecture
+- Acceptance Criteria
+
+Explicitly out of scope for Phase 2:
+- Rosetta translation
+- Target tool validation
+- Output generation
+
 </domain>
 
 <decisions>
@@ -38,6 +50,11 @@ This phase clarifies HOW to implement this engine. It does not add unrelated cap
 - Thresholding uses **fixed deterministic thresholds**.
 - Acceptance output must include **criterion-by-criterion evidence** with rationale and links to task IDs.
 - Ambiguous/incomplete evaluation returns **`NEEDS_REVIEW`** (not pass).
+
+### Scope Locks (Phase 2)
+- Do not implement Rosetta translation in this phase.
+- Do not implement target tool validation in this phase.
+- Do not implement output generation in this phase.
 
 ### Carried Forward from Prior Phase
 - Output behavior must remain deterministic and roleplay-free where applicable.
@@ -89,7 +106,9 @@ This phase clarifies HOW to implement this engine. It does not add unrelated cap
 <deferred>
 ## Deferred Ideas
 
-None — discussion remained within Phase 2 scope.
+- Rosetta translation (planned for later phase).
+- Target tool validation (planned for later phase).
+- Output generation (planned for later phase).
 
 </deferred>
 
