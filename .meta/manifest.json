@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-03-03T21:49:17.700189+00:00",
+  "generated_at": "2026-03-04T19:17:04.635088+00:00",
   "generator": {
     "script": "scripts/build-surfaces.py",
     "python": "3.11+",
     "version": "4.0",
-    "generated_utc": "2026-03-03T21:49:17.700672+00:00"
+    "generated_utc": "2026-03-04T19:17:04.636394+00:00"
   },
   "ssot_sources": [
     {
@@ -12,6 +12,13 @@
       "slug": "analyze-context",
       "name": "analyze-context",
       "description": "[Medhat] Iterative Analysis Workflow for multi-file processing",
+      "kind": "skill"
+    },
+    {
+      "file": "ssot/code-review.md",
+      "slug": "code-review",
+      "name": "code-review",
+      "description": "[ScottP] Git commit review with scope control and over-engineering detection",
       "kind": "skill"
     },
     {
@@ -27,6 +34,13 @@
       "name": "mentor",
       "description": "[Medhat] Senior engineering oversight, planning, and workflow guidance.",
       "kind": "agent"
+    },
+    {
+      "file": "ssot/resolve-conflict.md",
+      "slug": "resolve-conflict",
+      "name": "resolve-conflict",
+      "description": "[ScottP] Structured merge conflict resolution with Charlie Munger inversion analysis",
+      "kind": "skill"
     },
     {
       "file": "ssot/supercharge.md",
@@ -46,64 +60,82 @@
   "surfaces": {
     "gemini_command": [
       ".gemini/commands/analyze-context.toml",
+      ".gemini/commands/code-review.toml",
       ".gemini/commands/converge.toml",
       ".gemini/commands/mentor.toml",
+      ".gemini/commands/resolve-conflict.toml",
       ".gemini/commands/supercharge.toml",
       ".gemini/commands/threader.toml"
     ],
     "gemini_skill": [
       ".gemini/skills/analyze-context/SKILL.md",
+      ".gemini/skills/code-review/SKILL.md",
       ".gemini/skills/converge/SKILL.md",
       ".gemini/skills/mentor/SKILL.md",
+      ".gemini/skills/resolve-conflict/SKILL.md",
       ".gemini/skills/supercharge/SKILL.md",
       ".gemini/skills/threader/SKILL.md"
     ],
     "gemini_agent": [
       ".gemini/agents/analyze-context.md",
+      ".gemini/agents/code-review.md",
       ".gemini/agents/converge.md",
       ".gemini/agents/mentor.md",
+      ".gemini/agents/resolve-conflict.md",
       ".gemini/agents/supercharge.md",
       ".gemini/agents/threader.md"
     ],
     "claude_command": [
       ".claude/commands/analyze-context.md",
+      ".claude/commands/code-review.md",
       ".claude/commands/converge.md",
       ".claude/commands/mentor.md",
+      ".claude/commands/resolve-conflict.md",
       ".claude/commands/supercharge.md",
       ".claude/commands/threader.md"
     ],
     "claude_agent": [
       ".claude/agents/analyze-context.md",
+      ".claude/agents/code-review.md",
       ".claude/agents/converge.md",
       ".claude/agents/mentor.md",
+      ".claude/agents/resolve-conflict.md",
       ".claude/agents/supercharge.md",
       ".claude/agents/threader.md"
     ],
     "kiro_prompt": [
       ".kiro/prompts/analyze-context.md",
+      ".kiro/prompts/code-review.md",
       ".kiro/prompts/converge.md",
       ".kiro/prompts/mentor.md",
+      ".kiro/prompts/resolve-conflict.md",
       ".kiro/prompts/supercharge.md",
       ".kiro/prompts/threader.md"
     ],
     "kiro_agent": [
       ".kiro/agents/analyze-context.json",
+      ".kiro/agents/code-review.json",
       ".kiro/agents/converge.json",
       ".kiro/agents/mentor.json",
+      ".kiro/agents/resolve-conflict.json",
       ".kiro/agents/supercharge.json",
       ".kiro/agents/threader.json"
     ],
     "kiro_skill": [
       ".kiro/skills/analyze-context/SKILL.md",
+      ".kiro/skills/code-review/SKILL.md",
       ".kiro/skills/converge/SKILL.md",
       ".kiro/skills/mentor/SKILL.md",
+      ".kiro/skills/resolve-conflict/SKILL.md",
       ".kiro/skills/supercharge/SKILL.md",
       ".kiro/skills/threader/SKILL.md"
     ],
     "codex_skill": [
       ".codex/skills/analyze-context/SKILL.md",
+      ".codex/skills/code-review/SKILL.md",
       ".codex/skills/converge/SKILL.md",
       ".codex/skills/mentor/SKILL.md",
+      ".codex/skills/resolve-conflict/SKILL.md",
       ".codex/skills/supercharge/SKILL.md",
       ".codex/skills/threader/SKILL.md"
     ],
@@ -112,65 +144,5 @@
       ".codex/agents/mentor.toml",
       ".codex/agents/supercharge.toml"
     ]
-  },
-  "validation": {
-    "validated_at": "2026-03-03T21:49:21.965443+00:00",
-    "strict": true,
-    "with_cli": false,
-    "fail_on_cli_miss": false,
-    "rules_file": ".meta/surface-rules.json",
-    "rules_sha256": "5316af4304875ede9f781b0d31429160b12c404ac69d280fa52fd3e54f19f5ca",
-    "schema_cache_ttl_days": 14,
-    "schema_cache_sources_checked": [
-      "https://docs.anthropic.com/en/docs/claude-code/skills",
-      "https://docs.anthropic.com/en/docs/claude-code/sub-agents",
-      "https://geminicli.com/docs/cli/commands",
-      "https://geminicli.com/docs/cli/custom-commands",
-      "https://geminicli.com/docs/cli/skills",
-      "https://geminicli.com/docs/core/subagents",
-      "https://kiro.dev/docs/cli/custom-agents/",
-      "https://kiro.dev/docs/cli/custom-agents/configuration-reference/",
-      "https://kiro.dev/docs/skills/"
-    ],
-    "validation_errors": 0,
-    "validation_warnings": 0,
-    "cli_versions": {
-      "codex": {
-        "command": "codex",
-        "required": false,
-        "available": true,
-        "version_exit_code": 0,
-        "version_output": [
-          "codex-cli 0.107.0"
-        ]
-      },
-      "gemini": {
-        "command": "gemini",
-        "required": false,
-        "available": true,
-        "version_exit_code": 0,
-        "version_output": [
-          "0.31.0"
-        ]
-      },
-      "claude": {
-        "command": "claude",
-        "required": false,
-        "available": true,
-        "version_exit_code": 0,
-        "version_output": [
-          "2.1.59 (Claude Code)"
-        ]
-      },
-      "kiro": {
-        "command": "kiro-cli",
-        "required": false,
-        "available": true,
-        "version_exit_code": 0,
-        "version_output": [
-          "kiro-cli 1.27.0"
-        ]
-      }
-    }
   }
 }
