@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+from copy import deepcopy
 
 from intent_pipeline.uplift.context_layer import build_context_layer
 from intent_pipeline.uplift.intent_layer import derive_intent_layer
@@ -69,3 +70,29 @@ def test_uplift_intent_03_repeated_runs_produce_byte_stable_serialized_output() 
         for _ in range(20)
     ]
     assert len(set(outputs)) == 1
+
+
+def test_uplift_intent_04_context_to_intent_handoff_is_byte_stable_and_ordered() -> None:
+    input_text = _sample_intent_input()
+    outputs: list[str] = []
+    key_orders: list[list[str]] = []
+    for _ in range(20):
+        context = build_context_layer(input_text)
+        intent = derive_intent_layer(context)
+        outputs.append(json.dumps(intent, separators=(",", ":"), ensure_ascii=True))
+        key_orders.append(list(intent.keys()))
+
+    assert len(set(outputs)) == 1
+    assert len({tuple(order) for order in key_orders}) == 1
+
+
+def test_uplift_intent_05_intent_derivation_uses_context_artifacts_without_mutation() -> None:
+    context = build_context_layer(_sample_intent_input())
+    original_context = deepcopy(context)
+
+    intent = derive_intent_layer(context)
+
+    assert context == original_context
+    assert intent["schema_version"] == context["schema_version"]
+    assert intent["primary_objective"] == "Build deterministic context and intent layers"
+    assert "Must keep outputs deterministic." in intent["quality_constraints"]

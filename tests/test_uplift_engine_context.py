@@ -54,3 +54,9 @@ def test_uplift_ctx_03_repeated_runs_produce_byte_stable_serialized_output() -> 
         for _ in range(20)
     ]
     assert len(set(outputs)) == 1
+
+
+def test_uplift_ctx_04_repeated_runs_preserve_top_level_field_order() -> None:
+    input_text = _sample_context_input()
+    key_orders = [list(build_context_layer(input_text).keys()) for _ in range(20)]
+    assert len({tuple(order) for order in key_orders}) == 1
