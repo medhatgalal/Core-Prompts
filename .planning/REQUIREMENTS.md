@@ -17,14 +17,14 @@
 
 ### Intent Summary Output
 
-- [ ] **SUM-01**: System produces a clean intent summary from sanitized content.
-- [ ] **SUM-02**: Output is roleplay-free.
-- [ ] **SUM-03**: Output is deterministic for identical input and configuration.
+- [x] **SUM-01**: System produces a clean intent summary from sanitized content.
+- [x] **SUM-02**: Output is roleplay-free.
+- [x] **SUM-03**: Output is deterministic for identical input and configuration.
 
 ### Execution Boundary
 
-- [ ] **BOUND-01**: No downstream routing or execution occurs in Phase 1.
-- [ ] **BOUND-02**: Pipeline ends at summary output in this phase.
+- [x] **BOUND-01**: No downstream routing or execution occurs in Phase 1.
+- [x] **BOUND-02**: Pipeline ends at summary output in this phase.
 
 ## v2 Requirements
 
@@ -49,11 +49,11 @@
 | INGEST-02 | Phase 1 | Complete |
 | SAN-01 | Phase 1 | Complete |
 | SAN-02 | Phase 1 | Complete |
-| SUM-01 | Phase 1 | Pending |
-| SUM-02 | Phase 1 | Pending |
-| SUM-03 | Phase 1 | Pending |
-| BOUND-01 | Phase 1 | Pending |
-| BOUND-02 | Phase 1 | Pending |
+| SUM-01 | Phase 1 | Complete |
+| SUM-02 | Phase 1 | Complete |
+| SUM-03 | Phase 1 | Complete |
+| BOUND-01 | Phase 1 | Complete |
+| BOUND-02 | Phase 1 | Complete |
 
 **Coverage:**
 - v1 requirements: 9 total
