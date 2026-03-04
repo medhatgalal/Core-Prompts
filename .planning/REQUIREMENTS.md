@@ -39,6 +39,7 @@
 - [x] **UPLIFT-INTENT**: Intent layer is deterministically derived from context with explicit unknown capture.
 - [x] **UPLIFT-DECOMP**: Task decomposition emits a deterministic dependency-aware DAG with depth capped at two.
 - [x] **UPLIFT-CONSTRAINTS**: Constraint handling uses typed hard/soft models with deterministic conflict resolution.
+- [x] **UPLIFT-ACCEPTANCE**: Acceptance evaluation is deterministic and emits criterion-level evidence linked to task IDs.
 
 ## Out of Scope
 
@@ -65,6 +66,7 @@
 | UPLIFT-INTENT | Phase 2 | Complete |
 | UPLIFT-DECOMP | Phase 2 | Complete |
 | UPLIFT-CONSTRAINTS | Phase 2 | Complete |
+| UPLIFT-ACCEPTANCE | Phase 2 | Complete |
 
 **Coverage:**
 - v1 requirements: 9 total
