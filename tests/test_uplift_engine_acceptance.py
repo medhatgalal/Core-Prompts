@@ -10,6 +10,7 @@ from intent_pipeline.uplift.contracts import (
     UPLIFT_CONTRACT_SCHEMA_VERSION,
     UpliftContract,
 )
+from intent_pipeline.uplift.acceptance import evaluate_acceptance
 
 
 def _build_sample_acceptance_report() -> AcceptanceReport:
@@ -120,3 +121,110 @@ def test_uplift_acceptance_contract_04_schema_major_is_enforced() -> None:
             constraints={"applied_hard": [], "applied_soft": [], "dropped_soft": [], "conflicts": []},
             acceptance=report,
         )
+
+
+def _base_context() -> dict[str, object]:
+    return {
+        "schema_version": "2.0.0",
+        "acceptance_inputs": [{"text": "Acceptance criteria: deterministic", "line_index": 3}],
+    }
+
+
+def _base_intent() -> dict[str, object]:
+    return {
+        "schema_version": "2.0.0",
+        "unknowns": [],
+    }
+
+
+def _base_task_graph() -> dict[str, object]:
+    return {
+        "nodes": [
+            {"node_id": "context-analysis", "constraint_keys": []},
+            {"node_id": "acceptance-review", "constraint_keys": ["deterministic"]},
+        ],
+        "edges": [{"from": "context-analysis", "to": "acceptance-review"}],
+    }
+
+
+def _base_constraints() -> dict[str, object]:
+    return {
+        "applied_hard": [{"id": "hard-schema"}],
+        "applied_soft": [{"id": "soft-deterministic"}],
+        "dropped_soft": [],
+        "conflicts": [],
+    }
+
+
+def test_uplift_acceptance_05_gate_plus_score_pass_is_deterministic() -> None:
+    report = evaluate_acceptance(
+        context=_base_context(),
+        intent=_base_intent(),
+        task_graph=_base_task_graph(),
+        constraints=_base_constraints(),
+    )
+
+    assert report.decision is AcceptanceDecision.PASS
+    assert report.score >= report.threshold
+    assert report.failed_hard_criteria == ()
+    assert report.missing_evidence == ()
+    for criterion in report.criteria:
+        assert criterion.evidence
+        assert criterion.task_ids()
+
+
+def test_uplift_acceptance_06_unmet_hard_criterion_returns_stable_fail_payload() -> None:
+    failing_context = _base_context()
+    failing_context["schema_version"] = "3.0.0"
+
+    report = evaluate_acceptance(
+        context=failing_context,
+        intent=_base_intent(),
+        task_graph=_base_task_graph(),
+        constraints=_base_constraints(),
+    )
+
+    assert report.decision is AcceptanceDecision.FAIL
+    assert report.failed_hard_criteria == ("hard-context-schema",)
+    assert report.missing_evidence == ()
+
+    repeat = evaluate_acceptance(
+        context=failing_context,
+        intent=_base_intent(),
+        task_graph=_base_task_graph(),
+        constraints=_base_constraints(),
+    )
+    assert report.to_json() == repeat.to_json()
+
+
+def test_uplift_acceptance_07_incomplete_evidence_routes_to_needs_review() -> None:
+    incomplete_context = {"schema_version": "2.0.0"}
+    incomplete_intent = {"schema_version": "2.0.0"}
+    incomplete_graph = {"nodes": [], "edges": []}
+
+    report = evaluate_acceptance(
+        context=incomplete_context,
+        intent=incomplete_intent,
+        task_graph=incomplete_graph,
+        constraints=_base_constraints(),
+    )
+
+    assert report.decision is AcceptanceDecision.NEEDS_REVIEW
+    assert report.missing_evidence == (
+        "context.acceptance_inputs",
+        "intent.unknowns",
+        "task_graph.nodes",
+    )
+
+
+def test_uplift_acceptance_08_repeated_runs_are_byte_stable() -> None:
+    payloads = [
+        evaluate_acceptance(
+            context=_base_context(),
+            intent=_base_intent(),
+            task_graph=_base_task_graph(),
+            constraints=_base_constraints(),
+        ).to_json()
+        for _ in range(20)
+    ]
+    assert payloads == [payloads[0]] * len(payloads)
