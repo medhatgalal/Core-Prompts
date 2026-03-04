@@ -7,8 +7,8 @@
 
 ### Ingestion
 
-- [ ] **INGEST-01**: System accepts input only from local filesystem files.
-- [ ] **INGEST-02**: System rejects URL/URI/network ingestion paths.
+- [x] **INGEST-01**: System accepts input only from local filesystem files.
+- [x] **INGEST-02**: System rejects URL/URI/network ingestion paths.
 
 ### Sanitization
 
@@ -45,8 +45,8 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| INGEST-01 | Phase 1 | Pending |
-| INGEST-02 | Phase 1 | Pending |
+| INGEST-01 | Phase 1 | Complete |
+| INGEST-02 | Phase 1 | Complete |
 | SAN-01 | Phase 1 | Pending |
 | SAN-02 | Phase 1 | Pending |
 | SUM-01 | Phase 1 | Pending |
