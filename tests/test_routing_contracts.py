@@ -210,3 +210,52 @@ def test_route_ctx_01_signal_bundle_missing_evidence_is_explicit_without_default
     assert "task_graph.nodes" in bundle.missing_evidence
     assert "acceptance.decision" in bundle.missing_evidence
     assert "acceptance.criteria" in bundle.missing_evidence
+
+
+def test_route_enum_01_routing_contract_is_byte_stable_on_repeated_serialization() -> None:
+    payload = _valid_uplift_payload()
+    contract = RoutingContract(
+        schema_version=ROUTING_CONTRACT_SCHEMA_VERSION,
+        uplift_schema_version=str(payload["schema_version"]),
+        route_profile=RouteProfile.IMPLEMENTATION,
+        rationale="Routing profile selected from deterministic evidence.",
+        missing_evidence=("intent.unknowns",),
+    )
+
+    outputs = [contract.to_json() for _ in range(20)]
+    assert outputs == [outputs[0]] * len(outputs)
+
+
+def test_route_ctx_01_signal_bundle_is_byte_stable_on_repeated_runs(
+    routing_uplift_contract,
+) -> None:
+    outputs = [build_signal_bundle(routing_uplift_contract).to_json() for _ in range(20)]
+    assert outputs == [outputs[0]] * len(outputs)
+
+
+def test_route_ctx_01_signal_bundle_payload_keys_are_canonical_and_stable(
+    routing_uplift_contract,
+) -> None:
+    payload = build_signal_bundle(routing_uplift_contract).as_payload()
+
+    assert list(payload.keys()) == [
+        "schema_version",
+        "uplift_schema_version",
+        "context_schema_version",
+        "primary_objective",
+        "in_scope",
+        "out_of_scope",
+        "quality_constraints",
+        "intent_unknowns",
+        "hard_constraints",
+        "soft_constraints",
+        "dropped_soft_constraints",
+        "conflict_codes",
+        "task_node_ids",
+        "constrained_task_ids",
+        "acceptance_decision",
+        "acceptance_failed_hard_criteria",
+        "acceptance_missing_evidence",
+        "acceptance_criterion_ids",
+        "missing_evidence",
+    ]
