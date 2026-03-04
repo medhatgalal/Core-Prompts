@@ -32,16 +32,19 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Local Ingestion + Two-Pass Sanitization + Intent Summary | 3/3 | Complete   | 2026-03-04 |
+| 2. 2026 Uplift Engine (Context/Intent/Task Decomposition/Constraints/Acceptance) | 2/3 | In Progress | - |
 
 ### Phase 2: 2026 Uplift Engine (Context/Intent/Task Decomposition/Constraints/Acceptance)
 
-**Goal:** [To be planned]
-**Requirements**: TBD
+**Goal:** Transform sanitized intent input into deterministic context/intent/task-decomposition/constraint artifacts that can safely feed later routing phases.
+**Requirements**: [UPLIFT-CTX, UPLIFT-INTENT, UPLIFT-DECOMP, UPLIFT-CONSTRAINTS]
 **Depends on:** Phase 1
-**Plans:** 0 plans
+**Plans:** 2/3 plans complete
 
 Plans:
-- [ ] TBD (run /gsd:plan-phase 2 to break down)
+- [x] 02-01: Implement deterministic context and intent layers
+- [x] 02-02: Implement deterministic task decomposition and constraint resolver
+- [ ] 02-03: Implement deterministic acceptance criteria and evidence evaluation
 
 ### Phase 3: Semantic Routing & Rosetta Translation
 

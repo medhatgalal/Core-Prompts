@@ -37,6 +37,8 @@
 
 - [x] **UPLIFT-CTX**: Context layer output is layered, deterministic, and schema-versioned.
 - [x] **UPLIFT-INTENT**: Intent layer is deterministically derived from context with explicit unknown capture.
+- [x] **UPLIFT-DECOMP**: Task decomposition emits a deterministic dependency-aware DAG with depth capped at two.
+- [x] **UPLIFT-CONSTRAINTS**: Constraint handling uses typed hard/soft models with deterministic conflict resolution.
 
 ## Out of Scope
 
@@ -59,8 +61,10 @@
 | SUM-03 | Phase 1 | Complete |
 | BOUND-01 | Phase 1 | Complete |
 | BOUND-02 | Phase 1 | Complete |
-| UPLIFT-CTX | Phase 2 | In Progress |
-| UPLIFT-INTENT | Phase 2 | In Progress |
+| UPLIFT-CTX | Phase 2 | Complete |
+| UPLIFT-INTENT | Phase 2 | Complete |
+| UPLIFT-DECOMP | Phase 2 | Complete |
+| UPLIFT-CONSTRAINTS | Phase 2 | Complete |
 
 **Coverage:**
 - v1 requirements: 9 total
