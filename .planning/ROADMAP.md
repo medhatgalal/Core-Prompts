@@ -32,3 +32,43 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Local Ingestion + Two-Pass Sanitization + Intent Summary | 3/3 | Complete   | 2026-03-04 |
+
+### Phase 2: 2026 Uplift Engine (Context/Intent/Task Decomposition/Constraints/Acceptance)
+
+**Goal:** [To be planned]
+**Requirements**: TBD
+**Depends on:** Phase 1
+**Plans:** 0 plans
+
+Plans:
+- [ ] TBD (run /gsd:plan-phase 2 to break down)
+
+### Phase 3: Semantic Routing & Rosetta Translation
+
+**Goal:** [To be planned]
+**Requirements**: TBD
+**Depends on:** Phase 2
+**Plans:** 0 plans
+
+Plans:
+- [ ] TBD (run /gsd:plan-phase 3 to break down)
+
+### Phase 4: Target Tool Validation + Mock Execution + Fallback Degradation
+
+**Goal:** [To be planned]
+**Requirements**: TBD
+**Depends on:** Phase 3
+**Plans:** 0 plans
+
+Plans:
+- [ ] TBD (run /gsd:plan-phase 4 to break down)
+
+### Phase 5: Output Generation + Help Module + Runtime Dependency Checks
+
+**Goal:** [To be planned]
+**Requirements**: TBD
+**Depends on:** Phase 4
+**Plans:** 0 plans
+
+Plans:
+- [ ] TBD (run /gsd:plan-phase 5 to break down)

@@ -33,6 +33,11 @@
 - **EXT-01**: URL ingestion with explicit validation and policy controls.
 - **EXT-02**: Downstream intent routing/execution after explicit approval.
 
+### Phase 2 Uplift Engine
+
+- [x] **UPLIFT-CTX**: Context layer output is layered, deterministic, and schema-versioned.
+- [x] **UPLIFT-INTENT**: Intent layer is deterministically derived from context with explicit unknown capture.
+
 ## Out of Scope
 
 | Feature | Reason |
@@ -54,6 +59,8 @@
 | SUM-03 | Phase 1 | Complete |
 | BOUND-01 | Phase 1 | Complete |
 | BOUND-02 | Phase 1 | Complete |
+| UPLIFT-CTX | Phase 2 | In Progress |
+| UPLIFT-INTENT | Phase 2 | In Progress |
 
 **Coverage:**
 - v1 requirements: 9 total

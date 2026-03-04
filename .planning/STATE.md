@@ -4,14 +4,14 @@ milestone: v1.0
 milestone_name: milestone
 current_plan: 3
 status: completed
-stopped_at: Phase 2 context gathered
-last_updated: "2026-03-04T20:31:22.044Z"
-last_activity: 2026-03-04 — Completed 01-03 deterministic intent summary output
+stopped_at: Completed 02-2026-uplift-engine-context-intent-task-decomposition-constraints-acceptance-02-PLAN.md
+last_updated: "2026-03-04T21:31:47.046Z"
+last_activity: 2026-03-04
 progress:
   total_phases: 5
   completed_phases: 1
-  total_plans: 3
-  completed_plans: 3
+  total_plans: 6
+  completed_plans: 5
   percent: 100
 ---
 
@@ -31,7 +31,7 @@ Plan: 3 of 3 in current phase
 Current Plan: 3
 Total Plans in Phase: 3
 Status: Complete
-Last activity: 2026-03-04 — Completed 01-03 deterministic intent summary output
+Last activity: 2026-03-04
 
 Progress: [██████████] 100%
 
@@ -42,6 +42,8 @@ Progress: [██████████] 100%
 | Phase 01-local-ingestion-two-pass-sanitization-intent-summary P01 | 4 min | 2 tasks | 2 files |
 | Phase 01-local-ingestion-two-pass-sanitization-intent-summary P02 | 1 min | 3 tasks | 4 files |
 | Phase 01-local-ingestion-two-pass-sanitization-intent-summary P03 | 1 min | 3 tasks | 6 files |
+| Phase 02-2026-uplift-engine-context-intent-task-decomposition-constraints-acceptance P01 | 4 min | 3 tasks | 5 files |
+| Phase 02-2026-uplift-engine-context-intent-task-decomposition-constraints-acceptance P02 | 4 min | 3 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -57,6 +59,11 @@ Progress: [██████████] 100%
 - [Phase 01-local-ingestion-two-pass-sanitization-intent-summary]: Verify pass handoff integrity with monkeypatched pass1/pass2 call-order assertions.
 - [Phase 01-local-ingestion-two-pass-sanitization-intent-summary]: Summary rendering is fixed-template with explicit section order and deterministic normalization.
 - [Phase 01-local-ingestion-two-pass-sanitization-intent-summary]: Phase-1 pipeline is a terminal function that returns summary directly after sanitization.
+- [Phase 02-2026-uplift-engine-context-intent-task-decomposition-constraints-acceptance]: Require context/intent schema major-version gating (2.x) to preserve deterministic contract boundaries.
+- [Phase 02-2026-uplift-engine-context-intent-task-decomposition-constraints-acceptance]: Capture missing intent evidence in unknowns rather than synthesizing guessed objective/scope values.
+- [Phase 02-2026-uplift-engine-context-intent-task-decomposition-constraints-acceptance]: Task graph ordering uses depth/title/node-id canonical sorting after dependency satisfaction.
+- [Phase 02-2026-uplift-engine-context-intent-task-decomposition-constraints-acceptance]: Hard constraints with contradictory values fail fast via HardConstraintConflictError.
+- [Phase 02-2026-uplift-engine-context-intent-task-decomposition-constraints-acceptance]: Soft conflicts resolve by priority, then deterministic lexical tie-breakers.
 
 ### Roadmap Evolution
 
@@ -75,6 +82,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-04T20:31:22.040Z
-Stopped at: Phase 2 context gathered
-Resume file: .planning/phases/02-2026-uplift-engine-context-intent-task-decomposition-constraints-acceptance/02-CONTEXT.md
+Last session: 2026-03-04T21:31:29.132Z
+Stopped at: Completed 02-2026-uplift-engine-context-intent-task-decomposition-constraints-acceptance-02-PLAN.md
+Resume file: None
