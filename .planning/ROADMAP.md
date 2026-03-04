@@ -48,13 +48,15 @@ Plans:
 
 ### Phase 3: Semantic Routing & Rosetta Translation
 
-**Goal:** [To be planned]
-**Requirements**: TBD
+**Goal:** Build a deterministic semantic routing layer and canonical Rosetta route-spec translation over Phase 2 uplift artifacts, without introducing validation/execution/output-generation concerns.
+**Requirements**: [ROUTE-CTX-01, ROUTE-ENUM-01, ROUTE-PREC-01, ROUTE-UNK-01, ROSETTA-01, ROSETTA-02, DET-03, BOUND-03]
 **Depends on:** Phase 2
-**Plans:** 0 plans
+**Plans:** 3 plans
 
 Plans:
-- [ ] TBD (run /gsd:plan-phase 3 to break down)
+- [ ] 03-01: Implement routing contracts and uplift signal normalization
+- [ ] 03-02: Implement deterministic semantic router precedence and ambiguity handling
+- [ ] 03-03: Implement Rosetta route-spec translation and Phase 3 integration boundary guards
 
 ### Phase 4: Target Tool Validation + Mock Execution + Fallback Degradation
 

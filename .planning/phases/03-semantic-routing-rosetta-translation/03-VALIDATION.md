@@ -39,13 +39,13 @@ created: 2026-03-04
 | Task ID | Plan | Wave | Requirement | Test Type | Automated Command | File Exists | Status |
 |---------|------|------|-------------|-----------|-------------------|-------------|--------|
 | 03-01-01 | 01 | 1 | ROUTE-CTX-01 | unit | `PYTHONPATH=src pytest -q tests/test_routing_contracts.py -k "schema or contract"` | ❌ W0 | ⬜ pending |
-| 03-01-02 | 01 | 1 | ROUTE-PREC-01 | unit | `PYTHONPATH=src pytest -q tests/test_semantic_router_precedence.py` | ❌ W0 | ⬜ pending |
+| 03-02-01 | 02 | 2 | ROUTE-PREC-01 | unit | `PYTHONPATH=src pytest -q tests/test_semantic_router_precedence.py` | ❌ W0 | ⬜ pending |
 | 03-01-03 | 01 | 1 | ROUTE-ENUM-01 | unit | `PYTHONPATH=src pytest -q tests/test_routing_contracts.py -k "enum"` | ❌ W0 | ⬜ pending |
-| 03-02-01 | 02 | 2 | ROUTE-UNK-01 | unit | `PYTHONPATH=src pytest -q tests/test_semantic_router_ambiguity.py` | ❌ W0 | ⬜ pending |
-| 03-02-02 | 02 | 2 | ROSETTA-01 | unit | `PYTHONPATH=src pytest -q tests/test_rosetta_translation.py -k "schema"` | ❌ W0 | ⬜ pending |
-| 03-02-03 | 02 | 2 | ROSETTA-02 | unit | `PYTHONPATH=src pytest -q tests/test_rosetta_translation.py -k "task_focus or linkage"` | ❌ W0 | ⬜ pending |
-| 03-03-01 | 03 | 3 | DET-03 | integration | `PYTHONPATH=src pytest -q tests/test_phase3_determinism.py` | ❌ W0 | ⬜ pending |
-| 03-03-02 | 03 | 3 | BOUND-03 | boundary | `PYTHONPATH=src pytest -q tests/test_phase3_boundary.py` | ❌ W0 | ⬜ pending |
+| 03-02-02 | 02 | 2 | ROUTE-UNK-01 | unit | `PYTHONPATH=src pytest -q tests/test_semantic_router_ambiguity.py` | ❌ W0 | ⬜ pending |
+| 03-03-01 | 03 | 3 | ROSETTA-01 | unit | `PYTHONPATH=src pytest -q tests/test_rosetta_translation.py -k "schema"` | ❌ W0 | ⬜ pending |
+| 03-03-02 | 03 | 3 | ROSETTA-02 | unit | `PYTHONPATH=src pytest -q tests/test_rosetta_translation.py -k "task_focus or linkage"` | ❌ W0 | ⬜ pending |
+| 03-03-03 | 03 | 3 | DET-03 | integration | `PYTHONPATH=src pytest -q tests/test_phase3_determinism.py` | ❌ W0 | ⬜ pending |
+| 03-03-04 | 03 | 3 | BOUND-03 | boundary | `PYTHONPATH=src pytest -q tests/test_phase3_boundary.py` | ❌ W0 | ⬜ pending |
 
 *Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
 

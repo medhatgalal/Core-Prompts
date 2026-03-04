@@ -41,6 +41,17 @@
 - [x] **UPLIFT-CONSTRAINTS**: Constraint handling uses typed hard/soft models with deterministic conflict resolution.
 - [x] **UPLIFT-ACCEPTANCE**: Acceptance evaluation is deterministic and emits criterion-level evidence linked to task IDs.
 
+### Phase 3 Semantic Routing + Rosetta Translation
+
+- [ ] **ROUTE-CTX-01**: Routing accepts only schema-compatible uplift artifacts and rejects unsupported schema majors.
+- [ ] **ROUTE-ENUM-01**: Route targets are constrained to a closed enum profile set with deterministic serialization.
+- [ ] **ROUTE-PREC-01**: Signal precedence is fixed as hard constraints > intent > task graph > acceptance.
+- [ ] **ROUTE-UNK-01**: Ambiguous or incomplete evidence produces deterministic `NEEDS_REVIEW` with explicit missing-evidence fields.
+- [ ] **ROSETTA-01**: Rosetta translation emits a canonical schema-versioned `route_spec` contract.
+- [ ] **ROSETTA-02**: Route-spec task/evidence linkage is consistent with uplift task graph and routing provenance.
+- [ ] **DET-03**: Phase 3 outputs are byte-stable across repeated identical runs.
+- [ ] **BOUND-03**: Phase 3 excludes target validation, execution/mock execution, output generation, and help rendering.
+
 ## Out of Scope
 
 | Feature | Reason |
@@ -67,12 +78,20 @@
 | UPLIFT-DECOMP | Phase 2 | Complete |
 | UPLIFT-CONSTRAINTS | Phase 2 | Complete |
 | UPLIFT-ACCEPTANCE | Phase 2 | Complete |
+| ROUTE-CTX-01 | Phase 3 | Planned |
+| ROUTE-ENUM-01 | Phase 3 | Planned |
+| ROUTE-PREC-01 | Phase 3 | Planned |
+| ROUTE-UNK-01 | Phase 3 | Planned |
+| ROSETTA-01 | Phase 3 | Planned |
+| ROSETTA-02 | Phase 3 | Planned |
+| DET-03 | Phase 3 | Planned |
+| BOUND-03 | Phase 3 | Planned |
 
 **Coverage:**
-- v1 requirements: 9 total
-- Mapped to phases: 9
+- Phase-scoped requirements: 22 total
+- Mapped to phases: 22
 - Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-04*
-*Last updated: 2026-03-04 after Phase 1 scope lock*
+*Last updated: 2026-03-04 after Phase 3 planning context*
