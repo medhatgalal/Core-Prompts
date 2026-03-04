@@ -96,3 +96,48 @@ def test_route_unk_01_non_decisive_signals_return_explicit_needs_review() -> Non
     assert result.dominant_rule_id == "ROUTE-UNK-003"
     assert result.missing_evidence == ()
     assert result.ambiguity_reasons == ("no_decisive_route_after_precedence",)
+
+
+def test_route_unk_01_payload_shape_is_canonical_and_roleplay_free() -> None:
+    result = select_route(_bundle(missing_evidence=("intent.primary_objective",)))
+    payload = result.as_payload()
+
+    assert list(payload.keys()) == [
+        "decision",
+        "route_profile",
+        "dominant_layer",
+        "dominant_rule_id",
+        "applied_rule_ids",
+        "missing_evidence",
+        "ambiguity_reasons",
+    ]
+    forbidden_fields = {
+        "assistant_message",
+        "chat_response",
+        "conversation",
+        "dialogue",
+        "roleplay",
+        "response_text",
+    }
+    assert forbidden_fields.isdisjoint(payload)
+
+
+def test_route_unk_01_repeated_runs_keep_review_arrays_and_rules_stable() -> None:
+    signals = _bundle(
+        hard_constraints=(
+            _hard_route("hard-impl", "IMPLEMENTATION"),
+            _hard_route("hard-research", "RESEARCH"),
+        ),
+        conflict_codes=("HARD_CONFLICT",),
+    )
+
+    outputs = [select_route(signals).to_json() for _ in range(25)]
+    assert outputs == [outputs[0]] * len(outputs)
+
+    decisions = [select_route(signals) for _ in range(25)]
+    assert {decision.dominant_rule_id for decision in decisions} == {"ROUTE-UNK-002"}
+    assert {decision.ambiguity_reasons for decision in decisions} == {
+        (
+            "hard_constraint_conflict_code:HARD_CONFLICT;hard_constraints_conflicting_profiles:IMPLEMENTATION,RESEARCH",
+        )
+    }

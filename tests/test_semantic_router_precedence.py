@@ -119,3 +119,20 @@ def test_route_prec_01_acceptance_can_block_but_not_override_higher_layer() -> N
     assert result.route_profile is RouteProfile.NEEDS_REVIEW
     assert result.dominant_rule_id == "ROUTE-ACCEPT-900"
     assert result.ambiguity_reasons == ("acceptance_failed_hard_criteria:hard-context-schema",)
+
+
+def test_route_prec_01_rule_provenance_is_stable_on_repeated_runs() -> None:
+    signals = _bundle(
+        primary_objective="research and investigate deterministic routing",
+        task_node_ids=("validate-suite-01",),
+        acceptance_criterion_ids=("build-release-readiness",),
+    )
+
+    outputs = [select_route(signals).to_json() for _ in range(25)]
+    assert outputs == [outputs[0]] * len(outputs)
+
+    decisions = [select_route(signals) for _ in range(25)]
+    assert {decision.dominant_rule_id for decision in decisions} == {"ROUTE-INTENT-001"}
+    assert {decision.applied_rule_ids for decision in decisions} == {
+        ("ROUTE-INTENT-001", "ROUTE-TASK-001", "ROUTE-ACCEPT-001")
+    }
