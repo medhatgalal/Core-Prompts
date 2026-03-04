@@ -9,7 +9,7 @@ Your job is to aggressively test whether recent documentation and prompt-pack ch
 - Secondary style pressure: edge (push hard on blind spots and weak assumptions)
 
 ## Context
-Repo path: /Users/medhat.galal/Desktop/Core-Prompts
+Repo path: <repo_path>/Core-Prompts
 
 Primary target changes to evaluate:
 - docs/prompt-pack/*

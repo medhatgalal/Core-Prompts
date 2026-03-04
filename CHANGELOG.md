@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.2.6 - 2026-03-03
+
+- Anonymized local/private absolute paths in docs and prompts:
+  - replaced user-specific paths with `<repo_path>/Core-Prompts` placeholders
+  - replaced `/tmp/llm-home` examples with `$HOME/tmp/llm-home`
+  - normalized AGENTS source path to `ssot/`
+- Reworked root `README.md` structure:
+  - value-first opening statement
+  - full examples with expected outputs for each core skill
+  - installation section after examples
+  - additional links section at the end
+- Reduced repository-structure detail in `README.md` to keep the page user-facing and outcome-focused.
+
 ## 0.2.5 - 2026-03-03
 
 - Rewrote root `README.md` to be prompt-first and more approachable:
