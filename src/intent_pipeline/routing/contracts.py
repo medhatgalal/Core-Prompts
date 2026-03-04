@@ -31,6 +31,13 @@ class RouteProfile(str, Enum):
     NEEDS_REVIEW = "NEEDS_REVIEW"
 
 
+class RouteDecision(str, Enum):
+    """Typed deterministic routing decision semantics."""
+
+    PASS_ROUTE = "PASS_ROUTE"
+    NEEDS_REVIEW = "NEEDS_REVIEW"
+
+
 class RoutingBoundaryErrorCode(str, Enum):
     INVALID_UPLIFT_PAYLOAD = "INVALID_UPLIFT_PAYLOAD"
     UNSUPPORTED_INPUT_SCHEMA = "UNSUPPORTED_INPUT_SCHEMA"
@@ -195,6 +202,7 @@ def _canonicalize_value(value: Any) -> Any:
 __all__ = [
     "REQUIRED_UPLIFT_SECTIONS",
     "ROUTING_CONTRACT_SCHEMA_VERSION",
+    "RouteDecision",
     "RouteProfile",
     "RoutingBoundaryError",
     "RoutingBoundaryErrorCode",
