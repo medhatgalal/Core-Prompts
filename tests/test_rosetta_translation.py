@@ -4,6 +4,7 @@ from dataclasses import replace
 
 import pytest
 
+from intent_pipeline.routing.engine import run_semantic_routing
 from intent_pipeline.routing.rosetta import (
     RosettaTranslationError,
     RosettaTranslationErrorCode,
@@ -114,6 +115,29 @@ def test_rosetta_01_schema_serialization_is_byte_stable(
     selection = select_route(bundle)
 
     outputs = [translate_to_route_spec(selection, bundle, routing_uplift_payload).to_json() for _ in range(20)]
+
+    assert "ROSETTA-01"
+    assert outputs == [outputs[0]] * len(outputs)
+
+
+def test_rosetta_01_engine_orchestration_emits_route_spec_contract(
+    routing_uplift_payload: dict[str, object],
+) -> None:
+    result = run_semantic_routing(routing_uplift_payload)
+    payload = result.as_payload()
+
+    assert "ROSETTA-01"
+    assert payload["schema_version"] == "3.0.0"
+    assert payload["uplift_schema_version"] == "2.0.0"
+    assert payload["route_spec"]["schema_version"] == "3.0.0"
+    assert payload["route_spec"]["dominant_rule_id"] == payload["route_selection"]["dominant_rule_id"]
+    assert payload["route_spec"]["task_focus_ids"]
+
+
+def test_rosetta_01_engine_orchestration_is_byte_stable(
+    routing_uplift_payload: dict[str, object],
+) -> None:
+    outputs = [run_semantic_routing(routing_uplift_payload).to_json() for _ in range(20)]
 
     assert "ROSETTA-01"
     assert outputs == [outputs[0]] * len(outputs)
