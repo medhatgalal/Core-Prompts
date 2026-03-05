@@ -27,11 +27,11 @@ Complete remaining hardening carryover by closing Phase 4 traceability mapping p
   1. Phase 4 summary/frontmatter explicitly maps `VAL-01`, `VAL-02`, `VAL-03`, `MOCK-01`, `MOCK-02`, `FALLBACK-01`, `FALLBACK-02`, `DET-04`, and `BOUND-04`.
   2. Requirement statuses in summary, roadmap, and requirements docs are deterministic and ID-level consistent.
   3. Evidence references are deterministic and auditable.
-**Plans:** 1/3 plans complete
+**Plans:** 2/3 plans complete
 
 Plans:
 - [x] 06-01: Inventory and patch missing Phase 4 requirement metadata entries
-- [ ] 06-02: Reconcile requirement mapping parity across summary/roadmap/requirements
+- [x] 06-02: Reconcile requirement mapping parity across summary/roadmap/requirements
 - [ ] 06-03: Validate deterministic evidence references and finalize Phase 6 summary
 
 #### Phase 7: Extension Governance Decision Pack (`EXT-01`, `EXT-02`)
@@ -53,5 +53,5 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 6. Phase 4 Traceability Metadata Backfill | 1/3 | In Progress | — |
+| 6. Phase 4 Traceability Metadata Backfill | 2/3 | In Progress | — |
 | 7. Extension Governance Decision Pack (`EXT-01`, `EXT-02`) | 0/3 | Not started | — |
