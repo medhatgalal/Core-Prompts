@@ -14,14 +14,18 @@
 ### Extension Governance
 
 - [x] **EXTG-01**: Milestone records explicit disposition (`go`, `defer`, or `reject`) for `EXT-01` and `EXT-02` with deterministic boundary rationale (`EXT-01=defer`, `EXT-02=defer` per Phase 7 decision matrix).
-- [ ] **EXTG-02**: Extension decisions are synchronized across PROJECT/REQUIREMENTS/ROADMAP with no contradictory scope language and no v1.2 runtime-scope expansion.
+- [ ] **EXTG-02**: Extension decisions are synchronized across PROJECT/REQUIREMENTS/ROADMAP with no contradictory scope language, explicit `EXT-01=defer` and `EXT-02=defer` dispositions, and no v1.2 runtime-scope expansion.
 
 ## v2 Requirements
 
 ### Deferred Extensions
 
-- **EXT-01**: URL ingestion with explicit validation and policy controls. Current governance disposition: `defer`.
-- **EXT-02**: Downstream intent routing/execution after explicit approval. Current governance disposition: `defer`.
+- **EXT-01**: URL ingestion with explicit validation and policy controls.
+  - Decision now (v1.2): `defer` (deterministic non-go).
+  - Re-entry criteria (future milestone): approved URL policy contract, deterministic validation matrix, and boundary tests proving no unauthorized side-effect expansion.
+- **EXT-02**: Downstream intent routing/execution after explicit approval.
+  - Decision now (v1.2): `defer` (deterministic non-go).
+  - Re-entry criteria (future milestone): approved execution authorization policy, deterministic side-effect guardrails, and repeatable verification for boundary stress cases.
 
 ## Out of Scope
 
@@ -40,6 +44,10 @@
 | TRACE-03 | Phase 6 | Complete |
 | EXTG-01 | Phase 7 | Complete |
 | EXTG-02 | Phase 7 | Pending |
+
+**Extension governance traceability anchors:**
+- `EXT-01`: defer in v1.2, staged behind explicit policy/verification re-entry criteria.
+- `EXT-02`: defer in v1.2, staged behind execution authorization and deterministic guardrail criteria.
 
 **Coverage:**
 - v1 requirements: 5 total
