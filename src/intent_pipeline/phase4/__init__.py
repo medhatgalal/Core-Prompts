@@ -2,7 +2,15 @@
 
 from intent_pipeline.phase4.contracts import (
     CapabilityMatrix,
+    MOCK_STAGE_ORDER,
+    PHASE4_MOCK_SCHEMA_VERSION,
     PHASE4_VALIDATION_SCHEMA_VERSION,
+    MockDecision,
+    MockErrorCode,
+    MockStage,
+    MockStep,
+    MockStepStatus,
+    MockTrace,
     PolicyContract,
     RequiredCapabilityBinding,
     RouteSpecTarget,
@@ -18,12 +26,21 @@ from intent_pipeline.phase4.contracts import (
     parse_policy_contract,
     parse_route_spec_target,
 )
+from intent_pipeline.phase4.mock_executor import run_mock_execution
 from intent_pipeline.phase4.validator import validate_target
 
 
 __all__ = [
     "CapabilityMatrix",
+    "MOCK_STAGE_ORDER",
+    "PHASE4_MOCK_SCHEMA_VERSION",
     "PHASE4_VALIDATION_SCHEMA_VERSION",
+    "MockDecision",
+    "MockErrorCode",
+    "MockStage",
+    "MockStep",
+    "MockStepStatus",
+    "MockTrace",
     "PolicyContract",
     "RequiredCapabilityBinding",
     "RouteSpecTarget",
@@ -38,5 +55,6 @@ __all__ = [
     "parse_capability_matrix",
     "parse_policy_contract",
     "parse_route_spec_target",
+    "run_mock_execution",
     "validate_target",
 ]

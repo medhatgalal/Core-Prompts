@@ -11,6 +11,7 @@ from typing import Any, Mapping
 PHASE4_VALIDATION_SCHEMA_VERSION = "4.0.0"
 SUPPORTED_PHASE4_SCHEMA_MAJOR = "4"
 SUPPORTED_ROUTE_SPEC_SCHEMA_MAJOR = "3"
+PHASE4_MOCK_SCHEMA_VERSION = "4.0.0"
 
 
 class ValidationDecision(str, Enum):
@@ -33,6 +34,39 @@ class ValidationErrorCode(str, Enum):
     REQUIRED_CAPABILITY_MISSING = "VAL-008-REQUIRED-CAPABILITY-MISSING"
     POLICY_RULE_BLOCKED = "VAL-009-POLICY-RULE-BLOCKED"
     ROUTE_DECISION_BLOCKED = "VAL-010-ROUTE-DECISION-BLOCKED"
+
+
+class MockDecision(str, Enum):
+    PASS = "PASS"
+    FAIL = "FAIL"
+
+
+class MockStage(str, Enum):
+    PRECHECK = "PRECHECK"
+    PLAN = "PLAN"
+    SIMULATE = "SIMULATE"
+    VERIFY = "VERIFY"
+
+
+MOCK_STAGE_ORDER: tuple[MockStage, ...] = (
+    MockStage.PRECHECK,
+    MockStage.PLAN,
+    MockStage.SIMULATE,
+    MockStage.VERIFY,
+)
+
+
+class MockStepStatus(str, Enum):
+    PASS = "PASS"
+    FAIL = "FAIL"
+    SKIP = "SKIP"
+
+
+class MockErrorCode(str, Enum):
+    VALIDATION_NOT_PASS = "MOCK-001-VALIDATION-NOT-PASS"
+    TARGET_TOOL_UNRESOLVED = "MOCK-002-TARGET-TOOL-UNRESOLVED"
+    CAPABILITY_EVIDENCE_MISSING = "MOCK-003-CAPABILITY-EVIDENCE-MISSING"
+    UNSUPPORTED_STAGE = "MOCK-004-UNSUPPORTED-STAGE"
 
 
 class ValidationContractError(ValueError):
@@ -287,6 +321,104 @@ class ValidationReport:
             "policy_checks": list(self.policy_checks),
             "applied_rule_ids": list(self.applied_rule_ids),
             "issues": [issue.as_payload() for issue in self.issues],
+        }
+
+    def to_json(self) -> str:
+        return json.dumps(self.as_payload(), sort_keys=True, separators=(",", ":"))
+
+
+@dataclass(frozen=True, slots=True)
+class MockStep:
+    stage: MockStage
+    status: MockStepStatus
+    rule_id: str
+    action: str
+    evidence_paths: tuple[str, ...]
+    produced_artifacts: tuple[str, ...] = ()
+    error_code: MockErrorCode | None = None
+    details: str | None = None
+
+    def __post_init__(self) -> None:
+        if not isinstance(self.stage, MockStage):
+            object.__setattr__(self, "stage", MockStage(str(self.stage)))
+        if not isinstance(self.status, MockStepStatus):
+            object.__setattr__(self, "status", MockStepStatus(str(self.status)))
+        object.__setattr__(self, "rule_id", _normalize_text(self.rule_id))
+        object.__setattr__(self, "action", _normalize_text(self.action))
+        object.__setattr__(self, "evidence_paths", _normalize_sorted_text(self.evidence_paths))
+        object.__setattr__(self, "produced_artifacts", _normalize_sorted_text(self.produced_artifacts))
+        if self.error_code is not None and not isinstance(self.error_code, MockErrorCode):
+            object.__setattr__(self, "error_code", MockErrorCode(str(self.error_code)))
+        object.__setattr__(self, "details", _normalize_optional_text(self.details))
+
+        if self.status is MockStepStatus.FAIL and self.error_code is None:
+            raise ValueError("FAIL mock steps require typed error_code")
+        if self.status is not MockStepStatus.FAIL and self.error_code is not None:
+            raise ValueError("Only FAIL mock steps can carry error_code")
+
+        if self.status is MockStepStatus.FAIL:
+            has_route = any(path.startswith("route_spec.") for path in self.evidence_paths)
+            has_capability = any(path.startswith("capability_matrix.") for path in self.evidence_paths)
+            has_validation = any(path.startswith("validation_report.") for path in self.evidence_paths)
+            has_step = any(path.startswith("mock_trace.steps.") for path in self.evidence_paths)
+            if not (has_route and has_capability and has_validation and has_step):
+                raise ValueError(
+                    "FAIL mock steps must include route_spec, capability_matrix, validation_report, and mock_trace.steps evidence paths"
+                )
+
+    def as_payload(self) -> dict[str, Any]:
+        return {
+            "stage": self.stage.value,
+            "status": self.status.value,
+            "rule_id": self.rule_id,
+            "action": self.action,
+            "evidence_paths": list(self.evidence_paths),
+            "produced_artifacts": list(self.produced_artifacts),
+            "error_code": self.error_code.value if self.error_code is not None else None,
+            "details": self.details,
+        }
+
+
+@dataclass(frozen=True, slots=True)
+class MockTrace:
+    schema_version: str
+    decision: MockDecision
+    route_profile: str
+    target_tool_id: str | None
+    dominant_rule_id: str
+    applied_rule_ids: tuple[str, ...]
+    steps: tuple[MockStep, ...]
+
+    def __post_init__(self) -> None:
+        object.__setattr__(self, "schema_version", _validate_schema_major(self.schema_version, SUPPORTED_PHASE4_SCHEMA_MAJOR))
+        if not isinstance(self.decision, MockDecision):
+            object.__setattr__(self, "decision", MockDecision(str(self.decision)))
+        object.__setattr__(self, "route_profile", _normalize_text(self.route_profile))
+        object.__setattr__(self, "target_tool_id", _normalize_optional_text(self.target_tool_id))
+        object.__setattr__(self, "dominant_rule_id", _normalize_text(self.dominant_rule_id))
+        object.__setattr__(self, "applied_rule_ids", _unique_in_order(self.applied_rule_ids))
+
+        if len(self.steps) != len(MOCK_STAGE_ORDER):
+            raise ValueError("MockTrace must include exactly one step for each fixed stage")
+        stage_order = tuple(step.stage for step in self.steps)
+        if stage_order != MOCK_STAGE_ORDER:
+            raise ValueError("MockTrace step order must follow PRECHECK, PLAN, SIMULATE, VERIFY")
+
+        has_failure = any(step.status is MockStepStatus.FAIL for step in self.steps)
+        if self.decision is MockDecision.PASS and has_failure:
+            raise ValueError("MockTrace PASS decision cannot include failing steps")
+        if self.decision is MockDecision.FAIL and not has_failure:
+            raise ValueError("MockTrace FAIL decision must include at least one failing step")
+
+    def as_payload(self) -> dict[str, Any]:
+        return {
+            "schema_version": self.schema_version,
+            "decision": self.decision.value,
+            "route_profile": self.route_profile,
+            "target_tool_id": self.target_tool_id,
+            "dominant_rule_id": self.dominant_rule_id,
+            "applied_rule_ids": list(self.applied_rule_ids),
+            "steps": [step.as_payload() for step in self.steps],
         }
 
     def to_json(self) -> str:
@@ -763,6 +895,14 @@ def _canonicalize_value(value: Any) -> Any:
 
 __all__ = [
     "CapabilityMatrix",
+    "MockDecision",
+    "MockErrorCode",
+    "MockStage",
+    "MockStep",
+    "MockStepStatus",
+    "MockTrace",
+    "MOCK_STAGE_ORDER",
+    "PHASE4_MOCK_SCHEMA_VERSION",
     "PHASE4_VALIDATION_SCHEMA_VERSION",
     "PolicyContract",
     "RequiredCapabilityBinding",
