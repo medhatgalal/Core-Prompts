@@ -3,10 +3,10 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 current_plan: Not started
-status: Ready to discuss and plan
-stopped_at: Phase 4 verified and completed
-last_updated: "2026-03-05T04:02:25Z"
-last_activity: 2026-03-05 — Phase 04 verified and completed; ready for Phase 05 discussion
+status: Ready to plan
+stopped_at: Phase 5 context gathered
+last_updated: "2026-03-05T04:15:00Z"
+last_activity: 2026-03-05 — Phase 05 context gathered; ready for Phase 05 planning
 progress:
   total_phases: 5
   completed_phases: 4
@@ -30,8 +30,8 @@ Phase: 5 of 5 (Output Generation + Help Module + Runtime Dependency Checks)
 Plan: Not started
 Current Plan: Not started
 Total Plans in Phase: 0
-Status: Ready to discuss and plan
-Last activity: 2026-03-05 — Phase 04 verified and completed; ready for Phase 05 discussion
+Status: Ready to plan
+Last activity: 2026-03-05 — Phase 05 context gathered; ready for Phase 05 planning
 
 Progress: [████████████████░░░░] 4/5 phases (80%)
 
@@ -67,6 +67,9 @@ Progress: [████████████████░░░░] 4/5 pha
 - Phase 4 fallback uses a fixed tier ladder with deterministic terminal `NEEDS_REVIEW` handling.
 - Phase 4 engine composition is fixed to `validate_target -> run_mock_execution -> resolve_fallback`.
 - Phase 4 boundary excludes real execution, output/help rendering, and runtime dependency checks.
+- Phase 5 output should provide both machine contract and human-rendered deterministic surfaces.
+- Phase 5 help module should be template-driven, roleplay-free, and code/evidence-linked.
+- Phase 5 runtime checks should be preflight-only with required vs optional deterministic degradation semantics.
 
 ### Roadmap Evolution
 
@@ -86,5 +89,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-05T04:02:25Z
-Stopped at: Phase 4 verified and completed
-Resume file: .planning/phases/04-target-tool-validation-mock-execution-fallback-degradation/04-VERIFICATION.md
+Stopped at: Phase 5 context gathered
+Resume file: .planning/phases/05-output-generation-help-module-runtime-dependency-checks/05-CONTEXT.md
