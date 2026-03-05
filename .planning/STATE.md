@@ -21,7 +21,10 @@ progress:
 
 ## Project Reference
 
-See: .planning/PROJECT.md
+See: .planning/PROJECT.md (updated 2026-03-05)
+
+**Core value:** Convert local file content into safe, deterministic intent artifacts that preserve explicit boundaries, traceability, and stable decision semantics.
+**Current focus:** Phase 7 extension governance decision pack (`EXT-01`, `EXT-02`)
 
 ## Position
 

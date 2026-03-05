@@ -23,12 +23,10 @@ Convert local file content into safe, deterministic intent artifacts that preser
 
 - ✓ Deterministic local intent pipeline from ingestion through output/help/runtime preflight shipped in v1.0.
 - ✓ Nyquist validation closure for archived phases 01, 02, 03, and 05.
+- ✓ `TRACE-01` / `TRACE-02` / `TRACE-03` completed in Phase 6 with explicit, deterministic evidence parity across summary, roadmap, requirements, and validation/audit artifacts.
 
 ### Active
 
-- [ ] `TRACE-01`: Backfill Phase 4 summary metadata so all validation requirements are explicitly mapped.
-- [ ] `TRACE-02`: Backfill Phase 4 summary metadata so all mock/fallback requirements are explicitly mapped.
-- [ ] `TRACE-03`: Enforce 3-source parity for Phase 4 requirement completion evidence.
 - [ ] `EXTG-01`: Record explicit go/defer/no-go decision for `EXT-01` and `EXT-02` with boundary rationale.
 - [ ] `EXTG-02`: Synchronize PROJECT/REQUIREMENTS/ROADMAP scope boundaries to extension decisions.
 
@@ -54,8 +52,9 @@ Convert local file content into safe, deterministic intent artifacts that preser
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Start v1.2 now with carryover scope | Continue momentum while reducing active scope to unresolved items only | — Pending |
+| Start v1.2 now with carryover scope | Continue momentum while reducing active scope to unresolved items only | ✓ Phase 6 traceability closure complete |
 | Keep extensions as governance decisions in v1.2 | Avoid accidental capability expansion before explicit policy lock | — Pending |
+| Require explicit canonical requirement IDs for parity closure | Prevent inferred mappings and make regressions detectable in deterministic scans | ✓ Adopted in Phase 6 |
 
 ---
-*Last updated: 2026-03-05 after starting milestone v1.2 Next (carryover scope)*
+*Last updated: 2026-03-05 after Phase 6 transition to Phase 7*
