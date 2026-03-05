@@ -4,17 +4,17 @@ milestone: v1.2
 milestone_name: Next
 current_phase: 07
 current_phase_name: extension governance decision pack ext 01 ext 02
-current_plan: 2
+current_plan: 3
 status: executing
-stopped_at: Completed 07-01-PLAN.md
-last_updated: "2026-03-05T22:03:14.875Z"
+stopped_at: Completed 07-extension-governance-decision-pack-ext-01-ext-02-02-PLAN.md
+last_updated: "2026-03-05T22:08:59.580Z"
 last_activity: 2026-03-05
 progress:
   total_phases: 2
   completed_phases: 1
   total_plans: 6
-  completed_plans: 4
-  percent: 67
+  completed_plans: 5
+  percent: 83
 ---
 
 # Session State
@@ -32,10 +32,10 @@ See: .planning/PROJECT.md (updated 2026-03-05)
 **Current Phase:** 07
 **Current Phase Name:** extension governance decision pack ext 01 ext 02
 **Total Phases:** 2
-**Current Plan:** 2
+**Current Plan:** 3
 **Total Plans in Phase:** 3
 **Status:** Ready to execute
-**Progress:** [███████░░░] 67%
+**Progress:** [████████░░] 83%
 **Last Activity:** 2026-03-05
 **Last Activity Description:** Phase 06 complete, transitioned to Phase 07
 
@@ -52,6 +52,8 @@ See: .planning/PROJECT.md (updated 2026-03-05)
 - [Phase 06-phase-4-traceability-metadata-backfill]: Closure artifacts remain documentation-only and do not expand runtime capability scope.
 - [Phase 07-extension-governance-decision-pack-ext-01-ext-02]: Use fixed weighted criteria and conservative tie-break precedence to ensure deterministic extension disposition outcomes. — Ensures repeated governance evaluations remain stable and auditable.
 - [Phase 07-extension-governance-decision-pack-ext-01-ext-02]: Set EXT-01 and EXT-02 to defer in v1.2 to preserve no-execution and no-runtime-expansion guarantees. — Maintains boundary-first constraints while defining clear re-entry gates for future milestones.
+- [Phase 07-extension-governance-decision-pack-ext-01-ext-02]: Treat EXT-01 and EXT-02 as deterministic non-go in v1.2 with explicit defer/defer wording across canonical planning docs. — Eliminates mixed disposition semantics and preserves deterministic governance boundaries.
+- [Phase 07-extension-governance-decision-pack-ext-01-ext-02]: Represent future extension admission only through staged re-entry criteria, never implied implementation authorization. — Keeps v1.2 governance-only and prevents accidental runtime scope expansion.
 
 ## Blockers
 
@@ -65,11 +67,12 @@ See: .planning/PROJECT.md (updated 2026-03-05)
 | Phase 06-phase-4-traceability-metadata-backfill P02 | 3 min | 3 tasks | 3 files |
 | Phase 06-phase-4-traceability-metadata-backfill P03 | 3 min | 3 tasks | 3 files |
 | Phase 07-extension-governance-decision-pack-ext-01-ext-02 P01 | 2 min | 3 tasks | 3 files |
+| Phase 07-extension-governance-decision-pack-ext-01-ext-02 P02 | 2 min | 3 tasks | 3 files |
 
 ## Session
 
-**Last Date:** 2026-03-05T22:03:14.870Z
-**Stopped At:** Completed 07-01-PLAN.md
+**Last Date:** 2026-03-05T22:08:59.577Z
+**Stopped At:** Completed 07-extension-governance-decision-pack-ext-01-ext-02-02-PLAN.md
 **Resume File:** None
 
 ## Session Log
