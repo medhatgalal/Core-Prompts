@@ -8,12 +8,14 @@ import pytest
 
 from intent_pipeline.phase4.engine import run_phase4
 from intent_pipeline.phase5.contracts import (
+    PHASE5_ENGINE_SCHEMA_VERSION,
+    PHASE5_RUNTIME_SCHEMA_VERSION,
     OutputTerminalStatus,
     RuntimeDependencyAggregateStatus,
     RuntimeDependencyClassification,
     RuntimeDependencyReasonCode,
 )
-from intent_pipeline.phase5.engine import generate_help_response
+from intent_pipeline.phase5.engine import generate_help_response, run_phase5
 from intent_pipeline.phase5.help import resolve_help_response
 from intent_pipeline.phase5 import help as phase5_help_module
 from intent_pipeline.phase5.output_generator import generate_output_surfaces
@@ -252,3 +254,45 @@ def test_phase5_runtime_required_optional_missing_optional_is_degraded() -> None
     assert required_missing == []
     assert optional_missing
     assert all(check.reason_code is RuntimeDependencyReasonCode.OPTIONAL_MISSING for check in optional_missing)
+
+
+def test_phase5_runtime_ordering_schema_engine_pipeline_is_fixed(monkeypatch) -> None:
+    phase4_result = _build_phase4_result(enforce_blocking=False)
+    calls: list[str] = []
+
+    from intent_pipeline.phase5 import engine as phase5_engine
+
+    original_run_runtime_dependency_checks = phase5_engine.run_runtime_dependency_checks
+    original_generate_output_surfaces = phase5_engine.generate_output_surfaces
+    original_resolve_help_response = phase5_engine.resolve_help_response
+
+    def tracked_run_runtime_dependency_checks(dependency_specs):
+        calls.append("run_runtime_dependency_checks")
+        return original_run_runtime_dependency_checks(dependency_specs)
+
+    def tracked_generate_output_surfaces(phase4):
+        calls.append("generate_output_surfaces")
+        return original_generate_output_surfaces(phase4)
+
+    def tracked_resolve_help_response(output_surfaces, *, topic=None, code=None):
+        calls.append("resolve_help_response")
+        return original_resolve_help_response(output_surfaces, topic=topic, code=code)
+
+    monkeypatch.setattr(phase5_engine, "run_runtime_dependency_checks", tracked_run_runtime_dependency_checks)
+    monkeypatch.setattr(phase5_engine, "generate_output_surfaces", tracked_generate_output_surfaces)
+    monkeypatch.setattr(phase5_engine, "resolve_help_response", tracked_resolve_help_response)
+
+    result = run_phase5(
+        phase4_result,
+        dependency_specs=_runtime_specs(required_missing=False, optional_missing=True),
+    )
+
+    assert "RUNTIME-04"
+    assert result.schema_version == PHASE5_ENGINE_SCHEMA_VERSION
+    assert result.runtime.schema_version == PHASE5_RUNTIME_SCHEMA_VERSION
+    assert result.pipeline_order == ("run_runtime_dependency_checks", "generate_output_surfaces", "resolve_help_response")
+    assert result.runtime.pipeline_order == ("run_runtime_dependency_checks",)
+    assert result.route_spec_schema_version == phase4_result.route_spec_schema_version
+    assert result.output.machine_payload.terminal_status.value == phase4_result.fallback.decision.value
+    assert result.help.terminal_status.value == phase4_result.fallback.decision.value
+    assert calls == ["run_runtime_dependency_checks", "generate_output_surfaces", "resolve_help_response"]
