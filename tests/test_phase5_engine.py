@@ -8,6 +8,7 @@ import pytest
 
 from intent_pipeline.phase4.engine import run_phase4
 from intent_pipeline.phase5.contracts import OutputTerminalStatus
+from intent_pipeline.phase5.help import resolve_help_response
 from intent_pipeline.phase5.output_generator import generate_output_surfaces
 from intent_pipeline.phase5 import output_generator as phase5_output_generator
 from intent_pipeline.routing.engine import run_semantic_routing
@@ -118,3 +119,27 @@ def test_phase5_preserve_needs_review_guard_rejects_status_rewrite(monkeypatch) 
     assert "OUT-03"
     with pytest.raises(ValueError, match="preserve Phase4 terminal status"):
         generate_output_surfaces(phase4_result)
+
+
+def test_phase5_help_template_evidence_paths_are_deterministic_for_identical_input() -> None:
+    phase4_result = _build_phase4_result(enforce_blocking=True)
+    surfaces = generate_output_surfaces(phase4_result)
+    rendered = [resolve_help_response(surfaces).to_json() for _ in range(20)]
+
+    assert "HELP-02"
+    assert rendered == [rendered[0]] * len(rendered)
+    digests = [hashlib.sha256(item.encode("utf-8")).hexdigest() for item in rendered]
+    assert len(set(digests)) == 1
+
+
+def test_phase5_help_template_evidence_paths_use_fixed_message_pattern() -> None:
+    phase4_result = _build_phase4_result(enforce_blocking=True)
+    surfaces = generate_output_surfaces(phase4_result)
+    response = resolve_help_response(surfaces)
+
+    assert "HELP-02"
+    assert response.message.startswith("Failure state is NEEDS_REVIEW.")
+    assert "Evidence paths:" in response.message
+    assert response.evidence_paths == tuple(sorted(response.evidence_paths))
+    assert "phase5.help.topic::failure_explanation" in response.evidence_paths
+    assert "phase5.help.code::HELP-201-FAILURE-BLOCKING-STATUS" in response.evidence_paths

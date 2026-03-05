@@ -76,12 +76,6 @@ def resolve_help_response(
     )
 
     machine_payload = output_surfaces.machine_payload
-    terminal_code = machine_payload.terminal_code or "none"
-    message = _TEMPLATE_BY_CODE[resolved_code].format(
-        terminal_status=machine_payload.terminal_status.value,
-        output_code=machine_payload.output_code.value,
-        terminal_code=terminal_code,
-    )
     evidence_paths = tuple(
         sorted(
             {
@@ -90,6 +84,13 @@ def resolve_help_response(
                 f"phase5.help.code::{resolved_code.value}",
             }
         )
+    )
+    message = _render_message(
+        code=resolved_code,
+        terminal_status=machine_payload.terminal_status.value,
+        output_code=machine_payload.output_code.value,
+        terminal_code=machine_payload.terminal_code or "none",
+        evidence_paths=evidence_paths,
     )
     actions = _ACTIONS_BY_CODE[resolved_code]
 
@@ -112,7 +113,10 @@ def _resolve_topic_and_code(
 ) -> tuple[HelpTopic, HelpCode]:
     machine_payload = output_surfaces.machine_payload
     if topic is None and code is None:
-        resolved_code = _DEFAULT_CODE_BY_STATUS[machine_payload.terminal_status]
+        resolved_code = _select_default_code(
+            terminal_status=machine_payload.terminal_status,
+            issue_codes=machine_payload.issues,
+        )
         return _topic_for_code(resolved_code), resolved_code
 
     resolved_topic = _coerce_topic(topic) if topic is not None else None
@@ -129,6 +133,36 @@ def _resolve_topic_and_code(
 
     assert resolved_code is not None
     return _topic_for_code(resolved_code), resolved_code
+
+
+def _select_default_code(
+    *,
+    terminal_status: OutputTerminalStatus,
+    issue_codes: tuple[str, ...],
+) -> HelpCode:
+    candidates: set[HelpCode] = {_DEFAULT_CODE_BY_STATUS[terminal_status]}
+    if any(code.startswith("BOUND-") for code in issue_codes):
+        candidates.add(HelpCode.BOUNDARY_NON_EXECUTING_GUIDANCE)
+    # Lexical tie-break keeps template selection deterministic when multiple codes apply.
+    selected = sorted(candidates, key=lambda entry: entry.value)[0]
+    return selected
+
+
+def _render_message(
+    *,
+    code: HelpCode,
+    terminal_status: str,
+    output_code: str,
+    terminal_code: str,
+    evidence_paths: tuple[str, ...],
+) -> str:
+    base_message = _TEMPLATE_BY_CODE[code].format(
+        terminal_status=terminal_status,
+        output_code=output_code,
+        terminal_code=terminal_code,
+    )
+    evidence_text = ", ".join(evidence_paths)
+    return f"{base_message} Evidence paths: {evidence_text}."
 
 
 def _topic_for_code(code: HelpCode) -> HelpTopic:
