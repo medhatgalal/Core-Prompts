@@ -12,6 +12,8 @@ PHASE4_VALIDATION_SCHEMA_VERSION = "4.0.0"
 SUPPORTED_PHASE4_SCHEMA_MAJOR = "4"
 SUPPORTED_ROUTE_SPEC_SCHEMA_MAJOR = "3"
 PHASE4_MOCK_SCHEMA_VERSION = "4.0.0"
+PHASE4_FALLBACK_SCHEMA_VERSION = "4.0.0"
+PHASE4_ENGINE_SCHEMA_VERSION = "4.0.0"
 
 
 class ValidationDecision(str, Enum):
@@ -67,6 +69,40 @@ class MockErrorCode(str, Enum):
     TARGET_TOOL_UNRESOLVED = "MOCK-002-TARGET-TOOL-UNRESOLVED"
     CAPABILITY_EVIDENCE_MISSING = "MOCK-003-CAPABILITY-EVIDENCE-MISSING"
     UNSUPPORTED_STAGE = "MOCK-004-UNSUPPORTED-STAGE"
+
+
+class FallbackDecision(str, Enum):
+    USE_PRIMARY = "USE_PRIMARY"
+    DEGRADED = "DEGRADED"
+    NEEDS_REVIEW = "NEEDS_REVIEW"
+
+
+class FallbackTier(str, Enum):
+    PRIMARY_ROUTE = "PRIMARY_ROUTE"
+    DEGRADED_MOCK_SAFE = "DEGRADED_MOCK_SAFE"
+    TERMINAL_REVIEW = "TERMINAL_REVIEW"
+
+
+FALLBACK_TIER_ORDER: tuple[FallbackTier, ...] = (
+    FallbackTier.PRIMARY_ROUTE,
+    FallbackTier.DEGRADED_MOCK_SAFE,
+    FallbackTier.TERMINAL_REVIEW,
+)
+
+
+class FallbackErrorCode(str, Enum):
+    PRIMARY_BLOCKED_BY_VALIDATION = "FB-001-PRIMARY-BLOCKED-BY-VALIDATION"
+    PRIMARY_BLOCKED_BY_MOCK = "FB-002-PRIMARY-BLOCKED-BY-MOCK"
+    DEGRADED_NOT_REQUIRED = "FB-003-DEGRADED-NOT-REQUIRED"
+    DEGRADED_INELIGIBLE_VALIDATION = "FB-004-DEGRADED-INELIGIBLE-VALIDATION"
+    TERMINAL_NEEDS_REVIEW = "FB-005-TERMINAL-NEEDS-REVIEW"
+
+
+class Phase4BoundaryErrorCode(str, Enum):
+    FORBIDDEN_EXECUTION_IMPORT = "BOUND-04-001-FORBIDDEN-EXECUTION-IMPORT"
+    FORBIDDEN_OUTPUT_HELP_IMPORT = "BOUND-04-002-FORBIDDEN-OUTPUT-HELP-IMPORT"
+    FORBIDDEN_RUNTIME_IMPORT = "BOUND-04-003-FORBIDDEN-RUNTIME-IMPORT"
+    FORBIDDEN_MUTATION_CALL = "BOUND-04-004-FORBIDDEN-MUTATION-CALL"
 
 
 class ValidationContractError(ValueError):
@@ -423,6 +459,142 @@ class MockTrace:
 
     def to_json(self) -> str:
         return json.dumps(self.as_payload(), sort_keys=True, separators=(",", ":"))
+
+
+@dataclass(frozen=True, slots=True)
+class FallbackAttempt:
+    tier: FallbackTier
+    accepted: bool
+    reason_code: FallbackErrorCode | None
+    evidence_paths: tuple[str, ...]
+    details: str | None = None
+
+    def __post_init__(self) -> None:
+        if not isinstance(self.tier, FallbackTier):
+            object.__setattr__(self, "tier", FallbackTier(str(self.tier)))
+        object.__setattr__(self, "accepted", bool(self.accepted))
+        if self.reason_code is not None and not isinstance(self.reason_code, FallbackErrorCode):
+            object.__setattr__(self, "reason_code", FallbackErrorCode(str(self.reason_code)))
+        object.__setattr__(self, "evidence_paths", _normalize_sorted_text(self.evidence_paths))
+        object.__setattr__(self, "details", _normalize_optional_text(self.details))
+        if not self.accepted and self.reason_code is None:
+            raise ValueError("Rejected fallback attempts require deterministic reason_code")
+        if self.accepted and self.reason_code is not None and self.tier is not FallbackTier.TERMINAL_REVIEW:
+            raise ValueError("Only terminal accepted fallback attempts can include reason_code")
+
+    def as_payload(self) -> dict[str, Any]:
+        return {
+            "tier": self.tier.value,
+            "accepted": self.accepted,
+            "reason_code": self.reason_code.value if self.reason_code is not None else None,
+            "evidence_paths": list(self.evidence_paths),
+            "details": self.details,
+        }
+
+
+@dataclass(frozen=True, slots=True)
+class FallbackOutcome:
+    schema_version: str
+    decision: FallbackDecision
+    chosen_tier: FallbackTier
+    terminal_code: FallbackErrorCode | None
+    attempted_tiers: tuple[FallbackAttempt, ...]
+    dominant_rule_id: str
+    evidence_paths: tuple[str, ...]
+    applied_rule_ids: tuple[str, ...]
+
+    def __post_init__(self) -> None:
+        object.__setattr__(self, "schema_version", _validate_schema_major(self.schema_version, SUPPORTED_PHASE4_SCHEMA_MAJOR))
+        if not isinstance(self.decision, FallbackDecision):
+            object.__setattr__(self, "decision", FallbackDecision(str(self.decision)))
+        if not isinstance(self.chosen_tier, FallbackTier):
+            object.__setattr__(self, "chosen_tier", FallbackTier(str(self.chosen_tier)))
+        if self.terminal_code is not None and not isinstance(self.terminal_code, FallbackErrorCode):
+            object.__setattr__(self, "terminal_code", FallbackErrorCode(str(self.terminal_code)))
+        object.__setattr__(self, "dominant_rule_id", _normalize_text(self.dominant_rule_id))
+        object.__setattr__(self, "evidence_paths", _normalize_sorted_text(self.evidence_paths))
+        object.__setattr__(self, "applied_rule_ids", _unique_in_order(self.applied_rule_ids))
+
+        expected_order = tuple(attempt.tier for attempt in self.attempted_tiers)
+        if expected_order != FALLBACK_TIER_ORDER[: len(self.attempted_tiers)]:
+            raise ValueError("Fallback attempted_tiers must follow fixed tier order")
+        if not self.attempted_tiers:
+            raise ValueError("FallbackOutcome requires attempted_tiers evidence chain")
+
+        if self.decision is FallbackDecision.NEEDS_REVIEW:
+            if self.chosen_tier is not FallbackTier.TERMINAL_REVIEW:
+                raise ValueError("NEEDS_REVIEW must resolve to TERMINAL_REVIEW tier")
+            if self.terminal_code is not FallbackErrorCode.TERMINAL_NEEDS_REVIEW:
+                raise ValueError("NEEDS_REVIEW outcomes require TERMINAL_NEEDS_REVIEW terminal_code")
+        else:
+            if self.terminal_code is not None:
+                raise ValueError("Non-terminal fallback outcomes cannot include terminal_code")
+
+    def as_payload(self) -> dict[str, Any]:
+        return {
+            "schema_version": self.schema_version,
+            "decision": self.decision.value,
+            "chosen_tier": self.chosen_tier.value,
+            "terminal_code": self.terminal_code.value if self.terminal_code is not None else None,
+            "attempted_tiers": [attempt.as_payload() for attempt in self.attempted_tiers],
+            "dominant_rule_id": self.dominant_rule_id,
+            "evidence_paths": list(self.evidence_paths),
+            "applied_rule_ids": list(self.applied_rule_ids),
+        }
+
+    def to_json(self) -> str:
+        return json.dumps(self.as_payload(), sort_keys=True, separators=(",", ":"))
+
+
+@dataclass(frozen=True, slots=True)
+class Phase4Result:
+    schema_version: str
+    route_spec_schema_version: str
+    pipeline_order: tuple[str, ...]
+    validation: ValidationReport
+    mock: MockTrace
+    fallback: FallbackOutcome
+
+    def __post_init__(self) -> None:
+        object.__setattr__(self, "schema_version", _validate_schema_major(self.schema_version, SUPPORTED_PHASE4_SCHEMA_MAJOR))
+        object.__setattr__(self, "route_spec_schema_version", _normalize_text(self.route_spec_schema_version))
+        expected_pipeline = ("validate_target", "run_mock_execution", "resolve_fallback")
+        if tuple(self.pipeline_order) != expected_pipeline:
+            raise ValueError("Phase4Result pipeline_order must be validate_target -> run_mock_execution -> resolve_fallback")
+        object.__setattr__(self, "pipeline_order", expected_pipeline)
+
+    def as_payload(self) -> dict[str, Any]:
+        return {
+            "schema_version": self.schema_version,
+            "route_spec_schema_version": self.route_spec_schema_version,
+            "pipeline_order": list(self.pipeline_order),
+            "validation": self.validation.as_payload(),
+            "mock": self.mock.as_payload(),
+            "fallback": self.fallback.as_payload(),
+        }
+
+    def to_json(self) -> str:
+        return json.dumps(self.as_payload(), sort_keys=True, separators=(",", ":"))
+
+
+@dataclass(frozen=True, slots=True)
+class Phase4BoundaryViolation:
+    code: Phase4BoundaryErrorCode
+    evidence_paths: tuple[str, ...]
+    detail: str
+
+    def __post_init__(self) -> None:
+        if not isinstance(self.code, Phase4BoundaryErrorCode):
+            object.__setattr__(self, "code", Phase4BoundaryErrorCode(str(self.code)))
+        object.__setattr__(self, "evidence_paths", _normalize_sorted_text(self.evidence_paths))
+        object.__setattr__(self, "detail", _normalize_text(self.detail))
+
+    def as_payload(self) -> dict[str, Any]:
+        return {
+            "code": self.code.value,
+            "evidence_paths": list(self.evidence_paths),
+            "detail": self.detail,
+        }
 
 
 def parse_route_spec_target(route_spec: Mapping[str, Any]) -> RouteSpecTarget:
@@ -895,6 +1067,14 @@ def _canonicalize_value(value: Any) -> Any:
 
 __all__ = [
     "CapabilityMatrix",
+    "FALLBACK_TIER_ORDER",
+    "FallbackAttempt",
+    "FallbackDecision",
+    "FallbackErrorCode",
+    "FallbackOutcome",
+    "FallbackTier",
+    "PHASE4_ENGINE_SCHEMA_VERSION",
+    "PHASE4_FALLBACK_SCHEMA_VERSION",
     "MockDecision",
     "MockErrorCode",
     "MockStage",
@@ -904,6 +1084,9 @@ __all__ = [
     "MOCK_STAGE_ORDER",
     "PHASE4_MOCK_SCHEMA_VERSION",
     "PHASE4_VALIDATION_SCHEMA_VERSION",
+    "Phase4BoundaryErrorCode",
+    "Phase4BoundaryViolation",
+    "Phase4Result",
     "PolicyContract",
     "RequiredCapabilityBinding",
     "RouteSpecTarget",
