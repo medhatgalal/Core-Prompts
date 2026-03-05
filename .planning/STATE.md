@@ -4,15 +4,15 @@ milestone: v1.0
 milestone_name: milestone
 current_plan: Not started
 status: Ready to discuss and plan
-stopped_at: Phase 4 context gathered
-last_updated: "2026-03-05T03:34:10.197Z"
-last_activity: 2026-03-04 — Phase 02 verified and completed; transitioned to Phase 03
+stopped_at: Phase 4 verified and completed
+last_updated: "2026-03-05T04:02:25Z"
+last_activity: 2026-03-05 — Phase 04 verified and completed; ready for Phase 05 discussion
 progress:
   total_phases: 5
-  completed_phases: 3
-  total_plans: 9
-  completed_plans: 9
-  percent: 100
+  completed_phases: 4
+  total_plans: 12
+  completed_plans: 12
+  percent: 80
 ---
 
 # Project State
@@ -22,18 +22,18 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-04)
 
 **Core value:** Convert local file content into safe, deterministic intent artifacts that preserve explicit boundaries, traceability, and stable decision semantics.
-**Current focus:** Phase 3 — Semantic Routing & Rosetta Translation
+**Current focus:** Phase 5 — Output Generation + Help Module + Runtime Dependency Checks
 
 ## Current Position
 
-Phase: 3 of 5 (Semantic Routing & Rosetta Translation)
+Phase: 5 of 5 (Output Generation + Help Module + Runtime Dependency Checks)
 Plan: Not started
 Current Plan: Not started
 Total Plans in Phase: 0
 Status: Ready to discuss and plan
-Last activity: 2026-03-04 — Phase 02 verified and completed; transitioned to Phase 03
+Last activity: 2026-03-05 — Phase 04 verified and completed; ready for Phase 05 discussion
 
-Progress: [████████████████████] 6/6 plans (100%)
+Progress: [████████████████░░░░] 4/5 phases (80%)
 
 ## Performance Metrics
 
@@ -45,6 +45,12 @@ Progress: [████████████████████] 6/6 pla
 | Phase 02-2026-uplift-engine-context-intent-task-decomposition-constraints-acceptance P01 | 4 min | 3 tasks | 5 files |
 | Phase 02-2026-uplift-engine-context-intent-task-decomposition-constraints-acceptance P02 | 4 min | 3 tasks | 4 files |
 | Phase 02-2026-uplift-engine-context-intent-task-decomposition-constraints-acceptance P03 | 2 min | 3 tasks | 5 files |
+| Phase 03-semantic-routing-rosetta-translation P01 | 4 min | 3 tasks | 6 files |
+| Phase 03-semantic-routing-rosetta-translation P02 | 4 min | 3 tasks | 6 files |
+| Phase 03-semantic-routing-rosetta-translation P03 | 4 min | 3 tasks | 8 files |
+| Phase 04-target-tool-validation-mock-execution-fallback-degradation P01 | 4 min | 3 tasks | 6 files |
+| Phase 04-target-tool-validation-mock-execution-fallback-degradation P02 | 4 min | 3 tasks | 5 files |
+| Phase 04-target-tool-validation-mock-execution-fallback-degradation P03 | 5 min | 3 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -54,20 +60,13 @@ Progress: [████████████████████] 6/6 pla
 - URL ingestion is excluded from Phase 1.
 - Downstream routing/execution is excluded from Phase 1.
 - Output must be roleplay-free and deterministic.
-- [Phase 01-local-ingestion-two-pass-sanitization-intent-summary]: Reader enforces policy validation before every file read with deterministic failure mapping.
-- [Phase 01-local-ingestion-two-pass-sanitization-intent-summary]: Boundary tests assert URI/network rejection occurs before any read call.
-- [Phase 01-local-ingestion-two-pass-sanitization-intent-summary]: Expose only sanitize_two_pass(raw_text) so pass2 cannot receive raw input directly.
-- [Phase 01-local-ingestion-two-pass-sanitization-intent-summary]: Verify pass handoff integrity with monkeypatched pass1/pass2 call-order assertions.
-- [Phase 01-local-ingestion-two-pass-sanitization-intent-summary]: Summary rendering is fixed-template with explicit section order and deterministic normalization.
-- [Phase 01-local-ingestion-two-pass-sanitization-intent-summary]: Phase-1 pipeline is a terminal function that returns summary directly after sanitization.
-- [Phase 02-2026-uplift-engine-context-intent-task-decomposition-constraints-acceptance]: Require context/intent schema major-version gating (2.x) to preserve deterministic contract boundaries.
-- [Phase 02-2026-uplift-engine-context-intent-task-decomposition-constraints-acceptance]: Capture missing intent evidence in unknowns rather than synthesizing guessed objective/scope values.
-- [Phase 02-2026-uplift-engine-context-intent-task-decomposition-constraints-acceptance]: Task graph ordering uses depth/title/node-id canonical sorting after dependency satisfaction.
-- [Phase 02-2026-uplift-engine-context-intent-task-decomposition-constraints-acceptance]: Hard constraints with contradictory values fail fast via HardConstraintConflictError.
-- [Phase 02-2026-uplift-engine-context-intent-task-decomposition-constraints-acceptance]: Soft conflicts resolve by priority, then deterministic lexical tie-breakers.
-- [Phase 02-2026-uplift-engine-context-intent-task-decomposition-constraints-acceptance]: Canonical engine output returns a typed UpliftContract with schema major 2.x enforced at contract boundary.
-- [Phase 02-2026-uplift-engine-context-intent-task-decomposition-constraints-acceptance]: Acceptance evaluation uses fixed integer weights and deterministic gate precedence: NEEDS_REVIEW on missing evidence, FAIL on unmet hard criteria, PASS when threshold is met.
-- [Phase 02-2026-uplift-engine-context-intent-task-decomposition-constraints-acceptance]: Criterion records always include task-linked evidence entries so acceptance rationale remains traceable to task graph node IDs.
+- Phase 2 uplift contracts remain schema-major gated (`2.x`) with deterministic unknown capture, decomposition ordering, and constraint resolution.
+- Phase 3 routing remains deterministic and boundary-locked to semantic routing + Rosetta translation only.
+- Phase 4 validation is fail-closed and accepts only typed capability-matrix + policy contracts.
+- Phase 4 mock execution is dry-run only with fixed stage order and no side effects.
+- Phase 4 fallback uses a fixed tier ladder with deterministic terminal `NEEDS_REVIEW` handling.
+- Phase 4 engine composition is fixed to `validate_target -> run_mock_execution -> resolve_fallback`.
+- Phase 4 boundary excludes real execution, output/help rendering, and runtime dependency checks.
 
 ### Roadmap Evolution
 
@@ -86,6 +85,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-05T03:34:10.194Z
-Stopped at: Phase 4 context gathered
-Resume file: .planning/phases/04-target-tool-validation-mock-execution-fallback-degradation/04-CONTEXT.md
+Last session: 2026-03-05T04:02:25Z
+Stopped at: Phase 4 verified and completed
+Resume file: .planning/phases/04-target-tool-validation-mock-execution-fallback-degradation/04-VERIFICATION.md

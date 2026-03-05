@@ -43,26 +43,26 @@
 
 ### Phase 3 Semantic Routing + Rosetta Translation
 
-- [ ] **ROUTE-CTX-01**: Routing accepts only schema-compatible uplift artifacts and rejects unsupported schema majors.
-- [ ] **ROUTE-ENUM-01**: Route targets are constrained to a closed enum profile set with deterministic serialization.
-- [ ] **ROUTE-PREC-01**: Signal precedence is fixed as hard constraints > intent > task graph > acceptance.
-- [ ] **ROUTE-UNK-01**: Ambiguous or incomplete evidence produces deterministic `NEEDS_REVIEW` with explicit missing-evidence fields.
-- [ ] **ROSETTA-01**: Rosetta translation emits a canonical schema-versioned `route_spec` contract.
-- [ ] **ROSETTA-02**: Route-spec task/evidence linkage is consistent with uplift task graph and routing provenance.
-- [ ] **DET-03**: Phase 3 outputs are byte-stable across repeated identical runs.
-- [ ] **BOUND-03**: Phase 3 excludes target validation, execution/mock execution, output generation, and help rendering.
+- [x] **ROUTE-CTX-01**: Routing accepts only schema-compatible uplift artifacts and rejects unsupported schema majors.
+- [x] **ROUTE-ENUM-01**: Route targets are constrained to a closed enum profile set with deterministic serialization.
+- [x] **ROUTE-PREC-01**: Signal precedence is fixed as hard constraints > intent > task graph > acceptance.
+- [x] **ROUTE-UNK-01**: Ambiguous or incomplete evidence produces deterministic `NEEDS_REVIEW` with explicit missing-evidence fields.
+- [x] **ROSETTA-01**: Rosetta translation emits a canonical schema-versioned `route_spec` contract.
+- [x] **ROSETTA-02**: Route-spec task/evidence linkage is consistent with uplift task graph and routing provenance.
+- [x] **DET-03**: Phase 3 outputs are byte-stable across repeated identical runs.
+- [x] **BOUND-03**: Phase 3 excludes target validation, execution/mock execution, output generation, and help rendering.
 
 ### Phase 4 Target Validation + Mock Execution + Fallback Degradation
 
-- [ ] **VAL-01**: Target validation accepts only typed capability-matrix contracts and rejects freeform capability metadata.
-- [ ] **VAL-02**: Validation is fail-closed; any blocker deterministically prevents downstream execution stages.
-- [ ] **VAL-03**: Blocking validation outcomes emit deterministic typed error codes with explicit evidence paths.
-- [ ] **MOCK-01**: Mock execution remains dry-run only with no runtime/tool side effects.
-- [ ] **MOCK-02**: Mock execution emits deterministic step-level traces linked to validation and route evidence.
-- [ ] **FALLBACK-01**: Fallback degradation follows a fixed deterministic tier ladder.
-- [ ] **FALLBACK-02**: Exhausted fallback deterministically terminates as `NEEDS_REVIEW` with typed terminal codes.
-- [ ] **DET-04**: Phase 4 outputs are byte-stable for repeated identical inputs.
-- [ ] **BOUND-04**: Phase 4 excludes real execution, output generation, help rendering, and runtime dependency checks.
+- [x] **VAL-01**: Target validation accepts only typed capability-matrix contracts and rejects freeform capability metadata.
+- [x] **VAL-02**: Validation is fail-closed; any blocker deterministically prevents downstream execution stages.
+- [x] **VAL-03**: Blocking validation outcomes emit deterministic typed error codes with explicit evidence paths.
+- [x] **MOCK-01**: Mock execution remains dry-run only with no runtime/tool side effects.
+- [x] **MOCK-02**: Mock execution emits deterministic step-level traces linked to validation and route evidence.
+- [x] **FALLBACK-01**: Fallback degradation follows a fixed deterministic tier ladder.
+- [x] **FALLBACK-02**: Exhausted fallback deterministically terminates as `NEEDS_REVIEW` with typed terminal codes.
+- [x] **DET-04**: Phase 4 outputs are byte-stable for repeated identical inputs.
+- [x] **BOUND-04**: Phase 4 excludes real execution, output generation, help rendering, and runtime dependency checks.
 
 ## Out of Scope
 
@@ -90,23 +90,23 @@
 | UPLIFT-DECOMP | Phase 2 | Complete |
 | UPLIFT-CONSTRAINTS | Phase 2 | Complete |
 | UPLIFT-ACCEPTANCE | Phase 2 | Complete |
-| ROUTE-CTX-01 | Phase 3 | Planned |
-| ROUTE-ENUM-01 | Phase 3 | Planned |
-| ROUTE-PREC-01 | Phase 3 | Planned |
-| ROUTE-UNK-01 | Phase 3 | Planned |
-| ROSETTA-01 | Phase 3 | Planned |
-| ROSETTA-02 | Phase 3 | Planned |
-| DET-03 | Phase 3 | Planned |
-| BOUND-03 | Phase 3 | Planned |
-| VAL-01 | Phase 4 | Planned |
-| VAL-02 | Phase 4 | Planned |
-| VAL-03 | Phase 4 | Planned |
-| MOCK-01 | Phase 4 | Planned |
-| MOCK-02 | Phase 4 | Planned |
-| FALLBACK-01 | Phase 4 | Planned |
-| FALLBACK-02 | Phase 4 | Planned |
-| DET-04 | Phase 4 | Planned |
-| BOUND-04 | Phase 4 | Planned |
+| ROUTE-CTX-01 | Phase 3 | Complete |
+| ROUTE-ENUM-01 | Phase 3 | Complete |
+| ROUTE-PREC-01 | Phase 3 | Complete |
+| ROUTE-UNK-01 | Phase 3 | Complete |
+| ROSETTA-01 | Phase 3 | Complete |
+| ROSETTA-02 | Phase 3 | Complete |
+| DET-03 | Phase 3 | Complete |
+| BOUND-03 | Phase 3 | Complete |
+| VAL-01 | Phase 4 | Complete |
+| VAL-02 | Phase 4 | Complete |
+| VAL-03 | Phase 4 | Complete |
+| MOCK-01 | Phase 4 | Complete |
+| MOCK-02 | Phase 4 | Complete |
+| FALLBACK-01 | Phase 4 | Complete |
+| FALLBACK-02 | Phase 4 | Complete |
+| DET-04 | Phase 4 | Complete |
+| BOUND-04 | Phase 4 | Complete |
 
 **Coverage:**
 - Phase-scoped requirements: 31 total
@@ -115,4 +115,4 @@
 
 ---
 *Requirements defined: 2026-03-04*
-*Last updated: 2026-03-05 after Phase 4 planning*
+*Last updated: 2026-03-05 after Phase 4 execution*
