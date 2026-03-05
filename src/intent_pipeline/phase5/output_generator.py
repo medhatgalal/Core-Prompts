@@ -45,6 +45,7 @@ def generate_output_surfaces(phase4_result: Phase4Result) -> Phase5OutputSurface
         evidence_paths=evidence_paths,
         pipeline_order=("generate_output_surfaces",),
     )
+    _guard_terminal_semantics(phase4_result, machine_payload)
 
     human_text = _render_human_output(phase4_result, machine_payload)
     return Phase5OutputSurfaces(machine_payload=machine_payload, human_text=human_text)
@@ -59,6 +60,16 @@ def _terminal_status_from_phase4(phase4_result: Phase4Result) -> OutputTerminalS
     if decision is FallbackDecision.NEEDS_REVIEW:
         return OutputTerminalStatus.NEEDS_REVIEW
     raise ValueError(f"Unsupported fallback decision '{decision}'")
+
+
+def _guard_terminal_semantics(phase4_result: Phase4Result, machine_payload: Phase5OutputPayload) -> None:
+    expected_terminal_status = phase4_result.fallback.decision.value
+    if machine_payload.terminal_status.value != expected_terminal_status:
+        raise ValueError("Phase5 output must preserve Phase4 terminal status semantics without mutation")
+
+    expected_terminal_code = phase4_result.fallback.terminal_code.value if phase4_result.fallback.terminal_code is not None else None
+    if machine_payload.terminal_code != expected_terminal_code:
+        raise ValueError("Phase5 output must preserve Phase4 terminal code semantics without mutation")
 
 
 def _collect_issue_codes(phase4_result: Phase4Result) -> tuple[str, ...]:

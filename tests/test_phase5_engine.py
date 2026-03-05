@@ -4,8 +4,12 @@ from copy import deepcopy
 import hashlib
 import json
 
+import pytest
+
 from intent_pipeline.phase4.engine import run_phase4
+from intent_pipeline.phase5.contracts import OutputTerminalStatus
 from intent_pipeline.phase5.output_generator import generate_output_surfaces
+from intent_pipeline.phase5 import output_generator as phase5_output_generator
 from intent_pipeline.routing.engine import run_semantic_routing
 from intent_pipeline.uplift.engine import run_uplift_engine
 
@@ -87,3 +91,30 @@ def test_phase5_output_fixed_section_order_machine_payload_is_canonical() -> Non
     assert tuple(payload) == tuple(sorted(payload))
     assert payload["pipeline_order"] == ["generate_output_surfaces"]
     assert payload["issues"] == sorted(payload["issues"])
+
+
+def test_phase5_preserve_needs_review_terminal_semantics_unchanged() -> None:
+    phase4_result = _build_phase4_result(enforce_blocking=True)
+    phase4_snapshot = phase4_result.to_json()
+
+    surfaces = generate_output_surfaces(phase4_result)
+
+    assert "OUT-03"
+    assert phase4_result.fallback.decision.value == "NEEDS_REVIEW"
+    assert surfaces.machine_payload.terminal_status.value == "NEEDS_REVIEW"
+    assert surfaces.machine_payload.terminal_code == "FB-005-TERMINAL-NEEDS-REVIEW"
+    assert phase4_result.to_json() == phase4_snapshot
+
+
+def test_phase5_preserve_needs_review_guard_rejects_status_rewrite(monkeypatch) -> None:
+    phase4_result = _build_phase4_result(enforce_blocking=True)
+
+    monkeypatch.setattr(
+        phase5_output_generator,
+        "_terminal_status_from_phase4",
+        lambda _phase4_result: OutputTerminalStatus.USE_PRIMARY,
+    )
+
+    assert "OUT-03"
+    with pytest.raises(ValueError, match="preserve Phase4 terminal status"):
+        generate_output_surfaces(phase4_result)
