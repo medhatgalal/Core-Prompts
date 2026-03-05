@@ -66,9 +66,9 @@
 
 ### Phase 5 Output Generation + Help Module + Runtime Dependency Checks
 
-- [ ] **OUT-01**: Phase 5 emits a typed schema-versioned machine output payload from `Phase4Result` with canonical deterministic serialization.
-- [ ] **OUT-02**: Phase 5 emits deterministic human-readable output using fixed section order and fixed templates.
-- [ ] **OUT-03**: Output generation preserves upstream Phase 4 terminal semantics (`NEEDS_REVIEW`) without status mutation.
+- [x] **OUT-01**: Phase 5 emits a typed schema-versioned machine output payload from `Phase4Result` with canonical deterministic serialization.
+- [x] **OUT-02**: Phase 5 emits deterministic human-readable output using fixed section order and fixed templates.
+- [x] **OUT-03**: Output generation preserves upstream Phase 4 terminal semantics (`NEEDS_REVIEW`) without status mutation.
 - [ ] **HELP-01**: Help module uses a closed deterministic topic taxonomy and typed codes.
 - [ ] **HELP-02**: Help text is template-driven, roleplay-free, and includes explicit evidence-path references.
 - [ ] **HELP-03**: Help responses provide non-executing remediation guidance only.
@@ -122,9 +122,9 @@
 | FALLBACK-02 | Phase 4 | Complete |
 | DET-04 | Phase 4 | Complete |
 | BOUND-04 | Phase 4 | Complete |
-| OUT-01 | Phase 5 | Planned |
-| OUT-02 | Phase 5 | Planned |
-| OUT-03 | Phase 5 | Planned |
+| OUT-01 | Phase 5 | Complete |
+| OUT-02 | Phase 5 | Complete |
+| OUT-03 | Phase 5 | Complete |
 | HELP-01 | Phase 5 | Planned |
 | HELP-02 | Phase 5 | Planned |
 | HELP-03 | Phase 5 | Planned |
