@@ -40,8 +40,10 @@ created: 2026-03-05
 |---------|------|------|-------------|-----------|-------------------|-------------|--------|
 | 05-01-01 | 01 | 1 | OUT-01, OUT-02 | unit | `PYTHONPATH=src pytest -q tests/test_phase5_contracts.py -k "out and schema"` | ❌ W0 | ⬜ pending |
 | 05-01-02 | 01 | 1 | OUT-03 | unit | `PYTHONPATH=src pytest -q tests/test_phase5_engine.py -k "preserve or needs_review"` | ❌ W0 | ⬜ pending |
+| 05-01-03 | 01 | 1 | OUT-03 | unit | `PYTHONPATH=src pytest -q tests/test_phase5_engine.py -k "preserve and needs_review"` | ❌ W0 | ⬜ pending |
 | 05-02-01 | 02 | 2 | HELP-01, HELP-02 | unit | `PYTHONPATH=src pytest -q tests/test_phase5_contracts.py tests/test_phase5_engine.py -k "help and template"` | ❌ W0 | ⬜ pending |
 | 05-02-02 | 02 | 2 | HELP-03 | unit | `PYTHONPATH=src pytest -q tests/test_phase5_engine.py -k "non_executing or remediation"` | ❌ W0 | ⬜ pending |
+| 05-02-03 | 02 | 2 | HELP-03 | unit | `PYTHONPATH=src pytest -q tests/test_phase5_engine.py -k "help and non_executing and remediation"` | ❌ W0 | ⬜ pending |
 | 05-03-01 | 03 | 3 | RUNTIME-01, RUNTIME-02 | integration | `PYTHONPATH=src pytest -q tests/test_phase5_engine.py -k "runtime and required"` | ❌ W0 | ⬜ pending |
 | 05-03-02 | 03 | 3 | RUNTIME-03, RUNTIME-04 | integration | `PYTHONPATH=src pytest -q tests/test_phase5_engine.py -k "optional or ordering"` | ❌ W0 | ⬜ pending |
 | 05-03-03 | 03 | 3 | DET-05, BOUND-05 | boundary | `PYTHONPATH=src pytest -q tests/test_phase5_boundary.py tests/test_phase5_determinism.py` | ❌ W0 | ⬜ pending |

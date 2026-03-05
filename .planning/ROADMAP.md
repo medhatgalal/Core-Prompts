@@ -82,7 +82,9 @@ Plans:
 **Goal:** Generate deterministic machine + human output surfaces, deterministic help responses, and deterministic runtime dependency preflight checks from Phase 4 artifacts while preserving strict no-execution boundaries.
 **Requirements**: [OUT-01, OUT-02, OUT-03, HELP-01, HELP-02, HELP-03, RUNTIME-01, RUNTIME-02, RUNTIME-03, RUNTIME-04, DET-05, BOUND-05]
 **Depends on:** Phase 4
-**Plans:** 0 plans
+**Plans:** 3 plans
 
 Plans:
-- [ ] TBD (run /gsd:plan-phase 5 to break down)
+- [ ] 05-01: Implement deterministic machine and human output generation surfaces
+- [ ] 05-02: Implement deterministic help-module responses and template mapping
+- [ ] 05-03: Implement runtime dependency checks with phase boundary and determinism closure
