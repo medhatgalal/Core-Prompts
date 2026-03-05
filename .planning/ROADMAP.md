@@ -27,10 +27,10 @@ Complete remaining hardening carryover by closing Phase 4 traceability mapping p
   1. Phase 4 summary/frontmatter includes completion mapping for all required validation, mock, fallback, determinism, and boundary requirements.
   2. Requirement statuses in summary, roadmap, and requirements docs are consistent.
   3. Evidence references are deterministic and auditable.
-**Plans:** 0/3 plans complete
+**Plans:** 1/3 plans complete
 
 Plans:
-- [ ] 06-01: Inventory and patch missing Phase 4 requirement metadata entries
+- [x] 06-01: Inventory and patch missing Phase 4 requirement metadata entries
 - [ ] 06-02: Reconcile requirement mapping parity across summary/roadmap/requirements
 - [ ] 06-03: Validate deterministic evidence references and finalize Phase 6 summary
 
@@ -53,5 +53,5 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 6. Phase 4 Traceability Metadata Backfill | 0/3 | Not started | — |
+| 6. Phase 4 Traceability Metadata Backfill | 1/3 | In Progress | — |
 | 7. Extension Governance Decision Pack (`EXT-01`, `EXT-02`) | 0/3 | Not started | — |
