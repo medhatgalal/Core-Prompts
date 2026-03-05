@@ -72,12 +72,12 @@
 - [x] **HELP-01**: Help module uses a closed deterministic topic taxonomy and typed codes.
 - [x] **HELP-02**: Help text is template-driven, roleplay-free, and includes explicit evidence-path references.
 - [x] **HELP-03**: Help responses provide non-executing remediation guidance only.
-- [ ] **RUNTIME-01**: Runtime dependency checks are preflight-only and side-effect free.
-- [ ] **RUNTIME-02**: Missing required dependencies deterministically produce blocking outcomes with typed reason codes.
-- [ ] **RUNTIME-03**: Missing optional dependencies deterministically produce degraded outcomes with typed reason codes.
-- [ ] **RUNTIME-04**: Runtime dependency reports are schema-versioned and stably ordered.
-- [ ] **DET-05**: Phase 5 artifact serialization is byte-stable across repeated and cross-process identical runs.
-- [ ] **BOUND-05**: Phase 5 excludes real execution, auto-remediation, package installation, and network-based dependency/help operations.
+- [x] **RUNTIME-01**: Runtime dependency checks are preflight-only and side-effect free.
+- [x] **RUNTIME-02**: Missing required dependencies deterministically produce blocking outcomes with typed reason codes.
+- [x] **RUNTIME-03**: Missing optional dependencies deterministically produce degraded outcomes with typed reason codes.
+- [x] **RUNTIME-04**: Runtime dependency reports are schema-versioned and stably ordered.
+- [x] **DET-05**: Phase 5 artifact serialization is byte-stable across repeated and cross-process identical runs.
+- [x] **BOUND-05**: Phase 5 excludes real execution, auto-remediation, package installation, and network-based dependency/help operations.
 
 ## Out of Scope
 
@@ -128,12 +128,12 @@
 | HELP-01 | Phase 5 | Complete |
 | HELP-02 | Phase 5 | Complete |
 | HELP-03 | Phase 5 | Complete |
-| RUNTIME-01 | Phase 5 | Planned |
-| RUNTIME-02 | Phase 5 | Planned |
-| RUNTIME-03 | Phase 5 | Planned |
-| RUNTIME-04 | Phase 5 | Planned |
-| DET-05 | Phase 5 | Planned |
-| BOUND-05 | Phase 5 | Planned |
+| RUNTIME-01 | Phase 5 | Complete |
+| RUNTIME-02 | Phase 5 | Complete |
+| RUNTIME-03 | Phase 5 | Complete |
+| RUNTIME-04 | Phase 5 | Complete |
+| DET-05 | Phase 5 | Complete |
+| BOUND-05 | Phase 5 | Complete |
 
 **Coverage:**
 - Phase-scoped requirements: 43 total
@@ -142,4 +142,4 @@
 
 ---
 *Requirements defined: 2026-03-04*
-*Last updated: 2026-03-05 after Phase 5 research*
+*Last updated: 2026-03-05 after Phase 5 completion*
