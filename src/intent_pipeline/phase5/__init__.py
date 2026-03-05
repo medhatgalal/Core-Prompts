@@ -9,6 +9,7 @@ from intent_pipeline.phase5.contracts import (
     Phase5OutputPayload,
     Phase5OutputSurfaces,
 )
+from intent_pipeline.phase5.output_generator import generate_output_surfaces
 
 
 __all__ = [
@@ -19,4 +20,5 @@ __all__ = [
     "OutputTerminalStatus",
     "Phase5OutputPayload",
     "Phase5OutputSurfaces",
+    "generate_output_surfaces",
 ]
