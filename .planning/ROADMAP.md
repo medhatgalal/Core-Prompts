@@ -10,12 +10,12 @@
 
 ### Overview
 
-Complete remaining hardening carryover by closing Phase 4 traceability mapping parity and finalizing extension governance decisions, without introducing new runtime capability behavior.
+Complete remaining hardening carryover by closing Phase 4 traceability mapping parity and finalizing extension governance decisions (`EXT-01=defer`, `EXT-02=defer`), without introducing new runtime capability behavior.
 
 ### Phases
 
 - [x] **Phase 6: Phase 4 Traceability Metadata Backfill** - Close missing requirement mappings and enforce explicit 3-source parity for `VAL-01`, `VAL-02`, `VAL-03`, `MOCK-01`, `MOCK-02`, `FALLBACK-01`, `FALLBACK-02`, `DET-04`, and `BOUND-04`.
-- [ ] **Phase 7: Extension Governance Decision Pack (`EXT-01`, `EXT-02`)** - Produce explicit boundary-policy decisions and synchronize scope language across planning docs.
+- [ ] **Phase 7: Extension Governance Decision Pack (`EXT-01`, `EXT-02`)** - Publish deterministic non-go dispositions (`defer`/`defer`) and synchronize boundary scope language across planning docs.
 
 ### Phase Details
 
@@ -35,18 +35,18 @@ Plans:
 - [x] 06-03: Validate deterministic evidence references and finalize Phase 6 summary
 
 #### Phase 7: Extension Governance Decision Pack (`EXT-01`, `EXT-02`)
-**Goal:** Finalize deterministic go/defer/reject decisions for deferred extensions and lock boundary language for future milestones.
+**Goal:** Lock deterministic extension dispositions for v1.2 (`EXT-01=defer`, `EXT-02=defer`) and publish future-milestone staging policy with boundary-safe wording.
 **Depends on:** Phase 6
 **Requirements:** [EXTG-01, EXTG-02]
 **Success Criteria:**
-  1. `EXT-01` and `EXT-02` each have explicit disposition and rationale.
+  1. `EXT-01` and `EXT-02` each have explicit deterministic dispositions (`defer`, `defer`) and rationale.
   2. PROJECT, REQUIREMENTS, and ROADMAP documents contain synchronized boundary decisions.
-  3. Any deferred extension work is clearly staged for a future milestone.
+  3. Any extension implementation work is explicitly staged for a future milestone behind re-entry criteria.
 **Plans:** 1/3 plans executed
 
 Plans:
-- [ ] 07-01: Define decision rubric and evaluate `EXT-01`/`EXT-02`
-- [ ] 07-02: Publish governance decisions with deterministic boundary statements
+- [x] 07-01: Define decision rubric and evaluate `EXT-01`/`EXT-02`
+- [x] 07-02: Publish governance decisions with deterministic boundary statements
 - [ ] 07-03: Propagate final decisions to planning documents and verify consistency
 
 ## Progress
