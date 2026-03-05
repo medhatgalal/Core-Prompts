@@ -1,3 +1,28 @@
+---
+phase: 04-target-tool-validation-mock-execution-fallback-degradation
+plan: "03"
+subsystem: intent-pipeline-phase4-fallback-engine
+tags: [phase4, fallback, determinism, traceability]
+requirements-completed:
+  - FALLBACK-01
+  - FALLBACK-02
+  - DET-04
+  - BOUND-04
+requirement-evidence:
+  FALLBACK-01:
+    - tests/test_fallback_degradation.py
+    - "PYTHONPATH=src pytest -q tests/test_fallback_degradation.py"
+  FALLBACK-02:
+    - tests/test_fallback_degradation.py
+    - "PYTHONPATH=src pytest -q tests/test_fallback_degradation.py"
+  DET-04:
+    - tests/test_phase4_determinism.py
+    - "PYTHONPATH=src pytest -q tests/test_phase4_determinism.py"
+  BOUND-04:
+    - tests/test_phase4_boundary.py
+    - "PYTHONPATH=src pytest -q tests/test_phase4_boundary.py"
+---
+
 # 04-03 Summary
 
 ## Scope Delivered
