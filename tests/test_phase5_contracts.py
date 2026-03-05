@@ -7,11 +7,14 @@ import pytest
 
 from intent_pipeline.phase5.contracts import (
     OUTPUT_SECTION_ORDER,
+    HelpCode,
+    HelpTopic,
     OutputSurfaceCode,
     OutputTerminalStatus,
     Phase5OutputPayload,
     Phase5OutputSurfaces,
 )
+from intent_pipeline.phase5.help import resolve_help_response
 
 
 def _make_phase5_output_payload() -> Phase5OutputPayload:
@@ -91,3 +94,50 @@ def test_phase5_output_schema_surface_contract_enforces_fixed_section_order() ->
             human_text="Summary\n- Terminal status: NEEDS_REVIEW",
             section_order=("Validation", "Summary", "Mock Execution", "Fallback"),
         )
+
+
+def test_phase5_help_closed_topic_rejects_unknown_topic_and_code() -> None:
+    machine_payload = _make_phase5_output_payload()
+    surfaces = Phase5OutputSurfaces(
+        machine_payload=machine_payload,
+        human_text="Summary\n- terminal_status: NEEDS_REVIEW",
+    )
+
+    assert "HELP-01"
+    with pytest.raises(ValueError, match="Unsupported help topic"):
+        resolve_help_response(surfaces, topic="nonexistent-topic")
+
+    with pytest.raises(ValueError, match="Unsupported help code"):
+        resolve_help_response(surfaces, code="HELP-999-UNKNOWN")
+
+
+def test_phase5_help_closed_topic_enforces_typed_topic_code_mapping() -> None:
+    machine_payload = _make_phase5_output_payload()
+    surfaces = Phase5OutputSurfaces(
+        machine_payload=machine_payload,
+        human_text="Summary\n- terminal_status: NEEDS_REVIEW",
+    )
+
+    assert "HELP-01"
+    with pytest.raises(ValueError, match="closed deterministic mapping"):
+        resolve_help_response(
+            surfaces,
+            topic=HelpTopic.USAGE_GUIDANCE,
+            code=HelpCode.FAILURE_BLOCKING_STATUS,
+        )
+
+
+def test_phase5_help_closed_topic_default_selection_is_deterministic() -> None:
+    machine_payload = _make_phase5_output_payload()
+    surfaces = Phase5OutputSurfaces(
+        machine_payload=machine_payload,
+        human_text="Summary\n- terminal_status: NEEDS_REVIEW",
+    )
+
+    first = resolve_help_response(surfaces)
+    second = resolve_help_response(surfaces)
+
+    assert "HELP-01"
+    assert first.topic is HelpTopic.FAILURE_EXPLANATION
+    assert first.code is HelpCode.FAILURE_BLOCKING_STATUS
+    assert first.to_json() == second.to_json()

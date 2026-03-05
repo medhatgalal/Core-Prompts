@@ -31,6 +31,28 @@ class OutputSurfaceCode(str, Enum):
     NEEDS_REVIEW_PATH = "OUT-003-NEEDS-REVIEW-PATH"
 
 
+class HelpTopic(str, Enum):
+    USAGE_GUIDANCE = "usage_guidance"
+    FAILURE_EXPLANATION = "failure_explanation"
+    REMEDIATION_HINTS = "remediation_hints"
+    BOUNDARY_CLARIFICATION = "boundary_clarification"
+
+
+class HelpCode(str, Enum):
+    USAGE_STATUS_OVERVIEW = "HELP-101-USAGE-STATUS-OVERVIEW"
+    FAILURE_BLOCKING_STATUS = "HELP-201-FAILURE-BLOCKING-STATUS"
+    REMEDIATION_DEGRADED_STATUS = "HELP-301-REMEDIATION-DEGRADED-STATUS"
+    BOUNDARY_NON_EXECUTING_GUIDANCE = "HELP-401-BOUNDARY-NON-EXECUTING-GUIDANCE"
+
+
+HELP_CODE_TOPIC_MAP: dict[HelpCode, HelpTopic] = {
+    HelpCode.USAGE_STATUS_OVERVIEW: HelpTopic.USAGE_GUIDANCE,
+    HelpCode.FAILURE_BLOCKING_STATUS: HelpTopic.FAILURE_EXPLANATION,
+    HelpCode.REMEDIATION_DEGRADED_STATUS: HelpTopic.REMEDIATION_HINTS,
+    HelpCode.BOUNDARY_NON_EXECUTING_GUIDANCE: HelpTopic.BOUNDARY_CLARIFICATION,
+}
+
+
 @dataclass(frozen=True, slots=True)
 class Phase5OutputPayload:
     schema_version: str
@@ -114,6 +136,52 @@ class Phase5OutputSurfaces:
         return json.dumps(self.as_payload(), sort_keys=True, separators=(",", ":"))
 
 
+@dataclass(frozen=True, slots=True)
+class Phase5HelpResponse:
+    topic: HelpTopic
+    code: HelpCode
+    message: str
+    evidence_paths: tuple[str, ...]
+    actions: tuple[str, ...]
+    terminal_status: OutputTerminalStatus
+    output_code: OutputSurfaceCode
+
+    def __post_init__(self) -> None:
+        if not isinstance(self.topic, HelpTopic):
+            object.__setattr__(self, "topic", HelpTopic(str(self.topic)))
+        if not isinstance(self.code, HelpCode):
+            object.__setattr__(self, "code", HelpCode(str(self.code)))
+        expected_topic = HELP_CODE_TOPIC_MAP.get(self.code)
+        if expected_topic is None or expected_topic is not self.topic:
+            raise ValueError("Help code/topic mapping must match the closed deterministic taxonomy")
+
+        normalized_message = _normalize_text(self.message)
+        if not normalized_message:
+            raise ValueError("Help message must be non-empty")
+        object.__setattr__(self, "message", normalized_message)
+        object.__setattr__(self, "evidence_paths", _normalize_sorted_text(self.evidence_paths))
+        object.__setattr__(self, "actions", _normalize_action_steps(self.actions))
+
+        if not isinstance(self.terminal_status, OutputTerminalStatus):
+            object.__setattr__(self, "terminal_status", OutputTerminalStatus(str(self.terminal_status)))
+        if not isinstance(self.output_code, OutputSurfaceCode):
+            object.__setattr__(self, "output_code", OutputSurfaceCode(str(self.output_code)))
+
+    def as_payload(self) -> dict[str, Any]:
+        return {
+            "topic": self.topic.value,
+            "code": self.code.value,
+            "message": self.message,
+            "evidence_paths": list(self.evidence_paths),
+            "actions": list(self.actions),
+            "terminal_status": self.terminal_status.value,
+            "output_code": self.output_code.value,
+        }
+
+    def to_json(self) -> str:
+        return json.dumps(self.as_payload(), sort_keys=True, separators=(",", ":"))
+
+
 def _validate_schema_major(schema_version: str, expected_major: str) -> str:
     normalized = _normalize_text(schema_version)
     if not normalized:
@@ -144,12 +212,30 @@ def _normalize_sorted_text(values: tuple[str, ...] | list[str] | set[str]) -> tu
     return tuple(sorted(normalized))
 
 
+def _normalize_action_steps(actions: tuple[str, ...] | list[str]) -> tuple[str, ...]:
+    normalized = []
+    seen: set[str] = set()
+    for action in actions:
+        text = _normalize_text(action)
+        if not text or text in seen:
+            continue
+        seen.add(text)
+        normalized.append(text)
+    if not normalized:
+        raise ValueError("Help actions must include at least one deterministic advisory step")
+    return tuple(normalized)
+
+
 __all__ = [
+    "HELP_CODE_TOPIC_MAP",
     "OUTPUT_SECTION_ORDER",
     "PHASE5_OUTPUT_SCHEMA_VERSION",
     "SUPPORTED_PHASE5_SCHEMA_MAJOR",
+    "HelpCode",
+    "HelpTopic",
     "OutputSurfaceCode",
     "OutputTerminalStatus",
+    "Phase5HelpResponse",
     "Phase5OutputPayload",
     "Phase5OutputSurfaces",
 ]
