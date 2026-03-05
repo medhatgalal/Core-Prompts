@@ -2,17 +2,12 @@
 
 ## What This Is
 
-Local Intent Sanitizer is a deterministic intent-processing system that currently includes:
-- A strict local-file-only ingestion boundary
-- Mandatory two-pass sanitization
-- Deterministic, roleplay-free intent summary output
-- Phase 2 uplift artifacts (context, intent, task decomposition, constraints, and acceptance contract) for downstream phases
-
-Current project status:
-- Milestone: `v1.0`
-- Completed phases: `2/5` (Phases 1 and 2 complete)
-- Completed plans: `6/6` currently defined plans complete
-- Next phase: `Phase 3 — Semantic Routing & Rosetta Translation`
+Local Intent Sanitizer is a deterministic, boundary-first intent-processing pipeline that now ships end-to-end v1.0 behavior across five phases:
+- strict local-file ingestion and two-pass sanitization
+- deterministic uplift artifacts (context/intent/decomposition/constraints/acceptance)
+- deterministic semantic routing with canonical Rosetta translation
+- fail-closed target validation, dry-run mock execution, deterministic fallback
+- deterministic output surfaces, help module, and runtime preflight checks
 
 ## Core Value
 
@@ -20,31 +15,25 @@ Convert local file content into safe, deterministic intent artifacts that preser
 
 ## Requirements
 
-### Delivered
+### Delivered in v1.0
 
-- [x] `INGEST-01`: System accepts input only from local filesystem files.
-- [x] `INGEST-02`: System rejects URL/URI/network ingestion paths.
-- [x] `SAN-01`: System runs sanitization pass 1 over raw ingested content.
-- [x] `SAN-02`: System runs sanitization pass 2 over pass-1 output before summarization.
-- [x] `SUM-01`: System produces a clean intent summary from sanitized content.
-- [x] `SUM-02`: Output is roleplay-free.
-- [x] `SUM-03`: Output is deterministic for identical input and configuration.
-- [x] `BOUND-01`: No downstream routing or execution occurs in Phase 1.
-- [x] `BOUND-02`: Pipeline ends at summary output in this phase.
-- [x] `UPLIFT-CTX`: Context layer output is layered, deterministic, and schema-versioned.
-- [x] `UPLIFT-INTENT`: Intent layer is deterministically derived from context with explicit unknown capture.
-- [x] `UPLIFT-DECOMP`: Task decomposition emits a deterministic dependency-aware DAG with depth capped at two.
-- [x] `UPLIFT-CONSTRAINTS`: Constraint handling uses typed hard/soft models with deterministic conflict resolution.
-- [x] `UPLIFT-ACCEPTANCE`: Acceptance evaluation is deterministic and emits criterion-level evidence linked to task IDs.
+- [x] Phase 1 boundary and deterministic summary requirements (`INGEST-*`, `SAN-*`, `SUM-*`, `BOUND-01`, `BOUND-02`)
+- [x] Phase 2 uplift engine requirements (`UPLIFT-*`)
+- [x] Phase 3 routing/translation requirements (`ROUTE-*`, `ROSETTA-*`, `DET-03`, `BOUND-03`)
+- [x] Phase 4 validation/mock/fallback requirements (`VAL-*`, `MOCK-*`, `FALLBACK-*`, `DET-04`, `BOUND-04`)
+- [x] Phase 5 output/help/runtime requirements (`OUT-*`, `HELP-*`, `RUNTIME-*`, `DET-05`, `BOUND-05`)
 
-### Active (Next)
+### Known Tech Debt from v1.0 Audit
 
-- [ ] `ROUTE-SEM`: Semantic routing behavior and Rosetta translation rules for mapped intents (Phase 3 scope).
+- Phase 4 summary frontmatter is missing `requirements-completed` entries for: `VAL-01`, `VAL-02`, `VAL-03`, `MOCK-01`, `MOCK-02`, `FALLBACK-01`, `FALLBACK-02`, `DET-04`, `BOUND-04`.
+- Nyquist validation compliance remains partial for phases `01`, `02`, `03`, and `05`.
 
-### Deferred
+### Next Milestone Goals (v1.1)
 
-- `EXT-01`: URL ingestion with explicit validation and policy controls.
-- `EXT-02`: Downstream intent routing/execution after explicit approval.
+- [ ] Define v1.1 milestone scope and requirements.
+- [ ] Close summary metadata gaps for Phase 4 requirement mapping.
+- [ ] Raise Nyquist compliance to fully compliant across all shipped phases.
+- [ ] Re-evaluate deferred extensions `EXT-01` and `EXT-02` with explicit boundary policy.
 
 ---
-*Last updated: 2026-03-04 after Phase 2*
+*Last updated: 2026-03-05 after v1.0 milestone completion*
