@@ -1,18 +1,18 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.0
-milestone_name: milestone
+milestone: v1.1
+milestone_name: hardening
 current_plan: Not started
-status: milestone_complete
-stopped_at: Milestone v1.0 archived and tagged candidate prepared
-last_updated: 2026-03-05T10:23:05Z
-last_activity: 2026-03-05 — Completed and archived v1.0 milestone artifacts
+status: defining_requirements
+stopped_at: Milestone v1.1 Hardening started; defining requirements and roadmap
+last_updated: 2026-03-05T18:47:20Z
+last_activity: 2026-03-05 — Milestone v1.1 Hardening started
 progress:
-  total_phases: 5
-  completed_phases: 5
-  total_plans: 15
-  completed_plans: 15
-  percent: 100
+  total_phases: 3
+  completed_phases: 0
+  total_plans: 9
+  completed_plans: 0
+  percent: 0
 ---
 
 # Project State
@@ -22,15 +22,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-05)
 
 **Core value:** Convert local file content into safe, deterministic intent artifacts that preserve explicit boundaries, traceability, and stable decision semantics.
-**Current focus:** Define v1.1 milestone scope and requirements
+**Current focus:** Define v1.1 hardening requirements and execution roadmap
 
 ## Current Position
 
-Milestone: v1.0 complete (archived)
-Phase status: No active phase
-Plan status: Not started
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements
+Last activity: 2026-03-05 — Milestone v1.1 Hardening started
 
-Progress: [██████████] 15/15 plans (100%)
+Progress: [----------] 0/9 plans (0%)
 
 ## Accumulated Context
 
@@ -38,15 +39,16 @@ Progress: [██████████] 15/15 plans (100%)
 
 - v1.0 delivery boundary includes deterministic Phase 1-5 flow from local ingestion through Phase 5 runtime preflight reporting.
 - Output/help/runtime behavior remains no-execution and no-auto-remediation by contract.
-- Phase 4 requirement frontmatter metadata needs backfill in summaries for strict 3-source audit parity.
-- Nyquist validation remains partial for phases 01, 02, 03, and 05 and is queued for cleanup.
+- Phase 4 requirement metadata backfill is required for strict 3-source audit parity.
+- Nyquist validation compliance must be closed for phases 01, 02, 03, and 05.
+- `EXT-01` and `EXT-02` remain deferred until explicit v1.1 governance decision.
 
 ### Blockers/Concerns
 
-- None blocking milestone closure; remaining items are tracked as tech debt in `.planning/milestones/v1.0-MILESTONE-AUDIT.md`.
+- None currently blocking definition work.
 
 ## Session Continuity
 
-Last session: 2026-03-05T10:23:05Z
-Stopped at: v1.0 milestone completion and archival complete; ready for new milestone initialization
+Last session: 2026-03-05T18:47:20Z
+Stopped at: v1.1 Hardening milestone initialized; ready for phase planning and execution
 Resume file: None
