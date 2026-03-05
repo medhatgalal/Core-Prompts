@@ -64,6 +64,21 @@
 - [x] **DET-04**: Phase 4 outputs are byte-stable for repeated identical inputs.
 - [x] **BOUND-04**: Phase 4 excludes real execution, output generation, help rendering, and runtime dependency checks.
 
+### Phase 5 Output Generation + Help Module + Runtime Dependency Checks
+
+- [ ] **OUT-01**: Phase 5 emits a typed schema-versioned machine output payload from `Phase4Result` with canonical deterministic serialization.
+- [ ] **OUT-02**: Phase 5 emits deterministic human-readable output using fixed section order and fixed templates.
+- [ ] **OUT-03**: Output generation preserves upstream Phase 4 terminal semantics (`NEEDS_REVIEW`) without status mutation.
+- [ ] **HELP-01**: Help module uses a closed deterministic topic taxonomy and typed codes.
+- [ ] **HELP-02**: Help text is template-driven, roleplay-free, and includes explicit evidence-path references.
+- [ ] **HELP-03**: Help responses provide non-executing remediation guidance only.
+- [ ] **RUNTIME-01**: Runtime dependency checks are preflight-only and side-effect free.
+- [ ] **RUNTIME-02**: Missing required dependencies deterministically produce blocking outcomes with typed reason codes.
+- [ ] **RUNTIME-03**: Missing optional dependencies deterministically produce degraded outcomes with typed reason codes.
+- [ ] **RUNTIME-04**: Runtime dependency reports are schema-versioned and stably ordered.
+- [ ] **DET-05**: Phase 5 artifact serialization is byte-stable across repeated and cross-process identical runs.
+- [ ] **BOUND-05**: Phase 5 excludes real execution, auto-remediation, package installation, and network-based dependency/help operations.
+
 ## Out of Scope
 
 | Feature | Reason |
@@ -107,12 +122,24 @@
 | FALLBACK-02 | Phase 4 | Complete |
 | DET-04 | Phase 4 | Complete |
 | BOUND-04 | Phase 4 | Complete |
+| OUT-01 | Phase 5 | Planned |
+| OUT-02 | Phase 5 | Planned |
+| OUT-03 | Phase 5 | Planned |
+| HELP-01 | Phase 5 | Planned |
+| HELP-02 | Phase 5 | Planned |
+| HELP-03 | Phase 5 | Planned |
+| RUNTIME-01 | Phase 5 | Planned |
+| RUNTIME-02 | Phase 5 | Planned |
+| RUNTIME-03 | Phase 5 | Planned |
+| RUNTIME-04 | Phase 5 | Planned |
+| DET-05 | Phase 5 | Planned |
+| BOUND-05 | Phase 5 | Planned |
 
 **Coverage:**
-- Phase-scoped requirements: 31 total
-- Mapped to phases: 31
+- Phase-scoped requirements: 43 total
+- Mapped to phases: 43
 - Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-04*
-*Last updated: 2026-03-05 after Phase 4 execution*
+*Last updated: 2026-03-05 after Phase 5 research*

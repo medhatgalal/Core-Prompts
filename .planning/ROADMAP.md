@@ -79,8 +79,8 @@ Plans:
 
 ### Phase 5: Output Generation + Help Module + Runtime Dependency Checks
 
-**Goal:** [To be planned]
-**Requirements**: TBD
+**Goal:** Generate deterministic machine + human output surfaces, deterministic help responses, and deterministic runtime dependency preflight checks from Phase 4 artifacts while preserving strict no-execution boundaries.
+**Requirements**: [OUT-01, OUT-02, OUT-03, HELP-01, HELP-02, HELP-03, RUNTIME-01, RUNTIME-02, RUNTIME-03, RUNTIME-04, DET-05, BOUND-05]
 **Depends on:** Phase 4
 **Plans:** 0 plans
 
