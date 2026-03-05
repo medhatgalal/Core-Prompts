@@ -58,6 +58,22 @@ _ACTIONS_BY_CODE: dict[HelpCode, tuple[str, ...]] = {
     ),
 }
 
+_FORBIDDEN_EXECUTION_MARKERS: tuple[str, ...] = (
+    "run ",
+    "install ",
+    "pip ",
+    "npm ",
+    "apt ",
+    "brew ",
+    "curl ",
+    "wget ",
+    "execute ",
+    "invoke ",
+    "retry automatically",
+    "auto-remediation",
+    "network fetch",
+)
+
 
 def resolve_help_response(
     output_surfaces: Phase5OutputSurfaces,
@@ -93,6 +109,7 @@ def resolve_help_response(
         evidence_paths=evidence_paths,
     )
     actions = _ACTIONS_BY_CODE[resolved_code]
+    _assert_non_executing_actions(actions)
 
     return Phase5HelpResponse(
         topic=resolved_topic,
@@ -163,6 +180,13 @@ def _render_message(
     )
     evidence_text = ", ".join(evidence_paths)
     return f"{base_message} Evidence paths: {evidence_text}."
+
+
+def _assert_non_executing_actions(actions: tuple[str, ...]) -> None:
+    for action in actions:
+        normalized = action.casefold()
+        if any(marker in normalized for marker in _FORBIDDEN_EXECUTION_MARKERS):
+            raise ValueError("Help remediation guidance must remain non-executing and advisory-only")
 
 
 def _topic_for_code(code: HelpCode) -> HelpTopic:

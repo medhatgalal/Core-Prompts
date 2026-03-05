@@ -8,7 +8,9 @@ import pytest
 
 from intent_pipeline.phase4.engine import run_phase4
 from intent_pipeline.phase5.contracts import OutputTerminalStatus
+from intent_pipeline.phase5.engine import generate_help_response
 from intent_pipeline.phase5.help import resolve_help_response
+from intent_pipeline.phase5 import help as phase5_help_module
 from intent_pipeline.phase5.output_generator import generate_output_surfaces
 from intent_pipeline.phase5 import output_generator as phase5_output_generator
 from intent_pipeline.routing.engine import run_semantic_routing
@@ -143,3 +145,33 @@ def test_phase5_help_template_evidence_paths_use_fixed_message_pattern() -> None
     assert response.evidence_paths == tuple(sorted(response.evidence_paths))
     assert "phase5.help.topic::failure_explanation" in response.evidence_paths
     assert "phase5.help.code::HELP-201-FAILURE-BLOCKING-STATUS" in response.evidence_paths
+
+
+def test_phase5_help_non_executing_remediation_actions_remain_advisory_only() -> None:
+    phase4_result = _build_phase4_result(enforce_blocking=False)
+    response = generate_help_response(phase4_result)
+
+    assert "HELP-03"
+    forbidden_markers = ("run ", "install ", "pip ", "npm ", "curl ", "wget ", "execute ")
+    for action in response.actions:
+        normalized = action.casefold()
+        assert not any(marker in normalized for marker in forbidden_markers)
+
+    phase4_snapshot = phase4_result.to_json()
+    assert response.terminal_status.value == phase4_result.fallback.decision.value
+    assert phase4_result.to_json() == phase4_snapshot
+
+
+def test_phase5_help_non_executing_remediation_guard_rejects_execution_steps(monkeypatch) -> None:
+    phase4_result = _build_phase4_result(enforce_blocking=False)
+    surfaces = generate_output_surfaces(phase4_result)
+
+    monkeypatch.setitem(
+        phase5_help_module._ACTIONS_BY_CODE,
+        phase5_help_module.HelpCode.USAGE_STATUS_OVERVIEW,
+        ("Run pip install forbidden-package",),
+    )
+
+    assert "HELP-03"
+    with pytest.raises(ValueError, match="non-executing"):
+        resolve_help_response(surfaces)
