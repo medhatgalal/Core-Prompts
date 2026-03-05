@@ -30,7 +30,7 @@ created: 2026-03-04
 - **After every task commit:** Run `PYTHONPATH=src pytest -q tests/test_target_validation.py tests/test_mock_execution.py`
 - **After every plan wave:** Run `PYTHONPATH=src pytest -q tests/test_target_validation.py tests/test_mock_execution.py tests/test_fallback_degradation.py tests/test_phase4_determinism.py tests/test_phase4_boundary.py`
 - **Before `$gsd-verify-work`:** Full suite must be green
-- **Max feedback latency:** 35 seconds
+- **Max feedback latency:** 30 seconds
 
 ---
 
@@ -43,10 +43,9 @@ created: 2026-03-04
 | 04-01-03 | 01 | 1 | VAL-03 | unit | `PYTHONPATH=src pytest -q tests/test_target_validation.py -k "error_code and evidence_path"` | ❌ W0 | ⬜ pending |
 | 04-02-01 | 02 | 2 | MOCK-01 | unit | `PYTHONPATH=src pytest -q tests/test_mock_execution.py -k "dry_run or side_effect"` | ❌ W0 | ⬜ pending |
 | 04-02-02 | 02 | 2 | MOCK-02 | unit | `PYTHONPATH=src pytest -q tests/test_mock_execution.py -k "trace and evidence"` | ❌ W0 | ⬜ pending |
-| 04-03-01 | 03 | 3 | FALLBACK-01 | integration | `PYTHONPATH=src pytest -q tests/test_fallback_degradation.py -k "tier_order"` | ❌ W0 | ⬜ pending |
-| 04-03-02 | 03 | 3 | FALLBACK-02 | integration | `PYTHONPATH=src pytest -q tests/test_fallback_degradation.py -k "needs_review"` | ❌ W0 | ⬜ pending |
-| 04-03-03 | 03 | 3 | DET-04 | integration | `PYTHONPATH=src pytest -q tests/test_phase4_determinism.py` | ❌ W0 | ⬜ pending |
-| 04-03-04 | 03 | 3 | BOUND-04 | boundary | `PYTHONPATH=src pytest -q tests/test_phase4_boundary.py` | ❌ W0 | ⬜ pending |
+| 04-03-01 | 03 | 3 | FALLBACK-01, FALLBACK-02 | integration | `PYTHONPATH=src pytest -q tests/test_fallback_degradation.py` | ❌ W0 | ⬜ pending |
+| 04-03-02 | 03 | 3 | DET-04 | integration | `PYTHONPATH=src pytest -q tests/test_phase4_determinism.py` | ❌ W0 | ⬜ pending |
+| 04-03-03 | 03 | 3 | BOUND-04 | boundary | `PYTHONPATH=src pytest -q tests/test_phase4_boundary.py` | ❌ W0 | ⬜ pending |
 
 *Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
 
@@ -75,7 +74,7 @@ All phase behaviors are expected to have automated verification.
 - [ ] Sampling continuity: no 3 consecutive tasks without automated verify
 - [ ] Wave 0 covers all MISSING references
 - [ ] No watch-mode flags
-- [ ] Feedback latency < 35s
+- [ ] Feedback latency <= 30s
 - [ ] `nyquist_compliant: true` set in frontmatter
 
 **Approval:** pending

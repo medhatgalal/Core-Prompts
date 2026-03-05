@@ -52,6 +52,18 @@
 - [ ] **DET-03**: Phase 3 outputs are byte-stable across repeated identical runs.
 - [ ] **BOUND-03**: Phase 3 excludes target validation, execution/mock execution, output generation, and help rendering.
 
+### Phase 4 Target Validation + Mock Execution + Fallback Degradation
+
+- [ ] **VAL-01**: Target validation accepts only typed capability-matrix contracts and rejects freeform capability metadata.
+- [ ] **VAL-02**: Validation is fail-closed; any blocker deterministically prevents downstream execution stages.
+- [ ] **VAL-03**: Blocking validation outcomes emit deterministic typed error codes with explicit evidence paths.
+- [ ] **MOCK-01**: Mock execution remains dry-run only with no runtime/tool side effects.
+- [ ] **MOCK-02**: Mock execution emits deterministic step-level traces linked to validation and route evidence.
+- [ ] **FALLBACK-01**: Fallback degradation follows a fixed deterministic tier ladder.
+- [ ] **FALLBACK-02**: Exhausted fallback deterministically terminates as `NEEDS_REVIEW` with typed terminal codes.
+- [ ] **DET-04**: Phase 4 outputs are byte-stable for repeated identical inputs.
+- [ ] **BOUND-04**: Phase 4 excludes real execution, output generation, help rendering, and runtime dependency checks.
+
 ## Out of Scope
 
 | Feature | Reason |
@@ -86,12 +98,21 @@
 | ROSETTA-02 | Phase 3 | Planned |
 | DET-03 | Phase 3 | Planned |
 | BOUND-03 | Phase 3 | Planned |
+| VAL-01 | Phase 4 | Planned |
+| VAL-02 | Phase 4 | Planned |
+| VAL-03 | Phase 4 | Planned |
+| MOCK-01 | Phase 4 | Planned |
+| MOCK-02 | Phase 4 | Planned |
+| FALLBACK-01 | Phase 4 | Planned |
+| FALLBACK-02 | Phase 4 | Planned |
+| DET-04 | Phase 4 | Planned |
+| BOUND-04 | Phase 4 | Planned |
 
 **Coverage:**
-- Phase-scoped requirements: 22 total
-- Mapped to phases: 22
+- Phase-scoped requirements: 31 total
+- Mapped to phases: 31
 - Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-04*
-*Last updated: 2026-03-04 after Phase 3 planning context*
+*Last updated: 2026-03-05 after Phase 4 planning*

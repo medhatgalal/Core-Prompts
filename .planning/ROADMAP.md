@@ -7,6 +7,10 @@ Deliver a deterministic, summary-only intent pipeline in Phase 1 by constraining
 ## Phases
 
 - [x] **Phase 1: Local Ingestion + Two-Pass Sanitization + Intent Summary** - Build strict local-only ingestion and summary-only output path. (completed 2026-03-04)
+- [x] **Phase 2: 2026 Uplift Engine (Context/Intent/Task Decomposition/Constraints/Acceptance)** - Build deterministic uplift artifacts from sanitized inputs. (completed 2026-03-04)
+- [x] **Phase 3: Semantic Routing & Rosetta Translation** - Build deterministic semantic routing and canonical route-spec translation. (completed 2026-03-05)
+- [ ] **Phase 4: Target Tool Validation + Mock Execution + Fallback Degradation** - Build fail-closed target validation, dry-run mock execution, and deterministic fallback handling.
+- [ ] **Phase 5: Output Generation + Help Module + Runtime Dependency Checks** - Build final output/help/runtime dependency surfaces.
 
 ## Phase Details
 
@@ -33,6 +37,9 @@ Plans:
 |-------|----------------|--------|-----------|
 | 1. Local Ingestion + Two-Pass Sanitization + Intent Summary | 3/3 | Complete   | 2026-03-04 |
 | 2. 2026 Uplift Engine (Context/Intent/Task Decomposition/Constraints/Acceptance) | 3/3 | Complete | 2026-03-04 |
+| 3. Semantic Routing & Rosetta Translation | 3/3 | Complete | 2026-03-05 |
+| 4. Target Tool Validation + Mock Execution + Fallback Degradation | 0/3 | In progress | - |
+| 5. Output Generation + Help Module + Runtime Dependency Checks | 0/0 | Planned | - |
 
 ### Phase 2: 2026 Uplift Engine (Context/Intent/Task Decomposition/Constraints/Acceptance)
 
@@ -51,22 +58,24 @@ Plans:
 **Goal:** Build a deterministic semantic routing layer and canonical Rosetta route-spec translation over Phase 2 uplift artifacts, without introducing validation/execution/output-generation concerns.
 **Requirements**: [ROUTE-CTX-01, ROUTE-ENUM-01, ROUTE-PREC-01, ROUTE-UNK-01, ROSETTA-01, ROSETTA-02, DET-03, BOUND-03]
 **Depends on:** Phase 2
-**Plans:** 3 plans
+**Plans:** 3/3 plans complete
 
 Plans:
-- [ ] 03-01: Implement routing contracts and uplift signal normalization
-- [ ] 03-02: Implement deterministic semantic router precedence and ambiguity handling
-- [ ] 03-03: Implement Rosetta route-spec translation and Phase 3 integration boundary guards
+- [x] 03-01: Implement routing contracts and uplift signal normalization
+- [x] 03-02: Implement deterministic semantic router precedence and ambiguity handling
+- [x] 03-03: Implement Rosetta route-spec translation and Phase 3 integration boundary guards
 
 ### Phase 4: Target Tool Validation + Mock Execution + Fallback Degradation
 
-**Goal:** [To be planned]
-**Requirements**: TBD
+**Goal:** Add deterministic, fail-closed target validation and dry-run mock execution with fixed fallback degradation, while explicitly excluding output/help/runtime-check concerns.
+**Requirements**: [VAL-01, VAL-02, VAL-03, MOCK-01, MOCK-02, FALLBACK-01, FALLBACK-02, DET-04, BOUND-04]
 **Depends on:** Phase 3
-**Plans:** 0 plans
+**Plans:** 3 plans
 
 Plans:
-- [ ] TBD (run /gsd:plan-phase 4 to break down)
+- [ ] 04-01: Implement typed contracts and fail-closed target validation
+- [ ] 04-02: Implement deterministic dry-run mock execution
+- [ ] 04-03: Implement fixed fallback degradation and Phase 4 composition engine
 
 ### Phase 5: Output Generation + Help Module + Runtime Dependency Checks
 
