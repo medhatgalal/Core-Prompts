@@ -125,9 +125,9 @@
 | OUT-01 | Phase 5 | Complete |
 | OUT-02 | Phase 5 | Complete |
 | OUT-03 | Phase 5 | Complete |
-| HELP-01 | Phase 5 | Planned |
-| HELP-02 | Phase 5 | Planned |
-| HELP-03 | Phase 5 | Planned |
+| HELP-01 | Phase 5 | Complete |
+| HELP-02 | Phase 5 | Complete |
+| HELP-03 | Phase 5 | Complete |
 | RUNTIME-01 | Phase 5 | Planned |
 | RUNTIME-02 | Phase 5 | Planned |
 | RUNTIME-03 | Phase 5 | Planned |
