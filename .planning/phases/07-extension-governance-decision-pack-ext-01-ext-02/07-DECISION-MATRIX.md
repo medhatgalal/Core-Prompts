@@ -49,8 +49,34 @@ Each extension record must contain these fields in this order:
 
 ### EXT-01
 
-Pending Task 2 evaluation.
+1. Extension: `EXT-01` (URL ingestion with explicit validation/policy controls)
+2. Disposition: `defer`
+3. Scorecard:
+   - boundary safety: 2/5 (policy intent exists but guardrails are not yet codified)
+   - determinism impact: 2/5 (deterministic validation contract is partial)
+   - policy maturity: 2/5 (controls are defined at context level but not approval-grade)
+   - verification readiness: 2/5 (no executable deterministic gate suite yet)
+   - weighted score: 2.00
+4. Rationale: Current v1.2 scope is governance-only. `EXT-01` remains admissible only after explicit URL policy contract and deterministic validation controls are formalized and reviewable.
+5. Risk: Premature implementation would introduce network-facing ambiguity and weaken boundary-first guarantees.
+6. Re-entry criteria:
+   - Approved URL policy contract with allow/deny and normalization rules.
+   - Deterministic validation matrix with repeatable pass/fail cases.
+   - Boundary tests proving no side-effect expansion beyond approved ingestion constraints.
 
 ### EXT-02
 
-Pending Task 2 evaluation.
+1. Extension: `EXT-02` (downstream intent routing/execution)
+2. Disposition: `defer`
+3. Scorecard:
+   - boundary safety: 2/5 (higher-risk side-effect boundary tier requires stricter controls)
+   - determinism impact: 2/5 (execution authorization semantics are not yet deterministic)
+   - policy maturity: 1/5 (no approved execution governance contract yet)
+   - verification readiness: 1/5 (no deterministic execution gate harness defined)
+   - weighted score: 1.60
+4. Rationale: Existing no-execution guarantees are a hard v1.2 boundary. Without an approved execution authorization model and deterministic gating controls, `EXT-02` cannot move beyond governance staging.
+5. Risk: Advancing without governance lock would create uncontrolled side-effect exposure and contradict no-execution policy.
+6. Re-entry criteria:
+   - Approved execution authorization policy with explicit allow/deny paths.
+   - Deterministic side-effect guardrails and rollback/failure semantics.
+   - Verification suite demonstrating repeatable safe behavior under boundary stress cases.
