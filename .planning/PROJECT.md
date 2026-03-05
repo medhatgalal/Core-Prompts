@@ -27,8 +27,8 @@ Convert local file content into safe, deterministic intent artifacts that preser
 
 ### Active
 
-- [ ] `EXTG-01`: Record explicit go/defer/no-go decision for `EXT-01` and `EXT-02` with boundary rationale.
-- [ ] `EXTG-02`: Synchronize PROJECT/REQUIREMENTS/ROADMAP scope boundaries to extension decisions.
+- [ ] `EXTG-01`: Record explicit go/defer/reject decision for `EXT-01` and `EXT-02` with deterministic boundary rationale (`EXT-01=defer`, `EXT-02=defer` in Phase 7 Plan 07-01).
+- [ ] `EXTG-02`: Synchronize PROJECT/REQUIREMENTS/ROADMAP scope boundaries to extension decisions while preserving no-execution and no-runtime-expansion guarantees.
 
 ### Out of Scope
 
@@ -53,7 +53,7 @@ Convert local file content into safe, deterministic intent artifacts that preser
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
 | Start v1.2 now with carryover scope | Continue momentum while reducing active scope to unresolved items only | ✓ Phase 6 traceability closure complete |
-| Keep extensions as governance decisions in v1.2 | Avoid accidental capability expansion before explicit policy lock | — Pending |
+| Keep extensions as governance decisions in v1.2 | Avoid accidental capability expansion before explicit policy lock | ✓ `EXT-01` defer, `EXT-02` defer (governance-only, no capability authorization) |
 | Require explicit canonical requirement IDs for parity closure | Prevent inferred mappings and make regressions detectable in deterministic scans | ✓ Adopted in Phase 6 |
 
 ---

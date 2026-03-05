@@ -13,15 +13,15 @@
 
 ### Extension Governance
 
-- [ ] **EXTG-01**: Milestone records explicit disposition (`go`, `defer`, or `reject`) for `EXT-01` and `EXT-02` with deterministic boundary rationale.
-- [ ] **EXTG-02**: Extension decisions are synchronized across PROJECT/REQUIREMENTS/ROADMAP with no contradictory scope language.
+- [ ] **EXTG-01**: Milestone records explicit disposition (`go`, `defer`, or `reject`) for `EXT-01` and `EXT-02` with deterministic boundary rationale (`EXT-01=defer`, `EXT-02=defer` per Phase 7 decision matrix).
+- [ ] **EXTG-02**: Extension decisions are synchronized across PROJECT/REQUIREMENTS/ROADMAP with no contradictory scope language and no v1.2 runtime-scope expansion.
 
 ## v2 Requirements
 
 ### Deferred Extensions
 
-- **EXT-01**: URL ingestion with explicit validation and policy controls.
-- **EXT-02**: Downstream intent routing/execution after explicit approval.
+- **EXT-01**: URL ingestion with explicit validation and policy controls. Current governance disposition: `defer`.
+- **EXT-02**: Downstream intent routing/execution after explicit approval. Current governance disposition: `defer`.
 
 ## Out of Scope
 
@@ -48,4 +48,4 @@
 
 ---
 *Requirements defined: 2026-03-05*
-*Last updated: 2026-03-05 after milestone v1.2 initialization*
+*Last updated: 2026-03-05 after Phase 7 Plan 07-01 decision anchoring*
