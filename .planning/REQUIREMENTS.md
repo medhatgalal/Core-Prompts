@@ -69,9 +69,9 @@
 - [x] **OUT-01**: Phase 5 emits a typed schema-versioned machine output payload from `Phase4Result` with canonical deterministic serialization.
 - [x] **OUT-02**: Phase 5 emits deterministic human-readable output using fixed section order and fixed templates.
 - [x] **OUT-03**: Output generation preserves upstream Phase 4 terminal semantics (`NEEDS_REVIEW`) without status mutation.
-- [ ] **HELP-01**: Help module uses a closed deterministic topic taxonomy and typed codes.
-- [ ] **HELP-02**: Help text is template-driven, roleplay-free, and includes explicit evidence-path references.
-- [ ] **HELP-03**: Help responses provide non-executing remediation guidance only.
+- [x] **HELP-01**: Help module uses a closed deterministic topic taxonomy and typed codes.
+- [x] **HELP-02**: Help text is template-driven, roleplay-free, and includes explicit evidence-path references.
+- [x] **HELP-03**: Help responses provide non-executing remediation guidance only.
 - [ ] **RUNTIME-01**: Runtime dependency checks are preflight-only and side-effect free.
 - [ ] **RUNTIME-02**: Missing required dependencies deterministically produce blocking outcomes with typed reason codes.
 - [ ] **RUNTIME-03**: Missing optional dependencies deterministically produce degraded outcomes with typed reason codes.
