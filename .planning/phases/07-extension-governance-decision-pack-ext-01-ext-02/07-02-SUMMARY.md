@@ -79,7 +79,7 @@ Each task was committed atomically:
 - **Fix:** Manually corrected Phase 7 plan counters in `ROADMAP.md` from `1/3` to `2/3` to match executed plan state.
 - **Files modified:** `.planning/ROADMAP.md`
 - **Verification:** Re-read roadmap plan sections and progress table after patch.
-- **Committed in:** Pending final metadata commit.
+- **Committed in:** `abf3bf0` (post-metadata correction commit).
 
 ---
 
