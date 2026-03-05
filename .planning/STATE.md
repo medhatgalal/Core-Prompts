@@ -1,16 +1,16 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.1
-milestone_name: hardening
+milestone: v1.2
+milestone_name: next
 current_plan: Not started
 status: defining_requirements
-stopped_at: Milestone v1.1 Hardening started; defining requirements and roadmap
-last_updated: 2026-03-05T18:47:20Z
-last_activity: 2026-03-05 — Milestone v1.1 Hardening started
+stopped_at: Milestone v1.2 Next started; defining carryover requirements and roadmap
+last_updated: 2026-03-05T19:08:00Z
+last_activity: 2026-03-05 — Milestone v1.2 Next started
 progress:
-  total_phases: 3
+  total_phases: 2
   completed_phases: 0
-  total_plans: 9
+  total_plans: 6
   completed_plans: 0
   percent: 0
 ---
@@ -22,16 +22,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-05)
 
 **Core value:** Convert local file content into safe, deterministic intent artifacts that preserve explicit boundaries, traceability, and stable decision semantics.
-**Current focus:** Define v1.1 hardening requirements and execution roadmap
+**Current focus:** Define v1.2 carryover hardening requirements and execution roadmap
 
 ## Current Position
 
 Phase: Not started (defining requirements)
 Plan: —
 Status: Defining requirements
-Last activity: 2026-03-05 — Milestone v1.1 Hardening started
+Last activity: 2026-03-05 — Milestone v1.2 Next started
 
-Progress: [----------] 0/9 plans (0%)
+Progress: [----------] 0/6 plans (0%)
 
 ## Accumulated Context
 
@@ -39,9 +39,8 @@ Progress: [----------] 0/9 plans (0%)
 
 - v1.0 delivery boundary includes deterministic Phase 1-5 flow from local ingestion through Phase 5 runtime preflight reporting.
 - Output/help/runtime behavior remains no-execution and no-auto-remediation by contract.
-- Phase 4 requirement metadata backfill is required for strict 3-source audit parity.
-- Nyquist validation compliance must be closed for phases 01, 02, 03, and 05.
-- `EXT-01` and `EXT-02` remain deferred until explicit v1.1 governance decision.
+- Nyquist validation closure for phases 01, 02, 03, and 05 is complete.
+- Remaining carryover scope is limited to Phase 4 requirement metadata parity and extension governance decisions.
 
 ### Blockers/Concerns
 
@@ -49,6 +48,6 @@ Progress: [----------] 0/9 plans (0%)
 
 ## Session Continuity
 
-Last session: 2026-03-05T18:47:20Z
-Stopped at: v1.1 Hardening milestone initialized; ready for phase planning and execution
+Last session: 2026-03-05T19:08:00Z
+Stopped at: v1.2 Next milestone initialized; ready for phase planning and execution
 Resume file: None
