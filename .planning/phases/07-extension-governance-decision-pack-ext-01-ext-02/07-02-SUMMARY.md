@@ -71,7 +71,20 @@ Each task was committed atomically:
 
 ## Deviations from Plan
 
-None - plan executed exactly as written.
+### Auto-fixed Issues
+
+**1. [Rule 3 - Blocking] Roadmap progress updater left Phase 7 counts stale**
+- **Found during:** Post-task metadata update
+- **Issue:** `roadmap update-plan-progress` reported success but Phase 7 remained `1/3` despite two summary files on disk.
+- **Fix:** Manually corrected Phase 7 plan counters in `ROADMAP.md` from `1/3` to `2/3` to match executed plan state.
+- **Files modified:** `.planning/ROADMAP.md`
+- **Verification:** Re-read roadmap plan sections and progress table after patch.
+- **Committed in:** Pending final metadata commit.
+
+---
+
+**Total deviations:** 1 auto-fixed (1 blocking)
+**Impact on plan:** No scope change; correction ensured roadmap progress consistency with actual executed plans.
 
 ## Issues Encountered
 
