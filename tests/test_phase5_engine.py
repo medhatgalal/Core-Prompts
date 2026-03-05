@@ -7,12 +7,18 @@ import json
 import pytest
 
 from intent_pipeline.phase4.engine import run_phase4
-from intent_pipeline.phase5.contracts import OutputTerminalStatus
+from intent_pipeline.phase5.contracts import (
+    OutputTerminalStatus,
+    RuntimeDependencyAggregateStatus,
+    RuntimeDependencyClassification,
+    RuntimeDependencyReasonCode,
+)
 from intent_pipeline.phase5.engine import generate_help_response
 from intent_pipeline.phase5.help import resolve_help_response
 from intent_pipeline.phase5 import help as phase5_help_module
 from intent_pipeline.phase5.output_generator import generate_output_surfaces
 from intent_pipeline.phase5 import output_generator as phase5_output_generator
+from intent_pipeline.phase5.runtime_checks import run_runtime_dependency_checks
 from intent_pipeline.routing.engine import run_semantic_routing
 from intent_pipeline.uplift.engine import run_uplift_engine
 
@@ -69,6 +75,29 @@ def _phase5_phase4_payloads(*, enforce_blocking: bool) -> tuple[dict[str, object
 def _build_phase4_result(*, enforce_blocking: bool):
     route_spec, capability_matrix, policy_contract = _phase5_phase4_payloads(enforce_blocking=enforce_blocking)
     return run_phase4(deepcopy(route_spec), deepcopy(capability_matrix), deepcopy(policy_contract))
+
+
+def _runtime_specs(*, required_missing: bool, optional_missing: bool) -> tuple[dict[str, str], ...]:
+    return (
+        {
+            "dependency_id": "dep.required.json",
+            "classification": "required",
+            "probe_type": "python_module",
+            "target": "json",
+        },
+        {
+            "dependency_id": "dep.required.missing" if required_missing else "dep.required.pathlib",
+            "classification": "required",
+            "probe_type": "python_module",
+            "target": "__phase5_required_missing__" if required_missing else "pathlib",
+        },
+        {
+            "dependency_id": "dep.optional.missing" if optional_missing else "dep.optional.tomllib",
+            "classification": "optional",
+            "probe_type": "python_module",
+            "target": "__phase5_optional_missing__" if optional_missing else "tomllib",
+        },
+    )
 
 
 def test_phase5_output_fixed_section_order_human_template_is_deterministic() -> None:
@@ -175,3 +204,51 @@ def test_phase5_help_non_executing_remediation_guard_rejects_execution_steps(mon
     assert "HELP-03"
     with pytest.raises(ValueError, match="non-executing"):
         resolve_help_response(surfaces)
+
+
+def test_phase5_runtime_required_optional_missing_required_is_blocking() -> None:
+    report = run_runtime_dependency_checks(
+        _runtime_specs(required_missing=True, optional_missing=True)
+    )
+
+    assert "RUNTIME-02"
+    assert report.aggregate_status is RuntimeDependencyAggregateStatus.BLOCKING
+    assert tuple(check.dependency_id for check in report.checks) == tuple(
+        sorted(check.dependency_id for check in report.checks)
+    )
+    required_missing = [
+        check
+        for check in report.checks
+        if check.classification is RuntimeDependencyClassification.REQUIRED and check.status.value == "MISSING"
+    ]
+    optional_missing = [
+        check
+        for check in report.checks
+        if check.classification is RuntimeDependencyClassification.OPTIONAL and check.status.value == "MISSING"
+    ]
+    assert required_missing
+    assert optional_missing
+    assert all(check.reason_code is RuntimeDependencyReasonCode.REQUIRED_MISSING for check in required_missing)
+    assert all(check.reason_code is RuntimeDependencyReasonCode.OPTIONAL_MISSING for check in optional_missing)
+
+
+def test_phase5_runtime_required_optional_missing_optional_is_degraded() -> None:
+    report = run_runtime_dependency_checks(
+        _runtime_specs(required_missing=False, optional_missing=True)
+    )
+
+    assert "RUNTIME-03"
+    assert report.aggregate_status is RuntimeDependencyAggregateStatus.DEGRADED
+    required_missing = [
+        check
+        for check in report.checks
+        if check.classification is RuntimeDependencyClassification.REQUIRED and check.status.value == "MISSING"
+    ]
+    optional_missing = [
+        check
+        for check in report.checks
+        if check.classification is RuntimeDependencyClassification.OPTIONAL and check.status.value == "MISSING"
+    ]
+    assert required_missing == []
+    assert optional_missing
+    assert all(check.reason_code is RuntimeDependencyReasonCode.OPTIONAL_MISSING for check in optional_missing)

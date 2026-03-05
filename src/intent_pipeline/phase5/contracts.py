@@ -10,6 +10,8 @@ from typing import Any
 
 PHASE5_OUTPUT_SCHEMA_VERSION = "5.0.0"
 SUPPORTED_PHASE5_SCHEMA_MAJOR = "5"
+PHASE5_RUNTIME_SCHEMA_VERSION = "5.0.0"
+PHASE5_ENGINE_SCHEMA_VERSION = "5.0.0"
 
 OUTPUT_SECTION_ORDER: tuple[str, ...] = (
     "Summary",
@@ -43,6 +45,40 @@ class HelpCode(str, Enum):
     FAILURE_BLOCKING_STATUS = "HELP-201-FAILURE-BLOCKING-STATUS"
     REMEDIATION_DEGRADED_STATUS = "HELP-301-REMEDIATION-DEGRADED-STATUS"
     BOUNDARY_NON_EXECUTING_GUIDANCE = "HELP-401-BOUNDARY-NON-EXECUTING-GUIDANCE"
+
+
+class RuntimeDependencyClassification(str, Enum):
+    REQUIRED = "required"
+    OPTIONAL = "optional"
+
+
+class RuntimeDependencyProbeType(str, Enum):
+    PYTHON_MODULE = "python_module"
+    SHELL_COMMAND = "shell_command"
+
+
+class RuntimeDependencyStatus(str, Enum):
+    PRESENT = "PRESENT"
+    MISSING = "MISSING"
+
+
+class RuntimeDependencyReasonCode(str, Enum):
+    PRESENT = "RUNTIME-000-PRESENT"
+    REQUIRED_MISSING = "RUNTIME-001-REQUIRED-MISSING"
+    OPTIONAL_MISSING = "RUNTIME-002-OPTIONAL-MISSING"
+
+
+class RuntimeDependencyAggregateStatus(str, Enum):
+    PASS = "PASS"
+    DEGRADED = "DEGRADED"
+    BLOCKING = "BLOCKING"
+
+
+class Phase5BoundaryErrorCode(str, Enum):
+    FORBIDDEN_EXECUTION_IMPORT = "BOUND-05-001-FORBIDDEN-EXECUTION-IMPORT"
+    FORBIDDEN_AUTOREMEDIATION_IMPORT = "BOUND-05-002-FORBIDDEN-AUTOREMEDIATION-IMPORT"
+    FORBIDDEN_INSTALL_IMPORT = "BOUND-05-003-FORBIDDEN-INSTALL-IMPORT"
+    FORBIDDEN_NETWORK_IMPORT = "BOUND-05-004-FORBIDDEN-NETWORK-IMPORT"
 
 
 HELP_CODE_TOPIC_MAP: dict[HelpCode, HelpTopic] = {
@@ -182,6 +218,198 @@ class Phase5HelpResponse:
         return json.dumps(self.as_payload(), sort_keys=True, separators=(",", ":"))
 
 
+@dataclass(frozen=True, slots=True)
+class RuntimeDependencySpec:
+    dependency_id: str
+    classification: RuntimeDependencyClassification
+    probe_type: RuntimeDependencyProbeType
+    target: str
+
+    def __post_init__(self) -> None:
+        object.__setattr__(self, "dependency_id", _normalize_text(self.dependency_id))
+        if not isinstance(self.classification, RuntimeDependencyClassification):
+            object.__setattr__(self, "classification", RuntimeDependencyClassification(str(self.classification)))
+        if not isinstance(self.probe_type, RuntimeDependencyProbeType):
+            object.__setattr__(self, "probe_type", RuntimeDependencyProbeType(str(self.probe_type)))
+        object.__setattr__(self, "target", _normalize_text(self.target))
+        if not self.dependency_id:
+            raise ValueError("Runtime dependency_id is required")
+        if not self.target:
+            raise ValueError("Runtime dependency target is required")
+
+    def as_payload(self) -> dict[str, str]:
+        return {
+            "dependency_id": self.dependency_id,
+            "classification": self.classification.value,
+            "probe_type": self.probe_type.value,
+            "target": self.target,
+        }
+
+
+@dataclass(frozen=True, slots=True)
+class RuntimeDependencyCheck:
+    dependency_id: str
+    classification: RuntimeDependencyClassification
+    probe_type: RuntimeDependencyProbeType
+    target: str
+    status: RuntimeDependencyStatus
+    reason_code: RuntimeDependencyReasonCode
+    evidence_paths: tuple[str, ...]
+    detail: str
+
+    def __post_init__(self) -> None:
+        object.__setattr__(self, "dependency_id", _normalize_text(self.dependency_id))
+        if not isinstance(self.classification, RuntimeDependencyClassification):
+            object.__setattr__(self, "classification", RuntimeDependencyClassification(str(self.classification)))
+        if not isinstance(self.probe_type, RuntimeDependencyProbeType):
+            object.__setattr__(self, "probe_type", RuntimeDependencyProbeType(str(self.probe_type)))
+        object.__setattr__(self, "target", _normalize_text(self.target))
+        if not isinstance(self.status, RuntimeDependencyStatus):
+            object.__setattr__(self, "status", RuntimeDependencyStatus(str(self.status)))
+        object.__setattr__(self, "evidence_paths", _normalize_sorted_text(self.evidence_paths))
+        object.__setattr__(self, "detail", _normalize_text(self.detail))
+        if not self.dependency_id:
+            raise ValueError("Runtime dependency_id is required")
+        if not self.target:
+            raise ValueError("Runtime dependency target is required")
+
+        normalized_reason = _runtime_reason_for(
+            classification=self.classification,
+            status=self.status,
+        )
+        object.__setattr__(self, "reason_code", normalized_reason)
+
+    def as_payload(self) -> dict[str, Any]:
+        return {
+            "dependency_id": self.dependency_id,
+            "classification": self.classification.value,
+            "probe_type": self.probe_type.value,
+            "target": self.target,
+            "status": self.status.value,
+            "reason_code": self.reason_code.value,
+            "evidence_paths": list(self.evidence_paths),
+            "detail": self.detail,
+        }
+
+
+@dataclass(frozen=True, slots=True)
+class RuntimeDependencyReport:
+    schema_version: str
+    aggregate_status: RuntimeDependencyAggregateStatus
+    checks: tuple[RuntimeDependencyCheck, ...]
+    pipeline_order: tuple[str, ...]
+
+    def __post_init__(self) -> None:
+        object.__setattr__(
+            self,
+            "schema_version",
+            _validate_schema_major(self.schema_version, SUPPORTED_PHASE5_SCHEMA_MAJOR),
+        )
+        if not isinstance(self.aggregate_status, RuntimeDependencyAggregateStatus):
+            object.__setattr__(self, "aggregate_status", RuntimeDependencyAggregateStatus(str(self.aggregate_status)))
+        ordered_checks = tuple(
+            sorted(
+                self.checks,
+                key=lambda entry: (
+                    entry.dependency_id,
+                    entry.classification.value,
+                    entry.probe_type.value,
+                    entry.target,
+                ),
+            )
+        )
+        object.__setattr__(self, "checks", ordered_checks)
+
+        derived_status = _runtime_aggregate_from_checks(ordered_checks)
+        if self.aggregate_status is not derived_status:
+            raise ValueError("Runtime aggregate_status must match deterministic required/optional aggregation rules")
+
+        expected_pipeline = ("run_runtime_dependency_checks",)
+        if tuple(self.pipeline_order) != expected_pipeline:
+            raise ValueError("RuntimeDependencyReport pipeline_order must be ('run_runtime_dependency_checks',)")
+        object.__setattr__(self, "pipeline_order", expected_pipeline)
+
+    def as_payload(self) -> dict[str, Any]:
+        return {
+            "schema_version": self.schema_version,
+            "aggregate_status": self.aggregate_status.value,
+            "checks": [entry.as_payload() for entry in self.checks],
+            "pipeline_order": list(self.pipeline_order),
+        }
+
+    def to_json(self) -> str:
+        return json.dumps(self.as_payload(), sort_keys=True, separators=(",", ":"))
+
+
+@dataclass(frozen=True, slots=True)
+class Phase5Result:
+    schema_version: str
+    route_spec_schema_version: str
+    pipeline_order: tuple[str, ...]
+    runtime: RuntimeDependencyReport
+    output: Phase5OutputSurfaces
+    help: Phase5HelpResponse
+
+    def __post_init__(self) -> None:
+        object.__setattr__(
+            self,
+            "schema_version",
+            _validate_schema_major(self.schema_version, SUPPORTED_PHASE5_SCHEMA_MAJOR),
+        )
+        object.__setattr__(self, "route_spec_schema_version", _normalize_text(self.route_spec_schema_version))
+        expected_pipeline = ("run_runtime_dependency_checks", "generate_output_surfaces", "resolve_help_response")
+        if tuple(self.pipeline_order) != expected_pipeline:
+            raise ValueError(
+                "Phase5Result pipeline_order must be run_runtime_dependency_checks -> generate_output_surfaces -> resolve_help_response"
+            )
+        object.__setattr__(self, "pipeline_order", expected_pipeline)
+        if not isinstance(self.runtime, RuntimeDependencyReport):
+            raise TypeError("runtime must be a RuntimeDependencyReport")
+        if not isinstance(self.output, Phase5OutputSurfaces):
+            raise TypeError("output must be a Phase5OutputSurfaces")
+        if not isinstance(self.help, Phase5HelpResponse):
+            raise TypeError("help must be a Phase5HelpResponse")
+        if self.output.machine_payload.route_spec_schema_version != self.route_spec_schema_version:
+            raise ValueError("Phase5Result route_spec_schema_version must align with output machine payload")
+        if self.help.terminal_status is not self.output.machine_payload.terminal_status:
+            raise ValueError("Phase5Result help terminal status must align with output terminal status")
+        if self.help.output_code is not self.output.machine_payload.output_code:
+            raise ValueError("Phase5Result help output code must align with output machine payload")
+
+    def as_payload(self) -> dict[str, Any]:
+        return {
+            "schema_version": self.schema_version,
+            "route_spec_schema_version": self.route_spec_schema_version,
+            "pipeline_order": list(self.pipeline_order),
+            "runtime": self.runtime.as_payload(),
+            "output": self.output.as_payload(),
+            "help": self.help.as_payload(),
+        }
+
+    def to_json(self) -> str:
+        return json.dumps(self.as_payload(), sort_keys=True, separators=(",", ":"))
+
+
+@dataclass(frozen=True, slots=True)
+class Phase5BoundaryViolation:
+    code: Phase5BoundaryErrorCode
+    evidence_paths: tuple[str, ...]
+    detail: str
+
+    def __post_init__(self) -> None:
+        if not isinstance(self.code, Phase5BoundaryErrorCode):
+            object.__setattr__(self, "code", Phase5BoundaryErrorCode(str(self.code)))
+        object.__setattr__(self, "evidence_paths", _normalize_sorted_text(self.evidence_paths))
+        object.__setattr__(self, "detail", _normalize_text(self.detail))
+
+    def as_payload(self) -> dict[str, Any]:
+        return {
+            "code": self.code.value,
+            "evidence_paths": list(self.evidence_paths),
+            "detail": self.detail,
+        }
+
+
 def _validate_schema_major(schema_version: str, expected_major: str) -> str:
     normalized = _normalize_text(schema_version)
     if not normalized:
@@ -226,16 +454,62 @@ def _normalize_action_steps(actions: tuple[str, ...] | list[str]) -> tuple[str, 
     return tuple(normalized)
 
 
+def _runtime_reason_for(
+    *,
+    classification: RuntimeDependencyClassification,
+    status: RuntimeDependencyStatus,
+) -> RuntimeDependencyReasonCode:
+    if status is RuntimeDependencyStatus.PRESENT:
+        return RuntimeDependencyReasonCode.PRESENT
+    if classification is RuntimeDependencyClassification.REQUIRED:
+        return RuntimeDependencyReasonCode.REQUIRED_MISSING
+    return RuntimeDependencyReasonCode.OPTIONAL_MISSING
+
+
+def _runtime_aggregate_from_checks(
+    checks: tuple[RuntimeDependencyCheck, ...],
+) -> RuntimeDependencyAggregateStatus:
+    has_required_missing = any(
+        entry.status is RuntimeDependencyStatus.MISSING
+        and entry.classification is RuntimeDependencyClassification.REQUIRED
+        for entry in checks
+    )
+    if has_required_missing:
+        return RuntimeDependencyAggregateStatus.BLOCKING
+
+    has_optional_missing = any(
+        entry.status is RuntimeDependencyStatus.MISSING
+        and entry.classification is RuntimeDependencyClassification.OPTIONAL
+        for entry in checks
+    )
+    if has_optional_missing:
+        return RuntimeDependencyAggregateStatus.DEGRADED
+    return RuntimeDependencyAggregateStatus.PASS
+
+
 __all__ = [
     "HELP_CODE_TOPIC_MAP",
     "OUTPUT_SECTION_ORDER",
+    "PHASE5_ENGINE_SCHEMA_VERSION",
     "PHASE5_OUTPUT_SCHEMA_VERSION",
+    "PHASE5_RUNTIME_SCHEMA_VERSION",
     "SUPPORTED_PHASE5_SCHEMA_MAJOR",
     "HelpCode",
     "HelpTopic",
     "OutputSurfaceCode",
     "OutputTerminalStatus",
+    "Phase5BoundaryErrorCode",
+    "Phase5BoundaryViolation",
     "Phase5HelpResponse",
     "Phase5OutputPayload",
     "Phase5OutputSurfaces",
+    "Phase5Result",
+    "RuntimeDependencyAggregateStatus",
+    "RuntimeDependencyCheck",
+    "RuntimeDependencyClassification",
+    "RuntimeDependencyProbeType",
+    "RuntimeDependencyReasonCode",
+    "RuntimeDependencyReport",
+    "RuntimeDependencySpec",
+    "RuntimeDependencyStatus",
 ]
