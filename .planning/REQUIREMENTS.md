@@ -9,7 +9,7 @@
 
 - [x] **TRACE-01**: Phase 4 summary metadata explicitly marks `VAL-01`, `VAL-02`, and `VAL-03` as completed with requirement-level evidence.
 - [x] **TRACE-02**: Phase 4 summary metadata explicitly marks `MOCK-01`, `MOCK-02`, `FALLBACK-01`, and `FALLBACK-02` as completed with requirement-level evidence.
-- [ ] **TRACE-03**: Phase 4 summary metadata explicitly marks `DET-04` and `BOUND-04` as completed and achieves 3-source parity across requirements, roadmap, and summaries.
+- [x] **TRACE-03**: Phase 4 completion evidence is explicit and synchronized for `VAL-01`, `VAL-02`, `VAL-03`, `MOCK-01`, `MOCK-02`, `FALLBACK-01`, `FALLBACK-02`, `DET-04`, and `BOUND-04` across requirements, roadmap, and summary metadata surfaces.
 
 ### Extension Governance
 
@@ -37,7 +37,7 @@
 |-------------|-------|--------|
 | TRACE-01 | Phase 6 | Complete |
 | TRACE-02 | Phase 6 | Complete |
-| TRACE-03 | Phase 6 | Pending |
+| TRACE-03 | Phase 6 | Complete |
 | EXTG-01 | Phase 7 | Pending |
 | EXTG-02 | Phase 7 | Pending |
 

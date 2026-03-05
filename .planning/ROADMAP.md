@@ -14,18 +14,18 @@ Complete remaining hardening carryover by closing Phase 4 traceability mapping p
 
 ### Phases
 
-- [ ] **Phase 6: Phase 4 Traceability Metadata Backfill** - Close missing requirement mappings and enforce 3-source parity for Phase 4 completion evidence.
+- [ ] **Phase 6: Phase 4 Traceability Metadata Backfill** - Close missing requirement mappings and enforce explicit 3-source parity for `VAL-01`, `VAL-02`, `VAL-03`, `MOCK-01`, `MOCK-02`, `FALLBACK-01`, `FALLBACK-02`, `DET-04`, and `BOUND-04`.
 - [ ] **Phase 7: Extension Governance Decision Pack (`EXT-01`, `EXT-02`)** - Produce explicit boundary-policy decisions and synchronize scope language across planning docs.
 
 ### Phase Details
 
 #### Phase 6: Phase 4 Traceability Metadata Backfill
-**Goal:** Backfill and verify Phase 4 requirement completion metadata for strict parity across planning artifacts.
+**Goal:** Backfill and verify explicit Phase 4 requirement completion metadata for strict parity across planning artifacts.
 **Depends on:** Nothing (first phase of v1.2)
 **Requirements:** [TRACE-01, TRACE-02, TRACE-03]
 **Success Criteria:**
-  1. Phase 4 summary/frontmatter includes completion mapping for all required validation, mock, fallback, determinism, and boundary requirements.
-  2. Requirement statuses in summary, roadmap, and requirements docs are consistent.
+  1. Phase 4 summary/frontmatter explicitly maps `VAL-01`, `VAL-02`, `VAL-03`, `MOCK-01`, `MOCK-02`, `FALLBACK-01`, `FALLBACK-02`, `DET-04`, and `BOUND-04`.
+  2. Requirement statuses in summary, roadmap, and requirements docs are deterministic and ID-level consistent.
   3. Evidence references are deterministic and auditable.
 **Plans:** 1/3 plans complete
 
