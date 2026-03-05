@@ -37,8 +37,8 @@ Implemented deterministic dry-run mock execution over validation outputs.
 - Trace payloads serialize canonically and remain byte-stable for repeated identical inputs.
 
 ## Verification
-- `PYTHONPATH=src pytest -q tests/test_mock_execution.py` -> `2 passed`
-- `PYTHONPATH=src pytest -q tests/test_target_validation.py tests/test_mock_execution.py` -> `5 passed`
+- PYTHONPATH=src pytest -q tests/test_mock_execution.py -> 2 passed
+- PYTHONPATH=src pytest -q tests/test_target_validation.py tests/test_mock_execution.py -> 5 passed
 
 ## Notes
 - Scope is mock-only; no fallback orchestration or phase4 engine composition added in this step.

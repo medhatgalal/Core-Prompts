@@ -43,7 +43,7 @@ Implemented Phase 4 wave-1 typed contracts and fail-closed target validation.
 - Validation payload JSON is canonical (`sort_keys=True`, fixed separators).
 
 ## Verification
-- `PYTHONPATH=src pytest -q tests/test_target_validation.py` -> `3 passed`
+- PYTHONPATH=src pytest -q tests/test_target_validation.py -> 3 passed
 
 ## Notes
 - Scope is validation-only; no mock execution, fallback orchestration, output/help generation, or runtime dependency checks were introduced.

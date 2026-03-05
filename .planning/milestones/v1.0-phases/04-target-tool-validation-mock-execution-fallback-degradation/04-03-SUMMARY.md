@@ -4,23 +4,23 @@ plan: "03"
 subsystem: intent-pipeline-phase4-fallback-engine
 tags: [phase4, fallback, determinism, traceability]
 requirements-completed:
+  - BOUND-04
+  - DET-04
   - FALLBACK-01
   - FALLBACK-02
-  - DET-04
-  - BOUND-04
 requirement-evidence:
+  BOUND-04:
+    - tests/test_phase4_boundary.py
+    - "PYTHONPATH=src pytest -q tests/test_phase4_boundary.py"
+  DET-04:
+    - tests/test_phase4_determinism.py
+    - "PYTHONPATH=src pytest -q tests/test_phase4_determinism.py"
   FALLBACK-01:
     - tests/test_fallback_degradation.py
     - "PYTHONPATH=src pytest -q tests/test_fallback_degradation.py"
   FALLBACK-02:
     - tests/test_fallback_degradation.py
     - "PYTHONPATH=src pytest -q tests/test_fallback_degradation.py"
-  DET-04:
-    - tests/test_phase4_determinism.py
-    - "PYTHONPATH=src pytest -q tests/test_phase4_determinism.py"
-  BOUND-04:
-    - tests/test_phase4_boundary.py
-    - "PYTHONPATH=src pytest -q tests/test_phase4_boundary.py"
 ---
 
 # 04-03 Summary
@@ -51,11 +51,11 @@ Implemented deterministic fallback degradation and Phase 4 engine composition.
 - Boundary tests enforce exclusion of execution/output/help/runtime-dependency concerns.
 
 ## Verification
-- `PYTHONPATH=src pytest -q tests/test_fallback_degradation.py` -> `3 passed`
-- `PYTHONPATH=src pytest -q tests/test_phase4_determinism.py` -> `2 passed`
-- `PYTHONPATH=src pytest -q tests/test_phase4_boundary.py` -> `5 passed`
-- `PYTHONPATH=src pytest -q tests/test_target_validation.py tests/test_mock_execution.py tests/test_fallback_degradation.py tests/test_phase4_determinism.py tests/test_phase4_boundary.py` -> `15 passed`
-- `PYTHONPATH=src pytest -q` -> `102 passed`
+- PYTHONPATH=src pytest -q tests/test_fallback_degradation.py -> 3 passed
+- PYTHONPATH=src pytest -q tests/test_phase4_determinism.py -> 2 passed
+- PYTHONPATH=src pytest -q tests/test_phase4_boundary.py -> 5 passed
+- PYTHONPATH=src pytest -q tests/test_target_validation.py tests/test_mock_execution.py tests/test_fallback_degradation.py tests/test_phase4_determinism.py tests/test_phase4_boundary.py -> 15 passed
+- PYTHONPATH=src pytest -q -> 102 passed
 
 ## Notes
 - Phase 4 remains in scope: validation + dry-run mock + deterministic fallback only.
