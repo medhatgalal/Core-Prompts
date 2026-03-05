@@ -13,7 +13,7 @@
 
 ### Extension Governance
 
-- [ ] **EXTG-01**: Milestone records explicit disposition (`go`, `defer`, or `reject`) for `EXT-01` and `EXT-02` with deterministic boundary rationale (`EXT-01=defer`, `EXT-02=defer` per Phase 7 decision matrix).
+- [x] **EXTG-01**: Milestone records explicit disposition (`go`, `defer`, or `reject`) for `EXT-01` and `EXT-02` with deterministic boundary rationale (`EXT-01=defer`, `EXT-02=defer` per Phase 7 decision matrix).
 - [ ] **EXTG-02**: Extension decisions are synchronized across PROJECT/REQUIREMENTS/ROADMAP with no contradictory scope language and no v1.2 runtime-scope expansion.
 
 ## v2 Requirements
@@ -38,7 +38,7 @@
 | TRACE-01 | Phase 6 | Complete |
 | TRACE-02 | Phase 6 | Complete |
 | TRACE-03 | Phase 6 | Complete |
-| EXTG-01 | Phase 7 | Pending |
+| EXTG-01 | Phase 7 | Complete |
 | EXTG-02 | Phase 7 | Pending |
 
 **Coverage:**

@@ -42,7 +42,7 @@ Plans:
   1. `EXT-01` and `EXT-02` each have explicit disposition and rationale.
   2. PROJECT, REQUIREMENTS, and ROADMAP documents contain synchronized boundary decisions.
   3. Any deferred extension work is clearly staged for a future milestone.
-**Plans:** 0/3 plans complete
+**Plans:** 1/3 plans executed
 
 Plans:
 - [ ] 07-01: Define decision rubric and evaluate `EXT-01`/`EXT-02`
@@ -54,4 +54,4 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 6. Phase 4 Traceability Metadata Backfill | 3/3 | Complete | 2026-03-05 |
-| 7. Extension Governance Decision Pack (`EXT-01`, `EXT-02`) | 0/3 | Not started | — |
+| 7. Extension Governance Decision Pack (`EXT-01`, `EXT-02`) | 1/3 | In Progress|  |
