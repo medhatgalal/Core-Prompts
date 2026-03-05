@@ -6,6 +6,7 @@ from pathlib import Path
 
 import pytest
 
+from intent_pipeline.routing.engine import run_semantic_routing
 from intent_pipeline.uplift.engine import run_uplift_engine
 
 
@@ -40,3 +41,52 @@ def fixture_routing_uplift_contract(routing_uplift_input_text: str):
 @pytest.fixture(name="routing_uplift_payload")
 def fixture_routing_uplift_payload(routing_uplift_contract):
     return deepcopy(routing_uplift_contract.as_payload())
+
+
+@pytest.fixture(name="phase4_route_spec_payload")
+def fixture_phase4_route_spec_payload(routing_uplift_payload: dict[str, object]) -> dict[str, object]:
+    routing_result = run_semantic_routing(routing_uplift_payload)
+    return deepcopy(routing_result.route_spec.as_payload())
+
+
+@pytest.fixture(name="phase4_capability_matrix_payload")
+def fixture_phase4_capability_matrix_payload(phase4_route_spec_payload: dict[str, object]) -> dict[str, object]:
+    route_profile = str(phase4_route_spec_payload["route_profile"])
+    normalized_profile = route_profile.lower().replace("_", "-")
+    tool_id = f"tool-{normalized_profile}"
+    return {
+        "schema_version": "4.0.0",
+        "tools": [
+            {
+                "tool_id": tool_id,
+                "supported_route_profiles": [route_profile],
+                "capabilities": ["cap.read", "cap.write"],
+            }
+        ],
+    }
+
+
+@pytest.fixture(name="phase4_policy_contract_payload")
+def fixture_phase4_policy_contract_payload(
+    phase4_route_spec_payload: dict[str, object],
+    phase4_capability_matrix_payload: dict[str, object],
+) -> dict[str, object]:
+    route_profile = str(phase4_route_spec_payload["route_profile"])
+    tool_id = str(phase4_capability_matrix_payload["tools"][0]["tool_id"])
+    return {
+        "schema_version": "4.0.0",
+        "route_to_tool": [
+            {
+                "route_profile": route_profile,
+                "tool_id": tool_id,
+            }
+        ],
+        "required_capabilities": [
+            {
+                "route_profile": route_profile,
+                "capabilities": ["cap.read", "cap.write"],
+            }
+        ],
+        "blocked_dominant_rule_ids": [],
+        "allowed_route_decisions": ["PASS_ROUTE"],
+    }
