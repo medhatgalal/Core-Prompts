@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-03-04T19:17:04.635088+00:00",
+  "generated_at": "2026-03-06T20:59:58.084378+00:00",
   "generator": {
     "script": "scripts/build-surfaces.py",
     "python": "3.11+",
     "version": "4.0",
-    "generated_utc": "2026-03-04T19:17:04.636394+00:00"
+    "generated_utc": "2026-03-06T20:59:58.084733+00:00"
   },
   "ssot_sources": [
     {
@@ -144,5 +144,65 @@
       ".codex/agents/mentor.toml",
       ".codex/agents/supercharge.toml"
     ]
+  },
+  "validation": {
+    "validated_at": "2026-03-06T21:00:01.779673+00:00",
+    "strict": true,
+    "with_cli": false,
+    "fail_on_cli_miss": false,
+    "rules_file": ".meta/surface-rules.json",
+    "rules_sha256": "5316af4304875ede9f781b0d31429160b12c404ac69d280fa52fd3e54f19f5ca",
+    "schema_cache_ttl_days": 14,
+    "schema_cache_sources_checked": [
+      "https://docs.anthropic.com/en/docs/claude-code/skills",
+      "https://docs.anthropic.com/en/docs/claude-code/sub-agents",
+      "https://geminicli.com/docs/cli/commands",
+      "https://geminicli.com/docs/cli/custom-commands",
+      "https://geminicli.com/docs/cli/skills",
+      "https://geminicli.com/docs/core/subagents",
+      "https://kiro.dev/docs/cli/custom-agents/",
+      "https://kiro.dev/docs/cli/custom-agents/configuration-reference/",
+      "https://kiro.dev/docs/skills/"
+    ],
+    "validation_errors": 0,
+    "validation_warnings": 0,
+    "cli_versions": {
+      "codex": {
+        "command": "codex",
+        "required": false,
+        "available": true,
+        "version_exit_code": 0,
+        "version_output": [
+          "codex-cli 0.107.0"
+        ]
+      },
+      "gemini": {
+        "command": "gemini",
+        "required": false,
+        "available": true,
+        "version_exit_code": 0,
+        "version_output": [
+          "0.32.1"
+        ]
+      },
+      "claude": {
+        "command": "claude",
+        "required": false,
+        "available": true,
+        "version_exit_code": 0,
+        "version_output": [
+          "2.1.59 (Claude Code)"
+        ]
+      },
+      "kiro": {
+        "command": "kiro-cli",
+        "required": false,
+        "available": true,
+        "version_exit_code": 0,
+        "version_output": [
+          "kiro-cli 1.27.1"
+        ]
+      }
+    }
   }
 }
