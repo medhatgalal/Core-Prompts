@@ -24,11 +24,12 @@ Convert local file content into safe, deterministic intent artifacts that preser
 - ✓ Deterministic local intent pipeline from ingestion through output/help/runtime preflight shipped in v1.0.
 - ✓ Nyquist validation closure for archived phases 01, 02, 03, and 05.
 - ✓ `TRACE-01` / `TRACE-02` / `TRACE-03` completed in Phase 6 with explicit, deterministic evidence parity across summary, roadmap, requirements, and validation/audit artifacts.
+- ✓ `EXTG-01`: Deterministic extension disposition decisions were finalized in Phase 7 (`EXT-01=defer`, `EXT-02=defer`) with explicit rubric and rationale.
+- ✓ `EXTG-02`: PROJECT/REQUIREMENTS/ROADMAP boundary language is synchronized to defer/defer outcomes with no v1.2 runtime-scope expansion.
 
 ### Active
 
-- [x] `EXTG-01`: Record explicit go/defer/reject decision for `EXT-01` and `EXT-02` with deterministic boundary rationale (`EXT-01=defer`, `EXT-02=defer` in Phase 7 Plan 07-01).
-- [ ] `EXTG-02`: Synchronize PROJECT/REQUIREMENTS/ROADMAP scope boundaries to extension decisions while preserving no-execution and no-runtime-expansion guarantees; no extension implementation is authorized in v1.2.
+- [ ] No active v1.2 requirements remain after Phase 7 closure.
 
 ### Out of Scope
 
@@ -57,4 +58,4 @@ Convert local file content into safe, deterministic intent artifacts that preser
 | Require explicit canonical requirement IDs for parity closure | Prevent inferred mappings and make regressions detectable in deterministic scans | ✓ Adopted in Phase 6 |
 
 ---
-*Last updated: 2026-03-05 after Phase 6 transition to Phase 7*
+*Last updated: 2026-03-06 after Phase 7 completion*
