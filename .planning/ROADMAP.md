@@ -15,7 +15,7 @@ Complete remaining hardening carryover by closing Phase 4 traceability mapping p
 ### Phases
 
 - [x] **Phase 6: Phase 4 Traceability Metadata Backfill** - Close missing requirement mappings and enforce explicit 3-source parity for `VAL-01`, `VAL-02`, `VAL-03`, `MOCK-01`, `MOCK-02`, `FALLBACK-01`, `FALLBACK-02`, `DET-04`, and `BOUND-04`.
-- [ ] **Phase 7: Extension Governance Decision Pack (`EXT-01`, `EXT-02`)** - Publish deterministic non-go dispositions (`defer`/`defer`) and synchronize boundary scope language across planning docs.
+- [x] **Phase 7: Extension Governance Decision Pack (`EXT-01`, `EXT-02`)** - Publish deterministic non-go dispositions (`defer`/`defer`) and synchronize boundary scope language across planning docs.
 
 ### Phase Details
 
@@ -42,16 +42,16 @@ Plans:
   1. `EXT-01` and `EXT-02` each have explicit deterministic dispositions (`defer`, `defer`) and rationale.
   2. PROJECT, REQUIREMENTS, and ROADMAP documents contain synchronized boundary decisions.
   3. Any extension implementation work is explicitly staged for a future milestone behind re-entry criteria.
-**Plans:** 2/3 plans executed
+**Plans:** 3/3 plans complete
 
 Plans:
 - [x] 07-01: Define decision rubric and evaluate `EXT-01`/`EXT-02`
 - [x] 07-02: Publish governance decisions with deterministic boundary statements
-- [ ] 07-03: Propagate final decisions to planning documents and verify consistency
+- [x] 07-03: Propagate final decisions to planning documents and verify consistency
 
 ## Progress
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 6. Phase 4 Traceability Metadata Backfill | 3/3 | Complete | 2026-03-05 |
-| 7. Extension Governance Decision Pack (`EXT-01`, `EXT-02`) | 2/3 | In Progress|  |
+| 7. Extension Governance Decision Pack (`EXT-01`, `EXT-02`) | 3/3 | Complete | 2026-03-06 |
