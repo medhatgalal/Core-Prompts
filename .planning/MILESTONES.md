@@ -1,5 +1,24 @@
 # Milestones
 
+## v1.2 Next (Shipped: 2026-03-06)
+
+**Delivered:** Deterministic traceability parity closure and extension-governance decisions (`EXT-01=defer`, `EXT-02=defer`) with no runtime-scope expansion.
+
+**Phases completed:** 6-7 (6 plans total)
+
+**Key accomplishments:**
+- Closed TRACE-01/02/03 with explicit requirement-level parity across summaries, roadmap, requirements, and validation artifacts.
+- Published deterministic extension governance rubric and decision matrix for `EXT-01` and `EXT-02`.
+- Synchronized boundary-safe defer/defer policy language across PROJECT/REQUIREMENTS/ROADMAP.
+- Produced phase-level validation and verification artifacts for phases 06 and 07 with Nyquist-compliant status.
+
+**Archives:**
+- [Roadmap Archive](./milestones/v1.2-ROADMAP.md)
+- [Requirements Archive](./milestones/v1.2-REQUIREMENTS.md)
+- [Audit](./milestones/v1.2-MILESTONE-AUDIT.md)
+
+---
+
 ## v1.0 milestone (Shipped: 2026-03-05)
 
 **Delivered:** Deterministic local-intent pipeline from ingestion through output/help/runtime preflight, with strict no-execution boundaries.

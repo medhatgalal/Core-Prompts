@@ -8,14 +8,18 @@ Local Intent Sanitizer is a deterministic, boundary-first intent-processing pipe
 
 Convert local file content into safe, deterministic intent artifacts that preserve explicit boundaries, traceability, and stable decision semantics.
 
-## Current Milestone: v1.2 Next
+## Current State
 
-**Goal:** Complete remaining hardening carryover by closing Phase 4 traceability parity and locking extension boundary decisions with deterministic non-go dispositions for `EXT-01` and `EXT-02` in v1.2.
+- v1.2 Next shipped on 2026-03-06.
+- Phase 4 traceability parity (`TRACE-01/02/03`) is closed with deterministic, auditable evidence.
+- Extension governance decisions are locked for v1.2: `EXT-01=defer`, `EXT-02=defer`.
+- Milestone artifacts are archived in `.planning/milestones/`.
 
-**Target features:**
-- Finish Phase 4 requirement-mapping parity and metadata closure (`TRACE-*`).
-- Publish finalized deterministic dispositions for `EXT-01` and `EXT-02` (`EXT-01=defer`, `EXT-02=defer`) with governance-only re-entry gates.
-- Synchronize scope/boundary language across PROJECT/REQUIREMENTS/ROADMAP.
+## Next Milestone Goals
+
+- Define the next milestone scope and requirement set.
+- Create a fresh `REQUIREMENTS.md` for the next cycle.
+- Decide whether to keep extensions deferred or promote specific re-entry criteria into executable scope.
 
 ## Requirements
 
@@ -29,7 +33,7 @@ Convert local file content into safe, deterministic intent artifacts that preser
 
 ### Active
 
-- [ ] No active v1.2 requirements remain after Phase 7 closure.
+No active requirements are open for v1.2. Next requirements will be defined in the next milestone.
 
 ### Out of Scope
 
@@ -41,7 +45,7 @@ Convert local file content into safe, deterministic intent artifacts that preser
 
 - v1.0 milestone is archived under `.planning/milestones/`.
 - Nyquist gap closures for phases 01/02/03/05 were completed before this v1.2 rollover.
-- Remaining work is documentation traceability parity and explicit extension policy governance.
+- v1.2 milestone is archived with traceability and governance closure complete.
 
 ## Constraints
 
@@ -58,4 +62,4 @@ Convert local file content into safe, deterministic intent artifacts that preser
 | Require explicit canonical requirement IDs for parity closure | Prevent inferred mappings and make regressions detectable in deterministic scans | ✓ Adopted in Phase 6 |
 
 ---
-*Last updated: 2026-03-06 after Phase 7 completion*
+*Last updated: 2026-03-06 after v1.2 milestone completion*
