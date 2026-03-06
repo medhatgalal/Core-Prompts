@@ -1,20 +1,20 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.2
-milestone_name: Next
-current_phase: 07
-current_phase_name: extension governance decision pack ext 01 ext 02
+milestone: v1.3
+milestone_name: Controlled Extension Re-entry
+current_phase: 08
+current_phase_name: shared extension contracts and boundary gates
 current_plan: Not started
-status: completed
-stopped_at: Completed 07-extension-governance-decision-pack-ext-01-ext-02-03-PLAN.md
-last_updated: "2026-03-06T05:48:56.922Z"
+status: ready_for_phase_discussion
+stopped_at: Milestone v1.3 initialized and ready for phase discussion
+last_updated: "2026-03-06T15:51:12Z"
 last_activity: 2026-03-06
 progress:
-  total_phases: 2
-  completed_phases: 2
-  total_plans: 6
-  completed_plans: 6
-  percent: 100
+  total_phases: 3
+  completed_phases: 0
+  total_plans: 9
+  completed_plans: 0
+  percent: 0
 ---
 
 # Session State
@@ -23,64 +23,36 @@ progress:
 
 See: .planning/PROJECT.md (updated 2026-03-06)
 
-**Core value:** Convert local file content into safe, deterministic intent artifacts that preserve explicit boundaries, traceability, and stable decision semantics.
-**Current focus:** Define next milestone scope and requirements
+**Core value:** Convert local and policy-admitted source content into safe, deterministic intent artifacts that preserve explicit boundaries, traceability, and stable decision semantics.
+**Current focus:** Start Phase 8 planning for shared extension contracts and boundary gates.
 
 ## Position
 
-**Milestone:** v1.2 Next
-**Current Phase:** 07
-**Current Phase Name:** extension governance decision pack ext 01 ext 02
-**Total Phases:** 2
+**Milestone:** v1.3 Controlled Extension Re-entry
+**Current Phase:** 08
+**Current Phase Name:** shared extension contracts and boundary gates
+**Total Phases:** 3
 **Current Plan:** Not started
 **Total Plans in Phase:** 3
-**Status:** v1.2 milestone complete
-**Progress:** [██████████] 100%
+**Status:** Ready for discussion/planning
+**Progress:** [░░░░░░░░░░] 0%
 **Last Activity:** 2026-03-06
-**Last Activity Description:** v1.2 milestone completed and archived
+**Last Activity Description:** New milestone initialized with requirements, research synthesis, and roadmap.
 
 ## Decisions Made
 
-| Phase | Summary | Rationale |
+| Scope | Summary | Rationale |
 |-------|---------|-----------|
-| 06-phase-4-traceability-metadata-backfill | Backfill requirements-completed frontmatter across Phase 4 summaries using canonical requirement IDs. | Ensures deterministic requirement-level traceability for audit tooling. |
-| 06-phase-4-traceability-metadata-backfill | Normalize verification command formatting in summaries to plain text for verifier compatibility. | Prevents false missing-file matches from command-string regex scanning. |
-- [Phase 06-phase-4-traceability-metadata-backfill]: Promoted TRACE-03 to complete after explicit ID-level parity wording was synchronized in REQUIREMENTS and ROADMAP.
-- [Phase 06-phase-4-traceability-metadata-backfill]: Retained Task 1 mismatch inventory in v1.0 audit as historical context while marking all entries resolved for deterministic closure scans.
-- [Phase 06-phase-4-traceability-metadata-backfill]: Declared deterministic closure readiness with explicit TRACE-01/TRACE-02/TRACE-03 evidence references in 06-VALIDATION and 06-VERIFICATION.
-- [Phase 06-phase-4-traceability-metadata-backfill]: Phase 6 closure requires explicit TRACE requirement evidence links, not inferred parity claims.
-- [Phase 06-phase-4-traceability-metadata-backfill]: Closure artifacts remain documentation-only and do not expand runtime capability scope.
-- [Phase 07-extension-governance-decision-pack-ext-01-ext-02]: Use fixed weighted criteria and conservative tie-break precedence to ensure deterministic extension disposition outcomes. — Ensures repeated governance evaluations remain stable and auditable.
-- [Phase 07-extension-governance-decision-pack-ext-01-ext-02]: Set EXT-01 and EXT-02 to defer in v1.2 to preserve no-execution and no-runtime-expansion guarantees. — Maintains boundary-first constraints while defining clear re-entry gates for future milestones.
-- [Phase 07-extension-governance-decision-pack-ext-01-ext-02]: Treat EXT-01 and EXT-02 as deterministic non-go in v1.2 with explicit defer/defer wording across canonical planning docs. — Eliminates mixed disposition semantics and preserves deterministic governance boundaries.
-- [Phase 07-extension-governance-decision-pack-ext-01-ext-02]: Represent future extension admission only through staged re-entry criteria, never implied implementation authorization. — Keeps v1.2 governance-only and prevents accidental runtime scope expansion.
-- [Phase 07-extension-governance-decision-pack-ext-01-ext-02]: Phase 7 closure evidence must include explicit contradiction scans across PROJECT/REQUIREMENTS/ROADMAP.
-- [Phase 07-extension-governance-decision-pack-ext-01-ext-02]: State continuity should route next action to phase-close metadata synchronization and milestone progression.
+| Milestone v1.3 | Activate controlled re-entry for `EXT-01` and `EXT-02` instead of keeping both indefinitely deferred. | Prior governance and traceability debt is closed; explicit re-entry criteria now exists. |
+| Phase sequencing | Start with shared policy/determinism contracts, then URL ingestion, then controlled execution. | Reduces blast radius and keeps higher-risk side-effect surfaces last. |
+| Execution posture | Keep v1.3 execution simulate-first by default with fail-closed `NEEDS_REVIEW` on any approval/capability gaps. | Preserves deterministic boundary guarantees while enabling incremental extension progress. |
 
 ## Blockers
 
 - None
 
-## Performance Metrics
-
-| Scope | Duration | Tasks | Files |
-|-------|----------|-------|-------|
-| Phase 06-phase-4-traceability-metadata-backfill P01 | 2 min | 3 tasks | 4 files |
-| Phase 06-phase-4-traceability-metadata-backfill P02 | 3 min | 3 tasks | 3 files |
-| Phase 06-phase-4-traceability-metadata-backfill P03 | 3 min | 3 tasks | 3 files |
-| Phase 07-extension-governance-decision-pack-ext-01-ext-02 P01 | 2 min | 3 tasks | 3 files |
-| Phase 07-extension-governance-decision-pack-ext-01-ext-02 P02 | 2 min | 3 tasks | 3 files |
-| Phase 07-extension-governance-decision-pack-ext-01-ext-02 P03 | 2 min | 3 tasks | 3 files |
-
-## Session
-
-**Last Date:** 2026-03-06T05:42:41.492Z
-**Stopped At:** Completed 07-extension-governance-decision-pack-ext-01-ext-02-03-PLAN.md
-**Resume File:** None
-
 ## Session Log
 
-- 2026-03-05: STATE.md regenerated by /gsd:health --repair
-- 2026-03-05: Completed 06-01 traceability metadata backfill execution.
-- 2026-03-05: Recorded Phase 6 closure evidence readiness and next action toward Phase 7 extension governance.
-- 2026-03-06: Recorded deterministic Phase 7 governance closure evidence and routed next action to phase-close metadata updates.
+- 2026-03-06: Initialized milestone v1.3 from shipped v1.2 baseline.
+- 2026-03-06: Completed research set (`STACK`, `FEATURES`, `ARCHITECTURE`, `PITFALLS`, `SUMMARY`).
+- 2026-03-06: Defined mapped requirements and active roadmap for phases 08-10.

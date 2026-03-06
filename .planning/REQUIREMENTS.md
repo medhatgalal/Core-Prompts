@@ -50,26 +50,26 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| EXT1-01 | Phase TBD | Pending |
-| EXT1-02 | Phase TBD | Pending |
-| EXT1-03 | Phase TBD | Pending |
-| EXT1-04 | Phase TBD | Pending |
-| EXT1-05 | Phase TBD | Pending |
-| EXT2-01 | Phase TBD | Pending |
-| EXT2-02 | Phase TBD | Pending |
-| EXT2-03 | Phase TBD | Pending |
-| EXT2-04 | Phase TBD | Pending |
-| EXT2-05 | Phase TBD | Pending |
-| XDET-01 | Phase TBD | Pending |
-| XDET-02 | Phase TBD | Pending |
-| XBND-01 | Phase TBD | Pending |
-| XBND-02 | Phase TBD | Pending |
+| XDET-01 | Phase 8 | Pending |
+| XDET-02 | Phase 8 | Pending |
+| XBND-01 | Phase 8 | Pending |
+| XBND-02 | Phase 8 | Pending |
+| EXT1-01 | Phase 9 | Pending |
+| EXT1-02 | Phase 9 | Pending |
+| EXT1-03 | Phase 9 | Pending |
+| EXT1-04 | Phase 9 | Pending |
+| EXT1-05 | Phase 9 | Pending |
+| EXT2-01 | Phase 10 | Pending |
+| EXT2-02 | Phase 10 | Pending |
+| EXT2-03 | Phase 10 | Pending |
+| EXT2-04 | Phase 10 | Pending |
+| EXT2-05 | Phase 10 | Pending |
 
 **Coverage:**
 - v1 requirements: 14 total
-- Mapped to phases: 0
-- Unmapped: 14 ⚠️
+- Mapped to phases: 14
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-06*
-*Last updated: 2026-03-06 after milestone v1.3 definition kickoff*
+*Last updated: 2026-03-06 after roadmap mapping for milestone v1.3*
