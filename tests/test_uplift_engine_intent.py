@@ -96,3 +96,33 @@ def test_uplift_intent_05_intent_derivation_uses_context_artifacts_without_mutat
     assert intent["schema_version"] == context["schema_version"]
     assert intent["primary_objective"] == "Build deterministic context and intent layers"
     assert "Must keep outputs deterministic." in intent["quality_constraints"]
+
+
+def test_uplift_intent_06_structured_markdown_sections_map_to_intent_fields() -> None:
+    context = build_context_layer(
+        "\n".join(
+            [
+                "## Summary",
+                "Provide server-side unknown field validation so clients can fail requests with invalid fields.",
+                "### Goals",
+                "- Validate unknown or duplicated fields on create, update, and patch.",
+                "- Keep the behavior opt-in for compatibility.",
+                "### Non-Goals",
+                "- Offline validation workflows.",
+                "### Notes/Constraints/Caveats",
+                "- Must remain opt-in for existing clients.",
+            ]
+        )
+    )
+
+    intent = derive_intent_layer(context)
+
+    assert intent["primary_objective"] == (
+        "Provide server-side unknown field validation so clients can fail requests with invalid fields."
+    )
+    assert intent["in_scope"] == [
+        "Validate unknown or duplicated fields on create, update, and patch.",
+        "Keep the behavior opt-in for compatibility.",
+    ]
+    assert intent["out_of_scope"] == ["Offline validation workflows."]
+    assert "Must remain opt-in for existing clients." in intent["quality_constraints"]
