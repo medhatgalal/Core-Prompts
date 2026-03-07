@@ -2,19 +2,19 @@
 gsd_state_version: 1.0
 milestone: v1.3
 milestone_name: Controlled Extension Re-entry
-current_phase: 08
-current_phase_name: shared extension contracts and boundary gates
-current_plan: 3
-status: verifying
-stopped_at: Completed 08-03-PLAN.md
-last_updated: "2026-03-06T21:17:52.698Z"
+current_phase: 10
+current_phase_name: simulate-first controlled execution
+current_plan: 0
+status: ready
+stopped_at: Completed Phase 09 verification and handoff
+last_updated: "2026-03-06T23:59:00.000Z"
 last_activity: 2026-03-06
 progress:
   total_phases: 3
-  completed_phases: 1
-  total_plans: 3
-  completed_plans: 3
-  percent: 100
+  completed_phases: 2
+  total_plans: 6
+  completed_plans: 6
+  percent: 67
 ---
 
 # Session State
@@ -24,20 +24,20 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-06)
 
 **Core value:** Convert local and policy-admitted source content into safe, deterministic intent artifacts that preserve explicit boundaries, traceability, and stable decision semantics.
-**Current focus:** Plan Phase 8 using captured context and shared extension gate decisions.
+**Current focus:** Plan Phase 10 using the completed URL-ingestion baseline and shared extension gate decisions.
 
 ## Position
 
 **Milestone:** v1.3 Controlled Extension Re-entry
-**Current Phase:** 08
-**Current Phase Name:** shared extension contracts and boundary gates
+**Current Phase:** 10
+**Current Phase Name:** simulate-first controlled execution
 **Total Phases:** 3
-**Current Plan:** 3
+**Current Plan:** 0
 **Total Plans in Phase:** 3
-**Status:** Phase complete — ready for verification
-**Progress:** [██████████] 100%
+**Status:** Phase 9 complete — ready for Phase 10 planning
+**Progress:** [███████░░░] 67%
 **Last Activity:** 2026-03-06
-**Last Activity Description:** Completed 08-03 deterministic gate stability, boundary regression, and handoff continuity updates.
+**Last Activity Description:** Completed Phase 9 deterministic URL ingestion, provenance propagation, and full verification.
 
 ## Decisions Made
 
@@ -47,6 +47,10 @@ See: .planning/PROJECT.md (updated 2026-03-06)
 | Phase sequencing | Start with shared policy/determinism contracts, then URL ingestion, then controlled execution. | Reduces blast radius and keeps higher-risk side-effect surfaces last. |
 | Execution posture | Keep v1.3 execution simulate-first by default with fail-closed `NEEDS_REVIEW` on any approval/capability gaps. | Preserves deterministic boundary guarantees while enabling incremental extension progress. |
 | Phase 8 discussion | Lock policy-first, default-disabled extension gates with deterministic evidence outputs and strict non-regression behavior. | Ensures Phase 9/10 implementation inherits consistent fail-closed contracts. |
+- [Phase 09]: Canonical URL normalization occurs before any URL admission policy decision.
+- [Phase 09]: Approved URL content is materialized into immutable local snapshots and sanitization reads only local snapshot files.
+- [Phase 09]: Redirect hops are revalidated against URL policy and private/special-use destination addresses fail closed.
+- [Phase 09]: URL provenance is carried through uplift context via explicit `source_type`, `normalized_source`, `policy_rule_id`, and `content_sha256` fields.
 - [Phase 08]: Extension policy rule IDs are version-locked to schema major via v<major>.<stable-id> format.
 - [Phase 08]: Ingestion policy now emits typed fail-closed BLOCK/NEEDS_REVIEW outcomes for missing or malformed extension policy artifacts.
 - [Phase 08]: Keep extension gate checks at branch boundaries only so default disabled mode preserves local-only phase-1 behavior.
@@ -72,6 +76,7 @@ See: .planning/PROJECT.md (updated 2026-03-06)
 - 2026-03-06: Defined mapped requirements and active roadmap for phases 08-10.
 - 2026-03-06: Captured Phase 8 context decisions and code integration anchors.
 - 2026-03-06: Completed Plan 08-03 deterministic gate stability tests and phase boundary regression checks for shared extension contracts.
+- 2026-03-06: Completed Phase 9 URL resolver, URL policy, bounded snapshot ingestion, provenance wiring, and verification.
 
 ## Performance Metrics
 
@@ -79,4 +84,4 @@ See: .planning/PROJECT.md (updated 2026-03-06)
 |------------|----------|-------|-------|
 | Phase 08 P01 | 7 min | 3 tasks | 5 files |
 | Phase 08 P03 | 3 min | 3 tasks | 3 files |
-
+| Phase 09 | n/a | 3 plans | 14 files |

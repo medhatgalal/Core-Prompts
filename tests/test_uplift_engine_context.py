@@ -60,3 +60,25 @@ def test_uplift_ctx_04_repeated_runs_preserve_top_level_field_order() -> None:
     input_text = _sample_context_input()
     key_orders = [list(build_context_layer(input_text).keys()) for _ in range(20)]
     assert len({tuple(order) for order in key_orders}) == 1
+
+
+def test_context_layer_preserves_url_provenance_fields() -> None:
+    context = build_context_layer(
+        _sample_context_input(),
+        source_metadata={
+            "source_type": "URL",
+            "normalized_source": "https://example.com/docs/input.txt",
+            "policy_rule_id": "v1.url.docs.allow",
+            "content_sha256": "abc123",
+            "content_type": "text/plain",
+        },
+    )
+
+    assert context["source"] == {
+        "content_sha256": "abc123",
+        "line_count": 6,
+        "content_type": "text/plain",
+        "source_type": "URL",
+        "normalized_source": "https://example.com/docs/input.txt",
+        "policy_rule_id": "v1.url.docs.allow",
+    }
