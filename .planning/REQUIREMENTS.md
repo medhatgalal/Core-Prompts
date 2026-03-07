@@ -7,11 +7,11 @@
 
 ### URL Ingestion Re-entry (`EXT-01`)
 
-- [ ] **EXT1-01**: System canonicalizes URL input to a single normalized form before any admission-policy decision.
-- [ ] **EXT1-02**: System evaluates URL admission against explicit allow/deny policy dimensions (scheme, host/domain, path, content type, size, redirect budget, timeout budget) and fails closed with typed rejection codes.
-- [ ] **EXT1-03**: Approved URL inputs are materialized into immutable local snapshots identified by content hash before downstream sanitization.
-- [ ] **EXT1-04**: Rejected or policy-incomplete URL inputs never enter sanitization or downstream phases and deterministically terminate as `NEEDS_REVIEW` with evidence paths.
-- [ ] **EXT1-05**: URL-sourced payloads carry deterministic provenance fields (`source_type`, `normalized_source`, `policy_rule_id`, `content_hash`) through Phase 5 outputs.
+- [x] **EXT1-01**: System canonicalizes URL input to a single normalized form before any admission-policy decision.
+- [x] **EXT1-02**: System evaluates URL admission against explicit allow/deny policy dimensions (scheme, host/domain, path, content type, size, redirect budget, timeout budget) and fails closed with typed rejection codes.
+- [x] **EXT1-03**: Approved URL inputs are materialized into immutable local snapshots identified by content hash before downstream sanitization.
+- [x] **EXT1-04**: Rejected or policy-incomplete URL inputs never enter sanitization or downstream phases and deterministically terminate as `NEEDS_REVIEW` with evidence paths.
+- [x] **EXT1-05**: URL-sourced payloads carry deterministic provenance fields (`source_type`, `normalized_source`, `policy_rule_id`, `content_hash`) through Phase 5 outputs.
 
 ### Controlled Execution Re-entry (`EXT-02`)
 
@@ -54,11 +54,11 @@
 | XDET-02 | Phase 8 | Complete |
 | XBND-01 | Phase 8 | Complete |
 | XBND-02 | Phase 8 | Complete |
-| EXT1-01 | Phase 9 | Pending |
-| EXT1-02 | Phase 9 | Pending |
-| EXT1-03 | Phase 9 | Pending |
-| EXT1-04 | Phase 9 | Pending |
-| EXT1-05 | Phase 9 | Pending |
+| EXT1-01 | Phase 9 | Complete |
+| EXT1-02 | Phase 9 | Complete |
+| EXT1-03 | Phase 9 | Complete |
+| EXT1-04 | Phase 9 | Complete |
+| EXT1-05 | Phase 9 | Complete |
 | EXT2-01 | Phase 10 | Pending |
 | EXT2-02 | Phase 10 | Pending |
 | EXT2-03 | Phase 10 | Pending |

@@ -36,6 +36,10 @@ def sanitize_pass2(pass1_output: str) -> str:
         if not candidate:
             continue
 
+        if candidate in {"<!--", "-->"}:
+            kept_lines.append(candidate)
+            continue
+
         if any(pattern.search(candidate) for pattern in _DROP_LINE_PATTERNS):
             continue
 

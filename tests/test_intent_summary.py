@@ -60,3 +60,34 @@ def test_sum_sections_exist_even_when_content_empty() -> None:
         "Rejected/Out-of-Scope Signals\n"
         "- None\n"
     )
+
+
+def test_summary_prefers_structured_markdown_signals_over_full_text_dump() -> None:
+    sanitized_text = (
+        "## Summary\n"
+        "Provide server-side unknown field validation so clients can fail requests with invalid fields.\n"
+        "### Goals\n"
+        "- Validate unknown or duplicated fields on create, update, and patch.\n"
+        "- Keep the behavior opt-in for compatibility.\n"
+        "### Non-Goals\n"
+        "- Offline validation workflows.\n"
+        "### Notes/Constraints/Caveats\n"
+        "- Must remain opt-in for existing clients.\n"
+    )
+
+    summary = render_intent_summary(sanitized_text)
+
+    assert summary == (
+        "Intent\n"
+        "- Provide server-side unknown field validation so clients can fail requests with invalid fields.\n"
+        "\n"
+        "Constraints\n"
+        "- Must remain opt-in for existing clients.\n"
+        "\n"
+        "Requested Outcome\n"
+        "- Validate unknown or duplicated fields on create, update, and patch.\n"
+        "- Keep the behavior opt-in for compatibility.\n"
+        "\n"
+        "Rejected/Out-of-Scope Signals\n"
+        "- Offline validation workflows.\n"
+    )

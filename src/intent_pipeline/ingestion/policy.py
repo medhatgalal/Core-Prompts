@@ -16,6 +16,7 @@ from intent_pipeline.extensions.contracts import (
     ExtensionSourceKind,
     parse_extension_policy_contract_fail_closed,
 )
+from .source_resolver import ResolvedSourceKind, SourceResolverError, resolve_source
 
 
 _DISALLOWED_URI_SCHEMES = frozenset({"http", "https", "ftp", "file", "ssh", "data"})
@@ -125,10 +126,8 @@ def validate_local_source(
         if extension_gate.decision is not ExtensionGateDecision.ALLOW:
             return _reject_extension_gate(extension_gate)
 
-    if isinstance(source, Path):
+    if isinstance(source, (Path, str)):
         raw_source = str(source)
-    elif isinstance(source, str):
-        raw_source = source
     else:
         return _reject(
             SourceRejectionCode.INVALID_SOURCE_TYPE,
@@ -149,12 +148,18 @@ def validate_local_source(
         )
 
     try:
-        absolute_path = Path(raw_source).expanduser().resolve(strict=False)
-    except (OSError, RuntimeError, ValueError) as exc:
+        resolved = resolve_source(raw_source)
+    except SourceResolverError as exc:
         return _reject(
             SourceRejectionCode.PATH_RESOLUTION_FAILED,
-            f"Unable to resolve source path: {exc}",
+            f"Unable to resolve source path: {exc.detail}",
         )
+    if resolved.kind is not ResolvedSourceKind.LOCAL_FILE or resolved.absolute_path is None:
+        return _reject(
+            SourceRejectionCode.URI_SCHEME_NOT_ALLOWED,
+            f"URI scheme is not allowed for ingestion: {raw_source}",
+        )
+    absolute_path = resolved.absolute_path
 
     if not absolute_path.is_file():
         return _reject(

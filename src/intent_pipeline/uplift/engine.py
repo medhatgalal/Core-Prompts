@@ -107,9 +107,14 @@ def run_uplift_engine(
     sanitized_text: str,
     *,
     schema_version: str = DEFAULT_SCHEMA_VERSION,
+    source_metadata: dict[str, object] | None = None,
 ) -> UpliftContract:
     """Compose deterministic phase-2 uplift layers into one canonical contract."""
-    context = build_context_layer(sanitized_text, schema_version=schema_version)
+    context = build_context_layer(
+        sanitized_text,
+        schema_version=schema_version,
+        source_metadata=source_metadata,
+    )
     intent = derive_intent_layer(context)
     task_graph = build_task_graph(_task_specs(intent))
     constraints = resolve_constraints(_constraint_inputs(context, intent))

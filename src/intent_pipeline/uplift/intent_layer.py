@@ -27,11 +27,30 @@ def _unique_ordered(values: list[str]) -> list[str]:
 def _normalize_list_values(values: list[str]) -> list[str]:
     normalized: list[str] = []
     for value in values:
-        for part in _LIST_SPLIT.split(value):
-            candidate = _normalize_text(part)
-            if candidate:
-                normalized.append(candidate)
+        candidate = _normalize_text(value)
+        if not candidate:
+            continue
+        if ";" in candidate:
+            parts = candidate.split(";")
+        elif _should_split_compact_csv(candidate):
+            parts = candidate.split(",")
+        else:
+            parts = [candidate]
+        for part in parts:
+            normalized_part = _normalize_text(part)
+            if normalized_part:
+                normalized.append(normalized_part)
     return _unique_ordered(normalized)
+
+
+def _should_split_compact_csv(value: str) -> bool:
+    if "," not in value:
+        return False
+    stripped = value.rstrip(".!?")
+    parts = [_normalize_text(part) for part in stripped.split(",")]
+    if any(not part for part in parts):
+        return False
+    return all(len(part.split()) <= 6 for part in parts)
 
 
 def _is_supported_schema(context: dict[str, Any]) -> bool:

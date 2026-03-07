@@ -6,6 +6,7 @@ from enum import Enum
 from pathlib import Path
 
 from .policy import LocalSourceRejectedError, SourceValidationResult, validate_local_source
+from .url_snapshot_store import UrlSnapshotDescriptor
 
 
 class IngestionReadErrorCode(str, Enum):
@@ -63,10 +64,16 @@ def read_local_file_text(source: str | Path, encoding: str = "utf-8") -> str:
         ) from exc
 
 
+def read_snapshot_text(snapshot: UrlSnapshotDescriptor, encoding: str = "utf-8") -> str:
+    """Read text from an immutable URL snapshot."""
+    return read_local_file_text(snapshot.snapshot_path, encoding=encoding)
+
+
 __all__ = [
     "IngestionReadError",
     "IngestionReadErrorCode",
     "LocalSourceRejectedError",
     "read_local_file_bytes",
     "read_local_file_text",
+    "read_snapshot_text",
 ]

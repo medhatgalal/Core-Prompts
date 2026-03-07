@@ -16,7 +16,7 @@ Implement controlled re-entry for `EXT-01` and `EXT-02` using a policy-first, fa
 ### Phases
 
 - [x] **Phase 8: Shared Extension Contracts and Boundary Gates** - Establish versioned policy contracts, deterministic decision invariants, and extension-safe boundary defaults.
-- [ ] **Phase 9: EXT-01 Deterministic URL Ingestion** - Add canonical URL admission, immutable snapshot ingestion, and provenance-safe integration into existing sanitization flow.
+- [x] **Phase 9: EXT-01 Deterministic URL Ingestion** - Add canonical URL admission, immutable snapshot ingestion, and provenance-safe integration into existing sanitization flow.
 - [ ] **Phase 10: EXT-02 Simulate-First Controlled Execution** - Add explicit execution approval contracts, closed executor mapping, deterministic journal evidence, and side-effect-safe simulation guardrails.
 
 ### Phase Details
@@ -44,12 +44,12 @@ Plans:
   1. URL normalization and admission policy decisions are deterministic, typed, and fail closed.
   2. Approved URL payloads are ingested through immutable local snapshots with canonical provenance metadata.
   3. Rejected URLs terminate deterministically with explicit evidence and never enter sanitization or routing paths.
-**Plans:** 0/3 plans complete
+**Plans:** 3/3 plans complete
 
 Plans:
-- [ ] 09-01: Implement canonical source resolver and URL admission policy gate
-- [ ] 09-02: Implement immutable URL snapshot ingestion and provenance envelope wiring
-- [ ] 09-03: Add deterministic and boundary tests for URL rejection/acceptance paths
+- [x] 09-01: Implement canonical source resolver and URL admission policy gate
+- [x] 09-02: Implement immutable URL snapshot ingestion and provenance envelope wiring
+- [x] 09-03: Add deterministic and boundary tests for URL rejection/acceptance paths
 
 #### Phase 10: EXT-02 Simulate-First Controlled Execution
 **Goal:** Add controlled execution eligibility and evidence flow while keeping default behavior simulate-first and fail closed.
@@ -71,5 +71,5 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 8. Shared Extension Contracts and Boundary Gates | 3/3 | Complete | 2026-03-06 |
-| 9. EXT-01 Deterministic URL Ingestion | 0/3 | Pending | — |
+| 9. EXT-01 Deterministic URL Ingestion | 3/3 | Complete | 2026-03-06 |
 | 10. EXT-02 Simulate-First Controlled Execution | 0/3 | Pending | — |
