@@ -212,6 +212,21 @@ def test_route_ctx_01_signal_bundle_missing_evidence_is_explicit_without_default
     assert "acceptance.criteria" in bundle.missing_evidence
 
 
+def test_route_ctx_01_secondary_objectives_unknown_remains_informational_not_blocking(
+    routing_uplift_payload: dict[str, object],
+) -> None:
+    intent = dict(routing_uplift_payload["intent"])  # type: ignore[arg-type]
+    intent["secondary_objectives"] = []
+    intent["unknowns"] = ["secondary_objectives: no explicit secondary objectives found"]
+    routing_uplift_payload["intent"] = intent
+
+    bundle = build_signal_bundle(routing_uplift_payload)
+
+    assert bundle.intent_unknowns == ("secondary_objectives: no explicit secondary objectives found",)
+    assert "secondary_objectives: no explicit secondary objectives found" not in bundle.missing_evidence
+    assert bundle.missing_evidence == ()
+
+
 def test_route_enum_01_routing_contract_is_byte_stable_on_repeated_serialization() -> None:
     payload = _valid_uplift_payload()
     contract = RoutingContract(

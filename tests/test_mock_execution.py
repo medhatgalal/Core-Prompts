@@ -53,6 +53,7 @@ def test_mock_01_dry_run_only_no_side_effect_imports_or_calls(
             imported_modules.append(node.module or "")
 
     forbidden_import_fragments = (
+        "phase6",
         "subprocess",
         "requests",
         "httpx",

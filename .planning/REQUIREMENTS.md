@@ -15,11 +15,11 @@
 
 ### Controlled Execution Re-entry (`EXT-02`)
 
-- [ ] **EXT2-01**: System permits execute-eligible flow only when route validation passes, fallback state is execute-eligible, and explicit execution approval contract is present and valid.
-- [ ] **EXT2-02**: Route-profile to executor/tool mapping is closed and static; unmapped or ambiguous mappings deterministically block execution.
-- [ ] **EXT2-03**: Default extension behavior is simulate-first; missing approvals, capability mismatches, or policy gaps deterministically return `NEEDS_REVIEW` without side effects.
-- [ ] **EXT2-04**: Execution attempts (including blocked attempts) produce deterministic evidence entries with idempotency key, policy version, decision code, and trace references.
-- [ ] **EXT2-05**: Dry-run/mock execution paths remain side-effect free and are enforced by boundary checks that reject network/process/file-mutation behaviors.
+- [x] **EXT2-01**: System permits execute-eligible flow only when route validation passes, fallback state is execute-eligible, and explicit execution approval contract is present and valid.
+- [x] **EXT2-02**: Route-profile to executor/tool mapping is closed and static; unmapped or ambiguous mappings deterministically block execution.
+- [x] **EXT2-03**: Default extension behavior is simulate-first; missing approvals, capability mismatches, or policy gaps deterministically return `NEEDS_REVIEW` without side effects.
+- [x] **EXT2-04**: Execution attempts (including blocked attempts) produce deterministic evidence entries with idempotency key, policy version, decision code, and trace references.
+- [x] **EXT2-05**: Dry-run/mock execution paths remain side-effect free and are enforced by boundary checks that reject network/process/file-mutation behaviors.
 
 ### Cross-Cutting Determinism and Boundary Invariants
 
@@ -59,11 +59,11 @@
 | EXT1-03 | Phase 9 | Complete |
 | EXT1-04 | Phase 9 | Complete |
 | EXT1-05 | Phase 9 | Complete |
-| EXT2-01 | Phase 10 | Pending |
-| EXT2-02 | Phase 10 | Pending |
-| EXT2-03 | Phase 10 | Pending |
-| EXT2-04 | Phase 10 | Pending |
-| EXT2-05 | Phase 10 | Pending |
+| EXT2-01 | Phase 10 | Complete |
+| EXT2-02 | Phase 10 | Complete |
+| EXT2-03 | Phase 10 | Complete |
+| EXT2-04 | Phase 10 | Complete |
+| EXT2-05 | Phase 10 | Complete |
 
 **Coverage:**
 - v1 requirements: 14 total
@@ -72,4 +72,4 @@
 
 ---
 *Requirements defined: 2026-03-06*
-*Last updated: 2026-03-06 after roadmap mapping for milestone v1.3*
+*Last updated: 2026-03-10 after Phase 10 real-source validation and Python 3.11 strict surface checks*

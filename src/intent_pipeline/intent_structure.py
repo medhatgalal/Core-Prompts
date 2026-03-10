@@ -45,7 +45,7 @@ _REQUESTED_PATTERNS = (
     re.compile(r"\bsummar(?:y|ize)\b", re.IGNORECASE),
 )
 _OBJECTIVE_PATTERNS = (
-    re.compile(r"^\s*(intent|primary goal|goal|objective|summary)\b", re.IGNORECASE),
+    re.compile(r"^\s*(intent|primary goals?|primary objectives?|goal|objective|summary)\b", re.IGNORECASE),
 )
 _ACCEPTANCE_PATTERNS = (
     re.compile(r"\b(acceptance|criteria|criterion|verify|verification|assert|test plan|success criteria)\b", re.IGNORECASE),
@@ -70,6 +70,10 @@ _TEMPLATE_PATTERNS = (
 
 _SECTION_ALIASES = {
     "summary": "objective",
+    "primary objective": "objective",
+    "primary objectives": "objective",
+    "project objective": "objective",
+    "project objectives": "objective",
     "objective": "objective",
     "objectives": "objective",
     "purpose": "objective",
@@ -93,6 +97,9 @@ _SECTION_ALIASES = {
 }
 _KEY_ALIASES = {
     "primary objective": "objective",
+    "primary objectives": "objective",
+    "project objective": "objective",
+    "project objectives": "objective",
     "objective": "objective",
     "objectives": "objective",
     "goal": "objective",
