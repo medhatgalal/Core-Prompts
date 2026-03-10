@@ -222,7 +222,7 @@ def build_signal_bundle(uplift: UpliftContract | Mapping[str, Any]) -> SignalBun
     )
 
     combined_missing = sorted(
-        set(missing_evidence).union(acceptance_missing_evidence).union(intent_unknowns)
+        set(missing_evidence).union(acceptance_missing_evidence)
     )
 
     return SignalBundle(

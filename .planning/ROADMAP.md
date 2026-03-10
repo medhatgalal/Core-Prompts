@@ -17,7 +17,7 @@ Implement controlled re-entry for `EXT-01` and `EXT-02` using a policy-first, fa
 
 - [x] **Phase 8: Shared Extension Contracts and Boundary Gates** - Establish versioned policy contracts, deterministic decision invariants, and extension-safe boundary defaults.
 - [x] **Phase 9: EXT-01 Deterministic URL Ingestion** - Add canonical URL admission, immutable snapshot ingestion, and provenance-safe integration into existing sanitization flow.
-- [ ] **Phase 10: EXT-02 Simulate-First Controlled Execution** - Add explicit execution approval contracts, closed executor mapping, deterministic journal evidence, and side-effect-safe simulation guardrails.
+- [x] **Phase 10: EXT-02 Simulate-First Controlled Execution** - Add explicit execution approval contracts, closed executor mapping, deterministic journal evidence, and side-effect-safe simulation guardrails.
 
 ### Phase Details
 
@@ -59,12 +59,12 @@ Plans:
   1. Execution path is unreachable without valid approval contract, capability match, and execute-eligible validation state.
   2. Route-to-executor mapping is closed/static and ambiguous mappings deterministically block execution.
   3. Simulation remains side-effect free and all execution decisions emit deterministic audit entries with idempotency evidence.
-**Plans:** 0/3 plans complete
+**Plans:** 3/3 plans complete
 
 Plans:
-- [ ] 10-01: Implement execution approval contracts and closed executor registry mapping
-- [ ] 10-02: Implement simulate-first gating and deterministic `NEEDS_REVIEW` fallback for unmet invariants
-- [ ] 10-03: Implement execution evidence journal, idempotency checks, and boundary enforcement tests
+- [x] 10-01: Implement execution approval contracts and closed executor registry mapping
+- [x] 10-02: Implement simulate-first gating and deterministic `NEEDS_REVIEW` fallback for unmet invariants
+- [x] 10-03: Implement execution evidence journal, idempotency checks, and boundary enforcement tests
 
 ## Progress
 
@@ -72,4 +72,4 @@ Plans:
 |-------|----------------|--------|-----------|
 | 8. Shared Extension Contracts and Boundary Gates | 3/3 | Complete | 2026-03-06 |
 | 9. EXT-01 Deterministic URL Ingestion | 3/3 | Complete | 2026-03-06 |
-| 10. EXT-02 Simulate-First Controlled Execution | 0/3 | Pending | — |
+| 10. EXT-02 Simulate-First Controlled Execution | 3/3 | Complete | 2026-03-10 |

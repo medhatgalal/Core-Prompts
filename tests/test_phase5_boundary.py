@@ -92,6 +92,7 @@ def test_bound_05_phase5_modules_do_not_import_or_call_forbidden_execution_layer
         project_root / "src" / "intent_pipeline" / "phase5" / "help.py",
     )
     forbidden_import_fragments = (
+        "phase6",
         "subprocess",
         "requests",
         "httpx",

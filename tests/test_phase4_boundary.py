@@ -58,6 +58,7 @@ def test_bound_04_phase4_modules_do_not_import_disallowed_layers() -> None:
     )
     forbidden_import_fragments = (
         "execution",
+        "phase6",
         "output",
         "help",
         "summary.renderer",
