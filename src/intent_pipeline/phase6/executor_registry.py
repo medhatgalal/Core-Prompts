@@ -128,8 +128,8 @@ def parse_executor_registry(registry: ExecutorRegistry | Mapping[str, Any]) -> E
             route_profile=_require_mapping_text(raw_entry, "route_profile", f"phase6.registry.entries[{index}].route_profile"),
             target_tool_id=_require_mapping_text(raw_entry, "target_tool_id", f"phase6.registry.entries[{index}].target_tool_id"),
             capabilities=tuple(_require_mapping_text_list(raw_entry, "capabilities", f"phase6.registry.entries[{index}].capabilities")),
-            supports_simulation=bool(raw_entry.get("supports_simulation")),
-            supports_execution=bool(raw_entry.get("supports_execution")),
+            supports_simulation=_require_mapping_bool(raw_entry, "supports_simulation", f"phase6.registry.entries[{index}].supports_simulation"),
+            supports_execution=_require_mapping_bool(raw_entry, "supports_execution", f"phase6.registry.entries[{index}].supports_execution"),
             rule_id=_require_mapping_text(raw_entry, "rule_id", f"phase6.registry.entries[{index}].rule_id"),
         )
         binding = (entry.route_profile, entry.target_tool_id)
@@ -176,6 +176,17 @@ def _require_mapping_text_list(payload: Mapping[str, Any], key: str, evidence_pa
             evidence_path=evidence_path,
         )
     return values
+
+
+def _require_mapping_bool(payload: Mapping[str, Any], key: str, evidence_path: str) -> bool:
+    value = payload.get(key)
+    if not isinstance(value, bool):
+        raise Phase6ContractError(
+            ExecutionDecisionCode.REGISTRY_UNMAPPED,
+            f"{key} must be a boolean",
+            evidence_path=evidence_path,
+        )
+    return value
 
 
 def _require_text(value: object, field_name: str) -> str:

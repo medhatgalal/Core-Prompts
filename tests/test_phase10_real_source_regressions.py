@@ -111,7 +111,7 @@ def _url_policy_payload() -> dict[str, object]:
                 "allowed_hosts": ["raw.githubusercontent.com"],
                 "allowed_domains": [],
                 "allowed_path_prefixes": ["/github/gitignore/main/"],
-                "allowed_content_types": ["text/plain"],
+                "allowed_content_types": ["text/markdown", "text/plain"],
                 "max_bytes": 262144,
                 "redirect_limit": 2,
                 "timeout_seconds": 15,
@@ -126,7 +126,7 @@ def _url_policy_payload() -> dict[str, object]:
                 "allowed_path_prefixes": [
                     "/kubernetes/enhancements/master/keps/sig-api-machinery/2885-server-side-unknown-field-validation/"
                 ],
-                "allowed_content_types": ["text/plain"],
+                "allowed_content_types": ["text/markdown", "text/plain"],
                 "max_bytes": 524288,
                 "redirect_limit": 2,
                 "timeout_seconds": 15,
@@ -139,7 +139,7 @@ def _url_policy_payload() -> dict[str, object]:
                 "allowed_hosts": ["gist.githubusercontent.com"],
                 "allowed_domains": [],
                 "allowed_path_prefixes": ["/jwiegley/f8a06408f5c605798352074e312113c4/raw/"],
-                "allowed_content_types": ["text/plain"],
+                "allowed_content_types": ["text/markdown", "text/plain"],
                 "max_bytes": 524288,
                 "redirect_limit": 2,
                 "timeout_seconds": 15,
@@ -293,6 +293,37 @@ def test_kep_style_positive_source_reaches_phase4_phase5_and_phase6(
     assert phase5_result.output.machine_payload.terminal_status.value == "USE_PRIMARY"
     assert simulate_result.decision_code is ExecutionDecisionCode.SIMULATION_COMPLETED
     assert execute_result.decision_code is ExecutionDecisionCode.EXECUTION_COMPLETED
+
+
+def test_positive_real_source_accepts_text_markdown_content_type(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    _patch_host_resolution(monkeypatch)
+    transport = FakeTransport(
+        responses={
+            KEP_URL: UrlTransportResponse(
+                status_code=200,
+                headers={"content-type": "text/markdown"},
+                body=KEP_SOURCE.encode("utf-8"),
+            )
+        }
+    )
+
+    ingestion = ingest_phase1_source(
+        KEP_URL,
+        extension_mode="CONTROLLED",
+        route_profile="IMPLEMENTATION",
+        requested_capabilities=("cap.read",),
+        extension_policy=_extension_policy_payload(),
+        url_policy=_url_policy_payload(),
+        snapshot_root=tmp_path / "snapshots",
+        url_transport=transport,
+    )
+
+    assert ingestion.source_metadata["policy_rule_id"] == "v1.url.raw-kubernetes-kep-2885"
+    assert ingestion.source_metadata["content_type"] == "text/markdown"
+    assert ingestion.raw_text.startswith("## Summary")
 
 
 def test_public_prd_primary_objectives_plural_is_accepted_by_suitability_gate(
