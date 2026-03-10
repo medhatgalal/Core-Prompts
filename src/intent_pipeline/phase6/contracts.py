@@ -502,7 +502,7 @@ def parse_execution_request(execution_request: ExecutionRequest | Mapping[str, A
             phase5_schema_version=_extract_required_text(payload, "phase5_schema_version", "execution_request.phase5_schema_version"),
             route_spec_schema_version=_extract_required_text(payload, "route_spec_schema_version", "execution_request.route_spec_schema_version"),
             validation_decision=_extract_required_text(payload, "validation_decision", "execution_request.validation_decision"),
-            validation_can_proceed=bool(payload.get("validation_can_proceed")),
+            validation_can_proceed=_extract_required_bool(payload, "validation_can_proceed", "execution_request.validation_can_proceed"),
             fallback_decision=_extract_required_text(payload, "fallback_decision", "execution_request.fallback_decision"),
             phase5_terminal_status=_extract_required_text(payload, "phase5_terminal_status", "execution_request.phase5_terminal_status"),
             route_profile=_extract_required_text(payload, "route_profile", "execution_request.route_profile"),
@@ -535,6 +535,17 @@ def _extract_required_text(payload: Mapping[str, Any], key: str, evidence_path: 
         raise Phase6ContractError(
             ExecutionDecisionCode.APPROVAL_INVALID,
             f"{key} is required",
+            evidence_path=evidence_path,
+        )
+    return value
+
+
+def _extract_required_bool(payload: Mapping[str, Any], key: str, evidence_path: str) -> bool:
+    value = payload.get(key)
+    if not isinstance(value, bool):
+        raise Phase6ContractError(
+            ExecutionDecisionCode.APPROVAL_INVALID,
+            f"{key} must be a boolean",
             evidence_path=evidence_path,
         )
     return value

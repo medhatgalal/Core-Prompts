@@ -68,7 +68,7 @@ def _url_policy_payload(url: str, *, max_bytes: int, timeout_seconds: int) -> di
                 'allowed_hosts': [parsed.hostname],
                 'allowed_domains': [],
                 'allowed_path_prefixes': [_normalize_path_prefix(url)],
-                'allowed_content_types': ['text/plain'],
+                'allowed_content_types': ['text/markdown', 'text/plain'],
                 'max_bytes': max_bytes,
                 'redirect_limit': 2,
                 'timeout_seconds': timeout_seconds,

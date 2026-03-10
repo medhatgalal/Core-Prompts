@@ -14,6 +14,7 @@ from intent_pipeline.phase6.contracts import (
     ExecutionRequest,
     Phase6ContractError,
     parse_execution_approval_contract,
+    parse_execution_request,
 )
 
 
@@ -130,3 +131,28 @@ def test_phase6_contract_round_trip_preserves_mode_and_policy_ids(
     reparsed = parse_execution_approval_contract(contract.as_payload())
     assert reparsed.approval_mode is ApprovalMode.SIMULATE_ONLY
     assert reparsed.policy_rule_ids == request.policy_rule_ids
+
+
+def test_phase6_request_rejects_non_boolean_validation_can_proceed_payload() -> None:
+    payload = {
+        "schema_version": "6.0.0",
+        "phase4_schema_version": "4.0.0",
+        "phase5_schema_version": "5.0.0",
+        "route_spec_schema_version": "4.0.0",
+        "validation_decision": "PASS",
+        "validation_can_proceed": "false",
+        "fallback_decision": "USE_PRIMARY",
+        "phase5_terminal_status": "USE_PRIMARY",
+        "route_profile": "IMPLEMENTATION",
+        "target_tool_id": "tool-implementation",
+        "dominant_rule_id": "RULE-1",
+        "required_capabilities": ["cap.read"],
+        "policy_schema_version": "4.0.0",
+        "policy_rule_ids": ["POLICY-RULE-001"],
+    }
+
+    assert "PHASE6-CONTRACT-04"
+    with pytest.raises(Phase6ContractError) as exc_info:
+        parse_execution_request(payload)
+    assert exc_info.value.code is ExecutionDecisionCode.APPROVAL_INVALID
+    assert exc_info.value.evidence_path == "execution_request.validation_can_proceed"
