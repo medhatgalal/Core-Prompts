@@ -2,68 +2,66 @@
 
 ## What This Is
 
-Local Intent Sanitizer is a deterministic, boundary-first intent-processing pipeline for local input files. v1.0 shipped the full path from local ingestion through output/help/runtime preflight with strict no-execution guarantees. v1.2 closed traceability and governance debt by locking `EXT-01` and `EXT-02` as explicit defer decisions.
+Local Intent Sanitizer is a deterministic, boundary-first intent-processing pipeline that now supports both local files and policy-admitted public raw-text URLs. It converts admitted sources into structured intent artifacts, validates downstream eligibility, and supports simulate-first controlled execution through a hermetic, explicitly approved Phase 6 control plane.
 
 ## Core Value
 
-Convert local and policy-admitted source content into safe, deterministic intent artifacts that preserve explicit boundaries, traceability, and stable decision semantics.
-
-## Current Milestone: v1.3 Controlled Extension Re-entry
-
-**Goal:** Re-enter `EXT-01` and `EXT-02` through deterministic, fail-closed policy contracts and staged rollout gates without regressing existing local-only guarantees.
-
-**Target features:**
-- `EXT-01`: policy-gated URL ingestion via canonical normalization and immutable snapshot ingestion.
-- `EXT-02`: simulate-first downstream execution gating with explicit approval contracts and closed capability mapping.
-- Cross-cutting deterministic governance: versioned policy artifacts, typed evidence paths, and contradiction-free planning traceability.
+Convert source content into safe, deterministic intent artifacts that preserve explicit boundaries, traceability, and stable decision semantics.
 
 ## Current State
 
-- v1.2 Next shipped on 2026-03-06.
-- Phase 4 traceability parity (`TRACE-01/02/03`) is closed with deterministic, auditable evidence.
-- Extension governance decisions were finalized in v1.2 as `EXT-01=defer`, `EXT-02=defer`.
-- v1.3 is now active to evaluate controlled extension re-entry using explicit re-entry criteria.
+- v1.0 shipped the local-only path from ingestion through output/help/runtime preflight with strict no-execution guarantees.
+- v1.2 closed traceability and governance debt and established explicit defer decisions for `EXT-01` and `EXT-02`.
+- v1.3 shipped controlled extension re-entry:
+  - policy-first extension contracts and boundary gates
+  - deterministic URL ingestion with immutable snapshots and provenance
+  - simulate-first controlled execution with approvals, closed registry mapping, deterministic journal evidence, and hermetic adapter behavior
+- Real-source validation now includes:
+  - accepted public prompt/spec-style URL flows
+  - rejected non-intent-bearing public raw-text sources
+  - one-URL end-to-end operator runner via `scripts/run-url-e2e.py`
 
 ## Requirements
 
 ### Validated
 
-- ✓ Deterministic local intent pipeline from ingestion through output/help/runtime preflight shipped in v1.0.
-- ✓ Nyquist validation closure for archived phases 01, 02, 03, and 05.
-- ✓ `TRACE-01` / `TRACE-02` / `TRACE-03` completed in Phase 6 with explicit deterministic evidence parity.
-- ✓ `EXTG-01` and `EXTG-02` completed in Phase 7 with synchronized defer/defer governance language.
+- ✓ Deterministic local-only intent pipeline shipped in v1.0.
+- ✓ Traceability parity and governance closure shipped in v1.2.
+- ✓ `XDET-01`, `XDET-02`, `XBND-01`, and `XBND-02` shipped in v1.3.
+- ✓ `EXT1-01` through `EXT1-05` shipped in v1.3.
+- ✓ `EXT2-01` through `EXT2-05` shipped in v1.3.
 
 ### Active
 
-- `EXT1-*`: Deterministic URL-ingestion re-entry requirements for policy admission, snapshot provenance, and fail-closed ingestion behavior.
-- `EXT2-*`: Controlled execution re-entry requirements for approval contracts, closed registry mapping, and deterministic simulation-first behavior.
-- `XDET-*` / `XBND-*`: Cross-cutting determinism and boundary invariants for extension-safe rollout.
+- None. Define the next milestone before adding new active requirements.
 
 ### Out of Scope
 
-- Open-ended autonomous execution without explicit approval and capability contracts.
-- Authenticated browsing, recursive crawling, or dynamic rendering as part of URL ingestion.
-- Runtime policy mutation without versioned and auditable policy artifact updates.
+- Authenticated browsing or secret-passthrough retrieval.
+- Recursive crawling or multi-document expansion beyond explicit future policy work.
+- Autonomous tool selection from free-form model output.
+- Implicit execution fallback when approvals are absent.
+- Runtime policy mutation without versioned artifact updates.
 
 ## Context
 
-- v1.0 and v1.2 milestones are archived under `.planning/milestones/`.
-- v1.3 planning starts from a shipped no-execution baseline and governance-complete defer decisions.
-- Research outputs for v1.3 are captured in `.planning/research/`.
+- Archived milestone records live under `.planning/milestones/`.
+- Release packaging is handled by `scripts/package-surfaces.sh` after build/validate/smoke gates pass.
+- The current shipped baseline includes a reusable end-to-end URL runner for operator understanding and validation.
 
 ## Constraints
 
-- **Determinism:** Identical inputs and policy versions must produce byte-stable decisions and evidence.
-- **Boundary Safety:** No fail-open admission or execution paths; all uncertain states terminate as typed deterministic blocks.
-- **Traceability:** Every requirement must map to exactly one roadmap phase with observable closure criteria.
+- **Determinism:** identical inputs and policy versions must produce byte-stable decisions and evidence.
+- **Boundary Safety:** no fail-open admission or execution paths.
+- **Traceability:** every shipped requirement must map to phase evidence and audit artifacts.
 
 ## Key Decisions
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Start v1.3 with policy-first extension re-entry | Preserve safety while unblocking deferred scope under explicit controls | ✓ Accepted |
-| Sequence phases as contracts -> URL ingestion -> controlled execution | Lowest-risk ordering that limits blast radius and validates evidence chain first | ✓ Accepted |
-| Keep execution simulate-first by default in v1.3 | Avoid accidental side effects until approval and capability gates are proven deterministic | ✓ Accepted |
+| Use policy-first extension re-entry | Preserves safety while reopening deferred capabilities | ✓ Shipped in v1.3 |
+| End URL network behavior at immutable snapshots | Keeps sanitization local and replayable | ✓ Shipped in v1.3 |
+| Keep execution simulate-first by default | Prevents accidental side effects while allowing explicit hermetic proof paths | ✓ Shipped in v1.3 |
 
 ---
-*Last updated: 2026-03-06 at milestone v1.3 kickoff*
+*Last updated: 2026-03-11 after v1.3 shipment*

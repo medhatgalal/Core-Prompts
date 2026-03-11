@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.3 - 2026-03-11
+
+- Shipped controlled extension re-entry for the Local Intent Sanitizer milestone:
+  - shared fail-closed extension contracts and boundary gates
+  - deterministic URL ingestion with canonical normalization, explicit URL policy, immutable snapshots, and provenance propagation
+  - simulate-first controlled execution with exact approval contracts, closed executor registry mapping, deterministic journal evidence, idempotency replay, and hermetic adapter behavior
+- Added real public source validation coverage:
+  - accepted prompt/spec-style raw URL path through Phase 6
+  - rejected non-intent-bearing raw URL path before execution surfaces
+- Added `scripts/run-url-e2e.py` so one URL can be run through ingest, summary, uplift, routing, Phase 4, Phase 5, and Phase 6.
+
 ## 0.2.6 - 2026-03-03
 
 - Anonymized local/private absolute paths in docs and prompts:

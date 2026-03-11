@@ -3,7 +3,7 @@ phase: 10
 slug: ext-02-simulate-first-controlled-execution
 status: ready
 nyquist_compliant: true
-wave_0_complete: false
+wave_0_complete: true
 created: 2026-03-09
 ---
 
@@ -79,4 +79,4 @@ None — all phase requirements have automated targets.
 - [x] Feedback latency target documented
 - [x] `nyquist_compliant: true` set in frontmatter
 
-**Approval:** pending
+**Approval:** complete
