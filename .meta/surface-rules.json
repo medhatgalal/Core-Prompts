@@ -143,7 +143,7 @@
       "surface": "codex",
       "path": ".codex/agents/{slug}.toml",
       "format": "toml",
-      "required_fields": ["name", "description", "system_prompt", "tools"],
+      "required_fields": ["name", "description", "developer_instructions"],
       "match": "filename",
       "ssot_kinds": ["agent"],
       "source_of_truth": [

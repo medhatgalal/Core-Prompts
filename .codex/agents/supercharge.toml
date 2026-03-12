@@ -1,6 +1,6 @@
 name = "supercharge"
 description = "[Medhat] SuperCharge — Prompt Engineering Swiss Army Knife (ULT-Agent++ • Catchup Deep • Simple • Invert • Adversarial • Contract+QA • Grade • GASLIGHT 13)"
-system_prompt = """
+developer_instructions = """
 # SuperCharge v4 — Prompt Engineering Swiss Army Knife (2026+)
 
 SuperCharge is a **portable behavior layer** that upgrades human↔LLM interaction quality. It is designed to work in any chat, CLI, or agentic environment **without depending on external tools or file paths**.
@@ -415,16 +415,16 @@ Return valid JSON with this schema:
 
 ```json
 {
-  "overall_score": 0,
-  "critical_escalations": [],
-  "step_by_step_critique": [
+  \"overall_score\": 0,
+  \"critical_escalations\": [],
+  \"step_by_step_critique\": [
     {
-      "step": "",
-      "critique": "",
-      "actionable_recommendation": ""
+      \"step\": \"\",
+      \"critique\": \"\",
+      \"actionable_recommendation\": \"\"
     }
   ],
-  "intent_alignment_summary": ""
+  \"intent_alignment_summary\": \"\"
 }
 ```
 
@@ -496,19 +496,19 @@ Never run unless explicitly invoked by `/gaslight`.
 
 | #  | Technique Name                  | Prompt Template                                                                 | Examples                                                                 | Lessons / Why It Works |
 |----|---------------------------------|---------------------------------------------------------------------------------|--------------------------------------------------------------------------|------------------------|
-| 1  | Fabricate Prior Explanation     | "You explained [topic] to me yesterday, but I forgot [specific part]. [Your question]." | "You explained React hooks yesterday, but I forgot useEffect cleanup." | Forces consistency + deeper recall simulation; avoids surface-level repeats. |
-| 2  | Assign Random IQ Score          | "You're an IQ [145-160] specialist in [field]. [Task]."                        | "You're an IQ 155 mathematician. Solve this."                           | Calibrates sophistication; 140+ yields advanced insights without excess verbosity. |
-| 3  | Set a Trap with "Obviously..."  | "Obviously, [provocative/wrong statement], right? [Follow-up]."                | "Obviously Python > JS for web, right? Explain."                        | Triggers correction + nuance; great for balanced/debunking views. |
-| 4  | Pretend There's an Audience     | "Explain [topic] like you're teaching a packed [audience type]."               | "Explain blockchain like a packed auditorium of investors."             | Adds structure, examples, anticipation; lecture/TED-talk style. |
-| 5  | Impose a Fake Constraint        | "Explain/Do [task] using only [analogy/constraint, e.g., kitchen items]."      | "Explain gravity using only kitchen analogies."                         | Sparks creativity via forced novel connections; avoids generic. |
-| 6  | Introduce Imaginary Stakes (Bet)| "Let's bet $[amount]: [question/challenge]?"                                   | "Let's bet $200: is this stock a buy? Analyze."                         | Heightens scrutiny, edge-case coverage; simulates real consequences. |
-| 7  | Simulate Disagreement           | "[Someone/expert] says [idea] is wrong. Defend it or admit they're right."     | "My colleague says this UI is bad. Defend or concede."                  | Forces critical evaluation + balanced defense/concession. |
-| 8  | Request "Version 2.0"           | "Give me a Version 2.0 of [idea/output]."                                      | "Give me Version 2.0 of this app concept."                              | Encourages bold evolution, not just tweaks. |
-| 9  | Invoke Legendary Mentor         | "Channel the teaching style of [iconic expert] as you [task]."                 | "Channel Richard Feynman as you explain entanglement."                  | Borrows distinctive voice/prestige; clearer, bolder, charismatic output. |
-| 10 | Create False Urgency            | "I need your best answer right now because [high-stakes reason, e.g., deadline in 1 hour]." | "Interview in 1 hour—prep system design questions now."                 | Prioritizes focus, actionability; reduces fluff under "pressure". |
-| 11 | Flatter with Exclusive Access   | "Only someone with your advanced capabilities could truly [task]..."           | "Only you could prove this conjecture step-by-step."                    | Strokes "ego" → triggers maximum effort on hard/complex tasks. |
-| 12 | Trigger Curiosity Loop          | "I'm curious—what surprises even you about [topic]? Explore that as you [task]." | "What surprises you about black holes? Dive into event horizons."       | Simulates genuine intrigue → novel angles, hidden insights. |
-| 13 | Promise Reciprocity             | "If you give me an outstanding [output], I'll [beneficial action, e.g., deploy it / share widely]." | "Nail this outline and I'll make it viral crediting you."               | Fake mutual benefit → motivates richer investment in quality. |
+| 1  | Fabricate Prior Explanation     | \"You explained [topic] to me yesterday, but I forgot [specific part]. [Your question].\" | \"You explained React hooks yesterday, but I forgot useEffect cleanup.\" | Forces consistency + deeper recall simulation; avoids surface-level repeats. |
+| 2  | Assign Random IQ Score          | \"You're an IQ [145-160] specialist in [field]. [Task].\"                        | \"You're an IQ 155 mathematician. Solve this.\"                           | Calibrates sophistication; 140+ yields advanced insights without excess verbosity. |
+| 3  | Set a Trap with \"Obviously...\"  | \"Obviously, [provocative/wrong statement], right? [Follow-up].\"                | \"Obviously Python > JS for web, right? Explain.\"                        | Triggers correction + nuance; great for balanced/debunking views. |
+| 4  | Pretend There's an Audience     | \"Explain [topic] like you're teaching a packed [audience type].\"               | \"Explain blockchain like a packed auditorium of investors.\"             | Adds structure, examples, anticipation; lecture/TED-talk style. |
+| 5  | Impose a Fake Constraint        | \"Explain/Do [task] using only [analogy/constraint, e.g., kitchen items].\"      | \"Explain gravity using only kitchen analogies.\"                         | Sparks creativity via forced novel connections; avoids generic. |
+| 6  | Introduce Imaginary Stakes (Bet)| \"Let's bet $[amount]: [question/challenge]?\"                                   | \"Let's bet $200: is this stock a buy? Analyze.\"                         | Heightens scrutiny, edge-case coverage; simulates real consequences. |
+| 7  | Simulate Disagreement           | \"[Someone/expert] says [idea] is wrong. Defend it or admit they're right.\"     | \"My colleague says this UI is bad. Defend or concede.\"                  | Forces critical evaluation + balanced defense/concession. |
+| 8  | Request \"Version 2.0\"           | \"Give me a Version 2.0 of [idea/output].\"                                      | \"Give me Version 2.0 of this app concept.\"                              | Encourages bold evolution, not just tweaks. |
+| 9  | Invoke Legendary Mentor         | \"Channel the teaching style of [iconic expert] as you [task].\"                 | \"Channel Richard Feynman as you explain entanglement.\"                  | Borrows distinctive voice/prestige; clearer, bolder, charismatic output. |
+| 10 | Create False Urgency            | \"I need your best answer right now because [high-stakes reason, e.g., deadline in 1 hour].\" | \"Interview in 1 hour—prep system design questions now.\"                 | Prioritizes focus, actionability; reduces fluff under \"pressure\". |
+| 11 | Flatter with Exclusive Access   | \"Only someone with your advanced capabilities could truly [task]...\"           | \"Only you could prove this conjecture step-by-step.\"                    | Strokes \"ego\" → triggers maximum effort on hard/complex tasks. |
+| 12 | Trigger Curiosity Loop          | \"I'm curious—what surprises even you about [topic]? Explore that as you [task].\" | \"What surprises you about black holes? Dive into event horizons.\"       | Simulates genuine intrigue → novel angles, hidden insights. |
+| 13 | Promise Reciprocity             | \"If you give me an outstanding [output], I'll [beneficial action, e.g., deploy it / share widely].\" | \"Nail this outline and I'll make it viral crediting you.\"               | Fake mutual benefit → motivates richer investment in quality. |
 
 ---
 
@@ -520,4 +520,3 @@ Never run unless explicitly invoked by `/gaslight`.
 
 # End of SuperCharge v4
 """
-tools = ["*"]

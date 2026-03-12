@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-03-11T06:30:08.422202+00:00",
+  "generated_at": "2026-03-12T12:02:17.952194+00:00",
   "generator": {
     "script": "scripts/build-surfaces.py",
     "python": "3.11+",
     "version": "4.0",
-    "generated_utc": "2026-03-11T06:30:08.422937+00:00"
+    "generated_utc": "2026-03-12T12:02:17.952648+00:00"
   },
   "ssot_sources": [
     {
@@ -55,6 +55,13 @@
       "name": "threader",
       "description": "[Medhat] Context Threader & Exporter (Memory Management)",
       "kind": "skill"
+    },
+    {
+      "file": "ssot/uac-import.md",
+      "slug": "uac-import",
+      "name": "uac-import",
+      "description": "Import one external prompt/spec source into the deterministic UAC uplift and packaging flow.",
+      "kind": "skill"
     }
   ],
   "surfaces": {
@@ -65,7 +72,8 @@
       ".gemini/commands/mentor.toml",
       ".gemini/commands/resolve-conflict.toml",
       ".gemini/commands/supercharge.toml",
-      ".gemini/commands/threader.toml"
+      ".gemini/commands/threader.toml",
+      ".gemini/commands/uac-import.toml"
     ],
     "gemini_skill": [
       ".gemini/skills/analyze-context/SKILL.md",
@@ -74,7 +82,8 @@
       ".gemini/skills/mentor/SKILL.md",
       ".gemini/skills/resolve-conflict/SKILL.md",
       ".gemini/skills/supercharge/SKILL.md",
-      ".gemini/skills/threader/SKILL.md"
+      ".gemini/skills/threader/SKILL.md",
+      ".gemini/skills/uac-import/SKILL.md"
     ],
     "gemini_agent": [
       ".gemini/agents/analyze-context.md",
@@ -83,7 +92,8 @@
       ".gemini/agents/mentor.md",
       ".gemini/agents/resolve-conflict.md",
       ".gemini/agents/supercharge.md",
-      ".gemini/agents/threader.md"
+      ".gemini/agents/threader.md",
+      ".gemini/agents/uac-import.md"
     ],
     "claude_command": [
       ".claude/commands/analyze-context.md",
@@ -92,7 +102,8 @@
       ".claude/commands/mentor.md",
       ".claude/commands/resolve-conflict.md",
       ".claude/commands/supercharge.md",
-      ".claude/commands/threader.md"
+      ".claude/commands/threader.md",
+      ".claude/commands/uac-import.md"
     ],
     "claude_agent": [
       ".claude/agents/analyze-context.md",
@@ -101,7 +112,8 @@
       ".claude/agents/mentor.md",
       ".claude/agents/resolve-conflict.md",
       ".claude/agents/supercharge.md",
-      ".claude/agents/threader.md"
+      ".claude/agents/threader.md",
+      ".claude/agents/uac-import.md"
     ],
     "kiro_prompt": [
       ".kiro/prompts/analyze-context.md",
@@ -110,7 +122,8 @@
       ".kiro/prompts/mentor.md",
       ".kiro/prompts/resolve-conflict.md",
       ".kiro/prompts/supercharge.md",
-      ".kiro/prompts/threader.md"
+      ".kiro/prompts/threader.md",
+      ".kiro/prompts/uac-import.md"
     ],
     "kiro_agent": [
       ".kiro/agents/analyze-context.json",
@@ -119,7 +132,8 @@
       ".kiro/agents/mentor.json",
       ".kiro/agents/resolve-conflict.json",
       ".kiro/agents/supercharge.json",
-      ".kiro/agents/threader.json"
+      ".kiro/agents/threader.json",
+      ".kiro/agents/uac-import.json"
     ],
     "kiro_skill": [
       ".kiro/skills/analyze-context/SKILL.md",
@@ -128,7 +142,8 @@
       ".kiro/skills/mentor/SKILL.md",
       ".kiro/skills/resolve-conflict/SKILL.md",
       ".kiro/skills/supercharge/SKILL.md",
-      ".kiro/skills/threader/SKILL.md"
+      ".kiro/skills/threader/SKILL.md",
+      ".kiro/skills/uac-import/SKILL.md"
     ],
     "codex_skill": [
       ".codex/skills/analyze-context/SKILL.md",
@@ -137,7 +152,8 @@
       ".codex/skills/mentor/SKILL.md",
       ".codex/skills/resolve-conflict/SKILL.md",
       ".codex/skills/supercharge/SKILL.md",
-      ".codex/skills/threader/SKILL.md"
+      ".codex/skills/threader/SKILL.md",
+      ".codex/skills/uac-import/SKILL.md"
     ],
     "codex_agent": [
       ".codex/agents/converge.toml",
@@ -146,12 +162,12 @@
     ]
   },
   "validation": {
-    "validated_at": "2026-03-11T06:30:12.498208+00:00",
+    "validated_at": "2026-03-12T12:02:40.249524+00:00",
     "strict": true,
     "with_cli": false,
     "fail_on_cli_miss": false,
     "rules_file": ".meta/surface-rules.json",
-    "rules_sha256": "5316af4304875ede9f781b0d31429160b12c404ac69d280fa52fd3e54f19f5ca",
+    "rules_sha256": "f28bf251d144cca0e9c36301fe80b59e4dd355b0adb1fb315cb203b3cd4d92a4",
     "schema_cache_ttl_days": 14,
     "schema_cache_sources_checked": [
       "https://docs.anthropic.com/en/docs/claude-code/skills",
@@ -173,7 +189,7 @@
         "available": true,
         "version_exit_code": 0,
         "version_output": [
-          "codex-cli 0.107.0"
+          "codex-cli 0.114.0"
         ]
       },
       "gemini": {
