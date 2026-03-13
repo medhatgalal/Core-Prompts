@@ -122,6 +122,50 @@ You want to continue work in another AI/session without losing thread context.
 
 Another model/session can resume work with minimal drift.
 
+## 6) Code Review: Commit Quality Gate Run
+
+### Scenario
+
+You want a pre-merge review that checks whether a commit is correct, scoped properly, and not over-engineered.
+
+### Input
+
+```text
+/code-review
+```
+
+### What a good run includes
+
+- Findings tied directly to the captured `git show` output.
+- Scope and simplicity checks, not just style comments.
+- A clear recommendation to merge or revise.
+
+### Success signal
+
+You know whether the commit is safe to ship without relying on vague approval language.
+
+## 7) Resolve-Conflict: Merge Conflict Planning Run
+
+### Scenario
+
+You have a merge conflict or want to preview one before merging and need a disciplined resolution plan.
+
+### Input
+
+```text
+/resolve-conflict --preview main
+```
+
+### What a good run includes
+
+- Failure modes identified before proposing the merge strategy.
+- A branch-by-branch content analysis with explicit trade-offs.
+- A resolution order plus verification steps before commit/push.
+
+### Success signal
+
+You can resolve the conflict without dropping valuable content or silently choosing between incompatible approaches.
+
 ## Optional Validation Loop
 
 After major prompt/session updates:
@@ -129,5 +173,6 @@ After major prompt/session updates:
 ```bash
 python3 scripts/build-surfaces.py
 python3 scripts/validate-surfaces.py --strict
-python3 scripts/smoke-clis.py --strict
+python3 scripts/smoke-clis.py
+scripts/deploy-surfaces.sh --dry-run --cli all --target "$HOME/tmp/llm-home"
 ```

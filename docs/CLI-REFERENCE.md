@@ -21,16 +21,23 @@ This document defines the generated surfaces, deployment behavior, verification 
 - Script: `scripts/deploy-surfaces.sh`
 - Modes: copy-only, overwrite existing files in place, no symlink creation
 - Symlink handling: if destination file is a symlink, deployment unlinks that path and writes a regular file
+- Shell compatibility: supports macOS system Bash (`/bin/bash` 3.2) and newer Bash releases
 - Flags:
   - `--cli gemini|claude|kiro|codex|all` (default: `all`)
   - `--target PATH` (default: `~`)
   - `--dry-run`
   - `--strict-cli`
+- Availability behavior:
+  - non-strict mode skips unavailable CLIs and exits successfully
+  - `--cli all` with no installed CLIs produces a no-op warning and success summary
+  - `--cli <name> --strict-cli` fails when the selected CLI binary is unavailable
+  - `--cli all --strict-cli` fails on the first missing CLI binary
 
 Examples:
 - Deploy all to home root: `scripts/deploy-surfaces.sh --cli all`
 - Deploy only Kiro to a staging root: `scripts/deploy-surfaces.sh --cli kiro --target "$HOME/tmp/llm-home"`
 - Verify planned writes only: `scripts/deploy-surfaces.sh --dry-run --cli all --target "$HOME/tmp/llm-home"`
+- Legacy wrapper with the same copy-only behavior: `scripts/install-local.sh --cli all --target "$HOME/tmp/llm-home"`
 - Verify managed deployment targets are not symlinks:
   - `python3 - <<'PY' ...` (see README verification snippet)
 
@@ -130,12 +137,21 @@ Verify discovery:
 
 - `analyze-context` stores canonical memory files in `.analyze-context-memory/` at the project root.
 
+## Shipped Skill Notes
+
+- `code-review`
+  - shipped on Codex, Gemini, Claude, and Kiro as a skill/command surface
+  - remains a skill-only surface and is not registered as a Codex sub-agent
+- `resolve-conflict`
+  - shipped on Codex, Gemini, Claude, and Kiro as a skill/command surface
+  - remains a skill-only surface and is not registered as a Codex sub-agent
+
 ## Validation and Release Flow
 
 1. `python3 scripts/sync-surface-specs.py`
 2. `python3 scripts/build-surfaces.py`
-3. `python3 scripts/validate-surfaces.py --strict --with-cli`
-4. `python3 scripts/smoke-clis.py --strict`
+3. `python3 scripts/validate-surfaces.py --strict`
+4. `python3 scripts/smoke-clis.py` when local CLIs are installed
 5. `scripts/deploy-surfaces.sh --dry-run --cli all --target "$HOME/tmp/llm-home"`
 6. `scripts/package-surfaces.sh --version vX.Y.Z`
 
