@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 import re
-from typing import Mapping, Sequence
+from typing import Mapping
 
 from intent_pipeline.intent_structure import extract_intent_structure
 
@@ -49,6 +49,7 @@ class UacAssessment:
     confidence: float
     signals: tuple[str, ...]
     rationale: str
+    scorecard: Mapping[str, int]
     target_systems: tuple[str, ...] = _DEFAULT_TARGET_SYSTEMS
     modernization_focus: tuple[str, ...] = ()
 
@@ -61,6 +62,8 @@ class UacAssessment:
             "confidence": round(self.confidence, 2),
             "signals": list(self.signals),
             "rationale": self.rationale,
+            "scorecard": dict(self.scorecard),
+            "rubric": classification_rubric_payload(),
             "target_systems": list(self.target_systems),
             "modernization_focus": list(self.modernization_focus),
         }
@@ -69,6 +72,7 @@ class UacAssessment:
 def assess_uac_source(
     raw_text: str,
     *,
+    analysis_text: str | None = None,
     source_metadata: Mapping[str, object] | None = None,
     source_hint: str | Path | None = None,
 ) -> UacAssessment:
@@ -78,7 +82,8 @@ def assess_uac_source(
     normalized_source = _normalize_source(source_metadata, source_hint)
     source_path = Path(normalized_source) if source_type == "LOCAL_FILE" else None
     lower_text = raw_text.casefold()
-    structure = extract_intent_structure(raw_text)
+    analysis_basis = analysis_text if isinstance(analysis_text, str) and analysis_text.strip() else raw_text
+    structure = extract_intent_structure(analysis_basis)
 
     signals: list[str] = []
     agent_score = 0
@@ -144,6 +149,14 @@ def assess_uac_source(
     if "usage examples" in lower_text or "output format" in lower_text:
         skill_score += 1
 
+    scorecard = {
+        "agent_score": agent_score,
+        "skill_score": skill_score,
+        "config_score": config_score,
+        "semantic_category_count": semantic_count,
+        "prompt_marker_hits": prompt_marker_hits,
+    }
+
     if agent_score >= skill_score + 2:
         recommended_surface = "agent"
         content_kind = "agent_like"
@@ -205,8 +218,47 @@ def assess_uac_source(
         confidence=confidence,
         signals=tuple(dict.fromkeys(signals)),
         rationale=rationale,
+        scorecard=scorecard,
         modernization_focus=modernization_focus,
     )
+
+
+def classification_rubric_payload() -> dict[str, object]:
+    return {
+        "skill": {
+            "decision_rule": "Choose skill when reusable prompt/workflow structure is stronger than agent/control-plane structure and skill_score >= 3.",
+            "signals": [
+                "explicit objective / in-scope / out-of-scope / constraints / acceptance sections",
+                "workflow or usage framing",
+                "examples or output format sections",
+                "SKILL.md source shape",
+            ],
+        },
+        "agent": {
+            "decision_rule": "Choose agent when agent_score >= skill_score + 2.",
+            "signals": [
+                "kind: agent or role: agent",
+                "max_turns or explicit tool/control-plane metadata",
+                "sub-agent or agentSpawn language",
+                "system-prompt or developer_instructions framing",
+            ],
+        },
+        "manual_review": {
+            "decision_rule": "Choose manual_review for config-only, low-structure, or mixed-shape sources.",
+            "signals": [
+                "config markers without prompt structure",
+                "missing semantic sections",
+                "ambiguous or mixed prompt/config content",
+            ],
+        },
+        "scoring": {
+            "agent_score": "weighted sum of agent/control-plane markers",
+            "skill_score": "weighted sum of prompt/workflow and semantic-structure markers",
+            "config_score": "weighted sum of config-only markers",
+            "semantic_category_count": "count of populated semantic buckets from deterministic intent extraction",
+            "prompt_marker_hits": "count of coarse prompt marker matches",
+        },
+    }
 
 
 def _normalize_metadata_value(
@@ -239,4 +291,4 @@ def _normalize_source(
     return str(source_hint).strip() or "unknown"
 
 
-__all__ = ["UacAssessment", "assess_uac_source"]
+__all__ = ["UacAssessment", "assess_uac_source", "classification_rubric_payload"]

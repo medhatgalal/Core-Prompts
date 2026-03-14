@@ -140,14 +140,18 @@ Primary user-facing intake surface:
 
 Expected usage shape:
 - local file path source
+- local folder path source
 - raw public HTTPS URL source
+- GitHub repo/folder URL source
 
 Operational contract:
 - ingest via deterministic Phase 1 pipeline
 - uplift objective/scope/constraints
 - run semantic routing
 - recommend `skill`, `agent`, or `manual_review`
+- aggregate multi-file imports into a collection recommendation when appropriate
 - output packaging guidance for Codex, Gemini, Claude, and Kiro
+- expose an inspectable rubric and scorecard for the classification decision
 
 Important boundary:
 - the internal Python runners under `scripts/` are verification/operator surfaces
