@@ -154,13 +154,14 @@ def write_codex_skill(slug: str, desc: str, body: str):
 def write_codex_agent(slug: str, desc: str, body: str, tools: list[str]):
     path = CODEX_AGENT_DIR / f'{slug}.toml'
     esc_desc = toml_escape_inline(desc)
-    system_prompt = body.replace('\\', '\\\\')
+    instructions = body.replace('\\', '\\\\').replace('"', '\\"')
     txt = (
         f'name = "{slug}"\n'
         f'description = "{esc_desc}"\n'
-        f'system_prompt = """\n{system_prompt}\n"""\n'
-        f'tools = {to_toml_array(tools)}\n'
+        f'developer_instructions = """\n{instructions}\n"""\n'
     )
+    if tools:
+        txt += f'tools = {to_toml_array(tools)}\n'
     path.write_text(txt, encoding='utf-8')
     return str(path.relative_to(ROOT))
 
@@ -229,7 +230,7 @@ def is_agent_entry(front: dict[str, str]) -> bool:
 def parse_tools(front: dict[str, str]) -> list[str]:
     raw = (front.get('agent_tools') or front.get('tools') or '').strip()
     if not raw:
-        return ['*']
+        return []
     normalized = raw.strip('[]')
     tools = [part.strip().strip('"').strip("'") for part in normalized.split(',') if part.strip()]
     return tools or ['*']

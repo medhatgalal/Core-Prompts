@@ -122,7 +122,30 @@ You want to continue work in another AI/session without losing thread context.
 
 Another model/session can resume work with minimal drift.
 
-## 6) Code Review: Commit Quality Gate Run
+## 6) UAC Import: External Prompt Intake Run
+
+### Scenario
+
+You found a prompt/spec file outside the repo and want a deterministic answer about how it should be packaged.
+
+### Input
+
+```text
+Use uac-import on `/absolute/path/to/prompt.md`.
+```
+
+### What a good run includes
+
+- Clean summary of the imported source.
+- Uplifted objective/scope extraction.
+- Skill vs agent recommendation with explicit rationale.
+- Clear target-system packaging guidance.
+
+### Success signal
+
+You know whether to ship the source as a skill, agent, or manual-review item before editing any generated surfaces.
+
+## 7) Code Review: Commit Quality Gate Run
 
 ### Scenario
 
@@ -144,7 +167,7 @@ You want a pre-merge review that checks whether a commit is correct, scoped prop
 
 You know whether the commit is safe to ship without relying on vague approval language.
 
-## 7) Resolve-Conflict: Merge Conflict Planning Run
+## 8) Resolve-Conflict: Merge Conflict Planning Run
 
 ### Scenario
 

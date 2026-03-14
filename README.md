@@ -11,6 +11,7 @@ Core-Prompts is a practical prompt system for people who use AI for writing, pla
 - Get senior-style guidance for decisions and execution.
 - Run long-form analysis without losing context.
 - Export clean context handoffs between AI sessions and tools.
+- Import one external prompt/spec source and get deterministic UAC classification and packaging guidance.
 
 ### Included Skills (Brief)
 
@@ -21,6 +22,7 @@ Core-Prompts is a practical prompt system for people who use AI for writing, pla
 - `code-review`: commit review with scope control and over-engineering detection.
 - `resolve-conflict`: structured merge-conflict analysis and resolution planning.
 - `threader`: thread transcript and context export for handoffs.
+- `uac-import`: ingest one local file or raw URL, classify it, uplift it, and recommend the right target surface.
 
 ## Examples (Usage + Expected Output)
 
@@ -125,6 +127,20 @@ Use analyze-context to audit all ssot/*.md files for drift.
 - Transcript export file when supported.
 - Safe fallback output when file export is unavailable.
 - Chronology preserved for reliable handoff.
+
+### `uac-import`
+
+**Run**
+
+```text
+Use uac-import on `/absolute/path/to/prompt.md`.
+```
+
+**Expected output**
+
+- Deterministic source summary and uplift.
+- Skill vs agent recommendation with rationale.
+- Target-system packaging guidance for Codex, Gemini, Claude, and Kiro.
 
 ## Installation
 

@@ -133,6 +133,26 @@ Verify discovery:
 - `codex --help` and invoke skill by name in a session.
 - For sub-agents, verify `~/.codex/config.toml` includes `[agents.<slug>]` entries with `config_file` paths.
 
+## UAC Import Surface
+
+Primary user-facing intake surface:
+- `uac-import`
+
+Expected usage shape:
+- local file path source
+- raw public HTTPS URL source
+
+Operational contract:
+- ingest via deterministic Phase 1 pipeline
+- uplift objective/scope/constraints
+- run semantic routing
+- recommend `skill`, `agent`, or `manual_review`
+- output packaging guidance for Codex, Gemini, Claude, and Kiro
+
+Important boundary:
+- the internal Python runners under `scripts/` are verification/operator surfaces
+- the user-facing surface is the generated CLI/skill layer from `ssot/uac-import.md`
+
 ## Skill-specific Memory Convention
 
 - `analyze-context` stores canonical memory files in `.analyze-context-memory/` at the project root.
