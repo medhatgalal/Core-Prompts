@@ -84,32 +84,15 @@ if [[ ! -f ".meta/manifest.json" ]]; then
   exit 1
 fi
 
-if ! mapfile -t SLUGS < <(python3 - <<'PY'
+read_manifest_lines() {
+  local mode="$1"
+  python3 - "$mode" <<'PY'
 import json
+import sys
 from pathlib import Path
-try:
-    manifest = json.loads(Path(".meta/manifest.json").read_text(encoding="utf-8"))
-except Exception as exc:
-    raise SystemExit(f"manifest_read_error: {exc}")
 
-for entry in manifest.get("ssot_sources", []):
-    slug = entry.get("slug")
-    if slug:
-        print(slug)
-PY
-); then
-  echo "error: unreadable .meta/manifest.json"
-  exit 1
-fi
+mode = sys.argv[1]
 
-if [[ ${#SLUGS[@]} -eq 0 ]]; then
-  echo "error: no managed slugs found in .meta/manifest.json"
-  exit 1
-fi
-
-if ! mapfile -t AGENT_SLUGS < <(python3 - <<'PY'
-import json
-from pathlib import Path
 try:
     manifest = json.loads(Path(".meta/manifest.json").read_text(encoding="utf-8"))
 except Exception as exc:
@@ -118,13 +101,39 @@ except Exception as exc:
 for entry in manifest.get("ssot_sources", []):
     slug = entry.get("slug")
     kind = (entry.get("kind") or "").strip().lower()
-    if slug and kind == "agent":
+    if not slug:
+        continue
+    if mode == "slugs":
+        print(slug)
+    elif mode == "agents" and kind == "agent":
         print(slug)
 PY
-); then
+}
+
+if ! SLUG_LINES="$(read_manifest_lines "slugs")"; then
+  echo "error: unreadable .meta/manifest.json"
+  exit 1
+fi
+
+SLUGS=()
+while IFS= read -r slug; do
+  [[ -n "$slug" ]] && SLUGS+=("$slug")
+done <<< "$SLUG_LINES"
+
+if [[ ${#SLUGS[@]} -eq 0 ]]; then
+  echo "error: no managed slugs found in .meta/manifest.json"
+  exit 1
+fi
+
+if ! AGENT_SLUG_LINES="$(read_manifest_lines "agents")"; then
   echo "error: unreadable .meta/manifest.json for agent slugs"
   exit 1
 fi
+
+AGENT_SLUGS=()
+while IFS= read -r slug; do
+  [[ -n "$slug" ]] && AGENT_SLUGS+=("$slug")
+done <<< "$AGENT_SLUG_LINES"
 
 is_cli_available() {
   local cli="$1"

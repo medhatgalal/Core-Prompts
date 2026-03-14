@@ -19,6 +19,8 @@ Core-Prompts is a practical prompt system for people who use AI for writing, pla
 - `converge`: synthesis engine for combining multiple sources into one decision-ready output.
 - `mentor`: structured guidance for planning, prioritization, and de-risking.
 - `analyze-context`: iterative analysis workflow with memory tracking for big scopes.
+- `code-review`: commit review with scope control and over-engineering detection.
+- `resolve-conflict`: structured merge-conflict analysis and resolution planning.
 - `threader`: thread transcript and context export for handoffs.
 - `uac-import`: ingest one local file or raw URL, classify it, uplift it, and recommend the right target surface.
 
@@ -84,6 +86,34 @@ Use analyze-context to audit all ssot/*.md files for drift.
 - Item-by-item progress tracking.
 - Final findings and recommended fixes.
 
+### `code-review`
+
+**Run**
+
+```text
+/code-review
+```
+
+**Expected output**
+
+- Findings grounded in the actual `git show` diff.
+- Scope-creep and over-engineering warnings when the change is too broad.
+- A merge-readiness recommendation with concrete fixes when needed.
+
+### `resolve-conflict`
+
+**Run**
+
+```text
+/resolve-conflict --preview main
+```
+
+**Expected output**
+
+- Failure-mode-first conflict analysis.
+- A logical merge order and verification checklist.
+- Explicit decision points when the branches contain incompatible guidance.
+
 ### `threader`
 
 **Run**
@@ -126,6 +156,8 @@ Optional deployment to local CLI homes:
 ```bash
 scripts/deploy-surfaces.sh --cli all
 ```
+
+`scripts/deploy-surfaces.sh` and `scripts/install-local.sh` are safe in partial or empty CLI environments: in non-strict mode they skip unavailable CLIs, print a summary, and exit successfully.
 
 ## Quick AI Handoff Snippet
 

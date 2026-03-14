@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.3.1 - 2026-03-13
+
+- Hardened install/deploy behavior for partial CLI environments:
+  - removed the Bash 4+ `mapfile` dependency from `scripts/deploy-surfaces.sh`
+  - verified copy-only deployment works under macOS system Bash
+  - kept non-strict mode as a safe no-op when selected CLIs are unavailable
+- Added deployment/install integration coverage for:
+  - no-CLI, partial-CLI, and strict missing-CLI scenarios
+  - Codex agent registration boundaries
+  - wrapper parity between `scripts/install-local.sh` and `scripts/deploy-surfaces.sh`
+- Updated docs to ship and explain the new SSOT skills:
+  - `code-review`
+  - `resolve-conflict`
+  - clarified that both remain skill-only surfaces and are not Codex sub-agents
+
 ## 1.3 - 2026-03-11
 
 - Shipped controlled extension re-entry for the Local Intent Sanitizer milestone:
