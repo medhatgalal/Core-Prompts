@@ -126,7 +126,7 @@ Another model/session can resume work with minimal drift.
 
 ### Scenario
 
-You found a prompt/spec file outside the repo and want a deterministic answer about how it should be packaged.
+You found prompt/spec material outside the repo and want a deterministic answer about how it should be packaged.
 
 ### Input
 
@@ -134,11 +134,16 @@ You found a prompt/spec file outside the repo and want a deterministic answer ab
 Use uac-import on `/absolute/path/to/prompt.md`.
 ```
 
+```text
+Use uac-import on `https://github.com/harish-garg/gemini-cli-prompt-library/tree/main/commands/architecture`.
+```
+
 ### What a good run includes
 
-- Clean summary of the imported source.
+- Clean summary of each imported source.
 - Uplifted objective/scope extraction.
 - Skill vs agent recommendation with explicit rationale.
+- Collection-level recommendation when multiple files belong under one roof.
 - Clear target-system packaging guidance.
 
 ### Success signal
