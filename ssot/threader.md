@@ -3,6 +3,7 @@ description: '[Medhat] Context Threader & Exporter (Memory Management)'
 ---
 ---
 name: "threader"
+capability_type: "skill"
 description: "[Medhat] Context Threader & Exporter (Memory Management)"
 ---
 # THREADER — Full-Thread Transcript Exporter (Introspective / Recall-Based) — v2.0 (2026-01-10)
@@ -231,4 +232,3 @@ Before final output:
 ---
 
 ## END
-

@@ -24,6 +24,7 @@ def test_uac_import_local_file_flow(tmp_path: Path) -> None:
 
     payload = json.loads(result.stdout)
     assert payload["status"] == "accepted"
+    assert payload["uac"]["capability_type"] == "skill"
     assert payload["uac"]["recommended_surface"] == "skill"
     assert payload["source"]["normalized_source"] == str(sample.resolve())
     assert payload["routing"]["decision"] in {"PASS_ROUTE", "NEEDS_REVIEW"}
@@ -97,3 +98,31 @@ def test_uac_import_can_emit_rubric(tmp_path: Path) -> None:
     assert "classification_rubric" in payload
     assert "skill" in payload["classification_rubric"]
     assert "agent" in payload["classification_rubric"]
+
+
+def test_uac_import_audit_mode_returns_table_and_items() -> None:
+    result = subprocess.run(
+        [sys.executable, str(ROOT / "scripts" / "uac-import.py"), "--mode", "audit"],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+
+    payload = json.loads(result.stdout)
+    assert payload["mode"] == "audit"
+    assert "audit_table" in payload
+    assert payload["summary"]["entry_count"] >= 1
+
+
+def test_uac_import_explain_mode_returns_deployment_matrix() -> None:
+    result = subprocess.run(
+        [sys.executable, str(ROOT / "scripts" / "uac-import.py"), "--mode", "explain"],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+
+    payload = json.loads(result.stdout)
+    assert payload["mode"] == "explain"
+    assert "deployment_matrix" in payload
+    assert "both" in payload["deployment_matrix"]["capability_types"]

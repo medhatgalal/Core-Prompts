@@ -4,6 +4,7 @@ description: '[ScottP] Git commit review with scope control and over-engineering
 ---
 name: "code-review"
 kind: "skill"
+capability_type: "skill"
 description: "[ScottP] Git commit review with scope control and over-engineering detection"
 ---
 # Code Review — Git Commit Quality Gate

@@ -1,6 +1,7 @@
 ---
 name: supercharge
 kind: agent
+capability_type: both
 version: v4.0
 description: "[Medhat] SuperCharge — Prompt Engineering Swiss Army Knife (ULT-Agent++ • Catchup Deep • Simple • Invert • Adversarial • Contract+QA • Grade • GASLIGHT 13)"
 ---

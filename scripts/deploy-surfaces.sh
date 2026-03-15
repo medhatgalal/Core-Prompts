@@ -84,57 +84,6 @@ if [[ ! -f ".meta/manifest.json" ]]; then
   exit 1
 fi
 
-read_manifest_lines() {
-  local mode="$1"
-  python3 - "$mode" <<'PY'
-import json
-import sys
-from pathlib import Path
-
-mode = sys.argv[1]
-
-try:
-    manifest = json.loads(Path(".meta/manifest.json").read_text(encoding="utf-8"))
-except Exception as exc:
-    raise SystemExit(f"manifest_read_error: {exc}")
-
-for entry in manifest.get("ssot_sources", []):
-    slug = entry.get("slug")
-    kind = (entry.get("kind") or "").strip().lower()
-    if not slug:
-        continue
-    if mode == "slugs":
-        print(slug)
-    elif mode == "agents" and kind == "agent":
-        print(slug)
-PY
-}
-
-if ! SLUG_LINES="$(read_manifest_lines "slugs")"; then
-  echo "error: unreadable .meta/manifest.json"
-  exit 1
-fi
-
-SLUGS=()
-while IFS= read -r slug; do
-  [[ -n "$slug" ]] && SLUGS+=("$slug")
-done <<< "$SLUG_LINES"
-
-if [[ ${#SLUGS[@]} -eq 0 ]]; then
-  echo "error: no managed slugs found in .meta/manifest.json"
-  exit 1
-fi
-
-if ! AGENT_SLUG_LINES="$(read_manifest_lines "agents")"; then
-  echo "error: unreadable .meta/manifest.json for agent slugs"
-  exit 1
-fi
-
-AGENT_SLUGS=()
-while IFS= read -r slug; do
-  [[ -n "$slug" ]] && AGENT_SLUGS+=("$slug")
-done <<< "$AGENT_SLUG_LINES"
-
 is_cli_available() {
   local cli="$1"
   case "$cli" in
@@ -177,9 +126,10 @@ if [[ ${#TARGETS[@]} -eq 0 ]]; then
   exit 0
 fi
 
+echo "Target CLIs: ${TARGETS[*]}"
+
 COPIED=0
 MISSING_SOURCE=0
-SKIPPED_CLI=0
 REPLACED_SYMLINK=0
 
 copy_file() {
@@ -215,51 +165,101 @@ copy_file() {
     echo "COPIED $src -> $dst"
     COPIED=$((COPIED + 1))
   else
-    # Non-fatal no-op when source and destination refer to the same file.
     echo "COPIED $src -> $dst (unchanged)"
   fi
   return 0
 }
 
-deploy_gemini() {
-  local slug="$1"
-  copy_file "$REPO_ROOT/.gemini/skills/$slug/SKILL.md" "$TARGET_ROOT/.gemini/skills/$slug/SKILL.md" || return 1
-  copy_file "$REPO_ROOT/.gemini/agents/$slug.md" "$TARGET_ROOT/.gemini/agents/$slug.md" || return 1
-  copy_file "$REPO_ROOT/.gemini/commands/$slug.toml" "$TARGET_ROOT/.gemini/commands/$slug.toml" || return 1
+read_copy_plan() {
+  python3 - "$REPO_ROOT" "$TARGET_ROOT" "${TARGETS[@]}" <<'PY'
+import json
+import sys
+from pathlib import Path
+
+repo_root = Path(sys.argv[1]).resolve()
+target_root = Path(sys.argv[2]).resolve()
+selected = set(sys.argv[3:])
+manifest = json.loads((repo_root / '.meta' / 'manifest.json').read_text(encoding='utf-8'))
+
+path_templates = {
+    'gemini_command': '.gemini/commands/{slug}.toml',
+    'gemini_skill': '.gemini/skills/{slug}/SKILL.md',
+    'gemini_agent': '.gemini/agents/{slug}.md',
+    'claude_command': '.claude/commands/{slug}.md',
+    'claude_agent': '.claude/agents/{slug}.md',
+    'kiro_prompt': '.kiro/prompts/{slug}.md',
+    'kiro_skill': '.kiro/skills/{slug}/SKILL.md',
+    'kiro_agent': '.kiro/agents/{slug}.json',
+    'codex_skill': '.codex/skills/{slug}/SKILL.md',
+    'codex_agent': '.codex/agents/{slug}.toml',
+}
+surface_cli = {
+    'gemini_command': 'gemini',
+    'gemini_skill': 'gemini',
+    'gemini_agent': 'gemini',
+    'claude_command': 'claude',
+    'claude_agent': 'claude',
+    'kiro_prompt': 'kiro',
+    'kiro_skill': 'kiro',
+    'kiro_agent': 'kiro',
+    'codex_skill': 'codex',
+    'codex_agent': 'codex',
+}
+for entry in manifest.get('ssot_sources', []):
+    slug = entry.get('slug')
+    if not slug:
+        continue
+    for surface_name in entry.get('expected_surface_names', []):
+        cli = surface_cli[surface_name]
+        if cli not in selected:
+            continue
+        rel = path_templates[surface_name].format(slug=slug)
+        print(f"{repo_root / rel}\t{target_root / rel}\t{surface_name}\t{slug}")
+PY
 }
 
-deploy_claude() {
-  local slug="$1"
-  copy_file "$REPO_ROOT/.claude/agents/$slug.md" "$TARGET_ROOT/.claude/agents/$slug.md" || return 1
-  copy_file "$REPO_ROOT/.claude/commands/$slug.md" "$TARGET_ROOT/.claude/commands/$slug.md" || return 1
+read_codex_agents() {
+  python3 - <<'PY'
+import json
+from pathlib import Path
+manifest = json.loads(Path('.meta/manifest.json').read_text(encoding='utf-8'))
+for entry in manifest.get('ssot_sources', []):
+    if 'codex_agent' in set(entry.get('expected_surface_names', [])):
+        print(entry['slug'])
+PY
 }
 
-deploy_kiro() {
-  local slug="$1"
-  copy_file "$REPO_ROOT/.kiro/skills/$slug/SKILL.md" "$TARGET_ROOT/.kiro/skills/$slug/SKILL.md" || return 1
-  copy_file "$REPO_ROOT/.kiro/agents/$slug.json" "$TARGET_ROOT/.kiro/agents/$slug.json" || return 1
-  copy_file "$REPO_ROOT/.kiro/prompts/$slug.md" "$TARGET_ROOT/.kiro/prompts/$slug.md" || return 1
-}
+COPY_LINES="$(read_copy_plan)"
+if [[ -z "$COPY_LINES" ]]; then
+  echo "warning: nothing to deploy for selected CLI targets"
+  echo "SUMMARY copied=0 missing_source=0 skipped_cli=0 replaced_symlink=0"
+  exit 0
+fi
 
-deploy_codex() {
-  local slug="$1"
-  copy_file "$REPO_ROOT/.codex/skills/$slug/SKILL.md" "$TARGET_ROOT/.codex/skills/$slug/SKILL.md" || return 1
-  if [[ " ${AGENT_SLUGS[*]} " == *" $slug "* ]]; then
-    copy_file "$REPO_ROOT/.codex/agents/$slug.toml" "$TARGET_ROOT/.codex/agents/$slug.toml" || return 1
-  fi
-}
+SLUGS="$(python3 - <<'PY'
+import json
+from pathlib import Path
+manifest = json.loads(Path('.meta/manifest.json').read_text(encoding='utf-8'))
+print(' '.join(sorted(entry['slug'] for entry in manifest.get('ssot_sources', []) if entry.get('slug'))))
+PY
+)"
+echo "Deploying managed slugs: $SLUGS"
+
+while IFS=$'\t' read -r src dst surface slug; do
+  [[ -n "$src" ]] || continue
+  copy_file "$src" "$dst"
+done <<< "$COPY_LINES"
 
 register_codex_agents() {
-  if [[ ${#AGENT_SLUGS[@]} -eq 0 ]]; then
-    return 0
-  fi
+  local agent_lines="$1"
+  [[ -n "$agent_lines" ]] || return 0
   local config_path="$TARGET_ROOT/.codex/config.toml"
   if [[ "$DRY_RUN" -eq 1 ]]; then
-    echo "DRY-RUN REGISTER codex agents in $config_path: ${AGENT_SLUGS[*]}"
+    echo "DRY-RUN REGISTER codex agents in $config_path: $agent_lines"
     return 0
   fi
   mkdir -p "$(dirname "$config_path")"
-  python3 - "$config_path" "$TARGET_ROOT" "${AGENT_SLUGS[@]}" <<'PY'
+  python3 - "$config_path" "$TARGET_ROOT" $agent_lines <<'PY'
 from pathlib import Path
 import sys
 
@@ -271,14 +271,11 @@ start_marker = "# >>> core-prompts codex agents start >>>"
 end_marker = "# <<< core-prompts codex agents end <<<"
 
 if config_path.exists():
-    original = config_path.read_text(encoding="utf-8")
+    original = config_path.read_text(encoding='utf-8')
 else:
     original = ""
 
-lines = []
-if original:
-    lines = original.splitlines()
-
+lines = original.splitlines() if original else []
 start_idx = None
 end_idx = None
 for idx, line in enumerate(lines):
@@ -291,66 +288,31 @@ for idx, line in enumerate(lines):
 
 managed = [start_marker]
 for slug in agent_slugs:
-    config_file = target_root / ".codex" / "agents" / f"{slug}.toml"
-    managed.extend(
-        [
-            f"[agents.{slug}]",
-            f'config_file = "{config_file}"',
-            "",
-        ]
-    )
+    config_file = target_root / '.codex' / 'agents' / f'{slug}.toml'
+    managed.extend([
+        f'[agents.{slug}]',
+        f'config_file = "{config_file}"',
+        '',
+    ])
 managed.append(end_marker)
-managed_text = "\n".join(managed)
+managed_text = '\n'.join(managed)
 
 if start_idx is not None and end_idx is not None and end_idx >= start_idx:
     new_lines = lines[:start_idx] + managed_text.splitlines() + lines[end_idx + 1 :]
-    updated = "\n".join(new_lines)
+    updated = '\n'.join(new_lines)
 else:
-    prefix = original.rstrip("\n")
-    if prefix:
-        updated = prefix + "\n\n" + managed_text + "\n"
-    else:
-        updated = managed_text + "\n"
+    prefix = original.rstrip('\n')
+    updated = prefix + ('\n\n' if prefix else '') + managed_text + '\n'
 
-config_path.write_text(updated, encoding="utf-8")
+config_path.write_text(updated, encoding='utf-8')
 PY
-  echo "REGISTERED codex agents in $config_path: ${AGENT_SLUGS[*]}"
+  echo "REGISTERED codex agents in $config_path"
 }
 
-echo "Deploying managed slugs (${#SLUGS[@]}): ${SLUGS[*]}"
-echo "Target CLIs: ${TARGETS[*]}"
-echo "Target root: $TARGET_ROOT"
-if [[ "$DRY_RUN" -eq 1 ]]; then
-  echo "Dry-run: enabled"
-fi
-
-for cli in "${TARGETS[@]}"; do
-  if ! is_cli_available "$cli"; then
-    SKIPPED_CLI=$((SKIPPED_CLI + 1))
-    echo "warning: skipping unavailable CLI '$cli'"
-    continue
-  fi
-
-  for slug in "${SLUGS[@]}"; do
-    case "$cli" in
-      gemini) deploy_gemini "$slug" || exit 1 ;;
-      claude) deploy_claude "$slug" || exit 1 ;;
-      kiro) deploy_kiro "$slug" || exit 1 ;;
-      codex) deploy_codex "$slug" || exit 1 ;;
-      *)
-        echo "error: unsupported CLI target '$cli'"
-        exit 1
-        ;;
-    esac
-  done
-done
-
 if [[ " ${TARGETS[*]} " == *" codex "* ]]; then
-  register_codex_agents
+  AGENT_LINES="$(read_codex_agents)"
+  register_codex_agents "$AGENT_LINES"
 fi
 
-if [[ "$DRY_RUN" -eq 1 ]]; then
-  echo "SUMMARY copied=0 missing_source=$MISSING_SOURCE skipped_cli=$SKIPPED_CLI replaced_symlink=0"
-else
-  echo "SUMMARY copied=$COPIED missing_source=$MISSING_SOURCE skipped_cli=$SKIPPED_CLI replaced_symlink=$REPLACED_SYMLINK"
-fi
+echo "SUMMARY copied=$COPIED missing_source=$MISSING_SOURCE skipped_cli=0 replaced_symlink=$REPLACED_SYMLINK"
+[[ "$MISSING_SOURCE" -eq 0 ]]

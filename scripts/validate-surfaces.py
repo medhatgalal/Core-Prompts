@@ -42,30 +42,6 @@ def parse_frontmatter(path: Path):
     return out
 
 
-def parse_ssot_metadata(path: Path):
-    text = path.read_text(encoding='utf-8')
-    front = {}
-    remainder = text
-    while remainder.startswith('---\n'):
-        end = remainder.find('\n---', 3)
-        if end == -1:
-            break
-        block = remainder[4:end]
-        remainder = remainder[end + 4 :]
-        if remainder.startswith('\n'):
-            remainder = remainder[1:]
-        for line in block.splitlines():
-            line = line.strip()
-            if not line or ':' not in line:
-                continue
-            key, value = line.split(':', 1)
-            key = key.strip()
-            value = value.strip().strip('"').strip("'")
-            if key in {'name', 'kind', 'role'} and key not in front:
-                front[key] = value
-    return front
-
-
 def parse_args():
     parser = argparse.ArgumentParser(description='Validate generated CLI surfaces from SSOT.')
     parser.add_argument('--strict', action='store_true', help='fail on optional checks and missing optional CLI tooling')
@@ -201,15 +177,13 @@ def artifact_expected_path(rule: dict, slug: str) -> Path:
     return ROOT / rule['path'].format(slug=slug)
 
 
-def eligible_slugs_for_rule(rule: dict, ssot_entries: list[dict[str, str]]) -> set[str]:
-    required_kinds = {k.lower() for k in rule.get('ssot_kinds', [])}
-    if not required_kinds:
-        return {entry['slug'] for entry in ssot_entries}
+def eligible_slugs_for_rule(rule: dict, manifest_entries: list[dict[str, object]]) -> set[str]:
     matched = set()
-    for entry in ssot_entries:
-        kind = (entry.get('kind') or '').strip().lower()
-        if kind in required_kinds:
-            matched.add(entry['slug'])
+    artifact_name = rule['name']
+    for entry in manifest_entries:
+        emitted = set(entry.get('expected_surface_names') or [])
+        if artifact_name in emitted:
+            matched.add(str(entry.get('slug')))
     return matched
 
 
@@ -387,26 +361,20 @@ def main():
     rules = rules_obj.get('artifacts', [])
     ssot_file_paths = sorted(SSOT_DIR.glob('*.md'))
     ssot_files = [p.stem for p in ssot_file_paths]
-    ssot_entries = []
-    for path in ssot_file_paths:
-        meta = parse_ssot_metadata(path)
-        slug = meta.get('name') or path.stem
-        kind_value = (meta.get('kind') or meta.get('role') or 'skill').strip().lower()
-        kind = 'agent' if kind_value in {'agent', 'subagent', 'sub-agent'} else 'skill'
-        ssot_entries.append({'slug': slug, 'kind': kind})
-    ssot_slugs = {entry['slug'] for entry in ssot_entries}
+    ssot_slugs = {p.stem for p in ssot_file_paths}
 
     if not rules:
         print('No artifact definitions in .meta/surface-rules.json')
         return 2
 
     manifest = json.loads(META.read_text(encoding='utf-8'))
+    manifest_entries = manifest.get('ssot_sources', [])
 
     errors: list[str] = []
     warnings: list[str] = []
 
     for rule in rules:
-        eligible_slugs = eligible_slugs_for_rule(rule, ssot_entries)
+        eligible_slugs = eligible_slugs_for_rule(rule, manifest_entries)
         for slug in sorted(eligible_slugs):
             errors.extend(validate_schema_artifact(rule, slug, args.with_cli, args.strict, warnings))
 
@@ -414,7 +382,7 @@ def main():
     expected = {}
     for rule in rules:
         expected_set = set()
-        for slug in eligible_slugs_for_rule(rule, ssot_entries):
+        for slug in eligible_slugs_for_rule(rule, manifest_entries):
             expected_set.add(str(artifact_expected_path(rule, slug).relative_to(ROOT)))
         expected[rule['name']] = expected_set
 
@@ -434,7 +402,7 @@ def main():
         errors.extend(cache_errors)
 
     # manifest consistency check
-    manifest_ssot = {entry.get('slug') for entry in manifest.get('ssot_sources', [])}
+    manifest_ssot = {entry.get('slug') for entry in manifest_entries}
     if manifest_ssot != ssot_slugs:
         errors.append('manifest slugs do not match ssot directory')
 

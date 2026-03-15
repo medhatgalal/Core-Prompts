@@ -17,6 +17,7 @@ def test_assess_uac_source_prefers_skill_for_structured_prompt() -> None:
         source_hint=Path("/tmp/architecture.md"),
     )
 
+    assert assessment.capability_type == "skill"
     assert assessment.recommended_surface == "skill"
     assert assessment.content_kind in {"prompt_like", "skill_like"}
     assert "explicit objective structure detected" in assessment.signals
@@ -33,9 +34,27 @@ def test_assess_uac_source_prefers_agent_for_agent_definition() -> None:
         },
     )
 
+    assert assessment.capability_type == "agent"
     assert assessment.recommended_surface == "agent"
     assert assessment.content_kind == "agent_like"
     assert "agent control markers detected" in assessment.signals
+
+
+def test_assess_uac_source_returns_both_for_hybrid_agent_workflow() -> None:
+    text = """---\nname: architecture-mentor\nkind: \"agent\"\n---\n\n# Architecture Mentor\n\nYou are an architecture agent.\n\nPurpose: guide design reviews.\n\nIn Scope:\n- evaluate trade-offs\n- produce reusable checklists\n\nConstraints:\n- deterministic output\n\nResponsibilities:\n- coordinate specialists\n- preserve tool boundaries\n"""
+
+    assessment = assess_uac_source(
+        text,
+        source_metadata={
+            "source_type": "LOCAL_FILE",
+            "normalized_source": "/tmp/architecture-agent.md",
+        },
+    )
+
+    assert assessment.capability_type == "both"
+    assert assessment.recommended_surface == "both"
+    assert "codex_agent" in assessment.emitted_surfaces["codex"]
+    assert "codex_skill" in assessment.emitted_surfaces["codex"]
 
 
 def test_assess_uac_source_returns_manual_review_for_config_only() -> None:

@@ -4,18 +4,27 @@ description: 'Import one external prompt/spec source into the deterministic UAC 
 ---
 name: "uac-import"
 kind: "skill"
+capability_type: "skill"
 description: "Import local files, local folders, raw URLs, or GitHub folders, classify them, uplift them, and recommend the right target surface."
 ---
 # UAC Import
 
 ## Purpose
-Take one external source and turn it into a deterministic UAC assessment.
+Take one external source or the existing `ssot/` directory and turn it into a deterministic UAC assessment.
 
 Supported inputs:
 - local file path
 - local folder path
 - raw public HTTPS URL
 - GitHub repo or folder URL
+- existing `ssot/` directory for audit mode
+
+Supported modes:
+- `import`
+- `audit`
+- `explain`
+- `plan`
+- `apply` (planned-only until a safe mutation flow is added)
 
 For the given source, perform this workflow in order:
 1. Ingest the source through the existing deterministic pipeline.
@@ -24,9 +33,10 @@ For the given source, perform this workflow in order:
 4. Run semantic routing.
 5. If the source is a folder or repo subtree, inventory prompt-like files and classify them one by one.
 6. Aggregate the collection into a skill-family, agent-family, or manual-review recommendation.
-7. Classify each accepted source as skill-like, agent-like, config-like, or manual-review.
-8. Recommend the best target surface for Codex, Gemini, Claude, and Kiro.
+7. Classify each accepted source as `skill`, `agent`, `both`, or `manual_review`.
+8. Derive emitted surfaces for Codex, Gemini, Claude, and Kiro from that capability type.
 9. Propose modernization focus areas so the source can be uplifted, reorganized, and packaged cleanly.
+10. For `audit`, compare declared SSOT capability, inferred capability, and generated surfaces.
 
 ## Rules
 - Prefer existing pipeline code over ad-hoc parsing.
@@ -52,7 +62,7 @@ Return a concise structured result with these sections:
 ## Good Outcome
 A good result tells the user:
 - what the source is
-- whether it should become a skill or an agent
+- whether it should become a skill, an agent, or both
 - which target systems are appropriate
 - what to preserve while uplifting it
 - what needs manual review before packaging
