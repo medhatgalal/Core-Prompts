@@ -35,11 +35,12 @@ def test_aggregate_collection_recommendation_prefers_skill_family() -> None:
     recommendation = aggregate_collection_recommendation(
         "architecture",
         [
-            {"status": "accepted", "uac": {"recommended_surface": "skill"}},
-            {"status": "accepted", "uac": {"recommended_surface": "skill"}},
+            {"status": "accepted", "uac": {"capability_type": "skill"}},
+            {"status": "accepted", "uac": {"capability_type": "skill"}},
         ],
     )
 
     assert recommendation.collection_type == "skill_family"
+    assert recommendation.capability_type == "skill"
     assert recommendation.recommended_surface == "skill"
     assert recommendation.shared_roof is True

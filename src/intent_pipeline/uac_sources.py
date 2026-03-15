@@ -51,6 +51,7 @@ class GithubTreeRef:
 @dataclass(frozen=True, slots=True)
 class UacCollectionRecommendation:
     collection_type: str
+    capability_type: str
     recommended_surface: str
     recommended_slug: str
     shared_roof: bool
@@ -60,6 +61,7 @@ class UacCollectionRecommendation:
     def as_payload(self) -> dict[str, object]:
         return {
             "collection_type": self.collection_type,
+            "capability_type": self.capability_type,
             "recommended_surface": self.recommended_surface,
             "recommended_slug": self.recommended_slug,
             "shared_roof": self.shared_roof,
@@ -184,6 +186,7 @@ def aggregate_collection_recommendation(
     if not accepted:
         return UacCollectionRecommendation(
             collection_type="manual_review",
+            capability_type="manual_review",
             recommended_surface="manual_review",
             recommended_slug=_slugify(source_label),
             shared_roof=False,
@@ -194,17 +197,18 @@ def aggregate_collection_recommendation(
             ),
         )
 
-    surface_counts: dict[str, int] = {}
+    capability_counts: dict[str, int] = {}
     for item in accepted:
-        surface = str(item.get("uac", {}).get("recommended_surface", "manual_review"))
-        surface_counts[surface] = surface_counts.get(surface, 0) + 1
-    dominant_surface = max(surface_counts, key=surface_counts.get)
-    shared_roof = len(accepted) > 1 and surface_counts[dominant_surface] == len(accepted)
+        capability = str(item.get("uac", {}).get("capability_type") or item.get("uac", {}).get("recommended_surface", "manual_review"))
+        capability_counts[capability] = capability_counts.get(capability, 0) + 1
+    dominant_capability = max(capability_counts, key=capability_counts.get)
+    shared_roof = len(accepted) > 1 and capability_counts[dominant_capability] == len(accepted)
 
-    if dominant_surface == "skill" and len(accepted) >= 2:
+    if dominant_capability in {"skill", "both"} and len(accepted) >= 2:
         return UacCollectionRecommendation(
             collection_type="skill_family",
-            recommended_surface="skill",
+            capability_type=dominant_capability,
+            recommended_surface=dominant_capability,
             recommended_slug=_slugify(source_label),
             shared_roof=shared_roof,
             rationale=(
@@ -217,9 +221,10 @@ def aggregate_collection_recommendation(
                 "Normalize shared constraints and output conventions once at the family level.",
             ),
         )
-    if dominant_surface == "agent" and len(accepted) >= 2:
+    if dominant_capability == "agent" and len(accepted) >= 2:
         return UacCollectionRecommendation(
             collection_type="agent_family",
+            capability_type="agent",
             recommended_surface="agent",
             recommended_slug=_slugify(source_label),
             shared_roof=shared_roof,
@@ -235,6 +240,7 @@ def aggregate_collection_recommendation(
         )
     return UacCollectionRecommendation(
         collection_type="mixed_review",
+        capability_type="manual_review",
         recommended_surface="manual_review",
         recommended_slug=_slugify(source_label),
         shared_roof=False,
@@ -253,7 +259,7 @@ def aggregate_collection_recommendation(
 def _github_contents(owner: str, repo: str, ref: str, path: str, timeout_seconds: int) -> object:
     encoded_path = quote(path)
     endpoint = f"https://api.github.com/repos/{owner}/{repo}/contents/{encoded_path}" if path else f"https://api.github.com/repos/{owner}/{repo}/contents"
-    query = parse_qs("")
+    parse_qs("")
     query_string = f"?ref={quote(ref)}"
     request = Request(
         endpoint + query_string,

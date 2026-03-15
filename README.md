@@ -12,6 +12,7 @@ Core-Prompts is a practical prompt system for people who use AI for writing, pla
 - Run long-form analysis without losing context.
 - Export clean context handoffs between AI sessions and tools.
 - Import one external prompt/spec source set from a file, folder, raw URL, or GitHub folder and get deterministic UAC classification and packaging guidance.
+- Audit existing SSOT entries and see whether each one should be a skill, an agent, both, or manual review.
 
 ### Included Skills (Brief)
 
@@ -139,8 +140,29 @@ Use uac-import on `/absolute/path/to/prompt.md`.
 **Expected output**
 
 - Deterministic source summary and uplift.
-- Skill vs agent recommendation with rationale.
+- Skill vs agent vs both recommendation with rationale.
 - Target-system packaging guidance for Codex, Gemini, Claude, and Kiro.
+
+### UAC Capability Model
+
+UAC is the authoritative classifier for imported sources and existing `ssot/` entries.
+
+It classifies each source as:
+- `skill`
+- `agent`
+- `both`
+- `manual_review`
+
+Then Core-Prompts derives the emitted surfaces for each CLI from that capability type.
+
+Quick matrix:
+
+| Capability Type | Codex | Gemini | Claude | Kiro |
+| --- | --- | --- | --- | --- |
+| `skill` | skill | command + skill | command | prompt + skill |
+| `agent` | agent | agent | agent | agent |
+| `both` | skill + agent | command + skill + agent | command + agent | prompt + skill + agent |
+| `manual_review` | hold | hold | hold | hold |
 
 ## Installation
 
@@ -177,5 +199,7 @@ Do not hand-edit generated files under .codex/.gemini/.claude/.kiro.
 - Full run examples: [docs/EXAMPLES.md](docs/EXAMPLES.md)
 - Technical reference: [docs/README_TECHNICAL.md](docs/README_TECHNICAL.md)
 - CLI reference: [docs/CLI-REFERENCE.md](docs/CLI-REFERENCE.md)
+- UAC capability model: [docs/UAC-CAPABILITY-MODEL.md](docs/UAC-CAPABILITY-MODEL.md)
+- UAC usage guide: [docs/UAC-USAGE.md](docs/UAC-USAGE.md)
 - FAQ: [docs/FAQ.md](docs/FAQ.md)
 - Docs prompt-pack: [docs/prompt-pack/README.md](docs/prompt-pack/README.md)

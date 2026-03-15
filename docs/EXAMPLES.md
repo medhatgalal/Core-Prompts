@@ -142,13 +142,26 @@ Use uac-import on `https://github.com/harish-garg/gemini-cli-prompt-library/tree
 
 - Clean summary of each imported source.
 - Uplifted objective/scope extraction.
-- Skill vs agent recommendation with explicit rationale.
+- Skill vs agent vs both recommendation with explicit rationale.
 - Collection-level recommendation when multiple files belong under one roof.
 - Clear target-system packaging guidance.
+- When auditing SSOT, a table that shows declared capability, inferred capability, and surface alignment status.
 
 ### Success signal
 
 You know whether to ship the source as a skill, agent, or manual-review item before editing any generated surfaces.
+
+### Audit existing SSOT
+
+```bash
+python3.11 scripts/uac-import.py --mode audit --output table
+```
+
+What a good run includes:
+- one row per SSOT entry
+- declared capability vs inferred capability
+- alignment status like `aligned`, `frontmatter_mismatch`, or `over-generated`
+- enough evidence to decide whether the entry should be skill, agent, or both
 
 ## 7) Code Review: Commit Quality Gate Run
 

@@ -4,6 +4,7 @@ description: '[ScottP] Structured merge conflict resolution with Charlie Munger 
 ---
 name: "resolve-conflict"
 kind: "skill"
+capability_type: "skill"
 description: "[ScottP] Structured merge conflict resolution with Charlie Munger inversion analysis"
 ---
 # Resolve Conflict — Structured Merge Conflict Resolution

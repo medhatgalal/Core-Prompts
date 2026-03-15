@@ -4,6 +4,7 @@ description: '[Medhat] Senior engineering oversight, planning, and workflow guid
 ---
 name: mentor
 kind: agent
+capability_type: both
 description: "[Medhat] Senior engineering oversight, planning, and workflow guidance."
 ---
 # Mentor / Coach v3 — System Memory

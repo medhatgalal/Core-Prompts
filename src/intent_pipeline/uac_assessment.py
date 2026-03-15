@@ -8,15 +8,27 @@ import re
 from typing import Mapping
 
 from intent_pipeline.intent_structure import extract_intent_structure
+from intent_pipeline.uac_capabilities import (
+    deployment_intent,
+    deployment_matrix_payload,
+    primary_surface,
+    summarized_emitted_surfaces,
+)
 
 _DEFAULT_TARGET_SYSTEMS = ("codex", "gemini", "claude", "kiro")
 _AGENT_SIGNAL_PATTERNS = (
-    re.compile(r"^kind\s*:\s*agent\b", re.IGNORECASE | re.MULTILINE),
-    re.compile(r"^role\s*:\s*agent\b", re.IGNORECASE | re.MULTILINE),
+    re.compile(r"^kind\s*:\s*[\"']?agent[\"']?\b", re.IGNORECASE | re.MULTILINE),
+    re.compile(r"^role\s*:\s*[\"']?agent[\"']?\b", re.IGNORECASE | re.MULTILINE),
     re.compile(r"^max_turns\s*:\s*\d+\b", re.IGNORECASE | re.MULTILINE),
     re.compile(r"\bsub-?agent\b", re.IGNORECASE),
-    re.compile(r"\bagentSpawn\b", re.IGNORECASE),
-    re.compile(r"\bapproved_by\b", re.IGNORECASE),
+    re.compile(r"\bagentspawn\b", re.IGNORECASE),
+    re.compile(r"\bdeveloper_instructions\b", re.IGNORECASE),
+    re.compile(r"\bsystem prompt\b", re.IGNORECASE),
+    re.compile(r"\byou are\b", re.IGNORECASE),
+    re.compile(r"\bresponsibilities\b", re.IGNORECASE),
+    re.compile(r"\bmission\b", re.IGNORECASE),
+    re.compile(r"\bmode of operation\b", re.IGNORECASE),
+    re.compile(r"\btool boundaries\b", re.IGNORECASE),
 )
 _SKILL_SIGNAL_PATTERNS = (
     re.compile(r"^#\s+.+", re.MULTILINE),
@@ -25,6 +37,10 @@ _SKILL_SIGNAL_PATTERNS = (
     re.compile(r"\bhard constraints?\b", re.IGNORECASE),
     re.compile(r"\boutput format\b", re.IGNORECASE),
     re.compile(r"\bpurpose\b", re.IGNORECASE),
+    re.compile(r"\binputs\b", re.IGNORECASE),
+    re.compile(r"\bexamples?\b", re.IGNORECASE),
+    re.compile(r"\bsteps?\b", re.IGNORECASE),
+    re.compile(r"\bprocess\b", re.IGNORECASE),
 )
 _CONFIG_SIGNAL_PATTERNS = (
     re.compile(r"^\s*\[.+\]\s*$", re.MULTILINE),
@@ -45,11 +61,14 @@ class UacAssessment:
     source_type: str
     normalized_source: str
     content_kind: str
+    capability_type: str
     recommended_surface: str
     confidence: float
     signals: tuple[str, ...]
     rationale: str
     scorecard: Mapping[str, int]
+    emitted_surfaces: Mapping[str, tuple[str, ...]]
+    deployment_intent: str
     target_systems: tuple[str, ...] = _DEFAULT_TARGET_SYSTEMS
     modernization_focus: tuple[str, ...] = ()
 
@@ -58,12 +77,16 @@ class UacAssessment:
             "source_type": self.source_type,
             "normalized_source": self.normalized_source,
             "content_kind": self.content_kind,
+            "capability_type": self.capability_type,
             "recommended_surface": self.recommended_surface,
             "confidence": round(self.confidence, 2),
             "signals": list(self.signals),
             "rationale": self.rationale,
             "scorecard": dict(self.scorecard),
             "rubric": classification_rubric_payload(),
+            "deployment_matrix": deployment_matrix_payload(),
+            "emitted_surfaces": {cli: list(names) for cli, names in self.emitted_surfaces.items() if names},
+            "deployment_intent": self.deployment_intent,
             "target_systems": list(self.target_systems),
             "modernization_focus": list(self.modernization_focus),
         }
@@ -157,8 +180,40 @@ def assess_uac_source(
         "prompt_marker_hits": prompt_marker_hits,
     }
 
-    if agent_score >= skill_score + 2:
-        recommended_surface = "agent"
+    capability_type: str
+    content_kind: str
+    confidence: float
+    rationale: str
+    modernization_focus: tuple[str, ...]
+
+    if config_score >= 2 and not semantic_count and skill_score <= 1 and agent_score <= 2:
+        capability_type = "manual_review"
+        content_kind = "config_like"
+        confidence = 0.71
+        rationale = (
+            "Source is mostly configuration or registration data. It should be paired with a prompt body "
+            "before attempting automatic uplift into a user-facing skill or agent."
+        )
+        modernization_focus = (
+            "locate canonical prompt body",
+            "pair config with executable prompt instructions",
+            "review target platform-specific fields manually",
+        )
+    elif agent_score >= 4 and skill_score >= 4:
+        capability_type = "both"
+        content_kind = "hybrid_agent_workflow"
+        confidence = min(0.98, 0.58 + (agent_score + skill_score) * 0.02)
+        rationale = (
+            "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. "
+            "Keep one SSOT entry and emit both workflow and agent surfaces."
+        )
+        modernization_focus = (
+            "separate reusable workflow guidance from agent-only control metadata",
+            "emit both skill/command and agent surfaces from one canonical SSOT entry",
+            "preserve safety, escalation, and tool-boundary declarations",
+        )
+    elif agent_score >= max(skill_score + 2, 4):
+        capability_type = "agent"
         content_kind = "agent_like"
         confidence = min(0.98, 0.55 + (agent_score - skill_score) * 0.08)
         rationale = (
@@ -171,7 +226,7 @@ def assess_uac_source(
             "emit target agent registrations where supported",
         )
     elif skill_score >= 3:
-        recommended_surface = "skill"
+        capability_type = "skill"
         content_kind = "prompt_like" if semantic_count >= 2 else "skill_like"
         confidence = min(0.97, 0.56 + skill_score * 0.05)
         rationale = (
@@ -183,21 +238,8 @@ def assess_uac_source(
             "preserve examples and hard constraints",
             "emit skill/command surfaces across supported CLIs",
         )
-    elif config_score >= 2 and not semantic_count:
-        recommended_surface = "manual_review"
-        content_kind = "config_like"
-        confidence = 0.71
-        rationale = (
-            "Source is mostly configuration or registration data. It should be paired with a prompt body "
-            "before attempting automatic uplift into a user-facing skill or agent."
-        )
-        modernization_focus = (
-            "locate canonical prompt body",
-            "pair config with executable prompt instructions",
-            "review target platform-specific fields manually",
-        )
     else:
-        recommended_surface = "manual_review"
+        capability_type = "manual_review"
         content_kind = "unknown"
         confidence = 0.52
         rationale = (
@@ -214,11 +256,14 @@ def assess_uac_source(
         source_type=source_type,
         normalized_source=normalized_source,
         content_kind=content_kind,
-        recommended_surface=recommended_surface,
+        capability_type=capability_type,
+        recommended_surface=primary_surface(capability_type),
         confidence=confidence,
         signals=tuple(dict.fromkeys(signals)),
         rationale=rationale,
         scorecard=scorecard,
+        emitted_surfaces={cli: tuple(names) for cli, names in summarized_emitted_surfaces(capability_type).items()},
+        deployment_intent=deployment_intent(capability_type, confidence),
         modernization_focus=modernization_focus,
     )
 
@@ -226,25 +271,32 @@ def assess_uac_source(
 def classification_rubric_payload() -> dict[str, object]:
     return {
         "skill": {
-            "decision_rule": "Choose skill when reusable prompt/workflow structure is stronger than agent/control-plane structure and skill_score >= 3.",
+            "decision_rule": "Choose skill when reusable prompt/workflow structure is strong, skill_score >= 3, and agent control markers are not dominant.",
             "signals": [
                 "explicit objective / in-scope / out-of-scope / constraints / acceptance sections",
                 "workflow or usage framing",
                 "examples or output format sections",
-                "SKILL.md source shape",
+                "SKILL.md or prompt-like source shape",
             ],
         },
         "agent": {
-            "decision_rule": "Choose agent when agent_score >= skill_score + 2.",
+            "decision_rule": "Choose agent when agent_score is dominant and agent_score >= 4.",
             "signals": [
                 "kind: agent or role: agent",
                 "max_turns or explicit tool/control-plane metadata",
-                "sub-agent or agentSpawn language",
-                "system-prompt or developer_instructions framing",
+                "sub-agent, delegation, or system-prompt framing",
+                "responsibilities / mission / operating-mode sections",
+            ],
+        },
+        "both": {
+            "decision_rule": "Choose both when strong workflow structure and strong agent control semantics are both present (agent_score >= 4 and skill_score >= 4).",
+            "signals": [
+                "reusable workflow/prompt sections plus explicit agent registration markers",
+                "one source needs both command/skill invocation and agent execution surfaces",
             ],
         },
         "manual_review": {
-            "decision_rule": "Choose manual_review for config-only, low-structure, or mixed-shape sources.",
+            "decision_rule": "Choose manual_review for config-only, low-structure, or mixed-shape sources that cannot be deployed safely.",
             "signals": [
                 "config markers without prompt structure",
                 "missing semantic sections",
@@ -267,28 +319,27 @@ def _normalize_metadata_value(
     *,
     default: str,
 ) -> str:
-    if not source_metadata:
+    if source_metadata is None:
         return default
-    raw_value = source_metadata.get(key)
-    if not isinstance(raw_value, str):
-        return default
-    normalized = raw_value.strip()
-    return normalized or default
+    value = source_metadata.get(key, default)
+    if isinstance(value, str) and value.strip():
+        return value.strip()
+    return default
 
 
 def _normalize_source(
     source_metadata: Mapping[str, object] | None,
     source_hint: str | Path | None,
 ) -> str:
-    if source_metadata:
-        raw_value = source_metadata.get("normalized_source")
-        if isinstance(raw_value, str) and raw_value.strip():
-            return raw_value.strip()
-    if source_hint is None:
-        return "unknown"
+    if source_metadata is not None:
+        normalized = source_metadata.get("normalized_source")
+        if isinstance(normalized, str) and normalized.strip():
+            return normalized.strip()
     if isinstance(source_hint, Path):
-        return str(source_hint)
-    return str(source_hint).strip() or "unknown"
+        return str(source_hint.expanduser().resolve())
+    if isinstance(source_hint, str) and source_hint.strip():
+        return source_hint.strip()
+    return "unknown"
 
 
 __all__ = ["UacAssessment", "assess_uac_source", "classification_rubric_payload"]

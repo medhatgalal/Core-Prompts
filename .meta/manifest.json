@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-03-14T14:43:25.051826+00:00",
+  "generated_at": "2026-03-14T18:19:48.725027+00:00",
   "generator": {
     "script": "scripts/build-surfaces.py",
     "python": "3.11+",
-    "version": "4.0",
-    "generated_utc": "2026-03-14T14:43:25.052167+00:00"
+    "version": "5.0",
+    "generated_utc": "2026-03-14T18:19:48.725614+00:00"
   },
   "ssot_sources": [
     {
@@ -12,56 +12,418 @@
       "slug": "analyze-context",
       "name": "analyze-context",
       "description": "[Medhat] Iterative Analysis Workflow for multi-file processing",
-      "kind": "skill"
+      "declared_capability": "skill",
+      "inferred_capability": "skill",
+      "confidence": 0.97,
+      "deployment_intent": "generate",
+      "signals": [
+        "agent control markers detected",
+        "skill/workflow markers detected",
+        "explicit objective structure detected",
+        "explicit out-of-scope structure detected",
+        "explicit constraint structure detected",
+        "explicit acceptance structure detected",
+        "multi-section prompt/spec structure detected"
+      ],
+      "scorecard": {
+        "agent_score": 2,
+        "skill_score": 9,
+        "config_score": 0,
+        "semantic_category_count": 4,
+        "prompt_marker_hits": 1
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_command",
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_command"
+        ],
+        "kiro": [
+          "kiro_prompt",
+          "kiro_skill"
+        ]
+      },
+      "expected_surface_names": [
+        "codex_skill",
+        "gemini_command",
+        "gemini_skill",
+        "claude_command",
+        "kiro_prompt",
+        "kiro_skill"
+      ],
+      "rubric_version": "uac-capability-v1"
     },
     {
       "file": "ssot/code-review.md",
       "slug": "code-review",
       "name": "code-review",
       "description": "[ScottP] Git commit review with scope control and over-engineering detection",
-      "kind": "skill"
+      "declared_capability": "skill",
+      "inferred_capability": "skill",
+      "confidence": 0.97,
+      "deployment_intent": "generate",
+      "signals": [
+        "skill/workflow markers detected",
+        "config-like structure detected",
+        "explicit objective structure detected",
+        "explicit constraint structure detected"
+      ],
+      "scorecard": {
+        "agent_score": 0,
+        "skill_score": 13,
+        "config_score": 2,
+        "semantic_category_count": 2,
+        "prompt_marker_hits": 2
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_command",
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_command"
+        ],
+        "kiro": [
+          "kiro_prompt",
+          "kiro_skill"
+        ]
+      },
+      "expected_surface_names": [
+        "codex_skill",
+        "gemini_command",
+        "gemini_skill",
+        "claude_command",
+        "kiro_prompt",
+        "kiro_skill"
+      ],
+      "rubric_version": "uac-capability-v1"
     },
     {
       "file": "ssot/converge.md",
       "slug": "converge",
       "name": "converge",
       "description": "[Medhat] Universal Synthesis & Convergence Prompt (Portable)",
-      "kind": "agent"
+      "declared_capability": "both",
+      "inferred_capability": "both",
+      "confidence": 0.82,
+      "deployment_intent": "generate",
+      "signals": [
+        "agent control markers detected",
+        "skill/workflow markers detected",
+        "explicit objective structure detected",
+        "explicit constraint structure detected",
+        "explicit acceptance structure detected",
+        "multi-section prompt/spec structure detected"
+      ],
+      "scorecard": {
+        "agent_score": 4,
+        "skill_score": 8,
+        "config_score": 0,
+        "semantic_category_count": 3,
+        "prompt_marker_hits": 1
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill",
+          "codex_agent"
+        ],
+        "gemini": [
+          "gemini_command",
+          "gemini_skill",
+          "gemini_agent"
+        ],
+        "claude": [
+          "claude_command",
+          "claude_agent"
+        ],
+        "kiro": [
+          "kiro_prompt",
+          "kiro_skill",
+          "kiro_agent"
+        ]
+      },
+      "expected_surface_names": [
+        "codex_skill",
+        "codex_agent",
+        "gemini_command",
+        "gemini_skill",
+        "gemini_agent",
+        "claude_command",
+        "claude_agent",
+        "kiro_prompt",
+        "kiro_skill",
+        "kiro_agent"
+      ],
+      "rubric_version": "uac-capability-v1"
     },
     {
       "file": "ssot/mentor.md",
       "slug": "mentor",
       "name": "mentor",
       "description": "[Medhat] Senior engineering oversight, planning, and workflow guidance.",
-      "kind": "agent"
+      "declared_capability": "both",
+      "inferred_capability": "both",
+      "confidence": 0.84,
+      "deployment_intent": "generate",
+      "signals": [
+        "agent control markers detected",
+        "skill/workflow markers detected",
+        "explicit constraint structure detected",
+        "explicit acceptance structure detected"
+      ],
+      "scorecard": {
+        "agent_score": 8,
+        "skill_score": 5,
+        "config_score": 0,
+        "semantic_category_count": 2,
+        "prompt_marker_hits": 1
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill",
+          "codex_agent"
+        ],
+        "gemini": [
+          "gemini_command",
+          "gemini_skill",
+          "gemini_agent"
+        ],
+        "claude": [
+          "claude_command",
+          "claude_agent"
+        ],
+        "kiro": [
+          "kiro_prompt",
+          "kiro_skill",
+          "kiro_agent"
+        ]
+      },
+      "expected_surface_names": [
+        "codex_skill",
+        "codex_agent",
+        "gemini_command",
+        "gemini_skill",
+        "gemini_agent",
+        "claude_command",
+        "claude_agent",
+        "kiro_prompt",
+        "kiro_skill",
+        "kiro_agent"
+      ],
+      "rubric_version": "uac-capability-v1"
     },
     {
       "file": "ssot/resolve-conflict.md",
       "slug": "resolve-conflict",
       "name": "resolve-conflict",
       "description": "[ScottP] Structured merge conflict resolution with Charlie Munger inversion analysis",
-      "kind": "skill"
+      "declared_capability": "skill",
+      "inferred_capability": "skill",
+      "confidence": 0.97,
+      "deployment_intent": "generate",
+      "signals": [
+        "skill/workflow markers detected",
+        "config-like structure detected",
+        "explicit objective structure detected",
+        "explicit out-of-scope structure detected",
+        "explicit constraint structure detected",
+        "explicit acceptance structure detected",
+        "multi-section prompt/spec structure detected"
+      ],
+      "scorecard": {
+        "agent_score": 0,
+        "skill_score": 16,
+        "config_score": 2,
+        "semantic_category_count": 4,
+        "prompt_marker_hits": 2
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_command",
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_command"
+        ],
+        "kiro": [
+          "kiro_prompt",
+          "kiro_skill"
+        ]
+      },
+      "expected_surface_names": [
+        "codex_skill",
+        "gemini_command",
+        "gemini_skill",
+        "claude_command",
+        "kiro_prompt",
+        "kiro_skill"
+      ],
+      "rubric_version": "uac-capability-v1"
     },
     {
       "file": "ssot/supercharge.md",
       "slug": "supercharge",
       "name": "supercharge",
       "description": "[Medhat] SuperCharge \u2014 Prompt Engineering Swiss Army Knife (ULT-Agent++ \u2022 Catchup Deep \u2022 Simple \u2022 Invert \u2022 Adversarial \u2022 Contract+QA \u2022 Grade \u2022 GASLIGHT 13)",
-      "kind": "agent"
+      "declared_capability": "both",
+      "inferred_capability": "both",
+      "confidence": 0.98,
+      "deployment_intent": "generate",
+      "signals": [
+        "agent control markers detected",
+        "skill/workflow markers detected",
+        "config-like structure detected",
+        "explicit objective structure detected",
+        "explicit out-of-scope structure detected",
+        "explicit constraint structure detected",
+        "explicit acceptance structure detected",
+        "multi-section prompt/spec structure detected"
+      ],
+      "scorecard": {
+        "agent_score": 6,
+        "skill_score": 16,
+        "config_score": 1,
+        "semantic_category_count": 4,
+        "prompt_marker_hits": 3
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill",
+          "codex_agent"
+        ],
+        "gemini": [
+          "gemini_command",
+          "gemini_skill",
+          "gemini_agent"
+        ],
+        "claude": [
+          "claude_command",
+          "claude_agent"
+        ],
+        "kiro": [
+          "kiro_prompt",
+          "kiro_skill",
+          "kiro_agent"
+        ]
+      },
+      "expected_surface_names": [
+        "codex_skill",
+        "codex_agent",
+        "gemini_command",
+        "gemini_skill",
+        "gemini_agent",
+        "claude_command",
+        "claude_agent",
+        "kiro_prompt",
+        "kiro_skill",
+        "kiro_agent"
+      ],
+      "rubric_version": "uac-capability-v1"
     },
     {
       "file": "ssot/threader.md",
       "slug": "threader",
       "name": "threader",
       "description": "[Medhat] Context Threader & Exporter (Memory Management)",
-      "kind": "skill"
+      "declared_capability": "skill",
+      "inferred_capability": "skill",
+      "confidence": 0.76,
+      "deployment_intent": "generate_with_review",
+      "signals": [
+        "agent control markers detected",
+        "skill/workflow markers detected",
+        "explicit constraint structure detected"
+      ],
+      "scorecard": {
+        "agent_score": 2,
+        "skill_score": 4,
+        "config_score": 0,
+        "semantic_category_count": 1,
+        "prompt_marker_hits": 0
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_command",
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_command"
+        ],
+        "kiro": [
+          "kiro_prompt",
+          "kiro_skill"
+        ]
+      },
+      "expected_surface_names": [
+        "codex_skill",
+        "gemini_command",
+        "gemini_skill",
+        "claude_command",
+        "kiro_prompt",
+        "kiro_skill"
+      ],
+      "rubric_version": "uac-capability-v1"
     },
     {
       "file": "ssot/uac-import.md",
       "slug": "uac-import",
       "name": "uac-import",
       "description": "Import one external prompt/spec source into the deterministic UAC uplift and packaging flow.",
-      "kind": "skill"
+      "declared_capability": "skill",
+      "inferred_capability": "skill",
+      "confidence": 0.96,
+      "deployment_intent": "generate",
+      "signals": [
+        "skill/workflow markers detected",
+        "explicit objective structure detected",
+        "explicit constraint structure detected"
+      ],
+      "scorecard": {
+        "agent_score": 0,
+        "skill_score": 8,
+        "config_score": 0,
+        "semantic_category_count": 2,
+        "prompt_marker_hits": 2
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_command",
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_command"
+        ],
+        "kiro": [
+          "kiro_prompt",
+          "kiro_skill"
+        ]
+      },
+      "expected_surface_names": [
+        "codex_skill",
+        "gemini_command",
+        "gemini_skill",
+        "claude_command",
+        "kiro_prompt",
+        "kiro_skill"
+      ],
+      "rubric_version": "uac-capability-v1"
     }
   ],
   "surfaces": {
@@ -86,14 +448,9 @@
       ".gemini/skills/uac-import/SKILL.md"
     ],
     "gemini_agent": [
-      ".gemini/agents/analyze-context.md",
-      ".gemini/agents/code-review.md",
       ".gemini/agents/converge.md",
       ".gemini/agents/mentor.md",
-      ".gemini/agents/resolve-conflict.md",
-      ".gemini/agents/supercharge.md",
-      ".gemini/agents/threader.md",
-      ".gemini/agents/uac-import.md"
+      ".gemini/agents/supercharge.md"
     ],
     "claude_command": [
       ".claude/commands/analyze-context.md",
@@ -106,14 +463,9 @@
       ".claude/commands/uac-import.md"
     ],
     "claude_agent": [
-      ".claude/agents/analyze-context.md",
-      ".claude/agents/code-review.md",
       ".claude/agents/converge.md",
       ".claude/agents/mentor.md",
-      ".claude/agents/resolve-conflict.md",
-      ".claude/agents/supercharge.md",
-      ".claude/agents/threader.md",
-      ".claude/agents/uac-import.md"
+      ".claude/agents/supercharge.md"
     ],
     "kiro_prompt": [
       ".kiro/prompts/analyze-context.md",
@@ -126,14 +478,9 @@
       ".kiro/prompts/uac-import.md"
     ],
     "kiro_agent": [
-      ".kiro/agents/analyze-context.json",
-      ".kiro/agents/code-review.json",
       ".kiro/agents/converge.json",
       ".kiro/agents/mentor.json",
-      ".kiro/agents/resolve-conflict.json",
-      ".kiro/agents/supercharge.json",
-      ".kiro/agents/threader.json",
-      ".kiro/agents/uac-import.json"
+      ".kiro/agents/supercharge.json"
     ],
     "kiro_skill": [
       ".kiro/skills/analyze-context/SKILL.md",
@@ -162,12 +509,12 @@
     ]
   },
   "validation": {
-    "validated_at": "2026-03-14T14:43:42.171339+00:00",
+    "validated_at": "2026-03-14T18:20:00.324951+00:00",
     "strict": true,
     "with_cli": false,
     "fail_on_cli_miss": false,
     "rules_file": ".meta/surface-rules.json",
-    "rules_sha256": "f28bf251d144cca0e9c36301fe80b59e4dd355b0adb1fb315cb203b3cd4d92a4",
+    "rules_sha256": "e0d6c5d1bab0e543ab8f4123264fbd50144f3b6402c95dad338842ee78288c46",
     "schema_cache_ttl_days": 14,
     "schema_cache_sources_checked": [
       "https://docs.anthropic.com/en/docs/claude-code/skills",

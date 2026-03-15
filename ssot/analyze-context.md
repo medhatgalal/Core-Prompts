@@ -3,6 +3,7 @@ description: '[Medhat] Iterative Analysis Workflow for multi-file processing'
 ---
 ---
 name: "analyze-context"
+capability_type: "skill"
 description: "[Medhat] Iterative Analysis Workflow for multi-file processing"
 ---
 # Iterative Analysis Workflow

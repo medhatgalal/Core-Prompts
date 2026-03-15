@@ -4,6 +4,7 @@ description: '[Medhat] Universal Synthesis & Convergence Prompt (Portable)'
 ---
 name: "converge"
 kind: "agent"
+capability_type: "both"
 description: "[Medhat] Universal Synthesis & Convergence Prompt (Portable)"
 ---
 # /converge — Universal Synthesis & Convergence Prompt (Portable)

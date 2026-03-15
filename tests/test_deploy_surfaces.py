@@ -113,13 +113,25 @@ def test_deploy_with_all_clis_available_deploys_new_skill_surfaces(tmp_path: Pat
         assert (tmp_path / ".codex" / "skills" / slug / "SKILL.md").is_file()
         assert (tmp_path / ".gemini" / "skills" / slug / "SKILL.md").is_file()
         assert (tmp_path / ".gemini" / "commands" / f"{slug}.toml").is_file()
+        assert (tmp_path / ".claude" / "commands" / f"{slug}.md").is_file()
+        assert (tmp_path / ".kiro" / "skills" / slug / "SKILL.md").is_file()
+        assert (tmp_path / ".kiro" / "prompts" / f"{slug}.md").is_file()
+        assert not (tmp_path / ".gemini" / "agents" / f"{slug}.md").exists()
+        assert not (tmp_path / ".claude" / "agents" / f"{slug}.md").exists()
+        assert not (tmp_path / ".kiro" / "agents" / f"{slug}.json").exists()
+        assert not (tmp_path / ".codex" / "agents" / f"{slug}.toml").exists()
+
+    for slug in ("converge", "mentor", "supercharge"):
+        assert (tmp_path / ".codex" / "skills" / slug / "SKILL.md").is_file()
+        assert (tmp_path / ".codex" / "agents" / f"{slug}.toml").is_file()
+        assert (tmp_path / ".gemini" / "commands" / f"{slug}.toml").is_file()
+        assert (tmp_path / ".gemini" / "skills" / slug / "SKILL.md").is_file()
         assert (tmp_path / ".gemini" / "agents" / f"{slug}.md").is_file()
         assert (tmp_path / ".claude" / "commands" / f"{slug}.md").is_file()
         assert (tmp_path / ".claude" / "agents" / f"{slug}.md").is_file()
-        assert (tmp_path / ".kiro" / "skills" / slug / "SKILL.md").is_file()
         assert (tmp_path / ".kiro" / "prompts" / f"{slug}.md").is_file()
+        assert (tmp_path / ".kiro" / "skills" / slug / "SKILL.md").is_file()
         assert (tmp_path / ".kiro" / "agents" / f"{slug}.json").is_file()
-        assert not (tmp_path / ".codex" / "agents" / f"{slug}.toml").exists()
 
 
 def test_install_wrapper_matches_deploy_for_partial_cli_targets(tmp_path: Path) -> None:

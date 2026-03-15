@@ -17,32 +17,48 @@
       "name": "codex",
       "surface": "codex",
       "command": "codex",
-      "version_args": ["--version"],
-      "smoke_args": ["--help"],
+      "version_args": [
+        "--version"
+      ],
+      "smoke_args": [
+        "--help"
+      ],
       "required": false
     },
     {
       "name": "gemini",
       "surface": "gemini",
       "command": "gemini",
-      "version_args": ["--version"],
-      "smoke_args": ["--help"],
+      "version_args": [
+        "--version"
+      ],
+      "smoke_args": [
+        "--help"
+      ],
       "required": false
     },
     {
       "name": "claude",
       "surface": "claude",
       "command": "claude",
-      "version_args": ["-v"],
-      "smoke_args": ["--help"],
+      "version_args": [
+        "-v"
+      ],
+      "smoke_args": [
+        "--help"
+      ],
       "required": false
     },
     {
       "name": "kiro",
       "surface": "kiro",
       "command": "kiro-cli",
-      "version_args": ["--version"],
-      "smoke_args": ["--help"],
+      "version_args": [
+        "--version"
+      ],
+      "smoke_args": [
+        "--help"
+      ],
       "required": false
     }
   ],
@@ -52,7 +68,11 @@
       "surface": "gemini",
       "path": ".gemini/commands/{slug}.toml",
       "format": "toml",
-      "required_fields": ["name", "description", "prompt"],
+      "required_fields": [
+        "name",
+        "description",
+        "prompt"
+      ],
       "match": "filename",
       "source_of_truth": [
         "https://geminicli.com/docs/cli/commands",
@@ -62,14 +82,21 @@
         "https://geminicli.com/docs/cli/commands",
         "https://geminicli.com/docs/cli/custom-commands"
       ],
-      "schema_mode": "remote"
+      "schema_mode": "remote",
+      "capability_types": [
+        "skill",
+        "both"
+      ]
     },
     {
       "name": "gemini_skill",
       "surface": "gemini",
       "path": ".gemini/skills/{slug}/SKILL.md",
       "format": "frontmatter_markdown",
-      "required_frontmatter": ["name", "description"],
+      "required_frontmatter": [
+        "name",
+        "description"
+      ],
       "match": "skill_dir",
       "skill_root": ".gemini/skills",
       "source_of_truth": [
@@ -78,14 +105,24 @@
       "source_urls": [
         "https://geminicli.com/docs/cli/skills"
       ],
-      "schema_mode": "remote"
+      "schema_mode": "remote",
+      "capability_types": [
+        "skill",
+        "both"
+      ]
     },
     {
       "name": "gemini_agent",
       "surface": "gemini",
       "path": ".gemini/agents/{slug}.md",
       "format": "frontmatter_markdown",
-      "required_frontmatter": ["name", "kind", "description", "max_turns", "timeout_mins"],
+      "required_frontmatter": [
+        "name",
+        "kind",
+        "description",
+        "max_turns",
+        "timeout_mins"
+      ],
       "match": "filename",
       "source_of_truth": [
         "https://geminicli.com/docs/core/subagents"
@@ -93,14 +130,20 @@
       "source_urls": [
         "https://geminicli.com/docs/core/subagents"
       ],
-      "schema_mode": "remote"
+      "schema_mode": "remote",
+      "capability_types": [
+        "agent",
+        "both"
+      ]
     },
     {
       "name": "claude_command",
       "surface": "claude",
       "path": ".claude/commands/{slug}.md",
       "format": "frontmatter_markdown",
-      "required_frontmatter": ["description"],
+      "required_frontmatter": [
+        "description"
+      ],
       "match": "filename",
       "source_of_truth": [
         "https://docs.anthropic.com/en/docs/claude-code/skills"
@@ -108,14 +151,22 @@
       "source_urls": [
         "https://docs.anthropic.com/en/docs/claude-code/skills"
       ],
-      "schema_mode": "remote"
+      "schema_mode": "remote",
+      "capability_types": [
+        "skill",
+        "both"
+      ]
     },
     {
       "name": "claude_agent",
       "surface": "claude",
       "path": ".claude/agents/{slug}.md",
       "format": "frontmatter_markdown",
-      "required_frontmatter": ["name", "description", "tools"],
+      "required_frontmatter": [
+        "name",
+        "description",
+        "tools"
+      ],
       "match": "filename",
       "source_of_truth": [
         "https://docs.anthropic.com/en/docs/claude-code/sub-agents"
@@ -123,40 +174,60 @@
       "source_urls": [
         "https://docs.anthropic.com/en/docs/claude-code/sub-agents"
       ],
-      "schema_mode": "remote"
+      "schema_mode": "remote",
+      "capability_types": [
+        "agent",
+        "both"
+      ]
     },
     {
       "name": "codex_skill",
       "surface": "codex",
       "path": ".codex/skills/{slug}/SKILL.md",
       "format": "frontmatter_markdown",
-      "required_frontmatter": ["name", "description"],
+      "required_frontmatter": [
+        "name",
+        "description"
+      ],
       "match": "skill_dir",
       "skill_root": ".codex/skills",
       "source_of_truth": [
         "local"
       ],
-      "schema_mode": "local"
+      "schema_mode": "local",
+      "capability_types": [
+        "skill",
+        "both"
+      ]
     },
     {
       "name": "codex_agent",
       "surface": "codex",
       "path": ".codex/agents/{slug}.toml",
       "format": "toml",
-      "required_fields": ["name", "description", "developer_instructions"],
+      "required_fields": [
+        "name",
+        "description",
+        "developer_instructions"
+      ],
       "match": "filename",
-      "ssot_kinds": ["agent"],
       "source_of_truth": [
         "local"
       ],
-      "schema_mode": "local"
+      "schema_mode": "local",
+      "capability_types": [
+        "agent",
+        "both"
+      ]
     },
     {
       "name": "kiro_prompt",
       "surface": "kiro",
       "path": ".kiro/prompts/{slug}.md",
       "format": "frontmatter_markdown",
-      "required_frontmatter": ["description"],
+      "required_frontmatter": [
+        "description"
+      ],
       "match": "filename",
       "source_of_truth": [
         "https://kiro.dev/docs/cli/custom-agents/"
@@ -165,14 +236,21 @@
         "https://kiro.dev/docs/cli/custom-agents/"
       ],
       "schema_mode": "remote",
-      "required": true
+      "required": true,
+      "capability_types": [
+        "skill",
+        "both"
+      ]
     },
     {
       "name": "kiro_skill",
       "surface": "kiro",
       "path": ".kiro/skills/{slug}/SKILL.md",
       "format": "frontmatter_markdown",
-      "required_frontmatter": ["name", "description"],
+      "required_frontmatter": [
+        "name",
+        "description"
+      ],
       "match": "skill_dir",
       "skill_root": ".kiro/skills",
       "source_of_truth": [
@@ -182,14 +260,25 @@
         "https://kiro.dev/docs/skills/"
       ],
       "schema_mode": "remote",
-      "required": true
+      "required": true,
+      "capability_types": [
+        "skill",
+        "both"
+      ]
     },
     {
       "name": "kiro_agent",
       "surface": "kiro",
       "path": ".kiro/agents/{slug}.json",
       "format": "json",
-      "required_fields": ["name", "description", "prompt", "resources", "hooks", "tools"],
+      "required_fields": [
+        "name",
+        "description",
+        "prompt",
+        "resources",
+        "hooks",
+        "tools"
+      ],
       "match": "filename",
       "source_of_truth": [
         "https://kiro.dev/docs/cli/custom-agents/configuration-reference/"
@@ -202,10 +291,87 @@
         "^skill://\\.kiro/skills/.+/SKILL\\.md$"
       ],
       "validator": {
-        "command": ["kiro-cli", "agent", "validate", "--path"]
+        "command": [
+          "kiro-cli",
+          "agent",
+          "validate",
+          "--path"
+        ]
       },
       "schema_mode": "remote",
-      "required": true
+      "required": true,
+      "capability_types": [
+        "agent",
+        "both"
+      ]
     }
-  ]
+  ],
+  "uac_capability_model": {
+    "capability_types": [
+      "skill",
+      "agent",
+      "both",
+      "manual_review"
+    ],
+    "source_of_truth": "UAC manifest and SSOT metadata",
+    "command_note": "command is an invocation surface, not a peer capability type"
+  },
+  "deployment_matrix": {
+    "skill": {
+      "codex": [
+        "codex_skill"
+      ],
+      "gemini": [
+        "gemini_command",
+        "gemini_skill"
+      ],
+      "claude": [
+        "claude_command"
+      ],
+      "kiro": [
+        "kiro_prompt",
+        "kiro_skill"
+      ]
+    },
+    "agent": {
+      "codex": [
+        "codex_agent"
+      ],
+      "gemini": [
+        "gemini_agent"
+      ],
+      "claude": [
+        "claude_agent"
+      ],
+      "kiro": [
+        "kiro_agent"
+      ]
+    },
+    "both": {
+      "codex": [
+        "codex_skill",
+        "codex_agent"
+      ],
+      "gemini": [
+        "gemini_command",
+        "gemini_skill",
+        "gemini_agent"
+      ],
+      "claude": [
+        "claude_command",
+        "claude_agent"
+      ],
+      "kiro": [
+        "kiro_prompt",
+        "kiro_skill",
+        "kiro_agent"
+      ]
+    },
+    "manual_review": {
+      "codex": [],
+      "gemini": [],
+      "claude": [],
+      "kiro": []
+    }
+  }
 }

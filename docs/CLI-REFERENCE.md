@@ -138,24 +138,44 @@ Verify discovery:
 Primary user-facing intake surface:
 - `uac-import`
 
+Capability model:
+- `skill`
+- `agent`
+- `both`
+- `manual_review`
+
 Expected usage shape:
 - local file path source
 - local folder path source
 - raw public HTTPS URL source
 - GitHub repo/folder URL source
+- existing `ssot/` directory audit
 
 Operational contract:
 - ingest via deterministic Phase 1 pipeline
 - uplift objective/scope/constraints
 - run semantic routing
-- recommend `skill`, `agent`, or `manual_review`
+- recommend `skill`, `agent`, `both`, or `manual_review`
 - aggregate multi-file imports into a collection recommendation when appropriate
 - output packaging guidance for Codex, Gemini, Claude, and Kiro
 - expose an inspectable rubric and scorecard for the classification decision
+- expose a CLI deployment matrix for each capability type
+- audit existing SSOT entries against declared capability and generated surfaces
+
+Shell modes:
+- `--mode import`
+- `--mode audit`
+- `--mode explain`
+- `--mode plan`
+- `--mode apply` (planned-only for now)
 
 Important boundary:
 - the internal Python runners under `scripts/` are verification/operator surfaces
 - the user-facing surface is the generated CLI/skill layer from `ssot/uac-import.md`
+
+See also:
+- [docs/UAC-CAPABILITY-MODEL.md](UAC-CAPABILITY-MODEL.md)
+- [docs/UAC-USAGE.md](UAC-USAGE.md)
 
 ## Skill-specific Memory Convention
 
