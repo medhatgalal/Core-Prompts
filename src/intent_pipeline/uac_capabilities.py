@@ -75,22 +75,41 @@ def deployment_matrix_payload() -> dict[str, object]:
             "skill": {
                 "meaning": "Reusable prompt/workflow/procedure with explicit task guidance, structure, outputs, and bounded use.",
                 "surfaces": {cli: list(surfaces) for cli, surfaces in _CAPABILITY_MATRIX["skill"].items()},
+                "wrappers": {
+                    "codex": ["codex_plugin_wrapper"],
+                    "gemini": ["gemini_command_wrapper", "gemini_extension_wrapper"],
+                    "claude": ["claude_command_wrapper", "claude_plugin_wrapper"],
+                    "kiro": ["kiro_prompt_wrapper", "kiro_power_wrapper"],
+                },
             },
             "agent": {
                 "meaning": "Delegated specialist with tool/process autonomy, separate operating identity, or explicit agent/subagent semantics.",
                 "surfaces": {cli: list(surfaces) for cli, surfaces in _CAPABILITY_MATRIX["agent"].items()},
+                "wrappers": {
+                    "codex": ["codex_plugin_wrapper"],
+                    "gemini": ["gemini_agent_wrapper", "gemini_extension_wrapper"],
+                    "claude": ["claude_agent_wrapper", "claude_plugin_wrapper"],
+                    "kiro": ["kiro_agent_wrapper", "kiro_power_wrapper"],
+                },
             },
             "both": {
                 "meaning": "One SSOT entry that should emit both workflow/skill surfaces and agent surfaces.",
                 "surfaces": {cli: list(surfaces) for cli, surfaces in _CAPABILITY_MATRIX["both"].items()},
+                "wrappers": {
+                    "codex": ["codex_plugin_wrapper"],
+                    "gemini": ["gemini_command_wrapper", "gemini_extension_wrapper", "gemini_agent_wrapper"],
+                    "claude": ["claude_command_wrapper", "claude_plugin_wrapper", "claude_agent_wrapper"],
+                    "kiro": ["kiro_prompt_wrapper", "kiro_power_wrapper", "kiro_agent_wrapper"],
+                },
             },
             "manual_review": {
                 "meaning": "Conflicting, low-structure, or mixed wrapper content that should not deploy automatically.",
                 "surfaces": {cli: list(surfaces) for cli, surfaces in _CAPABILITY_MATRIX["manual_review"].items()},
+                "wrappers": {"codex": [], "gemini": [], "claude": [], "kiro": []},
             },
         },
         "notes": [
-            "command is an invocation surface, not a peer capability type",
+            "command, plugin, power, and extension are deployment wrappers or invocation surfaces, not peer capability types",
             "both means one SSOT source can emit multiple surfaces without duplicating SSOT entries",
             "manual_review emits no deployable surfaces until reviewed",
         ],

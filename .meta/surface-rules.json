@@ -373,5 +373,29 @@
       "claude": [],
       "kiro": []
     }
-  }
+  },
+  "deployment_wrappers": {
+    "codex": [
+      "codex_plugin_wrapper"
+    ],
+    "gemini": [
+      "gemini_command_wrapper",
+      "gemini_extension_wrapper",
+      "gemini_agent_wrapper"
+    ],
+    "claude": [
+      "claude_command_wrapper",
+      "claude_plugin_wrapper",
+      "claude_agent_wrapper"
+    ],
+    "kiro": [
+      "kiro_prompt_wrapper",
+      "kiro_power_wrapper",
+      "kiro_agent_wrapper"
+    ]
+  },
+  "notes": [
+    "Wrapper surfaces such as commands, plugins, powers, and extensions are deployment forms, not capability types.",
+    "Capability Fabric/UAC publishes advisory manifests and handoff contracts only."
+  ]
 }

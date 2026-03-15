@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from intent_pipeline.uac_capabilities import (
     audit_surface_alignment,
+    deployment_matrix_payload,
     emitted_surface_names,
     recommended_target_systems,
 )
@@ -29,3 +30,10 @@ def test_audit_surface_alignment_detects_over_generation() -> None:
     )
 
     assert audit.status == 'over-generated'
+
+
+def test_deployment_matrix_payload_includes_wrapper_surfaces() -> None:
+    matrix = deployment_matrix_payload()
+
+    assert "wrappers" in matrix["capability_types"]["skill"]
+    assert "gemini_extension_wrapper" in matrix["capability_types"]["skill"]["wrappers"]["gemini"]

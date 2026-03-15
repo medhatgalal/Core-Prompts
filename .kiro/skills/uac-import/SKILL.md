@@ -5,13 +5,14 @@ description: "Import one external prompt/spec source into the deterministic UAC 
 # UAC Import
 
 ## Purpose
-Take one external source or the existing `ssot/` directory and turn it into a deterministic UAC assessment.
+Take one or more external sources or the existing `ssot/` directory and turn them into deterministic UAC assessments, layered manifests, and advisory handoff contracts.
 
 Supported inputs:
 - local file path
 - local folder path
 - raw public HTTPS URL
 - GitHub repo or folder URL
+- multiple `--source` values in one run
 - existing `ssot/` directory for audit mode
 
 Supported modes:
@@ -27,11 +28,13 @@ For the given source, perform this workflow in order:
 3. Run uplift to extract objective, scope, and constraints.
 4. Run semantic routing.
 5. If the source is a folder or repo subtree, inventory prompt-like files and classify them one by one.
-6. Aggregate the collection into a skill-family, agent-family, or manual-review recommendation.
+6. Aggregate collections or multi-source sets into a family-level recommendation when appropriate.
 7. Classify each accepted source as `skill`, `agent`, `both`, or `manual_review`.
-8. Derive emitted surfaces for Codex, Gemini, Claude, and Kiro from that capability type.
-9. Propose modernization focus areas so the source can be uplifted, reorganized, and packaged cleanly.
-10. For `audit`, compare declared SSOT capability, inferred capability, and generated surfaces.
+8. Build layered manifests and anti-complecting fit analysis for every accepted source.
+9. Derive emitted surfaces for Codex, Gemini, Claude, and Kiro from that capability type.
+10. Infer install target intent (`global`, `repo_local`, or `both`) and require confirmation before future apply writes.
+11. Publish an advisory orchestrator handoff contract.
+12. For `audit`, compare declared SSOT capability, inferred capability, generated surfaces, and fit status.
 
 ## Rules
 - Prefer existing pipeline code over ad-hoc parsing.
@@ -41,6 +44,8 @@ For the given source, perform this workflow in order:
 - If the source is config-only, say so and require manual review instead of pretending it is a prompt.
 - If the source is already an agent definition, preserve its control-plane boundaries.
 - Expose the classification rubric and scorecard when the user asks how the decision was made.
+- Never make orchestration or delegation decisions. Publish advisory metadata only.
+- Run cross-analysis against current SSOT before any apply plan is considered safe.
 
 ## Required Output
 Return a concise structured result with these sections:
@@ -50,6 +55,10 @@ Return a concise structured result with these sections:
 - Routing
 - UAC Classification
 - Collection Recommendation
+- Layered Manifest
+- Cross-Analysis
+- Install Target
+- Advisory Handoff Contract
 - Recommended Surface
 - Modernization Focus
 - Next Actions

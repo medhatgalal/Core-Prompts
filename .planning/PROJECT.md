@@ -10,6 +10,8 @@ Convert source content into safe, deterministic intent artifacts that preserve e
 
 ## Current State
 
+- Capability Fabric vNext is the active initiative after v1.3. It keeps orchestration out of Core-Prompts/UAC and focuses on manifests, convergence, packaging, and orchestrator handoff.
+- Initiative docs: `.planning/initiatives/capability-fabric-vnext/`
 - v1.0 shipped the local-only path from ingestion through output/help/runtime preflight with strict no-execution guarantees.
 - v1.2 closed traceability and governance debt and established explicit defer decisions for `EXT-01` and `EXT-02`.
 - v1.3 shipped controlled extension re-entry:
@@ -33,7 +35,12 @@ Convert source content into safe, deterministic intent artifacts that preserve e
 
 ### Active
 
-- None. Define the next milestone before adding new active requirements.
+- Capability Fabric vNext foundation
+  - layered capability manifests
+  - anti-complecting cross-analysis
+  - multi-source convergence
+  - install-target inference
+  - orchestrator-neutral handoff contract
 
 ### Out of Scope
 

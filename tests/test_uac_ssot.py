@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from intent_pipeline.uac_ssot import audit_ssot_entries, render_audit_table
+from intent_pipeline.uac_ssot import audit_ssot_entries, build_ssot_handoff_contract, render_audit_table
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -28,3 +28,17 @@ def test_render_audit_table_includes_headers() -> None:
 
     assert 'slug' in table.splitlines()[0]
     assert 'status' in table.splitlines()[0]
+
+
+def test_audit_ssot_entries_include_manifest_and_fit_analysis() -> None:
+    audits = audit_ssot_entries(ROOT)
+
+    assert audits[0].manifest["manifest_version"] == "capability-fabric.v0"
+    assert "fit_assessment" in audits[0].cross_analysis
+
+
+def test_build_ssot_handoff_contract_is_advisory() -> None:
+    payload = build_ssot_handoff_contract(ROOT)
+
+    assert payload["advisory_only"] is True
+    assert payload["capabilities"]

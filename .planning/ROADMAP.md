@@ -9,6 +9,6 @@
 
 ## Active Roadmap
 
-No active milestone is defined.
+Active initiative (GSD-lite, not full milestone): `Capability Fabric vNext`
 
-Start the next milestone from the shipped v1.3 baseline.
+Reference: `.planning/initiatives/capability-fabric-vnext/PROGRAM.md`

@@ -28,6 +28,9 @@ def test_uac_import_local_file_flow(tmp_path: Path) -> None:
     assert payload["uac"]["recommended_surface"] == "skill"
     assert payload["source"]["normalized_source"] == str(sample.resolve())
     assert payload["routing"]["decision"] in {"PASS_ROUTE", "NEEDS_REVIEW"}
+    assert "manifest" in payload
+    assert "cross_analysis" in payload
+    assert payload["handoff_contract"]["advisory_only"] is True
 
 
 def test_uac_import_respects_target_system_override(tmp_path: Path) -> None:
@@ -53,6 +56,7 @@ def test_uac_import_respects_target_system_override(tmp_path: Path) -> None:
 
     payload = json.loads(result.stdout)
     assert payload["recommendation"]["primary_target_systems"] == ["codex"]
+    assert payload["recommendation"]["install_target"]["recommended"] in {"repo_local", "global", "both"}
 
 
 def test_uac_import_local_directory_flow(tmp_path: Path) -> None:
@@ -78,6 +82,7 @@ def test_uac_import_local_directory_flow(tmp_path: Path) -> None:
     assert payload["collection"]["collection_type"] == "skill_family"
     assert payload["items"][0]["extraction"]["wrapper_kind"] == "toml_prompt"
     assert len(payload["items"]) == 2
+    assert payload["manifest"]["layers"]["minimal"]["install_target"]["recommended"] in {"repo_local", "global", "both"}
 
 
 def test_uac_import_can_emit_rubric(tmp_path: Path) -> None:
@@ -112,6 +117,7 @@ def test_uac_import_audit_mode_returns_table_and_items() -> None:
     assert payload["mode"] == "audit"
     assert "audit_table" in payload
     assert payload["summary"]["entry_count"] >= 1
+    assert payload["handoff_contract"]["advisory_only"] is True
 
 
 def test_uac_import_explain_mode_returns_deployment_matrix() -> None:

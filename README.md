@@ -1,8 +1,8 @@
-# Core-Prompts
+# Core-Prompts / Capability Fabric
 
-Better prompts, better outcomes.
+Better prompts, better outcomes, with deterministic capability publishing.
 
-Core-Prompts is a practical prompt system for people who use AI for writing, planning, research, product work, operations, and software delivery. It helps you move from vague asks to structured, reusable prompt workflows that are easier to trust.
+Core-Prompts is evolving into Capability Fabric: a practical capability-provider layer for people who use AI for writing, planning, research, product work, operations, and software delivery. It helps you move from vague asks to structured, reusable prompt workflows and publishable capabilities that orchestrators can consume safely.
 
 ## What You Can Do With It
 
@@ -11,8 +11,9 @@ Core-Prompts is a practical prompt system for people who use AI for writing, pla
 - Get senior-style guidance for decisions and execution.
 - Run long-form analysis without losing context.
 - Export clean context handoffs between AI sessions and tools.
-- Import one external prompt/spec source set from a file, folder, raw URL, or GitHub folder and get deterministic UAC classification and packaging guidance.
+- Import one or more external prompt/spec source sets from files, folders, raw URLs, or GitHub folders and get deterministic UAC classification, manifests, and fit analysis.
 - Audit existing SSOT entries and see whether each one should be a skill, an agent, both, or manual review.
+- Publish advisory manifests and handoff contracts without taking over orchestration.
 
 ### Included Skills (Brief)
 
@@ -143,9 +144,9 @@ Use uac-import on `/absolute/path/to/prompt.md`.
 - Skill vs agent vs both recommendation with rationale.
 - Target-system packaging guidance for Codex, Gemini, Claude, and Kiro.
 
-### UAC Capability Model
+### Capability Fabric and UAC
 
-UAC is the authoritative classifier for imported sources and existing `ssot/` entries.
+UAC is the authoritative classifier and uplift subsystem inside Capability Fabric for imported sources and existing `ssot/` entries.
 
 It classifies each source as:
 - `skill`
@@ -193,6 +194,9 @@ Do not hand-edit generated files under .codex/.gemini/.claude/.kiro.
 ```
 
 ## Additional Links
+
+- Capability Fabric overview: [docs/CAPABILITY-FABRIC.md](docs/CAPABILITY-FABRIC.md)
+- Architecture source assessment: [docs/ARCHITECTURE-SOURCE-ASSESSMENT.md](docs/ARCHITECTURE-SOURCE-ASSESSMENT.md)
 
 - Docs home: [docs/README.md](docs/README.md)
 - Getting started: [docs/GETTING-STARTED.md](docs/GETTING-STARTED.md)

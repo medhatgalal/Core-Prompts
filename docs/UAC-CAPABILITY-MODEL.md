@@ -1,63 +1,76 @@
 # UAC Capability Model
 
-UAC is the authoritative classifier for both imported sources and existing SSOT entries.
+UAC is the authoritative classifier for imported sources and existing SSOT entries.
 
 ## Capability Types
 
-| Capability Type | Simple Meaning | Automatic Deploy? |
+| Capability Type | Meaning | Auto deploy? |
 | --- | --- | --- |
 | `skill` | Reusable prompt/workflow with clear task guidance and bounded output | Yes |
-| `agent` | Delegated specialist with explicit control-plane behavior or agent-only runtime semantics | Yes |
-| `both` | One SSOT source that should emit both workflow surfaces and agent surfaces | Yes |
-| `manual_review` | Mixed, weak, or config-heavy content that should not deploy automatically | No |
+| `agent` | Delegated specialist with explicit control-plane behavior | Yes |
+| `both` | One source that should emit workflow and agent surfaces | Yes |
+| `manual_review` | Weak, mixed, or conflicting content | No |
 
-## Decision Rubric
+## Not Capability Types
+These are wrapper or invocation surfaces, not peer capability classes:
+- commands
+- plugins
+- powers
+- extensions
 
-### `skill`
-Use when the source is mainly a reusable workflow or prompt asset.
+## Layered Manifest
+Every accepted capability should produce three layers.
 
-Common signals:
-- explicit objective, in-scope, out-of-scope, constraints, or acceptance sections
-- workflow/process framing
-- usage examples or output format sections
-- `SKILL.md`-style structure
+### Minimal
+- capability type
+- role
+- tags
+- inputs/outputs
+- tool policy
+- resources
+- packaging profile
+- install target
+- emitted surfaces
+- provenance
+- confidence/rationale/review status
 
-### `agent`
-Use when the source behaves like a delegated specialist rather than only a reusable prompt.
+### Expanded
+- relationship suggestions
+- dependencies
+- overlap candidates
+- migration notes
+- adjustment recommendations
 
-Common signals:
-- `kind: agent` or `role: agent`
-- tool or control-plane metadata
-- sub-agent/delegation language
-- explicit operating identity, responsibilities, or mission
+### Org Graph
+- org role
+- reports/delegates/collaborates suggestions
+- authority tier
+- work-graph impact
 
-### `both`
-Use when both sets of signals are strong.
+Rule: expanded and org-graph layers are advisory. Orchestrators decide whether to use them.
 
-This means:
-- keep one canonical SSOT entry
-- emit workflow/skill surfaces and agent surfaces from the same source
-- do not duplicate the source into two SSOT files
+## Anti-Complecting Check
+Every import/plan/apply run compares the candidate against the current library and emits:
+- duplicate risk
+- overlap report
+- conflict report
+- fit assessment
+- required existing adjustments
+- required new-entry adjustments
+- work-graph change summary
 
-### `manual_review`
-Use when the source is too weak, too mixed, or too config-heavy to package safely.
+If unresolved overlap/conflict is too high, the result must fall to `manual_review`.
 
-Common signals:
-- wrapper/config without a clear prompt body
-- missing objective/scope structure
-- conflicting evidence for multiple shapes
-
-## Commands Are Not Capability Types
-
-`command` is an invocation surface, not a peer capability type.
-
-That means UAC decides:
-- `skill`
-- `agent`
+## Install Target
+Supported install scopes:
+- `global`
+- `repo_local`
 - `both`
-- `manual_review`
 
-Then Core-Prompts derives the right surfaces for each CLI.
+Default behavior:
+- infer likely target
+- show recommendation in plan/import output
+- require confirmation before apply writes
 
 ## Deployment Matrix
 
@@ -68,20 +81,10 @@ Then Core-Prompts derives the right surfaces for each CLI.
 | `both` | `codex_skill`, `codex_agent` | `gemini_command`, `gemini_skill`, `gemini_agent` | `claude_command`, `claude_agent` | `kiro_prompt`, `kiro_skill`, `kiro_agent` |
 | `manual_review` | none | none | none | none |
 
-## Existing SSOT Behavior
+Wrapper examples:
+- Codex plugin wrapper
+- Gemini extension wrapper
+- Claude plugin wrapper
+- Kiro power wrapper
 
-Existing SSOT entries are audited using the same rubric as external imports.
-
-For each SSOT entry, UAC compares:
-- declared capability in frontmatter
-- inferred capability from content and structure
-- expected generated surfaces
-- actual generated surfaces on disk
-
-Audit statuses:
-- `aligned`
-- `missing_agent_surface`
-- `missing_skill_surface`
-- `over-generated`
-- `manual_review`
-- `frontmatter_mismatch`
+Those wrappers are additive deployment forms only.

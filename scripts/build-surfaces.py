@@ -12,11 +12,12 @@ SRC_ROOT = ROOT / 'src'
 if str(SRC_ROOT) not in sys.path:
     sys.path.insert(0, str(SRC_ROOT))
 
-from intent_pipeline.uac_ssot import build_ssot_manifest_entry, load_ssot_entries
+from intent_pipeline.uac_ssot import build_ssot_handoff_contract, build_ssot_manifest_entry, load_ssot_entries
 
 SSOT_DIR = ROOT / 'ssot'
 META_DIR = ROOT / '.meta'
 MANIFEST_PATH = META_DIR / 'manifest.json'
+HANDOFF_PATH = META_DIR / 'capability-handoff.json'
 
 GEMINI_COMMAND_DIR = ROOT / '.gemini' / 'commands'
 GEMINI_SKILL_DIR = ROOT / '.gemini' / 'skills'
@@ -273,6 +274,7 @@ def main():
             generated['surfaces']['codex_agent'].append(write_codex_agent(entry.slug, entry.description, entry.body, tools))
 
     MANIFEST_PATH.write_text(json.dumps(generated, indent=2) + '\n', encoding='utf-8')
+    HANDOFF_PATH.write_text(json.dumps(build_ssot_handoff_contract(ROOT), indent=2) + '\n', encoding='utf-8')
     print('Generated', len(entries), 'ssot entries')
 
 

@@ -5,10 +5,10 @@ milestone_name: Controlled Extension Re-entry
 current_phase: 0
 current_phase_name: shipped milestone
 current_plan: 0
-status: ready_for_new_milestone
-stopped_at: v1.3 shipped, archived, tagged, and released
-last_updated: "2026-03-11T06:45:00.000Z"
-last_activity: 2026-03-11
+status: active_gsd_lite_initiative
+stopped_at: capability-fabric-vnext implementation in progress
+last_updated: "2026-03-15T00:00:00.000Z"
+last_activity: 2026-03-15
 progress:
   total_phases: 3
   completed_phases: 3
@@ -24,15 +24,15 @@ progress:
 See: .planning/PROJECT.md
 
 **Core value:** Convert source content into safe, deterministic intent artifacts that preserve explicit boundaries, traceability, and stable decision semantics.
-**Current focus:** No active milestone. Start the next milestone from the shipped v1.3 baseline.
+**Current focus:** Capability Fabric vNext initiative. Build layered manifests, cross-analysis, multi-source convergence, and orchestrator-neutral handoff without adding orchestration to Core-Prompts/UAC.
 
 ## Position
 
-**Milestone:** v1.3 Controlled Extension Re-entry
-**Status:** Shipped and archived
-**Progress:** [██████████] 100%
-**Last Activity:** 2026-03-11
-**Last Activity Description:** Merged Phase 10, archived v1.3, packaged release surfaces, and created release tag `v1.3`.
+**Initiative:** Capability Fabric vNext
+**Status:** In progress (GSD-lite)
+**Progress:** [██████░░░░] 60%
+**Last Activity:** 2026-03-15
+**Last Activity Description:** Added layered manifests, cross-analysis, and orchestrator-neutral handoff to UAC shell and SSOT audit flow.
 
 ## Decisions Made
 
@@ -44,7 +44,7 @@ See: .planning/PROJECT.md
 
 ## Blockers
 
-- None
+- None currently; full validation still pending
 
 ## Session Log
 
@@ -53,3 +53,11 @@ See: .planning/PROJECT.md
 - 2026-03-06: Completed Phase 9 deterministic URL ingestion.
 - 2026-03-10: Completed Phase 10 simulate-first controlled execution and real-source validation.
 - 2026-03-11: Merged PR #6, archived v1.3, tagged `v1.3`, and prepared release artifacts.
+
+
+## Initiative Reference
+
+- Program: `.planning/initiatives/capability-fabric-vnext/PROGRAM.md`
+- Checklist: `.planning/initiatives/capability-fabric-vnext/CHECKLIST.md`
+- Validation: `.planning/initiatives/capability-fabric-vnext/VALIDATION.md`
+- Architecture sources: `.planning/initiatives/capability-fabric-vnext/ARCHITECTURE-SOURCES.md`

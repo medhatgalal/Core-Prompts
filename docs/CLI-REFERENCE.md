@@ -133,7 +133,7 @@ Verify discovery:
 - `codex --help` and invoke skill by name in a session.
 - For sub-agents, verify `~/.codex/config.toml` includes `[agents.<slug>]` entries with `config_file` paths.
 
-## UAC Import Surface
+## Capability Fabric UAC Surface
 
 Primary user-facing intake surface:
 - `uac-import`
@@ -156,11 +156,13 @@ Operational contract:
 - uplift objective/scope/constraints
 - run semantic routing
 - recommend `skill`, `agent`, `both`, or `manual_review`
-- aggregate multi-file imports into a collection recommendation when appropriate
+- aggregate multi-file and multi-source imports into a collection recommendation when appropriate
+- emit layered manifests and anti-complecting fit analysis
 - output packaging guidance for Codex, Gemini, Claude, and Kiro
 - expose an inspectable rubric and scorecard for the classification decision
-- expose a CLI deployment matrix for each capability type
-- audit existing SSOT entries against declared capability and generated surfaces
+- expose a CLI deployment matrix for each capability type plus wrapper surfaces
+- audit existing SSOT entries against declared capability, generated surfaces, and fit analysis
+- publish an advisory orchestrator handoff contract
 
 Shell modes:
 - `--mode import`
@@ -169,9 +171,14 @@ Shell modes:
 - `--mode plan`
 - `--mode apply` (planned-only for now)
 
+Install target model:
+- `--install-target auto|global|repo_local|both`
+- auto infers a target and still requires confirmation before any future mutating apply flow
+
 Important boundary:
-- the internal Python runners under `scripts/` are verification/operator surfaces
+- the internal Python runners under `scripts/` are operator surfaces
 - the user-facing surface is the generated CLI/skill layer from `ssot/uac-import.md`
+- Capability Fabric/UAC do not own runtime routing, delegation, or orchestration decisions
 
 See also:
 - [docs/UAC-CAPABILITY-MODEL.md](UAC-CAPABILITY-MODEL.md)

@@ -1,10 +1,10 @@
-"""SSOT audit and manifest helpers for UAC capability-driven deployment."""
+"""SSOT audit, manifest, and handoff helpers for Capability Fabric."""
 
 from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
+from typing import Any, Sequence
 
 from intent_pipeline.uac_assessment import UacAssessment, assess_uac_source
 from intent_pipeline.uac_capabilities import (
@@ -14,6 +14,7 @@ from intent_pipeline.uac_capabilities import (
     normalize_declared_capability,
 )
 from intent_pipeline.uac_extract import extract_uac_analysis_text
+from intent_pipeline.uac_manifest import analyze_manifest_fit, build_capability_manifest, orchestrator_handoff_payload
 
 
 @dataclass(frozen=True, slots=True)
@@ -37,6 +38,8 @@ class SsotAuditEntry:
     actual_surface_names: tuple[str, ...]
     audit_status: str
     audit_issues: tuple[str, ...]
+    manifest: dict[str, object]
+    cross_analysis: dict[str, object]
 
     def as_payload(self) -> dict[str, object]:
         return {
@@ -55,6 +58,8 @@ class SsotAuditEntry:
                 "status": self.audit_status,
                 "issues": list(self.audit_issues),
             },
+            "manifest": self.manifest,
+            "cross_analysis": self.cross_analysis,
         }
 
 
@@ -78,22 +83,63 @@ def load_ssot_entries(ssot_dir: Path) -> list[SsotEntry]:
     return entries
 
 
+def _assess_entry(entry: SsotEntry) -> tuple[UacAssessment, dict[str, object], dict[str, object], dict[str, object]]:
+    extraction = extract_uac_analysis_text(entry.raw_text, entry.path.name)
+    inferred = assess_uac_source(
+        entry.raw_text,
+        analysis_text=extraction.analysis_text,
+        source_metadata={
+            "source_type": "LOCAL_FILE",
+            "normalized_source": str(entry.path.resolve()),
+            "policy_rule_id": f"ssot.{entry.slug}",
+            "content_type": "text/markdown",
+            "content_sha256": "ssot",
+        },
+        source_hint=entry.path,
+    )
+    summary = extraction.analysis_text[:800]
+    uplift = {
+        "primary_objective": None,
+        "in_scope": [],
+        "out_of_scope": [],
+        "quality_constraints": [],
+    }
+    routing = {"route_profile": "SSOT_AUDIT"}
+    manifest = build_capability_manifest(
+        slug=entry.slug,
+        source_metadata={
+            "source_type": "LOCAL_FILE",
+            "normalized_source": str(entry.path.resolve()),
+            "policy_rule_id": f"ssot.{entry.slug}",
+            "content_type": "text/markdown",
+            "content_sha256": "ssot",
+        },
+        raw_text=entry.raw_text,
+        summary=summary,
+        assessment_payload=inferred.as_payload(),
+        uplift_payload=uplift,
+        routing_payload=routing,
+        repo_root=entry.path.parents[1],
+    )
+    return inferred, manifest, uplift, routing
+
+
 def audit_ssot_entries(root: Path) -> list[SsotAuditEntry]:
     ssot_dir = root / "ssot"
     entries = load_ssot_entries(ssot_dir)
-    audits: list[SsotAuditEntry] = []
+    manifests: list[dict[str, object]] = []
+    inferred_cache: dict[str, UacAssessment] = {}
     for entry in entries:
-        extraction = extract_uac_analysis_text(entry.raw_text, entry.path.name)
-        inferred = assess_uac_source(
-            entry.raw_text,
-            analysis_text=extraction.analysis_text,
-            source_metadata={
-                "source_type": "LOCAL_FILE",
-                "normalized_source": str(entry.path.resolve()),
-            },
-            source_hint=entry.path,
+        inferred, manifest, _, _ = _assess_entry(entry)
+        inferred_cache[entry.slug] = inferred
+        manifests.append(manifest)
+
+    audits: list[SsotAuditEntry] = []
+    for entry, manifest in zip(entries, manifests):
+        inferred = inferred_cache[entry.slug]
+        declared_capability = normalize_declared_capability(
+            entry.frontmatter.get("capability_type") or entry.frontmatter.get("kind") or entry.frontmatter.get("role")
         )
-        declared_capability = normalize_declared_capability(entry.frontmatter.get("capability_type") or entry.frontmatter.get("kind") or entry.frontmatter.get("role"))
         expected_surfaces = set(emitted_surface_names(inferred.capability_type))
         actual_surfaces = discover_actual_surfaces(root, entry.slug)
         audit = audit_surface_alignment(
@@ -102,6 +148,8 @@ def audit_ssot_entries(root: Path) -> list[SsotAuditEntry]:
             expected_surfaces=expected_surfaces,
             actual_surfaces=actual_surfaces,
         )
+        existing = [item for item in manifests if item.get("slug") != entry.slug]
+        cross = analyze_manifest_fit(manifest, existing)
         audits.append(
             SsotAuditEntry(
                 slug=entry.slug,
@@ -113,38 +161,28 @@ def audit_ssot_entries(root: Path) -> list[SsotAuditEntry]:
                 actual_surface_names=tuple(sorted(actual_surfaces)),
                 audit_status=audit.status,
                 audit_issues=audit.issues,
+                manifest=manifest,
+                cross_analysis=cross.as_payload(),
             )
         )
     return audits
 
 
 def build_ssot_manifest_entry(entry: SsotEntry) -> dict[str, object]:
-    extraction = extract_uac_analysis_text(entry.raw_text, entry.path.name)
-    inferred = assess_uac_source(
-        entry.raw_text,
-        analysis_text=extraction.analysis_text,
-        source_metadata={
-            "source_type": "LOCAL_FILE",
-            "normalized_source": str(entry.path.resolve()),
-        },
-        source_hint=entry.path,
+    inferred, manifest, _, _ = _assess_entry(entry)
+    declared_capability = normalize_declared_capability(
+        entry.frontmatter.get("capability_type") or entry.frontmatter.get("kind") or entry.frontmatter.get("role")
     )
-    declared_capability = normalize_declared_capability(entry.frontmatter.get("capability_type") or entry.frontmatter.get("kind") or entry.frontmatter.get("role"))
-    return {
-        "file": f"ssot/{entry.path.name}",
-        "slug": entry.slug,
-        "name": entry.frontmatter.get("name", entry.slug),
-        "description": entry.description,
-        "declared_capability": declared_capability,
-        "inferred_capability": inferred.capability_type,
-        "confidence": round(inferred.confidence, 2),
-        "deployment_intent": inferred.deployment_intent,
-        "signals": list(inferred.signals),
-        "scorecard": dict(inferred.scorecard),
-        "emitted_surfaces": {cli: list(names) for cli, names in inferred.emitted_surfaces.items() if names},
-        "expected_surface_names": list(emitted_surface_names(inferred.capability_type)),
-        "rubric_version": "uac-capability-v1",
-    }
+    manifest["declared_capability"] = declared_capability
+    manifest["inferred_capability"] = inferred.capability_type
+    manifest["expected_surface_names"] = list(emitted_surface_names(inferred.capability_type))
+    manifest["rubric_version"] = "capability-fabric.v0"
+    return manifest
+
+
+def build_ssot_handoff_contract(root: Path) -> dict[str, object]:
+    manifests = [build_ssot_manifest_entry(entry) for entry in load_ssot_entries(root / "ssot")]
+    return orchestrator_handoff_payload(manifests)
 
 
 def parse_ssot_frontmatter_and_body(text: str) -> tuple[dict[str, str], str]:
@@ -189,8 +227,8 @@ def discover_actual_surfaces(root: Path, slug: str) -> set[str]:
     return {name for name, path in surface_paths.items() if path.exists()}
 
 
-def render_audit_table(audits: list[SsotAuditEntry]) -> str:
-    headers = ("slug", "declared", "inferred", "status", "confidence")
+def render_audit_table(audits: Sequence[SsotAuditEntry]) -> str:
+    headers = ("slug", "declared", "inferred", "status", "fit", "confidence")
     rows = [headers]
     for audit in audits:
         rows.append(
@@ -199,6 +237,7 @@ def render_audit_table(audits: list[SsotAuditEntry]) -> str:
                 audit.declared_capability or "-",
                 audit.inferred.capability_type,
                 audit.audit_status,
+                str(audit.cross_analysis.get("fit_assessment", "-")),
                 f"{audit.inferred.confidence:.2f}",
             )
         )
@@ -215,6 +254,7 @@ __all__ = [
     "SsotAuditEntry",
     "SsotEntry",
     "audit_ssot_entries",
+    "build_ssot_handoff_contract",
     "build_ssot_manifest_entry",
     "discover_actual_surfaces",
     "load_ssot_entries",

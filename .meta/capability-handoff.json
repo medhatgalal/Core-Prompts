@@ -1,0 +1,655 @@
+{
+  "schema_version": "capability-fabric.handoff.v0",
+  "advisory_only": true,
+  "notes": [
+    "Capability Fabric publishes metadata and suggestions only.",
+    "Orchestrators remain responsible for delegation and runtime routing."
+  ],
+  "capabilities": [
+    {
+      "slug": "analyze-context",
+      "capability_type": "skill",
+      "role": "analyst",
+      "domain_tags": [
+        "analysis",
+        "context",
+        "prompting",
+        "analyze"
+      ],
+      "required_inputs": [
+        "source text",
+        "user intent/context"
+      ],
+      "expected_outputs": [
+        "deterministic summary",
+        "uplift payload",
+        "capability recommendation",
+        "deployment guidance"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_command",
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_command"
+        ],
+        "kiro": [
+          "kiro_prompt",
+          "kiro_skill"
+        ]
+      },
+      "confidence": 0.97,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [],
+      "org_graph": {
+        "org_role": "analyst",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "analysis",
+          "context"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "code-review",
+      "capability_type": "skill",
+      "role": "analyst",
+      "domain_tags": [
+        "review",
+        "debugging",
+        "context",
+        "code"
+      ],
+      "required_inputs": [
+        "source text",
+        "user intent/context"
+      ],
+      "expected_outputs": [
+        "deterministic summary",
+        "uplift payload",
+        "capability recommendation",
+        "deployment guidance"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_command",
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_command"
+        ],
+        "kiro": [
+          "kiro_prompt",
+          "kiro_skill"
+        ]
+      },
+      "confidence": 0.97,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [],
+      "org_graph": {
+        "org_role": "analyst",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "review",
+          "debugging"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "converge",
+      "capability_type": "both",
+      "role": "analyst",
+      "domain_tags": [
+        "architecture",
+        "review",
+        "analysis",
+        "packaging",
+        "import",
+        "debugging",
+        "context",
+        "prompting"
+      ],
+      "required_inputs": [
+        "source text",
+        "user intent/context"
+      ],
+      "expected_outputs": [
+        "deterministic summary",
+        "uplift payload",
+        "capability recommendation",
+        "deployment guidance"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill",
+          "codex_agent"
+        ],
+        "gemini": [
+          "gemini_command",
+          "gemini_skill",
+          "gemini_agent"
+        ],
+        "claude": [
+          "claude_command",
+          "claude_agent"
+        ],
+        "kiro": [
+          "kiro_prompt",
+          "kiro_skill",
+          "kiro_agent"
+        ]
+      },
+      "confidence": 0.82,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [
+        "prefer explicit review or analyst companions before high-authority use",
+        "pair with review and analysis capabilities when converging design proposals"
+      ],
+      "org_graph": {
+        "org_role": "specialist_with_workflow_surface",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "architecture",
+          "review"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "mentor",
+      "capability_type": "both",
+      "role": "advisor",
+      "domain_tags": [
+        "review",
+        "analysis",
+        "routing",
+        "planning",
+        "context",
+        "prompting",
+        "mentor"
+      ],
+      "required_inputs": [
+        "source text",
+        "user intent/context"
+      ],
+      "expected_outputs": [
+        "deterministic summary",
+        "uplift payload",
+        "capability recommendation",
+        "deployment guidance"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill",
+          "codex_agent"
+        ],
+        "gemini": [
+          "gemini_command",
+          "gemini_skill",
+          "gemini_agent"
+        ],
+        "claude": [
+          "claude_command",
+          "claude_agent"
+        ],
+        "kiro": [
+          "kiro_prompt",
+          "kiro_skill",
+          "kiro_agent"
+        ]
+      },
+      "confidence": 0.84,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [
+        "prefer explicit review or analyst companions before high-authority use"
+      ],
+      "org_graph": {
+        "org_role": "specialist_with_workflow_surface",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "review",
+          "analysis"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "resolve-conflict",
+      "capability_type": "skill",
+      "role": "advisor",
+      "domain_tags": [
+        "review",
+        "analysis",
+        "planning",
+        "debugging",
+        "context",
+        "prompting",
+        "resolve",
+        "conflict"
+      ],
+      "required_inputs": [
+        "source text",
+        "user intent/context"
+      ],
+      "expected_outputs": [
+        "deterministic summary",
+        "uplift payload",
+        "capability recommendation",
+        "deployment guidance"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_command",
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_command"
+        ],
+        "kiro": [
+          "kiro_prompt",
+          "kiro_skill"
+        ]
+      },
+      "confidence": 0.97,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [],
+      "org_graph": {
+        "org_role": "advisor",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "review",
+          "analysis"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "supercharge",
+      "capability_type": "both",
+      "role": "advisor",
+      "domain_tags": [
+        "architecture",
+        "analysis",
+        "routing",
+        "packaging",
+        "planning",
+        "debugging",
+        "context",
+        "prompting"
+      ],
+      "required_inputs": [
+        "source text",
+        "user intent/context"
+      ],
+      "expected_outputs": [
+        "deterministic summary",
+        "uplift payload",
+        "capability recommendation",
+        "deployment guidance"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill",
+          "codex_agent"
+        ],
+        "gemini": [
+          "gemini_command",
+          "gemini_skill",
+          "gemini_agent"
+        ],
+        "claude": [
+          "claude_command",
+          "claude_agent"
+        ],
+        "kiro": [
+          "kiro_prompt",
+          "kiro_skill",
+          "kiro_agent"
+        ]
+      },
+      "confidence": 0.98,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [
+        "prefer explicit review or analyst companions before high-authority use",
+        "pair with review and analysis capabilities when converging design proposals"
+      ],
+      "org_graph": {
+        "org_role": "specialist_with_workflow_surface",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "architecture",
+          "analysis"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "threader",
+      "capability_type": "skill",
+      "role": "resolver",
+      "domain_tags": [
+        "planning",
+        "debugging",
+        "context",
+        "prompting",
+        "threader"
+      ],
+      "required_inputs": [
+        "source text",
+        "user intent/context"
+      ],
+      "expected_outputs": [
+        "deterministic summary",
+        "uplift payload",
+        "capability recommendation",
+        "deployment guidance"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_command",
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_command"
+        ],
+        "kiro": [
+          "kiro_prompt",
+          "kiro_skill"
+        ]
+      },
+      "confidence": 0.76,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [],
+      "org_graph": {
+        "org_role": "resolver",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "planning",
+          "debugging"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "uac-import",
+      "capability_type": "skill",
+      "role": "analyst",
+      "domain_tags": [
+        "review",
+        "packaging",
+        "import",
+        "planning",
+        "prompting"
+      ],
+      "required_inputs": [
+        "source text",
+        "user intent/context"
+      ],
+      "expected_outputs": [
+        "deterministic summary",
+        "uplift payload",
+        "capability recommendation",
+        "deployment guidance"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_command",
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_command"
+        ],
+        "kiro": [
+          "kiro_prompt",
+          "kiro_skill"
+        ]
+      },
+      "confidence": 0.96,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [],
+      "org_graph": {
+        "org_role": "analyst",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "review",
+          "packaging"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    }
+  ]
+}
