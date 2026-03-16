@@ -89,6 +89,7 @@ def test_deploy_with_only_codex_available_registers_only_codex_agents(tmp_path: 
 
     for slug in ("code-review", "resolve-conflict"):
         assert (tmp_path / ".codex" / "skills" / slug / "SKILL.md").is_file()
+        assert (tmp_path / ".codex" / "skills" / slug / "resources" / "capability.json").is_file()
         assert not (tmp_path / ".codex" / "agents" / f"{slug}.toml").exists()
 
     config_text = (tmp_path / ".codex" / "config.toml").read_text(encoding="utf-8")
@@ -111,10 +112,13 @@ def test_deploy_with_all_clis_available_deploys_new_skill_surfaces(tmp_path: Pat
 
     for slug in ("code-review", "resolve-conflict"):
         assert (tmp_path / ".codex" / "skills" / slug / "SKILL.md").is_file()
+        assert (tmp_path / ".codex" / "skills" / slug / "resources" / "capability.json").is_file()
         assert (tmp_path / ".gemini" / "skills" / slug / "SKILL.md").is_file()
+        assert (tmp_path / ".gemini" / "skills" / slug / "resources" / "capability.json").is_file()
         assert (tmp_path / ".gemini" / "commands" / f"{slug}.toml").is_file()
         assert (tmp_path / ".claude" / "commands" / f"{slug}.md").is_file()
         assert (tmp_path / ".kiro" / "skills" / slug / "SKILL.md").is_file()
+        assert (tmp_path / ".kiro" / "skills" / slug / "resources" / "capability.json").is_file()
         assert (tmp_path / ".kiro" / "prompts" / f"{slug}.md").is_file()
         assert not (tmp_path / ".gemini" / "agents" / f"{slug}.md").exists()
         assert not (tmp_path / ".claude" / "agents" / f"{slug}.md").exists()
@@ -123,15 +127,22 @@ def test_deploy_with_all_clis_available_deploys_new_skill_surfaces(tmp_path: Pat
 
     for slug in ("converge", "mentor", "supercharge"):
         assert (tmp_path / ".codex" / "skills" / slug / "SKILL.md").is_file()
+        assert (tmp_path / ".codex" / "skills" / slug / "resources" / "capability.json").is_file()
         assert (tmp_path / ".codex" / "agents" / f"{slug}.toml").is_file()
+        assert (tmp_path / ".codex" / "agents" / "resources" / slug / "capability.json").is_file()
         assert (tmp_path / ".gemini" / "commands" / f"{slug}.toml").is_file()
         assert (tmp_path / ".gemini" / "skills" / slug / "SKILL.md").is_file()
+        assert (tmp_path / ".gemini" / "skills" / slug / "resources" / "capability.json").is_file()
         assert (tmp_path / ".gemini" / "agents" / f"{slug}.md").is_file()
+        assert (tmp_path / ".gemini" / "agents" / "resources" / slug / "capability.json").is_file()
         assert (tmp_path / ".claude" / "commands" / f"{slug}.md").is_file()
         assert (tmp_path / ".claude" / "agents" / f"{slug}.md").is_file()
+        assert (tmp_path / ".claude" / "agents" / "resources" / slug / "capability.json").is_file()
         assert (tmp_path / ".kiro" / "prompts" / f"{slug}.md").is_file()
         assert (tmp_path / ".kiro" / "skills" / slug / "SKILL.md").is_file()
+        assert (tmp_path / ".kiro" / "skills" / slug / "resources" / "capability.json").is_file()
         assert (tmp_path / ".kiro" / "agents" / f"{slug}.json").is_file()
+        assert (tmp_path / ".kiro" / "agents" / "resources" / slug / "capability.json").is_file()
 
 
 def test_install_wrapper_matches_deploy_for_partial_cli_targets(tmp_path: Path) -> None:

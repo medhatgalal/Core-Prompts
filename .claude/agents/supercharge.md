@@ -522,3 +522,6 @@ Never run unless explicitly invoked by `/gaslight`.
 ---
 
 # End of SuperCharge v4
+
+
+Capability resource: `.claude/agents/resources/supercharge/capability.json`

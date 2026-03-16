@@ -1,14 +1,21 @@
-# Roadmap: Local Intent Sanitizer
+# Roadmap: Core-Prompts / Capability Fabric
 
 ## Milestones
 
-- ✅ **v1.3 Controlled Extension Re-entry** — 3 phases, 9 plans shipped on 2026-03-11 ([Roadmap Archive](./milestones/v1.3-ROADMAP.md), [Requirements Archive](./milestones/v1.3-REQUIREMENTS.md), [Audit](./milestones/v1.3-MILESTONE-AUDIT.md))
-- ✅ **v1.2 Next** — 2 phases, 6 plans shipped on 2026-03-06 ([Roadmap Archive](./milestones/v1.2-ROADMAP.md), [Requirements Archive](./milestones/v1.2-REQUIREMENTS.md), [Audit](./milestones/v1.2-MILESTONE-AUDIT.md))
-- ✅ **v1.0 milestone** — 5 phases, 15 plans shipped on 2026-03-05 ([Roadmap Archive](./milestones/v1.0-ROADMAP.md), [Requirements Archive](./milestones/v1.0-REQUIREMENTS.md), [Audit](./milestones/v1.0-MILESTONE-AUDIT.md))
-- 💤 **v1.1 Hardening** — Superseded before execution
+- ✅ **v1.3 Controlled Extension Re-entry** — shipped on 2026-03-11
+- ✅ **Capability Fabric vNext Foundation** — shipped on 2026-03-15
+- ⏭️ **External Family Pilots** — next slice
+  - architecture family
+  - testing family
+  - comparative review inputs for code-review and docs
 
 ## Active Roadmap
 
-Active initiative (GSD-lite, not full milestone): `Capability Fabric vNext`
+Active initiative reference:
+- `.planning/initiatives/capability-fabric-vnext/PROGRAM.md`
 
-Reference: `.planning/initiatives/capability-fabric-vnext/PROGRAM.md`
+Next work after the foundation slice:
+1. run architecture family pilot
+2. run testing family pilot
+3. compare code-review inputs against existing `code-review` capability
+4. decide what lands as new SSOT vs what strengthens existing entries

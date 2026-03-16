@@ -13,6 +13,7 @@ from intent_pipeline.uac_capabilities import (
     emitted_surface_names,
     normalize_declared_capability,
 )
+from intent_pipeline.uac_descriptors import load_descriptor
 from intent_pipeline.uac_extract import extract_uac_analysis_text
 from intent_pipeline.uac_manifest import analyze_manifest_fit, build_capability_manifest, orchestrator_handoff_payload
 
@@ -97,7 +98,7 @@ def _assess_entry(entry: SsotEntry) -> tuple[UacAssessment, dict[str, object], d
         },
         source_hint=entry.path,
     )
-    summary = extraction.analysis_text[:800]
+    summary = entry.description.strip() or extraction.analysis_text[:240]
     uplift = {
         "primary_objective": None,
         "in_scope": [],
@@ -132,7 +133,7 @@ def audit_ssot_entries(root: Path) -> list[SsotAuditEntry]:
     for entry in entries:
         inferred, manifest, _, _ = _assess_entry(entry)
         inferred_cache[entry.slug] = inferred
-        manifests.append(manifest)
+        manifests.append(_merge_descriptor_overlay(root, entry.slug, manifest))
 
     audits: list[SsotAuditEntry] = []
     for entry, manifest in zip(entries, manifests):
@@ -168,8 +169,10 @@ def audit_ssot_entries(root: Path) -> list[SsotAuditEntry]:
     return audits
 
 
-def build_ssot_manifest_entry(entry: SsotEntry) -> dict[str, object]:
+def build_ssot_manifest_entry(entry: SsotEntry, repo_root: Path | None = None) -> dict[str, object]:
     inferred, manifest, _, _ = _assess_entry(entry)
+    repo_root = repo_root or entry.path.parents[1]
+    manifest = _merge_descriptor_overlay(repo_root, entry.slug, manifest)
     declared_capability = normalize_declared_capability(
         entry.frontmatter.get("capability_type") or entry.frontmatter.get("kind") or entry.frontmatter.get("role")
     )
@@ -181,7 +184,7 @@ def build_ssot_manifest_entry(entry: SsotEntry) -> dict[str, object]:
 
 
 def build_ssot_handoff_contract(root: Path) -> dict[str, object]:
-    manifests = [build_ssot_manifest_entry(entry) for entry in load_ssot_entries(root / "ssot")]
+    manifests = [build_ssot_manifest_entry(entry, root) for entry in load_ssot_entries(root / "ssot")]
     return orchestrator_handoff_payload(manifests)
 
 
@@ -248,6 +251,26 @@ def render_audit_table(audits: Sequence[SsotAuditEntry]) -> str:
         if index == 0:
             rendered.append("-+-".join("-" * width for width in widths))
     return "\n".join(rendered)
+
+
+def _merge_descriptor_overlay(repo_root: Path, slug: str, manifest: dict[str, object]) -> dict[str, object]:
+    descriptor = load_descriptor(repo_root, slug)
+    if not descriptor:
+        return manifest
+    merged = dict(manifest)
+    for key in ("descriptor_version", "family_slug", "shared_summary", "shared_constraints", "modes", "benchmark_sources"):
+        if key in descriptor:
+            merged[key] = descriptor[key]
+    descriptor_layers = descriptor.get("layers")
+    if isinstance(descriptor_layers, dict):
+        merged_layers = dict(merged.get("layers") or {})
+        for layer_name, layer_payload in descriptor_layers.items():
+            base = dict(merged_layers.get(layer_name) or {})
+            if isinstance(layer_payload, dict):
+                base.update(layer_payload)
+            merged_layers[layer_name] = base
+        merged["layers"] = merged_layers
+    return merged
 
 
 __all__ = [

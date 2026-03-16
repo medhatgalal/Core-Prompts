@@ -524,3 +524,6 @@ Never run unless explicitly invoked by `/gaslight`.
 ---
 
 # End of SuperCharge v4
+
+
+Capability resource: `.gemini/agents/resources/supercharge/capability.json`

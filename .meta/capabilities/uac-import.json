@@ -1,0 +1,162 @@
+{
+  "slug": "uac-import",
+  "manifest_version": "capability-fabric.v0",
+  "layers": {
+    "minimal": {
+      "capability_type": "skill",
+      "summary": "---\nname: \"uac-import\"\nkind: \"skill\"\ncapability_type: \"skill\"\ndescription: \"Import local files, folders, repos, or URLs, classify them, cluster them when needed, and land canonical SSOT plus descriptor metadata.\"\n---\n# UAC Import\n\n## Purpose\nTake one or more external sources and turn them into deterministic UAC assessments, layered manifests, canonical SSOT entries, machine-readable descriptors, and advisory handoff contracts.\n\nSupported inputs:\n- local file path\n- local folder path\n- raw public HTTPS URL\n- GitHub repo or folder URL\n- multiple `--source` values in one run\n- repomix-reduced repo input when available\n\nSupported modes:\n- `import`\n- `audit`\n- `explain`\n- `plan`\n- `apply`\n\n## Workflow\n1. Ingest the source through the deterministic pipeline.\n2. Produce a clean summary.\n3. Run up",
+      "role": "analyst",
+      "domain_tags": [
+        "review",
+        "packaging",
+        "import",
+        "planning",
+        "prompting"
+      ],
+      "required_inputs": [
+        "source text",
+        "user intent/context"
+      ],
+      "expected_outputs": [
+        "deterministic summary",
+        "uplift payload",
+        "capability recommendation",
+        "deployment guidance"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "resources": [
+        "/Users/medhat.galal/Desktop/Core-Prompts/ssot/uac-import.md"
+      ],
+      "packaging_profile": {
+        "capability_type": "skill",
+        "primary_surfaces": {
+          "codex": [
+            "codex_skill"
+          ],
+          "gemini": [
+            "gemini_command",
+            "gemini_skill"
+          ],
+          "claude": [
+            "claude_command"
+          ],
+          "kiro": [
+            "kiro_prompt",
+            "kiro_skill"
+          ]
+        },
+        "wrapper_surfaces": {
+          "codex": [],
+          "gemini": [
+            "command_wrapper",
+            "extension_wrapper"
+          ],
+          "claude": [
+            "command_wrapper",
+            "plugin_wrapper"
+          ],
+          "kiro": [
+            "prompt_wrapper",
+            "power_wrapper"
+          ]
+        },
+        "notes": [
+          "wrapper surfaces are additive deployment forms, not capability types",
+          "orchestrators must not infer execution authority from wrapper presence alone"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_command",
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_command"
+        ],
+        "kiro": [
+          "kiro_prompt",
+          "kiro_skill"
+        ]
+      },
+      "source_provenance": {
+        "source_type": "LOCAL_FILE",
+        "normalized_source": "/Users/medhat.galal/Desktop/Core-Prompts/ssot/uac-import.md",
+        "policy_rule_id": "ssot.uac-import",
+        "content_sha256": "ssot"
+      },
+      "confidence": 0.96,
+      "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a command/skill surface.",
+      "review_status": "ready_for_orchestrator_review"
+    },
+    "expanded": {
+      "relationship_suggestions": [],
+      "capability_dependencies": [
+        "context",
+        "packaging"
+      ],
+      "overlap_candidates": [],
+      "migration_notes": [
+        "If the capability lands, compare it against existing entries before apply.",
+        "Relationship suggestions are advisory only and do not imply runtime routing."
+      ],
+      "adjustment_recommendations": [
+        "add an explicit primary objective before packaging",
+        "add deterministic in-scope sections to improve routing fitness",
+        "capture quality constraints or non-negotiables"
+      ]
+    },
+    "org_graph": {
+      "org_role": "analyst",
+      "reports_to_suggestions": [],
+      "delegates_to_suggestions": [],
+      "collaborates_with_suggestions": [
+        "review",
+        "packaging"
+      ],
+      "authority_tier": "advisory",
+      "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+    }
+  },
+  "descriptor_version": "capability-fabric.descriptor.v0",
+  "family_slug": "uac-import",
+  "shared_summary": "---\nname: \"uac-import\"\nkind: \"skill\"\ncapability_type: \"skill\"\ndescription: \"Import local files, folders, repos, or URLs, classify them, cluster them when needed, and land canonical SSOT plus descriptor metadata.\"\n---\n# UAC Import\n\n## Purpose\nTake one or more external sources and turn them into deterministic UAC assessments, layered manifests, canonical SSOT entries, machine-readable descriptors, and advisory handoff contracts.\n\nSupported inputs:\n- local file path\n- local folder path\n- raw public HTTPS URL\n- GitHub repo or folder URL\n- multiple `--source` values in one run\n- repomix-reduced repo input when available\n\nSupported modes:\n- `import`\n- `audit`\n- `explain`\n- `plan`\n- `apply`\n\n## Workflow\n1. Ingest the source through the deterministic pipeline.\n2. Produce a clean summary.\n3. Run up",
+  "shared_constraints": [],
+  "modes": [],
+  "benchmark_sources": [],
+  "declared_capability": "skill",
+  "inferred_capability": "skill",
+  "expected_surface_names": [
+    "codex_skill",
+    "gemini_command",
+    "gemini_skill",
+    "claude_command",
+    "kiro_prompt",
+    "kiro_skill"
+  ],
+  "rubric_version": "capability-fabric.v0"
+}

@@ -12,23 +12,28 @@ SRC_ROOT = ROOT / 'src'
 if str(SRC_ROOT) not in sys.path:
     sys.path.insert(0, str(SRC_ROOT))
 
+from intent_pipeline.uac_descriptors import build_descriptor, load_descriptor, save_descriptor, source_note_path
 from intent_pipeline.uac_ssot import build_ssot_handoff_contract, build_ssot_manifest_entry, load_ssot_entries
 
 SSOT_DIR = ROOT / 'ssot'
 META_DIR = ROOT / '.meta'
 MANIFEST_PATH = META_DIR / 'manifest.json'
 HANDOFF_PATH = META_DIR / 'capability-handoff.json'
+CAPABILITY_DIR = META_DIR / 'capabilities'
 
 GEMINI_COMMAND_DIR = ROOT / '.gemini' / 'commands'
 GEMINI_SKILL_DIR = ROOT / '.gemini' / 'skills'
 GEMINI_AGENT_DIR = ROOT / '.gemini' / 'agents'
 CLAUDE_COMMAND_DIR = ROOT / '.claude' / 'commands'
 CLAUDE_AGENT_DIR = ROOT / '.claude' / 'agents'
+CLAUDE_RESOURCE_DIR = CLAUDE_AGENT_DIR / 'resources'
 KIRO_PROMPT_DIR = ROOT / '.kiro' / 'prompts'
 KIRO_AGENT_DIR = ROOT / '.kiro' / 'agents'
+KIRO_AGENT_RESOURCE_DIR = KIRO_AGENT_DIR / 'resources'
 KIRO_SKILL_DIR = ROOT / '.kiro' / 'skills'
 CODEX_SKILL_DIR = ROOT / '.codex' / 'skills'
 CODEX_AGENT_DIR = ROOT / '.codex' / 'agents'
+CODEX_AGENT_RESOURCE_DIR = CODEX_AGENT_DIR / 'resources'
 
 for d in [
     GEMINI_COMMAND_DIR,
@@ -36,12 +41,16 @@ for d in [
     GEMINI_AGENT_DIR,
     CLAUDE_COMMAND_DIR,
     CLAUDE_AGENT_DIR,
+    CLAUDE_RESOURCE_DIR,
     KIRO_PROMPT_DIR,
     KIRO_AGENT_DIR,
+    KIRO_AGENT_RESOURCE_DIR,
     KIRO_SKILL_DIR,
     CODEX_SKILL_DIR,
     CODEX_AGENT_DIR,
+    CODEX_AGENT_RESOURCE_DIR,
     META_DIR,
+    CAPABILITY_DIR,
 ]:
     d.mkdir(parents=True, exist_ok=True)
 
@@ -57,6 +66,17 @@ SURFACE_PATHS = {
     'kiro_skill': lambda slug: KIRO_SKILL_DIR / slug / 'SKILL.md',
     'codex_skill': lambda slug: CODEX_SKILL_DIR / slug / 'SKILL.md',
     'codex_agent': lambda slug: CODEX_AGENT_DIR / f'{slug}.toml',
+}
+
+
+RESOURCE_PATHS = {
+    'codex_skill': lambda slug: CODEX_SKILL_DIR / slug / 'resources' / 'capability.json',
+    'codex_agent': lambda slug: CODEX_AGENT_RESOURCE_DIR / slug / 'capability.json',
+    'gemini_skill': lambda slug: GEMINI_SKILL_DIR / slug / 'resources' / 'capability.json',
+    'gemini_agent': lambda slug: GEMINI_AGENT_DIR / 'resources' / slug / 'capability.json',
+    'claude_agent': lambda slug: CLAUDE_RESOURCE_DIR / slug / 'capability.json',
+    'kiro_skill': lambda slug: KIRO_SKILL_DIR / slug / 'resources' / 'capability.json',
+    'kiro_agent': lambda slug: KIRO_AGENT_RESOURCE_DIR / slug / 'capability.json',
 }
 
 
@@ -83,15 +103,16 @@ def title_from_slug(slug: str) -> str:
     return ' '.join(part.capitalize() for part in slug.replace('_', '-').split('-'))
 
 
-def write_skill(base_dir: Path, slug: str, desc: str, body: str):
+def write_skill(base_dir: Path, slug: str, desc: str, body: str, resource_hint: str | None = None):
     path = base_dir / slug / 'SKILL.md'
     path.parent.mkdir(parents=True, exist_ok=True)
+    resource_block = f'\n\nCapability resource: `{resource_hint}`\n' if resource_hint else '\n'
     txt = (
         '---\n'
         f'name: "{slug}"\n'
         f'description: "{desc}"\n'
         '---\n'
-        f'{body}\n'
+        f'{body.rstrip()}\n{resource_block}'
     )
     path.write_text(txt, encoding='utf-8')
     return str(path.relative_to(ROOT))
@@ -110,17 +131,20 @@ def write_kiro_prompt(slug: str, desc: str, body: str):
     return str(path.relative_to(ROOT))
 
 
-def write_kiro_agent(slug: str, desc: str, body: str):
+def write_kiro_agent(slug: str, desc: str, body: str, resource_uri: str, include_skill_ref: bool):
     path = KIRO_AGENT_DIR / f'{slug}.json'
     prompt_title = f'{title_from_slug(slug)} (Prompt Mode)'
+    resources = [
+        f'file://.kiro/prompts/{slug}.md',
+        resource_uri,
+    ]
+    if include_skill_ref:
+        resources.append(f'skill://.kiro/skills/{slug}/SKILL.md')
     obj = {
         'name': slug,
         'description': desc,
-        'prompt': f'# {prompt_title}\n\n{body}\n',
-        'resources': [
-            f'file://.kiro/prompts/{slug}.md',
-            f'skill://.kiro/skills/{slug}/SKILL.md',
-        ],
+        'prompt': f'# {prompt_title}\n\n{body}\n\nCapability resource: `{resource_uri}`\n',
+        'resources': resources,
         'hooks': {
             'agentSpawn': [
                 {
@@ -134,14 +158,17 @@ def write_kiro_agent(slug: str, desc: str, body: str):
     return str(path.relative_to(ROOT))
 
 
-def write_codex_skill(slug: str, desc: str, body: str):
-    return write_skill(CODEX_SKILL_DIR, slug, desc, body)
+def write_codex_skill(slug: str, desc: str, body: str, resource_hint: str | None = None):
+    return write_skill(CODEX_SKILL_DIR, slug, desc, body, resource_hint=resource_hint)
 
 
-def write_codex_agent(slug: str, desc: str, body: str, tools: list[str]):
+def write_codex_agent(slug: str, desc: str, body: str, tools: list[str], resource_hint: str | None = None):
     path = CODEX_AGENT_DIR / f'{slug}.toml'
     esc_desc = toml_escape_inline(desc)
-    instructions = body.replace('\\', '\\\\').replace('"', '\\"')
+    augmented = body.rstrip()
+    if resource_hint:
+        augmented += f'\n\nCapability resource: `{resource_hint}`\n'
+    instructions = augmented.replace('\\', '\\\\').replace('"', '\\"')
     txt = (
         f'name = "{slug}"\n'
         f'description = "{esc_desc}"\n'
@@ -159,12 +186,13 @@ def write_gemini_command(slug: str, desc: str, body: str):
     return str(path.relative_to(ROOT))
 
 
-def write_gemini_skill(slug: str, desc: str, body: str):
-    return write_skill(GEMINI_SKILL_DIR, slug, desc, body)
+def write_gemini_skill(slug: str, desc: str, body: str, resource_hint: str | None = None):
+    return write_skill(GEMINI_SKILL_DIR, slug, desc, body, resource_hint=resource_hint)
 
 
-def write_gemini_agent(slug: str, desc: str, body: str):
+def write_gemini_agent(slug: str, desc: str, body: str, resource_hint: str | None = None):
     path = GEMINI_AGENT_DIR / f'{slug}.md'
+    resource_block = f'\n\nCapability resource: `{resource_hint}`\n' if resource_hint else '\n'
     txt = (
         '---\n'
         f'name: "{slug}"\n'
@@ -173,7 +201,7 @@ def write_gemini_agent(slug: str, desc: str, body: str):
         'max_turns: 15\n'
         'timeout_mins: 5\n'
         '---\n\n'
-        f'{body}\n'
+        f'{body.rstrip()}\n{resource_block}'
     )
     path.write_text(txt, encoding='utf-8')
     return str(path.relative_to(ROOT))
@@ -191,32 +219,41 @@ def write_claude_command(slug: str, desc: str, body: str):
     return str(path.relative_to(ROOT))
 
 
-def write_claude_agent(slug: str, desc: str, body: str):
+def write_claude_agent(slug: str, desc: str, body: str, resource_hint: str | None = None):
     path = CLAUDE_AGENT_DIR / f'{slug}.md'
+    resource_block = f'\n\nCapability resource: `{resource_hint}`\n' if resource_hint else '\n'
     txt = (
         '---\n'
         f'name: {slug}\n'
         f'description: "{desc}"\n'
         'tools: Read, Write, Edit, Bash, Grep, Glob\n'
         '---\n\n'
-        f'{body}\n'
+        f'{body.rstrip()}\n{resource_block}'
     )
     path.write_text(txt, encoding='utf-8')
     return str(path.relative_to(ROOT))
 
 
-def write_kiro_skill(slug: str, desc: str, body: str):
-    return write_skill(KIRO_SKILL_DIR, slug, desc, body)
+def write_kiro_skill(slug: str, desc: str, body: str, resource_hint: str | None = None):
+    return write_skill(KIRO_SKILL_DIR, slug, desc, body, resource_hint=resource_hint)
 
 
 def cleanup_slug_outputs(slug: str) -> None:
-    for surface_name, path_fn in SURFACE_PATHS.items():
+    for path_fn in SURFACE_PATHS.values():
         path = path_fn(slug)
         if path.name == 'SKILL.md':
             if path.parent.exists() and path.parent.is_dir():
                 shutil.rmtree(path.parent)
         elif path.exists():
             path.unlink()
+    for path_fn in RESOURCE_PATHS.values():
+        path = path_fn(slug)
+        if path.exists():
+            path.unlink()
+        parent = path.parent
+        while parent != ROOT and parent.exists() and parent.is_dir() and not any(parent.iterdir()):
+            parent.rmdir()
+            parent = parent.parent
 
 
 def parse_tools(frontmatter: dict[str, str]) -> list[str]:
@@ -226,6 +263,30 @@ def parse_tools(frontmatter: dict[str, str]) -> list[str]:
     normalized = raw.strip('[]')
     tools = [part.strip().strip('"').strip("'") for part in normalized.split(',') if part.strip()]
     return tools or ['*']
+
+
+def write_resource(surface_name: str, slug: str, descriptor: dict[str, object]) -> str:
+    path = RESOURCE_PATHS[surface_name](slug)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(descriptor, indent=2) + '\n', encoding='utf-8')
+    return str(path.relative_to(ROOT))
+
+
+def resolve_descriptor(entry, manifest_entry: dict[str, object]) -> dict[str, object]:
+    descriptor = load_descriptor(ROOT, entry.slug)
+    if descriptor:
+        resolved = build_descriptor(
+            manifest=manifest_entry,
+            family_slug=str(descriptor.get('family_slug') or entry.slug),
+            shared_summary=str(descriptor.get('shared_summary') or manifest_entry['layers']['minimal'].get('summary') or ''),
+            shared_constraints=tuple(descriptor.get('shared_constraints') or ()),
+            modes=tuple(descriptor.get('modes') or ()),
+            benchmark_sources=tuple(descriptor.get('benchmark_sources') or ()),
+        )
+    else:
+        resolved = build_descriptor(manifest=manifest_entry)
+    save_descriptor(ROOT, entry.slug, resolved)
+    return resolved
 
 
 def main():
@@ -238,40 +299,64 @@ def main():
         'generator': {
             'script': 'scripts/build-surfaces.py',
             'python': '3.11+',
-            'version': '5.0',
+            'version': '6.0',
             'generated_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
         },
         'ssot_sources': [],
         'surfaces': {name: [] for name in SURFACE_PATHS},
+        'resources': {name: [] for name in RESOURCE_PATHS},
     }
 
     for entry in entries:
         cleanup_slug_outputs(entry.slug)
-        manifest_entry = build_ssot_manifest_entry(entry)
+        manifest_entry = build_ssot_manifest_entry(entry, ROOT)
+        descriptor = resolve_descriptor(entry, manifest_entry)
         generated['ssot_sources'].append(manifest_entry)
         emitted = set(manifest_entry['expected_surface_names'])
         tools = parse_tools(entry.frontmatter)
+        source_note = source_note_path(ROOT, entry.slug)
+
+        skill_resource_hint = {}
+        agent_resource_hint = {}
+        for surface_name in emitted:
+            if surface_name in RESOURCE_PATHS:
+                resource_rel = write_resource(surface_name, entry.slug, descriptor)
+                generated['resources'][surface_name].append(resource_rel)
+                if surface_name.endswith('skill'):
+                    skill_resource_hint[surface_name] = resource_rel
+                else:
+                    agent_resource_hint[surface_name] = resource_rel
+        if source_note.exists():
+            pass
 
         if 'gemini_command' in emitted:
             generated['surfaces']['gemini_command'].append(write_gemini_command(entry.slug, entry.description, entry.body))
         if 'gemini_skill' in emitted:
-            generated['surfaces']['gemini_skill'].append(write_gemini_skill(entry.slug, entry.description, entry.body))
+            generated['surfaces']['gemini_skill'].append(write_gemini_skill(entry.slug, entry.description, entry.body, skill_resource_hint.get('gemini_skill')))
         if 'gemini_agent' in emitted:
-            generated['surfaces']['gemini_agent'].append(write_gemini_agent(entry.slug, entry.description, entry.body))
+            generated['surfaces']['gemini_agent'].append(write_gemini_agent(entry.slug, entry.description, entry.body, agent_resource_hint.get('gemini_agent')))
         if 'claude_command' in emitted:
             generated['surfaces']['claude_command'].append(write_claude_command(entry.slug, entry.description, entry.body))
         if 'claude_agent' in emitted:
-            generated['surfaces']['claude_agent'].append(write_claude_agent(entry.slug, entry.description, entry.body))
+            generated['surfaces']['claude_agent'].append(write_claude_agent(entry.slug, entry.description, entry.body, agent_resource_hint.get('claude_agent')))
         if 'kiro_prompt' in emitted:
             generated['surfaces']['kiro_prompt'].append(write_kiro_prompt(entry.slug, entry.description, entry.body))
         if 'kiro_agent' in emitted:
-            generated['surfaces']['kiro_agent'].append(write_kiro_agent(entry.slug, entry.description, entry.body))
+            generated['surfaces']['kiro_agent'].append(
+                write_kiro_agent(
+                    entry.slug,
+                    entry.description,
+                    entry.body,
+                    f"file://{RESOURCE_PATHS['kiro_agent'](entry.slug).relative_to(ROOT)}",
+                    'kiro_skill' in emitted,
+                )
+            )
         if 'kiro_skill' in emitted:
-            generated['surfaces']['kiro_skill'].append(write_kiro_skill(entry.slug, entry.description, entry.body))
+            generated['surfaces']['kiro_skill'].append(write_kiro_skill(entry.slug, entry.description, entry.body, skill_resource_hint.get('kiro_skill')))
         if 'codex_skill' in emitted:
-            generated['surfaces']['codex_skill'].append(write_codex_skill(entry.slug, entry.description, entry.body))
+            generated['surfaces']['codex_skill'].append(write_codex_skill(entry.slug, entry.description, entry.body, skill_resource_hint.get('codex_skill')))
         if 'codex_agent' in emitted:
-            generated['surfaces']['codex_agent'].append(write_codex_agent(entry.slug, entry.description, entry.body, tools))
+            generated['surfaces']['codex_agent'].append(write_codex_agent(entry.slug, entry.description, entry.body, tools, agent_resource_hint.get('codex_agent')))
 
     MANIFEST_PATH.write_text(json.dumps(generated, indent=2) + '\n', encoding='utf-8')
     HANDOFF_PATH.write_text(json.dumps(build_ssot_handoff_contract(ROOT), indent=2) + '\n', encoding='utf-8')

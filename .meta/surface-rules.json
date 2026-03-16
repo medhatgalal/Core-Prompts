@@ -288,7 +288,9 @@
       ],
       "resource_uri_patterns": [
         "^file://\\.kiro/prompts/.+\\.md$",
-        "^skill://\\.kiro/skills/.+/SKILL\\.md$"
+        "^skill://\\.kiro/skills/.+/SKILL\\.md$",
+        "^file://\\.kiro/agents/resources/.+/capability\\.json$",
+        "^file://\\.kiro/skills/.+/resources/capability\\.json$"
       ],
       "validator": {
         "command": [

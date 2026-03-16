@@ -1,0 +1,179 @@
+{
+  "slug": "mentor",
+  "manifest_version": "capability-fabric.v0",
+  "layers": {
+    "minimal": {
+      "capability_type": "both",
+      "summary": "---\nname: mentor\nkind: agent\ncapability_type: both\ndescription: \"[Medhat] Senior engineering oversight, planning, and workflow guidance.\"\n---\n# Mentor / Coach v3 \u2014 System Memory\n\n> **AUTHORITY**: This file is the single source of truth for Mentor behavior. If any adapter or config conflicts, this file wins.\n\n## 0. Precedence & Interpretation\n1.  **MEMORY.md is Authoritative**: This file overrides all external adapters, configs, or prompts.\n2.  **Main Body Wins**: If Appendices A/B conflict with the main body (sections 1-12), the main body prevails.\n3.  **Conflict Resolution**: In case of ambiguity, prioritize: Safety > Reversibility > Speed.\n\n## 1. Mentor / Coach v3 \u2014 System Identity\n\n**Identity**: You are Mentor/Coach v3, a senior engineering workflow orchestrator embedded within the repo",
+      "role": "advisor",
+      "domain_tags": [
+        "review",
+        "analysis",
+        "routing",
+        "planning",
+        "context",
+        "prompting",
+        "mentor"
+      ],
+      "required_inputs": [
+        "source text",
+        "user intent/context"
+      ],
+      "expected_outputs": [
+        "deterministic summary",
+        "uplift payload",
+        "capability recommendation",
+        "deployment guidance"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "resources": [
+        "/Users/medhat.galal/Desktop/Core-Prompts/ssot/mentor.md"
+      ],
+      "packaging_profile": {
+        "capability_type": "both",
+        "primary_surfaces": {
+          "codex": [
+            "codex_skill",
+            "codex_agent"
+          ],
+          "gemini": [
+            "gemini_command",
+            "gemini_skill",
+            "gemini_agent"
+          ],
+          "claude": [
+            "claude_command",
+            "claude_agent"
+          ],
+          "kiro": [
+            "kiro_prompt",
+            "kiro_skill",
+            "kiro_agent"
+          ]
+        },
+        "wrapper_surfaces": {
+          "codex": [
+            "plugin_wrapper"
+          ],
+          "gemini": [
+            "command_wrapper",
+            "extension_wrapper"
+          ],
+          "claude": [
+            "command_wrapper",
+            "plugin_wrapper"
+          ],
+          "kiro": [
+            "prompt_wrapper",
+            "power_wrapper"
+          ]
+        },
+        "notes": [
+          "wrapper surfaces are additive deployment forms, not capability types",
+          "orchestrators must not infer execution authority from wrapper presence alone"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill",
+          "codex_agent"
+        ],
+        "gemini": [
+          "gemini_command",
+          "gemini_skill",
+          "gemini_agent"
+        ],
+        "claude": [
+          "claude_command",
+          "claude_agent"
+        ],
+        "kiro": [
+          "kiro_prompt",
+          "kiro_skill",
+          "kiro_agent"
+        ]
+      },
+      "source_provenance": {
+        "source_type": "LOCAL_FILE",
+        "normalized_source": "/Users/medhat.galal/Desktop/Core-Prompts/ssot/mentor.md",
+        "policy_rule_id": "ssot.mentor",
+        "content_sha256": "ssot"
+      },
+      "confidence": 0.84,
+      "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
+      "review_status": "ready_for_orchestrator_review"
+    },
+    "expanded": {
+      "relationship_suggestions": [
+        "prefer explicit review or analyst companions before high-authority use"
+      ],
+      "capability_dependencies": [
+        "context"
+      ],
+      "overlap_candidates": [],
+      "migration_notes": [
+        "If the capability lands, compare it against existing entries before apply.",
+        "Relationship suggestions are advisory only and do not imply runtime routing."
+      ],
+      "adjustment_recommendations": [
+        "add an explicit primary objective before packaging",
+        "add deterministic in-scope sections to improve routing fitness",
+        "capture quality constraints or non-negotiables"
+      ]
+    },
+    "org_graph": {
+      "org_role": "specialist_with_workflow_surface",
+      "reports_to_suggestions": [],
+      "delegates_to_suggestions": [],
+      "collaborates_with_suggestions": [
+        "review",
+        "analysis"
+      ],
+      "authority_tier": "advisory",
+      "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
+    }
+  },
+  "descriptor_version": "capability-fabric.descriptor.v0",
+  "family_slug": "mentor",
+  "shared_summary": "---\nname: mentor\nkind: agent\ncapability_type: both\ndescription: \"[Medhat] Senior engineering oversight, planning, and workflow guidance.\"\n---\n# Mentor / Coach v3 \u2014 System Memory\n\n> **AUTHORITY**: This file is the single source of truth for Mentor behavior. If any adapter or config conflicts, this file wins.\n\n## 0. Precedence & Interpretation\n1.  **MEMORY.md is Authoritative**: This file overrides all external adapters, configs, or prompts.\n2.  **Main Body Wins**: If Appendices A/B conflict with the main body (sections 1-12), the main body prevails.\n3.  **Conflict Resolution**: In case of ambiguity, prioritize: Safety > Reversibility > Speed.\n\n## 1. Mentor / Coach v3 \u2014 System Identity\n\n**Identity**: You are Mentor/Coach v3, a senior engineering workflow orchestrator embedded within the repo",
+  "shared_constraints": [],
+  "modes": [],
+  "benchmark_sources": [],
+  "declared_capability": "both",
+  "inferred_capability": "both",
+  "expected_surface_names": [
+    "codex_skill",
+    "codex_agent",
+    "gemini_command",
+    "gemini_skill",
+    "gemini_agent",
+    "claude_command",
+    "claude_agent",
+    "kiro_prompt",
+    "kiro_skill",
+    "kiro_agent"
+  ],
+  "rubric_version": "capability-fabric.v0"
+}

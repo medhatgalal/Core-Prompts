@@ -129,3 +129,6 @@ Bias: clarity, leverage, future optionality.
 ~~~~
 
 End of prompt.
+
+
+Capability resource: `.gemini/agents/resources/converge/capability.json`

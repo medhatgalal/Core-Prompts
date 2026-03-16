@@ -324,3 +324,6 @@ git diff HEAD
 4. Verify: No terminology conflicts between sections
 
 **Result**: Clean merge with logical flow, all content preserved.
+
+
+Capability resource: `.kiro/skills/resolve-conflict/resources/capability.json`

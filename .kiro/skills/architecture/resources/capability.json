@@ -1,0 +1,285 @@
+{
+  "slug": "architecture",
+  "manifest_version": "capability-fabric.v0",
+  "layers": {
+    "minimal": {
+      "capability_type": "skill",
+      "summary": "4 accepted items read like reusable prompt/skill assets. Package them under one architecture skill family with named modes or subcommands.",
+      "role": "workflow",
+      "domain_tags": [
+        "architecture"
+      ],
+      "required_inputs": [
+        "source text",
+        "user intent/context"
+      ],
+      "expected_outputs": [
+        "deterministic summary",
+        "uplift payload",
+        "capability recommendation",
+        "deployment guidance"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "resources": [
+        "https://github.com/harish-garg/gemini-cli-prompt-library/tree/main/commands/architecture"
+      ],
+      "packaging_profile": {
+        "capability_type": "skill",
+        "primary_surfaces": {
+          "codex": [
+            "codex_skill"
+          ],
+          "gemini": [
+            "gemini_command",
+            "gemini_skill"
+          ],
+          "claude": [
+            "claude_command"
+          ],
+          "kiro": [
+            "kiro_prompt",
+            "kiro_skill"
+          ]
+        },
+        "wrapper_surfaces": {
+          "codex": [],
+          "gemini": [
+            "command_wrapper",
+            "extension_wrapper"
+          ],
+          "claude": [
+            "command_wrapper",
+            "plugin_wrapper"
+          ],
+          "kiro": [
+            "prompt_wrapper",
+            "power_wrapper"
+          ]
+        },
+        "notes": [
+          "wrapper surfaces are additive deployment forms, not capability types",
+          "orchestrators must not infer execution authority from wrapper presence alone"
+        ]
+      },
+      "install_target": {
+        "recommended": "global",
+        "confidence": 0.74,
+        "confirmation_required_for_apply": true,
+        "rationale": "GitHub folder imports are treated as external capability candidates and default to the global library.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_command",
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_command"
+        ],
+        "kiro": [
+          "kiro_prompt",
+          "kiro_skill"
+        ]
+      },
+      "source_provenance": {
+        "source_type": "GITHUB_TREE",
+        "normalized_source": "https://github.com/harish-garg/gemini-cli-prompt-library/tree/main/commands/architecture",
+        "policy_rule_id": "collection.architecture",
+        "content_sha256": "c4c9a41b2d6f2ff2e90ebe06e8d87d663d2280598ac014600bc4174a5eb44920"
+      },
+      "confidence": 0.84,
+      "rationale": "4 accepted items read like reusable prompt/skill assets. Package them under one architecture skill family with named modes or subcommands.",
+      "review_status": "ready_for_orchestrator_review"
+    },
+    "expanded": {
+      "relationship_suggestions": [
+        "pair with review and analysis capabilities when converging design proposals"
+      ],
+      "capability_dependencies": [
+        "analysis"
+      ],
+      "overlap_candidates": [
+        "converge",
+        "supercharge"
+      ],
+      "migration_notes": [
+        "If the capability lands, compare it against existing entries before apply.",
+        "Relationship suggestions are advisory only and do not imply runtime routing."
+      ],
+      "adjustment_recommendations": [
+        "add an explicit primary objective before packaging",
+        "add deterministic in-scope sections to improve routing fitness",
+        "capture quality constraints or non-negotiables"
+      ]
+    },
+    "org_graph": {
+      "org_role": "workflow_provider",
+      "reports_to_suggestions": [],
+      "delegates_to_suggestions": [],
+      "collaborates_with_suggestions": [
+        "architecture"
+      ],
+      "authority_tier": "advisory",
+      "work_graph_impact": "Adds or updates a skill capability with route profile COLLECTION_REVIEW."
+    }
+  },
+  "descriptor_version": "capability-fabric.descriptor.v0",
+  "family_slug": "architecture",
+  "shared_summary": "Architecture family for API design, database design, pattern selection, and system design with black-box boundaries and explicit trade-offs.",
+  "shared_constraints": [
+    "Publish design guidance only; do not orchestrate or delegate work.",
+    "Prefer black-box interfaces and replaceable components.",
+    "Make assumptions and trade-offs explicit."
+  ],
+  "modes": [
+    {
+      "mode_slug": "design-api",
+      "display_name": "Design API",
+      "source_refs": [
+        "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/architecture/design-api.toml"
+      ],
+      "mode_summary": "Design resource-oriented APIs with clear endpoint semantics, validation, and versioning.",
+      "required_inputs": [
+        "product requirements",
+        "resource model",
+        "auth or policy constraints"
+      ],
+      "expected_outputs": [
+        "endpoint map",
+        "request/response contract",
+        "error model",
+        "trade-offs"
+      ],
+      "examples": [
+        "RESTful CRUD service",
+        "internal service boundary"
+      ],
+      "uplift_notes": [
+        "Prefer nouns and stable resource boundaries.",
+        "Keep auth, pagination, and versioning explicit."
+      ]
+    },
+    {
+      "mode_slug": "design-database",
+      "display_name": "Design Database",
+      "source_refs": [
+        "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/architecture/design-database.toml"
+      ],
+      "mode_summary": "Design schemas and storage structures that match access patterns and evolution needs.",
+      "required_inputs": [
+        "entity list",
+        "access patterns",
+        "integrity requirements"
+      ],
+      "expected_outputs": [
+        "schema outline",
+        "key/index plan",
+        "normalization notes",
+        "migration guidance"
+      ],
+      "examples": [
+        "OLTP schema",
+        "event or document-backed subsystem"
+      ],
+      "uplift_notes": [
+        "Call out where denormalization is intentional.",
+        "Tie indexes to real query paths."
+      ]
+    },
+    {
+      "mode_slug": "design-patterns",
+      "display_name": "Design Patterns",
+      "source_refs": [
+        "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/architecture/design-patterns.toml"
+      ],
+      "mode_summary": "Choose structural or behavioral patterns to reduce coupling and improve extension paths.",
+      "required_inputs": [
+        "current code smell or problem statement",
+        "extensibility goal"
+      ],
+      "expected_outputs": [
+        "pattern recommendation",
+        "before/after sketch",
+        "anti-pattern warnings"
+      ],
+      "examples": [
+        "Factory vs builder",
+        "adapter for legacy integration"
+      ],
+      "uplift_notes": [
+        "Explain the forces, not just the pattern name.",
+        "Avoid pattern cargo culting."
+      ]
+    },
+    {
+      "mode_slug": "system-design",
+      "display_name": "System Design",
+      "source_refs": [
+        "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/architecture/system-design.toml"
+      ],
+      "mode_summary": "Produce end-to-end architecture for a system with explicit scale, reliability, and boundary assumptions.",
+      "required_inputs": [
+        "functional requirements",
+        "non-functional requirements",
+        "constraints"
+      ],
+      "expected_outputs": [
+        "component model",
+        "data flow",
+        "capacity notes",
+        "failure and security notes"
+      ],
+      "examples": [
+        "SaaS control plane",
+        "data-intensive backend"
+      ],
+      "uplift_notes": [
+        "Keep the design modular and replaceable.",
+        "Separate constraints from preferences."
+      ]
+    }
+  ],
+  "benchmark_sources": [
+    {
+      "provider": "github",
+      "label": "harish-garg/gemini-cli-prompt-library (architecture family seed)",
+      "url": "https://github.com/harish-garg/gemini-cli-prompt-library/tree/main/commands/architecture",
+      "note": "Useful four-mode family skeleton for architecture workflows."
+    },
+    {
+      "provider": "github",
+      "label": "Alexanderdunlop/ai-architecture-prompts",
+      "url": "https://github.com/Alexanderdunlop/ai-architecture-prompts",
+      "note": "Quality benchmark for black-box interfaces, replaceability, and modular design guidance."
+    }
+  ],
+  "declared_capability": "skill",
+  "inferred_capability": "skill",
+  "expected_surface_names": [
+    "codex_skill",
+    "gemini_command",
+    "gemini_skill",
+    "claude_command",
+    "kiro_prompt",
+    "kiro_skill"
+  ],
+  "rubric_version": "capability-fabric.v0"
+}

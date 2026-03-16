@@ -344,6 +344,7 @@ def orchestrator_handoff_payload(manifests: Sequence[Mapping[str, object]]) -> d
             {
                 "slug": manifest.get("slug"),
                 "capability_type": minimal.get("capability_type"),
+                "summary": minimal.get("summary"),
                 "role": minimal.get("role"),
                 "domain_tags": list(minimal.get("domain_tags") or []),
                 "required_inputs": list(minimal.get("required_inputs") or []),

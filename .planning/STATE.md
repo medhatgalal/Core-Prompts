@@ -1,19 +1,19 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.3
-milestone_name: Controlled Extension Re-entry
+milestone: capability-fabric
+milestone_name: Capability Fabric vNext
 current_phase: 0
-current_phase_name: shipped milestone
+current_phase_name: foundation complete
 current_plan: 0
 status: active_gsd_lite_initiative
-stopped_at: capability-fabric-vnext implementation in progress
+stopped_at: apply flow, descriptor sidecars, repo clustering, wrappers, and pilot readiness complete
 last_updated: "2026-03-15T00:00:00.000Z"
 last_activity: 2026-03-15
 progress:
-  total_phases: 3
-  completed_phases: 3
-  total_plans: 9
-  completed_plans: 9
+  total_phases: 4
+  completed_phases: 4
+  total_plans: 12
+  completed_plans: 12
   percent: 100
 ---
 
@@ -21,30 +21,32 @@ progress:
 
 ## Project Reference
 
-See: .planning/PROJECT.md
+See: `.planning/PROJECT.md`
 
-**Core value:** Convert source content into safe, deterministic intent artifacts that preserve explicit boundaries, traceability, and stable decision semantics.
-**Current focus:** Capability Fabric vNext initiative. Build layered manifests, cross-analysis, multi-source convergence, and orchestrator-neutral handoff without adding orchestration to Core-Prompts/UAC.
+**Core value:** Convert source content into safe, deterministic capability artifacts that preserve explicit boundaries, traceability, and stable decision semantics.
+**Current focus:** Capability Fabric foundation is complete. The next operational slice is the external family pilot for `architecture` and `testing`.
 
 ## Position
 
 **Initiative:** Capability Fabric vNext
-**Status:** In progress (GSD-lite)
-**Progress:** [██████░░░░] 60%
+**Status:** Complete for this foundation slice
+**Progress:** [██████████] 100%
 **Last Activity:** 2026-03-15
-**Last Activity Description:** Added layered manifests, cross-analysis, and orchestrator-neutral handoff to UAC shell and SSOT audit flow.
+**Last Activity Description:** Implemented real `apply`, descriptor sidecars, thin-surface resource bundling, shell wrappers, repo-family clustering, repomix hooks, and benchmark search controls.
 
 ## Decisions Made
 
 | Scope | Summary | Rationale |
 |-------|---------|-----------|
-| v1.3 | Re-open `EXT-01` and `EXT-02` only through deterministic, fail-closed control surfaces | Preserve the local-only baseline while adding bounded capability growth |
-| URL ingestion | Require canonical normalization, explicit URL policy, and immutable snapshots | End network behavior before sanitization and keep provenance auditable |
-| Controlled execution | Keep simulate-first default and require exact approval + closed registry matching | Prevent accidental side effects and keep execution explainable |
+| Capability Fabric | Keep orchestration out of Core-Prompts/UAC | Preserve a clean provider/orchestrator boundary |
+| Apply flow | Write repo-local SSOT + descriptor, then build and validate | Keep canonical state in-repo and keep deploy explicit |
+| Metadata model | Use `ssot/<slug>.md` + `.meta/capabilities/<slug>.json` | Keep human-readable prompts separate from machine-readable descriptors |
+| Whole-repo imports | Cluster broad repos into family candidates before landing | Prevent heterogeneous repos from polluting SSOT as one family |
 
 ## Blockers
 
-- None currently; full validation still pending
+- None for the foundation slice
+- Next work is product choice and quality work for the first external family pilots
 
 ## Session Log
 
@@ -53,7 +55,7 @@ See: .planning/PROJECT.md
 - 2026-03-06: Completed Phase 9 deterministic URL ingestion.
 - 2026-03-10: Completed Phase 10 simulate-first controlled execution and real-source validation.
 - 2026-03-11: Merged PR #6, archived v1.3, tagged `v1.3`, and prepared release artifacts.
-
+- 2026-03-15: Shipped Capability Fabric foundation slice with mutating apply flow and descriptor-backed surface generation.
 
 ## Initiative Reference
 

@@ -125,3 +125,6 @@ Bias: clarity, leverage, future optionality.
 ~~~~
 
 End of prompt.
+
+
+Capability resource: `.codex/skills/converge/resources/capability.json`

@@ -171,3 +171,6 @@ Focus specifically on scope alignment and over-engineering detection.
 3. **Scope discipline is non-negotiable** - Flag any scope creep immediately
 4. **Simplicity bias** - When in doubt, recommend the simpler approach
 5. **No rubber-stamping** - If you can't verify something, say so explicitly
+
+
+Capability resource: `.kiro/skills/code-review/resources/capability.json`

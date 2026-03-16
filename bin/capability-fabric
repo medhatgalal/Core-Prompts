@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+PYTHON_BIN="${PYTHON_BIN:-python3.11}"
+
+usage() {
+  cat <<'EOF'
+Usage: bin/capability-fabric <command> [options]
+
+Best used through an AI assistant turn-by-turn, but fully scriptable from shell.
+Commands:
+  build                   Generate all CLI surfaces and bundled resources
+  validate [--strict]     Validate generated surfaces
+  deploy [args...]        Copy generated surfaces to CLI homes
+
+Notes:
+  - build and validate operate inside this repo.
+  - deploy copies generated artifacts; it does not classify sources or mutate SSOT.
+EOF
+}
+
+if [[ $# -lt 1 ]]; then
+  usage
+  exit 1
+fi
+
+command="$1"
+shift
+case "$command" in
+  build)
+    exec "$PYTHON_BIN" "$ROOT/scripts/build-surfaces.py" "$@"
+    ;;
+  validate)
+    exec "$PYTHON_BIN" "$ROOT/scripts/validate-surfaces.py" "$@"
+    ;;
+  deploy)
+    exec "$ROOT/scripts/deploy-surfaces.sh" "$@"
+    ;;
+  -h|--help|help)
+    usage
+    ;;
+  *)
+    echo "error: unknown command '$command'"
+    usage
+    exit 1
+    ;;
+esac

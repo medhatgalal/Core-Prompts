@@ -4,15 +4,15 @@
 Source: `https://github.com/harish-garg/gemini-cli-prompt-library/tree/main/commands/architecture`
 
 Assessment:
-- Worth importing later
 - Useful family skeleton
 - Reads as one architecture skill family
 - Weak raw deterministic structure for objective/in-scope extraction
-- Raw source routes mostly to `NEEDS_REVIEW`
+- Raw import is acceptable only as a landing scaffold, not as final SSOT quality
 
-Use:
-- Preserve family grouping and per-mode decomposition
-- Do not ship raw
+Outcome:
+- Imported through UAC
+- Landed as `ssot/architecture.md`
+- Then manually uplifted into a stronger family entry with explicit mode contracts
 
 ## Alexanderdunlop ai-architecture-prompts
 Source: `https://github.com/Alexanderdunlop/ai-architecture-prompts`
@@ -20,9 +20,8 @@ Source: `https://github.com/Alexanderdunlop/ai-architecture-prompts`
 Assessment:
 - Stronger architecture-quality reference
 - Better black-box boundary and replaceability framing
-- Better fit as design input for Capability Fabric implementation now
-- Later used as quality benchmark during the architecture pilot
+- Better fit as design input for Capability Fabric and as benchmark for the final architecture family
 
-Use:
-- Apply its black-box design principles to the implementation of manifests, convergence, and handoff contracts
-- Do not let README/resources dilute prompt-family assessment during the later pilot
+Outcome:
+- Used to shape the final architecture family summary, standards, and mode expectations
+- Preserved in `.meta/capabilities/architecture.json` and `.meta/capabilities/architecture.sources.md` as benchmark lineage

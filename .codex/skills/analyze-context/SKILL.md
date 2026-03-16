@@ -75,3 +75,6 @@ Contains:
 1. All items checked in todo.
 2. Insights contains complete analysis.
 3. Summary section in insights with key findings.
+
+
+Capability resource: `.codex/skills/analyze-context/resources/capability.json`
