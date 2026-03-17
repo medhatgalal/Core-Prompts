@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: capability-fabric
 milestone_name: Capability Fabric vNext
 current_phase: 0
-current_phase_name: foundation complete
+current_phase_name: broad release slice complete
 current_plan: 0
 status: active_gsd_lite_initiative
-stopped_at: apply flow, descriptor sidecars, repo clustering, wrappers, and pilot readiness complete
-last_updated: "2026-03-15T00:00:00.000Z"
-last_activity: 2026-03-15
+stopped_at: broad release slice committed and pushed; planning normalization in progress
+last_updated: "2026-03-17T21:00:00.000Z"
+last_activity: 2026-03-17
 progress:
   total_phases: 4
   completed_phases: 4
@@ -24,15 +24,15 @@ progress:
 See: `.planning/PROJECT.md`
 
 **Core value:** Convert source content into safe, deterministic capability artifacts that preserve explicit boundaries, traceability, and stable decision semantics.
-**Current focus:** Capability Fabric foundation is complete. The next operational slice is the external family pilot for `architecture` and `testing`.
+**Current focus:** Capability Fabric broad release slice is complete. The next operational slice is remaining SSOT review and external family comparison work.
 
 ## Position
 
 **Initiative:** Capability Fabric vNext
-**Status:** Complete for this foundation slice
+**Status:** Complete for the broad release slice
 **Progress:** [██████████] 100%
-**Last Activity:** 2026-03-15
-**Last Activity Description:** Implemented real `apply`, descriptor sidecars, thin-surface resource bundling, shell wrappers, repo-family clustering, repomix hooks, and benchmark search controls.
+**Last Activity:** 2026-03-17
+**Last Activity Description:** Shipped the broad release slice with quality-loop support, architecture agent surfaces, smoke repair, updated docs, and dual-remote push.
 
 ## Decisions Made
 
@@ -56,6 +56,7 @@ See: `.planning/PROJECT.md`
 - 2026-03-10: Completed Phase 10 simulate-first controlled execution and real-source validation.
 - 2026-03-11: Merged PR #6, archived v1.3, tagged `v1.3`, and prepared release artifacts.
 - 2026-03-15: Shipped Capability Fabric foundation slice with mutating apply flow and descriptor-backed surface generation.
+- 2026-03-17: Shipped the broad release slice, moved quality review evidence to `reports/quality-reviews/`, and pushed branch `AI/capability-fabric-apply-pilot` to GitHub and GitLab.
 
 ## Initiative Reference
 

@@ -20,7 +20,14 @@ Convert source content into safe, deterministic capability artifacts that preser
   - repomix-assisted source reduction
   - advisory orchestrator handoff contract
   - thin generated vendor surfaces with bundled resources
-- Next product slice: external family pilots, starting with `architecture` and `testing`.
+- Broad release slice is now in place:
+  - built-in UAC quality loop
+  - architecture promoted to `both` with advisory artifact-writer agent surfaces
+  - smoke validation repaired and made surface-aware
+  - shell wrappers standardized on `python3`
+  - orchestrator-facing contract and packaging docs added
+  - review evidence moved to `reports/quality-reviews/`
+- Next product slice: complete remaining SSOT review wave and run the next external family comparisons.
 
 ## Active Requirements
 - Keep orchestration out of Core-Prompts/UAC.
@@ -35,4 +42,4 @@ Convert source content into safe, deterministic capability artifacts that preser
 - Autonomous orchestration logic.
 
 ---
-*Last updated: 2026-03-15 after Capability Fabric foundation slice*
+*Last updated: 2026-03-17 after the broad release slice*

@@ -10,3 +10,6 @@
 - [x] Update docs for Capability Fabric and UAC boundaries
 - [x] Run full validation suite
 - [x] Review outputs for boundary correctness and cleanup generated drift
+- [x] Add strict architecture quality pass with scorecard + rollbacks
+- [x] Enforce benchmark-fit checks against `code-review` and `resolve-conflict`
+- [x] Add/extend regression tests for architecture quality bar
