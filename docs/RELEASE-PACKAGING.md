@@ -37,4 +37,11 @@ The package should not include:
 - stray local artifacts such as `.DS_Store`
 
 ## Remote CI
-Do not call the repo release-green until the remote GitHub Actions run is green after push.
+Do not call the repo release-green until the hosted CI surface is green after push.
+
+- GitHub Actions:
+  - runs on pushes to `main` and `AI/**`
+  - runs on `pull_request`
+- GitLab CI:
+  - runs on branch pushes
+  - runs on merge request pipelines

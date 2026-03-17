@@ -1,0 +1,15 @@
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "push"'
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+
+stages:
+  - validate
+
+validate_cli_surfaces:
+  stage: validate
+  image: python:3.11
+  script:
+    - python3 scripts/sync-surface-specs.py --refresh || true
+    - python3 scripts/smoke-clis.py
+    - python3 scripts/validate-surfaces.py --strict
