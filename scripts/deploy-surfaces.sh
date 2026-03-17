@@ -3,7 +3,7 @@ set -euo pipefail
 
 usage() {
   cat <<'EOF'
-Usage: scripts/deploy-surfaces.sh [--cli gemini|claude|kiro|codex|all] [--target PATH] [--dry-run] [--strict-cli]
+Usage: scripts/deploy-surfaces.sh [--cli gemini|claude|kiro|codex|all] [--target PATH] [--allow-nonlocal-target] [--dry-run] [--strict-cli]
 
 Copy-only deployment of SSOT-managed generated surfaces to CLI directories under a target root.
 This script never creates symlinks.
@@ -12,7 +12,8 @@ Existing files are overwritten in place with cp -f.
 
 Options:
   --cli gemini|claude|kiro|codex|all  Target CLI(s). Default: all
-  --target PATH                       Destination root path. Default: ~
+  --target PATH                       Destination root path. Default: repository root
+  --allow-nonlocal-target             Allow explicit --target outside repository root
   --dry-run                           Show copy actions without writing
   --strict-cli                        Fail when selected CLI binary is not installed
   -h, --help                          Show this help
@@ -20,9 +21,11 @@ EOF
 }
 
 CLI_TARGET="all"
-TARGET_ROOT="$HOME"
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+TARGET_ROOT="$REPO_ROOT"
 DRY_RUN=0
 STRICT_CLI=0
+ALLOW_NONLOCAL_TARGET=0
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -33,6 +36,9 @@ while [[ $# -gt 0 ]]; do
     --target)
       shift
       TARGET_ROOT="${1:-}"
+      ;;
+    --allow-nonlocal-target)
+      ALLOW_NONLOCAL_TARGET=1
       ;;
     --dry-run)
       DRY_RUN=1
@@ -66,6 +72,12 @@ print(os.path.abspath(os.path.expanduser(sys.argv[1])))
 PY
 )"
 
+if [[ "$ALLOW_NONLOCAL_TARGET" -ne 1 && "$TARGET_ROOT" != "$REPO_ROOT" && "$TARGET_ROOT" != "$REPO_ROOT"/* ]]; then
+  echo "error: --target is restricted to repository root by default: $REPO_ROOT"
+  echo "Use --allow-nonlocal-target to write outside repository root"
+  exit 1
+fi
+
 case "$CLI_TARGET" in
   gemini|claude|kiro|codex|all) ;;
   *)
@@ -75,7 +87,6 @@ case "$CLI_TARGET" in
     ;;
 esac
 
-REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$REPO_ROOT"
 
 if [[ ! -f ".meta/manifest.json" ]]; then

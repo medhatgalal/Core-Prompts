@@ -4,7 +4,7 @@
   "layers": {
     "minimal": {
       "capability_type": "skill",
-      "summary": "---\nname: \"threader\"\ncapability_type: \"skill\"\ndescription: \"[Medhat] Context Threader & Exporter (Memory Management)\"\n---\n# THREADER \u2014 Full-Thread Transcript Exporter (Introspective / Recall-Based) \u2014 v2.0 (2026-01-10)\n\nPaste this message as **plain text** into the SAME thread you want exported, then send it.\nDo NOT wrap it in a code fence. Do NOT prefix with /rawmd.\nAfter you send it, the AI must execute it (not echo it).\n\n---\n\n## COMMAND\n/threader export\n\n---\n\n## ROLE\nYou are THREADER: a forensic, lossless thread transcript exporter.\n\nYour job is to produce an **accurate transcript** of the entire current thread, suitable for multi\u2011AI bakeoffs and diffing.\n\nYou are **not** analyzing, judging, or improving the thread.\n\n---\n\n## HARD OUTPUT CONTRACT (read carefully)\n\nYou must output **exactl",
+      "summary": "[Medhat] Context Threader & Exporter (Memory Management)",
       "role": "resolver",
       "domain_tags": [
         "planning",
@@ -111,7 +111,8 @@
       },
       "confidence": 0.76,
       "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a command/skill surface.",
-      "review_status": "ready_for_orchestrator_review"
+      "review_status": "ready_for_orchestrator_review",
+      "display_name": "THREADER \u2014 Full-Thread Transcript Exporter (Introspective / Recall-Based) \u2014 v2.0 (2026-01-10)"
     },
     "expanded": {
       "relationship_suggestions": [],
@@ -139,12 +140,7 @@
       "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
     }
   },
-  "descriptor_version": "capability-fabric.descriptor.v0",
-  "family_slug": "threader",
-  "shared_summary": "---\nname: \"threader\"\ncapability_type: \"skill\"\ndescription: \"[Medhat] Context Threader & Exporter (Memory Management)\"\n---\n# THREADER \u2014 Full-Thread Transcript Exporter (Introspective / Recall-Based) \u2014 v2.0 (2026-01-10)\n\nPaste this message as **plain text** into the SAME thread you want exported, then send it.\nDo NOT wrap it in a code fence. Do NOT prefix with /rawmd.\nAfter you send it, the AI must execute it (not echo it).\n\n---\n\n## COMMAND\n/threader export\n\n---\n\n## ROLE\nYou are THREADER: a forensic, lossless thread transcript exporter.\n\nYour job is to produce an **accurate transcript** of the entire current thread, suitable for multi\u2011AI bakeoffs and diffing.\n\nYou are **not** analyzing, judging, or improving the thread.\n\n---\n\n## HARD OUTPUT CONTRACT (read carefully)\n\nYou must output **exactl",
-  "shared_constraints": [],
-  "modes": [],
-  "benchmark_sources": [],
+  "display_name": "THREADER \u2014 Full-Thread Transcript Exporter (Introspective / Recall-Based) \u2014 v2.0 (2026-01-10)",
   "declared_capability": "skill",
   "inferred_capability": "skill",
   "expected_surface_names": [
@@ -155,5 +151,12 @@
     "kiro_prompt",
     "kiro_skill"
   ],
-  "rubric_version": "capability-fabric.v0"
+  "rubric_version": "capability-fabric.v0",
+  "descriptor_version": "capability-fabric.descriptor.v0",
+  "family_slug": "threader",
+  "shared_summary": "[Medhat] Context Threader & Exporter (Memory Management)",
+  "shared_constraints": [],
+  "modes": [],
+  "benchmark_sources": [],
+  "consumption_hints": {}
 }

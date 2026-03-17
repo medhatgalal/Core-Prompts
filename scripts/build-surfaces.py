@@ -80,6 +80,120 @@ RESOURCE_PATHS = {
 }
 
 
+def descriptor_defaults(slug: str, display_name: str) -> dict[str, object]:
+    defaults: dict[str, dict[str, object]] = {
+        'architecture': {
+            'display_name': 'Architecture Studio',
+            'consumption_hints': {
+                'preferred_use_cases': [
+                    'API design',
+                    'database design',
+                    'design-pattern selection',
+                    'system design',
+                    'migration-safe architecture review',
+                ],
+                'artifact_conventions': [
+                    'reports/architecture/<timestamp>-summary.md',
+                    'reports/architecture/<timestamp>-decision-log.md',
+                    'architecture/spec.md',
+                    'architecture/decision-log.md',
+                    'architecture/migration-plan.md',
+                    'architecture/validation-plan.md',
+                ],
+                'invocation_style': 'interactive_or_artifact_oriented',
+                'requires_human_confirmation': False,
+            },
+            'layer_overrides': {
+                'expanded': {
+                    'quality_criteria': [
+                        'Score against the published architecture scorecard on every significant design branch',
+                        'Include rejected alternatives and explicit trade-offs for major design decisions',
+                        'Keep migration, rollback, and validation concrete enough to execute',
+                        'Meet or exceed the Harish/Alexanderdunlop source bar and the local code-review/resolve-conflict bar',
+                    ],
+                    'quality_gate': {
+                        'min_pass_score': 9,
+                        'required_no_zero_for': [
+                            'Failure-Aware Decisions',
+                            'Migration Clarity',
+                            'Benchmark Fit',
+                        ],
+                    },
+                },
+            },
+        },
+        'code-review': {
+            'display_name': 'Commit Review — Git Commit Quality Gate',
+            'consumption_hints': {
+                'preferred_use_cases': [
+                    'pre-merge commit review',
+                    'scope creep detection',
+                    'over-engineering checks',
+                ],
+                'artifact_conventions': [
+                    'reports/code-reviews/<timestamp>-<commit>.md',
+                ],
+                'invocation_style': 'git_commit_review',
+                'requires_human_confirmation': False,
+            },
+        },
+        'resolve-conflict': {
+            'display_name': 'Merge Conflict Resolution — Structured Conflict Analysis',
+            'consumption_hints': {
+                'preferred_use_cases': [
+                    'merge conflict analysis',
+                    'additive conflict resolution planning',
+                    'contradiction detection before merge',
+                ],
+                'artifact_conventions': [
+                    'reports/merge-conflicts/<descriptive-name>.md',
+                ],
+                'invocation_style': 'conflict_analysis',
+                'requires_human_confirmation': True,
+            },
+        },
+        'testing': {
+            'display_name': 'Testing Studio — Test Design and Coverage Analysis',
+            'consumption_hints': {
+                'preferred_use_cases': [
+                    'unit test design',
+                    'end-to-end test design',
+                    'edge-case discovery',
+                    'coverage gap analysis',
+                ],
+                'artifact_conventions': [
+                    'reports/testing/<timestamp>-plan.md',
+                    'reports/testing/<timestamp>-coverage-gap.md',
+                    'reports/testing/<timestamp>-edge-cases.md',
+                ],
+                'invocation_style': 'analysis_or_generation',
+                'requires_human_confirmation': False,
+            },
+        },
+        'uac-import': {
+            'display_name': 'UAC Import — Capability Intake, Quality Review, and Uplift',
+            'consumption_hints': {
+                'preferred_use_cases': [
+                    'external prompt import',
+                    'multi-source capability convergence',
+                    'descriptor and handoff generation',
+                ],
+                'artifact_conventions': [
+                    'ssot/<slug>.md',
+                    '.meta/capabilities/<slug>.json',
+                    'reports/quality-reviews/<slug>/LATEST.md',
+                ],
+                'invocation_style': 'assistant_first_but_scriptable',
+                'requires_human_confirmation': True,
+            },
+        },
+    }
+    payload = defaults.get(slug, {})
+    if not payload:
+        return {'display_name': display_name}
+    return payload
+
+
 def to_toml_str(name: str, desc: str, prompt: str) -> str:
     esc_desc = desc.replace('\\', '\\\\').replace('"', '\\"')
     prompt_escaped = prompt.replace('\\', '\\\\').replace('"', '\\"')
@@ -273,18 +387,80 @@ def write_resource(surface_name: str, slug: str, descriptor: dict[str, object]) 
 
 
 def resolve_descriptor(entry, manifest_entry: dict[str, object]) -> dict[str, object]:
+    defaults = descriptor_defaults(entry.slug, entry.display_name)
     descriptor = load_descriptor(ROOT, entry.slug)
     if descriptor:
         resolved = build_descriptor(
             manifest=manifest_entry,
+            display_name=str(
+                descriptor.get('display_name')
+                or ((descriptor.get('layers') or {}).get('minimal') or {}).get('display_name')
+                or defaults.get('display_name')
+                or entry.display_name
+            ),
             family_slug=str(descriptor.get('family_slug') or entry.slug),
             shared_summary=str(descriptor.get('shared_summary') or manifest_entry['layers']['minimal'].get('summary') or ''),
             shared_constraints=tuple(descriptor.get('shared_constraints') or ()),
             modes=tuple(descriptor.get('modes') or ()),
             benchmark_sources=tuple(descriptor.get('benchmark_sources') or ()),
+            quality_profile=str(descriptor.get('quality_profile')) if descriptor.get('quality_profile') is not None else None,
+            quality_status=str(descriptor.get('quality_status')) if descriptor.get('quality_status') is not None else None,
+            judge_reports=tuple(descriptor.get('judge_reports') or ()),
+            consumption_hints=dict(descriptor.get('consumption_hints') or defaults.get('consumption_hints') or {}),
+            quality_pass_count=descriptor.get('quality_pass_count'),
+            quality_stop_reason=str(descriptor.get('quality_stop_reason')) if descriptor.get('quality_stop_reason') is not None else None,
         )
+        descriptor_layers = descriptor.get('layers') or {}
+        if isinstance(descriptor_layers, dict):
+            resolved_layers = resolved.setdefault('layers', {})
+            for layer_name, layer_payload in descriptor_layers.items():
+                if not isinstance(layer_payload, dict):
+                    continue
+                base = dict(resolved_layers.get(layer_name) or {})
+                if layer_name == 'minimal':
+                    for key, value in layer_payload.items():
+                        if key not in {
+                            'capability_type',
+                            'summary',
+                            'display_name',
+                            'required_inputs',
+                            'expected_outputs',
+                            'tool_policy',
+                            'resources',
+                            'packaging_profile',
+                            'install_target',
+                            'emitted_surfaces',
+                            'source_provenance',
+                            'confidence',
+                            'rationale',
+                            'review_status',
+                        } and key not in base:
+                            base[key] = value
+                else:
+                    base.update(layer_payload)
+                resolved_layers[layer_name] = base
+        for layer_name, layer_payload in (defaults.get('layer_overrides') or {}).items():
+            if isinstance(layer_payload, dict):
+                resolved.setdefault('layers', {}).setdefault(layer_name, {}).update(layer_payload)
     else:
-        resolved = build_descriptor(manifest=manifest_entry)
+        resolved = build_descriptor(
+            manifest=manifest_entry,
+            display_name=str(defaults.get('display_name') or entry.display_name),
+            consumption_hints=dict(defaults.get('consumption_hints') or {}),
+        )
+        for layer_name, layer_payload in (defaults.get('layer_overrides') or {}).items():
+            if isinstance(layer_payload, dict):
+                resolved.setdefault('layers', {}).setdefault(layer_name, {}).update(layer_payload)
+    hints = resolved.setdefault('consumption_hints', {})
+    if isinstance(hints, dict):
+        artifact_conventions = hints.get('artifact_conventions')
+        if isinstance(artifact_conventions, list):
+            hints['artifact_conventions'] = [
+                item.replace('.meta/quality-reviews/', 'reports/quality-reviews/')
+                if isinstance(item, str)
+                else item
+                for item in artifact_conventions
+            ]
     save_descriptor(ROOT, entry.slug, resolved)
     return resolved
 
@@ -309,8 +485,10 @@ def main():
 
     for entry in entries:
         cleanup_slug_outputs(entry.slug)
+        manifest_entry = build_ssot_manifest_entry(entry, ROOT, merge_descriptor=False)
+        resolve_descriptor(entry, manifest_entry)
         manifest_entry = build_ssot_manifest_entry(entry, ROOT)
-        descriptor = resolve_descriptor(entry, manifest_entry)
+        descriptor = load_descriptor(ROOT, entry.slug) or {}
         generated['ssot_sources'].append(manifest_entry)
         emitted = set(manifest_entry['expected_surface_names'])
         tools = parse_tools(entry.frontmatter)

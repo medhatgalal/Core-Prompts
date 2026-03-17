@@ -4,9 +4,13 @@
   "layers": {
     "minimal": {
       "capability_type": "skill",
-      "summary": "4 accepted items read like reusable prompt/skill assets. Package them under one testing skill family with named modes or subcommands.",
-      "role": "workflow",
+      "summary": "Testing Studio for unit-test generation, end-to-end test design, edge-case discovery, and coverage gap analysis.",
+      "role": "advisor",
       "domain_tags": [
+        "analysis",
+        "planning",
+        "debugging",
+        "prompting",
         "testing"
       ],
       "required_inputs": [
@@ -32,7 +36,7 @@
         ]
       },
       "resources": [
-        "https://github.com/harish-garg/gemini-cli-prompt-library/tree/main/commands/testing"
+        "/Users/medhat.galal/Desktop/Core-Prompts/ssot/testing.md"
       ],
       "packaging_profile": {
         "capability_type": "skill",
@@ -73,10 +77,10 @@
         ]
       },
       "install_target": {
-        "recommended": "global",
-        "confidence": 0.74,
+        "recommended": "repo_local",
+        "confidence": 0.88,
         "confirmation_required_for_apply": true,
-        "rationale": "GitHub folder imports are treated as external capability candidates and default to the global library.",
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
         "supported": [
           "global",
           "repo_local",
@@ -100,14 +104,15 @@
         ]
       },
       "source_provenance": {
-        "source_type": "GITHUB_TREE",
-        "normalized_source": "https://github.com/harish-garg/gemini-cli-prompt-library/tree/main/commands/testing",
-        "policy_rule_id": "collection.testing",
-        "content_sha256": "a854eaf56d7ae4e82b18a890dce98b2dd690a469307031db8cb731c79e9a6dbd"
+        "source_type": "LOCAL_FILE",
+        "normalized_source": "/Users/medhat.galal/Desktop/Core-Prompts/ssot/testing.md",
+        "policy_rule_id": "ssot.testing",
+        "content_sha256": "ssot"
       },
-      "confidence": 0.84,
-      "rationale": "4 accepted items read like reusable prompt/skill assets. Package them under one testing skill family with named modes or subcommands.",
-      "review_status": "ready_for_orchestrator_review"
+      "confidence": 0.96,
+      "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a command/skill surface.",
+      "review_status": "ready_for_orchestrator_review",
+      "display_name": "Testing Studio \u2014 Test Design and Coverage Analysis"
     },
     "expanded": {
       "relationship_suggestions": [],
@@ -124,16 +129,29 @@
       ]
     },
     "org_graph": {
-      "org_role": "workflow_provider",
+      "org_role": "advisor",
       "reports_to_suggestions": [],
       "delegates_to_suggestions": [],
       "collaborates_with_suggestions": [
-        "testing"
+        "analysis",
+        "planning"
       ],
       "authority_tier": "advisory",
-      "work_graph_impact": "Adds or updates a skill capability with route profile COLLECTION_REVIEW."
+      "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
     }
   },
+  "display_name": "Testing Studio \u2014 Test Design and Coverage Analysis",
+  "declared_capability": "skill",
+  "inferred_capability": "skill",
+  "expected_surface_names": [
+    "codex_skill",
+    "gemini_command",
+    "gemini_skill",
+    "claude_command",
+    "kiro_prompt",
+    "kiro_skill"
+  ],
+  "rubric_version": "capability-fabric.v0",
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "testing",
   "shared_summary": "Testing family for unit tests, end-to-end tests, edge-case discovery, and coverage gap analysis.",
@@ -262,15 +280,19 @@
       "note": "Good benchmark for evaluation rigor and regression thinking, though not a direct prompt-family replacement."
     }
   ],
-  "declared_capability": "skill",
-  "inferred_capability": "skill",
-  "expected_surface_names": [
-    "codex_skill",
-    "gemini_command",
-    "gemini_skill",
-    "claude_command",
-    "kiro_prompt",
-    "kiro_skill"
-  ],
-  "rubric_version": "capability-fabric.v0"
+  "consumption_hints": {
+    "preferred_use_cases": [
+      "unit test design",
+      "end-to-end test design",
+      "edge-case discovery",
+      "coverage gap analysis"
+    ],
+    "artifact_conventions": [
+      "reports/testing/<timestamp>-plan.md",
+      "reports/testing/<timestamp>-coverage-gap.md",
+      "reports/testing/<timestamp>-edge-cases.md"
+    ],
+    "invocation_style": "analysis_or_generation",
+    "requires_human_confirmation": false
+  }
 }

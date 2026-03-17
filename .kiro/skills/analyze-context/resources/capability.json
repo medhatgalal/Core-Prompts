@@ -4,7 +4,7 @@
   "layers": {
     "minimal": {
       "capability_type": "skill",
-      "summary": "---\nname: \"analyze-context\"\ncapability_type: \"skill\"\ndescription: \"[Medhat] Iterative Analysis Workflow for multi-file processing\"\n---\n# Iterative Analysis Workflow\n\n## Safety Check\nBefore proceeding, you MUST check the current branch.\n```bash\ngit status --short --branch\n```\nIf you are on `main` or `master`, STOP. Request `start <slug>`.\n\nThis steering file defines a standard workflow for any multi-step analysis task that requires:\n- Processing multiple files/items\n- Maintaining context across memory compactions\n- Accumulating insights iteratively\n\n## Required Memory Files\n\nBefore starting any iterative analysis, create these three **Canonical Files** in `.analyze-context-memory/` at the project root.\n\n**CRITICAL RULE: ONE SET ONLY.**\nDo NOT create versioned files like `task-v1-context.md`",
+      "summary": "[Medhat] Iterative Analysis Workflow for multi-file processing",
       "role": "analyst",
       "domain_tags": [
         "analysis",
@@ -110,7 +110,8 @@
       },
       "confidence": 0.97,
       "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a command/skill surface.",
-      "review_status": "ready_for_orchestrator_review"
+      "review_status": "ready_for_orchestrator_review",
+      "display_name": "Iterative Analysis Workflow"
     },
     "expanded": {
       "relationship_suggestions": [],
@@ -138,12 +139,7 @@
       "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
     }
   },
-  "descriptor_version": "capability-fabric.descriptor.v0",
-  "family_slug": "analyze-context",
-  "shared_summary": "---\nname: \"analyze-context\"\ncapability_type: \"skill\"\ndescription: \"[Medhat] Iterative Analysis Workflow for multi-file processing\"\n---\n# Iterative Analysis Workflow\n\n## Safety Check\nBefore proceeding, you MUST check the current branch.\n```bash\ngit status --short --branch\n```\nIf you are on `main` or `master`, STOP. Request `start <slug>`.\n\nThis steering file defines a standard workflow for any multi-step analysis task that requires:\n- Processing multiple files/items\n- Maintaining context across memory compactions\n- Accumulating insights iteratively\n\n## Required Memory Files\n\nBefore starting any iterative analysis, create these three **Canonical Files** in `.analyze-context-memory/` at the project root.\n\n**CRITICAL RULE: ONE SET ONLY.**\nDo NOT create versioned files like `task-v1-context.md`",
-  "shared_constraints": [],
-  "modes": [],
-  "benchmark_sources": [],
+  "display_name": "Iterative Analysis Workflow",
   "declared_capability": "skill",
   "inferred_capability": "skill",
   "expected_surface_names": [
@@ -154,5 +150,12 @@
     "kiro_prompt",
     "kiro_skill"
   ],
-  "rubric_version": "capability-fabric.v0"
+  "rubric_version": "capability-fabric.v0",
+  "descriptor_version": "capability-fabric.descriptor.v0",
+  "family_slug": "analyze-context",
+  "shared_summary": "[Medhat] Iterative Analysis Workflow for multi-file processing",
+  "shared_constraints": [],
+  "modes": [],
+  "benchmark_sources": [],
+  "consumption_hints": {}
 }

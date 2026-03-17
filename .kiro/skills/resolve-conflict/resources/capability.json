@@ -4,7 +4,7 @@
   "layers": {
     "minimal": {
       "capability_type": "skill",
-      "summary": "---\nname: \"resolve-conflict\"\nkind: \"skill\"\ncapability_type: \"skill\"\ndescription: \"[ScottP] Structured merge conflict resolution with Charlie Munger inversion analysis\"\n---\n# Resolve Conflict \u2014 Structured Merge Conflict Resolution\n\n## Purpose\nAnalyze and resolve git merge conflicts using structured reasoning, Charlie Munger-style inversion, and logical document structure principles.\n\n## Output Directory\nAll conflict analysis artifacts should be stored in `reports/merge-conflicts/` with descriptive filenames.\n\n---\n\n## Core Principles\n- **Inversion first**: Ask \"what would make this merge catastrophically wrong?\" before solving\n- **Keep all valuable content**: Default to additive resolution, not deletion\n- **Logical structure**: Order sections by principle \u2192 pattern \u2192 implementation\n- **No co",
+      "summary": "Merge Conflict Resolution for structured conflict analysis, additive merging, and inversion-led trade-off handling.",
       "role": "advisor",
       "domain_tags": [
         "review",
@@ -114,7 +114,8 @@
       },
       "confidence": 0.97,
       "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a command/skill surface.",
-      "review_status": "ready_for_orchestrator_review"
+      "review_status": "ready_for_orchestrator_review",
+      "display_name": "Merge Conflict Resolution \u2014 Structured Conflict Analysis"
     },
     "expanded": {
       "relationship_suggestions": [],
@@ -144,12 +145,7 @@
       "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
     }
   },
-  "descriptor_version": "capability-fabric.descriptor.v0",
-  "family_slug": "resolve-conflict",
-  "shared_summary": "---\nname: \"resolve-conflict\"\nkind: \"skill\"\ncapability_type: \"skill\"\ndescription: \"[ScottP] Structured merge conflict resolution with Charlie Munger inversion analysis\"\n---\n# Resolve Conflict \u2014 Structured Merge Conflict Resolution\n\n## Purpose\nAnalyze and resolve git merge conflicts using structured reasoning, Charlie Munger-style inversion, and logical document structure principles.\n\n## Output Directory\nAll conflict analysis artifacts should be stored in `reports/merge-conflicts/` with descriptive filenames.\n\n---\n\n## Core Principles\n- **Inversion first**: Ask \"what would make this merge catastrophically wrong?\" before solving\n- **Keep all valuable content**: Default to additive resolution, not deletion\n- **Logical structure**: Order sections by principle \u2192 pattern \u2192 implementation\n- **No co",
-  "shared_constraints": [],
-  "modes": [],
-  "benchmark_sources": [],
+  "display_name": "Merge Conflict Resolution \u2014 Structured Conflict Analysis",
   "declared_capability": "skill",
   "inferred_capability": "skill",
   "expected_surface_names": [
@@ -160,5 +156,23 @@
     "kiro_prompt",
     "kiro_skill"
   ],
-  "rubric_version": "capability-fabric.v0"
+  "rubric_version": "capability-fabric.v0",
+  "descriptor_version": "capability-fabric.descriptor.v0",
+  "family_slug": "resolve-conflict",
+  "shared_summary": "[ScottP] Structured merge conflict resolution with Charlie Munger inversion analysis",
+  "shared_constraints": [],
+  "modes": [],
+  "benchmark_sources": [],
+  "consumption_hints": {
+    "preferred_use_cases": [
+      "merge conflict analysis",
+      "additive conflict resolution planning",
+      "contradiction detection before merge"
+    ],
+    "artifact_conventions": [
+      "reports/merge-conflicts/<descriptive-name>.md"
+    ],
+    "invocation_style": "conflict_analysis",
+    "requires_human_confirmation": true
+  }
 }

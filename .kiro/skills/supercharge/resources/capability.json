@@ -4,7 +4,7 @@
   "layers": {
     "minimal": {
       "capability_type": "both",
-      "summary": "# SuperCharge v4 \u2014 Prompt Engineering Swiss Army Knife (2026+)\n\nSuperCharge is a **portable behavior layer** that upgrades human\u2194LLM interaction quality. It is designed to work in any chat, CLI, or agentic environment **without depending on external tools or file paths**.\n\n> Tip: `supercharge help` (or `supercharge /help`, `-h`, `--help`) prints the quick guide.  \n> Tip: `supercharge details` prints the full module reference (this spec).\n\n---\n\n## 0) Activation, Parsing, and Dispatch\n\n### Activation Triggers\nSuperCharge activates when **either** of the following is true:\n- The user message begins with: `supercharge ...`\n- The user message begins with: `/supercharge ...`\n\n### Help Triggers\nIf the user asks for help, respond with the **HELP OUTPUT** section only:\n- `supercharge help`\n- `super",
+      "summary": "[Medhat] SuperCharge \u2014 Prompt Engineering Swiss Army Knife (ULT-Agent++ \u2022 Catchup Deep \u2022 Simple \u2022 Invert \u2022 Adversarial \u2022 Contract+QA \u2022 Grade \u2022 GASLIGHT 13)",
       "role": "advisor",
       "domain_tags": [
         "architecture",
@@ -124,7 +124,8 @@
       },
       "confidence": 0.98,
       "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
-      "review_status": "ready_for_orchestrator_review"
+      "review_status": "ready_for_orchestrator_review",
+      "display_name": "SuperCharge v4 \u2014 Prompt Engineering Swiss Army Knife (2026+)"
     },
     "expanded": {
       "relationship_suggestions": [
@@ -157,12 +158,7 @@
       "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
     }
   },
-  "descriptor_version": "capability-fabric.descriptor.v0",
-  "family_slug": "supercharge",
-  "shared_summary": "# SuperCharge v4 \u2014 Prompt Engineering Swiss Army Knife (2026+)\n\nSuperCharge is a **portable behavior layer** that upgrades human\u2194LLM interaction quality. It is designed to work in any chat, CLI, or agentic environment **without depending on external tools or file paths**.\n\n> Tip: `supercharge help` (or `supercharge /help`, `-h`, `--help`) prints the quick guide.  \n> Tip: `supercharge details` prints the full module reference (this spec).\n\n---\n\n## 0) Activation, Parsing, and Dispatch\n\n### Activation Triggers\nSuperCharge activates when **either** of the following is true:\n- The user message begins with: `supercharge ...`\n- The user message begins with: `/supercharge ...`\n\n### Help Triggers\nIf the user asks for help, respond with the **HELP OUTPUT** section only:\n- `supercharge help`\n- `super",
-  "shared_constraints": [],
-  "modes": [],
-  "benchmark_sources": [],
+  "display_name": "SuperCharge v4 \u2014 Prompt Engineering Swiss Army Knife (2026+)",
   "declared_capability": "both",
   "inferred_capability": "both",
   "expected_surface_names": [
@@ -177,5 +173,12 @@
     "kiro_skill",
     "kiro_agent"
   ],
-  "rubric_version": "capability-fabric.v0"
+  "rubric_version": "capability-fabric.v0",
+  "descriptor_version": "capability-fabric.descriptor.v0",
+  "family_slug": "supercharge",
+  "shared_summary": "[Medhat] SuperCharge \u2014 Prompt Engineering Swiss Army Knife (ULT-Agent++ \u2022 Catchup Deep \u2022 Simple \u2022 Invert \u2022 Adversarial \u2022 Contract+QA \u2022 Grade \u2022 GASLIGHT 13)",
+  "shared_constraints": [],
+  "modes": [],
+  "benchmark_sources": [],
+  "consumption_hints": {}
 }

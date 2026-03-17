@@ -1,7 +1,15 @@
 name = "testing"
-description = "Testing family for unit tests, end-to-end tests, edge-case discovery, and coverage gap analysis."
+description = "Testing Studio for unit-test generation, end-to-end test design, edge-case discovery, and coverage gap analysis."
 prompt = """
-# Testing
+# Testing Studio — Test Design and Coverage Analysis
+
+## Output Directory
+When the user wants analysis artifacts instead of direct test files, default to:
+- `reports/testing/<timestamp>-plan.md`
+- `reports/testing/<timestamp>-coverage-gap.md`
+- `reports/testing/<timestamp>-edge-cases.md`
+
+When the user asks for concrete test outputs, place them under the repository's existing test layout. If the repo has no established layout, propose one before writing files.
 
 ## Summary
 Use this family to produce deterministic test plans and test assets across four common testing jobs: unit-test generation, end-to-end test design, edge-case discovery, and coverage gap analysis. The family keeps the Harish Garg four-mode structure but normalizes the outputs into implementation-ready testing artifacts.

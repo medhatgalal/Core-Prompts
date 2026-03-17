@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-03-16T01:59:16.256449+00:00",
+  "generated_at": "2026-03-17T20:42:24.703785+00:00",
   "generator": {
     "script": "scripts/build-surfaces.py",
     "python": "3.11+",
     "version": "6.0",
-    "generated_utc": "2026-03-16T01:59:16.257043+00:00"
+    "generated_utc": "2026-03-17T20:42:24.704208+00:00"
   },
   "ssot_sources": [
     {
@@ -13,7 +13,7 @@
       "layers": {
         "minimal": {
           "capability_type": "skill",
-          "summary": "---\nname: \"analyze-context\"\ncapability_type: \"skill\"\ndescription: \"[Medhat] Iterative Analysis Workflow for multi-file processing\"\n---\n# Iterative Analysis Workflow\n\n## Safety Check\nBefore proceeding, you MUST check the current branch.\n```bash\ngit status --short --branch\n```\nIf you are on `main` or `master`, STOP. Request `start <slug>`.\n\nThis steering file defines a standard workflow for any multi-step analysis task that requires:\n- Processing multiple files/items\n- Maintaining context across memory compactions\n- Accumulating insights iteratively\n\n## Required Memory Files\n\nBefore starting any iterative analysis, create these three **Canonical Files** in `.analyze-context-memory/` at the project root.\n\n**CRITICAL RULE: ONE SET ONLY.**\nDo NOT create versioned files like `task-v1-context.md`",
+          "summary": "[Medhat] Iterative Analysis Workflow for multi-file processing",
           "role": "analyst",
           "domain_tags": [
             "analysis",
@@ -119,7 +119,8 @@
           },
           "confidence": 0.97,
           "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a command/skill surface.",
-          "review_status": "ready_for_orchestrator_review"
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "Iterative Analysis Workflow"
         },
         "expanded": {
           "relationship_suggestions": [],
@@ -147,12 +148,14 @@
           "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
         }
       },
+      "display_name": "Iterative Analysis Workflow",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "analyze-context",
-      "shared_summary": "---\nname: \"analyze-context\"\ncapability_type: \"skill\"\ndescription: \"[Medhat] Iterative Analysis Workflow for multi-file processing\"\n---\n# Iterative Analysis Workflow\n\n## Safety Check\nBefore proceeding, you MUST check the current branch.\n```bash\ngit status --short --branch\n```\nIf you are on `main` or `master`, STOP. Request `start <slug>`.\n\nThis steering file defines a standard workflow for any multi-step analysis task that requires:\n- Processing multiple files/items\n- Maintaining context across memory compactions\n- Accumulating insights iteratively\n\n## Required Memory Files\n\nBefore starting any iterative analysis, create these three **Canonical Files** in `.analyze-context-memory/` at the project root.\n\n**CRITICAL RULE: ONE SET ONLY.**\nDo NOT create versioned files like `task-v1-context.md`",
+      "shared_summary": "[Medhat] Iterative Analysis Workflow for multi-file processing",
       "shared_constraints": [],
       "modes": [],
       "benchmark_sources": [],
+      "consumption_hints": {},
       "declared_capability": "skill",
       "inferred_capability": "skill",
       "expected_surface_names": [
@@ -170,11 +173,17 @@
       "manifest_version": "capability-fabric.v0",
       "layers": {
         "minimal": {
-          "capability_type": "skill",
-          "summary": "4 accepted items read like reusable prompt/skill assets. Package them under one architecture skill family with named modes or subcommands.",
-          "role": "workflow",
+          "capability_type": "both",
+          "summary": "Architecture Studio for API design, database design, design-pattern selection, and system design with black-box boundaries, concrete artifacts, and migration-safe recommendations.",
+          "role": "advisor",
           "domain_tags": [
-            "architecture"
+            "architecture",
+            "review",
+            "analysis",
+            "planning",
+            "debugging",
+            "context",
+            "prompting"
           ],
           "required_inputs": [
             "source text",
@@ -199,28 +208,34 @@
             ]
           },
           "resources": [
-            "https://github.com/harish-garg/gemini-cli-prompt-library/tree/main/commands/architecture"
+            "/Users/medhat.galal/Desktop/Core-Prompts/ssot/architecture.md"
           ],
           "packaging_profile": {
-            "capability_type": "skill",
+            "capability_type": "both",
             "primary_surfaces": {
               "codex": [
-                "codex_skill"
+                "codex_skill",
+                "codex_agent"
               ],
               "gemini": [
                 "gemini_command",
-                "gemini_skill"
+                "gemini_skill",
+                "gemini_agent"
               ],
               "claude": [
-                "claude_command"
+                "claude_command",
+                "claude_agent"
               ],
               "kiro": [
                 "kiro_prompt",
-                "kiro_skill"
+                "kiro_skill",
+                "kiro_agent"
               ]
             },
             "wrapper_surfaces": {
-              "codex": [],
+              "codex": [
+                "plugin_wrapper"
+              ],
               "gemini": [
                 "command_wrapper",
                 "extension_wrapper"
@@ -240,10 +255,10 @@
             ]
           },
           "install_target": {
-            "recommended": "global",
-            "confidence": 0.74,
+            "recommended": "repo_local",
+            "confidence": 0.88,
             "confirmation_required_for_apply": true,
-            "rationale": "GitHub folder imports are treated as external capability candidates and default to the global library.",
+            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
             "supported": [
               "global",
               "repo_local",
@@ -252,41 +267,45 @@
           },
           "emitted_surfaces": {
             "codex": [
-              "codex_skill"
+              "codex_skill",
+              "codex_agent"
             ],
             "gemini": [
               "gemini_command",
-              "gemini_skill"
+              "gemini_skill",
+              "gemini_agent"
             ],
             "claude": [
-              "claude_command"
+              "claude_command",
+              "claude_agent"
             ],
             "kiro": [
               "kiro_prompt",
-              "kiro_skill"
+              "kiro_skill",
+              "kiro_agent"
             ]
           },
           "source_provenance": {
-            "source_type": "GITHUB_TREE",
-            "normalized_source": "https://github.com/harish-garg/gemini-cli-prompt-library/tree/main/commands/architecture",
-            "policy_rule_id": "collection.architecture",
-            "content_sha256": "c4c9a41b2d6f2ff2e90ebe06e8d87d663d2280598ac014600bc4174a5eb44920"
+            "source_type": "LOCAL_FILE",
+            "normalized_source": "/Users/medhat.galal/Desktop/Core-Prompts/ssot/architecture.md",
+            "policy_rule_id": "ssot.architecture",
+            "content_sha256": "ssot"
           },
-          "confidence": 0.84,
-          "rationale": "4 accepted items read like reusable prompt/skill assets. Package them under one architecture skill family with named modes or subcommands.",
-          "review_status": "ready_for_orchestrator_review"
+          "confidence": 0.98,
+          "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "Architecture Studio"
         },
         "expanded": {
           "relationship_suggestions": [
+            "prefer explicit review or analyst companions before high-authority use",
             "pair with review and analysis capabilities when converging design proposals"
           ],
           "capability_dependencies": [
-            "analysis"
+            "analysis",
+            "context"
           ],
-          "overlap_candidates": [
-            "converge",
-            "supercharge"
-          ],
+          "overlap_candidates": [],
           "migration_notes": [
             "If the capability lands, compare it against existing entries before apply.",
             "Relationship suggestions are advisory only and do not imply runtime routing."
@@ -295,26 +314,44 @@
             "add an explicit primary objective before packaging",
             "add deterministic in-scope sections to improve routing fitness",
             "capture quality constraints or non-negotiables"
-          ]
+          ],
+          "quality_criteria": [
+            "Score against the published architecture scorecard on every significant design branch",
+            "Include rejected alternatives and explicit trade-offs for major design decisions",
+            "Keep migration, rollback, and validation concrete enough to execute",
+            "Meet or exceed the Harish/Alexanderdunlop source bar and the local code-review/resolve-conflict bar"
+          ],
+          "quality_gate": {
+            "min_pass_score": 9,
+            "required_no_zero_for": [
+              "Failure-Aware Decisions",
+              "Migration Clarity",
+              "Benchmark Fit"
+            ]
+          }
         },
         "org_graph": {
-          "org_role": "workflow_provider",
+          "org_role": "specialist_with_workflow_surface",
           "reports_to_suggestions": [],
           "delegates_to_suggestions": [],
           "collaborates_with_suggestions": [
-            "architecture"
+            "architecture",
+            "review"
           ],
           "authority_tier": "advisory",
-          "work_graph_impact": "Adds or updates a skill capability with route profile COLLECTION_REVIEW."
+          "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
         }
       },
+      "display_name": "Architecture Studio",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "architecture",
-      "shared_summary": "Architecture family for API design, database design, pattern selection, and system design with black-box boundaries and explicit trade-offs.",
+      "shared_summary": "Architecture Studio for API design, database design, design-pattern selection, and system design with black-box boundaries, concrete artifacts, and migration-safe recommendations.",
       "shared_constraints": [
-        "Publish design guidance only; do not orchestrate or delegate work.",
-        "Prefer black-box interfaces and replaceable components.",
-        "Make assumptions and trade-offs explicit."
+        "Publish architecture guidance only; do not orchestrate or delegate work.",
+        "Use deterministic, sectioned outputs with explicit scorecards.",
+        "Prefer replaceable interfaces and stable boundaries over implementation-heavy advice.",
+        "Make assumptions, trade-offs, evidence, and rollback explicit.",
+        "Validate and report migration impact when designs change interfaces or ownership."
       ],
       "modes": [
         {
@@ -323,17 +360,21 @@
           "source_refs": [
             "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/architecture/design-api.toml"
           ],
-          "mode_summary": "Design resource-oriented APIs with clear endpoint semantics, validation, and versioning.",
+          "mode_summary": "Design resource-oriented APIs with explicit resource models, endpoint contracts, validation, security, and error behavior.",
           "required_inputs": [
             "product requirements",
             "resource model",
             "auth or policy constraints"
           ],
           "expected_outputs": [
-            "endpoint map",
+            "endpoint contract map",
             "request/response contract",
             "error model",
-            "trade-offs"
+            "trade-off assessment",
+            "rejected alternative",
+            "migration and rollback guidance",
+            "quality scorecard",
+            "validation plan"
           ],
           "examples": [
             "RESTful CRUD service",
@@ -341,7 +382,8 @@
           ],
           "uplift_notes": [
             "Prefer nouns and stable resource boundaries.",
-            "Keep auth, pagination, and versioning explicit."
+            "Keep auth, pagination, and versioning explicit.",
+            "Include at least one explicit rollback path for API changes."
           ]
         },
         {
@@ -350,7 +392,7 @@
           "source_refs": [
             "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/architecture/design-database.toml"
           ],
-          "mode_summary": "Design schemas and storage structures that match access patterns and evolution needs.",
+          "mode_summary": "Design schemas and storage structures that match access patterns, consistency goals, and evolution needs.",
           "required_inputs": [
             "entity list",
             "access patterns",
@@ -358,95 +400,194 @@
           ],
           "expected_outputs": [
             "schema outline",
-            "key/index plan",
+            "index strategy",
             "normalization notes",
-            "migration guidance"
+            "consistency trade-off",
+            "migration and rollback guidance",
+            "quality scorecard"
           ],
           "examples": [
             "OLTP schema",
-            "event or document-backed subsystem"
+            "event-driven analytics subsystem"
           ],
           "uplift_notes": [
-            "Call out where denormalization is intentional.",
-            "Tie indexes to real query paths."
+            "Call out intentional denormalization and failure impact.",
+            "Tie indexes to actual query paths.",
+            "Include consistency-vs-availability trade-off and rollback checkpoint."
           ]
         },
         {
           "mode_slug": "design-patterns",
           "display_name": "Design Patterns",
           "source_refs": [
-            "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/architecture/design-patterns.toml"
+            "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/architecture/design-patterns.toml",
+            "https://raw.githubusercontent.com/Alexanderdunlop/ai-architecture-prompts/main/prompts/claude-prompt.md"
           ],
-          "mode_summary": "Choose structural or behavioral patterns to reduce coupling and improve extension paths.",
+          "mode_summary": "Choose structural patterns that reduce coupling and improve replaceability under changing requirements.",
           "required_inputs": [
-            "current code smell or problem statement",
-            "extensibility goal"
+            "current design problem",
+            "extensibility goals",
+            "change history",
+            "risk boundaries"
           ],
           "expected_outputs": [
-            "pattern recommendation",
-            "before/after sketch",
-            "anti-pattern warnings"
+            "pattern candidate list",
+            "before/after boundary sketch",
+            "rejected alternatives",
+            "risk assessment",
+            "quality scorecard",
+            "replacement and rollback strategy"
           ],
           "examples": [
             "Factory vs builder",
             "adapter for legacy integration"
           ],
           "uplift_notes": [
-            "Explain the forces, not just the pattern name.",
-            "Avoid pattern cargo culting."
+            "Explain trade-offs and why each fit is chosen.",
+            "Avoid pattern cargo-culting; always include replacement implications.",
+            "Include rollback plan for each non-backward-compatible boundary change."
           ]
         },
         {
           "mode_slug": "system-design",
           "display_name": "System Design",
           "source_refs": [
-            "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/architecture/system-design.toml"
+            "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/architecture/system-design.toml",
+            "https://raw.githubusercontent.com/Alexanderdunlop/ai-architecture-prompts/main/prompts/claude-code-prompt.md"
           ],
-          "mode_summary": "Produce end-to-end architecture for a system with explicit scale, reliability, and boundary assumptions.",
+          "mode_summary": "Design end-to-end architecture with explicit scaling, reliability, observability, and migration plan.",
           "required_inputs": [
             "functional requirements",
             "non-functional requirements",
-            "constraints"
+            "constraints",
+            "risk tolerance"
           ],
           "expected_outputs": [
+            "requirements-to-architecture mapping",
             "component model",
             "data flow",
-            "capacity notes",
-            "failure and security notes"
+            "failure model",
+            "deployment and rollback plan",
+            "dependency ownership map",
+            "quality scorecard"
           ],
           "examples": [
             "SaaS control plane",
-            "data-intensive backend"
+            "event-driven pipeline"
           ],
           "uplift_notes": [
-            "Keep the design modular and replaceable.",
-            "Separate constraints from preferences."
+            "Keep modules replaceable where possible.",
+            "Separate policy from mechanism in each subsystem."
           ]
         }
       ],
       "benchmark_sources": [
         {
           "provider": "github",
-          "label": "harish-garg/gemini-cli-prompt-library (architecture family seed)",
+          "label": "Harish Garg architecture family seed",
           "url": "https://github.com/harish-garg/gemini-cli-prompt-library/tree/main/commands/architecture",
-          "note": "Useful four-mode family skeleton for architecture workflows."
+          "note": "Mode scaffold and practical request framing."
         },
         {
           "provider": "github",
-          "label": "Alexanderdunlop/ai-architecture-prompts",
+          "label": "Alexanderdunlop ai-architecture-prompts",
           "url": "https://github.com/Alexanderdunlop/ai-architecture-prompts",
-          "note": "Quality benchmark for black-box interfaces, replaceability, and modular design guidance."
+          "note": "Primary quality benchmark for black-box design and replaceability."
+        },
+        {
+          "provider": "raw",
+          "label": "Alexanderdunlop architecture prompt variant (claude-code)",
+          "url": "https://raw.githubusercontent.com/Alexanderdunlop/ai-architecture-prompts/main/prompts/claude-code-prompt.md",
+          "note": "Black-box interface doctrine and cognitive-load constraints."
+        },
+        {
+          "provider": "raw",
+          "label": "Alexanderdunlop architecture prompt variant (claude)",
+          "url": "https://raw.githubusercontent.com/Alexanderdunlop/ai-architecture-prompts/main/prompts/claude-prompt.md",
+          "note": "Strategic architecture framework and disciplined decision process."
+        },
+        {
+          "provider": "raw",
+          "label": "Alexanderdunlop architecture prompt variant (cursor)",
+          "url": "https://raw.githubusercontent.com/Alexanderdunlop/ai-architecture-prompts/main/prompts/cursor-prompt.md",
+          "note": "Implementation-oriented black-box approach."
+        },
+        {
+          "provider": "local",
+          "label": "Code Review benchmark",
+          "url": "ssot/code-review.md",
+          "note": "Concrete output checklist, decision format, and strict quality structure."
+        },
+        {
+          "provider": "local",
+          "label": "Resolve Conflict benchmark",
+          "url": "ssot/resolve-conflict.md",
+          "note": "Failure-first analysis, explicit alternatives, and deterministic decision output."
         }
       ],
-      "declared_capability": "skill",
-      "inferred_capability": "skill",
+      "quality_profile": "architecture",
+      "quality_status": "ship",
+      "judge_reports": [
+        {
+          "pass_number": 1,
+          "status": "ship",
+          "judge_reports": [
+            {
+              "judge": "operational_richness",
+              "title": "Operational Richness",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "source_fidelity",
+              "title": "Source Fidelity and Uplift",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "metadata_integrity",
+              "title": "Metadata and Handoff Integrity",
+              "score": 10,
+              "blockers": []
+            }
+          ],
+          "blockers": []
+        }
+      ],
+      "consumption_hints": {
+        "preferred_use_cases": [
+          "API design",
+          "database design",
+          "design-pattern selection",
+          "system design",
+          "migration-safe architecture review"
+        ],
+        "artifact_conventions": [
+          "reports/architecture/<timestamp>-summary.md",
+          "reports/architecture/<timestamp>-decision-log.md",
+          "architecture/spec.md",
+          "architecture/decision-log.md",
+          "architecture/migration-plan.md",
+          "architecture/validation-plan.md"
+        ],
+        "invocation_style": "interactive_or_artifact_oriented",
+        "requires_human_confirmation": false
+      },
+      "quality_pass_count": 1,
+      "quality_stop_reason": "thresholds_met",
+      "declared_capability": "both",
+      "inferred_capability": "both",
       "expected_surface_names": [
         "codex_skill",
+        "codex_agent",
         "gemini_command",
         "gemini_skill",
+        "gemini_agent",
         "claude_command",
+        "claude_agent",
         "kiro_prompt",
-        "kiro_skill"
+        "kiro_skill",
+        "kiro_agent"
       ],
       "rubric_version": "capability-fabric.v0"
     },
@@ -456,7 +597,7 @@
       "layers": {
         "minimal": {
           "capability_type": "skill",
-          "summary": "---\nname: \"code-review\"\nkind: \"skill\"\ncapability_type: \"skill\"\ndescription: \"[ScottP] Git commit review with scope control and over-engineering detection\"\n---\n# Code Review \u2014 Git Commit Quality Gate\n\n## Purpose\nReview git commits before creating merge requests, focusing on commit message quality, scope alignment, and detecting over-engineering in AI-assisted coding environments.\n\n## Output Directory\nAll review artifacts should be stored in `reports/code-reviews/` with timestamped filenames.\n\n---\n\n## Core Principles\n- **Scope discipline**: Changes must match what the commit message describes\n- **Simplicity first**: Flag over-engineered solutions\n- **Evidence-based**: Review actual diff output, not assumptions\n- **AI-aware**: Recognize that AI-assisted coding can easily introduce scope creep",
+          "summary": "Commit Review for git commit quality gates, scope control, and over-engineering detection.",
           "role": "analyst",
           "domain_tags": [
             "review",
@@ -562,7 +703,8 @@
           },
           "confidence": 0.97,
           "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a command/skill surface.",
-          "review_status": "ready_for_orchestrator_review"
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "Commit Review \u2014 Git Commit Quality Gate"
         },
         "expanded": {
           "relationship_suggestions": [],
@@ -592,12 +734,25 @@
           "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
         }
       },
+      "display_name": "Commit Review \u2014 Git Commit Quality Gate",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "code-review",
-      "shared_summary": "---\nname: \"code-review\"\nkind: \"skill\"\ncapability_type: \"skill\"\ndescription: \"[ScottP] Git commit review with scope control and over-engineering detection\"\n---\n# Code Review \u2014 Git Commit Quality Gate\n\n## Purpose\nReview git commits before creating merge requests, focusing on commit message quality, scope alignment, and detecting over-engineering in AI-assisted coding environments.\n\n## Output Directory\nAll review artifacts should be stored in `reports/code-reviews/` with timestamped filenames.\n\n---\n\n## Core Principles\n- **Scope discipline**: Changes must match what the commit message describes\n- **Simplicity first**: Flag over-engineered solutions\n- **Evidence-based**: Review actual diff output, not assumptions\n- **AI-aware**: Recognize that AI-assisted coding can easily introduce scope creep",
+      "shared_summary": "[ScottP] Git commit review with scope control and over-engineering detection",
       "shared_constraints": [],
       "modes": [],
       "benchmark_sources": [],
+      "consumption_hints": {
+        "preferred_use_cases": [
+          "pre-merge commit review",
+          "scope creep detection",
+          "over-engineering checks"
+        ],
+        "artifact_conventions": [
+          "reports/code-reviews/<timestamp>-<commit>.md"
+        ],
+        "invocation_style": "git_commit_review",
+        "requires_human_confirmation": false
+      },
       "declared_capability": "skill",
       "inferred_capability": "skill",
       "expected_surface_names": [
@@ -616,7 +771,7 @@
       "layers": {
         "minimal": {
           "capability_type": "both",
-          "summary": "---\nname: \"converge\"\nkind: \"agent\"\ncapability_type: \"both\"\ndescription: \"[Medhat] Universal Synthesis & Convergence Prompt (Portable)\"\n---\n# /converge \u2014 Universal Synthesis & Convergence Prompt (Portable)\n\n## Purpose\nUse this prompt to **ingest multiple document sources, AI session outputs, or idea fragments** and converge on a single, superior proposal through rigorous analysis, comparison, simulation, and user-steered decision-making.\n\nDesigned to be **reusable across AI systems** (ChatGPT, Gemini, Grok, Claude, Codex, etc.).\n\n## Output Directory\nAll artifacts and memory files generated by this skill should be stored in `.engos/memory/` to maintain a neutral and consistent location across different CLI tools.\n\n---\n\n## Core Principles\n- **Additive, not aggregative**: Strengthen the propos",
+          "summary": "[Medhat] Universal Synthesis & Convergence Prompt (Portable)",
           "role": "analyst",
           "domain_tags": [
             "architecture",
@@ -736,7 +891,8 @@
           },
           "confidence": 0.82,
           "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
-          "review_status": "ready_for_orchestrator_review"
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "/converge \u2014 Universal Synthesis & Convergence Prompt (Portable)"
         },
         "expanded": {
           "relationship_suggestions": [
@@ -771,12 +927,14 @@
           "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
         }
       },
+      "display_name": "/converge \u2014 Universal Synthesis & Convergence Prompt (Portable)",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "converge",
-      "shared_summary": "---\nname: \"converge\"\nkind: \"agent\"\ncapability_type: \"both\"\ndescription: \"[Medhat] Universal Synthesis & Convergence Prompt (Portable)\"\n---\n# /converge \u2014 Universal Synthesis & Convergence Prompt (Portable)\n\n## Purpose\nUse this prompt to **ingest multiple document sources, AI session outputs, or idea fragments** and converge on a single, superior proposal through rigorous analysis, comparison, simulation, and user-steered decision-making.\n\nDesigned to be **reusable across AI systems** (ChatGPT, Gemini, Grok, Claude, Codex, etc.).\n\n## Output Directory\nAll artifacts and memory files generated by this skill should be stored in `.engos/memory/` to maintain a neutral and consistent location across different CLI tools.\n\n---\n\n## Core Principles\n- **Additive, not aggregative**: Strengthen the propos",
+      "shared_summary": "[Medhat] Universal Synthesis & Convergence Prompt (Portable)",
       "shared_constraints": [],
       "modes": [],
       "benchmark_sources": [],
+      "consumption_hints": {},
       "declared_capability": "both",
       "inferred_capability": "both",
       "expected_surface_names": [
@@ -799,7 +957,7 @@
       "layers": {
         "minimal": {
           "capability_type": "both",
-          "summary": "---\nname: mentor\nkind: agent\ncapability_type: both\ndescription: \"[Medhat] Senior engineering oversight, planning, and workflow guidance.\"\n---\n# Mentor / Coach v3 \u2014 System Memory\n\n> **AUTHORITY**: This file is the single source of truth for Mentor behavior. If any adapter or config conflicts, this file wins.\n\n## 0. Precedence & Interpretation\n1.  **MEMORY.md is Authoritative**: This file overrides all external adapters, configs, or prompts.\n2.  **Main Body Wins**: If Appendices A/B conflict with the main body (sections 1-12), the main body prevails.\n3.  **Conflict Resolution**: In case of ambiguity, prioritize: Safety > Reversibility > Speed.\n\n## 1. Mentor / Coach v3 \u2014 System Identity\n\n**Identity**: You are Mentor/Coach v3, a senior engineering workflow orchestrator embedded within the repo",
+          "summary": "[Medhat] Senior engineering oversight, planning, and workflow guidance.",
           "role": "advisor",
           "domain_tags": [
             "review",
@@ -918,7 +1076,8 @@
           },
           "confidence": 0.84,
           "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
-          "review_status": "ready_for_orchestrator_review"
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "Mentor / Coach v3 \u2014 System Memory"
         },
         "expanded": {
           "relationship_suggestions": [
@@ -950,12 +1109,14 @@
           "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
         }
       },
+      "display_name": "Mentor / Coach v3 \u2014 System Memory",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "mentor",
-      "shared_summary": "---\nname: mentor\nkind: agent\ncapability_type: both\ndescription: \"[Medhat] Senior engineering oversight, planning, and workflow guidance.\"\n---\n# Mentor / Coach v3 \u2014 System Memory\n\n> **AUTHORITY**: This file is the single source of truth for Mentor behavior. If any adapter or config conflicts, this file wins.\n\n## 0. Precedence & Interpretation\n1.  **MEMORY.md is Authoritative**: This file overrides all external adapters, configs, or prompts.\n2.  **Main Body Wins**: If Appendices A/B conflict with the main body (sections 1-12), the main body prevails.\n3.  **Conflict Resolution**: In case of ambiguity, prioritize: Safety > Reversibility > Speed.\n\n## 1. Mentor / Coach v3 \u2014 System Identity\n\n**Identity**: You are Mentor/Coach v3, a senior engineering workflow orchestrator embedded within the repo",
+      "shared_summary": "[Medhat] Senior engineering oversight, planning, and workflow guidance.",
       "shared_constraints": [],
       "modes": [],
       "benchmark_sources": [],
+      "consumption_hints": {},
       "declared_capability": "both",
       "inferred_capability": "both",
       "expected_surface_names": [
@@ -978,7 +1139,7 @@
       "layers": {
         "minimal": {
           "capability_type": "skill",
-          "summary": "---\nname: \"resolve-conflict\"\nkind: \"skill\"\ncapability_type: \"skill\"\ndescription: \"[ScottP] Structured merge conflict resolution with Charlie Munger inversion analysis\"\n---\n# Resolve Conflict \u2014 Structured Merge Conflict Resolution\n\n## Purpose\nAnalyze and resolve git merge conflicts using structured reasoning, Charlie Munger-style inversion, and logical document structure principles.\n\n## Output Directory\nAll conflict analysis artifacts should be stored in `reports/merge-conflicts/` with descriptive filenames.\n\n---\n\n## Core Principles\n- **Inversion first**: Ask \"what would make this merge catastrophically wrong?\" before solving\n- **Keep all valuable content**: Default to additive resolution, not deletion\n- **Logical structure**: Order sections by principle \u2192 pattern \u2192 implementation\n- **No co",
+          "summary": "Merge Conflict Resolution for structured conflict analysis, additive merging, and inversion-led trade-off handling.",
           "role": "advisor",
           "domain_tags": [
             "review",
@@ -1088,7 +1249,8 @@
           },
           "confidence": 0.97,
           "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a command/skill surface.",
-          "review_status": "ready_for_orchestrator_review"
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "Merge Conflict Resolution \u2014 Structured Conflict Analysis"
         },
         "expanded": {
           "relationship_suggestions": [],
@@ -1118,12 +1280,25 @@
           "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
         }
       },
+      "display_name": "Merge Conflict Resolution \u2014 Structured Conflict Analysis",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "resolve-conflict",
-      "shared_summary": "---\nname: \"resolve-conflict\"\nkind: \"skill\"\ncapability_type: \"skill\"\ndescription: \"[ScottP] Structured merge conflict resolution with Charlie Munger inversion analysis\"\n---\n# Resolve Conflict \u2014 Structured Merge Conflict Resolution\n\n## Purpose\nAnalyze and resolve git merge conflicts using structured reasoning, Charlie Munger-style inversion, and logical document structure principles.\n\n## Output Directory\nAll conflict analysis artifacts should be stored in `reports/merge-conflicts/` with descriptive filenames.\n\n---\n\n## Core Principles\n- **Inversion first**: Ask \"what would make this merge catastrophically wrong?\" before solving\n- **Keep all valuable content**: Default to additive resolution, not deletion\n- **Logical structure**: Order sections by principle \u2192 pattern \u2192 implementation\n- **No co",
+      "shared_summary": "[ScottP] Structured merge conflict resolution with Charlie Munger inversion analysis",
       "shared_constraints": [],
       "modes": [],
       "benchmark_sources": [],
+      "consumption_hints": {
+        "preferred_use_cases": [
+          "merge conflict analysis",
+          "additive conflict resolution planning",
+          "contradiction detection before merge"
+        ],
+        "artifact_conventions": [
+          "reports/merge-conflicts/<descriptive-name>.md"
+        ],
+        "invocation_style": "conflict_analysis",
+        "requires_human_confirmation": true
+      },
       "declared_capability": "skill",
       "inferred_capability": "skill",
       "expected_surface_names": [
@@ -1142,7 +1317,7 @@
       "layers": {
         "minimal": {
           "capability_type": "both",
-          "summary": "# SuperCharge v4 \u2014 Prompt Engineering Swiss Army Knife (2026+)\n\nSuperCharge is a **portable behavior layer** that upgrades human\u2194LLM interaction quality. It is designed to work in any chat, CLI, or agentic environment **without depending on external tools or file paths**.\n\n> Tip: `supercharge help` (or `supercharge /help`, `-h`, `--help`) prints the quick guide.  \n> Tip: `supercharge details` prints the full module reference (this spec).\n\n---\n\n## 0) Activation, Parsing, and Dispatch\n\n### Activation Triggers\nSuperCharge activates when **either** of the following is true:\n- The user message begins with: `supercharge ...`\n- The user message begins with: `/supercharge ...`\n\n### Help Triggers\nIf the user asks for help, respond with the **HELP OUTPUT** section only:\n- `supercharge help`\n- `super",
+          "summary": "[Medhat] SuperCharge \u2014 Prompt Engineering Swiss Army Knife (ULT-Agent++ \u2022 Catchup Deep \u2022 Simple \u2022 Invert \u2022 Adversarial \u2022 Contract+QA \u2022 Grade \u2022 GASLIGHT 13)",
           "role": "advisor",
           "domain_tags": [
             "architecture",
@@ -1262,7 +1437,8 @@
           },
           "confidence": 0.98,
           "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
-          "review_status": "ready_for_orchestrator_review"
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "SuperCharge v4 \u2014 Prompt Engineering Swiss Army Knife (2026+)"
         },
         "expanded": {
           "relationship_suggestions": [
@@ -1295,12 +1471,14 @@
           "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
         }
       },
+      "display_name": "SuperCharge v4 \u2014 Prompt Engineering Swiss Army Knife (2026+)",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "supercharge",
-      "shared_summary": "# SuperCharge v4 \u2014 Prompt Engineering Swiss Army Knife (2026+)\n\nSuperCharge is a **portable behavior layer** that upgrades human\u2194LLM interaction quality. It is designed to work in any chat, CLI, or agentic environment **without depending on external tools or file paths**.\n\n> Tip: `supercharge help` (or `supercharge /help`, `-h`, `--help`) prints the quick guide.  \n> Tip: `supercharge details` prints the full module reference (this spec).\n\n---\n\n## 0) Activation, Parsing, and Dispatch\n\n### Activation Triggers\nSuperCharge activates when **either** of the following is true:\n- The user message begins with: `supercharge ...`\n- The user message begins with: `/supercharge ...`\n\n### Help Triggers\nIf the user asks for help, respond with the **HELP OUTPUT** section only:\n- `supercharge help`\n- `super",
+      "shared_summary": "[Medhat] SuperCharge \u2014 Prompt Engineering Swiss Army Knife (ULT-Agent++ \u2022 Catchup Deep \u2022 Simple \u2022 Invert \u2022 Adversarial \u2022 Contract+QA \u2022 Grade \u2022 GASLIGHT 13)",
       "shared_constraints": [],
       "modes": [],
       "benchmark_sources": [],
+      "consumption_hints": {},
       "declared_capability": "both",
       "inferred_capability": "both",
       "expected_surface_names": [
@@ -1323,9 +1501,13 @@
       "layers": {
         "minimal": {
           "capability_type": "skill",
-          "summary": "4 accepted items read like reusable prompt/skill assets. Package them under one testing skill family with named modes or subcommands.",
-          "role": "workflow",
+          "summary": "Testing Studio for unit-test generation, end-to-end test design, edge-case discovery, and coverage gap analysis.",
+          "role": "advisor",
           "domain_tags": [
+            "analysis",
+            "planning",
+            "debugging",
+            "prompting",
             "testing"
           ],
           "required_inputs": [
@@ -1351,7 +1533,7 @@
             ]
           },
           "resources": [
-            "https://github.com/harish-garg/gemini-cli-prompt-library/tree/main/commands/testing"
+            "/Users/medhat.galal/Desktop/Core-Prompts/ssot/testing.md"
           ],
           "packaging_profile": {
             "capability_type": "skill",
@@ -1392,10 +1574,10 @@
             ]
           },
           "install_target": {
-            "recommended": "global",
-            "confidence": 0.74,
+            "recommended": "repo_local",
+            "confidence": 0.88,
             "confirmation_required_for_apply": true,
-            "rationale": "GitHub folder imports are treated as external capability candidates and default to the global library.",
+            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
             "supported": [
               "global",
               "repo_local",
@@ -1419,14 +1601,15 @@
             ]
           },
           "source_provenance": {
-            "source_type": "GITHUB_TREE",
-            "normalized_source": "https://github.com/harish-garg/gemini-cli-prompt-library/tree/main/commands/testing",
-            "policy_rule_id": "collection.testing",
-            "content_sha256": "a854eaf56d7ae4e82b18a890dce98b2dd690a469307031db8cb731c79e9a6dbd"
+            "source_type": "LOCAL_FILE",
+            "normalized_source": "/Users/medhat.galal/Desktop/Core-Prompts/ssot/testing.md",
+            "policy_rule_id": "ssot.testing",
+            "content_sha256": "ssot"
           },
-          "confidence": 0.84,
-          "rationale": "4 accepted items read like reusable prompt/skill assets. Package them under one testing skill family with named modes or subcommands.",
-          "review_status": "ready_for_orchestrator_review"
+          "confidence": 0.96,
+          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a command/skill surface.",
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "Testing Studio \u2014 Test Design and Coverage Analysis"
         },
         "expanded": {
           "relationship_suggestions": [],
@@ -1443,16 +1626,18 @@
           ]
         },
         "org_graph": {
-          "org_role": "workflow_provider",
+          "org_role": "advisor",
           "reports_to_suggestions": [],
           "delegates_to_suggestions": [],
           "collaborates_with_suggestions": [
-            "testing"
+            "analysis",
+            "planning"
           ],
           "authority_tier": "advisory",
-          "work_graph_impact": "Adds or updates a skill capability with route profile COLLECTION_REVIEW."
+          "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
         }
       },
+      "display_name": "Testing Studio \u2014 Test Design and Coverage Analysis",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "testing",
       "shared_summary": "Testing family for unit tests, end-to-end tests, edge-case discovery, and coverage gap analysis.",
@@ -1581,6 +1766,21 @@
           "note": "Good benchmark for evaluation rigor and regression thinking, though not a direct prompt-family replacement."
         }
       ],
+      "consumption_hints": {
+        "preferred_use_cases": [
+          "unit test design",
+          "end-to-end test design",
+          "edge-case discovery",
+          "coverage gap analysis"
+        ],
+        "artifact_conventions": [
+          "reports/testing/<timestamp>-plan.md",
+          "reports/testing/<timestamp>-coverage-gap.md",
+          "reports/testing/<timestamp>-edge-cases.md"
+        ],
+        "invocation_style": "analysis_or_generation",
+        "requires_human_confirmation": false
+      },
       "declared_capability": "skill",
       "inferred_capability": "skill",
       "expected_surface_names": [
@@ -1599,7 +1799,7 @@
       "layers": {
         "minimal": {
           "capability_type": "skill",
-          "summary": "---\nname: \"threader\"\ncapability_type: \"skill\"\ndescription: \"[Medhat] Context Threader & Exporter (Memory Management)\"\n---\n# THREADER \u2014 Full-Thread Transcript Exporter (Introspective / Recall-Based) \u2014 v2.0 (2026-01-10)\n\nPaste this message as **plain text** into the SAME thread you want exported, then send it.\nDo NOT wrap it in a code fence. Do NOT prefix with /rawmd.\nAfter you send it, the AI must execute it (not echo it).\n\n---\n\n## COMMAND\n/threader export\n\n---\n\n## ROLE\nYou are THREADER: a forensic, lossless thread transcript exporter.\n\nYour job is to produce an **accurate transcript** of the entire current thread, suitable for multi\u2011AI bakeoffs and diffing.\n\nYou are **not** analyzing, judging, or improving the thread.\n\n---\n\n## HARD OUTPUT CONTRACT (read carefully)\n\nYou must output **exactl",
+          "summary": "[Medhat] Context Threader & Exporter (Memory Management)",
           "role": "resolver",
           "domain_tags": [
             "planning",
@@ -1706,7 +1906,8 @@
           },
           "confidence": 0.76,
           "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a command/skill surface.",
-          "review_status": "ready_for_orchestrator_review"
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "THREADER \u2014 Full-Thread Transcript Exporter (Introspective / Recall-Based) \u2014 v2.0 (2026-01-10)"
         },
         "expanded": {
           "relationship_suggestions": [],
@@ -1734,12 +1935,14 @@
           "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
         }
       },
+      "display_name": "THREADER \u2014 Full-Thread Transcript Exporter (Introspective / Recall-Based) \u2014 v2.0 (2026-01-10)",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "threader",
-      "shared_summary": "---\nname: \"threader\"\ncapability_type: \"skill\"\ndescription: \"[Medhat] Context Threader & Exporter (Memory Management)\"\n---\n# THREADER \u2014 Full-Thread Transcript Exporter (Introspective / Recall-Based) \u2014 v2.0 (2026-01-10)\n\nPaste this message as **plain text** into the SAME thread you want exported, then send it.\nDo NOT wrap it in a code fence. Do NOT prefix with /rawmd.\nAfter you send it, the AI must execute it (not echo it).\n\n---\n\n## COMMAND\n/threader export\n\n---\n\n## ROLE\nYou are THREADER: a forensic, lossless thread transcript exporter.\n\nYour job is to produce an **accurate transcript** of the entire current thread, suitable for multi\u2011AI bakeoffs and diffing.\n\nYou are **not** analyzing, judging, or improving the thread.\n\n---\n\n## HARD OUTPUT CONTRACT (read carefully)\n\nYou must output **exactl",
+      "shared_summary": "[Medhat] Context Threader & Exporter (Memory Management)",
       "shared_constraints": [],
       "modes": [],
       "benchmark_sources": [],
+      "consumption_hints": {},
       "declared_capability": "skill",
       "inferred_capability": "skill",
       "expected_surface_names": [
@@ -1758,7 +1961,7 @@
       "layers": {
         "minimal": {
           "capability_type": "skill",
-          "summary": "---\nname: \"uac-import\"\nkind: \"skill\"\ncapability_type: \"skill\"\ndescription: \"Import local files, folders, repos, or URLs, classify them, cluster them when needed, and land canonical SSOT plus descriptor metadata.\"\n---\n# UAC Import\n\n## Purpose\nTake one or more external sources and turn them into deterministic UAC assessments, layered manifests, canonical SSOT entries, machine-readable descriptors, and advisory handoff contracts.\n\nSupported inputs:\n- local file path\n- local folder path\n- raw public HTTPS URL\n- GitHub repo or folder URL\n- multiple `--source` values in one run\n- repomix-reduced repo input when available\n\nSupported modes:\n- `import`\n- `audit`\n- `explain`\n- `plan`\n- `apply`\n\n## Workflow\n1. Ingest the source through the deterministic pipeline.\n2. Produce a clean summary.\n3. Run up",
+          "summary": "UAC Import for capability intake, quality review, uplift, and canonical SSOT plus descriptor landing.",
           "role": "analyst",
           "domain_tags": [
             "review",
@@ -1863,9 +2066,10 @@
             "policy_rule_id": "ssot.uac-import",
             "content_sha256": "ssot"
           },
-          "confidence": 0.96,
+          "confidence": 0.97,
           "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a command/skill surface.",
-          "review_status": "ready_for_orchestrator_review"
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "UAC Import \u2014 Capability Intake, Quality Review, and Uplift"
         },
         "expanded": {
           "relationship_suggestions": [],
@@ -1896,12 +2100,27 @@
           "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
         }
       },
+      "display_name": "UAC Import \u2014 Capability Intake, Quality Review, and Uplift",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "uac-import",
-      "shared_summary": "---\nname: \"uac-import\"\nkind: \"skill\"\ncapability_type: \"skill\"\ndescription: \"Import local files, folders, repos, or URLs, classify them, cluster them when needed, and land canonical SSOT plus descriptor metadata.\"\n---\n# UAC Import\n\n## Purpose\nTake one or more external sources and turn them into deterministic UAC assessments, layered manifests, canonical SSOT entries, machine-readable descriptors, and advisory handoff contracts.\n\nSupported inputs:\n- local file path\n- local folder path\n- raw public HTTPS URL\n- GitHub repo or folder URL\n- multiple `--source` values in one run\n- repomix-reduced repo input when available\n\nSupported modes:\n- `import`\n- `audit`\n- `explain`\n- `plan`\n- `apply`\n\n## Workflow\n1. Ingest the source through the deterministic pipeline.\n2. Produce a clean summary.\n3. Run up",
+      "shared_summary": "Import external prompt, skill, or agent sources into the deterministic UAC uplift and packaging flow.",
       "shared_constraints": [],
       "modes": [],
       "benchmark_sources": [],
+      "consumption_hints": {
+        "preferred_use_cases": [
+          "external prompt import",
+          "multi-source capability convergence",
+          "descriptor and handoff generation"
+        ],
+        "artifact_conventions": [
+          "ssot/<slug>.md",
+          ".meta/capabilities/<slug>.json",
+          "reports/quality-reviews/<slug>/LATEST.md"
+        ],
+        "invocation_style": "assistant_first_but_scriptable",
+        "requires_human_confirmation": true
+      },
       "declared_capability": "skill",
       "inferred_capability": "skill",
       "expected_surface_names": [
@@ -1941,6 +2160,7 @@
       ".gemini/skills/uac-import/SKILL.md"
     ],
     "gemini_agent": [
+      ".gemini/agents/architecture.md",
       ".gemini/agents/converge.md",
       ".gemini/agents/mentor.md",
       ".gemini/agents/supercharge.md"
@@ -1958,6 +2178,7 @@
       ".claude/commands/uac-import.md"
     ],
     "claude_agent": [
+      ".claude/agents/architecture.md",
       ".claude/agents/converge.md",
       ".claude/agents/mentor.md",
       ".claude/agents/supercharge.md"
@@ -1975,6 +2196,7 @@
       ".kiro/prompts/uac-import.md"
     ],
     "kiro_agent": [
+      ".kiro/agents/architecture.json",
       ".kiro/agents/converge.json",
       ".kiro/agents/mentor.json",
       ".kiro/agents/supercharge.json"
@@ -2004,6 +2226,7 @@
       ".codex/skills/uac-import/SKILL.md"
     ],
     "codex_agent": [
+      ".codex/agents/architecture.toml",
       ".codex/agents/converge.toml",
       ".codex/agents/mentor.toml",
       ".codex/agents/supercharge.toml"
@@ -2023,6 +2246,7 @@
       ".codex/skills/uac-import/resources/capability.json"
     ],
     "codex_agent": [
+      ".codex/agents/resources/architecture/capability.json",
       ".codex/agents/resources/converge/capability.json",
       ".codex/agents/resources/mentor/capability.json",
       ".codex/agents/resources/supercharge/capability.json"
@@ -2040,11 +2264,13 @@
       ".gemini/skills/uac-import/resources/capability.json"
     ],
     "gemini_agent": [
+      ".gemini/agents/resources/architecture/capability.json",
       ".gemini/agents/resources/converge/capability.json",
       ".gemini/agents/resources/mentor/capability.json",
       ".gemini/agents/resources/supercharge/capability.json"
     ],
     "claude_agent": [
+      ".claude/agents/resources/architecture/capability.json",
       ".claude/agents/resources/converge/capability.json",
       ".claude/agents/resources/mentor/capability.json",
       ".claude/agents/resources/supercharge/capability.json"
@@ -2062,18 +2288,19 @@
       ".kiro/skills/uac-import/resources/capability.json"
     ],
     "kiro_agent": [
+      ".kiro/agents/resources/architecture/capability.json",
       ".kiro/agents/resources/converge/capability.json",
       ".kiro/agents/resources/mentor/capability.json",
       ".kiro/agents/resources/supercharge/capability.json"
     ]
   },
   "validation": {
-    "validated_at": "2026-03-16T01:59:31.550038+00:00",
+    "validated_at": "2026-03-17T20:42:28.736195+00:00",
     "strict": true,
     "with_cli": false,
     "fail_on_cli_miss": false,
     "rules_file": ".meta/surface-rules.json",
-    "rules_sha256": "e501793792fa44469f392da875f03111c7032c571bed7055f29e568103594125",
+    "rules_sha256": "716af24ae1b5721ba7f2fa70b4c03f14daeac68062180c79182ea0ce05b7abe8",
     "schema_cache_ttl_days": 14,
     "schema_cache_sources_checked": [
       "https://docs.anthropic.com/en/docs/claude-code/skills",
@@ -2095,7 +2322,7 @@
         "available": true,
         "version_exit_code": 0,
         "version_output": [
-          "codex-cli 0.114.0"
+          "codex-cli 0.115.0"
         ]
       },
       "gemini": {
@@ -2104,7 +2331,7 @@
         "available": true,
         "version_exit_code": 0,
         "version_output": [
-          "0.33.1"
+          "0.33.2"
         ]
       },
       "claude": {
@@ -2113,7 +2340,7 @@
         "available": true,
         "version_exit_code": 0,
         "version_output": [
-          "2.1.59 (Claude Code)"
+          "2.1.9 (Claude Code)"
         ]
       },
       "kiro": {

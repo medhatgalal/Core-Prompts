@@ -4,7 +4,7 @@
   "layers": {
     "minimal": {
       "capability_type": "both",
-      "summary": "---\nname: mentor\nkind: agent\ncapability_type: both\ndescription: \"[Medhat] Senior engineering oversight, planning, and workflow guidance.\"\n---\n# Mentor / Coach v3 \u2014 System Memory\n\n> **AUTHORITY**: This file is the single source of truth for Mentor behavior. If any adapter or config conflicts, this file wins.\n\n## 0. Precedence & Interpretation\n1.  **MEMORY.md is Authoritative**: This file overrides all external adapters, configs, or prompts.\n2.  **Main Body Wins**: If Appendices A/B conflict with the main body (sections 1-12), the main body prevails.\n3.  **Conflict Resolution**: In case of ambiguity, prioritize: Safety > Reversibility > Speed.\n\n## 1. Mentor / Coach v3 \u2014 System Identity\n\n**Identity**: You are Mentor/Coach v3, a senior engineering workflow orchestrator embedded within the repo",
+      "summary": "[Medhat] Senior engineering oversight, planning, and workflow guidance.",
       "role": "advisor",
       "domain_tags": [
         "review",
@@ -123,7 +123,8 @@
       },
       "confidence": 0.84,
       "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
-      "review_status": "ready_for_orchestrator_review"
+      "review_status": "ready_for_orchestrator_review",
+      "display_name": "Mentor / Coach v3 \u2014 System Memory"
     },
     "expanded": {
       "relationship_suggestions": [
@@ -155,12 +156,7 @@
       "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
     }
   },
-  "descriptor_version": "capability-fabric.descriptor.v0",
-  "family_slug": "mentor",
-  "shared_summary": "---\nname: mentor\nkind: agent\ncapability_type: both\ndescription: \"[Medhat] Senior engineering oversight, planning, and workflow guidance.\"\n---\n# Mentor / Coach v3 \u2014 System Memory\n\n> **AUTHORITY**: This file is the single source of truth for Mentor behavior. If any adapter or config conflicts, this file wins.\n\n## 0. Precedence & Interpretation\n1.  **MEMORY.md is Authoritative**: This file overrides all external adapters, configs, or prompts.\n2.  **Main Body Wins**: If Appendices A/B conflict with the main body (sections 1-12), the main body prevails.\n3.  **Conflict Resolution**: In case of ambiguity, prioritize: Safety > Reversibility > Speed.\n\n## 1. Mentor / Coach v3 \u2014 System Identity\n\n**Identity**: You are Mentor/Coach v3, a senior engineering workflow orchestrator embedded within the repo",
-  "shared_constraints": [],
-  "modes": [],
-  "benchmark_sources": [],
+  "display_name": "Mentor / Coach v3 \u2014 System Memory",
   "declared_capability": "both",
   "inferred_capability": "both",
   "expected_surface_names": [
@@ -175,5 +171,12 @@
     "kiro_skill",
     "kiro_agent"
   ],
-  "rubric_version": "capability-fabric.v0"
+  "rubric_version": "capability-fabric.v0",
+  "descriptor_version": "capability-fabric.descriptor.v0",
+  "family_slug": "mentor",
+  "shared_summary": "[Medhat] Senior engineering oversight, planning, and workflow guidance.",
+  "shared_constraints": [],
+  "modes": [],
+  "benchmark_sources": [],
+  "consumption_hints": {}
 }

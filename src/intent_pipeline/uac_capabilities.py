@@ -162,11 +162,11 @@ def audit_surface_alignment(
     if inferred_capability == "manual_review":
         return UacAuditResult(status="manual_review", issues=("UAC classified this entry as manual_review",))
 
-    if capability_conflicts(declared_capability, inferred_capability):
+    mismatch = capability_conflicts(declared_capability, inferred_capability)
+    if mismatch:
         issues.append(
             f"declared capability {declared_capability or 'unset'} does not match inferred capability {inferred_capability}"
         )
-        return UacAuditResult(status="frontmatter_mismatch", issues=tuple(issues))
 
     missing = expected_surfaces - actual_surfaces
     extra = actual_surfaces - expected_surfaces
@@ -185,6 +185,8 @@ def audit_surface_alignment(
     if missing:
         issues.append("missing mixed surfaces: " + ", ".join(sorted(missing)))
         return UacAuditResult(status="manual_review", issues=tuple(issues))
+    if mismatch:
+        return UacAuditResult(status="declared_override", issues=tuple(issues))
     return UacAuditResult(status="aligned", issues=())
 
 

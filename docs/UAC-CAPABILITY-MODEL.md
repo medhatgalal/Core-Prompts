@@ -1,90 +1,77 @@
 # UAC Capability Model
 
-UAC is the authoritative classifier for imported sources and existing SSOT entries.
+UAC is the authoritative classifier for imported sources and SSOT entries.
 
-## Capability Types
-
-| Capability Type | Meaning | Auto deploy? |
+## Canonical Capability Types
+| Type | Meaning | Auto-deployable |
 | --- | --- | --- |
-| `skill` | Reusable prompt/workflow with clear task guidance and bounded output | Yes |
-| `agent` | Delegated specialist with explicit control-plane behavior | Yes |
-| `both` | One source that should emit workflow and agent surfaces | Yes |
-| `manual_review` | Weak, mixed, or conflicting content | No |
+| `skill` | reusable prompt/workflow with bounded outputs | yes |
+| `agent` | delegated specialist with explicit agent semantics | yes |
+| `both` | one canonical source that emits workflow and agent surfaces | yes |
+| `manual_review` | conflicting or weakly structured content | no |
 
 ## Not Capability Types
-These are wrapper or invocation surfaces, not peer capability classes:
+These are deployment wrappers, not peer capability classes:
 - commands
 - plugins
 - powers
 - extensions
 
-## Layered Manifest
-Every accepted capability should produce three layers.
-
+## Manifest Layers
 ### Minimal
-- capability type
-- role
-- tags
-- inputs/outputs
-- tool policy
-- resources
-- packaging profile
-- install target
-- emitted surfaces
-- provenance
-- confidence/rationale/review status
+- `capability_type`
+- `summary`
+- `role`
+- `domain_tags`
+- `required_inputs`
+- `expected_outputs`
+- `tool_policy`
+- `resources`
+- `packaging_profile`
+- `install_target`
+- `emitted_surfaces`
+- `source_provenance`
+- `confidence`
+- `rationale`
+- `review_status`
+- `display_name`
 
 ### Expanded
-- relationship suggestions
-- dependencies
-- overlap candidates
-- migration notes
-- adjustment recommendations
+- `relationship_suggestions`
+- `capability_dependencies`
+- `overlap_candidates`
+- `migration_notes`
+- `adjustment_recommendations`
 
 ### Org Graph
-- org role
-- reports/delegates/collaborates suggestions
-- authority tier
-- work-graph impact
+- `org_role`
+- `reports_to_suggestions`
+- `delegates_to_suggestions`
+- `collaborates_with_suggestions`
+- `authority_tier`
+- `work_graph_impact`
 
-Rule: expanded and org-graph layers are advisory. Orchestrators decide whether to use them.
+All expanded and org-graph fields are advisory only.
 
-## Anti-Complecting Check
-Every import/plan/apply run compares the candidate against the current library and emits:
-- duplicate risk
-- overlap report
-- conflict report
-- fit assessment
-- required existing adjustments
-- required new-entry adjustments
-- work-graph change summary
+## Quality Metadata
+Descriptor and handoff metadata may also publish:
+- `quality_profile`
+- `quality_status`
+- `judge_reports`
+- `quality_pass_count`
+- `quality_stop_reason`
+- `consumption_hints`
 
-If unresolved overlap/conflict is too high, the result must fall to `manual_review`.
+These fields describe trust, fit, and usage guidance. They do not grant execution authority.
 
 ## Install Target
-Supported install scopes:
+Supported scopes:
 - `global`
 - `repo_local`
 - `both`
 
-Default behavior:
-- infer likely target
-- show recommendation in plan/import output
-- require confirmation before apply writes
+`apply` requires explicit confirmation before writing canonical repo state.
 
-## Deployment Matrix
-
-| Capability Type | Codex | Gemini | Claude | Kiro |
-| --- | --- | --- | --- | --- |
-| `skill` | `codex_skill` | `gemini_command`, `gemini_skill` | `claude_command` | `kiro_prompt`, `kiro_skill` |
-| `agent` | `codex_agent` | `gemini_agent` | `claude_agent` | `kiro_agent` |
-| `both` | `codex_skill`, `codex_agent` | `gemini_command`, `gemini_skill`, `gemini_agent` | `claude_command`, `claude_agent` | `kiro_prompt`, `kiro_skill`, `kiro_agent` |
-| `manual_review` | none | none | none | none |
-
-Wrapper examples:
-- Codex plugin wrapper
-- Gemini extension wrapper
-- Claude plugin wrapper
-- Kiro power wrapper
-
-Those wrappers are additive deployment forms only.
+## Related Docs
+- [UAC usage](UAC-USAGE.md)
+- [Orchestrator contract](ORCHESTRATOR-CONTRACT.md)

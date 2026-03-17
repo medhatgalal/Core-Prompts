@@ -5,7 +5,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-from intent_pipeline.uac_manifest import analyze_manifest_fit, build_capability_manifest, infer_install_target
+from intent_pipeline.uac_manifest import analyze_manifest_fit, build_capability_manifest, infer_install_target, orchestrator_handoff_payload
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -76,6 +76,63 @@ def test_analyze_manifest_fit_detects_duplicate_slug() -> None:
 
     assert analysis.duplicate_risk == 'high'
     assert analysis.fit_assessment == 'manual_review'
+
+
+def test_orchestrator_handoff_payload_exposes_advisory_quality_fields() -> None:
+    manifest = {
+        'slug': 'architecture',
+        'display_name': 'Architecture Studio',
+        'quality_profile': 'architecture',
+        'quality_status': 'ship',
+        'consumption_hints': {
+            'preferred_use_cases': ['API design'],
+            'artifact_conventions': ['architecture/spec.md'],
+            'invocation_style': 'interactive_or_artifact_oriented',
+            'requires_human_confirmation': True,
+        },
+        'layers': {
+            'minimal': {
+                'capability_type': 'skill',
+                'summary': 'Architecture Studio',
+                'role': 'architect',
+                'domain_tags': ['architecture'],
+                'required_inputs': ['requirements'],
+                'expected_outputs': ['architecture recommendation'],
+                'tool_policy': {
+                    'allowed': ['metadata publication'],
+                    'forbidden': ['orchestration'],
+                },
+                'install_target': {'recommended': 'global'},
+                'emitted_surfaces': {'codex': ['codex_skill']},
+                'confidence': 0.95,
+                'review_status': 'ready_for_orchestrator_review',
+            },
+            'expanded': {
+                'overlap_candidates': [],
+                'relationship_suggestions': [],
+            },
+            'org_graph': {
+                'org_role': 'architect',
+                'reports_to_suggestions': [],
+                'delegates_to_suggestions': [],
+                'collaborates_with_suggestions': [],
+                'authority_tier': 'advisory',
+                'work_graph_impact': 'Adds an advisory architecture capability.',
+            },
+        },
+    }
+
+    payload = orchestrator_handoff_payload([manifest])
+    capability = payload['capabilities'][0]
+
+    assert capability['advisory_only'] is True
+    assert capability['display_name'] == 'Architecture Studio'
+    assert capability['quality_status'] == 'ship'
+    assert capability['benchmark_profile'] == 'architecture'
+    assert capability['preferred_use_cases'] == ['API design']
+    assert capability['artifact_conventions'] == ['architecture/spec.md']
+    assert capability['invocation_style'] == 'interactive_or_artifact_oriented'
+    assert capability['requires_human_confirmation'] is True
 
 
 def test_uac_import_multi_source_returns_collection_manifest(tmp_path: Path) -> None:

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import datetime
 import json
 import mimetypes
 import subprocess
@@ -10,7 +11,7 @@ import tempfile
 from collections import defaultdict
 from hashlib import sha256
 from pathlib import Path
-from typing import Any
+from typing import Any, Mapping
 from urllib.parse import urlsplit
 from urllib.request import Request, urlopen
 
@@ -28,6 +29,17 @@ from intent_pipeline.uac_capabilities import deployment_matrix_payload, emitted_
 from intent_pipeline.uac_descriptors import build_descriptor, save_descriptor, write_source_note
 from intent_pipeline.uac_extract import extract_uac_analysis_text
 from intent_pipeline.uac_manifest import analyze_manifest_fit, build_capability_manifest, orchestrator_handoff_payload
+from intent_pipeline.uac_quality import (
+    build_quality_plan,
+    latest_quality_review_path,
+    load_quality_profile,
+    quality_descriptor_fields,
+    quality_profile_dir,
+    quality_review_dir,
+    quality_review_path,
+    render_latest_review_markdown,
+    run_quality_loop,
+)
 from intent_pipeline.uac_repomix import collect_repomix_candidates, materialize_repomix_candidate, repomix_available
 from intent_pipeline.uac_sources import (
     UacSourceCandidate,
@@ -48,16 +60,17 @@ def _parse_args() -> argparse.Namespace:
         ),
         epilog=(
             'Examples:\n'
-            '  python3.11 scripts/uac-import.py --mode import --source /abs/path/to/prompt.md\n'
-            '  python3.11 scripts/uac-import.py --mode plan --source /abs/path/to/folder\n'
-            '  python3.11 scripts/uac-import.py --mode apply --source /abs/path/to/folder --yes\n'
-            '  python3.11 scripts/uac-import.py --mode import --source https://github.com/org/repo/tree/main/prompts\n'
-            '  python3.11 scripts/uac-import.py --mode audit --output table\n'
-            '  python3.11 scripts/uac-import.py --mode explain --output table\n'
+            '  python3 scripts/uac-import.py --mode import --source /abs/path/to/prompt.md\n'
+            '  python3 scripts/uac-import.py --mode plan --source /abs/path/to/folder\n'
+            '  python3 scripts/uac-import.py --mode judge --source /abs/path/to/folder --quality-profile architecture\n'
+            '  python3 scripts/uac-import.py --mode apply --source /abs/path/to/folder --yes\n'
+            '  python3 scripts/uac-import.py --mode import --source https://github.com/org/repo/tree/main/prompts\n'
+            '  python3 scripts/uac-import.py --mode audit --output table\n'
+            '  python3 scripts/uac-import.py --mode explain --output table\n'
         ),
         formatter_class=argparse.RawTextHelpFormatter,
     )
-    parser.add_argument('--mode', choices=('import', 'audit', 'explain', 'plan', 'apply'), default='import')
+    parser.add_argument('--mode', choices=('import', 'audit', 'explain', 'plan', 'judge', 'apply'), default='import')
     parser.add_argument('--source', action='append', help='File path, directory path, raw https URL, GitHub tree/repo URL, or repomix-reducible repo source')
     parser.add_argument(
         '--target-system',
@@ -89,6 +102,23 @@ def _parse_args() -> argparse.Namespace:
         choices=('auto', 'always', 'off'),
         default='auto',
         help='Use repomix to reduce broad repos/folders before UAC analysis when available',
+    )
+    parser.add_argument(
+        '--quality-loop',
+        choices=('on', 'off'),
+        default='on',
+        help='Run the built-in quality iteration loop for plan, judge, and apply',
+    )
+    parser.add_argument(
+        '--quality-profile',
+        default='auto',
+        help='Quality profile to use for judging and apply. auto selects by slug/family.',
+    )
+    parser.add_argument(
+        '--max-quality-passes',
+        type=int,
+        default=4,
+        help='Maximum quality passes for the built-in judge loop',
     )
     return parser.parse_args()
 
@@ -616,6 +646,62 @@ def _compact_item_payload(display_name: str, payload: dict[str, Any]) -> dict[st
     return compact
 
 
+def _payload_source_refs(payload: Mapping[str, Any]) -> list[str]:
+    refs: list[str] = []
+    if 'items' in payload:
+        refs.extend(
+            str(item['source']['normalized_source'])
+            for item in payload['items']
+            if item.get('status') == 'accepted' and item.get('source')
+        )
+    elif payload.get('source', {}).get('normalized_source'):
+        normalized = payload['source']['normalized_source']
+        if isinstance(normalized, list):
+            refs.extend(str(item) for item in normalized)
+        else:
+            refs.append(str(normalized))
+    return refs
+
+
+def _quality_descriptor_seed(payload: Mapping[str, Any]) -> dict[str, Any]:
+    manifest = json.loads(json.dumps(payload['manifest']))
+    if payload.get('source', {}).get('cluster_count'):
+        manifest['family_slug'] = manifest.get('slug')
+    return manifest
+
+
+def _run_quality_for_payload(payload: dict[str, Any], args: argparse.Namespace) -> dict[str, Any]:
+    if payload.get('status') != 'accepted' or args.quality_loop == 'off':
+        return payload
+    slug = str(payload['manifest']['slug'])
+    descriptor_seed = _quality_descriptor_seed(payload)
+    profile = load_quality_profile(ROOT, slug, args.quality_profile)
+    source_refs = _payload_source_refs(payload)
+    plan = build_quality_plan(
+        slug=slug,
+        profile=profile,
+        descriptor_path=f'.meta/capabilities/{slug}.json',
+        source_refs=source_refs,
+        benchmark_sources=payload.get('benchmark_sources') or (),
+        max_passes_override=args.max_quality_passes,
+    )
+    rendered_text = _render_ssot_markdown(slug, payload, quality_profile=profile.payload)
+    quality_result = run_quality_loop(
+        slug=slug,
+        profile=profile,
+        candidate_text=rendered_text,
+        descriptor=descriptor_seed,
+        source_refs=source_refs,
+        benchmark_sources=payload.get('benchmark_sources') or (),
+        max_passes=max(1, min(args.max_quality_passes, profile.max_passes)),
+    )
+    result = dict(payload)
+    result['quality_plan'] = plan
+    result['quality_result'] = quality_result
+    result['quality_result']['final_candidate_text'] = quality_result['final_candidate_text']
+    return result
+
+
 def _single_source_plan(source_label: str, payload: dict[str, Any]) -> dict[str, Any]:
     slug = payload['manifest']['slug']
     manifest = payload['manifest']
@@ -752,9 +838,11 @@ def _explain_payload() -> dict[str, Any]:
         'mode': 'explain',
         'classification_rubric': classification_rubric_payload(),
         'deployment_matrix': deployment_matrix_payload(),
+        'quality_profiles': [path.stem for path in sorted(quality_profile_dir(ROOT).glob('*.json'))],
         'notes': [
             'command, plugin, power, and extension are wrapper surfaces rather than capability types',
             'Capability Fabric/UAC publishes advisory manifests and handoff contracts only',
+            'judge runs the built-in quality loop without writing repo-tracked state',
             'apply mutates this repo only after explicit confirmation',
         ],
     }
@@ -880,14 +968,15 @@ def _mode_entries_from_items(items: list[dict[str, Any]]) -> list[dict[str, obje
     return modes
 
 
-def _render_ssot_markdown(slug: str, payload: dict[str, Any]) -> str:
+def _render_ssot_markdown(slug: str, payload: dict[str, Any], *, quality_profile: Mapping[str, Any] | None = None) -> str:
     manifest = payload['manifest']
     minimal = manifest['layers']['minimal']
-    title = ' '.join(part.capitalize() for part in slug.replace('_', '-').split('-'))
+    quality_profile = quality_profile or {}
+    title = str(quality_profile.get('title') or ' '.join(part.capitalize() for part in slug.replace('_', '-').split('-')))
     summary = str(minimal.get('summary') or f'Capability import for {slug}.').strip()
     capability_type = str(minimal.get('capability_type') or 'manual_review')
     install_target = str(minimal.get('install_target', {}).get('recommended') or 'auto')
-    description = summary.splitlines()[0][:160]
+    description = str(quality_profile.get('description') or summary.splitlines()[0][:160])
     escaped_description = description.replace('"', '\\"')
     lines = [
         '---',
@@ -962,6 +1051,27 @@ def _render_ssot_markdown(slug: str, payload: dict[str, Any]) -> str:
     return '\n'.join(lines)
 
 
+def _persist_quality_reviews(slug: str, quality_plan: Mapping[str, Any], quality_result: Mapping[str, Any]) -> list[Path]:
+    profile_path = quality_profile_dir(ROOT) / f"{quality_plan['quality_profile']}.json"
+    review_dir = quality_review_dir(ROOT, slug)
+    review_dir.mkdir(parents=True, exist_ok=True)
+    changed: list[Path] = []
+    stamp = datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%d-%H%M%S')
+    for report in quality_result.get('judge_reports') or []:
+        path = quality_review_path(ROOT, slug, int(report['pass_number']), stamp)
+        path.write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')
+        changed.append(path)
+    latest_path = latest_quality_review_path(ROOT, slug)
+    latest_path.write_text(
+        render_latest_review_markdown(slug=slug, quality_result=quality_result),
+        encoding='utf-8',
+    )
+    changed.append(latest_path)
+    if profile_path.exists():
+        changed.append(profile_path)
+    return changed
+
+
 def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: list[str]) -> dict[str, Any]:
     if payload.get('status') != 'accepted':
         return payload
@@ -983,42 +1093,78 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
             payload['status'] = 'cancelled'
             payload['detail'] = 'apply cancelled by user'
             return payload
-    slug = str(payload['manifest']['slug'])
+    result = dict(payload)
+    if args.quality_loop == 'on' and 'quality_result' not in result:
+        result = _run_quality_for_payload(result, args)
+    slug = str(result['manifest']['slug'])
+    quality_plan = result.get('quality_plan')
+    quality_result = result.get('quality_result')
+    quality_paths: list[Path] = []
+    if quality_plan and quality_result:
+        quality_paths = _persist_quality_reviews(slug, quality_plan, quality_result)
+        if quality_result.get('status') != 'ship':
+            result['mode'] = 'apply'
+            result['status'] = 'manual_review'
+            result['detail'] = 'Quality gate refused landing. Review the persisted quality reports and revise before apply.'
+            result['apply_result'] = {
+                'changed_paths': [str(path.relative_to(ROOT)) for path in quality_paths],
+                'quality': {
+                    'profile': quality_plan['quality_profile'],
+                    'status': quality_result.get('status'),
+                    'pass_count': quality_result.get('pass_count'),
+                    'stop_reason': quality_result.get('stop_reason'),
+                },
+                'deploy_next_step': 'Run bin/uac judge or revise the candidate prompt before apply.',
+            }
+            return result
     ssot_path = ROOT / 'ssot' / f'{slug}.md'
     descriptor = build_descriptor(
-        manifest=payload['manifest'],
+        manifest=result['manifest'],
         family_slug=slug,
-        shared_summary=str(payload['manifest']['layers']['minimal'].get('summary') or ''),
-        shared_constraints=tuple(payload.get('manifest', {}).get('layers', {}).get('expanded', {}).get('adjustment_recommendations') or ()),
-        modes=tuple(_mode_entries_from_items(payload.get('items', []))),
-        benchmark_sources=tuple(payload.get('benchmark_sources') or ()),
+        shared_summary=str(result['manifest']['layers']['minimal'].get('summary') or ''),
+        shared_constraints=tuple(result.get('manifest', {}).get('layers', {}).get('expanded', {}).get('adjustment_recommendations') or ()),
+        modes=tuple(_mode_entries_from_items(result.get('items', []))),
+        benchmark_sources=tuple(result.get('benchmark_sources') or ()),
+        quality_profile=(quality_plan or {}).get('quality_profile'),
+        quality_status=(quality_result or {}).get('status'),
+        judge_reports=tuple((quality_result or {}).get('judge_reports') or ()),
+        consumption_hints=dict((quality_result or {}).get('consumption_hints') or {}),
+        quality_pass_count=(quality_result or {}).get('pass_count'),
+        quality_stop_reason=(quality_result or {}).get('stop_reason'),
     )
-    ssot_text = _render_ssot_markdown(slug, payload)
+    ssot_text = str((quality_result or {}).get('final_candidate_text') or _render_ssot_markdown(slug, result))
     ssot_path.write_text(ssot_text + ('\n' if not ssot_text.endswith('\n') else ''), encoding='utf-8')
     descriptor_path = save_descriptor(ROOT, slug, descriptor)
     source_note = None
     source_refs = []
-    if 'items' in payload:
-        source_refs.extend(item['source']['normalized_source'] for item in payload['items'] if item.get('status') == 'accepted')
+    if 'items' in result:
+        source_refs.extend(item['source']['normalized_source'] for item in result['items'] if item.get('status') == 'accepted')
     else:
-        source_refs.append(payload['source']['normalized_source'])
-    if any(ref.startswith('http') or ref.startswith('repomix://') for ref in source_refs) or payload.get('benchmark_sources'):
+        source_refs.append(result['source']['normalized_source'])
+    if any(ref.startswith('http') or ref.startswith('repomix://') for ref in source_refs) or result.get('benchmark_sources'):
         source_note = write_source_note(
             ROOT,
             slug,
             title=f'{slug} source assessment',
             source_refs=source_refs,
-            benchmark_sources=payload.get('benchmark_sources') or (),
-            rationale=str(payload['manifest']['layers']['minimal'].get('rationale') or payload['manifest']['layers']['minimal'].get('summary') or ''),
+            benchmark_sources=result.get('benchmark_sources') or (),
+            rationale=str(result['manifest']['layers']['minimal'].get('rationale') or result['manifest']['layers']['minimal'].get('summary') or ''),
         )
     build_proc = subprocess.run([sys.executable, str(ROOT / 'scripts' / 'build-surfaces.py')], capture_output=True, text=True)
     validate_proc = subprocess.run([sys.executable, str(ROOT / 'scripts' / 'validate-surfaces.py'), '--strict'], capture_output=True, text=True)
-    result = dict(payload)
     result['mode'] = 'apply'
     result['apply_result'] = {
-        'changed_paths': [str(ssot_path.relative_to(ROOT)), str(descriptor_path.relative_to(ROOT))] + ([str(source_note.relative_to(ROOT))] if source_note else []),
+        'changed_paths': [str(ssot_path.relative_to(ROOT)), str(descriptor_path.relative_to(ROOT))]
+        + ([str(source_note.relative_to(ROOT))] if source_note else [])
+        + [str(path.relative_to(ROOT)) for path in quality_paths],
         'build': {'returncode': build_proc.returncode, 'stdout': build_proc.stdout.strip(), 'stderr': build_proc.stderr.strip()},
         'validate': {'returncode': validate_proc.returncode, 'stdout': validate_proc.stdout.strip(), 'stderr': validate_proc.stderr.strip()},
+        'quality': {
+            'profile': (quality_plan or {}).get('quality_profile'),
+            'status': (quality_result or {}).get('status'),
+            'pass_count': (quality_result or {}).get('pass_count'),
+            'stop_reason': (quality_result or {}).get('stop_reason'),
+        },
         'deploy_next_step': 'Run bin/capability-fabric deploy or scripts/deploy-surfaces.sh after reviewing repo changes.',
     }
     if build_proc.returncode == 0 and validate_proc.returncode == 0:
@@ -1032,8 +1178,8 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
 
 def main() -> int:
     args = _parse_args()
-    if args.mode in {'import', 'plan', 'apply'} and not args.source:
-        raise SystemExit('--source is required for import, plan, and apply modes')
+    if args.mode in {'import', 'plan', 'judge', 'apply'} and not args.source:
+        raise SystemExit('--source is required for import, plan, judge, and apply modes')
     if args.mode == 'audit':
         payload = _audit_payload()
     elif args.mode == 'explain':
@@ -1046,8 +1192,12 @@ def main() -> int:
             payload = _process_source(source, args=args)
         except UrlSourceRejectedError as error:
             payload = _rejection_payload(source, error)
-        if payload.get('status') == 'accepted' and args.mode in {'plan', 'apply'} and 'plan' not in payload:
+        if payload.get('status') == 'accepted' and args.mode in {'plan', 'judge', 'apply'} and 'plan' not in payload:
             payload['plan'] = _single_source_plan(source, payload)
+    if payload.get('status') == 'accepted' and args.mode in {'plan', 'judge', 'apply'}:
+        payload = _run_quality_for_payload(payload, args)
+    if args.mode == 'judge':
+        payload['mode'] = 'judge'
     if args.mode == 'apply':
         payload = _apply_payload(payload, args, args.source or [])
     if args.show_rubric and 'classification_rubric' not in payload:

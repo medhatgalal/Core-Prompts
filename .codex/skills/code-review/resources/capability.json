@@ -4,7 +4,7 @@
   "layers": {
     "minimal": {
       "capability_type": "skill",
-      "summary": "---\nname: \"code-review\"\nkind: \"skill\"\ncapability_type: \"skill\"\ndescription: \"[ScottP] Git commit review with scope control and over-engineering detection\"\n---\n# Code Review \u2014 Git Commit Quality Gate\n\n## Purpose\nReview git commits before creating merge requests, focusing on commit message quality, scope alignment, and detecting over-engineering in AI-assisted coding environments.\n\n## Output Directory\nAll review artifacts should be stored in `reports/code-reviews/` with timestamped filenames.\n\n---\n\n## Core Principles\n- **Scope discipline**: Changes must match what the commit message describes\n- **Simplicity first**: Flag over-engineered solutions\n- **Evidence-based**: Review actual diff output, not assumptions\n- **AI-aware**: Recognize that AI-assisted coding can easily introduce scope creep",
+      "summary": "Commit Review for git commit quality gates, scope control, and over-engineering detection.",
       "role": "analyst",
       "domain_tags": [
         "review",
@@ -110,7 +110,8 @@
       },
       "confidence": 0.97,
       "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a command/skill surface.",
-      "review_status": "ready_for_orchestrator_review"
+      "review_status": "ready_for_orchestrator_review",
+      "display_name": "Commit Review \u2014 Git Commit Quality Gate"
     },
     "expanded": {
       "relationship_suggestions": [],
@@ -140,12 +141,7 @@
       "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
     }
   },
-  "descriptor_version": "capability-fabric.descriptor.v0",
-  "family_slug": "code-review",
-  "shared_summary": "---\nname: \"code-review\"\nkind: \"skill\"\ncapability_type: \"skill\"\ndescription: \"[ScottP] Git commit review with scope control and over-engineering detection\"\n---\n# Code Review \u2014 Git Commit Quality Gate\n\n## Purpose\nReview git commits before creating merge requests, focusing on commit message quality, scope alignment, and detecting over-engineering in AI-assisted coding environments.\n\n## Output Directory\nAll review artifacts should be stored in `reports/code-reviews/` with timestamped filenames.\n\n---\n\n## Core Principles\n- **Scope discipline**: Changes must match what the commit message describes\n- **Simplicity first**: Flag over-engineered solutions\n- **Evidence-based**: Review actual diff output, not assumptions\n- **AI-aware**: Recognize that AI-assisted coding can easily introduce scope creep",
-  "shared_constraints": [],
-  "modes": [],
-  "benchmark_sources": [],
+  "display_name": "Commit Review \u2014 Git Commit Quality Gate",
   "declared_capability": "skill",
   "inferred_capability": "skill",
   "expected_surface_names": [
@@ -156,5 +152,23 @@
     "kiro_prompt",
     "kiro_skill"
   ],
-  "rubric_version": "capability-fabric.v0"
+  "rubric_version": "capability-fabric.v0",
+  "descriptor_version": "capability-fabric.descriptor.v0",
+  "family_slug": "code-review",
+  "shared_summary": "[ScottP] Git commit review with scope control and over-engineering detection",
+  "shared_constraints": [],
+  "modes": [],
+  "benchmark_sources": [],
+  "consumption_hints": {
+    "preferred_use_cases": [
+      "pre-merge commit review",
+      "scope creep detection",
+      "over-engineering checks"
+    ],
+    "artifact_conventions": [
+      "reports/code-reviews/<timestamp>-<commit>.md"
+    ],
+    "invocation_style": "git_commit_review",
+    "requires_human_confirmation": false
+  }
 }

@@ -23,6 +23,15 @@ def test_audit_ssot_entries_detects_hybrid_capability() -> None:
     assert audits['mentor'].inferred.capability_type == 'both'
 
 
+def test_architecture_entry_publishes_display_name_and_agent_surfaces() -> None:
+    audits = {entry.slug: entry for entry in audit_ssot_entries(ROOT)}
+    architecture = audits['architecture']
+
+    assert architecture.manifest['display_name'] == 'Architecture Studio'
+    assert 'codex_agent' in architecture.expected_surface_names
+    assert 'kiro_agent' in architecture.expected_surface_names
+
+
 def test_render_audit_table_includes_headers() -> None:
     table = render_audit_table(audit_ssot_entries(ROOT))
 

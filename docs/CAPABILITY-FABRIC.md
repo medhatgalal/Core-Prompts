@@ -1,38 +1,40 @@
 # Capability Fabric
 
-Capability Fabric is the next direction for Core-Prompts.
-
-It is a capability-provider layer, not an orchestrator.
+Capability Fabric is the provider layer for reusable prompt capabilities.
 
 ## Owns
 - source intake
-- classification
-- uplift
-- convergence
-- layered manifests
-- install-target intent
-- emitted deployment surfaces
-- evidence, confidence, and rationale
-- relationship suggestions for orchestrators
+- capability classification
+- uplift and convergence
+- canonical SSOT and descriptor publication
+- generated CLI surfaces
+- quality evidence and advisory handoff metadata
 
 ## Does Not Own
-- delegation
 - runtime routing
+- delegation policy
 - workflow execution
-- SDLC orchestration
+- SDLC control loops
 
-## UAC inside Capability Fabric
-UAC is the import, convergence, and uplift engine inside Capability Fabric.
+## UAC Inside Capability Fabric
+UAC is the intake, classification, uplift, quality-review, and packaging subsystem.
 
 It accepts:
 - local files
 - local folders
+- GitHub repos and folders
 - raw URLs
-- GitHub trees/repos
-- optional Repomix-packed bundles later
+- multi-source runs
+- repomix-reduced inputs when available
 
-It emits:
-- layered manifests
-- fit/overlap/conflict analysis
-- target-system packaging guidance
-- advisory orchestrator handoff data
+It publishes:
+- canonical capability manifests
+- descriptor JSON files
+- overlap/conflict analysis
+- quality-loop evidence
+- advisory orchestrator handoff metadata
+
+## Read This Next
+- [UAC usage](UAC-USAGE.md)
+- [UAC capability model](UAC-CAPABILITY-MODEL.md)
+- [Orchestrator contract](ORCHESTRATOR-CONTRACT.md)

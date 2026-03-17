@@ -343,6 +343,7 @@ def orchestrator_handoff_payload(manifests: Sequence[Mapping[str, object]]) -> d
         capabilities.append(
             {
                 "slug": manifest.get("slug"),
+                "display_name": manifest.get("display_name") or minimal.get("display_name"),
                 "capability_type": minimal.get("capability_type"),
                 "summary": minimal.get("summary"),
                 "role": minimal.get("role"),
@@ -356,6 +357,12 @@ def orchestrator_handoff_payload(manifests: Sequence[Mapping[str, object]]) -> d
                 "review_status": minimal.get("review_status"),
                 "overlap_candidates": list(expanded.get("overlap_candidates") or []),
                 "relationship_suggestions": list(expanded.get("relationship_suggestions") or []),
+                "quality_status": manifest.get("quality_status"),
+                "benchmark_profile": manifest.get("quality_profile"),
+                "preferred_use_cases": list((manifest.get("consumption_hints") or {}).get("preferred_use_cases") or []),
+                "artifact_conventions": list((manifest.get("consumption_hints") or {}).get("artifact_conventions") or []),
+                "invocation_style": (manifest.get("consumption_hints") or {}).get("invocation_style"),
+                "requires_human_confirmation": (manifest.get("consumption_hints") or {}).get("requires_human_confirmation"),
                 "org_graph": org_graph,
                 "advisory_only": True,
             }

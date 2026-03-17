@@ -26,7 +26,7 @@ flowchart LR
   F --> G["Validation report + provenance in manifest"]
   C --> H["scripts/deploy-surfaces.sh"]
   D --> H
-  H --> I["Target home (.codex/.gemini/.claude/.kiro)"]
+  H --> I["Target root (.codex/.gemini/.claude/.kiro; default repository root)"]
 ```
 
 ## Script Responsibilities
@@ -40,7 +40,7 @@ flowchart LR
   - checks manifest consistency with SSOT
   - optionally runs CLI-backed validation and schema cache checks
 - `scripts/deploy-surfaces.sh`
-  - copy-only deployment to target home paths
+  - copy-only deployment to target root paths
   - no symlink creation
   - replaces destination symlinks with regular file copies
 

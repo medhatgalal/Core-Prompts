@@ -1,8 +1,8 @@
 ---
 name: "resolve-conflict"
-description: "[ScottP] Structured merge conflict resolution with Charlie Munger inversion analysis"
+description: "Merge Conflict Resolution for structured conflict analysis, additive merging, and inversion-led trade-off handling."
 ---
-# Resolve Conflict — Structured Merge Conflict Resolution
+# Merge Conflict Resolution — Structured Conflict Analysis
 
 ## Purpose
 Analyze and resolve git merge conflicts using structured reasoning, Charlie Munger-style inversion, and logical document structure principles.

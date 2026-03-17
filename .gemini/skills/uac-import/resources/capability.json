@@ -4,7 +4,7 @@
   "layers": {
     "minimal": {
       "capability_type": "skill",
-      "summary": "---\nname: \"uac-import\"\nkind: \"skill\"\ncapability_type: \"skill\"\ndescription: \"Import local files, folders, repos, or URLs, classify them, cluster them when needed, and land canonical SSOT plus descriptor metadata.\"\n---\n# UAC Import\n\n## Purpose\nTake one or more external sources and turn them into deterministic UAC assessments, layered manifests, canonical SSOT entries, machine-readable descriptors, and advisory handoff contracts.\n\nSupported inputs:\n- local file path\n- local folder path\n- raw public HTTPS URL\n- GitHub repo or folder URL\n- multiple `--source` values in one run\n- repomix-reduced repo input when available\n\nSupported modes:\n- `import`\n- `audit`\n- `explain`\n- `plan`\n- `apply`\n\n## Workflow\n1. Ingest the source through the deterministic pipeline.\n2. Produce a clean summary.\n3. Run up",
+      "summary": "UAC Import for capability intake, quality review, uplift, and canonical SSOT plus descriptor landing.",
       "role": "analyst",
       "domain_tags": [
         "review",
@@ -109,9 +109,10 @@
         "policy_rule_id": "ssot.uac-import",
         "content_sha256": "ssot"
       },
-      "confidence": 0.96,
+      "confidence": 0.97,
       "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a command/skill surface.",
-      "review_status": "ready_for_orchestrator_review"
+      "review_status": "ready_for_orchestrator_review",
+      "display_name": "UAC Import \u2014 Capability Intake, Quality Review, and Uplift"
     },
     "expanded": {
       "relationship_suggestions": [],
@@ -142,12 +143,7 @@
       "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
     }
   },
-  "descriptor_version": "capability-fabric.descriptor.v0",
-  "family_slug": "uac-import",
-  "shared_summary": "---\nname: \"uac-import\"\nkind: \"skill\"\ncapability_type: \"skill\"\ndescription: \"Import local files, folders, repos, or URLs, classify them, cluster them when needed, and land canonical SSOT plus descriptor metadata.\"\n---\n# UAC Import\n\n## Purpose\nTake one or more external sources and turn them into deterministic UAC assessments, layered manifests, canonical SSOT entries, machine-readable descriptors, and advisory handoff contracts.\n\nSupported inputs:\n- local file path\n- local folder path\n- raw public HTTPS URL\n- GitHub repo or folder URL\n- multiple `--source` values in one run\n- repomix-reduced repo input when available\n\nSupported modes:\n- `import`\n- `audit`\n- `explain`\n- `plan`\n- `apply`\n\n## Workflow\n1. Ingest the source through the deterministic pipeline.\n2. Produce a clean summary.\n3. Run up",
-  "shared_constraints": [],
-  "modes": [],
-  "benchmark_sources": [],
+  "display_name": "UAC Import \u2014 Capability Intake, Quality Review, and Uplift",
   "declared_capability": "skill",
   "inferred_capability": "skill",
   "expected_surface_names": [
@@ -158,5 +154,25 @@
     "kiro_prompt",
     "kiro_skill"
   ],
-  "rubric_version": "capability-fabric.v0"
+  "rubric_version": "capability-fabric.v0",
+  "descriptor_version": "capability-fabric.descriptor.v0",
+  "family_slug": "uac-import",
+  "shared_summary": "Import external prompt, skill, or agent sources into the deterministic UAC uplift and packaging flow.",
+  "shared_constraints": [],
+  "modes": [],
+  "benchmark_sources": [],
+  "consumption_hints": {
+    "preferred_use_cases": [
+      "external prompt import",
+      "multi-source capability convergence",
+      "descriptor and handoff generation"
+    ],
+    "artifact_conventions": [
+      "ssot/<slug>.md",
+      ".meta/capabilities/<slug>.json",
+      "reports/quality-reviews/<slug>/LATEST.md"
+    ],
+    "invocation_style": "assistant_first_but_scriptable",
+    "requires_human_confirmation": true
+  }
 }

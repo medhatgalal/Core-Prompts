@@ -1,86 +1,38 @@
 # Getting Started
 
-This guide is the fastest safe path to generate, validate, and optionally deploy surfaces from SSOT.
+This is the shortest safe path to build, validate, and inspect Capability Fabric outputs.
 
 ## Prerequisites
+- `python3`
+- repository checked out locally
+- optional CLI binaries if you want smoke checks or deploy dry-runs
 
-- Python 3.11+
-- Repository checked out locally
-- Optional CLI binaries if you plan to run smoke checks or targeted deployment:
-  - `codex`
-  - `gemini`
-  - `claude`
-  - `kiro-cli`
-
-## Fast Path (2-5 minutes)
-
-1. Enter repo root:
-
-```bash
-cd Core-Prompts
-```
-
-2. Build generated outputs:
-
+## Fast Path
 ```bash
 python3 scripts/build-surfaces.py
-```
-
-3. Validate generated artifacts:
-
-```bash
 python3 scripts/validate-surfaces.py --strict
+python3 scripts/smoke-clis.py
 ```
 
-4. Optional smoke checks (requires installed CLIs):
-
+## UAC Fast Path
 ```bash
-python3 scripts/smoke-clis.py --strict
+bin/uac import /absolute/path/to/prompt.md
+bin/uac plan /absolute/path/to/family-folder
+bin/uac judge /absolute/path/to/family-folder --quality-profile architecture
 ```
 
-5. Optional dry-run deployment:
-
+Use `apply` only when you want canonical repo state to change:
 ```bash
-scripts/deploy-surfaces.sh --dry-run --cli all
+bin/uac apply /absolute/path/to/family-folder --yes
 ```
-
-## Safe Path (with explicit schema refresh)
-
-Use this when vendor schema snapshots may be stale:
-
-```bash
-python3 scripts/sync-surface-specs.py --refresh
-python3 scripts/build-surfaces.py
-python3 scripts/validate-surfaces.py --strict --with-cli
-python3 scripts/smoke-clis.py --strict
-scripts/deploy-surfaces.sh --dry-run --cli all
-```
-
-## AI Handoff Snippet
-
-Paste this into your AI tool when you want guided repo operation:
-
-```text
-You are working in <repo_path>/Core-Prompts.
-Treat ssot/ as source of truth and generated outputs under .codex/, .gemini/, .claude/, .kiro/ as derived artifacts.
-When making behavior changes, edit ssot files first, then run build and validate.
-Do not hand-edit generated surfaces.
-```
-
-For full workflow examples per prompt, see [EXAMPLES.md](EXAMPLES.md).
 
 ## Success Checklist
+- build completes
+- strict validation passes
+- smoke checks pass when local CLIs are installed
+- dry-run deploy shows the intended copies
 
-- `python3 scripts/build-surfaces.py` completes without errors.
-- `python3 scripts/validate-surfaces.py --strict` passes.
-- If smoke checks run, expected slugs are discoverable in local CLIs.
-- Dry-run deployment shows the intended managed file copies.
-
-## Troubleshooting
-
-| Symptom | Likely cause | Action |
-|---|---|---|
-| `No SSOT files found in ssot/` | wrong working directory | run commands from repo root |
-| `Python 3.11+ required` | older interpreter in PATH | use Python 3.11+ explicitly |
-| validation fails for missing artifacts | build step not run or partial outputs | run `python3 scripts/build-surfaces.py` then validate again |
-| `missing CLI binary` warnings | local CLI not installed | install the CLI or run without strict CLI checks |
+## Next Docs
+- [Examples](EXAMPLES.md)
+- [FAQ](FAQ.md)
+- [CLI reference](CLI-REFERENCE.md)
