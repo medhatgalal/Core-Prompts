@@ -228,3 +228,6 @@ Before final output:
 ---
 
 ## END
+
+
+Capability resource: `.kiro/skills/threader/resources/capability.json`

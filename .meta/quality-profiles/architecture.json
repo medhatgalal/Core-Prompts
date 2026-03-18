@@ -1,0 +1,83 @@
+{
+  "profile": "architecture",
+  "display_name": "Architecture Studio",
+  "title": "Architecture Studio \u2014 Systems Design and Decision Skill",
+  "description": "Architecture Studio for API design, database design, pattern selection, and system design with black-box boundaries, concrete artifacts, and migration-safe recommendations.",
+  "judge_targets": {
+    "operational_richness": 10,
+    "source_fidelity": 9,
+    "metadata_integrity": 9
+  },
+  "max_passes": 4,
+  "local_benchmarks": [
+    "ssot/code-review.md",
+    "ssot/resolve-conflict.md"
+  ],
+  "external_sources": [
+    "https://github.com/harish-garg/gemini-cli-prompt-library/tree/main/commands/architecture",
+    "https://github.com/Alexanderdunlop/ai-architecture-prompts"
+  ],
+  "must_exceed": [
+    "code-review operational bar",
+    "resolve-conflict operational bar",
+    "Harish architecture worked examples",
+    "Alexanderdunlop black-box and replaceability doctrine"
+  ],
+  "prohibited_regressions": [
+    "source dilution",
+    "worked-example loss",
+    "weaker output contracts",
+    "orchestration leakage"
+  ],
+  "required_markers": {
+    "operational_richness": [
+      "## Purpose",
+      "## Output Directory",
+      "## Core Principles",
+      "## Standard Workflow",
+      "## Universal Output Format",
+      "### 1. API Design Playbook",
+      "### 2. Database Design Playbook",
+      "### 3. Design Patterns Playbook",
+      "### 4. System Design Playbook",
+      "## Review Gate",
+      "## Architecture Quality Scorecard"
+    ],
+    "source_fidelity": [
+      "black-box boundaries",
+      "replaceability",
+      "Worked API Example",
+      "Database Worked Example",
+      "Pattern Exemplars",
+      "System Diagram Example",
+      "Capacity Calculation Example",
+      "Rejected Alternatives"
+    ],
+    "metadata_integrity": [
+      "Do not use this skill to run orchestration",
+      "advisory",
+      "descriptor"
+    ]
+  },
+  "consumption_hints": {
+    "preferred_use_cases": [
+      "API design",
+      "database design",
+      "design-pattern selection",
+      "system design",
+      "migration-safe architecture review"
+    ],
+    "artifact_conventions": [
+      "reports/architecture/<timestamp>-summary.md",
+      "reports/architecture/<timestamp>-decision-log.md",
+      "architecture/spec.md",
+      "architecture/decision-log.md",
+      "architecture/migration-plan.md",
+      "architecture/validation-plan.md"
+    ],
+    "invocation_style": "interactive_or_artifact_oriented",
+    "requires_human_confirmation": false
+  },
+  "minimum_word_count": 700,
+  "minimum_code_blocks": 6
+}

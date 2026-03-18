@@ -520,3 +520,6 @@ Never run unless explicitly invoked by `/gaslight`.
 ---
 
 # End of SuperCharge v4
+
+
+Capability resource: `.gemini/skills/supercharge/resources/capability.json`

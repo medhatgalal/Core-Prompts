@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+SCRIPT="$ROOT/scripts/uac-import.py"
+PYTHON_BIN="${PYTHON_BIN:-python3}"
+
+usage() {
+  cat <<'EOF'
+Usage: bin/uac <command> [options] [source...]
+
+Best used through an AI assistant turn-by-turn, but fully scriptable from shell.
+Commands:
+  explain                 Show capability model and deployment matrix
+  audit                   Audit current SSOT and generated surfaces
+  import <source...>      Analyze source(s) without mutating repo
+  plan <source...>        Analyze source(s) and show SSOT landing plan
+  judge <source...>       Run the built-in quality loop without writing repo state
+  apply <source...>       Write SSOT + descriptor into repo after confirmation or --yes
+
+Notes:
+  - import and plan do not mutate repo.
+  - judge does not mutate repo; apply may persist quality review artifacts and only lands SSOT on ship.
+  - apply mutates this repo, rebuilds surfaces, and validates.
+  - deploy is separate; use bin/capability-fabric deploy after review.
+EOF
+}
+
+if [[ $# -lt 1 ]]; then
+  usage
+  exit 1
+fi
+
+command="$1"
+shift
+case "$command" in
+  explain)
+    exec "$PYTHON_BIN" "$SCRIPT" --mode explain "$@"
+    ;;
+  audit)
+    exec "$PYTHON_BIN" "$SCRIPT" --mode audit "$@"
+    ;;
+  import|plan|judge|apply)
+    args=(--mode "$command")
+    while [[ $# -gt 0 ]]; do
+      case "$1" in
+        --*)
+          args+=("$1")
+          if [[ $# -gt 1 && "$2" != --* ]]; then
+            args+=("$2")
+            shift
+          fi
+          ;;
+        *)
+          args+=(--source "$1")
+          ;;
+      esac
+      shift
+    done
+    exec "$PYTHON_BIN" "$SCRIPT" "${args[@]}"
+    ;;
+  -h|--help|help)
+    usage
+    ;;
+  *)
+    echo "error: unknown command '$command'"
+    usage
+    exit 1
+    ;;
+esac

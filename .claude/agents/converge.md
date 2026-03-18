@@ -127,3 +127,6 @@ Bias: clarity, leverage, future optionality.
 ~~~~
 
 End of prompt.
+
+
+Capability resource: `.claude/agents/resources/converge/capability.json`

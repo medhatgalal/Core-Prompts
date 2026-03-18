@@ -1,84 +1,62 @@
 # UAC Usage Guide
 
-Primary shell entrypoint:
+Preferred shell entrypoints:
 
 ```bash
-python3.11 scripts/uac-import.py --help
+bin/uac --help
+bin/capability-fabric --help
+```
+
+Direct Python entrypoint still works:
+
+```bash
+python3 scripts/uac-import.py --help
 ```
 
 ## Modes
+- `import`: inspect sources without mutating repo state
+- `audit`: review current SSOT entries and generated surfaces
+- `explain`: print rubric and deployment matrix
+- `plan`: show the proposed landing shape without writing files
+- `judge`: run the quality loop without landing repo state
+- `apply`: write canonical SSOT + descriptor state after confirmation or `--yes`, then rebuild and validate
 
-### `import`
-Import one file, folder, raw URL, or GitHub tree and return a deterministic UAC result.
-
+## Typical Flow
 ```bash
-python3.11 scripts/uac-import.py --mode import --source /absolute/path/to/prompt.md
-python3.11 scripts/uac-import.py --mode import --source https://raw.githubusercontent.com/org/repo/main/file.md
-python3.11 scripts/uac-import.py --mode import --source https://github.com/org/repo/tree/main/prompts --show-rubric
+bin/uac import /absolute/path/to/prompt.md
+bin/uac plan /absolute/path/to/family-folder
+bin/uac judge /absolute/path/to/family-folder --quality-profile architecture
+bin/uac apply /absolute/path/to/family-folder --yes
 ```
 
-### `audit`
-Audit existing SSOT entries and compare declared capability vs inferred capability vs generated surfaces.
-
-```bash
-python3.11 scripts/uac-import.py --mode audit --source ssot
-python3.11 scripts/uac-import.py --mode audit --output table
-```
-
-### `explain`
-Print the capability rubric and deployment matrix.
-
-```bash
-python3.11 scripts/uac-import.py --mode explain
-python3.11 scripts/uac-import.py --mode explain --output table
-```
-
-### `plan`
-Show how a source would land in SSOT without writing files.
-
-```bash
-python3.11 scripts/uac-import.py --mode plan --source /absolute/path/to/folder
-```
-
-### `apply`
-Reserved for future mutation flow. For now it returns a planned-only result and does not write files.
-
-```bash
-python3.11 scripts/uac-import.py --mode apply --source /absolute/path/to/prompt.md
-```
-
-## Accepted Source Types
-
-- local file path
-- local folder path
+## Source Kinds
+- local file
+- local folder
 - raw public HTTPS URL
 - GitHub repo or folder URL
-- `ssot` path for audit mode
+- multiple `--source` values in one run
+- repomix-reduced repo inputs
 
-## What the Output Tells You
+## What `apply` Does
+- writes canonical repo state under:
+  - `ssot/<slug>.md`
+  - `.meta/capabilities/<slug>.json`
+- may persist quality-review artifacts under `reports/quality-reviews/`
+- runs:
+  - `python3 scripts/build-surfaces.py`
+  - `python3 scripts/validate-surfaces.py --strict`
+- does not deploy to CLI homes automatically
 
-For imports:
-- normalized source provenance
-- clean summary
-- uplifted objective/scope
-- routing result
-- capability type and rationale
-- emitted surfaces by CLI
-- modernization focus
-- next actions
+## What `judge` Does
+- selects a quality profile
+- evaluates the candidate against benchmark rules
+- returns pass/fail evidence and judge reports
+- refuses canonical landing until status is `ship`
 
-For audits:
-- declared capability
-- inferred capability
-- expected surfaces
-- actual surfaces
-- alignment status and issues
+## Important Boundary
+UAC publishes advisory metadata only. It does not decide delegation or runtime routing.
 
-## When UAC Refuses Automatic Deployment
-
-UAC holds the source in `manual_review` when it cannot classify safely.
-
-Common reasons:
-- config-only wrapper without a strong prompt body
-- missing objective/scope structure
-- conflicting signals that would make deployment ambiguous
+## Related Docs
+- [UAC capability model](UAC-CAPABILITY-MODEL.md)
+- [Orchestrator contract](ORCHESTRATOR-CONTRACT.md)
+- [CLI reference](CLI-REFERENCE.md)

@@ -1,0 +1,174 @@
+{
+  "slug": "code-review",
+  "manifest_version": "capability-fabric.v0",
+  "layers": {
+    "minimal": {
+      "capability_type": "skill",
+      "summary": "Commit Review for git commit quality gates, scope control, and over-engineering detection.",
+      "role": "analyst",
+      "domain_tags": [
+        "review",
+        "debugging",
+        "context",
+        "code"
+      ],
+      "required_inputs": [
+        "source text",
+        "user intent/context"
+      ],
+      "expected_outputs": [
+        "deterministic summary",
+        "uplift payload",
+        "capability recommendation",
+        "deployment guidance"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "resources": [
+        "/Users/medhat.galal/Desktop/Core-Prompts/ssot/code-review.md"
+      ],
+      "packaging_profile": {
+        "capability_type": "skill",
+        "primary_surfaces": {
+          "codex": [
+            "codex_skill"
+          ],
+          "gemini": [
+            "gemini_command",
+            "gemini_skill"
+          ],
+          "claude": [
+            "claude_command"
+          ],
+          "kiro": [
+            "kiro_prompt",
+            "kiro_skill"
+          ]
+        },
+        "wrapper_surfaces": {
+          "codex": [],
+          "gemini": [
+            "command_wrapper",
+            "extension_wrapper"
+          ],
+          "claude": [
+            "command_wrapper",
+            "plugin_wrapper"
+          ],
+          "kiro": [
+            "prompt_wrapper",
+            "power_wrapper"
+          ]
+        },
+        "notes": [
+          "wrapper surfaces are additive deployment forms, not capability types",
+          "orchestrators must not infer execution authority from wrapper presence alone"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_command",
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_command"
+        ],
+        "kiro": [
+          "kiro_prompt",
+          "kiro_skill"
+        ]
+      },
+      "source_provenance": {
+        "source_type": "LOCAL_FILE",
+        "normalized_source": "/Users/medhat.galal/Desktop/Core-Prompts/ssot/code-review.md",
+        "policy_rule_id": "ssot.code-review",
+        "content_sha256": "ssot"
+      },
+      "confidence": 0.97,
+      "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a command/skill surface.",
+      "review_status": "ready_for_orchestrator_review",
+      "display_name": "Commit Review \u2014 Git Commit Quality Gate"
+    },
+    "expanded": {
+      "relationship_suggestions": [],
+      "capability_dependencies": [
+        "context"
+      ],
+      "overlap_candidates": [],
+      "migration_notes": [
+        "If the capability lands, compare it against existing entries before apply.",
+        "Relationship suggestions are advisory only and do not imply runtime routing."
+      ],
+      "adjustment_recommendations": [
+        "add an explicit primary objective before packaging",
+        "add deterministic in-scope sections to improve routing fitness",
+        "capture quality constraints or non-negotiables"
+      ]
+    },
+    "org_graph": {
+      "org_role": "analyst",
+      "reports_to_suggestions": [],
+      "delegates_to_suggestions": [],
+      "collaborates_with_suggestions": [
+        "review",
+        "debugging"
+      ],
+      "authority_tier": "advisory",
+      "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+    }
+  },
+  "display_name": "Commit Review \u2014 Git Commit Quality Gate",
+  "declared_capability": "skill",
+  "inferred_capability": "skill",
+  "expected_surface_names": [
+    "codex_skill",
+    "gemini_command",
+    "gemini_skill",
+    "claude_command",
+    "kiro_prompt",
+    "kiro_skill"
+  ],
+  "rubric_version": "capability-fabric.v0",
+  "descriptor_version": "capability-fabric.descriptor.v0",
+  "family_slug": "code-review",
+  "shared_summary": "[ScottP] Git commit review with scope control and over-engineering detection",
+  "shared_constraints": [],
+  "modes": [],
+  "benchmark_sources": [],
+  "consumption_hints": {
+    "preferred_use_cases": [
+      "pre-merge commit review",
+      "scope creep detection",
+      "over-engineering checks"
+    ],
+    "artifact_conventions": [
+      "reports/code-reviews/<timestamp>-<commit>.md"
+    ],
+    "invocation_style": "git_commit_review",
+    "requires_human_confirmation": false
+  }
+}

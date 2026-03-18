@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
+from collections import defaultdict
 from dataclasses import dataclass
 import json
 from pathlib import Path
 import re
-from typing import Iterable
+from typing import Iterable, Sequence
 from urllib.parse import parse_qs, quote, urlsplit
 from urllib.request import Request, urlopen
 
@@ -67,6 +68,21 @@ class UacCollectionRecommendation:
             "shared_roof": self.shared_roof,
             "rationale": self.rationale,
             "next_actions": list(self.next_actions),
+        }
+
+
+@dataclass(frozen=True, slots=True)
+class UacSourceCluster:
+    slug: str
+    label: str
+    candidates: tuple[UacSourceCandidate, ...]
+
+    def as_payload(self) -> dict[str, object]:
+        return {
+            "slug": self.slug,
+            "label": self.label,
+            "item_count": len(self.candidates),
+            "items": [candidate.display_name for candidate in self.candidates],
         }
 
 
@@ -178,6 +194,21 @@ def enumerate_github_tree(
     return tree_ref, candidates
 
 
+def cluster_source_candidates(candidates: Sequence[UacSourceCandidate]) -> list[UacSourceCluster]:
+    buckets: dict[str, list[UacSourceCandidate]] = defaultdict(list)
+    labels: dict[str, str] = {}
+    for candidate in candidates:
+        label = _cluster_label(candidate.display_name)
+        slug = _slugify(label)
+        buckets[slug].append(candidate)
+        labels.setdefault(slug, label)
+    clusters = [
+        UacSourceCluster(slug=slug, label=labels[slug], candidates=tuple(sorted(items, key=lambda item: item.display_name)))
+        for slug, items in buckets.items()
+    ]
+    return sorted(clusters, key=lambda cluster: (cluster.slug != "root", cluster.slug))
+
+
 def aggregate_collection_recommendation(
     source_label: str,
     item_payloads: list[dict[str, object]],
@@ -258,14 +289,12 @@ def aggregate_collection_recommendation(
 
 def _github_contents(owner: str, repo: str, ref: str, path: str, timeout_seconds: int) -> object:
     encoded_path = quote(path)
-    endpoint = f"https://api.github.com/repos/{owner}/{repo}/contents/{encoded_path}" if path else f"https://api.github.com/repos/{owner}/{repo}/contents"
-    parse_qs("")
-    query_string = f"?ref={quote(ref)}"
+    url = f"https://api.github.com/repos/{owner}/{repo}/contents/{encoded_path}?ref={quote(ref)}"
     request = Request(
-        endpoint + query_string,
+        url,
         headers={
             "Accept": "application/vnd.github+json",
-            "User-Agent": "core-prompts-uac-import",
+            "User-Agent": "capability-fabric-uac",
         },
     )
     with urlopen(request, timeout=timeout_seconds) as response:
@@ -273,32 +302,48 @@ def _github_contents(owner: str, repo: str, ref: str, path: str, timeout_seconds
 
 
 def _resolve_github_default_branch(owner: str, repo: str) -> str:
-    endpoint = f"https://api.github.com/repos/{owner}/{repo}"
+    url = f"https://api.github.com/repos/{owner}/{repo}"
     request = Request(
-        endpoint,
+        url,
         headers={
             "Accept": "application/vnd.github+json",
-            "User-Agent": "core-prompts-uac-import",
+            "User-Agent": "capability-fabric-uac",
         },
     )
     with urlopen(request, timeout=15) as response:
         payload = json.loads(response.read().decode("utf-8"))
-    default_branch = payload.get("default_branch")
-    if not isinstance(default_branch, str) or not default_branch.strip():
-        raise ValueError(f"Could not resolve default branch for {owner}/{repo}")
-    return default_branch.strip()
+    branch = parse_qs(urlsplit(url).query).get("ref", [None])[0] or payload.get("default_branch")
+    if not isinstance(branch, str) or not branch:
+        raise ValueError(f"Unable to resolve default branch for {owner}/{repo}")
+    return branch
+
+
+def _cluster_label(display_name: str) -> str:
+    parts = [part for part in Path(display_name).parts if part not in {".", ""}]
+    if not parts:
+        return "root"
+    if parts[0] in {"commands", "prompts", "skills", "agents"} and len(parts) >= 2:
+        return parts[1]
+    if len(parts) >= 2 and parts[0] in {"docs", "src", "packages"}:
+        return parts[1]
+    if len(parts) >= 2:
+        return parts[0]
+    stem = Path(parts[0]).stem
+    return stem or "root"
 
 
 def _slugify(value: str) -> str:
-    text = re.sub(r"[^a-z0-9]+", "-", value.casefold()).strip("-")
-    return text or "uac-import"
+    normalized = re.sub(r"[^a-z0-9]+", "-", value.casefold()).strip("-")
+    return normalized or "uac-import"
 
 
 __all__ = [
     "GithubTreeRef",
     "UacCollectionRecommendation",
     "UacSourceCandidate",
+    "UacSourceCluster",
     "aggregate_collection_recommendation",
+    "cluster_source_candidates",
     "enumerate_github_tree",
     "enumerate_local_directory",
     "parse_github_tree_url",

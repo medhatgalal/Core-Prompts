@@ -1,10 +1,10 @@
 ---
-description: "[ScottP] Git commit review with scope control and over-engineering detection"
+description: "Commit Review for git commit quality gates, scope control, and over-engineering detection."
 ---
 
 # Code Review (Prompt Mode)
 
-# Code Review — Git Commit Quality Gate
+# Commit Review — Git Commit Quality Gate
 
 ## Purpose
 Review git commits before creating merge requests, focusing on commit message quality, scope alignment, and detecting over-engineering in AI-assisted coding environments.

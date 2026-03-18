@@ -1,46 +1,71 @@
 ---
-description: "Import one external prompt/spec source into the deterministic UAC uplift and packaging flow."
+description: "UAC Import for capability intake, quality review, uplift, and canonical SSOT plus descriptor landing."
 ---
 
-# UAC Import
+# UAC Import — Capability Intake, Quality Review, and Uplift
 
 ## Purpose
-Take one external source or the existing `ssot/` directory and turn it into a deterministic UAC assessment.
+Take one or more external sources and turn them into deterministic UAC assessments, layered manifests, canonical SSOT entries, machine-readable descriptors, quality-review artifacts, and advisory handoff contracts.
 
 Supported inputs:
 - local file path
 - local folder path
 - raw public HTTPS URL
 - GitHub repo or folder URL
-- existing `ssot/` directory for audit mode
+- multiple `--source` values in one run
+- repomix-reduced repo input when available
 
 Supported modes:
 - `import`
 - `audit`
 - `explain`
 - `plan`
-- `apply` (planned-only until a safe mutation flow is added)
+- `judge`
+- `apply`
 
-For the given source, perform this workflow in order:
-1. Ingest the source through the existing deterministic pipeline.
-2. Produce the clean intent summary.
+## Invocation Contract
+Use this capability as the AI-facing intake contract.
+
+Primary entrypoints:
+- `bin/uac` for intake, audit, planning, judging, and apply
+- `bin/capability-fabric` for surface build, validation, and deploy steps after landing
+
+Canonical state:
+- `ssot/<slug>.md` is the human-readable prompt source of truth
+- `.meta/capabilities/<slug>.json` is the machine-readable descriptor source of truth
+- generated surfaces under `.codex/`, `.gemini/`, `.claude/`, and `.kiro/` are derived artifacts
+
+Operational rule:
+- `apply` may mutate canonical repo state after confirmation
+- deploy is separate and must never be implied by `apply`
+- when shell entrypoints are required to complete the workflow, say so explicitly instead of assuming the caller knows them
+
+## Workflow
+1. Ingest the source through the deterministic pipeline.
+2. Produce a clean summary.
 3. Run uplift to extract objective, scope, and constraints.
 4. Run semantic routing.
 5. If the source is a folder or repo subtree, inventory prompt-like files and classify them one by one.
-6. Aggregate the collection into a skill-family, agent-family, or manual-review recommendation.
-7. Classify each accepted source as `skill`, `agent`, `both`, or `manual_review`.
-8. Derive emitted surfaces for Codex, Gemini, Claude, and Kiro from that capability type.
-9. Propose modernization focus areas so the source can be uplifted, reorganized, and packaged cleanly.
-10. For `audit`, compare declared SSOT capability, inferred capability, and generated surfaces.
+6. Cluster broad repos into candidate families before recommending any landing.
+7. Classify accepted sources as `skill`, `agent`, `both`, or `manual_review`.
+8. Build layered manifests, cross-analysis, and advisory handoff data.
+9. Select a quality profile and benchmark set.
+10. On `judge`, run the built-in quality loop and return judge packets plus pass/fail reports without landing repo state.
+11. Search for benchmark sources only when the source is generic or fit confidence is weak.
+12. On `apply`, refuse landing unless the quality loop reaches `ship`; if it does, write canonical repo state under `ssot/` and `.meta/capabilities/`, persist quality reviews, then rebuild and validate generated surfaces.
+13. Keep deployment separate from apply.
 
 ## Rules
 - Prefer existing pipeline code over ad-hoc parsing.
 - Keep results deterministic and roleplay-free.
 - Fail closed for unsuitable URL content.
 - For folders or repo trees, only group files that were actually inventoried.
-- If the source is config-only, say so and require manual review instead of pretending it is a prompt.
+- If the source is config-only, require manual review instead of pretending it is a prompt.
 - If the source is already an agent definition, preserve its control-plane boundaries.
-- Expose the classification rubric and scorecard when the user asks how the decision was made.
+- Never make orchestration or delegation decisions. Publish advisory metadata only.
+- Run cross-analysis against current SSOT before any apply is considered safe.
+- Treat commands, plugins, powers, and extensions as deployment wrappers, not capability types.
+- Quality review artifacts are advisory evidence; they must not encode runtime routing policy.
 
 ## Required Output
 Return a concise structured result with these sections:
@@ -50,20 +75,17 @@ Return a concise structured result with these sections:
 - Routing
 - UAC Classification
 - Collection Recommendation
+- Layered Manifest
+- Cross-Analysis
+- Quality Plan / Judge Reports
+- Install Target
+- Advisory Handoff Contract
 - Recommended Surface
 - Modernization Focus
 - Next Actions
 
-## Good Outcome
-A good result tells the user:
-- what the source is
-- whether it should become a skill, an agent, or both
-- which target systems are appropriate
-- what to preserve while uplifting it
-- what needs manual review before packaging
-
 ## Constraints
 - No hidden execution.
 - No packaging claims without evidence.
-- No generated surface edits unless the user explicitly asks for them.
-- For local folders or GitHub folders, inventory the files first and then justify whether they belong under one roof.
+- No deployment during `apply`.
+- For local folders or GitHub repos, inventory the files first and justify whether they belong under one roof.

@@ -1,0 +1,298 @@
+{
+  "slug": "testing",
+  "manifest_version": "capability-fabric.v0",
+  "layers": {
+    "minimal": {
+      "capability_type": "skill",
+      "summary": "Testing Studio for unit-test generation, end-to-end test design, edge-case discovery, and coverage gap analysis.",
+      "role": "advisor",
+      "domain_tags": [
+        "analysis",
+        "planning",
+        "debugging",
+        "prompting",
+        "testing"
+      ],
+      "required_inputs": [
+        "source text",
+        "user intent/context"
+      ],
+      "expected_outputs": [
+        "deterministic summary",
+        "uplift payload",
+        "capability recommendation",
+        "deployment guidance"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "resources": [
+        "/Users/medhat.galal/Desktop/Core-Prompts/ssot/testing.md"
+      ],
+      "packaging_profile": {
+        "capability_type": "skill",
+        "primary_surfaces": {
+          "codex": [
+            "codex_skill"
+          ],
+          "gemini": [
+            "gemini_command",
+            "gemini_skill"
+          ],
+          "claude": [
+            "claude_command"
+          ],
+          "kiro": [
+            "kiro_prompt",
+            "kiro_skill"
+          ]
+        },
+        "wrapper_surfaces": {
+          "codex": [],
+          "gemini": [
+            "command_wrapper",
+            "extension_wrapper"
+          ],
+          "claude": [
+            "command_wrapper",
+            "plugin_wrapper"
+          ],
+          "kiro": [
+            "prompt_wrapper",
+            "power_wrapper"
+          ]
+        },
+        "notes": [
+          "wrapper surfaces are additive deployment forms, not capability types",
+          "orchestrators must not infer execution authority from wrapper presence alone"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_command",
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_command"
+        ],
+        "kiro": [
+          "kiro_prompt",
+          "kiro_skill"
+        ]
+      },
+      "source_provenance": {
+        "source_type": "LOCAL_FILE",
+        "normalized_source": "/Users/medhat.galal/Desktop/Core-Prompts/ssot/testing.md",
+        "policy_rule_id": "ssot.testing",
+        "content_sha256": "ssot"
+      },
+      "confidence": 0.96,
+      "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a command/skill surface.",
+      "review_status": "ready_for_orchestrator_review",
+      "display_name": "Testing Studio \u2014 Test Design and Coverage Analysis"
+    },
+    "expanded": {
+      "relationship_suggestions": [],
+      "capability_dependencies": [],
+      "overlap_candidates": [],
+      "migration_notes": [
+        "If the capability lands, compare it against existing entries before apply.",
+        "Relationship suggestions are advisory only and do not imply runtime routing."
+      ],
+      "adjustment_recommendations": [
+        "add an explicit primary objective before packaging",
+        "add deterministic in-scope sections to improve routing fitness",
+        "capture quality constraints or non-negotiables"
+      ]
+    },
+    "org_graph": {
+      "org_role": "advisor",
+      "reports_to_suggestions": [],
+      "delegates_to_suggestions": [],
+      "collaborates_with_suggestions": [
+        "analysis",
+        "planning"
+      ],
+      "authority_tier": "advisory",
+      "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+    }
+  },
+  "display_name": "Testing Studio \u2014 Test Design and Coverage Analysis",
+  "declared_capability": "skill",
+  "inferred_capability": "skill",
+  "expected_surface_names": [
+    "codex_skill",
+    "gemini_command",
+    "gemini_skill",
+    "claude_command",
+    "kiro_prompt",
+    "kiro_skill"
+  ],
+  "rubric_version": "capability-fabric.v0",
+  "descriptor_version": "capability-fabric.descriptor.v0",
+  "family_slug": "testing",
+  "shared_summary": "Testing family for unit tests, end-to-end tests, edge-case discovery, and coverage gap analysis.",
+  "shared_constraints": [
+    "Generate or recommend tests only; do not execute them automatically.",
+    "Respect repository-native framework choices.",
+    "Cover edge cases and failure paths, not only the happy path."
+  ],
+  "modes": [
+    {
+      "mode_slug": "generate-unit-tests",
+      "display_name": "Generate Unit Tests",
+      "source_refs": [
+        "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/testing/generate-unit-tests.toml"
+      ],
+      "mode_summary": "Generate isolated, framework-aware unit tests for functions, classes, and modules.",
+      "required_inputs": [
+        "code under test",
+        "testing framework",
+        "important behaviors"
+      ],
+      "expected_outputs": [
+        "test file",
+        "fixtures or mocks",
+        "coverage notes"
+      ],
+      "examples": [
+        "Jest module test",
+        "pytest function suite"
+      ],
+      "uplift_notes": [
+        "Include failure and boundary cases.",
+        "Prefer readable assertions and deterministic setup."
+      ]
+    },
+    {
+      "mode_slug": "generate-e2e-tests",
+      "display_name": "Generate E2E Tests",
+      "source_refs": [
+        "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/testing/generate-e2e-tests.toml"
+      ],
+      "mode_summary": "Design end-to-end tests around complete user or system journeys.",
+      "required_inputs": [
+        "workflow description",
+        "target framework",
+        "environment constraints"
+      ],
+      "expected_outputs": [
+        "journey tests",
+        "setup/teardown plan",
+        "diagnostic expectations"
+      ],
+      "examples": [
+        "Playwright signup flow",
+        "API workflow integration"
+      ],
+      "uplift_notes": [
+        "Call out test-data setup and synchronization explicitly.",
+        "Prefer critical user paths over broad UI clicking."
+      ]
+    },
+    {
+      "mode_slug": "edge-cases",
+      "display_name": "Edge Cases",
+      "source_refs": [
+        "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/testing/edge-cases.toml"
+      ],
+      "mode_summary": "Identify boundary conditions, invalid states, and failure modes missing from current coverage.",
+      "required_inputs": [
+        "feature description",
+        "existing tests",
+        "risk areas"
+      ],
+      "expected_outputs": [
+        "edge-case catalog",
+        "risk ranking",
+        "tests to add first"
+      ],
+      "examples": [
+        "Null and empty input handling",
+        "concurrency timing issues"
+      ],
+      "uplift_notes": [
+        "Rank by business or failure impact.",
+        "Avoid flat lists without prioritization."
+      ]
+    },
+    {
+      "mode_slug": "coverage-analysis",
+      "display_name": "Coverage Analysis",
+      "source_refs": [
+        "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/testing/coverage-analysis.toml"
+      ],
+      "mode_summary": "Analyze current coverage and identify what remains untested or under-tested.",
+      "required_inputs": [
+        "coverage report or test inventory",
+        "source files",
+        "risk context"
+      ],
+      "expected_outputs": [
+        "gap report",
+        "risk-based priorities",
+        "recommended next tests"
+      ],
+      "examples": [
+        "Branch coverage gap review",
+        "critical-path coverage audit"
+      ],
+      "uplift_notes": [
+        "Tie missing tests to specific code paths or workflows.",
+        "Separate critical gaps from routine improvements."
+      ]
+    }
+  ],
+  "benchmark_sources": [
+    {
+      "provider": "github",
+      "label": "harish-garg/gemini-cli-prompt-library (testing family seed)",
+      "url": "https://github.com/harish-garg/gemini-cli-prompt-library/tree/main/commands/testing",
+      "note": "Useful four-mode skeleton for test generation and gap analysis."
+    },
+    {
+      "provider": "github",
+      "label": "promptfoo/promptfoo",
+      "url": "https://github.com/promptfoo/promptfoo",
+      "note": "Good benchmark for evaluation rigor and regression thinking, though not a direct prompt-family replacement."
+    }
+  ],
+  "consumption_hints": {
+    "preferred_use_cases": [
+      "unit test design",
+      "end-to-end test design",
+      "edge-case discovery",
+      "coverage gap analysis"
+    ],
+    "artifact_conventions": [
+      "reports/testing/<timestamp>-plan.md",
+      "reports/testing/<timestamp>-coverage-gap.md",
+      "reports/testing/<timestamp>-edge-cases.md"
+    ],
+    "invocation_style": "analysis_or_generation",
+    "requires_human_confirmation": false
+  }
+}

@@ -1,27 +1,28 @@
 # Docs Home
 
-Use this page to choose the right documentation path quickly.
+Use this page to choose the right documentation path.
 
-## Choose Your Path
+## Product / Operator Docs
+- [Getting started](GETTING-STARTED.md)
+- [Examples](EXAMPLES.md)
+- [FAQ](FAQ.md)
 
-- I want to get running quickly:
-  - [GETTING-STARTED.md](GETTING-STARTED.md)
-- I want concrete usage patterns:
-  - [EXAMPLES.md](EXAMPLES.md)
-- I need technical depth:
-  - [README_TECHNICAL.md](README_TECHNICAL.md)
-- I need CLI-specific behavior and commands:
-  - [CLI-REFERENCE.md](CLI-REFERENCE.md)
-- I need architecture details:
-  - [ARCHITECTURE.md](ARCHITECTURE.md)
-- I need troubleshooting help:
-  - [FAQ.md](FAQ.md)
-- I want AI prompts to evolve docs quality:
-  - [prompt-pack/README.md](prompt-pack/README.md)
+## Core Reference Docs
+- [Capability Fabric](CAPABILITY-FABRIC.md)
+- [UAC usage](UAC-USAGE.md)
+- [UAC capability model](UAC-CAPABILITY-MODEL.md)
+- [CLI reference](CLI-REFERENCE.md)
 
-## Recommended Reading Order
+## Integration Contract
+- [Orchestrator contract](ORCHESTRATOR-CONTRACT.md)
 
-1. [GETTING-STARTED.md](GETTING-STARTED.md)
-2. [EXAMPLES.md](EXAMPLES.md)
-3. [README_TECHNICAL.md](README_TECHNICAL.md)
-4. [CLI-REFERENCE.md](CLI-REFERENCE.md)
+## Maintainer / Release Docs
+- [Technical README](README_TECHNICAL.md)
+- [Repository architecture](ARCHITECTURE.md)
+- [Release packaging](RELEASE-PACKAGING.md)
+
+## Research / Authoring Docs
+These stay in-repo but are not part of the packaged operator doc set.
+- [Architecture source assessment](ARCHITECTURE-SOURCE-ASSESSMENT.md)
+- [Prompt pack](prompt-pack/README.md)
+- `docs/ASSETS/`

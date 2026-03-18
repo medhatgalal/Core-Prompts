@@ -141,3 +141,6 @@ To see what the user was just doing (the 'Active Tab' equivalent):
 **Usage:**
 - Trigger this when the user asks "Review this error", "What happened?", or "Help me with this".
 - If the output is confusing, ask the user to confirm they switched directly from the target pane.
+
+
+Capability resource: `.codex/skills/mentor/resources/capability.json`

@@ -19,7 +19,7 @@
 - Do not create ad-hoc prompt artifacts for Codex when a skill surface exists and is authoritative.
 - Classify invocation styles:
   - `codex`: skill (`$name`) inferred from `.codex/skills/<slug>/SKILL.md`
-  - `codex`: sub-agent registration via `.codex/agents/<slug>.toml` and `[agents.<slug>]` in `~/.codex/config.toml` for SSOT agent entries
+  - `codex`: sub-agent registration via `.codex/agents/<slug>.toml` and `[agents.<slug>]` in `./.codex/config.toml` for SSOT agent entries
   - `gemini`: slash command in `.gemini/commands/<slug>.toml`
   - `claude`: slash command in `.claude/commands/<slug>.md`
   - `kiro`: prompt in `.kiro/prompts/<slug>.md` and paired agent in `.kiro/agents/<slug>.json`
@@ -27,6 +27,10 @@
 ## Source-of-truth policy and schema controls
 
 - The canonical rule set is `.meta/surface-rules.json`.
+- Canonical machine-readable capability metadata lives under `.meta/capabilities/`.
+- Canonical aggregate advisory metadata lives in `.meta/capability-handoff.json` and `.meta/manifest.json`.
+- Canonical quality policy lives under `.meta/quality-profiles/`.
+- Generated review evidence and similar run artifacts belong under `reports/`, not under `.meta/`.
 - Vendor formats are validated against cache snapshots in `.meta/schema-cache/manifest.json`.
 - Update schema cache by running `python3 scripts/sync-surface-specs.py` before strict checks when docs changed.
 - The validator is implemented as a verifier and must match the rule definitions; changes must be made to rules first, then generator/validator.
@@ -43,3 +47,4 @@
 - Keep changes limited to requested surface and generated output.
 - Never rely on stale legacy `clis/*` paths as source.
 - Preserve user-defined customization for this repo unless explicitly changed through SSOT.
+- Do not treat `reports/**` as canonical source-of-truth when rebuilding surfaces or descriptors.

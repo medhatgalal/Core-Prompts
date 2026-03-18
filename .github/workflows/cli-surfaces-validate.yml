@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - AI/**
   pull_request:
 
 jobs:

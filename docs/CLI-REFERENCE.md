@@ -1,211 +1,62 @@
-# CLI Integration Reference
+# CLI Reference
 
-This document defines the generated surfaces, deployment behavior, verification commands, and required runtime settings for each supported CLI.
+This document defines generated surface paths, deploy behavior, and validation commands.
 
-## Local References
+## Canonical Inputs
+- SSOT: `ssot/`
+- descriptors: `.meta/capabilities/`
+- manifest: `.meta/manifest.json`
+- handoff contract: `.meta/capability-handoff.json`
 
-- Surface rules: `.meta/surface-rules.json`
-- Generated mapping: `.meta/manifest.json`
-- Technical docs index: `docs/README_TECHNICAL.md`
-- Onboarding guide: `docs/GETTING-STARTED.md`
-- Architecture notes: `docs/ARCHITECTURE.md`
-- FAQ: `docs/FAQ.md`
-- Build: `scripts/build-surfaces.py`
-- Validate: `scripts/validate-surfaces.py`
-- Smoke checks: `scripts/smoke-clis.py`
-- Deploy (copy-only): `scripts/deploy-surfaces.sh`
-- Package release artifacts: `scripts/package-surfaces.sh`
+## Core Commands
+```bash
+python3 scripts/build-surfaces.py
+python3 scripts/validate-surfaces.py --strict
+python3 scripts/smoke-clis.py
+scripts/deploy-surfaces.sh --dry-run --cli all
+```
 
-## Deploy Script Contract
-
-- Script: `scripts/deploy-surfaces.sh`
-- Modes: copy-only, overwrite existing files in place, no symlink creation
-- Symlink handling: if destination file is a symlink, deployment unlinks that path and writes a regular file
-- Shell compatibility: supports macOS system Bash (`/bin/bash` 3.2) and newer Bash releases
-- Flags:
-  - `--cli gemini|claude|kiro|codex|all` (default: `all`)
-  - `--target PATH` (default: `~`)
-  - `--dry-run`
-  - `--strict-cli`
-- Availability behavior:
-  - non-strict mode skips unavailable CLIs and exits successfully
-  - `--cli all` with no installed CLIs produces a no-op warning and success summary
-  - `--cli <name> --strict-cli` fails when the selected CLI binary is unavailable
-  - `--cli all --strict-cli` fails on the first missing CLI binary
-
-Examples:
-- Deploy all to home root: `scripts/deploy-surfaces.sh --cli all`
-- Deploy only Kiro to a staging root: `scripts/deploy-surfaces.sh --cli kiro --target "$HOME/tmp/llm-home"`
-- Verify planned writes only: `scripts/deploy-surfaces.sh --dry-run --cli all --target "$HOME/tmp/llm-home"`
-- Legacy wrapper with the same copy-only behavior: `scripts/install-local.sh --cli all --target "$HOME/tmp/llm-home"`
-- Verify managed deployment targets are not symlinks:
-  - `python3 - <<'PY' ...` (see README verification snippet)
-
-## Generated Surfaces By CLI
+## Generated Surfaces
+### Codex
+- `.codex/skills/<slug>/SKILL.md`
+- `.codex/skills/<slug>/resources/capability.json`
+- `.codex/agents/<slug>.toml`
+- `.codex/agents/resources/<slug>/capability.json`
 
 ### Gemini
-
-Source paths:
-- `.gemini/skills/<slug>/SKILL.md`
-- `.gemini/agents/<slug>.md`
 - `.gemini/commands/<slug>.toml`
-
-Home deployment targets under `--target` root:
-- `<target>/.gemini/skills/<slug>/SKILL.md`
-- `<target>/.gemini/agents/<slug>.md`
-- `<target>/.gemini/commands/<slug>.toml`
-
-Verify discovery:
-- `gemini skills list`
-- For command and subagent behavior, verify via manual invocation in an interactive session.
-
-Required setting for subagents:
-- Enable `"experimental.enableAgents": true`.
+- `.gemini/skills/<slug>/SKILL.md`
+- `.gemini/skills/<slug>/resources/capability.json`
+- `.gemini/agents/<slug>.md`
+- `.gemini/agents/resources/<slug>/capability.json`
 
 ### Claude
-
-Source paths:
 - `.claude/commands/<slug>.md`
 - `.claude/agents/<slug>.md`
-
-Home deployment targets under `--target` root:
-- `<target>/.claude/commands/<slug>.md`
-- `<target>/.claude/agents/<slug>.md`
-
-Verify discovery:
-- `claude agents`
-
-Requirement:
-- Do not run with `--disable-slash-commands` when validating command-skills.
+- `.claude/agents/resources/<slug>/capability.json`
 
 ### Kiro
-
-Source paths:
-- `.kiro/skills/<slug>/SKILL.md`
 - `.kiro/prompts/<slug>.md`
+- `.kiro/skills/<slug>/SKILL.md`
+- `.kiro/skills/<slug>/resources/capability.json`
 - `.kiro/agents/<slug>.json`
+- `.kiro/agents/resources/<slug>/capability.json`
 
-Home deployment targets under `--target` root:
-- `<target>/.kiro/skills/<slug>/SKILL.md`
-- `<target>/.kiro/prompts/<slug>.md`
-- `<target>/.kiro/agents/<slug>.json`
+## Deploy Contract
+- `apply` mutates canonical repo state only
+- `deploy` copies generated artifacts to a target root
+- deployment is copy-only and never creates symlinks
+- default target root is the repository root unless `--target` is provided
 
-Verify discovery and config validity:
-- `kiro-cli agent list`
-- `kiro-cli agent validate --path .kiro/agents/<slug>.json`
+## Smoke Checks
+- version/help probes run for all configured CLIs
+- filesystem checks verify expected generated surfaces per CLI
+- discovery checks run only for discovery-backed surfaces:
+  - Gemini skills
+  - Claude agents
+  - Kiro agents
 
-Canonical generated Kiro resource URIs:
-- `file://.kiro/prompts/<slug>.md`
-- `skill://.kiro/skills/<slug>/SKILL.md`
-
-#### Kiro Agent Config Fields (Operational Meaning)
-
-Core generated fields:
-- `name`: unique agent identifier.
-- `description`: listing/selection description.
-- `prompt`: inline prompt body.
-- `resources`: preloaded files/skills used during execution.
-- `hooks`: lifecycle commands (for example, `agentSpawn`).
-- `tools`: tool allowlist (`["*"]` allows all).
-
-Additional supported fields you can adopt later:
-- `allowedTools`: explicit allowlist for tighter tool restrictions.
-- `toolAliases`: custom aliases for tool names.
-- `toolsSettings`: per-tool execution settings.
-- `mcpServers`: MCP server definitions for the agent.
-- `includeMcpJson`: include workspace MCP config automatically.
-- `model`: per-agent model override.
-- `knowledgeBase`: knowledge base resources/config (when enabled by CLI schema).
-- Additional hook phases depending on CLI version (for example `preTool`, `postTool`, `sessionStart`, `userPromptSubmit`).
-
-### Codex
-
-Source paths:
-- `.codex/skills/<slug>/SKILL.md`
-- `.codex/agents/<slug>.toml` (only for SSOT entries marked `kind/role: agent`)
-
-Home deployment targets under `--target` root:
-- `<target>/.codex/skills/<slug>/SKILL.md`
-- `<target>/.codex/agents/<slug>.toml`
-- `<target>/.codex/config.toml` (managed `[agents.<slug>]` registration block)
-
-Verify discovery:
-- `codex --help` and invoke skill by name in a session.
-- For sub-agents, verify `~/.codex/config.toml` includes `[agents.<slug>]` entries with `config_file` paths.
-
-## UAC Import Surface
-
-Primary user-facing intake surface:
-- `uac-import`
-
-Capability model:
-- `skill`
-- `agent`
-- `both`
-- `manual_review`
-
-Expected usage shape:
-- local file path source
-- local folder path source
-- raw public HTTPS URL source
-- GitHub repo/folder URL source
-- existing `ssot/` directory audit
-
-Operational contract:
-- ingest via deterministic Phase 1 pipeline
-- uplift objective/scope/constraints
-- run semantic routing
-- recommend `skill`, `agent`, `both`, or `manual_review`
-- aggregate multi-file imports into a collection recommendation when appropriate
-- output packaging guidance for Codex, Gemini, Claude, and Kiro
-- expose an inspectable rubric and scorecard for the classification decision
-- expose a CLI deployment matrix for each capability type
-- audit existing SSOT entries against declared capability and generated surfaces
-
-Shell modes:
-- `--mode import`
-- `--mode audit`
-- `--mode explain`
-- `--mode plan`
-- `--mode apply` (planned-only for now)
-
-Important boundary:
-- the internal Python runners under `scripts/` are verification/operator surfaces
-- the user-facing surface is the generated CLI/skill layer from `ssot/uac-import.md`
-
-See also:
-- [docs/UAC-CAPABILITY-MODEL.md](UAC-CAPABILITY-MODEL.md)
-- [docs/UAC-USAGE.md](UAC-USAGE.md)
-
-## Skill-specific Memory Convention
-
-- `analyze-context` stores canonical memory files in `.analyze-context-memory/` at the project root.
-
-## Shipped Skill Notes
-
-- `code-review`
-  - shipped on Codex, Gemini, Claude, and Kiro as a skill/command surface
-  - remains a skill-only surface and is not registered as a Codex sub-agent
-- `resolve-conflict`
-  - shipped on Codex, Gemini, Claude, and Kiro as a skill/command surface
-  - remains a skill-only surface and is not registered as a Codex sub-agent
-
-## Validation and Release Flow
-
-1. `python3 scripts/sync-surface-specs.py`
-2. `python3 scripts/build-surfaces.py`
-3. `python3 scripts/validate-surfaces.py --strict`
-4. `python3 scripts/smoke-clis.py` when local CLIs are installed
-5. `scripts/deploy-surfaces.sh --dry-run --cli all --target "$HOME/tmp/llm-home"`
-6. `scripts/package-surfaces.sh --version vX.Y.Z`
-
-## Vendor Documentation
-
-- Gemini commands: https://geminicli.com/docs/cli/commands
-- Gemini skills: https://geminicli.com/docs/cli/skills
-- Gemini sub-agents: https://geminicli.com/docs/cli/sub-agents
-- Claude skills: https://docs.anthropic.com/en/docs/claude-code/skills
-- Claude sub-agents: https://docs.anthropic.com/en/docs/claude-code/sub-agents
-- Kiro custom agents: https://kiro.dev/docs/cli/custom-agents/
-- Kiro configuration reference: https://kiro.dev/docs/cli/custom-agents/configuration-reference/
-- Kiro skills: https://kiro.dev/docs/skills/
+## Related Docs
+- [UAC usage](UAC-USAGE.md)
+- [Release packaging](RELEASE-PACKAGING.md)
+- [Orchestrator contract](ORCHESTRATOR-CONTRACT.md)

@@ -1,0 +1,66 @@
+{
+  "profile": "default",
+  "display_name": "Default Quality Profile",
+  "description": "Generic UAC quality profile for reusable skill or agent uplifts.",
+  "judge_targets": {
+    "operational_richness": 9,
+    "source_fidelity": 9,
+    "metadata_integrity": 9
+  },
+  "max_passes": 4,
+  "local_benchmarks": [
+    "ssot/code-review.md",
+    "ssot/resolve-conflict.md"
+  ],
+  "must_exceed": [
+    "local operational richness benchmark",
+    "original source substance when present"
+  ],
+  "prohibited_regressions": [
+    "thin summary replacing operational procedure",
+    "metadata replacing prompt-body richness",
+    "orchestration leakage"
+  ],
+  "required_markers": {
+    "operational_richness": [
+      "## Purpose",
+      "## Workflow",
+      "## Rules",
+      "## Required Output",
+      "## Constraints"
+    ],
+    "source_fidelity": [
+      "Primary Objective",
+      "examples",
+      "constraints",
+      "output"
+    ],
+    "metadata_integrity": [
+      "advisory",
+      "do not",
+      "descriptor"
+    ]
+  },
+  "consumption_hints": {
+    "preferred_use_cases": [
+      "AI-assisted capability selection",
+      "deterministic prompt uplift review"
+    ],
+    "artifact_conventions": [
+      "ssot/<slug>.md",
+      ".meta/capabilities/<slug>.json",
+      "reports/quality-reviews/<slug>/LATEST.md"
+    ],
+    "invocation_style": "assistant_first_but_scriptable",
+    "requires_human_confirmation": true
+  },
+  "minimum_word_count": 180,
+  "minimum_code_blocks": 0,
+  "refinement_templates": {
+    "## Purpose": "## Purpose\nState what this capability is for, when to invoke it, and what success looks like in one deterministic paragraph.",
+    "## Workflow": "## Workflow\n1. Clarify the objective and hard constraints.\n2. Derive the concrete deliverables and output sections.\n3. Produce the capability guidance in a deterministic structure.\n4. Flag assumptions, risks, and anything that requires manual review.",
+    "## Rules": "## Rules\n- Keep the capability self-contained and operational.\n- Do not turn metadata into a substitute for prompt-body instructions.\n- Do not claim orchestration, delegation, or runtime control.\n- Prefer deterministic outputs, explicit constraints, and concrete deliverables.",
+    "## Required Output": "## Required Output\n- Summary of the task and scope\n- Required inputs and assumptions\n- Structured deliverables or output contract\n- Risks, limits, or manual-review conditions",
+    "examples": "## Examples\n- Example request: import a prompt folder into one reusable family.\n- Example output: summary, uplift, manifest, descriptor, and advisory next actions."
+  }
+}

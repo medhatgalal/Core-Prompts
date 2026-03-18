@@ -1,19 +1,19 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.3
-milestone_name: Controlled Extension Re-entry
+milestone: capability-fabric
+milestone_name: Capability Fabric vNext
 current_phase: 0
-current_phase_name: shipped milestone
+current_phase_name: broad release slice complete
 current_plan: 0
-status: ready_for_new_milestone
-stopped_at: v1.3 shipped, archived, tagged, and released
-last_updated: "2026-03-11T06:45:00.000Z"
-last_activity: 2026-03-11
+status: active_gsd_lite_initiative
+stopped_at: broad release slice committed and pushed; planning normalization in progress
+last_updated: "2026-03-17T21:00:00.000Z"
+last_activity: 2026-03-17
 progress:
-  total_phases: 3
-  completed_phases: 3
-  total_plans: 9
-  completed_plans: 9
+  total_phases: 4
+  completed_phases: 4
+  total_plans: 12
+  completed_plans: 12
   percent: 100
 ---
 
@@ -21,30 +21,32 @@ progress:
 
 ## Project Reference
 
-See: .planning/PROJECT.md
+See: `.planning/PROJECT.md`
 
-**Core value:** Convert source content into safe, deterministic intent artifacts that preserve explicit boundaries, traceability, and stable decision semantics.
-**Current focus:** No active milestone. Start the next milestone from the shipped v1.3 baseline.
+**Core value:** Convert source content into safe, deterministic capability artifacts that preserve explicit boundaries, traceability, and stable decision semantics.
+**Current focus:** Capability Fabric broad release slice is complete. The next operational slice is remaining SSOT review and external family comparison work.
 
 ## Position
 
-**Milestone:** v1.3 Controlled Extension Re-entry
-**Status:** Shipped and archived
+**Initiative:** Capability Fabric vNext
+**Status:** Complete for the broad release slice
 **Progress:** [██████████] 100%
-**Last Activity:** 2026-03-11
-**Last Activity Description:** Merged Phase 10, archived v1.3, packaged release surfaces, and created release tag `v1.3`.
+**Last Activity:** 2026-03-17
+**Last Activity Description:** Shipped the broad release slice with quality-loop support, architecture agent surfaces, smoke repair, updated docs, and dual-remote push.
 
 ## Decisions Made
 
 | Scope | Summary | Rationale |
 |-------|---------|-----------|
-| v1.3 | Re-open `EXT-01` and `EXT-02` only through deterministic, fail-closed control surfaces | Preserve the local-only baseline while adding bounded capability growth |
-| URL ingestion | Require canonical normalization, explicit URL policy, and immutable snapshots | End network behavior before sanitization and keep provenance auditable |
-| Controlled execution | Keep simulate-first default and require exact approval + closed registry matching | Prevent accidental side effects and keep execution explainable |
+| Capability Fabric | Keep orchestration out of Core-Prompts/UAC | Preserve a clean provider/orchestrator boundary |
+| Apply flow | Write repo-local SSOT + descriptor, then build and validate | Keep canonical state in-repo and keep deploy explicit |
+| Metadata model | Use `ssot/<slug>.md` + `.meta/capabilities/<slug>.json` | Keep human-readable prompts separate from machine-readable descriptors |
+| Whole-repo imports | Cluster broad repos into family candidates before landing | Prevent heterogeneous repos from polluting SSOT as one family |
 
 ## Blockers
 
-- None
+- None for the foundation slice
+- Next work is product choice and quality work for the first external family pilots
 
 ## Session Log
 
@@ -53,3 +55,12 @@ See: .planning/PROJECT.md
 - 2026-03-06: Completed Phase 9 deterministic URL ingestion.
 - 2026-03-10: Completed Phase 10 simulate-first controlled execution and real-source validation.
 - 2026-03-11: Merged PR #6, archived v1.3, tagged `v1.3`, and prepared release artifacts.
+- 2026-03-15: Shipped Capability Fabric foundation slice with mutating apply flow and descriptor-backed surface generation.
+- 2026-03-17: Shipped the broad release slice, moved quality review evidence to `reports/quality-reviews/`, and pushed branch `AI/capability-fabric-apply-pilot` to GitHub and GitLab.
+
+## Initiative Reference
+
+- Program: `.planning/initiatives/capability-fabric-vnext/PROGRAM.md`
+- Checklist: `.planning/initiatives/capability-fabric-vnext/CHECKLIST.md`
+- Validation: `.planning/initiatives/capability-fabric-vnext/VALIDATION.md`
+- Architecture sources: `.planning/initiatives/capability-fabric-vnext/ARCHITECTURE-SOURCES.md`

@@ -3,7 +3,7 @@ set -euo pipefail
 
 usage() {
   cat <<'EOF'
-Usage: scripts/deploy-surfaces.sh [--cli gemini|claude|kiro|codex|all] [--target PATH] [--dry-run] [--strict-cli]
+Usage: scripts/deploy-surfaces.sh [--cli gemini|claude|kiro|codex|all] [--target PATH] [--allow-nonlocal-target] [--dry-run] [--strict-cli]
 
 Copy-only deployment of SSOT-managed generated surfaces to CLI directories under a target root.
 This script never creates symlinks.
@@ -12,7 +12,8 @@ Existing files are overwritten in place with cp -f.
 
 Options:
   --cli gemini|claude|kiro|codex|all  Target CLI(s). Default: all
-  --target PATH                       Destination root path. Default: ~
+  --target PATH                       Destination root path. Default: repository root
+  --allow-nonlocal-target             Allow explicit --target outside repository root
   --dry-run                           Show copy actions without writing
   --strict-cli                        Fail when selected CLI binary is not installed
   -h, --help                          Show this help
@@ -20,9 +21,11 @@ EOF
 }
 
 CLI_TARGET="all"
-TARGET_ROOT="$HOME"
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+TARGET_ROOT="$REPO_ROOT"
 DRY_RUN=0
 STRICT_CLI=0
+ALLOW_NONLOCAL_TARGET=0
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -33,6 +36,9 @@ while [[ $# -gt 0 ]]; do
     --target)
       shift
       TARGET_ROOT="${1:-}"
+      ;;
+    --allow-nonlocal-target)
+      ALLOW_NONLOCAL_TARGET=1
       ;;
     --dry-run)
       DRY_RUN=1
@@ -66,6 +72,12 @@ print(os.path.abspath(os.path.expanduser(sys.argv[1])))
 PY
 )"
 
+if [[ "$ALLOW_NONLOCAL_TARGET" -ne 1 && "$TARGET_ROOT" != "$REPO_ROOT" && "$TARGET_ROOT" != "$REPO_ROOT"/* ]]; then
+  echo "error: --target is restricted to repository root by default: $REPO_ROOT"
+  echo "Use --allow-nonlocal-target to write outside repository root"
+  exit 1
+fi
+
 case "$CLI_TARGET" in
   gemini|claude|kiro|codex|all) ;;
   *)
@@ -75,7 +87,6 @@ case "$CLI_TARGET" in
     ;;
 esac
 
-REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$REPO_ROOT"
 
 if [[ ! -f ".meta/manifest.json" ]]; then
@@ -182,16 +193,16 @@ selected = set(sys.argv[3:])
 manifest = json.loads((repo_root / '.meta' / 'manifest.json').read_text(encoding='utf-8'))
 
 path_templates = {
-    'gemini_command': '.gemini/commands/{slug}.toml',
-    'gemini_skill': '.gemini/skills/{slug}/SKILL.md',
-    'gemini_agent': '.gemini/agents/{slug}.md',
-    'claude_command': '.claude/commands/{slug}.md',
-    'claude_agent': '.claude/agents/{slug}.md',
-    'kiro_prompt': '.kiro/prompts/{slug}.md',
-    'kiro_skill': '.kiro/skills/{slug}/SKILL.md',
-    'kiro_agent': '.kiro/agents/{slug}.json',
-    'codex_skill': '.codex/skills/{slug}/SKILL.md',
-    'codex_agent': '.codex/agents/{slug}.toml',
+    'gemini_command': ['.gemini/commands/{slug}.toml'],
+    'gemini_skill': ['.gemini/skills/{slug}/SKILL.md', '.gemini/skills/{slug}/resources/capability.json'],
+    'gemini_agent': ['.gemini/agents/{slug}.md', '.gemini/agents/resources/{slug}/capability.json'],
+    'claude_command': ['.claude/commands/{slug}.md'],
+    'claude_agent': ['.claude/agents/{slug}.md', '.claude/agents/resources/{slug}/capability.json'],
+    'kiro_prompt': ['.kiro/prompts/{slug}.md'],
+    'kiro_skill': ['.kiro/skills/{slug}/SKILL.md', '.kiro/skills/{slug}/resources/capability.json'],
+    'kiro_agent': ['.kiro/agents/{slug}.json', '.kiro/agents/resources/{slug}/capability.json'],
+    'codex_skill': ['.codex/skills/{slug}/SKILL.md', '.codex/skills/{slug}/resources/capability.json'],
+    'codex_agent': ['.codex/agents/{slug}.toml', '.codex/agents/resources/{slug}/capability.json'],
 }
 surface_cli = {
     'gemini_command': 'gemini',
@@ -213,8 +224,11 @@ for entry in manifest.get('ssot_sources', []):
         cli = surface_cli[surface_name]
         if cli not in selected:
             continue
-        rel = path_templates[surface_name].format(slug=slug)
-        print(f"{repo_root / rel}\t{target_root / rel}\t{surface_name}\t{slug}")
+        for template in path_templates[surface_name]:
+            rel = template.format(slug=slug)
+            src = repo_root / rel
+            if src.exists():
+                print(f"{src}\t{target_root / rel}\t{surface_name}\t{slug}")
 PY
 }
 

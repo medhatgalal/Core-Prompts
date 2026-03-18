@@ -1,0 +1,94 @@
+---
+name: "testing"
+description: "Testing Studio for unit-test generation, end-to-end test design, edge-case discovery, and coverage gap analysis."
+---
+# Testing Studio — Test Design and Coverage Analysis
+
+## Output Directory
+When the user wants analysis artifacts instead of direct test files, default to:
+- `reports/testing/<timestamp>-plan.md`
+- `reports/testing/<timestamp>-coverage-gap.md`
+- `reports/testing/<timestamp>-edge-cases.md`
+
+When the user asks for concrete test outputs, place them under the repository's existing test layout. If the repo has no established layout, propose one before writing files.
+
+## Summary
+Use this family to produce deterministic test plans and test assets across four common testing jobs: unit-test generation, end-to-end test design, edge-case discovery, and coverage gap analysis. The family keeps the Harish Garg four-mode structure but normalizes the outputs into implementation-ready testing artifacts.
+
+## Capability Boundary
+- Publish testing guidance, artifacts, and gap analysis only.
+- Do not execute tests automatically.
+- Do not replace project-specific framework decisions when the repository already has a clear testing stack.
+
+## Required Inputs
+- source code, feature description, or failing scenario
+- repository testing stack when known
+- risk areas or priority workflows
+- existing tests or coverage report when available
+
+## Expected Outputs
+- deterministic test recommendations or generated tests
+- explicit coverage of happy path, edge cases, and failures
+- framework-aware examples
+- unresolved risks and follow-up gaps
+
+## Family Standards
+- Respect the existing test framework and project conventions.
+- Separate generation of tests from execution of tests.
+- Prefer readable test names and explicit assertions.
+- Include failure cases and boundary cases, not only happy path.
+- Call out when a repository needs integration or E2E coverage instead of more unit tests.
+
+## Modes
+### Generate Unit Tests
+Use when the job is creating or improving isolated tests around functions, classes, or modules.
+
+Produce:
+- framework-aware test file
+- happy-path, error-path, and boundary tests
+- mocks or fixtures only where needed
+- clear assertions and setup notes
+
+### Generate E2E Tests
+Use when the job is validating a real workflow across interfaces or services.
+
+Produce:
+- critical user journeys
+- setup and teardown strategy
+- waiting and synchronization guidance
+- environment and test-data notes
+- failure capture or diagnostics expectations
+
+### Edge Cases
+Use when the job is finding what the current design or tests are likely missing.
+
+Produce:
+- categorized edge cases
+- risk level
+- likely impact
+- suggested tests to add first
+
+### Coverage Analysis
+Use when the job is deciding where coverage is weak.
+
+Produce:
+- current coverage summary if data exists
+- specific untested branches/functions/scenarios
+- risk-based prioritization
+- recommended next tests
+
+## Output Contract
+Every mode should return:
+1. Scope of testing work
+2. Assumptions
+3. Recommended tests or gaps
+4. Priority level or risk level
+5. Framework-specific notes
+6. Follow-up work still required
+
+## Source Lineage
+- Structural seed: Harish Garg `commands/testing`
+- Evaluation benchmark: Promptfoo and repository-native test tooling are good comparators when judging whether generated tests are actionable
+
+
+Capability resource: `.gemini/skills/testing/resources/capability.json`

@@ -35,6 +35,14 @@
       "smoke_args": [
         "--help"
       ],
+      "discovery_args": [
+        "skills",
+        "list"
+      ],
+      "discovery_surface_names": [
+        "gemini_skill"
+      ],
+      "discovery_timeout_seconds": 15,
       "required": false
     },
     {
@@ -47,6 +55,14 @@
       "smoke_args": [
         "--help"
       ],
+      "discovery_enabled": false,
+      "discovery_args": [
+        "agents"
+      ],
+      "discovery_surface_names": [
+        "claude_agent"
+      ],
+      "discovery_timeout_seconds": 45,
       "required": false
     },
     {
@@ -59,6 +75,15 @@
       "smoke_args": [
         "--help"
       ],
+      "discovery_args": [
+        "agent",
+        "list"
+      ],
+      "discovery_surface_names": [
+        "kiro_agent"
+      ],
+      "discovery_timeout_seconds": 20,
+      "discovery_strip_ansi": true,
       "required": false
     }
   ],
@@ -288,7 +313,9 @@
       ],
       "resource_uri_patterns": [
         "^file://\\.kiro/prompts/.+\\.md$",
-        "^skill://\\.kiro/skills/.+/SKILL\\.md$"
+        "^skill://\\.kiro/skills/.+/SKILL\\.md$",
+        "^file://\\.kiro/agents/resources/.+/capability\\.json$",
+        "^file://\\.kiro/skills/.+/resources/capability\\.json$"
       ],
       "validator": {
         "command": [
@@ -373,5 +400,29 @@
       "claude": [],
       "kiro": []
     }
-  }
+  },
+  "deployment_wrappers": {
+    "codex": [
+      "codex_plugin_wrapper"
+    ],
+    "gemini": [
+      "gemini_command_wrapper",
+      "gemini_extension_wrapper",
+      "gemini_agent_wrapper"
+    ],
+    "claude": [
+      "claude_command_wrapper",
+      "claude_plugin_wrapper",
+      "claude_agent_wrapper"
+    ],
+    "kiro": [
+      "kiro_prompt_wrapper",
+      "kiro_power_wrapper",
+      "kiro_agent_wrapper"
+    ]
+  },
+  "notes": [
+    "Wrapper surfaces such as commands, plugins, powers, and extensions are deployment forms, not capability types.",
+    "Capability Fabric/UAC publishes advisory manifests and handoff contracts only."
+  ]
 }

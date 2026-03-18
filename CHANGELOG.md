@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.4.0 - 2026-03-17
+
+- Shipped the Capability Fabric broad release slice:
+  - added UAC quality-loop documentation and clarified `judge`, `apply`, `deploy`, and `package` boundaries
+  - promoted `architecture` to a dual-surface capability with advisory artifact-writer agent surfaces
+  - normalized descriptor display names, summaries, and high-priority consumption hints
+  - added orchestrator-facing contract and release-packaging docs
+  - tightened smoke-test semantics around surface-aware discovery
+
 ## 1.3.1 - 2026-03-13
 
 - Hardened install/deploy behavior for partial CLI environments:

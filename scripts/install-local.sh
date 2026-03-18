@@ -3,14 +3,15 @@ set -euo pipefail
 
 usage() {
   cat <<'EOF'
-Usage: scripts/install-local.sh [--cli gemini|claude|kiro|codex|all] [--target PATH] [--dry-run] [--strict-cli] [--mode copy]
+Usage: scripts/install-local.sh [--cli gemini|claude|kiro|codex|all] [--target PATH] [--allow-nonlocal-target] [--dry-run] [--strict-cli] [--mode copy]
 
 Legacy compatibility wrapper around deploy-surfaces.sh.
 Copy-only behavior is enforced. Symlink mode is removed.
 
 Options:
   --cli gemini|claude|kiro|codex|all  Target CLI(s). Default: all
-  --target PATH                       Destination root path. Default: ~
+  --target PATH                       Destination root path. Default: repository root
+  --allow-nonlocal-target             Allow explicit --target outside repository root
   --dry-run                           Show copy actions without writing
   --strict-cli                        Fail when selected CLI binary is not installed
   --mode copy                         Accepted for backward compatibility only
@@ -42,7 +43,7 @@ while [[ $# -gt 0 ]]; do
       fi
       ARGS+=("$flag" "$value")
       ;;
-    --dry-run|--strict-cli)
+    --allow-nonlocal-target|--dry-run|--strict-cli)
       ARGS+=("$1")
       ;;
     -h|--help)

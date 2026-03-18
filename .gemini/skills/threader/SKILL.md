@@ -228,3 +228,6 @@ Before final output:
 ---
 
 ## END
+
+
+Capability resource: `.gemini/skills/threader/resources/capability.json`

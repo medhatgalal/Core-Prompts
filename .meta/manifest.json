@@ -1,53 +1,163 @@
 {
-  "generated_at": "2026-03-14T18:19:48.725027+00:00",
+  "generated_at": "2026-03-17T20:42:24.703785+00:00",
   "generator": {
     "script": "scripts/build-surfaces.py",
     "python": "3.11+",
-    "version": "5.0",
-    "generated_utc": "2026-03-14T18:19:48.725614+00:00"
+    "version": "6.0",
+    "generated_utc": "2026-03-17T20:42:24.704208+00:00"
   },
   "ssot_sources": [
     {
-      "file": "ssot/analyze-context.md",
       "slug": "analyze-context",
-      "name": "analyze-context",
-      "description": "[Medhat] Iterative Analysis Workflow for multi-file processing",
+      "manifest_version": "capability-fabric.v0",
+      "layers": {
+        "minimal": {
+          "capability_type": "skill",
+          "summary": "[Medhat] Iterative Analysis Workflow for multi-file processing",
+          "role": "analyst",
+          "domain_tags": [
+            "analysis",
+            "context",
+            "prompting",
+            "analyze"
+          ],
+          "required_inputs": [
+            "source text",
+            "user intent/context"
+          ],
+          "expected_outputs": [
+            "deterministic summary",
+            "uplift payload",
+            "capability recommendation",
+            "deployment guidance"
+          ],
+          "tool_policy": {
+            "allowed": [
+              "deterministic classification",
+              "metadata publication",
+              "surface generation"
+            ],
+            "forbidden": [
+              "orchestration",
+              "delegation decisions",
+              "runtime execution control"
+            ]
+          },
+          "resources": [
+            "/Users/medhat.galal/Desktop/Core-Prompts/ssot/analyze-context.md"
+          ],
+          "packaging_profile": {
+            "capability_type": "skill",
+            "primary_surfaces": {
+              "codex": [
+                "codex_skill"
+              ],
+              "gemini": [
+                "gemini_command",
+                "gemini_skill"
+              ],
+              "claude": [
+                "claude_command"
+              ],
+              "kiro": [
+                "kiro_prompt",
+                "kiro_skill"
+              ]
+            },
+            "wrapper_surfaces": {
+              "codex": [],
+              "gemini": [
+                "command_wrapper",
+                "extension_wrapper"
+              ],
+              "claude": [
+                "command_wrapper",
+                "plugin_wrapper"
+              ],
+              "kiro": [
+                "prompt_wrapper",
+                "power_wrapper"
+              ]
+            },
+            "notes": [
+              "wrapper surfaces are additive deployment forms, not capability types",
+              "orchestrators must not infer execution authority from wrapper presence alone"
+            ]
+          },
+          "install_target": {
+            "recommended": "repo_local",
+            "confidence": 0.88,
+            "confirmation_required_for_apply": true,
+            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+            "supported": [
+              "global",
+              "repo_local",
+              "both"
+            ]
+          },
+          "emitted_surfaces": {
+            "codex": [
+              "codex_skill"
+            ],
+            "gemini": [
+              "gemini_command",
+              "gemini_skill"
+            ],
+            "claude": [
+              "claude_command"
+            ],
+            "kiro": [
+              "kiro_prompt",
+              "kiro_skill"
+            ]
+          },
+          "source_provenance": {
+            "source_type": "LOCAL_FILE",
+            "normalized_source": "/Users/medhat.galal/Desktop/Core-Prompts/ssot/analyze-context.md",
+            "policy_rule_id": "ssot.analyze-context",
+            "content_sha256": "ssot"
+          },
+          "confidence": 0.97,
+          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a command/skill surface.",
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "Iterative Analysis Workflow"
+        },
+        "expanded": {
+          "relationship_suggestions": [],
+          "capability_dependencies": [],
+          "overlap_candidates": [],
+          "migration_notes": [
+            "If the capability lands, compare it against existing entries before apply.",
+            "Relationship suggestions are advisory only and do not imply runtime routing."
+          ],
+          "adjustment_recommendations": [
+            "add an explicit primary objective before packaging",
+            "add deterministic in-scope sections to improve routing fitness",
+            "capture quality constraints or non-negotiables"
+          ]
+        },
+        "org_graph": {
+          "org_role": "analyst",
+          "reports_to_suggestions": [],
+          "delegates_to_suggestions": [],
+          "collaborates_with_suggestions": [
+            "analysis",
+            "context"
+          ],
+          "authority_tier": "advisory",
+          "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+        }
+      },
+      "display_name": "Iterative Analysis Workflow",
+      "descriptor_version": "capability-fabric.descriptor.v0",
+      "family_slug": "analyze-context",
+      "shared_summary": "[Medhat] Iterative Analysis Workflow for multi-file processing",
+      "shared_constraints": [],
+      "modes": [],
+      "benchmark_sources": [],
+      "consumption_hints": {},
       "declared_capability": "skill",
       "inferred_capability": "skill",
-      "confidence": 0.97,
-      "deployment_intent": "generate",
-      "signals": [
-        "agent control markers detected",
-        "skill/workflow markers detected",
-        "explicit objective structure detected",
-        "explicit out-of-scope structure detected",
-        "explicit constraint structure detected",
-        "explicit acceptance structure detected",
-        "multi-section prompt/spec structure detected"
-      ],
-      "scorecard": {
-        "agent_score": 2,
-        "skill_score": 9,
-        "config_score": 0,
-        "semantic_category_count": 4,
-        "prompt_marker_hits": 1
-      },
-      "emitted_surfaces": {
-        "codex": [
-          "codex_skill"
-        ],
-        "gemini": [
-          "gemini_command",
-          "gemini_skill"
-        ],
-        "claude": [
-          "claude_command"
-        ],
-        "kiro": [
-          "kiro_prompt",
-          "kiro_skill"
-        ]
-      },
       "expected_surface_names": [
         "codex_skill",
         "gemini_command",
@@ -56,46 +166,595 @@
         "kiro_prompt",
         "kiro_skill"
       ],
-      "rubric_version": "uac-capability-v1"
+      "rubric_version": "capability-fabric.v0"
     },
     {
-      "file": "ssot/code-review.md",
+      "slug": "architecture",
+      "manifest_version": "capability-fabric.v0",
+      "layers": {
+        "minimal": {
+          "capability_type": "both",
+          "summary": "Architecture Studio for API design, database design, design-pattern selection, and system design with black-box boundaries, concrete artifacts, and migration-safe recommendations.",
+          "role": "advisor",
+          "domain_tags": [
+            "architecture",
+            "review",
+            "analysis",
+            "planning",
+            "debugging",
+            "context",
+            "prompting"
+          ],
+          "required_inputs": [
+            "source text",
+            "user intent/context"
+          ],
+          "expected_outputs": [
+            "deterministic summary",
+            "uplift payload",
+            "capability recommendation",
+            "deployment guidance"
+          ],
+          "tool_policy": {
+            "allowed": [
+              "deterministic classification",
+              "metadata publication",
+              "surface generation"
+            ],
+            "forbidden": [
+              "orchestration",
+              "delegation decisions",
+              "runtime execution control"
+            ]
+          },
+          "resources": [
+            "/Users/medhat.galal/Desktop/Core-Prompts/ssot/architecture.md"
+          ],
+          "packaging_profile": {
+            "capability_type": "both",
+            "primary_surfaces": {
+              "codex": [
+                "codex_skill",
+                "codex_agent"
+              ],
+              "gemini": [
+                "gemini_command",
+                "gemini_skill",
+                "gemini_agent"
+              ],
+              "claude": [
+                "claude_command",
+                "claude_agent"
+              ],
+              "kiro": [
+                "kiro_prompt",
+                "kiro_skill",
+                "kiro_agent"
+              ]
+            },
+            "wrapper_surfaces": {
+              "codex": [
+                "plugin_wrapper"
+              ],
+              "gemini": [
+                "command_wrapper",
+                "extension_wrapper"
+              ],
+              "claude": [
+                "command_wrapper",
+                "plugin_wrapper"
+              ],
+              "kiro": [
+                "prompt_wrapper",
+                "power_wrapper"
+              ]
+            },
+            "notes": [
+              "wrapper surfaces are additive deployment forms, not capability types",
+              "orchestrators must not infer execution authority from wrapper presence alone"
+            ]
+          },
+          "install_target": {
+            "recommended": "repo_local",
+            "confidence": 0.88,
+            "confirmation_required_for_apply": true,
+            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+            "supported": [
+              "global",
+              "repo_local",
+              "both"
+            ]
+          },
+          "emitted_surfaces": {
+            "codex": [
+              "codex_skill",
+              "codex_agent"
+            ],
+            "gemini": [
+              "gemini_command",
+              "gemini_skill",
+              "gemini_agent"
+            ],
+            "claude": [
+              "claude_command",
+              "claude_agent"
+            ],
+            "kiro": [
+              "kiro_prompt",
+              "kiro_skill",
+              "kiro_agent"
+            ]
+          },
+          "source_provenance": {
+            "source_type": "LOCAL_FILE",
+            "normalized_source": "/Users/medhat.galal/Desktop/Core-Prompts/ssot/architecture.md",
+            "policy_rule_id": "ssot.architecture",
+            "content_sha256": "ssot"
+          },
+          "confidence": 0.98,
+          "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "Architecture Studio"
+        },
+        "expanded": {
+          "relationship_suggestions": [
+            "prefer explicit review or analyst companions before high-authority use",
+            "pair with review and analysis capabilities when converging design proposals"
+          ],
+          "capability_dependencies": [
+            "analysis",
+            "context"
+          ],
+          "overlap_candidates": [],
+          "migration_notes": [
+            "If the capability lands, compare it against existing entries before apply.",
+            "Relationship suggestions are advisory only and do not imply runtime routing."
+          ],
+          "adjustment_recommendations": [
+            "add an explicit primary objective before packaging",
+            "add deterministic in-scope sections to improve routing fitness",
+            "capture quality constraints or non-negotiables"
+          ],
+          "quality_criteria": [
+            "Score against the published architecture scorecard on every significant design branch",
+            "Include rejected alternatives and explicit trade-offs for major design decisions",
+            "Keep migration, rollback, and validation concrete enough to execute",
+            "Meet or exceed the Harish/Alexanderdunlop source bar and the local code-review/resolve-conflict bar"
+          ],
+          "quality_gate": {
+            "min_pass_score": 9,
+            "required_no_zero_for": [
+              "Failure-Aware Decisions",
+              "Migration Clarity",
+              "Benchmark Fit"
+            ]
+          }
+        },
+        "org_graph": {
+          "org_role": "specialist_with_workflow_surface",
+          "reports_to_suggestions": [],
+          "delegates_to_suggestions": [],
+          "collaborates_with_suggestions": [
+            "architecture",
+            "review"
+          ],
+          "authority_tier": "advisory",
+          "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
+        }
+      },
+      "display_name": "Architecture Studio",
+      "descriptor_version": "capability-fabric.descriptor.v0",
+      "family_slug": "architecture",
+      "shared_summary": "Architecture Studio for API design, database design, design-pattern selection, and system design with black-box boundaries, concrete artifacts, and migration-safe recommendations.",
+      "shared_constraints": [
+        "Publish architecture guidance only; do not orchestrate or delegate work.",
+        "Use deterministic, sectioned outputs with explicit scorecards.",
+        "Prefer replaceable interfaces and stable boundaries over implementation-heavy advice.",
+        "Make assumptions, trade-offs, evidence, and rollback explicit.",
+        "Validate and report migration impact when designs change interfaces or ownership."
+      ],
+      "modes": [
+        {
+          "mode_slug": "design-api",
+          "display_name": "Design API",
+          "source_refs": [
+            "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/architecture/design-api.toml"
+          ],
+          "mode_summary": "Design resource-oriented APIs with explicit resource models, endpoint contracts, validation, security, and error behavior.",
+          "required_inputs": [
+            "product requirements",
+            "resource model",
+            "auth or policy constraints"
+          ],
+          "expected_outputs": [
+            "endpoint contract map",
+            "request/response contract",
+            "error model",
+            "trade-off assessment",
+            "rejected alternative",
+            "migration and rollback guidance",
+            "quality scorecard",
+            "validation plan"
+          ],
+          "examples": [
+            "RESTful CRUD service",
+            "internal service boundary"
+          ],
+          "uplift_notes": [
+            "Prefer nouns and stable resource boundaries.",
+            "Keep auth, pagination, and versioning explicit.",
+            "Include at least one explicit rollback path for API changes."
+          ]
+        },
+        {
+          "mode_slug": "design-database",
+          "display_name": "Design Database",
+          "source_refs": [
+            "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/architecture/design-database.toml"
+          ],
+          "mode_summary": "Design schemas and storage structures that match access patterns, consistency goals, and evolution needs.",
+          "required_inputs": [
+            "entity list",
+            "access patterns",
+            "integrity requirements"
+          ],
+          "expected_outputs": [
+            "schema outline",
+            "index strategy",
+            "normalization notes",
+            "consistency trade-off",
+            "migration and rollback guidance",
+            "quality scorecard"
+          ],
+          "examples": [
+            "OLTP schema",
+            "event-driven analytics subsystem"
+          ],
+          "uplift_notes": [
+            "Call out intentional denormalization and failure impact.",
+            "Tie indexes to actual query paths.",
+            "Include consistency-vs-availability trade-off and rollback checkpoint."
+          ]
+        },
+        {
+          "mode_slug": "design-patterns",
+          "display_name": "Design Patterns",
+          "source_refs": [
+            "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/architecture/design-patterns.toml",
+            "https://raw.githubusercontent.com/Alexanderdunlop/ai-architecture-prompts/main/prompts/claude-prompt.md"
+          ],
+          "mode_summary": "Choose structural patterns that reduce coupling and improve replaceability under changing requirements.",
+          "required_inputs": [
+            "current design problem",
+            "extensibility goals",
+            "change history",
+            "risk boundaries"
+          ],
+          "expected_outputs": [
+            "pattern candidate list",
+            "before/after boundary sketch",
+            "rejected alternatives",
+            "risk assessment",
+            "quality scorecard",
+            "replacement and rollback strategy"
+          ],
+          "examples": [
+            "Factory vs builder",
+            "adapter for legacy integration"
+          ],
+          "uplift_notes": [
+            "Explain trade-offs and why each fit is chosen.",
+            "Avoid pattern cargo-culting; always include replacement implications.",
+            "Include rollback plan for each non-backward-compatible boundary change."
+          ]
+        },
+        {
+          "mode_slug": "system-design",
+          "display_name": "System Design",
+          "source_refs": [
+            "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/architecture/system-design.toml",
+            "https://raw.githubusercontent.com/Alexanderdunlop/ai-architecture-prompts/main/prompts/claude-code-prompt.md"
+          ],
+          "mode_summary": "Design end-to-end architecture with explicit scaling, reliability, observability, and migration plan.",
+          "required_inputs": [
+            "functional requirements",
+            "non-functional requirements",
+            "constraints",
+            "risk tolerance"
+          ],
+          "expected_outputs": [
+            "requirements-to-architecture mapping",
+            "component model",
+            "data flow",
+            "failure model",
+            "deployment and rollback plan",
+            "dependency ownership map",
+            "quality scorecard"
+          ],
+          "examples": [
+            "SaaS control plane",
+            "event-driven pipeline"
+          ],
+          "uplift_notes": [
+            "Keep modules replaceable where possible.",
+            "Separate policy from mechanism in each subsystem."
+          ]
+        }
+      ],
+      "benchmark_sources": [
+        {
+          "provider": "github",
+          "label": "Harish Garg architecture family seed",
+          "url": "https://github.com/harish-garg/gemini-cli-prompt-library/tree/main/commands/architecture",
+          "note": "Mode scaffold and practical request framing."
+        },
+        {
+          "provider": "github",
+          "label": "Alexanderdunlop ai-architecture-prompts",
+          "url": "https://github.com/Alexanderdunlop/ai-architecture-prompts",
+          "note": "Primary quality benchmark for black-box design and replaceability."
+        },
+        {
+          "provider": "raw",
+          "label": "Alexanderdunlop architecture prompt variant (claude-code)",
+          "url": "https://raw.githubusercontent.com/Alexanderdunlop/ai-architecture-prompts/main/prompts/claude-code-prompt.md",
+          "note": "Black-box interface doctrine and cognitive-load constraints."
+        },
+        {
+          "provider": "raw",
+          "label": "Alexanderdunlop architecture prompt variant (claude)",
+          "url": "https://raw.githubusercontent.com/Alexanderdunlop/ai-architecture-prompts/main/prompts/claude-prompt.md",
+          "note": "Strategic architecture framework and disciplined decision process."
+        },
+        {
+          "provider": "raw",
+          "label": "Alexanderdunlop architecture prompt variant (cursor)",
+          "url": "https://raw.githubusercontent.com/Alexanderdunlop/ai-architecture-prompts/main/prompts/cursor-prompt.md",
+          "note": "Implementation-oriented black-box approach."
+        },
+        {
+          "provider": "local",
+          "label": "Code Review benchmark",
+          "url": "ssot/code-review.md",
+          "note": "Concrete output checklist, decision format, and strict quality structure."
+        },
+        {
+          "provider": "local",
+          "label": "Resolve Conflict benchmark",
+          "url": "ssot/resolve-conflict.md",
+          "note": "Failure-first analysis, explicit alternatives, and deterministic decision output."
+        }
+      ],
+      "quality_profile": "architecture",
+      "quality_status": "ship",
+      "judge_reports": [
+        {
+          "pass_number": 1,
+          "status": "ship",
+          "judge_reports": [
+            {
+              "judge": "operational_richness",
+              "title": "Operational Richness",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "source_fidelity",
+              "title": "Source Fidelity and Uplift",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "metadata_integrity",
+              "title": "Metadata and Handoff Integrity",
+              "score": 10,
+              "blockers": []
+            }
+          ],
+          "blockers": []
+        }
+      ],
+      "consumption_hints": {
+        "preferred_use_cases": [
+          "API design",
+          "database design",
+          "design-pattern selection",
+          "system design",
+          "migration-safe architecture review"
+        ],
+        "artifact_conventions": [
+          "reports/architecture/<timestamp>-summary.md",
+          "reports/architecture/<timestamp>-decision-log.md",
+          "architecture/spec.md",
+          "architecture/decision-log.md",
+          "architecture/migration-plan.md",
+          "architecture/validation-plan.md"
+        ],
+        "invocation_style": "interactive_or_artifact_oriented",
+        "requires_human_confirmation": false
+      },
+      "quality_pass_count": 1,
+      "quality_stop_reason": "thresholds_met",
+      "declared_capability": "both",
+      "inferred_capability": "both",
+      "expected_surface_names": [
+        "codex_skill",
+        "codex_agent",
+        "gemini_command",
+        "gemini_skill",
+        "gemini_agent",
+        "claude_command",
+        "claude_agent",
+        "kiro_prompt",
+        "kiro_skill",
+        "kiro_agent"
+      ],
+      "rubric_version": "capability-fabric.v0"
+    },
+    {
       "slug": "code-review",
-      "name": "code-review",
-      "description": "[ScottP] Git commit review with scope control and over-engineering detection",
+      "manifest_version": "capability-fabric.v0",
+      "layers": {
+        "minimal": {
+          "capability_type": "skill",
+          "summary": "Commit Review for git commit quality gates, scope control, and over-engineering detection.",
+          "role": "analyst",
+          "domain_tags": [
+            "review",
+            "debugging",
+            "context",
+            "code"
+          ],
+          "required_inputs": [
+            "source text",
+            "user intent/context"
+          ],
+          "expected_outputs": [
+            "deterministic summary",
+            "uplift payload",
+            "capability recommendation",
+            "deployment guidance"
+          ],
+          "tool_policy": {
+            "allowed": [
+              "deterministic classification",
+              "metadata publication",
+              "surface generation"
+            ],
+            "forbidden": [
+              "orchestration",
+              "delegation decisions",
+              "runtime execution control"
+            ]
+          },
+          "resources": [
+            "/Users/medhat.galal/Desktop/Core-Prompts/ssot/code-review.md"
+          ],
+          "packaging_profile": {
+            "capability_type": "skill",
+            "primary_surfaces": {
+              "codex": [
+                "codex_skill"
+              ],
+              "gemini": [
+                "gemini_command",
+                "gemini_skill"
+              ],
+              "claude": [
+                "claude_command"
+              ],
+              "kiro": [
+                "kiro_prompt",
+                "kiro_skill"
+              ]
+            },
+            "wrapper_surfaces": {
+              "codex": [],
+              "gemini": [
+                "command_wrapper",
+                "extension_wrapper"
+              ],
+              "claude": [
+                "command_wrapper",
+                "plugin_wrapper"
+              ],
+              "kiro": [
+                "prompt_wrapper",
+                "power_wrapper"
+              ]
+            },
+            "notes": [
+              "wrapper surfaces are additive deployment forms, not capability types",
+              "orchestrators must not infer execution authority from wrapper presence alone"
+            ]
+          },
+          "install_target": {
+            "recommended": "repo_local",
+            "confidence": 0.88,
+            "confirmation_required_for_apply": true,
+            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+            "supported": [
+              "global",
+              "repo_local",
+              "both"
+            ]
+          },
+          "emitted_surfaces": {
+            "codex": [
+              "codex_skill"
+            ],
+            "gemini": [
+              "gemini_command",
+              "gemini_skill"
+            ],
+            "claude": [
+              "claude_command"
+            ],
+            "kiro": [
+              "kiro_prompt",
+              "kiro_skill"
+            ]
+          },
+          "source_provenance": {
+            "source_type": "LOCAL_FILE",
+            "normalized_source": "/Users/medhat.galal/Desktop/Core-Prompts/ssot/code-review.md",
+            "policy_rule_id": "ssot.code-review",
+            "content_sha256": "ssot"
+          },
+          "confidence": 0.97,
+          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a command/skill surface.",
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "Commit Review \u2014 Git Commit Quality Gate"
+        },
+        "expanded": {
+          "relationship_suggestions": [],
+          "capability_dependencies": [
+            "context"
+          ],
+          "overlap_candidates": [],
+          "migration_notes": [
+            "If the capability lands, compare it against existing entries before apply.",
+            "Relationship suggestions are advisory only and do not imply runtime routing."
+          ],
+          "adjustment_recommendations": [
+            "add an explicit primary objective before packaging",
+            "add deterministic in-scope sections to improve routing fitness",
+            "capture quality constraints or non-negotiables"
+          ]
+        },
+        "org_graph": {
+          "org_role": "analyst",
+          "reports_to_suggestions": [],
+          "delegates_to_suggestions": [],
+          "collaborates_with_suggestions": [
+            "review",
+            "debugging"
+          ],
+          "authority_tier": "advisory",
+          "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+        }
+      },
+      "display_name": "Commit Review \u2014 Git Commit Quality Gate",
+      "descriptor_version": "capability-fabric.descriptor.v0",
+      "family_slug": "code-review",
+      "shared_summary": "[ScottP] Git commit review with scope control and over-engineering detection",
+      "shared_constraints": [],
+      "modes": [],
+      "benchmark_sources": [],
+      "consumption_hints": {
+        "preferred_use_cases": [
+          "pre-merge commit review",
+          "scope creep detection",
+          "over-engineering checks"
+        ],
+        "artifact_conventions": [
+          "reports/code-reviews/<timestamp>-<commit>.md"
+        ],
+        "invocation_style": "git_commit_review",
+        "requires_human_confirmation": false
+      },
       "declared_capability": "skill",
       "inferred_capability": "skill",
-      "confidence": 0.97,
-      "deployment_intent": "generate",
-      "signals": [
-        "skill/workflow markers detected",
-        "config-like structure detected",
-        "explicit objective structure detected",
-        "explicit constraint structure detected"
-      ],
-      "scorecard": {
-        "agent_score": 0,
-        "skill_score": 13,
-        "config_score": 2,
-        "semantic_category_count": 2,
-        "prompt_marker_hits": 2
-      },
-      "emitted_surfaces": {
-        "codex": [
-          "codex_skill"
-        ],
-        "gemini": [
-          "gemini_command",
-          "gemini_skill"
-        ],
-        "claude": [
-          "claude_command"
-        ],
-        "kiro": [
-          "kiro_prompt",
-          "kiro_skill"
-        ]
-      },
       "expected_surface_names": [
         "codex_skill",
         "gemini_command",
@@ -104,52 +763,180 @@
         "kiro_prompt",
         "kiro_skill"
       ],
-      "rubric_version": "uac-capability-v1"
+      "rubric_version": "capability-fabric.v0"
     },
     {
-      "file": "ssot/converge.md",
       "slug": "converge",
-      "name": "converge",
-      "description": "[Medhat] Universal Synthesis & Convergence Prompt (Portable)",
+      "manifest_version": "capability-fabric.v0",
+      "layers": {
+        "minimal": {
+          "capability_type": "both",
+          "summary": "[Medhat] Universal Synthesis & Convergence Prompt (Portable)",
+          "role": "analyst",
+          "domain_tags": [
+            "architecture",
+            "review",
+            "analysis",
+            "packaging",
+            "import",
+            "debugging",
+            "context",
+            "prompting"
+          ],
+          "required_inputs": [
+            "source text",
+            "user intent/context"
+          ],
+          "expected_outputs": [
+            "deterministic summary",
+            "uplift payload",
+            "capability recommendation",
+            "deployment guidance"
+          ],
+          "tool_policy": {
+            "allowed": [
+              "deterministic classification",
+              "metadata publication",
+              "surface generation"
+            ],
+            "forbidden": [
+              "orchestration",
+              "delegation decisions",
+              "runtime execution control"
+            ]
+          },
+          "resources": [
+            "/Users/medhat.galal/Desktop/Core-Prompts/ssot/converge.md"
+          ],
+          "packaging_profile": {
+            "capability_type": "both",
+            "primary_surfaces": {
+              "codex": [
+                "codex_skill",
+                "codex_agent"
+              ],
+              "gemini": [
+                "gemini_command",
+                "gemini_skill",
+                "gemini_agent"
+              ],
+              "claude": [
+                "claude_command",
+                "claude_agent"
+              ],
+              "kiro": [
+                "kiro_prompt",
+                "kiro_skill",
+                "kiro_agent"
+              ]
+            },
+            "wrapper_surfaces": {
+              "codex": [
+                "plugin_wrapper"
+              ],
+              "gemini": [
+                "command_wrapper",
+                "extension_wrapper"
+              ],
+              "claude": [
+                "command_wrapper",
+                "plugin_wrapper"
+              ],
+              "kiro": [
+                "prompt_wrapper",
+                "power_wrapper"
+              ]
+            },
+            "notes": [
+              "wrapper surfaces are additive deployment forms, not capability types",
+              "orchestrators must not infer execution authority from wrapper presence alone"
+            ]
+          },
+          "install_target": {
+            "recommended": "repo_local",
+            "confidence": 0.88,
+            "confirmation_required_for_apply": true,
+            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+            "supported": [
+              "global",
+              "repo_local",
+              "both"
+            ]
+          },
+          "emitted_surfaces": {
+            "codex": [
+              "codex_skill",
+              "codex_agent"
+            ],
+            "gemini": [
+              "gemini_command",
+              "gemini_skill",
+              "gemini_agent"
+            ],
+            "claude": [
+              "claude_command",
+              "claude_agent"
+            ],
+            "kiro": [
+              "kiro_prompt",
+              "kiro_skill",
+              "kiro_agent"
+            ]
+          },
+          "source_provenance": {
+            "source_type": "LOCAL_FILE",
+            "normalized_source": "/Users/medhat.galal/Desktop/Core-Prompts/ssot/converge.md",
+            "policy_rule_id": "ssot.converge",
+            "content_sha256": "ssot"
+          },
+          "confidence": 0.82,
+          "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "/converge \u2014 Universal Synthesis & Convergence Prompt (Portable)"
+        },
+        "expanded": {
+          "relationship_suggestions": [
+            "prefer explicit review or analyst companions before high-authority use",
+            "pair with review and analysis capabilities when converging design proposals"
+          ],
+          "capability_dependencies": [
+            "analysis",
+            "context",
+            "packaging"
+          ],
+          "overlap_candidates": [],
+          "migration_notes": [
+            "If the capability lands, compare it against existing entries before apply.",
+            "Relationship suggestions are advisory only and do not imply runtime routing."
+          ],
+          "adjustment_recommendations": [
+            "add an explicit primary objective before packaging",
+            "add deterministic in-scope sections to improve routing fitness",
+            "capture quality constraints or non-negotiables"
+          ]
+        },
+        "org_graph": {
+          "org_role": "specialist_with_workflow_surface",
+          "reports_to_suggestions": [],
+          "delegates_to_suggestions": [],
+          "collaborates_with_suggestions": [
+            "architecture",
+            "review"
+          ],
+          "authority_tier": "advisory",
+          "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
+        }
+      },
+      "display_name": "/converge \u2014 Universal Synthesis & Convergence Prompt (Portable)",
+      "descriptor_version": "capability-fabric.descriptor.v0",
+      "family_slug": "converge",
+      "shared_summary": "[Medhat] Universal Synthesis & Convergence Prompt (Portable)",
+      "shared_constraints": [],
+      "modes": [],
+      "benchmark_sources": [],
+      "consumption_hints": {},
       "declared_capability": "both",
       "inferred_capability": "both",
-      "confidence": 0.82,
-      "deployment_intent": "generate",
-      "signals": [
-        "agent control markers detected",
-        "skill/workflow markers detected",
-        "explicit objective structure detected",
-        "explicit constraint structure detected",
-        "explicit acceptance structure detected",
-        "multi-section prompt/spec structure detected"
-      ],
-      "scorecard": {
-        "agent_score": 4,
-        "skill_score": 8,
-        "config_score": 0,
-        "semantic_category_count": 3,
-        "prompt_marker_hits": 1
-      },
-      "emitted_surfaces": {
-        "codex": [
-          "codex_skill",
-          "codex_agent"
-        ],
-        "gemini": [
-          "gemini_command",
-          "gemini_skill",
-          "gemini_agent"
-        ],
-        "claude": [
-          "claude_command",
-          "claude_agent"
-        ],
-        "kiro": [
-          "kiro_prompt",
-          "kiro_skill",
-          "kiro_agent"
-        ]
-      },
       "expected_surface_names": [
         "codex_skill",
         "codex_agent",
@@ -162,50 +949,176 @@
         "kiro_skill",
         "kiro_agent"
       ],
-      "rubric_version": "uac-capability-v1"
+      "rubric_version": "capability-fabric.v0"
     },
     {
-      "file": "ssot/mentor.md",
       "slug": "mentor",
-      "name": "mentor",
-      "description": "[Medhat] Senior engineering oversight, planning, and workflow guidance.",
+      "manifest_version": "capability-fabric.v0",
+      "layers": {
+        "minimal": {
+          "capability_type": "both",
+          "summary": "[Medhat] Senior engineering oversight, planning, and workflow guidance.",
+          "role": "advisor",
+          "domain_tags": [
+            "review",
+            "analysis",
+            "routing",
+            "planning",
+            "context",
+            "prompting",
+            "mentor"
+          ],
+          "required_inputs": [
+            "source text",
+            "user intent/context"
+          ],
+          "expected_outputs": [
+            "deterministic summary",
+            "uplift payload",
+            "capability recommendation",
+            "deployment guidance"
+          ],
+          "tool_policy": {
+            "allowed": [
+              "deterministic classification",
+              "metadata publication",
+              "surface generation"
+            ],
+            "forbidden": [
+              "orchestration",
+              "delegation decisions",
+              "runtime execution control"
+            ]
+          },
+          "resources": [
+            "/Users/medhat.galal/Desktop/Core-Prompts/ssot/mentor.md"
+          ],
+          "packaging_profile": {
+            "capability_type": "both",
+            "primary_surfaces": {
+              "codex": [
+                "codex_skill",
+                "codex_agent"
+              ],
+              "gemini": [
+                "gemini_command",
+                "gemini_skill",
+                "gemini_agent"
+              ],
+              "claude": [
+                "claude_command",
+                "claude_agent"
+              ],
+              "kiro": [
+                "kiro_prompt",
+                "kiro_skill",
+                "kiro_agent"
+              ]
+            },
+            "wrapper_surfaces": {
+              "codex": [
+                "plugin_wrapper"
+              ],
+              "gemini": [
+                "command_wrapper",
+                "extension_wrapper"
+              ],
+              "claude": [
+                "command_wrapper",
+                "plugin_wrapper"
+              ],
+              "kiro": [
+                "prompt_wrapper",
+                "power_wrapper"
+              ]
+            },
+            "notes": [
+              "wrapper surfaces are additive deployment forms, not capability types",
+              "orchestrators must not infer execution authority from wrapper presence alone"
+            ]
+          },
+          "install_target": {
+            "recommended": "repo_local",
+            "confidence": 0.88,
+            "confirmation_required_for_apply": true,
+            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+            "supported": [
+              "global",
+              "repo_local",
+              "both"
+            ]
+          },
+          "emitted_surfaces": {
+            "codex": [
+              "codex_skill",
+              "codex_agent"
+            ],
+            "gemini": [
+              "gemini_command",
+              "gemini_skill",
+              "gemini_agent"
+            ],
+            "claude": [
+              "claude_command",
+              "claude_agent"
+            ],
+            "kiro": [
+              "kiro_prompt",
+              "kiro_skill",
+              "kiro_agent"
+            ]
+          },
+          "source_provenance": {
+            "source_type": "LOCAL_FILE",
+            "normalized_source": "/Users/medhat.galal/Desktop/Core-Prompts/ssot/mentor.md",
+            "policy_rule_id": "ssot.mentor",
+            "content_sha256": "ssot"
+          },
+          "confidence": 0.84,
+          "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "Mentor / Coach v3 \u2014 System Memory"
+        },
+        "expanded": {
+          "relationship_suggestions": [
+            "prefer explicit review or analyst companions before high-authority use"
+          ],
+          "capability_dependencies": [
+            "context"
+          ],
+          "overlap_candidates": [],
+          "migration_notes": [
+            "If the capability lands, compare it against existing entries before apply.",
+            "Relationship suggestions are advisory only and do not imply runtime routing."
+          ],
+          "adjustment_recommendations": [
+            "add an explicit primary objective before packaging",
+            "add deterministic in-scope sections to improve routing fitness",
+            "capture quality constraints or non-negotiables"
+          ]
+        },
+        "org_graph": {
+          "org_role": "specialist_with_workflow_surface",
+          "reports_to_suggestions": [],
+          "delegates_to_suggestions": [],
+          "collaborates_with_suggestions": [
+            "review",
+            "analysis"
+          ],
+          "authority_tier": "advisory",
+          "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
+        }
+      },
+      "display_name": "Mentor / Coach v3 \u2014 System Memory",
+      "descriptor_version": "capability-fabric.descriptor.v0",
+      "family_slug": "mentor",
+      "shared_summary": "[Medhat] Senior engineering oversight, planning, and workflow guidance.",
+      "shared_constraints": [],
+      "modes": [],
+      "benchmark_sources": [],
+      "consumption_hints": {},
       "declared_capability": "both",
       "inferred_capability": "both",
-      "confidence": 0.84,
-      "deployment_intent": "generate",
-      "signals": [
-        "agent control markers detected",
-        "skill/workflow markers detected",
-        "explicit constraint structure detected",
-        "explicit acceptance structure detected"
-      ],
-      "scorecard": {
-        "agent_score": 8,
-        "skill_score": 5,
-        "config_score": 0,
-        "semantic_category_count": 2,
-        "prompt_marker_hits": 1
-      },
-      "emitted_surfaces": {
-        "codex": [
-          "codex_skill",
-          "codex_agent"
-        ],
-        "gemini": [
-          "gemini_command",
-          "gemini_skill",
-          "gemini_agent"
-        ],
-        "claude": [
-          "claude_command",
-          "claude_agent"
-        ],
-        "kiro": [
-          "kiro_prompt",
-          "kiro_skill",
-          "kiro_agent"
-        ]
-      },
       "expected_surface_names": [
         "codex_skill",
         "codex_agent",
@@ -218,49 +1131,176 @@
         "kiro_skill",
         "kiro_agent"
       ],
-      "rubric_version": "uac-capability-v1"
+      "rubric_version": "capability-fabric.v0"
     },
     {
-      "file": "ssot/resolve-conflict.md",
       "slug": "resolve-conflict",
-      "name": "resolve-conflict",
-      "description": "[ScottP] Structured merge conflict resolution with Charlie Munger inversion analysis",
+      "manifest_version": "capability-fabric.v0",
+      "layers": {
+        "minimal": {
+          "capability_type": "skill",
+          "summary": "Merge Conflict Resolution for structured conflict analysis, additive merging, and inversion-led trade-off handling.",
+          "role": "advisor",
+          "domain_tags": [
+            "review",
+            "analysis",
+            "planning",
+            "debugging",
+            "context",
+            "prompting",
+            "resolve",
+            "conflict"
+          ],
+          "required_inputs": [
+            "source text",
+            "user intent/context"
+          ],
+          "expected_outputs": [
+            "deterministic summary",
+            "uplift payload",
+            "capability recommendation",
+            "deployment guidance"
+          ],
+          "tool_policy": {
+            "allowed": [
+              "deterministic classification",
+              "metadata publication",
+              "surface generation"
+            ],
+            "forbidden": [
+              "orchestration",
+              "delegation decisions",
+              "runtime execution control"
+            ]
+          },
+          "resources": [
+            "/Users/medhat.galal/Desktop/Core-Prompts/ssot/resolve-conflict.md"
+          ],
+          "packaging_profile": {
+            "capability_type": "skill",
+            "primary_surfaces": {
+              "codex": [
+                "codex_skill"
+              ],
+              "gemini": [
+                "gemini_command",
+                "gemini_skill"
+              ],
+              "claude": [
+                "claude_command"
+              ],
+              "kiro": [
+                "kiro_prompt",
+                "kiro_skill"
+              ]
+            },
+            "wrapper_surfaces": {
+              "codex": [],
+              "gemini": [
+                "command_wrapper",
+                "extension_wrapper"
+              ],
+              "claude": [
+                "command_wrapper",
+                "plugin_wrapper"
+              ],
+              "kiro": [
+                "prompt_wrapper",
+                "power_wrapper"
+              ]
+            },
+            "notes": [
+              "wrapper surfaces are additive deployment forms, not capability types",
+              "orchestrators must not infer execution authority from wrapper presence alone"
+            ]
+          },
+          "install_target": {
+            "recommended": "repo_local",
+            "confidence": 0.88,
+            "confirmation_required_for_apply": true,
+            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+            "supported": [
+              "global",
+              "repo_local",
+              "both"
+            ]
+          },
+          "emitted_surfaces": {
+            "codex": [
+              "codex_skill"
+            ],
+            "gemini": [
+              "gemini_command",
+              "gemini_skill"
+            ],
+            "claude": [
+              "claude_command"
+            ],
+            "kiro": [
+              "kiro_prompt",
+              "kiro_skill"
+            ]
+          },
+          "source_provenance": {
+            "source_type": "LOCAL_FILE",
+            "normalized_source": "/Users/medhat.galal/Desktop/Core-Prompts/ssot/resolve-conflict.md",
+            "policy_rule_id": "ssot.resolve-conflict",
+            "content_sha256": "ssot"
+          },
+          "confidence": 0.97,
+          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a command/skill surface.",
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "Merge Conflict Resolution \u2014 Structured Conflict Analysis"
+        },
+        "expanded": {
+          "relationship_suggestions": [],
+          "capability_dependencies": [
+            "context"
+          ],
+          "overlap_candidates": [],
+          "migration_notes": [
+            "If the capability lands, compare it against existing entries before apply.",
+            "Relationship suggestions are advisory only and do not imply runtime routing."
+          ],
+          "adjustment_recommendations": [
+            "add an explicit primary objective before packaging",
+            "add deterministic in-scope sections to improve routing fitness",
+            "capture quality constraints or non-negotiables"
+          ]
+        },
+        "org_graph": {
+          "org_role": "advisor",
+          "reports_to_suggestions": [],
+          "delegates_to_suggestions": [],
+          "collaborates_with_suggestions": [
+            "review",
+            "analysis"
+          ],
+          "authority_tier": "advisory",
+          "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+        }
+      },
+      "display_name": "Merge Conflict Resolution \u2014 Structured Conflict Analysis",
+      "descriptor_version": "capability-fabric.descriptor.v0",
+      "family_slug": "resolve-conflict",
+      "shared_summary": "[ScottP] Structured merge conflict resolution with Charlie Munger inversion analysis",
+      "shared_constraints": [],
+      "modes": [],
+      "benchmark_sources": [],
+      "consumption_hints": {
+        "preferred_use_cases": [
+          "merge conflict analysis",
+          "additive conflict resolution planning",
+          "contradiction detection before merge"
+        ],
+        "artifact_conventions": [
+          "reports/merge-conflicts/<descriptive-name>.md"
+        ],
+        "invocation_style": "conflict_analysis",
+        "requires_human_confirmation": true
+      },
       "declared_capability": "skill",
       "inferred_capability": "skill",
-      "confidence": 0.97,
-      "deployment_intent": "generate",
-      "signals": [
-        "skill/workflow markers detected",
-        "config-like structure detected",
-        "explicit objective structure detected",
-        "explicit out-of-scope structure detected",
-        "explicit constraint structure detected",
-        "explicit acceptance structure detected",
-        "multi-section prompt/spec structure detected"
-      ],
-      "scorecard": {
-        "agent_score": 0,
-        "skill_score": 16,
-        "config_score": 2,
-        "semantic_category_count": 4,
-        "prompt_marker_hits": 2
-      },
-      "emitted_surfaces": {
-        "codex": [
-          "codex_skill"
-        ],
-        "gemini": [
-          "gemini_command",
-          "gemini_skill"
-        ],
-        "claude": [
-          "claude_command"
-        ],
-        "kiro": [
-          "kiro_prompt",
-          "kiro_skill"
-        ]
-      },
       "expected_surface_names": [
         "codex_skill",
         "gemini_command",
@@ -269,54 +1309,178 @@
         "kiro_prompt",
         "kiro_skill"
       ],
-      "rubric_version": "uac-capability-v1"
+      "rubric_version": "capability-fabric.v0"
     },
     {
-      "file": "ssot/supercharge.md",
       "slug": "supercharge",
-      "name": "supercharge",
-      "description": "[Medhat] SuperCharge \u2014 Prompt Engineering Swiss Army Knife (ULT-Agent++ \u2022 Catchup Deep \u2022 Simple \u2022 Invert \u2022 Adversarial \u2022 Contract+QA \u2022 Grade \u2022 GASLIGHT 13)",
+      "manifest_version": "capability-fabric.v0",
+      "layers": {
+        "minimal": {
+          "capability_type": "both",
+          "summary": "[Medhat] SuperCharge \u2014 Prompt Engineering Swiss Army Knife (ULT-Agent++ \u2022 Catchup Deep \u2022 Simple \u2022 Invert \u2022 Adversarial \u2022 Contract+QA \u2022 Grade \u2022 GASLIGHT 13)",
+          "role": "advisor",
+          "domain_tags": [
+            "architecture",
+            "analysis",
+            "routing",
+            "packaging",
+            "planning",
+            "debugging",
+            "context",
+            "prompting"
+          ],
+          "required_inputs": [
+            "source text",
+            "user intent/context"
+          ],
+          "expected_outputs": [
+            "deterministic summary",
+            "uplift payload",
+            "capability recommendation",
+            "deployment guidance"
+          ],
+          "tool_policy": {
+            "allowed": [
+              "deterministic classification",
+              "metadata publication",
+              "surface generation"
+            ],
+            "forbidden": [
+              "orchestration",
+              "delegation decisions",
+              "runtime execution control"
+            ]
+          },
+          "resources": [
+            "/Users/medhat.galal/Desktop/Core-Prompts/ssot/supercharge.md"
+          ],
+          "packaging_profile": {
+            "capability_type": "both",
+            "primary_surfaces": {
+              "codex": [
+                "codex_skill",
+                "codex_agent"
+              ],
+              "gemini": [
+                "gemini_command",
+                "gemini_skill",
+                "gemini_agent"
+              ],
+              "claude": [
+                "claude_command",
+                "claude_agent"
+              ],
+              "kiro": [
+                "kiro_prompt",
+                "kiro_skill",
+                "kiro_agent"
+              ]
+            },
+            "wrapper_surfaces": {
+              "codex": [
+                "plugin_wrapper"
+              ],
+              "gemini": [
+                "command_wrapper",
+                "extension_wrapper"
+              ],
+              "claude": [
+                "command_wrapper",
+                "plugin_wrapper"
+              ],
+              "kiro": [
+                "prompt_wrapper",
+                "power_wrapper"
+              ]
+            },
+            "notes": [
+              "wrapper surfaces are additive deployment forms, not capability types",
+              "orchestrators must not infer execution authority from wrapper presence alone"
+            ]
+          },
+          "install_target": {
+            "recommended": "repo_local",
+            "confidence": 0.88,
+            "confirmation_required_for_apply": true,
+            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+            "supported": [
+              "global",
+              "repo_local",
+              "both"
+            ]
+          },
+          "emitted_surfaces": {
+            "codex": [
+              "codex_skill",
+              "codex_agent"
+            ],
+            "gemini": [
+              "gemini_command",
+              "gemini_skill",
+              "gemini_agent"
+            ],
+            "claude": [
+              "claude_command",
+              "claude_agent"
+            ],
+            "kiro": [
+              "kiro_prompt",
+              "kiro_skill",
+              "kiro_agent"
+            ]
+          },
+          "source_provenance": {
+            "source_type": "LOCAL_FILE",
+            "normalized_source": "/Users/medhat.galal/Desktop/Core-Prompts/ssot/supercharge.md",
+            "policy_rule_id": "ssot.supercharge",
+            "content_sha256": "ssot"
+          },
+          "confidence": 0.98,
+          "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "SuperCharge v4 \u2014 Prompt Engineering Swiss Army Knife (2026+)"
+        },
+        "expanded": {
+          "relationship_suggestions": [
+            "prefer explicit review or analyst companions before high-authority use",
+            "pair with review and analysis capabilities when converging design proposals"
+          ],
+          "capability_dependencies": [
+            "analysis"
+          ],
+          "overlap_candidates": [],
+          "migration_notes": [
+            "If the capability lands, compare it against existing entries before apply.",
+            "Relationship suggestions are advisory only and do not imply runtime routing."
+          ],
+          "adjustment_recommendations": [
+            "add an explicit primary objective before packaging",
+            "add deterministic in-scope sections to improve routing fitness",
+            "capture quality constraints or non-negotiables"
+          ]
+        },
+        "org_graph": {
+          "org_role": "specialist_with_workflow_surface",
+          "reports_to_suggestions": [],
+          "delegates_to_suggestions": [],
+          "collaborates_with_suggestions": [
+            "architecture",
+            "analysis"
+          ],
+          "authority_tier": "advisory",
+          "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
+        }
+      },
+      "display_name": "SuperCharge v4 \u2014 Prompt Engineering Swiss Army Knife (2026+)",
+      "descriptor_version": "capability-fabric.descriptor.v0",
+      "family_slug": "supercharge",
+      "shared_summary": "[Medhat] SuperCharge \u2014 Prompt Engineering Swiss Army Knife (ULT-Agent++ \u2022 Catchup Deep \u2022 Simple \u2022 Invert \u2022 Adversarial \u2022 Contract+QA \u2022 Grade \u2022 GASLIGHT 13)",
+      "shared_constraints": [],
+      "modes": [],
+      "benchmark_sources": [],
+      "consumption_hints": {},
       "declared_capability": "both",
       "inferred_capability": "both",
-      "confidence": 0.98,
-      "deployment_intent": "generate",
-      "signals": [
-        "agent control markers detected",
-        "skill/workflow markers detected",
-        "config-like structure detected",
-        "explicit objective structure detected",
-        "explicit out-of-scope structure detected",
-        "explicit constraint structure detected",
-        "explicit acceptance structure detected",
-        "multi-section prompt/spec structure detected"
-      ],
-      "scorecard": {
-        "agent_score": 6,
-        "skill_score": 16,
-        "config_score": 1,
-        "semantic_category_count": 4,
-        "prompt_marker_hits": 3
-      },
-      "emitted_surfaces": {
-        "codex": [
-          "codex_skill",
-          "codex_agent"
-        ],
-        "gemini": [
-          "gemini_command",
-          "gemini_skill",
-          "gemini_agent"
-        ],
-        "claude": [
-          "claude_command",
-          "claude_agent"
-        ],
-        "kiro": [
-          "kiro_prompt",
-          "kiro_skill",
-          "kiro_agent"
-        ]
-      },
       "expected_surface_names": [
         "codex_skill",
         "codex_agent",
@@ -329,45 +1493,458 @@
         "kiro_skill",
         "kiro_agent"
       ],
-      "rubric_version": "uac-capability-v1"
+      "rubric_version": "capability-fabric.v0"
     },
     {
-      "file": "ssot/threader.md",
+      "slug": "testing",
+      "manifest_version": "capability-fabric.v0",
+      "layers": {
+        "minimal": {
+          "capability_type": "skill",
+          "summary": "Testing Studio for unit-test generation, end-to-end test design, edge-case discovery, and coverage gap analysis.",
+          "role": "advisor",
+          "domain_tags": [
+            "analysis",
+            "planning",
+            "debugging",
+            "prompting",
+            "testing"
+          ],
+          "required_inputs": [
+            "source text",
+            "user intent/context"
+          ],
+          "expected_outputs": [
+            "deterministic summary",
+            "uplift payload",
+            "capability recommendation",
+            "deployment guidance"
+          ],
+          "tool_policy": {
+            "allowed": [
+              "deterministic classification",
+              "metadata publication",
+              "surface generation"
+            ],
+            "forbidden": [
+              "orchestration",
+              "delegation decisions",
+              "runtime execution control"
+            ]
+          },
+          "resources": [
+            "/Users/medhat.galal/Desktop/Core-Prompts/ssot/testing.md"
+          ],
+          "packaging_profile": {
+            "capability_type": "skill",
+            "primary_surfaces": {
+              "codex": [
+                "codex_skill"
+              ],
+              "gemini": [
+                "gemini_command",
+                "gemini_skill"
+              ],
+              "claude": [
+                "claude_command"
+              ],
+              "kiro": [
+                "kiro_prompt",
+                "kiro_skill"
+              ]
+            },
+            "wrapper_surfaces": {
+              "codex": [],
+              "gemini": [
+                "command_wrapper",
+                "extension_wrapper"
+              ],
+              "claude": [
+                "command_wrapper",
+                "plugin_wrapper"
+              ],
+              "kiro": [
+                "prompt_wrapper",
+                "power_wrapper"
+              ]
+            },
+            "notes": [
+              "wrapper surfaces are additive deployment forms, not capability types",
+              "orchestrators must not infer execution authority from wrapper presence alone"
+            ]
+          },
+          "install_target": {
+            "recommended": "repo_local",
+            "confidence": 0.88,
+            "confirmation_required_for_apply": true,
+            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+            "supported": [
+              "global",
+              "repo_local",
+              "both"
+            ]
+          },
+          "emitted_surfaces": {
+            "codex": [
+              "codex_skill"
+            ],
+            "gemini": [
+              "gemini_command",
+              "gemini_skill"
+            ],
+            "claude": [
+              "claude_command"
+            ],
+            "kiro": [
+              "kiro_prompt",
+              "kiro_skill"
+            ]
+          },
+          "source_provenance": {
+            "source_type": "LOCAL_FILE",
+            "normalized_source": "/Users/medhat.galal/Desktop/Core-Prompts/ssot/testing.md",
+            "policy_rule_id": "ssot.testing",
+            "content_sha256": "ssot"
+          },
+          "confidence": 0.96,
+          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a command/skill surface.",
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "Testing Studio \u2014 Test Design and Coverage Analysis"
+        },
+        "expanded": {
+          "relationship_suggestions": [],
+          "capability_dependencies": [],
+          "overlap_candidates": [],
+          "migration_notes": [
+            "If the capability lands, compare it against existing entries before apply.",
+            "Relationship suggestions are advisory only and do not imply runtime routing."
+          ],
+          "adjustment_recommendations": [
+            "add an explicit primary objective before packaging",
+            "add deterministic in-scope sections to improve routing fitness",
+            "capture quality constraints or non-negotiables"
+          ]
+        },
+        "org_graph": {
+          "org_role": "advisor",
+          "reports_to_suggestions": [],
+          "delegates_to_suggestions": [],
+          "collaborates_with_suggestions": [
+            "analysis",
+            "planning"
+          ],
+          "authority_tier": "advisory",
+          "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+        }
+      },
+      "display_name": "Testing Studio \u2014 Test Design and Coverage Analysis",
+      "descriptor_version": "capability-fabric.descriptor.v0",
+      "family_slug": "testing",
+      "shared_summary": "Testing family for unit tests, end-to-end tests, edge-case discovery, and coverage gap analysis.",
+      "shared_constraints": [
+        "Generate or recommend tests only; do not execute them automatically.",
+        "Respect repository-native framework choices.",
+        "Cover edge cases and failure paths, not only the happy path."
+      ],
+      "modes": [
+        {
+          "mode_slug": "generate-unit-tests",
+          "display_name": "Generate Unit Tests",
+          "source_refs": [
+            "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/testing/generate-unit-tests.toml"
+          ],
+          "mode_summary": "Generate isolated, framework-aware unit tests for functions, classes, and modules.",
+          "required_inputs": [
+            "code under test",
+            "testing framework",
+            "important behaviors"
+          ],
+          "expected_outputs": [
+            "test file",
+            "fixtures or mocks",
+            "coverage notes"
+          ],
+          "examples": [
+            "Jest module test",
+            "pytest function suite"
+          ],
+          "uplift_notes": [
+            "Include failure and boundary cases.",
+            "Prefer readable assertions and deterministic setup."
+          ]
+        },
+        {
+          "mode_slug": "generate-e2e-tests",
+          "display_name": "Generate E2E Tests",
+          "source_refs": [
+            "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/testing/generate-e2e-tests.toml"
+          ],
+          "mode_summary": "Design end-to-end tests around complete user or system journeys.",
+          "required_inputs": [
+            "workflow description",
+            "target framework",
+            "environment constraints"
+          ],
+          "expected_outputs": [
+            "journey tests",
+            "setup/teardown plan",
+            "diagnostic expectations"
+          ],
+          "examples": [
+            "Playwright signup flow",
+            "API workflow integration"
+          ],
+          "uplift_notes": [
+            "Call out test-data setup and synchronization explicitly.",
+            "Prefer critical user paths over broad UI clicking."
+          ]
+        },
+        {
+          "mode_slug": "edge-cases",
+          "display_name": "Edge Cases",
+          "source_refs": [
+            "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/testing/edge-cases.toml"
+          ],
+          "mode_summary": "Identify boundary conditions, invalid states, and failure modes missing from current coverage.",
+          "required_inputs": [
+            "feature description",
+            "existing tests",
+            "risk areas"
+          ],
+          "expected_outputs": [
+            "edge-case catalog",
+            "risk ranking",
+            "tests to add first"
+          ],
+          "examples": [
+            "Null and empty input handling",
+            "concurrency timing issues"
+          ],
+          "uplift_notes": [
+            "Rank by business or failure impact.",
+            "Avoid flat lists without prioritization."
+          ]
+        },
+        {
+          "mode_slug": "coverage-analysis",
+          "display_name": "Coverage Analysis",
+          "source_refs": [
+            "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/testing/coverage-analysis.toml"
+          ],
+          "mode_summary": "Analyze current coverage and identify what remains untested or under-tested.",
+          "required_inputs": [
+            "coverage report or test inventory",
+            "source files",
+            "risk context"
+          ],
+          "expected_outputs": [
+            "gap report",
+            "risk-based priorities",
+            "recommended next tests"
+          ],
+          "examples": [
+            "Branch coverage gap review",
+            "critical-path coverage audit"
+          ],
+          "uplift_notes": [
+            "Tie missing tests to specific code paths or workflows.",
+            "Separate critical gaps from routine improvements."
+          ]
+        }
+      ],
+      "benchmark_sources": [
+        {
+          "provider": "github",
+          "label": "harish-garg/gemini-cli-prompt-library (testing family seed)",
+          "url": "https://github.com/harish-garg/gemini-cli-prompt-library/tree/main/commands/testing",
+          "note": "Useful four-mode skeleton for test generation and gap analysis."
+        },
+        {
+          "provider": "github",
+          "label": "promptfoo/promptfoo",
+          "url": "https://github.com/promptfoo/promptfoo",
+          "note": "Good benchmark for evaluation rigor and regression thinking, though not a direct prompt-family replacement."
+        }
+      ],
+      "consumption_hints": {
+        "preferred_use_cases": [
+          "unit test design",
+          "end-to-end test design",
+          "edge-case discovery",
+          "coverage gap analysis"
+        ],
+        "artifact_conventions": [
+          "reports/testing/<timestamp>-plan.md",
+          "reports/testing/<timestamp>-coverage-gap.md",
+          "reports/testing/<timestamp>-edge-cases.md"
+        ],
+        "invocation_style": "analysis_or_generation",
+        "requires_human_confirmation": false
+      },
+      "declared_capability": "skill",
+      "inferred_capability": "skill",
+      "expected_surface_names": [
+        "codex_skill",
+        "gemini_command",
+        "gemini_skill",
+        "claude_command",
+        "kiro_prompt",
+        "kiro_skill"
+      ],
+      "rubric_version": "capability-fabric.v0"
+    },
+    {
       "slug": "threader",
-      "name": "threader",
-      "description": "[Medhat] Context Threader & Exporter (Memory Management)",
+      "manifest_version": "capability-fabric.v0",
+      "layers": {
+        "minimal": {
+          "capability_type": "skill",
+          "summary": "[Medhat] Context Threader & Exporter (Memory Management)",
+          "role": "resolver",
+          "domain_tags": [
+            "planning",
+            "debugging",
+            "context",
+            "prompting",
+            "threader"
+          ],
+          "required_inputs": [
+            "source text",
+            "user intent/context"
+          ],
+          "expected_outputs": [
+            "deterministic summary",
+            "uplift payload",
+            "capability recommendation",
+            "deployment guidance"
+          ],
+          "tool_policy": {
+            "allowed": [
+              "deterministic classification",
+              "metadata publication",
+              "surface generation"
+            ],
+            "forbidden": [
+              "orchestration",
+              "delegation decisions",
+              "runtime execution control"
+            ]
+          },
+          "resources": [
+            "/Users/medhat.galal/Desktop/Core-Prompts/ssot/threader.md"
+          ],
+          "packaging_profile": {
+            "capability_type": "skill",
+            "primary_surfaces": {
+              "codex": [
+                "codex_skill"
+              ],
+              "gemini": [
+                "gemini_command",
+                "gemini_skill"
+              ],
+              "claude": [
+                "claude_command"
+              ],
+              "kiro": [
+                "kiro_prompt",
+                "kiro_skill"
+              ]
+            },
+            "wrapper_surfaces": {
+              "codex": [],
+              "gemini": [
+                "command_wrapper",
+                "extension_wrapper"
+              ],
+              "claude": [
+                "command_wrapper",
+                "plugin_wrapper"
+              ],
+              "kiro": [
+                "prompt_wrapper",
+                "power_wrapper"
+              ]
+            },
+            "notes": [
+              "wrapper surfaces are additive deployment forms, not capability types",
+              "orchestrators must not infer execution authority from wrapper presence alone"
+            ]
+          },
+          "install_target": {
+            "recommended": "repo_local",
+            "confidence": 0.88,
+            "confirmation_required_for_apply": true,
+            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+            "supported": [
+              "global",
+              "repo_local",
+              "both"
+            ]
+          },
+          "emitted_surfaces": {
+            "codex": [
+              "codex_skill"
+            ],
+            "gemini": [
+              "gemini_command",
+              "gemini_skill"
+            ],
+            "claude": [
+              "claude_command"
+            ],
+            "kiro": [
+              "kiro_prompt",
+              "kiro_skill"
+            ]
+          },
+          "source_provenance": {
+            "source_type": "LOCAL_FILE",
+            "normalized_source": "/Users/medhat.galal/Desktop/Core-Prompts/ssot/threader.md",
+            "policy_rule_id": "ssot.threader",
+            "content_sha256": "ssot"
+          },
+          "confidence": 0.76,
+          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a command/skill surface.",
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "THREADER \u2014 Full-Thread Transcript Exporter (Introspective / Recall-Based) \u2014 v2.0 (2026-01-10)"
+        },
+        "expanded": {
+          "relationship_suggestions": [],
+          "capability_dependencies": [],
+          "overlap_candidates": [],
+          "migration_notes": [
+            "If the capability lands, compare it against existing entries before apply.",
+            "Relationship suggestions are advisory only and do not imply runtime routing."
+          ],
+          "adjustment_recommendations": [
+            "add an explicit primary objective before packaging",
+            "add deterministic in-scope sections to improve routing fitness",
+            "capture quality constraints or non-negotiables"
+          ]
+        },
+        "org_graph": {
+          "org_role": "resolver",
+          "reports_to_suggestions": [],
+          "delegates_to_suggestions": [],
+          "collaborates_with_suggestions": [
+            "planning",
+            "debugging"
+          ],
+          "authority_tier": "advisory",
+          "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+        }
+      },
+      "display_name": "THREADER \u2014 Full-Thread Transcript Exporter (Introspective / Recall-Based) \u2014 v2.0 (2026-01-10)",
+      "descriptor_version": "capability-fabric.descriptor.v0",
+      "family_slug": "threader",
+      "shared_summary": "[Medhat] Context Threader & Exporter (Memory Management)",
+      "shared_constraints": [],
+      "modes": [],
+      "benchmark_sources": [],
+      "consumption_hints": {},
       "declared_capability": "skill",
       "inferred_capability": "skill",
-      "confidence": 0.76,
-      "deployment_intent": "generate_with_review",
-      "signals": [
-        "agent control markers detected",
-        "skill/workflow markers detected",
-        "explicit constraint structure detected"
-      ],
-      "scorecard": {
-        "agent_score": 2,
-        "skill_score": 4,
-        "config_score": 0,
-        "semantic_category_count": 1,
-        "prompt_marker_hits": 0
-      },
-      "emitted_surfaces": {
-        "codex": [
-          "codex_skill"
-        ],
-        "gemini": [
-          "gemini_command",
-          "gemini_skill"
-        ],
-        "claude": [
-          "claude_command"
-        ],
-        "kiro": [
-          "kiro_prompt",
-          "kiro_skill"
-        ]
-      },
       "expected_surface_names": [
         "codex_skill",
         "gemini_command",
@@ -376,45 +1953,176 @@
         "kiro_prompt",
         "kiro_skill"
       ],
-      "rubric_version": "uac-capability-v1"
+      "rubric_version": "capability-fabric.v0"
     },
     {
-      "file": "ssot/uac-import.md",
       "slug": "uac-import",
-      "name": "uac-import",
-      "description": "Import one external prompt/spec source into the deterministic UAC uplift and packaging flow.",
+      "manifest_version": "capability-fabric.v0",
+      "layers": {
+        "minimal": {
+          "capability_type": "skill",
+          "summary": "UAC Import for capability intake, quality review, uplift, and canonical SSOT plus descriptor landing.",
+          "role": "analyst",
+          "domain_tags": [
+            "review",
+            "packaging",
+            "import",
+            "planning",
+            "prompting"
+          ],
+          "required_inputs": [
+            "source text",
+            "user intent/context"
+          ],
+          "expected_outputs": [
+            "deterministic summary",
+            "uplift payload",
+            "capability recommendation",
+            "deployment guidance"
+          ],
+          "tool_policy": {
+            "allowed": [
+              "deterministic classification",
+              "metadata publication",
+              "surface generation"
+            ],
+            "forbidden": [
+              "orchestration",
+              "delegation decisions",
+              "runtime execution control"
+            ]
+          },
+          "resources": [
+            "/Users/medhat.galal/Desktop/Core-Prompts/ssot/uac-import.md"
+          ],
+          "packaging_profile": {
+            "capability_type": "skill",
+            "primary_surfaces": {
+              "codex": [
+                "codex_skill"
+              ],
+              "gemini": [
+                "gemini_command",
+                "gemini_skill"
+              ],
+              "claude": [
+                "claude_command"
+              ],
+              "kiro": [
+                "kiro_prompt",
+                "kiro_skill"
+              ]
+            },
+            "wrapper_surfaces": {
+              "codex": [],
+              "gemini": [
+                "command_wrapper",
+                "extension_wrapper"
+              ],
+              "claude": [
+                "command_wrapper",
+                "plugin_wrapper"
+              ],
+              "kiro": [
+                "prompt_wrapper",
+                "power_wrapper"
+              ]
+            },
+            "notes": [
+              "wrapper surfaces are additive deployment forms, not capability types",
+              "orchestrators must not infer execution authority from wrapper presence alone"
+            ]
+          },
+          "install_target": {
+            "recommended": "repo_local",
+            "confidence": 0.88,
+            "confirmation_required_for_apply": true,
+            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+            "supported": [
+              "global",
+              "repo_local",
+              "both"
+            ]
+          },
+          "emitted_surfaces": {
+            "codex": [
+              "codex_skill"
+            ],
+            "gemini": [
+              "gemini_command",
+              "gemini_skill"
+            ],
+            "claude": [
+              "claude_command"
+            ],
+            "kiro": [
+              "kiro_prompt",
+              "kiro_skill"
+            ]
+          },
+          "source_provenance": {
+            "source_type": "LOCAL_FILE",
+            "normalized_source": "/Users/medhat.galal/Desktop/Core-Prompts/ssot/uac-import.md",
+            "policy_rule_id": "ssot.uac-import",
+            "content_sha256": "ssot"
+          },
+          "confidence": 0.97,
+          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a command/skill surface.",
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "UAC Import \u2014 Capability Intake, Quality Review, and Uplift"
+        },
+        "expanded": {
+          "relationship_suggestions": [],
+          "capability_dependencies": [
+            "context",
+            "packaging"
+          ],
+          "overlap_candidates": [],
+          "migration_notes": [
+            "If the capability lands, compare it against existing entries before apply.",
+            "Relationship suggestions are advisory only and do not imply runtime routing."
+          ],
+          "adjustment_recommendations": [
+            "add an explicit primary objective before packaging",
+            "add deterministic in-scope sections to improve routing fitness",
+            "capture quality constraints or non-negotiables"
+          ]
+        },
+        "org_graph": {
+          "org_role": "analyst",
+          "reports_to_suggestions": [],
+          "delegates_to_suggestions": [],
+          "collaborates_with_suggestions": [
+            "review",
+            "packaging"
+          ],
+          "authority_tier": "advisory",
+          "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+        }
+      },
+      "display_name": "UAC Import \u2014 Capability Intake, Quality Review, and Uplift",
+      "descriptor_version": "capability-fabric.descriptor.v0",
+      "family_slug": "uac-import",
+      "shared_summary": "Import external prompt, skill, or agent sources into the deterministic UAC uplift and packaging flow.",
+      "shared_constraints": [],
+      "modes": [],
+      "benchmark_sources": [],
+      "consumption_hints": {
+        "preferred_use_cases": [
+          "external prompt import",
+          "multi-source capability convergence",
+          "descriptor and handoff generation"
+        ],
+        "artifact_conventions": [
+          "ssot/<slug>.md",
+          ".meta/capabilities/<slug>.json",
+          "reports/quality-reviews/<slug>/LATEST.md"
+        ],
+        "invocation_style": "assistant_first_but_scriptable",
+        "requires_human_confirmation": true
+      },
       "declared_capability": "skill",
       "inferred_capability": "skill",
-      "confidence": 0.96,
-      "deployment_intent": "generate",
-      "signals": [
-        "skill/workflow markers detected",
-        "explicit objective structure detected",
-        "explicit constraint structure detected"
-      ],
-      "scorecard": {
-        "agent_score": 0,
-        "skill_score": 8,
-        "config_score": 0,
-        "semantic_category_count": 2,
-        "prompt_marker_hits": 2
-      },
-      "emitted_surfaces": {
-        "codex": [
-          "codex_skill"
-        ],
-        "gemini": [
-          "gemini_command",
-          "gemini_skill"
-        ],
-        "claude": [
-          "claude_command"
-        ],
-        "kiro": [
-          "kiro_prompt",
-          "kiro_skill"
-        ]
-      },
       "expected_surface_names": [
         "codex_skill",
         "gemini_command",
@@ -423,98 +2131,176 @@
         "kiro_prompt",
         "kiro_skill"
       ],
-      "rubric_version": "uac-capability-v1"
+      "rubric_version": "capability-fabric.v0"
     }
   ],
   "surfaces": {
     "gemini_command": [
       ".gemini/commands/analyze-context.toml",
+      ".gemini/commands/architecture.toml",
       ".gemini/commands/code-review.toml",
       ".gemini/commands/converge.toml",
       ".gemini/commands/mentor.toml",
       ".gemini/commands/resolve-conflict.toml",
       ".gemini/commands/supercharge.toml",
+      ".gemini/commands/testing.toml",
       ".gemini/commands/threader.toml",
       ".gemini/commands/uac-import.toml"
     ],
     "gemini_skill": [
       ".gemini/skills/analyze-context/SKILL.md",
+      ".gemini/skills/architecture/SKILL.md",
       ".gemini/skills/code-review/SKILL.md",
       ".gemini/skills/converge/SKILL.md",
       ".gemini/skills/mentor/SKILL.md",
       ".gemini/skills/resolve-conflict/SKILL.md",
       ".gemini/skills/supercharge/SKILL.md",
+      ".gemini/skills/testing/SKILL.md",
       ".gemini/skills/threader/SKILL.md",
       ".gemini/skills/uac-import/SKILL.md"
     ],
     "gemini_agent": [
+      ".gemini/agents/architecture.md",
       ".gemini/agents/converge.md",
       ".gemini/agents/mentor.md",
       ".gemini/agents/supercharge.md"
     ],
     "claude_command": [
       ".claude/commands/analyze-context.md",
+      ".claude/commands/architecture.md",
       ".claude/commands/code-review.md",
       ".claude/commands/converge.md",
       ".claude/commands/mentor.md",
       ".claude/commands/resolve-conflict.md",
       ".claude/commands/supercharge.md",
+      ".claude/commands/testing.md",
       ".claude/commands/threader.md",
       ".claude/commands/uac-import.md"
     ],
     "claude_agent": [
+      ".claude/agents/architecture.md",
       ".claude/agents/converge.md",
       ".claude/agents/mentor.md",
       ".claude/agents/supercharge.md"
     ],
     "kiro_prompt": [
       ".kiro/prompts/analyze-context.md",
+      ".kiro/prompts/architecture.md",
       ".kiro/prompts/code-review.md",
       ".kiro/prompts/converge.md",
       ".kiro/prompts/mentor.md",
       ".kiro/prompts/resolve-conflict.md",
       ".kiro/prompts/supercharge.md",
+      ".kiro/prompts/testing.md",
       ".kiro/prompts/threader.md",
       ".kiro/prompts/uac-import.md"
     ],
     "kiro_agent": [
+      ".kiro/agents/architecture.json",
       ".kiro/agents/converge.json",
       ".kiro/agents/mentor.json",
       ".kiro/agents/supercharge.json"
     ],
     "kiro_skill": [
       ".kiro/skills/analyze-context/SKILL.md",
+      ".kiro/skills/architecture/SKILL.md",
       ".kiro/skills/code-review/SKILL.md",
       ".kiro/skills/converge/SKILL.md",
       ".kiro/skills/mentor/SKILL.md",
       ".kiro/skills/resolve-conflict/SKILL.md",
       ".kiro/skills/supercharge/SKILL.md",
+      ".kiro/skills/testing/SKILL.md",
       ".kiro/skills/threader/SKILL.md",
       ".kiro/skills/uac-import/SKILL.md"
     ],
     "codex_skill": [
       ".codex/skills/analyze-context/SKILL.md",
+      ".codex/skills/architecture/SKILL.md",
       ".codex/skills/code-review/SKILL.md",
       ".codex/skills/converge/SKILL.md",
       ".codex/skills/mentor/SKILL.md",
       ".codex/skills/resolve-conflict/SKILL.md",
       ".codex/skills/supercharge/SKILL.md",
+      ".codex/skills/testing/SKILL.md",
       ".codex/skills/threader/SKILL.md",
       ".codex/skills/uac-import/SKILL.md"
     ],
     "codex_agent": [
+      ".codex/agents/architecture.toml",
       ".codex/agents/converge.toml",
       ".codex/agents/mentor.toml",
       ".codex/agents/supercharge.toml"
     ]
   },
+  "resources": {
+    "codex_skill": [
+      ".codex/skills/analyze-context/resources/capability.json",
+      ".codex/skills/architecture/resources/capability.json",
+      ".codex/skills/code-review/resources/capability.json",
+      ".codex/skills/converge/resources/capability.json",
+      ".codex/skills/mentor/resources/capability.json",
+      ".codex/skills/resolve-conflict/resources/capability.json",
+      ".codex/skills/supercharge/resources/capability.json",
+      ".codex/skills/testing/resources/capability.json",
+      ".codex/skills/threader/resources/capability.json",
+      ".codex/skills/uac-import/resources/capability.json"
+    ],
+    "codex_agent": [
+      ".codex/agents/resources/architecture/capability.json",
+      ".codex/agents/resources/converge/capability.json",
+      ".codex/agents/resources/mentor/capability.json",
+      ".codex/agents/resources/supercharge/capability.json"
+    ],
+    "gemini_skill": [
+      ".gemini/skills/analyze-context/resources/capability.json",
+      ".gemini/skills/architecture/resources/capability.json",
+      ".gemini/skills/code-review/resources/capability.json",
+      ".gemini/skills/converge/resources/capability.json",
+      ".gemini/skills/mentor/resources/capability.json",
+      ".gemini/skills/resolve-conflict/resources/capability.json",
+      ".gemini/skills/supercharge/resources/capability.json",
+      ".gemini/skills/testing/resources/capability.json",
+      ".gemini/skills/threader/resources/capability.json",
+      ".gemini/skills/uac-import/resources/capability.json"
+    ],
+    "gemini_agent": [
+      ".gemini/agents/resources/architecture/capability.json",
+      ".gemini/agents/resources/converge/capability.json",
+      ".gemini/agents/resources/mentor/capability.json",
+      ".gemini/agents/resources/supercharge/capability.json"
+    ],
+    "claude_agent": [
+      ".claude/agents/resources/architecture/capability.json",
+      ".claude/agents/resources/converge/capability.json",
+      ".claude/agents/resources/mentor/capability.json",
+      ".claude/agents/resources/supercharge/capability.json"
+    ],
+    "kiro_skill": [
+      ".kiro/skills/analyze-context/resources/capability.json",
+      ".kiro/skills/architecture/resources/capability.json",
+      ".kiro/skills/code-review/resources/capability.json",
+      ".kiro/skills/converge/resources/capability.json",
+      ".kiro/skills/mentor/resources/capability.json",
+      ".kiro/skills/resolve-conflict/resources/capability.json",
+      ".kiro/skills/supercharge/resources/capability.json",
+      ".kiro/skills/testing/resources/capability.json",
+      ".kiro/skills/threader/resources/capability.json",
+      ".kiro/skills/uac-import/resources/capability.json"
+    ],
+    "kiro_agent": [
+      ".kiro/agents/resources/architecture/capability.json",
+      ".kiro/agents/resources/converge/capability.json",
+      ".kiro/agents/resources/mentor/capability.json",
+      ".kiro/agents/resources/supercharge/capability.json"
+    ]
+  },
   "validation": {
-    "validated_at": "2026-03-14T18:20:00.324951+00:00",
+    "validated_at": "2026-03-17T23:15:50.090491+00:00",
     "strict": true,
     "with_cli": false,
     "fail_on_cli_miss": false,
     "rules_file": ".meta/surface-rules.json",
-    "rules_sha256": "e0d6c5d1bab0e543ab8f4123264fbd50144f3b6402c95dad338842ee78288c46",
+    "rules_sha256": "716af24ae1b5721ba7f2fa70b4c03f14daeac68062180c79182ea0ce05b7abe8",
     "schema_cache_ttl_days": 14,
     "schema_cache_sources_checked": [
       "https://docs.anthropic.com/en/docs/claude-code/skills",
@@ -536,7 +2322,7 @@
         "available": true,
         "version_exit_code": 0,
         "version_output": [
-          "codex-cli 0.114.0"
+          "codex-cli 0.115.0"
         ]
       },
       "gemini": {
@@ -545,7 +2331,7 @@
         "available": true,
         "version_exit_code": 0,
         "version_output": [
-          "0.33.1"
+          "0.33.2"
         ]
       },
       "claude": {
@@ -554,7 +2340,7 @@
         "available": true,
         "version_exit_code": 0,
         "version_output": [
-          "2.1.59 (Claude Code)"
+          "2.1.9 (Claude Code)"
         ]
       },
       "kiro": {
