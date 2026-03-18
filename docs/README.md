@@ -19,6 +19,7 @@ Use this page to choose the right documentation path.
 ## Maintainer / Release Docs
 - [Technical README](README_TECHNICAL.md)
 - [Repository architecture](ARCHITECTURE.md)
+- [Maintainer hygiene rules](MAINTAINER-HYGIENE.md)
 - [Release packaging](RELEASE-PACKAGING.md)
 
 ## Research / Authoring Docs

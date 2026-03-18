@@ -8,6 +8,7 @@ Use this index when you need operational and implementation detail beyond the ro
 - [Examples](EXAMPLES.md): full run examples for each prompt.
 - [CLI Integration Reference](CLI-REFERENCE.md): per-CLI surfaces, deployment targets, and verification commands.
 - [Architecture](ARCHITECTURE.md): SSOT model, generators, validators, manifest, and deployment design.
+- [Maintainer Hygiene Rules](MAINTAINER-HYGIENE.md): durable docs and GitOps review timing, parity, and lessons-capture rules.
 - [FAQ](FAQ.md): common problems and practical fixes.
 
 ## Source of Truth Notes

@@ -4,6 +4,9 @@ description: "[Medhat] Iterative Analysis Workflow for multi-file processing"
 
 # Iterative Analysis Workflow
 
+## Purpose
+Use this capability for multi-file or multi-source analysis that must preserve context, findings, and progress across long sessions or memory compaction.
+
 ## Safety Check
 Before proceeding, you MUST check the current branch.
 ```bash
@@ -15,6 +18,7 @@ This steering file defines a standard workflow for any multi-step analysis task 
 - Processing multiple files/items
 - Maintaining context across memory compactions
 - Accumulating insights iteratively
+- Producing one canonical set of memory files instead of scattered notes
 
 ## Required Memory Files
 

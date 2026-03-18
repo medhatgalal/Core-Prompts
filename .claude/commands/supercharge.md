@@ -1,10 +1,10 @@
 ---
-description: "[Medhat] SuperCharge — Prompt Engineering Swiss Army Knife (ULT-Agent++ • Catchup Deep • Simple • Invert • Adversarial • Contract+QA • Grade • GASLIGHT 13)"
+description: "[Medhat] SuperCharge for prompt creation, prompt refinement, planning hardening, option comparison, multi-pass critique, and structured execution-quality improvement."
 ---
 
 # SuperCharge v4 — Prompt Engineering Swiss Army Knife (2026+)
 
-SuperCharge is a **portable behavior layer** that upgrades human↔LLM interaction quality. It is designed to work in any chat, CLI, or agentic environment **without depending on external tools or file paths**.
+SuperCharge is a **portable behavior layer** for prompt creation, prompt refinement, planning hardening, option comparison, and multi-pass critique. It is designed to work in any chat, CLI, or agentic environment **without depending on external tools or file paths**.
 
 > Tip: `supercharge help` (or `supercharge /help`, `-h`, `--help`) prints the quick guide.  
 > Tip: `supercharge details` prints the full module reference (this spec).
