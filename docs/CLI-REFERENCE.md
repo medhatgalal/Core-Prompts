@@ -7,6 +7,7 @@ This document defines generated surface paths, deploy behavior, and validation c
 - descriptors: `.meta/capabilities/`
 - manifest: `.meta/manifest.json`
 - handoff contract: `.meta/capability-handoff.json`
+- persisted local source references inside canonical metadata and bundled `capability.json` resources must be repo-relative, not absolute machine paths
 
 ## Core Commands
 ```bash
@@ -47,6 +48,7 @@ scripts/deploy-surfaces.sh --dry-run --cli all
 - `deploy` copies generated artifacts to a target root
 - deployment is copy-only and never creates symlinks
 - default target root is the repository root unless `--target` is provided
+- install does not rewrite capability metadata paths; portability must already be correct in the built artifacts
 
 ## Smoke Checks
 - version/help probes run for all configured CLIs

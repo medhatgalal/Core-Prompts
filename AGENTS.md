@@ -31,6 +31,8 @@
 - Canonical aggregate advisory metadata lives in `.meta/capability-handoff.json` and `.meta/manifest.json`.
 - Canonical quality policy lives under `.meta/quality-profiles/`.
 - Generated review evidence and similar run artifacts belong under `reports/`, not under `.meta/`.
+- Persisted local source references in canonical metadata must be repo-relative, not absolute machine paths.
+- Bundled `capability.json` resources must stay machine-portable; install/deploy must not rely on rewriting metadata paths.
 - Vendor formats are validated against cache snapshots in `.meta/schema-cache/manifest.json`.
 - Update schema cache by running `python3 scripts/sync-surface-specs.py` before strict checks when docs changed.
 - The validator is implemented as a verifier and must match the rule definitions; changes must be made to rules first, then generator/validator.

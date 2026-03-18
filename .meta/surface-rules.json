@@ -12,6 +12,15 @@
       "If destination path is a symlink, unlink that path and copy a regular file."
     ]
   },
+  "metadata_policy": {
+    "portable_local_source_refs": true,
+    "local_source_ref_format": "repo_relative",
+    "forbid_absolute_local_source_refs_in_persisted_metadata": true,
+    "notes": [
+      "Canonical capability metadata must store repo-relative source references for repo-local SSOT files.",
+      "Bundled capability.json resources must remain machine-portable and must not persist build-machine absolute filesystem paths."
+    ]
+  },
   "tooling": [
     {
       "name": "codex",
