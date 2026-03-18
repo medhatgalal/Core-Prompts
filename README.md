@@ -24,6 +24,7 @@ bin/uac apply /absolute/path/to/family-folder --yes
 bin/capability-fabric build
 bin/capability-fabric validate --strict
 scripts/deploy-surfaces.sh --dry-run --cli all
+scripts/install-local.sh --dry-run --target "$HOME" --allow-nonlocal-target
 ```
 
 ## Canonical Model
@@ -44,6 +45,7 @@ Generated surfaces are derived artifacts under `.codex/`, `.gemini/`, `.claude/`
 ## Apply vs Deploy vs Package
 - `apply`: mutates this repo only, rebuilds surfaces, and validates
 - `deploy`: copies generated surfaces and bundled resources to a target root
+- `install-local.sh`: convenience wrapper for home-targeted copy installs; still copy-only and still explicit
 - `package`: produces release archives from the curated runtime/integration boundary
 
 ## Documentation

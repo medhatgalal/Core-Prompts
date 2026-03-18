@@ -32,6 +32,17 @@ bin/uac apply /absolute/path/to/family-folder --yes
 - smoke checks pass when local CLIs are installed
 - dry-run deploy shows the intended copies
 
+## Deploy Modes
+Repo-local dry run:
+```bash
+scripts/deploy-surfaces.sh --dry-run --cli all
+```
+
+Home-targeted dry run:
+```bash
+scripts/install-local.sh --dry-run --target "$HOME" --allow-nonlocal-target
+```
+
 ## Next Docs
 - [Examples](EXAMPLES.md)
 - [FAQ](FAQ.md)

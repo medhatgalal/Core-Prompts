@@ -12,11 +12,12 @@ Best used through an AI assistant turn-by-turn, but fully scriptable from shell.
 Commands:
   build                   Generate all CLI surfaces and bundled resources
   validate [--strict]     Validate generated surfaces
-  deploy [args...]        Copy generated surfaces to CLI homes
+  deploy [args...]        Copy generated surfaces to a target root
 
 Notes:
   - build and validate operate inside this repo.
   - deploy copies generated artifacts; it does not classify sources or mutate SSOT.
+  - deploy defaults to the repository root; use --target "$HOME" to install into CLI homes.
 EOF
 }
 
