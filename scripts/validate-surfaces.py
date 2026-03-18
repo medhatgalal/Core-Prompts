@@ -121,6 +121,39 @@ def validate_json(path: Path, required_fields: list[str], slug: str, resource_pa
     return errors
 
 
+LOCAL_ABSOLUTE_SOURCE_PATTERN = re.compile(r"^(/|[A-Za-z]:[\\/]).+")
+
+
+def _find_absolute_local_source_refs(value, *, path_parts: tuple[str, ...] = ()):
+    findings: list[tuple[str, str]] = []
+    if isinstance(value, dict):
+        for key, nested in value.items():
+            findings.extend(_find_absolute_local_source_refs(nested, path_parts=(*path_parts, str(key))))
+        return findings
+    if isinstance(value, list):
+        for index, nested in enumerate(value):
+            findings.extend(_find_absolute_local_source_refs(nested, path_parts=(*path_parts, str(index))))
+        return findings
+    if not isinstance(value, str):
+        return findings
+    if not LOCAL_ABSOLUTE_SOURCE_PATTERN.match(value):
+        return findings
+    joined = ".".join(path_parts)
+    if joined.endswith("layers.minimal.resources.0") or joined.endswith("layers.minimal.source_provenance.normalized_source"):
+        findings.append((joined, value))
+    return findings
+
+
+def validate_portable_capability_metadata(path: Path):
+    try:
+        data = json.loads(path.read_text(encoding='utf-8'))
+    except Exception as exc:
+        return [f'{path}: invalid json ({exc})']
+
+    findings = _find_absolute_local_source_refs(data)
+    return [f'{path}: absolute local source reference is not portable at {joined}: {value}' for joined, value in findings]
+
+
 def validate_schema_artifact(
     rule: dict,
     slug: str,
@@ -214,6 +247,15 @@ def collect_actual(rule: dict):
         str((base / p.name).relative_to(ROOT))
         for p in sorted(base.glob(pattern))
     }
+
+
+def collect_capability_metadata_paths() -> list[Path]:
+    descriptor_paths = sorted((ROOT / '.meta' / 'capabilities').glob('*.json'))
+    bundled_paths = sorted(ROOT.glob('.codex/**/capability.json'))
+    bundled_paths += sorted(ROOT.glob('.gemini/**/capability.json'))
+    bundled_paths += sorted(ROOT.glob('.claude/**/capability.json'))
+    bundled_paths += sorted(ROOT.glob('.kiro/**/capability.json'))
+    return [ROOT / '.meta' / 'manifest.json', *descriptor_paths, *bundled_paths]
 
 
 def load_cache() -> dict:
@@ -405,6 +447,9 @@ def main():
     manifest_ssot = {entry.get('slug') for entry in manifest_entries}
     if manifest_ssot != ssot_slugs:
         errors.append('manifest slugs do not match ssot directory')
+
+    for metadata_path in collect_capability_metadata_paths():
+        errors.extend(validate_portable_capability_metadata(metadata_path))
 
     # CLI existence checks for optional/strict behavior
     cli_errors, cli_warnings = cli_probe_warnings(rules_obj, args)
