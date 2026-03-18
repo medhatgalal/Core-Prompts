@@ -5,14 +5,20 @@ import subprocess
 import sys
 from pathlib import Path
 
-from intent_pipeline.uac_manifest import analyze_manifest_fit, build_capability_manifest, infer_install_target, orchestrator_handoff_payload
+from intent_pipeline.uac_manifest import (
+    analyze_manifest_fit,
+    build_capability_manifest,
+    infer_install_target,
+    normalize_persisted_source_reference,
+    orchestrator_handoff_payload,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_infer_install_target_prefers_repo_local_for_repo_file() -> None:
     target = infer_install_target(
-        str((ROOT / 'ssot' / 'uac-import.md').resolve()),
+        'ssot/uac-import.md',
         source_type='LOCAL_FILE',
         repo_root=ROOT,
     )
@@ -29,6 +35,16 @@ def test_infer_install_target_prefers_global_for_remote_source() -> None:
     )
 
     assert target['recommended'] == 'global'
+
+
+def test_normalize_persisted_source_reference_uses_repo_relative_for_repo_file() -> None:
+    normalized = normalize_persisted_source_reference(
+        str((ROOT / 'ssot' / 'architecture.md').resolve()),
+        source_type='LOCAL_FILE',
+        repo_root=ROOT,
+    )
+
+    assert normalized == 'ssot/architecture.md'
 
 
 def test_build_capability_manifest_creates_layered_schema() -> None:
@@ -58,6 +74,35 @@ def test_build_capability_manifest_creates_layered_schema() -> None:
     assert set(manifest['layers']) == {'minimal', 'expanded', 'org_graph'}
     assert manifest['layers']['minimal']['tool_policy']['forbidden']
     assert manifest['layers']['org_graph']['authority_tier'] == 'advisory'
+
+
+def test_build_capability_manifest_persists_repo_relative_local_sources() -> None:
+    manifest = build_capability_manifest(
+        slug='architecture',
+        source_metadata={
+            'source_type': 'LOCAL_FILE',
+            'normalized_source': str((ROOT / 'ssot' / 'architecture.md').resolve()),
+            'policy_rule_id': 'ssot.architecture',
+            'content_type': 'text/markdown',
+            'content_sha256': 'ssot',
+        },
+        raw_text='architecture review',
+        summary='Architecture review summary',
+        assessment_payload={
+            'capability_type': 'skill',
+            'confidence': 0.91,
+            'rationale': 'Structured workflow',
+            'emitted_surfaces': {'codex': ['codex_skill'], 'claude': ['claude_command']},
+        },
+        uplift_payload={'primary_objective': 'review architecture', 'in_scope': ['boundaries'], 'quality_constraints': ['deterministic']},
+        routing_payload={'route_profile': 'VALIDATION'},
+        repo_root=ROOT,
+    )
+
+    minimal = manifest['layers']['minimal']
+    assert minimal['resources'] == ['ssot/architecture.md']
+    assert minimal['source_provenance']['normalized_source'] == 'ssot/architecture.md'
+    assert minimal['install_target']['recommended'] == 'repo_local'
 
 
 def test_analyze_manifest_fit_detects_duplicate_slug() -> None:

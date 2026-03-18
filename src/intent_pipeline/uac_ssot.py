@@ -16,7 +16,13 @@ from intent_pipeline.uac_capabilities import (
 )
 from intent_pipeline.uac_descriptors import load_descriptor, normalize_descriptor_summary
 from intent_pipeline.uac_extract import extract_uac_analysis_text
-from intent_pipeline.uac_manifest import analyze_manifest_fit, build_capability_manifest, orchestrator_handoff_payload, packaging_profile
+from intent_pipeline.uac_manifest import (
+    analyze_manifest_fit,
+    build_capability_manifest,
+    normalize_persisted_source_reference,
+    orchestrator_handoff_payload,
+    packaging_profile,
+)
 
 
 @dataclass(frozen=True, slots=True)
@@ -89,12 +95,18 @@ def load_ssot_entries(ssot_dir: Path) -> list[SsotEntry]:
 
 def _assess_entry(entry: SsotEntry) -> tuple[UacAssessment, dict[str, object], dict[str, object], dict[str, object]]:
     extraction = extract_uac_analysis_text(entry.raw_text, entry.path.name)
+    repo_root = entry.path.parents[1]
+    persisted_source = normalize_persisted_source_reference(
+        str(entry.path.resolve()),
+        source_type="LOCAL_FILE",
+        repo_root=repo_root,
+    )
     inferred = assess_uac_source(
         entry.raw_text,
         analysis_text=extraction.analysis_text,
         source_metadata={
             "source_type": "LOCAL_FILE",
-            "normalized_source": str(entry.path.resolve()),
+            "normalized_source": persisted_source,
             "policy_rule_id": f"ssot.{entry.slug}",
             "content_type": "text/markdown",
             "content_sha256": "ssot",
@@ -113,7 +125,7 @@ def _assess_entry(entry: SsotEntry) -> tuple[UacAssessment, dict[str, object], d
         slug=entry.slug,
         source_metadata={
             "source_type": "LOCAL_FILE",
-            "normalized_source": str(entry.path.resolve()),
+            "normalized_source": persisted_source,
             "policy_rule_id": f"ssot.{entry.slug}",
             "content_type": "text/markdown",
             "content_sha256": "ssot",
@@ -123,7 +135,7 @@ def _assess_entry(entry: SsotEntry) -> tuple[UacAssessment, dict[str, object], d
         assessment_payload=inferred.as_payload(),
         uplift_payload=uplift,
         routing_payload=routing,
-        repo_root=entry.path.parents[1],
+        repo_root=repo_root,
     )
     return inferred, manifest, uplift, routing
 

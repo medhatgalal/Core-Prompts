@@ -51,3 +51,11 @@ def test_build_ssot_handoff_contract_is_advisory() -> None:
 
     assert payload["advisory_only"] is True
     assert payload["capabilities"]
+
+
+def test_audit_ssot_entries_persist_repo_relative_source_refs() -> None:
+    audits = {entry.slug: entry for entry in audit_ssot_entries(ROOT)}
+    architecture = audits["architecture"].manifest["layers"]["minimal"]
+
+    assert architecture["resources"] == ["ssot/architecture.md"]
+    assert architecture["source_provenance"]["normalized_source"] == "ssot/architecture.md"
