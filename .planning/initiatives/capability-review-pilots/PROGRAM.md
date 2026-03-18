@@ -1,7 +1,7 @@
 # Capability Review Pilots Program
 
 ## Goal
-Use Capability Fabric and UAC to evaluate external capability families, strengthen weak SSOT descriptions, and codify durable documentation and GitOps hygiene for future changes.
+Use Capability Fabric and UAC to evaluate external capability families, strengthen weak SSOT descriptions, and codify durable documentation and GitOps hygiene through benchmark-grade reusable capabilities and template-backed quality gates.
 
 ## Non-Goals
 - No orchestration runtime or delegation engine.
@@ -24,20 +24,22 @@ Use Capability Fabric and UAC to evaluate external capability families, strength
 2. External family research and UAC intake
 3. SSOT and metadata uplift for weak descriptions
 4. Durable maintainer hygiene rules for docs, GitOps, and lessons
+5. UAC template and benchmark-gate hardening for future imports
 
 ## Current Outcome
 - Repo architecture brief: complete
 - Benchmark matrix: complete
-- Docs family research and candidate landing: complete
-- GitOps family research and maintainer guidance: complete
+- Docs family research and candidate landing: complete as `both`
+- GitOps family research and capability landing: complete as `both`
 - SSOT description uplift wave 1: complete for `supercharge`, `analyze-context`, and `converge`
 - Beads / Spec-Kit evaluation: complete
+- UAC template and score-gate hardening: complete
 
 ## Family Decisions
 | Family | Outcome | Why |
 | --- | --- | --- |
-| `docs-review-expert` | land as new SSOT skill | The repo lacks one explicit documentation hygiene and IA specialist, and the research set plus local benchmarks support a durable capability shape. |
-| `gitops-design-hygiene` | maintain as durable maintainer guidance plus selective SSOT uplift | The strongest material is process and policy oriented; it fits better as repo rules and review timing than as a generic reusable prompt in this slice. |
+| `docs-review-expert` | land as new SSOT capability with `both` surfaces | The repo needs one reusable documentation specialist whose body is rich enough to support both skill and advisory agent surfaces. |
+| `gitops-design-hygiene` | superseded by `gitops-review` capability plus maintainer guidance | The repo needs a reusable GitOps review capability, not only policy text. Durable repo rules still live in maintainer docs. |
 
 ## Execution Standard
 Every new family must:

@@ -1,0 +1,44 @@
+{
+  "template": "agent",
+  "minimum_word_count": 450,
+  "required_headings": [
+    "## Purpose",
+    "## Primary Objective",
+    "## Agent Operating Contract",
+    "## Tool Boundaries",
+    "## Workflow",
+    "## Rules",
+    "## Required Inputs",
+    "## Required Output",
+    "## Constraints",
+    "## Examples",
+    "## Evaluation Rubric"
+  ],
+  "preferred_headings": [
+    "## Output Directory",
+    "## Review Timing",
+    "## Escalation"
+  ],
+  "benchmark_dimensions": [
+    "title clarity",
+    "description richness",
+    "intent coverage",
+    "boundary clarity",
+    "output specificity",
+    "metadata completeness",
+    "surface usability"
+  ],
+  "section_stubs": {
+    "## Purpose": "## Purpose\nState what this agent-capability is responsible for and what good execution looks like.",
+    "## Primary Objective": "## Primary Objective\nDefine the strongest concrete outcome this agent should produce.",
+    "## Agent Operating Contract": "## Agent Operating Contract\nMission:\n- inspect current repo or source context first\n- produce deterministic outputs or artifacts\n- keep advisory boundaries explicit\n\nResponsibilities:\n- state what the agent owns\n- state what it must not do\n- state when to escalate instead of acting",
+    "## Tool Boundaries": "## Tool Boundaries\n- allowed: only the tools needed to inspect context and produce the intended artifacts\n- forbidden: orchestration, runtime delegation, or unrelated code execution unless explicitly part of the capability\n- escalation: if the ask crosses the boundary, say so and hand off as a separate decision",
+    "## Workflow": "## Workflow\n1. Inspect the relevant repo state and constraints.\n2. Determine the exact artifact or decision required.\n3. Produce deterministic outputs with explicit evidence and boundaries.\n4. Escalate when the request crosses into orchestration or unrelated execution.",
+    "## Rules": "## Rules\n- Keep tool use proportional to the request.\n- Do not blur advisory analysis into runtime control.\n- Make boundaries, assumptions, and evidence explicit.",
+    "## Required Inputs": "## Required Inputs\n- user intent and success criteria\n- relevant repo state or source material\n- any explicit constraints or required tools",
+    "## Required Output": "## Required Output\n- current state summary\n- deterministic recommendation or artifact\n- boundary and escalation notes\n- risks, validation, and next actions",
+    "## Constraints": "## Constraints\n- no hidden orchestration authority\n- no runtime delegation claims\n- no unrelated code changes without explicit instruction",
+    "## Examples": "## Examples\n### Example Request\n> Inspect this repo change and produce a deterministic recommendation with explicit boundaries.\n\n### Example Output Shape\n- current state\n- recommendation\n- evidence\n- escalation or next step",
+    "## Evaluation Rubric": "## Evaluation Rubric\n| Check | What Passing Looks Like |\n| --- | --- |\n| Operating contract | The agent mission, responsibilities, and escalation path are explicit |\n| Tool boundaries | Allowed and forbidden actions are clear |\n| Output contract | Deliverables are deterministic and reviewable |\n| Advisory discipline | The capability does not claim runtime control it does not own |"
+  }
+}

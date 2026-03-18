@@ -5,35 +5,46 @@
   "judge_targets": {
     "operational_richness": 9,
     "source_fidelity": 9,
-    "metadata_integrity": 9
+    "metadata_integrity": 9,
+    "benchmark_readiness": 9
   },
   "max_passes": 4,
   "local_benchmarks": [
+    "ssot/architecture.md",
     "ssot/code-review.md",
+    "ssot/testing.md",
+    "ssot/uac-import.md",
     "ssot/resolve-conflict.md"
   ],
   "must_exceed": [
-    "local operational richness benchmark",
+    "architecture operational bar",
+    "code-review operational bar",
+    "testing explicit-output bar",
+    "uac-import metadata and workflow bar",
     "original source substance when present"
   ],
   "prohibited_regressions": [
     "thin summary replacing operational procedure",
     "metadata replacing prompt-body richness",
-    "orchestration leakage"
+    "orchestration leakage",
+    "surface claims unsupported by the capability body"
   ],
   "required_markers": {
     "operational_richness": [
       "## Purpose",
+      "## Primary Objective",
       "## Workflow",
       "## Rules",
       "## Required Output",
-      "## Constraints"
+      "## Constraints",
+      "## Examples",
+      "## Evaluation Rubric"
     ],
     "source_fidelity": [
       "Primary Objective",
-      "examples",
-      "constraints",
-      "output"
+      "Examples",
+      "Constraints",
+      "Required Output"
     ],
     "metadata_integrity": [
       "advisory",
@@ -58,9 +69,11 @@
   "minimum_code_blocks": 0,
   "refinement_templates": {
     "## Purpose": "## Purpose\nState what this capability is for, when to invoke it, and what success looks like in one deterministic paragraph.",
+    "## Primary Objective": "## Primary Objective\nDefine the single strongest concrete outcome the capability must produce.",
     "## Workflow": "## Workflow\n1. Clarify the objective and hard constraints.\n2. Derive the concrete deliverables and output sections.\n3. Produce the capability guidance in a deterministic structure.\n4. Flag assumptions, risks, and anything that requires manual review.",
     "## Rules": "## Rules\n- Keep the capability self-contained and operational.\n- Do not turn metadata into a substitute for prompt-body instructions.\n- Do not claim orchestration, delegation, or runtime control.\n- Prefer deterministic outputs, explicit constraints, and concrete deliverables.",
     "## Required Output": "## Required Output\n- Summary of the task and scope\n- Required inputs and assumptions\n- Structured deliverables or output contract\n- Risks, limits, or manual-review conditions",
-    "examples": "## Examples\n- Example request: import a prompt folder into one reusable family.\n- Example output: summary, uplift, manifest, descriptor, and advisory next actions."
+    "## Examples": "## Examples\n### Example Request\n> Review one candidate capability and tell me what to change.\n\n### Example Output Shape\n- current state\n- gaps versus benchmark\n- recommended changes\n- evidence and risks",
+    "## Evaluation Rubric": "## Evaluation Rubric\n| Check | What Passing Looks Like |\n| --- | --- |\n| Intent coverage | The capability states when to use it and what success looks like |\n| Output contract | Deliverables are explicit and reviewable |\n| Boundary clarity | The capability says what it will not do |\n| Reusability | The guidance is rich enough to trigger from normal user intent |"
   }
 }

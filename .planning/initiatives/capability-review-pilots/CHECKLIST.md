@@ -8,7 +8,12 @@
 - [x] Research `gitops-design-hygiene` sources and record landing recommendation
 - [x] Evaluate Beads and Spec-Kit without adopting either
 - [x] Add durable maintainer hygiene guidance for docs, GitOps, and lessons
-- [x] Uplift weak SSOT descriptions: `supercharge`, `analyze-context`, `converge`
-- [x] Land `docs-review-expert` as a new SSOT skill
-- [x] Build and validate generated surfaces
-- [x] Record local validation evidence
+- [x] Uplift weak SSOT bodies: `supercharge`, `analyze-context`, `converge`
+- [x] Rework `docs-review-expert` as a new SSOT capability with `both` surfaces
+- [x] Land `gitops-review` as a new SSOT capability with `both` surfaces
+- [x] Add canonical UAC capability templates for `skill`, `agent`, and `both`
+- [x] Add benchmark-readiness scoring and apply-block gate to UAC
+- [x] Record template-backed scorecards in UAC quality output
+- [x] Add validator coverage for malformed multi-frontmatter SSOT files
+- [ ] Re-run broader pytest coverage after template-backed apply gate changes
+- [ ] Record code-review and docs-review acceptance evidence for the final PR/MR

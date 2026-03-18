@@ -187,6 +187,66 @@ def descriptor_defaults(slug: str, display_name: str) -> dict[str, object]:
                 'requires_human_confirmation': True,
             },
         },
+        'docs-review-expert': {
+            'display_name': 'Docs Review Expert — Documentation IA, Drift, and Release Hygiene',
+            'consumption_hints': {
+                'preferred_use_cases': [
+                    'docs information architecture review',
+                    'README and docs placement decisions',
+                    'release-facing documentation drift detection',
+                    'commit, PR, merge, and release docs hygiene',
+                ],
+                'artifact_conventions': [
+                    'reports/docs-review/<timestamp>-assessment.md',
+                    'reports/docs-review/<timestamp>-rewrite-examples.md',
+                    'reports/docs-review/<timestamp>-review-checklist.md',
+                ],
+                'invocation_style': 'review_or_artifact_oriented',
+                'requires_human_confirmation': False,
+            },
+            'benchmark_sources': [
+                {
+                    'label': 'Architecture benchmark',
+                    'url': 'ssot/architecture.md',
+                    'note': 'Benchmark for explicit operating contracts and artifact-oriented outputs.',
+                },
+                {
+                    'label': 'Code Review benchmark',
+                    'url': 'ssot/code-review.md',
+                    'note': 'Benchmark for deterministic review timing and concrete findings.',
+                },
+            ],
+        },
+        'gitops-review': {
+            'display_name': 'GitOps Review — Repo Hygiene, CI, Release, and Merge Gate',
+            'consumption_hints': {
+                'preferred_use_cases': [
+                    'repo hygiene review',
+                    'commit and PR readiness checks',
+                    'CI and release gate review',
+                    'merge, tag, package, and release flow checks',
+                ],
+                'artifact_conventions': [
+                    'reports/gitops-review/<timestamp>-assessment.md',
+                    'reports/gitops-review/<timestamp>-release-gate.md',
+                    'reports/gitops-review/<timestamp>-pr-checklist.md',
+                ],
+                'invocation_style': 'review_or_execution_assist',
+                'requires_human_confirmation': True,
+            },
+            'benchmark_sources': [
+                {
+                    'label': 'Code Review benchmark',
+                    'url': 'ssot/code-review.md',
+                    'note': 'Benchmark for commit quality and review rigor.',
+                },
+                {
+                    'label': 'UAC Import benchmark',
+                    'url': 'ssot/uac-import.md',
+                    'note': 'Benchmark for deterministic workflow contracts and machine-readable metadata.',
+                },
+            ],
+        },
     }
     payload = defaults.get(slug, {})
     if not payload:
@@ -402,7 +462,7 @@ def resolve_descriptor(entry, manifest_entry: dict[str, object]) -> dict[str, ob
             shared_summary=str(descriptor.get('shared_summary') or manifest_entry['layers']['minimal'].get('summary') or ''),
             shared_constraints=tuple(descriptor.get('shared_constraints') or ()),
             modes=tuple(descriptor.get('modes') or ()),
-            benchmark_sources=tuple(descriptor.get('benchmark_sources') or ()),
+            benchmark_sources=tuple(descriptor.get('benchmark_sources') or defaults.get('benchmark_sources') or ()),
             quality_profile=str(descriptor.get('quality_profile')) if descriptor.get('quality_profile') is not None else None,
             quality_status=str(descriptor.get('quality_status')) if descriptor.get('quality_status') is not None else None,
             judge_reports=tuple(descriptor.get('judge_reports') or ()),
@@ -446,6 +506,7 @@ def resolve_descriptor(entry, manifest_entry: dict[str, object]) -> dict[str, ob
         resolved = build_descriptor(
             manifest=manifest_entry,
             display_name=str(defaults.get('display_name') or entry.display_name),
+            benchmark_sources=tuple(defaults.get('benchmark_sources') or ()),
             consumption_hints=dict(defaults.get('consumption_hints') or {}),
         )
         for layer_name, layer_payload in (defaults.get('layer_overrides') or {}).items():

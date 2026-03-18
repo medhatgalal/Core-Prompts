@@ -40,6 +40,7 @@ from intent_pipeline.uac_quality import (
     render_latest_review_markdown,
     run_quality_loop,
 )
+from intent_pipeline.uac_templates import load_capability_template
 from intent_pipeline.uac_repomix import collect_repomix_candidates, materialize_repomix_candidate, repomix_available
 from intent_pipeline.uac_sources import (
     UacSourceCandidate,
@@ -680,6 +681,7 @@ def _run_quality_for_payload(payload: dict[str, Any], args: argparse.Namespace) 
     plan = build_quality_plan(
         slug=slug,
         profile=profile,
+        capability_type=str(((descriptor_seed.get('layers') or {}).get('minimal') or {}).get('capability_type') or 'skill'),
         descriptor_path=f'.meta/capabilities/{slug}.json',
         source_refs=source_refs,
         benchmark_sources=payload.get('benchmark_sources') or (),
@@ -978,6 +980,16 @@ def _render_ssot_markdown(slug: str, payload: dict[str, Any], *, quality_profile
     install_target = str(minimal.get('install_target', {}).get('recommended') or 'auto')
     description = str(quality_profile.get('description') or summary.splitlines()[0][:160])
     escaped_description = description.replace('"', '\\"')
+    template = load_capability_template(ROOT, capability_type if capability_type in {'skill', 'agent', 'both'} else 'skill')
+    constraints = payload.get('uplift', {}).get('quality_constraints') or manifest['layers']['expanded'].get('adjustment_recommendations') or []
+    required_inputs = list(minimal.get('required_inputs') or ['user intent/context', 'relevant source material'])
+    expected_outputs = list(minimal.get('expected_outputs') or ['deterministic recommendation'])
+    review_timing = [
+        '- commit: when commands, behavior, or metadata contracts change',
+        '- pull request: when repo structure, CI, release flow, or docs drift materially',
+        '- merge: when adjacent capability or doc surfaces changed and drift is likely',
+        '- release: verify shipped behavior, install flow, and references against the final state',
+    ]
     lines = [
         '---',
         f'name: "{slug}"',
@@ -988,22 +1000,62 @@ def _render_ssot_markdown(slug: str, payload: dict[str, Any], *, quality_profile
         '',
         f'# {title}',
         '',
-        '## Summary',
-        summary,
+        '## Purpose',
+        f'Use this capability when the user needs {summary[0].lower() + summary[1:] if summary else "a deterministic capability response"}',
         '',
-        '## Capability Boundary',
-        '- Publish advisory capability metadata and reusable guidance only.',
-        '- Do not perform orchestration, routing, or delegation decisions.',
+        '## Primary Objective',
+        str(payload.get('uplift', {}).get('primary_objective') or summary),
+        '',
+    ]
+    if capability_type in {'agent', 'both'}:
+        lines.extend([
+            '## Agent Operating Contract',
+            'When emitted as an agent, this capability remains advisory by default and must not claim hidden orchestration authority.',
+            '',
+            'Mission:',
+            '- inspect the relevant source or repo context first',
+            '- produce deterministic outputs or artifacts for the requested task',
+            '- preserve the provider boundary by publishing advice, not runtime-control policy',
+            '',
+            '## Tool Boundaries',
+            '- allowed: read relevant inputs, inspect current state, and write the intended artifacts when explicitly requested',
+            '- forbidden: runtime routing, delegation decisions, workflow-control loops, or unrelated code execution',
+            '- escalation: if implementation or orchestration is requested, hand that off as a separate capability decision',
+            '',
+        ])
+    if '## Output Directory' in template.required_headings or '## Output Directory' in template.preferred_headings:
+        lines.extend([
+            '## Output Directory',
+            '- `reports/<slug>/<timestamp>-summary.md` style report paths are the default when file output is requested',
+            '- repo-ready artifacts should be named explicitly when the user asks for direct changes',
+            '',
+        ])
+    lines.extend([
+        '## Workflow',
+        '1. Clarify the task, success criteria, and hard constraints.',
+        '2. Inspect the relevant repo or source context before making recommendations.',
+        '3. Produce deterministic outputs with explicit evidence, boundaries, and target paths or artifacts.',
+        '4. Record risks, review timing, and anything that requires manual confirmation.',
+        '',
+        '## Rules',
+        '- Keep the capability reusable and deterministic.',
+        '- Publish advisory guidance only unless the caller explicitly requests execution.',
+        '- Do not claim orchestration, delegation, or runtime-control ownership.',
         '',
         '## Required Inputs',
-    ]
-    for item in minimal.get('required_inputs') or []:
+    ])
+    for item in required_inputs:
         lines.append(f'- {item}')
-    lines.extend(['', '## Expected Outputs'])
-    for item in minimal.get('expected_outputs') or []:
+    lines.extend(['', '## Required Output'])
+    for item in expected_outputs:
         lines.append(f'- {item}')
-    lines.extend(['', '## Constraints'])
-    for item in payload.get('uplift', {}).get('quality_constraints') or manifest['layers']['expanded'].get('adjustment_recommendations') or []:
+    lines.extend([
+        '- explicit risks and open questions',
+        '- target paths, commands, or artifact names when applicable',
+        '',
+        '## Constraints',
+    ])
+    for item in constraints:
         lines.append(f'- {item}')
     if 'items' in payload:
         lines.extend(['', '## Modes'])
@@ -1026,7 +1078,7 @@ def _render_ssot_markdown(slug: str, payload: dict[str, Any], *, quality_profile
                     lines.append(f'- {bullet}')
                 lines.append('')
     else:
-        lines.extend(['', '## Imported Workflow', payload.get('summary', summary), ''])
+        lines.extend(['', '## Invocation Hints', payload.get('summary', summary), ''])
         in_scope = payload.get('uplift', {}).get('in_scope') or []
         if in_scope:
             lines.append('In Scope')
@@ -1040,12 +1092,31 @@ def _render_ssot_markdown(slug: str, payload: dict[str, Any], *, quality_profile
                 lines.append(f'- {bullet}')
             lines.append('')
     lines.extend([
-        '## Generated Surfaces',
-        f"Emit surfaces for: `{', '.join(sorted(name for values in minimal.get('emitted_surfaces', {}).values() for name in values))}`",
+        '## Examples',
+        '### Example Request',
+        f'> Use `{slug}` to inspect a repo change, produce a deterministic recommendation, and make the review timing explicit.',
+        '',
+        '### Example Output Shape',
+        '- current state summary',
+        '- findings or recommendation',
+        '- target paths or commands',
+        '- risks and review timing',
+        '',
+        '## Evaluation Rubric',
+        '| Check | What Passing Looks Like |',
+        '| --- | --- |',
+        '| Intent coverage | The capability states when to use it and what success looks like |',
+        '| Output contract | Deliverables are deterministic and reviewable |',
+        '| Boundary clarity | The capability says what it will not do |',
+        '| Surface usability | The body is strong enough to support every emitted surface |',
+        '',
+        '## Review Timing',
+        *review_timing,
         '',
         '## Advisory Notes',
         '- Relationship and org-graph metadata remain advisory for future orchestrators.',
         '- Use the sidecar descriptor as the canonical machine-readable contract.',
+        f"- Emit surfaces for: `{', '.join(sorted(name for values in minimal.get('emitted_surfaces', {}).values() for name in values))}`",
         '',
     ])
     return '\n'.join(lines)

@@ -5,6 +5,11 @@ Use this document as the durable maintainer rule set for documentation hygiene, 
 ## Purpose
 Keep repo changes explainable, reviewable, and aligned with the actual architecture, release flow, and multi-remote setup.
 
+## Review Capabilities
+- Use `docs-review-expert` when documentation placement, readability, drift, or release-facing docs are in question.
+- Use `gitops-review` when commit quality, PR readiness, CI, packaging, merge, tag, or release readiness is in question.
+- Use `code-review`, `testing`, and `architecture` as companion capabilities when the change crosses their domains.
+
 ## Documentation Hygiene
 - `README.md` is for orientation, install, and fast-path usage only.
 - `docs/` is for durable operator, reference, and maintainer documentation.
@@ -47,6 +52,7 @@ Every release must re-check:
 
 ## Lessons and Self-Improvement
 - Record transient lessons, experiments, and evidence in `.planning/` for the active initiative.
+- If a recurring failure can be prevented by a template, validator, or quality gate, prefer that structural fix over repeating human reminders.
 - Promote a lesson into `AGENTS.md` or a durable maintainer doc when any of these are true:
   - it caused repeated drift or repeated review failure
   - it changed the repo's stable operating rule

@@ -53,3 +53,23 @@ def test_validate_portable_capability_metadata_allows_repo_relative_refs(tmp_pat
     )
 
     assert MODULE.validate_portable_capability_metadata(path) == []
+
+
+def test_validate_frontmatter_rejects_multiple_blocks(tmp_path: Path) -> None:
+    path = tmp_path / "sample.md"
+    path.write_text(
+        """---
+name: "sample"
+description: "first"
+---
+---
+kind: "skill"
+---
+# Sample
+""",
+        encoding="utf-8",
+    )
+
+    errors = MODULE.validate_frontmatter(path, ["name", "description"])
+
+    assert any("multiple frontmatter blocks found" in item for item in errors)

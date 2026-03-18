@@ -220,7 +220,55 @@ def test_uac_apply_writes_ssot_and_descriptor_in_workspace_copy(tmp_path: Path) 
     )
     sample = tmp_path / "capability-fabric-sample.md"
     sample.write_text(
-            """Primary Objective: Create a canonical capability-fabric sample skill.\n\nIn Scope:\n- deterministic import flow\n- descriptor sidecars\n\nOut of Scope:\n- live execution\n\nConstraints:\n- Deterministic output only\n""",
+        """# Capability Fabric Sample
+
+Purpose: Provide a canonical sample capability that demonstrates deterministic UAC landing.
+
+Primary Objective: Create a canonical capability-fabric sample skill that imports cleanly, produces deterministic metadata, and generates reusable review-ready surfaces.
+
+Operating Contract:
+- accept a single markdown source as the canonical input
+- normalize the capability into repo-quality SSOT structure before landing
+- emit stable metadata and generated surfaces without runtime side effects
+
+In Scope:
+- deterministic import flow
+- descriptor sidecars
+- generated skill surfaces
+- validation-ready metadata
+
+Out of Scope:
+- live execution
+- orchestration
+- runtime execution control
+
+Required Inputs:
+- one markdown source file
+- benchmark references from architecture and code-review
+
+Required Output:
+- a canonical SSOT entry
+- descriptor metadata
+- generated surfaces
+- a validation-ready build result
+
+Examples:
+- Given a thin external prompt, rewrite it into a repo-grade capability with explicit boundaries.
+- Produce metadata that explains expected outputs and install target.
+
+Evaluation Rubric:
+- title clarity
+- description richness
+- intent coverage
+- boundary clarity
+- output specificity
+- metadata completeness
+- surface usability
+
+Constraints:
+- Deterministic output only
+- Advisory-only behavior unless the caller explicitly requests execution
+""",
         encoding="utf-8",
     )
 

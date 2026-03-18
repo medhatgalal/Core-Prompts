@@ -140,28 +140,41 @@ def main(argv: list[str] | None = None) -> int:
                 cache_file.write_text(payload['checksum'] + '\n', encoding='utf-8')
                 entries.append(payload)
             except (HTTPError, URLError, TimeoutError, OSError, ValueError) as exc:
-                payload = {
-                    'url': url,
-                    'ok': False,
-                    'error': str(exc),
-                    'fetched_at': datetime.now(timezone.utc).isoformat(),
-                    'cache_path': str(cache_file.relative_to(ROOT)),
-                }
-                if cache_file.exists():
-                    payload['cache_path'] = str(cache_file.relative_to(ROOT))
-                    payload['reused_cache'] = True
-                failed.append(url)
-                entries.append(payload)
+                now_iso = datetime.now(timezone.utc).isoformat()
+                if cache_file.exists() and entry.get('ok'):
+                    entry['last_refresh_attempt_at'] = now_iso
+                    entry['last_refresh_error'] = str(exc)
+                    entry['reused_cache'] = True
+                    entries.append(entry)
+                else:
+                    payload = {
+                        'url': url,
+                        'ok': False,
+                        'error': str(exc),
+                        'fetched_at': now_iso,
+                        'cache_path': str(cache_file.relative_to(ROOT)),
+                    }
+                    if cache_file.exists():
+                        payload['cache_path'] = str(cache_file.relative_to(ROOT))
+                        payload['reused_cache'] = True
+                    failed.append(url)
+                    entries.append(payload)
             except Exception as exc:  # defensive
-                entries.append({
-                    'url': url,
-                    'ok': False,
-                    'error': f'{type(exc).__name__}: {exc}',
-                    'fetched_at': datetime.now(timezone.utc).isoformat(),
-                    'cache_path': str(cache_file.relative_to(ROOT)),
-                })
-                failed.append(url)
-                entries.append(entries[-1])
+                now_iso = datetime.now(timezone.utc).isoformat()
+                if cache_file.exists() and entry.get('ok'):
+                    entry['last_refresh_attempt_at'] = now_iso
+                    entry['last_refresh_error'] = f'{type(exc).__name__}: {exc}'
+                    entry['reused_cache'] = True
+                    entries.append(entry)
+                else:
+                    entries.append({
+                        'url': url,
+                        'ok': False,
+                        'error': f'{type(exc).__name__}: {exc}',
+                        'fetched_at': now_iso,
+                        'cache_path': str(cache_file.relative_to(ROOT)),
+                    })
+                    failed.append(url)
         else:
             entries.append(entry)
 

@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.4.4 - 2026-03-18
+
+- Shipped the capability uplift recovery slice:
+  - reworked `docs-review-expert` into a true `both` capability with skill and advisory agent surfaces
+  - added `gitops-review` as a new `both` capability for repo hygiene, CI, merge, packaging, tag, and release gates
+  - rewrote the weak SSOT bodies for `supercharge`, `analyze-context`, and `converge` to match the benchmark-grade contract used by `architecture`, `code-review`, `testing`, and `uac-import`
+- Hardened UAC landing quality:
+  - added machine-readable capability templates for `skill`, `agent`, and `both`
+  - added benchmark-readiness scoring, scorecards, and apply-block behavior for weak candidates
+  - added validator coverage for malformed multi-frontmatter SSOT files
+- Hardened schema-cache refresh behavior:
+  - strict validation now tolerates transient upstream doc timeouts when a previously healthy cache snapshot is available
+  - refreshed the schema cache and verified strict validation, smoke checks, and full pytest coverage before release
+
 ## 1.4.2 - 2026-03-18
 
 - Fixed portable capability metadata for repo-local SSOT sources:

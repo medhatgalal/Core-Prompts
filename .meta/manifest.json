@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-03-18T12:53:52.520600+00:00",
+  "generated_at": "2026-03-18T20:58:20.841203+00:00",
   "generator": {
     "script": "scripts/build-surfaces.py",
     "python": "3.11+",
     "version": "6.0",
-    "generated_utc": "2026-03-18T12:53:52.521113+00:00"
+    "generated_utc": "2026-03-18T20:58:20.841477+00:00"
   },
   "ssot_sources": [
     {
@@ -13,10 +13,12 @@
       "layers": {
         "minimal": {
           "capability_type": "skill",
-          "summary": "[Medhat] Iterative Analysis Workflow for multi-file processing",
+          "summary": "Iterative Analysis Workflow for multi-file, multi-source repo analysis with canonical memory files, anti-sprawl controls, and compaction-safe progress tracking.",
           "role": "analyst",
           "domain_tags": [
+            "review",
             "analysis",
+            "debugging",
             "context",
             "prompting",
             "analyze"
@@ -771,17 +773,15 @@
       "layers": {
         "minimal": {
           "capability_type": "both",
-          "summary": "[Medhat] Universal Synthesis & Convergence Prompt (Portable)",
-          "role": "analyst",
+          "summary": "Universal Synthesis and Convergence for multi-source proposal comparison, conflict surfacing, decision analysis, and one coherent final recommendation.",
+          "role": "resolver",
           "domain_tags": [
-            "architecture",
-            "review",
-            "analysis",
             "packaging",
             "import",
+            "planning",
             "debugging",
-            "context",
-            "prompting"
+            "prompting",
+            "converge"
           ],
           "required_inputs": [
             "source text",
@@ -889,7 +889,7 @@
             "policy_rule_id": "ssot.converge",
             "content_sha256": "ssot"
           },
-          "confidence": 0.84,
+          "confidence": 0.94,
           "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "/converge \u2014 Universal Synthesis & Convergence Prompt (Portable)"
@@ -956,12 +956,13 @@
       "manifest_version": "capability-fabric.v0",
       "layers": {
         "minimal": {
-          "capability_type": "skill",
-          "summary": "Documentation Review Expert for information architecture, readable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.",
+          "capability_type": "both",
+          "summary": "Documentation Review Expert for information architecture, explainable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.",
           "role": "advisor",
           "domain_tags": [
             "architecture",
             "review",
+            "packaging",
             "debugging",
             "prompting",
             "docs",
@@ -993,25 +994,31 @@
             "ssot/docs-review-expert.md"
           ],
           "packaging_profile": {
-            "capability_type": "skill",
+            "capability_type": "both",
             "primary_surfaces": {
               "codex": [
-                "codex_skill"
+                "codex_skill",
+                "codex_agent"
               ],
               "gemini": [
                 "gemini_command",
-                "gemini_skill"
+                "gemini_skill",
+                "gemini_agent"
               ],
               "claude": [
-                "claude_command"
+                "claude_command",
+                "claude_agent"
               ],
               "kiro": [
                 "kiro_prompt",
-                "kiro_skill"
+                "kiro_skill",
+                "kiro_agent"
               ]
             },
             "wrapper_surfaces": {
-              "codex": [],
+              "codex": [
+                "plugin_wrapper"
+              ],
               "gemini": [
                 "command_wrapper",
                 "extension_wrapper"
@@ -1043,18 +1050,22 @@
           },
           "emitted_surfaces": {
             "codex": [
-              "codex_skill"
+              "codex_skill",
+              "codex_agent"
             ],
             "gemini": [
               "gemini_command",
-              "gemini_skill"
+              "gemini_skill",
+              "gemini_agent"
             ],
             "claude": [
-              "claude_command"
+              "claude_command",
+              "claude_agent"
             ],
             "kiro": [
               "kiro_prompt",
-              "kiro_skill"
+              "kiro_skill",
+              "kiro_agent"
             ]
           },
           "source_provenance": {
@@ -1063,8 +1074,8 @@
             "policy_rule_id": "ssot.docs-review-expert",
             "content_sha256": "ssot"
           },
-          "confidence": 0.97,
-          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a command/skill surface.",
+          "confidence": 0.96,
+          "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "Docs Review Expert \u2014 Documentation IA and Drift Guard"
         },
@@ -1105,17 +1116,255 @@
       "shared_summary": "Documentation Review Expert for information architecture, readable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.",
       "shared_constraints": [],
       "modes": [],
-      "benchmark_sources": [],
-      "consumption_hints": {},
-      "declared_capability": "skill",
-      "inferred_capability": "skill",
+      "benchmark_sources": [
+        {
+          "label": "Architecture benchmark",
+          "url": "ssot/architecture.md",
+          "note": "Benchmark for explicit operating contracts and artifact-oriented outputs."
+        },
+        {
+          "label": "Code Review benchmark",
+          "url": "ssot/code-review.md",
+          "note": "Benchmark for deterministic review timing and concrete findings."
+        }
+      ],
+      "consumption_hints": {
+        "preferred_use_cases": [
+          "docs information architecture review",
+          "README and docs placement decisions",
+          "release-facing documentation drift detection",
+          "commit, PR, merge, and release docs hygiene"
+        ],
+        "artifact_conventions": [
+          "reports/docs-review/<timestamp>-assessment.md",
+          "reports/docs-review/<timestamp>-rewrite-examples.md",
+          "reports/docs-review/<timestamp>-review-checklist.md"
+        ],
+        "invocation_style": "review_or_artifact_oriented",
+        "requires_human_confirmation": false
+      },
+      "declared_capability": "both",
+      "inferred_capability": "both",
       "expected_surface_names": [
         "codex_skill",
+        "codex_agent",
         "gemini_command",
         "gemini_skill",
+        "gemini_agent",
         "claude_command",
+        "claude_agent",
         "kiro_prompt",
-        "kiro_skill"
+        "kiro_skill",
+        "kiro_agent"
+      ],
+      "rubric_version": "capability-fabric.v0"
+    },
+    {
+      "slug": "gitops-review",
+      "manifest_version": "capability-fabric.v0",
+      "layers": {
+        "minimal": {
+          "capability_type": "both",
+          "summary": "GitOps Review for repo hygiene, commit quality, PR readiness, CI state, packaging, changelog, merge, tag, push, and release gates across GitHub and GitLab.",
+          "role": "advisor",
+          "domain_tags": [
+            "architecture",
+            "review",
+            "packaging",
+            "debugging",
+            "context",
+            "prompting",
+            "gitops"
+          ],
+          "required_inputs": [
+            "source text",
+            "user intent/context"
+          ],
+          "expected_outputs": [
+            "deterministic summary",
+            "uplift payload",
+            "capability recommendation",
+            "deployment guidance"
+          ],
+          "tool_policy": {
+            "allowed": [
+              "deterministic classification",
+              "metadata publication",
+              "surface generation"
+            ],
+            "forbidden": [
+              "orchestration",
+              "delegation decisions",
+              "runtime execution control"
+            ]
+          },
+          "resources": [
+            "ssot/gitops-review.md"
+          ],
+          "packaging_profile": {
+            "capability_type": "both",
+            "primary_surfaces": {
+              "codex": [
+                "codex_skill",
+                "codex_agent"
+              ],
+              "gemini": [
+                "gemini_command",
+                "gemini_skill",
+                "gemini_agent"
+              ],
+              "claude": [
+                "claude_command",
+                "claude_agent"
+              ],
+              "kiro": [
+                "kiro_prompt",
+                "kiro_skill",
+                "kiro_agent"
+              ]
+            },
+            "wrapper_surfaces": {
+              "codex": [
+                "plugin_wrapper"
+              ],
+              "gemini": [
+                "command_wrapper",
+                "extension_wrapper"
+              ],
+              "claude": [
+                "command_wrapper",
+                "plugin_wrapper"
+              ],
+              "kiro": [
+                "prompt_wrapper",
+                "power_wrapper"
+              ]
+            },
+            "notes": [
+              "wrapper surfaces are additive deployment forms, not capability types",
+              "orchestrators must not infer execution authority from wrapper presence alone"
+            ]
+          },
+          "install_target": {
+            "recommended": "repo_local",
+            "confidence": 0.88,
+            "confirmation_required_for_apply": true,
+            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+            "supported": [
+              "global",
+              "repo_local",
+              "both"
+            ]
+          },
+          "emitted_surfaces": {
+            "codex": [
+              "codex_skill",
+              "codex_agent"
+            ],
+            "gemini": [
+              "gemini_command",
+              "gemini_skill",
+              "gemini_agent"
+            ],
+            "claude": [
+              "claude_command",
+              "claude_agent"
+            ],
+            "kiro": [
+              "kiro_prompt",
+              "kiro_skill",
+              "kiro_agent"
+            ]
+          },
+          "source_provenance": {
+            "source_type": "LOCAL_FILE",
+            "normalized_source": "ssot/gitops-review.md",
+            "policy_rule_id": "ssot.gitops-review",
+            "content_sha256": "ssot"
+          },
+          "confidence": 0.96,
+          "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "GitOps Review \u2014 Repo Hygiene, CI, Release, and Merge Gate"
+        },
+        "expanded": {
+          "relationship_suggestions": [
+            "prefer explicit review or analyst companions before high-authority use",
+            "pair with review and analysis capabilities when converging design proposals"
+          ],
+          "capability_dependencies": [
+            "analysis",
+            "context"
+          ],
+          "overlap_candidates": [],
+          "migration_notes": [
+            "If the capability lands, compare it against existing entries before apply.",
+            "Relationship suggestions are advisory only and do not imply runtime routing."
+          ],
+          "adjustment_recommendations": [
+            "add an explicit primary objective before packaging",
+            "add deterministic in-scope sections to improve routing fitness",
+            "capture quality constraints or non-negotiables"
+          ]
+        },
+        "org_graph": {
+          "org_role": "specialist_with_workflow_surface",
+          "reports_to_suggestions": [],
+          "delegates_to_suggestions": [],
+          "collaborates_with_suggestions": [
+            "architecture",
+            "review"
+          ],
+          "authority_tier": "advisory",
+          "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
+        }
+      },
+      "display_name": "GitOps Review \u2014 Repo Hygiene, CI, Release, and Merge Gate",
+      "descriptor_version": "capability-fabric.descriptor.v0",
+      "family_slug": "gitops-review",
+      "shared_summary": "GitOps Review for repo hygiene, commit quality, PR readiness, CI state, packaging, changelog, merge, tag, push, and release gates across GitHub and GitLab.",
+      "shared_constraints": [],
+      "modes": [],
+      "benchmark_sources": [
+        {
+          "label": "Code Review benchmark",
+          "url": "ssot/code-review.md",
+          "note": "Benchmark for commit quality and review rigor."
+        },
+        {
+          "label": "UAC Import benchmark",
+          "url": "ssot/uac-import.md",
+          "note": "Benchmark for deterministic workflow contracts and machine-readable metadata."
+        }
+      ],
+      "consumption_hints": {
+        "preferred_use_cases": [
+          "repo hygiene review",
+          "commit and PR readiness checks",
+          "CI and release gate review",
+          "merge, tag, package, and release flow checks"
+        ],
+        "artifact_conventions": [
+          "reports/gitops-review/<timestamp>-assessment.md",
+          "reports/gitops-review/<timestamp>-release-gate.md",
+          "reports/gitops-review/<timestamp>-pr-checklist.md"
+        ],
+        "invocation_style": "review_or_execution_assist",
+        "requires_human_confirmation": true
+      },
+      "declared_capability": "both",
+      "inferred_capability": "both",
+      "expected_surface_names": [
+        "codex_skill",
+        "codex_agent",
+        "gemini_command",
+        "gemini_skill",
+        "gemini_agent",
+        "claude_command",
+        "claude_agent",
+        "kiro_prompt",
+        "kiro_skill",
+        "kiro_agent"
       ],
       "rubric_version": "capability-fabric.v0"
     },
@@ -1485,11 +1734,11 @@
       "layers": {
         "minimal": {
           "capability_type": "both",
-          "summary": "[Medhat] SuperCharge for prompt creation, prompt refinement, planning hardening, option comparison, multi-pass critique, and structured execution-quality improvement.",
-          "role": "advisor",
+          "summary": "SuperCharge for prompt creation, prompt refinement, planning hardening, option comparison, grading, multi-pass critique, and structured execution-quality improvement across direct and agentic workflows.",
+          "role": "analyst",
           "domain_tags": [
             "architecture",
-            "analysis",
+            "review",
             "routing",
             "packaging",
             "planning",
@@ -2309,6 +2558,7 @@
       ".gemini/commands/code-review.toml",
       ".gemini/commands/converge.toml",
       ".gemini/commands/docs-review-expert.toml",
+      ".gemini/commands/gitops-review.toml",
       ".gemini/commands/mentor.toml",
       ".gemini/commands/resolve-conflict.toml",
       ".gemini/commands/supercharge.toml",
@@ -2322,6 +2572,7 @@
       ".gemini/skills/code-review/SKILL.md",
       ".gemini/skills/converge/SKILL.md",
       ".gemini/skills/docs-review-expert/SKILL.md",
+      ".gemini/skills/gitops-review/SKILL.md",
       ".gemini/skills/mentor/SKILL.md",
       ".gemini/skills/resolve-conflict/SKILL.md",
       ".gemini/skills/supercharge/SKILL.md",
@@ -2332,6 +2583,8 @@
     "gemini_agent": [
       ".gemini/agents/architecture.md",
       ".gemini/agents/converge.md",
+      ".gemini/agents/docs-review-expert.md",
+      ".gemini/agents/gitops-review.md",
       ".gemini/agents/mentor.md",
       ".gemini/agents/supercharge.md"
     ],
@@ -2341,6 +2594,7 @@
       ".claude/commands/code-review.md",
       ".claude/commands/converge.md",
       ".claude/commands/docs-review-expert.md",
+      ".claude/commands/gitops-review.md",
       ".claude/commands/mentor.md",
       ".claude/commands/resolve-conflict.md",
       ".claude/commands/supercharge.md",
@@ -2351,6 +2605,8 @@
     "claude_agent": [
       ".claude/agents/architecture.md",
       ".claude/agents/converge.md",
+      ".claude/agents/docs-review-expert.md",
+      ".claude/agents/gitops-review.md",
       ".claude/agents/mentor.md",
       ".claude/agents/supercharge.md"
     ],
@@ -2360,6 +2616,7 @@
       ".kiro/prompts/code-review.md",
       ".kiro/prompts/converge.md",
       ".kiro/prompts/docs-review-expert.md",
+      ".kiro/prompts/gitops-review.md",
       ".kiro/prompts/mentor.md",
       ".kiro/prompts/resolve-conflict.md",
       ".kiro/prompts/supercharge.md",
@@ -2370,6 +2627,8 @@
     "kiro_agent": [
       ".kiro/agents/architecture.json",
       ".kiro/agents/converge.json",
+      ".kiro/agents/docs-review-expert.json",
+      ".kiro/agents/gitops-review.json",
       ".kiro/agents/mentor.json",
       ".kiro/agents/supercharge.json"
     ],
@@ -2379,6 +2638,7 @@
       ".kiro/skills/code-review/SKILL.md",
       ".kiro/skills/converge/SKILL.md",
       ".kiro/skills/docs-review-expert/SKILL.md",
+      ".kiro/skills/gitops-review/SKILL.md",
       ".kiro/skills/mentor/SKILL.md",
       ".kiro/skills/resolve-conflict/SKILL.md",
       ".kiro/skills/supercharge/SKILL.md",
@@ -2392,6 +2652,7 @@
       ".codex/skills/code-review/SKILL.md",
       ".codex/skills/converge/SKILL.md",
       ".codex/skills/docs-review-expert/SKILL.md",
+      ".codex/skills/gitops-review/SKILL.md",
       ".codex/skills/mentor/SKILL.md",
       ".codex/skills/resolve-conflict/SKILL.md",
       ".codex/skills/supercharge/SKILL.md",
@@ -2402,6 +2663,8 @@
     "codex_agent": [
       ".codex/agents/architecture.toml",
       ".codex/agents/converge.toml",
+      ".codex/agents/docs-review-expert.toml",
+      ".codex/agents/gitops-review.toml",
       ".codex/agents/mentor.toml",
       ".codex/agents/supercharge.toml"
     ]
@@ -2413,6 +2676,7 @@
       ".codex/skills/code-review/resources/capability.json",
       ".codex/skills/converge/resources/capability.json",
       ".codex/skills/docs-review-expert/resources/capability.json",
+      ".codex/skills/gitops-review/resources/capability.json",
       ".codex/skills/mentor/resources/capability.json",
       ".codex/skills/resolve-conflict/resources/capability.json",
       ".codex/skills/supercharge/resources/capability.json",
@@ -2423,6 +2687,8 @@
     "codex_agent": [
       ".codex/agents/resources/architecture/capability.json",
       ".codex/agents/resources/converge/capability.json",
+      ".codex/agents/resources/docs-review-expert/capability.json",
+      ".codex/agents/resources/gitops-review/capability.json",
       ".codex/agents/resources/mentor/capability.json",
       ".codex/agents/resources/supercharge/capability.json"
     ],
@@ -2432,6 +2698,7 @@
       ".gemini/skills/code-review/resources/capability.json",
       ".gemini/skills/converge/resources/capability.json",
       ".gemini/skills/docs-review-expert/resources/capability.json",
+      ".gemini/skills/gitops-review/resources/capability.json",
       ".gemini/skills/mentor/resources/capability.json",
       ".gemini/skills/resolve-conflict/resources/capability.json",
       ".gemini/skills/supercharge/resources/capability.json",
@@ -2442,12 +2709,16 @@
     "gemini_agent": [
       ".gemini/agents/resources/architecture/capability.json",
       ".gemini/agents/resources/converge/capability.json",
+      ".gemini/agents/resources/docs-review-expert/capability.json",
+      ".gemini/agents/resources/gitops-review/capability.json",
       ".gemini/agents/resources/mentor/capability.json",
       ".gemini/agents/resources/supercharge/capability.json"
     ],
     "claude_agent": [
       ".claude/agents/resources/architecture/capability.json",
       ".claude/agents/resources/converge/capability.json",
+      ".claude/agents/resources/docs-review-expert/capability.json",
+      ".claude/agents/resources/gitops-review/capability.json",
       ".claude/agents/resources/mentor/capability.json",
       ".claude/agents/resources/supercharge/capability.json"
     ],
@@ -2457,6 +2728,7 @@
       ".kiro/skills/code-review/resources/capability.json",
       ".kiro/skills/converge/resources/capability.json",
       ".kiro/skills/docs-review-expert/resources/capability.json",
+      ".kiro/skills/gitops-review/resources/capability.json",
       ".kiro/skills/mentor/resources/capability.json",
       ".kiro/skills/resolve-conflict/resources/capability.json",
       ".kiro/skills/supercharge/resources/capability.json",
@@ -2467,12 +2739,14 @@
     "kiro_agent": [
       ".kiro/agents/resources/architecture/capability.json",
       ".kiro/agents/resources/converge/capability.json",
+      ".kiro/agents/resources/docs-review-expert/capability.json",
+      ".kiro/agents/resources/gitops-review/capability.json",
       ".kiro/agents/resources/mentor/capability.json",
       ".kiro/agents/resources/supercharge/capability.json"
     ]
   },
   "validation": {
-    "validated_at": "2026-03-18T12:55:01.526058+00:00",
+    "validated_at": "2026-03-18T21:00:29.281340+00:00",
     "strict": true,
     "with_cli": false,
     "fail_on_cli_miss": false,
@@ -2526,7 +2800,7 @@
         "available": true,
         "version_exit_code": 0,
         "version_output": [
-          "kiro-cli 1.27.2"
+          "kiro-cli 1.27.3"
         ]
       }
     }

@@ -17,10 +17,7 @@ def test_load_quality_profile_auto_resolves_architecture() -> None:
 def test_run_quality_loop_ships_rich_architecture_candidate() -> None:
     profile = load_quality_profile(ROOT, "architecture", "auto")
     candidate = (ROOT / "ssot" / "architecture.md").read_text(encoding="utf-8")
-    descriptor = {
-        "slug": "architecture",
-        "consumption_hints": dict(profile.payload["consumption_hints"]),
-    }
+    descriptor = json.loads((ROOT / ".meta" / "capabilities" / "architecture.json").read_text(encoding="utf-8"))
 
     result = run_quality_loop(
         slug="architecture",
@@ -34,6 +31,7 @@ def test_run_quality_loop_ships_rich_architecture_candidate() -> None:
 
     assert result["status"] == "ship"
     assert result["pass_count"] >= 1
+    assert result["scorecard"]["benchmark_readiness"] >= 9
 
 
 def test_run_quality_loop_marks_thin_candidate_for_manual_review() -> None:
@@ -50,3 +48,4 @@ def test_run_quality_loop_marks_thin_candidate_for_manual_review() -> None:
 
     assert result["status"] == "manual_review"
     assert result["judge_reports"][0]["judge_reports"][0]["score"] < 9
+    assert result["scorecard"]["benchmark_readiness"] < 9

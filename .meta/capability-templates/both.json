@@ -1,0 +1,46 @@
+{
+  "template": "both",
+  "minimum_word_count": 550,
+  "required_headings": [
+    "## Purpose",
+    "## Primary Objective",
+    "## Agent Operating Contract",
+    "## Tool Boundaries",
+    "## Output Directory",
+    "## Workflow",
+    "## Rules",
+    "## Required Inputs",
+    "## Required Output",
+    "## Constraints",
+    "## Examples",
+    "## Evaluation Rubric"
+  ],
+  "preferred_headings": [
+    "## Invocation Hints",
+    "## Review Timing",
+    "## What Good Looks Like"
+  ],
+  "benchmark_dimensions": [
+    "title clarity",
+    "description richness",
+    "intent coverage",
+    "boundary clarity",
+    "output specificity",
+    "metadata completeness",
+    "surface usability"
+  ],
+  "section_stubs": {
+    "## Purpose": "## Purpose\nState what this capability does as a reusable skill and what the advisory agent surface adds.",
+    "## Primary Objective": "## Primary Objective\nDefine the single strongest outcome this capability should produce across both surfaces.",
+    "## Agent Operating Contract": "## Agent Operating Contract\nWhen emitted as an agent, this capability remains advisory by default.\n\nMission:\n- inspect the relevant repo or source context\n- produce deterministic outputs or artifacts\n- preserve the provider boundary by publishing advice, not hidden orchestration policy",
+    "## Tool Boundaries": "## Tool Boundaries\n- allowed: read repo inputs, inspect relevant state, write the intended artifacts when explicitly requested\n- forbidden: runtime routing, hidden delegation, workflow-control loops, or unrelated product-code execution\n- escalation: if implementation or orchestration is requested, hand it off as a separate capability decision",
+    "## Output Directory": "## Output Directory\nWhen file output is requested, define the default report paths and the repo-ready artifact paths.",
+    "## Workflow": "## Workflow\n1. Clarify the objective, target surface, and hard constraints.\n2. Inspect the relevant repo or source context before recommending changes.\n3. Produce deterministic skill-grade guidance and, when needed, advisory agent outputs.\n4. Record assumptions, evidence, risks, and review timing explicitly.",
+    "## Rules": "## Rules\n- Keep one canonical capability body that supports both surfaces.\n- Make review timing and output contracts explicit.\n- Do not let the agent surface imply runtime authority.",
+    "## Required Inputs": "## Required Inputs\n- user intent and success criteria\n- relevant repo, source, or workflow context\n- any explicit constraints or quality bars",
+    "## Required Output": "## Required Output\n- current state summary\n- deterministic recommendation or artifact\n- explicit boundaries and escalation notes\n- examples, risks, and next actions",
+    "## Constraints": "## Constraints\n- no orchestration leakage\n- no weak placeholder sections in place of operational guidance\n- no surface claims unsupported by the capability body",
+    "## Examples": "## Examples\n### Example Request\n> Review this change and tell me what to fix, when to review it, and what artifacts to produce.\n\n### Example Output Shape\n- current state\n- findings or recommendation\n- target paths or commands\n- risks and review timing",
+    "## Evaluation Rubric": "## Evaluation Rubric\n| Check | What Passing Looks Like |\n| --- | --- |\n| Dual-surface clarity | The skill and advisory agent responsibilities are both clear |\n| Operating contract | Mission, boundaries, and escalation are explicit |\n| Output contract | Deliverables are deterministic and concrete |\n| Triggerability | The capability is rich enough to match normal user intent without explicit naming |"
+  }
+}

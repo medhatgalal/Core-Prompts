@@ -3,12 +3,13 @@
   "manifest_version": "capability-fabric.v0",
   "layers": {
     "minimal": {
-      "capability_type": "skill",
-      "summary": "Documentation Review Expert for information architecture, readable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.",
+      "capability_type": "both",
+      "summary": "Documentation Review Expert for information architecture, explainable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.",
       "role": "advisor",
       "domain_tags": [
         "architecture",
         "review",
+        "packaging",
         "debugging",
         "prompting",
         "docs",
@@ -40,25 +41,31 @@
         "ssot/docs-review-expert.md"
       ],
       "packaging_profile": {
-        "capability_type": "skill",
+        "capability_type": "both",
         "primary_surfaces": {
           "codex": [
-            "codex_skill"
+            "codex_skill",
+            "codex_agent"
           ],
           "gemini": [
             "gemini_command",
-            "gemini_skill"
+            "gemini_skill",
+            "gemini_agent"
           ],
           "claude": [
-            "claude_command"
+            "claude_command",
+            "claude_agent"
           ],
           "kiro": [
             "kiro_prompt",
-            "kiro_skill"
+            "kiro_skill",
+            "kiro_agent"
           ]
         },
         "wrapper_surfaces": {
-          "codex": [],
+          "codex": [
+            "plugin_wrapper"
+          ],
           "gemini": [
             "command_wrapper",
             "extension_wrapper"
@@ -90,18 +97,22 @@
       },
       "emitted_surfaces": {
         "codex": [
-          "codex_skill"
+          "codex_skill",
+          "codex_agent"
         ],
         "gemini": [
           "gemini_command",
-          "gemini_skill"
+          "gemini_skill",
+          "gemini_agent"
         ],
         "claude": [
-          "claude_command"
+          "claude_command",
+          "claude_agent"
         ],
         "kiro": [
           "kiro_prompt",
-          "kiro_skill"
+          "kiro_skill",
+          "kiro_agent"
         ]
       },
       "source_provenance": {
@@ -110,8 +121,8 @@
         "policy_rule_id": "ssot.docs-review-expert",
         "content_sha256": "ssot"
       },
-      "confidence": 0.97,
-      "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a command/skill surface.",
+      "confidence": 0.96,
+      "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
       "review_status": "ready_for_orchestrator_review",
       "display_name": "Docs Review Expert \u2014 Documentation IA and Drift Guard"
     },
@@ -147,15 +158,19 @@
     }
   },
   "display_name": "Docs Review Expert \u2014 Documentation IA and Drift Guard",
-  "declared_capability": "skill",
-  "inferred_capability": "skill",
+  "declared_capability": "both",
+  "inferred_capability": "both",
   "expected_surface_names": [
     "codex_skill",
+    "codex_agent",
     "gemini_command",
     "gemini_skill",
+    "gemini_agent",
     "claude_command",
+    "claude_agent",
     "kiro_prompt",
-    "kiro_skill"
+    "kiro_skill",
+    "kiro_agent"
   ],
   "rubric_version": "capability-fabric.v0",
   "descriptor_version": "capability-fabric.descriptor.v0",
@@ -163,6 +178,31 @@
   "shared_summary": "Documentation Review Expert for information architecture, readable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.",
   "shared_constraints": [],
   "modes": [],
-  "benchmark_sources": [],
-  "consumption_hints": {}
+  "benchmark_sources": [
+    {
+      "label": "Architecture benchmark",
+      "url": "ssot/architecture.md",
+      "note": "Benchmark for explicit operating contracts and artifact-oriented outputs."
+    },
+    {
+      "label": "Code Review benchmark",
+      "url": "ssot/code-review.md",
+      "note": "Benchmark for deterministic review timing and concrete findings."
+    }
+  ],
+  "consumption_hints": {
+    "preferred_use_cases": [
+      "docs information architecture review",
+      "README and docs placement decisions",
+      "release-facing documentation drift detection",
+      "commit, PR, merge, and release docs hygiene"
+    ],
+    "artifact_conventions": [
+      "reports/docs-review/<timestamp>-assessment.md",
+      "reports/docs-review/<timestamp>-rewrite-examples.md",
+      "reports/docs-review/<timestamp>-review-checklist.md"
+    ],
+    "invocation_style": "review_or_artifact_oriented",
+    "requires_human_confirmation": false
+  }
 }

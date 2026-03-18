@@ -10,10 +10,12 @@
       "slug": "analyze-context",
       "display_name": "Iterative Analysis Workflow",
       "capability_type": "skill",
-      "summary": "[Medhat] Iterative Analysis Workflow for multi-file processing",
+      "summary": "Iterative Analysis Workflow for multi-file, multi-source repo analysis with canonical memory files, anti-sprawl controls, and compaction-safe progress tracking.",
       "role": "analyst",
       "domain_tags": [
+        "review",
         "analysis",
+        "debugging",
         "context",
         "prompting",
         "analyze"
@@ -291,17 +293,15 @@
       "slug": "converge",
       "display_name": "/converge \u2014 Universal Synthesis & Convergence Prompt (Portable)",
       "capability_type": "both",
-      "summary": "[Medhat] Universal Synthesis & Convergence Prompt (Portable)",
-      "role": "analyst",
+      "summary": "Universal Synthesis and Convergence for multi-source proposal comparison, conflict surfacing, decision analysis, and one coherent final recommendation.",
+      "role": "resolver",
       "domain_tags": [
-        "architecture",
-        "review",
-        "analysis",
         "packaging",
         "import",
+        "planning",
         "debugging",
-        "context",
-        "prompting"
+        "prompting",
+        "converge"
       ],
       "required_inputs": [
         "source text",
@@ -356,7 +356,7 @@
           "kiro_agent"
         ]
       },
-      "confidence": 0.84,
+      "confidence": 0.94,
       "review_status": "ready_for_orchestrator_review",
       "overlap_candidates": [],
       "relationship_suggestions": [
@@ -385,12 +385,13 @@
     {
       "slug": "docs-review-expert",
       "display_name": "Docs Review Expert \u2014 Documentation IA and Drift Guard",
-      "capability_type": "skill",
-      "summary": "Documentation Review Expert for information architecture, readable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.",
+      "capability_type": "both",
+      "summary": "Documentation Review Expert for information architecture, explainable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.",
       "role": "advisor",
       "domain_tags": [
         "architecture",
         "review",
+        "packaging",
         "debugging",
         "prompting",
         "docs",
@@ -431,21 +432,25 @@
       },
       "emitted_surfaces": {
         "codex": [
-          "codex_skill"
+          "codex_skill",
+          "codex_agent"
         ],
         "gemini": [
           "gemini_command",
-          "gemini_skill"
+          "gemini_skill",
+          "gemini_agent"
         ],
         "claude": [
-          "claude_command"
+          "claude_command",
+          "claude_agent"
         ],
         "kiro": [
           "kiro_prompt",
-          "kiro_skill"
+          "kiro_skill",
+          "kiro_agent"
         ]
       },
-      "confidence": 0.97,
+      "confidence": 0.96,
       "review_status": "ready_for_orchestrator_review",
       "overlap_candidates": [],
       "relationship_suggestions": [
@@ -453,10 +458,19 @@
       ],
       "quality_status": null,
       "benchmark_profile": null,
-      "preferred_use_cases": [],
-      "artifact_conventions": [],
-      "invocation_style": null,
-      "requires_human_confirmation": null,
+      "preferred_use_cases": [
+        "docs information architecture review",
+        "README and docs placement decisions",
+        "release-facing documentation drift detection",
+        "commit, PR, merge, and release docs hygiene"
+      ],
+      "artifact_conventions": [
+        "reports/docs-review/<timestamp>-assessment.md",
+        "reports/docs-review/<timestamp>-rewrite-examples.md",
+        "reports/docs-review/<timestamp>-review-checklist.md"
+      ],
+      "invocation_style": "review_or_artifact_oriented",
+      "requires_human_confirmation": false,
       "org_graph": {
         "org_role": "advisor",
         "reports_to_suggestions": [],
@@ -467,6 +481,109 @@
         ],
         "authority_tier": "advisory",
         "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "gitops-review",
+      "display_name": "GitOps Review \u2014 Repo Hygiene, CI, Release, and Merge Gate",
+      "capability_type": "both",
+      "summary": "GitOps Review for repo hygiene, commit quality, PR readiness, CI state, packaging, changelog, merge, tag, push, and release gates across GitHub and GitLab.",
+      "role": "advisor",
+      "domain_tags": [
+        "architecture",
+        "review",
+        "packaging",
+        "debugging",
+        "context",
+        "prompting",
+        "gitops"
+      ],
+      "required_inputs": [
+        "source text",
+        "user intent/context"
+      ],
+      "expected_outputs": [
+        "deterministic summary",
+        "uplift payload",
+        "capability recommendation",
+        "deployment guidance"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill",
+          "codex_agent"
+        ],
+        "gemini": [
+          "gemini_command",
+          "gemini_skill",
+          "gemini_agent"
+        ],
+        "claude": [
+          "claude_command",
+          "claude_agent"
+        ],
+        "kiro": [
+          "kiro_prompt",
+          "kiro_skill",
+          "kiro_agent"
+        ]
+      },
+      "confidence": 0.96,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [
+        "prefer explicit review or analyst companions before high-authority use",
+        "pair with review and analysis capabilities when converging design proposals"
+      ],
+      "quality_status": null,
+      "benchmark_profile": null,
+      "preferred_use_cases": [
+        "repo hygiene review",
+        "commit and PR readiness checks",
+        "CI and release gate review",
+        "merge, tag, package, and release flow checks"
+      ],
+      "artifact_conventions": [
+        "reports/gitops-review/<timestamp>-assessment.md",
+        "reports/gitops-review/<timestamp>-release-gate.md",
+        "reports/gitops-review/<timestamp>-pr-checklist.md"
+      ],
+      "invocation_style": "review_or_execution_assist",
+      "requires_human_confirmation": true,
+      "org_graph": {
+        "org_role": "specialist_with_workflow_surface",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "architecture",
+          "review"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
       },
       "advisory_only": true
     },
@@ -661,11 +778,11 @@
       "slug": "supercharge",
       "display_name": "SuperCharge v4 \u2014 Prompt Engineering Swiss Army Knife (2026+)",
       "capability_type": "both",
-      "summary": "[Medhat] SuperCharge for prompt creation, prompt refinement, planning hardening, option comparison, multi-pass critique, and structured execution-quality improvement.",
-      "role": "advisor",
+      "summary": "SuperCharge for prompt creation, prompt refinement, planning hardening, option comparison, grading, multi-pass critique, and structured execution-quality improvement across direct and agentic workflows.",
+      "role": "analyst",
       "domain_tags": [
         "architecture",
-        "analysis",
+        "review",
         "routing",
         "packaging",
         "planning",

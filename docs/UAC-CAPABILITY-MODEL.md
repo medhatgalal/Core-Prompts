@@ -2,6 +2,14 @@
 
 UAC is the authoritative classifier for imported sources and SSOT entries.
 
+## Template-Backed Landing Rule
+Before `apply` lands a new or uplifted capability, UAC must judge it against:
+- a capability template from `.meta/capability-templates/`
+- the active quality profile from `.meta/quality-profiles/`
+- the current benchmark bar represented by strong local capabilities such as `architecture`, `code-review`, `testing`, and `uac-import`
+
+The goal is to prevent weak SSOT bodies from landing with strong metadata or overly broad emitted surfaces.
+
 ## Canonical Capability Types
 | Type | Meaning | Auto-deployable |
 | --- | --- | --- |
@@ -60,11 +68,24 @@ Descriptor and handoff metadata may also publish:
 - `quality_profile`
 - `quality_status`
 - `judge_reports`
+- `quality_scorecard`
 - `quality_pass_count`
 - `quality_stop_reason`
 - `consumption_hints`
 
 These fields describe trust, fit, and usage guidance. They do not grant execution authority.
+
+## Benchmark Readiness
+The quality loop must score whether a candidate is structurally ready to land. The benchmark scorecard evaluates:
+- title clarity
+- description richness
+- intent coverage
+- boundary clarity
+- output specificity
+- metadata completeness
+- surface usability
+
+If a candidate fails the benchmark-readiness gate, `apply` must refuse landing until the SSOT body or template fit is improved.
 
 ## Install Target
 Supported scopes:

@@ -6,20 +6,25 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Mapping, Sequence
 
+from intent_pipeline.uac_templates import load_capability_template
+
 
 QUALITY_PROFILE_DIR = ".meta/quality-profiles"
 QUALITY_REVIEW_DIR = "reports/quality-reviews"
+REPO_ROOT = Path(__file__).resolve().parents[2]
 
 JUDGE_ORDER = (
     "operational_richness",
     "source_fidelity",
     "metadata_integrity",
+    "benchmark_readiness",
 )
 
 JUDGE_TITLES = {
     "operational_richness": "Operational Richness",
     "source_fidelity": "Source Fidelity and Uplift",
     "metadata_integrity": "Metadata and Handoff Integrity",
+    "benchmark_readiness": "Benchmark Readiness and Template Fit",
 }
 
 
@@ -85,12 +90,14 @@ def build_quality_plan(
     *,
     slug: str,
     profile: QualityProfile,
+    capability_type: str,
     descriptor_path: str,
     source_refs: Sequence[str],
     benchmark_sources: Sequence[Mapping[str, Any]],
     max_passes_override: int | None = None,
 ) -> dict[str, Any]:
     max_passes = max_passes_override or profile.max_passes
+    template = load_capability_template(REPO_ROOT, capability_type)
     packets = []
     for judge_name in JUDGE_ORDER:
         packets.append(
@@ -104,11 +111,13 @@ def build_quality_plan(
                     "candidate_ssot_body_or_path": f"ssot/{slug}.md",
                     "descriptor_path": descriptor_path,
                     "quality_profile": profile.name,
+                    "capability_template": template.name,
                     "local_benchmark_files": list(profile.local_benchmarks),
                     "external_source_set": list(profile.external_sources or source_refs),
                     "must_exceed": list(profile.payload.get("must_exceed") or ()),
                     "prohibited_regressions": list(profile.payload.get("prohibited_regressions") or ()),
                     "scoring_rubric": profile.targets,
+                    "benchmark_dimensions": list(template.benchmark_dimensions),
                     "pass_number": 1,
                     "prior_pass_blockers": [],
                     "stop_target": profile.targets.get(judge_name),
@@ -125,6 +134,7 @@ def build_quality_plan(
         "benchmark_sources": list(benchmark_sources),
         "artifact_plan": {
             "profile_file": f".meta/quality-profiles/{profile.name}.json",
+            "template_file": f".meta/capability-templates/{template.name}.json",
             "review_directory": f"reports/quality-reviews/{slug}/",
             "latest_review_file": f"reports/quality-reviews/{slug}/LATEST.md",
         },
@@ -152,6 +162,8 @@ def run_quality_loop(
     stop_reason = "max_passes_reached"
     final_status = "manual_review"
     final_pass = 0
+    capability_type = str(((descriptor.get("layers") or {}).get("minimal") or {}).get("capability_type") or descriptor.get("capability_type") or "skill")
+    template = load_capability_template(REPO_ROOT, capability_type)
 
     for pass_number in range(1, max_passes + 1):
         pass_report = evaluate_quality_pass(
@@ -163,6 +175,8 @@ def run_quality_loop(
             benchmark_sources=benchmark_sources,
             pass_number=pass_number,
             max_passes=max_passes,
+            template_name=template.name,
+            template=template.payload,
         )
         reports.append(pass_report)
         final_pass = pass_number
@@ -183,6 +197,7 @@ def run_quality_loop(
         "stop_reason": stop_reason,
         "judge_reports": reports,
         "final_candidate_text": current_text,
+        "scorecard": dict(reports[-1].get("scorecard") or {}) if reports else {},
         "consumption_hints": dict(profile.payload.get("consumption_hints") or {}),
     }
 
@@ -197,11 +212,14 @@ def evaluate_quality_pass(
     benchmark_sources: Sequence[Mapping[str, Any]],
     pass_number: int,
     max_passes: int,
+    template_name: str,
+    template: Mapping[str, Any],
 ) -> dict[str, Any]:
     judge_reports = [
         _judge_operational_richness(profile, candidate_text),
         _judge_source_fidelity(profile, candidate_text, source_refs, benchmark_sources),
         _judge_metadata_integrity(profile, slug, candidate_text, descriptor),
+        _judge_benchmark_readiness(profile, candidate_text, descriptor, template_name=template_name, template=template),
     ]
     thresholds = profile.targets
     blockers = [
@@ -221,6 +239,8 @@ def evaluate_quality_pass(
         "status": status,
         "judge_reports": judge_reports,
         "blockers": blockers,
+        "scorecard": _pass_scorecard(judge_reports),
+        "template_name": template_name,
     }
 
 
@@ -236,11 +256,14 @@ def render_latest_review_markdown(
         f"- Status: `{quality_result.get('status')}`",
         f"- Passes: `{quality_result.get('pass_count')}`",
         f"- Stop reason: `{quality_result.get('stop_reason')}`",
+        f"- Scorecard: `{json.dumps(quality_result.get('scorecard') or {}, sort_keys=True)}`",
         "",
     ]
     for report in quality_result.get("judge_reports") or []:
         lines.append(f"## Pass {report['pass_number']}")
         lines.append(f"- Status: `{report['status']}`")
+        if report.get("scorecard"):
+            lines.append(f"- Scorecard: `{json.dumps(report['scorecard'], sort_keys=True)}`")
         for judge in report.get("judge_reports") or []:
             lines.append(f"- {judge['title']}: `{judge['score']}/10`")
             for blocker in judge.get("blockers") or ():
@@ -260,6 +283,7 @@ def quality_descriptor_fields(
         "quality_status": quality_result.get("status"),
         "benchmark_sources": list(benchmark_sources),
         "judge_reports": list(quality_result.get("judge_reports") or []),
+        "quality_scorecard": dict(quality_result.get("scorecard") or {}),
         "consumption_hints": dict(quality_result.get("consumption_hints") or profile.payload.get("consumption_hints") or {}),
         "quality_pass_count": int(quality_result.get("pass_count") or 0),
         "quality_stop_reason": quality_result.get("stop_reason"),
@@ -361,18 +385,132 @@ def _judge_metadata_integrity(
     }
 
 
+def _judge_benchmark_readiness(
+    profile: QualityProfile,
+    candidate_text: str,
+    descriptor: Mapping[str, Any],
+    *,
+    template_name: str,
+    template: Mapping[str, Any],
+) -> dict[str, Any]:
+    required_headings = tuple(str(item) for item in template.get("required_headings") or ())
+    heading_ratio, missing_headings = _marker_ratio(candidate_text, required_headings)
+    h1 = next((line[2:].strip() for line in candidate_text.splitlines() if line.startswith("# ")), "")
+    minimal = ((descriptor.get("layers") or {}).get("minimal") or {}) if isinstance(descriptor.get("layers"), Mapping) else {}
+    summary = str(minimal.get("summary") or descriptor.get("shared_summary") or "")
+    emitted = minimal.get("emitted_surfaces") or {}
+    scorecard = {
+        "title_clarity": 10 if h1 and 12 <= len(h1) <= 96 else (7 if h1 else 3),
+        "description_richness": 10 if len(summary) >= 90 else (7 if len(summary) >= 50 else 4),
+        "intent_coverage": _score_from_ratio(heading_ratio, penalty=0),
+        "boundary_clarity": _boundary_clarity_score(candidate_text),
+        "output_specificity": _output_specificity_score(candidate_text, minimal),
+        "metadata_completeness": _metadata_completeness_score(descriptor),
+        "surface_usability": _surface_usability_score(candidate_text, minimal, template_name, emitted),
+    }
+    score = max(1, round(sum(scorecard.values()) / len(scorecard)))
+    blockers = [f"missing template heading: {heading}" for heading in missing_headings]
+    blockers.extend(
+        f"benchmark category below target: {label} ({value}/10)"
+        for label, value in scorecard.items()
+        if value < 8
+    )
+    if score < int(profile.targets.get("benchmark_readiness") or 0):
+        blockers.append("candidate is below the benchmark-readiness threshold")
+    return {
+        "judge": "benchmark_readiness",
+        "title": JUDGE_TITLES["benchmark_readiness"],
+        "score": score,
+        "blockers": blockers,
+        "scorecard": scorecard,
+    }
+
+
 def refine_candidate_text(candidate_text: str, pass_report: Mapping[str, Any], profile: QualityProfile) -> str:
     refined = candidate_text
     templates = dict(profile.payload.get("refinement_templates") or {})
+    template_name = str(pass_report.get("template_name") or "skill")
+    section_stubs = load_capability_template(REPO_ROOT, template_name).section_stubs
     missing_markers = []
     for judge in pass_report.get("judge_reports") or []:
         for blocker in judge.get("blockers") or []:
             if ": " in blocker:
                 missing_markers.append(blocker.split(": ", 1)[1])
     for marker in missing_markers:
+        if marker and marker not in refined and marker in section_stubs:
+            refined = refined.rstrip() + "\n\n" + str(section_stubs[marker]).rstrip() + "\n"
+            continue
         if marker and marker not in refined and marker in templates:
             refined = refined.rstrip() + "\n\n" + str(templates[marker]).rstrip() + "\n"
     return refined
+
+
+def _boundary_clarity_score(candidate_text: str) -> int:
+    lowered = candidate_text.casefold()
+    markers = (
+        "out of scope",
+        "do not",
+        "forbidden",
+        "advisory",
+        "escalation",
+    )
+    present = sum(1 for marker in markers if marker in lowered)
+    return min(10, 4 + present * 2)
+
+
+def _output_specificity_score(candidate_text: str, minimal: Mapping[str, Any]) -> int:
+    bullets = sum(1 for line in candidate_text.splitlines() if line.strip().startswith("- "))
+    expected_outputs = minimal.get("expected_outputs") or []
+    if "## Required Output" in candidate_text and bullets >= 8 and len(expected_outputs) >= 3:
+        return 10
+    if "## Required Output" in candidate_text and bullets >= 4:
+        return 8
+    if "## Required Output" in candidate_text:
+        return 6
+    return 3
+
+
+def _metadata_completeness_score(descriptor: Mapping[str, Any]) -> int:
+    minimal = ((descriptor.get("layers") or {}).get("minimal") or {}) if isinstance(descriptor.get("layers"), Mapping) else {}
+    checks = [
+        bool(descriptor.get("slug")),
+        bool(minimal.get("capability_type")),
+        bool(minimal.get("install_target")),
+        bool(minimal.get("emitted_surfaces")),
+        bool(minimal.get("source_provenance")),
+        bool(descriptor.get("consumption_hints") or minimal.get("display_name")),
+    ]
+    ratio = sum(1 for passed in checks if passed) / len(checks)
+    return _score_from_ratio(ratio, penalty=0)
+
+
+def _surface_usability_score(
+    candidate_text: str,
+    minimal: Mapping[str, Any],
+    template_name: str,
+    emitted: Mapping[str, Any],
+) -> int:
+    capability_type = str(minimal.get("capability_type") or template_name)
+    has_examples = "## Examples" in candidate_text
+    if capability_type == "both":
+        agentish = "## Agent Operating Contract" in candidate_text and "## Tool Boundaries" in candidate_text
+        both_surfaces = any("agent" in item for values in emitted.values() for item in values) and any("skill" in item for values in emitted.values() for item in values)
+        return 10 if agentish and both_surfaces and has_examples else 6
+    if capability_type == "agent":
+        return 10 if "## Agent Operating Contract" in candidate_text and has_examples else 6
+    return 10 if has_examples and "## Workflow" in candidate_text else 6
+
+
+def _pass_scorecard(judge_reports: Sequence[Mapping[str, Any]]) -> dict[str, int]:
+    scorecard: dict[str, int] = {}
+    for judge in judge_reports:
+        scorecard[str(judge["judge"])] = int(judge["score"])
+        nested = judge.get("scorecard")
+        if isinstance(nested, Mapping):
+            for key, value in nested.items():
+                if isinstance(value, int):
+                    scorecard[str(key)] = value
+    return scorecard
 
 
 def _marker_ratio(candidate_text: str, markers: Sequence[str]) -> tuple[float, list[str]]:

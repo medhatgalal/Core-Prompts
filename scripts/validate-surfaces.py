@@ -42,6 +42,21 @@ def parse_frontmatter(path: Path):
     return out
 
 
+def count_frontmatter_blocks(path: Path):
+    text = path.read_text(encoding='utf-8')
+    remainder = text
+    count = 0
+    while remainder.startswith('---\n'):
+        end = remainder.find('\n---', 3)
+        if end == -1:
+            break
+        count += 1
+        remainder = remainder[end + 4 :]
+        if remainder.startswith('\n'):
+            remainder = remainder[1:]
+    return count
+
+
 def parse_args():
     parser = argparse.ArgumentParser(description='Validate generated CLI surfaces from SSOT.')
     parser.add_argument('--strict', action='store_true', help='fail on optional checks and missing optional CLI tooling')
@@ -73,6 +88,9 @@ def run_command(command: list[str], path: Path | None = None):
 def validate_frontmatter(path: Path, required: list[str]):
     errors = []
     fm = parse_frontmatter(path)
+    block_count = count_frontmatter_blocks(path)
+    if block_count > 1:
+        errors.append(f'{path}: multiple frontmatter blocks found ({block_count})')
     for key in required:
         if key not in fm or not fm[key]:
             errors.append(f'{path}: missing frontmatter {key}')

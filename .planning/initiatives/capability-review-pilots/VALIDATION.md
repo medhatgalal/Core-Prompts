@@ -37,7 +37,9 @@ bin/uac audit --output table
 ```
 Result:
 - benchmark anchors are strong: `architecture`, `code-review`, `resolve-conflict`, `testing`, `uac-import`
-- weakest description set for this slice: `supercharge`, `analyze-context`, `converge`
+- weak body set for the recovery slice: `supercharge`, `analyze-context`, `converge`
+- missing capability set before recovery: `gitops-review`
+- `docs-review-expert` needed a full `both` upgrade, not just a skill landing
 
 ### GitOps Candidate Intake
 Command:
@@ -53,7 +55,8 @@ Observed outcome:
 - not good enough as-is for direct landing under the desired GitOps family name
 
 Decision:
-- use the research to drive durable maintainer guidance and selective SSOT uplift, not a direct SSOT landing in this slice
+- the external research was not sufficient as a direct import
+- land a repo-native `gitops-review` capability with explicit operating contract, companion-skill routing, and release gates
 
 ### Docs Candidate Intake
 Command:
@@ -67,7 +70,7 @@ Observed outcome:
 - the external material was too template-heavy / weakly structured for UAC's intent-bearing threshold
 
 Decision:
-- normalize the family into a repo-quality skill candidate instead of applying the raw source directly
+- normalize the family into a repo-quality `both` capability candidate instead of applying the raw source directly
 
 ### Docs Candidate Judge Dry Run
 Command shape used during drafting:
@@ -79,36 +82,62 @@ Observed outcome:
 - initial judge passes flagged missing source-fidelity markers such as `Primary Objective`
 
 Decision:
-- use the judge feedback to shape the final SSOT entry with stronger objective, examples, constraints, and explicit output contract
+- use the judge feedback to shape the final SSOT entry with stronger objective, examples, constraints, explicit output contract, and advisory agent contract
+
+### UAC Template and Judge-Gate Hardening
+Changes landed:
+- added canonical machine-readable templates under `.meta/capability-templates/` for `skill`, `agent`, and `both`
+- extended `uac_quality.py` with a `benchmark_readiness` judge
+- added scorecard reporting for:
+  - title clarity
+  - description richness
+  - intent coverage
+  - boundary clarity
+  - output specificity
+  - metadata completeness
+  - surface usability
+- updated `apply` behavior so candidates that fail the benchmark gate remain in review instead of landing into SSOT
+
+Reason:
+- the previous slice proved that metadata cleanup alone does not raise weak capability bodies to the benchmark bar
+- the quality gate now blocks exactly that failure mode
 
 ## Final Decisions
-- land `docs-review-expert` as a new SSOT skill
-- land GitOps outcomes as maintainer guidance plus SSOT description uplifts
+- land `docs-review-expert` as a new SSOT capability with `both` surfaces
+- land `gitops-review` as a new SSOT capability with `both` surfaces
+- treat maintainer hygiene guidance as durable support material, not the primary GitOps outcome
 - keep `.planning/` as the working ledger
 - do not adopt Beads or Spec-Kit in this slice
+- keep durable lessons in `AGENTS.md` and `docs/MAINTAINER-HYGIENE.md`
 
 ## Local Validation Results
 ### Passed
+- `python3 scripts/sync-surface-specs.py --refresh --timeout 60`
+  - refreshed all schema-cache sources to healthy snapshots
 - `python3 scripts/build-surfaces.py`
-  - generated 11 SSOT entries
+  - generated 12 SSOT entries
 - `python3 scripts/validate-surfaces.py --strict`
   - passed
 - `python3 scripts/smoke-clis.py`
   - completed
   - note: Gemini discovery probe timed out after 15 seconds, but smoke still completed
 - `bin/uac audit --output table`
-  - `docs-review-expert` is aligned as `skill`
-- `python3 -m pytest -q tests/test_validate_surfaces.py`
-  - `2 passed`
-- `python3 -m pytest -q tests/test_uac_ssot.py`
-  - `7 passed`
-
-### Inconclusive In This Environment
+  - `docs-review-expert` and `gitops-review` are aligned as `both`
+- `python3 -m pytest -q tests/test_uac_quality.py tests/test_validate_surfaces.py tests/test_capability_recovery.py`
+  - `9 passed`
+- `python3 -m pytest -q tests/test_uac_quality.py tests/test_validate_surfaces.py tests/test_capability_recovery.py tests/test_uac_manifest.py tests/test_uac_import.py tests/test_uac_ssot.py`
+  - `34 passed`
 - `python3 -m pytest -q`
-  - started and made progress, then stalled without clean completion
-- `python3 -m pytest -q tests/test_uac_manifest.py`
-  - started and made progress, then stalled without clean completion
+  - `246 passed`
+
+### Review Acceptance Evidence
+- code review evidence:
+  - `reports/code-review/20260318-capability-uplift-recovery.md`
+  - outcome: no blocking findings
+- docs review evidence:
+  - `reports/docs-review/20260318-capability-uplift-recovery.md`
+  - outcome: no blocking documentation findings
 
 Decision:
-- treat strict validation, smoke, and targeted passing tests as the current evidence set for this slice
-- do not claim full-suite green until the hanging pytest behavior is understood
+- keep the benchmark gate intact
+- proceed to PR/MR, hosted CI, merge, package, release, and install rerun once hosted CI is green

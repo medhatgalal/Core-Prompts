@@ -1,17 +1,20 @@
 {
   "profile": "architecture",
   "display_name": "Architecture Studio",
-  "title": "Architecture Studio \u2014 Systems Design and Decision Skill",
+  "title": "Architecture Studio — Systems Design and Decision Skill",
   "description": "Architecture Studio for API design, database design, pattern selection, and system design with black-box boundaries, concrete artifacts, and migration-safe recommendations.",
   "judge_targets": {
     "operational_richness": 10,
     "source_fidelity": 9,
-    "metadata_integrity": 9
+    "metadata_integrity": 9,
+    "benchmark_readiness": 9
   },
   "max_passes": 4,
   "local_benchmarks": [
     "ssot/code-review.md",
-    "ssot/resolve-conflict.md"
+    "ssot/resolve-conflict.md",
+    "ssot/testing.md",
+    "ssot/uac-import.md"
   ],
   "external_sources": [
     "https://github.com/harish-garg/gemini-cli-prompt-library/tree/main/commands/architecture",
@@ -20,6 +23,8 @@
   "must_exceed": [
     "code-review operational bar",
     "resolve-conflict operational bar",
+    "testing explicit-output bar",
+    "uac-import metadata and workflow bar",
     "Harish architecture worked examples",
     "Alexanderdunlop black-box and replaceability doctrine"
   ],
