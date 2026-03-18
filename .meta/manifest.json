@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-03-18T08:49:24.706469+00:00",
+  "generated_at": "2026-03-18T12:53:52.520600+00:00",
   "generator": {
     "script": "scripts/build-surfaces.py",
     "python": "3.11+",
     "version": "6.0",
-    "generated_utc": "2026-03-18T08:49:24.706779+00:00"
+    "generated_utc": "2026-03-18T12:53:52.521113+00:00"
   },
   "ssot_sources": [
     {
@@ -889,7 +889,7 @@
             "policy_rule_id": "ssot.converge",
             "content_sha256": "ssot"
           },
-          "confidence": 0.82,
+          "confidence": 0.84,
           "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "/converge \u2014 Universal Synthesis & Convergence Prompt (Portable)"
@@ -948,6 +948,174 @@
         "kiro_prompt",
         "kiro_skill",
         "kiro_agent"
+      ],
+      "rubric_version": "capability-fabric.v0"
+    },
+    {
+      "slug": "docs-review-expert",
+      "manifest_version": "capability-fabric.v0",
+      "layers": {
+        "minimal": {
+          "capability_type": "skill",
+          "summary": "Documentation Review Expert for information architecture, readable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.",
+          "role": "advisor",
+          "domain_tags": [
+            "architecture",
+            "review",
+            "debugging",
+            "prompting",
+            "docs",
+            "expert"
+          ],
+          "required_inputs": [
+            "source text",
+            "user intent/context"
+          ],
+          "expected_outputs": [
+            "deterministic summary",
+            "uplift payload",
+            "capability recommendation",
+            "deployment guidance"
+          ],
+          "tool_policy": {
+            "allowed": [
+              "deterministic classification",
+              "metadata publication",
+              "surface generation"
+            ],
+            "forbidden": [
+              "orchestration",
+              "delegation decisions",
+              "runtime execution control"
+            ]
+          },
+          "resources": [
+            "ssot/docs-review-expert.md"
+          ],
+          "packaging_profile": {
+            "capability_type": "skill",
+            "primary_surfaces": {
+              "codex": [
+                "codex_skill"
+              ],
+              "gemini": [
+                "gemini_command",
+                "gemini_skill"
+              ],
+              "claude": [
+                "claude_command"
+              ],
+              "kiro": [
+                "kiro_prompt",
+                "kiro_skill"
+              ]
+            },
+            "wrapper_surfaces": {
+              "codex": [],
+              "gemini": [
+                "command_wrapper",
+                "extension_wrapper"
+              ],
+              "claude": [
+                "command_wrapper",
+                "plugin_wrapper"
+              ],
+              "kiro": [
+                "prompt_wrapper",
+                "power_wrapper"
+              ]
+            },
+            "notes": [
+              "wrapper surfaces are additive deployment forms, not capability types",
+              "orchestrators must not infer execution authority from wrapper presence alone"
+            ]
+          },
+          "install_target": {
+            "recommended": "repo_local",
+            "confidence": 0.88,
+            "confirmation_required_for_apply": true,
+            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+            "supported": [
+              "global",
+              "repo_local",
+              "both"
+            ]
+          },
+          "emitted_surfaces": {
+            "codex": [
+              "codex_skill"
+            ],
+            "gemini": [
+              "gemini_command",
+              "gemini_skill"
+            ],
+            "claude": [
+              "claude_command"
+            ],
+            "kiro": [
+              "kiro_prompt",
+              "kiro_skill"
+            ]
+          },
+          "source_provenance": {
+            "source_type": "LOCAL_FILE",
+            "normalized_source": "ssot/docs-review-expert.md",
+            "policy_rule_id": "ssot.docs-review-expert",
+            "content_sha256": "ssot"
+          },
+          "confidence": 0.97,
+          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a command/skill surface.",
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "Docs Review Expert \u2014 Documentation IA and Drift Guard"
+        },
+        "expanded": {
+          "relationship_suggestions": [
+            "pair with review and analysis capabilities when converging design proposals"
+          ],
+          "capability_dependencies": [
+            "analysis",
+            "context"
+          ],
+          "overlap_candidates": [],
+          "migration_notes": [
+            "If the capability lands, compare it against existing entries before apply.",
+            "Relationship suggestions are advisory only and do not imply runtime routing."
+          ],
+          "adjustment_recommendations": [
+            "add an explicit primary objective before packaging",
+            "add deterministic in-scope sections to improve routing fitness",
+            "capture quality constraints or non-negotiables"
+          ]
+        },
+        "org_graph": {
+          "org_role": "advisor",
+          "reports_to_suggestions": [],
+          "delegates_to_suggestions": [],
+          "collaborates_with_suggestions": [
+            "architecture",
+            "review"
+          ],
+          "authority_tier": "advisory",
+          "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+        }
+      },
+      "display_name": "Docs Review Expert \u2014 Documentation IA and Drift Guard",
+      "descriptor_version": "capability-fabric.descriptor.v0",
+      "family_slug": "docs-review-expert",
+      "shared_summary": "Documentation Review Expert for information architecture, readable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.",
+      "shared_constraints": [],
+      "modes": [],
+      "benchmark_sources": [],
+      "consumption_hints": {},
+      "declared_capability": "skill",
+      "inferred_capability": "skill",
+      "expected_surface_names": [
+        "codex_skill",
+        "gemini_command",
+        "gemini_skill",
+        "claude_command",
+        "kiro_prompt",
+        "kiro_skill"
       ],
       "rubric_version": "capability-fabric.v0"
     },
@@ -1317,7 +1485,7 @@
       "layers": {
         "minimal": {
           "capability_type": "both",
-          "summary": "[Medhat] SuperCharge \u2014 Prompt Engineering Swiss Army Knife (ULT-Agent++ \u2022 Catchup Deep \u2022 Simple \u2022 Invert \u2022 Adversarial \u2022 Contract+QA \u2022 Grade \u2022 GASLIGHT 13)",
+          "summary": "[Medhat] SuperCharge for prompt creation, prompt refinement, planning hardening, option comparison, multi-pass critique, and structured execution-quality improvement.",
           "role": "advisor",
           "domain_tags": [
             "architecture",
@@ -2140,6 +2308,7 @@
       ".gemini/commands/architecture.toml",
       ".gemini/commands/code-review.toml",
       ".gemini/commands/converge.toml",
+      ".gemini/commands/docs-review-expert.toml",
       ".gemini/commands/mentor.toml",
       ".gemini/commands/resolve-conflict.toml",
       ".gemini/commands/supercharge.toml",
@@ -2152,6 +2321,7 @@
       ".gemini/skills/architecture/SKILL.md",
       ".gemini/skills/code-review/SKILL.md",
       ".gemini/skills/converge/SKILL.md",
+      ".gemini/skills/docs-review-expert/SKILL.md",
       ".gemini/skills/mentor/SKILL.md",
       ".gemini/skills/resolve-conflict/SKILL.md",
       ".gemini/skills/supercharge/SKILL.md",
@@ -2170,6 +2340,7 @@
       ".claude/commands/architecture.md",
       ".claude/commands/code-review.md",
       ".claude/commands/converge.md",
+      ".claude/commands/docs-review-expert.md",
       ".claude/commands/mentor.md",
       ".claude/commands/resolve-conflict.md",
       ".claude/commands/supercharge.md",
@@ -2188,6 +2359,7 @@
       ".kiro/prompts/architecture.md",
       ".kiro/prompts/code-review.md",
       ".kiro/prompts/converge.md",
+      ".kiro/prompts/docs-review-expert.md",
       ".kiro/prompts/mentor.md",
       ".kiro/prompts/resolve-conflict.md",
       ".kiro/prompts/supercharge.md",
@@ -2206,6 +2378,7 @@
       ".kiro/skills/architecture/SKILL.md",
       ".kiro/skills/code-review/SKILL.md",
       ".kiro/skills/converge/SKILL.md",
+      ".kiro/skills/docs-review-expert/SKILL.md",
       ".kiro/skills/mentor/SKILL.md",
       ".kiro/skills/resolve-conflict/SKILL.md",
       ".kiro/skills/supercharge/SKILL.md",
@@ -2218,6 +2391,7 @@
       ".codex/skills/architecture/SKILL.md",
       ".codex/skills/code-review/SKILL.md",
       ".codex/skills/converge/SKILL.md",
+      ".codex/skills/docs-review-expert/SKILL.md",
       ".codex/skills/mentor/SKILL.md",
       ".codex/skills/resolve-conflict/SKILL.md",
       ".codex/skills/supercharge/SKILL.md",
@@ -2238,6 +2412,7 @@
       ".codex/skills/architecture/resources/capability.json",
       ".codex/skills/code-review/resources/capability.json",
       ".codex/skills/converge/resources/capability.json",
+      ".codex/skills/docs-review-expert/resources/capability.json",
       ".codex/skills/mentor/resources/capability.json",
       ".codex/skills/resolve-conflict/resources/capability.json",
       ".codex/skills/supercharge/resources/capability.json",
@@ -2256,6 +2431,7 @@
       ".gemini/skills/architecture/resources/capability.json",
       ".gemini/skills/code-review/resources/capability.json",
       ".gemini/skills/converge/resources/capability.json",
+      ".gemini/skills/docs-review-expert/resources/capability.json",
       ".gemini/skills/mentor/resources/capability.json",
       ".gemini/skills/resolve-conflict/resources/capability.json",
       ".gemini/skills/supercharge/resources/capability.json",
@@ -2280,6 +2456,7 @@
       ".kiro/skills/architecture/resources/capability.json",
       ".kiro/skills/code-review/resources/capability.json",
       ".kiro/skills/converge/resources/capability.json",
+      ".kiro/skills/docs-review-expert/resources/capability.json",
       ".kiro/skills/mentor/resources/capability.json",
       ".kiro/skills/resolve-conflict/resources/capability.json",
       ".kiro/skills/supercharge/resources/capability.json",
@@ -2295,7 +2472,7 @@
     ]
   },
   "validation": {
-    "validated_at": "2026-03-18T08:50:48.533069+00:00",
+    "validated_at": "2026-03-18T12:55:01.526058+00:00",
     "strict": true,
     "with_cli": false,
     "fail_on_cli_miss": false,
