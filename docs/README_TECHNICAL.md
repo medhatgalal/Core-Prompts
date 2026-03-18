@@ -15,6 +15,7 @@ Use this index when you need operational and implementation detail beyond the ro
 - Authoritative content originates from `ssot/` and `.meta/surface-rules.json`.
 - Generated outputs are in `.codex/`, `.gemini/`, `.claude/`, and `.kiro/`.
 - Automation scripts live in `scripts/`.
+- Persisted local capability source references must stay repo-relative so packaged and installed artifacts remain machine-portable.
 
 ## Typical Technical Workflow
 

@@ -36,6 +36,8 @@ These are deployment wrappers, not peer capability classes:
 - `review_status`
 - `display_name`
 
+For repo-local SSOT capabilities, persisted `resources` and `source_provenance.normalized_source` must use repo-relative paths such as `ssot/architecture.md`. Canonical metadata and bundled capability resources must not persist machine-specific absolute filesystem paths.
+
 ### Expanded
 - `relationship_suggestions`
 - `capability_dependencies`

@@ -103,7 +103,10 @@ def infer_install_target(
     rationale = "Remote or external sources default to global library installation until a repo-local need is confirmed."
     confidence = 0.66
     if source_type == "LOCAL_FILE":
-        path = Path(normalized_source).expanduser().resolve()
+        path = Path(normalized_source).expanduser()
+        if not path.is_absolute():
+            path = repo_root / path
+        path = path.resolve()
         try:
             path.relative_to(repo_root)
             recommended = "repo_local"
@@ -130,6 +133,27 @@ def infer_install_target(
         "rationale": rationale,
         "supported": ["global", "repo_local", "both"],
     }
+
+
+def normalize_persisted_source_reference(
+    normalized_source: str,
+    *,
+    source_type: str,
+    repo_root: Path,
+) -> str:
+    repo_root = repo_root.resolve()
+    if source_type != "LOCAL_FILE":
+        return normalized_source
+
+    path = Path(normalized_source).expanduser()
+    if not path.is_absolute():
+        return str(path.as_posix())
+
+    try:
+        relative = path.resolve().relative_to(repo_root)
+    except ValueError:
+        return str(path.resolve())
+    return relative.as_posix()
 
 
 def derive_role(raw_text: str, capability_type: str, slug: str) -> str:
@@ -195,7 +219,12 @@ def build_capability_manifest(
     }
     source_type = str(source_metadata.get("source_type") or "unknown")
     normalized_source = str(source_metadata.get("normalized_source") or "unknown")
-    install_target = infer_install_target(normalized_source, source_type=source_type, repo_root=repo_root)
+    persisted_source = normalize_persisted_source_reference(
+        normalized_source,
+        source_type=source_type,
+        repo_root=repo_root,
+    )
+    install_target = infer_install_target(persisted_source, source_type=source_type, repo_root=repo_root)
     role = derive_role(raw_text, capability_type, slug)
     tags = derive_domain_tags(raw_text, slug)
     primary_objective = uplift_payload.get("primary_objective")
@@ -219,13 +248,13 @@ def build_capability_manifest(
             "allowed": ["deterministic classification", "metadata publication", "surface generation"],
             "forbidden": ["orchestration", "delegation decisions", "runtime execution control"],
         },
-        "resources": [normalized_source],
+        "resources": [persisted_source],
         "packaging_profile": packaging_profile(capability_type, emitted_surfaces),
         "install_target": install_target,
         "emitted_surfaces": {cli: list(values) for cli, values in emitted_surfaces.items()},
         "source_provenance": {
             "source_type": source_type,
-            "normalized_source": normalized_source,
+            "normalized_source": persisted_source,
             "policy_rule_id": source_metadata.get("policy_rule_id"),
             "content_sha256": source_metadata.get("content_sha256"),
         },
@@ -428,6 +457,7 @@ __all__ = [
     "derive_domain_tags",
     "derive_role",
     "infer_install_target",
+    "normalize_persisted_source_reference",
     "orchestrator_handoff_payload",
     "packaging_profile",
 ]

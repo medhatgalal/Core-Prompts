@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.4.2 - 2026-03-18
+
+- Fixed portable capability metadata for repo-local SSOT sources:
+  - canonical descriptors and `.meta/manifest.json` now persist repo-relative source refs like `ssot/architecture.md`
+  - bundled `capability.json` resources no longer embed build-machine absolute SSOT paths
+- Added guardrails so the regression fails fast:
+  - strict validation now rejects absolute local source refs in persisted capability metadata
+  - source-reference portability is now documented in repo policy and technical docs
+- Rebuilt generated surfaces and reran home install so installed CLI resources match the portable metadata policy
+
 ## 1.4.0 - 2026-03-17
 
 - Shipped the Capability Fabric broad release slice:
