@@ -73,3 +73,40 @@ kind: "skill"
     errors = MODULE.validate_frontmatter(path, ["name", "description"])
 
     assert any("multiple frontmatter blocks found" in item for item in errors)
+
+
+def test_validate_toml_rejects_forbidden_tools_key(tmp_path: Path) -> None:
+    path = tmp_path / "architecture.toml"
+    path.write_text(
+        """name = "architecture"
+description = "Architecture Studio"
+sandbox_mode = "workspace-write"
+developer_instructions = '''
+hello
+'''
+tools = ["Read", "Write"]
+""",
+        encoding="utf-8",
+    )
+
+    errors = MODULE.validate_toml(path, ["name", "description", "sandbox_mode", "developer_instructions"], "architecture", ["tools"])
+
+    assert any("forbidden key tools" in item for item in errors)
+
+
+def test_validate_toml_accepts_codex_agent_runtime_shape(tmp_path: Path) -> None:
+    path = tmp_path / "converge.toml"
+    path.write_text(
+        """name = "converge"
+description = "Universal Synthesis and Convergence"
+sandbox_mode = "workspace-write"
+developer_instructions = '''
+hello
+'''
+""",
+        encoding="utf-8",
+    )
+
+    errors = MODULE.validate_toml(path, ["name", "description", "sandbox_mode", "developer_instructions"], "converge", ["tools"])
+
+    assert errors == []

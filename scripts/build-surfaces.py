@@ -336,20 +336,27 @@ def write_codex_skill(slug: str, desc: str, body: str, resource_hint: str | None
     return write_skill(CODEX_SKILL_DIR, slug, desc, body, resource_hint=resource_hint)
 
 
+def infer_codex_sandbox(tools: list[str]) -> str:
+    normalized = {tool.strip().lower() for tool in tools if tool.strip()}
+    mutating = {'write', 'edit', 'bash'}
+    if normalized.intersection(mutating):
+        return 'workspace-write'
+    return 'read-only'
+
+
 def write_codex_agent(slug: str, desc: str, body: str, tools: list[str], resource_hint: str | None = None):
     path = CODEX_AGENT_DIR / f'{slug}.toml'
     esc_desc = toml_escape_inline(desc)
     augmented = body.rstrip()
     if resource_hint:
         augmented += f'\n\nCapability resource: `{resource_hint}`\n'
-    instructions = augmented.replace('\\', '\\\\').replace('"', '\\"')
+    sandbox_mode = infer_codex_sandbox(tools)
     txt = (
         f'name = "{slug}"\n'
         f'description = "{esc_desc}"\n'
-        f'developer_instructions = """\n{instructions}\n"""\n'
+        f'sandbox_mode = "{sandbox_mode}"\n'
+        f"developer_instructions = '''\n{augmented}\n'''\n"
     )
-    if tools:
-        txt += f'tools = {to_toml_array(tools)}\n'
     path.write_text(txt, encoding='utf-8')
     return str(path.relative_to(ROOT))
 

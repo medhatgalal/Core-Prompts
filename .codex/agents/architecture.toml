@@ -1,6 +1,7 @@
 name = "architecture"
 description = "Architecture Studio for API design, database design, design-pattern selection, and system design with black-box boundaries, concrete artifacts, and migration-safe recommendations."
-developer_instructions = """
+sandbox_mode = "workspace-write"
+developer_instructions = '''
 # Architecture Studio — Systems Design and Decision Skill
 
 ## Purpose
@@ -231,14 +232,14 @@ Provide at least one concrete example like:
 
 ```json
 {
-  \"data\": {
-    \"id\": \"usr_123\",
-    \"name\": \"Jane Doe\",
-    \"email\": \"jane@example.com\",
-    \"status\": \"active\"
+  "data": {
+    "id": "usr_123",
+    "name": "Jane Doe",
+    "email": "jane@example.com",
+    "status": "active"
   },
-  \"meta\": {
-    \"request_id\": \"req_123\"
+  "meta": {
+    "request_id": "req_123"
   }
 }
 ```
@@ -452,8 +453,8 @@ Use this exact structure for `design-database` responses:
 **Factory over branching construction**
 ```javascript
 // Before
-if (type === \"admin\") return new AdminUser();
-if (type === \"guest\") return new GuestUser();
+if (type === "admin") return new AdminUser();
+if (type === "guest") return new GuestUser();
 
 // After
 const builders = { admin: AdminUser, guest: GuestUser };
@@ -791,5 +792,4 @@ Include this block at the end of every substantive response:
 
 Capability resource: `.codex/agents/resources/architecture/capability.json`
 
-"""
-tools = ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
+'''

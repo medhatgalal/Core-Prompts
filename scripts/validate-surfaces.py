@@ -97,7 +97,7 @@ def validate_frontmatter(path: Path, required: list[str]):
     return errors
 
 
-def validate_toml(path: Path, required: list[str], slug: str):
+def validate_toml(path: Path, required: list[str], slug: str, forbidden: list[str] | None = None):
     errors = []
     try:
         with path.open('rb') as f:
@@ -108,6 +108,9 @@ def validate_toml(path: Path, required: list[str], slug: str):
     for key in required:
         if key not in data:
             errors.append(f'{path}: missing key {key}')
+    for key in forbidden or []:
+        if key in data:
+            errors.append(f'{path}: forbidden key {key}')
     if data.get('name') != slug:
         errors.append(f'{path}: expected name {slug}, found {data.get("name")}')
     return errors
@@ -187,7 +190,7 @@ def validate_schema_artifact(
         return [f'missing {rule["surface"]} {rule["name"]}: {path.relative_to(ROOT)}']
 
     if fmt == 'toml':
-        errors.extend(validate_toml(path, rule.get('required_fields', []), slug))
+        errors.extend(validate_toml(path, rule.get('required_fields', []), slug, rule.get('forbidden_fields')))
     elif fmt == 'frontmatter_markdown':
         errors.extend(validate_frontmatter(path, rule.get('required_frontmatter', [])))
     elif fmt == 'json':

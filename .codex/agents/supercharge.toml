@@ -1,6 +1,7 @@
 name = "supercharge"
 description = "SuperCharge for prompt creation, prompt refinement, planning hardening, option comparison, grading, multi-pass critique, and structured execution-quality improvement across direct and agentic workflows."
-developer_instructions = """
+sandbox_mode = "workspace-write"
+developer_instructions = '''
 # SuperCharge — Prompt Engineering, Planning Hardening, and Graded Improvement
 
 ## Purpose
@@ -156,5 +157,4 @@ Use this capability before:
 
 Capability resource: `.codex/agents/resources/supercharge/capability.json`
 
-"""
-tools = ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
+'''

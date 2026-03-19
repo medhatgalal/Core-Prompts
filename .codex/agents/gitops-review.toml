@@ -1,6 +1,7 @@
 name = "gitops-review"
 description = "GitOps Review for repo hygiene, commit quality, PR readiness, CI state, packaging, changelog, merge, tag, push, and release gates across GitHub and GitLab."
-developer_instructions = """
+sandbox_mode = "workspace-write"
+developer_instructions = '''
 # GitOps Review — Repo Hygiene, CI, Release, and Merge Gate
 
 ## Purpose
@@ -146,5 +147,4 @@ Default GitOps review timing:
 
 Capability resource: `.codex/agents/resources/gitops-review/capability.json`
 
-"""
-tools = ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
+'''
