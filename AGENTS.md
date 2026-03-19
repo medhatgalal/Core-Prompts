@@ -34,6 +34,7 @@
 - Generated review evidence and similar run artifacts belong under `reports/`, not under `.meta/`.
 - Persisted local source references in canonical metadata must be repo-relative, not absolute machine paths.
 - Bundled `capability.json` resources must stay machine-portable; install/deploy must not rely on rewriting metadata paths.
+- Generated Codex agent TOMLs must use the current runtime shape: `name`, `description`, `sandbox_mode`, and `developer_instructions`. Do not emit top-level `tools = [...]` arrays.
 - Imported capabilities must meet a template-backed benchmark gate before `apply` can land them.
 - Capability bodies must be rich enough to justify every emitted surface; do not let metadata claim stronger surfaces than the SSOT body supports.
 - Vendor formats are validated against cache snapshots in `.meta/schema-cache/manifest.json`.
@@ -59,5 +60,6 @@
 - Use `docs/MAINTAINER-HYGIENE.md` as the durable rule set for docs hygiene, GitOps review timing, and lessons capture.
 - Review docs when commands, paths, setup, naming, metadata contracts, CI, release flow, or generated-surface behavior change materially.
 - Treat GitHub and GitLab parity as intentional design work; document any platform difference instead of letting drift accumulate silently.
+- Prefer deterministic GitHub and GitLab CLIs (`gh`, `glab`) for GitOps work. Treat MCP integrations as optional helpers, not the primary release path.
 - Promote a lesson into `AGENTS.md` only when it is stable, repo-wide, and likely to prevent repeated failure for future agents.
 - When UAC uplift misses the benchmark bar, improve the SSOT body and the template or judge gate together; do not paper over weak bodies with descriptor-only fixes.

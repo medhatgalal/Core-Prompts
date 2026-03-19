@@ -242,7 +242,11 @@
       "required_fields": [
         "name",
         "description",
+        "sandbox_mode",
         "developer_instructions"
+      ],
+      "forbidden_fields": [
+        "tools"
       ],
       "match": "filename",
       "source_of_truth": [

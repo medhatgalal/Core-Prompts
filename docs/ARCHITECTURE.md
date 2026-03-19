@@ -48,6 +48,12 @@ flowchart LR
 
 - Skills are generated under `.codex/skills/<slug>/SKILL.md`.
 - For SSOT entries marked `kind: agent` or `role: agent`, agent config is generated under `.codex/agents/<slug>.toml`.
+- Generated Codex agent TOMLs are runtime metadata plus instructions only:
+  - `name`
+  - `description`
+  - `sandbox_mode`
+  - `developer_instructions`
+- Do not emit legacy top-level `tools = [...]` arrays in Codex agent TOMLs; current Codex runtime rejects that schema.
 - Deployment updates `<target>/.codex/config.toml` with managed `[agents.<slug>]` entries that point to generated agent TOML files.
 
 ## Safety and Change Boundaries

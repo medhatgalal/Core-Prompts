@@ -1,6 +1,7 @@
 name = "converge"
 description = "Universal Synthesis and Convergence for multi-source proposal comparison, conflict surfacing, decision analysis, and one coherent final recommendation."
-developer_instructions = """
+sandbox_mode = "workspace-write"
+developer_instructions = '''
 # Converge — Multi-Source Synthesis, Conflict Surfacing, and Final Recommendation
 
 ## Purpose
@@ -128,5 +129,4 @@ A strong convergence result should:
 
 Capability resource: `.codex/agents/resources/converge/capability.json`
 
-"""
-tools = ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
+'''

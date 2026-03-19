@@ -1,6 +1,7 @@
 name = "docs-review-expert"
 description = "Documentation Review Expert for information architecture, explainable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases."
-developer_instructions = """
+sandbox_mode = "workspace-write"
+developer_instructions = '''
 # Docs Review Expert — Documentation IA, Drift, and Release Hygiene
 
 ## Purpose
@@ -139,5 +140,4 @@ Use these default review triggers unless the user asks for a different cadence:
 
 Capability resource: `.codex/agents/resources/docs-review-expert/capability.json`
 
-"""
-tools = ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
+'''
