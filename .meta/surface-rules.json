@@ -98,31 +98,6 @@
   ],
   "artifacts": [
     {
-      "name": "gemini_command",
-      "surface": "gemini",
-      "path": ".gemini/commands/{slug}.toml",
-      "format": "toml",
-      "required_fields": [
-        "name",
-        "description",
-        "prompt"
-      ],
-      "match": "filename",
-      "source_of_truth": [
-        "https://geminicli.com/docs/cli/commands",
-        "https://geminicli.com/docs/cli/custom-commands"
-      ],
-      "source_urls": [
-        "https://geminicli.com/docs/cli/commands",
-        "https://geminicli.com/docs/cli/custom-commands"
-      ],
-      "schema_mode": "remote",
-      "capability_types": [
-        "skill",
-        "both"
-      ]
-    },
-    {
       "name": "gemini_skill",
       "surface": "gemini",
       "path": ".gemini/skills/{slug}/SKILL.md",
@@ -171,14 +146,16 @@
       ]
     },
     {
-      "name": "claude_command",
+      "name": "claude_skill",
       "surface": "claude",
-      "path": ".claude/commands/{slug}.md",
+      "path": ".claude/skills/{slug}/SKILL.md",
       "format": "frontmatter_markdown",
       "required_frontmatter": [
+        "name",
         "description"
       ],
-      "match": "filename",
+      "match": "skill_dir",
+      "skill_root": ".claude/skills",
       "source_of_truth": [
         "https://docs.anthropic.com/en/docs/claude-code/skills"
       ],
@@ -259,28 +236,6 @@
       ]
     },
     {
-      "name": "kiro_prompt",
-      "surface": "kiro",
-      "path": ".kiro/prompts/{slug}.md",
-      "format": "frontmatter_markdown",
-      "required_frontmatter": [
-        "description"
-      ],
-      "match": "filename",
-      "source_of_truth": [
-        "https://kiro.dev/docs/cli/custom-agents/"
-      ],
-      "source_urls": [
-        "https://kiro.dev/docs/cli/custom-agents/"
-      ],
-      "schema_mode": "remote",
-      "required": true,
-      "capability_types": [
-        "skill",
-        "both"
-      ]
-    },
-    {
       "name": "kiro_skill",
       "surface": "kiro",
       "path": ".kiro/skills/{slug}/SKILL.md",
@@ -325,7 +280,6 @@
         "https://kiro.dev/docs/cli/custom-agents/configuration-reference/"
       ],
       "resource_uri_patterns": [
-        "^file://\\.kiro/prompts/.+\\.md$",
         "^skill://\\.kiro/skills/.+/SKILL\\.md$",
         "^file://\\.kiro/agents/resources/.+/capability\\.json$",
         "^file://\\.kiro/skills/.+/resources/capability\\.json$"
@@ -354,7 +308,7 @@
       "manual_review"
     ],
     "source_of_truth": "UAC manifest and SSOT metadata",
-    "command_note": "command is an invocation surface, not a peer capability type"
+    "command_note": "skill is the canonical direct invocation surface; command and prompt variants are deprecated in this repo"
   },
   "deployment_matrix": {
     "skill": {
@@ -362,14 +316,12 @@
         "codex_skill"
       ],
       "gemini": [
-        "gemini_command",
         "gemini_skill"
       ],
       "claude": [
-        "claude_command"
+        "claude_skill"
       ],
       "kiro": [
-        "kiro_prompt",
         "kiro_skill"
       ]
     },
@@ -393,16 +345,14 @@
         "codex_agent"
       ],
       "gemini": [
-        "gemini_command",
         "gemini_skill",
         "gemini_agent"
       ],
       "claude": [
-        "claude_command",
+        "claude_skill",
         "claude_agent"
       ],
       "kiro": [
-        "kiro_prompt",
         "kiro_skill",
         "kiro_agent"
       ]
@@ -419,23 +369,23 @@
       "codex_plugin_wrapper"
     ],
     "gemini": [
-      "gemini_command_wrapper",
-      "gemini_extension_wrapper",
+      "gemini_skill_wrapper",
       "gemini_agent_wrapper"
     ],
     "claude": [
-      "claude_command_wrapper",
+      "claude_skill_wrapper",
       "claude_plugin_wrapper",
       "claude_agent_wrapper"
     ],
     "kiro": [
-      "kiro_prompt_wrapper",
+      "kiro_skill_wrapper",
       "kiro_power_wrapper",
       "kiro_agent_wrapper"
     ]
   },
   "notes": [
-    "Wrapper surfaces such as commands, plugins, powers, and extensions are deployment forms, not capability types.",
+    "UAC recommends the surface area for each SSOT entry; the build emits only the canonical direct and agent surfaces.",
+    "Wrapper surfaces such as skills, plugins, and powers are deployment forms, not capability types.",
     "Capability Fabric/UAC publishes advisory manifests and handoff contracts only."
   ]
 }

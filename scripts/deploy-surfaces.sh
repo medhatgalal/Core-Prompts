@@ -193,24 +193,20 @@ selected = set(sys.argv[3:])
 manifest = json.loads((repo_root / '.meta' / 'manifest.json').read_text(encoding='utf-8'))
 
 path_templates = {
-    'gemini_command': ['.gemini/commands/{slug}.toml'],
     'gemini_skill': ['.gemini/skills/{slug}/SKILL.md', '.gemini/skills/{slug}/resources/capability.json'],
     'gemini_agent': ['.gemini/agents/{slug}.md', '.gemini/agents/resources/{slug}/capability.json'],
-    'claude_command': ['.claude/commands/{slug}.md'],
+    'claude_skill': ['.claude/skills/{slug}/SKILL.md', '.claude/skills/{slug}/resources/capability.json'],
     'claude_agent': ['.claude/agents/{slug}.md', '.claude/agents/resources/{slug}/capability.json'],
-    'kiro_prompt': ['.kiro/prompts/{slug}.md'],
     'kiro_skill': ['.kiro/skills/{slug}/SKILL.md', '.kiro/skills/{slug}/resources/capability.json'],
     'kiro_agent': ['.kiro/agents/{slug}.json', '.kiro/agents/resources/{slug}/capability.json'],
     'codex_skill': ['.codex/skills/{slug}/SKILL.md', '.codex/skills/{slug}/resources/capability.json'],
     'codex_agent': ['.codex/agents/{slug}.toml', '.codex/agents/resources/{slug}/capability.json'],
 }
 surface_cli = {
-    'gemini_command': 'gemini',
     'gemini_skill': 'gemini',
     'gemini_agent': 'gemini',
-    'claude_command': 'claude',
+    'claude_skill': 'claude',
     'claude_agent': 'claude',
-    'kiro_prompt': 'kiro',
     'kiro_skill': 'kiro',
     'kiro_agent': 'kiro',
     'codex_skill': 'codex',

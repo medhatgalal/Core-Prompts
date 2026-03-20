@@ -48,29 +48,26 @@
             "codex_skill"
           ],
           "gemini": [
-            "gemini_command",
             "gemini_skill"
           ],
           "claude": [
-            "claude_command"
+            "claude_skill"
           ],
           "kiro": [
-            "kiro_prompt",
             "kiro_skill"
           ]
         },
         "wrapper_surfaces": {
           "codex": [],
           "gemini": [
-            "command_wrapper",
-            "extension_wrapper"
+            "skill_wrapper"
           ],
           "claude": [
-            "command_wrapper",
+            "skill_wrapper",
             "plugin_wrapper"
           ],
           "kiro": [
-            "prompt_wrapper",
+            "skill_wrapper",
             "power_wrapper"
           ]
         },
@@ -95,14 +92,12 @@
           "codex_skill"
         ],
         "gemini": [
-          "gemini_command",
           "gemini_skill"
         ],
         "claude": [
-          "claude_command"
+          "claude_skill"
         ],
         "kiro": [
-          "kiro_prompt",
           "kiro_skill"
         ]
       },
@@ -150,10 +145,8 @@
   "inferred_capability": "skill",
   "expected_surface_names": [
     "codex_skill",
-    "gemini_command",
     "gemini_skill",
-    "claude_command",
-    "kiro_prompt",
+    "claude_skill",
     "kiro_skill"
   ],
   "rubric_version": "capability-fabric.v0",

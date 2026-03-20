@@ -47,16 +47,14 @@
             "codex_agent"
           ],
           "gemini": [
-            "gemini_command",
             "gemini_skill",
             "gemini_agent"
           ],
           "claude": [
-            "claude_command",
+            "claude_skill",
             "claude_agent"
           ],
           "kiro": [
-            "kiro_prompt",
             "kiro_skill",
             "kiro_agent"
           ]
@@ -66,15 +64,14 @@
             "plugin_wrapper"
           ],
           "gemini": [
-            "command_wrapper",
-            "extension_wrapper"
+            "skill_wrapper"
           ],
           "claude": [
-            "command_wrapper",
+            "skill_wrapper",
             "plugin_wrapper"
           ],
           "kiro": [
-            "prompt_wrapper",
+            "skill_wrapper",
             "power_wrapper"
           ]
         },
@@ -100,16 +97,14 @@
           "codex_agent"
         ],
         "gemini": [
-          "gemini_command",
           "gemini_skill",
           "gemini_agent"
         ],
         "claude": [
-          "claude_command",
+          "claude_skill",
           "claude_agent"
         ],
         "kiro": [
-          "kiro_prompt",
           "kiro_skill",
           "kiro_agent"
         ]
@@ -164,12 +159,10 @@
   "expected_surface_names": [
     "codex_skill",
     "codex_agent",
-    "gemini_command",
     "gemini_skill",
     "gemini_agent",
-    "claude_command",
+    "claude_skill",
     "claude_agent",
-    "kiro_prompt",
     "kiro_skill",
     "kiro_agent"
   ],

@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-03-19T02:31:13.114596+00:00",
+  "generated_at": "2026-03-20T16:51:41.533114+00:00",
   "generator": {
     "script": "scripts/build-surfaces.py",
     "python": "3.11+",
     "version": "6.0",
-    "generated_utc": "2026-03-19T02:31:13.115237+00:00"
+    "generated_utc": "2026-03-20T16:51:41.533336+00:00"
   },
   "ssot_sources": [
     {
@@ -55,29 +55,26 @@
                 "codex_skill"
               ],
               "gemini": [
-                "gemini_command",
                 "gemini_skill"
               ],
               "claude": [
-                "claude_command"
+                "claude_skill"
               ],
               "kiro": [
-                "kiro_prompt",
                 "kiro_skill"
               ]
             },
             "wrapper_surfaces": {
               "codex": [],
               "gemini": [
-                "command_wrapper",
-                "extension_wrapper"
+                "skill_wrapper"
               ],
               "claude": [
-                "command_wrapper",
+                "skill_wrapper",
                 "plugin_wrapper"
               ],
               "kiro": [
-                "prompt_wrapper",
+                "skill_wrapper",
                 "power_wrapper"
               ]
             },
@@ -102,14 +99,12 @@
               "codex_skill"
             ],
             "gemini": [
-              "gemini_command",
               "gemini_skill"
             ],
             "claude": [
-              "claude_command"
+              "claude_skill"
             ],
             "kiro": [
-              "kiro_prompt",
               "kiro_skill"
             ]
           },
@@ -162,10 +157,8 @@
       "inferred_capability": "skill",
       "expected_surface_names": [
         "codex_skill",
-        "gemini_command",
         "gemini_skill",
-        "claude_command",
-        "kiro_prompt",
+        "claude_skill",
         "kiro_skill"
       ],
       "rubric_version": "capability-fabric.v0"
@@ -220,16 +213,14 @@
                 "codex_agent"
               ],
               "gemini": [
-                "gemini_command",
                 "gemini_skill",
                 "gemini_agent"
               ],
               "claude": [
-                "claude_command",
+                "claude_skill",
                 "claude_agent"
               ],
               "kiro": [
-                "kiro_prompt",
                 "kiro_skill",
                 "kiro_agent"
               ]
@@ -239,15 +230,14 @@
                 "plugin_wrapper"
               ],
               "gemini": [
-                "command_wrapper",
-                "extension_wrapper"
+                "skill_wrapper"
               ],
               "claude": [
-                "command_wrapper",
+                "skill_wrapper",
                 "plugin_wrapper"
               ],
               "kiro": [
-                "prompt_wrapper",
+                "skill_wrapper",
                 "power_wrapper"
               ]
             },
@@ -273,16 +263,14 @@
               "codex_agent"
             ],
             "gemini": [
-              "gemini_command",
               "gemini_skill",
               "gemini_agent"
             ],
             "claude": [
-              "claude_command",
+              "claude_skill",
               "claude_agent"
             ],
             "kiro": [
-              "kiro_prompt",
               "kiro_skill",
               "kiro_agent"
             ]
@@ -582,12 +570,10 @@
       "expected_surface_names": [
         "codex_skill",
         "codex_agent",
-        "gemini_command",
         "gemini_skill",
         "gemini_agent",
-        "claude_command",
+        "claude_skill",
         "claude_agent",
-        "kiro_prompt",
         "kiro_skill",
         "kiro_agent"
       ],
@@ -639,29 +625,26 @@
                 "codex_skill"
               ],
               "gemini": [
-                "gemini_command",
                 "gemini_skill"
               ],
               "claude": [
-                "claude_command"
+                "claude_skill"
               ],
               "kiro": [
-                "kiro_prompt",
                 "kiro_skill"
               ]
             },
             "wrapper_surfaces": {
               "codex": [],
               "gemini": [
-                "command_wrapper",
-                "extension_wrapper"
+                "skill_wrapper"
               ],
               "claude": [
-                "command_wrapper",
+                "skill_wrapper",
                 "plugin_wrapper"
               ],
               "kiro": [
-                "prompt_wrapper",
+                "skill_wrapper",
                 "power_wrapper"
               ]
             },
@@ -686,14 +669,12 @@
               "codex_skill"
             ],
             "gemini": [
-              "gemini_command",
               "gemini_skill"
             ],
             "claude": [
-              "claude_command"
+              "claude_skill"
             ],
             "kiro": [
-              "kiro_prompt",
               "kiro_skill"
             ]
           },
@@ -759,10 +740,8 @@
       "inferred_capability": "skill",
       "expected_surface_names": [
         "codex_skill",
-        "gemini_command",
         "gemini_skill",
-        "claude_command",
-        "kiro_prompt",
+        "claude_skill",
         "kiro_skill"
       ],
       "rubric_version": "capability-fabric.v0"
@@ -816,16 +795,14 @@
                 "codex_agent"
               ],
               "gemini": [
-                "gemini_command",
                 "gemini_skill",
                 "gemini_agent"
               ],
               "claude": [
-                "claude_command",
+                "claude_skill",
                 "claude_agent"
               ],
               "kiro": [
-                "kiro_prompt",
                 "kiro_skill",
                 "kiro_agent"
               ]
@@ -835,15 +812,14 @@
                 "plugin_wrapper"
               ],
               "gemini": [
-                "command_wrapper",
-                "extension_wrapper"
+                "skill_wrapper"
               ],
               "claude": [
-                "command_wrapper",
+                "skill_wrapper",
                 "plugin_wrapper"
               ],
               "kiro": [
-                "prompt_wrapper",
+                "skill_wrapper",
                 "power_wrapper"
               ]
             },
@@ -869,16 +845,14 @@
               "codex_agent"
             ],
             "gemini": [
-              "gemini_command",
               "gemini_skill",
               "gemini_agent"
             ],
             "claude": [
-              "claude_command",
+              "claude_skill",
               "claude_agent"
             ],
             "kiro": [
-              "kiro_prompt",
               "kiro_skill",
               "kiro_agent"
             ]
@@ -940,12 +914,10 @@
       "expected_surface_names": [
         "codex_skill",
         "codex_agent",
-        "gemini_command",
         "gemini_skill",
         "gemini_agent",
-        "claude_command",
+        "claude_skill",
         "claude_agent",
-        "kiro_prompt",
         "kiro_skill",
         "kiro_agent"
       ],
@@ -1001,16 +973,14 @@
                 "codex_agent"
               ],
               "gemini": [
-                "gemini_command",
                 "gemini_skill",
                 "gemini_agent"
               ],
               "claude": [
-                "claude_command",
+                "claude_skill",
                 "claude_agent"
               ],
               "kiro": [
-                "kiro_prompt",
                 "kiro_skill",
                 "kiro_agent"
               ]
@@ -1020,15 +990,14 @@
                 "plugin_wrapper"
               ],
               "gemini": [
-                "command_wrapper",
-                "extension_wrapper"
+                "skill_wrapper"
               ],
               "claude": [
-                "command_wrapper",
+                "skill_wrapper",
                 "plugin_wrapper"
               ],
               "kiro": [
-                "prompt_wrapper",
+                "skill_wrapper",
                 "power_wrapper"
               ]
             },
@@ -1054,16 +1023,14 @@
               "codex_agent"
             ],
             "gemini": [
-              "gemini_command",
               "gemini_skill",
               "gemini_agent"
             ],
             "claude": [
-              "claude_command",
+              "claude_skill",
               "claude_agent"
             ],
             "kiro": [
-              "kiro_prompt",
               "kiro_skill",
               "kiro_agent"
             ]
@@ -1148,12 +1115,10 @@
       "expected_surface_names": [
         "codex_skill",
         "codex_agent",
-        "gemini_command",
         "gemini_skill",
         "gemini_agent",
-        "claude_command",
+        "claude_skill",
         "claude_agent",
-        "kiro_prompt",
         "kiro_skill",
         "kiro_agent"
       ],
@@ -1209,16 +1174,14 @@
                 "codex_agent"
               ],
               "gemini": [
-                "gemini_command",
                 "gemini_skill",
                 "gemini_agent"
               ],
               "claude": [
-                "claude_command",
+                "claude_skill",
                 "claude_agent"
               ],
               "kiro": [
-                "kiro_prompt",
                 "kiro_skill",
                 "kiro_agent"
               ]
@@ -1228,15 +1191,14 @@
                 "plugin_wrapper"
               ],
               "gemini": [
-                "command_wrapper",
-                "extension_wrapper"
+                "skill_wrapper"
               ],
               "claude": [
-                "command_wrapper",
+                "skill_wrapper",
                 "plugin_wrapper"
               ],
               "kiro": [
-                "prompt_wrapper",
+                "skill_wrapper",
                 "power_wrapper"
               ]
             },
@@ -1262,16 +1224,14 @@
               "codex_agent"
             ],
             "gemini": [
-              "gemini_command",
               "gemini_skill",
               "gemini_agent"
             ],
             "claude": [
-              "claude_command",
+              "claude_skill",
               "claude_agent"
             ],
             "kiro": [
-              "kiro_prompt",
               "kiro_skill",
               "kiro_agent"
             ]
@@ -1357,12 +1317,10 @@
       "expected_surface_names": [
         "codex_skill",
         "codex_agent",
-        "gemini_command",
         "gemini_skill",
         "gemini_agent",
-        "claude_command",
+        "claude_skill",
         "claude_agent",
-        "kiro_prompt",
         "kiro_skill",
         "kiro_agent"
       ],
@@ -1418,16 +1376,14 @@
                 "codex_agent"
               ],
               "gemini": [
-                "gemini_command",
                 "gemini_skill",
                 "gemini_agent"
               ],
               "claude": [
-                "claude_command",
+                "claude_skill",
                 "claude_agent"
               ],
               "kiro": [
-                "kiro_prompt",
                 "kiro_skill",
                 "kiro_agent"
               ]
@@ -1437,15 +1393,14 @@
                 "plugin_wrapper"
               ],
               "gemini": [
-                "command_wrapper",
-                "extension_wrapper"
+                "skill_wrapper"
               ],
               "claude": [
-                "command_wrapper",
+                "skill_wrapper",
                 "plugin_wrapper"
               ],
               "kiro": [
-                "prompt_wrapper",
+                "skill_wrapper",
                 "power_wrapper"
               ]
             },
@@ -1471,16 +1426,14 @@
               "codex_agent"
             ],
             "gemini": [
-              "gemini_command",
               "gemini_skill",
               "gemini_agent"
             ],
             "claude": [
-              "claude_command",
+              "claude_skill",
               "claude_agent"
             ],
             "kiro": [
-              "kiro_prompt",
               "kiro_skill",
               "kiro_agent"
             ]
@@ -1539,12 +1492,10 @@
       "expected_surface_names": [
         "codex_skill",
         "codex_agent",
-        "gemini_command",
         "gemini_skill",
         "gemini_agent",
-        "claude_command",
+        "claude_skill",
         "claude_agent",
-        "kiro_prompt",
         "kiro_skill",
         "kiro_agent"
       ],
@@ -1600,29 +1551,26 @@
                 "codex_skill"
               ],
               "gemini": [
-                "gemini_command",
                 "gemini_skill"
               ],
               "claude": [
-                "claude_command"
+                "claude_skill"
               ],
               "kiro": [
-                "kiro_prompt",
                 "kiro_skill"
               ]
             },
             "wrapper_surfaces": {
               "codex": [],
               "gemini": [
-                "command_wrapper",
-                "extension_wrapper"
+                "skill_wrapper"
               ],
               "claude": [
-                "command_wrapper",
+                "skill_wrapper",
                 "plugin_wrapper"
               ],
               "kiro": [
-                "prompt_wrapper",
+                "skill_wrapper",
                 "power_wrapper"
               ]
             },
@@ -1647,14 +1595,12 @@
               "codex_skill"
             ],
             "gemini": [
-              "gemini_command",
               "gemini_skill"
             ],
             "claude": [
-              "claude_command"
+              "claude_skill"
             ],
             "kiro": [
-              "kiro_prompt",
               "kiro_skill"
             ]
           },
@@ -1720,10 +1666,8 @@
       "inferred_capability": "skill",
       "expected_surface_names": [
         "codex_skill",
-        "gemini_command",
         "gemini_skill",
-        "claude_command",
-        "kiro_prompt",
+        "claude_skill",
         "kiro_skill"
       ],
       "rubric_version": "capability-fabric.v0"
@@ -1779,16 +1723,14 @@
                 "codex_agent"
               ],
               "gemini": [
-                "gemini_command",
                 "gemini_skill",
                 "gemini_agent"
               ],
               "claude": [
-                "claude_command",
+                "claude_skill",
                 "claude_agent"
               ],
               "kiro": [
-                "kiro_prompt",
                 "kiro_skill",
                 "kiro_agent"
               ]
@@ -1798,15 +1740,14 @@
                 "plugin_wrapper"
               ],
               "gemini": [
-                "command_wrapper",
-                "extension_wrapper"
+                "skill_wrapper"
               ],
               "claude": [
-                "command_wrapper",
+                "skill_wrapper",
                 "plugin_wrapper"
               ],
               "kiro": [
-                "prompt_wrapper",
+                "skill_wrapper",
                 "power_wrapper"
               ]
             },
@@ -1832,16 +1773,14 @@
               "codex_agent"
             ],
             "gemini": [
-              "gemini_command",
               "gemini_skill",
               "gemini_agent"
             ],
             "claude": [
-              "claude_command",
+              "claude_skill",
               "claude_agent"
             ],
             "kiro": [
-              "kiro_prompt",
               "kiro_skill",
               "kiro_agent"
             ]
@@ -1901,12 +1840,10 @@
       "expected_surface_names": [
         "codex_skill",
         "codex_agent",
-        "gemini_command",
         "gemini_skill",
         "gemini_agent",
-        "claude_command",
+        "claude_skill",
         "claude_agent",
-        "kiro_prompt",
         "kiro_skill",
         "kiro_agent"
       ],
@@ -1959,29 +1896,26 @@
                 "codex_skill"
               ],
               "gemini": [
-                "gemini_command",
                 "gemini_skill"
               ],
               "claude": [
-                "claude_command"
+                "claude_skill"
               ],
               "kiro": [
-                "kiro_prompt",
                 "kiro_skill"
               ]
             },
             "wrapper_surfaces": {
               "codex": [],
               "gemini": [
-                "command_wrapper",
-                "extension_wrapper"
+                "skill_wrapper"
               ],
               "claude": [
-                "command_wrapper",
+                "skill_wrapper",
                 "plugin_wrapper"
               ],
               "kiro": [
-                "prompt_wrapper",
+                "skill_wrapper",
                 "power_wrapper"
               ]
             },
@@ -2006,14 +1940,12 @@
               "codex_skill"
             ],
             "gemini": [
-              "gemini_command",
               "gemini_skill"
             ],
             "claude": [
-              "claude_command"
+              "claude_skill"
             ],
             "kiro": [
-              "kiro_prompt",
               "kiro_skill"
             ]
           },
@@ -2202,10 +2134,8 @@
       "inferred_capability": "skill",
       "expected_surface_names": [
         "codex_skill",
-        "gemini_command",
         "gemini_skill",
-        "claude_command",
-        "kiro_prompt",
+        "claude_skill",
         "kiro_skill"
       ],
       "rubric_version": "capability-fabric.v0"
@@ -2257,29 +2187,26 @@
                 "codex_skill"
               ],
               "gemini": [
-                "gemini_command",
                 "gemini_skill"
               ],
               "claude": [
-                "claude_command"
+                "claude_skill"
               ],
               "kiro": [
-                "kiro_prompt",
                 "kiro_skill"
               ]
             },
             "wrapper_surfaces": {
               "codex": [],
               "gemini": [
-                "command_wrapper",
-                "extension_wrapper"
+                "skill_wrapper"
               ],
               "claude": [
-                "command_wrapper",
+                "skill_wrapper",
                 "plugin_wrapper"
               ],
               "kiro": [
-                "prompt_wrapper",
+                "skill_wrapper",
                 "power_wrapper"
               ]
             },
@@ -2304,14 +2231,12 @@
               "codex_skill"
             ],
             "gemini": [
-              "gemini_command",
               "gemini_skill"
             ],
             "claude": [
-              "claude_command"
+              "claude_skill"
             ],
             "kiro": [
-              "kiro_prompt",
               "kiro_skill"
             ]
           },
@@ -2364,10 +2289,8 @@
       "inferred_capability": "skill",
       "expected_surface_names": [
         "codex_skill",
-        "gemini_command",
         "gemini_skill",
-        "claude_command",
-        "kiro_prompt",
+        "claude_skill",
         "kiro_skill"
       ],
       "rubric_version": "capability-fabric.v0"
@@ -2419,29 +2342,26 @@
                 "codex_skill"
               ],
               "gemini": [
-                "gemini_command",
                 "gemini_skill"
               ],
               "claude": [
-                "claude_command"
+                "claude_skill"
               ],
               "kiro": [
-                "kiro_prompt",
                 "kiro_skill"
               ]
             },
             "wrapper_surfaces": {
               "codex": [],
               "gemini": [
-                "command_wrapper",
-                "extension_wrapper"
+                "skill_wrapper"
               ],
               "claude": [
-                "command_wrapper",
+                "skill_wrapper",
                 "plugin_wrapper"
               ],
               "kiro": [
-                "prompt_wrapper",
+                "skill_wrapper",
                 "power_wrapper"
               ]
             },
@@ -2466,14 +2386,12 @@
               "codex_skill"
             ],
             "gemini": [
-              "gemini_command",
               "gemini_skill"
             ],
             "claude": [
-              "claude_command"
+              "claude_skill"
             ],
             "kiro": [
-              "kiro_prompt",
               "kiro_skill"
             ]
           },
@@ -2542,30 +2460,14 @@
       "inferred_capability": "skill",
       "expected_surface_names": [
         "codex_skill",
-        "gemini_command",
         "gemini_skill",
-        "claude_command",
-        "kiro_prompt",
+        "claude_skill",
         "kiro_skill"
       ],
       "rubric_version": "capability-fabric.v0"
     }
   ],
   "surfaces": {
-    "gemini_command": [
-      ".gemini/commands/analyze-context.toml",
-      ".gemini/commands/architecture.toml",
-      ".gemini/commands/code-review.toml",
-      ".gemini/commands/converge.toml",
-      ".gemini/commands/docs-review-expert.toml",
-      ".gemini/commands/gitops-review.toml",
-      ".gemini/commands/mentor.toml",
-      ".gemini/commands/resolve-conflict.toml",
-      ".gemini/commands/supercharge.toml",
-      ".gemini/commands/testing.toml",
-      ".gemini/commands/threader.toml",
-      ".gemini/commands/uac-import.toml"
-    ],
     "gemini_skill": [
       ".gemini/skills/analyze-context/SKILL.md",
       ".gemini/skills/architecture/SKILL.md",
@@ -2588,19 +2490,19 @@
       ".gemini/agents/mentor.md",
       ".gemini/agents/supercharge.md"
     ],
-    "claude_command": [
-      ".claude/commands/analyze-context.md",
-      ".claude/commands/architecture.md",
-      ".claude/commands/code-review.md",
-      ".claude/commands/converge.md",
-      ".claude/commands/docs-review-expert.md",
-      ".claude/commands/gitops-review.md",
-      ".claude/commands/mentor.md",
-      ".claude/commands/resolve-conflict.md",
-      ".claude/commands/supercharge.md",
-      ".claude/commands/testing.md",
-      ".claude/commands/threader.md",
-      ".claude/commands/uac-import.md"
+    "claude_skill": [
+      ".claude/skills/analyze-context/SKILL.md",
+      ".claude/skills/architecture/SKILL.md",
+      ".claude/skills/code-review/SKILL.md",
+      ".claude/skills/converge/SKILL.md",
+      ".claude/skills/docs-review-expert/SKILL.md",
+      ".claude/skills/gitops-review/SKILL.md",
+      ".claude/skills/mentor/SKILL.md",
+      ".claude/skills/resolve-conflict/SKILL.md",
+      ".claude/skills/supercharge/SKILL.md",
+      ".claude/skills/testing/SKILL.md",
+      ".claude/skills/threader/SKILL.md",
+      ".claude/skills/uac-import/SKILL.md"
     ],
     "claude_agent": [
       ".claude/agents/architecture.md",
@@ -2609,20 +2511,6 @@
       ".claude/agents/gitops-review.md",
       ".claude/agents/mentor.md",
       ".claude/agents/supercharge.md"
-    ],
-    "kiro_prompt": [
-      ".kiro/prompts/analyze-context.md",
-      ".kiro/prompts/architecture.md",
-      ".kiro/prompts/code-review.md",
-      ".kiro/prompts/converge.md",
-      ".kiro/prompts/docs-review-expert.md",
-      ".kiro/prompts/gitops-review.md",
-      ".kiro/prompts/mentor.md",
-      ".kiro/prompts/resolve-conflict.md",
-      ".kiro/prompts/supercharge.md",
-      ".kiro/prompts/testing.md",
-      ".kiro/prompts/threader.md",
-      ".kiro/prompts/uac-import.md"
     ],
     "kiro_agent": [
       ".kiro/agents/architecture.json",
@@ -2714,6 +2602,20 @@
       ".gemini/agents/resources/mentor/capability.json",
       ".gemini/agents/resources/supercharge/capability.json"
     ],
+    "claude_skill": [
+      ".claude/skills/analyze-context/resources/capability.json",
+      ".claude/skills/architecture/resources/capability.json",
+      ".claude/skills/code-review/resources/capability.json",
+      ".claude/skills/converge/resources/capability.json",
+      ".claude/skills/docs-review-expert/resources/capability.json",
+      ".claude/skills/gitops-review/resources/capability.json",
+      ".claude/skills/mentor/resources/capability.json",
+      ".claude/skills/resolve-conflict/resources/capability.json",
+      ".claude/skills/supercharge/resources/capability.json",
+      ".claude/skills/testing/resources/capability.json",
+      ".claude/skills/threader/resources/capability.json",
+      ".claude/skills/uac-import/resources/capability.json"
+    ],
     "claude_agent": [
       ".claude/agents/resources/architecture/capability.json",
       ".claude/agents/resources/converge/capability.json",
@@ -2746,26 +2648,23 @@
     ]
   },
   "validation": {
-    "validated_at": "2026-03-19T02:34:40.145630+00:00",
-    "strict": true,
+    "validated_at": "2026-03-20T16:52:11.745557+00:00",
+    "strict": false,
     "with_cli": false,
     "fail_on_cli_miss": false,
     "rules_file": ".meta/surface-rules.json",
-    "rules_sha256": "32795ad4dd0f2aae6f06d732c0e6d907697331cc62631ef47f4785a8c7f983c8",
+    "rules_sha256": "6bf6a0265b018941d33c1678705580c23368f79d718b208a0c0c5979462bca66",
     "schema_cache_ttl_days": 14,
     "schema_cache_sources_checked": [
       "https://docs.anthropic.com/en/docs/claude-code/skills",
       "https://docs.anthropic.com/en/docs/claude-code/sub-agents",
-      "https://geminicli.com/docs/cli/commands",
-      "https://geminicli.com/docs/cli/custom-commands",
       "https://geminicli.com/docs/cli/skills",
       "https://geminicli.com/docs/core/subagents",
-      "https://kiro.dev/docs/cli/custom-agents/",
       "https://kiro.dev/docs/cli/custom-agents/configuration-reference/",
       "https://kiro.dev/docs/skills/"
     ],
     "validation_errors": 0,
-    "validation_warnings": 0,
+    "validation_warnings": 6,
     "cli_versions": {
       "codex": {
         "command": "codex",
@@ -2773,17 +2672,15 @@
         "available": true,
         "version_exit_code": 0,
         "version_output": [
-          "codex-cli 0.115.0"
+          "WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)",
+          "codex-cli 0.116.0"
         ]
       },
       "gemini": {
         "command": "gemini",
         "required": false,
         "available": true,
-        "version_exit_code": 0,
-        "version_output": [
-          "0.33.2"
-        ]
+        "version_error": "Command '['gemini', '--version']' timed out after 20 seconds"
       },
       "claude": {
         "command": "claude",

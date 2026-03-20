@@ -13,8 +13,10 @@ def test_emitted_surface_names_for_both_include_skill_and_agent() -> None:
 
     assert 'codex_skill' in names
     assert 'codex_agent' in names
-    assert 'claude_command' in names
+    assert 'gemini_skill' in names
+    assert 'claude_skill' in names
     assert 'claude_agent' in names
+    assert 'kiro_prompt' not in names
 
 
 def test_recommended_target_systems_auto_filters_manual_review() -> None:
@@ -25,8 +27,8 @@ def test_audit_surface_alignment_detects_over_generation() -> None:
     audit = audit_surface_alignment(
         declared_capability='skill',
         inferred_capability='skill',
-        expected_surfaces={'codex_skill', 'claude_command'},
-        actual_surfaces={'codex_skill', 'claude_command', 'claude_agent'},
+        expected_surfaces={'codex_skill', 'claude_skill'},
+        actual_surfaces={'codex_skill', 'claude_skill', 'claude_agent'},
     )
 
     assert audit.status == 'over-generated'
@@ -36,4 +38,6 @@ def test_deployment_matrix_payload_includes_wrapper_surfaces() -> None:
     matrix = deployment_matrix_payload()
 
     assert "wrappers" in matrix["capability_types"]["skill"]
-    assert "gemini_extension_wrapper" in matrix["capability_types"]["skill"]["wrappers"]["gemini"]
+    assert "gemini_skill_wrapper" in matrix["capability_types"]["skill"]["wrappers"]["gemini"]
+    assert "claude_skill_wrapper" in matrix["capability_types"]["skill"]["wrappers"]["claude"]
+    assert "kiro_skill_wrapper" in matrix["capability_types"]["skill"]["wrappers"]["kiro"]

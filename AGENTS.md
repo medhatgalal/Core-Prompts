@@ -8,21 +8,25 @@
 
 ## Surface rules
 
-- Every SSOT file must produce artifacts for all required surfaces.
-- For each SSOT entry:
-  - `.codex/skills/<slug>/SKILL.md` (primary surface for Codex)
-  - `.codex/agents/<slug>.toml` when SSOT frontmatter marks `kind: agent` or `role: agent`
-  - `.gemini/commands/<slug>.toml`
-  - `.claude/commands/<slug>.md`
-  - `.kiro/prompts/<slug>.md`
+- UAC is advisory and recommends the surface area for each SSOT entry.
+- Direct/workflow capabilities emit:
+  - `.codex/skills/<slug>/SKILL.md`
+  - `.gemini/skills/<slug>/SKILL.md`
+  - `.claude/skills/<slug>/SKILL.md`
+  - `.kiro/skills/<slug>/SKILL.md`
+- Agent capabilities emit:
+  - `.codex/agents/<slug>.toml`
+  - `.gemini/agents/<slug>.md`
+  - `.claude/agents/<slug>.md`
   - `.kiro/agents/<slug>.json`
-- Do not create ad-hoc prompt artifacts for Codex when a skill surface exists and is authoritative.
+- `capability_type: both` emits both the direct and agent surfaces above.
+- Do not generate command-only or prompt-only artifacts when a skill surface already covers direct exposure.
 - Classify invocation styles:
   - `codex`: skill (`$name`) inferred from `.codex/skills/<slug>/SKILL.md`
   - `codex`: sub-agent registration via `.codex/agents/<slug>.toml` and `[agents.<slug>]` in `./.codex/config.toml` for SSOT agent entries
-  - `gemini`: slash command in `.gemini/commands/<slug>.toml`
-  - `claude`: slash command in `.claude/commands/<slug>.md`
-  - `kiro`: prompt in `.kiro/prompts/<slug>.md` and paired agent in `.kiro/agents/<slug>.json`
+  - `gemini`: skill in `.gemini/skills/<slug>/SKILL.md`
+  - `claude`: skill in `.claude/skills/<slug>/SKILL.md`
+  - `kiro`: skill in `.kiro/skills/<slug>/SKILL.md` and paired agent in `.kiro/agents/<slug>.json`
 
 ## Source-of-truth policy and schema controls
 

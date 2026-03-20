@@ -30,6 +30,9 @@ def test_architecture_entry_publishes_display_name_and_agent_surfaces() -> None:
     assert architecture.manifest['display_name'] == 'Architecture Studio'
     assert 'codex_agent' in architecture.expected_surface_names
     assert 'kiro_agent' in architecture.expected_surface_names
+    assert 'gemini_skill' in architecture.expected_surface_names
+    assert 'claude_skill' in architecture.expected_surface_names
+    assert 'kiro_prompt' not in architecture.expected_surface_names
 
 
 def test_render_audit_table_includes_headers() -> None:

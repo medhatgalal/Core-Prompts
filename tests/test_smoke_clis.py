@@ -16,9 +16,9 @@ SPEC.loader.exec_module(smoke_clis)
 def test_expected_discovery_slugs_is_surface_aware() -> None:
     manifest = {
         "ssot_sources": [
-            {"slug": "code-review", "expected_surface_names": ["codex_skill", "gemini_skill", "claude_command"]},
+            {"slug": "code-review", "expected_surface_names": ["codex_skill", "gemini_skill", "claude_skill"]},
             {"slug": "architecture", "expected_surface_names": ["codex_skill", "claude_agent", "kiro_agent"]},
-            {"slug": "testing", "expected_surface_names": ["codex_skill", "kiro_prompt"]},
+            {"slug": "testing", "expected_surface_names": ["codex_skill", "kiro_skill"]},
         ]
     }
 
@@ -34,7 +34,7 @@ def test_expected_artifact_paths_uses_surface_rules_and_manifest() -> None:
         "ssot_sources": [
             {
                 "slug": "architecture",
-                "expected_surface_names": ["claude_command", "claude_agent", "kiro_prompt", "kiro_agent"],
+                "expected_surface_names": ["claude_skill", "claude_agent", "kiro_skill", "kiro_agent"],
             }
         ]
     }
@@ -42,9 +42,9 @@ def test_expected_artifact_paths_uses_surface_rules_and_manifest() -> None:
     claude_paths = smoke_clis.expected_artifact_paths(manifest, artifact_rules, "claude")
     kiro_paths = smoke_clis.expected_artifact_paths(manifest, artifact_rules, "kiro")
 
-    assert ".claude/commands/architecture.md" in claude_paths
+    assert ".claude/skills/architecture/SKILL.md" in claude_paths
     assert ".claude/agents/architecture.md" in claude_paths
-    assert ".kiro/prompts/architecture.md" in kiro_paths
+    assert ".kiro/skills/architecture/SKILL.md" in kiro_paths
     assert ".kiro/agents/architecture.json" in kiro_paths
 
 

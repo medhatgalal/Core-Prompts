@@ -11,9 +11,9 @@ AuditStatus = str
 _CAPABILITY_MATRIX: dict[str, dict[str, tuple[str, ...]]] = {
     "skill": {
         "codex": ("codex_skill",),
-        "gemini": ("gemini_command", "gemini_skill"),
-        "claude": ("claude_command",),
-        "kiro": ("kiro_prompt", "kiro_skill"),
+        "gemini": ("gemini_skill",),
+        "claude": ("claude_skill",),
+        "kiro": ("kiro_skill",),
     },
     "agent": {
         "codex": ("codex_agent",),
@@ -23,9 +23,9 @@ _CAPABILITY_MATRIX: dict[str, dict[str, tuple[str, ...]]] = {
     },
     "both": {
         "codex": ("codex_skill", "codex_agent"),
-        "gemini": ("gemini_command", "gemini_skill", "gemini_agent"),
-        "claude": ("claude_command", "claude_agent"),
-        "kiro": ("kiro_prompt", "kiro_skill", "kiro_agent"),
+        "gemini": ("gemini_skill", "gemini_agent"),
+        "claude": ("claude_skill", "claude_agent"),
+        "kiro": ("kiro_skill", "kiro_agent"),
     },
     "manual_review": {
         "codex": (),
@@ -77,9 +77,9 @@ def deployment_matrix_payload() -> dict[str, object]:
                 "surfaces": {cli: list(surfaces) for cli, surfaces in _CAPABILITY_MATRIX["skill"].items()},
                 "wrappers": {
                     "codex": ["codex_plugin_wrapper"],
-                    "gemini": ["gemini_command_wrapper", "gemini_extension_wrapper"],
-                    "claude": ["claude_command_wrapper", "claude_plugin_wrapper"],
-                    "kiro": ["kiro_prompt_wrapper", "kiro_power_wrapper"],
+                    "gemini": ["gemini_skill_wrapper"],
+                    "claude": ["claude_skill_wrapper", "claude_plugin_wrapper"],
+                    "kiro": ["kiro_skill_wrapper", "kiro_power_wrapper"],
                 },
             },
             "agent": {
@@ -87,7 +87,7 @@ def deployment_matrix_payload() -> dict[str, object]:
                 "surfaces": {cli: list(surfaces) for cli, surfaces in _CAPABILITY_MATRIX["agent"].items()},
                 "wrappers": {
                     "codex": ["codex_plugin_wrapper"],
-                    "gemini": ["gemini_agent_wrapper", "gemini_extension_wrapper"],
+                    "gemini": ["gemini_agent_wrapper"],
                     "claude": ["claude_agent_wrapper", "claude_plugin_wrapper"],
                     "kiro": ["kiro_agent_wrapper", "kiro_power_wrapper"],
                 },
@@ -97,9 +97,9 @@ def deployment_matrix_payload() -> dict[str, object]:
                 "surfaces": {cli: list(surfaces) for cli, surfaces in _CAPABILITY_MATRIX["both"].items()},
                 "wrappers": {
                     "codex": ["codex_plugin_wrapper"],
-                    "gemini": ["gemini_command_wrapper", "gemini_extension_wrapper", "gemini_agent_wrapper"],
-                    "claude": ["claude_command_wrapper", "claude_plugin_wrapper", "claude_agent_wrapper"],
-                    "kiro": ["kiro_prompt_wrapper", "kiro_power_wrapper", "kiro_agent_wrapper"],
+                    "gemini": ["gemini_skill_wrapper", "gemini_agent_wrapper"],
+                    "claude": ["claude_skill_wrapper", "claude_plugin_wrapper", "claude_agent_wrapper"],
+                    "kiro": ["kiro_skill_wrapper", "kiro_power_wrapper", "kiro_agent_wrapper"],
                 },
             },
             "manual_review": {
@@ -109,7 +109,8 @@ def deployment_matrix_payload() -> dict[str, object]:
             },
         },
         "notes": [
-            "command, plugin, power, and extension are deployment wrappers or invocation surfaces, not peer capability types",
+            "UAC recommends the surface area; the build emits only the canonical skill or agent surfaces for each CLI",
+            "commands and prompts are deprecated wrapper concepts in this repo and are not peer capability types",
             "both means one SSOT source can emit multiple surfaces without duplicating SSOT entries",
             "manual_review emits no deployable surfaces until reviewed",
         ],

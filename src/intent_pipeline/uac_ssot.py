@@ -257,12 +257,10 @@ def discover_actual_surfaces(root: Path, slug: str) -> set[str]:
     surface_paths = {
         "codex_skill": root / ".codex" / "skills" / slug / "SKILL.md",
         "codex_agent": root / ".codex" / "agents" / f"{slug}.toml",
-        "gemini_command": root / ".gemini" / "commands" / f"{slug}.toml",
         "gemini_skill": root / ".gemini" / "skills" / slug / "SKILL.md",
         "gemini_agent": root / ".gemini" / "agents" / f"{slug}.md",
-        "claude_command": root / ".claude" / "commands" / f"{slug}.md",
+        "claude_skill": root / ".claude" / "skills" / slug / "SKILL.md",
         "claude_agent": root / ".claude" / "agents" / f"{slug}.md",
-        "kiro_prompt": root / ".kiro" / "prompts" / f"{slug}.md",
         "kiro_skill": root / ".kiro" / "skills" / slug / "SKILL.md",
         "kiro_agent": root / ".kiro" / "agents" / f"{slug}.json",
     }

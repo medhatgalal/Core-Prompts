@@ -185,9 +185,9 @@ def derive_domain_tags(raw_text: str, slug: str) -> tuple[str, ...]:
 def packaging_profile(capability_type: str, emitted_surfaces: Mapping[str, Sequence[str]]) -> dict[str, object]:
     wrappers = {
         "codex": ["plugin_wrapper"] if any(name.endswith("_agent") for name in emitted_surfaces.get("codex", ())) else [],
-        "gemini": ["command_wrapper", "extension_wrapper"],
-        "claude": ["command_wrapper", "plugin_wrapper"],
-        "kiro": ["prompt_wrapper", "power_wrapper"],
+        "gemini": ["skill_wrapper"],
+        "claude": ["skill_wrapper", "plugin_wrapper"],
+        "kiro": ["skill_wrapper", "power_wrapper"],
     }
     return {
         "capability_type": capability_type,
