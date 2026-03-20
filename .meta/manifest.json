@@ -2648,8 +2648,8 @@
     ]
   },
   "validation": {
-    "validated_at": "2026-03-20T16:52:11.745557+00:00",
-    "strict": false,
+    "validated_at": "2026-03-20T17:03:50.693199+00:00",
+    "strict": true,
     "with_cli": false,
     "fail_on_cli_miss": false,
     "rules_file": ".meta/surface-rules.json",
@@ -2664,7 +2664,7 @@
       "https://kiro.dev/docs/skills/"
     ],
     "validation_errors": 0,
-    "validation_warnings": 6,
+    "validation_warnings": 0,
     "cli_versions": {
       "codex": {
         "command": "codex",
@@ -2672,7 +2672,6 @@
         "available": true,
         "version_exit_code": 0,
         "version_output": [
-          "WARNING: proceeding, even though we could not update PATH: Operation not permitted (os error 1)",
           "codex-cli 0.116.0"
         ]
       },
@@ -2680,7 +2679,10 @@
         "command": "gemini",
         "required": false,
         "available": true,
-        "version_error": "Command '['gemini', '--version']' timed out after 20 seconds"
+        "version_exit_code": 0,
+        "version_output": [
+          "0.34.0"
+        ]
       },
       "claude": {
         "command": "claude",
