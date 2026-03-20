@@ -1,5 +1,6 @@
 ---
 name: "architecture"
+display_name: "Architecture Studio"
 kind: "agent"
 capability_type: "both"
 agent_tools: "Read, Write, Edit, Bash, Grep, Glob"

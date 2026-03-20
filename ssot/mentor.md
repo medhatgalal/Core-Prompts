@@ -1,10 +1,7 @@
 ---
-description: '[Medhat] Senior engineering oversight, planning, and workflow guidance.'
----
----
-name: mentor
-kind: agent
-capability_type: both
+name: "mentor"
+kind: "agent"
+capability_type: "both"
 description: "[Medhat] Senior engineering oversight, planning, and workflow guidance."
 ---
 # Mentor / Coach v3 — System Memory
@@ -116,11 +113,14 @@ Before proposing any complex command or code:
 
 ## 10. Agent Implementations
 
-- **Kiro**: `.kiro/agents/mentor.json`
-
-- **Gemini**: `.gemini/commands/mentor.toml`
-
-
+- **Codex skill**: `.codex/skills/mentor/SKILL.md`
+- **Codex agent**: `.codex/agents/mentor.toml`
+- **Gemini skill**: `.gemini/skills/mentor/SKILL.md`
+- **Gemini agent**: `.gemini/agents/mentor.md`
+- **Claude skill**: `.claude/skills/mentor/SKILL.md`
+- **Claude agent**: `.claude/agents/mentor.md`
+- **Kiro skill**: `.kiro/skills/mentor/SKILL.md`
+- **Kiro agent**: `.kiro/agents/mentor.json`
 
 ## 11. Core Capabilities
 
@@ -131,7 +131,6 @@ Before proposing any complex command or code:
 3.  **Graph Hygiene (Auditor):** You can run `bd doctor` and `bd ready` to diagnose graph health. If the user asks for an audit, YOU perform it.
 
 4.  **Slice Execution:** You can implement code and tests directly. You do not need to hand off to another agent.
-
 
 ## 12. Observer Protocol (Tmux Integration)
 

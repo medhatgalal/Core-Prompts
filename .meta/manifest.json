@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-03-20T16:51:41.533114+00:00",
+  "generated_at": "2026-03-20T17:55:16.707783+00:00",
   "generator": {
     "script": "scripts/build-surfaces.py",
     "python": "3.11+",
     "version": "6.0",
-    "generated_utc": "2026-03-20T16:51:41.533336+00:00"
+    "generated_utc": "2026-03-20T17:55:16.708284+00:00"
   },
   "ssot_sources": [
     {
@@ -115,9 +115,9 @@
             "content_sha256": "ssot"
           },
           "confidence": 0.97,
-          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a command/skill surface.",
+          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
           "review_status": "ready_for_orchestrator_review",
-          "display_name": "Iterative Analysis Workflow"
+          "display_name": "Analyze Context \u2014 Iterative Multi-File Analysis Workflow"
         },
         "expanded": {
           "relationship_suggestions": [],
@@ -145,7 +145,7 @@
           "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
         }
       },
-      "display_name": "Iterative Analysis Workflow",
+      "display_name": "Analyze Context \u2014 Iterative Multi-File Analysis Workflow",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "analyze-context",
       "shared_summary": "[Medhat] Iterative Analysis Workflow for multi-file processing",
@@ -586,11 +586,13 @@
         "minimal": {
           "capability_type": "skill",
           "summary": "Commit Review for git commit quality gates, scope control, and over-engineering detection.",
-          "role": "analyst",
+          "role": "advisor",
           "domain_tags": [
+            "architecture",
             "review",
             "debugging",
             "context",
+            "prompting",
             "code"
           ],
           "required_inputs": [
@@ -685,7 +687,7 @@
             "content_sha256": "ssot"
           },
           "confidence": 0.97,
-          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a command/skill surface.",
+          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "Commit Review \u2014 Git Commit Quality Gate"
         },
@@ -866,7 +868,7 @@
           "confidence": 0.94,
           "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
           "review_status": "ready_for_orchestrator_review",
-          "display_name": "/converge \u2014 Universal Synthesis & Convergence Prompt (Portable)"
+          "display_name": "Converge \u2014 Multi-Source Synthesis, Conflict Surfacing, and Final Recommendation"
         },
         "expanded": {
           "relationship_suggestions": [
@@ -901,7 +903,7 @@
           "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
         }
       },
-      "display_name": "/converge \u2014 Universal Synthesis & Convergence Prompt (Portable)",
+      "display_name": "Converge \u2014 Multi-Source Synthesis, Conflict Surfacing, and Final Recommendation",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "converge",
       "shared_summary": "[Medhat] Universal Synthesis & Convergence Prompt (Portable)",
@@ -1044,7 +1046,7 @@
           "confidence": 0.96,
           "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
           "review_status": "ready_for_orchestrator_review",
-          "display_name": "Docs Review Expert \u2014 Documentation IA and Drift Guard"
+          "display_name": "Docs Review Expert \u2014 Documentation IA, Drift, and Release Hygiene"
         },
         "expanded": {
           "relationship_suggestions": [
@@ -1077,7 +1079,7 @@
           "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
         }
       },
-      "display_name": "Docs Review Expert \u2014 Documentation IA and Drift Guard",
+      "display_name": "Docs Review Expert \u2014 Documentation IA, Drift, and Release Hygiene",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "docs-review-expert",
       "shared_summary": "Documentation Review Expert for information architecture, readable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.",
@@ -1515,7 +1517,6 @@
             "planning",
             "debugging",
             "context",
-            "prompting",
             "resolve",
             "conflict"
           ],
@@ -1611,7 +1612,7 @@
             "content_sha256": "ssot"
           },
           "confidence": 0.97,
-          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a command/skill surface.",
+          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "Merge Conflict Resolution \u2014 Structured Conflict Analysis"
         },
@@ -1794,7 +1795,7 @@
           "confidence": 0.98,
           "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
           "review_status": "ready_for_orchestrator_review",
-          "display_name": "SuperCharge v4 \u2014 Prompt Engineering Swiss Army Knife (2026+)"
+          "display_name": "SuperCharge \u2014 Prompt Engineering, Planning Hardening, and Graded Improvement"
         },
         "expanded": {
           "relationship_suggestions": [
@@ -1827,7 +1828,7 @@
           "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
         }
       },
-      "display_name": "SuperCharge v4 \u2014 Prompt Engineering Swiss Army Knife (2026+)",
+      "display_name": "SuperCharge \u2014 Prompt Engineering, Planning Hardening, and Graded Improvement",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "supercharge",
       "shared_summary": "[Medhat] SuperCharge \u2014 Prompt Engineering Swiss Army Knife (ULT-Agent++ \u2022 Catchup Deep \u2022 Simple \u2022 Invert \u2022 Adversarial \u2022 Contract+QA \u2022 Grade \u2022 GASLIGHT 13)",
@@ -1858,6 +1859,7 @@
           "summary": "Testing Studio for unit-test generation, end-to-end test design, edge-case discovery, and coverage gap analysis.",
           "role": "advisor",
           "domain_tags": [
+            "review",
             "analysis",
             "planning",
             "debugging",
@@ -1955,8 +1957,8 @@
             "policy_rule_id": "ssot.testing",
             "content_sha256": "ssot"
           },
-          "confidence": 0.96,
-          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a command/skill surface.",
+          "confidence": 0.97,
+          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "Testing Studio \u2014 Test Design and Coverage Analysis"
         },
@@ -2247,7 +2249,7 @@
             "content_sha256": "ssot"
           },
           "confidence": 0.76,
-          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a command/skill surface.",
+          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "THREADER \u2014 Full-Thread Transcript Exporter (Introspective / Recall-Based) \u2014 v2.0 (2026-01-10)"
         },
@@ -2402,7 +2404,7 @@
             "content_sha256": "ssot"
           },
           "confidence": 0.97,
-          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a command/skill surface.",
+          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "UAC Import \u2014 Capability Intake, Quality Review, and Uplift"
         },
@@ -2648,7 +2650,7 @@
     ]
   },
   "validation": {
-    "validated_at": "2026-03-20T17:03:50.693199+00:00",
+    "validated_at": "2026-03-20T17:58:23.019149+00:00",
     "strict": true,
     "with_cli": false,
     "fail_on_cli_miss": false,
@@ -2690,7 +2692,7 @@
         "available": true,
         "version_exit_code": 0,
         "version_output": [
-          "2.1.9 (Claude Code)"
+          "2.1.59 (Claude Code)"
         ]
       },
       "kiro": {

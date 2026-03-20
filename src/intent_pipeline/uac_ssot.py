@@ -197,9 +197,9 @@ def build_ssot_manifest_entry(entry: SsotEntry, repo_root: Path | None = None, *
     minimal = dict(manifest.get("layers", {}).get("minimal") or {})
     minimal["capability_type"] = effective_capability
     minimal["display_name"] = str(
-        minimal.get("display_name")
+        entry.frontmatter.get("display_name")
+        or minimal.get("display_name")
         or manifest.get("display_name")
-        or entry.frontmatter.get("display_name")
         or entry.display_name
     )
     minimal["packaging_profile"] = packaging_profile(effective_capability, emitted_surfaces_by_cli(effective_capability))

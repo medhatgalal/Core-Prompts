@@ -231,12 +231,12 @@ def assess_uac_source(
         confidence = min(0.97, 0.56 + skill_score * 0.05)
         rationale = (
             "Source contains reusable workflow/prompt structure with explicit objectives, "
-            "constraints, or usage framing and is best shipped as a command/skill surface."
+            "constraints, or usage framing and is best shipped as a skill surface."
         )
         modernization_focus = (
             "normalize prompt sections into deterministic headings",
             "preserve examples and hard constraints",
-            "emit skill/command surfaces across supported CLIs",
+            "emit skill surfaces across supported CLIs",
         )
     else:
         capability_type = "manual_review"
@@ -292,7 +292,7 @@ def classification_rubric_payload() -> dict[str, object]:
             "decision_rule": "Choose both when strong workflow structure and strong agent control semantics are both present (agent_score >= 4 and skill_score >= 4).",
             "signals": [
                 "reusable workflow/prompt sections plus explicit agent registration markers",
-                "one source needs both command/skill invocation and agent execution surfaces",
+                "one source needs both skill invocation and agent execution surfaces",
             ],
         },
         "manual_review": {

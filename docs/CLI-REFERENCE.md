@@ -25,19 +25,18 @@ scripts/deploy-surfaces.sh --dry-run --cli all
 - `.codex/agents/resources/<slug>/capability.json`
 
 ### Gemini
-- `.gemini/commands/<slug>.toml`
 - `.gemini/skills/<slug>/SKILL.md`
 - `.gemini/skills/<slug>/resources/capability.json`
 - `.gemini/agents/<slug>.md`
 - `.gemini/agents/resources/<slug>/capability.json`
 
 ### Claude
-- `.claude/commands/<slug>.md`
+- `.claude/skills/<slug>/SKILL.md`
+- `.claude/skills/<slug>/resources/capability.json`
 - `.claude/agents/<slug>.md`
 - `.claude/agents/resources/<slug>/capability.json`
 
 ### Kiro
-- `.kiro/prompts/<slug>.md`
 - `.kiro/skills/<slug>/SKILL.md`
 - `.kiro/skills/<slug>/resources/capability.json`
 - `.kiro/agents/<slug>.json`

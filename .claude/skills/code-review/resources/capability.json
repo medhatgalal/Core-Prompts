@@ -5,11 +5,13 @@
     "minimal": {
       "capability_type": "skill",
       "summary": "Commit Review for git commit quality gates, scope control, and over-engineering detection.",
-      "role": "analyst",
+      "role": "advisor",
       "domain_tags": [
+        "architecture",
         "review",
         "debugging",
         "context",
+        "prompting",
         "code"
       ],
       "required_inputs": [
@@ -104,7 +106,7 @@
         "content_sha256": "ssot"
       },
       "confidence": 0.97,
-      "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a command/skill surface.",
+      "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
       "review_status": "ready_for_orchestrator_review",
       "display_name": "Commit Review \u2014 Git Commit Quality Gate"
     },

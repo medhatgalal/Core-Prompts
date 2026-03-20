@@ -1,8 +1,6 @@
 ---
-description: 'Merge Conflict Resolution for structured conflict analysis, additive merging, and inversion-led trade-off handling.'
----
----
 name: "resolve-conflict"
+display_name: "Merge Conflict Resolution — Structured Conflict Analysis"
 kind: "skill"
 capability_type: "skill"
 description: "Merge Conflict Resolution for structured conflict analysis, additive merging, and inversion-led trade-off handling."
@@ -258,74 +256,3 @@ Analyzes potential conflicts before merging.
 6. **Check for consistency** - Scan for contradictions in merged result
 
 ---
-
-## Integration with Git Workflow
-
-### Pre-merge Analysis
-Before merging a branch, run:
-```bash
-git merge --no-commit --no-ff <branch>
-# If conflicts, run: /resolve-conflict
-```
-
-### During Rebase
-When rebase conflicts occur:
-```bash
-# Conflicts appear
-/resolve-conflict
-# Follow resolution plan
-git add <resolved-files>
-git rebase --continue
-```
-
-### Post-resolution Verification
-After resolving conflicts:
-```bash
-# Check for remaining markers
-git diff --check
-# Validate syntax
-# Run tests
-# Review changes
-git diff HEAD
-```
-
----
-
-## Common Conflict Patterns
-
-### Documentation Conflicts
-- **Pattern**: Both branches add new sections after the same location
-- **Resolution**: Order sections logically (principle → pattern → implementation)
-- **Check**: Ensure no terminology or pattern contradictions
-
-### Code Conflicts
-- **Pattern**: Both branches modify the same function/class
-- **Resolution**: Merge logic if orthogonal, choose one if contradictory
-- **Check**: Run tests, verify behavior
-
-### Configuration Conflicts
-- **Pattern**: Both branches change the same config values
-- **Resolution**: Understand intent of each change, choose or merge
-- **Check**: Validate config syntax, test with new values
-
-### Dependency Conflicts
-- **Pattern**: Both branches add/update dependencies
-- **Resolution**: Keep both if compatible, resolve version conflicts
-- **Check**: Run dependency resolution, test builds
-
----
-
-## Example: Documentation Conflict
-
-**Scenario**: Both branches add content after "Error Handling" section.
-
-**Our branch adds**: "Terminology Guidelines"
-**Their branch adds**: "API Response Patterns" + "Security Principles"
-
-**Resolution**:
-1. Keep all three sections
-2. Order: Terminology → Response Patterns → Security
-3. Rationale: Name things before structuring them, security is cross-cutting
-4. Verify: No terminology conflicts between sections
-
-**Result**: Clean merge with logical flow, all content preserved.

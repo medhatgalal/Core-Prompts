@@ -4,6 +4,12 @@ description: "Testing Studio for unit-test generation, end-to-end test design, e
 ---
 # Testing Studio — Test Design and Coverage Analysis
 
+## Purpose
+Use this capability to design tests, identify missing coverage, and turn vague quality concerns into concrete test work without silently running the test suite.
+
+## Primary Objective
+Produce deterministic, framework-aware testing recommendations or test artifacts that improve confidence while making assumptions, risk, and remaining gaps explicit.
+
 ## Output Directory
 When the user wants analysis artifacts instead of direct test files, default to:
 - `reports/testing/<timestamp>-plan.md`
@@ -12,13 +18,25 @@ When the user wants analysis artifacts instead of direct test files, default to:
 
 When the user asks for concrete test outputs, place them under the repository's existing test layout. If the repo has no established layout, propose one before writing files.
 
-## Summary
-Use this family to produce deterministic test plans and test assets across four common testing jobs: unit-test generation, end-to-end test design, edge-case discovery, and coverage gap analysis. The family keeps the Harish Garg four-mode structure but normalizes the outputs into implementation-ready testing artifacts.
+## Workflow
+1. Determine whether the task is unit tests, E2E design, edge-case discovery, or coverage analysis.
+2. Inspect the current repository testing stack and existing tests before recommending changes.
+3. Produce the minimum useful test set or gap analysis for the requested mode.
+4. Separate what can be generated now from what still needs repo-specific validation or execution.
+5. End with explicit priorities, risks, and follow-up work.
 
-## Capability Boundary
-- Publish testing guidance, artifacts, and gap analysis only.
-- Do not execute tests automatically.
-- Do not replace project-specific framework decisions when the repository already has a clear testing stack.
+## Tool Boundaries
+- allowed: inspect source code and existing tests, design test cases, and write test artifacts when asked
+- forbidden: silently executing tests, inventing framework choices that contradict the repo, or claiming coverage numbers without evidence
+- escalation: if the request is actually a release gate or CI readiness question, recommend `gitops-review`
+
+## Invocation Hints
+Use this capability when the user asks for any of the following, even without naming the skill:
+- generate unit tests
+- design end-to-end tests
+- find edge cases we are missing
+- show me coverage gaps
+- tell me what to test first for this change
 
 ## Required Inputs
 - source code, feature description, or failing scenario
@@ -26,13 +44,16 @@ Use this family to produce deterministic test plans and test assets across four 
 - risk areas or priority workflows
 - existing tests or coverage report when available
 
-## Expected Outputs
-- deterministic test recommendations or generated tests
-- explicit coverage of happy path, edge cases, and failures
-- framework-aware examples
-- unresolved risks and follow-up gaps
+## Required Output
+Every substantial response must include:
+- `Scope`
+- `Assumptions`
+- `Recommended Tests or Gaps`
+- `Priority or Risk`
+- `Framework Notes`
+- `Follow-up Work`
 
-## Family Standards
+## Rules
 - Respect the existing test framework and project conventions.
 - Separate generation of tests from execution of tests.
 - Prefer readable test names and explicit assertions.
@@ -73,22 +94,33 @@ Use when the job is deciding where coverage is weak.
 
 Produce:
 - current coverage summary if data exists
-- specific untested branches/functions/scenarios
+- specific untested branches, functions, or scenarios
 - risk-based prioritization
 - recommended next tests
 
-## Output Contract
-Every mode should return:
-1. Scope of testing work
-2. Assumptions
-3. Recommended tests or gaps
-4. Priority level or risk level
-5. Framework-specific notes
-6. Follow-up work still required
+## Examples
+### Example Request
+> Review this change and tell me which tests to add first, including edge cases we are currently missing.
 
-## Source Lineage
-- Structural seed: Harish Garg `commands/testing`
-- Evaluation benchmark: Promptfoo and repository-native test tooling are good comparators when judging whether generated tests are actionable
+### Example Output Shape
+- scope and assumptions
+- recommended tests by priority
+- unresolved risks
+- framework-specific notes
+
+## Evaluation Rubric
+| Check | What Passing Looks Like |
+| --- | --- |
+| Mode selection | The response chooses the correct testing mode for the task |
+| Framework fit | Recommendations respect the repo’s existing testing stack |
+| Risk coverage | Happy path, failures, and boundary cases are all considered |
+| Actionability | A developer can implement the proposed tests directly |
+| Boundary clarity | The response does not pretend tests were run when they were not |
+
+## Constraints
+- Do not execute tests automatically.
+- Do not replace project-specific framework decisions when the repository already has a clear testing stack.
+- Do not claim coverage metrics without a coverage artifact or direct evidence.
 
 
 Capability resource: `.codex/skills/testing/resources/capability.json`

@@ -106,9 +106,9 @@
         "content_sha256": "ssot"
       },
       "confidence": 0.97,
-      "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a command/skill surface.",
+      "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
       "review_status": "ready_for_orchestrator_review",
-      "display_name": "Iterative Analysis Workflow"
+      "display_name": "Analyze Context \u2014 Iterative Multi-File Analysis Workflow"
     },
     "expanded": {
       "relationship_suggestions": [],
@@ -136,7 +136,7 @@
       "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
     }
   },
-  "display_name": "Iterative Analysis Workflow",
+  "display_name": "Analyze Context \u2014 Iterative Multi-File Analysis Workflow",
   "declared_capability": "skill",
   "inferred_capability": "skill",
   "expected_surface_names": [

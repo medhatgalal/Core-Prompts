@@ -8,7 +8,7 @@
   "capabilities": [
     {
       "slug": "analyze-context",
-      "display_name": "Iterative Analysis Workflow",
+      "display_name": "Analyze Context \u2014 Iterative Multi-File Analysis Workflow",
       "capability_type": "skill",
       "summary": "Iterative Analysis Workflow for multi-file, multi-source repo analysis with canonical memory files, anti-sprawl controls, and compaction-safe progress tracking.",
       "role": "analyst",
@@ -200,11 +200,13 @@
       "display_name": "Commit Review \u2014 Git Commit Quality Gate",
       "capability_type": "skill",
       "summary": "Commit Review for git commit quality gates, scope control, and over-engineering detection.",
-      "role": "analyst",
+      "role": "advisor",
       "domain_tags": [
+        "architecture",
         "review",
         "debugging",
         "context",
+        "prompting",
         "code"
       ],
       "required_inputs": [
@@ -285,7 +287,7 @@
     },
     {
       "slug": "converge",
-      "display_name": "/converge \u2014 Universal Synthesis & Convergence Prompt (Portable)",
+      "display_name": "Converge \u2014 Multi-Source Synthesis, Conflict Surfacing, and Final Recommendation",
       "capability_type": "both",
       "summary": "Universal Synthesis and Convergence for multi-source proposal comparison, conflict surfacing, decision analysis, and one coherent final recommendation.",
       "role": "resolver",
@@ -376,7 +378,7 @@
     },
     {
       "slug": "docs-review-expert",
-      "display_name": "Docs Review Expert \u2014 Documentation IA and Drift Guard",
+      "display_name": "Docs Review Expert \u2014 Documentation IA, Drift, and Release Hygiene",
       "capability_type": "both",
       "summary": "Documentation Review Expert for information architecture, explainable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.",
       "role": "advisor",
@@ -678,7 +680,6 @@
         "planning",
         "debugging",
         "context",
-        "prompting",
         "resolve",
         "conflict"
       ],
@@ -760,7 +761,7 @@
     },
     {
       "slug": "supercharge",
-      "display_name": "SuperCharge v4 \u2014 Prompt Engineering Swiss Army Knife (2026+)",
+      "display_name": "SuperCharge \u2014 Prompt Engineering, Planning Hardening, and Graded Improvement",
       "capability_type": "both",
       "summary": "SuperCharge for prompt creation, prompt refinement, planning hardening, option comparison, grading, multi-pass critique, and structured execution-quality improvement across direct and agentic workflows.",
       "role": "analyst",
@@ -858,6 +859,7 @@
       "summary": "Testing Studio for unit-test generation, end-to-end test design, edge-case discovery, and coverage gap analysis.",
       "role": "advisor",
       "domain_tags": [
+        "review",
         "analysis",
         "planning",
         "debugging",
@@ -911,7 +913,7 @@
           "kiro_skill"
         ]
       },
-      "confidence": 0.96,
+      "confidence": 0.97,
       "review_status": "ready_for_orchestrator_review",
       "overlap_candidates": [],
       "relationship_suggestions": [],

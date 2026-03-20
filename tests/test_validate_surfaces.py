@@ -110,3 +110,70 @@ hello
     errors = MODULE.validate_toml(path, ["name", "description", "sandbox_mode", "developer_instructions"], "converge", ["tools"])
 
     assert errors == []
+
+
+def test_validate_ssot_source_rejects_descriptor_display_name_drift(tmp_path: Path) -> None:
+    old_root = MODULE.ROOT
+    try:
+        MODULE.ROOT = tmp_path
+        ssot_dir = tmp_path / "ssot"
+        descriptor_dir = tmp_path / ".meta" / "capabilities"
+        ssot_dir.mkdir(parents=True)
+        descriptor_dir.mkdir(parents=True)
+        path = ssot_dir / "sample.md"
+        path.write_text(
+            """---
+name: "sample"
+display_name: "Sample Skill"
+description: "sample"
+---
+# Sample Skill
+
+## Purpose
+test
+""",
+            encoding="utf-8",
+        )
+        (descriptor_dir / "sample.json").write_text(
+            """{
+  "display_name": "Other Name",
+  "layers": {"minimal": {"display_name": "Other Name"}}
+}
+""",
+            encoding="utf-8",
+        )
+
+        errors = MODULE.validate_ssot_source(path)
+
+        assert any("descriptor display_name drift" in item for item in errors)
+    finally:
+        MODULE.ROOT = old_root
+
+
+def test_validate_ssot_source_rejects_missing_benchmark_sections(tmp_path: Path) -> None:
+    old_root = MODULE.ROOT
+    try:
+        MODULE.ROOT = tmp_path
+        ssot_dir = tmp_path / "ssot"
+        descriptor_dir = tmp_path / ".meta" / "capabilities"
+        ssot_dir.mkdir(parents=True)
+        descriptor_dir.mkdir(parents=True)
+        path = ssot_dir / "testing.md"
+        path.write_text(
+            """---
+name: "testing"
+description: "Testing Studio"
+---
+# Testing Studio
+
+## Purpose
+test
+""",
+            encoding="utf-8",
+        )
+
+        errors = MODULE.validate_ssot_source(path)
+
+        assert any("benchmark contract missing section" in item for item in errors)
+    finally:
+        MODULE.ROOT = old_root

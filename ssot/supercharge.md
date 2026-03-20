@@ -1,5 +1,6 @@
 ---
 name: "supercharge"
+display_name: "SuperCharge — Prompt Engineering, Planning Hardening, and Graded Improvement"
 kind: "agent"
 capability_type: "both"
 agent_tools: "Read, Write, Edit, Bash, Grep, Glob"

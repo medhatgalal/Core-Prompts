@@ -7,6 +7,7 @@
       "summary": "Testing Studio for unit-test generation, end-to-end test design, edge-case discovery, and coverage gap analysis.",
       "role": "advisor",
       "domain_tags": [
+        "review",
         "analysis",
         "planning",
         "debugging",
@@ -104,8 +105,8 @@
         "policy_rule_id": "ssot.testing",
         "content_sha256": "ssot"
       },
-      "confidence": 0.96,
-      "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a command/skill surface.",
+      "confidence": 0.97,
+      "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
       "review_status": "ready_for_orchestrator_review",
       "display_name": "Testing Studio \u2014 Test Design and Coverage Analysis"
     },

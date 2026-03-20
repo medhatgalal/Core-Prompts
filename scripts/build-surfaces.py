@@ -425,7 +425,8 @@ def resolve_descriptor(entry, manifest_entry: dict[str, object]) -> dict[str, ob
         resolved = build_descriptor(
             manifest=manifest_entry,
             display_name=str(
-                descriptor.get('display_name')
+                manifest_entry.get('display_name')
+                or descriptor.get('display_name')
                 or ((descriptor.get('layers') or {}).get('minimal') or {}).get('display_name')
                 or defaults.get('display_name')
                 or entry.display_name

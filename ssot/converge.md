@@ -1,5 +1,6 @@
 ---
 name: "converge"
+display_name: "Converge — Multi-Source Synthesis, Conflict Surfacing, and Final Recommendation"
 kind: "agent"
 capability_type: "both"
 agent_tools: "Read, Write, Edit, Bash, Grep, Glob"

@@ -26,6 +26,13 @@ Turn broad analysis into one deterministic working set: one canonical context fi
 - Merge scattered analysis notes back into the canonical set immediately.
 - Archive only when the initiative is complete.
 
+## Invocation Hints
+Use this capability when the user asks for any of the following, even without naming the skill:
+- analyze several files or transcripts over a long session
+- keep durable analysis notes that survive context loss
+- process a broad repo investigation one item at a time
+- recover and continue a previously interrupted analysis
+
 ## Required Inputs
 - a task slug or clear initiative name
 - the analysis goal and success criteria

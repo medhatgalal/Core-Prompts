@@ -1,5 +1,6 @@
 ---
 name: "docs-review-expert"
+display_name: "Docs Review Expert — Documentation IA, Drift, and Release Hygiene"
 kind: "agent"
 capability_type: "both"
 agent_tools: "Read, Write, Edit, Bash, Grep, Glob"

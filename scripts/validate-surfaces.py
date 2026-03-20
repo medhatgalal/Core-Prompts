@@ -23,6 +23,26 @@ SSOT_DIR = ROOT / 'ssot'
 META = ROOT / '.meta' / 'manifest.json'
 RULES_PATH = ROOT / '.meta' / 'surface-rules.json'
 SCHEMA_CACHE_MANIFEST = ROOT / '.meta' / 'schema-cache' / 'manifest.json'
+BENCHMARK_CONTRACT_SLUGS = {
+    'analyze-context',
+    'code-review',
+    'converge',
+    'docs-review-expert',
+    'gitops-review',
+    'supercharge',
+    'testing',
+    'uac-import',
+}
+BENCHMARK_SECTION_ALIASES = {
+    'Purpose': ('Purpose',),
+    'Primary Objective': ('Primary Objective',),
+    'Workflow Contract': ('Workflow', 'Review Process', 'Standard Workflow', 'Invocation Contract'),
+    'Boundaries': ('Tool Boundaries', 'Capability Boundary', 'Constraints', 'Hard Constraints'),
+    'Invocation Hints': ('Invocation Hints', 'Usage Examples', 'Examples'),
+    'Required Inputs': ('Required Inputs',),
+    'Required Output': ('Required Output', 'Expected Outputs', 'Output Contract', 'Output Format'),
+    'Evaluation Rubric': ('Evaluation Rubric',),
+}
 
 
 def parse_frontmatter(path: Path):
@@ -55,6 +75,30 @@ def count_frontmatter_blocks(path: Path):
         if remainder.startswith('\n'):
             remainder = remainder[1:]
     return count
+
+
+def strip_frontmatter_blocks(text: str) -> str:
+    remainder = text
+    while remainder.startswith('---\n'):
+        end = remainder.find('\n---', 3)
+        if end == -1:
+            break
+        remainder = remainder[end + 4 :]
+        if remainder.startswith('\n'):
+            remainder = remainder[1:]
+    return remainder
+
+
+def extract_first_heading(text: str, fallback_slug: str) -> str:
+    for line in text.splitlines():
+        stripped = line.strip()
+        if stripped.startswith('# '):
+            return stripped[2:].strip()
+    return ' '.join(part.capitalize() for part in fallback_slug.replace('_', '-').split('-'))
+
+
+def collect_h2_titles(text: str) -> set[str]:
+    return {line[3:].strip() for line in text.splitlines() if line.startswith('## ')}
 
 
 def parse_args():
@@ -94,6 +138,51 @@ def validate_frontmatter(path: Path, required: list[str]):
     for key in required:
         if key not in fm or not fm[key]:
             errors.append(f'{path}: missing frontmatter {key}')
+    return errors
+
+
+def validate_descriptor_display_name(path: Path, slug: str):
+    descriptor_path = ROOT / '.meta' / 'capabilities' / f'{slug}.json'
+    if not descriptor_path.exists():
+        return []
+    try:
+        descriptor = json.loads(descriptor_path.read_text(encoding='utf-8'))
+    except Exception as exc:
+        return [f'{descriptor_path}: invalid json ({exc})']
+
+    text = path.read_text(encoding='utf-8')
+    canonical_display_name = (
+        parse_frontmatter(path).get('display_name')
+        or extract_first_heading(strip_frontmatter_blocks(text), slug)
+    )
+    descriptor_display_name = (
+        descriptor.get('display_name')
+        or ((descriptor.get('layers') or {}).get('minimal') or {}).get('display_name')
+        or ''
+    )
+    if descriptor_display_name and descriptor_display_name != canonical_display_name:
+        return [
+            f'{path}: descriptor display_name drift (ssot "{canonical_display_name}" != descriptor "{descriptor_display_name}")'
+        ]
+    return []
+
+
+def validate_benchmark_contract(path: Path, slug: str):
+    if slug not in BENCHMARK_CONTRACT_SLUGS:
+        return []
+    titles = collect_h2_titles(path.read_text(encoding='utf-8'))
+    errors = []
+    for label, aliases in BENCHMARK_SECTION_ALIASES.items():
+        if not any(alias in titles for alias in aliases):
+            errors.append(f'{path}: benchmark contract missing section for {label}')
+    return errors
+
+
+def validate_ssot_source(path: Path):
+    errors = validate_frontmatter(path, ['name', 'description'])
+    slug = path.stem
+    errors.extend(validate_descriptor_display_name(path, slug))
+    errors.extend(validate_benchmark_contract(path, slug))
     return errors
 
 
@@ -468,6 +557,9 @@ def main():
     manifest_ssot = {entry.get('slug') for entry in manifest_entries}
     if manifest_ssot != ssot_slugs:
         errors.append('manifest slugs do not match ssot directory')
+
+    for path in ssot_file_paths:
+        errors.extend(validate_ssot_source(path))
 
     for metadata_path in collect_capability_metadata_paths():
         errors.extend(validate_portable_capability_metadata(metadata_path))

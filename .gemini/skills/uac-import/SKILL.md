@@ -5,7 +5,7 @@ description: "UAC Import for capability intake, quality review, uplift, and cano
 # UAC Import — Capability Intake, Quality Review, and Uplift
 
 ## Purpose
-Take one or more external sources and turn them into deterministic UAC assessments, layered manifests, canonical SSOT entries, machine-readable descriptors, quality-review artifacts, and advisory handoff contracts.
+Take one or more external prompt-like sources and turn them into deterministic UAC assessments, layered manifests, canonical SSOT entries, machine-readable descriptors, quality-review artifacts, and advisory handoff contracts.
 
 Supported inputs:
 - local file path
@@ -22,6 +22,9 @@ Supported modes:
 - `plan`
 - `judge`
 - `apply`
+
+## Primary Objective
+Classify the source safely, recommend the right surface area, and refuse landing until the candidate is structurally strong enough to become canonical SSOT plus descriptor state.
 
 ## Invocation Contract
 Use this capability as the AI-facing intake contract.
@@ -67,6 +70,19 @@ Operational rule:
 - Treat commands, plugins, powers, and extensions as deployment wrappers, not capability types.
 - Quality review artifacts are advisory evidence; they must not encode runtime routing policy.
 
+## Invocation Hints
+Use this capability when the user asks for any of the following, even without naming the skill:
+- import a prompt, prompt pack, or capability into this repo
+- classify whether this source should become a skill, agent, or manual review
+- explain how this external source would land into SSOT and descriptors
+- judge whether a candidate is ready to apply
+
+## Required Inputs
+- one or more explicit sources
+- desired mode such as `plan`, `judge`, or `apply`
+- target system or install target when that materially affects the recommendation
+- any benchmark or quality expectations when the caller wants a stricter gate
+
 ## Required Output
 Return a concise structured result with these sections:
 - Source
@@ -89,6 +105,26 @@ Return a concise structured result with these sections:
 - No packaging claims without evidence.
 - No deployment during `apply`.
 - For local folders or GitHub repos, inventory the files first and justify whether they belong under one roof.
+
+## Examples
+### Example Request
+> Import this prompt folder, tell me whether it belongs as one capability or several, and refuse apply if it misses the benchmark bar.
+
+### Example Output Shape
+- source inventory
+- classification and fit assessment
+- benchmark and quality status
+- canonical landing recommendation
+- next actions
+
+## Evaluation Rubric
+| Check | What Passing Looks Like |
+| --- | --- |
+| Source fidelity | The recommendation reflects the actual source set rather than guessed structure |
+| Classification rigor | The result explains why the source is `skill`, `agent`, `both`, or `manual_review` |
+| Landing safety | `apply` is blocked until benchmark and quality gates pass |
+| Canonical output | The result names the SSOT, descriptor, and generated-surface consequences clearly |
+| Boundary clarity | Deployment wrappers are not confused with capability types |
 
 
 Capability resource: `.gemini/skills/uac-import/resources/capability.json`
