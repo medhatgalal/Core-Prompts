@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-03-20T17:55:16.707783+00:00",
+  "generated_at": "2026-03-20T18:25:46.025983+00:00",
   "generator": {
     "script": "scripts/build-surfaces.py",
     "python": "3.11+",
     "version": "6.0",
-    "generated_utc": "2026-03-20T17:55:16.708284+00:00"
+    "generated_utc": "2026-03-20T18:25:46.027080+00:00"
   },
   "ssot_sources": [
     {
@@ -1512,13 +1512,14 @@
           "summary": "Merge Conflict Resolution for structured conflict analysis, additive merging, and inversion-led trade-off handling.",
           "role": "advisor",
           "domain_tags": [
+            "architecture",
             "review",
             "analysis",
+            "routing",
+            "packaging",
             "planning",
             "debugging",
-            "context",
-            "resolve",
-            "conflict"
+            "context"
           ],
           "required_inputs": [
             "source text",
@@ -2650,7 +2651,7 @@
     ]
   },
   "validation": {
-    "validated_at": "2026-03-20T17:58:23.019149+00:00",
+    "validated_at": "2026-03-20T18:26:16.944416+00:00",
     "strict": true,
     "with_cli": false,
     "fail_on_cli_miss": false,
@@ -2692,7 +2693,7 @@
         "available": true,
         "version_exit_code": 0,
         "version_output": [
-          "2.1.59 (Claude Code)"
+          "2.1.9 (Claude Code)"
         ]
       },
       "kiro": {
