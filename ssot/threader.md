@@ -1,9 +1,60 @@
 ---
 name: "threader"
+display_name: "Threader — Full-Thread Transcript Export and Recall Capture"
 capability_type: "skill"
 description: "[Medhat] Context Threader & Exporter (Memory Management)"
 ---
 # THREADER — Full-Thread Transcript Exporter (Introspective / Recall-Based) — v2.0 (2026-01-10)
+
+## Purpose
+Use this capability to export a current thread faithfully for handoff, diffing, archival analysis, or recovery work when chat history must become a durable artifact.
+
+## Primary Objective
+Produce one cohesive, high-fidelity transcript artifact that preserves turn order, AI output fidelity, artifact references, and disclosure about any inaccessible history.
+
+## Tool Boundaries
+- allowed: export the current thread, summarize user intent at a high level, preserve AI output verbatim, and disclose fidelity limits explicitly
+- forbidden: paraphrasing AI output, analyzing the thread as if this were a review skill, or silently omitting inaccessible turns
+- escalation: if the user wants analysis, synthesis, or decision support after export, hand off the exported artifact to the companion capability rather than blending jobs
+
+## Invocation Hints
+Use this capability when the user asks for any of the following, even without naming the skill:
+- export this thread
+- give me a transcript of this conversation
+- create a durable handoff file from the current chat
+- prepare this thread for another model, reviewer, or archive system
+
+## Required Inputs
+- the current thread or the exact conversation scope to export
+- any delivery preference such as file-first or inline fallback
+- fidelity expectations when the user needs disclosure for inaccessible turns or missing artifacts
+
+## Required Output
+Every substantial response must produce one of these outcomes:
+- a downloadable transcript file plus a short confirmation, or
+- one logically contiguous inline transcript with clear merge instructions if the platform cannot create files
+
+The result must also include:
+- fidelity disclosure
+- impacted turn list when history is missing
+- artifact inclusion status when files or downloads were produced inside the thread
+
+## Companion Capability Matrix
+| If the export is being used for this next step | Route to | Required handoff |
+| --- | --- | --- |
+| The thread now needs durable analysis or issue extraction | `analyze-context` | exported transcript, analysis goal, scope limits, extraction criteria |
+| The exported discussion contains several competing proposals and needs one recommendation | `converge` | transcript, option set, trade-offs, success criteria |
+| The user wants prompt hardening based on the exported conversation | `supercharge` | transcript or excerpt, target prompt objective, weak outputs to improve |
+| The thread should become a conflict-resolution or merge-reconciliation input | `resolve-conflict` | transcript, conflicting positions, protected constraints, desired landing outcome |
+
+## Evaluation Rubric
+| Check | What Passing Looks Like |
+| --- | --- |
+| Fidelity | AI outputs are preserved verbatim or marked missing |
+| Turn order | User and AI turns are kept in strict sequence |
+| Artifact handling | Produced files and downloads are referenced clearly and included when possible |
+| Disclosure quality | Accessibility gaps and missing context are explicit rather than implied away |
+| Boundary clarity | The capability exports faithfully instead of drifting into analysis or editing |
 
 Paste this message as **plain text** into the SAME thread you want exported, then send it.
 Do NOT wrap it in a code fence. Do NOT prefix with /rawmd.

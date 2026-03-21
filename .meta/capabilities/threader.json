@@ -5,8 +5,11 @@
     "minimal": {
       "capability_type": "skill",
       "summary": "[Medhat] Context Threader & Exporter (Memory Management)",
-      "role": "resolver",
+      "role": "analyst",
       "domain_tags": [
+        "review",
+        "analysis",
+        "routing",
         "planning",
         "debugging",
         "context",
@@ -104,10 +107,10 @@
         "policy_rule_id": "ssot.threader",
         "content_sha256": "ssot"
       },
-      "confidence": 0.76,
-      "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+      "confidence": 0.84,
+      "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
       "review_status": "ready_for_orchestrator_review",
-      "display_name": "THREADER \u2014 Full-Thread Transcript Exporter (Introspective / Recall-Based) \u2014 v2.0 (2026-01-10)"
+      "display_name": "Threader \u2014 Full-Thread Transcript Export and Recall Capture"
     },
     "expanded": {
       "relationship_suggestions": [],
@@ -135,9 +138,9 @@
       "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
     }
   },
-  "display_name": "THREADER \u2014 Full-Thread Transcript Exporter (Introspective / Recall-Based) \u2014 v2.0 (2026-01-10)",
+  "display_name": "Threader \u2014 Full-Thread Transcript Export and Recall Capture",
   "declared_capability": "skill",
-  "inferred_capability": "skill",
+  "inferred_capability": "both",
   "expected_surface_names": [
     "codex_skill",
     "gemini_skill",

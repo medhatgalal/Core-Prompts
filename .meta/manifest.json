@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-03-20T18:25:46.025983+00:00",
+  "generated_at": "2026-03-21T00:51:53.764921+00:00",
   "generator": {
     "script": "scripts/build-surfaces.py",
     "python": "3.11+",
     "version": "6.0",
-    "generated_utc": "2026-03-20T18:25:46.027080+00:00"
+    "generated_utc": "2026-03-21T00:51:53.765401+00:00"
   },
   "ssot_sources": [
     {
@@ -16,8 +16,10 @@
           "summary": "Iterative Analysis Workflow for multi-file, multi-source repo analysis with canonical memory files, anti-sprawl controls, and compaction-safe progress tracking.",
           "role": "analyst",
           "domain_tags": [
+            "architecture",
             "review",
             "analysis",
+            "routing",
             "debugging",
             "context",
             "prompting",
@@ -1337,13 +1339,14 @@
           "summary": "[Medhat] Senior engineering oversight, planning, and workflow guidance.",
           "role": "advisor",
           "domain_tags": [
+            "architecture",
             "review",
             "analysis",
             "routing",
+            "packaging",
             "planning",
-            "context",
-            "prompting",
-            "mentor"
+            "debugging",
+            "context"
           ],
           "required_inputs": [
             "source text",
@@ -1446,10 +1449,10 @@
             "policy_rule_id": "ssot.mentor",
             "content_sha256": "ssot"
           },
-          "confidence": 0.84,
+          "confidence": 0.98,
           "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
           "review_status": "ready_for_orchestrator_review",
-          "display_name": "Mentor / Coach v3 \u2014 System Memory"
+          "display_name": "Mentor \u2014 Senior Engineering Oversight and Workflow Guidance"
         },
         "expanded": {
           "relationship_suggestions": [
@@ -1481,7 +1484,7 @@
           "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
         }
       },
-      "display_name": "Mentor / Coach v3 \u2014 System Memory",
+      "display_name": "Mentor \u2014 Senior Engineering Oversight and Workflow Guidance",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "mentor",
       "shared_summary": "[Medhat] Senior engineering oversight, planning, and workflow guidance.",
@@ -2150,8 +2153,11 @@
         "minimal": {
           "capability_type": "skill",
           "summary": "[Medhat] Context Threader & Exporter (Memory Management)",
-          "role": "resolver",
+          "role": "analyst",
           "domain_tags": [
+            "review",
+            "analysis",
+            "routing",
             "planning",
             "debugging",
             "context",
@@ -2249,10 +2255,10 @@
             "policy_rule_id": "ssot.threader",
             "content_sha256": "ssot"
           },
-          "confidence": 0.76,
-          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+          "confidence": 0.84,
+          "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
           "review_status": "ready_for_orchestrator_review",
-          "display_name": "THREADER \u2014 Full-Thread Transcript Exporter (Introspective / Recall-Based) \u2014 v2.0 (2026-01-10)"
+          "display_name": "Threader \u2014 Full-Thread Transcript Export and Recall Capture"
         },
         "expanded": {
           "relationship_suggestions": [],
@@ -2280,7 +2286,7 @@
           "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
         }
       },
-      "display_name": "THREADER \u2014 Full-Thread Transcript Exporter (Introspective / Recall-Based) \u2014 v2.0 (2026-01-10)",
+      "display_name": "Threader \u2014 Full-Thread Transcript Export and Recall Capture",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "threader",
       "shared_summary": "[Medhat] Context Threader & Exporter (Memory Management)",
@@ -2289,7 +2295,7 @@
       "benchmark_sources": [],
       "consumption_hints": {},
       "declared_capability": "skill",
-      "inferred_capability": "skill",
+      "inferred_capability": "both",
       "expected_surface_names": [
         "codex_skill",
         "gemini_skill",
@@ -2307,7 +2313,9 @@
           "summary": "UAC Import for capability intake, quality review, uplift, and canonical SSOT plus descriptor landing.",
           "role": "analyst",
           "domain_tags": [
+            "architecture",
             "review",
+            "routing",
             "packaging",
             "import",
             "planning",
@@ -2651,7 +2659,7 @@
     ]
   },
   "validation": {
-    "validated_at": "2026-03-20T18:26:16.944416+00:00",
+    "validated_at": "2026-03-21T00:52:20.855148+00:00",
     "strict": true,
     "with_cli": false,
     "fail_on_cli_miss": false,
@@ -2693,7 +2701,7 @@
         "available": true,
         "version_exit_code": 0,
         "version_output": [
-          "2.1.9 (Claude Code)"
+          "2.1.59 (Claude Code)"
         ]
       },
       "kiro": {

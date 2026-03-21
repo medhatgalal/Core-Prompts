@@ -13,8 +13,10 @@
       "summary": "Iterative Analysis Workflow for multi-file, multi-source repo analysis with canonical memory files, anti-sprawl controls, and compaction-safe progress tracking.",
       "role": "analyst",
       "domain_tags": [
+        "architecture",
         "review",
         "analysis",
+        "routing",
         "debugging",
         "context",
         "prompting",
@@ -579,18 +581,19 @@
     },
     {
       "slug": "mentor",
-      "display_name": "Mentor / Coach v3 \u2014 System Memory",
+      "display_name": "Mentor \u2014 Senior Engineering Oversight and Workflow Guidance",
       "capability_type": "both",
       "summary": "[Medhat] Senior engineering oversight, planning, and workflow guidance.",
       "role": "advisor",
       "domain_tags": [
+        "architecture",
         "review",
         "analysis",
         "routing",
+        "packaging",
         "planning",
-        "context",
-        "prompting",
-        "mentor"
+        "debugging",
+        "context"
       ],
       "required_inputs": [
         "source text",
@@ -643,7 +646,7 @@
           "kiro_agent"
         ]
       },
-      "confidence": 0.84,
+      "confidence": 0.98,
       "review_status": "ready_for_orchestrator_review",
       "overlap_candidates": [],
       "relationship_suggestions": [
@@ -948,11 +951,14 @@
     },
     {
       "slug": "threader",
-      "display_name": "THREADER \u2014 Full-Thread Transcript Exporter (Introspective / Recall-Based) \u2014 v2.0 (2026-01-10)",
+      "display_name": "Threader \u2014 Full-Thread Transcript Export and Recall Capture",
       "capability_type": "skill",
       "summary": "[Medhat] Context Threader & Exporter (Memory Management)",
-      "role": "resolver",
+      "role": "analyst",
       "domain_tags": [
+        "review",
+        "analysis",
+        "routing",
         "planning",
         "debugging",
         "context",
@@ -1006,7 +1012,7 @@
           "kiro_skill"
         ]
       },
-      "confidence": 0.76,
+      "confidence": 0.84,
       "review_status": "ready_for_orchestrator_review",
       "overlap_candidates": [],
       "relationship_suggestions": [],
@@ -1036,7 +1042,9 @@
       "summary": "UAC Import for capability intake, quality review, uplift, and canonical SSOT plus descriptor landing.",
       "role": "analyst",
       "domain_tags": [
+        "architecture",
         "review",
+        "routing",
         "packaging",
         "import",
         "planning",

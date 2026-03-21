@@ -58,6 +58,11 @@ Operational rule:
 12. On `apply`, refuse landing unless the quality loop reaches `ship`; if it does, write canonical repo state under `ssot/` and `.meta/capabilities/`, persist quality reviews, then rebuild and validate generated surfaces.
 13. Keep deployment separate from apply.
 
+## Tool Boundaries
+- allowed: inventory sources, run deterministic uplift and classification, produce advisory manifests, and land canonical SSOT plus descriptor state when the quality gate passes
+- forbidden: inventing capability strength that the source does not support, deploying to user homes during `apply`, or silently widening surface recommendations to satisfy packaging preferences
+- escalation: if the work shifts from intake to architecture, docs quality, testing, or release readiness, route to the companion capability with a concrete handoff instead of stretching the import workflow
+
 ## Rules
 - Prefer existing pipeline code over ad-hoc parsing.
 - Keep results deterministic and roleplay-free.
@@ -99,6 +104,16 @@ Return a concise structured result with these sections:
 - Recommended Surface
 - Modernization Focus
 - Next Actions
+
+## Companion Capability Matrix
+| If the import uncovers this need | Route to | Required handoff |
+| --- | --- | --- |
+| The candidate needs deeper prompt hardening before it can pass the benchmark gate | `supercharge` | source excerpt, intended user outcome, weak sections, target capability style |
+| The candidate is structurally sound but needs final decision synthesis across several landing options | `converge` | candidate options, trade-offs, target install surfaces, decision criteria |
+| The imported capability is fundamentally architectural or system-design oriented | `architecture` | source summary, design scope, affected boundaries, unresolved design questions |
+| The imported capability needs documentation-quality review before landing | `docs-review-expert` | draft SSOT, descriptor summary, naming questions, drift or IA concerns |
+| The imported capability requires stronger validation or test coverage in this repo | `testing` | changed scripts, validator paths, expected behaviors, missing coverage risks |
+| The imported capability is ready to land but release, packaging, or CI readiness is the real question | `gitops-review` | applied diff, generated artifacts, validation output, release and deploy intent |
 
 ## Constraints
 - No hidden execution.

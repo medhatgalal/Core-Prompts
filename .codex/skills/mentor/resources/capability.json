@@ -7,13 +7,14 @@
       "summary": "[Medhat] Senior engineering oversight, planning, and workflow guidance.",
       "role": "advisor",
       "domain_tags": [
+        "architecture",
         "review",
         "analysis",
         "routing",
+        "packaging",
         "planning",
-        "context",
-        "prompting",
-        "mentor"
+        "debugging",
+        "context"
       ],
       "required_inputs": [
         "source text",
@@ -116,10 +117,10 @@
         "policy_rule_id": "ssot.mentor",
         "content_sha256": "ssot"
       },
-      "confidence": 0.84,
+      "confidence": 0.98,
       "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
       "review_status": "ready_for_orchestrator_review",
-      "display_name": "Mentor / Coach v3 \u2014 System Memory"
+      "display_name": "Mentor \u2014 Senior Engineering Oversight and Workflow Guidance"
     },
     "expanded": {
       "relationship_suggestions": [
@@ -151,7 +152,7 @@
       "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
     }
   },
-  "display_name": "Mentor / Coach v3 \u2014 System Memory",
+  "display_name": "Mentor \u2014 Senior Engineering Oversight and Workflow Guidance",
   "declared_capability": "both",
   "inferred_capability": "both",
   "expected_surface_names": [

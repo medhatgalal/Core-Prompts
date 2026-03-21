@@ -18,6 +18,11 @@ Turn broad analysis into one deterministic working set: one canonical context fi
 5. Restore state from those files first after compaction or interruption.
 6. End with a complete insights summary and no dangling analysis state.
 
+## Tool Boundaries
+- allowed: create and maintain canonical memory files, inspect source material, summarize findings, and keep durable progress state
+- forbidden: pretending analysis is implementation, silently changing unrelated repo state, or replacing canonical source documents with temporary notes
+- escalation: if the work becomes design, review, testing, or decision synthesis, route to the companion capability instead of overextending this one
+
 ## Rules
 - One initiative gets one active memory set.
 - Do not fork versioned analysis memory files for the same initiative.
@@ -45,6 +50,15 @@ Every substantial response must include:
 - current progress state
 - key findings accumulated so far
 - next item or next analysis action
+
+## Companion Capability Matrix
+| If the analysis reveals this need | Route to | Required handoff |
+| --- | --- | --- |
+| The user now needs one final recommendation from several competing findings | `converge` | option set, trade-offs, blocking uncertainties, recommendation criteria |
+| The analysis turns into architecture or system design | `architecture` | constraints, candidate patterns, affected components, unresolved decisions |
+| The user wants a durable transcript or full thread export | `threader` | target thread scope, fidelity expectations, file or inline export preference |
+| The analysis identifies a testing or verification gap | `testing` | changed area, risk hotspots, existing test stack, missing scenarios |
+| The analysis identifies implementation quality or review risk | `code-review` | diff or commit scope, review goals, suspected regressions or over-engineering risks |
 
 ## Constraints
 - Do not start long-running analysis directly on `main` or `master`.
