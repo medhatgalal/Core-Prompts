@@ -2,6 +2,10 @@
 
 This document defines generated surface paths, deploy behavior, and validation commands.
 
+Preferred active runtime: Python `3.14`.
+Minimum supported runtime: Python `3.11+`.
+If local `python3` resolves to an older interpreter, use `python3.14` explicitly or set `PYTHON_BIN=python3.14` for the repo entrypoints.
+
 ## Canonical Inputs
 - SSOT: `ssot/`
 - descriptors: `.meta/capabilities/`

@@ -513,7 +513,7 @@ def main():
         'generated_at': datetime.datetime.now(datetime.timezone.utc).isoformat(),
         'generator': {
             'script': 'scripts/build-surfaces.py',
-            'python': '3.11+',
+            'python': '3.14 preferred (3.11+ supported)',
             'version': '6.0',
             'generated_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
         },

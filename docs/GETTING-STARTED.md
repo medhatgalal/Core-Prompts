@@ -3,9 +3,11 @@
 This is the shortest safe path to build, validate, and inspect Capability Fabric outputs.
 
 ## Prerequisites
-- `python3`
+- Python `3.14` preferred, Python `3.11+` supported
 - repository checked out locally
 - optional CLI binaries if you want smoke checks or deploy dry-runs
+
+If `python3` on your machine is older than `3.11`, run the commands below with `python3.14` instead.
 
 ## Fast Path
 ```bash

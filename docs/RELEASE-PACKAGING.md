@@ -2,6 +2,9 @@
 
 This document defines the local release path for packaged Capability Fabric artifacts.
 
+Preferred release runtime: Python `3.14`.
+Minimum supported runtime: Python `3.11+`.
+
 ## Local Release Gate
 ```bash
 python3 -m pytest -q

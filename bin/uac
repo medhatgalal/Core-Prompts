@@ -5,6 +5,12 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SCRIPT="$ROOT/scripts/uac-import.py"
 if [[ -n "${PYTHON_BIN:-}" ]]; then
   PYTHON_BIN="$PYTHON_BIN"
+elif command -v python3.14 >/dev/null 2>&1; then
+  PYTHON_BIN="python3.14"
+elif command -v python3.13 >/dev/null 2>&1; then
+  PYTHON_BIN="python3.13"
+elif command -v python3.12 >/dev/null 2>&1; then
+  PYTHON_BIN="python3.12"
 elif command -v python3.11 >/dev/null 2>&1; then
   PYTHON_BIN="python3.11"
 else
