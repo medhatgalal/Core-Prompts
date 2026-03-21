@@ -173,5 +173,128 @@
   "shared_constraints": [],
   "modes": [],
   "benchmark_sources": [],
-  "consumption_hints": {}
+  "consumption_hints": {},
+  "historical_baseline": {
+    "slug": "supercharge",
+    "strategy": "historical_gold",
+    "group": "flattened_regression",
+    "baseline_path": "sources/ssot-baselines/supercharge/baseline.md",
+    "selected_commit": "3bc88b43",
+    "richness_score": 19,
+    "line_count": 526,
+    "reason": "Latest pre-flatten rich body with full activation grammar, help/details contract, module reference, hard constraints, and executable module sections.",
+    "equivalent_commits": [
+      "e4b12fc3",
+      "f6025ddb",
+      "719fb303"
+    ],
+    "expected_companions": [
+      "converge",
+      "analyze-context"
+    ],
+    "operator_invariants": [],
+    "scenario_matrix": [
+      {
+        "id": "individual_ult",
+        "kind": "individual_module",
+        "label": "/ult module contract",
+        "must_contain": [
+          "### HARD CONSTRAINTS (Non-Negotiable)",
+          "### Critical Execution Rule (ULT)",
+          "### Output Structure (MANDATORY)"
+        ]
+      },
+      {
+        "id": "individual_catchup",
+        "kind": "individual_module",
+        "label": "/catchup forensic contract",
+        "must_contain": [
+          "## MODULE: /catchup",
+          "### HARD CONSTRAINTS (Non-Negotiable)",
+          "Validation Status: PASS | FAIL"
+        ]
+      },
+      {
+        "id": "stacked_and_full",
+        "kind": "stacked_or_full",
+        "label": "stacked modules and /full coverage",
+        "must_contain": [
+          "## HELP OUTPUT",
+          "## MODULE REFERENCE",
+          "/full",
+          "/simple",
+          "/invert",
+          "/adversarial",
+          "/contract",
+          "/grade"
+        ]
+      },
+      {
+        "id": "agentic_overlay",
+        "kind": "agentic",
+        "label": "agentic orchestration guidance",
+        "must_contain": [
+          "### Agentic Orchestration (Core Principle, Not a Module)",
+          "### Auto-Routing (Smart Defaults)",
+          "### Reflective Controls (Optional Modifiers)"
+        ]
+      }
+    ],
+    "historical_proof": {
+      "current_head_commit": "0a2c1e46",
+      "current_head_richness_score": 2,
+      "current_head_line_count": 162,
+      "materialized_from_commit": "3bc88b43"
+    },
+    "source": "source_library",
+    "verified_by_git_history": true,
+    "has_baseline_text": true
+  },
+  "quality_validation_matrix": [
+    {
+      "id": "individual_ult",
+      "kind": "individual_module",
+      "label": "/ult module contract",
+      "must_contain": [
+        "### HARD CONSTRAINTS (Non-Negotiable)",
+        "### Critical Execution Rule (ULT)",
+        "### Output Structure (MANDATORY)"
+      ]
+    },
+    {
+      "id": "individual_catchup",
+      "kind": "individual_module",
+      "label": "/catchup forensic contract",
+      "must_contain": [
+        "## MODULE: /catchup",
+        "### HARD CONSTRAINTS (Non-Negotiable)",
+        "Validation Status: PASS | FAIL"
+      ]
+    },
+    {
+      "id": "stacked_and_full",
+      "kind": "stacked_or_full",
+      "label": "stacked modules and /full coverage",
+      "must_contain": [
+        "## HELP OUTPUT",
+        "## MODULE REFERENCE",
+        "/full",
+        "/simple",
+        "/invert",
+        "/adversarial",
+        "/contract",
+        "/grade"
+      ]
+    },
+    {
+      "id": "agentic_overlay",
+      "kind": "agentic",
+      "label": "agentic orchestration guidance",
+      "must_contain": [
+        "### Agentic Orchestration (Core Principle, Not a Module)",
+        "### Auto-Routing (Smart Defaults)",
+        "### Reflective Controls (Optional Modifiers)"
+      ]
+    }
+  ]
 }

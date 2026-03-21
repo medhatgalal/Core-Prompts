@@ -16,7 +16,10 @@ def test_emitted_surface_names_for_both_include_skill_and_agent() -> None:
     assert 'gemini_skill' in names
     assert 'claude_skill' in names
     assert 'claude_agent' in names
+    assert 'gemini_command' not in names
+    assert 'claude_command' not in names
     assert 'kiro_prompt' not in names
+    assert 'codex_prompt' not in names
 
 
 def test_recommended_target_systems_auto_filters_manual_review() -> None:
@@ -41,3 +44,6 @@ def test_deployment_matrix_payload_includes_wrapper_surfaces() -> None:
     assert "gemini_skill_wrapper" in matrix["capability_types"]["skill"]["wrappers"]["gemini"]
     assert "claude_skill_wrapper" in matrix["capability_types"]["skill"]["wrappers"]["claude"]
     assert "kiro_skill_wrapper" in matrix["capability_types"]["skill"]["wrappers"]["kiro"]
+    notes = "\n".join(matrix["notes"])
+    assert "skills directories only" in notes
+    assert "SKILL.md" in notes

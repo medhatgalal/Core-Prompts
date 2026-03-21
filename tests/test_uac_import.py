@@ -158,7 +158,10 @@ def test_uac_judge_returns_quality_plan_and_result(tmp_path: Path) -> None:
     payload = json.loads(result.stdout)
     assert payload["mode"] == "judge"
     assert payload["quality_plan"]["quality_profile"] == "architecture"
+    assert "historical_baseline" in payload["quality_plan"]
+    assert "validation_matrix" in payload["quality_plan"]
     assert payload["quality_result"]["status"] in {"ship", "revise", "manual_review"}
+    assert "historical_baseline" in payload["quality_result"]
     assert len(payload["quality_result"]["judge_reports"]) >= 1
 
 
@@ -296,7 +299,13 @@ Constraints:
     assert payload["status"] == "applied"
     slug = payload["plan"]["proposed_ssot_slug"]
     assert (workspace / "ssot" / f"{slug}.md").is_file()
-    assert (workspace / ".meta" / "capabilities" / f"{slug}.json").is_file()
+    descriptor_path = workspace / ".meta" / "capabilities" / f"{slug}.json"
+    assert descriptor_path.is_file()
+    descriptor = json.loads(descriptor_path.read_text(encoding="utf-8"))
+    assert "historical_baseline" in descriptor
+    assert "quality_validation_matrix" in descriptor
+    baseline_path = workspace / descriptor["historical_baseline"]["baseline_path"]
+    assert baseline_path.is_file()
     assert payload["apply_result"]["build"]["returncode"] == 0
     assert payload["apply_result"]["validate"]["returncode"] == 0
 

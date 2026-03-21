@@ -154,5 +154,86 @@
   "shared_constraints": [],
   "modes": [],
   "benchmark_sources": [],
-  "consumption_hints": {}
+  "consumption_hints": {},
+  "historical_baseline": {
+    "slug": "analyze-context",
+    "strategy": "head_plus_invariants",
+    "group": "hybrid_additive",
+    "baseline_path": "sources/ssot-baselines/analyze-context/baseline.md",
+    "selected_commit": "4bb1f7e5",
+    "richness_score": 2,
+    "line_count": 133,
+    "reason": "Strongest additive body in history; keeps the durable memory workflow and adds explicit boundaries plus companion routing. Selected earlier operator-flow invariants must still survive future rewrites.",
+    "equivalent_commits": [],
+    "expected_companions": [
+      "converge",
+      "threader",
+      "code-review"
+    ],
+    "operator_invariants": [
+      "git status --short --branch",
+      "Process one item at a time.",
+      "After interruption or compaction:",
+      "<task>-context.md",
+      "<task>-todo.md",
+      "<task>-insights.md"
+    ],
+    "scenario_matrix": [
+      {
+        "id": "branch_and_memory_guardrails",
+        "kind": "individual_module",
+        "label": "branch safety and canonical memory files",
+        "must_contain": [
+          "git status --short --branch",
+          ".analyze-context-memory/",
+          "<task>-context.md",
+          "<task>-todo.md",
+          "<task>-insights.md"
+        ]
+      },
+      {
+        "id": "recovery_loop",
+        "kind": "individual_module",
+        "label": "recovery and continuation loop",
+        "must_contain": [
+          "Process one item at a time.",
+          "After interruption or compaction:",
+          "continue from the recorded next item instead of restarting from memory"
+        ]
+      }
+    ],
+    "historical_proof": {
+      "current_head_commit": "4bb1f7e5",
+      "current_head_richness_score": 2,
+      "current_head_line_count": 134,
+      "materialized_from_commit": "4bb1f7e5"
+    },
+    "source": "source_library",
+    "verified_by_git_history": true,
+    "has_baseline_text": true
+  },
+  "quality_validation_matrix": [
+    {
+      "id": "branch_and_memory_guardrails",
+      "kind": "individual_module",
+      "label": "branch safety and canonical memory files",
+      "must_contain": [
+        "git status --short --branch",
+        ".analyze-context-memory/",
+        "<task>-context.md",
+        "<task>-todo.md",
+        "<task>-insights.md"
+      ]
+    },
+    {
+      "id": "recovery_loop",
+      "kind": "individual_module",
+      "label": "recovery and continuation loop",
+      "must_contain": [
+        "Process one item at a time.",
+        "After interruption or compaction:",
+        "continue from the recorded next item instead of restarting from memory"
+      ]
+    }
+  ]
 }

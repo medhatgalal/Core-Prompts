@@ -40,6 +40,7 @@ from intent_pipeline.uac_quality import (
     render_latest_review_markdown,
     run_quality_loop,
 )
+from intent_pipeline.uac_baselines import persist_source_baseline
 from intent_pipeline.uac_templates import load_capability_template
 from intent_pipeline.uac_repomix import collect_repomix_candidates, materialize_repomix_candidate, repomix_available
 from intent_pipeline.uac_sources import (
@@ -118,7 +119,7 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument(
         '--max-quality-passes',
         type=int,
-        default=4,
+        default=10,
         help='Maximum quality passes for the built-in judge loop',
     )
     return parser.parse_args()
@@ -668,6 +669,12 @@ def _quality_descriptor_seed(payload: Mapping[str, Any]) -> dict[str, Any]:
     manifest = json.loads(json.dumps(payload['manifest']))
     if payload.get('source', {}).get('cluster_count'):
         manifest['family_slug'] = manifest.get('slug')
+    if payload.get('handoff_contract'):
+        manifest['handoff_contract'] = json.loads(json.dumps(payload['handoff_contract']))
+    if payload.get('recommendation'):
+        manifest['recommendation'] = json.loads(json.dumps(payload['recommendation']))
+    if payload.get('cross_analysis'):
+        manifest['cross_analysis'] = json.loads(json.dumps(payload['cross_analysis']))
     return manifest
 
 
@@ -1202,7 +1209,29 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
         consumption_hints=dict((quality_result or {}).get('consumption_hints') or {}),
         quality_pass_count=(quality_result or {}).get('pass_count'),
         quality_stop_reason=(quality_result or {}).get('stop_reason'),
+        historical_baseline=dict((quality_result or {}).get('historical_baseline') or {}),
+        quality_validation_matrix=tuple((quality_plan or {}).get('validation_matrix') or ()),
     )
+    baseline_materialization = None
+    if quality_result and quality_result.get('status') == 'ship':
+        baseline_materialization = persist_source_baseline(
+            ROOT,
+            slug=slug,
+            baseline_text=str((quality_result or {}).get('final_candidate_text') or _render_ssot_markdown(slug, result)),
+            overwrite=False,
+        )
+    if quality_plan and quality_result:
+        descriptor.update(
+            quality_descriptor_fields(
+                profile=load_quality_profile(ROOT, slug, (quality_plan or {}).get('quality_profile') or 'auto'),
+                quality_result=quality_result,
+                benchmark_sources=tuple(result.get('benchmark_sources') or ()),
+            )
+        )
+        descriptor['quality_validation_matrix'] = list((quality_plan or {}).get('validation_matrix') or ())
+    if baseline_materialization:
+        descriptor['historical_baseline'] = dict(descriptor.get('historical_baseline') or {})
+        descriptor['historical_baseline']['baseline_path'] = baseline_materialization['baseline_path']
     ssot_text = str((quality_result or {}).get('final_candidate_text') or _render_ssot_markdown(slug, result))
     ssot_path.write_text(ssot_text + ('\n' if not ssot_text.endswith('\n') else ''), encoding='utf-8')
     descriptor_path = save_descriptor(ROOT, slug, descriptor)
@@ -1226,6 +1255,7 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
     result['mode'] = 'apply'
     result['apply_result'] = {
         'changed_paths': [str(ssot_path.relative_to(ROOT)), str(descriptor_path.relative_to(ROOT))]
+        + ([baseline_materialization['baseline_path']] if baseline_materialization else [])
         + ([str(source_note.relative_to(ROOT))] if source_note else [])
         + [str(path.relative_to(ROOT)) for path in quality_paths],
         'build': {'returncode': build_proc.returncode, 'stdout': build_proc.stdout.strip(), 'stderr': build_proc.stderr.strip()},

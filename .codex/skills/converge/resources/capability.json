@@ -173,5 +173,83 @@
   "shared_constraints": [],
   "modes": [],
   "benchmark_sources": [],
-  "consumption_hints": {}
+  "consumption_hints": {},
+  "historical_baseline": {
+    "slug": "converge",
+    "strategy": "historical_gold",
+    "group": "flattened_regression",
+    "baseline_path": "sources/ssot-baselines/converge/baseline.md",
+    "selected_commit": "3bc88b43",
+    "richness_score": 5,
+    "line_count": 135,
+    "reason": "Latest portable prompt body that still includes the direct execution prompt, controls, defaults, and explicit phased synthesis behavior.",
+    "equivalent_commits": [
+      "e4b12fc3",
+      "f6025ddb",
+      "0f686cfe"
+    ],
+    "expected_companions": [
+      "supercharge"
+    ],
+    "operator_invariants": [],
+    "scenario_matrix": [
+      {
+        "id": "portable_prompt_body",
+        "kind": "individual_module",
+        "label": "portable prompt block",
+        "must_contain": [
+          "## The Prompt (paste into the target AI)",
+          "~~~~text",
+          "=== PHASE 1: INGEST & MAP ===",
+          "=== PHASE 7: OUTPUT ==="
+        ]
+      },
+      {
+        "id": "controls_and_tradeoffs",
+        "kind": "stacked_or_full",
+        "label": "controls and conflict handling",
+        "must_contain": [
+          "/swot",
+          "/mcda",
+          "/conflicts",
+          "Do NOT create a \u201cFrankenstein\u201d merge",
+          "Final Converged Proposal"
+        ]
+      }
+    ],
+    "historical_proof": {
+      "current_head_commit": "0a2c1e46",
+      "current_head_richness_score": 2,
+      "current_head_line_count": 133,
+      "materialized_from_commit": "3bc88b43"
+    },
+    "source": "source_library",
+    "verified_by_git_history": true,
+    "has_baseline_text": true
+  },
+  "quality_validation_matrix": [
+    {
+      "id": "portable_prompt_body",
+      "kind": "individual_module",
+      "label": "portable prompt block",
+      "must_contain": [
+        "## The Prompt (paste into the target AI)",
+        "~~~~text",
+        "=== PHASE 1: INGEST & MAP ===",
+        "=== PHASE 7: OUTPUT ==="
+      ]
+    },
+    {
+      "id": "controls_and_tradeoffs",
+      "kind": "stacked_or_full",
+      "label": "controls and conflict handling",
+      "must_contain": [
+        "/swot",
+        "/mcda",
+        "/conflicts",
+        "Do NOT create a \u201cFrankenstein\u201d merge",
+        "Final Converged Proposal"
+      ]
+    }
+  ]
 }

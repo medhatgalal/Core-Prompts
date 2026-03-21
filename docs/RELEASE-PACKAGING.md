@@ -5,17 +5,19 @@ This document defines the local release path for packaged Capability Fabric arti
 Preferred release runtime: Python `3.14`.
 Minimum supported runtime: Python `3.11+`.
 
+Prefer the repo wrappers for build and validate so the runtime selection stays consistent.
+
 ## Local Release Gate
 ```bash
 python3 -m pytest -q
-python3 scripts/validate-surfaces.py --strict
+bin/capability-fabric validate --strict
 python3 scripts/smoke-clis.py
 ```
 
 ## Build and Dry-Run
 ```bash
-python3 scripts/build-surfaces.py
-scripts/deploy-surfaces.sh --dry-run --cli all
+bin/capability-fabric build
+bin/capability-fabric deploy --dry-run --cli all
 ```
 
 ## Package
@@ -29,6 +31,7 @@ The package should include:
 - `.meta/manifest.json`
 - `.meta/capability-handoff.json`
 - `.meta/capabilities/`
+- `sources/ssot-baselines/`
 - deploy/install scripts
 - curated operator/integrator docs
 - `README.md`
@@ -48,3 +51,10 @@ Do not call the repo release-green until the hosted CI surface is green after pu
 - GitLab CI:
   - runs on branch pushes
   - runs on merge request pipelines
+
+## Recommended Release Order
+1. run the local release gate
+2. push the branch and wait for GitHub Actions and GitLab CI to go green
+3. merge only after the hosted checks are green
+4. build the release package from the merged state
+5. create the tag and publish the release artifacts

@@ -21,7 +21,9 @@ Use this index when you need operational and implementation detail beyond the ro
 ## Typical Technical Workflow
 
 1. Edit SSOT files in `ssot/`.
-2. Build surfaces: `python3 scripts/build-surfaces.py`.
-3. Validate artifacts: `python3 scripts/validate-surfaces.py --strict`.
+2. Build surfaces: `bin/capability-fabric build`.
+3. Validate artifacts: `bin/capability-fabric validate --strict`.
 4. Optionally run CLI smoke checks: `python3 scripts/smoke-clis.py --strict`.
-5. Deploy managed files: `scripts/deploy-surfaces.sh --cli all`.
+5. Deploy managed files: `bin/capability-fabric deploy --cli all`.
+
+Direct skill exposure is standardized on `skills/<slug>/SKILL.md` across all supported CLIs.

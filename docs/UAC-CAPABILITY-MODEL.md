@@ -10,6 +10,16 @@ Before `apply` lands a new or uplifted capability, UAC must judge it against:
 
 The goal is to prevent weak SSOT bodies from landing with strong metadata or overly broad emitted surfaces.
 
+## Baseline Source Library
+Prompt-body fidelity baselines must be maintained as repo-resident source artifacts under `sources/ssot-baselines/`, not selected operationally by git SHA.
+
+Required behavior:
+- `sources/ssot-baselines/index.json` is the canonical baseline catalog
+- `sources/ssot-baselines/<slug>/baseline.md` is the canonical prompt-body fidelity oracle for that capability
+- historical commit SHAs may appear only as lineage evidence in `historical_proof`
+- `judge` and `apply` must resolve baseline source files first, so workspace copies without `.git` still have deterministic fidelity oracles
+- new capabilities landed through UAC should materialize a baseline source snapshot before or during `apply`
+
 ## Canonical Capability Types
 | Type | Meaning | Auto-deployable |
 | --- | --- | --- |
@@ -71,6 +81,8 @@ Descriptor and handoff metadata may also publish:
 - `quality_scorecard`
 - `quality_pass_count`
 - `quality_stop_reason`
+- `historical_baseline`
+- `quality_validation_matrix`
 - `consumption_hints`
 
 These fields describe trust, fit, and usage guidance. They do not grant execution authority.
