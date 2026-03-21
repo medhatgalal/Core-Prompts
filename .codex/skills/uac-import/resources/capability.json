@@ -169,5 +169,29 @@
     ],
     "invocation_style": "assistant_first_but_scriptable",
     "requires_human_confirmation": true
-  }
+  },
+  "historical_baseline": {
+    "slug": "uac-import",
+    "strategy": "head_snapshot",
+    "group": "current_oracle",
+    "baseline_path": "sources/ssot-baselines/uac-import/baseline.md",
+    "selected_commit": "4bb1f7e5",
+    "richness_score": 2,
+    "line_count": 145,
+    "reason": "Current SSOT baseline source snapshot materialized into the source library because no stronger curated pre-SSOT baseline has been recorded yet.",
+    "equivalent_commits": [],
+    "expected_companions": [],
+    "operator_invariants": [],
+    "scenario_matrix": [],
+    "historical_proof": {
+      "current_head_commit": "4bb1f7e5",
+      "current_head_richness_score": 2,
+      "current_head_line_count": 145,
+      "materialized_from_commit": "4bb1f7e5"
+    },
+    "source": "source_library",
+    "verified_by_git_history": true,
+    "has_baseline_text": true
+  },
+  "quality_validation_matrix": []
 }

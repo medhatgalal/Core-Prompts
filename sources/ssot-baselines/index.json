@@ -1,0 +1,412 @@
+{
+  "version": "uac-baseline-sources.v1",
+  "canonical_root": "sources/ssot-baselines",
+  "skills": {
+    "analyze-context": {
+      "group": "hybrid_additive",
+      "strategy": "head_plus_invariants",
+      "selected_commit": "4bb1f7e5",
+      "richness_score": 2,
+      "line_count": 133,
+      "equivalent_commits": [],
+      "reason": "Strongest additive body in history; keeps the durable memory workflow and adds explicit boundaries plus companion routing. Selected earlier operator-flow invariants must still survive future rewrites.",
+      "historical_proof": {
+        "current_head_commit": "4bb1f7e5",
+        "current_head_richness_score": 2,
+        "current_head_line_count": 134,
+        "materialized_from_commit": "4bb1f7e5"
+      },
+      "operator_invariants": [
+        "git status --short --branch",
+        "Process one item at a time.",
+        "After interruption or compaction:",
+        "<task>-context.md",
+        "<task>-todo.md",
+        "<task>-insights.md"
+      ],
+      "expected_companions": [
+        "converge",
+        "threader",
+        "code-review"
+      ],
+      "scenario_matrix": [
+        {
+          "id": "branch_and_memory_guardrails",
+          "kind": "individual_module",
+          "label": "branch safety and canonical memory files",
+          "must_contain": [
+            "git status --short --branch",
+            ".analyze-context-memory/",
+            "<task>-context.md",
+            "<task>-todo.md",
+            "<task>-insights.md"
+          ]
+        },
+        {
+          "id": "recovery_loop",
+          "kind": "individual_module",
+          "label": "recovery and continuation loop",
+          "must_contain": [
+            "Process one item at a time.",
+            "After interruption or compaction:",
+            "continue from the recorded next item instead of restarting from memory"
+          ]
+        }
+      ],
+      "baseline_path": "sources/ssot-baselines/analyze-context/baseline.md"
+    },
+    "code-review": {
+      "group": "additive_preserved",
+      "strategy": "head_snapshot",
+      "selected_commit": "a78c1c21",
+      "richness_score": 4,
+      "line_count": 236,
+      "equivalent_commits": [],
+      "reason": "Latest additive version preserves the full commit-review procedure and sharpens boundaries plus companion routing.",
+      "historical_proof": {
+        "current_head_commit": "a78c1c21",
+        "current_head_richness_score": 4,
+        "current_head_line_count": 237,
+        "materialized_from_commit": "a78c1c21"
+      },
+      "expected_companions": [
+        "gitops-review",
+        "testing",
+        "architecture",
+        "docs-review-expert"
+      ],
+      "scenario_matrix": [
+        {
+          "id": "commit_review_procedure",
+          "kind": "individual_module",
+          "label": "commit review procedure and checklists",
+          "must_contain": [
+            "## Review Process",
+            "### 1. Capture the Commit",
+            "### 3. Commit Message Quality Checklist",
+            "### 4. Check Scope and Complexity",
+            "### 5. Check Code Risk"
+          ]
+        }
+      ],
+      "baseline_path": "sources/ssot-baselines/code-review/baseline.md"
+    },
+    "converge": {
+      "group": "flattened_regression",
+      "strategy": "historical_gold",
+      "selected_commit": "3bc88b43",
+      "richness_score": 5,
+      "line_count": 135,
+      "equivalent_commits": [
+        "e4b12fc3",
+        "f6025ddb",
+        "0f686cfe"
+      ],
+      "reason": "Latest portable prompt body that still includes the direct execution prompt, controls, defaults, and explicit phased synthesis behavior.",
+      "historical_proof": {
+        "current_head_commit": "0a2c1e46",
+        "current_head_richness_score": 2,
+        "current_head_line_count": 133,
+        "materialized_from_commit": "3bc88b43"
+      },
+      "expected_companions": [
+        "supercharge"
+      ],
+      "scenario_matrix": [
+        {
+          "id": "portable_prompt_body",
+          "kind": "individual_module",
+          "label": "portable prompt block",
+          "must_contain": [
+            "## The Prompt (paste into the target AI)",
+            "~~~~text",
+            "=== PHASE 1: INGEST & MAP ===",
+            "=== PHASE 7: OUTPUT ==="
+          ]
+        },
+        {
+          "id": "controls_and_tradeoffs",
+          "kind": "stacked_or_full",
+          "label": "controls and conflict handling",
+          "must_contain": [
+            "/swot",
+            "/mcda",
+            "/conflicts",
+            "Do NOT create a \u201cFrankenstein\u201d merge",
+            "Final Converged Proposal"
+          ]
+        }
+      ],
+      "baseline_path": "sources/ssot-baselines/converge/baseline.md"
+    },
+    "gitops-review": {
+      "group": "single_history",
+      "strategy": "head_snapshot",
+      "selected_commit": "4e16d6a4",
+      "richness_score": 2,
+      "line_count": 149,
+      "equivalent_commits": [],
+      "reason": "Only version currently present in repo history; use as default oracle until a stronger historical body exists.",
+      "historical_proof": {
+        "current_head_commit": "4e16d6a4",
+        "current_head_richness_score": 2,
+        "current_head_line_count": 150,
+        "materialized_from_commit": "4e16d6a4"
+      },
+      "expected_companions": [
+        "code-review",
+        "docs-review-expert",
+        "testing",
+        "architecture"
+      ],
+      "scenario_matrix": [
+        {
+          "id": "gate_and_release_contract",
+          "kind": "individual_module",
+          "label": "gitops gate contract",
+          "must_contain": [
+            "## Workflow",
+            "## Required Output",
+            "## Required Companion Reviews",
+            "## Review Timing"
+          ]
+        }
+      ],
+      "baseline_path": "sources/ssot-baselines/gitops-review/baseline.md"
+    },
+    "resolve-conflict": {
+      "group": "additive_preserved",
+      "strategy": "head_snapshot",
+      "selected_commit": "db5c3789",
+      "richness_score": 2,
+      "line_count": 379,
+      "equivalent_commits": [
+        "a78c1c21"
+      ],
+      "reason": "Latest additive version preserves the full inversion-led workflow and strengthens boundary and companion guidance without deleting procedure.",
+      "historical_proof": {
+        "current_head_commit": "db5c3789",
+        "current_head_richness_score": 2,
+        "current_head_line_count": 380,
+        "materialized_from_commit": "db5c3789"
+      },
+      "expected_companions": [
+        "architecture",
+        "gitops-review",
+        "testing",
+        "docs-review-expert"
+      ],
+      "scenario_matrix": [
+        {
+          "id": "inversion_resolution_workflow",
+          "kind": "individual_module",
+          "label": "inversion-led conflict workflow",
+          "must_contain": [
+            "### Phase 1: Inversion Analysis (Charlie Munger Style)",
+            "### Phase 2: Conflict Analysis",
+            "### Phase 3: Resolution Strategy",
+            "### Phase 4: Resolution Plan",
+            "### Phase 5: Expected Outcome"
+          ]
+        }
+      ],
+      "baseline_path": "sources/ssot-baselines/resolve-conflict/baseline.md"
+    },
+    "supercharge": {
+      "group": "flattened_regression",
+      "strategy": "historical_gold",
+      "selected_commit": "3bc88b43",
+      "richness_score": 19,
+      "line_count": 526,
+      "equivalent_commits": [
+        "e4b12fc3",
+        "f6025ddb",
+        "719fb303"
+      ],
+      "reason": "Latest pre-flatten rich body with full activation grammar, help/details contract, module reference, hard constraints, and executable module sections.",
+      "historical_proof": {
+        "current_head_commit": "0a2c1e46",
+        "current_head_richness_score": 2,
+        "current_head_line_count": 162,
+        "materialized_from_commit": "3bc88b43"
+      },
+      "expected_companions": [
+        "converge",
+        "analyze-context"
+      ],
+      "scenario_matrix": [
+        {
+          "id": "individual_ult",
+          "kind": "individual_module",
+          "label": "/ult module contract",
+          "must_contain": [
+            "### HARD CONSTRAINTS (Non-Negotiable)",
+            "### Critical Execution Rule (ULT)",
+            "### Output Structure (MANDATORY)"
+          ]
+        },
+        {
+          "id": "individual_catchup",
+          "kind": "individual_module",
+          "label": "/catchup forensic contract",
+          "must_contain": [
+            "## MODULE: /catchup",
+            "### HARD CONSTRAINTS (Non-Negotiable)",
+            "Validation Status: PASS | FAIL"
+          ]
+        },
+        {
+          "id": "stacked_and_full",
+          "kind": "stacked_or_full",
+          "label": "stacked modules and /full coverage",
+          "must_contain": [
+            "## HELP OUTPUT",
+            "## MODULE REFERENCE",
+            "/full",
+            "/simple",
+            "/invert",
+            "/adversarial",
+            "/contract",
+            "/grade"
+          ]
+        },
+        {
+          "id": "agentic_overlay",
+          "kind": "agentic",
+          "label": "agentic orchestration guidance",
+          "must_contain": [
+            "### Agentic Orchestration (Core Principle, Not a Module)",
+            "### Auto-Routing (Smart Defaults)",
+            "### Reflective Controls (Optional Modifiers)"
+          ]
+        }
+      ],
+      "baseline_path": "sources/ssot-baselines/supercharge/baseline.md"
+    },
+    "threader": {
+      "group": "additive_preserved",
+      "strategy": "head_snapshot",
+      "selected_commit": "db5c3789",
+      "richness_score": 4,
+      "line_count": 294,
+      "equivalent_commits": [],
+      "reason": "Latest additive version preserves the hard export contract and extends it with non-destructive wrapper structure.",
+      "historical_proof": {
+        "current_head_commit": "db5c3789",
+        "current_head_richness_score": 4,
+        "current_head_line_count": 295,
+        "materialized_from_commit": "db5c3789"
+      },
+      "expected_companions": [
+        "analyze-context",
+        "converge",
+        "supercharge",
+        "resolve-conflict"
+      ],
+      "scenario_matrix": [
+        {
+          "id": "export_contract",
+          "kind": "individual_module",
+          "label": "hard transcript export contract",
+          "must_contain": [
+            "## COMMAND",
+            "/threader export",
+            "## HARD OUTPUT CONTRACT (read carefully)",
+            "## INLINE FALLBACK RULES (only if file creation is unsupported)"
+          ]
+        }
+      ],
+      "baseline_path": "sources/ssot-baselines/threader/baseline.md"
+    },
+    "architecture": {
+      "group": "current_oracle",
+      "strategy": "head_snapshot",
+      "selected_commit": "db5c3789",
+      "richness_score": 4,
+      "line_count": 842,
+      "equivalent_commits": [],
+      "reason": "Current SSOT baseline source snapshot materialized into the source library because no stronger curated pre-SSOT baseline has been recorded yet.",
+      "historical_proof": {
+        "current_head_commit": "db5c3789",
+        "current_head_richness_score": 4,
+        "current_head_line_count": 842,
+        "materialized_from_commit": "db5c3789"
+      },
+      "expected_companions": [],
+      "scenario_matrix": [],
+      "baseline_path": "sources/ssot-baselines/architecture/baseline.md"
+    },
+    "docs-review-expert": {
+      "group": "current_oracle",
+      "strategy": "head_snapshot",
+      "selected_commit": "0a2c1e46",
+      "richness_score": 2,
+      "line_count": 143,
+      "equivalent_commits": [],
+      "reason": "Current SSOT baseline source snapshot materialized into the source library because no stronger curated pre-SSOT baseline has been recorded yet.",
+      "historical_proof": {
+        "current_head_commit": "0a2c1e46",
+        "current_head_richness_score": 2,
+        "current_head_line_count": 143,
+        "materialized_from_commit": "0a2c1e46"
+      },
+      "expected_companions": [],
+      "scenario_matrix": [],
+      "baseline_path": "sources/ssot-baselines/docs-review-expert/baseline.md"
+    },
+    "mentor": {
+      "group": "current_oracle",
+      "strategy": "head_snapshot",
+      "selected_commit": "db5c3789",
+      "richness_score": 2,
+      "line_count": 214,
+      "equivalent_commits": [],
+      "reason": "Current SSOT baseline source snapshot materialized into the source library because no stronger curated pre-SSOT baseline has been recorded yet.",
+      "historical_proof": {
+        "current_head_commit": "db5c3789",
+        "current_head_richness_score": 2,
+        "current_head_line_count": 214,
+        "materialized_from_commit": "db5c3789"
+      },
+      "expected_companions": [],
+      "scenario_matrix": [],
+      "baseline_path": "sources/ssot-baselines/mentor/baseline.md"
+    },
+    "testing": {
+      "group": "current_oracle",
+      "strategy": "head_snapshot",
+      "selected_commit": "0a2c1e46",
+      "richness_score": 2,
+      "line_count": 127,
+      "equivalent_commits": [],
+      "reason": "Current SSOT baseline source snapshot materialized into the source library because no stronger curated pre-SSOT baseline has been recorded yet.",
+      "historical_proof": {
+        "current_head_commit": "0a2c1e46",
+        "current_head_richness_score": 2,
+        "current_head_line_count": 127,
+        "materialized_from_commit": "0a2c1e46"
+      },
+      "expected_companions": [],
+      "scenario_matrix": [],
+      "baseline_path": "sources/ssot-baselines/testing/baseline.md"
+    },
+    "uac-import": {
+      "group": "current_oracle",
+      "strategy": "head_snapshot",
+      "selected_commit": "4bb1f7e5",
+      "richness_score": 2,
+      "line_count": 145,
+      "equivalent_commits": [],
+      "reason": "Current SSOT baseline source snapshot materialized into the source library because no stronger curated pre-SSOT baseline has been recorded yet.",
+      "historical_proof": {
+        "current_head_commit": "4bb1f7e5",
+        "current_head_richness_score": 2,
+        "current_head_line_count": 145,
+        "materialized_from_commit": "4bb1f7e5"
+      },
+      "expected_companions": [],
+      "scenario_matrix": [],
+      "baseline_path": "sources/ssot-baselines/uac-import/baseline.md"
+    }
+  }
+}

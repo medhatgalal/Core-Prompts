@@ -63,6 +63,7 @@ INCLUDE_PATHS=(
   ".meta/manifest.json"
   ".meta/capability-handoff.json"
   ".meta/capabilities"
+  "sources/ssot-baselines"
   "scripts/deploy-surfaces.sh"
   "scripts/install-local.sh"
   "docs/CLI-REFERENCE.md"

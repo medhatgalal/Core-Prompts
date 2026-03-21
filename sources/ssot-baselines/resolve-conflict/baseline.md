@@ -1,0 +1,379 @@
+---
+name: "resolve-conflict"
+display_name: "Merge Conflict Resolution — Structured Conflict Analysis"
+kind: "skill"
+capability_type: "skill"
+description: "Merge Conflict Resolution for structured conflict analysis, additive merging, and inversion-led trade-off handling."
+---
+# Merge Conflict Resolution — Structured Conflict Analysis
+
+## Purpose
+Analyze and resolve git merge conflicts using structured reasoning, Charlie Munger-style inversion, and logical document structure principles.
+
+## Primary Objective
+Resolve conflicts without losing important content, introducing contradictions, or collapsing the reasoning behind the final merged result.
+
+## Output Directory
+All conflict analysis artifacts should be stored in `reports/merge-conflicts/` with descriptive filenames.
+
+---
+
+## Core Principles
+- **Inversion first**: Ask "what would make this merge catastrophically wrong?" before solving
+- **Keep all valuable content**: Default to additive resolution, not deletion
+- **Logical structure**: Order sections by principle → pattern → implementation
+- **No contradictions**: Ensure merged content is internally consistent
+- **Evidence-based**: Work from actual conflict markers and diffs
+
+---
+
+## Tool Boundaries
+- allowed: inspect conflict markers, inspect branch diffs, propose merged structures, and write conflict-analysis artifacts
+- forbidden: silently choosing between incompatible options without explanation, hiding dropped content, or pretending a conflict is resolved without verification
+- escalation: if the conflict is really an architecture, policy, or release decision, surface it and route to `architecture` or `gitops-review` instead of burying it in the merge
+
+## Companion Capability Matrix
+Use adjacent capabilities deliberately when the conflict crosses their domain.
+
+| Situation | Companion Capability | Why |
+| --- | --- | --- |
+| interface, migration, or boundary decisions are materially in conflict | `architecture` | the merge needs design judgment, not just textual reconciliation |
+| release, CI, or branch-policy implications are part of the conflict | `gitops-review` | merge readiness and release sequencing should be checked explicitly |
+| behavior changed and the merged result needs stronger coverage | `testing` | verification should include test recommendations, not only conflict cleanup |
+| docs structure and placement are in conflict | `docs-review-expert` | documentation IA drift should be resolved with its own rubric |
+
+## Workflow Contract
+
+### Phase 1: Inversion Analysis (Charlie Munger Style)
+
+**Invert the problem**: Instead of asking "how do I merge this?", ask "what would make this merge catastrophically wrong?"
+
+#### Ways to Fail:
+1. **Lose important content** - Drop valuable sections from either branch
+2. **Create duplicates** - End up with redundant guidance that conflicts
+3. **Break logical flow** - Insert sections in wrong order, making the doc hard to follow
+4. **Introduce inconsistency** - Have content in one place contradict content elsewhere
+5. **Merge incompatible concepts** - Force together ideas that shouldn't coexist
+
+#### Therefore, Success Means:
+- **Keep ALL valuable content** from both branches
+- **Logical ordering** that builds from general principles to specific patterns
+- **No contradictions** between sections
+- **Clear hierarchy** of concerns
+- **Explicit trade-offs** when choices must be made
+
+---
+
+### Phase 2: Conflict Analysis
+
+#### 2.1 Identify the Conflict
+- **File(s)**: List all files with conflicts
+- **Location**: Where in each file (section, line range)
+- **Branch context**: What each branch was trying to accomplish
+
+#### 2.2 Content Analysis
+
+For each conflicting section:
+
+**Our Branch (current) Adds:**
+```
+[Paste the content from our branch]
+```
+**Purpose:** [What problem does this solve? What value does it add?]
+
+**Their Branch (incoming) Adds:**
+```
+[Paste the content from their branch]
+```
+**Purpose:** [What problem does this solve? What value does it add?]
+
+#### 2.3 Relationship Analysis
+
+Determine the relationship between the conflicting changes:
+- **Orthogonal**: Different concerns, can coexist (most common)
+- **Overlapping**: Similar concerns, need to merge or choose
+- **Contradictory**: Incompatible approaches, must choose one
+- **Complementary**: Work together, should both be kept
+
+---
+
+### Phase 3: Resolution Strategy
+
+#### 3.1 Determine Logical Structure
+
+For documentation/specification files, order by:
+1. **Meta-principles** - How to make decisions
+2. **Core principles** - Fundamental rules
+3. **Naming/terminology** - What to call things
+4. **Structure/patterns** - How to organize things
+5. **Implementation details** - Specific how-to guidance
+6. **Boundaries/scope** - What's in/out of scope
+
+For code files, order by:
+1. **Imports/dependencies**
+2. **Constants/configuration**
+3. **Type definitions**
+4. **Core logic**
+5. **Helper functions**
+6. **Exports**
+
+#### 3.2 Check for Contradictions
+
+Review merged content for:
+- Terminology conflicts (same thing called different names)
+- Pattern conflicts (different approaches to same problem)
+- Constraint conflicts (rules that contradict each other)
+- Scope conflicts (overlapping or contradictory boundaries)
+
+If contradictions exist:
+- **Document the conflict explicitly**
+- **Present options to the user**
+- **Recommend a choice with clear rationale**
+- **Do not silently choose** - get user input
+
+---
+
+### Phase 4: Resolution Plan
+
+Create a step-by-step plan:
+
+1. **Merge command**: `git merge <branch>` or `git rebase <branch>`
+2. **Conflict resolution approach**:
+   - Keep all sections in logical order: [list order]
+   - Remove duplicates: [list what to remove]
+   - Resolve contradictions: [list how]
+3. **Verification steps**:
+   - Check for remaining conflict markers
+   - Validate file syntax/structure
+   - Run tests if applicable
+4. **Commit message**: `[branch]: Resolve merge conflict - [brief description]`
+5. **Review before push**: [what to check]
+
+---
+
+### Phase 5: Expected Outcome
+
+Describe the final state:
+- **File structure**: What sections will exist and in what order
+- **Content coverage**: What concerns are addressed
+- **Consistency**: How contradictions were resolved
+- **Completeness**: What's included from each branch
+
+---
+
+## Invocation Hints
+Use this capability when the user asks for any of the following, even without naming the skill:
+- help me resolve this merge conflict
+- compare these conflicting branch edits and tell me what survives
+- preview how to merge this branch safely
+- tell me what content is orthogonal versus contradictory
+
+## Required Inputs
+- conflicting file or files
+- the two sides of the conflict, or access to the current git conflict markers
+- branch context or merge/rebase context when known
+- any policy or preference constraints that must win
+
+## Required Output
+Every substantial response must include:
+- `Conflict Summary`
+- `Inversion Analysis`
+- `Content Comparison`
+- `Resolution Strategy`
+- `Resolution Plan`
+- `Verification Steps`
+- `Open Decisions or Risks`
+
+## Output Format
+
+Structure your analysis as:
+
+```markdown
+# Merge Conflict Analysis - [Branch/Feature Name]
+
+## Charlie Munger Inversion: What Would Make This Merge Fail?
+
+### Ways to Fail:
+1. [Failure mode 1]
+2. [Failure mode 2]
+...
+
+### Therefore, Success Means:
+- [Success criterion 1]
+- [Success criterion 2]
+...
+
+---
+
+## The Conflict
+
+**File:** [path]
+
+**Branch [ours] (current):** [What was added/changed]
+
+**Branch [theirs] (incoming):** [What was added/changed]
+
+**Conflict location:** [Where the conflict occurs]
+
+---
+
+## Content Analysis
+
+### Our Branch Adds:
+[Content and purpose]
+
+### Their Branch Adds:
+[Content and purpose]
+
+---
+
+## Resolution Strategy
+
+### Logical Document Structure:
+1. [Section 1] - [Purpose]
+2. [Section 2] - [Purpose]
+...
+
+**Rationale:**
+[Why this order makes sense]
+
+### No Conflicts Between Sections:
+[Explain why sections are orthogonal/complementary]
+
+---
+
+## Resolution Plan
+
+1. [Step 1]
+2. [Step 2]
+...
+
+---
+
+## Expected Outcome
+
+[Description of final merged state]
+```
+
+---
+
+## Examples
+
+### Basic Conflict Resolution
+```bash
+# Create reports directory if needed
+mkdir -p reports/merge-conflicts
+
+# Save conflict analysis
+BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+TIMESTAMP=$(date +%Y%m%d-%H%M%S)
+# Save your analysis to: reports/merge-conflicts/${TIMESTAMP}-${BRANCH_NAME}.md
+
+/resolve-conflict
+```
+Analyzes current merge conflicts and provides resolution strategy.
+
+### Analyze Specific File
+```
+/resolve-conflict path/to/file.md
+```
+Focuses on conflicts in a specific file.
+
+### Preview Merge
+```
+/resolve-conflict --preview <branch>
+```
+Analyzes potential conflicts before merging.
+
+---
+
+## Hard Constraints
+
+1. **Always start with inversion** - Identify failure modes before solving
+2. **Never silently drop content** - If content must be removed, explain why
+3. **Document contradictions** - Don't hide incompatibilities
+4. **Get user input for choices** - Don't make taste/judgment calls alone
+5. **Verify logical structure** - Ensure merged content flows logically
+6. **Check for consistency** - Scan for contradictions in merged result
+
+---
+
+## Integration with Git Workflow
+
+### Pre-merge Analysis
+Before merging a branch, run:
+```bash
+git merge --no-commit --no-ff <branch>
+# If conflicts, run: /resolve-conflict
+```
+
+### During Rebase
+When rebase conflicts occur:
+```bash
+# Conflicts appear
+/resolve-conflict
+# Follow resolution plan
+git add <resolved-files>
+git rebase --continue
+```
+
+### Post-resolution Verification
+After resolving conflicts:
+```bash
+# Check for remaining markers
+git diff --check
+# Validate syntax
+# Run tests
+# Review changes
+git diff HEAD
+```
+
+---
+
+## Common Conflict Patterns
+
+### Documentation Conflicts
+- **Pattern**: both branches add new sections after the same location
+- **Resolution**: order sections logically from principle to pattern to implementation
+- **Check**: ensure terminology and patterns do not contradict each other
+
+### Code Conflicts
+- **Pattern**: both branches modify the same function or class
+- **Resolution**: merge logic if orthogonal, choose deliberately if contradictory
+- **Check**: run tests and verify behavior
+
+### Configuration Conflicts
+- **Pattern**: both branches change the same config values
+- **Resolution**: understand the intent of each change, then choose or merge explicitly
+- **Check**: validate config syntax and test with the chosen values
+
+### Dependency Conflicts
+- **Pattern**: both branches add or update dependencies
+- **Resolution**: keep both if compatible, otherwise resolve the version choice explicitly
+- **Check**: run dependency resolution and verify builds
+
+---
+
+## Example: Documentation Conflict
+
+**Scenario**: both branches add content after an `Error Handling` section.
+
+**Our branch adds**: `Terminology Guidelines`
+**Their branch adds**: `API Response Patterns` and `Security Principles`
+
+**Resolution**:
+1. keep all three sections
+2. order them as Terminology → Response Patterns → Security
+3. explain that naming should come before structural patterns, and security remains cross-cutting
+4. verify there are no terminology conflicts between sections
+
+**Result**: a clean merge with logical flow and all valuable content preserved
+
+## Evaluation Rubric
+| Check | What Passing Looks Like |
+| --- | --- |
+| Content preservation | Valuable content from both sides is preserved unless explicitly rejected |
+| Conflict clarity | Orthogonal, overlapping, and contradictory changes are distinguished clearly |
+| Resolution logic | The merge strategy explains why ordering, deletion, or choice decisions were made |
+| Verification discipline | The plan includes concrete post-resolution checks |
+| Boundary clarity | The capability surfaces adjacent architecture or GitOps decisions instead of hiding them |

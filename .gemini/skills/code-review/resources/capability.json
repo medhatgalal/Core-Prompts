@@ -165,5 +165,60 @@
     ],
     "invocation_style": "git_commit_review",
     "requires_human_confirmation": false
-  }
+  },
+  "historical_baseline": {
+    "slug": "code-review",
+    "strategy": "head_snapshot",
+    "group": "additive_preserved",
+    "baseline_path": "sources/ssot-baselines/code-review/baseline.md",
+    "selected_commit": "a78c1c21",
+    "richness_score": 4,
+    "line_count": 236,
+    "reason": "Latest additive version preserves the full commit-review procedure and sharpens boundaries plus companion routing.",
+    "equivalent_commits": [],
+    "expected_companions": [
+      "gitops-review",
+      "testing",
+      "architecture",
+      "docs-review-expert"
+    ],
+    "operator_invariants": [],
+    "scenario_matrix": [
+      {
+        "id": "commit_review_procedure",
+        "kind": "individual_module",
+        "label": "commit review procedure and checklists",
+        "must_contain": [
+          "## Review Process",
+          "### 1. Capture the Commit",
+          "### 3. Commit Message Quality Checklist",
+          "### 4. Check Scope and Complexity",
+          "### 5. Check Code Risk"
+        ]
+      }
+    ],
+    "historical_proof": {
+      "current_head_commit": "a78c1c21",
+      "current_head_richness_score": 4,
+      "current_head_line_count": 237,
+      "materialized_from_commit": "a78c1c21"
+    },
+    "source": "source_library",
+    "verified_by_git_history": true,
+    "has_baseline_text": true
+  },
+  "quality_validation_matrix": [
+    {
+      "id": "commit_review_procedure",
+      "kind": "individual_module",
+      "label": "commit review procedure and checklists",
+      "must_contain": [
+        "## Review Process",
+        "### 1. Capture the Commit",
+        "### 3. Commit Message Quality Checklist",
+        "### 4. Check Scope and Complexity",
+        "### 5. Check Code Risk"
+      ]
+    }
+  ]
 }

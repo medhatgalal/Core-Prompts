@@ -2,6 +2,14 @@
 
 Capability Fabric is the capability-provider direction for Core-Prompts. It publishes reusable skills, agent surfaces, descriptors, and advisory handoff metadata. It does not own orchestration, runtime routing, or delegation.
 
+## Fast Path
+Use the repo wrappers first. They select a supported Python runtime automatically and keep the common flows consistent.
+
+```bash
+bin/uac --help
+bin/capability-fabric --help
+```
+
 ## What It Ships
 - canonical SSOT prompts in `ssot/`
 - machine-readable descriptors in `.meta/capabilities/`
@@ -9,13 +17,7 @@ Capability Fabric is the capability-provider direction for Core-Prompts. It publ
 - advisory aggregate handoff in `.meta/capability-handoff.json`
 - deterministic import and uplift through UAC
 
-## Primary Entry Points
-```bash
-bin/uac --help
-bin/capability-fabric --help
-```
-
-Common flows:
+## Common Flows
 ```bash
 bin/uac import /absolute/path/to/prompt.md
 bin/uac plan /absolute/path/to/family-folder
@@ -36,9 +38,12 @@ Capability types:
 
 Commands, plugins, powers, and extensions are deployment wrappers, not peer capability types.
 
+Direct skill exposure is standardized on `skills/<slug>/SKILL.md` across Codex, Gemini, Claude, and Kiro. This repo no longer treats `commands/` or `prompts/` directories as direct deployment targets.
+
 Canonical state:
 - `ssot/<slug>.md`
 - `.meta/capabilities/<slug>.json`
+- `sources/ssot-baselines/<slug>/baseline.md`
 
 Generated surfaces are derived artifacts under `.codex/`, `.gemini/`, `.claude/`, and `.kiro/`.
 
@@ -51,8 +56,10 @@ Generated surfaces are derived artifacts under `.codex/`, `.gemini/`, `.claude/`
 ## Documentation
 - [Docs hub](docs/README.md)
 - [Getting started](docs/GETTING-STARTED.md)
+- [CLI reference](docs/CLI-REFERENCE.md)
 - [UAC usage](docs/UAC-USAGE.md)
 - [Capability model](docs/UAC-CAPABILITY-MODEL.md)
+- [Baseline source library](sources/ssot-baselines/README.md)
 - [Orchestrator contract](docs/ORCHESTRATOR-CONTRACT.md)
-- [CLI reference](docs/CLI-REFERENCE.md)
+- [Technical docs hub](docs/README_TECHNICAL.md)
 - [Release packaging](docs/RELEASE-PACKAGING.md)

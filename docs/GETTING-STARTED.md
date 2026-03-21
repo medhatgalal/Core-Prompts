@@ -7,12 +7,16 @@ This is the shortest safe path to build, validate, and inspect Capability Fabric
 - repository checked out locally
 - optional CLI binaries if you want smoke checks or deploy dry-runs
 
-If `python3` on your machine is older than `3.11`, run the commands below with `python3.14` instead.
+Preferred entrypoints:
+- `bin/capability-fabric` for build, validate, and deploy
+- `bin/uac` for import, plan, judge, and apply
+
+These wrappers choose the highest available supported Python runtime automatically. If you need to pin one explicitly, set `PYTHON_BIN=python3.11` or `PYTHON_BIN=python3.14`.
 
 ## Fast Path
 ```bash
-python3 scripts/build-surfaces.py
-python3 scripts/validate-surfaces.py --strict
+bin/capability-fabric build
+bin/capability-fabric validate --strict
 python3 scripts/smoke-clis.py
 ```
 
@@ -37,13 +41,22 @@ bin/uac apply /absolute/path/to/family-folder --yes
 ## Deploy Modes
 Repo-local dry run:
 ```bash
-scripts/deploy-surfaces.sh --dry-run --cli all
+bin/capability-fabric deploy --dry-run --cli all
 ```
 
 Home-targeted dry run:
 ```bash
 scripts/install-local.sh --dry-run --target "$HOME" --allow-nonlocal-target
 ```
+
+## Direct Surface Standard
+Direct exposure is skill-only for all supported CLIs:
+- `.codex/skills/<slug>/SKILL.md`
+- `.gemini/skills/<slug>/SKILL.md`
+- `.claude/skills/<slug>/SKILL.md`
+- `.kiro/skills/<slug>/SKILL.md`
+
+This repo does not deploy direct surfaces to vendor `commands/` or `prompts/` directories.
 
 ## Next Docs
 - [Examples](EXAMPLES.md)

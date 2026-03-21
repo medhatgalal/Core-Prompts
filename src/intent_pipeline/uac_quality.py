@@ -6,6 +6,11 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Mapping, Sequence
 
+from intent_pipeline.uac_baselines import (
+    BaselineContext,
+    evaluate_candidate_against_baseline,
+    resolve_historical_baseline,
+)
 from intent_pipeline.uac_templates import load_capability_template
 
 
@@ -14,8 +19,8 @@ QUALITY_REVIEW_DIR = "reports/quality-reviews"
 REPO_ROOT = Path(__file__).resolve().parents[2]
 
 JUDGE_ORDER = (
-    "operational_richness",
     "source_fidelity",
+    "operational_richness",
     "metadata_integrity",
     "benchmark_readiness",
 )
@@ -98,6 +103,7 @@ def build_quality_plan(
 ) -> dict[str, Any]:
     max_passes = max_passes_override or profile.max_passes
     template = load_capability_template(REPO_ROOT, capability_type)
+    baseline = resolve_historical_baseline(REPO_ROOT, slug)
     packets = []
     for judge_name in JUDGE_ORDER:
         packets.append(
@@ -129,6 +135,21 @@ def build_quality_plan(
         "quality_profile": profile.name,
         "judge_targets": profile.targets,
         "max_passes": max_passes,
+        "gate_order": [
+            "historical baseline selection",
+            "prompt-body fidelity",
+            "operational richness",
+            "metadata integrity",
+            "benchmark readiness",
+        ],
+        "historical_baseline": baseline.as_payload(),
+        "hard_fail_rules": [
+            "fail if a rich prompt body is replaced by a capability summary",
+            "fail if module-specific sections are reduced to shallow one-liners",
+            "fail if direct operating instructions move into metadata and disappear from the body",
+            "fail if orchestration or portability language weakens user-facing execution semantics",
+        ],
+        "validation_matrix": [scenario.as_payload() for scenario in baseline.scenario_matrix],
         "local_benchmarks": list(profile.local_benchmarks),
         "external_sources": list(profile.external_sources or source_refs),
         "benchmark_sources": list(benchmark_sources),
@@ -164,12 +185,14 @@ def run_quality_loop(
     final_pass = 0
     capability_type = str(((descriptor.get("layers") or {}).get("minimal") or {}).get("capability_type") or descriptor.get("capability_type") or "skill")
     template = load_capability_template(REPO_ROOT, capability_type)
+    baseline = resolve_historical_baseline(REPO_ROOT, slug, candidate_text=candidate_text)
 
     for pass_number in range(1, max_passes + 1):
         pass_report = evaluate_quality_pass(
             slug=slug,
             profile=profile,
             candidate_text=current_text,
+            baseline=baseline,
             descriptor=descriptor,
             source_refs=source_refs,
             benchmark_sources=benchmark_sources,
@@ -195,6 +218,7 @@ def run_quality_loop(
         "status": final_status,
         "pass_count": final_pass,
         "stop_reason": stop_reason,
+        "historical_baseline": baseline.as_payload(),
         "judge_reports": reports,
         "final_candidate_text": current_text,
         "scorecard": dict(reports[-1].get("scorecard") or {}) if reports else {},
@@ -207,6 +231,7 @@ def evaluate_quality_pass(
     slug: str,
     profile: QualityProfile,
     candidate_text: str,
+    baseline: BaselineContext,
     descriptor: Mapping[str, Any],
     source_refs: Sequence[str],
     benchmark_sources: Sequence[Mapping[str, Any]],
@@ -216,8 +241,8 @@ def evaluate_quality_pass(
     template: Mapping[str, Any],
 ) -> dict[str, Any]:
     judge_reports = [
+        _judge_source_fidelity(profile, slug, candidate_text, baseline, source_refs, benchmark_sources),
         _judge_operational_richness(profile, candidate_text),
-        _judge_source_fidelity(profile, candidate_text, source_refs, benchmark_sources),
         _judge_metadata_integrity(profile, slug, candidate_text, descriptor),
         _judge_benchmark_readiness(profile, candidate_text, descriptor, template_name=template_name, template=template),
     ]
@@ -237,6 +262,7 @@ def evaluate_quality_pass(
     return {
         "pass_number": pass_number,
         "status": status,
+        "historical_baseline": baseline.as_payload(),
         "judge_reports": judge_reports,
         "blockers": blockers,
         "scorecard": _pass_scorecard(judge_reports),
@@ -259,6 +285,21 @@ def render_latest_review_markdown(
         f"- Scorecard: `{json.dumps(quality_result.get('scorecard') or {}, sort_keys=True)}`",
         "",
     ]
+    baseline = quality_result.get("historical_baseline") or {}
+    if baseline:
+        lines.extend(
+            [
+                "## Historical Baseline",
+                f"- Source path: `{baseline.get('baseline_path')}`",
+                f"- Lineage commit: `{baseline.get('selected_commit')}`",
+                f"- Strategy: `{baseline.get('strategy')}`",
+                f"- Group: `{baseline.get('group')}`",
+                f"- Source: `{baseline.get('source')}`",
+                f"- Verified by git history: `{baseline.get('verified_by_git_history')}`",
+                f"- Reason: {baseline.get('reason')}",
+                "",
+            ]
+        )
     for report in quality_result.get("judge_reports") or []:
         lines.append(f"## Pass {report['pass_number']}")
         lines.append(f"- Status: `{report['status']}`")
@@ -266,6 +307,17 @@ def render_latest_review_markdown(
             lines.append(f"- Scorecard: `{json.dumps(report['scorecard'], sort_keys=True)}`")
         for judge in report.get("judge_reports") or []:
             lines.append(f"- {judge['title']}: `{judge['score']}/10`")
+            if judge.get("classification"):
+                lines.append(f"  - classification: `{judge['classification']}`")
+            for scenario in judge.get("scenario_results") or ():
+                lines.append(
+                    f"  - scenario `{scenario['id']}`: `{'pass' if scenario['passed'] else 'fail'}`"
+                    + (
+                        f" missing {', '.join(scenario['missing_markers'])}"
+                        if scenario.get("missing_markers")
+                        else ""
+                    )
+                )
             for blocker in judge.get("blockers") or ():
                 lines.append(f"  - blocker: {blocker}")
         lines.append("")
@@ -284,6 +336,7 @@ def quality_descriptor_fields(
         "benchmark_sources": list(benchmark_sources),
         "judge_reports": list(quality_result.get("judge_reports") or []),
         "quality_scorecard": dict(quality_result.get("scorecard") or {}),
+        "historical_baseline": dict(quality_result.get("historical_baseline") or {}),
         "consumption_hints": dict(quality_result.get("consumption_hints") or profile.payload.get("consumption_hints") or {}),
         "quality_pass_count": int(quality_result.get("pass_count") or 0),
         "quality_stop_reason": quality_result.get("stop_reason"),
@@ -312,7 +365,9 @@ def _judge_operational_richness(profile: QualityProfile, candidate_text: str) ->
 
 def _judge_source_fidelity(
     profile: QualityProfile,
+    slug: str,
     candidate_text: str,
+    baseline: BaselineContext,
     source_refs: Sequence[str],
     benchmark_sources: Sequence[Mapping[str, Any]],
 ) -> dict[str, Any]:
@@ -321,11 +376,22 @@ def _judge_source_fidelity(
     blockers = [f"missing source-fidelity marker: {item}" for item in missing]
     if not source_refs and not benchmark_sources:
         blockers.append("no source set or benchmark set attached to quality run")
+    fidelity = evaluate_candidate_against_baseline(candidate_text, baseline)
+    blockers.extend(str(item) for item in fidelity["hard_failures"])
+    score = min(_score_from_ratio(ratio, penalty=len(blockers)), int(fidelity["score"]))
     return {
         "judge": "source_fidelity",
         "title": JUDGE_TITLES["source_fidelity"],
-        "score": _score_from_ratio(ratio, penalty=len(blockers)),
+        "score": score,
         "blockers": blockers,
+        "classification": fidelity["classification"],
+        "scenario_results": fidelity["scenario_results"],
+        "scorecard": {
+            "baseline_richness": int(fidelity["baseline_richness"]),
+            "candidate_richness": int(fidelity["candidate_richness"]),
+        },
+        "baseline_commit": baseline.selected_commit,
+        "baseline_slug": slug,
     }
 
 
@@ -368,6 +434,27 @@ def _judge_metadata_integrity(
     consumption_hints = descriptor.get("consumption_hints") or profile.payload.get("consumption_hints") or {}
     if not consumption_hints:
         blockers.append("descriptor lacks advisory consumption hints")
+    handoff_contract = descriptor.get("handoff_contract") or {}
+    has_structured_handoff_fallback = (
+        isinstance(minimal, Mapping)
+        and bool(minimal.get("required_inputs"))
+        and bool(minimal.get("expected_outputs"))
+        and bool(minimal.get("emitted_surfaces"))
+        and bool(minimal.get("install_target"))
+    )
+    if not isinstance(handoff_contract, Mapping) or not handoff_contract:
+        if not has_structured_handoff_fallback:
+            blockers.append("descriptor lacks orchestrator handoff payload")
+    recommendation = descriptor.get("recommendation") or {}
+    has_next_action_fallback = (
+        isinstance(minimal, Mapping)
+        and bool(minimal.get("resources"))
+        and bool(minimal.get("tool_policy"))
+        and bool(minimal.get("review_status"))
+    )
+    if not isinstance(recommendation, Mapping) or not tuple(recommendation.get("next_actions") or ()):
+        if not has_next_action_fallback:
+            blockers.append("descriptor lacks orchestrator next actions")
     leakage_patterns = (
         r"\byou are .*orchestrator\b",
         r"\bassign sub-agents\b",

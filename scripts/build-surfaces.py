@@ -13,6 +13,7 @@ if str(SRC_ROOT) not in sys.path:
     sys.path.insert(0, str(SRC_ROOT))
 
 from intent_pipeline.uac_descriptors import build_descriptor, load_descriptor, save_descriptor, source_note_path
+from intent_pipeline.uac_baselines import resolve_historical_baseline
 from intent_pipeline.uac_ssot import build_ssot_handoff_contract, build_ssot_manifest_entry, load_ssot_entries
 
 SSOT_DIR = ROOT / 'ssot'
@@ -63,13 +64,6 @@ SURFACE_PATHS = {
 }
 
 
-DEPRECATED_SURFACE_PATHS = {
-    'gemini_command': lambda slug: ROOT / '.gemini' / 'commands' / f'{slug}.toml',
-    'claude_command': lambda slug: ROOT / '.claude' / 'commands' / f'{slug}.md',
-    'kiro_prompt': lambda slug: ROOT / '.kiro' / 'prompts' / f'{slug}.md',
-}
-
-
 RESOURCE_PATHS = {
     'codex_skill': lambda slug: CODEX_SKILL_DIR / slug / 'resources' / 'capability.json',
     'codex_agent': lambda slug: CODEX_AGENT_RESOURCE_DIR / slug / 'capability.json',
@@ -80,9 +74,6 @@ RESOURCE_PATHS = {
     'kiro_skill': lambda slug: KIRO_SKILL_DIR / slug / 'resources' / 'capability.json',
     'kiro_agent': lambda slug: KIRO_AGENT_RESOURCE_DIR / slug / 'capability.json',
 }
-
-
-DEPRECATED_RESOURCE_PATHS = {}
 
 
 def descriptor_defaults(slug: str, display_name: str) -> dict[str, object]:
@@ -385,14 +376,14 @@ def write_kiro_skill(slug: str, desc: str, body: str, resource_hint: str | None 
 
 
 def cleanup_slug_outputs(slug: str) -> None:
-    for path_fn in [*SURFACE_PATHS.values(), *DEPRECATED_SURFACE_PATHS.values()]:
+    for path_fn in SURFACE_PATHS.values():
         path = path_fn(slug)
         if path.name == 'SKILL.md':
             if path.parent.exists() and path.parent.is_dir():
                 shutil.rmtree(path.parent)
         elif path.exists():
             path.unlink()
-    for path_fn in [*RESOURCE_PATHS.values(), *DEPRECATED_RESOURCE_PATHS.values()]:
+    for path_fn in RESOURCE_PATHS.values():
         path = path_fn(slug)
         if path.exists():
             path.unlink()
@@ -420,6 +411,9 @@ def write_resource(surface_name: str, slug: str, descriptor: dict[str, object]) 
 
 def resolve_descriptor(entry, manifest_entry: dict[str, object]) -> dict[str, object]:
     defaults = descriptor_defaults(entry.slug, entry.display_name)
+    baseline = resolve_historical_baseline(ROOT, entry.slug)
+    baseline_payload = baseline.as_payload()
+    validation_matrix = [scenario.as_payload() for scenario in baseline.scenario_matrix]
     descriptor = load_descriptor(ROOT, entry.slug)
     if descriptor:
         resolved = build_descriptor(
@@ -442,6 +436,8 @@ def resolve_descriptor(entry, manifest_entry: dict[str, object]) -> dict[str, ob
             consumption_hints=dict(descriptor.get('consumption_hints') or defaults.get('consumption_hints') or {}),
             quality_pass_count=descriptor.get('quality_pass_count'),
             quality_stop_reason=str(descriptor.get('quality_stop_reason')) if descriptor.get('quality_stop_reason') is not None else None,
+            historical_baseline=dict(descriptor.get('historical_baseline') or baseline_payload),
+            quality_validation_matrix=tuple(descriptor.get('quality_validation_matrix') or validation_matrix),
         )
         descriptor_layers = descriptor.get('layers') or {}
         if isinstance(descriptor_layers, dict):
@@ -481,6 +477,8 @@ def resolve_descriptor(entry, manifest_entry: dict[str, object]) -> dict[str, ob
             display_name=str(defaults.get('display_name') or entry.display_name),
             benchmark_sources=tuple(defaults.get('benchmark_sources') or ()),
             consumption_hints=dict(defaults.get('consumption_hints') or {}),
+            historical_baseline=baseline_payload,
+            quality_validation_matrix=tuple(validation_matrix),
         )
         for layer_name, layer_payload in (defaults.get('layer_overrides') or {}).items():
             if isinstance(layer_payload, dict):

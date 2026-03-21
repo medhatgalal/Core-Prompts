@@ -154,5 +154,58 @@
   "shared_constraints": [],
   "modes": [],
   "benchmark_sources": [],
-  "consumption_hints": {}
+  "consumption_hints": {},
+  "historical_baseline": {
+    "slug": "threader",
+    "strategy": "head_snapshot",
+    "group": "additive_preserved",
+    "baseline_path": "sources/ssot-baselines/threader/baseline.md",
+    "selected_commit": "db5c3789",
+    "richness_score": 4,
+    "line_count": 294,
+    "reason": "Latest additive version preserves the hard export contract and extends it with non-destructive wrapper structure.",
+    "equivalent_commits": [],
+    "expected_companions": [
+      "analyze-context",
+      "converge",
+      "supercharge",
+      "resolve-conflict"
+    ],
+    "operator_invariants": [],
+    "scenario_matrix": [
+      {
+        "id": "export_contract",
+        "kind": "individual_module",
+        "label": "hard transcript export contract",
+        "must_contain": [
+          "## COMMAND",
+          "/threader export",
+          "## HARD OUTPUT CONTRACT (read carefully)",
+          "## INLINE FALLBACK RULES (only if file creation is unsupported)"
+        ]
+      }
+    ],
+    "historical_proof": {
+      "current_head_commit": "db5c3789",
+      "current_head_richness_score": 4,
+      "current_head_line_count": 295,
+      "materialized_from_commit": "db5c3789"
+    },
+    "source": "source_library",
+    "verified_by_git_history": true,
+    "has_baseline_text": true
+  },
+  "quality_validation_matrix": [
+    {
+      "id": "export_contract",
+      "kind": "individual_module",
+      "label": "hard transcript export contract",
+      "must_contain": [
+        "## COMMAND",
+        "/threader export",
+        "## HARD OUTPUT CONTRACT (read carefully)",
+        "## INLINE FALLBACK RULES (only if file creation is unsupported)"
+      ]
+    }
+  ]
 }

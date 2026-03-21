@@ -229,6 +229,16 @@ def test_deploy_with_all_clis_available_deploys_new_skill_surfaces(tmp_path: Pat
         assert (tmp_path / ".kiro" / "agents" / f"{slug}.json").is_file()
         assert (tmp_path / ".kiro" / "agents" / "resources" / slug / "capability.json").is_file()
 
+    legacy_direct_paths = (
+        tmp_path / ".gemini" / "commands",
+        tmp_path / ".claude" / "commands",
+        tmp_path / ".codex" / "prompts",
+        tmp_path / ".kiro" / "prompts",
+        tmp_path / ".agents" / "prompts",
+        tmp_path / ".agents" / "commands",
+    )
+    assert all(not path.exists() for path in legacy_direct_paths)
+
 
 def test_install_wrapper_matches_deploy_for_partial_cli_targets(tmp_path: Path) -> None:
     result = run_script(

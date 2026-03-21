@@ -109,8 +109,8 @@ def deployment_matrix_payload() -> dict[str, object]:
             },
         },
         "notes": [
-            "UAC recommends the surface area; the build emits only the canonical skill or agent surfaces for each CLI",
-            "commands and prompts are deprecated wrapper concepts in this repo and are not peer capability types",
+            "UAC recommends the surface area; the build emits only the canonical SKILL.md skill surfaces or agent surfaces for each CLI",
+            "direct exposure is standardized on skills directories only; commands and prompts are not deployable direct-surface targets in this repo",
             "both means one SSOT source can emit multiple surfaces without duplicating SSOT entries",
             "manual_review emits no deployable surfaces until reviewed",
         ],

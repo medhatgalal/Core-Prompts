@@ -172,5 +172,29 @@
   "shared_constraints": [],
   "modes": [],
   "benchmark_sources": [],
-  "consumption_hints": {}
+  "consumption_hints": {},
+  "historical_baseline": {
+    "slug": "mentor",
+    "strategy": "head_snapshot",
+    "group": "current_oracle",
+    "baseline_path": "sources/ssot-baselines/mentor/baseline.md",
+    "selected_commit": "db5c3789",
+    "richness_score": 2,
+    "line_count": 214,
+    "reason": "Current SSOT baseline source snapshot materialized into the source library because no stronger curated pre-SSOT baseline has been recorded yet.",
+    "equivalent_commits": [],
+    "expected_companions": [],
+    "operator_invariants": [],
+    "scenario_matrix": [],
+    "historical_proof": {
+      "current_head_commit": "db5c3789",
+      "current_head_richness_score": 2,
+      "current_head_line_count": 214,
+      "materialized_from_commit": "db5c3789"
+    },
+    "source": "source_library",
+    "verified_by_git_history": true,
+    "has_baseline_text": true
+  },
+  "quality_validation_matrix": []
 }

@@ -59,6 +59,8 @@ def build_descriptor(
     consumption_hints: Mapping[str, object] | None = None,
     quality_pass_count: int | None = None,
     quality_stop_reason: str | None = None,
+    historical_baseline: Mapping[str, object] | None = None,
+    quality_validation_matrix: Sequence[Mapping[str, object]] | None = None,
 ) -> dict[str, object]:
     payload = json.loads(json.dumps(manifest))
     minimal = dict(payload.get("layers", {}).get("minimal", {}))
@@ -92,6 +94,10 @@ def build_descriptor(
         payload["quality_pass_count"] = quality_pass_count
     if quality_stop_reason is not None:
         payload["quality_stop_reason"] = quality_stop_reason
+    if historical_baseline:
+        payload["historical_baseline"] = dict(historical_baseline)
+    if quality_validation_matrix is not None:
+        payload["quality_validation_matrix"] = list(quality_validation_matrix)
     return payload
 
 

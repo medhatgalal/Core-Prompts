@@ -198,5 +198,58 @@
     ],
     "invocation_style": "review_or_execution_assist",
     "requires_human_confirmation": true
-  }
+  },
+  "historical_baseline": {
+    "slug": "gitops-review",
+    "strategy": "head_snapshot",
+    "group": "single_history",
+    "baseline_path": "sources/ssot-baselines/gitops-review/baseline.md",
+    "selected_commit": "4e16d6a4",
+    "richness_score": 2,
+    "line_count": 149,
+    "reason": "Only version currently present in repo history; use as default oracle until a stronger historical body exists.",
+    "equivalent_commits": [],
+    "expected_companions": [
+      "code-review",
+      "docs-review-expert",
+      "testing",
+      "architecture"
+    ],
+    "operator_invariants": [],
+    "scenario_matrix": [
+      {
+        "id": "gate_and_release_contract",
+        "kind": "individual_module",
+        "label": "gitops gate contract",
+        "must_contain": [
+          "## Workflow",
+          "## Required Output",
+          "## Required Companion Reviews",
+          "## Review Timing"
+        ]
+      }
+    ],
+    "historical_proof": {
+      "current_head_commit": "4e16d6a4",
+      "current_head_richness_score": 2,
+      "current_head_line_count": 150,
+      "materialized_from_commit": "4e16d6a4"
+    },
+    "source": "source_library",
+    "verified_by_git_history": true,
+    "has_baseline_text": true
+  },
+  "quality_validation_matrix": [
+    {
+      "id": "gate_and_release_contract",
+      "kind": "individual_module",
+      "label": "gitops gate contract",
+      "must_contain": [
+        "## Workflow",
+        "## Required Output",
+        "## Required Companion Reviews",
+        "## Review Timing"
+      ]
+    }
+  ]
 }

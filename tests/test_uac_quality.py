@@ -47,5 +47,6 @@ def test_run_quality_loop_marks_thin_candidate_for_manual_review() -> None:
     )
 
     assert result["status"] == "manual_review"
+    assert result["judge_reports"][0]["judge_reports"][0]["judge"] == "source_fidelity"
     assert result["judge_reports"][0]["judge_reports"][0]["score"] < 9
     assert result["scorecard"]["benchmark_readiness"] < 9

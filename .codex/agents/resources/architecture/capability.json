@@ -412,5 +412,29 @@
     "requires_human_confirmation": false
   },
   "quality_pass_count": 1,
-  "quality_stop_reason": "thresholds_met"
+  "quality_stop_reason": "thresholds_met",
+  "historical_baseline": {
+    "slug": "architecture",
+    "strategy": "head_snapshot",
+    "group": "current_oracle",
+    "baseline_path": "sources/ssot-baselines/architecture/baseline.md",
+    "selected_commit": "db5c3789",
+    "richness_score": 4,
+    "line_count": 842,
+    "reason": "Current SSOT baseline source snapshot materialized into the source library because no stronger curated pre-SSOT baseline has been recorded yet.",
+    "equivalent_commits": [],
+    "expected_companions": [],
+    "operator_invariants": [],
+    "scenario_matrix": [],
+    "historical_proof": {
+      "current_head_commit": "db5c3789",
+      "current_head_richness_score": 4,
+      "current_head_line_count": 842,
+      "materialized_from_commit": "db5c3789"
+    },
+    "source": "source_library",
+    "verified_by_git_history": true,
+    "has_baseline_text": true
+  },
+  "quality_validation_matrix": []
 }

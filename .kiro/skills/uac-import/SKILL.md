@@ -36,6 +36,7 @@ Primary entrypoints:
 Canonical state:
 - `ssot/<slug>.md` is the human-readable prompt source of truth
 - `.meta/capabilities/<slug>.json` is the machine-readable descriptor source of truth
+- `sources/ssot-baselines/<slug>/baseline.md` is the baseline prompt-body fidelity source of truth used by UAC quality judging
 - generated surfaces under `.codex/`, `.gemini/`, `.claude/`, and `.kiro/` are derived artifacts
 
 Operational rule:
@@ -53,10 +54,11 @@ Operational rule:
 7. Classify accepted sources as `skill`, `agent`, `both`, or `manual_review`.
 8. Build layered manifests, cross-analysis, and advisory handoff data.
 9. Select a quality profile and benchmark set.
-10. On `judge`, run the built-in quality loop and return judge packets plus pass/fail reports without landing repo state.
-11. Search for benchmark sources only when the source is generic or fit confidence is weak.
-12. On `apply`, refuse landing unless the quality loop reaches `ship`; if it does, write canonical repo state under `ssot/` and `.meta/capabilities/`, persist quality reviews, then rebuild and validate generated surfaces.
-13. Keep deployment separate from apply.
+10. Resolve the canonical baseline source from `sources/ssot-baselines/` before judging fidelity.
+11. On `judge`, run the built-in quality loop and return judge packets plus pass/fail reports without landing repo state.
+12. Search for benchmark sources only when the source is generic or fit confidence is weak.
+13. On `apply`, refuse landing unless the quality loop reaches `ship`; if it does, materialize or preserve the canonical baseline source under `sources/ssot-baselines/`, write canonical repo state under `ssot/` and `.meta/capabilities/`, persist quality reviews, then rebuild and validate generated surfaces.
+14. Keep deployment separate from apply.
 
 ## Tool Boundaries
 - allowed: inventory sources, run deterministic uplift and classification, produce advisory manifests, and land canonical SSOT plus descriptor state when the quality gate passes
@@ -136,6 +138,7 @@ Return a concise structured result with these sections:
 | Check | What Passing Looks Like |
 | --- | --- |
 | Source fidelity | The recommendation reflects the actual source set rather than guessed structure |
+| Baseline fidelity | The candidate is judged against the repo-resident baseline source, not against metadata polish alone |
 | Classification rigor | The result explains why the source is `skill`, `agent`, `both`, or `manual_review` |
 | Landing safety | `apply` is blocked until benchmark and quality gates pass |
 | Canonical output | The result names the SSOT, descriptor, and generated-surface consequences clearly |

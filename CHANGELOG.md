@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.4.7 - 2026-03-21
+
+- Shipped the historical-baseline and skills-only standardization slice:
+  - moved the fidelity baseline oracle from commit-only references into repo-resident baseline sources under `sources/ssot-baselines/`
+  - taught UAC quality and descriptor generation to persist historical baseline metadata and validation matrices across canonical descriptors and bundled capability resources
+  - removed the remaining generator compatibility logic for direct `commands/` and `prompts/` targets so direct exposure stays standardized on `skills/<slug>/SKILL.md`
+- Tightened deploy and validation guarantees:
+  - added regression coverage proving deploy/install do not create `.gemini/commands`, `.claude/commands`, `.codex/prompts`, `.kiro/prompts`, or `.agents/*` direct-surface paths
+  - kept deploy/install copy-only and verified the generated surface set remains skill-first for all supported CLIs
+- Reworked operator and maintainer docs to match the current repo state:
+  - promoted the `bin/uac` and `bin/capability-fabric` wrappers as the preferred entrypoints
+  - clarified the direct-surface standard, baseline-source model, and release order across `README.md`, `docs/README.md`, `docs/CLI-REFERENCE.md`, `docs/UAC-USAGE.md`, `docs/CAPABILITY-FABRIC.md`, and `docs/RELEASE-PACKAGING.md`
+  - aligned contributing guidance with the current build, validate, deploy, and packaging workflow
+
 ## 1.4.6 - 2026-03-20
 
 - Raised the SSOT contract bar across the full catalog:

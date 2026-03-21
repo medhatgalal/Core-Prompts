@@ -167,5 +167,62 @@
     ],
     "invocation_style": "conflict_analysis",
     "requires_human_confirmation": true
-  }
+  },
+  "historical_baseline": {
+    "slug": "resolve-conflict",
+    "strategy": "head_snapshot",
+    "group": "additive_preserved",
+    "baseline_path": "sources/ssot-baselines/resolve-conflict/baseline.md",
+    "selected_commit": "db5c3789",
+    "richness_score": 2,
+    "line_count": 379,
+    "reason": "Latest additive version preserves the full inversion-led workflow and strengthens boundary and companion guidance without deleting procedure.",
+    "equivalent_commits": [
+      "a78c1c21"
+    ],
+    "expected_companions": [
+      "architecture",
+      "gitops-review",
+      "testing",
+      "docs-review-expert"
+    ],
+    "operator_invariants": [],
+    "scenario_matrix": [
+      {
+        "id": "inversion_resolution_workflow",
+        "kind": "individual_module",
+        "label": "inversion-led conflict workflow",
+        "must_contain": [
+          "### Phase 1: Inversion Analysis (Charlie Munger Style)",
+          "### Phase 2: Conflict Analysis",
+          "### Phase 3: Resolution Strategy",
+          "### Phase 4: Resolution Plan",
+          "### Phase 5: Expected Outcome"
+        ]
+      }
+    ],
+    "historical_proof": {
+      "current_head_commit": "db5c3789",
+      "current_head_richness_score": 2,
+      "current_head_line_count": 380,
+      "materialized_from_commit": "db5c3789"
+    },
+    "source": "source_library",
+    "verified_by_git_history": true,
+    "has_baseline_text": true
+  },
+  "quality_validation_matrix": [
+    {
+      "id": "inversion_resolution_workflow",
+      "kind": "individual_module",
+      "label": "inversion-led conflict workflow",
+      "must_contain": [
+        "### Phase 1: Inversion Analysis (Charlie Munger Style)",
+        "### Phase 2: Conflict Analysis",
+        "### Phase 3: Resolution Strategy",
+        "### Phase 4: Resolution Plan",
+        "### Phase 5: Expected Outcome"
+      ]
+    }
+  ]
 }
