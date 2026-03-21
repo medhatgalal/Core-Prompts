@@ -41,6 +41,7 @@
 - Generated Codex agent TOMLs must use the current runtime shape: `name`, `description`, `sandbox_mode`, and `developer_instructions`. Do not emit top-level `tools = [...]` arrays.
 - Imported capabilities must meet a template-backed benchmark gate before `apply` can land them.
 - Capability bodies must be rich enough to justify every emitted surface; do not let metadata claim stronger surfaces than the SSOT body supports.
+- Every canonical SSOT entry must carry an explicit contract strong enough for direct and agentic use: `Purpose`, `Primary Objective`, workflow contract, boundaries, invocation hints, required inputs, required output, examples, and an evaluation rubric or scorecard-equivalent.
 - Vendor formats are validated against cache snapshots in `.meta/schema-cache/manifest.json`.
 - Update schema cache by running `python3 scripts/sync-surface-specs.py` before strict checks when docs changed.
 - The validator is implemented as a verifier and must match the rule definitions; changes must be made to rules first, then generator/validator.

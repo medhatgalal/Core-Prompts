@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+from unittest.mock import patch
 from pathlib import Path
 
 
@@ -177,3 +178,16 @@ test
         assert any("benchmark contract missing section" in item for item in errors)
     finally:
         MODULE.ROOT = old_root
+
+
+def test_safe_rglob_falls_back_to_os_walk_when_pathlib_walk_is_racy(tmp_path: Path) -> None:
+    base = tmp_path / ".codex"
+    target = base / "skills" / "sample" / "resources"
+    target.mkdir(parents=True)
+    capability = target / "capability.json"
+    capability.write_text("{}", encoding="utf-8")
+
+    with patch.object(Path, "rglob", side_effect=FileNotFoundError("transient")):
+        matched = MODULE.safe_rglob(base, "capability.json")
+
+    assert matched == [capability]

@@ -20,6 +20,51 @@ Use this skill when the user needs any of the following:
 
 Do not use this skill to run orchestration, assign sub-agents, or choose runtime delegation. This skill publishes architecture guidance and decision artifacts only.
 
+## Primary Objective
+Turn ambiguous design questions into implementation-usable architecture recommendations with explicit boundaries, rejected alternatives, migration and rollback guidance, and validation gates strong enough for review.
+
+## Invocation Hints
+Use this capability when the user asks for any of the following, even without naming the skill:
+- design or review an API contract
+- propose a schema, indexing plan, or data model
+- choose between design patterns or refactor directions
+- design a system topology, reliability model, or scale strategy
+- produce a migration-safe architecture recommendation with rollback guidance
+
+## Required Inputs
+- problem statement, feature request, or architectural question
+- current system context when refactoring or integrating with existing code
+- explicit constraints such as scale, latency, compliance, staffing, timeline, or vendor boundaries
+- any non-goals, fixed decisions, or compatibility requirements
+
+## Required Output
+Every substantial response must include:
+- `Problem Framing`
+- `Objective`
+- `In Scope`
+- `Out of Scope`
+- `Assumptions & Constraints`
+- `Architecture Recommendation`
+- `Component or Module Boundaries`
+- `Interface Contracts`
+- `Trade-offs`
+- `Rejected Alternatives`
+- `Migration / Rollback Plan`
+- `Risks & Validation`
+- `Decision Log`
+- `Confidence`
+
+## Examples
+Representative asks and output patterns appear in `Example Invocation Patterns` below. Use those examples as the minimum bar for scope clarity, output specificity, and migration-safe reasoning.
+
+## Evaluation Rubric
+Use the Architecture Quality Scorecard below as the acceptance gate. A passing response:
+- states objective, scope, assumptions, and constraints before recommending structure
+- defines replaceable black-box boundaries and explicit interface contracts
+- compares at least one rejected alternative for any material decision
+- includes migration, rollback, and validation guidance for meaningful changes
+- makes operational, reliability, and maintainability trade-offs explicit rather than implied
+
 ## Agent Operating Contract
 When emitted as an agent, this capability acts as an advisory architecture artifact writer.
 

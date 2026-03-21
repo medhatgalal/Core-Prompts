@@ -10,6 +10,13 @@ Use this capability to export a current thread faithfully for handoff, diffing, 
 ## Primary Objective
 Produce one cohesive, high-fidelity transcript artifact that preserves turn order, AI output fidelity, artifact references, and disclosure about any inaccessible history.
 
+## Workflow Contract
+1. Determine the export scope and delivery mode.
+2. Build the turn inventory in strict order across the accessible thread.
+3. Assemble one cohesive transcript document with fidelity disclosure and artifact handling.
+4. Emit either a file-first export or one logically contiguous inline fallback.
+5. Mark inaccessible turns or missing artifacts explicitly instead of paraphrasing or guessing.
+
 ## Tool Boundaries
 - allowed: export the current thread, summarize user intent at a high level, preserve AI output verbatim, and disclose fidelity limits explicitly
 - forbidden: paraphrasing AI output, analyzing the thread as if this were a review skill, or silently omitting inaccessible turns
@@ -36,6 +43,11 @@ The result must also include:
 - fidelity disclosure
 - impacted turn list when history is missing
 - artifact inclusion status when files or downloads were produced inside the thread
+
+## Examples
+- “Export this thread to a markdown file I can hand to another model.”
+- “Give me a faithful transcript of this conversation, inline if file creation is unavailable.”
+- “Create an archival handoff of this thread with disclosure for anything outside accessible context.”
 
 ## Companion Capability Matrix
 | If the export is being used for this next step | Route to | Required handoff |

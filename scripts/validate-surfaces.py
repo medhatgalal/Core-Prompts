@@ -23,24 +23,25 @@ SSOT_DIR = ROOT / 'ssot'
 META = ROOT / '.meta' / 'manifest.json'
 RULES_PATH = ROOT / '.meta' / 'surface-rules.json'
 SCHEMA_CACHE_MANIFEST = ROOT / '.meta' / 'schema-cache' / 'manifest.json'
-BENCHMARK_CONTRACT_SLUGS = {
-    'analyze-context',
-    'code-review',
-    'converge',
-    'docs-review-expert',
-    'gitops-review',
-    'supercharge',
-    'testing',
-    'uac-import',
-}
+CONTRACT_REQUIRED_SLUGS = {path.stem for path in SSOT_DIR.glob('*.md')}
 BENCHMARK_SECTION_ALIASES = {
     'Purpose': ('Purpose',),
     'Primary Objective': ('Primary Objective',),
-    'Workflow Contract': ('Workflow', 'Review Process', 'Standard Workflow', 'Invocation Contract'),
+    'Workflow Contract': (
+        'Workflow',
+        'Review Process',
+        'Standard Workflow',
+        'Invocation Contract',
+        'Agent Operating Contract',
+        'Workflow Contract',
+        'Resolution Process',
+        'Execution Plan',
+    ),
     'Boundaries': ('Tool Boundaries', 'Capability Boundary', 'Constraints', 'Hard Constraints'),
     'Invocation Hints': ('Invocation Hints', 'Usage Examples', 'Examples'),
     'Required Inputs': ('Required Inputs',),
     'Required Output': ('Required Output', 'Expected Outputs', 'Output Contract', 'Output Format'),
+    'Examples': ('Examples', 'Usage Examples', 'Example Invocation Patterns'),
     'Evaluation Rubric': ('Evaluation Rubric',),
 }
 
@@ -168,7 +169,7 @@ def validate_descriptor_display_name(path: Path, slug: str):
 
 
 def validate_benchmark_contract(path: Path, slug: str):
-    if slug not in BENCHMARK_CONTRACT_SLUGS:
+    if slug not in CONTRACT_REQUIRED_SLUGS:
         return []
     titles = collect_h2_titles(path.read_text(encoding='utf-8'))
     errors = []
@@ -359,12 +360,25 @@ def collect_actual(rule: dict):
     }
 
 
+def safe_rglob(base: Path, pattern: str) -> list[Path]:
+    if not base.exists():
+        return []
+    try:
+        return sorted(base.rglob(pattern))
+    except FileNotFoundError:
+        matched: list[Path] = []
+        for dirpath, _, filenames in os.walk(base):
+            if pattern in filenames:
+                matched.append(Path(dirpath) / pattern)
+        return sorted(matched)
+
+
 def collect_capability_metadata_paths() -> list[Path]:
     descriptor_paths = sorted((ROOT / '.meta' / 'capabilities').glob('*.json'))
-    bundled_paths = sorted(ROOT.glob('.codex/**/capability.json'))
-    bundled_paths += sorted(ROOT.glob('.gemini/**/capability.json'))
-    bundled_paths += sorted(ROOT.glob('.claude/**/capability.json'))
-    bundled_paths += sorted(ROOT.glob('.kiro/**/capability.json'))
+    bundled_paths = safe_rglob(ROOT / '.codex', 'capability.json')
+    bundled_paths += safe_rglob(ROOT / '.gemini', 'capability.json')
+    bundled_paths += safe_rglob(ROOT / '.claude', 'capability.json')
+    bundled_paths += safe_rglob(ROOT / '.kiro', 'capability.json')
     return [ROOT / '.meta' / 'manifest.json', *descriptor_paths, *bundled_paths]
 
 

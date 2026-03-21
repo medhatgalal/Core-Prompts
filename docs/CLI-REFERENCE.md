@@ -8,6 +8,7 @@ This document defines generated surface paths, deploy behavior, and validation c
 - manifest: `.meta/manifest.json`
 - handoff contract: `.meta/capability-handoff.json`
 - persisted local source references inside canonical metadata and bundled `capability.json` resources must be repo-relative, not absolute machine paths
+- every SSOT entry must satisfy the canonical contract sections enforced by validation: purpose, primary objective, workflow contract, boundaries, invocation hints, required inputs, required output, examples, and an evaluation rubric or scorecard-equivalent
 
 ## Core Commands
 ```bash

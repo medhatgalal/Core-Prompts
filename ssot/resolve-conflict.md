@@ -42,7 +42,7 @@ Use adjacent capabilities deliberately when the conflict crosses their domain.
 | behavior changed and the merged result needs stronger coverage | `testing` | verification should include test recommendations, not only conflict cleanup |
 | docs structure and placement are in conflict | `docs-review-expert` | documentation IA drift should be resolved with its own rubric |
 
-## Resolution Process
+## Workflow Contract
 
 ### Phase 1: Inversion Analysis (Charlie Munger Style)
 
@@ -257,7 +257,7 @@ Structure your analysis as:
 
 ---
 
-## Usage Examples
+## Examples
 
 ### Basic Conflict Resolution
 ```bash
