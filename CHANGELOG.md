@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.4.6 - 2026-03-20
+
+- Raised the SSOT contract bar across the full catalog:
+  - enforced a repo-wide contract requiring purpose, primary objective, workflow contract, boundaries, invocation hints, required inputs, required output, examples, and an evaluation rubric or scorecard-equivalent for every canonical SSOT entry
+  - strengthened `architecture`, `mentor`, `threader`, and `resolve-conflict` to meet that contract without stripping their specialized operating instructions
+  - added clearer companion-capability routing so direct skills and advisory agents hand off cleanly instead of overreaching
+- Hardened prompt and orchestration quality after the `v1.4.5` release:
+  - restored and strengthened the rich operational sections in `code-review` and `resolve-conflict`
+  - added stronger contract and routing layers for `analyze-context`, `uac-import`, `threader`, and `mentor`
+  - rebuilt generated skill and agent surfaces across Codex, Gemini, Claude, and Kiro to match the stronger SSOT bodies
+- Improved validation reliability and future quality gates:
+  - extended canonical-source validation from a benchmark subset to all SSOT entries
+  - taught the validator to recognize workflow and example equivalents such as `Workflow Contract`, `Resolution Process`, `Example Invocation Patterns`, and `Usage Examples`
+  - fixed the metadata walk in `validate-surfaces.py` so transient filesystem races no longer cause flaky strict-validation failures
+  - added regression coverage for the validator fallback path
+
 ## 1.4.4 - 2026-03-18
 
 - Shipped the capability uplift recovery slice:
