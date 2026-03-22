@@ -21,6 +21,7 @@ META_DIR = ROOT / '.meta'
 MANIFEST_PATH = META_DIR / 'manifest.json'
 HANDOFF_PATH = META_DIR / 'capability-handoff.json'
 CAPABILITY_DIR = META_DIR / 'capabilities'
+BUILD_REPORT_DIR = ROOT / 'reports' / 'build-surfaces'
 
 GEMINI_SKILL_DIR = ROOT / '.gemini' / 'skills'
 GEMINI_AGENT_DIR = ROOT / '.gemini' / 'agents'
@@ -502,19 +503,51 @@ def prune_empty_directory(path: Path) -> None:
         path.rmdir()
 
 
+def serialize_json(payload: dict[str, object]) -> str:
+    return json.dumps(payload, indent=2) + '\n'
+
+
+def write_json_if_changed(path: Path, payload: dict[str, object]) -> bool:
+    rendered = serialize_json(payload)
+    if path.exists() and path.read_text(encoding='utf-8') == rendered:
+        return False
+    path.write_text(rendered, encoding='utf-8')
+    return True
+
+
+def report_timestamp(now: datetime.datetime) -> str:
+    return now.astimezone(datetime.timezone.utc).strftime('%Y%m%dT%H%M%S.%fZ')
+
+
+def write_build_report(generator: dict[str, object], manifest_changed: bool, handoff_changed: bool, entry_count: int) -> None:
+    now = datetime.datetime.now(datetime.timezone.utc)
+    BUILD_REPORT_DIR.mkdir(parents=True, exist_ok=True)
+    payload = {
+        'generated_at': now.isoformat(),
+        'generator': generator,
+        'manifest_path': str(MANIFEST_PATH.relative_to(ROOT)),
+        'handoff_path': str(HANDOFF_PATH.relative_to(ROOT)),
+        'manifest_changed': manifest_changed,
+        'handoff_changed': handoff_changed,
+        'ssot_entry_count': entry_count,
+    }
+    archive_path = BUILD_REPORT_DIR / f'{report_timestamp(now)}.json'
+    archive_path.write_text(serialize_json(payload), encoding='utf-8')
+    (BUILD_REPORT_DIR / 'latest.json').write_text(serialize_json(payload), encoding='utf-8')
+
+
 def main():
     entries = load_ssot_entries(SSOT_DIR)
     if not entries:
         raise SystemExit('No SSOT files found in ssot/')
 
+    generator = {
+        'script': 'scripts/build-surfaces.py',
+        'python': '3.14 preferred (3.11+ supported)',
+        'version': '6.0',
+    }
     generated = {
-        'generated_at': datetime.datetime.now(datetime.timezone.utc).isoformat(),
-        'generator': {
-            'script': 'scripts/build-surfaces.py',
-            'python': '3.14 preferred (3.11+ supported)',
-            'version': '6.0',
-            'generated_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
-        },
+        'generator': generator,
         'ssot_sources': [],
         'surfaces': {name: [] for name in SURFACE_PATHS},
         'resources': {name: [] for name in RESOURCE_PATHS},
@@ -569,8 +602,9 @@ def main():
         if 'codex_agent' in emitted:
             generated['surfaces']['codex_agent'].append(write_codex_agent(entry.slug, entry.description, entry.body, tools, agent_resource_hint.get('codex_agent')))
 
-    MANIFEST_PATH.write_text(json.dumps(generated, indent=2) + '\n', encoding='utf-8')
-    HANDOFF_PATH.write_text(json.dumps(build_ssot_handoff_contract(ROOT), indent=2) + '\n', encoding='utf-8')
+    manifest_changed = write_json_if_changed(MANIFEST_PATH, generated)
+    handoff_changed = write_json_if_changed(HANDOFF_PATH, build_ssot_handoff_contract(ROOT))
+    write_build_report(generator, manifest_changed, handoff_changed, len(entries))
     for deprecated_dir in (
         ROOT / '.gemini' / 'commands',
         ROOT / '.claude' / 'commands',
