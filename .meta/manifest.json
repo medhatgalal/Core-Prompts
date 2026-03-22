@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-03-21T13:43:15.959812+00:00",
+  "generated_at": "2026-03-22T09:36:36.126262+00:00",
   "generator": {
     "script": "scripts/build-surfaces.py",
     "python": "3.14 preferred (3.11+ supported)",
     "version": "6.0",
-    "generated_utc": "2026-03-21T13:43:15.960119+00:00"
+    "generated_utc": "2026-03-22T09:36:36.126597+00:00"
   },
   "ssot_sources": [
     {
@@ -757,14 +757,16 @@
         "minimal": {
           "capability_type": "both",
           "summary": "Universal Synthesis and Convergence for multi-source proposal comparison, conflict surfacing, decision analysis, and one coherent final recommendation.",
-          "role": "resolver",
+          "role": "analyst",
           "domain_tags": [
+            "architecture",
+            "review",
+            "analysis",
             "packaging",
             "import",
             "planning",
             "debugging",
-            "prompting",
-            "converge"
+            "prompting"
           ],
           "required_inputs": [
             "source text",
@@ -867,7 +869,7 @@
             "policy_rule_id": "ssot.converge",
             "content_sha256": "ssot"
           },
-          "confidence": 0.94,
+          "confidence": 0.98,
           "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "Converge \u2014 Multi-Source Synthesis, Conflict Surfacing, and Final Recommendation"
@@ -1684,16 +1686,16 @@
         "minimal": {
           "capability_type": "both",
           "summary": "SuperCharge for prompt creation, prompt refinement, planning hardening, option comparison, grading, multi-pass critique, and structured execution-quality improvement across direct and agentic workflows.",
-          "role": "analyst",
+          "role": "advisor",
           "domain_tags": [
             "architecture",
             "review",
+            "analysis",
             "routing",
             "packaging",
             "planning",
             "debugging",
-            "context",
-            "prompting"
+            "context"
           ],
           "required_inputs": [
             "source text",
@@ -2659,7 +2661,7 @@
     ]
   },
   "validation": {
-    "validated_at": "2026-03-21T13:43:22.327189+00:00",
+    "validated_at": "2026-03-22T09:36:54.598220+00:00",
     "strict": true,
     "with_cli": false,
     "fail_on_cli_miss": false,
