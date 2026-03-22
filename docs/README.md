@@ -5,6 +5,7 @@ Use this page to choose the right documentation path without reading the entire 
 ## Fast Paths
 | Need | Start here |
 | --- | --- |
+| I want to use the deployed Core-Prompts skills the normal way | [Getting started](GETTING-STARTED.md) |
 | I want to know why this repo exists | [Root README](../README.md) |
 | first build, validate, and inspect loop | [Getting started](GETTING-STARTED.md) |
 | direct surface paths, deploy rules, and runtime expectations | [CLI reference](CLI-REFERENCE.md) |
@@ -20,6 +21,13 @@ Start with:
 1. [Root README](../README.md)
 2. [Getting started](GETTING-STARTED.md)
 3. [Examples](EXAMPLES.md)
+
+### If you are just trying to use Core-Prompts
+Start with:
+
+1. [Getting started](GETTING-STARTED.md)
+2. [Examples](EXAMPLES.md)
+3. [FAQ](FAQ.md)
 
 ### If you are adopting or operating it
 Start with:
@@ -59,6 +67,7 @@ Start with:
 
 ## Documentation Design Principles
 
+- deployed Core-Prompts skills are the primary user-facing entrypoint
 - the root README explains value, pains solved, and the fast path
 - this docs hub routes by user intent
 - technical docs keep exact commands, paths, and maintainer behavior

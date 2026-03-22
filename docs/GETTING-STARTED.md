@@ -1,11 +1,26 @@
 # Getting Started
 
+The original and primary way to use Core-Prompts is to use the skills that are already deployed into your CLI.
+
+This page keeps that default path clear, then shows the shortest safe repo path when you need to inspect, rebuild, validate, or extend those deployed capabilities.
+
+## Default Usage Model
+
+If Core-Prompts is already deployed in your environment, start there first.
+
+- use the installed skills in Codex, Gemini, Claude, or Kiro
+- treat the repo workflows as the source-maintenance layer
+- come back to build, validate, UAC, and release steps only when you are changing or verifying canonical capability source
+
+## If You Need To Work In The Repo
+
 This is the shortest safe path to prove the repo is working and understand what value you get from it.
 
 ## What Success Looks Like
 
 By the end of this page, you should have:
 
+- a clear understanding that deployed Core-Prompts skills are the default consumption path
 - one working build of the generated surfaces
 - one successful strict validation pass
 - a clear sense of where canonical prompt sources live
@@ -31,7 +46,7 @@ If you are deciding whether to invest time here, the payoff is this:
 - you can validate and package AI capabilities instead of treating them like loose notes
 - you make drift visible before it becomes release debt
 
-## Fast Path
+## Repo Fast Path
 ```bash
 bin/capability-fabric build
 bin/capability-fabric validate --strict
@@ -59,6 +74,7 @@ bin/uac apply /absolute/path/to/family-folder --yes
 ```
 
 ## Success Checklist
+- you understand that already deployed skills are the normal runtime entrypoint
 - build completes
 - strict validation passes
 - smoke checks pass when local CLIs are installed

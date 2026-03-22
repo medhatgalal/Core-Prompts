@@ -6,7 +6,7 @@
 
 Core-Prompts exists to stop that decay.
 
-Capability Fabric turns prompts, workflows, and agent instructions into reusable engineering assets: one canonical source, preserved strongest baselines, generated multi-tool surfaces, and validation before you ship.
+The default way to benefit from it is simple: use the Core-Prompts skills that are already deployed into your CLI. The repo, UAC, and Capability Fabric workflows are the maintainer and advanced-authoring layer that keep those deployed skills trustworthy over time.
 
 ## Why Invest In This?
 
@@ -35,8 +35,17 @@ Capability Fabric removes that pain by giving you:
 - maintainers who want docs, metadata, and generated surfaces to stay aligned
 - advanced users who want one prompt family to land cleanly across Codex, Gemini, Claude, and Kiro
 
-## Fast Path
-Use the repo wrappers first. They select a supported Python runtime automatically and keep the common flows consistent.
+## Start Here First
+
+For most users, the original and primary usage model is:
+
+1. use the Core-Prompts skills already deployed into your CLI
+2. come to this repo when you need to inspect, update, rebuild, validate, or release those capabilities
+
+The advanced repo wrappers are for maintainers, contributors, and prompt authors who need to change canonical state.
+
+## Repo Fast Path
+Use the repo wrappers when you are intentionally working on the capability source, build, validation, or release layers. They select a supported Python runtime automatically and keep the common flows consistent.
 
 ```bash
 bin/uac --help
@@ -51,9 +60,9 @@ bin/capability-fabric --help
 - advisory aggregate handoff in `.meta/capability-handoff.json`
 - deterministic import and uplift through UAC
 
-## Typical Flow
+## Typical Maintainer Flow
 
-For most users, the path is:
+When you are changing or importing capability source, the path is:
 
 1. bring in a prompt or prompt family through UAC
 2. compare it against the preserved baseline and quality gates
