@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.4.11 - 2026-03-22
+
+- Made the canonical manifest content-stable:
+  - removed volatile build timestamps from `.meta/manifest.json`
+  - removed validation provenance from the tracked manifest so repeated no-op `build` and `validate` runs no longer dirty git
+  - kept `.meta/manifest.json` focused on canonical SSOT inventory and generated artifact mapping
+- Moved volatile run evidence into ignored reports:
+  - `scripts/build-surfaces.py` now writes build provenance under `reports/build-surfaces/`
+  - `scripts/validate-surfaces.py` now writes validation provenance under `reports/validation/`
+  - no-op manifest writes are skipped when canonical content has not changed
+- Added regression coverage and updated docs:
+  - added a manifest stability test proving repeated build/validate runs keep the tracked manifest byte-stable
+  - updated architecture and CLI reference docs to explain the manifest/report split
+
 ## 1.4.10 - 2026-03-22
 
 - Hardened Codex agent registration during install and deploy:

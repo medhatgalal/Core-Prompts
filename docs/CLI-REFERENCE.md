@@ -13,8 +13,10 @@ If local `python3` resolves to an older interpreter, set `PYTHON_BIN=python3.11`
 ## Canonical Inputs
 - SSOT: `ssot/`
 - descriptors: `.meta/capabilities/`
-- manifest: `.meta/manifest.json`
+- manifest: `.meta/manifest.json` (content-stable canonical inventory)
 - handoff contract: `.meta/capability-handoff.json`
+- validation evidence: `reports/validation/latest.json` and timestamped reports under `reports/validation/`
+- build provenance: `reports/build-surfaces/latest.json`
 - persisted local source references inside canonical metadata and bundled `capability.json` resources must be repo-relative, not absolute machine paths
 - every SSOT entry must satisfy the canonical contract sections enforced by validation: purpose, primary objective, workflow contract, boundaries, invocation hints, required inputs, required output, examples, and an evaluation rubric or scorecard-equivalent
 
@@ -44,6 +46,7 @@ Direct skill surfaces are standardized on `skills/<slug>/SKILL.md` for every sup
 - default target root is the repository root unless `--target` is provided
 - install does not rewrite capability metadata paths; portability must already be correct in the built artifacts
 - `install-local.sh` is a compatibility wrapper around deploy and remains copy-only
+- repeated no-op `build` and `validate` runs should not rewrite `.meta/manifest.json`; volatile run evidence belongs under `reports/`
 
 ## Smoke Checks
 - version/help probes run for all configured CLIs

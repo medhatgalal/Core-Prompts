@@ -23,6 +23,7 @@ SSOT_DIR = ROOT / 'ssot'
 META = ROOT / '.meta' / 'manifest.json'
 RULES_PATH = ROOT / '.meta' / 'surface-rules.json'
 SCHEMA_CACHE_MANIFEST = ROOT / '.meta' / 'schema-cache' / 'manifest.json'
+VALIDATION_REPORT_DIR = ROOT / 'reports' / 'validation'
 CONTRACT_REQUIRED_SLUGS = {path.stem for path in SSOT_DIR.glob('*.md')}
 BENCHMARK_SECTION_ALIASES = {
     'Purpose': ('Purpose',),
@@ -492,9 +493,19 @@ def sha256_file(path: Path):
     return h.hexdigest()
 
 
-def update_manifest_provenance(manifest: dict, args, validation_errors: list[str], validation_warnings: list[str], checked_sources: list[str], cli_info: dict):
-    manifest['validation'] = {
+def serialize_json(payload: dict[str, Any]) -> str:
+    return json.dumps(payload, indent=2) + '\n'
+
+
+def report_timestamp(now: datetime) -> str:
+    return now.astimezone(timezone.utc).strftime('%Y%m%dT%H%M%S.%fZ')
+
+
+def write_validation_report(args, validation_errors: list[str], validation_warnings: list[str], checked_sources: list[str], cli_info: dict):
+    now = datetime.now(timezone.utc)
+    payload = {
         'validated_at': now_iso(),
+        'manifest_file': str(META.relative_to(ROOT)),
         'strict': args.strict,
         'with_cli': args.with_cli,
         'fail_on_cli_miss': args.fail_on_cli_miss,
@@ -506,7 +517,11 @@ def update_manifest_provenance(manifest: dict, args, validation_errors: list[str
         'validation_warnings': len(validation_warnings),
         'cli_versions': cli_info,
     }
-    META.write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf-8')
+    VALIDATION_REPORT_DIR.mkdir(parents=True, exist_ok=True)
+    archive_path = VALIDATION_REPORT_DIR / f'{report_timestamp(now)}.json'
+    archive_path.write_text(serialize_json(payload), encoding='utf-8')
+    (VALIDATION_REPORT_DIR / 'latest.json').write_text(serialize_json(payload), encoding='utf-8')
+    return payload
 
 
 def main():
@@ -586,7 +601,7 @@ def main():
     cli_info = collect_cli_versions(rules_obj)
 
     # Always write provenance so callers can see what was used
-    update_manifest_provenance(manifest, args, errors, warnings, checked_sources, cli_info)
+    write_validation_report(args, errors, warnings, checked_sources, cli_info)
 
     if warnings:
         print('Warnings:')
