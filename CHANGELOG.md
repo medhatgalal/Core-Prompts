@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.4.9 - 2026-03-21
+
+- Clarified the default usage model for Core-Prompts:
+  - updated `README.md` to state that the primary way to use Core-Prompts is through the skills already deployed into the CLI
+  - repositioned repo, UAC, and Capability Fabric flows as the advanced maintainer and authoring layer rather than the default entrypoint
+  - updated `docs/README.md` and `docs/GETTING-STARTED.md` so the first path is using deployed Core-Prompts, with repo build and release workflows clearly presented as secondary
+
 ## 1.4.8 - 2026-03-21
 
 - Reworked the top-layer documentation to explain the user value more clearly:
