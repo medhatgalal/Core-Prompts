@@ -1,10 +1,8 @@
 {
-  "generated_at": "2026-03-22T11:38:19.703921+00:00",
   "generator": {
     "script": "scripts/build-surfaces.py",
     "python": "3.14 preferred (3.11+ supported)",
-    "version": "6.0",
-    "generated_utc": "2026-03-22T11:38:19.704442+00:00"
+    "version": "6.0"
   },
   "ssot_sources": [
     {
@@ -2659,62 +2657,5 @@
       ".kiro/agents/resources/mentor/capability.json",
       ".kiro/agents/resources/supercharge/capability.json"
     ]
-  },
-  "validation": {
-    "validated_at": "2026-03-22T11:39:25.336948+00:00",
-    "strict": true,
-    "with_cli": false,
-    "fail_on_cli_miss": false,
-    "rules_file": ".meta/surface-rules.json",
-    "rules_sha256": "6bf6a0265b018941d33c1678705580c23368f79d718b208a0c0c5979462bca66",
-    "schema_cache_ttl_days": 14,
-    "schema_cache_sources_checked": [
-      "https://docs.anthropic.com/en/docs/claude-code/skills",
-      "https://docs.anthropic.com/en/docs/claude-code/sub-agents",
-      "https://geminicli.com/docs/cli/skills",
-      "https://geminicli.com/docs/core/subagents",
-      "https://kiro.dev/docs/cli/custom-agents/configuration-reference/",
-      "https://kiro.dev/docs/skills/"
-    ],
-    "validation_errors": 0,
-    "validation_warnings": 0,
-    "cli_versions": {
-      "codex": {
-        "command": "codex",
-        "required": false,
-        "available": true,
-        "version_exit_code": 0,
-        "version_output": [
-          "codex-cli 0.116.0"
-        ]
-      },
-      "gemini": {
-        "command": "gemini",
-        "required": false,
-        "available": true,
-        "version_exit_code": 0,
-        "version_output": [
-          "0.34.0"
-        ]
-      },
-      "claude": {
-        "command": "claude",
-        "required": false,
-        "available": true,
-        "version_exit_code": 0,
-        "version_output": [
-          "2.1.59 (Claude Code)"
-        ]
-      },
-      "kiro": {
-        "command": "kiro-cli",
-        "required": false,
-        "available": true,
-        "version_exit_code": 0,
-        "version_output": [
-          "kiro-cli 1.28.1"
-        ]
-      }
-    }
   }
 }
