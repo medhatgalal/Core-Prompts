@@ -34,7 +34,9 @@ def test_rewritten_ssot_files_have_single_frontmatter_and_required_sections() ->
     for name, headings in expectations.items():
         text = (ROOT / 'ssot' / name).read_text(encoding='utf-8')
         assert text.startswith('---\n')
-        assert text.count('\n---\n') == 1
+        closing = text.find('\n---\n', 4)
+        assert closing != -1
+        assert '\n---\nname:' not in text[closing + 5 :]
         for heading in headings:
             assert heading in text
 

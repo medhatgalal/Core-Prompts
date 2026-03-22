@@ -271,6 +271,7 @@ register_codex_agents() {
   mkdir -p "$(dirname "$config_path")"
   python3 - "$config_path" "$TARGET_ROOT" $agent_lines <<'PY'
 from pathlib import Path
+import re
 import sys
 
 config_path = Path(sys.argv[1]).expanduser()
@@ -296,6 +297,35 @@ for idx, line in enumerate(lines):
         if start_idx is not None:
             break
 
+managed_section_headers = {f"[agents.{slug}]" for slug in agent_slugs}
+
+def drop_legacy_managed_agent_stanzas(source_lines: list[str]) -> list[str]:
+    cleaned: list[str] = []
+    in_managed_block = False
+    skipping_legacy_stanza = False
+
+    for line in source_lines:
+        stripped = line.strip()
+        if stripped == start_marker:
+            in_managed_block = True
+            continue
+        if in_managed_block:
+            if stripped == end_marker:
+                in_managed_block = False
+            continue
+
+        is_section_header = bool(re.match(r"^\s*\[[^\]]+\]\s*$", line))
+        if stripped in managed_section_headers:
+            skipping_legacy_stanza = True
+            continue
+        if skipping_legacy_stanza and is_section_header:
+            skipping_legacy_stanza = False
+        if skipping_legacy_stanza:
+            continue
+        cleaned.append(line)
+
+    return cleaned
+
 managed = [start_marker]
 for slug in agent_slugs:
     config_file = target_root / '.codex' / 'agents' / f'{slug}.toml'
@@ -306,13 +336,9 @@ for slug in agent_slugs:
     ])
 managed.append(end_marker)
 managed_text = '\n'.join(managed)
-
-if start_idx is not None and end_idx is not None and end_idx >= start_idx:
-    new_lines = lines[:start_idx] + managed_text.splitlines() + lines[end_idx + 1 :]
-    updated = '\n'.join(new_lines)
-else:
-    prefix = original.rstrip('\n')
-    updated = prefix + ('\n\n' if prefix else '') + managed_text + '\n'
+cleaned_lines = drop_legacy_managed_agent_stanzas(lines)
+prefix = '\n'.join(cleaned_lines).rstrip('\n')
+updated = prefix + ('\n\n' if prefix else '') + managed_text + '\n'
 
 config_path.write_text(updated, encoding='utf-8')
 PY

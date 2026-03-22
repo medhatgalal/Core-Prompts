@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.4.10 - 2026-03-22
+
+- Hardened Codex agent registration during install and deploy:
+  - taught `scripts/deploy-surfaces.sh` to remove stale duplicate managed `[agents.<slug>]` stanzas anywhere in `config.toml` before writing the canonical Core-Prompts managed block
+  - made repeat installs idempotent so managed agent registration stays singular instead of accumulating duplicate entries over time
+  - preserved unrelated custom agent registrations while cleaning only the managed Core-Prompts agent set
+- Added regression coverage for installer hygiene:
+  - verified repeated Codex deploy/install runs do not duplicate managed agent stanzas
+  - verified legacy duplicate managed stanzas are cleaned up while unmanaged custom config remains intact
+
 ## 1.4.9 - 2026-03-21
 
 - Clarified the default usage model for Core-Prompts:

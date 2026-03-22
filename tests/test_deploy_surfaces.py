@@ -256,3 +256,85 @@ def test_install_wrapper_matches_deploy_for_partial_cli_targets(tmp_path: Path) 
     assert (tmp_path / ".codex" / "skills" / "resolve-conflict" / "SKILL.md").is_file()
     assert not (tmp_path / ".claude").exists()
     assert not (tmp_path / ".kiro").exists()
+
+
+def test_deploy_codex_registration_is_idempotent(tmp_path: Path) -> None:
+    first = run_script(
+        DEPLOY_SCRIPT,
+        "--cli",
+        "codex",
+        target_root=tmp_path,
+        cli_bins=("codex",),
+        use_system_bash=True,
+        allow_nonlocal_target=True,
+    )
+    assert first.returncode == 0, first.stdout
+
+    second = run_script(
+        DEPLOY_SCRIPT,
+        "--cli",
+        "codex",
+        target_root=tmp_path,
+        cli_bins=("codex",),
+        use_system_bash=True,
+        allow_nonlocal_target=True,
+    )
+    assert second.returncode == 0, second.stdout
+
+    config_text = (tmp_path / ".codex" / "config.toml").read_text(encoding="utf-8")
+    for slug in ("architecture", "converge", "docs-review-expert", "gitops-review", "mentor", "supercharge"):
+        assert config_text.count(f"[agents.{slug}]") == 1
+
+
+def test_deploy_codex_registration_removes_legacy_duplicate_stanzas(tmp_path: Path) -> None:
+    config_path = tmp_path / ".codex" / "config.toml"
+    config_path.parent.mkdir(parents=True, exist_ok=True)
+    config_path.write_text(
+        "\n".join(
+            [
+                'model = "gpt-5.4"',
+                "",
+                "[agents.supercharge]",
+                'config_file = "/tmp/legacy-supercharge.toml"',
+                "",
+                "[agents.unmanaged-custom]",
+                'config_file = "/tmp/custom.toml"',
+                "",
+                "# >>> core-prompts codex agents start >>>",
+                "[agents.supercharge]",
+                'config_file = "/tmp/stale-supercharge.toml"',
+                "",
+                "[agents.converge]",
+                'config_file = "/tmp/stale-converge.toml"',
+                "",
+                "# <<< core-prompts codex agents end <<<",
+                "",
+                "[agents.docs-review-expert]",
+                'config_file = "/tmp/legacy-docs-review.toml"',
+                "",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    result = run_script(
+        DEPLOY_SCRIPT,
+        "--cli",
+        "codex",
+        target_root=tmp_path,
+        cli_bins=("codex",),
+        use_system_bash=True,
+        allow_nonlocal_target=True,
+    )
+    assert result.returncode == 0, result.stdout
+
+    config_text = config_path.read_text(encoding="utf-8")
+    assert config_text.count("[agents.supercharge]") == 1
+    assert config_text.count("[agents.converge]") == 1
+    assert config_text.count("[agents.docs-review-expert]") == 1
+    assert "[agents.unmanaged-custom]" in config_text
+    assert "/tmp/legacy-supercharge.toml" not in config_text
+    assert "/tmp/stale-supercharge.toml" not in config_text
+    assert "/tmp/stale-converge.toml" not in config_text
+    assert "/tmp/legacy-docs-review.toml" not in config_text
