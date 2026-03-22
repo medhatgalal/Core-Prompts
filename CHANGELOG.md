@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.4.8 - 2026-03-21
+
+- Reworked the top-layer documentation to explain the user value more clearly:
+  - rewrote `README.md` around prompt drift, prompt weakening, trust loss, and reusable capability value instead of leading with internal architecture terms
+  - updated `docs/README.md` to route readers by intent and audience instead of only by doc category
+  - upgraded `docs/GETTING-STARTED.md` to explain what success looks like, why the workflow is worth doing, and where to go next for exact technical depth
+- Preserved technical and maintainer depth while improving onboarding:
+  - kept the deeper developer and maintainer docs in-repo and linked them more clearly
+  - kept the skills-only direct-surface model and baseline-source model consistent across the edited docs
+
 ## 1.4.7 - 2026-03-21
 
 - Shipped the historical-baseline and skills-only standardization slice:

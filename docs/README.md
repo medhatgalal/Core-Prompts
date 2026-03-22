@@ -1,15 +1,40 @@
 # Docs Home
 
-Use this page to choose the right documentation path.
+Use this page to choose the right documentation path without reading the entire repo.
 
 ## Fast Paths
 | Need | Start here |
 | --- | --- |
+| I want to know why this repo exists | [Root README](../README.md) |
 | first build, validate, and inspect loop | [Getting started](GETTING-STARTED.md) |
 | direct surface paths, deploy rules, and runtime expectations | [CLI reference](CLI-REFERENCE.md) |
 | UAC intake, judge, and apply behavior | [UAC usage](UAC-USAGE.md) |
 | release gate, package boundary, and CI parity | [Release packaging](RELEASE-PACKAGING.md) |
 | implementation model and generated-surface architecture | [Repository architecture](ARCHITECTURE.md) |
+
+## Reader Guides
+
+### If you are evaluating the repo
+Start with:
+
+1. [Root README](../README.md)
+2. [Getting started](GETTING-STARTED.md)
+3. [Examples](EXAMPLES.md)
+
+### If you are adopting or operating it
+Start with:
+
+1. [Getting started](GETTING-STARTED.md)
+2. [CLI reference](CLI-REFERENCE.md)
+3. [UAC usage](UAC-USAGE.md)
+
+### If you are maintaining or extending it
+Start with:
+
+1. [Technical README](README_TECHNICAL.md)
+2. [Repository architecture](ARCHITECTURE.md)
+3. [Maintainer hygiene rules](MAINTAINER-HYGIENE.md)
+4. [Release packaging](RELEASE-PACKAGING.md)
 
 ## Product / Operator Docs
 - [Getting started](GETTING-STARTED.md)
@@ -31,6 +56,13 @@ Use this page to choose the right documentation path.
 - [Repository architecture](ARCHITECTURE.md)
 - [Maintainer hygiene rules](MAINTAINER-HYGIENE.md)
 - [Release packaging](RELEASE-PACKAGING.md)
+
+## Documentation Design Principles
+
+- the root README explains value, pains solved, and the fast path
+- this docs hub routes by user intent
+- technical docs keep exact commands, paths, and maintainer behavior
+- one concept should have one canonical home, with links instead of duplication
 
 ## Research / Authoring Docs
 These stay in-repo but are not part of the packaged operator doc set.
