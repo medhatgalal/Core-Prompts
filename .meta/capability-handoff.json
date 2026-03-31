@@ -1129,6 +1129,98 @@
         "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
       },
       "advisory_only": true
+    },
+    {
+      "slug": "weekly-intel",
+      "display_name": "Weekly Intelligence \u2014 Multi-Source Progress Report with Fact-Check Audit",
+      "capability_type": "both",
+      "summary": "Multi-source weekly intelligence gathering, convergence, fact-check audit, and single-document report generation (exec narrative body + technical appendices) for any team, project, or time window.",
+      "role": "analyst",
+      "domain_tags": [
+        "review",
+        "analysis",
+        "routing",
+        "debugging",
+        "context",
+        "prompting",
+        "weekly",
+        "intel"
+      ],
+      "required_inputs": [
+        "source text",
+        "user intent/context"
+      ],
+      "expected_outputs": [
+        "deterministic summary",
+        "uplift payload",
+        "capability recommendation",
+        "deployment guidance"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill",
+          "codex_agent"
+        ],
+        "gemini": [
+          "gemini_skill",
+          "gemini_agent"
+        ],
+        "claude": [
+          "claude_skill",
+          "claude_agent"
+        ],
+        "kiro": [
+          "kiro_skill",
+          "kiro_agent"
+        ]
+      },
+      "confidence": 0.98,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [
+        "prefer explicit review or analyst companions before high-authority use"
+      ],
+      "quality_status": null,
+      "benchmark_profile": null,
+      "preferred_use_cases": [],
+      "artifact_conventions": [],
+      "invocation_style": null,
+      "requires_human_confirmation": null,
+      "org_graph": {
+        "org_role": "specialist_with_workflow_surface",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "review",
+          "analysis"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
     }
   ]
 }
