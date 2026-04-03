@@ -161,7 +161,13 @@
         "claude_skill",
         "kiro_skill"
       ],
-      "rubric_version": "capability-fabric.v0"
+      "rubric_version": "capability-fabric.v0",
+      "invocation_hints": [
+        "analyze several files or transcripts over a long session",
+        "keep durable analysis notes that survive context loss",
+        "process a broad repo investigation one item at a time",
+        "recover and continue a previously interrupted analysis"
+      ]
     },
     {
       "slug": "architecture",
@@ -577,7 +583,14 @@
         "kiro_skill",
         "kiro_agent"
       ],
-      "rubric_version": "capability-fabric.v0"
+      "rubric_version": "capability-fabric.v0",
+      "invocation_hints": [
+        "design or review an API contract",
+        "propose a schema, indexing plan, or data model",
+        "choose between design patterns or refactor directions",
+        "design a system topology, reliability model, or scale strategy",
+        "produce a migration-safe architecture recommendation with rollback guidance"
+      ]
     },
     {
       "slug": "code-review",
@@ -746,7 +759,13 @@
         "claude_skill",
         "kiro_skill"
       ],
-      "rubric_version": "capability-fabric.v0"
+      "rubric_version": "capability-fabric.v0",
+      "invocation_hints": [
+        "review the latest commit",
+        "check whether this diff is too broad",
+        "judge whether AI-generated changes are over-engineered",
+        "tell me if this commit message and change scope are strong enough to merge"
+      ]
     },
     {
       "slug": "converge",
@@ -925,7 +944,14 @@
         "kiro_skill",
         "kiro_agent"
       ],
-      "rubric_version": "capability-fabric.v0"
+      "rubric_version": "capability-fabric.v0",
+      "invocation_hints": [
+        "compare these ideas and pick one",
+        "synthesize these documents into one proposal",
+        "converge on the best plan",
+        "tell me what to keep, what to reject, and why",
+        "surface the real conflicts before we decide"
+      ]
     },
     {
       "slug": "docs-review-expert",
@@ -1126,7 +1152,14 @@
         "kiro_skill",
         "kiro_agent"
       ],
-      "rubric_version": "capability-fabric.v0"
+      "rubric_version": "capability-fabric.v0",
+      "invocation_hints": [
+        "judge the repo documentation quality or organization",
+        "tell me what belongs in `README.md` versus `docs/`",
+        "check whether release docs, setup docs, or examples drifted",
+        "make docs cleaner, more linkable, or more readable",
+        "review a PR or release for documentation hygiene"
+      ]
     },
     {
       "slug": "gitops-review",
@@ -1328,7 +1361,15 @@
         "kiro_skill",
         "kiro_agent"
       ],
-      "rubric_version": "capability-fabric.v0"
+      "rubric_version": "capability-fabric.v0",
+      "invocation_hints": [
+        "judge the repo organization or GitOps hygiene",
+        "make sure my commits are logically scoped and messages are strong",
+        "check whether my PR is ready to merge",
+        "confirm CI is green on GitHub and GitLab",
+        "merge, push, package, tag, release, or clean up branches",
+        "update changelog or release notes as part of a release gate"
+      ]
     },
     {
       "slug": "mentor",
@@ -1504,7 +1545,14 @@
         "kiro_skill",
         "kiro_agent"
       ],
-      "rubric_version": "capability-fabric.v0"
+      "rubric_version": "capability-fabric.v0",
+      "invocation_hints": [
+        "what should I do next",
+        "help me plan this change safely",
+        "check repo health and tell me the next reversible move",
+        "supervise execution across several capabilities",
+        "turn this rough request into a sharper plan or higher-quality prompt"
+      ]
     },
     {
       "slug": "resolve-conflict",
@@ -1675,7 +1723,13 @@
         "claude_skill",
         "kiro_skill"
       ],
-      "rubric_version": "capability-fabric.v0"
+      "rubric_version": "capability-fabric.v0",
+      "invocation_hints": [
+        "help me resolve this merge conflict",
+        "compare these conflicting branch edits and tell me what survives",
+        "preview how to merge this branch safely",
+        "tell me what content is orthogonal versus contradictory"
+      ]
     },
     {
       "slug": "supercharge",
@@ -1799,7 +1853,8 @@
           "confidence": 0.98,
           "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
           "review_status": "ready_for_orchestrator_review",
-          "display_name": "SuperCharge \u2014 Prompt Engineering, Planning Hardening, and Graded Improvement"
+          "display_name": "SuperCharge \u2014 Prompt Engineering, Planning Hardening, and Graded Improvement",
+          "version": "v4.0"
         },
         "expanded": {
           "relationship_suggestions": [
@@ -1852,7 +1907,15 @@
         "kiro_skill",
         "kiro_agent"
       ],
-      "rubric_version": "capability-fabric.v0"
+      "rubric_version": "capability-fabric.v0",
+      "invocation_hints": [
+        "make this prompt better",
+        "harden this plan",
+        "compare these options and converge on one recommendation",
+        "critique this proposal from several angles",
+        "grade this output and iterate it upward",
+        "design an agentic workflow or prompt stack"
+      ]
     },
     {
       "slug": "testing",
@@ -2144,7 +2207,14 @@
         "claude_skill",
         "kiro_skill"
       ],
-      "rubric_version": "capability-fabric.v0"
+      "rubric_version": "capability-fabric.v0",
+      "invocation_hints": [
+        "generate unit tests",
+        "design end-to-end tests",
+        "find edge cases we are missing",
+        "show me coverage gaps",
+        "tell me what to test first for this change"
+      ]
     },
     {
       "slug": "threader",
@@ -2302,7 +2372,13 @@
         "claude_skill",
         "kiro_skill"
       ],
-      "rubric_version": "capability-fabric.v0"
+      "rubric_version": "capability-fabric.v0",
+      "invocation_hints": [
+        "export this thread",
+        "give me a transcript of this conversation",
+        "create a durable handoff file from the current chat",
+        "prepare this thread for another model, reviewer, or archive system"
+      ]
     },
     {
       "slug": "uac-import",
@@ -2475,7 +2551,13 @@
         "claude_skill",
         "kiro_skill"
       ],
-      "rubric_version": "capability-fabric.v0"
+      "rubric_version": "capability-fabric.v0",
+      "invocation_hints": [
+        "import a prompt, prompt pack, or capability into this repo",
+        "classify whether this source should become a skill, agent, or manual review",
+        "explain how this external source would land into SSOT and descriptors",
+        "judge whether a candidate is ready to apply"
+      ]
     }
   ],
   "surfaces": {

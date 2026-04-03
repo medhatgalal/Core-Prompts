@@ -120,7 +120,8 @@
       "confidence": 0.98,
       "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
       "review_status": "ready_for_orchestrator_review",
-      "display_name": "SuperCharge \u2014 Prompt Engineering, Planning Hardening, and Graded Improvement"
+      "display_name": "SuperCharge \u2014 Prompt Engineering, Planning Hardening, and Graded Improvement",
+      "version": "v4.0"
     },
     "expanded": {
       "relationship_suggestions": [
@@ -167,6 +168,14 @@
     "kiro_agent"
   ],
   "rubric_version": "capability-fabric.v0",
+  "invocation_hints": [
+    "make this prompt better",
+    "harden this plan",
+    "compare these options and converge on one recommendation",
+    "critique this proposal from several angles",
+    "grade this output and iterate it upward",
+    "design an agentic workflow or prompt stack"
+  ],
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "supercharge",
   "shared_summary": "[Medhat] SuperCharge \u2014 Prompt Engineering Swiss Army Knife (ULT-Agent++ \u2022 Catchup Deep \u2022 Simple \u2022 Invert \u2022 Adversarial \u2022 Contract+QA \u2022 Grade \u2022 GASLIGHT 13)",

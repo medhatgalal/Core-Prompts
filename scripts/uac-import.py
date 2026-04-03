@@ -26,7 +26,7 @@ from intent_pipeline.routing.engine import run_semantic_routing
 from intent_pipeline.uac_assessment import assess_uac_source, classification_rubric_payload
 from intent_pipeline.uac_benchmarks import benchmark_search, should_search_benchmarks
 from intent_pipeline.uac_capabilities import deployment_matrix_payload, emitted_surfaces_by_cli, recommended_target_systems
-from intent_pipeline.uac_descriptors import build_descriptor, save_descriptor, write_source_note
+from intent_pipeline.uac_descriptors import build_descriptor, load_descriptor, save_descriptor, write_source_note
 from intent_pipeline.uac_extract import extract_uac_analysis_text
 from intent_pipeline.uac_manifest import analyze_manifest_fit, build_capability_manifest, orchestrator_handoff_payload
 from intent_pipeline.uac_quality import (
@@ -50,7 +50,14 @@ from intent_pipeline.uac_sources import (
     enumerate_github_tree,
     enumerate_local_directory,
 )
-from intent_pipeline.uac_ssot import build_ssot_manifest_entry, build_ssot_handoff_contract, load_ssot_entries
+from intent_pipeline.uac_ssot import (
+    build_ssot_manifest_entry,
+    build_ssot_handoff_contract,
+    extract_invocation_hints,
+    load_ssot_entries,
+    parse_frontmatter_list,
+    parse_ssot_frontmatter_and_body,
+)
 from intent_pipeline.uplift.engine import run_uplift_engine
 
 
@@ -204,6 +211,7 @@ def _analyze_text_source(
     benchmark_policy: str,
     collection_type: str | None = None,
 ) -> dict[str, Any]:
+    frontmatter, body = parse_ssot_frontmatter_and_body(raw_text)
     extraction = extract_uac_analysis_text(raw_text, str(source_hint))
     uplift = run_uplift_engine(extraction.analysis_text, source_metadata=source_metadata)
     uplift_payload = uplift.as_payload()
@@ -225,6 +233,23 @@ def _analyze_text_source(
         routing_payload=routing_payload,
         repo_root=ROOT,
     )
+    minimal = dict((manifest.get('layers') or {}).get('minimal') or {})
+    optional_metadata = {
+        'version': frontmatter.get('version'),
+        'author': frontmatter.get('author'),
+        'compatibility': frontmatter.get('compatibility'),
+    }
+    supported_agents = parse_frontmatter_list(frontmatter.get('supported_agents') or frontmatter.get('agents'))
+    for key, value in optional_metadata.items():
+        if value:
+            minimal[key] = value
+    if supported_agents:
+        minimal['supported_agents'] = supported_agents
+    manifest.setdefault('layers', {})
+    manifest['layers']['minimal'] = minimal
+    invocation_hints = extract_invocation_hints(body)
+    if invocation_hints:
+        manifest['invocation_hints'] = invocation_hints
     cross_analysis = analyze_manifest_fit(manifest, _existing_manifests()).as_payload()
     manifest['layers']['expanded']['overlap_candidates'] = [
         item['slug'] for item in cross_analysis['overlap_report'] if isinstance(item, dict) and item.get('slug')
@@ -678,6 +703,177 @@ def _quality_descriptor_seed(payload: Mapping[str, Any]) -> dict[str, Any]:
     return manifest
 
 
+def _existing_manifest_by_slug(slug: str) -> dict[str, Any] | None:
+    for manifest in _existing_manifests():
+        if str(manifest.get('slug')) == slug:
+            return manifest
+    return None
+
+
+def _compact_descriptor_delta(existing: Mapping[str, Any] | None, candidate: Mapping[str, Any]) -> dict[str, Any]:
+    if not existing:
+        return {
+            'change_type': 'new_descriptor',
+            'changed_fields': ['descriptor'],
+            'existing': None,
+            'candidate': {
+                'display_name': candidate.get('display_name'),
+                'quality_profile': candidate.get('quality_profile'),
+                'quality_status': candidate.get('quality_status'),
+            },
+        }
+
+    changed_fields: list[str] = []
+    for key in ('display_name', 'family_slug', 'quality_profile', 'quality_status', 'quality_pass_count', 'quality_stop_reason'):
+        if existing.get(key) != candidate.get(key):
+            changed_fields.append(key)
+
+    existing_min = dict((existing.get('layers') or {}).get('minimal') or {})
+    candidate_min = dict((candidate.get('layers') or {}).get('minimal') or {})
+    for key in ('summary', 'display_name', 'capability_type', 'version', 'author', 'compatibility', 'supported_agents'):
+        if existing_min.get(key) != candidate_min.get(key):
+            changed_fields.append(f'layers.minimal.{key}')
+
+    return {
+        'change_type': 'descriptor_update' if changed_fields else 'descriptor_noop',
+        'changed_fields': changed_fields,
+        'existing': {
+            'display_name': existing.get('display_name'),
+            'quality_profile': existing.get('quality_profile'),
+            'quality_status': existing.get('quality_status'),
+        },
+        'candidate': {
+            'display_name': candidate.get('display_name'),
+            'quality_profile': candidate.get('quality_profile'),
+            'quality_status': candidate.get('quality_status'),
+        },
+    }
+
+
+def _build_descriptor_preview(
+    payload: Mapping[str, Any],
+    *,
+    quality_plan: Mapping[str, Any] | None = None,
+    quality_result: Mapping[str, Any] | None = None,
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    slug = str(payload['manifest']['slug'])
+    descriptor = build_descriptor(
+        manifest=payload['manifest'],
+        family_slug=slug,
+        shared_summary=str(payload['manifest']['layers']['minimal'].get('summary') or ''),
+        shared_constraints=tuple(payload.get('manifest', {}).get('layers', {}).get('expanded', {}).get('adjustment_recommendations') or ()),
+        modes=tuple(_mode_entries_from_items(payload.get('items', []))),
+        benchmark_sources=tuple(payload.get('benchmark_sources') or ()),
+        quality_profile=(quality_plan or {}).get('quality_profile'),
+        quality_status=(quality_result or {}).get('status'),
+        judge_reports=tuple((quality_result or {}).get('judge_reports') or ()),
+        consumption_hints=dict((quality_result or {}).get('consumption_hints') or {}),
+        quality_pass_count=(quality_result or {}).get('pass_count'),
+        quality_stop_reason=(quality_result or {}).get('stop_reason'),
+        historical_baseline=dict((quality_result or {}).get('historical_baseline') or {}),
+        quality_validation_matrix=tuple((quality_plan or {}).get('validation_matrix') or ()),
+    )
+    existing_descriptor = load_descriptor(ROOT, slug)
+    return descriptor, _compact_descriptor_delta(existing_descriptor, descriptor)
+
+
+def _user_visible_impact(payload: Mapping[str, Any]) -> dict[str, Any]:
+    manifest = payload['manifest']
+    minimal = dict((manifest.get('layers') or {}).get('minimal') or {})
+    slug = str(manifest.get('slug') or '')
+    existing_manifest = _existing_manifest_by_slug(slug)
+    surfaces = sorted(name for values in (minimal.get('emitted_surfaces') or {}).values() for name in values)
+    impact = {
+        'change_kind': 'new_capability' if not existing_manifest else 'update_existing_capability',
+        'display_name': manifest.get('display_name'),
+        'capability_type': minimal.get('capability_type'),
+        'install_target': (minimal.get('install_target') or {}).get('recommended'),
+        'expected_surfaces': surfaces,
+        'invocation_hints': list(manifest.get('invocation_hints') or []),
+        'expected_outputs': list(minimal.get('expected_outputs') or []),
+        'compatibility': minimal.get('compatibility'),
+        'supported_agents': list(minimal.get('supported_agents') or []),
+    }
+    if existing_manifest:
+        existing_minimal = dict((existing_manifest.get('layers') or {}).get('minimal') or {})
+        changed_fields: list[str] = []
+        for key in ('summary', 'capability_type', 'compatibility', 'supported_agents'):
+            if existing_minimal.get(key) != minimal.get(key):
+                changed_fields.append(key)
+        if sorted(existing_manifest.get('expected_surface_names') or []) != sorted(manifest.get('expected_surface_names') or []):
+            changed_fields.append('expected_surface_names')
+        if list(existing_manifest.get('invocation_hints') or []) != list(manifest.get('invocation_hints') or []):
+            changed_fields.append('invocation_hints')
+        impact['changed_fields'] = changed_fields
+    else:
+        impact['changed_fields'] = ['new_capability']
+    return impact
+
+
+def _overlap_preview(payload: Mapping[str, Any]) -> dict[str, Any]:
+    cross = dict(payload.get('cross_analysis') or {})
+    return {
+        'fit_assessment': cross.get('fit_assessment'),
+        'duplicate_risk': cross.get('duplicate_risk'),
+        'overlap_candidates': list(cross.get('overlap_report') or []),
+        'conflict_report': list(cross.get('conflict_report') or []),
+        'required_existing_adjustments': list(cross.get('required_existing_adjustments') or []),
+        'required_new_entry_adjustments': list(cross.get('required_new_entry_adjustments') or []),
+        'work_graph_change_summary': cross.get('work_graph_change_summary'),
+    }
+
+
+def _contributor_guidance(payload: Mapping[str, Any], quality_result: Mapping[str, Any] | None = None) -> list[str]:
+    guidance: list[str] = []
+    overlap = _overlap_preview(payload)
+    if overlap['fit_assessment'] == 'manual_review':
+        guidance.append('Resolve overlap or graph-role conflicts before apply.')
+    elif overlap['fit_assessment'] == 'requires_adjustment':
+        guidance.append('Tighten scope or normalize metadata against the listed overlap candidates before apply.')
+    if quality_result:
+        blockers = list((quality_result.get('judge_reports') or [])[-1].get('blockers') or []) if quality_result.get('judge_reports') else []
+        if blockers:
+            guidance.append('Address the current quality blockers before apply.')
+        if quality_result.get('status') == 'ship':
+            guidance.append('Quality gate is ready for apply once repo mutation is intentional.')
+        elif quality_result.get('status') == 'revise':
+            guidance.append('Use the final candidate text and scorecard to revise before apply.')
+        elif quality_result.get('status') == 'manual_review':
+            guidance.append('The quality loop exhausted automatic refinement; manual tightening is required.')
+    if not guidance:
+        guidance.append('No canonical blockers found; review the rendered preview and expected user-visible impact before apply.')
+    return guidance
+
+
+def _preview_payload(
+    payload: Mapping[str, Any],
+    *,
+    quality_plan: Mapping[str, Any] | None = None,
+    quality_result: Mapping[str, Any] | None = None,
+) -> dict[str, Any]:
+    rendered_ssot = str((quality_result or {}).get('final_candidate_text') or _render_ssot_markdown(str(payload['manifest']['slug']), dict(payload)))
+    descriptor_preview, descriptor_delta = _build_descriptor_preview(
+        payload,
+        quality_plan=quality_plan,
+        quality_result=quality_result,
+    )
+    ship_readiness = {
+        'quality_status': (quality_result or {}).get('status'),
+        'quality_pass_count': (quality_result or {}).get('pass_count'),
+        'quality_stop_reason': (quality_result or {}).get('stop_reason'),
+        'blockers': list((quality_result.get('judge_reports') or [])[-1].get('blockers') or []) if quality_result and quality_result.get('judge_reports') else [],
+    }
+    return {
+        'rendered_ssot_markdown': rendered_ssot,
+        'descriptor_preview': descriptor_preview,
+        'descriptor_delta': descriptor_delta,
+        'overlap_preview': _overlap_preview(payload),
+        'user_visible_impact': _user_visible_impact(payload),
+        'ship_readiness': ship_readiness,
+        'contributor_guidance': _contributor_guidance(payload, quality_result=quality_result),
+    }
+
+
 def _run_quality_for_payload(payload: dict[str, Any], args: argparse.Namespace) -> dict[str, Any]:
     if payload.get('status') != 'accepted' or args.quality_loop == 'off':
         return payload
@@ -985,6 +1181,10 @@ def _render_ssot_markdown(slug: str, payload: dict[str, Any], *, quality_profile
     summary = str(minimal.get('summary') or f'Capability import for {slug}.').strip()
     capability_type = str(minimal.get('capability_type') or 'manual_review')
     install_target = str(minimal.get('install_target', {}).get('recommended') or 'auto')
+    version = str(minimal.get('version') or '').strip()
+    author = str(minimal.get('author') or '').strip()
+    compatibility = str(minimal.get('compatibility') or '').strip()
+    supported_agents = [str(item) for item in minimal.get('supported_agents') or [] if str(item).strip()]
     description = str(quality_profile.get('description') or summary.splitlines()[0][:160])
     escaped_description = description.replace('"', '\\"')
     template = load_capability_template(ROOT, capability_type if capability_type in {'skill', 'agent', 'both'} else 'skill')
@@ -1003,6 +1203,17 @@ def _render_ssot_markdown(slug: str, payload: dict[str, Any], *, quality_profile
         f'description: "{escaped_description}"',
         f'capability_type: "{capability_type}"',
         f'install_target: "{install_target}"',
+    ]
+    if version:
+        lines.append(f'version: "{version}"')
+    if author:
+        lines.append(f'author: "{author.replace(chr(34), r"\\\"")}"')
+    if compatibility:
+        lines.append(f'compatibility: "{compatibility.replace(chr(34), r"\\\"")}"')
+    if supported_agents:
+        joined_agents = ', '.join(supported_agents)
+        lines.append(f'supported_agents: "{joined_agents}"')
+    lines.extend([
         '---',
         '',
         f'# {title}',
@@ -1013,7 +1224,7 @@ def _render_ssot_markdown(slug: str, payload: dict[str, Any], *, quality_profile
         '## Primary Objective',
         str(payload.get('uplift', {}).get('primary_objective') or summary),
         '',
-    ]
+    ])
     if capability_type in {'agent', 'both'}:
         lines.extend([
             '## Agent Operating Contract',
@@ -1085,7 +1296,14 @@ def _render_ssot_markdown(slug: str, payload: dict[str, Any], *, quality_profile
                     lines.append(f'- {bullet}')
                 lines.append('')
     else:
-        lines.extend(['', '## Invocation Hints', payload.get('summary', summary), ''])
+        lines.extend(['', '## Invocation Hints'])
+        invocation_hints = list(manifest.get('invocation_hints') or [])
+        if invocation_hints:
+            for hint in invocation_hints:
+                lines.append(f'- {hint}')
+        else:
+            lines.append(f'- {payload.get("summary", summary)}')
+        lines.append('')
         in_scope = payload.get('uplift', {}).get('in_scope') or []
         if in_scope:
             lines.append('In Scope')
@@ -1297,6 +1515,11 @@ def main() -> int:
             payload['plan'] = _single_source_plan(source, payload)
     if payload.get('status') == 'accepted' and args.mode in {'plan', 'judge', 'apply'}:
         payload = _run_quality_for_payload(payload, args)
+        payload['preview'] = _preview_payload(
+            payload,
+            quality_plan=payload.get('quality_plan'),
+            quality_result=payload.get('quality_result'),
+        )
     if args.mode == 'judge':
         payload['mode'] = 'judge'
     if args.mode == 'apply':

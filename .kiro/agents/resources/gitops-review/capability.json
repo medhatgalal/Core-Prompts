@@ -167,6 +167,14 @@
     "kiro_agent"
   ],
   "rubric_version": "capability-fabric.v0",
+  "invocation_hints": [
+    "judge the repo organization or GitOps hygiene",
+    "make sure my commits are logically scoped and messages are strong",
+    "check whether my PR is ready to merge",
+    "confirm CI is green on GitHub and GitLab",
+    "merge, push, package, tag, release, or clean up branches",
+    "update changelog or release notes as part of a release gate"
+  ],
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "gitops-review",
   "shared_summary": "GitOps Review for repo hygiene, commit quality, PR readiness, CI state, packaging, changelog, merge, tag, push, and release gates across GitHub and GitLab.",

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import fnmatch
 import hashlib
 import json
 import os
@@ -234,6 +235,10 @@ def validate_json(path: Path, required_fields: list[str], slug: str, resource_pa
 
 
 LOCAL_ABSOLUTE_SOURCE_PATTERN = re.compile(r"^(/|[A-Za-z]:[\\/]).+")
+SECRET_LITERAL_PATTERN = re.compile(
+    r'(?i)\b(api[_-]?key|access[_-]?token|secret|password)\b\s*[:=]\s*["\']?([A-Za-z0-9_\-\/+=]{16,})'
+)
+SECRET_PLACEHOLDER_PATTERN = re.compile(r'(?i)(example|sample|dummy|placeholder|changeme|your_|<|env\b|\$\{)')
 
 
 def _find_absolute_local_source_refs(value, *, path_parts: tuple[str, ...] = ()):
@@ -264,6 +269,62 @@ def validate_portable_capability_metadata(path: Path):
 
     findings = _find_absolute_local_source_refs(data)
     return [f'{path}: absolute local source reference is not portable at {joined}: {value}' for joined, value in findings]
+
+
+def _walk_key_values(value, *, path_parts: tuple[str, ...] = ()):
+    findings: list[tuple[tuple[str, ...], object]] = []
+    if isinstance(value, dict):
+        for key, nested in value.items():
+            findings.extend(_walk_key_values(nested, path_parts=(*path_parts, str(key))))
+        return findings
+    if isinstance(value, list):
+        for index, nested in enumerate(value):
+            findings.extend(_walk_key_values(nested, path_parts=(*path_parts, str(index))))
+        return findings
+    findings.append((path_parts, value))
+    return findings
+
+
+def validate_advisory_policy_metadata(path: Path):
+    try:
+        data = json.loads(path.read_text(encoding='utf-8'))
+    except Exception as exc:
+        return [f'{path}: invalid json ({exc})']
+
+    errors: list[str] = []
+    for joined, value in _walk_key_values(data):
+        joined_path = '.'.join(joined)
+        if joined_path.endswith('authority_tier') and value not in {'advisory', 'workflow_provider', 'advisor', 'analyst'}:
+            errors.append(f'{path}: unexpected authority_tier {value!r} at {joined_path}')
+    if path.name == 'capability-handoff.json':
+        if data.get('advisory_only') is not True:
+            errors.append(f'{path}: handoff contract must set advisory_only=true')
+    minimal = ((data.get('layers') or {}).get('minimal') or {}) if isinstance(data, dict) else {}
+    tool_policy = minimal.get('tool_policy') or {}
+    forbidden = {str(item).casefold() for item in tool_policy.get('forbidden') or []}
+    required_forbidden = {'orchestration', 'delegation decisions', 'runtime execution control'}
+    missing = sorted(required_forbidden - forbidden)
+    if minimal and missing:
+        errors.append(f'{path}: tool_policy.forbidden missing {", ".join(missing)}')
+    return errors
+
+
+def validate_secret_like_literals(path: Path):
+    try:
+        text = path.read_text(encoding='utf-8')
+    except Exception as exc:
+        return [f'{path}: cannot read text for secret scan ({exc})']
+
+    errors: list[str] = []
+    for line_number, line in enumerate(text.splitlines(), start=1):
+        match = SECRET_LITERAL_PATTERN.search(line)
+        if not match:
+            continue
+        candidate = match.group(2)
+        if SECRET_PLACEHOLDER_PATTERN.search(candidate):
+            continue
+        errors.append(f'{path}:{line_number}: secret-like literal detected for {match.group(1)}')
+    return errors
 
 
 def validate_schema_artifact(
@@ -369,8 +430,9 @@ def safe_rglob(base: Path, pattern: str) -> list[Path]:
     except FileNotFoundError:
         matched: list[Path] = []
         for dirpath, _, filenames in os.walk(base):
-            if pattern in filenames:
-                matched.append(Path(dirpath) / pattern)
+            for filename in filenames:
+                if fnmatch.fnmatch(filename, pattern):
+                    matched.append(Path(dirpath) / filename)
         return sorted(matched)
 
 
@@ -380,7 +442,26 @@ def collect_capability_metadata_paths() -> list[Path]:
     bundled_paths += safe_rglob(ROOT / '.gemini', 'capability.json')
     bundled_paths += safe_rglob(ROOT / '.claude', 'capability.json')
     bundled_paths += safe_rglob(ROOT / '.kiro', 'capability.json')
-    return [ROOT / '.meta' / 'manifest.json', *descriptor_paths, *bundled_paths]
+    return [ROOT / '.meta' / 'manifest.json', ROOT / '.meta' / 'capability-handoff.json', *descriptor_paths, *bundled_paths]
+
+
+def collect_surface_text_paths() -> list[Path]:
+    paths: list[Path] = []
+    for base in (ROOT / '.codex', ROOT / '.gemini', ROOT / '.claude', ROOT / '.kiro'):
+        if not base.exists():
+            continue
+        paths.extend(safe_rglob(base, 'SKILL.md'))
+        paths.extend(safe_rglob(base, '*.md'))
+        paths.extend(safe_rglob(base, '*.toml'))
+        paths.extend(safe_rglob(base, '*.json'))
+    deduped: list[Path] = []
+    seen: set[Path] = set()
+    for path in paths:
+        if path in seen or path.name == 'capability.json':
+            continue
+        seen.add(path)
+        deduped.append(path)
+    return deduped
 
 
 def load_cache() -> dict:
@@ -419,7 +500,11 @@ def check_schema_cache(rules: list[dict], strict: bool, ttl_days: int, warnings:
 
             if not cached.get('ok', False):
                 message = f'schema cache marks source as unhealthy for {url}'
-                if strict:
+                cache_path = cached.get('cache_path')
+                cache_file = ROOT / str(cache_path) if cache_path else None
+                if cache_file and cache_file.exists():
+                    warnings.append(f'{message} (using cached artifact)')
+                elif strict:
                     errors.append(message)
                 else:
                     warnings.append(message)
@@ -589,9 +674,15 @@ def main():
 
     for path in ssot_file_paths:
         errors.extend(validate_ssot_source(path))
+        errors.extend(validate_secret_like_literals(path))
 
     for metadata_path in collect_capability_metadata_paths():
         errors.extend(validate_portable_capability_metadata(metadata_path))
+        errors.extend(validate_advisory_policy_metadata(metadata_path))
+        errors.extend(validate_secret_like_literals(metadata_path))
+
+    for surface_path in collect_surface_text_paths():
+        errors.extend(validate_secret_like_literals(surface_path))
 
     # CLI existence checks for optional/strict behavior
     cli_errors, cli_warnings = cli_probe_warnings(rules_obj, args)

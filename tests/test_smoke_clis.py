@@ -64,3 +64,20 @@ def test_approval_gated_output_is_detected() -> None:
     assert smoke_clis.is_approval_gated_output(
         "I need your permission to run the `claude agents` command. The system is requesting approval."
     ) is True
+
+
+def test_write_smoke_report_persists_latest_and_timestamped_json(tmp_path: Path) -> None:
+    old_dir = smoke_clis.SMOKE_REPORT_DIR
+    try:
+        smoke_clis.SMOKE_REPORT_DIR = tmp_path / "reports" / "smoke-clis"
+        payload = {"smoked_at": "2026-04-02T00:00:00Z", "results": [], "warnings": [], "failures": []}
+
+        smoke_clis.write_smoke_report(payload)
+
+        latest = smoke_clis.SMOKE_REPORT_DIR / "latest.json"
+        assert latest.is_file()
+        timestamped = [path for path in smoke_clis.SMOKE_REPORT_DIR.glob("*.json") if path.name != "latest.json"]
+        assert len(timestamped) == 1
+        assert json.loads(latest.read_text(encoding="utf-8"))["smoked_at"] == "2026-04-02T00:00:00Z"
+    finally:
+        smoke_clis.SMOKE_REPORT_DIR = old_dir

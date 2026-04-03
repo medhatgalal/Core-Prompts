@@ -15,8 +15,12 @@ If local `python3` resolves to an older interpreter, set `PYTHON_BIN=python3.11`
 - descriptors: `.meta/capabilities/`
 - manifest: `.meta/manifest.json` (content-stable canonical inventory)
 - handoff contract: `.meta/capability-handoff.json`
+- consumer-shell catalog: `dist/consumer-shell/capability-catalog.json`
+- consumer-shell release delta: `dist/consumer-shell/release-delta.json`
+- consumer-shell status: `dist/consumer-shell/status.json`
 - validation evidence: `reports/validation/latest.json` and timestamped reports under `reports/validation/`
 - build provenance: `reports/build-surfaces/latest.json`
+- smoke evidence: `reports/smoke-clis/latest.json`
 - persisted local source references inside canonical metadata and bundled `capability.json` resources must be repo-relative, not absolute machine paths
 - every SSOT entry must satisfy the canonical contract sections enforced by validation: purpose, primary objective, workflow contract, boundaries, invocation hints, required inputs, required output, examples, and an evaluation rubric or scorecard-equivalent
 
@@ -27,6 +31,13 @@ bin/capability-fabric validate --strict
 python3 scripts/smoke-clis.py
 bin/capability-fabric deploy --dry-run --cli all
 ```
+
+## Generated Consumer Shell
+- `build` also regenerates a thin downstream user layer from canonical metadata
+- `docs/CAPABILITY-CATALOG.md` summarizes what ships and where it lands
+- `docs/RELEASE-DELTA.md` highlights new and materially changed capabilities versus the previous manifest
+- `docs/STATUS.md` summarizes build, validation, and smoke health for packaged users
+- these docs are generated from canonical metadata and reports; they are not a separate source of truth
 
 ## Direct Surface Standard
 Direct skill surfaces are standardized on `skills/<slug>/SKILL.md` for every supported CLI. This repo no longer deploys direct exposure into `commands/` or `prompts/` directories.
@@ -58,6 +69,9 @@ Direct skill surfaces are standardized on `skills/<slug>/SKILL.md` for every sup
 
 ## Related Docs
 - [Getting started](GETTING-STARTED.md)
+- [Capability catalog](CAPABILITY-CATALOG.md)
+- [Release delta](RELEASE-DELTA.md)
+- [Consumer status](STATUS.md)
 - [UAC usage](UAC-USAGE.md)
 - [Release packaging](RELEASE-PACKAGING.md)
 - [Orchestrator contract](ORCHESTRATOR-CONTRACT.md)

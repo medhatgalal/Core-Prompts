@@ -12,6 +12,7 @@ from datetime import datetime, timezone
 ROOT = Path(__file__).resolve().parent.parent
 RULES_PATH = ROOT / '.meta' / 'surface-rules.json'
 MANIFEST_PATH = ROOT / '.meta' / 'manifest.json'
+SMOKE_REPORT_DIR = ROOT / 'reports' / 'smoke-clis'
 
 
 def load_rules() -> dict:
@@ -132,6 +133,8 @@ def main(argv: list[str] | None = None) -> int:
     report = {
         'smoked_at': datetime.now(timezone.utc).isoformat(),
         'results': [],
+        'warnings': warnings,
+        'failures': failures,
     }
 
     for tool in tools:
@@ -248,6 +251,10 @@ def main(argv: list[str] | None = None) -> int:
         for warning in warnings:
             print(f'warning: {warning}')
 
+    report['warnings'] = list(warnings)
+    report['failures'] = list(failures)
+    write_smoke_report(report)
+
     if failures:
         print('smoke check failed:')
         for fail in failures:
@@ -256,6 +263,18 @@ def main(argv: list[str] | None = None) -> int:
 
     print('Smoke checks complete.')
     return 0
+
+
+def report_timestamp(now: datetime) -> str:
+    return now.astimezone(timezone.utc).strftime('%Y%m%dT%H%M%S.%fZ')
+
+
+def write_smoke_report(payload: dict) -> None:
+    now = datetime.now(timezone.utc)
+    SMOKE_REPORT_DIR.mkdir(parents=True, exist_ok=True)
+    rendered = json.dumps(payload, indent=2) + '\n'
+    (SMOKE_REPORT_DIR / f'{report_timestamp(now)}.json').write_text(rendered, encoding='utf-8')
+    (SMOKE_REPORT_DIR / 'latest.json').write_text(rendered, encoding='utf-8')
 
 
 if __name__ == '__main__':

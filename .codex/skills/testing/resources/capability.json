@@ -146,6 +146,13 @@
     "kiro_skill"
   ],
   "rubric_version": "capability-fabric.v0",
+  "invocation_hints": [
+    "generate unit tests",
+    "design end-to-end tests",
+    "find edge cases we are missing",
+    "show me coverage gaps",
+    "tell me what to test first for this change"
+  ],
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "testing",
   "shared_summary": "Testing family for unit tests, end-to-end tests, edge-case discovery, and coverage gap analysis.",

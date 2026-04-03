@@ -31,9 +31,11 @@ The package should include:
 - `.meta/manifest.json`
 - `.meta/capability-handoff.json`
 - `.meta/capabilities/`
+- `dist/consumer-shell/`
 - `sources/ssot-baselines/`
 - deploy/install scripts
 - curated operator/integrator docs
+- generated consumer-shell docs (`docs/CAPABILITY-CATALOG.md`, `docs/RELEASE-DELTA.md`, `docs/STATUS.md`)
 - `README.md`
 - `CHANGELOG.md`
 

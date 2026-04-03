@@ -12,6 +12,16 @@ SRC_ROOT = ROOT / 'src'
 if str(SRC_ROOT) not in sys.path:
     sys.path.insert(0, str(SRC_ROOT))
 
+from intent_pipeline.consumer_shell import (
+    build_capability_catalog,
+    build_release_delta,
+    build_status_payload,
+    load_previous_manifest_from_git,
+    load_status_inputs,
+    render_catalog_markdown,
+    render_release_delta_markdown,
+    render_status_markdown,
+)
 from intent_pipeline.uac_descriptors import build_descriptor, load_descriptor, save_descriptor, source_note_path
 from intent_pipeline.uac_baselines import resolve_historical_baseline
 from intent_pipeline.uac_ssot import build_ssot_handoff_contract, build_ssot_manifest_entry, load_ssot_entries
@@ -22,6 +32,10 @@ MANIFEST_PATH = META_DIR / 'manifest.json'
 HANDOFF_PATH = META_DIR / 'capability-handoff.json'
 CAPABILITY_DIR = META_DIR / 'capabilities'
 BUILD_REPORT_DIR = ROOT / 'reports' / 'build-surfaces'
+CONSUMER_SHELL_DIR = ROOT / 'dist' / 'consumer-shell'
+CATALOG_DOC_PATH = ROOT / 'docs' / 'CAPABILITY-CATALOG.md'
+STATUS_DOC_PATH = ROOT / 'docs' / 'STATUS.md'
+RELEASE_DELTA_DOC_PATH = ROOT / 'docs' / 'RELEASE-DELTA.md'
 
 GEMINI_SKILL_DIR = ROOT / '.gemini' / 'skills'
 GEMINI_AGENT_DIR = ROOT / '.gemini' / 'agents'
@@ -49,6 +63,7 @@ for d in [
     CODEX_AGENT_RESOURCE_DIR,
     META_DIR,
     CAPABILITY_DIR,
+    CONSUMER_SHELL_DIR,
 ]:
     d.mkdir(parents=True, exist_ok=True)
 
@@ -264,15 +279,35 @@ def title_from_slug(slug: str) -> str:
     return ' '.join(part.capitalize() for part in slug.replace('_', '-').split('-'))
 
 
-def write_skill(base_dir: Path, slug: str, desc: str, body: str, resource_hint: str | None = None):
+def write_skill(
+    base_dir: Path,
+    slug: str,
+    desc: str,
+    body: str,
+    resource_hint: str | None = None,
+    *,
+    extra_frontmatter: dict[str, object] | None = None,
+):
     path = base_dir / slug / 'SKILL.md'
     path.parent.mkdir(parents=True, exist_ok=True)
     resource_block = f'\n\nCapability resource: `{resource_hint}`\n' if resource_hint else '\n'
+    frontmatter_lines = [
+        '---',
+        f'name: "{slug}"',
+        f'description: "{desc}"',
+    ]
+    for key, value in (extra_frontmatter or {}).items():
+        if value in (None, '', []):
+            continue
+        if isinstance(value, list):
+            rendered = ', '.join(str(item) for item in value)
+            frontmatter_lines.append(f'{key}: "{rendered}"')
+        else:
+            frontmatter_lines.append(f'{key}: "{value}"')
+    frontmatter_lines.append('---')
     txt = (
-        '---\n'
-        f'name: "{slug}"\n'
-        f'description: "{desc}"\n'
-        '---\n'
+        '\n'.join(frontmatter_lines)
+        + '\n'
         f'{body.rstrip()}\n{resource_block}'
     )
     path.write_text(txt, encoding='utf-8')
@@ -303,8 +338,8 @@ def write_kiro_agent(slug: str, desc: str, body: str, resource_uri: str, include
     return str(path.relative_to(ROOT))
 
 
-def write_codex_skill(slug: str, desc: str, body: str, resource_hint: str | None = None):
-    return write_skill(CODEX_SKILL_DIR, slug, desc, body, resource_hint=resource_hint)
+def write_codex_skill(slug: str, desc: str, body: str, resource_hint: str | None = None, *, extra_frontmatter: dict[str, object] | None = None):
+    return write_skill(CODEX_SKILL_DIR, slug, desc, body, resource_hint=resource_hint, extra_frontmatter=extra_frontmatter)
 
 
 def infer_codex_sandbox(tools: list[str]) -> str:
@@ -332,8 +367,8 @@ def write_codex_agent(slug: str, desc: str, body: str, tools: list[str], resourc
     return str(path.relative_to(ROOT))
 
 
-def write_gemini_skill(slug: str, desc: str, body: str, resource_hint: str | None = None):
-    return write_skill(GEMINI_SKILL_DIR, slug, desc, body, resource_hint=resource_hint)
+def write_gemini_skill(slug: str, desc: str, body: str, resource_hint: str | None = None, *, extra_frontmatter: dict[str, object] | None = None):
+    return write_skill(GEMINI_SKILL_DIR, slug, desc, body, resource_hint=resource_hint, extra_frontmatter=extra_frontmatter)
 
 
 def write_gemini_agent(slug: str, desc: str, body: str, resource_hint: str | None = None):
@@ -353,8 +388,8 @@ def write_gemini_agent(slug: str, desc: str, body: str, resource_hint: str | Non
     return str(path.relative_to(ROOT))
 
 
-def write_claude_skill(slug: str, desc: str, body: str, resource_hint: str | None = None):
-    return write_skill(CLAUDE_SKILL_DIR, slug, desc, body, resource_hint=resource_hint)
+def write_claude_skill(slug: str, desc: str, body: str, resource_hint: str | None = None, *, extra_frontmatter: dict[str, object] | None = None):
+    return write_skill(CLAUDE_SKILL_DIR, slug, desc, body, resource_hint=resource_hint, extra_frontmatter=extra_frontmatter)
 
 
 def write_claude_agent(slug: str, desc: str, body: str, resource_hint: str | None = None):
@@ -372,8 +407,8 @@ def write_claude_agent(slug: str, desc: str, body: str, resource_hint: str | Non
     return str(path.relative_to(ROOT))
 
 
-def write_kiro_skill(slug: str, desc: str, body: str, resource_hint: str | None = None):
-    return write_skill(KIRO_SKILL_DIR, slug, desc, body, resource_hint=resource_hint)
+def write_kiro_skill(slug: str, desc: str, body: str, resource_hint: str | None = None, *, extra_frontmatter: dict[str, object] | None = None):
+    return write_skill(KIRO_SKILL_DIR, slug, desc, body, resource_hint=resource_hint, extra_frontmatter=extra_frontmatter)
 
 
 def cleanup_slug_outputs(slug: str) -> None:
@@ -401,6 +436,18 @@ def parse_tools(frontmatter: dict[str, str]) -> list[str]:
     normalized = raw.strip('[]')
     tools = [part.strip().strip('"').strip("'") for part in normalized.split(',') if part.strip()]
     return tools or ['*']
+
+
+def extra_skill_frontmatter(entry) -> dict[str, object]:
+    extra = {
+        'version': entry.frontmatter.get('version'),
+        'author': entry.frontmatter.get('author'),
+        'compatibility': entry.frontmatter.get('compatibility'),
+    }
+    supported_agents = entry.frontmatter.get('supported_agents') or entry.frontmatter.get('agents')
+    if supported_agents:
+        extra['supported_agents'] = supported_agents.strip().strip('[]')
+    return {key: value for key, value in extra.items() if value}
 
 
 def write_resource(surface_name: str, slug: str, descriptor: dict[str, object]) -> str:
@@ -515,6 +562,13 @@ def write_json_if_changed(path: Path, payload: dict[str, object]) -> bool:
     return True
 
 
+def write_text_if_changed(path: Path, text: str) -> bool:
+    if path.exists() and path.read_text(encoding='utf-8') == text:
+        return False
+    path.write_text(text, encoding='utf-8')
+    return True
+
+
 def report_timestamp(now: datetime.datetime) -> str:
     return now.astimezone(datetime.timezone.utc).strftime('%Y%m%dT%H%M%S.%fZ')
 
@@ -546,6 +600,7 @@ def main():
         'python': '3.14 preferred (3.11+ supported)',
         'version': '6.0',
     }
+    previous_manifest = load_previous_manifest_from_git(ROOT)
     generated = {
         'generator': generator,
         'ssot_sources': [],
@@ -562,6 +617,7 @@ def main():
         generated['ssot_sources'].append(manifest_entry)
         emitted = set(manifest_entry['expected_surface_names'])
         tools = parse_tools(entry.frontmatter)
+        skill_frontmatter = extra_skill_frontmatter(entry)
         source_note = source_note_path(ROOT, entry.slug)
 
         skill_resource_hint = {}
@@ -578,11 +634,11 @@ def main():
             pass
 
         if 'gemini_skill' in emitted:
-            generated['surfaces']['gemini_skill'].append(write_gemini_skill(entry.slug, entry.description, entry.body, skill_resource_hint.get('gemini_skill')))
+            generated['surfaces']['gemini_skill'].append(write_gemini_skill(entry.slug, entry.description, entry.body, skill_resource_hint.get('gemini_skill'), extra_frontmatter=skill_frontmatter))
         if 'gemini_agent' in emitted:
             generated['surfaces']['gemini_agent'].append(write_gemini_agent(entry.slug, entry.description, entry.body, agent_resource_hint.get('gemini_agent')))
         if 'claude_skill' in emitted:
-            generated['surfaces']['claude_skill'].append(write_claude_skill(entry.slug, entry.description, entry.body, skill_resource_hint.get('claude_skill')))
+            generated['surfaces']['claude_skill'].append(write_claude_skill(entry.slug, entry.description, entry.body, skill_resource_hint.get('claude_skill'), extra_frontmatter=skill_frontmatter))
         if 'claude_agent' in emitted:
             generated['surfaces']['claude_agent'].append(write_claude_agent(entry.slug, entry.description, entry.body, agent_resource_hint.get('claude_agent')))
         if 'kiro_agent' in emitted:
@@ -596,15 +652,30 @@ def main():
                 )
             )
         if 'kiro_skill' in emitted:
-            generated['surfaces']['kiro_skill'].append(write_kiro_skill(entry.slug, entry.description, entry.body, skill_resource_hint.get('kiro_skill')))
+            generated['surfaces']['kiro_skill'].append(write_kiro_skill(entry.slug, entry.description, entry.body, skill_resource_hint.get('kiro_skill'), extra_frontmatter=skill_frontmatter))
         if 'codex_skill' in emitted:
-            generated['surfaces']['codex_skill'].append(write_codex_skill(entry.slug, entry.description, entry.body, skill_resource_hint.get('codex_skill')))
+            generated['surfaces']['codex_skill'].append(write_codex_skill(entry.slug, entry.description, entry.body, skill_resource_hint.get('codex_skill'), extra_frontmatter=skill_frontmatter))
         if 'codex_agent' in emitted:
             generated['surfaces']['codex_agent'].append(write_codex_agent(entry.slug, entry.description, entry.body, tools, agent_resource_hint.get('codex_agent')))
 
     manifest_changed = write_json_if_changed(MANIFEST_PATH, generated)
     handoff_changed = write_json_if_changed(HANDOFF_PATH, build_ssot_handoff_contract(ROOT))
     write_build_report(generator, manifest_changed, handoff_changed, len(entries))
+    status_inputs = load_status_inputs(ROOT)
+    catalog_payload = build_capability_catalog(generated)
+    release_delta_payload = build_release_delta(generated, previous_manifest)
+    status_payload = build_status_payload(
+        generated,
+        build_report=status_inputs['build_report'],
+        validation_report=status_inputs['validation_report'],
+        smoke_report=status_inputs['smoke_report'],
+    )
+    write_json_if_changed(CONSUMER_SHELL_DIR / 'capability-catalog.json', catalog_payload)
+    write_json_if_changed(CONSUMER_SHELL_DIR / 'release-delta.json', release_delta_payload)
+    write_json_if_changed(CONSUMER_SHELL_DIR / 'status.json', status_payload)
+    write_text_if_changed(CATALOG_DOC_PATH, render_catalog_markdown(catalog_payload))
+    write_text_if_changed(RELEASE_DELTA_DOC_PATH, render_release_delta_markdown(release_delta_payload))
+    write_text_if_changed(STATUS_DOC_PATH, render_status_markdown(status_payload))
     for deprecated_dir in (
         ROOT / '.gemini' / 'commands',
         ROOT / '.claude' / 'commands',
