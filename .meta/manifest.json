@@ -2558,6 +2558,189 @@
         "explain how this external source would land into SSOT and descriptors",
         "judge whether a candidate is ready to apply"
       ]
+    },
+    {
+      "slug": "weekly-intel",
+      "manifest_version": "capability-fabric.v0",
+      "layers": {
+        "minimal": {
+          "capability_type": "both",
+          "summary": "Multi-source weekly intelligence gathering, convergence, fact-check audit, and single-document report generation (exec narrative body + technical appendices) for any team, project, or time window.",
+          "role": "analyst",
+          "domain_tags": [
+            "review",
+            "analysis",
+            "routing",
+            "debugging",
+            "context",
+            "prompting",
+            "weekly",
+            "intel"
+          ],
+          "required_inputs": [
+            "source text",
+            "user intent/context"
+          ],
+          "expected_outputs": [
+            "deterministic summary",
+            "uplift payload",
+            "capability recommendation",
+            "deployment guidance"
+          ],
+          "tool_policy": {
+            "allowed": [
+              "deterministic classification",
+              "metadata publication",
+              "surface generation"
+            ],
+            "forbidden": [
+              "orchestration",
+              "delegation decisions",
+              "runtime execution control"
+            ]
+          },
+          "resources": [
+            "ssot/weekly-intel.md"
+          ],
+          "packaging_profile": {
+            "capability_type": "both",
+            "primary_surfaces": {
+              "codex": [
+                "codex_skill",
+                "codex_agent"
+              ],
+              "gemini": [
+                "gemini_skill",
+                "gemini_agent"
+              ],
+              "claude": [
+                "claude_skill",
+                "claude_agent"
+              ],
+              "kiro": [
+                "kiro_skill",
+                "kiro_agent"
+              ]
+            },
+            "wrapper_surfaces": {
+              "codex": [
+                "plugin_wrapper"
+              ],
+              "gemini": [
+                "skill_wrapper"
+              ],
+              "claude": [
+                "skill_wrapper",
+                "plugin_wrapper"
+              ],
+              "kiro": [
+                "skill_wrapper",
+                "power_wrapper"
+              ]
+            },
+            "notes": [
+              "wrapper surfaces are additive deployment forms, not capability types",
+              "orchestrators must not infer execution authority from wrapper presence alone"
+            ]
+          },
+          "install_target": {
+            "recommended": "repo_local",
+            "confidence": 0.88,
+            "confirmation_required_for_apply": true,
+            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+            "supported": [
+              "global",
+              "repo_local",
+              "both"
+            ]
+          },
+          "emitted_surfaces": {
+            "codex": [
+              "codex_skill",
+              "codex_agent"
+            ],
+            "gemini": [
+              "gemini_skill",
+              "gemini_agent"
+            ],
+            "claude": [
+              "claude_skill",
+              "claude_agent"
+            ],
+            "kiro": [
+              "kiro_skill",
+              "kiro_agent"
+            ]
+          },
+          "source_provenance": {
+            "source_type": "LOCAL_FILE",
+            "normalized_source": "ssot/weekly-intel.md",
+            "policy_rule_id": "ssot.weekly-intel",
+            "content_sha256": "ssot"
+          },
+          "confidence": 0.98,
+          "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "Weekly Intelligence \u2014 Multi-Source Progress Report with Fact-Check Audit"
+        },
+        "expanded": {
+          "relationship_suggestions": [
+            "prefer explicit review or analyst companions before high-authority use"
+          ],
+          "capability_dependencies": [
+            "context"
+          ],
+          "overlap_candidates": [],
+          "migration_notes": [
+            "If the capability lands, compare it against existing entries before apply.",
+            "Relationship suggestions are advisory only and do not imply runtime routing."
+          ],
+          "adjustment_recommendations": [
+            "add an explicit primary objective before packaging",
+            "add deterministic in-scope sections to improve routing fitness",
+            "capture quality constraints or non-negotiables"
+          ]
+        },
+        "org_graph": {
+          "org_role": "specialist_with_workflow_surface",
+          "reports_to_suggestions": [],
+          "delegates_to_suggestions": [],
+          "collaborates_with_suggestions": [
+            "review",
+            "analysis"
+          ],
+          "authority_tier": "advisory",
+          "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
+        }
+      },
+      "display_name": "Weekly Intelligence \u2014 Multi-Source Progress Report with Fact-Check Audit",
+      "descriptor_version": "capability-fabric.descriptor.v0",
+      "family_slug": "weekly-intel",
+      "shared_summary": "Multi-source weekly intelligence gathering, convergence, fact-check audit, and dual-report generation (technical + exec narrative) for any team, project, or time window.",
+      "shared_constraints": [],
+      "modes": [],
+      "benchmark_sources": [],
+      "consumption_hints": {},
+      "declared_capability": "both",
+      "inferred_capability": "both",
+      "expected_surface_names": [
+        "codex_skill",
+        "codex_agent",
+        "gemini_skill",
+        "gemini_agent",
+        "claude_skill",
+        "claude_agent",
+        "kiro_skill",
+        "kiro_agent"
+      ],
+      "rubric_version": "capability-fabric.v0",
+      "invocation_hints": [
+        "what happened this week / last week / since Tuesday",
+        "weekly status report for my team",
+        "summarize progress across these chat spaces and repos",
+        "give me something I can share with leadership",
+        "pull together what we accomplished and what's at risk"
+      ]
     }
   ],
   "surfaces": {
@@ -2573,7 +2756,8 @@
       ".gemini/skills/supercharge/SKILL.md",
       ".gemini/skills/testing/SKILL.md",
       ".gemini/skills/threader/SKILL.md",
-      ".gemini/skills/uac-import/SKILL.md"
+      ".gemini/skills/uac-import/SKILL.md",
+      ".gemini/skills/weekly-intel/SKILL.md"
     ],
     "gemini_agent": [
       ".gemini/agents/architecture.md",
@@ -2581,7 +2765,8 @@
       ".gemini/agents/docs-review-expert.md",
       ".gemini/agents/gitops-review.md",
       ".gemini/agents/mentor.md",
-      ".gemini/agents/supercharge.md"
+      ".gemini/agents/supercharge.md",
+      ".gemini/agents/weekly-intel.md"
     ],
     "claude_skill": [
       ".claude/skills/analyze-context/SKILL.md",
@@ -2595,7 +2780,8 @@
       ".claude/skills/supercharge/SKILL.md",
       ".claude/skills/testing/SKILL.md",
       ".claude/skills/threader/SKILL.md",
-      ".claude/skills/uac-import/SKILL.md"
+      ".claude/skills/uac-import/SKILL.md",
+      ".claude/skills/weekly-intel/SKILL.md"
     ],
     "claude_agent": [
       ".claude/agents/architecture.md",
@@ -2603,7 +2789,8 @@
       ".claude/agents/docs-review-expert.md",
       ".claude/agents/gitops-review.md",
       ".claude/agents/mentor.md",
-      ".claude/agents/supercharge.md"
+      ".claude/agents/supercharge.md",
+      ".claude/agents/weekly-intel.md"
     ],
     "kiro_agent": [
       ".kiro/agents/architecture.json",
@@ -2611,7 +2798,8 @@
       ".kiro/agents/docs-review-expert.json",
       ".kiro/agents/gitops-review.json",
       ".kiro/agents/mentor.json",
-      ".kiro/agents/supercharge.json"
+      ".kiro/agents/supercharge.json",
+      ".kiro/agents/weekly-intel.json"
     ],
     "kiro_skill": [
       ".kiro/skills/analyze-context/SKILL.md",
@@ -2625,7 +2813,8 @@
       ".kiro/skills/supercharge/SKILL.md",
       ".kiro/skills/testing/SKILL.md",
       ".kiro/skills/threader/SKILL.md",
-      ".kiro/skills/uac-import/SKILL.md"
+      ".kiro/skills/uac-import/SKILL.md",
+      ".kiro/skills/weekly-intel/SKILL.md"
     ],
     "codex_skill": [
       ".codex/skills/analyze-context/SKILL.md",
@@ -2639,7 +2828,8 @@
       ".codex/skills/supercharge/SKILL.md",
       ".codex/skills/testing/SKILL.md",
       ".codex/skills/threader/SKILL.md",
-      ".codex/skills/uac-import/SKILL.md"
+      ".codex/skills/uac-import/SKILL.md",
+      ".codex/skills/weekly-intel/SKILL.md"
     ],
     "codex_agent": [
       ".codex/agents/architecture.toml",
@@ -2647,7 +2837,8 @@
       ".codex/agents/docs-review-expert.toml",
       ".codex/agents/gitops-review.toml",
       ".codex/agents/mentor.toml",
-      ".codex/agents/supercharge.toml"
+      ".codex/agents/supercharge.toml",
+      ".codex/agents/weekly-intel.toml"
     ]
   },
   "resources": {
@@ -2663,7 +2854,8 @@
       ".codex/skills/supercharge/resources/capability.json",
       ".codex/skills/testing/resources/capability.json",
       ".codex/skills/threader/resources/capability.json",
-      ".codex/skills/uac-import/resources/capability.json"
+      ".codex/skills/uac-import/resources/capability.json",
+      ".codex/skills/weekly-intel/resources/capability.json"
     ],
     "codex_agent": [
       ".codex/agents/resources/architecture/capability.json",
@@ -2671,7 +2863,8 @@
       ".codex/agents/resources/docs-review-expert/capability.json",
       ".codex/agents/resources/gitops-review/capability.json",
       ".codex/agents/resources/mentor/capability.json",
-      ".codex/agents/resources/supercharge/capability.json"
+      ".codex/agents/resources/supercharge/capability.json",
+      ".codex/agents/resources/weekly-intel/capability.json"
     ],
     "gemini_skill": [
       ".gemini/skills/analyze-context/resources/capability.json",
@@ -2685,7 +2878,8 @@
       ".gemini/skills/supercharge/resources/capability.json",
       ".gemini/skills/testing/resources/capability.json",
       ".gemini/skills/threader/resources/capability.json",
-      ".gemini/skills/uac-import/resources/capability.json"
+      ".gemini/skills/uac-import/resources/capability.json",
+      ".gemini/skills/weekly-intel/resources/capability.json"
     ],
     "gemini_agent": [
       ".gemini/agents/resources/architecture/capability.json",
@@ -2693,7 +2887,8 @@
       ".gemini/agents/resources/docs-review-expert/capability.json",
       ".gemini/agents/resources/gitops-review/capability.json",
       ".gemini/agents/resources/mentor/capability.json",
-      ".gemini/agents/resources/supercharge/capability.json"
+      ".gemini/agents/resources/supercharge/capability.json",
+      ".gemini/agents/resources/weekly-intel/capability.json"
     ],
     "claude_skill": [
       ".claude/skills/analyze-context/resources/capability.json",
@@ -2707,7 +2902,8 @@
       ".claude/skills/supercharge/resources/capability.json",
       ".claude/skills/testing/resources/capability.json",
       ".claude/skills/threader/resources/capability.json",
-      ".claude/skills/uac-import/resources/capability.json"
+      ".claude/skills/uac-import/resources/capability.json",
+      ".claude/skills/weekly-intel/resources/capability.json"
     ],
     "claude_agent": [
       ".claude/agents/resources/architecture/capability.json",
@@ -2715,7 +2911,8 @@
       ".claude/agents/resources/docs-review-expert/capability.json",
       ".claude/agents/resources/gitops-review/capability.json",
       ".claude/agents/resources/mentor/capability.json",
-      ".claude/agents/resources/supercharge/capability.json"
+      ".claude/agents/resources/supercharge/capability.json",
+      ".claude/agents/resources/weekly-intel/capability.json"
     ],
     "kiro_skill": [
       ".kiro/skills/analyze-context/resources/capability.json",
@@ -2729,7 +2926,8 @@
       ".kiro/skills/supercharge/resources/capability.json",
       ".kiro/skills/testing/resources/capability.json",
       ".kiro/skills/threader/resources/capability.json",
-      ".kiro/skills/uac-import/resources/capability.json"
+      ".kiro/skills/uac-import/resources/capability.json",
+      ".kiro/skills/weekly-intel/resources/capability.json"
     ],
     "kiro_agent": [
       ".kiro/agents/resources/architecture/capability.json",
@@ -2737,7 +2935,8 @@
       ".kiro/agents/resources/docs-review-expert/capability.json",
       ".kiro/agents/resources/gitops-review/capability.json",
       ".kiro/agents/resources/mentor/capability.json",
-      ".kiro/agents/resources/supercharge/capability.json"
+      ".kiro/agents/resources/supercharge/capability.json",
+      ".kiro/agents/resources/weekly-intel/capability.json"
     ]
   }
 }

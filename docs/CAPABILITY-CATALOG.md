@@ -2,7 +2,7 @@
 
 Generated from canonical manifest and descriptor metadata. Use this page to see what Core-Prompts ships, what each capability is for, and where it lands.
 
-- Capability count: `12`
+- Capability count: `13`
 
 ## Start Here
 - `architecture` — Architecture Studio: Architecture Studio for API design, database design, design-pattern selection, and system design with black-box boundaries, concrete artifacts, and migration-safe recommendations.
@@ -12,29 +12,31 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `supercharge` — SuperCharge — Prompt Engineering, Planning Hardening, and Graded Improvement: SuperCharge for prompt creation, prompt refinement, planning hardening, option comparison, grading, multi-pass critique, and structured execution-quality improvement across direct and agentic workflows.
 
 ## By CLI
-- `claude`: `analyze-context`, `architecture`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`
-- `codex`: `analyze-context`, `architecture`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`
-- `gemini`: `analyze-context`, `architecture`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`
-- `kiro`: `analyze-context`, `architecture`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`
+- `claude`: `analyze-context`, `architecture`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `codex`: `analyze-context`, `architecture`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `gemini`: `analyze-context`, `architecture`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `kiro`: `analyze-context`, `architecture`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
 
 ## By Use Case
-- `analysis`: `analyze-context`, `architecture`, `converge`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`
+- `analysis`: `analyze-context`, `architecture`, `converge`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `weekly-intel`
 - `analyze`: `analyze-context`
 - `architecture`: `analyze-context`, `architecture`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `uac-import`
 - `code`: `code-review`
-- `context`: `analyze-context`, `architecture`, `code-review`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `threader`
-- `debugging`: `analyze-context`, `architecture`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`
+- `context`: `analyze-context`, `architecture`, `code-review`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `threader`, `weekly-intel`
+- `debugging`: `analyze-context`, `architecture`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `weekly-intel`
 - `docs`: `docs-review-expert`
 - `expert`: `docs-review-expert`
 - `gitops`: `gitops-review`
 - `import`: `converge`, `uac-import`
+- `intel`: `weekly-intel`
 - `packaging`: `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `uac-import`
 - `planning`: `architecture`, `converge`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`
-- `prompting`: `analyze-context`, `architecture`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `testing`, `threader`, `uac-import`
-- `review`: `analyze-context`, `architecture`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`
-- `routing`: `analyze-context`, `mentor`, `resolve-conflict`, `supercharge`, `threader`, `uac-import`
+- `prompting`: `analyze-context`, `architecture`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `review`: `analyze-context`, `architecture`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `routing`: `analyze-context`, `mentor`, `resolve-conflict`, `supercharge`, `threader`, `uac-import`, `weekly-intel`
 - `testing`: `testing`
 - `threader`: `threader`
+- `weekly`: `weekly-intel`
 
 ## All Capabilities
 ### Analyze Context — Iterative Multi-File Analysis Workflow
@@ -190,3 +192,16 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
   - explain how this external source would land into SSOT and descriptors
   - judge whether a candidate is ready to apply
 - Summary: UAC Import for capability intake, quality review, uplift, and canonical SSOT plus descriptor landing.
+
+### Weekly Intelligence — Multi-Source Progress Report with Fact-Check Audit
+- Slug: `weekly-intel`
+- Type: `both`
+- Install target: `repo_local`
+- Supported CLIs: `claude, codex, gemini, kiro`
+- Invocation hints:
+  - what happened this week / last week / since Tuesday
+  - weekly status report for my team
+  - summarize progress across these chat spaces and repos
+  - give me something I can share with leadership
+  - pull together what we accomplished and what's at risk
+- Summary: Multi-source weekly intelligence gathering, convergence, fact-check audit, and single-document report generation (exec narrative body + technical appendices) for any team, project, or time window.
