@@ -12,6 +12,9 @@ Keep repo changes explainable, reviewable, and aligned with the actual architect
 
 ## Documentation Hygiene
 - `README.md` is for orientation, install, and fast-path usage only.
+- `README.md` and `docs/EXAMPLES.md` must lead with installed-skill usage and concrete user scenarios before maintainer workflows.
+- In user-facing docs, describe `bin/uac` as the capability intake and uplift mechanism, not the default product entrypoint.
+- Prefer plain-language names before acronyms in user-facing docs. If an acronym appears, expand it on first use and pair it with the functional label the reader should remember.
 - `docs/` is for durable operator, reference, and maintainer documentation.
 - Technical implementation detail belongs in technical or architecture docs, not onboarding pages.
 - Research, planning, and iteration notes stay out of user-facing docs unless promoted intentionally.
