@@ -407,6 +407,18 @@
       "expected_companions": [],
       "scenario_matrix": [],
       "baseline_path": "sources/ssot-baselines/uac-import/baseline.md"
+    },
+    "autosearch": {
+      "strategy": "source_library",
+      "group": "applied_baseline",
+      "baseline_path": "sources/ssot-baselines/autosearch/baseline.md",
+      "richness_score": 2,
+      "line_count": 186,
+      "reason": "Repo-resident baseline source snapshot used as the fidelity oracle for future UAC judging.",
+      "historical_proof": {
+        "materialized_from_commit": null,
+        "last_materialized_at": "2026-04-04T12:21:31.756292+00:00"
+      }
     }
   }
 }
