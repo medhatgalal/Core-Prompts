@@ -166,6 +166,13 @@
     "kiro_agent"
   ],
   "rubric_version": "capability-fabric.v0",
+  "invocation_hints": [
+    "judge the repo documentation quality or organization",
+    "tell me what belongs in `README.md` versus `docs/`",
+    "check whether release docs, setup docs, or examples drifted",
+    "make docs cleaner, more linkable, or more readable",
+    "review a PR or release for documentation hygiene"
+  ],
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "docs-review-expert",
   "shared_summary": "Documentation Review Expert for information architecture, readable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.",

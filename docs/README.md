@@ -6,6 +6,9 @@ Use this page to choose the right documentation path without reading the entire 
 | Need | Start here |
 | --- | --- |
 | I want to use the deployed Core-Prompts skills the normal way | [Getting started](GETTING-STARTED.md) |
+| I want to browse what Core-Prompts ships right now | [Capability catalog](CAPABILITY-CATALOG.md) |
+| I want to know what changed in the latest build | [Release delta](RELEASE-DELTA.md) |
+| I want a quick health snapshot before I trust the package | [Consumer status](STATUS.md) |
 | I want to know why this repo exists | [Root README](../README.md) |
 | first build, validate, and inspect loop | [Getting started](GETTING-STARTED.md) |
 | direct surface paths, deploy rules, and runtime expectations | [CLI reference](CLI-REFERENCE.md) |
@@ -21,6 +24,7 @@ Start with:
 1. [Root README](../README.md)
 2. [Getting started](GETTING-STARTED.md)
 3. [Examples](EXAMPLES.md)
+4. [Capability catalog](CAPABILITY-CATALOG.md)
 
 ### If you are just trying to use Core-Prompts
 Start with:
@@ -28,6 +32,7 @@ Start with:
 1. [Getting started](GETTING-STARTED.md)
 2. [Examples](EXAMPLES.md)
 3. [FAQ](FAQ.md)
+4. [Capability catalog](CAPABILITY-CATALOG.md)
 
 ### If you are adopting or operating it
 Start with:
@@ -35,6 +40,7 @@ Start with:
 1. [Getting started](GETTING-STARTED.md)
 2. [CLI reference](CLI-REFERENCE.md)
 3. [UAC usage](UAC-USAGE.md)
+4. [Consumer status](STATUS.md)
 
 ### If you are maintaining or extending it
 Start with:
@@ -46,6 +52,9 @@ Start with:
 
 ## Product / Operator Docs
 - [Getting started](GETTING-STARTED.md)
+- [Capability catalog](CAPABILITY-CATALOG.md)
+- [Release delta](RELEASE-DELTA.md)
+- [Consumer status](STATUS.md)
 - [Examples](EXAMPLES.md)
 - [FAQ](FAQ.md)
 

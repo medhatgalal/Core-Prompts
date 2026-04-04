@@ -1,6 +1,7 @@
 ---
 name: "supercharge"
 description: "SuperCharge for prompt creation, prompt refinement, planning hardening, option comparison, grading, multi-pass critique, and structured execution-quality improvement across direct and agentic workflows."
+version: "v4.0"
 ---
 # SuperCharge — Prompt Engineering, Planning Hardening, and Graded Improvement
 

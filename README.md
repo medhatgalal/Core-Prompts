@@ -8,6 +8,13 @@ Core-Prompts exists to stop that decay.
 
 The default way to benefit from it is simple: use the Core-Prompts skills that are already deployed into your CLI. The repo, Capability Fabric, and `bin/uac` workflows are the maintainer and advanced-authoring layer that keep those deployed skills trustworthy over time.
 
+For installed users, the repo now also emits a thin consumer shell from canonical metadata:
+- a generated capability catalog
+- a release delta report
+- a user-facing status snapshot
+
+Those outputs help users answer what they have, what changed, and what is healthy without turning this repo into a runtime platform.
+
 ## Why Invest In This?
 
 If you work with serious AI prompts long enough, you usually hit the same problems:
@@ -162,6 +169,9 @@ Use the docs in layers:
 - [Docs hub](docs/README.md)
 - [Getting started](docs/GETTING-STARTED.md)
 - [Examples](docs/EXAMPLES.md)
+- [Capability catalog](docs/CAPABILITY-CATALOG.md)
+- [Release delta](docs/RELEASE-DELTA.md)
+- [Consumer status](docs/STATUS.md)
 - [CLI reference](docs/CLI-REFERENCE.md)
 - [UAC usage](docs/UAC-USAGE.md)
 - [Capability model](docs/UAC-CAPABILITY-MODEL.md)

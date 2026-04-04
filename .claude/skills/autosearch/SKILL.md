@@ -1,6 +1,7 @@
 ---
 name: "autosearch"
 description: "Autosearch for goal-oriented search, experiment design, repeated-trial evaluation, trace-to-regression distillation, and promotion-ready improvement loops across prompts, tools, systems, workflows, services, and code."
+version: "v1.0"
 ---
 # Autosearch — Goal-Driven Improvement Search, Evaluation, and Promotion
 

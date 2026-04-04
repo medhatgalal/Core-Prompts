@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
+import re
 from typing import Any, Sequence
 
 from intent_pipeline.uac_assessment import UacAssessment, assess_uac_source
@@ -91,6 +92,51 @@ def load_ssot_entries(ssot_dir: Path) -> list[SsotEntry]:
             )
         )
     return entries
+
+
+def parse_frontmatter_list(value: str | None) -> list[str]:
+    if not value:
+        return []
+    normalized = value.strip()
+    if not normalized:
+        return []
+    normalized = normalized.strip('[]')
+    items = [
+        item.strip().strip('"').strip("'")
+        for item in normalized.split(',')
+        if item.strip()
+    ]
+    return list(dict.fromkeys(item for item in items if item))
+
+
+def extract_markdown_h2_section(body: str, heading: str) -> str:
+    pattern = re.compile(
+        rf"^## {re.escape(heading)}\s*$([\s\S]*?)(?=^## |\Z)",
+        flags=re.MULTILINE,
+    )
+    match = pattern.search(body)
+    if not match:
+        return ""
+    return match.group(1).strip()
+
+
+def extract_markdown_bullets(section_text: str) -> list[str]:
+    bullets: list[str] = []
+    started = False
+    for line in section_text.splitlines():
+        stripped = line.strip()
+        if stripped.startswith("- "):
+            started = True
+            bullets.append(stripped[2:].strip())
+            continue
+        if started and stripped:
+            break
+    return list(dict.fromkeys(item for item in bullets if item))
+
+
+def extract_invocation_hints(body: str) -> list[str]:
+    section = extract_markdown_h2_section(body, "Invocation Hints")
+    return extract_markdown_bullets(section)
 
 
 def _assess_entry(entry: SsotEntry) -> tuple[UacAssessment, dict[str, object], dict[str, object], dict[str, object]]:
@@ -204,6 +250,17 @@ def build_ssot_manifest_entry(entry: SsotEntry, repo_root: Path | None = None, *
     )
     minimal["packaging_profile"] = packaging_profile(effective_capability, emitted_surfaces_by_cli(effective_capability))
     minimal["emitted_surfaces"] = {cli: list(values) for cli, values in emitted_surfaces_by_cli(effective_capability).items()}
+    optional_metadata = {
+        "version": entry.frontmatter.get("version"),
+        "author": entry.frontmatter.get("author"),
+        "compatibility": entry.frontmatter.get("compatibility"),
+    }
+    supported_agents = parse_frontmatter_list(entry.frontmatter.get("supported_agents") or entry.frontmatter.get("agents"))
+    for key, value in optional_metadata.items():
+        if value:
+            minimal[key] = value
+    if supported_agents:
+        minimal["supported_agents"] = supported_agents
     manifest.setdefault("layers", {})
     manifest["layers"]["minimal"] = minimal
     manifest["display_name"] = minimal["display_name"]
@@ -211,6 +268,9 @@ def build_ssot_manifest_entry(entry: SsotEntry, repo_root: Path | None = None, *
     manifest["inferred_capability"] = inferred.capability_type
     manifest["expected_surface_names"] = list(emitted_surface_names(effective_capability))
     manifest["rubric_version"] = "capability-fabric.v0"
+    invocation_hints = extract_invocation_hints(entry.body)
+    if invocation_hints:
+        manifest["invocation_hints"] = invocation_hints
     return manifest
 
 

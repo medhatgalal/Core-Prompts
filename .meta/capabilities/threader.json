@@ -148,6 +148,12 @@
     "kiro_skill"
   ],
   "rubric_version": "capability-fabric.v0",
+  "invocation_hints": [
+    "export this thread",
+    "give me a transcript of this conversation",
+    "create a durable handoff file from the current chat",
+    "prepare this thread for another model, reviewer, or archive system"
+  ],
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "threader",
   "shared_summary": "[Medhat] Context Threader & Exporter (Memory Management)",

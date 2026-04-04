@@ -172,6 +172,69 @@ def test_uac_judge_returns_quality_plan_and_result(tmp_path: Path) -> None:
     assert len(payload["quality_result"]["judge_reports"]) >= 1
 
 
+def test_uac_plan_preview_carries_optional_metadata_and_user_impact(tmp_path: Path) -> None:
+    sample = tmp_path / "consumer-shell.md"
+    sample.write_text(
+        """---
+version: "1.2.3"
+author: "Core Team"
+compatibility: "codex>=0.1"
+supported_agents: "codex, claude"
+---
+# Consumer Shell
+
+Primary Objective: Generate a consumer-facing capability shell.
+
+In Scope:
+- user-facing catalog generation
+
+Out of Scope:
+- runtime orchestration
+
+## Invocation Hints
+- Ask what changed in the latest build.
+- Ask which capabilities are good starting points.
+
+Constraints:
+- Deterministic output only
+""",
+        encoding="utf-8",
+    )
+
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "uac-import.py"),
+            "--mode",
+            "plan",
+            "--source",
+            str(sample),
+            "--benchmark-search",
+            "off",
+            "--use-repomix",
+            "off",
+        ],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+
+    payload = json.loads(result.stdout)
+    minimal = payload["manifest"]["layers"]["minimal"]
+    assert minimal["version"] == "1.2.3"
+    assert minimal["author"] == "Core Team"
+    assert minimal["compatibility"] == "codex>=0.1"
+    assert minimal["supported_agents"] == ["codex", "claude"]
+    assert payload["manifest"]["invocation_hints"] == [
+        "Ask what changed in the latest build.",
+        "Ask which capabilities are good starting points.",
+    ]
+    assert payload["preview"]["user_visible_impact"]["invocation_hints"] == payload["manifest"]["invocation_hints"]
+    assert payload["preview"]["descriptor_preview"]["layers"]["minimal"]["compatibility"] == "codex>=0.1"
+    assert 'version: "1.2.3"' in payload["preview"]["rendered_ssot_markdown"]
+    assert 'supported_agents: "codex, claude"' in payload["preview"]["rendered_ssot_markdown"]
+
+
 def test_uac_import_can_emit_rubric(tmp_path: Path) -> None:
     sample = tmp_path / "prompt.md"
     sample.write_text(

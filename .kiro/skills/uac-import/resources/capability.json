@@ -150,6 +150,12 @@
     "kiro_skill"
   ],
   "rubric_version": "capability-fabric.v0",
+  "invocation_hints": [
+    "import a prompt, prompt pack, or capability into this repo",
+    "classify whether this source should become a skill, agent, or manual review",
+    "explain how this external source would land into SSOT and descriptors",
+    "judge whether a candidate is ready to apply"
+  ],
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "uac-import",
   "shared_summary": "Import external prompt, skill, or agent sources into the deterministic UAC uplift and packaging flow.",

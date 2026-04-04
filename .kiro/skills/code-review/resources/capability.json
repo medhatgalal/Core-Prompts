@@ -148,6 +148,12 @@
     "kiro_skill"
   ],
   "rubric_version": "capability-fabric.v0",
+  "invocation_hints": [
+    "review the latest commit",
+    "check whether this diff is too broad",
+    "judge whether AI-generated changes are over-engineered",
+    "tell me if this commit message and change scope are strong enough to merge"
+  ],
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "code-review",
   "shared_summary": "[ScottP] Git commit review with scope control and over-engineering detection",

@@ -148,6 +148,12 @@
     "kiro_skill"
   ],
   "rubric_version": "capability-fabric.v0",
+  "invocation_hints": [
+    "analyze several files or transcripts over a long session",
+    "keep durable analysis notes that survive context loss",
+    "process a broad repo investigation one item at a time",
+    "recover and continue a previously interrupted analysis"
+  ],
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "analyze-context",
   "shared_summary": "[Medhat] Iterative Analysis Workflow for multi-file processing",

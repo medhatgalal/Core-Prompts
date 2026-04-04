@@ -1,5 +1,37 @@
 # Changelog
 
+## 1.4.13 - 2026-04-04
+
+- Added the `autosearch` capability as a first-class canonical asset:
+  - landed `ssot/autosearch.md` with a measurable self-improvement contract, setup guidance, experiment loops, evaluation gates, and promotion criteria
+  - generated skill and agent surfaces for Codex, Gemini, Claude, and Kiro
+  - bundled capability-owned bootstrap and template resources for goal contracts, scorecards, ledgers, and promotion packets
+- Hardened capability intake and emitted metadata fidelity:
+  - `uac-import.py` now preserves authored SSOT bodies, frontmatter metadata, and `## Constraints` instead of falling back to flattened summaries
+  - repeated judge/apply runs for an existing canonical slug now normalize to safe update behavior instead of self-conflicting
+  - generated capability descriptors and bundled `capability.json` resources now carry richer authored constraints and metadata
+- Improved deploy and user-facing product surfaces:
+  - `scripts/deploy-surfaces.sh` now supports slug-scoped deploys and copies full bundled resource trees instead of only `capability.json`
+  - refreshed `README.md` and examples to lead with installed skills and concrete example asks, while keeping `bin/uac` framed as the intake and uplift path
+  - added a maintainer hygiene rule to keep README and examples user-facing rather than acronym-first and maintainer-heavy
+
+## 1.4.12 - 2026-04-02
+
+- Added a thin consumer shell generated from canonical metadata:
+  - `scripts/build-surfaces.py` now emits `dist/consumer-shell/capability-catalog.json`, `dist/consumer-shell/release-delta.json`, and `dist/consumer-shell/status.json`
+  - generated user-facing docs now include `docs/CAPABILITY-CATALOG.md`, `docs/RELEASE-DELTA.md`, and `docs/STATUS.md`
+  - release packaging now includes the generated consumer-shell bundle and docs
+- Improved contributor visibility in UAC without weakening the canonical landing path:
+  - `uac-import.py` now emits rendered SSOT preview, descriptor preview and delta, overlap preview, user-visible impact, and contributor guidance for `plan` and `judge`
+  - imported capability metadata now carries additive `version`, `author`, `compatibility`, `supported_agents`, and invocation hints through manifest and generated surfaces
+- Hardened validation and operational reporting:
+  - added prompt and metadata linting for advisory-only policy boundaries and secret-like literals
+  - `smoke-clis.py` now persists report artifacts under `reports/smoke-clis/`
+  - strict validation now warns instead of hard-failing when a remote schema refresh is unhealthy but a cached artifact is already available
+- Refreshed docs and tests for the new consumer-facing model:
+  - updated `README.md`, docs hub, getting-started, CLI reference, and release packaging docs to explain the upstream-plus-consumer-shell split
+  - added regression coverage for consumer shell generation, richer UAC previews, validation linting, and smoke-report persistence
+
 ## 1.4.11 - 2026-03-22
 
 - Made the canonical manifest content-stable:

@@ -4,6 +4,14 @@ The original and primary way to use Core-Prompts is to use the skills that are a
 
 This page keeps that default path clear, then shows the shortest safe repo path when you need to inspect, rebuild, validate, or extend those deployed capabilities.
 
+## If You Just Installed Core-Prompts
+
+Start with the generated consumer-shell views:
+
+- [Capability catalog](CAPABILITY-CATALOG.md) to see what is installed and where it lands
+- [Release delta](RELEASE-DELTA.md) to see what changed in the latest build
+- [Consumer status](STATUS.md) to verify build, validation, and smoke health
+
 ## Default Usage Model
 
 If Core-Prompts is already deployed in your environment, start there first.
@@ -60,6 +68,11 @@ python3 scripts/smoke-clis.py
 | `build` | regenerates all CLI skill and agent surfaces from canonical repo state |
 | `validate --strict` | checks that generated surfaces, manifests, and contracts are internally consistent |
 | `smoke-clis.py` | probes the installed CLIs and verifies expected surface visibility where supported |
+
+Build also regenerates the thin consumer shell:
+- `dist/consumer-shell/capability-catalog.json`
+- `dist/consumer-shell/release-delta.json`
+- `dist/consumer-shell/status.json`
 
 ## UAC Fast Path
 ```bash
@@ -131,3 +144,5 @@ Go to [Repository architecture](ARCHITECTURE.md), [Technical README](README_TECH
 - [Examples](EXAMPLES.md)
 - [FAQ](FAQ.md)
 - [CLI reference](CLI-REFERENCE.md)
+- [Capability catalog](CAPABILITY-CATALOG.md)
+- [Consumer status](STATUS.md)
