@@ -159,7 +159,12 @@
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "uac-import",
   "shared_summary": "Import external prompt, skill, or agent sources into the deterministic UAC uplift and packaging flow.",
-  "shared_constraints": [],
+  "shared_constraints": [
+    "No hidden execution.",
+    "No packaging claims without evidence.",
+    "No deployment during `apply`.",
+    "For local folders or GitHub repos, inventory the files first and justify whether they belong under one roof."
+  ],
   "modes": [],
   "benchmark_sources": [],
   "consumption_hints": {

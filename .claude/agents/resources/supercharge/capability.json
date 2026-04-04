@@ -179,7 +179,13 @@
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "supercharge",
   "shared_summary": "[Medhat] SuperCharge \u2014 Prompt Engineering Swiss Army Knife (ULT-Agent++ \u2022 Catchup Deep \u2022 Simple \u2022 Invert \u2022 Adversarial \u2022 Contract+QA \u2022 Grade \u2022 GASLIGHT 13)",
-  "shared_constraints": [],
+  "shared_constraints": [
+    "Do not stack heavy frameworks concurrently without reason.",
+    "Do not bloat the answer with every module when a smaller route is enough.",
+    "Do not pretend the model knows user preferences it has not been given.",
+    "Do not turn grading into generic praise.",
+    "Do not claim orchestration, approval, or runtime delegation authority."
+  ],
   "modes": [],
   "benchmark_sources": [],
   "consumption_hints": {},

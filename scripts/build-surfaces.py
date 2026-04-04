@@ -24,7 +24,7 @@ from intent_pipeline.consumer_shell import (
 )
 from intent_pipeline.uac_descriptors import build_descriptor, load_descriptor, save_descriptor, source_note_path
 from intent_pipeline.uac_baselines import resolve_historical_baseline
-from intent_pipeline.uac_ssot import build_ssot_handoff_contract, build_ssot_manifest_entry, load_ssot_entries
+from intent_pipeline.uac_ssot import build_ssot_handoff_contract, build_ssot_manifest_entry, extract_section_bullets, load_ssot_entries
 
 SSOT_DIR = ROOT / 'ssot'
 META_DIR = ROOT / '.meta'
@@ -32,6 +32,7 @@ MANIFEST_PATH = META_DIR / 'manifest.json'
 HANDOFF_PATH = META_DIR / 'capability-handoff.json'
 CAPABILITY_DIR = META_DIR / 'capabilities'
 BUILD_REPORT_DIR = ROOT / 'reports' / 'build-surfaces'
+CAPABILITY_RESOURCE_SOURCE_DIR = ROOT / 'sources' / 'capability-resources'
 CONSUMER_SHELL_DIR = ROOT / 'dist' / 'consumer-shell'
 CATALOG_DOC_PATH = ROOT / 'docs' / 'CAPABILITY-CATALOG.md'
 STATUS_DOC_PATH = ROOT / 'docs' / 'STATUS.md'
@@ -89,6 +90,18 @@ RESOURCE_PATHS = {
     'claude_agent': lambda slug: CLAUDE_RESOURCE_DIR / slug / 'capability.json',
     'kiro_skill': lambda slug: KIRO_SKILL_DIR / slug / 'resources' / 'capability.json',
     'kiro_agent': lambda slug: KIRO_AGENT_RESOURCE_DIR / slug / 'capability.json',
+}
+
+
+RESOURCE_DIRS = {
+    'codex_skill': lambda slug: CODEX_SKILL_DIR / slug / 'resources',
+    'codex_agent': lambda slug: CODEX_AGENT_RESOURCE_DIR / slug,
+    'gemini_skill': lambda slug: GEMINI_SKILL_DIR / slug / 'resources',
+    'gemini_agent': lambda slug: GEMINI_AGENT_DIR / 'resources' / slug,
+    'claude_skill': lambda slug: CLAUDE_SKILL_DIR / slug / 'resources',
+    'claude_agent': lambda slug: CLAUDE_RESOURCE_DIR / slug,
+    'kiro_skill': lambda slug: KIRO_SKILL_DIR / slug / 'resources',
+    'kiro_agent': lambda slug: KIRO_AGENT_RESOURCE_DIR / slug,
 }
 
 
@@ -419,6 +432,10 @@ def cleanup_slug_outputs(slug: str) -> None:
                 shutil.rmtree(path.parent)
         elif path.exists():
             path.unlink()
+    for dir_fn in RESOURCE_DIRS.values():
+        path = dir_fn(slug)
+        if path.exists() and path.is_dir():
+            shutil.rmtree(path)
     for path_fn in RESOURCE_PATHS.values():
         path = path_fn(slug)
         if path.exists():
@@ -457,11 +474,30 @@ def write_resource(surface_name: str, slug: str, descriptor: dict[str, object]) 
     return str(path.relative_to(ROOT))
 
 
+def copy_capability_resources(surface_name: str, slug: str) -> list[str]:
+    source_dir = CAPABILITY_RESOURCE_SOURCE_DIR / slug
+    if not source_dir.exists() or not source_dir.is_dir():
+        return []
+    target_dir = RESOURCE_DIRS[surface_name](slug)
+    target_dir.mkdir(parents=True, exist_ok=True)
+    copied: list[str] = []
+    for source_path in sorted(source_dir.rglob('*')):
+        if not source_path.is_file():
+            continue
+        relative = source_path.relative_to(source_dir)
+        target_path = target_dir / relative
+        target_path.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source_path, target_path)
+        copied.append(str(target_path.relative_to(ROOT)))
+    return copied
+
+
 def resolve_descriptor(entry, manifest_entry: dict[str, object]) -> dict[str, object]:
     defaults = descriptor_defaults(entry.slug, entry.display_name)
     baseline = resolve_historical_baseline(ROOT, entry.slug)
     baseline_payload = baseline.as_payload()
     validation_matrix = [scenario.as_payload() for scenario in baseline.scenario_matrix]
+    section_constraints = tuple(extract_section_bullets(entry.body, '## Constraints'))
     descriptor = load_descriptor(ROOT, entry.slug)
     if descriptor:
         resolved = build_descriptor(
@@ -475,7 +511,7 @@ def resolve_descriptor(entry, manifest_entry: dict[str, object]) -> dict[str, ob
             ),
             family_slug=str(descriptor.get('family_slug') or entry.slug),
             shared_summary=str(descriptor.get('shared_summary') or manifest_entry['layers']['minimal'].get('summary') or ''),
-            shared_constraints=tuple(descriptor.get('shared_constraints') or ()),
+            shared_constraints=section_constraints or tuple(descriptor.get('shared_constraints') or ()),
             modes=tuple(descriptor.get('modes') or ()),
             benchmark_sources=tuple(descriptor.get('benchmark_sources') or defaults.get('benchmark_sources') or ()),
             quality_profile=str(descriptor.get('quality_profile')) if descriptor.get('quality_profile') is not None else None,
@@ -523,6 +559,7 @@ def resolve_descriptor(entry, manifest_entry: dict[str, object]) -> dict[str, ob
         resolved = build_descriptor(
             manifest=manifest_entry,
             display_name=str(defaults.get('display_name') or entry.display_name),
+            shared_constraints=section_constraints,
             benchmark_sources=tuple(defaults.get('benchmark_sources') or ()),
             consumption_hints=dict(defaults.get('consumption_hints') or {}),
             historical_baseline=baseline_payload,
@@ -626,6 +663,7 @@ def main():
             if surface_name in RESOURCE_PATHS:
                 resource_rel = write_resource(surface_name, entry.slug, descriptor)
                 generated['resources'][surface_name].append(resource_rel)
+                generated['resources'][surface_name].extend(copy_capability_resources(surface_name, entry.slug))
                 if surface_name.endswith('skill'):
                     skill_resource_hint[surface_name] = resource_rel
                 else:

@@ -6,7 +6,7 @@
 
 Core-Prompts exists to stop that decay.
 
-The default way to benefit from it is simple: use the Core-Prompts skills that are already deployed into your CLI. The repo, UAC, and Capability Fabric workflows are the maintainer and advanced-authoring layer that keep those deployed skills trustworthy over time.
+The default way to benefit from it is simple: use the Core-Prompts skills that are already deployed into your CLI. The repo, Capability Fabric, and `bin/uac` workflows are the maintainer and advanced-authoring layer that keep those deployed skills trustworthy over time.
 
 For installed users, the repo now also emits a thin consumer shell from canonical metadata:
 - a generated capability catalog
@@ -51,8 +51,39 @@ For most users, the original and primary usage model is:
 
 The advanced repo wrappers are for maintainers, contributors, and prompt authors who need to change canonical state.
 
-## Repo Fast Path
-Use the repo wrappers when you are intentionally working on the capability source, build, validation, or release layers. They select a supported Python runtime automatically and keep the common flows consistent.
+## Use It Like This
+
+These are the kinds of things the deployed skills are for:
+
+- improve a prompt, workflow, or tool through measured iteration with `autosearch`
+- sharpen a plan or prompt before acting with `supercharge`
+- compare options and force one recommendation with `converge`
+- review docs placement, drift, and readability with `docs-review-expert`
+- review commit/PR/release readiness with `gitops-review`
+
+## Real Skill Examples
+
+These are real capabilities currently available from this repo:
+
+| Capability | Use it when you want to... | Example ask |
+| --- | --- | --- |
+| `autosearch` | improve something through bounded experiments and measurable evaluation | “Use `autosearch` to improve our code-review prompt so it catches more behavioral regressions without increasing noise.” |
+| `supercharge` | harden a prompt, plan, or proposal before execution | “Use `supercharge` to turn this rough feature brief into an execution-ready implementation plan.” |
+| `converge` | compare competing ideas and force one recommendation | “Use `converge` to compare these three rollout plans and recommend one with tradeoffs.” |
+| `docs-review-expert` | fix doc placement, drift, and explainability | “Use `docs-review-expert` to tell me what belongs in `README.md` versus `docs/` and what drifted.” |
+| `gitops-review` | judge commit, PR, merge, and release readiness | “Use `gitops-review` to tell me whether this branch is ready for PR and what blockers remain.” |
+| `testing` | design tests, coverage improvements, or edge-case checks | “Use `testing` to tell me which tests to add first for this change and what edge cases we’re missing.” |
+| `architecture` | pick or review interfaces, boundaries, and design direction | “Use `architecture` to recommend the safest design for this capability’s resource/deploy layout.” |
+| `uac-import` | import and uplift a new capability into canonical SSOT | “Use `uac-import` to bring this prompt family into the repo and prepare it for judge/apply.” |
+
+Start with:
+
+- [Getting started](docs/GETTING-STARTED.md)
+- [Examples](docs/EXAMPLES.md)
+- [FAQ](docs/FAQ.md)
+
+## Maintainer Fast Path
+Use the repo wrappers when you are intentionally working on the canonical capability source, build, validation, or release layers. `bin/uac` is the capability intake and uplift mechanism. It is not the default product entrypoint for end users.
 
 ```bash
 bin/uac --help
@@ -71,7 +102,7 @@ bin/capability-fabric --help
 
 When you are changing or importing capability source, the path is:
 
-1. bring in a prompt or prompt family through UAC
+1. bring in a prompt or prompt family through the capability intake and uplift path (`bin/uac`)
 2. compare it against the preserved baseline and quality gates
 3. land the canonical source in `ssot/`
 4. generate skill and agent surfaces
@@ -137,6 +168,7 @@ Use the docs in layers:
 
 - [Docs hub](docs/README.md)
 - [Getting started](docs/GETTING-STARTED.md)
+- [Examples](docs/EXAMPLES.md)
 - [Capability catalog](docs/CAPABILITY-CATALOG.md)
 - [Release delta](docs/RELEASE-DELTA.md)
 - [Consumer status](docs/STATUS.md)

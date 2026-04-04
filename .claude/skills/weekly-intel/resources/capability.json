@@ -176,7 +176,14 @@
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "weekly-intel",
   "shared_summary": "Multi-source weekly intelligence gathering, convergence, fact-check audit, and dual-report generation (technical + exec narrative) for any team, project, or time window.",
-  "shared_constraints": [],
+  "shared_constraints": [
+    "Do not modify any source system (tickets, repos, chat). Read only.",
+    "Do not assert a bug is \"fixed\" based on a single chat message without corroboration from the tracker or code.",
+    "Do not inflate ticket counts by including unrelated teams' work without disclosure.",
+    "Do not present created-after queries as merged-after without noting the caveat.",
+    "Do not skip the internal consistency check between body and appendices.",
+    "Do not use the word \"impressive\" or \"amazing\" in the main body. Let the numbers speak."
+  ],
   "modes": [],
   "benchmark_sources": [],
   "consumption_hints": {},

@@ -178,7 +178,13 @@
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "gitops-review",
   "shared_summary": "GitOps Review for repo hygiene, commit quality, PR readiness, CI state, packaging, changelog, merge, tag, push, and release gates across GitHub and GitLab.",
-  "shared_constraints": [],
+  "shared_constraints": [
+    "Do not hide destructive git behavior behind helper language.",
+    "Do not claim CI is green unless the current hosted runs were verified.",
+    "Do not merge, tag, package, or release without stating the prerequisite checks.",
+    "Do not invent GitHub or GitLab state from local git alone.",
+    "Do not replace companion capability reviews with generic \u201clooks good\u201d language."
+  ],
   "modes": [],
   "benchmark_sources": [
     {

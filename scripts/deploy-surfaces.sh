@@ -3,7 +3,7 @@ set -euo pipefail
 
 usage() {
   cat <<'EOF'
-Usage: scripts/deploy-surfaces.sh [--cli gemini|claude|kiro|codex|all] [--target PATH] [--allow-nonlocal-target] [--dry-run] [--strict-cli]
+Usage: scripts/deploy-surfaces.sh [--cli gemini|claude|kiro|codex|all] [--slug SLUG] [--target PATH] [--allow-nonlocal-target] [--dry-run] [--strict-cli]
 
 Copy-only deployment of SSOT-managed generated surfaces to CLI directories under a target root.
 This script never creates symlinks.
@@ -12,6 +12,7 @@ Existing files are overwritten in place with cp -f.
 
 Options:
   --cli gemini|claude|kiro|codex|all  Target CLI(s). Default: all
+  --slug SLUG                         Limit deployment to one slug (repeatable)
   --target PATH                       Destination root path. Default: repository root
   --allow-nonlocal-target             Allow explicit --target outside repository root
   --dry-run                           Show copy actions without writing
@@ -21,6 +22,7 @@ EOF
 }
 
 CLI_TARGET="all"
+SLUG_FILTERS=()
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 TARGET_ROOT="$REPO_ROOT"
 DRY_RUN=0
@@ -36,6 +38,10 @@ while [[ $# -gt 0 ]]; do
     --target)
       shift
       TARGET_ROOT="${1:-}"
+      ;;
+    --slug)
+      shift
+      SLUG_FILTERS+=("${1:-}")
       ;;
     --allow-nonlocal-target)
       ALLOW_NONLOCAL_TARGET=1
@@ -182,25 +188,37 @@ copy_file() {
 }
 
 read_copy_plan() {
-  python3 - "$REPO_ROOT" "$TARGET_ROOT" "${TARGETS[@]}" <<'PY'
+  python3 - "$REPO_ROOT" "$TARGET_ROOT" "${TARGETS[@]}" -- "${SLUG_FILTERS[@]-}" <<'PY'
 import json
 import sys
 from pathlib import Path
 
 repo_root = Path(sys.argv[1]).resolve()
 target_root = Path(sys.argv[2]).resolve()
-selected = set(sys.argv[3:])
+separator = sys.argv.index('--')
+selected = set(sys.argv[3:separator])
+slug_filters = set(arg for arg in sys.argv[separator + 1:] if arg)
 manifest = json.loads((repo_root / '.meta' / 'manifest.json').read_text(encoding='utf-8'))
 
 path_templates = {
-    'gemini_skill': ['.gemini/skills/{slug}/SKILL.md', '.gemini/skills/{slug}/resources/capability.json'],
-    'gemini_agent': ['.gemini/agents/{slug}.md', '.gemini/agents/resources/{slug}/capability.json'],
-    'claude_skill': ['.claude/skills/{slug}/SKILL.md', '.claude/skills/{slug}/resources/capability.json'],
-    'claude_agent': ['.claude/agents/{slug}.md', '.claude/agents/resources/{slug}/capability.json'],
-    'kiro_skill': ['.kiro/skills/{slug}/SKILL.md', '.kiro/skills/{slug}/resources/capability.json'],
-    'kiro_agent': ['.kiro/agents/{slug}.json', '.kiro/agents/resources/{slug}/capability.json'],
-    'codex_skill': ['.codex/skills/{slug}/SKILL.md', '.codex/skills/{slug}/resources/capability.json'],
-    'codex_agent': ['.codex/agents/{slug}.toml', '.codex/agents/resources/{slug}/capability.json'],
+    'gemini_skill': ['.gemini/skills/{slug}/SKILL.md'],
+    'gemini_agent': ['.gemini/agents/{slug}.md'],
+    'claude_skill': ['.claude/skills/{slug}/SKILL.md'],
+    'claude_agent': ['.claude/agents/{slug}.md'],
+    'kiro_skill': ['.kiro/skills/{slug}/SKILL.md'],
+    'kiro_agent': ['.kiro/agents/{slug}.json'],
+    'codex_skill': ['.codex/skills/{slug}/SKILL.md'],
+    'codex_agent': ['.codex/agents/{slug}.toml'],
+}
+resource_dirs = {
+    'gemini_skill': '.gemini/skills/{slug}/resources',
+    'gemini_agent': '.gemini/agents/resources/{slug}',
+    'claude_skill': '.claude/skills/{slug}/resources',
+    'claude_agent': '.claude/agents/resources/{slug}',
+    'kiro_skill': '.kiro/skills/{slug}/resources',
+    'kiro_agent': '.kiro/agents/resources/{slug}',
+    'codex_skill': '.codex/skills/{slug}/resources',
+    'codex_agent': '.codex/agents/resources/{slug}',
 }
 surface_cli = {
     'gemini_skill': 'gemini',
@@ -216,6 +234,8 @@ for entry in manifest.get('ssot_sources', []):
     slug = entry.get('slug')
     if not slug:
         continue
+    if slug_filters and slug not in slug_filters:
+        continue
     for surface_name in entry.get('expected_surface_names', []):
         cli = surface_cli[surface_name]
         if cli not in selected:
@@ -225,15 +245,26 @@ for entry in manifest.get('ssot_sources', []):
             src = repo_root / rel
             if src.exists():
                 print(f"{src}\t{target_root / rel}\t{surface_name}\t{slug}")
+        resource_root = repo_root / resource_dirs[surface_name].format(slug=slug)
+        if resource_root.is_dir():
+            for resource_path in sorted(path for path in resource_root.rglob('*') if path.is_file()):
+                rel = resource_path.relative_to(repo_root)
+                print(f"{resource_path}\t{target_root / rel}\t{surface_name}\t{slug}")
 PY
 }
 
 read_codex_agents() {
-  python3 - <<'PY'
+  python3 - -- "${SLUG_FILTERS[@]-}" <<'PY'
 import json
+import sys
 from pathlib import Path
+
+separator = sys.argv.index('--')
+slug_filters = set(arg for arg in sys.argv[separator + 1:] if arg)
 manifest = json.loads(Path('.meta/manifest.json').read_text(encoding='utf-8'))
 for entry in manifest.get('ssot_sources', []):
+    if slug_filters and entry.get('slug') not in slug_filters:
+        continue
     if 'codex_agent' in set(entry.get('expected_surface_names', [])):
         print(entry['slug'])
 PY
@@ -246,11 +277,23 @@ if [[ -z "$COPY_LINES" ]]; then
   exit 0
 fi
 
-SLUGS="$(python3 - <<'PY'
+SLUGS="$(python3 - -- "${SLUG_FILTERS[@]-}" <<'PY'
 import json
+import sys
 from pathlib import Path
+
+separator = sys.argv.index('--')
+slug_filters = set(arg for arg in sys.argv[separator + 1:] if arg)
 manifest = json.loads(Path('.meta/manifest.json').read_text(encoding='utf-8'))
-print(' '.join(sorted(entry['slug'] for entry in manifest.get('ssot_sources', []) if entry.get('slug'))))
+print(
+    ' '.join(
+        sorted(
+            entry['slug']
+            for entry in manifest.get('ssot_sources', [])
+            if entry.get('slug') and (not slug_filters or entry['slug'] in slug_filters)
+        )
+    )
+)
 PY
 )"
 echo "Deploying managed slugs: $SLUGS"

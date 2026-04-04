@@ -157,9 +157,9 @@
   "family_slug": "testing",
   "shared_summary": "Testing family for unit tests, end-to-end tests, edge-case discovery, and coverage gap analysis.",
   "shared_constraints": [
-    "Generate or recommend tests only; do not execute them automatically.",
-    "Respect repository-native framework choices.",
-    "Cover edge cases and failure paths, not only the happy path."
+    "Do not execute tests automatically.",
+    "Do not replace project-specific framework decisions when the repository already has a clear testing stack.",
+    "Do not claim coverage metrics without a coverage artifact or direct evidence."
   ],
   "modes": [
     {

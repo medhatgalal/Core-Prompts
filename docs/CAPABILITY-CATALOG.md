@@ -2,7 +2,7 @@
 
 Generated from canonical manifest and descriptor metadata. Use this page to see what Core-Prompts ships, what each capability is for, and where it lands.
 
-- Capability count: `13`
+- Capability count: `14`
 
 ## Start Here
 - `architecture` — Architecture Studio: Architecture Studio for API design, database design, design-pattern selection, and system design with black-box boundaries, concrete artifacts, and migration-safe recommendations.
@@ -12,28 +12,29 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `supercharge` — SuperCharge — Prompt Engineering, Planning Hardening, and Graded Improvement: SuperCharge for prompt creation, prompt refinement, planning hardening, option comparison, grading, multi-pass critique, and structured execution-quality improvement across direct and agentic workflows.
 
 ## By CLI
-- `claude`: `analyze-context`, `architecture`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `codex`: `analyze-context`, `architecture`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `gemini`: `analyze-context`, `architecture`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `kiro`: `analyze-context`, `architecture`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `claude`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `codex`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `gemini`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `kiro`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
 
 ## By Use Case
 - `analysis`: `analyze-context`, `architecture`, `converge`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `weekly-intel`
 - `analyze`: `analyze-context`
 - `architecture`: `analyze-context`, `architecture`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `uac-import`
+- `autosearch`: `autosearch`
 - `code`: `code-review`
-- `context`: `analyze-context`, `architecture`, `code-review`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `threader`, `weekly-intel`
-- `debugging`: `analyze-context`, `architecture`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `weekly-intel`
+- `context`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `threader`, `weekly-intel`
+- `debugging`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `weekly-intel`
 - `docs`: `docs-review-expert`
 - `expert`: `docs-review-expert`
 - `gitops`: `gitops-review`
 - `import`: `converge`, `uac-import`
 - `intel`: `weekly-intel`
-- `packaging`: `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `uac-import`
-- `planning`: `architecture`, `converge`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`
-- `prompting`: `analyze-context`, `architecture`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `review`: `analyze-context`, `architecture`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `routing`: `analyze-context`, `mentor`, `resolve-conflict`, `supercharge`, `threader`, `uac-import`, `weekly-intel`
+- `packaging`: `autosearch`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `uac-import`
+- `planning`: `architecture`, `autosearch`, `converge`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`
+- `prompting`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `review`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `routing`: `analyze-context`, `autosearch`, `mentor`, `resolve-conflict`, `supercharge`, `threader`, `uac-import`, `weekly-intel`
 - `testing`: `testing`
 - `threader`: `threader`
 - `weekly`: `weekly-intel`
@@ -63,6 +64,21 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
   - design a system topology, reliability model, or scale strategy
   - produce a migration-safe architecture recommendation with rollback guidance
 - Summary: Architecture Studio for API design, database design, design-pattern selection, and system design with black-box boundaries, concrete artifacts, and migration-safe recommendations.
+
+### Autosearch — Goal-Driven Improvement Search, Evaluation, and Promotion
+- Slug: `autosearch`
+- Type: `both`
+- Install target: `repo_local`
+- Supported CLIs: `claude, codex, gemini, kiro`
+- Version: `v1.0`
+- Invocation hints:
+  - improve this prompt, workflow, tool, or system and prove it got better
+  - search for a better version of this component
+  - run experiments against a goal and tell me what actually wins
+  - turn our failures into future eval cases
+  - optimize this system without regressing quality
+  - guide me from setup to experiments to commit and merge
+- Summary: Autosearch for goal-oriented search, experiment design, repeated-trial evaluation, trace-to-regression distillation, and promotion-ready improvement loops across prompts, tools, systems, workflows, services, and code.
 
 ### Commit Review — Git Commit Quality Gate
 - Slug: `code-review`

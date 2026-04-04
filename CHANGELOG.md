@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.4.13 - 2026-04-04
+
+- Added the `autosearch` capability as a first-class canonical asset:
+  - landed `ssot/autosearch.md` with a measurable self-improvement contract, setup guidance, experiment loops, evaluation gates, and promotion criteria
+  - generated skill and agent surfaces for Codex, Gemini, Claude, and Kiro
+  - bundled capability-owned bootstrap and template resources for goal contracts, scorecards, ledgers, and promotion packets
+- Hardened capability intake and emitted metadata fidelity:
+  - `uac-import.py` now preserves authored SSOT bodies, frontmatter metadata, and `## Constraints` instead of falling back to flattened summaries
+  - repeated judge/apply runs for an existing canonical slug now normalize to safe update behavior instead of self-conflicting
+  - generated capability descriptors and bundled `capability.json` resources now carry richer authored constraints and metadata
+- Improved deploy and user-facing product surfaces:
+  - `scripts/deploy-surfaces.sh` now supports slug-scoped deploys and copies full bundled resource trees instead of only `capability.json`
+  - refreshed `README.md` and examples to lead with installed skills and concrete example asks, while keeping `bin/uac` framed as the intake and uplift path
+  - added a maintainer hygiene rule to keep README and examples user-facing rather than acronym-first and maintainer-heavy
+
 ## 1.4.12 - 2026-04-02
 
 - Added a thin consumer shell generated from canonical metadata:

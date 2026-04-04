@@ -54,6 +54,7 @@ from intent_pipeline.uac_ssot import (
     build_ssot_manifest_entry,
     build_ssot_handoff_contract,
     extract_invocation_hints,
+    extract_section_bullets,
     load_ssot_entries,
     parse_frontmatter_list,
     parse_ssot_frontmatter_and_body,
@@ -260,7 +261,7 @@ def _analyze_text_source(
         install['rationale'] = f'user override requested {install_target}'
         install['confidence'] = 1.0
     capability_type = str(assessment['capability_type'])
-    if cross_analysis['fit_assessment'] == 'manual_review' and capability_type != 'manual_review':
+    if cross_analysis['fit_assessment'] == 'manual_review' and capability_type != 'manual_review' and not _same_slug_update_only(cross_analysis, slug):
         assessment = dict(assessment)
         assessment['capability_type'] = 'manual_review'
         assessment['recommended_surface'] = 'manual_review'
@@ -890,11 +891,11 @@ def _run_quality_for_payload(payload: dict[str, Any], args: argparse.Namespace) 
         benchmark_sources=payload.get('benchmark_sources') or (),
         max_passes_override=args.max_quality_passes,
     )
-    rendered_text = _render_ssot_markdown(slug, payload, quality_profile=profile.payload)
+    candidate_text = _preferred_ssot_text(slug, payload)
     quality_result = run_quality_loop(
         slug=slug,
         profile=profile,
-        candidate_text=rendered_text,
+        candidate_text=candidate_text,
         descriptor=descriptor_seed,
         source_refs=source_refs,
         benchmark_sources=payload.get('benchmark_sources') or (),
@@ -1173,19 +1174,136 @@ def _mode_entries_from_items(items: list[dict[str, Any]]) -> list[dict[str, obje
     return modes
 
 
+def _source_frontmatter_fields(payload: Mapping[str, Any]) -> dict[str, str]:
+    normalized_source = str(((payload.get('source') or {}).get('normalized_source')) or '').strip()
+    if not normalized_source:
+        return {}
+    source_path = Path(normalized_source).expanduser()
+    if not source_path.is_file():
+        return {}
+    try:
+        text = source_path.read_text(encoding='utf-8')
+    except OSError:
+        return {}
+    if not text.startswith('---\n'):
+        return {}
+    end_idx = text.find('\n---', 4)
+    if end_idx == -1:
+        return {}
+    fields: dict[str, str] = {}
+    for raw_line in text[4:end_idx].splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith('#') or ':' not in line:
+            continue
+        key, value = line.split(':', 1)
+        key = key.strip()
+        value = value.strip().strip('"').strip("'")
+        if key and value:
+            fields[key] = value
+    return fields
+
+
+def _escape_double_quoted_yaml(value: str) -> str:
+    return value.replace('\\', '\\\\').replace('"', '\\"')
+
+
+def _source_body_text(payload: Mapping[str, Any]) -> str | None:
+    normalized_source = str(((payload.get('source') or {}).get('normalized_source')) or '').strip()
+    if not normalized_source:
+        return None
+    source_path = Path(normalized_source).expanduser()
+    if not source_path.is_file():
+        return None
+    try:
+        return source_path.read_text(encoding='utf-8')
+    except OSError:
+        return None
+
+
+def _source_constraints(payload: Mapping[str, Any]) -> tuple[str, ...]:
+    source_text = _source_body_text(payload)
+    if not source_text:
+        return ()
+    return tuple(extract_section_bullets(source_text, '## Constraints'))
+
+
+def _same_slug_update_only(cross_analysis: Mapping[str, Any], slug: str) -> bool:
+    if str(cross_analysis.get('fit_assessment') or '') != 'manual_review':
+        return False
+    expected_conflict = f'slug {slug} already exists'
+    conflicts = [str(item) for item in cross_analysis.get('conflict_report') or []]
+    if not conflicts or any(item != expected_conflict for item in conflicts):
+        return False
+    return True
+
+
+def _normalize_payload_for_same_slug_update(payload: Mapping[str, Any]) -> dict[str, Any]:
+    slug = str(((payload.get('manifest') or {}).get('slug')) or '')
+    cross_analysis = payload.get('cross_analysis') or {}
+    if not slug or not _same_slug_update_only(cross_analysis, slug):
+        return dict(payload)
+    normalized = json.loads(json.dumps(payload))
+    normalized_cross = dict(normalized.get('cross_analysis') or {})
+    normalized_cross['duplicate_risk'] = 'low'
+    normalized_cross['conflict_report'] = []
+    normalized_cross['overlap_report'] = [
+        item
+        for item in normalized_cross.get('overlap_report') or []
+        if not (isinstance(item, dict) and item.get('slug') == slug and item.get('reason') == 'same slug')
+    ]
+    normalized_cross['fit_assessment'] = 'fits_cleanly' if not normalized_cross['overlap_report'] else 'requires_adjustment'
+    normalized_cross['work_graph_change_summary'] = (
+        f'{slug} matches an existing canonical slug and will be treated as an update target for judge/apply.'
+    )
+    normalized['cross_analysis'] = normalized_cross
+    manifest = normalized.get('manifest') or {}
+    expanded = ((manifest.get('layers') or {}).get('expanded') or {})
+    expanded['overlap_candidates'] = [
+        candidate for candidate in expanded.get('overlap_candidates') or [] if str(candidate) != slug
+    ]
+    if normalized.get('recommendation'):
+        route_profile = str(((normalized.get('routing') or {}).get('route_selection') or {}).get('route_profile') or '')
+        if not route_profile:
+            route_profile = str(((normalized.get('routing') or {}).get('route_profile')) or '')
+        capability_type = str(((normalized.get('uac') or {}).get('capability_type')) or '')
+        normalized['recommendation']['next_actions'] = _next_actions(capability_type, route_profile, 'fits_cleanly')
+    return normalized
+
+
+def _preferred_ssot_text(slug: str, payload: Mapping[str, Any], *, quality_result: Mapping[str, Any] | None = None) -> str:
+    source_text = _source_body_text(payload)
+    if source_text:
+        capability_type = str(
+            ((payload.get('manifest') or {}).get('layers', {}).get('minimal', {}).get('capability_type') or 'skill')
+        )
+        template_name = capability_type if capability_type in {'skill', 'agent', 'both'} else 'skill'
+        template = load_capability_template(ROOT, template_name)
+        if all(marker in source_text for marker in template.required_headings):
+            return source_text
+    final_candidate = str((quality_result or {}).get('final_candidate_text') or '').strip()
+    if final_candidate:
+        return final_candidate
+    return _render_ssot_markdown(slug, dict(payload))
+
+
 def _render_ssot_markdown(slug: str, payload: dict[str, Any], *, quality_profile: Mapping[str, Any] | None = None) -> str:
     manifest = payload['manifest']
     minimal = manifest['layers']['minimal']
     quality_profile = quality_profile or {}
-    title = str(quality_profile.get('title') or ' '.join(part.capitalize() for part in slug.replace('_', '-').split('-')))
+    source_fields = _source_frontmatter_fields(payload)
+    title = str(
+        quality_profile.get('title')
+        or source_fields.get('display_name')
+        or ' '.join(part.capitalize() for part in slug.replace('_', '-').split('-'))
+    )
     summary = str(minimal.get('summary') or f'Capability import for {slug}.').strip()
     capability_type = str(minimal.get('capability_type') or 'manual_review')
-    install_target = str(minimal.get('install_target', {}).get('recommended') or 'auto')
+    install_target = str(source_fields.get('install_target') or minimal.get('install_target', {}).get('recommended') or 'auto')
     version = str(minimal.get('version') or '').strip()
     author = str(minimal.get('author') or '').strip()
     compatibility = str(minimal.get('compatibility') or '').strip()
     supported_agents = [str(item) for item in minimal.get('supported_agents') or [] if str(item).strip()]
-    description = str(quality_profile.get('description') or summary.splitlines()[0][:160])
+    description = str(quality_profile.get('description') or source_fields.get('description') or summary.splitlines()[0][:160])
     escaped_description = description.replace('"', '\\"')
     template = load_capability_template(ROOT, capability_type if capability_type in {'skill', 'agent', 'both'} else 'skill')
     constraints = payload.get('uplift', {}).get('quality_constraints') or manifest['layers']['expanded'].get('adjustment_recommendations') or []
@@ -1200,10 +1318,22 @@ def _render_ssot_markdown(slug: str, payload: dict[str, Any], *, quality_profile
     lines = [
         '---',
         f'name: "{slug}"',
+    ]
+    if source_fields.get('display_name'):
+        lines.append(f'display_name: "{_escape_double_quoted_yaml(source_fields["display_name"])}"')
+    if source_fields.get('kind'):
+        lines.append(f'kind: "{_escape_double_quoted_yaml(source_fields["kind"])}"')
+    lines.extend([
         f'description: "{escaped_description}"',
         f'capability_type: "{capability_type}"',
+    ])
+    if source_fields.get('agent_tools'):
+        lines.append(f'agent_tools: "{_escape_double_quoted_yaml(source_fields["agent_tools"])}"')
+    if source_fields.get('version'):
+        lines.append(f'version: "{_escape_double_quoted_yaml(source_fields["version"])}"')
+    lines.extend([
         f'install_target: "{install_target}"',
-    ]
+    ])
     if version:
         lines.append(f'version: "{version}"')
     if author:
@@ -1414,11 +1544,14 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
             }
             return result
     ssot_path = ROOT / 'ssot' / f'{slug}.md'
+    source_fields = _source_frontmatter_fields(result)
     descriptor = build_descriptor(
         manifest=result['manifest'],
         family_slug=slug,
-        shared_summary=str(result['manifest']['layers']['minimal'].get('summary') or ''),
-        shared_constraints=tuple(result.get('manifest', {}).get('layers', {}).get('expanded', {}).get('adjustment_recommendations') or ()),
+        shared_summary=str(source_fields.get('description') or result['manifest']['layers']['minimal'].get('summary') or ''),
+        shared_constraints=_source_constraints(result)
+        or tuple(result.get('uplift', {}).get('quality_constraints') or ())
+        or tuple(result.get('manifest', {}).get('layers', {}).get('expanded', {}).get('adjustment_recommendations') or ()),
         modes=tuple(_mode_entries_from_items(result.get('items', []))),
         benchmark_sources=tuple(result.get('benchmark_sources') or ()),
         quality_profile=(quality_plan or {}).get('quality_profile'),
@@ -1435,7 +1568,7 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
         baseline_materialization = persist_source_baseline(
             ROOT,
             slug=slug,
-            baseline_text=str((quality_result or {}).get('final_candidate_text') or _render_ssot_markdown(slug, result)),
+            baseline_text=_preferred_ssot_text(slug, result, quality_result=quality_result),
             overwrite=False,
         )
     if quality_plan and quality_result:
@@ -1450,7 +1583,7 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
     if baseline_materialization:
         descriptor['historical_baseline'] = dict(descriptor.get('historical_baseline') or {})
         descriptor['historical_baseline']['baseline_path'] = baseline_materialization['baseline_path']
-    ssot_text = str((quality_result or {}).get('final_candidate_text') or _render_ssot_markdown(slug, result))
+    ssot_text = _preferred_ssot_text(slug, result, quality_result=quality_result)
     ssot_path.write_text(ssot_text + ('\n' if not ssot_text.endswith('\n') else ''), encoding='utf-8')
     descriptor_path = save_descriptor(ROOT, slug, descriptor)
     source_note = None
@@ -1513,6 +1646,8 @@ def main() -> int:
             payload = _rejection_payload(source, error)
         if payload.get('status') == 'accepted' and args.mode in {'plan', 'judge', 'apply'} and 'plan' not in payload:
             payload['plan'] = _single_source_plan(source, payload)
+    if payload.get('status') == 'accepted' and args.mode in {'judge', 'apply'}:
+        payload = _normalize_payload_for_same_slug_update(payload)
     if payload.get('status') == 'accepted' and args.mode in {'plan', 'judge', 'apply'}:
         payload = _run_quality_for_payload(payload, args)
         payload['preview'] = _preview_payload(

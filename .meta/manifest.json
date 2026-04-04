@@ -149,7 +149,12 @@
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "analyze-context",
       "shared_summary": "[Medhat] Iterative Analysis Workflow for multi-file processing",
-      "shared_constraints": [],
+      "shared_constraints": [
+        "Do not start long-running analysis directly on `main` or `master`.",
+        "Do not create multiple competing memory sets for the same initiative.",
+        "Do not let insights remain only in the todo file.",
+        "Do not archive mid-initiative."
+      ],
       "modes": [],
       "benchmark_sources": [],
       "consumption_hints": {},
@@ -593,6 +598,311 @@
       ]
     },
     {
+      "slug": "autosearch",
+      "manifest_version": "capability-fabric.v0",
+      "layers": {
+        "minimal": {
+          "capability_type": "both",
+          "summary": "Autosearch for goal-oriented search, experiment design, repeated-trial evaluation, trace-to-regression distillation, and promotion-ready improvement loops across prompts, tools, systems, workflows, services, and code.",
+          "role": "advisor",
+          "domain_tags": [
+            "review",
+            "routing",
+            "packaging",
+            "planning",
+            "debugging",
+            "context",
+            "prompting",
+            "autosearch"
+          ],
+          "required_inputs": [
+            "source text",
+            "user intent/context"
+          ],
+          "expected_outputs": [
+            "deterministic summary",
+            "uplift payload",
+            "capability recommendation",
+            "deployment guidance"
+          ],
+          "tool_policy": {
+            "allowed": [
+              "deterministic classification",
+              "metadata publication",
+              "surface generation"
+            ],
+            "forbidden": [
+              "orchestration",
+              "delegation decisions",
+              "runtime execution control"
+            ]
+          },
+          "resources": [
+            "ssot/autosearch.md"
+          ],
+          "packaging_profile": {
+            "capability_type": "both",
+            "primary_surfaces": {
+              "codex": [
+                "codex_skill",
+                "codex_agent"
+              ],
+              "gemini": [
+                "gemini_skill",
+                "gemini_agent"
+              ],
+              "claude": [
+                "claude_skill",
+                "claude_agent"
+              ],
+              "kiro": [
+                "kiro_skill",
+                "kiro_agent"
+              ]
+            },
+            "wrapper_surfaces": {
+              "codex": [
+                "plugin_wrapper"
+              ],
+              "gemini": [
+                "skill_wrapper"
+              ],
+              "claude": [
+                "skill_wrapper",
+                "plugin_wrapper"
+              ],
+              "kiro": [
+                "skill_wrapper",
+                "power_wrapper"
+              ]
+            },
+            "notes": [
+              "wrapper surfaces are additive deployment forms, not capability types",
+              "orchestrators must not infer execution authority from wrapper presence alone"
+            ]
+          },
+          "install_target": {
+            "recommended": "repo_local",
+            "confidence": 0.88,
+            "confirmation_required_for_apply": true,
+            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+            "supported": [
+              "global",
+              "repo_local",
+              "both"
+            ]
+          },
+          "emitted_surfaces": {
+            "codex": [
+              "codex_skill",
+              "codex_agent"
+            ],
+            "gemini": [
+              "gemini_skill",
+              "gemini_agent"
+            ],
+            "claude": [
+              "claude_skill",
+              "claude_agent"
+            ],
+            "kiro": [
+              "kiro_skill",
+              "kiro_agent"
+            ]
+          },
+          "source_provenance": {
+            "source_type": "LOCAL_FILE",
+            "normalized_source": "ssot/autosearch.md",
+            "policy_rule_id": "ssot.autosearch",
+            "content_sha256": "ssot"
+          },
+          "confidence": 0.98,
+          "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "Autosearch \u2014 Goal-Driven Improvement Search, Evaluation, and Promotion",
+          "version": "v1.0"
+        },
+        "expanded": {
+          "relationship_suggestions": [
+            "prefer explicit review or analyst companions before high-authority use"
+          ],
+          "capability_dependencies": [
+            "context"
+          ],
+          "overlap_candidates": [
+            "architecture",
+            "code-review",
+            "docs-review-expert",
+            "gitops-review",
+            "mentor",
+            "resolve-conflict",
+            "supercharge",
+            "testing"
+          ],
+          "migration_notes": [
+            "If the capability lands, compare it against existing entries before apply.",
+            "Relationship suggestions are advisory only and do not imply runtime routing."
+          ],
+          "adjustment_recommendations": [
+            "add an explicit primary objective before packaging",
+            "add deterministic in-scope sections to improve routing fitness",
+            "capture quality constraints or non-negotiables"
+          ]
+        },
+        "org_graph": {
+          "org_role": "specialist_with_workflow_surface",
+          "reports_to_suggestions": [],
+          "delegates_to_suggestions": [],
+          "collaborates_with_suggestions": [
+            "review",
+            "routing"
+          ],
+          "authority_tier": "advisory",
+          "work_graph_impact": "Adds or updates a both capability with route profile None."
+        }
+      },
+      "display_name": "Autosearch \u2014 Goal-Driven Improvement Search, Evaluation, and Promotion",
+      "descriptor_version": "capability-fabric.descriptor.v0",
+      "family_slug": "autosearch",
+      "shared_summary": "Autosearch for goal-oriented search, experiment design, repeated-trial evaluation, trace-to-regression distillation, and promotion-ready improvement loops across prompts, tools, systems, workflows, services, and code.",
+      "shared_constraints": [
+        "Do not start search without a measurable goal.",
+        "Do not claim a winner from a single run unless the system is strictly deterministic and the user agrees.",
+        "Do not hide regressions inside one aggregate \u201cscore improved\u201d claim.",
+        "Do not assume the host repo allows auto-commit or auto-merge.",
+        "Do not let the capability degrade into generic brainstorming or generic testing advice.",
+        "Do not confuse public inspiration with local proof.",
+        "Do not promote any candidate whose score is ambiguous, unstable, or unrepeatable."
+      ],
+      "modes": [],
+      "benchmark_sources": [],
+      "quality_profile": "default",
+      "quality_status": "ship",
+      "judge_reports": [
+        {
+          "pass_number": 1,
+          "status": "ship",
+          "historical_baseline": {
+            "slug": "autosearch",
+            "strategy": "source_library",
+            "group": "applied_baseline",
+            "baseline_path": "sources/ssot-baselines/autosearch/baseline.md",
+            "selected_commit": null,
+            "richness_score": 2,
+            "line_count": 186,
+            "reason": "Repo-resident baseline source snapshot used as the fidelity oracle for future UAC judging.",
+            "equivalent_commits": [],
+            "expected_companions": [],
+            "operator_invariants": [],
+            "scenario_matrix": [],
+            "historical_proof": {
+              "materialized_from_commit": null,
+              "last_materialized_at": "2026-04-04T12:20:46.476198+00:00"
+            },
+            "source": "source_library",
+            "verified_by_git_history": false,
+            "has_baseline_text": true
+          },
+          "judge_reports": [
+            {
+              "judge": "source_fidelity",
+              "title": "Source Fidelity and Uplift",
+              "score": 10,
+              "blockers": [],
+              "classification": "additive",
+              "scenario_results": [],
+              "scorecard": {
+                "baseline_richness": 2,
+                "candidate_richness": 4
+              },
+              "baseline_commit": null,
+              "baseline_slug": "autosearch"
+            },
+            {
+              "judge": "operational_richness",
+              "title": "Operational Richness",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "metadata_integrity",
+              "title": "Metadata and Handoff Integrity",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "benchmark_readiness",
+              "title": "Benchmark Readiness and Template Fit",
+              "score": 10,
+              "blockers": [],
+              "scorecard": {
+                "title_clarity": 10,
+                "description_richness": 10,
+                "intent_coverage": 10,
+                "boundary_clarity": 10,
+                "output_specificity": 10,
+                "metadata_completeness": 8,
+                "surface_usability": 10
+              }
+            }
+          ],
+          "blockers": [],
+          "scorecard": {
+            "source_fidelity": 10,
+            "baseline_richness": 2,
+            "candidate_richness": 4,
+            "operational_richness": 10,
+            "metadata_integrity": 10,
+            "benchmark_readiness": 10,
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 10,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          },
+          "template_name": "both"
+        }
+      ],
+      "consumption_hints": {
+        "preferred_use_cases": [
+          "AI-assisted capability selection",
+          "deterministic prompt uplift review"
+        ],
+        "artifact_conventions": [
+          "ssot/<slug>.md",
+          ".meta/capabilities/<slug>.json",
+          "reports/quality-reviews/<slug>/LATEST.md"
+        ],
+        "invocation_style": "assistant_first_but_scriptable",
+        "requires_human_confirmation": true
+      },
+      "quality_pass_count": 1,
+      "quality_stop_reason": "thresholds_met",
+      "declared_capability": "both",
+      "inferred_capability": "both",
+      "expected_surface_names": [
+        "codex_skill",
+        "codex_agent",
+        "gemini_skill",
+        "gemini_agent",
+        "claude_skill",
+        "claude_agent",
+        "kiro_skill",
+        "kiro_agent"
+      ],
+      "rubric_version": "capability-fabric.v0",
+      "invocation_hints": [
+        "improve this prompt, workflow, tool, or system and prove it got better",
+        "search for a better version of this component",
+        "run experiments against a goal and tell me what actually wins",
+        "turn our failures into future eval cases",
+        "optimize this system without regressing quality",
+        "guide me from setup to experiments to commit and merge"
+      ]
+    },
+    {
       "slug": "code-review",
       "manifest_version": "capability-fabric.v0",
       "layers": {
@@ -928,7 +1238,13 @@
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "converge",
       "shared_summary": "[Medhat] Universal Synthesis & Convergence Prompt (Portable)",
-      "shared_constraints": [],
+      "shared_constraints": [
+        "Do not create a Frankenstein merge.",
+        "Do not invent missing preferences.",
+        "Do not hide major conflicts behind bland synthesis language.",
+        "Do not skip the rationale for rejected ideas.",
+        "Do not claim execution authority beyond synthesis and recommendation."
+      ],
       "modes": [],
       "benchmark_sources": [],
       "consumption_hints": {},
@@ -1111,7 +1427,13 @@
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "docs-review-expert",
       "shared_summary": "Documentation Review Expert for information architecture, readable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.",
-      "shared_constraints": [],
+      "shared_constraints": [
+        "Do not rewrite large doc sets when targeted cleanup is enough.",
+        "Do not create duplicate docs for the same concept.",
+        "Do not move technical or research material into user-facing docs without a clear reason.",
+        "Do not infer behavior from docs alone when code or scripts are available to verify it.",
+        "Do not leave the caller with generic advice that lacks file placement or evidence."
+      ],
       "modes": [],
       "benchmark_sources": [
         {
@@ -1320,7 +1642,13 @@
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "gitops-review",
       "shared_summary": "GitOps Review for repo hygiene, commit quality, PR readiness, CI state, packaging, changelog, merge, tag, push, and release gates across GitHub and GitLab.",
-      "shared_constraints": [],
+      "shared_constraints": [
+        "Do not hide destructive git behavior behind helper language.",
+        "Do not claim CI is green unless the current hosted runs were verified.",
+        "Do not merge, tag, package, or release without stating the prerequisite checks.",
+        "Do not invent GitHub or GitLab state from local git alone.",
+        "Do not replace companion capability reviews with generic \u201clooks good\u201d language."
+      ],
       "modes": [],
       "benchmark_sources": [
         {
@@ -1891,7 +2219,13 @@
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "supercharge",
       "shared_summary": "[Medhat] SuperCharge \u2014 Prompt Engineering Swiss Army Knife (ULT-Agent++ \u2022 Catchup Deep \u2022 Simple \u2022 Invert \u2022 Adversarial \u2022 Contract+QA \u2022 Grade \u2022 GASLIGHT 13)",
-      "shared_constraints": [],
+      "shared_constraints": [
+        "Do not stack heavy frameworks concurrently without reason.",
+        "Do not bloat the answer with every module when a smaller route is enough.",
+        "Do not pretend the model knows user preferences it has not been given.",
+        "Do not turn grading into generic praise.",
+        "Do not claim orchestration, approval, or runtime delegation authority."
+      ],
       "modes": [],
       "benchmark_sources": [],
       "consumption_hints": {},
@@ -2060,9 +2394,9 @@
       "family_slug": "testing",
       "shared_summary": "Testing family for unit tests, end-to-end tests, edge-case discovery, and coverage gap analysis.",
       "shared_constraints": [
-        "Generate or recommend tests only; do not execute them automatically.",
-        "Respect repository-native framework choices.",
-        "Cover edge cases and failure paths, not only the happy path."
+        "Do not execute tests automatically.",
+        "Do not replace project-specific framework decisions when the repository already has a clear testing stack.",
+        "Do not claim coverage metrics without a coverage artifact or direct evidence."
       ],
       "modes": [
         {
@@ -2526,7 +2860,12 @@
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "uac-import",
       "shared_summary": "Import external prompt, skill, or agent sources into the deterministic UAC uplift and packaging flow.",
-      "shared_constraints": [],
+      "shared_constraints": [
+        "No hidden execution.",
+        "No packaging claims without evidence.",
+        "No deployment during `apply`.",
+        "For local folders or GitHub repos, inventory the files first and justify whether they belong under one roof."
+      ],
       "modes": [],
       "benchmark_sources": [],
       "consumption_hints": {
@@ -2717,7 +3056,14 @@
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "weekly-intel",
       "shared_summary": "Multi-source weekly intelligence gathering, convergence, fact-check audit, and dual-report generation (technical + exec narrative) for any team, project, or time window.",
-      "shared_constraints": [],
+      "shared_constraints": [
+        "Do not modify any source system (tickets, repos, chat). Read only.",
+        "Do not assert a bug is \"fixed\" based on a single chat message without corroboration from the tracker or code.",
+        "Do not inflate ticket counts by including unrelated teams' work without disclosure.",
+        "Do not present created-after queries as merged-after without noting the caveat.",
+        "Do not skip the internal consistency check between body and appendices.",
+        "Do not use the word \"impressive\" or \"amazing\" in the main body. Let the numbers speak."
+      ],
       "modes": [],
       "benchmark_sources": [],
       "consumption_hints": {},
@@ -2747,6 +3093,7 @@
     "gemini_skill": [
       ".gemini/skills/analyze-context/SKILL.md",
       ".gemini/skills/architecture/SKILL.md",
+      ".gemini/skills/autosearch/SKILL.md",
       ".gemini/skills/code-review/SKILL.md",
       ".gemini/skills/converge/SKILL.md",
       ".gemini/skills/docs-review-expert/SKILL.md",
@@ -2761,6 +3108,7 @@
     ],
     "gemini_agent": [
       ".gemini/agents/architecture.md",
+      ".gemini/agents/autosearch.md",
       ".gemini/agents/converge.md",
       ".gemini/agents/docs-review-expert.md",
       ".gemini/agents/gitops-review.md",
@@ -2771,6 +3119,7 @@
     "claude_skill": [
       ".claude/skills/analyze-context/SKILL.md",
       ".claude/skills/architecture/SKILL.md",
+      ".claude/skills/autosearch/SKILL.md",
       ".claude/skills/code-review/SKILL.md",
       ".claude/skills/converge/SKILL.md",
       ".claude/skills/docs-review-expert/SKILL.md",
@@ -2785,6 +3134,7 @@
     ],
     "claude_agent": [
       ".claude/agents/architecture.md",
+      ".claude/agents/autosearch.md",
       ".claude/agents/converge.md",
       ".claude/agents/docs-review-expert.md",
       ".claude/agents/gitops-review.md",
@@ -2794,6 +3144,7 @@
     ],
     "kiro_agent": [
       ".kiro/agents/architecture.json",
+      ".kiro/agents/autosearch.json",
       ".kiro/agents/converge.json",
       ".kiro/agents/docs-review-expert.json",
       ".kiro/agents/gitops-review.json",
@@ -2804,6 +3155,7 @@
     "kiro_skill": [
       ".kiro/skills/analyze-context/SKILL.md",
       ".kiro/skills/architecture/SKILL.md",
+      ".kiro/skills/autosearch/SKILL.md",
       ".kiro/skills/code-review/SKILL.md",
       ".kiro/skills/converge/SKILL.md",
       ".kiro/skills/docs-review-expert/SKILL.md",
@@ -2819,6 +3171,7 @@
     "codex_skill": [
       ".codex/skills/analyze-context/SKILL.md",
       ".codex/skills/architecture/SKILL.md",
+      ".codex/skills/autosearch/SKILL.md",
       ".codex/skills/code-review/SKILL.md",
       ".codex/skills/converge/SKILL.md",
       ".codex/skills/docs-review-expert/SKILL.md",
@@ -2833,6 +3186,7 @@
     ],
     "codex_agent": [
       ".codex/agents/architecture.toml",
+      ".codex/agents/autosearch.toml",
       ".codex/agents/converge.toml",
       ".codex/agents/docs-review-expert.toml",
       ".codex/agents/gitops-review.toml",
@@ -2845,6 +3199,12 @@
     "codex_skill": [
       ".codex/skills/analyze-context/resources/capability.json",
       ".codex/skills/architecture/resources/capability.json",
+      ".codex/skills/autosearch/resources/capability.json",
+      ".codex/skills/autosearch/resources/bootstrap.py",
+      ".codex/skills/autosearch/resources/templates/experiment-ledger.md.tmpl",
+      ".codex/skills/autosearch/resources/templates/goal-contract.md.tmpl",
+      ".codex/skills/autosearch/resources/templates/promotion-packet.md.tmpl",
+      ".codex/skills/autosearch/resources/templates/scorecard.json.tmpl",
       ".codex/skills/code-review/resources/capability.json",
       ".codex/skills/converge/resources/capability.json",
       ".codex/skills/docs-review-expert/resources/capability.json",
@@ -2859,6 +3219,12 @@
     ],
     "codex_agent": [
       ".codex/agents/resources/architecture/capability.json",
+      ".codex/agents/resources/autosearch/capability.json",
+      ".codex/agents/resources/autosearch/bootstrap.py",
+      ".codex/agents/resources/autosearch/templates/experiment-ledger.md.tmpl",
+      ".codex/agents/resources/autosearch/templates/goal-contract.md.tmpl",
+      ".codex/agents/resources/autosearch/templates/promotion-packet.md.tmpl",
+      ".codex/agents/resources/autosearch/templates/scorecard.json.tmpl",
       ".codex/agents/resources/converge/capability.json",
       ".codex/agents/resources/docs-review-expert/capability.json",
       ".codex/agents/resources/gitops-review/capability.json",
@@ -2869,6 +3235,12 @@
     "gemini_skill": [
       ".gemini/skills/analyze-context/resources/capability.json",
       ".gemini/skills/architecture/resources/capability.json",
+      ".gemini/skills/autosearch/resources/capability.json",
+      ".gemini/skills/autosearch/resources/bootstrap.py",
+      ".gemini/skills/autosearch/resources/templates/experiment-ledger.md.tmpl",
+      ".gemini/skills/autosearch/resources/templates/goal-contract.md.tmpl",
+      ".gemini/skills/autosearch/resources/templates/promotion-packet.md.tmpl",
+      ".gemini/skills/autosearch/resources/templates/scorecard.json.tmpl",
       ".gemini/skills/code-review/resources/capability.json",
       ".gemini/skills/converge/resources/capability.json",
       ".gemini/skills/docs-review-expert/resources/capability.json",
@@ -2883,6 +3255,12 @@
     ],
     "gemini_agent": [
       ".gemini/agents/resources/architecture/capability.json",
+      ".gemini/agents/resources/autosearch/capability.json",
+      ".gemini/agents/resources/autosearch/bootstrap.py",
+      ".gemini/agents/resources/autosearch/templates/experiment-ledger.md.tmpl",
+      ".gemini/agents/resources/autosearch/templates/goal-contract.md.tmpl",
+      ".gemini/agents/resources/autosearch/templates/promotion-packet.md.tmpl",
+      ".gemini/agents/resources/autosearch/templates/scorecard.json.tmpl",
       ".gemini/agents/resources/converge/capability.json",
       ".gemini/agents/resources/docs-review-expert/capability.json",
       ".gemini/agents/resources/gitops-review/capability.json",
@@ -2893,6 +3271,12 @@
     "claude_skill": [
       ".claude/skills/analyze-context/resources/capability.json",
       ".claude/skills/architecture/resources/capability.json",
+      ".claude/skills/autosearch/resources/capability.json",
+      ".claude/skills/autosearch/resources/bootstrap.py",
+      ".claude/skills/autosearch/resources/templates/experiment-ledger.md.tmpl",
+      ".claude/skills/autosearch/resources/templates/goal-contract.md.tmpl",
+      ".claude/skills/autosearch/resources/templates/promotion-packet.md.tmpl",
+      ".claude/skills/autosearch/resources/templates/scorecard.json.tmpl",
       ".claude/skills/code-review/resources/capability.json",
       ".claude/skills/converge/resources/capability.json",
       ".claude/skills/docs-review-expert/resources/capability.json",
@@ -2907,6 +3291,12 @@
     ],
     "claude_agent": [
       ".claude/agents/resources/architecture/capability.json",
+      ".claude/agents/resources/autosearch/capability.json",
+      ".claude/agents/resources/autosearch/bootstrap.py",
+      ".claude/agents/resources/autosearch/templates/experiment-ledger.md.tmpl",
+      ".claude/agents/resources/autosearch/templates/goal-contract.md.tmpl",
+      ".claude/agents/resources/autosearch/templates/promotion-packet.md.tmpl",
+      ".claude/agents/resources/autosearch/templates/scorecard.json.tmpl",
       ".claude/agents/resources/converge/capability.json",
       ".claude/agents/resources/docs-review-expert/capability.json",
       ".claude/agents/resources/gitops-review/capability.json",
@@ -2917,6 +3307,12 @@
     "kiro_skill": [
       ".kiro/skills/analyze-context/resources/capability.json",
       ".kiro/skills/architecture/resources/capability.json",
+      ".kiro/skills/autosearch/resources/capability.json",
+      ".kiro/skills/autosearch/resources/bootstrap.py",
+      ".kiro/skills/autosearch/resources/templates/experiment-ledger.md.tmpl",
+      ".kiro/skills/autosearch/resources/templates/goal-contract.md.tmpl",
+      ".kiro/skills/autosearch/resources/templates/promotion-packet.md.tmpl",
+      ".kiro/skills/autosearch/resources/templates/scorecard.json.tmpl",
       ".kiro/skills/code-review/resources/capability.json",
       ".kiro/skills/converge/resources/capability.json",
       ".kiro/skills/docs-review-expert/resources/capability.json",
@@ -2931,6 +3327,12 @@
     ],
     "kiro_agent": [
       ".kiro/agents/resources/architecture/capability.json",
+      ".kiro/agents/resources/autosearch/capability.json",
+      ".kiro/agents/resources/autosearch/bootstrap.py",
+      ".kiro/agents/resources/autosearch/templates/experiment-ledger.md.tmpl",
+      ".kiro/agents/resources/autosearch/templates/goal-contract.md.tmpl",
+      ".kiro/agents/resources/autosearch/templates/promotion-packet.md.tmpl",
+      ".kiro/agents/resources/autosearch/templates/scorecard.json.tmpl",
       ".kiro/agents/resources/converge/capability.json",
       ".kiro/agents/resources/docs-review-expert/capability.json",
       ".kiro/agents/resources/gitops-review/capability.json",
