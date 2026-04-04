@@ -49,6 +49,16 @@ bin/uac apply /absolute/path/to/family-folder --yes
   - `bin/capability-fabric validate --strict`
 - does not deploy to CLI homes automatically
 
+## Deploy After Review
+Use Capability Fabric deployment after `apply` when you want generated surfaces copied into CLI home directories.
+
+```bash
+bin/capability-fabric deploy --cli codex --slug autosearch --target "$HOME" --allow-nonlocal-target
+```
+
+- `--slug` is repeatable and limits deployment to specific capabilities.
+- deployment copies the full emitted resource bundle for each selected surface, not just `SKILL.md` or `capability.json`.
+
 ## What `judge` Does
 - selects a quality profile
 - resolves the canonical baseline source from `sources/ssot-baselines/`

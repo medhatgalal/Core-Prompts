@@ -178,6 +178,18 @@ def test_deploy_with_only_codex_available_registers_only_codex_agents(tmp_path: 
         assert (tmp_path / ".codex" / "skills" / slug / "resources" / "capability.json").is_file()
         assert not (tmp_path / ".codex" / "agents" / f"{slug}.toml").exists()
 
+    assert (tmp_path / ".codex" / "skills" / "autosearch" / "resources" / "bootstrap.py").is_file()
+    assert (
+        tmp_path
+        / ".codex"
+        / "skills"
+        / "autosearch"
+        / "resources"
+        / "templates"
+        / "goal-contract.md.tmpl"
+    ).is_file()
+    assert (tmp_path / ".codex" / "agents" / "resources" / "autosearch" / "bootstrap.py").is_file()
+
     config_text = (tmp_path / ".codex" / "config.toml").read_text(encoding="utf-8")
     for slug in ("converge", "mentor", "supercharge"):
         assert f"[agents.{slug}]" in config_text
@@ -228,6 +240,47 @@ def test_deploy_with_all_clis_available_deploys_new_skill_surfaces(tmp_path: Pat
         assert (tmp_path / ".kiro" / "skills" / slug / "resources" / "capability.json").is_file()
         assert (tmp_path / ".kiro" / "agents" / f"{slug}.json").is_file()
         assert (tmp_path / ".kiro" / "agents" / "resources" / slug / "capability.json").is_file()
+
+    for cli_dir in (".codex", ".gemini", ".claude", ".kiro"):
+        assert (tmp_path / cli_dir / "skills" / "autosearch" / "resources" / "bootstrap.py").is_file()
+        assert (
+            tmp_path
+            / cli_dir
+            / "skills"
+            / "autosearch"
+            / "resources"
+            / "templates"
+            / "scorecard.json.tmpl"
+        ).is_file()
+
+    assert (tmp_path / ".codex" / "agents" / "resources" / "autosearch" / "bootstrap.py").is_file()
+    assert (
+        tmp_path
+        / ".gemini"
+        / "agents"
+        / "resources"
+        / "autosearch"
+        / "templates"
+        / "promotion-packet.md.tmpl"
+    ).is_file()
+    assert (
+        tmp_path
+        / ".claude"
+        / "agents"
+        / "resources"
+        / "autosearch"
+        / "templates"
+        / "experiment-ledger.md.tmpl"
+    ).is_file()
+    assert (
+        tmp_path
+        / ".kiro"
+        / "agents"
+        / "resources"
+        / "autosearch"
+        / "templates"
+        / "goal-contract.md.tmpl"
+    ).is_file()
 
     legacy_direct_paths = (
         tmp_path / ".gemini" / "commands",
@@ -338,3 +391,26 @@ def test_deploy_codex_registration_removes_legacy_duplicate_stanzas(tmp_path: Pa
     assert "/tmp/stale-supercharge.toml" not in config_text
     assert "/tmp/stale-converge.toml" not in config_text
     assert "/tmp/legacy-docs-review.toml" not in config_text
+
+
+def test_deploy_slug_filter_limits_copy_and_registration(tmp_path: Path) -> None:
+    result = run_script(
+        DEPLOY_SCRIPT,
+        "--cli",
+        "codex",
+        "--slug",
+        "autosearch",
+        target_root=tmp_path,
+        cli_bins=("codex",),
+        use_system_bash=True,
+        allow_nonlocal_target=True,
+    )
+    assert result.returncode == 0, result.stdout
+    assert "Deploying managed slugs: autosearch" in result.stdout
+    assert (tmp_path / ".codex" / "skills" / "autosearch" / "SKILL.md").is_file()
+    assert (tmp_path / ".codex" / "skills" / "autosearch" / "resources" / "bootstrap.py").is_file()
+    assert not (tmp_path / ".codex" / "skills" / "code-review" / "SKILL.md").exists()
+
+    config_text = (tmp_path / ".codex" / "config.toml").read_text(encoding="utf-8")
+    assert "[agents.autosearch]" in config_text
+    assert "[agents.converge]" not in config_text
