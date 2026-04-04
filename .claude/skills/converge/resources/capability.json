@@ -172,7 +172,13 @@
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "converge",
   "shared_summary": "[Medhat] Universal Synthesis & Convergence Prompt (Portable)",
-  "shared_constraints": [],
+  "shared_constraints": [
+    "Do not create a Frankenstein merge.",
+    "Do not invent missing preferences.",
+    "Do not hide major conflicts behind bland synthesis language.",
+    "Do not skip the rationale for rejected ideas.",
+    "Do not claim execution authority beyond synthesis and recommendation."
+  ],
   "modes": [],
   "benchmark_sources": [],
   "consumption_hints": {},

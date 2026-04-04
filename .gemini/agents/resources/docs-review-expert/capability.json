@@ -169,7 +169,13 @@
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "docs-review-expert",
   "shared_summary": "Documentation Review Expert for information architecture, readable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.",
-  "shared_constraints": [],
+  "shared_constraints": [
+    "Do not rewrite large doc sets when targeted cleanup is enough.",
+    "Do not create duplicate docs for the same concept.",
+    "Do not move technical or research material into user-facing docs without a clear reason.",
+    "Do not infer behavior from docs alone when code or scripts are available to verify it.",
+    "Do not leave the caller with generic advice that lacks file placement or evidence."
+  ],
   "modes": [],
   "benchmark_sources": [
     {

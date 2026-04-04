@@ -1,12 +1,19 @@
 from __future__ import annotations
 
 import json
+import importlib.util
 import shutil
 import subprocess
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+SCRIPT_PATH = ROOT / "scripts" / "uac-import.py"
+SPEC = importlib.util.spec_from_file_location("uac_import_script", SCRIPT_PATH)
+assert SPEC and SPEC.loader
+UAC_IMPORT = importlib.util.module_from_spec(SPEC)
+SPEC.loader.exec_module(UAC_IMPORT)
+BOOTSTRAP_SOURCE_PATH = ROOT / "sources" / "capability-resources" / "autosearch" / "bootstrap.py"
 
 
 def test_uac_import_local_file_flow(tmp_path: Path) -> None:
@@ -345,3 +352,183 @@ def test_uac_apply_refuses_landing_when_quality_gate_fails(tmp_path: Path) -> No
     assert payload["apply_result"]["quality"]["status"] in {"revise", "manual_review"}
     assert not (workspace / "ssot" / "thin-sample.md").exists()
     assert (workspace / "reports" / "quality-reviews" / payload["manifest"]["slug"] / "LATEST.md").is_file()
+
+
+def test_preferred_ssot_text_preserves_complete_authored_source(tmp_path: Path) -> None:
+    sample = tmp_path / "autosearch.md"
+    sample.write_text(
+        """---
+name: "autosearch"
+display_name: "Autosearch"
+description: "Rich authored source."
+capability_type: "both"
+install_target: "repo_local"
+---
+# Autosearch
+
+## Purpose
+Preserve the authored body.
+
+## Primary Objective
+Keep the complete source text when it already satisfies the template.
+
+## Agent Operating Contract
+Agent contract.
+
+## Tool Boundaries
+Tool boundaries.
+
+## Output Directory
+reports/autosearch/
+
+## Workflow
+1. Freeze baseline.
+
+## Rules
+- Deterministic.
+
+## Required Inputs
+- target
+
+## Required Output
+- promotion packet
+
+## Constraints
+- No silent merge.
+
+## Examples
+### Example Request
+> Improve this system.
+
+### Example Output Shape
+- Goal contract
+
+## Evaluation Rubric
+| Check | What Passing Looks Like |
+| --- | --- |
+| Source fidelity | The authored source is preserved |
+
+## Help System
+Copy-Ready Starter Invocation
+""",
+        encoding="utf-8",
+    )
+
+    payload = {
+        "source": {"normalized_source": str(sample)},
+        "manifest": {"layers": {"minimal": {"capability_type": "both"}}},
+    }
+    quality_result = {"final_candidate_text": "# Generic fallback\n"}
+
+    chosen = UAC_IMPORT._preferred_ssot_text("autosearch", payload, quality_result=quality_result)
+
+    assert "Copy-Ready Starter Invocation" in chosen
+    assert "Generic fallback" not in chosen
+
+
+def test_normalize_payload_for_same_slug_update_allows_judge_and_apply() -> None:
+    payload = {
+        "status": "accepted",
+        "manifest": {
+            "slug": "autosearch",
+            "layers": {
+                "minimal": {"capability_type": "both"},
+                "expanded": {"overlap_candidates": ["autosearch"]},
+            },
+        },
+        "uac": {"capability_type": "both"},
+        "routing": {"route_profile": "IMPLEMENTATION"},
+        "recommendation": {"next_actions": ["old"]},
+        "cross_analysis": {
+            "duplicate_risk": "high",
+            "fit_assessment": "manual_review",
+            "conflict_report": ["slug autosearch already exists"],
+            "overlap_report": [{"slug": "autosearch", "score": 1.0, "reason": "same slug"}],
+            "required_existing_adjustments": [],
+            "required_new_entry_adjustments": [],
+            "work_graph_change_summary": "autosearch risks duplicate or conflicting graph roles and should not auto-apply.",
+        },
+    }
+
+    normalized = UAC_IMPORT._normalize_payload_for_same_slug_update(payload)
+
+    assert normalized["cross_analysis"]["fit_assessment"] == "fits_cleanly"
+    assert normalized["cross_analysis"]["conflict_report"] == []
+    assert normalized["manifest"]["layers"]["expanded"]["overlap_candidates"] == []
+
+
+def test_source_constraints_prefer_authored_constraints(tmp_path: Path) -> None:
+    sample = tmp_path / "autosearch.md"
+    sample.write_text(
+        """## Constraints
+- Do not auto-merge.
+- Do not claim unmeasured wins.
+""",
+        encoding="utf-8",
+    )
+
+    payload = {"source": {"normalized_source": str(sample)}}
+
+    assert UAC_IMPORT._source_constraints(payload) == (
+        "Do not auto-merge.",
+        "Do not claim unmeasured wins.",
+    )
+
+
+def test_autosearch_bootstrap_creates_artifacts(tmp_path: Path) -> None:
+    report_dir = tmp_path / "reports" / "autosearch"
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(BOOTSTRAP_SOURCE_PATH),
+            "--target",
+            "review prompt",
+            "--goal",
+            "increase regression catch rate",
+            "--editable-scope",
+            "prompt body",
+            "--must-not-change",
+            "review authority",
+            "--baseline-evidence",
+            "existing eval cases",
+            "--promotion-threshold",
+            "higher catch rate with no added noise",
+            "--report-dir",
+            str(report_dir),
+        ],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+
+    payload = json.loads(result.stdout)
+    created = payload["created"]
+    assert Path(created["goal_contract"]).is_file()
+    assert Path(created["experiment_ledger"]).is_file()
+    assert Path(created["promotion_packet"]).is_file()
+    scorecard_path = Path(created["scorecard"])
+    assert scorecard_path.is_file()
+    scorecard = json.loads(scorecard_path.read_text(encoding="utf-8"))
+    assert scorecard["goal"] == "increase regression catch rate"
+
+
+def test_build_surfaces_emits_autosearch_bootstrap_resource(tmp_path: Path) -> None:
+    workspace = tmp_path / "workspace"
+    shutil.copytree(
+        ROOT,
+        workspace,
+        ignore=shutil.ignore_patterns('.git', '.pytest_cache', '__pycache__', '.DS_Store', '.venv', 'node_modules'),
+    )
+
+    subprocess.run(
+        ["/opt/homebrew/bin/python3.14", str(workspace / "scripts" / "build-surfaces.py")],
+        cwd=workspace,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+
+    assert (workspace / ".codex" / "skills" / "autosearch" / "resources" / "bootstrap.py").is_file()
+    assert (workspace / ".codex" / "agents" / "resources" / "autosearch" / "bootstrap.py").is_file()
+    assert (workspace / ".codex" / "skills" / "autosearch" / "resources" / "templates" / "goal-contract.md.tmpl").is_file()
+    assert (workspace / ".codex" / "skills" / "autosearch" / "resources" / "templates" / "scorecard.json.tmpl").is_file()

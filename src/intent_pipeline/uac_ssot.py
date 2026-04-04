@@ -253,6 +253,34 @@ def extract_display_name(body: str, slug: str) -> str:
     return " ".join(part.capitalize() for part in slug.replace("_", "-").split("-"))
 
 
+def extract_markdown_section(body: str, heading: str) -> str:
+    lines = body.splitlines()
+    target = heading.strip()
+    capture = False
+    captured: list[str] = []
+    for line in lines:
+        stripped = line.strip()
+        if stripped.startswith("## "):
+            if capture:
+                break
+            if stripped == target:
+                capture = True
+                continue
+        if capture:
+            captured.append(line)
+    return "\n".join(captured).strip()
+
+
+def extract_section_bullets(body: str, heading: str) -> list[str]:
+    section = extract_markdown_section(body, heading)
+    bullets: list[str] = []
+    for line in section.splitlines():
+        stripped = line.strip()
+        if stripped.startswith("- "):
+            bullets.append(stripped[2:].strip())
+    return bullets
+
+
 def discover_actual_surfaces(root: Path, slug: str) -> set[str]:
     surface_paths = {
         "codex_skill": root / ".codex" / "skills" / slug / "SKILL.md",
@@ -336,6 +364,9 @@ __all__ = [
     "build_ssot_handoff_contract",
     "build_ssot_manifest_entry",
     "discover_actual_surfaces",
+    "extract_display_name",
+    "extract_markdown_section",
+    "extract_section_bullets",
     "load_ssot_entries",
     "parse_ssot_frontmatter_and_body",
     "render_audit_table",
