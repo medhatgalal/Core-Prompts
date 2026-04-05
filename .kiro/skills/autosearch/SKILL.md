@@ -1,7 +1,7 @@
 ---
 name: "autosearch"
-description: "Autosearch for goal-oriented search, experiment design, repeated-trial evaluation, trace-to-regression distillation, and promotion-ready improvement loops across prompts, tools, systems, workflows, services, and code."
-version: "v1.0"
+description: "Autosearch for goal-oriented search, minimal-loop investigation, experiment design, repeated-trial evaluation, trace-to-regression distillation, and promotion-ready improvement loops across prompts, tools, systems, workflows, services, and code."
+version: "v1.1"
 ---
 # Autosearch — Goal-Driven Improvement Search, Evaluation, and Promotion
 
@@ -95,15 +95,20 @@ When the host repo already has a preferred experiment, eval, or review layout, p
    - workflow or routing steps
    - code or component boundary
    - model or retrieval settings
-6. Generate bounded candidates and replay them in isolation.
-7. Score each candidate over repeated trials instead of trusting one lucky run.
-8. Distill failures, strong traces, and representative successes into eval assets for future reuse.
-9. Promote only verified winners by preparing:
+6. Choose the cheapest discriminating step that can separate the leading hypotheses before widening the search:
+   - static inspection
+   - single repro
+   - paired experiment
+   - repeated-trial search
+7. Generate bounded candidates and replay them in isolation only after the cheaper checks cannot separate the likely causes.
+8. Score each candidate over repeated trials when the target is non-deterministic, the first checks conflict, or a single run would be too noisy to trust.
+9. Distill failures, strong traces, and representative successes into eval assets for future reuse.
+10. Promote only verified winners by preparing:
    - change summary
    - commit plan
    - review packet
    - merge readiness checklist
-10. Update the standing regression set so the same failure is harder to reintroduce.
+11. Update the standing regression set so the same failure is harder to reintroduce.
 
 ## Decision States
 Every Autosearch run must end in one of these states:
@@ -126,9 +131,15 @@ Never end with an ambiguous “looks better” conclusion. Choose one state and 
 - Always define the goal contract before proposing edits.
 - Always freeze a baseline before search begins.
 - Always keep the editable surface smaller than the whole system on the first pass.
+- Prefer the cheapest discriminating experiment before wider search.
+- Distinguish “system under test is wrong” from “measurement harness is wrong” before widening the candidate surface.
 - Always evaluate over multiple trials when the target is non-deterministic.
+- Escalate to repeated trials only after a cheaper test cannot separate the likely causes.
 - Always separate candidate generation from candidate promotion.
 - Prefer fewer strong metrics over large fuzzy score bundles.
+- If one sharply framed hypothesis explains the behavior, test that before opening a broad search loop.
+- Serialize verification when one command regenerates artifacts another command reads.
+- Stop once the winner is obvious and the verification threshold is satisfied.
 - If a score improves while operator burden, cost, or regressions become unacceptable, treat that as a failed candidate.
 - If the host repo already has tests, review gates, or merge rules, incorporate them into the promotion threshold rather than bypassing them.
 - Treat traces and failures as future dataset material, not just debugging leftovers.
@@ -175,6 +186,14 @@ If the request includes commit or merge preparation, also include:
 - `Commit Plan`
 - `Review Packet`
 - `Merge Readiness`
+
+For bounded local investigations that do not justify a broad search loop yet, a compressed output is allowed:
+- `Target Summary`
+- `Baseline`
+- `Discriminating Check`
+- `Fix or Rejected Hypothesis`
+- `Verification`
+- `Promotion Decision`
 
 ## Help System
 
@@ -288,6 +307,22 @@ If the target is new or risky, start in `dry-run advisory` mode:
 - define evals
 - do not commit or merge automatically
 
+### Minimal Loop Entry
+Use this when the issue is local, bounded, and likely deterministic:
+- one baseline run
+- one discriminating repro
+- one root-cause check
+- one fix
+- one verification pass
+
+Escalate beyond this only if:
+- the issue appears nondeterministic
+- the baseline and repro disagree
+- the harness looks suspect
+- the first fix does not cleanly separate the hypotheses
+
+This is the default entrypoint for small tooling, script, and local code-path bugs.
+
 ### Escalation Prompts
 Ask targeted setup questions only when missing details would change the result materially. Prefer:
 - “What is the target and what counts as better?”
@@ -305,7 +340,18 @@ Produce:
 - scope boundary
 - initial scorecard
 
-### Mode 2: Search Design
+### Mode 2: Minimal Loop
+Use when the issue is bounded, local, and likely deterministic.
+
+Produce:
+- baseline run
+- discriminating repro
+- root-cause check
+- one fix
+- one verification pass
+- explicit escalation decision
+
+### Mode 3: Search Design
 Use when the target is clear but the search surface is not.
 
 Produce:
@@ -314,7 +360,7 @@ Produce:
 - replay strategy
 - trial plan
 
-### Mode 3: Experiment Loop
+### Mode 4: Experiment Loop
 Use when setup is complete and the user needs the actual improvement loop.
 
 Produce:
@@ -323,7 +369,7 @@ Produce:
 - score comparisons
 - loser/winner reasoning
 
-### Mode 4: Trace-to-Eval
+### Mode 5: Trace-to-Eval
 Use when the user has traces, transcripts, failures, or production examples.
 
 Produce:
@@ -332,7 +378,7 @@ Produce:
 - expected outcomes
 - regression promotion policy
 
-### Mode 5: Promotion
+### Mode 6: Promotion
 Use when one or more candidates have cleared the score threshold.
 
 Produce:
@@ -364,6 +410,36 @@ Each candidate run should record:
 - cost and latency
 - keep/reject decision
 - reasoning tied to the scorecard
+
+### Cost Ladder
+Use this ladder to control budget and escalation:
+1. static inspection
+   - inspect code, prompt body, wrapper, or script without mutation
+2. single repro
+   - run one sharply chosen repro that distinguishes the leading hypothesis
+3. paired experiment
+   - compare two capture methods, invocation forms, or candidate deltas
+4. repeated-trial search
+   - widen only after cheaper checks cannot cleanly separate the likely causes
+
+Do not jump to step 4 by default.
+
+### Verification Sequencing
+When one command regenerates outputs that another command reads:
+- run regeneration first
+- then run validation
+- then run tests or smoke checks that depend on the regenerated state
+- avoid parallel execution of dependent verification steps
+
+Treat build-dependent validation as a serialized chain, not a parallel fan-out.
+
+### Stopping Rule
+Terminate the search loop once:
+- one candidate or hypothesis cleanly explains the behavior
+- verification passes at the current profile’s bar
+- competing hypotheses no longer have comparable evidence
+
+Do not keep searching after a clear winner just to spend the remaining budget.
 
 ### Trace Distillation
 After experiments, select:
@@ -428,12 +504,19 @@ Use one profile explicitly when the user does not provide one:
 - design the loop, scorecard, and candidate set
 - safest default for new targets
 
-### Profile 2: Bounded Execution
+### Profile 2: Bounded Infra / Tooling Bug
+- optimized for local scripts, wrappers, harnesses, and deterministic tooling paths
+- prefer harness fidelity checks before broader candidate search
+- compare capture methods, invocation forms, and probe behavior first
+- avoid touching manifests, generated outputs, or wider repo state unless evidence points there
+- default to `Mode 2: Minimal Loop`
+
+### Profile 3: Bounded Execution
 - edits allowed only inside the declared scope
 - experiment loop and repeated trials are active
 - commit and merge remain advisory unless the user requests execution
 
-### Profile 3: Promotion Prep
+### Profile 4: Promotion Prep
 - a winner already exists
 - prepare commit, review, merge, and rollback materials
 - do not skip the evidence summary
@@ -450,6 +533,12 @@ When the target itself is `autosearch` or another improvement capability, tighte
 - compare operator clarity, ambiguity reduction, and promotion safety in addition to task success
 - reject changes that make the capability sound more powerful but less verifiable
 - preserve conservative defaults unless evidence supports widening authority
+
+When improving Autosearch itself, explicitly capture and promote lessons such as:
+- prefer the cheapest discriminating experiment before multi-trial search
+- distinguish system defects from measurement-harness defects
+- escalate to repeated trials only after cheaper checks fail to separate hypotheses
+- serialize verification when one command regenerates artifacts another command reads
 
 For Autosearch improving itself, the minimum acceptance bar is:
 - the help system gets easier to use on first contact
@@ -492,6 +581,18 @@ For Autosearch improving itself, the minimum acceptance bar is:
 - commit plan
 - merge readiness checklist
 
+### Example Request
+> The local CLI smoke check is warning about Gemini discovery output. Use the bounded infra/tooling bug profile, prove whether the harness or the system is wrong, and stop once the discriminating winner is clear.
+
+### Example Output Shape
+- target summary
+- baseline run
+- discriminating repro
+- harness-vs-system decision
+- single fix
+- verification result
+- promotion decision
+
 ## Review Timing
 Use this capability before:
 - editing a prompt, workflow, component, or system without a measurable target
@@ -508,6 +609,8 @@ Use this capability before:
 - Do not let the capability degrade into generic brainstorming or generic testing advice.
 - Do not confuse public inspiration with local proof.
 - Do not promote any candidate whose score is ambiguous, unstable, or unrepeatable.
+- Do not run broad candidate search when one sharply framed hypothesis can be tested first.
+- Do not parallelize dependent verification steps when regenerated artifacts are involved.
 
 ## Evaluation Rubric
 | Check | What Passing Looks Like |
