@@ -3,14 +3,14 @@
 - Comparison basis: `git:HEAD .meta/manifest.json`
 - New capabilities: `0`
 - Removed capabilities: `0`
-- Changed capabilities: `1`
-- Material changes: `1`
+- Changed capabilities: `0`
+- Material changes: `0`
 
 ## New Capabilities
 - none
 
 ## Material Changes
-- `autosearch` — changed `summary`
+- none
 
 ## All Changed Capabilities
-- `autosearch` — changed `summary, version`
+- none
