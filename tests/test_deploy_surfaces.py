@@ -29,6 +29,7 @@ def run_script(
     use_system_bash: bool = False,
     env_overrides: dict[str, str] | None = None,
     allow_nonlocal_target: bool = False,
+    timeout: float | None = None,
 ) -> subprocess.CompletedProcess[str]:
     bin_dir = target_root / "fake-bin" if target_root is not None else None
     if cli_bins:
@@ -59,6 +60,7 @@ def run_script(
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             text=True,
+            timeout=timeout,
         )
     finally:
         if target_root is None and bin_dir is not None:
@@ -391,6 +393,57 @@ def test_deploy_codex_registration_removes_legacy_duplicate_stanzas(tmp_path: Pa
     assert "/tmp/stale-supercharge.toml" not in config_text
     assert "/tmp/stale-converge.toml" not in config_text
     assert "/tmp/legacy-docs-review.toml" not in config_text
+
+
+def test_deploy_codex_registration_completes_with_populated_home_style_config(tmp_path: Path) -> None:
+    config_path = tmp_path / ".codex" / "config.toml"
+    config_path.parent.mkdir(parents=True, exist_ok=True)
+    config_path.write_text(
+        "\n".join(
+            [
+                'model = "gpt-5.4"',
+                "",
+                "[agents.local-helper]",
+                'config_file = "/tmp/local-helper.toml"',
+                "",
+                "# >>> core-prompts codex agents start >>>",
+                "[agents.autosearch]",
+                'config_file = "/tmp/stale-autosearch.toml"',
+                "",
+                "# <<< core-prompts codex agents end <<<",
+                "",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    result = run_script(
+        DEPLOY_SCRIPT,
+        "--cli",
+        "all",
+        target_root=tmp_path,
+        cli_bins=("codex", "gemini", "claude", "kiro-cli"),
+        allow_nonlocal_target=True,
+        timeout=10,
+    )
+    assert result.returncode == 0, result.stdout
+    assert "REGISTERED codex agents in" in result.stdout
+    assert "SUMMARY copied=" in result.stdout
+
+    config_text = config_path.read_text(encoding="utf-8")
+    assert "[agents.local-helper]" in config_text
+    for slug in (
+        "architecture",
+        "autosearch",
+        "converge",
+        "docs-review-expert",
+        "gitops-review",
+        "mentor",
+        "supercharge",
+        "weekly-intel",
+    ):
+        assert config_text.count(f"[agents.{slug}]") == 1
 
 
 def test_deploy_slug_filter_limits_copy_and_registration(tmp_path: Path) -> None:

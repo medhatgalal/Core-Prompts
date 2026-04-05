@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.4.18 - 2026-04-05
+
+- Fixed copy-mode install and deploy completion under the default Homebrew Bash runtime:
+  - moved Codex agent registration into `scripts/register-codex-agents.py` so deployment no longer hangs on Bash stdin/heredoc edge cases after copying surfaces
+  - updated `scripts/deploy-surfaces.sh` to pass Codex agent slugs as a real argument array before registration
+  - included the new helper in packaged release artifacts
+- Added regression coverage for populated home-style Codex configs:
+  - `tests/test_deploy_surfaces.py` now enforces completion, summary emission, and idempotent managed-agent registration for all-CLI deploys under the default script interpreter
+
 ## 1.4.17 - 2026-04-05
 
 - Tightened skill discovery and overlap analysis without widening surface area:

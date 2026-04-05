@@ -242,6 +242,7 @@ done < "$COPY_PLAN_FILE"
 
 register_codex_agents() {
   local agent_lines="$1"
+  local -a agent_args=()
   [[ -n "$agent_lines" ]] || return 0
   local config_path="$TARGET_ROOT/.codex/config.toml"
   if [[ "$DRY_RUN" -eq 1 ]]; then
@@ -249,79 +250,11 @@ register_codex_agents() {
     return 0
   fi
   mkdir -p "$(dirname "$config_path")"
-  python3 - "$config_path" "$TARGET_ROOT" $agent_lines <<'PY'
-from pathlib import Path
-import re
-import sys
-
-config_path = Path(sys.argv[1]).expanduser()
-target_root = Path(sys.argv[2]).expanduser().resolve()
-agent_slugs = sorted(set(sys.argv[3:]))
-
-start_marker = "# >>> core-prompts codex agents start >>>"
-end_marker = "# <<< core-prompts codex agents end <<<"
-
-if config_path.exists():
-    original = config_path.read_text(encoding='utf-8')
-else:
-    original = ""
-
-lines = original.splitlines() if original else []
-start_idx = None
-end_idx = None
-for idx, line in enumerate(lines):
-    if line.strip() == start_marker:
-        start_idx = idx
-    if line.strip() == end_marker:
-        end_idx = idx
-        if start_idx is not None:
-            break
-
-managed_section_headers = {f"[agents.{slug}]" for slug in agent_slugs}
-
-def drop_legacy_managed_agent_stanzas(source_lines: list[str]) -> list[str]:
-    cleaned: list[str] = []
-    in_managed_block = False
-    skipping_legacy_stanza = False
-
-    for line in source_lines:
-        stripped = line.strip()
-        if stripped == start_marker:
-            in_managed_block = True
-            continue
-        if in_managed_block:
-            if stripped == end_marker:
-                in_managed_block = False
-            continue
-
-        is_section_header = bool(re.match(r"^\s*\[[^\]]+\]\s*$", line))
-        if stripped in managed_section_headers:
-            skipping_legacy_stanza = True
-            continue
-        if skipping_legacy_stanza and is_section_header:
-            skipping_legacy_stanza = False
-        if skipping_legacy_stanza:
-            continue
-        cleaned.append(line)
-
-    return cleaned
-
-managed = [start_marker]
-for slug in agent_slugs:
-    config_file = target_root / '.codex' / 'agents' / f'{slug}.toml'
-    managed.extend([
-        f'[agents.{slug}]',
-        f'config_file = "{config_file}"',
-        '',
-    ])
-managed.append(end_marker)
-managed_text = '\n'.join(managed)
-cleaned_lines = drop_legacy_managed_agent_stanzas(lines)
-prefix = '\n'.join(cleaned_lines).rstrip('\n')
-updated = prefix + ('\n\n' if prefix else '') + managed_text + '\n'
-
-config_path.write_text(updated, encoding='utf-8')
-PY
+  while IFS= read -r agent_slug; do
+    [[ -n "$agent_slug" ]] || continue
+    agent_args+=("$agent_slug")
+  done <<< "$agent_lines"
+  python3 scripts/register-codex-agents.py "$config_path" "$TARGET_ROOT" "${agent_args[@]}"
   echo "REGISTERED codex agents in $config_path"
 }
 
