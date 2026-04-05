@@ -5,11 +5,11 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Capability count: `14`
 
 ## Start Here
-- `architecture` — Architecture Studio: Architecture Studio for API design, database design, design-pattern selection, and system design with black-box boundaries, concrete artifacts, and migration-safe recommendations.
-- `resolve-conflict` — Merge Conflict Resolution — Structured Conflict Analysis: Merge Conflict Resolution for structured conflict analysis, additive merging, and inversion-led trade-off handling.
-- `testing` — Testing Studio — Test Design and Coverage Analysis: Testing Studio for unit-test generation, end-to-end test design, edge-case discovery, and coverage gap analysis.
+- `docs-review-expert` — Docs Review Expert — Documentation IA, Drift, and Release Hygiene: Documentation Review Expert for information architecture, explainable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.
 - `gitops-review` — GitOps Review — Repo Hygiene, CI, Release, and Merge Gate: GitOps Review for repo hygiene, commit quality, PR readiness, CI state, packaging, changelog, merge, tag, push, and release gates across GitHub and GitLab.
-- `supercharge` — SuperCharge — Prompt Engineering, Planning Hardening, and Graded Improvement: SuperCharge for prompt creation, prompt refinement, planning hardening, option comparison, grading, multi-pass critique, and structured execution-quality improvement across direct and agentic workflows.
+- `architecture` — Architecture Studio: Designs APIs, schemas, patterns, and system topology with explicit boundaries and trade-offs. Use for concrete architecture decisions, interface design, or rollback-aware system plans.
+- `uac-import` — UAC Import — Capability Intake, Quality Review, and Uplift: Inspects external prompt-like sources and maps them into Core-Prompts plan, judge, and apply flows. Use when importing, planning, judging, or applying a new or updated capability.
+- `testing` — Testing Studio — Test Design and Coverage Analysis: Testing Studio for unit-test generation, end-to-end test design, edge-case discovery, and coverage gap analysis.
 
 ## By CLI
 - `claude`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
@@ -18,23 +18,25 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `kiro`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
 
 ## By Use Case
-- `analysis`: `analyze-context`, `architecture`, `converge`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `weekly-intel`
+- `analysis`: `analyze-context`
 - `analyze`: `analyze-context`
-- `architecture`: `analyze-context`, `architecture`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `uac-import`
+- `architecture`: `architecture`, `docs-review-expert`
 - `autosearch`: `autosearch`
 - `code`: `code-review`
-- `context`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `threader`, `weekly-intel`
-- `debugging`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `weekly-intel`
+- `conflict`: `resolve-conflict`
+- `context`: `analyze-context`, `threader`
+- `converge`: `converge`
 - `docs`: `docs-review-expert`
 - `expert`: `docs-review-expert`
 - `gitops`: `gitops-review`
-- `import`: `converge`, `uac-import`
+- `import`: `uac-import`
 - `intel`: `weekly-intel`
-- `packaging`: `autosearch`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `uac-import`
-- `planning`: `architecture`, `autosearch`, `converge`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`
-- `prompting`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `review`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `routing`: `analyze-context`, `autosearch`, `mentor`, `resolve-conflict`, `supercharge`, `threader`, `uac-import`, `weekly-intel`
+- `mentor`: `mentor`
+- `planning`: `uac-import`
+- `prompting`: `mentor`, `uac-import`
+- `resolve`: `resolve-conflict`
+- `review`: `code-review`, `docs-review-expert`, `gitops-review`, `weekly-intel`
+- `supercharge`: `supercharge`
 - `testing`: `testing`
 - `threader`: `threader`
 - `weekly`: `weekly-intel`
@@ -50,7 +52,8 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
   - keep durable analysis notes that survive context loss
   - process a broad repo investigation one item at a time
   - recover and continue a previously interrupted analysis
-- Summary: Iterative Analysis Workflow for multi-file, multi-source repo analysis with canonical memory files, anti-sprawl controls, and compaction-safe progress tracking.
+  - preserve progress across a long research or audit workflow before a later recommendation step
+- Summary: Maintains durable analysis state for long-running multi-file investigations. Use when repo analysis must survive compaction or interruption, not for design, imports, or behavioral comparison.
 
 ### Architecture Studio
 - Slug: `architecture`
@@ -63,22 +66,25 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
   - choose between design patterns or refactor directions
   - design a system topology, reliability model, or scale strategy
   - produce a migration-safe architecture recommendation with rollback guidance
-- Summary: Architecture Studio for API design, database design, design-pattern selection, and system design with black-box boundaries, concrete artifacts, and migration-safe recommendations.
+- Summary: Designs APIs, schemas, patterns, and system topology with explicit boundaries and trade-offs. Use for concrete architecture decisions, interface design, or rollback-aware system plans.
 
 ### Autosearch — Goal-Driven Improvement Search, Evaluation, and Promotion
 - Slug: `autosearch`
 - Type: `both`
 - Install target: `repo_local`
 - Supported CLIs: `claude, codex, gemini, kiro`
-- Version: `v1.0`
+- Version: `v1.1`
 - Invocation hints:
   - improve this prompt, workflow, tool, or system and prove it got better
   - search for a better version of this component
+  - compare these prompt or capability variants behaviorally
+  - prove this imported or revised capability is better than baseline
+  - tell me whether this candidate is good enough to promote
   - run experiments against a goal and tell me what actually wins
   - turn our failures into future eval cases
   - optimize this system without regressing quality
   - guide me from setup to experiments to commit and merge
-- Summary: Autosearch for goal-oriented search, experiment design, repeated-trial evaluation, trace-to-regression distillation, and promotion-ready improvement loops across prompts, tools, systems, workflows, services, and code.
+- Summary: Optimizes prompts, skills, tools, workflows, and code with bounded search and baseline comparison. Use for experiments, behavioral variant comparison, or proof that a candidate beats baseline.
 
 ### Commit Review — Git Commit Quality Gate
 - Slug: `code-review`
@@ -167,10 +173,11 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
   - make this prompt better
   - harden this plan
   - compare these options and converge on one recommendation
+  - compare these prompt variants, then tell me whether behavioral proof is needed
   - critique this proposal from several angles
   - grade this output and iterate it upward
   - design an agentic workflow or prompt stack
-- Summary: SuperCharge for prompt creation, prompt refinement, planning hardening, option comparison, grading, multi-pass critique, and structured execution-quality improvement across direct and agentic workflows.
+- Summary: Hardens prompts, plans, and workflows through structured critique and graded refinement. Use when the user wants a better artifact or a sharper comparison before measured evaluation.
 
 ### Testing Studio — Test Design and Coverage Analysis
 - Slug: `testing`
@@ -207,7 +214,8 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
   - classify whether this source should become a skill, agent, or manual review
   - explain how this external source would land into SSOT and descriptors
   - judge whether a candidate is ready to apply
-- Summary: UAC Import for capability intake, quality review, uplift, and canonical SSOT plus descriptor landing.
+  - tell me whether this import needs stronger behavioral proof before landing
+- Summary: Inspects external prompt-like sources and maps them into Core-Prompts plan, judge, and apply flows. Use when importing, planning, judging, or applying a new or updated capability.
 
 ### Weekly Intelligence — Multi-Source Progress Report with Fact-Check Audit
 - Slug: `weekly-intel`

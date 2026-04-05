@@ -64,6 +64,8 @@ How to think about that sequence:
 - `judge` is the quality and ship decision
 - `apply` is the intentional repo mutation step
 
+If `judge` finds the candidate is structurally close to ready but still needs bounded behavioral proof, keep the landing decision open and route that proof to `autosearch` before `apply`.
+
 ## Worked Examples
 
 ### Example: Plan A Landing Before You Touch Repo State
@@ -139,6 +141,34 @@ Decision:
 ```
 
 Use `judge` when you want the quality decision, evidence, and blockers without changing the repo.
+
+### Example: Judge Escalates To Behavioral Proof
+
+Command:
+
+```bash
+bin/uac judge /absolute/path/to/prompt-family --quality-profile architecture
+```
+
+Typical escalation shape:
+
+```text
+Quality status: hold
+
+Judge summary:
+- structural quality is near ship
+- behavioral confidence is still weak against baseline
+
+Next step:
+- route to autosearch with:
+  - baseline artifact
+  - candidate artifact or variants
+  - claimed job
+  - bounded task set
+  - pass/fail threshold
+```
+
+Use this path when structural quality alone is not enough to justify landing.
 
 ### Example: Apply A Ship-Ready Capability
 

@@ -10,16 +10,11 @@
       "slug": "analyze-context",
       "display_name": "Analyze Context \u2014 Iterative Multi-File Analysis Workflow",
       "capability_type": "skill",
-      "summary": "Iterative Analysis Workflow for multi-file, multi-source repo analysis with canonical memory files, anti-sprawl controls, and compaction-safe progress tracking.",
+      "summary": "Maintains durable analysis state for long-running multi-file investigations. Use when repo analysis must survive compaction or interruption, not for design, imports, or behavioral comparison.",
       "role": "analyst",
       "domain_tags": [
-        "architecture",
-        "review",
         "analysis",
-        "routing",
-        "debugging",
         "context",
-        "prompting",
         "analyze"
       ],
       "required_inputs": [
@@ -96,16 +91,10 @@
       "slug": "architecture",
       "display_name": "Architecture Studio",
       "capability_type": "both",
-      "summary": "Architecture Studio for API design, database design, design-pattern selection, and system design with black-box boundaries, concrete artifacts, and migration-safe recommendations.",
-      "role": "advisor",
+      "summary": "Designs APIs, schemas, patterns, and system topology with explicit boundaries and trade-offs. Use for concrete architecture decisions, interface design, or rollback-aware system plans.",
+      "role": "architect",
       "domain_tags": [
-        "architecture",
-        "review",
-        "analysis",
-        "planning",
-        "debugging",
-        "context",
-        "prompting"
+        "architecture"
       ],
       "required_inputs": [
         "source text",
@@ -201,16 +190,9 @@
       "slug": "autosearch",
       "display_name": "Autosearch \u2014 Goal-Driven Improvement Search, Evaluation, and Promotion",
       "capability_type": "both",
-      "summary": "Autosearch for goal-oriented search, experiment design, repeated-trial evaluation, trace-to-regression distillation, and promotion-ready improvement loops across prompts, tools, systems, workflows, services, and code.",
-      "role": "advisor",
+      "summary": "Optimizes prompts, skills, tools, workflows, and code with bounded search and baseline comparison. Use for experiments, behavioral variant comparison, or proof that a candidate beats baseline.",
+      "role": "specialist_workflow",
       "domain_tags": [
-        "review",
-        "routing",
-        "packaging",
-        "planning",
-        "debugging",
-        "context",
-        "prompting",
         "autosearch"
       ],
       "required_inputs": [
@@ -310,13 +292,9 @@
       "display_name": "Commit Review \u2014 Git Commit Quality Gate",
       "capability_type": "skill",
       "summary": "Commit Review for git commit quality gates, scope control, and over-engineering detection.",
-      "role": "advisor",
+      "role": "analyst",
       "domain_tags": [
-        "architecture",
         "review",
-        "debugging",
-        "context",
-        "prompting",
         "code"
       ],
       "required_inputs": [
@@ -400,16 +378,9 @@
       "display_name": "Converge \u2014 Multi-Source Synthesis, Conflict Surfacing, and Final Recommendation",
       "capability_type": "both",
       "summary": "Universal Synthesis and Convergence for multi-source proposal comparison, conflict surfacing, decision analysis, and one coherent final recommendation.",
-      "role": "analyst",
+      "role": "resolver",
       "domain_tags": [
-        "architecture",
-        "review",
-        "analysis",
-        "packaging",
-        "import",
-        "planning",
-        "debugging",
-        "prompting"
+        "converge"
       ],
       "required_inputs": [
         "source text",
@@ -493,13 +464,10 @@
       "display_name": "Docs Review Expert \u2014 Documentation IA, Drift, and Release Hygiene",
       "capability_type": "both",
       "summary": "Documentation Review Expert for information architecture, explainable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.",
-      "role": "advisor",
+      "role": "analyst",
       "domain_tags": [
         "architecture",
         "review",
-        "packaging",
-        "debugging",
-        "prompting",
         "docs",
         "expert"
       ],
@@ -593,14 +561,9 @@
       "display_name": "GitOps Review \u2014 Repo Hygiene, CI, Release, and Merge Gate",
       "capability_type": "both",
       "summary": "GitOps Review for repo hygiene, commit quality, PR readiness, CI state, packaging, changelog, merge, tag, push, and release gates across GitHub and GitLab.",
-      "role": "advisor",
+      "role": "analyst",
       "domain_tags": [
-        "architecture",
         "review",
-        "packaging",
-        "debugging",
-        "context",
-        "prompting",
         "gitops"
       ],
       "required_inputs": [
@@ -696,14 +659,8 @@
       "summary": "[Medhat] Senior engineering oversight, planning, and workflow guidance.",
       "role": "advisor",
       "domain_tags": [
-        "architecture",
-        "review",
-        "analysis",
-        "routing",
-        "packaging",
-        "planning",
-        "debugging",
-        "context"
+        "prompting",
+        "mentor"
       ],
       "required_inputs": [
         "source text",
@@ -786,16 +743,10 @@
       "display_name": "Merge Conflict Resolution \u2014 Structured Conflict Analysis",
       "capability_type": "skill",
       "summary": "Merge Conflict Resolution for structured conflict analysis, additive merging, and inversion-led trade-off handling.",
-      "role": "advisor",
+      "role": "resolver",
       "domain_tags": [
-        "architecture",
-        "review",
-        "analysis",
-        "routing",
-        "packaging",
-        "planning",
-        "debugging",
-        "context"
+        "resolve",
+        "conflict"
       ],
       "required_inputs": [
         "source text",
@@ -877,17 +828,10 @@
       "slug": "supercharge",
       "display_name": "SuperCharge \u2014 Prompt Engineering, Planning Hardening, and Graded Improvement",
       "capability_type": "both",
-      "summary": "SuperCharge for prompt creation, prompt refinement, planning hardening, option comparison, grading, multi-pass critique, and structured execution-quality improvement across direct and agentic workflows.",
-      "role": "advisor",
+      "summary": "Hardens prompts, plans, and workflows through structured critique and graded refinement. Use when the user wants a better artifact or a sharper comparison before measured evaluation.",
+      "role": "specialist_workflow",
       "domain_tags": [
-        "architecture",
-        "review",
-        "analysis",
-        "routing",
-        "packaging",
-        "planning",
-        "debugging",
-        "context"
+        "supercharge"
       ],
       "required_inputs": [
         "source text",
@@ -971,13 +915,8 @@
       "display_name": "Testing Studio \u2014 Test Design and Coverage Analysis",
       "capability_type": "skill",
       "summary": "Testing Studio for unit-test generation, end-to-end test design, edge-case discovery, and coverage gap analysis.",
-      "role": "advisor",
+      "role": "workflow",
       "domain_tags": [
-        "review",
-        "analysis",
-        "planning",
-        "debugging",
-        "prompting",
         "testing"
       ],
       "required_inputs": [
@@ -1064,15 +1003,9 @@
       "display_name": "Threader \u2014 Full-Thread Transcript Export and Recall Capture",
       "capability_type": "skill",
       "summary": "[Medhat] Context Threader & Exporter (Memory Management)",
-      "role": "analyst",
+      "role": "specialist_workflow",
       "domain_tags": [
-        "review",
-        "analysis",
-        "routing",
-        "planning",
-        "debugging",
         "context",
-        "prompting",
         "threader"
       ],
       "required_inputs": [
@@ -1149,13 +1082,9 @@
       "slug": "uac-import",
       "display_name": "UAC Import \u2014 Capability Intake, Quality Review, and Uplift",
       "capability_type": "skill",
-      "summary": "UAC Import for capability intake, quality review, uplift, and canonical SSOT plus descriptor landing.",
-      "role": "analyst",
+      "summary": "Inspects external prompt-like sources and maps them into Core-Prompts plan, judge, and apply flows. Use when importing, planning, judging, or applying a new or updated capability.",
+      "role": "importer",
       "domain_tags": [
-        "architecture",
-        "review",
-        "routing",
-        "packaging",
         "import",
         "planning",
         "prompting"
@@ -1246,11 +1175,6 @@
       "role": "analyst",
       "domain_tags": [
         "review",
-        "analysis",
-        "routing",
-        "debugging",
-        "context",
-        "prompting",
         "weekly",
         "intel"
       ],

@@ -11,16 +11,11 @@
       "layers": {
         "minimal": {
           "capability_type": "skill",
-          "summary": "Iterative Analysis Workflow for multi-file, multi-source repo analysis with canonical memory files, anti-sprawl controls, and compaction-safe progress tracking.",
+          "summary": "Maintains durable analysis state for long-running multi-file investigations. Use when repo analysis must survive compaction or interruption, not for design, imports, or behavioral comparison.",
           "role": "analyst",
           "domain_tags": [
-            "architecture",
-            "review",
             "analysis",
-            "routing",
-            "debugging",
             "context",
-            "prompting",
             "analyze"
           ],
           "required_inputs": [
@@ -171,7 +166,8 @@
         "analyze several files or transcripts over a long session",
         "keep durable analysis notes that survive context loss",
         "process a broad repo investigation one item at a time",
-        "recover and continue a previously interrupted analysis"
+        "recover and continue a previously interrupted analysis",
+        "preserve progress across a long research or audit workflow before a later recommendation step"
       ]
     },
     {
@@ -180,16 +176,10 @@
       "layers": {
         "minimal": {
           "capability_type": "both",
-          "summary": "Architecture Studio for API design, database design, design-pattern selection, and system design with black-box boundaries, concrete artifacts, and migration-safe recommendations.",
-          "role": "advisor",
+          "summary": "Designs APIs, schemas, patterns, and system topology with explicit boundaries and trade-offs. Use for concrete architecture decisions, interface design, or rollback-aware system plans.",
+          "role": "architect",
           "domain_tags": [
-            "architecture",
-            "review",
-            "analysis",
-            "planning",
-            "debugging",
-            "context",
-            "prompting"
+            "architecture"
           ],
           "required_inputs": [
             "source text",
@@ -603,16 +593,9 @@
       "layers": {
         "minimal": {
           "capability_type": "both",
-          "summary": "Autosearch for goal-oriented search, experiment design, repeated-trial evaluation, trace-to-regression distillation, and promotion-ready improvement loops across prompts, tools, systems, workflows, services, and code.",
-          "role": "advisor",
+          "summary": "Optimizes prompts, skills, tools, workflows, and code with bounded search and baseline comparison. Use for experiments, behavioral variant comparison, or proof that a candidate beats baseline.",
+          "role": "specialist_workflow",
           "domain_tags": [
-            "review",
-            "routing",
-            "packaging",
-            "planning",
-            "debugging",
-            "context",
-            "prompting",
             "autosearch"
           ],
           "required_inputs": [
@@ -720,7 +703,7 @@
           "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "Autosearch \u2014 Goal-Driven Improvement Search, Evaluation, and Promotion",
-          "version": "v1.0"
+          "version": "v1.1"
         },
         "expanded": {
           "relationship_suggestions": [
@@ -764,7 +747,7 @@
       "display_name": "Autosearch \u2014 Goal-Driven Improvement Search, Evaluation, and Promotion",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "autosearch",
-      "shared_summary": "Autosearch for goal-oriented search, experiment design, repeated-trial evaluation, trace-to-regression distillation, and promotion-ready improvement loops across prompts, tools, systems, workflows, services, and code.",
+      "shared_summary": "Autosearch for goal-oriented search, minimal-loop investigation, experiment design, repeated-trial evaluation, trace-to-regression distillation, and promotion-ready improvement loops across prompts, tools, systems, workflows, services, and code.",
       "shared_constraints": [
         "Do not start search without a measurable goal.",
         "Do not claim a winner from a single run unless the system is strictly deterministic and the user agrees.",
@@ -772,7 +755,9 @@
         "Do not assume the host repo allows auto-commit or auto-merge.",
         "Do not let the capability degrade into generic brainstorming or generic testing advice.",
         "Do not confuse public inspiration with local proof.",
-        "Do not promote any candidate whose score is ambiguous, unstable, or unrepeatable."
+        "Do not promote any candidate whose score is ambiguous, unstable, or unrepeatable.",
+        "Do not run broad candidate search when one sharply framed hypothesis can be tested first.",
+        "Do not parallelize dependent verification steps when regenerated artifacts are involved."
       ],
       "modes": [],
       "benchmark_sources": [],
@@ -797,7 +782,7 @@
             "scenario_matrix": [],
             "historical_proof": {
               "materialized_from_commit": null,
-              "last_materialized_at": "2026-04-04T12:20:46.476198+00:00"
+              "last_materialized_at": "2026-04-04T12:21:31.756292+00:00"
             },
             "source": "source_library",
             "verified_by_git_history": false,
@@ -896,6 +881,9 @@
       "invocation_hints": [
         "improve this prompt, workflow, tool, or system and prove it got better",
         "search for a better version of this component",
+        "compare these prompt or capability variants behaviorally",
+        "prove this imported or revised capability is better than baseline",
+        "tell me whether this candidate is good enough to promote",
         "run experiments against a goal and tell me what actually wins",
         "turn our failures into future eval cases",
         "optimize this system without regressing quality",
@@ -909,13 +897,9 @@
         "minimal": {
           "capability_type": "skill",
           "summary": "Commit Review for git commit quality gates, scope control, and over-engineering detection.",
-          "role": "advisor",
+          "role": "analyst",
           "domain_tags": [
-            "architecture",
             "review",
-            "debugging",
-            "context",
-            "prompting",
             "code"
           ],
           "required_inputs": [
@@ -1084,16 +1068,9 @@
         "minimal": {
           "capability_type": "both",
           "summary": "Universal Synthesis and Convergence for multi-source proposal comparison, conflict surfacing, decision analysis, and one coherent final recommendation.",
-          "role": "analyst",
+          "role": "resolver",
           "domain_tags": [
-            "architecture",
-            "review",
-            "analysis",
-            "packaging",
-            "import",
-            "planning",
-            "debugging",
-            "prompting"
+            "converge"
           ],
           "required_inputs": [
             "source text",
@@ -1276,13 +1253,10 @@
         "minimal": {
           "capability_type": "both",
           "summary": "Documentation Review Expert for information architecture, explainable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.",
-          "role": "advisor",
+          "role": "analyst",
           "domain_tags": [
             "architecture",
             "review",
-            "packaging",
-            "debugging",
-            "prompting",
             "docs",
             "expert"
           ],
@@ -1490,14 +1464,9 @@
         "minimal": {
           "capability_type": "both",
           "summary": "GitOps Review for repo hygiene, commit quality, PR readiness, CI state, packaging, changelog, merge, tag, push, and release gates across GitHub and GitLab.",
-          "role": "advisor",
+          "role": "analyst",
           "domain_tags": [
-            "architecture",
             "review",
-            "packaging",
-            "debugging",
-            "context",
-            "prompting",
             "gitops"
           ],
           "required_inputs": [
@@ -1708,14 +1677,8 @@
           "summary": "[Medhat] Senior engineering oversight, planning, and workflow guidance.",
           "role": "advisor",
           "domain_tags": [
-            "architecture",
-            "review",
-            "analysis",
-            "routing",
-            "packaging",
-            "planning",
-            "debugging",
-            "context"
+            "prompting",
+            "mentor"
           ],
           "required_inputs": [
             "source text",
@@ -1889,16 +1852,10 @@
         "minimal": {
           "capability_type": "skill",
           "summary": "Merge Conflict Resolution for structured conflict analysis, additive merging, and inversion-led trade-off handling.",
-          "role": "advisor",
+          "role": "resolver",
           "domain_tags": [
-            "architecture",
-            "review",
-            "analysis",
-            "routing",
-            "packaging",
-            "planning",
-            "debugging",
-            "context"
+            "resolve",
+            "conflict"
           ],
           "required_inputs": [
             "source text",
@@ -2065,17 +2022,10 @@
       "layers": {
         "minimal": {
           "capability_type": "both",
-          "summary": "SuperCharge for prompt creation, prompt refinement, planning hardening, option comparison, grading, multi-pass critique, and structured execution-quality improvement across direct and agentic workflows.",
-          "role": "advisor",
+          "summary": "Hardens prompts, plans, and workflows through structured critique and graded refinement. Use when the user wants a better artifact or a sharper comparison before measured evaluation.",
+          "role": "specialist_workflow",
           "domain_tags": [
-            "architecture",
-            "review",
-            "analysis",
-            "routing",
-            "packaging",
-            "planning",
-            "debugging",
-            "context"
+            "supercharge"
           ],
           "required_inputs": [
             "source text",
@@ -2246,6 +2196,7 @@
         "make this prompt better",
         "harden this plan",
         "compare these options and converge on one recommendation",
+        "compare these prompt variants, then tell me whether behavioral proof is needed",
         "critique this proposal from several angles",
         "grade this output and iterate it upward",
         "design an agentic workflow or prompt stack"
@@ -2258,13 +2209,8 @@
         "minimal": {
           "capability_type": "skill",
           "summary": "Testing Studio for unit-test generation, end-to-end test design, edge-case discovery, and coverage gap analysis.",
-          "role": "advisor",
+          "role": "workflow",
           "domain_tags": [
-            "review",
-            "analysis",
-            "planning",
-            "debugging",
-            "prompting",
             "testing"
           ],
           "required_inputs": [
@@ -2557,15 +2503,9 @@
         "minimal": {
           "capability_type": "skill",
           "summary": "[Medhat] Context Threader & Exporter (Memory Management)",
-          "role": "analyst",
+          "role": "specialist_workflow",
           "domain_tags": [
-            "review",
-            "analysis",
-            "routing",
-            "planning",
-            "debugging",
             "context",
-            "prompting",
             "threader"
           ],
           "required_inputs": [
@@ -2720,13 +2660,9 @@
       "layers": {
         "minimal": {
           "capability_type": "skill",
-          "summary": "UAC Import for capability intake, quality review, uplift, and canonical SSOT plus descriptor landing.",
-          "role": "analyst",
+          "summary": "Inspects external prompt-like sources and maps them into Core-Prompts plan, judge, and apply flows. Use when importing, planning, judging, or applying a new or updated capability.",
+          "role": "importer",
           "domain_tags": [
-            "architecture",
-            "review",
-            "routing",
-            "packaging",
             "import",
             "planning",
             "prompting"
@@ -2895,7 +2831,8 @@
         "import a prompt, prompt pack, or capability into this repo",
         "classify whether this source should become a skill, agent, or manual review",
         "explain how this external source would land into SSOT and descriptors",
-        "judge whether a candidate is ready to apply"
+        "judge whether a candidate is ready to apply",
+        "tell me whether this import needs stronger behavioral proof before landing"
       ]
     },
     {
@@ -2908,11 +2845,6 @@
           "role": "analyst",
           "domain_tags": [
             "review",
-            "analysis",
-            "routing",
-            "debugging",
-            "context",
-            "prompting",
             "weekly",
             "intel"
           ],

@@ -65,6 +65,7 @@ INCLUDE_PATHS=(
   ".meta/capabilities"
   "dist/consumer-shell"
   "sources/ssot-baselines"
+  "scripts/deploy-copy-plan.py"
   "scripts/deploy-surfaces.sh"
   "scripts/install-local.sh"
   "docs/CAPABILITY-CATALOG.md"

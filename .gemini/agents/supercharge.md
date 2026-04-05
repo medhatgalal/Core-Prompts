@@ -1,7 +1,7 @@
 ---
 name: "supercharge"
 kind: local
-description: "SuperCharge for prompt creation, prompt refinement, planning hardening, option comparison, grading, multi-pass critique, and structured execution-quality improvement across direct and agentic workflows."
+description: "Hardens prompts, plans, and workflows through structured critique and graded refinement. Use when the user wants a better artifact or a sharper comparison before measured evaluation."
 max_turns: 15
 timeout_mins: 5
 ---
@@ -13,6 +13,8 @@ Use this capability when the user needs a prompt, plan, proposal, or multi-step 
 
 ## Primary Objective
 Produce a better artifact than the user started with, then explain why it is better: simpler where needed, harder to break, easier to execute, and explicit about assumptions, trade-offs, and remaining gaps.
+
+When the user needs measured behavioral proof that one prompt or capability variant is better than another, SuperCharge should harden the candidates first, then hand off to `autosearch` instead of overstating critique as evidence.
 
 ## Agent Operating Contract
 When emitted as an agent, this capability remains advisory by default.
@@ -32,7 +34,7 @@ Responsibilities:
 ## Tool Boundaries
 - allowed: inspect current source material, compare alternatives, generate improved prompts or plans, and produce grading outputs or execution scaffolds
 - forbidden: hidden chain-of-thought exposure, fake certainty, runtime orchestration ownership, or destructive execution without explicit approval
-- escalation: if the user asks for unsafe or destructive execution, stop and require explicit confirmation rather than folding it into prompt work
+- escalation: if the user asks for unsafe or destructive execution, stop and require explicit confirmation rather than folding it into prompt work; if the user needs bounded behavioral proof across variants, route to `autosearch`
 
 ## Output Directory
 When file output is requested, default to:
@@ -48,6 +50,7 @@ Use this capability when the user asks for any of the following, even without na
 - make this prompt better
 - harden this plan
 - compare these options and converge on one recommendation
+- compare these prompt variants, then tell me whether behavioral proof is needed
 - critique this proposal from several angles
 - grade this output and iterate it upward
 - design an agentic workflow or prompt stack
@@ -55,6 +58,7 @@ Use this capability when the user asks for any of the following, even without na
 ## Required Inputs
 - the current prompt, draft, plan, proposal, or intent statement
 - any sources or alternatives that must be compared
+- the claimed difference between variants when the user wants a stronger comparison
 - explicit constraints, non-negotiables, or success criteria when known
 - risk tolerance when the task is high-stakes or operational
 
@@ -69,6 +73,10 @@ When grading or comparison is requested, also include:
 - the grading rubric or comparison criteria
 - the iteration ladder or option ranking
 - the top remaining gaps
+
+When SuperCharge determines that critique is insufficient and measured proof is needed, also include:
+- `Behavioral Proof Need`
+- `Autosearch Handoff`
 
 ## Constraints
 - Do not stack heavy frameworks concurrently without reason.
@@ -162,6 +170,7 @@ If the user provides no explicit module, SuperCharge MUST route the request to a
 - Architecture, design, or system -> `/simple` -> `/invert` -> `/contract`
 - High-stakes asks -> add `/safe` and include `/adversarial` + `/contract`
 - "Show me options" or compare approaches -> `/full`
+- "Prove which variant actually performs better" -> critique first, then hand off to `autosearch` for behavioral evaluation
 - Long-horizon, multi-step work -> include agentic orchestration guidance
 
 ### Reflective Controls (Optional Modifiers)

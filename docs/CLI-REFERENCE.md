@@ -22,7 +22,7 @@ If local `python3` resolves to an older interpreter, set `PYTHON_BIN=python3.11`
 | `python3 scripts/smoke-clis.py` | probe installed vendor CLIs and surface visibility | no |
 | `bin/uac audit` | inspect current SSOT and generated surface alignment | no |
 | `bin/uac plan <source...>` | show proposed landing shape for one or more sources | no |
-| `bin/uac judge <source...> --quality-profile architecture` | run the built-in quality loop without writing repo state | no |
+| `bin/uac judge <source...> --quality-profile architecture` | run the built-in quality loop without writing repo state; may recommend bounded behavioral proof via `autosearch` when structural quality is close but confidence is weak | no |
 | `bin/uac apply <source...> --yes` | write canonical SSOT and descriptors, then build and validate | yes |
 
 ## Task-Oriented Examples

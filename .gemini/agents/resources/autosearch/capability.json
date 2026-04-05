@@ -4,16 +4,9 @@
   "layers": {
     "minimal": {
       "capability_type": "both",
-      "summary": "Autosearch for goal-oriented search, experiment design, repeated-trial evaluation, trace-to-regression distillation, and promotion-ready improvement loops across prompts, tools, systems, workflows, services, and code.",
-      "role": "advisor",
+      "summary": "Optimizes prompts, skills, tools, workflows, and code with bounded search and baseline comparison. Use for experiments, behavioral variant comparison, or proof that a candidate beats baseline.",
+      "role": "specialist_workflow",
       "domain_tags": [
-        "review",
-        "routing",
-        "packaging",
-        "planning",
-        "debugging",
-        "context",
-        "prompting",
         "autosearch"
       ],
       "required_inputs": [
@@ -121,7 +114,7 @@
       "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
       "review_status": "ready_for_orchestrator_review",
       "display_name": "Autosearch \u2014 Goal-Driven Improvement Search, Evaluation, and Promotion",
-      "version": "v1.0"
+      "version": "v1.1"
     },
     "expanded": {
       "relationship_suggestions": [
@@ -179,6 +172,9 @@
   "invocation_hints": [
     "improve this prompt, workflow, tool, or system and prove it got better",
     "search for a better version of this component",
+    "compare these prompt or capability variants behaviorally",
+    "prove this imported or revised capability is better than baseline",
+    "tell me whether this candidate is good enough to promote",
     "run experiments against a goal and tell me what actually wins",
     "turn our failures into future eval cases",
     "optimize this system without regressing quality",
@@ -186,7 +182,7 @@
   ],
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "autosearch",
-  "shared_summary": "Autosearch for goal-oriented search, experiment design, repeated-trial evaluation, trace-to-regression distillation, and promotion-ready improvement loops across prompts, tools, systems, workflows, services, and code.",
+  "shared_summary": "Autosearch for goal-oriented search, minimal-loop investigation, experiment design, repeated-trial evaluation, trace-to-regression distillation, and promotion-ready improvement loops across prompts, tools, systems, workflows, services, and code.",
   "shared_constraints": [
     "Do not start search without a measurable goal.",
     "Do not claim a winner from a single run unless the system is strictly deterministic and the user agrees.",
@@ -194,7 +190,9 @@
     "Do not assume the host repo allows auto-commit or auto-merge.",
     "Do not let the capability degrade into generic brainstorming or generic testing advice.",
     "Do not confuse public inspiration with local proof.",
-    "Do not promote any candidate whose score is ambiguous, unstable, or unrepeatable."
+    "Do not promote any candidate whose score is ambiguous, unstable, or unrepeatable.",
+    "Do not run broad candidate search when one sharply framed hypothesis can be tested first.",
+    "Do not parallelize dependent verification steps when regenerated artifacts are involved."
   ],
   "modes": [],
   "benchmark_sources": [],
@@ -219,7 +217,7 @@
         "scenario_matrix": [],
         "historical_proof": {
           "materialized_from_commit": null,
-          "last_materialized_at": "2026-04-04T12:20:46.476198+00:00"
+          "last_materialized_at": "2026-04-04T12:21:31.756292+00:00"
         },
         "source": "source_library",
         "verified_by_git_history": false,
@@ -317,7 +315,7 @@
     "scenario_matrix": [],
     "historical_proof": {
       "materialized_from_commit": null,
-      "last_materialized_at": "2026-04-04T12:20:46.476198+00:00"
+      "last_materialized_at": "2026-04-04T12:21:31.756292+00:00"
     },
     "source": "source_library",
     "verified_by_git_history": false,

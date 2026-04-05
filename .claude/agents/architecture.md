@@ -1,6 +1,6 @@
 ---
 name: architecture
-description: "Architecture Studio for API design, database design, design-pattern selection, and system design with black-box boundaries, concrete artifacts, and migration-safe recommendations."
+description: "Designs APIs, schemas, patterns, and system topology with explicit boundaries and trade-offs. Use for concrete architecture decisions, interface design, or rollback-aware system plans."
 tools: Read, Write, Edit, Bash, Grep, Glob
 ---
 
@@ -17,6 +17,7 @@ Use this skill when the user needs any of the following:
 - migration-safe architecture decisions with explicit rollback guidance
 
 Do not use this skill to run orchestration, assign sub-agents, or choose runtime delegation. This skill publishes architecture guidance and decision artifacts only.
+Do not use this skill when the user mainly needs prompt hardening, capability import judgment, behavioral proof, or persistent multi-file analysis memory.
 
 ## Primary Objective
 Turn ambiguous design questions into implementation-usable architecture recommendations with explicit boundaries, rejected alternatives, migration and rollback guidance, and validation gates strong enough for review.
@@ -80,6 +81,7 @@ Tool Boundaries:
 - allowed: read repository inputs, compare existing interfaces, write architecture artifacts, and run lightweight inspection commands when needed
 - forbidden: runtime routing, agent delegation, workflow control loops, or implementing product code as a side effect of architecture analysis
 - escalation rule: if implementation or orchestration is requested, hand that off as a separate capability decision instead of folding it into architecture output
+- companion route: if the work is actually prompt or plan hardening, route to `supercharge`; if it is import classification, route to `uac-import`; if it needs durable multi-file analysis memory, route to `analyze-context`
 
 ## Output Directory
 When file output is requested, default to these paths unless the user specifies alternatives:

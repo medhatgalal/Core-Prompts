@@ -105,6 +105,44 @@ def test_build_capability_manifest_persists_repo_relative_local_sources() -> Non
     assert minimal['install_target']['recommended'] == 'repo_local'
 
 
+def test_build_capability_manifest_uses_signal_text_not_full_body_for_role_and_tags() -> None:
+    manifest = build_capability_manifest(
+        slug='autosearch',
+        source_metadata={
+            'source_type': 'LOCAL_FILE',
+            'normalized_source': str((ROOT / 'ssot' / 'autosearch.md').resolve()),
+            'policy_rule_id': 'ssot.autosearch',
+            'content_type': 'text/markdown',
+            'content_sha256': 'signal',
+        },
+        raw_text=(
+            'Companion routes: architecture import review analysis context planning debugging\\n'
+            'Examples: import architecture review workflow\\n'
+        ),
+        summary='Optimizes prompts and workflows with bounded experiments and baseline comparison.',
+        assessment_payload={
+            'capability_type': 'both',
+            'confidence': 0.9,
+            'rationale': 'Measured improvement workflow',
+            'emitted_surfaces': {'codex': ['codex_skill', 'codex_agent'], 'claude': ['claude_skill', 'claude_agent']},
+        },
+        uplift_payload={
+            'primary_objective': 'prove whether a candidate beats baseline',
+            'in_scope': ['behavioral variant comparison', 'trace-to-regression promotion'],
+            'quality_constraints': ['bounded search', 'repeatable evidence'],
+        },
+        routing_payload={'route_profile': 'VALIDATION'},
+        repo_root=ROOT,
+    )
+
+    minimal = manifest['layers']['minimal']
+
+    assert minimal['role'] != 'advisor'
+    assert 'autosearch' in minimal['domain_tags']
+    assert 'architecture' not in minimal['domain_tags']
+    assert 'import' not in minimal['domain_tags']
+
+
 def test_analyze_manifest_fit_detects_duplicate_slug() -> None:
     candidate = {
         'slug': 'architecture',
@@ -121,6 +159,24 @@ def test_analyze_manifest_fit_detects_duplicate_slug() -> None:
 
     assert analysis.duplicate_risk == 'high'
     assert analysis.fit_assessment == 'manual_review'
+
+
+def test_analyze_manifest_fit_ignores_role_only_overlap_for_generic_roles() -> None:
+    candidate = {
+        'slug': 'autosearch',
+        'layers': {'minimal': {'capability_type': 'both', 'role': 'specialist_workflow', 'domain_tags': ['autosearch']}}
+    }
+    existing = [
+        {
+            'slug': 'supercharge',
+            'layers': {'minimal': {'capability_type': 'both', 'role': 'specialist_workflow', 'domain_tags': ['supercharge']}}
+        }
+    ]
+
+    analysis = analyze_manifest_fit(candidate, existing)
+
+    assert analysis.fit_assessment == 'fits_cleanly'
+    assert analysis.overlap_report == ()
 
 
 def test_orchestrator_handoff_payload_exposes_advisory_quality_fields() -> None:

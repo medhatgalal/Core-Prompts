@@ -4,16 +4,10 @@
   "layers": {
     "minimal": {
       "capability_type": "both",
-      "summary": "Architecture Studio for API design, database design, design-pattern selection, and system design with black-box boundaries, concrete artifacts, and migration-safe recommendations.",
-      "role": "advisor",
+      "summary": "Designs APIs, schemas, patterns, and system topology with explicit boundaries and trade-offs. Use for concrete architecture decisions, interface design, or rollback-aware system plans.",
+      "role": "architect",
       "domain_tags": [
-        "architecture",
-        "review",
-        "analysis",
-        "planning",
-        "debugging",
-        "context",
-        "prompting"
+        "architecture"
       ],
       "required_inputs": [
         "source text",

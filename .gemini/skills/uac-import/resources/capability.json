@@ -4,13 +4,9 @@
   "layers": {
     "minimal": {
       "capability_type": "skill",
-      "summary": "UAC Import for capability intake, quality review, uplift, and canonical SSOT plus descriptor landing.",
-      "role": "analyst",
+      "summary": "Inspects external prompt-like sources and maps them into Core-Prompts plan, judge, and apply flows. Use when importing, planning, judging, or applying a new or updated capability.",
+      "role": "importer",
       "domain_tags": [
-        "architecture",
-        "review",
-        "routing",
-        "packaging",
         "import",
         "planning",
         "prompting"
@@ -154,7 +150,8 @@
     "import a prompt, prompt pack, or capability into this repo",
     "classify whether this source should become a skill, agent, or manual review",
     "explain how this external source would land into SSOT and descriptors",
-    "judge whether a candidate is ready to apply"
+    "judge whether a candidate is ready to apply",
+    "tell me whether this import needs stronger behavioral proof before landing"
   ],
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "uac-import",
