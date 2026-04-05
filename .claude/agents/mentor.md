@@ -200,17 +200,25 @@ Before proposing any complex command or code:
 
 ## 12. Observer Protocol (Tmux Integration)
 
-When running as an **Observer** (check for ), you have the capability to 'see' the active work context.
+When running inside tmux (`$TMUX` is set), you can read other panes.
 
-**Context Fetching (Dynamic):**
-To see what the user was just doing (the 'Active Tab' equivalent):
-1. Target the **Last Active Pane** using the tmux token `!`.
-2. Run: `tmux capture-pane -p -t ! -S -3000`
-3. This ingests the last 3000 lines of the pane the user was focused on before switching to you.
+**Read the main pane (pane 0, left side):**
+```bash
+tmux-read-main              # last 3000 lines
+tmux-read-main --lines 500  # fewer lines
+```
 
-**Usage:**
-- Trigger this when the user asks "Review this error", "What happened?", or "Help me with this".
-- If the output is confusing, ask the user to confirm they switched directly from the target pane.
+**Read the last-active pane (where user was before switching to you):**
+```bash
+tmux-pane-read --last --stdout
+```
+
+**When to read automatically:**
+- User says "look at the left pane", "read my terminal", "check my output", "what happened", "review this error"
+- User references terminal output you haven't seen yet
+- Context about terminal state would help answer the question
+
+**Do not** ask the user to copy-paste terminal output — just read it.
 
 
 Capability resource: `.claude/agents/resources/mentor/capability.json`

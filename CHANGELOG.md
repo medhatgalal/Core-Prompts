@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.4.19 - 2026-04-05
+
+- Realigned the canonical Mentor Observer Protocol with the already-installed home surfaces:
+  - updated `ssot/mentor.md` to use the tmux porcelain commands `tmux-read-main` and `tmux-pane-read --last --stdout` instead of raw `tmux capture-pane`
+  - made the observer auto-read triggers explicit for left-pane and terminal-output requests
+  - codified that Mentor should read terminal context directly instead of asking the user to copy-paste output
+- Refreshed the generated Mentor skill surfaces across Codex, Gemini, Claude, and Kiro so rebuilds, packaging, and installs preserve the same observer behavior already present in home installs
+
 ## 1.4.18 - 2026-04-05
 
 - Fixed copy-mode install and deploy completion under the default Homebrew Bash runtime:
