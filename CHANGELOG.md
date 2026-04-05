@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.4.14 - 2026-04-04
+
+- Reworked the docs and policy split so rules stay machine-readable and user docs stay user-facing:
+  - moved durable docs workflow, repo workflow, and agent-behavior policy into `.kiro/steering/`
+  - updated `AGENTS.md` to route agents to steering instead of treating maintainer docs as the canonical rule source
+  - clarified that maintainer docs are guides and checklists, not the governing policy layer
+- Deepened the user-facing onboarding path around current installed capabilities:
+  - expanded `README.md` to lead with installed skills and advisory agents, richer expected-output guidance, and transcript-style examples
+  - expanded `docs/EXAMPLES.md` to cover every currently shipped skill with concrete asks, expected outputs, follow-up asks, and "why this skill first" guidance
+  - refreshed `docs/GETTING-STARTED.md`, `docs/UAC-USAGE.md`, and `docs/CLI-REFERENCE.md` so installed capabilities remain first, UAC stays the intake/uplift layer, and repo tooling stays third
+- Tightened docs-governance and release-facing clarity:
+  - documented Kiro steering inclusion and rule-writing expectations for this repo
+  - clarified the role of generated inspection views such as `docs/CAPABILITY-CATALOG.md`, `docs/RELEASE-DELTA.md`, and `docs/STATUS.md`
+  - refreshed docs routing and maintainer hygiene guidance to reduce drift and overlap
+
 ## 1.4.13 - 2026-04-04
 
 - Added the `autosearch` capability as a first-class canonical asset:

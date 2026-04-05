@@ -1,4 +1,4 @@
-# AGENTS.md — Core-Prompts Source of Truth
+# AGENTS.md - Core-Prompts Source of Truth
 
 ## Scope and priority
 
@@ -61,9 +61,18 @@
 - Preserve user-defined customization for this repo unless explicitly changed through SSOT.
 - Do not treat `reports/**` as canonical source-of-truth when rebuilding surfaces or descriptors.
 
+## Steering Files
+
+- Kiro steering lives under `.kiro/steering/`.
+- For branch and mutation workflow, consult `.kiro/steering/repo-workflow.md` before making substantial repo changes.
+- For documentation hierarchy, docs drift, and generated-doc positioning, consult `.kiro/steering/docs-governance.md` when editing `README.md`, `docs/`, generated user views, or maintainer docs.
+- For rule-writing discipline and ask evaluation quality, consult `.kiro/steering/agent-behavior.md` before changing rules, docs policy, or execution posture.
+- Treat these steering files as the durable cross-surface policy location. Keep `AGENTS.md` as the short router and stable repo-wide rule summary.
+
 ## Maintainer hygiene
 
-- Use `docs/MAINTAINER-HYGIENE.md` as the durable rule set for docs hygiene, GitOps review timing, and lessons capture.
+- Use `.kiro/steering/docs-governance.md` and `.kiro/steering/repo-workflow.md` as the durable rule set for docs hygiene, docs drift, and repo workflow.
+- Use `docs/MAINTAINER-HYGIENE.md` as the human-facing maintainer guide and checklist, not as the canonical rule surface.
 - Review docs when commands, paths, setup, naming, metadata contracts, CI, release flow, or generated-surface behavior change materially.
 - Treat GitHub and GitLab parity as intentional design work; document any platform difference instead of letting drift accumulate silently.
 - Prefer deterministic GitHub and GitLab CLIs (`gh`, `glab`) for GitOps work. Treat MCP integrations as optional helpers, not the primary release path.
