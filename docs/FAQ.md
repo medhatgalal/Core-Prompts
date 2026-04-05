@@ -11,6 +11,13 @@ Edit `ssot/`. Generated surfaces and most descriptor details are derived.
 ## What does `judge` do?
 `judge` runs the quality loop without landing canonical repo state. It is the safest way to see whether a candidate is ready for `apply`.
 
+## What are `CAPABILITY-CATALOG.md`, `RELEASE-DELTA.md`, and `STATUS.md` for?
+- `CAPABILITY-CATALOG.md`: generated inventory and lookup aid for what ships and where it lands
+- `RELEASE-DELTA.md`: generated release-review aid for what changed versus the previous manifest
+- `STATUS.md`: generated health snapshot for packaged output inspection
+
+They are useful inspection views, not the first-stop onboarding docs.
+
 ## Do I need all CLI binaries installed?
 No. They are only required for local smoke checks and target-specific deploy validation.
 

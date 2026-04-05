@@ -1,69 +1,72 @@
-# Maintainer Hygiene Rules
+# Maintainer Hygiene Guide
 
-Use this document as the durable maintainer rule set for documentation hygiene, GitOps review timing, and lessons capture.
+Use this page as the human-facing maintainer guide for documentation review, release checks, and repository hygiene. The canonical rule surfaces live in `.kiro/steering/`.
 
-## Purpose
-Keep repo changes explainable, reviewable, and aligned with the actual architecture, release flow, and multi-remote setup.
+## Canonical Policy Sources
 
-## Review Capabilities
-- Use `docs-review-expert` when documentation placement, readability, drift, or release-facing docs are in question.
-- Use `gitops-review` when commit quality, PR readiness, CI, packaging, merge, tag, or release readiness is in question.
-- Use `code-review`, `testing`, and `architecture` as companion capabilities when the change crosses their domains.
+When you need the actual governing rules, read these first:
 
-## Documentation Hygiene
-- `README.md` is for orientation, install, and fast-path usage only.
-- `README.md` and `docs/EXAMPLES.md` must lead with installed-skill usage and concrete user scenarios before maintainer workflows.
-- In user-facing docs, describe `bin/uac` as the capability intake and uplift mechanism, not the default product entrypoint.
-- Prefer plain-language names before acronyms in user-facing docs. If an acronym appears, expand it on first use and pair it with the functional label the reader should remember.
-- `docs/` is for durable operator, reference, and maintainer documentation.
-- Technical implementation detail belongs in technical or architecture docs, not onboarding pages.
-- Research, planning, and iteration notes stay out of user-facing docs unless promoted intentionally.
-- Every significant workflow or release change must be checked for doc drift.
+- `.kiro/steering/repo-workflow.md`
+- `.kiro/steering/docs-governance.md`
+- `.kiro/steering/agent-behavior.md`
+- `AGENTS.md`
 
-## GitOps Review Timing
-### Commit
-Review docs or process guidance when a commit changes:
-- user-facing commands or install behavior
-- naming, capability descriptions, or metadata contracts
-- CI workflows, release scripts, deploy/install scripts, or surface generation
+This page explains how to use those rules in practice. It is not the canonical policy source.
 
-### Pull Request
-Add or refresh review coverage when a pull request changes:
-- docs structure or repo information architecture
-- protected-branch assumptions, approval expectations, or CI gates
-- release packaging, versioning, or GitHub/GitLab parity behavior
+## Maintainer Focus
 
-### Merge
-Before merge, confirm:
-- adjacent doc surfaces are not drifting against one another
-- CI and release rules still match the branch integration behavior
-- release-facing docs still match the merged branch state
+When you are reviewing or updating this repo, keep these priorities in mind:
 
-### Release
-Every release must re-check:
-- `README.md`
-- `docs/GETTING-STARTED.md`
-- `docs/EXAMPLES.md`
+1. Preserve the intended product order: installed capabilities first, UAC second, repo tooling third.
+2. Verify commands, paths, generated surfaces, and release behavior against the repo as it exists now.
+3. Keep user-facing docs concrete and example-rich.
+4. Keep one canonical home per concept and link instead of duplicating unless the duplication is intentionally user-serving.
+
+## Practical Review Checklist
+
+### When onboarding or examples changed
+
+Check:
+
+- does `README.md` still lead with real installed capability usage
+- does `docs/GETTING-STARTED.md` still follow the intended product order
+- does `docs/EXAMPLES.md` still use current shipped capabilities only
+- do any linked docs contradict the README examples
+
+### When commands, paths, or generation changed
+
+Check:
+
+- wrapper help for `bin/uac` and `bin/capability-fabric`
+- actual generated directories under `.codex/`, `.gemini/`, `.claude/`, and `.kiro/`
+- any generated user views that depend on the changed behavior
+
+### When release or packaging behavior changed
+
+Check:
+
 - `docs/CLI-REFERENCE.md`
+- `docs/UAC-USAGE.md`
 - `docs/RELEASE-PACKAGING.md`
-- any changed maintainer/process docs
+- generated inspection views such as `docs/CAPABILITY-CATALOG.md`, `docs/RELEASE-DELTA.md`, and `docs/STATUS.md`
 
-## GitHub and GitLab Parity
-- Keep GitHub and GitLab CI surface area intentionally aligned where possible.
-- If one platform is intentionally different, document why and where the source of truth lives.
-- Treat CODEOWNERS, approval rules, protected branches, rulesets, and required checks as design constraints, not afterthoughts.
+## Generated Views: How To Use Them
 
-## Lessons and Self-Improvement
-- Record transient lessons, experiments, and evidence in `.planning/` for the active initiative.
-- If a recurring failure can be prevented by a template, validator, or quality gate, prefer that structural fix over repeating human reminders.
-- Promote a lesson into `AGENTS.md` or a durable maintainer doc when any of these are true:
-  - it caused repeated drift or repeated review failure
-  - it changed the repo's stable operating rule
-  - future agents are likely to repeat the mistake without a durable instruction
-- Prefer one durable rule in one canonical place instead of duplicating the same guidance across many files.
+- `docs/CAPABILITY-CATALOG.md`: use for inventory lookup and current surface placement
+- `docs/RELEASE-DELTA.md`: use for release review and change inspection
+- `docs/STATUS.md`: use for packaged-output health inspection
 
-## Promotion Test
-Promote a rule only if it is:
-- stable across future work
-- repo-wide rather than initiative-local
-- precise enough to guide behavior without project-specific context recovery
+They are useful generated inspection aids. They should not replace the real onboarding and example docs.
+
+## Suggested Review Rhythm
+
+- commit: check the touched commands, paths, examples, and any adjacent docs that may now drift
+- pull request: read the changed onboarding and reference pages together, not one file at a time
+- merge: re-check adjacent surfaces that might now disagree after integration
+- release: review README, getting-started, examples, UAC usage, CLI reference, release packaging, and the generated inspection views together
+
+## Companion Review Capabilities
+
+- use `docs-review-expert` when the change is primarily about docs hierarchy, drift, and rewrite quality
+- use `gitops-review` when the change affects branch hygiene, CI, packaging, merge, or release readiness
+- use `testing`, `code-review`, and `architecture` when the changed behavior crosses those boundaries

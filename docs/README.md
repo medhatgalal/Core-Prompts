@@ -1,89 +1,73 @@
 # Docs Home
 
-Use this page to choose the right documentation path without reading the entire repo.
+Use this page to pick the right documentation path quickly. The intended order is:
 
-## Fast Paths
+1. installed capabilities first
+2. UAC second
+3. broader repo tooling and maintainer docs third
+
+## Start Here
+
 | Need | Start here |
 | --- | --- |
-| I want to use the deployed Core-Prompts skills the normal way | [Getting started](GETTING-STARTED.md) |
-| I want to browse what Core-Prompts ships right now | [Capability catalog](CAPABILITY-CATALOG.md) |
-| I want to know what changed in the latest build | [Release delta](RELEASE-DELTA.md) |
-| I want a quick health snapshot before I trust the package | [Consumer status](STATUS.md) |
-| I want to know why this repo exists | [Root README](../README.md) |
-| first build, validate, and inspect loop | [Getting started](GETTING-STARTED.md) |
-| direct surface paths, deploy rules, and runtime expectations | [CLI reference](CLI-REFERENCE.md) |
-| UAC intake, judge, and apply behavior | [UAC usage](UAC-USAGE.md) |
-| release gate, package boundary, and CI parity | [Release packaging](RELEASE-PACKAGING.md) |
-| implementation model and generated-surface architecture | [Repository architecture](ARCHITECTURE.md) |
+| I want to use an installed Core-Prompts skill or agent | [Getting started](GETTING-STARTED.md) |
+| I want richer, copyable example asks | [Examples](EXAMPLES.md) |
+| I am importing or uplifting a capability | [UAC usage](UAC-USAGE.md) |
+| I need exact commands, paths, and generated-surface locations | [CLI reference](CLI-REFERENCE.md) |
+| I want to inspect what ships or what changed | [Capability catalog](CAPABILITY-CATALOG.md), [Release delta](RELEASE-DELTA.md), and [Consumer status](STATUS.md) |
+| I maintain builds, releases, or docs hygiene | [Maintainer hygiene](MAINTAINER-HYGIENE.md) and [Release packaging](RELEASE-PACKAGING.md) |
 
-## Reader Guides
+## Reader Paths
 
-### If you are evaluating the repo
-Start with:
-
-1. [Root README](../README.md)
-2. [Getting started](GETTING-STARTED.md)
-3. [Examples](EXAMPLES.md)
-4. [Capability catalog](CAPABILITY-CATALOG.md)
-
-### If you are just trying to use Core-Prompts
-Start with:
+### Daily user of installed capabilities
 
 1. [Getting started](GETTING-STARTED.md)
 2. [Examples](EXAMPLES.md)
 3. [FAQ](FAQ.md)
-4. [Capability catalog](CAPABILITY-CATALOG.md)
 
-### If you are adopting or operating it
-Start with:
+### Capability author or importer
 
-1. [Getting started](GETTING-STARTED.md)
-2. [CLI reference](CLI-REFERENCE.md)
-3. [UAC usage](UAC-USAGE.md)
-4. [Consumer status](STATUS.md)
+1. [UAC usage](UAC-USAGE.md)
+2. [UAC capability model](UAC-CAPABILITY-MODEL.md)
+3. [CLI reference](CLI-REFERENCE.md)
+4. [Baseline source library](../sources/ssot-baselines/README.md)
 
-### If you are maintaining or extending it
-Start with:
+### Maintainer or releaser
 
-1. [Technical README](README_TECHNICAL.md)
-2. [Repository architecture](ARCHITECTURE.md)
-3. [Maintainer hygiene rules](MAINTAINER-HYGIENE.md)
-4. [Release packaging](RELEASE-PACKAGING.md)
+1. [CLI reference](CLI-REFERENCE.md)
+2. [Maintainer hygiene](MAINTAINER-HYGIENE.md)
+3. [Release packaging](RELEASE-PACKAGING.md)
+4. [Technical README](README_TECHNICAL.md)
 
-## Product / Operator Docs
-- [Getting started](GETTING-STARTED.md)
-- [Capability catalog](CAPABILITY-CATALOG.md)
-- [Release delta](RELEASE-DELTA.md)
-- [Consumer status](STATUS.md)
-- [Examples](EXAMPLES.md)
-- [FAQ](FAQ.md)
+## Canonical Homes
 
-## Core Reference Docs
-- [Capability Fabric](CAPABILITY-FABRIC.md)
-- [UAC usage](UAC-USAGE.md)
-- [UAC capability model](UAC-CAPABILITY-MODEL.md)
-- [Baseline source library](../sources/ssot-baselines/README.md)
-- [CLI reference](CLI-REFERENCE.md)
+- [`../README.md`](../README.md): longer orientation, real usage examples, UAC boundary, and repo-tooling fast path
+- [`GETTING-STARTED.md`](GETTING-STARTED.md): first-run path in the correct order
+- [`EXAMPLES.md`](EXAMPLES.md): deeper scenario-style asks and expected outputs
+- [`UAC-USAGE.md`](UAC-USAGE.md): intake, uplift, `plan`, `judge`, and `apply`
+- [`CLI-REFERENCE.md`](CLI-REFERENCE.md): exact commands, paths, generated surfaces, and deploy behavior
+- [`MAINTAINER-HYGIENE.md`](MAINTAINER-HYGIENE.md): human maintainer guide and review checklist, with policy routed to steering
 
-## Integration Contract
-- [Orchestrator contract](ORCHESTRATOR-CONTRACT.md)
+## Generated Views
 
-## Maintainer / Release Docs
-- [Technical README](README_TECHNICAL.md)
+These are useful inspection aids, not the main onboarding path:
+
+- [Capability catalog](CAPABILITY-CATALOG.md): current capability inventory and surface placement
+- [Release delta](RELEASE-DELTA.md): generated comparison against the previous manifest
+- [Consumer status](STATUS.md): generated build, validation, and smoke snapshot
+
+## Technical And Maintainer Docs
+
 - [Repository architecture](ARCHITECTURE.md)
-- [Maintainer hygiene rules](MAINTAINER-HYGIENE.md)
+- [Capability Fabric](CAPABILITY-FABRIC.md)
+- [Orchestrator contract](ORCHESTRATOR-CONTRACT.md)
+- [Technical README](README_TECHNICAL.md)
 - [Release packaging](RELEASE-PACKAGING.md)
 
-## Documentation Design Principles
+## Research And Authoring Material
 
-- deployed Core-Prompts skills are the primary user-facing entrypoint
-- the root README explains value, pains solved, and the fast path
-- this docs hub routes by user intent
-- technical docs keep exact commands, paths, and maintainer behavior
-- one concept should have one canonical home, with links instead of duplication
+These stay in-repo but are not the first-stop user docs:
 
-## Research / Authoring Docs
-These stay in-repo but are not part of the packaged operator doc set.
 - [Architecture source assessment](ARCHITECTURE-SOURCE-ASSESSMENT.md)
 - [Prompt pack](prompt-pack/README.md)
 - `docs/ASSETS/`
