@@ -20,7 +20,8 @@ When you are reviewing or updating this repo, keep these priorities in mind:
 1. Preserve the intended product order: installed capabilities first, UAC second, repo tooling third.
 2. Verify commands, paths, generated surfaces, and release behavior against the repo as it exists now.
 3. Keep user-facing docs concrete and example-rich.
-4. Keep one canonical home per concept and link instead of duplicating unless the duplication is intentionally user-serving.
+4. Treat docs uplift as part of the same change when shipped behavior or discoverability changes. Do not leave README, getting-started, or examples stale and assume release notes are enough.
+5. Keep one canonical home per concept and link instead of duplicating unless the duplication is intentionally user-serving.
 
 ## Practical Review Checklist
 
@@ -32,6 +33,7 @@ Check:
 - does `docs/GETTING-STARTED.md` still follow the intended product order
 - does `docs/EXAMPLES.md` still use current shipped capabilities only
 - do any linked docs contradict the README examples
+- if invocation changed, can a user discover that change from README, getting-started, or examples without reading capability source files
 
 ### When commands, paths, or generation changed
 
@@ -40,6 +42,7 @@ Check:
 - wrapper help for `bin/uac` and `bin/capability-fabric`
 - actual generated directories under `.codex/`, `.gemini/`, `.claude/`, and `.kiro/`
 - any generated user views that depend on the changed behavior
+- any user-facing capability guidance that should change because the feature is now invoked differently or is discoverable in a new way
 
 ### When release or packaging behavior changed
 

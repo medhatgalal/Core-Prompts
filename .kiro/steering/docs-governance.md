@@ -37,6 +37,12 @@ Documentation should lead in this order:
 - Verify onboarding pages against current installed capabilities and current generated surfaces.
 - Keep one canonical home per concept and link instead of duplicating full explanations unless deeper duplication is intentionally user-serving.
 - If README embeds a higher-value example or explanation, the linked doc must stay aligned with it.
+- Treat docs uplift as part of the same change, not a follow-up task, whenever a shipped capability changes behavior, invocation expectations, or discoverability.
+- When a change affects how a user should know to invoke a capability, update the relevant user-facing surfaces in the same slice:
+  - `README.md` for orientation and first-discovery value
+  - `docs/GETTING-STARTED.md` for first successful use
+  - `docs/EXAMPLES.md` for concrete asks and expected behavior
+- "Docs reviewed" is not sufficient when discoverability changed. The docs must be updated meaningfully enough that a user can find and use the new behavior without reading source files or release notes.
 
 ## Generated Docs Positioning
 
@@ -57,3 +63,4 @@ Documentation should lead in this order:
 - pull request: if docs structure, release-facing docs, or generated-doc positioning changed
 - merge: if adjacent docs or generated views may now disagree
 - release: always re-check README, getting-started, examples, UAC usage, CLI reference, and release packaging against shipped behavior
+- release gate: block release-ready claims when a shipped behavior change landed without the corresponding onboarding and example uplift

@@ -24,7 +24,7 @@ If you want an advisory agent rather than a direct skill invocation, start with:
 
 | Agent | Example ask | Best when you need... |
 | --- | --- | --- |
-| `mentor` | "Use `mentor` to tell me the next reversible move on this repo." | sequencing and scope control |
+| `mentor` | "Use `mentor` to tell me the next reversible move on this repo, or look at the left pane and review the error if I am in tmux." | sequencing, scope control, and tmux-aware terminal context recovery |
 | `docs-review-expert` | "Use `docs-review-expert` to review our onboarding docs for drift before release." | structured documentation review |
 | `gitops-review` | "Use `gitops-review` to judge whether we are ready to merge and release." | a merge or release gate |
 | `weekly-intel` | "Use `weekly-intel` to produce this week's update from our source set." | a multi-source status summary |

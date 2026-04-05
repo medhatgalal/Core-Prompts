@@ -29,7 +29,7 @@ These are the currently shipped skills with a concrete starter ask for each one:
 | `converge` | compare competing proposals and force one recommendation | "Use `converge` to compare these rollout plans and recommend one." | overlap map, explicit conflicts, decision criteria, and one final recommendation |
 | `docs-review-expert` | fix docs structure, drift, and explainability | "Use `docs-review-expert` to tell me what belongs in `README.md` versus `docs/`, what drifted, and what to fix first." | doc placement, drift findings, rewrite targets, and review timing |
 | `gitops-review` | judge branch, PR, merge, or release readiness | "Use `gitops-review` to tell me whether this branch is ready for PR and what blockers remain." | gate type, blockers, required companion reviews, and next actions |
-| `mentor` | get senior sequencing and workflow guidance | "Use `mentor` to tell me the next reversible move on this branch." | the next move, why it is next, and what not to mix in |
+| `mentor` | get senior sequencing and workflow guidance, including tmux-aware terminal context recovery | "Use `mentor` to tell me the next reversible move on this branch, then read my terminal if the failure is in tmux." | the next move, why it is next, what not to mix in, and direct terminal-context reads when needed |
 | `resolve-conflict` | analyze a merge conflict or competing edits | "Use `resolve-conflict` to compare these conflicting branch edits and tell me what should survive." | conflict map, additive merge opportunities, explicit tradeoffs, and a recommended resolution |
 | `supercharge` | harden a rough prompt, plan, or proposal before execution | "Use `supercharge` to turn this rough feature brief into an implementation plan with tradeoffs and failure modes." | sharper framing, stronger constraints, execution plan, and failure-mode coverage |
 | `testing` | decide what to test first and what edge cases matter | "Use `testing` to identify the highest-value tests and edge cases for this change." | prioritized tests, edge cases, and coverage gaps |
@@ -55,7 +55,7 @@ These current advisory agents are emitted by the repo and available on agent-cap
 
 | Agent | Use it for | Example ask | What good output looks like |
 | --- | --- | --- | --- |
-| `mentor` | next-step guidance and risk-aware sequencing | "Use `mentor` to tell me the next reversible move on this branch." | pragmatic step order, scope control, and risk-aware sequencing |
+| `mentor` | next-step guidance, risk-aware sequencing, and tmux-aware context recovery | "Use `mentor` to look at the left pane and tell me what happened before recommending the next reversible move." | pragmatic step order, scope control, risk-aware sequencing, and direct terminal-context recovery |
 | `docs-review-expert` | documentation IA, drift review, and release-facing docs checks | "Use `docs-review-expert` to review our onboarding docs for drift and weak entrypoints." | concrete doc findings and rewrite targets |
 | `gitops-review` | repo hygiene, CI, merge, and release gates | "Use `gitops-review` to judge whether we are ready to merge and release." | a go or no-go recommendation with evidence and next actions |
 | `autosearch` | experiment-driven improvement loops | "Use `autosearch` to improve this workflow and prove which variant wins." | bounded experiments, evaluation, and promotion guidance |

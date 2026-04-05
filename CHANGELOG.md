@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.4.20 - 2026-04-05
+
+- Promoted docs uplift into an explicit repo-wide release rule:
+  - updated `.kiro/steering/docs-governance.md` so shipped behavior or discoverability changes must land with meaningful README, getting-started, and examples updates in the same slice
+  - updated `AGENTS.md` and `docs/MAINTAINER-HYGIENE.md` so docs uplift is treated as required release hygiene rather than optional cleanup
+  - blocked release-ready claims when onboarding and examples are not uplifted alongside a shipped behavior change
+- Corrected the user-facing Mentor tmux guidance that exposed the rule gap:
+  - updated `README.md`, `docs/GETTING-STARTED.md`, and `docs/EXAMPLES.md` so users can discover tmux-aware Mentor usage from onboarding and examples instead of only from capability source
+
 ## 1.4.19 - 2026-04-05
 
 - Realigned the canonical Mentor Observer Protocol with the already-installed home surfaces:

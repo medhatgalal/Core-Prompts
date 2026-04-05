@@ -235,6 +235,16 @@ Follow with:
 
 > Now tell me the next move after that one if the first step succeeds cleanly.
 
+Tmux follow-up:
+
+> Use `mentor` to look at the left pane and tell me what happened before you recommend the next reversible move.
+
+Expected output:
+
+- a short read of the terminal context from tmux
+- the likely failure or state transition that matters
+- the next reversible move after reading that context
+
 ### `resolve-conflict`
 
 Use when:
@@ -401,9 +411,9 @@ These examples are for the current advisory agents emitted by the repo.
 
 ### `mentor`
 
-> Use `mentor` to tell me the next reversible move on this branch.
+> Use `mentor` to tell me the next reversible move on this branch, or look at the left pane and review this error if I am in tmux.
 
-Use this when you want scoped sequencing and risk-aware guidance.
+Use this when you want scoped sequencing, risk-aware guidance, or direct tmux-aware terminal context recovery without copy-pasting logs.
 
 ### `docs-review-expert`
 
