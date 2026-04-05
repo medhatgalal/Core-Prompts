@@ -66,6 +66,7 @@ INCLUDE_PATHS=(
   "dist/consumer-shell"
   "sources/ssot-baselines"
   "scripts/deploy-copy-plan.py"
+  "scripts/register-codex-agents.py"
   "scripts/deploy-surfaces.sh"
   "scripts/install-local.sh"
   "docs/CAPABILITY-CATALOG.md"
