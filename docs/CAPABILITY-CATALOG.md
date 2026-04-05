@@ -70,7 +70,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Type: `both`
 - Install target: `repo_local`
 - Supported CLIs: `claude, codex, gemini, kiro`
-- Version: `v1.0`
+- Version: `v1.1`
 - Invocation hints:
   - improve this prompt, workflow, tool, or system and prove it got better
   - search for a better version of this component
@@ -78,7 +78,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
   - turn our failures into future eval cases
   - optimize this system without regressing quality
   - guide me from setup to experiments to commit and merge
-- Summary: Autosearch for goal-oriented search, experiment design, repeated-trial evaluation, trace-to-regression distillation, and promotion-ready improvement loops across prompts, tools, systems, workflows, services, and code.
+- Summary: Autosearch for goal-oriented search, minimal-loop investigation, experiment design, repeated-trial evaluation, trace-to-regression distillation, and promotion-ready improvement loops across prompts, tools, systems, workflows, services, and code.
 
 ### Commit Review — Git Commit Quality Gate
 - Slug: `code-review`
