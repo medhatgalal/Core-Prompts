@@ -1,148 +1,103 @@
 # Getting Started
 
-The original and primary way to use Core-Prompts is to use the skills that are already deployed into your CLI.
+Use this page in the same order Core-Prompts is meant to be used:
 
-This page keeps that default path clear, then shows the shortest safe repo path when you need to inspect, rebuild, validate, or extend those deployed capabilities.
+1. installed capabilities first
+2. UAC second
+3. broader repo tooling third
 
-## If You Just Installed Core-Prompts
+## Step 1: Use Installed Capabilities
 
-Start with the generated consumer-shell views:
+Start in your CLI, not in the repo.
 
-- [Capability catalog](CAPABILITY-CATALOG.md) to see what is installed and where it lands
-- [Release delta](RELEASE-DELTA.md) to see what changed in the latest build
-- [Consumer status](STATUS.md) to verify build, validation, and smoke health
+If Core-Prompts is already installed in Codex, Gemini, Claude, or Kiro, begin with one of these asks:
 
-## Default Usage Model
+| Capability | Example ask | What good output looks like |
+| --- | --- | --- |
+| `docs-review-expert` | "Use `docs-review-expert` to review our docs IA and recommend the smallest rewrite that restores clarity." | placement decisions, drift findings, and rewrite guidance |
+| `gitops-review` | "Use `gitops-review` to tell me whether this branch is ready for PR and what blockers remain." | gate type, blockers, companion reviews, and next steps |
+| `supercharge` | "Use `supercharge` to make this feature brief execution-ready." | stronger framing, constraints, and sequencing |
+| `autosearch` | "Use `autosearch` to improve our review prompt so it catches more regressions without increasing noise." | experiment design, evaluation, and a validated winner |
+| `testing` | "Use `testing` to identify the edge cases and tests this change needs." | prioritized tests and missing edge cases |
 
-If Core-Prompts is already deployed in your environment, start there first.
+If you want an advisory agent rather than a direct skill invocation, start with:
 
-- use the installed skills in Codex, Gemini, Claude, or Kiro
-- treat the repo workflows as the source-maintenance layer
-- come back to build, validate, UAC, and release steps only when you are changing or verifying canonical capability source
+| Agent | Example ask | Best when you need... |
+| --- | --- | --- |
+| `mentor` | "Use `mentor` to tell me the next reversible move on this repo." | sequencing and scope control |
+| `docs-review-expert` | "Use `docs-review-expert` to review our onboarding docs for drift before release." | structured documentation review |
+| `gitops-review` | "Use `gitops-review` to judge whether we are ready to merge and release." | a merge or release gate |
+| `weekly-intel` | "Use `weekly-intel` to produce this week's update from our source set." | a multi-source status summary |
 
-## If You Need To Work In The Repo
+## Step 2: Use UAC When You Are Landing New Capability Source
 
-This is the shortest safe path to prove the repo is working and understand what value you get from it.
+Use UAC, the capability intake and uplift workflow, only when you are bringing in a new prompt-like source or intentionally changing canonical capability state.
 
-## What Success Looks Like
+Use UAC when you need to:
 
-By the end of this page, you should have:
+- plan how an external capability family would land in `ssot/` and `.meta/capabilities/`
+- benchmark a candidate before it mutates the repo
+- apply a ship-ready capability into canonical state
 
-- a clear understanding that deployed Core-Prompts skills are the default consumption path
-- one working build of the generated surfaces
-- one successful strict validation pass
-- a clear sense of where canonical prompt sources live
-- a concrete understanding of how this repo turns prompts into maintainable capabilities
+Typical UAC progression:
 
-## Prerequisites
-- Python `3.14` preferred, Python `3.11+` supported
-- repository checked out locally
-- optional CLI binaries if you want smoke checks or deploy dry-runs
+```bash
+bin/uac plan /absolute/path/to/family-folder
+bin/uac judge /absolute/path/to/family-folder --quality-profile architecture
+bin/uac apply /absolute/path/to/family-folder --yes
+```
 
-Preferred entrypoints:
-- `bin/capability-fabric` for build, validate, and deploy
-- `bin/uac` for import, plan, judge, and apply
+Practical rule:
 
-These wrappers choose the highest available supported Python runtime automatically. If you need to pin one explicitly, set `PYTHON_BIN=python3.11` or `PYTHON_BIN=python3.14`.
+- use `plan` for landing shape
+- use `judge` for the quality decision
+- use `apply` only when you intend to change canonical repo state
 
-## Why This Is Worth Doing
+For the full flow, go to [UAC usage](UAC-USAGE.md).
 
-If you are deciding whether to invest time here, the payoff is this:
+## Step 3: Use Repo Tooling To Verify Or Operate The Repo
 
-- you stop managing prompt variants by hand across tools
-- you gain one canonical source plus preserved strongest baselines
-- you can validate and package AI capabilities instead of treating them like loose notes
-- you make drift visible before it becomes release debt
+Once you are working at the repo layer, this is the shortest useful verification loop:
 
-## Repo Fast Path
 ```bash
 bin/capability-fabric build
 bin/capability-fabric validate --strict
 python3 scripts/smoke-clis.py
 ```
 
-## What Those Commands Actually Do
+What this proves:
 
-| Command | Why it matters |
-| --- | --- |
-| `build` | regenerates all CLI skill and agent surfaces from canonical repo state |
-| `validate --strict` | checks that generated surfaces, manifests, and contracts are internally consistent |
-| `smoke-clis.py` | probes the installed CLIs and verifies expected surface visibility where supported |
+- `build` regenerates CLI skills, agents, bundled resources, and generated inspection views
+- `validate --strict` checks generated surfaces, manifests, and contract integrity
+- `smoke-clis.py` probes local vendor CLIs and expected surface visibility where supported
 
-Build also regenerates the thin consumer shell:
-- `dist/consumer-shell/capability-catalog.json`
-- `dist/consumer-shell/release-delta.json`
-- `dist/consumer-shell/status.json`
+Optional deploy dry run:
 
-## UAC Fast Path
-```bash
-bin/uac import /absolute/path/to/prompt.md
-bin/uac plan /absolute/path/to/family-folder
-bin/uac judge /absolute/path/to/family-folder --quality-profile architecture
-```
-
-Use `apply` only when you want canonical repo state to change:
-```bash
-bin/uac apply /absolute/path/to/family-folder --yes
-```
-
-## Success Checklist
-- you understand that already deployed skills are the normal runtime entrypoint
-- build completes
-- strict validation passes
-- smoke checks pass when local CLIs are installed
-- dry-run deploy shows the intended copies
-- you can point to:
-  - `ssot/` as the canonical authored source
-  - `sources/ssot-baselines/` as the preserved strongest baseline source
-  - generated surfaces under `.codex/`, `.gemini/`, `.claude/`, and `.kiro/`
-
-## Deploy Modes
-Repo-local dry run:
 ```bash
 bin/capability-fabric deploy --dry-run --cli all
 ```
 
-Home-targeted dry run:
-```bash
-scripts/install-local.sh --dry-run --target "$HOME" --allow-nonlocal-target
-```
+## What The Generated Views Are For
 
-## Direct Surface Standard
-Direct exposure is skill-only for all supported CLIs:
-- `.codex/skills/<slug>/SKILL.md`
-- `.gemini/skills/<slug>/SKILL.md`
-- `.claude/skills/<slug>/SKILL.md`
-- `.kiro/skills/<slug>/SKILL.md`
+When you want to inspect the current emitted state without reading raw manifests or directories:
 
-This repo does not deploy direct surfaces to vendor `commands/` or `prompts/` directories.
+- [Capability catalog](CAPABILITY-CATALOG.md): what ships and where it lands
+- [Release delta](RELEASE-DELTA.md): what changed versus the previous manifest
+- [Consumer status](STATUS.md): generated build, validation, and smoke summary
 
-## Where To Go Next
+These are useful inspection aids, not the first thing a new user should read.
 
-<details>
-<summary><strong>I want the exact commands and paths</strong></summary>
+## Where The Important Files Live
 
-Go to [CLI reference](CLI-REFERENCE.md).
-
-</details>
-
-<details>
-<summary><strong>I want to understand UAC, baselines, and quality gates</strong></summary>
-
-Go to [UAC usage](UAC-USAGE.md) and [Baseline source library](../sources/ssot-baselines/README.md).
-
-</details>
-
-<details>
-<summary><strong>I want the architecture and maintainer model</strong></summary>
-
-Go to [Repository architecture](ARCHITECTURE.md), [Technical README](README_TECHNICAL.md), and [Maintainer hygiene rules](MAINTAINER-HYGIENE.md).
-
-</details>
+- `ssot/`: canonical authored capability source
+- `sources/ssot-baselines/`: preserved strongest baselines used for future judging
+- `.meta/capabilities/`: machine-readable capability descriptors
+- `.codex/`, `.gemini/`, `.claude/`, `.kiro/`: generated runtime surfaces
+- `docs/CAPABILITY-CATALOG.md`, `docs/RELEASE-DELTA.md`, `docs/STATUS.md`: generated inspection views
 
 ## Next Docs
+
 - [Examples](EXAMPLES.md)
-- [FAQ](FAQ.md)
+- [UAC usage](UAC-USAGE.md)
 - [CLI reference](CLI-REFERENCE.md)
-- [Capability catalog](CAPABILITY-CATALOG.md)
-- [Consumer status](STATUS.md)
+- [FAQ](FAQ.md)
