@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import re
 import subprocess
+import tempfile
 from pathlib import Path
 import json
 import shutil
@@ -27,15 +28,32 @@ def load_manifest() -> dict:
     return json.loads(MANIFEST_PATH.read_text(encoding='utf-8'))
 
 
-def run_probe(command: list[str], timeout: int = 15, max_chars: int | None = 4000) -> tuple[int, str]:
-    proc = subprocess.run(
-        command,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        text=True,
-        timeout=timeout,
-    )
-    out = proc.stdout.strip()
+def run_probe(
+    command: list[str],
+    timeout: int = 15,
+    max_chars: int | None = 4000,
+    capture_mode: str = 'pipe',
+) -> tuple[int, str]:
+    if capture_mode == 'file':
+        with tempfile.TemporaryFile(mode='w+', encoding='utf-8') as handle:
+            proc = subprocess.run(
+                command,
+                stdout=handle,
+                stderr=subprocess.STDOUT,
+                text=True,
+                timeout=timeout,
+            )
+            handle.seek(0)
+            out = handle.read().strip()
+    else:
+        proc = subprocess.run(
+            command,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True,
+            timeout=timeout,
+        )
+        out = proc.stdout.strip()
     if max_chars is not None and len(out) > max_chars:
         out = out[:max_chars] + '...'
     return proc.returncode, out
@@ -200,7 +218,13 @@ def main(argv: list[str] | None = None) -> int:
         if discovery_enabled and discovery_args and pattern_builder and expected_slugs:
             discovery_cmd = [binary, *discovery_args]
             try:
-                code, out = run_probe(discovery_cmd, timeout=discovery_timeout, max_chars=100000)
+                capture_mode = 'file' if name == 'gemini' else 'pipe'
+                code, out = run_probe(
+                    discovery_cmd,
+                    timeout=discovery_timeout,
+                    max_chars=100000,
+                    capture_mode=capture_mode,
+                )
                 clean_out = normalize(out)
                 if code != 0:
                     msg = f'{name}: discovery command returned {code}'
