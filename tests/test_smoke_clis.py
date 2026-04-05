@@ -3,6 +3,8 @@ from __future__ import annotations
 import importlib.util
 import json
 from pathlib import Path
+import subprocess
+from types import SimpleNamespace
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -81,3 +83,76 @@ def test_write_smoke_report_persists_latest_and_timestamped_json(tmp_path: Path)
         assert json.loads(latest.read_text(encoding="utf-8"))["smoked_at"] == "2026-04-02T00:00:00Z"
     finally:
         smoke_clis.SMOKE_REPORT_DIR = old_dir
+
+
+def test_run_probe_file_capture_uses_regular_file(monkeypatch) -> None:
+    def fake_run(command, stdout, stderr, text, timeout):
+        assert command == ["gemini", "skills", "list"]
+        assert stderr == subprocess.STDOUT
+        assert text is True
+        assert timeout == 30
+        if stdout == subprocess.PIPE:
+            return SimpleNamespace(returncode=0, stdout="partial output")
+        stdout.write("complete output")
+        stdout.flush()
+        return SimpleNamespace(returncode=0, stdout=None)
+
+    monkeypatch.setattr(smoke_clis.subprocess, "run", fake_run)
+
+    assert smoke_clis.run_probe(["gemini", "skills", "list"], timeout=30) == (0, "partial output")
+    assert smoke_clis.run_probe(["gemini", "skills", "list"], timeout=30, capture_mode="file") == (0, "complete output")
+
+
+def test_main_uses_file_capture_for_gemini_discovery(monkeypatch) -> None:
+    payloads: list[dict] = []
+    calls: list[tuple[tuple[str, ...], str]] = []
+
+    monkeypatch.setattr(
+        smoke_clis,
+        "load_rules",
+        lambda: {
+            "tooling": [
+                {
+                    "name": "gemini",
+                    "surface": "gemini",
+                    "command": "gemini",
+                    "version_args": ["--version"],
+                    "smoke_args": ["--help"],
+                    "discovery_args": ["skills", "list"],
+                    "discovery_surface_names": ["gemini_skill"],
+                }
+            ],
+            "artifacts": [],
+        },
+    )
+    monkeypatch.setattr(
+        smoke_clis,
+        "load_manifest",
+        lambda: {
+            "ssot_sources": [
+                {
+                    "slug": "analyze-context",
+                    "expected_surface_names": ["gemini_skill"],
+                }
+            ]
+        },
+    )
+    monkeypatch.setattr(smoke_clis.shutil, "which", lambda binary: f"/usr/bin/{binary}")
+
+    def fake_run_probe(command, timeout=15, max_chars=4000, capture_mode="pipe"):
+        calls.append((tuple(command), capture_mode))
+        if command == ["gemini", "skills", "list"]:
+            return 0, "analyze-context [Enabled]"
+        return 0, "ok"
+
+    monkeypatch.setattr(smoke_clis, "run_probe", fake_run_probe)
+    monkeypatch.setattr(smoke_clis, "write_smoke_report", lambda payload: payloads.append(payload))
+
+    assert smoke_clis.main([]) == 0
+    assert calls == [
+        (("gemini", "--version"), "pipe"),
+        (("gemini", "--help"), "pipe"),
+        (("gemini", "skills", "list"), "file"),
+    ]
+    assert payloads[0]["warnings"] == []
+    assert payloads[0]["failures"] == []

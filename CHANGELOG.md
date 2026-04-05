@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.4.15 - 2026-04-04
+
+- Fixed Gemini CLI smoke discovery to avoid false missing-skill warnings:
+  - `scripts/smoke-clis.py` now captures Gemini discovery output through a regular file instead of a pipe, which avoids partial `gemini skills list` output while preserving the existing probe contract for other CLIs
+  - Gemini smoke reports now correctly mark discovery as healthy when the generated skill surfaces are present and discoverable
+- Added regression coverage for the discovery capture path:
+  - verified `run_probe(..., capture_mode="file")` preserves full output
+  - verified the smoke main path uses file capture specifically for Gemini discovery
+
 ## 1.4.14 - 2026-04-04
 
 - Reworked the docs and policy split so rules stay machine-readable and user docs stay user-facing:
@@ -14,7 +23,6 @@
   - documented Kiro steering inclusion and rule-writing expectations for this repo
   - clarified the role of generated inspection views such as `docs/CAPABILITY-CATALOG.md`, `docs/RELEASE-DELTA.md`, and `docs/STATUS.md`
   - refreshed docs routing and maintainer hygiene guidance to reduce drift and overlap
-
 ## 1.4.13 - 2026-04-04
 
 - Added the `autosearch` capability as a first-class canonical asset:
