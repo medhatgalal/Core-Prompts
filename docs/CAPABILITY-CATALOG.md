@@ -84,7 +84,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
   - turn our failures into future eval cases
   - optimize this system without regressing quality
   - guide me from setup to experiments to commit and merge
-- Summary: Optimizes prompts, skills, tools, workflows, and code with bounded search and baseline comparison. Use for experiments, behavioral variant comparison, or proof that a candidate beats baseline.
+- Summary: Optimizes prompts, skills, tools, workflows, and code with minimal-loop investigation, bounded search, and baseline comparison. Use for experiments, behavioral variant comparison, or proof that a candidate beats baseline.
 
 ### Commit Review — Git Commit Quality Gate
 - Slug: `code-review`

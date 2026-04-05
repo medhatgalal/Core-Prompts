@@ -5,7 +5,7 @@ kind: "agent"
 capability_type: "both"
 agent_tools: "Read, Write, Edit, Bash, Grep, Glob"
 version: "v1.1"
-description: "Optimizes prompts, skills, tools, workflows, and code with bounded search and baseline comparison. Use for experiments, behavioral variant comparison, or proof that a candidate beats baseline."
+description: "Optimizes prompts, skills, tools, workflows, and code with minimal-loop investigation, bounded search, and baseline comparison. Use for experiments, behavioral variant comparison, or proof that a candidate beats baseline."
 install_target: "repo_local"
 ---
 # Autosearch — Goal-Driven Improvement Search, Evaluation, and Promotion
@@ -215,7 +215,6 @@ For bounded local investigations that do not justify a broad search loop yet, a 
 - `Fix or Rejected Hypothesis`
 - `Verification`
 - `Promotion Decision`
-
 ## Help System
 
 ### Quick Start
@@ -401,6 +400,7 @@ Produce:
 - pass/fail/inconclusive decision
 - regression promotions
 
+### Mode 5: Trace-to-Eval
 ### Mode 6: Trace-to-Eval
 Use when the user has traces, transcripts, failures, or production examples.
 
@@ -561,6 +561,7 @@ Use one profile explicitly when the user does not provide one:
 - use repeated trials only when nondeterminism or conflicting evidence makes them necessary
 - return `pass`, `fail`, or `inconclusive` with explicit failure modes
 
+### Profile 3: Bounded Execution
 ### Profile 4: Bounded Execution
 - edits allowed only inside the declared scope
 - experiment loop and repeated trials are active
