@@ -93,6 +93,8 @@ Expected output:
 - bounded experiment plan
 - promotion guidance only after a verified winner exists
 
+Also use `autosearch` when a candidate import or revised capability needs bounded behavioral proof before promotion.
+
 Follow with:
 
 > Now tell me the minimum experiment set that will separate the strongest two variants.

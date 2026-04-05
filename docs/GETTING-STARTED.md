@@ -53,6 +53,8 @@ Practical rule:
 - use `judge` for the quality decision
 - use `apply` only when you intend to change canonical repo state
 
+If `judge` says the landing is structurally close but still needs bounded behavioral proof, use `autosearch` for that proof step before `apply`.
+
 For the full flow, go to [UAC usage](UAC-USAGE.md).
 
 ## Step 3: Use Repo Tooling To Verify Or Operate The Repo

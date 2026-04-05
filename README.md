@@ -191,6 +191,8 @@ bin/uac judge /absolute/path/to/prompt-family --quality-profile architecture
 
 Use [docs/UAC-USAGE.md](docs/UAC-USAGE.md) for the full intake and uplift guide.
 
+If `judge` finds a candidate is structurally close to ready but still needs bounded behavioral proof, route that proof step to `autosearch` instead of treating structural quality alone as evidence.
+
 ### Sample Transcript: UAC Planning
 
 ```text

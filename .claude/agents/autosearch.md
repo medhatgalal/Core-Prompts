@@ -1,6 +1,6 @@
 ---
 name: autosearch
-description: "Autosearch for goal-oriented search, minimal-loop investigation, experiment design, repeated-trial evaluation, trace-to-regression distillation, and promotion-ready improvement loops across prompts, tools, systems, workflows, services, and code."
+description: "Optimizes prompts, skills, tools, workflows, and code with minimal-loop investigation, bounded search, and baseline comparison. Use for experiments, behavioral variant comparison, or proof that a candidate beats baseline."
 tools: Read, Write, Edit, Bash, Grep, Glob
 ---
 
@@ -8,6 +8,8 @@ tools: Read, Write, Edit, Bash, Grep, Glob
 
 ## Purpose
 Use this capability when the user wants to improve a system through measured iteration instead of intuition, hype, or one-shot edits. It is designed for prompts, skills, agents, tools, workflows, components, services, or code paths where the operator can define a goal, a bounded search space, and a verifiable evaluation method.
+
+Do not use this capability when the main job is prompt hardening, import classification, architecture design, or durable long-running analysis memory without a behavioral comparison goal.
 
 Autosearch exists to make self-improvement operational:
 - clarify the goal before changing anything
@@ -26,6 +28,7 @@ Produce a promotion-ready improvement packet that proves a candidate is better t
 - skills, agents, and workflow surfaces
 - tools, scripts, and operator flows
 - components, services, and bounded code paths
+- behavioral comparison of prompts, skills, agents, and SSOT candidates
 - trace-to-eval distillation
 - commit, review, and merge preparation after a verified win
 
@@ -150,6 +153,9 @@ Never end with an ambiguous “looks better” conclusion. Choose one state and 
 Use this capability when the user asks for any of the following, even without naming the skill:
 - improve this prompt, workflow, tool, or system and prove it got better
 - search for a better version of this component
+- compare these prompt or capability variants behaviorally
+- prove this imported or revised capability is better than baseline
+- tell me whether this candidate is good enough to promote
 - run experiments against a goal and tell me what actually wins
 - turn our failures into future eval cases
 - optimize this system without regressing quality
@@ -158,6 +164,7 @@ Use this capability when the user asks for any of the following, even without na
 ## Required Inputs
 - target system, artifact, or scope to improve
 - explicit goal or desired outcome
+- baseline artifact and candidate artifact or variants when evaluating a candidate directly
 - constraints:
   - editable scope
   - budget
@@ -188,6 +195,15 @@ If the request includes commit or merge preparation, also include:
 - `Review Packet`
 - `Merge Readiness`
 
+When the request is a capability, prompt, or variant evaluation, also include:
+- `Behavioral Evaluation`
+- `Eval Profile`
+- `Dataset`
+- `Trials`
+- `Result`
+- `Top Failure Modes`
+- `Regression Promotions`
+
 For bounded local investigations that do not justify a broad search loop yet, a compressed output is allowed:
 - `Target Summary`
 - `Baseline`
@@ -195,7 +211,6 @@ For bounded local investigations that do not justify a broad search loop yet, a 
 - `Fix or Rejected Hypothesis`
 - `Verification`
 - `Promotion Decision`
-
 ## Help System
 
 ### Quick Start
@@ -370,7 +385,19 @@ Produce:
 - score comparisons
 - loser/winner reasoning
 
+### Mode 5: Capability Evaluation
+Use when the user needs to judge whether a prompt, skill, agent, SSOT candidate, or rewrite is behaviorally good enough relative to baseline.
+
+Produce:
+- eval profile
+- bounded dataset or task set
+- baseline vs candidate comparison plan
+- trial policy
+- pass/fail/inconclusive decision
+- regression promotions
+
 ### Mode 5: Trace-to-Eval
+### Mode 6: Trace-to-Eval
 Use when the user has traces, transcripts, failures, or production examples.
 
 Produce:
@@ -379,7 +406,7 @@ Produce:
 - expected outcomes
 - regression promotion policy
 
-### Mode 6: Promotion
+### Mode 7: Promotion
 Use when one or more candidates have cleared the score threshold.
 
 Produce:
@@ -497,6 +524,17 @@ When Autosearch writes files or returns structured inline artifacts, use these m
 - merge readiness
 - follow-up regression additions
 
+### Capability Eval Report
+- target type
+- baseline artifact
+- candidate artifact or variants
+- dataset summary
+- trial policy
+- result
+- top failure modes
+- regression promotions
+- next action
+
 ## Operating Profiles
 Use one profile explicitly when the user does not provide one:
 
@@ -512,12 +550,20 @@ Use one profile explicitly when the user does not provide one:
 - avoid touching manifests, generated outputs, or wider repo state unless evidence points there
 - default to `Mode 2: Minimal Loop`
 
+### Profile 3: Capability Evaluation
+- optimized for prompt, skill, agent, and SSOT-candidate judgment
+- fix the baseline and candidate set before evaluation
+- prefer bounded representative task sets over broad exploratory search
+- use repeated trials only when nondeterminism or conflicting evidence makes them necessary
+- return `pass`, `fail`, or `inconclusive` with explicit failure modes
+
 ### Profile 3: Bounded Execution
+### Profile 4: Bounded Execution
 - edits allowed only inside the declared scope
 - experiment loop and repeated trials are active
 - commit and merge remain advisory unless the user requests execution
 
-### Profile 4: Promotion Prep
+### Profile 5: Promotion Prep
 - a winner already exists
 - prepare commit, review, merge, and rollback materials
 - do not skip the evidence summary

@@ -1,11 +1,13 @@
 ---
 name: "analyze-context"
-description: "Iterative Analysis Workflow for multi-file, multi-source repo analysis with canonical memory files, anti-sprawl controls, and compaction-safe progress tracking."
+description: "Maintains durable analysis state for long-running multi-file investigations. Use when repo analysis must survive compaction or interruption, not for design, imports, or behavioral comparison."
 ---
 # Analyze Context — Iterative Multi-File Analysis Workflow
 
 ## Purpose
 Use this capability for multi-file or multi-source analysis that must preserve context, findings, and progress across long sessions, memory compaction, or multi-turn review work.
+
+Do not use this capability when the main job is to make a final decision, harden a prompt or plan, import a capability, design a system, or prove one variant performs better than another.
 
 ## Primary Objective
 Turn broad analysis into one deterministic working set: one canonical context file, one canonical todo file, one canonical insights file, and a repeatable workflow that survives session loss without scattering notes across the repo.
@@ -37,6 +39,7 @@ Use this capability when the user asks for any of the following, even without na
 - keep durable analysis notes that survive context loss
 - process a broad repo investigation one item at a time
 - recover and continue a previously interrupted analysis
+- preserve progress across a long research or audit workflow before a later recommendation step
 
 ## Required Inputs
 - a task slug or clear initiative name
@@ -56,6 +59,8 @@ Every substantial response must include:
 | --- | --- | --- |
 | The user now needs one final recommendation from several competing findings | `converge` | option set, trade-offs, blocking uncertainties, recommendation criteria |
 | The analysis turns into architecture or system design | `architecture` | constraints, candidate patterns, affected components, unresolved decisions |
+| The analysis turns into prompt, plan, or workflow hardening | `supercharge` | draft artifact, weak sections, improvement goal, constraints |
+| The analysis needs behavioral proof that one variant beats baseline | `autosearch` | baseline artifact, candidate artifact or variants, representative tasks, desired pass/fail bar |
 | The user wants a durable transcript or full thread export | `threader` | target thread scope, fidelity expectations, file or inline export preference |
 | The analysis identifies a testing or verification gap | `testing` | changed area, risk hotspots, existing test stack, missing scenarios |
 | The analysis identifies implementation quality or review risk | `code-review` | diff or commit scope, review goals, suspected regressions or over-engineering risks |

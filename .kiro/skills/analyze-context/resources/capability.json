@@ -4,16 +4,11 @@
   "layers": {
     "minimal": {
       "capability_type": "skill",
-      "summary": "Iterative Analysis Workflow for multi-file, multi-source repo analysis with canonical memory files, anti-sprawl controls, and compaction-safe progress tracking.",
+      "summary": "Maintains durable analysis state for long-running multi-file investigations. Use when repo analysis must survive compaction or interruption, not for design, imports, or behavioral comparison.",
       "role": "analyst",
       "domain_tags": [
-        "architecture",
-        "review",
         "analysis",
-        "routing",
-        "debugging",
         "context",
-        "prompting",
         "analyze"
       ],
       "required_inputs": [
@@ -152,7 +147,8 @@
     "analyze several files or transcripts over a long session",
     "keep durable analysis notes that survive context loss",
     "process a broad repo investigation one item at a time",
-    "recover and continue a previously interrupted analysis"
+    "recover and continue a previously interrupted analysis",
+    "preserve progress across a long research or audit workflow before a later recommendation step"
   ],
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "analyze-context",

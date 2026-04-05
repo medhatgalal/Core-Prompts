@@ -4,16 +4,9 @@
   "layers": {
     "minimal": {
       "capability_type": "both",
-      "summary": "Autosearch for goal-oriented search, minimal-loop investigation, experiment design, repeated-trial evaluation, trace-to-regression distillation, and promotion-ready improvement loops across prompts, tools, systems, workflows, services, and code.",
-      "role": "advisor",
+      "summary": "Optimizes prompts, skills, tools, workflows, and code with minimal-loop investigation, bounded search, and baseline comparison. Use for experiments, behavioral variant comparison, or proof that a candidate beats baseline.",
+      "role": "specialist_workflow",
       "domain_tags": [
-        "review",
-        "routing",
-        "packaging",
-        "planning",
-        "debugging",
-        "context",
-        "prompting",
         "autosearch"
       ],
       "required_inputs": [
@@ -179,6 +172,9 @@
   "invocation_hints": [
     "improve this prompt, workflow, tool, or system and prove it got better",
     "search for a better version of this component",
+    "compare these prompt or capability variants behaviorally",
+    "prove this imported or revised capability is better than baseline",
+    "tell me whether this candidate is good enough to promote",
     "run experiments against a goal and tell me what actually wins",
     "turn our failures into future eval cases",
     "optimize this system without regressing quality",

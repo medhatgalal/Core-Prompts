@@ -4,17 +4,10 @@
   "layers": {
     "minimal": {
       "capability_type": "both",
-      "summary": "SuperCharge for prompt creation, prompt refinement, planning hardening, option comparison, grading, multi-pass critique, and structured execution-quality improvement across direct and agentic workflows.",
-      "role": "advisor",
+      "summary": "Hardens prompts, plans, and workflows through structured critique and graded refinement. Use when the user wants a better artifact or a sharper comparison before measured evaluation.",
+      "role": "specialist_workflow",
       "domain_tags": [
-        "architecture",
-        "review",
-        "analysis",
-        "routing",
-        "packaging",
-        "planning",
-        "debugging",
-        "context"
+        "supercharge"
       ],
       "required_inputs": [
         "source text",
@@ -172,6 +165,7 @@
     "make this prompt better",
     "harden this plan",
     "compare these options and converge on one recommendation",
+    "compare these prompt variants, then tell me whether behavioral proof is needed",
     "critique this proposal from several angles",
     "grade this output and iterate it upward",
     "design an agentic workflow or prompt stack"

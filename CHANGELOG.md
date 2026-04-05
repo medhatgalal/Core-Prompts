@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.4.17 - 2026-04-05
+
+- Tightened skill discovery and overlap analysis without widening surface area:
+  - shortened and clarified the descriptions for `analyze-context`, `architecture`, `autosearch`, `supercharge`, and `uac-import` so they state both what the capability does and when to use it
+  - added clearer boundary and handoff guidance so `autosearch` owns bounded behavioral proof, `uac-import` routes import-time proof needs, and `supercharge` routes proof requests after critique
+  - refreshed the generated skill and agent surfaces plus the generated catalog, release delta, and status views
+- Hardened manifest fit analysis and smoke reliability:
+  - changed manifest role and tag inference to use focused signal text instead of the full SSOT body, reducing false overlap from companion matrices and examples
+  - stopped generic shared roles from triggering overlap warnings on their own when tag overlap is effectively zero
+  - improved Gemini smoke discovery capture so large discovery output does not truncate into false warnings
+- Updated docs and release-facing guidance:
+  - documented that `uac-import judge` may escalate to `autosearch` for bounded behavioral proof when structural quality is near the bar but confidence is still weak
+  - kept the installed-capabilities-first, UAC-second, repo-tooling-third product order intact across README and reference docs
+
 ## 1.4.15 - 2026-04-04
 
 - Fixed Gemini CLI smoke discovery to avoid false missing-skill warnings:
@@ -8,7 +22,6 @@
 - Added regression coverage for the discovery capture path:
   - verified `run_probe(..., capture_mode="file")` preserves full output
   - verified the smoke main path uses file capture specifically for Gemini discovery
-
 ## 1.4.14 - 2026-04-04
 
 - Reworked the docs and policy split so rules stay machine-readable and user docs stay user-facing:

@@ -3,7 +3,7 @@ name: "uac-import"
 display_name: "UAC Import — Capability Intake, Quality Review, and Uplift"
 kind: "skill"
 capability_type: "skill"
-description: "UAC Import for capability intake, quality review, uplift, and canonical SSOT plus descriptor landing."
+description: "Inspects external prompt-like sources and maps them into Core-Prompts plan, judge, and apply flows. Use when importing, planning, judging, or applying a new or updated capability."
 ---
 # UAC Import — Capability Intake, Quality Review, and Uplift
 
@@ -28,6 +28,8 @@ Supported modes:
 
 ## Primary Objective
 Classify the source safely, recommend the right surface area, and refuse landing until the candidate is structurally strong enough to become canonical SSOT plus descriptor state.
+
+When structural quality is near the bar but behavioral confidence is still weak, escalate to a bounded behavioral proof workflow instead of overstating readiness.
 
 ## Invocation Contract
 Use this capability as the AI-facing intake contract.
@@ -59,9 +61,10 @@ Operational rule:
 9. Select a quality profile and benchmark set.
 10. Resolve the canonical baseline source from `sources/ssot-baselines/` before judging fidelity.
 11. On `judge`, run the built-in quality loop and return judge packets plus pass/fail reports without landing repo state.
-12. Search for benchmark sources only when the source is generic or fit confidence is weak.
-13. On `apply`, refuse landing unless the quality loop reaches `ship`; if it does, materialize or preserve the canonical baseline source under `sources/ssot-baselines/`, write canonical repo state under `ssot/` and `.meta/capabilities/`, persist quality reviews, then rebuild and validate generated surfaces.
-14. Keep deployment separate from apply.
+12. If `judge` finds that structural quality is close to passing but behavioral confidence is insufficient, route to `autosearch` for bounded capability evaluation instead of guessing.
+13. Search for benchmark sources only when the source is generic or fit confidence is weak.
+14. On `apply`, refuse landing unless the quality loop reaches `ship`; if it does, materialize or preserve the canonical baseline source under `sources/ssot-baselines/`, write canonical repo state under `ssot/` and `.meta/capabilities/`, persist quality reviews, then rebuild and validate generated surfaces.
+15. Keep deployment separate from apply.
 
 ## Tool Boundaries
 - allowed: inventory sources, run deterministic uplift and classification, produce advisory manifests, and land canonical SSOT plus descriptor state when the quality gate passes
@@ -79,6 +82,7 @@ Operational rule:
 - Run cross-analysis against current SSOT before any apply is considered safe.
 - Treat commands, plugins, powers, and extensions as deployment wrappers, not capability types.
 - Quality review artifacts are advisory evidence; they must not encode runtime routing policy.
+- Do not make UAC the long-term owner of behavioral evaluation logic; route to `autosearch` when bounded behavioral proof is needed.
 
 ## Invocation Hints
 Use this capability when the user asks for any of the following, even without naming the skill:
@@ -86,6 +90,7 @@ Use this capability when the user asks for any of the following, even without na
 - classify whether this source should become a skill, agent, or manual review
 - explain how this external source would land into SSOT and descriptors
 - judge whether a candidate is ready to apply
+- tell me whether this import needs stronger behavioral proof before landing
 
 ## Required Inputs
 - one or more explicit sources
@@ -110,10 +115,16 @@ Return a concise structured result with these sections:
 - Modernization Focus
 - Next Actions
 
+When `judge` escalates to behavioral proof, also include:
+- Behavioral Confidence
+- Escalation Reason
+- Autosearch Handoff
+
 ## Companion Capability Matrix
 | If the import uncovers this need | Route to | Required handoff |
 | --- | --- | --- |
 | The candidate needs deeper prompt hardening before it can pass the benchmark gate | `supercharge` | source excerpt, intended user outcome, weak sections, target capability style |
+| The candidate is structurally close to passing but needs bounded behavioral proof against baseline or competing variants | `autosearch` | baseline artifact, candidate artifact or variants, claimed job, bounded task set or examples, pass/fail threshold |
 | The candidate is structurally sound but needs final decision synthesis across several landing options | `converge` | candidate options, trade-offs, target install surfaces, decision criteria |
 | The imported capability is fundamentally architectural or system-design oriented | `architecture` | source summary, design scope, affected boundaries, unresolved design questions |
 | The imported capability needs documentation-quality review before landing | `docs-review-expert` | draft SSOT, descriptor summary, naming questions, drift or IA concerns |

@@ -9,6 +9,7 @@ from typing import Mapping, Sequence
 from urllib.parse import urlsplit
 
 GENERIC_TAGS = {"analysis", "planning", "context", "prompting", "review", "packaging", "import", "routing", "debugging"}
+GENERIC_ROLES = {"workflow", "advisor", "analyst", "specialist", "specialist_workflow"}
 
 
 ROLE_PATTERNS: tuple[tuple[str, tuple[re.Pattern[str], ...]], ...] = (
@@ -182,6 +183,30 @@ def derive_domain_tags(raw_text: str, slug: str) -> tuple[str, ...]:
     return ordered[:8]
 
 
+def _manifest_signal_text(
+    *,
+    slug: str,
+    summary: str,
+    primary_objective: object,
+    in_scope: Sequence[object],
+) -> str:
+    parts: list[str] = []
+    if summary.strip():
+        parts.append(summary.strip())
+    if primary_objective:
+        objective = str(primary_objective).strip()
+        if objective:
+            parts.append(objective)
+    for item in in_scope[:4]:
+        text = str(item).strip()
+        if text:
+            parts.append(text)
+    slug_text = " ".join(part for part in slug.replace("_", "-").split("-") if part)
+    if slug_text:
+        parts.append(slug_text)
+    return "\n".join(parts)
+
+
 def packaging_profile(capability_type: str, emitted_surfaces: Mapping[str, Sequence[str]]) -> dict[str, object]:
     wrappers = {
         "codex": ["plugin_wrapper"] if any(name.endswith("_agent") for name in emitted_surfaces.get("codex", ())) else [],
@@ -225,12 +250,18 @@ def build_capability_manifest(
         repo_root=repo_root,
     )
     install_target = infer_install_target(persisted_source, source_type=source_type, repo_root=repo_root)
-    role = derive_role(raw_text, capability_type, slug)
-    tags = derive_domain_tags(raw_text, slug)
     primary_objective = uplift_payload.get("primary_objective")
     in_scope = tuple(uplift_payload.get("in_scope") or [])
     quality_constraints = tuple(uplift_payload.get("quality_constraints") or [])
     route_profile = routing_payload.get("route_profile")
+    signal_text = _manifest_signal_text(
+        slug=slug,
+        summary=summary,
+        primary_objective=primary_objective,
+        in_scope=in_scope,
+    )
+    role = derive_role(signal_text, capability_type, slug)
+    tags = derive_domain_tags(signal_text, slug)
 
     minimal = {
         "capability_type": capability_type,
@@ -321,11 +352,12 @@ def analyze_manifest_fit(candidate_manifest: Mapping[str, object], existing_mani
         tag_basis_right = existing_specific or existing_tags
         union = tag_basis_left | tag_basis_right
         overlap_score = 0.0 if not union else len(tag_basis_left & tag_basis_right) / len(union)
-        if overlap_score >= 0.34 or (candidate_role == existing_role and candidate_role != "workflow"):
+        role_only_signal = candidate_role == existing_role and candidate_role not in GENERIC_ROLES
+        if overlap_score >= 0.34 or role_only_signal:
             reason_bits = []
             if overlap_score:
                 reason_bits.append(f"tag overlap {overlap_score:.2f}")
-            if candidate_role == existing_role:
+            if candidate_role == existing_role and (overlap_score or role_only_signal):
                 reason_bits.append(f"shared role {candidate_role}")
             overlaps.append({"slug": slug, "score": round(overlap_score, 2), "reason": ", ".join(reason_bits) or "role overlap"})
         if overlap_score >= 0.7 and candidate_type == existing_type:
@@ -335,7 +367,7 @@ def analyze_manifest_fit(candidate_manifest: Mapping[str, object], existing_mani
             duplicate_risk = "medium" if duplicate_risk == "low" else duplicate_risk
             existing_adjustments.append(f"review {slug} for tag/role normalization against {candidate_slug}")
             new_adjustments.append(f"tighten scope for {candidate_slug} relative to {slug}")
-        if candidate_role == existing_role and candidate_type != existing_type and candidate_role != "workflow" and overlap_score >= 0.45:
+        if candidate_role == existing_role and candidate_type != existing_type and candidate_role not in GENERIC_ROLES and overlap_score >= 0.45:
             existing_adjustments.append(f"review role boundary between {candidate_slug} and {slug}")
             new_adjustments.append(f"clarify whether {candidate_slug} should stay {candidate_type} or align more tightly with {slug}")
 
