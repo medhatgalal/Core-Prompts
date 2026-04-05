@@ -75,6 +75,8 @@
 - Use `docs/MAINTAINER-HYGIENE.md` as the human-facing maintainer guide and checklist, not as the canonical rule surface.
 - Review docs when commands, paths, setup, naming, metadata contracts, CI, release flow, or generated-surface behavior change materially.
 - When a shipped capability changes behavior or discoverability, update the relevant user-facing docs in the same slice. Do not defer README, getting-started, or examples uplift to a later cleanup pass.
+- When this repo uses canonical source plus generated outputs, edit the canonical source first and regenerate; do not hand-patch generated surfaces except to fix the generator path itself.
+- Run build-dependent validation serially unless the tooling is known to be race-safe, and use a dry-run plus installed-state comparison before overwriting local installs when home surfaces are in scope.
 - Treat GitHub and GitLab parity as intentional design work; document any platform difference instead of letting drift accumulate silently.
 - Prefer deterministic GitHub and GitLab CLIs (`gh`, `glab`) for GitOps work. Treat MCP integrations as optional helpers, not the primary release path.
 - Promote a lesson into `AGENTS.md` only when it is stable, repo-wide, and likely to prevent repeated failure for future agents.

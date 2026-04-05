@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.4.21 - 2026-04-05
+
+- Promoted the other two essential release lessons into repo-wide rules:
+  - updated workflow and maintainer policy so canonical source must be edited before regenerating emitted surfaces, instead of hand-patching generated outputs
+  - updated workflow and maintainer policy so build-dependent validation should run serially unless the tooling is known to be race-safe
+  - updated maintainer and agent policy so local-install releases should use a dry-run and installed-state comparison before overwriting home surfaces
+- Kept the earlier docs-uplift rule intact, so the repo now encodes the essential three together:
+  - same-slice docs uplift for shipped behavior and discoverability changes
+  - canonical-source-first edits for generated-surface repos
+  - serialized release verification plus pre-install dry-run comparison
+
 ## 1.4.20 - 2026-04-05
 
 - Promoted docs uplift into an explicit repo-wide release rule:

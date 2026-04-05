@@ -28,6 +28,12 @@ Keep repository changes reviewable, reversible, and easy to isolate.
 4. make the smallest coherent set of edits
 5. validate the relevant surfaces before proposing merge or release
 
+## Source-of-Truth Rule
+
+- When a repo uses canonical source plus generated outputs, edit the canonical source first and regenerate emitted artifacts instead of hand-patching generated files.
+- Only edit generated outputs directly when the generator is broken and the direct edit is part of fixing that generator path.
+- Release notes and reviews should describe the canonical change first and the regenerated outputs second.
+
 ## Scope Rules
 
 - Keep commits and branches logically scoped.
@@ -39,3 +45,5 @@ Keep repository changes reviewable, reversible, and easy to isolate.
 - When command examples or release behavior change, verify them against current wrapper help or script behavior.
 - When generated-surface paths change, verify them against the actual emitted directories.
 - Treat validation failures as blocking until explained or fixed.
+- Run build-dependent validation serially unless the tooling is known to be race-safe. Do not trust failures caused by validating or smoking half-generated outputs.
+- When a change will overwrite installed local surfaces, run a dry-run deploy and compare the generated result against the currently installed state before the real install step.
