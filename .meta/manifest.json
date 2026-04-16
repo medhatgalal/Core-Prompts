@@ -1520,6 +1520,180 @@
       ]
     },
     {
+      "slug": "feature-status",
+      "manifest_version": "capability-fabric.v0",
+      "layers": {
+        "minimal": {
+          "capability_type": "skill",
+          "summary": "[BenK] Deep feature completeness analysis \u2014 scope vs. proof with prioritized recommendations",
+          "role": "workflow",
+          "domain_tags": [
+            "feature",
+            "status"
+          ],
+          "required_inputs": [
+            "Scope Documents: Pitch / Spec",
+            "Scope Documents: High-Level Design (HLD)",
+            "Scope Documents: OpenAPI Spec (OAS)",
+            "Scope Documents: Ticket / Epic",
+            "Proof Sources: Source code",
+            "Proof Sources: Integration tests",
+            "Proof Sources: Unit tests",
+            "Proof Sources: Git history",
+            "Proof Sources: Config / Infra",
+            "Proof Sources: OpenAPI output"
+          ],
+          "expected_outputs": [
+            "feature status report",
+            "scope sources",
+            "summary",
+            "categorized status tables",
+            "gap analysis",
+            "prioritized recommendations",
+            "risks / blockers"
+          ],
+          "tool_policy": {
+            "allowed": [
+              "deterministic classification",
+              "metadata publication",
+              "surface generation"
+            ],
+            "forbidden": [
+              "orchestration",
+              "delegation decisions",
+              "runtime execution control"
+            ]
+          },
+          "resources": [
+            "ssot/feature-status.md"
+          ],
+          "packaging_profile": {
+            "capability_type": "skill",
+            "primary_surfaces": {
+              "codex": [
+                "codex_skill"
+              ],
+              "gemini": [
+                "gemini_skill"
+              ],
+              "claude": [
+                "claude_skill"
+              ],
+              "kiro": [
+                "kiro_skill"
+              ]
+            },
+            "wrapper_surfaces": {
+              "codex": [],
+              "gemini": [
+                "skill_wrapper"
+              ],
+              "claude": [
+                "skill_wrapper",
+                "plugin_wrapper"
+              ],
+              "kiro": [
+                "skill_wrapper",
+                "power_wrapper"
+              ]
+            },
+            "notes": [
+              "wrapper surfaces are additive deployment forms, not capability types",
+              "orchestrators must not infer execution authority from wrapper presence alone"
+            ]
+          },
+          "install_target": {
+            "recommended": "repo_local",
+            "confidence": 0.88,
+            "confirmation_required_for_apply": true,
+            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+            "supported": [
+              "global",
+              "repo_local",
+              "both"
+            ]
+          },
+          "emitted_surfaces": {
+            "codex": [
+              "codex_skill"
+            ],
+            "gemini": [
+              "gemini_skill"
+            ],
+            "claude": [
+              "claude_skill"
+            ],
+            "kiro": [
+              "kiro_skill"
+            ]
+          },
+          "source_provenance": {
+            "source_type": "LOCAL_FILE",
+            "normalized_source": "ssot/feature-status.md",
+            "policy_rule_id": "ssot.feature-status",
+            "content_sha256": "ssot"
+          },
+          "confidence": 0.97,
+          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "Feature Status \u2014 Deep Completeness Analysis"
+        },
+        "expanded": {
+          "relationship_suggestions": [],
+          "capability_dependencies": [],
+          "overlap_candidates": [],
+          "migration_notes": [
+            "If the capability lands, compare it against existing entries before apply.",
+            "Relationship suggestions are advisory only and do not imply runtime routing."
+          ],
+          "adjustment_recommendations": [
+            "add an explicit primary objective before packaging",
+            "add deterministic in-scope sections to improve routing fitness",
+            "capture quality constraints or non-negotiables"
+          ]
+        },
+        "org_graph": {
+          "org_role": "workflow_provider",
+          "reports_to_suggestions": [],
+          "delegates_to_suggestions": [],
+          "collaborates_with_suggestions": [
+            "feature",
+            "status"
+          ],
+          "authority_tier": "advisory",
+          "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+        }
+      },
+      "display_name": "Feature Status \u2014 Deep Completeness Analysis",
+      "descriptor_version": "capability-fabric.descriptor.v0",
+      "family_slug": "feature-status",
+      "shared_summary": "[BenK] Deep feature completeness analysis \u2014 scope vs. proof with prioritized recommendations",
+      "shared_constraints": [],
+      "modes": [],
+      "benchmark_sources": [],
+      "consumption_hints": {},
+      "declared_capability": "skill",
+      "inferred_capability": "skill",
+      "expected_surface_names": [
+        "codex_skill",
+        "gemini_skill",
+        "claude_skill",
+        "kiro_skill"
+      ],
+      "rubric_version": "capability-fabric.v0",
+      "invocation_hints": [
+        "how complete is this feature",
+        "what is left to ship",
+        "compare scope vs implementation",
+        "find gaps in this feature",
+        "feature readiness check",
+        "what is blocking this feature from shipping",
+        "audit this feature against the spec",
+        "what's the gap between spec and code",
+        "pre-ship readiness check for this feature"
+      ]
+    },
+    {
       "slug": "gitops-review",
       "manifest_version": "capability-fabric.v0",
       "layers": {
@@ -3133,6 +3307,7 @@
       ".gemini/skills/code-review/SKILL.md",
       ".gemini/skills/converge/SKILL.md",
       ".gemini/skills/docs-review-expert/SKILL.md",
+      ".gemini/skills/feature-status/SKILL.md",
       ".gemini/skills/gitops-review/SKILL.md",
       ".gemini/skills/mentor/SKILL.md",
       ".gemini/skills/resolve-conflict/SKILL.md",
@@ -3159,6 +3334,7 @@
       ".claude/skills/code-review/SKILL.md",
       ".claude/skills/converge/SKILL.md",
       ".claude/skills/docs-review-expert/SKILL.md",
+      ".claude/skills/feature-status/SKILL.md",
       ".claude/skills/gitops-review/SKILL.md",
       ".claude/skills/mentor/SKILL.md",
       ".claude/skills/resolve-conflict/SKILL.md",
@@ -3195,6 +3371,7 @@
       ".kiro/skills/code-review/SKILL.md",
       ".kiro/skills/converge/SKILL.md",
       ".kiro/skills/docs-review-expert/SKILL.md",
+      ".kiro/skills/feature-status/SKILL.md",
       ".kiro/skills/gitops-review/SKILL.md",
       ".kiro/skills/mentor/SKILL.md",
       ".kiro/skills/resolve-conflict/SKILL.md",
@@ -3211,6 +3388,7 @@
       ".codex/skills/code-review/SKILL.md",
       ".codex/skills/converge/SKILL.md",
       ".codex/skills/docs-review-expert/SKILL.md",
+      ".codex/skills/feature-status/SKILL.md",
       ".codex/skills/gitops-review/SKILL.md",
       ".codex/skills/mentor/SKILL.md",
       ".codex/skills/resolve-conflict/SKILL.md",
@@ -3244,6 +3422,7 @@
       ".codex/skills/code-review/resources/capability.json",
       ".codex/skills/converge/resources/capability.json",
       ".codex/skills/docs-review-expert/resources/capability.json",
+      ".codex/skills/feature-status/resources/capability.json",
       ".codex/skills/gitops-review/resources/capability.json",
       ".codex/skills/mentor/resources/capability.json",
       ".codex/skills/resolve-conflict/resources/capability.json",
@@ -3280,6 +3459,7 @@
       ".gemini/skills/code-review/resources/capability.json",
       ".gemini/skills/converge/resources/capability.json",
       ".gemini/skills/docs-review-expert/resources/capability.json",
+      ".gemini/skills/feature-status/resources/capability.json",
       ".gemini/skills/gitops-review/resources/capability.json",
       ".gemini/skills/mentor/resources/capability.json",
       ".gemini/skills/resolve-conflict/resources/capability.json",
@@ -3316,6 +3496,7 @@
       ".claude/skills/code-review/resources/capability.json",
       ".claude/skills/converge/resources/capability.json",
       ".claude/skills/docs-review-expert/resources/capability.json",
+      ".claude/skills/feature-status/resources/capability.json",
       ".claude/skills/gitops-review/resources/capability.json",
       ".claude/skills/mentor/resources/capability.json",
       ".claude/skills/resolve-conflict/resources/capability.json",
@@ -3352,6 +3533,7 @@
       ".kiro/skills/code-review/resources/capability.json",
       ".kiro/skills/converge/resources/capability.json",
       ".kiro/skills/docs-review-expert/resources/capability.json",
+      ".kiro/skills/feature-status/resources/capability.json",
       ".kiro/skills/gitops-review/resources/capability.json",
       ".kiro/skills/mentor/resources/capability.json",
       ".kiro/skills/resolve-conflict/resources/capability.json",

@@ -2,7 +2,7 @@
 
 Generated from canonical manifest and descriptor metadata. Use this page to see what Core-Prompts ships, what each capability is for, and where it lands.
 
-- Capability count: `14`
+- Capability count: `15`
 
 ## Start Here
 - `docs-review-expert` — Docs Review Expert — Documentation IA, Drift, and Release Hygiene: Documentation Review Expert for information architecture, explainable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.
@@ -12,10 +12,10 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `testing` — Testing Studio — Test Design and Coverage Analysis: Testing Studio for unit-test generation, end-to-end test design, edge-case discovery, and coverage gap analysis.
 
 ## By CLI
-- `claude`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `codex`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `gemini`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `kiro`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `claude`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `feature-status`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `codex`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `feature-status`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `gemini`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `feature-status`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `kiro`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `feature-status`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
 
 ## By Use Case
 - `analysis`: `analyze-context`
@@ -28,6 +28,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `converge`: `converge`
 - `docs`: `docs-review-expert`
 - `expert`: `docs-review-expert`
+- `feature`: `feature-status`
 - `gitops`: `gitops-review`
 - `import`: `uac-import`
 - `intel`: `weekly-intel`
@@ -36,6 +37,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `prompting`: `mentor`, `uac-import`
 - `resolve`: `resolve-conflict`
 - `review`: `code-review`, `docs-review-expert`, `gitops-review`, `weekly-intel`
+- `status`: `feature-status`
 - `supercharge`: `supercharge`
 - `testing`: `testing`
 - `threader`: `threader`
@@ -123,6 +125,23 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
   - make docs cleaner, more linkable, or more readable
   - review a PR or release for documentation hygiene
 - Summary: Documentation Review Expert for information architecture, explainable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.
+
+### Feature Status — Deep Completeness Analysis
+- Slug: `feature-status`
+- Type: `skill`
+- Install target: `repo_local`
+- Supported CLIs: `claude, codex, gemini, kiro`
+- Invocation hints:
+  - how complete is this feature
+  - what is left to ship
+  - compare scope vs implementation
+  - find gaps in this feature
+  - feature readiness check
+  - what is blocking this feature from shipping
+  - audit this feature against the spec
+  - what's the gap between spec and code
+  - pre-ship readiness check for this feature
+- Summary: [BenK] Deep feature completeness analysis — scope vs. proof with prioritized recommendations
 
 ### GitOps Review — Repo Hygiene, CI, Release, and Merge Gate
 - Slug: `gitops-review`
