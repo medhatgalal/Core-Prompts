@@ -11,14 +11,16 @@
         "threader"
       ],
       "required_inputs": [
-        "source text",
-        "user intent/context"
+        "the current thread or the exact conversation scope to export",
+        "any delivery preference such as file-first or inline fallback",
+        "fidelity expectations when the user needs disclosure for inaccessible turns or missing artifacts"
       ],
       "expected_outputs": [
-        "deterministic summary",
-        "uplift payload",
-        "capability recommendation",
-        "deployment guidance"
+        "a downloadable transcript file plus a short confirmation, or",
+        "one logically contiguous inline transcript with clear merge instructions if the platform cannot create files",
+        "fidelity disclosure",
+        "impacted turn list when history is missing",
+        "artifact inclusion status when files or downloads were produced inside the thread"
       ],
       "tool_policy": {
         "allowed": [

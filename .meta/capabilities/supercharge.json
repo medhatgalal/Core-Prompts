@@ -10,14 +10,22 @@
         "supercharge"
       ],
       "required_inputs": [
-        "source text",
-        "user intent/context"
+        "the current prompt, draft, plan, proposal, or intent statement",
+        "any sources or alternatives that must be compared",
+        "the claimed difference between variants when the user wants a stronger comparison",
+        "explicit constraints, non-negotiables, or success criteria when known",
+        "risk tolerance when the task is high-stakes or operational"
       ],
       "expected_outputs": [
-        "deterministic summary",
-        "uplift payload",
-        "capability recommendation",
-        "deployment guidance"
+        "`Approach Decision`",
+        "the improved prompt, plan, or recommendation",
+        "`Why This Is Better`",
+        "explicit assumptions or unresolved risks",
+        "the grading rubric or comparison criteria",
+        "the iteration ladder or option ranking",
+        "the top remaining gaps",
+        "`Behavioral Proof Need`",
+        "`Autosearch Handoff`"
       ],
       "tool_policy": {
         "allowed": [

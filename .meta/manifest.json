@@ -19,14 +19,16 @@
             "analyze"
           ],
           "required_inputs": [
-            "source text",
-            "user intent/context"
+            "a task slug or clear initiative name",
+            "the analysis goal and success criteria",
+            "the set of files, transcripts, or items to process",
+            "any extraction criteria, constraints, or stop conditions"
           ],
           "expected_outputs": [
-            "deterministic summary",
-            "uplift payload",
-            "capability recommendation",
-            "deployment guidance"
+            "the canonical memory file set in use",
+            "current progress state",
+            "key findings accumulated so far",
+            "next item or next analysis action"
           ],
           "tool_policy": {
             "allowed": [
@@ -182,14 +184,26 @@
             "architecture"
           ],
           "required_inputs": [
-            "source text",
-            "user intent/context"
+            "problem statement, feature request, or architectural question",
+            "current system context when refactoring or integrating with existing code",
+            "explicit constraints such as scale, latency, compliance, staffing, timeline, or vendor boundaries",
+            "any non-goals, fixed decisions, or compatibility requirements"
           ],
           "expected_outputs": [
-            "deterministic summary",
-            "uplift payload",
-            "capability recommendation",
-            "deployment guidance"
+            "`Problem Framing`",
+            "`Objective`",
+            "`In Scope`",
+            "`Out of Scope`",
+            "`Assumptions & Constraints`",
+            "`Architecture Recommendation`",
+            "`Component or Module Boundaries`",
+            "`Interface Contracts`",
+            "`Trade-offs`",
+            "`Rejected Alternatives`",
+            "`Migration / Rollback Plan`",
+            "`Risks & Validation`",
+            "`Decision Log`",
+            "`Confidence`"
           ],
           "tool_policy": {
             "allowed": [
@@ -599,14 +613,45 @@
             "autosearch"
           ],
           "required_inputs": [
-            "source text",
-            "user intent/context"
+            "target system, artifact, or scope to improve",
+            "explicit goal or desired outcome",
+            "baseline artifact and candidate artifact or variants when evaluating a candidate directly",
+            "constraints:",
+            "editable scope",
+            "budget",
+            "risk tolerance",
+            "review requirements",
+            "available evidence:",
+            "tests",
+            "traces",
+            "benchmarks",
+            "existing metrics",
+            "examples",
+            "host policy for commits, pull requests, and merge if promotion work is expected"
           ],
           "expected_outputs": [
-            "deterministic summary",
-            "uplift payload",
-            "capability recommendation",
-            "deployment guidance"
+            "`Target Summary`",
+            "`Goal Contract`",
+            "`Baseline`",
+            "`Search Surface`",
+            "`Scorecard`",
+            "`Experiment Plan or Ledger`",
+            "`Promotion Decision`",
+            "`Trace-to-Eval Follow-up`",
+            "`Risks and Limits`",
+            "`Commit Plan`",
+            "`Review Packet`",
+            "`Merge Readiness`",
+            "`Behavioral Evaluation`",
+            "`Eval Profile`",
+            "`Dataset`",
+            "`Trials`",
+            "`Result`",
+            "`Top Failure Modes`",
+            "`Regression Promotions`",
+            "`Discriminating Check`",
+            "`Fix or Rejected Hypothesis`",
+            "`Verification`"
           ],
           "tool_policy": {
             "allowed": [
@@ -903,14 +948,17 @@
             "code"
           ],
           "required_inputs": [
-            "source text",
-            "user intent/context"
+            "commit hash, staged diff, or the default target of `HEAD`",
+            "repository context when the commit depends on surrounding conventions",
+            "any specific review focus such as scope, message quality, or simplicity"
           ],
           "expected_outputs": [
-            "deterministic summary",
-            "uplift payload",
-            "capability recommendation",
-            "deployment guidance"
+            "`Commit Under Review`",
+            "`Findings`",
+            "`Scope Assessment`",
+            "`Message Assessment`",
+            "`Recommended Fixes`",
+            "`Merge Readiness`"
           ],
           "tool_policy": {
             "allowed": [
@@ -1073,14 +1121,20 @@
             "converge"
           ],
           "required_inputs": [
-            "source text",
-            "user intent/context"
+            "a short intent statement",
+            "the source set to compare",
+            "decision criteria and weights when known",
+            "explicit constraints, audience, or success metrics when available"
           ],
           "expected_outputs": [
-            "deterministic summary",
-            "uplift payload",
-            "capability recommendation",
-            "deployment guidance"
+            "`Executive Summary`",
+            "`Overlap Map`",
+            "`Decision Analysis`",
+            "`Final Converged Proposal`",
+            "`Decision Rationale`",
+            "`Muted / Rejected Ideas`",
+            "`Risks + Next Experiments`",
+            "`Open Questions` when user steering is still required"
           ],
           "tool_policy": {
             "allowed": [
@@ -1261,14 +1315,22 @@
             "expert"
           ],
           "required_inputs": [
-            "source text",
-            "user intent/context"
+            "current README and docs structure",
+            "the intended reader or audience when known",
+            "relevant code, scripts, workflows, or release behavior when drift is suspected",
+            "the change scope when reviewing a commit, pull request, merge, or release"
           ],
           "expected_outputs": [
-            "deterministic summary",
-            "uplift payload",
-            "capability recommendation",
-            "deployment guidance"
+            "`Current State`",
+            "`What Belongs Where`",
+            "`Drift Findings`",
+            "`Recommended Changes`",
+            "`Examples of Good Output`",
+            "`Review Timing`",
+            "`Open Risks`",
+            "exact target paths",
+            "section-level rewrite guidance",
+            "link or navigation updates that must be changed"
           ],
           "tool_policy": {
             "allowed": [
@@ -1470,14 +1532,22 @@
             "gitops"
           ],
           "required_inputs": [
-            "source text",
-            "user intent/context"
+            "current branch and worktree state",
+            "target gate: commit, PR, merge, release, or cleanup",
+            "remote context when GitHub or GitLab parity matters",
+            "explicit execution permission when mutating git or release state"
           ],
           "expected_outputs": [
-            "deterministic summary",
-            "uplift payload",
-            "capability recommendation",
-            "deployment guidance"
+            "`Current State`",
+            "`Gate Type`",
+            "`Findings`",
+            "`Required Companion Reviews`",
+            "`Recommended Commands or Actions`",
+            "`Release / Merge Readiness`",
+            "`Open Risks`",
+            "exact commands run",
+            "exact branch, tag, PR, or MR identifiers",
+            "final state after execution"
           ],
           "tool_policy": {
             "allowed": [
@@ -1681,14 +1751,15 @@
             "mentor"
           ],
           "required_inputs": [
-            "source text",
-            "user intent/context"
+            "the current goal or obstacle",
+            "repo state when relevant, such as branch, diff, failing checks, or active work slice",
+            "any constraints around safety, time, release risk, or coordination with other agents"
           ],
           "expected_outputs": [
-            "deterministic summary",
-            "uplift payload",
-            "capability recommendation",
-            "deployment guidance"
+            "the current working interpretation of the task",
+            "the next recommended action or ordered plan",
+            "evidence required before calling the task done",
+            "the specialist capability to invoke when Mentor should route instead of own the work"
           ],
           "tool_policy": {
             "allowed": [
@@ -1858,14 +1929,19 @@
             "conflict"
           ],
           "required_inputs": [
-            "source text",
-            "user intent/context"
+            "conflicting file or files",
+            "the two sides of the conflict, or access to the current git conflict markers",
+            "branch context or merge/rebase context when known",
+            "any policy or preference constraints that must win"
           ],
           "expected_outputs": [
-            "deterministic summary",
-            "uplift payload",
-            "capability recommendation",
-            "deployment guidance"
+            "`Conflict Summary`",
+            "`Inversion Analysis`",
+            "`Content Comparison`",
+            "`Resolution Strategy`",
+            "`Resolution Plan`",
+            "`Verification Steps`",
+            "`Open Decisions or Risks`"
           ],
           "tool_policy": {
             "allowed": [
@@ -2028,14 +2104,22 @@
             "supercharge"
           ],
           "required_inputs": [
-            "source text",
-            "user intent/context"
+            "the current prompt, draft, plan, proposal, or intent statement",
+            "any sources or alternatives that must be compared",
+            "the claimed difference between variants when the user wants a stronger comparison",
+            "explicit constraints, non-negotiables, or success criteria when known",
+            "risk tolerance when the task is high-stakes or operational"
           ],
           "expected_outputs": [
-            "deterministic summary",
-            "uplift payload",
-            "capability recommendation",
-            "deployment guidance"
+            "`Approach Decision`",
+            "the improved prompt, plan, or recommendation",
+            "`Why This Is Better`",
+            "explicit assumptions or unresolved risks",
+            "the grading rubric or comparison criteria",
+            "the iteration ladder or option ranking",
+            "the top remaining gaps",
+            "`Behavioral Proof Need`",
+            "`Autosearch Handoff`"
           ],
           "tool_policy": {
             "allowed": [
@@ -2214,14 +2298,18 @@
             "testing"
           ],
           "required_inputs": [
-            "source text",
-            "user intent/context"
+            "source code, feature description, or failing scenario",
+            "repository testing stack when known",
+            "risk areas or priority workflows",
+            "existing tests or coverage report when available"
           ],
           "expected_outputs": [
-            "deterministic summary",
-            "uplift payload",
-            "capability recommendation",
-            "deployment guidance"
+            "`Scope`",
+            "`Assumptions`",
+            "`Recommended Tests or Gaps`",
+            "`Priority or Risk`",
+            "`Framework Notes`",
+            "`Follow-up Work`"
           ],
           "tool_policy": {
             "allowed": [
@@ -2509,14 +2597,16 @@
             "threader"
           ],
           "required_inputs": [
-            "source text",
-            "user intent/context"
+            "the current thread or the exact conversation scope to export",
+            "any delivery preference such as file-first or inline fallback",
+            "fidelity expectations when the user needs disclosure for inaccessible turns or missing artifacts"
           ],
           "expected_outputs": [
-            "deterministic summary",
-            "uplift payload",
-            "capability recommendation",
-            "deployment guidance"
+            "a downloadable transcript file plus a short confirmation, or",
+            "one logically contiguous inline transcript with clear merge instructions if the platform cannot create files",
+            "fidelity disclosure",
+            "impacted turn list when history is missing",
+            "artifact inclusion status when files or downloads were produced inside the thread"
           ],
           "tool_policy": {
             "allowed": [
@@ -2668,14 +2758,29 @@
             "prompting"
           ],
           "required_inputs": [
-            "source text",
-            "user intent/context"
+            "one or more explicit sources",
+            "desired mode such as `plan`, `judge`, or `apply`",
+            "target system or install target when that materially affects the recommendation",
+            "any benchmark or quality expectations when the caller wants a stricter gate"
           ],
           "expected_outputs": [
-            "deterministic summary",
-            "uplift payload",
-            "capability recommendation",
-            "deployment guidance"
+            "Source",
+            "Summary",
+            "Uplift",
+            "Routing",
+            "UAC Classification",
+            "Collection Recommendation",
+            "Layered Manifest",
+            "Cross-Analysis",
+            "Quality Plan / Judge Reports",
+            "Install Target",
+            "Advisory Handoff Contract",
+            "Recommended Surface",
+            "Modernization Focus",
+            "Next Actions",
+            "Behavioral Confidence",
+            "Escalation Reason",
+            "Autosearch Handoff"
           ],
           "tool_policy": {
             "allowed": [
@@ -2853,10 +2958,9 @@
             "user intent/context"
           ],
           "expected_outputs": [
-            "deterministic summary",
-            "uplift payload",
-            "capability recommendation",
-            "deployment guidance"
+            "a single report document with exec-friendly body and technical appendices (A through F)",
+            "a confidence assessment in Appendix F rating each source (High/Medium/Low) with methodology notes",
+            "an internal consistency check confirming body numbers match appendix data"
           ],
           "tool_policy": {
             "allowed": [

@@ -10,14 +10,26 @@
         "architecture"
       ],
       "required_inputs": [
-        "source text",
-        "user intent/context"
+        "problem statement, feature request, or architectural question",
+        "current system context when refactoring or integrating with existing code",
+        "explicit constraints such as scale, latency, compliance, staffing, timeline, or vendor boundaries",
+        "any non-goals, fixed decisions, or compatibility requirements"
       ],
       "expected_outputs": [
-        "deterministic summary",
-        "uplift payload",
-        "capability recommendation",
-        "deployment guidance"
+        "`Problem Framing`",
+        "`Objective`",
+        "`In Scope`",
+        "`Out of Scope`",
+        "`Assumptions & Constraints`",
+        "`Architecture Recommendation`",
+        "`Component or Module Boundaries`",
+        "`Interface Contracts`",
+        "`Trade-offs`",
+        "`Rejected Alternatives`",
+        "`Migration / Rollback Plan`",
+        "`Risks & Validation`",
+        "`Decision Log`",
+        "`Confidence`"
       ],
       "tool_policy": {
         "allowed": [

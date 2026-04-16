@@ -10,14 +10,18 @@
         "testing"
       ],
       "required_inputs": [
-        "source text",
-        "user intent/context"
+        "source code, feature description, or failing scenario",
+        "repository testing stack when known",
+        "risk areas or priority workflows",
+        "existing tests or coverage report when available"
       ],
       "expected_outputs": [
-        "deterministic summary",
-        "uplift payload",
-        "capability recommendation",
-        "deployment guidance"
+        "`Scope`",
+        "`Assumptions`",
+        "`Recommended Tests or Gaps`",
+        "`Priority or Risk`",
+        "`Framework Notes`",
+        "`Follow-up Work`"
       ],
       "tool_policy": {
         "allowed": [

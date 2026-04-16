@@ -40,7 +40,7 @@ from intent_pipeline.uac_quality import (
     render_latest_review_markdown,
     run_quality_loop,
 )
-from intent_pipeline.uac_baselines import persist_source_baseline
+from intent_pipeline.uac_baselines import persist_source_baseline, text_sha256
 from intent_pipeline.uac_templates import load_capability_template
 from intent_pipeline.uac_repomix import collect_repomix_candidates, materialize_repomix_candidate, repomix_available
 from intent_pipeline.uac_sources import (
@@ -762,7 +762,8 @@ def _build_descriptor_preview(
         manifest=payload['manifest'],
         family_slug=slug,
         shared_summary=str(payload['manifest']['layers']['minimal'].get('summary') or ''),
-        shared_constraints=tuple(payload.get('manifest', {}).get('layers', {}).get('expanded', {}).get('adjustment_recommendations') or ()),
+        shared_constraints=_source_constraints(payload)
+        or tuple(payload.get('manifest', {}).get('layers', {}).get('expanded', {}).get('adjustment_recommendations') or ()),
         modes=tuple(_mode_entries_from_items(payload.get('items', []))),
         benchmark_sources=tuple(payload.get('benchmark_sources') or ()),
         quality_profile=(quality_plan or {}).get('quality_profile'),
@@ -1207,6 +1208,42 @@ def _escape_double_quoted_yaml(value: str) -> str:
     return value.replace('\\', '\\\\').replace('"', '\\"')
 
 
+def _extract_label_bullets(raw_text: str, labels: tuple[str, ...]) -> tuple[str, ...]:
+    lines = raw_text.splitlines()
+    normalized_labels = {f'{label}:' for label in labels}
+    for index, line in enumerate(lines):
+        if line.strip() not in normalized_labels:
+            continue
+        bullets: list[str] = []
+        for follow in lines[index + 1:]:
+            stripped = follow.strip()
+            if stripped.startswith('- '):
+                bullets.append(stripped[2:].strip())
+                continue
+            if not stripped:
+                if bullets:
+                    break
+                continue
+            if stripped.endswith(':') or stripped.startswith('## '):
+                break
+            if bullets:
+                break
+        if bullets:
+            return tuple(dict.fromkeys(item for item in bullets if item))
+    return ()
+
+
+def _source_section_bullets(payload: Mapping[str, Any], headings: tuple[str, ...]) -> tuple[str, ...]:
+    source_text = _source_body_text(payload)
+    if not source_text:
+        return ()
+    for heading in headings:
+        bullets = tuple(extract_section_bullets(source_text, f'## {heading}'))
+        if bullets:
+            return bullets
+    return _extract_label_bullets(source_text, headings)
+
+
 def _source_body_text(payload: Mapping[str, Any]) -> str | None:
     normalized_source = str(((payload.get('source') or {}).get('normalized_source')) or '').strip()
     if not normalized_source:
@@ -1221,10 +1258,76 @@ def _source_body_text(payload: Mapping[str, Any]) -> str | None:
 
 
 def _source_constraints(payload: Mapping[str, Any]) -> tuple[str, ...]:
+    return _source_section_bullets(payload, ('Constraints',))
+
+
+def _source_required_inputs(payload: Mapping[str, Any]) -> tuple[str, ...]:
+    return _source_section_bullets(payload, ('Required Inputs', 'Required Input'))
+
+
+def _source_expected_outputs(payload: Mapping[str, Any]) -> tuple[str, ...]:
+    return _source_section_bullets(
+        payload,
+        ('Required Output', 'Expected Outputs', 'Output Contract', 'Output Format'),
+    )
+
+
+def _repo_head_commit(repo_root: Path) -> str | None:
+    try:
+        result = subprocess.run(
+            ['git', 'rev-parse', 'HEAD'],
+            cwd=repo_root,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return None
+    head = result.stdout.strip()
+    return head[:8] if head else None
+
+
+def _repo_relative_source_path(path: str) -> str | None:
+    try:
+        resolved = Path(path).expanduser().resolve()
+    except OSError:
+        return None
+    try:
+        return str(resolved.relative_to(ROOT).as_posix())
+    except ValueError:
+        return None
+
+
+def _baseline_materialization_payload(
+    slug: str,
+    payload: Mapping[str, Any],
+    *,
+    ssot_text: str,
+    ssot_path: Path,
+) -> dict[str, str | None]:
     source_text = _source_body_text(payload)
-    if not source_text:
-        return ()
-    return tuple(extract_section_bullets(source_text, '## Constraints'))
+    if source_text:
+        capability_type = str(
+            ((payload.get('manifest') or {}).get('layers', {}).get('minimal', {}).get('capability_type') or 'skill')
+        )
+        template_name = capability_type if capability_type in {'skill', 'agent', 'both'} else 'skill'
+        template = load_capability_template(ROOT, template_name)
+        if all(marker in source_text for marker in template.required_headings):
+            return {
+                'text': source_text.rstrip() + '\n',
+                'source_kind': 'canonical_source',
+                'source_path': _repo_relative_source_path(str(((payload.get('source') or {}).get('normalized_source')) or '')),
+                'source_sha256': text_sha256(source_text.rstrip() + '\n'),
+                'source_commit': _repo_head_commit(ROOT),
+            }
+    persisted_text = ssot_path.read_text(encoding='utf-8')
+    return {
+        'text': persisted_text,
+        'source_kind': 'current_ssot',
+        'source_path': str(ssot_path.relative_to(ROOT)),
+        'source_sha256': text_sha256(persisted_text),
+        'source_commit': _repo_head_commit(ROOT),
+    }
 
 
 def _same_slug_update_only(cross_analysis: Mapping[str, Any], slug: str) -> bool:
@@ -1307,8 +1410,16 @@ def _render_ssot_markdown(slug: str, payload: dict[str, Any], *, quality_profile
     escaped_description = description.replace('"', '\\"')
     template = load_capability_template(ROOT, capability_type if capability_type in {'skill', 'agent', 'both'} else 'skill')
     constraints = payload.get('uplift', {}).get('quality_constraints') or manifest['layers']['expanded'].get('adjustment_recommendations') or []
-    required_inputs = list(minimal.get('required_inputs') or ['user intent/context', 'relevant source material'])
-    expected_outputs = list(minimal.get('expected_outputs') or ['deterministic recommendation'])
+    required_inputs = list(
+        _source_required_inputs(payload)
+        or minimal.get('required_inputs')
+        or ['user intent/context', 'relevant source material']
+    )
+    expected_outputs = list(
+        _source_expected_outputs(payload)
+        or minimal.get('expected_outputs')
+        or ['deterministic recommendation']
+    )
     review_timing = [
         '- commit: when commands, behavior, or metadata contracts change',
         '- pull request: when repo structure, CI, release flow, or docs drift materially',
@@ -1337,12 +1448,12 @@ def _render_ssot_markdown(slug: str, payload: dict[str, Any], *, quality_profile
     if version:
         lines.append(f'version: "{version}"')
     if author:
-        lines.append(f'author: "{author.replace(chr(34), r"\\\"")}"')
+        lines.append(f'author: "{_escape_double_quoted_yaml(author)}"')
     if compatibility:
-        lines.append(f'compatibility: "{compatibility.replace(chr(34), r"\\\"")}"')
+        lines.append(f'compatibility: "{_escape_double_quoted_yaml(compatibility)}"')
     if supported_agents:
         joined_agents = ', '.join(supported_agents)
-        lines.append(f'supported_agents: "{joined_agents}"')
+        lines.append(f'supported_agents: "{_escape_double_quoted_yaml(joined_agents)}"')
     lines.extend([
         '---',
         '',
@@ -1398,9 +1509,6 @@ def _render_ssot_markdown(slug: str, payload: dict[str, Any], *, quality_profile
     for item in expected_outputs:
         lines.append(f'- {item}')
     lines.extend([
-        '- explicit risks and open questions',
-        '- target paths, commands, or artifact names when applicable',
-        '',
         '## Constraints',
     ])
     for item in constraints:
@@ -1564,13 +1672,6 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
         quality_validation_matrix=tuple((quality_plan or {}).get('validation_matrix') or ()),
     )
     baseline_materialization = None
-    if quality_result and quality_result.get('status') == 'ship':
-        baseline_materialization = persist_source_baseline(
-            ROOT,
-            slug=slug,
-            baseline_text=_preferred_ssot_text(slug, result, quality_result=quality_result),
-            overwrite=False,
-        )
     if quality_plan and quality_result:
         descriptor.update(
             quality_descriptor_fields(
@@ -1580,11 +1681,23 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
             )
         )
         descriptor['quality_validation_matrix'] = list((quality_plan or {}).get('validation_matrix') or ())
+    ssot_text = _preferred_ssot_text(slug, result, quality_result=quality_result)
+    ssot_path.write_text(ssot_text + ('\n' if not ssot_text.endswith('\n') else ''), encoding='utf-8')
+    if quality_result and quality_result.get('status') == 'ship':
+        baseline_source = _baseline_materialization_payload(slug, result, ssot_text=ssot_text, ssot_path=ssot_path)
+        baseline_materialization = persist_source_baseline(
+            ROOT,
+            slug=slug,
+            baseline_text=str(baseline_source['text'] or ''),
+            overwrite=False,
+            source_kind=str(baseline_source['source_kind'] or ''),
+            source_path=baseline_source['source_path'],
+            source_sha256=baseline_source['source_sha256'],
+            source_commit=baseline_source['source_commit'],
+        )
     if baseline_materialization:
         descriptor['historical_baseline'] = dict(descriptor.get('historical_baseline') or {})
         descriptor['historical_baseline']['baseline_path'] = baseline_materialization['baseline_path']
-    ssot_text = _preferred_ssot_text(slug, result, quality_result=quality_result)
-    ssot_path.write_text(ssot_text + ('\n' if not ssot_text.endswith('\n') else ''), encoding='utf-8')
     descriptor_path = save_descriptor(ROOT, slug, descriptor)
     source_note = None
     source_refs = []

@@ -11,14 +11,15 @@
         "mentor"
       ],
       "required_inputs": [
-        "source text",
-        "user intent/context"
+        "the current goal or obstacle",
+        "repo state when relevant, such as branch, diff, failing checks, or active work slice",
+        "any constraints around safety, time, release risk, or coordination with other agents"
       ],
       "expected_outputs": [
-        "deterministic summary",
-        "uplift payload",
-        "capability recommendation",
-        "deployment guidance"
+        "the current working interpretation of the task",
+        "the next recommended action or ordered plan",
+        "evidence required before calling the task done",
+        "the specialist capability to invoke when Mentor should route instead of own the work"
       ],
       "tool_policy": {
         "allowed": [

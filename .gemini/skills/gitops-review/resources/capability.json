@@ -11,14 +11,22 @@
         "gitops"
       ],
       "required_inputs": [
-        "source text",
-        "user intent/context"
+        "current branch and worktree state",
+        "target gate: commit, PR, merge, release, or cleanup",
+        "remote context when GitHub or GitLab parity matters",
+        "explicit execution permission when mutating git or release state"
       ],
       "expected_outputs": [
-        "deterministic summary",
-        "uplift payload",
-        "capability recommendation",
-        "deployment guidance"
+        "`Current State`",
+        "`Gate Type`",
+        "`Findings`",
+        "`Required Companion Reviews`",
+        "`Recommended Commands or Actions`",
+        "`Release / Merge Readiness`",
+        "`Open Risks`",
+        "exact commands run",
+        "exact branch, tag, PR, or MR identifiers",
+        "final state after execution"
       ],
       "tool_policy": {
         "allowed": [

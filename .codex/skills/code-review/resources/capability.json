@@ -11,14 +11,17 @@
         "code"
       ],
       "required_inputs": [
-        "source text",
-        "user intent/context"
+        "commit hash, staged diff, or the default target of `HEAD`",
+        "repository context when the commit depends on surrounding conventions",
+        "any specific review focus such as scope, message quality, or simplicity"
       ],
       "expected_outputs": [
-        "deterministic summary",
-        "uplift payload",
-        "capability recommendation",
-        "deployment guidance"
+        "`Commit Under Review`",
+        "`Findings`",
+        "`Scope Assessment`",
+        "`Message Assessment`",
+        "`Recommended Fixes`",
+        "`Merge Readiness`"
       ],
       "tool_policy": {
         "allowed": [

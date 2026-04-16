@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import subprocess
 from datetime import datetime, timezone
@@ -90,6 +91,26 @@ def historical_richness_score(text: str) -> int:
     score += 1 if "Invocation Hints" in text else 0
     score += 1 if "Evaluation Rubric" in text else 0
     return score
+
+
+def text_sha256(text: str) -> str:
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()
+
+
+def baseline_artifact_findings(text: str) -> tuple[str, ...]:
+    findings: list[str] = []
+    lowered = text.casefold()
+    if (
+        "intent\n-" in lowered
+        and "requested outcome\n-" in lowered
+        and "rejected/out-of-scope signals\n-" in lowered
+    ):
+        findings.append("flattened_uac_prompt_sections")
+    if "## invocation hints\nintent\n-" in lowered:
+        findings.append("corrupted_invocation_hints_section")
+    if "\n- - " in text:
+        findings.append("nested_bullet_flattening")
+    return tuple(dict.fromkeys(findings))
 
 
 def resolve_historical_baseline(
@@ -325,6 +346,10 @@ def persist_source_baseline(
     slug: str,
     baseline_text: str,
     overwrite: bool = False,
+    source_kind: str | None = None,
+    source_path: str | None = None,
+    source_sha256: str | None = None,
+    source_commit: str | None = None,
 ) -> dict[str, object]:
     registry = load_historical_baseline_registry(repo_root)
     skills = dict(registry.get("skills") or {})
@@ -332,8 +357,18 @@ def persist_source_baseline(
     baseline_path = _clean_relpath(entry.get("baseline_path")) or f"sources/ssot-baselines/{slug}/baseline.md"
     path = repo_root / baseline_path
     path.parent.mkdir(parents=True, exist_ok=True)
+    candidate_text = baseline_text.rstrip() + "\n"
+    existing_text = path.read_text(encoding="utf-8") if path.exists() else None
+    blocked_reasons = tuple(_baseline_regression_reasons(candidate_text, existing_text))
+    created = not path.exists()
+    updated = False
     if overwrite or not path.exists():
-        path.write_text(baseline_text.rstrip() + "\n", encoding="utf-8")
+        path.write_text(candidate_text, encoding="utf-8")
+        updated = True
+        blocked_reasons = ()
+    elif existing_text != candidate_text and not blocked_reasons:
+        path.write_text(candidate_text, encoding="utf-8")
+        updated = True
     current_text = path.read_text(encoding="utf-8")
     entry["strategy"] = str(entry.get("strategy") or "source_library")
     entry["group"] = str(entry.get("group") or "applied_baseline")
@@ -346,8 +381,22 @@ def persist_source_baseline(
     )
     historical_proof = dict(entry.get("historical_proof") or {})
     historical_proof.setdefault("materialized_from_commit", None)
+    if source_kind is not None:
+        historical_proof["materialized_from_source_kind"] = source_kind
+    if source_path is not None:
+        historical_proof["materialized_from_path"] = source_path
+    if source_sha256 is not None:
+        historical_proof["materialized_from_sha256"] = source_sha256
+    if source_commit is not None:
+        historical_proof["materialized_from_commit"] = _clean_commit(source_commit)
     historical_proof["last_materialized_at"] = datetime.now(timezone.utc).isoformat()
+    if blocked_reasons:
+        historical_proof["last_blocked_reasons"] = list(blocked_reasons)
+    elif "last_blocked_reasons" in historical_proof:
+        historical_proof.pop("last_blocked_reasons", None)
     entry["historical_proof"] = historical_proof
+    if source_commit is not None:
+        entry["selected_commit"] = _clean_commit(source_commit)
     skills[slug] = entry
     registry["version"] = str(registry.get("version") or "uac-baseline-sources.v1")
     registry["skills"] = skills
@@ -356,7 +405,9 @@ def persist_source_baseline(
     return {
         "slug": slug,
         "baseline_path": baseline_path,
-        "created": overwrite or not entry.get("baseline_path"),
+        "created": created,
+        "updated": updated,
+        "blocked_reasons": list(blocked_reasons),
     }
 
 
@@ -454,6 +505,25 @@ def _clean_relpath(value: object) -> str | None:
     return normalized or None
 
 
+def _baseline_regression_reasons(candidate_text: str, existing_text: str | None) -> list[str]:
+    reasons = [f"artifact:{finding}" for finding in baseline_artifact_findings(candidate_text)]
+    if not existing_text:
+        return reasons
+
+    existing_richness = historical_richness_score(existing_text)
+    candidate_richness = historical_richness_score(candidate_text)
+    if existing_richness >= 5 and candidate_richness <= existing_richness - 3:
+        reasons.append(
+            f"richness:{candidate_richness} is materially weaker than existing {existing_richness}"
+        )
+
+    existing_lines = len(existing_text.splitlines())
+    candidate_lines = len(candidate_text.splitlines())
+    if existing_lines and candidate_lines < max(80, int(existing_lines * 0.5)):
+        reasons.append(f"line_count:{candidate_lines} is materially thinner than existing {existing_lines}")
+    return reasons
+
+
 def _score_from_ratio(ratio: float, *, penalty: int) -> int:
     if ratio >= 0.99:
         score = 10
@@ -481,6 +551,7 @@ def _score_from_ratio(ratio: float, *, penalty: int) -> int:
 __all__ = [
     "BaselineContext",
     "BaselineScenario",
+    "baseline_artifact_findings",
     "evaluate_candidate_against_baseline",
     "evaluate_scenarios",
     "historical_baseline_registry_path",
@@ -488,5 +559,6 @@ __all__ = [
     "load_historical_baseline_registry",
     "persist_source_baseline",
     "resolve_historical_baseline",
+    "text_sha256",
     "validate_registry_entry",
 ]

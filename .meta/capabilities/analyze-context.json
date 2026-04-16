@@ -12,14 +12,16 @@
         "analyze"
       ],
       "required_inputs": [
-        "source text",
-        "user intent/context"
+        "a task slug or clear initiative name",
+        "the analysis goal and success criteria",
+        "the set of files, transcripts, or items to process",
+        "any extraction criteria, constraints, or stop conditions"
       ],
       "expected_outputs": [
-        "deterministic summary",
-        "uplift payload",
-        "capability recommendation",
-        "deployment guidance"
+        "the canonical memory file set in use",
+        "current progress state",
+        "key findings accumulated so far",
+        "next item or next analysis action"
       ],
       "tool_policy": {
         "allowed": [
