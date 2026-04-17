@@ -57,6 +57,22 @@ def test_discovery_pattern_builder_knows_supported_tools() -> None:
     assert smoke_clis.discovery_pattern_builder("codex") is None
 
 
+def test_normalize_discovery_output_synthesizes_gemini_override_entries() -> None:
+    output = (
+        'MCP issues detected. Run /mcp list for status.'
+        'Skill conflict detected: "pulse" from "/tmp/repo/.gemini/skills/pulse/SKILL.md" '
+        'is overriding the same skill from "/Users/example/.gemini/skills/pulse/SKILL.md".'
+        'Skill conflict detected: "feature-status" from "/tmp/repo/.gemini/skills/feature-status/SKILL.md" '
+        'is overriding the same skill from "/Users/example/.gemini/skills/feature-status/SKILL.md".'
+    )
+
+    normalized = smoke_clis.normalize_discovery_output("gemini", output)
+
+    assert 'pulse [Override]' in normalized
+    assert 'feature-status [Override]' in normalized
+    assert smoke_clis.gemini_override_discovery_slugs(output) == ["feature-status", "pulse"]
+
+
 def test_approval_gated_output_is_detected() -> None:
     text = (
         "I need your permission to run this script. "
@@ -156,3 +172,110 @@ def test_main_uses_file_capture_for_gemini_discovery(monkeypatch) -> None:
     ]
     assert payloads[0]["warnings"] == []
     assert payloads[0]["failures"] == []
+
+
+def test_main_treats_gemini_override_conflicts_as_discovery_success(monkeypatch) -> None:
+    payloads: list[dict] = []
+
+    monkeypatch.setattr(
+        smoke_clis,
+        "load_rules",
+        lambda: {
+            "tooling": [
+                {
+                    "name": "gemini",
+                    "surface": "gemini",
+                    "command": "gemini",
+                    "version_args": ["--version"],
+                    "smoke_args": ["--help"],
+                    "discovery_args": ["skills", "list"],
+                    "discovery_surface_names": ["gemini_skill"],
+                }
+            ],
+            "artifacts": [],
+        },
+    )
+    monkeypatch.setattr(
+        smoke_clis,
+        "load_manifest",
+        lambda: {
+            "ssot_sources": [
+                {"slug": "feature-status", "expected_surface_names": ["gemini_skill"]},
+                {"slug": "pulse", "expected_surface_names": ["gemini_skill"]},
+            ]
+        },
+    )
+    monkeypatch.setattr(smoke_clis.shutil, "which", lambda binary: f"/usr/bin/{binary}")
+
+    def fake_run_probe(command, timeout=15, max_chars=4000, capture_mode="pipe"):
+        if command == ["gemini", "skills", "list"]:
+            return (
+                0,
+                'Skill conflict detected: "pulse" from "/tmp/repo/.gemini/skills/pulse/SKILL.md" '
+                'is overriding the same skill from "/Users/example/.gemini/skills/pulse/SKILL.md".'
+                'Skill conflict detected: "feature-status" from "/tmp/repo/.gemini/skills/feature-status/SKILL.md" '
+                'is overriding the same skill from "/Users/example/.gemini/skills/feature-status/SKILL.md".',
+            )
+        return 0, "ok"
+
+    monkeypatch.setattr(smoke_clis, "run_probe", fake_run_probe)
+    monkeypatch.setattr(smoke_clis, "write_smoke_report", lambda payload: payloads.append(payload))
+
+    assert smoke_clis.main([]) == 0
+    assert payloads[0]["warnings"] == []
+    assert payloads[0]["failures"] == []
+    discovery = next(item for item in payloads[0]["results"] if item.get("command") == "discovery")
+    assert discovery["status"] == "ok"
+
+
+def test_main_skips_gemini_discovery_when_override_output_is_partial(monkeypatch) -> None:
+    payloads: list[dict] = []
+
+    monkeypatch.setattr(
+        smoke_clis,
+        "load_rules",
+        lambda: {
+            "tooling": [
+                {
+                    "name": "gemini",
+                    "surface": "gemini",
+                    "command": "gemini",
+                    "version_args": ["--version"],
+                    "smoke_args": ["--help"],
+                    "discovery_args": ["skills", "list"],
+                    "discovery_surface_names": ["gemini_skill"],
+                }
+            ],
+            "artifacts": [],
+        },
+    )
+    monkeypatch.setattr(
+        smoke_clis,
+        "load_manifest",
+        lambda: {
+            "ssot_sources": [
+                {"slug": "feature-status", "expected_surface_names": ["gemini_skill"]},
+                {"slug": "pulse", "expected_surface_names": ["gemini_skill"]},
+            ]
+        },
+    )
+    monkeypatch.setattr(smoke_clis.shutil, "which", lambda binary: f"/usr/bin/{binary}")
+
+    def fake_run_probe(command, timeout=15, max_chars=4000, capture_mode="pipe"):
+        if command == ["gemini", "skills", "list"]:
+            return (
+                0,
+                'Skill conflict detected: "pulse" from "/tmp/repo/.gemini/skills/pulse/SKILL.md" '
+                'is overriding the same skill from "/Users/example/.gemini/skills/pulse/SKILL.md".',
+            )
+        return 0, "ok"
+
+    monkeypatch.setattr(smoke_clis, "run_probe", fake_run_probe)
+    monkeypatch.setattr(smoke_clis, "write_smoke_report", lambda payload: payloads.append(payload))
+
+    assert smoke_clis.main([]) == 0
+    assert payloads[0]["warnings"] == []
+    assert payloads[0]["failures"] == []
+    discovery = next(item for item in payloads[0]["results"] if item.get("command") == "discovery")
+    assert discovery["status"] == "skipped"
+    assert discovery["reason"] == "override_conflicts"

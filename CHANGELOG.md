@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.7.0 - 2026-04-17
+
+- Shipped the `feature-status` capability and closed the UAC baseline-fidelity gap:
+  - added the canonical `ssot/feature-status.md`, generated direct skill surfaces, and the release-facing catalog/status updates needed for the new shipped capability
+  - hardened UAC baseline materialization and provenance so degraded or synthesized candidate bodies cannot overwrite canonical baseline sources
+  - original `feature-status` capability proposal and incoming MR attribution: Ben Kaiser
+- Repaired the release regression that dropped `pulse` during the `feature-status` merge sequence:
+  - restored `ssot/pulse.md`, the `pulse` baseline, descriptor, generated surfaces, and the 16-skill manifest/catalog contract
+  - original `pulse` capability author attribution: Scott Parrish
+- Tightened release hygiene after the recovery merge:
+  - updated `scripts/smoke-clis.py` so Gemini override-only discovery output is recognized as successful skill discovery instead of a false missing-slug warning
+  - added regression coverage for the Gemini override-discovery path and published the corrected `v1.7.0` release artifacts
+
 ## 1.4.21 - 2026-04-05
 
 - Promoted the other two essential release lessons into repo-wide rules:
