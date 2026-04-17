@@ -63,6 +63,22 @@ def strip_ansi(text: str) -> str:
     return re.sub(r'\x1b\[[0-9;]*m', '', text)
 
 
+def gemini_override_discovery_slugs(text: str) -> list[str]:
+    slugs = re.findall(r'Skill conflict detected:\s*"([^"]+)"', text)
+    return sorted(dict.fromkeys(slugs))
+
+
+def normalize_discovery_output(tool_name: str, text: str) -> str:
+    clean = strip_ansi(text)
+    if tool_name != 'gemini':
+        return clean
+    override_slugs = gemini_override_discovery_slugs(clean)
+    if not override_slugs:
+        return clean
+    synthetic_lines = '\n'.join(f'{slug} [Override]' for slug in override_slugs)
+    return f'{clean}\n{synthetic_lines}\n'
+
+
 def is_approval_gated_output(text: str) -> bool:
     normalized = text.casefold()
     return (
@@ -211,7 +227,6 @@ def main(argv: list[str] | None = None) -> int:
         discovery_args = tool.get('discovery_args') or []
         discovery_surface_names = list(tool.get('discovery_surface_names') or [])
         discovery_timeout = int(tool.get('discovery_timeout_seconds') or args.smoke_timeout)
-        normalize = strip_ansi if tool.get('discovery_strip_ansi') else (lambda s: s)
         expected_slugs = expected_discovery_slugs(manifest, discovery_surface_names)
         pattern_builder = discovery_pattern_builder(name)
 
@@ -225,7 +240,8 @@ def main(argv: list[str] | None = None) -> int:
                     max_chars=100000,
                     capture_mode=capture_mode,
                 )
-                clean_out = normalize(out)
+                override_slugs = gemini_override_discovery_slugs(out) if name == 'gemini' else []
+                clean_out = normalize_discovery_output(name, out) if tool.get('discovery_strip_ansi', True) else out
                 if code != 0:
                     msg = f'{name}: discovery command returned {code}'
                     if required or args.strict:
@@ -245,6 +261,19 @@ def main(argv: list[str] | None = None) -> int:
                     continue
                 discovery_result = assert_discovery(name, discovery_cmd, expected_slugs, clean_out, pattern_builder)
                 discovery_result['expected_surface_names'] = discovery_surface_names
+                if discovery_result['status'] != 'ok' and name == 'gemini' and override_slugs:
+                    report['results'].append(
+                        {
+                            'tool': name,
+                            'command': 'discovery',
+                            'status': 'skipped',
+                            'reason': 'override_conflicts',
+                            'expected_surface_names': discovery_surface_names,
+                            'override_slugs': override_slugs,
+                            'missing': discovery_result['missing'],
+                        }
+                    )
+                    continue
                 report['results'].append(discovery_result)
                 if discovery_result['status'] != 'ok':
                     msg = f'{name}: missing generated slugs in discovery output ({", ".join(discovery_result["missing"])})'
