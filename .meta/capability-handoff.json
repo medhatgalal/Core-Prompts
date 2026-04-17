@@ -742,8 +742,8 @@
       "slug": "pulse",
       "display_name": "Pulse \u2014 Comms Triage",
       "capability_type": "skill",
-      "summary": "High signal-to-noise comms triage across Gmail and Google Chat. Read-only. Deterministic priority classification. Quick action recommendations.",
-      "role": "importer",
+      "summary": "High signal-to-noise comms triage across Gmail and Google Chat. Read-only. Deterministic priority. Quick action recommendations.",
+      "role": "specialist_workflow",
       "domain_tags": [
         "pulse"
       ],
@@ -794,7 +794,7 @@
           "kiro_skill"
         ]
       },
-      "confidence": 0.97,
+      "confidence": 0.86,
       "review_status": "ready_for_orchestrator_review",
       "overlap_candidates": [
         "uac-import"

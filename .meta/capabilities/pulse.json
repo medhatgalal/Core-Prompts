@@ -4,8 +4,8 @@
   "layers": {
     "minimal": {
       "capability_type": "skill",
-      "summary": "High signal-to-noise comms triage across Gmail and Google Chat. Read-only. Deterministic priority classification. Quick action recommendations.",
-      "role": "importer",
+      "summary": "High signal-to-noise comms triage across Gmail and Google Chat. Read-only. Deterministic priority. Quick action recommendations.",
+      "role": "specialist_workflow",
       "domain_tags": [
         "pulse"
       ],
@@ -100,8 +100,8 @@
         "policy_rule_id": "ssot.pulse",
         "content_sha256": "ssot"
       },
-      "confidence": 0.97,
-      "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+      "confidence": 0.86,
+      "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
       "review_status": "ready_for_orchestrator_review",
       "display_name": "Pulse \u2014 Comms Triage"
     },
@@ -137,7 +137,7 @@
   },
   "display_name": "Pulse \u2014 Comms Triage",
   "declared_capability": "skill",
-  "inferred_capability": "skill",
+  "inferred_capability": "both",
   "expected_surface_names": [
     "codex_skill",
     "gemini_skill",

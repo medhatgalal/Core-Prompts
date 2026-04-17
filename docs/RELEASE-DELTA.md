@@ -10,7 +10,7 @@
 - none
 
 ## Material Changes
-- `pulse` — changed `preferred_use_cases`
+- `pulse` — changed `summary`
 
 ## All Changed Capabilities
-- `pulse` — changed `preferred_use_cases`
+- `pulse` — changed `summary`
