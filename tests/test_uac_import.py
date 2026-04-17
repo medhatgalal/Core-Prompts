@@ -6,6 +6,7 @@ import shutil
 import subprocess
 import sys
 from pathlib import Path
+from types import SimpleNamespace
 
 ROOT = Path(__file__).resolve().parent.parent
 SCRIPT_PATH = ROOT / "scripts" / "uac-import.py"
@@ -374,6 +375,16 @@ Constraints:
     descriptor = json.loads(descriptor_path.read_text(encoding="utf-8"))
     assert "historical_baseline" in descriptor
     assert "quality_validation_matrix" in descriptor
+    assert descriptor["layers"]["minimal"]["required_inputs"] == [
+        "one markdown source file",
+        "benchmark references from architecture and code-review",
+    ]
+    assert descriptor["layers"]["minimal"]["expected_outputs"] == [
+        "a canonical SSOT entry",
+        "descriptor metadata",
+        "generated surfaces",
+        "a validation-ready build result",
+    ]
     baseline_path = workspace / descriptor["historical_baseline"]["baseline_path"]
     assert baseline_path.is_file()
     assert payload["apply_result"]["build"]["returncode"] == 0
@@ -535,6 +546,123 @@ def test_source_constraints_prefer_authored_constraints(tmp_path: Path) -> None:
     assert UAC_IMPORT._source_constraints(payload) == (
         "Do not auto-merge.",
         "Do not claim unmeasured wins.",
+    )
+
+
+def test_same_slug_apply_does_not_degrade_autosearch_baseline(tmp_path: Path) -> None:
+    workspace = tmp_path / "workspace"
+    shutil.copytree(
+        ROOT,
+        workspace,
+        ignore=shutil.ignore_patterns(".git", ".pytest_cache", "__pycache__", ".DS_Store", ".venv", "node_modules"),
+    )
+    source = tmp_path / "autosearch.md"
+    source.write_text(
+        """---
+name: "autosearch"
+display_name: "Autosearch"
+description: "Noisy same-slug update."
+capability_type: "both"
+install_target: "repo_local"
+---
+# Autosearch
+
+## Purpose
+Attempt a same-slug update with noisy structure.
+
+## Primary Objective
+Exercise the baseline guard without overwriting the fidelity oracle.
+
+## Agent Operating Contract
+Advisory only.
+
+## Tool Boundaries
+Read and analyze only.
+
+## Output Directory
+reports/autosearch/
+
+## Workflow
+1. Freeze baseline.
+
+## Rules
+- Deterministic output only.
+
+## Required Inputs
+- target
+
+## Required Output
+- recommendation
+
+## Constraints
+- Do not silently merge.
+
+## Invocation Hints
+Intent
+- malformed flattening marker
+Requested Outcome
+- malformed flattening marker
+Rejected/Out-of-Scope Signals
+- malformed flattening marker
+
+## Examples
+### Example Request
+> Improve this system.
+
+### Example Output Shape
+- Goal contract
+
+## Evaluation Rubric
+| Check | What Passing Looks Like |
+| --- | --- |
+| Source fidelity | Preserve the baseline oracle |
+
+## Help System
+Copy-Ready Starter Invocation
+""",
+        encoding="utf-8",
+    )
+
+    baseline_path = workspace / "sources" / "ssot-baselines" / "autosearch" / "baseline.md"
+    baseline_before = baseline_path.read_text(encoding="utf-8")
+    original_root = UAC_IMPORT.ROOT
+    original_run = UAC_IMPORT.subprocess.run
+    original_head = UAC_IMPORT._repo_head_commit
+    try:
+        UAC_IMPORT.ROOT = workspace
+        UAC_IMPORT._repo_head_commit = lambda _repo_root: None
+        UAC_IMPORT.subprocess.run = lambda *args, **kwargs: SimpleNamespace(returncode=0, stdout="", stderr="")
+        payload = {
+            "status": "accepted",
+            "source": {"normalized_source": str(source)},
+            "cross_analysis": {"fit_assessment": "fits_cleanly"},
+            "manifest": {
+                "slug": "autosearch",
+                "layers": {
+                    "minimal": {
+                        "capability_type": "both",
+                        "summary": "Noisy same-slug update.",
+                        "required_inputs": ["target"],
+                        "expected_outputs": ["recommendation"],
+                    },
+                    "expanded": {"adjustment_recommendations": []},
+                },
+            },
+            "quality_result": {"status": "ship"},
+            "benchmark_sources": [],
+        }
+        args = SimpleNamespace(yes=True, quality_loop="off")
+        result = UAC_IMPORT._apply_payload(payload, args, [str(source)])
+    finally:
+        UAC_IMPORT.ROOT = original_root
+        UAC_IMPORT.subprocess.run = original_run
+        UAC_IMPORT._repo_head_commit = original_head
+
+    registry = json.loads((workspace / "sources" / "ssot-baselines" / "index.json").read_text(encoding="utf-8"))
+    assert result["status"] == "applied"
+    assert baseline_path.read_text(encoding="utf-8") == baseline_before
+    assert "artifact:flattened_uac_prompt_sections" in (
+        registry["skills"]["autosearch"]["historical_proof"]["last_blocked_reasons"]
     )
 
 

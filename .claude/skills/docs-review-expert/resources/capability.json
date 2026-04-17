@@ -13,14 +13,22 @@
         "expert"
       ],
       "required_inputs": [
-        "source text",
-        "user intent/context"
+        "current README and docs structure",
+        "the intended reader or audience when known",
+        "relevant code, scripts, workflows, or release behavior when drift is suspected",
+        "the change scope when reviewing a commit, pull request, merge, or release"
       ],
       "expected_outputs": [
-        "deterministic summary",
-        "uplift payload",
-        "capability recommendation",
-        "deployment guidance"
+        "`Current State`",
+        "`What Belongs Where`",
+        "`Drift Findings`",
+        "`Recommended Changes`",
+        "`Examples of Good Output`",
+        "`Review Timing`",
+        "`Open Risks`",
+        "exact target paths",
+        "section-level rewrite guidance",
+        "link or navigation updates that must be changed"
       ],
       "tool_policy": {
         "allowed": [

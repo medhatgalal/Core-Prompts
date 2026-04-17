@@ -225,6 +225,126 @@ def packaging_profile(capability_type: str, emitted_surfaces: Mapping[str, Seque
     }
 
 
+def _extract_markdown_section(raw_text: str, heading: str) -> str:
+    lines = raw_text.splitlines()
+    target = f"## {heading}".strip()
+    capture = False
+    in_code_block = False
+    collected: list[str] = []
+    for line in lines:
+        stripped = line.strip()
+        if stripped.startswith("```"):
+            if capture:
+                collected.append(line)
+            in_code_block = not in_code_block
+            continue
+        if not capture:
+            if stripped == target:
+                capture = True
+            continue
+        if stripped.startswith("## ") and not in_code_block:
+            break
+        collected.append(line)
+    return "\n".join(collected).strip()
+
+
+def _extract_section_bullets(raw_text: str, headings: Sequence[str]) -> list[str]:
+    for heading in headings:
+        section = _extract_markdown_section(raw_text, heading)
+        bullets = [line.strip()[2:].strip() for line in section.splitlines() if line.strip().startswith("- ")]
+        if bullets:
+            return list(dict.fromkeys(item for item in bullets if item))
+
+    lines = raw_text.splitlines()
+    labels = {f"{heading}:" for heading in headings}
+    for index, line in enumerate(lines):
+        if line.strip() not in labels:
+            continue
+        bullets: list[str] = []
+        for follow in lines[index + 1:]:
+            stripped = follow.strip()
+            if stripped.startswith("- "):
+                bullets.append(stripped[2:].strip())
+                continue
+            if not stripped:
+                if bullets:
+                    break
+                continue
+            if stripped.endswith(":") or stripped.startswith("## "):
+                break
+            if bullets:
+                break
+        if bullets:
+            return list(dict.fromkeys(item for item in bullets if item))
+    return []
+
+
+def _extract_section_table_inputs(raw_text: str, headings: Sequence[str]) -> list[str]:
+    for heading in headings:
+        section = _extract_markdown_section(raw_text, heading)
+        if not section:
+            continue
+        lines = section.splitlines()
+        items: list[str] = []
+        subsection = ""
+        for line in lines:
+            stripped = line.strip()
+            if stripped.startswith("### "):
+                subsection = stripped[4:].strip().rstrip(":")
+                continue
+            if not stripped.startswith("|"):
+                continue
+            cells = [cell.strip() for cell in stripped.strip("|").split("|")]
+            if len(cells) < 2:
+                continue
+            first = cells[0]
+            if not first or set(first) <= {"-", ":"} or first.lower() in {"document", "source"}:
+                continue
+            if subsection:
+                items.append(f"{subsection}: {first}")
+            else:
+                items.append(first)
+        if items:
+            return list(dict.fromkeys(items))
+    return []
+
+
+def _extract_output_contract_shapes(raw_text: str, headings: Sequence[str]) -> list[str]:
+    for heading in headings:
+        section = _extract_markdown_section(raw_text, heading)
+        if not section:
+            continue
+        items: list[str] = []
+        in_code_block = False
+        for line in section.splitlines():
+            stripped = line.strip()
+            if stripped.startswith("```"):
+                in_code_block = not in_code_block
+                continue
+            if stripped.startswith("- "):
+                bullet = stripped[2:].strip()
+                if bullet.startswith("[") and bullet.endswith("]"):
+                    continue
+                items.append(bullet)
+                continue
+            if not in_code_block:
+                continue
+            if stripped.startswith("## Feature Status:"):
+                items.append("feature status report")
+                continue
+            if not stripped.startswith("### "):
+                continue
+            label = re.sub(r"^[^A-Za-z0-9]+", "", stripped[4:].strip()).lower()
+            if label in {"api surface", "business logic", "data model", "infrastructure", "integration", "tests", "documentation"}:
+                if "categorized status tables" not in items:
+                    items.append("categorized status tables")
+                continue
+            items.append(label)
+        if items:
+            return list(dict.fromkeys(item for item in items if item))
+    return []
+
+
 def build_capability_manifest(
     *,
     slug: str,
@@ -262,14 +382,25 @@ def build_capability_manifest(
     )
     role = derive_role(signal_text, capability_type, slug)
     tags = derive_domain_tags(signal_text, slug)
+    required_inputs = _extract_section_bullets(raw_text, ("Required Inputs", "Required Input")) or _extract_section_table_inputs(
+        raw_text,
+        ("Required Inputs", "Required Input"),
+    )
+    expected_outputs = _extract_output_contract_shapes(
+        raw_text,
+        ("Required Output", "Expected Outputs", "Output Contract", "Output Format"),
+    ) or _extract_section_bullets(
+        raw_text,
+        ("Required Output", "Expected Outputs", "Output Contract", "Output Format"),
+    )
 
     minimal = {
         "capability_type": capability_type,
         "summary": summary.strip(),
         "role": role,
         "domain_tags": list(tags),
-        "required_inputs": ["source text", "user intent/context"],
-        "expected_outputs": [
+        "required_inputs": required_inputs or ["source text", "user intent/context"],
+        "expected_outputs": expected_outputs or [
             "deterministic summary",
             "uplift payload",
             "capability recommendation",

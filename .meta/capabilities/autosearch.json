@@ -10,14 +10,45 @@
         "autosearch"
       ],
       "required_inputs": [
-        "source text",
-        "user intent/context"
+        "target system, artifact, or scope to improve",
+        "explicit goal or desired outcome",
+        "baseline artifact and candidate artifact or variants when evaluating a candidate directly",
+        "constraints:",
+        "editable scope",
+        "budget",
+        "risk tolerance",
+        "review requirements",
+        "available evidence:",
+        "tests",
+        "traces",
+        "benchmarks",
+        "existing metrics",
+        "examples",
+        "host policy for commits, pull requests, and merge if promotion work is expected"
       ],
       "expected_outputs": [
-        "deterministic summary",
-        "uplift payload",
-        "capability recommendation",
-        "deployment guidance"
+        "`Target Summary`",
+        "`Goal Contract`",
+        "`Baseline`",
+        "`Search Surface`",
+        "`Scorecard`",
+        "`Experiment Plan or Ledger`",
+        "`Promotion Decision`",
+        "`Trace-to-Eval Follow-up`",
+        "`Risks and Limits`",
+        "`Commit Plan`",
+        "`Review Packet`",
+        "`Merge Readiness`",
+        "`Behavioral Evaluation`",
+        "`Eval Profile`",
+        "`Dataset`",
+        "`Trials`",
+        "`Result`",
+        "`Top Failure Modes`",
+        "`Regression Promotions`",
+        "`Discriminating Check`",
+        "`Fix or Rejected Hypothesis`",
+        "`Verification`"
       ],
       "tool_policy": {
         "allowed": [

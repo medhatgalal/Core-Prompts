@@ -19,14 +19,16 @@
             "analyze"
           ],
           "required_inputs": [
-            "source text",
-            "user intent/context"
+            "a task slug or clear initiative name",
+            "the analysis goal and success criteria",
+            "the set of files, transcripts, or items to process",
+            "any extraction criteria, constraints, or stop conditions"
           ],
           "expected_outputs": [
-            "deterministic summary",
-            "uplift payload",
-            "capability recommendation",
-            "deployment guidance"
+            "the canonical memory file set in use",
+            "current progress state",
+            "key findings accumulated so far",
+            "next item or next analysis action"
           ],
           "tool_policy": {
             "allowed": [
@@ -182,14 +184,26 @@
             "architecture"
           ],
           "required_inputs": [
-            "source text",
-            "user intent/context"
+            "problem statement, feature request, or architectural question",
+            "current system context when refactoring or integrating with existing code",
+            "explicit constraints such as scale, latency, compliance, staffing, timeline, or vendor boundaries",
+            "any non-goals, fixed decisions, or compatibility requirements"
           ],
           "expected_outputs": [
-            "deterministic summary",
-            "uplift payload",
-            "capability recommendation",
-            "deployment guidance"
+            "`Problem Framing`",
+            "`Objective`",
+            "`In Scope`",
+            "`Out of Scope`",
+            "`Assumptions & Constraints`",
+            "`Architecture Recommendation`",
+            "`Component or Module Boundaries`",
+            "`Interface Contracts`",
+            "`Trade-offs`",
+            "`Rejected Alternatives`",
+            "`Migration / Rollback Plan`",
+            "`Risks & Validation`",
+            "`Decision Log`",
+            "`Confidence`"
           ],
           "tool_policy": {
             "allowed": [
@@ -599,14 +613,45 @@
             "autosearch"
           ],
           "required_inputs": [
-            "source text",
-            "user intent/context"
+            "target system, artifact, or scope to improve",
+            "explicit goal or desired outcome",
+            "baseline artifact and candidate artifact or variants when evaluating a candidate directly",
+            "constraints:",
+            "editable scope",
+            "budget",
+            "risk tolerance",
+            "review requirements",
+            "available evidence:",
+            "tests",
+            "traces",
+            "benchmarks",
+            "existing metrics",
+            "examples",
+            "host policy for commits, pull requests, and merge if promotion work is expected"
           ],
           "expected_outputs": [
-            "deterministic summary",
-            "uplift payload",
-            "capability recommendation",
-            "deployment guidance"
+            "`Target Summary`",
+            "`Goal Contract`",
+            "`Baseline`",
+            "`Search Surface`",
+            "`Scorecard`",
+            "`Experiment Plan or Ledger`",
+            "`Promotion Decision`",
+            "`Trace-to-Eval Follow-up`",
+            "`Risks and Limits`",
+            "`Commit Plan`",
+            "`Review Packet`",
+            "`Merge Readiness`",
+            "`Behavioral Evaluation`",
+            "`Eval Profile`",
+            "`Dataset`",
+            "`Trials`",
+            "`Result`",
+            "`Top Failure Modes`",
+            "`Regression Promotions`",
+            "`Discriminating Check`",
+            "`Fix or Rejected Hypothesis`",
+            "`Verification`"
           ],
           "tool_policy": {
             "allowed": [
@@ -903,14 +948,17 @@
             "code"
           ],
           "required_inputs": [
-            "source text",
-            "user intent/context"
+            "commit hash, staged diff, or the default target of `HEAD`",
+            "repository context when the commit depends on surrounding conventions",
+            "any specific review focus such as scope, message quality, or simplicity"
           ],
           "expected_outputs": [
-            "deterministic summary",
-            "uplift payload",
-            "capability recommendation",
-            "deployment guidance"
+            "`Commit Under Review`",
+            "`Findings`",
+            "`Scope Assessment`",
+            "`Message Assessment`",
+            "`Recommended Fixes`",
+            "`Merge Readiness`"
           ],
           "tool_policy": {
             "allowed": [
@@ -1073,14 +1121,20 @@
             "converge"
           ],
           "required_inputs": [
-            "source text",
-            "user intent/context"
+            "a short intent statement",
+            "the source set to compare",
+            "decision criteria and weights when known",
+            "explicit constraints, audience, or success metrics when available"
           ],
           "expected_outputs": [
-            "deterministic summary",
-            "uplift payload",
-            "capability recommendation",
-            "deployment guidance"
+            "`Executive Summary`",
+            "`Overlap Map`",
+            "`Decision Analysis`",
+            "`Final Converged Proposal`",
+            "`Decision Rationale`",
+            "`Muted / Rejected Ideas`",
+            "`Risks + Next Experiments`",
+            "`Open Questions` when user steering is still required"
           ],
           "tool_policy": {
             "allowed": [
@@ -1261,14 +1315,22 @@
             "expert"
           ],
           "required_inputs": [
-            "source text",
-            "user intent/context"
+            "current README and docs structure",
+            "the intended reader or audience when known",
+            "relevant code, scripts, workflows, or release behavior when drift is suspected",
+            "the change scope when reviewing a commit, pull request, merge, or release"
           ],
           "expected_outputs": [
-            "deterministic summary",
-            "uplift payload",
-            "capability recommendation",
-            "deployment guidance"
+            "`Current State`",
+            "`What Belongs Where`",
+            "`Drift Findings`",
+            "`Recommended Changes`",
+            "`Examples of Good Output`",
+            "`Review Timing`",
+            "`Open Risks`",
+            "exact target paths",
+            "section-level rewrite guidance",
+            "link or navigation updates that must be changed"
           ],
           "tool_policy": {
             "allowed": [
@@ -1470,14 +1532,22 @@
             "gitops"
           ],
           "required_inputs": [
-            "source text",
-            "user intent/context"
+            "current branch and worktree state",
+            "target gate: commit, PR, merge, release, or cleanup",
+            "remote context when GitHub or GitLab parity matters",
+            "explicit execution permission when mutating git or release state"
           ],
           "expected_outputs": [
-            "deterministic summary",
-            "uplift payload",
-            "capability recommendation",
-            "deployment guidance"
+            "`Current State`",
+            "`Gate Type`",
+            "`Findings`",
+            "`Required Companion Reviews`",
+            "`Recommended Commands or Actions`",
+            "`Release / Merge Readiness`",
+            "`Open Risks`",
+            "exact commands run",
+            "exact branch, tag, PR, or MR identifiers",
+            "final state after execution"
           ],
           "tool_policy": {
             "allowed": [
@@ -1681,14 +1751,15 @@
             "mentor"
           ],
           "required_inputs": [
-            "source text",
-            "user intent/context"
+            "the current goal or obstacle",
+            "repo state when relevant, such as branch, diff, failing checks, or active work slice",
+            "any constraints around safety, time, release risk, or coordination with other agents"
           ],
           "expected_outputs": [
-            "deterministic summary",
-            "uplift payload",
-            "capability recommendation",
-            "deployment guidance"
+            "the current working interpretation of the task",
+            "the next recommended action or ordered plan",
+            "evidence required before calling the task done",
+            "the specialist capability to invoke when Mentor should route instead of own the work"
           ],
           "tool_policy": {
             "allowed": [
@@ -1846,331 +1917,6 @@
       ]
     },
     {
-      "slug": "pulse",
-      "manifest_version": "capability-fabric.v0",
-      "layers": {
-        "minimal": {
-          "capability_type": "skill",
-          "summary": "High signal-to-noise comms triage across Gmail and Google Chat. Read-only. Deterministic priority. Quick action recommendations.",
-          "role": "specialist_workflow",
-          "domain_tags": [
-            "pulse"
-          ],
-          "required_inputs": [
-            "source text",
-            "user intent/context"
-          ],
-          "expected_outputs": [
-            "deterministic summary",
-            "uplift payload",
-            "capability recommendation",
-            "deployment guidance"
-          ],
-          "tool_policy": {
-            "allowed": [
-              "deterministic classification",
-              "metadata publication",
-              "surface generation"
-            ],
-            "forbidden": [
-              "orchestration",
-              "delegation decisions",
-              "runtime execution control"
-            ]
-          },
-          "resources": [
-            "ssot/pulse.md"
-          ],
-          "packaging_profile": {
-            "capability_type": "skill",
-            "primary_surfaces": {
-              "codex": [
-                "codex_skill"
-              ],
-              "gemini": [
-                "gemini_skill"
-              ],
-              "claude": [
-                "claude_skill"
-              ],
-              "kiro": [
-                "kiro_skill"
-              ]
-            },
-            "wrapper_surfaces": {
-              "codex": [],
-              "gemini": [
-                "skill_wrapper"
-              ],
-              "claude": [
-                "skill_wrapper",
-                "plugin_wrapper"
-              ],
-              "kiro": [
-                "skill_wrapper",
-                "power_wrapper"
-              ]
-            },
-            "notes": [
-              "wrapper surfaces are additive deployment forms, not capability types",
-              "orchestrators must not infer execution authority from wrapper presence alone"
-            ]
-          },
-          "install_target": {
-            "recommended": "repo_local",
-            "confidence": 0.88,
-            "confirmation_required_for_apply": true,
-            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
-            "supported": [
-              "global",
-              "repo_local",
-              "both"
-            ]
-          },
-          "emitted_surfaces": {
-            "codex": [
-              "codex_skill"
-            ],
-            "gemini": [
-              "gemini_skill"
-            ],
-            "claude": [
-              "claude_skill"
-            ],
-            "kiro": [
-              "kiro_skill"
-            ]
-          },
-          "source_provenance": {
-            "source_type": "LOCAL_FILE",
-            "normalized_source": "ssot/pulse.md",
-            "policy_rule_id": "ssot.pulse",
-            "content_sha256": "ssot"
-          },
-          "confidence": 0.86,
-          "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
-          "review_status": "ready_for_orchestrator_review",
-          "display_name": "Pulse \u2014 Comms Triage"
-        },
-        "expanded": {
-          "relationship_suggestions": [
-            "pair with convergence capability for multi-source synthesis"
-          ],
-          "capability_dependencies": [],
-          "overlap_candidates": [
-            "uac-import"
-          ],
-          "migration_notes": [
-            "If the capability lands, compare it against existing entries before apply.",
-            "Relationship suggestions are advisory only and do not imply runtime routing."
-          ],
-          "adjustment_recommendations": [
-            "add an explicit primary objective before packaging",
-            "add deterministic in-scope sections to improve routing fitness",
-            "capture quality constraints or non-negotiables"
-          ]
-        },
-        "org_graph": {
-          "org_role": "importer",
-          "reports_to_suggestions": [],
-          "delegates_to_suggestions": [],
-          "collaborates_with_suggestions": [
-            "packaging",
-            "context"
-          ],
-          "authority_tier": "advisory",
-          "work_graph_impact": "Adds or updates a skill capability with route profile None."
-        }
-      },
-      "display_name": "Pulse \u2014 Comms Triage",
-      "descriptor_version": "capability-fabric.descriptor.v0",
-      "family_slug": "pulse",
-      "shared_summary": "High signal-to-noise comms triage across Gmail and Google Chat. Read-only. Deterministic priority classification. Quick action recommendations.",
-      "shared_constraints": [
-        "- forbidden: send, reply, forward, delete, archive, modify, or label any message during triage. Write commands (`+reply`, `+forward`, `+send`) are ONLY permitted during `/act` mode after explicit per-item user approval.",
-        "## Required Inputs",
-        "- `gws` CLI authenticated (`gws auth status` must pass)",
-        "## Required Output",
-        "Every pulse run must include:",
-        "### Example: Hot items only",
-        "Returns only \ud83d\udd34 and \ud83d\udfe1 items",
-        "skipping \ud83d\udd35 FYI noise.",
-        "| Safety invariant | No write commands executed without explicit per-item user approval |",
-        "Classify each item into \ud83d\udd34 Urgent / \ud83d\udfe1 Needs Response / \ud83d\udd35 FYI using deterministic rules.",
-        "forbidden: send, reply, forward, delete, archive, modify, or label any message during triage. Write commands (`+reply`, `+forward`, `+send`) are ONLY permitted during `/act` mode after explicit per-item user approval.",
-        "`gws` CLI authenticated (`gws auth status` must pass)"
-      ],
-      "modes": [],
-      "benchmark_sources": [
-        {
-          "provider": "github",
-          "label": "chrisneagu/FTC-Skystone-Dark-Angels-Romania-2020",
-          "url": "https://github.com/chrisneagu/FTC-Skystone-Dark-Angels-Romania-2020",
-          "note": "NOTICE This repository contains the public FTC SDK for the SKYSTONE (2019-2020) competition season. If you are looking for the current season's FTC SDK software"
-        },
-        {
-          "provider": "github",
-          "label": "ssr-diaries/Development-Of-Autonomous-Downscaled-Model-Car-Using-Neural-Networks-And-Machine-Learning",
-          "url": "https://github.com/ssr-diaries/Development-Of-Autonomous-Downscaled-Model-Car-Using-Neural-Networks-And-Machine-Learning",
-          "note": "Machine learning using convolution neural network  Required:  raspberry pi pi cam compatibile rc car motor driver l293d  Please create the respective files:  fo"
-        },
-        {
-          "provider": "github",
-          "label": "debabrata-mallick/e_shop",
-          "url": "https://github.com/debabrata-mallick/e_shop",
-          "note": "<p align=\"center\"><img src=\"https://laravel.com/assets/img/components/logo-laravel.svg\"></p>  <p align=\"center\"> <a href=\"https://travis-ci.org/laravel/framewor"
-        },
-        {
-          "provider": "github",
-          "label": "debabrata-mallick/Shopping_Cart",
-          "url": "https://github.com/debabrata-mallick/Shopping_Cart",
-          "note": "<p align=\"center\"><img src=\"https://laravel.com/assets/img/components/logo-laravel.svg\"></p>  <p align=\"center\"> <a href=\"https://travis-ci.org/laravel/framewor"
-        },
-        {
-          "provider": "web",
-          "label": "Pulse360 Library \u2014 The Snippet Tool Built for Professionals",
-          "url": "//duckduckgo.com/l/?uddg=https%3A%2F%2Flibrary.pulse360.com%2F&amp;rut=a267d5c7adc87f471492a5974e83a8422f168f16b0ea7e2853742f128ba484cd",
-          "note": "AI Prompts Store, organize, and reuse prompts across ChatGPT, Claude, and other tools \u2014 without your prompt library living inside a third-party keystroke tracke"
-        },
-        {
-          "provider": "web",
-          "label": "GitHub - pnp/prompt-pulse: Prompt Pulse is a free Microsoft Teams Power ...",
-          "url": "//duckduckgo.com/l/?uddg=https%3A%2F%2Fgithub.com%2Fpnp%2Fprompt%2Dpulse&amp;rut=3922770b40c214fe4db4755731d685f28b6d060ab9004431224db07e820d74cd",
-          "note": "Prompt Pulse provides the following capabilities: Ability to share a prompt with your team, a group chat, multiple users or Viva Engage. Adaptive card notificat"
-        },
-        {
-          "provider": "web",
-          "label": "Pulse360 Library - Snippets & Prompts - Chrome Web Store",
-          "url": "//duckduckgo.com/l/?uddg=https%3A%2F%2Fchromewebstore.google.com%2Fdetail%2Fpulse360%2Dlibrary%2Dsnippets%2Fcljgjopfeheddfimipeddamhlpdjiafc&amp;rut=4472efb2d940bd20e46bde9422508bd6ea2c47830f1274ebd60019c4c26823d9",
-          "note": "Stop rewriting. Insert reusable snippets and AI prompts anywhere \u2014 including ChatGPT, Gemini, Claude, Gmail & more. Overview Stop rewriting the same emails. Ins"
-        },
-        {
-          "provider": "web",
-          "label": "Understand Prompt Gallery in Copilot | Microsoft Learn",
-          "url": "//duckduckgo.com/l/?uddg=https%3A%2F%2Flearn.microsoft.com%2Fen%2Dus%2Fmicrosoft%2D365%2Fcopilot%2Fcopilot%2Dprompt%2Dgallery&amp;rut=62d33ce98d40bf124dd7cbe521d4bd4d36db984229f3cc705a4e24bdd76cc649",
-          "note": "Microsoft Prompt Gallery in Copilot is a resource of Microsoft-created prompts, videos, and articles that help your users understand and use Microsoft Copilot e"
-        }
-      ],
-      "quality_profile": "default",
-      "quality_status": "ship",
-      "judge_reports": [
-        {
-          "pass_number": 1,
-          "status": "ship",
-          "historical_baseline": {
-            "slug": "pulse",
-            "strategy": "derived_history",
-            "group": "derived",
-            "baseline_path": null,
-            "selected_commit": "22aa8d5d",
-            "richness_score": 2,
-            "line_count": 86,
-            "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
-            "equivalent_commits": [],
-            "expected_companions": [],
-            "operator_invariants": [],
-            "scenario_matrix": [],
-            "historical_proof": {},
-            "source": "git_history",
-            "verified_by_git_history": true,
-            "has_baseline_text": true
-          },
-          "judge_reports": [
-            {
-              "judge": "source_fidelity",
-              "title": "Source Fidelity and Uplift",
-              "score": 10,
-              "blockers": [],
-              "classification": "preserved",
-              "scenario_results": [],
-              "scorecard": {
-                "baseline_richness": 2,
-                "candidate_richness": 2
-              },
-              "baseline_commit": "22aa8d5d",
-              "baseline_slug": "pulse"
-            },
-            {
-              "judge": "operational_richness",
-              "title": "Operational Richness",
-              "score": 10,
-              "blockers": []
-            },
-            {
-              "judge": "metadata_integrity",
-              "title": "Metadata and Handoff Integrity",
-              "score": 10,
-              "blockers": []
-            },
-            {
-              "judge": "benchmark_readiness",
-              "title": "Benchmark Readiness and Template Fit",
-              "score": 10,
-              "blockers": [],
-              "scorecard": {
-                "title_clarity": 10,
-                "description_richness": 10,
-                "intent_coverage": 10,
-                "boundary_clarity": 10,
-                "output_specificity": 10,
-                "metadata_completeness": 8,
-                "surface_usability": 10
-              }
-            }
-          ],
-          "blockers": [],
-          "scorecard": {
-            "source_fidelity": 10,
-            "baseline_richness": 2,
-            "candidate_richness": 2,
-            "operational_richness": 10,
-            "metadata_integrity": 10,
-            "benchmark_readiness": 10,
-            "title_clarity": 10,
-            "description_richness": 10,
-            "intent_coverage": 10,
-            "boundary_clarity": 10,
-            "output_specificity": 10,
-            "metadata_completeness": 8,
-            "surface_usability": 10
-          },
-          "template_name": "skill"
-        }
-      ],
-      "consumption_hints": {
-        "preferred_use_cases": [
-          "AI-assisted capability selection",
-          "deterministic prompt uplift review"
-        ],
-        "artifact_conventions": [
-          "ssot/<slug>.md",
-          ".meta/capabilities/<slug>.json",
-          "reports/quality-reviews/<slug>/LATEST.md"
-        ],
-        "invocation_style": "assistant_first_but_scriptable",
-        "requires_human_confirmation": true
-      },
-      "quality_pass_count": 1,
-      "quality_stop_reason": "thresholds_met",
-      "declared_capability": "skill",
-      "inferred_capability": "both",
-      "expected_surface_names": [
-        "codex_skill",
-        "gemini_skill",
-        "claude_skill",
-        "kiro_skill"
-      ],
-      "rubric_version": "capability-fabric.v0",
-      "invocation_hints": [
-        "check my email / inbox / messages",
-        "what needs my attention",
-        "any urgent messages",
-        "triage my comms / communications",
-        "what's new in chat",
-        "pulse, pulse /hot, pulse /email, pulse /chat"
-      ]
-    },
-    {
       "slug": "resolve-conflict",
       "manifest_version": "capability-fabric.v0",
       "layers": {
@@ -2183,14 +1929,19 @@
             "conflict"
           ],
           "required_inputs": [
-            "source text",
-            "user intent/context"
+            "conflicting file or files",
+            "the two sides of the conflict, or access to the current git conflict markers",
+            "branch context or merge/rebase context when known",
+            "any policy or preference constraints that must win"
           ],
           "expected_outputs": [
-            "deterministic summary",
-            "uplift payload",
-            "capability recommendation",
-            "deployment guidance"
+            "`Conflict Summary`",
+            "`Inversion Analysis`",
+            "`Content Comparison`",
+            "`Resolution Strategy`",
+            "`Resolution Plan`",
+            "`Verification Steps`",
+            "`Open Decisions or Risks`"
           ],
           "tool_policy": {
             "allowed": [
@@ -2353,14 +2104,22 @@
             "supercharge"
           ],
           "required_inputs": [
-            "source text",
-            "user intent/context"
+            "the current prompt, draft, plan, proposal, or intent statement",
+            "any sources or alternatives that must be compared",
+            "the claimed difference between variants when the user wants a stronger comparison",
+            "explicit constraints, non-negotiables, or success criteria when known",
+            "risk tolerance when the task is high-stakes or operational"
           ],
           "expected_outputs": [
-            "deterministic summary",
-            "uplift payload",
-            "capability recommendation",
-            "deployment guidance"
+            "`Approach Decision`",
+            "the improved prompt, plan, or recommendation",
+            "`Why This Is Better`",
+            "explicit assumptions or unresolved risks",
+            "the grading rubric or comparison criteria",
+            "the iteration ladder or option ranking",
+            "the top remaining gaps",
+            "`Behavioral Proof Need`",
+            "`Autosearch Handoff`"
           ],
           "tool_policy": {
             "allowed": [
@@ -2539,14 +2298,18 @@
             "testing"
           ],
           "required_inputs": [
-            "source text",
-            "user intent/context"
+            "source code, feature description, or failing scenario",
+            "repository testing stack when known",
+            "risk areas or priority workflows",
+            "existing tests or coverage report when available"
           ],
           "expected_outputs": [
-            "deterministic summary",
-            "uplift payload",
-            "capability recommendation",
-            "deployment guidance"
+            "`Scope`",
+            "`Assumptions`",
+            "`Recommended Tests or Gaps`",
+            "`Priority or Risk`",
+            "`Framework Notes`",
+            "`Follow-up Work`"
           ],
           "tool_policy": {
             "allowed": [
@@ -2834,14 +2597,16 @@
             "threader"
           ],
           "required_inputs": [
-            "source text",
-            "user intent/context"
+            "the current thread or the exact conversation scope to export",
+            "any delivery preference such as file-first or inline fallback",
+            "fidelity expectations when the user needs disclosure for inaccessible turns or missing artifacts"
           ],
           "expected_outputs": [
-            "deterministic summary",
-            "uplift payload",
-            "capability recommendation",
-            "deployment guidance"
+            "a downloadable transcript file plus a short confirmation, or",
+            "one logically contiguous inline transcript with clear merge instructions if the platform cannot create files",
+            "fidelity disclosure",
+            "impacted turn list when history is missing",
+            "artifact inclusion status when files or downloads were produced inside the thread"
           ],
           "tool_policy": {
             "allowed": [
@@ -2993,14 +2758,29 @@
             "prompting"
           ],
           "required_inputs": [
-            "source text",
-            "user intent/context"
+            "one or more explicit sources",
+            "desired mode such as `plan`, `judge`, or `apply`",
+            "target system or install target when that materially affects the recommendation",
+            "any benchmark or quality expectations when the caller wants a stricter gate"
           ],
           "expected_outputs": [
-            "deterministic summary",
-            "uplift payload",
-            "capability recommendation",
-            "deployment guidance"
+            "Source",
+            "Summary",
+            "Uplift",
+            "Routing",
+            "UAC Classification",
+            "Collection Recommendation",
+            "Layered Manifest",
+            "Cross-Analysis",
+            "Quality Plan / Judge Reports",
+            "Install Target",
+            "Advisory Handoff Contract",
+            "Recommended Surface",
+            "Modernization Focus",
+            "Next Actions",
+            "Behavioral Confidence",
+            "Escalation Reason",
+            "Autosearch Handoff"
           ],
           "tool_policy": {
             "allowed": [
@@ -3178,10 +2958,9 @@
             "user intent/context"
           ],
           "expected_outputs": [
-            "deterministic summary",
-            "uplift payload",
-            "capability recommendation",
-            "deployment guidance"
+            "a single report document with exec-friendly body and technical appendices (A through F)",
+            "a confidence assessment in Appendix F rating each source (High/Medium/Low) with methodology notes",
+            "an internal consistency check confirming body numbers match appendix data"
           ],
           "tool_policy": {
             "allowed": [
@@ -3356,7 +3135,6 @@
       ".gemini/skills/docs-review-expert/SKILL.md",
       ".gemini/skills/gitops-review/SKILL.md",
       ".gemini/skills/mentor/SKILL.md",
-      ".gemini/skills/pulse/SKILL.md",
       ".gemini/skills/resolve-conflict/SKILL.md",
       ".gemini/skills/supercharge/SKILL.md",
       ".gemini/skills/testing/SKILL.md",
@@ -3383,7 +3161,6 @@
       ".claude/skills/docs-review-expert/SKILL.md",
       ".claude/skills/gitops-review/SKILL.md",
       ".claude/skills/mentor/SKILL.md",
-      ".claude/skills/pulse/SKILL.md",
       ".claude/skills/resolve-conflict/SKILL.md",
       ".claude/skills/supercharge/SKILL.md",
       ".claude/skills/testing/SKILL.md",
@@ -3420,7 +3197,6 @@
       ".kiro/skills/docs-review-expert/SKILL.md",
       ".kiro/skills/gitops-review/SKILL.md",
       ".kiro/skills/mentor/SKILL.md",
-      ".kiro/skills/pulse/SKILL.md",
       ".kiro/skills/resolve-conflict/SKILL.md",
       ".kiro/skills/supercharge/SKILL.md",
       ".kiro/skills/testing/SKILL.md",
@@ -3437,7 +3213,6 @@
       ".codex/skills/docs-review-expert/SKILL.md",
       ".codex/skills/gitops-review/SKILL.md",
       ".codex/skills/mentor/SKILL.md",
-      ".codex/skills/pulse/SKILL.md",
       ".codex/skills/resolve-conflict/SKILL.md",
       ".codex/skills/supercharge/SKILL.md",
       ".codex/skills/testing/SKILL.md",
@@ -3471,7 +3246,6 @@
       ".codex/skills/docs-review-expert/resources/capability.json",
       ".codex/skills/gitops-review/resources/capability.json",
       ".codex/skills/mentor/resources/capability.json",
-      ".codex/skills/pulse/resources/capability.json",
       ".codex/skills/resolve-conflict/resources/capability.json",
       ".codex/skills/supercharge/resources/capability.json",
       ".codex/skills/testing/resources/capability.json",
@@ -3508,7 +3282,6 @@
       ".gemini/skills/docs-review-expert/resources/capability.json",
       ".gemini/skills/gitops-review/resources/capability.json",
       ".gemini/skills/mentor/resources/capability.json",
-      ".gemini/skills/pulse/resources/capability.json",
       ".gemini/skills/resolve-conflict/resources/capability.json",
       ".gemini/skills/supercharge/resources/capability.json",
       ".gemini/skills/testing/resources/capability.json",
@@ -3545,7 +3318,6 @@
       ".claude/skills/docs-review-expert/resources/capability.json",
       ".claude/skills/gitops-review/resources/capability.json",
       ".claude/skills/mentor/resources/capability.json",
-      ".claude/skills/pulse/resources/capability.json",
       ".claude/skills/resolve-conflict/resources/capability.json",
       ".claude/skills/supercharge/resources/capability.json",
       ".claude/skills/testing/resources/capability.json",
@@ -3582,7 +3354,6 @@
       ".kiro/skills/docs-review-expert/resources/capability.json",
       ".kiro/skills/gitops-review/resources/capability.json",
       ".kiro/skills/mentor/resources/capability.json",
-      ".kiro/skills/pulse/resources/capability.json",
       ".kiro/skills/resolve-conflict/resources/capability.json",
       ".kiro/skills/supercharge/resources/capability.json",
       ".kiro/skills/testing/resources/capability.json",

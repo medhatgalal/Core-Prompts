@@ -409,28 +409,20 @@
       "baseline_path": "sources/ssot-baselines/uac-import/baseline.md"
     },
     "autosearch": {
-      "strategy": "source_library",
-      "group": "applied_baseline",
+      "strategy": "head_snapshot",
+      "group": "current_oracle",
       "baseline_path": "sources/ssot-baselines/autosearch/baseline.md",
       "richness_score": 2,
       "line_count": 186,
-      "reason": "Repo-resident baseline source snapshot used as the fidelity oracle for future UAC judging.",
+      "reason": "Current SSOT baseline source snapshot materialized into the source library because the stored baseline was missing, stale, or structurally degraded.",
       "historical_proof": {
-        "materialized_from_commit": null,
-        "last_materialized_at": "2026-04-05T00:48:44.620861+00:00"
-      }
-    },
-    "pulse": {
-      "strategy": "source_library",
-      "group": "applied_baseline",
-      "baseline_path": "sources/ssot-baselines/pulse/baseline.md",
-      "richness_score": 2,
-      "line_count": 105,
-      "reason": "Repo-resident baseline source snapshot used as the fidelity oracle for future UAC judging.",
-      "historical_proof": {
-        "materialized_from_commit": null,
-        "last_materialized_at": "2026-04-17T04:09:03.925798+00:00"
-      }
+        "materialized_from_commit": "28b1f2f7",
+        "last_materialized_at": "2026-04-16T19:33:38.931614+00:00",
+        "materialized_from_source_kind": "current_ssot",
+        "materialized_from_path": "ssot/autosearch.md",
+        "materialized_from_sha256": "0da2727d4b2ccc6eaf3e8834c2f87d92a4f3ae827a88eb6bb741ea3e2d6d5b2e"
+      },
+      "selected_commit": "28b1f2f7"
     }
   }
 }

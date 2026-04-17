@@ -1,10 +1,15 @@
 from __future__ import annotations
 
+import json
+import subprocess
+import sys
 import shutil
 from pathlib import Path
 
 from intent_pipeline.uac_baselines import (
+    baseline_artifact_findings,
     evaluate_candidate_against_baseline,
+    persist_source_baseline,
     resolve_historical_baseline,
     validate_registry_entry,
 )
@@ -81,3 +86,79 @@ def test_registry_fallback_works_without_git_history(tmp_path: Path) -> None:
     assert baseline.source == "source_library"
     assert baseline.verified_by_git_history is False
     assert result["classification"] == "additive"
+
+
+def test_baseline_artifact_findings_detects_flattened_autosearch_shape() -> None:
+    findings = baseline_artifact_findings(
+        "## Invocation Hints\nIntent\n- bad\nRequested Outcome\n- bad\nRejected/Out-of-Scope Signals\n- bad\n"
+    )
+
+    assert "flattened_uac_prompt_sections" in findings
+    assert "corrupted_invocation_hints_section" in findings
+
+
+def test_persist_source_baseline_refuses_structurally_noisy_overwrite(tmp_path: Path) -> None:
+    workspace = tmp_path / "workspace"
+    shutil.copytree(
+        ROOT,
+        workspace,
+        ignore=shutil.ignore_patterns(".git", ".pytest_cache", "__pycache__", ".DS_Store", ".venv", "node_modules"),
+    )
+
+    baseline_path = workspace / "sources" / "ssot-baselines" / "autosearch" / "baseline.md"
+    baseline_before = baseline_path.read_text(encoding="utf-8")
+    noisy_candidate = """## Invocation Hints
+Intent
+- malformed flattening marker
+Requested Outcome
+- malformed flattening marker
+Rejected/Out-of-Scope Signals
+- malformed flattening marker
+"""
+
+    result = persist_source_baseline(
+        workspace,
+        slug="autosearch",
+        baseline_text=noisy_candidate,
+        overwrite=False,
+        source_kind="canonical_source",
+        source_path=None,
+        source_sha256="test",
+        source_commit=None,
+    )
+    registry = json.loads((workspace / "sources" / "ssot-baselines" / "index.json").read_text(encoding="utf-8"))
+
+    assert result["updated"] is False
+    assert "artifact:flattened_uac_prompt_sections" in result["blocked_reasons"]
+    assert baseline_path.read_text(encoding="utf-8") == baseline_before
+    assert "artifact:flattened_uac_prompt_sections" in (
+        registry["skills"]["autosearch"]["historical_proof"]["last_blocked_reasons"]
+    )
+
+
+def test_materialize_baseline_sources_refreshes_autosearch_from_current_ssot(tmp_path: Path) -> None:
+    workspace = tmp_path / "workspace"
+    shutil.copytree(
+        ROOT,
+        workspace,
+        ignore=shutil.ignore_patterns(".git", ".pytest_cache", "__pycache__", ".DS_Store", ".venv", "node_modules"),
+    )
+
+    result = subprocess.run(
+        [sys.executable, str(workspace / "scripts" / "materialize-baseline-sources.py"), "--slug", "autosearch"],
+        cwd=workspace,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    assert result.returncode == 0
+
+    baseline_path = workspace / "sources" / "ssot-baselines" / "autosearch" / "baseline.md"
+    ssot_path = workspace / "ssot" / "autosearch.md"
+    registry = json.loads((workspace / "sources" / "ssot-baselines" / "index.json").read_text(encoding="utf-8"))
+
+    assert baseline_path.read_text(encoding="utf-8") == ssot_path.read_text(encoding="utf-8")
+    assert registry["skills"]["autosearch"]["strategy"] == "head_snapshot"
+    assert registry["skills"]["autosearch"]["group"] == "current_oracle"
+    assert registry["skills"]["autosearch"]["historical_proof"]["materialized_from_source_kind"] == "current_ssot"
+    assert not (workspace / "sources" / "ssot-baselines" / "weekly-intel" / "baseline.md").exists()

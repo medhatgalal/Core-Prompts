@@ -10,14 +10,20 @@
         "converge"
       ],
       "required_inputs": [
-        "source text",
-        "user intent/context"
+        "a short intent statement",
+        "the source set to compare",
+        "decision criteria and weights when known",
+        "explicit constraints, audience, or success metrics when available"
       ],
       "expected_outputs": [
-        "deterministic summary",
-        "uplift payload",
-        "capability recommendation",
-        "deployment guidance"
+        "`Executive Summary`",
+        "`Overlap Map`",
+        "`Decision Analysis`",
+        "`Final Converged Proposal`",
+        "`Decision Rationale`",
+        "`Muted / Rejected Ideas`",
+        "`Risks + Next Experiments`",
+        "`Open Questions` when user steering is still required"
       ],
       "tool_policy": {
         "allowed": [

@@ -16,10 +16,9 @@
         "user intent/context"
       ],
       "expected_outputs": [
-        "deterministic summary",
-        "uplift payload",
-        "capability recommendation",
-        "deployment guidance"
+        "a single report document with exec-friendly body and technical appendices (A through F)",
+        "a confidence assessment in Appendix F rating each source (High/Medium/Low) with methodology notes",
+        "an internal consistency check confirming body numbers match appendix data"
       ],
       "tool_policy": {
         "allowed": [

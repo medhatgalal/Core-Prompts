@@ -11,14 +11,19 @@
         "conflict"
       ],
       "required_inputs": [
-        "source text",
-        "user intent/context"
+        "conflicting file or files",
+        "the two sides of the conflict, or access to the current git conflict markers",
+        "branch context or merge/rebase context when known",
+        "any policy or preference constraints that must win"
       ],
       "expected_outputs": [
-        "deterministic summary",
-        "uplift payload",
-        "capability recommendation",
-        "deployment guidance"
+        "`Conflict Summary`",
+        "`Inversion Analysis`",
+        "`Content Comparison`",
+        "`Resolution Strategy`",
+        "`Resolution Plan`",
+        "`Verification Steps`",
+        "`Open Decisions or Risks`"
       ],
       "tool_policy": {
         "allowed": [

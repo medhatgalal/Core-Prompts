@@ -12,14 +12,29 @@
         "prompting"
       ],
       "required_inputs": [
-        "source text",
-        "user intent/context"
+        "one or more explicit sources",
+        "desired mode such as `plan`, `judge`, or `apply`",
+        "target system or install target when that materially affects the recommendation",
+        "any benchmark or quality expectations when the caller wants a stricter gate"
       ],
       "expected_outputs": [
-        "deterministic summary",
-        "uplift payload",
-        "capability recommendation",
-        "deployment guidance"
+        "Source",
+        "Summary",
+        "Uplift",
+        "Routing",
+        "UAC Classification",
+        "Collection Recommendation",
+        "Layered Manifest",
+        "Cross-Analysis",
+        "Quality Plan / Judge Reports",
+        "Install Target",
+        "Advisory Handoff Contract",
+        "Recommended Surface",
+        "Modernization Focus",
+        "Next Actions",
+        "Behavioral Confidence",
+        "Escalation Reason",
+        "Autosearch Handoff"
       ],
       "tool_policy": {
         "allowed": [
