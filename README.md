@@ -10,7 +10,7 @@ The right mental model is simple:
 
 If you are already using Core-Prompts in a CLI, start there. If you are importing a new capability family, go to UAC next. If you are rebuilding surfaces, validating state, deploying, or preparing release work, use the repo tooling after that.
 
-The current generated surfaces ship `15` skills across all supported CLIs and `8` advisory agents on agent-capable surfaces.
+The current generated surfaces ship `16` skills across all supported CLIs and `8` advisory agents on agent-capable surfaces.
 
 ## Installed Capabilities First
 
@@ -31,6 +31,7 @@ These are the currently shipped skills with a concrete starter ask for each one:
 | `feature-status` | audit a feature against its stated scope and proof sources | "Use `feature-status` to compare this feature's pitch, HLD, OAS, code, and tests, then tell me what is complete, what drifted, and what is blocking ship." | evidence-backed status tables, spec drift findings, gap analysis, and prioritized recommendations |
 | `gitops-review` | judge branch, PR, merge, or release readiness | "Use `gitops-review` to tell me whether this branch is ready for PR and what blockers remain." | gate type, blockers, required companion reviews, and next actions |
 | `mentor` | get senior sequencing and workflow guidance, including tmux-aware terminal context recovery | "Use `mentor` to tell me the next reversible move on this branch, then read my terminal if the failure is in tmux." | the next move, why it is next, what not to mix in, and direct terminal-context reads when needed |
+| `pulse` | triage Gmail and Google Chat noise into clear priorities | "Use `pulse` to tell me what needs my attention across Gmail and Google Chat, then propose the next actions without sending anything." | priority-classified comms table, source summary, and proposed next actions for the hot items |
 | `resolve-conflict` | analyze a merge conflict or competing edits | "Use `resolve-conflict` to compare these conflicting branch edits and tell me what should survive." | conflict map, additive merge opportunities, explicit tradeoffs, and a recommended resolution |
 | `supercharge` | harden a rough prompt, plan, or proposal before execution | "Use `supercharge` to turn this rough feature brief into an implementation plan with tradeoffs and failure modes." | sharper framing, stronger constraints, execution plan, and failure-mode coverage |
 | `testing` | decide what to test first and what edge cases matter | "Use `testing` to identify the highest-value tests and edge cases for this change." | prioritized tests, edge cases, and coverage gaps |

@@ -2,7 +2,7 @@
 
 Generated from canonical manifest and descriptor metadata. Use this page to see what Core-Prompts ships, what each capability is for, and where it lands.
 
-- Capability count: `15`
+- Capability count: `16`
 
 ## Start Here
 - `docs-review-expert` — Docs Review Expert — Documentation IA, Drift, and Release Hygiene: Documentation Review Expert for information architecture, explainable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.
@@ -12,10 +12,10 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `testing` — Testing Studio — Test Design and Coverage Analysis: Testing Studio for unit-test generation, end-to-end test design, edge-case discovery, and coverage gap analysis.
 
 ## By CLI
-- `claude`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `feature-status`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `codex`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `feature-status`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `gemini`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `feature-status`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `kiro`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `feature-status`, `gitops-review`, `mentor`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `claude`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `feature-status`, `gitops-review`, `mentor`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `codex`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `feature-status`, `gitops-review`, `mentor`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `gemini`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `feature-status`, `gitops-review`, `mentor`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `kiro`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `feature-status`, `gitops-review`, `mentor`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
 
 ## By Use Case
 - `analysis`: `analyze-context`
@@ -35,6 +35,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `mentor`: `mentor`
 - `planning`: `uac-import`
 - `prompting`: `mentor`, `uac-import`
+- `pulse`: `pulse`
 - `resolve`: `resolve-conflict`
 - `review`: `code-review`, `docs-review-expert`, `gitops-review`, `weekly-intel`
 - `status`: `feature-status`
@@ -181,6 +182,20 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
   - preview how to merge this branch safely
   - tell me what content is orthogonal versus contradictory
 - Summary: Merge Conflict Resolution for structured conflict analysis, additive merging, and inversion-led trade-off handling.
+
+### Pulse — Comms Triage
+- Slug: `pulse`
+- Type: `skill`
+- Install target: `repo_local`
+- Supported CLIs: `claude, codex, gemini, kiro`
+- Invocation hints:
+  - check my email / inbox / messages
+  - what needs my attention
+  - any urgent messages
+  - triage my comms / communications
+  - what's new in chat
+  - pulse, pulse /hot, pulse /email, pulse /chat
+- Summary: High signal-to-noise comms triage across Gmail and Google Chat. Read-only. Deterministic priority. Quick action recommendations.
 
 ### SuperCharge — Prompt Engineering, Planning Hardening, and Graded Improvement
 - Slug: `supercharge`

@@ -901,6 +901,96 @@
       "advisory_only": true
     },
     {
+      "slug": "pulse",
+      "display_name": "Pulse \u2014 Comms Triage",
+      "capability_type": "skill",
+      "summary": "High signal-to-noise comms triage across Gmail and Google Chat. Read-only. Deterministic priority. Quick action recommendations.",
+      "role": "specialist_workflow",
+      "domain_tags": [
+        "pulse"
+      ],
+      "required_inputs": [
+        "`gws` CLI authenticated (`gws auth status` must pass)",
+        "Configured chat spaces (auto-discovered on first run or manually configured)"
+      ],
+      "expected_outputs": [
+        "Timestamp header",
+        "Priority-classified table with: #, Addr, From, Subject (clickable link), Age, Action",
+        "Source summary footer (Gmail count, Chat spaces/msgs, memory signal count)",
+        "Proposed action list for \ud83d\udd34 and \ud83d\udfe1 items"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ]
+      },
+      "confidence": 0.86,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [
+        "uac-import"
+      ],
+      "relationship_suggestions": [
+        "pair with convergence capability for multi-source synthesis"
+      ],
+      "quality_status": "ship",
+      "benchmark_profile": "default",
+      "preferred_use_cases": [
+        "AI-assisted capability selection",
+        "deterministic prompt uplift review"
+      ],
+      "artifact_conventions": [
+        "ssot/<slug>.md",
+        ".meta/capabilities/<slug>.json",
+        "reports/quality-reviews/<slug>/LATEST.md"
+      ],
+      "invocation_style": "assistant_first_but_scriptable",
+      "requires_human_confirmation": true,
+      "org_graph": {
+        "org_role": "importer",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "packaging",
+          "context"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile None."
+      },
+      "advisory_only": true
+    },
+    {
       "slug": "resolve-conflict",
       "display_name": "Merge Conflict Resolution \u2014 Structured Conflict Analysis",
       "capability_type": "skill",

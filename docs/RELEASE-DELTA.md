@@ -7,7 +7,7 @@
 - Material changes: `0`
 
 ## New Capabilities
-- `feature-status` — Feature Status — Deep Completeness Analysis
+- `pulse` — Pulse — Comms Triage
 
 ## Material Changes
 - none
