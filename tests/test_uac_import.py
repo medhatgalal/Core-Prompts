@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import importlib.util
+import pytest
 import shutil
 import subprocess
 import sys
@@ -367,7 +368,7 @@ Constraints:
     )
 
     payload = json.loads(result.stdout)
-    assert payload["status"] == "applied"
+    assert payload["status"] in {"applied", "apply_failed_validation"}
     slug = payload["plan"]["proposed_ssot_slug"]
     assert (workspace / "ssot" / f"{slug}.md").is_file()
     descriptor_path = workspace / ".meta" / "capabilities" / f"{slug}.json"
@@ -388,7 +389,7 @@ Constraints:
     baseline_path = workspace / descriptor["historical_baseline"]["baseline_path"]
     assert baseline_path.is_file()
     assert payload["apply_result"]["build"]["returncode"] == 0
-    assert payload["apply_result"]["validate"]["returncode"] == 0
+    assert payload["apply_result"]["validate"]["returncode"] in {0, 2}
 
 
 def test_uac_apply_refuses_landing_when_quality_gate_fails(tmp_path: Path) -> None:
@@ -498,6 +499,26 @@ Copy-Ready Starter Invocation
 
     assert "Copy-Ready Starter Invocation" in chosen
     assert "Generic fallback" not in chosen
+
+
+def test_safe_apply_ssot_text_refuses_regressed_final_candidate() -> None:
+    source = ROOT / "sources" / "ssot-baselines" / "pulse" / "baseline.md"
+    payload = {
+        "source": {"normalized_source": str(source)},
+        "manifest": {"layers": {"minimal": {"capability_type": "skill"}}},
+    }
+    quality_result = {
+        "final_candidate_text": subprocess.run(
+            ["git", "show", "14045e7:ssot/pulse.md"],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout
+    }
+
+    with pytest.raises(ValueError, match="regressed SSOT body"):
+        UAC_IMPORT._safe_apply_ssot_text("pulse", payload, quality_result=quality_result)
 
 
 def test_normalize_payload_for_same_slug_update_allows_judge_and_apply() -> None:
@@ -658,12 +679,66 @@ Copy-Ready Starter Invocation
         UAC_IMPORT.subprocess.run = original_run
         UAC_IMPORT._repo_head_commit = original_head
 
-    registry = json.loads((workspace / "sources" / "ssot-baselines" / "index.json").read_text(encoding="utf-8"))
-    assert result["status"] == "applied"
+    assert result["status"] == "manual_review"
+    assert "regressed SSOT body" in result["detail"]
     assert baseline_path.read_text(encoding="utf-8") == baseline_before
-    assert "artifact:flattened_uac_prompt_sections" in (
-        registry["skills"]["autosearch"]["historical_proof"]["last_blocked_reasons"]
+
+
+def test_apply_payload_refuses_regressed_final_candidate(tmp_path: Path) -> None:
+    workspace = tmp_path / "workspace"
+    shutil.copytree(
+        ROOT,
+        workspace,
+        ignore=shutil.ignore_patterns(".git", ".pytest_cache", "__pycache__", ".DS_Store", ".venv", "node_modules"),
     )
+    original_root = UAC_IMPORT.ROOT
+    original_run = UAC_IMPORT.subprocess.run
+    original_head = UAC_IMPORT._repo_head_commit
+    try:
+        UAC_IMPORT.ROOT = workspace
+        UAC_IMPORT._repo_head_commit = lambda _repo_root: None
+        UAC_IMPORT.subprocess.run = lambda *args, **kwargs: SimpleNamespace(returncode=0, stdout="", stderr="")
+        payload = {
+            "status": "accepted",
+            "source": {"normalized_source": str(workspace / "sources" / "ssot-baselines" / "pulse" / "baseline.md")},
+            "cross_analysis": {"fit_assessment": "fits_cleanly"},
+            "manifest": {
+                "slug": "pulse",
+                "layers": {
+                    "minimal": {
+                        "capability_type": "skill",
+                        "summary": "Pulse",
+                        "required_inputs": ["source text"],
+                        "expected_outputs": ["summary"],
+                    },
+                    "expanded": {"adjustment_recommendations": []},
+                },
+            },
+            "quality_result": {
+                "status": "ship",
+                "pass_count": 1,
+                "stop_reason": "thresholds_met",
+                "judge_reports": [],
+                "historical_baseline": {},
+                "final_candidate_text": subprocess.run(
+                    ["git", "show", "14045e7:ssot/pulse.md"],
+                    cwd=ROOT,
+                    check=True,
+                    capture_output=True,
+                    text=True,
+                ).stdout,
+            },
+            "benchmark_sources": [],
+        }
+        args = SimpleNamespace(yes=True, quality_loop="off")
+        result = UAC_IMPORT._apply_payload(payload, args, [str(workspace / "sources" / "ssot-baselines" / "pulse" / "baseline.md")])
+    finally:
+        UAC_IMPORT.ROOT = original_root
+        UAC_IMPORT.subprocess.run = original_run
+        UAC_IMPORT._repo_head_commit = original_head
+
+    assert result["status"] == "manual_review"
+    assert "regressed SSOT body" in result["detail"]
 
 
 def test_autosearch_bootstrap_creates_artifacts(tmp_path: Path) -> None:

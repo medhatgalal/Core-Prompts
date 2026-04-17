@@ -19,6 +19,8 @@ Keep repository changes reviewable, reversible, and easy to isolate.
 - Create or switch to a dedicated branch before multi-file edits, workflow changes, docs rewrites, release work, or canonical SSOT changes.
 - Prefer branch names that describe the work clearly.
 - If the worktree already contains unrelated user changes, preserve them and avoid mixing them into the branch scope.
+- When several independent change streams are active, prefer separate `git worktree` checkouts rooted at dedicated branches instead of stacking unrelated edits into one checkout.
+- Keep one worktree per coherent branch scope when UAC engine work and docs or prompt artifacts are moving concurrently.
 
 ## Mutation Order
 

@@ -24,6 +24,7 @@ When you are reviewing or updating this repo, keep these priorities in mind:
 5. Change canonical source first and regenerate outputs when the repo has an SSOT or generator model.
 6. Keep build, validate, smoke, dry-run, and install steps ordered so each step observes complete output rather than racing half-finished generation.
 7. Keep one canonical home per concept and link instead of duplicating unless the duplication is intentionally user-serving.
+8. When multiple branches are moving at once, prefer separate worktrees over layering unrelated edits into the same checkout.
 
 ## Practical Review Checklist
 
@@ -58,6 +59,7 @@ Check:
 - generated inspection views such as `docs/CAPABILITY-CATALOG.md`, `docs/RELEASE-DELTA.md`, and `docs/STATUS.md`
 - dry-run deploy output before local install when the release overwrites installed home surfaces
 - direct comparison between generated outputs and installed state when local customizations or prior tool-written state may exist
+- whether concurrent UAC engine work and docs or prompt work should be split into separate worktrees before more edits land
 
 ## Generated Views: How To Use Them
 

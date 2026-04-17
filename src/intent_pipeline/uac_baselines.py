@@ -85,6 +85,11 @@ def historical_richness_score(text: str) -> int:
     score += 4 if "## HELP OUTPUT" in text else 0
     score += 4 if "## MODULE REFERENCE" in text else 0
     score += 3 if "## The Prompt" in text else 0
+    score += 3 if "## Invocation" in text else 0
+    score += 3 if "| Command |" in text else 0
+    score += 3 if "## Workflow Contract" in text else 0
+    score += 2 if "## Configuration" in text else 0
+    score += 2 if "### Step 1" in text else 0
     score += 2 if "```text" in text or "~~~~text" in text else 0
     score += 2 if "HARD CONSTRAINTS" in text else 0
     score += 2 if "Output Structure (MANDATORY)" in text else 0
@@ -110,7 +115,108 @@ def baseline_artifact_findings(text: str) -> tuple[str, ...]:
         findings.append("corrupted_invocation_hints_section")
     if "\n- - " in text:
         findings.append("nested_bullet_flattening")
+    if "## output directory" in lowered and "## review timing" in lowered and "## advisory notes" in lowered:
+        findings.append("generic_uac_template_shape")
+    if "requested outcome" in lowered and "rejected/out-of-scope signals" in lowered and "## output directory" in lowered:
+        findings.append("generic_uac_contract_rewrite")
     return tuple(dict.fromkeys(findings))
+
+
+def operational_signal_score(text: str) -> int:
+    lowered = text.casefold()
+    score = 0
+    score += 2 if "## invocation" in lowered else 0
+    score += 2 if "| command |" in lowered else 0
+    score += 2 if "## help output" in lowered else 0
+    score += 2 if "## workflow contract" in lowered else 0
+    score += 1 if "## configuration" in lowered else 0
+    score += 1 if "### step 1" in lowered else 0
+    score += 1 if "100% read-only" in lowered or "must never" in lowered else 0
+    score += 1 if "only during `/act`" in lowered else 0
+    return score
+
+
+def derive_operational_baseline_contract(text: str) -> tuple[tuple[BaselineScenario, ...], tuple[str, ...]]:
+    lowered = text.casefold()
+    scenarios: list[BaselineScenario] = []
+    invariants: list[str] = []
+
+    if "## invocation" in lowered:
+        must_contain = ["## Invocation"]
+        if "| Command |" in text:
+            must_contain.append("| Command |")
+        scenarios.append(
+            BaselineScenario(
+                scenario_id="operational_invocation",
+                kind="operational_contract",
+                label="operational invocation surface",
+                must_contain=tuple(must_contain),
+            )
+        )
+
+    if "## help output" in lowered:
+        must_contain = ["## Help Output"]
+        if "COMMANDS" in text:
+            must_contain.append("COMMANDS")
+        scenarios.append(
+            BaselineScenario(
+                scenario_id="help_output_contract",
+                kind="operational_contract",
+                label="help output contract",
+                must_contain=tuple(must_contain),
+            )
+        )
+
+    workflow_heading = None
+    if "## workflow contract" in lowered:
+        workflow_heading = "## Workflow Contract"
+    elif "## workflow" in lowered and "### step 1" in lowered:
+        workflow_heading = "## Workflow"
+    if workflow_heading:
+        must_contain = [workflow_heading]
+        if "### Step 1" in text:
+            must_contain.append("### Step 1")
+        scenarios.append(
+            BaselineScenario(
+                scenario_id="stepwise_workflow_contract",
+                kind="operational_contract",
+                label="stepwise workflow contract",
+                must_contain=tuple(must_contain),
+            )
+        )
+
+    if "## configuration" in lowered:
+        scenarios.append(
+            BaselineScenario(
+                scenario_id="configuration_contract",
+                kind="operational_contract",
+                label="configuration contract",
+                must_contain=("## Configuration",),
+            )
+        )
+
+    for marker in ("100% read-only", "MUST NEVER", "only during `/act`"):
+        if marker.casefold() in lowered:
+            invariants.append(marker)
+
+    return tuple(scenarios), tuple(dict.fromkeys(invariants))
+
+
+def _merge_baseline_contract(
+    scenarios: Sequence[BaselineScenario],
+    operator_invariants: Sequence[str],
+    baseline_text: str | None,
+) -> tuple[tuple[BaselineScenario, ...], tuple[str, ...]]:
+    merged_scenarios = {scenario.scenario_id: scenario for scenario in scenarios}
+    merged_invariants = list(operator_invariants)
+    if baseline_text:
+        derived_scenarios, derived_invariants = derive_operational_baseline_contract(baseline_text)
+        for scenario in derived_scenarios:
+            merged_scenarios.setdefault(scenario.scenario_id, scenario)
+        for invariant in derived_invariants:
+            if invariant not in merged_invariants:
+                merged_invariants.append(invariant)
+    return tuple(merged_scenarios.values()), tuple(merged_invariants)
 
 
 def resolve_historical_baseline(
@@ -124,6 +230,11 @@ def resolve_historical_baseline(
     if skill_entry:
         baseline_text = _baseline_text_from_registry(repo_root, slug, skill_entry)
         verified = _verify_registry_entry(repo_root, slug, skill_entry)
+        scenario_matrix, operator_invariants = _merge_baseline_contract(
+            _load_scenarios(skill_entry),
+            tuple(str(item) for item in skill_entry.get("operator_invariants") or ()),
+            baseline_text,
+        )
         return BaselineContext(
             slug=slug,
             strategy=str(skill_entry.get("strategy") or "registry_only"),
@@ -138,8 +249,8 @@ def resolve_historical_baseline(
             reason=str(skill_entry.get("reason") or ""),
             equivalent_commits=tuple(str(item) for item in skill_entry.get("equivalent_commits") or ()),
             expected_companions=tuple(str(item) for item in skill_entry.get("expected_companions") or ()),
-            operator_invariants=tuple(str(item) for item in skill_entry.get("operator_invariants") or ()),
-            scenario_matrix=_load_scenarios(skill_entry),
+            operator_invariants=operator_invariants,
+            scenario_matrix=scenario_matrix,
             historical_proof=dict(skill_entry.get("historical_proof") or {}),
             source="source_library",
             verified_by_git_history=verified,
@@ -182,6 +293,7 @@ def derive_historical_baseline(
         current_path = repo_root / "ssot" / f"{slug}.md"
         if current_path.exists():
             current_text = current_path.read_text(encoding="utf-8")
+            scenario_matrix, operator_invariants = _merge_baseline_contract((), (), current_text)
             return BaselineContext(
                 slug=slug,
                 strategy="head_snapshot",
@@ -193,8 +305,8 @@ def derive_historical_baseline(
                 reason="No git history was available, so the current SSOT body is the strongest available baseline.",
                 equivalent_commits=(),
                 expected_companions=(),
-                operator_invariants=(),
-                scenario_matrix=(),
+                operator_invariants=operator_invariants,
+                scenario_matrix=scenario_matrix,
                 historical_proof={},
                 source="current_ssot",
                 verified_by_git_history=False,
@@ -221,6 +333,7 @@ def derive_historical_baseline(
     strongest_score = max(item["richness_score"] for item in ordered)
     strongest = [item for item in ordered if item["richness_score"] == strongest_score]
     selected = strongest[0]
+    scenario_matrix, operator_invariants = _merge_baseline_contract((), (), str(selected["text"]))
     return BaselineContext(
         slug=slug,
         strategy="derived_history",
@@ -232,8 +345,8 @@ def derive_historical_baseline(
         reason="Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
         equivalent_commits=tuple(_clean_commit(item["commit"]) for item in strongest[1:]),
         expected_companions=(),
-        operator_invariants=(),
-        scenario_matrix=(),
+        operator_invariants=operator_invariants,
+        scenario_matrix=scenario_matrix,
         historical_proof={},
         source="git_history",
         verified_by_git_history=True,
@@ -247,8 +360,11 @@ def evaluate_candidate_against_baseline(
 ) -> dict[str, object]:
     candidate_richness = historical_richness_score(candidate_text)
     candidate_lines = len(candidate_text.splitlines())
+    candidate_operational_score = operational_signal_score(candidate_text)
+    baseline_operational_score = operational_signal_score(baseline.baseline_text or "")
     scenarios = evaluate_scenarios(candidate_text, baseline.scenario_matrix, baseline.operator_invariants)
     hard_failures: list[str] = []
+    candidate_findings = baseline_artifact_findings(candidate_text)
 
     scenario_failures = [scenario for scenario in scenarios if not scenario["passed"]]
     if scenario_failures:
@@ -256,11 +372,17 @@ def evaluate_candidate_against_baseline(
             f"baseline scenario failed: {scenario['id']} missing {', '.join(scenario['missing_markers'])}"
             for scenario in scenario_failures
         )
+    if (baseline.scenario_matrix or baseline.operator_invariants) and "generic_uac_template_shape" in candidate_findings:
+        hard_failures.append("candidate matches a generic UAC template shape while the baseline requires an operational contract")
 
     richness_gap = max(0, baseline.richness_score - candidate_richness)
     if baseline.richness_score >= 5 and richness_gap >= 3:
         hard_failures.append(
             f"candidate richness regressed from baseline {baseline.richness_score} to {candidate_richness}"
+        )
+    if baseline_operational_score >= 3 and candidate_operational_score <= baseline_operational_score - 2:
+        hard_failures.append(
+            f"candidate operational signal coverage regressed from {baseline_operational_score} to {candidate_operational_score}"
         )
     if baseline.line_count and candidate_lines < max(80, int(baseline.line_count * 0.5)):
         hard_failures.append(
@@ -287,6 +409,9 @@ def evaluate_candidate_against_baseline(
         "candidate_line_count": candidate_lines,
         "baseline_richness": baseline.richness_score,
         "baseline_line_count": baseline.line_count,
+        "candidate_operational_score": candidate_operational_score,
+        "baseline_operational_score": baseline_operational_score,
+        "candidate_findings": list(candidate_findings),
         "scenario_results": scenarios,
         "hard_failures": hard_failures,
         "score": score,
