@@ -40,7 +40,12 @@ from intent_pipeline.uac_quality import (
     render_latest_review_markdown,
     run_quality_loop,
 )
-from intent_pipeline.uac_baselines import persist_source_baseline, text_sha256
+from intent_pipeline.uac_baselines import (
+    evaluate_candidate_against_baseline,
+    persist_source_baseline,
+    resolve_historical_baseline,
+    text_sha256,
+)
 from intent_pipeline.uac_templates import load_capability_template
 from intent_pipeline.uac_repomix import collect_repomix_candidates, materialize_repomix_candidate, repomix_available
 from intent_pipeline.uac_sources import (
@@ -1389,6 +1394,37 @@ def _preferred_ssot_text(slug: str, payload: Mapping[str, Any], *, quality_resul
     return _render_ssot_markdown(slug, dict(payload))
 
 
+def _evaluate_ssot_fidelity(slug: str, candidate_text: str) -> dict[str, Any]:
+    baseline = resolve_historical_baseline(ROOT, slug, candidate_text=candidate_text)
+    return evaluate_candidate_against_baseline(candidate_text, baseline)
+
+
+def _safe_apply_ssot_text(
+    slug: str,
+    payload: Mapping[str, Any],
+    *,
+    quality_result: Mapping[str, Any] | None = None,
+) -> tuple[str, dict[str, Any] | None]:
+    ssot_text = _preferred_ssot_text(slug, payload, quality_result=quality_result)
+    fidelity = _evaluate_ssot_fidelity(slug, ssot_text)
+    if not fidelity['hard_failures']:
+        return ssot_text, None
+
+    source_text = _source_body_text(payload)
+    if source_text and source_text.strip() and source_text.strip() != ssot_text.strip():
+        source_fidelity = _evaluate_ssot_fidelity(slug, source_text)
+        if not source_fidelity['hard_failures']:
+            return source_text, {
+                'selected_text': 'source_text',
+                'blocked_candidate_failures': list(fidelity['hard_failures']),
+            }
+
+    raise ValueError(
+        'Apply refused to land a regressed SSOT body: '
+        + '; '.join(str(item) for item in fidelity['hard_failures'])
+    )
+
+
 def _render_ssot_markdown(slug: str, payload: dict[str, Any], *, quality_profile: Mapping[str, Any] | None = None) -> str:
     manifest = payload['manifest']
     minimal = manifest['layers']['minimal']
@@ -1681,7 +1717,23 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
             )
         )
         descriptor['quality_validation_matrix'] = list((quality_plan or {}).get('validation_matrix') or ())
-    ssot_text = _preferred_ssot_text(slug, result, quality_result=quality_result)
+    try:
+        ssot_text, apply_guard = _safe_apply_ssot_text(slug, result, quality_result=quality_result)
+    except ValueError as exc:
+        result['mode'] = 'apply'
+        result['status'] = 'manual_review'
+        result['detail'] = str(exc)
+        result['apply_result'] = {
+            'changed_paths': [str(path.relative_to(ROOT)) for path in quality_paths],
+            'quality': {
+                'profile': (quality_plan or {}).get('quality_profile'),
+                'status': (quality_result or {}).get('status'),
+                'pass_count': (quality_result or {}).get('pass_count'),
+                'stop_reason': (quality_result or {}).get('stop_reason'),
+            },
+            'deploy_next_step': 'Revise the candidate or preserve the operational source body before apply.',
+        }
+        return result
     ssot_path.write_text(ssot_text + ('\n' if not ssot_text.endswith('\n') else ''), encoding='utf-8')
     if quality_result and quality_result.get('status') == 'ship':
         baseline_source = _baseline_materialization_payload(slug, result, ssot_text=ssot_text, ssot_path=ssot_path)
@@ -1732,6 +1784,8 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
         },
         'deploy_next_step': 'Run bin/capability-fabric deploy or scripts/deploy-surfaces.sh after reviewing repo changes.',
     }
+    if apply_guard:
+        result['apply_guard'] = apply_guard
     if build_proc.returncode == 0 and validate_proc.returncode == 0:
         result['status'] = 'applied'
         result['detail'] = 'SSOT and descriptor landed in repo, surfaces rebuilt, validation passed.'

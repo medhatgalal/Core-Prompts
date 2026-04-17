@@ -146,6 +146,7 @@ def build_quality_plan(
         "hard_fail_rules": [
             "fail if a rich prompt body is replaced by a capability summary",
             "fail if module-specific sections are reduced to shallow one-liners",
+            "fail if a generic UAC template shape replaces an operational command, mode, help, or workflow contract",
             "fail if direct operating instructions move into metadata and disappear from the body",
             "fail if orchestration or portability language weakens user-facing execution semantics",
         ],
@@ -240,11 +241,17 @@ def evaluate_quality_pass(
     template_name: str,
     template: Mapping[str, Any],
 ) -> dict[str, Any]:
+    source_fidelity = _judge_source_fidelity(profile, slug, candidate_text, baseline, source_refs, benchmark_sources)
+    operational_richness = _judge_operational_richness(profile, candidate_text)
+    metadata_integrity = _judge_metadata_integrity(profile, slug, candidate_text, descriptor)
+    benchmark_readiness = _judge_benchmark_readiness(profile, candidate_text, descriptor, template_name=template_name, template=template)
+    metadata_integrity = _cap_dependent_judge_from_source_fidelity(profile, source_fidelity, metadata_integrity)
+    benchmark_readiness = _cap_dependent_judge_from_source_fidelity(profile, source_fidelity, benchmark_readiness)
     judge_reports = [
-        _judge_source_fidelity(profile, slug, candidate_text, baseline, source_refs, benchmark_sources),
-        _judge_operational_richness(profile, candidate_text),
-        _judge_metadata_integrity(profile, slug, candidate_text, descriptor),
-        _judge_benchmark_readiness(profile, candidate_text, descriptor, template_name=template_name, template=template),
+        source_fidelity,
+        operational_richness,
+        metadata_integrity,
+        benchmark_readiness,
     ]
     thresholds = profile.targets
     blockers = [
@@ -389,6 +396,8 @@ def _judge_source_fidelity(
         "scorecard": {
             "baseline_richness": int(fidelity["baseline_richness"]),
             "candidate_richness": int(fidelity["candidate_richness"]),
+            "baseline_operational_score": int(fidelity["baseline_operational_score"]),
+            "candidate_operational_score": int(fidelity["candidate_operational_score"]),
         },
         "baseline_commit": baseline.selected_commit,
         "baseline_slug": slug,
@@ -511,6 +520,22 @@ def _judge_benchmark_readiness(
         "blockers": blockers,
         "scorecard": scorecard,
     }
+
+
+def _cap_dependent_judge_from_source_fidelity(
+    profile: QualityProfile,
+    source_fidelity: Mapping[str, Any],
+    judge_report: Mapping[str, Any],
+) -> dict[str, Any]:
+    if not source_fidelity.get("blockers"):
+        return dict(judge_report)
+    blocked = dict(judge_report)
+    blockers = list(blocked.get("blockers") or [])
+    blockers.append(f"source fidelity failed, so {blocked['judge']} cannot clear ship independently")
+    blocked["blockers"] = blockers
+    target = int(profile.targets.get(str(blocked["judge"])) or 10)
+    blocked["score"] = min(int(blocked["score"]), max(1, target - 1))
+    return blocked
 
 
 def refine_candidate_text(candidate_text: str, pass_report: Mapping[str, Any], profile: QualityProfile) -> str:

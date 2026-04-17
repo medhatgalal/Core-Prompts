@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.7.2 - 2026-04-17
+
+- Hardened UAC against operational prompt dilution:
+  - derived operational baseline scenarios and invariants from rich SSOT bodies so source fidelity fails when a generic template replaces commands, workflow steps, or behavioral guardrails
+  - capped downstream metadata and benchmark judges when source fidelity already failed, so template-shaped regressions cannot look release-ready
+  - made `uac-import apply` fail closed when the final candidate text regresses the historical canonical baseline
+- Added regression coverage and maintainer workflow guidance:
+  - added historical `pulse` regression tests that prove the diluted `14045e7` release now fails and the restored body remains acceptable
+  - documented dedicated branch and worktree usage for concurrent UAC engine and docs or prompt work
+
 ## 1.7.0 - 2026-04-17
 
 - Shipped the `feature-status` capability and closed the UAC baseline-fidelity gap:
