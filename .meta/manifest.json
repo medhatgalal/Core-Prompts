@@ -1846,6 +1846,166 @@
       ]
     },
     {
+      "slug": "pulse",
+      "manifest_version": "capability-fabric.v0",
+      "layers": {
+        "minimal": {
+          "capability_type": "skill",
+          "summary": "High signal-to-noise comms triage across Gmail and Google Chat. Read-only. Deterministic priority classification. Quick action recommendations.",
+          "role": "importer",
+          "domain_tags": [
+            "pulse"
+          ],
+          "required_inputs": [
+            "source text",
+            "user intent/context"
+          ],
+          "expected_outputs": [
+            "deterministic summary",
+            "uplift payload",
+            "capability recommendation",
+            "deployment guidance"
+          ],
+          "tool_policy": {
+            "allowed": [
+              "deterministic classification",
+              "metadata publication",
+              "surface generation"
+            ],
+            "forbidden": [
+              "orchestration",
+              "delegation decisions",
+              "runtime execution control"
+            ]
+          },
+          "resources": [
+            "ssot/pulse.md"
+          ],
+          "packaging_profile": {
+            "capability_type": "skill",
+            "primary_surfaces": {
+              "codex": [
+                "codex_skill"
+              ],
+              "gemini": [
+                "gemini_skill"
+              ],
+              "claude": [
+                "claude_skill"
+              ],
+              "kiro": [
+                "kiro_skill"
+              ]
+            },
+            "wrapper_surfaces": {
+              "codex": [],
+              "gemini": [
+                "skill_wrapper"
+              ],
+              "claude": [
+                "skill_wrapper",
+                "plugin_wrapper"
+              ],
+              "kiro": [
+                "skill_wrapper",
+                "power_wrapper"
+              ]
+            },
+            "notes": [
+              "wrapper surfaces are additive deployment forms, not capability types",
+              "orchestrators must not infer execution authority from wrapper presence alone"
+            ]
+          },
+          "install_target": {
+            "recommended": "repo_local",
+            "confidence": 0.88,
+            "confirmation_required_for_apply": true,
+            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+            "supported": [
+              "global",
+              "repo_local",
+              "both"
+            ]
+          },
+          "emitted_surfaces": {
+            "codex": [
+              "codex_skill"
+            ],
+            "gemini": [
+              "gemini_skill"
+            ],
+            "claude": [
+              "claude_skill"
+            ],
+            "kiro": [
+              "kiro_skill"
+            ]
+          },
+          "source_provenance": {
+            "source_type": "LOCAL_FILE",
+            "normalized_source": "ssot/pulse.md",
+            "policy_rule_id": "ssot.pulse",
+            "content_sha256": "ssot"
+          },
+          "confidence": 0.97,
+          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "Pulse \u2014 Comms Triage"
+        },
+        "expanded": {
+          "relationship_suggestions": [
+            "pair with convergence capability for multi-source synthesis"
+          ],
+          "capability_dependencies": [],
+          "overlap_candidates": [],
+          "migration_notes": [
+            "If the capability lands, compare it against existing entries before apply.",
+            "Relationship suggestions are advisory only and do not imply runtime routing."
+          ],
+          "adjustment_recommendations": [
+            "add an explicit primary objective before packaging",
+            "add deterministic in-scope sections to improve routing fitness",
+            "capture quality constraints or non-negotiables"
+          ]
+        },
+        "org_graph": {
+          "org_role": "importer",
+          "reports_to_suggestions": [],
+          "delegates_to_suggestions": [],
+          "collaborates_with_suggestions": [
+            "pulse"
+          ],
+          "authority_tier": "advisory",
+          "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+        }
+      },
+      "display_name": "Pulse \u2014 Comms Triage",
+      "descriptor_version": "capability-fabric.descriptor.v0",
+      "family_slug": "pulse",
+      "shared_summary": "High signal-to-noise comms triage across Gmail and Google Chat. Read-only. Deterministic priority classification. Quick action recommendations.",
+      "shared_constraints": [],
+      "modes": [],
+      "benchmark_sources": [],
+      "consumption_hints": {},
+      "declared_capability": "skill",
+      "inferred_capability": "skill",
+      "expected_surface_names": [
+        "codex_skill",
+        "gemini_skill",
+        "claude_skill",
+        "kiro_skill"
+      ],
+      "rubric_version": "capability-fabric.v0",
+      "invocation_hints": [
+        "check my email / inbox / messages",
+        "what needs my attention",
+        "any urgent messages",
+        "triage my comms / communications",
+        "what's new in chat",
+        "pulse, pulse /hot, pulse /email, pulse /chat"
+      ]
+    },
+    {
       "slug": "resolve-conflict",
       "manifest_version": "capability-fabric.v0",
       "layers": {
@@ -3031,6 +3191,7 @@
       ".gemini/skills/docs-review-expert/SKILL.md",
       ".gemini/skills/gitops-review/SKILL.md",
       ".gemini/skills/mentor/SKILL.md",
+      ".gemini/skills/pulse/SKILL.md",
       ".gemini/skills/resolve-conflict/SKILL.md",
       ".gemini/skills/supercharge/SKILL.md",
       ".gemini/skills/testing/SKILL.md",
@@ -3057,6 +3218,7 @@
       ".claude/skills/docs-review-expert/SKILL.md",
       ".claude/skills/gitops-review/SKILL.md",
       ".claude/skills/mentor/SKILL.md",
+      ".claude/skills/pulse/SKILL.md",
       ".claude/skills/resolve-conflict/SKILL.md",
       ".claude/skills/supercharge/SKILL.md",
       ".claude/skills/testing/SKILL.md",
@@ -3093,6 +3255,7 @@
       ".kiro/skills/docs-review-expert/SKILL.md",
       ".kiro/skills/gitops-review/SKILL.md",
       ".kiro/skills/mentor/SKILL.md",
+      ".kiro/skills/pulse/SKILL.md",
       ".kiro/skills/resolve-conflict/SKILL.md",
       ".kiro/skills/supercharge/SKILL.md",
       ".kiro/skills/testing/SKILL.md",
@@ -3109,6 +3272,7 @@
       ".codex/skills/docs-review-expert/SKILL.md",
       ".codex/skills/gitops-review/SKILL.md",
       ".codex/skills/mentor/SKILL.md",
+      ".codex/skills/pulse/SKILL.md",
       ".codex/skills/resolve-conflict/SKILL.md",
       ".codex/skills/supercharge/SKILL.md",
       ".codex/skills/testing/SKILL.md",
@@ -3142,6 +3306,7 @@
       ".codex/skills/docs-review-expert/resources/capability.json",
       ".codex/skills/gitops-review/resources/capability.json",
       ".codex/skills/mentor/resources/capability.json",
+      ".codex/skills/pulse/resources/capability.json",
       ".codex/skills/resolve-conflict/resources/capability.json",
       ".codex/skills/supercharge/resources/capability.json",
       ".codex/skills/testing/resources/capability.json",
@@ -3178,6 +3343,7 @@
       ".gemini/skills/docs-review-expert/resources/capability.json",
       ".gemini/skills/gitops-review/resources/capability.json",
       ".gemini/skills/mentor/resources/capability.json",
+      ".gemini/skills/pulse/resources/capability.json",
       ".gemini/skills/resolve-conflict/resources/capability.json",
       ".gemini/skills/supercharge/resources/capability.json",
       ".gemini/skills/testing/resources/capability.json",
@@ -3214,6 +3380,7 @@
       ".claude/skills/docs-review-expert/resources/capability.json",
       ".claude/skills/gitops-review/resources/capability.json",
       ".claude/skills/mentor/resources/capability.json",
+      ".claude/skills/pulse/resources/capability.json",
       ".claude/skills/resolve-conflict/resources/capability.json",
       ".claude/skills/supercharge/resources/capability.json",
       ".claude/skills/testing/resources/capability.json",
@@ -3250,6 +3417,7 @@
       ".kiro/skills/docs-review-expert/resources/capability.json",
       ".kiro/skills/gitops-review/resources/capability.json",
       ".kiro/skills/mentor/resources/capability.json",
+      ".kiro/skills/pulse/resources/capability.json",
       ".kiro/skills/resolve-conflict/resources/capability.json",
       ".kiro/skills/supercharge/resources/capability.json",
       ".kiro/skills/testing/resources/capability.json",
