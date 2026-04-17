@@ -1,0 +1,193 @@
+{
+  "slug": "feature-status",
+  "manifest_version": "capability-fabric.v0",
+  "layers": {
+    "minimal": {
+      "capability_type": "skill",
+      "summary": "[BenK] Deep feature completeness analysis \u2014 scope vs. proof with prioritized recommendations",
+      "role": "workflow",
+      "domain_tags": [
+        "feature",
+        "status"
+      ],
+      "required_inputs": [
+        "Scope Documents: Pitch / Spec",
+        "Scope Documents: High-Level Design (HLD)",
+        "Scope Documents: OpenAPI Spec (OAS)",
+        "Scope Documents: Ticket / Epic",
+        "Proof Sources: Source code",
+        "Proof Sources: Integration tests",
+        "Proof Sources: Unit tests",
+        "Proof Sources: Git history",
+        "Proof Sources: Config / Infra",
+        "Proof Sources: OpenAPI output"
+      ],
+      "expected_outputs": [
+        "feature status report",
+        "scope sources",
+        "summary",
+        "categorized status tables",
+        "gap analysis",
+        "prioritized recommendations",
+        "risks / blockers"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "resources": [
+        "ssot/feature-status.md"
+      ],
+      "packaging_profile": {
+        "capability_type": "skill",
+        "primary_surfaces": {
+          "codex": [
+            "codex_skill"
+          ],
+          "gemini": [
+            "gemini_skill"
+          ],
+          "claude": [
+            "claude_skill"
+          ],
+          "kiro": [
+            "kiro_skill"
+          ]
+        },
+        "wrapper_surfaces": {
+          "codex": [],
+          "gemini": [
+            "skill_wrapper"
+          ],
+          "claude": [
+            "skill_wrapper",
+            "plugin_wrapper"
+          ],
+          "kiro": [
+            "skill_wrapper",
+            "power_wrapper"
+          ]
+        },
+        "notes": [
+          "wrapper surfaces are additive deployment forms, not capability types",
+          "orchestrators must not infer execution authority from wrapper presence alone"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ]
+      },
+      "source_provenance": {
+        "source_type": "LOCAL_FILE",
+        "normalized_source": "ssot/feature-status.md",
+        "policy_rule_id": "ssot.feature-status",
+        "content_sha256": "ssot"
+      },
+      "confidence": 0.97,
+      "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+      "review_status": "ready_for_orchestrator_review",
+      "display_name": "Feature Status \u2014 Deep Completeness Analysis"
+    },
+    "expanded": {
+      "relationship_suggestions": [],
+      "capability_dependencies": [],
+      "overlap_candidates": [],
+      "migration_notes": [
+        "If the capability lands, compare it against existing entries before apply.",
+        "Relationship suggestions are advisory only and do not imply runtime routing."
+      ],
+      "adjustment_recommendations": [
+        "add an explicit primary objective before packaging",
+        "add deterministic in-scope sections to improve routing fitness",
+        "capture quality constraints or non-negotiables"
+      ]
+    },
+    "org_graph": {
+      "org_role": "workflow_provider",
+      "reports_to_suggestions": [],
+      "delegates_to_suggestions": [],
+      "collaborates_with_suggestions": [
+        "feature",
+        "status"
+      ],
+      "authority_tier": "advisory",
+      "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+    }
+  },
+  "display_name": "Feature Status \u2014 Deep Completeness Analysis",
+  "declared_capability": "skill",
+  "inferred_capability": "skill",
+  "expected_surface_names": [
+    "codex_skill",
+    "gemini_skill",
+    "claude_skill",
+    "kiro_skill"
+  ],
+  "rubric_version": "capability-fabric.v0",
+  "invocation_hints": [
+    "how complete is this feature",
+    "what is left to ship",
+    "compare scope vs implementation",
+    "find gaps in this feature",
+    "feature readiness check",
+    "what is blocking this feature from shipping",
+    "audit this feature against the spec",
+    "what's the gap between spec and code",
+    "pre-ship readiness check for this feature"
+  ],
+  "descriptor_version": "capability-fabric.descriptor.v0",
+  "family_slug": "feature-status",
+  "shared_summary": "[BenK] Deep feature completeness analysis \u2014 scope vs. proof with prioritized recommendations",
+  "shared_constraints": [],
+  "modes": [],
+  "benchmark_sources": [],
+  "consumption_hints": {},
+  "historical_baseline": {
+    "slug": "feature-status",
+    "strategy": "head_snapshot",
+    "group": "derived_current",
+    "baseline_path": "ssot/feature-status.md",
+    "selected_commit": null,
+    "richness_score": 2,
+    "line_count": 244,
+    "reason": "No git history was available, so the current SSOT body is the strongest available baseline.",
+    "equivalent_commits": [],
+    "expected_companions": [],
+    "operator_invariants": [],
+    "scenario_matrix": [],
+    "historical_proof": {},
+    "source": "current_ssot",
+    "verified_by_git_history": false,
+    "has_baseline_text": true
+  },
+  "quality_validation_matrix": []
+}

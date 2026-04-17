@@ -619,6 +619,97 @@
       "advisory_only": true
     },
     {
+      "slug": "feature-status",
+      "display_name": "Feature Status \u2014 Deep Completeness Analysis",
+      "capability_type": "skill",
+      "summary": "[BenK] Deep feature completeness analysis \u2014 scope vs. proof with prioritized recommendations",
+      "role": "workflow",
+      "domain_tags": [
+        "feature",
+        "status"
+      ],
+      "required_inputs": [
+        "Scope Documents: Pitch / Spec",
+        "Scope Documents: High-Level Design (HLD)",
+        "Scope Documents: OpenAPI Spec (OAS)",
+        "Scope Documents: Ticket / Epic",
+        "Proof Sources: Source code",
+        "Proof Sources: Integration tests",
+        "Proof Sources: Unit tests",
+        "Proof Sources: Git history",
+        "Proof Sources: Config / Infra",
+        "Proof Sources: OpenAPI output"
+      ],
+      "expected_outputs": [
+        "feature status report",
+        "scope sources",
+        "summary",
+        "categorized status tables",
+        "gap analysis",
+        "prioritized recommendations",
+        "risks / blockers"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ]
+      },
+      "confidence": 0.97,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [],
+      "quality_status": null,
+      "benchmark_profile": null,
+      "preferred_use_cases": [],
+      "artifact_conventions": [],
+      "invocation_style": null,
+      "requires_human_confirmation": null,
+      "org_graph": {
+        "org_role": "workflow_provider",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "feature",
+          "status"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
       "slug": "gitops-review",
       "display_name": "GitOps Review \u2014 Repo Hygiene, CI, Release, and Merge Gate",
       "capability_type": "both",

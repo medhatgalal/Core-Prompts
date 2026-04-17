@@ -10,7 +10,7 @@ The right mental model is simple:
 
 If you are already using Core-Prompts in a CLI, start there. If you are importing a new capability family, go to UAC next. If you are rebuilding surfaces, validating state, deploying, or preparing release work, use the repo tooling after that.
 
-The current generated surfaces ship `14` skills across all supported CLIs and `8` advisory agents on agent-capable surfaces.
+The current generated surfaces ship `15` skills across all supported CLIs and `8` advisory agents on agent-capable surfaces.
 
 ## Installed Capabilities First
 
@@ -28,6 +28,7 @@ These are the currently shipped skills with a concrete starter ask for each one:
 | `code-review` | review a commit for scope, message quality, and over-engineering | "Use `code-review` to review the latest commit for scope creep, risky changes, and weak commit messaging." | findings first, scope risks, commit-quality feedback, and residual questions |
 | `converge` | compare competing proposals and force one recommendation | "Use `converge` to compare these rollout plans and recommend one." | overlap map, explicit conflicts, decision criteria, and one final recommendation |
 | `docs-review-expert` | fix docs structure, drift, and explainability | "Use `docs-review-expert` to tell me what belongs in `README.md` versus `docs/`, what drifted, and what to fix first." | doc placement, drift findings, rewrite targets, and review timing |
+| `feature-status` | audit a feature against its stated scope and proof sources | "Use `feature-status` to compare this feature's pitch, HLD, OAS, code, and tests, then tell me what is complete, what drifted, and what is blocking ship." | evidence-backed status tables, spec drift findings, gap analysis, and prioritized recommendations |
 | `gitops-review` | judge branch, PR, merge, or release readiness | "Use `gitops-review` to tell me whether this branch is ready for PR and what blockers remain." | gate type, blockers, required companion reviews, and next actions |
 | `mentor` | get senior sequencing and workflow guidance, including tmux-aware terminal context recovery | "Use `mentor` to tell me the next reversible move on this branch, then read my terminal if the failure is in tmux." | the next move, why it is next, what not to mix in, and direct terminal-context reads when needed |
 | `resolve-conflict` | analyze a merge conflict or competing edits | "Use `resolve-conflict` to compare these conflicting branch edits and tell me what should survive." | conflict map, additive merge opportunities, explicit tradeoffs, and a recommended resolution |
@@ -72,7 +73,7 @@ These current advisory agents are emitted by the repo and available on agent-cap
 
 ### Where The Deeper Examples Live
 
-If you want fuller examples for every shipped skill, with "use when", concrete asks, expected outputs, and a good follow-up ask, go to [docs/EXAMPLES.md](docs/EXAMPLES.md). That file now covers all 14 currently shipped skills.
+If you want fuller examples for the shipped skills highlighted in this README, with "use when", concrete asks, expected outputs, and a good follow-up ask, go to [docs/EXAMPLES.md](docs/EXAMPLES.md). Treat this README and [docs/CAPABILITY-CATALOG.md](docs/CAPABILITY-CATALOG.md) as the authoritative full index of everything currently shipped.
 
 ### Sample Transcript: Docs Review First
 
