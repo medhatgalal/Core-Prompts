@@ -796,25 +796,35 @@
       },
       "confidence": 0.97,
       "review_status": "ready_for_orchestrator_review",
-      "overlap_candidates": [],
+      "overlap_candidates": [
+        "uac-import"
+      ],
       "relationship_suggestions": [
         "pair with convergence capability for multi-source synthesis"
       ],
-      "quality_status": null,
-      "benchmark_profile": null,
-      "preferred_use_cases": [],
-      "artifact_conventions": [],
-      "invocation_style": null,
-      "requires_human_confirmation": null,
+      "quality_status": "ship",
+      "benchmark_profile": "default",
+      "preferred_use_cases": [
+        "AI-assisted capability selection",
+        "deterministic prompt uplift review"
+      ],
+      "artifact_conventions": [
+        "ssot/<slug>.md",
+        ".meta/capabilities/<slug>.json",
+        "reports/quality-reviews/<slug>/LATEST.md"
+      ],
+      "invocation_style": "assistant_first_but_scriptable",
+      "requires_human_confirmation": true,
       "org_graph": {
         "org_role": "importer",
         "reports_to_suggestions": [],
         "delegates_to_suggestions": [],
         "collaborates_with_suggestions": [
-          "pulse"
+          "packaging",
+          "context"
         ],
         "authority_tier": "advisory",
-        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+        "work_graph_impact": "Adds or updates a skill capability with route profile None."
       },
       "advisory_only": true
     },

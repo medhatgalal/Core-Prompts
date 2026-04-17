@@ -110,7 +110,9 @@
         "pair with convergence capability for multi-source synthesis"
       ],
       "capability_dependencies": [],
-      "overlap_candidates": [],
+      "overlap_candidates": [
+        "uac-import"
+      ],
       "migration_notes": [
         "If the capability lands, compare it against existing entries before apply.",
         "Relationship suggestions are advisory only and do not imply runtime routing."
@@ -126,10 +128,11 @@
       "reports_to_suggestions": [],
       "delegates_to_suggestions": [],
       "collaborates_with_suggestions": [
-        "pulse"
+        "packaging",
+        "context"
       ],
       "authority_tier": "advisory",
-      "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+      "work_graph_impact": "Adds or updates a skill capability with route profile None."
     }
   },
   "display_name": "Pulse \u2014 Comms Triage",
@@ -153,18 +156,180 @@
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "pulse",
   "shared_summary": "High signal-to-noise comms triage across Gmail and Google Chat. Read-only. Deterministic priority classification. Quick action recommendations.",
-  "shared_constraints": [],
+  "shared_constraints": [
+    "- forbidden: send, reply, forward, delete, archive, modify, or label any message during triage. Write commands (`+reply`, `+forward`, `+send`) are ONLY permitted during `/act` mode after explicit per-item user approval.",
+    "## Required Inputs",
+    "- `gws` CLI authenticated (`gws auth status` must pass)",
+    "## Required Output",
+    "Every pulse run must include:",
+    "### Example: Hot items only",
+    "Returns only \ud83d\udd34 and \ud83d\udfe1 items",
+    "skipping \ud83d\udd35 FYI noise.",
+    "| Safety invariant | No write commands executed without explicit per-item user approval |",
+    "Classify each item into \ud83d\udd34 Urgent / \ud83d\udfe1 Needs Response / \ud83d\udd35 FYI using deterministic rules.",
+    "forbidden: send, reply, forward, delete, archive, modify, or label any message during triage. Write commands (`+reply`, `+forward`, `+send`) are ONLY permitted during `/act` mode after explicit per-item user approval.",
+    "`gws` CLI authenticated (`gws auth status` must pass)"
+  ],
   "modes": [],
-  "benchmark_sources": [],
-  "consumption_hints": {},
+  "benchmark_sources": [
+    {
+      "provider": "github",
+      "label": "chrisneagu/FTC-Skystone-Dark-Angels-Romania-2020",
+      "url": "https://github.com/chrisneagu/FTC-Skystone-Dark-Angels-Romania-2020",
+      "note": "NOTICE This repository contains the public FTC SDK for the SKYSTONE (2019-2020) competition season. If you are looking for the current season's FTC SDK software"
+    },
+    {
+      "provider": "github",
+      "label": "ssr-diaries/Development-Of-Autonomous-Downscaled-Model-Car-Using-Neural-Networks-And-Machine-Learning",
+      "url": "https://github.com/ssr-diaries/Development-Of-Autonomous-Downscaled-Model-Car-Using-Neural-Networks-And-Machine-Learning",
+      "note": "Machine learning using convolution neural network  Required:  raspberry pi pi cam compatibile rc car motor driver l293d  Please create the respective files:  fo"
+    },
+    {
+      "provider": "github",
+      "label": "debabrata-mallick/e_shop",
+      "url": "https://github.com/debabrata-mallick/e_shop",
+      "note": "<p align=\"center\"><img src=\"https://laravel.com/assets/img/components/logo-laravel.svg\"></p>  <p align=\"center\"> <a href=\"https://travis-ci.org/laravel/framewor"
+    },
+    {
+      "provider": "github",
+      "label": "debabrata-mallick/Shopping_Cart",
+      "url": "https://github.com/debabrata-mallick/Shopping_Cart",
+      "note": "<p align=\"center\"><img src=\"https://laravel.com/assets/img/components/logo-laravel.svg\"></p>  <p align=\"center\"> <a href=\"https://travis-ci.org/laravel/framewor"
+    },
+    {
+      "provider": "web",
+      "label": "Pulse360 Library \u2014 The Snippet Tool Built for Professionals",
+      "url": "//duckduckgo.com/l/?uddg=https%3A%2F%2Flibrary.pulse360.com%2F&amp;rut=a267d5c7adc87f471492a5974e83a8422f168f16b0ea7e2853742f128ba484cd",
+      "note": "AI Prompts Store, organize, and reuse prompts across ChatGPT, Claude, and other tools \u2014 without your prompt library living inside a third-party keystroke tracke"
+    },
+    {
+      "provider": "web",
+      "label": "GitHub - pnp/prompt-pulse: Prompt Pulse is a free Microsoft Teams Power ...",
+      "url": "//duckduckgo.com/l/?uddg=https%3A%2F%2Fgithub.com%2Fpnp%2Fprompt%2Dpulse&amp;rut=3922770b40c214fe4db4755731d685f28b6d060ab9004431224db07e820d74cd",
+      "note": "Prompt Pulse provides the following capabilities: Ability to share a prompt with your team, a group chat, multiple users or Viva Engage. Adaptive card notificat"
+    },
+    {
+      "provider": "web",
+      "label": "Pulse360 Library - Snippets & Prompts - Chrome Web Store",
+      "url": "//duckduckgo.com/l/?uddg=https%3A%2F%2Fchromewebstore.google.com%2Fdetail%2Fpulse360%2Dlibrary%2Dsnippets%2Fcljgjopfeheddfimipeddamhlpdjiafc&amp;rut=4472efb2d940bd20e46bde9422508bd6ea2c47830f1274ebd60019c4c26823d9",
+      "note": "Stop rewriting. Insert reusable snippets and AI prompts anywhere \u2014 including ChatGPT, Gemini, Claude, Gmail & more. Overview Stop rewriting the same emails. Ins"
+    },
+    {
+      "provider": "web",
+      "label": "Understand Prompt Gallery in Copilot | Microsoft Learn",
+      "url": "//duckduckgo.com/l/?uddg=https%3A%2F%2Flearn.microsoft.com%2Fen%2Dus%2Fmicrosoft%2D365%2Fcopilot%2Fcopilot%2Dprompt%2Dgallery&amp;rut=62d33ce98d40bf124dd7cbe521d4bd4d36db984229f3cc705a4e24bdd76cc649",
+      "note": "Microsoft Prompt Gallery in Copilot is a resource of Microsoft-created prompts, videos, and articles that help your users understand and use Microsoft Copilot e"
+    }
+  ],
+  "quality_profile": "default",
+  "quality_status": "ship",
+  "judge_reports": [
+    {
+      "pass_number": 1,
+      "status": "ship",
+      "historical_baseline": {
+        "slug": "pulse",
+        "strategy": "derived_history",
+        "group": "derived",
+        "baseline_path": null,
+        "selected_commit": "22aa8d5d",
+        "richness_score": 2,
+        "line_count": 86,
+        "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [],
+        "historical_proof": {},
+        "source": "git_history",
+        "verified_by_git_history": true,
+        "has_baseline_text": true
+      },
+      "judge_reports": [
+        {
+          "judge": "source_fidelity",
+          "title": "Source Fidelity and Uplift",
+          "score": 10,
+          "blockers": [],
+          "classification": "preserved",
+          "scenario_results": [],
+          "scorecard": {
+            "baseline_richness": 2,
+            "candidate_richness": 2
+          },
+          "baseline_commit": "22aa8d5d",
+          "baseline_slug": "pulse"
+        },
+        {
+          "judge": "operational_richness",
+          "title": "Operational Richness",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "metadata_integrity",
+          "title": "Metadata and Handoff Integrity",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "benchmark_readiness",
+          "title": "Benchmark Readiness and Template Fit",
+          "score": 10,
+          "blockers": [],
+          "scorecard": {
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 10,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          }
+        }
+      ],
+      "blockers": [],
+      "scorecard": {
+        "source_fidelity": 10,
+        "baseline_richness": 2,
+        "candidate_richness": 2,
+        "operational_richness": 10,
+        "metadata_integrity": 10,
+        "benchmark_readiness": 10,
+        "title_clarity": 10,
+        "description_richness": 10,
+        "intent_coverage": 10,
+        "boundary_clarity": 10,
+        "output_specificity": 10,
+        "metadata_completeness": 8,
+        "surface_usability": 10
+      },
+      "template_name": "skill"
+    }
+  ],
+  "consumption_hints": {
+    "preferred_use_cases": [
+      "AI-assisted capability selection",
+      "deterministic prompt uplift review"
+    ],
+    "artifact_conventions": [
+      "ssot/<slug>.md",
+      ".meta/capabilities/<slug>.json",
+      "reports/quality-reviews/<slug>/LATEST.md"
+    ],
+    "invocation_style": "assistant_first_but_scriptable",
+    "requires_human_confirmation": true
+  },
+  "quality_pass_count": 1,
+  "quality_stop_reason": "thresholds_met",
   "historical_baseline": {
     "slug": "pulse",
     "strategy": "derived_history",
     "group": "derived",
-    "baseline_path": null,
-    "selected_commit": "40f0ee99",
-    "richness_score": 0,
-    "line_count": 660,
+    "baseline_path": "sources/ssot-baselines/pulse/baseline.md",
+    "selected_commit": "22aa8d5d",
+    "richness_score": 2,
+    "line_count": 86,
     "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
     "equivalent_commits": [],
     "expected_companions": [],
