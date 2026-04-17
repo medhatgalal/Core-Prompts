@@ -198,5 +198,22 @@
     "verified_by_git_history": true,
     "has_baseline_text": true
   },
-  "quality_validation_matrix": []
+  "quality_validation_matrix": [
+    {
+      "id": "operational_invocation",
+      "kind": "operational_contract",
+      "label": "operational invocation surface",
+      "must_contain": [
+        "## Invocation"
+      ]
+    },
+    {
+      "id": "stepwise_workflow_contract",
+      "kind": "operational_contract",
+      "label": "stepwise workflow contract",
+      "must_contain": [
+        "## Workflow Contract"
+      ]
+    }
+  ]
 }

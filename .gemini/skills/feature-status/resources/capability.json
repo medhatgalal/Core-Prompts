@@ -189,5 +189,14 @@
     "verified_by_git_history": false,
     "has_baseline_text": true
   },
-  "quality_validation_matrix": []
+  "quality_validation_matrix": [
+    {
+      "id": "operational_invocation",
+      "kind": "operational_contract",
+      "label": "operational invocation surface",
+      "must_contain": [
+        "## Invocation"
+      ]
+    }
+  ]
 }
