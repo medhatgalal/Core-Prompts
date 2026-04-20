@@ -185,7 +185,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 
 ### Pulse — Comms Triage
 - Slug: `pulse`
-- Type: `skill`
+- Type: `both`
 - Install target: `repo_local`
 - Supported CLIs: `claude, codex, gemini, kiro`
 - Invocation hints:

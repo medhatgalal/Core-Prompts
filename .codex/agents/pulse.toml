@@ -1,7 +1,7 @@
----
-name: "pulse"
-description: "High signal-to-noise comms triage across Gmail and Google Chat. Read-only. Deterministic priority. Quick action recommendations."
----
+name = "pulse"
+description = "High signal-to-noise comms triage across Gmail and Google Chat. Read-only. Deterministic priority. Quick action recommendations."
+sandbox_mode = "read-only"
+developer_instructions = '''
 # Pulse — Comms Triage
 
 Quick-check your email and chat. See what matters. Ignore what doesn't.
@@ -953,3 +953,7 @@ Capability resource: `.kiro/skills/pulse/resources/capability.json`
 
 
 Capability resource: `.kiro/skills/pulse/resources/capability.json`
+
+Capability resource: `.codex/agents/resources/pulse/capability.json`
+
+'''
