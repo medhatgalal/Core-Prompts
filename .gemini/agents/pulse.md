@@ -1,7 +1,7 @@
 ---
 name: "pulse"
 kind: local
-description: "High signal-to-noise comms triage across Gmail and Google Chat. Read-only. Deterministic priority. Quick action recommendations."
+description: "High signal-to-noise comms triage across Gmail and Google Chat. Deterministic priority. Triage is read-only; sweep/act/archive/delete require explicit approval."
 max_turns: 15
 timeout_mins: 5
 ---
@@ -111,7 +111,7 @@ Every pulse run must include:
 When the user runs `pulse /help`, `pulse -h`, or `pulse --help`, respond with exactly this:
 
 ```
-📡 Pulse — Comms Triage (read-only)
+📡 Pulse — Comms Triage (triage is read-only; actions require approval)
 
 COMMANDS
   pulse                          What needs my attention right now?
