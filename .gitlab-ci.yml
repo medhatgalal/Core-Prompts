@@ -10,6 +10,6 @@ validate_cli_surfaces:
   stage: validate
   image: python:3.14
   script:
-    - python3 scripts/sync-surface-specs.py --refresh || true
+    - python3 scripts/sync-surface-specs.py --refresh
     - python3 scripts/smoke-clis.py
     - python3 scripts/validate-surfaces.py --strict

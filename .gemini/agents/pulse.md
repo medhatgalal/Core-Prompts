@@ -1,7 +1,11 @@
 ---
 name: "pulse"
+kind: local
 description: "High signal-to-noise comms triage across Gmail and Google Chat. Read-only. Deterministic priority. Quick action recommendations."
+max_turns: 15
+timeout_mins: 5
 ---
+
 # Pulse — Comms Triage
 
 Quick-check your email and chat. See what matters. Ignore what doesn't.
@@ -953,3 +957,6 @@ Capability resource: `.kiro/skills/pulse/resources/capability.json`
 
 
 Capability resource: `.kiro/skills/pulse/resources/capability.json`
+
+
+Capability resource: `.gemini/agents/resources/pulse/capability.json`

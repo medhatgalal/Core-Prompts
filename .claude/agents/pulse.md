@@ -1,7 +1,9 @@
 ---
-name: "pulse"
+name: pulse
 description: "High signal-to-noise comms triage across Gmail and Google Chat. Read-only. Deterministic priority. Quick action recommendations."
+tools: Read, Write, Edit, Bash, Grep, Glob
 ---
+
 # Pulse — Comms Triage
 
 Quick-check your email and chat. See what matters. Ignore what doesn't.
@@ -953,3 +955,6 @@ Capability resource: `.kiro/skills/pulse/resources/capability.json`
 
 
 Capability resource: `.kiro/skills/pulse/resources/capability.json`
+
+
+Capability resource: `.claude/agents/resources/pulse/capability.json`
