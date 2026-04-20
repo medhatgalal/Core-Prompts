@@ -913,46 +913,4 @@ Walks through each 🔴/🟡 item, proposes a response, waits for approval befor
 | Output scannability | Table is readable in < 10 seconds, links are clickable |
 
 
-Capability resource: `.kiro/skills/pulse/resources/capability.json`
-
-
-Capability resource: `.kiro/skills/pulse/resources/capability.json`
-
-
-Capability resource: `.kiro/skills/pulse/resources/capability.json`
-
-
-Capability resource: `.kiro/skills/pulse/resources/capability.json`
-
-
-Capability resource: `.kiro/skills/pulse/resources/capability.json`
-
-
-Capability resource: `.kiro/skills/pulse/resources/capability.json`
-
-
-Capability resource: `.kiro/skills/pulse/resources/capability.json`
-
-
-Capability resource: `.kiro/skills/pulse/resources/capability.json`
-
-
-Capability resource: `.kiro/skills/pulse/resources/capability.json`
-
-
-Capability resource: `.kiro/skills/pulse/resources/capability.json`
-
-
-Capability resource: `.kiro/skills/pulse/resources/capability.json`
-
-
-Capability resource: `.kiro/skills/pulse/resources/capability.json`
-
-
-Capability resource: `.kiro/skills/pulse/resources/capability.json`
-
-
-Capability resource: `.kiro/skills/pulse/resources/capability.json`
-
-
 Capability resource: `.codex/skills/pulse/resources/capability.json`
