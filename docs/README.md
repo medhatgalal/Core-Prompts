@@ -15,7 +15,7 @@ Use this page to pick the right documentation path quickly. The intended order i
 | I am importing or uplifting a capability | [UAC usage](UAC-USAGE.md) |
 | I need exact commands, paths, and generated-surface locations | [CLI reference](CLI-REFERENCE.md) |
 | I want to inspect what ships or what changed | [Capability catalog](CAPABILITY-CATALOG.md), [Release delta](RELEASE-DELTA.md), and [Consumer status](STATUS.md) |
-| I maintain builds, releases, or docs hygiene | [Maintainer hygiene](MAINTAINER-HYGIENE.md) and [Release packaging](RELEASE-PACKAGING.md) |
+| I maintain builds, releases, release-watch updates, or docs hygiene | [Maintainer hygiene](MAINTAINER-HYGIENE.md), [CLI reference](CLI-REFERENCE.md), and [Release packaging](RELEASE-PACKAGING.md) |
 
 ## Reader Paths
 
@@ -38,6 +38,8 @@ Use this page to pick the right documentation path quickly. The intended order i
 2. [Maintainer hygiene](MAINTAINER-HYGIENE.md)
 3. [Release packaging](RELEASE-PACKAGING.md)
 4. [Technical README](README_TECHNICAL.md)
+
+Installed release-watch behavior is documented in [Getting started](GETTING-STARTED.md), [CLI reference](CLI-REFERENCE.md), and [Release packaging](RELEASE-PACKAGING.md). Initial home install writes `VERSION`, `RELEASE_SOURCE.env`, and `~/update_core_prompts.sh`; daily scheduled runs check releases before normal updates; `--check-release` never auto-installs; `--accept-release` is the explicit install/apply step.
 
 ## Canonical Homes
 

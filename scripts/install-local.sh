@@ -7,6 +7,8 @@ Usage: scripts/install-local.sh [--cli gemini|claude|kiro|codex|all] [--target P
 
 Legacy compatibility wrapper around deploy-surfaces.sh.
 Copy-only behavior is enforced. Symlink mode is removed.
+When --target points outside this repository, install also writes the standalone updater bundle,
+installed VERSION, RELEASE_SOURCE.env, and update_core_prompts.sh for later release checks.
 
 Options:
   --cli gemini|claude|kiro|codex|all  Target CLI(s). Default: all

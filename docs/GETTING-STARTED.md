@@ -79,6 +79,25 @@ Optional deploy dry run:
 bin/capability-fabric deploy --dry-run --cli all
 ```
 
+## Installed Release Watch
+
+When you install into a home target, Core-Prompts writes the installed version and release metadata into the standalone updater bundle:
+
+- `~/.core-prompts-updater/VERSION`
+- `~/.core-prompts-updater/RELEASE_SOURCE.env`
+- `~/update_core_prompts.sh`
+
+Daily scheduled updater runs execute `~/update_core_prompts.sh --check-release` before normal update sync. The check compares the installed standalone bundle against the latest immutable release tag agreed by the canonical remotes, updates `~/.core-prompts-state/release-watch.json`, and never auto-installs.
+
+Use the explicit acceptance step when you are ready to refresh the installed bundle. `--accept-release` is the explicit install/apply step:
+
+```bash
+~/update_core_prompts.sh --check-release
+~/update_core_prompts.sh --accept-release
+```
+
+Pending release state prints a warning on later updater runs, but it does not silently mutate the user system or block normal package/tool/prompt sync.
+
 ## What The Generated Views Are For
 
 When you want to inspect the current emitted state without reading raw manifests or directories:

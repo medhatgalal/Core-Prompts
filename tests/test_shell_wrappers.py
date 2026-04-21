@@ -16,3 +16,9 @@ def test_capability_fabric_wrapper_validate_runs() -> None:
     subprocess.run([str(ROOT / 'scripts' / 'sync-surface-specs.py'), '--refresh'], cwd=ROOT, check=True)
     result = subprocess.run([str(ROOT / 'bin' / 'capability-fabric'), 'validate', '--strict'], cwd=ROOT, capture_output=True, text=True, check=True)
     assert 'Validation passed.' in result.stdout
+
+
+def test_capability_fabric_help_includes_update_release_watch() -> None:
+    result = subprocess.run([str(ROOT / 'bin' / 'capability-fabric'), '--help'], cwd=ROOT, capture_output=True, text=True, check=True)
+    assert 'update [args...]' in result.stdout
+    assert '--check-release checks only and never auto-installs' in result.stdout

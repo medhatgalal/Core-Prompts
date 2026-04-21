@@ -56,10 +56,13 @@ Check:
 - `docs/CLI-REFERENCE.md`
 - `docs/UAC-USAGE.md`
 - `docs/RELEASE-PACKAGING.md`
+- `VERSION`, `RELEASE_SOURCE.env`, and `CHANGELOG.md`
+- updater help for `bin/capability-fabric update --help`
 - generated inspection views such as `docs/CAPABILITY-CATALOG.md`, `docs/RELEASE-DELTA.md`, and `docs/STATUS.md`
 - dry-run deploy output before local install when the release overwrites installed home surfaces
 - direct comparison between generated outputs and installed state when local customizations or prior tool-written state may exist
 - whether concurrent UAC engine work and docs or prompt work should be split into separate worktrees before more edits land
+- release-watch behavior: scheduled runs check first, `--check-release` never auto-installs, and `--accept-release` remains the explicit install/apply step
 
 ## Generated Views: How To Use Them
 
