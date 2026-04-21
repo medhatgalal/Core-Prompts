@@ -185,7 +185,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 
 ### Pulse — Comms Triage
 - Slug: `pulse`
-- Type: `skill`
+- Type: `both`
 - Install target: `repo_local`
 - Supported CLIs: `claude, codex, gemini, kiro`
 - Invocation hints:
@@ -195,7 +195,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
   - triage my comms / communications
   - what's new in chat
   - pulse, pulse /hot, pulse /email, pulse /chat
-- Summary: High signal-to-noise comms triage across Gmail and Google Chat. Read-only. Deterministic priority. Quick action recommendations.
+- Summary: High signal-to-noise comms triage across Gmail and Google Chat. Deterministic priority. Triage is read-only; sweep/act/archive/delete require explicit approval.
 
 ### SuperCharge — Prompt Engineering, Planning Hardening, and Graded Improvement
 - Slug: `supercharge`

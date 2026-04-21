@@ -9,6 +9,7 @@ Copy-only deployment of SSOT-managed generated surfaces to CLI directories under
 This script never creates symlinks.
 If destination file is a symlink, it is unlinked and replaced with a regular file copy.
 Existing files are overwritten in place with cp -f.
+When --target points outside this repository, deployment also writes a standalone updater bundle under .core-prompts-updater plus update_core_prompts.sh and release-watch metadata.
 
 Options:
   --cli gemini|claude|kiro|codex|all  Target CLI(s). Default: all
@@ -137,17 +138,10 @@ else
   fi
 fi
 
-if [[ ${#TARGETS[@]} -eq 0 ]]; then
-  echo "warning: no target CLIs selected"
-  echo "SUMMARY copied=0 missing_source=0 skipped_cli=1"
-  exit 0
-fi
-
-echo "Target CLIs: ${TARGETS[*]}"
-
 COPIED=0
 MISSING_SOURCE=0
 REPLACED_SYMLINK=0
+STANDALONE_COPIED=0
 
 copy_file() {
   local src="$1"
@@ -186,6 +180,139 @@ copy_file() {
   fi
   return 0
 }
+
+write_launcher() {
+  local dst="$1"
+  if [[ "$DRY_RUN" -eq 1 ]]; then
+    echo "DRY-RUN WRITE $dst"
+    return 0
+  fi
+  mkdir -p "$(dirname "$dst")"
+  cat > "$dst" <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+
+SUPPORT_ROOT="${CORE_PROMPTS_SUPPORT_ROOT:-$HOME/.core-prompts-updater}"
+if [[ -n "${PYTHON_BIN:-}" ]]; then
+  PYTHON_BIN="$PYTHON_BIN"
+elif command -v python3.14 >/dev/null 2>&1; then
+  PYTHON_BIN="python3.14"
+elif command -v python3.13 >/dev/null 2>&1; then
+  PYTHON_BIN="python3.13"
+elif command -v python3.12 >/dev/null 2>&1; then
+  PYTHON_BIN="python3.12"
+elif command -v python3.11 >/dev/null 2>&1; then
+  PYTHON_BIN="python3.11"
+else
+  PYTHON_BIN="python3"
+fi
+
+exec "$PYTHON_BIN" "$SUPPORT_ROOT/scripts/update-core-prompts.py" "$@"
+EOF
+  chmod 755 "$dst"
+  echo "WROTE $dst"
+}
+
+standalone_bundle_entries() {
+  python3 - "$REPO_ROOT" "$TARGET_ROOT" <<'PY'
+from pathlib import Path
+import sys
+
+repo = Path(sys.argv[1])
+target = Path(sys.argv[2])
+support = target / ".core-prompts-updater"
+roots = [
+    ".codex",
+    ".gemini",
+    ".claude",
+    ".kiro",
+    ".meta/manifest.json",
+    ".meta/capability-handoff.json",
+    ".meta/capabilities",
+    "dist/consumer-shell",
+    "sources/ssot-baselines",
+    "scripts/deploy-copy-plan.py",
+    "scripts/register-codex-agents.py",
+    "scripts/deploy-surfaces.sh",
+    "scripts/install-local.sh",
+    "scripts/update-core-prompts.py",
+    "VERSION",
+    "RELEASE_SOURCE.env",
+]
+for rel in roots:
+    src = repo / rel
+    if src.is_dir():
+        for path in sorted(item for item in src.rglob("*") if item.is_file()):
+            print(f"{path}\t{support / path.relative_to(repo)}")
+    elif src.is_file():
+        print(f"{src}\t{support / rel}")
+PY
+}
+
+install_standalone_bundle() {
+  local support_root="$TARGET_ROOT/.core-prompts-updater"
+  local entries_file
+  if [[ "$DRY_RUN" -eq 1 ]]; then
+    while IFS=$'\t' read -r src dst; do
+      [[ -n "$src" ]] || continue
+      echo "DRY-RUN COPY $src -> $dst"
+      STANDALONE_COPIED=$((STANDALONE_COPIED + 1))
+    done < <(standalone_bundle_entries)
+    echo "DRY-RUN PRUNE stale files under $support_root"
+  else
+    entries_file="$(mktemp "${TMPDIR:-/tmp}/core-prompts-standalone-entries.XXXXXX")"
+    standalone_bundle_entries > "$entries_file"
+    STANDALONE_COPIED="$(python3 - "$support_root" "$entries_file" <<'PY'
+from pathlib import Path
+import shutil
+import sys
+
+root = Path(sys.argv[1]).resolve()
+entries_file = Path(sys.argv[2])
+expected = set()
+count = 0
+for line in entries_file.read_text(encoding="utf-8").splitlines():
+    line = line.rstrip("\n")
+    if not line:
+        continue
+    src_text, dst_text = line.split("\t", 1)
+    src = Path(src_text)
+    dst = Path(dst_text)
+    expected.add(dst.resolve())
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(src, dst)
+    count += 1
+if root.exists():
+    for path in sorted((item for item in root.rglob("*")), key=lambda item: len(item.parts), reverse=True):
+        resolved = path.resolve()
+        if resolved in expected:
+            continue
+        if path.is_file() or path.is_symlink():
+            path.unlink()
+        elif path.is_dir():
+            try:
+                path.rmdir()
+            except OSError:
+                pass
+print(count)
+PY
+)"
+    rm -f "$entries_file"
+  fi
+  write_launcher "$TARGET_ROOT/update_core_prompts.sh"
+  echo "STANDALONE updater=$support_root launcher=$TARGET_ROOT/update_core_prompts.sh copied=$STANDALONE_COPIED"
+}
+
+if [[ ${#TARGETS[@]} -eq 0 ]]; then
+  echo "warning: no target CLIs selected"
+  if [[ "$TARGET_ROOT" != "$REPO_ROOT" ]]; then
+    install_standalone_bundle
+  fi
+  echo "SUMMARY copied=0 missing_source=0 skipped_cli=1"
+  exit 0
+fi
+
+echo "Target CLIs: ${TARGETS[*]}"
 
 read_codex_agents() {
   python3 - -- "${SLUG_FILTERS[@]-}" <<'PY'
@@ -261,6 +388,10 @@ register_codex_agents() {
 if [[ " ${TARGETS[*]} " == *" codex "* ]]; then
   AGENT_LINES="$(read_codex_agents)"
   register_codex_agents "$AGENT_LINES"
+fi
+
+if [[ "$TARGET_ROOT" != "$REPO_ROOT" ]]; then
+  install_standalone_bundle
 fi
 
 echo "SUMMARY copied=$COPIED missing_source=$MISSING_SOURCE skipped_cli=0 replaced_symlink=$REPLACED_SYMLINK"

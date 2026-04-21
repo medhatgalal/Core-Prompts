@@ -19,6 +19,8 @@ If local `python3` resolves to an older interpreter, set `PYTHON_BIN=python3.11`
 | `bin/capability-fabric build` | generate all CLI surfaces, bundled resources, and generated inspection views | no |
 | `bin/capability-fabric validate --strict` | validate generated surfaces and contracts | no |
 | `bin/capability-fabric deploy --dry-run --cli all` | preview copy-only deployment to a target root | no |
+| `bin/capability-fabric update --check-release` | check installed standalone bundle vs latest immutable release and update release-watch state | no |
+| `bin/capability-fabric update --accept-release` | explicitly accept and apply a pending release from the synced mirror | yes |
 | `python3 scripts/smoke-clis.py` | probe installed vendor CLIs and surface visibility | no |
 | `bin/uac audit` | inspect current SSOT and generated surface alignment | no |
 | `bin/uac plan <source...>` | show proposed landing shape for one or more sources | no |
@@ -102,6 +104,27 @@ Expected result:
 - explicit copy plan
 - no target mutation
 
+### Check Or Accept Installed Releases
+
+Initial home installs write the standalone release-watch contract into `~/.core-prompts-updater/`: installed `VERSION`, `RELEASE_SOURCE.env`, updater scripts, and the generated surfaces needed for later path-agnostic checks.
+
+```bash
+bin/capability-fabric update --check-release
+bin/capability-fabric update --accept-release
+```
+
+Use this when:
+
+- you want to compare the installed standalone bundle against the latest immutable release tag
+- a daily scheduled run reported a pending release
+- you are ready to explicitly refresh the installed bundle from the synced clean mirror
+
+Expected result:
+
+- `--check-release` fetches release tags, syncs `~/.core-prompts-release-cache/repo`, updates `~/.core-prompts-state/release-watch.json`, and never auto-installs
+- `--accept-release` shows installed vs pending version, prompts for confirmation, refreshes from the synced mirror only on approval, and clears pending state on success
+- pending release state shows a warning on later normal updater runs without silently mutating the user system
+
 ## Canonical Inputs
 
 - SSOT: `ssot/`
@@ -144,6 +167,10 @@ Direct exposure is standardized on `skills/<slug>/SKILL.md` for every supported 
 - deploy is copy-only and never creates symlinks
 - deploy defaults to the repository root unless `--target` is provided
 - `scripts/install-local.sh` is a compatibility wrapper around deploy and remains copy-only
+- home-target install writes `~/.core-prompts-updater/VERSION`, `~/.core-prompts-updater/RELEASE_SOURCE.env`, and `~/update_core_prompts.sh`
+- scheduled updater runs check releases first, then run normal sync
+- `bin/capability-fabric update --check-release` checks only and never auto-installs
+- `bin/capability-fabric update --accept-release` is the explicit install/apply step
 - install and deploy do not rewrite capability metadata paths
 - repeated no-op `build` and `validate` runs should not rewrite `.meta/manifest.json`; volatile run evidence belongs under `reports/`
 

@@ -55,6 +55,26 @@ if [[ ! -f ".meta/manifest.json" ]]; then
   exit 1
 fi
 
+SHIPPED_VERSION="$(tr -d '[:space:]' < VERSION)"
+if [[ "$VERSION" != "$SHIPPED_VERSION" ]]; then
+  echo "error: package --version ($VERSION) must match repo VERSION ($SHIPPED_VERSION)"
+  exit 1
+fi
+
+CHANGELOG_VERSION="$(python3 - <<'PY'
+from pathlib import Path
+import re
+
+text = Path("CHANGELOG.md").read_text(encoding="utf-8")
+match = re.search(r"^##\s+([^ ]+)\s+-\s+", text, re.M)
+print(match.group(1) if match else "")
+PY
+)"
+if [[ "$CHANGELOG_VERSION" != "$SHIPPED_VERSION" ]]; then
+  echo "error: top CHANGELOG.md entry ($CHANGELOG_VERSION) must match VERSION ($SHIPPED_VERSION)"
+  exit 1
+fi
+
 INCLUDE_PATHS=(
   ".codex"
   ".gemini"
@@ -69,6 +89,9 @@ INCLUDE_PATHS=(
   "scripts/register-codex-agents.py"
   "scripts/deploy-surfaces.sh"
   "scripts/install-local.sh"
+  "scripts/update-core-prompts.py"
+  "VERSION"
+  "RELEASE_SOURCE.env"
   "docs/CAPABILITY-CATALOG.md"
   "docs/CLI-REFERENCE.md"
   "docs/CAPABILITY-FABRIC.md"
@@ -80,6 +103,7 @@ INCLUDE_PATHS=(
   "docs/README.md"
   "docs/ORCHESTRATOR-CONTRACT.md"
   "docs/RELEASE-PACKAGING.md"
+  "docs/MAINTAINER-HYGIENE.md"
   "docs/RELEASE-DELTA.md"
   "docs/STATUS.md"
   "README.md"

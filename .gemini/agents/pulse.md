@@ -1,7 +1,11 @@
 ---
 name: "pulse"
+kind: local
 description: "High signal-to-noise comms triage across Gmail and Google Chat. Deterministic priority. Triage is read-only; sweep/act/archive/delete require explicit approval."
+max_turns: 15
+timeout_mins: 5
 ---
+
 # Pulse — Comms Triage
 
 Quick-check your email and chat. See what matters. Ignore what doesn't.
@@ -913,4 +917,4 @@ Walks through each 🔴/🟡 item, proposes a response, waits for approval befor
 | Output scannability | Table is readable in < 10 seconds, links are clickable |
 
 
-Capability resource: `.gemini/skills/pulse/resources/capability.json`
+Capability resource: `.gemini/agents/resources/pulse/capability.json`

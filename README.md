@@ -235,6 +235,23 @@ bin/capability-fabric deploy --dry-run --cli all
 
 Use deploy after review when you want generated surfaces copied to a target root. Deploy is copy-only. It does not classify sources and it does not mutate canonical SSOT.
 
+### Installed Release Watch
+
+Initial home installs through `bin/capability-fabric deploy --target "$HOME" --allow-nonlocal-target` or `scripts/install-local.sh --target "$HOME" --allow-nonlocal-target` also write:
+
+- `~/.core-prompts-updater/VERSION`
+- `~/.core-prompts-updater/RELEASE_SOURCE.env`
+- `~/update_core_prompts.sh`
+
+Use release watch to compare that installed standalone bundle against the latest immutable release tag without relying on the local source checkout:
+
+```bash
+~/update_core_prompts.sh --check-release
+~/update_core_prompts.sh --accept-release
+```
+
+`--check-release` checks only, syncs a dedicated clean mirror, updates local release-watch state, and never auto-installs. `--accept-release` is the explicit install/apply step. Daily scheduled runs do the release check before normal update sync; if a release is pending, later updater runs show a warning but do not silently mutate the user system or block normal surface/package sync.
+
 ## Generated Inspection Views
 
 Yes, [docs/CAPABILITY-CATALOG.md](docs/CAPABILITY-CATALOG.md) and [docs/RELEASE-DELTA.md](docs/RELEASE-DELTA.md) still serve a purpose, but they are not the first-stop docs.

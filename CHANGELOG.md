@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.8.3 - 2026-04-21
+
+- Added daily release-watch support for installed Core-Prompts bundles:
+  - introduced canonical `VERSION` and `RELEASE_SOURCE.env` metadata for standalone installs
+  - added `bin/capability-fabric update`, `~/update_core_prompts.sh`, release checking, explicit release acceptance, and cron scheduling
+  - release checks compare installed state against the latest agreed immutable tag across `origin` and `gitlab` without mutating the active checkout
+- Hardened install and packaging contracts:
+  - non-repo installs now write `.core-prompts-updater/` plus release-watch metadata for path-agnostic later checks
+  - release packages now require `--version` to match `VERSION` and include the updater/release-watch boundary
+- Updated docs and tests so the release-watch flow is discoverable from README, CLI help, install help, and maintainer release docs.
+
 ## 1.7.2 - 2026-04-17
 
 - Hardened UAC against operational prompt dilution:

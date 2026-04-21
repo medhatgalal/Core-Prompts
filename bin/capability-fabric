@@ -25,11 +25,13 @@ Commands:
   build                   Generate all CLI surfaces and bundled resources
   validate [--strict]     Validate generated surfaces
   deploy [args...]        Copy generated surfaces to a target root
+  update [args...]        Sync installed surfaces and manage release-watch state
 
 Notes:
   - build and validate operate inside this repo.
   - deploy copies generated artifacts; it does not classify sources or mutate SSOT.
   - deploy defaults to the repository root; use --target "$HOME" to install into CLI homes.
+  - update --check-release checks only and never auto-installs; update --accept-release is explicit.
 EOF
 }
 
@@ -49,6 +51,9 @@ case "$command" in
     ;;
   deploy)
     exec "$ROOT/scripts/deploy-surfaces.sh" "$@"
+    ;;
+  update)
+    exec "$PYTHON_BIN" "$ROOT/scripts/update-core-prompts.py" "$@"
     ;;
   -h|--help|help)
     usage

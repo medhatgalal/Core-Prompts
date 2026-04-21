@@ -148,6 +148,40 @@ def test_install_wrapper_succeeds_with_no_clis_in_non_strict_mode(tmp_path: Path
     assert "SUMMARY copied=0 missing_source=0 skipped_cli=1" in result.stdout
 
 
+def test_nonlocal_install_writes_standalone_updater_bundle_and_prunes_stale_files(tmp_path: Path) -> None:
+    stale = tmp_path / ".core-prompts-updater" / "scripts" / "stale.sh"
+    stale.parent.mkdir(parents=True)
+    stale.write_text("stale\n", encoding="utf-8")
+
+    result = run_script(
+        INSTALL_SCRIPT,
+        "--cli",
+        "all",
+        target_root=tmp_path,
+        allow_nonlocal_target=True,
+    )
+
+    assert result.returncode == 0, result.stdout
+    assert (tmp_path / "update_core_prompts.sh").is_file()
+    assert os.access(tmp_path / "update_core_prompts.sh", os.X_OK)
+    assert (tmp_path / ".core-prompts-updater" / "VERSION").read_text(encoding="utf-8").strip() == (
+        ROOT / "VERSION"
+    ).read_text(encoding="utf-8").strip()
+    assert (tmp_path / ".core-prompts-updater" / "RELEASE_SOURCE.env").is_file()
+    assert (tmp_path / ".core-prompts-updater" / "scripts" / "update-core-prompts.py").is_file()
+    assert (tmp_path / ".core-prompts-updater" / "scripts" / "deploy-surfaces.sh").is_file()
+    assert (tmp_path / ".core-prompts-updater" / "scripts" / "install-local.sh").is_file()
+    assert not stale.exists()
+
+
+def test_install_help_mentions_release_watch_metadata() -> None:
+    result = run_script(INSTALL_SCRIPT, "--help")
+
+    assert result.returncode == 0
+    assert "standalone updater bundle" in result.stdout
+    assert "RELEASE_SOURCE.env" in result.stdout
+
+
 def test_deploy_fails_in_strict_mode_when_selected_cli_is_missing(tmp_path: Path) -> None:
     result = run_script(
         DEPLOY_SCRIPT,
@@ -425,7 +459,7 @@ def test_deploy_codex_registration_completes_with_populated_home_style_config(tm
         target_root=tmp_path,
         cli_bins=("codex", "gemini", "claude", "kiro-cli"),
         allow_nonlocal_target=True,
-        timeout=10,
+        timeout=30,
     )
     assert result.returncode == 0, result.stdout
     assert "REGISTERED codex agents in" in result.stdout

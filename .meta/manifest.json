@@ -2095,8 +2095,8 @@
       "manifest_version": "capability-fabric.v0",
       "layers": {
         "minimal": {
-          "capability_type": "skill",
-          "summary": "High signal-to-noise comms triage across Gmail and Google Chat. Read-only. Deterministic priority. Quick action recommendations.",
+          "capability_type": "both",
+          "summary": "High signal-to-noise comms triage across Gmail and Google Chat. Deterministic priority. Triage is read-only; sweep/act/archive/delete require explicit approval.",
           "role": "specialist_workflow",
           "domain_tags": [
             "pulse"
@@ -2127,23 +2127,29 @@
             "ssot/pulse.md"
           ],
           "packaging_profile": {
-            "capability_type": "skill",
+            "capability_type": "both",
             "primary_surfaces": {
               "codex": [
-                "codex_skill"
+                "codex_skill",
+                "codex_agent"
               ],
               "gemini": [
-                "gemini_skill"
+                "gemini_skill",
+                "gemini_agent"
               ],
               "claude": [
-                "claude_skill"
+                "claude_skill",
+                "claude_agent"
               ],
               "kiro": [
-                "kiro_skill"
+                "kiro_skill",
+                "kiro_agent"
               ]
             },
             "wrapper_surfaces": {
-              "codex": [],
+              "codex": [
+                "plugin_wrapper"
+              ],
               "gemini": [
                 "skill_wrapper"
               ],
@@ -2174,16 +2180,20 @@
           },
           "emitted_surfaces": {
             "codex": [
-              "codex_skill"
+              "codex_skill",
+              "codex_agent"
             ],
             "gemini": [
-              "gemini_skill"
+              "gemini_skill",
+              "gemini_agent"
             ],
             "claude": [
-              "claude_skill"
+              "claude_skill",
+              "claude_agent"
             ],
             "kiro": [
-              "kiro_skill"
+              "kiro_skill",
+              "kiro_agent"
             ]
           },
           "source_provenance": {
@@ -2192,7 +2202,7 @@
             "policy_rule_id": "ssot.pulse",
             "content_sha256": "ssot"
           },
-          "confidence": 0.86,
+          "confidence": 0.9,
           "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "Pulse \u2014 Comms Triage"
@@ -2397,13 +2407,17 @@
       },
       "quality_pass_count": 1,
       "quality_stop_reason": "thresholds_met",
-      "declared_capability": "skill",
+      "declared_capability": null,
       "inferred_capability": "both",
       "expected_surface_names": [
         "codex_skill",
+        "codex_agent",
         "gemini_skill",
+        "gemini_agent",
         "claude_skill",
-        "kiro_skill"
+        "claude_agent",
+        "kiro_skill",
+        "kiro_agent"
       ],
       "rubric_version": "capability-fabric.v0",
       "invocation_hints": [
@@ -3650,6 +3664,7 @@
       ".gemini/agents/docs-review-expert.md",
       ".gemini/agents/gitops-review.md",
       ".gemini/agents/mentor.md",
+      ".gemini/agents/pulse.md",
       ".gemini/agents/supercharge.md",
       ".gemini/agents/weekly-intel.md"
     ],
@@ -3678,6 +3693,7 @@
       ".claude/agents/docs-review-expert.md",
       ".claude/agents/gitops-review.md",
       ".claude/agents/mentor.md",
+      ".claude/agents/pulse.md",
       ".claude/agents/supercharge.md",
       ".claude/agents/weekly-intel.md"
     ],
@@ -3688,6 +3704,7 @@
       ".kiro/agents/docs-review-expert.json",
       ".kiro/agents/gitops-review.json",
       ".kiro/agents/mentor.json",
+      ".kiro/agents/pulse.json",
       ".kiro/agents/supercharge.json",
       ".kiro/agents/weekly-intel.json"
     ],
@@ -3734,6 +3751,7 @@
       ".codex/agents/docs-review-expert.toml",
       ".codex/agents/gitops-review.toml",
       ".codex/agents/mentor.toml",
+      ".codex/agents/pulse.toml",
       ".codex/agents/supercharge.toml",
       ".codex/agents/weekly-intel.toml"
     ]
@@ -3774,6 +3792,7 @@
       ".codex/agents/resources/docs-review-expert/capability.json",
       ".codex/agents/resources/gitops-review/capability.json",
       ".codex/agents/resources/mentor/capability.json",
+      ".codex/agents/resources/pulse/capability.json",
       ".codex/agents/resources/supercharge/capability.json",
       ".codex/agents/resources/weekly-intel/capability.json"
     ],
@@ -3812,6 +3831,7 @@
       ".gemini/agents/resources/docs-review-expert/capability.json",
       ".gemini/agents/resources/gitops-review/capability.json",
       ".gemini/agents/resources/mentor/capability.json",
+      ".gemini/agents/resources/pulse/capability.json",
       ".gemini/agents/resources/supercharge/capability.json",
       ".gemini/agents/resources/weekly-intel/capability.json"
     ],
@@ -3850,6 +3870,7 @@
       ".claude/agents/resources/docs-review-expert/capability.json",
       ".claude/agents/resources/gitops-review/capability.json",
       ".claude/agents/resources/mentor/capability.json",
+      ".claude/agents/resources/pulse/capability.json",
       ".claude/agents/resources/supercharge/capability.json",
       ".claude/agents/resources/weekly-intel/capability.json"
     ],
@@ -3888,6 +3909,7 @@
       ".kiro/agents/resources/docs-review-expert/capability.json",
       ".kiro/agents/resources/gitops-review/capability.json",
       ".kiro/agents/resources/mentor/capability.json",
+      ".kiro/agents/resources/pulse/capability.json",
       ".kiro/agents/resources/supercharge/capability.json",
       ".kiro/agents/resources/weekly-intel/capability.json"
     ]

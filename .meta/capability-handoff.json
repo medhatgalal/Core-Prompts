@@ -903,8 +903,8 @@
     {
       "slug": "pulse",
       "display_name": "Pulse \u2014 Comms Triage",
-      "capability_type": "skill",
-      "summary": "High signal-to-noise comms triage across Gmail and Google Chat. Read-only. Deterministic priority. Quick action recommendations.",
+      "capability_type": "both",
+      "summary": "High signal-to-noise comms triage across Gmail and Google Chat. Deterministic priority. Triage is read-only; sweep/act/archive/delete require explicit approval.",
       "role": "specialist_workflow",
       "domain_tags": [
         "pulse"
@@ -944,19 +944,23 @@
       },
       "emitted_surfaces": {
         "codex": [
-          "codex_skill"
+          "codex_skill",
+          "codex_agent"
         ],
         "gemini": [
-          "gemini_skill"
+          "gemini_skill",
+          "gemini_agent"
         ],
         "claude": [
-          "claude_skill"
+          "claude_skill",
+          "claude_agent"
         ],
         "kiro": [
-          "kiro_skill"
+          "kiro_skill",
+          "kiro_agent"
         ]
       },
-      "confidence": 0.86,
+      "confidence": 0.9,
       "review_status": "ready_for_orchestrator_review",
       "overlap_candidates": [
         "uac-import"

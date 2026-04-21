@@ -1,7 +1,7 @@
----
-name: "pulse"
-description: "High signal-to-noise comms triage across Gmail and Google Chat. Deterministic priority. Triage is read-only; sweep/act/archive/delete require explicit approval."
----
+name = "pulse"
+description = "High signal-to-noise comms triage across Gmail and Google Chat. Deterministic priority. Triage is read-only; sweep/act/archive/delete require explicit approval."
+sandbox_mode = "read-only"
+developer_instructions = '''
 # Pulse — Comms Triage
 
 Quick-check your email and chat. See what matters. Ignore what doesn't.
@@ -912,5 +912,6 @@ Walks through each 🔴/🟡 item, proposes a response, waits for approval befor
 | Safety invariant | No write commands executed without explicit per-item user approval |
 | Output scannability | Table is readable in < 10 seconds, links are clickable |
 
+Capability resource: `.codex/agents/resources/pulse/capability.json`
 
-Capability resource: `.gemini/skills/pulse/resources/capability.json`
+'''
