@@ -264,6 +264,28 @@ Integration proof depends on the **contract state** of each dependency:
 - **1-2:** Title only or one-liner.
 - **0:** PITCH NEEDED — no shaped work exists.
 
+### Shaped Status Rules
+- **yes** = All sections complete. Rabbit holes resolved (answers documented, not just questions listed). Architecture defined. Integration proof appropriate to appetite. Ready to bet.
+- **partial** = Template filled but shaping work incomplete. Unresolved rabbit holes, missing architecture, or open questions that would block a team on day 1.
+- **no** = Empty, title-only, or just a problem statement with no shaping.
+
+**Key rule:** If rabbit holes are listed but not resolved (no answers, no owners, no evidence of investigation), the pitch is `partial` regardless of other scores. Rabbit hole resolution is a shaping exit criterion — they must be addressed DURING shaping, not deferred to build.
+
+### Verdict Rules
+- Verdict must match shaped status. A `partial` pitch CANNOT have a "ready to bet" verdict.
+- `yes` → "Ready to bet" or "Bet-ready with minor notes"
+- `partial` → "Not bet-ready. [specific thing needed to complete shaping]."
+- `no` → "Needs full shaping session."
+
+### Shaping Contributors
+Shaping is always done between Product, Engineering, and UX (at minimum Product + Engineering). A blank Product contributor field is:
+- **Acceptable** if the pitch is in an "Engineering-led" stream (LCP APIs, AI Platform)
+- **A gap** for all other streams — shaping without Product is incomplete
+
+### Review Output Rules
+- **Next actions must be specific to THIS pitch.** Not generic template advice. If the advice could apply to any pitch without modification, it doesn't belong in the review.
+- **Scores must be consistent.** The same pitch reviewed twice must produce the same score. If appetite-scaling changes the score, note why.
+
 ### Multi-Team Pitches
 Some pitches appear multiple times in tracking (one row per team). This is ONE pitch with multiple team assignments. Score it once. Note which teams are involved.
 
