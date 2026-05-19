@@ -3636,6 +3636,59 @@
         "give me something I can share with leadership",
         "pull together what we accomplished and what's at risk"
       ]
+    },
+    {
+      "slug": "pitch",
+      "manifest_version": "capability-fabric.v0",
+      "layers": {
+        "minimal": {
+          "capability_type": "skill",
+          "summary": "Creates, reviews, scores, improves, and critiques Shape Up pitch documents.",
+          "role": "shaper",
+          "domain_tags": [
+            "pitch",
+            "shaping",
+            "shape-up",
+            "planning"
+          ],
+          "required_inputs": [
+            "a pitch source (Google Doc URL, local file, or pasted content)",
+            "or a goal/problem statement for creation"
+          ],
+          "expected_outputs": [
+            "TL;DR with score and shaped status",
+            "per-dimension scoring table",
+            "components extracted",
+            "pitch-specific next actions",
+            "tracker update block"
+          ],
+          "tool_policy": {
+            "allowed": [
+              "read pitch docs",
+              "score and critique",
+              "write new pitches",
+              "export"
+            ],
+            "forbidden": [
+              "write to tracker spreadsheet",
+              "change priority",
+              "approve for betting"
+            ]
+          },
+          "resources": [
+            "ssot/pitch.md"
+          ],
+          "packaging_profile": {
+            "capability_type": "skill",
+            "primary_surfaces": {
+              "kiro": [
+                "kiro_skill"
+              ]
+            },
+            "wrapper_surfaces": {}
+          }
+        }
+      }
     }
   ],
   "surfaces": {
