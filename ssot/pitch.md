@@ -186,22 +186,23 @@ For "PITCH NEEDED" items — generate a first-draft pitch from:
 - Known dependencies from the seam tracker
 Produces a draft with `[TODO]` markers for sections needing human input.
 
-### `pitch export <source> [format]`
+### `pitch export <source> [options]`
 Export a pitch from Google Docs to a local file.
 - Reads the pitch from GDrive (or any source)
-- Outputs as clean markdown (default), or other formats if specified
+- Outputs as clean markdown by default
 - Preserves template structure (headings, sections, lists)
 - Strips Google Docs formatting artifacts
-- Formats:
-  - `markdown` (default) — clean `.md` file
-  - `frontmatter` — markdown with YAML frontmatter (title, contributors, appetite, goal, date)
-  - `json` — structured JSON with each section as a key
+
+**Options:**
+- `--output markdown` (default) — clean `.md` file
+- `--output json` — structured JSON with each section as a key
+- `--frontmatter` — include YAML frontmatter in markdown output (title, contributors, appetite, goal, date)
 
 **Usage:**
 ```
-pitch export https://docs.google.com/document/d/... 
-pitch export https://docs.google.com/document/d/... frontmatter
-pitch export /path/to/local/pitch.md json
+pitch export https://docs.google.com/document/d/...
+pitch export https://docs.google.com/document/d/... --frontmatter
+pitch export https://docs.google.com/document/d/... --output json
 ```
 
 **Frontmatter example:**
