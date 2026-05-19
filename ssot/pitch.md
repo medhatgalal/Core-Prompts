@@ -194,22 +194,34 @@ Produces a draft with `[TODO]` markers for sections needing human input.
 | Appetite | 10% | Framing | Explicit time bound, walk-away threshold, fits in cycle | No constraint |
 | Solution direction | 10% | Shaping | Clear narrative of approach, why this over alternatives | Just an idea |
 | Architecture | 20% | Shaping | Components named, sequence described, APIs specified with contract state | No architectural awareness |
-| Dependencies & decoupling | 15% | Shaping | Seams identified, teams decoupled, contracts defined, escalation clear | Dependencies unknown |
-| Integration proof | 15% | Shaping | Branch with working code + tests proving seams connect | No proof, crossing seams blind |
-| Rabbit holes & risks | 10% | Shaping | Risks identified with de-risking plan, spikes named | No risk awareness |
+| Dependencies & decoupling | 15% | Shaping | Seams identified, teams named, contracts defined, escalation clear | Dependencies unknown |
+| Integration proof | 15% | Shaping | Contract state documented per dependency. Spike/branch for new seams. | No proof, crossing seams blind |
+| Rabbit holes & risks | 10% | Shaping | Risks identified with de-risking plan, owners, and deadlines | No risk awareness |
 | No-gos & boundaries | 5% | Shaping | Clear boundaries, scope creep prevented | No boundaries |
+
+**Default output shows:** Dimension | Score (out of 10) | Assessment (one line). No weighted math column unless explicitly requested.
 
 ### Gate Condition
 **If Architecture = 0 AND the pitch crosses an architectural seam, the total score is CAPPED at 5/10** regardless of other dimensions. A pitch with no technical substance cannot pass the betting threshold on the strength of framing alone.
 
 ### Integration Proof Graduated Scale
+
+Integration proof depends on the **contract state** of each dependency:
+
+| Contract State | What It Means | What the Pitch Must Show |
+|----------------|---------------|--------------------------|
+| **Exists and works** | API/contract is defined and functioning | Reference it. No spike needed. Score: 8-10. |
+| **Exists but broken** | API/contract is defined but not behaving as specified | Bug ticket filed against owning team. Workaround or timeline stated. Score: 5-7. |
+| **Does not exist** | No contract/API defined between these areas | Must work with owning team to define contract BEFORE betting. Spike proving the seam works. Score depends on progress. |
+
 | Score | Evidence |
 |-------|----------|
-| 10 | Branch with working code, passing tests, mock APIs. Link provided. |
-| 7-8 | Spike completed, key seam proven, not fully tested |
-| 4-6 | Spike planned, approach validated conceptually or in conversation |
-| 1-3 | "We think it'll work" with no code |
-| 0 | No proof and pitch crosses a seam |
+| 10 | All dependencies have working contracts. Branch with integration test if new seam. |
+| 8-9 | Dependencies reference existing working APIs. No new seams to prove. |
+| 6-7 | Some contracts broken — bug tickets filed, workaround stated, timeline known. |
+| 4-5 | Spike completed for new seams, but not all contracts defined yet. |
+| 2-3 | "We think it'll work" — no evidence, no tickets, no spike. |
+| 0 | Crosses seams with no proof and no contract state documented. |
 
 ### Scoring Thresholds
 - **9-10:** Ready to bet. Exceptional.
@@ -238,9 +250,42 @@ Read directly using file tools.
 ### From URLs
 Parse the Google Doc ID from: `https://docs.google.com/document/d/<DOC_ID>/edit?tab=t.<TAB_ID>`
 
-## Output Format (for tracker integration)
+## Output Format
 
-When scoring, always produce a structured summary block:
+### Review Output Structure
+Every review starts with a TL;DR block, then full detail:
+
+```
+## TL;DR
+**Score: X/10** | **Shaped: yes/partial/no** | **Verdict:** [one sentence]
+**Top gap:** [single most important thing to fix]
+
+---
+[Full per-dimension breakdown below]
+```
+
+### Appetite-Scaled Expectations
+Not all pitches need the same rigor. Scale expectations to appetite:
+
+| Appetite | Architecture depth | Dependencies depth | Integration proof |
+|----------|-------------------|-------------------|-------------------|
+| < 1 week | Components listed, sequence implied | Note if it crosses teams. Contract state per dependency. | Reference existing APIs or note "single-team, no new seams." |
+| 1-2 weeks | Components + sequence + APIs named | Team boundaries identified. Contract state explicit. | Spike for new seams. Existing APIs referenced. |
+| 3-4 weeks | Full component diagram, sequence diagram, API specs | Full decoupling strategy. Contracts defined or in progress. | Branch with integration test at each new seam. |
+
+A 1/2 dev-week pitch scored 10/10 on architecture might just name the components and their sequence. A 4-week pitch scored 10/10 needs diagrams, specs, and proofs.
+
+### Portfolio Calibration
+After scoring 5+ pitches, include a calibration line:
+
+```
+**Calibration:** This pitch scores in the [top/middle/bottom] third of reviewed pitches (N=X scored so far).
+```
+
+This gives context — a 7.5 means more when you know the portfolio average is 4.
+
+### Tracker Update Block
+Always end with:
 
 ```
 ## Tracker Update
@@ -248,12 +293,10 @@ When scoring, always produce a structured summary block:
 - **Shaped:** yes / partial / no
 - **Score:** X/10
 - **Last Reviewed:** YYYY-MM-DD
-- **Key Gaps:** [1-2 sentence summary of what's missing]
-- **Next Action:** [what needs to happen to improve the score]
-- **Gate:** PASS / FAIL (if applicable)
+- **Key Gaps:** [1-2 sentence summary]
+- **Next Action:** [what needs to happen]
+- **Gate:** PASS / FAIL
 ```
-
-This can be manually entered into the 🎯 Pitches tab of the delivery tracker.
 
 ## Invocation Hints
 Use this capability when the user asks for any of:
