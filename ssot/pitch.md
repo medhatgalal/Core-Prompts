@@ -186,6 +186,38 @@ For "PITCH NEEDED" items — generate a first-draft pitch from:
 - Known dependencies from the seam tracker
 Produces a draft with `[TODO]` markers for sections needing human input.
 
+### `pitch export <source> [format]`
+Export a pitch from Google Docs to a local file.
+- Reads the pitch from GDrive (or any source)
+- Outputs as clean markdown (default), or other formats if specified
+- Preserves template structure (headings, sections, lists)
+- Strips Google Docs formatting artifacts
+- Formats:
+  - `markdown` (default) — clean `.md` file
+  - `frontmatter` — markdown with YAML frontmatter (title, contributors, appetite, goal, date)
+  - `json` — structured JSON with each section as a key
+
+**Usage:**
+```
+pitch export https://docs.google.com/document/d/... 
+pitch export https://docs.google.com/document/d/... frontmatter
+pitch export /path/to/local/pitch.md json
+```
+
+**Frontmatter example:**
+```yaml
+---
+title: "MCP Server Auth"
+contributors: ["Tom Klancer"]
+appetite: "1/2 dev-week"
+goal: "Expose Appian features via MCP"
+cycle: 5
+shaped: yes
+score: 7.5
+last_reviewed: 2026-05-18
+---
+```
+
 ## Scoring Rubric
 
 | Dimension | Weight | Category | 10/10 | 1/10 |
