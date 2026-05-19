@@ -364,6 +364,81 @@ Use this capability when the user asks for any of:
 - is this pitch ready to bet on
 - bootstrap a pitch from this goal
 
+## Required Inputs
+- **For review/score/improve/components:** A pitch source (Google Doc URL, local file path, or pasted content)
+- **For create/bootstrap:** A goal name or problem statement. Optionally: appetite, team, known components.
+- **For compare:** Two pitch sources
+- **For audit:** Access to the pitches tracker or a list of pitch URLs
+- **For export:** A pitch source + optional format flags
+
+## Required Output
+Every review/score produces:
+- TL;DR block (score + shaped status + verdict + top gap)
+- Per-dimension scoring table
+- Components extracted (if pitch names them)
+- Strengths and Gaps
+- Pitch-specific next actions
+- Tracker Update block (copy-pasteable)
+
+Every create/bootstrap produces:
+- Full pitch template with sections filled or marked `[TODO]`
+
+Every export produces:
+- Clean markdown (or JSON) file with pitch content
+
+## Examples
+
+### Example: pitch review
+```
+User: pitch review https://docs.google.com/document/d/1ASvihJXYWkV2Qbw0LtyQGaPpLMMT16y40TBYelSA2bg/edit
+
+Output:
+## TL;DR
+**Score: 7/10** | **Shaped: partial** | **Verdict:** Strong architecture. Not bet-ready until rabbit holes resolved.
+**Top gap:** Three rabbit holes listed with no answers or owners.
+---
+[Per-dimension scoring table]
+[Components extracted]
+[Strengths, Gaps, Next Actions]
+[Tracker Update block]
+```
+
+### Example: pitch create
+```
+User: pitch create "Agents need to handle environment-wide guardrails"
+
+Output:
+📄 Shaped Pitch: Environment-Wide Guardrails for Agents
+[Full template scaffolded with TODO markers for sections needing human input]
+```
+
+### Example: pitch components
+```
+User: pitch components https://docs.google.com/document/d/...
+
+Output:
+| Component | Type | Repo |
+|-----------|------|------|
+| ... | ... | ... |
+
+Seams: [identified from pitch content]
+```
+
+## Evaluation Rubric
+
+The skill's own output quality is evaluated on:
+
+| Criterion | Pass | Fail |
+|-----------|------|------|
+| TL;DR present and accurate | Score + shaped + verdict + top gap in ≤2 lines | Missing or inaccurate |
+| Scores are deterministic | Same pitch = same score on re-run | Scores drift between runs |
+| Verdict matches shaped status | `partial` never says "ready to bet" | Mismatch |
+| Next actions are pitch-specific | Reference specific people, artifacts, decisions from THIS pitch | Generic template advice |
+| Appetite-scaling applied | Small pitch gets lighter expectations | One-size-fits-all |
+| Component extraction accurate | Only reports what the pitch states | Invents or assumes mappings |
+| Integration proof uses contract state | Scores based on exists+works / broken / missing | Binary "has branch or not" |
+| Rabbit hole enforcement | Unresolved = partial, mitigated = acceptable | Ignores unresolved holes |
+
 ## Tool Boundaries
 - **Allowed:** Read pitch docs from GDrive, local files, or pasted content. Write new pitch docs. Score and critique. Produce structured output for tracker.
 - **Forbidden:** Write directly to the delivery tracker spreadsheet. Change pitch priority or goal mapping without user approval. Approve pitches for betting (that's leadership's call).
