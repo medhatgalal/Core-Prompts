@@ -113,43 +113,22 @@ Every pitch should map to a committed goal. Goals are prioritized and divided in
 - **Below the line (stretch):** Only if committed work finishes early
 - **Deferred:** Not this cycle
 
-## Component Registry
+## Component Extraction
 
-The skill maintains awareness of the architectural component map. When reviewing or creating pitches, it can:
-1. **Extract** which components a pitch touches (from the pitch content)
-2. **Map to teams** using the Arch Components registry (source: pitches spreadsheet "Arch Components" tab)
-3. **Map to repos** where known (from pitch raw notes or component naming conventions)
-4. **Identify seams** — where a pitch crosses team boundaries based on component ownership
+When reviewing or scoring a pitch, the skill extracts architectural components mentioned in the pitch content. It reports:
+- Components named (services, APIs, repos, infrastructure)
+- Teams/owners mentioned in the pitch (if stated)
+- Repos mentioned in the pitch (if stated)
+- Seams implied (where the pitch mentions crossing between different services/systems)
+
+The skill does NOT maintain an external registry or assume mappings. It only reports what the pitch itself states. If a pitch doesn't name its components, that's a gap flagged in the Architecture dimension.
 
 ### `pitch components <source>`
-Extract and map architectural components from a pitch:
-- List all components mentioned or implied
-- Map each to its owning team
-- Map to repo where known
-- Identify which seams are crossed (components owned by different teams)
-- Flag components with no known owner
-
-**Source for component → team mapping:**
-```
-Spreadsheet: 1n-WhZle9kkdqN7sR9iTV7C4GrYvJ2_uAgOP854wCNts
-Tab: Arch Components
-Columns: Component (Diagram) | Team | Stream-Aligned Area | Namespace/Zone | Framework
-```
-
-**Output format:**
-```
-## Components Touched
-| Component | Team | Stream | Repo (if known) |
-|-----------|------|--------|-----------------|
-| ... | ... | ... | ... |
-
-## Seams Crossed
-| Seam | Between Teams | Contract State |
-|------|--------------|----------------|
-| ... | ... | exists / broken / missing |
-```
-
-When reviewing a pitch, this analysis is included automatically if the pitch names components. When creating a pitch, the skill suggests relevant components from the registry based on the goal/problem.
+Extract architectural components from a pitch document:
+- List all components, services, repos, and APIs mentioned
+- Note team ownership only if stated in the pitch
+- Identify implied seams (where data crosses between named components)
+- Flag if the pitch is missing component information
 
 ## Commands
 
