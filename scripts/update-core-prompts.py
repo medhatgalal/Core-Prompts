@@ -89,6 +89,10 @@ def read_release_source(path: Path) -> dict[str, str]:
     return result
 
 
+def local_repo_metadata_path(paths: Paths) -> Path:
+    return installed_support_root(paths) / "LOCAL_REPO.env"
+
+
 def read_state(path: Path) -> dict[str, str]:
     if not path.is_file():
         return {}
@@ -444,6 +448,56 @@ def checkout_mirror(paths: Paths, tag: str) -> bool:
     return run(["git", "-C", str(paths.mirror_path), "checkout", "--detach", tag]).returncode == 0
 
 
+def git_text(repo: Path, *args: str) -> str:
+    proc = run(["git", "-C", str(repo), *args])
+    return proc.stdout.strip() if proc.returncode == 0 else ""
+
+
+def release_install_root(paths: Paths, pending_version: str, mirror_path: Path) -> tuple[Path, str]:
+    metadata = read_release_source(local_repo_metadata_path(paths))
+    repo_text = metadata.get("REPO_PATH", "")
+    if not repo_text:
+        return mirror_path, "No installed source checkout metadata; installing from release mirror"
+
+    repo = Path(repo_text).expanduser()
+    if not repo.is_dir():
+        return mirror_path, f"Recorded source checkout is unavailable: {repo}"
+    if run(["git", "-C", str(repo), "rev-parse", "--is-inside-work-tree"]).returncode != 0:
+        return mirror_path, f"Recorded source checkout is not a git worktree: {repo}"
+    if run(["git", "-C", str(repo), "status", "--porcelain"]).stdout.strip():
+        return mirror_path, f"Recorded source checkout has local changes; using release mirror: {repo}"
+
+    expected_branch = metadata.get("BRANCH", "")
+    current_branch = git_text(repo, "branch", "--show-current")
+    if not current_branch:
+        return mirror_path, f"Recorded source checkout is detached; using release mirror: {repo}"
+    if expected_branch and current_branch != expected_branch:
+        return mirror_path, f"Recorded source checkout is on {current_branch}, expected {expected_branch}; using release mirror"
+
+    remote = metadata.get("REMOTE_NAME") or "origin"
+    refspec = f"+refs/tags/{pending_version}:refs/tags/{pending_version}"
+    fetch_tag = run(["git", "-C", str(repo), "fetch", remote, refspec])
+    if fetch_tag.returncode != 0:
+        return mirror_path, f"Failed to fetch {pending_version} into recorded source checkout; using release mirror"
+
+    target_commit = git_text(repo, "rev-parse", f"{pending_version}^{{commit}}")
+    if not target_commit:
+        return mirror_path, f"Recorded source checkout cannot resolve {pending_version}; using release mirror"
+    if run(["git", "-C", str(repo), "merge-base", "--is-ancestor", "HEAD", target_commit]).returncode != 0:
+        return mirror_path, f"Recorded source checkout cannot fast-forward to {pending_version}; using release mirror"
+    ff = run(["git", "-C", str(repo), "merge", "--ff-only", target_commit])
+    if ff.returncode != 0:
+        return mirror_path, f"Recorded source checkout fast-forward failed; using release mirror"
+
+    install_script = repo / "scripts" / "install-local.sh"
+    if not install_script.is_file():
+        return mirror_path, f"Recorded source checkout lacks install-local.sh after update; using release mirror"
+    repo_version = read_first_line(repo / "VERSION")
+    if repo_version != pending_version:
+        return mirror_path, f"Recorded source checkout version is {repo_version or 'unknown'} after update; using release mirror"
+    return repo, f"Updated recorded source checkout {repo} to {pending_version}"
+
+
 def should_notify(paths: Paths, pending_version: str, status: str) -> bool:
     state = read_state(paths.state_file)
     previous_key = state.get("pending_version") if status == "pending-install" else state.get("status")
@@ -557,7 +611,16 @@ def accept_release(paths: Paths, *, assume_yes: bool, snapshot_retention: int = 
         return 0
     snapshot = create_snapshot(paths, installed_version=installed, target_version=pending, retention=snapshot_retention)
     print(f"Snapshot saved: {snapshot}", file=sys.stderr)
-    proc = subprocess.run([str(install_script), "--target", str(paths.home), "--allow-nonlocal-target"], cwd=mirror_path, env={**os.environ, "HOME": str(paths.home)})
+    install_root, install_note = release_install_root(paths, pending, mirror_path)
+    print(install_note, file=sys.stderr)
+    install_script = install_root / "scripts" / "install-local.sh"
+    proc = subprocess.run([str(install_script), "--target", str(paths.home), "--allow-nonlocal-target"], cwd=install_root, env={**os.environ, "HOME": str(paths.home)})
+    if proc.returncode != 0 and install_root != mirror_path:
+        print("Recorded source checkout install failed; retrying from release mirror.", file=sys.stderr)
+        install_script = mirror_path / "scripts" / "install-local.sh"
+        install_root = mirror_path
+        install_note = "Recorded source checkout updated, but install fell back to release mirror"
+        proc = subprocess.run([str(install_script), "--target", str(paths.home), "--allow-nonlocal-target"], cwd=install_root, env={**os.environ, "HOME": str(paths.home)})
     if proc.returncode != 0:
         return proc.returncode
     installed_after = read_first_line(support / "VERSION")
@@ -568,7 +631,7 @@ def accept_release(paths: Paths, *, assume_yes: bool, snapshot_retention: int = 
             latest_version=pending,
             pending_version="",
             status="current",
-            note="Accepted pending Core-Prompts release",
+            note=f"Accepted pending Core-Prompts release. {install_note}",
         )
         print(f"Accepted Core-Prompts release {pending}.", file=sys.stderr)
         return 0

@@ -9,7 +9,7 @@ Copy-only deployment of SSOT-managed generated surfaces to CLI directories under
 This script never creates symlinks.
 If destination file is a symlink, it is unlinked and replaced with a regular file copy.
 Existing files are overwritten in place with cp -f.
-When --target points outside this repository, deployment also writes a standalone updater bundle under .core-prompts-updater plus update_core_prompts.sh and release-watch metadata.
+When --target points outside this repository, deployment also writes a standalone updater bundle under .core-prompts-updater plus update_core_prompts.sh, release-watch metadata, and local source checkout metadata when available.
 
 Options:
   --cli gemini|claude|kiro|codex|all  Target CLI(s). Default: all
@@ -251,9 +251,50 @@ for rel in roots:
 PY
 }
 
+source_repo_is_durable() {
+  if [[ "$REPO_ROOT" == "$TARGET_ROOT/.core-prompts-release-cache" || "$REPO_ROOT" == "$TARGET_ROOT/.core-prompts-release-cache"/* ]]; then
+    return 1
+  fi
+  if [[ "$REPO_ROOT" == "$TARGET_ROOT/.core-prompts-updater" || "$REPO_ROOT" == "$TARGET_ROOT/.core-prompts-updater"/* ]]; then
+    return 1
+  fi
+  git -C "$REPO_ROOT" rev-parse --is-inside-work-tree >/dev/null 2>&1 || return 1
+  [[ -n "$(git -C "$REPO_ROOT" branch --show-current 2>/dev/null)" ]] || return 1
+  git -C "$REPO_ROOT" remote get-url origin >/dev/null 2>&1 || return 1
+  return 0
+}
+
+write_local_repo_metadata() {
+  local support_root="$1"
+  local preserved_metadata="${2:-}"
+  local metadata="$support_root/LOCAL_REPO.env"
+  if source_repo_is_durable; then
+    local branch remote_url captured_at
+    branch="$(git -C "$REPO_ROOT" branch --show-current)"
+    remote_url="$(git -C "$REPO_ROOT" remote get-url origin)"
+    captured_at="$(date -u '+%Y-%m-%dT%H:%M:%SZ')"
+    mkdir -p "$support_root"
+    cat > "$metadata" <<EOF
+REPO_PATH=$REPO_ROOT
+BRANCH=$branch
+REMOTE_NAME=origin
+REMOTE_URL=$remote_url
+CAPTURED_AT=$captured_at
+EOF
+    echo "WROTE $metadata"
+  elif [[ -n "$preserved_metadata" && -f "$preserved_metadata" ]]; then
+    mkdir -p "$support_root"
+    cp "$preserved_metadata" "$metadata"
+    echo "PRESERVED $metadata"
+  else
+    rm -f "$metadata"
+  fi
+}
+
 install_standalone_bundle() {
   local support_root="$TARGET_ROOT/.core-prompts-updater"
   local entries_file
+  local preserved_metadata=""
   if [[ "$DRY_RUN" -eq 1 ]]; then
     while IFS=$'\t' read -r src dst; do
       [[ -n "$src" ]] || continue
@@ -261,7 +302,16 @@ install_standalone_bundle() {
       STANDALONE_COPIED=$((STANDALONE_COPIED + 1))
     done < <(standalone_bundle_entries)
     echo "DRY-RUN PRUNE stale files under $support_root"
+    if source_repo_is_durable; then
+      echo "DRY-RUN WRITE $support_root/LOCAL_REPO.env"
+    elif [[ -f "$support_root/LOCAL_REPO.env" ]]; then
+      echo "DRY-RUN PRESERVE $support_root/LOCAL_REPO.env"
+    fi
   else
+    if [[ -f "$support_root/LOCAL_REPO.env" ]]; then
+      preserved_metadata="$(mktemp "${TMPDIR:-/tmp}/core-prompts-local-repo.XXXXXX")"
+      cp "$support_root/LOCAL_REPO.env" "$preserved_metadata"
+    fi
     entries_file="$(mktemp "${TMPDIR:-/tmp}/core-prompts-standalone-entries.XXXXXX")"
     standalone_bundle_entries > "$entries_file"
     STANDALONE_COPIED="$(python3 - "$support_root" "$entries_file" <<'PY'
@@ -300,6 +350,10 @@ print(count)
 PY
 )"
     rm -f "$entries_file"
+    write_local_repo_metadata "$support_root" "$preserved_metadata"
+    if [[ -n "$preserved_metadata" ]]; then
+      rm -f "$preserved_metadata"
+    fi
   fi
   write_launcher "$TARGET_ROOT/update_core_prompts.sh"
   echo "STANDALONE updater=$support_root launcher=$TARGET_ROOT/update_core_prompts.sh copied=$STANDALONE_COPIED"

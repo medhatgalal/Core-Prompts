@@ -108,7 +108,7 @@ Expected result:
 
 ### Check Or Accept Installed Releases
 
-Initial home installs write the standalone release-watch contract into `~/.core-prompts-updater/`: installed `VERSION`, `RELEASE_SOURCE.env`, updater scripts, and the generated surfaces needed for later path-agnostic checks.
+Initial home installs write the standalone release-watch contract into `~/.core-prompts-updater/`: installed `VERSION`, `RELEASE_SOURCE.env`, `LOCAL_REPO.env`, updater scripts, and the generated surfaces needed for later checks.
 
 ```bash
 bin/capability-fabric update --check-release
@@ -126,7 +126,7 @@ Expected result:
 
 - `--check-release` fetches release tags, syncs `~/.core-prompts-release-cache/repo`, updates `~/.core-prompts-state/release-watch.json`, and never auto-installs
 - scheduled `--schedule-daily HH:MM` runs auto-accept valid releases by default after the release check; add `--notify-only` to keep scheduling check-only
-- `--accept-release` shows installed vs pending version, prompts for confirmation, snapshots first, refreshes from the synced mirror only on approval, and clears pending state on success
+- `--accept-release` shows installed vs pending version, prompts for confirmation, snapshots first, fast-forwards the recorded source checkout when it is clean and safe, runs the installer from that checkout, falls back to the synced mirror when needed, and clears pending state on success
 - rollback snapshot retention defaults to the latest 2 snapshots; override with `--snapshot-retention N`
 - `--rollback previous` restores the latest snapshot from `~/.core-prompts-state/snapshots/`
 
@@ -172,7 +172,7 @@ Direct exposure is standardized on `skills/<slug>/SKILL.md` for every supported 
 - deploy is copy-only and never creates symlinks
 - deploy defaults to the repository root unless `--target` is provided
 - `scripts/install-local.sh` is a compatibility wrapper around deploy and remains copy-only
-- home-target install writes `~/.core-prompts-updater/VERSION`, `~/.core-prompts-updater/RELEASE_SOURCE.env`, and `~/update_core_prompts.sh`
+- home-target install writes `~/.core-prompts-updater/VERSION`, `~/.core-prompts-updater/RELEASE_SOURCE.env`, `~/.core-prompts-updater/LOCAL_REPO.env`, and `~/update_core_prompts.sh`
 - scheduled updater runs check releases first, auto-accept valid releases by default, then run normal sync
 - `bin/capability-fabric update --check-release` checks only and never auto-installs
 - `bin/capability-fabric update --accept-release` is the explicit install/apply step

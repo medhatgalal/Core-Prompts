@@ -168,6 +168,9 @@ def test_nonlocal_install_writes_standalone_updater_bundle_and_prunes_stale_file
         ROOT / "VERSION"
     ).read_text(encoding="utf-8").strip()
     assert (tmp_path / ".core-prompts-updater" / "RELEASE_SOURCE.env").is_file()
+    local_repo = (tmp_path / ".core-prompts-updater" / "LOCAL_REPO.env").read_text(encoding="utf-8")
+    assert f"REPO_PATH={ROOT}" in local_repo
+    assert "REMOTE_NAME=origin" in local_repo
     assert (tmp_path / ".core-prompts-updater" / "scripts" / "update-core-prompts.py").is_file()
     assert (tmp_path / ".core-prompts-updater" / "scripts" / "deploy-surfaces.sh").is_file()
     assert (tmp_path / ".core-prompts-updater" / "scripts" / "install-local.sh").is_file()

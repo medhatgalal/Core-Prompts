@@ -31,6 +31,7 @@ def test_version_changelog_and_docs_contract_are_aligned() -> None:
     required = [
         "VERSION",
         "RELEASE_SOURCE.env",
+        "LOCAL_REPO.env",
         "--check-release",
         "--accept-release",
         "--rollback",

@@ -37,6 +37,7 @@ The package should include:
 - `sources/ssot-baselines/`
 - deploy/install scripts
 - release-watch updater scripts, `VERSION`, and `RELEASE_SOURCE.env`
+- local source checkout metadata, when a home install is performed from a durable checkout
 - curated operator/integrator docs
 - generated consumer-shell docs (`docs/CAPABILITY-CATALOG.md`, `docs/RELEASE-DELTA.md`, `docs/STATUS.md`)
 - `README.md`
@@ -67,12 +68,13 @@ Do not call the repo release-green until the hosted CI surface is green after pu
 
 ## Installed Release Watch Contract
 
-Initial install writes the installed version and release-source metadata into the standalone bundle so future checks do not depend on any local source checkout path:
+Initial install writes the installed version, release-source metadata, and local source checkout metadata into the standalone bundle:
 
 - `~/.core-prompts-updater/VERSION`
 - `~/.core-prompts-updater/RELEASE_SOURCE.env`
+- `~/.core-prompts-updater/LOCAL_REPO.env`
 - `~/update_core_prompts.sh`
 
-Daily scheduled updater runs execute `~/update_core_prompts.sh --check-release` before normal update sync. `--check-release` checks only, fetches release tags, syncs a dedicated clean mirror, persists release-watch state, and never auto-installs when run directly. Scheduled runs auto-accept valid releases by default after the release check; `--schedule-daily HH:MM --notify-only` preserves check-only scheduling. `--accept-release` is the explicit install/apply step for manual acceptance.
+Daily scheduled updater runs execute `~/update_core_prompts.sh --check-release` before normal update sync. `--check-release` checks only, fetches release tags, syncs a dedicated clean mirror, persists release-watch state, and never auto-installs when run directly. Scheduled runs auto-accept valid releases by default after the release check; `--schedule-daily HH:MM --notify-only` preserves check-only scheduling. `--accept-release` is the explicit install/apply step for manual acceptance. Accepted releases fast-forward the recorded source checkout and run its installer when the checkout is clean and can fast-forward to the accepted tag; otherwise they fall back to the clean release mirror.
 
 Every accepted release writes a rollback snapshot under `~/.core-prompts-state/snapshots/` before installing. Older snapshots are pruned so the latest 2 are retained by default; use `--snapshot-retention N` to override that. `--list-snapshots` shows rollback points, and `--rollback previous` restores the latest pre-release snapshot.

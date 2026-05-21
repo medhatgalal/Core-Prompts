@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.8.6 - 2026-05-21
+
+- Extended release-watch installs to keep the source checkout current:
+  - home installs now write `LOCAL_REPO.env` with the durable source checkout path, branch, and origin remote
+  - release acceptance fast-forwards the recorded checkout to the accepted tag when it is clean and safe, then runs the installer from that checkout
+  - dirty, detached, unavailable, or non-fast-forwardable checkouts fall back to the clean release mirror without blocking installed updates
+
 ## v1.8.5 - 2026-05-21
 
 - Changed scheduled release-watch behavior to auto-update valid releases by default:

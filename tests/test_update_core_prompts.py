@@ -53,6 +53,13 @@ cp "$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/RELEASE_SOURCE.env" "$targe
     run_git(path, "tag", tag)
 
 
+def add_release_commit(path: Path, tag: str) -> None:
+    (path / "VERSION").write_text(f"{tag}\n", encoding="utf-8")
+    run_git(path, "add", "VERSION")
+    run_git(path, "commit", "-qm", f"release {tag}")
+    run_git(path, "tag", tag)
+
+
 def clone_release_repo(source: Path, path: Path) -> None:
     subprocess.run(["git", "clone", "-q", str(source), str(path)], check=True)
 
@@ -239,6 +246,60 @@ def test_accept_release_approval_refreshes_and_clears_pending(tmp_path: Path) ->
     manifest = json.loads((snapshots[0] / "manifest.json").read_text(encoding="utf-8"))
     assert manifest["installed_version"] == "v1.7.1"
     assert manifest["target_version"] == "v1.7.2"
+
+
+def test_accept_release_fast_forwards_recorded_source_repo_before_install(tmp_path: Path) -> None:
+    origin = tmp_path / "origin"
+    local_repo = tmp_path / "local-repo"
+    create_release_repo(origin, "v1.7.1")
+    clone_release_repo(origin, local_repo)
+    branch = subprocess.run(["git", "-C", str(local_repo), "branch", "--show-current"], check=True, stdout=subprocess.PIPE, text=True).stdout.strip()
+    add_release_commit(origin, "v1.7.2")
+    gitlab = tmp_path / "gitlab"
+    clone_release_repo(origin, gitlab)
+    support = write_support(tmp_path, "v1.7.1", origin, gitlab)
+    (support / "LOCAL_REPO.env").write_text(
+        f"REPO_PATH={local_repo}\nBRANCH={branch}\nREMOTE_NAME=origin\nREMOTE_URL={origin}\n",
+        encoding="utf-8",
+    )
+
+    check = run_update(tmp_path, support, "--check-release")
+    assert check.returncode == 0, check.stderr
+    result = run_update(tmp_path, support, "--accept-release", "--yes")
+
+    assert result.returncode == 0, result.stderr
+    assert "Updated recorded source checkout" in result.stderr
+    assert (local_repo / "VERSION").read_text(encoding="utf-8").strip() == "v1.7.2"
+    assert (support / "VERSION").read_text(encoding="utf-8").strip() == "v1.7.2"
+    state = read_state(tmp_path)
+    assert state["status"] == "current"
+    assert "Updated recorded source checkout" in state["note"]
+
+
+def test_accept_release_falls_back_to_mirror_when_recorded_source_repo_is_dirty(tmp_path: Path) -> None:
+    origin = tmp_path / "origin"
+    local_repo = tmp_path / "local-repo"
+    create_release_repo(origin, "v1.7.1")
+    clone_release_repo(origin, local_repo)
+    branch = subprocess.run(["git", "-C", str(local_repo), "branch", "--show-current"], check=True, stdout=subprocess.PIPE, text=True).stdout.strip()
+    (local_repo / "local-change.txt").write_text("dirty\n", encoding="utf-8")
+    add_release_commit(origin, "v1.7.2")
+    gitlab = tmp_path / "gitlab"
+    clone_release_repo(origin, gitlab)
+    support = write_support(tmp_path, "v1.7.1", origin, gitlab)
+    (support / "LOCAL_REPO.env").write_text(
+        f"REPO_PATH={local_repo}\nBRANCH={branch}\nREMOTE_NAME=origin\nREMOTE_URL={origin}\n",
+        encoding="utf-8",
+    )
+
+    check = run_update(tmp_path, support, "--check-release")
+    assert check.returncode == 0, check.stderr
+    result = run_update(tmp_path, support, "--accept-release", "--yes")
+
+    assert result.returncode == 0, result.stderr
+    assert "local changes; using release mirror" in result.stderr
+    assert (local_repo / "VERSION").read_text(encoding="utf-8").strip() == "v1.7.1"
+    assert (support / "VERSION").read_text(encoding="utf-8").strip() == "v1.7.2"
 
 
 def test_rollback_restores_previous_support_bundle_and_managed_surface(tmp_path: Path) -> None:

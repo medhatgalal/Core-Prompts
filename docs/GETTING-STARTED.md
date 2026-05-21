@@ -85,9 +85,10 @@ When you install into a home target, Core-Prompts writes the installed version a
 
 - `~/.core-prompts-updater/VERSION`
 - `~/.core-prompts-updater/RELEASE_SOURCE.env`
+- `~/.core-prompts-updater/LOCAL_REPO.env`
 - `~/update_core_prompts.sh`
 
-Daily scheduled updater runs execute `~/update_core_prompts.sh --check-release` before normal update sync. The check compares the installed standalone bundle against the latest immutable release tag agreed by the canonical remotes, updates `~/.core-prompts-state/release-watch.json`, and never auto-installs when run directly. Scheduled runs auto-accept valid releases by default after that check.
+Daily scheduled updater runs execute `~/update_core_prompts.sh --check-release` before normal update sync. The check compares the installed standalone bundle against the latest immutable release tag agreed by the canonical remotes, updates `~/.core-prompts-state/release-watch.json`, and never auto-installs when run directly. Scheduled runs auto-accept valid releases by default after that check. Accepted releases safely fast-forward the recorded source checkout first when it is clean, then run the installer from that checkout; if that is unsafe, they install from the clean release mirror.
 
 Use the explicit acceptance step when you want to refresh the installed bundle manually. `--accept-release` is the explicit install/apply step:
 
