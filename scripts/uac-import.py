@@ -42,6 +42,7 @@ from intent_pipeline.uac_quality import (
 )
 from intent_pipeline.uac_baselines import (
     evaluate_candidate_against_baseline,
+    historical_richness_score,
     persist_source_baseline,
     resolve_historical_baseline,
     text_sha256,
@@ -767,8 +768,7 @@ def _build_descriptor_preview(
         manifest=payload['manifest'],
         family_slug=slug,
         shared_summary=str(payload['manifest']['layers']['minimal'].get('summary') or ''),
-        shared_constraints=_source_constraints(payload)
-        or tuple(payload.get('manifest', {}).get('layers', {}).get('expanded', {}).get('adjustment_recommendations') or ()),
+        shared_constraints=_descriptor_shared_constraints(payload),
         modes=tuple(_mode_entries_from_items(payload.get('items', []))),
         benchmark_sources=tuple(payload.get('benchmark_sources') or ()),
         quality_profile=(quality_plan or {}).get('quality_profile'),
@@ -1262,8 +1262,36 @@ def _source_body_text(payload: Mapping[str, Any]) -> str | None:
         return None
 
 
+def _is_repo_relative_source(normalized_source: str, rel_prefix: str) -> bool:
+    if not normalized_source:
+        return False
+    try:
+        rel_path = Path(normalized_source).expanduser().resolve().relative_to(ROOT)
+    except (OSError, ValueError):
+        return False
+    return rel_path.as_posix().startswith(rel_prefix)
+
+
+def _should_preserve_source_body(slug: str, payload: Mapping[str, Any], source_text: str) -> bool:
+    normalized_source = str(((payload.get('source') or {}).get('normalized_source')) or '').strip()
+    if _is_repo_relative_source(normalized_source, f'ssot/{slug}.md'):
+        return True
+    line_count = len(source_text.splitlines())
+    word_count = len(source_text.split())
+    has_operational_sections = (
+        '# ' in source_text
+        and '## Required Output' in source_text
+        and '## Evaluation Rubric' in source_text
+    )
+    return has_operational_sections and line_count >= 80 and word_count >= 500 and historical_richness_score(source_text) >= 3
+
+
 def _source_constraints(payload: Mapping[str, Any]) -> tuple[str, ...]:
     return _source_section_bullets(payload, ('Constraints',))
+
+
+def _descriptor_shared_constraints(payload: Mapping[str, Any]) -> tuple[str, ...]:
+    return _source_constraints(payload)
 
 
 def _source_required_inputs(payload: Mapping[str, Any]) -> tuple[str, ...]:
@@ -1380,6 +1408,8 @@ def _normalize_payload_for_same_slug_update(payload: Mapping[str, Any]) -> dict[
 
 def _preferred_ssot_text(slug: str, payload: Mapping[str, Any], *, quality_result: Mapping[str, Any] | None = None) -> str:
     source_text = _source_body_text(payload)
+    if source_text and _should_preserve_source_body(slug, payload, source_text):
+        return source_text
     if source_text:
         capability_type = str(
             ((payload.get('manifest') or {}).get('layers', {}).get('minimal', {}).get('capability_type') or 'skill')
@@ -1693,9 +1723,7 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
         manifest=result['manifest'],
         family_slug=slug,
         shared_summary=str(source_fields.get('description') or result['manifest']['layers']['minimal'].get('summary') or ''),
-        shared_constraints=_source_constraints(result)
-        or tuple(result.get('uplift', {}).get('quality_constraints') or ())
-        or tuple(result.get('manifest', {}).get('layers', {}).get('expanded', {}).get('adjustment_recommendations') or ()),
+        shared_constraints=_descriptor_shared_constraints(result),
         modes=tuple(_mode_entries_from_items(result.get('items', []))),
         benchmark_sources=tuple(result.get('benchmark_sources') or ()),
         quality_profile=(quality_plan or {}).get('quality_profile'),

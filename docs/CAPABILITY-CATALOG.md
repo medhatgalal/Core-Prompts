@@ -2,7 +2,7 @@
 
 Generated from canonical manifest and descriptor metadata. Use this page to see what Core-Prompts ships, what each capability is for, and where it lands.
 
-- Capability count: `16`
+- Capability count: `17`
 
 ## Start Here
 - `docs-review-expert` — Docs Review Expert — Documentation IA, Drift, and Release Hygiene: Documentation Review Expert for information architecture, explainable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.
@@ -12,10 +12,10 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `testing` — Testing Studio — Test Design and Coverage Analysis: Testing Studio for unit-test generation, end-to-end test design, edge-case discovery, and coverage gap analysis.
 
 ## By CLI
-- `claude`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `feature-status`, `gitops-review`, `mentor`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `codex`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `feature-status`, `gitops-review`, `mentor`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `gemini`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `feature-status`, `gitops-review`, `mentor`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `kiro`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `feature-status`, `gitops-review`, `mentor`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `claude`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `feature-status`, `gitops-review`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `codex`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `feature-status`, `gitops-review`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `gemini`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `feature-status`, `gitops-review`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `kiro`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `feature-status`, `gitops-review`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
 
 ## By Use Case
 - `analysis`: `analyze-context`
@@ -33,6 +33,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `import`: `uac-import`
 - `intel`: `weekly-intel`
 - `mentor`: `mentor`
+- `pitch`: `pitch`
 - `planning`: `uac-import`
 - `prompting`: `mentor`, `uac-import`
 - `pulse`: `pulse`
@@ -182,6 +183,23 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
   - preview how to merge this branch safely
   - tell me what content is orthogonal versus contradictory
 - Summary: Merge Conflict Resolution for structured conflict analysis, additive merging, and inversion-led trade-off handling.
+
+### Pitch — Shape Up Pitch Creation, Review, Scoring, and Improvement
+- Slug: `pitch`
+- Type: `both`
+- Install target: `repo_local`
+- Supported CLIs: `claude, codex, gemini, kiro`
+- Version: `v1.1`
+- Invocation hints:
+  - create a pitch / write a pitch / scaffold a pitch
+  - review this pitch / critique this pitch
+  - score this pitch / rate this pitch
+  - improve this pitch / make this pitch better / harden this pitch
+  - compare these pitches
+  - which pitches need work / pitch audit / pitch status
+  - is this pitch ready to bet on
+  - bootstrap a pitch from this goal
+- Summary: Creates, reviews, scores, improves, and critiques Shape Up pitch documents. Use when working with pitches at any stage: from bootstrapping a new pitch from a goal statement, to hardening an existing pitch for betting, to auditing pitch quality across a portfolio.
 
 ### Pulse — Comms Triage
 - Slug: `pulse`

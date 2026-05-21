@@ -176,7 +176,7 @@ def tag_is_newer(candidate: str, installed: str) -> bool:
         return candidate > installed
 
 
-def prepare_mirror(paths: Paths, origin_url: str, gitlab_url: str) -> bool:
+def prepare_mirror(paths: Paths, origin_url: str, gitlab_url: str, release_tag: str) -> bool:
     paths.cache_root.mkdir(parents=True, exist_ok=True)
     if not (paths.mirror_path / ".git").is_dir():
         if paths.mirror_path.exists():
@@ -195,7 +195,13 @@ def prepare_mirror(paths: Paths, origin_url: str, gitlab_url: str) -> bool:
     else:
         if run(["git", "-C", str(paths.mirror_path), "remote", "add", "gitlab", gitlab_url]).returncode != 0:
             return False
-    return run(["git", "-C", str(paths.mirror_path), "fetch", "--all", "--prune", "--tags"]).returncode == 0
+    if run(["git", "-C", str(paths.mirror_path), "fetch", "--all", "--prune", "--no-tags"]).returncode != 0:
+        return False
+    if release_tag:
+        refspec = f"+refs/tags/{release_tag}:refs/tags/{release_tag}"
+        if run(["git", "-C", str(paths.mirror_path), "fetch", "origin", refspec]).returncode != 0:
+            return False
+    return True
 
 
 def checkout_mirror(paths: Paths, tag: str) -> bool:
@@ -242,7 +248,7 @@ def check_release(paths: Paths, *, notify_mode: bool) -> dict[str, str]:
         return write_state(paths, installed_version=installed_version, latest_version=latest_origin, pending_version="", status="remote-divergence", note=note, last_notified_at=last_notified)
 
     latest_version = latest_origin
-    if not prepare_mirror(paths, origin_url, gitlab_url):
+    if not prepare_mirror(paths, origin_url, gitlab_url, latest_version):
         return write_state(paths, installed_version=installed_version, latest_version=latest_version, pending_version="", status="remote-error", note="Failed to prepare dedicated release mirror")
     if not checkout_mirror(paths, latest_version):
         return write_state(paths, installed_version=installed_version, latest_version=latest_version, pending_version="", status="remote-error", note=f"Failed to check out {latest_version} in dedicated release mirror")

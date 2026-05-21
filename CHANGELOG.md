@@ -1,5 +1,18 @@
 # Changelog
 
+## v1.8.4 - 2026-05-21
+
+- Shipped the `pitch` capability across generated Codex, Gemini, Claude, and Kiro skill/agent surfaces:
+  - added the Shape Up pitch creation, review, scoring, improvement, comparison, audit, bootstrap, and export workflow
+  - materialized a repo-resident pitch baseline so future UAC judging has a fidelity oracle for the full SSOT body
+- Hardened UAC so strong canonical SSOT bodies are preserved instead of flattened into generic template rewrites:
+  - judge/apply now evaluates rich authored markdown directly and treats missing generic headings as review evidence, not an automatic rewrite trigger
+  - quality scoring recognizes domain-specific operational sections such as commands, scoring rules, tool boundaries, and export/output contracts
+  - added a pitch regression scenario with a base-vs-UAC comparison score to prove UAC is additive without changing the skill purpose
+- Fixed install/release-watch edge cases found during reinstall:
+  - standalone updater bundles no longer copy stray `.DS_Store` files
+  - release-watch mirrors fetch branch refs without all historical tags and then fetch only the agreed latest release tag, avoiding failures from old divergent remote tags
+
 ## v1.8.3 - 2026-04-21
 
 - Added daily release-watch support for installed Core-Prompts bundles:

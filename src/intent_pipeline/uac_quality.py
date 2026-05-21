@@ -32,6 +32,30 @@ JUDGE_TITLES = {
     "benchmark_readiness": "Benchmark Readiness and Template Fit",
 }
 
+MARKER_ALIASES = {
+    "## workflow": ("## Invocation", "## Commands", "## Workflow Contract"),
+    "## rules": (
+        "## Rules",
+        "### Gate Condition",
+        "### Shaped Status Rules",
+        "### Verdict Rules",
+        "### Review Output Rules",
+        "### Scoring Thresholds",
+        "Non-Negotiable",
+    ),
+    "## constraints": ("## Constraints", "## Tool Boundaries", "No-Gos & Boundaries", "Forbidden:"),
+    "## output directory": (
+        "## Output Directory",
+        "## Output Format",
+        "### `pitch export",
+        "write to a specified location",
+        "Outputs as clean markdown",
+    ),
+    "constraints": ("Constraints", "## Tool Boundaries", "No-Gos & Boundaries", "Forbidden:"),
+    "do not": ("do not", "does NOT", "Forbidden:", "must not"),
+    "descriptor": ("descriptor", "sidecar descriptor", ".meta/capabilities"),
+}
+
 
 @dataclass(frozen=True, slots=True)
 class QualityProfile:
@@ -414,12 +438,22 @@ def _judge_metadata_integrity(
     lowered = candidate_text.casefold()
     satisfied = 0
     missing: list[str] = []
+    minimal = (
+        descriptor.get("layers", {}).get("minimal")
+        if isinstance(descriptor.get("layers"), Mapping)
+        else {}
+    )
     for marker in markers:
         marker_lower = marker.casefold()
-        if marker_lower in lowered:
+        aliases = (marker, *MARKER_ALIASES.get(marker_lower, ()))
+        if any(alias.casefold() in lowered for alias in aliases):
             satisfied += 1
             continue
-        if marker_lower == "advisory" and descriptor.get("consumption_hints"):
+        if marker_lower == "advisory" and (
+            descriptor.get("consumption_hints")
+            or (isinstance(minimal, Mapping) and minimal.get("review_status"))
+            or (isinstance(minimal, Mapping) and minimal.get("tool_policy"))
+        ):
             satisfied += 1
             continue
         if marker_lower == "descriptor" and descriptor:
@@ -430,11 +464,6 @@ def _judge_metadata_integrity(
     blockers = [f"missing metadata-integrity marker: {item}" for item in missing]
     if str(descriptor.get("slug") or "") != slug:
         blockers.append("descriptor slug does not match candidate slug")
-    minimal = (
-        descriptor.get("layers", {}).get("minimal")
-        if isinstance(descriptor.get("layers"), Mapping)
-        else {}
-    )
     if isinstance(minimal, Mapping):
         capability_type = str(minimal.get("capability_type") or "")
         review_status = str(minimal.get("review_status") or "")
@@ -632,7 +661,9 @@ def _marker_ratio(candidate_text: str, markers: Sequence[str]) -> tuple[float, l
     present = 0
     missing: list[str] = []
     for marker in markers:
-        if marker.casefold() in lowered:
+        marker_lower = marker.casefold()
+        aliases = (marker, *MARKER_ALIASES.get(marker_lower, ()))
+        if any(alias.casefold() in lowered for alias in aliases):
             present += 1
         else:
             missing.append(marker)

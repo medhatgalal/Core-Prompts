@@ -901,6 +901,108 @@
       "advisory_only": true
     },
     {
+      "slug": "pitch",
+      "display_name": "Pitch \u2014 Shape Up Pitch Creation, Review, Scoring, and Improvement",
+      "capability_type": "both",
+      "summary": "Creates, reviews, scores, improves, and critiques Shape Up pitch documents. Use when working with pitches at any stage: from bootstrapping a new pitch from a goal statement, to hardening an existing pitch for betting, to auditing pitch quality across a portfolio.",
+      "role": "specialist_workflow",
+      "domain_tags": [
+        "pitch"
+      ],
+      "required_inputs": [
+        "**For review/score/improve/components:** A pitch source (Google Doc URL, local file path, or pasted content)",
+        "**For create/bootstrap:** A goal name or problem statement. Optionally: appetite, team, known components.",
+        "**For compare:** Two pitch sources",
+        "**For audit:** Access to the pitches tracker or a list of pitch URLs",
+        "**For export:** A pitch source + optional format flags"
+      ],
+      "expected_outputs": [
+        "TL;DR block (score + shaped status + verdict + top gap)",
+        "Per-dimension scoring table",
+        "Components extracted (if pitch names them)",
+        "Strengths and Gaps",
+        "Pitch-specific next actions",
+        "Tracker Update block (copy-pasteable)",
+        "Full pitch template with sections filled or marked `[TODO]`",
+        "Clean markdown (or JSON) file with pitch content"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill",
+          "codex_agent"
+        ],
+        "gemini": [
+          "gemini_skill",
+          "gemini_agent"
+        ],
+        "claude": [
+          "claude_skill",
+          "claude_agent"
+        ],
+        "kiro": [
+          "kiro_skill",
+          "kiro_agent"
+        ]
+      },
+      "confidence": 0.88,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [
+        "architecture"
+      ],
+      "relationship_suggestions": [
+        "prefer explicit review or analyst companions before high-authority use",
+        "pair with review and analysis capabilities when converging design proposals"
+      ],
+      "quality_status": "ship",
+      "benchmark_profile": "default",
+      "preferred_use_cases": [
+        "AI-assisted capability selection",
+        "deterministic prompt uplift review"
+      ],
+      "artifact_conventions": [
+        "ssot/<slug>.md",
+        ".meta/capabilities/<slug>.json",
+        "reports/quality-reviews/<slug>/LATEST.md"
+      ],
+      "invocation_style": "assistant_first_but_scriptable",
+      "requires_human_confirmation": true,
+      "org_graph": {
+        "org_role": "specialist_with_workflow_surface",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "architecture",
+          "review"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a both capability with route profile None."
+      },
+      "advisory_only": true
+    },
+    {
       "slug": "pulse",
       "display_name": "Pulse \u2014 Comms Triage",
       "capability_type": "both",

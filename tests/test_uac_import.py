@@ -9,6 +9,8 @@ import sys
 from pathlib import Path
 from types import SimpleNamespace
 
+from intent_pipeline.uac_baselines import evaluate_candidate_against_baseline, resolve_historical_baseline
+
 ROOT = Path(__file__).resolve().parent.parent
 SCRIPT_PATH = ROOT / "scripts" / "uac-import.py"
 SPEC = importlib.util.spec_from_file_location("uac_import_script", SCRIPT_PATH)
@@ -16,6 +18,23 @@ assert SPEC and SPEC.loader
 UAC_IMPORT = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(UAC_IMPORT)
 BOOTSTRAP_SOURCE_PATH = ROOT / "sources" / "capability-resources" / "autosearch" / "bootstrap.py"
+
+
+def _uac_comparison_score(*, quality_result: dict, baseline_line_count: int) -> float:
+    scorecard = quality_result["scorecard"]
+    final_line_count = len(quality_result["final_candidate_text"].splitlines())
+    line_retention = min(1.0, final_line_count / max(1, baseline_line_count))
+    final_judges = quality_result["judge_reports"][-1]["judge_reports"]
+    source_fidelity = next(judge for judge in final_judges if judge["judge"] == "source_fidelity")
+    purpose_guard = 1.0 if not source_fidelity["blockers"] and source_fidelity.get("classification") in {"preserved", "additive"} else 0.0
+    return round(
+        scorecard["source_fidelity"] * 3.0
+        + line_retention * 20.0
+        + purpose_guard * 20.0
+        + scorecard["metadata_integrity"] * 1.5
+        + scorecard["benchmark_readiness"] * 1.5,
+        1,
+    )
 
 
 def test_uac_import_local_file_flow(tmp_path: Path) -> None:
@@ -172,6 +191,43 @@ def test_uac_judge_returns_quality_plan_and_result(tmp_path: Path) -> None:
     assert payload["quality_result"]["status"] in {"ship", "revise", "manual_review"}
     assert "historical_baseline" in payload["quality_result"]
     assert len(payload["quality_result"]["judge_reports"]) >= 1
+
+
+def test_uac_judge_preserves_pitch_body_and_scores_additive_metadata() -> None:
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts" / "uac-import.py"),
+            "--mode",
+            "judge",
+            "--source",
+            str(ROOT / "ssot" / "pitch.md"),
+            "--benchmark-search",
+            "off",
+            "--use-repomix",
+            "off",
+        ],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+
+    payload = json.loads(result.stdout)
+    quality_result = payload["quality_result"]
+    baseline = quality_result["historical_baseline"]
+    final_judges = quality_result["judge_reports"][-1]["judge_reports"]
+    source_fidelity = next(judge for judge in final_judges if judge["judge"] == "source_fidelity")
+    generic_rendered = UAC_IMPORT._render_ssot_markdown("pitch", payload)
+    baseline_context = resolve_historical_baseline(ROOT, "pitch")
+    generic_eval = evaluate_candidate_against_baseline(generic_rendered, baseline_context)
+
+    assert quality_result["status"] == "ship"
+    assert quality_result["pass_count"] == 1
+    assert source_fidelity["classification"] in {"preserved", "additive"}
+    assert source_fidelity["blockers"] == []
+    assert len(quality_result["final_candidate_text"].splitlines()) >= baseline["line_count"]
+    assert generic_eval["hard_failures"]
+    assert _uac_comparison_score(quality_result=quality_result, baseline_line_count=baseline["line_count"]) >= 95
 
 
 def test_uac_plan_preview_carries_optional_metadata_and_user_impact(tmp_path: Path) -> None:
@@ -568,6 +624,21 @@ def test_source_constraints_prefer_authored_constraints(tmp_path: Path) -> None:
         "Do not auto-merge.",
         "Do not claim unmeasured wins.",
     )
+
+
+def test_descriptor_shared_constraints_do_not_promote_noisy_uplift_constraints() -> None:
+    payload = {
+        "source": {"normalized_source": str(ROOT / "ssot" / "pitch.md")},
+        "uplift": {
+            "quality_constraints": [
+                "| Architecture | 20% | Shaping | Components named | No architectural awareness |",
+                "**Score: X/10** | **Shaped: yes/partial/no**",
+            ],
+        },
+        "manifest": {"layers": {"expanded": {"adjustment_recommendations": ["add generic section"]}}},
+    }
+
+    assert UAC_IMPORT._descriptor_shared_constraints(payload) == ()
 
 
 def test_same_slug_apply_does_not_degrade_autosearch_baseline(tmp_path: Path) -> None:

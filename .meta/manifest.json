@@ -2091,6 +2091,324 @@
       ]
     },
     {
+      "slug": "pitch",
+      "manifest_version": "capability-fabric.v0",
+      "layers": {
+        "minimal": {
+          "capability_type": "both",
+          "summary": "Creates, reviews, scores, improves, and critiques Shape Up pitch documents. Use when working with pitches at any stage: from bootstrapping a new pitch from a goal statement, to hardening an existing pitch for betting, to auditing pitch quality across a portfolio.",
+          "role": "specialist_workflow",
+          "domain_tags": [
+            "pitch"
+          ],
+          "required_inputs": [
+            "**For review/score/improve/components:** A pitch source (Google Doc URL, local file path, or pasted content)",
+            "**For create/bootstrap:** A goal name or problem statement. Optionally: appetite, team, known components.",
+            "**For compare:** Two pitch sources",
+            "**For audit:** Access to the pitches tracker or a list of pitch URLs",
+            "**For export:** A pitch source + optional format flags"
+          ],
+          "expected_outputs": [
+            "TL;DR block (score + shaped status + verdict + top gap)",
+            "Per-dimension scoring table",
+            "Components extracted (if pitch names them)",
+            "Strengths and Gaps",
+            "Pitch-specific next actions",
+            "Tracker Update block (copy-pasteable)",
+            "Full pitch template with sections filled or marked `[TODO]`",
+            "Clean markdown (or JSON) file with pitch content"
+          ],
+          "tool_policy": {
+            "allowed": [
+              "deterministic classification",
+              "metadata publication",
+              "surface generation"
+            ],
+            "forbidden": [
+              "orchestration",
+              "delegation decisions",
+              "runtime execution control"
+            ]
+          },
+          "resources": [
+            "ssot/pitch.md"
+          ],
+          "packaging_profile": {
+            "capability_type": "both",
+            "primary_surfaces": {
+              "codex": [
+                "codex_skill",
+                "codex_agent"
+              ],
+              "gemini": [
+                "gemini_skill",
+                "gemini_agent"
+              ],
+              "claude": [
+                "claude_skill",
+                "claude_agent"
+              ],
+              "kiro": [
+                "kiro_skill",
+                "kiro_agent"
+              ]
+            },
+            "wrapper_surfaces": {
+              "codex": [
+                "plugin_wrapper"
+              ],
+              "gemini": [
+                "skill_wrapper"
+              ],
+              "claude": [
+                "skill_wrapper",
+                "plugin_wrapper"
+              ],
+              "kiro": [
+                "skill_wrapper",
+                "power_wrapper"
+              ]
+            },
+            "notes": [
+              "wrapper surfaces are additive deployment forms, not capability types",
+              "orchestrators must not infer execution authority from wrapper presence alone"
+            ]
+          },
+          "install_target": {
+            "recommended": "repo_local",
+            "confidence": 0.88,
+            "confirmation_required_for_apply": true,
+            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+            "supported": [
+              "global",
+              "repo_local",
+              "both"
+            ]
+          },
+          "emitted_surfaces": {
+            "codex": [
+              "codex_skill",
+              "codex_agent"
+            ],
+            "gemini": [
+              "gemini_skill",
+              "gemini_agent"
+            ],
+            "claude": [
+              "claude_skill",
+              "claude_agent"
+            ],
+            "kiro": [
+              "kiro_skill",
+              "kiro_agent"
+            ]
+          },
+          "source_provenance": {
+            "source_type": "LOCAL_FILE",
+            "normalized_source": "ssot/pitch.md",
+            "policy_rule_id": "ssot.pitch",
+            "content_sha256": "ssot"
+          },
+          "confidence": 0.88,
+          "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "Pitch \u2014 Shape Up Pitch Creation, Review, Scoring, and Improvement",
+          "version": "v1.1"
+        },
+        "expanded": {
+          "relationship_suggestions": [
+            "prefer explicit review or analyst companions before high-authority use",
+            "pair with review and analysis capabilities when converging design proposals"
+          ],
+          "capability_dependencies": [
+            "analysis",
+            "context"
+          ],
+          "overlap_candidates": [
+            "architecture"
+          ],
+          "migration_notes": [
+            "If the capability lands, compare it against existing entries before apply.",
+            "Relationship suggestions are advisory only and do not imply runtime routing."
+          ],
+          "adjustment_recommendations": [
+            "add an explicit primary objective before packaging",
+            "add deterministic in-scope sections to improve routing fitness",
+            "capture quality constraints or non-negotiables"
+          ]
+        },
+        "org_graph": {
+          "org_role": "specialist_with_workflow_surface",
+          "reports_to_suggestions": [],
+          "delegates_to_suggestions": [],
+          "collaborates_with_suggestions": [
+            "architecture",
+            "review"
+          ],
+          "authority_tier": "advisory",
+          "work_graph_impact": "Adds or updates a both capability with route profile None."
+        }
+      },
+      "display_name": "Pitch \u2014 Shape Up Pitch Creation, Review, Scoring, and Improvement",
+      "descriptor_version": "capability-fabric.descriptor.v0",
+      "family_slug": "pitch",
+      "shared_summary": "Creates, reviews, scores, improves, and critiques Shape Up pitch documents. Use when working with pitches at any stage: from bootstrapping a new pitch from a goal statement, to hardening an existing pitch for betting, to auditing pitch quality across a portfolio.",
+      "shared_constraints": [],
+      "modes": [],
+      "benchmark_sources": [],
+      "quality_profile": "default",
+      "quality_status": "ship",
+      "judge_reports": [
+        {
+          "pass_number": 1,
+          "status": "ship",
+          "historical_baseline": {
+            "slug": "pitch",
+            "strategy": "source_library",
+            "group": "applied_baseline",
+            "baseline_path": "sources/ssot-baselines/pitch/baseline.md",
+            "selected_commit": "c6b3203b",
+            "richness_score": 5,
+            "line_count": 456,
+            "reason": "Repo-resident baseline source snapshot used as the fidelity oracle for future UAC judging.",
+            "equivalent_commits": [],
+            "expected_companions": [],
+            "operator_invariants": [],
+            "scenario_matrix": [
+              {
+                "id": "operational_invocation",
+                "kind": "operational_contract",
+                "label": "operational invocation surface",
+                "must_contain": [
+                  "## Invocation"
+                ]
+              }
+            ],
+            "historical_proof": {
+              "materialized_from_commit": "c6b3203b",
+              "materialized_from_source_kind": "current_ssot",
+              "materialized_from_path": "ssot/pitch.md",
+              "materialized_from_sha256": "2570975eae752eda8e9acb1227f478e4e25ae05f5e0d07ba1385a20ecb3a01d4",
+              "last_materialized_at": "2026-05-21T05:26:42.776827+00:00"
+            },
+            "source": "source_library",
+            "verified_by_git_history": false,
+            "has_baseline_text": true
+          },
+          "judge_reports": [
+            {
+              "judge": "source_fidelity",
+              "title": "Source Fidelity and Uplift",
+              "score": 10,
+              "blockers": [],
+              "classification": "preserved",
+              "scenario_results": [
+                {
+                  "id": "operational_invocation",
+                  "kind": "operational_contract",
+                  "label": "operational invocation surface",
+                  "passed": true,
+                  "missing_markers": []
+                }
+              ],
+              "scorecard": {
+                "baseline_richness": 5,
+                "candidate_richness": 5,
+                "baseline_operational_score": 2,
+                "candidate_operational_score": 2
+              },
+              "baseline_commit": "c6b3203b",
+              "baseline_slug": "pitch"
+            },
+            {
+              "judge": "operational_richness",
+              "title": "Operational Richness",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "metadata_integrity",
+              "title": "Metadata and Handoff Integrity",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "benchmark_readiness",
+              "title": "Benchmark Readiness and Template Fit",
+              "score": 9,
+              "blockers": [],
+              "scorecard": {
+                "title_clarity": 10,
+                "description_richness": 10,
+                "intent_coverage": 10,
+                "boundary_clarity": 8,
+                "output_specificity": 10,
+                "metadata_completeness": 8,
+                "surface_usability": 10
+              }
+            }
+          ],
+          "blockers": [],
+          "scorecard": {
+            "source_fidelity": 10,
+            "baseline_richness": 5,
+            "candidate_richness": 5,
+            "baseline_operational_score": 2,
+            "candidate_operational_score": 2,
+            "operational_richness": 10,
+            "metadata_integrity": 10,
+            "benchmark_readiness": 9,
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 8,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          },
+          "template_name": "both"
+        }
+      ],
+      "consumption_hints": {
+        "preferred_use_cases": [
+          "AI-assisted capability selection",
+          "deterministic prompt uplift review"
+        ],
+        "artifact_conventions": [
+          "ssot/<slug>.md",
+          ".meta/capabilities/<slug>.json",
+          "reports/quality-reviews/<slug>/LATEST.md"
+        ],
+        "invocation_style": "assistant_first_but_scriptable",
+        "requires_human_confirmation": true
+      },
+      "quality_pass_count": 1,
+      "quality_stop_reason": "thresholds_met",
+      "declared_capability": "both",
+      "inferred_capability": "both",
+      "expected_surface_names": [
+        "codex_skill",
+        "codex_agent",
+        "gemini_skill",
+        "gemini_agent",
+        "claude_skill",
+        "claude_agent",
+        "kiro_skill",
+        "kiro_agent"
+      ],
+      "rubric_version": "capability-fabric.v0",
+      "invocation_hints": [
+        "create a pitch / write a pitch / scaffold a pitch",
+        "review this pitch / critique this pitch",
+        "score this pitch / rate this pitch",
+        "improve this pitch / make this pitch better / harden this pitch",
+        "compare these pitches",
+        "which pitches need work / pitch audit / pitch status",
+        "is this pitch ready to bet on",
+        "bootstrap a pitch from this goal"
+      ]
+    },
+    {
       "slug": "pulse",
       "manifest_version": "capability-fabric.v0",
       "layers": {
@@ -3636,59 +3954,6 @@
         "give me something I can share with leadership",
         "pull together what we accomplished and what's at risk"
       ]
-    },
-    {
-      "slug": "pitch",
-      "manifest_version": "capability-fabric.v0",
-      "layers": {
-        "minimal": {
-          "capability_type": "skill",
-          "summary": "Creates, reviews, scores, improves, and critiques Shape Up pitch documents.",
-          "role": "shaper",
-          "domain_tags": [
-            "pitch",
-            "shaping",
-            "shape-up",
-            "planning"
-          ],
-          "required_inputs": [
-            "a pitch source (Google Doc URL, local file, or pasted content)",
-            "or a goal/problem statement for creation"
-          ],
-          "expected_outputs": [
-            "TL;DR with score and shaped status",
-            "per-dimension scoring table",
-            "components extracted",
-            "pitch-specific next actions",
-            "tracker update block"
-          ],
-          "tool_policy": {
-            "allowed": [
-              "read pitch docs",
-              "score and critique",
-              "write new pitches",
-              "export"
-            ],
-            "forbidden": [
-              "write to tracker spreadsheet",
-              "change priority",
-              "approve for betting"
-            ]
-          },
-          "resources": [
-            "ssot/pitch.md"
-          ],
-          "packaging_profile": {
-            "capability_type": "skill",
-            "primary_surfaces": {
-              "kiro": [
-                "kiro_skill"
-              ]
-            },
-            "wrapper_surfaces": {}
-          }
-        }
-      }
     }
   ],
   "surfaces": {
@@ -3702,6 +3967,7 @@
       ".gemini/skills/feature-status/SKILL.md",
       ".gemini/skills/gitops-review/SKILL.md",
       ".gemini/skills/mentor/SKILL.md",
+      ".gemini/skills/pitch/SKILL.md",
       ".gemini/skills/pulse/SKILL.md",
       ".gemini/skills/resolve-conflict/SKILL.md",
       ".gemini/skills/supercharge/SKILL.md",
@@ -3717,6 +3983,7 @@
       ".gemini/agents/docs-review-expert.md",
       ".gemini/agents/gitops-review.md",
       ".gemini/agents/mentor.md",
+      ".gemini/agents/pitch.md",
       ".gemini/agents/pulse.md",
       ".gemini/agents/supercharge.md",
       ".gemini/agents/weekly-intel.md"
@@ -3731,6 +3998,7 @@
       ".claude/skills/feature-status/SKILL.md",
       ".claude/skills/gitops-review/SKILL.md",
       ".claude/skills/mentor/SKILL.md",
+      ".claude/skills/pitch/SKILL.md",
       ".claude/skills/pulse/SKILL.md",
       ".claude/skills/resolve-conflict/SKILL.md",
       ".claude/skills/supercharge/SKILL.md",
@@ -3746,6 +4014,7 @@
       ".claude/agents/docs-review-expert.md",
       ".claude/agents/gitops-review.md",
       ".claude/agents/mentor.md",
+      ".claude/agents/pitch.md",
       ".claude/agents/pulse.md",
       ".claude/agents/supercharge.md",
       ".claude/agents/weekly-intel.md"
@@ -3757,6 +4026,7 @@
       ".kiro/agents/docs-review-expert.json",
       ".kiro/agents/gitops-review.json",
       ".kiro/agents/mentor.json",
+      ".kiro/agents/pitch.json",
       ".kiro/agents/pulse.json",
       ".kiro/agents/supercharge.json",
       ".kiro/agents/weekly-intel.json"
@@ -3771,6 +4041,7 @@
       ".kiro/skills/feature-status/SKILL.md",
       ".kiro/skills/gitops-review/SKILL.md",
       ".kiro/skills/mentor/SKILL.md",
+      ".kiro/skills/pitch/SKILL.md",
       ".kiro/skills/pulse/SKILL.md",
       ".kiro/skills/resolve-conflict/SKILL.md",
       ".kiro/skills/supercharge/SKILL.md",
@@ -3789,6 +4060,7 @@
       ".codex/skills/feature-status/SKILL.md",
       ".codex/skills/gitops-review/SKILL.md",
       ".codex/skills/mentor/SKILL.md",
+      ".codex/skills/pitch/SKILL.md",
       ".codex/skills/pulse/SKILL.md",
       ".codex/skills/resolve-conflict/SKILL.md",
       ".codex/skills/supercharge/SKILL.md",
@@ -3804,6 +4076,7 @@
       ".codex/agents/docs-review-expert.toml",
       ".codex/agents/gitops-review.toml",
       ".codex/agents/mentor.toml",
+      ".codex/agents/pitch.toml",
       ".codex/agents/pulse.toml",
       ".codex/agents/supercharge.toml",
       ".codex/agents/weekly-intel.toml"
@@ -3825,6 +4098,7 @@
       ".codex/skills/feature-status/resources/capability.json",
       ".codex/skills/gitops-review/resources/capability.json",
       ".codex/skills/mentor/resources/capability.json",
+      ".codex/skills/pitch/resources/capability.json",
       ".codex/skills/pulse/resources/capability.json",
       ".codex/skills/resolve-conflict/resources/capability.json",
       ".codex/skills/supercharge/resources/capability.json",
@@ -3845,6 +4119,7 @@
       ".codex/agents/resources/docs-review-expert/capability.json",
       ".codex/agents/resources/gitops-review/capability.json",
       ".codex/agents/resources/mentor/capability.json",
+      ".codex/agents/resources/pitch/capability.json",
       ".codex/agents/resources/pulse/capability.json",
       ".codex/agents/resources/supercharge/capability.json",
       ".codex/agents/resources/weekly-intel/capability.json"
@@ -3864,6 +4139,7 @@
       ".gemini/skills/feature-status/resources/capability.json",
       ".gemini/skills/gitops-review/resources/capability.json",
       ".gemini/skills/mentor/resources/capability.json",
+      ".gemini/skills/pitch/resources/capability.json",
       ".gemini/skills/pulse/resources/capability.json",
       ".gemini/skills/resolve-conflict/resources/capability.json",
       ".gemini/skills/supercharge/resources/capability.json",
@@ -3884,6 +4160,7 @@
       ".gemini/agents/resources/docs-review-expert/capability.json",
       ".gemini/agents/resources/gitops-review/capability.json",
       ".gemini/agents/resources/mentor/capability.json",
+      ".gemini/agents/resources/pitch/capability.json",
       ".gemini/agents/resources/pulse/capability.json",
       ".gemini/agents/resources/supercharge/capability.json",
       ".gemini/agents/resources/weekly-intel/capability.json"
@@ -3903,6 +4180,7 @@
       ".claude/skills/feature-status/resources/capability.json",
       ".claude/skills/gitops-review/resources/capability.json",
       ".claude/skills/mentor/resources/capability.json",
+      ".claude/skills/pitch/resources/capability.json",
       ".claude/skills/pulse/resources/capability.json",
       ".claude/skills/resolve-conflict/resources/capability.json",
       ".claude/skills/supercharge/resources/capability.json",
@@ -3923,6 +4201,7 @@
       ".claude/agents/resources/docs-review-expert/capability.json",
       ".claude/agents/resources/gitops-review/capability.json",
       ".claude/agents/resources/mentor/capability.json",
+      ".claude/agents/resources/pitch/capability.json",
       ".claude/agents/resources/pulse/capability.json",
       ".claude/agents/resources/supercharge/capability.json",
       ".claude/agents/resources/weekly-intel/capability.json"
@@ -3942,6 +4221,7 @@
       ".kiro/skills/feature-status/resources/capability.json",
       ".kiro/skills/gitops-review/resources/capability.json",
       ".kiro/skills/mentor/resources/capability.json",
+      ".kiro/skills/pitch/resources/capability.json",
       ".kiro/skills/pulse/resources/capability.json",
       ".kiro/skills/resolve-conflict/resources/capability.json",
       ".kiro/skills/supercharge/resources/capability.json",
@@ -3962,6 +4242,7 @@
       ".kiro/agents/resources/docs-review-expert/capability.json",
       ".kiro/agents/resources/gitops-review/capability.json",
       ".kiro/agents/resources/mentor/capability.json",
+      ".kiro/agents/resources/pitch/capability.json",
       ".kiro/agents/resources/pulse/capability.json",
       ".kiro/agents/resources/supercharge/capability.json",
       ".kiro/agents/resources/weekly-intel/capability.json"

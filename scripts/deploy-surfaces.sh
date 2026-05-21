@@ -243,6 +243,8 @@ for rel in roots:
     src = repo / rel
     if src.is_dir():
         for path in sorted(item for item in src.rglob("*") if item.is_file()):
+            if path.name == ".DS_Store":
+                continue
             print(f"{path}\t{support / path.relative_to(repo)}")
     elif src.is_file():
         print(f"{src}\t{support / rel}")

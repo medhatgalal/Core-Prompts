@@ -423,6 +423,22 @@
         "materialized_from_sha256": "0da2727d4b2ccc6eaf3e8834c2f87d92a4f3ae827a88eb6bb741ea3e2d6d5b2e"
       },
       "selected_commit": "28b1f2f7"
+    },
+    "pitch": {
+      "strategy": "source_library",
+      "group": "applied_baseline",
+      "baseline_path": "sources/ssot-baselines/pitch/baseline.md",
+      "richness_score": 5,
+      "line_count": 456,
+      "reason": "Repo-resident baseline source snapshot used as the fidelity oracle for future UAC judging.",
+      "historical_proof": {
+        "materialized_from_commit": "c6b3203b",
+        "materialized_from_source_kind": "current_ssot",
+        "materialized_from_path": "ssot/pitch.md",
+        "materialized_from_sha256": "2570975eae752eda8e9acb1227f478e4e25ae05f5e0d07ba1385a20ecb3a01d4",
+        "last_materialized_at": "2026-05-21T05:35:48.457257+00:00"
+      },
+      "selected_commit": "c6b3203b"
     }
   }
 }
