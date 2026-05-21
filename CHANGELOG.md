@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.8.5 - 2026-05-21
+
+- Changed scheduled release-watch behavior to auto-update valid releases by default:
+  - scheduled runs now check releases, auto-accept agreed immutable release tags, snapshot installed state first, and then run normal sync
+  - added `--notify-only`, `--list-snapshots`, and `--rollback previous` for check-only scheduling and revertable installs, with rollback retention pruned to the latest 2 snapshots by default
+
 ## v1.8.4 - 2026-05-21
 
 - Shipped the `pitch` capability across generated Codex, Gemini, Claude, and Kiro skill/agent surfaces:

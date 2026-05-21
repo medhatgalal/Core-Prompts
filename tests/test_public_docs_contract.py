@@ -33,6 +33,7 @@ def test_version_changelog_and_docs_contract_are_aligned() -> None:
         "RELEASE_SOURCE.env",
         "--check-release",
         "--accept-release",
+        "--rollback",
         "never auto-installs",
         "explicit install/apply step",
     ]
@@ -40,9 +41,9 @@ def test_version_changelog_and_docs_contract_are_aligned() -> None:
         for needle in required:
             assert needle in text, f"{path} missing {needle}"
 
-    assert "Daily scheduled updater runs execute `~/update_core_prompts.sh --check-release` before normal update sync" in public_docs["docs/GETTING-STARTED.md"]
-    assert "pending release state shows a warning" in public_docs["docs/CLI-REFERENCE.md"]
-    assert "do not silently mutate the user system" in public_docs["docs/RELEASE-PACKAGING.md"]
+    assert "Scheduled runs auto-accept valid releases by default" in public_docs["docs/GETTING-STARTED.md"]
+    assert "`--notify-only` to keep scheduling check-only" in public_docs["docs/CLI-REFERENCE.md"]
+    assert "`--rollback previous` restores the latest pre-release snapshot" in public_docs["docs/RELEASE-PACKAGING.md"]
 
 
 def test_public_help_contract_mentions_release_watch() -> None:
@@ -54,6 +55,8 @@ def test_public_help_contract_mentions_release_watch() -> None:
     assert "--check-release checks only and never auto-installs" in fabric.stdout
     assert "--check-release" in update.stdout
     assert "--accept-release" in update.stdout
+    assert "--rollback" in update.stdout
+    assert "--notify-only" in update.stdout
     assert "checks only and never auto-installs" in update.stdout
     assert "standalone updater bundle" in install.stdout
     assert "RELEASE_SOURCE.env" in install.stdout

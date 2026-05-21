@@ -31,7 +31,9 @@ Notes:
   - build and validate operate inside this repo.
   - deploy copies generated artifacts; it does not classify sources or mutate SSOT.
   - deploy defaults to the repository root; use --target "$HOME" to install into CLI homes.
-  - update --check-release checks only and never auto-installs; update --accept-release is explicit.
+  - update --check-release checks only and never auto-installs.
+  - scheduled update auto-accepts valid releases by default; use --notify-only for check-only scheduling.
+  - update --accept-release is the explicit install/apply step; update --rollback previous restores a snapshot.
 EOF
 }
 

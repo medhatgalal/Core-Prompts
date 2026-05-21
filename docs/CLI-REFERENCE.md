@@ -21,6 +21,8 @@ If local `python3` resolves to an older interpreter, set `PYTHON_BIN=python3.11`
 | `bin/capability-fabric deploy --dry-run --cli all` | preview copy-only deployment to a target root | no |
 | `bin/capability-fabric update --check-release` | check installed standalone bundle vs latest immutable release and update release-watch state | no |
 | `bin/capability-fabric update --accept-release` | explicitly accept and apply a pending release from the synced mirror | yes |
+| `bin/capability-fabric update --rollback previous` | restore the latest pre-release snapshot | yes |
+| `bin/capability-fabric update --list-snapshots` | list available rollback snapshots | no |
 | `python3 scripts/smoke-clis.py` | probe installed vendor CLIs and surface visibility | no |
 | `bin/uac audit` | inspect current SSOT and generated surface alignment | no |
 | `bin/uac plan <source...>` | show proposed landing shape for one or more sources | no |
@@ -111,6 +113,7 @@ Initial home installs write the standalone release-watch contract into `~/.core-
 ```bash
 bin/capability-fabric update --check-release
 bin/capability-fabric update --accept-release
+bin/capability-fabric update --rollback previous
 ```
 
 Use this when:
@@ -122,8 +125,10 @@ Use this when:
 Expected result:
 
 - `--check-release` fetches release tags, syncs `~/.core-prompts-release-cache/repo`, updates `~/.core-prompts-state/release-watch.json`, and never auto-installs
-- `--accept-release` shows installed vs pending version, prompts for confirmation, refreshes from the synced mirror only on approval, and clears pending state on success
-- pending release state shows a warning on later normal updater runs without silently mutating the user system
+- scheduled `--schedule-daily HH:MM` runs auto-accept valid releases by default after the release check; add `--notify-only` to keep scheduling check-only
+- `--accept-release` shows installed vs pending version, prompts for confirmation, snapshots first, refreshes from the synced mirror only on approval, and clears pending state on success
+- rollback snapshot retention defaults to the latest 2 snapshots; override with `--snapshot-retention N`
+- `--rollback previous` restores the latest snapshot from `~/.core-prompts-state/snapshots/`
 
 ## Canonical Inputs
 
@@ -168,9 +173,11 @@ Direct exposure is standardized on `skills/<slug>/SKILL.md` for every supported 
 - deploy defaults to the repository root unless `--target` is provided
 - `scripts/install-local.sh` is a compatibility wrapper around deploy and remains copy-only
 - home-target install writes `~/.core-prompts-updater/VERSION`, `~/.core-prompts-updater/RELEASE_SOURCE.env`, and `~/update_core_prompts.sh`
-- scheduled updater runs check releases first, then run normal sync
+- scheduled updater runs check releases first, auto-accept valid releases by default, then run normal sync
 - `bin/capability-fabric update --check-release` checks only and never auto-installs
 - `bin/capability-fabric update --accept-release` is the explicit install/apply step
+- `bin/capability-fabric update --schedule-daily HH:MM --notify-only` preserves check-only scheduling
+- `bin/capability-fabric update --rollback previous` restores the latest pre-release snapshot
 - install and deploy do not rewrite capability metadata paths
 - repeated no-op `build` and `validate` runs should not rewrite `.meta/manifest.json`; volatile run evidence belongs under `reports/`
 

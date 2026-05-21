@@ -39,7 +39,7 @@ Use this page to pick the right documentation path quickly. The intended order i
 3. [Release packaging](RELEASE-PACKAGING.md)
 4. [Technical README](README_TECHNICAL.md)
 
-Installed release-watch behavior is documented in [Getting started](GETTING-STARTED.md), [CLI reference](CLI-REFERENCE.md), and [Release packaging](RELEASE-PACKAGING.md). Initial home install writes `VERSION`, `RELEASE_SOURCE.env`, and `~/update_core_prompts.sh`; daily scheduled runs check releases before normal updates; `--check-release` never auto-installs; `--accept-release` is the explicit install/apply step.
+Installed release-watch behavior is documented in [Getting started](GETTING-STARTED.md), [CLI reference](CLI-REFERENCE.md), and [Release packaging](RELEASE-PACKAGING.md). Initial home install writes `VERSION`, `RELEASE_SOURCE.env`, and `~/update_core_prompts.sh`; daily scheduled runs check releases and auto-accept valid releases before normal updates by default; `--check-release` never auto-installs when run directly; `--accept-release` is the explicit install/apply step; `--rollback previous` restores the latest pre-release snapshot.
 
 ## Canonical Homes
 

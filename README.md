@@ -248,9 +248,10 @@ Use release watch to compare that installed standalone bundle against the latest
 ```bash
 ~/update_core_prompts.sh --check-release
 ~/update_core_prompts.sh --accept-release
+~/update_core_prompts.sh --rollback previous
 ```
 
-`--check-release` checks only, syncs a dedicated clean mirror, updates local release-watch state, and never auto-installs. `--accept-release` is the explicit install/apply step. Daily scheduled runs do the release check before normal update sync; if a release is pending, later updater runs show a warning but do not silently mutate the user system or block normal surface/package sync.
+`--check-release` checks only, syncs a dedicated clean mirror, updates local release-watch state, and never auto-installs. `--accept-release` is the explicit install/apply step. Daily scheduled runs auto-accept valid releases by default after the release check; use `--schedule-daily HH:MM --notify-only` for check-only scheduling. Accepted releases create rollback snapshots first, retain the latest 2 snapshots by default, and `--rollback previous` restores the latest snapshot.
 
 ## Generated Inspection Views
 

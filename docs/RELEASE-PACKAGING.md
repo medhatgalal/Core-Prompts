@@ -73,6 +73,6 @@ Initial install writes the installed version and release-source metadata into th
 - `~/.core-prompts-updater/RELEASE_SOURCE.env`
 - `~/update_core_prompts.sh`
 
-Daily scheduled updater runs execute `~/update_core_prompts.sh --check-release` before normal update sync. `--check-release` checks only, fetches release tags, syncs a dedicated clean mirror, persists release-watch state, and never auto-installs. `--accept-release` is the explicit install/apply step that refreshes from the synced mirror after confirmation.
+Daily scheduled updater runs execute `~/update_core_prompts.sh --check-release` before normal update sync. `--check-release` checks only, fetches release tags, syncs a dedicated clean mirror, persists release-watch state, and never auto-installs when run directly. Scheduled runs auto-accept valid releases by default after the release check; `--schedule-daily HH:MM --notify-only` preserves check-only scheduling. `--accept-release` is the explicit install/apply step for manual acceptance.
 
-If a newer release is pending, normal updater runs show a warning banner but do not silently mutate the user system or block normal package/tool/prompt updates.
+Every accepted release writes a rollback snapshot under `~/.core-prompts-state/snapshots/` before installing. Older snapshots are pruned so the latest 2 are retained by default; use `--snapshot-retention N` to override that. `--list-snapshots` shows rollback points, and `--rollback previous` restores the latest pre-release snapshot.

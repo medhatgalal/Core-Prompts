@@ -87,16 +87,17 @@ When you install into a home target, Core-Prompts writes the installed version a
 - `~/.core-prompts-updater/RELEASE_SOURCE.env`
 - `~/update_core_prompts.sh`
 
-Daily scheduled updater runs execute `~/update_core_prompts.sh --check-release` before normal update sync. The check compares the installed standalone bundle against the latest immutable release tag agreed by the canonical remotes, updates `~/.core-prompts-state/release-watch.json`, and never auto-installs.
+Daily scheduled updater runs execute `~/update_core_prompts.sh --check-release` before normal update sync. The check compares the installed standalone bundle against the latest immutable release tag agreed by the canonical remotes, updates `~/.core-prompts-state/release-watch.json`, and never auto-installs when run directly. Scheduled runs auto-accept valid releases by default after that check.
 
-Use the explicit acceptance step when you are ready to refresh the installed bundle. `--accept-release` is the explicit install/apply step:
+Use the explicit acceptance step when you want to refresh the installed bundle manually. `--accept-release` is the explicit install/apply step:
 
 ```bash
 ~/update_core_prompts.sh --check-release
 ~/update_core_prompts.sh --accept-release
+~/update_core_prompts.sh --rollback previous
 ```
 
-Pending release state prints a warning on later updater runs, but it does not silently mutate the user system or block normal package/tool/prompt sync.
+Install `--schedule-daily HH:MM --notify-only` if you want scheduled release checks without automatic release acceptance. Every accepted release writes a pre-install rollback snapshot under `~/.core-prompts-state/snapshots/`; older snapshots are pruned so the latest 2 are retained by default. `--list-snapshots` lists rollback points and `--rollback previous` restores the latest snapshot.
 
 ## What The Generated Views Are For
 

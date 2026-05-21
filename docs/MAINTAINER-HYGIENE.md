@@ -62,7 +62,7 @@ Check:
 - dry-run deploy output before local install when the release overwrites installed home surfaces
 - direct comparison between generated outputs and installed state when local customizations or prior tool-written state may exist
 - whether concurrent UAC engine work and docs or prompt work should be split into separate worktrees before more edits land
-- release-watch behavior: scheduled runs check first, `--check-release` never auto-installs, and `--accept-release` remains the explicit install/apply step
+- release-watch behavior: scheduled runs check first, auto-accept valid releases by default, `--notify-only` preserves check-only scheduling, `--check-release` never auto-installs when run directly, `--accept-release` remains the explicit install/apply step, and `--rollback previous` restores the latest snapshot
 
 ## Generated Views: How To Use Them
 

@@ -129,10 +129,21 @@ cp "$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/VERSION" "$target/.core-pro
     return path
 
 
+def snapshot_dirs(tmp_path: Path) -> list[Path]:
+    root = tmp_path / "home" / ".core-prompts-state" / "snapshots"
+    if not root.is_dir():
+        return []
+    return sorted(path for path in root.iterdir() if path.is_dir())
+
+
 def test_help_output_contains_release_flags() -> None:
     result = subprocess.run(["python3", str(SCRIPT_PATH), "--help"], cwd=ROOT, capture_output=True, text=True, check=True)
     assert "--check-release" in result.stdout
     assert "--accept-release" in result.stdout
+    assert "--rollback" in result.stdout
+    assert "--list-snapshots" in result.stdout
+    assert "--notify-only" in result.stdout
+    assert "Default: 2" in result.stdout
     assert "checks only and never auto-installs" in result.stdout
 
 
@@ -223,6 +234,46 @@ def test_accept_release_approval_refreshes_and_clears_pending(tmp_path: Path) ->
     assert state["status"] == "current"
     assert state["pending_version"] == ""
     assert (support / "VERSION").read_text(encoding="utf-8").strip() == "v1.7.2"
+    snapshots = snapshot_dirs(tmp_path)
+    assert len(snapshots) == 1
+    manifest = json.loads((snapshots[0] / "manifest.json").read_text(encoding="utf-8"))
+    assert manifest["installed_version"] == "v1.7.1"
+    assert manifest["target_version"] == "v1.7.2"
+
+
+def test_rollback_restores_previous_support_bundle_and_managed_surface(tmp_path: Path) -> None:
+    mirror = create_fake_mirror(tmp_path / "mirror")
+    home = tmp_path / "home"
+    support = home / ".core-prompts-updater"
+    scripts = support / "scripts"
+    scripts.mkdir(parents=True)
+    (support / "VERSION").write_text("v1.7.1\n", encoding="utf-8")
+    (support / ".meta").mkdir()
+    (support / ".meta" / "manifest.json").write_text('{"ssot_sources":[]}\n', encoding="utf-8")
+    (scripts / "deploy-copy-plan.py").write_text(
+        """#!/usr/bin/env python3
+from pathlib import Path
+import sys
+target = Path(sys.argv[2])
+print(f"/unused\\t{target / '.codex/skills/demo/SKILL.md'}\\tcodex_skill\\tdemo")
+""",
+        encoding="utf-8",
+    )
+    managed_surface = home / ".codex" / "skills" / "demo" / "SKILL.md"
+    managed_surface.parent.mkdir(parents=True)
+    managed_surface.write_text("previous skill\n", encoding="utf-8")
+    write_pending_state(tmp_path, mirror)
+
+    result = run_update(tmp_path, support, "--accept-release", "--yes")
+
+    assert result.returncode == 0, result.stderr
+    assert (support / "VERSION").read_text(encoding="utf-8").strip() == "v1.7.2"
+    managed_surface.write_text("new skill\n", encoding="utf-8")
+    rollback = run_update(tmp_path, support, "--rollback", "previous")
+    assert rollback.returncode == 0, rollback.stderr
+    assert (support / "VERSION").read_text(encoding="utf-8").strip() == "v1.7.1"
+    assert managed_surface.read_text(encoding="utf-8") == "previous skill\n"
+    assert read_state(tmp_path)["status"] == "pending-install"
 
 
 def test_remote_divergence_records_status_and_does_not_advance_mirror(tmp_path: Path) -> None:
@@ -243,6 +294,21 @@ def test_remote_divergence_records_status_and_does_not_advance_mirror(tmp_path: 
     assert not (tmp_path / "home" / ".core-prompts-release-cache" / "repo").exists()
 
 
+def test_auto_accept_refuses_remote_divergence_without_snapshot(tmp_path: Path) -> None:
+    origin = tmp_path / "origin"
+    gitlab = tmp_path / "gitlab"
+    create_release_repo(origin, "v1.7.2")
+    create_release_repo(gitlab, "v1.7.3")
+    support = write_support(tmp_path, "v1.7.1", origin, gitlab)
+
+    result = run_update(tmp_path, support, "--auto-accept-release")
+
+    assert result.returncode == 0, result.stderr
+    state = read_state(tmp_path)
+    assert state["status"] == "remote-divergence"
+    assert snapshot_dirs(tmp_path) == []
+
+
 def test_remote_divergence_when_latest_tag_object_differs(tmp_path: Path) -> None:
     origin = tmp_path / "origin"
     gitlab = tmp_path / "gitlab"
@@ -260,7 +326,7 @@ def test_remote_divergence_when_latest_tag_object_differs(tmp_path: Path) -> Non
     assert not (tmp_path / "home" / ".core-prompts-release-cache" / "repo").exists()
 
 
-def test_schedule_runner_executes_release_check_before_normal_update(monkeypatch, tmp_path: Path) -> None:
+def test_schedule_runner_auto_accepts_by_default_before_normal_update(monkeypatch, tmp_path: Path) -> None:
     calls: list[list[str]] = []
 
     def fake_run(command, **kwargs):
@@ -271,9 +337,45 @@ def test_schedule_runner_executes_release_check_before_normal_update(monkeypatch
     monkeypatch.setattr(update_core_prompts.shutil, "which", lambda name: None)
     paths = update_core_prompts.Paths(support_root=tmp_path / "support", home=tmp_path / "home")
 
-    assert update_core_prompts.install_schedule(paths, "11:00") == 0
+    assert update_core_prompts.install_schedule(paths, "11:00", notify_only=False, snapshot_retention=2) == 0
 
     runner = paths.schedule_runner.read_text(encoding="utf-8")
     assert '"$UPDATE_SCRIPT" --check-release' in runner
-    assert runner.index('--check-release') < runner.index('--yes')
+    assert '"$UPDATE_SCRIPT" --accept-release --yes --snapshot-retention 2' in runner
+    assert runner.index('--check-release') < runner.index('--accept-release')
+    assert runner.index('--accept-release') < runner.rindex('--yes')
     assert calls == []
+
+
+def test_schedule_runner_notify_only_preserves_check_only_release_mode(monkeypatch, tmp_path: Path) -> None:
+    calls: list[list[str]] = []
+
+    def fake_run(command, **kwargs):
+        calls.append(command)
+        return SimpleNamespace(returncode=0, stdout="", stderr="")
+
+    monkeypatch.setattr(update_core_prompts, "run", fake_run)
+    monkeypatch.setattr(update_core_prompts.shutil, "which", lambda name: None)
+    paths = update_core_prompts.Paths(support_root=tmp_path / "support", home=tmp_path / "home")
+
+    assert update_core_prompts.install_schedule(paths, "11:00", notify_only=True, snapshot_retention=2) == 0
+
+    runner = paths.schedule_runner.read_text(encoding="utf-8")
+    assert '"$UPDATE_SCRIPT" --check-release' in runner
+    assert '"$UPDATE_SCRIPT" --accept-release --yes' not in runner
+    assert calls == []
+
+
+def test_snapshot_retention_keeps_latest_entries(tmp_path: Path) -> None:
+    support = tmp_path / "home" / ".core-prompts-updater"
+    support.mkdir(parents=True)
+    (support / "VERSION").write_text("v1.7.1\n", encoding="utf-8")
+    paths = update_core_prompts.Paths(support_root=support, home=tmp_path / "home")
+
+    for index in range(4):
+        update_core_prompts.create_snapshot(paths, installed_version=f"v1.7.{index}", target_version=f"v1.8.{index}", retention=2)
+
+    snapshots = snapshot_dirs(tmp_path)
+    assert len(snapshots) == 2
+    assert "v1.7.2-to-v1.8.2" in snapshots[0].name
+    assert "v1.7.3-to-v1.8.3" in snapshots[1].name
