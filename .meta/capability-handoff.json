@@ -7,6 +7,99 @@
   ],
   "capabilities": [
     {
+      "slug": "address-code-review",
+      "display_name": "Address Code Review \u2014 PR/MR Feedback Resolution",
+      "capability_type": "skill",
+      "summary": "[Chema] Apply selected PR/MR review feedback with tight scope control. Use after reviewers have left actionable comments and the user wants fixes implemented. Do not use as a pre-commit review gate; use code-review for staged-change, commit, and merge-readiness review.",
+      "role": "analyst",
+      "domain_tags": [
+        "review",
+        "address",
+        "code"
+      ],
+      "required_inputs": [
+        "an open PR/MR on the current branch (auto-detected) or an explicit PR/MR link",
+        "platform context: GitLab project ID or GitHub owner/repo (detected from git remote)",
+        "which comments to address (all open, or user-selected subset)",
+        "confirmation before editing when comments are ambiguous, broad, or architectural"
+      ],
+      "expected_outputs": [
+        "`Comments Found` \u2014 numbered list of open review comments with author, file, line, and summary",
+        "`User Selection` \u2014 which comments the user chose to address",
+        "`Changes Applied` \u2014 per-comment summary of what was modified",
+        "`Commit Guidance` \u2014 suggested commit message and push instructions",
+        "`Follow-up Review` \u2014 whether to run `code-review`, `testing`, `architecture`, or `gitops-review`"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ]
+      },
+      "confidence": 0.97,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [
+        "code-review"
+      ],
+      "relationship_suggestions": [],
+      "quality_status": "ship",
+      "benchmark_profile": "default",
+      "preferred_use_cases": [
+        "AI-assisted capability selection",
+        "deterministic prompt uplift review"
+      ],
+      "artifact_conventions": [
+        "ssot/<slug>.md",
+        ".meta/capabilities/<slug>.json",
+        "reports/quality-reviews/<slug>/LATEST.md"
+      ],
+      "invocation_style": "assistant_first_but_scriptable",
+      "requires_human_confirmation": true,
+      "org_graph": {
+        "org_role": "analyst",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "review",
+          "address"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile None."
+      },
+      "advisory_only": true
+    },
+    {
       "slug": "analyze-context",
       "display_name": "Analyze Context \u2014 Iterative Multi-File Analysis Workflow",
       "capability_type": "skill",
@@ -336,14 +429,15 @@
       "slug": "code-review",
       "display_name": "Commit Review \u2014 Git Commit Quality Gate",
       "capability_type": "skill",
-      "summary": "Commit Review for git commit quality gates, scope control, and over-engineering detection.",
+      "summary": "Review staged changes, diffs, or commits before commit, push, merge, or release. Use for findings, scope control, message quality, over-engineering detection, and merge readiness. Do not use to apply reviewer-requested fixes; use address-code-review for that action workflow.",
       "role": "analyst",
       "domain_tags": [
         "review",
+        "prompting",
         "code"
       ],
       "required_inputs": [
-        "commit hash, staged diff, or the default target of `HEAD`",
+        "commit hash, staged diff, working-tree diff, branch diff, or the default target of `HEAD`",
         "repository context when the commit depends on surrounding conventions",
         "any specific review focus such as scope, message quality, or simplicity"
       ],
@@ -810,6 +904,102 @@
         ],
         "authority_tier": "advisory",
         "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "ic-assistant",
+      "display_name": "Incident Commander Assistant",
+      "capability_type": "both",
+      "summary": "Incident Commander Assistant \u2014 keeps an Incident Commander on-process during active incidents. Tracks phase transitions, prompts for required actions, validates artifacts, and flags missed steps without making incident decisions.",
+      "role": "specialist_workflow",
+      "domain_tags": [
+        "assistant"
+      ],
+      "required_inputs": [
+        "incident ticket ID, link, or summary",
+        "current incident phase or enough context to infer it",
+        "customer or user impact count when escalation thresholds matter",
+        "last status update time when cadence checks matter",
+        "whether to use Generic Mode or Internal Runbook Mode"
+      ],
+      "expected_outputs": [
+        "`Mode` \u2014 Generic Mode or Internal Runbook Mode",
+        "`Current Phase` \u2014 identified phase and confidence",
+        "`Next Required Action` \u2014 specific and actionable",
+        "`Timer / Cadence` \u2014 last update timing or missing timing input",
+        "`Overdue / Escalation Flags` \u2014 process risks and required IC confirmation",
+        "`Assumptions` \u2014 any missing context or policy source used"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill",
+          "codex_agent"
+        ],
+        "gemini": [
+          "gemini_skill",
+          "gemini_agent"
+        ],
+        "claude": [
+          "claude_skill",
+          "claude_agent"
+        ],
+        "kiro": [
+          "kiro_skill",
+          "kiro_agent"
+        ]
+      },
+      "confidence": 0.92,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [
+        "prefer explicit review or analyst companions before high-authority use"
+      ],
+      "quality_status": "ship",
+      "benchmark_profile": "default",
+      "preferred_use_cases": [
+        "AI-assisted capability selection",
+        "deterministic prompt uplift review"
+      ],
+      "artifact_conventions": [
+        "ssot/<slug>.md",
+        ".meta/capabilities/<slug>.json",
+        "reports/quality-reviews/<slug>/LATEST.md"
+      ],
+      "invocation_style": "assistant_first_but_scriptable",
+      "requires_human_confirmation": true,
+      "org_graph": {
+        "org_role": "specialist_with_workflow_surface",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "assistant"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a both capability with route profile None."
       },
       "advisory_only": true
     },

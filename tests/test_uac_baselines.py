@@ -71,6 +71,49 @@ def test_additive_threader_preserves_hard_export_contract() -> None:
     assert result["hard_failures"] == []
 
 
+def test_thinner_candidate_can_preserve_baseline_through_exact_resource() -> None:
+    baseline_text = "\n".join(f"- original operational rule {index}" for index in range(120))
+    candidate = """# Incident Commander Assistant
+
+## Workflow Contract
+1. Use generic guidance by default.
+2. Consult `resources/appian-incident-runbook.md` only for explicit internal mode.
+
+## Rules
+- Preserve the internal runbook as a bundled resource.
+"""
+    baseline = BaselineContext(
+        slug="ic-assistant",
+        strategy="resource_preservation_repro",
+        group="applied_baseline",
+        baseline_path="sources/ssot-baselines/ic-assistant/baseline.md",
+        selected_commit="test",
+        richness_score=0,
+        line_count=len(baseline_text.splitlines()),
+        reason="resource preservation repro",
+        equivalent_commits=(),
+        expected_companions=(),
+        operator_invariants=(),
+        scenario_matrix=(),
+        historical_proof={},
+        source="test",
+        verified_by_git_history=False,
+        baseline_text=baseline_text,
+    )
+
+    without_resource = evaluate_candidate_against_baseline(candidate, baseline)
+    with_resource = evaluate_candidate_against_baseline(
+        candidate,
+        baseline,
+        preserved_resource_texts=(baseline_text,),
+    )
+
+    assert any("materially thinner" in failure for failure in without_resource["hard_failures"])
+    assert with_resource["classification"] == "preserved_via_resource"
+    assert with_resource["hard_failures"] == []
+    assert with_resource["baseline_preserved_in_resource"] is True
+
+
 def test_pulse_release_regression_fails_historical_operational_baseline() -> None:
     baseline_text = subprocess.run(
         ["git", "show", "22aa8d5:ssot/pulse.md"],

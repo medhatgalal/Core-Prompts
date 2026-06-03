@@ -103,28 +103,61 @@ Follow with:
 
 Use when:
 
-- you want to review a commit before merge
+- you want to review staged changes before committing
+- you want to review a commit before push or merge
 - the diff may be too broad
 - you suspect AI-generated over-engineering or weak commit hygiene
+- you need findings and readiness guidance, not file edits
 
 Why this skill first:
 
-- start here when the immediate question is commit quality and review findings, not CI health or release packaging
+- start here when the immediate question is review judgment: scope, correctness risk, message quality, and merge readiness
 
 Ask:
 
-> Use `code-review` to review the latest commit for scope creep, risky changes, and weak commit messaging.
+> Use `code-review` to review my staged changes before I commit.
 
 Expected output:
 
 - findings first
 - scope and risk assessment
-- commit-quality feedback
+- commit-message or change-summary feedback
 - open questions or residual risks
+- readiness decision
 
 Follow with:
 
 > Now tell me which findings are blocking merge versus follow-up cleanup.
+
+### `address-code-review`
+
+Use when:
+
+- a PR or MR has open reviewer comments
+- you want targeted fixes rather than broad cleanup
+- scope discipline matters after review feedback
+- the user has selected which comments should be addressed
+
+Why this skill first:
+
+- start here when the immediate task is applying selected reviewer-requested fixes, not producing a new review
+- do not start here for pre-commit review; use `code-review` first
+
+Ask:
+
+> Use `address-code-review` to inspect the open review comments on this MR and address only the selected fixes.
+
+Expected output:
+
+- comments found
+- selected comments to address
+- changes applied per comment
+- commit guidance
+- follow-up recommendation to run `code-review`
+
+Follow with:
+
+> Now use `code-review` on the fix commit before I push it back for reviewer verification.
 
 ### `converge`
 
@@ -209,6 +242,34 @@ Follow with:
 
 > Now separate the blocking issues from the nice-to-have follow-ups.
 
+### `ic-assistant`
+
+Use when:
+
+- you are acting as Incident Commander
+- the incident needs phase-aware checklist guidance
+- status updates, escalation thresholds, or postmortem deadlines may be missed
+- you need generic guidance by default, or an internal runbook only when explicitly requested
+
+Why this skill first:
+
+- start here when the risk is process drift during an active incident, not root-cause analysis or technical remediation
+
+Ask:
+
+> Use `ic-assistant` to track this incident, identify the current phase, and tell me the next required action.
+
+Expected output:
+
+- mode and current incident phase
+- next required action
+- time since last status update
+- overdue items or escalation flags
+
+Follow with:
+
+> Now generate the handoff summary for the next Incident Commander.
+
 ### `mentor`
 
 Use when:
@@ -244,6 +305,60 @@ Expected output:
 - a short read of the terminal context from tmux
 - the likely failure or state transition that matters
 - the next reversible move after reading that context
+
+### `pitch`
+
+Use when:
+
+- you are shaping a Shape Up pitch
+- you need to score pitch quality before betting
+- appetite, risks, or boundaries are unclear
+
+Why this skill first:
+
+- start here when the artifact under review is a pitch, not a generic plan or architecture proposal
+
+Ask:
+
+> Use `pitch` to review this Shape Up pitch for appetite, risks, and betting readiness.
+
+Expected output:
+
+- pitch score
+- strengths and risks
+- missing decisions
+- concrete rewrite guidance
+
+Follow with:
+
+> Now rewrite the weakest section so it is ready for betting.
+
+### `pulse`
+
+Use when:
+
+- Gmail and Google Chat need triage
+- you want priorities without taking action yet
+- you need a low-noise summary of what needs attention
+
+Why this skill first:
+
+- start here when the job is communication triage, not drafting or sending replies
+
+Ask:
+
+> Use `pulse` to triage what needs my attention across Gmail and Google Chat, then propose next actions without sending anything.
+
+Expected output:
+
+- priority buckets
+- source summaries
+- proposed next actions
+- explicit action/approval boundary
+
+Follow with:
+
+> Now draft the highest-priority reply, but do not send it.
 
 ### `resolve-conflict`
 
@@ -450,6 +565,24 @@ Use this when several proposals overlap and you want one coherent answer.
 > Use `architecture` to review this system change for migration and rollback risk.
 
 Use this when the decision will shape interfaces or system boundaries.
+
+### `ic-assistant`
+
+> Use `ic-assistant` to track this incident and keep me on the required checklist.
+
+Use this when you need phase-aware Incident Commander process guidance without taking incident decisions for the IC. It uses generic guidance by default and consults the internal runbook resource only when explicitly requested.
+
+### `pitch`
+
+> Use `pitch` to review this Shape Up pitch before betting.
+
+Use this when you want pitch scoring, risks, and rewrite guidance.
+
+### `pulse`
+
+> Use `pulse` to triage Gmail and Google Chat and propose next actions without sending anything.
+
+Use this when you want communication prioritization with explicit approval boundaries.
 
 ### `weekly-intel`
 

@@ -3,15 +3,30 @@ name: "code-review"
 display_name: "Commit Review — Git Commit Quality Gate"
 kind: "skill"
 capability_type: "skill"
-description: "Commit Review for git commit quality gates, scope control, and over-engineering detection."
+description: "Review staged changes, diffs, or commits before commit, push, merge, or release. Use for findings, scope control, message quality, over-engineering detection, and merge readiness. Do not use to apply reviewer-requested fixes; use address-code-review for that action workflow."
 ---
 # Commit Review — Git Commit Quality Gate
 
 ## Purpose
-Use this capability to review a git commit before merge, with emphasis on scope discipline, message quality, evidence-based findings, and over-engineering risk in AI-assisted coding workflows.
+Use this capability to review staged changes, working-tree diffs, or git commits before commit, push, merge, or release. It is a review gate: it reads the actual diff, finds correctness and scope risks, checks commit-message quality, flags over-engineering, and gives a clear readiness decision.
+
+Use this before you create a commit, before you push a branch, before an MR/PR is merged, or after a fix commit has been prepared. Do not use this capability to modify files or apply reviewer feedback; use `address-code-review` when the user wants selected PR/MR review comments implemented.
 
 ## Primary Objective
-Determine whether a commit is ready to move forward, blocked by correctness or scope issues, or should be split into smaller focused changes before review continues.
+Determine whether the diff under review is ready to move forward, blocked by correctness or scope issues, or should be split into smaller focused changes before review continues.
+
+## Choose the Right Review Capability
+Use `code-review` when the job is judgment.
+
+| User Intent | Use | Why |
+| --- | --- | --- |
+| "Review my staged changes before I commit" | `code-review` | pre-commit quality gate; no mutation |
+| "Review the latest commit" | `code-review` | commit scope, message quality, and merge readiness |
+| "Tell me if this MR is too broad" | `code-review` with `gitops-review` if branch/CI state matters | commit/diff findings first, branch gate second |
+| "Fix the comments reviewers left on my MR" | `address-code-review` | action workflow that reads comments and edits files |
+| "After fixes, check the fix commit" | `code-review` | verifies the response commit stayed scoped |
+
+Default to `code-review` for pre-commit or pre-push checks. Switch to `address-code-review` only when the user explicitly wants to inspect and implement existing PR/MR review comments.
 
 ## Output Directory
 When file output is requested, default to:
@@ -25,15 +40,15 @@ When file output is requested, default to:
 - **Actionable output**: every finding should give the reviewer a concrete next move
 
 ## Workflow
-1. Capture the exact commit or diff under review.
+1. Capture the exact staged diff, working-tree diff, commit, or branch diff under review.
 2. Read the commit message and the actual diff before making any judgment.
 3. Check message quality, scope alignment, and implementation complexity.
 4. Record findings with file references, concrete fixes, and merge guidance.
 5. End with a clear readiness decision: ready, blocked, or split required.
 
 ## Tool Boundaries
-- allowed: inspect git history, inspect staged or committed diffs, and write review artifacts when asked
-- forbidden: silent approval, hidden execution, or claiming code quality is fine without reading the diff
+- allowed: inspect git history, inspect staged, unstaged, branch, or committed diffs, and write review artifacts when asked
+- forbidden: applying fixes, modifying files, staging changes, silent approval, hidden execution, or claiming code quality is fine without reading the diff
 - escalation: if the change crosses into release risk, test gaps, or architecture risk, recommend `gitops-review`, `testing`, or `architecture`
 
 ## Companion Capability Matrix
@@ -45,16 +60,19 @@ Use companion capabilities deliberately instead of flattening every review into 
 | behavior changed and test confidence is weak | `testing` | test coverage and edge-case discovery need a dedicated pass |
 | interface, architecture, or migration risk is material | `architecture` | structural risk needs architectural judgment, not just commit review |
 | doc drift or example drift is part of the commit | `docs-review-expert` | keep documentation review explicit and separate |
+| reviewer comments need to be implemented | `address-code-review` | this review gate should not mutate files |
 
 ## Invocation Hints
 Use this capability when the user asks for any of the following, even without naming the skill:
 - review the latest commit
+- review my staged changes before I commit
+- review this diff before I push
 - check whether this diff is too broad
 - judge whether AI-generated changes are over-engineered
 - tell me if this commit message and change scope are strong enough to merge
 
 ## Required Inputs
-- commit hash, staged diff, or the default target of `HEAD`
+- commit hash, staged diff, working-tree diff, branch diff, or the default target of `HEAD`
 - repository context when the commit depends on surrounding conventions
 - any specific review focus such as scope, message quality, or simplicity
 
@@ -69,7 +87,7 @@ Every substantial response must include:
 
 ## Review Process
 ### 1. Capture the Commit
-Run:
+When reviewing `HEAD`, run:
 
 ```bash
 mkdir -p reports/code-reviews
@@ -79,6 +97,16 @@ git show HEAD --no-color 2>&1 > reports/code-reviews/${TIMESTAMP}-${COMMIT_HASH}
 ```
 
 After writing the file, read it before producing findings.
+
+For pre-commit review, inspect the staged diff first:
+
+```bash
+mkdir -p reports/code-reviews
+TIMESTAMP=$(date +%Y%m%d-%H%M%S)
+git diff --staged --no-color > reports/code-reviews/${TIMESTAMP}-staged.diff
+```
+
+If nothing is staged, inspect the working-tree diff only after saying that the review is not a commit-ready staged review.
 
 ### 2. Check the Commit Message
 Look for:
@@ -174,6 +202,9 @@ If no issues are found:
 ### Example Request
 > Review the latest commit and tell me whether it is merge-ready or too broad.
 
+### Example Pre-Commit Request
+> Use `code-review` to review my staged changes before I commit.
+
 ### Example Output Shape
 - commit under review
 - findings with file references
@@ -185,6 +216,11 @@ If no issues are found:
 /code-review
 ```
 Reviews the most recent commit (`HEAD`).
+
+```text
+/code-review staged
+```
+Reviews staged changes before commit.
 
 ```text
 /code-review <commit-hash>

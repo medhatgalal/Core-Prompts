@@ -1,0 +1,399 @@
+{
+  "slug": "address-code-review",
+  "manifest_version": "capability-fabric.v0",
+  "layers": {
+    "minimal": {
+      "capability_type": "skill",
+      "summary": "[Chema] Apply selected PR/MR review feedback with tight scope control. Use after reviewers have left actionable comments and the user wants fixes implemented. Do not use as a pre-commit review gate; use code-review for staged-change, commit, and merge-readiness review.",
+      "role": "analyst",
+      "domain_tags": [
+        "review",
+        "address",
+        "code"
+      ],
+      "required_inputs": [
+        "an open PR/MR on the current branch (auto-detected) or an explicit PR/MR link",
+        "platform context: GitLab project ID or GitHub owner/repo (detected from git remote)",
+        "which comments to address (all open, or user-selected subset)",
+        "confirmation before editing when comments are ambiguous, broad, or architectural"
+      ],
+      "expected_outputs": [
+        "`Comments Found` \u2014 numbered list of open review comments with author, file, line, and summary",
+        "`User Selection` \u2014 which comments the user chose to address",
+        "`Changes Applied` \u2014 per-comment summary of what was modified",
+        "`Commit Guidance` \u2014 suggested commit message and push instructions",
+        "`Follow-up Review` \u2014 whether to run `code-review`, `testing`, `architecture`, or `gitops-review`"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "resources": [
+        "ssot/address-code-review.md"
+      ],
+      "packaging_profile": {
+        "capability_type": "skill",
+        "primary_surfaces": {
+          "codex": [
+            "codex_skill"
+          ],
+          "gemini": [
+            "gemini_skill"
+          ],
+          "claude": [
+            "claude_skill"
+          ],
+          "kiro": [
+            "kiro_skill"
+          ]
+        },
+        "wrapper_surfaces": {
+          "codex": [],
+          "gemini": [
+            "skill_wrapper"
+          ],
+          "claude": [
+            "skill_wrapper",
+            "plugin_wrapper"
+          ],
+          "kiro": [
+            "skill_wrapper",
+            "power_wrapper"
+          ]
+        },
+        "notes": [
+          "wrapper surfaces are additive deployment forms, not capability types",
+          "orchestrators must not infer execution authority from wrapper presence alone"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ]
+      },
+      "source_provenance": {
+        "source_type": "LOCAL_FILE",
+        "normalized_source": "ssot/address-code-review.md",
+        "policy_rule_id": "ssot.address-code-review",
+        "content_sha256": "ssot"
+      },
+      "confidence": 0.97,
+      "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+      "review_status": "ready_for_orchestrator_review",
+      "display_name": "Address Code Review \u2014 PR/MR Feedback Resolution"
+    },
+    "expanded": {
+      "relationship_suggestions": [],
+      "capability_dependencies": [
+        "context"
+      ],
+      "overlap_candidates": [
+        "code-review"
+      ],
+      "migration_notes": [
+        "If the capability lands, compare it against existing entries before apply.",
+        "Relationship suggestions are advisory only and do not imply runtime routing."
+      ],
+      "adjustment_recommendations": [
+        "add an explicit primary objective before packaging",
+        "add deterministic in-scope sections to improve routing fitness",
+        "capture quality constraints or non-negotiables"
+      ]
+    },
+    "org_graph": {
+      "org_role": "analyst",
+      "reports_to_suggestions": [],
+      "delegates_to_suggestions": [],
+      "collaborates_with_suggestions": [
+        "review",
+        "address"
+      ],
+      "authority_tier": "advisory",
+      "work_graph_impact": "Adds or updates a skill capability with route profile None."
+    }
+  },
+  "display_name": "Address Code Review \u2014 PR/MR Feedback Resolution",
+  "declared_capability": "skill",
+  "inferred_capability": "skill",
+  "expected_surface_names": [
+    "codex_skill",
+    "gemini_skill",
+    "claude_skill",
+    "kiro_skill"
+  ],
+  "rubric_version": "capability-fabric.v0",
+  "invocation_hints": [
+    "address the review comments",
+    "fix the MR feedback",
+    "resolve PR comments",
+    "apply the requested changes from reviewers",
+    "address code review",
+    "address selected reviewer comments",
+    "implement requested changes from MR discussions"
+  ],
+  "descriptor_version": "capability-fabric.descriptor.v0",
+  "family_slug": "address-code-review",
+  "shared_summary": "[Chema] Address PR/MR review comments automatically. Use when the user wants to fix review feedback, address code review comments, or resolve MR/PR discussions from teammates.",
+  "shared_constraints": [
+    "**Only modify code that has an associated review comment.** Do not touch other changed lines in the diff that have no comments.",
+    "If you believe an uncommented change also needs fixing, explain why and ask the user before making any modification.",
+    "Do not resolve/close review threads programmatically \u2014 let the reviewer verify.",
+    "Do not mix unrelated changes into the fix commit."
+  ],
+  "modes": [],
+  "benchmark_sources": [],
+  "quality_profile": "default",
+  "quality_status": "ship",
+  "judge_reports": [
+    {
+      "pass_number": 1,
+      "status": "revise",
+      "historical_baseline": {
+        "slug": "address-code-review",
+        "strategy": "candidate_seed",
+        "group": "new_or_untracked",
+        "baseline_path": null,
+        "selected_commit": null,
+        "richness_score": 5,
+        "line_count": 109,
+        "reason": "No registry entry or git history available; use the candidate as the provisional seed baseline.",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [],
+        "historical_proof": {},
+        "source": "candidate_seed",
+        "verified_by_git_history": false,
+        "has_baseline_text": true
+      },
+      "judge_reports": [
+        {
+          "judge": "source_fidelity",
+          "title": "Source Fidelity and Uplift",
+          "score": 10,
+          "blockers": [],
+          "classification": "preserved",
+          "scenario_results": [],
+          "scorecard": {
+            "baseline_richness": 5,
+            "candidate_richness": 5,
+            "baseline_operational_score": 2,
+            "candidate_operational_score": 2
+          },
+          "baseline_commit": null,
+          "baseline_slug": "address-code-review"
+        },
+        {
+          "judge": "operational_richness",
+          "title": "Operational Richness",
+          "score": 7,
+          "blockers": [
+            "missing operational marker: ## Rules"
+          ]
+        },
+        {
+          "judge": "metadata_integrity",
+          "title": "Metadata and Handoff Integrity",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "benchmark_readiness",
+          "title": "Benchmark Readiness and Template Fit",
+          "score": 9,
+          "blockers": [
+            "missing template heading: ## Rules"
+          ],
+          "scorecard": {
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 8,
+            "boundary_clarity": 10,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          }
+        }
+      ],
+      "blockers": [
+        "missing operational marker: ## Rules",
+        "missing template heading: ## Rules"
+      ],
+      "scorecard": {
+        "source_fidelity": 10,
+        "baseline_richness": 5,
+        "candidate_richness": 5,
+        "baseline_operational_score": 2,
+        "candidate_operational_score": 2,
+        "operational_richness": 7,
+        "metadata_integrity": 10,
+        "benchmark_readiness": 9,
+        "title_clarity": 10,
+        "description_richness": 10,
+        "intent_coverage": 8,
+        "boundary_clarity": 10,
+        "output_specificity": 10,
+        "metadata_completeness": 8,
+        "surface_usability": 10
+      },
+      "template_name": "skill"
+    },
+    {
+      "pass_number": 2,
+      "status": "ship",
+      "historical_baseline": {
+        "slug": "address-code-review",
+        "strategy": "candidate_seed",
+        "group": "new_or_untracked",
+        "baseline_path": null,
+        "selected_commit": null,
+        "richness_score": 5,
+        "line_count": 109,
+        "reason": "No registry entry or git history available; use the candidate as the provisional seed baseline.",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [],
+        "historical_proof": {},
+        "source": "candidate_seed",
+        "verified_by_git_history": false,
+        "has_baseline_text": true
+      },
+      "judge_reports": [
+        {
+          "judge": "source_fidelity",
+          "title": "Source Fidelity and Uplift",
+          "score": 10,
+          "blockers": [],
+          "classification": "preserved",
+          "scenario_results": [],
+          "scorecard": {
+            "baseline_richness": 5,
+            "candidate_richness": 5,
+            "baseline_operational_score": 2,
+            "candidate_operational_score": 2
+          },
+          "baseline_commit": null,
+          "baseline_slug": "address-code-review"
+        },
+        {
+          "judge": "operational_richness",
+          "title": "Operational Richness",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "metadata_integrity",
+          "title": "Metadata and Handoff Integrity",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "benchmark_readiness",
+          "title": "Benchmark Readiness and Template Fit",
+          "score": 10,
+          "blockers": [],
+          "scorecard": {
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 10,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          }
+        }
+      ],
+      "blockers": [],
+      "scorecard": {
+        "source_fidelity": 10,
+        "baseline_richness": 5,
+        "candidate_richness": 5,
+        "baseline_operational_score": 2,
+        "candidate_operational_score": 2,
+        "operational_richness": 10,
+        "metadata_integrity": 10,
+        "benchmark_readiness": 10,
+        "title_clarity": 10,
+        "description_richness": 10,
+        "intent_coverage": 10,
+        "boundary_clarity": 10,
+        "output_specificity": 10,
+        "metadata_completeness": 8,
+        "surface_usability": 10
+      },
+      "template_name": "skill"
+    }
+  ],
+  "consumption_hints": {
+    "preferred_use_cases": [
+      "AI-assisted capability selection",
+      "deterministic prompt uplift review"
+    ],
+    "artifact_conventions": [
+      "ssot/<slug>.md",
+      ".meta/capabilities/<slug>.json",
+      "reports/quality-reviews/<slug>/LATEST.md"
+    ],
+    "invocation_style": "assistant_first_but_scriptable",
+    "requires_human_confirmation": true
+  },
+  "quality_pass_count": 2,
+  "quality_stop_reason": "thresholds_met",
+  "historical_baseline": {
+    "slug": "address-code-review",
+    "strategy": "candidate_seed",
+    "group": "new_or_untracked",
+    "baseline_path": "sources/ssot-baselines/address-code-review/baseline.md",
+    "selected_commit": null,
+    "richness_score": 5,
+    "line_count": 109,
+    "reason": "No registry entry or git history available; use the candidate as the provisional seed baseline.",
+    "equivalent_commits": [],
+    "expected_companions": [],
+    "operator_invariants": [],
+    "scenario_matrix": [],
+    "historical_proof": {},
+    "source": "candidate_seed",
+    "verified_by_git_history": false,
+    "has_baseline_text": true
+  },
+  "quality_validation_matrix": [
+    {
+      "id": "operational_invocation",
+      "kind": "operational_contract",
+      "label": "operational invocation surface",
+      "must_contain": [
+        "## Invocation"
+      ]
+    }
+  ]
+}

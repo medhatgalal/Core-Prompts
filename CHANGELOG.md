@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.8.7 - 2026-06-03
+
+- Shipped two UAC-uplifted capabilities from pending GitLab MRs:
+  - added `address-code-review` as the scoped action counterpart to `code-review` for applying selected PR/MR review feedback
+  - added `ic-assistant` as a phase-aware Incident Commander process assistant across skill and advisory-agent surfaces
+  - refactored `ic-assistant` to be generic by default while preserving the submitted Appian-specific incident runbook as an explicit internal resource
+- Preserved the SSOT-first architecture while reviewing stale MRs:
+  - rejected stale-base collateral from `!16` and `!23` instead of carrying generated-surface deletions into the branch
+  - landed new capability state through UAC apply, preserving canonical SSOT, descriptors, baselines, generated surfaces, and quality-review evidence
+  - taught UAC source-fidelity judging to accept exact baseline preservation through a declared bundled resource instead of treating resource splits as prompt dilution
+- Updated onboarding and generated inspection views so all 19 skills and 11 advisory agents, including the new capabilities, are discoverable before packaging.
+
 ## v1.8.6 - 2026-05-21
 
 - Extended release-watch installs to keep the source checkout current:

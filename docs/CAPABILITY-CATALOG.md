@@ -2,7 +2,7 @@
 
 Generated from canonical manifest and descriptor metadata. Use this page to see what Core-Prompts ships, what each capability is for, and where it lands.
 
-- Capability count: `17`
+- Capability count: `19`
 
 ## Start Here
 - `docs-review-expert` — Docs Review Expert — Documentation IA, Drift, and Release Hygiene: Documentation Review Expert for information architecture, explainable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.
@@ -12,17 +12,19 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `testing` — Testing Studio — Test Design and Coverage Analysis: Testing Studio for unit-test generation, end-to-end test design, edge-case discovery, and coverage gap analysis.
 
 ## By CLI
-- `claude`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `feature-status`, `gitops-review`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `codex`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `feature-status`, `gitops-review`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `gemini`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `feature-status`, `gitops-review`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `kiro`: `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `feature-status`, `gitops-review`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `claude`: `address-code-review`, `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `codex`: `address-code-review`, `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `gemini`: `address-code-review`, `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `kiro`: `address-code-review`, `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
 
 ## By Use Case
+- `address`: `address-code-review`
 - `analysis`: `analyze-context`
 - `analyze`: `analyze-context`
 - `architecture`: `architecture`, `docs-review-expert`
+- `assistant`: `ic-assistant`
 - `autosearch`: `autosearch`
-- `code`: `code-review`
+- `code`: `address-code-review`, `code-review`
 - `conflict`: `resolve-conflict`
 - `context`: `analyze-context`, `threader`
 - `converge`: `converge`
@@ -35,10 +37,10 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `mentor`: `mentor`
 - `pitch`: `pitch`
 - `planning`: `uac-import`
-- `prompting`: `mentor`, `uac-import`
+- `prompting`: `code-review`, `mentor`, `uac-import`
 - `pulse`: `pulse`
 - `resolve`: `resolve-conflict`
-- `review`: `code-review`, `docs-review-expert`, `gitops-review`, `weekly-intel`
+- `review`: `address-code-review`, `code-review`, `docs-review-expert`, `gitops-review`, `weekly-intel`
 - `status`: `feature-status`
 - `supercharge`: `supercharge`
 - `testing`: `testing`
@@ -46,6 +48,21 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `weekly`: `weekly-intel`
 
 ## All Capabilities
+### Address Code Review — PR/MR Feedback Resolution
+- Slug: `address-code-review`
+- Type: `skill`
+- Install target: `repo_local`
+- Supported CLIs: `claude, codex, gemini, kiro`
+- Invocation hints:
+  - address the review comments
+  - fix the MR feedback
+  - resolve PR comments
+  - apply the requested changes from reviewers
+  - address code review
+  - address selected reviewer comments
+  - implement requested changes from MR discussions
+- Summary: [Chema] Apply selected PR/MR review feedback with tight scope control. Use after reviewers have left actionable comments and the user wants fixes implemented. Do not use as a pre-commit review gate; use code-review for staged-change, commit, and merge-readiness review.
+
 ### Analyze Context — Iterative Multi-File Analysis Workflow
 - Slug: `analyze-context`
 - Type: `skill`
@@ -97,10 +114,12 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Supported CLIs: `claude, codex, gemini, kiro`
 - Invocation hints:
   - review the latest commit
+  - review my staged changes before I commit
+  - review this diff before I push
   - check whether this diff is too broad
   - judge whether AI-generated changes are over-engineered
   - tell me if this commit message and change scope are strong enough to merge
-- Summary: Commit Review for git commit quality gates, scope control, and over-engineering detection.
+- Summary: Review staged changes, diffs, or commits before commit, push, merge, or release. Use for findings, scope control, message quality, over-engineering detection, and merge readiness. Do not use to apply reviewer-requested fixes; use address-code-review for that action workflow.
 
 ### Converge — Multi-Source Synthesis, Conflict Surfacing, and Final Recommendation
 - Slug: `converge`
@@ -158,6 +177,22 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
   - merge, push, package, tag, release, or clean up branches
   - update changelog or release notes as part of a release gate
 - Summary: GitOps Review for repo hygiene, commit quality, PR readiness, CI state, packaging, changelog, merge, tag, push, and release gates across GitHub and GitLab.
+
+### Incident Commander Assistant
+- Slug: `ic-assistant`
+- Type: `both`
+- Install target: `repo_local`
+- Supported CLIs: `claude, codex, gemini, kiro`
+- Invocation hints:
+  - track an active incident and prompt for next steps
+  - validate incident artifacts and process compliance
+  - guide through Incident Commander tier escalation
+  - generate handoff briefings for IC transfer
+  - determine if executive communication is required
+  - remind about overdue status updates or postmortem deadlines
+  - use the internal incident runbook for this Appian incident
+  - switch to generic incident commander guidance
+- Summary: Incident Commander Assistant — keeps an Incident Commander on-process during active incidents. Tracks phase transitions, prompts for required actions, validates artifacts, and flags missed steps without making incident decisions.
 
 ### Mentor — Senior Engineering Oversight and Workflow Guidance
 - Slug: `mentor`

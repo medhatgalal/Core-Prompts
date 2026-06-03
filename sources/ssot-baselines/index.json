@@ -439,6 +439,38 @@
         "last_materialized_at": "2026-05-21T05:35:48.457257+00:00"
       },
       "selected_commit": "c6b3203b"
+    },
+    "address-code-review": {
+      "strategy": "source_library",
+      "group": "applied_baseline",
+      "baseline_path": "sources/ssot-baselines/address-code-review/baseline.md",
+      "richness_score": 5,
+      "line_count": 109,
+      "reason": "Repo-resident baseline source snapshot used as the fidelity oracle for future UAC judging.",
+      "historical_proof": {
+        "materialized_from_commit": "e4f32a18",
+        "materialized_from_source_kind": "current_ssot",
+        "materialized_from_path": "ssot/address-code-review.md",
+        "materialized_from_sha256": "1b98697ba26198c8a9fa5f6e751917b91e8dcce8d87262277667688312020c5d",
+        "last_materialized_at": "2026-06-02T18:41:30.995407+00:00"
+      },
+      "selected_commit": "e4f32a18"
+    },
+    "ic-assistant": {
+      "strategy": "source_library",
+      "group": "applied_baseline",
+      "baseline_path": "sources/ssot-baselines/ic-assistant/baseline.md",
+      "richness_score": 8,
+      "line_count": 466,
+      "reason": "Repo-resident baseline source snapshot used as the fidelity oracle for future UAC judging.",
+      "historical_proof": {
+        "materialized_from_commit": "e4f32a18",
+        "materialized_from_source_kind": "current_ssot",
+        "materialized_from_path": "ssot/ic-assistant.md",
+        "materialized_from_sha256": "6f765b332cdb59352d9a58486e0e22355bae786d57f0717ddf0f200d508aa2d8",
+        "last_materialized_at": "2026-06-02T18:41:46.795733+00:00"
+      },
+      "selected_commit": "e4f32a18"
     }
   }
 }

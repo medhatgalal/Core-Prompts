@@ -1,0 +1,422 @@
+{
+  "slug": "ic-assistant",
+  "manifest_version": "capability-fabric.v0",
+  "layers": {
+    "minimal": {
+      "capability_type": "both",
+      "summary": "Incident Commander Assistant \u2014 keeps an Incident Commander on-process during active incidents. Tracks phase transitions, prompts for required actions, validates artifacts, and flags missed steps without making incident decisions.",
+      "role": "specialist_workflow",
+      "domain_tags": [
+        "assistant"
+      ],
+      "required_inputs": [
+        "incident ticket ID, link, or summary",
+        "current incident phase or enough context to infer it",
+        "customer or user impact count when escalation thresholds matter",
+        "last status update time when cadence checks matter",
+        "whether to use Generic Mode or Internal Runbook Mode"
+      ],
+      "expected_outputs": [
+        "`Mode` \u2014 Generic Mode or Internal Runbook Mode",
+        "`Current Phase` \u2014 identified phase and confidence",
+        "`Next Required Action` \u2014 specific and actionable",
+        "`Timer / Cadence` \u2014 last update timing or missing timing input",
+        "`Overdue / Escalation Flags` \u2014 process risks and required IC confirmation",
+        "`Assumptions` \u2014 any missing context or policy source used"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "resources": [
+        "ssot/ic-assistant.md"
+      ],
+      "packaging_profile": {
+        "capability_type": "both",
+        "primary_surfaces": {
+          "codex": [
+            "codex_skill",
+            "codex_agent"
+          ],
+          "gemini": [
+            "gemini_skill",
+            "gemini_agent"
+          ],
+          "claude": [
+            "claude_skill",
+            "claude_agent"
+          ],
+          "kiro": [
+            "kiro_skill",
+            "kiro_agent"
+          ]
+        },
+        "wrapper_surfaces": {
+          "codex": [
+            "plugin_wrapper"
+          ],
+          "gemini": [
+            "skill_wrapper"
+          ],
+          "claude": [
+            "skill_wrapper",
+            "plugin_wrapper"
+          ],
+          "kiro": [
+            "skill_wrapper",
+            "power_wrapper"
+          ]
+        },
+        "notes": [
+          "wrapper surfaces are additive deployment forms, not capability types",
+          "orchestrators must not infer execution authority from wrapper presence alone"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill",
+          "codex_agent"
+        ],
+        "gemini": [
+          "gemini_skill",
+          "gemini_agent"
+        ],
+        "claude": [
+          "claude_skill",
+          "claude_agent"
+        ],
+        "kiro": [
+          "kiro_skill",
+          "kiro_agent"
+        ]
+      },
+      "source_provenance": {
+        "source_type": "LOCAL_FILE",
+        "normalized_source": "ssot/ic-assistant.md",
+        "policy_rule_id": "ssot.ic-assistant",
+        "content_sha256": "ssot"
+      },
+      "confidence": 0.92,
+      "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
+      "review_status": "ready_for_orchestrator_review",
+      "display_name": "Incident Commander Assistant"
+    },
+    "expanded": {
+      "relationship_suggestions": [
+        "prefer explicit review or analyst companions before high-authority use"
+      ],
+      "capability_dependencies": [],
+      "overlap_candidates": [],
+      "migration_notes": [
+        "If the capability lands, compare it against existing entries before apply.",
+        "Relationship suggestions are advisory only and do not imply runtime routing."
+      ],
+      "adjustment_recommendations": [
+        "add an explicit primary objective before packaging",
+        "add deterministic in-scope sections to improve routing fitness",
+        "capture quality constraints or non-negotiables"
+      ]
+    },
+    "org_graph": {
+      "org_role": "specialist_with_workflow_surface",
+      "reports_to_suggestions": [],
+      "delegates_to_suggestions": [],
+      "collaborates_with_suggestions": [
+        "assistant"
+      ],
+      "authority_tier": "advisory",
+      "work_graph_impact": "Adds or updates a both capability with route profile None."
+    }
+  },
+  "display_name": "Incident Commander Assistant",
+  "declared_capability": "both",
+  "inferred_capability": "both",
+  "expected_surface_names": [
+    "codex_skill",
+    "codex_agent",
+    "gemini_skill",
+    "gemini_agent",
+    "claude_skill",
+    "claude_agent",
+    "kiro_skill",
+    "kiro_agent"
+  ],
+  "rubric_version": "capability-fabric.v0",
+  "invocation_hints": [
+    "track an active incident and prompt for next steps",
+    "validate incident artifacts and process compliance",
+    "guide through Incident Commander tier escalation",
+    "generate handoff briefings for IC transfer",
+    "determine if executive communication is required",
+    "remind about overdue status updates or postmortem deadlines",
+    "use the internal incident runbook for this Appian incident",
+    "switch to generic incident commander guidance"
+  ],
+  "descriptor_version": "capability-fabric.descriptor.v0",
+  "family_slug": "ic-assistant",
+  "shared_summary": "Incident Commander Assistant \u2014 keeps the Incident Commander on-process during active incidents. Tracks phase transitions, prompts for required actions, validates artifacts, and flags missed steps per Appian's Incident Commander procedures.",
+  "shared_constraints": [],
+  "modes": [],
+  "benchmark_sources": [],
+  "quality_profile": "default",
+  "quality_status": "ship",
+  "judge_reports": [
+    {
+      "pass_number": 1,
+      "status": "revise",
+      "historical_baseline": {
+        "slug": "ic-assistant",
+        "strategy": "candidate_seed",
+        "group": "new_or_untracked",
+        "baseline_path": null,
+        "selected_commit": null,
+        "richness_score": 8,
+        "line_count": 466,
+        "reason": "No registry entry or git history available; use the candidate as the provisional seed baseline.",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [],
+        "historical_proof": {},
+        "source": "candidate_seed",
+        "verified_by_git_history": false,
+        "has_baseline_text": true
+      },
+      "judge_reports": [
+        {
+          "judge": "source_fidelity",
+          "title": "Source Fidelity and Uplift",
+          "score": 10,
+          "blockers": [],
+          "classification": "preserved",
+          "scenario_results": [],
+          "scorecard": {
+            "baseline_richness": 8,
+            "candidate_richness": 8,
+            "baseline_operational_score": 4,
+            "candidate_operational_score": 4
+          },
+          "baseline_commit": null,
+          "baseline_slug": "ic-assistant"
+        },
+        {
+          "judge": "operational_richness",
+          "title": "Operational Richness",
+          "score": 7,
+          "blockers": [
+            "missing operational marker: ## Rules"
+          ]
+        },
+        {
+          "judge": "metadata_integrity",
+          "title": "Metadata and Handoff Integrity",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "benchmark_readiness",
+          "title": "Benchmark Readiness and Template Fit",
+          "score": 9,
+          "blockers": [
+            "missing template heading: ## Agent Operating Contract",
+            "missing template heading: ## Output Directory",
+            "missing template heading: ## Rules",
+            "benchmark category below target: intent_coverage (7/10)",
+            "benchmark category below target: surface_usability (6/10)"
+          ],
+          "scorecard": {
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 7,
+            "boundary_clarity": 10,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 6
+          }
+        }
+      ],
+      "blockers": [
+        "missing operational marker: ## Rules",
+        "missing template heading: ## Agent Operating Contract",
+        "missing template heading: ## Output Directory",
+        "missing template heading: ## Rules",
+        "benchmark category below target: intent_coverage (7/10)",
+        "benchmark category below target: surface_usability (6/10)"
+      ],
+      "scorecard": {
+        "source_fidelity": 10,
+        "baseline_richness": 8,
+        "candidate_richness": 8,
+        "baseline_operational_score": 4,
+        "candidate_operational_score": 4,
+        "operational_richness": 7,
+        "metadata_integrity": 10,
+        "benchmark_readiness": 9,
+        "title_clarity": 10,
+        "description_richness": 10,
+        "intent_coverage": 7,
+        "boundary_clarity": 10,
+        "output_specificity": 10,
+        "metadata_completeness": 8,
+        "surface_usability": 6
+      },
+      "template_name": "both"
+    },
+    {
+      "pass_number": 2,
+      "status": "ship",
+      "historical_baseline": {
+        "slug": "ic-assistant",
+        "strategy": "candidate_seed",
+        "group": "new_or_untracked",
+        "baseline_path": null,
+        "selected_commit": null,
+        "richness_score": 8,
+        "line_count": 466,
+        "reason": "No registry entry or git history available; use the candidate as the provisional seed baseline.",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [],
+        "historical_proof": {},
+        "source": "candidate_seed",
+        "verified_by_git_history": false,
+        "has_baseline_text": true
+      },
+      "judge_reports": [
+        {
+          "judge": "source_fidelity",
+          "title": "Source Fidelity and Uplift",
+          "score": 10,
+          "blockers": [],
+          "classification": "preserved",
+          "scenario_results": [],
+          "scorecard": {
+            "baseline_richness": 8,
+            "candidate_richness": 8,
+            "baseline_operational_score": 4,
+            "candidate_operational_score": 4
+          },
+          "baseline_commit": null,
+          "baseline_slug": "ic-assistant"
+        },
+        {
+          "judge": "operational_richness",
+          "title": "Operational Richness",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "metadata_integrity",
+          "title": "Metadata and Handoff Integrity",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "benchmark_readiness",
+          "title": "Benchmark Readiness and Template Fit",
+          "score": 10,
+          "blockers": [],
+          "scorecard": {
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 10,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          }
+        }
+      ],
+      "blockers": [],
+      "scorecard": {
+        "source_fidelity": 10,
+        "baseline_richness": 8,
+        "candidate_richness": 8,
+        "baseline_operational_score": 4,
+        "candidate_operational_score": 4,
+        "operational_richness": 10,
+        "metadata_integrity": 10,
+        "benchmark_readiness": 10,
+        "title_clarity": 10,
+        "description_richness": 10,
+        "intent_coverage": 10,
+        "boundary_clarity": 10,
+        "output_specificity": 10,
+        "metadata_completeness": 8,
+        "surface_usability": 10
+      },
+      "template_name": "both"
+    }
+  ],
+  "consumption_hints": {
+    "preferred_use_cases": [
+      "AI-assisted capability selection",
+      "deterministic prompt uplift review"
+    ],
+    "artifact_conventions": [
+      "ssot/<slug>.md",
+      ".meta/capabilities/<slug>.json",
+      "reports/quality-reviews/<slug>/LATEST.md"
+    ],
+    "invocation_style": "assistant_first_but_scriptable",
+    "requires_human_confirmation": true
+  },
+  "quality_pass_count": 2,
+  "quality_stop_reason": "thresholds_met",
+  "historical_baseline": {
+    "slug": "ic-assistant",
+    "strategy": "candidate_seed",
+    "group": "new_or_untracked",
+    "baseline_path": "sources/ssot-baselines/ic-assistant/baseline.md",
+    "selected_commit": null,
+    "richness_score": 8,
+    "line_count": 466,
+    "reason": "No registry entry or git history available; use the candidate as the provisional seed baseline.",
+    "equivalent_commits": [],
+    "expected_companions": [],
+    "operator_invariants": [],
+    "scenario_matrix": [],
+    "historical_proof": {},
+    "source": "candidate_seed",
+    "verified_by_git_history": false,
+    "has_baseline_text": true
+  },
+  "quality_validation_matrix": [
+    {
+      "id": "operational_invocation",
+      "kind": "operational_contract",
+      "label": "operational invocation surface",
+      "must_contain": [
+        "## Invocation"
+      ]
+    },
+    {
+      "id": "stepwise_workflow_contract",
+      "kind": "operational_contract",
+      "label": "stepwise workflow contract",
+      "must_contain": [
+        "## Workflow Contract"
+      ]
+    }
+  ]
+}

@@ -407,7 +407,12 @@ def _judge_source_fidelity(
     blockers = [f"missing source-fidelity marker: {item}" for item in missing]
     if not source_refs and not benchmark_sources:
         blockers.append("no source set or benchmark set attached to quality run")
-    fidelity = evaluate_candidate_against_baseline(candidate_text, baseline)
+    preserved_resource_texts = _load_declared_capability_resource_texts(slug, candidate_text)
+    fidelity = evaluate_candidate_against_baseline(
+        candidate_text,
+        baseline,
+        preserved_resource_texts=preserved_resource_texts,
+    )
     blockers.extend(str(item) for item in fidelity["hard_failures"])
     score = min(_score_from_ratio(ratio, penalty=len(blockers)), int(fidelity["score"]))
     return {
@@ -422,10 +427,24 @@ def _judge_source_fidelity(
             "candidate_richness": int(fidelity["candidate_richness"]),
             "baseline_operational_score": int(fidelity["baseline_operational_score"]),
             "candidate_operational_score": int(fidelity["candidate_operational_score"]),
+            "baseline_preserved_in_resource": bool(fidelity.get("baseline_preserved_in_resource")),
         },
         "baseline_commit": baseline.selected_commit,
         "baseline_slug": slug,
     }
+
+
+def _load_declared_capability_resource_texts(slug: str, candidate_text: str) -> tuple[str, ...]:
+    resource_refs = set()
+    for match in re.finditer(r"`?(resources/[A-Za-z0-9_.:/@+~=-][A-Za-z0-9_./:@+~=-]*)`?", candidate_text):
+        resource_refs.add(match.group(1))
+    texts: list[str] = []
+    for resource_ref in sorted(resource_refs):
+        relative = resource_ref.removeprefix("resources/")
+        source_path = REPO_ROOT / "sources" / "capability-resources" / slug / relative
+        if source_path.exists() and source_path.is_file():
+            texts.append(source_path.read_text(encoding="utf-8"))
+    return tuple(texts)
 
 
 def _judge_metadata_integrity(

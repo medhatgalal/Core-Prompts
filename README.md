@@ -10,7 +10,14 @@ The right mental model is simple:
 
 If you are already using Core-Prompts in a CLI, start there. If you are importing a new capability family, go to UAC next. If you are rebuilding surfaces, validating state, deploying, or preparing release work, use the repo tooling after that.
 
-The current generated surfaces ship `16` skills across all supported CLIs and `8` advisory agents on agent-capable surfaces.
+The current generated surfaces ship `19` skills across all supported CLIs and `11` advisory agents on agent-capable surfaces.
+
+For review work, pick the capability by intent:
+
+| Intent | Use | Boundary |
+| --- | --- | --- |
+| Review staged changes, a diff, or a commit before committing, pushing, merging, or releasing | `code-review` | Read-only review gate; produces findings and readiness guidance |
+| Implement selected reviewer comments from an existing PR/MR | `address-code-review` | Mutating action workflow; edits only files tied to selected review feedback |
 
 ## Installed Capabilities First
 
@@ -25,12 +32,15 @@ These are the currently shipped skills with a concrete starter ask for each one:
 | `analyze-context` | work through a broad repo investigation without losing context | "Use `analyze-context` to inspect this subsystem over several files and keep a durable analysis trail before you recommend changes." | file map, durable findings trail, unresolved questions, and a scoped change plan |
 | `architecture` | design or review interfaces, boundaries, and migration safety | "Use `architecture` to recommend the safest design for this capability layout." | options, tradeoffs, migration guidance, and a rollback-aware recommendation |
 | `autosearch` | improve a prompt, workflow, or system through experiments | "Use `autosearch` to improve our review prompt so it catches more behavioral regressions without increasing noise." | goal contract, evaluation plan, experiments, and a winner only after evidence |
-| `code-review` | review a commit for scope, message quality, and over-engineering | "Use `code-review` to review the latest commit for scope creep, risky changes, and weak commit messaging." | findings first, scope risks, commit-quality feedback, and residual questions |
+| `code-review` | review staged changes, diffs, or commits before commit, push, merge, or release | "Use `code-review` to review my staged changes before I commit." | findings first, scope risks, message-quality feedback, and merge readiness |
+| `address-code-review` | apply selected fixes for existing PR/MR reviewer comments | "Use `address-code-review` to inspect the open review comments on this MR and address the selected fixes only." | comments found, selected fixes, changes applied, commit guidance, and follow-up review |
 | `converge` | compare competing proposals and force one recommendation | "Use `converge` to compare these rollout plans and recommend one." | overlap map, explicit conflicts, decision criteria, and one final recommendation |
 | `docs-review-expert` | fix docs structure, drift, and explainability | "Use `docs-review-expert` to tell me what belongs in `README.md` versus `docs/`, what drifted, and what to fix first." | doc placement, drift findings, rewrite targets, and review timing |
 | `feature-status` | audit a feature against its stated scope and proof sources | "Use `feature-status` to compare this feature's pitch, HLD, OAS, code, and tests, then tell me what is complete, what drifted, and what is blocking ship." | evidence-backed status tables, spec drift findings, gap analysis, and prioritized recommendations |
 | `gitops-review` | judge branch, PR, merge, or release readiness | "Use `gitops-review` to tell me whether this branch is ready for PR and what blockers remain." | gate type, blockers, required companion reviews, and next actions |
+| `ic-assistant` | keep an Incident Commander on-process with generic guidance by default and internal runbook mode only on request | "Use `ic-assistant` to track this incident, identify the current phase, and tell me the next required action." | mode, current phase, next action, status-update timer, and overdue or escalation flags |
 | `mentor` | get senior sequencing and workflow guidance, including tmux-aware terminal context recovery | "Use `mentor` to tell me the next reversible move on this branch, then read my terminal if the failure is in tmux." | the next move, why it is next, what not to mix in, and direct terminal-context reads when needed |
+| `pitch` | create, review, score, or improve Shape Up pitches | "Use `pitch` to review this Shape Up pitch for appetite, risks, and betting readiness." | shaped problem, appetite fit, risks, score, and concrete improvement guidance |
 | `pulse` | triage Gmail and Google Chat noise into clear priorities | "Use `pulse` to tell me what needs my attention across Gmail and Google Chat, then propose the next actions without sending anything." | priority-classified comms table, source summary, and proposed next actions for the hot items |
 | `resolve-conflict` | analyze a merge conflict or competing edits | "Use `resolve-conflict` to compare these conflicting branch edits and tell me what should survive." | conflict map, additive merge opportunities, explicit tradeoffs, and a recommended resolution |
 | `supercharge` | harden a rough prompt, plan, or proposal before execution | "Use `supercharge` to turn this rough feature brief into an implementation plan with tradeoffs and failure modes." | sharper framing, stronger constraints, execution plan, and failure-mode coverage |
@@ -60,6 +70,9 @@ These current advisory agents are emitted by the repo and available on agent-cap
 | `mentor` | next-step guidance, risk-aware sequencing, and tmux-aware context recovery | "Use `mentor` to look at the left pane and tell me what happened before recommending the next reversible move." | pragmatic step order, scope control, risk-aware sequencing, and direct terminal-context recovery |
 | `docs-review-expert` | documentation IA, drift review, and release-facing docs checks | "Use `docs-review-expert` to review our onboarding docs for drift and weak entrypoints." | concrete doc findings and rewrite targets |
 | `gitops-review` | repo hygiene, CI, merge, and release gates | "Use `gitops-review` to judge whether we are ready to merge and release." | a go or no-go recommendation with evidence and next actions |
+| `ic-assistant` | phase-aware Incident Commander process guidance with optional internal runbook mode | "Use `ic-assistant` to track this incident and keep me on the required checklist." | mode, phase, next action, overdue items, and escalation flags |
+| `pitch` | Shape Up pitch creation, review, and scoring | "Use `pitch` to harden this pitch before betting." | pitch quality score, risks, appetite fit, and rewrite guidance |
+| `pulse` | Gmail and Google Chat triage | "Use `pulse` to triage what needs my attention and propose next actions without sending anything." | prioritized comms, source summaries, and proposed actions |
 | `autosearch` | experiment-driven improvement loops | "Use `autosearch` to improve this workflow and prove which variant wins." | bounded experiments, evaluation, and promotion guidance |
 | `supercharge` | plan or prompt hardening before execution | "Use `supercharge` to tighten this operating prompt before we ship it." | stronger prompt structure and clearer failure handling |
 | `converge` | synthesis across competing proposals | "Use `converge` to synthesize these competing proposals into one decision." | overlap map, decision logic, and one coherent recommendation |

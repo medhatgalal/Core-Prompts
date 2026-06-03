@@ -16,6 +16,9 @@ If Core-Prompts is already installed in Codex, Gemini, Claude, or Kiro, begin wi
 | --- | --- | --- |
 | `docs-review-expert` | "Use `docs-review-expert` to review our docs IA and recommend the smallest rewrite that restores clarity." | placement decisions, drift findings, and rewrite guidance |
 | `gitops-review` | "Use `gitops-review` to tell me whether this branch is ready for PR and what blockers remain." | gate type, blockers, companion reviews, and next steps |
+| `code-review` | "Use `code-review` to review my staged changes before I commit." | findings, scope assessment, message guidance, and merge readiness |
+| `address-code-review` | "Use `address-code-review` to inspect the open MR comments and apply only the selected reviewer-requested fixes." | comments found, targeted fixes, changed files, commit guidance, and follow-up review |
+| `ic-assistant` | "Use `ic-assistant` to track this active incident and tell me the current phase, overdue items, and next required action." | mode, phase, next action, status-update timer, and escalation flags |
 | `supercharge` | "Use `supercharge` to make this feature brief execution-ready." | stronger framing, constraints, and sequencing |
 | `autosearch` | "Use `autosearch` to improve our review prompt so it catches more regressions without increasing noise." | experiment design, evaluation, and a validated winner |
 | `testing` | "Use `testing` to identify the edge cases and tests this change needs." | prioritized tests and missing edge cases |
@@ -27,6 +30,7 @@ If you want an advisory agent rather than a direct skill invocation, start with:
 | `mentor` | "Use `mentor` to tell me the next reversible move on this repo, or look at the left pane and review the error if I am in tmux." | sequencing, scope control, and tmux-aware terminal context recovery |
 | `docs-review-expert` | "Use `docs-review-expert` to review our onboarding docs for drift before release." | structured documentation review |
 | `gitops-review` | "Use `gitops-review` to judge whether we are ready to merge and release." | a merge or release gate |
+| `ic-assistant` | "Use `ic-assistant` to keep the incident process on-track and flag the next required action." | generic phase-aware guidance, with internal runbook mode only on request |
 | `weekly-intel` | "Use `weekly-intel` to produce this week's update from our source set." | a multi-source status summary |
 
 ## Step 2: Use UAC When You Are Landing New Capability Source

@@ -357,6 +357,8 @@ def derive_historical_baseline(
 def evaluate_candidate_against_baseline(
     candidate_text: str,
     baseline: BaselineContext,
+    *,
+    preserved_resource_texts: Sequence[str] = (),
 ) -> dict[str, object]:
     candidate_richness = historical_richness_score(candidate_text)
     candidate_lines = len(candidate_text.splitlines())
@@ -365,6 +367,10 @@ def evaluate_candidate_against_baseline(
     scenarios = evaluate_scenarios(candidate_text, baseline.scenario_matrix, baseline.operator_invariants)
     hard_failures: list[str] = []
     candidate_findings = baseline_artifact_findings(candidate_text)
+    baseline_preserved_in_resource = bool(
+        baseline.baseline_text
+        and any(resource_text == baseline.baseline_text for resource_text in preserved_resource_texts)
+    )
 
     scenario_failures = [scenario for scenario in scenarios if not scenario["passed"]]
     if scenario_failures:
@@ -384,11 +390,17 @@ def evaluate_candidate_against_baseline(
         hard_failures.append(
             f"candidate operational signal coverage regressed from {baseline_operational_score} to {candidate_operational_score}"
         )
-    if baseline.line_count and candidate_lines < max(80, int(baseline.line_count * 0.5)):
+    if (
+        baseline.line_count
+        and candidate_lines < max(80, int(baseline.line_count * 0.5))
+        and not baseline_preserved_in_resource
+    ):
         hard_failures.append(
             f"candidate body is materially thinner than the baseline ({candidate_lines} lines vs {baseline.line_count})"
         )
-    if baseline.baseline_text and baseline.baseline_text != candidate_text and candidate_richness > baseline.richness_score and not scenario_failures:
+    if baseline_preserved_in_resource and not scenario_failures:
+        classification = "preserved_via_resource"
+    elif baseline.baseline_text and baseline.baseline_text != candidate_text and candidate_richness > baseline.richness_score and not scenario_failures:
         classification = "additive"
     elif baseline.baseline_text and baseline.baseline_text == candidate_text:
         classification = "preserved"
@@ -412,6 +424,7 @@ def evaluate_candidate_against_baseline(
         "candidate_operational_score": candidate_operational_score,
         "baseline_operational_score": baseline_operational_score,
         "candidate_findings": list(candidate_findings),
+        "baseline_preserved_in_resource": baseline_preserved_in_resource,
         "scenario_results": scenarios,
         "hard_failures": hard_failures,
         "score": score,

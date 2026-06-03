@@ -4,14 +4,15 @@
   "layers": {
     "minimal": {
       "capability_type": "skill",
-      "summary": "Commit Review for git commit quality gates, scope control, and over-engineering detection.",
+      "summary": "Review staged changes, diffs, or commits before commit, push, merge, or release. Use for findings, scope control, message quality, over-engineering detection, and merge readiness. Do not use to apply reviewer-requested fixes; use address-code-review for that action workflow.",
       "role": "analyst",
       "domain_tags": [
         "review",
+        "prompting",
         "code"
       ],
       "required_inputs": [
-        "commit hash, staged diff, or the default target of `HEAD`",
+        "commit hash, staged diff, working-tree diff, branch diff, or the default target of `HEAD`",
         "repository context when the commit depends on surrounding conventions",
         "any specific review focus such as scope, message quality, or simplicity"
       ],
@@ -149,6 +150,8 @@
   "rubric_version": "capability-fabric.v0",
   "invocation_hints": [
     "review the latest commit",
+    "review my staged changes before I commit",
+    "review this diff before I push",
     "check whether this diff is too broad",
     "judge whether AI-generated changes are over-engineered",
     "tell me if this commit message and change scope are strong enough to merge"
