@@ -54,9 +54,13 @@ Do not call the repo release-green until the hosted CI surface is green after pu
 - GitHub Actions:
   - runs on pushes to `main` and `AI/**`
   - runs on `pull_request`
+  - refreshes external CLI schema/docs references as a non-blocking drift signal
+  - validates generated repo surfaces with strict local checks while skipping live schema cache enforcement
 - GitLab CI:
   - runs on branch pushes
   - runs on merge request pipelines
+
+Local release gates retain `bin/capability-fabric validate --strict`, including schema cache checks, so transient hosted network or vendor-doc failures do not mask local schema drift review.
 
 ## Recommended Release Order
 1. run the local release gate

@@ -12,7 +12,8 @@ def test_uac_wrapper_explain_runs() -> None:
 
 
 def test_capability_fabric_wrapper_validate_runs() -> None:
-    # Keep test parity with CI which refreshes schema cache before strict validation.
+    # Keep the wrapper exercising schema cache locally; hosted CI validates repo
+    # surfaces separately from volatile live-doc cache state.
     subprocess.run([str(ROOT / 'scripts' / 'sync-surface-specs.py'), '--refresh'], cwd=ROOT, check=True)
     result = subprocess.run([str(ROOT / 'bin' / 'capability-fabric'), 'validate', '--strict'], cwd=ROOT, capture_output=True, text=True, check=True)
     assert 'Validation passed.' in result.stdout
