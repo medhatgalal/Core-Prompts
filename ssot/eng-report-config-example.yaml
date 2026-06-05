@@ -1,0 +1,471 @@
+# eng-report configuration
+# Edit directly or run: eng-report configure
+# Run: eng-report sync-authors  — to refresh author lists from Home MCP
+# Total reports per run: ~32
+
+drive:
+  folder: "@Reference/Engineering-Reports"
+  notify:
+    chat_space: ""
+    email: "scott.parrish@appian.com"
+
+local:
+  sync_path: "~/repo/eng-reports"
+  window: "1 week ago"   # default: "1 week ago", "2 weeks ago", "30 days ago", "YYYY-MM-DD"
+
+repos:
+  # ════════════════════════════════════════════════════════════════════════════
+  # STANDALONE REPOS
+  # ════════════════════════════════════════════════════════════════════════════
+
+  - name: EngOS
+    path: ~/repo/EngOS
+
+  - name: Composer
+    path: ~/repo/composer
+
+  - name: AIPlatform-repo
+    path: ~/repo/ai-platform
+
+  - name: AgentContinuousLearning-repo
+    path: ~/repo/agent-continuous-learning
+
+  - name: LCP-MCP-Server
+    path: ~/repo/lcp-mcp-server-service
+
+  - name: UI-Library
+    path: ~/repo/ui-library
+
+  # ════════════════════════════════════════════════════════════════════════════
+  # AUTOMATION SBU — ROLL-UP (all 5 tribes combined)
+  # ════════════════════════════════════════════════════════════════════════════
+
+  - name: Automation-SBU
+    path: ~/repo/ae
+    scope:
+      business_unit: "Automation"
+      resolved_at: "2026-06-05"
+      authors:
+        # AGENTIC AI
+        - Sahil Gupta
+        - Anup Athavale
+        - Erik Ochoa
+        - Ke Dou
+        - Patrick Lynch
+        - Alexander Lu
+        - Anna Yaksich
+        - Fred Huang
+        - Jennifer Etsuko Higa
+        - Brian Tomasco
+        # AI COPILOT
+        - Matthew Schaad
+        - Kyle Nickel
+        - Chandra Shekhar
+        - Jaganathan Rajasekaran
+        - Bryan Falkowski
+        - Joo Lee
+        - Juan Jimenez
+        - Brooks Watson
+        - Vinh Do
+        - Iyad Chishtie
+        - Arnab Sen
+        - Salem Aslam
+        - Sukanthan V
+        - Deepak Daniel
+        - Karthick Raja M
+        - Kumaran Arumugam
+        - Venkatesh Subramanian
+        - Vignesh Balachandran
+        - Kumaran B
+        - Prabhu Govindaraj
+        - Anand Jain
+        - Naveen H
+        - Yashi Thakur
+        # ENTERPRISE AUTOMATION
+        - Kui Wang
+        - Chema Fernandez
+        - Alejandro Roldán
+        - Zenobia Liendo
+        - Emilio Cano Renteria
+        - Madelyn Khoury
+        - Youssef Errami
+        - Ricky Sciotti
+        - Mary Redpath
+        - Alejandro Santiago
+        - José Antonio Pozo
+        - Daniel Sojo
+        - Juan Caballero
+        - Olmo Chiara
+        - Eliseo Martin Cid
+        - Javier Viera
+        - Luis Duran
+        - Alfonso Gotor
+        - Jose Antonio Sanchez Pozo
+        - Miguel Aguirre
+        # SMART SEARCH
+        - Bryan Koo
+        - John Irby
+        - Alex Druckenbrod
+        - Luka Jelenak
+        # AI PLATFORM
+        - Roberto Bisteni
+        - Noah Denier
+        - Brian Mitchell
+        - Zack Johnson
+        - Nihaar Narayan
+        - Ethan Pedoeim
+        - Sean Fleming
+        - Connor Aylett
+        - Akhilesh Patel
+        - Alexander Schmidt
+        - Jacob Rice
+        - Ben Kaiser
+        - Coby Lu
+
+  # ════════════════════════════════════════════════════════════════════════════
+  # TRIBE / GROUP LEVEL REPORTS (ae monorepo, scoped by tribe)
+  # ════════════════════════════════════════════════════════════════════════════
+
+  - name: AgenticAI-tribe
+    path: ~/repo/ae
+    scope:
+      business_unit: "Automation"
+      tribe: "AGENTIC AI"
+      resolved_at: "2026-06-05"
+      authors:
+        - Sahil Gupta
+        - Anup Athavale
+        - Erik Ochoa
+        - Ke Dou
+        - Patrick Lynch
+        - Alexander Lu
+        - Anna Yaksich
+        - Fred Huang
+        - Jennifer Etsuko Higa
+        - Brian Tomasco
+
+  - name: AICopilot-tribe
+    path: ~/repo/ae
+    scope:
+      business_unit: "Automation"
+      tribe: "AI COPILOT"
+      resolved_at: "2026-06-05"
+      authors:
+        - Matthew Schaad
+        - Kyle Nickel
+        - Chandra Shekhar
+        - Jaganathan Rajasekaran
+        - Bryan Falkowski
+        - Joo Lee
+        - Juan Jimenez
+        - Brooks Watson
+        - Vinh Do
+        - Iyad Chishtie
+        - Arnab Sen
+        - Salem Aslam
+        - Sukanthan V
+        - Deepak Daniel
+        - Karthick Raja M
+        - Kumaran Arumugam
+        - Venkatesh Subramanian
+        - Vignesh Balachandran
+        - Kumaran B
+        - Prabhu Govindaraj
+        - Anand Jain
+        - Naveen H
+        - Yashi Thakur
+
+  - name: EnterpriseAutomation-tribe
+    path: ~/repo/ae
+    scope:
+      business_unit: "Automation"
+      tribe: "ENTERPRISE AUTOMATION"
+      resolved_at: "2026-06-05"
+      authors:
+        - Kui Wang
+        - Chema Fernandez
+        - Alejandro Roldán
+        - Zenobia Liendo
+        - Emilio Cano Renteria
+        - Madelyn Khoury
+        - Youssef Errami
+        - Ricky Sciotti
+        - Mary Redpath
+        - Alejandro Santiago
+        - José Antonio Pozo
+        - Daniel Sojo
+        - Juan Caballero
+        - Olmo Chiara
+        - Eliseo Martin Cid
+        - Javier Viera
+        - Luis Duran
+        - Alfonso Gotor
+        - Jose Antonio Sanchez Pozo
+        - Miguel Aguirre
+
+  - name: SmartSearch-tribe
+    path: ~/repo/ae
+    scope:
+      business_unit: "Automation"
+      tribe: "SMART SEARCH"
+      resolved_at: "2026-06-05"
+      authors:
+        - Kyle Nickel
+        - Bryan Koo
+        - John Irby
+        - Alex Druckenbrod
+        - Luka Jelenak
+
+  - name: AIPlatform-tribe
+    path: ~/repo/ae
+    scope:
+      business_unit: "Automation"
+      tribe: "AI PLATFORM"
+      resolved_at: "2026-06-05"
+      authors:
+        - Roberto Bisteni
+        - Noah Denier
+        - Brian Mitchell
+        - Zack Johnson
+        - Nihaar Narayan
+        - Ethan Pedoeim
+        - Sean Fleming
+        - Connor Aylett
+        - Akhilesh Patel
+        - Alexander Schmidt
+        - Jacob Rice
+        - Ben Kaiser
+        - Coby Lu
+
+  # ════════════════════════════════════════════════════════════════════════════
+  # TEAM LEVEL REPORTS (ae monorepo, scoped by team)
+  # ════════════════════════════════════════════════════════════════════════════
+
+  # ── AGENTIC AI teams ────────────────────────────────────────────────────────
+
+  - name: AppianDesignedAgents
+    path: ~/repo/ae
+    scope:
+      tribe: "AGENTIC AI"
+      team: "Appian Designed Agents"
+      resolved_at: "2026-06-05"
+      authors:
+        - Anup Athavale
+        - Ke Dou
+        - Patrick Lynch
+        - Jennifer Etsuko Higa
+
+  - name: AgentStudioEnablingTeam
+    path: ~/repo/ae
+    scope:
+      tribe: "AGENTIC AI"
+      team: "Agent Studio Enabling Team"
+      resolved_at: "2026-06-05"
+      authors:
+        - Alexander Lu
+        - Anna Yaksich
+        - Fred Huang
+        - Brian Tomasco
+
+  - name: ADA-ContinuousLearning
+    path: ~/repo/ae
+    scope:
+      tribe: "AGENTIC AI"
+      team: "ADA Continuous Learning"
+      resolved_at: "2026-06-05"
+      authors:
+        - Erik Ochoa
+
+  # ── AI COPILOT teams ─────────────────────────────────────────────────────────
+
+  - name: AICopilot-StreamAligned
+    path: ~/repo/ae
+    scope:
+      tribe: "AI COPILOT"
+      team: "AI Copilot Stream-Aligned Team"
+      resolved_at: "2026-06-05"
+      authors:
+        - Jaganathan Rajasekaran
+        - Arnab Sen
+        - Salem Aslam
+        - Sukanthan V
+        - Karthick Raja M
+        - Venkatesh Subramanian
+        - Vignesh Balachandran
+        - Kumaran B
+        - Anand Jain
+        - Naveen H
+        - Yashi Thakur
+
+  - name: DevAgentAPI
+    path: ~/repo/ae
+    scope:
+      tribe: "AI COPILOT"
+      team: "Dev Agent API"
+      resolved_at: "2026-06-05"
+      authors:
+        - Juan Jimenez
+        - Brooks Watson
+
+  - name: RequirementsAPI
+    path: ~/repo/ae
+    scope:
+      tribe: "AI COPILOT"
+      team: "Requirements API"
+      resolved_at: "2026-06-05"
+      authors:
+        - Chandra Shekhar
+        - Deepak Daniel
+        - Prabhu Govindaraj
+
+  - name: DesignAPI
+    path: ~/repo/ae
+    scope:
+      tribe: "AI COPILOT"
+      team: "Design API"
+      resolved_at: "2026-06-05"
+      authors:
+        - Kumaran Arumugam
+
+  - name: ComposerLCPAPI-Enabling
+    path: ~/repo/ae
+    scope:
+      tribe: "AI COPILOT"
+      team: "Composer LCP API Enabling Team"
+      resolved_at: "2026-06-05"
+      authors:
+        - Vinh Do
+        - Iyad Chishtie
+
+  - name: AIC-Infrastructure
+    path: ~/repo/ae
+    scope:
+      tribe: "AI COPILOT"
+      team: "AIC Infrastructure (Enabling)"
+      resolved_at: "2026-06-05"
+      authors:
+        - Joo Lee
+
+  - name: EvalAndTracingAPIs
+    path: ~/repo/ae
+    scope:
+      tribe: "AI COPILOT"
+      team: "Evaluation & Tracing APIs"
+      resolved_at: "2026-06-05"
+      authors:
+        - Bryan Falkowski
+
+  # ── ENTERPRISE AUTOMATION teams ──────────────────────────────────────────────
+
+  - name: EnterpriseGradeAI
+    path: ~/repo/ae
+    scope:
+      tribe: "ENTERPRISE AUTOMATION"
+      team: "Enterprise Grade AI"
+      resolved_at: "2026-06-05"
+      authors:
+        - Emilio Cano Renteria
+        - Madelyn Khoury
+        - Youssef Errami
+        - Ricky Sciotti
+        - Mary Redpath
+        - Akhilesh Patel
+
+  - name: DocumentExtraction
+    path: ~/repo/ae
+    scope:
+      tribe: "ENTERPRISE AUTOMATION"
+      team: "Document Extraction"
+      resolved_at: "2026-06-05"
+      authors:
+        - Chema Fernandez
+        - Alejandro Santiago
+        - José Antonio Pozo
+        - Daniel Sojo
+        - Juan Caballero
+        - Olmo Chiara
+        - Eliseo Martin Cid
+
+  - name: RPA-HA
+    path: ~/repo/ae
+    scope:
+      tribe: "ENTERPRISE AUTOMATION"
+      team: "RPA HA"
+      resolved_at: "2026-06-05"
+      authors:
+        - Alejandro Roldán
+        - Javier Viera
+        - Luis Duran
+        - Alfonso Gotor
+        - Jose Antonio Sanchez Pozo
+        - Miguel Aguirre
+
+  - name: SAIL-LLM-DiscoPod
+    path: ~/repo/ae
+    scope:
+      tribe: "ENTERPRISE AUTOMATION"
+      team: "SAIL-LLM Disco Pod"
+      resolved_at: "2026-06-05"
+      authors:
+        - Zenobia Liendo
+
+  # ── SMART SEARCH teams ───────────────────────────────────────────────────────
+
+  - name: SmartSearch-StreamAligned
+    path: ~/repo/ae
+    scope:
+      tribe: "SMART SEARCH"
+      team: "Smart Search Stream Aligned Team"
+      resolved_at: "2026-06-05"
+      authors:
+        - Kyle Nickel
+        - Bryan Koo
+        - John Irby
+        - Alex Druckenbrod
+        - Luka Jelenak
+
+  # ── AI PLATFORM teams ────────────────────────────────────────────────────────
+
+  - name: AgenticServices-AIPlatform
+    path: ~/repo/ae
+    scope:
+      tribe: "AI PLATFORM"
+      team: "Agentic Services in AI Platform"
+      resolved_at: "2026-06-05"
+      authors:
+        - Roberto Bisteni
+        - Brian Mitchell
+        - Zack Johnson
+        - Nihaar Narayan
+        - Ethan Pedoeim
+        - Sean Fleming
+        - Connor Aylett
+
+  - name: AIToolsPlatform
+    path: ~/repo/ae
+    scope:
+      tribe: "AI PLATFORM"
+      team: "AI Tools Platform"
+      resolved_at: "2026-06-05"
+      authors:
+        - Noah Denier
+
+  - name: AIPlatformCoreAPIs
+    path: ~/repo/ae
+    scope:
+      tribe: "AI PLATFORM"
+      team: "AI Platform Core APIs"
+      resolved_at: "2026-06-05"
+      authors:
+        - Alexander Schmidt
+        - Jacob Rice
+        - Ben Kaiser
+
+  - name: AIPlatform-StreamAligned
+    path: ~/repo/ae
+    scope:
+      tribe: "AI PLATFORM"
+      team: "AI Platform Stream Aligned Team"
+      resolved_at: "2026-06-05"
+      authors:
+        - Coby Lu

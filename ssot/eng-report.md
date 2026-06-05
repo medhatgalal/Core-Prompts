@@ -21,13 +21,14 @@ Generate a standalone HTML engineering report for any git repository covering th
 | `sync` | Pull latest reports from Google Drive to `~/eng-reports/`. |
 | `configure` | Interactive one-time setup (Drive folder, local sync path, notify defaults) |
 | `add PATH` | Add a repo to the configured repo list |
+| `sync-authors` | Re-resolve tribe membership via Home MCP and update `authors` lists in config for all scoped repos |
 
 **Options for `run`:**
 
 | Option | Default | Description |
 |--------|---------|-------------|
 | `--repo PATH` | all configured repos | Limit to one specific repo |
-| `--since DATE` | `2 weeks ago` | Start date — accepts ISO format `YYYY-MM-DD` or relative `N weeks ago` / `N days ago` |
+| `--since DATE` | `1 week ago` | Start date — accepts ISO format `YYYY-MM-DD` or relative `N weeks ago` / `N days ago` |
 | `--drive` | false | Upload to Google Drive, then auto-sync to `~/eng-reports/` |
 | `--open` | false | Open `_index.html` (or single report) in browser after generating |
 | `--notify` | false | Send notification via Chat/email |
@@ -64,15 +65,85 @@ local:
   sync_path: "~/eng-reports"      # Local directory for synced reports
 
 repos:
+  # Whole repo — no scope filter
   - name: EngOS
     path: ~/repo/EngOS
-  - name: Composer
-    path: ~/repo/composer
+
+  # Monorepo scoped by author list (tribe-based)
+  - name: AgentStudio
+    path: ~/repo/ae
+    scope:
+      tribe: "AGENTIC AI"          # display label; authors list is the actual filter
+      authors:
+        - Angie Pham
+        - Anna Yaksich
+        - Brian Brandenburg
+        # ... full list cached here
+
+  # Monorepo scoped by subdirectory path
+  - name: ComposerPlugin
+    path: ~/repo/ae
+    scope:
+      paths:
+        - modules/composer
+        - plugins/composer-plugin
+
+  # Monorepo scoped by both path AND authors
+  - name: AgentCopilot
+    path: ~/repo/ae
+    scope:
+      tribe: "AI COPILOT"
+      paths:
+        - modules/ai-copilot
+      authors:
+        - Arnab Sen
+        - Brooks Watson
 ```
+
+**Scope rules:**
+- No `scope` block → whole repo, all authors
+- `scope.authors` → `git log --author` filter (one `--author` flag per name, OR'd together)
+- `scope.paths` → `git log -- path1 path2` filter
+- Both → both filters applied (AND logic: commits must match an author AND touch a scoped path)
+- `scope.tribe`, `scope.team`, `scope.business_unit` → display labels that drive `sync-authors` resolution; the `authors` list is the actual git filter
+
+**Org hierarchy available from Home MCP (all three levels per employee):**
+```
+business_unit  →  "Appian Foundations", "Appian Applications", etc.
+tribe          →  "TOTAL EXPERIENCE", "AGENTIC AI", "AI COPILOT", etc.
+team           →  "Theming and Beyond", "Agent Studio Enabling Team", etc.
+```
+Specify the most specific level that makes sense. `sync-authors` queries Home MCP and resolves the correct author list for whichever level is set.
+
+**`resolved_at` and staleness warning:**
+Every scoped repo entry must have `resolved_at` (set automatically by `sync-authors`). When generating a report:
+- If `since_date < resolved_at - 30 days`: add a footer warning: *"⚠ Org data resolved {resolved_at} · author list may not reflect membership during this window"*
+- If no `resolved_at`: treat as stale and always show the warning
+
+**Refreshing author lists:**
+Run `eng-report sync-authors` to re-query Home MCP and update all `authors` lists and `resolved_at` timestamps in config. Run weekly before generating reports, or whenever you know org changes have occurred.
 
 Set once with `configure`, override per-run with `--folder`, `--email`, `--chat`.
 
 ## Workflow
+
+### For `sync-authors`
+
+Re-resolves tribe/team/business_unit membership from Home MCP for all scoped repos in config.
+
+1. For each repo entry with a `scope` block that has `tribe`, `team`, or `business_unit` set:
+   a. Get all git authors active in the repo in the last 90 days: `git log --since='90 days ago' --format='%aN' | sort -u`
+   b. For each human author (skip bots: `Appian CI`, `*-ops`, `*-automation`, `root`, `hudson-*`):
+      - Call `search_tech_employees` with `isFullDetail=true` and the author's display name
+      - Extract `etbEngineeringTribe.name`, `etbEngineeringTeam.name`, `etbEngineeringTribe.businessUnit.name`
+   c. Filter to authors whose org level matches the scope:
+      - `scope.business_unit` → match `businessUnit.name`
+      - `scope.tribe` → match `etbEngineeringTribe.name`
+      - `scope.team` → match `etbEngineeringTeam.name` (most specific)
+   d. Update `scope.authors` list in config.yaml with resolved names
+   e. Set `scope.resolved_at` to today's date (`YYYY-MM-DD`)
+2. Save updated config.yaml
+3. Print summary: for each scoped repo, show old author count → new author count and any additions/removals
 
 ### For `configure`
 
@@ -97,7 +168,23 @@ Set once with `configure`, override per-run with `--folder`, `--email`, `--chat`
 
 **Pre-flight:** `cd` to the repo path. Verify it is a git repo (`git rev-parse --git-dir`). Abort with error if not.
 
-**Date window:** Compute `SINCE` from `--since` (default: `2 weeks ago`). For all `git log` commands below, pass `--since='${SINCE}'`. The calendar window length (`WINDOW_DAYS`) is always 14 for the default, or `(today - since_date)` for custom dates. This value is used as the denominator for per-day averages.
+**Date window:** Compute `SINCE` from `--since` (default: `1 week ago`). For all `git log` commands below, pass `--since='${SINCE}'`. The calendar window length (`WINDOW_DAYS`) is 7 for the default, or `(today - since_date)` for custom dates. This value is used as the denominator for per-day averages.
+
+**Scope filters:** If the repo entry has a `scope` block, build filter flags before running any git commands:
+```bash
+# scope.authors → one --author flag per name (git OR's them automatically)
+AUTHOR_FLAGS=""
+for name in "${SCOPE_AUTHORS[@]}"; do
+  AUTHOR_FLAGS="$AUTHOR_FLAGS --author=\"$name\""
+done
+
+# scope.paths → appended after -- separator on every git log call
+PATH_FILTER=""
+[ -n "${SCOPE_PATHS}" ] && PATH_FILTER="-- ${SCOPE_PATHS}"
+
+# Usage: git log --since='${SINCE}' $AUTHOR_FLAGS $PATH_FILTER
+```
+If no `scope` block, both variables are empty and all commands run unfiltered (whole repo).
 
 Run these commands against the target repo:
 
@@ -314,7 +401,7 @@ eng-report — Engineering progress report for any git repo
 COMMANDS:
   run                              Generate reports for all configured repos, open in browser
   run --repo ~/repo/EngOS         Generate for one specific repo
-  run --since 2026-05-01          Custom start date (ISO date or "N weeks ago")
+  run --since 2026-05-01          Custom start date (also: '2 weeks ago', '30 days ago') (ISO date or "N weeks ago")
   run --drive                     Generate + upload to Drive + auto-sync locally
   run --drive --open              Generate + upload + sync + open _index.html
   run --drive --folder "Q2"       Upload to a specific Drive folder
