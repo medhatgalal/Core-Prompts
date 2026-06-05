@@ -11,37 +11,38 @@ drive:
 
 local:
   sync_path: "~/repo/eng-reports"
-  window: "1 week ago"   # default: "1 week ago", "2 weeks ago", "30 days ago", "YYYY-MM-DD"
+  window: "1 week ago"
+
+# ════════════════════════════════════════════════════════════════════════════
+# STANDALONE REPOS (repo entries — single path, whole repo)
+# ════════════════════════════════════════════════════════════════════════════
 
 repos:
-  # ════════════════════════════════════════════════════════════════════════════
-  # STANDALONE REPOS
-  # ════════════════════════════════════════════════════════════════════════════
-
-  - name: EngOS
+  - name: EngOS-Repo
     path: ~/repo/EngOS
 
-  - name: Composer
+  - name: Composer-Repo
     path: ~/repo/composer
 
-  - name: AIPlatform-repo
-    path: ~/repo/ai-platform
-
-  - name: AgentContinuousLearning-repo
+  - name: AgentContinuousLearning-Repo
     path: ~/repo/agent-continuous-learning
 
-  - name: LCP-MCP-Server
+  - name: LCP-MCP-Server-Repo
     path: ~/repo/lcp-mcp-server-service
 
-  - name: UI-Library
+  - name: UI-Library-Repo
     path: ~/repo/ui-library
 
   # ════════════════════════════════════════════════════════════════════════════
-  # AUTOMATION SBU — ROLL-UP (all 5 tribes combined)
+  # AUTOMATION SBU ROLL-UP (group entry — all relevant repos, all Automation authors)
   # ════════════════════════════════════════════════════════════════════════════
 
   - name: Automation-SBU
-    path: ~/repo/ae
+    repos:
+      - ~/repo/ae
+      - ~/repo/ai-platform
+      - ~/repo/agent-continuous-learning
+      - ~/repo/lcp-mcp-server-service
     scope:
       business_unit: "Automation"
       resolved_at: "2026-06-05"
@@ -123,11 +124,12 @@ repos:
         - Coby Lu
 
   # ════════════════════════════════════════════════════════════════════════════
-  # TRIBE / GROUP LEVEL REPORTS (ae monorepo, scoped by tribe)
+  # GROUP LEVEL (group entries — ae + dedicated repos where applicable)
   # ════════════════════════════════════════════════════════════════════════════
 
-  - name: AgenticAI-tribe
-    path: ~/repo/ae
+  - name: AgenticAI-Group
+    repos:
+      - ~/repo/ae
     scope:
       business_unit: "Automation"
       tribe: "AGENTIC AI"
@@ -144,8 +146,9 @@ repos:
         - Jennifer Etsuko Higa
         - Brian Tomasco
 
-  - name: AICopilot-tribe
-    path: ~/repo/ae
+  - name: AICopilot-Group
+    repos:
+      - ~/repo/ae
     scope:
       business_unit: "Automation"
       tribe: "AI COPILOT"
@@ -175,8 +178,9 @@ repos:
         - Naveen H
         - Yashi Thakur
 
-  - name: EnterpriseAutomation-tribe
-    path: ~/repo/ae
+  - name: EnterpriseAutomation-Group
+    repos:
+      - ~/repo/ae
     scope:
       business_unit: "Automation"
       tribe: "ENTERPRISE AUTOMATION"
@@ -203,8 +207,9 @@ repos:
         - Jose Antonio Sanchez Pozo
         - Miguel Aguirre
 
-  - name: SmartSearch-tribe
-    path: ~/repo/ae
+  - name: SmartSearch-Group
+    repos:
+      - ~/repo/ae
     scope:
       business_unit: "Automation"
       tribe: "SMART SEARCH"
@@ -216,8 +221,10 @@ repos:
         - Alex Druckenbrod
         - Luka Jelenak
 
-  - name: AIPlatform-tribe
-    path: ~/repo/ae
+  - name: AIPlatform-Group
+    repos:
+      - ~/repo/ai-platform    # primary repo for this group
+      - ~/repo/ae             # secondary — some members commit here too
     scope:
       business_unit: "Automation"
       tribe: "AI PLATFORM"
@@ -238,13 +245,14 @@ repos:
         - Coby Lu
 
   # ════════════════════════════════════════════════════════════════════════════
-  # TEAM LEVEL REPORTS (ae monorepo, scoped by team)
+  # TEAM LEVEL (group entries — ae, scoped by team authors)
   # ════════════════════════════════════════════════════════════════════════════
 
   # ── AGENTIC AI teams ────────────────────────────────────────────────────────
 
-  - name: AppianDesignedAgents
-    path: ~/repo/ae
+  - name: AppianDesignedAgents-Team
+    repos:
+      - ~/repo/ae
     scope:
       tribe: "AGENTIC AI"
       team: "Appian Designed Agents"
@@ -255,8 +263,9 @@ repos:
         - Patrick Lynch
         - Jennifer Etsuko Higa
 
-  - name: AgentStudioEnablingTeam
-    path: ~/repo/ae
+  - name: AgentStudioEnabling-Team
+    repos:
+      - ~/repo/ae
     scope:
       tribe: "AGENTIC AI"
       team: "Agent Studio Enabling Team"
@@ -267,8 +276,10 @@ repos:
         - Fred Huang
         - Brian Tomasco
 
-  - name: ADA-ContinuousLearning
-    path: ~/repo/ae
+  - name: ADA-ContinuousLearning-Team
+    repos:
+      - ~/repo/ae
+      - ~/repo/agent-continuous-learning   # dedicated repo for this team's work
     scope:
       tribe: "AGENTIC AI"
       team: "ADA Continuous Learning"
@@ -278,8 +289,9 @@ repos:
 
   # ── AI COPILOT teams ─────────────────────────────────────────────────────────
 
-  - name: AICopilot-StreamAligned
-    path: ~/repo/ae
+  - name: AICopilot-StreamAligned-Team
+    repos:
+      - ~/repo/ae
     scope:
       tribe: "AI COPILOT"
       team: "AI Copilot Stream-Aligned Team"
@@ -297,8 +309,9 @@ repos:
         - Naveen H
         - Yashi Thakur
 
-  - name: DevAgentAPI
-    path: ~/repo/ae
+  - name: DevAgentAPI-Team
+    repos:
+      - ~/repo/ae
     scope:
       tribe: "AI COPILOT"
       team: "Dev Agent API"
@@ -307,8 +320,9 @@ repos:
         - Juan Jimenez
         - Brooks Watson
 
-  - name: RequirementsAPI
-    path: ~/repo/ae
+  - name: RequirementsAPI-Team
+    repos:
+      - ~/repo/ae
     scope:
       tribe: "AI COPILOT"
       team: "Requirements API"
@@ -318,8 +332,9 @@ repos:
         - Deepak Daniel
         - Prabhu Govindaraj
 
-  - name: DesignAPI
-    path: ~/repo/ae
+  - name: DesignAPI-Team
+    repos:
+      - ~/repo/ae
     scope:
       tribe: "AI COPILOT"
       team: "Design API"
@@ -327,8 +342,9 @@ repos:
       authors:
         - Kumaran Arumugam
 
-  - name: ComposerLCPAPI-Enabling
-    path: ~/repo/ae
+  - name: ComposerLCPAPI-Enabling-Team
+    repos:
+      - ~/repo/ae
     scope:
       tribe: "AI COPILOT"
       team: "Composer LCP API Enabling Team"
@@ -337,8 +353,9 @@ repos:
         - Vinh Do
         - Iyad Chishtie
 
-  - name: AIC-Infrastructure
-    path: ~/repo/ae
+  - name: AIC-Infrastructure-Team
+    repos:
+      - ~/repo/ae
     scope:
       tribe: "AI COPILOT"
       team: "AIC Infrastructure (Enabling)"
@@ -346,8 +363,9 @@ repos:
       authors:
         - Joo Lee
 
-  - name: EvalAndTracingAPIs
-    path: ~/repo/ae
+  - name: EvalAndTracingAPIs-Team
+    repos:
+      - ~/repo/ae
     scope:
       tribe: "AI COPILOT"
       team: "Evaluation & Tracing APIs"
@@ -357,8 +375,9 @@ repos:
 
   # ── ENTERPRISE AUTOMATION teams ──────────────────────────────────────────────
 
-  - name: EnterpriseGradeAI
-    path: ~/repo/ae
+  - name: EnterpriseGradeAI-Team
+    repos:
+      - ~/repo/ae
     scope:
       tribe: "ENTERPRISE AUTOMATION"
       team: "Enterprise Grade AI"
@@ -371,8 +390,9 @@ repos:
         - Mary Redpath
         - Akhilesh Patel
 
-  - name: DocumentExtraction
-    path: ~/repo/ae
+  - name: DocumentExtraction-Team
+    repos:
+      - ~/repo/ae
     scope:
       tribe: "ENTERPRISE AUTOMATION"
       team: "Document Extraction"
@@ -386,8 +406,9 @@ repos:
         - Olmo Chiara
         - Eliseo Martin Cid
 
-  - name: RPA-HA
-    path: ~/repo/ae
+  - name: RPA-HA-Team
+    repos:
+      - ~/repo/ae
     scope:
       tribe: "ENTERPRISE AUTOMATION"
       team: "RPA HA"
@@ -400,8 +421,9 @@ repos:
         - Jose Antonio Sanchez Pozo
         - Miguel Aguirre
 
-  - name: SAIL-LLM-DiscoPod
-    path: ~/repo/ae
+  - name: SAIL-LLM-DiscoPod-Team
+    repos:
+      - ~/repo/ae
     scope:
       tribe: "ENTERPRISE AUTOMATION"
       team: "SAIL-LLM Disco Pod"
@@ -411,8 +433,9 @@ repos:
 
   # ── SMART SEARCH teams ───────────────────────────────────────────────────────
 
-  - name: SmartSearch-StreamAligned
-    path: ~/repo/ae
+  - name: SmartSearch-StreamAligned-Team
+    repos:
+      - ~/repo/ae
     scope:
       tribe: "SMART SEARCH"
       team: "Smart Search Stream Aligned Team"
@@ -426,8 +449,10 @@ repos:
 
   # ── AI PLATFORM teams ────────────────────────────────────────────────────────
 
-  - name: AgenticServices-AIPlatform
-    path: ~/repo/ae
+  - name: AgenticServices-AIPlatform-Team
+    repos:
+      - ~/repo/ai-platform
+      - ~/repo/ae
     scope:
       tribe: "AI PLATFORM"
       team: "Agentic Services in AI Platform"
@@ -441,8 +466,9 @@ repos:
         - Sean Fleming
         - Connor Aylett
 
-  - name: AIToolsPlatform
-    path: ~/repo/ae
+  - name: AIToolsPlatform-Team
+    repos:
+      - ~/repo/ai-platform
     scope:
       tribe: "AI PLATFORM"
       team: "AI Tools Platform"
@@ -450,8 +476,9 @@ repos:
       authors:
         - Noah Denier
 
-  - name: AIPlatformCoreAPIs
-    path: ~/repo/ae
+  - name: AIPlatformCoreAPIs-Team
+    repos:
+      - ~/repo/ai-platform
     scope:
       tribe: "AI PLATFORM"
       team: "AI Platform Core APIs"
@@ -461,8 +488,9 @@ repos:
         - Jacob Rice
         - Ben Kaiser
 
-  - name: AIPlatform-StreamAligned
-    path: ~/repo/ae
+  - name: AIPlatform-StreamAligned-Team
+    repos:
+      - ~/repo/ai-platform
     scope:
       tribe: "AI PLATFORM"
       team: "AI Platform Stream Aligned Team"

@@ -4,6 +4,18 @@ description: "Engineering progress report for any git repo. Generates a standalo
 ---
 # Engineering Progress Report
 
+## Dependencies
+
+| Command | Requires |
+|---------|---------|
+| `run` | `git` only — no external dependencies |
+| `sync` | `gws-drive` skill (Google Drive access) |
+| `sync-authors` | Appian Home MCP server (`search_tech_employees` tool) |
+| `configure` | None |
+| `add` | None |
+
+`sync-authors` is the only command that requires Home MCP. It is optional — author lists can be maintained manually in `config.yaml` if Home MCP is unavailable.
+
 ## Purpose
 Generate a standalone HTML engineering report for any git repository covering the last 2 weeks (or a custom date range). Supports single-repo and fleet (multi-repo) modes. Reports can be saved locally, uploaded to Google Drive in dated directories, and announced via Google Chat or email.
 
@@ -21,7 +33,7 @@ Generate a standalone HTML engineering report for any git repository covering th
 | `sync` | Pull latest reports from Google Drive to `~/eng-reports/`. |
 | `configure` | Interactive one-time setup (Drive folder, local sync path, notify defaults) |
 | `add PATH` | Add a repo to the configured repo list |
-| `sync-authors` | Re-resolve tribe membership via Home MCP and update `authors` lists in config for all scoped repos |
+| `sync-authors` | Re-resolve group membership via Home MCP and update `authors` lists in config for all scoped repos |
 
 **Options for `run`:**
 
@@ -54,74 +66,76 @@ Generate a standalone HTML engineering report for any git repository covering th
 
 Config lives at `~/.kiro/skills/eng-report/config.yaml`.
 
+There are two types of entries: **repo entries** (single repo) and **group entries** (multiple repos, aggregated).
+
 ```yaml
 drive:
-  folder: "Engineering Reports"   # Google Drive folder name or ID
+  folder: "Engineering Reports"
   notify:
-    chat_space: "spaces/AAAAaUiTeeQ"   # Google Chat space (optional)
-    email: "you@company.com"           # Email address (optional)
+    chat_space: ""
+    email: "you@company.com"
 
 local:
-  sync_path: "~/eng-reports"      # Local directory for synced reports
+  sync_path: "~/eng-reports"
+  window: "1 week ago"
 
 repos:
-  # Whole repo — no scope filter
+  # ── Repo entry: single repo, optional author/path scope ──────────────────
   - name: EngOS
-    path: ~/repo/EngOS
+    path: ~/repo/EngOS          # single path
 
-  # Monorepo scoped by author list (tribe-based)
-  - name: AgentStudio
-    path: ~/repo/ae
+  - name: AIPlatform-repo
+    path: ~/repo/ai-platform    # whole repo, no scope
+
+  # ── Group entry: multiple repos, same author filter, aggregated ──────────
+  - name: AIPlatform
+    repos:                       # list of repos to query
+      - ~/repo/ai-platform
+      - ~/repo/ae
     scope:
-      tribe: "AGENTIC AI"          # display label; authors list is the actual filter
+      business_unit: "Automation"
+      tribe: "AI PLATFORM"
+      resolved_at: "2026-06-05"
       authors:
-        - Angie Pham
-        - Anna Yaksich
-        - Brian Brandenburg
-        # ... full list cached here
+        - Ben Kaiser
+        - Roberto Bisteni
+        # ...
 
-  # Monorepo scoped by subdirectory path
-  - name: ComposerPlugin
-    path: ~/repo/ae
+  - name: Automation-SBU
+    repos:
+      - ~/repo/ae
+      - ~/repo/ai-platform
+      - ~/repo/agent-continuous-learning
+      - ~/repo/lcp-mcp-server-service
     scope:
-      paths:
-        - modules/composer
-        - plugins/composer-plugin
-
-  # Monorepo scoped by both path AND authors
-  - name: AgentCopilot
-    path: ~/repo/ae
-    scope:
-      tribe: "AI COPILOT"
-      paths:
-        - modules/ai-copilot
+      business_unit: "Automation"
+      resolved_at: "2026-06-05"
       authors:
-        - Arnab Sen
-        - Brooks Watson
+        - Ben Kaiser
+        # ... all Automation SBU members
 ```
 
-**Scope rules:**
-- No `scope` block → whole repo, all authors
-- `scope.authors` → `git log --author` filter (one `--author` flag per name, OR'd together)
-- `scope.paths` → `git log -- path1 path2` filter
-- Both → both filters applied (AND logic: commits must match an author AND touch a scoped path)
-- `scope.tribe`, `scope.team`, `scope.business_unit` → display labels that drive `sync-authors` resolution; the `authors` list is the actual git filter
+**Entry type rules:**
+- `path` (single string) → repo entry, one repo
+- `repos` (list) → group entry, multiple repos aggregated into one report
+- Group entries with `scope.authors` apply the same author filter to every repo in the list
+- Group entries with no `scope` aggregate all commits across all listed repos (no author filter)
 
-**Org hierarchy available from Home MCP (all three levels per employee):**
+**Scope rules (apply to both entry types):**
+- `scope.authors` → `git log --author` filter applied per repo, results aggregated
+- `scope.paths` → `git log -- path` filter (useful when group shares a subdirectory naming convention)
+- `scope.tribe`, `scope.team`, `scope.business_unit` → display labels + drive `sync-authors` resolution
+- `resolved_at` → date author list was last resolved; triggers staleness warning if window predates it by >30 days
+
+**Org hierarchy available from Home MCP:**
 ```
-business_unit  →  "Appian Foundations", "Appian Applications", etc.
-tribe          →  "TOTAL EXPERIENCE", "AGENTIC AI", "AI COPILOT", etc.
-team           →  "Theming and Beyond", "Agent Studio Enabling Team", etc.
+business_unit  →  "Automation", "Appian Foundations", etc.
+group         →  "AGENTIC AI", "AI COPILOT", "AI PLATFORM", etc.
+team           →  "Agent Studio Enabling Team", "AI Platform Core APIs", etc.
 ```
-Specify the most specific level that makes sense. `sync-authors` queries Home MCP and resolves the correct author list for whichever level is set.
 
-**`resolved_at` and staleness warning:**
-Every scoped repo entry must have `resolved_at` (set automatically by `sync-authors`). When generating a report:
-- If `since_date < resolved_at - 30 days`: add a footer warning: *"⚠ Org data resolved {resolved_at} · author list may not reflect membership during this window"*
-- If no `resolved_at`: treat as stale and always show the warning
-
-**Refreshing author lists:**
-Run `eng-report sync-authors` to re-query Home MCP and update all `authors` lists and `resolved_at` timestamps in config. Run weekly before generating reports, or whenever you know org changes have occurred.
+**`sync-authors` behavior for group entries:**
+Queries authors across ALL repos in the `repos` list (90-day window each), merges the unique set, resolves each against Home MCP, filters by the declared org level.
 
 Set once with `configure`, override per-run with `--folder`, `--email`, `--chat`.
 
@@ -129,9 +143,9 @@ Set once with `configure`, override per-run with `--folder`, `--email`, `--chat`
 
 ### For `sync-authors`
 
-Re-resolves tribe/team/business_unit membership from Home MCP for all scoped repos in config.
+Re-resolves group/team/business_unit membership from Home MCP for all scoped repos in config.
 
-1. For each repo entry with a `scope` block that has `tribe`, `team`, or `business_unit` set:
+1. For each repo entry with a `scope` block that has `tribe` (group), `team`, or `business_unit` set:
    a. Get all git authors active in the repo in the last 90 days: `git log --since='90 days ago' --format='%aN' | sort -u`
    b. For each human author (skip bots: `Appian CI`, `*-ops`, `*-automation`, `root`, `hudson-*`):
       - Call `search_tech_employees` with `isFullDetail=true` and the author's display name
@@ -163,6 +177,48 @@ Re-resolves tribe/team/business_unit membership from Home MCP for all scoped rep
 4. Confirm: "Added <name> to repo list."
 
 ### For `run` (single repo, with `--repo`)
+
+Identical to group entry processing below, but with a single repo.
+
+### For `run` — per entry processing
+
+For each config entry, determine entry type:
+- Has `path` → **repo entry**: single repo
+- Has `repos` → **group entry**: multiple repos, aggregate results
+
+#### Step 1: Gather Git Metrics
+
+**Pre-flight:** For each repo path, verify it is a git repo (`git rev-parse --git-dir`). Skip with warning if not found.
+
+**Date window:** Compute `SINCE` from `--since` (default from `local.window`, fallback `1 week ago`). `WINDOW_DAYS` = calendar days between SINCE and today.
+
+**Scope filters:**
+```bash
+AUTHOR_FLAGS=""
+for name in "${SCOPE_AUTHORS[@]}"; do
+  AUTHOR_FLAGS="$AUTHOR_FLAGS --author=\"$name\""
+done
+PATH_FILTER=""
+[ -n "${SCOPE_PATHS}" ] && PATH_FILTER="-- ${SCOPE_PATHS}"
+```
+
+**For group entries:** Run all git commands against each repo separately, then aggregate:
+- Commits: sum across all repos
+- Lines added/deleted: sum across all repos
+- MRs: sum across all repos
+- Releases: union of tags across all repos (deduplicated by tag name)
+- Commits per day: sum per calendar day across all repos
+- Top files: merge and re-sort by total churn across all repos
+- Contributors: merge and re-aggregate by author name across all repos
+- Categories: merge and re-aggregate across all repos
+
+**Per-repo breakdown table** (group entries only): after the main metrics, include a table showing each repo's individual contribution:
+
+| Repo | Commits | MRs | Net Lines | Releases |
+|------|---------|-----|-----------|----------|
+| ai-platform | 244 | 104 | +13K | 23 |
+| ae | 27 | 13 | +2.1K | 4 |
+| **Total** | **271** | **117** | **+15K** | **27** |
 
 #### Step 1: Gather Git Metrics
 
