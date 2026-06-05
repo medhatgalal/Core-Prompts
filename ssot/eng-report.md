@@ -1,0 +1,345 @@
+---
+name: "eng-report"
+description: "Engineering progress report for any git repo. Generates a standalone HTML dashboard with velocity, MRs, lines changed, release timeline, code churn, contributor breakdown, and autonomy metrics. Supports fleet mode to run across multiple repos and upload to Google Drive."
+---
+# Engineering Progress Report
+
+## Purpose
+Generate a standalone HTML engineering report for any git repository covering the last 2 weeks (or a custom date range). Supports single-repo and fleet (multi-repo) modes. Reports can be saved locally, uploaded to Google Drive in dated directories, and announced via Google Chat or email.
+
+## Usage
+
+```
+/eng-report <command> [options]
+```
+
+**Commands:**
+
+| Command | Description |
+|---------|-------------|
+| `run` | Generate reports for all configured repos (or one with `--repo`). Saves to `/tmp/YYYY-MM-DD/` locally and opens in browser. |
+| `sync` | Pull latest reports from Google Drive to `~/eng-reports/`. |
+| `configure` | Interactive one-time setup (Drive folder, local sync path, notify defaults) |
+| `add PATH` | Add a repo to the configured repo list |
+
+**Options for `run`:**
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `--repo PATH` | all configured repos | Limit to one specific repo |
+| `--since DATE` | `2 weeks ago` | Start date — accepts ISO format `YYYY-MM-DD` or relative `N weeks ago` / `N days ago` |
+| `--drive` | false | Upload to Google Drive, then auto-sync to `~/eng-reports/` |
+| `--open` | false | Open `_index.html` (or single report) in browser after generating |
+| `--notify` | false | Send notification via Chat/email |
+| `--folder NAME` | config value | Drive folder override for this run |
+| `--email ADDR` | config value | Email override for this run |
+| `--chat SPACE` | config value | Chat space override for this run |
+
+**Options for `sync`:**
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `--open` | false | Open `_index.html` in browser after syncing |
+| `--date DATE` | latest | Sync a specific date folder (`2026-05-29`) |
+| `--force` | false | Re-download all files even if already local |
+
+**Auto-sync behavior:**
+- `run --drive` → generates, uploads, automatically syncs to `~/eng-reports/YYYY-MM-DD/`
+- `run` (no `--drive`) → generates to `/tmp/YYYY-MM-DD/` only, opens each report in browser
+- `run --drive --open` → generates, uploads, syncs, opens `_index.html`
+- `sync` → explicit pull from Drive, no generation
+
+## Configuration
+
+Config lives at `~/.kiro/skills/eng-report/config.yaml`.
+
+```yaml
+drive:
+  folder: "Engineering Reports"   # Google Drive folder name or ID
+  notify:
+    chat_space: "spaces/AAAAaUiTeeQ"   # Google Chat space (optional)
+    email: "you@company.com"           # Email address (optional)
+
+local:
+  sync_path: "~/eng-reports"      # Local directory for synced reports
+
+repos:
+  - name: EngOS
+    path: ~/repo/EngOS
+  - name: Composer
+    path: ~/repo/composer
+```
+
+Set once with `configure`, override per-run with `--folder`, `--email`, `--chat`.
+
+## Workflow
+
+### For `configure`
+
+1. Read current `config.yaml` (create with defaults if missing)
+2. Ask: "What Google Drive folder should reports be saved to?" (default: Engineering Reports)
+3. Ask: "Google Chat space ID for notifications? (leave blank to skip)"
+4. Ask: "Email address for notifications? (leave blank to skip)"
+5. Ask: "Add repos to fleet? Enter paths one per line, blank to finish"
+6. Write updated `config.yaml`
+7. Confirm: "Configuration saved. Run `eng-report run --drive` to generate all reports."
+
+### For `add PATH`
+
+1. Resolve the path to absolute. Verify it contains a `.git` directory — abort with error if not a git repo.
+2. Derive the repo name from the directory basename (e.g., `/Users/x/repo/EngOS` → `EngOS`)
+3. Append to `repos:` list in `config.yaml`. If path already exists in list, skip and print "Already configured."
+4. Confirm: "Added <name> to repo list."
+
+### For `run` (single repo, with `--repo`)
+
+#### Step 1: Gather Git Metrics
+
+**Pre-flight:** `cd` to the repo path. Verify it is a git repo (`git rev-parse --git-dir`). Abort with error if not.
+
+**Date window:** Compute `SINCE` from `--since` (default: `2 weeks ago`). For all `git log` commands below, pass `--since='${SINCE}'`. The calendar window length (`WINDOW_DAYS`) is always 14 for the default, or `(today - since_date)` for custom dates. This value is used as the denominator for per-day averages.
+
+Run these commands against the target repo:
+
+```bash
+# Total commits in window (exclude merge commits from count)
+git log --since='${SINCE}' --no-merges --oneline | wc -l
+
+# Date range (first and last commit dates in window)
+git log --since='${SINCE}' --format='%ad' --date=short | sort | head -1
+git log --since='${SINCE}' --format='%ad' --date=short | sort | tail -1
+
+# Commits per day (calendar days, including zeros)
+git log --since='${SINCE}' --format='%ad' --date=short | sort | uniq -c
+
+# MRs merged (merge commits only)
+git log --since='${SINCE}' --merges --oneline | wc -l
+
+# Category breakdown — conventional commit prefixes ONLY
+# Extracts the first word before ':', '(', '!', or space from subject lines
+# Excludes pure numbers and ALL-CAPS patterns (Jira keys like LCP-123)
+git log --since='${SINCE}' --no-merges --format='%s' | grep -oP '^\w+(?=[\s(:!])' | grep -vP '^\d+$' | grep -vP '^[A-Z]{2,10}$' | sort | uniq -c | sort -rn | head -15
+
+# Lines added/deleted total (non-merge commits only)
+git log --since='${SINCE}' --no-merges --shortstat --format='' | awk '/files? changed/{ins+=$4; del+=$6} END{print "added:"ins" deleted:"del" net:"ins-del}'
+
+# Top changed files with numstat (non-merge commits only)
+git log --since='${SINCE}' --no-merges --numstat --format='' | awk 'NF==3 && $1!="-" && $3!="" {add[$3]+=$1; del[$3]+=$2} END{for(f in add) print add[f]+del[f], add[f], del[f], f}' | sort -rn | head -15
+
+# Authors/contributors
+git shortlog --since='${SINCE}' -sn --no-merges
+
+# Releases: actual git tags in window (preferred)
+# macOS-compatible date calculation
+git tag --sort=-creatordate --format='%(creatordate:short) %(refname:short)' | awk -v since="$(python3 -c "import datetime; print((datetime.date.today() - datetime.timedelta(days=${WINDOW_DAYS})).isoformat())")" '$1 >= since'
+
+# Release commits as fallback (ONLY if zero tags found above)
+git log --since='${SINCE}' --no-merges --format='%ad %s' --date=short | grep -iE '\bv[0-9]+\.[0-9]+|chore(\(.*\))?: release|bump version|release v' | head -15
+
+# EngOS repos only: autonomous slice merges (merge commits with 'engos/' branch pattern)
+git log --since='${SINCE}' --merges --format='%s' | grep -c "Merge branch 'engos/"
+```
+
+**If any git command fails** (non-zero exit, e.g., repo has no commits in window): report that metric as `0` with a note "(no data in window)" — do NOT invent a value.
+
+#### Step 2: Compute Key Metrics
+
+| Metric | Computation | Source |
+|--------|-------------|--------|
+| Total Commits | count from `git log --no-merges --oneline \| wc -l` | Step 1 output |
+| MRs Merged | count from `git log --merges --oneline \| wc -l` | Step 1 output |
+| Net Lines | additions − deletions from `--shortstat` awk output | Step 1 output |
+| Releases | tag count in window; if 0, count from version-bump grep | Step 1 output |
+| Avg Commits/Day | Total Commits ÷ WINDOW_DAYS (always use calendar days, not active days) | Computed |
+| Commits/MR avg | Total Commits ÷ MR count (show "N/A" if MR count is 0) | Computed |
+| 7th metric | see below | Computed |
+
+**7th metric selection (deterministic):**
+- If the repo contains merge commits matching `Merge branch 'engos/`: → **Agent Autonomy %** = matching merges ÷ total MRs × 100
+- Otherwise: → **Avg PR size** = abs(Net Lines) ÷ MR count (show "N/A" if MR count is 0)
+
+**⚠️ Data integrity — ABSOLUTE RULES:**
+1. **Every number in the report MUST trace to a specific git command output from Step 1.** If a git command returned no data, display 0 or "N/A" — never fabricate a number.
+2. **Releases = git tags in window OR explicit version-bump commit messages only.** Merge commits are NEVER releases. If both sources yield 0, show "0 releases".
+3. **Category breakdown uses conventional commit prefixes only.** If fewer than 3 distinct conventional prefixes exist, display a note: "Non-conventional commit style — showing raw prefix distribution" and present whatever the grep found.
+4. **Always divide by WINDOW_DAYS (calendar days) for per-day averages.** Never divide by "active days" or "business days".
+5. **Never include data from outside the `--since` window.** All metrics are bounded by the window.
+
+#### Step 3: Synthesize Insights
+
+**Constraint: Every claim must be traceable to Step 1 data.** Do not reference Jira tickets, sprint goals, or external context not present in git history.
+
+- **Executive Summary** (3–4 sentences): The arc of the period based on commit volume patterns, dominant file areas from numstat, and release cadence. Name specific directories or modules visible in the hot files list. Do not speculate on intent beyond what commit messages state.
+- **Architecture Evolution** (4–6 cards): Structural changes inferred ONLY from the top-15 changed files (numstat output). Each card: title, 1-sentence description, file paths + their add/delete counts from numstat. Do not reference files not in the numstat output.
+- **Key Themes** (4 cards): Categorize the sprint's character using evidence from: category breakdown percentages, churn distribution, contributor concentration. Each theme must cite the metric that supports it (e.g., "Stability — 38% of commits are `fix` category").
+- **Release Timeline**: Each actual version tag or version-bump commit with its date. Newest first. Description limited to what the tag name or commit message states — do not embellish.
+
+#### Step 4: Generate HTML Report
+
+Standalone HTML file, zero external dependencies (no CDN links, no `<script src=...>`, no `<link href=...>`). All CSS inline in `<style>`. All JS (if any) inline in `<script>`.
+
+**Section order (mandatory):**
+
+```
+1. Header          — repo name, date range (actual first–last commit date from Step 1), "Generated: YYYY-MM-DD HH:MM"
+2. Executive Summary — card with 4px solid green (#3fb950) left border
+3. Key Metrics Row — exactly 7 cards: Total Commits, MRs Merged, Net Lines, Releases, Avg Commits/Day, Commits/MR, 7th metric
+4. Velocity & Throughput — daily bar chart (WINDOW_DAYS bars, one per calendar day including zero-commit days) + lines added/deleted totals + MR stats
+5. Category Breakdown — horizontal bars, sorted descending by count, color-coded per mapping below
+6. Architecture Evolution — CSS grid of 4–6 cards
+7. Release Timeline — vertical list, newest first, only tags/version-bumps from Step 1
+8. Code Churn — top 10 files (from numstat), green bar for additions + red bar for deletions, counts labeled
+9. Team & Autonomy — contributor proportional bar (segmented, one segment per author) + 7th metric visualization
+10. Key Themes — 4 cards with emoji headers
+11. Footer — repo name, branch (from `git branch --show-current`), "Generated: YYYY-MM-DD HH:MM", total commits/MR counts
+```
+
+**Design tokens (use ONLY these colors):**
+```css
+--bg: #0d1117;
+--card: rgba(22,27,34,0.8);
+--border: rgba(48,54,61,0.6);
+--text: #e6edf3;
+--text-muted: #8b949e;
+--green: #3fb950;
+--blue: #58a6ff;
+--purple: #a371f7;
+--orange: #d29922;
+--red: #f85149;
+--cyan: #39d5ff;
+```
+
+**Layout:** CSS Grid for page layout, `backdrop-filter: blur(12px)` on cards, `border-radius: 12px`, `font-family: system-ui, -apple-system, sans-serif`, no external fonts.
+
+**Chart implementation rules (CSS-only, no JS charting libraries):**
+- **Daily bars:** Flex container, `align-items: flex-end`. Each bar height = `(day_commits / max_day_commits) * 100%`, minimum 2px for zero-commit days. Peak day bar uses `linear-gradient(to top, var(--orange), var(--red))`. Other bars use `var(--blue)`.
+- **Category bars:** Each bar `width: (category_count / max_category_count) * 100%`. Color mapping: `fix`/`bugfix`=blue, `feat`/`feature`=green, `refactor`=purple, `test`/`ci`/`release`=orange, `chore`/`docs`/`style`/`build`=`var(--text-muted)`. Unlisted prefixes default to `var(--cyan)`.
+- **Contributor bar:** Single horizontal bar divided into segments. Each segment width = `(author_commits / total_commits) * 100%`. Colors: cycle through blue, green, purple, orange, cyan for top 5 contributors; remainder in `var(--text-muted)`.
+- **Churn bars:** For each file, two bars side-by-side: green (additions) and red (deletions). Bar width = `(count / max_churn_count) * 100%`.
+
+**File naming:** `<RepoName>.html` (e.g., `EngOS.html`). Use the repo `name` field from config, or directory basename if no config.
+
+### For `run` (all repos, no `--repo`)
+
+1. Load `config.yaml`. Abort with error if no `repos:` configured or file missing.
+2. For each repo in order, run the single-repo generation workflow (Steps 1–4 above). If a repo path does not exist or is not a git repo, skip it and note the error in console output.
+3. Save each to `/tmp/YYYY-MM-DD/<RepoName>.html` locally (YYYY-MM-DD = today's date)
+4. Generate `_index.html` — summary page (see Index Page below). Place in same directory.
+5. If `--drive`: upload all files to Drive (see Drive Upload below), then auto-sync to `local.sync_path/YYYY-MM-DD/`
+6. If no `--drive`: reports stay in `/tmp/YYYY-MM-DD/`, open each in browser
+7. If `--open`: open `_index.html` in browser (use `open` on macOS, `xdg-open` on Linux)
+8. If `--notify`: send notification (see Notifications below)
+
+### Index Page (`_index.html`)
+
+A summary page generated whenever ≥2 repos are processed. Uses same design tokens and dark theme.
+
+**Structure:**
+- Header: "Engineering Reports — YYYY-MM-DD"
+- Cross-repo comparison table with these exact columns:
+
+| Repo | Commits | MRs | Net Lines | Releases | Top Contributor |
+|------|---------|-----|-----------|----------|-----------------|
+
+- **Data source:** Each cell comes from that repo's Step 2 computed metrics. "Top Contributor" = author with highest commit count from `git shortlog` output, formatted as "Name (N%)".
+- Each repo name is a relative hyperlink to `<RepoName>.html` (works locally and in Drive)
+- Footer: "Generated: YYYY-MM-DD HH:MM" timestamp
+
+### Drive Upload (`--drive`)
+
+Uses `gws-drive-upload` skill tools:
+
+1. Search for the top-level folder by name from config (e.g., `"Engineering Reports"`). If not found, create it.
+2. Within that folder, search for a subfolder named today's date (`YYYY-MM-DD`). If not found, create it.
+3. Upload `_index.html` first, then each `<RepoName>.html` in alphabetical order
+4. Print the Drive folder URL to console
+5. **Auto-sync**: download all uploaded files to `local.sync_path/YYYY-MM-DD/` so they're immediately browsable locally. Create the local directory if it doesn't exist.
+
+### For `sync`
+
+1. Read `local.sync_path` and `drive.folder` from config. Abort with error if either is missing.
+2. List dated subfolders in the Drive folder (pattern: `YYYY-MM-DD`)
+3. If `--date` specified: sync only that folder. If folder not found in Drive, abort with error.
+4. If no `--date`: sync the most recent dated folder (sorted lexicographically descending, take first).
+5. For each `.html` file in the folder: download to `local.sync_path/YYYY-MM-DD/<filename>`. Skip if file already exists locally AND `--force` is not set.
+6. Print: "Synced N files to ~/eng-reports/YYYY-MM-DD/"
+7. If `--open`: open `local.sync_path/YYYY-MM-DD/_index.html` in browser
+
+### Notifications (`--notify`)
+
+After fleet run completes (and Drive upload if applicable):
+
+**Google Chat** (if `chat_space` configured or `--chat` provided):
+Post exactly this format:
+```
+📊 Engineering Reports — YYYY-MM-DD
+
+N repos analyzed:
+• RepoName: X commits, Y MRs, Z releases
+[repeat for each repo]
+
+Reports saved to: <folder_name>/YYYY-MM-DD/
+[If --drive was used, append: "Drive: <folder_url>"]
+```
+Use `gws-chat-send` skill.
+
+**Email** (if `email` configured or `--email` provided):
+Send with subject "Engineering Reports — YYYY-MM-DD" and same body content as Chat message.
+Use `gws-gmail-send` skill.
+
+**If neither chat nor email is configured and `--notify` is passed:** Print warning "No notification targets configured. Use `configure` or pass --email/--chat."
+
+## Output Quality Standards
+
+A 10/10 report MUST satisfy ALL of the following. Treat each as a gate — if any fails, fix before outputting:
+
+- [ ] All 7 metric cards present with values from git commands — no placeholders, no invented values
+- [ ] Daily chart: exactly WINDOW_DAYS bars (one per calendar day), zero-commit days show as 2px bars, peak day highlighted with orange→red gradient
+- [ ] Category bars: only conventional prefixes (lowercase words before `:`, `(`, `!`). No Jira keys (e.g., `LCP-123`) appear as categories.
+- [ ] Architecture Evolution: 4–6 cards, each citing specific file paths AND their add/delete line counts from numstat output. No files referenced that are not in numstat.
+- [ ] Release timeline: only git tags or explicit version-bump commits — merge commits NEVER appear here
+- [ ] Code churn: top 10 files from numstat, green bar (additions) + red bar (deletions) with numeric labels
+- [ ] Executive summary: 3–4 sentences synthesizing patterns, NOT listing commits. References specific modules/directories visible in the data.
+- [ ] Key themes: 4 cards, each citing a specific metric (percentage, count, or ratio) as evidence
+- [ ] No individual commit SHAs anywhere in the visible report
+- [ ] Fully standalone HTML — zero `<link>`, `<script src=`, or `url()` references to external resources
+- [ ] Every number in the report is traceable to a specific git command output from Step 1
+- [ ] HTML file opens correctly in browser with no console errors
+
+## /help
+
+```
+eng-report — Engineering progress report for any git repo
+
+COMMANDS:
+  run                              Generate reports for all configured repos, open in browser
+  run --repo ~/repo/EngOS         Generate for one specific repo
+  run --since 2026-05-01          Custom start date (ISO date or "N weeks ago")
+  run --drive                     Generate + upload to Drive + auto-sync locally
+  run --drive --open              Generate + upload + sync + open _index.html
+  run --drive --folder "Q2"       Upload to a specific Drive folder
+  run --notify                    Notify via Chat/email (uses config)
+  run --notify --email a@b.com    Override notification email for this run
+  run --drive --notify            Upload + sync + notify
+
+  sync                            Pull latest reports from Drive to ~/eng-reports/
+  sync --open                     Pull + open _index.html in browser
+  sync --date 2026-05-29          Sync a specific date folder
+  sync --force                    Re-download all files
+
+  configure                       Interactive setup (Drive folder, sync path, notify, repos)
+  add ~/repo/MyRepo               Add a repo to the configured repo list
+
+LOCAL OUTPUT:
+  run (no --drive):  /tmp/YYYY-MM-DD/            temporary, opens in browser
+  run --drive:       ~/eng-reports/YYYY-MM-DD/   persistent after auto-sync
+
+DRIVE STRUCTURE:
+  Engineering Reports/
+    2026-06-05/
+      _index.html   ← summary + links to each repo report
+      EngOS.html
+      Composer.html
+
+CONFIG: ~/.kiro/skills/eng-report/config.yaml
+```
