@@ -19,25 +19,39 @@ local:
 
 repos:
   - name: EngOS-Repo
+    label: "EngOS"
     path: ~/repo/EngOS
 
   - name: Composer-Repo
+    label: "Composer"
     path: ~/repo/composer
 
   - name: AgentContinuousLearning-Repo
+    label: "Agent Continuous Learning"
     path: ~/repo/agent-continuous-learning
 
   - name: LCP-MCP-Server-Repo
+    label: "LCP MCP Server"
     path: ~/repo/lcp-mcp-server-service
 
   - name: UI-Library-Repo
+    label: "UI Library"
     path: ~/repo/ui-library
+
+  - name: AISkillDesigner-Repo
+    label: "AI Skill Designer"
+    path: ~/repo/ai-skill-designer
+
+  - name: Jidoka-Repo
+    label: "Jidoka"
+    path: ~/repo/jidoka
 
   # ════════════════════════════════════════════════════════════════════════════
   # AUTOMATION SBU ROLL-UP (group entry — all relevant repos, all Automation authors)
   # ════════════════════════════════════════════════════════════════════════════
 
   - name: Automation-SBU
+    label: "Automation SBU"
     repos:
       - ~/repo/ae
       - ~/repo/ai-platform
@@ -128,6 +142,7 @@ repos:
   # ════════════════════════════════════════════════════════════════════════════
 
   - name: AgenticAI-Group
+    label: "Agentic AI"
     repos:
       - ~/repo/ae
     scope:
@@ -147,6 +162,7 @@ repos:
         - Brian Tomasco
 
   - name: AICopilot-Group
+    label: "AI Copilot"
     repos:
       - ~/repo/ae
     scope:
@@ -179,6 +195,7 @@ repos:
         - Yashi Thakur
 
   - name: EnterpriseAutomation-Group
+    label: "Enterprise Automation"
     repos:
       - ~/repo/ae
     scope:
@@ -208,6 +225,7 @@ repos:
         - Miguel Aguirre
 
   - name: SmartSearch-Group
+    label: "Smart Search"
     repos:
       - ~/repo/ae
     scope:
@@ -222,6 +240,7 @@ repos:
         - Luka Jelenak
 
   - name: AIPlatform-Group
+    label: "AI Platform"
     repos:
       - ~/repo/ai-platform    # primary repo for this group
       - ~/repo/ae             # secondary — some members commit here too
@@ -251,6 +270,7 @@ repos:
   # ── AGENTIC AI teams ────────────────────────────────────────────────────────
 
   - name: AppianDesignedAgents-Team
+    label: "Appian Designed Agents"
     repos:
       - ~/repo/ae
     scope:
@@ -264,6 +284,7 @@ repos:
         - Jennifer Etsuko Higa
 
   - name: AgentStudioEnabling-Team
+    label: "Agent Studio Enabling"
     repos:
       - ~/repo/ae
     scope:
@@ -277,6 +298,7 @@ repos:
         - Brian Tomasco
 
   - name: ADA-ContinuousLearning-Team
+    label: "ADA Continuous Learning"
     repos:
       - ~/repo/ae
       - ~/repo/agent-continuous-learning   # dedicated repo for this team's work
@@ -290,6 +312,7 @@ repos:
   # ── AI COPILOT teams ─────────────────────────────────────────────────────────
 
   - name: AICopilot-StreamAligned-Team
+    label: "AI Copilot Stream Aligned"
     repos:
       - ~/repo/ae
     scope:
@@ -310,6 +333,7 @@ repos:
         - Yashi Thakur
 
   - name: DevAgentAPI-Team
+    label: "Dev Agent API"
     repos:
       - ~/repo/ae
     scope:
@@ -321,6 +345,7 @@ repos:
         - Brooks Watson
 
   - name: RequirementsAPI-Team
+    label: "Requirements API"
     repos:
       - ~/repo/ae
     scope:
@@ -333,6 +358,7 @@ repos:
         - Prabhu Govindaraj
 
   - name: DesignAPI-Team
+    label: "Design API"
     repos:
       - ~/repo/ae
     scope:
@@ -343,6 +369,7 @@ repos:
         - Kumaran Arumugam
 
   - name: ComposerLCPAPI-Enabling-Team
+    label: "Composer LCP API Enabling"
     repos:
       - ~/repo/ae
     scope:
@@ -354,6 +381,7 @@ repos:
         - Iyad Chishtie
 
   - name: AIC-Infrastructure-Team
+    label: "AIC Infrastructure"
     repos:
       - ~/repo/ae
     scope:
@@ -364,6 +392,7 @@ repos:
         - Joo Lee
 
   - name: EvalAndTracingAPIs-Team
+    label: "Eval and Tracing APIs"
     repos:
       - ~/repo/ae
     scope:
@@ -376,6 +405,7 @@ repos:
   # ── ENTERPRISE AUTOMATION teams ──────────────────────────────────────────────
 
   - name: EnterpriseGradeAI-Team
+    label: "Enterprise Grade AI"
     repos:
       - ~/repo/ae
     scope:
@@ -391,6 +421,7 @@ repos:
         - Akhilesh Patel
 
   - name: DocumentExtraction-Team
+    label: "Document Extraction"
     repos:
       - ~/repo/ae
     scope:
@@ -407,6 +438,7 @@ repos:
         - Eliseo Martin Cid
 
   - name: RPA-HA-Team
+    label: "RPA High Availability"
     repos:
       - ~/repo/ae
     scope:
@@ -422,6 +454,7 @@ repos:
         - Miguel Aguirre
 
   - name: SAIL-LLM-DiscoPod-Team
+    label: "SAIL LLM Discovery Pod"
     repos:
       - ~/repo/ae
     scope:
@@ -434,6 +467,7 @@ repos:
   # ── SMART SEARCH teams ───────────────────────────────────────────────────────
 
   - name: SmartSearch-StreamAligned-Team
+    label: "Smart Search Stream Aligned"
     repos:
       - ~/repo/ae
     scope:
@@ -450,6 +484,7 @@ repos:
   # ── AI PLATFORM teams ────────────────────────────────────────────────────────
 
   - name: AgenticServices-AIPlatform-Team
+    label: "Agentic Services (AI Platform)"
     repos:
       - ~/repo/ai-platform
       - ~/repo/ae
@@ -467,6 +502,7 @@ repos:
         - Connor Aylett
 
   - name: AIToolsPlatform-Team
+    label: "AI Tools Platform"
     repos:
       - ~/repo/ai-platform
     scope:
@@ -477,6 +513,7 @@ repos:
         - Noah Denier
 
   - name: AIPlatformCoreAPIs-Team
+    label: "AI Platform Core APIs"
     repos:
       - ~/repo/ai-platform
     scope:
@@ -489,6 +526,7 @@ repos:
         - Ben Kaiser
 
   - name: AIPlatform-StreamAligned-Team
+    label: "AI Platform Stream Aligned"
     repos:
       - ~/repo/ai-platform
     scope:

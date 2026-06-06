@@ -304,9 +304,19 @@ git log --since='${SINCE}' --merges --format='%s' | grep -c "Merge branch 'engos
 **⚠️ Data integrity — ABSOLUTE RULES:**
 1. **Every number in the report MUST trace to a specific git command output from Step 1.** If a git command returned no data, display 0 or "N/A" — never fabricate a number.
 2. **Releases = git tags in window OR explicit version-bump commit messages only.** Merge commits are NEVER releases. If both sources yield 0, show "0 releases".
-3. **Category breakdown uses conventional commit prefixes only.** If fewer than 3 distinct conventional prefixes exist, display a note: "Non-conventional commit style — showing raw prefix distribution" and present whatever the grep found.
+3. **Category breakdown — Jira key detection:** Count commits where the prefix matches `[A-Z]{2,10}-\d+`. If this count is >80% of total commits, treat the repo as Jira-prefixed:
+   - Show "Top Issue Keys" bar chart (top 10 keys by commit count)
+   - Add note: "Jira-prefixed repo — conventional category analysis not available"
+   - Do NOT mix Jira keys and conventional prefixes in the same chart
 4. **Always divide by WINDOW_DAYS (calendar days) for per-day averages.** Never divide by "active days" or "business days".
 5. **Never include data from outside the `--since` window.** All metrics are bounded by the window.
+
+**Low-activity reports (< 5 commits in window):**
+Do not generate a sparse skeleton with empty sections. Instead:
+- Show all metric cards (zeros are honest and fine)
+- Replace **Executive Summary** with **"Activity Snapshot"**: list every commit in the window (subject, author, date)
+- Replace **Architecture Evolution** and **Key Themes** with **"Recent Context"**: run `git log --oneline -10 $AUTHOR_FLAGS` WITHOUT the `--since` filter to show the last 10 commits in scope regardless of window — gives the reader context on what this team is actively working on even if this week was quiet
+- Keep code churn, contributor, and release sections if data exists; omit if empty
 
 #### Step 3: Synthesize Insights
 
