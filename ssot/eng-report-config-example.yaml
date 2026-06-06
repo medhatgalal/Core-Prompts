@@ -1,7 +1,6 @@
 # eng-report configuration
 # Edit directly or run: eng-report configure
 # Run: eng-report sync-authors  — to refresh author lists from Home MCP
-# Total reports per run: ~32
 
 drive:
   folder: "@Reference/Engineering-Reports"
@@ -14,54 +13,163 @@ local:
   window: "1 week ago"
 
 # ════════════════════════════════════════════════════════════════════════════
-# STANDALONE REPOS (repo entries — single path, whole repo)
+# STANDALONE REPOS
 # ════════════════════════════════════════════════════════════════════════════
 
 repos:
   - name: EngOS-Repo
     label: "EngOS"
     category: "Repos"
-    remote: "git@gitlab.appian-stratus.com:scott.parrish/EngOS.git"
+    remote: "git@gitlab.appian-stratus.com:medhat.galal/EngOS.git"
     path: ~/repo/EngOS
 
   - name: Composer-Repo
     label: "Composer"
     category: "Repos"
-    remote: "git@gitlab.appian-stratus.com:scott.parrish/EngOS.git"
+    remote: "git@gitlab.appian-stratus.com:appian/prod/composer.git"
     path: ~/repo/composer
 
   - name: AgentContinuousLearning-Repo
     label: "Agent Continuous Learning"
     category: "Repos"
-    remote: "git@gitlab.appian-stratus.com:scott.parrish/EngOS.git"
+    remote: "git@gitlab.appian-stratus.com:appian/prod/agent-continuous-learning.git"
     path: ~/repo/agent-continuous-learning
 
   - name: LCP-MCP-Server-Repo
     label: "LCP MCP Server"
     category: "Repos"
-    remote: "git@gitlab.appian-stratus.com:scott.parrish/EngOS.git"
+    remote: "git@gitlab.appian-stratus.com:appian/prod/lcp-mcp-server-service.git"
     path: ~/repo/lcp-mcp-server-service
 
   - name: UI-Library-Repo
     label: "UI Library"
     category: "Repos"
-    remote: "git@gitlab.appian-stratus.com:scott.parrish/EngOS.git"
+    remote: "git@gitlab.appian-stratus.com:appian/prod/ui-library.git"
     path: ~/repo/ui-library
 
   - name: AISkillDesigner-Repo
     label: "AI Skill Designer"
     category: "Repos"
-    remote: "git@gitlab.appian-stratus.com:scott.parrish/EngOS.git"
+    remote: "git@gitlab.appian-stratus.com:appian/prod/ai-skill-designer.git"
     path: ~/repo/ai-skill-designer
 
   - name: Jidoka-Repo
     label: "Jidoka"
     category: "Repos"
-    remote: "git@gitlab.appian-stratus.com:scott.parrish/EngOS.git"
+    remote: "git@github.com:appian/jidoka.git"
     path: ~/repo/jidoka
 
+  - name: AE-Repo
+    label: "AE (Automation)"
+    category: "Repos"
+    remote: "git@github.com:appian/ae.git"
+    path: ~/repo/ae
+    scope:
+      business_unit: "Automation"
+      resolved_at: "2026-06-06"
+      authors:
+        - Abinaya Nagarajan
+        - Akhilesh Patel
+        - Alejandro Roldán
+        - Alejandro Santiago
+        - Aleksi White
+        - Alex Druckenbrod
+        - Alexander Lu
+        - Alexander Schmidt
+        - Alfonso Gotor
+        - Alfredo Bazo
+        - Anand Jain
+        - Angie Pham
+        - Anna Yaksich
+        - Anup Athavale
+        - Aravinda Manickam
+        - Arnab Sen
+        - Ben Kaiser
+        - Brett Offutt
+        - Brian Brandenburg
+        - Brian Mitchell
+        - Brian Tomasco
+        - Brooks Watson
+        - Bryan Falkowski
+        - Bryan Koo
+        - Carlos Aguayo
+        - Chandra Shekhar
+        - Chema Fernandez
+        - Coby Lu
+        - Connor Aylett
+        - Daniel Cornejo Torrejón
+        - Daniel Sojo
+        - David Catalán Magro
+        - David Montemayor
+        - Deepak Daniel
+        - Drew Kidwell
+        - Eliseo Martin Cid
+        - Emilio Cano Renteria
+        - Erik Ochoa
+        - Ethan Pedoeim
+        - Fred Huang
+        - Iyad Chishtie
+        - Jacob Rice
+        - Jaganathan Rajasekaran
+        - Javier Viera
+        - Jennifer Etsuko Higa
+        - John Irby
+        - Johnathan Le
+        - Joo Lee
+        - Jordan McCollough
+        - Jose Antonio Sanchez Pozo
+        - José Antonio Pozo
+        - Juan Caballero
+        - Juan Jimenez
+        - Juan Villarreal
+        - Justin Ingram
+        - Karthick Raja M
+        - Ke Dou
+        - Keenan Alchaar
+        - Kris Huynh
+        - Kristel Yu
+        - Kui Wang
+        - Kumaran Arumugam
+        - Kumaran B
+        - Kyle Nickel
+        - Luis Duran
+        - Luka Jelenak
+        - Madelyn Khoury
+        - Mary Redpath
+        - Matthew Goldberg
+        - Matthew Schaad
+        - Max Harper
+        - Miguel Aguirre
+        - Naveen H
+        - Nihaar Narayan
+        - Noah Denier
+        - Olmo Chiara
+        - Patrick Lynch
+        - Philip Levy
+        - Prabhu Govindaraj
+        - Raul Munozpacheco
+        - Ricky Sciotti
+        - Roberto Bisteni
+        - Sahil Gupta
+        - Salem Aslam
+        - Samreen Adil
+        - Sean Fleming
+        - Sprina Wu
+        - Sukanthan V
+        - Tom Klancer
+        - Uzair Reaz
+        - Venkatesh Subramanian
+        - Vignesh Balachandran
+        - Vinh Do
+        - Wei Smith
+        - Yashi Thakur
+        - Youssef Errami
+        - Zack Johnson
+        - Zenobia Liendo
+        - Álvaro Navío
+
   # ════════════════════════════════════════════════════════════════════════════
-  # AUTOMATION SBU ROLL-UP (group entry — all relevant repos, all Automation authors)
+  # SBU LEVEL
   # ════════════════════════════════════════════════════════════════════════════
 
   - name: Automation-SBU
@@ -74,86 +182,110 @@ repos:
       - ~/repo/lcp-mcp-server-service
     scope:
       business_unit: "Automation"
-      resolved_at: "2026-06-05"
+      resolved_at: "2026-06-06"
       authors:
-        # AGENTIC AI
-        - Sahil Gupta
-        - Anup Athavale
-        - Erik Ochoa
-        - Ke Dou
-        - Patrick Lynch
+        - Abinaya Nagarajan
+        - Akhilesh Patel
+        - Alejandro Roldán
+        - Alejandro Santiago
+        - Aleksi White
+        - Alex Druckenbrod
         - Alexander Lu
+        - Alexander Schmidt
+        - Alfonso Gotor
+        - Alfredo Bazo
+        - Anand Jain
+        - Angie Pham
         - Anna Yaksich
-        - Fred Huang
-        - Jennifer Etsuko Higa
-        - Brian Tomasco
-        # AI COPILOT
-        - Matthew Schaad
-        - Kyle Nickel
-        - Chandra Shekhar
-        - Jaganathan Rajasekaran
-        - Bryan Falkowski
-        - Joo Lee
-        - Juan Jimenez
-        - Brooks Watson
-        - Vinh Do
-        - Iyad Chishtie
+        - Anup Athavale
+        - Aravinda Manickam
         - Arnab Sen
-        - Salem Aslam
-        - Sukanthan V
+        - Ben Kaiser
+        - Brett Offutt
+        - Brian Brandenburg
+        - Brian Mitchell
+        - Brian Tomasco
+        - Brooks Watson
+        - Bryan Falkowski
+        - Bryan Koo
+        - Carlos Aguayo
+        - Chandra Shekhar
+        - Chema Fernandez
+        - Coby Lu
+        - Connor Aylett
+        - Daniel Cornejo Torrejón
+        - Daniel Sojo
+        - David Catalán Magro
+        - David Montemayor
         - Deepak Daniel
+        - Drew Kidwell
+        - Eliseo Martin Cid
+        - Emilio Cano Renteria
+        - Erik Ochoa
+        - Ethan Pedoeim
+        - Fred Huang
+        - Iyad Chishtie
+        - Jacob Rice
+        - Jaganathan Rajasekaran
+        - Javier Viera
+        - Jennifer Etsuko Higa
+        - John Irby
+        - Johnathan Le
+        - Joo Lee
+        - Jordan McCollough
+        - Jose Antonio Sanchez Pozo
+        - José Antonio Pozo
+        - Juan Caballero
+        - Juan Jimenez
+        - Juan Villarreal
+        - Justin Ingram
         - Karthick Raja M
+        - Ke Dou
+        - Keenan Alchaar
+        - Kris Huynh
+        - Kristel Yu
+        - Kui Wang
         - Kumaran Arumugam
+        - Kumaran B
+        - Kyle Nickel
+        - Luis Duran
+        - Luka Jelenak
+        - Madelyn Khoury
+        - Mary Redpath
+        - Matthew Goldberg
+        - Matthew Schaad
+        - Max Harper
+        - Miguel Aguirre
+        - Naveen H
+        - Nihaar Narayan
+        - Noah Denier
+        - Olmo Chiara
+        - Patrick Lynch
+        - Philip Levy
+        - Prabhu Govindaraj
+        - Raul Munozpacheco
+        - Ricky Sciotti
+        - Roberto Bisteni
+        - Sahil Gupta
+        - Salem Aslam
+        - Samreen Adil
+        - Sean Fleming
+        - Sprina Wu
+        - Sukanthan V
+        - Tom Klancer
+        - Uzair Reaz
         - Venkatesh Subramanian
         - Vignesh Balachandran
-        - Kumaran B
-        - Prabhu Govindaraj
-        - Anand Jain
-        - Naveen H
+        - Vinh Do
+        - Wei Smith
         - Yashi Thakur
-        # ENTERPRISE AUTOMATION
-        - Kui Wang
-        - Chema Fernandez
-        - Alejandro Roldán
-        - Zenobia Liendo
-        - Emilio Cano Renteria
-        - Madelyn Khoury
         - Youssef Errami
-        - Ricky Sciotti
-        - Mary Redpath
-        - Alejandro Santiago
-        - José Antonio Pozo
-        - Daniel Sojo
-        - Juan Caballero
-        - Olmo Chiara
-        - Eliseo Martin Cid
-        - Javier Viera
-        - Luis Duran
-        - Alfonso Gotor
-        - Jose Antonio Sanchez Pozo
-        - Miguel Aguirre
-        # SMART SEARCH
-        - Bryan Koo
-        - John Irby
-        - Alex Druckenbrod
-        - Luka Jelenak
-        # AI PLATFORM
-        - Roberto Bisteni
-        - Noah Denier
-        - Brian Mitchell
         - Zack Johnson
-        - Nihaar Narayan
-        - Ethan Pedoeim
-        - Sean Fleming
-        - Connor Aylett
-        - Akhilesh Patel
-        - Alexander Schmidt
-        - Jacob Rice
-        - Ben Kaiser
-        - Coby Lu
+        - Zenobia Liendo
+        - Álvaro Navío
 
   # ════════════════════════════════════════════════════════════════════════════
-  # GROUP LEVEL (group entries — ae + dedicated repos where applicable)
+  # GROUP LEVEL
   # ════════════════════════════════════════════════════════════════════════════
 
   - name: AgenticAI-Group
@@ -161,21 +293,33 @@ repos:
     category: "Groups"
     repos:
       - ~/repo/ae
+      - ~/repo/lcp-mcp-server-service
     scope:
       business_unit: "Automation"
       tribe: "AGENTIC AI"
-      resolved_at: "2026-06-05"
+      resolved_at: "2026-06-06"
       authors:
-        - Sahil Gupta
-        - Anup Athavale
-        - Erik Ochoa
-        - Ke Dou
-        - Patrick Lynch
+        - Aleksi White
         - Alexander Lu
+        - Angie Pham
         - Anna Yaksich
+        - Anup Athavale
+        - Brett Offutt
+        - Brian Brandenburg
+        - Brian Tomasco
+        - David Montemayor
+        - Drew Kidwell
+        - Erik Ochoa
         - Fred Huang
         - Jennifer Etsuko Higa
-        - Brian Tomasco
+        - Justin Ingram
+        - Ke Dou
+        - Keenan Alchaar
+        - Kristel Yu
+        - Patrick Lynch
+        - Sahil Gupta
+        - Tom Klancer
+        - Wei Smith
 
   - name: AICopilot-Group
     label: "AI Copilot"
@@ -185,30 +329,37 @@ repos:
     scope:
       business_unit: "Automation"
       tribe: "AI COPILOT"
-      resolved_at: "2026-06-05"
+      resolved_at: "2026-06-06"
       authors:
-        - Matthew Schaad
-        - Kyle Nickel
-        - Chandra Shekhar
-        - Jaganathan Rajasekaran
-        - Bryan Falkowski
-        - Joo Lee
-        - Juan Jimenez
-        - Brooks Watson
-        - Vinh Do
-        - Iyad Chishtie
+        - Abinaya Nagarajan
+        - Anand Jain
+        - Aravinda Manickam
         - Arnab Sen
-        - Salem Aslam
-        - Sukanthan V
+        - Brooks Watson
+        - Bryan Falkowski
+        - Carlos Aguayo
+        - Chandra Shekhar
         - Deepak Daniel
+        - Iyad Chishtie
+        - Jaganathan Rajasekaran
+        - Joo Lee
+        - Jordan McCollough
+        - Juan Jimenez
         - Karthick Raja M
         - Kumaran Arumugam
+        - Kumaran B
+        - Kyle Nickel
+        - Matthew Goldberg
+        - Matthew Schaad
+        - Naveen H
+        - Philip Levy
+        - Prabhu Govindaraj
+        - Salem Aslam
+        - Sprina Wu
+        - Sukanthan V
         - Venkatesh Subramanian
         - Vignesh Balachandran
-        - Kumaran B
-        - Prabhu Govindaraj
-        - Anand Jain
-        - Naveen H
+        - Vinh Do
         - Yashi Thakur
 
   - name: EnterpriseAutomation-Group
@@ -219,28 +370,37 @@ repos:
     scope:
       business_unit: "Automation"
       tribe: "ENTERPRISE AUTOMATION"
-      resolved_at: "2026-06-05"
+      resolved_at: "2026-06-06"
       authors:
-        - Kui Wang
-        - Chema Fernandez
         - Alejandro Roldán
-        - Zenobia Liendo
-        - Emilio Cano Renteria
-        - Madelyn Khoury
-        - Youssef Errami
-        - Ricky Sciotti
-        - Mary Redpath
         - Alejandro Santiago
-        - José Antonio Pozo
-        - Daniel Sojo
-        - Juan Caballero
-        - Olmo Chiara
-        - Eliseo Martin Cid
-        - Javier Viera
-        - Luis Duran
         - Alfonso Gotor
+        - Alfredo Bazo
+        - Chema Fernandez
+        - Daniel Cornejo Torrejón
+        - Daniel Sojo
+        - David Catalán Magro
+        - Eliseo Martin Cid
+        - Emilio Cano Renteria
+        - Javier Viera
+        - Johnathan Le
         - Jose Antonio Sanchez Pozo
+        - José Antonio Pozo
+        - Juan Caballero
+        - Juan Villarreal
+        - Kris Huynh
+        - Kui Wang
+        - Luis Duran
+        - Madelyn Khoury
+        - Mary Redpath
         - Miguel Aguirre
+        - Olmo Chiara
+        - Raul Munozpacheco
+        - Ricky Sciotti
+        - Samreen Adil
+        - Youssef Errami
+        - Zenobia Liendo
+        - Álvaro Navío
 
   - name: SmartSearch-Group
     label: "Smart Search"
@@ -250,44 +410,44 @@ repos:
     scope:
       business_unit: "Automation"
       tribe: "SMART SEARCH"
-      resolved_at: "2026-06-05"
+      resolved_at: "2026-06-06"
       authors:
         - Kyle Nickel
         - Bryan Koo
         - John Irby
         - Alex Druckenbrod
         - Luka Jelenak
+        - Uzair Reaz
 
   - name: AIPlatform-Group
     label: "AI Platform"
     category: "Groups"
     repos:
-      - ~/repo/ai-platform    # primary repo for this group
-      - ~/repo/ae             # secondary — some members commit here too
+      - ~/repo/ai-platform
+      - ~/repo/ae
     scope:
       business_unit: "Automation"
       tribe: "AI PLATFORM"
-      resolved_at: "2026-06-05"
+      resolved_at: "2026-06-06"
       authors:
-        - Roberto Bisteni
-        - Noah Denier
-        - Brian Mitchell
-        - Zack Johnson
-        - Nihaar Narayan
-        - Ethan Pedoeim
-        - Sean Fleming
-        - Connor Aylett
         - Akhilesh Patel
         - Alexander Schmidt
-        - Jacob Rice
         - Ben Kaiser
+        - Brian Mitchell
         - Coby Lu
+        - Connor Aylett
+        - Ethan Pedoeim
+        - Jacob Rice
+        - Max Harper
+        - Nihaar Narayan
+        - Noah Denier
+        - Roberto Bisteni
+        - Sean Fleming
+        - Zack Johnson
 
   # ════════════════════════════════════════════════════════════════════════════
-  # TEAM LEVEL (group entries — ae, scoped by team authors)
+  # TEAM LEVEL
   # ════════════════════════════════════════════════════════════════════════════
-
-  # ── AGENTIC AI teams ────────────────────────────────────────────────────────
 
   - name: AppianDesignedAgents-Team
     label: "Appian Designed Agents"
@@ -297,12 +457,19 @@ repos:
     scope:
       tribe: "AGENTIC AI"
       team: "Appian Designed Agents"
-      resolved_at: "2026-06-05"
+      resolved_at: "2026-06-06"
       authors:
+        - Angie Pham
         - Anup Athavale
-        - Ke Dou
-        - Patrick Lynch
+        - Brett Offutt
+        - Brian Brandenburg
+        - Drew Kidwell
         - Jennifer Etsuko Higa
+        - Ke Dou
+        - Keenan Alchaar
+        - Kristel Yu
+        - Patrick Lynch
+        - Wei Smith
 
   - name: AgentStudioEnabling-Team
     label: "Agent Studio Enabling"
@@ -312,7 +479,7 @@ repos:
     scope:
       tribe: "AGENTIC AI"
       team: "Agent Studio Enabling Team"
-      resolved_at: "2026-06-05"
+      resolved_at: "2026-06-06"
       authors:
         - Alexander Lu
         - Anna Yaksich
@@ -324,15 +491,33 @@ repos:
     category: "Teams"
     repos:
       - ~/repo/ae
-      - ~/repo/agent-continuous-learning   # dedicated repo for this team's work
+      - ~/repo/agent-continuous-learning
     scope:
       tribe: "AGENTIC AI"
       team: "ADA Continuous Learning"
-      resolved_at: "2026-06-05"
+      resolved_at: "2026-06-06"
       authors:
         - Erik Ochoa
+        - Ethan Pedoeim
+        - Brian Brandenburg
+        - Matthew Goldberg
+        - Noah Denier
 
-  # ── AI COPILOT teams ─────────────────────────────────────────────────────────
+  - name: LCPEnabling-Team
+    label: "LCP Enabling"
+    category: "Teams"
+    repos:
+      - ~/repo/lcp-mcp-server-service
+      - ~/repo/ae
+    scope:
+      tribe: "AGENTIC AI"
+      team: "LCP Enabling Team"
+      resolved_at: "2026-06-06"
+      authors:
+        - Aleksi White
+        - David Montemayor
+        - Justin Ingram
+        - Tom Klancer
 
   - name: AICopilot-StreamAligned-Team
     label: "AI Copilot Stream Aligned"
@@ -342,18 +527,21 @@ repos:
     scope:
       tribe: "AI COPILOT"
       team: "AI Copilot Stream-Aligned Team"
-      resolved_at: "2026-06-05"
+      resolved_at: "2026-06-06"
       authors:
-        - Jaganathan Rajasekaran
+        - Abinaya Nagarajan
+        - Anand Jain
+        - Aravinda Manickam
         - Arnab Sen
+        - Jaganathan Rajasekaran
+        - Karthick Raja M
+        - Kumaran B
+        - Naveen H
+        - Philip Levy
         - Salem Aslam
         - Sukanthan V
-        - Karthick Raja M
         - Venkatesh Subramanian
         - Vignesh Balachandran
-        - Kumaran B
-        - Anand Jain
-        - Naveen H
         - Yashi Thakur
 
   - name: DevAgentAPI-Team
@@ -364,10 +552,11 @@ repos:
     scope:
       tribe: "AI COPILOT"
       team: "Dev Agent API"
-      resolved_at: "2026-06-05"
+      resolved_at: "2026-06-06"
       authors:
         - Juan Jimenez
         - Brooks Watson
+        - Matthew Goldberg
 
   - name: RequirementsAPI-Team
     label: "Requirements API"
@@ -377,7 +566,7 @@ repos:
     scope:
       tribe: "AI COPILOT"
       team: "Requirements API"
-      resolved_at: "2026-06-05"
+      resolved_at: "2026-06-06"
       authors:
         - Chandra Shekhar
         - Deepak Daniel
@@ -391,7 +580,7 @@ repos:
     scope:
       tribe: "AI COPILOT"
       team: "Design API"
-      resolved_at: "2026-06-05"
+      resolved_at: "2026-06-06"
       authors:
         - Kumaran Arumugam
 
@@ -400,13 +589,19 @@ repos:
     category: "Teams"
     repos:
       - ~/repo/ae
+      - ~/repo/lcp-mcp-server-service
     scope:
       tribe: "AI COPILOT"
       team: "Composer LCP API Enabling Team"
-      resolved_at: "2026-06-05"
+      resolved_at: "2026-06-06"
       authors:
         - Vinh Do
         - Iyad Chishtie
+        - Tom Klancer
+        - Aleksi White
+        - Justin Ingram
+        - Ke Dou
+        - Noah Denier
 
   - name: AIC-Infrastructure-Team
     label: "AIC Infrastructure"
@@ -416,7 +611,7 @@ repos:
     scope:
       tribe: "AI COPILOT"
       team: "AIC Infrastructure (Enabling)"
-      resolved_at: "2026-06-05"
+      resolved_at: "2026-06-06"
       authors:
         - Joo Lee
 
@@ -428,11 +623,23 @@ repos:
     scope:
       tribe: "AI COPILOT"
       team: "Evaluation & Tracing APIs"
-      resolved_at: "2026-06-05"
+      resolved_at: "2026-06-06"
       authors:
         - Bryan Falkowski
 
-  # ── ENTERPRISE AUTOMATION teams ──────────────────────────────────────────────
+  - name: EvaluationEnabling-Team
+    label: "Evaluation Enabling"
+    category: "Teams"
+    repos:
+      - ~/repo/ae
+      - ~/repo/ai-platform
+    scope:
+      tribe: "AI COPILOT"
+      team: "Evaluation (Enabling)"
+      resolved_at: "2026-06-06"
+      authors:
+        - Jordan McCollough
+        - Carlos Aguayo
 
   - name: EnterpriseGradeAI-Team
     label: "Enterprise Grade AI"
@@ -442,7 +649,7 @@ repos:
     scope:
       tribe: "ENTERPRISE AUTOMATION"
       team: "Enterprise Grade AI"
-      resolved_at: "2026-06-05"
+      resolved_at: "2026-06-06"
       authors:
         - Emilio Cano Renteria
         - Madelyn Khoury
@@ -450,6 +657,7 @@ repos:
         - Ricky Sciotti
         - Mary Redpath
         - Akhilesh Patel
+        - Kris Huynh
 
   - name: DocumentExtraction-Team
     label: "Document Extraction"
@@ -459,7 +667,7 @@ repos:
     scope:
       tribe: "ENTERPRISE AUTOMATION"
       team: "Document Extraction"
-      resolved_at: "2026-06-05"
+      resolved_at: "2026-06-06"
       authors:
         - Chema Fernandez
         - Alejandro Santiago
@@ -468,6 +676,8 @@ repos:
         - Juan Caballero
         - Olmo Chiara
         - Eliseo Martin Cid
+        - Álvaro Navío
+        - Daniel Cornejo Torrejón
 
   - name: RPA-HA-Team
     label: "RPA High Availability"
@@ -477,7 +687,7 @@ repos:
     scope:
       tribe: "ENTERPRISE AUTOMATION"
       team: "RPA HA"
-      resolved_at: "2026-06-05"
+      resolved_at: "2026-06-06"
       authors:
         - Alejandro Roldán
         - Javier Viera
@@ -485,6 +695,10 @@ repos:
         - Alfonso Gotor
         - Jose Antonio Sanchez Pozo
         - Miguel Aguirre
+        - Alfredo Bazo
+        - Juan Villarreal
+        - David Catalán Magro
+        - Raul Munozpacheco
 
   - name: SAIL-LLM-DiscoPod-Team
     label: "SAIL LLM Discovery Pod"
@@ -494,11 +708,9 @@ repos:
     scope:
       tribe: "ENTERPRISE AUTOMATION"
       team: "SAIL-LLM Disco Pod"
-      resolved_at: "2026-06-05"
+      resolved_at: "2026-06-06"
       authors:
         - Zenobia Liendo
-
-  # ── SMART SEARCH teams ───────────────────────────────────────────────────────
 
   - name: SmartSearch-StreamAligned-Team
     label: "Smart Search Stream Aligned"
@@ -508,15 +720,14 @@ repos:
     scope:
       tribe: "SMART SEARCH"
       team: "Smart Search Stream Aligned Team"
-      resolved_at: "2026-06-05"
+      resolved_at: "2026-06-06"
       authors:
         - Kyle Nickel
         - Bryan Koo
         - John Irby
         - Alex Druckenbrod
         - Luka Jelenak
-
-  # ── AI PLATFORM teams ────────────────────────────────────────────────────────
+        - Uzair Reaz
 
   - name: AgenticServices-AIPlatform-Team
     label: "Agentic Services (AI Platform)"
@@ -527,27 +738,37 @@ repos:
     scope:
       tribe: "AI PLATFORM"
       team: "Agentic Services in AI Platform"
-      resolved_at: "2026-06-05"
+      resolved_at: "2026-06-06"
       authors:
-        - Roberto Bisteni
         - Brian Mitchell
-        - Zack Johnson
-        - Nihaar Narayan
-        - Ethan Pedoeim
-        - Sean Fleming
         - Connor Aylett
+        - Ethan Pedoeim
+        - Max Harper
+        - Nihaar Narayan
+        - Roberto Bisteni
+        - Sean Fleming
+        - Zack Johnson
 
   - name: AIToolsPlatform-Team
     label: "AI Tools Platform"
     category: "Teams"
     repos:
       - ~/repo/ai-platform
+      - ~/repo/lcp-mcp-server-service
     scope:
       tribe: "AI PLATFORM"
       team: "AI Tools Platform"
-      resolved_at: "2026-06-05"
+      resolved_at: "2026-06-06"
       authors:
+        - Alexander Lu
+        - Anna Yaksich
+        - Brian Mitchell
+        - Fred Huang
+        - Nihaar Narayan
         - Noah Denier
+        - Sean Fleming
+        - Sprina Wu
+        - Zack Johnson
 
   - name: AIPlatformCoreAPIs-Team
     label: "AI Platform Core APIs"
@@ -557,7 +778,7 @@ repos:
     scope:
       tribe: "AI PLATFORM"
       team: "AI Platform Core APIs"
-      resolved_at: "2026-06-05"
+      resolved_at: "2026-06-06"
       authors:
         - Alexander Schmidt
         - Jacob Rice
@@ -571,6 +792,6 @@ repos:
     scope:
       tribe: "AI PLATFORM"
       team: "AI Platform Stream Aligned Team"
-      resolved_at: "2026-06-05"
+      resolved_at: "2026-06-06"
       authors:
         - Coby Lu

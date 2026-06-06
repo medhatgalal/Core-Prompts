@@ -130,6 +130,7 @@ def gather_repo_metrics(repo: Path, since: str, authors: list[str]) -> dict[str,
                     releases.append({"date": parts[0], "tag": parts[1]})
             except ValueError:
                 pass
+    releases = releases[:10]  # cap at 10
 
     # Recent commits in window (for commit listing section)
     commits_in_window_raw = git(repo, "log", *since_flag, "--no-merges", "--format=%ad %s", "--date=short", *af)
