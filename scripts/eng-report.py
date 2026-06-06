@@ -655,6 +655,12 @@ def _parse_simple_yaml(path: Path) -> dict:
                 in_repo_list = False
                 if stripped.startswith("path:"):
                     current_repo["path"] = stripped.split(":", 1)[1].strip()
+                elif stripped.startswith("remote:"):
+                    current_repo["remote"] = stripped.split(":", 1)[1].strip().strip('"')
+                elif stripped.startswith("label:"):
+                    current_repo["label"] = stripped.split(":", 1)[1].strip().strip('"')
+                elif stripped.startswith("category:"):
+                    current_repo["category"] = stripped.split(":", 1)[1].strip().strip('"')
                 elif stripped.startswith("repos:"):
                     current_repo.setdefault("repos", [])
                     in_repo_list = True
@@ -708,19 +714,45 @@ def _stale_warning(scope: dict, since: str) -> str | None:
 
 # ── Main ───────────────────────────────────────────────────────────────────────
 
-def run_entry(entry: dict, since: str, output_dir: Path) -> dict[str, Any]:
+def run_entry(entry: dict, since: str, output_dir: Path, author_filter: str | None = None, narrative: dict | None = None) -> dict[str, Any]:
     """Process one config entry and write its HTML file. Returns summary row."""
     name = entry.get("label", entry["name"])
     file_key = entry["name"]
     scope = entry.get("scope", {})
     authors: list[str] = scope.get("authors", [])
+    # Individual author filter overrides scope authors
+    if author_filter:
+        authors = [author_filter]
+        entry = {**entry, "label": author_filter, "name": entry["name"] + f"-{author_filter.replace(' ','-')}"}
 
-    # Resolve repo paths
+    # Resolve repo paths (with remote bare-clone fallback)
+    def resolve_repo_path(p: str, remote: str | None = None) -> Path:
+        local = Path(p).expanduser()
+        if local.exists():
+            return local
+        if not remote:
+            return local  # will trigger "not found" warning below
+        cache_dir = Path.home() / ".eng-report-cache"
+        cache_dir.mkdir(exist_ok=True)
+        bare = cache_dir / (local.name + ".git")
+        if not bare.exists():
+            print(f"  → cloning bare repo to {bare}", file=sys.stderr)
+            subprocess.run(["git", "clone", "--bare", "--depth=90", remote, str(bare)],
+                           check=True, capture_output=True)
+        else:
+            print(f"  → fetching {bare}", file=sys.stderr)
+            subprocess.run(["git", "-C", str(bare), "fetch", "--depth=90"],
+                           check=False, capture_output=True)
+        return bare
+
+    remote = entry.get("remote")
     if "path" in entry:
-        repo_paths = [Path(entry["path"]).expanduser()]
+        repo_paths = [resolve_repo_path(entry["path"], remote)]
         is_group = False
     else:
-        repo_paths = [Path(p).expanduser() for p in entry.get("repos", [])]
+        remotes = entry.get("remotes", [])
+        repo_paths = [resolve_repo_path(p, remotes[i] if i < len(remotes) else None)
+                      for i, p in enumerate(entry.get("repos", []))]
         is_group = len(repo_paths) > 1
 
     # Gather metrics per repo
@@ -779,6 +811,7 @@ def run_entry(entry: dict, since: str, output_dir: Path) -> dict[str, Any]:
         since=since,
         repo_breakdown=breakdown,
         scope_warning=scope_warning,
+        narrative=narrative,
     )
 
     out_path = output_dir / f"{file_key}.html"
@@ -786,7 +819,7 @@ def run_entry(entry: dict, since: str, output_dir: Path) -> dict[str, Any]:
 
     top_contributor = agg["contributors"][0][1] if agg["contributors"] else "—"
     top_pct = int(agg["contributors"][0][0] / max(agg["commits"], 1) * 100) if agg["contributors"] else 0
-    print(f"  ✓ {name}: {agg['commits']} commits, {agg['net']:+,} lines → {out_path.name}")
+    print(f"  ✓ {name}: {agg['commits']} commits, {agg['net']:+,} lines → {out_path.name}", file=sys.stderr)
 
     return {
         "name": file_key,
@@ -800,21 +833,51 @@ def run_entry(entry: dict, since: str, output_dir: Path) -> dict[str, Any]:
     }
 
 
-def build_index(rows: list[dict], output_dir: Path, config: dict) -> None:
-    """Build _index.html summary page."""
+def build_index(rows: list[dict], output_dir: Path, config: dict, entries: list[dict]) -> None:
+    """Build grouped _index.html — always generated, sections by category."""
     since = config.get("local", {}).get("window", "1 week ago")
     today = date.today().isoformat()
 
-    table_rows = "\n".join(
-        f'<tr>'
-        f'<td><a href="{r["name"]}.html" style="color:#58a6ff">{r["name"]}</a></td>'
-        f'<td style="text-align:right">{r["commits"]}</td>'
-        f'<td style="text-align:right;color:#3fb950">+{r["added"]}</td>'
-        f'<td style="text-align:right;color:#f85149">-{r["deleted"]}</td>'
-        f'<td style="text-align:right">{r["releases"]}</td>'
-        f'<td>{r["top_contributor"]}</td>'
-        f'</tr>'
-        for r in rows
+    # Map name → label and category from entries
+    entry_meta = {e["name"]: {"label": e.get("label", e["name"]), "category": e.get("category", "Repos")} for e in entries}
+
+    # Group rows by category
+    from collections import defaultdict
+    groups: dict[str, list] = defaultdict(list)
+    for r in rows:
+        cat = entry_meta.get(r["name"], {}).get("category", "Repos")
+        label = entry_meta.get(r["name"], {}).get("label", r["name"])
+        groups[cat].append({**r, "_label": label})
+
+    CATEGORY_ORDER = ["Repos", "SBU", "Groups", "Teams", "Individuals"]
+
+    def table_section(cat: str, cat_rows: list) -> str:
+        total_c = sum(r["commits"] for r in cat_rows)
+        rows_html = "\n".join(
+            f'<tr>'
+            f'<td><a href="{r["name"]}.html" style="color:#58a6ff;font-weight:500">{r["_label"]}</a></td>'
+            f'<td style="text-align:right">{r["commits"]}</td>'
+            f'<td style="text-align:right;color:{"#3fb950" if r["net"]>=0 else "#f85149"}">{"+" if r["net"]>=0 else ""}{r["net"]:,}</td>'
+            f'<td style="text-align:right">{r["releases"]}</td>'
+            f'<td style="color:#8b949e;font-size:12px">{r["top_contributor"]}</td>'
+            f'</tr>'
+            for r in cat_rows
+        )
+        return (
+            f'<div class="section" style="margin-bottom:20px">'
+            f'<h3 style="color:#e6edf3;font-size:14px;margin-bottom:12px">{cat} <span style="color:#8b949e;font-size:11px;font-weight:normal">({len(cat_rows)} · {total_c} commits)</span></h3>'
+            f'<table class="index-table">'
+            f'<tr><th>Report</th><th style="text-align:right">Commits</th><th style="text-align:right">Net Lines</th><th style="text-align:right">Releases</th><th>Top Contributor</th></tr>'
+            f'{rows_html}'
+            f'</table></div>'
+        )
+
+    sections = "".join(
+        table_section(cat, groups[cat])
+        for cat in CATEGORY_ORDER if cat in groups
+    ) + "".join(
+        table_section(cat, groups[cat])
+        for cat in groups if cat not in CATEGORY_ORDER
     )
 
     total_commits = sum(r["commits"] for r in rows)
@@ -827,30 +890,29 @@ def build_index(rows: list[dict], output_dir: Path, config: dict) -> None:
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Engineering Reports — {today}</title>
 <style>{CSS}
+body{{padding:24px}}
 .index-table{{width:100%;border-collapse:collapse;font-size:13px}}
-.index-table th{{color:#8b949e;text-align:left;padding:8px 10px;border-bottom:1px solid rgba(48,54,61,0.6)}}
+.index-table th{{color:#8b949e;text-align:left;padding:8px 10px;border-bottom:1px solid rgba(48,54,61,0.6);font-weight:500}}
 .index-table td{{padding:8px 10px;border-bottom:1px solid rgba(48,54,61,0.3)}}
+.index-table tr:last-child td{{border-bottom:none}}
+.index-table tr:hover td{{background:rgba(48,54,61,0.2)}}
+a{{text-decoration:none}}
 </style>
 </head>
 <body>
 <div class="container">
 <div class="header">
   <h1>Engineering Reports — {today}</h1>
-  <p>{len(rows)} reports · window: {since} · {total_commits} commits · +{total_added:,} lines</p>
+  <p style="color:#8b949e;font-size:13px">{len(rows)} reports · window: {since} · {total_commits} commits · +{total_added:,} lines added</p>
 </div>
-<div class="section">
-<table class="index-table">
-<tr><th>Report</th><th>Commits</th><th>Lines Added</th><th>Lines Deleted</th><th>Releases</th><th>Top Contributor</th></tr>
-{table_rows}
-</table>
-</div>
+{sections}
 <div class="footer">Generated: {today}</div>
 </div>
 </body>
 </html>"""
 
     (output_dir / "_index.html").write_text(html, encoding="utf-8")
-    print(f"  ✓ _index.html ({len(rows)} reports)")
+    print(f"  ✓ _index.html ({len(rows)} reports, {len(groups)} categories)")
 
 
 def main() -> None:
@@ -865,8 +927,11 @@ def main() -> None:
     p_run.add_argument("--since", default=None, help="Override window (e.g. '2 weeks ago')")
     p_run.add_argument("--output", default=str(DEFAULT_OUTPUT_DIR))
     p_run.add_argument("--name", help="Generate only this entry by name")
-    p_run.add_argument("--json", action="store_true", help="Output metrics JSON instead of HTML")
+    p_run.add_argument("--json-only", action="store_true", dest="json_only", help="Output metrics JSON to stdout only (no HTML written)")
     p_run.add_argument("--no-index", action="store_true", help="Skip _index.html generation")
+    p_run.add_argument("--author", default=None, help="Generate report for a single person across all configured repos")
+    p_run.add_argument("--narrative-file", default=None, dest="narrative_file",
+                       help="JSON file mapping entry names to AI narrative {summary, themes, architecture, work_areas}")
 
     args = parser.parse_args()
 
@@ -886,23 +951,47 @@ def main() -> None:
             print(f"error: no entry named '{args.name}'", file=sys.stderr)
             sys.exit(1)
 
-    print(f"eng-report run — {len(entries)} entries, window: {since}")
-    print(f"Output: {output_dir}\n")
+    author = getattr(args, "author", None)
+    if author:
+        # Individual report: run against all unique repo paths with author filter
+        seen_paths: set[str] = set()
+        author_entries = []
+        for e in entries:
+            paths = [e.get("path")] if "path" in e else e.get("repos", [])
+            for p in paths:
+                if p and p not in seen_paths:
+                    seen_paths.add(p)
+                    author_entries.append({"name": f"individual-{author.replace(' ','-')}", "label": author, "path": p, "category": "Individuals"})
+        entries = author_entries[:1]  # one combined entry using first repo; TODO: multi-repo merge
+
+    # Load optional AI narrative file
+    narratives: dict[str, dict] = {}
+    if getattr(args, "narrative_file", None) and args.narrative_file:
+        with open(args.narrative_file) as f:
+            narratives = json.load(f)
+
+    json_only = getattr(args, "json_only", False)
+    def log(*a): print(*a, file=sys.stderr if json_only else sys.stdout)
+    log(f"eng-report run — {len(entries)} entries, window: {since}")
+    log(f"Output: {output_dir}\n")
 
     rows = []
     for entry in entries:
-        row = run_entry(entry, since, output_dir)
+        narrative = narratives.get(entry["name"])
+        row = run_entry(entry, since, output_dir, author_filter=author, narrative=narrative)
         rows.append(row)
 
-    if args.json:
+    if getattr(args, "json_only", False):
+        # Print only JSON to stdout; progress went to stderr
         print(json.dumps(rows, indent=2))
         return
 
-    if not args.no_index and not args.name:
+    if not args.no_index and not args.name and not getattr(args, "author", None):
         print()
-        build_index(rows, output_dir, config)
+        build_index(rows, output_dir, config, entries)
 
-    print(f"\nDone. Open: {output_dir}/_index.html")
+    if not getattr(args, "json_only", False):
+        print(f"\nDone. Open: {output_dir}/_index.html")
 
 
 if __name__ == "__main__":

@@ -459,6 +459,32 @@ A 10/10 report MUST satisfy ALL of the following. Treat each as a gate — if an
 - [ ] Every number in the report is traceable to a specific git command output from Step 1
 - [ ] HTML file opens correctly in browser with no console errors
 
+## AI Narrative Integration
+
+Reports are rendered in two passes to ensure data integrity:
+
+**Pass 1 — Deterministic data (script):**
+```bash
+eng-report run --json-only > /tmp/metrics.json
+```
+Outputs: `[{"name": "AgenticAI-Group", "commits": 16, "net": 2210, ...}, ...]`
+
+**Pass 2 — AI narrative (skill/AI):**
+Read metrics.json. For each entry, generate:
+- `summary`: 3–4 sentences synthesizing the arc of the period. Team-framing only.
+- `themes`: `<ul>` HTML, 4 `<li>` items each citing a specific file or metric as evidence.
+- `architecture`: 4 `<div>` cards — `<div style="background:rgba(30,35,44,0.9);border:1px solid rgba(48,54,61,0.7);border-radius:10px;padding:16px">` with title (blue), description, and file evidence.
+- `work_areas`: `<div>` bars HTML for Jira-prefixed repos — cluster commit subjects (stripped of ticket prefix) into 5–7 plain-English work areas with commit counts as horizontal bars.
+
+Write to `/tmp/narrative.json`: `{"AgenticAI-Group": {"summary": "...", "themes": "...", "architecture": "...", "work_areas": "..."}}`
+
+**Pass 3 — Final render (script):**
+```bash
+eng-report run --narrative-file /tmp/narrative.json
+```
+
+`_index.html` is always generated, grouped by: Repos → SBU → Groups → Teams → Individuals.
+
 ## /help
 
 ```
@@ -468,6 +494,9 @@ COMMANDS:
   run                              Generate reports for all configured repos, open in browser
   run --repo ~/repo/EngOS         Generate for one specific repo
   run --since 2026-05-01          Custom start date (also: '2 weeks ago', '30 days ago') (ISO date or "N weeks ago")
+  run --narrative-file FILE       JSON file with AI narratives per entry (see workflow)
+  run --json-only                 Output metrics JSON only, no HTML (pipe to AI for narrative generation)
+  run --author "Ben Kaiser"       Generate report for a single person across all repos
   run --drive                     Generate + upload to Drive + auto-sync locally
   run --drive --open              Generate + upload + sync + open _index.html
   run --drive --folder "Q2"       Upload to a specific Drive folder

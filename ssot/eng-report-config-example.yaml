@@ -20,30 +20,44 @@ local:
 repos:
   - name: EngOS-Repo
     label: "EngOS"
+    category: "Repos"
+    remote: "git@gitlab.appian-stratus.com:scott.parrish/EngOS.git"
     path: ~/repo/EngOS
 
   - name: Composer-Repo
     label: "Composer"
+    category: "Repos"
+    remote: "git@gitlab.appian-stratus.com:scott.parrish/EngOS.git"
     path: ~/repo/composer
 
   - name: AgentContinuousLearning-Repo
     label: "Agent Continuous Learning"
+    category: "Repos"
+    remote: "git@gitlab.appian-stratus.com:scott.parrish/EngOS.git"
     path: ~/repo/agent-continuous-learning
 
   - name: LCP-MCP-Server-Repo
     label: "LCP MCP Server"
+    category: "Repos"
+    remote: "git@gitlab.appian-stratus.com:scott.parrish/EngOS.git"
     path: ~/repo/lcp-mcp-server-service
 
   - name: UI-Library-Repo
     label: "UI Library"
+    category: "Repos"
+    remote: "git@gitlab.appian-stratus.com:scott.parrish/EngOS.git"
     path: ~/repo/ui-library
 
   - name: AISkillDesigner-Repo
     label: "AI Skill Designer"
+    category: "Repos"
+    remote: "git@gitlab.appian-stratus.com:scott.parrish/EngOS.git"
     path: ~/repo/ai-skill-designer
 
   - name: Jidoka-Repo
     label: "Jidoka"
+    category: "Repos"
+    remote: "git@gitlab.appian-stratus.com:scott.parrish/EngOS.git"
     path: ~/repo/jidoka
 
   # ════════════════════════════════════════════════════════════════════════════
@@ -52,6 +66,7 @@ repos:
 
   - name: Automation-SBU
     label: "Automation SBU"
+    category: "SBU"
     repos:
       - ~/repo/ae
       - ~/repo/ai-platform
@@ -143,6 +158,7 @@ repos:
 
   - name: AgenticAI-Group
     label: "Agentic AI"
+    category: "Groups"
     repos:
       - ~/repo/ae
     scope:
@@ -163,6 +179,7 @@ repos:
 
   - name: AICopilot-Group
     label: "AI Copilot"
+    category: "Groups"
     repos:
       - ~/repo/ae
     scope:
@@ -196,6 +213,7 @@ repos:
 
   - name: EnterpriseAutomation-Group
     label: "Enterprise Automation"
+    category: "Groups"
     repos:
       - ~/repo/ae
     scope:
@@ -226,6 +244,7 @@ repos:
 
   - name: SmartSearch-Group
     label: "Smart Search"
+    category: "Groups"
     repos:
       - ~/repo/ae
     scope:
@@ -241,6 +260,7 @@ repos:
 
   - name: AIPlatform-Group
     label: "AI Platform"
+    category: "Groups"
     repos:
       - ~/repo/ai-platform    # primary repo for this group
       - ~/repo/ae             # secondary — some members commit here too
@@ -271,6 +291,7 @@ repos:
 
   - name: AppianDesignedAgents-Team
     label: "Appian Designed Agents"
+    category: "Teams"
     repos:
       - ~/repo/ae
     scope:
@@ -285,6 +306,7 @@ repos:
 
   - name: AgentStudioEnabling-Team
     label: "Agent Studio Enabling"
+    category: "Teams"
     repos:
       - ~/repo/ae
     scope:
@@ -299,6 +321,7 @@ repos:
 
   - name: ADA-ContinuousLearning-Team
     label: "ADA Continuous Learning"
+    category: "Teams"
     repos:
       - ~/repo/ae
       - ~/repo/agent-continuous-learning   # dedicated repo for this team's work
@@ -313,6 +336,7 @@ repos:
 
   - name: AICopilot-StreamAligned-Team
     label: "AI Copilot Stream Aligned"
+    category: "Teams"
     repos:
       - ~/repo/ae
     scope:
@@ -334,6 +358,7 @@ repos:
 
   - name: DevAgentAPI-Team
     label: "Dev Agent API"
+    category: "Teams"
     repos:
       - ~/repo/ae
     scope:
@@ -346,6 +371,7 @@ repos:
 
   - name: RequirementsAPI-Team
     label: "Requirements API"
+    category: "Teams"
     repos:
       - ~/repo/ae
     scope:
@@ -359,6 +385,7 @@ repos:
 
   - name: DesignAPI-Team
     label: "Design API"
+    category: "Teams"
     repos:
       - ~/repo/ae
     scope:
@@ -370,6 +397,7 @@ repos:
 
   - name: ComposerLCPAPI-Enabling-Team
     label: "Composer LCP API Enabling"
+    category: "Teams"
     repos:
       - ~/repo/ae
     scope:
@@ -382,6 +410,7 @@ repos:
 
   - name: AIC-Infrastructure-Team
     label: "AIC Infrastructure"
+    category: "Teams"
     repos:
       - ~/repo/ae
     scope:
@@ -393,6 +422,7 @@ repos:
 
   - name: EvalAndTracingAPIs-Team
     label: "Eval and Tracing APIs"
+    category: "Teams"
     repos:
       - ~/repo/ae
     scope:
@@ -406,6 +436,7 @@ repos:
 
   - name: EnterpriseGradeAI-Team
     label: "Enterprise Grade AI"
+    category: "Teams"
     repos:
       - ~/repo/ae
     scope:
@@ -422,6 +453,7 @@ repos:
 
   - name: DocumentExtraction-Team
     label: "Document Extraction"
+    category: "Teams"
     repos:
       - ~/repo/ae
     scope:
@@ -439,6 +471,7 @@ repos:
 
   - name: RPA-HA-Team
     label: "RPA High Availability"
+    category: "Teams"
     repos:
       - ~/repo/ae
     scope:
@@ -455,6 +488,7 @@ repos:
 
   - name: SAIL-LLM-DiscoPod-Team
     label: "SAIL LLM Discovery Pod"
+    category: "Teams"
     repos:
       - ~/repo/ae
     scope:
@@ -468,6 +502,7 @@ repos:
 
   - name: SmartSearch-StreamAligned-Team
     label: "Smart Search Stream Aligned"
+    category: "Teams"
     repos:
       - ~/repo/ae
     scope:
@@ -485,6 +520,7 @@ repos:
 
   - name: AgenticServices-AIPlatform-Team
     label: "Agentic Services (AI Platform)"
+    category: "Teams"
     repos:
       - ~/repo/ai-platform
       - ~/repo/ae
@@ -503,6 +539,7 @@ repos:
 
   - name: AIToolsPlatform-Team
     label: "AI Tools Platform"
+    category: "Teams"
     repos:
       - ~/repo/ai-platform
     scope:
@@ -514,6 +551,7 @@ repos:
 
   - name: AIPlatformCoreAPIs-Team
     label: "AI Platform Core APIs"
+    category: "Teams"
     repos:
       - ~/repo/ai-platform
     scope:
@@ -527,6 +565,7 @@ repos:
 
   - name: AIPlatform-StreamAligned-Team
     label: "AI Platform Stream Aligned"
+    category: "Teams"
     repos:
       - ~/repo/ai-platform
     scope:
