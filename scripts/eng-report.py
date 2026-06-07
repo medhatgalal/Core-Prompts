@@ -349,6 +349,8 @@ body{background:#0d1117;color:#e6edf3;font-family:system-ui,-apple-system,sans-s
 .snapshot-item{padding:5px 0;border-bottom:1px solid rgba(48,54,61,0.3);font-size:12px}
 .snapshot-item:last-child{border-bottom:none}
 .footer{border-top:1px solid rgba(48,54,61,0.6);padding-top:12px;margin-top:24px;color:#8b949e;font-size:11px;text-align:center}
+.section ul li{color:#e6edf3;font-size:13px;padding:8px 0;border-bottom:1px solid rgba(48,54,61,0.4)}
+.section ul li:last-child{border-bottom:none}
 .staleness-warn{background:rgba(210,153,34,0.1);border:1px solid rgba(210,153,34,0.4);border-radius:8px;padding:10px 14px;margin-bottom:16px;color:#d29922;font-size:12px}
 .arch-card{cursor:pointer;transition:transform 0.15s,box-shadow 0.15s}
 .arch-card:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(0,0,0,0.4)}
@@ -597,6 +599,15 @@ def _template_narrative(entry_name: str, metrics: dict) -> dict:
     return {"summary": summary, "themes": themes, "architecture": architecture}
 
 
+
+def _normalize_themes(themes_html: str) -> str:
+    """Apply dark-theme styles to plain <ul><li> themes HTML."""
+    if not themes_html or 'list-style:none' in themes_html:
+        return themes_html
+    result = themes_html.replace('<ul>', "<ul style='list-style:none;padding:0;margin:0'>")
+    result = result.replace('<li>', "<li style='padding:8px 0;border-bottom:1px solid rgba(48,54,61,0.4)'>")
+    return result
+
 def _make_arch_modal() -> str:
     return (
         '<div class="modal-overlay" id="arch-modal" onclick="if(event.target===this)closeModal()">'
@@ -732,7 +743,7 @@ def render_report(
         if narrative and narrative.get("themes"):
             body_parts.append(
                 f'<div class="section" style="margin-bottom:16px"><h3>💡 Key Themes</h3>'
-                f'{narrative["themes"]}'
+                f'{_normalize_themes(narrative["themes"])}'
                 f'</div>'
             )
 
