@@ -215,7 +215,12 @@ Read `/tmp/metrics.json`. For each entry with `commits > 0`, generate:
 
 - **`summary`**: 3–4 sentence arc of the period. Team-framing only — never single out individuals negatively.
 - **`themes`**: `<ul>` HTML with 4 `<li>` items. Each must cite a specific file, metric, or pattern from the JSON as evidence.
-- **`architecture`**: 4 `<div>` cards (use exact format from AI Narrative Integration section). Synthesized from top files and commit subjects.
+- **`architecture`**: 4 `<div>` cards. Each card MUST:
+  - Title: a specific module/feature name derived from the top files (e.g. "GCP Provider", "LCP API Type Extraction") — never generic titles like "Architectural Refactoring" or "Steady Progress"
+  - Description: 1-2 sentences stating exactly what changed, grounded in the top files and commit subjects
+  - Files line: actual filenames and +/- line counts from `top_files`
+  - Use exact HTML format: `<div style="background:rgba(30,35,44,0.9);border:1px solid rgba(48,54,61,0.7);border-radius:10px;padding:16px"><div style="color:#58a6ff;font-size:13px;font-weight:600;margin-bottom:8px">TITLE</div><div style="color:#c9d1d9;font-size:12px;line-height:1.6;margin-bottom:10px">DESCRIPTION</div><div style="color:#8b949e;font-size:11px">FILE evidence</div></div>`
+  - If there are fewer than 4 distinct areas, repeat with different angles rather than inventing generic cards
 - **`work_areas`**: For Jira-prefixed repos only. Cluster commit subjects (strip ticket prefix) into 5–7 plain-English work areas. Render as horizontal bar HTML (see AI Narrative Integration section).
 
 Write to `/tmp/narrative.json`: `{"entry-name": {"summary": "...", "themes": "...", "architecture": "...", "work_areas": "..."}}`
@@ -373,6 +378,9 @@ DRIVE STRUCTURE:
 
 CONFIG: ~/.kiro/skills/eng-report/config.yaml
 ```
+
+
+Capability resource: `.kiro/skills/eng-report/resources/capability.json`
 
 
 Capability resource: `.kiro/skills/eng-report/resources/capability.json`
