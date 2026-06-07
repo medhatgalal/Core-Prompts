@@ -88,20 +88,24 @@ def _remote_web_url(repo: Path) -> str:
 
 
 def _default_branch(repo: Path) -> str:
-    """Get the remote default branch name."""
+    """Get the default branch name (bare, e.g. 'main')."""
+    ref = _default_branch_ref(repo)
+    return ref.split("/")[-1] if "/" in ref else ref
+
+
+def _default_branch_ref(repo: Path) -> str:
+    """Get the full remote-tracking ref for the default branch (e.g. 'origin/main')."""
     for remote in ("origin", "appian", "prod", "dev"):
         b = git(repo, "symbolic-ref", f"refs/remotes/{remote}/HEAD", check=False)
         if b:
-            return b.split("/")[-1]
-    # Fallback: ask remote directly
-    for remote in ("origin", "appian", "prod"):
-        raw = git(repo, "remote", "show", remote, check=False)
-        m = re.search(r"HEAD branch: (.+)", raw)
-        if m:
-            return m.group(1).strip()
-    for branch in ("main", "master", "develop"):
-        if git(repo, "rev-parse", "--verify", f"origin/{branch}", check=False):
-            return branch
+            # b is like 'refs/remotes/origin/main' — return 'origin/main'
+            parts = b.strip().split("refs/remotes/")
+            return parts[-1] if len(parts) > 1 else b.strip()
+    # Fallback: find which remote/branch actually exists
+    for remote in ("origin", "appian", "prod", "dev"):
+        for branch in ("main", "master", "develop"):
+            if git(repo, "rev-parse", "--verify", f"{remote}/{branch}", check=False):
+                return f"{remote}/{branch}"
     return "main"
 
 
@@ -136,9 +140,10 @@ def gather_repo_metrics(repo: Path, since: str, authors: list[str], branch_scope
     web_url = _remote_web_url(repo)
     default_branch = _default_branch(repo)
 
-    # Determine which branch refs to query
-    shipped_ref = [default_branch]  # commits on default branch
-    inflight_ref = ["--remotes", "--not", default_branch]  # commits NOT on default
+    # Use the full remote-tracking ref (e.g. 'origin/main', 'dev/main')
+    _branch_ref = _default_branch_ref(repo)
+    shipped_ref = [_branch_ref]  # commits on default branch
+    inflight_ref = ["--remotes", "--not", _branch_ref]  # commits NOT on default
 
     # --- SHIPPED metrics (on default branch) ---
     # Use --first-parent without --no-merges to handle squash-merge repos
