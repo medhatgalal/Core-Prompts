@@ -87,12 +87,16 @@ def _remote_web_url(repo: Path) -> str:
 
 def _default_branch(repo: Path) -> str:
     """Get the remote default branch name."""
-    # Try remote HEAD symref first
     for remote in ("origin", "appian", "prod", "dev"):
         b = git(repo, "symbolic-ref", f"refs/remotes/{remote}/HEAD", check=False)
         if b:
             return b.split("/")[-1]
-    # Fallback to common names
+    # Fallback: ask remote directly
+    for remote in ("origin", "appian", "prod"):
+        raw = git(repo, "remote", "show", remote, check=False)
+        m = re.search(r"HEAD branch: (.+)", raw)
+        if m:
+            return m.group(1).strip()
     for branch in ("main", "master", "develop"):
         if git(repo, "rev-parse", "--verify", f"origin/{branch}", check=False):
             return branch
@@ -104,19 +108,17 @@ def gather_repo_metrics(repo: Path, since: str, authors: list[str]) -> dict[str,
     af = author_flags(authors)
     since_flag = [f"--since={since}"]
 
-    # Fetch latest from remote to ensure data is current
-    git(repo, "fetch", "--all", "--quiet", check=False)
     web_url = _remote_web_url(repo)
     default_branch = _default_branch(repo)
 
-    commits_raw = git(repo, "log", *since_flag, "--no-merges", "--oneline", "--all", *af)
+    commits_raw = git(repo, "log", *since_flag, "--no-merges", "--oneline", "--remotes", *af)
     commits = len(commits_raw.splitlines()) if commits_raw else 0
 
-    merges_raw = git(repo, "log", *since_flag, "--merges", "--oneline", "--all", *af)
+    merges_raw = git(repo, "log", *since_flag, "--merges", "--oneline", "--remotes", *af)
     merges = len(merges_raw.splitlines()) if merges_raw else 0
 
     # Lines added/deleted
-    shortstat = git(repo, "log", *since_flag, "--shortstat", "--format=", "--all", *af)
+    shortstat = git(repo, "log", *since_flag, "--shortstat", "--format=", "--remotes", *af)
     added = deleted = 0
     for line in shortstat.splitlines():
         m = re.search(r"(\d+) insertion", line)
@@ -127,14 +129,14 @@ def gather_repo_metrics(repo: Path, since: str, authors: list[str]) -> dict[str,
             deleted += int(m.group(1))
 
     # Commits per day
-    dates_raw = git(repo, "log", *since_flag, "--no-merges", "--format=%ad", "--date=short", "--all", *af)
+    dates_raw = git(repo, "log", *since_flag, "--no-merges", "--format=%ad", "--date=short", "--remotes", *af)
     daily: dict[str, int] = defaultdict(int)
     for d in dates_raw.splitlines():
         if d:
             daily[d] += 1
 
     # Contributors — use log --format to get consistent names matching author_flags
-    contrib_raw = git(repo, "log", *since_flag, "--no-merges", "--format=%aN", "--all", *af)
+    contrib_raw = git(repo, "log", *since_flag, "--no-merges", "--format=%aN", "--remotes", *af)
     contrib_counts: dict[str, int] = defaultdict(int)
     for name in contrib_raw.splitlines():
         if name and not BOT_PATTERNS.match(name):
@@ -144,7 +146,7 @@ def gather_repo_metrics(repo: Path, since: str, authors: list[str]) -> dict[str,
     )
 
     # Top changed files
-    numstat = git(repo, "log", *since_flag, "--numstat", "--format=", "--all", *af)
+    numstat = git(repo, "log", *since_flag, "--numstat", "--format=", "--remotes", *af)
     file_churn: dict[str, tuple[int, int]] = defaultdict(lambda: (0, 0))
     for line in numstat.splitlines():
         parts = line.split("\t")
@@ -155,7 +157,7 @@ def gather_repo_metrics(repo: Path, since: str, authors: list[str]) -> dict[str,
     top_files = sorted(file_churn.items(), key=lambda x: x[1][0] + x[1][1], reverse=True)[:10]
 
     # Category breakdown
-    subjects = git(repo, "log", *since_flag, "--no-merges", "--format=%s", "--all", *af).splitlines()
+    subjects = git(repo, "log", *since_flag, "--no-merges", "--format=%s", "--remotes", *af).splitlines()
     jira_count = sum(1 for s in subjects if re.match(r"^[A-Z][A-Z0-9]{1,9}-\d+[\s:]", s))
     is_jira = len(subjects) > 0 and jira_count / len(subjects) > 0.8
 
@@ -188,10 +190,9 @@ def gather_repo_metrics(repo: Path, since: str, authors: list[str]) -> dict[str,
     releases = releases[:10]  # cap at 10
 
     # Recent commits in window (for commit listing section)
-    commits_sha_raw = git(repo, "log", *since_flag, "--no-merges", "--format=%H %ad %s", "--date=short", "--all", *af)
+    commits_sha_raw = git(repo, "log", *since_flag, "--no-merges", "--format=%H %ad %s", "--date=short", "--remotes", *af)
     commits_with_sha = [{"sha": l[:40], "date": l[41:51], "subject": l[52:]} for l in commits_sha_raw.splitlines() if len(l) > 52][:20]
-    commits_in_window_raw = git(repo, "log", *since_flag, "--no-merges", "--format=%ad %s", "--date=short", *af)
-    commits_in_window = [{"date": l[:10], "subject": l[11:]} for l in commits_in_window_raw.splitlines() if len(l) > 11][:20]
+    commits_in_window = [{"date": c["date"], "subject": c["subject"]} for c in commits_with_sha]
 
     # Recent context (last 10 commits regardless of window — for low-activity reports)
     recent_raw = git(repo, "log", "--no-merges", "--format=%ad %s", "--date=short", "-10", *af)
@@ -620,7 +621,6 @@ def render_report(
 
         # Architecture evolution — before charts
         if narrative and narrative.get("architecture"):
-            import json as _json, re as _re
             web_url = m.get("web_url","")
             is_gl = "gitlab" in web_url
             # Build commits data for modal as JSON stored in a script tag
@@ -635,7 +635,7 @@ def render_report(
                 'class="arch-card" onclick="openCard(this)" style="background:rgba(30,35,44,0.9)'
             )
             # Store commits in page-level JS var, cards call openArch with their index
-            commits_script = f'<script>window._archCommits={_json.dumps(related)};</script>'
+            commits_script = f'<script>window._archCommits={json.dumps(related)};</script>'
             # Also emit daily commits map for bar clicks
             daily_map = {}
             for c in m.get("commits_with_sha", []):
@@ -645,7 +645,7 @@ def render_report(
                     sha = c.get("sha","")
                     url2 = (f"{web_url}/-/commit/{sha}" if is_gl else f"{web_url}/commit/{sha}") if sha and web_url else ""
                     daily_map[d2].append({"sha":sha,"subject":c.get("subject",""),"url":url2})
-            commits_script += f'<script>window._dailyCommits={_json.dumps(daily_map)};</script>'
+            commits_script += f'<script>window._dailyCommits={json.dumps(daily_map)};</script>'
             body_parts.append(
                 f'<div class="section" style="margin-bottom:16px">'
                 f'<h3>🏛 Architecture Evolution</h3>'
@@ -900,10 +900,12 @@ def _stale_warning(scope: dict, since: str) -> str | None:
 
 # ── Main ───────────────────────────────────────────────────────────────────────
 
-def run_entry(entry: dict, since: str, output_dir: Path, author_filter: str | None = None, narrative: dict | None = None) -> dict[str, Any]:
+def run_entry(entry: dict, since: str, output_dir: Path, author_filter: str | None = None, narrative: dict | None = None, fetched_paths: set | None = None) -> dict[str, Any]:
     """Process one config entry and write its HTML file. Returns summary row."""
     name = entry.get("label", entry["name"])
     file_key = entry["name"]
+    if fetched_paths is None:
+        fetched_paths = set()
     scope = entry.get("scope", {})
     authors: list[str] = scope.get("authors", [])
     # Individual author filter overrides scope authors
@@ -941,12 +943,15 @@ def run_entry(entry: dict, since: str, output_dir: Path, author_filter: str | No
                       for i, p in enumerate(entry.get("repos", []))]
         is_group = len(repo_paths) > 1
 
-    # Gather metrics per repo
+    # Gather metrics per repo (fetch each unique path once)
     per_repo: list[dict] = []
     for rp in repo_paths:
         if not rp.exists():
             print(f"  ⚠ {rp} not found, skipping", file=sys.stderr)
             continue
+        if str(rp) not in fetched_paths:
+            git(rp, "fetch", "--all", "--quiet", check=False)
+            fetched_paths.add(str(rp))
         m = gather_repo_metrics(rp, since, authors)
         m["_repo_name"] = rp.name
         per_repo.append(m)
@@ -1179,18 +1184,26 @@ def main() -> None:
     # Load optional AI narrative file
     narratives: dict[str, dict] = {}
     if getattr(args, "narrative_file", None) and args.narrative_file:
-        with open(args.narrative_file) as f:
-            narratives = json.load(f)
+        try:
+            with open(args.narrative_file) as f:
+                narratives = json.load(f)
+        except FileNotFoundError:
+            print(f"error: narrative file not found: {args.narrative_file}", file=sys.stderr)
+            sys.exit(1)
+        except json.JSONDecodeError as e:
+            print(f"error: narrative file is not valid JSON: {e}", file=sys.stderr)
+            sys.exit(1)
 
     json_only = getattr(args, "json_only", False)
     def log(*a): print(*a, file=sys.stderr if json_only else sys.stdout)
     log(f"eng-report run — {len(entries)} entries, window: {since}")
     log(f"Output: {output_dir}\n")
 
+    fetched_paths: set[str] = set()
     rows = []
     for entry in entries:
         narrative = narratives.get(entry["name"])
-        row = run_entry(entry, since, output_dir, author_filter=author, narrative=narrative)
+        row = run_entry(entry, since, output_dir, author_filter=author, narrative=narrative, fetched_paths=fetched_paths)
         rows.append(row)
 
     if getattr(args, "json_only", False):
