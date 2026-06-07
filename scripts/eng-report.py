@@ -930,7 +930,7 @@ def render_report(
                     sha = c.get("sha","")
                     url2 = (f"{web_url}/-/commit/{sha}" if is_gl else f"{web_url}/commit/{sha}") if sha and web_url else ""
                     daily_map[d2].append({"sha":sha,"subject":c.get("subject",""),"url":url2})
-            commits_script += f'<script>window._dailyCommits={json.dumps(daily_map)};</script>'
+            commits_script += f'<script>window._archDailyCommits={json.dumps(daily_map)};</script>'
             body_parts.append(
                 f'<div class="section" style="margin-bottom:16px">'
                 f'<h3>🏛 Architecture Evolution</h3>'
