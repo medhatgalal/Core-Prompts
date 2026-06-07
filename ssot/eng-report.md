@@ -81,8 +81,8 @@ local:
 
 repos:
   # ── Repo entry: single repo, optional author/path scope ──────────────────
-  - name: EngOS
-    path: ~/repo/EngOS          # single path
+  - name: MyRepo
+    path: ~/repo/my-repo         # single path
 
   - name: AIPlatform-repo
     path: ~/repo/ai-platform    # whole repo, no scope
@@ -97,7 +97,7 @@ repos:
       tribe: "AI PLATFORM"
       resolved_at: "2026-06-05"
       authors:
-        - Ben Kaiser
+        - Alice Johnson
         - Roberto Bisteni
         # ...
 
@@ -111,7 +111,7 @@ repos:
       business_unit: "Automation"
       resolved_at: "2026-06-05"
       authors:
-        - Ben Kaiser
+        - Alice Johnson
         # ... all Automation SBU members
 ```
 
@@ -184,7 +184,7 @@ Interactive first-time setup. Reads current `config.yaml` if it exists.
 ### For `add PATH`
 
 1. Resolve the path to absolute. Verify it contains a `.git` directory — abort with error if not a git repo.
-2. Derive the repo name from the directory basename (e.g., `/Users/x/repo/EngOS` → `EngOS`)
+2. Derive the repo name from the directory basename (e.g., `/Users/x/repo/my-repo` → `my-repo`)
 3. Append to `repos:` list in `config.yaml`. If path already exists in list, skip and print "Already configured."
 4. Confirm: "Added <name> to repo list."
 
@@ -291,7 +291,7 @@ git tag --sort=-creatordate --format='%(creatordate:short) %(refname:short)' | a
 # Release commits as fallback (ONLY if zero tags found above)
 git log --since='${SINCE}' --no-merges --format='%ad %s' --date=short | grep -iE '\bv[0-9]+\.[0-9]+|chore(\(.*\))?: release|bump version|release v' | head -15
 
-# EngOS repos only: autonomous slice merges (merge commits with 'engos/' branch pattern)
+# For EngOS-style repos: autonomous slice merges (merge commits with 'engos/' branch pattern)
 git log --since='${SINCE}' --merges --format='%s' | grep -c "Merge branch 'engos/"
 ```
 
@@ -382,7 +382,7 @@ Standalone HTML file, zero external dependencies (no CDN links, no `<script src=
 - **Contributor bar:** Single horizontal bar divided into segments. Each segment width = `(author_commits / total_commits) * 100%`. Colors: cycle through blue, green, purple, orange, cyan for top 5 contributors; remainder in `var(--text-muted)`.
 - **Churn bars:** For each file, two bars side-by-side: green (additions) and red (deletions). Bar width = `(count / max_churn_count) * 100%`.
 
-**File naming:** `<RepoName>.html` (e.g., `EngOS.html`). Use the repo `name` field from config, or directory basename if no config.
+**File naming:** `<RepoName>.html` (e.g., `MyRepo.html`). Use the repo `name` field from config, or directory basename if no config.
 
 ### For `run` (all repos, no `--repo`)
 
@@ -504,11 +504,11 @@ eng-report — Engineering progress report for any git repo
 
 COMMANDS:
   run                              Generate reports for all configured repos, open in browser
-  run --repo ~/repo/EngOS         Generate for one specific repo
+  run --repo ~/repo/my-repo         Generate for one specific repo
   run --since 2026-05-01          Custom start date (also: '2 weeks ago', '30 days ago') (ISO date or "N weeks ago")
   run --narrative-file FILE       JSON file with AI narratives per entry (see workflow)
   run --json-only                 Output metrics JSON only, no HTML (pipe to AI for narrative generation)
-  run --author "Ben Kaiser"       Generate report for a single person across all repos
+  run --author "Jane Smith"       Generate report for a single person across all repos
   run --drive                     Generate + upload to Drive + auto-sync locally
   run --drive --open              Generate + upload + sync + open _index.html
   run --drive --folder "Q2"       Upload to a specific Drive folder
@@ -532,7 +532,7 @@ DRIVE STRUCTURE:
   Engineering Reports/
     2026-06-05/
       _index.html   ← summary + links to each repo report
-      EngOS.html
+      MyRepo.html
       Composer.html
 
 CONFIG: ~/.kiro/skills/eng-report/config.yaml
