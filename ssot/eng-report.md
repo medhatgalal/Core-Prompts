@@ -195,9 +195,9 @@ Interactive first-time setup. Reads current `config.yaml` if it exists.
 #### Pass 1 — Gather metrics (deterministic)
 
 ```bash
-eng-report run --json-only > /tmp/metrics.json
+python3 ~/repo/Core-Prompts/scripts/eng-report.py run --json-only > /tmp/metrics.json
 # For a single entry:
-eng-report run --name MyRepo-Repo --json-only > /tmp/metrics.json
+python3 ~/repo/Core-Prompts/scripts/eng-report.py run --name MyRepo-Repo --json-only > /tmp/metrics.json
 ```
 
 The script handles: git fetch, all git log commands, author filtering, multi-repo aggregation, Jira prefix detection, contributor counting, release tagging, file churn, and daily velocity. Output is structured JSON per entry.
@@ -218,9 +218,9 @@ For entries with `commits == 0`: skip narrative — the script renders "No activ
 #### Pass 3 — Render HTML (deterministic)
 
 ```bash
-eng-report run --narrative-file /tmp/narrative.json
+python3 ~/repo/Core-Prompts/scripts/eng-report.py run --narrative-file /tmp/narrative.json
 # With Drive upload:
-eng-report run --narrative-file /tmp/narrative.json --drive --open
+python3 ~/repo/Core-Prompts/scripts/eng-report.py run --narrative-file /tmp/narrative.json --drive --open
 ```
 
 `_index.html` is always generated, grouped by: Repos → SBU → Groups → Teams → Individuals.
@@ -366,3 +366,6 @@ DRIVE STRUCTURE:
 
 CONFIG: ~/.kiro/skills/eng-report/config.yaml
 ```
+
+
+Capability resource: `.kiro/skills/eng-report/resources/capability.json`
