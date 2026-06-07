@@ -1385,6 +1385,8 @@ __ARCH_MODAL_PLACEHOLDER__
 </body>
 </html>"""
 
+    html = html.replace("__ARCH_MODAL_PLACEHOLDER__", _make_arch_modal())
+    _write_modal_js(output_dir)
     (output_dir / "_index.html").write_text(html, encoding="utf-8")
     print(f"  ✓ _index.html ({len(rows)} reports, {len(groups)} categories)")
 
