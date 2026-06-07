@@ -231,12 +231,12 @@ Interactive first-time setup. Reads current `config.yaml` if it exists.
 ### Step 1 — Gather metrics (deterministic)
 #### Pass 1 — Gather metrics (deterministic)
 
-The script is installed to `~/.local/bin/eng-report` by `configure`. Run:
+The script is installed to `~/.local/bin/eng-report` by Core-Prompts deploy (or `configure`). Run:
 ```bash
 eng-report run --json > /tmp/metrics.json
 ```
 
-If `eng-report` is not found, run `eng-report configure` first — it installs the script.
+If `eng-report` is not found, re-run `bin/capability-fabric deploy --target $HOME --allow-nonlocal-target` from your Core-Prompts checkout.
 
 The script handles everything — git fetch, all git log commands, author filtering, multi-repo aggregation. `--json` outputs full metrics per entry including: commit subjects (up to 50), top files with churn, contributors, categories, daily breakdown. No extra git commands needed for narrative generation.
 

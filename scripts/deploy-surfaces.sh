@@ -450,5 +450,22 @@ if [[ "$TARGET_ROOT" != "$REPO_ROOT" ]]; then
   install_standalone_bundle
 fi
 
+
+# Install eng-report binary to ~/.local/bin if deploying to home
+if [[ "$TARGET_ROOT" != "$REPO_ROOT" ]]; then
+  mkdir -p "$TARGET_ROOT/.local/bin"
+  ENG_SCRIPT="$REPO_ROOT/scripts/eng-report.py"
+  if [[ -f "$ENG_SCRIPT" ]]; then
+    cat > "$TARGET_ROOT/.local/bin/eng-report" <<WRAPPER
+#!/usr/bin/env bash
+set -euo pipefail
+SCRIPT="$ENG_SCRIPT"
+if [[ ! -f "\$SCRIPT" ]]; then echo "error: eng-report.py not found at \$SCRIPT" >&2; exit 1; fi
+exec python3 "\$SCRIPT" "\$@"
+WRAPPER
+    chmod +x "$TARGET_ROOT/.local/bin/eng-report"
+  fi
+fi
+
 echo "SUMMARY copied=$COPIED missing_source=$MISSING_SOURCE skipped_cli=0 replaced_symlink=$REPLACED_SYMLINK"
 [[ "$MISSING_SOURCE" -eq 0 ]]
