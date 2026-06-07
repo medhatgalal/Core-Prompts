@@ -214,6 +214,34 @@ Follow with:
 
 > Now give me the exact README and docs outline you would ship.
 
+### `eng-report`
+
+Use when:
+
+- you need a progress report from git history
+- velocity, release timeline, code churn, or architecture movement should be visible
+- the report must be generated from deterministic repo data rather than Jira or sprint estimates
+
+Why this skill first:
+
+- start here when the job is observing git activity and rendering a report, not reviewing code quality or changing repository state
+
+Ask:
+
+> Use `eng-report` to generate an HTML progress report for this repo since 2026-06-01 and open it.
+
+Expected output:
+
+- deterministic git metrics for the selected window
+- standalone HTML report path
+- optional `_index.html` for fleet reports
+- narrative tied to files, counts, releases, or modules visible in the data
+- no invented Jira, story-point, or PR-review metrics
+
+Follow with:
+
+> Now rerun it with `--json` first so I can inspect the metrics before writing the narrative.
+
 ### `gitops-review`
 
 Use when:

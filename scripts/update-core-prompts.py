@@ -400,20 +400,30 @@ def latest_tag_for_url(repo_url: str) -> str:
     return latest_tag_ref_for_url(repo_url)[0]
 
 
+def normalize_release_version(version: str) -> str:
+    return version.strip().removeprefix("v")
+
+
+def release_versions_match(left: str, right: str) -> bool:
+    return bool(left and right and normalize_release_version(left) == normalize_release_version(right))
+
+
 def tag_is_newer(candidate: str, installed: str) -> bool:
-    if not candidate or not installed or candidate == installed:
+    if not candidate or not installed or release_versions_match(candidate, installed):
         return False
+    candidate_sort = normalize_release_version(candidate)
+    installed_sort = normalize_release_version(installed)
     try:
         ordered = subprocess.run(
             ["sort", "-V"],
-            input=f"{installed}\n{candidate}\n",
+            input=f"{installed_sort}\n{candidate_sort}\n",
             stdout=subprocess.PIPE,
             text=True,
             check=True,
         ).stdout.splitlines()
-        return bool(ordered and ordered[-1] == candidate)
+        return bool(ordered and ordered[-1] == candidate_sort)
     except Exception:
-        return candidate > installed
+        return candidate_sort > installed_sort
 
 
 def prepare_mirror(paths: Paths, origin_url: str, gitlab_url: str, release_tag: str) -> bool:
@@ -493,7 +503,7 @@ def release_install_root(paths: Paths, pending_version: str, mirror_path: Path) 
     if not install_script.is_file():
         return mirror_path, f"Recorded source checkout lacks install-local.sh after update; using release mirror"
     repo_version = read_first_line(repo / "VERSION")
-    if repo_version != pending_version:
+    if not release_versions_match(repo_version, pending_version):
         return mirror_path, f"Recorded source checkout version is {repo_version or 'unknown'} after update; using release mirror"
     return repo, f"Updated recorded source checkout {repo} to {pending_version}"
 
@@ -624,7 +634,7 @@ def accept_release(paths: Paths, *, assume_yes: bool, snapshot_retention: int = 
     if proc.returncode != 0:
         return proc.returncode
     installed_after = read_first_line(support / "VERSION")
-    if installed_after == pending:
+    if release_versions_match(installed_after, pending):
         write_state(
             paths,
             installed_version=installed_after,

@@ -18,6 +18,7 @@ If Core-Prompts is already installed in Codex, Gemini, Claude, or Kiro, begin wi
 | `gitops-review` | "Use `gitops-review` to tell me whether this branch is ready for PR and what blockers remain." | gate type, blockers, companion reviews, and next steps |
 | `code-review` | "Use `code-review` to review my staged changes before I commit." | findings, scope assessment, message guidance, and merge readiness |
 | `address-code-review` | "Use `address-code-review` to inspect the open MR comments and apply only the selected reviewer-requested fixes." | comments found, targeted fixes, changed files, commit guidance, and follow-up review |
+| `eng-report` | "Use `eng-report` to generate an HTML progress report for this repo since 2026-06-01." | git-derived metrics, report path, and narrative tied to deterministic data |
 | `ic-assistant` | "Use `ic-assistant` to track this active incident and tell me the current phase, overdue items, and next required action." | mode, phase, next action, status-update timer, and escalation flags |
 | `supercharge` | "Use `supercharge` to make this feature brief execution-ready." | stronger framing, constraints, and sequencing |
 | `autosearch` | "Use `autosearch` to improve our review prompt so it catches more regressions without increasing noise." | experiment design, evaluation, and a validated winner |

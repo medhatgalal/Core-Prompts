@@ -10,7 +10,7 @@
         "pitch"
       ],
       "required_inputs": [
-        "**For review/score/improve/components:** A pitch source (Google Doc URL, local file path, or pasted content)",
+        "**For review/score/improve/components/integration-proof:** A pitch source (Google Doc URL, local file path, or pasted content)",
         "**For create/bootstrap:** A goal name or problem statement. Optionally: appetite, team, known components.",
         "**For compare:** Two pitch sources",
         "**For audit:** Access to the pitches tracker or a list of pitch URLs",
@@ -24,7 +24,12 @@
         "Pitch-specific next actions",
         "Tracker Update block (copy-pasteable)",
         "Full pitch template with sections filled or marked `[TODO]`",
-        "Clean markdown (or JSON) file with pitch content"
+        "Clean markdown (or JSON) file with pitch content",
+        "Assessment (current score, seams, contract states)",
+        "Seam-by-seam proof requirements (scaled to appetite)",
+        "What you do NOT need to prove",
+        "Ordered spike plan with effort estimates",
+        "Gap to close (concrete deliverables to reach bet-ready)"
       ],
       "tool_policy": {
         "allowed": [
@@ -117,7 +122,7 @@
         "policy_rule_id": "ssot.pitch",
         "content_sha256": "ssot"
       },
-      "confidence": 0.88,
+      "confidence": 0.9,
       "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
       "review_status": "ready_for_orchestrator_review",
       "display_name": "Pitch \u2014 Shape Up Pitch Creation, Review, Scoring, and Improvement",
@@ -179,7 +184,8 @@
     "compare these pitches",
     "which pitches need work / pitch audit / pitch status",
     "is this pitch ready to bet on",
-    "bootstrap a pitch from this goal"
+    "bootstrap a pitch from this goal",
+    "what does good integration proof look like / how do I prove integration / what spike do I need"
   ],
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "pitch",

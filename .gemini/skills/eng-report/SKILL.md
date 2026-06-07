@@ -17,7 +17,21 @@ description: "Generate a weekly/periodic HTML engineering dashboard from git dat
 `sync-authors` is the only command that requires Home MCP. It is optional — author lists can be maintained manually in `config.yaml` if Home MCP is unavailable.
 
 
-## Boundaries
+## Tool Boundaries
+
+Allowed:
+- read git history and file-level change statistics from configured repositories
+- generate deterministic JSON metrics and standalone HTML reports
+- use caller-provided narrative JSON to render final report text
+- use Home MCP only to refresh configured author lists when `sync-authors` is requested
+- use Drive, Chat, or email integrations only for explicit upload, sync, or notification flows
+
+Forbidden:
+- modifying source repositories, branches, commits, tests, or tracked files
+- inventing metrics that are not available from git data or caller-provided configuration
+- reporting Jira story points, sprint status, PR review latency, or planning commitments
+- judging code quality, approving releases, or replacing `code-review` or `gitops-review`
+- requiring Home MCP, Drive, Chat, or email for the basic local git-reporting path
 
 ## When to Use This Capability
 
@@ -48,6 +62,49 @@ Use `eng-report` when the job is **observing git activity**. Use `code-review` w
 
 ## Purpose
 Generate a standalone HTML engineering report for any git repository covering the last 2 weeks (or a custom date range). Supports single-repo and fleet (multi-repo) modes. Reports can be saved locally, uploaded to Google Drive in dated directories, and announced via Google Chat or email.
+
+## Primary Objective
+Produce an evidence-backed engineering progress dashboard from git history without inventing metrics, judging code quality, or mutating the target repositories.
+
+The capability should help a user answer:
+- what shipped in the selected reporting window
+- where engineering effort concentrated by repository, team, author, file, and commit category
+- which releases or version bumps occurred
+- which files and modules changed enough to deserve architectural attention
+- what narrative summary can be safely written from the deterministic metrics
+
+## Invocation Hints
+Invoke this capability when the user asks to:
+- generate an engineering progress report from git history
+- summarize team velocity, code churn, release timeline, or architecture movement
+- build a local or Drive-hosted HTML report for one repo or a configured fleet
+- refresh author-scoped report configuration from an organization directory
+- sync previously generated reports from Drive to the local report folder
+
+Do not invoke this capability for sprint planning, Jira status, story-point reporting, PR review, test execution, incident management, or any request that requires modifying source code.
+
+## Required Inputs
+At minimum, `run` needs:
+- one local git repository path, or a configured fleet file with repository paths
+- a reporting window through `--since` or the default window
+- readable git history for the selected repositories
+
+Optional inputs include:
+- `--repo PATH` to limit execution to one repository
+- `--author NAME` to scope reports to one contributor
+- `--narrative-file FILE` to provide AI-written narrative JSON for final rendering
+- Drive folder, Chat space, or email settings when upload or notification is requested
+- Home MCP access only for `sync-authors`; manually maintained author lists are valid without Home MCP
+
+## Required Output
+For `run`, return or create:
+- deterministic metrics sourced from git commands when `--json` is used
+- standalone HTML report files when rendering is requested
+- an `_index.html` summary in fleet mode
+- local output path, and Drive URL when `--drive` is used
+- warnings for missing optional notification targets or unavailable optional integrations
+
+The generated report must keep all visible metrics traceable to git data and must not include invented Jira counts, story points, PR review timings, or unverified external facts.
 
 ## Usage
 
@@ -228,6 +285,13 @@ Interactive first-time setup. Reads current `config.yaml` if it exists.
 
 **This command delegates all git data gathering to `scripts/eng-report.py`.** Do not run git commands manually — use the script.
 
+**Mandatory sequence — no shortcuts:**
+1. Pass 1: Run `eng-report run --json --config <config>` → read the JSON output
+2. Pass 2: Synthesize narratives FROM the JSON you just read → write `/tmp/narrative.json`
+3. Pass 3: Run `eng-report run --narrative-file /tmp/narrative.json --config <config> --output <dir>`
+
+You CANNOT skip Pass 1. You CANNOT write narrative JSON without first reading the --json output. The metrics are the ground truth — narratives must describe what the data shows.
+
 ### Step 1 — Gather metrics (deterministic)
 #### Pass 1 — Gather metrics (deterministic)
 
@@ -243,7 +307,13 @@ The script handles everything — git fetch, all git log commands, author filter
 ### Step 2 — Generate AI narrative
 #### Pass 2 — Generate AI narrative
 
-**IMPORTANT: Do not write code or scripts to generate narratives. Synthesize each narrative directly using your own language model capabilities based on the metrics data.**
+**CRITICAL RULES — VIOLATIONS WILL PRODUCE GARBAGE REPORTS:**
+1. You MUST first run `eng-report run --json --config <config>` and READ the actual JSON output.
+2. You MUST synthesize narratives from the REAL metrics data you just read — not from memory, assumptions, or prior knowledge of the repos.
+3. You MUST NOT pre-write narrative JSON before reading metrics. The narrative is a RESPONSE to the data.
+4. You MUST NOT write a Python script to generate narratives — use your own synthesis capabilities on the real data.
+
+If you skip reading the --json output, the narratives will be fabricated and the report will be useless.
 
 Read `/tmp/metrics.json`. For each entry with `commits > 0`, synthesize:
 
@@ -353,6 +423,55 @@ A 10/10 report MUST satisfy ALL of the following. Treat each as a gate — if an
 - [ ] Every number in the report is traceable to a specific git command output from Step 1
 - [ ] HTML file opens correctly in browser with no console errors
 
+## Examples
+
+### Example: Single Repository Report
+```text
+User: Generate an engineering progress report for ~/repo/Core-Prompts since 2026-06-01 and open it.
+
+Action:
+eng-report run --repo ~/repo/Core-Prompts --since 2026-06-01 --open
+
+Expected result:
+- reads only git history from the selected repository
+- writes a standalone HTML report under the local dated output folder
+- opens the generated report
+- does not modify the repository
+```
+
+### Example: Two-Pass Narrative Report
+```text
+User: Build the deterministic metrics first, then I will provide the narrative JSON.
+
+Action:
+eng-report run --repo ~/repo/Core-Prompts --since "2 weeks ago" --json > /tmp/metrics.json
+
+Expected result:
+- outputs metric JSON only
+- waits for the caller or AI workflow to write /tmp/narrative.json
+- final rendering uses eng-report run --narrative-file /tmp/narrative.json
+```
+
+### Example: Out-of-Scope Request
+```text
+User: Tell me how many Jira story points the team completed.
+
+Expected result:
+Do not use eng-report for story points. State that the capability only reports git-derived metrics and ask for a Jira-capable workflow if story-point reporting is required.
+```
+
+## Evaluation Rubric
+
+| Check | Pass | Fail |
+| --- | --- | --- |
+| Git evidence | Metrics are derived from git commands for the selected repositories and window | Metrics include invented counts or unsupported external data |
+| Read-only behavior | The capability observes repositories and writes reports outside source trees unless explicitly configured | The capability modifies code, tests, branches, or repo metadata |
+| Scope discipline | Jira, story points, PR review, and sprint planning are rejected or routed elsewhere | The report claims unsupported planning or review authority |
+| Narrative fidelity | AI narrative cites metrics, files, modules, or trends present in deterministic output | Narrative lists generic claims or commit summaries without evidence |
+| Output completeness | Expected HTML, JSON, index, path, Drive URL, or notification result is returned for the chosen mode | Requested artifacts are missing or ambiguous |
+| Integration clarity | Optional Home MCP, Drive, Chat, and email dependencies are used only for their specific commands | Optional integrations are treated as required for basic git reporting |
+| HTML portability | Rendered reports are standalone and browser-openable without external assets | Reports depend on missing external links, scripts, or styles |
+
 ## AI Narrative Integration
 
 Reports are rendered in two passes to ensure data integrity:
@@ -419,6 +538,9 @@ DRIVE STRUCTURE:
 
 CONFIG: ~/.kiro/skills/eng-report/config.yaml
 ```
+
+
+Capability resource: `.kiro/skills/eng-report/resources/capability.json`
 
 
 Capability resource: `.kiro/skills/eng-report/resources/capability.json`

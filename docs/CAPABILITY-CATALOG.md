@@ -2,7 +2,7 @@
 
 Generated from canonical manifest and descriptor metadata. Use this page to see what Core-Prompts ships, what each capability is for, and where it lands.
 
-- Capability count: `21`
+- Capability count: `20`
 
 ## Start Here
 - `docs-review-expert` — Docs Review Expert — Documentation IA, Drift, and Release Hygiene: Documentation Review Expert for information architecture, explainable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.
@@ -12,10 +12,10 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `testing` — Testing Studio — Test Design and Coverage Analysis: Testing Studio for unit-test generation, end-to-end test design, edge-case discovery, and coverage gap analysis.
 
 ## By CLI
-- `claude`: `address-code-review`, `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `radar`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `codex`: `address-code-review`, `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `radar`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `gemini`: `address-code-review`, `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `radar`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `kiro`: `address-code-review`, `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `radar`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `claude`: `address-code-review`, `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `codex`: `address-code-review`, `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `gemini`: `address-code-review`, `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `kiro`: `address-code-review`, `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
 
 ## By Use Case
 - `address`: `address-code-review`
@@ -35,15 +35,13 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `import`: `uac-import`
 - `intel`: `weekly-intel`
 - `mentor`: `mentor`
-- `packaging`: `radar`
 - `pitch`: `pitch`
 - `planning`: `uac-import`
 - `prompting`: `code-review`, `mentor`, `uac-import`
 - `pulse`: `pulse`
-- `radar`: `radar`
 - `report`: `eng-report`
 - `resolve`: `resolve-conflict`
-- `review`: `address-code-review`, `code-review`, `docs-review-expert`, `gitops-review`, `radar`, `weekly-intel`
+- `review`: `address-code-review`, `code-review`, `docs-review-expert`, `gitops-review`, `weekly-intel`
 - `status`: `feature-status`
 - `supercharge`: `supercharge`
 - `testing`: `testing`
@@ -155,6 +153,12 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Type: `skill`
 - Install target: `repo_local`
 - Supported CLIs: `claude, codex, gemini, kiro`
+- Invocation hints:
+  - generate an engineering progress report from git history
+  - summarize team velocity, code churn, release timeline, or architecture movement
+  - build a local or Drive-hosted HTML report for one repo or a configured fleet
+  - refresh author-scoped report configuration from an organization directory
+  - sync previously generated reports from Drive to the local report folder
 - Summary: Generate a weekly/periodic HTML engineering dashboard from git data for any repo or org team. Use for velocity reporting, architecture evolution, and release tracking. Do not use to access Jira, estimate story points, or replace sprint planning tools. Do not use to modify code or run tests.
 
 ### Feature Status — Deep Completeness Analysis
@@ -260,23 +264,6 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
   - what's new in chat
   - pulse, pulse /hot, pulse /email, pulse /chat
 - Summary: High signal-to-noise comms triage across Gmail and Google Chat. Deterministic priority. Triage is read-only; sweep/act/archive/delete require explicit approval.
-
-### Radar — Personal Operations Board for Leaders and ICs
-- Slug: `radar`
-- Type: `both`
-- Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
-- Version: `v1.0`
-- Invocation hints:
-  - what's on my radar / what do I need to do / what's overdue
-  - add this to my board / track this / watch this
-  - update [item] with [note]
-  - move this to now / move this to watching
-  - close this / done / resolved
-  - review my board / what changed since yesterday
-  - give me an EOD summary / weekly report
-  - clean up my board / what's stale
-- Summary: Manages a personal operations board with action items, watching items, and dated audit trails. Proposes changes before writing. Integrates with meetings, email, and chat to surface new signals. Use when tracking what needs your attention, what you're waiting on, and what changed.
 
 ### SuperCharge — Prompt Engineering, Planning Hardening, and Graded Improvement
 - Slug: `supercharge`

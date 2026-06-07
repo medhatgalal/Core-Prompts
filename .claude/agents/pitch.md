@@ -216,6 +216,53 @@ last_reviewed: 2026-05-18
 ---
 ```
 
+### `pitch integration-proof <source>`
+Deep-dive on integration proof for a specific pitch. Reads the pitch, identifies seams, and produces a concrete spike plan showing what "good" looks like for THIS pitch.
+
+Use after a `pitch review` identifies integration proof as the weak dimension, or when a shaper asks "what do I need to prove before betting?"
+
+**Behavior:**
+- If Architecture score < 3: output prerequisites first ("you can't prove integration without defining components")
+- If no seams are crossed: state "no integration proof required" with score guidance
+- Otherwise: produce seam-by-seam proof requirements scaled to appetite
+
+**Output structure:**
+```
+## Integration Proof Guide: [Pitch Title]
+
+### Assessment
+- **Current score:** X/10
+- **Seams crossing:** N (list)
+- **Contract states:** N working / N broken / N missing / N undocumented
+
+### Prerequisites (only if architecture is missing)
+Before integration proof is possible, define: [components, seams, APIs needed]
+
+### Seam-by-Seam Proof Requirements
+
+#### Seam N: [Name] ([From] → [To])
+- **Contract state:** exists+works / broken / missing
+- **What to prove:** [specific to this pitch]
+- **Acceptable evidence:** [scaled to appetite]
+- **Current evidence in pitch:** [what's already documented, or "none"]
+- **Effort estimate:** [hours/days]
+
+### What You Do NOT Need to Prove
+(appetite-scaled exclusions — prevents over-engineering the spike)
+
+### Spike Plan (ordered)
+1. [Step] — [effort] — proves [which seam]
+2. ...
+
+### Gap to Close
+To reach bet-ready (score 8+): [concrete deliverables list]
+```
+
+**Edge cases:**
+- No architecture → output prerequisites, skip seam analysis
+- No seams → "Integration proof not required for single-team, single-component work. Score: 8-10 automatic."
+- All contracts exist and work → "Integration proof is satisfied by reference. No spike needed."
+
 ## Scoring Rubric
 
 | Dimension | Weight | Category | 10/10 | 1/10 |
@@ -360,9 +407,10 @@ Use this capability when the user asks for any of:
 - which pitches need work / pitch audit / pitch status
 - is this pitch ready to bet on
 - bootstrap a pitch from this goal
+- what does good integration proof look like / how do I prove integration / what spike do I need
 
 ## Required Inputs
-- **For review/score/improve/components:** A pitch source (Google Doc URL, local file path, or pasted content)
+- **For review/score/improve/components/integration-proof:** A pitch source (Google Doc URL, local file path, or pasted content)
 - **For create/bootstrap:** A goal name or problem statement. Optionally: appetite, team, known components.
 - **For compare:** Two pitch sources
 - **For audit:** Access to the pitches tracker or a list of pitch URLs
@@ -382,6 +430,13 @@ Every create/bootstrap produces:
 
 Every export produces:
 - Clean markdown (or JSON) file with pitch content
+
+Every integration-proof produces:
+- Assessment (current score, seams, contract states)
+- Seam-by-seam proof requirements (scaled to appetite)
+- What you do NOT need to prove
+- Ordered spike plan with effort estimates
+- Gap to close (concrete deliverables to reach bet-ready)
 
 ## Examples
 
@@ -419,6 +474,40 @@ Output:
 | ... | ... | ... |
 
 Seams: [identified from pitch content]
+```
+
+### Example: pitch integration-proof
+```
+User: pitch integration-proof ~/Downloads/dev-mcp-pitch.md
+
+Output:
+## Integration Proof Guide: Dev MCP
+
+### Assessment
+- **Current score:** 5/10
+- **Seams crossing:** 3
+- **Contract states:** 0 working / 0 broken / 3 undocumented
+
+### Seam-by-Seam Proof Requirements
+
+#### Seam 1: Auth + Transport Swap (lcp-mcp-server → AE site)
+- **Contract state:** missing
+- **What to prove:** IDE spawns MCP server over stdio, authenticates with API key, calls one tool, gets response
+- **Acceptable evidence:** Branch with one read + one write tool call working
+- **Current evidence:** None (code-level research only)
+- **Effort:** 2-4 hours
+
+### What You Do NOT Need to Prove
+- All 80-100 tools working (one read + one write proves the pattern)
+- Docker packaging (distribution, not integration)
+
+### Spike Plan
+1. Strip AIP wiring, add env-var auth, enable stdio — 2h — proves Seam 1
+2. Call createInterface with broken SAIL, verify 422 shape — 1h — proves Seam 2
+3. Confirm plug-in JAR loads on target AE version — 1h — proves Seam 3
+
+### Gap to Close
+Complete the 3-step spike plan and document results in the pitch.
 ```
 
 ## Evaluation Rubric

@@ -172,6 +172,23 @@ def test_check_release_current_when_versions_match(tmp_path: Path) -> None:
     assert (tmp_path / "home" / ".core-prompts-release-cache" / "repo").is_dir()
 
 
+def test_check_release_current_when_installed_version_omits_v_prefix(tmp_path: Path) -> None:
+    origin = tmp_path / "origin"
+    gitlab = tmp_path / "gitlab"
+    create_release_repo(origin, "v1.7.1")
+    clone_release_repo(origin, gitlab)
+    support = write_support(tmp_path, "1.7.1", origin, gitlab)
+
+    result = run_update(tmp_path, support, "--check-release", "--json")
+
+    assert result.returncode == 0, result.stderr
+    state = json.loads(result.stdout)
+    assert state["status"] == "current"
+    assert state["installed_version"] == "1.7.1"
+    assert state["latest_version"] == "v1.7.1"
+    assert state["pending_version"] == ""
+
+
 def test_check_release_pending_when_newer_tag_exists(tmp_path: Path) -> None:
     origin = tmp_path / "origin"
     gitlab = tmp_path / "gitlab"
@@ -246,6 +263,23 @@ def test_accept_release_approval_refreshes_and_clears_pending(tmp_path: Path) ->
     manifest = json.loads((snapshots[0] / "manifest.json").read_text(encoding="utf-8"))
     assert manifest["installed_version"] == "v1.7.1"
     assert manifest["target_version"] == "v1.7.2"
+
+
+def test_accept_release_allows_installed_version_without_v_prefix(tmp_path: Path) -> None:
+    mirror = create_fake_mirror(tmp_path / "mirror", version="1.7.2")
+    support = tmp_path / "home" / ".core-prompts-updater"
+    support.mkdir(parents=True)
+    (support / "VERSION").write_text("v1.7.1\n", encoding="utf-8")
+    write_pending_state(tmp_path, mirror, pending="v1.7.2")
+
+    result = run_update(tmp_path, support, "--accept-release", "--yes")
+
+    assert result.returncode == 0, result.stderr
+    state = read_state(tmp_path)
+    assert state["status"] == "current"
+    assert state["pending_version"] == ""
+    assert state["installed_version"] == "1.7.2"
+    assert state["latest_version"] == "v1.7.2"
 
 
 def test_accept_release_fast_forwards_recorded_source_repo_before_install(tmp_path: Path) -> None:

@@ -1,3 +1,12 @@
+## v1.9.1 - 2026-06-07
+
+- Repaired the `eng-report` release after hosted validation exposed generated-state drift:
+  - completed the SSOT benchmark contract sections required by strict surface validation
+  - rebuilt generated surfaces and metadata so stale `radar` entries are removed
+  - updated README, Getting Started, and Examples so `eng-report` is discoverable outside generated catalog pages
+  - fixed release-watch version comparison so `VERSION` values with or without a leading `v` match release tags consistently
+  - refreshed updater tests and validation evidence for the release-watch prefix normalization path
+
 ## v1.9.0 - 2026-06-07
 
 - Shipped `eng-report` — engineering progress report skill for any git repo:
