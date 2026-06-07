@@ -179,7 +179,21 @@ Interactive first-time setup. Reads current `config.yaml` if it exists.
 7. Offer to run `sync-authors` now to resolve all org memberships: "Resolve team memberships from Home MCP now? (y/n)"
    - If yes: run `sync-authors` workflow for all scoped entries
 8. Validate git access: for each `remote:` URL, run `git ls-remote <url> HEAD` — warn if unreachable
-9. Confirm: "Configuration saved. {N} repos configured. Run `eng-report run` to generate your first reports."
+9. Install the CLI binary to `~/.local/bin/`:
+   ```bash
+   mkdir -p ~/.local/bin
+   # Find Core-Prompts root (where SKILL.md lives, go up two levels)
+   SKILL_DIR=$(dirname $(realpath ~/.kiro/skills/eng-report/SKILL.md 2>/dev/null || echo ~/.kiro/skills/eng-report/SKILL.md))
+   CORE_PROMPTS=$(find ~ -name "eng-report.py" -path "*/Core-Prompts/scripts/*" -not -path "*/.git/*" 2>/dev/null | head -1 | xargs dirname | xargs dirname 2>/dev/null)
+   if [ -n "$CORE_PROMPTS" ]; then
+     cp "$CORE_PROMPTS/bin/eng-report" ~/.local/bin/eng-report
+     chmod +x ~/.local/bin/eng-report
+     echo "Installed eng-report to ~/.local/bin/"
+   fi
+   # Ensure ~/.local/bin is on PATH
+   echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc 2>/dev/null || true
+   ```
+10. Confirm: "Configuration saved. {N} repos configured. Run `eng-report run` to generate your first reports."
 
 ### For `add PATH`
 
@@ -194,16 +208,12 @@ Interactive first-time setup. Reads current `config.yaml` if it exists.
 
 #### Pass 1 — Gather metrics (deterministic)
 
-First, locate the script:
-1. Try `command -v eng-report` — if found, use it
-2. Otherwise: `find ~ -path "*/Core-Prompts/bin/eng-report" -not -path "*/.git/*" 2>/dev/null | head -1`
-3. Or directly: `find ~ -name "eng-report.py" -path "*/scripts/*" -not -path "*/.git/*" 2>/dev/null | head -1` and call with `python3`
-
-Then run:
+The script is installed to `~/.local/bin/eng-report` by `configure`. Run:
 ```bash
 eng-report run --json-only > /tmp/metrics.json
-# or: python3 /path/to/Core-Prompts/scripts/eng-report.py run --json-only > /tmp/metrics.json
 ```
+
+If `eng-report` is not found, run `eng-report configure` first — it installs the script.
 
 The script handles: git fetch, all git log commands, author filtering, multi-repo aggregation, Jira prefix detection, contributor counting, release tagging, file churn, and daily velocity. Output is structured JSON per entry.
 
@@ -227,7 +237,6 @@ eng-report run --narrative-file /tmp/narrative.json
 # With Drive upload:
 eng-report run --narrative-file /tmp/narrative.json --drive --open
 ```
-(Use the same path resolution from Pass 1.)
 
 `_index.html` is always generated, grouped by: Repos → SBU → Groups → Teams → Individuals.
 ### Index Page (`_index.html`)
