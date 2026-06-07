@@ -31,6 +31,7 @@ CONVENTIONAL_PREFIX = re.compile(r"^(\w+)[\s(:\!]")
 # ── Git helpers ───────────────────────────────────────────────────────────────
 
 def git(repo: Path, *args: str, check: bool = True) -> str:
+    """Run a git command in repo, return stdout or empty string on error."""
     try:
         return subprocess.run(
             ["git", "-C", str(repo), *args],
@@ -41,6 +42,7 @@ def git(repo: Path, *args: str, check: bool = True) -> str:
 
 
 def author_flags(authors: list[str]) -> list[str]:
+    """Convert list of author names to git --author flags."""
     flags = []
     for a in authors:
         flags += ["--author", a]
@@ -772,6 +774,7 @@ __ARCH_MODAL_PLACEHOLDER__
 # ── Config loading ─────────────────────────────────────────────────────────────
 
 def load_config(path: Path) -> dict:
+    """Load config.yaml using PyYAML if available, else built-in parser."""
     try:
         import yaml  # type: ignore
         with open(path) as f:
@@ -1133,6 +1136,7 @@ __ARCH_MODAL_PLACEHOLDER__
 
 
 def main() -> None:
+    """CLI entry point."""
     parser = argparse.ArgumentParser(
         description="eng-report: deterministic engineering progress report generator"
     )
@@ -1179,7 +1183,13 @@ def main() -> None:
                 if p and p not in seen_paths:
                     seen_paths.add(p)
                     author_entries.append({"name": f"individual-{author.replace(' ','-')}", "label": author, "path": p, "category": "Individuals"})
-        entries = author_entries[:1]  # one combined entry using first repo; TODO: multi-repo merge
+        # Merge all unique repo paths into one group entry
+        all_paths = list(seen_paths)
+        if all_paths:
+            entries = [{"name": f"individual-{author.replace(' ','-')}", "label": author,
+                        "repos": all_paths, "category": "Individuals"}]
+        else:
+            entries = []
 
     # Load optional AI narrative file
     narratives: dict[str, dict] = {}
