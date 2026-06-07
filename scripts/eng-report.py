@@ -1018,8 +1018,10 @@ def run_entry(entry: dict, since: str, output_dir: Path, author_filter: str | No
     top_pct = int(agg["contributors"][0][0] / max(agg["commits"], 1) * 100) if agg["contributors"] else 0
     print(f"  ✓ {name}: {agg['commits']} commits, {agg['net']:+,} lines → {out_path.name}", file=sys.stderr)
 
-    return {
+    # Summary row (for index) — always returned
+    summary = {
         "name": file_key,
+        "label": name,
         "commits": agg["commits"],
         "merges": agg["merges"],
         "added": agg["added"],
@@ -1028,7 +1030,17 @@ def run_entry(entry: dict, since: str, output_dir: Path, author_filter: str | No
         "releases": len(agg["releases"]),
         "top_contributor": f"{top_contributor.split()[0]} ({top_pct}%)" if agg["contributors"] else "—",
         "group": scope.get("tribe", ""),
+        # Rich data for narrative generation
+        "commit_subjects": agg.get("commit_subjects", [])[:50],
+        "top_files": [(f, {"added": a, "deleted": d}) for f, (a, d) in agg.get("top_files", [])],
+        "contributors": [{"count": c, "name": n} for c, n in agg.get("contributors", [])],
+        "categories": agg.get("categories", {}),
+        "is_jira": agg.get("is_jira", False),
+        "web_url": agg.get("web_url", ""),
+        "daily": agg.get("daily", {}),
+        "low_activity": agg.get("low_activity", False),
     }
+    return summary
 
 
 def build_index(rows: list[dict], output_dir: Path, config: dict, entries: list[dict]) -> None:
@@ -1148,7 +1160,7 @@ def main() -> None:
     p_run.add_argument("--since", default=None, help="Override window (e.g. '2 weeks ago')")
     p_run.add_argument("--output", default=str(DEFAULT_OUTPUT_DIR))
     p_run.add_argument("--name", help="Generate only this entry by name")
-    p_run.add_argument("--json-only", action="store_true", dest="json_only", help="Output metrics JSON to stdout only (no HTML written)")
+    p_run.add_argument("--json", action="store_true", dest="json_only", help="Output full metrics JSON to stdout (no HTML written — use with --narrative-file on next run)")
     p_run.add_argument("--no-index", action="store_true", help="Skip _index.html generation")
     p_run.add_argument("--author", default=None, help="Generate report for a single person across all configured repos")
     p_run.add_argument("--narrative-file", default=None, dest="narrative_file",

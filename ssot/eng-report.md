@@ -207,7 +207,7 @@ eng-report run --json-only > /tmp/metrics.json
 
 If `eng-report` is not found, run `eng-report configure` first — it installs the script.
 
-The script handles: git fetch, all git log commands, author filtering, multi-repo aggregation, Jira prefix detection, contributor counting, release tagging, file churn, and daily velocity. Output is structured JSON per entry.
+The script handles everything — git fetch, all git log commands, author filtering, multi-repo aggregation. `--json` outputs full metrics per entry including: commit subjects (up to 50), top files with churn, contributors, categories, daily breakdown. No extra git commands needed for narrative generation.
 
 #### Pass 2 — Generate AI narrative
 
