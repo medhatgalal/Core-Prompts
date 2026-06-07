@@ -202,7 +202,7 @@ Interactive first-time setup. Reads current `config.yaml` if it exists.
 
 The script is installed to `~/.local/bin/eng-report` by `configure`. Run:
 ```bash
-eng-report run --json-only > /tmp/metrics.json
+eng-report run --json > /tmp/metrics.json
 ```
 
 If `eng-report` is not found, run `eng-report configure` first — it installs the script.
@@ -313,7 +313,7 @@ Reports are rendered in two passes to ensure data integrity:
 
 **Pass 1 — Deterministic data (script):**
 ```bash
-eng-report run --json-only > /tmp/metrics.json
+eng-report run --json > /tmp/metrics.json
 ```
 Outputs: `[{"name": "AgenticAI-Group", "commits": 16, "net": 2210, ...}, ...]`
 
@@ -343,7 +343,7 @@ COMMANDS:
   run --repo ~/repo/my-repo         Generate for one specific repo
   run --since 2026-05-01          Custom start date (also: '2 weeks ago', '30 days ago') (ISO date or "N weeks ago")
   run --narrative-file FILE       JSON file with AI narratives per entry (see workflow)
-  run --json-only                 Output metrics JSON only, no HTML (pipe to AI for narrative generation)
+  run --json                 Output metrics JSON only, no HTML (pipe to AI for narrative generation)
   run --author "Jane Smith"       Generate report for a single person across all repos
   run --drive                     Generate + upload to Drive + auto-sync locally
   run --drive --open              Generate + upload + sync + open _index.html
