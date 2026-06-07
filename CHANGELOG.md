@@ -1,3 +1,16 @@
+## v1.9.0 - 2026-06-07
+
+- Shipped `eng-report` — engineering progress report skill for any git repo:
+  - Deterministic data layer: `scripts/eng-report.py` gathers all metrics via git, zero hallucination surface
+  - Fleet mode: 35-entry config covering Automation SBU repos, groups, teams across ae and ai-platform
+  - Two-pass workflow: `--json` for metrics, `--narrative-file` for AI-synthesized narrative
+  - Org-scoped author filtering using Home MCP (sync-authors command)
+  - Clickable architecture cards, velocity bar modals, contributor Home profile links
+  - Index page grouped by Repos → SBU → Groups → Teams → Individuals
+  - `configure` wizard with remote auto-clone, org scope setup, ~/.local/bin install
+  - UAC quality: source_fidelity 10/10, operational_richness 10/10, metadata_integrity 10/10
+  - boundary_clarity 6/10 (manual_review): new capability type vs. established benchmarks; accepted on human review
+
 # Changelog
 
 ## v1.8.7 - 2026-06-03

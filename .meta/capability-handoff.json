@@ -713,6 +713,85 @@
       "advisory_only": true
     },
     {
+      "slug": "eng-report",
+      "display_name": "Engineering Progress Report",
+      "capability_type": "skill",
+      "summary": "Generate a weekly/periodic HTML engineering dashboard from git data for any repo or org team. Use for velocity reporting, architecture evolution, and release tracking. Do not use to access Jira, estimate story points, or replace sprint planning tools. Do not use to modify code or run tests.",
+      "role": "architect",
+      "domain_tags": [
+        "architecture",
+        "report"
+      ],
+      "required_inputs": [
+        "source text",
+        "user intent/context"
+      ],
+      "expected_outputs": [
+        "deterministic summary",
+        "uplift payload",
+        "capability recommendation",
+        "deployment guidance"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ]
+      },
+      "confidence": 0.97,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [],
+      "quality_status": null,
+      "benchmark_profile": null,
+      "preferred_use_cases": [],
+      "artifact_conventions": [],
+      "invocation_style": null,
+      "requires_human_confirmation": null,
+      "org_graph": {
+        "org_role": "workflow_provider",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "report"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
       "slug": "feature-status",
       "display_name": "Feature Status \u2014 Deep Completeness Analysis",
       "capability_type": "skill",
@@ -1100,7 +1179,7 @@
         "pitch"
       ],
       "required_inputs": [
-        "**For review/score/improve/components:** A pitch source (Google Doc URL, local file path, or pasted content)",
+        "**For review/score/improve/components/integration-proof:** A pitch source (Google Doc URL, local file path, or pasted content)",
         "**For create/bootstrap:** A goal name or problem statement. Optionally: appetite, team, known components.",
         "**For compare:** Two pitch sources",
         "**For audit:** Access to the pitches tracker or a list of pitch URLs",
@@ -1114,7 +1193,12 @@
         "Pitch-specific next actions",
         "Tracker Update block (copy-pasteable)",
         "Full pitch template with sections filled or marked `[TODO]`",
-        "Clean markdown (or JSON) file with pitch content"
+        "Clean markdown (or JSON) file with pitch content",
+        "Assessment (current score, seams, contract states)",
+        "Seam-by-seam proof requirements (scaled to appetite)",
+        "What you do NOT need to prove",
+        "Ordered spike plan with effort estimates",
+        "Gap to close (concrete deliverables to reach bet-ready)"
       ],
       "tool_policy": {
         "allowed": [
@@ -1157,7 +1241,7 @@
           "kiro_agent"
         ]
       },
-      "confidence": 0.88,
+      "confidence": 0.9,
       "review_status": "ready_for_orchestrator_review",
       "overlap_candidates": [
         "architecture"
@@ -1283,6 +1367,96 @@
         ],
         "authority_tier": "advisory",
         "work_graph_impact": "Adds or updates a skill capability with route profile None."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "radar",
+      "display_name": "Radar \u2014 Personal Operations Board for Leaders and ICs",
+      "capability_type": "both",
+      "summary": "Manages a personal operations board with action items, watching items, and dated audit trails. Proposes changes before writing. Integrates with meetings, email, and chat to surface new signals. Use when tracking what needs your attention, what you're waiting on, and what changed.",
+      "role": "analyst",
+      "domain_tags": [
+        "review",
+        "packaging",
+        "radar"
+      ],
+      "required_inputs": [
+        "**For status/overdue:** Access to the board (sheet ID or file path)",
+        "**For add:** Item description + lane (now/watch) + metadata (deadline, owner, stream)",
+        "**For update:** Item identifier + new note text",
+        "**For review:** Access to board + external sources to scan",
+        "**For report:** Access to board + time range"
+      ],
+      "expected_outputs": [
+        "**status:** Overdue count, top 3 urgent, recent changes",
+        "**add/update/move/close:** Proposed change shown, then applied after approval",
+        "**review:** Full proposed change list with sources cited",
+        "**report:** Shareable summary (markdown or plain text)"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill",
+          "codex_agent"
+        ],
+        "gemini": [
+          "gemini_skill",
+          "gemini_agent"
+        ],
+        "claude": [
+          "claude_skill",
+          "claude_agent"
+        ],
+        "kiro": [
+          "kiro_skill",
+          "kiro_agent"
+        ]
+      },
+      "confidence": 0.84,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [
+        "prefer explicit review or analyst companions before high-authority use"
+      ],
+      "quality_status": null,
+      "benchmark_profile": null,
+      "preferred_use_cases": [],
+      "artifact_conventions": [],
+      "invocation_style": null,
+      "requires_human_confirmation": null,
+      "org_graph": {
+        "org_role": "specialist_with_workflow_surface",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "review",
+          "packaging"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
       },
       "advisory_only": true
     },

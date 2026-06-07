@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+SCRIPT="$ROOT/scripts/eng-report.py"
+
+if [[ -n "${PYTHON_BIN:-}" ]]; then
+  PYTHON_BIN="$PYTHON_BIN"
+elif command -v python3.14 >/dev/null 2>&1; then
+  PYTHON_BIN="python3.14"
+elif command -v python3.13 >/dev/null 2>&1; then
+  PYTHON_BIN="python3.13"
+elif command -v python3.12 >/dev/null 2>&1; then
+  PYTHON_BIN="python3.12"
+elif command -v python3.11 >/dev/null 2>&1; then
+  PYTHON_BIN="python3.11"
+else
+  PYTHON_BIN="python3"
+fi
+
+usage() {
+  cat <<'EOF'
+Usage: eng-report <command> [options]
+
+Commands:
+  run                     Generate all configured reports
+  run --name NAME         Generate a single entry by name
+  run --since "2 weeks ago"   Override the time window
+  run --output /path      Override output directory
+  run --json              Output metrics JSON (no HTML)
+
+Options:
+  --config FILE           Config file (default: ~/.kiro/skills/eng-report/config.yaml)
+  --no-index              Skip _index.html generation
+
+Examples:
+  eng-report run
+  eng-report run --name MyRepo-Repo
+  eng-report run --since "2 weeks ago" --output ~/reports/2026-06-01
+EOF
+}
+
+if [[ $# -lt 1 ]]; then
+  usage
+  exit 1
+fi
+
+command="$1"
+shift
+
+case "$command" in
+  run)
+    exec "$PYTHON_BIN" "$SCRIPT" run "$@"
+    ;;
+  -h|--help|help)
+    usage
+    ;;
+  *)
+    echo "error: unknown command '$command'"
+    usage
+    exit 1
+    ;;
+esac

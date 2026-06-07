@@ -1894,6 +1894,157 @@
       ]
     },
     {
+      "slug": "eng-report",
+      "manifest_version": "capability-fabric.v0",
+      "layers": {
+        "minimal": {
+          "capability_type": "skill",
+          "summary": "Generate a weekly/periodic HTML engineering dashboard from git data for any repo or org team. Use for velocity reporting, architecture evolution, and release tracking. Do not use to access Jira, estimate story points, or replace sprint planning tools. Do not use to modify code or run tests.",
+          "role": "architect",
+          "domain_tags": [
+            "architecture",
+            "report"
+          ],
+          "required_inputs": [
+            "source text",
+            "user intent/context"
+          ],
+          "expected_outputs": [
+            "deterministic summary",
+            "uplift payload",
+            "capability recommendation",
+            "deployment guidance"
+          ],
+          "tool_policy": {
+            "allowed": [
+              "deterministic classification",
+              "metadata publication",
+              "surface generation"
+            ],
+            "forbidden": [
+              "orchestration",
+              "delegation decisions",
+              "runtime execution control"
+            ]
+          },
+          "resources": [
+            "ssot/eng-report.md"
+          ],
+          "packaging_profile": {
+            "capability_type": "skill",
+            "primary_surfaces": {
+              "codex": [
+                "codex_skill"
+              ],
+              "gemini": [
+                "gemini_skill"
+              ],
+              "claude": [
+                "claude_skill"
+              ],
+              "kiro": [
+                "kiro_skill"
+              ]
+            },
+            "wrapper_surfaces": {
+              "codex": [],
+              "gemini": [
+                "skill_wrapper"
+              ],
+              "claude": [
+                "skill_wrapper",
+                "plugin_wrapper"
+              ],
+              "kiro": [
+                "skill_wrapper",
+                "power_wrapper"
+              ]
+            },
+            "notes": [
+              "wrapper surfaces are additive deployment forms, not capability types",
+              "orchestrators must not infer execution authority from wrapper presence alone"
+            ]
+          },
+          "install_target": {
+            "recommended": "repo_local",
+            "confidence": 0.88,
+            "confirmation_required_for_apply": true,
+            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+            "supported": [
+              "global",
+              "repo_local",
+              "both"
+            ]
+          },
+          "emitted_surfaces": {
+            "codex": [
+              "codex_skill"
+            ],
+            "gemini": [
+              "gemini_skill"
+            ],
+            "claude": [
+              "claude_skill"
+            ],
+            "kiro": [
+              "kiro_skill"
+            ]
+          },
+          "source_provenance": {
+            "source_type": "LOCAL_FILE",
+            "normalized_source": "ssot/eng-report.md",
+            "policy_rule_id": "ssot.eng-report",
+            "content_sha256": "ssot"
+          },
+          "confidence": 0.97,
+          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "Engineering Progress Report"
+        },
+        "expanded": {
+          "relationship_suggestions": [],
+          "capability_dependencies": [],
+          "overlap_candidates": [],
+          "migration_notes": [
+            "If the capability lands, compare it against existing entries before apply.",
+            "Relationship suggestions are advisory only and do not imply runtime routing."
+          ],
+          "adjustment_recommendations": [
+            "add an explicit primary objective before packaging",
+            "add deterministic in-scope sections to improve routing fitness",
+            "capture quality constraints or non-negotiables"
+          ]
+        },
+        "org_graph": {
+          "org_role": "workflow_provider",
+          "reports_to_suggestions": [],
+          "delegates_to_suggestions": [],
+          "collaborates_with_suggestions": [
+            "report"
+          ],
+          "authority_tier": "advisory",
+          "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+        }
+      },
+      "display_name": "Engineering Progress Report",
+      "descriptor_version": "capability-fabric.descriptor.v0",
+      "family_slug": "eng-report",
+      "shared_summary": "Engineering progress report for any git repo. Generates a standalone HTML dashboard with velocity, MRs, lines changed, release timeline, code churn, contributor breakdown, and autonomy metrics. Supports fleet mode to run across multiple repos and upload to Google Drive.",
+      "shared_constraints": [],
+      "modes": [],
+      "benchmark_sources": [],
+      "consumption_hints": {},
+      "declared_capability": null,
+      "inferred_capability": "skill",
+      "expected_surface_names": [
+        "codex_skill",
+        "gemini_skill",
+        "claude_skill",
+        "kiro_skill"
+      ],
+      "rubric_version": "capability-fabric.v0"
+    },
+    {
       "slug": "feature-status",
       "manifest_version": "capability-fabric.v0",
       "layers": {
@@ -2862,7 +3013,7 @@
             "pitch"
           ],
           "required_inputs": [
-            "**For review/score/improve/components:** A pitch source (Google Doc URL, local file path, or pasted content)",
+            "**For review/score/improve/components/integration-proof:** A pitch source (Google Doc URL, local file path, or pasted content)",
             "**For create/bootstrap:** A goal name or problem statement. Optionally: appetite, team, known components.",
             "**For compare:** Two pitch sources",
             "**For audit:** Access to the pitches tracker or a list of pitch URLs",
@@ -2876,7 +3027,12 @@
             "Pitch-specific next actions",
             "Tracker Update block (copy-pasteable)",
             "Full pitch template with sections filled or marked `[TODO]`",
-            "Clean markdown (or JSON) file with pitch content"
+            "Clean markdown (or JSON) file with pitch content",
+            "Assessment (current score, seams, contract states)",
+            "Seam-by-seam proof requirements (scaled to appetite)",
+            "What you do NOT need to prove",
+            "Ordered spike plan with effort estimates",
+            "Gap to close (concrete deliverables to reach bet-ready)"
           ],
           "tool_policy": {
             "allowed": [
@@ -2969,7 +3125,7 @@
             "policy_rule_id": "ssot.pitch",
             "content_sha256": "ssot"
           },
-          "confidence": 0.88,
+          "confidence": 0.9,
           "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "Pitch \u2014 Shape Up Pitch Creation, Review, Scoring, and Improvement",
@@ -3165,7 +3321,8 @@
         "compare these pitches",
         "which pitches need work / pitch audit / pitch status",
         "is this pitch ready to bet on",
-        "bootstrap a pitch from this goal"
+        "bootstrap a pitch from this goal",
+        "what does good integration proof look like / how do I prove integration / what spike do I need"
       ]
     },
     {
@@ -3505,6 +3662,191 @@
         "triage my comms / communications",
         "what's new in chat",
         "pulse, pulse /hot, pulse /email, pulse /chat"
+      ]
+    },
+    {
+      "slug": "radar",
+      "manifest_version": "capability-fabric.v0",
+      "layers": {
+        "minimal": {
+          "capability_type": "both",
+          "summary": "Manages a personal operations board with action items, watching items, and dated audit trails. Proposes changes before writing. Integrates with meetings, email, and chat to surface new signals. Use when tracking what needs your attention, what you're waiting on, and what changed.",
+          "role": "analyst",
+          "domain_tags": [
+            "review",
+            "packaging",
+            "radar"
+          ],
+          "required_inputs": [
+            "**For status/overdue:** Access to the board (sheet ID or file path)",
+            "**For add:** Item description + lane (now/watch) + metadata (deadline, owner, stream)",
+            "**For update:** Item identifier + new note text",
+            "**For review:** Access to board + external sources to scan",
+            "**For report:** Access to board + time range"
+          ],
+          "expected_outputs": [
+            "**status:** Overdue count, top 3 urgent, recent changes",
+            "**add/update/move/close:** Proposed change shown, then applied after approval",
+            "**review:** Full proposed change list with sources cited",
+            "**report:** Shareable summary (markdown or plain text)"
+          ],
+          "tool_policy": {
+            "allowed": [
+              "deterministic classification",
+              "metadata publication",
+              "surface generation"
+            ],
+            "forbidden": [
+              "orchestration",
+              "delegation decisions",
+              "runtime execution control"
+            ]
+          },
+          "resources": [
+            "ssot/radar.md"
+          ],
+          "packaging_profile": {
+            "capability_type": "both",
+            "primary_surfaces": {
+              "codex": [
+                "codex_skill",
+                "codex_agent"
+              ],
+              "gemini": [
+                "gemini_skill",
+                "gemini_agent"
+              ],
+              "claude": [
+                "claude_skill",
+                "claude_agent"
+              ],
+              "kiro": [
+                "kiro_skill",
+                "kiro_agent"
+              ]
+            },
+            "wrapper_surfaces": {
+              "codex": [
+                "plugin_wrapper"
+              ],
+              "gemini": [
+                "skill_wrapper"
+              ],
+              "claude": [
+                "skill_wrapper",
+                "plugin_wrapper"
+              ],
+              "kiro": [
+                "skill_wrapper",
+                "power_wrapper"
+              ]
+            },
+            "notes": [
+              "wrapper surfaces are additive deployment forms, not capability types",
+              "orchestrators must not infer execution authority from wrapper presence alone"
+            ]
+          },
+          "install_target": {
+            "recommended": "repo_local",
+            "confidence": 0.88,
+            "confirmation_required_for_apply": true,
+            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+            "supported": [
+              "global",
+              "repo_local",
+              "both"
+            ]
+          },
+          "emitted_surfaces": {
+            "codex": [
+              "codex_skill",
+              "codex_agent"
+            ],
+            "gemini": [
+              "gemini_skill",
+              "gemini_agent"
+            ],
+            "claude": [
+              "claude_skill",
+              "claude_agent"
+            ],
+            "kiro": [
+              "kiro_skill",
+              "kiro_agent"
+            ]
+          },
+          "source_provenance": {
+            "source_type": "LOCAL_FILE",
+            "normalized_source": "ssot/radar.md",
+            "policy_rule_id": "ssot.radar",
+            "content_sha256": "ssot"
+          },
+          "confidence": 0.84,
+          "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "Radar \u2014 Personal Operations Board for Leaders and ICs",
+          "version": "v1.0"
+        },
+        "expanded": {
+          "relationship_suggestions": [
+            "prefer explicit review or analyst companions before high-authority use"
+          ],
+          "capability_dependencies": [
+            "context"
+          ],
+          "overlap_candidates": [],
+          "migration_notes": [
+            "If the capability lands, compare it against existing entries before apply.",
+            "Relationship suggestions are advisory only and do not imply runtime routing."
+          ],
+          "adjustment_recommendations": [
+            "add an explicit primary objective before packaging",
+            "add deterministic in-scope sections to improve routing fitness",
+            "capture quality constraints or non-negotiables"
+          ]
+        },
+        "org_graph": {
+          "org_role": "specialist_with_workflow_surface",
+          "reports_to_suggestions": [],
+          "delegates_to_suggestions": [],
+          "collaborates_with_suggestions": [
+            "review",
+            "packaging"
+          ],
+          "authority_tier": "advisory",
+          "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
+        }
+      },
+      "display_name": "Radar \u2014 Personal Operations Board for Leaders and ICs",
+      "descriptor_version": "capability-fabric.descriptor.v0",
+      "family_slug": "radar",
+      "shared_summary": "Manages a personal operations board with action items, watching items, and dated audit trails. Proposes changes before writing. Integrates with meetings, email, and chat to surface new signals. Use when tracking what needs your attention, what you're waiting on, and what changed.",
+      "shared_constraints": [],
+      "modes": [],
+      "benchmark_sources": [],
+      "consumption_hints": {},
+      "declared_capability": "both",
+      "inferred_capability": "both",
+      "expected_surface_names": [
+        "codex_skill",
+        "codex_agent",
+        "gemini_skill",
+        "gemini_agent",
+        "claude_skill",
+        "claude_agent",
+        "kiro_skill",
+        "kiro_agent"
+      ],
+      "rubric_version": "capability-fabric.v0",
+      "invocation_hints": [
+        "what's on my radar / what do I need to do / what's overdue",
+        "add this to my board / track this / watch this",
+        "update [item] with [note]",
+        "move this to now / move this to watching",
+        "close this / done / resolved",
+        "review my board / what changed since yesterday",
+        "give me an EOD summary / weekly report",
+        "clean up my board / what's stale"
       ]
     },
     {
@@ -4725,12 +5067,14 @@
       ".gemini/skills/code-review/SKILL.md",
       ".gemini/skills/converge/SKILL.md",
       ".gemini/skills/docs-review-expert/SKILL.md",
+      ".gemini/skills/eng-report/SKILL.md",
       ".gemini/skills/feature-status/SKILL.md",
       ".gemini/skills/gitops-review/SKILL.md",
       ".gemini/skills/ic-assistant/SKILL.md",
       ".gemini/skills/mentor/SKILL.md",
       ".gemini/skills/pitch/SKILL.md",
       ".gemini/skills/pulse/SKILL.md",
+      ".gemini/skills/radar/SKILL.md",
       ".gemini/skills/resolve-conflict/SKILL.md",
       ".gemini/skills/supercharge/SKILL.md",
       ".gemini/skills/testing/SKILL.md",
@@ -4748,6 +5092,7 @@
       ".gemini/agents/mentor.md",
       ".gemini/agents/pitch.md",
       ".gemini/agents/pulse.md",
+      ".gemini/agents/radar.md",
       ".gemini/agents/supercharge.md",
       ".gemini/agents/weekly-intel.md"
     ],
@@ -4759,12 +5104,14 @@
       ".claude/skills/code-review/SKILL.md",
       ".claude/skills/converge/SKILL.md",
       ".claude/skills/docs-review-expert/SKILL.md",
+      ".claude/skills/eng-report/SKILL.md",
       ".claude/skills/feature-status/SKILL.md",
       ".claude/skills/gitops-review/SKILL.md",
       ".claude/skills/ic-assistant/SKILL.md",
       ".claude/skills/mentor/SKILL.md",
       ".claude/skills/pitch/SKILL.md",
       ".claude/skills/pulse/SKILL.md",
+      ".claude/skills/radar/SKILL.md",
       ".claude/skills/resolve-conflict/SKILL.md",
       ".claude/skills/supercharge/SKILL.md",
       ".claude/skills/testing/SKILL.md",
@@ -4782,6 +5129,7 @@
       ".claude/agents/mentor.md",
       ".claude/agents/pitch.md",
       ".claude/agents/pulse.md",
+      ".claude/agents/radar.md",
       ".claude/agents/supercharge.md",
       ".claude/agents/weekly-intel.md"
     ],
@@ -4795,6 +5143,7 @@
       ".kiro/agents/mentor.json",
       ".kiro/agents/pitch.json",
       ".kiro/agents/pulse.json",
+      ".kiro/agents/radar.json",
       ".kiro/agents/supercharge.json",
       ".kiro/agents/weekly-intel.json"
     ],
@@ -4806,12 +5155,14 @@
       ".kiro/skills/code-review/SKILL.md",
       ".kiro/skills/converge/SKILL.md",
       ".kiro/skills/docs-review-expert/SKILL.md",
+      ".kiro/skills/eng-report/SKILL.md",
       ".kiro/skills/feature-status/SKILL.md",
       ".kiro/skills/gitops-review/SKILL.md",
       ".kiro/skills/ic-assistant/SKILL.md",
       ".kiro/skills/mentor/SKILL.md",
       ".kiro/skills/pitch/SKILL.md",
       ".kiro/skills/pulse/SKILL.md",
+      ".kiro/skills/radar/SKILL.md",
       ".kiro/skills/resolve-conflict/SKILL.md",
       ".kiro/skills/supercharge/SKILL.md",
       ".kiro/skills/testing/SKILL.md",
@@ -4827,12 +5178,14 @@
       ".codex/skills/code-review/SKILL.md",
       ".codex/skills/converge/SKILL.md",
       ".codex/skills/docs-review-expert/SKILL.md",
+      ".codex/skills/eng-report/SKILL.md",
       ".codex/skills/feature-status/SKILL.md",
       ".codex/skills/gitops-review/SKILL.md",
       ".codex/skills/ic-assistant/SKILL.md",
       ".codex/skills/mentor/SKILL.md",
       ".codex/skills/pitch/SKILL.md",
       ".codex/skills/pulse/SKILL.md",
+      ".codex/skills/radar/SKILL.md",
       ".codex/skills/resolve-conflict/SKILL.md",
       ".codex/skills/supercharge/SKILL.md",
       ".codex/skills/testing/SKILL.md",
@@ -4850,6 +5203,7 @@
       ".codex/agents/mentor.toml",
       ".codex/agents/pitch.toml",
       ".codex/agents/pulse.toml",
+      ".codex/agents/radar.toml",
       ".codex/agents/supercharge.toml",
       ".codex/agents/weekly-intel.toml"
     ]
@@ -4868,6 +5222,7 @@
       ".codex/skills/code-review/resources/capability.json",
       ".codex/skills/converge/resources/capability.json",
       ".codex/skills/docs-review-expert/resources/capability.json",
+      ".codex/skills/eng-report/resources/capability.json",
       ".codex/skills/feature-status/resources/capability.json",
       ".codex/skills/gitops-review/resources/capability.json",
       ".codex/skills/ic-assistant/resources/capability.json",
@@ -4875,6 +5230,7 @@
       ".codex/skills/mentor/resources/capability.json",
       ".codex/skills/pitch/resources/capability.json",
       ".codex/skills/pulse/resources/capability.json",
+      ".codex/skills/radar/resources/capability.json",
       ".codex/skills/resolve-conflict/resources/capability.json",
       ".codex/skills/supercharge/resources/capability.json",
       ".codex/skills/testing/resources/capability.json",
@@ -4898,6 +5254,7 @@
       ".codex/agents/resources/mentor/capability.json",
       ".codex/agents/resources/pitch/capability.json",
       ".codex/agents/resources/pulse/capability.json",
+      ".codex/agents/resources/radar/capability.json",
       ".codex/agents/resources/supercharge/capability.json",
       ".codex/agents/resources/weekly-intel/capability.json"
     ],
@@ -4914,6 +5271,7 @@
       ".gemini/skills/code-review/resources/capability.json",
       ".gemini/skills/converge/resources/capability.json",
       ".gemini/skills/docs-review-expert/resources/capability.json",
+      ".gemini/skills/eng-report/resources/capability.json",
       ".gemini/skills/feature-status/resources/capability.json",
       ".gemini/skills/gitops-review/resources/capability.json",
       ".gemini/skills/ic-assistant/resources/capability.json",
@@ -4921,6 +5279,7 @@
       ".gemini/skills/mentor/resources/capability.json",
       ".gemini/skills/pitch/resources/capability.json",
       ".gemini/skills/pulse/resources/capability.json",
+      ".gemini/skills/radar/resources/capability.json",
       ".gemini/skills/resolve-conflict/resources/capability.json",
       ".gemini/skills/supercharge/resources/capability.json",
       ".gemini/skills/testing/resources/capability.json",
@@ -4944,6 +5303,7 @@
       ".gemini/agents/resources/mentor/capability.json",
       ".gemini/agents/resources/pitch/capability.json",
       ".gemini/agents/resources/pulse/capability.json",
+      ".gemini/agents/resources/radar/capability.json",
       ".gemini/agents/resources/supercharge/capability.json",
       ".gemini/agents/resources/weekly-intel/capability.json"
     ],
@@ -4960,6 +5320,7 @@
       ".claude/skills/code-review/resources/capability.json",
       ".claude/skills/converge/resources/capability.json",
       ".claude/skills/docs-review-expert/resources/capability.json",
+      ".claude/skills/eng-report/resources/capability.json",
       ".claude/skills/feature-status/resources/capability.json",
       ".claude/skills/gitops-review/resources/capability.json",
       ".claude/skills/ic-assistant/resources/capability.json",
@@ -4967,6 +5328,7 @@
       ".claude/skills/mentor/resources/capability.json",
       ".claude/skills/pitch/resources/capability.json",
       ".claude/skills/pulse/resources/capability.json",
+      ".claude/skills/radar/resources/capability.json",
       ".claude/skills/resolve-conflict/resources/capability.json",
       ".claude/skills/supercharge/resources/capability.json",
       ".claude/skills/testing/resources/capability.json",
@@ -4990,6 +5352,7 @@
       ".claude/agents/resources/mentor/capability.json",
       ".claude/agents/resources/pitch/capability.json",
       ".claude/agents/resources/pulse/capability.json",
+      ".claude/agents/resources/radar/capability.json",
       ".claude/agents/resources/supercharge/capability.json",
       ".claude/agents/resources/weekly-intel/capability.json"
     ],
@@ -5006,6 +5369,7 @@
       ".kiro/skills/code-review/resources/capability.json",
       ".kiro/skills/converge/resources/capability.json",
       ".kiro/skills/docs-review-expert/resources/capability.json",
+      ".kiro/skills/eng-report/resources/capability.json",
       ".kiro/skills/feature-status/resources/capability.json",
       ".kiro/skills/gitops-review/resources/capability.json",
       ".kiro/skills/ic-assistant/resources/capability.json",
@@ -5013,6 +5377,7 @@
       ".kiro/skills/mentor/resources/capability.json",
       ".kiro/skills/pitch/resources/capability.json",
       ".kiro/skills/pulse/resources/capability.json",
+      ".kiro/skills/radar/resources/capability.json",
       ".kiro/skills/resolve-conflict/resources/capability.json",
       ".kiro/skills/supercharge/resources/capability.json",
       ".kiro/skills/testing/resources/capability.json",
@@ -5036,6 +5401,7 @@
       ".kiro/agents/resources/mentor/capability.json",
       ".kiro/agents/resources/pitch/capability.json",
       ".kiro/agents/resources/pulse/capability.json",
+      ".kiro/agents/resources/radar/capability.json",
       ".kiro/agents/resources/supercharge/capability.json",
       ".kiro/agents/resources/weekly-intel/capability.json"
     ]
