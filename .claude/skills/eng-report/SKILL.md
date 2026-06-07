@@ -424,13 +424,4 @@ CONFIG: ~/.kiro/skills/eng-report/config.yaml
 Capability resource: `.kiro/skills/eng-report/resources/capability.json`
 
 
-Capability resource: `.kiro/skills/eng-report/resources/capability.json`
-
-
-Capability resource: `.kiro/skills/eng-report/resources/capability.json`
-
-
-Capability resource: `.kiro/skills/eng-report/resources/capability.json`
-
-
 Capability resource: `.claude/skills/eng-report/resources/capability.json`

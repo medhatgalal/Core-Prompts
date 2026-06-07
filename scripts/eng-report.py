@@ -105,39 +105,81 @@ def _default_branch(repo: Path) -> str:
     return "main"
 
 
-def gather_repo_metrics(repo: Path, since: str, authors: list[str]) -> dict[str, Any]:
-    """Run all git commands for one repo with optional author filter."""
-    af = author_flags(authors)
-    since_flag = [f"--since={since}"]
-
-    web_url = _remote_web_url(repo)
-    default_branch = _default_branch(repo)
-
-    commits_raw = git(repo, "log", *since_flag, "--no-merges", "--oneline", "--remotes", *af)
-    commits = len(commits_raw.splitlines()) if commits_raw else 0
-
-    merges_raw = git(repo, "log", *since_flag, "--merges", "--oneline", "--remotes", *af)
-    merges = len(merges_raw.splitlines()) if merges_raw else 0
-
-    # Lines added/deleted
-    shortstat = git(repo, "log", *since_flag, "--shortstat", "--format=", "--remotes", *af)
+def _parse_shortstat(raw: str) -> tuple[int, int]:
+    """Parse git shortstat output into (added, deleted) totals."""
     added = deleted = 0
-    for line in shortstat.splitlines():
+    for line in raw.splitlines():
         m = re.search(r"(\d+) insertion", line)
         if m:
             added += int(m.group(1))
         m = re.search(r"(\d+) deletion", line)
         if m:
             deleted += int(m.group(1))
+    return added, deleted
 
-    # Commits per day
-    dates_raw = git(repo, "log", *since_flag, "--no-merges", "--format=%ad", "--date=short", "--remotes", *af)
+
+def _parse_daily(raw: str) -> dict[str, int]:
+    """Parse date-per-line output into daily commit counts."""
     daily: dict[str, int] = defaultdict(int)
-    for d in dates_raw.splitlines():
+    for d in raw.splitlines():
         if d:
             daily[d] += 1
+    return dict(daily)
 
-    # Contributors — use log --format to get consistent names matching author_flags
+
+def gather_repo_metrics(repo: Path, since: str, authors: list[str], branch_scope: str = "all") -> dict[str, Any]:
+    """Run all git commands for one repo with optional author filter.
+    branch_scope: 'all' (shipped+inflight), 'shipped' (default branch only), 'in-flight' (branches only)"""
+    af = author_flags(authors)
+    since_flag = [f"--since={since}"]
+
+    web_url = _remote_web_url(repo)
+    default_branch = _default_branch(repo)
+
+    # Determine which branch refs to query
+    shipped_ref = [default_branch]  # commits on default branch
+    inflight_ref = ["--remotes", "--not", default_branch]  # commits NOT on default
+
+    # --- SHIPPED metrics (on default branch) ---
+    # Use --first-parent without --no-merges to handle squash-merge repos
+    shipped_commits_raw = git(repo, "log", *since_flag, "--first-parent", *shipped_ref, "--oneline", *af)
+    shipped_commits = len(shipped_commits_raw.splitlines()) if shipped_commits_raw else 0
+    shipped_shas_raw = git(repo, "log", *since_flag, "--first-parent", *shipped_ref, "--format=%H", *af)
+    shipped_shas = set(shipped_shas_raw.splitlines()) if shipped_shas_raw else set()
+
+    shipped_stat = git(repo, "log", *since_flag, "--first-parent", *shipped_ref, "--shortstat", "--format=", *af)
+    shipped_added, shipped_deleted = _parse_shortstat(shipped_stat)
+
+    shipped_dates = git(repo, "log", *since_flag, "--first-parent", *shipped_ref, "--format=%ad", "--date=short", *af)
+    shipped_daily = _parse_daily(shipped_dates)
+
+    # --- IN-FLIGHT metrics (on feature branches, not on default) ---
+    inflight_commits_raw = git(repo, "log", *since_flag, "--no-merges", *inflight_ref, "--oneline", *af)
+    inflight_commits = len(inflight_commits_raw.splitlines()) if inflight_commits_raw else 0
+
+    inflight_stat = git(repo, "log", *since_flag, *inflight_ref, "--shortstat", "--format=", *af)
+    inflight_added, inflight_deleted = _parse_shortstat(inflight_stat)
+
+    inflight_dates = git(repo, "log", *since_flag, "--no-merges", *inflight_ref, "--format=%ad", "--date=short", *af)
+    inflight_daily = _parse_daily(inflight_dates)
+
+    # --- TOTALS (combine both) ---
+    commits = shipped_commits + inflight_commits
+    added = shipped_added + inflight_added
+    deleted = shipped_deleted + inflight_deleted
+
+    # Merge daily counts
+    daily: dict[str, int] = defaultdict(int)
+    for d, c in shipped_daily.items():
+        daily[d] += c
+    for d, c in inflight_daily.items():
+        daily[d] += c
+
+    # MRs (merges on default branch only — that's what "merged" means)
+    merges_raw = git(repo, "log", *since_flag, "--merges", "--first-parent", *shipped_ref, "--oneline", *af)
+    merges = len(merges_raw.splitlines()) if merges_raw else 0
+
+    # Contributors (all branches combined)
     contrib_raw = git(repo, "log", *since_flag, "--no-merges", "--format=%aN", "--remotes", *af)
     contrib_counts: dict[str, int] = defaultdict(int)
     for name in contrib_raw.splitlines():
@@ -147,7 +189,7 @@ def gather_repo_metrics(repo: Path, since: str, authors: list[str]) -> dict[str,
         [(v, k) for k, v in contrib_counts.items()], reverse=True
     )
 
-    # Top changed files
+    # Top changed files (all branches)
     numstat = git(repo, "log", *since_flag, "--numstat", "--format=", "--remotes", *af)
     file_churn: dict[str, tuple[int, int]] = defaultdict(lambda: (0, 0))
     for line in numstat.splitlines():
@@ -158,7 +200,7 @@ def gather_repo_metrics(repo: Path, since: str, authors: list[str]) -> dict[str,
             file_churn[f] = (a + int(parts[0]), d + int(parts[1]))
     top_files = sorted(file_churn.items(), key=lambda x: x[1][0] + x[1][1], reverse=True)[:10]
 
-    # Category breakdown
+    # Category breakdown (all branches)
     subjects = git(repo, "log", *since_flag, "--no-merges", "--format=%s", "--remotes", *af).splitlines()
     jira_count = sum(1 for s in subjects if re.match(r"^[A-Z][A-Z0-9]{1,9}-\d+[\s:]", s))
     is_jira = len(subjects) > 0 and jira_count / len(subjects) > 0.8
@@ -173,9 +215,9 @@ def gather_repo_metrics(repo: Path, since: str, authors: list[str]) -> dict[str,
         for s in subjects:
             m = CONVENTIONAL_PREFIX.match(s)
             if m and m.group(1).isalpha() and not m.group(1).isupper():
-                categories[m.group(1)] += 1
+                categories[m.group(1).lower()] += 1
 
-    # Releases: tags in window
+    # Releases: tags in window (branch-agnostic)
     since_dt = _parse_since(since)
     tags_raw = git(repo, "tag", "--sort=-creatordate",
                    "--format=%(creatordate:short) %(refname:short)")
@@ -189,24 +231,38 @@ def gather_repo_metrics(repo: Path, since: str, authors: list[str]) -> dict[str,
                     releases.append({"date": parts[0], "tag": parts[1]})
             except ValueError:
                 pass
-    releases = releases[:10]  # cap at 10
+    releases = releases[:10]
 
-    # Recent commits in window (for commit listing section)
+    # Recent commits with SHAs (all branches - in-flight)
     commits_sha_raw = git(repo, "log", *since_flag, "--no-merges", "--format=%H %ad %s", "--date=short", "--remotes", *af)
-    commits_with_sha = [{"sha": l[:40], "date": l[41:51], "subject": l[52:]} for l in commits_sha_raw.splitlines() if len(l) > 52][:200]
+    inflight_with_sha = [{"sha": l[:40], "date": l[41:51], "subject": l[52:]} for l in commits_sha_raw.splitlines() if len(l) > 52][:200]
+    # Shipped commits with SHAs (first-parent on default branch)
+    shipped_sha_log = git(repo, "log", *since_flag, "--first-parent", "--format=%H %ad %s", "--date=short", *shipped_ref, *af)
+    shipped_with_sha = [{"sha": l[:40], "date": l[41:51], "subject": l[52:]} for l in shipped_sha_log.splitlines() if len(l) > 52][:200]
+    commits_with_sha = shipped_with_sha + inflight_with_sha
     commits_in_window = [{"date": c["date"], "subject": c["subject"]} for c in commits_with_sha]
 
-    # Recent context (last 10 commits regardless of window — for low-activity reports)
+    # Recent context (last 10 commits regardless of window)
     recent_raw = git(repo, "log", "--no-merges", "--format=%ad %s", "--date=short", "-10", *af)
     recent = [{"date": l[:10], "subject": l[11:]} for l in recent_raw.splitlines() if len(l) > 11]
 
     return {
         "commits": commits,
+        "shipped_commits": shipped_commits,
+        "inflight_commits": inflight_commits,
         "merges": merges,
         "added": added,
         "deleted": deleted,
         "net": added - deleted,
+        "shipped_added": shipped_added,
+        "shipped_deleted": shipped_deleted,
+        "shipped_net": shipped_added - shipped_deleted,
+        "inflight_added": inflight_added,
+        "inflight_deleted": inflight_deleted,
+        "inflight_net": inflight_added - inflight_deleted,
         "daily": dict(daily),
+        "shipped_daily": shipped_daily,
+        "inflight_daily": inflight_daily,
         "contributors": contributors,
         "top_files": top_files,
         "categories": dict(sorted(categories.items(), key=lambda x: x[1], reverse=True)),
@@ -219,6 +275,7 @@ def gather_repo_metrics(repo: Path, since: str, authors: list[str]) -> dict[str,
         "web_url": web_url,
         "default_branch": default_branch,
         "commits_with_sha": commits_with_sha,
+        "shipped_shas": shipped_shas,
     }
 
 
@@ -259,6 +316,7 @@ def aggregate_metrics(repo_metrics: list[dict[str, Any]]) -> dict[str, Any]:
         "web_url": repo_metrics[0].get("web_url", "") if repo_metrics else "",
         "default_branch": repo_metrics[0].get("default_branch", "main") if repo_metrics else "main",
         "commits_with_sha": [],
+        "shipped_shas": set(),
     }
 
     seen_tags: set[str] = set()
@@ -281,6 +339,7 @@ def aggregate_metrics(repo_metrics: list[dict[str, Any]]) -> dict[str, Any]:
         agg["commits_in_window"].extend(r.get("commits_in_window", []))
         agg["commit_subjects"].extend(r.get("commit_subjects", []))
         agg["commits_with_sha"].extend(r.get("commits_with_sha", []))
+        agg["shipped_shas"].update(r.get("shipped_shas", set()))
         if not agg["web_url"] and r.get("web_url"):
             agg["web_url"] = r["web_url"]
             agg["default_branch"] = r.get("default_branch", "main")
@@ -316,8 +375,8 @@ body{background:#0d1117;color:#e6edf3;font-family:system-ui,-apple-system,sans-s
 .section{background:rgba(22,27,34,0.8);border:1px solid rgba(48,54,61,0.6);border-radius:12px;padding:20px;margin-bottom:16px}
 .section h3{color:#e6edf3;font-size:14px;margin-bottom:16px}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
-.bar-chart{display:flex;align-items:flex-end;gap:3px;height:100px}
-.bar-day{display:flex;flex-direction:column;align-items:center;gap:3px;flex:1}
+.bar-chart{display:flex;align-items:flex-end;gap:3px;height:140px}
+.bar-day{display:flex;flex-direction:column;align-items:stretch;gap:3px;flex:1;min-width:12px}
 .bar-fill{width:100%;border-radius:3px 3px 0 0;min-height:2px;background:#58a6ff}
 .bar-fill.peak{background:linear-gradient(to top,#d29922,#f85149)}
 .bar-label{font-size:10px;color:#8b949e}
@@ -381,26 +440,49 @@ CONTRIB_COLORS = ["#58a6ff", "#3fb950", "#a371f7", "#d29922", "#39d5ff",
                   "#f85149", "#8b949e", "#e6edf3"]
 
 
-def _bar_chart(daily: dict[str, int], since: str) -> str:
+def _bar_chart(daily: dict[str, int], since: str, shipped_daily: dict[str, int] | None = None, inflight_daily: dict[str, int] | None = None) -> str:
     since_dt = _parse_since(since)
     days = [(since_dt + timedelta(days=i)).isoformat() for i in range(7)]
     max_c = max((daily.get(d, 0) for d in days), default=1) or 1
+    has_split = shipped_daily is not None and inflight_daily is not None and any(inflight_daily.get(d, 0) > 0 for d in days)
+
+    legend = ""
+    if has_split:
+        legend = '<div style="display:flex;gap:12px;margin-bottom:8px;font-size:10px;color:#8b949e"><span>■ <span style="color:#58a6ff">Shipped</span></span><span>■ <span style="color:#d29922">In Flight</span></span></div>'
+
     bars = []
     for d in days:
         c = daily.get(d, 0)
-        h = max(2, int(c / max_c * 90))
-        is_peak = c == max_c and c > 0
-        cls = "bar-fill peak" if is_peak else "bar-fill"
-        label = d[8:]  # day number
+        shipped_c = shipped_daily.get(d, 0) if shipped_daily else c
+        inflight_c = inflight_daily.get(d, 0) if inflight_daily else 0
+        total_h = max(2, int(c / max_c * 120))
+        label = d[8:]
         count_label = str(c) if c > 0 else ""
-        bars.append(
-            f'<div class="bar-day">'
-            f'<div style="color:#8b949e;font-size:9px;text-align:center;height:12px;line-height:12px">{count_label}</div>'
-            f'<div class="{cls}" style="height:{h}px;cursor:{"pointer" if c>0 else "default"}" title="{c} commits on {d}" data-date="{d}" data-count="{c}" {"onclick=openDay(this)" if c>0 else ""}></div>'
-            f'<span class="bar-label">{label}</span>'
-            f'</div>'
-        )
-    return f'<div class="bar-chart">{"".join(bars)}</div>'
+
+        if has_split and inflight_c > 0:
+            shipped_h = max(1, int(shipped_c / max_c * 120)) if shipped_c > 0 else 0
+            inflight_h = max(1, int(inflight_c / max_c * 120)) if inflight_c > 0 else 0
+            bars.append(
+                f'<div class="bar-day">'
+                f'<div style="color:#8b949e;font-size:9px;text-align:center;height:12px;line-height:12px">{count_label}</div>'
+                f'<div style="display:flex;flex-direction:column-reverse;height:{total_h}px;cursor:pointer" title="{shipped_c} shipped + {inflight_c} in flight on {d}" data-date="{d}" data-count="{c}" onclick="openDay(this)">'
+                f'<div style="height:{shipped_h}px;background:#58a6ff;border-radius:3px 3px 0 0;width:100%"></div>'
+                f'<div style="height:{inflight_h}px;background:#d29922;border-radius:3px 3px 0 0;width:100%"></div>'
+                f'</div>'
+                f'<span class="bar-label">{label}</span>'
+                f'</div>'
+            )
+        else:
+            is_peak = c == max_c and c > 0
+            cls = "bar-fill peak" if is_peak else "bar-fill"
+            bars.append(
+                f'<div class="bar-day">'
+                f'<div style="color:#8b949e;font-size:9px;text-align:center;height:12px;line-height:12px">{count_label}</div>'
+                f'<div class="{cls}" style="height:{total_h}px;cursor:{"pointer" if c>0 else "default"}" title="{c} commits on {d}" data-date="{d}" data-count="{c}" {"onclick=openDay(this)" if c>0 else ""}></div>'
+                f'<span class="bar-label">{label}</span>'
+                f'</div>'
+            )
+    return f'{legend}<div class="bar-chart">{"".join(bars)}</div>'
 
 
 def _cat_bars(categories: dict[str, int], is_jira: bool, limit: int = 10) -> str:
@@ -446,8 +528,8 @@ def _churn_bars(top_files: list, web_url: str = "", branch: str = "main") -> str
         total = a + d
         add_pct = a / max_total * 100
         del_pct = d / max_total * 100
-        file_url = f"{web_url}/-/blob/{branch}/{fname}" if "gitlab" in web_url else (f"{web_url}/blob/{branch}/{fname}" if web_url else "")
-        file_link = f'<a href="{file_url}" target="_blank" style="color:#c9d1d9;text-decoration:none;border-bottom:1px dotted rgba(139,148,158,0.4)">{short}</a>' if file_url else f'<span>{short}</span>'
+        file_url = (f"{web_url}/-/blob/{branch}/{fname}" if "gitlab" in web_url else (f"{web_url}/blob/{branch}/{fname}" if web_url else "")) if a > 0 else ""
+        file_link = f'<a href="{file_url}" target="_blank" style="color:#c9d1d9;text-decoration:none;border-bottom:1px dotted rgba(139,148,158,0.4)">{short}</a>' if file_url else f'<span style="color:#8b949e">{short}</span>'
         html.append(
             f'<div style="margin-bottom:10px">'
             f'<div style="display:flex;justify-content:space-between;margin-bottom:3px">'
@@ -657,54 +739,11 @@ _HEAD_MODAL_SCRIPT = (
 
 
 def _write_modal_js(output_dir: Path) -> None:
-    """Write eng-report-modal.js — no inline quoted HTML attributes."""
+    """Write eng-report-modal.js — clean JS, no quoting issues."""
     js_path = output_dir / "eng-report-modal.js"
     if js_path.exists():
         return
-    js = """function closeModal(){
-  var m=document.getElementById("arch-modal");
-  if(m){m.classList.remove("open");document.body.style.overflow="";}
-}
-function openCard(c){
-  var ds=c.querySelectorAll("div");
-  var ids=["modal-title","modal-desc","modal-files"];
-  for(var i=0;i<3;i++){var el=document.getElementById(ids[i]);if(el)el.textContent=ds[i]?ds[i].textContent:"";}
-  var mc=document.getElementById("modal-commits"),commits=window._archCommits||[];
-  if(mc){
-    if(commits.length){
-      var rows=commits.map(function(r){
-        var link=r.url?"<a href="+r.url+" target=_blank>"+r.subject+"</a>":r.subject;
-        return "<tr><td class=mc-date>"+(r.date||"")+"</td><td class=mc-subj>"+link+"</td></tr>";
-      }).join("");
-      mc.innerHTML="<table class=mc-table><tr><th>Date</th><th>Commit</th></tr>"+rows+"</table>";
-    } else { mc.textContent="No commit details."; }
-  }
-  var m=document.getElementById("arch-modal");
-  if(m){m.classList.add("open");document.body.style.overflow="hidden";}
-}
-function openDay(bar){
-  var date=bar.getAttribute("data-date"),count=bar.getAttribute("data-count");
-  if(!count||count==="0")return;
-  var commits=(window._dailyCommits||{})[date]||[];
-  var t=document.getElementById("modal-title");
-  if(t)t.textContent=date+" \u2014 "+count+" commit"+(count==="1"?"":"s");
-  var d=document.getElementById("modal-desc"),f=document.getElementById("modal-files");
-  if(d)d.textContent="";if(f)f.textContent="";
-  var mc=document.getElementById("modal-commits");
-  if(mc){
-    if(commits.length){
-      var rows=commits.map(function(r){
-        var link=r.url?"<a href="+r.url+" target=_blank>"+r.subject+"</a>":r.subject;
-        return "<tr><td class=mc-subj>"+link+"</td></tr>";
-      }).join("");
-      mc.innerHTML="<table class=mc-table><tr><th>Commit</th></tr>"+rows+"</table>";
-    } else { mc.textContent="Commits from branch activity."; }
-  }
-  var m=document.getElementById("arch-modal");
-  if(m){m.classList.add("open");document.body.style.overflow="hidden";}
-}
-"""
-    js_path.write_text(js, encoding="utf-8")
+    js_path.write_text('function closeModal(){\n  var m=document.getElementById("arch-modal");\n  if(m){m.classList.remove("open");document.body.style.overflow="";}\n}\nfunction openCard(c){\n  var ds=c.querySelectorAll("div");\n  var ids=["modal-title","modal-desc","modal-files"];\n  for(var i=0;i<3;i++){var el=document.getElementById(ids[i]);if(el)el.textContent=ds[i]?ds[i].textContent:"";}\n  var mc=document.getElementById("modal-commits"),commits=window._archCommits||[];\n  if(mc){\n    if(commits.length){\n      var rows=commits.map(function(r){\n        var link=r.url?"<a href="+r.url+" target=_blank>"+r.subject+"</a>":r.subject;\n        return "<tr><td class=mc-date>"+(r.date||"")+"</td><td class=mc-subj>"+link+"</td></tr>";\n      }).join("");\n      mc.innerHTML="<table class=mc-table><tr><th>Date</th><th>Commit</th></tr>"+rows+"</table>";\n    } else { mc.textContent="No commit details."; }\n  }\n  var m=document.getElementById("arch-modal");\n  if(m){m.classList.add("open");document.body.style.overflow="hidden";}\n}\nfunction openDay(bar){\n  var date=bar.getAttribute("data-date"),count=bar.getAttribute("data-count");\n  if(!count||count==="0")return;\n  var commits=(window._dailyCommits||{})[date]||[];\n  var t=document.getElementById("modal-title");\n  if(t)t.textContent=date+" \\u2014 "+count+" commit"+(count==="1"?"":"s");\n  var d=document.getElementById("modal-desc"),f=document.getElementById("modal-files");\n  if(d)d.textContent="";if(f)f.textContent="";\n  var mc=document.getElementById("modal-commits");\n  if(mc){\n    if(commits.length){\n      var rows=commits.map(function(r){\n        var badge=r.s?"<span style=\'color:#3fb950;font-size:10px;margin-right:6px\'>shipped</span>":"<span style=\'color:#d29922;font-size:10px;margin-right:6px\'>in\\u2011flight</span>";\n        var link=r.url?"<a href="+r.url+" target=_blank>"+r.subject+"</a>":r.subject;\n        return "<tr><td class=mc-subj>"+badge+link+"</td></tr>";\n      }).join("");\n      mc.innerHTML="<table class=mc-table><tr><th>Commit</th></tr>"+rows+"</table>";\n    } else { mc.textContent="Commits from branch activity."; }\n  }\n  var m=document.getElementById("arch-modal");\n  if(m){m.classList.add("open");document.body.style.overflow="hidden";}\n}\n', encoding="utf-8")
 
 
 
@@ -768,7 +807,7 @@ def render_report(
     avg_day = f"{m['commits'] / 7:.1f}" if m["commits"] else "0"
     commits_per_mr = f"{m['commits'] / m['merges']:.1f}" if m["merges"] else "—"
     top_contributor = m["contributors"][0][1] if m["contributors"] else "—"
-    top_pct = int(m["contributors"][0][0] / max(m["commits"], 1) * 100) if m["contributors"] else 0
+    top_pct = min(100, int(m["contributors"][0][0] / max(m["commits"], 1) * 100)) if m["contributors"] else 0
 
     body_parts: list[str] = []
 
@@ -788,21 +827,34 @@ def render_report(
     net_cls = "green" if m["net"] >= 0 else "red"
     net_str = f"+{m['net']:,}" if m["net"] >= 0 else f"{m['net']:,}"
     contrib_count = len(m["contributors"])
+    shipped = m.get("shipped_commits", m["commits"])
+    inflight = m.get("inflight_commits", 0)
+    shipped_net = m.get("shipped_net", m["net"])
+    inflight_net = m.get("inflight_net", 0)
     web_url = m.get("web_url", "")
     is_gl = "gitlab" in web_url
     tags_url = f"{web_url}/-/tags" if is_gl else (f"{web_url}/tags" if web_url else "")
     mrs_url = f"{web_url}/-/merge_requests?state=merged" if is_gl else (f"{web_url}/pulls?q=is:merged" if web_url else "")
     commits_url = f"{web_url}/-/commits/{m.get('default_branch','main')}" if is_gl else (f"{web_url}/commits/{m.get('default_branch','main')}" if web_url else "")
 
-    def _linked_card(label, value, url, cls=""):
+    def _linked_card(label, value, url, cls="", subtitle=""):
         val_html = f'<a href="{url}" target="_blank" style="color:inherit;text-decoration:none">{value}</a>' if url else str(value)
-        return f'<div class="card"><div class="card-label">{label}</div><div class="card-value {cls}">{val_html}</div></div>'
+        sub_html = f'<div style="font-size:10px;color:#8b949e;margin-top:4px">{subtitle}</div>' if subtitle else ""
+        return f'<div class="card"><div class="card-label">{label}</div><div class="card-value {cls}">{val_html}</div>{sub_html}</div>'
+
+    # Build shipped/inflight subtitle for commits and net lines
+    commits_sub = f'<span style="color:#3fb950">{shipped} shipped</span><br><span style="color:#d29922">{inflight} in flight</span>' if inflight > 0 else ""
+    net_sub = ""
+    if inflight_net != 0 or shipped_net != m["net"]:
+        sn = f"+{shipped_net:,}" if shipped_net >= 0 else f"{shipped_net:,}"
+        fn = f"+{inflight_net:,}" if inflight_net >= 0 else f"{inflight_net:,}"
+        net_sub = f'<span style="color:#3fb950">{sn} shipped</span><br><span style="color:#d29922">{fn} in flight</span>'
 
     body_parts.append(f"""
 <div class="cards">
-  {_linked_card("Commits", m['commits'], commits_url)}
+  {_linked_card("Commits", m['commits'], commits_url, subtitle=commits_sub)}
   {_linked_card("MRs Merged", m['merges'], mrs_url)}
-  <div class="card"><div class="card-label">Net Lines</div><div class="card-value {net_cls}">{net_str}</div></div>
+  {_linked_card("Net Lines", net_str, "", net_cls, subtitle=net_sub)}
   {_linked_card("Releases", len(m['releases']), tags_url, "blue")}
   <div class="card"><div class="card-label">Contributors</div><div class="card-value">{contrib_count}</div></div>
   <div class="card"><div class="card-label">Top Contributor</div><div class="card-value" style="font-size:13px">{top_contributor.split()[0]} ({top_pct}%)</div></div>
@@ -884,10 +936,27 @@ def render_report(
             )
 
         # Daily chart + categories
+        # Emit daily commits map for bar chart click modal
+        daily_commits_map = {}
+        web_url = m.get("web_url", "")
+        is_gl = "gitlab" in web_url
+        shipped_shas = set()
+        # Get shipped commit SHAs to tag them
+        shipped_sha_raw = m.get("shipped_shas", set())
+        for c in m.get("commits_with_sha", []):
+            d2 = c.get("date", "")
+            if d2:
+                if d2 not in daily_commits_map: daily_commits_map[d2] = []
+                sha = c.get("sha", "")
+                url2 = (f"{web_url}/-/commit/{sha}" if is_gl else f"{web_url}/commit/{sha}") if sha and web_url else ""
+                is_shipped = sha in shipped_sha_raw
+                daily_commits_map[d2].append({"sha": sha, "subject": c.get("subject", ""), "url": url2, "s": is_shipped})
+        body_parts.append(f'<script>window._dailyCommits={json.dumps(daily_commits_map)};</script>')
+
         body_parts.append('<div class="grid2">')
         body_parts.append(
             f'<div class="section"><h3>📈 Daily Velocity</h3>'
-            f'{_bar_chart(m["daily"], since)}</div>'
+            f'{_bar_chart(m["daily"], since, m.get("shipped_daily"), m.get("inflight_daily"))}</div>'
         )
         # Category / work areas section
         if m["is_jira"] and narrative and narrative.get("work_areas"):
@@ -1136,6 +1205,7 @@ def run_entry(entry: dict, since: str, output_dir: Path, author_filter: str | No
     file_key = entry["name"]
     if fetched_paths is None:
         fetched_paths = set()
+    branch_scope = entry.get("_branch_scope", "all")
     scope = entry.get("scope", {})
     authors: list[str] = scope.get("authors", [])
     # Individual author filter overrides scope authors
@@ -1182,7 +1252,7 @@ def run_entry(entry: dict, since: str, output_dir: Path, author_filter: str | No
         if str(rp) not in fetched_paths:
             git(rp, "fetch", "--all", "--quiet", check=False)
             fetched_paths.add(str(rp))
-        m = gather_repo_metrics(rp, since, authors)
+        m = gather_repo_metrics(rp, since, authors, branch_scope=branch_scope)
         m["_repo_name"] = rp.name
         per_repo.append(m)
 
@@ -1264,10 +1334,16 @@ def run_entry(entry: dict, since: str, output_dir: Path, author_filter: str | No
         "name": file_key,
         "label": name,
         "commits": agg["commits"],
+        "shipped_commits": agg.get("shipped_commits", agg["commits"]),
+        "inflight_commits": agg.get("inflight_commits", 0),
         "merges": agg["merges"],
         "added": agg["added"],
         "deleted": agg["deleted"],
         "net": agg["net"],
+        "shipped_net": agg.get("shipped_net", agg["net"]),
+        "inflight_net": agg.get("inflight_net", 0),
+        "shipped_daily": agg.get("shipped_daily", {}),
+        "inflight_daily": agg.get("inflight_daily", {}),
         "releases": len(agg["releases"]),
         "top_contributor": f"{top_contributor.split()[0]} ({top_pct}%)" if agg["contributors"] else "—",
         "group": scope.get("tribe", ""),
@@ -1407,6 +1483,7 @@ def main() -> None:
     p_run.add_argument("--json", action="store_true", dest="json_only", help="Output full metrics JSON to stdout (no HTML written — use with --narrative-file on next run)")
     p_run.add_argument("--no-index", action="store_true", help="Skip _index.html generation")
     p_run.add_argument("--author", default=None, help="Generate report for a single person across all configured repos")
+    p_run.add_argument("--branch-scope", default=None, dest="branch_scope", choices=["all","shipped","in-flight"], help="Branch scope: all (default), shipped (main only), in-flight (branches only)")
     p_run.add_argument("--ai", action="store_true", help="Generate AI narrative inline (calls kiro/claude for each active entry)")
     p_run.add_argument("--narrative-file", default=None, dest="narrative_file",
                        help="JSON file mapping entry names to AI narrative {summary, themes, architecture, work_areas}")
@@ -1466,12 +1543,14 @@ def main() -> None:
     log(f"eng-report run — {len(entries)} entries, window: {since}")
     log(f"Output: {output_dir}\n")
 
+    branch_scope = getattr(args, "branch_scope", None) or config.get("local", {}).get("branch_scope", "all")
     fetched_paths: set[str] = set()
     use_ai = getattr(args, "ai", False)
 
     rows = []
     for entry in entries:
         narrative = narratives.get(entry["name"])
+        entry["_branch_scope"] = branch_scope
         row = run_entry(entry, since, output_dir, author_filter=author, narrative=narrative, fetched_paths=fetched_paths, use_ai=use_ai)
         rows.append(row)
 

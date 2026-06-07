@@ -228,22 +228,35 @@ Interactive first-time setup. Reads current `config.yaml` if it exists.
 
 **This command delegates all git data gathering to `scripts/eng-report.py`.** Do not run git commands manually — use the script.
 
+**Mandatory sequence — no shortcuts:**
+1. Pass 1: Run `eng-report run --json --config <config>` → read the JSON output
+2. Pass 2: Synthesize narratives FROM the JSON you just read → write `/tmp/narrative.json`
+3. Pass 3: Run `eng-report run --narrative-file /tmp/narrative.json --config <config> --output <dir>`
+
+You CANNOT skip Pass 1. You CANNOT write narrative JSON without first reading the --json output. The metrics are the ground truth — narratives must describe what the data shows.
+
 ### Step 1 — Gather metrics (deterministic)
 #### Pass 1 — Gather metrics (deterministic)
 
-The script is installed to `~/.local/bin/eng-report` by Core-Prompts deploy (or `configure`). Run:
+The script is installed to `~/.local/bin/eng-report` by `configure`. Run:
 ```bash
 eng-report run --json > /tmp/metrics.json
 ```
 
-If `eng-report` is not found, re-run `bin/capability-fabric deploy --target $HOME --allow-nonlocal-target` from your Core-Prompts checkout.
+If `eng-report` is not found, run `eng-report configure` first — it installs the script.
 
 The script handles everything — git fetch, all git log commands, author filtering, multi-repo aggregation. `--json` outputs full metrics per entry including: commit subjects (up to 50), top files with churn, contributors, categories, daily breakdown. No extra git commands needed for narrative generation.
 
 ### Step 2 — Generate AI narrative
 #### Pass 2 — Generate AI narrative
 
-**IMPORTANT: Do not write code or scripts to generate narratives. Synthesize each narrative directly using your own language model capabilities based on the metrics data.**
+**CRITICAL RULES — VIOLATIONS WILL PRODUCE GARBAGE REPORTS:**
+1. You MUST first run `eng-report run --json --config <config>` and READ the actual JSON output.
+2. You MUST synthesize narratives from the REAL metrics data you just read — not from memory, assumptions, or prior knowledge of the repos.
+3. You MUST NOT pre-write narrative JSON before reading metrics. The narrative is a RESPONSE to the data.
+4. You MUST NOT write a Python script to generate narratives — use your own synthesis capabilities on the real data.
+
+If you skip reading the --json output, the narratives will be fabricated and the report will be useless.
 
 Read `/tmp/metrics.json`. For each entry with `commits > 0`, synthesize:
 
@@ -419,6 +432,9 @@ DRIVE STRUCTURE:
 
 CONFIG: ~/.kiro/skills/eng-report/config.yaml
 ```
+
+
+Capability resource: `.kiro/skills/eng-report/resources/capability.json`
 
 
 Capability resource: `.kiro/skills/eng-report/resources/capability.json`
