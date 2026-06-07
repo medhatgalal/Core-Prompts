@@ -45,6 +45,9 @@ def main() -> int:
     config_path = Path(sys.argv[1]).expanduser()
     target_root = Path(sys.argv[2]).expanduser().resolve()
     agent_slugs = sorted(set(sys.argv[3:]))
+    deprecated_agent_aliases = {
+        "auto-research": {"autosearch"},
+    }
 
     start_marker = "# >>> core-prompts codex agents start >>>"
     end_marker = "# <<< core-prompts codex agents end <<<"
@@ -56,6 +59,9 @@ def main() -> int:
 
     lines = original.splitlines() if original else []
     managed_section_headers = {f"[agents.{slug}]" for slug in agent_slugs}
+    for slug in agent_slugs:
+        for alias in deprecated_agent_aliases.get(slug, set()):
+            managed_section_headers.add(f"[agents.{alias}]")
     cleaned_lines = drop_legacy_managed_agent_stanzas(
         lines,
         start_marker,

@@ -64,7 +64,7 @@ How to think about that sequence:
 - `judge` is the quality and ship decision
 - `apply` is the intentional repo mutation step
 
-If `judge` finds the candidate is structurally close to ready but still needs bounded behavioral proof, keep the landing decision open and route that proof to `autosearch` before `apply`.
+If `judge` finds the candidate is structurally close to ready but still needs bounded behavioral proof, keep the landing decision open and route that proof to `auto-research` before `apply`.
 
 ## Worked Examples
 
@@ -160,7 +160,7 @@ Judge summary:
 - behavioral confidence is still weak against baseline
 
 Next step:
-- route to autosearch with:
+- route to auto-research with:
   - baseline artifact
   - candidate artifact or variants
   - claimed job
@@ -216,13 +216,14 @@ Use `apply` only when you intend to change canonical repo state.
 `apply` does not deploy to CLI homes automatically. Deploy is a separate explicit step.
 
 ```bash
-bin/capability-fabric deploy --cli codex --slug autosearch --target "$HOME" --allow-nonlocal-target
+bin/capability-fabric deploy --cli codex --slug auto-research --target "$HOME" --allow-nonlocal-target
 ```
 
 Notes:
 
 - `--slug` is repeatable and limits deployment to specific capabilities
 - deployment copies the full emitted bundle for each selected surface
+- deploying `--slug auto-research` removes stale installed `autosearch` skill, agent, and resource paths for the selected CLIs
 - deploy is copy-only and does not rewrite capability metadata paths
 
 ## Source Kinds

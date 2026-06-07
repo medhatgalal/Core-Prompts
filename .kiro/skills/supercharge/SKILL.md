@@ -1,7 +1,7 @@
 ---
 name: "supercharge"
 description: "Hardens prompts, plans, and workflows through structured critique and graded refinement. Use when the user wants a better artifact or a sharper comparison before measured evaluation."
-version: "v4.0"
+version: "v4.1"
 ---
 # SuperCharge — Prompt Engineering, Planning Hardening, and Graded Improvement
 
@@ -11,7 +11,7 @@ Use this capability when the user needs a prompt, plan, proposal, or multi-step 
 ## Primary Objective
 Produce a better artifact than the user started with, then explain why it is better: simpler where needed, harder to break, easier to execute, and explicit about assumptions, trade-offs, and remaining gaps.
 
-When the user needs measured behavioral proof that one prompt or capability variant is better than another, SuperCharge should harden the candidates first, then hand off to `autosearch` instead of overstating critique as evidence.
+When the user needs measured behavioral proof that one prompt or capability variant is better than another, SuperCharge should harden the candidates first, then hand off to `auto-research` instead of overstating critique as evidence.
 
 ## Agent Operating Contract
 When emitted as an agent, this capability remains advisory by default.
@@ -31,7 +31,7 @@ Responsibilities:
 ## Tool Boundaries
 - allowed: inspect current source material, compare alternatives, generate improved prompts or plans, and produce grading outputs or execution scaffolds
 - forbidden: hidden chain-of-thought exposure, fake certainty, runtime orchestration ownership, or destructive execution without explicit approval
-- escalation: if the user asks for unsafe or destructive execution, stop and require explicit confirmation rather than folding it into prompt work; if the user needs bounded behavioral proof across variants, route to `autosearch`
+- escalation: if the user asks for unsafe or destructive execution, stop and require explicit confirmation rather than folding it into prompt work; if the user needs bounded behavioral proof across variants, route to `auto-research`
 
 ## Output Directory
 When file output is requested, default to:
@@ -73,7 +73,7 @@ When grading or comparison is requested, also include:
 
 When SuperCharge determines that critique is insufficient and measured proof is needed, also include:
 - `Behavioral Proof Need`
-- `Autosearch Handoff`
+- `Auto-Research Handoff`
 
 ## Constraints
 - Do not stack heavy frameworks concurrently without reason.
@@ -109,6 +109,7 @@ The user may include zero or more slash commands in-line.
 Examples:
 - `supercharge <task>`
 - `supercharge /ult improve this prompt: <paste>`
+- `supercharge /basis find the irreducible cost and complexity in this workflow: <paste>`
 - `supercharge /simple /invert /contract <task>`
 - `supercharge /full <task>`
 - `supercharge /catchup`
@@ -152,11 +153,12 @@ Never pretend to be the user or answer for them.
 ### Multi-Pass Pipeline Order (Canonical)
 When multiple modules are active (explicitly or via auto-routing), process in this order:
 
-1. `/simple` — Decomplect and reduce braids
-2. `/invert` — Find failure modes and "dogs not barking"
-3. `/adversarial` — Red-team critique and hardening
-4. `/contract` — Contract and QA evaluation
-5. `/grade` — 10-iteration improvement ladder
+1. `/basis` — Account for irreducible primitives, waste, and actual-to-minimum ratios
+2. `/simple` — Decomplect and reduce braids
+3. `/invert` — Find failure modes and "dogs not barking"
+4. `/adversarial` — Red-team critique and hardening
+5. `/contract` — Contract and QA evaluation
+6. `/grade` — 10-iteration improvement ladder
 
 `/ult` is a mode that governs prompt creation, refinement, and execution. It can run alone, or wrap the pipeline when explicitly invoked.
 
@@ -164,10 +166,11 @@ When multiple modules are active (explicitly or via auto-routing), process in th
 If the user provides no explicit module, SuperCharge MUST route the request to a sensible sequence and announce it:
 
 - Prompt creation or refinement -> `/ult` (add `/contract` if ambiguity is high)
+- Cost, complexity, waste, optimization, or first-principles asks -> `/basis` (add `/simple` if responsibilities are braided)
 - Architecture, design, or system -> `/simple` -> `/invert` -> `/contract`
 - High-stakes asks -> add `/safe` and include `/adversarial` + `/contract`
 - "Show me options" or compare approaches -> `/full`
-- "Prove which variant actually performs better" -> critique first, then hand off to `autosearch` for behavioral evaluation
+- "Prove which variant actually performs better" -> critique first, then hand off to `auto-research` for behavioral evaluation
 - Long-horizon, multi-step work -> include agentic orchestration guidance
 
 ### Reflective Controls (Optional Modifiers)
@@ -208,19 +211,29 @@ After completing major work that began with SuperCharge, SuperCharge SHOULD appe
 
 ## HELP OUTPUT (Quick Guide)
 
-**SuperCharge v4** — Prompt Engineering Swiss Army Knife (portable)
+**SuperCharge v4.1** — Prompt Engineering Swiss Army Knife (portable)
 
 ### Common Commands
 - `supercharge <task>` -> Auto-route to best sequence
 - `supercharge /ult <task>` -> Prompt engineer mode (generate, refine, and execute)
+- `supercharge /basis <task>` -> First-principles cost and complexity accounting
 - `supercharge /full <task>` -> Run gauntlet outputs without execution
 - `supercharge /catchup` -> Deep forensic catchup (multi-intent, validated)
 - `supercharge /gaslight <task>` -> GASLIGHT 13 (explicit, bounded)
 - `supercharge /stop` -> Exit any active mode (including `/ult` mode)
 
+### All Modules
+- Modes: `/ult`, `/catchup`
+- Lenses: `/basis`, `/simple`, `/invert`, `/adversarial`, `/contract`, `/grade`
+- Gauntlet: `/full`
+- Explicit-only: `/gaslight`
+- Controls: `/route`, `/details`, `/stop`, `/stop-ult`
+- Modifiers: `/realism`, `/edge`, `/concise`, `/creative`, `/safe`
+
 ### Examples
 - `supercharge improve this prompt: <paste>`
 - `supercharge /ult /realism improve this agent prompt: <paste>`
+- `supercharge /basis audit this onboarding workflow for actual-to-minimum waste: <paste>`
 - `supercharge /simple /invert analyze micro-frontends adoption`
 - `supercharge /full design an agentic CI gate for OpenAPI breaking changes`
 - `supercharge /gaslight refine this prompt to reduce drift: <paste>`
@@ -318,6 +331,51 @@ Print:
 Validation Status: PASS | FAIL
 Failed Checks: (if any)
 ```
+
+## MODULE: /basis — First-Principles Cost and Complexity Accounting
+
+### Purpose
+Expose the primitive drivers of a prompt, plan, workflow, product, or system before optimizing it. This module converts vague “make it better” work into a grounded accounting of irreducible inputs, actual cost or complexity, avoidable waste, and the shortest credible path toward a lower-ratio design.
+
+Use `/basis` when the request mentions first principles, waste, bloat, cost, leverage, simplification, optimization, “why is this so expensive,” or whether an artifact’s complexity is justified.
+
+### HARD CONSTRAINTS (Non-Negotiable)
+- Do not pretend the irreducible minimum is known when inputs are missing.
+- Separate hard primitives from current implementation choices.
+- Treat token cost, operator burden, latency, review load, and cognitive load as real costs.
+- Do not optimize by deleting necessary quality, safety, or review gates.
+- Do not use celebrity branding or personality imitation; use the model as a reasoning lens.
+
+### Output Structure (MANDATORY)
+1. `Basis Map`
+2. `Theoretical Minimum`
+3. `Actual-to-Minimum Ratio`
+4. `Waste Drivers`
+5. `Redesign Moves`
+6. `Proof Needed`
+
+### Accounting Workflow (MANDATORY)
+- Identify primitives: required inputs, outputs, constraints, physics, data, user value, safety requirements, or repo policy.
+- Estimate the minimum: the smallest credible cost, complexity, latency, token budget, file count, process step count, or human review load if only primitives remained.
+- Measure the actual: current artifact size, moving parts, runtime cost, coordination steps, dependencies, or user burden.
+- Compute the ratio when meaningful; otherwise classify it as low, medium, high, or unknown with missing evidence.
+- Isolate waste drivers: indirection, ceremony, overgeneralization, duplicated surfaces, avoidable manual work, weak evals, or legacy assumptions.
+- Propose redesign moves in order: delete, combine, automate, defer, prove necessary, or route to `auto-research` for measured comparison.
+
+### Domain Mapping
+- Prompt or skill: raw materials are intent, constraints, examples, evals, and output contract.
+- Software workflow: raw materials are required data, side effects, verification gates, and user-visible outcomes.
+- Product or operation: raw materials are user value, materials, labor, compute, capital, time, and compliance needs.
+- Knowledge work: raw materials are source facts, judgment calls, audience needs, and decision criteria.
+
+### Examples
+Example (Capability)
+Before: “Add three new modules, a new agent, and a longer prompt to improve quality.”
+After: Map the irreducible quality requirement, measure the added operator burden, remove modules that duplicate `/simple` or `/contract`, and route only unproven behavioral claims to `auto-research`.
+
+Example (Workflow)
+Before: “This review process needs six meetings and three reports.”
+After: Identify the required decisions and evidence, collapse duplicate status reporting, and keep only the review gates that protect irreversible risk.
 
 ## MODULE: /simple — Decomplecting Lens ("Simple Made Easy")
 
@@ -500,6 +558,7 @@ Show how multiple lenses treat the same input to illuminate trade-offs and avoid
 - Run sequential passes and show outputs per pass.
 - If missing info blocks correctness, ask at most three questions or provide assumption packs.
 - Includes `/grade` at the end unless the user says "skip grade".
+- Does not include `/basis` by default; add `/basis` explicitly when first-principles cost or waste accounting is part of the ask.
 
 ### Output Structure (MANDATORY)
 - `PASS 1 — SIMPLE`
@@ -507,6 +566,8 @@ Show how multiple lenses treat the same input to illuminate trade-offs and avoid
 - `PASS 3 — ADVERSARIAL`
 - `PASS 4 — CONTRACT`
 - `PASS 5 — GRADE (10 iterations)`
+
+If `/basis` is explicitly stacked with `/full`, run it first and label it `PASS 0 — BASIS`.
 
 ## MODULE: /gaslight — GASLIGHT 13 (Explicit Only)
 
@@ -581,7 +642,7 @@ Use this capability before:
 - finalizing a high-stakes prompt or release plan
 - adopting a new prompt family into SSOT through UAC
 
-# End of SuperCharge v4
+# End of SuperCharge v4.1
 
 
 Capability resource: `.kiro/skills/supercharge/resources/capability.json`

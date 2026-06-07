@@ -63,7 +63,7 @@ Every substantial response must include:
 | The user now needs one final recommendation from several competing findings | `converge` | option set, trade-offs, blocking uncertainties, recommendation criteria |
 | The analysis turns into architecture or system design | `architecture` | constraints, candidate patterns, affected components, unresolved decisions |
 | The analysis turns into prompt, plan, or workflow hardening | `supercharge` | draft artifact, weak sections, improvement goal, constraints |
-| The analysis needs behavioral proof that one variant beats baseline | `autosearch` | baseline artifact, candidate artifact or variants, representative tasks, desired pass/fail bar |
+| The analysis needs behavioral proof that one variant beats baseline | `auto-research` | baseline artifact, candidate artifact or variants, representative tasks, desired pass/fail bar |
 | The user wants a durable transcript or full thread export | `threader` | target thread scope, fidelity expectations, file or inline export preference |
 | The analysis identifies a testing or verification gap | `testing` | changed area, risk hotspots, existing test stack, missing scenarios |
 | The analysis identifies implementation quality or review risk | `code-review` | diff or commit scope, review goals, suspected regressions or over-engineering risks |

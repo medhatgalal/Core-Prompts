@@ -217,17 +217,17 @@ def test_deploy_with_only_codex_available_registers_only_codex_agents(tmp_path: 
         assert (tmp_path / ".codex" / "skills" / slug / "resources" / "capability.json").is_file()
         assert not (tmp_path / ".codex" / "agents" / f"{slug}.toml").exists()
 
-    assert (tmp_path / ".codex" / "skills" / "autosearch" / "resources" / "bootstrap.py").is_file()
+    assert (tmp_path / ".codex" / "skills" / "auto-research" / "resources" / "bootstrap.py").is_file()
     assert (
         tmp_path
         / ".codex"
         / "skills"
-        / "autosearch"
+        / "auto-research"
         / "resources"
         / "templates"
         / "goal-contract.md.tmpl"
     ).is_file()
-    assert (tmp_path / ".codex" / "agents" / "resources" / "autosearch" / "bootstrap.py").is_file()
+    assert (tmp_path / ".codex" / "agents" / "resources" / "auto-research" / "bootstrap.py").is_file()
 
     config_text = (tmp_path / ".codex" / "config.toml").read_text(encoding="utf-8")
     for slug in ("converge", "mentor", "supercharge"):
@@ -281,24 +281,24 @@ def test_deploy_with_all_clis_available_deploys_new_skill_surfaces(tmp_path: Pat
         assert (tmp_path / ".kiro" / "agents" / "resources" / slug / "capability.json").is_file()
 
     for cli_dir in (".codex", ".gemini", ".claude", ".kiro"):
-        assert (tmp_path / cli_dir / "skills" / "autosearch" / "resources" / "bootstrap.py").is_file()
+        assert (tmp_path / cli_dir / "skills" / "auto-research" / "resources" / "bootstrap.py").is_file()
         assert (
             tmp_path
             / cli_dir
             / "skills"
-            / "autosearch"
+            / "auto-research"
             / "resources"
             / "templates"
             / "scorecard.json.tmpl"
         ).is_file()
 
-    assert (tmp_path / ".codex" / "agents" / "resources" / "autosearch" / "bootstrap.py").is_file()
+    assert (tmp_path / ".codex" / "agents" / "resources" / "auto-research" / "bootstrap.py").is_file()
     assert (
         tmp_path
         / ".gemini"
         / "agents"
         / "resources"
-        / "autosearch"
+        / "auto-research"
         / "templates"
         / "promotion-packet.md.tmpl"
     ).is_file()
@@ -307,7 +307,7 @@ def test_deploy_with_all_clis_available_deploys_new_skill_surfaces(tmp_path: Pat
         / ".claude"
         / "agents"
         / "resources"
-        / "autosearch"
+        / "auto-research"
         / "templates"
         / "experiment-ledger.md.tmpl"
     ).is_file()
@@ -316,7 +316,7 @@ def test_deploy_with_all_clis_available_deploys_new_skill_surfaces(tmp_path: Pat
         / ".kiro"
         / "agents"
         / "resources"
-        / "autosearch"
+        / "auto-research"
         / "templates"
         / "goal-contract.md.tmpl"
     ).is_file()
@@ -470,9 +470,11 @@ def test_deploy_codex_registration_completes_with_populated_home_style_config(tm
 
     config_text = config_path.read_text(encoding="utf-8")
     assert "[agents.local-helper]" in config_text
+    assert "[agents.autosearch]" not in config_text
+    assert "/tmp/stale-autosearch.toml" not in config_text
     for slug in (
         "architecture",
-        "autosearch",
+        "auto-research",
         "converge",
         "docs-review-expert",
         "gitops-review",
@@ -484,6 +486,46 @@ def test_deploy_codex_registration_completes_with_populated_home_style_config(tm
 
 
 def test_deploy_slug_filter_limits_copy_and_registration(tmp_path: Path) -> None:
+    stale_skill = tmp_path / ".codex" / "skills" / "autosearch" / "SKILL.md"
+    stale_agent = tmp_path / ".codex" / "agents" / "autosearch.toml"
+    stale_resource = tmp_path / ".codex" / "agents" / "resources" / "autosearch" / "capability.json"
+    for path in (stale_skill, stale_agent, stale_resource):
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text("stale", encoding="utf-8")
+
+    result = run_script(
+        DEPLOY_SCRIPT,
+        "--cli",
+        "codex",
+        "--slug",
+        "auto-research",
+        target_root=tmp_path,
+        cli_bins=("codex",),
+        use_system_bash=True,
+        allow_nonlocal_target=True,
+    )
+    assert result.returncode == 0, result.stdout
+    assert "Deploying managed slugs: auto-research" in result.stdout
+    assert (tmp_path / ".codex" / "skills" / "auto-research" / "SKILL.md").is_file()
+    assert (tmp_path / ".codex" / "skills" / "auto-research" / "resources" / "bootstrap.py").is_file()
+    assert not (tmp_path / ".codex" / "skills" / "autosearch").exists()
+    assert not (tmp_path / ".codex" / "agents" / "autosearch.toml").exists()
+    assert not (tmp_path / ".codex" / "agents" / "resources" / "autosearch").exists()
+    assert not (tmp_path / ".codex" / "skills" / "code-review" / "SKILL.md").exists()
+
+    config_text = (tmp_path / ".codex" / "config.toml").read_text(encoding="utf-8")
+    assert "[agents.auto-research]" in config_text
+    assert "[agents.converge]" not in config_text
+
+
+def test_deploy_legacy_autosearch_slug_installs_auto_research_and_prunes_stale(tmp_path: Path) -> None:
+    stale_skill = tmp_path / ".codex" / "skills" / "autosearch" / "SKILL.md"
+    stale_agent = tmp_path / ".codex" / "agents" / "autosearch.toml"
+    stale_resource = tmp_path / ".codex" / "agents" / "resources" / "autosearch" / "capability.json"
+    for path in (stale_skill, stale_agent, stale_resource):
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text("stale", encoding="utf-8")
+
     result = run_script(
         DEPLOY_SCRIPT,
         "--cli",
@@ -495,12 +537,12 @@ def test_deploy_slug_filter_limits_copy_and_registration(tmp_path: Path) -> None
         use_system_bash=True,
         allow_nonlocal_target=True,
     )
-    assert result.returncode == 0, result.stdout
-    assert "Deploying managed slugs: autosearch" in result.stdout
-    assert (tmp_path / ".codex" / "skills" / "autosearch" / "SKILL.md").is_file()
-    assert (tmp_path / ".codex" / "skills" / "autosearch" / "resources" / "bootstrap.py").is_file()
-    assert not (tmp_path / ".codex" / "skills" / "code-review" / "SKILL.md").exists()
 
-    config_text = (tmp_path / ".codex" / "config.toml").read_text(encoding="utf-8")
-    assert "[agents.autosearch]" in config_text
-    assert "[agents.converge]" not in config_text
+    assert result.returncode == 0, result.stdout
+    assert "Deploying managed slugs: auto-research" in result.stdout
+    assert "stale_pruned=3" in result.stdout
+    assert (tmp_path / ".codex" / "skills" / "auto-research" / "SKILL.md").is_file()
+    assert not (tmp_path / ".codex" / "skills" / "autosearch").exists()
+    assert not (tmp_path / ".codex" / "agents" / "autosearch.toml").exists()
+    assert not (tmp_path / ".codex" / "agents" / "resources" / "autosearch").exists()
+    assert list((tmp_path / ".core-prompts-state" / "stale-pruned").glob("**/autosearch*"))

@@ -107,11 +107,11 @@ def test_build_capability_manifest_persists_repo_relative_local_sources() -> Non
 
 def test_build_capability_manifest_uses_signal_text_not_full_body_for_role_and_tags() -> None:
     manifest = build_capability_manifest(
-        slug='autosearch',
+        slug='auto-research',
         source_metadata={
             'source_type': 'LOCAL_FILE',
-            'normalized_source': str((ROOT / 'ssot' / 'autosearch.md').resolve()),
-            'policy_rule_id': 'ssot.autosearch',
+            'normalized_source': str((ROOT / 'ssot' / 'auto-research.md').resolve()),
+            'policy_rule_id': 'ssot.auto-research',
             'content_type': 'text/markdown',
             'content_sha256': 'signal',
         },
@@ -138,7 +138,8 @@ def test_build_capability_manifest_uses_signal_text_not_full_body_for_role_and_t
     minimal = manifest['layers']['minimal']
 
     assert minimal['role'] != 'advisor'
-    assert 'autosearch' in minimal['domain_tags']
+    assert 'auto' in minimal['domain_tags']
+    assert 'research' in minimal['domain_tags']
     assert 'architecture' not in minimal['domain_tags']
     assert 'import' not in minimal['domain_tags']
 
@@ -163,8 +164,8 @@ def test_analyze_manifest_fit_detects_duplicate_slug() -> None:
 
 def test_analyze_manifest_fit_ignores_role_only_overlap_for_generic_roles() -> None:
     candidate = {
-        'slug': 'autosearch',
-        'layers': {'minimal': {'capability_type': 'both', 'role': 'specialist_workflow', 'domain_tags': ['autosearch']}}
+        'slug': 'auto-research',
+        'layers': {'minimal': {'capability_type': 'both', 'role': 'specialist_workflow', 'domain_tags': ['auto-research']}}
     }
     existing = [
         {

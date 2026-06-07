@@ -973,15 +973,16 @@
       ]
     },
     {
-      "slug": "autosearch",
+      "slug": "auto-research",
       "manifest_version": "capability-fabric.v0",
       "layers": {
         "minimal": {
           "capability_type": "both",
-          "summary": "Optimizes prompts, skills, tools, workflows, and code with minimal-loop investigation, bounded search, and baseline comparison. Use for experiments, behavioral variant comparison, or proof that a candidate beats baseline.",
+          "summary": "Researches and optimizes prompts, skills, tools, workflows, and code with minimal-loop investigation, bounded search, and baseline comparison. Use for experiments, behavioral variant comparison, or proof that a candidate beats baseline.",
           "role": "specialist_workflow",
           "domain_tags": [
-            "autosearch"
+            "auto",
+            "research"
           ],
           "required_inputs": [
             "target system, artifact, or scope to improve",
@@ -1037,7 +1038,7 @@
             ]
           },
           "resources": [
-            "ssot/autosearch.md"
+            "ssot/auto-research.md"
           ],
           "packaging_profile": {
             "capability_type": "both",
@@ -1111,15 +1112,15 @@
           },
           "source_provenance": {
             "source_type": "LOCAL_FILE",
-            "normalized_source": "ssot/autosearch.md",
-            "policy_rule_id": "ssot.autosearch",
+            "normalized_source": "ssot/auto-research.md",
+            "policy_rule_id": "ssot.auto-research",
             "content_sha256": "ssot"
           },
           "confidence": 0.98,
           "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
           "review_status": "ready_for_orchestrator_review",
-          "display_name": "Autosearch \u2014 Goal-Driven Improvement Search, Evaluation, and Promotion",
-          "version": "v1.1"
+          "display_name": "Auto-Research \u2014 Goal-Driven Improvement Research, Evaluation, and Promotion",
+          "version": "v2.0"
         },
         "expanded": {
           "relationship_suggestions": [
@@ -1160,10 +1161,10 @@
           "work_graph_impact": "Adds or updates a both capability with route profile None."
         }
       },
-      "display_name": "Autosearch \u2014 Goal-Driven Improvement Search, Evaluation, and Promotion",
+      "display_name": "Auto-Research \u2014 Goal-Driven Improvement Research, Evaluation, and Promotion",
       "descriptor_version": "capability-fabric.descriptor.v0",
-      "family_slug": "autosearch",
-      "shared_summary": "Autosearch for goal-oriented search, minimal-loop investigation, experiment design, repeated-trial evaluation, trace-to-regression distillation, and promotion-ready improvement loops across prompts, tools, systems, workflows, services, and code.",
+      "family_slug": "auto-research",
+      "shared_summary": "Auto-Research for goal-oriented search, minimal-loop investigation, experiment design, repeated-trial evaluation, trace-to-regression distillation, and promotion-ready improvement loops across prompts, tools, systems, workflows, services, and code.",
       "shared_constraints": [
         "Do not start search without a measurable goal.",
         "Do not claim a winner from a single run unless the system is strictly deterministic and the user agrees.",
@@ -1184,10 +1185,10 @@
           "pass_number": 1,
           "status": "ship",
           "historical_baseline": {
-            "slug": "autosearch",
+            "slug": "auto-research",
             "strategy": "source_library",
             "group": "applied_baseline",
-            "baseline_path": "sources/ssot-baselines/autosearch/baseline.md",
+            "baseline_path": "sources/ssot-baselines/auto-research/baseline.md",
             "selected_commit": null,
             "richness_score": 2,
             "line_count": 186,
@@ -1217,7 +1218,7 @@
                 "candidate_richness": 4
               },
               "baseline_commit": null,
-              "baseline_slug": "autosearch"
+              "baseline_slug": "auto-research"
             },
             {
               "judge": "operational_richness",
@@ -3881,7 +3882,7 @@
             "the iteration ladder or option ranking",
             "the top remaining gaps",
             "`Behavioral Proof Need`",
-            "`Autosearch Handoff`"
+            "`Auto-Research Handoff`"
           ],
           "tool_policy": {
             "allowed": [
@@ -3978,7 +3979,7 @@
           "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "SuperCharge \u2014 Prompt Engineering, Planning Hardening, and Graded Improvement",
-          "version": "v4.0"
+          "version": "v4.1"
         },
         "expanded": {
           "relationship_suggestions": [
@@ -4542,7 +4543,7 @@
             "Next Actions",
             "Behavioral Confidence",
             "Escalation Reason",
-            "Autosearch Handoff"
+            "Auto-Research Handoff"
           ],
           "tool_policy": {
             "allowed": [
@@ -4892,7 +4893,7 @@
       ".gemini/skills/address-code-review/SKILL.md",
       ".gemini/skills/analyze-context/SKILL.md",
       ".gemini/skills/architecture/SKILL.md",
-      ".gemini/skills/autosearch/SKILL.md",
+      ".gemini/skills/auto-research/SKILL.md",
       ".gemini/skills/code-review/SKILL.md",
       ".gemini/skills/converge/SKILL.md",
       ".gemini/skills/docs-review-expert/SKILL.md",
@@ -4912,7 +4913,7 @@
     ],
     "gemini_agent": [
       ".gemini/agents/architecture.md",
-      ".gemini/agents/autosearch.md",
+      ".gemini/agents/auto-research.md",
       ".gemini/agents/converge.md",
       ".gemini/agents/docs-review-expert.md",
       ".gemini/agents/gitops-review.md",
@@ -4927,7 +4928,7 @@
       ".claude/skills/address-code-review/SKILL.md",
       ".claude/skills/analyze-context/SKILL.md",
       ".claude/skills/architecture/SKILL.md",
-      ".claude/skills/autosearch/SKILL.md",
+      ".claude/skills/auto-research/SKILL.md",
       ".claude/skills/code-review/SKILL.md",
       ".claude/skills/converge/SKILL.md",
       ".claude/skills/docs-review-expert/SKILL.md",
@@ -4947,7 +4948,7 @@
     ],
     "claude_agent": [
       ".claude/agents/architecture.md",
-      ".claude/agents/autosearch.md",
+      ".claude/agents/auto-research.md",
       ".claude/agents/converge.md",
       ".claude/agents/docs-review-expert.md",
       ".claude/agents/gitops-review.md",
@@ -4960,7 +4961,7 @@
     ],
     "kiro_agent": [
       ".kiro/agents/architecture.json",
-      ".kiro/agents/autosearch.json",
+      ".kiro/agents/auto-research.json",
       ".kiro/agents/converge.json",
       ".kiro/agents/docs-review-expert.json",
       ".kiro/agents/gitops-review.json",
@@ -4975,7 +4976,7 @@
       ".kiro/skills/address-code-review/SKILL.md",
       ".kiro/skills/analyze-context/SKILL.md",
       ".kiro/skills/architecture/SKILL.md",
-      ".kiro/skills/autosearch/SKILL.md",
+      ".kiro/skills/auto-research/SKILL.md",
       ".kiro/skills/code-review/SKILL.md",
       ".kiro/skills/converge/SKILL.md",
       ".kiro/skills/docs-review-expert/SKILL.md",
@@ -4997,7 +4998,7 @@
       ".codex/skills/address-code-review/SKILL.md",
       ".codex/skills/analyze-context/SKILL.md",
       ".codex/skills/architecture/SKILL.md",
-      ".codex/skills/autosearch/SKILL.md",
+      ".codex/skills/auto-research/SKILL.md",
       ".codex/skills/code-review/SKILL.md",
       ".codex/skills/converge/SKILL.md",
       ".codex/skills/docs-review-expert/SKILL.md",
@@ -5017,7 +5018,7 @@
     ],
     "codex_agent": [
       ".codex/agents/architecture.toml",
-      ".codex/agents/autosearch.toml",
+      ".codex/agents/auto-research.toml",
       ".codex/agents/converge.toml",
       ".codex/agents/docs-review-expert.toml",
       ".codex/agents/gitops-review.toml",
@@ -5034,12 +5035,12 @@
       ".codex/skills/address-code-review/resources/capability.json",
       ".codex/skills/analyze-context/resources/capability.json",
       ".codex/skills/architecture/resources/capability.json",
-      ".codex/skills/autosearch/resources/capability.json",
-      ".codex/skills/autosearch/resources/bootstrap.py",
-      ".codex/skills/autosearch/resources/templates/experiment-ledger.md.tmpl",
-      ".codex/skills/autosearch/resources/templates/goal-contract.md.tmpl",
-      ".codex/skills/autosearch/resources/templates/promotion-packet.md.tmpl",
-      ".codex/skills/autosearch/resources/templates/scorecard.json.tmpl",
+      ".codex/skills/auto-research/resources/capability.json",
+      ".codex/skills/auto-research/resources/bootstrap.py",
+      ".codex/skills/auto-research/resources/templates/experiment-ledger.md.tmpl",
+      ".codex/skills/auto-research/resources/templates/goal-contract.md.tmpl",
+      ".codex/skills/auto-research/resources/templates/promotion-packet.md.tmpl",
+      ".codex/skills/auto-research/resources/templates/scorecard.json.tmpl",
       ".codex/skills/code-review/resources/capability.json",
       ".codex/skills/converge/resources/capability.json",
       ".codex/skills/docs-review-expert/resources/capability.json",
@@ -5060,12 +5061,12 @@
     ],
     "codex_agent": [
       ".codex/agents/resources/architecture/capability.json",
-      ".codex/agents/resources/autosearch/capability.json",
-      ".codex/agents/resources/autosearch/bootstrap.py",
-      ".codex/agents/resources/autosearch/templates/experiment-ledger.md.tmpl",
-      ".codex/agents/resources/autosearch/templates/goal-contract.md.tmpl",
-      ".codex/agents/resources/autosearch/templates/promotion-packet.md.tmpl",
-      ".codex/agents/resources/autosearch/templates/scorecard.json.tmpl",
+      ".codex/agents/resources/auto-research/capability.json",
+      ".codex/agents/resources/auto-research/bootstrap.py",
+      ".codex/agents/resources/auto-research/templates/experiment-ledger.md.tmpl",
+      ".codex/agents/resources/auto-research/templates/goal-contract.md.tmpl",
+      ".codex/agents/resources/auto-research/templates/promotion-packet.md.tmpl",
+      ".codex/agents/resources/auto-research/templates/scorecard.json.tmpl",
       ".codex/agents/resources/converge/capability.json",
       ".codex/agents/resources/docs-review-expert/capability.json",
       ".codex/agents/resources/gitops-review/capability.json",
@@ -5081,12 +5082,12 @@
       ".gemini/skills/address-code-review/resources/capability.json",
       ".gemini/skills/analyze-context/resources/capability.json",
       ".gemini/skills/architecture/resources/capability.json",
-      ".gemini/skills/autosearch/resources/capability.json",
-      ".gemini/skills/autosearch/resources/bootstrap.py",
-      ".gemini/skills/autosearch/resources/templates/experiment-ledger.md.tmpl",
-      ".gemini/skills/autosearch/resources/templates/goal-contract.md.tmpl",
-      ".gemini/skills/autosearch/resources/templates/promotion-packet.md.tmpl",
-      ".gemini/skills/autosearch/resources/templates/scorecard.json.tmpl",
+      ".gemini/skills/auto-research/resources/capability.json",
+      ".gemini/skills/auto-research/resources/bootstrap.py",
+      ".gemini/skills/auto-research/resources/templates/experiment-ledger.md.tmpl",
+      ".gemini/skills/auto-research/resources/templates/goal-contract.md.tmpl",
+      ".gemini/skills/auto-research/resources/templates/promotion-packet.md.tmpl",
+      ".gemini/skills/auto-research/resources/templates/scorecard.json.tmpl",
       ".gemini/skills/code-review/resources/capability.json",
       ".gemini/skills/converge/resources/capability.json",
       ".gemini/skills/docs-review-expert/resources/capability.json",
@@ -5107,12 +5108,12 @@
     ],
     "gemini_agent": [
       ".gemini/agents/resources/architecture/capability.json",
-      ".gemini/agents/resources/autosearch/capability.json",
-      ".gemini/agents/resources/autosearch/bootstrap.py",
-      ".gemini/agents/resources/autosearch/templates/experiment-ledger.md.tmpl",
-      ".gemini/agents/resources/autosearch/templates/goal-contract.md.tmpl",
-      ".gemini/agents/resources/autosearch/templates/promotion-packet.md.tmpl",
-      ".gemini/agents/resources/autosearch/templates/scorecard.json.tmpl",
+      ".gemini/agents/resources/auto-research/capability.json",
+      ".gemini/agents/resources/auto-research/bootstrap.py",
+      ".gemini/agents/resources/auto-research/templates/experiment-ledger.md.tmpl",
+      ".gemini/agents/resources/auto-research/templates/goal-contract.md.tmpl",
+      ".gemini/agents/resources/auto-research/templates/promotion-packet.md.tmpl",
+      ".gemini/agents/resources/auto-research/templates/scorecard.json.tmpl",
       ".gemini/agents/resources/converge/capability.json",
       ".gemini/agents/resources/docs-review-expert/capability.json",
       ".gemini/agents/resources/gitops-review/capability.json",
@@ -5128,12 +5129,12 @@
       ".claude/skills/address-code-review/resources/capability.json",
       ".claude/skills/analyze-context/resources/capability.json",
       ".claude/skills/architecture/resources/capability.json",
-      ".claude/skills/autosearch/resources/capability.json",
-      ".claude/skills/autosearch/resources/bootstrap.py",
-      ".claude/skills/autosearch/resources/templates/experiment-ledger.md.tmpl",
-      ".claude/skills/autosearch/resources/templates/goal-contract.md.tmpl",
-      ".claude/skills/autosearch/resources/templates/promotion-packet.md.tmpl",
-      ".claude/skills/autosearch/resources/templates/scorecard.json.tmpl",
+      ".claude/skills/auto-research/resources/capability.json",
+      ".claude/skills/auto-research/resources/bootstrap.py",
+      ".claude/skills/auto-research/resources/templates/experiment-ledger.md.tmpl",
+      ".claude/skills/auto-research/resources/templates/goal-contract.md.tmpl",
+      ".claude/skills/auto-research/resources/templates/promotion-packet.md.tmpl",
+      ".claude/skills/auto-research/resources/templates/scorecard.json.tmpl",
       ".claude/skills/code-review/resources/capability.json",
       ".claude/skills/converge/resources/capability.json",
       ".claude/skills/docs-review-expert/resources/capability.json",
@@ -5154,12 +5155,12 @@
     ],
     "claude_agent": [
       ".claude/agents/resources/architecture/capability.json",
-      ".claude/agents/resources/autosearch/capability.json",
-      ".claude/agents/resources/autosearch/bootstrap.py",
-      ".claude/agents/resources/autosearch/templates/experiment-ledger.md.tmpl",
-      ".claude/agents/resources/autosearch/templates/goal-contract.md.tmpl",
-      ".claude/agents/resources/autosearch/templates/promotion-packet.md.tmpl",
-      ".claude/agents/resources/autosearch/templates/scorecard.json.tmpl",
+      ".claude/agents/resources/auto-research/capability.json",
+      ".claude/agents/resources/auto-research/bootstrap.py",
+      ".claude/agents/resources/auto-research/templates/experiment-ledger.md.tmpl",
+      ".claude/agents/resources/auto-research/templates/goal-contract.md.tmpl",
+      ".claude/agents/resources/auto-research/templates/promotion-packet.md.tmpl",
+      ".claude/agents/resources/auto-research/templates/scorecard.json.tmpl",
       ".claude/agents/resources/converge/capability.json",
       ".claude/agents/resources/docs-review-expert/capability.json",
       ".claude/agents/resources/gitops-review/capability.json",
@@ -5175,12 +5176,12 @@
       ".kiro/skills/address-code-review/resources/capability.json",
       ".kiro/skills/analyze-context/resources/capability.json",
       ".kiro/skills/architecture/resources/capability.json",
-      ".kiro/skills/autosearch/resources/capability.json",
-      ".kiro/skills/autosearch/resources/bootstrap.py",
-      ".kiro/skills/autosearch/resources/templates/experiment-ledger.md.tmpl",
-      ".kiro/skills/autosearch/resources/templates/goal-contract.md.tmpl",
-      ".kiro/skills/autosearch/resources/templates/promotion-packet.md.tmpl",
-      ".kiro/skills/autosearch/resources/templates/scorecard.json.tmpl",
+      ".kiro/skills/auto-research/resources/capability.json",
+      ".kiro/skills/auto-research/resources/bootstrap.py",
+      ".kiro/skills/auto-research/resources/templates/experiment-ledger.md.tmpl",
+      ".kiro/skills/auto-research/resources/templates/goal-contract.md.tmpl",
+      ".kiro/skills/auto-research/resources/templates/promotion-packet.md.tmpl",
+      ".kiro/skills/auto-research/resources/templates/scorecard.json.tmpl",
       ".kiro/skills/code-review/resources/capability.json",
       ".kiro/skills/converge/resources/capability.json",
       ".kiro/skills/docs-review-expert/resources/capability.json",
@@ -5201,12 +5202,12 @@
     ],
     "kiro_agent": [
       ".kiro/agents/resources/architecture/capability.json",
-      ".kiro/agents/resources/autosearch/capability.json",
-      ".kiro/agents/resources/autosearch/bootstrap.py",
-      ".kiro/agents/resources/autosearch/templates/experiment-ledger.md.tmpl",
-      ".kiro/agents/resources/autosearch/templates/goal-contract.md.tmpl",
-      ".kiro/agents/resources/autosearch/templates/promotion-packet.md.tmpl",
-      ".kiro/agents/resources/autosearch/templates/scorecard.json.tmpl",
+      ".kiro/agents/resources/auto-research/capability.json",
+      ".kiro/agents/resources/auto-research/bootstrap.py",
+      ".kiro/agents/resources/auto-research/templates/experiment-ledger.md.tmpl",
+      ".kiro/agents/resources/auto-research/templates/goal-contract.md.tmpl",
+      ".kiro/agents/resources/auto-research/templates/promotion-packet.md.tmpl",
+      ".kiro/agents/resources/auto-research/templates/scorecard.json.tmpl",
       ".kiro/agents/resources/converge/capability.json",
       ".kiro/agents/resources/docs-review-expert/capability.json",
       ".kiro/agents/resources/gitops-review/capability.json",

@@ -294,13 +294,14 @@
       "advisory_only": true
     },
     {
-      "slug": "autosearch",
-      "display_name": "Autosearch \u2014 Goal-Driven Improvement Search, Evaluation, and Promotion",
+      "slug": "auto-research",
+      "display_name": "Auto-Research \u2014 Goal-Driven Improvement Research, Evaluation, and Promotion",
       "capability_type": "both",
-      "summary": "Optimizes prompts, skills, tools, workflows, and code with minimal-loop investigation, bounded search, and baseline comparison. Use for experiments, behavioral variant comparison, or proof that a candidate beats baseline.",
+      "summary": "Researches and optimizes prompts, skills, tools, workflows, and code with minimal-loop investigation, bounded search, and baseline comparison. Use for experiments, behavioral variant comparison, or proof that a candidate beats baseline.",
       "role": "specialist_workflow",
       "domain_tags": [
-        "autosearch"
+        "auto",
+        "research"
       ],
       "required_inputs": [
         "target system, artifact, or scope to improve",
@@ -1493,7 +1494,7 @@
         "the iteration ladder or option ranking",
         "the top remaining gaps",
         "`Behavioral Proof Need`",
-        "`Autosearch Handoff`"
+        "`Auto-Research Handoff`"
       ],
       "tool_policy": {
         "allowed": [
@@ -1770,7 +1771,7 @@
         "Next Actions",
         "Behavioral Confidence",
         "Escalation Reason",
-        "Autosearch Handoff"
+        "Auto-Research Handoff"
       ],
       "tool_policy": {
         "allowed": [

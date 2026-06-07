@@ -244,7 +244,7 @@ def test_registry_fallback_works_without_git_history(tmp_path: Path) -> None:
     assert result["classification"] == "additive"
 
 
-def test_baseline_artifact_findings_detects_flattened_autosearch_shape() -> None:
+def test_baseline_artifact_findings_detects_flattened_auto_research_shape() -> None:
     findings = baseline_artifact_findings(
         "## Invocation Hints\nIntent\n- bad\nRequested Outcome\n- bad\nRejected/Out-of-Scope Signals\n- bad\n"
     )
@@ -261,7 +261,7 @@ def test_persist_source_baseline_refuses_structurally_noisy_overwrite(tmp_path: 
         ignore=shutil.ignore_patterns(".git", ".pytest_cache", "__pycache__", ".DS_Store", ".venv", "node_modules"),
     )
 
-    baseline_path = workspace / "sources" / "ssot-baselines" / "autosearch" / "baseline.md"
+    baseline_path = workspace / "sources" / "ssot-baselines" / "auto-research" / "baseline.md"
     baseline_before = baseline_path.read_text(encoding="utf-8")
     noisy_candidate = """## Invocation Hints
 Intent
@@ -274,7 +274,7 @@ Rejected/Out-of-Scope Signals
 
     result = persist_source_baseline(
         workspace,
-        slug="autosearch",
+        slug="auto-research",
         baseline_text=noisy_candidate,
         overwrite=False,
         source_kind="canonical_source",
@@ -288,11 +288,11 @@ Rejected/Out-of-Scope Signals
     assert "artifact:flattened_uac_prompt_sections" in result["blocked_reasons"]
     assert baseline_path.read_text(encoding="utf-8") == baseline_before
     assert "artifact:flattened_uac_prompt_sections" in (
-        registry["skills"]["autosearch"]["historical_proof"]["last_blocked_reasons"]
+        registry["skills"]["auto-research"]["historical_proof"]["last_blocked_reasons"]
     )
 
 
-def test_materialize_baseline_sources_refreshes_autosearch_from_current_ssot(tmp_path: Path) -> None:
+def test_materialize_baseline_sources_refreshes_auto_research_from_current_ssot(tmp_path: Path) -> None:
     workspace = tmp_path / "workspace"
     shutil.copytree(
         ROOT,
@@ -301,7 +301,7 @@ def test_materialize_baseline_sources_refreshes_autosearch_from_current_ssot(tmp
     )
 
     result = subprocess.run(
-        [sys.executable, str(workspace / "scripts" / "materialize-baseline-sources.py"), "--slug", "autosearch"],
+        [sys.executable, str(workspace / "scripts" / "materialize-baseline-sources.py"), "--slug", "auto-research"],
         cwd=workspace,
         check=True,
         capture_output=True,
@@ -309,12 +309,13 @@ def test_materialize_baseline_sources_refreshes_autosearch_from_current_ssot(tmp
     )
     assert result.returncode == 0
 
-    baseline_path = workspace / "sources" / "ssot-baselines" / "autosearch" / "baseline.md"
-    ssot_path = workspace / "ssot" / "autosearch.md"
+    baseline_path = workspace / "sources" / "ssot-baselines" / "auto-research" / "baseline.md"
+    ssot_path = workspace / "ssot" / "auto-research.md"
     registry = json.loads((workspace / "sources" / "ssot-baselines" / "index.json").read_text(encoding="utf-8"))
 
     assert baseline_path.read_text(encoding="utf-8") == ssot_path.read_text(encoding="utf-8")
-    assert registry["skills"]["autosearch"]["strategy"] == "head_snapshot"
-    assert registry["skills"]["autosearch"]["group"] == "current_oracle"
-    assert registry["skills"]["autosearch"]["historical_proof"]["materialized_from_source_kind"] == "current_ssot"
+    assert registry["skills"]["auto-research"]["strategy"] == "head_snapshot"
+    assert registry["skills"]["auto-research"]["group"] == "current_oracle"
+    assert registry["skills"]["auto-research"]["line_count"] == len(ssot_path.read_text(encoding="utf-8").splitlines())
+    assert registry["skills"]["auto-research"]["historical_proof"]["materialized_from_source_kind"] == "current_ssot"
     assert not (workspace / "sources" / "ssot-baselines" / "weekly-intel" / "baseline.md").exists()

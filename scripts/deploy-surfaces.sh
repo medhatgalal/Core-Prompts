@@ -42,7 +42,11 @@ while [[ $# -gt 0 ]]; do
       ;;
     --slug)
       shift
-      SLUG_FILTERS+=("${1:-}")
+      slug_value="${1:-}"
+      if [[ "$slug_value" == "autosearch" ]]; then
+        slug_value="auto-research"
+      fi
+      SLUG_FILTERS+=("$slug_value")
       ;;
     --allow-nonlocal-target)
       ALLOW_NONLOCAL_TARGET=1
@@ -142,6 +146,7 @@ COPIED=0
 MISSING_SOURCE=0
 REPLACED_SYMLINK=0
 STANDALONE_COPIED=0
+STALE_PRUNED=0
 
 copy_file() {
   local src="$1"
@@ -179,6 +184,82 @@ copy_file() {
     echo "COPIED $src -> $dst (unchanged)"
   fi
   return 0
+}
+
+slug_filter_matches() {
+  local slug="$1"
+  if [[ ${#SLUG_FILTERS[@]} -eq 0 ]]; then
+    return 0
+  fi
+  local item
+  for item in "${SLUG_FILTERS[@]}"; do
+    if [[ "$item" == "$slug" ]]; then
+      return 0
+    fi
+  done
+  return 1
+}
+
+prune_path() {
+  local target="$1"
+  if [[ ! -e "$target" && ! -L "$target" ]]; then
+    return 0
+  fi
+  if [[ "$DRY_RUN" -eq 1 ]]; then
+    echo "DRY-RUN PRUNE $target"
+    return 0
+  fi
+  local relative="${target#"$TARGET_ROOT"/}"
+  local archive_root="$TARGET_ROOT/.core-prompts-state/stale-pruned/$(date -u +%Y%m%dT%H%M%SZ)"
+  local archive="$archive_root/$relative"
+  python3 - "$target" "$archive" <<'PY'
+import shutil
+import sys
+from pathlib import Path
+
+target = Path(sys.argv[1])
+archive = Path(sys.argv[2])
+archive.parent.mkdir(parents=True, exist_ok=True)
+candidate = archive
+counter = 1
+while candidate.exists() or candidate.is_symlink():
+    candidate = archive.with_name(f"{archive.name}.{counter}")
+    counter += 1
+shutil.move(str(target), str(candidate))
+PY
+  STALE_PRUNED=$((STALE_PRUNED + 1))
+  echo "PRUNED stale deprecated surface $target"
+}
+
+prune_deprecated_slug_outputs() {
+  if ! slug_filter_matches "auto-research" && ! slug_filter_matches "autosearch"; then
+    return 0
+  fi
+  local cli
+  for cli in "${TARGETS[@]}"; do
+    case "$cli" in
+      codex)
+        prune_path "$TARGET_ROOT/.codex/skills/autosearch"
+        prune_path "$TARGET_ROOT/.codex/agents/autosearch.toml"
+        prune_path "$TARGET_ROOT/.codex/agents/resources/autosearch"
+        ;;
+      gemini)
+        prune_path "$TARGET_ROOT/.gemini/skills/autosearch"
+        prune_path "$TARGET_ROOT/.gemini/agents/autosearch.md"
+        prune_path "$TARGET_ROOT/.gemini/agents/resources/autosearch"
+        ;;
+      claude)
+        prune_path "$TARGET_ROOT/.claude/skills/autosearch"
+        prune_path "$TARGET_ROOT/.claude/agents/autosearch.md"
+        prune_path "$TARGET_ROOT/.claude/agents/resources/autosearch"
+        ;;
+      kiro)
+        prune_path "$TARGET_ROOT/.kiro/skills/autosearch"
+        prune_path "$TARGET_ROOT/.kiro/agents/autosearch.json"
+        prune_path "$TARGET_ROOT/.kiro/agents/resources/autosearch"
+        ;;
+    esac
+  done
 }
 
 write_launcher() {
@@ -393,7 +474,8 @@ trap 'rm -f "$COPY_PLAN_FILE"' EXIT
 python3 scripts/deploy-copy-plan.py "$REPO_ROOT" "$TARGET_ROOT" "${TARGETS[@]}" -- "${SLUG_FILTERS[@]-}" > "$COPY_PLAN_FILE"
 if [[ ! -s "$COPY_PLAN_FILE" ]]; then
   echo "warning: nothing to deploy for selected CLI targets"
-  echo "SUMMARY copied=0 missing_source=0 skipped_cli=0 replaced_symlink=0"
+  prune_deprecated_slug_outputs
+  echo "SUMMARY copied=0 missing_source=0 skipped_cli=0 replaced_symlink=0 stale_pruned=$STALE_PRUNED"
   exit 0
 fi
 
@@ -422,6 +504,8 @@ while IFS=$'\t' read -r src dst surface slug; do
   [[ -n "$src" ]] || continue
   copy_file "$src" "$dst"
 done < "$COPY_PLAN_FILE"
+
+prune_deprecated_slug_outputs
 
 register_codex_agents() {
   local agent_lines="$1"
@@ -467,5 +551,5 @@ WRAPPER
   fi
 fi
 
-echo "SUMMARY copied=$COPIED missing_source=$MISSING_SOURCE skipped_cli=0 replaced_symlink=$REPLACED_SYMLINK"
+echo "SUMMARY copied=$COPIED missing_source=$MISSING_SOURCE skipped_cli=0 replaced_symlink=$REPLACED_SYMLINK stale_pruned=$STALE_PRUNED"
 [[ "$MISSING_SOURCE" -eq 0 ]]

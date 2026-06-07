@@ -1,3 +1,13 @@
+## v1.9.2 - 2026-06-07
+
+- Shipped the SuperCharge `/basis` module for first-principles cost and complexity accounting across prompts, software plans, research workflows, operations, and general knowledge work.
+- Renamed `autosearch` to `auto-research` as a breaking capability rename aligned with the research-loop intent:
+  - moved canonical SSOT, generated skill and agent surfaces, resources, baselines, and metadata to the `auto-research` slug
+  - updated SuperCharge, UAC, README, Getting Started, examples, CLI reference, and generated catalogs to route measured proof work to `auto-research`
+  - added README scenario starters for `/basis`, `/full`, `auto-research`, `converge`, `gitops-review`, and `docs-review-expert`
+  - updated deploy behavior so installing `auto-research` prunes stale installed `autosearch` skill, agent, and resource paths for selected CLIs
+- Refreshed validation and focused tests for the rename, generated-surface rebuild, Codex agent registration cleanup, and stale install pruning.
+
 ## v1.9.1 - 2026-06-07
 
 - Repaired the `eng-report` release after hosted validation exposed generated-state drift:

@@ -70,7 +70,7 @@ Follow with:
 
 > Now turn that recommendation into the smallest migration-safe implementation plan.
 
-### `autosearch`
+### `auto-research`
 
 Use when:
 
@@ -84,7 +84,7 @@ Why this skill first:
 
 Ask:
 
-> Use `autosearch` to improve our code-review prompt so it catches more behavioral regressions without increasing review noise.
+> Use `auto-research` to improve our code-review prompt so it catches more behavioral regressions without increasing review noise.
 
 Expected output:
 
@@ -93,11 +93,40 @@ Expected output:
 - bounded experiment plan
 - promotion guidance only after a verified winner exists
 
-Also use `autosearch` when a candidate import or revised capability needs bounded behavioral proof before promotion.
+Also use `auto-research` when a candidate import or revised capability needs bounded behavioral proof before promotion.
 
 Follow with:
 
 > Now tell me the minimum experiment set that will separate the strongest two variants.
+
+### `supercharge /basis`
+
+Use when:
+
+- a software plan, research workflow, or knowledge-work process feels expensive or bloated
+- you need the irreducible primitives before improving the current approach
+- you want to identify waste drivers before deciding what to automate, delete, combine, or prove
+
+Why this module first:
+
+- start here when the right question is "what work is fundamentally necessary?" rather than "how do we polish the current version?"
+
+Ask:
+
+> Use `supercharge /basis` to audit this literature-review workflow for irreducible inputs, actual-to-minimum ratio, waste drivers, and redesign moves.
+
+Expected output:
+
+- basis map
+- theoretical minimum
+- actual-to-minimum ratio
+- waste drivers
+- redesign moves
+- proof needed
+
+Follow with:
+
+> Now route only the unproven redesign claims to `auto-research` for measured comparison.
 
 ### `code-review`
 
@@ -570,15 +599,15 @@ Use this when you want documentation findings, rewrite targets, and release-faci
 
 Use this when you want a merge or release gate with blockers and next actions.
 
-### `autosearch`
+### `auto-research`
 
-> Use `autosearch` to improve this workflow and prove which version wins.
+> Use `auto-research` to improve this workflow and prove which version wins.
 
 Use this when you want an experiment loop, not a one-shot rewrite.
 
 ### `supercharge`
 
-> Use `supercharge` to harden this operating prompt before we ship it.
+> Use `supercharge /basis` to harden this operating prompt by finding the irreducible work, waste, and proof gaps before we ship it.
 
 Use this when you want a stronger plan or prompt before execution.
 

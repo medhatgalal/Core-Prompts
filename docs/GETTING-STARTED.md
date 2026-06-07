@@ -20,8 +20,8 @@ If Core-Prompts is already installed in Codex, Gemini, Claude, or Kiro, begin wi
 | `address-code-review` | "Use `address-code-review` to inspect the open MR comments and apply only the selected reviewer-requested fixes." | comments found, targeted fixes, changed files, commit guidance, and follow-up review |
 | `eng-report` | "Use `eng-report` to generate an HTML progress report for this repo since 2026-06-01." | git-derived metrics, report path, and narrative tied to deterministic data |
 | `ic-assistant` | "Use `ic-assistant` to track this active incident and tell me the current phase, overdue items, and next required action." | mode, phase, next action, status-update timer, and escalation flags |
-| `supercharge` | "Use `supercharge` to make this feature brief execution-ready." | stronger framing, constraints, and sequencing |
-| `autosearch` | "Use `autosearch` to improve our review prompt so it catches more regressions without increasing noise." | experiment design, evaluation, and a validated winner |
+| `supercharge` | "Use `supercharge /basis` to find the irreducible work, waste, and redesign moves in this knowledge workflow." | stronger framing, constraints, sequencing, and first-principles accounting when requested |
+| `auto-research` | "Use `auto-research` to improve our review prompt so it catches more regressions without increasing noise." | experiment design, evaluation, and a validated winner |
 | `testing` | "Use `testing` to identify the edge cases and tests this change needs." | prioritized tests and missing edge cases |
 
 If you want an advisory agent rather than a direct skill invocation, start with:
@@ -58,7 +58,7 @@ Practical rule:
 - use `judge` for the quality decision
 - use `apply` only when you intend to change canonical repo state
 
-If `judge` says the landing is structurally close but still needs bounded behavioral proof, use `autosearch` for that proof step before `apply`.
+If `judge` says the landing is structurally close but still needs bounded behavioral proof, use `auto-research` for that proof step before `apply`.
 
 For the full flow, go to [UAC usage](UAC-USAGE.md).
 
@@ -83,6 +83,14 @@ Optional deploy dry run:
 ```bash
 bin/capability-fabric deploy --dry-run --cli all
 ```
+
+For the breaking `autosearch` rename, deploy `auto-research` to replace installed stale surfaces:
+
+```bash
+bin/capability-fabric deploy --cli all --slug auto-research --target "$HOME" --allow-nonlocal-target
+```
+
+Deploying `auto-research` prunes the old installed `autosearch` skill, agent, and resource paths for the selected CLIs.
 
 ## Installed Release Watch
 

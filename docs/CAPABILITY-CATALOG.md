@@ -12,10 +12,10 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `testing` — Testing Studio — Test Design and Coverage Analysis: Testing Studio for unit-test generation, end-to-end test design, edge-case discovery, and coverage gap analysis.
 
 ## By CLI
-- `claude`: `address-code-review`, `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `codex`: `address-code-review`, `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `gemini`: `address-code-review`, `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `kiro`: `address-code-review`, `analyze-context`, `architecture`, `autosearch`, `code-review`, `converge`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `claude`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `converge`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `codex`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `converge`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `gemini`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `converge`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `kiro`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `converge`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
 
 ## By Use Case
 - `address`: `address-code-review`
@@ -23,7 +23,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `analyze`: `analyze-context`
 - `architecture`: `architecture`, `docs-review-expert`, `eng-report`
 - `assistant`: `ic-assistant`
-- `autosearch`: `autosearch`
+- `auto`: `auto-research`
 - `code`: `address-code-review`, `code-review`
 - `conflict`: `resolve-conflict`
 - `context`: `analyze-context`, `threader`
@@ -40,6 +40,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `prompting`: `code-review`, `mentor`, `uac-import`
 - `pulse`: `pulse`
 - `report`: `eng-report`
+- `research`: `auto-research`
 - `resolve`: `resolve-conflict`
 - `review`: `address-code-review`, `code-review`, `docs-review-expert`, `gitops-review`, `weekly-intel`
 - `status`: `feature-status`
@@ -90,12 +91,12 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
   - produce a migration-safe architecture recommendation with rollback guidance
 - Summary: Designs APIs, schemas, patterns, and system topology with explicit boundaries and trade-offs. Use for concrete architecture decisions, interface design, or rollback-aware system plans.
 
-### Autosearch — Goal-Driven Improvement Search, Evaluation, and Promotion
-- Slug: `autosearch`
+### Auto-Research — Goal-Driven Improvement Research, Evaluation, and Promotion
+- Slug: `auto-research`
 - Type: `both`
 - Install target: `repo_local`
 - Supported CLIs: `claude, codex, gemini, kiro`
-- Version: `v1.1`
+- Version: `v2.0`
 - Invocation hints:
   - improve this prompt, workflow, tool, or system and prove it got better
   - search for a better version of this component
@@ -106,7 +107,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
   - turn our failures into future eval cases
   - optimize this system without regressing quality
   - guide me from setup to experiments to commit and merge
-- Summary: Optimizes prompts, skills, tools, workflows, and code with minimal-loop investigation, bounded search, and baseline comparison. Use for experiments, behavioral variant comparison, or proof that a candidate beats baseline.
+- Summary: Researches and optimizes prompts, skills, tools, workflows, and code with minimal-loop investigation, bounded search, and baseline comparison. Use for experiments, behavioral variant comparison, or proof that a candidate beats baseline.
 
 ### Commit Review — Git Commit Quality Gate
 - Slug: `code-review`
@@ -270,7 +271,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Type: `both`
 - Install target: `repo_local`
 - Supported CLIs: `claude, codex, gemini, kiro`
-- Version: `v4.0`
+- Version: `v4.1`
 - Invocation hints:
   - make this prompt better
   - harden this plan

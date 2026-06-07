@@ -17,7 +17,7 @@ SPEC = importlib.util.spec_from_file_location("uac_import_script", SCRIPT_PATH)
 assert SPEC and SPEC.loader
 UAC_IMPORT = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(UAC_IMPORT)
-BOOTSTRAP_SOURCE_PATH = ROOT / "sources" / "capability-resources" / "autosearch" / "bootstrap.py"
+BOOTSTRAP_SOURCE_PATH = ROOT / "sources" / "capability-resources" / "auto-research" / "bootstrap.py"
 
 
 def _uac_comparison_score(*, quality_result: dict, baseline_line_count: int) -> float:
@@ -486,16 +486,16 @@ def test_uac_apply_refuses_landing_when_quality_gate_fails(tmp_path: Path) -> No
 
 
 def test_preferred_ssot_text_preserves_complete_authored_source(tmp_path: Path) -> None:
-    sample = tmp_path / "autosearch.md"
+    sample = tmp_path / "auto-research.md"
     sample.write_text(
         """---
-name: "autosearch"
-display_name: "Autosearch"
+name: "auto-research"
+display_name: "Auto-Research"
 description: "Rich authored source."
 capability_type: "both"
 install_target: "repo_local"
 ---
-# Autosearch
+# Auto-Research
 
 ## Purpose
 Preserve the authored body.
@@ -510,7 +510,7 @@ Agent contract.
 Tool boundaries.
 
 ## Output Directory
-reports/autosearch/
+reports/auto-research/
 
 ## Workflow
 1. Freeze baseline.
@@ -551,7 +551,7 @@ Copy-Ready Starter Invocation
     }
     quality_result = {"final_candidate_text": "# Generic fallback\n"}
 
-    chosen = UAC_IMPORT._preferred_ssot_text("autosearch", payload, quality_result=quality_result)
+    chosen = UAC_IMPORT._preferred_ssot_text("auto-research", payload, quality_result=quality_result)
 
     assert "Copy-Ready Starter Invocation" in chosen
     assert "Generic fallback" not in chosen
@@ -581,10 +581,10 @@ def test_normalize_payload_for_same_slug_update_allows_judge_and_apply() -> None
     payload = {
         "status": "accepted",
         "manifest": {
-            "slug": "autosearch",
+            "slug": "auto-research",
             "layers": {
                 "minimal": {"capability_type": "both"},
-                "expanded": {"overlap_candidates": ["autosearch"]},
+                "expanded": {"overlap_candidates": ["auto-research"]},
             },
         },
         "uac": {"capability_type": "both"},
@@ -593,11 +593,11 @@ def test_normalize_payload_for_same_slug_update_allows_judge_and_apply() -> None
         "cross_analysis": {
             "duplicate_risk": "high",
             "fit_assessment": "manual_review",
-            "conflict_report": ["slug autosearch already exists"],
-            "overlap_report": [{"slug": "autosearch", "score": 1.0, "reason": "same slug"}],
+            "conflict_report": ["slug auto-research already exists"],
+            "overlap_report": [{"slug": "auto-research", "score": 1.0, "reason": "same slug"}],
             "required_existing_adjustments": [],
             "required_new_entry_adjustments": [],
-            "work_graph_change_summary": "autosearch risks duplicate or conflicting graph roles and should not auto-apply.",
+            "work_graph_change_summary": "auto-research risks duplicate or conflicting graph roles and should not auto-apply.",
         },
     }
 
@@ -609,7 +609,7 @@ def test_normalize_payload_for_same_slug_update_allows_judge_and_apply() -> None
 
 
 def test_source_constraints_prefer_authored_constraints(tmp_path: Path) -> None:
-    sample = tmp_path / "autosearch.md"
+    sample = tmp_path / "auto-research.md"
     sample.write_text(
         """## Constraints
 - Do not auto-merge.
@@ -641,23 +641,23 @@ def test_descriptor_shared_constraints_do_not_promote_noisy_uplift_constraints()
     assert UAC_IMPORT._descriptor_shared_constraints(payload) == ()
 
 
-def test_same_slug_apply_does_not_degrade_autosearch_baseline(tmp_path: Path) -> None:
+def test_same_slug_apply_does_not_degrade_auto_research_baseline(tmp_path: Path) -> None:
     workspace = tmp_path / "workspace"
     shutil.copytree(
         ROOT,
         workspace,
         ignore=shutil.ignore_patterns(".git", ".pytest_cache", "__pycache__", ".DS_Store", ".venv", "node_modules"),
     )
-    source = tmp_path / "autosearch.md"
+    source = tmp_path / "auto-research.md"
     source.write_text(
         """---
-name: "autosearch"
-display_name: "Autosearch"
+name: "auto-research"
+display_name: "Auto-Research"
 description: "Noisy same-slug update."
 capability_type: "both"
 install_target: "repo_local"
 ---
-# Autosearch
+# Auto-Research
 
 ## Purpose
 Attempt a same-slug update with noisy structure.
@@ -672,7 +672,7 @@ Advisory only.
 Read and analyze only.
 
 ## Output Directory
-reports/autosearch/
+reports/auto-research/
 
 ## Workflow
 1. Freeze baseline.
@@ -715,7 +715,7 @@ Copy-Ready Starter Invocation
         encoding="utf-8",
     )
 
-    baseline_path = workspace / "sources" / "ssot-baselines" / "autosearch" / "baseline.md"
+    baseline_path = workspace / "sources" / "ssot-baselines" / "auto-research" / "baseline.md"
     baseline_before = baseline_path.read_text(encoding="utf-8")
     original_root = UAC_IMPORT.ROOT
     original_run = UAC_IMPORT.subprocess.run
@@ -729,7 +729,7 @@ Copy-Ready Starter Invocation
             "source": {"normalized_source": str(source)},
             "cross_analysis": {"fit_assessment": "fits_cleanly"},
             "manifest": {
-                "slug": "autosearch",
+                "slug": "auto-research",
                 "layers": {
                     "minimal": {
                         "capability_type": "both",
@@ -812,8 +812,8 @@ def test_apply_payload_refuses_regressed_final_candidate(tmp_path: Path) -> None
     assert "regressed SSOT body" in result["detail"]
 
 
-def test_autosearch_bootstrap_creates_artifacts(tmp_path: Path) -> None:
-    report_dir = tmp_path / "reports" / "autosearch"
+def test_auto_research_bootstrap_creates_artifacts(tmp_path: Path) -> None:
+    report_dir = tmp_path / "reports" / "auto-research"
     result = subprocess.run(
         [
             sys.executable,
@@ -849,7 +849,7 @@ def test_autosearch_bootstrap_creates_artifacts(tmp_path: Path) -> None:
     assert scorecard["goal"] == "increase regression catch rate"
 
 
-def test_build_surfaces_emits_autosearch_bootstrap_resource(tmp_path: Path) -> None:
+def test_build_surfaces_emits_auto_research_bootstrap_resource(tmp_path: Path) -> None:
     workspace = tmp_path / "workspace"
     shutil.copytree(
         ROOT,
@@ -865,7 +865,7 @@ def test_build_surfaces_emits_autosearch_bootstrap_resource(tmp_path: Path) -> N
         text=True,
     )
 
-    assert (workspace / ".codex" / "skills" / "autosearch" / "resources" / "bootstrap.py").is_file()
-    assert (workspace / ".codex" / "agents" / "resources" / "autosearch" / "bootstrap.py").is_file()
-    assert (workspace / ".codex" / "skills" / "autosearch" / "resources" / "templates" / "goal-contract.md.tmpl").is_file()
-    assert (workspace / ".codex" / "skills" / "autosearch" / "resources" / "templates" / "scorecard.json.tmpl").is_file()
+    assert (workspace / ".codex" / "skills" / "auto-research" / "resources" / "bootstrap.py").is_file()
+    assert (workspace / ".codex" / "agents" / "resources" / "auto-research" / "bootstrap.py").is_file()
+    assert (workspace / ".codex" / "skills" / "auto-research" / "resources" / "templates" / "goal-contract.md.tmpl").is_file()
+    assert (workspace / ".codex" / "skills" / "auto-research" / "resources" / "templates" / "scorecard.json.tmpl").is_file()

@@ -31,7 +31,7 @@ These are the currently shipped skills with a concrete starter ask for each one:
 | --- | --- | --- | --- |
 | `analyze-context` | work through a broad repo investigation without losing context | "Use `analyze-context` to inspect this subsystem over several files and keep a durable analysis trail before you recommend changes." | file map, durable findings trail, unresolved questions, and a scoped change plan |
 | `architecture` | design or review interfaces, boundaries, and migration safety | "Use `architecture` to recommend the safest design for this capability layout." | options, tradeoffs, migration guidance, and a rollback-aware recommendation |
-| `autosearch` | improve a prompt, workflow, or system through experiments | "Use `autosearch` to improve our review prompt so it catches more behavioral regressions without increasing noise." | goal contract, evaluation plan, experiments, and a winner only after evidence |
+| `auto-research` | improve a prompt, workflow, or system through experiments | "Use `auto-research` to improve our review prompt so it catches more behavioral regressions without increasing noise." | goal contract, evaluation plan, experiments, and a winner only after evidence |
 | `code-review` | review staged changes, diffs, or commits before commit, push, merge, or release | "Use `code-review` to review my staged changes before I commit." | findings first, scope risks, message-quality feedback, and merge readiness |
 | `address-code-review` | apply selected fixes for existing PR/MR reviewer comments | "Use `address-code-review` to inspect the open review comments on this MR and address the selected fixes only." | comments found, selected fixes, changes applied, commit guidance, and follow-up review |
 | `converge` | compare competing proposals and force one recommendation | "Use `converge` to compare these rollout plans and recommend one." | overlap map, explicit conflicts, decision criteria, and one final recommendation |
@@ -44,7 +44,7 @@ These are the currently shipped skills with a concrete starter ask for each one:
 | `pitch` | create, review, score, or improve Shape Up pitches | "Use `pitch` to review this Shape Up pitch for appetite, risks, and betting readiness." | shaped problem, appetite fit, risks, score, and concrete improvement guidance |
 | `pulse` | triage Gmail and Google Chat noise into clear priorities | "Use `pulse` to tell me what needs my attention across Gmail and Google Chat, then propose the next actions without sending anything." | priority-classified comms table, source summary, and proposed next actions for the hot items |
 | `resolve-conflict` | analyze a merge conflict or competing edits | "Use `resolve-conflict` to compare these conflicting branch edits and tell me what should survive." | conflict map, additive merge opportunities, explicit tradeoffs, and a recommended resolution |
-| `supercharge` | harden a rough prompt, plan, or proposal before execution | "Use `supercharge` to turn this rough feature brief into an implementation plan with tradeoffs and failure modes." | sharper framing, stronger constraints, execution plan, and failure-mode coverage |
+| `supercharge` | harden a rough prompt, plan, proposal, or first-principles audit before execution | "Use `supercharge /basis` to find the irreducible cost, complexity, and waste in this research workflow." | sharper framing, stronger constraints, execution plan, failure-mode coverage, and `/basis` accounting when requested |
 | `testing` | decide what to test first and what edge cases matter | "Use `testing` to identify the highest-value tests and edge cases for this change." | prioritized tests, edge cases, and coverage gaps |
 | `threader` | export a conversation or create a durable handoff | "Use `threader` to turn this chat into a reusable handoff for another engineer or model." | durable summary, preserved decisions, and next-step continuity |
 | `uac-import` | import and uplift new capability source into canonical state | "Use `uac-import` to inspect this external prompt family and tell me how it should land into SSOT before apply." | landing shape, classification, overlap concerns, and the next UAC step |
@@ -54,8 +54,8 @@ These are the currently shipped skills with a concrete starter ask for each one:
 
 | Capability | Start with it when you need to... | Example ask | What good output looks like |
 | --- | --- | --- | --- |
-| `autosearch` | improve a prompt, workflow, or system through bounded experiments | "Use `autosearch` to improve our review prompt so it catches more behavioral regressions without increasing noise." | a goal contract, experiment plan, evaluation criteria, and a winner only after evidence |
-| `supercharge` | harden a rough prompt, plan, or proposal before execution | "Use `supercharge` to turn this rough feature brief into an implementation plan with tradeoffs and failure modes." | sharper framing, stronger constraints, clearer sequencing, and a more executable prompt or plan |
+| `auto-research` | improve a prompt, workflow, or system through bounded experiments | "Use `auto-research` to improve our review prompt so it catches more behavioral regressions without increasing noise." | a goal contract, experiment plan, evaluation criteria, and a winner only after evidence |
+| `supercharge` | harden a rough prompt, plan, proposal, or first-principles audit before execution | "Use `supercharge /basis` to audit this onboarding workflow for irreducible work, waste, and redesign moves." | sharper framing, stronger constraints, clearer sequencing, and first-principles accounting when requested |
 | `converge` | compare competing options and force one recommendation | "Use `converge` to compare these rollout plans and recommend one." | explicit conflicts, common comparison criteria, and one final recommendation |
 | `docs-review-expert` | fix docs structure, drift, and explainability | "Use `docs-review-expert` to tell me what belongs in `README.md` versus `docs/`, what drifted, and what to fix first." | placement decisions, drift findings, rewrite guidance, and review timing |
 | `gitops-review` | judge branch, PR, merge, or release readiness | "Use `gitops-review` to tell me whether this branch is ready for PR and what blockers remain." | gate type, blockers, companion reviews, and exact next actions |
@@ -74,7 +74,7 @@ These current advisory agents are emitted by the repo and available on agent-cap
 | `ic-assistant` | phase-aware Incident Commander process guidance with optional internal runbook mode | "Use `ic-assistant` to track this incident and keep me on the required checklist." | mode, phase, next action, overdue items, and escalation flags |
 | `pitch` | Shape Up pitch creation, review, and scoring | "Use `pitch` to harden this pitch before betting." | pitch quality score, risks, appetite fit, and rewrite guidance |
 | `pulse` | Gmail and Google Chat triage | "Use `pulse` to triage what needs my attention and propose next actions without sending anything." | prioritized comms, source summaries, and proposed actions |
-| `autosearch` | experiment-driven improvement loops | "Use `autosearch` to improve this workflow and prove which variant wins." | bounded experiments, evaluation, and promotion guidance |
+| `auto-research` | experiment-driven improvement loops | "Use `auto-research` to improve this workflow and prove which variant wins." | bounded experiments, evaluation, and promotion guidance |
 | `supercharge` | plan or prompt hardening before execution | "Use `supercharge` to tighten this operating prompt before we ship it." | stronger prompt structure and clearer failure handling |
 | `converge` | synthesis across competing proposals | "Use `converge` to synthesize these competing proposals into one decision." | overlap map, decision logic, and one coherent recommendation |
 | `architecture` | architecture review and migration-safe design | "Use `architecture` to review this interface change for rollback risk." | architecture findings and a defensible direction |
@@ -84,7 +84,20 @@ These current advisory agents are emitted by the repo and available on agent-cap
 
 1. Use `docs-review-expert` on a docs surface that feels bloated or unclear.
 2. Use `gitops-review` on your current branch before you open a PR.
-3. Use `supercharge` or `autosearch` on a prompt or workflow you know is underperforming.
+3. Use `supercharge /basis` to audit the irreducible work in a prompt, workflow, research process, or software plan, then use `auto-research` when a measured experiment is needed.
+
+### Scenario Starters
+
+Use these as copy-paste starting points when you want to exercise the higher-leverage skills:
+
+| Scenario | Ask |
+| --- | --- |
+| First-principles release audit | "Use `supercharge /basis` to audit our release process. Find irreducible steps, stale ceremony, actual-to-minimum ratio, and what should be automated or deleted." |
+| Release plan hardening | "Use `supercharge /full` to harden the v1.9.2 release plan before I tag it. Include risks, failure modes, verification gates, and rollback." |
+| Measured prompt or skill improvement | "Use `auto-research` to compare the old autosearch prompt behavior against auto-research v2.0 on five representative improvement tasks, with a scorecard and promotion packet." |
+| Release strategy decision | "Use `converge /mcda /conflicts` to compare three release strategies: tag from this branch, merge then tag from main, or publish package-only. Recommend one and reject the others explicitly." |
+| Release gate review | "Use `gitops-review` to judge whether this branch is ready for PR, CI, merge, tag, and release. Include exact blockers and commands." |
+| Release docs drift check | "Use `docs-review-expert` to review README, Getting Started, CLI reference, release delta, and changelog for v1.9.2 drift before release." |
 
 ### Where The Deeper Examples Live
 
@@ -131,7 +144,7 @@ This is often the best first move when you think the work is done but want an ac
 
 ```text
 User:
-Use `autosearch` to improve our review workflow so it catches more behavioral regressions without increasing false positives.
+Use `auto-research` to improve our review workflow so it catches more behavioral regressions without increasing false positives.
 
 Good response shape:
 - Goal Contract
@@ -207,7 +220,7 @@ bin/uac judge /absolute/path/to/prompt-family --quality-profile architecture
 
 Use [docs/UAC-USAGE.md](docs/UAC-USAGE.md) for the full intake and uplift guide.
 
-If `judge` finds a candidate is structurally close to ready but still needs bounded behavioral proof, route that proof step to `autosearch` instead of treating structural quality alone as evidence.
+If `judge` finds a candidate is structurally close to ready but still needs bounded behavioral proof, route that proof step to `auto-research` instead of treating structural quality alone as evidence.
 
 ### Sample Transcript: UAC Planning
 

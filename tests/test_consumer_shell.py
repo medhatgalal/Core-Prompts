@@ -101,7 +101,12 @@ def test_build_capability_catalog_groups_entries_for_consumers() -> None:
 
 
 def test_build_release_delta_tracks_material_changes() -> None:
-    previous = {"ssot_sources": [_entry("architecture", display_name="Architecture Studio", summary="Old summary.")]}
+    previous = {
+        "ssot_sources": [
+            _entry("architecture", display_name="Architecture Studio", summary="Old summary."),
+            _entry("testing-old", display_name="Old Testing", summary="Old test helper."),
+        ]
+    }
     current = {
         "ssot_sources": [
             _entry(
@@ -119,11 +124,14 @@ def test_build_release_delta_tracks_material_changes() -> None:
     assert delta["summary"]["new_count"] == 1
     assert delta["summary"]["material_change_count"] == 1
     assert delta["new_capabilities"] == [{"slug": "testing", "display_name": "Testing Studio"}]
+    assert delta["removed_capabilities"] == [{"slug": "testing-old", "display_name": "Old Testing"}]
     assert delta["material_changes"][0]["slug"] == "architecture"
     assert "summary" in delta["material_changes"][0]["material_fields"]
     rendered = render_release_delta_markdown(delta)
     assert "# Release Delta" in rendered
     assert "`testing`" in rendered
+    assert "## Removed Capabilities" in rendered
+    assert "`testing-old`" in rendered
 
 
 def test_build_status_payload_reports_health_from_validation_and_smoke() -> None:

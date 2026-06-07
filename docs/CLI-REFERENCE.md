@@ -26,7 +26,7 @@ If local `python3` resolves to an older interpreter, set `PYTHON_BIN=python3.11`
 | `python3 scripts/smoke-clis.py` | probe installed vendor CLIs and surface visibility | no |
 | `bin/uac audit` | inspect current SSOT and generated surface alignment | no |
 | `bin/uac plan <source...>` | show proposed landing shape for one or more sources | no |
-| `bin/uac judge <source...> --quality-profile architecture` | run the built-in quality loop without writing repo state; may recommend bounded behavioral proof via `autosearch` when structural quality is close but confidence is weak | no |
+| `bin/uac judge <source...> --quality-profile architecture` | run the built-in quality loop without writing repo state; may recommend bounded behavioral proof via `auto-research` when structural quality is close but confidence is weak | no |
 | `bin/uac apply <source...> --yes` | write canonical SSOT and descriptors, then build and validate | yes |
 
 ## Task-Oriented Examples
@@ -98,13 +98,15 @@ Use this when:
 Example with slug targeting:
 
 ```bash
-bin/capability-fabric deploy --dry-run --cli codex --slug autosearch --slug supercharge
+bin/capability-fabric deploy --dry-run --cli codex --slug auto-research --slug supercharge
 ```
 
 Expected result:
 
 - explicit copy plan
 - no target mutation
+
+When `auto-research` is deployed, stale installed `autosearch` paths for the selected CLIs are pruned as part of the breaking rename.
 
 ### Check Or Accept Installed Releases
 

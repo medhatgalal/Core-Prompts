@@ -371,6 +371,11 @@ def render_release_delta_markdown(delta: Mapping[str, Any]) -> str:
         lines.append(f"- `{item.get('slug')}` — {item.get('display_name')}")
     if not (delta.get("new_capabilities") or []):
         lines.append("- none")
+    lines.extend(["", "## Removed Capabilities"])
+    for item in delta.get("removed_capabilities") or []:
+        lines.append(f"- `{item.get('slug')}` — {item.get('display_name')}")
+    if not (delta.get("removed_capabilities") or []):
+        lines.append("- none")
     lines.extend(["", "## Material Changes"])
     for item in delta.get("material_changes") or []:
         lines.append(f"- `{item.get('slug')}` — changed `{', '.join(item.get('material_fields') or [])}`")

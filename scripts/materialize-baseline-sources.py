@@ -139,10 +139,14 @@ def materialize_entry(slug: str, entry: dict[str, object]) -> dict[str, object]:
             source_commit=commit,
         )
     refreshed = json.loads(TARGET_INDEX.read_text(encoding="utf-8"))
-    merged = dict((refreshed.get("skills") or {}).get(slug) or {})
+    refreshed_entry = dict((refreshed.get("skills") or {}).get(slug) or {})
+    merged = dict(refreshed_entry)
     merged.update(entry)
+    for key in ("baseline_path", "richness_score", "line_count"):
+        if key in refreshed_entry:
+            merged[key] = refreshed_entry[key]
     historical_proof = dict(merged.get("historical_proof") or {})
-    historical_proof.update(dict(((refreshed.get("skills") or {}).get(slug) or {}).get("historical_proof") or {}))
+    historical_proof.update(dict(refreshed_entry.get("historical_proof") or {}))
     merged["historical_proof"] = historical_proof
     if result.get("blocked_reasons"):
         merged["historical_proof"]["last_blocked_reasons"] = list(result["blocked_reasons"])

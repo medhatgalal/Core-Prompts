@@ -408,21 +408,21 @@
       "scenario_matrix": [],
       "baseline_path": "sources/ssot-baselines/uac-import/baseline.md"
     },
-    "autosearch": {
+    "auto-research": {
       "strategy": "head_snapshot",
       "group": "current_oracle",
-      "baseline_path": "sources/ssot-baselines/autosearch/baseline.md",
-      "richness_score": 2,
-      "line_count": 186,
+      "baseline_path": "sources/ssot-baselines/auto-research/baseline.md",
+      "richness_score": 7,
+      "line_count": 676,
       "reason": "Current SSOT baseline source snapshot materialized into the source library because the stored baseline was missing, stale, or structurally degraded.",
       "historical_proof": {
         "materialized_from_commit": "28b1f2f7",
-        "last_materialized_at": "2026-04-16T19:33:38.931614+00:00",
+        "last_materialized_at": "2026-06-07T21:35:17.391757+00:00",
         "materialized_from_source_kind": "current_ssot",
-        "materialized_from_path": "ssot/autosearch.md",
-        "materialized_from_sha256": "0da2727d4b2ccc6eaf3e8834c2f87d92a4f3ae827a88eb6bb741ea3e2d6d5b2e"
+        "materialized_from_path": "ssot/auto-research.md",
+        "materialized_from_sha256": "758e7a7579d97620f2f0b4979e9a0841454c447cf7c22223249e7c377a3fd2d6"
       },
-      "selected_commit": "28b1f2f7"
+      "selected_commit": null
     },
     "pitch": {
       "strategy": "source_library",
