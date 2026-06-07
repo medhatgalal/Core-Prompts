@@ -482,6 +482,121 @@ def _contrib_bar(contributors: list[tuple[int, str]]) -> str:
     return "".join(rows)
 
 
+
+def _generate_narrative(entry_name: str, metrics: dict) -> dict:
+    """Generate AI narrative for one entry using a constrained prompt.
+    Falls back to template narrative if AI is unavailable."""
+    import subprocess as _sp, json as _json
+
+    subjects = metrics.get("commit_subjects", [])[:20]
+    top_files = metrics.get("top_files", [])[:8]
+    contributors = metrics.get("contributors", [])[:5]
+    categories = metrics.get("categories", {})
+    is_jira = metrics.get("is_jira", False)
+    commits = metrics.get("commits", 0)
+    net = metrics.get("net", 0)
+    releases = metrics.get("releases", 0)
+
+    # Build structured file evidence string
+    file_evidence = ", ".join(
+        f"{f[0].split('/')[-1]} (+{f[1].get('added',0)}/-{f[1].get('deleted',0)})"
+        for f in top_files[:6]
+    ) if top_files else "no files"
+
+    contrib_str = ", ".join(f"{c['name']} ({c['count']})" for c in contributors[:3])
+    subj_sample = "\n".join(f"- {s[:80]}" for s in subjects[:12])
+    cat_str = str(dict(list(categories.items())[:5]))
+
+    prompt = f"""Generate a concise engineering report narrative for: {entry_name}
+
+DATA (do not invent anything not listed here):
+- Commits: {commits}, Net lines: {net:+,}, Releases: {releases}
+- Contributors: {contrib_str}
+- Top changed files: {file_evidence}
+- Commit categories: {cat_str}
+- Sample commit subjects:
+{subj_sample}
+
+OUTPUT exactly this JSON (no other text):
+{{
+  "summary": "3-4 sentences. Arc of the week based ONLY on the files and subjects above. Team framing only.",
+  "themes": "<ul style='list-style:none;padding:0;margin:0'><li style='padding:8px 0;border-bottom:1px solid rgba(48,54,61,0.4)'><span style='color:#e6edf3;font-size:13px'>EMOJI <strong>SPECIFIC TITLE from files/subjects</strong> — 1 sentence citing a specific file or metric.</span></li>... (4 items total)</ul>",
+  "architecture": "<div style='background:rgba(30,35,44,0.9);border:1px solid rgba(48,54,61,0.7);border-radius:10px;padding:16px'><div style='color:#58a6ff;font-size:13px;font-weight:600;margin-bottom:8px'>MODULE NAME from top files</div><div style='color:#c9d1d9;font-size:12px;line-height:1.6;margin-bottom:10px'>What changed in 1-2 sentences.</div><div style='color:#8b949e;font-size:11px'>filename +N -N</div></div>... (4 cards, each MUST reference actual filenames)"
+}}"""
+
+    # Try kiro CLI first, then claude, then fall back to template
+    for cmd in [["kiro", "ask", "--no-context"], ["claude", "--print"]]:
+        try:
+            result = _sp.run(
+                cmd, input=prompt, capture_output=True, text=True, timeout=60, check=False
+            )
+            if result.returncode == 0 and result.stdout.strip():
+                # Extract JSON from output
+                text = result.stdout.strip()
+                m = __import__('re').search(r'\{[\s\S]*\}', text)
+                if m:
+                    parsed = _json.loads(m.group(0))
+                    if all(k in parsed for k in ("summary", "themes", "architecture")):
+                        return parsed
+        except (FileNotFoundError, _sp.TimeoutExpired, _json.JSONDecodeError):
+            continue
+
+    # Fallback: template-based narrative (always works, lower quality)
+    return _template_narrative(entry_name, metrics)
+
+
+def _template_narrative(entry_name: str, metrics: dict) -> dict:
+    """Template-based narrative fallback — no AI required."""
+    commits = metrics.get("commits", 0)
+    net = metrics.get("net", 0)
+    releases = metrics.get("releases", 0)
+    top_files = metrics.get("top_files", [])[:4]
+    contributors = metrics.get("contributors", [])[:3]
+    categories = metrics.get("categories", {})
+    subjects = metrics.get("commit_subjects", [])[:5]
+
+    # Summary
+    top_cat = list(categories.keys())[0] if categories else "various"
+    top_contrib = contributors[0]["name"].split()[0] if contributors else "the team"
+    summary = (
+        f"{entry_name} delivered {commits} commits and {net:+,} net lines this week"
+        + (f", shipping {releases} releases" if releases else "")
+        + f". Work was led by {top_contrib} with focus on {top_cat} changes."
+        + (" The codebase is growing with primarily additive changes." if net > 0 else " Refactoring reduced net line count while improving structure.")
+    )
+
+    # Themes from categories
+    theme_items = []
+    cat_emojis = {"fix": "🐛", "feat": "✨", "refactor": "♻️", "test": "🧪", "chore": "🔧", "docs": "📝", "ci": "⚙️"}
+    for cat, count in list(categories.items())[:4]:
+        emoji = cat_emojis.get(cat, "📦")
+        pct = int(count / max(commits, 1) * 100)
+        theme_items.append(f"<li style='padding:8px 0;border-bottom:1px solid rgba(48,54,61,0.4)'><span style='color:#e6edf3;font-size:13px'>{emoji} <strong>{cat.capitalize()} work</strong> — {count} commits ({pct}% of week's output).</span></li>")
+    if releases:
+        theme_items.append(f"<li style='padding:8px 0;border-bottom:1px solid rgba(48,54,61,0.4)'><span style='color:#e6edf3;font-size:13px'>🚀 <strong>{releases} releases</strong> shipped this week.</span></li>")
+    themes = f"<ul style='list-style:none;padding:0;margin:0'>{''.join(theme_items[:4])}</ul>"
+
+    # Architecture cards from top files
+    def _card(title, desc, files_str):
+        return (f'<div style="background:rgba(30,35,44,0.9);border:1px solid rgba(48,54,61,0.7);border-radius:10px;padding:16px">'
+                f'<div style="color:#58a6ff;font-size:13px;font-weight:600;margin-bottom:8px">{title}</div>'
+                f'<div style="color:#c9d1d9;font-size:12px;line-height:1.6;margin-bottom:10px">{desc}</div>'
+                f'<div style="color:#8b949e;font-size:11px">{files_str}</div></div>')
+
+    arch_cards = []
+    for item in top_files[:4]:
+        fname = item[0].split("/")[-1] if isinstance(item, list) else item.get("file","?").split("/")[-1]
+        stats = item[1] if isinstance(item, list) else item
+        added = stats.get("added", 0) if isinstance(stats, dict) else 0
+        deleted = stats.get("deleted", 0) if isinstance(stats, dict) else 0
+        arch_cards.append(_card(fname, f"File received {added+deleted} line changes this week.", f"+{added} -{deleted}"))
+    while len(arch_cards) < 4:
+        arch_cards.append(_card("Other Changes", "Additional work across the codebase.", "various files"))
+    architecture = "".join(arch_cards)
+
+    return {"summary": summary, "themes": themes, "architecture": architecture}
+
+
 def _make_arch_modal() -> str:
     return (
         '<div class="modal-overlay" id="arch-modal" onclick="if(event.target===this)closeModal()">'
@@ -903,7 +1018,7 @@ def _stale_warning(scope: dict, since: str) -> str | None:
 
 # ── Main ───────────────────────────────────────────────────────────────────────
 
-def run_entry(entry: dict, since: str, output_dir: Path, author_filter: str | None = None, narrative: dict | None = None, fetched_paths: set | None = None) -> dict[str, Any]:
+def run_entry(entry: dict, since: str, output_dir: Path, author_filter: str | None = None, narrative: dict | None = None, fetched_paths: set | None = None, use_ai: bool = False) -> dict[str, Any]:
     """Process one config entry and write its HTML file. Returns summary row."""
     name = entry.get("label", entry["name"])
     file_key = entry["name"]
@@ -966,6 +1081,19 @@ def run_entry(entry: dict, since: str, output_dir: Path, author_filter: str | No
 
     # Aggregate if multiple repos
     agg = aggregate_metrics(per_repo)
+
+    # Generate narrative if requested and not provided
+    if use_ai and not narrative and not agg.get("low_activity"):
+        summary_for_ai = {
+            "commits": agg["commits"], "net": agg["net"], "releases": len(agg.get("releases",[])),
+            "commit_subjects": agg.get("commit_subjects",[])[:20],
+            "top_files": [[f, {"added": a, "deleted": d}] for f,(a,d) in agg.get("top_files",[])[:8]],
+            "contributors": [{"count": c, "name": n} for c,n in agg.get("contributors",[])[:5]],
+            "categories": agg.get("categories",{}),
+            "is_jira": agg.get("is_jira", False),
+        }
+        print(f"  → generating AI narrative for {name}...", file=sys.stderr)
+        narrative = _generate_narrative(name, summary_for_ai)
 
     # Build subtitle
     scope_label = scope.get("team") or scope.get("tribe") or scope.get("business_unit") or ""
@@ -1163,6 +1291,7 @@ def main() -> None:
     p_run.add_argument("--json", action="store_true", dest="json_only", help="Output full metrics JSON to stdout (no HTML written — use with --narrative-file on next run)")
     p_run.add_argument("--no-index", action="store_true", help="Skip _index.html generation")
     p_run.add_argument("--author", default=None, help="Generate report for a single person across all configured repos")
+    p_run.add_argument("--ai", action="store_true", help="Generate AI narrative inline (calls kiro/claude for each active entry)")
     p_run.add_argument("--narrative-file", default=None, dest="narrative_file",
                        help="JSON file mapping entry names to AI narrative {summary, themes, architecture, work_areas}")
 
@@ -1222,10 +1351,12 @@ def main() -> None:
     log(f"Output: {output_dir}\n")
 
     fetched_paths: set[str] = set()
+    use_ai = getattr(args, "ai", False)
+
     rows = []
     for entry in entries:
         narrative = narratives.get(entry["name"])
-        row = run_entry(entry, since, output_dir, author_filter=author, narrative=narrative, fetched_paths=fetched_paths)
+        row = run_entry(entry, since, output_dir, author_filter=author, narrative=narrative, fetched_paths=fetched_paths, use_ai=use_ai)
         rows.append(row)
 
     if getattr(args, "json_only", False):
