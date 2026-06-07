@@ -188,213 +188,42 @@ Interactive first-time setup. Reads current `config.yaml` if it exists.
 3. Append to `repos:` list in `config.yaml`. If path already exists in list, skip and print "Already configured."
 4. Confirm: "Added <name> to repo list."
 
-### For `run` (single repo, with `--repo`)
+### For `run`
 
-Identical to group entry processing below, but with a single repo.
+**This command delegates all git data gathering to `scripts/eng-report.py`.** Do not run git commands manually — use the script.
 
-### For `run` — per entry processing
-
-For each config entry, determine entry type:
-- Has `path` → **repo entry**: single repo
-- Has `repos` → **group entry**: multiple repos, aggregate results
-
-#### Step 1: Gather Git Metrics
-
-**Pre-flight:** For each repo path, verify it is a git repo (`git rev-parse --git-dir`). Skip with warning if not found.
-
-**Date window:** Compute `SINCE` from `--since` (default from `local.window`, fallback `1 week ago`). `WINDOW_DAYS` = calendar days between SINCE and today.
-
-**Scope filters:**
-```bash
-AUTHOR_FLAGS=""
-for name in "${SCOPE_AUTHORS[@]}"; do
-  AUTHOR_FLAGS="$AUTHOR_FLAGS --author=\"$name\""
-done
-PATH_FILTER=""
-[ -n "${SCOPE_PATHS}" ] && PATH_FILTER="-- ${SCOPE_PATHS}"
-```
-
-**For group entries:** Run all git commands against each repo separately, then aggregate:
-- Commits: sum across all repos
-- Lines added/deleted: sum across all repos
-- MRs: sum across all repos
-- Releases: union of tags across all repos (deduplicated by tag name)
-- Commits per day: sum per calendar day across all repos
-- Top files: merge and re-sort by total churn across all repos
-- Contributors: merge and re-aggregate by author name across all repos
-- Categories: merge and re-aggregate across all repos
-
-**Per-repo breakdown table** (group entries only): after the main metrics, include a table showing each repo's individual contribution:
-
-| Repo | Commits | MRs | Net Lines | Releases |
-|------|---------|-----|-----------|----------|
-| ai-platform | 244 | 104 | +13K | 23 |
-| ae | 27 | 13 | +2.1K | 4 |
-| **Total** | **271** | **117** | **+15K** | **27** |
-
-#### Step 1: Gather Git Metrics
-
-**Pre-flight:** `cd` to the repo path. Verify it is a git repo (`git rev-parse --git-dir`). Abort with error if not.
-
-**Date window:** Compute `SINCE` from `--since` (default: `1 week ago`). For all `git log` commands below, pass `--since='${SINCE}'`. The calendar window length (`WINDOW_DAYS`) is 7 for the default, or `(today - since_date)` for custom dates. This value is used as the denominator for per-day averages.
-
-**Scope filters:** If the repo entry has a `scope` block, build filter flags before running any git commands:
-```bash
-# scope.authors → one --author flag per name (git OR's them automatically)
-AUTHOR_FLAGS=""
-for name in "${SCOPE_AUTHORS[@]}"; do
-  AUTHOR_FLAGS="$AUTHOR_FLAGS --author=\"$name\""
-done
-
-# scope.paths → appended after -- separator on every git log call
-PATH_FILTER=""
-[ -n "${SCOPE_PATHS}" ] && PATH_FILTER="-- ${SCOPE_PATHS}"
-
-# Usage: git log --since='${SINCE}' $AUTHOR_FLAGS $PATH_FILTER
-```
-If no `scope` block, both variables are empty and all commands run unfiltered (whole repo).
-
-Run these commands against the target repo:
+#### Pass 1 — Gather metrics (deterministic)
 
 ```bash
-# Total commits in window (exclude merge commits from count)
-git log --since='${SINCE}' --no-merges --oneline | wc -l
-
-# Date range (first and last commit dates in window)
-git log --since='${SINCE}' --format='%ad' --date=short | sort | head -1
-git log --since='${SINCE}' --format='%ad' --date=short | sort | tail -1
-
-# Commits per day (calendar days, including zeros)
-git log --since='${SINCE}' --format='%ad' --date=short | sort | uniq -c
-
-# MRs merged (merge commits only)
-git log --since='${SINCE}' --merges --oneline | wc -l
-
-# Category breakdown — conventional commit prefixes ONLY
-# Extracts the first word before ':', '(', '!', or space from subject lines
-# Excludes pure numbers and ALL-CAPS patterns (Jira keys like LCP-123)
-git log --since='${SINCE}' --no-merges --format='%s' | grep -oP '^\w+(?=[\s(:!])' | grep -vP '^\d+$' | grep -vP '^[A-Z]{2,10}$' | sort | uniq -c | sort -rn | head -15
-
-# Lines added/deleted total (non-merge commits only)
-git log --since='${SINCE}' --no-merges --shortstat --format='' | awk '/files? changed/{ins+=$4; del+=$6} END{print "added:"ins" deleted:"del" net:"ins-del}'
-
-# Top changed files with numstat (non-merge commits only)
-git log --since='${SINCE}' --no-merges --numstat --format='' | awk 'NF==3 && $1!="-" && $3!="" {add[$3]+=$1; del[$3]+=$2} END{for(f in add) print add[f]+del[f], add[f], del[f], f}' | sort -rn | head -15
-
-# Authors/contributors
-git shortlog --since='${SINCE}' -sn --no-merges
-
-# Releases: actual git tags in window (preferred)
-# macOS-compatible date calculation
-git tag --sort=-creatordate --format='%(creatordate:short) %(refname:short)' | awk -v since="$(python3 -c "import datetime; print((datetime.date.today() - datetime.timedelta(days=${WINDOW_DAYS})).isoformat())")" '$1 >= since'
-
-# Release commits as fallback (ONLY if zero tags found above)
-git log --since='${SINCE}' --no-merges --format='%ad %s' --date=short | grep -iE '\bv[0-9]+\.[0-9]+|chore(\(.*\))?: release|bump version|release v' | head -15
-
-# For EngOS-style repos: autonomous slice merges (merge commits with 'engos/' branch pattern)
-git log --since='${SINCE}' --merges --format='%s' | grep -c "Merge branch 'engos/"
+eng-report run --json-only > /tmp/metrics.json
+# For a single entry:
+eng-report run --name MyRepo-Repo --json-only > /tmp/metrics.json
 ```
 
-**If any git command fails** (non-zero exit, e.g., repo has no commits in window): report that metric as `0` with a note "(no data in window)" — do NOT invent a value.
+The script handles: git fetch, all git log commands, author filtering, multi-repo aggregation, Jira prefix detection, contributor counting, release tagging, file churn, and daily velocity. Output is structured JSON per entry.
 
-#### Step 2: Compute Key Metrics
+#### Pass 2 — Generate AI narrative
 
-| Metric | Computation | Source |
-|--------|-------------|--------|
-| Total Commits | count from `git log --no-merges --oneline \| wc -l` | Step 1 output |
-| MRs Merged | count from `git log --merges --oneline \| wc -l` | Step 1 output |
-| Net Lines | additions − deletions from `--shortstat` awk output | Step 1 output |
-| Releases | tag count in window; if 0, count from version-bump grep | Step 1 output |
-| Avg Commits/Day | Total Commits ÷ WINDOW_DAYS (always use calendar days, not active days) | Computed |
-| Commits/MR avg | Total Commits ÷ MR count (show "N/A" if MR count is 0) | Computed |
-| 7th metric | see below | Computed |
+Read `/tmp/metrics.json`. For each entry with `commits > 0`, generate:
 
-**7th metric selection (deterministic):**
-- If the repo contains merge commits matching `Merge branch 'engos/`: → **Agent Autonomy %** = matching merges ÷ total MRs × 100
-- Otherwise: → **Avg PR size** = abs(Net Lines) ÷ MR count (show "N/A" if MR count is 0)
+- **`summary`**: 3–4 sentence arc of the period. Team-framing only — never single out individuals negatively.
+- **`themes`**: `<ul>` HTML with 4 `<li>` items. Each must cite a specific file, metric, or pattern from the JSON as evidence.
+- **`architecture`**: 4 `<div>` cards (use exact format from AI Narrative Integration section). Synthesized from top files and commit subjects.
+- **`work_areas`**: For Jira-prefixed repos only. Cluster commit subjects (strip ticket prefix) into 5–7 plain-English work areas. Render as horizontal bar HTML (see AI Narrative Integration section).
 
-**⚠️ Data integrity — ABSOLUTE RULES:**
-1. **Every number in the report MUST trace to a specific git command output from Step 1.** If a git command returned no data, display 0 or "N/A" — never fabricate a number.
-2. **Releases = git tags in window OR explicit version-bump commit messages only.** Merge commits are NEVER releases. If both sources yield 0, show "0 releases".
-3. **Category breakdown — Jira key detection:** Count commits where the prefix matches `[A-Z]{2,10}-\d+`. If this count is >80% of total commits, treat the repo as Jira-prefixed:
-   - Show "Top Issue Keys" bar chart (top 10 keys by commit count)
-   - Add note: "Jira-prefixed repo — conventional category analysis not available"
-   - Do NOT mix Jira keys and conventional prefixes in the same chart
-4. **Always divide by WINDOW_DAYS (calendar days) for per-day averages.** Never divide by "active days" or "business days".
-5. **Never include data from outside the `--since` window.** All metrics are bounded by the window.
+Write to `/tmp/narrative.json`: `{"entry-name": {"summary": "...", "themes": "...", "architecture": "...", "work_areas": "..."}}`
 
-**Low-activity reports (< 5 commits in window):**
-Do not generate a sparse skeleton with empty sections. Instead:
-- Show all metric cards (zeros are honest and fine)
-- Replace **Executive Summary** with **"Activity Snapshot"**: list every commit in the window (subject, author, date)
-- Replace **Architecture Evolution** and **Key Themes** with **"Recent Context"**: run `git log --oneline -10 $AUTHOR_FLAGS` WITHOUT the `--since` filter to show the last 10 commits in scope regardless of window — gives the reader context on what this team is actively working on even if this week was quiet
-- Keep code churn, contributor, and release sections if data exists; omit if empty
+For entries with `commits == 0`: skip narrative — the script renders "No activity this period" automatically.
 
-#### Step 3: Synthesize Insights
+#### Pass 3 — Render HTML (deterministic)
 
-**Constraint: Every claim must be traceable to Step 1 data.** Do not reference Jira tickets, sprint goals, or external context not present in git history.
-
-- **Executive Summary** (3–4 sentences): The arc of the period based on commit volume patterns, dominant file areas from numstat, and release cadence. Name specific directories or modules visible in the hot files list. Do not speculate on intent beyond what commit messages state.
-- **Architecture Evolution** (4–6 cards): Structural changes inferred ONLY from the top-15 changed files (numstat output). Each card: title, 1-sentence description, file paths + their add/delete counts from numstat. Do not reference files not in the numstat output.
-- **Key Themes** (4 cards): Categorize the sprint's character using evidence from: category breakdown percentages, churn distribution, contributor concentration. Each theme must cite the metric that supports it (e.g., "Stability — 38% of commits are `fix` category").
-- **Release Timeline**: Each actual version tag or version-bump commit with its date. Newest first. Description limited to what the tag name or commit message states — do not embellish.
-
-#### Step 4: Generate HTML Report
-
-Standalone HTML file, zero external dependencies (no CDN links, no `<script src=...>`, no `<link href=...>`). All CSS inline in `<style>`. All JS (if any) inline in `<script>`.
-
-**Section order (mandatory):**
-
-```
-1. Header          — repo name, date range (actual first–last commit date from Step 1), "Generated: YYYY-MM-DD HH:MM"
-2. Executive Summary — card with 4px solid green (#3fb950) left border
-3. Key Metrics Row — exactly 7 cards: Total Commits, MRs Merged, Net Lines, Releases, Avg Commits/Day, Commits/MR, 7th metric
-4. Velocity & Throughput — daily bar chart (WINDOW_DAYS bars, one per calendar day including zero-commit days) + lines added/deleted totals + MR stats
-5. Category Breakdown — horizontal bars, sorted descending by count, color-coded per mapping below
-6. Architecture Evolution — CSS grid of 4–6 cards
-7. Release Timeline — vertical list, newest first, only tags/version-bumps from Step 1
-8. Code Churn — top 10 files (from numstat), green bar for additions + red bar for deletions, counts labeled
-9. Team & Autonomy — contributor proportional bar (segmented, one segment per author) + 7th metric visualization
-10. Key Themes — 4 cards with emoji headers
-11. Footer — repo name, branch (from `git branch --show-current`), "Generated: YYYY-MM-DD HH:MM", total commits/MR counts
+```bash
+eng-report run --narrative-file /tmp/narrative.json
+# With Drive upload:
+eng-report run --narrative-file /tmp/narrative.json --drive --open
 ```
 
-**Design tokens (use ONLY these colors):**
-```css
---bg: #0d1117;
---card: rgba(22,27,34,0.8);
---border: rgba(48,54,61,0.6);
---text: #e6edf3;
---text-muted: #8b949e;
---green: #3fb950;
---blue: #58a6ff;
---purple: #a371f7;
---orange: #d29922;
---red: #f85149;
---cyan: #39d5ff;
-```
-
-**Layout:** CSS Grid for page layout, `backdrop-filter: blur(12px)` on cards, `border-radius: 12px`, `font-family: system-ui, -apple-system, sans-serif`, no external fonts.
-
-**Chart implementation rules (CSS-only, no JS charting libraries):**
-- **Daily bars:** Flex container, `align-items: flex-end`. Each bar height = `(day_commits / max_day_commits) * 100%`, minimum 2px for zero-commit days. Peak day bar uses `linear-gradient(to top, var(--orange), var(--red))`. Other bars use `var(--blue)`.
-- **Category bars:** Each bar `width: (category_count / max_category_count) * 100%`. Color mapping: `fix`/`bugfix`=blue, `feat`/`feature`=green, `refactor`=purple, `test`/`ci`/`release`=orange, `chore`/`docs`/`style`/`build`=`var(--text-muted)`. Unlisted prefixes default to `var(--cyan)`.
-- **Contributor bar:** Single horizontal bar divided into segments. Each segment width = `(author_commits / total_commits) * 100%`. Colors: cycle through blue, green, purple, orange, cyan for top 5 contributors; remainder in `var(--text-muted)`.
-- **Churn bars:** For each file, two bars side-by-side: green (additions) and red (deletions). Bar width = `(count / max_churn_count) * 100%`.
-
-**File naming:** `<RepoName>.html` (e.g., `MyRepo.html`). Use the repo `name` field from config, or directory basename if no config.
-
-### For `run` (all repos, no `--repo`)
-
-1. Load `config.yaml`. Abort with error if no `repos:` configured or file missing.
-2. For each repo in order, run the single-repo generation workflow (Steps 1–4 above). If a repo path does not exist or is not a git repo, skip it and note the error in console output.
-3. Save each to `/tmp/YYYY-MM-DD/<RepoName>.html` locally (YYYY-MM-DD = today's date)
-4. Generate `_index.html` — summary page (see Index Page below). Place in same directory.
-5. If `--drive`: upload all files to Drive (see Drive Upload below), then auto-sync to `local.sync_path/YYYY-MM-DD/`
-6. If no `--drive`: reports stay in `/tmp/YYYY-MM-DD/`, open each in browser
-7. If `--open`: open `_index.html` in browser (use `open` on macOS, `xdg-open` on Linux)
-8. If `--notify`: send notification (see Notifications below)
-
+`_index.html` is always generated, grouped by: Repos → SBU → Groups → Teams → Individuals.
 ### Index Page (`_index.html`)
 
 A summary page generated whenever ≥2 repos are processed. Uses same design tokens and dark theme.
