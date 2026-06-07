@@ -723,31 +723,12 @@ _HEAD_MODAL_SCRIPT = (
     "var m=document.getElementById('arch-modal');"
     "if(m){m.classList.add('open');document.body.style.overflow='hidden';}"
     "}"
-    "function openDay(bar){"
-    "var date=bar.getAttribute('data-date'),count=bar.getAttribute('data-count');"
-    "if(!count||count==='0')return;"
-    "var commits=(window._dailyCommits||{})[date]||[];"
-    "var t=document.getElementById('modal-title');"
-    "if(t)t.textContent=date+' \u2014 '+count+' commit'+(count==='1'?'':'s');"
-    "var d=document.getElementById('modal-desc'),f=document.getElementById('modal-files');"
-    "if(d)d.textContent='';if(f)f.textContent='';"
-    "var mc=document.getElementById('modal-commits');"
-    "if(mc)mc.innerHTML=commits.length"
-    "?'<table class=\'mc-table\'><tr><th>Commit</th></tr>'"
-    "+commits.map(function(c){return '<tr><td class=\'mc-subj\'>'+(c.url?'<a href=\''+c.url+'\' target=\'_blank\'>'+c.subject+'</a>':c.subject)+'</td></tr>';}).join('')+'</table>'"
-    ":'Commits from branch activity.';"
-    "var m=document.getElementById('arch-modal');"
-    "if(m){m.classList.add('open');document.body.style.overflow='hidden';}"
-    "}"
-    "</script>"
 )
 
 
 def _write_modal_js(output_dir: Path) -> None:
     """Write eng-report-modal.js — clean JS, no quoting issues."""
     js_path = output_dir / "eng-report-modal.js"
-    if js_path.exists():
-        return
     js_path.write_text('function closeModal(){\n  var m=document.getElementById("arch-modal");\n  if(m){m.classList.remove("open");document.body.style.overflow="";}\n}\nfunction openCard(c){\n  var ds=c.querySelectorAll("div");\n  var ids=["modal-title","modal-desc","modal-files"];\n  for(var i=0;i<3;i++){var el=document.getElementById(ids[i]);if(el)el.textContent=ds[i]?ds[i].textContent:"";}\n  var mc=document.getElementById("modal-commits"),commits=window._archCommits||[];\n  if(mc){\n    if(commits.length){\n      var rows=commits.map(function(r){\n        var link=r.url?"<a href="+r.url+" target=_blank>"+r.subject+"</a>":r.subject;\n        return "<tr><td class=mc-date>"+(r.date||"")+"</td><td class=mc-subj>"+link+"</td></tr>";\n      }).join("");\n      mc.innerHTML="<table class=mc-table><tr><th>Date</th><th>Commit</th></tr>"+rows+"</table>";\n    } else { mc.textContent="No commit details."; }\n  }\n  var m=document.getElementById("arch-modal");\n  if(m){m.classList.add("open");document.body.style.overflow="hidden";}\n}\nfunction openDay(bar){\n  var date=bar.getAttribute("data-date"),count=bar.getAttribute("data-count");\n  if(!count||count==="0")return;\n  var commits=(window._dailyCommits||{})[date]||[];\n  var t=document.getElementById("modal-title");\n  if(t)t.textContent=date+" \\u2014 "+count+" commit"+(count==="1"?"":"s");\n  var d=document.getElementById("modal-desc"),f=document.getElementById("modal-files");\n  if(d)d.textContent="";if(f)f.textContent="";\n  var mc=document.getElementById("modal-commits");\n  if(mc){\n    if(commits.length){\n      var rows=commits.map(function(r){\n        var badge=r.s?"<span style=\'color:#3fb950;font-size:10px;margin-right:6px\'>shipped</span>":"<span style=\'color:#d29922;font-size:10px;margin-right:6px\'>in\\u2011flight</span>";\n        var link=r.url?"<a href="+r.url+" target=_blank>"+r.subject+"</a>":r.subject;\n        return "<tr><td class=mc-subj>"+badge+link+"</td></tr>";\n      }).join("");\n      mc.innerHTML="<table class=mc-table><tr><th>Commit</th></tr>"+rows+"</table>";\n    } else { mc.textContent="Commits from branch activity."; }\n  }\n  var m=document.getElementById("arch-modal");\n  if(m){m.classList.add("open");document.body.style.overflow="hidden";}\n}\n', encoding="utf-8")
 
 
@@ -766,20 +747,7 @@ def _make_arch_modal() -> str:
         'function closeModal(){'
         'document.getElementById("arch-modal").classList.remove("open");'
         'document.body.style.overflow="";}'
-        'function openDay(bar){'
-        'var date=bar.getAttribute("data-date");'
-        'var count=bar.getAttribute("data-count");'
-        'if(!count||count==="0")return;'
-        'var commits=(window._dailyCommits||{})[date]||[];'
-        'document.getElementById("modal-title").textContent=date+" \u2014 "+count+" commit"+(count==="1"?"":"s");'
-        'document.getElementById("modal-desc").textContent="";'
-        'document.getElementById("modal-files").textContent="";'
-        'var mc=document.getElementById("modal-commits");'
-        'mc.innerHTML=commits.length'
-        '?("<p style=\"color:#8b949e;font-size:10px;margin-bottom:6px\">"+(commits.length<parseInt(count)?"Showing "+commits.length+" of "+count+" commits":"All "+count+" commits")+"</p>")+"<table><tr><th>Commit</th></tr>"+commits.map(function(c){var badge=c.s?"<span style=\'color:#3fb950;font-size:10px;margin-right:6px\'>shipped</span>":"<span style=\'color:#d29922;font-size:10px;margin-right:6px\'>in\‑flight</span>";return "<tr><td style=\'padding:5px 8px\'>"+badge+(c.url?"<a href=\'"+c.url+"\' target=\'_blank\' style=\'color:#58a6ff;text-decoration:none\'>"+c.subject+"</a>":c.subject)+"</td></tr>";}).join("")+"</table>"'
-        ':"<p style=\'color:#8b949e;font-size:12px\'>Commits from branch activity.</p>";'
-        'document.getElementById("arch-modal").classList.add("open");'
-        'document.body.style.overflow="hidden";}'
+
         'function openCard(card){'
         'var ds=card.querySelectorAll("div");'
         'document.getElementById("modal-title").textContent=ds[0]?ds[0].textContent:"";'
