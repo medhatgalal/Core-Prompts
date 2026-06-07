@@ -194,10 +194,15 @@ Interactive first-time setup. Reads current `config.yaml` if it exists.
 
 #### Pass 1 — Gather metrics (deterministic)
 
+First, locate the script:
+1. Try `command -v eng-report` — if found, use it
+2. Otherwise: `find ~ -path "*/Core-Prompts/bin/eng-report" -not -path "*/.git/*" 2>/dev/null | head -1`
+3. Or directly: `find ~ -name "eng-report.py" -path "*/scripts/*" -not -path "*/.git/*" 2>/dev/null | head -1` and call with `python3`
+
+Then run:
 ```bash
-python3 ~/repo/Core-Prompts/scripts/eng-report.py run --json-only > /tmp/metrics.json
-# For a single entry:
-python3 ~/repo/Core-Prompts/scripts/eng-report.py run --name MyRepo-Repo --json-only > /tmp/metrics.json
+eng-report run --json-only > /tmp/metrics.json
+# or: python3 /path/to/Core-Prompts/scripts/eng-report.py run --json-only > /tmp/metrics.json
 ```
 
 The script handles: git fetch, all git log commands, author filtering, multi-repo aggregation, Jira prefix detection, contributor counting, release tagging, file churn, and daily velocity. Output is structured JSON per entry.
@@ -218,10 +223,11 @@ For entries with `commits == 0`: skip narrative — the script renders "No activ
 #### Pass 3 — Render HTML (deterministic)
 
 ```bash
-python3 ~/repo/Core-Prompts/scripts/eng-report.py run --narrative-file /tmp/narrative.json
+eng-report run --narrative-file /tmp/narrative.json
 # With Drive upload:
-python3 ~/repo/Core-Prompts/scripts/eng-report.py run --narrative-file /tmp/narrative.json --drive --open
+eng-report run --narrative-file /tmp/narrative.json --drive --open
 ```
+(Use the same path resolution from Pass 1.)
 
 `_index.html` is always generated, grouped by: Repos → SBU → Groups → Teams → Individuals.
 ### Index Page (`_index.html`)
