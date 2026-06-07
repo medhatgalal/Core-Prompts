@@ -49,19 +49,74 @@ def author_flags(authors: list[str]) -> list[str]:
 
 # ── Metrics gathering ─────────────────────────────────────────────────────────
 
+
+def _remote_web_url(repo: Path) -> str:
+    """Convert git remote URL to HTTPS web base URL."""
+    def _to_https(raw: str) -> str:
+        raw = raw.strip()
+        if raw.startswith("git@"):
+            raw = raw[4:]
+            host, path_part = raw.split(":", 1)
+            return f"https://{host}/{path_part.rstrip('.git')}"
+        if raw.startswith("https://"):
+            return raw.rstrip(".git")
+        return ""
+
+    # Try all remotes, prefer prod/origin/appian, filter out forks
+    all_remotes_raw = git(repo, "remote", "-v", check=False)
+    best = ""
+    for line in all_remotes_raw.splitlines():
+        if "(fetch)" not in line:
+            continue
+        parts = line.split()
+        if len(parts) < 2:
+            continue
+        remote_name, url = parts[0], parts[1]
+        https = _to_https(url)
+        if not https:
+            continue
+        # Prefer canonical remotes over forks
+        # Prefer named canonical remotes
+        if remote_name in ("origin", "prod", "appian"):
+            best = https
+            break  # Use first canonical remote found
+        elif not best:
+            best = https
+    return best
+
+
+def _default_branch(repo: Path) -> str:
+    """Get the remote default branch name."""
+    # Try remote HEAD symref first
+    for remote in ("origin", "appian", "prod", "dev"):
+        b = git(repo, "symbolic-ref", f"refs/remotes/{remote}/HEAD", check=False)
+        if b:
+            return b.split("/")[-1]
+    # Fallback to common names
+    for branch in ("main", "master", "develop"):
+        if git(repo, "rev-parse", "--verify", f"origin/{branch}", check=False):
+            return branch
+    return "main"
+
+
 def gather_repo_metrics(repo: Path, since: str, authors: list[str]) -> dict[str, Any]:
     """Run all git commands for one repo with optional author filter."""
     af = author_flags(authors)
     since_flag = [f"--since={since}"]
 
-    commits_raw = git(repo, "log", *since_flag, "--no-merges", "--oneline", *af)
+    # Fetch latest from remote to ensure data is current
+    git(repo, "fetch", "--all", "--quiet", check=False)
+    web_url = _remote_web_url(repo)
+    default_branch = _default_branch(repo)
+
+    commits_raw = git(repo, "log", *since_flag, "--no-merges", "--oneline", "--all", *af)
     commits = len(commits_raw.splitlines()) if commits_raw else 0
 
-    merges_raw = git(repo, "log", *since_flag, "--merges", "--oneline", *af)
+    merges_raw = git(repo, "log", *since_flag, "--merges", "--oneline", "--all", *af)
     merges = len(merges_raw.splitlines()) if merges_raw else 0
 
     # Lines added/deleted
-    shortstat = git(repo, "log", *since_flag, "--shortstat", "--format=", *af)
+    shortstat = git(repo, "log", *since_flag, "--shortstat", "--format=", "--all", *af)
     added = deleted = 0
     for line in shortstat.splitlines():
         m = re.search(r"(\d+) insertion", line)
@@ -72,14 +127,14 @@ def gather_repo_metrics(repo: Path, since: str, authors: list[str]) -> dict[str,
             deleted += int(m.group(1))
 
     # Commits per day
-    dates_raw = git(repo, "log", *since_flag, "--no-merges", "--format=%ad", "--date=short", *af)
+    dates_raw = git(repo, "log", *since_flag, "--no-merges", "--format=%ad", "--date=short", "--all", *af)
     daily: dict[str, int] = defaultdict(int)
     for d in dates_raw.splitlines():
         if d:
             daily[d] += 1
 
     # Contributors — use log --format to get consistent names matching author_flags
-    contrib_raw = git(repo, "log", *since_flag, "--no-merges", "--format=%aN", *af)
+    contrib_raw = git(repo, "log", *since_flag, "--no-merges", "--format=%aN", "--all", *af)
     contrib_counts: dict[str, int] = defaultdict(int)
     for name in contrib_raw.splitlines():
         if name and not BOT_PATTERNS.match(name):
@@ -89,7 +144,7 @@ def gather_repo_metrics(repo: Path, since: str, authors: list[str]) -> dict[str,
     )
 
     # Top changed files
-    numstat = git(repo, "log", *since_flag, "--numstat", "--format=", *af)
+    numstat = git(repo, "log", *since_flag, "--numstat", "--format=", "--all", *af)
     file_churn: dict[str, tuple[int, int]] = defaultdict(lambda: (0, 0))
     for line in numstat.splitlines():
         parts = line.split("\t")
@@ -100,7 +155,7 @@ def gather_repo_metrics(repo: Path, since: str, authors: list[str]) -> dict[str,
     top_files = sorted(file_churn.items(), key=lambda x: x[1][0] + x[1][1], reverse=True)[:10]
 
     # Category breakdown
-    subjects = git(repo, "log", *since_flag, "--no-merges", "--format=%s", *af).splitlines()
+    subjects = git(repo, "log", *since_flag, "--no-merges", "--format=%s", "--all", *af).splitlines()
     jira_count = sum(1 for s in subjects if re.match(r"^[A-Z][A-Z0-9]{1,9}-\d+[\s:]", s))
     is_jira = len(subjects) > 0 and jira_count / len(subjects) > 0.8
 
@@ -133,6 +188,8 @@ def gather_repo_metrics(repo: Path, since: str, authors: list[str]) -> dict[str,
     releases = releases[:10]  # cap at 10
 
     # Recent commits in window (for commit listing section)
+    commits_sha_raw = git(repo, "log", *since_flag, "--no-merges", "--format=%H %ad %s", "--date=short", "--all", *af)
+    commits_with_sha = [{"sha": l[:40], "date": l[41:51], "subject": l[52:]} for l in commits_sha_raw.splitlines() if len(l) > 52][:20]
     commits_in_window_raw = git(repo, "log", *since_flag, "--no-merges", "--format=%ad %s", "--date=short", *af)
     commits_in_window = [{"date": l[:10], "subject": l[11:]} for l in commits_in_window_raw.splitlines() if len(l) > 11][:20]
 
@@ -156,6 +213,9 @@ def gather_repo_metrics(repo: Path, since: str, authors: list[str]) -> dict[str,
         "low_activity": commits < 5,
         "commits_in_window": commits_in_window,
         "commit_subjects": subjects,
+        "web_url": web_url,
+        "default_branch": default_branch,
+        "commits_with_sha": commits_with_sha,
     }
 
 
@@ -193,6 +253,9 @@ def aggregate_metrics(repo_metrics: list[dict[str, Any]]) -> dict[str, Any]:
         "low_activity": sum(r["commits"] for r in repo_metrics) < 5,
         "commits_in_window": [],
         "commit_subjects": [],
+        "web_url": repo_metrics[0].get("web_url", "") if repo_metrics else "",
+        "default_branch": repo_metrics[0].get("default_branch", "main") if repo_metrics else "main",
+        "commits_with_sha": [],
     }
 
     seen_tags: set[str] = set()
@@ -214,6 +277,10 @@ def aggregate_metrics(repo_metrics: list[dict[str, Any]]) -> dict[str, Any]:
                 agg["releases"].append(rel)
         agg["commits_in_window"].extend(r.get("commits_in_window", []))
         agg["commit_subjects"].extend(r.get("commit_subjects", []))
+        agg["commits_with_sha"].extend(r.get("commits_with_sha", []))
+        if not agg["web_url"] and r.get("web_url"):
+            agg["web_url"] = r["web_url"]
+            agg["default_branch"] = r.get("default_branch", "main")
 
     agg["daily"] = dict(agg["daily"])
     agg["contributors"] = sorted(
@@ -280,6 +347,19 @@ body{background:#0d1117;color:#e6edf3;font-family:system-ui,-apple-system,sans-s
 .snapshot-item:last-child{border-bottom:none}
 .footer{border-top:1px solid rgba(48,54,61,0.6);padding-top:12px;margin-top:24px;color:#8b949e;font-size:11px;text-align:center}
 .staleness-warn{background:rgba(210,153,34,0.1);border:1px solid rgba(210,153,34,0.4);border-radius:8px;padding:10px 14px;margin-bottom:16px;color:#d29922;font-size:12px}
+.arch-card{cursor:pointer;transition:transform 0.15s,box-shadow 0.15s}
+.arch-card:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(0,0,0,0.4)}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:1000;align-items:center;justify-content:center;padding:24px}
+.modal-overlay.open{display:flex}
+.modal-box{background:#161b22;border:1px solid rgba(48,54,61,0.8);border-radius:16px;padding:32px;max-width:800px;width:100%;max-height:90vh;overflow-y:auto;position:relative}
+.modal-close{position:absolute;top:16px;right:20px;background:none;border:none;color:#8b949e;font-size:20px;cursor:pointer}
+.modal-close:hover{color:#e6edf3}
+.modal-title{color:#58a6ff;font-size:18px;font-weight:600;margin-bottom:12px}
+.modal-desc{color:#c9d1d9;font-size:14px;line-height:1.7;margin-bottom:16px}
+.modal-files{color:#8b949e;font-size:12px;margin-bottom:20px;font-family:monospace}
+.modal-commits table{width:100%;border-collapse:collapse;font-size:12px}
+.modal-commits th{color:#8b949e;text-align:left;padding:6px 8px;border-bottom:1px solid rgba(48,54,61,0.6)}
+.modal-commits td{padding:6px 8px;border-bottom:1px solid rgba(48,54,61,0.3);color:#e6edf3}
 """
 
 CAT_COLORS = {
@@ -303,9 +383,11 @@ def _bar_chart(daily: dict[str, int], since: str) -> str:
         is_peak = c == max_c and c > 0
         cls = "bar-fill peak" if is_peak else "bar-fill"
         label = d[8:]  # day number
+        count_label = str(c) if c > 0 else ""
         bars.append(
             f'<div class="bar-day">'
-            f'<div class="{cls}" style="height:{h}px" title="{c} commits"></div>'
+            f'<div style="color:#8b949e;font-size:9px;text-align:center;height:12px;line-height:12px">{count_label}</div>'
+            f'<div class="{cls}" style="height:{h}px;cursor:{"pointer" if c>0 else "default"}" title="{c} commits on {d}" data-date="{d}" data-count="{c}" {"onclick=openDay(this)" if c>0 else ""}></div>'
             f'<span class="bar-label">{label}</span>'
             f'</div>'
         )
@@ -345,7 +427,7 @@ def _cat_bars(categories: dict[str, int], is_jira: bool, limit: int = 10) -> str
     return "".join(html) + note
 
 
-def _churn_bars(top_files: list) -> str:
+def _churn_bars(top_files: list, web_url: str = "", branch: str = "main") -> str:
     if not top_files:
         return "<p style='color:#8b949e;font-size:12px'>No data</p>"
     max_total = max(a + d for _, (a, d) in top_files) or 1
@@ -355,10 +437,12 @@ def _churn_bars(top_files: list) -> str:
         total = a + d
         add_pct = a / max_total * 100
         del_pct = d / max_total * 100
+        file_url = f"{web_url}/-/blob/{branch}/{fname}" if "gitlab" in web_url else (f"{web_url}/blob/{branch}/{fname}" if web_url else "")
+        file_link = f'<a href="{file_url}" target="_blank" style="color:#c9d1d9;text-decoration:none;border-bottom:1px dotted rgba(139,148,158,0.4)">{short}</a>' if file_url else f'<span>{short}</span>'
         html.append(
             f'<div style="margin-bottom:10px">'
             f'<div style="display:flex;justify-content:space-between;margin-bottom:3px">'
-            f'<span style="color:#c9d1d9;font-size:11px;word-break:break-all" title="{fname}">{short}</span>'
+            f'<span style="font-size:11px;word-break:break-all" title="{fname}">{file_link}</span>'
             f'<span style="color:#8b949e;font-size:10px"><span style="color:#3fb950">+{a}</span> <span style="color:#f85149">-{d}</span></span>'
             f'</div>'
             f'<div style="display:flex;gap:2px;height:6px;border-radius:3px;overflow:hidden;width:100%">'
@@ -374,21 +458,69 @@ def _contrib_bar(contributors: list[tuple[int, str]]) -> str:
     if not contributors:
         return "<p style='color:#8b949e;font-size:12px'>No data</p>"
     total = sum(c for c, _ in contributors) or 1
+    max_c = contributors[0][0] if contributors else 1
     rows = []
-    for i, (count, name) in enumerate(contributors[:8]):
-        pct = count / total * 100
+    for i, (count, name) in enumerate(contributors):
+        pct = count / max_c * 100
         color = CONTRIB_COLORS[i % len(CONTRIB_COLORS)]
-        first = name.split()[0]
+        # Link to Home people search (avoids guessing usernames)
+        first, last = (name.split()[0], name.split()[-1]) if len(name.split()) >= 2 else (name, "")
+        home_url = f"https://home.appian.com/suite/sites/home/page/home/searchresults#q={first}+{last}" if last else ""
+        name_html = f'<a href="{home_url}" target="_blank" style="color:#e6edf3;text-decoration:none;border-bottom:1px dotted rgba(139,148,158,0.3)">{name}</a>'
         rows.append(
             f'<div style="margin-bottom:7px">'
             f'<div style="display:flex;justify-content:space-between;margin-bottom:3px">'
-            f'<span style="color:#e6edf3;font-size:12px">{name}</span>'
-            f'<span style="color:#8b949e;font-size:11px">{count} ({pct:.0f}%)</span>'
+            f'{name_html}'
+            f'<span style="color:#8b949e;font-size:11px">{count} ({count/total*100:.0f}%)</span>'
             f'</div>'
             f'<div style="height:8px;width:{pct:.1f}%;background:{color};border-radius:3px;min-width:4px"></div>'
             f'</div>'
         )
     return "".join(rows)
+
+
+def _make_arch_modal() -> str:
+    return (
+        '<div class="modal-overlay" id="arch-modal" onclick="if(event.target===this)closeModal()">'
+        '<div class="modal-box">'
+        '<button class="modal-close" onclick="closeModal()">&#x2715;</button>'
+        '<div class="modal-title" id="modal-title"></div>'
+        '<div class="modal-desc" id="modal-desc"></div>'
+        '<div class="modal-files" id="modal-files"></div>'
+        '<div class="modal-commits" id="modal-commits"></div>'
+        '</div></div>'
+        '<script>'
+        'function closeModal(){'
+        'document.getElementById("arch-modal").classList.remove("open");'
+        'document.body.style.overflow="";}'
+        'function openDay(bar){'
+        'var date=bar.getAttribute("data-date");'
+        'var count=bar.getAttribute("data-count");'
+        'if(!count||count==="0")return;'
+        'var commits=(window._dailyCommits||{})[date]||[];'
+        'document.getElementById("modal-title").textContent=date+" \u2014 "+count+" commit"+(count==="1"?"":"s");'
+        'document.getElementById("modal-desc").textContent="";'
+        'document.getElementById("modal-files").textContent="";'
+        'var mc=document.getElementById("modal-commits");'
+        'mc.innerHTML=commits.length'
+        '?"<table><tr><th>Commit</th></tr>"+commits.map(function(c){return "<tr><td style=\'padding:5px 8px\'>"+(c.url?"<a href=\'"+c.url+"\' target=\'_blank\' style=\'color:#58a6ff;text-decoration:none\'>"+c.subject+"</a>":c.subject)+"</td></tr>";}).join("")+"</table>"'
+        ':"<p style=\'color:#8b949e;font-size:12px\'>Commits from branch activity.</p>";'
+        'document.getElementById("arch-modal").classList.add("open");'
+        'document.body.style.overflow="hidden";}'
+        'function openCard(card){'
+        'var ds=card.querySelectorAll("div");'
+        'document.getElementById("modal-title").textContent=ds[0]?ds[0].textContent:"";'
+        'document.getElementById("modal-desc").textContent=ds[1]?ds[1].textContent:"";'
+        'document.getElementById("modal-files").textContent=ds[2]?ds[2].textContent:"";'
+        'var commits=window._archCommits||[];'
+        'var mc=document.getElementById("modal-commits");'
+        'mc.innerHTML=commits.length'
+        '?"<p style=\'color:#8b949e;font-size:12px;margin-bottom:8px\'>Commits this period</p><table><tr><th>Date</th><th>Commit</th></tr>"+commits.map(function(c){return "<tr><td style=\'color:#8b949e;white-space:nowrap;padding:5px 8px\'>"+c.date+"</td><td style=\'padding:5px 8px\'>"+(c.url?"<a href=\'"+c.url+"\' target=\'_blank\' style=\'color:#58a6ff;text-decoration:none\'>"+c.subject+"</a>":c.subject)+"</td></tr>";}).join("")+"</table>"'
+        ':"<p style=\'color:#8b949e;font-size:12px\'>No commit details available.</p>";'
+        'document.getElementById("arch-modal").classList.add("open");'
+        'document.body.style.overflow="hidden";}'
+        '</script>'
+    )
 
 
 def render_report(
@@ -427,12 +559,22 @@ def render_report(
     net_cls = "green" if m["net"] >= 0 else "red"
     net_str = f"+{m['net']:,}" if m["net"] >= 0 else f"{m['net']:,}"
     contrib_count = len(m["contributors"])
+    web_url = m.get("web_url", "")
+    is_gl = "gitlab" in web_url
+    tags_url = f"{web_url}/-/tags" if is_gl else (f"{web_url}/tags" if web_url else "")
+    mrs_url = f"{web_url}/-/merge_requests?state=merged" if is_gl else (f"{web_url}/pulls?q=is:merged" if web_url else "")
+    commits_url = f"{web_url}/-/commits/{m.get('default_branch','main')}" if is_gl else (f"{web_url}/commits/{m.get('default_branch','main')}" if web_url else "")
+
+    def _linked_card(label, value, url, cls=""):
+        val_html = f'<a href="{url}" target="_blank" style="color:inherit;text-decoration:none">{value}</a>' if url else str(value)
+        return f'<div class="card"><div class="card-label">{label}</div><div class="card-value {cls}">{val_html}</div></div>'
+
     body_parts.append(f"""
 <div class="cards">
-  <div class="card"><div class="card-label">Commits</div><div class="card-value">{m['commits']}</div></div>
-  <div class="card"><div class="card-label">MRs Merged</div><div class="card-value">{m['merges']}</div></div>
+  {_linked_card("Commits", m['commits'], commits_url)}
+  {_linked_card("MRs Merged", m['merges'], mrs_url)}
   <div class="card"><div class="card-label">Net Lines</div><div class="card-value {net_cls}">{net_str}</div></div>
-  <div class="card"><div class="card-label">Releases</div><div class="card-value blue">{len(m['releases'])}</div></div>
+  {_linked_card("Releases", len(m['releases']), tags_url, "blue")}
   <div class="card"><div class="card-label">Contributors</div><div class="card-value">{contrib_count}</div></div>
   <div class="card"><div class="card-label">Top Contributor</div><div class="card-value" style="font-size:13px">{top_contributor.split()[0]} ({top_pct}%)</div></div>
 </div>""")
@@ -440,13 +582,20 @@ def render_report(
     if m["low_activity"]:
         # Activity Snapshot mode
         body_parts.append('<div class="section"><h3>📋 Activity Snapshot</h3>')
+        web_url = m.get("web_url", "")
         if m["commits"] == 0:
             body_parts.append('<p style="color:#8b949e;font-size:13px">No commits in this period.</p>')
         else:
-            recent_window = [r for r in m["recent"] if r["date"] >= _parse_since(since).isoformat()]
+            recent_window = [r for r in m.get("commits_with_sha", []) if r["date"] >= _parse_since(since).isoformat()] or [r for r in m["recent"] if r["date"] >= _parse_since(since).isoformat()]
+            def _commit_link(r):
+                sha = r.get("sha","")
+                subj = r.get("subject", r.get("subject",""))[:100]
+                if sha and web_url:
+                    url = f"{web_url}/-/commit/{sha}" if "gitlab" in web_url else f"{web_url}/commit/{sha}"
+                    return f'<a href="{url}" target="_blank" style="color:#e6edf3;text-decoration:none;border-bottom:1px dotted rgba(139,148,158,0.4)">{subj}</a>'
+                return f'<span class="subject">{subj}</span>'
             items = "\n".join(
-                f'<div class="snapshot-item"><span style="color:#8b949e">{r["date"]}</span> '
-                f'<span class="subject">{r["subject"][:100]}</span></div>'
+                f'<div class="snapshot-item"><span style="color:#8b949e">{r["date"]}</span> {_commit_link(r)}</div>'
                 for r in recent_window
             )
             body_parts.append(items)
@@ -471,12 +620,39 @@ def render_report(
 
         # Architecture evolution — before charts
         if narrative and narrative.get("architecture"):
+            import json as _json, re as _re
+            web_url = m.get("web_url","")
+            is_gl = "gitlab" in web_url
+            # Build commits data for modal as JSON stored in a script tag
+            related = []
+            for c in m.get("commits_with_sha",[])[:20]:
+                sha = c.get("sha","")
+                url = (f"{web_url}/-/commit/{sha}" if is_gl else f"{web_url}/commit/{sha}") if sha and web_url else ""
+                related.append({"sha":sha,"date":c.get("date",""),"subject":c.get("subject",""),"url":url})
+            # Add arch-card class to each card by simple string replace
+            arch_html = narrative["architecture"].replace(
+                'style="background:rgba(30,35,44,0.9)',
+                'class="arch-card" onclick="openCard(this)" style="background:rgba(30,35,44,0.9)'
+            )
+            # Store commits in page-level JS var, cards call openArch with their index
+            commits_script = f'<script>window._archCommits={_json.dumps(related)};</script>'
+            # Also emit daily commits map for bar clicks
+            daily_map = {}
+            for c in m.get("commits_with_sha", []):
+                d2 = c.get("date","")
+                if d2:
+                    if d2 not in daily_map: daily_map[d2] = []
+                    sha = c.get("sha","")
+                    url2 = (f"{web_url}/-/commit/{sha}" if is_gl else f"{web_url}/commit/{sha}") if sha and web_url else ""
+                    daily_map[d2].append({"sha":sha,"subject":c.get("subject",""),"url":url2})
+            commits_script += f'<script>window._dailyCommits={_json.dumps(daily_map)};</script>'
             body_parts.append(
                 f'<div class="section" style="margin-bottom:16px">'
                 f'<h3>🏛 Architecture Evolution</h3>'
-                f'<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px">'
-                f'{narrative["architecture"]}'
-                f'</div></div>'
+                f'<p style="color:#8b949e;font-size:10px;margin-bottom:12px">Click any card for details</p>'
+                f'<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px" id="arch-grid">'
+                f'{arch_html}'
+                f'</div></div>{commits_script}'
             )
 
         # Daily chart + categories
@@ -511,7 +687,7 @@ def render_report(
         body_parts.append('<div class="grid2">')
         body_parts.append(
             f'<div class="section"><h3>🔥 Code Churn</h3>'
-            f'{_churn_bars(m["top_files"])}</div>'
+            f'{_churn_bars(m["top_files"], m.get("web_url",""), m.get("default_branch","main"))}</div>'
         )
         body_parts.append(
             f'<div class="section"><h3>👥 Contributors</h3>'
@@ -521,11 +697,16 @@ def render_report(
 
         # Releases
         if m["releases"]:
+            web_url = m.get("web_url", "")
+            def _tag_url(tag):
+                if not web_url: return ""
+                if "gitlab" in web_url: return f"{web_url}/-/tags/{tag}"
+                return f"{web_url}/releases/tag/{tag}"
             items = "\n".join(
                 f'<div class="release-item">'
-                f'<span class="release-tag">{r["tag"]}</span>'
-                f'<span class="release-date">{r["date"]}</span>'
-                f'</div>'
+                + (f'<a href="{_tag_url(r["tag"])}" target="_blank" class="release-tag" style="text-decoration:none">{r["tag"]}</a>' if _tag_url(r["tag"]) else f'<span class="release-tag">{r["tag"]}</span>')
+                + f'<span class="release-date">{r["date"]}</span>'
+                + f'</div>'
                 for r in m["releases"]
             )
             body_parts.append(f'<div class="section"><h3>🚀 Releases</h3>{items}</div>')
@@ -559,11 +740,12 @@ def render_report(
 
 
 
+    # (placeholder replaced after f-string is evaluated)
     footer_parts = [f"{name}", f"Generated: {today}"]
     if scope_warning:
         footer_parts.append("⚠ Org data may be stale")
 
-    return f"""<!DOCTYPE html>
+    _html_raw = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -580,8 +762,11 @@ def render_report(
 {"".join(body_parts)}
 <div class="footer">{"  ·  ".join(footer_parts)}</div>
 </div>
+__ARCH_MODAL_PLACEHOLDER__
 </body>
 </html>"""
+    _html = _html_raw.replace("__ARCH_MODAL_PLACEHOLDER__", _make_arch_modal())
+    return _html
 
 
 # ── Config loading ─────────────────────────────────────────────────────────────
@@ -784,7 +969,10 @@ def run_entry(entry: dict, since: str, output_dir: Path, author_filter: str | No
     subtitle_parts.append(repo_label)
     if author_count:
         subtitle_parts.append(f"{author_count} members")
-    subtitle_parts.append(f"Since {since}")
+    since_dt = _parse_since(since)
+    today_dt = date.today()
+    date_range = f"{since_dt.strftime('%b %d')} – {today_dt.strftime('%b %d, %Y')}"
+    subtitle_parts.append(date_range)
     subtitle = " · ".join(subtitle_parts)
 
     # Staleness warning
@@ -831,6 +1019,7 @@ def run_entry(entry: dict, since: str, output_dir: Path, author_filter: str | No
         "net": agg["net"],
         "releases": len(agg["releases"]),
         "top_contributor": f"{top_contributor.split()[0]} ({top_pct}%)" if agg["contributors"] else "—",
+        "group": scope.get("tribe", ""),
     }
 
 
@@ -838,9 +1027,24 @@ def build_index(rows: list[dict], output_dir: Path, config: dict, entries: list[
     """Build grouped _index.html — always generated, sections by category."""
     since = config.get("local", {}).get("window", "1 week ago")
     today = date.today().isoformat()
+    since_dt = _parse_since(since)
+    today_date = date.today()
 
     # Map name → label and category from entries
-    entry_meta = {e["name"]: {"label": e.get("label", e["name"]), "category": e.get("category", "Repos")} for e in entries}
+    # Map tribe name to friendly group label
+    tribe_to_group = {
+        "AGENTIC AI": "Agentic AI", "AI COPILOT": "AI Copilot",
+        "ENTERPRISE AUTOMATION": "Enterprise Automation", "SMART SEARCH": "Smart Search",
+        "AI PLATFORM": "AI Platform",
+    }
+    entry_meta = {
+        e["name"]: {
+            "label": e.get("label", e["name"]),
+            "category": e.get("category", "Repos"),
+            "group": tribe_to_group.get(e.get("scope", {}).get("tribe", ""), ""),
+        }
+        for e in entries
+    }
 
     # Group rows by category
     from collections import defaultdict
@@ -848,14 +1052,19 @@ def build_index(rows: list[dict], output_dir: Path, config: dict, entries: list[
     for r in rows:
         cat = entry_meta.get(r["name"], {}).get("category", "Repos")
         label = entry_meta.get(r["name"], {}).get("label", r["name"])
-        groups[cat].append({**r, "_label": label})
+        group = entry_meta.get(r["name"], {}).get("group", r.get("group", ""))
+        groups[cat].append({**r, "_label": label, "_group": group})
 
     CATEGORY_ORDER = ["Repos", "SBU", "Groups", "Teams", "Individuals"]
 
     def table_section(cat: str, cat_rows: list) -> str:
         total_c = sum(r["commits"] for r in cat_rows)
+        is_teams = cat == "Teams"
+        if is_teams:
+            cat_rows = sorted(cat_rows, key=lambda r: (r.get("_group",""), r["_label"]))
         rows_html = "\n".join(
-            f'<tr>'
+            (f'<tr>'
+            f'<td style="color:#8b949e;font-size:12px">{r.get("_group","")}</td>' if is_teams else "") +
             f'<td><a href="{r["name"]}.html" style="color:#58a6ff;font-weight:500">{r["_label"]}</a></td>'
             f'<td style="text-align:right">{r["commits"]}</td>'
             f'<td style="text-align:right;color:{"#3fb950" if r["net"]>=0 else "#f85149"}">{"+" if r["net"]>=0 else ""}{r["net"]:,}</td>'
@@ -864,11 +1073,12 @@ def build_index(rows: list[dict], output_dir: Path, config: dict, entries: list[
             f'</tr>'
             for r in cat_rows
         )
+        group_header = '<th>Group</th>' if is_teams else ""
         return (
             f'<div class="section" style="margin-bottom:20px">'
             f'<h3 style="color:#e6edf3;font-size:14px;margin-bottom:12px">{cat} <span style="color:#8b949e;font-size:11px;font-weight:normal">({len(cat_rows)} · {total_c} commits)</span></h3>'
             f'<table class="index-table">'
-            f'<tr><th>Report</th><th style="text-align:right">Commits</th><th style="text-align:right">Net Lines</th><th style="text-align:right">Releases</th><th>Top Contributor</th></tr>'
+            f'<tr>{group_header}<th>Report</th><th style="text-align:right">Commits</th><th style="text-align:right">Net Lines</th><th style="text-align:right">Releases</th><th>Top Contributor</th></tr>'
             f'{rows_html}'
             f'</table></div>'
         )
@@ -904,11 +1114,12 @@ a{{text-decoration:none}}
 <div class="container">
 <div class="header">
   <h1>Engineering Reports — {today}</h1>
-  <p style="color:#8b949e;font-size:13px">{len(rows)} reports · window: {since} · {total_commits} commits · +{total_added:,} lines added</p>
+  <p style="color:#8b949e;font-size:13px">{len(rows)} reports · {since_dt.strftime('%b %d')} – {today_date.strftime('%b %d, %Y')} · {total_commits} commits · +{total_added:,} lines added</p>
 </div>
 {sections}
 <div class="footer">Generated: {today}</div>
 </div>
+__ARCH_MODAL_PLACEHOLDER__
 </body>
 </html>"""
 

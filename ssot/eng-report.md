@@ -161,13 +161,25 @@ Re-resolves group/team/business_unit membership from Home MCP for all scoped rep
 
 ### For `configure`
 
-1. Read current `config.yaml` (create with defaults if missing)
-2. Ask: "What Google Drive folder should reports be saved to?" (default: Engineering Reports)
-3. Ask: "Google Chat space ID for notifications? (leave blank to skip)"
-4. Ask: "Email address for notifications? (leave blank to skip)"
-5. Ask: "Add repos to fleet? Enter paths one per line, blank to finish"
-6. Write updated `config.yaml`
-7. Confirm: "Configuration saved. Run `eng-report run --drive` to generate all reports."
+Interactive first-time setup. Reads current `config.yaml` if it exists.
+
+1. **Drive folder** — "Where should reports be saved in Google Drive?" (default: `Engineering Reports`)
+2. **Local sync path** — "Where should reports be synced locally?" (default: `~/eng-reports`)
+3. **Notifications** — "Email address for weekly summary? (leave blank to skip)"
+4. **Chat** — "Google Chat space ID? (leave blank to skip)"
+5. **Repos** — For each repo the user wants to add:
+   a. "Repo name (display label, e.g. AI Platform):"
+   b. "Local path (e.g. ~/repo/ai-platform) — leave blank if not cloned:"
+   c. If no local path: "Remote git URL (e.g. git@github.com:appian/ae.git):" — script will auto-clone on first run
+   d. "Is this a large monorepo like ae? (y/n)" — if yes, offer scope setup:
+      - "Filter by org unit? Enter tribe/group name or leave blank for whole repo:"
+      - If tribe entered: call `sync-authors` immediately to resolve members from Home MCP
+   e. Repeat until user enters blank for repo name
+6. Write `config.yaml`
+7. Offer to run `sync-authors` now to resolve all org memberships: "Resolve team memberships from Home MCP now? (y/n)"
+   - If yes: run `sync-authors` workflow for all scoped entries
+8. Validate git access: for each `remote:` URL, run `git ls-remote <url> HEAD` — warn if unreachable
+9. Confirm: "Configuration saved. {N} repos configured. Run `eng-report run` to generate your first reports."
 
 ### For `add PATH`
 
