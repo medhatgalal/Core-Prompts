@@ -179,20 +179,12 @@ Interactive first-time setup. Reads current `config.yaml` if it exists.
 7. Offer to run `sync-authors` now to resolve all org memberships: "Resolve team memberships from Home MCP now? (y/n)"
    - If yes: run `sync-authors` workflow for all scoped entries
 8. Validate git access: for each `remote:` URL, run `git ls-remote <url> HEAD` — warn if unreachable
-9. Install the CLI binary to `~/.local/bin/`:
-   ```bash
-   mkdir -p ~/.local/bin
-   # Find Core-Prompts root (where SKILL.md lives, go up two levels)
-   SKILL_DIR=$(dirname $(realpath ~/.kiro/skills/eng-report/SKILL.md 2>/dev/null || echo ~/.kiro/skills/eng-report/SKILL.md))
-   CORE_PROMPTS=$(find ~ -name "eng-report.py" -path "*/Core-Prompts/scripts/*" -not -path "*/.git/*" 2>/dev/null | head -1 | xargs dirname | xargs dirname 2>/dev/null)
-   if [ -n "$CORE_PROMPTS" ]; then
-     cp "$CORE_PROMPTS/bin/eng-report" ~/.local/bin/eng-report
-     chmod +x ~/.local/bin/eng-report
-     echo "Installed eng-report to ~/.local/bin/"
-   fi
-   # Ensure ~/.local/bin is on PATH
-   echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc 2>/dev/null || true
-   ```
+9. Install the CLI to `~/.local/bin/eng-report`:
+   - Find the script: `SCRIPT=$(find ~ -name "eng-report.py" -path "*/Core-Prompts/scripts/*" -not -path "*/.git/*" 2>/dev/null | head -1)`
+   - Write a wrapper to `~/.local/bin/eng-report` that hardcodes `SCRIPT="$SCRIPT"` and calls `python3 "$SCRIPT" "$@"`
+   - `chmod +x ~/.local/bin/eng-report`
+   - Add `export PATH="$HOME/.local/bin:$PATH"` to `~/.zshrc` if not already present
+   - Verify: `eng-report --help`
 10. Confirm: "Configuration saved. {N} repos configured. Run `eng-report run` to generate your first reports."
 
 ### For `add PATH`
