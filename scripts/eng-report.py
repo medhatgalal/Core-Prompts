@@ -365,6 +365,10 @@ body{background:#0d1117;color:#e6edf3;font-family:system-ui,-apple-system,sans-s
 .modal-commits table{width:100%;border-collapse:collapse;font-size:12px}
 .modal-commits th{color:#8b949e;text-align:left;padding:6px 8px;border-bottom:1px solid rgba(48,54,61,0.6)}
 .modal-commits td{padding:6px 8px;border-bottom:1px solid rgba(48,54,61,0.3);color:#e6edf3}
+.mc-table{width:100%;border-collapse:collapse;font-size:12px}
+.mc-date{color:#8b949e;white-space:nowrap;padding:5px 8px}
+.mc-subj{padding:5px 8px;color:#e6edf3}
+.mc-subj a{color:#58a6ff;text-decoration:none}
 """
 
 CAT_COLORS = {
@@ -607,6 +611,102 @@ def _normalize_themes(themes_html: str) -> str:
     result = themes_html.replace('<ul>', "<ul style='list-style:none;padding:0;margin:0'>")
     result = result.replace('<li>', "<li style='padding:8px 0;border-bottom:1px solid rgba(48,54,61,0.4)'>")
     return result
+
+_HEAD_MODAL_SCRIPT = (
+    "<script>"
+    "function closeModal(){"
+    "var m=document.getElementById('arch-modal');"
+    "if(m){m.classList.remove('open');document.body.style.overflow='';}"
+    "}"
+    "function openCard(c){"
+    "var ds=c.querySelectorAll('div');"
+    "var t=document.getElementById('modal-title');"
+    "var d=document.getElementById('modal-desc');"
+    "var f=document.getElementById('modal-files');"
+    "var mc=document.getElementById('modal-commits');"
+    "if(t)t.textContent=ds[0]?ds[0].textContent:'';"
+    "if(d)d.textContent=ds[1]?ds[1].textContent:'';"
+    "if(f)f.textContent=ds[2]?ds[2].textContent:'';"
+    "var commits=window._archCommits||[];"
+    "if(mc)mc.innerHTML=commits.length"
+    "?'<table class=\'mc-table\'><tr><th>Date</th><th>Commit</th></tr>'"
+    "+commits.map(function(c){return '<tr><td class=\'mc-date\'>'+(c.date||'')+'</td>"
+    "<td class=\'mc-subj\'>'+(c.url?'<a href=\''+c.url+'\' target=\'_blank\'>'+c.subject+'</a>':c.subject)+'</td></tr>';}).join('')+'</table>'"
+    ":'No commit details.';"
+    "var m=document.getElementById('arch-modal');"
+    "if(m){m.classList.add('open');document.body.style.overflow='hidden';}"
+    "}"
+    "function openDay(bar){"
+    "var date=bar.getAttribute('data-date'),count=bar.getAttribute('data-count');"
+    "if(!count||count==='0')return;"
+    "var commits=(window._dailyCommits||{})[date]||[];"
+    "var t=document.getElementById('modal-title');"
+    "if(t)t.textContent=date+' \u2014 '+count+' commit'+(count==='1'?'':'s');"
+    "var d=document.getElementById('modal-desc'),f=document.getElementById('modal-files');"
+    "if(d)d.textContent='';if(f)f.textContent='';"
+    "var mc=document.getElementById('modal-commits');"
+    "if(mc)mc.innerHTML=commits.length"
+    "?'<table class=\'mc-table\'><tr><th>Commit</th></tr>'"
+    "+commits.map(function(c){return '<tr><td class=\'mc-subj\'>'+(c.url?'<a href=\''+c.url+'\' target=\'_blank\'>'+c.subject+'</a>':c.subject)+'</td></tr>';}).join('')+'</table>'"
+    ":'Commits from branch activity.';"
+    "var m=document.getElementById('arch-modal');"
+    "if(m){m.classList.add('open');document.body.style.overflow='hidden';}"
+    "}"
+    "</script>"
+)
+
+
+def _write_modal_js(output_dir: Path) -> None:
+    """Write eng-report-modal.js — no inline quoted HTML attributes."""
+    js_path = output_dir / "eng-report-modal.js"
+    if js_path.exists():
+        return
+    js = """function closeModal(){
+  var m=document.getElementById("arch-modal");
+  if(m){m.classList.remove("open");document.body.style.overflow="";}
+}
+function openCard(c){
+  var ds=c.querySelectorAll("div");
+  var ids=["modal-title","modal-desc","modal-files"];
+  for(var i=0;i<3;i++){var el=document.getElementById(ids[i]);if(el)el.textContent=ds[i]?ds[i].textContent:"";}
+  var mc=document.getElementById("modal-commits"),commits=window._archCommits||[];
+  if(mc){
+    if(commits.length){
+      var rows=commits.map(function(r){
+        var link=r.url?"<a href="+r.url+" target=_blank>"+r.subject+"</a>":r.subject;
+        return "<tr><td class=mc-date>"+(r.date||"")+"</td><td class=mc-subj>"+link+"</td></tr>";
+      }).join("");
+      mc.innerHTML="<table class=mc-table><tr><th>Date</th><th>Commit</th></tr>"+rows+"</table>";
+    } else { mc.textContent="No commit details."; }
+  }
+  var m=document.getElementById("arch-modal");
+  if(m){m.classList.add("open");document.body.style.overflow="hidden";}
+}
+function openDay(bar){
+  var date=bar.getAttribute("data-date"),count=bar.getAttribute("data-count");
+  if(!count||count==="0")return;
+  var commits=(window._dailyCommits||{})[date]||[];
+  var t=document.getElementById("modal-title");
+  if(t)t.textContent=date+" \u2014 "+count+" commit"+(count==="1"?"":"s");
+  var d=document.getElementById("modal-desc"),f=document.getElementById("modal-files");
+  if(d)d.textContent="";if(f)f.textContent="";
+  var mc=document.getElementById("modal-commits");
+  if(mc){
+    if(commits.length){
+      var rows=commits.map(function(r){
+        var link=r.url?"<a href="+r.url+" target=_blank>"+r.subject+"</a>":r.subject;
+        return "<tr><td class=mc-subj>"+link+"</td></tr>";
+      }).join("");
+      mc.innerHTML="<table class=mc-table><tr><th>Commit</th></tr>"+rows+"</table>";
+    } else { mc.textContent="Commits from branch activity."; }
+  }
+  var m=document.getElementById("arch-modal");
+  if(m){m.classList.add("open");document.body.style.overflow="hidden";}
+}
+"""
+    js_path.write_text(js, encoding="utf-8")
+
+
 
 def _make_arch_modal() -> str:
     return (
@@ -880,6 +980,7 @@ def render_report(
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{name}</title>
 <style>{CSS}</style>
+<script src="eng-report-modal.js"></script>
 </head>
 <body>
 <div class="container">
@@ -1152,6 +1253,7 @@ def run_entry(entry: dict, since: str, output_dir: Path, author_filter: str | No
 
     out_path = output_dir / f"{file_key}.html"
     out_path.write_text(html, encoding="utf-8")
+    _write_modal_js(output_dir)
 
     top_contributor = agg["contributors"][0][1] if agg["contributors"] else "—"
     top_pct = int(agg["contributors"][0][0] / max(agg["commits"], 1) * 100) if agg["contributors"] else 0
@@ -1268,6 +1370,7 @@ body{{padding:24px}}
 .index-table tr:hover td{{background:rgba(48,54,61,0.2)}}
 a{{text-decoration:none}}
 </style>
+<script src="eng-report-modal.js"></script>
 </head>
 <body>
 <div class="container">
