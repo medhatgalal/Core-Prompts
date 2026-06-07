@@ -776,7 +776,7 @@ def _make_arch_modal() -> str:
         'document.getElementById("modal-files").textContent="";'
         'var mc=document.getElementById("modal-commits");'
         'mc.innerHTML=commits.length'
-        '?("<p style=\"color:#8b949e;font-size:10px;margin-bottom:6px\">"+(commits.length<parseInt(count)?"Showing "+commits.length+" of "+count+" commits":"All "+count+" commits")+"</p>")+"<table><tr><th>Commit</th></tr>"+commits.map(function(c){return "<tr><td style=\'padding:5px 8px\'>"+(c.url?"<a href=\'"+c.url+"\' target=\'_blank\' style=\'color:#58a6ff;text-decoration:none\'>"+c.subject+"</a>":c.subject)+"</td></tr>";}).join("")+"</table>"'
+        '?("<p style=\"color:#8b949e;font-size:10px;margin-bottom:6px\">"+(commits.length<parseInt(count)?"Showing "+commits.length+" of "+count+" commits":"All "+count+" commits")+"</p>")+"<table><tr><th>Commit</th></tr>"+commits.map(function(c){var badge=c.s?"<span style=\'color:#3fb950;font-size:10px;margin-right:6px\'>shipped</span>":"<span style=\'color:#d29922;font-size:10px;margin-right:6px\'>in\‑flight</span>";return "<tr><td style=\'padding:5px 8px\'>"+badge+(c.url?"<a href=\'"+c.url+"\' target=\'_blank\' style=\'color:#58a6ff;text-decoration:none\'>"+c.subject+"</a>":c.subject)+"</td></tr>";}).join("")+"</table>"'
         ':"<p style=\'color:#8b949e;font-size:12px\'>Commits from branch activity.</p>";'
         'document.getElementById("arch-modal").classList.add("open");'
         'document.body.style.overflow="hidden";}'
