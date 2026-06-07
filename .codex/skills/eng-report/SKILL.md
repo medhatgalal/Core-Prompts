@@ -431,3 +431,6 @@ Capability resource: `.kiro/skills/eng-report/resources/capability.json`
 
 
 Capability resource: `.kiro/skills/eng-report/resources/capability.json`
+
+
+Capability resource: `.codex/skills/eng-report/resources/capability.json`
