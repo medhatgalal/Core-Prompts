@@ -193,7 +193,7 @@ def gather_repo_metrics(repo: Path, since: str, authors: list[str]) -> dict[str,
 
     # Recent commits in window (for commit listing section)
     commits_sha_raw = git(repo, "log", *since_flag, "--no-merges", "--format=%H %ad %s", "--date=short", "--remotes", *af)
-    commits_with_sha = [{"sha": l[:40], "date": l[41:51], "subject": l[52:]} for l in commits_sha_raw.splitlines() if len(l) > 52][:20]
+    commits_with_sha = [{"sha": l[:40], "date": l[41:51], "subject": l[52:]} for l in commits_sha_raw.splitlines() if len(l) > 52][:200]
     commits_in_window = [{"date": c["date"], "subject": c["subject"]} for c in commits_with_sha]
 
     # Recent context (last 10 commits regardless of window — for low-activity reports)
@@ -506,7 +506,7 @@ def _make_arch_modal() -> str:
         'document.getElementById("modal-files").textContent="";'
         'var mc=document.getElementById("modal-commits");'
         'mc.innerHTML=commits.length'
-        '?"<table><tr><th>Commit</th></tr>"+commits.map(function(c){return "<tr><td style=\'padding:5px 8px\'>"+(c.url?"<a href=\'"+c.url+"\' target=\'_blank\' style=\'color:#58a6ff;text-decoration:none\'>"+c.subject+"</a>":c.subject)+"</td></tr>";}).join("")+"</table>"'
+        '?("<p style=\"color:#8b949e;font-size:10px;margin-bottom:6px\">"+(commits.length<parseInt(count)?"Showing "+commits.length+" of "+count+" commits":"All "+count+" commits")+"</p>")+"<table><tr><th>Commit</th></tr>"+commits.map(function(c){return "<tr><td style=\'padding:5px 8px\'>"+(c.url?"<a href=\'"+c.url+"\' target=\'_blank\' style=\'color:#58a6ff;text-decoration:none\'>"+c.subject+"</a>":c.subject)+"</td></tr>";}).join("")+"</table>"'
         ':"<p style=\'color:#8b949e;font-size:12px\'>Commits from branch activity.</p>";'
         'document.getElementById("arch-modal").classList.add("open");'
         'document.body.style.overflow="hidden";}'
