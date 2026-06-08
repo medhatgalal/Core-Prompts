@@ -239,7 +239,7 @@ def gather_repo_metrics(repo: Path, since: str, authors: list[str], branch_scope
     releases = releases[:10]
 
     # Recent commits with SHAs (all branches - in-flight)
-    commits_sha_raw = git(repo, "log", *since_flag, "--no-merges", "--format=%H %ad %s", "--date=short", "--remotes", *af)
+    commits_sha_raw = git(repo, "log", *since_flag, "--no-merges", "--format=%H %ad %s", "--date=short", *inflight_ref, *af)
     inflight_with_sha = [{"sha": l[:40], "date": l[41:51], "subject": l[52:]} for l in commits_sha_raw.splitlines() if len(l) > 52][:200]
     # Shipped commits with SHAs (first-parent on default branch)
     shipped_sha_log = git(repo, "log", *since_flag, "--first-parent", "--format=%H %ad %s", "--date=short", *shipped_ref, *af)
