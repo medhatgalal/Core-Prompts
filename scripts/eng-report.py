@@ -173,12 +173,7 @@ def gather_repo_metrics(repo: Path, since: str, authors: list[str], branch_scope
     added = shipped_added + inflight_added
     deleted = shipped_deleted + inflight_deleted
 
-    # Merge daily counts
-    daily: dict[str, int] = defaultdict(int)
-    for d, c in shipped_daily.items():
-        daily[d] += c
-    for d, c in inflight_daily.items():
-        daily[d] += c
+    # (daily/shipped_daily/inflight_daily rebuilt from commits_with_sha below)
 
     # MRs (merges on default branch only — that's what "merged" means)
     merges_raw = git(repo, "log", *since_flag, "--merges", "--first-parent", *shipped_ref, "--oneline", *af)
@@ -246,6 +241,21 @@ def gather_repo_metrics(repo: Path, since: str, authors: list[str], branch_scope
     shipped_with_sha = [{"sha": l[:40], "date": l[41:51], "subject": l[52:]} for l in shipped_sha_log.splitlines() if len(l) > 52][:200]
     commits_with_sha = shipped_with_sha + inflight_with_sha
     commits_in_window = [{"date": c["date"], "subject": c["subject"]} for c in commits_with_sha]
+
+    # Rebuild daily counts from commits_with_sha for consistency with modal data
+    shipped_daily = defaultdict(int)
+    inflight_daily = defaultdict(int)
+    daily = defaultdict(int)
+    for c in commits_with_sha:
+        d = c["date"]
+        if c["sha"] in shipped_shas:
+            shipped_daily[d] += 1
+        else:
+            inflight_daily[d] += 1
+        daily[d] += 1
+    shipped_daily = dict(shipped_daily)
+    inflight_daily = dict(inflight_daily)
+    daily = dict(daily)
 
     # Recent context (last 10 commits regardless of window)
     recent_raw = git(repo, "log", "--no-merges", "--format=%ad %s", "--date=short", "-10", *af)
