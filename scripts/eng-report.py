@@ -448,7 +448,7 @@ CONTRIB_COLORS = ["#58a6ff", "#3fb950", "#a371f7", "#d29922", "#39d5ff",
 def _bar_chart(daily: dict[str, int], since: str, shipped_daily: dict[str, int] | None = None, inflight_daily: dict[str, int] | None = None) -> str:
     since_dt = _parse_since(since)
     days = [(since_dt + timedelta(days=i)).isoformat() for i in range(7)]
-    max_c = max((daily.get(d, 0) for d in days), default=1) or 1
+    max_c = max(((shipped_daily.get(d, 0) if shipped_daily else daily.get(d, 0)) + (inflight_daily.get(d, 0) if inflight_daily else 0) for d in days), default=1) or 1
     has_split = shipped_daily is not None and inflight_daily is not None and any(inflight_daily.get(d, 0) > 0 for d in days)
 
     legend = ""
@@ -457,10 +457,10 @@ def _bar_chart(daily: dict[str, int], since: str, shipped_daily: dict[str, int] 
 
     bars = []
     for d in days:
-        c = daily.get(d, 0)
-        shipped_c = shipped_daily.get(d, 0) if shipped_daily else c
+        shipped_c = shipped_daily.get(d, 0) if shipped_daily else daily.get(d, 0)
         inflight_c = inflight_daily.get(d, 0) if inflight_daily else 0
-        total_h = max(2, int(c / max_c * 120))
+        c = shipped_c + inflight_c if has_split else daily.get(d, 0)
+        total_h = max(2, int(c / max_c * 120)) if max_c else 2
         label = d[8:]
         count_label = str(c) if c > 0 else ""
 
