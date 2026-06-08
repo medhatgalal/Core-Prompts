@@ -486,7 +486,7 @@ def _bar_chart(daily: dict[str, int], since: str, shipped_daily: dict[str, int] 
         label = d[8:]
         count_label = str(c) if c > 0 else ""
 
-        if has_split and inflight_c > 0:
+        if has_split:
             shipped_h = max(1, int(shipped_c / max_c * 120)) if shipped_c > 0 else 0
             inflight_h = max(1, int(inflight_c / max_c * 120)) if inflight_c > 0 else 0
             bars.append(
