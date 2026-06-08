@@ -330,6 +330,12 @@ def aggregate_metrics(repo_metrics: list[dict[str, Any]]) -> dict[str, Any]:
     for r in repo_metrics:
         for d, c in r["daily"].items():
             agg["daily"][d] += c
+        for d, c in r.get("shipped_daily", {}).items():
+            agg.setdefault("shipped_daily", defaultdict(int))
+            agg["shipped_daily"][d] += c
+        for d, c in r.get("inflight_daily", {}).items():
+            agg.setdefault("inflight_daily", defaultdict(int))
+            agg["inflight_daily"][d] += c
         for count, name in r["contributors"]:
             agg["contributors"][name] += count
         for f, (a, d) in r["top_files"]:
@@ -357,6 +363,10 @@ def aggregate_metrics(repo_metrics: list[dict[str, Any]]) -> dict[str, Any]:
     agg["categories"] = dict(sorted(agg["categories"].items(), key=lambda x: x[1], reverse=True))
     agg["releases"] = sorted(agg["releases"], key=lambda x: x["date"], reverse=True)
     agg["commits_in_window"] = sorted(agg["commits_in_window"], key=lambda x: x["date"], reverse=True)[:20]
+    if "shipped_daily" in agg:
+        agg["shipped_daily"] = dict(agg["shipped_daily"])
+    if "inflight_daily" in agg:
+        agg["inflight_daily"] = dict(agg["inflight_daily"])
 
     return agg
 
