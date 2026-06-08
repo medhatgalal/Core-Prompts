@@ -426,7 +426,6 @@ body{background:#0d1117;color:#e6edf3;font-family:system-ui,-apple-system,sans-s
 .bar-chart{display:flex;align-items:flex-end;gap:3px;height:140px}
 .bar-day{display:flex;flex-direction:column;align-items:stretch;gap:3px;flex:1;min-width:12px}
 .bar-fill{width:100%;border-radius:3px 3px 0 0;min-height:2px;background:#58a6ff}
-.bar-fill.peak{background:linear-gradient(to top,#d29922,#f85149)}
 .bar-label{font-size:10px;color:#8b949e}
 .cat-row{margin-bottom:8px}
 .cat-header{display:flex;justify-content:space-between;margin-bottom:3px;font-size:12px}
@@ -523,12 +522,10 @@ def _bar_chart(daily: dict[str, int], since: str, shipped_daily: dict[str, int] 
                 f'</div>'
             )
         else:
-            is_peak = c == max_c and c > 0
-            cls = "bar-fill peak" if is_peak else "bar-fill"
             bars.append(
                 f'<div class="bar-day">'
                 f'<div style="color:#8b949e;font-size:9px;text-align:center;height:12px;line-height:12px">{count_label}</div>'
-                f'<div class="{cls}" style="height:{total_h}px;cursor:{"pointer" if c>0 else "default"}" title="{c} commits on {d}" data-date="{d}" data-count="{c}" {"""onclick="openDay(this)" """ if c>0 else ""}></div>'
+                f'<div class="bar-fill" style="height:{total_h}px;cursor:{"pointer" if c>0 else "default"}" title="{c} commits on {d}" data-date="{d}" data-count="{c}" {"""onclick="openDay(this)" """ if c>0 else ""}></div>'
                 f'<span class="bar-label">{label}</span>'
                 f'</div>'
             )
@@ -901,16 +898,18 @@ def render_report(
             )
 
         # Daily chart + categories
-        # Emit daily commits map for bar chart click modal
+        # Emit daily commits map for bar chart click modal (filtered to bar chart window)
         daily_commits_map = {}
         web_url = m.get("web_url", "")
         is_gl = "gitlab" in web_url
         shipped_shas = set()
         # Get shipped commit SHAs to tag them
         shipped_sha_raw = m.get("shipped_shas", set())
+        since_dt_str = _parse_since(since).isoformat()
+        today_str = date.today().isoformat()
         for c in m.get("commits_with_sha", []):
             d2 = c.get("date", "")
-            if d2:
+            if d2 and since_dt_str <= d2 <= today_str:
                 if d2 not in daily_commits_map: daily_commits_map[d2] = []
                 sha = c.get("sha", "")
                 url2 = (f"{web_url}/-/commit/{sha}" if is_gl else f"{web_url}/commit/{sha}") if sha and web_url else ""
