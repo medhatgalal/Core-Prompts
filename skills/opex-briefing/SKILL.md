@@ -21,7 +21,7 @@ inputs:
 
 The user provides ticket keys (e.g., `EA-6284, EA-5649`) and optionally a meeting date. Use inline ticket keys directly. If the user says "prep for next meeting," pull tickets from the tracking doc or active query, then confirm with the user.
 
-Output destination: `~/Library/CloudStorage/GoogleDrive-scott.parrish@appian.com/My Drive/@Reference/Operational-Excellence/YYYYMMDD/`
+Output destination: `~/Library/CloudStorage/GoogleDrive-*/My Drive/@Reference/Operational-Excellence/YYYYMMDD/`
 
 ## Appian Context (Behavioral Rules)
 
