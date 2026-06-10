@@ -1,0 +1,16 @@
+{
+  "name": "opex-briefing",
+  "version": "1.0.0",
+  "author": "scott.parrish",
+  "description": "Generates executive-ready HTML briefings for Operational Excellence reviews from Jira incident data.",
+  "triggers": [
+    "opex briefing",
+    "prepare opex",
+    "operational excellence prep",
+    "incident briefing"
+  ],
+  "inputs": ["jira_projects", "priority_filter", "output_format"],
+  "outputs": ["BRIEFING.html", "BRIEFING.md"],
+  "dependencies": ["jira-api-access"],
+  "tags": ["operational-excellence", "incident-review", "executive-briefing", "five-whys"]
+}
