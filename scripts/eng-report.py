@@ -6,15 +6,21 @@ AI narrative layer: optional, called via stdin/stdout protocol.
 """
 from __future__ import annotations
 import argparse
+import html as _html
 import json
 import os
 import re
 import subprocess
 import sys
+import urllib.parse
 from collections import defaultdict
 from datetime import date, datetime, timedelta
 from pathlib import Path
 from typing import Any
+
+
+def _esc(s: str) -> str:
+    return _html.escape(str(s)) if s else ""
 
 # ── Config ────────────────────────────────────────────────────────────────────
 
@@ -100,13 +106,15 @@ def _default_branch_ref(repo: Path) -> str:
         if b:
             # b is like 'refs/remotes/origin/main' — return 'origin/main'
             parts = b.strip().split("refs/remotes/")
-            return parts[-1] if len(parts) > 1 else b.strip()
+            ref = parts[-1] if len(parts) > 1 else b.strip()
+            if git(repo, "rev-parse", "--verify", ref, check=False):
+                return ref
     # Fallback: find which remote/branch actually exists
     for remote in ("origin", "appian", "prod", "dev"):
-        for branch in ("main", "master", "develop"):
+        for branch in ("main", "master", "develop", "trunk"):
             if git(repo, "rev-parse", "--verify", f"{remote}/{branch}", check=False):
                 return f"{remote}/{branch}"
-    return "main"
+    return "origin/main"
 
 
 def _parse_shortstat(raw: str) -> tuple[int, int]:
@@ -162,7 +170,7 @@ def gather_repo_metrics(repo: Path, since: str, authors: list[str], branch_scope
     inflight_commits_raw = git(repo, "log", *since_flag, "--no-merges", *inflight_ref, "--oneline", *af)
     inflight_commits = len(inflight_commits_raw.splitlines()) if inflight_commits_raw else 0
 
-    inflight_stat = git(repo, "log", *since_flag, *inflight_ref, "--shortstat", "--format=", *af)
+    inflight_stat = git(repo, "log", *since_flag, "--no-merges", *inflight_ref, "--shortstat", "--format=", *af)
     inflight_added, inflight_deleted = _parse_shortstat(inflight_stat)
 
     inflight_dates = git(repo, "log", *since_flag, "--no-merges", *inflight_ref, "--format=%ad", "--date=short", *af)
@@ -173,12 +181,7 @@ def gather_repo_metrics(repo: Path, since: str, authors: list[str], branch_scope
     added = shipped_added + inflight_added
     deleted = shipped_deleted + inflight_deleted
 
-    # Merge daily counts
-    daily: dict[str, int] = defaultdict(int)
-    for d, c in shipped_daily.items():
-        daily[d] += c
-    for d, c in inflight_daily.items():
-        daily[d] += c
+    # (daily/shipped_daily/inflight_daily rebuilt from commits_with_sha below)
 
     # MRs (merges on default branch only — that's what "merged" means)
     merges_raw = git(repo, "log", *since_flag, "--merges", "--first-parent", *shipped_ref, "--oneline", *af)
@@ -239,13 +242,34 @@ def gather_repo_metrics(repo: Path, since: str, authors: list[str], branch_scope
     releases = releases[:10]
 
     # Recent commits with SHAs (all branches - in-flight)
-    commits_sha_raw = git(repo, "log", *since_flag, "--no-merges", "--format=%H %ad %s", "--date=short", "--remotes", *af)
-    inflight_with_sha = [{"sha": l[:40], "date": l[41:51], "subject": l[52:]} for l in commits_sha_raw.splitlines() if len(l) > 52][:200]
+    commits_sha_raw = git(repo, "log", *since_flag, "--no-merges", "--format=%H %ad %s", "--date=short", *inflight_ref, *af)
+    inflight_with_sha = [{"sha": l[:40], "date": l[41:51], "subject": l[52:]} for l in commits_sha_raw.splitlines() if len(l) > 52][:500]
+    if len(inflight_with_sha) >= 500:
+        print(f"  ⚠ {repo.name}: inflight commits capped at 500", file=sys.stderr)
     # Shipped commits with SHAs (first-parent on default branch)
     shipped_sha_log = git(repo, "log", *since_flag, "--first-parent", "--format=%H %ad %s", "--date=short", *shipped_ref, *af)
-    shipped_with_sha = [{"sha": l[:40], "date": l[41:51], "subject": l[52:]} for l in shipped_sha_log.splitlines() if len(l) > 52][:200]
+    shipped_with_sha = [{"sha": l[:40], "date": l[41:51], "subject": l[52:]} for l in shipped_sha_log.splitlines() if len(l) > 52][:500]
+    if len(shipped_with_sha) >= 500:
+        print(f"  ⚠ {repo.name}: shipped commits capped at 500", file=sys.stderr)
     commits_with_sha = shipped_with_sha + inflight_with_sha
+    seen = set()
+    commits_with_sha = [c for c in commits_with_sha if c["sha"] not in seen and not seen.add(c["sha"])]
     commits_in_window = [{"date": c["date"], "subject": c["subject"]} for c in commits_with_sha]
+
+    # Rebuild daily counts from commits_with_sha for consistency with modal data
+    shipped_daily = defaultdict(int)
+    inflight_daily = defaultdict(int)
+    daily = defaultdict(int)
+    for c in commits_with_sha:
+        d = c["date"]
+        if c["sha"] in shipped_shas:
+            shipped_daily[d] += 1
+        else:
+            inflight_daily[d] += 1
+        daily[d] += 1
+    shipped_daily = dict(shipped_daily)
+    inflight_daily = dict(inflight_daily)
+    daily = dict(daily)
 
     # Recent context (last 10 commits regardless of window)
     recent_raw = git(repo, "log", "--no-merges", "--format=%ad %s", "--date=short", "-10", *af)
@@ -330,6 +354,12 @@ def aggregate_metrics(repo_metrics: list[dict[str, Any]]) -> dict[str, Any]:
     for r in repo_metrics:
         for d, c in r["daily"].items():
             agg["daily"][d] += c
+        for d, c in r.get("shipped_daily", {}).items():
+            agg.setdefault("shipped_daily", defaultdict(int))
+            agg["shipped_daily"][d] += c
+        for d, c in r.get("inflight_daily", {}).items():
+            agg.setdefault("inflight_daily", defaultdict(int))
+            agg["inflight_daily"][d] += c
         for count, name in r["contributors"]:
             agg["contributors"][name] += count
         for f, (a, d) in r["top_files"]:
@@ -357,6 +387,19 @@ def aggregate_metrics(repo_metrics: list[dict[str, Any]]) -> dict[str, Any]:
     agg["categories"] = dict(sorted(agg["categories"].items(), key=lambda x: x[1], reverse=True))
     agg["releases"] = sorted(agg["releases"], key=lambda x: x["date"], reverse=True)
     agg["commits_in_window"] = sorted(agg["commits_in_window"], key=lambda x: x["date"], reverse=True)[:20]
+    if "shipped_daily" in agg:
+        agg["shipped_daily"] = dict(agg["shipped_daily"])
+    if "inflight_daily" in agg:
+        agg["inflight_daily"] = dict(agg["inflight_daily"])
+
+    agg["shipped_commits"] = sum(r.get("shipped_commits", 0) for r in repo_metrics)
+    agg["inflight_commits"] = sum(r.get("inflight_commits", 0) for r in repo_metrics)
+    agg["shipped_added"] = sum(r.get("shipped_added", 0) for r in repo_metrics)
+    agg["shipped_deleted"] = sum(r.get("shipped_deleted", 0) for r in repo_metrics)
+    agg["inflight_added"] = sum(r.get("inflight_added", 0) for r in repo_metrics)
+    agg["inflight_deleted"] = sum(r.get("inflight_deleted", 0) for r in repo_metrics)
+    agg["shipped_net"] = agg["shipped_added"] - agg["shipped_deleted"]
+    agg["inflight_net"] = agg["inflight_added"] - agg["inflight_deleted"]
 
     return agg
 
@@ -383,7 +426,6 @@ body{background:#0d1117;color:#e6edf3;font-family:system-ui,-apple-system,sans-s
 .bar-chart{display:flex;align-items:flex-end;gap:3px;height:140px}
 .bar-day{display:flex;flex-direction:column;align-items:stretch;gap:3px;flex:1;min-width:12px}
 .bar-fill{width:100%;border-radius:3px 3px 0 0;min-height:2px;background:#58a6ff}
-.bar-fill.peak{background:linear-gradient(to top,#d29922,#f85149)}
 .bar-label{font-size:10px;color:#8b949e}
 .cat-row{margin-bottom:8px}
 .cat-header{display:flex;justify-content:space-between;margin-bottom:3px;font-size:12px}
@@ -447,8 +489,10 @@ CONTRIB_COLORS = ["#58a6ff", "#3fb950", "#a371f7", "#d29922", "#39d5ff",
 
 def _bar_chart(daily: dict[str, int], since: str, shipped_daily: dict[str, int] | None = None, inflight_daily: dict[str, int] | None = None) -> str:
     since_dt = _parse_since(since)
-    days = [(since_dt + timedelta(days=i)).isoformat() for i in range(7)]
-    max_c = max((daily.get(d, 0) for d in days), default=1) or 1
+    today_dt = date.today()
+    num_days = max(7, (today_dt - since_dt).days + 1)
+    days = [(since_dt + timedelta(days=i)).isoformat() for i in range(num_days)]
+    max_c = max(((shipped_daily.get(d, 0) if shipped_daily else daily.get(d, 0)) + (inflight_daily.get(d, 0) if inflight_daily else 0) for d in days), default=1) or 1
     has_split = shipped_daily is not None and inflight_daily is not None and any(inflight_daily.get(d, 0) > 0 for d in days)
 
     legend = ""
@@ -457,14 +501,14 @@ def _bar_chart(daily: dict[str, int], since: str, shipped_daily: dict[str, int] 
 
     bars = []
     for d in days:
-        c = daily.get(d, 0)
-        shipped_c = shipped_daily.get(d, 0) if shipped_daily else c
+        shipped_c = shipped_daily.get(d, 0) if shipped_daily else daily.get(d, 0)
         inflight_c = inflight_daily.get(d, 0) if inflight_daily else 0
-        total_h = max(2, int(c / max_c * 120))
+        c = shipped_c + inflight_c if has_split else daily.get(d, 0)
+        total_h = max(2, int(c / max_c * 120)) if max_c else 2
         label = d[8:]
         count_label = str(c) if c > 0 else ""
 
-        if has_split and inflight_c > 0:
+        if has_split:
             shipped_h = max(1, int(shipped_c / max_c * 120)) if shipped_c > 0 else 0
             inflight_h = max(1, int(inflight_c / max_c * 120)) if inflight_c > 0 else 0
             bars.append(
@@ -478,12 +522,10 @@ def _bar_chart(daily: dict[str, int], since: str, shipped_daily: dict[str, int] 
                 f'</div>'
             )
         else:
-            is_peak = c == max_c and c > 0
-            cls = "bar-fill peak" if is_peak else "bar-fill"
             bars.append(
                 f'<div class="bar-day">'
                 f'<div style="color:#8b949e;font-size:9px;text-align:center;height:12px;line-height:12px">{count_label}</div>'
-                f'<div class="{cls}" style="height:{total_h}px;cursor:{"pointer" if c>0 else "default"}" title="{c} commits on {d}" data-date="{d}" data-count="{c}" {"onclick=openDay(this)" if c>0 else ""}></div>'
+                f'<div class="bar-fill" style="height:{total_h}px;cursor:{"pointer" if c>0 else "default"}" title="{c} commits on {d}" data-date="{d}" data-count="{c}" {"""onclick="openDay(this)" """ if c>0 else ""}></div>'
                 f'<span class="bar-label">{label}</span>'
                 f'</div>'
             )
@@ -533,12 +575,12 @@ def _churn_bars(top_files: list, web_url: str = "", branch: str = "main") -> str
         total = a + d
         add_pct = a / max_total * 100
         del_pct = d / max_total * 100
-        file_url = (f"{web_url}/-/blob/{branch}/{fname}" if "gitlab" in web_url else (f"{web_url}/blob/{branch}/{fname}" if web_url else "")) if a > 0 else ""
-        file_link = f'<a href="{file_url}" target="_blank" style="color:#c9d1d9;text-decoration:none;border-bottom:1px dotted rgba(139,148,158,0.4)">{short}</a>' if file_url else f'<span style="color:#8b949e">{short}</span>'
+        file_url = (f"{web_url}/-/blob/{urllib.parse.quote(branch, safe='')}/{urllib.parse.quote(fname, safe='/')}" if "gitlab" in web_url else (f"{web_url}/blob/{urllib.parse.quote(branch, safe='')}/{urllib.parse.quote(fname, safe='/')}" if web_url else "")) if a > 0 else ""
+        file_link = f'<a href="{file_url}" target="_blank" style="color:#c9d1d9;text-decoration:none;border-bottom:1px dotted rgba(139,148,158,0.4)">{_esc(short)}</a>' if file_url else f'<span style="color:#8b949e">{_esc(short)}</span>'
         html.append(
             f'<div style="margin-bottom:10px">'
             f'<div style="display:flex;justify-content:space-between;margin-bottom:3px">'
-            f'<span style="font-size:11px;word-break:break-all" title="{fname}">{file_link}</span>'
+            f'<span style="font-size:11px;word-break:break-all" title="{_esc(fname)}">{file_link}</span>'
             f'<span style="color:#8b949e;font-size:10px"><span style="color:#3fb950">+{a}</span> <span style="color:#f85149">-{d}</span></span>'
             f'</div>'
             f'<div style="display:flex;gap:2px;height:6px;border-radius:3px;overflow:hidden;width:100%">'
@@ -562,7 +604,7 @@ def _contrib_bar(contributors: list[tuple[int, str]]) -> str:
         # Link to Home people search (avoids guessing usernames)
         first, last = (name.split()[0], name.split()[-1]) if len(name.split()) >= 2 else (name, "")
         home_url = f"https://home.appian.com/suite/sites/home/page/home/searchresults#q={first}+{last}" if last else ""
-        name_html = f'<a href="{home_url}" target="_blank" style="color:#e6edf3;text-decoration:none;border-bottom:1px dotted rgba(139,148,158,0.3)">{name}</a>'
+        name_html = f'<a href="{home_url}" target="_blank" style="color:#e6edf3;text-decoration:none;border-bottom:1px dotted rgba(139,148,158,0.3)">{_esc(name)}</a>'
         rows.append(
             f'<div style="margin-bottom:7px">'
             f'<div style="display:flex;justify-content:space-between;margin-bottom:3px">'
@@ -699,37 +741,13 @@ def _normalize_themes(themes_html: str) -> str:
     result = result.replace('<li>', "<li style='padding:8px 0;border-bottom:1px solid rgba(48,54,61,0.4)'>")
     return result
 
-_HEAD_MODAL_SCRIPT = (
-    "<script>"
-    "function closeModal(){"
-    "var m=document.getElementById('arch-modal');"
-    "if(m){m.classList.remove('open');document.body.style.overflow='';}"
-    "}"
-    "function openCard(c){"
-    "var ds=c.querySelectorAll('div');"
-    "var t=document.getElementById('modal-title');"
-    "var d=document.getElementById('modal-desc');"
-    "var f=document.getElementById('modal-files');"
-    "var mc=document.getElementById('modal-commits');"
-    "if(t)t.textContent=ds[0]?ds[0].textContent:'';"
-    "if(d)d.textContent=ds[1]?ds[1].textContent:'';"
-    "if(f)f.textContent=ds[2]?ds[2].textContent:'';"
-    "var commits=window._archCommits||[];"
-    "if(mc)mc.innerHTML=commits.length"
-    "?'<table class=\'mc-table\'><tr><th>Date</th><th>Commit</th></tr>'"
-    "+commits.map(function(c){return '<tr><td class=\'mc-date\'>'+(c.date||'')+'</td>"
-    "<td class=\'mc-subj\'>'+(c.url?'<a href=\''+c.url+'\' target=\'_blank\'>'+c.subject+'</a>':c.subject)+'</td></tr>';}).join('')+'</table>'"
-    ":'No commit details.';"
-    "var m=document.getElementById('arch-modal');"
-    "if(m){m.classList.add('open');document.body.style.overflow='hidden';}"
-    "}"
-)
+_HEAD_MODAL_SCRIPT = ""
 
 
 def _write_modal_js(output_dir: Path) -> None:
     """Write eng-report-modal.js — clean JS, no quoting issues."""
     js_path = output_dir / "eng-report-modal.js"
-    js_path.write_text('function closeModal(){\n  var m=document.getElementById("arch-modal");\n  if(m){m.classList.remove("open");document.body.style.overflow="";}\n}\nfunction openCard(c){\n  var ds=c.querySelectorAll("div");\n  var ids=["modal-title","modal-desc","modal-files"];\n  for(var i=0;i<3;i++){var el=document.getElementById(ids[i]);if(el)el.textContent=ds[i]?ds[i].textContent:"";}\n  var mc=document.getElementById("modal-commits"),commits=window._archCommits||[];\n  if(mc){\n    if(commits.length){\n      var rows=commits.map(function(r){\n        var link=r.url?"<a href="+r.url+" target=_blank>"+r.subject+"</a>":r.subject;\n        return "<tr><td class=mc-date>"+(r.date||"")+"</td><td class=mc-subj>"+link+"</td></tr>";\n      }).join("");\n      mc.innerHTML="<table class=mc-table><tr><th>Date</th><th>Commit</th></tr>"+rows+"</table>";\n    } else { mc.textContent="No commit details."; }\n  }\n  var m=document.getElementById("arch-modal");\n  if(m){m.classList.add("open");document.body.style.overflow="hidden";}\n}\nfunction openDay(bar){\n  var date=bar.getAttribute("data-date"),count=bar.getAttribute("data-count");\n  if(!count||count==="0")return;\n  var commits=(window._dailyCommits||{})[date]||[];\n  var t=document.getElementById("modal-title");\n  if(t)t.textContent=date+" \\u2014 "+count+" commit"+(count==="1"?"":"s");\n  var d=document.getElementById("modal-desc"),f=document.getElementById("modal-files");\n  if(d)d.textContent="";if(f)f.textContent="";\n  var mc=document.getElementById("modal-commits");\n  if(mc){\n    if(commits.length){\n      var rows=commits.map(function(r){\n        var badge=r.s?"<span style=\'color:#3fb950;font-size:10px;margin-right:6px\'>shipped</span>":"<span style=\'color:#d29922;font-size:10px;margin-right:6px\'>in\\u2011flight</span>";\n        var link=r.url?"<a href="+r.url+" target=_blank>"+r.subject+"</a>":r.subject;\n        return "<tr><td class=mc-subj>"+badge+link+"</td></tr>";\n      }).join("");\n      mc.innerHTML="<table class=mc-table><tr><th>Commit</th></tr>"+rows+"</table>";\n    } else { mc.textContent="Commits from branch activity."; }\n  }\n  var m=document.getElementById("arch-modal");\n  if(m){m.classList.add("open");document.body.style.overflow="hidden";}\n}\n', encoding="utf-8")
+    js_path.write_text('function closeModal(){\n  var m=document.getElementById("arch-modal");\n  if(m){m.classList.remove("open");document.body.style.overflow="";}\n}\nfunction openCard(c){\n  var ds=c.querySelectorAll("div");\n  var ids=["modal-title","modal-desc","modal-files"];\n  for(var i=0;i<3;i++){var el=document.getElementById(ids[i]);if(el)el.textContent=ds[i]?ds[i].textContent:"";}\n  var mc=document.getElementById("modal-commits"),commits=window._archCommits||[];\n  if(mc){\n    if(commits.length){\n      var rows=commits.map(function(r){\n        var link=r.url?"<a href="+r.url+" target=_blank>"+r.subject+"</a>":r.subject;\n        return "<tr><td class=mc-date>"+(r.date||"")+"</td><td class=mc-subj>"+link+"</td></tr>";\n      }).join("");\n      mc.innerHTML="<table class=mc-table><tr><th>Date</th><th>Commit</th></tr>"+rows+"</table>";\n    } else { mc.textContent="No commit details."; }\n  }\n  var m=document.getElementById("arch-modal");\n  if(m){m.classList.add("open");document.body.style.overflow="hidden";}\n}\nfunction openDay(bar){\n  var date=bar.getAttribute("data-date"),count=bar.getAttribute("data-count");\n  if(!count||count==="0")return;\n  var commits=(window._dailyCommits||{})[date]||[];\n  var t=document.getElementById("modal-title");\n  if(t)t.textContent=date+" \\u2014 "+commits.length+" commit"+(commits.length===1?"":"s");\n  var d=document.getElementById("modal-desc"),f=document.getElementById("modal-files");\n  if(d)d.textContent="";if(f)f.textContent="";\n  var mc=document.getElementById("modal-commits");\n  if(mc){\n    if(commits.length){\n      var rows=commits.map(function(r){\n        var badge=r.s?"<span style=\'color:#3fb950;font-size:10px;margin-right:6px\'>shipped</span>":"<span style=\'color:#d29922;font-size:10px;margin-right:6px\'>in\\u2011flight</span>";\n        var link=r.url?"<a href="+r.url+" target=_blank>"+r.subject+"</a>":r.subject;\n        return "<tr><td class=mc-subj>"+badge+link+"</td></tr>";\n      }).join("");\n      mc.innerHTML="<table class=mc-table><tr><th>Commit</th></tr>"+rows+"</table>";\n    } else { mc.textContent="Commits from branch activity."; }\n  }\n  var m=document.getElementById("arch-modal");\n  if(m){m.classList.add("open");document.body.style.overflow="hidden";}\n}\n', encoding="utf-8")
 
 
 
@@ -743,24 +761,6 @@ def _make_arch_modal() -> str:
         '<div class="modal-files" id="modal-files"></div>'
         '<div class="modal-commits" id="modal-commits"></div>'
         '</div></div>'
-        '<script>'
-        'function closeModal(){'
-        'document.getElementById("arch-modal").classList.remove("open");'
-        'document.body.style.overflow="";}'
-
-        'function openCard(card){'
-        'var ds=card.querySelectorAll("div");'
-        'document.getElementById("modal-title").textContent=ds[0]?ds[0].textContent:"";'
-        'document.getElementById("modal-desc").textContent=ds[1]?ds[1].textContent:"";'
-        'document.getElementById("modal-files").textContent=ds[2]?ds[2].textContent:"";'
-        'var commits=window._archCommits||[];'
-        'var mc=document.getElementById("modal-commits");'
-        'mc.innerHTML=commits.length'
-        '?"<p style=\'color:#8b949e;font-size:12px;margin-bottom:8px\'>Commits this period</p><table><tr><th>Date</th><th>Commit</th></tr>"+commits.map(function(c){return "<tr><td style=\'color:#8b949e;white-space:nowrap;padding:5px 8px\'>"+c.date+"</td><td style=\'padding:5px 8px\'>"+(c.url?"<a href=\'"+c.url+"\' target=\'_blank\' style=\'color:#58a6ff;text-decoration:none\'>"+c.subject+"</a>":c.subject)+"</td></tr>";}).join("")+"</table>"'
-        ':"<p style=\'color:#8b949e;font-size:12px\'>No commit details available.</p>";'
-        'document.getElementById("arch-modal").classList.add("open");'
-        'document.body.style.overflow="hidden";}'
-        '</script>'
     )
 
 
@@ -777,8 +777,7 @@ def render_report(
     """Render a standalone HTML report from structured metrics."""
     m = metrics
     today = date.today().isoformat()
-    avg_day = f"{m['commits'] / 7:.1f}" if m["commits"] else "0"
-    commits_per_mr = f"{m['commits'] / m['merges']:.1f}" if m["merges"] else "—"
+    avg_day = f"{m['commits'] / max(1, (date.today() - _parse_since(since)).days):.1f}" if m["commits"] else "0"
     top_contributor = m["contributors"][0][1] if m["contributors"] else "—"
     top_pct = min(100, int(m["contributors"][0][0] / max(m["commits"], 1) * 100)) if m["contributors"] else 0
 
@@ -843,7 +842,7 @@ def render_report(
             recent_window = [r for r in m.get("commits_with_sha", []) if r["date"] >= _parse_since(since).isoformat()] or [r for r in m["recent"] if r["date"] >= _parse_since(since).isoformat()]
             def _commit_link(r):
                 sha = r.get("sha","")
-                subj = r.get("subject", r.get("subject",""))[:100]
+                subj = _esc(r.get("subject", r.get("subject",""))[:100])
                 if sha and web_url:
                     url = f"{web_url}/-/commit/{sha}" if "gitlab" in web_url else f"{web_url}/commit/{sha}"
                     return f'<a href="{url}" target="_blank" style="color:#e6edf3;text-decoration:none;border-bottom:1px dotted rgba(139,148,158,0.4)">{subj}</a>'
@@ -858,7 +857,7 @@ def render_report(
         body_parts.append('<div class="section"><h3>🕐 Recent Context (last 10 commits)</h3>')
         items = "\n".join(
             f'<div class="snapshot-item"><span style="color:#8b949e">{r["date"]}</span> '
-            f'<span class="subject">{r["subject"][:100]}</span></div>'
+            f'<span class="subject">{_esc(r["subject"][:100])}</span></div>'
             for r in m["recent"]
         )
         body_parts.append(items + "</div>")
@@ -881,7 +880,7 @@ def render_report(
             for c in m.get("commits_with_sha",[])[:20]:
                 sha = c.get("sha","")
                 url = (f"{web_url}/-/commit/{sha}" if is_gl else f"{web_url}/commit/{sha}") if sha and web_url else ""
-                related.append({"sha":sha,"date":c.get("date",""),"subject":c.get("subject",""),"url":url})
+                related.append({"sha":sha,"date":c.get("date",""),"subject":_esc(c.get("subject","")),"url":url})
             # Add arch-card class to each card by simple string replace
             arch_html = narrative["architecture"].replace(
                 'style="background:rgba(30,35,44,0.9)',
@@ -889,16 +888,6 @@ def render_report(
             )
             # Store commits in page-level JS var, cards call openArch with their index
             commits_script = f'<script>window._archCommits={json.dumps(related)};</script>'
-            # Also emit daily commits map for bar clicks
-            daily_map = {}
-            for c in m.get("commits_with_sha", []):
-                d2 = c.get("date","")
-                if d2:
-                    if d2 not in daily_map: daily_map[d2] = []
-                    sha = c.get("sha","")
-                    url2 = (f"{web_url}/-/commit/{sha}" if is_gl else f"{web_url}/commit/{sha}") if sha and web_url else ""
-                    daily_map[d2].append({"sha":sha,"subject":c.get("subject",""),"url":url2})
-            commits_script += f'<script>window._archDailyCommits={json.dumps(daily_map)};</script>'
             body_parts.append(
                 f'<div class="section" style="margin-bottom:16px">'
                 f'<h3>🏛 Architecture Evolution</h3>'
@@ -909,21 +898,23 @@ def render_report(
             )
 
         # Daily chart + categories
-        # Emit daily commits map for bar chart click modal
+        # Emit daily commits map for bar chart click modal (filtered to bar chart window)
         daily_commits_map = {}
         web_url = m.get("web_url", "")
         is_gl = "gitlab" in web_url
         shipped_shas = set()
         # Get shipped commit SHAs to tag them
         shipped_sha_raw = m.get("shipped_shas", set())
+        since_dt_str = _parse_since(since).isoformat()
+        today_str = date.today().isoformat()
         for c in m.get("commits_with_sha", []):
             d2 = c.get("date", "")
-            if d2:
+            if d2 and since_dt_str <= d2 <= today_str:
                 if d2 not in daily_commits_map: daily_commits_map[d2] = []
                 sha = c.get("sha", "")
                 url2 = (f"{web_url}/-/commit/{sha}" if is_gl else f"{web_url}/commit/{sha}") if sha and web_url else ""
                 is_shipped = sha in shipped_sha_raw
-                daily_commits_map[d2].append({"sha": sha, "subject": c.get("subject", ""), "url": url2, "s": is_shipped})
+                daily_commits_map[d2].append({"sha": sha, "subject": _esc(c.get("subject", "")), "url": url2, "s": is_shipped})
         body_parts.append(f'<script>window._dailyCommits={json.dumps(daily_commits_map)};</script>')
 
         body_parts.append('<div class="grid2">')
@@ -1329,6 +1320,8 @@ def run_entry(entry: dict, since: str, output_dir: Path, author_filter: str | No
         "web_url": agg.get("web_url", ""),
         "daily": agg.get("daily", {}),
         "low_activity": agg.get("low_activity", False),
+        "shipped_shas": list(agg.get("shipped_shas", set())),
+        "window_days": (date.today() - _parse_since(since)).days,
     }
     return summary
 
