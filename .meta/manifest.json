@@ -1485,6 +1485,202 @@
       ]
     },
     {
+      "slug": "codebase-health-audit",
+      "manifest_version": "capability-fabric.v0",
+      "layers": {
+        "minimal": {
+          "capability_type": "skill",
+          "summary": "Read-only brownfield codebase structural audit for LOC hotspots, god objects, import fan-out, dead code, prior-claim verification, drift detection, and slice-ready remediation.",
+          "role": "analyst",
+          "domain_tags": [
+            "review",
+            "import",
+            "codebase",
+            "health",
+            "audit"
+          ],
+          "required_inputs": [
+            "target path for the repository or subtree to audit",
+            "optional prior state block from a previous audit when claim verification or drift detection is requested",
+            "optional threshold overrides for LOC, method count, import fan-out, dead-code confidence floor, excludes, and language filters",
+            "any explicit scope boundaries, such as a monorepo subdirectory or language subset"
+          ],
+          "expected_outputs": [
+            "critical",
+            "**Lines:** 1247",
+            "**Threshold:** 1000 (critical)",
+            "**Evidence:** File contains monolithic request handling with no class decomposition",
+            "**Remediation:** [S] Extract request parsing into `request_parser.py` (~200 LOC), response formatting into `response_formatter.py` (~150 LOC)",
+            "Priority: P1",
+            "Complexity: S (mechanical extraction, no logic changes)",
+            "high",
+            "**Methods:** 28 (22 public, 6 private)",
+            "**Threshold:** 15 (warning)",
+            "**Evidence:** Class Manager handles user CRUD, notifications, permissions, and caching in one class",
+            "**Remediation:** [M] Split into UserRepository, NotificationService, PermissionChecker",
+            "Priority: P2",
+            "Complexity: M (requires interface extraction + dependency rewiring)",
+            "medium",
+            "**Imports:** 14 distinct modules",
+            "**Threshold:** 10 (warning)",
+            "**Evidence:** Utility grab-bag importing from every layer",
+            "**Remediation:** [S] Split into domain-specific utility modules",
+            "Priority: P3",
+            "Complexity: S (move functions to caller packages)",
+            "id: \"LOC-001\""
+          ],
+          "tool_policy": {
+            "allowed": [
+              "deterministic classification",
+              "metadata publication",
+              "surface generation"
+            ],
+            "forbidden": [
+              "orchestration",
+              "delegation decisions",
+              "runtime execution control"
+            ]
+          },
+          "resources": [
+            "ssot/codebase-health-audit.md"
+          ],
+          "packaging_profile": {
+            "capability_type": "skill",
+            "primary_surfaces": {
+              "codex": [
+                "codex_skill"
+              ],
+              "gemini": [
+                "gemini_skill"
+              ],
+              "claude": [
+                "claude_skill"
+              ],
+              "kiro": [
+                "kiro_skill"
+              ]
+            },
+            "wrapper_surfaces": {
+              "codex": [],
+              "gemini": [
+                "skill_wrapper"
+              ],
+              "claude": [
+                "skill_wrapper",
+                "plugin_wrapper"
+              ],
+              "kiro": [
+                "skill_wrapper",
+                "power_wrapper"
+              ]
+            },
+            "notes": [
+              "wrapper surfaces are additive deployment forms, not capability types",
+              "orchestrators must not infer execution authority from wrapper presence alone"
+            ]
+          },
+          "install_target": {
+            "recommended": "repo_local",
+            "confidence": 0.88,
+            "confirmation_required_for_apply": true,
+            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+            "supported": [
+              "global",
+              "repo_local",
+              "both"
+            ]
+          },
+          "emitted_surfaces": {
+            "codex": [
+              "codex_skill"
+            ],
+            "gemini": [
+              "gemini_skill"
+            ],
+            "claude": [
+              "claude_skill"
+            ],
+            "kiro": [
+              "kiro_skill"
+            ]
+          },
+          "source_provenance": {
+            "source_type": "LOCAL_FILE",
+            "normalized_source": "ssot/codebase-health-audit.md",
+            "policy_rule_id": "ssot.codebase-health-audit",
+            "content_sha256": "ssot"
+          },
+          "confidence": 0.94,
+          "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "Codebase Health Audit \u2014 Brownfield Structural Risk Report"
+        },
+        "expanded": {
+          "relationship_suggestions": [
+            "prefer explicit review or analyst companions before high-authority use"
+          ],
+          "capability_dependencies": [
+            "context",
+            "packaging"
+          ],
+          "overlap_candidates": [],
+          "migration_notes": [
+            "If the capability lands, compare it against existing entries before apply.",
+            "Relationship suggestions are advisory only and do not imply runtime routing."
+          ],
+          "adjustment_recommendations": [
+            "add an explicit primary objective before packaging",
+            "add deterministic in-scope sections to improve routing fitness",
+            "capture quality constraints or non-negotiables"
+          ]
+        },
+        "org_graph": {
+          "org_role": "specialist_with_workflow_surface",
+          "reports_to_suggestions": [],
+          "delegates_to_suggestions": [],
+          "collaborates_with_suggestions": [
+            "review",
+            "import"
+          ],
+          "authority_tier": "advisory",
+          "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
+        }
+      },
+      "display_name": "Codebase Health Audit \u2014 Brownfield Structural Risk Report",
+      "descriptor_version": "capability-fabric.descriptor.v0",
+      "family_slug": "codebase-health-audit",
+      "shared_summary": "Read-only brownfield codebase structural audit for LOC hotspots, god objects, import fan-out, dead code, prior-claim verification, drift detection, and slice-ready remediation.",
+      "shared_constraints": [
+        "**Read-only.** Never modify, create, or delete files in the target.",
+        "**Evidence-based.** Every finding cites specific file + metric. No subjective claims.",
+        "**Reproducible.** Same input + same codebase state = same output.",
+        "**Scoped.** Only analyze files matching `languages` config. Skip everything else.",
+        "**Conservative.** Prefer false negatives over false positives. If uncertain, don't flag it.",
+        "**Actionable.** Every finding \u2265 high severity includes a remediation with complexity estimate."
+      ],
+      "modes": [],
+      "benchmark_sources": [],
+      "consumption_hints": {},
+      "declared_capability": "skill",
+      "inferred_capability": "both",
+      "expected_surface_names": [
+        "codex_skill",
+        "gemini_skill",
+        "claude_skill",
+        "kiro_skill"
+      ],
+      "rubric_version": "capability-fabric.v0",
+      "invocation_hints": [
+        "audit this codebase for structural health",
+        "find LOC hotspots, god objects, coupling, or likely dead code",
+        "verify whether prior codebase-health findings still hold",
+        "compare this repo against a previous audit snapshot",
+        "produce a read-only brownfield health report",
+        "identify slice-ready refactors from concrete structural metrics",
+        "detect structural drift since the last audit"
+      ]
+    },
+    {
       "slug": "converge",
       "manifest_version": "capability-fabric.v0",
       "layers": {
@@ -4895,6 +5091,7 @@
       ".gemini/skills/architecture/SKILL.md",
       ".gemini/skills/auto-research/SKILL.md",
       ".gemini/skills/code-review/SKILL.md",
+      ".gemini/skills/codebase-health-audit/SKILL.md",
       ".gemini/skills/converge/SKILL.md",
       ".gemini/skills/docs-review-expert/SKILL.md",
       ".gemini/skills/eng-report/SKILL.md",
@@ -4930,6 +5127,7 @@
       ".claude/skills/architecture/SKILL.md",
       ".claude/skills/auto-research/SKILL.md",
       ".claude/skills/code-review/SKILL.md",
+      ".claude/skills/codebase-health-audit/SKILL.md",
       ".claude/skills/converge/SKILL.md",
       ".claude/skills/docs-review-expert/SKILL.md",
       ".claude/skills/eng-report/SKILL.md",
@@ -4978,6 +5176,7 @@
       ".kiro/skills/architecture/SKILL.md",
       ".kiro/skills/auto-research/SKILL.md",
       ".kiro/skills/code-review/SKILL.md",
+      ".kiro/skills/codebase-health-audit/SKILL.md",
       ".kiro/skills/converge/SKILL.md",
       ".kiro/skills/docs-review-expert/SKILL.md",
       ".kiro/skills/eng-report/SKILL.md",
@@ -5000,6 +5199,7 @@
       ".codex/skills/architecture/SKILL.md",
       ".codex/skills/auto-research/SKILL.md",
       ".codex/skills/code-review/SKILL.md",
+      ".codex/skills/codebase-health-audit/SKILL.md",
       ".codex/skills/converge/SKILL.md",
       ".codex/skills/docs-review-expert/SKILL.md",
       ".codex/skills/eng-report/SKILL.md",
@@ -5042,6 +5242,7 @@
       ".codex/skills/auto-research/resources/templates/promotion-packet.md.tmpl",
       ".codex/skills/auto-research/resources/templates/scorecard.json.tmpl",
       ".codex/skills/code-review/resources/capability.json",
+      ".codex/skills/codebase-health-audit/resources/capability.json",
       ".codex/skills/converge/resources/capability.json",
       ".codex/skills/docs-review-expert/resources/capability.json",
       ".codex/skills/eng-report/resources/capability.json",
@@ -5089,6 +5290,7 @@
       ".gemini/skills/auto-research/resources/templates/promotion-packet.md.tmpl",
       ".gemini/skills/auto-research/resources/templates/scorecard.json.tmpl",
       ".gemini/skills/code-review/resources/capability.json",
+      ".gemini/skills/codebase-health-audit/resources/capability.json",
       ".gemini/skills/converge/resources/capability.json",
       ".gemini/skills/docs-review-expert/resources/capability.json",
       ".gemini/skills/eng-report/resources/capability.json",
@@ -5136,6 +5338,7 @@
       ".claude/skills/auto-research/resources/templates/promotion-packet.md.tmpl",
       ".claude/skills/auto-research/resources/templates/scorecard.json.tmpl",
       ".claude/skills/code-review/resources/capability.json",
+      ".claude/skills/codebase-health-audit/resources/capability.json",
       ".claude/skills/converge/resources/capability.json",
       ".claude/skills/docs-review-expert/resources/capability.json",
       ".claude/skills/eng-report/resources/capability.json",
@@ -5183,6 +5386,7 @@
       ".kiro/skills/auto-research/resources/templates/promotion-packet.md.tmpl",
       ".kiro/skills/auto-research/resources/templates/scorecard.json.tmpl",
       ".kiro/skills/code-review/resources/capability.json",
+      ".kiro/skills/codebase-health-audit/resources/capability.json",
       ".kiro/skills/converge/resources/capability.json",
       ".kiro/skills/docs-review-expert/resources/capability.json",
       ".kiro/skills/eng-report/resources/capability.json",

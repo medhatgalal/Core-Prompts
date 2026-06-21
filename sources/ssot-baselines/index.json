@@ -471,6 +471,28 @@
         "last_materialized_at": "2026-06-02T18:41:46.795733+00:00"
       },
       "selected_commit": "e4f32a18"
+    },
+    "codebase-health-audit": {
+      "strategy": "head_snapshot",
+      "group": "current_oracle",
+      "baseline_path": "sources/ssot-baselines/codebase-health-audit/baseline.md",
+      "richness_score": 7,
+      "line_count": 436,
+      "reason": "Current SSOT baseline source snapshot materialized into the source library because the stored baseline was missing, stale, or structurally degraded.",
+      "historical_proof": {
+        "current_head_commit": null,
+        "current_head_richness_score": 4,
+        "current_head_line_count": 436,
+        "materialized_from_commit": null,
+        "materialized_from_source_kind": "current_ssot",
+        "materialized_from_path": "ssot/codebase-health-audit.md",
+        "materialized_from_sha256": "1ffb301944263f68d4f796536d924574b9e51f10b9a5e2436d4644b7fa303234",
+        "last_materialized_at": "2026-06-21T01:56:31.403032+00:00"
+      },
+      "selected_commit": null,
+      "equivalent_commits": [],
+      "expected_companions": [],
+      "scenario_matrix": []
     }
   }
 }

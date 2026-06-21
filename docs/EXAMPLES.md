@@ -158,6 +158,37 @@ Follow with:
 
 > Now tell me which findings are blocking merge versus follow-up cleanup.
 
+### `codebase-health-audit`
+
+Use when:
+
+- you need a read-only structural audit of a brownfield repository
+- LOC hotspots, god objects, coupling, or likely dead code matter
+- you want to verify prior audit claims against live files
+- you need drift analysis between audit snapshots
+
+Why this skill first:
+
+- start here when the job is structural codebase health, not feature scope completeness, commit review, or architecture redesign
+- overlap with `architecture`, `feature-status`, and `code-review` is expected; use this skill when metric-backed repository structure is the primary evidence source
+
+Ask:
+
+> Use `codebase-health-audit` to audit this repo for LOC hotspots, god objects, coupling, likely dead code, and drift from this prior audit block.
+
+Expected output:
+
+- YAML-frontmatter audit summary
+- verified structural findings with severity and metrics
+- claim verification when prior state is provided
+- drift trajectory and rationale
+- slice-ready remediation recommendations
+- prior-state block for the next audit run
+
+Follow with:
+
+> Now route only the high-severity structural findings to `architecture` for remediation design, without editing files yet.
+
 ### `address-code-review`
 
 Use when:

@@ -10,7 +10,7 @@ The right mental model is simple:
 
 If you are already using Core-Prompts in a CLI, start there. If you are importing a new capability family, go to UAC next. If you are rebuilding surfaces, validating state, deploying, or preparing release work, use the repo tooling after that.
 
-The current generated surfaces ship `20` skills across all supported CLIs and `11` advisory agents on agent-capable surfaces.
+The current generated surfaces ship `21` skills across all supported CLIs and `11` advisory agents on agent-capable surfaces.
 
 For review work, pick the capability by intent:
 
@@ -32,6 +32,7 @@ These are the currently shipped skills with a concrete starter ask for each one:
 | `analyze-context` | work through a broad repo investigation without losing context | "Use `analyze-context` to inspect this subsystem over several files and keep a durable analysis trail before you recommend changes." | file map, durable findings trail, unresolved questions, and a scoped change plan |
 | `architecture` | design or review interfaces, boundaries, and migration safety | "Use `architecture` to recommend the safest design for this capability layout." | options, tradeoffs, migration guidance, and a rollback-aware recommendation |
 | `auto-research` | improve a prompt, workflow, or system through experiments | "Use `auto-research` to improve our review prompt so it catches more behavioral regressions without increasing noise." | goal contract, evaluation plan, experiments, and a winner only after evidence |
+| `codebase-health-audit` | audit brownfield structural health without changing the repo | "Use `codebase-health-audit` to audit this repo for LOC hotspots, god objects, coupling, dead code, and drift from this prior audit block." | verified structural findings, drift analysis, and slice-ready remediation |
 | `code-review` | review staged changes, diffs, or commits before commit, push, merge, or release | "Use `code-review` to review my staged changes before I commit." | findings first, scope risks, message-quality feedback, and merge readiness |
 | `address-code-review` | apply selected fixes for existing PR/MR reviewer comments | "Use `address-code-review` to inspect the open review comments on this MR and address the selected fixes only." | comments found, selected fixes, changes applied, commit guidance, and follow-up review |
 | `converge` | compare competing proposals and force one recommendation | "Use `converge` to compare these rollout plans and recommend one." | overlap map, explicit conflicts, decision criteria, and one final recommendation |
@@ -55,6 +56,7 @@ These are the currently shipped skills with a concrete starter ask for each one:
 | Capability | Start with it when you need to... | Example ask | What good output looks like |
 | --- | --- | --- | --- |
 | `auto-research` | improve a prompt, workflow, or system through bounded experiments | "Use `auto-research` to improve our review prompt so it catches more behavioral regressions without increasing noise." | a goal contract, experiment plan, evaluation criteria, and a winner only after evidence |
+| `codebase-health-audit` | find structural brownfield risk without mutating code | "Use `codebase-health-audit` to audit this repo for LOC hotspots, god objects, coupling, likely dead code, and drift." | metric-backed findings, prior-claim verification when provided, and slice-ready remediation |
 | `supercharge` | harden a rough prompt, plan, proposal, or first-principles audit before execution | "Use `supercharge /basis` to audit this onboarding workflow for irreducible work, waste, and redesign moves." | sharper framing, stronger constraints, clearer sequencing, and first-principles accounting when requested |
 | `converge` | compare competing options and force one recommendation | "Use `converge` to compare these rollout plans and recommend one." | explicit conflicts, common comparison criteria, and one final recommendation |
 | `docs-review-expert` | fix docs structure, drift, and explainability | "Use `docs-review-expert` to tell me what belongs in `README.md` versus `docs/`, what drifted, and what to fix first." | placement decisions, drift findings, rewrite guidance, and review timing |

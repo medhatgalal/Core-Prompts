@@ -517,6 +517,111 @@
       "advisory_only": true
     },
     {
+      "slug": "codebase-health-audit",
+      "display_name": "Codebase Health Audit \u2014 Brownfield Structural Risk Report",
+      "capability_type": "skill",
+      "summary": "Read-only brownfield codebase structural audit for LOC hotspots, god objects, import fan-out, dead code, prior-claim verification, drift detection, and slice-ready remediation.",
+      "role": "analyst",
+      "domain_tags": [
+        "review",
+        "import",
+        "codebase",
+        "health",
+        "audit"
+      ],
+      "required_inputs": [
+        "target path for the repository or subtree to audit",
+        "optional prior state block from a previous audit when claim verification or drift detection is requested",
+        "optional threshold overrides for LOC, method count, import fan-out, dead-code confidence floor, excludes, and language filters",
+        "any explicit scope boundaries, such as a monorepo subdirectory or language subset"
+      ],
+      "expected_outputs": [
+        "critical",
+        "**Lines:** 1247",
+        "**Threshold:** 1000 (critical)",
+        "**Evidence:** File contains monolithic request handling with no class decomposition",
+        "**Remediation:** [S] Extract request parsing into `request_parser.py` (~200 LOC), response formatting into `response_formatter.py` (~150 LOC)",
+        "Priority: P1",
+        "Complexity: S (mechanical extraction, no logic changes)",
+        "high",
+        "**Methods:** 28 (22 public, 6 private)",
+        "**Threshold:** 15 (warning)",
+        "**Evidence:** Class Manager handles user CRUD, notifications, permissions, and caching in one class",
+        "**Remediation:** [M] Split into UserRepository, NotificationService, PermissionChecker",
+        "Priority: P2",
+        "Complexity: M (requires interface extraction + dependency rewiring)",
+        "medium",
+        "**Imports:** 14 distinct modules",
+        "**Threshold:** 10 (warning)",
+        "**Evidence:** Utility grab-bag importing from every layer",
+        "**Remediation:** [S] Split into domain-specific utility modules",
+        "Priority: P3",
+        "Complexity: S (move functions to caller packages)",
+        "id: \"LOC-001\""
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ]
+      },
+      "confidence": 0.94,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [
+        "prefer explicit review or analyst companions before high-authority use"
+      ],
+      "quality_status": null,
+      "benchmark_profile": null,
+      "preferred_use_cases": [],
+      "artifact_conventions": [],
+      "invocation_style": null,
+      "requires_human_confirmation": null,
+      "org_graph": {
+        "org_role": "specialist_with_workflow_surface",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "review",
+          "import"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
       "slug": "converge",
       "display_name": "Converge \u2014 Multi-Source Synthesis, Conflict Surfacing, and Final Recommendation",
       "capability_type": "both",

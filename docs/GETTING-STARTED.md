@@ -16,6 +16,7 @@ If Core-Prompts is already installed in Codex, Gemini, Claude, or Kiro, begin wi
 | --- | --- | --- |
 | `docs-review-expert` | "Use `docs-review-expert` to review our docs IA and recommend the smallest rewrite that restores clarity." | placement decisions, drift findings, and rewrite guidance |
 | `gitops-review` | "Use `gitops-review` to tell me whether this branch is ready for PR and what blockers remain." | gate type, blockers, companion reviews, and next steps |
+| `codebase-health-audit` | "Use `codebase-health-audit` to audit this repo for LOC hotspots, god objects, coupling, likely dead code, and drift from this prior audit block." | metric-backed structural findings, drift analysis, and slice-ready remediation |
 | `code-review` | "Use `code-review` to review my staged changes before I commit." | findings, scope assessment, message guidance, and merge readiness |
 | `address-code-review` | "Use `address-code-review` to inspect the open MR comments and apply only the selected reviewer-requested fixes." | comments found, targeted fixes, changed files, commit guidance, and follow-up review |
 | `eng-report` | "Use `eng-report` to generate an HTML progress report for this repo since 2026-06-01." | git-derived metrics, report path, and narrative tied to deterministic data |

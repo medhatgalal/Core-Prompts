@@ -1,3 +1,12 @@
+## v1.9.3 - 2026-06-21
+
+- Shipped `codebase-health-audit` as a read-only brownfield structural audit skill:
+  - added LOC hotspot, god-object, import fan-out, circular import, and conservative dead-code audit phases
+  - preserved prior-claim verification, drift trajectory computation, machine-readable audit frontmatter, and slice-ready remediation recommendations
+  - kept feature completeness, commit review, and architecture design as explicit companion scopes rather than treating overlap as a blocker
+- Updated README, Getting Started, and Examples so the new structural-audit skill is discoverable before generated catalog pages.
+- Bumped the release package version to `v1.9.3`.
+
 ## v1.9.2 - 2026-06-07
 
 - Shipped the SuperCharge `/basis` module for first-principles cost and complexity accounting across prompts, software plans, research workflows, operations, and general knowledge work.

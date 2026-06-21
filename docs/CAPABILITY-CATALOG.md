@@ -2,7 +2,7 @@
 
 Generated from canonical manifest and descriptor metadata. Use this page to see what Core-Prompts ships, what each capability is for, and where it lands.
 
-- Capability count: `20`
+- Capability count: `21`
 
 ## Start Here
 - `docs-review-expert` — Docs Review Expert — Documentation IA, Drift, and Release Hygiene: Documentation Review Expert for information architecture, explainable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.
@@ -12,10 +12,10 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `testing` — Testing Studio — Test Design and Coverage Analysis: Testing Studio for unit-test generation, end-to-end test design, edge-case discovery, and coverage gap analysis.
 
 ## By CLI
-- `claude`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `converge`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `codex`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `converge`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `gemini`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `converge`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `kiro`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `converge`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `claude`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `codebase-health-audit`, `converge`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `codex`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `codebase-health-audit`, `converge`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `gemini`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `codebase-health-audit`, `converge`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `kiro`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `codebase-health-audit`, `converge`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
 
 ## By Use Case
 - `address`: `address-code-review`
@@ -23,8 +23,10 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `analyze`: `analyze-context`
 - `architecture`: `architecture`, `docs-review-expert`, `eng-report`
 - `assistant`: `ic-assistant`
+- `audit`: `codebase-health-audit`
 - `auto`: `auto-research`
 - `code`: `address-code-review`, `code-review`
+- `codebase`: `codebase-health-audit`
 - `conflict`: `resolve-conflict`
 - `context`: `analyze-context`, `threader`
 - `converge`: `converge`
@@ -32,7 +34,8 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `expert`: `docs-review-expert`
 - `feature`: `feature-status`
 - `gitops`: `gitops-review`
-- `import`: `uac-import`
+- `health`: `codebase-health-audit`
+- `import`: `codebase-health-audit`, `uac-import`
 - `intel`: `weekly-intel`
 - `mentor`: `mentor`
 - `pitch`: `pitch`
@@ -42,7 +45,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `report`: `eng-report`
 - `research`: `auto-research`
 - `resolve`: `resolve-conflict`
-- `review`: `address-code-review`, `code-review`, `docs-review-expert`, `gitops-review`, `weekly-intel`
+- `review`: `address-code-review`, `code-review`, `codebase-health-audit`, `docs-review-expert`, `gitops-review`, `weekly-intel`
 - `status`: `feature-status`
 - `supercharge`: `supercharge`
 - `testing`: `testing`
@@ -108,6 +111,21 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
   - optimize this system without regressing quality
   - guide me from setup to experiments to commit and merge
 - Summary: Researches and optimizes prompts, skills, tools, workflows, and code with minimal-loop investigation, bounded search, and baseline comparison. Use for experiments, behavioral variant comparison, or proof that a candidate beats baseline.
+
+### Codebase Health Audit — Brownfield Structural Risk Report
+- Slug: `codebase-health-audit`
+- Type: `skill`
+- Install target: `repo_local`
+- Supported CLIs: `claude, codex, gemini, kiro`
+- Invocation hints:
+  - audit this codebase for structural health
+  - find LOC hotspots, god objects, coupling, or likely dead code
+  - verify whether prior codebase-health findings still hold
+  - compare this repo against a previous audit snapshot
+  - produce a read-only brownfield health report
+  - identify slice-ready refactors from concrete structural metrics
+  - detect structural drift since the last audit
+- Summary: Read-only brownfield codebase structural audit for LOC hotspots, god objects, import fan-out, dead code, prior-claim verification, drift detection, and slice-ready remediation.
 
 ### Commit Review — Git Commit Quality Gate
 - Slug: `code-review`
