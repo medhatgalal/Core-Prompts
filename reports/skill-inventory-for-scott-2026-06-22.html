@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Core-Prompts Skill Inventory for Scott - 2026-06-22</title>
+  <style>
+    :root { --ink:#172026; --muted:#5b6870; --line:#dbe3e6; --paper:#f6f8f7; --panel:#fff; --navy:#20364a; --teal:#0f766e; --green:#3f6f45; --gold:#a16207; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:var(--paper); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; line-height:1.45; }
+    header { color:#fff; background:linear-gradient(135deg,var(--navy),var(--teal) 62%,var(--green)); padding:48px 28px 34px; }
+    .wrap, main { max-width:1240px; margin:0 auto; }
+    h1 { margin:0; max-width:900px; font-size:40px; line-height:1.08; letter-spacing:0; }
+    h2 { margin:0; font-size:22px; letter-spacing:0; }
+    .eyebrow { margin:0 0 10px; font-size:13px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; opacity:.88; }
+    .subtitle { max-width:960px; margin:16px 0 0; color:rgba(255,255,255,.86); font-size:17px; }
+    .pills { display:flex; flex-wrap:wrap; gap:9px; margin-top:24px; }
+    .pill { border:1px solid rgba(255,255,255,.3); border-radius:999px; padding:7px 11px; background:rgba(255,255,255,.11); font-size:13px; font-weight:700; }
+    main { padding:26px 28px 56px; }
+    .metrics { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; margin:-48px 0 24px; }
+    .metric, section { background:var(--panel); border:1px solid var(--line); border-radius:8px; box-shadow:0 14px 32px rgba(23,32,38,.08); }
+    .metric { padding:17px; }
+    .metric strong { display:block; color:var(--navy); font-size:30px; line-height:1; }
+    .metric span { display:block; margin-top:8px; color:var(--muted); font-size:13px; font-weight:700; }
+    .note { margin:0 0 20px; padding:13px 15px; border-left:4px solid var(--gold); border-radius:6px; background:#fff9eb; color:#594016; font-size:14px; }
+    section { margin-top:22px; overflow:hidden; }
+    .section-head { display:flex; justify-content:space-between; gap:24px; padding:20px 22px; border-bottom:1px solid var(--line); background:#fbfcfb; }
+    .section-head p { max-width:900px; margin:7px 0 0; color:var(--muted); }
+    .tag { white-space:nowrap; align-self:flex-start; border:1px solid var(--line); border-radius:999px; padding:6px 10px; color:var(--muted); background:#fff; font-size:12px; font-weight:800; }
+    .table-wrap { overflow-x:auto; }
+    table { width:100%; min-width:1080px; border-collapse:collapse; }
+    th { padding:11px 13px; background:#eef3f1; border-bottom:1px solid var(--line); color:#263942; text-align:left; font-size:12px; letter-spacing:.04em; text-transform:uppercase; vertical-align:top; }
+    td { padding:12px 13px; border-bottom:1px solid #edf1f2; vertical-align:top; font-size:14px; }
+    tr:nth-child(even) td { background:#fcfdfc; }
+    tr:last-child td { border-bottom:0; }
+    code { display:inline-block; margin:0 4px 4px 0; padding:2px 5px; border-radius:5px; background:#edf3f6; color:var(--navy); font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace; font-size:12px; }
+    .fit { min-width:70px; display:inline-block; border-radius:999px; padding:4px 8px; text-align:center; background:#e6f3ef; color:var(--teal); font-size:12px; font-weight:800; }
+    footer { margin-top:24px; color:var(--muted); font-size:13px; }
+    @media (max-width:900px) { header{padding:36px 18px 28px} main{padding:20px 16px 44px} h1{font-size:31px}.metrics{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:-34px}.section-head{display:block}.tag{display:inline-block;margin-top:12px} }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <p class="eyebrow">Core-Prompts skill inventory</p>
+      <h1>Skill usage map for Scott</h1>
+      <p class="subtitle">Raw Core-Prompts skills plus the broader combined skill families visible in this Codex session, with usage modes, example prompts, and automation or loop-engineering angles.</p>
+      <div class="pills"><span class="pill">Generated 2026-06-22</span><span class="pill">Repo: Core-Prompts</span><span class="pill">Location: reports/</span><span class="pill">Canonical surfaces untouched</span></div>
+    </div>
+  </header>
+  <main>
+    <div class="metrics">
+      <div class="metric"><strong>21</strong><span>raw Core-Prompts skills</span></div>
+      <div class="metric"><strong>19</strong><span>combined skill families</span></div>
+      <div class="metric"><strong>4</strong><span>usage lenses per row</span></div>
+      <div class="metric"><strong>1</strong><span>reviewable HTML artifact</span></div>
+    </div>
+    <p class="note">Placement rationale: Core-Prompts policy says generated review evidence belongs under <code>reports/</code>, not canonical metadata. This report is intentionally informational and does not modify <code>ssot/</code>, generated surfaces, or capability descriptors.</p>
+
+    <section>
+      <div class="section-head"><div><h2>Raw Core-Prompts Skills</h2><p>Individual repository-local Core-Prompts skills, expressed as direct operating capabilities Scott can inspect or use as inputs to future promotion, automation, and loop design.</p></div><span class="tag">individual skills</span></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Skill</th><th>Basic usage</th><th>Advanced usage</th><th>Example prompt</th><th>Automation / loop-engineering usage</th><th>Fit</th></tr></thead>
+        <tbody>
+          <tr><td><code>address-code-review</code></td><td>Apply selected PR/MR comments.</td><td>Preserve unrelated changes and verify touched behavior only.</td><td>"Apply the safe reviewer comments and summarize risky ones."</td><td>Review-comment ingest, patch, test, summarize, unresolved-decision queue.</td><td><span class="fit">High</span></td></tr>
+          <tr><td><code>analyze-context</code></td><td>Persist investigation state.</td><td>Track hypotheses, evidence, confidence, and remaining paths across compaction.</td><td>"Track this multi-file investigation so it can resume cleanly."</td><td>Durable research loop with checkpoints and explicit stop conditions.</td><td><span class="fit">High</span></td></tr>
+          <tr><td><code>architecture</code></td><td>Design APIs, schemas, and boundaries.</td><td>Compare options with ownership, migration, and failure-mode trade-offs.</td><td>"Design the smallest API contract for this registry."</td><td>Decision loop: constraints, options, convergence, code validation.</td><td><span class="fit">High</span></td></tr>
+          <tr><td><code>auto-research</code></td><td>Run bounded research.</td><td>Baseline, optimize, compare, and converge without open-ended search.</td><td>"Research better judge gates and produce a bounded plan."</td><td>Research loop with baseline, candidates, scorecard, convergence, archive.</td><td><span class="fit">High</span></td></tr>
+          <tr><td><code>code-review</code></td><td>Review diffs or commits.</td><td>Prioritize regressions, missing tests, release risk, and commit quality.</td><td>"Review my staged diff before I commit."</td><td>Pre-merge gate loop with findings, patch recommendations, and re-review.</td><td><span class="fit">High</span></td></tr>
+          <tr><td><code>codebase-health-audit</code></td><td>Run read-only structural audits.</td><td>Find hotspots, god objects, fan-out, dead code, and drift.</td><td>"Audit this repo for structural risk with evidence."</td><td>Periodic repo-health loop with metrics snapshots and follow-up slices.</td><td><span class="fit">High</span></td></tr>
+          <tr><td><code>converge</code></td><td>Synthesize proposals or findings.</td><td>Surface conflicts and produce one defensible recommendation.</td><td>"Converge these three plans into one decision."</td><td>Candidate collection, conflict scoring, choice, rationale record.</td><td><span class="fit">High</span></td></tr>
+          <tr><td><code>docs-review-expert</code></td><td>Review docs quality.</td><td>Detect drift and improve information architecture.</td><td>"Review these docs for drift against repo behavior."</td><td>Docs freshness loop with command checks, drift report, patch queue.</td><td><span class="fit">High</span></td></tr>
+          <tr><td><code>eng-report</code></td><td>Generate engineering dashboards.</td><td>Summarize velocity, authorship, architecture change, and operational risk.</td><td>"Create a weekly engineering dashboard for this repo."</td><td>Scheduled reporting loop from git collection to HTML delivery.</td><td><span class="fit">High</span></td></tr>
+          <tr><td><code>feature-status</code></td><td>Assess feature completeness.</td><td>Separate claimed scope from implemented proof and rank gaps.</td><td>"Tell me whether this feature is complete and prove it."</td><td>Readiness loop with scope map, evidence, gaps, go/no-go.</td><td><span class="fit">High</span></td></tr>
+          <tr><td><code>gitops-review</code></td><td>Check PR/release hygiene.</td><td>Assess CI, changelog, packaging, merge, tag, push, and release safety.</td><td>"Run GitOps readiness before I ship this branch."</td><td>Release gate loop with status checks and artifact validation.</td><td><span class="fit">High</span></td></tr>
+          <tr><td><code>ic-assistant</code></td><td>Support incident command.</td><td>Track phases, decisions, mitigations, owners, and comms cadence.</td><td>"Act as IC assistant for this production incident."</td><td>Incident heartbeat loop with actions, comms prompts, and resolution summary.</td><td><span class="fit">High</span></td></tr>
+          <tr><td><code>mentor</code></td><td>Provide senior engineering review.</td><td>Challenge assumptions and sharpen execution posture.</td><td>"Review my implementation plan like a staff engineer."</td><td>Planning loop with critique, revision, decision gates, execution checks.</td><td><span class="fit">Med</span></td></tr>
+          <tr><td><code>pitch</code></td><td>Create or review Shape Up pitches.</td><td>Refine appetite, boundaries, risks, rabbit holes, and no-gos.</td><td>"Turn this idea into a Shape Up pitch."</td><td>Product-shaping loop from raw idea to accepted pitch.</td><td><span class="fit">High</span></td></tr>
+          <tr><td><code>pulse</code></td><td>Triage Gmail and Chat.</td><td>Classify urgent, waiting, FYI, sweep, and action items deterministically.</td><td>"Run a read-only pulse triage for today."</td><td>Daily comms loop with priority queue and approval-gated actions.</td><td><span class="fit">High</span></td></tr>
+          <tr><td><code>resolve-conflict</code></td><td>Resolve merge conflicts.</td><td>Merge additively and document trade-offs when sides disagree.</td><td>"Resolve this conflict without dropping either side's intent."</td><td>Conflict loop with intent extraction, merged patch, tests, notes.</td><td><span class="fit">High</span></td></tr>
+          <tr><td><code>supercharge</code></td><td>Harden prompts and workflows.</td><td>Grade artifacts, critique weaknesses, and produce stronger replacements.</td><td>"Supercharge this automation prompt."</td><td>Prompt improvement loop with score, critique, rewrite, benchmark.</td><td><span class="fit">High</span></td></tr>
+          <tr><td><code>testing</code></td><td>Design or add tests.</td><td>Find edge cases, coverage gaps, fixtures, and verification strategy.</td><td>"Design tests for this workflow and add high-value cases."</td><td>Regression loop with gap detection, test creation, execution, flake notes.</td><td><span class="fit">High</span></td></tr>
+          <tr><td><code>threader</code></td><td>Export or preserve context.</td><td>Create compact handoffs and continuation-ready state.</td><td>"Thread this investigation into a reusable handoff."</td><td>Context-preservation loop for long tasks and cross-thread handoff.</td><td><span class="fit">High</span></td></tr>
+          <tr><td><code>uac-import</code></td><td>Map external prompt sources into Core-Prompts flows.</td><td>Plan, judge, and apply imports with source mapping and benchmarks.</td><td>"Import this external capability into the Core-Prompts SSOT path."</td><td>Capability promotion loop: source audit, mapping, benchmark, diff, build, validate.</td><td><span class="fit">High</span></td></tr>
+          <tr><td><code>weekly-intel</code></td><td>Gather weekly intelligence.</td><td>Converge, fact-check, and produce executive-ready reports.</td><td>"Create a weekly intel report from repo, docs, and comms."</td><td>Scheduled intel loop with collection, fact audit, synthesis, delivery.</td><td><span class="fit">High</span></td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section>
+      <div class="section-head"><div><h2>Combined Available Skill Families</h2><p>Grouped view across Core-Prompts, system skills, plugins, connectors, document tooling, browser control, GitHub, Google Workspace, and security capabilities visible in the same session.</p></div><span class="tag">combined view</span></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Skill group</th><th>Representative skills</th><th>Basic usage</th><th>Advanced usage</th><th>Example prompt</th><th>Automation / loop-engineering usage</th></tr></thead>
+        <tbody>
+          <tr><td>Core agent assets</td><td><code>imagegen</code><code>openai-docs</code><code>plugin-creator</code><code>skill-creator</code><code>skill-installer</code></td><td>Generate images, use OpenAI docs, create or install assets.</td><td>Scaffold reusable capabilities with docs-backed behavior.</td><td>"Create a Codex skill for release checks."</td><td>Reusable loop components, shared skills, and report visuals.</td></tr>
+          <tr><td>Core-Prompts promotion</td><td><code>uac-import</code><code>auto-research</code><code>supercharge</code><code>converge</code><code>mentor</code></td><td>Import, critique, refine, and synthesize capabilities.</td><td>Benchmark-driven SSOT uplift.</td><td>"Import this prompt and show the diff."</td><td>Baseline, critique, apply, validate, stop-condition loops.</td></tr>
+          <tr><td>Architecture and planning</td><td><code>architecture</code><code>pitch</code><code>feature-status</code><code>loop-library</code></td><td>Design APIs, pitches, audits, and workflows.</td><td>Decision records with boundaries and failure modes.</td><td>"Design a loop to triage stale PRs weekly."</td><td>Trigger, state, action, verification, escalation, stop.</td></tr>
+          <tr><td>Code review and fixes</td><td><code>code-review</code><code>address-code-review</code><code>testing</code><code>resolve-conflict</code></td><td>Review diffs, apply comments, add tests, resolve conflicts.</td><td>Risk-ranked findings with scoped patches.</td><td>"Review staged changes for regressions."</td><td>PR review, conflict resolution, test-generation loops.</td></tr>
+          <tr><td>Repo health and GitOps</td><td><code>codebase-health-audit</code><code>gitops-review</code><code>gh-fix-ci</code><code>github:yeet</code></td><td>Audit structure, check readiness, fix CI, publish PRs.</td><td>Commit, push, PR, changelog, CI, release gates.</td><td>"Run repo hygiene before release."</td><td>CI repair, release readiness, guarded merge loops.</td></tr>
+          <tr><td>GitHub work</td><td><code>github:github</code><code>github:gh-address-comments</code><code>github:gh-fix-ci</code><code>github:yeet</code></td><td>Inspect repos, PRs, issues, comments, and checks.</td><td>Address review threads and publish draft PRs.</td><td>"Apply unresolved safe PR comments."</td><td>Review ingest, fix, test, push, re-check loops.</td></tr>
+          <tr><td>Security</td><td><code>security-scan</code><code>security-diff-scan</code><code>deep-security-scan</code><code>threat-model</code><code>validation</code><code>fix-finding</code></td><td>Scan repos or diffs and triage findings.</td><td>Validate exploitability and model attack paths.</td><td>"Run a security diff scan."</td><td>Discovery, validation, fix, regression, tracking loops.</td></tr>
+          <tr><td>Browser and computer control</td><td><code>browser:control-in-app-browser</code><code>chrome:control-chrome</code><code>computer-use:computer-use</code></td><td>Open, inspect, click, screenshot, and verify UI.</td><td>Use logged-in browser or local app state.</td><td>"Open the local app and verify rendering."</td><td>UI monitoring, screenshot validation, browser research loops.</td></tr>
+          <tr><td>Google Drive suite</td><td><code>google-drive</code><code>google-docs</code><code>google-sheets</code><code>google-slides</code><code>google-drive-comments</code></td><td>Find, read, create, and edit Drive assets.</td><td>Batch updates, comments, source-deck adaptation.</td><td>"Summarize this Doc and resolve addressed comments."</td><td>Document review, sheet tasking, slide/report loops.</td></tr>
+          <tr><td>Google Workspace CLI</td><td><code>gws-drive</code><code>gws-docs</code><code>gws-sheets</code><code>gws-slides</code><code>gws-calendar</code><code>gws-chat</code><code>gws-tasks</code></td><td>Low-token CLI operations across Workspace.</td><td>Cross-service workflows with deterministic output.</td><td>"Read today's calendar and open tasks."</td><td>Agenda, inbox-to-task, file announcement loops.</td></tr>
+          <tr><td>Gmail</td><td><code>gmail:gmail</code><code>gmail-inbox-triage</code><code>gws-gmail</code><code>gws-gmail-read</code><code>gws-gmail-send</code></td><td>Search, read, summarize, draft, send, triage.</td><td>Account-specific threaded workflows.</td><td>"Summarize unread work emails needing reply."</td><td>Inbox triage, vendor monitoring, email-to-task loops.</td></tr>
+          <tr><td>Calendar and scheduling</td><td><code>gws-calendar-agenda</code><code>gws-calendar-insert</code><code>recipe-block-focus-time</code><code>recipe-find-free-time</code></td><td>Create events, show agenda, find time.</td><td>Recurring protected-work schedules.</td><td>"Find 45 minutes this week with Alice and Bob."</td><td>Focus-time, meeting-prep, recurring scheduling loops.</td></tr>
+          <tr><td>Workspace recipes</td><td><code>recipe-create-doc-from-template</code><code>recipe-create-events-from-sheet</code><code>recipe-create-presentation</code><code>recipe-generate-report-from-sheet</code></td><td>Automate Docs, Sheets, Slides, Gmail tasks.</td><td>Multi-app workflows from structured sources.</td><td>"Generate a weekly report from this sheet."</td><td>Sheet-to-report, form-response, announcement loops.</td></tr>
+          <tr><td>Email and file cleanup</td><td><code>recipe-create-gmail-filter</code><code>recipe-label-and-archive-emails</code><code>recipe-save-email-attachments</code><code>recipe-review-overdue-tasks</code></td><td>Label/archive mail, save artifacts, review tasks.</td><td>Durable mailbox hygiene and audit trails.</td><td>"Label vendor invoices and save attachments."</td><td>Mailbox cleanup, attachment archival, overdue-task loops.</td></tr>
+          <tr><td>Documents and files</td><td><code>doc</code><code>documents:documents</code><code>pdf</code><code>pdf:pdf</code><code>spreadsheets:Spreadsheets</code><code>presentations:Presentations</code></td><td>Create, edit, review, and analyze files.</td><td>Layout-aware rendering, redlines, structured analysis.</td><td>"Turn this PDF into a findings memo."</td><td>Report generation, document QA, spreadsheet audit loops.</td></tr>
+          <tr><td>Product design</td><td><code>product-design:get-context</code><code>product-design:ideate</code><code>product-design:image-to-code</code><code>figma-implement-design</code></td><td>Gather context, generate concepts, implement UI.</td><td>Figma or screenshot-to-code with fidelity checks.</td><td>"Implement this Figma frame."</td><td>Design iteration, screenshot comparison, UI polish loops.</td></tr>
+          <tr><td>Operations and incidents</td><td><code>ic-assistant</code><code>sentry</code><code>pulse</code><code>weekly-intel</code><code>eng-report</code></td><td>Support incidents, errors, comms, reports.</td><td>Multi-source intelligence and dashboards.</td><td>"Prepare a weekly engineering dashboard."</td><td>Incident cadence, error monitoring, weekly reporting loops.</td></tr>
+          <tr><td>Thread and memory workflows</td><td><code>threader</code><code>analyze-context</code></td><td>Preserve context and export thread state.</td><td>Long-running investigations resilient to compaction.</td><td>"Create a handoff summary."</td><td>Durable checkpoint loops and cross-thread handoffs.</td></tr>
+          <tr><td>Deployment and domain work</td><td><code>vercel-deploy</code><code>jira-cli</code><code>sora</code><code>eng-report</code></td><td>Deploy apps, manage Jira, generate video, report work.</td><td>Cross-tool executive workflows and media generation.</td><td>"Deploy this app to Vercel and verify it."</td><td>Build-deploy-verify, Jira hygiene, generated-media workflows.</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <footer>Prepared for Scott to pull and read from <code>reports/skill-inventory-for-scott-2026-06-22.html</code>.</footer>
+  </main>
+</body>
+</html>
