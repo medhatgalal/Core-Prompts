@@ -128,6 +128,69 @@ Follow with:
 
 > Now route only the unproven redesign claims to `auto-research` for measured comparison.
 
+### `supercharge /adversarial /debate`
+
+Use when:
+
+- a plan, prompt, architecture decision, review conclusion, or thesis needs explicit structured dissent
+- you want the strongest case for and against a decision before choosing
+- normal critique is too one-sided, but a full deep debate would be more ceremony than the decision needs
+
+Why this module first:
+
+- use this when the next useful move is not a rewrite, but a Bull/Bear/Decider pressure test with risks, mitigants, flip conditions, and uncertainty
+
+Ask:
+
+> Use `supercharge /adversarial /debate` to decide whether this rollout plan is worth shipping now. Include the strongest Bull case, strongest Bear case, Decider verdict, confidence, risks, mitigants, and flip conditions.
+
+Expected output:
+
+- Bull case
+- Bear case
+- Decider verdict
+- confidence score
+- risks and mitigants
+- flip conditions
+- uncertainty or human-judgment areas
+
+Follow with:
+
+> Now turn the Decider verdict into a `supercharge /contract` acceptance checklist.
+
+### `supercharge /adversarial /debate /deep`
+
+Use when:
+
+- the decision is high-stakes, high-uncertainty, or likely to have hidden asymmetric downside
+- the first Bear case deserves a Bull counter and final Bear challenge before synthesis
+- the output may feed a decision record, release gate, or follow-up `auto-research` proof loop
+
+Why this module first:
+
+- start here when you need multi-round structured dissent, not just a compact critique
+
+Ask:
+
+> Use `supercharge /adversarial /debate /deep` to run a deep Bull/Bear/Decider debate on this architecture change. Include missing evidence, decision-risk table, mitigation plan, flip conditions, and recommended next validation.
+
+Expected output:
+
+- debate context
+- Bull opening
+- Bear rebuttal
+- Bull counter
+- Bear final challenge
+- Decider verdict
+- decision-risk table
+- mitigation plan
+- missing evidence
+- recommended next validation
+
+Follow with:
+
+> Now route any unproven behavioral claims to `auto-research` with a bounded scorecard.
+
 ### `code-review`
 
 Use when:
@@ -502,6 +565,10 @@ Follow with:
 
 > Now condense that into the exact prompt or execution brief I should use next.
 
+If the decision itself is contentious, use:
+
+> Use `supercharge /debate /deep` to stress-test this feature direction before we turn it into an execution brief.
+
 ### `testing`
 
 Use when:
@@ -641,6 +708,10 @@ Use this when you want an experiment loop, not a one-shot rewrite.
 > Use `supercharge /basis` to harden this operating prompt by finding the irreducible work, waste, and proof gaps before we ship it.
 
 Use this when you want a stronger plan or prompt before execution.
+
+> Use `supercharge /adversarial /debate /deep` to run a Bull/Bear/Decider debate on this operating decision before we ship it.
+
+Use this when you want structured dissent before committing to a plan.
 
 ### `converge`
 
