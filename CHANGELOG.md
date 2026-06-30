@@ -1,3 +1,13 @@
+## v1.9.4 - 2026-06-30
+
+- Shipped the SuperCharge `v4.2` adversarial debate uplift:
+  - added `/adversarial /debate` and `/adversarial /debate /deep` as nested Bull/Bear/Decider debate modules
+  - added `/debate` and `/debate /deep` shortcuts that route through the adversarial module
+  - expanded `supercharge /help` and `supercharge /help examples` so every module, debate depth, and common stack is discoverable
+- Preserved existing SuperCharge modules exactly outside the intended dispatch, help, and adversarial-debate uplift areas.
+- Added focused regression coverage for module preservation, generated surfaces, UAC descriptor boundaries, and the new debate/help contract.
+- Bumped the release package version to `v1.9.4`.
+
 ## v1.9.3 - 2026-06-21
 
 - Shipped `codebase-health-audit` as a read-only brownfield structural audit skill:

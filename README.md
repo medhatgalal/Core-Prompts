@@ -45,7 +45,7 @@ These are the currently shipped skills with a concrete starter ask for each one:
 | `pitch` | create, review, score, or improve Shape Up pitches | "Use `pitch` to review this Shape Up pitch for appetite, risks, and betting readiness." | shaped problem, appetite fit, risks, score, and concrete improvement guidance |
 | `pulse` | triage Gmail and Google Chat noise into clear priorities | "Use `pulse` to tell me what needs my attention across Gmail and Google Chat, then propose the next actions without sending anything." | priority-classified comms table, source summary, and proposed next actions for the hot items |
 | `resolve-conflict` | analyze a merge conflict or competing edits | "Use `resolve-conflict` to compare these conflicting branch edits and tell me what should survive." | conflict map, additive merge opportunities, explicit tradeoffs, and a recommended resolution |
-| `supercharge` | harden a rough prompt, plan, proposal, or first-principles audit before execution | "Use `supercharge /basis` to find the irreducible cost, complexity, and waste in this research workflow." | sharper framing, stronger constraints, execution plan, failure-mode coverage, and `/basis` accounting when requested |
+| `supercharge` | harden a rough prompt, plan, proposal, first-principles audit, or adversarial decision before execution | "Use `supercharge /adversarial /debate /deep` to run a Bull/Bear/Decider debate on this architecture decision, then list flip conditions." | sharper framing, stronger constraints, execution plan, failure-mode coverage, `/basis` accounting, or Bull/Bear/Decider debate when requested |
 | `testing` | decide what to test first and what edge cases matter | "Use `testing` to identify the highest-value tests and edge cases for this change." | prioritized tests, edge cases, and coverage gaps |
 | `threader` | export a conversation or create a durable handoff | "Use `threader` to turn this chat into a reusable handoff for another engineer or model." | durable summary, preserved decisions, and next-step continuity |
 | `uac-import` | import and uplift new capability source into canonical state | "Use `uac-import` to inspect this external prompt family and tell me how it should land into SSOT before apply." | landing shape, classification, overlap concerns, and the next UAC step |
@@ -57,7 +57,7 @@ These are the currently shipped skills with a concrete starter ask for each one:
 | --- | --- | --- | --- |
 | `auto-research` | improve a prompt, workflow, or system through bounded experiments | "Use `auto-research` to improve our review prompt so it catches more behavioral regressions without increasing noise." | a goal contract, experiment plan, evaluation criteria, and a winner only after evidence |
 | `codebase-health-audit` | find structural brownfield risk without mutating code | "Use `codebase-health-audit` to audit this repo for LOC hotspots, god objects, coupling, likely dead code, and drift." | metric-backed findings, prior-claim verification when provided, and slice-ready remediation |
-| `supercharge` | harden a rough prompt, plan, proposal, or first-principles audit before execution | "Use `supercharge /basis` to audit this onboarding workflow for irreducible work, waste, and redesign moves." | sharper framing, stronger constraints, clearer sequencing, and first-principles accounting when requested |
+| `supercharge` | harden a rough prompt, plan, proposal, first-principles audit, or adversarial decision before execution | "Use `supercharge /adversarial /debate` to compare the strongest case for and against this rollout plan before we choose." | sharper framing, stronger constraints, clearer sequencing, first-principles accounting, and debate-mode decision pressure when requested |
 | `converge` | compare competing options and force one recommendation | "Use `converge` to compare these rollout plans and recommend one." | explicit conflicts, common comparison criteria, and one final recommendation |
 | `docs-review-expert` | fix docs structure, drift, and explainability | "Use `docs-review-expert` to tell me what belongs in `README.md` versus `docs/`, what drifted, and what to fix first." | placement decisions, drift findings, rewrite guidance, and review timing |
 | `gitops-review` | judge branch, PR, merge, or release readiness | "Use `gitops-review` to tell me whether this branch is ready for PR and what blockers remain." | gate type, blockers, companion reviews, and exact next actions |
@@ -77,7 +77,7 @@ These current advisory agents are emitted by the repo and available on agent-cap
 | `pitch` | Shape Up pitch creation, review, and scoring | "Use `pitch` to harden this pitch before betting." | pitch quality score, risks, appetite fit, and rewrite guidance |
 | `pulse` | Gmail and Google Chat triage | "Use `pulse` to triage what needs my attention and propose next actions without sending anything." | prioritized comms, source summaries, and proposed actions |
 | `auto-research` | experiment-driven improvement loops | "Use `auto-research` to improve this workflow and prove which variant wins." | bounded experiments, evaluation, and promotion guidance |
-| `supercharge` | plan or prompt hardening before execution | "Use `supercharge` to tighten this operating prompt before we ship it." | stronger prompt structure and clearer failure handling |
+| `supercharge` | plan, prompt, or adversarial debate hardening before execution | "Use `supercharge /debate /deep` to stress-test this operating decision before we ship it." | stronger prompt structure, clearer failure handling, and Bull/Bear/Decider trade-off analysis |
 | `converge` | synthesis across competing proposals | "Use `converge` to synthesize these competing proposals into one decision." | overlap map, decision logic, and one coherent recommendation |
 | `architecture` | architecture review and migration-safe design | "Use `architecture` to review this interface change for rollback risk." | architecture findings and a defensible direction |
 | `weekly-intel` | multi-source weekly reporting | "Use `weekly-intel` to produce a weekly status report from these sources." | executive summary, technical appendix, and fact-check audit |
@@ -86,7 +86,7 @@ These current advisory agents are emitted by the repo and available on agent-cap
 
 1. Use `docs-review-expert` on a docs surface that feels bloated or unclear.
 2. Use `gitops-review` on your current branch before you open a PR.
-3. Use `supercharge /basis` to audit the irreducible work in a prompt, workflow, research process, or software plan, then use `auto-research` when a measured experiment is needed.
+3. Use `supercharge /basis` to audit irreducible work, or `supercharge /adversarial /debate /deep` to stress-test a high-stakes decision, then use `auto-research` when a measured experiment is needed.
 
 ### Scenario Starters
 
@@ -95,6 +95,7 @@ Use these as copy-paste starting points when you want to exercise the higher-lev
 | Scenario | Ask |
 | --- | --- |
 | First-principles release audit | "Use `supercharge /basis` to audit our release process. Find irreducible steps, stale ceremony, actual-to-minimum ratio, and what should be automated or deleted." |
+| Adversarial release debate | "Use `supercharge /adversarial /debate /deep` to run a Bull/Bear/Decider debate on this release plan. Include risks, mitigants, flip conditions, and the evidence that would change the decision." |
 | Release plan hardening | "Use `supercharge /full` to harden the v1.9.2 release plan before I tag it. Include risks, failure modes, verification gates, and rollback." |
 | Measured prompt or skill improvement | "Use `auto-research` to compare the old autosearch prompt behavior against auto-research v2.0 on five representative improvement tasks, with a scorecard and promotion packet." |
 | Release strategy decision | "Use `converge /mcda /conflicts` to compare three release strategies: tag from this branch, merge then tag from main, or publish package-only. Recommend one and reject the others explicitly." |

@@ -3,8 +3,8 @@
 - Comparison basis: `git:HEAD .meta/manifest.json`
 - New capabilities: `0`
 - Removed capabilities: `0`
-- Changed capabilities: `0`
-- Material changes: `0`
+- Changed capabilities: `1`
+- Material changes: `1`
 
 ## New Capabilities
 - none
@@ -13,7 +13,7 @@
 - none
 
 ## Material Changes
-- none
+- `supercharge` — changed `summary, invocation_hints, expected_outputs`
 
 ## All Changed Capabilities
-- none
+- `supercharge` — changed `summary, version, invocation_hints, expected_outputs`

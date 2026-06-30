@@ -289,16 +289,17 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Type: `both`
 - Install target: `repo_local`
 - Supported CLIs: `claude, codex, gemini, kiro`
-- Version: `v4.1`
+- Version: `v4.2`
 - Invocation hints:
   - make this prompt better
   - harden this plan
   - compare these options and converge on one recommendation
   - compare these prompt variants, then tell me whether behavioral proof is needed
   - critique this proposal from several angles
+  - run adversarial debate, Bull/Bear/Decider analysis, or `/debate /deep`
   - grade this output and iterate it upward
   - design an agentic workflow or prompt stack
-- Summary: Hardens prompts, plans, and workflows through structured critique and graded refinement. Use when the user wants a better artifact or a sharper comparison before measured evaluation.
+- Summary: Hardens prompts, plans, and workflows through structured critique, adversarial debate, and graded refinement. Use when the user wants a better artifact, a sharper comparison, or a Bull/Bear/Decider debate before measured evaluation.
 
 ### Testing Studio — Test Design and Coverage Analysis
 - Slug: `testing`

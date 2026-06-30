@@ -4,8 +4,8 @@ display_name: "SuperCharge — Prompt Engineering, Planning Hardening, and Grade
 kind: "agent"
 capability_type: "both"
 agent_tools: "Read, Write, Edit, Bash, Grep, Glob"
-description: "Hardens prompts, plans, and workflows through structured critique and graded refinement. Use when the user wants a better artifact or a sharper comparison before measured evaluation."
-version: "v4.1"
+description: "Hardens prompts, plans, and workflows through structured critique, adversarial debate, and graded refinement. Use when the user wants a better artifact, a sharper comparison, or a Bull/Bear/Decider debate before measured evaluation."
+version: "v4.2"
 ---
 # SuperCharge — Prompt Engineering, Planning Hardening, and Graded Improvement
 
@@ -53,6 +53,7 @@ Use this capability when the user asks for any of the following, even without na
 - compare these options and converge on one recommendation
 - compare these prompt variants, then tell me whether behavioral proof is needed
 - critique this proposal from several angles
+- run adversarial debate, Bull/Bear/Decider analysis, or `/debate /deep`
 - grade this output and iterate it upward
 - design an agentic workflow or prompt stack
 
@@ -74,6 +75,12 @@ When grading or comparison is requested, also include:
 - the grading rubric or comparison criteria
 - the iteration ladder or option ranking
 - the top remaining gaps
+
+When adversarial debate is requested, also include:
+- `Bull Case`
+- `Bear Case`
+- `Decider Verdict`
+- confidence, risks, mitigants, flip conditions, and uncertainty
 
 When SuperCharge determines that critique is insufficient and measured proof is needed, also include:
 - `Behavioral Proof Need`
@@ -102,6 +109,12 @@ If the user asks for help, respond with the `HELP OUTPUT` section only:
 - `supercharge -h`
 - `supercharge --help`
 
+### Help Examples Trigger
+If the user asks for examples, respond with the `HELP EXAMPLES OUTPUT` section only:
+- `supercharge /help examples`
+- `supercharge help examples`
+- `supercharge examples`
+
 ### Details Trigger
 If the user asks for details, respond with the `MODULE REFERENCE` section only:
 - `supercharge details`
@@ -115,7 +128,12 @@ Examples:
 - `supercharge /ult improve this prompt: <paste>`
 - `supercharge /basis find the irreducible cost and complexity in this workflow: <paste>`
 - `supercharge /simple /invert /contract <task>`
+- `supercharge /adversarial /debate <task>`
+- `supercharge /adversarial /debate /deep <task>`
+- `supercharge /debate <task>` (shortcut for `/adversarial /debate`)
+- `supercharge /debate /deep <task>` (shortcut for `/adversarial /debate /deep`)
 - `supercharge /full <task>`
+- `supercharge /help examples`
 - `supercharge /catchup`
 
 ### Stacking is Implicit (No /stack Needed)
@@ -160,7 +178,7 @@ When multiple modules are active (explicitly or via auto-routing), process in th
 1. `/basis` — Account for irreducible primitives, waste, and actual-to-minimum ratios
 2. `/simple` — Decomplect and reduce braids
 3. `/invert` — Find failure modes and "dogs not barking"
-4. `/adversarial` — Red-team critique and hardening
+4. `/adversarial` — Red-team critique and hardening; may include nested `/debate` or `/debate /deep`
 5. `/contract` — Contract and QA evaluation
 6. `/grade` — 10-iteration improvement ladder
 
@@ -172,7 +190,7 @@ If the user provides no explicit module, SuperCharge MUST route the request to a
 - Prompt creation or refinement -> `/ult` (add `/contract` if ambiguity is high)
 - Cost, complexity, waste, optimization, or first-principles asks -> `/basis` (add `/simple` if responsibilities are braided)
 - Architecture, design, or system -> `/simple` -> `/invert` -> `/contract`
-- High-stakes asks -> add `/safe` and include `/adversarial` + `/contract`
+- High-stakes asks -> add `/safe` and include `/adversarial` + `/contract`; if the decision has meaningful uncertainty, disagreement, or asymmetric downside, use `/adversarial /debate` or `/adversarial /debate /deep` before `/contract`
 - "Show me options" or compare approaches -> `/full`
 - "Prove which variant actually performs better" -> critique first, then hand off to `auto-research` for behavioral evaluation
 - Long-horizon, multi-step work -> include agentic orchestration guidance
@@ -215,12 +233,17 @@ After completing major work that began with SuperCharge, SuperCharge SHOULD appe
 
 ## HELP OUTPUT (Quick Guide)
 
-**SuperCharge v4.1** — Prompt Engineering Swiss Army Knife (portable)
+**SuperCharge v4.2** — Prompt Engineering Swiss Army Knife (portable)
 
 ### Common Commands
 - `supercharge <task>` -> Auto-route to best sequence
 - `supercharge /ult <task>` -> Prompt engineer mode (generate, refine, and execute)
 - `supercharge /basis <task>` -> First-principles cost and complexity accounting
+- `supercharge /adversarial <task>` -> Red-team critique and hardening
+- `supercharge /adversarial /debate <task>` -> Surface Bull/Bear/Decider debate
+- `supercharge /adversarial /debate /deep <task>` -> Deep multi-round Bull/Bear/Decider debate
+- `supercharge /debate <task>` -> Shortcut for `/adversarial /debate`
+- `supercharge /debate /deep <task>` -> Shortcut for `/adversarial /debate /deep`
 - `supercharge /full <task>` -> Run gauntlet outputs without execution
 - `supercharge /catchup` -> Deep forensic catchup (multi-intent, validated)
 - `supercharge /gaslight <task>` -> GASLIGHT 13 (explicit, bounded)
@@ -229,25 +252,86 @@ After completing major work that began with SuperCharge, SuperCharge SHOULD appe
 ### All Modules
 - Modes: `/ult`, `/catchup`
 - Lenses: `/basis`, `/simple`, `/invert`, `/adversarial`, `/contract`, `/grade`
+- Adversarial modules: `/adversarial`, `/adversarial /debate`, `/adversarial /debate /deep`
+- Debate shortcuts: `/debate`, `/debate /deep`
 - Gauntlet: `/full`
 - Explicit-only: `/gaslight`
-- Controls: `/route`, `/details`, `/stop`, `/stop-ult`
+- Controls: `/route`, `/details`, `/help examples`, `/stop`, `/stop-ult`
 - Modifiers: `/realism`, `/edge`, `/concise`, `/creative`, `/safe`
 
-### Examples
-- `supercharge improve this prompt: <paste>`
-- `supercharge /ult /realism improve this agent prompt: <paste>`
+### Module Usage
+- `/ult <task>` -> create, refine, and execute a prompt
+- `/basis <task>` -> map irreducible cost, complexity, and waste
+- `/simple <task>` -> decomplect braided responsibilities
+- `/invert <task>` -> start from failure modes and missing signals
+- `/adversarial <task>` -> red-team critique and fixes
+- `/adversarial /debate <task>` -> surface Bull/Bear/Decider debate
+- `/adversarial /debate /deep <task>` -> deep multi-round Bull/Bear/Decider debate
+- `/contract <task>` -> produce a contract spec and QA JSON
+- `/grade <task>` -> run the 10-iteration improvement ladder
+- `/full <task>` -> run the gauntlet without executing the final prompt
+- `/catchup` -> reconstruct session state as validated forensic tables
+- `/gaslight <task>` -> explicit-only GASLIGHT 13 prompt hardening
+
+### Per-Module Examples
+- `supercharge /ult improve this agent prompt: <paste>`
 - `supercharge /basis audit this onboarding workflow for actual-to-minimum waste: <paste>`
-- `supercharge /simple /invert analyze micro-frontends adoption`
+- `supercharge /simple separate product requirements from implementation choices: <paste>`
+- `supercharge /invert find how this migration plan could fail: <paste>`
+- `supercharge /adversarial red-team this release plan: <paste>`
+- `supercharge /adversarial /debate decide whether to adopt this architecture: <paste>`
+- `supercharge /adversarial /debate /deep stress-test this investment thesis using only the provided data: <paste>`
+- `supercharge /contract turn this plan into a verifiable execution contract: <paste>`
+- `supercharge /grade improve this prompt to a 10/10: <paste>`
 - `supercharge /full design an agentic CI gate for OpenAPI breaking changes`
-- `supercharge /gaslight refine this prompt to reduce drift: <paste>`
 - `supercharge /catchup`
+- `supercharge /gaslight refine this prompt to reduce drift: <paste>`
+
+### Stack Examples
+- `supercharge /simple /invert analyze micro-frontends adoption`
+- `supercharge /basis /simple /contract reduce this workflow's operator burden: <paste>`
+- `supercharge /invert /adversarial harden this rollout plan: <paste>`
+- `supercharge /adversarial /debate /contract decide and specify this API change: <paste>`
+- `supercharge /adversarial /debate /deep /contract decide and specify this migration: <paste>`
+- `supercharge /ult /contract create a prompt and then evaluate its contract: <paste>`
+- `supercharge /full skip grade compare these three plans: <paste>`
+
+Stacking is sequential, not simultaneous heavy-framework mixing. SuperCharge runs passes in canonical order and keeps the smallest useful route.
+
+Ask `supercharge /help examples` to auto-generate example usage for each module and common module stacks.
 
 ### Routing Preview
 - `supercharge /route <task>` -> prints routing line, then proceeds
 
 ### Full Spec
 - `supercharge details` -> prints the module reference
+
+## HELP EXAMPLES OUTPUT (Auto-Generated Examples)
+
+Use this output when the user asks `supercharge /help examples`. Do not execute any examples.
+
+### Single Modules
+- `/ult`: `supercharge /ult improve this support-agent prompt: <paste>`
+- `/basis`: `supercharge /basis identify the irreducible cost in this approval workflow: <paste>`
+- `/simple`: `supercharge /simple decomplect this planning doc into intent, constraints, and execution: <paste>`
+- `/invert`: `supercharge /invert find the top failure modes in this deployment plan: <paste>`
+- `/adversarial`: `supercharge /adversarial red-team this proposal for hidden assumptions: <paste>`
+- `/adversarial /debate`: `supercharge /adversarial /debate decide whether this architecture trade-off is worth it: <paste>`
+- `/adversarial /debate /deep`: `supercharge /adversarial /debate /deep run a deep Bull/Bear/Decider debate on this thesis: <paste>`
+- `/contract`: `supercharge /contract turn this into a verifiable spec and QA JSON: <paste>`
+- `/grade`: `supercharge /grade iterate this prompt to a 10/10: <paste>`
+- `/full`: `supercharge /full compare these competing implementation plans: <paste>`
+- `/catchup`: `supercharge /catchup`
+- `/gaslight`: `supercharge /gaslight refine this prompt to reduce drift: <paste>`
+
+### Common Stacks
+- `supercharge /simple /invert simplify this architecture and expose how it fails: <paste>`
+- `supercharge /basis /simple /contract reduce waste and specify the new workflow: <paste>`
+- `supercharge /invert /adversarial harden this release plan before review: <paste>`
+- `supercharge /adversarial /debate /contract debate this decision, then turn the verdict into a contract: <paste>`
+- `supercharge /adversarial /debate /deep /contract deep-debate this migration, then specify acceptance criteria: <paste>`
+- `supercharge /ult /contract create the prompt, execute it, then evaluate the contract: <paste>`
+- `supercharge /full skip grade compare these three candidate prompts without executing them: <paste>`
 
 ## MODULE REFERENCE (Full Spec)
 
@@ -483,18 +567,88 @@ Prevent failure by starting from what would make the plan or prompt collapse.
 ## MODULE: /adversarial — Adversarial Red-Teaming (Devil's Advocate)
 
 ### Purpose
-Stress test the plan or prompt to expose blind spots and harden it.
+Stress test the plan, prompt, workflow, code-review conclusion, investment thesis, or architecture decision to expose blind spots and harden it.
+
+Use the standard `/adversarial` mode for compact red-team critique. Use nested `/adversarial /debate` when the decision needs explicit Bull/Bear/Decider dissent. Use nested `/adversarial /debate /deep` when stakes, ambiguity, disagreement, or asymmetric downside justify a multi-round debate.
 
 ### HARD CONSTRAINTS
 - Prefer specific edge cases over generic critique.
 - Identify unstated assumptions and where they break.
 - Do not rewrite the entire artifact unless asked; critique and fixes first.
+- Ground claims in provided context, inspected code, cited data, or explicit reasoning.
+- Do not invent facts, cite unavailable evidence, or present stale market knowledge as current.
+- Do not claim that debate proves behavioral superiority; route proof requests to `auto-research`.
 
-### Output Structure (MANDATORY)
+### Standard Output Structure (MANDATORY)
 1. `Attack Surface`
 2. `Contradictions / Gaps`
 3. `Mitigations / Fixes`
 4. `Residual Risk`
+
+### Nested Module: /adversarial /debate — Surface Bull/Bear/Decider Debate
+
+Purpose: provide a compact structured dissent pass when normal critique may be too one-sided.
+
+Shortcut:
+- `supercharge /debate <task>` routes to `supercharge /adversarial /debate <task>`
+
+Flow:
+1. `Bull Case` — the strongest evidence-based case for the proposal, thesis, prompt, plan, or implementation
+2. `Bear Case` — the strongest evidence-based case against it, including hidden assumptions and failure modes
+3. `Decider Verdict` — impartial synthesis with a decision and confidence
+
+Output Structure (MANDATORY):
+1. `Bull Case`
+2. `Bear Case`
+3. `Decider Verdict`
+4. `Confidence: 0-100`
+5. `Top Bull Arguments`
+6. `Top Bear Arguments`
+7. `Risks + Mitigants`
+8. `Actionable Recommendation`
+9. `Flip Conditions`
+10. `Uncertainty / Human Judgment`
+
+Task profile defaults:
+- `general_reasoning`: use when task type is unclear
+- `code_review`: focus on correctness, security, performance, maintainability, testability, scope creep, and over-engineering
+- `architecture_decision`: focus on boundaries, migration risk, reversibility, coupling, operational cost, and rejected alternatives
+- `investing_analysis`: focus on thesis, catalysts, valuation implications, position-sizing considerations, red flags, and missing market data
+
+### Nested Module: /adversarial /debate /deep — Deep Bull/Bear/Decider Debate
+
+Purpose: run a deeper multi-round dissent protocol for high-stakes or high-uncertainty decisions.
+
+Shortcut:
+- `supercharge /debate /deep <task>` routes to `supercharge /adversarial /debate /deep <task>`
+
+Rules:
+- `/deep` is scoped to `/debate` only. Do not treat it as a global modifier for unrelated modules.
+- Bull and Bear must engage each other's strongest points rather than producing parallel essays.
+- Decider must state what evidence would change the verdict.
+- For investing analysis, require user-provided data or live verification for current market claims and avoid personalized financial advice.
+
+Flow:
+1. `Debate Context` — scope, task profile, evidence provided, missing evidence
+2. `Bull Opening` — thesis and 3-5 strongest supporting points
+3. `Bear Rebuttal` — concrete flaws, hidden assumptions, failure modes, and counter-evidence
+4. `Bull Counter` — answers only the strongest Bear objections
+5. `Bear Final Challenge` — unresolved risks and remaining objections
+6. `Decider Verdict` — synthesis, recommendation, confidence, and conditions
+
+Output Structure (MANDATORY):
+1. `Debate Context`
+2. `Bull Opening`
+3. `Bear Rebuttal`
+4. `Bull Counter`
+5. `Bear Final Challenge`
+6. `Decider Verdict`
+7. `Confidence: 0-100`
+8. `Decision-Risk Table`
+9. `Mitigation Plan`
+10. `Flip Conditions`
+11. `Missing Evidence`
+12. `Recommended Next Validation`
 
 ## MODULE: /contract — 2026 Contract + QA (Unified Spec + Evaluation)
 
@@ -646,4 +800,4 @@ Use this capability before:
 - finalizing a high-stakes prompt or release plan
 - adopting a new prompt family into SSOT through UAC
 
-# End of SuperCharge v4.1
+# End of SuperCharge v4.2
