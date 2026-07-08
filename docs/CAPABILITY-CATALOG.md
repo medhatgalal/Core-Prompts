@@ -2,7 +2,7 @@
 
 Generated from canonical manifest and descriptor metadata. Use this page to see what Core-Prompts ships, what each capability is for, and where it lands.
 
-- Capability count: `21`
+- Capability count: `22`
 
 ## Start Here
 - `docs-review-expert` — Docs Review Expert — Documentation IA, Drift, and Release Hygiene: Documentation Review Expert for information architecture, explainable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.
@@ -12,10 +12,10 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `testing` — Testing Studio — Test Design and Coverage Analysis: Testing Studio for unit-test generation, end-to-end test design, edge-case discovery, and coverage gap analysis.
 
 ## By CLI
-- `claude`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `codebase-health-audit`, `converge`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `codex`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `codebase-health-audit`, `converge`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `gemini`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `codebase-health-audit`, `converge`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `kiro`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `codebase-health-audit`, `converge`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `claude`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `codex`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `gemini`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `kiro`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
 
 ## By Use Case
 - `address`: `address-code-review`
@@ -30,6 +30,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `conflict`: `resolve-conflict`
 - `context`: `analyze-context`, `threader`
 - `converge`: `converge`
+- `demo`: `demo-recorder`
 - `docs`: `docs-review-expert`
 - `expert`: `docs-review-expert`
 - `feature`: `feature-status`
@@ -42,6 +43,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `planning`: `uac-import`
 - `prompting`: `code-review`, `mentor`, `uac-import`
 - `pulse`: `pulse`
+- `recorder`: `demo-recorder`
 - `report`: `eng-report`
 - `research`: `auto-research`
 - `resolve`: `resolve-conflict`
@@ -153,6 +155,17 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
   - tell me what to keep, what to reject, and why
   - surface the real conflicts before we decide
 - Summary: Universal Synthesis and Convergence for multi-source proposal comparison, conflict surfacing, decision analysis, and one coherent final recommendation.
+
+### Demo Recorder — Automated Playwright Demo Generation
+- Slug: `demo-recorder`
+- Type: `skill`
+- Install target: `repo_local`
+- Supported CLIs: `claude, codex, gemini, kiro`
+- Invocation hints:
+  - "Use `demo-recorder` to create a Playwright demo of the agent feedback feature on our Swagger UI."
+  - "Use `demo-recorder` to generate a recorded walkthrough of the new dashboard."
+  - "Use `demo-recorder` to script a demo that creates a resource, runs it, and shows the trace output."
+- Summary: Generates Playwright scripts and demo plans for automated feature recordings with realistic pacing and video capture.
 
 ### Docs Review Expert — Documentation IA, Drift, and Release Hygiene
 - Slug: `docs-review-expert`

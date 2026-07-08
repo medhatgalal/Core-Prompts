@@ -309,6 +309,33 @@ Follow with:
 
 > Now rewrite the winning proposal as the one plan we should actually execute.
 
+### `demo-recorder`
+
+Use when:
+
+- you need a polished video recording of a feature for a presentation or stakeholder review
+- you want to automate repetitive demo walkthroughs instead of screen-recording manually
+- you need a reproducible demo script that can be re-run after UI changes
+
+Why this skill first:
+
+- start here when the goal is a watchable recording, not testing or CI integration
+
+Ask:
+
+> Use `demo-recorder` to create a Playwright demo of the agent feedback feature on our Swagger UI at https://agents.dev-01.example.com. Show creating an agent, running it, then submitting feedback. Use TypeScript and record with Playwright video.
+
+Expected output:
+
+- demo plan (4-5 ordered steps with rationale)
+- complete TypeScript Playwright script with `recordVideo` enabled, `slowMo` for pacing, and JWT auth via env var
+- run command: `npx playwright test demo-script.spec.ts`
+- output location: `./recordings/*.webm`
+
+Follow with:
+
+> The pauses between steps are too short — increase them to 3 seconds and add a scroll-into-view before each major action.
+
 ### `docs-review-expert`
 
 Use when:

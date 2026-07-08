@@ -1,0 +1,201 @@
+{
+  "slug": "demo-recorder",
+  "manifest_version": "capability-fabric.v0",
+  "layers": {
+    "minimal": {
+      "capability_type": "skill",
+      "summary": "Generates Playwright scripts and demo plans for automated feature recordings with realistic pacing and video capture.",
+      "role": "workflow",
+      "domain_tags": [
+        "demo",
+        "recorder"
+      ],
+      "required_inputs": [
+        "**Feature description** \u2014 what is being demoed and why it matters",
+        "**Target URL** \u2014 where the demo runs (can be local or deployed)",
+        "**Auth method** \u2014 how to authenticate (JWT env var, login flow, none)"
+      ],
+      "expected_outputs": [
+        "deterministic summary",
+        "uplift payload",
+        "capability recommendation",
+        "deployment guidance"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "resources": [
+        "ssot/demo-recorder.md"
+      ],
+      "packaging_profile": {
+        "capability_type": "skill",
+        "primary_surfaces": {
+          "codex": [
+            "codex_skill"
+          ],
+          "gemini": [
+            "gemini_skill"
+          ],
+          "claude": [
+            "claude_skill"
+          ],
+          "kiro": [
+            "kiro_skill"
+          ]
+        },
+        "wrapper_surfaces": {
+          "codex": [],
+          "gemini": [
+            "skill_wrapper"
+          ],
+          "claude": [
+            "skill_wrapper",
+            "plugin_wrapper"
+          ],
+          "kiro": [
+            "skill_wrapper",
+            "power_wrapper"
+          ]
+        },
+        "notes": [
+          "wrapper surfaces are additive deployment forms, not capability types",
+          "orchestrators must not infer execution authority from wrapper presence alone"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ]
+      },
+      "source_provenance": {
+        "source_type": "LOCAL_FILE",
+        "normalized_source": "ssot/demo-recorder.md",
+        "policy_rule_id": "ssot.demo-recorder",
+        "content_sha256": "ssot"
+      },
+      "confidence": 0.97,
+      "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+      "review_status": "ready_for_orchestrator_review",
+      "display_name": "Demo Recorder \u2014 Automated Playwright Demo Generation"
+    },
+    "expanded": {
+      "relationship_suggestions": [],
+      "capability_dependencies": [],
+      "overlap_candidates": [],
+      "migration_notes": [
+        "If the capability lands, compare it against existing entries before apply.",
+        "Relationship suggestions are advisory only and do not imply runtime routing."
+      ],
+      "adjustment_recommendations": [
+        "add an explicit primary objective before packaging",
+        "add deterministic in-scope sections to improve routing fitness",
+        "capture quality constraints or non-negotiables"
+      ]
+    },
+    "org_graph": {
+      "org_role": "workflow_provider",
+      "reports_to_suggestions": [],
+      "delegates_to_suggestions": [],
+      "collaborates_with_suggestions": [
+        "demo",
+        "recorder"
+      ],
+      "authority_tier": "advisory",
+      "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+    }
+  },
+  "display_name": "Demo Recorder \u2014 Automated Playwright Demo Generation",
+  "declared_capability": "skill",
+  "inferred_capability": "skill",
+  "expected_surface_names": [
+    "codex_skill",
+    "gemini_skill",
+    "claude_skill",
+    "kiro_skill"
+  ],
+  "rubric_version": "capability-fabric.v0",
+  "invocation_hints": [
+    "\"Use `demo-recorder` to create a Playwright demo of the agent feedback feature on our Swagger UI.\"",
+    "\"Use `demo-recorder` to generate a recorded walkthrough of the new dashboard.\"",
+    "\"Use `demo-recorder` to script a demo that creates a resource, runs it, and shows the trace output.\""
+  ],
+  "descriptor_version": "capability-fabric.descriptor.v0",
+  "family_slug": "demo-recorder",
+  "shared_summary": "Generates Playwright scripts and demo plans for automated feature recordings with realistic pacing and video capture.",
+  "shared_constraints": [
+    "Do not invent service behavior or assume API shapes without user confirmation.",
+    "Do not replace operational procedure with vague summaries.",
+    "Do not imply execution authority that the capability does not own.",
+    "Do not produce scripts that depend on undeclared external tools beyond Playwright itself.",
+    "Do not mix demo recording concerns with testing, CI, or deployment concerns."
+  ],
+  "modes": [],
+  "benchmark_sources": [],
+  "consumption_hints": {},
+  "historical_baseline": {
+    "slug": "demo-recorder",
+    "strategy": "head_snapshot",
+    "group": "derived_current",
+    "baseline_path": "ssot/demo-recorder.md",
+    "selected_commit": null,
+    "richness_score": 5,
+    "line_count": 118,
+    "reason": "No git history was available, so the current SSOT body is the strongest available baseline.",
+    "equivalent_commits": [],
+    "expected_companions": [],
+    "operator_invariants": [],
+    "scenario_matrix": [
+      {
+        "id": "operational_invocation",
+        "kind": "operational_contract",
+        "label": "operational invocation surface",
+        "must_contain": [
+          "## Invocation"
+        ]
+      }
+    ],
+    "historical_proof": {},
+    "source": "current_ssot",
+    "verified_by_git_history": false,
+    "has_baseline_text": true
+  },
+  "quality_validation_matrix": [
+    {
+      "id": "operational_invocation",
+      "kind": "operational_contract",
+      "label": "operational invocation surface",
+      "must_contain": [
+        "## Invocation"
+      ]
+    }
+  ]
+}

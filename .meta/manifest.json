@@ -1872,6 +1872,170 @@
       ]
     },
     {
+      "slug": "demo-recorder",
+      "manifest_version": "capability-fabric.v0",
+      "layers": {
+        "minimal": {
+          "capability_type": "skill",
+          "summary": "Generates Playwright scripts and demo plans for automated feature recordings with realistic pacing and video capture.",
+          "role": "workflow",
+          "domain_tags": [
+            "demo",
+            "recorder"
+          ],
+          "required_inputs": [
+            "**Feature description** \u2014 what is being demoed and why it matters",
+            "**Target URL** \u2014 where the demo runs (can be local or deployed)",
+            "**Auth method** \u2014 how to authenticate (JWT env var, login flow, none)"
+          ],
+          "expected_outputs": [
+            "deterministic summary",
+            "uplift payload",
+            "capability recommendation",
+            "deployment guidance"
+          ],
+          "tool_policy": {
+            "allowed": [
+              "deterministic classification",
+              "metadata publication",
+              "surface generation"
+            ],
+            "forbidden": [
+              "orchestration",
+              "delegation decisions",
+              "runtime execution control"
+            ]
+          },
+          "resources": [
+            "ssot/demo-recorder.md"
+          ],
+          "packaging_profile": {
+            "capability_type": "skill",
+            "primary_surfaces": {
+              "codex": [
+                "codex_skill"
+              ],
+              "gemini": [
+                "gemini_skill"
+              ],
+              "claude": [
+                "claude_skill"
+              ],
+              "kiro": [
+                "kiro_skill"
+              ]
+            },
+            "wrapper_surfaces": {
+              "codex": [],
+              "gemini": [
+                "skill_wrapper"
+              ],
+              "claude": [
+                "skill_wrapper",
+                "plugin_wrapper"
+              ],
+              "kiro": [
+                "skill_wrapper",
+                "power_wrapper"
+              ]
+            },
+            "notes": [
+              "wrapper surfaces are additive deployment forms, not capability types",
+              "orchestrators must not infer execution authority from wrapper presence alone"
+            ]
+          },
+          "install_target": {
+            "recommended": "repo_local",
+            "confidence": 0.88,
+            "confirmation_required_for_apply": true,
+            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+            "supported": [
+              "global",
+              "repo_local",
+              "both"
+            ]
+          },
+          "emitted_surfaces": {
+            "codex": [
+              "codex_skill"
+            ],
+            "gemini": [
+              "gemini_skill"
+            ],
+            "claude": [
+              "claude_skill"
+            ],
+            "kiro": [
+              "kiro_skill"
+            ]
+          },
+          "source_provenance": {
+            "source_type": "LOCAL_FILE",
+            "normalized_source": "ssot/demo-recorder.md",
+            "policy_rule_id": "ssot.demo-recorder",
+            "content_sha256": "ssot"
+          },
+          "confidence": 0.97,
+          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "Demo Recorder \u2014 Automated Playwright Demo Generation"
+        },
+        "expanded": {
+          "relationship_suggestions": [],
+          "capability_dependencies": [],
+          "overlap_candidates": [],
+          "migration_notes": [
+            "If the capability lands, compare it against existing entries before apply.",
+            "Relationship suggestions are advisory only and do not imply runtime routing."
+          ],
+          "adjustment_recommendations": [
+            "add an explicit primary objective before packaging",
+            "add deterministic in-scope sections to improve routing fitness",
+            "capture quality constraints or non-negotiables"
+          ]
+        },
+        "org_graph": {
+          "org_role": "workflow_provider",
+          "reports_to_suggestions": [],
+          "delegates_to_suggestions": [],
+          "collaborates_with_suggestions": [
+            "demo",
+            "recorder"
+          ],
+          "authority_tier": "advisory",
+          "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+        }
+      },
+      "display_name": "Demo Recorder \u2014 Automated Playwright Demo Generation",
+      "descriptor_version": "capability-fabric.descriptor.v0",
+      "family_slug": "demo-recorder",
+      "shared_summary": "Generates Playwright scripts and demo plans for automated feature recordings with realistic pacing and video capture.",
+      "shared_constraints": [
+        "Do not invent service behavior or assume API shapes without user confirmation.",
+        "Do not replace operational procedure with vague summaries.",
+        "Do not imply execution authority that the capability does not own.",
+        "Do not produce scripts that depend on undeclared external tools beyond Playwright itself.",
+        "Do not mix demo recording concerns with testing, CI, or deployment concerns."
+      ],
+      "modes": [],
+      "benchmark_sources": [],
+      "consumption_hints": {},
+      "declared_capability": "skill",
+      "inferred_capability": "skill",
+      "expected_surface_names": [
+        "codex_skill",
+        "gemini_skill",
+        "claude_skill",
+        "kiro_skill"
+      ],
+      "rubric_version": "capability-fabric.v0",
+      "invocation_hints": [
+        "\"Use `demo-recorder` to create a Playwright demo of the agent feedback feature on our Swagger UI.\"",
+        "\"Use `demo-recorder` to generate a recorded walkthrough of the new dashboard.\"",
+        "\"Use `demo-recorder` to script a demo that creates a resource, runs it, and shows the trace output.\""
+      ]
+    },
+    {
       "slug": "docs-review-expert",
       "manifest_version": "capability-fabric.v0",
       "layers": {
@@ -5098,6 +5262,7 @@
       ".gemini/skills/code-review/SKILL.md",
       ".gemini/skills/codebase-health-audit/SKILL.md",
       ".gemini/skills/converge/SKILL.md",
+      ".gemini/skills/demo-recorder/SKILL.md",
       ".gemini/skills/docs-review-expert/SKILL.md",
       ".gemini/skills/eng-report/SKILL.md",
       ".gemini/skills/feature-status/SKILL.md",
@@ -5134,6 +5299,7 @@
       ".claude/skills/code-review/SKILL.md",
       ".claude/skills/codebase-health-audit/SKILL.md",
       ".claude/skills/converge/SKILL.md",
+      ".claude/skills/demo-recorder/SKILL.md",
       ".claude/skills/docs-review-expert/SKILL.md",
       ".claude/skills/eng-report/SKILL.md",
       ".claude/skills/feature-status/SKILL.md",
@@ -5183,6 +5349,7 @@
       ".kiro/skills/code-review/SKILL.md",
       ".kiro/skills/codebase-health-audit/SKILL.md",
       ".kiro/skills/converge/SKILL.md",
+      ".kiro/skills/demo-recorder/SKILL.md",
       ".kiro/skills/docs-review-expert/SKILL.md",
       ".kiro/skills/eng-report/SKILL.md",
       ".kiro/skills/feature-status/SKILL.md",
@@ -5206,6 +5373,7 @@
       ".codex/skills/code-review/SKILL.md",
       ".codex/skills/codebase-health-audit/SKILL.md",
       ".codex/skills/converge/SKILL.md",
+      ".codex/skills/demo-recorder/SKILL.md",
       ".codex/skills/docs-review-expert/SKILL.md",
       ".codex/skills/eng-report/SKILL.md",
       ".codex/skills/feature-status/SKILL.md",
@@ -5249,6 +5417,7 @@
       ".codex/skills/code-review/resources/capability.json",
       ".codex/skills/codebase-health-audit/resources/capability.json",
       ".codex/skills/converge/resources/capability.json",
+      ".codex/skills/demo-recorder/resources/capability.json",
       ".codex/skills/docs-review-expert/resources/capability.json",
       ".codex/skills/eng-report/resources/capability.json",
       ".codex/skills/feature-status/resources/capability.json",
@@ -5297,6 +5466,7 @@
       ".gemini/skills/code-review/resources/capability.json",
       ".gemini/skills/codebase-health-audit/resources/capability.json",
       ".gemini/skills/converge/resources/capability.json",
+      ".gemini/skills/demo-recorder/resources/capability.json",
       ".gemini/skills/docs-review-expert/resources/capability.json",
       ".gemini/skills/eng-report/resources/capability.json",
       ".gemini/skills/feature-status/resources/capability.json",
@@ -5345,6 +5515,7 @@
       ".claude/skills/code-review/resources/capability.json",
       ".claude/skills/codebase-health-audit/resources/capability.json",
       ".claude/skills/converge/resources/capability.json",
+      ".claude/skills/demo-recorder/resources/capability.json",
       ".claude/skills/docs-review-expert/resources/capability.json",
       ".claude/skills/eng-report/resources/capability.json",
       ".claude/skills/feature-status/resources/capability.json",
@@ -5393,6 +5564,7 @@
       ".kiro/skills/code-review/resources/capability.json",
       ".kiro/skills/codebase-health-audit/resources/capability.json",
       ".kiro/skills/converge/resources/capability.json",
+      ".kiro/skills/demo-recorder/resources/capability.json",
       ".kiro/skills/docs-review-expert/resources/capability.json",
       ".kiro/skills/eng-report/resources/capability.json",
       ".kiro/skills/feature-status/resources/capability.json",
