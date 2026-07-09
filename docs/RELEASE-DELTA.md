@@ -1,19 +1,19 @@
 # Release Delta
 
 - Comparison basis: `git:HEAD .meta/manifest.json`
-- New capabilities: `1`
+- New capabilities: `0`
 - Removed capabilities: `0`
-- Changed capabilities: `0`
-- Material changes: `0`
+- Changed capabilities: `1`
+- Material changes: `1`
 
 ## New Capabilities
-- `demo-recorder` — Demo Recorder — Automated Playwright Demo Generation
+- none
 
 ## Removed Capabilities
 - none
 
 ## Material Changes
-- none
+- `demo-recorder` — changed `expected_outputs, preferred_use_cases`
 
 ## All Changed Capabilities
-- none
+- `demo-recorder` — changed `expected_outputs, preferred_use_cases`

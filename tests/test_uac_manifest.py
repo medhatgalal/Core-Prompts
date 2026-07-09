@@ -76,6 +76,46 @@ def test_build_capability_manifest_creates_layered_schema() -> None:
     assert manifest['layers']['org_graph']['authority_tier'] == 'advisory'
 
 
+def test_build_capability_manifest_extracts_numbered_required_outputs() -> None:
+    raw_text = """# Demo Recorder
+
+## Required Output
+
+1. **Demo plan** — ordered steps with rationale
+2. **Playwright script** — complete, runnable, with recording enabled
+3. **Run command** — exact invocation to produce the recording
+4. **Output location** — where the video file lands
+"""
+
+    manifest = build_capability_manifest(
+        slug='demo-recorder',
+        source_metadata={
+            'source_type': 'LOCAL_FILE',
+            'normalized_source': str(ROOT / 'ssot' / 'demo-recorder.md'),
+            'policy_rule_id': 'ssot.demo-recorder',
+            'content_sha256': 'abc123',
+        },
+        raw_text=raw_text,
+        summary='Generates Playwright scripts and demo plans.',
+        assessment_payload={
+            'capability_type': 'skill',
+            'confidence': 0.97,
+            'rationale': 'Structured workflow',
+            'emitted_surfaces': {'codex': ['codex_skill']},
+        },
+        uplift_payload={'primary_objective': 'record demos', 'in_scope': ['demo plans'], 'quality_constraints': []},
+        routing_payload={'route_profile': 'SSOT_AUDIT'},
+        repo_root=ROOT,
+    )
+
+    assert manifest['layers']['minimal']['expected_outputs'] == [
+        'Demo plan',
+        'Playwright script',
+        'Run command',
+        'Output location',
+    ]
+
+
 def test_build_capability_manifest_persists_repo_relative_local_sources() -> None:
     manifest = build_capability_manifest(
         slug='architecture',

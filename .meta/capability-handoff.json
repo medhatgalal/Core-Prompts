@@ -729,10 +729,10 @@
         "**Auth method** \u2014 how to authenticate (JWT env var, login flow, none)"
       ],
       "expected_outputs": [
-        "deterministic summary",
-        "uplift payload",
-        "capability recommendation",
-        "deployment guidance"
+        "Demo plan",
+        "Playwright script",
+        "Run command",
+        "Output location"
       ],
       "tool_policy": {
         "allowed": [
@@ -775,12 +775,19 @@
       "review_status": "ready_for_orchestrator_review",
       "overlap_candidates": [],
       "relationship_suggestions": [],
-      "quality_status": null,
-      "benchmark_profile": null,
-      "preferred_use_cases": [],
-      "artifact_conventions": [],
-      "invocation_style": null,
-      "requires_human_confirmation": null,
+      "quality_status": "ship",
+      "benchmark_profile": "default",
+      "preferred_use_cases": [
+        "AI-assisted capability selection",
+        "deterministic prompt uplift review"
+      ],
+      "artifact_conventions": [
+        "ssot/<slug>.md",
+        ".meta/capabilities/<slug>.json",
+        "reports/quality-reviews/<slug>/LATEST.md"
+      ],
+      "invocation_style": "assistant_first_but_scriptable",
+      "requires_human_confirmation": true,
       "org_graph": {
         "org_role": "workflow_provider",
         "reports_to_suggestions": [],

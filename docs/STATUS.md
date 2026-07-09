@@ -2,11 +2,11 @@
 
 Generated from the latest build, validation, and smoke reports. This is the user-facing health snapshot for packaged Core-Prompts artifacts.
 
-- Overall health: `ok`
+- Overall health: `warn`
 - Capability count: `22`
-- Latest build: `2026-07-08T20:04:35.739362+00:00`
-- Latest validation: `2026-07-08T20:04:32.382720+00:00`
-- Latest smoke: `2026-07-08T20:04:05.674620+00:00`
+- Latest build: `2026-07-09T03:35:53.403964+00:00`
+- Latest validation: `2026-07-09T03:35:45.409752+00:00`
+- Latest smoke: `2026-07-09T03:34:39.637803+00:00`
 
 ## Validation
 - Errors: `0`
@@ -14,4 +14,4 @@ Generated from the latest build, validation, and smoke reports. This is the user
 
 ## Smoke
 - Failures: `0`
-- Warnings: `0`
+- Warnings: `1`

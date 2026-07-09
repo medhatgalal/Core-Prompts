@@ -327,6 +327,14 @@ def _extract_output_contract_shapes(raw_text: str, headings: Sequence[str]) -> l
                     continue
                 items.append(bullet)
                 continue
+            numbered = re.match(r"^\d+[.)]\s+(.+)$", stripped)
+            if numbered:
+                item = numbered.group(1).strip()
+                item = re.split(r"\s+[—-]\s+", item, maxsplit=1)[0].strip()
+                item = re.sub(r"^\*\*(.+?)\*\*$", r"\1", item)
+                if item:
+                    items.append(item)
+                continue
             if not in_code_block:
                 continue
             if stripped.startswith("## Feature Status:"):
