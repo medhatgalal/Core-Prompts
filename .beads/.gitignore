@@ -1,0 +1,70 @@
+# Dolt database, managed by Dolt rather than git.
+dolt/
+embeddeddolt/
+proxieddb/
+
+# Runtime files
+bd.sock
+bd.sock.startlock
+sync-state.json
+last-touched
+.exclusive-lock
+
+# Daemon runtime
+daemon.*
+
+# Per-machine push state
+push-state.json
+
+# Runtime locks
+*.lock
+
+# Federation credential key. Never commit this file.
+.beads-credential-key
+
+# Local version tracking
+.local_version
+
+proxied_server_client_info.json
+
+# Worktree redirect file with machine-local paths.
+redirect
+
+# Per-machine sync state
+.sync.lock
+export-state/
+export-state.json
+
+# Ephemeral store
+ephemeral.sqlite3
+ephemeral.sqlite3-journal
+ephemeral.sqlite3-wal
+ephemeral.sqlite3-shm
+
+# Dolt server management
+dolt-server.pid
+dolt-server.log
+dolt-server.lock
+dolt-server.port
+dolt-server.activity
+
+# Debug-mode pprof artifacts
+dolt-pprof/
+
+# Recovery artifacts
+*.corrupt.backup/
+
+# Local backup data
+backup/
+
+# Per-project environment file
+.env
+
+# Legacy files from pre-Dolt versions
+*.db
+*.db?*
+*.db-journal
+*.db-wal
+*.db-shm
+db.sqlite
+bd.db

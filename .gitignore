@@ -12,3 +12,26 @@ reports/
 dist/
 __pycache__/
 *.pyc
+
+# Beads / Dolt runtime files
+.dolt/
+*.db
+.beads-credential-key
+.beads/proxieddb/
+.beads/embeddeddolt/
+.beads/dolt-server.*
+.beads/*.lock
+.beads-gcs-creds.json
+
+# EngOS runtime files
+.engos/*
+!.engos/engos.yml
+!.engos/memories.md
+!.engos/prompts/
+!.engos/skills/
+!.engos/slices/
+
+# Local mock/runtime artifacts
+MagicMock/
+*.mock
+.mock_*

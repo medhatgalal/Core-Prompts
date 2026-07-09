@@ -1,0 +1,8 @@
+# BEGIN engos-parallel-guards
+# Lock files: mark as unmergeable so conflicts surface explicitly.
+package-lock.json -merge
+yarn.lock -merge
+pnpm-lock.yaml -merge
+Cargo.lock -merge
+poetry.lock -merge
+# END engos-parallel-guards
