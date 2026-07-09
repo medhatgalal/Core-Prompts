@@ -714,6 +714,94 @@
       "advisory_only": true
     },
     {
+      "slug": "demo-recorder",
+      "display_name": "Demo Recorder \u2014 Automated Playwright Demo Generation",
+      "capability_type": "skill",
+      "summary": "Generates Playwright scripts and demo plans for automated feature recordings with realistic pacing and video capture.",
+      "role": "workflow",
+      "domain_tags": [
+        "demo",
+        "recorder"
+      ],
+      "required_inputs": [
+        "**Feature description** \u2014 what is being demoed and why it matters",
+        "**Target URL** \u2014 where the demo runs (can be local or deployed)",
+        "**Auth method** \u2014 how to authenticate (JWT env var, login flow, none)"
+      ],
+      "expected_outputs": [
+        "Demo plan",
+        "Playwright script",
+        "Run command",
+        "Output location"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ]
+      },
+      "confidence": 0.97,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [],
+      "quality_status": "ship",
+      "benchmark_profile": "default",
+      "preferred_use_cases": [
+        "AI-assisted capability selection",
+        "deterministic prompt uplift review"
+      ],
+      "artifact_conventions": [
+        "ssot/<slug>.md",
+        ".meta/capabilities/<slug>.json",
+        "reports/quality-reviews/<slug>/LATEST.md"
+      ],
+      "invocation_style": "assistant_first_but_scriptable",
+      "requires_human_confirmation": true,
+      "org_graph": {
+        "org_role": "workflow_provider",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "demo",
+          "recorder"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
       "slug": "docs-review-expert",
       "display_name": "Docs Review Expert \u2014 Documentation IA, Drift, and Release Hygiene",
       "capability_type": "both",

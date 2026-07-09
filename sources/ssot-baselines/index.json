@@ -493,6 +493,22 @@
       "equivalent_commits": [],
       "expected_companions": [],
       "scenario_matrix": []
+    },
+    "demo-recorder": {
+      "strategy": "source_library",
+      "group": "applied_baseline",
+      "baseline_path": "sources/ssot-baselines/demo-recorder/baseline.md",
+      "richness_score": 5,
+      "line_count": 132,
+      "reason": "Repo-resident baseline source snapshot used as the fidelity oracle for future UAC judging.",
+      "historical_proof": {
+        "materialized_from_commit": "306bc39c",
+        "materialized_from_source_kind": "canonical_source",
+        "materialized_from_path": "ssot/demo-recorder.md",
+        "materialized_from_sha256": "a2474f56bcb530c850191ad48a78f0c7ed4d2f67620669e78ffaec307cdb9508",
+        "last_materialized_at": "2026-07-09T03:29:22.675807+00:00"
+      },
+      "selected_commit": "306bc39c"
     }
   }
 }

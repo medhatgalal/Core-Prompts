@@ -13,7 +13,7 @@
 - none
 
 ## Material Changes
-- `supercharge` — changed `summary, invocation_hints, expected_outputs`
+- `demo-recorder` — changed `expected_outputs, preferred_use_cases`
 
 ## All Changed Capabilities
-- `supercharge` — changed `summary, version, invocation_hints, expected_outputs`
+- `demo-recorder` — changed `expected_outputs, preferred_use_cases`

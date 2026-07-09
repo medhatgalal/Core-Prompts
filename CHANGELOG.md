@@ -1,3 +1,9 @@
+## v1.9.5 - 2026-07-09
+
+- Shipped `demo-recorder` as a direct skill for generating Playwright demo plans, complete runnable scripts, run commands, and recording output paths across Codex, Gemini, Claude, and Kiro.
+- Fixed UAC expected-output extraction so numbered `Required Output` sections materialize specific descriptor metadata instead of generic fallback outputs.
+- Persisted `demo-recorder` UAC quality evidence and baseline metadata, then rebuilt generated surfaces and release inspection docs.
+
 ## v1.9.4 - 2026-06-30
 
 - Shipped the SuperCharge `v4.2` adversarial debate uplift:

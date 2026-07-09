@@ -23,6 +23,7 @@ If Core-Prompts is already installed in Codex, Gemini, Claude, or Kiro, begin wi
 | `ic-assistant` | "Use `ic-assistant` to track this active incident and tell me the current phase, overdue items, and next required action." | mode, phase, next action, status-update timer, and escalation flags |
 | `supercharge` | "Use `supercharge /adversarial /debate /deep` to stress-test this release decision with Bull/Bear/Decider analysis, risks, mitigants, and flip conditions." | stronger framing, constraints, sequencing, first-principles accounting, and adversarial debate when requested |
 | `auto-research` | "Use `auto-research` to improve our review prompt so it catches more regressions without increasing noise." | experiment design, evaluation, and a validated winner |
+| `demo-recorder` | "Use `demo-recorder` to create a Playwright demo of the new dashboard feature with video recording." | demo plan, complete Playwright script, run command, and output path |
 | `testing` | "Use `testing` to identify the edge cases and tests this change needs." | prioritized tests and missing edge cases |
 
 If you want an advisory agent rather than a direct skill invocation, start with:

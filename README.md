@@ -10,7 +10,7 @@ The right mental model is simple:
 
 If you are already using Core-Prompts in a CLI, start there. If you are importing a new capability family, go to UAC next. If you are rebuilding surfaces, validating state, deploying, or preparing release work, use the repo tooling after that.
 
-The current generated surfaces ship `21` skills across all supported CLIs and `11` advisory agents on agent-capable surfaces.
+The current generated surfaces ship `22` skills across all supported CLIs and `11` advisory agents on agent-capable surfaces.
 
 For review work, pick the capability by intent:
 
@@ -36,6 +36,7 @@ These are the currently shipped skills with a concrete starter ask for each one:
 | `code-review` | review staged changes, diffs, or commits before commit, push, merge, or release | "Use `code-review` to review my staged changes before I commit." | findings first, scope risks, message-quality feedback, and merge readiness |
 | `address-code-review` | apply selected fixes for existing PR/MR reviewer comments | "Use `address-code-review` to inspect the open review comments on this MR and address the selected fixes only." | comments found, selected fixes, changes applied, commit guidance, and follow-up review |
 | `converge` | compare competing proposals and force one recommendation | "Use `converge` to compare these rollout plans and recommend one." | overlap map, explicit conflicts, decision criteria, and one final recommendation |
+| `demo-recorder` | automate polished demo recordings with Playwright scripts | "Use `demo-recorder` to create a Playwright demo of the agent feedback feature on our Swagger UI." | demo plan, complete Playwright script with recording enabled, run command, and output path |
 | `docs-review-expert` | fix docs structure, drift, and explainability | "Use `docs-review-expert` to tell me what belongs in `README.md` versus `docs/`, what drifted, and what to fix first." | doc placement, drift findings, rewrite targets, and review timing |
 | `eng-report` | generate a git-derived engineering progress report | "Use `eng-report` to generate an HTML progress report for this repo since 2026-06-01." | deterministic git metrics, local or Drive report path, and narrative clearly tied to the data |
 | `feature-status` | audit a feature against its stated scope and proof sources | "Use `feature-status` to compare this feature's pitch, HLD, OAS, code, and tests, then tell me what is complete, what drifted, and what is blocking ship." | evidence-backed status tables, spec drift findings, gap analysis, and prioritized recommendations |
