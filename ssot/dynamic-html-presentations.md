@@ -31,13 +31,18 @@ Honor a user-specified destination. Otherwise create one descriptive deck direct
 ```text
 <deck-slug>/
 ├── index.html
-├── slides/
+├── images/                         # only when packaged local assets are used
+│   ├── photo-team-workshop.webp
+│   ├── diagram-request-flow.svg
+│   └── screenshot-settings.png
+├── ASSET-ATTRIBUTION.md            # only when attribution must travel with the deck
+├── slides/                         # only when PNG or PPTX was requested
 │   ├── slide-01.png
 │   └── ...
-└── <deck-slug>.pptx
+└── <deck-slug>.pptx                # only when PPTX was requested
 ```
 
-Only create `slides/` and the PPTX when those formats were requested. Keep source notes or research beside the deck only when the user asks for them.
+Treat the deck directory as one deliverable. Do not place exported `slide-*.png` files in `images/`; `images/` is reserved for deck-ready assets referenced by the HTML. Keep source notes or research beside the deck only when the user asks for them.
 
 ## Discovery Inputs
 Gather only information that materially changes the deck. Use existing context instead of interrogating the user.
@@ -46,7 +51,8 @@ Gather only information that materially changes the deck. Use existing context i
 - presentation length or target slide count
 - core narrative and required sections
 - evidence, metrics, quotes, diagrams, and source citations
-- brand constraints, tone, colors, and logo policy
+- brand constraints, tone, colors, logo policy, and approved image assets
+- image usage rights, alternative text, crop/focal-point intent, and delivery profile when images are used
 - whether claims are factual, illustrative, or placeholders
 - speaker-note expectations
 - delivery format and target viewport
@@ -80,7 +86,7 @@ When evidence is incomplete, label assumptions and illustrative values explicitl
 - Preserve whitespace. Never solve hierarchy by filling every available area.
 
 ## HTML Architecture
-Create one portable HTML file unless the user explicitly approves external assets. Inline CSS and JavaScript. Inline small SVG diagrams. Embed images as data URIs or keep them in a user-approved local asset directory when file size makes embedding unreasonable.
+Create one portable HTML file unless the user explicitly approves a packaged deck with local assets. Inline CSS and JavaScript. Inline small trusted SVG diagrams. Handle raster images, screenshots, logos, and larger SVGs through the image asset convention below.
 
 Use semantic slides:
 
@@ -106,6 +112,73 @@ The runtime must maintain exactly one active slide during normal viewing. Implem
 - `aria-hidden` state updates and accessible button labels
 
 Keep presentation state in a small, readable script. Do not add a framework for a single-file deck.
+
+## Image Asset Convention
+Use the following contract whenever a deck contains user-provided or locally generated image files. Do not invent, scrape, or silently download imagery.
+
+### Choose one delivery profile
+- **Single-file HTML (default):** keep deck-ready files under `images/` while authoring, then embed their bytes as data URIs in the final `index.html`. The delivered HTML must render correctly without the authoring directory.
+- **Portable package:** when the user approves local assets or embedding would make the HTML unreasonable, keep the files under `<deck-slug>/images/` and reference them only with relative paths such as `images/photo-team-workshop.webp`. The whole deck directory is the deliverable.
+
+Never leave absolute paths, `file://` URLs, temporary paths, or unapproved `http://`/`https://` image dependencies in the final HTML.
+
+### Prepare and name assets
+- Keep `images/` flat by default and store only deck-ready assets there. Keep untouched originals outside the deliverable.
+- Name files `<role>-<subject>[-<variant>].<ext>` in lowercase kebab-case. Preferred roles are `photo`, `hero`, `diagram`, `screenshot`, `logo`, `icon`, and `texture`.
+- Use SVG for trusted diagrams and logos, WebP or JPEG for photographs, and PNG for screenshots or transparency. The extension must match the encoded format.
+- Preserve source aspect ratio. Create a deck-ready copy for cropping, compression, metadata removal, or color adjustment; do not silently modify the user's original.
+- Remove unneeded EXIF or GPS metadata before external distribution. Preserve attribution and license details in `<deck-slug>/ASSET-ATTRIBUTION.md` when they must travel with the deck, without copying private source URLs or credentials. Keep `images/` reserved for actual deck-ready image files.
+- Treat SVG as active content: inline only trusted, sanitized SVG without scripts, event handlers, `foreignObject`, or external references. Otherwise load it through `<img>`.
+
+### Use one semantic media component
+Use `<img>` for meaningful imagery so alternative text and load failures remain inspectable. Use CSS backgrounds only for decorative texture, and mark decorative `<img>` elements with `alt=""`.
+
+```html
+<figure class="media media--cover" style="--image-position: 50% 35%;">
+  <img
+    src="images/photo-team-workshop.webp"
+    alt="A cross-functional team reviewing a workflow on a whiteboard"
+    loading="eager"
+    decoding="sync"
+    width="1600"
+    height="900"
+  >
+  <figcaption>Workshop synthesis · illustrative image</figcaption>
+</figure>
+```
+
+```css
+.media {
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
+  min-height: 0;
+}
+.media > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: var(--image-position, 50% 50%);
+}
+.media--cover > img { object-fit: cover; }
+.media--contain > img { object-fit: contain; }
+```
+
+Use `cover` for photographs intended to fill a frame. Use `contain` for screenshots, diagrams, charts, and logos that must remain fully visible. Adjust `--image-position` to preserve the focal point; never stretch an image to fit. Set slide images to `loading="eager"`; lazy loading is incompatible with deterministic export because inactive slides may never enter the viewport before validation.
+
+### Validate image assets
+Before export, verify every `<img>` has an intentional `alt` value, `loading="eager"`, a relative `images/...` path or data URI, a nonzero `naturalWidth` and `naturalHeight`, and the expected `object-fit`. At the target viewport, inspect the rendered crop, caption, focal point, pixelation, and bounds.
+
+```js
+const brokenImages = [...document.images]
+  .filter(img => !img.complete || img.naturalWidth === 0 || img.naturalHeight === 0);
+if (brokenImages.length) {
+  throw new Error(`Broken image assets: ${brokenImages.map(img => img.getAttribute("src")).join(", ")}`);
+}
+```
+
+The bundled PNG exporter performs this broken-image check after page load and aborts before taking screenshots. Do not treat a placeholder, missing image icon, or CSS background as a successful export.
 
 ## Fixed 16:9 Visual System
 Design against a 16:9 stage. The default export target is 1920×1080, but layout should scale down without changing composition.
@@ -175,6 +248,7 @@ Validate the actual page, not only the source text.
 - notes exist when requested
 - controls are visible interactively and hidden only in export mode
 - no external network dependency unless explicitly approved
+- every image resolves from a data URI or relative `images/...` path, loads eagerly, has intentional alternative text, and reports nonzero natural dimensions
 
 ### Geometry checks at 1920×1080
 Activate each slide and inspect every visible element's `getBoundingClientRect()`:
@@ -288,6 +362,8 @@ For Google Slides speaker notes, use each slide's `slideProperties.notesPage.not
 - Create PPTX only from verified PNGs.
 - Label flattened PPTX output as image-only and non-editable.
 - Keep examples generic and free of confidential names, internal URLs, or unsupported claims.
+- Use `images/` only for deck-ready referenced image files, with descriptive kebab-case names and relative paths; keep attribution metadata at deck root.
+- Never silently fetch imagery or distort an image to fit a frame.
 
 ## Required Inputs
 - topic, source material, or outline
@@ -295,12 +371,14 @@ For Google Slides speaker notes, use each slide's `slideProperties.notesPage.not
 - requested output: HTML, PNG, PPTX, or all
 - target duration or slide count when constrained
 - evidence and branding requirements when applicable
+- approved image assets, usage rights, alternative text, and focal crop when applicable
 - speaker-note and appendix expectations
 
 ## Required Output
 Every substantial delivery must include:
 - `Narrative` — the story arc and slide-level claims
-- `Artifacts` — exact paths to HTML, PNG directory, and/or PPTX
+- `Artifacts` — exact paths to HTML, optional `images/` package, PNG directory, and/or PPTX
+- `Image Assets` — delivery profile, relative or embedded references, fit behavior, alternative text, and provenance assumptions when images are used
 - `Interaction` — navigation, notes, fullscreen, and deep-link behavior implemented
 - `Validation` — slide count, active-state, geometry, console, export-mode, and file checks actually run
 - `Export Tradeoffs` — platform requirements and image-only PPTX limitation
@@ -339,7 +417,10 @@ Use these as starting points, not as immutable templates. Replace the example na
 - [ ] User-selected output format is recorded.
 - [ ] Audience, purpose, and narrative arc are clear.
 - [ ] Every slide has one principal claim.
-- [ ] HTML is standalone unless external assets were approved.
+- [ ] HTML is standalone unless a packaged deck with local assets was approved.
+- [ ] Every packaged image is deck-ready, descriptively named, relatively referenced, and has intentional alternative text.
+- [ ] Every image loads eagerly with nonzero natural dimensions and uses `cover` or `contain` without distortion.
+- [ ] Required attribution travels at deck root without private source URLs or credentials.
 - [ ] Exactly one slide is active interactively.
 - [ ] Keyboard, hash, controls, fullscreen, help, and notes work.
 - [ ] Export mode hides chrome and disables motion without affecting normal mode.
@@ -363,4 +444,5 @@ Use these as starting points, not as immutable templates. Replace the example na
 | Evidence integrity | Facts, illustrative values, sources, periods, and caveats are labeled accurately |
 | PNG reliability | One long-lived renderer produces the expected count of nonempty, exact-dimension images |
 | PPTX fidelity | Verified PNGs fill widescreen slides exactly and the flattened-content limitation is disclosed |
+| Image assets | Every image follows the `images/` or data-URI delivery contract, preserves aspect ratio, has intentional alternative text, and passes load and crop validation |
 | Portability and privacy | The HTML is self-contained by default and contains no unintended private names, URLs, assets, or credentials |

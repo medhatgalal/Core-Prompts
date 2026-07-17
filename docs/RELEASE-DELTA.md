@@ -1,19 +1,19 @@
 # Release Delta
 
 - Comparison basis: `git:HEAD .meta/manifest.json`
-- New capabilities: `1`
+- New capabilities: `0`
 - Removed capabilities: `0`
-- Changed capabilities: `0`
-- Material changes: `0`
+- Changed capabilities: `1`
+- Material changes: `1`
 
 ## New Capabilities
-- `dynamic-html-presentations` — Dynamic HTML Presentations
+- none
 
 ## Removed Capabilities
 - none
 
 ## Material Changes
-- none
+- `dynamic-html-presentations` — changed `required_inputs, expected_outputs, shared_constraints, modes, artifact_conventions`
 
 ## All Changed Capabilities
-- none
+- `dynamic-html-presentations` — changed `required_inputs, expected_outputs, shared_constraints, modes, artifact_conventions`

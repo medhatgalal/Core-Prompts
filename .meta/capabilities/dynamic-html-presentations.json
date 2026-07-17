@@ -17,11 +17,13 @@
         "requested output: HTML, PNG, PPTX, or all",
         "target duration or slide count when constrained",
         "evidence and branding requirements when applicable",
+        "approved image assets, usage rights, alternative text, and focal crop when applicable",
         "speaker-note and appendix expectations"
       ],
       "expected_outputs": [
         "`Narrative` \u2014 the story arc and slide-level claims",
-        "`Artifacts` \u2014 exact paths to HTML, PNG directory, and/or PPTX",
+        "`Artifacts` \u2014 exact paths to HTML, optional `images/` package, PNG directory, and/or PPTX",
+        "`Image Assets` \u2014 delivery profile, relative or embedded references, fit behavior, alternative text, and provenance assumptions when images are used",
         "`Interaction` \u2014 navigation, notes, fullscreen, and deep-link behavior implemented",
         "`Validation` \u2014 slide count, active-state, geometry, console, export-mode, and file checks actually run",
         "`Export Tradeoffs` \u2014 platform requirements and image-only PPTX limitation",
@@ -158,7 +160,9 @@
     "Do not invent evidence, quotations, metrics, or sources.",
     "Do not claim export success without validating generated files.",
     "Do not upload a presentation to an external service without an explicit user request.",
-    "Do not spawn one browser process per slide when one long-lived renderer can export the deck."
+    "Do not spawn one browser process per slide when one long-lived renderer can export the deck.",
+    "Use only user-provided, locally generated, or explicitly approved image assets; do not silently fetch remote imagery.",
+    "Reference packaged images only through relative images/... paths, preserve aspect ratio, and fail export when an image is broken."
   ],
   "modes": [
     {
@@ -172,6 +176,7 @@
       ],
       "expected_outputs": [
         "standalone HTML deck",
+        "validated embedded or relative image asset package when images are used",
         "interaction behavior",
         "DOM and viewport validation evidence"
       ]
@@ -215,6 +220,7 @@
       ],
       "expected_outputs": [
         "standalone HTML",
+        "validated embedded or relative image asset package when images are used",
         "verified PNG set",
         "verified PPTX",
         "artifact and validation summary"
@@ -232,6 +238,7 @@
     ],
     "artifact_conventions": [
       "<deck-slug>/index.html",
+      "<deck-slug>/images/<role>-<subject>[-<variant>].<ext>",
       "<deck-slug>/slides/slide-01.png",
       "<deck-slug>/<deck-slug>.pptx"
     ],

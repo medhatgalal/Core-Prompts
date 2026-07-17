@@ -164,6 +164,13 @@ final class SlideExporter: NSObject, WKNavigationDelegate {
         let setupScript = """
         (() => {
           const slides = [...document.querySelectorAll(\(encodedSelector))];
+          const brokenImages = [...document.images].filter(image =>
+            !image.complete || image.naturalWidth === 0 || image.naturalHeight === 0
+          );
+          if (brokenImages.length > 0) {
+            const sources = brokenImages.map(image => image.getAttribute('src') || '(missing src)');
+            throw new Error(`Broken image assets: ${sources.join(', ')}`);
+          }
           document.body.classList.add('export');
           document.querySelectorAll('.controls, .help, .progress, .notes').forEach(el => {
             el.setAttribute('data-export-hidden', 'true');
@@ -175,7 +182,9 @@ final class SlideExporter: NSObject, WKNavigationDelegate {
         webView.evaluateJavaScript(setupScript) { [weak self] result, error in
             guard let self else { return }
             if let error {
-                self.finish(.failure(ExportFailure.render("Could not inspect slides: \(error.localizedDescription)")))
+                let details = (error as NSError).userInfo["WKJavaScriptExceptionMessage"] as? String
+                    ?? error.localizedDescription
+                self.finish(.failure(ExportFailure.render("Could not inspect slides: \(details)")))
                 return
             }
             guard let count = (result as? NSNumber)?.intValue, count > 0 else {
