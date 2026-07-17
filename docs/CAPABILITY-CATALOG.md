@@ -2,7 +2,7 @@
 
 Generated from canonical manifest and descriptor metadata. Use this page to see what Core-Prompts ships, what each capability is for, and where it lands.
 
-- Capability count: `22`
+- Capability count: `23`
 
 ## Start Here
 - `docs-review-expert` — Docs Review Expert — Documentation IA, Drift, and Release Hygiene: Documentation Review Expert for information architecture, explainable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.
@@ -12,10 +12,10 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `testing` — Testing Studio — Test Design and Coverage Analysis: Testing Studio for unit-test generation, end-to-end test design, edge-case discovery, and coverage gap analysis.
 
 ## By CLI
-- `claude`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `codex`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `gemini`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `kiro`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `claude`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `codex`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `gemini`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `kiro`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
 
 ## By Use Case
 - `address`: `address-code-review`
@@ -32,15 +32,18 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `converge`: `converge`
 - `demo`: `demo-recorder`
 - `docs`: `docs-review-expert`
+- `dynamic`: `dynamic-html-presentations`
 - `expert`: `docs-review-expert`
 - `feature`: `feature-status`
 - `gitops`: `gitops-review`
 - `health`: `codebase-health-audit`
+- `html`: `dynamic-html-presentations`
 - `import`: `codebase-health-audit`, `uac-import`
 - `intel`: `weekly-intel`
 - `mentor`: `mentor`
 - `pitch`: `pitch`
 - `planning`: `uac-import`
+- `presentations`: `dynamic-html-presentations`
 - `prompting`: `code-review`, `mentor`, `uac-import`
 - `pulse`: `pulse`
 - `recorder`: `demo-recorder`
@@ -179,6 +182,14 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
   - make docs cleaner, more linkable, or more readable
   - review a PR or release for documentation hygiene
 - Summary: Documentation Review Expert for information architecture, explainable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.
+
+### Dynamic HTML Presentations
+- Slug: `dynamic-html-presentations`
+- Type: `skill`
+- Install target: `repo_local`
+- Supported CLIs: `claude, codex, gemini, kiro`
+- Compatibility: HTML works in modern browsers; bundled PNG exporter requires macOS 13+; PPTX helper requires Python 3.9+.
+- Summary: Creates polished, responsive, standalone HTML slide decks with optional deterministic PNG and image-faithful PPTX export. Use for presentations, pitch decks, reviews, talks, and visual narratives that need browser-native interactivity and portable outputs.
 
 ### Engineering Progress Report
 - Slug: `eng-report`

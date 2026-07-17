@@ -1,0 +1,260 @@
+{
+  "slug": "dynamic-html-presentations",
+  "manifest_version": "capability-fabric.v0",
+  "layers": {
+    "minimal": {
+      "capability_type": "skill",
+      "summary": "Creates polished, responsive, standalone HTML slide decks with optional deterministic PNG and image-faithful PPTX export. Use for presentations, pitch decks, reviews, talks, and visual narratives that need browser-native interactivity and portable outputs.",
+      "role": "workflow",
+      "domain_tags": [
+        "dynamic",
+        "html",
+        "presentations"
+      ],
+      "required_inputs": [
+        "topic, source material, or outline",
+        "audience and desired outcome",
+        "requested output: HTML, PNG, PPTX, or all",
+        "target duration or slide count when constrained",
+        "evidence and branding requirements when applicable",
+        "speaker-note and appendix expectations"
+      ],
+      "expected_outputs": [
+        "`Narrative` \u2014 the story arc and slide-level claims",
+        "`Artifacts` \u2014 exact paths to HTML, PNG directory, and/or PPTX",
+        "`Interaction` \u2014 navigation, notes, fullscreen, and deep-link behavior implemented",
+        "`Validation` \u2014 slide count, active-state, geometry, console, export-mode, and file checks actually run",
+        "`Export Tradeoffs` \u2014 platform requirements and image-only PPTX limitation",
+        "`Open Assumptions` \u2014 illustrative data, missing sources, or content still needing confirmation"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "resources": [
+        "ssot/dynamic-html-presentations.md"
+      ],
+      "packaging_profile": {
+        "capability_type": "skill",
+        "primary_surfaces": {
+          "codex": [
+            "codex_skill"
+          ],
+          "gemini": [
+            "gemini_skill"
+          ],
+          "claude": [
+            "claude_skill"
+          ],
+          "kiro": [
+            "kiro_skill"
+          ]
+        },
+        "wrapper_surfaces": {
+          "codex": [],
+          "gemini": [
+            "skill_wrapper"
+          ],
+          "claude": [
+            "skill_wrapper",
+            "plugin_wrapper"
+          ],
+          "kiro": [
+            "skill_wrapper",
+            "power_wrapper"
+          ]
+        },
+        "notes": [
+          "wrapper surfaces are additive deployment forms, not capability types",
+          "orchestrators must not infer execution authority from wrapper presence alone"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ]
+      },
+      "source_provenance": {
+        "source_type": "LOCAL_FILE",
+        "normalized_source": "ssot/dynamic-html-presentations.md",
+        "policy_rule_id": "ssot.dynamic-html-presentations",
+        "content_sha256": "ssot"
+      },
+      "confidence": 0.97,
+      "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+      "review_status": "ready_for_orchestrator_review",
+      "display_name": "Dynamic HTML Presentations",
+      "compatibility": "HTML works in modern browsers; bundled PNG exporter requires macOS 13+; PPTX helper requires Python 3.9+."
+    },
+    "expanded": {
+      "relationship_suggestions": [],
+      "capability_dependencies": [],
+      "overlap_candidates": [],
+      "migration_notes": [
+        "If the capability lands, compare it against existing entries before apply.",
+        "Relationship suggestions are advisory only and do not imply runtime routing."
+      ],
+      "adjustment_recommendations": [
+        "add an explicit primary objective before packaging",
+        "add deterministic in-scope sections to improve routing fitness",
+        "capture quality constraints or non-negotiables"
+      ]
+    },
+    "org_graph": {
+      "org_role": "workflow_provider",
+      "reports_to_suggestions": [],
+      "delegates_to_suggestions": [],
+      "collaborates_with_suggestions": [
+        "dynamic",
+        "html"
+      ],
+      "authority_tier": "advisory",
+      "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+    }
+  },
+  "display_name": "Dynamic HTML Presentations",
+  "declared_capability": "skill",
+  "inferred_capability": "skill",
+  "expected_surface_names": [
+    "codex_skill",
+    "gemini_skill",
+    "claude_skill",
+    "kiro_skill"
+  ],
+  "rubric_version": "capability-fabric.v0",
+  "descriptor_version": "capability-fabric.descriptor.v0",
+  "family_slug": "dynamic-html-presentations",
+  "shared_summary": "Creates polished, responsive, standalone HTML slide decks with optional deterministic PNG and image-faithful PPTX export. Use for presentations, pitch decks, reviews, talks, and visual narratives that need browser-native interactivity and portable outputs.",
+  "shared_constraints": [
+    "Keep HTML as the canonical editable source.",
+    "Do not invent evidence, quotations, metrics, or sources.",
+    "Do not claim export success without validating generated files.",
+    "Do not upload a presentation to an external service without an explicit user request.",
+    "Do not spawn one browser process per slide when one long-lived renderer can export the deck."
+  ],
+  "modes": [
+    {
+      "mode_slug": "interactive-html",
+      "display_name": "Interactive HTML",
+      "mode_summary": "Create a polished standalone browser deck with keyboard navigation, hash links, fullscreen, notes, and export mode.",
+      "required_inputs": [
+        "audience and purpose",
+        "narrative or source material",
+        "slide-count or duration constraints"
+      ],
+      "expected_outputs": [
+        "standalone HTML deck",
+        "interaction behavior",
+        "DOM and viewport validation evidence"
+      ]
+    },
+    {
+      "mode_slug": "png-images",
+      "display_name": "PNG Images",
+      "mode_summary": "Export one exact-size PNG per validated HTML slide through a single long-lived rendering process.",
+      "required_inputs": [
+        "validated HTML deck",
+        "target dimensions",
+        "output directory"
+      ],
+      "expected_outputs": [
+        "naturally sorted slide PNGs",
+        "count, size, and dimension verification"
+      ]
+    },
+    {
+      "mode_slug": "image-pptx",
+      "display_name": "Image-Faithful PPTX",
+      "mode_summary": "Assemble verified PNGs into a widescreen image-only PPTX that preserves visual fidelity.",
+      "required_inputs": [
+        "verified 16:9 PNG directory",
+        "PPTX destination"
+      ],
+      "expected_outputs": [
+        "widescreen PPTX",
+        "slide-count verification",
+        "flattened-content tradeoff disclosure"
+      ]
+    },
+    {
+      "mode_slug": "all-formats",
+      "display_name": "All Formats",
+      "mode_summary": "Deliver HTML as the source of truth, then deterministic PNGs, then an image-faithful PPTX.",
+      "required_inputs": [
+        "complete presentation contract",
+        "output directory",
+        "target dimensions"
+      ],
+      "expected_outputs": [
+        "standalone HTML",
+        "verified PNG set",
+        "verified PPTX",
+        "artifact and validation summary"
+      ]
+    }
+  ],
+  "benchmark_sources": [],
+  "consumption_hints": {
+    "preferred_use_cases": [
+      "executive and product reviews",
+      "technical talks and training",
+      "pitch decks and proposals",
+      "standalone browser presentations",
+      "visually faithful PNG and PPTX delivery"
+    ],
+    "artifact_conventions": [
+      "<deck-slug>/index.html",
+      "<deck-slug>/slides/slide-01.png",
+      "<deck-slug>/<deck-slug>.pptx"
+    ],
+    "invocation_style": "artifact_generation_and_validation",
+    "requires_human_confirmation": false
+  },
+  "historical_baseline": {
+    "slug": "dynamic-html-presentations",
+    "strategy": "head_snapshot",
+    "group": "derived_current",
+    "baseline_path": "ssot/dynamic-html-presentations.md",
+    "selected_commit": null,
+    "richness_score": 3,
+    "line_count": 366,
+    "reason": "No git history was available, so the current SSOT body is the strongest available baseline.",
+    "equivalent_commits": [],
+    "expected_companions": [],
+    "operator_invariants": [],
+    "scenario_matrix": [],
+    "historical_proof": {},
+    "source": "current_ssot",
+    "verified_by_git_history": false,
+    "has_baseline_text": true
+  },
+  "quality_validation_matrix": []
+}

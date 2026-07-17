@@ -24,6 +24,7 @@ If Core-Prompts is already installed in Codex, Gemini, Claude, or Kiro, begin wi
 | `supercharge` | "Use `supercharge /adversarial /debate /deep` to stress-test this release decision with Bull/Bear/Decider analysis, risks, mitigants, and flip conditions." | stronger framing, constraints, sequencing, first-principles accounting, and adversarial debate when requested |
 | `auto-research` | "Use `auto-research` to improve our review prompt so it catches more regressions without increasing noise." | experiment design, evaluation, and a validated winner |
 | `demo-recorder` | "Use `demo-recorder` to create a Playwright demo of the new dashboard feature with video recording." | demo plan, complete Playwright script, run command, and output path |
+| `dynamic-html-presentations` | "Use `dynamic-html-presentations` to create a standalone HTML deck and ask me whether I want PNG, PPTX, or all formats." | narrative-first deck, polished 16:9 visuals, interaction behavior, and validated requested exports |
 | `testing` | "Use `testing` to identify the edge cases and tests this change needs." | prioritized tests and missing edge cases |
 
 If you want an advisory agent rather than a direct skill invocation, start with:
