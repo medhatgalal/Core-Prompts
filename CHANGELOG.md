@@ -1,3 +1,10 @@
+## v1.9.6 - 2026-07-19
+
+- Shipped `dynamic-html-presentations` as a direct skill for polished standalone HTML decks, deterministic PNG export, and image-faithful flattened PPTX delivery across Codex, Gemini, Claude, and Kiro.
+- Added bundled presentation resources: a sanitized quarterly-review example, a macOS single-process WKWebView PNG exporter, and a natural-sort image-to-PPTX helper.
+- Standardized image asset handling with relative `images/` package rules, alt/crop/provenance expectations, broken-image export failure, and docs/examples for visual deck delivery.
+- Persisted UAC baseline and quality evidence for `dynamic-html-presentations`, including a `ship` judge result with source fidelity 10/10, operational richness 10/10, metadata integrity 10/10, and benchmark readiness 9/10.
+
 ## v1.9.5 - 2026-07-09
 
 - Shipped `demo-recorder` as a direct skill for generating Playwright demo plans, complete runnable scripts, run commands, and recording output paths across Codex, Gemini, Claude, and Kiro.

@@ -226,10 +226,10 @@
         ]
       },
       "install_target": {
-        "recommended": "repo_local",
-        "confidence": 0.88,
+        "recommended": "global",
+        "confidence": 1.0,
         "confirmation_required_for_apply": true,
-        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "rationale": "SSOT frontmatter explicitly declares global installation.",
         "supported": [
           "global",
           "repo_local",
@@ -747,10 +747,10 @@
         ]
       },
       "install_target": {
-        "recommended": "repo_local",
-        "confidence": 0.88,
+        "recommended": "global",
+        "confidence": 1.0,
         "confirmation_required_for_apply": true,
-        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "rationale": "SSOT frontmatter explicitly declares global installation.",
         "supported": [
           "global",
           "repo_local",
@@ -948,10 +948,10 @@
         ]
       },
       "install_target": {
-        "recommended": "repo_local",
-        "confidence": 0.88,
+        "recommended": "global",
+        "confidence": 1.0,
         "confirmation_required_for_apply": true,
-        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "rationale": "SSOT frontmatter explicitly declares global installation.",
         "supported": [
           "global",
           "repo_local",
@@ -976,8 +976,8 @@
       "review_status": "ready_for_orchestrator_review",
       "overlap_candidates": [],
       "relationship_suggestions": [],
-      "quality_status": null,
-      "benchmark_profile": null,
+      "quality_status": "ship",
+      "benchmark_profile": "default",
       "preferred_use_cases": [
         "executive and product reviews",
         "technical talks and training",
@@ -1896,10 +1896,10 @@
         ]
       },
       "install_target": {
-        "recommended": "repo_local",
-        "confidence": 0.88,
+        "recommended": "global",
+        "confidence": 1.0,
         "confirmation_required_for_apply": true,
-        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "rationale": "SSOT frontmatter explicitly declares global installation.",
         "supported": [
           "global",
           "repo_local",

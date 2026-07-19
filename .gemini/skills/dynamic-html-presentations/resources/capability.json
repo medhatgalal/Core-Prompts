@@ -80,10 +80,10 @@
         ]
       },
       "install_target": {
-        "recommended": "repo_local",
-        "confidence": 0.88,
+        "recommended": "global",
+        "confidence": 1.0,
         "confirmation_required_for_apply": true,
-        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "rationale": "SSOT frontmatter explicitly declares global installation.",
         "supported": [
           "global",
           "repo_local",
@@ -124,11 +124,7 @@
         "If the capability lands, compare it against existing entries before apply.",
         "Relationship suggestions are advisory only and do not imply runtime routing."
       ],
-      "adjustment_recommendations": [
-        "add an explicit primary objective before packaging",
-        "add deterministic in-scope sections to improve routing fitness",
-        "capture quality constraints or non-negotiables"
-      ]
+      "adjustment_recommendations": []
     },
     "org_graph": {
       "org_role": "workflow_provider",
@@ -228,6 +224,107 @@
     }
   ],
   "benchmark_sources": [],
+  "quality_profile": "default",
+  "quality_status": "ship",
+  "judge_reports": [
+    {
+      "blockers": [],
+      "historical_baseline": {
+        "baseline_path": "sources/ssot-baselines/dynamic-html-presentations/baseline.md",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "group": "current_oracle",
+        "has_baseline_text": true,
+        "historical_proof": {
+          "current_head_commit": "848ab93b",
+          "current_head_line_count": 448,
+          "current_head_richness_score": 3,
+          "last_materialized_at": "2026-07-19T09:45:51.008369+00:00",
+          "materialized_from_commit": "848ab93b",
+          "materialized_from_path": "ssot/dynamic-html-presentations.md",
+          "materialized_from_sha256": "da45c3dd8143e2c1e74c8ad77f3b2b5b1fb311ba9579ab6b010cf28bc0fd2be6",
+          "materialized_from_source_kind": "current_ssot"
+        },
+        "line_count": 448,
+        "operator_invariants": [],
+        "reason": "Current SSOT baseline source snapshot materialized into the source library because the stored baseline was missing, stale, or structurally degraded.",
+        "richness_score": 3,
+        "scenario_matrix": [],
+        "selected_commit": "848ab93b",
+        "slug": "dynamic-html-presentations",
+        "source": "source_library",
+        "strategy": "head_snapshot",
+        "verified_by_git_history": true
+      },
+      "judge_reports": [
+        {
+          "baseline_commit": "848ab93b",
+          "baseline_slug": "dynamic-html-presentations",
+          "blockers": [],
+          "classification": "preserved",
+          "judge": "source_fidelity",
+          "scenario_results": [],
+          "score": 10,
+          "scorecard": {
+            "baseline_operational_score": 0,
+            "baseline_preserved_in_resource": false,
+            "baseline_richness": 3,
+            "candidate_operational_score": 0,
+            "candidate_richness": 3
+          },
+          "title": "Source Fidelity and Uplift"
+        },
+        {
+          "blockers": [],
+          "judge": "operational_richness",
+          "score": 10,
+          "title": "Operational Richness"
+        },
+        {
+          "blockers": [],
+          "judge": "metadata_integrity",
+          "score": 10,
+          "title": "Metadata and Handoff Integrity"
+        },
+        {
+          "blockers": [],
+          "judge": "benchmark_readiness",
+          "score": 9,
+          "scorecard": {
+            "boundary_clarity": 8,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "metadata_completeness": 8,
+            "output_specificity": 10,
+            "surface_usability": 10,
+            "title_clarity": 10
+          },
+          "title": "Benchmark Readiness and Template Fit"
+        }
+      ],
+      "pass_number": 1,
+      "scorecard": {
+        "baseline_operational_score": 0,
+        "baseline_preserved_in_resource": false,
+        "baseline_richness": 3,
+        "benchmark_readiness": 9,
+        "boundary_clarity": 8,
+        "candidate_operational_score": 0,
+        "candidate_richness": 3,
+        "description_richness": 10,
+        "intent_coverage": 10,
+        "metadata_completeness": 8,
+        "metadata_integrity": 10,
+        "operational_richness": 10,
+        "output_specificity": 10,
+        "source_fidelity": 10,
+        "surface_usability": 10,
+        "title_clarity": 10
+      },
+      "status": "ship",
+      "template_name": "skill"
+    }
+  ],
   "consumption_hints": {
     "preferred_use_cases": [
       "executive and product reviews",
@@ -245,23 +342,34 @@
     "invocation_style": "artifact_generation_and_validation",
     "requires_human_confirmation": false
   },
+  "quality_pass_count": 1,
+  "quality_stop_reason": "thresholds_met",
   "historical_baseline": {
-    "slug": "dynamic-html-presentations",
-    "strategy": "head_snapshot",
-    "group": "derived_current",
-    "baseline_path": "ssot/dynamic-html-presentations.md",
-    "selected_commit": null,
-    "richness_score": 3,
-    "line_count": 366,
-    "reason": "No git history was available, so the current SSOT body is the strongest available baseline.",
+    "baseline_path": "sources/ssot-baselines/dynamic-html-presentations/baseline.md",
     "equivalent_commits": [],
     "expected_companions": [],
+    "group": "current_oracle",
+    "has_baseline_text": true,
+    "historical_proof": {
+      "current_head_commit": "848ab93b",
+      "current_head_line_count": 448,
+      "current_head_richness_score": 3,
+      "last_materialized_at": "2026-07-19T09:45:51.008369+00:00",
+      "materialized_from_commit": "848ab93b",
+      "materialized_from_path": "ssot/dynamic-html-presentations.md",
+      "materialized_from_sha256": "da45c3dd8143e2c1e74c8ad77f3b2b5b1fb311ba9579ab6b010cf28bc0fd2be6",
+      "materialized_from_source_kind": "current_ssot"
+    },
+    "line_count": 448,
     "operator_invariants": [],
+    "reason": "Current SSOT baseline source snapshot materialized into the source library because the stored baseline was missing, stale, or structurally degraded.",
+    "richness_score": 3,
     "scenario_matrix": [],
-    "historical_proof": {},
-    "source": "current_ssot",
-    "verified_by_git_history": false,
-    "has_baseline_text": true
+    "selected_commit": "848ab93b",
+    "slug": "dynamic-html-presentations",
+    "source": "source_library",
+    "strategy": "head_snapshot",
+    "verified_by_git_history": true
   },
   "quality_validation_matrix": []
 }

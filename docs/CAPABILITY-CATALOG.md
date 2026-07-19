@@ -89,7 +89,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 ### Architecture Studio
 - Slug: `architecture`
 - Type: `both`
-- Install target: `repo_local`
+- Install target: `global`
 - Supported CLIs: `claude, codex, gemini, kiro`
 - Invocation hints:
   - design or review an API contract
@@ -162,7 +162,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 ### Demo Recorder — Automated Playwright Demo Generation
 - Slug: `demo-recorder`
 - Type: `skill`
-- Install target: `repo_local`
+- Install target: `global`
 - Supported CLIs: `claude, codex, gemini, kiro`
 - Invocation hints:
   - "Use `demo-recorder` to create a Playwright demo of the agent feedback feature on our Swagger UI."
@@ -186,7 +186,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 ### Dynamic HTML Presentations
 - Slug: `dynamic-html-presentations`
 - Type: `skill`
-- Install target: `repo_local`
+- Install target: `global`
 - Supported CLIs: `claude, codex, gemini, kiro`
 - Compatibility: HTML works in modern browsers; bundled PNG exporter requires macOS 13+; PPTX helper requires Python 3.9+.
 - Summary: Creates polished, responsive, standalone HTML slide decks with optional deterministic PNG and image-faithful PPTX export. Use for presentations, pitch decks, reviews, talks, and visual narratives that need browser-native interactivity and portable outputs.
@@ -328,7 +328,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 ### Testing Studio — Test Design and Coverage Analysis
 - Slug: `testing`
 - Type: `skill`
-- Install target: `repo_local`
+- Install target: `global`
 - Supported CLIs: `claude, codex, gemini, kiro`
 - Invocation hints:
   - generate unit tests

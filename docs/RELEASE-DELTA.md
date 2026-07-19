@@ -3,8 +3,8 @@
 - Comparison basis: `git:HEAD .meta/manifest.json`
 - New capabilities: `0`
 - Removed capabilities: `0`
-- Changed capabilities: `1`
-- Material changes: `1`
+- Changed capabilities: `4`
+- Material changes: `4`
 
 ## New Capabilities
 - none
@@ -13,7 +13,13 @@
 - none
 
 ## Material Changes
-- `dynamic-html-presentations` — changed `required_inputs, expected_outputs, shared_constraints, modes, artifact_conventions`
+- `architecture` — changed `install_target`
+- `demo-recorder` — changed `install_target`
+- `dynamic-html-presentations` — changed `install_target`
+- `testing` — changed `install_target`
 
 ## All Changed Capabilities
-- `dynamic-html-presentations` — changed `required_inputs, expected_outputs, shared_constraints, modes, artifact_conventions`
+- `architecture` — changed `install_target`
+- `demo-recorder` — changed `install_target`
+- `dynamic-html-presentations` — changed `install_target`
+- `testing` — changed `install_target`

@@ -2,7 +2,13 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from intent_pipeline.uac_ssot import audit_ssot_entries, build_ssot_handoff_contract, render_audit_table
+from intent_pipeline.uac_ssot import (
+    audit_ssot_entries,
+    build_ssot_handoff_contract,
+    build_ssot_manifest_entry,
+    load_ssot_entries,
+    render_audit_table,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -62,3 +68,12 @@ def test_audit_ssot_entries_persist_repo_relative_source_refs() -> None:
 
     assert architecture["resources"] == ["ssot/architecture.md"]
     assert architecture["source_provenance"]["normalized_source"] == "ssot/architecture.md"
+
+
+def test_build_ssot_manifest_entry_honors_install_target_frontmatter() -> None:
+    entries = {entry.slug: entry for entry in load_ssot_entries(ROOT / "ssot")}
+    manifest = build_ssot_manifest_entry(entries["dynamic-html-presentations"], ROOT)
+    install_target = manifest["layers"]["minimal"]["install_target"]
+
+    assert install_target["recommended"] == "global"
+    assert install_target["confidence"] == 1.0

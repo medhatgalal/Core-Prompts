@@ -259,6 +259,18 @@ def build_ssot_manifest_entry(entry: SsotEntry, repo_root: Path | None = None, *
     for key, value in optional_metadata.items():
         if value:
             minimal[key] = value
+    declared_install_target = (entry.frontmatter.get("install_target") or "").strip()
+    if declared_install_target in {"global", "repo_local", "both"}:
+        existing_target = dict(minimal.get("install_target") or {})
+        if existing_target.get("recommended") != declared_install_target:
+            minimal["install_target"] = {
+                **existing_target,
+                "recommended": declared_install_target,
+                "confidence": 1.0,
+                "confirmation_required_for_apply": True,
+                "rationale": f"SSOT frontmatter explicitly declares {declared_install_target} installation.",
+                "supported": existing_target.get("supported") or ["global", "repo_local", "both"],
+            }
     if supported_agents:
         minimal["supported_agents"] = supported_agents
     manifest.setdefault("layers", {})
