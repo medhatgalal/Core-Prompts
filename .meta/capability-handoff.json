@@ -226,10 +226,10 @@
         ]
       },
       "install_target": {
-        "recommended": "repo_local",
-        "confidence": 0.88,
+        "recommended": "global",
+        "confidence": 1.0,
         "confirmation_required_for_apply": true,
-        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "rationale": "SSOT frontmatter explicitly declares global installation.",
         "supported": [
           "global",
           "repo_local",
@@ -747,10 +747,10 @@
         ]
       },
       "install_target": {
-        "recommended": "repo_local",
-        "confidence": 0.88,
+        "recommended": "global",
+        "confidence": 1.0,
         "confirmation_required_for_apply": true,
-        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "rationale": "SSOT frontmatter explicitly declares global installation.",
         "supported": [
           "global",
           "repo_local",
@@ -900,6 +900,106 @@
         "collaborates_with_suggestions": [
           "architecture",
           "review"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "dynamic-html-presentations",
+      "display_name": "Dynamic HTML Presentations",
+      "capability_type": "skill",
+      "summary": "Creates polished, responsive, standalone HTML slide decks with optional deterministic PNG and image-faithful PPTX export. Use for presentations, pitch decks, reviews, talks, and visual narratives that need browser-native interactivity and portable outputs.",
+      "role": "workflow",
+      "domain_tags": [
+        "dynamic",
+        "html",
+        "presentations"
+      ],
+      "required_inputs": [
+        "topic, source material, or outline",
+        "audience and desired outcome",
+        "requested output: HTML, PNG, PPTX, or all",
+        "target duration or slide count when constrained",
+        "evidence and branding requirements when applicable",
+        "approved image assets, usage rights, alternative text, and focal crop when applicable",
+        "speaker-note and appendix expectations"
+      ],
+      "expected_outputs": [
+        "`Narrative` \u2014 the story arc and slide-level claims",
+        "`Artifacts` \u2014 exact paths to HTML, optional `images/` package, PNG directory, and/or PPTX",
+        "`Image Assets` \u2014 delivery profile, relative or embedded references, fit behavior, alternative text, and provenance assumptions when images are used",
+        "`Interaction` \u2014 navigation, notes, fullscreen, and deep-link behavior implemented",
+        "`Validation` \u2014 slide count, active-state, geometry, console, export-mode, and file checks actually run",
+        "`Export Tradeoffs` \u2014 platform requirements and image-only PPTX limitation",
+        "`Open Assumptions` \u2014 illustrative data, missing sources, or content still needing confirmation"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "global",
+        "confidence": 1.0,
+        "confirmation_required_for_apply": true,
+        "rationale": "SSOT frontmatter explicitly declares global installation.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ]
+      },
+      "confidence": 0.97,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [],
+      "quality_status": "ship",
+      "benchmark_profile": "default",
+      "preferred_use_cases": [
+        "executive and product reviews",
+        "technical talks and training",
+        "pitch decks and proposals",
+        "standalone browser presentations",
+        "visually faithful PNG and PPTX delivery"
+      ],
+      "artifact_conventions": [
+        "<deck-slug>/index.html",
+        "<deck-slug>/images/<role>-<subject>[-<variant>].<ext>",
+        "<deck-slug>/slides/slide-01.png",
+        "<deck-slug>/<deck-slug>.pptx"
+      ],
+      "invocation_style": "artifact_generation_and_validation",
+      "requires_human_confirmation": false,
+      "org_graph": {
+        "org_role": "workflow_provider",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "dynamic",
+          "html"
         ],
         "authority_tier": "advisory",
         "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
@@ -1796,10 +1896,10 @@
         ]
       },
       "install_target": {
-        "recommended": "repo_local",
-        "confidence": 0.88,
+        "recommended": "global",
+        "confidence": 1.0,
         "confirmation_required_for_apply": true,
-        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "rationale": "SSOT frontmatter explicitly declares global installation.",
         "supported": [
           "global",
           "repo_local",

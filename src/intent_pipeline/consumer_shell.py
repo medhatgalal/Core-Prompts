@@ -187,6 +187,14 @@ def _entry_delta(previous: Mapping[str, Any], current: Mapping[str, Any]) -> dic
         details["invocation_hints"] = {"added": added_hints, "removed": removed_hints}
         material_fields.append("invocation_hints")
 
+    prev_inputs = list(prev_min.get("required_inputs") or [])
+    cur_inputs = list(cur_min.get("required_inputs") or [])
+    added_inputs, removed_inputs = _compare_list(prev_inputs, cur_inputs)
+    if added_inputs or removed_inputs:
+        changed_fields.append("required_inputs")
+        details["required_inputs"] = {"added": added_inputs, "removed": removed_inputs}
+        material_fields.append("required_inputs")
+
     prev_outputs = list(prev_min.get("expected_outputs") or [])
     cur_outputs = list(cur_min.get("expected_outputs") or [])
     added_outputs, removed_outputs = _compare_list(prev_outputs, cur_outputs)
@@ -195,6 +203,22 @@ def _entry_delta(previous: Mapping[str, Any], current: Mapping[str, Any]) -> dic
         details["expected_outputs"] = {"added": added_outputs, "removed": removed_outputs}
         material_fields.append("expected_outputs")
 
+    prev_constraints = list(previous.get("shared_constraints") or [])
+    cur_constraints = list(current.get("shared_constraints") or [])
+    added_constraints, removed_constraints = _compare_list(prev_constraints, cur_constraints)
+    if added_constraints or removed_constraints:
+        changed_fields.append("shared_constraints")
+        details["shared_constraints"] = {"added": added_constraints, "removed": removed_constraints}
+        material_fields.append("shared_constraints")
+
+    prev_modes = list(previous.get("modes") or [])
+    cur_modes = list(current.get("modes") or [])
+    added_modes, removed_modes = _compare_list(prev_modes, cur_modes)
+    if added_modes or removed_modes:
+        changed_fields.append("modes")
+        details["modes"] = {"added": added_modes, "removed": removed_modes}
+        material_fields.append("modes")
+
     prev_use_cases = list(_consumption_hints(previous).get("preferred_use_cases") or [])
     cur_use_cases = list(_consumption_hints(current).get("preferred_use_cases") or [])
     added_use_cases, removed_use_cases = _compare_list(prev_use_cases, cur_use_cases)
@@ -202,6 +226,14 @@ def _entry_delta(previous: Mapping[str, Any], current: Mapping[str, Any]) -> dic
         changed_fields.append("preferred_use_cases")
         details["preferred_use_cases"] = {"added": added_use_cases, "removed": removed_use_cases}
         material_fields.append("preferred_use_cases")
+
+    prev_artifacts = list(_consumption_hints(previous).get("artifact_conventions") or [])
+    cur_artifacts = list(_consumption_hints(current).get("artifact_conventions") or [])
+    added_artifacts, removed_artifacts = _compare_list(prev_artifacts, cur_artifacts)
+    if added_artifacts or removed_artifacts:
+        changed_fields.append("artifact_conventions")
+        details["artifact_conventions"] = {"added": added_artifacts, "removed": removed_artifacts}
+        material_fields.append("artifact_conventions")
 
     prev_surfaces = sorted(previous.get("expected_surface_names") or [])
     cur_surfaces = sorted(current.get("expected_surface_names") or [])

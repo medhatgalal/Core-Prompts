@@ -72,10 +72,10 @@
         ]
       },
       "install_target": {
-        "recommended": "repo_local",
-        "confidence": 0.88,
+        "recommended": "global",
+        "confidence": 1.0,
         "confirmation_required_for_apply": true,
-        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "rationale": "SSOT frontmatter explicitly declares global installation.",
         "supported": [
           "global",
           "repo_local",

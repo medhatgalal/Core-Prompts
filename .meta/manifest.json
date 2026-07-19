@@ -633,10 +633,10 @@
             ]
           },
           "install_target": {
-            "recommended": "repo_local",
-            "confidence": 0.88,
+            "recommended": "global",
+            "confidence": 1.0,
             "confirmation_required_for_apply": true,
-            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+            "rationale": "SSOT frontmatter explicitly declares global installation.",
             "supported": [
               "global",
               "repo_local",
@@ -1945,10 +1945,10 @@
             ]
           },
           "install_target": {
-            "recommended": "repo_local",
-            "confidence": 0.88,
+            "recommended": "global",
+            "confidence": 1.0,
             "confirmation_required_for_apply": true,
-            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+            "rationale": "SSOT frontmatter explicitly declares global installation.",
             "supported": [
               "global",
               "repo_local",
@@ -2372,6 +2372,353 @@
         "make docs cleaner, more linkable, or more readable",
         "review a PR or release for documentation hygiene"
       ]
+    },
+    {
+      "slug": "dynamic-html-presentations",
+      "manifest_version": "capability-fabric.v0",
+      "layers": {
+        "minimal": {
+          "capability_type": "skill",
+          "summary": "Creates polished, responsive, standalone HTML slide decks with optional deterministic PNG and image-faithful PPTX export. Use for presentations, pitch decks, reviews, talks, and visual narratives that need browser-native interactivity and portable outputs.",
+          "role": "workflow",
+          "domain_tags": [
+            "dynamic",
+            "html",
+            "presentations"
+          ],
+          "required_inputs": [
+            "topic, source material, or outline",
+            "audience and desired outcome",
+            "requested output: HTML, PNG, PPTX, or all",
+            "target duration or slide count when constrained",
+            "evidence and branding requirements when applicable",
+            "approved image assets, usage rights, alternative text, and focal crop when applicable",
+            "speaker-note and appendix expectations"
+          ],
+          "expected_outputs": [
+            "`Narrative` \u2014 the story arc and slide-level claims",
+            "`Artifacts` \u2014 exact paths to HTML, optional `images/` package, PNG directory, and/or PPTX",
+            "`Image Assets` \u2014 delivery profile, relative or embedded references, fit behavior, alternative text, and provenance assumptions when images are used",
+            "`Interaction` \u2014 navigation, notes, fullscreen, and deep-link behavior implemented",
+            "`Validation` \u2014 slide count, active-state, geometry, console, export-mode, and file checks actually run",
+            "`Export Tradeoffs` \u2014 platform requirements and image-only PPTX limitation",
+            "`Open Assumptions` \u2014 illustrative data, missing sources, or content still needing confirmation"
+          ],
+          "tool_policy": {
+            "allowed": [
+              "deterministic classification",
+              "metadata publication",
+              "surface generation"
+            ],
+            "forbidden": [
+              "orchestration",
+              "delegation decisions",
+              "runtime execution control"
+            ]
+          },
+          "resources": [
+            "ssot/dynamic-html-presentations.md"
+          ],
+          "packaging_profile": {
+            "capability_type": "skill",
+            "primary_surfaces": {
+              "codex": [
+                "codex_skill"
+              ],
+              "gemini": [
+                "gemini_skill"
+              ],
+              "claude": [
+                "claude_skill"
+              ],
+              "kiro": [
+                "kiro_skill"
+              ]
+            },
+            "wrapper_surfaces": {
+              "codex": [],
+              "gemini": [
+                "skill_wrapper"
+              ],
+              "claude": [
+                "skill_wrapper",
+                "plugin_wrapper"
+              ],
+              "kiro": [
+                "skill_wrapper",
+                "power_wrapper"
+              ]
+            },
+            "notes": [
+              "wrapper surfaces are additive deployment forms, not capability types",
+              "orchestrators must not infer execution authority from wrapper presence alone"
+            ]
+          },
+          "install_target": {
+            "recommended": "global",
+            "confidence": 1.0,
+            "confirmation_required_for_apply": true,
+            "rationale": "SSOT frontmatter explicitly declares global installation.",
+            "supported": [
+              "global",
+              "repo_local",
+              "both"
+            ]
+          },
+          "emitted_surfaces": {
+            "codex": [
+              "codex_skill"
+            ],
+            "gemini": [
+              "gemini_skill"
+            ],
+            "claude": [
+              "claude_skill"
+            ],
+            "kiro": [
+              "kiro_skill"
+            ]
+          },
+          "source_provenance": {
+            "source_type": "LOCAL_FILE",
+            "normalized_source": "ssot/dynamic-html-presentations.md",
+            "policy_rule_id": "ssot.dynamic-html-presentations",
+            "content_sha256": "ssot"
+          },
+          "confidence": 0.97,
+          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "Dynamic HTML Presentations",
+          "compatibility": "HTML works in modern browsers; bundled PNG exporter requires macOS 13+; PPTX helper requires Python 3.9+."
+        },
+        "expanded": {
+          "relationship_suggestions": [],
+          "capability_dependencies": [],
+          "overlap_candidates": [],
+          "migration_notes": [
+            "If the capability lands, compare it against existing entries before apply.",
+            "Relationship suggestions are advisory only and do not imply runtime routing."
+          ],
+          "adjustment_recommendations": []
+        },
+        "org_graph": {
+          "org_role": "workflow_provider",
+          "reports_to_suggestions": [],
+          "delegates_to_suggestions": [],
+          "collaborates_with_suggestions": [
+            "dynamic",
+            "html"
+          ],
+          "authority_tier": "advisory",
+          "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+        }
+      },
+      "display_name": "Dynamic HTML Presentations",
+      "descriptor_version": "capability-fabric.descriptor.v0",
+      "family_slug": "dynamic-html-presentations",
+      "shared_summary": "Creates polished, responsive, standalone HTML slide decks with optional deterministic PNG and image-faithful PPTX export. Use for presentations, pitch decks, reviews, talks, and visual narratives that need browser-native interactivity and portable outputs.",
+      "shared_constraints": [
+        "Keep HTML as the canonical editable source.",
+        "Do not invent evidence, quotations, metrics, or sources.",
+        "Do not claim export success without validating generated files.",
+        "Do not upload a presentation to an external service without an explicit user request.",
+        "Do not spawn one browser process per slide when one long-lived renderer can export the deck.",
+        "Use only user-provided, locally generated, or explicitly approved image assets; do not silently fetch remote imagery.",
+        "Reference packaged images only through relative images/... paths, preserve aspect ratio, and fail export when an image is broken."
+      ],
+      "modes": [
+        {
+          "mode_slug": "interactive-html",
+          "display_name": "Interactive HTML",
+          "mode_summary": "Create a polished standalone browser deck with keyboard navigation, hash links, fullscreen, notes, and export mode.",
+          "required_inputs": [
+            "audience and purpose",
+            "narrative or source material",
+            "slide-count or duration constraints"
+          ],
+          "expected_outputs": [
+            "standalone HTML deck",
+            "validated embedded or relative image asset package when images are used",
+            "interaction behavior",
+            "DOM and viewport validation evidence"
+          ]
+        },
+        {
+          "mode_slug": "png-images",
+          "display_name": "PNG Images",
+          "mode_summary": "Export one exact-size PNG per validated HTML slide through a single long-lived rendering process.",
+          "required_inputs": [
+            "validated HTML deck",
+            "target dimensions",
+            "output directory"
+          ],
+          "expected_outputs": [
+            "naturally sorted slide PNGs",
+            "count, size, and dimension verification"
+          ]
+        },
+        {
+          "mode_slug": "image-pptx",
+          "display_name": "Image-Faithful PPTX",
+          "mode_summary": "Assemble verified PNGs into a widescreen image-only PPTX that preserves visual fidelity.",
+          "required_inputs": [
+            "verified 16:9 PNG directory",
+            "PPTX destination"
+          ],
+          "expected_outputs": [
+            "widescreen PPTX",
+            "slide-count verification",
+            "flattened-content tradeoff disclosure"
+          ]
+        },
+        {
+          "mode_slug": "all-formats",
+          "display_name": "All Formats",
+          "mode_summary": "Deliver HTML as the source of truth, then deterministic PNGs, then an image-faithful PPTX.",
+          "required_inputs": [
+            "complete presentation contract",
+            "output directory",
+            "target dimensions"
+          ],
+          "expected_outputs": [
+            "standalone HTML",
+            "validated embedded or relative image asset package when images are used",
+            "verified PNG set",
+            "verified PPTX",
+            "artifact and validation summary"
+          ]
+        }
+      ],
+      "benchmark_sources": [],
+      "quality_profile": "default",
+      "quality_status": "ship",
+      "judge_reports": [
+        {
+          "blockers": [],
+          "historical_baseline": {
+            "baseline_path": "sources/ssot-baselines/dynamic-html-presentations/baseline.md",
+            "equivalent_commits": [],
+            "expected_companions": [],
+            "group": "current_oracle",
+            "has_baseline_text": true,
+            "historical_proof": {
+              "current_head_commit": "848ab93b",
+              "current_head_line_count": 448,
+              "current_head_richness_score": 3,
+              "last_materialized_at": "2026-07-19T09:45:51.008369+00:00",
+              "materialized_from_commit": "848ab93b",
+              "materialized_from_path": "ssot/dynamic-html-presentations.md",
+              "materialized_from_sha256": "da45c3dd8143e2c1e74c8ad77f3b2b5b1fb311ba9579ab6b010cf28bc0fd2be6",
+              "materialized_from_source_kind": "current_ssot"
+            },
+            "line_count": 448,
+            "operator_invariants": [],
+            "reason": "Current SSOT baseline source snapshot materialized into the source library because the stored baseline was missing, stale, or structurally degraded.",
+            "richness_score": 3,
+            "scenario_matrix": [],
+            "selected_commit": "848ab93b",
+            "slug": "dynamic-html-presentations",
+            "source": "source_library",
+            "strategy": "head_snapshot",
+            "verified_by_git_history": true
+          },
+          "judge_reports": [
+            {
+              "baseline_commit": "848ab93b",
+              "baseline_slug": "dynamic-html-presentations",
+              "blockers": [],
+              "classification": "preserved",
+              "judge": "source_fidelity",
+              "scenario_results": [],
+              "score": 10,
+              "scorecard": {
+                "baseline_operational_score": 0,
+                "baseline_preserved_in_resource": false,
+                "baseline_richness": 3,
+                "candidate_operational_score": 0,
+                "candidate_richness": 3
+              },
+              "title": "Source Fidelity and Uplift"
+            },
+            {
+              "blockers": [],
+              "judge": "operational_richness",
+              "score": 10,
+              "title": "Operational Richness"
+            },
+            {
+              "blockers": [],
+              "judge": "metadata_integrity",
+              "score": 10,
+              "title": "Metadata and Handoff Integrity"
+            },
+            {
+              "blockers": [],
+              "judge": "benchmark_readiness",
+              "score": 9,
+              "scorecard": {
+                "boundary_clarity": 8,
+                "description_richness": 10,
+                "intent_coverage": 10,
+                "metadata_completeness": 8,
+                "output_specificity": 10,
+                "surface_usability": 10,
+                "title_clarity": 10
+              },
+              "title": "Benchmark Readiness and Template Fit"
+            }
+          ],
+          "pass_number": 1,
+          "scorecard": {
+            "baseline_operational_score": 0,
+            "baseline_preserved_in_resource": false,
+            "baseline_richness": 3,
+            "benchmark_readiness": 9,
+            "boundary_clarity": 8,
+            "candidate_operational_score": 0,
+            "candidate_richness": 3,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "metadata_completeness": 8,
+            "metadata_integrity": 10,
+            "operational_richness": 10,
+            "output_specificity": 10,
+            "source_fidelity": 10,
+            "surface_usability": 10,
+            "title_clarity": 10
+          },
+          "status": "ship",
+          "template_name": "skill"
+        }
+      ],
+      "consumption_hints": {
+        "preferred_use_cases": [
+          "executive and product reviews",
+          "technical talks and training",
+          "pitch decks and proposals",
+          "standalone browser presentations",
+          "visually faithful PNG and PPTX delivery"
+        ],
+        "artifact_conventions": [
+          "<deck-slug>/index.html",
+          "<deck-slug>/images/<role>-<subject>[-<variant>].<ext>",
+          "<deck-slug>/slides/slide-01.png",
+          "<deck-slug>/<deck-slug>.pptx"
+        ],
+        "invocation_style": "artifact_generation_and_validation",
+        "requires_human_confirmation": false
+      },
+      "quality_pass_count": 1,
+      "quality_stop_reason": "thresholds_met",
+      "declared_capability": "skill",
+      "inferred_capability": "skill",
+      "expected_surface_names": [
+        "codex_skill",
+        "gemini_skill",
+        "claude_skill",
+        "kiro_skill"
+      ],
+      "rubric_version": "capability-fabric.v0"
     },
     {
       "slug": "eng-report",
@@ -4609,10 +4956,10 @@
             ]
           },
           "install_target": {
-            "recommended": "repo_local",
-            "confidence": 0.88,
+            "recommended": "global",
+            "confidence": 1.0,
             "confirmation_required_for_apply": true,
-            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+            "rationale": "SSOT frontmatter explicitly declares global installation.",
             "supported": [
               "global",
               "repo_local",
@@ -5383,6 +5730,7 @@
       ".gemini/skills/converge/SKILL.md",
       ".gemini/skills/demo-recorder/SKILL.md",
       ".gemini/skills/docs-review-expert/SKILL.md",
+      ".gemini/skills/dynamic-html-presentations/SKILL.md",
       ".gemini/skills/eng-report/SKILL.md",
       ".gemini/skills/feature-status/SKILL.md",
       ".gemini/skills/gitops-review/SKILL.md",
@@ -5420,6 +5768,7 @@
       ".claude/skills/converge/SKILL.md",
       ".claude/skills/demo-recorder/SKILL.md",
       ".claude/skills/docs-review-expert/SKILL.md",
+      ".claude/skills/dynamic-html-presentations/SKILL.md",
       ".claude/skills/eng-report/SKILL.md",
       ".claude/skills/feature-status/SKILL.md",
       ".claude/skills/gitops-review/SKILL.md",
@@ -5470,6 +5819,7 @@
       ".kiro/skills/converge/SKILL.md",
       ".kiro/skills/demo-recorder/SKILL.md",
       ".kiro/skills/docs-review-expert/SKILL.md",
+      ".kiro/skills/dynamic-html-presentations/SKILL.md",
       ".kiro/skills/eng-report/SKILL.md",
       ".kiro/skills/feature-status/SKILL.md",
       ".kiro/skills/gitops-review/SKILL.md",
@@ -5494,6 +5844,7 @@
       ".codex/skills/converge/SKILL.md",
       ".codex/skills/demo-recorder/SKILL.md",
       ".codex/skills/docs-review-expert/SKILL.md",
+      ".codex/skills/dynamic-html-presentations/SKILL.md",
       ".codex/skills/eng-report/SKILL.md",
       ".codex/skills/feature-status/SKILL.md",
       ".codex/skills/gitops-review/SKILL.md",
@@ -5538,6 +5889,10 @@
       ".codex/skills/converge/resources/capability.json",
       ".codex/skills/demo-recorder/resources/capability.json",
       ".codex/skills/docs-review-expert/resources/capability.json",
+      ".codex/skills/dynamic-html-presentations/resources/capability.json",
+      ".codex/skills/dynamic-html-presentations/resources/example.html",
+      ".codex/skills/dynamic-html-presentations/resources/export_slides.swift",
+      ".codex/skills/dynamic-html-presentations/resources/images_to_pptx.py",
       ".codex/skills/eng-report/resources/capability.json",
       ".codex/skills/feature-status/resources/capability.json",
       ".codex/skills/gitops-review/resources/capability.json",
@@ -5587,6 +5942,10 @@
       ".gemini/skills/converge/resources/capability.json",
       ".gemini/skills/demo-recorder/resources/capability.json",
       ".gemini/skills/docs-review-expert/resources/capability.json",
+      ".gemini/skills/dynamic-html-presentations/resources/capability.json",
+      ".gemini/skills/dynamic-html-presentations/resources/example.html",
+      ".gemini/skills/dynamic-html-presentations/resources/export_slides.swift",
+      ".gemini/skills/dynamic-html-presentations/resources/images_to_pptx.py",
       ".gemini/skills/eng-report/resources/capability.json",
       ".gemini/skills/feature-status/resources/capability.json",
       ".gemini/skills/gitops-review/resources/capability.json",
@@ -5636,6 +5995,10 @@
       ".claude/skills/converge/resources/capability.json",
       ".claude/skills/demo-recorder/resources/capability.json",
       ".claude/skills/docs-review-expert/resources/capability.json",
+      ".claude/skills/dynamic-html-presentations/resources/capability.json",
+      ".claude/skills/dynamic-html-presentations/resources/example.html",
+      ".claude/skills/dynamic-html-presentations/resources/export_slides.swift",
+      ".claude/skills/dynamic-html-presentations/resources/images_to_pptx.py",
       ".claude/skills/eng-report/resources/capability.json",
       ".claude/skills/feature-status/resources/capability.json",
       ".claude/skills/gitops-review/resources/capability.json",
@@ -5685,6 +6048,10 @@
       ".kiro/skills/converge/resources/capability.json",
       ".kiro/skills/demo-recorder/resources/capability.json",
       ".kiro/skills/docs-review-expert/resources/capability.json",
+      ".kiro/skills/dynamic-html-presentations/resources/capability.json",
+      ".kiro/skills/dynamic-html-presentations/resources/example.html",
+      ".kiro/skills/dynamic-html-presentations/resources/export_slides.swift",
+      ".kiro/skills/dynamic-html-presentations/resources/images_to_pptx.py",
       ".kiro/skills/eng-report/resources/capability.json",
       ".kiro/skills/feature-status/resources/capability.json",
       ".kiro/skills/gitops-review/resources/capability.json",

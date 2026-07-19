@@ -336,6 +336,37 @@ Follow with:
 
 > The pauses between steps are too short — increase them to 3 seconds and add a scroll-into-view before each major action.
 
+### `dynamic-html-presentations`
+
+Use when:
+
+- you need a polished slide deck whose editable source should remain portable HTML
+- browser navigation, fullscreen, presenter notes, or deep links matter
+- the same visual output must also be delivered as PNG images or PPTX
+- deterministic 16:9 export and artifact verification matter more than native PPTX editability
+
+Why this skill first:
+
+- start here when the job is presentation narrative, visual composition, and multi-format delivery; use `demo-recorder` instead when the primary artifact is a watchable product video
+
+Ask:
+
+> Use `dynamic-html-presentations` to turn this quarterly product review into a polished portable HTML deck package with speaker notes. Use my approved local photos and screenshots, prepare deck-ready copies under `images/` with descriptive filenames and intentional crops, and do not fetch remote imagery. Deliver 1920×1080 PNGs and an image-faithful PPTX too, and label all sample metrics as illustrative.
+
+Expected output:
+
+- a slide-level narrative with one principal claim per slide
+- a portable 16:9 HTML deck package with keyboard navigation, hash links, fullscreen, notes, help, and export mode
+- approved image assets under `images/` with relative paths, descriptive names, preserved aspect ratios, eager loading, intentional alternative text, and validated crops
+- one verified exact-size PNG per slide from a single long-lived renderer
+- a verified widescreen PPTX with one full-slide image per page
+- clear disclosure that PPTX content is flattened rather than independently editable
+- exact artifact paths, checks run, and unresolved evidence assumptions
+
+Follow with:
+
+> Validate every slide at 1920×1080, confirm there is exactly one active slide, and report any clipping, control collision, broken or distorted image, absolute image path, unapproved network dependency, or unlabeled illustrative value before final export.
+
 ### `docs-review-expert`
 
 Use when:

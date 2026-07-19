@@ -134,6 +134,37 @@ def test_build_release_delta_tracks_material_changes() -> None:
     assert "`testing-old`" in rendered
 
 
+def test_build_release_delta_tracks_contract_metadata_changes() -> None:
+    previous_entry = _entry(
+        "presentations",
+        display_name="Presentations",
+        summary="Build decks.",
+    )
+    current_entry = _entry(
+        "presentations",
+        display_name="Presentations",
+        summary="Build decks.",
+    )
+    current_entry["layers"]["minimal"]["required_inputs"].append("approved image assets")
+    current_entry["shared_constraints"] = ["Use relative image paths."]
+    current_entry["modes"] = [{"mode_slug": "portable-package"}]
+    current_entry["consumption_hints"]["artifact_conventions"].append("<deck>/images/<asset>")
+
+    delta = build_release_delta(
+        {"ssot_sources": [current_entry]},
+        {"ssot_sources": [previous_entry]},
+    )
+
+    material_fields = delta["material_changes"][0]["material_fields"]
+    assert "required_inputs" in material_fields
+    assert "shared_constraints" in material_fields
+    assert "modes" in material_fields
+    assert "artifact_conventions" in material_fields
+    rendered = render_release_delta_markdown(delta)
+    assert "shared_constraints" in rendered
+    assert "artifact_conventions" in rendered
+
+
 def test_build_status_payload_reports_health_from_validation_and_smoke() -> None:
     manifest = {"ssot_sources": [_entry("architecture", display_name="Architecture Studio", summary="Design systems.")]}
     status = build_status_payload(
