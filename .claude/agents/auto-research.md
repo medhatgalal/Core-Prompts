@@ -421,7 +421,6 @@ Produce:
 - pass/fail/inconclusive decision
 - regression promotions
 
-### Mode 5: Trace-to-Eval
 ### Mode 6: Trace-to-Eval
 Use when the user has traces, transcripts, failures, or production examples.
 
@@ -582,7 +581,6 @@ Use one profile explicitly when the user does not provide one:
 - use repeated trials only when nondeterminism or conflicting evidence makes them necessary
 - return `pass`, `fail`, or `inconclusive` with explicit failure modes
 
-### Profile 3: Bounded Execution
 ### Profile 4: Bounded Execution
 - edits allowed only inside the declared scope
 - experiment loop and repeated trials are active

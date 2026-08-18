@@ -121,12 +121,10 @@ def detect_ambiguities(slug: str, text: str) -> list[dict[str, str]]:
     if "separate response into exactly:" in lower and "`approach decision`" in lower and "`generated prompt`" in lower:
         findings.append({"id": "SC-ULT-OUTPUT", "message": "The exact terminal section count conflicts with the mandatory output structure."})
     if slug == "supercharge":
-        findings.extend(
-            [
-                {"id": "SC-TERMINAL-PRECEDENCE", "message": "Terminal controls claim overlapping section-only and supersession behavior; precedence needs one canonical rule."},
-                {"id": "SC-MULTIPLE-MODIFIERS", "message": "Behavior for multiple mutually exclusive modifiers is not explicit."},
-            ]
-        )
+        if "### terminal-control precedence" not in lower:
+            findings.append({"id": "SC-TERMINAL-PRECEDENCE", "message": "Terminal controls claim overlapping section-only and supersession behavior; precedence needs one canonical rule."})
+        if "if the user supplies more than one reflective control" not in lower:
+            findings.append({"id": "SC-MULTIPLE-MODIFIERS", "message": "Behavior for multiple mutually exclusive modifiers is not explicit."})
     if slug == "pulse":
         if "only during `/sweep`" in lower and "`pulse /delete" in lower:
             findings.append({"id": "PULSE-DELETE-BOUNDARY", "message": "The tool boundary permits trash only during /sweep while /delete is a distinct quick-delete command."})

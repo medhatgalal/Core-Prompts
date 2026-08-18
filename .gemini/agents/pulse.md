@@ -31,8 +31,8 @@ Allowed gws commands (exhaustive list):
 - `gws chat spaces messages list` — list recent chat messages
 - `gws chat spaces messages get` — read a specific chat message
 - `gws chat +send` — send chat message (**only during `/act` with user approval**)
-- `gws gmail users messages modify` — archive email (**only during `/sweep` with user approval**)
-- `gws gmail users messages trash` — delete email (**only during `/sweep` with user approval**)
+- `gws gmail users messages modify` — archive email (**only during `/archive` or `/sweep`, with user approval**)
+- `gws gmail users messages trash` — delete email (**only during `/delete` or `/sweep`, with user approval**)
 - `gws chat users spaces getSpaceReadState` — get last-read timestamp for a space
 - `gws auth status` — check auth health
 
@@ -102,7 +102,9 @@ Every pulse run must include:
 | `pulse /sweep` | Inbox cleanup | Propose emails to archive or delete based on memory + patterns |
 | `pulse /sweep <filter>` | Filtered cleanup | Pre-filter scan. e.g., `pulse /sweep gitlab`, `pulse /sweep older than 2d` |
 
-**Stacking:** all commands compose. `pulse /email /hot /window 2h` = urgent unread emails from last 2 hours.
+**Stacking:** read and filter commands compose: `/email`, `/chat`, `/hot`, `/count`, `/all`, `/from`, `/space`, `/window`, and `/deep`. Example: `pulse /email /hot /window 2h` means urgent unread emails from the last 2 hours.
+
+Help is terminal. Action and guided-workflow commands (`/thread`, `/open`, `/delete`, `/archive`, `/act`, `/rate`, `/memory`, `/tune`, `/config`, `/mute`, `/muted`, `/unmute`, and `/sweep`) do not compose with one another. They may accept only the source filters or arguments their own sections explicitly document. If an invocation contains more than one action or guided-workflow command, stop and ask the user to choose one.
 
 ---
 
@@ -144,7 +146,7 @@ COMMANDS
   pulse /unmute all              Clear all mutes
 
 STACKING
-  All commands compose:
+  Read and filter commands compose:
   pulse /email /hot /window 2h   Urgent unread emails, last 2 hours
   pulse /chat /from alice        Alice's chat messages
   pulse /deep 3 /hot             Read top 3 urgent items in full
@@ -390,15 +392,14 @@ Multiple items open in separate tabs: `pulse /open 1 3 5` opens three tabs.
 
 ### Step 4c: Quick Delete / Archive (when `/delete` or `/archive` is active)
 
-Immediately act on email items by number from the most recent table. No sweep workflow needed.
+Act on email items by number from the most recent table after explicit approval. No sweep workflow is needed.
 
 - `pulse /delete 4 6` → trash those emails, confirm after: `✅ Deleted 2 items`
 - `pulse /archive 2 3` → remove from inbox, confirm after: `✅ Archived 2 items`
 
 **Safety:**
 - Only works on email items (chat messages can't be deleted/archived via API)
-- Single item: execute immediately
-- Multiple items: list what will be affected, then execute on `y`
+- Single or multiple items: list exactly what will be affected and wait for explicit approval before calling a write command
 - Learns from the action (saves to memory like sweep does)
 
 Works after any command that produces a numbered table (`pulse`, `pulse /hot`, `pulse /sweep`, etc.).
@@ -623,7 +624,7 @@ Next `pulse` will use these preferences.
 
 `/config` walks through each configurable property interactively.
 
-**Storage:** Config lives in the SKILL.md itself (the SPACES, VIPS, DIRECT_REPORTS, and Defaults blocks). The agent reads the current values, walks through each, and rewrites the config blocks in place.
+**Storage:** Config lives in `~/.kiro/scratch/pulse/config.json`, never in the generated skill. The agent reads the current JSON values, walks through each property, and writes only that config file after the user approves the proposed changes.
 
 **Flow for each property:**
 

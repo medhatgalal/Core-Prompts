@@ -11,8 +11,8 @@
     "41fb3d4c79d7d8e42dd9923b77283c9aea46e0199be676ddd5279d90e78f2101",
     "20ac10e354c4f428d4ec4b695aa5589abad149cd9040eb9dca25e0d99fb8f726",
     "c4d23998935eaf43fd8f2078e51d16f7286d167c4b0ec1acb0ca8504da7f9714",
-    "da3fe4eae39f8cf4a350a1d5dde8fe63d0afdde0a357f8a1b8e660d4f804b49c",
-    "ac756898907f1404f9a321b73f757adb81ec608d49088bdd328978afdd0b3261",
+    "7f2fb54040beedd99d4a778ad6c50774c73edc51274b5bea23bd7a8e6806c52f",
+    "b08cad130d980a6c47fa37b90c3d05c8d7215c999aac2cf5b92086d2a560ae15",
     "2cb45beb4f45f78151947a7e4860cf58bd5827219e6c943ca935e555df70f038",
     "0b43cac438002355f1993214cf3e543437179a8d91a01c87ee738e9782f92e2c",
     "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
@@ -24,6 +24,7 @@
     "f5dd1ee81d602dd1a6ea67d31fb56753430e44adfb3b3951d12e5e15eb694580",
     "9af93bf9b69079ffa5c713403d0c19330fd0263b3bb65361c9893c2b1f4a5864",
     "008c17402d8896ca1c135d85128e94c966a81a82c7278675904f6c6938803956",
+    "2e0e09990d45f53c1e4e39fd51b1156e1ec69c9c7928fdf60a5c5afe141e88d5",
     "781d4010650c7b05e06d165546207b6a1736e6e734187f25693b01bbe6b342f6",
     "a82d90bfb7b1d244e75f97a7a05b999c1e5a2b2210c6e72c493ab93338e6c033",
     "050df84335b5343cdb32954be255fdff5a498a9ce6b3753bb9e178a4711cd768",
@@ -49,6 +50,7 @@
     "757103fac06970051ae15ea4dcaf12672f08c187f5a6595b57fc95271b3937e4",
     "2d782f5fed8fa1143772df7ff3278277786e4dd230418733b21f13913e17051b",
     "e136df4ab6f212d208ec5669f879943d5bff9db21cce7e93e5a83fd5e1ff50b2",
+    "2ab0198a7dff188bc48a1004c42b80d176a131c4ade702adf152d66fb55592fe",
     "63f45e340809b925c3757f6083dc1c8c23b57111f4a9c0c26e3384607561868f",
     "8488763d032aca6a1821024387b247de3f38618f92b5f2f9bfb017ea4bdbe5c4",
     "835d2ed8cd15a918fd2a8ff53bd14468c4c7c38f16316c29fbab681b5e46bae1",
@@ -129,14 +131,14 @@
       "text": "- `gws chat +send` \u2014 send chat message (**only during `/act` with user approval**)"
     },
     {
-      "sha256": "da3fe4eae39f8cf4a350a1d5dde8fe63d0afdde0a357f8a1b8e660d4f804b49c",
+      "sha256": "7f2fb54040beedd99d4a778ad6c50774c73edc51274b5bea23bd7a8e6806c52f",
       "source": "ssot/pulse.md",
-      "text": "- `gws gmail users messages modify` \u2014 archive email (**only during `/sweep` with user approval**)"
+      "text": "- `gws gmail users messages modify` \u2014 archive email (**only during `/archive` or `/sweep`, with user approval**)"
     },
     {
-      "sha256": "ac756898907f1404f9a321b73f757adb81ec608d49088bdd328978afdd0b3261",
+      "sha256": "b08cad130d980a6c47fa37b90c3d05c8d7215c999aac2cf5b92086d2a560ae15",
       "source": "ssot/pulse.md",
-      "text": "- `gws gmail users messages trash` \u2014 delete email (**only during `/sweep` with user approval**)"
+      "text": "- `gws gmail users messages trash` \u2014 delete email (**only during `/delete` or `/sweep`, with user approval**)"
     },
     {
       "sha256": "2cb45beb4f45f78151947a7e4860cf58bd5827219e6c943ca935e555df70f038",
@@ -192,6 +194,11 @@
       "sha256": "008c17402d8896ca1c135d85128e94c966a81a82c7278675904f6c6938803956",
       "source": "ssot/pulse.md",
       "text": "| `pulse /act <N>` | Act on specific item | Propose action for item #N only |"
+    },
+    {
+      "sha256": "2e0e09990d45f53c1e4e39fd51b1156e1ec69c9c7928fdf60a5c5afe141e88d5",
+      "source": "ssot/pulse.md",
+      "text": "Help is terminal. Action and guided-workflow commands (`/thread`, `/open`, `/delete`, `/archive`, `/act`, `/rate`, `/memory`, `/tune`, `/config`, `/mute`, `/muted`, `/unmute`, and `/sweep`) do not compose with one another. They may accept only the source filters or arguments their own sections explicitly document. If an invocation contains more than one action or guided-workflow command, stop and ask the user to choose one."
     },
     {
       "sha256": "781d4010650c7b05e06d165546207b6a1736e6e734187f25693b01bbe6b342f6",
@@ -317,6 +324,11 @@
       "sha256": "e136df4ab6f212d208ec5669f879943d5bff9db21cce7e93e5a83fd5e1ff50b2",
       "source": "ssot/pulse.md",
       "text": "- `pulse /tune /chat` \u2014 only chat messages"
+    },
+    {
+      "sha256": "2ab0198a7dff188bc48a1004c42b80d176a131c4ade702adf152d66fb55592fe",
+      "source": "ssot/pulse.md",
+      "text": "**Storage:** Config lives in `~/.kiro/scratch/pulse/config.json`, never in the generated skill. The agent reads the current JSON values, walks through each property, and writes only that config file after the user approves the proposed changes."
     },
     {
       "sha256": "63f45e340809b925c3757f6083dc1c8c23b57111f4a9c0c26e3384607561868f",

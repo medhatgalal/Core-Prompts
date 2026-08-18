@@ -59,18 +59,13 @@ def test_promotion_verdict_cannot_average_over_failed_gate() -> None:
         validate_promotion_verdict(verdict)
 
 
-def test_compile_supercharge_reports_contract_blocker() -> None:
+def test_compile_supercharge_has_no_known_contract_blocker() -> None:
     topology = compile_topology(ROOT / "ssot" / "supercharge.md")
 
     assert topology["schema_version"] == "CapabilityTopology.v1"
     assert topology["normative_clause_coverage"]["total"] > 0
-    assert topology["review_status"] == "blocked"
-    assert {item["id"] for item in topology["known_ambiguities"]} >= {
-        "SC-GASLIGHT-COUNT",
-        "SC-ULT-OUTPUT",
-        "SC-TERMINAL-PRECEDENCE",
-        "SC-MULTIPLE-MODIFIERS",
-    }
+    assert topology["review_status"] == "draft"
+    assert topology["known_ambiguities"] == []
 
 
 def test_static_compare_uses_zero_model_calls(tmp_path: Path) -> None:

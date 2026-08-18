@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "auto-research",
-  "ssot_sha256": "5a132e94e659520bdbf06e0705326134f5a870bc33c224c74ca3551465f7d637",
+  "ssot_sha256": "d151cc5fa678ca97aba8417132b8c4b7a2a370504b4b573605686b6f75d38825",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -119,7 +119,7 @@
         "source_refs": [
           "ssot/auto-research.md"
         ],
-        "source_line": 428,
+        "source_line": 427,
         "mode_summary": "Explicitly declared mode in the canonical skill.",
         "required_inputs": [],
         "expected_outputs": [],
@@ -181,19 +181,19 @@
     "auto-research:L169:ca133c000e11",
     "auto-research:L226:9f5eb701b5e0",
     "auto-research:L343:fc3755c8134d",
-    "auto-research:L472:ffa703204280",
-    "auto-research:L489:3ccfaf080000",
-    "auto-research:L588:eb18a93d36ed",
-    "auto-research:L618:997e76d38a96",
-    "auto-research:L671:e6a2accd11aa",
-    "auto-research:L672:e311fad67b9c",
-    "auto-research:L673:dc68c89c6976",
-    "auto-research:L674:2c0d603e8b71",
-    "auto-research:L675:cc9e3e2114b1",
-    "auto-research:L676:319afeea172b",
-    "auto-research:L677:34190ff1d43f",
-    "auto-research:L678:ec93e6f4d035",
-    "auto-research:L679:70468255202b"
+    "auto-research:L471:ffa703204280",
+    "auto-research:L488:3ccfaf080000",
+    "auto-research:L586:eb18a93d36ed",
+    "auto-research:L616:997e76d38a96",
+    "auto-research:L669:e6a2accd11aa",
+    "auto-research:L670:e311fad67b9c",
+    "auto-research:L671:dc68c89c6976",
+    "auto-research:L672:2c0d603e8b71",
+    "auto-research:L673:cc9e3e2114b1",
+    "auto-research:L674:319afeea172b",
+    "auto-research:L675:34190ff1d43f",
+    "auto-research:L676:ec93e6f4d035",
+    "auto-research:L677:70468255202b"
   ],
   "resources": [
     "- `resources/templates/experiment-ledger.md.tmpl`",
@@ -484,180 +484,180 @@
       "mapped_to": []
     },
     {
-      "id": "auto-research:L441:602d33e9d3d8",
+      "id": "auto-research:L440:602d33e9d3d8",
       "heading": "Goal Contract",
-      "source_line": 441,
+      "source_line": 440,
       "sha256": "602d33e9d3d8d0554c554b3006f1ff6b82389064ed6f359e288d0b7f626f49d2",
       "text": "The goal contract must include:",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "auto-research:L470:23e8dd975900",
+      "id": "auto-research:L469:23e8dd975900",
       "heading": "Cost Ladder",
-      "source_line": 470,
+      "source_line": 469,
       "sha256": "23e8dd9759008fcbeda3e62be994bd42200c9254245e562579f72f8916e0d8e3",
       "text": "- widen only after cheaper checks cannot cleanly separate the likely causes",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "auto-research:L472:ffa703204280",
+      "id": "auto-research:L471:ffa703204280",
       "heading": "Cost Ladder",
-      "source_line": 472,
+      "source_line": 471,
       "sha256": "ffa7032042806c567db9d05b5288526ea8af99edad077bf50a4f57bd974862fb",
       "text": "Do not jump to step 4 by default.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "auto-research:L489:3ccfaf080000",
+      "id": "auto-research:L488:3ccfaf080000",
       "heading": "Stopping Rule",
-      "source_line": 489,
+      "source_line": 488,
       "sha256": "3ccfaf080000ae8d971294e8454d291eacfda35893a72b8aa98bdb884f260b8b",
       "text": "Do not keep searching after a clear winner just to spend the remaining budget.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "auto-research:L504:4004a2cbf3bc",
+      "id": "auto-research:L503:4004a2cbf3bc",
       "heading": "Promotion Gate",
-      "source_line": 504,
+      "source_line": 503,
       "sha256": "4004a2cbf3bccbdd20d3b570cce84cdc6e4c338b8cdf82911d689f3262b42fb8",
       "text": "A candidate can move forward only if:",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "auto-research:L576:6a51e4a275ce",
+      "id": "auto-research:L575:6a51e4a275ce",
       "heading": "Profile 3: Capability Evaluation",
-      "source_line": 576,
+      "source_line": 575,
       "sha256": "6a51e4a275ce4da3eab56b997ee51cce195890476ee0d7a088acc407ae5cb8e6",
       "text": "- use repeated trials only when nondeterminism or conflicting evidence makes them necessary",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "auto-research:L581:6a60d37d2db2",
+      "id": "auto-research:L579:6a60d37d2db2",
       "heading": "Profile 4: Bounded Execution",
-      "source_line": 581,
+      "source_line": 579,
       "sha256": "6a60d37d2db2b4a240160c4a63f277c034f8603c0c0677062a97dce67a4de1fc",
       "text": "- edits allowed only inside the declared scope",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "auto-research:L588:eb18a93d36ed",
+      "id": "auto-research:L586:eb18a93d36ed",
       "heading": "Profile 5: Promotion Prep",
-      "source_line": 588,
+      "source_line": 586,
       "sha256": "eb18a93d36edb9f43849cc2d1433bbd6f11e79eb35bff3d7ee45567d6ed0c960",
       "text": "- do not skip the evidence summary",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "auto-research:L606:3a6378654dd6",
+      "id": "auto-research:L604:3a6378654dd6",
       "heading": "Self-Improvement Protocol",
-      "source_line": 606,
+      "source_line": 604,
       "sha256": "3a6378654dd6ceaea1fc910d8a92fb4f0dddc90f46114a22f81fbd50af6c2464",
       "text": "- escalate to repeated trials only after cheaper checks fail to separate hypotheses",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "auto-research:L618:997e76d38a96",
+      "id": "auto-research:L616:997e76d38a96",
       "heading": "Example Request",
-      "source_line": 618,
+      "source_line": 616,
       "sha256": "997e76d38a963ceae17f52b84b84e24a6602b7106aebe1103f4fbe2c75ad8af6",
       "text": "> Use Auto-Research to improve our code-review prompt so it catches behavioral regressions earlier, but do not increase review noise or operator burden.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "auto-research:L671:e6a2accd11aa",
+      "id": "auto-research:L669:e6a2accd11aa",
       "heading": "Constraints",
-      "source_line": 671,
+      "source_line": 669,
       "sha256": "e6a2accd11aa74d653cb70c10f0b8541ced4b72bcf45c4fe393bcfb68801122d",
       "text": "- Do not start search without a measurable goal.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "auto-research:L672:e311fad67b9c",
+      "id": "auto-research:L670:e311fad67b9c",
       "heading": "Constraints",
-      "source_line": 672,
+      "source_line": 670,
       "sha256": "e311fad67b9caee0439b4a59816bd18c512f894eefcbda5eb64cc50f0b5132f0",
       "text": "- Do not claim a winner from a single run unless the system is strictly deterministic and the user agrees.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "auto-research:L673:dc68c89c6976",
+      "id": "auto-research:L671:dc68c89c6976",
       "heading": "Constraints",
-      "source_line": 673,
+      "source_line": 671,
       "sha256": "dc68c89c697664553fb7bb48a2659d68a0250be50b9eb600a064de2a8f6ef7c1",
       "text": "- Do not hide regressions inside one aggregate \u201cscore improved\u201d claim.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "auto-research:L674:2c0d603e8b71",
+      "id": "auto-research:L672:2c0d603e8b71",
       "heading": "Constraints",
-      "source_line": 674,
+      "source_line": 672,
       "sha256": "2c0d603e8b719a34ac451c0b202160110148690d534e7f6edcf2fd982cbb050a",
       "text": "- Do not assume the host repo allows auto-commit or auto-merge.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "auto-research:L675:cc9e3e2114b1",
+      "id": "auto-research:L673:cc9e3e2114b1",
       "heading": "Constraints",
-      "source_line": 675,
+      "source_line": 673,
       "sha256": "cc9e3e2114b1199c269694682e11f27d6d14d73729e763921cae488ed9136966",
       "text": "- Do not let the capability degrade into generic brainstorming or generic testing advice.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "auto-research:L676:319afeea172b",
+      "id": "auto-research:L674:319afeea172b",
       "heading": "Constraints",
-      "source_line": 676,
+      "source_line": 674,
       "sha256": "319afeea172bb09e34ecb56ce56cfc9277817464522c67bea6c3bbebe8d57e91",
       "text": "- Do not confuse public inspiration with local proof.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "auto-research:L677:34190ff1d43f",
+      "id": "auto-research:L675:34190ff1d43f",
       "heading": "Constraints",
-      "source_line": 677,
+      "source_line": 675,
       "sha256": "34190ff1d43fbaffc4b8e45c4046c8c79e8ffdeda462240094c0510844d63f94",
       "text": "- Do not promote any candidate whose score is ambiguous, unstable, or unrepeatable.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "auto-research:L678:ec93e6f4d035",
+      "id": "auto-research:L676:ec93e6f4d035",
       "heading": "Constraints",
-      "source_line": 678,
+      "source_line": 676,
       "sha256": "ec93e6f4d035df795498b760d80b94362350ff691a42e87029999764a4512a65",
       "text": "- Do not run broad candidate search when one sharply framed hypothesis can be tested first.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "auto-research:L679:70468255202b",
+      "id": "auto-research:L677:70468255202b",
       "heading": "Constraints",
-      "source_line": 679,
+      "source_line": 677,
       "sha256": "70468255202b0bc81dac867684bf586ec1c80b51acfa2c62ce60ed6e6e3f03e7",
       "text": "- Do not parallelize dependent verification steps when regenerated artifacts are involved.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "auto-research:L688:b7be70aac455",
+      "id": "auto-research:L686:b7be70aac455",
       "heading": "Evaluation Rubric",
-      "source_line": 688,
+      "source_line": 686,
       "sha256": "b7be70aac455d6397edc44ff9a18a0537779e1c7f99ff7faba82844fdc6e25ac",
       "text": "| Promotion safety | Commit and merge guidance only appear after a verified winner exists |",
       "kind": "invariant",
@@ -672,19 +672,10 @@
   "source_references": [
     {
       "path": "ssot/auto-research.md",
-      "sha256": "5a132e94e659520bdbf06e0705326134f5a870bc33c224c74ca3551465f7d637"
+      "sha256": "d151cc5fa678ca97aba8417132b8c4b7a2a370504b4b573605686b6f75d38825"
     }
   ],
-  "known_ambiguities": [
-    {
-      "id": "TOPOLOGY-DUPLICATE-MODE-NUMBER",
-      "message": "A numbered mode identifier is declared more than once."
-    },
-    {
-      "id": "TOPOLOGY-DUPLICATE-MODE-LABEL",
-      "message": "A mode label is declared more than once."
-    }
-  ],
+  "known_ambiguities": [],
   "coverage_policy": {
     "normative_clauses": "100_percent_mapped_or_waived",
     "nodes": "positive_and_boundary",
@@ -698,6 +689,6 @@
     "mapped": 0,
     "waived": 0
   },
-  "review_status": "blocked",
+  "review_status": "draft",
   "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs."
 }

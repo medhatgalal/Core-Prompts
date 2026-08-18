@@ -19,6 +19,9 @@
     "084b828b0f657abc4e698fe7606bc3516d294be734e8ac16c8f0ecfd870dda10",
     "de5efcdb1dddd453ec5759a260623c1a73c12770bb439b233916be1ed95fca61",
     "e3aaf81fa3ff36a0e1f4c1101a863e1995a462a9d0114659c5a0384bab583c7e",
+    "30cc96828a95fb2b7fc65caf7a573af5a292616197d5ee766ae9bae413dc3f5b",
+    "62fdbfab6cff2658db8e92527f8b56861fb3173f1e73d96ff2beba303fedfe0a",
+    "b3185ff1ce015a61822b3cd67bd75ee6eba8642e5ce367020b18727220d1e368",
     "8c1ae20069e89963464c29a0712934709cc957a0f0a827363cc392066e60b86c",
     "1853e84b2bca0eca1146342971f5af087edb4b71146959543ed688f95377268e",
     "bb919709e8475a0b190580085a5e756421b6c5d71ccedfd656c43937fdf314bf",
@@ -27,6 +30,7 @@
     "40fe8df0772281c18d64440e34f0c832d9a8c151e2ef9ef243f761899fb25c96",
     "acb40e65d1130f718356e57c91b7cdd5bcf7dd0cde152797b428fbd6b926af95",
     "fb53dd951133fba280145290c1b7985b0a1933a53cbefbdefe466adaac9dd11c",
+    "832fa678350d1dfbe163d15f2ae27c89f08d1d119a5a4400410df238193f98e8",
     "191a672c0b2e324d52a6a1424b886d47270c35d4d5587181e786adbd1dd4b2f4",
     "dc0d10422bbcb7ace55e7bebe30260ff8accc6d62ecc8382e4e750428b871758",
     "1f2f66d251cf2341cfc491f9858cf5894c47d33e810a06a3d1c77e3e3284b4ce",
@@ -169,6 +173,21 @@
       "text": "If the user asks for details, respond with the `MODULE REFERENCE` section only:"
     },
     {
+      "sha256": "30cc96828a95fb2b7fc65caf7a573af5a292616197d5ee766ae9bae413dc3f5b",
+      "source": "ssot/supercharge.md",
+      "text": "1. `/stop` wins over every other command, exits active modes, and returns only the stop acknowledgement."
+    },
+    {
+      "sha256": "62fdbfab6cff2658db8e92527f8b56861fb3173f1e73d96ff2beba303fedfe0a",
+      "source": "ssot/supercharge.md",
+      "text": "3. Help, examples, and details are terminal only when neither stop command is present; return the one matching section and do not execute examples or modules."
+    },
+    {
+      "sha256": "b3185ff1ce015a61822b3cd67bd75ee6eba8642e5ce367020b18727220d1e368",
+      "source": "ssot/supercharge.md",
+      "text": "4. If more than one help, examples, or details control appears, ask the user to choose one instead of combining section-only outputs."
+    },
+    {
       "sha256": "8c1ae20069e89963464c29a0712934709cc957a0f0a827363cc392066e60b86c",
       "source": "ssot/supercharge.md",
       "text": "If multiple commands appear, SuperCharge MUST treat them as a stack and execute them as a multi-pass sequence."
@@ -207,6 +226,11 @@
       "sha256": "fb53dd951133fba280145290c1b7985b0a1933a53cbefbdefe466adaac9dd11c",
       "source": "ssot/supercharge.md",
       "text": "If the user provides no explicit module, SuperCharge MUST route the request to a sensible sequence and announce it:"
+    },
+    {
+      "sha256": "832fa678350d1dfbe163d15f2ae27c89f08d1d119a5a4400410df238193f98e8",
+      "source": "ssot/supercharge.md",
+      "text": "If the user supplies more than one reflective control, stop and ask them to choose one; do not silently select, merge, or discard controls. Auto-routing must not add `/safe` when the user supplied another reflective control. Safety constraints still apply regardless of modifier choice."
     },
     {
       "sha256": "191a672c0b2e324d52a6a1424b886d47270c35d4d5587181e786adbd1dd4b2f4",
