@@ -2,82 +2,13 @@
   "schema_version": "CapabilityTopology.v1",
   "slug": "architecture",
   "ssot_sha256": "af7bd2f6876f877f8b602f67666a14cbbdc6e12cbc95aea11e647b06c670132b",
-  "explicit_invocations": [
-    "/architecture",
-    "/orders",
-    "/users"
-  ],
+  "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
   "auto_routes": [],
   "nodes": {
-    "commands": [
-      "/architecture",
-      "/orders",
-      "/users"
-    ],
-    "modes_modules": [
-      {
-        "id": "9b6a359db340",
-        "label": "Mode Selection",
-        "source_line": 114
-      },
-      {
-        "id": "1c1b8d4944b3",
-        "label": "Standard Workflow",
-        "source_line": 131
-      },
-      {
-        "id": "bebdfaa531ed",
-        "label": "Phase 1. Problem Framing",
-        "source_line": 133
-      },
-      {
-        "id": "8cb349ee8ccf",
-        "label": "Phase 2. Primitive and Boundary Discovery",
-        "source_line": 143
-      },
-      {
-        "id": "02c9c3fb1c8b",
-        "label": "Phase 3. Candidate Options",
-        "source_line": 150
-      },
-      {
-        "id": "f3dc4d9127a6",
-        "label": "Phase 4. Recommended Design",
-        "source_line": 160
-      },
-      {
-        "id": "a2adf75a4eb9",
-        "label": "Phase 5. Validation and Rollback",
-        "source_line": 169
-      },
-      {
-        "id": "91c616f3c7ef",
-        "label": "Component or Module Boundaries",
-        "source_line": 207
-      },
-      {
-        "id": "1feaef5678ed",
-        "label": "Mode Playbooks",
-        "source_line": 225
-      },
-      {
-        "id": "4608f92b177d",
-        "label": "Expand Phase",
-        "source_line": 734
-      },
-      {
-        "id": "32eeaf739f56",
-        "label": "Migrate Phase",
-        "source_line": 735
-      },
-      {
-        "id": "21746a78332b",
-        "label": "Contract Phase",
-        "source_line": 736
-      }
-    ],
+    "commands": [],
+    "modes_modules": [],
     "controls": [],
     "modifiers": []
   },

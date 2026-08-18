@@ -1,0 +1,65 @@
+{
+  "schema_version": "CapabilityDescriptorContract.v1",
+  "required_top_level": [
+    "benchmark_sources",
+    "consumption_hints",
+    "declared_capability",
+    "descriptor_version",
+    "display_name",
+    "expected_surface_names",
+    "family_slug",
+    "historical_baseline",
+    "inferred_capability",
+    "layers",
+    "manifest_version",
+    "modes",
+    "quality_validation_matrix",
+    "rubric_version",
+    "shared_constraints",
+    "shared_summary",
+    "slug"
+  ],
+  "required_layers": {
+    "minimal": [
+      "capability_type",
+      "confidence",
+      "display_name",
+      "domain_tags",
+      "emitted_surfaces",
+      "expected_outputs",
+      "install_target",
+      "packaging_profile",
+      "rationale",
+      "required_inputs",
+      "resources",
+      "review_status",
+      "role",
+      "source_provenance",
+      "summary",
+      "tool_policy"
+    ],
+    "expanded": [
+      "adjustment_recommendations",
+      "capability_dependencies",
+      "migration_notes",
+      "overlap_candidates",
+      "relationship_suggestions"
+    ],
+    "org_graph": [
+      "authority_tier",
+      "collaborates_with_suggestions",
+      "delegates_to_suggestions",
+      "org_role",
+      "reports_to_suggestions",
+      "work_graph_impact"
+    ]
+  },
+  "required_mode_fields": [
+    "mode_slug",
+    "display_name",
+    "entry_kind",
+    "invocations",
+    "source_refs"
+  ],
+  "forbidden_quality_statuses": ["ship"]
+}

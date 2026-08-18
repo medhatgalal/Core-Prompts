@@ -2,32 +2,13 @@
   "schema_version": "CapabilityTopology.v1",
   "slug": "threader",
   "ssot_sha256": "7cf934b9b37029085f31f5b6709fa597f269c1b3ab7398cd8dd35a6b4fe86f3e",
-  "explicit_invocations": [
-    "/catchup",
-    "/rawmd",
-    "/threader"
-  ],
+  "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
   "auto_routes": [],
   "nodes": {
-    "commands": [
-      "/catchup",
-      "/rawmd",
-      "/threader"
-    ],
-    "modes_modules": [
-      {
-        "id": "9beb70d640df",
-        "label": "Workflow Contract",
-        "source_line": 9
-      },
-      {
-        "id": "395c9840d9e9",
-        "label": "COMMAND",
-        "source_line": 71
-      }
-    ],
+    "commands": [],
+    "modes_modules": [],
     "controls": [],
     "modifiers": []
   },

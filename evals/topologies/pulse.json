@@ -3,76 +3,528 @@
   "slug": "pulse",
   "ssot_sha256": "330dfb3bac121bc99fa3b5dc8fe87eed95451399e8d399bde18d78a1a8de1c35",
   "explicit_invocations": [
-    "/CC",
-    "/act",
-    "/all",
-    "/archive",
-    "/chat",
-    "/chat /from",
-    "/config",
-    "/count",
-    "/deep",
-    "/delete",
-    "/email",
-    "/email /hot /window",
-    "/from",
-    "/help",
-    "/hot",
-    "/memory",
-    "/mute",
-    "/muted",
-    "/open",
-    "/rate",
-    "/space",
-    "/sweep",
-    "/thread",
-    "/tune",
-    "/tune /chat",
-    "/tune /email",
-    "/unmute",
-    "/window"
+    "pulse",
+    "pulse /act",
+    "pulse /act <N>",
+    "pulse /all",
+    "pulse /archive",
+    "pulse /archive <N...>",
+    "pulse /chat",
+    "pulse /config",
+    "pulse /count",
+    "pulse /deep",
+    "pulse /deep <N>",
+    "pulse /delete",
+    "pulse /delete <N...>",
+    "pulse /email",
+    "pulse /from",
+    "pulse /from <person>",
+    "pulse /help",
+    "pulse /hot",
+    "pulse /memory",
+    "pulse /memory clear",
+    "pulse /mute",
+    "pulse /mute <N...>",
+    "pulse /mute <N> <duration>",
+    "pulse /muted",
+    "pulse /open",
+    "pulse /open <N...>",
+    "pulse /rate",
+    "pulse /rate <\u00b1N...>",
+    "pulse /space",
+    "pulse /space <name>",
+    "pulse /sweep",
+    "pulse /sweep <filter>",
+    "pulse /thread",
+    "pulse /thread <N>",
+    "pulse /tune",
+    "pulse /tune <N>",
+    "pulse /unmute",
+    "pulse /unmute <N...>",
+    "pulse /unmute all",
+    "pulse /window",
+    "pulse /window <time>"
   ],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
   "auto_routes": [],
   "nodes": {
     "commands": [
-      "/CC",
-      "/act",
-      "/all",
-      "/archive",
-      "/chat",
-      "/chat /from",
-      "/config",
-      "/count",
-      "/deep",
-      "/delete",
-      "/email",
-      "/email /hot /window",
-      "/from",
-      "/help",
-      "/hot",
-      "/memory",
-      "/mute",
-      "/muted",
-      "/open",
-      "/rate",
-      "/space",
-      "/sweep",
-      "/thread",
-      "/tune",
-      "/tune /chat",
-      "/tune /email",
-      "/unmute",
-      "/window"
-    ],
-    "modes_modules": [
       {
-        "id": "9beb70d640df",
-        "label": "Workflow Contract",
-        "source_line": 237
+        "mode_slug": "help",
+        "display_name": "/help",
+        "entry_kind": "command",
+        "invocations": [
+          "pulse /help"
+        ],
+        "source_refs": [
+          "ssot/pulse.md"
+        ],
+        "source_line": 65,
+        "mode_summary": "Explicitly declared command in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "default",
+        "display_name": "default",
+        "entry_kind": "command",
+        "invocations": [
+          "pulse"
+        ],
+        "source_refs": [
+          "ssot/pulse.md"
+        ],
+        "source_line": 66,
+        "mode_summary": "Explicitly declared command in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "email",
+        "display_name": "/email",
+        "entry_kind": "command",
+        "invocations": [
+          "pulse /email"
+        ],
+        "source_refs": [
+          "ssot/pulse.md"
+        ],
+        "source_line": 67,
+        "mode_summary": "Explicitly declared command in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "chat",
+        "display_name": "/chat",
+        "entry_kind": "command",
+        "invocations": [
+          "pulse /chat"
+        ],
+        "source_refs": [
+          "ssot/pulse.md"
+        ],
+        "source_line": 68,
+        "mode_summary": "Explicitly declared command in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "hot",
+        "display_name": "/hot",
+        "entry_kind": "command",
+        "invocations": [
+          "pulse /hot"
+        ],
+        "source_refs": [
+          "ssot/pulse.md"
+        ],
+        "source_line": 69,
+        "mode_summary": "Explicitly declared command in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "count",
+        "display_name": "/count",
+        "entry_kind": "command",
+        "invocations": [
+          "pulse /count"
+        ],
+        "source_refs": [
+          "ssot/pulse.md"
+        ],
+        "source_line": 70,
+        "mode_summary": "Explicitly declared command in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "all",
+        "display_name": "/all",
+        "entry_kind": "command",
+        "invocations": [
+          "pulse /all"
+        ],
+        "source_refs": [
+          "ssot/pulse.md"
+        ],
+        "source_line": 71,
+        "mode_summary": "Explicitly declared command in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "from",
+        "display_name": "/from",
+        "entry_kind": "command",
+        "invocations": [
+          "pulse /from <person>",
+          "pulse /from"
+        ],
+        "source_refs": [
+          "ssot/pulse.md"
+        ],
+        "source_line": 72,
+        "mode_summary": "Explicitly declared command in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "space",
+        "display_name": "/space",
+        "entry_kind": "command",
+        "invocations": [
+          "pulse /space <name>",
+          "pulse /space"
+        ],
+        "source_refs": [
+          "ssot/pulse.md"
+        ],
+        "source_line": 73,
+        "mode_summary": "Explicitly declared command in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "window",
+        "display_name": "/window",
+        "entry_kind": "command",
+        "invocations": [
+          "pulse /window <time>",
+          "pulse /window"
+        ],
+        "source_refs": [
+          "ssot/pulse.md"
+        ],
+        "source_line": 74,
+        "mode_summary": "Explicitly declared command in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "deep",
+        "display_name": "/deep",
+        "entry_kind": "command",
+        "invocations": [
+          "pulse /deep",
+          "pulse /deep <N>"
+        ],
+        "source_refs": [
+          "ssot/pulse.md"
+        ],
+        "source_line": 75,
+        "mode_summary": "Explicitly declared command in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "thread",
+        "display_name": "/thread",
+        "entry_kind": "command",
+        "invocations": [
+          "pulse /thread <N>",
+          "pulse /thread"
+        ],
+        "source_refs": [
+          "ssot/pulse.md"
+        ],
+        "source_line": 77,
+        "mode_summary": "Explicitly declared command in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "open",
+        "display_name": "/open",
+        "entry_kind": "command",
+        "invocations": [
+          "pulse /open <N...>",
+          "pulse /open"
+        ],
+        "source_refs": [
+          "ssot/pulse.md"
+        ],
+        "source_line": 78,
+        "mode_summary": "Explicitly declared command in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "delete",
+        "display_name": "/delete",
+        "entry_kind": "command",
+        "invocations": [
+          "pulse /delete <N...>",
+          "pulse /delete"
+        ],
+        "source_refs": [
+          "ssot/pulse.md"
+        ],
+        "source_line": 79,
+        "mode_summary": "Explicitly declared command in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "archive",
+        "display_name": "/archive",
+        "entry_kind": "command",
+        "invocations": [
+          "pulse /archive <N...>",
+          "pulse /archive"
+        ],
+        "source_refs": [
+          "ssot/pulse.md"
+        ],
+        "source_line": 80,
+        "mode_summary": "Explicitly declared command in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "act",
+        "display_name": "/act",
+        "entry_kind": "command",
+        "invocations": [
+          "pulse /act",
+          "pulse /act <N>"
+        ],
+        "source_refs": [
+          "ssot/pulse.md"
+        ],
+        "source_line": 81,
+        "mode_summary": "Explicitly declared command in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "rate",
+        "display_name": "/rate",
+        "entry_kind": "command",
+        "invocations": [
+          "pulse /rate <\u00b1N...>",
+          "pulse /rate"
+        ],
+        "source_refs": [
+          "ssot/pulse.md"
+        ],
+        "source_line": 83,
+        "mode_summary": "Explicitly declared command in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "memory",
+        "display_name": "/memory",
+        "entry_kind": "command",
+        "invocations": [
+          "pulse /memory",
+          "pulse /memory clear"
+        ],
+        "source_refs": [
+          "ssot/pulse.md"
+        ],
+        "source_line": 84,
+        "mode_summary": "Explicitly declared command in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "tune",
+        "display_name": "/tune",
+        "entry_kind": "command",
+        "invocations": [
+          "pulse /tune",
+          "pulse /tune <N>"
+        ],
+        "source_refs": [
+          "ssot/pulse.md"
+        ],
+        "source_line": 86,
+        "mode_summary": "Explicitly declared command in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "config",
+        "display_name": "/config",
+        "entry_kind": "command",
+        "invocations": [
+          "pulse /config"
+        ],
+        "source_refs": [
+          "ssot/pulse.md"
+        ],
+        "source_line": 88,
+        "mode_summary": "Explicitly declared command in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "mute",
+        "display_name": "/mute",
+        "entry_kind": "command",
+        "invocations": [
+          "pulse /mute <N...>",
+          "pulse /mute",
+          "pulse /mute <N> <duration>"
+        ],
+        "source_refs": [
+          "ssot/pulse.md"
+        ],
+        "source_line": 89,
+        "mode_summary": "Explicitly declared command in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "muted",
+        "display_name": "/muted",
+        "entry_kind": "command",
+        "invocations": [
+          "pulse /muted"
+        ],
+        "source_refs": [
+          "ssot/pulse.md"
+        ],
+        "source_line": 91,
+        "mode_summary": "Explicitly declared command in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "unmute",
+        "display_name": "/unmute",
+        "entry_kind": "command",
+        "invocations": [
+          "pulse /unmute <N...>",
+          "pulse /unmute",
+          "pulse /unmute all"
+        ],
+        "source_refs": [
+          "ssot/pulse.md"
+        ],
+        "source_line": 92,
+        "mode_summary": "Explicitly declared command in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "sweep",
+        "display_name": "/sweep",
+        "entry_kind": "command",
+        "invocations": [
+          "pulse /sweep",
+          "pulse /sweep <filter>"
+        ],
+        "source_refs": [
+          "ssot/pulse.md"
+        ],
+        "source_line": 94,
+        "mode_summary": "Explicitly declared command in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
       }
     ],
+    "modes_modules": [],
     "controls": [],
     "modifiers": []
   },

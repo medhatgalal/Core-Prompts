@@ -2,41 +2,13 @@
   "schema_version": "CapabilityTopology.v1",
   "slug": "converge",
   "ssot_sha256": "20908918f3709327a451ed764c10379a7bae76dcf32244b92676de698bcd2319",
-  "explicit_invocations": [
-    "/C",
-    "/conflicts",
-    "/explore",
-    "/help",
-    "/lean",
-    "/mcda",
-    "/montecarlo",
-    "/scenarios",
-    "/swot",
-    "/swot /mcda /conflicts /lean"
-  ],
+  "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
   "auto_routes": [],
   "nodes": {
-    "commands": [
-      "/C",
-      "/conflicts",
-      "/explore",
-      "/help",
-      "/lean",
-      "/mcda",
-      "/montecarlo",
-      "/scenarios",
-      "/swot",
-      "/swot /mcda /conflicts /lean"
-    ],
-    "modes_modules": [
-      {
-        "id": "6db593f486ee",
-        "label": "Failure Mode To Avoid",
-        "source_line": 181
-      }
-    ],
+    "commands": [],
+    "modes_modules": [],
     "controls": [],
     "modifiers": []
   },

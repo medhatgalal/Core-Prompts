@@ -2,53 +2,80 @@
   "schema_version": "CapabilityTopology.v1",
   "slug": "mentor",
   "ssot_sha256": "0b11948ceb7cb6b1c8a9a7781b74effd4d153a7156609ba55d5c30ba05b01ae6",
-  "explicit_invocations": [
-    "/mentor",
-    "/speckit"
-  ],
+  "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
   "auto_routes": [],
   "nodes": {
-    "commands": [
-      "/mentor",
-      "/speckit"
-    ],
+    "commands": [],
     "modes_modules": [
       {
-        "id": "9beb70d640df",
-        "label": "Workflow Contract",
-        "source_line": 9
+        "mode_slug": "standard-help-mode",
+        "display_name": "Standard Help Mode",
+        "entry_kind": "mode",
+        "invocations": [],
+        "source_refs": [
+          "ssot/mentor.md"
+        ],
+        "source_line": 92,
+        "mode_summary": "Explicitly declared mode in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
       },
       {
-        "id": "98335bbaef5f",
-        "label": "2.1 Standard Help Mode",
-        "source_line": 92
+        "mode_slug": "ult-mode-prompt-engineering",
+        "display_name": "ULT MODE (Prompt Engineering)",
+        "entry_kind": "mode",
+        "invocations": [],
+        "source_refs": [
+          "ssot/mentor.md"
+        ],
+        "source_line": 97,
+        "mode_summary": "Explicitly declared mode in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
       },
       {
-        "id": "3eaa22f12918",
-        "label": "2.2 ULT MODE (Prompt Engineering)",
-        "source_line": 97
+        "mode_slug": "terminal-cli-mode",
+        "display_name": "Terminal / CLI Mode",
+        "entry_kind": "mode",
+        "invocations": [],
+        "source_refs": [
+          "ssot/mentor.md"
+        ],
+        "source_line": 105,
+        "mode_summary": "Explicitly declared mode in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
       },
       {
-        "id": "25c059a1f1d8",
-        "label": "2.3 Terminal / CLI Mode",
-        "source_line": 105
-      },
-      {
-        "id": "d33d9fb6ffbb",
-        "label": "2.4 Diagnostic Mode",
-        "source_line": 109
-      },
-      {
-        "id": "414af80b8567",
-        "label": "5. Git Workflow (Stage 0-9 Model)",
-        "source_line": 127
-      },
-      {
-        "id": "a2e9d812b12e",
-        "label": "SpecKit (Workflow)",
-        "source_line": 150
+        "mode_slug": "diagnostic-mode",
+        "display_name": "Diagnostic Mode",
+        "entry_kind": "mode",
+        "invocations": [],
+        "source_refs": [
+          "ssot/mentor.md"
+        ],
+        "source_line": 109,
+        "mode_summary": "Explicitly declared mode in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
       }
     ],
     "controls": [],

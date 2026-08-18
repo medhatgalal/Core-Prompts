@@ -185,7 +185,9 @@
       "uplift_notes": [
         "Include failure and boundary cases.",
         "Prefer readable assertions and deterministic setup."
-      ]
+      ],
+      "entry_kind": "mode",
+      "invocations": []
     },
     {
       "mode_slug": "generate-e2e-tests",
@@ -211,7 +213,9 @@
       "uplift_notes": [
         "Call out test-data setup and synchronization explicitly.",
         "Prefer critical user paths over broad UI clicking."
-      ]
+      ],
+      "entry_kind": "mode",
+      "invocations": []
     },
     {
       "mode_slug": "edge-cases",
@@ -237,7 +241,9 @@
       "uplift_notes": [
         "Rank by business or failure impact.",
         "Avoid flat lists without prioritization."
-      ]
+      ],
+      "entry_kind": "mode",
+      "invocations": []
     },
     {
       "mode_slug": "coverage-analysis",
@@ -263,7 +269,9 @@
       "uplift_notes": [
         "Tie missing tests to specific code paths or workflows.",
         "Separate critical gaps from routine improvements."
-      ]
+      ],
+      "entry_kind": "mode",
+      "invocations": []
     }
   ],
   "benchmark_sources": [

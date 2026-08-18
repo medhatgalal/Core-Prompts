@@ -10,9 +10,72 @@
     "commands": [],
     "modes_modules": [
       {
-        "id": "9beb70d640df",
-        "label": "Workflow Contract",
-        "source_line": 25
+        "mode_slug": "audit",
+        "display_name": "audit",
+        "entry_kind": "mode",
+        "invocations": [],
+        "source_refs": [
+          "ssot/instruction-editor.md"
+        ],
+        "source_line": 13,
+        "mode_summary": "Explicitly declared mode in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "rewrite",
+        "display_name": "rewrite",
+        "entry_kind": "mode",
+        "invocations": [],
+        "source_refs": [
+          "ssot/instruction-editor.md"
+        ],
+        "source_line": 16,
+        "mode_summary": "Explicitly declared mode in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "diff",
+        "display_name": "diff",
+        "entry_kind": "mode",
+        "invocations": [],
+        "source_refs": [
+          "ssot/instruction-editor.md"
+        ],
+        "source_line": 19,
+        "mode_summary": "Explicitly declared mode in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "verify",
+        "display_name": "verify",
+        "entry_kind": "mode",
+        "invocations": [],
+        "source_refs": [
+          "ssot/instruction-editor.md"
+        ],
+        "source_line": 22,
+        "mode_summary": "Explicitly declared mode in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
       }
     ],
     "controls": [],

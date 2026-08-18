@@ -2,53 +2,13 @@
   "schema_version": "CapabilityTopology.v1",
   "slug": "weekly-intel",
   "ssot_sha256": "2f8c86f33b727a4d568a9273377cc0f6b92e49b3a7717dca31a5b33c06dc60a3",
-  "explicit_invocations": [
-    "/path"
-  ],
+  "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
   "auto_routes": [],
   "nodes": {
-    "commands": [
-      "/path"
-    ],
-    "modes_modules": [
-      {
-        "id": "2e2d5c5649b7",
-        "label": "Workflow",
-        "source_line": 98
-      },
-      {
-        "id": "e168103d975f",
-        "label": "Phase 1: Data Collection",
-        "source_line": 100
-      },
-      {
-        "id": "29940378266e",
-        "label": "Phase 2: Convergence",
-        "source_line": 127
-      },
-      {
-        "id": "5edc6ed5d41f",
-        "label": "Phase 3: Fact-Check Audit",
-        "source_line": 138
-      },
-      {
-        "id": "b37021f7153e",
-        "label": "Phase 4: Report Generation",
-        "source_line": 156
-      },
-      {
-        "id": "4b2f93e2266b",
-        "label": "Phase 5: Internal Consistency Check",
-        "source_line": 192
-      },
-      {
-        "id": "34f20d8731a0",
-        "label": "Phase 6: Confidence Declaration",
-        "source_line": 202
-      }
-    ],
+    "commands": [],
+    "modes_modules": [],
     "controls": [],
     "modifiers": []
   },

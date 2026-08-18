@@ -2,67 +2,13 @@
   "schema_version": "CapabilityTopology.v1",
   "slug": "eng-report",
   "ssot_sha256": "53ab9d0a95bb434a836c3f37239f355e9f4f694cd66f6a8bc309f1d7f010143b",
-  "explicit_invocations": [
-    "/Core-Prompts",
-    "/Users",
-    "/YYYY-MM-DD",
-    "/dev",
-    "/div",
-    "/eng-report",
-    "/eng-reports",
-    "/help",
-    "/li",
-    "/repo",
-    "/span",
-    "/strong",
-    "/tmp"
-  ],
+  "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
   "auto_routes": [],
   "nodes": {
-    "commands": [
-      "/Core-Prompts",
-      "/Users",
-      "/YYYY-MM-DD",
-      "/dev",
-      "/div",
-      "/eng-report",
-      "/eng-reports",
-      "/help",
-      "/li",
-      "/repo",
-      "/span",
-      "/strong",
-      "/tmp"
-    ],
-    "modes_modules": [
-      {
-        "id": "2e2d5c5649b7",
-        "label": "Workflow",
-        "source_line": 225
-      },
-      {
-        "id": "7b10492c7a0e",
-        "label": "Pass 1 \u2014 Gather metrics (deterministic)",
-        "source_line": 292
-      },
-      {
-        "id": "874af35abedc",
-        "label": "Pass 2 \u2014 Generate AI narrative",
-        "source_line": 304
-      },
-      {
-        "id": "8b1be9f6b15a",
-        "label": "Pass 3 \u2014 Render HTML (deterministic)",
-        "source_line": 337
-      },
-      {
-        "id": "14ba659d7321",
-        "label": "Example: Two-Pass Narrative Report",
-        "source_line": 438
-      }
-    ],
+    "commands": [],
+    "modes_modules": [],
     "controls": [],
     "modifiers": []
   },

@@ -4,12 +4,13 @@ import re
 from pathlib import Path
 from typing import Any
 
+from intent_pipeline.uac_modes import extract_declared_modes
+
 from .contracts import artifact_hash
 
 
 NORMATIVE = re.compile(r"\b(must|must not|never|required|only|forbidden|explicit approval|do not|shall)\b", re.I)
 GUARD = re.compile(r"\b(if|when|unless|only when)\b", re.I)
-COMMAND = re.compile(r"(?<![\w/])/[a-z][a-z0-9-]*(?:\s+/[a-z][a-z0-9-]*)*", re.I)
 MODE_HEADING = re.compile(r"^#{2,4}\s+(?:Mode\s+\d+\s*:\s*)?(.+)$", re.I)
 
 
@@ -30,8 +31,7 @@ def compile_topology(path: Path) -> dict[str, Any]:
     text = path.read_text(encoding="utf-8")
     body = _body(text)
     lines = body.splitlines()
-    commands: set[str] = set()
-    modes: list[dict[str, Any]] = []
+    declared_modes = extract_declared_modes(slug, body)
     clauses: list[dict[str, Any]] = []
     resources: list[str] = []
     handoffs: list[str] = []
@@ -41,9 +41,6 @@ def compile_topology(path: Path) -> dict[str, Any]:
         heading = MODE_HEADING.match(line)
         if heading:
             current_heading = heading.group(1).strip()
-            if re.search(r"\b(mode|module|command|workflow|pass|phase)\b", current_heading, re.I):
-                modes.append({"id": artifact_hash(current_heading)[:12], "label": current_heading, "source_line": number})
-        commands.update(COMMAND.findall(line))
         if NORMATIVE.search(line):
             clauses.append(
                 {
@@ -69,11 +66,16 @@ def compile_topology(path: Path) -> dict[str, Any]:
         "schema_version": "CapabilityTopology.v1",
         "slug": slug,
         "ssot_sha256": artifact_hash(text),
-        "explicit_invocations": sorted(commands),
+        "explicit_invocations": sorted({invocation for entry in declared_modes for invocation in entry.get("invocations", [])}),
         "semantic_triggers": [],
         "aliases_shortcuts": [],
         "auto_routes": [],
-        "nodes": {"commands": sorted(commands), "modes_modules": modes, "controls": [], "modifiers": []},
+        "nodes": {
+            "commands": [entry for entry in declared_modes if entry["entry_kind"] == "command"],
+            "modes_modules": [entry for entry in declared_modes if entry["entry_kind"] in {"mode", "module"}],
+            "controls": [],
+            "modifiers": [],
+        },
         "composition": {"legal_pairs": [], "forbidden_pairs": [], "canonical_order": [], "requirements": [], "supersession": []},
         "state_machine": {"states": [], "transitions": [], "forbidden_transitions": []},
         "outputs": outputs,

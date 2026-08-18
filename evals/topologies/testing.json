@@ -10,9 +10,72 @@
     "commands": [],
     "modes_modules": [
       {
-        "id": "2e2d5c5649b7",
-        "label": "Workflow",
-        "source_line": 18
+        "mode_slug": "generate-unit-tests",
+        "display_name": "Generate Unit Tests",
+        "entry_kind": "mode",
+        "invocations": [],
+        "source_refs": [
+          "ssot/testing.md"
+        ],
+        "source_line": 61,
+        "mode_summary": "Explicitly declared mode in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "generate-e2e-tests",
+        "display_name": "Generate E2E Tests",
+        "entry_kind": "mode",
+        "invocations": [],
+        "source_refs": [
+          "ssot/testing.md"
+        ],
+        "source_line": 70,
+        "mode_summary": "Explicitly declared mode in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "edge-cases",
+        "display_name": "Edge Cases",
+        "entry_kind": "mode",
+        "invocations": [],
+        "source_refs": [
+          "ssot/testing.md"
+        ],
+        "source_line": 80,
+        "mode_summary": "Explicitly declared mode in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "coverage-analysis",
+        "display_name": "Coverage Analysis",
+        "entry_kind": "mode",
+        "invocations": [],
+        "source_refs": [
+          "ssot/testing.md"
+        ],
+        "source_line": 89,
+        "mode_summary": "Explicitly declared mode in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
       }
     ],
     "controls": [],

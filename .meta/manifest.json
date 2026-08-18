@@ -536,7 +536,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         }
       ],
       "benchmark_sources": [],
@@ -775,7 +777,9 @@
             "Prefer nouns and stable resource boundaries.",
             "Keep auth, pagination, and versioning explicit.",
             "Include at least one explicit rollback path for API changes."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "design-database",
@@ -805,7 +809,9 @@
             "Call out intentional denormalization and failure impact.",
             "Tie indexes to actual query paths.",
             "Include consistency-vs-availability trade-off and rollback checkpoint."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "design-patterns",
@@ -837,7 +843,9 @@
             "Explain trade-offs and why each fit is chosen.",
             "Avoid pattern cargo-culting; always include replacement implications.",
             "Include rollback plan for each non-backward-compatible boundary change."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "system-design",
@@ -869,7 +877,9 @@
           "uplift_notes": [
             "Keep modules replaceable where possible.",
             "Separate policy from mechanism in each subsystem."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         }
       ],
       "benchmark_sources": [
@@ -1204,7 +1214,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "goal-setup",
@@ -1218,7 +1230,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "minimal-loop",
@@ -1232,7 +1246,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "search-design",
@@ -1246,7 +1262,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "experiment-loop",
@@ -1260,7 +1278,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "capability-evaluation",
@@ -1274,7 +1294,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "trace-to-eval",
@@ -1288,7 +1310,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "promotion",
@@ -1302,7 +1326,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         }
       ],
       "benchmark_sources": [],
@@ -1799,7 +1825,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         }
       ],
       "benchmark_sources": [],
@@ -2003,7 +2031,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         }
       ],
       "benchmark_sources": [],
@@ -2495,7 +2525,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         }
       ],
       "benchmark_sources": [
@@ -2714,6 +2746,11 @@
             "validated embedded or relative image asset package when images are used",
             "interaction behavior",
             "DOM and viewport validation evidence"
+          ],
+          "entry_kind": "mode",
+          "invocations": [],
+          "source_refs": [
+            "ssot/dynamic-html-presentations.md"
           ]
         },
         {
@@ -2728,6 +2765,11 @@
           "expected_outputs": [
             "naturally sorted slide PNGs",
             "count, size, and dimension verification"
+          ],
+          "entry_kind": "mode",
+          "invocations": [],
+          "source_refs": [
+            "ssot/dynamic-html-presentations.md"
           ]
         },
         {
@@ -2742,6 +2784,11 @@
             "widescreen PPTX",
             "slide-count verification",
             "flattened-content tradeoff disclosure"
+          ],
+          "entry_kind": "mode",
+          "invocations": [],
+          "source_refs": [
+            "ssot/dynamic-html-presentations.md"
           ]
         },
         {
@@ -2759,6 +2806,11 @@
             "verified PNG set",
             "verified PPTX",
             "artifact and validation summary"
+          ],
+          "entry_kind": "mode",
+          "invocations": [],
+          "source_refs": [
+            "ssot/dynamic-html-presentations.md"
           ]
         }
       ],
@@ -3414,7 +3466,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         }
       ],
       "benchmark_sources": [
@@ -3633,7 +3687,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "internal-runbook-mode",
@@ -3647,7 +3703,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "example-generic-mode",
@@ -3661,7 +3719,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "example-internal-runbook-mode",
@@ -3675,7 +3735,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         }
       ],
       "benchmark_sources": [],
@@ -4066,7 +4128,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "rewrite",
@@ -4080,7 +4144,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "diff",
@@ -4094,7 +4160,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "verify",
@@ -4108,7 +4176,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         }
       ],
       "benchmark_sources": [],
@@ -4298,7 +4368,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "2-2-ult-mode-prompt-engineering",
@@ -4312,7 +4384,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "2-3-terminal-cli-mode",
@@ -4326,7 +4400,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "2-4-diagnostic-mode",
@@ -4340,7 +4416,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         }
       ],
       "benchmark_sources": [],
@@ -4548,7 +4626,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "pitch-review-source",
@@ -4562,7 +4642,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "pitch-score-source",
@@ -4576,7 +4658,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "pitch-improve-source",
@@ -4590,7 +4674,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "pitch-compare-source1-source2",
@@ -4604,7 +4690,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "pitch-audit",
@@ -4618,7 +4706,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "pitch-bootstrap-goal",
@@ -4632,7 +4722,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "pitch-export-source-options",
@@ -4646,7 +4738,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "pitch-integration-proof-source",
@@ -4660,7 +4754,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         }
       ],
       "benchmark_sources": [],
@@ -4997,7 +5093,9 @@
           ],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "email",
@@ -5013,7 +5111,9 @@
           ],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "chat",
@@ -5029,7 +5129,9 @@
           ],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "hot",
@@ -5045,7 +5147,9 @@
           ],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "count",
@@ -5061,7 +5165,9 @@
           ],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "all",
@@ -5077,7 +5183,9 @@
           ],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "from",
@@ -5093,7 +5201,9 @@
           ],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "space",
@@ -5109,7 +5219,9 @@
           ],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "window",
@@ -5125,7 +5237,9 @@
           ],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "deep",
@@ -5141,7 +5255,9 @@
           ],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "thread",
@@ -5157,7 +5273,9 @@
           ],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "open",
@@ -5173,7 +5291,9 @@
           ],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "delete",
@@ -5189,7 +5309,9 @@
           ],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "archive",
@@ -5205,7 +5327,9 @@
           ],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "act",
@@ -5221,7 +5345,9 @@
           ],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "rate",
@@ -5237,7 +5363,9 @@
           ],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "memory",
@@ -5253,7 +5381,9 @@
           ],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "tune",
@@ -5269,7 +5399,9 @@
           ],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "config",
@@ -5285,7 +5417,9 @@
           ],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "mute",
@@ -5301,7 +5435,9 @@
           ],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "muted",
@@ -5317,7 +5453,9 @@
           ],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "unmute",
@@ -5333,7 +5471,9 @@
           ],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "sweep",
@@ -5349,7 +5489,9 @@
           ],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         }
       ],
       "benchmark_sources": [
@@ -5886,7 +6028,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "module-usage",
@@ -5900,7 +6044,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "per-module-examples",
@@ -5914,7 +6060,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "module-reference-full-spec",
@@ -5928,7 +6076,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "module-ult-ult-agent-prompt-engineer-mode",
@@ -5942,7 +6092,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "mode-behavior",
@@ -5956,7 +6108,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "module-catchup-deep-forensic-catchup-multi-intent",
@@ -5970,7 +6124,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "module-basis-first-principles-cost-and-complexity-accounting",
@@ -5984,7 +6140,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "module-simple-decomplecting-lens-simple-made-easy",
@@ -5998,7 +6156,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "module-invert-inversion-lens-invert-always-invert",
@@ -6012,7 +6172,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "module-adversarial-adversarial-red-teaming-devil-s-advocate",
@@ -6026,7 +6188,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "nested-module-adversarial-debate-surface-bull-bear-decider-debate",
@@ -6040,7 +6204,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "nested-module-adversarial-debate-deep-deep-bull-bear-decider-debate",
@@ -6054,7 +6220,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "module-contract-2026-contract-qa-unified-spec-evaluation",
@@ -6068,7 +6236,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "module-grade-10-iteration-improvement-ladder-score-1-10",
@@ -6082,7 +6252,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "module-full-illumination-gauntlet-no-execution",
@@ -6096,7 +6268,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "module-gaslight-gaslight-13-explicit-only",
@@ -6110,7 +6284,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "module-stop-ult-exit-ult-mode",
@@ -6124,7 +6300,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "failure-mode-to-avoid",
@@ -6138,7 +6316,9 @@
           "examples": [],
           "uplift_notes": [
             "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         }
       ],
       "benchmark_sources": [],
@@ -6338,7 +6518,9 @@
           "uplift_notes": [
             "Include failure and boundary cases.",
             "Prefer readable assertions and deterministic setup."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "generate-e2e-tests",
@@ -6364,7 +6546,9 @@
           "uplift_notes": [
             "Call out test-data setup and synchronization explicitly.",
             "Prefer critical user paths over broad UI clicking."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "edge-cases",
@@ -6390,7 +6574,9 @@
           "uplift_notes": [
             "Rank by business or failure impact.",
             "Avoid flat lists without prioritization."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "coverage-analysis",
@@ -6416,7 +6602,9 @@
           "uplift_notes": [
             "Tie missing tests to specific code paths or workflows.",
             "Separate critical gaps from routine improvements."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         }
       ],
       "benchmark_sources": [

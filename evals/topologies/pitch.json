@@ -2,17 +2,165 @@
   "schema_version": "CapabilityTopology.v1",
   "slug": "pitch",
   "ssot_sha256": "3c4a74e1a6e11b2b097281ee1515cc28832df624b80e40c4c949b7c902a800e1",
-  "explicit_invocations": [
-    "/Downloads",
-    "/edit"
-  ],
+  "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
   "auto_routes": [],
   "nodes": {
     "commands": [
-      "/Downloads",
-      "/edit"
+      {
+        "mode_slug": "pitch-create-goal-or-problem-statement",
+        "display_name": "pitch create [goal or problem statement]",
+        "entry_kind": "command",
+        "invocations": [],
+        "source_refs": [
+          "ssot/pitch.md"
+        ],
+        "source_line": 126,
+        "mode_summary": "Explicitly declared command in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "pitch-review-source",
+        "display_name": "pitch review <source>",
+        "entry_kind": "command",
+        "invocations": [],
+        "source_refs": [
+          "ssot/pitch.md"
+        ],
+        "source_line": 134,
+        "mode_summary": "Explicitly declared command in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "pitch-score-source",
+        "display_name": "pitch score <source>",
+        "entry_kind": "command",
+        "invocations": [],
+        "source_refs": [
+          "ssot/pitch.md"
+        ],
+        "source_line": 142,
+        "mode_summary": "Explicitly declared command in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "pitch-improve-source",
+        "display_name": "pitch improve <source>",
+        "entry_kind": "command",
+        "invocations": [],
+        "source_refs": [
+          "ssot/pitch.md"
+        ],
+        "source_line": 151,
+        "mode_summary": "Explicitly declared command in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "pitch-compare-source1-source2",
+        "display_name": "pitch compare <source1> <source2>",
+        "entry_kind": "command",
+        "invocations": [],
+        "source_refs": [
+          "ssot/pitch.md"
+        ],
+        "source_line": 158,
+        "mode_summary": "Explicitly declared command in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "pitch-audit",
+        "display_name": "pitch audit",
+        "entry_kind": "command",
+        "invocations": [],
+        "source_refs": [
+          "ssot/pitch.md"
+        ],
+        "source_line": 164,
+        "mode_summary": "Explicitly declared command in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "pitch-bootstrap-goal",
+        "display_name": "pitch bootstrap <goal>",
+        "entry_kind": "command",
+        "invocations": [],
+        "source_refs": [
+          "ssot/pitch.md"
+        ],
+        "source_line": 172,
+        "mode_summary": "Explicitly declared command in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "pitch-export-source-options",
+        "display_name": "pitch export <source> [options]",
+        "entry_kind": "command",
+        "invocations": [],
+        "source_refs": [
+          "ssot/pitch.md"
+        ],
+        "source_line": 180,
+        "mode_summary": "Explicitly declared command in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "pitch-integration-proof-source",
+        "display_name": "pitch integration-proof <source>",
+        "entry_kind": "command",
+        "invocations": [],
+        "source_refs": [
+          "ssot/pitch.md"
+        ],
+        "source_line": 213,
+        "mode_summary": "Explicitly declared command in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      }
     ],
     "modes_modules": [],
     "controls": [],

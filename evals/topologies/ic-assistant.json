@@ -10,54 +10,38 @@
     "commands": [],
     "modes_modules": [
       {
-        "id": "ed8d03dd686a",
-        "label": "Generic Mode",
-        "source_line": 29
+        "mode_slug": "generic-mode",
+        "display_name": "Generic Mode",
+        "entry_kind": "mode",
+        "invocations": [],
+        "source_refs": [
+          "ssot/ic-assistant.md"
+        ],
+        "source_line": 29,
+        "mode_summary": "Explicitly declared mode in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
       },
       {
-        "id": "8a771e4a7e16",
-        "label": "Internal Runbook Mode",
-        "source_line": 39
-      },
-      {
-        "id": "9beb70d640df",
-        "label": "Workflow Contract",
-        "source_line": 51
-      },
-      {
-        "id": "cc5c96cefbd5",
-        "label": "Phase Model",
-        "source_line": 91
-      },
-      {
-        "id": "08ee2933c891",
-        "label": "Phase 1: Assignment / Intake",
-        "source_line": 93
-      },
-      {
-        "id": "2e67282072b6",
-        "label": "Phase 2: Active Response",
-        "source_line": 102
-      },
-      {
-        "id": "135669319cac",
-        "label": "Phase 3: Resolution",
-        "source_line": 112
-      },
-      {
-        "id": "2071ad2c4a42",
-        "label": "Phase 4: Post-Incident / Postmortem",
-        "source_line": 121
-      },
-      {
-        "id": "36e7e1272f05",
-        "label": "Example: Generic Mode",
-        "source_line": 196
-      },
-      {
-        "id": "1146bb04718b",
-        "label": "Example: Internal Runbook Mode",
-        "source_line": 208
+        "mode_slug": "internal-runbook-mode",
+        "display_name": "Internal Runbook Mode",
+        "entry_kind": "mode",
+        "invocations": [],
+        "source_refs": [
+          "ssot/ic-assistant.md"
+        ],
+        "source_line": 39,
+        "mode_summary": "Explicitly declared mode in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
       }
     ],
     "controls": [],

@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import datetime
 import json
-import re
 import shutil
 import sys
 from pathlib import Path
@@ -25,6 +24,7 @@ from intent_pipeline.consumer_shell import (
 )
 from intent_pipeline.uac_descriptors import build_descriptor, load_descriptor, save_descriptor, source_note_path
 from intent_pipeline.uac_baselines import resolve_historical_baseline
+from intent_pipeline.uac_modes import extract_declared_modes, normalize_mode_entries
 from intent_pipeline.uac_ssot import build_ssot_handoff_contract, build_ssot_manifest_entry, extract_section_bullets, load_ssot_entries
 
 SSOT_DIR = ROOT / 'ssot'
@@ -468,68 +468,6 @@ def extra_skill_frontmatter(entry) -> dict[str, object]:
     return {key: value for key, value in extra.items() if value}
 
 
-def extract_declared_modes(slug: str, body: str) -> list[dict[str, object]]:
-    """Extract explicit mode/module headings for descriptor discoverability.
-
-    This is a structural index, not a topology oracle. Composition, guards, and
-    state transitions remain owned by CapabilityTopology.v1.
-    """
-    modes: list[dict[str, object]] = []
-    seen: set[str] = set()
-    parent = ""
-    for line in body.splitlines():
-        match = re.match(r"^(#{2,4})\s+(.+?)\s*$", line)
-        if not match:
-            continue
-        level = len(match.group(1))
-        label = re.sub(r"[`*]", "", match.group(2)).strip()
-        if level == 2:
-            parent = label.lower()
-        explicit = bool(
-            re.search(r"^Mode\s+\d+\s*:", label, re.I)
-            or re.search(r"\b(module|mode)\b", label, re.I)
-            or (level >= 3 and parent in {"modes", "modules", "commands"})
-        )
-        if not explicit:
-            continue
-        display_name = re.sub(r"^Mode\s+\d+\s*:\s*", "", label, flags=re.I).strip()
-        mode_slug = re.sub(r"[^a-z0-9]+", "-", display_name.lower()).strip("-")
-        if not mode_slug or mode_slug in seen:
-            continue
-        seen.add(mode_slug)
-        modes.append(
-            {
-                "mode_slug": mode_slug,
-                "display_name": display_name,
-                "source_refs": [f"ssot/{slug}.md"],
-                "mode_summary": f"Declared by the canonical `{label}` section.",
-                "required_inputs": [],
-                "expected_outputs": [],
-                "examples": [],
-                "uplift_notes": ["Use CapabilityTopology.v1 for composition, guard, and transition semantics."],
-            }
-        )
-    for invocation in re.findall(rf"\|\s*`{re.escape(slug)}\s+(/[^`]+)`\s*\|", body, re.I):
-        command = invocation.split()[0]
-        mode_slug = re.sub(r"[^a-z0-9]+", "-", command.lower()).strip("-")
-        if not mode_slug or mode_slug in seen:
-            continue
-        seen.add(mode_slug)
-        modes.append(
-            {
-                "mode_slug": mode_slug,
-                "display_name": command,
-                "source_refs": [f"ssot/{slug}.md"],
-                "mode_summary": f"Declared by the canonical `{slug} {command}` command table entry.",
-                "required_inputs": [],
-                "expected_outputs": [],
-                "examples": [f"{slug} {invocation}"],
-                "uplift_notes": ["Use CapabilityTopology.v1 for composition, guard, and transition semantics."],
-            }
-        )
-    return modes
-
-
 def write_resource(surface_name: str, slug: str, descriptor: dict[str, object]) -> str:
     path = RESOURCE_PATHS[surface_name](slug)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -578,7 +516,7 @@ def resolve_descriptor(entry, manifest_entry: dict[str, object]) -> dict[str, ob
             family_slug=str(descriptor.get('family_slug') or entry.slug),
             shared_summary=str(descriptor.get('shared_summary') or manifest_entry['layers']['minimal'].get('summary') or ''),
             shared_constraints=section_constraints or tuple(descriptor.get('shared_constraints') or ()),
-            modes=tuple(descriptor.get('modes') or extracted_modes),
+            modes=tuple(normalize_mode_entries(descriptor.get('modes') or extracted_modes, entry.slug)),
             benchmark_sources=tuple(descriptor.get('benchmark_sources') or defaults.get('benchmark_sources') or ()),
             quality_profile=str(descriptor.get('quality_profile')) if descriptor.get('quality_profile') is not None else None,
             quality_status=str(normalized_quality_status) if normalized_quality_status is not None else None,
@@ -628,7 +566,7 @@ def resolve_descriptor(entry, manifest_entry: dict[str, object]) -> dict[str, ob
             manifest=manifest_entry,
             display_name=str(defaults.get('display_name') or entry.display_name),
             shared_constraints=section_constraints,
-            modes=tuple(extracted_modes),
+            modes=tuple(normalize_mode_entries(extracted_modes, entry.slug)),
             benchmark_sources=tuple(defaults.get('benchmark_sources') or ()),
             consumption_hints=dict(defaults.get('consumption_hints') or {}),
             historical_baseline=baseline_payload,

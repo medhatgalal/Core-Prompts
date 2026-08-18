@@ -3,203 +3,272 @@
   "slug": "supercharge",
   "ssot_sha256": "a6d493bee6d32c4f5eaceb751affc231a451e1e8af97cde5f328610b5b8e6aa8",
   "explicit_invocations": [
-    "/VALIDATE-CATCHUP",
     "/adversarial",
     "/adversarial /debate",
-    "/adversarial /debate /contract",
     "/adversarial /debate /deep",
-    "/adversarial /debate /deep /contract",
     "/basis",
-    "/basis /simple /contract",
     "/catchup",
-    "/concise",
     "/contract",
-    "/creative",
-    "/debate",
-    "/debate /deep",
-    "/deep",
-    "/details",
-    "/edge",
     "/full",
     "/gaslight",
     "/grade",
-    "/help",
     "/invert",
-    "/invert /adversarial",
-    "/realism",
-    "/route",
-    "/safe",
     "/simple",
-    "/simple /invert",
-    "/simple /invert /contract",
-    "/stack",
-    "/stop",
     "/stop-ult",
-    "/supercharge",
-    "/ult",
-    "/ult /contract"
+    "/ult"
   ],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
   "auto_routes": [],
   "nodes": {
-    "commands": [
-      "/VALIDATE-CATCHUP",
-      "/adversarial",
-      "/adversarial /debate",
-      "/adversarial /debate /contract",
-      "/adversarial /debate /deep",
-      "/adversarial /debate /deep /contract",
-      "/basis",
-      "/basis /simple /contract",
-      "/catchup",
-      "/concise",
-      "/contract",
-      "/creative",
-      "/debate",
-      "/debate /deep",
-      "/deep",
-      "/details",
-      "/edge",
-      "/full",
-      "/gaslight",
-      "/grade",
-      "/help",
-      "/invert",
-      "/invert /adversarial",
-      "/realism",
-      "/route",
-      "/safe",
-      "/simple",
-      "/simple /invert",
-      "/simple /invert /contract",
-      "/stack",
-      "/stop",
-      "/stop-ult",
-      "/supercharge",
-      "/ult",
-      "/ult /contract"
-    ],
+    "commands": [],
     "modes_modules": [
       {
-        "id": "75f5cd7f6a51",
-        "label": "Command Grammar (Tool-Agnostic)",
-        "source_line": 114
+        "mode_slug": "ult",
+        "display_name": "/ult \u2014 ULT-Agent++ (Prompt Engineer Mode)",
+        "entry_kind": "module",
+        "invocations": [
+          "/ult"
+        ],
+        "source_refs": [
+          "ssot/supercharge.md"
+        ],
+        "source_line": 334,
+        "mode_summary": "Explicitly declared module in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
       },
       {
-        "id": "c76138c9485a",
-        "label": "Multi-Pass Pipeline Order (Canonical)",
-        "source_line": 166
+        "mode_slug": "catchup",
+        "display_name": "/catchup \u2014 Deep Forensic Catchup (Multi-Intent)",
+        "entry_kind": "module",
+        "invocations": [
+          "/catchup"
+        ],
+        "source_refs": [
+          "ssot/supercharge.md"
+        ],
+        "source_line": 365,
+        "mode_summary": "Explicitly declared module in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
       },
       {
-        "id": "d85d982bcbd9",
-        "label": "Agentic Orchestration (Core Principle, Not a Module)",
-        "source_line": 197
+        "mode_slug": "basis",
+        "display_name": "/basis \u2014 First-Principles Cost and Complexity Accounting",
+        "entry_kind": "module",
+        "invocations": [
+          "/basis"
+        ],
+        "source_refs": [
+          "ssot/supercharge.md"
+        ],
+        "source_line": 414,
+        "mode_summary": "Explicitly declared module in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
       },
       {
-        "id": "11c940c02dae",
-        "label": "Module Usage",
-        "source_line": 253
+        "mode_slug": "simple",
+        "display_name": "/simple \u2014 Decomplecting Lens (\"Simple Made Easy\")",
+        "entry_kind": "module",
+        "invocations": [
+          "/simple"
+        ],
+        "source_refs": [
+          "ssot/supercharge.md"
+        ],
+        "source_line": 459,
+        "mode_summary": "Explicitly declared module in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
       },
       {
-        "id": "92fe8768e5f8",
-        "label": "Per-Module Examples",
-        "source_line": 267
+        "mode_slug": "invert",
+        "display_name": "/invert \u2014 Inversion Lens (\"Invert, Always Invert\")",
+        "entry_kind": "module",
+        "invocations": [
+          "/invert"
+        ],
+        "source_refs": [
+          "ssot/supercharge.md"
+        ],
+        "source_line": 543,
+        "mode_summary": "Explicitly declared module in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
       },
       {
-        "id": "b99b43eebebf",
-        "label": "MODULE REFERENCE (Full Spec)",
-        "source_line": 327
+        "mode_slug": "adversarial",
+        "display_name": "/adversarial \u2014 Adversarial Red-Teaming (Devil's Advocate)",
+        "entry_kind": "module",
+        "invocations": [
+          "/adversarial"
+        ],
+        "source_refs": [
+          "ssot/supercharge.md"
+        ],
+        "source_line": 558,
+        "mode_summary": "Explicitly declared module in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
       },
       {
-        "id": "b463d8d8a112",
-        "label": "Global Stop Command",
-        "source_line": 329
+        "mode_slug": "adversarial-debate",
+        "display_name": "/adversarial /debate \u2014 Surface Bull/Bear/Decider Debate",
+        "entry_kind": "module",
+        "invocations": [
+          "/adversarial /debate"
+        ],
+        "source_refs": [
+          "ssot/supercharge.md"
+        ],
+        "source_line": 579,
+        "mode_summary": "Explicitly declared module in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
       },
       {
-        "id": "ee12be5d32cb",
-        "label": "MODULE: /ult \u2014 ULT-Agent++ (Prompt Engineer Mode)",
-        "source_line": 334
+        "mode_slug": "adversarial-debate-deep",
+        "display_name": "/adversarial /debate /deep \u2014 Deep Bull/Bear/Decider Debate",
+        "entry_kind": "module",
+        "invocations": [
+          "/adversarial /debate /deep"
+        ],
+        "source_refs": [
+          "ssot/supercharge.md"
+        ],
+        "source_line": 609,
+        "mode_summary": "Explicitly declared module in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
       },
       {
-        "id": "502c3867608a",
-        "label": "Mode Behavior",
-        "source_line": 339
+        "mode_slug": "contract",
+        "display_name": "/contract \u2014 2026 Contract + QA (Unified Spec + Evaluation)",
+        "entry_kind": "module",
+        "invocations": [
+          "/contract"
+        ],
+        "source_refs": [
+          "ssot/supercharge.md"
+        ],
+        "source_line": 644,
+        "mode_summary": "Explicitly declared module in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
       },
       {
-        "id": "ed1bf21fbb45",
-        "label": "MODULE: /catchup \u2014 Deep Forensic Catchup (Multi-Intent)",
-        "source_line": 365
+        "mode_slug": "grade",
+        "display_name": "/grade \u2014 10-Iteration Improvement Ladder (Score 1\u201310)",
+        "entry_kind": "module",
+        "invocations": [
+          "/grade"
+        ],
+        "source_refs": [
+          "ssot/supercharge.md"
+        ],
+        "source_line": 684,
+        "mode_summary": "Explicitly declared module in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
       },
       {
-        "id": "2cc351eddbca",
-        "label": "MODULE: /basis \u2014 First-Principles Cost and Complexity Accounting",
-        "source_line": 414
+        "mode_slug": "full",
+        "display_name": "/full \u2014 Illumination Gauntlet (No Execution)",
+        "entry_kind": "module",
+        "invocations": [
+          "/full"
+        ],
+        "source_refs": [
+          "ssot/supercharge.md"
+        ],
+        "source_line": 700,
+        "mode_summary": "Explicitly declared module in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
       },
       {
-        "id": "0be4e1345781",
-        "label": "Accounting Workflow (MANDATORY)",
-        "source_line": 436
+        "mode_slug": "gaslight",
+        "display_name": "/gaslight \u2014 GASLIGHT 13 (Explicit Only)",
+        "entry_kind": "module",
+        "invocations": [
+          "/gaslight"
+        ],
+        "source_refs": [
+          "ssot/supercharge.md"
+        ],
+        "source_line": 721,
+        "mode_summary": "Explicitly declared module in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
       },
       {
-        "id": "bb800e069b92",
-        "label": "MODULE: /simple \u2014 Decomplecting Lens (\"Simple Made Easy\")",
-        "source_line": 459
-      },
-      {
-        "id": "857b315ddc59",
-        "label": "Decomplect Workflow (MANDATORY)",
-        "source_line": 502
-      },
-      {
-        "id": "a05c79e17bd0",
-        "label": "MODULE: /invert \u2014 Inversion Lens (\"Invert, Always Invert\")",
-        "source_line": 543
-      },
-      {
-        "id": "8788e2cb4489",
-        "label": "MODULE: /adversarial \u2014 Adversarial Red-Teaming (Devil's Advocate)",
-        "source_line": 558
-      },
-      {
-        "id": "32079026e74c",
-        "label": "Nested Module: /adversarial /debate \u2014 Surface Bull/Bear/Decider Debate",
-        "source_line": 579
-      },
-      {
-        "id": "2bffe8e234ce",
-        "label": "Nested Module: /adversarial /debate /deep \u2014 Deep Bull/Bear/Decider Debate",
-        "source_line": 609
-      },
-      {
-        "id": "0bfb193d7fcd",
-        "label": "MODULE: /contract \u2014 2026 Contract + QA (Unified Spec + Evaluation)",
-        "source_line": 644
-      },
-      {
-        "id": "0101bb8df107",
-        "label": "MODULE: /grade \u2014 10-Iteration Improvement Ladder (Score 1\u201310)",
-        "source_line": 684
-      },
-      {
-        "id": "4d104b595220",
-        "label": "MODULE: /full \u2014 Illumination Gauntlet (No Execution)",
-        "source_line": 700
-      },
-      {
-        "id": "7390a29d57df",
-        "label": "MODULE: /gaslight \u2014 GASLIGHT 13 (Explicit Only)",
-        "source_line": 721
-      },
-      {
-        "id": "94761238236b",
-        "label": "MODULE: /stop-ult \u2014 Exit ULT Mode",
-        "source_line": 759
-      },
-      {
-        "id": "6db593f486ee",
-        "label": "Failure Mode To Avoid",
-        "source_line": 774
+        "mode_slug": "stop-ult",
+        "display_name": "/stop-ult \u2014 Exit ULT Mode",
+        "entry_kind": "module",
+        "invocations": [
+          "/stop-ult"
+        ],
+        "source_refs": [
+          "ssot/supercharge.md"
+        ],
+        "source_line": 759,
+        "mode_summary": "Explicitly declared module in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
       }
     ],
     "controls": [],

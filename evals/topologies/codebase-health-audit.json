@@ -2,68 +2,13 @@
   "schema_version": "CapabilityTopology.v1",
   "slug": "codebase-health-audit",
   "ssot_sha256": "1ffb301944263f68d4f796536d924574b9e51f10b9a5e2436d4644b7fa303234",
-  "explicit_invocations": [
-    "/path"
-  ],
+  "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
   "auto_routes": [],
   "nodes": {
-    "commands": [
-      "/path"
-    ],
-    "modes_modules": [
-      {
-        "id": "38bc5b4eeb2c",
-        "label": "READ-ONLY MODE (Non-Negotiable)",
-        "source_line": 50
-      },
-      {
-        "id": "eecaa4b8c6e8",
-        "label": "Phase 1: Configuration Resolution",
-        "source_line": 121
-      },
-      {
-        "id": "2edfcb6813b6",
-        "label": "Phase 2: Structural Analysis",
-        "source_line": 132
-      },
-      {
-        "id": "49582dbc1d3b",
-        "label": "Phase 2a: LOC Hotspot Scan",
-        "source_line": 136
-      },
-      {
-        "id": "304501e52092",
-        "label": "Phase 2b: God Object Detection",
-        "source_line": 144
-      },
-      {
-        "id": "4a182bb1d23a",
-        "label": "Phase 2c: Coupling Analysis (Import Fan-out)",
-        "source_line": 153
-      },
-      {
-        "id": "7e4f96288c62",
-        "label": "Phase 2d: Dead Code Detection",
-        "source_line": 161
-      },
-      {
-        "id": "0bbb8579081c",
-        "label": "Phase 3: Claim Verification (if prior state provided)",
-        "source_line": 171
-      },
-      {
-        "id": "25835911a86b",
-        "label": "Phase 4: Drift Computation (if prior state provided)",
-        "source_line": 187
-      },
-      {
-        "id": "016dcb1e7ea8",
-        "label": "Phase 5: Output Assembly",
-        "source_line": 205
-      }
-    ],
+    "commands": [],
+    "modes_modules": [],
     "controls": [],
     "modifiers": []
   },

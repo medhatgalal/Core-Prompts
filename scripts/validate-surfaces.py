@@ -24,6 +24,7 @@ SSOT_DIR = ROOT / 'ssot'
 META = ROOT / '.meta' / 'manifest.json'
 RULES_PATH = ROOT / '.meta' / 'surface-rules.json'
 SCHEMA_CACHE_MANIFEST = ROOT / '.meta' / 'schema-cache' / 'manifest.json'
+DESCRIPTOR_CONTRACT_PATH = ROOT / '.meta' / 'capability-descriptor-contract.json'
 VALIDATION_REPORT_DIR = ROOT / 'reports' / 'validation'
 CONTRACT_REQUIRED_SLUGS = {path.stem for path in SSOT_DIR.glob('*.md')}
 BENCHMARK_SECTION_ALIASES = {
@@ -269,6 +270,60 @@ def validate_portable_capability_metadata(path: Path):
 
     findings = _find_absolute_local_source_refs(data)
     return [f'{path}: absolute local source reference is not portable at {joined}: {value}' for joined, value in findings]
+
+
+def validate_capability_descriptor_contract(path: Path, contract_path: Path | None = None):
+    contract_path = contract_path or DESCRIPTOR_CONTRACT_PATH
+    try:
+        descriptor = json.loads(path.read_text(encoding='utf-8'))
+    except Exception as exc:
+        return [f'{path}: invalid json ({exc})']
+    try:
+        contract = json.loads(contract_path.read_text(encoding='utf-8'))
+    except Exception as exc:
+        return [f'{contract_path}: invalid descriptor contract ({exc})']
+
+    errors: list[str] = []
+    missing_top = sorted(set(contract.get('required_top_level') or []) - set(descriptor))
+    if missing_top:
+        errors.append(f'{path}: descriptor contract missing top-level fields: {", ".join(missing_top)}')
+
+    layers = descriptor.get('layers')
+    if not isinstance(layers, dict):
+        errors.append(f'{path}: descriptor contract requires layers object')
+        layers = {}
+    for layer_name, required_fields in (contract.get('required_layers') or {}).items():
+        layer = layers.get(layer_name)
+        if not isinstance(layer, dict):
+            errors.append(f'{path}: descriptor contract missing layer: {layer_name}')
+            continue
+        missing = sorted(set(required_fields) - set(layer))
+        if missing:
+            errors.append(
+                f'{path}: descriptor contract layer {layer_name} missing fields: {", ".join(missing)}'
+            )
+
+    required_mode_fields = set(contract.get('required_mode_fields') or [])
+    modes = descriptor.get('modes')
+    if not isinstance(modes, list):
+        errors.append(f'{path}: descriptor contract requires modes array')
+    else:
+        for index, mode in enumerate(modes):
+            if not isinstance(mode, dict):
+                errors.append(f'{path}: descriptor mode {index} must be an object')
+                continue
+            missing = sorted(required_mode_fields - set(mode))
+            if missing:
+                errors.append(
+                    f'{path}: descriptor mode {index} missing fields: {", ".join(missing)}'
+                )
+
+    forbidden_statuses = set(contract.get('forbidden_quality_statuses') or [])
+    if descriptor.get('quality_status') in forbidden_statuses:
+        errors.append(
+            f'{path}: descriptor quality_status {descriptor.get("quality_status")!r} is forbidden by contract'
+        )
+    return errors
 
 
 def _walk_key_values(value, *, path_parts: tuple[str, ...] = ()):
@@ -680,6 +735,9 @@ def main():
         errors.extend(validate_portable_capability_metadata(metadata_path))
         errors.extend(validate_advisory_policy_metadata(metadata_path))
         errors.extend(validate_secret_like_literals(metadata_path))
+
+    for descriptor_path in sorted((ROOT / '.meta' / 'capabilities').glob('*.json')):
+        errors.extend(validate_capability_descriptor_contract(descriptor_path))
 
     for surface_path in collect_surface_text_paths():
         errors.extend(validate_secret_like_literals(surface_path))
