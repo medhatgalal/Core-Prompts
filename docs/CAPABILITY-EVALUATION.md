@@ -48,7 +48,14 @@ Enforcement is advisory. All 24 current capabilities have draft Goal Contracts a
 
 The public evaluator controls are present, but semantic judges are not yet qualified and the sealed promotion bundle is absent. Live provider execution therefore remains disabled. This is deliberate: the foundation can reject false proof before it spends tokens.
 
-The six-skill pilot is SuperCharge, Pulse, Code Review, Weekly Intel, UAC Import, and Architecture. Instruction Editor has a separate routing and preservation corpus.
+The first paid pilot is deliberately narrower than the available public cases. It asks four questions:
+
+1. Does SuperCharge preserve modules, stacking, terminal controls, and state?
+2. Does Code Review find a concrete seeded defect with good evidence and low noise?
+3. Can routing distinguish product completeness (`feature-status`), repository activity (`eng-report`), and structural code health (`codebase-health-audit`)?
+4. Does UAC Import preserve agent-useful metadata and its HTML safety boundary without claiming behavioral proof?
+
+Architecture, Instruction Editor, Pulse, and Weekly Intel cases remain available but are deferred from the first paid run. Static pilot-fixture validation runs in ordinary CI at zero tokens; model-mediated canaries remain disabled until runner conformance and judge calibration pass.
 
 ## Google-style experiment
 

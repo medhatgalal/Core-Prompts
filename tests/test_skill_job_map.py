@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from intent_pipeline.skill_jobs import load_skill_job_map, render_skill_job_map
+from intent_pipeline.skill_jobs import load_skill_job_map, load_skill_job_map_for_build, render_skill_job_map
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -45,6 +45,30 @@ def test_job_map_rejects_missing_or_unknown_skills(tmp_path: Path) -> None:
 
     with pytest.raises(ValueError, match="slug mismatch"):
         load_skill_job_map(path, ["known"])
+
+
+def test_build_path_creates_reviewable_draft_for_new_skill(tmp_path: Path) -> None:
+    path = tmp_path / "jobs.json"
+    path.write_text(
+        json.dumps(
+            {
+                "schema_version": "SkillJobMap.v1",
+                "review_status": "draft_for_human_review",
+                "skills": {},
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    payload = load_skill_job_map_for_build(
+        path,
+        {"new-skill": {"display_name": "New Skill", "description": "Does one useful thing"}},
+    )
+
+    job = payload["skills"]["new-skill"]
+    assert job["portfolio_action"] == "draft_new_skill_pending_review"
+    assert job["nearest_neighbors"] == []
+    assert payload["review_status"] == "draft_for_human_review"
 
 
 def test_rendered_job_map_is_plain_english_and_routes_all_skills() -> None:

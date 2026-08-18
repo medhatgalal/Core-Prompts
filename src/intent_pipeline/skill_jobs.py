@@ -19,8 +19,7 @@ REQUIRED_FIELDS = {
 }
 
 
-def load_skill_job_map(path: Path, expected_slugs: Iterable[str]) -> dict[str, Any]:
-    payload = json.loads(path.read_text(encoding="utf-8"))
+def _validate_skill_job_map(payload: dict[str, Any], expected_slugs: Iterable[str]) -> dict[str, Any]:
     if payload.get("schema_version") != "SkillJobMap.v1":
         raise ValueError("skill job map must use SkillJobMap.v1")
     skills = payload.get("skills")
@@ -47,6 +46,41 @@ def load_skill_job_map(path: Path, expected_slugs: Iterable[str]) -> dict[str, A
     return payload
 
 
+def load_skill_job_map(path: Path, expected_slugs: Iterable[str]) -> dict[str, Any]:
+    return _validate_skill_job_map(json.loads(path.read_text(encoding="utf-8")), expected_slugs)
+
+
+def draft_skill_job(slug: str, display_name: str, description: str) -> dict[str, Any]:
+    summary = description.strip().rstrip(".") or f"Perform the canonical {display_name} job"
+    return {
+        "primary_job": f"{summary}.",
+        "use_when": f"The request directly matches the canonical purpose of {display_name}.",
+        "works_on": "The inputs and target declared by the canonical SSOT.",
+        "main_output": "The required output declared by the canonical SSOT.",
+        "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
+        "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
+        "routing_question": f"Does this request directly require {display_name}?",
+        "nearest_neighbors": [],
+        "shape": "unclassified_new_skill",
+        "portfolio_action": "draft_new_skill_pending_review",
+    }
+
+
+def load_skill_job_map_for_build(path: Path, skill_specs: Mapping[str, Mapping[str, str]]) -> dict[str, Any]:
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    skills = payload.get("skills")
+    if not isinstance(skills, dict):
+        raise ValueError("skill job map requires a skills object")
+    unknown = sorted(set(skills) - set(skill_specs))
+    if unknown:
+        raise ValueError(f"skill job map has entries without canonical SSOT: {unknown}")
+    for slug, spec in skill_specs.items():
+        if slug not in skills:
+            skills[slug] = draft_skill_job(slug, spec["display_name"], spec["description"])
+            payload["review_status"] = "draft_for_human_review"
+    return _validate_skill_job_map(payload, skill_specs)
+
+
 def render_skill_job_map(payload: Mapping[str, Any], display_names: Mapping[str, str]) -> str:
     lines = [
         "# Skill Job Map",
@@ -60,6 +94,7 @@ def render_skill_job_map(payload: Mapping[str, Any], display_names: Mapping[str,
         "- `keep_but_review_scope`: preserve it, then test whether its Swiss-army or advisory scope is too broad.",
         "- `experimental_keep_pending_evidence`: keep the experiment separate until routing and preservation evidence exists.",
         "- `keep_and_improve_process`: preserve the capability and improve its evidence or workflow controls.",
+        "- `draft_new_skill_pending_review`: UAC created a safe placeholder; a human must review its job and neighbors.",
         "",
         "No skill is marked for merger or deletion because current evidence does not justify either action.",
         "",

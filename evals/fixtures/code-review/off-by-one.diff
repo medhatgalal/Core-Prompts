@@ -1,0 +1,11 @@
+diff --git a/src/paginator.py b/src/paginator.py
+index 1111111..2222222 100644
+--- a/src/paginator.py
++++ b/src/paginator.py
+@@ -1,5 +1,8 @@
+ def page(items, page_number, page_size):
+-    start = page_number * page_size
++    # Public API documents page_number as one-based.
++    start = page_number * page_size
+     end = start + page_size
+     return items[start:end]

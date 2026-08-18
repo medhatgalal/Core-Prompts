@@ -96,10 +96,8 @@
     }
   },
   "runtime_envelope": {
-    "required_cells": [
-      "anchor"
-    ],
-    "cross_host_required_for_pilot": true,
+    "required_cells": [],
+    "cross_host_required_for_pilot": false,
     "status": "unresolved"
   },
   "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",

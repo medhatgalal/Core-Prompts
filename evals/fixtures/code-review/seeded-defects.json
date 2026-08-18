@@ -1,0 +1,15 @@
+{
+  "schema_version": "SeededDefectFixture.v1",
+  "artifact": "evals/fixtures/code-review/off-by-one.diff",
+  "seeded_defects": [
+    {
+      "id": "CR-OFF-BY-ONE-001",
+      "line_marker": "start = page_number * page_size",
+      "category": "correctness",
+      "minimum_severity": "medium",
+      "expected_reason": "A one-based page number must subtract one before multiplying by page size.",
+      "repair_shape": "start = (page_number - 1) * page_size"
+    }
+  ],
+  "precision_rule": "Do not invent additional findings without evidence in the diff or documented contract."
+}

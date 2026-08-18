@@ -15,10 +15,18 @@ from .contracts import (
     validate_topology,
 )
 from .impact import build_impact_plan
+from .pilot import validate_pilot_foundations
 from .topology import compile_topology
 
 
-PILOT_SKILLS = ("supercharge", "pulse", "code-review", "weekly-intel", "uac-import", "architecture")
+PILOT_SKILLS = (
+    "supercharge",
+    "code-review",
+    "feature-status",
+    "eng-report",
+    "codebase-health-audit",
+    "uac-import",
+)
 
 SKILL_OUTCOMES = {
     "supercharge": "Correct routing, canonical stack order, module preservation, explicit-only behavior, state transitions, output-contract adherence, and improved downstream artifacts.",
@@ -27,6 +35,9 @@ SKILL_OUTCOMES = {
     "pulse": "Priority accuracy, conservative uncertainty handling, correct approval boundaries, tool discipline, and no destructive false positives.",
     "uac-import": "Source fidelity, correct capability classification, overlap detection, safe landing decisions, and no invented behavioral confidence.",
     "architecture": "Boundary quality, implementation usability, rejected alternatives, failure awareness, migration safety, and correct routing away from unrelated asks.",
+    "feature-status": "Product-scope completeness, backlog/progress/done separation, evidence quality, missing work, and delivery-speed explanation.",
+    "eng-report": "Repository activity and velocity reporting with correct time windows, reproducible git evidence, and honest methodology caveats.",
+    "codebase-health-audit": "Structural code-health findings with reproducible hotspot evidence, risk calibration, and no product-status or activity-report confusion.",
     "instruction-editor": "Clearer instruction artifacts with exact preservation of commands, modality, authority, ordering, outputs, exceptions, fallbacks, and routing boundaries.",
 }
 
@@ -108,7 +119,7 @@ def draft_goal_contract(repo_root: Path, slug: str) -> dict[str, Any]:
         "cost_latency_limits": {"profile_caps": PROFILE_TOKEN_CAPS},
         "runtime_envelope": {
             "required_cells": ["anchor"] if slug in PILOT_SKILLS else [],
-            "cross_host_required_for_pilot": slug in PILOT_SKILLS,
+            "cross_host_required_for_pilot": False,
             "status": "unresolved",
         },
         "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
@@ -155,12 +166,14 @@ def calibrate_static(repo_root: Path) -> dict[str, Any]:
     present = {control.get("control_type") for control in controls}
     missing = sorted(required - present)
     corpus = compile_all(repo_root, write=False)
+    pilot = validate_pilot_foundations(repo_root)
     return {
         "schema_version": "EvaluatorCalibration.v1",
-        "status": "structural_ready" if not missing else "hold",
+        "status": "structural_ready" if not missing and pilot["status"] == "structural_ready" else "hold",
         "controls_present": len(present),
         "missing_controls": missing,
         "corpus_contract_blockers": corpus["blocked_contract"],
+        "pilot_foundations": pilot,
         "judge_qualified": False,
         "judge_note": "Semantic judges remain unqualified until gold-label agreement and bias checks are run.",
         "model_calls": 0,

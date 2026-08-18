@@ -9,6 +9,7 @@ Portfolio actions mean:
 - `keep_but_review_scope`: preserve it, then test whether its Swiss-army or advisory scope is too broad.
 - `experimental_keep_pending_evidence`: keep the experiment separate until routing and preservation evidence exists.
 - `keep_and_improve_process`: preserve the capability and improve its evidence or workflow controls.
+- `draft_new_skill_pending_review`: UAC created a safe placeholder; a human must review its job and neighbors.
 
 No skill is marked for merger or deletion because current evidence does not justify either action.
 

@@ -11,7 +11,10 @@
       "not_for": "Proactive review before feedback exists, broad refactoring, or release readiness.",
       "authority": "May edit only code tied to approved review comments.",
       "routing_question": "Are we finding problems, or applying already-selected review feedback?",
-      "nearest_neighbors": ["code-review", "gitops-review"],
+      "nearest_neighbors": [
+        "code-review",
+        "gitops-review"
+      ],
       "shape": "focused_specialist",
       "portfolio_action": "keep_and_clarify_boundary"
     },
@@ -23,7 +26,10 @@
       "not_for": "A quick code review, transcript export, or a one-shot health audit.",
       "authority": "Analysis-state maintenance; it does not grant broader repo mutation authority.",
       "routing_question": "Does the investigation need resumable reasoning state rather than a one-time report?",
-      "nearest_neighbors": ["codebase-health-audit", "threader"],
+      "nearest_neighbors": [
+        "codebase-health-audit",
+        "threader"
+      ],
       "shape": "workflow_infrastructure",
       "portfolio_action": "keep_and_clarify_boundary"
     },
@@ -35,7 +41,11 @@
       "not_for": "General mentoring, choosing among arbitrary proposals without design work, or broad repo health scanning.",
       "authority": "Advisory design; implementation requires separate authorization.",
       "routing_question": "Is the deliverable a technical design, or merely a recommendation among existing options?",
-      "nearest_neighbors": ["converge", "mentor", "codebase-health-audit"],
+      "nearest_neighbors": [
+        "converge",
+        "mentor",
+        "codebase-health-audit"
+      ],
       "shape": "deep_specialist",
       "portfolio_action": "keep_and_clarify_boundary"
     },
@@ -47,7 +57,11 @@
       "not_for": "Stylistic polishing without measurement or self-promoting a UAC-produced candidate.",
       "authority": "Owns behavioral comparison; promotion still obeys independent hard gates and user authority.",
       "routing_question": "Do we need evidence of better behavior, or only a stronger draft?",
-      "nearest_neighbors": ["supercharge", "uac-import", "instruction-editor"],
+      "nearest_neighbors": [
+        "supercharge",
+        "uac-import",
+        "instruction-editor"
+      ],
       "shape": "swiss_army_research_workflow",
       "portfolio_action": "keep_but_review_scope"
     },
@@ -59,7 +73,11 @@
       "not_for": "Applying reviewer comments, writing a test suite as the primary job, or general repo hygiene.",
       "authority": "Read-only review unless the user separately asks for fixes.",
       "routing_question": "Are we reviewing code for defects, applying feedback, or checking release mechanics?",
-      "nearest_neighbors": ["address-code-review", "testing", "gitops-review"],
+      "nearest_neighbors": [
+        "address-code-review",
+        "testing",
+        "gitops-review"
+      ],
       "shape": "focused_specialist",
       "portfolio_action": "keep"
     },
@@ -71,7 +89,11 @@
       "not_for": "Product feature progress, weekly git activity reporting, or designing a replacement architecture.",
       "authority": "Read-only audit; it does not implement repairs.",
       "routing_question": "Is the question about code structure, product completeness, or delivery activity?",
-      "nearest_neighbors": ["feature-status", "eng-report", "architecture"],
+      "nearest_neighbors": [
+        "feature-status",
+        "eng-report",
+        "architecture"
+      ],
       "shape": "deep_specialist",
       "portfolio_action": "keep_and_clarify_boundary"
     },
@@ -83,7 +105,11 @@
       "not_for": "Creating a technical architecture from scratch or providing ongoing engineering mentorship.",
       "authority": "Advisory synthesis; it cannot manufacture consensus or evidence.",
       "routing_question": "Are there multiple competing inputs that must become one decision?",
-      "nearest_neighbors": ["architecture", "mentor", "supercharge"],
+      "nearest_neighbors": [
+        "architecture",
+        "mentor",
+        "supercharge"
+      ],
       "shape": "general_synthesis_specialist",
       "portfolio_action": "keep_and_clarify_boundary"
     },
@@ -95,7 +121,10 @@
       "not_for": "General end-to-end testing or presentation deck authoring.",
       "authority": "Creates demo artifacts; deployment or publication needs separate approval.",
       "routing_question": "Is the browser flow meant to prove behavior or communicate it as a demo?",
-      "nearest_neighbors": ["testing", "dynamic-html-presentations"],
+      "nearest_neighbors": [
+        "testing",
+        "dynamic-html-presentations"
+      ],
       "shape": "focused_specialist",
       "portfolio_action": "keep"
     },
@@ -107,7 +136,10 @@
       "not_for": "Line-editing one prompt or generating a weekly intelligence report.",
       "authority": "Review is read-only unless documentation edits are explicitly requested.",
       "routing_question": "Is the problem document-system health or sentence-level instruction editing?",
-      "nearest_neighbors": ["instruction-editor", "weekly-intel"],
+      "nearest_neighbors": [
+        "instruction-editor",
+        "weekly-intel"
+      ],
       "shape": "deep_specialist",
       "portfolio_action": "keep_and_clarify_boundary"
     },
@@ -119,7 +151,10 @@
       "not_for": "Recording a live product demo or writing a plain text report.",
       "authority": "Creates local presentation artifacts; hosting and distribution require separate authority.",
       "routing_question": "Is the main artifact a deck, a live product demo, or a written report?",
-      "nearest_neighbors": ["demo-recorder", "eng-report"],
+      "nearest_neighbors": [
+        "demo-recorder",
+        "eng-report"
+      ],
       "shape": "artifact_specialist",
       "portfolio_action": "keep"
     },
@@ -131,7 +166,11 @@
       "not_for": "Product backlog completeness, structural code health, or multi-source executive intelligence.",
       "authority": "Read-only reporting from repository data.",
       "routing_question": "Is the question about engineering activity, product completeness, or code health?",
-      "nearest_neighbors": ["feature-status", "codebase-health-audit", "weekly-intel"],
+      "nearest_neighbors": [
+        "feature-status",
+        "codebase-health-audit",
+        "weekly-intel"
+      ],
       "shape": "report_specialist",
       "portfolio_action": "keep_and_clarify_boundary"
     },
@@ -143,7 +182,11 @@
       "not_for": "Repository-wide code health or a periodic git velocity dashboard.",
       "authority": "Read-only analysis; status claims must be tied to evidence.",
       "routing_question": "Are we asking whether the product feature is complete, how the repo is structured, or what activity occurred?",
-      "nearest_neighbors": ["eng-report", "codebase-health-audit", "pitch"],
+      "nearest_neighbors": [
+        "eng-report",
+        "codebase-health-audit",
+        "pitch"
+      ],
       "shape": "product_analysis_specialist",
       "portfolio_action": "keep_and_clarify_boundary"
     },
@@ -155,7 +198,11 @@
       "not_for": "Finding code defects as the primary task or applying selected reviewer comments.",
       "authority": "Review by default; merge, push, tag, or release requires explicit authorization.",
       "routing_question": "Is the blocker in code correctness or in the path from repo state to release?",
-      "nearest_neighbors": ["code-review", "address-code-review", "testing"],
+      "nearest_neighbors": [
+        "code-review",
+        "address-code-review",
+        "testing"
+      ],
       "shape": "workflow_specialist",
       "portfolio_action": "keep"
     },
@@ -167,7 +214,10 @@
       "not_for": "General message triage, engineering mentoring, or making incident decisions for the commander.",
       "authority": "Advisory process guard; the human Incident Commander retains decision authority.",
       "routing_question": "Is there an active incident with a commander and a required process?",
-      "nearest_neighbors": ["pulse", "mentor"],
+      "nearest_neighbors": [
+        "pulse",
+        "mentor"
+      ],
       "shape": "stateful_specialist",
       "portfolio_action": "keep"
     },
@@ -179,7 +229,11 @@
       "not_for": "Behavioral promotion, broad documentation IA review, or multi-lens adversarial hardening.",
       "authority": "May make proven safe fixes; semantic rewrites remain candidates requiring evidence.",
       "routing_question": "Is the goal clearer language, a stronger artifact, or proof that behavior improved?",
-      "nearest_neighbors": ["supercharge", "docs-review-expert", "uac-import"],
+      "nearest_neighbors": [
+        "supercharge",
+        "docs-review-expert",
+        "uac-import"
+      ],
       "shape": "experimental_specialist",
       "portfolio_action": "experimental_keep_pending_evidence"
     },
@@ -191,7 +245,11 @@
       "not_for": "Producing a full architecture spec or mechanically reconciling competing proposals.",
       "authority": "Advisory oversight; it does not broaden execution or mutation authority.",
       "routing_question": "Does the user need coaching and sequencing, a technical design, or a final choice among options?",
-      "nearest_neighbors": ["architecture", "converge", "supercharge"],
+      "nearest_neighbors": [
+        "architecture",
+        "converge",
+        "supercharge"
+      ],
       "shape": "broad_advisor",
       "portfolio_action": "keep_but_review_scope"
     },
@@ -203,7 +261,10 @@
       "not_for": "Reporting current feature completion or synthesizing arbitrary proposals.",
       "authority": "Advisory pitch work; it does not make the betting decision.",
       "routing_question": "Is this a future investment pitch, a current feature status check, or a general decision synthesis?",
-      "nearest_neighbors": ["feature-status", "converge"],
+      "nearest_neighbors": [
+        "feature-status",
+        "converge"
+      ],
       "shape": "domain_specialist",
       "portfolio_action": "keep"
     },
@@ -215,7 +276,10 @@
       "not_for": "A multi-source weekly team report or incident-command process management.",
       "authority": "Triage is read-only; sends, archives, and deletes require the documented explicit approval path.",
       "routing_question": "Is this personal communications triage, incident process, or a periodic intelligence report?",
-      "nearest_neighbors": ["weekly-intel", "ic-assistant"],
+      "nearest_neighbors": [
+        "weekly-intel",
+        "ic-assistant"
+      ],
       "shape": "stateful_swiss_army_workflow",
       "portfolio_action": "keep_but_review_scope"
     },
@@ -227,7 +291,11 @@
       "not_for": "General code review or high-level option synthesis without an actual conflict.",
       "authority": "May edit conflict targets within the user-approved resolution scope.",
       "routing_question": "Is there an actual merge conflict to resolve, or merely disagreement among proposals?",
-      "nearest_neighbors": ["code-review", "architecture", "converge"],
+      "nearest_neighbors": [
+        "code-review",
+        "architecture",
+        "converge"
+      ],
       "shape": "focused_specialist",
       "portfolio_action": "keep"
     },
@@ -239,7 +307,12 @@
       "not_for": "Proving a candidate wins through behavioral trials or performing a specialist codebase audit by default.",
       "authority": "Artifact hardening and routing; behavioral promotion belongs to Auto-Research.",
       "routing_question": "Does the user want the artifact strengthened, or evidence that one strengthened variant performs best?",
-      "nearest_neighbors": ["auto-research", "converge", "instruction-editor", "mentor"],
+      "nearest_neighbors": [
+        "auto-research",
+        "converge",
+        "instruction-editor",
+        "mentor"
+      ],
       "shape": "swiss_army_artifact_workflow",
       "portfolio_action": "keep_but_review_scope"
     },
@@ -251,7 +324,11 @@
       "not_for": "General code review or release-state verification.",
       "authority": "May add tests when implementation is requested; production-code changes need separate scope.",
       "routing_question": "Is the main task to test behavior, review code, or prove release readiness?",
-      "nearest_neighbors": ["code-review", "gitops-review", "demo-recorder"],
+      "nearest_neighbors": [
+        "code-review",
+        "gitops-review",
+        "demo-recorder"
+      ],
       "shape": "focused_specialist",
       "portfolio_action": "keep"
     },
@@ -263,7 +340,10 @@
       "not_for": "Maintaining a live multi-file investigation state or producing a weekly report.",
       "authority": "Read and package conversation context; it does not change project state.",
       "routing_question": "Are we exporting the conversation, or maintaining an ongoing evidence investigation?",
-      "nearest_neighbors": ["analyze-context", "weekly-intel"],
+      "nearest_neighbors": [
+        "analyze-context",
+        "weekly-intel"
+      ],
       "shape": "workflow_utility",
       "portfolio_action": "keep_and_clarify_boundary"
     },
@@ -275,7 +355,10 @@
       "not_for": "Claiming behavioral superiority or editing arbitrary prose with no import intent.",
       "authority": "Structural intake only; behavioral promotion belongs to independent evaluation.",
       "routing_question": "Are we importing a capability, editing instructions, or proving behavior?",
-      "nearest_neighbors": ["instruction-editor", "auto-research"],
+      "nearest_neighbors": [
+        "instruction-editor",
+        "auto-research"
+      ],
       "shape": "meta_workflow",
       "portfolio_action": "keep_and_improve_process"
     },
@@ -287,7 +370,12 @@
       "not_for": "A git-only engineering dashboard, personal inbox triage, or product feature completeness alone.",
       "authority": "Read-only reporting; it must not modify source systems.",
       "routing_question": "Is the report multi-source and executive, repo-activity focused, or about one feature's completeness?",
-      "nearest_neighbors": ["eng-report", "pulse", "feature-status", "converge"],
+      "nearest_neighbors": [
+        "eng-report",
+        "pulse",
+        "feature-status",
+        "converge"
+      ],
       "shape": "report_workflow",
       "portfolio_action": "keep_and_clarify_boundary"
     }

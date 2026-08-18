@@ -28,7 +28,29 @@
     "krippendorff_alpha_minimum": 0.7,
     "bias_checks": ["A/B order", "label", "verbosity", "qualified-judge substitution"]
   },
-  "pilot_skills": ["supercharge", "pulse", "code-review", "weekly-intel", "uac-import", "architecture"],
+  "pilot_experiments": [
+    {
+      "id": "supercharge-module-preservation",
+      "skills": ["supercharge"],
+      "question": "Does a change preserve explicit modules, stack order, terminal controls, and state behavior?"
+    },
+    {
+      "id": "code-review-seeded-defect",
+      "skills": ["code-review"],
+      "question": "Does Code Review find a concrete seeded defect with correct evidence and low noise?"
+    },
+    {
+      "id": "product-repo-code-routing",
+      "skills": ["feature-status", "eng-report", "codebase-health-audit"],
+      "question": "Can the runtime distinguish product completeness, repository activity reporting, and structural code health?"
+    },
+    {
+      "id": "uac-import-metadata-safety",
+      "skills": ["uac-import"],
+      "question": "Does UAC preserve useful capability metadata and reject unsafe HTML ingestion without claiming behavioral proof?"
+    }
+  ],
+  "deferred_behavioral_skills": ["architecture", "instruction-editor", "pulse", "weekly-intel"],
   "promotion_hard_gates": [
     "goal_contract_complete",
     "topology_complete",

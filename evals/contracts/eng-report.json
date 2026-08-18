@@ -2,7 +2,7 @@
   "schema_version": "GoalContract.v1",
   "slug": "eng-report",
   "target": "Fulfill the canonical intent of eng-report.",
-  "intended_outcome": "Preserve the canonical SSOT objective and required output.",
+  "intended_outcome": "Repository activity and velocity reporting with correct time windows, reproducible git evidence, and honest methodology caveats.",
   "change_class": "unknown",
   "non_goals": [],
   "protected_behaviors": [
@@ -45,7 +45,7 @@
   "editable_behavior": [],
   "primary_outcome": {
     "metric": "skill_specific_task_success",
-    "definition": "Canonical task success with protected behavior preserved.",
+    "definition": "Repository activity and velocity reporting with correct time windows, reproducible git evidence, and honest methodology caveats.",
     "threshold": "human_review_required"
   },
   "secondary_outcomes": [],
@@ -65,7 +65,9 @@
     }
   },
   "runtime_envelope": {
-    "required_cells": [],
+    "required_cells": [
+      "anchor"
+    ],
     "cross_host_required_for_pilot": false,
     "status": "unresolved"
   },

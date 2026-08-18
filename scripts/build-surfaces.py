@@ -25,7 +25,7 @@ from intent_pipeline.consumer_shell import (
 from intent_pipeline.uac_descriptors import build_descriptor, load_descriptor, save_descriptor, source_note_path
 from intent_pipeline.uac_baselines import resolve_historical_baseline
 from intent_pipeline.uac_modes import extract_declared_modes, normalize_mode_entries
-from intent_pipeline.skill_jobs import load_skill_job_map, render_skill_job_map
+from intent_pipeline.skill_jobs import load_skill_job_map_for_build, render_skill_job_map
 from intent_pipeline.uac_ssot import build_ssot_handoff_contract, build_ssot_manifest_entry, extract_section_bullets, load_ssot_entries
 
 SSOT_DIR = ROOT / 'ssot'
@@ -642,7 +642,14 @@ def main():
     entries = load_ssot_entries(SSOT_DIR)
     if not entries:
         raise SystemExit('No SSOT files found in ssot/')
-    job_map = load_skill_job_map(SKILL_JOB_MAP_PATH, (entry.slug for entry in entries))
+    job_map = load_skill_job_map_for_build(
+        SKILL_JOB_MAP_PATH,
+        {
+            entry.slug: {"display_name": entry.display_name, "description": entry.description}
+            for entry in entries
+        },
+    )
+    write_json_if_changed(SKILL_JOB_MAP_PATH, job_map)
 
     generator = {
         'script': 'scripts/build-surfaces.py',
