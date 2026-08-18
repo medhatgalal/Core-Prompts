@@ -73,7 +73,7 @@
         "code-review"
       ],
       "relationship_suggestions": [],
-      "quality_status": "ship",
+      "quality_status": "structural_ready",
       "benchmark_profile": "default",
       "preferred_use_cases": [
         "AI-assisted capability selection",
@@ -261,7 +261,7 @@
         "prefer explicit review or analyst companions before high-authority use",
         "pair with review and analysis capabilities when converging design proposals"
       ],
-      "quality_status": "ship",
+      "quality_status": "structural_ready",
       "benchmark_profile": "architecture",
       "preferred_use_cases": [
         "API design",
@@ -400,7 +400,7 @@
       "relationship_suggestions": [
         "prefer explicit review or analyst companions before high-authority use"
       ],
-      "quality_status": "ship",
+      "quality_status": "structural_ready",
       "benchmark_profile": "default",
       "preferred_use_cases": [
         "AI-assisted capability selection",
@@ -775,7 +775,7 @@
       "review_status": "ready_for_orchestrator_review",
       "overlap_candidates": [],
       "relationship_suggestions": [],
-      "quality_status": "ship",
+      "quality_status": "structural_ready",
       "benchmark_profile": "default",
       "preferred_use_cases": [
         "AI-assisted capability selection",
@@ -976,7 +976,7 @@
       "review_status": "ready_for_orchestrator_review",
       "overlap_candidates": [],
       "relationship_suggestions": [],
-      "quality_status": "ship",
+      "quality_status": "structural_ready",
       "benchmark_profile": "default",
       "preferred_use_cases": [
         "executive and product reviews",
@@ -1358,7 +1358,7 @@
       "relationship_suggestions": [
         "prefer explicit review or analyst companions before high-authority use"
       ],
-      "quality_status": "ship",
+      "quality_status": "structural_ready",
       "benchmark_profile": "default",
       "preferred_use_cases": [
         "AI-assisted capability selection",
@@ -1380,6 +1380,91 @@
         ],
         "authority_tier": "advisory",
         "work_graph_impact": "Adds or updates a both capability with route profile None."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "instruction-editor",
+      "display_name": "Instruction Editor",
+      "capability_type": "skill",
+      "summary": "Edit prompts, skills, agent instructions, and workflow rules into direct, plain, scannable language without weakening behavior. Use when asked to remove AI-ish, Claude-ish, or ChatGPT-ish phrasing; apply Google developer style; reduce verbosity; tighten a skill; clarify actors and conditions; or preserve semantics while shortening instructions.",
+      "role": "workflow",
+      "domain_tags": [
+        "prompting",
+        "instruction",
+        "editor"
+      ],
+      "required_inputs": [
+        "the instruction artifact or path",
+        "the requested mode, defaulting to `audit`",
+        "any authorized semantic changes",
+        "an upstream Goal Contract or topology when available"
+      ],
+      "expected_outputs": [
+        "`Edited Artifact`",
+        "`Edit Ledger`",
+        "`Preservation Map`",
+        "`Before / After Size`",
+        "`Behavioral Claims Requiring Proof`",
+        "`Unresolved Ambiguities`"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ]
+      },
+      "confidence": 0.96,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [],
+      "quality_status": null,
+      "benchmark_profile": null,
+      "preferred_use_cases": [],
+      "artifact_conventions": [],
+      "invocation_style": null,
+      "requires_human_confirmation": null,
+      "org_graph": {
+        "org_role": "workflow_provider",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "prompting",
+          "instruction"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
       },
       "advisory_only": true
     },
@@ -1551,7 +1636,7 @@
         "prefer explicit review or analyst companions before high-authority use",
         "pair with review and analysis capabilities when converging design proposals"
       ],
-      "quality_status": "ship",
+      "quality_status": "structural_ready",
       "benchmark_profile": "default",
       "preferred_use_cases": [
         "AI-assisted capability selection",
@@ -1645,7 +1730,7 @@
       "relationship_suggestions": [
         "pair with convergence capability for multi-source synthesis"
       ],
-      "quality_status": "ship",
+      "quality_status": "structural_ready",
       "benchmark_profile": "default",
       "preferred_use_cases": [
         "AI-assisted capability selection",
@@ -2068,7 +2153,10 @@
         "Next Actions",
         "Behavioral Confidence",
         "Escalation Reason",
-        "Auto-Research Handoff"
+        "Auto-Research Handoff",
+        "Goal Contract and Capability Topology hashes when available",
+        "Eval Impact Plan and hard token cap",
+        "Structural Status (`structural_ready` is not `promote`)"
       ],
       "tool_policy": {
         "allowed": [

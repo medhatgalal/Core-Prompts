@@ -188,7 +188,7 @@ def test_uac_judge_returns_quality_plan_and_result(tmp_path: Path) -> None:
     assert payload["quality_plan"]["quality_profile"] == "architecture"
     assert "historical_baseline" in payload["quality_plan"]
     assert "validation_matrix" in payload["quality_plan"]
-    assert payload["quality_result"]["status"] in {"ship", "revise", "manual_review"}
+    assert payload["quality_result"]["status"] in {"structural_ready", "revise", "manual_review"}
     assert "historical_baseline" in payload["quality_result"]
     assert len(payload["quality_result"]["judge_reports"]) >= 1
 
@@ -221,7 +221,7 @@ def test_uac_judge_preserves_pitch_body_and_scores_additive_metadata() -> None:
     baseline_context = resolve_historical_baseline(ROOT, "pitch")
     generic_eval = evaluate_candidate_against_baseline(generic_rendered, baseline_context)
 
-    assert quality_result["status"] == "ship"
+    assert quality_result["status"] == "structural_ready"
     assert quality_result["pass_count"] == 1
     assert source_fidelity["classification"] in {"preserved", "additive"}
     assert source_fidelity["blockers"] == []
@@ -442,8 +442,8 @@ Constraints:
         "generated surfaces",
         "a validation-ready build result",
     ]
-    baseline_path = workspace / descriptor["historical_baseline"]["baseline_path"]
-    assert baseline_path.is_file()
+    assert descriptor["historical_baseline"]["baseline_path"] is None
+    assert payload["apply_result"]["behavioral_evidence"]["status"] == "behavioral_pending"
     assert payload["apply_result"]["build"]["returncode"] == 0
     assert payload["apply_result"]["validate"]["returncode"] in {0, 2}
 
@@ -740,7 +740,7 @@ Copy-Ready Starter Invocation
                     "expanded": {"adjustment_recommendations": []},
                 },
             },
-            "quality_result": {"status": "ship"},
+            "quality_result": {"status": "structural_ready"},
             "benchmark_sources": [],
         }
         args = SimpleNamespace(yes=True, quality_loop="off")
@@ -786,7 +786,7 @@ def test_apply_payload_refuses_regressed_final_candidate(tmp_path: Path) -> None
                 },
             },
             "quality_result": {
-                "status": "ship",
+                "status": "structural_ready",
                 "pass_count": 1,
                 "stop_reason": "thresholds_met",
                 "judge_reports": [],

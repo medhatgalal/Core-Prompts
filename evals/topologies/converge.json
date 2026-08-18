@@ -1,0 +1,250 @@
+{
+  "schema_version": "CapabilityTopology.v1",
+  "slug": "converge",
+  "ssot_sha256": "20908918f3709327a451ed764c10379a7bae76dcf32244b92676de698bcd2319",
+  "explicit_invocations": [
+    "/C",
+    "/conflicts",
+    "/explore",
+    "/help",
+    "/lean",
+    "/mcda",
+    "/montecarlo",
+    "/scenarios",
+    "/swot",
+    "/swot /mcda /conflicts /lean"
+  ],
+  "semantic_triggers": [],
+  "aliases_shortcuts": [],
+  "auto_routes": [],
+  "nodes": {
+    "commands": [
+      "/C",
+      "/conflicts",
+      "/explore",
+      "/help",
+      "/lean",
+      "/mcda",
+      "/montecarlo",
+      "/scenarios",
+      "/swot",
+      "/swot /mcda /conflicts /lean"
+    ],
+    "modes_modules": [
+      {
+        "id": "6db593f486ee",
+        "label": "Failure Mode To Avoid",
+        "source_line": 181
+      }
+    ],
+    "controls": [],
+    "modifiers": []
+  },
+  "composition": {
+    "legal_pairs": [],
+    "forbidden_pairs": [],
+    "canonical_order": [],
+    "requirements": [],
+    "supersession": []
+  },
+  "state_machine": {
+    "states": [],
+    "transitions": [],
+    "forbidden_transitions": []
+  },
+  "outputs": [
+    "- `Executive Summary`",
+    "- `Overlap Map`",
+    "- `Decision Analysis`",
+    "- `Final Converged Proposal`",
+    "- `Decision Rationale`",
+    "- `Muted / Rejected Ideas`",
+    "- `Risks + Next Experiments`",
+    "- `Open Questions` when user steering is still required"
+  ],
+  "authority_boundaries": [
+    "converge:L25:a2debc3e5f2e",
+    "converge:L62:baded02bbe49",
+    "converge:L63:59e7c12bd462",
+    "converge:L64:409db19b8d64",
+    "converge:L65:00d8595edbcf",
+    "converge:L66:57e6b1d178f1",
+    "converge:L97:8196306b3005",
+    "converge:L137:b08323849156"
+  ],
+  "resources": [],
+  "handoffs": [],
+  "protected_invariants": [
+    {
+      "id": "converge:L24:8b97e9494f3e",
+      "heading": "Tool Boundaries",
+      "source_line": 24,
+      "sha256": "8b97e9494f3e97b44b5d15b2029107a269332326b547cda0cb3db3237018fcfe",
+      "text": "- allowed: inspect source material, compare options, produce synthesis artifacts, and ask for user steering when taste or judgment is required",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "converge:L25:a2debc3e5f2e",
+      "heading": "Tool Boundaries",
+      "source_line": 25,
+      "sha256": "a2debc3e5f2e8a13319c3fe2b9b727a3ca0c87186258da1918f74342184b13c0",
+      "text": "- forbidden: pretending incompatible ideas fit together cleanly, inventing missing user preferences, or claiming orchestration or runtime-control authority",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "converge:L44:77357dbdaba3",
+      "heading": "Required Inputs",
+      "source_line": 44,
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "text": "## Required Inputs",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "converge:L50:3d4b9f171064",
+      "heading": "Required Output",
+      "source_line": 50,
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "text": "## Required Output",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "converge:L51:c34906b1f1c3",
+      "heading": "Required Output",
+      "source_line": 51,
+      "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+      "text": "Every substantial response must include:",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "converge:L59:076d33a2406e",
+      "heading": "Required Output",
+      "source_line": 59,
+      "sha256": "076d33a2406edf0097c3c99b351d408dfb7169bc20633b3333e2a8da6b8ee3f1",
+      "text": "- `Open Questions` when user steering is still required",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "converge:L62:baded02bbe49",
+      "heading": "Constraints",
+      "source_line": 62,
+      "sha256": "baded02bbe493e82786498d86b54aac14d7520773c0bca46f91194022153d29a",
+      "text": "- Do not create a Frankenstein merge.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "converge:L63:59e7c12bd462",
+      "heading": "Constraints",
+      "source_line": 63,
+      "sha256": "59e7c12bd4626c63fd05944ad8f25781248cd018b9f91b150d671ce43ef193c9",
+      "text": "- Do not invent missing preferences.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "converge:L64:409db19b8d64",
+      "heading": "Constraints",
+      "source_line": 64,
+      "sha256": "409db19b8d6428eb22a2cdcd4173c811dd4a77a6483126ca68f43f28bfa8a22f",
+      "text": "- Do not hide major conflicts behind bland synthesis language.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "converge:L65:00d8595edbcf",
+      "heading": "Constraints",
+      "source_line": 65,
+      "sha256": "00d8595edbcfe6a6680d0eb0867e752edbaf1e4d8aa2a6fafb34b6aca9770fb8",
+      "text": "- Do not skip the rationale for rejected ideas.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "converge:L66:57e6b1d178f1",
+      "heading": "Constraints",
+      "source_line": 66,
+      "sha256": "57e6b1d178f18cd57b54e0c07fe1c2f6f38e50b577feefc0671ec11f87245426",
+      "text": "- Do not claim execution authority beyond synthesis and recommendation.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "converge:L97:8196306b3005",
+      "heading": "The Prompt (paste into the target AI)",
+      "source_line": 97,
+      "sha256": "8196306b3005ff113b62a447d8bdfc6249f968c15a3bc5b7a28f8eadbe266301",
+      "text": "Hard constraint: Do NOT create a \u201cFrankenstein\u201d merge. If elements do not fit cleanly, surface the conflict and ask the user to choose.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "converge:L136:9175f6ed1836",
+      "heading": "The Prompt (paste into the target AI)",
+      "source_line": 136,
+      "sha256": "9175f6ed183695f5f16fd5267b6c4d8aba1130eef6e879ae70a1e46f020aae87",
+      "text": "11) Ask the user for a choice when taste/judgment is required.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "converge:L137:b08323849156",
+      "heading": "The Prompt (paste into the target AI)",
+      "source_line": 137,
+      "sha256": "b083238491563b2a681a8d6413a9e9fd2d1ed8398bec0ec56599d55d55b9f136",
+      "text": "- Do not assume preferences.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "converge:L140:05772d0999a4",
+      "heading": "The Prompt (paste into the target AI)",
+      "source_line": 140,
+      "sha256": "05772d0999a475fbdaebb079e042eeeb27fedea1fb8a64626670928f83e7abac",
+      "text": "PAUSE when user input is required.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "converge:L144:a3db8fcf819c",
+      "heading": "The Prompt (paste into the target AI)",
+      "source_line": 144,
+      "sha256": "a3db8fcf819c40a996f15b851d4f52176e7bc36937540ccc5ce139af56801a42",
+      "text": "- Keeps only the strongest elements",
+      "kind": "invariant",
+      "mapped_to": []
+    }
+  ],
+  "risk_tiers": {
+    "critical": [],
+    "high": [],
+    "standard": []
+  },
+  "source_references": [
+    {
+      "path": "ssot/converge.md",
+      "sha256": "20908918f3709327a451ed764c10379a7bae76dcf32244b92676de698bcd2319"
+    }
+  ],
+  "known_ambiguities": [],
+  "coverage_policy": {
+    "normative_clauses": "100_percent_mapped_or_waived",
+    "nodes": "positive_and_boundary",
+    "transitions": "all_legal_and_forbidden",
+    "module_pairs": "all_legal_pairs",
+    "high_risk_tuples": "assigned_strength",
+    "critical_mutants": "100_percent_killed"
+  },
+  "normative_clause_coverage": {
+    "total": 16,
+    "mapped": 0,
+    "waived": 0
+  },
+  "review_status": "draft",
+  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs."
+}

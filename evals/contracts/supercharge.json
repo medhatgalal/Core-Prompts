@@ -1,0 +1,428 @@
+{
+  "schema_version": "GoalContract.v1",
+  "slug": "supercharge",
+  "target": "Fulfill the canonical intent of supercharge.",
+  "intended_outcome": "Correct routing, canonical stack order, module preservation, explicit-only behavior, state transitions, output-contract adherence, and improved downstream artifacts.",
+  "change_class": "unknown",
+  "non_goals": [],
+  "protected_behaviors": [
+    "e5d2c4e7950b8905bcaf0efc31cc2220a8382c4ab1fd4b3de3736998b1efc9fa",
+    "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+    "2122acceb06bd4b1bf7417ac3a53e769e73054d9f4cdda4e919cdf602424d6b0",
+    "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+    "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+    "462e9be0d37f75775aa7ed83727f4dcb0fd9230c0bc97de76e74570491f5235a",
+    "a2f7f47b666b82ba7c10897612176fbd0471d4fca921c95c12e2b5a4278d7dbc",
+    "153f329d96f6adbcea8f255559fb58d818927fab0b7f0676abe34aa0d479a1e3",
+    "8c515a3b2167ad8b14392932b090365fbbd89fd5f6de946ca68b9db950635dd1",
+    "8712b04aee80d8dffe104a3044e827a94e0599d183fe2eceafefbddb98d6e2bf",
+    "084b828b0f657abc4e698fe7606bc3516d294be734e8ac16c8f0ecfd870dda10",
+    "de5efcdb1dddd453ec5759a260623c1a73c12770bb439b233916be1ed95fca61",
+    "e3aaf81fa3ff36a0e1f4c1101a863e1995a462a9d0114659c5a0384bab583c7e",
+    "8c1ae20069e89963464c29a0712934709cc957a0f0a827363cc392066e60b86c",
+    "1853e84b2bca0eca1146342971f5af087edb4b71146959543ed688f95377268e",
+    "bb919709e8475a0b190580085a5e756421b6c5d71ccedfd656c43937fdf314bf",
+    "f2dc3f65db6864bfc8c5148e6b50bc667f6dffa6cfebd282888e4d7c8143d8c8",
+    "ce5c039dec20d4d1169775f9c5aeaf326e57fc5bc591d397d5138579f3d3a97d",
+    "40fe8df0772281c18d64440e34f0c832d9a8c151e2ef9ef243f761899fb25c96",
+    "acb40e65d1130f718356e57c91b7cdd5bcf7dd0cde152797b428fbd6b926af95",
+    "fb53dd951133fba280145290c1b7985b0a1933a53cbefbdefe466adaac9dd11c",
+    "191a672c0b2e324d52a6a1424b886d47270c35d4d5587181e786adbd1dd4b2f4",
+    "dc0d10422bbcb7ace55e7bebe30260ff8accc6d62ecc8382e4e750428b871758",
+    "1f2f66d251cf2341cfc491f9858cf5894c47d33e810a06a3d1c77e3e3284b4ce",
+    "0f7011d4f63204ffbe768e8ca1563c9c913aaa43b10d7b02b88e54f85e37be3f",
+    "ac4d8076807b6bdc99836bc359eb459940cb228abc75f8cf7e3adeb963d55a19",
+    "0fad14a2faae5696b0d9be9756469418989058975d216d5c6b4d350c25dd5741",
+    "a5cbc8b06ee856a0ecdfd3a03540030c9ba80984fe540424d59285c61cd540c9",
+    "16a04188a87fd82d50a4658394786b5bb5c4b62548b4e66ac1383f1d244a7626",
+    "ce6961476a4e9e7676627a9acb5877842d40c19a18379b1f773a23eb3ea2f40e",
+    "a446d38b39cb00ab73d6438d66d7402e611f4858498552fc18efce0097aba3f0",
+    "0fce815130135c0c5743295967f64cb29cc1fcc9282b19bcc6a22d6342ade716",
+    "420f6fefd3529cb047e47f3d61d5c067824bd35a61d16acd83fcac8cbb3e07a5",
+    "f3a3aecb6094efc3a122d10c2a55818e9705dca69dd892a34abcc24fb8ed53ad",
+    "332d859e79d5a3c2487daf62f07c02c151371f56d9f53b72b00dc37791f3d177",
+    "340145caa900fb88faecefd2d1fd16d550261129d0d1ed7acfd768bf916ac081",
+    "1654795fd8fca146389fc2a376de8d2f7a771d5e19d48a9ccfee29af15686cff",
+    "ae8eac474e3bdc8bb8b755c048076334098a5e424a7a797feed4bb6e25303f12",
+    "9ed60cc21f1b6efbc43c20c07a166604e1e00cc174512db686104b766a6d12fb",
+    "118082c67242fbffdf0a4eb949da2c36148dc19ea043a296deee7d9444d9d977",
+    "797e9a73f17ada9f5034772f5a30ea96848f7e003c2e78f1419386f4f79196cc",
+    "2d76c7503fac2604dc4287bb9f1b843fdcd3bf78085717639da4ba859498673f",
+    "de983b0bf7f169bb0e44a79ced4ece9e1c4e2dbbc3fe83b8a40a8e9d425e6ccf",
+    "5e22a8341d2aac3a8e34cff1e72a4e0e98c1391dd74d257615e340dbe4200802",
+    "20260516ff8c0638321dd7c961b15acb2d27c04f815ad8ee74519a0f53b37c47",
+    "e85ce71b7d7500eed5681ebb61ae48cc44efabfcfdd220953b2b4469fec64efe",
+    "982f90daeea8f56b1576db77e81e9e68cacad5ee4f5b4e82488e8f3167006b9f",
+    "4dca0d8742862c8bf10151a49664131f40542a052f63a5789adeb31ece488835",
+    "3e05f458839794784cdc854cf9af999892319026fa1977e0c988d960a9a65a64",
+    "c2c9395a3924b0c3c79cf5bd62f3125747a396925deb614a8bf213217ae5f747",
+    "0584cae1101b9d2ed88540c791d7fce03cf52fb15bd976e10cb9b5bd1aed522e",
+    "e8fbf812d5ea392cdf3609e80c955c8f14d7a0d4ce85aca19d96021a2bc86b77",
+    "5eb9e9675f50ed5b38ab28ac0bfdfbcddc5b7bc3ba281d170cb74debc7cbe131",
+    "cec8d8ba26d8b644716865224134ddd67696c9604a758e007798ce6ceebdd92d",
+    "2ec9b30acd6f883595e7a5388bb4069a490fbe6153d3f744a64608226c4c4e66",
+    "6aea2e59ac309f021728c949e90427e755213510f6d8ec792266fc233fef02b0",
+    "6cdeb8ed4daa05fe343c63fa1e4e5805a5ccbe5f7536a7757c769e2856a06257",
+    "66bc82136ec599bd40c5ca068d62101d8a6b47370fb73cb35c3b237f5598f92c",
+    "28134d9abfa1df8985de5e111fdeb86fa49bf7759d84ba226201ffd3a019008f",
+    "e062c60a8d31269593915d3cdbcef767cf3df28aef4cc25accefe37025613db2",
+    "efc44a53be3ed402f40724c7ddb2eb53c48e1f8abcb0f5818af7b004bc5f503b",
+    "5f90a737fe3f68957757b618dce6186ab5db354ff19759e809372ce6a6272a32",
+    "0544d13b58c0539953b8eadd9f4178d3fa198b2c7afc06b006c877fd7dbbaa97",
+    "23908b2d3586af798739560ffdc92e2a6c6c3d7e2ad60a2fb2dc28a4326f2e36"
+  ],
+  "editable_behavior": [],
+  "primary_outcome": {
+    "metric": "skill_specific_task_success",
+    "definition": "Correct routing, canonical stack order, module preservation, explicit-only behavior, state transitions, output-contract adherence, and improved downstream artifacts.",
+    "threshold": "human_review_required"
+  },
+  "secondary_outcomes": [],
+  "regression_limits": {
+    "protected_binary_margin": 0.02,
+    "critical_deterministic": "exact_pass"
+  },
+  "cost_latency_limits": {
+    "profile_caps": {
+      "static": 0,
+      "native": 0,
+      "routing-canary": 300000,
+      "canary": 1250000,
+      "promotion": 5000000,
+      "cross-host": 12000000,
+      "sweep": 30000000
+    }
+  },
+  "runtime_envelope": {
+    "required_cells": [
+      "anchor"
+    ],
+    "cross_host_required_for_pilot": true,
+    "status": "unresolved"
+  },
+  "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
+  "rollback_trigger": "Any protected regression or stale bound evidence.",
+  "source_clause_hashes": [
+    {
+      "sha256": "e5d2c4e7950b8905bcaf0efc31cc2220a8382c4ab1fd4b3de3736998b1efc9fa",
+      "source": "ssot/supercharge.md",
+      "text": "- forbidden: hidden chain-of-thought exposure, fake certainty, runtime orchestration ownership, or destructive execution without explicit approval"
+    },
+    {
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "source": "ssot/supercharge.md",
+      "text": "## Required Inputs"
+    },
+    {
+      "sha256": "2122acceb06bd4b1bf7417ac3a53e769e73054d9f4cdda4e919cdf602424d6b0",
+      "source": "ssot/supercharge.md",
+      "text": "- any sources or alternatives that must be compared"
+    },
+    {
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "source": "ssot/supercharge.md",
+      "text": "## Required Output"
+    },
+    {
+      "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+      "source": "ssot/supercharge.md",
+      "text": "Every substantial response must include:"
+    },
+    {
+      "sha256": "462e9be0d37f75775aa7ed83727f4dcb0fd9230c0bc97de76e74570491f5235a",
+      "source": "ssot/supercharge.md",
+      "text": "- Do not stack heavy frameworks concurrently without reason."
+    },
+    {
+      "sha256": "a2f7f47b666b82ba7c10897612176fbd0471d4fca921c95c12e2b5a4278d7dbc",
+      "source": "ssot/supercharge.md",
+      "text": "- Do not bloat the answer with every module when a smaller route is enough."
+    },
+    {
+      "sha256": "153f329d96f6adbcea8f255559fb58d818927fab0b7f0676abe34aa0d479a1e3",
+      "source": "ssot/supercharge.md",
+      "text": "- Do not pretend the model knows user preferences it has not been given."
+    },
+    {
+      "sha256": "8c515a3b2167ad8b14392932b090365fbbd89fd5f6de946ca68b9db950635dd1",
+      "source": "ssot/supercharge.md",
+      "text": "- Do not turn grading into generic praise."
+    },
+    {
+      "sha256": "8712b04aee80d8dffe104a3044e827a94e0599d183fe2eceafefbddb98d6e2bf",
+      "source": "ssot/supercharge.md",
+      "text": "- Do not claim orchestration, approval, or runtime delegation authority."
+    },
+    {
+      "sha256": "084b828b0f657abc4e698fe7606bc3516d294be734e8ac16c8f0ecfd870dda10",
+      "source": "ssot/supercharge.md",
+      "text": "If the user asks for help, respond with the `HELP OUTPUT` section only:"
+    },
+    {
+      "sha256": "de5efcdb1dddd453ec5759a260623c1a73c12770bb439b233916be1ed95fca61",
+      "source": "ssot/supercharge.md",
+      "text": "If the user asks for examples, respond with the `HELP EXAMPLES OUTPUT` section only:"
+    },
+    {
+      "sha256": "e3aaf81fa3ff36a0e1f4c1101a863e1995a462a9d0114659c5a0384bab583c7e",
+      "source": "ssot/supercharge.md",
+      "text": "If the user asks for details, respond with the `MODULE REFERENCE` section only:"
+    },
+    {
+      "sha256": "8c1ae20069e89963464c29a0712934709cc957a0f0a827363cc392066e60b86c",
+      "source": "ssot/supercharge.md",
+      "text": "If multiple commands appear, SuperCharge MUST treat them as a stack and execute them as a multi-pass sequence."
+    },
+    {
+      "sha256": "1853e84b2bca0eca1146342971f5af087edb4b71146959543ed688f95377268e",
+      "source": "ssot/supercharge.md",
+      "text": "If `/route` appears anywhere in the invocation, SuperCharge MUST print exactly one line first:"
+    },
+    {
+      "sha256": "bb919709e8475a0b190580085a5e756421b6c5d71ccedfd656c43937fdf314bf",
+      "source": "ssot/supercharge.md",
+      "text": "- Never invent facts. If critical info is missing:"
+    },
+    {
+      "sha256": "f2dc3f65db6864bfc8c5148e6b50bc667f6dffa6cfebd282888e4d7c8143d8c8",
+      "source": "ssot/supercharge.md",
+      "text": "- Never apply heavy frameworks concurrently. Use multi-pass filtering."
+    },
+    {
+      "sha256": "ce5c039dec20d4d1169775f9c5aeaf326e57fc5bc591d397d5138579f3d3a97d",
+      "source": "ssot/supercharge.md",
+      "text": "- Never request or expose chain-of-thought."
+    },
+    {
+      "sha256": "40fe8df0772281c18d64440e34f0c832d9a8c151e2ef9ef243f761899fb25c96",
+      "source": "ssot/supercharge.md",
+      "text": "Use questions only when missing info would materially change the outcome."
+    },
+    {
+      "sha256": "acb40e65d1130f718356e57c91b7cdd5bcf7dd0cde152797b428fbd6b926af95",
+      "source": "ssot/supercharge.md",
+      "text": "Never pretend to be the user or answer for them."
+    },
+    {
+      "sha256": "fb53dd951133fba280145290c1b7985b0a1933a53cbefbdefe466adaac9dd11c",
+      "source": "ssot/supercharge.md",
+      "text": "If the user provides no explicit module, SuperCharge MUST route the request to a sensible sequence and announce it:"
+    },
+    {
+      "sha256": "191a672c0b2e324d52a6a1424b886d47270c35d4d5587181e786adbd1dd4b2f4",
+      "source": "ssot/supercharge.md",
+      "text": "When the task horizon exceeds a single turn, SuperCharge MUST encourage and or simulate agentic orchestration:"
+    },
+    {
+      "sha256": "dc0d10422bbcb7ace55e7bebe30260ff8accc6d62ecc8382e4e750428b871758",
+      "source": "ssot/supercharge.md",
+      "text": "- Do not assume agent names or availability."
+    },
+    {
+      "sha256": "1f2f66d251cf2341cfc491f9858cf5894c47d33e810a06a3d1c77e3e3284b4ce",
+      "source": "ssot/supercharge.md",
+      "text": "- Only run capstone when a deliverable is complete or the user says done, ship, or finish."
+    },
+    {
+      "sha256": "0f7011d4f63204ffbe768e8ca1563c9c913aaa43b10d7b02b88e54f85e37be3f",
+      "source": "ssot/supercharge.md",
+      "text": "- Do not run capstone after small replies."
+    },
+    {
+      "sha256": "ac4d8076807b6bdc99836bc359eb459940cb228abc75f8cf7e3adeb963d55a19",
+      "source": "ssot/supercharge.md",
+      "text": "- Explicit-only: `/gaslight`"
+    },
+    {
+      "sha256": "0fad14a2faae5696b0d9be9756469418989058975d216d5c6b4d350c25dd5741",
+      "source": "ssot/supercharge.md",
+      "text": "- `/gaslight <task>` -> explicit-only GASLIGHT 13 prompt hardening"
+    },
+    {
+      "sha256": "a5cbc8b06ee856a0ecdfd3a03540030c9ba80984fe540424d59285c61cd540c9",
+      "source": "ssot/supercharge.md",
+      "text": "- `supercharge /adversarial /debate /deep stress-test this investment thesis using only the provided data: <paste>`"
+    },
+    {
+      "sha256": "16a04188a87fd82d50a4658394786b5bb5c4b62548b4e66ac1383f1d244a7626",
+      "source": "ssot/supercharge.md",
+      "text": "Use this output when the user asks `supercharge /help examples`. Do not execute any examples."
+    },
+    {
+      "sha256": "ce6961476a4e9e7676627a9acb5877842d40c19a18379b1f773a23eb3ea2f40e",
+      "source": "ssot/supercharge.md",
+      "text": "- Never require or expose chain-of-thought."
+    },
+    {
+      "sha256": "a446d38b39cb00ab73d6438d66d7402e611f4858498552fc18efce0097aba3f0",
+      "source": "ssot/supercharge.md",
+      "text": "Do not ask for confirmation unless unsafe or destructive."
+    },
+    {
+      "sha256": "0fce815130135c0c5743295967f64cb29cc1fcc9282b19bcc6a22d6342ade716",
+      "source": "ssot/supercharge.md",
+      "text": "- Reconstruction only. Do not propose new solutions."
+    },
+    {
+      "sha256": "420f6fefd3529cb047e47f3d61d5c067824bd35a61d16acd83fcac8cbb3e07a5",
+      "source": "ssot/supercharge.md",
+      "text": "- Do not invent missing info; label unknowns as `[Unclear]`."
+    },
+    {
+      "sha256": "f3a3aecb6094efc3a122d10c2a55818e9705dca69dd892a34abcc24fb8ed53ad",
+      "source": "ssot/supercharge.md",
+      "text": "1) Reconstruction only (no new solution)"
+    },
+    {
+      "sha256": "332d859e79d5a3c2487daf62f07c02c151371f56d9f53b72b00dc37791f3d177",
+      "source": "ssot/supercharge.md",
+      "text": "- Do not pretend the irreducible minimum is known when inputs are missing."
+    },
+    {
+      "sha256": "340145caa900fb88faecefd2d1fd16d550261129d0d1ed7acfd768bf916ac081",
+      "source": "ssot/supercharge.md",
+      "text": "- Do not optimize by deleting necessary quality, safety, or review gates."
+    },
+    {
+      "sha256": "1654795fd8fca146389fc2a376de8d2f7a771d5e19d48a9ccfee29af15686cff",
+      "source": "ssot/supercharge.md",
+      "text": "- Do not use celebrity branding or personality imitation; use the model as a reasoning lens."
+    },
+    {
+      "sha256": "ae8eac474e3bdc8bb8b755c048076334098a5e424a7a797feed4bb6e25303f12",
+      "source": "ssot/supercharge.md",
+      "text": "- Identify primitives: required inputs, outputs, constraints, physics, data, user value, safety requirements, or repo policy."
+    },
+    {
+      "sha256": "9ed60cc21f1b6efbc43c20c07a166604e1e00cc174512db686104b766a6d12fb",
+      "source": "ssot/supercharge.md",
+      "text": "- Estimate the minimum: the smallest credible cost, complexity, latency, token budget, file count, process step count, or human review load if only primitives remained."
+    },
+    {
+      "sha256": "118082c67242fbffdf0a4eb949da2c36148dc19ea043a296deee7d9444d9d977",
+      "source": "ssot/supercharge.md",
+      "text": "- Software workflow: raw materials are required data, side effects, verification gates, and user-visible outcomes."
+    },
+    {
+      "sha256": "797e9a73f17ada9f5034772f5a30ea96848f7e003c2e78f1419386f4f79196cc",
+      "source": "ssot/supercharge.md",
+      "text": "After: Map the irreducible quality requirement, measure the added operator burden, remove modules that duplicate `/simple` or `/contract`, and route only unproven behavioral claims to `auto-research`."
+    },
+    {
+      "sha256": "2d76c7503fac2604dc4287bb9f1b843fdcd3bf78085717639da4ba859498673f",
+      "source": "ssot/supercharge.md",
+      "text": "After: Identify the required decisions and evidence, collapse duplicate status reporting, and keep only the review gates that protect irreversible risk."
+    },
+    {
+      "sha256": "de983b0bf7f169bb0e44a79ced4ece9e1c4e2dbbc3fe83b8a40a8e9d425e6ccf",
+      "source": "ssot/supercharge.md",
+      "text": "- Do not equate fewer parts with simplicity."
+    },
+    {
+      "sha256": "5e22a8341d2aac3a8e34cff1e72a4e0e98c1391dd74d257615e340dbe4200802",
+      "source": "ssot/supercharge.md",
+      "text": "- Steps that only work in a specific order without explanation"
+    },
+    {
+      "sha256": "20260516ff8c0638321dd7c961b15acb2d27c04f815ad8ee74519a0f53b37c47",
+      "source": "ssot/supercharge.md",
+      "text": "- Only then provide a guarded forward solution."
+    },
+    {
+      "sha256": "e85ce71b7d7500eed5681ebb61ae48cc44efabfcfdd220953b2b4469fec64efe",
+      "source": "ssot/supercharge.md",
+      "text": "- Do not rewrite the entire artifact unless asked; critique and fixes first."
+    },
+    {
+      "sha256": "982f90daeea8f56b1576db77e81e9e68cacad5ee4f5b4e82488e8f3167006b9f",
+      "source": "ssot/supercharge.md",
+      "text": "- Do not invent facts, cite unavailable evidence, or present stale market knowledge as current."
+    },
+    {
+      "sha256": "4dca0d8742862c8bf10151a49664131f40542a052f63a5789adeb31ece488835",
+      "source": "ssot/supercharge.md",
+      "text": "- Do not claim that debate proves behavioral superiority; route proof requests to `auto-research`."
+    },
+    {
+      "sha256": "3e05f458839794784cdc854cf9af999892319026fa1977e0c988d960a9a65a64",
+      "source": "ssot/supercharge.md",
+      "text": "- `/deep` is scoped to `/debate` only. Do not treat it as a global modifier for unrelated modules."
+    },
+    {
+      "sha256": "c2c9395a3924b0c3c79cf5bd62f3125747a396925deb614a8bf213217ae5f747",
+      "source": "ssot/supercharge.md",
+      "text": "- Bull and Bear must engage each other's strongest points rather than producing parallel essays."
+    },
+    {
+      "sha256": "0584cae1101b9d2ed88540c791d7fce03cf52fb15bd976e10cb9b5bd1aed522e",
+      "source": "ssot/supercharge.md",
+      "text": "- Decider must state what evidence would change the verdict."
+    },
+    {
+      "sha256": "e8fbf812d5ea392cdf3609e80c955c8f14d7a0d4ce85aca19d96021a2bc86b77",
+      "source": "ssot/supercharge.md",
+      "text": "4. `Bull Counter` \u2014 answers only the strongest Bear objections"
+    },
+    {
+      "sha256": "5eb9e9675f50ed5b38ab28ac0bfdfbcddc5b7bc3ba281d170cb74debc7cbe131",
+      "source": "ssot/supercharge.md",
+      "text": "- Do not invent context."
+    },
+    {
+      "sha256": "cec8d8ba26d8b644716865224134ddd67696c9604a758e007798ce6ceebdd92d",
+      "source": "ssot/supercharge.md",
+      "text": "- If required info is missing, ask at most three questions or offer assumption packs."
+    },
+    {
+      "sha256": "2ec9b30acd6f883595e7a5388bb4069a490fbe6153d3f744a64608226c4c4e66",
+      "source": "ssot/supercharge.md",
+      "text": "- Evaluation must be verifiable and output strictly as JSON when requested."
+    },
+    {
+      "sha256": "6aea2e59ac309f021728c949e90427e755213510f6d8ec792266fc233fef02b0",
+      "source": "ssot/supercharge.md",
+      "text": "- `[CONSTRAINTS]` MUST / MUST NOT / PREFER / ESCALATE rules"
+    },
+    {
+      "sha256": "6cdeb8ed4daa05fe343c63fa1e4e5805a5ccbe5f7536a7757c769e2856a06257",
+      "source": "ssot/supercharge.md",
+      "text": "- Each iteration must produce an improved version, assign a score (1\u201310), and state why it improved."
+    },
+    {
+      "sha256": "66bc82136ec599bd40c5ca068d62101d8a6b47370fb73cb35c3b237f5598f92c",
+      "source": "ssot/supercharge.md",
+      "text": "- Do not bloat output; keep intermediate artifacts compact and preserve the final artifact in full."
+    },
+    {
+      "sha256": "28134d9abfa1df8985de5e111fdeb86fa49bf7759d84ba226201ffd3a019008f",
+      "source": "ssot/supercharge.md",
+      "text": "- Do not execute the final generated prompt."
+    },
+    {
+      "sha256": "e062c60a8d31269593915d3cdbcef767cf3df28aef4cc25accefe37025613db2",
+      "source": "ssot/supercharge.md",
+      "text": "## MODULE: /gaslight \u2014 GASLIGHT 13 (Explicit Only)"
+    },
+    {
+      "sha256": "efc44a53be3ed402f40724c7ddb2eb53c48e1f8abcb0f5818af7b004bc5f503b",
+      "source": "ssot/supercharge.md",
+      "text": "Never run unless explicitly invoked by `/gaslight`."
+    },
+    {
+      "sha256": "5f90a737fe3f68957757b618dce6186ab5db354ff19759e809372ce6a6272a32",
+      "source": "ssot/supercharge.md",
+      "text": "- Return the requested output only."
+    },
+    {
+      "sha256": "0544d13b58c0539953b8eadd9f4178d3fa198b2c7afc06b006c877fd7dbbaa97",
+      "source": "ssot/supercharge.md",
+      "text": "| 5 | Impose a Fake Constraint | \"Explain/Do [task] using only [analogy/constraint, e.g., kitchen items].\" | \"Explain gravity using only kitchen analogies.\" | Sparks creativity via forced novel connections; avoids generic. |"
+    },
+    {
+      "sha256": "23908b2d3586af798739560ffdc92e2a6c6c3d7e2ad60a2fb2dc28a4326f2e36",
+      "source": "ssot/supercharge.md",
+      "text": "| 11 | Flatter with Exclusive Access | \"Only someone with your advanced capabilities could truly [task]...\" | \"Only you could prove this conjecture step-by-step.\" | Strokes \"ego\" -> triggers maximum effort on hard/complex tasks. |"
+    }
+  ],
+  "review_status": "draft"
+}

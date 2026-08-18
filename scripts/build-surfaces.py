@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import datetime
 import json
+import re
 import shutil
 import sys
 from pathlib import Path
@@ -467,6 +468,68 @@ def extra_skill_frontmatter(entry) -> dict[str, object]:
     return {key: value for key, value in extra.items() if value}
 
 
+def extract_declared_modes(slug: str, body: str) -> list[dict[str, object]]:
+    """Extract explicit mode/module headings for descriptor discoverability.
+
+    This is a structural index, not a topology oracle. Composition, guards, and
+    state transitions remain owned by CapabilityTopology.v1.
+    """
+    modes: list[dict[str, object]] = []
+    seen: set[str] = set()
+    parent = ""
+    for line in body.splitlines():
+        match = re.match(r"^(#{2,4})\s+(.+?)\s*$", line)
+        if not match:
+            continue
+        level = len(match.group(1))
+        label = re.sub(r"[`*]", "", match.group(2)).strip()
+        if level == 2:
+            parent = label.lower()
+        explicit = bool(
+            re.search(r"^Mode\s+\d+\s*:", label, re.I)
+            or re.search(r"\b(module|mode)\b", label, re.I)
+            or (level >= 3 and parent in {"modes", "modules", "commands"})
+        )
+        if not explicit:
+            continue
+        display_name = re.sub(r"^Mode\s+\d+\s*:\s*", "", label, flags=re.I).strip()
+        mode_slug = re.sub(r"[^a-z0-9]+", "-", display_name.lower()).strip("-")
+        if not mode_slug or mode_slug in seen:
+            continue
+        seen.add(mode_slug)
+        modes.append(
+            {
+                "mode_slug": mode_slug,
+                "display_name": display_name,
+                "source_refs": [f"ssot/{slug}.md"],
+                "mode_summary": f"Declared by the canonical `{label}` section.",
+                "required_inputs": [],
+                "expected_outputs": [],
+                "examples": [],
+                "uplift_notes": ["Use CapabilityTopology.v1 for composition, guard, and transition semantics."],
+            }
+        )
+    for invocation in re.findall(rf"\|\s*`{re.escape(slug)}\s+(/[^`]+)`\s*\|", body, re.I):
+        command = invocation.split()[0]
+        mode_slug = re.sub(r"[^a-z0-9]+", "-", command.lower()).strip("-")
+        if not mode_slug or mode_slug in seen:
+            continue
+        seen.add(mode_slug)
+        modes.append(
+            {
+                "mode_slug": mode_slug,
+                "display_name": command,
+                "source_refs": [f"ssot/{slug}.md"],
+                "mode_summary": f"Declared by the canonical `{slug} {command}` command table entry.",
+                "required_inputs": [],
+                "expected_outputs": [],
+                "examples": [f"{slug} {invocation}"],
+                "uplift_notes": ["Use CapabilityTopology.v1 for composition, guard, and transition semantics."],
+            }
+        )
+    return modes
+
+
 def write_resource(surface_name: str, slug: str, descriptor: dict[str, object]) -> str:
     path = RESOURCE_PATHS[surface_name](slug)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -497,9 +560,12 @@ def resolve_descriptor(entry, manifest_entry: dict[str, object]) -> dict[str, ob
     baseline = resolve_historical_baseline(ROOT, entry.slug)
     baseline_payload = baseline.as_payload()
     validation_matrix = [scenario.as_payload() for scenario in baseline.scenario_matrix]
+    extracted_modes = extract_declared_modes(entry.slug, entry.body)
     section_constraints = tuple(extract_section_bullets(entry.body, '## Constraints'))
     descriptor = load_descriptor(ROOT, entry.slug)
     if descriptor:
+        stored_quality_status = descriptor.get('quality_status')
+        normalized_quality_status = 'structural_ready' if stored_quality_status == 'ship' else stored_quality_status
         resolved = build_descriptor(
             manifest=manifest_entry,
             display_name=str(
@@ -512,10 +578,10 @@ def resolve_descriptor(entry, manifest_entry: dict[str, object]) -> dict[str, ob
             family_slug=str(descriptor.get('family_slug') or entry.slug),
             shared_summary=str(descriptor.get('shared_summary') or manifest_entry['layers']['minimal'].get('summary') or ''),
             shared_constraints=section_constraints or tuple(descriptor.get('shared_constraints') or ()),
-            modes=tuple(descriptor.get('modes') or ()),
+            modes=tuple(descriptor.get('modes') or extracted_modes),
             benchmark_sources=tuple(descriptor.get('benchmark_sources') or defaults.get('benchmark_sources') or ()),
             quality_profile=str(descriptor.get('quality_profile')) if descriptor.get('quality_profile') is not None else None,
-            quality_status=str(descriptor.get('quality_status')) if descriptor.get('quality_status') is not None else None,
+            quality_status=str(normalized_quality_status) if normalized_quality_status is not None else None,
             judge_reports=tuple(descriptor.get('judge_reports') or ()),
             consumption_hints=dict(descriptor.get('consumption_hints') or defaults.get('consumption_hints') or {}),
             quality_pass_count=descriptor.get('quality_pass_count'),
@@ -523,6 +589,8 @@ def resolve_descriptor(entry, manifest_entry: dict[str, object]) -> dict[str, ob
             historical_baseline=dict(descriptor.get('historical_baseline') or baseline_payload),
             quality_validation_matrix=tuple(descriptor.get('quality_validation_matrix') or validation_matrix),
         )
+        if stored_quality_status == 'ship' or descriptor.get('legacy_quality_status') == 'ship':
+            resolved['legacy_quality_status'] = 'ship'
         descriptor_layers = descriptor.get('layers') or {}
         if isinstance(descriptor_layers, dict):
             resolved_layers = resolved.setdefault('layers', {})
@@ -560,6 +628,7 @@ def resolve_descriptor(entry, manifest_entry: dict[str, object]) -> dict[str, ob
             manifest=manifest_entry,
             display_name=str(defaults.get('display_name') or entry.display_name),
             shared_constraints=section_constraints,
+            modes=tuple(extracted_modes),
             benchmark_sources=tuple(defaults.get('benchmark_sources') or ()),
             consumption_hints=dict(defaults.get('consumption_hints') or {}),
             historical_baseline=baseline_payload,

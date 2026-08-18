@@ -1,0 +1,442 @@
+{
+  "schema_version": "CapabilityTopology.v1",
+  "slug": "ic-assistant",
+  "ssot_sha256": "900094fdc42d3117e5fd04045ebe1ddb72026697bc36cdae6ad2e23fae86abf4",
+  "explicit_invocations": [],
+  "semantic_triggers": [],
+  "aliases_shortcuts": [],
+  "auto_routes": [],
+  "nodes": {
+    "commands": [],
+    "modes_modules": [
+      {
+        "id": "ed8d03dd686a",
+        "label": "Generic Mode",
+        "source_line": 29
+      },
+      {
+        "id": "8a771e4a7e16",
+        "label": "Internal Runbook Mode",
+        "source_line": 39
+      },
+      {
+        "id": "9beb70d640df",
+        "label": "Workflow Contract",
+        "source_line": 51
+      },
+      {
+        "id": "cc5c96cefbd5",
+        "label": "Phase Model",
+        "source_line": 91
+      },
+      {
+        "id": "08ee2933c891",
+        "label": "Phase 1: Assignment / Intake",
+        "source_line": 93
+      },
+      {
+        "id": "2e67282072b6",
+        "label": "Phase 2: Active Response",
+        "source_line": 102
+      },
+      {
+        "id": "135669319cac",
+        "label": "Phase 3: Resolution",
+        "source_line": 112
+      },
+      {
+        "id": "2071ad2c4a42",
+        "label": "Phase 4: Post-Incident / Postmortem",
+        "source_line": 121
+      },
+      {
+        "id": "36e7e1272f05",
+        "label": "Example: Generic Mode",
+        "source_line": 196
+      },
+      {
+        "id": "1146bb04718b",
+        "label": "Example: Internal Runbook Mode",
+        "source_line": 208
+      }
+    ],
+    "controls": [],
+    "modifiers": []
+  },
+  "composition": {
+    "legal_pairs": [],
+    "forbidden_pairs": [],
+    "canonical_order": [],
+    "requirements": [],
+    "supersession": []
+  },
+  "state_machine": {
+    "states": [],
+    "transitions": [],
+    "forbidden_transitions": []
+  },
+  "outputs": [
+    "- `Mode` \u2014 Generic Mode or Internal Runbook Mode",
+    "- `Current Phase` \u2014 identified phase and confidence",
+    "- `Next Required Action` \u2014 specific and actionable",
+    "- `Timer / Cadence` \u2014 last update timing or missing timing input",
+    "- `Overdue / Escalation Flags` \u2014 process risks and required IC confirmation",
+    "- `Assumptions` \u2014 any missing context or policy source used"
+  ],
+  "authority_boundaries": [
+    "ic-assistant:L45:0e41e1f9d91d",
+    "ic-assistant:L62:73f82f7c79f9",
+    "ic-assistant:L181:c538c92b2e03",
+    "ic-assistant:L183:1c0da8cc0264",
+    "ic-assistant:L192:574cac061307",
+    "ic-assistant:L229:0031aa8b251a"
+  ],
+  "resources": [
+    "- `resources/appian-incident-runbook.md`",
+    "- consult the bundled internal resource only when Internal Runbook Mode is active",
+    "- consult the bundled internal runbook resource before giving process-specific guidance",
+    "| Resource fidelity | Preserves internal runbook details in the bundled resource and uses them when requested | Drops critical internal procedure details |"
+  ],
+  "handoffs": [
+    "### Handoff",
+    "### `ic handoff <person>`",
+    "- generate handoff briefings for IC transfer",
+    "- preserve the internal runbook's escalation thresholds, artifact names, deadlines, communication requirements, and handoff procedures",
+    "- produce concise checklists, summaries, handoff briefs, and postmortem prompts",
+    "- track missing inputs, stale updates, open actions, and handoff risk",
+    "- unresolved handoff risk",
+    "1. Be proactive: stale status, missing artifacts, and unresolved handoff risk should be surfaced immediately.",
+    "2. Identify the current lifecycle phase: assignment, active response, resolution, handoff, or postmortem.",
+    "5. Track update cadence, overdue artifacts, escalation thresholds, handoff needs, and postmortem deadlines.",
+    "Ensure no incident process step is missed from assignment through resolution and postmortem by maintaining phase-aware state and surfacing the next required action, overdue artifact, escalation threshold, or handoff requirement.",
+    "Generate a handoff briefing with current status, action history, active work, blockers, decisions needed, and artifact links.",
+    "The bundled internal runbook resource preserves the detailed organization-specific source material that was originally submitted with this capability. It contains the internal tier model, escalation procedure, communication rules, artifact requirements, lifecycle checklists, postmortem policy, timeline logging guidance, handoff procedure, operational logistics, commands, behavior rules, and reference links.",
+    "Use this capability when serving as, supporting, or advising an Incident Commander during an active incident, resolution phase, handoff, or postmortem. It provides phase-aware process guidance, checklist tracking, status-update reminders, escalation prompts, and artifact validation without taking command or making incident decisions."
+  ],
+  "protected_invariants": [
+    {
+      "id": "ic-assistant:L6:838a419783c4",
+      "heading": "Purpose",
+      "source_line": 6,
+      "sha256": "838a419783c4b5d177088205ccdbe4427df7d13f259f2a0c08176af47c1a7e20",
+      "text": "The default mode is generic and public-safe. Internal organization-specific procedures, links, escalation paths, and templates must be used only when the user explicitly requests an internal runbook mode or provides internal incident context.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "ic-assistant:L9:ccd6e6398574",
+      "heading": "Primary Objective",
+      "source_line": 9,
+      "sha256": "ccd6e6398574aa9102dd2454671c4ac6b81e8e8980017c5742908d79307d0cae",
+      "text": "Ensure no incident process step is missed from assignment through resolution and postmortem by maintaining phase-aware state and surfacing the next required action, overdue artifact, escalation threshold, or handoff requirement.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "ic-assistant:L24:b4ea15cf6616",
+      "heading": "Agent Operating Contract",
+      "source_line": 24,
+      "sha256": "b4ea15cf6616c9d4428c2c4192aa96abd08449914388d7df33ad8db11baf1aae",
+      "text": "- consult the bundled internal resource only when Internal Runbook Mode is active",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "ic-assistant:L40:6d0a43473db5",
+      "heading": "Internal Runbook Mode",
+      "source_line": 40,
+      "sha256": "6d0a43473db5e703a70f4a33dd987665b247643b4f634fd5fad7b631b8fdb324",
+      "text": "Use Internal Runbook Mode only when the user explicitly asks for the organization's internal incident process, names the internal runbook, or provides internal incident context that clearly requires the internal procedure.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "ic-assistant:L45:0e41e1f9d91d",
+      "heading": "Internal Runbook Mode",
+      "source_line": 45,
+      "sha256": "0e41e1f9d91df74d9ea8f65dce8a7778a1c49d6270fb73805811ef5df85ad8e5",
+      "text": "- do not summarize or expose sensitive internal details unless they are directly needed for the user's current incident task",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "ic-assistant:L55:6fbac1038dbb",
+      "heading": "Workflow Contract",
+      "source_line": 55,
+      "sha256": "6fbac1038dbb8939077d1ab63a0a34a8efd975e641545d949d1199a470dc8529",
+      "text": "4. Produce the next required action with owner, artifact, and timing when available.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "ic-assistant:L62:73f82f7c79f9",
+      "heading": "Tool Boundaries",
+      "source_line": 62,
+      "sha256": "73f82f7c79f9c1d510edc40287363ab83c79d213744de432dd63e6cd540185ce",
+      "text": "- Forbidden: making Incident Commander decisions, escalating without IC confirmation, modifying tickets or artifacts without explicit instruction, exposing internal runbook details in generic mode, or treating private links as public documentation.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "ic-assistant:L70:60ffec051b9e",
+      "heading": "Invocation Hints",
+      "source_line": 70,
+      "sha256": "60ffec051b9e77ba0b9ee155c8a62fe04142f152dee103c2d29ef1f3c7ec553a",
+      "text": "- determine if executive communication is required",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "ic-assistant:L75:77357dbdaba3",
+      "heading": "Required Inputs",
+      "source_line": 75,
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "text": "## Required Inputs",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "ic-assistant:L82:3d4b9f171064",
+      "heading": "Required Output",
+      "source_line": 82,
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "text": "## Required Output",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "ic-assistant:L86:ef50e35a1a2e",
+      "heading": "Required Output",
+      "source_line": 86,
+      "sha256": "ef50e35a1a2e585d68f9e9090744c3d0985436f1092ab3ac0a15592101418795",
+      "text": "- `Next Required Action` \u2014 specific and actionable",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "ic-assistant:L88:b8d2eb0a0eb9",
+      "heading": "Required Output",
+      "source_line": 88,
+      "sha256": "b8d2eb0a0eb98859e73ffdc9e551918434a05f5e1d84fa514471c1243c68ee69",
+      "text": "- `Overdue / Escalation Flags` \u2014 process risks and required IC confirmation",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "ic-assistant:L94:9f86a1e105aa",
+      "heading": "Phase 1: Assignment / Intake",
+      "source_line": 94,
+      "sha256": "9f86a1e105aab7128e7151bee542609de4862742333d894d8e4bcda8be3d0bbf",
+      "text": "Required actions:",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "ic-assistant:L100:6fd4703b3446",
+      "heading": "Phase 1: Assignment / Intake",
+      "source_line": 100,
+      "sha256": "6fd4703b344664685c33b08e47cb8d15d554c328c178c7c2531338a50f52929d",
+      "text": "- identify whether escalation, executive communication, or special handling may be required",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "ic-assistant:L103:9f86a1e105aa",
+      "heading": "Phase 2: Active Response",
+      "source_line": 103,
+      "sha256": "9f86a1e105aab7128e7151bee542609de4862742333d894d8e4bcda8be3d0bbf",
+      "text": "Required actions:",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "ic-assistant:L113:9f86a1e105aa",
+      "heading": "Phase 3: Resolution",
+      "source_line": 113,
+      "sha256": "9f86a1e105aab7128e7151bee542609de4862742333d894d8e4bcda8be3d0bbf",
+      "text": "Required actions:",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "ic-assistant:L117:a090f7d25da4",
+      "heading": "Phase 3: Resolution",
+      "source_line": 117,
+      "sha256": "a090f7d25da4a9c40ab4f41684f4d8cbff1f38fe032287efae0219cdd6e5848a",
+      "text": "- send final stakeholder or executive communication when required",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "ic-assistant:L118:064f198eacd1",
+      "heading": "Phase 3: Resolution",
+      "source_line": 118,
+      "sha256": "064f198eacd15034c2033775197161bf65ff55203c6e2f9e0c1819002c07f3e9",
+      "text": "- transition the ticket or record to the resolved/remediated state required by the process",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "ic-assistant:L122:9f86a1e105aa",
+      "heading": "Phase 4: Post-Incident / Postmortem",
+      "source_line": 122,
+      "sha256": "9f86a1e105aab7128e7151bee542609de4862742333d894d8e4bcda8be3d0bbf",
+      "text": "Required actions:",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "ic-assistant:L123:5e689147d5c1",
+      "heading": "Phase 4: Post-Incident / Postmortem",
+      "source_line": 123,
+      "sha256": "5e689147d5c11225d73f9062bdada299e424af48facb94dee83b8ba579632e04",
+      "text": "- schedule or confirm the postmortem when required",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "ic-assistant:L128:027b37ce7e48",
+      "heading": "Phase 4: Post-Incident / Postmortem",
+      "source_line": 128,
+      "sha256": "027b37ce7e488d202fe0781014aeffa8fd124c9f919da4876e7375239d38aff0",
+      "text": "- close the incident only after required artifacts and follow-ups are recorded",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "ic-assistant:L131:9f86a1e105aa",
+      "heading": "Handoff",
+      "source_line": 131,
+      "sha256": "9f86a1e105aab7128e7151bee542609de4862742333d894d8e4bcda8be3d0bbf",
+      "text": "Required actions:",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "ic-assistant:L170:a72b49d18cc7",
+      "heading": "`ic exec-comm`",
+      "source_line": 170,
+      "sha256": "a72b49d18cc73f78277dae5076a51e330ced093fdb7e65477bf6e61b552d573a",
+      "text": "Determine whether executive communication may be required. If policy is unknown, ask for the policy or use internal mode when explicitly requested.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "ic-assistant:L181:c538c92b2e03",
+      "heading": "Rules",
+      "source_line": 181,
+      "sha256": "c538c92b2e0338aad77a2dd85d641e9c50992a0b2feb10c529355045f0697e80",
+      "text": "3. Be mode-aware: never leak internal runbook details while operating in Generic Mode.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "ic-assistant:L183:1c0da8cc0264",
+      "heading": "Rules",
+      "source_line": 183,
+      "sha256": "1c0da8cc0264c81e0663785e11b1128b830089397d4b40cc33b165c8e0deeb7d",
+      "text": "5. Never make Incident Commander decisions. Surface options, process requirements, and risk; the IC decides.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "ic-assistant:L185:a2f95ea20b7a",
+      "heading": "Rules",
+      "source_line": 185,
+      "sha256": "a2f95ea20b7a3b1d1c90a40b36a11bf59f3ff242665b0dbdee29b95e3eaddc95",
+      "text": "7. Reference the internal resource only in Internal Runbook Mode and only for incident-relevant details.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "ic-assistant:L187:5b17e42a6a75",
+      "heading": "Rules",
+      "source_line": 187,
+      "sha256": "5b17e42a6a7532e690547282f5634267c4c57fb17bf729646b71b3fbafaa3069",
+      "text": "9. When the response could be copied to an external audience, sanitize internal names, links, aliases, and process-only details.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "ic-assistant:L192:574cac061307",
+      "heading": "Internal Runbook Preservation Map",
+      "source_line": 192,
+      "sha256": "574cac0613078d9cc171c5f88a6694a1083def2b9ea6324c44ccefb23c415e16",
+      "text": "This SSOT intentionally keeps the default prompt generic while retaining access to the internal details through the resource file. Do not discard the resource during rebuilds or packaging changes unless the release is explicitly public-safe and the internal overlay is packaged separately.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "ic-assistant:L202:16392f601255",
+      "heading": "Example: Generic Mode",
+      "source_line": 202,
+      "sha256": "16392f601255c5153e38b041e96e9f7e1a60e583433a008c0823a43d9109dacf",
+      "text": "Next Required Action: Update the incident source of truth with current customer impact, mitigation status, next action, owner, and ETA.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "ic-assistant:L214:7d8b08218638",
+      "heading": "Example: Internal Runbook Mode",
+      "source_line": 214,
+      "sha256": "7d8b08218638102c201591956593f6e3435cb7770dae9a17b7af70f21135c78c",
+      "text": "Next Required Action: I will consult the bundled internal runbook resource, confirm the ticket state and customer impact, then produce the phase-specific checklist without exposing unrelated internal links or escalation details.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "ic-assistant:L223:152a7ba39928",
+      "heading": "Evaluation Rubric",
+      "source_line": 223,
+      "sha256": "152a7ba3992821857f3695facae73de045153501e575183a71033d6298a56286",
+      "text": "| Mode discipline | Uses generic guidance by default and internal details only on explicit internal context | Leaks internal details in generic mode |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "ic-assistant:L225:da9caa8131b1",
+      "heading": "Evaluation Rubric",
+      "source_line": 225,
+      "sha256": "da9caa8131b16669fde7b6efc8686da00fe6040c913e42832c40aa01683ca049",
+      "text": "| Checklist completeness | Surfaces required actions for the current phase | Missing required steps |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "ic-assistant:L229:0031aa8b251a",
+      "heading": "Evaluation Rubric",
+      "source_line": 229,
+      "sha256": "0031aa8b251a12c27cb217b35bf37a53e5157dca32e3824d4ca53d0028287197",
+      "text": "| Non-decision | Never makes IC decisions, only surfaces requirements and prompts | Makes decisions on behalf of the IC |",
+      "kind": "invariant",
+      "mapped_to": []
+    }
+  ],
+  "risk_tiers": {
+    "critical": [],
+    "high": [],
+    "standard": []
+  },
+  "source_references": [
+    {
+      "path": "ssot/ic-assistant.md",
+      "sha256": "900094fdc42d3117e5fd04045ebe1ddb72026697bc36cdae6ad2e23fae86abf4"
+    }
+  ],
+  "known_ambiguities": [],
+  "coverage_policy": {
+    "normative_clauses": "100_percent_mapped_or_waived",
+    "nodes": "positive_and_boundary",
+    "transitions": "all_legal_and_forbidden",
+    "module_pairs": "all_legal_pairs",
+    "high_risk_tuples": "assigned_strength",
+    "critical_mutants": "100_percent_killed"
+  },
+  "normative_clause_coverage": {
+    "total": 33,
+    "mapped": 0,
+    "waived": 0
+  },
+  "review_status": "draft",
+  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs."
+}

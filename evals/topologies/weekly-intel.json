@@ -1,0 +1,391 @@
+{
+  "schema_version": "CapabilityTopology.v1",
+  "slug": "weekly-intel",
+  "ssot_sha256": "2f8c86f33b727a4d568a9273377cc0f6b92e49b3a7717dca31a5b33c06dc60a3",
+  "explicit_invocations": [
+    "/path"
+  ],
+  "semantic_triggers": [],
+  "aliases_shortcuts": [],
+  "auto_routes": [],
+  "nodes": {
+    "commands": [
+      "/path"
+    ],
+    "modes_modules": [
+      {
+        "id": "2e2d5c5649b7",
+        "label": "Workflow",
+        "source_line": 98
+      },
+      {
+        "id": "e168103d975f",
+        "label": "Phase 1: Data Collection",
+        "source_line": 100
+      },
+      {
+        "id": "29940378266e",
+        "label": "Phase 2: Convergence",
+        "source_line": 127
+      },
+      {
+        "id": "5edc6ed5d41f",
+        "label": "Phase 3: Fact-Check Audit",
+        "source_line": 138
+      },
+      {
+        "id": "b37021f7153e",
+        "label": "Phase 4: Report Generation",
+        "source_line": 156
+      },
+      {
+        "id": "4b2f93e2266b",
+        "label": "Phase 5: Internal Consistency Check",
+        "source_line": 192
+      },
+      {
+        "id": "34f20d8731a0",
+        "label": "Phase 6: Confidence Declaration",
+        "source_line": 202
+      }
+    ],
+    "controls": [],
+    "modifiers": []
+  },
+  "composition": {
+    "legal_pairs": [],
+    "forbidden_pairs": [],
+    "canonical_order": [],
+    "requirements": [],
+    "supersession": []
+  },
+  "state_machine": {
+    "states": [],
+    "transitions": [],
+    "forbidden_transitions": []
+  },
+  "outputs": [
+    "- a single report document with exec-friendly body and technical appendices (A through F)",
+    "- a confidence assessment in Appendix F rating each source (High/Medium/Low) with methodology notes",
+    "- an internal consistency check confirming body numbers match appendix data"
+  ],
+  "authority_boundaries": [
+    "weekly-intel:L47:c1ebb0023ea1",
+    "weekly-intel:L182:cd0f0db5e1a5",
+    "weekly-intel:L183:2a397b46a4f3",
+    "weekly-intel:L217:d8eacb4f2de2",
+    "weekly-intel:L223:98ce20600e47",
+    "weekly-intel:L224:a843a3087a15",
+    "weekly-intel:L225:98520a766c21",
+    "weekly-intel:L226:13d29df8ad07",
+    "weekly-intel:L227:5d79ffa88b9c",
+    "weekly-intel:L228:b331a7940c85"
+  ],
+  "resources": [
+    "- Commit log with ticket references (non-merge commits)",
+    "- cross-reference findings across sources to build a unified, non-duplicated picture"
+  ],
+  "handoffs": [
+    "## Companion Capability Matrix",
+    "| If the report reveals this need | Route to | Handoff |"
+  ],
+  "protected_invariants": [
+    {
+      "id": "weekly-intel:L24:f54ea8e798a6",
+      "heading": "Non-Negotiables",
+      "source_line": 24,
+      "sha256": "f54ea8e798a60f53a9cbe04c2bae0e93092e82d6d44831ade6a1db7963a2e110",
+      "text": "- Every quantitative claim must be re-verified before inclusion",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "weekly-intel:L25:4544e6580afa",
+      "heading": "Non-Negotiables",
+      "source_line": 25,
+      "sha256": "4544e6580afad28b48a22656a2d0303486373a381c37e37a38cfca895bdc683d",
+      "text": "- Self-reported numbers must not be presented as automated measurements",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "weekly-intel:L26:f4df1515ad8a",
+      "heading": "Non-Negotiables",
+      "source_line": 26,
+      "sha256": "f4df1515ad8a019c84a2ad398ecd6eb048889b9973f935092f2d0cfff638e66a",
+      "text": "- Numbers must not be rounded in a direction that flatters the result",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "weekly-intel:L27:65b8a44549bf",
+      "heading": "Non-Negotiables",
+      "source_line": 27,
+      "sha256": "65b8a44549bfd4a7cc1347f79823bddc1fd4986c9706bf405cd82ed6a5496065",
+      "text": "- The exec narrative must contain zero ticket numbers, MR numbers, or commit hashes",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "weekly-intel:L28:408737a2fdb2",
+      "heading": "Non-Negotiables",
+      "source_line": 28,
+      "sha256": "408737a2fdb2aa0eb18804f7e0b4a463aa97caa9e71bc1f2cc73866316575792",
+      "text": "- The internal consistency check between the narrative body and appendices must not be skipped",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "weekly-intel:L47:c1ebb0023ea1",
+      "heading": "Tool Boundaries",
+      "source_line": 47,
+      "sha256": "c1ebb0023ea1adc3a896e0bd255a0f4970ef85323e074db415ed1cc9ea567d60",
+      "text": "- forbidden: modifying tickets, merging code, sending messages, or taking any action beyond reading and reporting",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "weekly-intel:L62:77357dbdaba3",
+      "heading": "Required Inputs",
+      "source_line": 62,
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "text": "## Required Inputs",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "weekly-intel:L142:5c78da516647",
+      "heading": "Phase 3: Fact-Check Audit",
+      "source_line": 142,
+      "sha256": "5c78da516647002e2e7b28279bdfd73afb940e24c1b47994ad1e848ce9141129",
+      "text": "- **Audience = team/self:** Skip audit, produce appendices only (no exec body)",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "weekly-intel:L166:2141f7742ae6",
+      "heading": "Phase 4: Report Generation",
+      "source_line": 166,
+      "sha256": "2141f7742ae64ee0858cdea627d050b3eb7bc8c344b25c1ef7c9d9789438a0c4",
+      "text": "4. **What We Need** \u2014 decisions or support required from leadership",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "weekly-intel:L180:394746493c8f",
+      "heading": "Phase 4: Report Generation",
+      "source_line": 180,
+      "sha256": "394746493c8f0c472766f751f62396f1ebf73115876a98fda2185899d4a1698b",
+      "text": "- Every claim must be traceable to an appendix entry",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "weekly-intel:L181:edab38b52340",
+      "heading": "Phase 4: Report Generation",
+      "source_line": 181,
+      "sha256": "edab38b5234094a263fc5d43c899282f27003577661349034978c05cfe7e3cfc",
+      "text": "- Quantitative claims must include methodology caveats where relevant",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "weekly-intel:L182:cd0f0db5e1a5",
+      "heading": "Phase 4: Report Generation",
+      "source_line": 182,
+      "sha256": "cd0f0db5e1a5cffbab81830bfb97b1f91e7600154dd3d5272da7cf305b86777c",
+      "text": "- Do not present self-reported numbers as automated measurements",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "weekly-intel:L183:2a397b46a4f3",
+      "heading": "Phase 4: Report Generation",
+      "source_line": 183,
+      "sha256": "2a397b46a4f3b2cab383ed798548fee9903bc88df749a958242b7c2b2ce46a3f",
+      "text": "- Do not round numbers in a direction that flatters the result",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "weekly-intel:L188:75d4160a3d39",
+      "heading": "Phase 4: Report Generation",
+      "source_line": 188,
+      "sha256": "75d4160a3d3948ca3fd3485bc0ed151223933ccdae2e3dc0eeb9c83f2b7e4b86",
+      "text": "- Every row must have an inline link to its primary source",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "weekly-intel:L196:e928f79d4d76",
+      "heading": "Phase 5: Internal Consistency Check",
+      "source_line": 196,
+      "sha256": "e928f79d4d765aae0f0e5e0c76e4d25f2a33ea9cad9e5893db674d0c00ac43d7",
+      "text": "1. Every number in the main body must match the corresponding appendix data",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "weekly-intel:L197:d3f3f12bc16a",
+      "heading": "Phase 5: Internal Consistency Check",
+      "source_line": 197,
+      "sha256": "d3f3f12bc16a10d40faabc1f3393cba2dd2bb2fd7e1e98900c4502d2b1a5f024",
+      "text": "2. Every claim in the body must have supporting evidence in an appendix",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "weekly-intel:L198:96a8f47b993a",
+      "heading": "Phase 5: Internal Consistency Check",
+      "source_line": 198,
+      "sha256": "96a8f47b993a2ad66b2aa287d090fc5aba67036ca8bf405323becde2c663728f",
+      "text": "3. Initiative/epic counts in the body must match Appendix A",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "weekly-intel:L199:e8506f42237c",
+      "heading": "Phase 5: Internal Consistency Check",
+      "source_line": 199,
+      "sha256": "e8506f42237ca16a43eb159404831cdac17a06c40378bf9daa7017bd9ab16327",
+      "text": "4. The By the Numbers table must match Appendix C and D totals",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "weekly-intel:L215:dde85d08be02",
+      "heading": "Rules",
+      "source_line": 215,
+      "sha256": "dde85d08be0263c060d4fa83a22a9d4585cf59631a7317b9cf89f1a91ea441ea",
+      "text": "- This capability is advisory only. It reads and reports but does not modify source systems.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "weekly-intel:L217:d8eacb4f2de2",
+      "heading": "Rules",
+      "source_line": 217,
+      "sha256": "d8eacb4f2de266e6eaf514ea6b360851284c3aa5e7f59762795a75572d7c9e29",
+      "text": "- Do not claim orchestration, delegation, or runtime-control authority.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "weekly-intel:L223:98ce20600e47",
+      "heading": "Constraints",
+      "source_line": 223,
+      "sha256": "98ce20600e47e2959e8efc89f2011285fd307215ad560e8f1dee9f2b126fda86",
+      "text": "- Do not modify any source system (tickets, repos, chat). Read only.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "weekly-intel:L224:a843a3087a15",
+      "heading": "Constraints",
+      "source_line": 224,
+      "sha256": "a843a3087a1504fb7e29818e1af1185f01ec5509b9c4378938acd916945bd6c3",
+      "text": "- Do not assert a bug is \"fixed\" based on a single chat message without corroboration from the tracker or code.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "weekly-intel:L225:98520a766c21",
+      "heading": "Constraints",
+      "source_line": 225,
+      "sha256": "98520a766c21b0dac64fcaaeecaf665d16c5a77d5e7b06e7bf5ab171bfbc0d2c",
+      "text": "- Do not inflate ticket counts by including unrelated teams' work without disclosure.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "weekly-intel:L226:13d29df8ad07",
+      "heading": "Constraints",
+      "source_line": 226,
+      "sha256": "13d29df8ad07ce6959a62d9e77bd2328f6355bb06afeca708a5ddaee9c59965c",
+      "text": "- Do not present created-after queries as merged-after without noting the caveat.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "weekly-intel:L227:5d79ffa88b9c",
+      "heading": "Constraints",
+      "source_line": 227,
+      "sha256": "5d79ffa88b9ce0620d4d6aa1a0f272de884eb469da999f3090f616891aa965c6",
+      "text": "- Do not skip the internal consistency check between body and appendices.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "weekly-intel:L228:b331a7940c85",
+      "heading": "Constraints",
+      "source_line": 228,
+      "sha256": "b331a7940c85a5c9e0fee34d500a7c7e11e24eb8d926a8f457d355bb5c719cba",
+      "text": "- Do not use the word \"impressive\" or \"amazing\" in the main body. Let the numbers speak.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "weekly-intel:L233:c5619f4cdf2b",
+      "heading": "Anti-Patterns to Avoid",
+      "source_line": 233,
+      "sha256": "c5619f4cdf2b06cfab0717358e9ffc5fad58f06b37a735a31dac1d5fe24804b4",
+      "text": "- **Single-source claims:** asserting something is \"fixed\" based only on one person's chat message",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "weekly-intel:L234:087e2f1469a3",
+      "heading": "Anti-Patterns to Avoid",
+      "source_line": 234,
+      "sha256": "087e2f1469a30b2593e291beb5f6d65cc76fa783faa26e474cd89dac676029d4",
+      "text": "- **Jargon creep:** the exec summary must be readable by someone outside the team",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "weekly-intel:L249:3d4b9f171064",
+      "heading": "Required Output",
+      "source_line": 249,
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "text": "## Required Output",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "weekly-intel:L250:c34906b1f1c3",
+      "heading": "Required Output",
+      "source_line": 250,
+      "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+      "text": "Every substantial response must include:",
+      "kind": "invariant",
+      "mapped_to": []
+    }
+  ],
+  "risk_tiers": {
+    "critical": [],
+    "high": [],
+    "standard": []
+  },
+  "source_references": [
+    {
+      "path": "ssot/weekly-intel.md",
+      "sha256": "2f8c86f33b727a4d568a9273377cc0f6b92e49b3a7717dca31a5b33c06dc60a3"
+    }
+  ],
+  "known_ambiguities": [],
+  "coverage_policy": {
+    "normative_clauses": "100_percent_mapped_or_waived",
+    "nodes": "positive_and_boundary",
+    "transitions": "all_legal_and_forbidden",
+    "module_pairs": "all_legal_pairs",
+    "high_risk_tuples": "assigned_strength",
+    "critical_mutants": "100_percent_killed"
+  },
+  "normative_clause_coverage": {
+    "total": 30,
+    "mapped": 0,
+    "waived": 0
+  },
+  "review_status": "draft",
+  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs."
+}

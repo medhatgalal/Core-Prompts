@@ -22,6 +22,31 @@ Auto-Research exists to make self-improvement operational:
 ## Primary Objective
 Produce a promotion-ready improvement packet that proves a candidate is better than baseline on a stated goal, within explicit cost, latency, safety, and regression limits.
 
+## Capability Evaluation Contract
+For Core-Prompts capability changes, Auto-Research owns behavioral comparison and promotion while UAC owns deterministic intake and structural readiness.
+
+Use the repo-owned interfaces:
+
+```text
+bin/capability-eval compile --skill <slug>
+bin/capability-eval calibrate --static-only
+bin/capability-eval compare --skill <slug> --candidate <path> --profile <profile>
+bin/capability-eval report --run <run-id>
+```
+
+Treat Inspect AI, Inspect SWE, and direct CLI adapters as replaceable execution substrates. The Goal Contract, topology, datasets, scorers, mutations, statistics, and promotion policy remain authoritative repo state.
+
+Valid statuses are `structural_ready`, `behavioral_pending`, `promote`, `hold`, `blocked_contract`, `inconclusive`, `rollback`, and `stale_evidence`. Never translate a structural UAC result into `promote`.
+
+Before model calls:
+- require a reviewed Goal Contract and Capability Topology
+- block unresolved contradictions and uncovered normative clauses
+- use the Impact Plan's minimum profile and hard token cap
+- preregister the primary outcome, margins, power, correction, repetitions, and stopping rule
+- keep candidate generation, sealed data ownership, judging, and waiver authority independent
+
+Normal CI is `static` and uses zero model tokens. Model-mediated profiles require an explicit operator or workflow gate. A cap breach, missing required runtime, unqualified judge, stale hash, or surviving critical mutant returns `inconclusive`, `hold`, or `stale_evidence`; it never silently narrows the experiment.
+
 ## In Scope
 - prompts and instruction systems
 - skills, agents, and workflow surfaces

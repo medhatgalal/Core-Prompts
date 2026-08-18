@@ -193,7 +193,274 @@
     "Do not turn grading into generic praise.",
     "Do not claim orchestration, approval, or runtime delegation authority."
   ],
-  "modes": [],
+  "modes": [
+    {
+      "mode_slug": "agentic-orchestration-core-principle-not-a-module",
+      "display_name": "Agentic Orchestration (Core Principle, Not a Module)",
+      "source_refs": [
+        "ssot/supercharge.md"
+      ],
+      "mode_summary": "Declared by the canonical `Agentic Orchestration (Core Principle, Not a Module)` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    },
+    {
+      "mode_slug": "module-usage",
+      "display_name": "Module Usage",
+      "source_refs": [
+        "ssot/supercharge.md"
+      ],
+      "mode_summary": "Declared by the canonical `Module Usage` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    },
+    {
+      "mode_slug": "per-module-examples",
+      "display_name": "Per-Module Examples",
+      "source_refs": [
+        "ssot/supercharge.md"
+      ],
+      "mode_summary": "Declared by the canonical `Per-Module Examples` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    },
+    {
+      "mode_slug": "module-reference-full-spec",
+      "display_name": "MODULE REFERENCE (Full Spec)",
+      "source_refs": [
+        "ssot/supercharge.md"
+      ],
+      "mode_summary": "Declared by the canonical `MODULE REFERENCE (Full Spec)` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    },
+    {
+      "mode_slug": "module-ult-ult-agent-prompt-engineer-mode",
+      "display_name": "MODULE: /ult \u2014 ULT-Agent++ (Prompt Engineer Mode)",
+      "source_refs": [
+        "ssot/supercharge.md"
+      ],
+      "mode_summary": "Declared by the canonical `MODULE: /ult \u2014 ULT-Agent++ (Prompt Engineer Mode)` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    },
+    {
+      "mode_slug": "mode-behavior",
+      "display_name": "Mode Behavior",
+      "source_refs": [
+        "ssot/supercharge.md"
+      ],
+      "mode_summary": "Declared by the canonical `Mode Behavior` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    },
+    {
+      "mode_slug": "module-catchup-deep-forensic-catchup-multi-intent",
+      "display_name": "MODULE: /catchup \u2014 Deep Forensic Catchup (Multi-Intent)",
+      "source_refs": [
+        "ssot/supercharge.md"
+      ],
+      "mode_summary": "Declared by the canonical `MODULE: /catchup \u2014 Deep Forensic Catchup (Multi-Intent)` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    },
+    {
+      "mode_slug": "module-basis-first-principles-cost-and-complexity-accounting",
+      "display_name": "MODULE: /basis \u2014 First-Principles Cost and Complexity Accounting",
+      "source_refs": [
+        "ssot/supercharge.md"
+      ],
+      "mode_summary": "Declared by the canonical `MODULE: /basis \u2014 First-Principles Cost and Complexity Accounting` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    },
+    {
+      "mode_slug": "module-simple-decomplecting-lens-simple-made-easy",
+      "display_name": "MODULE: /simple \u2014 Decomplecting Lens (\"Simple Made Easy\")",
+      "source_refs": [
+        "ssot/supercharge.md"
+      ],
+      "mode_summary": "Declared by the canonical `MODULE: /simple \u2014 Decomplecting Lens (\"Simple Made Easy\")` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    },
+    {
+      "mode_slug": "module-invert-inversion-lens-invert-always-invert",
+      "display_name": "MODULE: /invert \u2014 Inversion Lens (\"Invert, Always Invert\")",
+      "source_refs": [
+        "ssot/supercharge.md"
+      ],
+      "mode_summary": "Declared by the canonical `MODULE: /invert \u2014 Inversion Lens (\"Invert, Always Invert\")` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    },
+    {
+      "mode_slug": "module-adversarial-adversarial-red-teaming-devil-s-advocate",
+      "display_name": "MODULE: /adversarial \u2014 Adversarial Red-Teaming (Devil's Advocate)",
+      "source_refs": [
+        "ssot/supercharge.md"
+      ],
+      "mode_summary": "Declared by the canonical `MODULE: /adversarial \u2014 Adversarial Red-Teaming (Devil's Advocate)` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    },
+    {
+      "mode_slug": "nested-module-adversarial-debate-surface-bull-bear-decider-debate",
+      "display_name": "Nested Module: /adversarial /debate \u2014 Surface Bull/Bear/Decider Debate",
+      "source_refs": [
+        "ssot/supercharge.md"
+      ],
+      "mode_summary": "Declared by the canonical `Nested Module: /adversarial /debate \u2014 Surface Bull/Bear/Decider Debate` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    },
+    {
+      "mode_slug": "nested-module-adversarial-debate-deep-deep-bull-bear-decider-debate",
+      "display_name": "Nested Module: /adversarial /debate /deep \u2014 Deep Bull/Bear/Decider Debate",
+      "source_refs": [
+        "ssot/supercharge.md"
+      ],
+      "mode_summary": "Declared by the canonical `Nested Module: /adversarial /debate /deep \u2014 Deep Bull/Bear/Decider Debate` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    },
+    {
+      "mode_slug": "module-contract-2026-contract-qa-unified-spec-evaluation",
+      "display_name": "MODULE: /contract \u2014 2026 Contract + QA (Unified Spec + Evaluation)",
+      "source_refs": [
+        "ssot/supercharge.md"
+      ],
+      "mode_summary": "Declared by the canonical `MODULE: /contract \u2014 2026 Contract + QA (Unified Spec + Evaluation)` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    },
+    {
+      "mode_slug": "module-grade-10-iteration-improvement-ladder-score-1-10",
+      "display_name": "MODULE: /grade \u2014 10-Iteration Improvement Ladder (Score 1\u201310)",
+      "source_refs": [
+        "ssot/supercharge.md"
+      ],
+      "mode_summary": "Declared by the canonical `MODULE: /grade \u2014 10-Iteration Improvement Ladder (Score 1\u201310)` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    },
+    {
+      "mode_slug": "module-full-illumination-gauntlet-no-execution",
+      "display_name": "MODULE: /full \u2014 Illumination Gauntlet (No Execution)",
+      "source_refs": [
+        "ssot/supercharge.md"
+      ],
+      "mode_summary": "Declared by the canonical `MODULE: /full \u2014 Illumination Gauntlet (No Execution)` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    },
+    {
+      "mode_slug": "module-gaslight-gaslight-13-explicit-only",
+      "display_name": "MODULE: /gaslight \u2014 GASLIGHT 13 (Explicit Only)",
+      "source_refs": [
+        "ssot/supercharge.md"
+      ],
+      "mode_summary": "Declared by the canonical `MODULE: /gaslight \u2014 GASLIGHT 13 (Explicit Only)` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    },
+    {
+      "mode_slug": "module-stop-ult-exit-ult-mode",
+      "display_name": "MODULE: /stop-ult \u2014 Exit ULT Mode",
+      "source_refs": [
+        "ssot/supercharge.md"
+      ],
+      "mode_summary": "Declared by the canonical `MODULE: /stop-ult \u2014 Exit ULT Mode` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    },
+    {
+      "mode_slug": "failure-mode-to-avoid",
+      "display_name": "Failure Mode To Avoid",
+      "source_refs": [
+        "ssot/supercharge.md"
+      ],
+      "mode_summary": "Declared by the canonical `Failure Mode To Avoid` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    }
+  ],
   "benchmark_sources": [],
   "consumption_hints": {},
   "historical_baseline": {

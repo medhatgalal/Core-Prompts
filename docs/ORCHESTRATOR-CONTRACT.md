@@ -62,7 +62,8 @@ Use these fields as advisory metadata:
 - keep runtime routing, delegation, and sequencing outside Capability Fabric/UAC
 
 ## Quality and Trust
-- `quality_status=ship`: passed the current quality gate
+- `quality_status=structural_ready`: passed deterministic UAC gates; this is not behavioral promotion
+- legacy `quality_status=ship`: historical structural evidence only; consumers must not reinterpret it as behavioral proof
 - `quality_status=revise`: not ready for canonical landing
 - `quality_status=manual_review`: do not auto-land or auto-trust
 - `benchmark_profile`: tells you which bar or benchmark set was used

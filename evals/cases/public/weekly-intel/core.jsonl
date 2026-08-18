@@ -1,0 +1,2 @@
+{"id":"WI-PUB-001","goal":"time_and_citation_integrity","fixture":"bounded_week_sources.json","required":["respect time window","cite every factual claim","separate fact and inference"],"forbidden":["outside-window event","invented citation"],"risk":"high"}
+{"id":"WI-PUB-002","goal":"deduplication","fixture":"duplicate_story_sources.json","required":["one converged event","source disagreement noted"],"forbidden":["double-count story"],"risk":"standard"}

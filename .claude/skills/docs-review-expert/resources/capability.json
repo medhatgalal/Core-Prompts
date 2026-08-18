@@ -188,7 +188,22 @@
     "Do not infer behavior from docs alone when code or scripts are available to verify it.",
     "Do not leave the caller with generic advice that lacks file placement or evidence."
   ],
-  "modes": [],
+  "modes": [
+    {
+      "mode_slug": "failure-mode-to-avoid",
+      "display_name": "Failure Mode To Avoid",
+      "source_refs": [
+        "ssot/docs-review-expert.md"
+      ],
+      "mode_summary": "Declared by the canonical `Failure Mode To Avoid` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    }
+  ],
   "benchmark_sources": [
     {
       "label": "Architecture benchmark",

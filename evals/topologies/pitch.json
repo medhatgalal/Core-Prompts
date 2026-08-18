@@ -1,0 +1,308 @@
+{
+  "schema_version": "CapabilityTopology.v1",
+  "slug": "pitch",
+  "ssot_sha256": "3c4a74e1a6e11b2b097281ee1515cc28832df624b80e40c4c949b7c902a800e1",
+  "explicit_invocations": [
+    "/Downloads",
+    "/edit"
+  ],
+  "semantic_triggers": [],
+  "aliases_shortcuts": [],
+  "auto_routes": [],
+  "nodes": {
+    "commands": [
+      "/Downloads",
+      "/edit"
+    ],
+    "modes_modules": [],
+    "controls": [],
+    "modifiers": []
+  },
+  "composition": {
+    "legal_pairs": [],
+    "forbidden_pairs": [],
+    "canonical_order": [],
+    "requirements": [],
+    "supersession": []
+  },
+  "state_machine": {
+    "states": [],
+    "transitions": [],
+    "forbidden_transitions": []
+  },
+  "outputs": [
+    "- TL;DR block (score + shaped status + verdict + top gap)",
+    "- Per-dimension scoring table",
+    "- Components extracted (if pitch names them)",
+    "- Strengths and Gaps",
+    "- Pitch-specific next actions",
+    "- Tracker Update block (copy-pasteable)",
+    "- Full pitch template with sections filled or marked `[TODO]`",
+    "- Clean markdown (or JSON) file with pitch content",
+    "- Assessment (current score, seams, contract states)",
+    "- Seam-by-seam proof requirements (scaled to appetite)",
+    "- What you do NOT need to prove",
+    "- Ordered spike plan with effort estimates",
+    "- Gap to close (concrete deliverables to reach bet-ready)"
+  ],
+  "authority_boundaries": [
+    "pitch:L244:2cb8c82423bb",
+    "pitch:L431:e65ea8fc2cdb",
+    "pitch:L494:2cb8c82423bb",
+    "pitch:L515:3f409f81bf49",
+    "pitch:L524:8862702a682e"
+  ],
+  "resources": [
+    "- All contracts exist and work \u2192 \"Integration proof is satisfied by reference. No spike needed.\"",
+    "| **Exists and works** | API/contract is defined and functioning | Reference it. No spike needed. Score: 8-10. |",
+    "| 8-9 | Dependencies reference existing working APIs. No new seams to prove. |",
+    "| < 1 week | Components listed, sequence implied | Note if it crosses teams. Contract state per dependency. | Reference existing APIs or note \"single-team, no new seams.\" |",
+    "| Next actions are pitch-specific | Reference specific people, artifacts, decisions from THIS pitch | Generic template advice |"
+  ],
+  "handoffs": [],
+  "protected_invariants": [
+    {
+      "id": "pitch:L78:1f12a8ae4884",
+      "heading": "Pitch Template Structure",
+      "source_line": 78,
+      "sha256": "1f12a8ae4884f5bb77c4e17af2dbed2798f851275d9c97062df43f211a50cee4",
+      "text": "- [Required when crossing seams. Strongly recommended otherwise.]",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pitch:L104:9c1655933ac1",
+      "heading": "Goal Alignment",
+      "source_line": 104,
+      "sha256": "9c1655933ac1952f2c40c6f8d15f790558497fa2073641e829f78cc65c8f8006",
+      "text": "- **Below the line (stretch):** Only if committed work finishes early",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pitch:L115:ded09ee944d3",
+      "heading": "Component Extraction",
+      "source_line": 115,
+      "sha256": "ded09ee944d3bd722a516ab22ad28d33af9831a4e2f1a70b12b06dbd97ddcfd6",
+      "text": "The skill does NOT maintain an external registry or assume mappings. It only reports what the pitch itself states. If a pitch doesn't name its components, that's a gap flagged in the Architecture dimension.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pitch:L120:01082470313d",
+      "heading": "`pitch components <source>`",
+      "source_line": 120,
+      "sha256": "01082470313d9a12f3baf5e6bee8af0e1bc27d93accd00d7a3bcd6b7db9b7ea8",
+      "text": "- Note team ownership only if stated in the pitch",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pitch:L220:3a5a23592da7",
+      "heading": "`pitch integration-proof <source>`",
+      "source_line": 220,
+      "sha256": "3a5a23592da7eec9d3b6961b2c1e52e8cf72be4551f38b94615823d485de7f2c",
+      "text": "- If no seams are crossed: state \"no integration proof required\" with score guidance",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pitch:L232:f2e69c214033",
+      "heading": "Prerequisites (only if architecture is missing)",
+      "source_line": 232,
+      "sha256": "f2e69c2140334091118b73ffb88b54015313f5fcdab805e2f67d494a2f75f31a",
+      "text": "### Prerequisites (only if architecture is missing)",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pitch:L244:2cb8c82423bb",
+      "heading": "What You Do NOT Need to Prove",
+      "source_line": 244,
+      "sha256": "2cb8c82423bbf65482a53508075b2648530c4be27392436d40b3417e48399932",
+      "text": "### What You Do NOT Need to Prove",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pitch:L257:5d312dddd77f",
+      "heading": "Gap to Close",
+      "source_line": 257,
+      "sha256": "5d312dddd77f581696db13628a6747490fd04c06b79b147ef15c1a75b0f495ef",
+      "text": "- No seams \u2192 \"Integration proof not required for single-team, single-component work. Score: 8-10 automatic.\"",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pitch:L282:71b7e2d10948",
+      "heading": "Integration Proof Graduated Scale",
+      "source_line": 282,
+      "sha256": "71b7e2d1094852a967b41a82ffe668f3b91de49a2929a0ec73e321bec4fd2eed",
+      "text": "| Contract State | What It Means | What the Pitch Must Show |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pitch:L286:cdbe1dcbd0f8",
+      "heading": "Integration Proof Graduated Scale",
+      "source_line": 286,
+      "sha256": "cdbe1dcbd0f8607242a7abb2652ce32cb7ed7069a9b0db9becc21abd57d6015f",
+      "text": "| **Does not exist** | No contract/API defined between these areas | Must work with owning team to define contract BEFORE betting. Spike proving the seam works. Score depends on progress. |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pitch:L302:1c74a6e1a201",
+      "heading": "Scoring Thresholds",
+      "source_line": 302,
+      "sha256": "1c74a6e1a201be8668c0ea714dd6b8c83e862ced48c1f66400cfd47a3007f9b8",
+      "text": "- **1-2:** Title only or one-liner.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pitch:L308:8122b0b659dc",
+      "heading": "Shaped Status Rules",
+      "source_line": 308,
+      "sha256": "8122b0b659dc140ffca0b213f06e07af2646032a4b0e300ff07dbc519bae9e59",
+      "text": "- **no** = Empty, title-only, or just a problem statement with no shaping.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pitch:L310:a24e26f1e6ab",
+      "heading": "Shaped Status Rules",
+      "source_line": 310,
+      "sha256": "a24e26f1e6ab71b90d217e56d01503aea468125d80688a3c7b2e066a3621641e",
+      "text": "**Key rule:** If rabbit holes are listed but not resolved (no answers, no owners, no evidence of investigation), the pitch is `partial` regardless of other scores. Rabbit hole resolution is a shaping exit criterion \u2014 they must be addressed DURING shaping, not deferred to build.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pitch:L313:d67872156327",
+      "heading": "Verdict Rules",
+      "source_line": 313,
+      "sha256": "d678721563279d04b01868241f2a4d964146a93a98196428c393480d8fa4ea6c",
+      "text": "- Verdict must match shaped status. A `partial` pitch CANNOT have a \"ready to bet\" verdict.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pitch:L324:5772c336924c",
+      "heading": "Review Output Rules",
+      "source_line": 324,
+      "sha256": "5772c336924c3a9029d790c9f4d2ef7e9fa41c7fbe0fd94464aad016842034e3",
+      "text": "- **Next actions must be specific to THIS pitch.** Not generic template advice. If the advice could apply to any pitch without modification, it doesn't belong in the review.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pitch:L325:bbfde09aa596",
+      "heading": "Review Output Rules",
+      "source_line": 325,
+      "sha256": "bbfde09aa596af6b19a1188bf1ea48ba4adf45e24c055af1dae3fce8ce893743",
+      "text": "- **Scores must be consistent.** The same pitch reviewed twice must produce the same score. If appetite-scaling changes the score, note why.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pitch:L406:77357dbdaba3",
+      "heading": "Required Inputs",
+      "source_line": 406,
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "text": "## Required Inputs",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pitch:L413:3d4b9f171064",
+      "heading": "Required Output",
+      "source_line": 413,
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "text": "## Required Output",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pitch:L431:e65ea8fc2cdb",
+      "heading": "Required Output",
+      "source_line": 431,
+      "sha256": "e65ea8fc2cdb5df64f038f8b02ccce37374a4aad3ffca08cd953aa1ee10f07ba",
+      "text": "- What you do NOT need to prove",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pitch:L491:940e8b557bbd",
+      "heading": "Seam 1: Auth + Transport Swap (lcp-mcp-server \u2192 AE site)",
+      "source_line": 491,
+      "sha256": "940e8b557bbd00643abfbdf3ac5e0fcfe0473c8df94372f26bed0c1a672659b8",
+      "text": "- **Current evidence:** None (code-level research only)",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pitch:L494:2cb8c82423bb",
+      "heading": "What You Do NOT Need to Prove",
+      "source_line": 494,
+      "sha256": "2cb8c82423bbf65482a53508075b2648530c4be27392436d40b3417e48399932",
+      "text": "### What You Do NOT Need to Prove",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pitch:L515:3f409f81bf49",
+      "heading": "Evaluation Rubric",
+      "source_line": 515,
+      "sha256": "3f409f81bf498a3744f2f94a21c81d8972f254564b5b010e550d0e3b03e1f203",
+      "text": "| Verdict matches shaped status | `partial` never says \"ready to bet\" | Mismatch |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pitch:L518:d267c1f0186b",
+      "heading": "Evaluation Rubric",
+      "source_line": 518,
+      "sha256": "d267c1f0186bb6e7a2decf8b4e1917b3d52c43d984f5d5666b7966f16f7045b1",
+      "text": "| Component extraction accurate | Only reports what the pitch states | Invents or assumes mappings |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pitch:L524:8862702a682e",
+      "heading": "Tool Boundaries",
+      "source_line": 524,
+      "sha256": "8862702a682ef182057d03212b0f4a8b9914bae7c26beb903bbc3a43c7bf02bb",
+      "text": "- **Forbidden:** Write directly to the delivery tracker spreadsheet. Change pitch priority or goal mapping without user approval. Approve pitches for betting (that's leadership's call).",
+      "kind": "invariant",
+      "mapped_to": []
+    }
+  ],
+  "risk_tiers": {
+    "critical": [],
+    "high": [],
+    "standard": []
+  },
+  "source_references": [
+    {
+      "path": "ssot/pitch.md",
+      "sha256": "3c4a74e1a6e11b2b097281ee1515cc28832df624b80e40c4c949b7c902a800e1"
+    }
+  ],
+  "known_ambiguities": [],
+  "coverage_policy": {
+    "normative_clauses": "100_percent_mapped_or_waived",
+    "nodes": "positive_and_boundary",
+    "transitions": "all_legal_and_forbidden",
+    "module_pairs": "all_legal_pairs",
+    "high_risk_tuples": "assigned_strength",
+    "critical_mutants": "100_percent_killed"
+  },
+  "normative_clause_coverage": {
+    "total": 24,
+    "mapped": 0,
+    "waived": 0
+  },
+  "review_status": "draft",
+  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs."
+}

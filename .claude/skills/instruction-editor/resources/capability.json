@@ -1,0 +1,275 @@
+{
+  "slug": "instruction-editor",
+  "manifest_version": "capability-fabric.v0",
+  "layers": {
+    "minimal": {
+      "capability_type": "skill",
+      "summary": "Edit prompts, skills, agent instructions, and workflow rules into direct, plain, scannable language without weakening behavior. Use when asked to remove AI-ish, Claude-ish, or ChatGPT-ish phrasing; apply Google developer style; reduce verbosity; tighten a skill; clarify actors and conditions; or preserve semantics while shortening instructions.",
+      "role": "workflow",
+      "domain_tags": [
+        "prompting",
+        "instruction",
+        "editor"
+      ],
+      "required_inputs": [
+        "the instruction artifact or path",
+        "the requested mode, defaulting to `audit`",
+        "any authorized semantic changes",
+        "an upstream Goal Contract or topology when available"
+      ],
+      "expected_outputs": [
+        "`Edited Artifact`",
+        "`Edit Ledger`",
+        "`Preservation Map`",
+        "`Before / After Size`",
+        "`Behavioral Claims Requiring Proof`",
+        "`Unresolved Ambiguities`"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "resources": [
+        "ssot/instruction-editor.md"
+      ],
+      "packaging_profile": {
+        "capability_type": "skill",
+        "primary_surfaces": {
+          "codex": [
+            "codex_skill"
+          ],
+          "gemini": [
+            "gemini_skill"
+          ],
+          "claude": [
+            "claude_skill"
+          ],
+          "kiro": [
+            "kiro_skill"
+          ]
+        },
+        "wrapper_surfaces": {
+          "codex": [],
+          "gemini": [
+            "skill_wrapper"
+          ],
+          "claude": [
+            "skill_wrapper",
+            "plugin_wrapper"
+          ],
+          "kiro": [
+            "skill_wrapper",
+            "power_wrapper"
+          ]
+        },
+        "notes": [
+          "wrapper surfaces are additive deployment forms, not capability types",
+          "orchestrators must not infer execution authority from wrapper presence alone"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ]
+      },
+      "source_provenance": {
+        "source_type": "LOCAL_FILE",
+        "normalized_source": "ssot/instruction-editor.md",
+        "policy_rule_id": "ssot.instruction-editor",
+        "content_sha256": "ssot"
+      },
+      "confidence": 0.96,
+      "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+      "review_status": "ready_for_orchestrator_review",
+      "display_name": "Instruction Editor"
+    },
+    "expanded": {
+      "relationship_suggestions": [],
+      "capability_dependencies": [],
+      "overlap_candidates": [],
+      "migration_notes": [
+        "If the capability lands, compare it against existing entries before apply.",
+        "Relationship suggestions are advisory only and do not imply runtime routing."
+      ],
+      "adjustment_recommendations": [
+        "add an explicit primary objective before packaging",
+        "add deterministic in-scope sections to improve routing fitness",
+        "capture quality constraints or non-negotiables"
+      ]
+    },
+    "org_graph": {
+      "org_role": "workflow_provider",
+      "reports_to_suggestions": [],
+      "delegates_to_suggestions": [],
+      "collaborates_with_suggestions": [
+        "prompting",
+        "instruction"
+      ],
+      "authority_tier": "advisory",
+      "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+    }
+  },
+  "display_name": "Instruction Editor",
+  "declared_capability": "skill",
+  "inferred_capability": "skill",
+  "expected_surface_names": [
+    "codex_skill",
+    "gemini_skill",
+    "claude_skill",
+    "kiro_skill"
+  ],
+  "rubric_version": "capability-fabric.v0",
+  "invocation_hints": [
+    "remove AI-ish, Claude-ish, ChatGPT-ish, corporate, or exhausting phrasing",
+    "apply Google developer documentation style to a prompt or skill",
+    "tighten or shorten instructions without changing behavior",
+    "clarify actors, conditions, commands, or outputs",
+    "audit an instruction artifact for readability or translation risk",
+    "compare an edited instruction against its original contract"
+  ],
+  "descriptor_version": "capability-fabric.descriptor.v0",
+  "family_slug": "instruction-editor",
+  "shared_summary": "Edit prompts, skills, agent instructions, and workflow rules into direct, plain, scannable language without weakening behavior. Use when asked to remove AI-ish, Claude-ish, or ChatGPT-ish phrasing; apply Google developer style; reduce verbosity; tighten a skill; clarify actors and conditions; or preserve semantics while shortening instructions.",
+  "shared_constraints": [],
+  "modes": [
+    {
+      "mode_slug": "audit",
+      "display_name": "audit",
+      "source_refs": [
+        "ssot/instruction-editor.md"
+      ],
+      "mode_summary": "Declared by the canonical `audit` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    },
+    {
+      "mode_slug": "rewrite",
+      "display_name": "rewrite",
+      "source_refs": [
+        "ssot/instruction-editor.md"
+      ],
+      "mode_summary": "Declared by the canonical `rewrite` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    },
+    {
+      "mode_slug": "diff",
+      "display_name": "diff",
+      "source_refs": [
+        "ssot/instruction-editor.md"
+      ],
+      "mode_summary": "Declared by the canonical `diff` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    },
+    {
+      "mode_slug": "verify",
+      "display_name": "verify",
+      "source_refs": [
+        "ssot/instruction-editor.md"
+      ],
+      "mode_summary": "Declared by the canonical `verify` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    }
+  ],
+  "benchmark_sources": [],
+  "consumption_hints": {},
+  "historical_baseline": {
+    "slug": "instruction-editor",
+    "strategy": "head_snapshot",
+    "group": "derived_current",
+    "baseline_path": "ssot/instruction-editor.md",
+    "selected_commit": null,
+    "richness_score": 10,
+    "line_count": 115,
+    "reason": "No git history was available, so the current SSOT body is the strongest available baseline.",
+    "equivalent_commits": [],
+    "expected_companions": [],
+    "operator_invariants": [],
+    "scenario_matrix": [
+      {
+        "id": "operational_invocation",
+        "kind": "operational_contract",
+        "label": "operational invocation surface",
+        "must_contain": [
+          "## Invocation"
+        ]
+      },
+      {
+        "id": "stepwise_workflow_contract",
+        "kind": "operational_contract",
+        "label": "stepwise workflow contract",
+        "must_contain": [
+          "## Workflow Contract"
+        ]
+      }
+    ],
+    "historical_proof": {},
+    "source": "current_ssot",
+    "verified_by_git_history": false,
+    "has_baseline_text": true
+  },
+  "quality_validation_matrix": [
+    {
+      "id": "operational_invocation",
+      "kind": "operational_contract",
+      "label": "operational invocation surface",
+      "must_contain": [
+        "## Invocation"
+      ]
+    },
+    {
+      "id": "stepwise_workflow_contract",
+      "kind": "operational_contract",
+      "label": "stepwise workflow contract",
+      "must_contain": [
+        "## Workflow Contract"
+      ]
+    }
+  ]
+}

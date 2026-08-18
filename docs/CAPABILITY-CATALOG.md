@@ -2,7 +2,7 @@
 
 Generated from canonical manifest and descriptor metadata. Use this page to see what Core-Prompts ships, what each capability is for, and where it lands.
 
-- Capability count: `23`
+- Capability count: `24`
 
 ## Start Here
 - `docs-review-expert` — Docs Review Expert — Documentation IA, Drift, and Release Hygiene: Documentation Review Expert for information architecture, explainable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.
@@ -12,10 +12,10 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `testing` — Testing Studio — Test Design and Coverage Analysis: Testing Studio for unit-test generation, end-to-end test design, edge-case discovery, and coverage gap analysis.
 
 ## By CLI
-- `claude`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `codex`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `gemini`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `kiro`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `claude`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `instruction-editor`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `codex`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `instruction-editor`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `gemini`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `instruction-editor`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `kiro`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `instruction-editor`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
 
 ## By Use Case
 - `address`: `address-code-review`
@@ -33,18 +33,20 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `demo`: `demo-recorder`
 - `docs`: `docs-review-expert`
 - `dynamic`: `dynamic-html-presentations`
+- `editor`: `instruction-editor`
 - `expert`: `docs-review-expert`
 - `feature`: `feature-status`
 - `gitops`: `gitops-review`
 - `health`: `codebase-health-audit`
 - `html`: `dynamic-html-presentations`
 - `import`: `codebase-health-audit`, `uac-import`
+- `instruction`: `instruction-editor`
 - `intel`: `weekly-intel`
 - `mentor`: `mentor`
 - `pitch`: `pitch`
 - `planning`: `uac-import`
 - `presentations`: `dynamic-html-presentations`
-- `prompting`: `code-review`, `mentor`, `uac-import`
+- `prompting`: `code-review`, `instruction-editor`, `mentor`, `uac-import`
 - `pulse`: `pulse`
 - `recorder`: `demo-recorder`
 - `report`: `eng-report`
@@ -250,6 +252,20 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
   - use the internal incident runbook for this Appian incident
   - switch to generic incident commander guidance
 - Summary: Incident Commander Assistant — keeps an Incident Commander on-process during active incidents. Tracks phase transitions, prompts for required actions, validates artifacts, and flags missed steps without making incident decisions.
+
+### Instruction Editor
+- Slug: `instruction-editor`
+- Type: `skill`
+- Install target: `repo_local`
+- Supported CLIs: `claude, codex, gemini, kiro`
+- Invocation hints:
+  - remove AI-ish, Claude-ish, ChatGPT-ish, corporate, or exhausting phrasing
+  - apply Google developer documentation style to a prompt or skill
+  - tighten or shorten instructions without changing behavior
+  - clarify actors, conditions, commands, or outputs
+  - audit an instruction artifact for readability or translation risk
+  - compare an edited instruction against its original contract
+- Summary: Edit prompts, skills, agent instructions, and workflow rules into direct, plain, scannable language without weakening behavior. Use when asked to remove AI-ish, Claude-ish, or ChatGPT-ish phrasing; apply Google developer style; reduce verbosity; tighten a skill; clarify actors and conditions; or preserve semantics while shortening instructions.
 
 ### Mentor — Senior Engineering Oversight and Workflow Guidance
 - Slug: `mentor`

@@ -1,0 +1,224 @@
+{
+  "schema_version": "CapabilityTopology.v1",
+  "slug": "analyze-context",
+  "ssot_sha256": "5a0e6df746e2e05b43c03edeedb713ed97f73b7b841ed5fb9718da7f54b7dc50",
+  "explicit_invocations": [],
+  "semantic_triggers": [],
+  "aliases_shortcuts": [],
+  "auto_routes": [],
+  "nodes": {
+    "commands": [],
+    "modes_modules": [
+      {
+        "id": "2e2d5c5649b7",
+        "label": "Workflow",
+        "source_line": 11
+      },
+      {
+        "id": "6db593f486ee",
+        "label": "Failure Mode To Avoid",
+        "source_line": 121
+      }
+    ],
+    "controls": [],
+    "modifiers": []
+  },
+  "composition": {
+    "legal_pairs": [],
+    "forbidden_pairs": [],
+    "canonical_order": [],
+    "requirements": [],
+    "supersession": []
+  },
+  "state_machine": {
+    "states": [],
+    "transitions": [],
+    "forbidden_transitions": []
+  },
+  "outputs": [
+    "- the canonical memory file set in use",
+    "- current progress state",
+    "- key findings accumulated so far",
+    "- next item or next analysis action"
+  ],
+  "authority_boundaries": [
+    "analyze-context:L6:050433e604b4",
+    "analyze-context:L21:58cc6556252e",
+    "analyze-context:L26:ce29a924a519",
+    "analyze-context:L27:2bfeab027cf8",
+    "analyze-context:L65:983409ed302d",
+    "analyze-context:L66:2e1127e53b15",
+    "analyze-context:L67:2ad1af6a8eb9",
+    "analyze-context:L68:a6a29a656d24"
+  ],
+  "resources": [],
+  "handoffs": [
+    "## Companion Capability Matrix",
+    "- escalation: if the work becomes design, review, testing, or decision synthesis, route to the companion capability instead of overextending this one",
+    "| If the analysis reveals this need | Route to | Required handoff |"
+  ],
+  "protected_invariants": [
+    {
+      "id": "analyze-context:L4:aa5cb7c9b6e7",
+      "heading": "Purpose",
+      "source_line": 4,
+      "sha256": "aa5cb7c9b6e729812f25940cec044c7056cc7fcdd87175af41327e42bda3c332",
+      "text": "Use this capability for multi-file or multi-source analysis that must preserve context, findings, and progress across long sessions, memory compaction, or multi-turn review work.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "analyze-context:L6:050433e604b4",
+      "heading": "Purpose",
+      "source_line": 6,
+      "sha256": "050433e604b4bf4e3768fef92dd28edd475e8a2ef30a1d0b5782f409ce10c7e6",
+      "text": "Do not use this capability when the main job is to make a final decision, harden a prompt or plan, import a capability, design a system, or prove one variant performs better than another.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "analyze-context:L21:58cc6556252e",
+      "heading": "Tool Boundaries",
+      "source_line": 21,
+      "sha256": "58cc6556252e83cb0de755e7341157861d7f8bb4ecc0f397f8cf488efb85459c",
+      "text": "- forbidden: pretending analysis is implementation, silently changing unrelated repo state, or replacing canonical source documents with temporary notes",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "analyze-context:L26:ce29a924a519",
+      "heading": "Rules",
+      "source_line": 26,
+      "sha256": "ce29a924a5191687642a21292b70508aa1b1db6cbbcc834f498d5bf214c35c0a",
+      "text": "- Do not fork versioned analysis memory files for the same initiative.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "analyze-context:L27:2bfeab027cf8",
+      "heading": "Rules",
+      "source_line": 27,
+      "sha256": "2bfeab027cf8c50fecca59a18bf827d7af10762861a3bfeac98e63f83e954532",
+      "text": "- Do not keep important findings only in chat history.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "analyze-context:L30:043edc088932",
+      "heading": "Rules",
+      "source_line": 30,
+      "sha256": "043edc088932bb39f78b28ae52afde4f2d16f15feec79b37d052d22c3e933698",
+      "text": "- Archive only when the initiative is complete.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "analyze-context:L40:77357dbdaba3",
+      "heading": "Required Inputs",
+      "source_line": 40,
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "text": "## Required Inputs",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "analyze-context:L46:3d4b9f171064",
+      "heading": "Required Output",
+      "source_line": 46,
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "text": "## Required Output",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "analyze-context:L47:c34906b1f1c3",
+      "heading": "Required Output",
+      "source_line": 47,
+      "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+      "text": "Every substantial response must include:",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "analyze-context:L54:47f8eb7b1f50",
+      "heading": "Companion Capability Matrix",
+      "source_line": 54,
+      "sha256": "47f8eb7b1f5062692ab13223019b0130f4f79b984441288b2a24c0555923cdd4",
+      "text": "| If the analysis reveals this need | Route to | Required handoff |",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "analyze-context:L65:983409ed302d",
+      "heading": "Constraints",
+      "source_line": 65,
+      "sha256": "983409ed302d318db8aac120b99299a42514161ff5a44b0c5d9eb2c3740e74e8",
+      "text": "- Do not start long-running analysis directly on `main` or `master`.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "analyze-context:L66:2e1127e53b15",
+      "heading": "Constraints",
+      "source_line": 66,
+      "sha256": "2e1127e53b153f7008cb38697e2d2ea9710602151efb20f72b16f35bd737638c",
+      "text": "- Do not create multiple competing memory sets for the same initiative.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "analyze-context:L67:2ad1af6a8eb9",
+      "heading": "Constraints",
+      "source_line": 67,
+      "sha256": "2ad1af6a8eb9ee6ce57ee09e262a17f75cac09cbea63834b15edf59b390f1fa3",
+      "text": "- Do not let insights remain only in the todo file.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "analyze-context:L68:a6a29a656d24",
+      "heading": "Constraints",
+      "source_line": 68,
+      "sha256": "a6a29a656d24f832189c0c85aa47e89bf86ac4bb2333232e727769ced2dbf1dc",
+      "text": "- Do not archive mid-initiative.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "analyze-context:L71:3a8657310f47",
+      "heading": "Safety Check",
+      "source_line": 71,
+      "sha256": "3a8657310f471c057fd1160548f8962b53524ae461e5288c5d8a321a4a2089de",
+      "text": "Before proceeding, you MUST check the current branch.",
+      "kind": "invariant",
+      "mapped_to": []
+    }
+  ],
+  "risk_tiers": {
+    "critical": [],
+    "high": [],
+    "standard": []
+  },
+  "source_references": [
+    {
+      "path": "ssot/analyze-context.md",
+      "sha256": "5a0e6df746e2e05b43c03edeedb713ed97f73b7b841ed5fb9718da7f54b7dc50"
+    }
+  ],
+  "known_ambiguities": [],
+  "coverage_policy": {
+    "normative_clauses": "100_percent_mapped_or_waived",
+    "nodes": "positive_and_boundary",
+    "transitions": "all_legal_and_forbidden",
+    "module_pairs": "all_legal_pairs",
+    "high_risk_tuples": "assigned_strength",
+    "critical_mutants": "100_percent_killed"
+  },
+  "normative_clause_coverage": {
+    "total": 15,
+    "mapped": 0,
+    "waived": 0
+  },
+  "review_status": "draft",
+  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs."
+}

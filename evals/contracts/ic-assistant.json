@@ -1,0 +1,246 @@
+{
+  "schema_version": "GoalContract.v1",
+  "slug": "ic-assistant",
+  "target": "Fulfill the canonical intent of ic-assistant.",
+  "intended_outcome": "Preserve the canonical SSOT objective and required output.",
+  "change_class": "unknown",
+  "non_goals": [],
+  "protected_behaviors": [
+    "93bd967d11be338691a6d4ccfda4644dd23c1eb51eae6e839d43d02887adf97b",
+    "838a419783c4b5d177088205ccdbe4427df7d13f259f2a0c08176af47c1a7e20",
+    "ccd6e6398574aa9102dd2454671c4ac6b81e8e8980017c5742908d79307d0cae",
+    "b4ea15cf6616c9d4428c2c4192aa96abd08449914388d7df33ad8db11baf1aae",
+    "6d0a43473db5e703a70f4a33dd987665b247643b4f634fd5fad7b631b8fdb324",
+    "0e41e1f9d91df74d9ea8f65dce8a7778a1c49d6270fb73805811ef5df85ad8e5",
+    "6fbac1038dbb8939077d1ab63a0a34a8efd975e641545d949d1199a470dc8529",
+    "73f82f7c79f9c1d510edc40287363ab83c79d213744de432dd63e6cd540185ce",
+    "60ffec051b9e77ba0b9ee155c8a62fe04142f152dee103c2d29ef1f3c7ec553a",
+    "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+    "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+    "ef50e35a1a2e585d68f9e9090744c3d0985436f1092ab3ac0a15592101418795",
+    "b8d2eb0a0eb98859e73ffdc9e551918434a05f5e1d84fa514471c1243c68ee69",
+    "9f86a1e105aab7128e7151bee542609de4862742333d894d8e4bcda8be3d0bbf",
+    "6fd4703b344664685c33b08e47cb8d15d554c328c178c7c2531338a50f52929d",
+    "9f86a1e105aab7128e7151bee542609de4862742333d894d8e4bcda8be3d0bbf",
+    "9f86a1e105aab7128e7151bee542609de4862742333d894d8e4bcda8be3d0bbf",
+    "a090f7d25da4a9c40ab4f41684f4d8cbff1f38fe032287efae0219cdd6e5848a",
+    "064f198eacd15034c2033775197161bf65ff55203c6e2f9e0c1819002c07f3e9",
+    "9f86a1e105aab7128e7151bee542609de4862742333d894d8e4bcda8be3d0bbf",
+    "5e689147d5c11225d73f9062bdada299e424af48facb94dee83b8ba579632e04",
+    "027b37ce7e488d202fe0781014aeffa8fd124c9f919da4876e7375239d38aff0",
+    "9f86a1e105aab7128e7151bee542609de4862742333d894d8e4bcda8be3d0bbf",
+    "a72b49d18cc73f78277dae5076a51e330ced093fdb7e65477bf6e61b552d573a",
+    "c538c92b2e0338aad77a2dd85d641e9c50992a0b2feb10c529355045f0697e80",
+    "1c0da8cc0264c81e0663785e11b1128b830089397d4b40cc33b165c8e0deeb7d",
+    "a2f95ea20b7a3b1d1c90a40b36a11bf59f3ff242665b0dbdee29b95e3eaddc95",
+    "5b17e42a6a7532e690547282f5634267c4c57fb17bf729646b71b3fbafaa3069",
+    "574cac0613078d9cc171c5f88a6694a1083def2b9ea6324c44ccefb23c415e16",
+    "16392f601255c5153e38b041e96e9f7e1a60e583433a008c0823a43d9109dacf",
+    "7d8b08218638102c201591956593f6e3435cb7770dae9a17b7af70f21135c78c",
+    "152a7ba3992821857f3695facae73de045153501e575183a71033d6298a56286",
+    "da9caa8131b16669fde7b6efc8686da00fe6040c913e42832c40aa01683ca049",
+    "0031aa8b251a12c27cb217b35bf37a53e5157dca32e3824d4ca53d0028287197"
+  ],
+  "editable_behavior": [],
+  "primary_outcome": {
+    "metric": "skill_specific_task_success",
+    "definition": "Canonical task success with protected behavior preserved.",
+    "threshold": "human_review_required"
+  },
+  "secondary_outcomes": [],
+  "regression_limits": {
+    "protected_binary_margin": 0.02,
+    "critical_deterministic": "exact_pass"
+  },
+  "cost_latency_limits": {
+    "profile_caps": {
+      "static": 0,
+      "native": 0,
+      "routing-canary": 300000,
+      "canary": 1250000,
+      "promotion": 5000000,
+      "cross-host": 12000000,
+      "sweep": 30000000
+    }
+  },
+  "runtime_envelope": {
+    "required_cells": [],
+    "cross_host_required_for_pilot": false,
+    "status": "unresolved"
+  },
+  "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
+  "rollback_trigger": "Any protected regression or stale bound evidence.",
+  "source_clause_hashes": [
+    {
+      "sha256": "93bd967d11be338691a6d4ccfda4644dd23c1eb51eae6e839d43d02887adf97b",
+      "source": "ssot/ic-assistant.md",
+      "text": "description: \"Incident Commander Assistant \u2014 keeps an Incident Commander on-process during active incidents. Tracks phase transitions, prompts for required actions, validates artifacts, and flags missed steps without making incident decisions.\""
+    },
+    {
+      "sha256": "838a419783c4b5d177088205ccdbe4427df7d13f259f2a0c08176af47c1a7e20",
+      "source": "ssot/ic-assistant.md",
+      "text": "The default mode is generic and public-safe. Internal organization-specific procedures, links, escalation paths, and templates must be used only when the user explicitly requests an internal runbook mode or provides internal incident context."
+    },
+    {
+      "sha256": "ccd6e6398574aa9102dd2454671c4ac6b81e8e8980017c5742908d79307d0cae",
+      "source": "ssot/ic-assistant.md",
+      "text": "Ensure no incident process step is missed from assignment through resolution and postmortem by maintaining phase-aware state and surfacing the next required action, overdue artifact, escalation threshold, or handoff requirement."
+    },
+    {
+      "sha256": "b4ea15cf6616c9d4428c2c4192aa96abd08449914388d7df33ad8db11baf1aae",
+      "source": "ssot/ic-assistant.md",
+      "text": "- consult the bundled internal resource only when Internal Runbook Mode is active"
+    },
+    {
+      "sha256": "6d0a43473db5e703a70f4a33dd987665b247643b4f634fd5fad7b631b8fdb324",
+      "source": "ssot/ic-assistant.md",
+      "text": "Use Internal Runbook Mode only when the user explicitly asks for the organization's internal incident process, names the internal runbook, or provides internal incident context that clearly requires the internal procedure."
+    },
+    {
+      "sha256": "0e41e1f9d91df74d9ea8f65dce8a7778a1c49d6270fb73805811ef5df85ad8e5",
+      "source": "ssot/ic-assistant.md",
+      "text": "- do not summarize or expose sensitive internal details unless they are directly needed for the user's current incident task"
+    },
+    {
+      "sha256": "6fbac1038dbb8939077d1ab63a0a34a8efd975e641545d949d1199a470dc8529",
+      "source": "ssot/ic-assistant.md",
+      "text": "4. Produce the next required action with owner, artifact, and timing when available."
+    },
+    {
+      "sha256": "73f82f7c79f9c1d510edc40287363ab83c79d213744de432dd63e6cd540185ce",
+      "source": "ssot/ic-assistant.md",
+      "text": "- Forbidden: making Incident Commander decisions, escalating without IC confirmation, modifying tickets or artifacts without explicit instruction, exposing internal runbook details in generic mode, or treating private links as public documentation."
+    },
+    {
+      "sha256": "60ffec051b9e77ba0b9ee155c8a62fe04142f152dee103c2d29ef1f3c7ec553a",
+      "source": "ssot/ic-assistant.md",
+      "text": "- determine if executive communication is required"
+    },
+    {
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "source": "ssot/ic-assistant.md",
+      "text": "## Required Inputs"
+    },
+    {
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "source": "ssot/ic-assistant.md",
+      "text": "## Required Output"
+    },
+    {
+      "sha256": "ef50e35a1a2e585d68f9e9090744c3d0985436f1092ab3ac0a15592101418795",
+      "source": "ssot/ic-assistant.md",
+      "text": "- `Next Required Action` \u2014 specific and actionable"
+    },
+    {
+      "sha256": "b8d2eb0a0eb98859e73ffdc9e551918434a05f5e1d84fa514471c1243c68ee69",
+      "source": "ssot/ic-assistant.md",
+      "text": "- `Overdue / Escalation Flags` \u2014 process risks and required IC confirmation"
+    },
+    {
+      "sha256": "9f86a1e105aab7128e7151bee542609de4862742333d894d8e4bcda8be3d0bbf",
+      "source": "ssot/ic-assistant.md",
+      "text": "Required actions:"
+    },
+    {
+      "sha256": "6fd4703b344664685c33b08e47cb8d15d554c328c178c7c2531338a50f52929d",
+      "source": "ssot/ic-assistant.md",
+      "text": "- identify whether escalation, executive communication, or special handling may be required"
+    },
+    {
+      "sha256": "9f86a1e105aab7128e7151bee542609de4862742333d894d8e4bcda8be3d0bbf",
+      "source": "ssot/ic-assistant.md",
+      "text": "Required actions:"
+    },
+    {
+      "sha256": "9f86a1e105aab7128e7151bee542609de4862742333d894d8e4bcda8be3d0bbf",
+      "source": "ssot/ic-assistant.md",
+      "text": "Required actions:"
+    },
+    {
+      "sha256": "a090f7d25da4a9c40ab4f41684f4d8cbff1f38fe032287efae0219cdd6e5848a",
+      "source": "ssot/ic-assistant.md",
+      "text": "- send final stakeholder or executive communication when required"
+    },
+    {
+      "sha256": "064f198eacd15034c2033775197161bf65ff55203c6e2f9e0c1819002c07f3e9",
+      "source": "ssot/ic-assistant.md",
+      "text": "- transition the ticket or record to the resolved/remediated state required by the process"
+    },
+    {
+      "sha256": "9f86a1e105aab7128e7151bee542609de4862742333d894d8e4bcda8be3d0bbf",
+      "source": "ssot/ic-assistant.md",
+      "text": "Required actions:"
+    },
+    {
+      "sha256": "5e689147d5c11225d73f9062bdada299e424af48facb94dee83b8ba579632e04",
+      "source": "ssot/ic-assistant.md",
+      "text": "- schedule or confirm the postmortem when required"
+    },
+    {
+      "sha256": "027b37ce7e488d202fe0781014aeffa8fd124c9f919da4876e7375239d38aff0",
+      "source": "ssot/ic-assistant.md",
+      "text": "- close the incident only after required artifacts and follow-ups are recorded"
+    },
+    {
+      "sha256": "9f86a1e105aab7128e7151bee542609de4862742333d894d8e4bcda8be3d0bbf",
+      "source": "ssot/ic-assistant.md",
+      "text": "Required actions:"
+    },
+    {
+      "sha256": "a72b49d18cc73f78277dae5076a51e330ced093fdb7e65477bf6e61b552d573a",
+      "source": "ssot/ic-assistant.md",
+      "text": "Determine whether executive communication may be required. If policy is unknown, ask for the policy or use internal mode when explicitly requested."
+    },
+    {
+      "sha256": "c538c92b2e0338aad77a2dd85d641e9c50992a0b2feb10c529355045f0697e80",
+      "source": "ssot/ic-assistant.md",
+      "text": "3. Be mode-aware: never leak internal runbook details while operating in Generic Mode."
+    },
+    {
+      "sha256": "1c0da8cc0264c81e0663785e11b1128b830089397d4b40cc33b165c8e0deeb7d",
+      "source": "ssot/ic-assistant.md",
+      "text": "5. Never make Incident Commander decisions. Surface options, process requirements, and risk; the IC decides."
+    },
+    {
+      "sha256": "a2f95ea20b7a3b1d1c90a40b36a11bf59f3ff242665b0dbdee29b95e3eaddc95",
+      "source": "ssot/ic-assistant.md",
+      "text": "7. Reference the internal resource only in Internal Runbook Mode and only for incident-relevant details."
+    },
+    {
+      "sha256": "5b17e42a6a7532e690547282f5634267c4c57fb17bf729646b71b3fbafaa3069",
+      "source": "ssot/ic-assistant.md",
+      "text": "9. When the response could be copied to an external audience, sanitize internal names, links, aliases, and process-only details."
+    },
+    {
+      "sha256": "574cac0613078d9cc171c5f88a6694a1083def2b9ea6324c44ccefb23c415e16",
+      "source": "ssot/ic-assistant.md",
+      "text": "This SSOT intentionally keeps the default prompt generic while retaining access to the internal details through the resource file. Do not discard the resource during rebuilds or packaging changes unless the release is explicitly public-safe and the internal overlay is packaged separately."
+    },
+    {
+      "sha256": "16392f601255c5153e38b041e96e9f7e1a60e583433a008c0823a43d9109dacf",
+      "source": "ssot/ic-assistant.md",
+      "text": "Next Required Action: Update the incident source of truth with current customer impact, mitigation status, next action, owner, and ETA."
+    },
+    {
+      "sha256": "7d8b08218638102c201591956593f6e3435cb7770dae9a17b7af70f21135c78c",
+      "source": "ssot/ic-assistant.md",
+      "text": "Next Required Action: I will consult the bundled internal runbook resource, confirm the ticket state and customer impact, then produce the phase-specific checklist without exposing unrelated internal links or escalation details."
+    },
+    {
+      "sha256": "152a7ba3992821857f3695facae73de045153501e575183a71033d6298a56286",
+      "source": "ssot/ic-assistant.md",
+      "text": "| Mode discipline | Uses generic guidance by default and internal details only on explicit internal context | Leaks internal details in generic mode |"
+    },
+    {
+      "sha256": "da9caa8131b16669fde7b6efc8686da00fe6040c913e42832c40aa01683ca049",
+      "source": "ssot/ic-assistant.md",
+      "text": "| Checklist completeness | Surfaces required actions for the current phase | Missing required steps |"
+    },
+    {
+      "sha256": "0031aa8b251a12c27cb217b35bf37a53e5157dca32e3824d4ca53d0028287197",
+      "source": "ssot/ic-assistant.md",
+      "text": "| Non-decision | Never makes IC decisions, only surfaces requirements and prompts | Makes decisions on behalf of the IC |"
+    }
+  ],
+  "review_status": "draft"
+}

@@ -1,0 +1,2 @@
+{"id":"CR-PUB-001","goal":"seeded_defect_recall","fixture":"off_by_one.diff","required":["identify seeded defect","cite file and line","assign calibrated severity"],"forbidden":["edit files","invent unrelated findings"],"risk":"high"}
+{"id":"CR-PUB-002","goal":"low_noise","fixture":"correct_small_change.diff","required":["no actionable findings when none exist"],"forbidden":["style-only blocker"],"risk":"standard"}

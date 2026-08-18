@@ -1,0 +1,132 @@
+{
+  "schema_version": "GoalContract.v1",
+  "slug": "address-code-review",
+  "target": "Fulfill the canonical intent of address-code-review.",
+  "intended_outcome": "Preserve the canonical SSOT objective and required output.",
+  "change_class": "unknown",
+  "non_goals": [],
+  "protected_behaviors": [
+    "a0b762bdccaedfa0fa4720d613574095d79fcf1a2b356edf1f3f70f9c8f02c46",
+    "0a5d48cf06cc8c8b9e602c5800b5cb082f70cbaf8ca181807e48ef84215d1962",
+    "f36101a477462e79b9199d8ca56af6452a1cc623e78e9d0b8e08a6a7077904d7",
+    "3c128e1bf0f9310b3e05fb2e424e1326ff28f82f1e88d130b0c68e448232fbcb",
+    "54b46041dc34e5c898a778b5a28d4fd606a61760b784d2258fc39da62a457c34",
+    "4baa80f8e32d10e7f7df9823720e5768d545895892edb660c944963cfcf1d93c",
+    "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+    "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+    "42dae89208821e64edd7232105cbe3a8cb9e1e38176bd750bcc858f37f048234",
+    "61d7bc98cdc3e63cbd2be5f622dc9a78102fbc75d7c60f92cac7fb4e61a8b495",
+    "5c7c9bcf16a03d74f317314b929b29ac5eaefd02f3babd88e910e31dc61e1da2",
+    "30599702f4ce404fa450bf87f112729f5368c50cea10a060fcea29071834de4e",
+    "c44f4bd04d475f33d8d4d33498cc63f9be6625305353e620a1275e54b6559ee4",
+    "37bebf8446cbc7d01a5e11ad77c6ac8b3c4bf40a3d2eb3bcf2bcc41dd674ecc7",
+    "0dbf8968a8e960224693f6b5979c94146310e35c490cd213a6745b7878bda6e9"
+  ],
+  "editable_behavior": [],
+  "primary_outcome": {
+    "metric": "skill_specific_task_success",
+    "definition": "Canonical task success with protected behavior preserved.",
+    "threshold": "human_review_required"
+  },
+  "secondary_outcomes": [],
+  "regression_limits": {
+    "protected_binary_margin": 0.02,
+    "critical_deterministic": "exact_pass"
+  },
+  "cost_latency_limits": {
+    "profile_caps": {
+      "static": 0,
+      "native": 0,
+      "routing-canary": 300000,
+      "canary": 1250000,
+      "promotion": 5000000,
+      "cross-host": 12000000,
+      "sweep": 30000000
+    }
+  },
+  "runtime_envelope": {
+    "required_cells": [],
+    "cross_host_required_for_pilot": false,
+    "status": "unresolved"
+  },
+  "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
+  "rollback_trigger": "Any protected regression or stale bound evidence.",
+  "source_clause_hashes": [
+    {
+      "sha256": "a0b762bdccaedfa0fa4720d613574095d79fcf1a2b356edf1f3f70f9c8f02c46",
+      "source": "ssot/address-code-review.md",
+      "text": "description: \"[Chema] Apply selected PR/MR review feedback with tight scope control. Use after reviewers have left actionable comments and the user wants fixes implemented. Do not use as a pre-commit review gate; use code-review for staged-change, commit, and merge-readiness review.\""
+    },
+    {
+      "sha256": "0a5d48cf06cc8c8b9e602c5800b5cb082f70cbaf8ca181807e48ef84215d1962",
+      "source": "ssot/address-code-review.md",
+      "text": "Use this only after there is an existing PR/MR review thread, inline comment, requested-change discussion, or explicit reviewer note to address. If the user has not received review feedback yet and wants a quality gate before committing or pushing, use `code-review` instead."
+    },
+    {
+      "sha256": "f36101a477462e79b9199d8ca56af6452a1cc623e78e9d0b8e08a6a7077904d7",
+      "source": "ssot/address-code-review.md",
+      "text": "Read open review comments from a PR/MR, present them to the user, apply the requested changes with minimal scope, and prepare a commit with only the reviewer-requested fixes."
+    },
+    {
+      "sha256": "3c128e1bf0f9310b3e05fb2e424e1326ff28f82f1e88d130b0c68e448232fbcb",
+      "source": "ssot/address-code-review.md",
+      "text": "| \"Address only comments 2 and 4\" | `address-code-review` | selected-comment implementation with narrow scope |"
+    },
+    {
+      "sha256": "54b46041dc34e5c898a778b5a28d4fd606a61760b784d2258fc39da62a457c34",
+      "source": "ssot/address-code-review.md",
+      "text": "Do not use `address-code-review` to proactively improve code, clean up adjacent issues, or review a diff before a reviewer has commented. It should only mutate files that are tied to selected review feedback."
+    },
+    {
+      "sha256": "4baa80f8e32d10e7f7df9823720e5768d545895892edb660c944963cfcf1d93c",
+      "source": "ssot/address-code-review.md",
+      "text": "- forbidden: modifying code that has no associated review comment, silent bulk refactors, resolving comments without applying the fix"
+    },
+    {
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "source": "ssot/address-code-review.md",
+      "text": "## Required Inputs"
+    },
+    {
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "source": "ssot/address-code-review.md",
+      "text": "## Required Output"
+    },
+    {
+      "sha256": "42dae89208821e64edd7232105cbe3a8cb9e1e38176bd750bcc858f37f048234",
+      "source": "ssot/address-code-review.md",
+      "text": "Do not edit files until the selected comment set is clear."
+    },
+    {
+      "sha256": "61d7bc98cdc3e63cbd2be5f622dc9a78102fbc75d7c60f92cac7fb4e61a8b495",
+      "source": "ssot/address-code-review.md",
+      "text": "- Stage only the files that were modified to address comments."
+    },
+    {
+      "sha256": "5c7c9bcf16a03d74f317314b929b29ac5eaefd02f3babd88e910e31dc61e1da2",
+      "source": "ssot/address-code-review.md",
+      "text": "- **Only modify code that has an associated review comment.** Do not touch other changed lines in the diff that have no comments."
+    },
+    {
+      "sha256": "30599702f4ce404fa450bf87f112729f5368c50cea10a060fcea29071834de4e",
+      "source": "ssot/address-code-review.md",
+      "text": "- Do not resolve/close review threads programmatically \u2014 let the reviewer verify."
+    },
+    {
+      "sha256": "c44f4bd04d475f33d8d4d33498cc63f9be6625305353e620a1275e54b6559ee4",
+      "source": "ssot/address-code-review.md",
+      "text": "- Do not mix unrelated changes into the fix commit."
+    },
+    {
+      "sha256": "37bebf8446cbc7d01a5e11ad77c6ac8b3c4bf40a3d2eb3bcf2bcc41dd674ecc7",
+      "source": "ssot/address-code-review.md",
+      "text": "| Scope discipline | Only reviewer-requested changes are made, nothing else |"
+    },
+    {
+      "sha256": "0dbf8968a8e960224693f6b5979c94146310e35c490cd213a6745b7878bda6e9",
+      "source": "ssot/address-code-review.md",
+      "text": "| Commit hygiene | Fix commit contains only the review-related changes |"
+    }
+  ],
+  "review_status": "draft"
+}

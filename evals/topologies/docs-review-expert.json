@@ -1,0 +1,237 @@
+{
+  "schema_version": "CapabilityTopology.v1",
+  "slug": "docs-review-expert",
+  "ssot_sha256": "b52adde380a5beb338a9426beb5e57420717516b1424eec75d9946e58804abeb",
+  "explicit_invocations": [],
+  "semantic_triggers": [],
+  "aliases_shortcuts": [],
+  "auto_routes": [],
+  "nodes": {
+    "commands": [],
+    "modes_modules": [
+      {
+        "id": "2e2d5c5649b7",
+        "label": "Workflow",
+        "source_line": 36
+      },
+      {
+        "id": "6db593f486ee",
+        "label": "Failure Mode To Avoid",
+        "source_line": 134
+      }
+    ],
+    "controls": [],
+    "modifiers": []
+  },
+  "composition": {
+    "legal_pairs": [],
+    "forbidden_pairs": [],
+    "canonical_order": [],
+    "requirements": [],
+    "supersession": []
+  },
+  "state_machine": {
+    "states": [],
+    "transitions": [],
+    "forbidden_transitions": []
+  },
+  "outputs": [
+    "- `Current State`",
+    "- `What Belongs Where`",
+    "- `Drift Findings`",
+    "- `Recommended Changes`",
+    "- `Examples of Good Output`",
+    "- `Review Timing`",
+    "- `Open Risks`",
+    "- exact target paths",
+    "- section-level rewrite guidance",
+    "- link or navigation updates that must be changed"
+  ],
+  "authority_boundaries": [
+    "docs-review-expert:L25:9cdecf0f9449",
+    "docs-review-expert:L57:5f8f4e249421",
+    "docs-review-expert:L81:25ab61c11319",
+    "docs-review-expert:L82:53221802b953",
+    "docs-review-expert:L83:c7872241e87d",
+    "docs-review-expert:L84:022ff49a95b8",
+    "docs-review-expert:L85:5f619f06cf00"
+  ],
+  "resources": [
+    "- `docs/` for durable operator, reference, and maintainer material",
+    "- release: always verify `README.md`, getting-started, examples, CLI reference, release docs, and any changed maintainer docs against the shipped behavior"
+  ],
+  "handoffs": [],
+  "protected_invariants": [
+    {
+      "id": "docs-review-expert:L21:04153dcb8e47",
+      "heading": "Agent Operating Contract",
+      "source_line": 21,
+      "sha256": "04153dcb8e47af5834495062c91852908060eb1de20f808a3a12c0199d5f51cd",
+      "text": "- define when docs review must happen at commit, pull request, merge, and release time",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "docs-review-expert:L25:9cdecf0f9449",
+      "heading": "Tool Boundaries",
+      "source_line": 25,
+      "sha256": "9cdecf0f9449ff2b22f8bca844b063b2676b15cb7c334a70d860a25ddfcbde64",
+      "text": "- forbidden: runtime orchestration, delegation decisions, unrelated product-code refactors, or inventing process rules that are not grounded in repo behavior or maintainer intent",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "docs-review-expert:L26:dbf9fb0bad2d",
+      "heading": "Tool Boundaries",
+      "source_line": 26,
+      "sha256": "dbf9fb0bad2d1829f33a35bf68a0cc1c7685e4f7df0cf6d61c6b7992f53ea540",
+      "text": "- escalation: if a requested fix requires architecture or code changes beyond documentation scope, hand it off explicitly instead of smuggling it into a docs-only recommendation",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "docs-review-expert:L46:65a1e99533c8",
+      "heading": "Workflow",
+      "source_line": 46,
+      "sha256": "65a1e99533c8527af07f84e9da2de087e7b6fda64799f90170678afcf7b6d176",
+      "text": "6. For significant repo changes, define the review timing required at commit, pull request, merge, and release.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "docs-review-expert:L53:691b4e6739f7",
+      "heading": "Rules",
+      "source_line": 53,
+      "sha256": "691b4e6739f7bfff49088d528f92e68c45d7b325e4bb3efe0b558bcf2c7a5125",
+      "text": "- Include diagrams, tables, and richer markdown only when they materially reduce ambiguity.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "docs-review-expert:L57:5f8f4e249421",
+      "heading": "Rules",
+      "source_line": 57,
+      "sha256": "5f8f4e249421413f028b09dccd3a345c208dd2040495bdfe0fc561988e18d7cf",
+      "text": "- Do not claim orchestration, routing, or delegation authority.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "docs-review-expert:L59:77357dbdaba3",
+      "heading": "Required Inputs",
+      "source_line": 59,
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "text": "## Required Inputs",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "docs-review-expert:L65:3d4b9f171064",
+      "heading": "Required Output",
+      "source_line": 65,
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "text": "## Required Output",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "docs-review-expert:L66:c34906b1f1c3",
+      "heading": "Required Output",
+      "source_line": 66,
+      "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+      "text": "Every substantial response must include:",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "docs-review-expert:L78:cee203c4dc74",
+      "heading": "Required Output",
+      "source_line": 78,
+      "sha256": "cee203c4dc74f4cd29b1ed953c43241b5b68954bc3543563cde4c8cc6f6337a6",
+      "text": "- link or navigation updates that must be changed",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "docs-review-expert:L81:25ab61c11319",
+      "heading": "Constraints",
+      "source_line": 81,
+      "sha256": "25ab61c113191e98052ee5149f1bea9372e79aeb8fab7ef2a37ab78de74524d8",
+      "text": "- Do not rewrite large doc sets when targeted cleanup is enough.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "docs-review-expert:L82:53221802b953",
+      "heading": "Constraints",
+      "source_line": 82,
+      "sha256": "53221802b953ac8eff269f6f9d1b4babfacda6721a047e44a326995ef050dd3e",
+      "text": "- Do not create duplicate docs for the same concept.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "docs-review-expert:L83:c7872241e87d",
+      "heading": "Constraints",
+      "source_line": 83,
+      "sha256": "c7872241e87d6a78bf6ed598aa106085076b24d22ffa8913766a2af8d1aeb1cf",
+      "text": "- Do not move technical or research material into user-facing docs without a clear reason.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "docs-review-expert:L84:022ff49a95b8",
+      "heading": "Constraints",
+      "source_line": 84,
+      "sha256": "022ff49a95b851c369f47825a65cab328eff37bfee12b4dabb8a01d3c561a605",
+      "text": "- Do not infer behavior from docs alone when code or scripts are available to verify it.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "docs-review-expert:L85:5f619f06cf00",
+      "heading": "Constraints",
+      "source_line": 85,
+      "sha256": "5f619f06cf007b997a479379a87b3eb8cab4d046adb8964530ca04f0d7b70b16",
+      "text": "- Do not leave the caller with generic advice that lacks file placement or evidence.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "docs-review-expert:L102:76a0b3c80ac0",
+      "heading": "What Good Looks Like",
+      "source_line": 102,
+      "sha256": "76a0b3c80ac0a7f1310b94c3d9e18aecfb8f5cd732b26ca40a810422993c56e3",
+      "text": "- tell the caller when documentation review must happen again",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    }
+  ],
+  "risk_tiers": {
+    "critical": [],
+    "high": [],
+    "standard": []
+  },
+  "source_references": [
+    {
+      "path": "ssot/docs-review-expert.md",
+      "sha256": "b52adde380a5beb338a9426beb5e57420717516b1424eec75d9946e58804abeb"
+    }
+  ],
+  "known_ambiguities": [],
+  "coverage_policy": {
+    "normative_clauses": "100_percent_mapped_or_waived",
+    "nodes": "positive_and_boundary",
+    "transitions": "all_legal_and_forbidden",
+    "module_pairs": "all_legal_pairs",
+    "high_risk_tuples": "assigned_strength",
+    "critical_mutants": "100_percent_killed"
+  },
+  "normative_clause_coverage": {
+    "total": 16,
+    "mapped": 0,
+    "waived": 0
+  },
+  "review_status": "draft",
+  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs."
+}

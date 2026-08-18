@@ -23,6 +23,8 @@ Supported modes:
 - `judge`
 - `apply`
 
+Deterministic clarity lint from `instruction_clarity.v1` is available in every mode and enabled by default for `audit`, `plan`, and `judge`. It is advisory and never counts as behavioral evidence.
+
 ## Primary Objective
 Classify the source safely, recommend the right surface area, and refuse landing until the candidate is structurally strong enough to become canonical SSOT plus descriptor state.
 
@@ -60,8 +62,11 @@ Operational rule:
 11. On `judge`, run the built-in quality loop and return judge packets plus pass/fail reports without landing repo state.
 12. If `judge` finds that structural quality is close to passing but behavioral confidence is insufficient, route to `auto-research` for bounded capability evaluation instead of guessing.
 13. Search for benchmark sources only when the source is generic or fit confidence is weak.
-14. On `apply`, refuse landing unless the quality loop reaches `ship`; if it does, materialize or preserve the canonical baseline source under `sources/ssot-baselines/`, write canonical repo state under `ssot/` and `.meta/capabilities/`, persist quality reviews, then rebuild and validate generated surfaces.
-15. Keep deployment separate from apply.
+14. Rename the former structural `ship` result to `structural_ready`. It proves only that deterministic UAC gates passed.
+15. Emit `EvalImpactPlan.v1` when requested and on `judge` or `apply` so the behavioral evaluator can select the minimum safe profile.
+16. On `apply`, refuse landing unless the quality loop reaches `structural_ready`. Validate any supplied `PromotionVerdict.v1`; reject stale hashes or a mismatched slug. During advisory rollout, an absent verdict leaves the result `behavioral_pending` and cannot materialize a new behavioral baseline.
+17. Materialize a new baseline only after an independent `promote` verdict, or preserve a valid historical baseline without rewriting its lineage.
+18. Keep deployment separate from apply.
 
 ## Tool Boundaries
 - allowed: inventory sources, run deterministic uplift and classification, produce advisory manifests, and land canonical SSOT plus descriptor state when the quality gate passes
@@ -80,6 +85,8 @@ Operational rule:
 - Treat commands, plugins, powers, and extensions as deployment wrappers, not capability types.
 - Quality review artifacts are advisory evidence; they must not encode runtime routing policy.
 - Do not make UAC the long-term owner of behavioral evaluation logic; route to `auto-research` when bounded behavioral proof is needed.
+- Do not ingest the Google Style Guide as permissive HTML. Use the reviewed local `instruction_clarity.v1` adapter and preserve the URL content-type rejection boundary.
+- Do not let UAC author a candidate, define or view the sealed promotion set, judge the candidate, and waive its own failures.
 
 ## Invocation Hints
 Use this capability when the user asks for any of the following, even without naming the skill:
@@ -116,6 +123,9 @@ When `judge` escalates to behavioral proof, also include:
 - Behavioral Confidence
 - Escalation Reason
 - Auto-Research Handoff
+- Goal Contract and Capability Topology hashes when available
+- Eval Impact Plan and hard token cap
+- Structural Status (`structural_ready` is not `promote`)
 
 ## Companion Capability Matrix
 | If the import uncovers this need | Route to | Required handoff |

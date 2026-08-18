@@ -191,10 +191,137 @@
   "family_slug": "pitch",
   "shared_summary": "Creates, reviews, scores, improves, and critiques Shape Up pitch documents. Use when working with pitches at any stage: from bootstrapping a new pitch from a goal statement, to hardening an existing pitch for betting, to auditing pitch quality across a portfolio.",
   "shared_constraints": [],
-  "modes": [],
+  "modes": [
+    {
+      "mode_slug": "pitch-create-goal-or-problem-statement",
+      "display_name": "pitch create [goal or problem statement]",
+      "source_refs": [
+        "ssot/pitch.md"
+      ],
+      "mode_summary": "Declared by the canonical `pitch create [goal or problem statement]` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    },
+    {
+      "mode_slug": "pitch-review-source",
+      "display_name": "pitch review <source>",
+      "source_refs": [
+        "ssot/pitch.md"
+      ],
+      "mode_summary": "Declared by the canonical `pitch review <source>` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    },
+    {
+      "mode_slug": "pitch-score-source",
+      "display_name": "pitch score <source>",
+      "source_refs": [
+        "ssot/pitch.md"
+      ],
+      "mode_summary": "Declared by the canonical `pitch score <source>` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    },
+    {
+      "mode_slug": "pitch-improve-source",
+      "display_name": "pitch improve <source>",
+      "source_refs": [
+        "ssot/pitch.md"
+      ],
+      "mode_summary": "Declared by the canonical `pitch improve <source>` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    },
+    {
+      "mode_slug": "pitch-compare-source1-source2",
+      "display_name": "pitch compare <source1> <source2>",
+      "source_refs": [
+        "ssot/pitch.md"
+      ],
+      "mode_summary": "Declared by the canonical `pitch compare <source1> <source2>` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    },
+    {
+      "mode_slug": "pitch-audit",
+      "display_name": "pitch audit",
+      "source_refs": [
+        "ssot/pitch.md"
+      ],
+      "mode_summary": "Declared by the canonical `pitch audit` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    },
+    {
+      "mode_slug": "pitch-bootstrap-goal",
+      "display_name": "pitch bootstrap <goal>",
+      "source_refs": [
+        "ssot/pitch.md"
+      ],
+      "mode_summary": "Declared by the canonical `pitch bootstrap <goal>` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    },
+    {
+      "mode_slug": "pitch-export-source-options",
+      "display_name": "pitch export <source> [options]",
+      "source_refs": [
+        "ssot/pitch.md"
+      ],
+      "mode_summary": "Declared by the canonical `pitch export <source> [options]` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    },
+    {
+      "mode_slug": "pitch-integration-proof-source",
+      "display_name": "pitch integration-proof <source>",
+      "source_refs": [
+        "ssot/pitch.md"
+      ],
+      "mode_summary": "Declared by the canonical `pitch integration-proof <source>` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    }
+  ],
   "benchmark_sources": [],
   "quality_profile": "default",
-  "quality_status": "ship",
+  "quality_status": "structural_ready",
   "judge_reports": [
     {
       "pass_number": 1,
@@ -363,5 +490,6 @@
         "## Invocation"
       ]
     }
-  ]
+  ],
+  "legacy_quality_status": "ship"
 }

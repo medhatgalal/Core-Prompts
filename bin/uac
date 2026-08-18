@@ -32,7 +32,8 @@ Commands:
 
 Notes:
   - import and plan do not mutate repo.
-  - judge does not mutate repo; apply may persist quality review artifacts and only lands SSOT on ship.
+  - judge does not mutate repo; structural_ready is not behavioral promotion.
+  - apply validates --promotion-verdict when supplied; absent evidence remains behavioral_pending during advisory rollout.
   - apply mutates this repo, rebuilds surfaces, and validates.
   - deploy is separate; use bin/capability-fabric deploy after review.
 EOF

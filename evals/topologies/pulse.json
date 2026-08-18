@@ -1,0 +1,746 @@
+{
+  "schema_version": "CapabilityTopology.v1",
+  "slug": "pulse",
+  "ssot_sha256": "330dfb3bac121bc99fa3b5dc8fe87eed95451399e8d399bde18d78a1a8de1c35",
+  "explicit_invocations": [
+    "/CC",
+    "/act",
+    "/all",
+    "/archive",
+    "/chat",
+    "/chat /from",
+    "/config",
+    "/count",
+    "/deep",
+    "/delete",
+    "/email",
+    "/email /hot /window",
+    "/from",
+    "/help",
+    "/hot",
+    "/memory",
+    "/mute",
+    "/muted",
+    "/open",
+    "/rate",
+    "/space",
+    "/sweep",
+    "/thread",
+    "/tune",
+    "/tune /chat",
+    "/tune /email",
+    "/unmute",
+    "/window"
+  ],
+  "semantic_triggers": [],
+  "aliases_shortcuts": [],
+  "auto_routes": [],
+  "nodes": {
+    "commands": [
+      "/CC",
+      "/act",
+      "/all",
+      "/archive",
+      "/chat",
+      "/chat /from",
+      "/config",
+      "/count",
+      "/deep",
+      "/delete",
+      "/email",
+      "/email /hot /window",
+      "/from",
+      "/help",
+      "/hot",
+      "/memory",
+      "/mute",
+      "/muted",
+      "/open",
+      "/rate",
+      "/space",
+      "/sweep",
+      "/thread",
+      "/tune",
+      "/tune /chat",
+      "/tune /email",
+      "/unmute",
+      "/window"
+    ],
+    "modes_modules": [
+      {
+        "id": "9beb70d640df",
+        "label": "Workflow Contract",
+        "source_line": 237
+      }
+    ],
+    "controls": [],
+    "modifiers": []
+  },
+  "composition": {
+    "legal_pairs": [],
+    "forbidden_pairs": [],
+    "canonical_order": [],
+    "requirements": [],
+    "supersession": []
+  },
+  "state_machine": {
+    "states": [],
+    "transitions": [],
+    "forbidden_transitions": []
+  },
+  "outputs": [
+    "- Timestamp header",
+    "- Priority-classified table with: #, Addr, From, Subject (clickable link), Age, Action",
+    "- Source summary footer (Gmail count, Chat spaces/msgs, memory signal count)",
+    "- Proposed action list for \ud83d\udd34 and \ud83d\udfe1 items",
+    "---"
+  ],
+  "authority_boundaries": [
+    "pulse:L13:3f5c2eb041d9",
+    "pulse:L19:41fb3d4c79d7",
+    "pulse:L20:20ac10e354c4",
+    "pulse:L25:c4d23998935e",
+    "pulse:L26:da3fe4eae39f",
+    "pulse:L27:ac756898907f",
+    "pulse:L31:2cb45beb4f45",
+    "pulse:L33:0b43cac43800",
+    "pulse:L106:781d4010650c",
+    "pulse:L188:2c413e4b1e25",
+    "pulse:L203:6ab9fa1ac3f5",
+    "pulse:L295:f6141fc71c76",
+    "pulse:L338:21cea18b0a08",
+    "pulse:L370:9e3ca8874a1d",
+    "pulse:L527:757103fac069",
+    "pulse:L707:8488763d032a",
+    "pulse:L813:0fc8e808576b",
+    "pulse:L818:106236a34616",
+    "pulse:L819:9f9d339b0d31",
+    "pulse:L856:a45e0c3fe652",
+    "pulse:L857:4fd018d180b8",
+    "pulse:L858:94b70b846ae3",
+    "pulse:L867:5d0e6583ac81",
+    "pulse:L873:09dad9a3a19d"
+  ],
+  "resources": [
+    "| `pulse /help` | Show quick reference | Commands, priority rules, examples |"
+  ],
+  "handoffs": [],
+  "protected_invariants": [
+    {
+      "id": "pulse:L13:3f5c2eb041d9",
+      "heading": "Tool Boundaries",
+      "source_line": 13,
+      "sha256": "3f5c2eb041d9a45b67e98971b27f89db010ed5830cf5df8a3a02c0a26c87ac4e",
+      "text": "This skill is **100% read-only** during triage. It MUST NEVER send, reply, forward, delete, archive, or modify any message during triage.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L19:41fb3d4c79d7",
+      "heading": "Tool Boundaries",
+      "source_line": 19,
+      "sha256": "41fb3d4c79d7d8e42dd9923b77283c9aea46e0199be676ddd5279d90e78f2101",
+      "text": "- `gws gmail +reply --id <ID>` \u2014 reply to email (**only during `/act` with user approval**)",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L20:20ac10e354c4",
+      "heading": "Tool Boundaries",
+      "source_line": 20,
+      "sha256": "20ac10e354c4f428d4ec4b695aa5589abad149cd9040eb9dca25e0d99fb8f726",
+      "text": "- `gws gmail +forward --id <ID>` \u2014 forward email (**only during `/act` with user approval**)",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L25:c4d23998935e",
+      "heading": "Tool Boundaries",
+      "source_line": 25,
+      "sha256": "c4d23998935eaf43fd8f2078e51d16f7286d167c4b0ec1acb0ca8504da7f9714",
+      "text": "- `gws chat +send` \u2014 send chat message (**only during `/act` with user approval**)",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L26:da3fe4eae39f",
+      "heading": "Tool Boundaries",
+      "source_line": 26,
+      "sha256": "da3fe4eae39f8cf4a350a1d5dde8fe63d0afdde0a357f8a1b8e660d4f804b49c",
+      "text": "- `gws gmail users messages modify` \u2014 archive email (**only during `/sweep` with user approval**)",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L27:ac756898907f",
+      "heading": "Tool Boundaries",
+      "source_line": 27,
+      "sha256": "ac756898907f1404f9a321b73f757adb81ec608d49088bdd328978afdd0b3261",
+      "text": "- `gws gmail users messages trash` \u2014 delete email (**only during `/sweep` with user approval**)",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L31:2cb45beb4f45",
+      "heading": "Tool Boundaries",
+      "source_line": 31,
+      "sha256": "2cb45beb4f45f78151947a7e4860cf58bd5827219e6c943ca935e555df70f038",
+      "text": "Write commands (`+reply`, `+forward`, `+send`) are ONLY allowed during `/act` mode and ONLY after explicit user approval for each action. Pulse triage itself (the default) remains 100% read-only.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L33:0b43cac43800",
+      "heading": "Tool Boundaries",
+      "source_line": 33,
+      "sha256": "0b43cac438002355f1993214cf3e543437179a8d91a01c87ee738e9782f92e2c",
+      "text": "- forbidden: delegation decisions, orchestration, runtime execution control",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L46:77357dbdaba3",
+      "heading": "Required Inputs",
+      "source_line": 46,
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "text": "## Required Inputs",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L47:583b12c7787c",
+      "heading": "Required Inputs",
+      "source_line": 47,
+      "sha256": "583b12c7787ceda7c2502e68e73ff754b2a7674def9716df4322d89e14a1256d",
+      "text": "- `gws` CLI authenticated (`gws auth status` must pass)",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L50:3d4b9f171064",
+      "heading": "Required Output",
+      "source_line": 50,
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "text": "## Required Output",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L51:7363cfd0fc51",
+      "heading": "Required Output",
+      "source_line": 51,
+      "sha256": "7363cfd0fc51a80c3ef04f542da4163a9b6b0d3bec0f6e59ecc980a483f0e197",
+      "text": "Every pulse run must include:",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L67:3992b70df656",
+      "heading": "Invocation",
+      "source_line": 67,
+      "sha256": "3992b70df656cf09410040bdea8598a5c974797da9d2de62a06466aeb87f047c",
+      "text": "| `pulse /email` | Email only | 20 unread emails |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L68:5a9455d712d7",
+      "heading": "Invocation",
+      "source_line": 68,
+      "sha256": "5a9455d712d78aac206192b763866ba2469702b6002b3eae722a4e92079bbfb5",
+      "text": "| `pulse /chat` | Chat only | Unread msgs across configured spaces |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L69:f5dd1ee81d60",
+      "heading": "Invocation",
+      "source_line": 69,
+      "sha256": "f5dd1ee81d602dd1a6ea67d31fb56753430e44adfb3b3951d12e5e15eb694580",
+      "text": "| `pulse /hot` | High-priority only | \ud83d\udd34+\ud83d\udfe1 only, max 5 items, recency-filtered (12h \ud83d\udd34 / 24h \ud83d\udfe1), executive summary first |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L70:9af93bf9b690",
+      "heading": "Invocation",
+      "source_line": 70,
+      "sha256": "9af93bf9b69079ffa5c713403d0c19330fd0263b3bb65361c9893c2b1f4a5864",
+      "text": "| `pulse /count` | Counts only, no table | Fastest check: just priority counts per source |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L82:008c17402d88",
+      "heading": "Invocation",
+      "source_line": 82,
+      "sha256": "008c17402d8896ca1c135d85128e94c966a81a82c7278675904f6c6938803956",
+      "text": "| `pulse /act <N>` | Act on specific item | Propose action for item #N only |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L106:781d4010650c",
+      "heading": "Help Output",
+      "source_line": 106,
+      "sha256": "781d4010650c7b05e06d165546207b6a1736e6e734187f25693b01bbe6b342f6",
+      "text": "\ud83d\udce1 Pulse \u2014 Comms Triage (triage is read-only; actions require approval)",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L111:a82d90bfb7b1",
+      "heading": "Help Output",
+      "source_line": 111,
+      "sha256": "a82d90bfb7b1d244e75f97a7a05b999c1e5a2b2210c6e72c493ab93338e6c033",
+      "text": "pulse /email                   Email only",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L112:050df84335b5",
+      "heading": "Help Output",
+      "source_line": 112,
+      "sha256": "050df84335b5343cdb32954be255fdff5a498a9ce6b3753bb9e178a4711cd768",
+      "text": "pulse /chat                    Chat only",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L114:49654ea5caa6",
+      "heading": "Help Output",
+      "source_line": 114,
+      "sha256": "49654ea5caa6f5e58e9d97f6abc7979b2a441c39e0e1e0ad23a2f88c931c7189",
+      "text": "pulse /count                   Priority counts only (fastest)",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L125:9ea2048f3178",
+      "heading": "Help Output",
+      "source_line": 125,
+      "sha256": "9ea2048f31782d1d6e82cea49681ef3c6c60add26f589fa6729454a2f798c64c",
+      "text": "pulse /act <N>                 Propose action for item #N only",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L145:4412684a0fa0",
+      "heading": "Help Output",
+      "source_line": 145,
+      "sha256": "4412684a0fa01cfedb254837d30b731f94ce654a76ccbe1479e73b67fd23dd24",
+      "text": "\ud83d\udd34 Urgent         VIP senders, \"action required\", sole recipient, @mention + urgent",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L147:2cdc8c7ad62d",
+      "heading": "Help Output",
+      "source_line": 147,
+      "sha256": "2cdc8c7ad62dc6a74dc6eb2649f86c6a8fa132bfd03760bac690b15764b43144",
+      "text": "\ud83d\udd35 FYI            Everything else (count only unless \u22645)",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L188:2c413e4b1e25",
+      "heading": "Configuration",
+      "source_line": 188,
+      "sha256": "2c413e4b1e25eddf2ca6fe4a1dc3a9eae52729fc65062ae39c144dbbce5754b0",
+      "text": "**`pulse /config` reads and writes this file.** The skill itself never changes.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L203:6ab9fa1ac3f5",
+      "heading": "Sender Name Resolution",
+      "source_line": 203,
+      "sha256": "6ab9fa1ac3f53afbd02229209c624a0afc695068ccd2737dc73a5bdb96334eae",
+      "text": "**When a sender ID is not in the cache:** fall back to the space name as attribution (e.g., \"someone in EGAI\") \u2014 never display \"unknown\" and never guess or fabricate a name.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L284:4d5c03a4b6a4",
+      "heading": "Step 3: Classify Priority",
+      "source_line": 284,
+      "sha256": "4d5c03a4b6a45ee283f3d7fd8328dcfda9157b1d323ade46fae2a9db204a27ea",
+      "text": "|          |       | \u2022 Contains: \"urgent\", \"ASAP\", \"blocking\", \"blocked\", \"action required\", \"EOD\", \"critical\" |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L295:f6141fc71c76",
+      "heading": "Step 3: Classify Priority",
+      "source_line": 295,
+      "sha256": "f6141fc71c76aaa2b8a33ea9f03af6f7dcf52be798d8c76a527afad5dfabe217",
+      "text": "|          |       | \u2022 **Always \ud83d\udd35 regardless of other rules. Never promoted above \ud83d\udd35. Excluded from `/hot`.** |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L300:72a53acab846",
+      "heading": "Step 3: Classify Priority",
+      "source_line": 300,
+      "sha256": "72a53acab8460dba58837ddbf895105adbbe949528d292e22ba80b54a15c41c7",
+      "text": "- No @mention \u2192 classify by content only",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L306:414da4706058",
+      "heading": "Step 3: Classify Priority",
+      "source_line": 306,
+      "sha256": "414da4706058c3c7f741072af0b85020ad1f15cf0666e1e995aaee2d5e95c05a",
+      "text": "**Executive relevance filter (applies to `/hot` only):** After classification and before presentation, apply a final filter that asks: \"Does this require action or a decision from ME specifically, or is it team activity I'm being informed about?\"",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L338:21cea18b0a08",
+      "heading": "Step 3: Classify Priority",
+      "source_line": 338,
+      "sha256": "21cea18b0a087f1183e8874f28d861f6ed226b4399ae55064ea3bba175cf2ea6",
+      "text": "**Self-message hiding:** Never show items where the sender is you (matching your email or chat user ID), UNLESS:",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L361:2b2d63bedea2",
+      "heading": "Step 4: Present Results",
+      "source_line": 361,
+      "sha256": "2b2d63bedea24fa51b7717fc00f0be79882c53c2ba33f2ec1b7334bc391e02ea",
+      "text": "- **Executive summary first:** Before the table, output 3-5 bullet points summarizing the key actionable items. Format: `[\ud83d\udd34|\ud83d\udfe1] [person/topic]: [what needs your attention] \u2014 [recommended action]`. No age in bullets \u2014 age lives in the table only. This is the primary output \u2014 the table is the detail view.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L363:a29ffc9328eb",
+      "heading": "Step 4: Present Results",
+      "source_line": 363,
+      "sha256": "a29ffc9328ebb21ceda6b847b18e9585bdeff090a7610e1d4de6b5596002d7f9",
+      "text": "- **Max-age filter:** Only show \ud83d\udd34 items \u2264 12h old and \ud83d\udfe1 items \u2264 24h old. Older items drop to a stale footer: `\u23f0 N stale items (>12h/24h) \u2014 run full pulse to see`",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L366:c7f26ac28c1c",
+      "heading": "Step 4: Present Results",
+      "source_line": 366,
+      "sha256": "c7f26ac28c1c38452d033bfe0d7603d30e4ca3352a7233848145693061cb7cc6",
+      "text": "- **No plumbing lines.** Omit all meta/stats lines: no \"N emails auto-filtered\", no \"N chat-notification emails suppressed\", no memory/signal counts, no source summary footer, no mute count footer. The only footer lines allowed are: stale count, overflow count, and Jira awareness line (if Jira tickets were downgraded).",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L370:9e3ca8874a1d",
+      "heading": "Step 4: Present Results",
+      "source_line": 370,
+      "sha256": "9e3ca8874a1da7f51e926cff750ea83c1db6dea719d94bab31f1fe7f1adb1b7e",
+      "text": "- **No separate action list.** The Action column in the table is sufficient for /hot. Do not append the detailed proposed action list \u2014 it's redundant at this item count.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L371:5a6092bfcc1f",
+      "heading": "Step 4: Present Results",
+      "source_line": 371,
+      "sha256": "5a6092bfcc1f2ce1b25cfe612aeddc65b9d23853f32203622036529c12fb1eb0",
+      "text": "- If `/count`, show counts only (no table)",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L391:24e78358756a",
+      "heading": "Step 4c: Quick Delete / Archive (when `/delete` or `/archive` is active)",
+      "source_line": 391,
+      "sha256": "24e78358756a3b6a45af7832163e7d15a22c9a1881b93d754b920504f8770e3e",
+      "text": "- Only works on email items (chat messages can't be deleted/archived via API)",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L501:ce1cf99622fd",
+      "heading": "Memory System (`/rate` Learning)",
+      "source_line": 501,
+      "sha256": "ce1cf99622fd0efb923a3dacf5d756ce0b9fb3f853dc0c7d83f0b2239858450d",
+      "text": "| `not_mentioned` | Conditional: only match when you're NOT @mentioned |",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L502:86db10d37167",
+      "heading": "Memory System (`/rate` Learning)",
+      "source_line": 502,
+      "sha256": "86db10d371679d9b13f151df1969bc13a6ec0f8de1afc8da38a465d2940caa64",
+      "text": "| `no_direct_question` | Conditional: only match when no question is directed at you |",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L527:757103fac069",
+      "heading": "Step 7: Action Step-Through (when `/act` is active)",
+      "source_line": 527,
+      "sha256": "757103fac06970051ae15ea4dcaf12672f08c187f5a6595b57fc95271b3937e4",
+      "text": "**Safety:** NEVER auto-send. Every response requires explicit approval. NEVER fabricate information.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L608:2d782f5fed8f",
+      "heading": "Step 8: Tune Session (when `/tune` is active)",
+      "source_line": 608,
+      "sha256": "2d782f5fed8fa1143772df7ff3278277786e4dd230418733b21f13913e17051b",
+      "text": "- `pulse /tune /email` \u2014 only email messages",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L609:e136df4ab6f2",
+      "heading": "Step 8: Tune Session (when `/tune` is active)",
+      "source_line": 609,
+      "sha256": "e136df4ab6f212d208ec5669f879943d5bff9db21cce7e93e5a83fd5e1ff50b2",
+      "text": "- `pulse /tune /chat` \u2014 only chat messages",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L644:63f45e340809",
+      "heading": "Step 9: Config (when `/config` is active)",
+      "source_line": 644,
+      "sha256": "63f45e340809b925c3757f6083dc1c8c23b57111f4a9c0c26e3384607561868f",
+      "text": "- Only update values the user wants to change",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L707:8488763d032a",
+      "heading": "Step 10: Sweep (when `/sweep` is active)",
+      "source_line": 707,
+      "sha256": "8488763d032aca6a1821024387b247de3f38618f92b5f2f9bfb017ea4bdbe5c4",
+      "text": "- **Stale threads:** messages older than 7 days that were never \ud83d\udd34 or \ud83d\udfe1",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L745:835d2ed8cd15",
+      "heading": "Step 10: Sweep (when `/sweep` is active)",
+      "source_line": 745,
+      "sha256": "835d2ed8cd15a918fd2a8ff53bd14468c4c7c38f16316c29fbab681b5e46bae1",
+      "text": "- `only <criteria>` \u2014 filter the list by natural language (e.g., `only calendar`, `only datadog`, `only older than 1d`)",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L763:a304774228ea",
+      "heading": "Step 10: Sweep (when `/sweep` is active)",
+      "source_line": 763,
+      "sha256": "a304774228ea73f58f75f41f7f40cfe2c91967b54f230888821af7d074dedcbf",
+      "text": "**In-session filtering with `only`:**",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L765:bcc7db97383b",
+      "heading": "Step 10: Sweep (when `/sweep` is active)",
+      "source_line": 765,
+      "sha256": "bcc7db97383bacdaefd1effaaf06a2cde6ac13f43318657a79366fba44ed7f05",
+      "text": "After the table is shown, `only` re-filters without re-fetching:",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L768:401109e93249",
+      "heading": "Step 10: Sweep (when `/sweep` is active)",
+      "source_line": 768,
+      "sha256": "401109e93249c4d2211587472537ff934ba1f6de9dbf7d27744c43f1706b7f13",
+      "text": "> only calendar",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L778:54e2e3cbc788",
+      "heading": "Step 10: Sweep (when `/sweep` is active)",
+      "source_line": 778,
+      "sha256": "54e2e3cbc7884a6705bef680b8335fecec299433ad2bddc79355550ec3f2e2d3",
+      "text": "> only gitlab              # just GitLab items",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L779:10736edfea3e",
+      "heading": "Step 10: Sweep (when `/sweep` is active)",
+      "source_line": 779,
+      "sha256": "10736edfea3e2a2905864b96d64ebecde5d1f9a8fb7eae6aaa5ebc588594d40b",
+      "text": "> only older than 12h      # just items older than 12 hours",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L780:afae242af245",
+      "heading": "Step 10: Sweep (when `/sweep` is active)",
+      "source_line": 780,
+      "sha256": "afae242af2450bce7ff462b33fb22abe33c901cb5369091e8680a7d532830708",
+      "text": "> only siteops datadog    # Site ops + Datadog items",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L781:3226c183edcd",
+      "heading": "Step 10: Sweep (when `/sweep` is active)",
+      "source_line": 781,
+      "sha256": "3226c183edcddf86df541e0feed8f4ecd7501290e43f248bcb1be38d764e1b25",
+      "text": "> only delete              # just items proposed for delete",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L813:0fc8e808576b",
+      "heading": "Step 10: Sweep (when `/sweep` is active)",
+      "source_line": 813,
+      "sha256": "0fc8e808576b3f52431f88b1dc7be48af2dd9e99a640570bbbbb8da48f42b1d3",
+      "text": "- NEVER auto-execute. Every batch requires explicit approval.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L816:f65303b47186",
+      "heading": "Step 10: Sweep (when `/sweep` is active)",
+      "source_line": 816,
+      "sha256": "f65303b4718650820c33d6c44a55b5dae025ceb8bc04086ff728ed3dd003d600",
+      "text": "- All-delete batch: `Type \"delete\" to confirm, or n to cancel` (extra friction for destructive-only operations)",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L817:2a7b9b48b82d",
+      "heading": "Step 10: Sweep (when `/sweep` is active)",
+      "source_line": 817,
+      "sha256": "2a7b9b48b82ddad70772f355ba107cbeb0725ecbc9133eabc86bf4c58cec3113",
+      "text": "- Default to archive, not delete. Only propose delete for vendor marketing, exact duplicates, or obvious spam.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L818:106236a34616",
+      "heading": "Step 10: Sweep (when `/sweep` is active)",
+      "source_line": 818,
+      "sha256": "106236a346169f8c2d526614f4e5d9d9b2bbad575c9aa62db332aa76c6302e9d",
+      "text": "- NEVER propose archiving/deleting messages from VIPs or direct reports.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L819:9f9d339b0d31",
+      "heading": "Step 10: Sweep (when `/sweep` is active)",
+      "source_line": 819,
+      "sha256": "9f9d339b0d31cdefd6351bd2fe879d2d7fd28b175713439f0cf8965c1928e1cb",
+      "text": "- NEVER propose archiving/deleting messages classified as \ud83d\udd34 or \ud83d\udfe1.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L856:a45e0c3fe652",
+      "heading": "What Pulse Does NOT Do",
+      "source_line": 856,
+      "sha256": "a45e0c3fe6526f36e069c703707982369f5d3de1667e3eae611682866326a208",
+      "text": "- Triage mode (default) is 100% read-only \u2014 it never sends, modifies, or deletes anything.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L857:4fd018d180b8",
+      "heading": "What Pulse Does NOT Do",
+      "source_line": 857,
+      "sha256": "4fd018d180b89d520a48f7042dea63c6ea025d20fa432ac2268542a9dd4ea5bf",
+      "text": "- `/act` mode can send replies/messages, but ONLY with explicit per-item user approval.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L858:94b70b846ae3",
+      "heading": "What Pulse Does NOT Do",
+      "source_line": 858,
+      "sha256": "94b70b846ae3d5f882cca5a3af5d371f342a1b9a6b63919b786243d92934a9bf",
+      "text": "- It never auto-sends, auto-archives, or auto-deletes. Ever.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L867:5d0e6583ac81",
+      "heading": "Taking Action After Pulse",
+      "source_line": 867,
+      "sha256": "5d0e6583ac81c512129e1b5c0b56f62f22afaac06575cb1414251ee9d79227e5",
+      "text": "After reviewing pulse output, the user may want to act. Pulse surfaces the ID and suggests the command but **never auto-executes**:",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L873:09dad9a3a19d",
+      "heading": "Taking Action After Pulse",
+      "source_line": 873,
+      "sha256": "09dad9a3a19df24a152cdf9c0e838d6d7d39c39dbb506c8f061c128e16209e20",
+      "text": "Always present the command with the real ID from the table. Always wait for explicit approval.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L883:14ad4a061c0f",
+      "heading": "Example: Hot items only",
+      "source_line": 883,
+      "sha256": "14ad4a061c0f467b4fa6709a11a6cf655bf2d0313c2b5bc61b494742aa9abd7d",
+      "text": "### Example: Hot items only",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "pulse:L887:a35faeb97bb3",
+      "heading": "Example: Hot items only",
+      "source_line": 887,
+      "sha256": "a35faeb97bb3883d195d9fed133cfd2aeb1f57be9feea0cc904d1b39343b68fe",
+      "text": "Returns only \ud83d\udd34 and \ud83d\udfe1 items, skipping \ud83d\udd35 FYI noise.",
+      "kind": "invariant",
+      "mapped_to": []
+    }
+  ],
+  "risk_tiers": {
+    "critical": [],
+    "high": [],
+    "standard": []
+  },
+  "source_references": [
+    {
+      "path": "ssot/pulse.md",
+      "sha256": "330dfb3bac121bc99fa3b5dc8fe87eed95451399e8d399bde18d78a1a8de1c35"
+    }
+  ],
+  "known_ambiguities": [
+    {
+      "id": "PULSE-DELETE-BOUNDARY",
+      "message": "The tool boundary permits trash only during /sweep while /delete is a distinct quick-delete command."
+    },
+    {
+      "id": "PULSE-COMPOSITION",
+      "message": "The universal composition claim lacks legal and forbidden combinations for read, write, and destructive commands."
+    },
+    {
+      "id": "PULSE-CONFIG-MUTATION",
+      "message": "The config contract both denies and requires mutation of the skill file."
+    }
+  ],
+  "coverage_policy": {
+    "normative_clauses": "100_percent_mapped_or_waived",
+    "nodes": "positive_and_boundary",
+    "transitions": "all_legal_and_forbidden",
+    "module_pairs": "all_legal_pairs",
+    "high_risk_tuples": "assigned_strength",
+    "critical_mutants": "100_percent_killed"
+  },
+  "normative_clause_coverage": {
+    "total": 64,
+    "mapped": 0,
+    "waived": 0
+  },
+  "review_status": "blocked",
+  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs."
+}

@@ -178,6 +178,18 @@ This is the right starting move when the user is uncertain which installed capab
 
 ## UAC Second
 
+UAC now reports `structural_ready`, not behavioral promotion. It runs deterministic `instruction_clarity.v1` lint and can emit an `EvalImpactPlan.v1`; Auto-Research and `bin/capability-eval` own behavioral comparison.
+
+```bash
+bin/uac audit --clarity on
+bin/uac plan ./candidate.md --emit-impact-plan
+bin/uac judge ./candidate.md
+bin/capability-eval compile --skill code-review
+bin/capability-eval compare --skill code-review --candidate ./candidate.md --profile static
+```
+
+Normal CI uses only the zero-token `static` profile. Model-mediated profiles require an explicit operator or workflow gate and cannot promote while contracts, runtime cells, judges, or sealed cases are incomplete.
+
 Use UAC, the capability intake and uplift workflow, when you are bringing new prompt-like source into canonical Core-Prompts state.
 
 Do not start with UAC if your goal is just to use what is already installed. Start with installed skills and agents for that.
@@ -313,8 +325,9 @@ Use the docs in the same order as the product model:
 1. [docs/GETTING-STARTED.md](docs/GETTING-STARTED.md): installed capabilities first, then UAC, then repo verification
 2. [docs/EXAMPLES.md](docs/EXAMPLES.md): deeper scenario-style asks for current capabilities and maintainers
 3. [docs/UAC-USAGE.md](docs/UAC-USAGE.md): intake, uplift, plan, judge, and apply
-4. [docs/CLI-REFERENCE.md](docs/CLI-REFERENCE.md): exact commands, paths, generated surfaces, and deploy behavior
-5. [docs/MAINTAINER-HYGIENE.md](docs/MAINTAINER-HYGIENE.md): human maintainer guide and review checklist
+4. [docs/CAPABILITY-EVALUATION.md](docs/CAPABILITY-EVALUATION.md): goal contracts, topologies, selective proof, budgets, and promotion
+5. [docs/CLI-REFERENCE.md](docs/CLI-REFERENCE.md): exact commands, paths, generated surfaces, and deploy behavior
+6. [docs/MAINTAINER-HYGIENE.md](docs/MAINTAINER-HYGIENE.md): human maintainer guide and review checklist
 
 ## Maintainer Fast Path
 

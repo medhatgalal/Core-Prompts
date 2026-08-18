@@ -175,10 +175,67 @@
   "family_slug": "ic-assistant",
   "shared_summary": "Incident Commander Assistant \u2014 keeps the Incident Commander on-process during active incidents. Tracks phase transitions, prompts for required actions, validates artifacts, and flags missed steps per Appian's Incident Commander procedures.",
   "shared_constraints": [],
-  "modes": [],
+  "modes": [
+    {
+      "mode_slug": "generic-mode",
+      "display_name": "Generic Mode",
+      "source_refs": [
+        "ssot/ic-assistant.md"
+      ],
+      "mode_summary": "Declared by the canonical `Generic Mode` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    },
+    {
+      "mode_slug": "internal-runbook-mode",
+      "display_name": "Internal Runbook Mode",
+      "source_refs": [
+        "ssot/ic-assistant.md"
+      ],
+      "mode_summary": "Declared by the canonical `Internal Runbook Mode` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    },
+    {
+      "mode_slug": "example-generic-mode",
+      "display_name": "Example: Generic Mode",
+      "source_refs": [
+        "ssot/ic-assistant.md"
+      ],
+      "mode_summary": "Declared by the canonical `Example: Generic Mode` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    },
+    {
+      "mode_slug": "example-internal-runbook-mode",
+      "display_name": "Example: Internal Runbook Mode",
+      "source_refs": [
+        "ssot/ic-assistant.md"
+      ],
+      "mode_summary": "Declared by the canonical `Example: Internal Runbook Mode` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    }
+  ],
   "benchmark_sources": [],
   "quality_profile": "default",
-  "quality_status": "ship",
+  "quality_status": "structural_ready",
   "judge_reports": [
     {
       "pass_number": 1,
@@ -418,5 +475,6 @@
         "## Workflow Contract"
       ]
     }
-  ]
+  ],
+  "legacy_quality_status": "ship"
 }

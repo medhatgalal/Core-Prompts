@@ -1,0 +1,354 @@
+{
+  "schema_version": "GoalContract.v1",
+  "slug": "auto-research",
+  "target": "Fulfill the canonical intent of auto-research.",
+  "intended_outcome": "Preserve the canonical SSOT objective and required output.",
+  "change_class": "unknown",
+  "non_goals": [],
+  "protected_behaviors": [
+    "c96cd74da63d3012488de26f2409775cee81c7ca1841c64f0caedfd1ed3c3dd1",
+    "d654db97305faa37de1851e49bbcc24384742ec7a089e4b8fba8e051cf338677",
+    "7f7a95be10c5b81cd569e8257bf6906c6761cad49b4012a9f77bf314f7a05130",
+    "812649042697ce72f41ff6117cbcef11a16446cdced28d91958b5ee8bbbb318d",
+    "8d831bbc8ef67ebbfe60d4e5be33a671a461605dea21bbf9180a38c96231ff6d",
+    "e9e498ae4987e2dbc18311cfe9a5e3249dda5371030dfe58aac12199fd176a95",
+    "3544543b4c3b771c875f41bbe48f2e4de69b1ffa312fb72941939a57f35e7582",
+    "01d40c6b796f948458e84e26c0e4e94d756077b493d87378bda101b9bfeab700",
+    "f656c1e45186ed3c3775e23508b649e4cc7c423334f4b4206433064aaca3300a",
+    "0581532364743bbd1ea0111ffe919cf185f8a81c610f6298df889353bfd47833",
+    "7508be9ead9c29a6115e024147ba2c4dc22d1da8ffd928a6e77d90be33abf320",
+    "6fcf4b43a005b917b37268d3b4158c0a169b9a59894203c1924e1cbb6c8b3759",
+    "41f58abe6c3fd930e36ba2ee18bb9d08233428135cc1a9052fb5cd334f7d31b5",
+    "0e0775a99118576e59b91f01958a8c9db3c6c61da45bdfe3f26ff595ae69da9d",
+    "ca133c000e119317d1df78337b8aba3631d0f234e2a7a19947bc95c493f68ec0",
+    "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+    "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+    "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+    "9f5eb701b5e0e53cb4530b70c99415b946efc97e138e3718b42606e7d4140a0a",
+    "75bc1c7fdb872b212c025a001aed10b028e687d2a01abb380dfe74b17efa034d",
+    "0bedb8cce7648b83be4efe961cd0d6d34368dffc15b32c8c79e5270479a597cc",
+    "30bb6a8d221c9cd94b16a6a0f2da239942c518c6d40ba7855f9fec1ab691e4dc",
+    "d9b877a9ba77df8ad361be7c63e2c23a7e84c22fbdd697e877637679da6130ab",
+    "928891b17115e00d5c2d6a240ca5bc7e78677d368f3bc6c4f78fd6a7328071ad",
+    "ba9c8a7ac10d7c0d926a0dd63f1cc1cc762231618df0de2c832026b9b7faeaa3",
+    "126170cdb763ebfd762bb9893d17f3a77f52b9f90359fb62de58802611c6f0c2",
+    "2f711d491f9d1f5e02ea0786c81383384cdc366d2665aa9e37d7465b287d0042",
+    "339859e792edad0e88efbf9c03420c4a7d5ccd1d7cd0fbc4f774eabeea94529e",
+    "fc3755c8134dfc6165f6a8df2f2a5fa8a5d0fa0d944d9bd2a6d8f4f8f390b47d",
+    "88ceb035f17602476db260dfe45c3b12abd56f04ebb2bbdf2047d19c0569839a",
+    "de849f8c38c1f59f48b4c83738174e7746a8b49a4e31d7e288a02b02c22edef5",
+    "935a3e170cab0e88f9ee09569a14412520e631d0bc07d80e2b56f9e605c2d3c2",
+    "602d33e9d3d8d0554c554b3006f1ff6b82389064ed6f359e288d0b7f626f49d2",
+    "23e8dd9759008fcbeda3e62be994bd42200c9254245e562579f72f8916e0d8e3",
+    "ffa7032042806c567db9d05b5288526ea8af99edad077bf50a4f57bd974862fb",
+    "3ccfaf080000ae8d971294e8454d291eacfda35893a72b8aa98bdb884f260b8b",
+    "4004a2cbf3bccbdd20d3b570cce84cdc6e4c338b8cdf82911d689f3262b42fb8",
+    "6a51e4a275ce4da3eab56b997ee51cce195890476ee0d7a088acc407ae5cb8e6",
+    "6a60d37d2db2b4a240160c4a63f277c034f8603c0c0677062a97dce67a4de1fc",
+    "eb18a93d36edb9f43849cc2d1433bbd6f11e79eb35bff3d7ee45567d6ed0c960",
+    "3a6378654dd6ceaea1fc910d8a92fb4f0dddc90f46114a22f81fbd50af6c2464",
+    "997e76d38a963ceae17f52b84b84e24a6602b7106aebe1103f4fbe2c75ad8af6",
+    "e6a2accd11aa74d653cb70c10f0b8541ced4b72bcf45c4fe393bcfb68801122d",
+    "e311fad67b9caee0439b4a59816bd18c512f894eefcbda5eb64cc50f0b5132f0",
+    "dc68c89c697664553fb7bb48a2659d68a0250be50b9eb600a064de2a8f6ef7c1",
+    "2c0d603e8b719a34ac451c0b202160110148690d534e7f6edcf2fd982cbb050a",
+    "cc9e3e2114b1199c269694682e11f27d6d14d73729e763921cae488ed9136966",
+    "319afeea172bb09e34ecb56ce56cfc9277817464522c67bea6c3bbebe8d57e91",
+    "34190ff1d43fbaffc4b8e45c4046c8c79e8ffdeda462240094c0510844d63f94",
+    "ec93e6f4d035df795498b760d80b94362350ff691a42e87029999764a4512a65",
+    "70468255202b0bc81dac867684bf586ec1c80b51acfa2c62ce60ed6e6e3f03e7",
+    "b7be70aac455d6397edc44ff9a18a0537779e1c7f99ff7faba82844fdc6e25ac"
+  ],
+  "editable_behavior": [],
+  "primary_outcome": {
+    "metric": "skill_specific_task_success",
+    "definition": "Canonical task success with protected behavior preserved.",
+    "threshold": "human_review_required"
+  },
+  "secondary_outcomes": [],
+  "regression_limits": {
+    "protected_binary_margin": 0.02,
+    "critical_deterministic": "exact_pass"
+  },
+  "cost_latency_limits": {
+    "profile_caps": {
+      "static": 0,
+      "native": 0,
+      "routing-canary": 300000,
+      "canary": 1250000,
+      "promotion": 5000000,
+      "cross-host": 12000000,
+      "sweep": 30000000
+    }
+  },
+  "runtime_envelope": {
+    "required_cells": [],
+    "cross_host_required_for_pilot": false,
+    "status": "unresolved"
+  },
+  "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
+  "rollback_trigger": "Any protected regression or stale bound evidence.",
+  "source_clause_hashes": [
+    {
+      "sha256": "c96cd74da63d3012488de26f2409775cee81c7ca1841c64f0caedfd1ed3c3dd1",
+      "source": "ssot/auto-research.md",
+      "text": "Do not use this capability when the main job is prompt hardening, import classification, architecture design, or durable long-running analysis memory without a behavioral comparison goal."
+    },
+    {
+      "sha256": "d654db97305faa37de1851e49bbcc24384742ec7a089e4b8fba8e051cf338677",
+      "source": "ssot/auto-research.md",
+      "text": "- promote only verified winners"
+    },
+    {
+      "sha256": "7f7a95be10c5b81cd569e8257bf6906c6761cad49b4012a9f77bf314f7a05130",
+      "source": "ssot/auto-research.md",
+      "text": "bin/capability-eval calibrate --static-only"
+    },
+    {
+      "sha256": "812649042697ce72f41ff6117cbcef11a16446cdced28d91958b5ee8bbbb318d",
+      "source": "ssot/auto-research.md",
+      "text": "Valid statuses are `structural_ready`, `behavioral_pending`, `promote`, `hold`, `blocked_contract`, `inconclusive`, `rollback`, and `stale_evidence`. Never translate a structural UAC result into `promote`."
+    },
+    {
+      "sha256": "8d831bbc8ef67ebbfe60d4e5be33a671a461605dea21bbf9180a38c96231ff6d",
+      "source": "ssot/auto-research.md",
+      "text": "Normal CI is `static` and uses zero model tokens. Model-mediated profiles require an explicit operator or workflow gate. A cap breach, missing required runtime, unqualified judge, stale hash, or surviving critical mutant returns `inconclusive`, `hold`, or `stale_evidence`; it never silently narrows the experiment."
+    },
+    {
+      "sha256": "e9e498ae4987e2dbc18311cfe9a5e3249dda5371030dfe58aac12199fd176a95",
+      "source": "ssot/auto-research.md",
+      "text": "- prepare change, commit, and merge guidance only after a candidate clears the promotion threshold"
+    },
+    {
+      "sha256": "3544543b4c3b771c875f41bbe48f2e4de69b1ffa312fb72941939a57f35e7582",
+      "source": "ssot/auto-research.md",
+      "text": "The agent surface must never imply unconditional runtime authority. It may recommend, prepare, and validate. It must respect human review gates before promotion unless the user explicitly allows automated action inside the host system."
+    },
+    {
+      "sha256": "01d40c6b796f948458e84e26c0e4e94d756077b493d87378bda101b9bfeab700",
+      "source": "ssot/auto-research.md",
+      "text": "- forbidden: claiming an unmeasured improvement, silently widening the editable scope, hiding regressions behind aggregate scores, or merging changes without explicit policy support"
+    },
+    {
+      "sha256": "f656c1e45186ed3c3775e23508b649e4cc7c423334f4b4206433064aaca3300a",
+      "source": "ssot/auto-research.md",
+      "text": "7. Generate bounded candidates and replay them in isolation only after the cheaper checks cannot separate the likely causes."
+    },
+    {
+      "sha256": "0581532364743bbd1ea0111ffe919cf185f8a81c610f6298df889353bfd47833",
+      "source": "ssot/auto-research.md",
+      "text": "10. Promote only verified winners by preparing:"
+    },
+    {
+      "sha256": "7508be9ead9c29a6115e024147ba2c4dc22d1da8ffd928a6e77d90be33abf320",
+      "source": "ssot/auto-research.md",
+      "text": "Every Auto-Research run must end in one of these states:"
+    },
+    {
+      "sha256": "6fcf4b43a005b917b37268d3b4158c0a169b9a59894203c1924e1cbb6c8b3759",
+      "source": "ssot/auto-research.md",
+      "text": "- `setup_required`"
+    },
+    {
+      "sha256": "41f58abe6c3fd930e36ba2ee18bb9d08233428135cc1a9052fb5cd334f7d31b5",
+      "source": "ssot/auto-research.md",
+      "text": "Never end with an ambiguous \u201clooks better\u201d conclusion. Choose one state and explain why."
+    },
+    {
+      "sha256": "0e0775a99118576e59b91f01958a8c9db3c6c61da45bdfe3f26ff595ae69da9d",
+      "source": "ssot/auto-research.md",
+      "text": "- Escalate to repeated trials only after a cheaper test cannot separate the likely causes."
+    },
+    {
+      "sha256": "ca133c000e119317d1df78337b8aba3631d0f234e2a7a19947bc95c493f68ec0",
+      "source": "ssot/auto-research.md",
+      "text": "- Never present novelty as evidence."
+    },
+    {
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "source": "ssot/auto-research.md",
+      "text": "## Required Inputs"
+    },
+    {
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "source": "ssot/auto-research.md",
+      "text": "## Required Output"
+    },
+    {
+      "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+      "source": "ssot/auto-research.md",
+      "text": "Every substantial response must include:"
+    },
+    {
+      "sha256": "9f5eb701b5e0e53cb4530b70c99415b946efc97e138e3718b42606e7d4140a0a",
+      "source": "ssot/auto-research.md",
+      "text": "For bounded local investigations that do not justify a broad search loop yet, a compressed output is allowed:"
+    },
+    {
+      "sha256": "75bc1c7fdb872b212c025a001aed10b028e687d2a01abb380dfe74b17efa034d",
+      "source": "ssot/auto-research.md",
+      "text": "Auto-Research must guide the user through this sequence:"
+    },
+    {
+      "sha256": "0bedb8cce7648b83be4efe961cd0d6d34368dffc15b32c8c79e5270479a597cc",
+      "source": "ssot/auto-research.md",
+      "text": "- what must be true before a candidate is allowed to proceed to commit or merge"
+    },
+    {
+      "sha256": "30bb6a8d221c9cd94b16a6a0f2da239942c518c6d40ba7855f9fec1ab691e4dc",
+      "source": "ssot/auto-research.md",
+      "text": "- the minimum required setup inputs"
+    },
+    {
+      "sha256": "d9b877a9ba77df8ad361be7c63e2c23a7e84c22fbdd697e877637679da6130ab",
+      "source": "ssot/auto-research.md",
+      "text": "- produce only the goal contract, assumptions, missing evidence, and a no-edit starting recommendation"
+    },
+    {
+      "sha256": "928891b17115e00d5c2d6a240ca5bc7e78677d368f3bc6c4f78fd6a7328071ad",
+      "source": "ssot/auto-research.md",
+      "text": "Must not change:"
+    },
+    {
+      "sha256": "ba9c8a7ac10d7c0d926a0dd63f1cc1cc762231618df0de2c832026b9b7faeaa3",
+      "source": "ssot/auto-research.md",
+      "text": "- <what must improve, what must not regress>"
+    },
+    {
+      "sha256": "126170cdb763ebfd762bb9893d17f3a77f52b9f90359fb62de58802611c6f0c2",
+      "source": "ssot/auto-research.md",
+      "text": "Use the Python helper only when the operator wants those templates materialized immediately with fields already filled in."
+    },
+    {
+      "sha256": "2f711d491f9d1f5e02ea0786c81383384cdc366d2665aa9e37d7465b287d0042",
+      "source": "ssot/auto-research.md",
+      "text": "--must-not-change \"<protected surface>\" \\"
+    },
+    {
+      "sha256": "339859e792edad0e88efbf9c03420c4a7d5ccd1d7cd0fbc4f774eabeea94529e",
+      "source": "ssot/auto-research.md",
+      "text": "--promotion-threshold \"<required improvement>\""
+    },
+    {
+      "sha256": "fc3755c8134dfc6165f6a8df2f2a5fa8a5d0fa0d944d9bd2a6d8f4f8f390b47d",
+      "source": "ssot/auto-research.md",
+      "text": "- do not commit or merge automatically"
+    },
+    {
+      "sha256": "88ceb035f17602476db260dfe45c3b12abd56f04ebb2bbdf2047d19c0569839a",
+      "source": "ssot/auto-research.md",
+      "text": "Escalate beyond this only if:"
+    },
+    {
+      "sha256": "de849f8c38c1f59f48b4c83738174e7746a8b49a4e31d7e288a02b02c22edef5",
+      "source": "ssot/auto-research.md",
+      "text": "Ask targeted setup questions only when missing details would change the result materially. Prefer:"
+    },
+    {
+      "sha256": "935a3e170cab0e88f9ee09569a14412520e631d0bc07d80e2b56f9e605c2d3c2",
+      "source": "ssot/auto-research.md",
+      "text": "- \u201cWhat may change and what must remain frozen?\u201d"
+    },
+    {
+      "sha256": "602d33e9d3d8d0554c554b3006f1ff6b82389064ed6f359e288d0b7f626f49d2",
+      "source": "ssot/auto-research.md",
+      "text": "The goal contract must include:"
+    },
+    {
+      "sha256": "23e8dd9759008fcbeda3e62be994bd42200c9254245e562579f72f8916e0d8e3",
+      "source": "ssot/auto-research.md",
+      "text": "- widen only after cheaper checks cannot cleanly separate the likely causes"
+    },
+    {
+      "sha256": "ffa7032042806c567db9d05b5288526ea8af99edad077bf50a4f57bd974862fb",
+      "source": "ssot/auto-research.md",
+      "text": "Do not jump to step 4 by default."
+    },
+    {
+      "sha256": "3ccfaf080000ae8d971294e8454d291eacfda35893a72b8aa98bdb884f260b8b",
+      "source": "ssot/auto-research.md",
+      "text": "Do not keep searching after a clear winner just to spend the remaining budget."
+    },
+    {
+      "sha256": "4004a2cbf3bccbdd20d3b570cce84cdc6e4c338b8cdf82911d689f3262b42fb8",
+      "source": "ssot/auto-research.md",
+      "text": "A candidate can move forward only if:"
+    },
+    {
+      "sha256": "6a51e4a275ce4da3eab56b997ee51cce195890476ee0d7a088acc407ae5cb8e6",
+      "source": "ssot/auto-research.md",
+      "text": "- use repeated trials only when nondeterminism or conflicting evidence makes them necessary"
+    },
+    {
+      "sha256": "6a60d37d2db2b4a240160c4a63f277c034f8603c0c0677062a97dce67a4de1fc",
+      "source": "ssot/auto-research.md",
+      "text": "- edits allowed only inside the declared scope"
+    },
+    {
+      "sha256": "eb18a93d36edb9f43849cc2d1433bbd6f11e79eb35bff3d7ee45567d6ed0c960",
+      "source": "ssot/auto-research.md",
+      "text": "- do not skip the evidence summary"
+    },
+    {
+      "sha256": "3a6378654dd6ceaea1fc910d8a92fb4f0dddc90f46114a22f81fbd50af6c2464",
+      "source": "ssot/auto-research.md",
+      "text": "- escalate to repeated trials only after cheaper checks fail to separate hypotheses"
+    },
+    {
+      "sha256": "997e76d38a963ceae17f52b84b84e24a6602b7106aebe1103f4fbe2c75ad8af6",
+      "source": "ssot/auto-research.md",
+      "text": "> Use Auto-Research to improve our code-review prompt so it catches behavioral regressions earlier, but do not increase review noise or operator burden."
+    },
+    {
+      "sha256": "e6a2accd11aa74d653cb70c10f0b8541ced4b72bcf45c4fe393bcfb68801122d",
+      "source": "ssot/auto-research.md",
+      "text": "- Do not start search without a measurable goal."
+    },
+    {
+      "sha256": "e311fad67b9caee0439b4a59816bd18c512f894eefcbda5eb64cc50f0b5132f0",
+      "source": "ssot/auto-research.md",
+      "text": "- Do not claim a winner from a single run unless the system is strictly deterministic and the user agrees."
+    },
+    {
+      "sha256": "dc68c89c697664553fb7bb48a2659d68a0250be50b9eb600a064de2a8f6ef7c1",
+      "source": "ssot/auto-research.md",
+      "text": "- Do not hide regressions inside one aggregate \u201cscore improved\u201d claim."
+    },
+    {
+      "sha256": "2c0d603e8b719a34ac451c0b202160110148690d534e7f6edcf2fd982cbb050a",
+      "source": "ssot/auto-research.md",
+      "text": "- Do not assume the host repo allows auto-commit or auto-merge."
+    },
+    {
+      "sha256": "cc9e3e2114b1199c269694682e11f27d6d14d73729e763921cae488ed9136966",
+      "source": "ssot/auto-research.md",
+      "text": "- Do not let the capability degrade into generic brainstorming or generic testing advice."
+    },
+    {
+      "sha256": "319afeea172bb09e34ecb56ce56cfc9277817464522c67bea6c3bbebe8d57e91",
+      "source": "ssot/auto-research.md",
+      "text": "- Do not confuse public inspiration with local proof."
+    },
+    {
+      "sha256": "34190ff1d43fbaffc4b8e45c4046c8c79e8ffdeda462240094c0510844d63f94",
+      "source": "ssot/auto-research.md",
+      "text": "- Do not promote any candidate whose score is ambiguous, unstable, or unrepeatable."
+    },
+    {
+      "sha256": "ec93e6f4d035df795498b760d80b94362350ff691a42e87029999764a4512a65",
+      "source": "ssot/auto-research.md",
+      "text": "- Do not run broad candidate search when one sharply framed hypothesis can be tested first."
+    },
+    {
+      "sha256": "70468255202b0bc81dac867684bf586ec1c80b51acfa2c62ce60ed6e6e3f03e7",
+      "source": "ssot/auto-research.md",
+      "text": "- Do not parallelize dependent verification steps when regenerated artifacts are involved."
+    },
+    {
+      "sha256": "b7be70aac455d6397edc44ff9a18a0537779e1c7f99ff7faba82844fdc6e25ac",
+      "source": "ssot/auto-research.md",
+      "text": "| Promotion safety | Commit and merge guidance only appear after a verified winner exists |"
+    }
+  ],
+  "review_status": "draft"
+}

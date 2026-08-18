@@ -1,0 +1,1 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","$id":"ModelCell.v1","type":"object","required":["schema_version","host","resolved_model_identifier","effort","tool_policy","approval_policy","required","repetition_count","evidence_grade"],"properties":{"schema_version":{"const":"ModelCell.v1"},"evidence_grade":{"enum":["A","B","C","NOT_RUN"]}}}

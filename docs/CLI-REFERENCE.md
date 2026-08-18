@@ -14,6 +14,19 @@ If local `python3` resolves to an older interpreter, set `PYTHON_BIN=python3.11`
 
 ## Common Commands
 
+### Capability evaluation
+
+```bash
+bin/capability-eval compile --skill <slug>
+bin/capability-eval compile --all --check
+bin/capability-eval calibrate --static-only
+bin/capability-eval probe
+bin/capability-eval compare --skill <slug> --candidate <path> --profile <profile>
+bin/capability-eval report --run <run-id>
+```
+
+Profiles are `static`, `native`, `routing-canary`, `canary`, `promotion`, `cross-host`, and `sweep`. The first two have a hard token cap of zero. Live profiles are fail-closed until explicit model-call authorization, adapter conformance, sealed data, and judge calibration exist.
+
 | Command | Purpose | Mutates repo state |
 | --- | --- | --- |
 | `bin/capability-fabric build` | generate all CLI surfaces, bundled resources, and generated inspection views | no |
@@ -200,6 +213,7 @@ Direct exposure is standardized on `skills/<slug>/SKILL.md` for every supported 
 ## Related Docs
 
 - [Getting started](GETTING-STARTED.md)
+- [Capability evaluation](CAPABILITY-EVALUATION.md)
 - [Examples](EXAMPLES.md)
 - [Capability catalog](CAPABILITY-CATALOG.md)
 - [Release delta](RELEASE-DELTA.md)

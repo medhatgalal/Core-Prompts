@@ -1,0 +1,126 @@
+{
+  "schema_version": "GoalContract.v1",
+  "slug": "demo-recorder",
+  "target": "Fulfill the canonical intent of demo-recorder.",
+  "intended_outcome": "Preserve the canonical SSOT objective and required output.",
+  "change_class": "unknown",
+  "non_goals": [],
+  "protected_behaviors": [
+    "63588b3eb23278fd94dd33f12a072f39a91dad6c3676ed86f8f8ed96dd108e3c",
+    "c2a7258c4023633f83c9072fe6904eb33dd1a49656bdebc533b919194002e2ab",
+    "ccfd09ac6dfc6450c1b7b7a8fe952c383bb4d8106148f644ee2d76535caad993",
+    "13c411747cea34b0a1f8d81b52edfafabda20c3e62f88e95a6aea1a45aea1eae",
+    "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+    "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+    "cc19be8bcf9ea81e4b9efdba976d81c13a063e8ed54a8087cf3859ad3f5eed39",
+    "f20a2cefe53c10e643434b6f6399f16e06a86718d40b011c762b2d1b6c348419",
+    "d8eacb4f2de266e6eaf514ea6b360851284c3aa5e7f59762795a75572d7c9e29",
+    "daffaa159311fb831fe3c83109ab70566c7356590bd514c42a2922ad8149e9c3",
+    "af51ed8554e8727c6c3688c05b6f218208c366eb2ba8b2375913a0b66d1e4c7c",
+    "97b9d1da72c4cd3ca81ace3bd28296aa5cbbf0533877c69b1c222b258b420fc4",
+    "2110b5a2ba533875f9abfa6d441dc9bc2a2c5445a58fcc549654d5284fb98999",
+    "44b3825e92225225e023fba0e20c1cc314119185422297940ef612dae59c6569"
+  ],
+  "editable_behavior": [],
+  "primary_outcome": {
+    "metric": "skill_specific_task_success",
+    "definition": "Canonical task success with protected behavior preserved.",
+    "threshold": "human_review_required"
+  },
+  "secondary_outcomes": [],
+  "regression_limits": {
+    "protected_binary_margin": 0.02,
+    "critical_deterministic": "exact_pass"
+  },
+  "cost_latency_limits": {
+    "profile_caps": {
+      "static": 0,
+      "native": 0,
+      "routing-canary": 300000,
+      "canary": 1250000,
+      "promotion": 5000000,
+      "cross-host": 12000000,
+      "sweep": 30000000
+    }
+  },
+  "runtime_envelope": {
+    "required_cells": [],
+    "cross_host_required_for_pilot": false,
+    "status": "unresolved"
+  },
+  "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
+  "rollback_trigger": "Any protected regression or stale bound evidence.",
+  "source_clause_hashes": [
+    {
+      "sha256": "63588b3eb23278fd94dd33f12a072f39a91dad6c3676ed86f8f8ed96dd108e3c",
+      "source": "ssot/demo-recorder.md",
+      "text": "- Storing, transmitting, or reading credentials directly \u2014 reference environment variables only"
+    },
+    {
+      "sha256": "c2a7258c4023633f83c9072fe6904eb33dd1a49656bdebc533b919194002e2ab",
+      "source": "ssot/demo-recorder.md",
+      "text": "- Generating partial or placeholder scripts \u2014 every output must be complete and runnable"
+    },
+    {
+      "sha256": "ccfd09ac6dfc6450c1b7b7a8fe952c383bb4d8106148f644ee2d76535caad993",
+      "source": "ssot/demo-recorder.md",
+      "text": "- Do not execute shell commands to run Playwright or start services"
+    },
+    {
+      "sha256": "13c411747cea34b0a1f8d81b52edfafabda20c3e62f88e95a6aea1a45aea1eae",
+      "source": "ssot/demo-recorder.md",
+      "text": "- Do not access `.env` files, credential stores, or secret managers"
+    },
+    {
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "source": "ssot/demo-recorder.md",
+      "text": "## Required Inputs"
+    },
+    {
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "source": "ssot/demo-recorder.md",
+      "text": "## Required Output"
+    },
+    {
+      "sha256": "cc19be8bcf9ea81e4b9efdba976d81c13a063e8ed54a8087cf3859ad3f5eed39",
+      "source": "ssot/demo-recorder.md",
+      "text": "- Always reference credentials through environment variables, never inline."
+    },
+    {
+      "sha256": "f20a2cefe53c10e643434b6f6399f16e06a86718d40b011c762b2d1b6c348419",
+      "source": "ssot/demo-recorder.md",
+      "text": "- Always state prerequisites the user must verify before running."
+    },
+    {
+      "sha256": "d8eacb4f2de266e6eaf514ea6b360851284c3aa5e7f59762795a75572d7c9e29",
+      "source": "ssot/demo-recorder.md",
+      "text": "- Do not claim orchestration, delegation, or runtime-control authority."
+    },
+    {
+      "sha256": "daffaa159311fb831fe3c83109ab70566c7356590bd514c42a2922ad8149e9c3",
+      "source": "ssot/demo-recorder.md",
+      "text": "- Do not invent service behavior or assume API shapes without user confirmation."
+    },
+    {
+      "sha256": "af51ed8554e8727c6c3688c05b6f218208c366eb2ba8b2375913a0b66d1e4c7c",
+      "source": "ssot/demo-recorder.md",
+      "text": "- Do not replace operational procedure with vague summaries."
+    },
+    {
+      "sha256": "97b9d1da72c4cd3ca81ace3bd28296aa5cbbf0533877c69b1c222b258b420fc4",
+      "source": "ssot/demo-recorder.md",
+      "text": "- Do not imply execution authority that the capability does not own."
+    },
+    {
+      "sha256": "2110b5a2ba533875f9abfa6d441dc9bc2a2c5445a58fcc549654d5284fb98999",
+      "source": "ssot/demo-recorder.md",
+      "text": "- Do not produce scripts that depend on undeclared external tools beyond Playwright itself."
+    },
+    {
+      "sha256": "44b3825e92225225e023fba0e20c1cc314119185422297940ef612dae59c6569",
+      "source": "ssot/demo-recorder.md",
+      "text": "- Do not mix demo recording concerns with testing, CI, or deployment concerns."
+    }
+  ],
+  "review_status": "draft"
+}

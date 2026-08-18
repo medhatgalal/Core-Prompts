@@ -1,0 +1,252 @@
+{
+  "schema_version": "GoalContract.v1",
+  "slug": "eng-report",
+  "target": "Fulfill the canonical intent of eng-report.",
+  "intended_outcome": "Preserve the canonical SSOT objective and required output.",
+  "change_class": "unknown",
+  "non_goals": [],
+  "protected_behaviors": [
+    "ff41c59ce874f8e99d57d498ad31e9159bd21c69e1b3d09c457e5a943705541a",
+    "af97ae5b5f3628c1c812e7f2031acacd235eb3f1491598cd64298cde23977236",
+    "d824b51e5281571aa826840b22778689935225e4b5cef46cd72aafee95e2c27c",
+    "713c0d9f37b8a34fbbe93273c173c7a569c4af7d6b01ec774a4ce2924b82e546",
+    "f0ee8c2c9ac6f26c51f1d3fa5bf637aa9c10f9aa2c4f7b5a9df31be08a38afec",
+    "247b41e99ff275442db2523eb78ebef8d0594fb10bfceae8f5f374644420ee18",
+    "e45f1310b9881b47b68415a8abf1220f8a72c1d1fd10f1d45b4fb6209ba6389c",
+    "d03fa22f48be46a26504664397538450bcc4b277c8c4b96b4d55b00865a2620f",
+    "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+    "eab8a3de4245dcf32cfed8d445912b48c2e4cce4f7967a7db5a2f6ab06721ccd",
+    "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+    "6eaa2c46a6e6068ba40f4fb63f5f496cdf75d73da513636c4faf2fbcb42c9f78",
+    "a8248c9e10e987705d92bc100863ef170fd7be0ef746d5c09256afdc11fe1a93",
+    "6e56ead7fa758e8f097156f4a90f46dfd065e64768174443e62c99b139c3b6fa",
+    "c433da1366f2a270758bd7dba17ace1935ddd41159b8943d1df7b13bea0c4622",
+    "413b7609242ea2b30e87d6bea925804b0e6313b91221a37754724d4fab730be9",
+    "b90894eda99b5f9c2fa588f1d87337c7e789c4275b7d746584d2da29b75fdd49",
+    "f99b3a1b5134c5064ce03b22e9f54c2a65c652ca4d7d3cf9ccbcfe2c05d2c358",
+    "10998de14d4b5f7b6dec14122de20d38a17a7473055f441adb0eb5072c4db61e",
+    "4f05ad30b4b38954fca3bbb5d27a3059c28b979baf504f730c3acbea13935737",
+    "91eb0b0a682f3701ca23308a6afdebce71370c1966b57a7975645c1d02650ea4",
+    "6d02e7bab45f0fea66f08730ffef8c41d1167a36eb0e195e9e596f9df4f52afa",
+    "a7b831d99f1c1b69b43e1c3981d23eb1007ccdee7a27ceff2a0412b165442cbb",
+    "9a0230f649da046fce63514a1b4e27f02647ccd97510b92b316d1b736c9b9499",
+    "9b3d34de14caa887c3f804d77f1ac6cbd2a3a28bcea6ed7e4086ba4fdc83499b",
+    "86ceea02a1c06e0e9f559308bb68574b6aaf695d301a2a9eb3569b596d4d6ff1",
+    "e7b96872bd720bee4f63deb5ba1af9e21c7b8a54fe871e228cf7c75cd29ba257",
+    "13d030c228b73d523478b9bc5b350f6bd49fa01e6c351c2f009da5901b9688d8",
+    "633eaaba9df6263ca34639900d397a375aeea0ac6aa3469c91419501650d0280",
+    "39a79adb5c4be8c8215391c0a36ab18780c9d4822e32ced8543dfdd49901dcda",
+    "9b2e8893ca1da5d91459d8c1c613744c4ea030dea9ed44d2573c17d7f1d1064f",
+    "c30b8eb0eb7f94dfeda553dd1ee65a13f4b17edd145ba1ddf52de7196ebd824e",
+    "deaa42f421847cd0a964cdfbf79b4c21f5b97635566d05df5e085cb3fe8be77f",
+    "1c022ba68bff4c155a53e4a1b1e1bd76ea6ecf368e69eb7fa434b52f8f333cf3",
+    "2a90a8e136383b940f1f0b71e3b238bbaefd00c553befcb711cebba673e2858c"
+  ],
+  "editable_behavior": [],
+  "primary_outcome": {
+    "metric": "skill_specific_task_success",
+    "definition": "Canonical task success with protected behavior preserved.",
+    "threshold": "human_review_required"
+  },
+  "secondary_outcomes": [],
+  "regression_limits": {
+    "protected_binary_margin": 0.02,
+    "critical_deterministic": "exact_pass"
+  },
+  "cost_latency_limits": {
+    "profile_caps": {
+      "static": 0,
+      "native": 0,
+      "routing-canary": 300000,
+      "canary": 1250000,
+      "promotion": 5000000,
+      "cross-host": 12000000,
+      "sweep": 30000000
+    }
+  },
+  "runtime_envelope": {
+    "required_cells": [],
+    "cross_host_required_for_pilot": false,
+    "status": "unresolved"
+  },
+  "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
+  "rollback_trigger": "Any protected regression or stale bound evidence.",
+  "source_clause_hashes": [
+    {
+      "sha256": "ff41c59ce874f8e99d57d498ad31e9159bd21c69e1b3d09c457e5a943705541a",
+      "source": "ssot/eng-report.md",
+      "text": "description: \"Generate a weekly/periodic HTML engineering dashboard from git data for any repo or org team. Use for velocity reporting, architecture evolution, and release tracking. Do not use to access Jira, estimate story points, or replace sprint planning tools. Do not use to modify code or run tests.\""
+    },
+    {
+      "sha256": "af97ae5b5f3628c1c812e7f2031acacd235eb3f1491598cd64298cde23977236",
+      "source": "ssot/eng-report.md",
+      "text": "| `run` | `git` only \u2014 no external dependencies |"
+    },
+    {
+      "sha256": "d824b51e5281571aa826840b22778689935225e4b5cef46cd72aafee95e2c27c",
+      "source": "ssot/eng-report.md",
+      "text": "`sync-authors` is the only command that requires Home MCP. It is optional \u2014 author lists can be maintained manually in `config.yaml` if Home MCP is unavailable."
+    },
+    {
+      "sha256": "713c0d9f37b8a34fbbe93273c173c7a569c4af7d6b01ec774a4ce2924b82e546",
+      "source": "ssot/eng-report.md",
+      "text": "- use Home MCP only to refresh configured author lists when `sync-authors` is requested"
+    },
+    {
+      "sha256": "f0ee8c2c9ac6f26c51f1d3fa5bf637aa9c10f9aa2c4f7b5a9df31be08a38afec",
+      "source": "ssot/eng-report.md",
+      "text": "- use Drive, Chat, or email integrations only for explicit upload, sync, or notification flows"
+    },
+    {
+      "sha256": "247b41e99ff275442db2523eb78ebef8d0594fb10bfceae8f5f374644420ee18",
+      "source": "ssot/eng-report.md",
+      "text": "Forbidden:"
+    },
+    {
+      "sha256": "e45f1310b9881b47b68415a8abf1220f8a72c1d1fd10f1d45b4fb6209ba6389c",
+      "source": "ssot/eng-report.md",
+      "text": "| \"Update my Jira tickets\" | Not this skill | eng-report is read-only against git |"
+    },
+    {
+      "sha256": "d03fa22f48be46a26504664397538450bcc4b277c8c4b96b4d55b00865a2620f",
+      "source": "ssot/eng-report.md",
+      "text": "Do not invoke this capability for sprint planning, Jira status, story-point reporting, PR review, test execution, incident management, or any request that requires modifying source code."
+    },
+    {
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "source": "ssot/eng-report.md",
+      "text": "## Required Inputs"
+    },
+    {
+      "sha256": "eab8a3de4245dcf32cfed8d445912b48c2e4cce4f7967a7db5a2f6ab06721ccd",
+      "source": "ssot/eng-report.md",
+      "text": "- Home MCP access only for `sync-authors`; manually maintained author lists are valid without Home MCP"
+    },
+    {
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "source": "ssot/eng-report.md",
+      "text": "## Required Output"
+    },
+    {
+      "sha256": "6eaa2c46a6e6068ba40f4fb63f5f496cdf75d73da513636c4faf2fbcb42c9f78",
+      "source": "ssot/eng-report.md",
+      "text": "The generated report must keep all visible metrics traceable to git data and must not include invented Jira counts, story points, PR review timings, or unverified external facts."
+    },
+    {
+      "sha256": "a8248c9e10e987705d92bc100863ef170fd7be0ef746d5c09256afdc11fe1a93",
+      "source": "ssot/eng-report.md",
+      "text": "- `run` (no `--drive`) \u2192 generates to `/tmp/YYYY-MM-DD/` only, opens each report in browser"
+    },
+    {
+      "sha256": "6e56ead7fa758e8f097156f4a90f46dfd065e64768174443e62c99b139c3b6fa",
+      "source": "ssot/eng-report.md",
+      "text": "**This command delegates all git data gathering to `scripts/eng-report.py`.** Do not run git commands manually \u2014 use the script."
+    },
+    {
+      "sha256": "c433da1366f2a270758bd7dba17ace1935ddd41159b8943d1df7b13bea0c4622",
+      "source": "ssot/eng-report.md",
+      "text": "You CANNOT skip Pass 1. You CANNOT write narrative JSON without first reading the --json output. The metrics are the ground truth \u2014 narratives must describe what the data shows."
+    },
+    {
+      "sha256": "413b7609242ea2b30e87d6bea925804b0e6313b91221a37754724d4fab730be9",
+      "source": "ssot/eng-report.md",
+      "text": "1. You MUST first run `eng-report run --json --config <config>` and READ the actual JSON output."
+    },
+    {
+      "sha256": "b90894eda99b5f9c2fa588f1d87337c7e789c4275b7d746584d2da29b75fdd49",
+      "source": "ssot/eng-report.md",
+      "text": "2. You MUST synthesize narratives from the REAL metrics data you just read \u2014 not from memory, assumptions, or prior knowledge of the repos."
+    },
+    {
+      "sha256": "f99b3a1b5134c5064ce03b22e9f54c2a65c652ca4d7d3cf9ccbcfe2c05d2c358",
+      "source": "ssot/eng-report.md",
+      "text": "3. You MUST NOT pre-write narrative JSON before reading metrics. The narrative is a RESPONSE to the data."
+    },
+    {
+      "sha256": "10998de14d4b5f7b6dec14122de20d38a17a7473055f441adb0eb5072c4db61e",
+      "source": "ssot/eng-report.md",
+      "text": "4. You MUST NOT write a Python script to generate narratives \u2014 use your own synthesis capabilities on the real data."
+    },
+    {
+      "sha256": "4f05ad30b4b38954fca3bbb5d27a3059c28b979baf504f730c3acbea13935737",
+      "source": "ssot/eng-report.md",
+      "text": "- Never list raw filenames with date-hash names. Never name individual contributors. Describe what the team built, not who typed it."
+    },
+    {
+      "sha256": "91eb0b0a682f3701ca23308a6afdebce71370c1966b57a7975645c1d02650ea4",
+      "source": "ssot/eng-report.md",
+      "text": "- \u274c WRONG: `[engos-71sfe.47] fix: add doctor dry-run repair plan` (raw commit subject \u2014 never do this)"
+    },
+    {
+      "sha256": "6d02e7bab45f0fea66f08730ffef8c41d1167a36eb0e195e9e596f9df4f52afa",
+      "source": "ssot/eng-report.md",
+      "text": "- **`work_areas`**: Jira repos only. Read the commit subjects, strip ticket prefixes, cluster into 5\u20137 plain-English themes you identify. Render as `<div style=\"margin-bottom:12px\"><div style=\"display:flex;justify-content:space-between;margin-bottom:4px\"><span style=\"color:#e6edf3;font-size:13px\">AREA LABEL</span><span style=\"color:#8b949e;font-size:12px\">N commits</span></div><div style=\"height:8px;width:PCT%;background:COLOR;border-radius:4px;min-width:6px\"></div></div>` bars (scale to max area)."
+    },
+    {
+      "sha256": "a7b831d99f1c1b69b43e1c3981d23eb1007ccdee7a27ceff2a0412b165442cbb",
+      "source": "ssot/eng-report.md",
+      "text": "Process all active entries. Work through them directly \u2014 do not write a Python script to generate the narratives algorithmically."
+    },
+    {
+      "sha256": "9a0230f649da046fce63514a1b4e27f02647ccd97510b92b316d1b736c9b9499",
+      "source": "ssot/eng-report.md",
+      "text": "A summary page generated whenever \u22652 repos are processed. Uses same design tokens and dark theme."
+    },
+    {
+      "sha256": "9b3d34de14caa887c3f804d77f1ac6cbd2a3a28bcea6ed7e4086ba4fdc83499b",
+      "source": "ssot/eng-report.md",
+      "text": "3. If `--date` specified: sync only that folder. If folder not found in Drive, abort with error."
+    },
+    {
+      "sha256": "86ceea02a1c06e0e9f559308bb68574b6aaf695d301a2a9eb3569b596d4d6ff1",
+      "source": "ssot/eng-report.md",
+      "text": "A 10/10 report MUST satisfy ALL of the following. Treat each as a gate \u2014 if any fails, fix before outputting:"
+    },
+    {
+      "sha256": "e7b96872bd720bee4f63deb5ba1af9e21c7b8a54fe871e228cf7c75cd29ba257",
+      "source": "ssot/eng-report.md",
+      "text": "- [ ] Category bars: only conventional prefixes (lowercase words before `:`, `(`, `!`). No Jira keys (e.g., `LCP-123`) appear as categories."
+    },
+    {
+      "sha256": "13d030c228b73d523478b9bc5b350f6bd49fa01e6c351c2f009da5901b9688d8",
+      "source": "ssot/eng-report.md",
+      "text": "- [ ] Release timeline: only git tags or explicit version-bump commits \u2014 merge commits NEVER appear here"
+    },
+    {
+      "sha256": "633eaaba9df6263ca34639900d397a375aeea0ac6aa3469c91419501650d0280",
+      "source": "ssot/eng-report.md",
+      "text": "- reads only git history from the selected repository"
+    },
+    {
+      "sha256": "39a79adb5c4be8c8215391c0a36ab18780c9d4822e32ced8543dfdd49901dcda",
+      "source": "ssot/eng-report.md",
+      "text": "- outputs metric JSON only"
+    },
+    {
+      "sha256": "9b2e8893ca1da5d91459d8c1c613744c4ea030dea9ed44d2573c17d7f1d1064f",
+      "source": "ssot/eng-report.md",
+      "text": "Do not use eng-report for story points. State that the capability only reports git-derived metrics and ask for a Jira-capable workflow if story-point reporting is required."
+    },
+    {
+      "sha256": "c30b8eb0eb7f94dfeda553dd1ee65a13f4b17edd145ba1ddf52de7196ebd824e",
+      "source": "ssot/eng-report.md",
+      "text": "| Read-only behavior | The capability observes repositories and writes reports outside source trees unless explicitly configured | The capability modifies code, tests, branches, or repo metadata |"
+    },
+    {
+      "sha256": "deaa42f421847cd0a964cdfbf79b4c21f5b97635566d05df5e085cb3fe8be77f",
+      "source": "ssot/eng-report.md",
+      "text": "| Integration clarity | Optional Home MCP, Drive, Chat, and email dependencies are used only for their specific commands | Optional integrations are treated as required for basic git reporting |"
+    },
+    {
+      "sha256": "1c022ba68bff4c155a53e4a1b1e1bd76ea6ecf368e69eb7fa434b52f8f333cf3",
+      "source": "ssot/eng-report.md",
+      "text": "- `summary`: 3\u20134 sentences synthesizing the arc of the period. Team-framing only."
+    },
+    {
+      "sha256": "2a90a8e136383b940f1f0b71e3b238bbaefd00c553befcb711cebba673e2858c",
+      "source": "ssot/eng-report.md",
+      "text": "run --json                 Output metrics JSON only, no HTML (pipe to AI for narrative generation)"
+    }
+  ],
+  "review_status": "draft"
+}

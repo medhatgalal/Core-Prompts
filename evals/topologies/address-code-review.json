@@ -1,0 +1,211 @@
+{
+  "schema_version": "CapabilityTopology.v1",
+  "slug": "address-code-review",
+  "ssot_sha256": "ca3fe7fef93c366ef97fd0c286b9784e20a774dec0b6ac669da5fcf9c6696c01",
+  "explicit_invocations": [],
+  "semantic_triggers": [],
+  "aliases_shortcuts": [],
+  "auto_routes": [],
+  "nodes": {
+    "commands": [],
+    "modes_modules": [
+      {
+        "id": "2e2d5c5649b7",
+        "label": "Workflow",
+        "source_line": 61
+      }
+    ],
+    "controls": [],
+    "modifiers": []
+  },
+  "composition": {
+    "legal_pairs": [],
+    "forbidden_pairs": [],
+    "canonical_order": [],
+    "requirements": [],
+    "supersession": []
+  },
+  "state_machine": {
+    "states": [],
+    "transitions": [],
+    "forbidden_transitions": []
+  },
+  "outputs": [
+    "- `Comments Found` \u2014 numbered list of open review comments with author, file, line, and summary",
+    "- `User Selection` \u2014 which comments the user chose to address",
+    "- `Changes Applied` \u2014 per-comment summary of what was modified",
+    "- `Commit Guidance` \u2014 suggested commit message and push instructions",
+    "- `Follow-up Review` \u2014 whether to run `code-review`, `testing`, `architecture`, or `gitops-review`"
+  ],
+  "authority_boundaries": [
+    "address-code-review:L22:54b46041dc34",
+    "address-code-review:L26:4baa80f8e32d",
+    "address-code-review:L82:42dae8920882",
+    "address-code-review:L98:5c7c9bcf16a0",
+    "address-code-review:L100:30599702f4ce",
+    "address-code-review:L101:c44f4bd04d47"
+  ],
+  "resources": [
+    "- File and line reference",
+    "- list of open comments with file references"
+  ],
+  "handoffs": [
+    "## Companion Capability Matrix",
+    "| Situation | Companion Capability | Why |"
+  ],
+  "protected_invariants": [
+    {
+      "id": "address-code-review:L6:0a5d48cf06cc",
+      "heading": "Purpose",
+      "source_line": 6,
+      "sha256": "0a5d48cf06cc8c8b9e602c5800b5cb082f70cbaf8ca181807e48ef84215d1962",
+      "text": "Use this only after there is an existing PR/MR review thread, inline comment, requested-change discussion, or explicit reviewer note to address. If the user has not received review feedback yet and wants a quality gate before committing or pushing, use `code-review` instead.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "address-code-review:L9:f36101a47746",
+      "heading": "Primary Objective",
+      "source_line": 9,
+      "sha256": "f36101a477462e79b9199d8ca56af6452a1cc623e78e9d0b8e08a6a7077904d7",
+      "text": "Read open review comments from a PR/MR, present them to the user, apply the requested changes with minimal scope, and prepare a commit with only the reviewer-requested fixes.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "address-code-review:L19:3c128e1bf0f9",
+      "heading": "Choose the Right Review Capability",
+      "source_line": 19,
+      "sha256": "3c128e1bf0f9310b3e05fb2e424e1326ff28f82f1e88d130b0c68e448232fbcb",
+      "text": "| \"Address only comments 2 and 4\" | `address-code-review` | selected-comment implementation with narrow scope |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "address-code-review:L22:54b46041dc34",
+      "heading": "Choose the Right Review Capability",
+      "source_line": 22,
+      "sha256": "54b46041dc34e5c898a778b5a28d4fd606a61760b784d2258fc39da62a457c34",
+      "text": "Do not use `address-code-review` to proactively improve code, clean up adjacent issues, or review a diff before a reviewer has commented. It should only mutate files that are tied to selected review feedback.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "address-code-review:L26:4baa80f8e32d",
+      "heading": "Tool Boundaries",
+      "source_line": 26,
+      "sha256": "4baa80f8e32d10e7f7df9823720e5768d545895892edb660c944963cfcf1d93c",
+      "text": "- forbidden: modifying code that has no associated review comment, silent bulk refactors, resolving comments without applying the fix",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "address-code-review:L48:77357dbdaba3",
+      "heading": "Required Inputs",
+      "source_line": 48,
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "text": "## Required Inputs",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "address-code-review:L54:3d4b9f171064",
+      "heading": "Required Output",
+      "source_line": 54,
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "text": "## Required Output",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "address-code-review:L82:42dae8920882",
+      "heading": "3. Present the comments",
+      "source_line": 82,
+      "sha256": "42dae89208821e64edd7232105cbe3a8cb9e1e38176bd750bcc858f37f048234",
+      "text": "Do not edit files until the selected comment set is clear.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "address-code-review:L92:61d7bc98cdc3",
+      "heading": "5. Commit and push",
+      "source_line": 92,
+      "sha256": "61d7bc98cdc3e63cbd2be5f622dc9a78102fbc75d7c60f92cac7fb4e61a8b495",
+      "text": "- Stage only the files that were modified to address comments.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "address-code-review:L98:5c7c9bcf16a0",
+      "heading": "Constraints",
+      "source_line": 98,
+      "sha256": "5c7c9bcf16a03d74f317314b929b29ac5eaefd02f3babd88e910e31dc61e1da2",
+      "text": "- **Only modify code that has an associated review comment.** Do not touch other changed lines in the diff that have no comments.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "address-code-review:L100:30599702f4ce",
+      "heading": "Constraints",
+      "source_line": 100,
+      "sha256": "30599702f4ce404fa450bf87f112729f5368c50cea10a060fcea29071834de4e",
+      "text": "- Do not resolve/close review threads programmatically \u2014 let the reviewer verify.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "address-code-review:L101:c44f4bd04d47",
+      "heading": "Constraints",
+      "source_line": 101,
+      "sha256": "c44f4bd04d475f33d8d4d33498cc63f9be6625305353e620a1275e54b6559ee4",
+      "text": "- Do not mix unrelated changes into the fix commit.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "address-code-review:L123:37bebf8446cb",
+      "heading": "Evaluation Rubric",
+      "source_line": 123,
+      "sha256": "37bebf8446cbc7d01a5e11ad77c6ac8b3c4bf40a3d2eb3bcf2bcc41dd674ecc7",
+      "text": "| Scope discipline | Only reviewer-requested changes are made, nothing else |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "address-code-review:L125:0dbf8968a8e9",
+      "heading": "Evaluation Rubric",
+      "source_line": 125,
+      "sha256": "0dbf8968a8e960224693f6b5979c94146310e35c490cd213a6745b7878bda6e9",
+      "text": "| Commit hygiene | Fix commit contains only the review-related changes |",
+      "kind": "invariant",
+      "mapped_to": []
+    }
+  ],
+  "risk_tiers": {
+    "critical": [],
+    "high": [],
+    "standard": []
+  },
+  "source_references": [
+    {
+      "path": "ssot/address-code-review.md",
+      "sha256": "ca3fe7fef93c366ef97fd0c286b9784e20a774dec0b6ac669da5fcf9c6696c01"
+    }
+  ],
+  "known_ambiguities": [],
+  "coverage_policy": {
+    "normative_clauses": "100_percent_mapped_or_waived",
+    "nodes": "positive_and_boundary",
+    "transitions": "all_legal_and_forbidden",
+    "module_pairs": "all_legal_pairs",
+    "high_risk_tuples": "assigned_strength",
+    "critical_mutants": "100_percent_killed"
+  },
+  "normative_clause_coverage": {
+    "total": 14,
+    "mapped": 0,
+    "waived": 0
+  },
+  "review_status": "draft",
+  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs."
+}

@@ -1,0 +1,186 @@
+{
+  "schema_version": "GoalContract.v1",
+  "slug": "pitch",
+  "target": "Fulfill the canonical intent of pitch.",
+  "intended_outcome": "Preserve the canonical SSOT objective and required output.",
+  "change_class": "unknown",
+  "non_goals": [],
+  "protected_behaviors": [
+    "1f12a8ae4884f5bb77c4e17af2dbed2798f851275d9c97062df43f211a50cee4",
+    "9c1655933ac1952f2c40c6f8d15f790558497fa2073641e829f78cc65c8f8006",
+    "ded09ee944d3bd722a516ab22ad28d33af9831a4e2f1a70b12b06dbd97ddcfd6",
+    "01082470313d9a12f3baf5e6bee8af0e1bc27d93accd00d7a3bcd6b7db9b7ea8",
+    "3a5a23592da7eec9d3b6961b2c1e52e8cf72be4551f38b94615823d485de7f2c",
+    "f2e69c2140334091118b73ffb88b54015313f5fcdab805e2f67d494a2f75f31a",
+    "2cb8c82423bbf65482a53508075b2648530c4be27392436d40b3417e48399932",
+    "5d312dddd77f581696db13628a6747490fd04c06b79b147ef15c1a75b0f495ef",
+    "71b7e2d1094852a967b41a82ffe668f3b91de49a2929a0ec73e321bec4fd2eed",
+    "cdbe1dcbd0f8607242a7abb2652ce32cb7ed7069a9b0db9becc21abd57d6015f",
+    "1c74a6e1a201be8668c0ea714dd6b8c83e862ced48c1f66400cfd47a3007f9b8",
+    "8122b0b659dc140ffca0b213f06e07af2646032a4b0e300ff07dbc519bae9e59",
+    "a24e26f1e6ab71b90d217e56d01503aea468125d80688a3c7b2e066a3621641e",
+    "d678721563279d04b01868241f2a4d964146a93a98196428c393480d8fa4ea6c",
+    "5772c336924c3a9029d790c9f4d2ef7e9fa41c7fbe0fd94464aad016842034e3",
+    "bbfde09aa596af6b19a1188bf1ea48ba4adf45e24c055af1dae3fce8ce893743",
+    "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+    "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+    "e65ea8fc2cdb5df64f038f8b02ccce37374a4aad3ffca08cd953aa1ee10f07ba",
+    "940e8b557bbd00643abfbdf3ac5e0fcfe0473c8df94372f26bed0c1a672659b8",
+    "2cb8c82423bbf65482a53508075b2648530c4be27392436d40b3417e48399932",
+    "3f409f81bf498a3744f2f94a21c81d8972f254564b5b010e550d0e3b03e1f203",
+    "d267c1f0186bb6e7a2decf8b4e1917b3d52c43d984f5d5666b7966f16f7045b1",
+    "8862702a682ef182057d03212b0f4a8b9914bae7c26beb903bbc3a43c7bf02bb"
+  ],
+  "editable_behavior": [],
+  "primary_outcome": {
+    "metric": "skill_specific_task_success",
+    "definition": "Canonical task success with protected behavior preserved.",
+    "threshold": "human_review_required"
+  },
+  "secondary_outcomes": [],
+  "regression_limits": {
+    "protected_binary_margin": 0.02,
+    "critical_deterministic": "exact_pass"
+  },
+  "cost_latency_limits": {
+    "profile_caps": {
+      "static": 0,
+      "native": 0,
+      "routing-canary": 300000,
+      "canary": 1250000,
+      "promotion": 5000000,
+      "cross-host": 12000000,
+      "sweep": 30000000
+    }
+  },
+  "runtime_envelope": {
+    "required_cells": [],
+    "cross_host_required_for_pilot": false,
+    "status": "unresolved"
+  },
+  "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
+  "rollback_trigger": "Any protected regression or stale bound evidence.",
+  "source_clause_hashes": [
+    {
+      "sha256": "1f12a8ae4884f5bb77c4e17af2dbed2798f851275d9c97062df43f211a50cee4",
+      "source": "ssot/pitch.md",
+      "text": "- [Required when crossing seams. Strongly recommended otherwise.]"
+    },
+    {
+      "sha256": "9c1655933ac1952f2c40c6f8d15f790558497fa2073641e829f78cc65c8f8006",
+      "source": "ssot/pitch.md",
+      "text": "- **Below the line (stretch):** Only if committed work finishes early"
+    },
+    {
+      "sha256": "ded09ee944d3bd722a516ab22ad28d33af9831a4e2f1a70b12b06dbd97ddcfd6",
+      "source": "ssot/pitch.md",
+      "text": "The skill does NOT maintain an external registry or assume mappings. It only reports what the pitch itself states. If a pitch doesn't name its components, that's a gap flagged in the Architecture dimension."
+    },
+    {
+      "sha256": "01082470313d9a12f3baf5e6bee8af0e1bc27d93accd00d7a3bcd6b7db9b7ea8",
+      "source": "ssot/pitch.md",
+      "text": "- Note team ownership only if stated in the pitch"
+    },
+    {
+      "sha256": "3a5a23592da7eec9d3b6961b2c1e52e8cf72be4551f38b94615823d485de7f2c",
+      "source": "ssot/pitch.md",
+      "text": "- If no seams are crossed: state \"no integration proof required\" with score guidance"
+    },
+    {
+      "sha256": "f2e69c2140334091118b73ffb88b54015313f5fcdab805e2f67d494a2f75f31a",
+      "source": "ssot/pitch.md",
+      "text": "### Prerequisites (only if architecture is missing)"
+    },
+    {
+      "sha256": "2cb8c82423bbf65482a53508075b2648530c4be27392436d40b3417e48399932",
+      "source": "ssot/pitch.md",
+      "text": "### What You Do NOT Need to Prove"
+    },
+    {
+      "sha256": "5d312dddd77f581696db13628a6747490fd04c06b79b147ef15c1a75b0f495ef",
+      "source": "ssot/pitch.md",
+      "text": "- No seams \u2192 \"Integration proof not required for single-team, single-component work. Score: 8-10 automatic.\""
+    },
+    {
+      "sha256": "71b7e2d1094852a967b41a82ffe668f3b91de49a2929a0ec73e321bec4fd2eed",
+      "source": "ssot/pitch.md",
+      "text": "| Contract State | What It Means | What the Pitch Must Show |"
+    },
+    {
+      "sha256": "cdbe1dcbd0f8607242a7abb2652ce32cb7ed7069a9b0db9becc21abd57d6015f",
+      "source": "ssot/pitch.md",
+      "text": "| **Does not exist** | No contract/API defined between these areas | Must work with owning team to define contract BEFORE betting. Spike proving the seam works. Score depends on progress. |"
+    },
+    {
+      "sha256": "1c74a6e1a201be8668c0ea714dd6b8c83e862ced48c1f66400cfd47a3007f9b8",
+      "source": "ssot/pitch.md",
+      "text": "- **1-2:** Title only or one-liner."
+    },
+    {
+      "sha256": "8122b0b659dc140ffca0b213f06e07af2646032a4b0e300ff07dbc519bae9e59",
+      "source": "ssot/pitch.md",
+      "text": "- **no** = Empty, title-only, or just a problem statement with no shaping."
+    },
+    {
+      "sha256": "a24e26f1e6ab71b90d217e56d01503aea468125d80688a3c7b2e066a3621641e",
+      "source": "ssot/pitch.md",
+      "text": "**Key rule:** If rabbit holes are listed but not resolved (no answers, no owners, no evidence of investigation), the pitch is `partial` regardless of other scores. Rabbit hole resolution is a shaping exit criterion \u2014 they must be addressed DURING shaping, not deferred to build."
+    },
+    {
+      "sha256": "d678721563279d04b01868241f2a4d964146a93a98196428c393480d8fa4ea6c",
+      "source": "ssot/pitch.md",
+      "text": "- Verdict must match shaped status. A `partial` pitch CANNOT have a \"ready to bet\" verdict."
+    },
+    {
+      "sha256": "5772c336924c3a9029d790c9f4d2ef7e9fa41c7fbe0fd94464aad016842034e3",
+      "source": "ssot/pitch.md",
+      "text": "- **Next actions must be specific to THIS pitch.** Not generic template advice. If the advice could apply to any pitch without modification, it doesn't belong in the review."
+    },
+    {
+      "sha256": "bbfde09aa596af6b19a1188bf1ea48ba4adf45e24c055af1dae3fce8ce893743",
+      "source": "ssot/pitch.md",
+      "text": "- **Scores must be consistent.** The same pitch reviewed twice must produce the same score. If appetite-scaling changes the score, note why."
+    },
+    {
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "source": "ssot/pitch.md",
+      "text": "## Required Inputs"
+    },
+    {
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "source": "ssot/pitch.md",
+      "text": "## Required Output"
+    },
+    {
+      "sha256": "e65ea8fc2cdb5df64f038f8b02ccce37374a4aad3ffca08cd953aa1ee10f07ba",
+      "source": "ssot/pitch.md",
+      "text": "- What you do NOT need to prove"
+    },
+    {
+      "sha256": "940e8b557bbd00643abfbdf3ac5e0fcfe0473c8df94372f26bed0c1a672659b8",
+      "source": "ssot/pitch.md",
+      "text": "- **Current evidence:** None (code-level research only)"
+    },
+    {
+      "sha256": "2cb8c82423bbf65482a53508075b2648530c4be27392436d40b3417e48399932",
+      "source": "ssot/pitch.md",
+      "text": "### What You Do NOT Need to Prove"
+    },
+    {
+      "sha256": "3f409f81bf498a3744f2f94a21c81d8972f254564b5b010e550d0e3b03e1f203",
+      "source": "ssot/pitch.md",
+      "text": "| Verdict matches shaped status | `partial` never says \"ready to bet\" | Mismatch |"
+    },
+    {
+      "sha256": "d267c1f0186bb6e7a2decf8b4e1917b3d52c43d984f5d5666b7966f16f7045b1",
+      "source": "ssot/pitch.md",
+      "text": "| Component extraction accurate | Only reports what the pitch states | Invents or assumes mappings |"
+    },
+    {
+      "sha256": "8862702a682ef182057d03212b0f4a8b9914bae7c26beb903bbc3a43c7bf02bb",
+      "source": "ssot/pitch.md",
+      "text": "- **Forbidden:** Write directly to the delivery tracker spreadsheet. Change pitch priority or goal mapping without user approval. Approve pitches for betting (that's leadership's call)."
+    }
+  ],
+  "review_status": "draft"
+}

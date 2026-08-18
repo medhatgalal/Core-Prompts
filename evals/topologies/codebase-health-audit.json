@@ -1,0 +1,352 @@
+{
+  "schema_version": "CapabilityTopology.v1",
+  "slug": "codebase-health-audit",
+  "ssot_sha256": "1ffb301944263f68d4f796536d924574b9e51f10b9a5e2436d4644b7fa303234",
+  "explicit_invocations": [
+    "/path"
+  ],
+  "semantic_triggers": [],
+  "aliases_shortcuts": [],
+  "auto_routes": [],
+  "nodes": {
+    "commands": [
+      "/path"
+    ],
+    "modes_modules": [
+      {
+        "id": "38bc5b4eeb2c",
+        "label": "READ-ONLY MODE (Non-Negotiable)",
+        "source_line": 50
+      },
+      {
+        "id": "eecaa4b8c6e8",
+        "label": "Phase 1: Configuration Resolution",
+        "source_line": 121
+      },
+      {
+        "id": "2edfcb6813b6",
+        "label": "Phase 2: Structural Analysis",
+        "source_line": 132
+      },
+      {
+        "id": "49582dbc1d3b",
+        "label": "Phase 2a: LOC Hotspot Scan",
+        "source_line": 136
+      },
+      {
+        "id": "304501e52092",
+        "label": "Phase 2b: God Object Detection",
+        "source_line": 144
+      },
+      {
+        "id": "4a182bb1d23a",
+        "label": "Phase 2c: Coupling Analysis (Import Fan-out)",
+        "source_line": 153
+      },
+      {
+        "id": "7e4f96288c62",
+        "label": "Phase 2d: Dead Code Detection",
+        "source_line": 161
+      },
+      {
+        "id": "0bbb8579081c",
+        "label": "Phase 3: Claim Verification (if prior state provided)",
+        "source_line": 171
+      },
+      {
+        "id": "25835911a86b",
+        "label": "Phase 4: Drift Computation (if prior state provided)",
+        "source_line": 187
+      },
+      {
+        "id": "016dcb1e7ea8",
+        "label": "Phase 5: Output Assembly",
+        "source_line": 205
+      }
+    ],
+    "controls": [],
+    "modifiers": []
+  },
+  "composition": {
+    "legal_pairs": [],
+    "forbidden_pairs": [],
+    "canonical_order": [],
+    "requirements": [],
+    "supersession": []
+  },
+  "state_machine": {
+    "states": [],
+    "transitions": [],
+    "forbidden_transitions": []
+  },
+  "outputs": [
+    "---",
+    "---"
+  ],
+  "authority_boundaries": [
+    "codebase-health-audit:L395:6e7b14ee84ce",
+    "codebase-health-audit:L409:3185b2c85796",
+    "codebase-health-audit:L417:f7f2a39173d9",
+    "codebase-health-audit:L427:4017ff33c438"
+  ],
+  "resources": [
+    "- `high` confidence: no references anywhere, not in `__init__.py` exports, not in test files",
+    "- declaring dynamic code dead when references are uncertain",
+    "| Conservative evidence | Uncertain dead-code or dynamic-reference claims are omitted or marked low confidence instead of overstated |"
+  ],
+  "handoffs": [],
+  "protected_invariants": [
+    {
+      "id": "codebase-health-audit:L5:1f013308a12f",
+      "heading": "Purpose",
+      "source_line": 5,
+      "sha256": "1f013308a12fc6fd66b3b7821cfdbdc488de218eabe57b5c7c93fe9a22e3fa09",
+      "text": "Use this capability to perform a read-only structural health audit of an existing codebase. It measures codebase risk through concrete metrics, verifies prior audit claims against live files, detects drift between audit snapshots, and produces slice-ready remediation recommendations.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "codebase-health-audit:L15:d69fe723b388",
+      "heading": "Invocation Contract",
+      "source_line": 15,
+      "sha256": "d69fe723b3887def45dca57abfef8166fafcde3dbc66c808c8ad8e0dec58c039",
+      "text": "This is a direct skill surface, not an autonomous agent. It may read files, list directories, inspect symbols, and search references. It must not modify, create, delete, stage, commit, install dependencies, run tests, or deploy anything in the target codebase.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "codebase-health-audit:L46:cc7e75cac406",
+      "heading": "Invocation Hints",
+      "source_line": 46,
+      "sha256": "cc7e75cac40682cb7593c56064ee9394e362c350793f92da8108bcaccebe4766",
+      "text": "- produce a read-only brownfield health report",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "codebase-health-audit:L50:0885e217a2ed",
+      "heading": "READ-ONLY MODE (Non-Negotiable)",
+      "source_line": 50,
+      "sha256": "0885e217a2ed838c3caa07eb501cd20465206c8cb258fe17ad73d196015c2d5d",
+      "text": "## READ-ONLY MODE (Non-Negotiable)",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "codebase-health-audit:L52:54683e025104",
+      "heading": "READ-ONLY MODE (Non-Negotiable)",
+      "source_line": 52,
+      "sha256": "54683e0251043ba51e2c63472e388de8cf1c0b0b0c8a62e886726872e33bfdd8",
+      "text": "You MUST NOT modify, create, or delete any files in the target codebase. You are a read-only analyst. Any file-write attempt is a skill violation.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "codebase-health-audit:L54:77357dbdaba3",
+      "heading": "Required Inputs",
+      "source_line": 54,
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "text": "## Required Inputs",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "codebase-health-audit:L65:882ae0abbe84",
+      "heading": "Inputs",
+      "source_line": 65,
+      "sha256": "882ae0abbe84e71dd35fb14defca06bf63b3c12232051b0fdfd5efecfb15db16",
+      "text": "1. **Target path** (required) \u2014 Root directory of the codebase to analyze.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "codebase-health-audit:L72:378f44d68bab",
+      "heading": "Input Schema",
+      "source_line": 72,
+      "sha256": "378f44d68babd5603f1913f66b98afe173ed03ba02dd40fbfedc206db1350760",
+      "text": "# Target (required)",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "codebase-health-audit:L125:e77e9c49f191",
+      "heading": "Phase 1: Configuration Resolution",
+      "source_line": 125,
+      "sha256": "e77e9c49f191e08f17554be0cfabdb5b529aa1840d87f8f9df5fb39634f22ca4",
+      "text": "- Must have `timestamp` (ISO 8601)",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "codebase-health-audit:L126:24cae4235ef6",
+      "heading": "Phase 1: Configuration Resolution",
+      "source_line": 126,
+      "sha256": "24cae4235ef6ca00a7c3388eb226022f069b44d72e20f73c5215b9fa19f672bc",
+      "text": "- Must have `findings` (list, may be empty)",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "codebase-health-audit:L127:d0ebc5bf0cfe",
+      "heading": "Phase 1: Configuration Resolution",
+      "source_line": 127,
+      "sha256": "d0ebc5bf0cfe27a3d195db775e018f44be95296af2beb89c115dc36076c9b88d",
+      "text": "- Each finding must have: `id`, `category`, `severity`, `file_path`, `evidence`",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "codebase-health-audit:L134:49cfdb753255",
+      "heading": "Phase 2: Structural Analysis",
+      "source_line": 134,
+      "sha256": "49cfdb7532554776d0b528844c7a3628cfde52afbf5b05f494e9751dafcc95d6",
+      "text": "Run these sub-phases. For each, scan only files matching `languages` config and not matching `exclude_patterns`.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "codebase-health-audit:L166:14d27afbed8a",
+      "heading": "Phase 2d: Dead Code Detection",
+      "source_line": 166,
+      "sha256": "14d27afbed8a1c6ef5f6969969bfcac5ef78ae81a75312636992b9f509efb716",
+      "text": "- `medium` confidence: only referenced in tests (possibly test-only utility)",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "codebase-health-audit:L167:5dbf3373cc3e",
+      "heading": "Phase 2d: Dead Code Detection",
+      "source_line": 167,
+      "sha256": "5dbf3373cc3eca7daf4925bc64525cc602b6458a96f5c56f76cf0b32d424ae31",
+      "text": "- `low` confidence: referenced only in strings/comments (dynamic dispatch possible)",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "codebase-health-audit:L168:82a950be68b1",
+      "heading": "Phase 2d: Dead Code Detection",
+      "source_line": 168,
+      "sha256": "82a950be68b15972827c701c01a36572b742de8f132e5e16190db2f5487ff045",
+      "text": "3. Filter by `dead_code_confidence_floor` config \u2014 only report findings at or above this level.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "codebase-health-audit:L236:77f58a436a96",
+      "heading": "Output Format",
+      "source_line": 236,
+      "sha256": "77f58a436a960bf778f726b1cbc724dc2b61f3b01800df59ced7af039ee90293",
+      "text": "trajectory:  # only present if prior_state provided",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "codebase-health-audit:L289:13bd277404e7",
+      "heading": "Claim Verification",
+      "source_line": 289,
+      "sha256": "13bd277404e79960bb0a5157a4bd6c869022c4bebb35e73cfdb09c7927236cd6",
+      "text": "*Only present when prior_state is provided.*",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "codebase-health-audit:L298:13bd277404e7",
+      "heading": "Drift Analysis",
+      "source_line": 298,
+      "sha256": "13bd277404e79960bb0a5157a4bd6c869022c4bebb35e73cfdb09c7927236cd6",
+      "text": "*Only present when prior_state is provided.*",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "codebase-health-audit:L308:59c80a92975d",
+      "heading": "Drift Analysis",
+      "source_line": 308,
+      "sha256": "59c80a92975d26c6e763498120b0cd5f58e7491d0ffc11900dfa57e8b154df48",
+      "text": "**Trajectory:** degrading \u2014 3 new findings and 1 worsened vs only 1 resolved.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "codebase-health-audit:L360:c64a24006f7b",
+      "heading": "First Audit",
+      "source_line": 360,
+      "sha256": "c64a24006f7b2703ebc01885718e063d81ef98d835239a88c5a37622b3524301",
+      "text": "- read-only scan of matching files only",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "codebase-health-audit:L395:6e7b14ee84ce",
+      "heading": "Evaluation Rubric",
+      "source_line": 395,
+      "sha256": "6e7b14ee84cec870bc1ec5d30ea8a3ae14fa7992268674e923a076581858ecaf",
+      "text": "| Read-only safety | The audit never modifies files, runs tests, installs dependencies, stages changes, commits, or deploys |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "codebase-health-audit:L409:3185b2c85796",
+      "heading": "Edge Cases",
+      "source_line": 409,
+      "sha256": "3185b2c8579672e73d79697e380c37aef30b3a8e426502ef97d4c3fa1435dc1b",
+      "text": "4. **Monorepo:** Analyze only the subtree at `target`. Do not traverse parent directories.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "codebase-health-audit:L417:f7f2a39173d9",
+      "heading": "Constraints",
+      "source_line": 417,
+      "sha256": "f7f2a39173d968e1630542ba7544afc6dfc2d4df78d05b0be5a840c3b6cce327",
+      "text": "- **Read-only.** Never modify, create, or delete files in the target.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "codebase-health-audit:L420:ec47980ffc2e",
+      "heading": "Constraints",
+      "source_line": 420,
+      "sha256": "ec47980ffc2e3615f42aaab11e8aee6d30b6711b2dbd082f005eb2dfd7f87b49",
+      "text": "- **Scoped.** Only analyze files matching `languages` config. Skip everything else.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "codebase-health-audit:L427:4017ff33c438",
+      "heading": "Tool Boundaries",
+      "source_line": 427,
+      "sha256": "4017ff33c4382d79682621cdb049f4ef5475b2b059935b5ec40a8f272f5442b7",
+      "text": "- **Forbidden:** Write files, run code, install dependencies, execute tests, modify git state.",
+      "kind": "invariant",
+      "mapped_to": []
+    }
+  ],
+  "risk_tiers": {
+    "critical": [],
+    "high": [],
+    "standard": []
+  },
+  "source_references": [
+    {
+      "path": "ssot/codebase-health-audit.md",
+      "sha256": "1ffb301944263f68d4f796536d924574b9e51f10b9a5e2436d4644b7fa303234"
+    }
+  ],
+  "known_ambiguities": [],
+  "coverage_policy": {
+    "normative_clauses": "100_percent_mapped_or_waived",
+    "nodes": "positive_and_boundary",
+    "transitions": "all_legal_and_forbidden",
+    "module_pairs": "all_legal_pairs",
+    "high_risk_tuples": "assigned_strength",
+    "critical_mutants": "100_percent_killed"
+  },
+  "normative_clause_coverage": {
+    "total": 25,
+    "mapped": 0,
+    "waived": 0
+  },
+  "review_status": "draft",
+  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs."
+}

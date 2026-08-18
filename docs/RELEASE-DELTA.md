@@ -1,25 +1,41 @@
 # Release Delta
 
 - Comparison basis: `git:HEAD .meta/manifest.json`
-- New capabilities: `0`
+- New capabilities: `1`
 - Removed capabilities: `0`
-- Changed capabilities: `4`
-- Material changes: `4`
+- Changed capabilities: `12`
+- Material changes: `12`
 
 ## New Capabilities
-- none
+- `instruction-editor` — Instruction Editor
 
 ## Removed Capabilities
 - none
 
 ## Material Changes
-- `architecture` — changed `install_target`
-- `demo-recorder` — changed `install_target`
-- `dynamic-html-presentations` — changed `install_target`
-- `testing` — changed `install_target`
+- `analyze-context` — changed `modes`
+- `auto-research` — changed `modes`
+- `codebase-health-audit` — changed `modes`
+- `converge` — changed `modes`
+- `docs-review-expert` — changed `modes`
+- `gitops-review` — changed `modes`
+- `ic-assistant` — changed `modes`
+- `mentor` — changed `modes`
+- `pitch` — changed `modes`
+- `pulse` — changed `modes`
+- `supercharge` — changed `modes`
+- `uac-import` — changed `expected_outputs`
 
 ## All Changed Capabilities
-- `architecture` — changed `install_target`
-- `demo-recorder` — changed `install_target`
-- `dynamic-html-presentations` — changed `install_target`
-- `testing` — changed `install_target`
+- `analyze-context` — changed `modes`
+- `auto-research` — changed `modes`
+- `codebase-health-audit` — changed `modes`
+- `converge` — changed `modes`
+- `docs-review-expert` — changed `modes`
+- `gitops-review` — changed `modes`
+- `ic-assistant` — changed `modes`
+- `mentor` — changed `modes`
+- `pitch` — changed `modes`
+- `pulse` — changed `modes`
+- `supercharge` — changed `modes`
+- `uac-import` — changed `expected_outputs`

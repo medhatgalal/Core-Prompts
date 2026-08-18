@@ -188,7 +188,22 @@
     "Do not invent GitHub or GitLab state from local git alone.",
     "Do not replace companion capability reviews with generic \u201clooks good\u201d language."
   ],
-  "modes": [],
+  "modes": [
+    {
+      "mode_slug": "failure-mode-to-avoid",
+      "display_name": "Failure Mode To Avoid",
+      "source_refs": [
+        "ssot/gitops-review.md"
+      ],
+      "mode_summary": "Declared by the canonical `Failure Mode To Avoid` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ]
+    }
+  ],
   "benchmark_sources": [
     {
       "label": "Code Review benchmark",
