@@ -222,5 +222,21 @@
         "## Configuration"
       ]
     }
-  ]
+  ],
+  "job_contract": {
+    "primary_job": "Turn repository activity into a periodic engineering progress and velocity dashboard.",
+    "use_when": "The user wants a repo-specific weekly or periodic report grounded primarily in git data.",
+    "works_on": "Commits, contributors, change volume, repositories, teams, and reporting periods.",
+    "main_output": "An HTML engineering activity dashboard with methods and caveats.",
+    "not_for": "Product backlog completeness, structural code health, or multi-source executive intelligence.",
+    "authority": "Read-only reporting from repository data.",
+    "routing_question": "Is the question about engineering activity, product completeness, or code health?",
+    "nearest_neighbors": [
+      "feature-status",
+      "codebase-health-audit",
+      "weekly-intel"
+    ],
+    "shape": "report_specialist",
+    "portfolio_action": "keep_and_clarify_boundary"
+  }
 }

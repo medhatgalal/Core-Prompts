@@ -484,5 +484,20 @@
       ]
     }
   ],
-  "legacy_quality_status": "ship"
+  "legacy_quality_status": "ship",
+  "job_contract": {
+    "primary_job": "Keep an Incident Commander on the declared incident process without taking command decisions.",
+    "use_when": "An active incident needs phase tracking, prompts, artifact checks, and missed-step warnings.",
+    "works_on": "Incident phases, decisions, roles, timelines, comms, evidence, and required artifacts.",
+    "main_output": "Process guidance, phase status, missing actions, and validated incident artifacts.",
+    "not_for": "General message triage, engineering mentoring, or making incident decisions for the commander.",
+    "authority": "Advisory process guard; the human Incident Commander retains decision authority.",
+    "routing_question": "Is there an active incident with a commander and a required process?",
+    "nearest_neighbors": [
+      "pulse",
+      "mentor"
+    ],
+    "shape": "stateful_specialist",
+    "portfolio_action": "keep"
+  }
 }

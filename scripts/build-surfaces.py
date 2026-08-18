@@ -25,6 +25,7 @@ from intent_pipeline.consumer_shell import (
 from intent_pipeline.uac_descriptors import build_descriptor, load_descriptor, save_descriptor, source_note_path
 from intent_pipeline.uac_baselines import resolve_historical_baseline
 from intent_pipeline.uac_modes import extract_declared_modes, normalize_mode_entries
+from intent_pipeline.skill_jobs import load_skill_job_map, render_skill_job_map
 from intent_pipeline.uac_ssot import build_ssot_handoff_contract, build_ssot_manifest_entry, extract_section_bullets, load_ssot_entries
 
 SSOT_DIR = ROOT / 'ssot'
@@ -38,6 +39,8 @@ CONSUMER_SHELL_DIR = ROOT / 'dist' / 'consumer-shell'
 CATALOG_DOC_PATH = ROOT / 'docs' / 'CAPABILITY-CATALOG.md'
 STATUS_DOC_PATH = ROOT / 'docs' / 'STATUS.md'
 RELEASE_DELTA_DOC_PATH = ROOT / 'docs' / 'RELEASE-DELTA.md'
+SKILL_JOB_MAP_PATH = META_DIR / 'skill-job-map.json'
+SKILL_JOB_MAP_DOC_PATH = ROOT / 'docs' / 'SKILL-JOB-MAP.md'
 
 GEMINI_SKILL_DIR = ROOT / '.gemini' / 'skills'
 GEMINI_AGENT_DIR = ROOT / '.gemini' / 'agents'
@@ -493,7 +496,7 @@ def copy_capability_resources(surface_name: str, slug: str) -> list[str]:
     return copied
 
 
-def resolve_descriptor(entry, manifest_entry: dict[str, object]) -> dict[str, object]:
+def resolve_descriptor(entry, manifest_entry: dict[str, object], job_contract: dict[str, object]) -> dict[str, object]:
     defaults = descriptor_defaults(entry.slug, entry.display_name)
     baseline = resolve_historical_baseline(ROOT, entry.slug)
     baseline_payload = baseline.as_payload()
@@ -585,6 +588,7 @@ def resolve_descriptor(entry, manifest_entry: dict[str, object]) -> dict[str, ob
                 else item
                 for item in artifact_conventions
             ]
+    resolved['job_contract'] = json.loads(json.dumps(job_contract))
     save_descriptor(ROOT, entry.slug, resolved)
     return resolved
 
@@ -638,6 +642,7 @@ def main():
     entries = load_ssot_entries(SSOT_DIR)
     if not entries:
         raise SystemExit('No SSOT files found in ssot/')
+    job_map = load_skill_job_map(SKILL_JOB_MAP_PATH, (entry.slug for entry in entries))
 
     generator = {
         'script': 'scripts/build-surfaces.py',
@@ -655,7 +660,7 @@ def main():
     for entry in entries:
         cleanup_slug_outputs(entry.slug)
         manifest_entry = build_ssot_manifest_entry(entry, ROOT, merge_descriptor=False)
-        resolve_descriptor(entry, manifest_entry)
+        resolve_descriptor(entry, manifest_entry, job_map['skills'][entry.slug])
         manifest_entry = build_ssot_manifest_entry(entry, ROOT)
         descriptor = load_descriptor(ROOT, entry.slug) or {}
         generated['ssot_sources'].append(manifest_entry)
@@ -721,6 +726,10 @@ def main():
     write_text_if_changed(CATALOG_DOC_PATH, render_catalog_markdown(catalog_payload))
     write_text_if_changed(RELEASE_DELTA_DOC_PATH, render_release_delta_markdown(release_delta_payload))
     write_text_if_changed(STATUS_DOC_PATH, render_status_markdown(status_payload))
+    write_text_if_changed(
+        SKILL_JOB_MAP_DOC_PATH,
+        render_skill_job_map(job_map, {entry.slug: entry.display_name for entry in entries}),
+    )
     for deprecated_dir in (
         ROOT / '.gemini' / 'commands',
         ROOT / '.claude' / 'commands',

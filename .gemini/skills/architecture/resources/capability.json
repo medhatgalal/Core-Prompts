@@ -467,5 +467,21 @@
       ]
     }
   ],
-  "legacy_quality_status": "ship"
+  "legacy_quality_status": "ship",
+  "job_contract": {
+    "primary_job": "Design a concrete system boundary, interface, schema, or migration with explicit trade-offs.",
+    "use_when": "The user needs an implementable technical design or architecture decision.",
+    "works_on": "Systems, APIs, components, data models, dependencies, and migrations.",
+    "main_output": "A chosen design with boundaries, alternatives, failure modes, migration, and rollback.",
+    "not_for": "General mentoring, choosing among arbitrary proposals without design work, or broad repo health scanning.",
+    "authority": "Advisory design; implementation requires separate authorization.",
+    "routing_question": "Is the deliverable a technical design, or merely a recommendation among existing options?",
+    "nearest_neighbors": [
+      "converge",
+      "mentor",
+      "codebase-health-audit"
+    ],
+    "shape": "deep_specialist",
+    "portfolio_action": "keep_and_clarify_boundary"
+  }
 }

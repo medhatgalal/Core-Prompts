@@ -492,5 +492,21 @@
       ]
     }
   ],
-  "legacy_quality_status": "ship"
+  "legacy_quality_status": "ship",
+  "job_contract": {
+    "primary_job": "Run a bounded evidence loop to discover whether one candidate actually outperforms another.",
+    "use_when": "The user needs behavioral optimization, comparison, calibration, or promotion evidence.",
+    "works_on": "Prompts, skills, workflows, tools, configurations, and other measurable candidates.",
+    "main_output": "A reproducible experiment record and pass, fail, or inconclusive recommendation.",
+    "not_for": "Stylistic polishing without measurement or self-promoting a UAC-produced candidate.",
+    "authority": "Owns behavioral comparison; promotion still obeys independent hard gates and user authority.",
+    "routing_question": "Do we need evidence of better behavior, or only a stronger draft?",
+    "nearest_neighbors": [
+      "supercharge",
+      "uac-import",
+      "instruction-editor"
+    ],
+    "shape": "swiss_army_research_workflow",
+    "portfolio_action": "keep_but_review_scope"
+  }
 }

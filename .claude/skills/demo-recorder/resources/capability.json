@@ -317,5 +317,20 @@
       ]
     }
   ],
-  "legacy_quality_status": "ship"
+  "legacy_quality_status": "ship",
+  "job_contract": {
+    "primary_job": "Plan and generate repeatable Playwright-based product demo recordings.",
+    "use_when": "A feature needs a scripted, realistic, recordable walkthrough.",
+    "works_on": "Runnable product flows, browser steps, pacing, fixtures, and capture settings.",
+    "main_output": "A demo plan and executable Playwright recording script.",
+    "not_for": "General end-to-end testing or presentation deck authoring.",
+    "authority": "Creates demo artifacts; deployment or publication needs separate approval.",
+    "routing_question": "Is the browser flow meant to prove behavior or communicate it as a demo?",
+    "nearest_neighbors": [
+      "testing",
+      "dynamic-html-presentations"
+    ],
+    "shape": "focused_specialist",
+    "portfolio_action": "keep"
+  }
 }

@@ -285,5 +285,21 @@
         "## Review Timing"
       ]
     }
-  ]
+  ],
+  "job_contract": {
+    "primary_job": "Decide whether repository, CI, packaging, merge, tag, and release state is ready to ship.",
+    "use_when": "The concern is Git hygiene or the operational release path rather than code semantics alone.",
+    "works_on": "Branches, commits, PRs or MRs, CI, changelogs, packages, tags, remotes, and releases.",
+    "main_output": "A release or merge readiness verdict with exact blockers and next commands.",
+    "not_for": "Finding code defects as the primary task or applying selected reviewer comments.",
+    "authority": "Review by default; merge, push, tag, or release requires explicit authorization.",
+    "routing_question": "Is the blocker in code correctness or in the path from repo state to release?",
+    "nearest_neighbors": [
+      "code-review",
+      "address-code-review",
+      "testing"
+    ],
+    "shape": "workflow_specialist",
+    "portfolio_action": "keep"
+  }
 }

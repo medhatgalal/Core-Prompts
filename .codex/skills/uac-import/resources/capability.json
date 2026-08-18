@@ -228,5 +228,20 @@
         "## Invocation"
       ]
     }
-  ]
+  ],
+  "job_contract": {
+    "primary_job": "Inspect an external prompt-like source and decide how, or whether, it should enter Core-Prompts.",
+    "use_when": "A prompt, skill, agent file, config, or URL is being considered for import or uplift.",
+    "works_on": "External source material, source provenance, capability classification, metadata, and landing plans.",
+    "main_output": "A source-fidelity assessment, structural uplift plan, metadata handoff, and safe apply decision.",
+    "not_for": "Claiming behavioral superiority or editing arbitrary prose with no import intent.",
+    "authority": "Structural intake only; behavioral promotion belongs to independent evaluation.",
+    "routing_question": "Are we importing a capability, editing instructions, or proving behavior?",
+    "nearest_neighbors": [
+      "instruction-editor",
+      "auto-research"
+    ],
+    "shape": "meta_workflow",
+    "portfolio_action": "keep_and_improve_process"
+  }
 }

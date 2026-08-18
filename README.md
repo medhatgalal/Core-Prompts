@@ -325,9 +325,10 @@ Use the docs in the same order as the product model:
 1. [docs/GETTING-STARTED.md](docs/GETTING-STARTED.md): installed capabilities first, then UAC, then repo verification
 2. [docs/EXAMPLES.md](docs/EXAMPLES.md): deeper scenario-style asks for current capabilities and maintainers
 3. [docs/UAC-USAGE.md](docs/UAC-USAGE.md): intake, uplift, plan, judge, and apply
-4. [docs/CAPABILITY-EVALUATION.md](docs/CAPABILITY-EVALUATION.md): goal contracts, topologies, selective proof, budgets, and promotion
-5. [docs/CLI-REFERENCE.md](docs/CLI-REFERENCE.md): exact commands, paths, generated surfaces, and deploy behavior
-6. [docs/MAINTAINER-HYGIENE.md](docs/MAINTAINER-HYGIENE.md): human maintainer guide and review checklist
+4. [docs/SKILL-JOB-MAP.md](docs/SKILL-JOB-MAP.md): plain-English purpose, boundaries, neighbors, and portfolio recommendation for every skill
+5. [docs/CAPABILITY-EVALUATION.md](docs/CAPABILITY-EVALUATION.md): goal contracts, topologies, selective proof, budgets, and promotion
+6. [docs/CLI-REFERENCE.md](docs/CLI-REFERENCE.md): exact commands, paths, generated surfaces, and deploy behavior
+7. [docs/MAINTAINER-HYGIENE.md](docs/MAINTAINER-HYGIENE.md): human maintainer guide and review checklist
 
 ## Maintainer Fast Path
 

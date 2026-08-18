@@ -10,6 +10,7 @@
     "family_slug",
     "historical_baseline",
     "inferred_capability",
+    "job_contract",
     "layers",
     "manifest_version",
     "modes",
@@ -60,6 +61,18 @@
     "entry_kind",
     "invocations",
     "source_refs"
+  ],
+  "required_job_contract_fields": [
+    "primary_job",
+    "use_when",
+    "works_on",
+    "main_output",
+    "not_for",
+    "authority",
+    "routing_question",
+    "nearest_neighbors",
+    "shape",
+    "portfolio_action"
   ],
   "forbidden_quality_statuses": ["ship"]
 }

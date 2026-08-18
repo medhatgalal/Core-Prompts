@@ -392,5 +392,20 @@
     "verified_by_git_history": true
   },
   "quality_validation_matrix": [],
-  "legacy_quality_status": "ship"
+  "legacy_quality_status": "ship",
+  "job_contract": {
+    "primary_job": "Create polished standalone HTML presentations and deterministic export artifacts.",
+    "use_when": "The requested deliverable is a slide deck or visual narrative rendered as HTML.",
+    "works_on": "Presentation content, layout, visual assets, responsive slides, PNG, and PPTX export.",
+    "main_output": "A runnable HTML deck with verified visual exports when requested.",
+    "not_for": "Recording a live product demo or writing a plain text report.",
+    "authority": "Creates local presentation artifacts; hosting and distribution require separate authority.",
+    "routing_question": "Is the main artifact a deck, a live product demo, or a written report?",
+    "nearest_neighbors": [
+      "demo-recorder",
+      "eng-report"
+    ],
+    "shape": "artifact_specialist",
+    "portfolio_action": "keep"
+  }
 }

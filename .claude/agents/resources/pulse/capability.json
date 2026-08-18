@@ -806,5 +806,20 @@
       ]
     }
   ],
-  "legacy_quality_status": "ship"
+  "legacy_quality_status": "ship",
+  "job_contract": {
+    "primary_job": "Triage Gmail and Google Chat into a deterministic, low-noise attention queue.",
+    "use_when": "The user wants to know what messages need attention or wants an approved comms action workflow.",
+    "works_on": "Email, chat, priority rules, learned preferences, and explicit message actions.",
+    "main_output": "A prioritized communications table and proposed actions.",
+    "not_for": "A multi-source weekly team report or incident-command process management.",
+    "authority": "Triage is read-only; sends, archives, and deletes require the documented explicit approval path.",
+    "routing_question": "Is this personal communications triage, incident process, or a periodic intelligence report?",
+    "nearest_neighbors": [
+      "weekly-intel",
+      "ic-assistant"
+    ],
+    "shape": "stateful_swiss_army_workflow",
+    "portfolio_action": "keep_but_review_scope"
+  }
 }

@@ -623,5 +623,22 @@
         "### Reflective Controls (Optional Modifiers)"
       ]
     }
-  ]
+  ],
+  "job_contract": {
+    "primary_job": "Harden a prompt, plan, proposal, or workflow using the smallest useful combination of critique modules.",
+    "use_when": "The user wants prompt improvement, adversarial challenge, proposal hardening, comparison, grading, or a compound module stack.",
+    "works_on": "Prompts, plans, workflows, proposals, decisions, and analysis artifacts.",
+    "main_output": "A materially improved artifact plus module-specific reasoning, grading, or debate outputs.",
+    "not_for": "Proving a candidate wins through behavioral trials or performing a specialist codebase audit by default.",
+    "authority": "Artifact hardening and routing; behavioral promotion belongs to Auto-Research.",
+    "routing_question": "Does the user want the artifact strengthened, or evidence that one strengthened variant performs best?",
+    "nearest_neighbors": [
+      "auto-research",
+      "converge",
+      "instruction-editor",
+      "mentor"
+    ],
+    "shape": "swiss_army_artifact_workflow",
+    "portfolio_action": "keep_but_review_scope"
+  }
 }

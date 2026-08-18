@@ -280,5 +280,21 @@
         "## Workflow Contract"
       ]
     }
-  ]
+  ],
+  "job_contract": {
+    "primary_job": "Provide senior engineering guidance on planning, sequencing, risk, and the next best move.",
+    "use_when": "The user needs ongoing judgment, coaching, or workflow oversight rather than a single specialist artifact.",
+    "works_on": "Engineering plans, execution posture, trade-offs, team workflow, and decision quality.",
+    "main_output": "Practical guidance, prioritized next steps, risks, and review checkpoints.",
+    "not_for": "Producing a full architecture spec or mechanically reconciling competing proposals.",
+    "authority": "Advisory oversight; it does not broaden execution or mutation authority.",
+    "routing_question": "Does the user need coaching and sequencing, a technical design, or a final choice among options?",
+    "nearest_neighbors": [
+      "architecture",
+      "converge",
+      "supercharge"
+    ],
+    "shape": "broad_advisor",
+    "portfolio_action": "keep_but_review_scope"
+  }
 }

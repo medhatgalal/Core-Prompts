@@ -198,5 +198,21 @@
         "## Invocation"
       ]
     }
-  ]
+  ],
+  "job_contract": {
+    "primary_job": "Determine how complete a product feature is against intended scope and proof.",
+    "use_when": "The user asks what is backlog, in progress, done, missing, or moving slowly for a feature.",
+    "works_on": "Product scope, requirements, tickets, implementation evidence, tests, demos, and delivery state.",
+    "main_output": "A product-oriented completeness verdict, progress breakdown, gaps, and next actions.",
+    "not_for": "Repository-wide code health or a periodic git velocity dashboard.",
+    "authority": "Read-only analysis; status claims must be tied to evidence.",
+    "routing_question": "Are we asking whether the product feature is complete, how the repo is structured, or what activity occurred?",
+    "nearest_neighbors": [
+      "eng-report",
+      "codebase-health-audit",
+      "pitch"
+    ],
+    "shape": "product_analysis_specialist",
+    "portfolio_action": "keep_and_clarify_boundary"
+  }
 }

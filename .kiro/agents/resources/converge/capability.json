@@ -282,5 +282,21 @@
         "Final Converged Proposal"
       ]
     }
-  ]
+  ],
+  "job_contract": {
+    "primary_job": "Reconcile competing proposals or evidence into one decision and explain what was rejected.",
+    "use_when": "Several sources, recommendations, or options conflict and one coherent answer is needed.",
+    "works_on": "Proposals, reviews, research findings, decisions, and trade-offs.",
+    "main_output": "A unified recommendation with conflicts, rationale, confidence, and unresolved risks.",
+    "not_for": "Creating a technical architecture from scratch or providing ongoing engineering mentorship.",
+    "authority": "Advisory synthesis; it cannot manufacture consensus or evidence.",
+    "routing_question": "Are there multiple competing inputs that must become one decision?",
+    "nearest_neighbors": [
+      "architecture",
+      "mentor",
+      "supercharge"
+    ],
+    "shape": "general_synthesis_specialist",
+    "portfolio_action": "keep_and_clarify_boundary"
+  }
 }

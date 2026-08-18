@@ -229,5 +229,21 @@
         "### Phase 5: Expected Outcome"
       ]
     }
-  ]
+  ],
+  "job_contract": {
+    "primary_job": "Resolve merge conflicts while preserving intent from both sides and documenting trade-offs.",
+    "use_when": "Git or content conflicts already exist and need structured, safe resolution.",
+    "works_on": "Conflicting hunks, branch intent, tests, and merge semantics.",
+    "main_output": "Resolved files plus a conflict ledger and verification result.",
+    "not_for": "General code review or high-level option synthesis without an actual conflict.",
+    "authority": "May edit conflict targets within the user-approved resolution scope.",
+    "routing_question": "Is there an actual merge conflict to resolve, or merely disagreement among proposals?",
+    "nearest_neighbors": [
+      "code-review",
+      "architecture",
+      "converge"
+    ],
+    "shape": "focused_specialist",
+    "portfolio_action": "keep"
+  }
 }

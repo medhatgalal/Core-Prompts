@@ -228,5 +228,21 @@
         "### 5. Check Code Risk"
       ]
     }
-  ]
+  ],
+  "job_contract": {
+    "primary_job": "Find actionable defects and release risks in a diff, commit, or staged change.",
+    "use_when": "Code exists and needs a quality gate before commit, push, merge, or release.",
+    "works_on": "Git diffs, changed code, tests, and supporting repository evidence.",
+    "main_output": "Prioritized findings with file evidence, severity, and a readiness verdict.",
+    "not_for": "Applying reviewer comments, writing a test suite as the primary job, or general repo hygiene.",
+    "authority": "Read-only review unless the user separately asks for fixes.",
+    "routing_question": "Are we reviewing code for defects, applying feedback, or checking release mechanics?",
+    "nearest_neighbors": [
+      "address-code-review",
+      "testing",
+      "gitops-review"
+    ],
+    "shape": "focused_specialist",
+    "portfolio_action": "keep"
+  }
 }

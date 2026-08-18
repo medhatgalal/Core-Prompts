@@ -279,5 +279,21 @@
         "## Workflow Contract"
       ]
     }
-  ]
+  ],
+  "job_contract": {
+    "primary_job": "Make prompts and agent instructions plainer and easier to scan without silently changing behavior.",
+    "use_when": "The user asks to remove AI-ish phrasing, shorten instructions, apply developer style, or verify semantic preservation.",
+    "works_on": "Prompts, skills, agent instructions, policies, and workflow rules.",
+    "main_output": "An edited artifact, edit ledger, preservation map, size delta, and unproven behavioral claims.",
+    "not_for": "Behavioral promotion, broad documentation IA review, or multi-lens adversarial hardening.",
+    "authority": "May make proven safe fixes; semantic rewrites remain candidates requiring evidence.",
+    "routing_question": "Is the goal clearer language, a stronger artifact, or proof that behavior improved?",
+    "nearest_neighbors": [
+      "supercharge",
+      "docs-review-expert",
+      "uac-import"
+    ],
+    "shape": "experimental_specialist",
+    "portfolio_action": "experimental_keep_pending_evidence"
+  }
 }

@@ -261,5 +261,20 @@
         "continue from the recorded next item instead of restarting from memory"
       ]
     }
-  ]
+  ],
+  "job_contract": {
+    "primary_job": "Maintain durable evidence and conclusions during a long, multi-file investigation.",
+    "use_when": "Analysis will span many files, turns, or context compactions.",
+    "works_on": "Repository evidence, questions, hypotheses, and analysis state.",
+    "main_output": "A durable analysis record that can be resumed without losing provenance.",
+    "not_for": "A quick code review, transcript export, or a one-shot health audit.",
+    "authority": "Analysis-state maintenance; it does not grant broader repo mutation authority.",
+    "routing_question": "Does the investigation need resumable reasoning state rather than a one-time report?",
+    "nearest_neighbors": [
+      "codebase-health-audit",
+      "threader"
+    ],
+    "shape": "workflow_infrastructure",
+    "portfolio_action": "keep_and_clarify_boundary"
+  }
 }

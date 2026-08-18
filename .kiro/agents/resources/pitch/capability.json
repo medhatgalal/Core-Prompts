@@ -509,5 +509,20 @@
       ]
     }
   ],
-  "legacy_quality_status": "ship"
+  "legacy_quality_status": "ship",
+  "job_contract": {
+    "primary_job": "Create or improve a Shape Up pitch until it is ready for a betting decision.",
+    "use_when": "The artifact is a product pitch with appetite, problem, solution, rabbit holes, and no-gos.",
+    "works_on": "Pitch documents, problem framing, scope, risks, alternatives, and betting readiness.",
+    "main_output": "A scored or rewritten pitch with gaps and a betting recommendation.",
+    "not_for": "Reporting current feature completion or synthesizing arbitrary proposals.",
+    "authority": "Advisory pitch work; it does not make the betting decision.",
+    "routing_question": "Is this a future investment pitch, a current feature status check, or a general decision synthesis?",
+    "nearest_neighbors": [
+      "feature-status",
+      "converge"
+    ],
+    "shape": "domain_specialist",
+    "portfolio_action": "keep"
+  }
 }

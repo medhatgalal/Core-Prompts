@@ -335,5 +335,21 @@
         "## Invocation"
       ]
     }
-  ]
+  ],
+  "job_contract": {
+    "primary_job": "Design or generate tests, edge cases, and coverage improvements for a defined target.",
+    "use_when": "The primary deliverable is a unit, integration, end-to-end, edge-case, or coverage test plan or implementation.",
+    "works_on": "Code behavior, acceptance criteria, test suites, fixtures, and coverage evidence.",
+    "main_output": "Focused tests or a test plan with explicit expected behavior and failure boundaries.",
+    "not_for": "General code review or release-state verification.",
+    "authority": "May add tests when implementation is requested; production-code changes need separate scope.",
+    "routing_question": "Is the main task to test behavior, review code, or prove release readiness?",
+    "nearest_neighbors": [
+      "code-review",
+      "gitops-review",
+      "demo-recorder"
+    ],
+    "shape": "focused_specialist",
+    "portfolio_action": "keep"
+  }
 }

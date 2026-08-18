@@ -246,5 +246,21 @@
         "## Invocation"
       ]
     }
-  ]
+  ],
+  "job_contract": {
+    "primary_job": "Audit an existing codebase for structural risks, hotspots, coupling, and maintainability problems.",
+    "use_when": "The user wants a read-only, repository-wide technical health assessment.",
+    "works_on": "Code structure, dependencies, size, dead code, ownership signals, and prior claims.",
+    "main_output": "An evidence-backed structural risk report and prioritized remediation backlog.",
+    "not_for": "Product feature progress, weekly git activity reporting, or designing a replacement architecture.",
+    "authority": "Read-only audit; it does not implement repairs.",
+    "routing_question": "Is the question about code structure, product completeness, or delivery activity?",
+    "nearest_neighbors": [
+      "feature-status",
+      "eng-report",
+      "architecture"
+    ],
+    "shape": "deep_specialist",
+    "portfolio_action": "keep_and_clarify_boundary"
+  }
 }

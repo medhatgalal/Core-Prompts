@@ -318,6 +318,15 @@ def validate_capability_descriptor_contract(path: Path, contract_path: Path | No
                     f'{path}: descriptor mode {index} missing fields: {", ".join(missing)}'
                 )
 
+    job_contract = descriptor.get('job_contract')
+    required_job_fields = set(contract.get('required_job_contract_fields') or [])
+    if required_job_fields and not isinstance(job_contract, dict):
+        errors.append(f'{path}: descriptor contract requires job_contract object')
+    elif required_job_fields:
+        missing = sorted(required_job_fields - set(job_contract))
+        if missing:
+            errors.append(f'{path}: job_contract missing fields: {", ".join(missing)}')
+
     forbidden_statuses = set(contract.get('forbidden_quality_statuses') or [])
     if descriptor.get('quality_status') in forbidden_statuses:
         errors.append(
