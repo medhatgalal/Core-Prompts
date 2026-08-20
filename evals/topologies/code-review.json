@@ -1,0 +1,186 @@
+{
+  "schema_version": "CapabilityTopology.v1",
+  "slug": "code-review",
+  "ssot_sha256": "aec9e89dd7027e8f34e35c5bbf0ff89c3788e514cfe2f75e1c5ae9a4cdaf091f",
+  "explicit_invocations": [],
+  "semantic_triggers": [],
+  "aliases_shortcuts": [],
+  "auto_routes": [],
+  "nodes": {
+    "commands": [],
+    "modes_modules": [],
+    "controls": [],
+    "modifiers": []
+  },
+  "composition": {
+    "legal_pairs": [],
+    "forbidden_pairs": [],
+    "canonical_order": [],
+    "requirements": [],
+    "supersession": []
+  },
+  "state_machine": {
+    "states": [],
+    "transitions": [],
+    "forbidden_transitions": []
+  },
+  "outputs": [
+    "- `Commit Under Review`",
+    "- `Findings`",
+    "- `Scope Assessment`",
+    "- `Message Assessment`",
+    "- `Recommended Fixes`",
+    "- `Merge Readiness`"
+  ],
+  "authority_boundaries": [
+    "code-review:L6:27ff8d3f2a4c",
+    "code-review:L44:37b9b510e11d",
+    "code-review:L260:39749905ad53",
+    "code-review:L265:6ec4931c2502"
+  ],
+  "resources": [
+    "- findings with file references",
+    "| Evidence quality | Findings are based on the actual diff and reference specific files |"
+  ],
+  "handoffs": [
+    "## Companion Capability Matrix",
+    "| Situation | Companion Capability | Why |"
+  ],
+  "protected_invariants": [
+    {
+      "id": "code-review:L6:27ff8d3f2a4c",
+      "heading": "Purpose",
+      "source_line": 6,
+      "sha256": "27ff8d3f2a4cf7f6a0c62d38bfeb53a5853926d9e95035748db74c8a017cf091",
+      "text": "Use this before you create a commit, before you push a branch, before an MR/PR is merged, or after a fix commit has been prepared. Do not use this capability to modify files or apply reviewer feedback; use `address-code-review` when the user wants selected PR/MR review comments implemented.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "code-review:L22:b3c42c190f3a",
+      "heading": "Choose the Right Review Capability",
+      "source_line": 22,
+      "sha256": "b3c42c190f3a838d9eda24a9a6cd35d3987307b0a03edca877076e4cf4eda87a",
+      "text": "Default to `code-review` for pre-commit or pre-push checks. Switch to `address-code-review` only when the user explicitly wants to inspect and implement existing PR/MR review comments.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "code-review:L29:c2e0cc42774e",
+      "heading": "Core Principles",
+      "source_line": 29,
+      "sha256": "c2e0cc42774e19e3e939c8ded9171cb43f9e3d24100b20dbcb28a1e5a18fa686",
+      "text": "- **Scope discipline**: changes must match what the commit message describes",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "code-review:L40:23aca3d331b0",
+      "heading": "Workflow",
+      "source_line": 40,
+      "sha256": "23aca3d331b09e9e3cf2cc236213929c713eb27b58d0c7528ee442021717d1e9",
+      "text": "5. End with a clear readiness decision: ready, blocked, or split required.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "code-review:L44:37b9b510e11d",
+      "heading": "Tool Boundaries",
+      "source_line": 44,
+      "sha256": "37b9b510e11d3d41e0fc01a4bf0abd3e969f631b6e07cc1bbad1e850ae0bb6ee",
+      "text": "- forbidden: applying fixes, modifying files, staging changes, silent approval, hidden execution, or claiming code quality is fine without reading the diff",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "code-review:L67:77357dbdaba3",
+      "heading": "Required Inputs",
+      "source_line": 67,
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "text": "## Required Inputs",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "code-review:L72:3d4b9f171064",
+      "heading": "Required Output",
+      "source_line": 72,
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "text": "## Required Output",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "code-review:L73:c34906b1f1c3",
+      "heading": "Required Output",
+      "source_line": 73,
+      "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+      "text": "Every substantial response must include:",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "code-review:L102:69e2d69e633b",
+      "heading": "1. Capture the Commit",
+      "source_line": 102,
+      "sha256": "69e2d69e633b3d0936215810f75fc2527ee735626295c990ce7768e6967df477",
+      "text": "If nothing is staged, inspect the working-tree diff only after saying that the review is not a commit-ready staged review.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "code-review:L247:d2e95eececf5",
+      "heading": "Recommendation",
+      "source_line": 247,
+      "sha256": "d2e95eececf55eecf480dad0149d460303dc1380f7db3cb1883cf57b92c8a2d0",
+      "text": "[Ready for MR / Needs revision before MR / Split required]",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "code-review:L260:39749905ad53",
+      "heading": "Hard Constraints",
+      "source_line": 260,
+      "sha256": "39749905ad533aa83fe2dd42cc12a5a23f2c959c6d3af474b055fe556c94402c",
+      "text": "- Never skip reading the actual diff.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "code-review:L265:6ec4931c2502",
+      "heading": "Hard Constraints",
+      "source_line": 265,
+      "sha256": "6ec4931c2502f4903591cdd096bd5452dc3b51bc580428b092157d46e17c6ba7",
+      "text": "- Do not rubber-stamp a commit just because tests pass.",
+      "kind": "invariant",
+      "mapped_to": []
+    }
+  ],
+  "risk_tiers": {
+    "critical": [],
+    "high": [],
+    "standard": []
+  },
+  "source_references": [
+    {
+      "path": "ssot/code-review.md",
+      "sha256": "aec9e89dd7027e8f34e35c5bbf0ff89c3788e514cfe2f75e1c5ae9a4cdaf091f"
+    }
+  ],
+  "known_ambiguities": [],
+  "coverage_policy": {
+    "normative_clauses": "100_percent_mapped_or_waived",
+    "nodes": "positive_and_boundary",
+    "transitions": "all_legal_and_forbidden",
+    "module_pairs": "all_legal_pairs",
+    "high_risk_tuples": "assigned_strength",
+    "critical_mutants": "100_percent_killed"
+  },
+  "normative_clause_coverage": {
+    "total": 12,
+    "mapped": 0,
+    "waived": 0
+  },
+  "review_status": "draft",
+  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs."
+}

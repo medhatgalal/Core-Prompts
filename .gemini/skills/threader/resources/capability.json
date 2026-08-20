@@ -209,5 +209,20 @@
         "## INLINE FALLBACK RULES (only if file creation is unsupported)"
       ]
     }
-  ]
+  ],
+  "job_contract": {
+    "primary_job": "Export and package a conversation so its context can be recalled or handed off.",
+    "use_when": "The user wants a full-thread transcript, context packet, or memory-management artifact.",
+    "works_on": "Conversation history, turns, decisions, unresolved items, and handoff context.",
+    "main_output": "A portable transcript or structured context handoff.",
+    "not_for": "Maintaining a live multi-file investigation state or producing a weekly report.",
+    "authority": "Read and package conversation context; it does not change project state.",
+    "routing_question": "Are we exporting the conversation, or maintaining an ongoing evidence investigation?",
+    "nearest_neighbors": [
+      "analyze-context",
+      "weekly-intel"
+    ],
+    "shape": "workflow_utility",
+    "portfolio_action": "keep_and_clarify_boundary"
+  }
 }

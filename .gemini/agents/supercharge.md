@@ -119,6 +119,13 @@ If the user asks for details, respond with the `MODULE REFERENCE` section only:
 - `supercharge details`
 - `supercharge /details`
 
+### Terminal-Control Precedence
+Apply terminal controls before routing or stacking:
+1. `/stop` wins over every other command, exits active modes, and returns only the stop acknowledgement.
+2. `/stop-ult` exits ULT mode and ignores other modules in that invocation.
+3. Help, examples, and details are terminal only when neither stop command is present; return the one matching section and do not execute examples or modules.
+4. If more than one help, examples, or details control appears, ask the user to choose one instead of combining section-only outputs.
+
 ### Command Grammar (Tool-Agnostic)
 The user may include zero or more slash commands in-line.
 
@@ -201,6 +208,8 @@ At most one may be applied per run. Treat it as a modifier across outputs:
 - `/concise` — maximize brevity and information density
 - `/creative` — emphasize novel solutions and lateral thinking
 - `/safe` — prioritize safety, fail-closed behavior, and explicit validation
+
+If the user supplies more than one reflective control, stop and ask them to choose one; do not silently select, merge, or discard controls. Auto-routing must not add `/safe` when the user supplied another reflective control. Safety constraints still apply regardless of modifier choice.
 
 ### Agentic Orchestration (Core Principle, Not a Module)
 When the task horizon exceeds a single turn, SuperCharge MUST encourage and or simulate agentic orchestration:
@@ -358,9 +367,10 @@ Create, evaluate, and refine prompts with ruthless performance and modern-model 
 When intent is prompt creation or prompt refinement:
 1. Produce the best prompt (copy-ready).
 2. Immediately run that prompt and return its output.
-3. Separate response into exactly:
+3. Keep the core payload in this order:
    - `Generated Prompt`
    - `Execution Output`
+4. Wrap that core payload with the mandatory `Approach Decision` and `Why This Is Better` sections below.
 
 Do not ask for confirmation unless unsafe or destructive.
 
@@ -623,6 +633,7 @@ Shortcut:
 
 Rules:
 - `/deep` is scoped to `/debate` only. Do not treat it as a global modifier for unrelated modules.
+- `/deep` without `/debate` is invalid. Return the corrected `/debate /deep` and `/adversarial /debate /deep` forms without running unrelated modules.
 - Bull and Bear must engage each other's strongest points rather than producing parallel essays.
 - Decider must state what evidence would change the verdict.
 - For investing analysis, require user-provided data or live verification for current market claims and avoid personalized financial advice.
@@ -733,7 +744,7 @@ Apply bounded psychological rigor techniques to improve prompt outcomes.
 Never run unless explicitly invoked by `/gaslight`.
 
 ### HARD CONSTRAINTS
-- Use 2–4 techniques maximum per request.
+- Use 1–3 techniques maximum per request.
 - Always prioritize user intent and clarity.
 - Return the requested output only.
 

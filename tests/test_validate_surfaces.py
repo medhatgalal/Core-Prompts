@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 from unittest.mock import patch
 from pathlib import Path
 
@@ -54,6 +55,80 @@ def test_validate_portable_capability_metadata_allows_repo_relative_refs(tmp_pat
     )
 
     assert MODULE.validate_portable_capability_metadata(path) == []
+
+
+def _write_descriptor_contract(path: Path) -> None:
+    path.write_text(
+        json.dumps(
+            {
+                "required_top_level": ["slug", "layers", "modes"],
+                "required_layers": {"minimal": ["summary"]},
+                "required_mode_fields": ["mode_slug", "entry_kind", "invocations", "source_refs"],
+                "forbidden_quality_statuses": ["ship"],
+            }
+        ),
+        encoding="utf-8",
+    )
+
+
+def test_descriptor_contract_accepts_preserved_agent_metadata(tmp_path: Path) -> None:
+    contract = tmp_path / "contract.json"
+    descriptor = tmp_path / "sample.json"
+    _write_descriptor_contract(contract)
+    descriptor.write_text(
+        json.dumps(
+            {
+                "slug": "sample",
+                "layers": {"minimal": {"summary": "sample"}},
+                "modes": [
+                    {
+                        "mode_slug": "audit",
+                        "entry_kind": "mode",
+                        "invocations": ["sample /audit"],
+                        "source_refs": ["ssot/sample.md"],
+                    }
+                ],
+                "quality_status": "structural_ready",
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    assert MODULE.validate_capability_descriptor_contract(descriptor, contract) == []
+
+
+def test_descriptor_contract_rejects_dropped_top_level_metadata(tmp_path: Path) -> None:
+    contract = tmp_path / "contract.json"
+    descriptor = tmp_path / "sample.json"
+    _write_descriptor_contract(contract)
+    descriptor.write_text(
+        json.dumps({"layers": {"minimal": {"summary": "sample"}}, "modes": []}),
+        encoding="utf-8",
+    )
+
+    errors = MODULE.validate_capability_descriptor_contract(descriptor, contract)
+
+    assert any("missing top-level fields: slug" in error for error in errors)
+
+
+def test_descriptor_contract_rejects_incomplete_mode_metadata(tmp_path: Path) -> None:
+    contract = tmp_path / "contract.json"
+    descriptor = tmp_path / "sample.json"
+    _write_descriptor_contract(contract)
+    descriptor.write_text(
+        json.dumps(
+            {
+                "slug": "sample",
+                "layers": {"minimal": {"summary": "sample"}},
+                "modes": [{"mode_slug": "audit"}],
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    errors = MODULE.validate_capability_descriptor_contract(descriptor, contract)
+
+    assert any("entry_kind" in error and "invocations" in error and "source_refs" in error for error in errors)
 
 
 def test_validate_frontmatter_rejects_multiple_blocks(tmp_path: Path) -> None:

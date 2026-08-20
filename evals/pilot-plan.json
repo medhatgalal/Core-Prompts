@@ -1,0 +1,44 @@
+{
+  "schema_version": "PilotPlan.v1",
+  "status": "static_foundation_only",
+  "normal_ci_tokens": 0,
+  "scope_note": "These four experiments answer the highest-value unknowns. They do not require every skill to be reshaped around an eval and do not authorize live model calls.",
+  "experiments": [
+    {
+      "id": "supercharge-module-preservation",
+      "skills": ["supercharge"],
+      "question": "Does a change preserve explicit modules, stack order, terminal controls, invalid combinations, and state behavior?",
+      "static_fixture": "evals/fixtures/supercharge/module-preservation.json",
+      "behavioral_profile_after_calibration": "canary",
+      "success": "Every changed module and protected interaction passes; no critical module or state mutant survives."
+    },
+    {
+      "id": "code-review-seeded-defect",
+      "skills": ["code-review"],
+      "question": "Does Code Review find a concrete seeded defect with correct severity, file evidence, and low noise?",
+      "static_fixture": "evals/fixtures/code-review/seeded-defects.json",
+      "behavioral_profile_after_calibration": "canary",
+      "success": "The seeded defect is found with the correct location and rationale, while unsupported findings remain below the declared precision floor."
+    },
+    {
+      "id": "product-repo-code-routing",
+      "skills": ["feature-status", "eng-report", "codebase-health-audit"],
+      "question": "Can the runtime distinguish product completeness, repository activity reporting, and structural code health?",
+      "static_fixture": "evals/fixtures/routing/product-repo-code.jsonl",
+      "behavioral_profile_after_calibration": "routing-canary",
+      "success": "Top-choice routing improves without increasing false triggers among the three neighboring skills."
+    },
+    {
+      "id": "uac-import-metadata-safety",
+      "skills": ["uac-import"],
+      "question": "Does UAC preserve agent-useful metadata and reject unsafe HTML ingestion without claiming behavioral proof?",
+      "static_fixture": "evals/fixtures/uac-import/metadata-preservation.json",
+      "behavioral_profile_after_calibration": "canary",
+      "success": "All protected metadata survives, HTML remains rejected by policy, and the result is labeled structural rather than behavioral proof."
+    }
+  ],
+  "deferred": {
+    "skills": ["architecture", "instruction-editor", "pulse", "weekly-intel"],
+    "reason": "Useful public cases remain available, but these skills are outside the first paid pilot until the four selected experiments validate the runner and evaluator."
+  }
+}

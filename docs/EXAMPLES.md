@@ -479,6 +479,36 @@ Follow with:
 
 > Now generate the handoff summary for the next Incident Commander.
 
+### `instruction-editor`
+
+Preview status: available for auditable editing, but not behaviorally promoted. Treat every semantic rewrite as a candidate until independent evaluation exists.
+
+Use when:
+
+- prompt or skill language feels AI-ish, Claude-ish, ChatGPT-ish, or exhausting
+- you want Google developer style applied without weakening behavior
+- you need a shorter instruction artifact with clause-level preservation evidence
+
+Why this skill first:
+
+- start here when the central job is instruction clarity and semantic preservation; use `supercharge` for hardening, `docs-review-expert` for information architecture, and `auto-research` for behavioral proof
+
+Ask:
+
+> Use `instruction-editor` in rewrite mode to remove Claude-ish phrasing from this skill. Preserve every command, must-not rule, approval boundary, output field, exception, and fallback.
+
+Expected output:
+
+- edited artifact
+- edit ledger and preservation map
+- before/after lines, words, bytes, and token estimate
+- behavioral claims requiring proof
+- unresolved ambiguities
+
+Follow with:
+
+> Hand the baseline, candidate, preservation map, and Goal Contract to `auto-research`; do not promote the rewrite from style evidence alone.
+
 ### `mentor`
 
 Use when:

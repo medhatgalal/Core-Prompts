@@ -1,0 +1,77 @@
+{
+  "policy_id": "instruction_clarity.v1",
+  "last_reviewed": "2026-08-18",
+  "purpose": "Detect instruction prose that is harder for people or agents to parse without treating style as behavioral proof.",
+  "sources": [
+    "https://developers.google.com/style/",
+    "https://developers.google.com/style/voice",
+    "https://developers.google.com/style/tone",
+    "https://developers.google.com/style/accessibility",
+    "https://developers.google.com/style/translation"
+  ],
+  "rule_classes": {
+    "lint": "Report only.",
+    "safe_fix": "May normalize formatting proven contract-neutral.",
+    "candidate_only": "May appear in a candidate but requires preservation evidence.",
+    "forbidden_auto_fix": "Never rewrite automatically."
+  },
+  "rules": [
+    {
+      "id": "IC-LINT-001",
+      "summary": "Name the actor instead of using vague passive modality.",
+      "source_url": "https://developers.google.com/style/voice",
+      "class": "lint",
+      "risk": "medium",
+      "pattern": "\\b(it should be|should be (?:done|performed|used|created|provided))\\b",
+      "deterministic_repair": false,
+      "exceptions": ["When the actor is intentionally unknown or irrelevant."]
+    },
+    {
+      "id": "IC-LINT-002",
+      "summary": "Replace vague catch-all language with explicit scope.",
+      "source_url": "https://developers.google.com/style/translation",
+      "class": "lint",
+      "risk": "medium",
+      "pattern": "\\b(and so on|etc\\.|simply|obviously|just)\\b",
+      "deterministic_repair": false,
+      "exceptions": ["Quoted source material."]
+    },
+    {
+      "id": "IC-LINT-003",
+      "summary": "Avoid anthropomorphizing a system when a concrete operation is clearer.",
+      "source_url": "https://developers.google.com/style/tone",
+      "class": "lint",
+      "risk": "low",
+      "pattern": "\\b(the (?:model|agent|system) (?:believes|wants|feels|knows))\\b",
+      "deterministic_repair": false,
+      "exceptions": ["A behavior test intentionally probes model self-report."]
+    },
+    {
+      "id": "IC-CANDIDATE-001",
+      "summary": "Prefer direct, active instructions when the rewrite preserves actor, modality, conditions, and exceptions.",
+      "source_url": "https://developers.google.com/style/voice",
+      "class": "candidate_only",
+      "risk": "high",
+      "deterministic_repair": false,
+      "exceptions": ["Passive voice is clearer when the actor is irrelevant."]
+    },
+    {
+      "id": "IC-FORBIDDEN-001",
+      "summary": "Do not automatically change commands, modality, authority, safety, prerequisites, ordering, schemas, outputs, examples, exceptions, or fallbacks.",
+      "source_url": "https://developers.google.com/style/",
+      "class": "forbidden_auto_fix",
+      "risk": "critical",
+      "deterministic_repair": false,
+      "exceptions": []
+    },
+    {
+      "id": "IC-SAFE-001",
+      "summary": "Normalize trailing whitespace and the final newline.",
+      "source_url": "https://developers.google.com/style/",
+      "class": "safe_fix",
+      "risk": "low",
+      "deterministic_repair": true,
+      "exceptions": ["Whitespace-significant code blocks or formats."]
+    }
+  ]
+}

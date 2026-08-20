@@ -20,5 +20,9 @@ jobs:
         run: python3 scripts/sync-surface-specs.py --refresh
       - name: Run CLI startup smoke checks
         run: python3 scripts/smoke-clis.py
+      - name: Compile capability contracts and topology (zero-token)
+        run: bin/capability-eval compile --all --check
+      - name: Calibrate deterministic evaluator controls (zero-token)
+        run: bin/capability-eval calibrate --static-only
       - name: Validate generated surfaces
         run: python3 scripts/validate-surfaces.py --strict --skip-schema

@@ -1,0 +1,41 @@
+{
+  "schema_version": "MetadataPreservationFixture.v1",
+  "input": {
+    "slug": "sample-capability",
+    "display_name": "Sample Capability",
+    "family_slug": "sample-family",
+    "shared_summary": "A compact example with agent-useful routing and operational metadata.",
+    "shared_constraints": ["Do not write without approval."],
+    "modes": [
+      {
+        "mode_slug": "audit",
+        "display_name": "Audit",
+        "entry_kind": "mode",
+        "invocations": ["sample-capability /audit"],
+        "source_refs": ["ssot/sample-capability.md"]
+      }
+    ],
+    "consumption_hints": {"preferred_invocation": "explicit"},
+    "layers": {
+      "minimal": {"required_inputs": ["target"], "expected_outputs": ["report"]},
+      "expanded": {"capability_dependencies": []},
+      "org_graph": {"authority_tier": "advisory"}
+    }
+  },
+  "protected_paths": [
+    "slug",
+    "display_name",
+    "family_slug",
+    "shared_summary",
+    "shared_constraints",
+    "modes",
+    "consumption_hints",
+    "layers.minimal.required_inputs",
+    "layers.minimal.expected_outputs",
+    "layers.expanded.capability_dependencies",
+    "layers.org_graph.authority_tier"
+  ],
+  "html_fixture": "evals/fixtures/uac-import/landing-page.html",
+  "expected_html_policy": "reject",
+  "expected_status_language": "structural_ready"
+}

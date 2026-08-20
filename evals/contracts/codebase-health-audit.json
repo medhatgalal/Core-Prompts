@@ -1,0 +1,200 @@
+{
+  "schema_version": "GoalContract.v1",
+  "slug": "codebase-health-audit",
+  "target": "Fulfill the canonical intent of codebase-health-audit.",
+  "intended_outcome": "Structural code-health findings with reproducible hotspot evidence, risk calibration, and no product-status or activity-report confusion.",
+  "change_class": "unknown",
+  "non_goals": [],
+  "protected_behaviors": [
+    "eb9e3fd101415083a1e75850f582d7dd547ccffb4119fd7235e61407506aae39",
+    "1f013308a12fc6fd66b3b7821cfdbdc488de218eabe57b5c7c93fe9a22e3fa09",
+    "d69fe723b3887def45dca57abfef8166fafcde3dbc66c808c8ad8e0dec58c039",
+    "cc7e75cac40682cb7593c56064ee9394e362c350793f92da8108bcaccebe4766",
+    "0885e217a2ed838c3caa07eb501cd20465206c8cb258fe17ad73d196015c2d5d",
+    "54683e0251043ba51e2c63472e388de8cf1c0b0b0c8a62e886726872e33bfdd8",
+    "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+    "882ae0abbe84e71dd35fb14defca06bf63b3c12232051b0fdfd5efecfb15db16",
+    "378f44d68babd5603f1913f66b98afe173ed03ba02dd40fbfedc206db1350760",
+    "e77e9c49f191e08f17554be0cfabdb5b529aa1840d87f8f9df5fb39634f22ca4",
+    "24cae4235ef6ca00a7c3388eb226022f069b44d72e20f73c5215b9fa19f672bc",
+    "d0ebc5bf0cfe27a3d195db775e018f44be95296af2beb89c115dc36076c9b88d",
+    "49cfdb7532554776d0b528844c7a3628cfde52afbf5b05f494e9751dafcc95d6",
+    "14d27afbed8a1c6ef5f6969969bfcac5ef78ae81a75312636992b9f509efb716",
+    "5dbf3373cc3eca7daf4925bc64525cc602b6458a96f5c56f76cf0b32d424ae31",
+    "82a950be68b15972827c701c01a36572b742de8f132e5e16190db2f5487ff045",
+    "77f58a436a960bf778f726b1cbc724dc2b61f3b01800df59ced7af039ee90293",
+    "13bd277404e79960bb0a5157a4bd6c869022c4bebb35e73cfdb09c7927236cd6",
+    "13bd277404e79960bb0a5157a4bd6c869022c4bebb35e73cfdb09c7927236cd6",
+    "59c80a92975d26c6e763498120b0cd5f58e7491d0ffc11900dfa57e8b154df48",
+    "c64a24006f7b2703ebc01885718e063d81ef98d835239a88c5a37622b3524301",
+    "6e7b14ee84cec870bc1ec5d30ea8a3ae14fa7992268674e923a076581858ecaf",
+    "3185b2c8579672e73d79697e380c37aef30b3a8e426502ef97d4c3fa1435dc1b",
+    "f7f2a39173d968e1630542ba7544afc6dfc2d4df78d05b0be5a840c3b6cce327",
+    "ec47980ffc2e3615f42aaab11e8aee6d30b6711b2dbd082f005eb2dfd7f87b49",
+    "4017ff33c4382d79682621cdb049f4ef5475b2b059935b5ec40a8f272f5442b7"
+  ],
+  "editable_behavior": [],
+  "primary_outcome": {
+    "metric": "skill_specific_task_success",
+    "definition": "Structural code-health findings with reproducible hotspot evidence, risk calibration, and no product-status or activity-report confusion.",
+    "threshold": "human_review_required"
+  },
+  "secondary_outcomes": [],
+  "regression_limits": {
+    "protected_binary_margin": 0.02,
+    "critical_deterministic": "exact_pass"
+  },
+  "cost_latency_limits": {
+    "profile_caps": {
+      "static": 0,
+      "native": 0,
+      "routing-canary": 300000,
+      "canary": 1250000,
+      "promotion": 5000000,
+      "cross-host": 12000000,
+      "sweep": 30000000
+    }
+  },
+  "runtime_envelope": {
+    "required_cells": [
+      "anchor"
+    ],
+    "cross_host_required_for_pilot": false,
+    "status": "unresolved"
+  },
+  "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
+  "rollback_trigger": "Any protected regression or stale bound evidence.",
+  "source_clause_hashes": [
+    {
+      "sha256": "eb9e3fd101415083a1e75850f582d7dd547ccffb4119fd7235e61407506aae39",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "description: \"Read-only brownfield codebase structural audit for LOC hotspots, god objects, import fan-out, dead code, prior-claim verification, drift detection, and slice-ready remediation.\""
+    },
+    {
+      "sha256": "1f013308a12fc6fd66b3b7821cfdbdc488de218eabe57b5c7c93fe9a22e3fa09",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "Use this capability to perform a read-only structural health audit of an existing codebase. It measures codebase risk through concrete metrics, verifies prior audit claims against live files, detects drift between audit snapshots, and produces slice-ready remediation recommendations."
+    },
+    {
+      "sha256": "d69fe723b3887def45dca57abfef8166fafcde3dbc66c808c8ad8e0dec58c039",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "This is a direct skill surface, not an autonomous agent. It may read files, list directories, inspect symbols, and search references. It must not modify, create, delete, stage, commit, install dependencies, run tests, or deploy anything in the target codebase."
+    },
+    {
+      "sha256": "cc7e75cac40682cb7593c56064ee9394e362c350793f92da8108bcaccebe4766",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "- produce a read-only brownfield health report"
+    },
+    {
+      "sha256": "0885e217a2ed838c3caa07eb501cd20465206c8cb258fe17ad73d196015c2d5d",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "## READ-ONLY MODE (Non-Negotiable)"
+    },
+    {
+      "sha256": "54683e0251043ba51e2c63472e388de8cf1c0b0b0c8a62e886726872e33bfdd8",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "You MUST NOT modify, create, or delete any files in the target codebase. You are a read-only analyst. Any file-write attempt is a skill violation."
+    },
+    {
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "## Required Inputs"
+    },
+    {
+      "sha256": "882ae0abbe84e71dd35fb14defca06bf63b3c12232051b0fdfd5efecfb15db16",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "1. **Target path** (required) \u2014 Root directory of the codebase to analyze."
+    },
+    {
+      "sha256": "378f44d68babd5603f1913f66b98afe173ed03ba02dd40fbfedc206db1350760",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "# Target (required)"
+    },
+    {
+      "sha256": "e77e9c49f191e08f17554be0cfabdb5b529aa1840d87f8f9df5fb39634f22ca4",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "- Must have `timestamp` (ISO 8601)"
+    },
+    {
+      "sha256": "24cae4235ef6ca00a7c3388eb226022f069b44d72e20f73c5215b9fa19f672bc",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "- Must have `findings` (list, may be empty)"
+    },
+    {
+      "sha256": "d0ebc5bf0cfe27a3d195db775e018f44be95296af2beb89c115dc36076c9b88d",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "- Each finding must have: `id`, `category`, `severity`, `file_path`, `evidence`"
+    },
+    {
+      "sha256": "49cfdb7532554776d0b528844c7a3628cfde52afbf5b05f494e9751dafcc95d6",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "Run these sub-phases. For each, scan only files matching `languages` config and not matching `exclude_patterns`."
+    },
+    {
+      "sha256": "14d27afbed8a1c6ef5f6969969bfcac5ef78ae81a75312636992b9f509efb716",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "- `medium` confidence: only referenced in tests (possibly test-only utility)"
+    },
+    {
+      "sha256": "5dbf3373cc3eca7daf4925bc64525cc602b6458a96f5c56f76cf0b32d424ae31",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "- `low` confidence: referenced only in strings/comments (dynamic dispatch possible)"
+    },
+    {
+      "sha256": "82a950be68b15972827c701c01a36572b742de8f132e5e16190db2f5487ff045",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "3. Filter by `dead_code_confidence_floor` config \u2014 only report findings at or above this level."
+    },
+    {
+      "sha256": "77f58a436a960bf778f726b1cbc724dc2b61f3b01800df59ced7af039ee90293",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "trajectory:  # only present if prior_state provided"
+    },
+    {
+      "sha256": "13bd277404e79960bb0a5157a4bd6c869022c4bebb35e73cfdb09c7927236cd6",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "*Only present when prior_state is provided.*"
+    },
+    {
+      "sha256": "13bd277404e79960bb0a5157a4bd6c869022c4bebb35e73cfdb09c7927236cd6",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "*Only present when prior_state is provided.*"
+    },
+    {
+      "sha256": "59c80a92975d26c6e763498120b0cd5f58e7491d0ffc11900dfa57e8b154df48",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "**Trajectory:** degrading \u2014 3 new findings and 1 worsened vs only 1 resolved."
+    },
+    {
+      "sha256": "c64a24006f7b2703ebc01885718e063d81ef98d835239a88c5a37622b3524301",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "- read-only scan of matching files only"
+    },
+    {
+      "sha256": "6e7b14ee84cec870bc1ec5d30ea8a3ae14fa7992268674e923a076581858ecaf",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "| Read-only safety | The audit never modifies files, runs tests, installs dependencies, stages changes, commits, or deploys |"
+    },
+    {
+      "sha256": "3185b2c8579672e73d79697e380c37aef30b3a8e426502ef97d4c3fa1435dc1b",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "4. **Monorepo:** Analyze only the subtree at `target`. Do not traverse parent directories."
+    },
+    {
+      "sha256": "f7f2a39173d968e1630542ba7544afc6dfc2d4df78d05b0be5a840c3b6cce327",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "- **Read-only.** Never modify, create, or delete files in the target."
+    },
+    {
+      "sha256": "ec47980ffc2e3615f42aaab11e8aee6d30b6711b2dbd082f005eb2dfd7f87b49",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "- **Scoped.** Only analyze files matching `languages` config. Skip everything else."
+    },
+    {
+      "sha256": "4017ff33c4382d79682621cdb049f4ef5475b2b059935b5ec40a8f272f5442b7",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "- **Forbidden:** Write files, run code, install dependencies, execute tests, modify git state."
+    }
+  ],
+  "review_status": "draft"
+}

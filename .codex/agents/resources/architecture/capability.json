@@ -235,7 +235,9 @@
         "Prefer nouns and stable resource boundaries.",
         "Keep auth, pagination, and versioning explicit.",
         "Include at least one explicit rollback path for API changes."
-      ]
+      ],
+      "entry_kind": "mode",
+      "invocations": []
     },
     {
       "mode_slug": "design-database",
@@ -265,7 +267,9 @@
         "Call out intentional denormalization and failure impact.",
         "Tie indexes to actual query paths.",
         "Include consistency-vs-availability trade-off and rollback checkpoint."
-      ]
+      ],
+      "entry_kind": "mode",
+      "invocations": []
     },
     {
       "mode_slug": "design-patterns",
@@ -297,7 +301,9 @@
         "Explain trade-offs and why each fit is chosen.",
         "Avoid pattern cargo-culting; always include replacement implications.",
         "Include rollback plan for each non-backward-compatible boundary change."
-      ]
+      ],
+      "entry_kind": "mode",
+      "invocations": []
     },
     {
       "mode_slug": "system-design",
@@ -329,7 +335,9 @@
       "uplift_notes": [
         "Keep modules replaceable where possible.",
         "Separate policy from mechanism in each subsystem."
-      ]
+      ],
+      "entry_kind": "mode",
+      "invocations": []
     }
   ],
   "benchmark_sources": [
@@ -377,7 +385,7 @@
     }
   ],
   "quality_profile": "architecture",
-  "quality_status": "ship",
+  "quality_status": "structural_ready",
   "judge_reports": [
     {
       "pass_number": 1,
@@ -458,5 +466,22 @@
         "## Invocation"
       ]
     }
-  ]
+  ],
+  "legacy_quality_status": "ship",
+  "job_contract": {
+    "primary_job": "Design a concrete system boundary, interface, schema, or migration with explicit trade-offs.",
+    "use_when": "The user needs an implementable technical design or architecture decision.",
+    "works_on": "Systems, APIs, components, data models, dependencies, and migrations.",
+    "main_output": "A chosen design with boundaries, alternatives, failure modes, migration, and rollback.",
+    "not_for": "General mentoring, choosing among arbitrary proposals without design work, or broad repo health scanning.",
+    "authority": "Advisory design; implementation requires separate authorization.",
+    "routing_question": "Is the deliverable a technical design, or merely a recommendation among existing options?",
+    "nearest_neighbors": [
+      "converge",
+      "mentor",
+      "codebase-health-audit"
+    ],
+    "shape": "deep_specialist",
+    "portfolio_action": "keep_and_clarify_boundary"
+  }
 }

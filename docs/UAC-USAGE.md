@@ -239,6 +239,14 @@ UAC can analyze:
 
 ## Important Boundaries
 
+- `structural_ready` replaces the old `ship` label and is structural evidence only.
+- Google-derived clarity lint is always available, advisory, and backed by the reviewed local `instruction_clarity.v1` policy. UAC still rejects unsupported HTML ingestion.
+- `--emit-impact-plan` selects the minimum safe evaluation profile; unknown impact escalates rather than guessing downward.
+- `--promotion-verdict <path>` validates independent, hash-bound evidence during apply.
+- UAC does not own sealed cases, behavioral judging, promotion, or waivers.
+- A new behavioral baseline is materialized only after promotion. Historical baseline lineage is preserved.
+- During the advisory rollout, apply also compiles a draft Goal Contract and topology so a newly added skill cannot silently skip the evaluation inventory.
+
 - UAC publishes advisory metadata and handoff artifacts only. It does not decide runtime routing or delegation.
 - Direct exposure lands in each vendor `skills/<slug>/SKILL.md` path when a capability is classified for direct use.
 - This repo does not use UAC to target direct `commands/` or `prompts/` deployment paths.

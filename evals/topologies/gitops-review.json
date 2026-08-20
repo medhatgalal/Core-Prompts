@@ -1,0 +1,252 @@
+{
+  "schema_version": "CapabilityTopology.v1",
+  "slug": "gitops-review",
+  "ssot_sha256": "087c7156e2c9f140df3b9cd67076b2dbd2089dbda3a168044c8630e63893292d",
+  "explicit_invocations": [],
+  "semantic_triggers": [],
+  "aliases_shortcuts": [],
+  "auto_routes": [],
+  "nodes": {
+    "commands": [],
+    "modes_modules": [],
+    "controls": [],
+    "modifiers": []
+  },
+  "composition": {
+    "legal_pairs": [],
+    "forbidden_pairs": [],
+    "canonical_order": [],
+    "requirements": [],
+    "supersession": []
+  },
+  "state_machine": {
+    "states": [],
+    "transitions": [],
+    "forbidden_transitions": []
+  },
+  "outputs": [
+    "- `Current State`",
+    "- `Gate Type`",
+    "- `Findings`",
+    "- `Required Companion Reviews`",
+    "- `Recommended Commands or Actions`",
+    "- `Release / Merge Readiness`",
+    "- `Open Risks`",
+    "- exact commands run",
+    "- exact branch, tag, PR, or MR identifiers",
+    "- final state after execution"
+  ],
+  "authority_boundaries": [
+    "gitops-review:L26:4f489f6decee",
+    "gitops-review:L57:b5c46985a380",
+    "gitops-review:L81:e9b11df3ae0f",
+    "gitops-review:L82:f13318f8962f",
+    "gitops-review:L83:ae1fc668c8f5",
+    "gitops-review:L84:88752cb21f2f",
+    "gitops-review:L85:8a3e99280f77"
+  ],
+  "resources": [],
+  "handoffs": [
+    "- Do not replace companion capability reviews with generic \u201clooks good\u201d language."
+  ],
+  "protected_invariants": [
+    {
+      "id": "gitops-review:L26:4f489f6decee",
+      "heading": "Tool Boundaries",
+      "source_line": 26,
+      "sha256": "4f489f6deceea4cac14caf270d30c4a22c38096315c377da3a6ebaaf71af0b8f",
+      "text": "- forbidden: hidden force-push behavior, destructive git resets, silent release mutation, or claiming approval authority that belongs to branch protection or human review",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "gitops-review:L40:5c01406ac676",
+      "heading": "Workflow",
+      "source_line": 40,
+      "sha256": "5c01406ac676edfa3d26c3492bfae9d47d2aaf29900d19a7fbdee8a10305c005",
+      "text": "3. Run the minimum deterministic checks required for that gate.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "gitops-review:L47:6e742ea93af3",
+      "heading": "Workflow",
+      "source_line": 47,
+      "sha256": "6e742ea93af388211154ad677b8f8c7002d7001f80cd74376d6e8b1fc2e94225",
+      "text": "6. When explicitly asked to execute, perform only the approved deterministic GitOps steps and report exact outcomes.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "gitops-review:L51:c23d463f514c",
+      "heading": "Rules",
+      "source_line": 51,
+      "sha256": "c23d463f514c5f505dfd7403cacc423d6bc416293aa9ad4f0794aeb06e8e2b06",
+      "text": "- Commit messages must describe what changed and why, not just restate filenames.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "gitops-review:L52:c3d61357475d",
+      "heading": "Rules",
+      "source_line": 52,
+      "sha256": "c3d61357475dce52b357aee5c1e50150e8fb4448e099674ede3ee653b547984e",
+      "text": "- PRs and MRs must have coherent scope, validation evidence, and clear merge intent.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "gitops-review:L53:d2caa1a4649b",
+      "heading": "Rules",
+      "source_line": 53,
+      "sha256": "d2caa1a4649b6b94c02c77b4aa2b4b90865df23db1d790b0cf36f58c6b942149",
+      "text": "- CI must be checked on both GitHub and GitLab when both are part of the repo contract.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "gitops-review:L54:4803b51f3d1a",
+      "heading": "Rules",
+      "source_line": 54,
+      "sha256": "4803b51f3d1af8aede38f996e67e1503f35fc7feead318a722554feb4f7ddc13",
+      "text": "- Changelog, package, tag, merge, and release actions must happen in a deliberate order.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "gitops-review:L55:833205d11f61",
+      "heading": "Rules",
+      "source_line": 55,
+      "sha256": "833205d11f618108fb9f0fa07101c27cec68a86a58cb86797afae78a978aa19e",
+      "text": "- Release recommendations must name the missing artifact, missing check, or missing review explicitly.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "gitops-review:L57:b5c46985a380",
+      "heading": "Rules",
+      "source_line": 57,
+      "sha256": "b5c46985a38041a83b589294db0c25b430311b00e9bebf43d5cd08c0bcc7a0c1",
+      "text": "- Do not skip companion reviews when the change crosses their domain.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "gitops-review:L59:77357dbdaba3",
+      "heading": "Required Inputs",
+      "source_line": 59,
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "text": "## Required Inputs",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "gitops-review:L65:3d4b9f171064",
+      "heading": "Required Output",
+      "source_line": 65,
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "text": "## Required Output",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "gitops-review:L66:c34906b1f1c3",
+      "heading": "Required Output",
+      "source_line": 66,
+      "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+      "text": "Every substantial response must include:",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "gitops-review:L70:51e24804be91",
+      "heading": "Required Output",
+      "source_line": 70,
+      "sha256": "51e24804be91c4829cb7f2bb30ea9982847a312c20a9da6276a53b9de4fd61b7",
+      "text": "- `Required Companion Reviews`",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "gitops-review:L81:e9b11df3ae0f",
+      "heading": "Constraints",
+      "source_line": 81,
+      "sha256": "e9b11df3ae0f7f6f8c6a4686b255d16721bc230732143678c538738427098133",
+      "text": "- Do not hide destructive git behavior behind helper language.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "gitops-review:L82:f13318f8962f",
+      "heading": "Constraints",
+      "source_line": 82,
+      "sha256": "f13318f8962f0526b6e9b3e10b40b2e876fdf6ac87ae0b5b2c3829ddb60de0ec",
+      "text": "- Do not claim CI is green unless the current hosted runs were verified.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "gitops-review:L83:ae1fc668c8f5",
+      "heading": "Constraints",
+      "source_line": 83,
+      "sha256": "ae1fc668c8f5bfe6e5e90ffe74cfcff66769ebbc7681481500d2fb9c8546b19e",
+      "text": "- Do not merge, tag, package, or release without stating the prerequisite checks.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "gitops-review:L84:88752cb21f2f",
+      "heading": "Constraints",
+      "source_line": 84,
+      "sha256": "88752cb21f2f8c740f9283a9ceadcc5cc87a606ae01621cb9c22055695d04ee2",
+      "text": "- Do not invent GitHub or GitLab state from local git alone.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "gitops-review:L85:8a3e99280f77",
+      "heading": "Constraints",
+      "source_line": 85,
+      "sha256": "8a3e99280f774db0a2ce491aac464fc016dd52bd08ad0ed0446eeedf8c342579",
+      "text": "- Do not replace companion capability reviews with generic \u201clooks good\u201d language.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "gitops-review:L96:407346659f25",
+      "heading": "Required Companion Reviews",
+      "source_line": 96,
+      "sha256": "407346659f25af78db055b826b1f3f42bdd1efe69192715930695b704d7d01b3",
+      "text": "## Required Companion Reviews",
+      "kind": "invariant",
+      "mapped_to": []
+    }
+  ],
+  "risk_tiers": {
+    "critical": [],
+    "high": [],
+    "standard": []
+  },
+  "source_references": [
+    {
+      "path": "ssot/gitops-review.md",
+      "sha256": "087c7156e2c9f140df3b9cd67076b2dbd2089dbda3a168044c8630e63893292d"
+    }
+  ],
+  "known_ambiguities": [],
+  "coverage_policy": {
+    "normative_clauses": "100_percent_mapped_or_waived",
+    "nodes": "positive_and_boundary",
+    "transitions": "all_legal_and_forbidden",
+    "module_pairs": "all_legal_pairs",
+    "high_risk_tuples": "assigned_strength",
+    "critical_mutants": "100_percent_killed"
+  },
+  "normative_clause_coverage": {
+    "total": 19,
+    "mapped": 0,
+    "waived": 0
+  },
+  "review_status": "draft",
+  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs."
+}

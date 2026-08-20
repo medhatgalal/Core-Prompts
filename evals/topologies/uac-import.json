@@ -1,0 +1,252 @@
+{
+  "schema_version": "CapabilityTopology.v1",
+  "slug": "uac-import",
+  "ssot_sha256": "dadffc493d592f2405797925abbeb9e379cd897a60463713274aad6775f1c105",
+  "explicit_invocations": [],
+  "semantic_triggers": [],
+  "aliases_shortcuts": [],
+  "auto_routes": [],
+  "nodes": {
+    "commands": [],
+    "modes_modules": [],
+    "controls": [],
+    "modifiers": []
+  },
+  "composition": {
+    "legal_pairs": [],
+    "forbidden_pairs": [],
+    "canonical_order": [],
+    "requirements": [],
+    "supersession": []
+  },
+  "state_machine": {
+    "states": [],
+    "transitions": [],
+    "forbidden_transitions": []
+  },
+  "outputs": [
+    "- Source",
+    "- Summary",
+    "- Uplift",
+    "- Routing",
+    "- UAC Classification",
+    "- Collection Recommendation",
+    "- Layered Manifest",
+    "- Cross-Analysis",
+    "- Quality Plan / Judge Reports",
+    "- Install Target",
+    "- Advisory Handoff Contract",
+    "- Recommended Surface",
+    "- Modernization Focus",
+    "- Next Actions",
+    "- Behavioral Confidence",
+    "- Escalation Reason",
+    "- Auto-Research Handoff",
+    "- Goal Contract and Capability Topology hashes when available",
+    "- Eval Impact Plan and hard token cap",
+    "- Structural Status (`structural_ready` is not `promote`)"
+  ],
+  "authority_boundaries": [
+    "uac-import:L22:f0d947235149",
+    "uac-import:L44:83466994e31c",
+    "uac-import:L69:8ba44b003e78",
+    "uac-import:L79:6397b7ce935c",
+    "uac-import:L83:ac7451b13f5c",
+    "uac-import:L84:5fa704203d22",
+    "uac-import:L85:2fdb6c8bba0d"
+  ],
+  "resources": [],
+  "handoffs": [
+    "## Companion Capability Matrix",
+    "- Advisory Handoff Contract",
+    "- Auto-Research Handoff",
+    "- Do not make UAC the long-term owner of behavioral evaluation logic; route to `auto-research` when bounded behavioral proof is needed.",
+    "- escalation: if the work shifts from intake to architecture, docs quality, testing, or release readiness, route to the companion capability with a concrete handoff instead of stretching the import workflow",
+    "12. If `judge` finds that structural quality is close to passing but behavioral confidence is insufficient, route to `auto-research` for bounded capability evaluation instead of guessing.",
+    "8. Build layered manifests, cross-analysis, and advisory handoff data.",
+    "Take one or more external prompt-like sources and turn them into deterministic UAC assessments, layered manifests, canonical SSOT entries, machine-readable descriptors, quality-review artifacts, and advisory handoff contracts.",
+    "| If the import uncovers this need | Route to | Required handoff |"
+  ],
+  "protected_invariants": [
+    {
+      "id": "uac-import:L22:f0d947235149",
+      "heading": "Purpose",
+      "source_line": 22,
+      "sha256": "f0d947235149d1f776768e53d1bf7eedf6a3f1c185fe10202d102117f85900ec",
+      "text": "Deterministic clarity lint from `instruction_clarity.v1` is available in every mode and enabled by default for `audit`, `plan`, and `judge`. It is advisory and never counts as behavioral evidence.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "uac-import:L44:83466994e31c",
+      "heading": "Invocation Contract",
+      "source_line": 44,
+      "sha256": "83466994e31cb2c5e6568d5df77cc763081ee051e50abf72e348e72013992fb1",
+      "text": "- deploy is separate and must never be implied by `apply`",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "uac-import:L45:0246bb0452fe",
+      "heading": "Invocation Contract",
+      "source_line": 45,
+      "sha256": "0246bb0452fe016af5e26128122b13e5ef8d943ff6ccd5b437ec5bc65ecf7a89",
+      "text": "- when shell entrypoints are required to complete the workflow, say so explicitly instead of assuming the caller knows them",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "uac-import:L60:4d6263b78413",
+      "heading": "Workflow",
+      "source_line": 60,
+      "sha256": "4d6263b784139fcdeeeddd1cd03f337fc233055c2de3a8137c9e2a0c287ec390",
+      "text": "13. Search for benchmark sources only when the source is generic or fit confidence is weak.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "uac-import:L61:3f9a1f147e6e",
+      "heading": "Workflow",
+      "source_line": 61,
+      "sha256": "3f9a1f147e6e133a3feeac1a08cfb5db72dfa1a4c747847010083ac79fedfd29",
+      "text": "14. Rename the former structural `ship` result to `structural_ready`. It proves only that deterministic UAC gates passed.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "uac-import:L64:9f04d56b0bac",
+      "heading": "Workflow",
+      "source_line": 64,
+      "sha256": "9f04d56b0bac1f7f21a2015dd78cc7745a875637446334978e7eb150a83fccc8",
+      "text": "17. Materialize a new baseline only after an independent `promote` verdict, or preserve a valid historical baseline without rewriting its lineage.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "uac-import:L69:8ba44b003e78",
+      "heading": "Tool Boundaries",
+      "source_line": 69,
+      "sha256": "8ba44b003e7802e5edbf123da16ba40d579aea91b43e247eb6a42d142d65e3ed",
+      "text": "- forbidden: inventing capability strength that the source does not support, deploying to user homes during `apply`, or silently widening surface recommendations to satisfy packaging preferences",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "uac-import:L76:8ad70d4c06b1",
+      "heading": "Rules",
+      "source_line": 76,
+      "sha256": "8ad70d4c06b16e005d561cdd08c46311a9385b5842db5c4e79665d51ff7fcf09",
+      "text": "- For folders or repo trees, only group files that were actually inventoried.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "uac-import:L77:83399f43a9a4",
+      "heading": "Rules",
+      "source_line": 77,
+      "sha256": "83399f43a9a4c2ae0341169788c0a4f12047bb607cee1f0e50ad938909f4d0e0",
+      "text": "- If the source is config-only, require manual review instead of pretending it is a prompt.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "uac-import:L79:6397b7ce935c",
+      "heading": "Rules",
+      "source_line": 79,
+      "sha256": "6397b7ce935c0f25a9fd35cca62f78acddd359f26c000fc5526103d13c9108b4",
+      "text": "- Never make orchestration or delegation decisions. Publish advisory metadata only.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "uac-import:L82:8b7d3b86f45c",
+      "heading": "Rules",
+      "source_line": 82,
+      "sha256": "8b7d3b86f45cf9e39a25bd970d482b06234211b23fc3fb4691490fc2797daeb9",
+      "text": "- Quality review artifacts are advisory evidence; they must not encode runtime routing policy.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "uac-import:L83:ac7451b13f5c",
+      "heading": "Rules",
+      "source_line": 83,
+      "sha256": "ac7451b13f5c5b2f0d31ac5063147f068699bbaf54b33c233bd9e50d202ada73",
+      "text": "- Do not make UAC the long-term owner of behavioral evaluation logic; route to `auto-research` when bounded behavioral proof is needed.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "uac-import:L84:5fa704203d22",
+      "heading": "Rules",
+      "source_line": 84,
+      "sha256": "5fa704203d22267e2fd77798404d1ece0e39b7169e5d94e5d9c37ed521a677a0",
+      "text": "- Do not ingest the Google Style Guide as permissive HTML. Use the reviewed local `instruction_clarity.v1` adapter and preserve the URL content-type rejection boundary.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "uac-import:L85:2fdb6c8bba0d",
+      "heading": "Rules",
+      "source_line": 85,
+      "sha256": "2fdb6c8bba0dc7fbeb44b7383c59db630edc3db3578cbbd862ffb00c2dd44509",
+      "text": "- Do not let UAC author a candidate, define or view the sealed promotion set, judge the candidate, and waive its own failures.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "uac-import:L95:77357dbdaba3",
+      "heading": "Required Inputs",
+      "source_line": 95,
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "text": "## Required Inputs",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "uac-import:L101:3d4b9f171064",
+      "heading": "Required Output",
+      "source_line": 101,
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "text": "## Required Output",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "uac-import:L127:b6fcb2a657d0",
+      "heading": "Companion Capability Matrix",
+      "source_line": 127,
+      "sha256": "b6fcb2a657d0469d0e90e1804952d2fc81b2e0e5ec4cd42e1ac08d62715f0c60",
+      "text": "| If the import uncovers this need | Route to | Required handoff |",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    }
+  ],
+  "risk_tiers": {
+    "critical": [],
+    "high": [],
+    "standard": []
+  },
+  "source_references": [
+    {
+      "path": "ssot/uac-import.md",
+      "sha256": "dadffc493d592f2405797925abbeb9e379cd897a60463713274aad6775f1c105"
+    }
+  ],
+  "known_ambiguities": [],
+  "coverage_policy": {
+    "normative_clauses": "100_percent_mapped_or_waived",
+    "nodes": "positive_and_boundary",
+    "transitions": "all_legal_and_forbidden",
+    "module_pairs": "all_legal_pairs",
+    "high_risk_tuples": "assigned_strength",
+    "critical_mutants": "100_percent_killed"
+  },
+  "normative_clause_coverage": {
+    "total": 17,
+    "mapped": 0,
+    "waived": 0
+  },
+  "review_status": "draft",
+  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs."
+}

@@ -66,6 +66,10 @@ from intent_pipeline.uac_ssot import (
     parse_ssot_frontmatter_and_body,
 )
 from intent_pipeline.uplift.engine import run_uplift_engine
+from core_prompts_eval.clarity import audit_text as clarity_audit_text, load_policy as load_clarity_policy
+from core_prompts_eval.contracts import ContractError, artifact_hash, load_json, validate_promotion_verdict
+from core_prompts_eval.impact import build_impact_plan
+from core_prompts_eval.evaluator import compile_skill
 
 
 def _parse_args() -> argparse.Namespace:
@@ -136,6 +140,9 @@ def _parse_args() -> argparse.Namespace:
         default=10,
         help='Maximum quality passes for the built-in judge loop',
     )
+    parser.add_argument('--clarity', choices=('on', 'off'), default='on', help='Run advisory instruction_clarity.v1 lint')
+    parser.add_argument('--emit-impact-plan', action='store_true', help='Emit the minimum safe capability-eval profile')
+    parser.add_argument('--promotion-verdict', type=Path, help='Independent PromotionVerdict.v1 to validate during apply')
     return parser.parse_args()
 
 
@@ -841,8 +848,8 @@ def _contributor_guidance(payload: Mapping[str, Any], quality_result: Mapping[st
         blockers = list((quality_result.get('judge_reports') or [])[-1].get('blockers') or []) if quality_result.get('judge_reports') else []
         if blockers:
             guidance.append('Address the current quality blockers before apply.')
-        if quality_result.get('status') == 'ship':
-            guidance.append('Quality gate is ready for apply once repo mutation is intentional.')
+        if quality_result.get('status') == 'structural_ready':
+            guidance.append('Structural gate is ready. Behavioral promotion remains separate when the impact plan requires it.')
         elif quality_result.get('status') == 'revise':
             guidance.append('Use the final candidate text and scorecard to revise before apply.')
         elif quality_result.get('status') == 'manual_review':
@@ -864,7 +871,7 @@ def _preview_payload(
         quality_plan=quality_plan,
         quality_result=quality_result,
     )
-    ship_readiness = {
+    structural_readiness = {
         'quality_status': (quality_result or {}).get('status'),
         'quality_pass_count': (quality_result or {}).get('pass_count'),
         'quality_stop_reason': (quality_result or {}).get('stop_reason'),
@@ -876,7 +883,7 @@ def _preview_payload(
         'descriptor_delta': descriptor_delta,
         'overlap_preview': _overlap_preview(payload),
         'user_visible_impact': _user_visible_impact(payload),
-        'ship_readiness': ship_readiness,
+        'structural_readiness': structural_readiness,
         'contributor_guidance': _contributor_guidance(payload, quality_result=quality_result),
     }
 
@@ -1021,14 +1028,14 @@ def run_phase1_pipeline_from_text(text: str) -> str:
     return render_intent_summary(sanitized)
 
 
-def _audit_payload() -> dict[str, Any]:
+def _audit_payload(*, clarity: bool = True) -> dict[str, Any]:
     from intent_pipeline.uac_ssot import audit_ssot_entries, render_audit_table
 
     audits = audit_ssot_entries(ROOT)
     status_counts: dict[str, int] = {}
     for audit in audits:
         status_counts[audit.audit_status] = status_counts.get(audit.audit_status, 0) + 1
-    return {
+    payload = {
         'status': 'accepted',
         'mode': 'audit',
         'source': {'type': 'SSOT_DIRECTORY', 'normalized_source': str((ROOT / 'ssot').resolve())},
@@ -1042,6 +1049,18 @@ def _audit_payload() -> dict[str, Any]:
         'deployment_matrix': deployment_matrix_payload(),
         'classification_rubric': classification_rubric_payload(),
     }
+    if clarity:
+        policy = load_clarity_policy(ROOT)
+        payload['clarity'] = {
+            'policy': policy['policy_id'],
+            'advisory_only': True,
+            'behavioral_claim': 'none',
+            'skills': {
+                path.stem: clarity_audit_text(path.read_text(encoding='utf-8'), policy)
+                for path in sorted((ROOT / 'ssot').glob('*.md'))
+            },
+        }
+    return payload
 
 
 def _explain_payload() -> dict[str, Any]:
@@ -1672,6 +1691,37 @@ def _persist_quality_reviews(slug: str, quality_plan: Mapping[str, Any], quality
     return changed
 
 
+def _snapshot_apply_artifacts() -> dict[str, str]:
+    """Hash every artifact family UAC may change during one apply transaction."""
+    targets = (
+        ROOT / 'ssot',
+        ROOT / '.meta' / 'capabilities',
+        ROOT / '.meta' / 'manifest.json',
+        ROOT / '.meta' / 'capability-handoff.json',
+        ROOT / '.meta' / 'skill-job-map.json',
+        ROOT / '.codex',
+        ROOT / '.gemini',
+        ROOT / '.claude',
+        ROOT / '.kiro',
+        ROOT / 'dist' / 'consumer-shell',
+        ROOT / 'docs' / 'CAPABILITY-CATALOG.md',
+        ROOT / 'docs' / 'RELEASE-DELTA.md',
+        ROOT / 'docs' / 'STATUS.md',
+        ROOT / 'docs' / 'SKILL-JOB-MAP.md',
+        ROOT / 'evals' / 'contracts',
+        ROOT / 'evals' / 'topologies',
+        ROOT / 'reports' / 'quality-reviews',
+        ROOT / 'sources' / 'ssot-baselines',
+    )
+    files: set[Path] = set()
+    for target in targets:
+        if target.is_file():
+            files.add(target)
+        elif target.is_dir():
+            files.update(path for path in target.rglob('*') if path.is_file())
+    return {path.relative_to(ROOT).as_posix(): artifact_hash(path) for path in sorted(files)}
+
+
 def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: list[str]) -> dict[str, Any]:
     if payload.get('status') != 'accepted':
         return payload
@@ -1686,6 +1736,34 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
         payload['status'] = 'manual_review'
         payload['detail'] = 'Cross-analysis flagged duplicate or conflicting graph roles. Resolve those before apply.'
         return payload
+    promotion_verdict = None
+    promotion_verdict_path = getattr(args, 'promotion_verdict', None)
+    if promotion_verdict_path:
+        try:
+            promotion_verdict = load_json(promotion_verdict_path.resolve())
+            validate_promotion_verdict(promotion_verdict, repo_root=ROOT)
+        except (OSError, ValueError, ContractError) as exc:
+            result = dict(payload)
+            result['status'] = 'stale_evidence'
+            result['detail'] = f'Promotion verdict refused: {exc}'
+            return result
+        expected_slug = str(payload['manifest']['slug'])
+        if promotion_verdict.get('slug') != expected_slug:
+            result = dict(payload)
+            result['status'] = 'stale_evidence'
+            result['detail'] = f"Promotion verdict is for {promotion_verdict.get('slug')}, not {expected_slug}."
+            return result
+        if promotion_verdict.get('status') != 'promote':
+            result = dict(payload)
+            result['status'] = str(promotion_verdict.get('status') or 'hold')
+            result['detail'] = 'The supplied independent verdict does not authorize apply.'
+            return result
+        existing_ssot = ROOT / 'ssot' / f'{expected_slug}.md'
+        if existing_ssot.is_file() and artifact_hash(existing_ssot) != promotion_verdict.get('baseline_sha256'):
+            result = dict(payload)
+            result['status'] = 'stale_evidence'
+            result['detail'] = 'Promotion verdict baseline hash does not match the current canonical SSOT.'
+            return result
     if not args.yes:
         confirmation = input('Apply will write SSOT + descriptor into this repo, rebuild surfaces, and validate. Type yes to continue: ').strip().lower()
         if confirmation not in {'y', 'yes'}:
@@ -1693,6 +1771,7 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
             payload['status'] = 'cancelled'
             payload['detail'] = 'apply cancelled by user'
             return payload
+    before_apply = _snapshot_apply_artifacts()
     result = dict(payload)
     if args.quality_loop == 'on' and 'quality_result' not in result:
         result = _run_quality_for_payload(result, args)
@@ -1702,7 +1781,7 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
     quality_paths: list[Path] = []
     if quality_plan and quality_result:
         quality_paths = _persist_quality_reviews(slug, quality_plan, quality_result)
-        if quality_result.get('status') != 'ship':
+        if quality_result.get('status') != 'structural_ready':
             result['mode'] = 'apply'
             result['status'] = 'manual_review'
             result['detail'] = 'Quality gate refused landing. Review the persisted quality reports and revise before apply.'
@@ -1762,8 +1841,17 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
             'deploy_next_step': 'Revise the candidate or preserve the operational source body before apply.',
         }
         return result
+    if promotion_verdict and promotion_verdict.get('status') == 'promote':
+        final_text = ssot_text + ('\n' if not ssot_text.endswith('\n') else '')
+        if artifact_hash(final_text) != promotion_verdict.get('candidate_sha256'):
+            result['mode'] = 'apply'
+            result['status'] = 'stale_evidence'
+            result['detail'] = 'Promotion verdict candidate hash does not match the SSOT text that would be applied.'
+            return result
     ssot_path.write_text(ssot_text + ('\n' if not ssot_text.endswith('\n') else ''), encoding='utf-8')
-    if quality_result and quality_result.get('status') == 'ship':
+    # Structural readiness cannot materialize a behavioral baseline. A new
+    # baseline is created only after an independently validated promotion.
+    if promotion_verdict and promotion_verdict.get('status') == 'promote':
         baseline_source = _baseline_materialization_payload(slug, result, ssot_text=ssot_text, ssot_path=ssot_path)
         baseline_materialization = persist_source_baseline(
             ROOT,
@@ -1795,14 +1883,31 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
             rationale=str(result['manifest']['layers']['minimal'].get('rationale') or result['manifest']['layers']['minimal'].get('summary') or ''),
         )
     build_proc = subprocess.run([sys.executable, str(ROOT / 'scripts' / 'build-surfaces.py')], capture_output=True, text=True)
+    compile_result = None
+    compile_error = None
+    if build_proc.returncode == 0:
+        try:
+            compiled = compile_skill(ROOT, slug, write=True)
+            compile_result = {
+                'status': compiled['status'],
+                'goal_contract': f'evals/contracts/{slug}.json',
+                'topology': f'evals/topologies/{slug}.json',
+                'behavioral_claim': 'none',
+            }
+        except Exception as exc:
+            compile_error = str(exc)
     validate_proc = subprocess.run([sys.executable, str(ROOT / 'scripts' / 'validate-surfaces.py'), '--strict'], capture_output=True, text=True)
     result['mode'] = 'apply'
+    after_apply = _snapshot_apply_artifacts()
+    changed_paths = sorted(
+        path
+        for path in set(before_apply) | set(after_apply)
+        if before_apply.get(path) != after_apply.get(path)
+    )
     result['apply_result'] = {
-        'changed_paths': [str(ssot_path.relative_to(ROOT)), str(descriptor_path.relative_to(ROOT))]
-        + ([baseline_materialization['baseline_path']] if baseline_materialization else [])
-        + ([str(source_note.relative_to(ROOT))] if source_note else [])
-        + [str(path.relative_to(ROOT)) for path in quality_paths],
+        'changed_paths': changed_paths,
         'build': {'returncode': build_proc.returncode, 'stdout': build_proc.stdout.strip(), 'stderr': build_proc.stderr.strip()},
+        'compile': compile_result or {'status': 'failed', 'error': compile_error or 'build failed before compilation'},
         'validate': {'returncode': validate_proc.returncode, 'stdout': validate_proc.stdout.strip(), 'stderr': validate_proc.stderr.strip()},
         'quality': {
             'profile': (quality_plan or {}).get('quality_profile'),
@@ -1810,13 +1915,18 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
             'pass_count': (quality_result or {}).get('pass_count'),
             'stop_reason': (quality_result or {}).get('stop_reason'),
         },
+        'behavioral_evidence': {
+            'status': (promotion_verdict or {}).get('status', 'behavioral_pending'),
+            'run_id': (promotion_verdict or {}).get('run_id'),
+            'enforcement': 'advisory' if not promotion_verdict else 'verdict_validated',
+        },
         'deploy_next_step': 'Run bin/capability-fabric deploy or scripts/deploy-surfaces.sh after reviewing repo changes.',
     }
     if apply_guard:
         result['apply_guard'] = apply_guard
-    if build_proc.returncode == 0 and validate_proc.returncode == 0:
+    if build_proc.returncode == 0 and (compile_result or {}).get('status') == 'structural_ready' and validate_proc.returncode == 0:
         result['status'] = 'applied'
-        result['detail'] = 'SSOT and descriptor landed in repo, surfaces rebuilt, validation passed.'
+        result['detail'] = 'SSOT, descriptor, draft evaluation contracts, and generated surfaces landed; validation passed.'
     else:
         result['status'] = 'apply_failed_validation'
         result['detail'] = 'Repo changes were written, but build or validation failed. Review the recorded outputs before deploy.'
@@ -1828,7 +1938,7 @@ def main() -> int:
     if args.mode in {'import', 'plan', 'judge', 'apply'} and not args.source:
         raise SystemExit('--source is required for import, plan, judge, and apply modes')
     if args.mode == 'audit':
-        payload = _audit_payload()
+        payload = _audit_payload(clarity=args.clarity == 'on')
     elif args.mode == 'explain':
         payload = _explain_payload()
     elif len(args.source or []) > 1:
@@ -1850,6 +1960,25 @@ def main() -> int:
             quality_plan=payload.get('quality_plan'),
             quality_result=payload.get('quality_result'),
         )
+        candidate_text = str(payload['preview']['rendered_ssot_markdown'])
+        if args.clarity == 'on':
+            payload['clarity'] = clarity_audit_text(candidate_text, load_clarity_policy(ROOT))
+        if args.emit_impact_plan or args.mode in {'judge', 'apply'}:
+            impact = payload['preview'].get('user_visible_impact') or {}
+            changed_fields = set(impact.get('changed_fields') or ())
+            change_classes = []
+            if impact.get('change_kind') == 'new_capability':
+                change_classes.append('new_skill')
+            if changed_fields & {'summary', 'invocation_hints'}:
+                change_classes.append('name_description')
+            if not change_classes:
+                change_classes.append('unknown')
+            payload['eval_impact_plan'] = build_impact_plan(str(payload['manifest']['slug']), change_classes)
+            payload['behavioral_status'] = (
+                'behavioral_pending'
+                if payload['eval_impact_plan']['minimum_profile'] not in {'static', 'native'}
+                else 'structural_ready'
+            )
     if args.mode == 'judge':
         payload['mode'] = 'judge'
     if args.mode == 'apply':

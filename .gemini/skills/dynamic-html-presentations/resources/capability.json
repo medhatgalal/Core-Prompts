@@ -175,6 +175,11 @@
         "validated embedded or relative image asset package when images are used",
         "interaction behavior",
         "DOM and viewport validation evidence"
+      ],
+      "entry_kind": "mode",
+      "invocations": [],
+      "source_refs": [
+        "ssot/dynamic-html-presentations.md"
       ]
     },
     {
@@ -189,6 +194,11 @@
       "expected_outputs": [
         "naturally sorted slide PNGs",
         "count, size, and dimension verification"
+      ],
+      "entry_kind": "mode",
+      "invocations": [],
+      "source_refs": [
+        "ssot/dynamic-html-presentations.md"
       ]
     },
     {
@@ -203,6 +213,11 @@
         "widescreen PPTX",
         "slide-count verification",
         "flattened-content tradeoff disclosure"
+      ],
+      "entry_kind": "mode",
+      "invocations": [],
+      "source_refs": [
+        "ssot/dynamic-html-presentations.md"
       ]
     },
     {
@@ -220,12 +235,17 @@
         "verified PNG set",
         "verified PPTX",
         "artifact and validation summary"
+      ],
+      "entry_kind": "mode",
+      "invocations": [],
+      "source_refs": [
+        "ssot/dynamic-html-presentations.md"
       ]
     }
   ],
   "benchmark_sources": [],
   "quality_profile": "default",
-  "quality_status": "ship",
+  "quality_status": "structural_ready",
   "judge_reports": [
     {
       "blockers": [],
@@ -371,5 +391,21 @@
     "strategy": "head_snapshot",
     "verified_by_git_history": true
   },
-  "quality_validation_matrix": []
+  "quality_validation_matrix": [],
+  "legacy_quality_status": "ship",
+  "job_contract": {
+    "primary_job": "Create polished standalone HTML presentations and deterministic export artifacts.",
+    "use_when": "The requested deliverable is a slide deck or visual narrative rendered as HTML.",
+    "works_on": "Presentation content, layout, visual assets, responsive slides, PNG, and PPTX export.",
+    "main_output": "A runnable HTML deck with verified visual exports when requested.",
+    "not_for": "Recording a live product demo or writing a plain text report.",
+    "authority": "Creates local presentation artifacts; hosting and distribution require separate authority.",
+    "routing_question": "Is the main artifact a deck, a live product demo, or a written report?",
+    "nearest_neighbors": [
+      "demo-recorder",
+      "eng-report"
+    ],
+    "shape": "artifact_specialist",
+    "portfolio_action": "keep"
+  }
 }

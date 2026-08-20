@@ -1,0 +1,156 @@
+{
+  "schema_version": "GoalContract.v1",
+  "slug": "gitops-review",
+  "target": "Fulfill the canonical intent of gitops-review.",
+  "intended_outcome": "Preserve the canonical SSOT objective and required output.",
+  "change_class": "unknown",
+  "non_goals": [],
+  "protected_behaviors": [
+    "4f489f6deceea4cac14caf270d30c4a22c38096315c377da3a6ebaaf71af0b8f",
+    "5c01406ac676edfa3d26c3492bfae9d47d2aaf29900d19a7fbdee8a10305c005",
+    "6e742ea93af388211154ad677b8f8c7002d7001f80cd74376d6e8b1fc2e94225",
+    "c23d463f514c5f505dfd7403cacc423d6bc416293aa9ad4f0794aeb06e8e2b06",
+    "c3d61357475dce52b357aee5c1e50150e8fb4448e099674ede3ee653b547984e",
+    "d2caa1a4649b6b94c02c77b4aa2b4b90865df23db1d790b0cf36f58c6b942149",
+    "4803b51f3d1af8aede38f996e67e1503f35fc7feead318a722554feb4f7ddc13",
+    "833205d11f618108fb9f0fa07101c27cec68a86a58cb86797afae78a978aa19e",
+    "b5c46985a38041a83b589294db0c25b430311b00e9bebf43d5cd08c0bcc7a0c1",
+    "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+    "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+    "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+    "51e24804be91c4829cb7f2bb30ea9982847a312c20a9da6276a53b9de4fd61b7",
+    "e9b11df3ae0f7f6f8c6a4686b255d16721bc230732143678c538738427098133",
+    "f13318f8962f0526b6e9b3e10b40b2e876fdf6ac87ae0b5b2c3829ddb60de0ec",
+    "ae1fc668c8f5bfe6e5e90ffe74cfcff66769ebbc7681481500d2fb9c8546b19e",
+    "88752cb21f2f8c740f9283a9ceadcc5cc87a606ae01621cb9c22055695d04ee2",
+    "8a3e99280f774db0a2ce491aac464fc016dd52bd08ad0ed0446eeedf8c342579",
+    "407346659f25af78db055b826b1f3f42bdd1efe69192715930695b704d7d01b3"
+  ],
+  "editable_behavior": [],
+  "primary_outcome": {
+    "metric": "skill_specific_task_success",
+    "definition": "Canonical task success with protected behavior preserved.",
+    "threshold": "human_review_required"
+  },
+  "secondary_outcomes": [],
+  "regression_limits": {
+    "protected_binary_margin": 0.02,
+    "critical_deterministic": "exact_pass"
+  },
+  "cost_latency_limits": {
+    "profile_caps": {
+      "static": 0,
+      "native": 0,
+      "routing-canary": 300000,
+      "canary": 1250000,
+      "promotion": 5000000,
+      "cross-host": 12000000,
+      "sweep": 30000000
+    }
+  },
+  "runtime_envelope": {
+    "required_cells": [],
+    "cross_host_required_for_pilot": false,
+    "status": "unresolved"
+  },
+  "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
+  "rollback_trigger": "Any protected regression or stale bound evidence.",
+  "source_clause_hashes": [
+    {
+      "sha256": "4f489f6deceea4cac14caf270d30c4a22c38096315c377da3a6ebaaf71af0b8f",
+      "source": "ssot/gitops-review.md",
+      "text": "- forbidden: hidden force-push behavior, destructive git resets, silent release mutation, or claiming approval authority that belongs to branch protection or human review"
+    },
+    {
+      "sha256": "5c01406ac676edfa3d26c3492bfae9d47d2aaf29900d19a7fbdee8a10305c005",
+      "source": "ssot/gitops-review.md",
+      "text": "3. Run the minimum deterministic checks required for that gate."
+    },
+    {
+      "sha256": "6e742ea93af388211154ad677b8f8c7002d7001f80cd74376d6e8b1fc2e94225",
+      "source": "ssot/gitops-review.md",
+      "text": "6. When explicitly asked to execute, perform only the approved deterministic GitOps steps and report exact outcomes."
+    },
+    {
+      "sha256": "c23d463f514c5f505dfd7403cacc423d6bc416293aa9ad4f0794aeb06e8e2b06",
+      "source": "ssot/gitops-review.md",
+      "text": "- Commit messages must describe what changed and why, not just restate filenames."
+    },
+    {
+      "sha256": "c3d61357475dce52b357aee5c1e50150e8fb4448e099674ede3ee653b547984e",
+      "source": "ssot/gitops-review.md",
+      "text": "- PRs and MRs must have coherent scope, validation evidence, and clear merge intent."
+    },
+    {
+      "sha256": "d2caa1a4649b6b94c02c77b4aa2b4b90865df23db1d790b0cf36f58c6b942149",
+      "source": "ssot/gitops-review.md",
+      "text": "- CI must be checked on both GitHub and GitLab when both are part of the repo contract."
+    },
+    {
+      "sha256": "4803b51f3d1af8aede38f996e67e1503f35fc7feead318a722554feb4f7ddc13",
+      "source": "ssot/gitops-review.md",
+      "text": "- Changelog, package, tag, merge, and release actions must happen in a deliberate order."
+    },
+    {
+      "sha256": "833205d11f618108fb9f0fa07101c27cec68a86a58cb86797afae78a978aa19e",
+      "source": "ssot/gitops-review.md",
+      "text": "- Release recommendations must name the missing artifact, missing check, or missing review explicitly."
+    },
+    {
+      "sha256": "b5c46985a38041a83b589294db0c25b430311b00e9bebf43d5cd08c0bcc7a0c1",
+      "source": "ssot/gitops-review.md",
+      "text": "- Do not skip companion reviews when the change crosses their domain."
+    },
+    {
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "source": "ssot/gitops-review.md",
+      "text": "## Required Inputs"
+    },
+    {
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "source": "ssot/gitops-review.md",
+      "text": "## Required Output"
+    },
+    {
+      "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+      "source": "ssot/gitops-review.md",
+      "text": "Every substantial response must include:"
+    },
+    {
+      "sha256": "51e24804be91c4829cb7f2bb30ea9982847a312c20a9da6276a53b9de4fd61b7",
+      "source": "ssot/gitops-review.md",
+      "text": "- `Required Companion Reviews`"
+    },
+    {
+      "sha256": "e9b11df3ae0f7f6f8c6a4686b255d16721bc230732143678c538738427098133",
+      "source": "ssot/gitops-review.md",
+      "text": "- Do not hide destructive git behavior behind helper language."
+    },
+    {
+      "sha256": "f13318f8962f0526b6e9b3e10b40b2e876fdf6ac87ae0b5b2c3829ddb60de0ec",
+      "source": "ssot/gitops-review.md",
+      "text": "- Do not claim CI is green unless the current hosted runs were verified."
+    },
+    {
+      "sha256": "ae1fc668c8f5bfe6e5e90ffe74cfcff66769ebbc7681481500d2fb9c8546b19e",
+      "source": "ssot/gitops-review.md",
+      "text": "- Do not merge, tag, package, or release without stating the prerequisite checks."
+    },
+    {
+      "sha256": "88752cb21f2f8c740f9283a9ceadcc5cc87a606ae01621cb9c22055695d04ee2",
+      "source": "ssot/gitops-review.md",
+      "text": "- Do not invent GitHub or GitLab state from local git alone."
+    },
+    {
+      "sha256": "8a3e99280f774db0a2ce491aac464fc016dd52bd08ad0ed0446eeedf8c342579",
+      "source": "ssot/gitops-review.md",
+      "text": "- Do not replace companion capability reviews with generic \u201clooks good\u201d language."
+    },
+    {
+      "sha256": "407346659f25af78db055b826b1f3f42bdd1efe69192715930695b704d7d01b3",
+      "source": "ssot/gitops-review.md",
+      "text": "## Required Companion Reviews"
+    }
+  ],
+  "review_status": "draft"
+}

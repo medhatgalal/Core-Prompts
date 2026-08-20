@@ -1,0 +1,376 @@
+{
+  "schema_version": "CapabilityTopology.v1",
+  "slug": "eng-report",
+  "ssot_sha256": "53ab9d0a95bb434a836c3f37239f355e9f4f694cd66f6a8bc309f1d7f010143b",
+  "explicit_invocations": [],
+  "semantic_triggers": [],
+  "aliases_shortcuts": [],
+  "auto_routes": [],
+  "nodes": {
+    "commands": [],
+    "modes_modules": [],
+    "controls": [],
+    "modifiers": []
+  },
+  "composition": {
+    "legal_pairs": [],
+    "forbidden_pairs": [],
+    "canonical_order": [],
+    "requirements": [],
+    "supersession": []
+  },
+  "state_machine": {
+    "states": [],
+    "transitions": [],
+    "forbidden_transitions": []
+  },
+  "outputs": [
+    "- deterministic metrics sourced from git commands when `--json` is used",
+    "- standalone HTML report files when rendering is requested",
+    "- an `_index.html` summary in fleet mode",
+    "- local output path, and Drive URL when `--drive` is used",
+    "- warnings for missing optional notification targets or unavailable optional integrations"
+  ],
+  "authority_boundaries": [
+    "eng-report:L25:247b41e99ff2",
+    "eng-report:L80:d03fa22f48be",
+    "eng-report:L282:6e56ead7fa75",
+    "eng-report:L319:4f05ad30b4b3",
+    "eng-report:L321:91eb0b0a682f",
+    "eng-report:L334:a7b831d99f1c",
+    "eng-report:L413:13d030c228b7",
+    "eng-report:L456:9b2e8893ca1d"
+  ],
+  "resources": [
+    "- [ ] Executive summary: 3\u20134 sentences synthesizing patterns, NOT listing commits. References specific modules/directories visible in the data.",
+    "- [ ] Fully standalone HTML \u2014 zero `<link>`, `<script src=`, or `url()` references to external resources",
+    "- \u2705 RIGHT: `\ud83d\ude80 v0.5.5 shipped \u2014 10 releases including the anchor release with prompt pipeline reference and commands documentation refresh`"
+  ],
+  "handoffs": [],
+  "protected_invariants": [
+    {
+      "id": "eng-report:L7:af97ae5b5f36",
+      "heading": "Dependencies",
+      "source_line": 7,
+      "sha256": "af97ae5b5f3628c1c812e7f2031acacd235eb3f1491598cd64298cde23977236",
+      "text": "| `run` | `git` only \u2014 no external dependencies |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "eng-report:L13:d824b51e5281",
+      "heading": "Dependencies",
+      "source_line": 13,
+      "sha256": "d824b51e5281571aa826840b22778689935225e4b5cef46cd72aafee95e2c27c",
+      "text": "`sync-authors` is the only command that requires Home MCP. It is optional \u2014 author lists can be maintained manually in `config.yaml` if Home MCP is unavailable.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "eng-report:L22:713c0d9f37b8",
+      "heading": "Tool Boundaries",
+      "source_line": 22,
+      "sha256": "713c0d9f37b8a34fbbe93273c173c7a569c4af7d6b01ec774a4ce2924b82e546",
+      "text": "- use Home MCP only to refresh configured author lists when `sync-authors` is requested",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "eng-report:L23:f0ee8c2c9ac6",
+      "heading": "Tool Boundaries",
+      "source_line": 23,
+      "sha256": "f0ee8c2c9ac6f26c51f1d3fa5bf637aa9c10f9aa2c4f7b5a9df31be08a38afec",
+      "text": "- use Drive, Chat, or email integrations only for explicit upload, sync, or notification flows",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "eng-report:L25:247b41e99ff2",
+      "heading": "Tool Boundaries",
+      "source_line": 25,
+      "sha256": "247b41e99ff275442db2523eb78ebef8d0594fb10bfceae8f5f374644420ee18",
+      "text": "Forbidden:",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "eng-report:L41:e45f1310b988",
+      "heading": "When to Use This Capability",
+      "source_line": 41,
+      "sha256": "e45f1310b9881b47b68415a8abf1220f8a72c1d1fd10f1d45b4fb6209ba6389c",
+      "text": "| \"Update my Jira tickets\" | Not this skill | eng-report is read-only against git |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "eng-report:L80:d03fa22f48be",
+      "heading": "Invocation Hints",
+      "source_line": 80,
+      "sha256": "d03fa22f48be46a26504664397538450bcc4b277c8c4b96b4d55b00865a2620f",
+      "text": "Do not invoke this capability for sprint planning, Jira status, story-point reporting, PR review, test execution, incident management, or any request that requires modifying source code.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "eng-report:L82:77357dbdaba3",
+      "heading": "Required Inputs",
+      "source_line": 82,
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "text": "## Required Inputs",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "eng-report:L93:eab8a3de4245",
+      "heading": "Required Inputs",
+      "source_line": 93,
+      "sha256": "eab8a3de4245dcf32cfed8d445912b48c2e4cce4f7967a7db5a2f6ab06721ccd",
+      "text": "- Home MCP access only for `sync-authors`; manually maintained author lists are valid without Home MCP",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "eng-report:L95:3d4b9f171064",
+      "heading": "Required Output",
+      "source_line": 95,
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "text": "## Required Output",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "eng-report:L103:6eaa2c46a6e6",
+      "heading": "Required Output",
+      "source_line": 103,
+      "sha256": "6eaa2c46a6e6068ba40f4fb63f5f496cdf75d73da513636c4faf2fbcb42c9f78",
+      "text": "The generated report must keep all visible metrics traceable to git data and must not include invented Jira counts, story points, PR review timings, or unverified external facts.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "eng-report:L144:a8248c9e10e9",
+      "heading": "Usage",
+      "source_line": 144,
+      "sha256": "a8248c9e10e987705d92bc100863ef170fd7be0ef746d5c09256afdc11fe1a93",
+      "text": "- `run` (no `--drive`) \u2192 generates to `/tmp/YYYY-MM-DD/` only, opens each report in browser",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "eng-report:L282:6e56ead7fa75",
+      "heading": "For `run`",
+      "source_line": 282,
+      "sha256": "6e56ead7fa758e8f097156f4a90f46dfd065e64768174443e62c99b139c3b6fa",
+      "text": "**This command delegates all git data gathering to `scripts/eng-report.py`.** Do not run git commands manually \u2014 use the script.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "eng-report:L289:c433da1366f2",
+      "heading": "For `run`",
+      "source_line": 289,
+      "sha256": "c433da1366f2a270758bd7dba17ace1935ddd41159b8943d1df7b13bea0c4622",
+      "text": "You CANNOT skip Pass 1. You CANNOT write narrative JSON without first reading the --json output. The metrics are the ground truth \u2014 narratives must describe what the data shows.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "eng-report:L307:413b7609242e",
+      "heading": "Pass 2 \u2014 Generate AI narrative",
+      "source_line": 307,
+      "sha256": "413b7609242ea2b30e87d6bea925804b0e6313b91221a37754724d4fab730be9",
+      "text": "1. You MUST first run `eng-report run --json --config <config>` and READ the actual JSON output.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "eng-report:L308:b90894eda99b",
+      "heading": "Pass 2 \u2014 Generate AI narrative",
+      "source_line": 308,
+      "sha256": "b90894eda99b5f9c2fa588f1d87337c7e789c4275b7d746584d2da29b75fdd49",
+      "text": "2. You MUST synthesize narratives from the REAL metrics data you just read \u2014 not from memory, assumptions, or prior knowledge of the repos.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "eng-report:L309:f99b3a1b5134",
+      "heading": "Pass 2 \u2014 Generate AI narrative",
+      "source_line": 309,
+      "sha256": "f99b3a1b5134c5064ce03b22e9f54c2a65c652ca4d7d3cf9ccbcfe2c05d2c358",
+      "text": "3. You MUST NOT pre-write narrative JSON before reading metrics. The narrative is a RESPONSE to the data.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "eng-report:L310:10998de14d4b",
+      "heading": "Pass 2 \u2014 Generate AI narrative",
+      "source_line": 310,
+      "sha256": "10998de14d4b5f7b6dec14122de20d38a17a7473055f441adb0eb5072c4db61e",
+      "text": "4. You MUST NOT write a Python script to generate narratives \u2014 use your own synthesis capabilities on the real data.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "eng-report:L319:4f05ad30b4b3",
+      "heading": "Pass 2 \u2014 Generate AI narrative",
+      "source_line": 319,
+      "sha256": "4f05ad30b4b38954fca3bbb5d27a3059c28b979baf504f730c3acbea13935737",
+      "text": "- Never list raw filenames with date-hash names. Never name individual contributors. Describe what the team built, not who typed it.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "eng-report:L321:91eb0b0a682f",
+      "heading": "Pass 2 \u2014 Generate AI narrative",
+      "source_line": 321,
+      "sha256": "91eb0b0a682f3701ca23308a6afdebce71370c1966b57a7975645c1d02650ea4",
+      "text": "- \u274c WRONG: `[engos-71sfe.47] fix: add doctor dry-run repair plan` (raw commit subject \u2014 never do this)",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "eng-report:L328:6d02e7bab45f",
+      "heading": "Pass 2 \u2014 Generate AI narrative",
+      "source_line": 328,
+      "sha256": "6d02e7bab45f0fea66f08730ffef8c41d1167a36eb0e195e9e596f9df4f52afa",
+      "text": "- **`work_areas`**: Jira repos only. Read the commit subjects, strip ticket prefixes, cluster into 5\u20137 plain-English themes you identify. Render as `<div style=\"margin-bottom:12px\"><div style=\"display:flex;justify-content:space-between;margin-bottom:4px\"><span style=\"color:#e6edf3;font-size:13px\">AREA LABEL</span><span style=\"color:#8b949e;font-size:12px\">N commits</span></div><div style=\"height:8px;width:PCT%;background:COLOR;border-radius:4px;min-width:6px\"></div></div>` bars (scale to max area).",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "eng-report:L334:a7b831d99f1c",
+      "heading": "Pass 2 \u2014 Generate AI narrative",
+      "source_line": 334,
+      "sha256": "a7b831d99f1c1b69b43e1c3981d23eb1007ccdee7a27ceff2a0412b165442cbb",
+      "text": "Process all active entries. Work through them directly \u2014 do not write a Python script to generate the narratives algorithmically.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "eng-report:L375:9b3d34de14ca",
+      "heading": "For `sync`",
+      "source_line": 375,
+      "sha256": "9b3d34de14caa887c3f804d77f1ac6cbd2a3a28bcea6ed7e4086ba4fdc83499b",
+      "text": "3. If `--date` specified: sync only that folder. If folder not found in Drive, abort with error.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "eng-report:L407:86ceea02a1c0",
+      "heading": "Output Quality Standards",
+      "source_line": 407,
+      "sha256": "86ceea02a1c06e0e9f559308bb68574b6aaf695d301a2a9eb3569b596d4d6ff1",
+      "text": "A 10/10 report MUST satisfy ALL of the following. Treat each as a gate \u2014 if any fails, fix before outputting:",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "eng-report:L411:e7b96872bd72",
+      "heading": "Output Quality Standards",
+      "source_line": 411,
+      "sha256": "e7b96872bd720bee4f63deb5ba1af9e21c7b8a54fe871e228cf7c75cd29ba257",
+      "text": "- [ ] Category bars: only conventional prefixes (lowercase words before `:`, `(`, `!`). No Jira keys (e.g., `LCP-123`) appear as categories.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "eng-report:L413:13d030c228b7",
+      "heading": "Output Quality Standards",
+      "source_line": 413,
+      "sha256": "13d030c228b73d523478b9bc5b350f6bd49fa01e6c351c2f009da5901b9688d8",
+      "text": "- [ ] Release timeline: only git tags or explicit version-bump commits \u2014 merge commits NEVER appear here",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "eng-report:L432:633eaaba9df6",
+      "heading": "Example: Single Repository Report",
+      "source_line": 432,
+      "sha256": "633eaaba9df6263ca34639900d397a375aeea0ac6aa3469c91419501650d0280",
+      "text": "- reads only git history from the selected repository",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "eng-report:L446:39a79adb5c4b",
+      "heading": "Example: Two-Pass Narrative Report",
+      "source_line": 446,
+      "sha256": "39a79adb5c4be8c8215391c0a36ab18780c9d4822e32ced8543dfdd49901dcda",
+      "text": "- outputs metric JSON only",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "eng-report:L456:9b2e8893ca1d",
+      "heading": "Example: Out-of-Scope Request",
+      "source_line": 456,
+      "sha256": "9b2e8893ca1da5d91459d8c1c613744c4ea030dea9ed44d2573c17d7f1d1064f",
+      "text": "Do not use eng-report for story points. State that the capability only reports git-derived metrics and ask for a Jira-capable workflow if story-point reporting is required.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "eng-report:L464:c30b8eb0eb7f",
+      "heading": "Evaluation Rubric",
+      "source_line": 464,
+      "sha256": "c30b8eb0eb7f94dfeda553dd1ee65a13f4b17edd145ba1ddf52de7196ebd824e",
+      "text": "| Read-only behavior | The capability observes repositories and writes reports outside source trees unless explicitly configured | The capability modifies code, tests, branches, or repo metadata |",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "eng-report:L468:deaa42f42184",
+      "heading": "Evaluation Rubric",
+      "source_line": 468,
+      "sha256": "deaa42f421847cd0a964cdfbf79b4c21f5b97635566d05df5e085cb3fe8be77f",
+      "text": "| Integration clarity | Optional Home MCP, Drive, Chat, and email dependencies are used only for their specific commands | Optional integrations are treated as required for basic git reporting |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "eng-report:L483:1c022ba68bff",
+      "heading": "AI Narrative Integration",
+      "source_line": 483,
+      "sha256": "1c022ba68bff4c155a53e4a1b1e1bd76ea6ecf368e69eb7fa434b52f8f333cf3",
+      "text": "- `summary`: 3\u20134 sentences synthesizing the arc of the period. Team-framing only.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "eng-report:L507:2a90a8e13638",
+      "heading": "/help",
+      "source_line": 507,
+      "sha256": "2a90a8e136383b940f1f0b71e3b238bbaefd00c553befcb711cebba673e2858c",
+      "text": "run --json                 Output metrics JSON only, no HTML (pipe to AI for narrative generation)",
+      "kind": "invariant",
+      "mapped_to": []
+    }
+  ],
+  "risk_tiers": {
+    "critical": [],
+    "high": [],
+    "standard": []
+  },
+  "source_references": [
+    {
+      "path": "ssot/eng-report.md",
+      "sha256": "53ab9d0a95bb434a836c3f37239f355e9f4f694cd66f6a8bc309f1d7f010143b"
+    }
+  ],
+  "known_ambiguities": [],
+  "coverage_policy": {
+    "normative_clauses": "100_percent_mapped_or_waived",
+    "nodes": "positive_and_boundary",
+    "transitions": "all_legal_and_forbidden",
+    "module_pairs": "all_legal_pairs",
+    "high_risk_tuples": "assigned_strength",
+    "critical_mutants": "100_percent_killed"
+  },
+  "normative_clause_coverage": {
+    "total": 33,
+    "mapped": 0,
+    "waived": 0
+  },
+  "review_status": "draft",
+  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs."
+}

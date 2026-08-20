@@ -184,7 +184,422 @@
     "forbidden: send, reply, forward, delete, archive, modify, or label any message during triage. Write commands (`+reply`, `+forward`, `+send`) are ONLY permitted during `/act` mode after explicit per-item user approval.",
     "`gws` CLI authenticated (`gws auth status` must pass)"
   ],
-  "modes": [],
+  "modes": [
+    {
+      "mode_slug": "help",
+      "display_name": "/help",
+      "source_refs": [
+        "ssot/pulse.md"
+      ],
+      "mode_summary": "Declared by the canonical `pulse /help` command table entry.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [
+        "pulse /help"
+      ],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "email",
+      "display_name": "/email",
+      "source_refs": [
+        "ssot/pulse.md"
+      ],
+      "mode_summary": "Declared by the canonical `pulse /email` command table entry.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [
+        "pulse /email"
+      ],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "chat",
+      "display_name": "/chat",
+      "source_refs": [
+        "ssot/pulse.md"
+      ],
+      "mode_summary": "Declared by the canonical `pulse /chat` command table entry.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [
+        "pulse /chat"
+      ],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "hot",
+      "display_name": "/hot",
+      "source_refs": [
+        "ssot/pulse.md"
+      ],
+      "mode_summary": "Declared by the canonical `pulse /hot` command table entry.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [
+        "pulse /hot"
+      ],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "count",
+      "display_name": "/count",
+      "source_refs": [
+        "ssot/pulse.md"
+      ],
+      "mode_summary": "Declared by the canonical `pulse /count` command table entry.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [
+        "pulse /count"
+      ],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "all",
+      "display_name": "/all",
+      "source_refs": [
+        "ssot/pulse.md"
+      ],
+      "mode_summary": "Declared by the canonical `pulse /all` command table entry.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [
+        "pulse /all"
+      ],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "from",
+      "display_name": "/from",
+      "source_refs": [
+        "ssot/pulse.md"
+      ],
+      "mode_summary": "Declared by the canonical `pulse /from` command table entry.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [
+        "pulse /from <person>"
+      ],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "space",
+      "display_name": "/space",
+      "source_refs": [
+        "ssot/pulse.md"
+      ],
+      "mode_summary": "Declared by the canonical `pulse /space` command table entry.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [
+        "pulse /space <name>"
+      ],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "window",
+      "display_name": "/window",
+      "source_refs": [
+        "ssot/pulse.md"
+      ],
+      "mode_summary": "Declared by the canonical `pulse /window` command table entry.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [
+        "pulse /window <time>"
+      ],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "deep",
+      "display_name": "/deep",
+      "source_refs": [
+        "ssot/pulse.md"
+      ],
+      "mode_summary": "Declared by the canonical `pulse /deep` command table entry.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [
+        "pulse /deep"
+      ],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "thread",
+      "display_name": "/thread",
+      "source_refs": [
+        "ssot/pulse.md"
+      ],
+      "mode_summary": "Declared by the canonical `pulse /thread` command table entry.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [
+        "pulse /thread <N>"
+      ],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "open",
+      "display_name": "/open",
+      "source_refs": [
+        "ssot/pulse.md"
+      ],
+      "mode_summary": "Declared by the canonical `pulse /open` command table entry.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [
+        "pulse /open <N...>"
+      ],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "delete",
+      "display_name": "/delete",
+      "source_refs": [
+        "ssot/pulse.md"
+      ],
+      "mode_summary": "Declared by the canonical `pulse /delete` command table entry.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [
+        "pulse /delete <N...>"
+      ],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "archive",
+      "display_name": "/archive",
+      "source_refs": [
+        "ssot/pulse.md"
+      ],
+      "mode_summary": "Declared by the canonical `pulse /archive` command table entry.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [
+        "pulse /archive <N...>"
+      ],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "act",
+      "display_name": "/act",
+      "source_refs": [
+        "ssot/pulse.md"
+      ],
+      "mode_summary": "Declared by the canonical `pulse /act` command table entry.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [
+        "pulse /act"
+      ],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "rate",
+      "display_name": "/rate",
+      "source_refs": [
+        "ssot/pulse.md"
+      ],
+      "mode_summary": "Declared by the canonical `pulse /rate` command table entry.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [
+        "pulse /rate <\u00b1N...>"
+      ],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "memory",
+      "display_name": "/memory",
+      "source_refs": [
+        "ssot/pulse.md"
+      ],
+      "mode_summary": "Declared by the canonical `pulse /memory` command table entry.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [
+        "pulse /memory"
+      ],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "tune",
+      "display_name": "/tune",
+      "source_refs": [
+        "ssot/pulse.md"
+      ],
+      "mode_summary": "Declared by the canonical `pulse /tune` command table entry.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [
+        "pulse /tune"
+      ],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "config",
+      "display_name": "/config",
+      "source_refs": [
+        "ssot/pulse.md"
+      ],
+      "mode_summary": "Declared by the canonical `pulse /config` command table entry.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [
+        "pulse /config"
+      ],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "mute",
+      "display_name": "/mute",
+      "source_refs": [
+        "ssot/pulse.md"
+      ],
+      "mode_summary": "Declared by the canonical `pulse /mute` command table entry.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [
+        "pulse /mute <N...>"
+      ],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "muted",
+      "display_name": "/muted",
+      "source_refs": [
+        "ssot/pulse.md"
+      ],
+      "mode_summary": "Declared by the canonical `pulse /muted` command table entry.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [
+        "pulse /muted"
+      ],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "unmute",
+      "display_name": "/unmute",
+      "source_refs": [
+        "ssot/pulse.md"
+      ],
+      "mode_summary": "Declared by the canonical `pulse /unmute` command table entry.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [
+        "pulse /unmute <N...>"
+      ],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "sweep",
+      "display_name": "/sweep",
+      "source_refs": [
+        "ssot/pulse.md"
+      ],
+      "mode_summary": "Declared by the canonical `pulse /sweep` command table entry.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [
+        "pulse /sweep"
+      ],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    }
+  ],
   "benchmark_sources": [
     {
       "provider": "github",
@@ -236,7 +651,7 @@
     }
   ],
   "quality_profile": "default",
-  "quality_status": "ship",
+  "quality_status": "structural_ready",
   "judge_reports": [
     {
       "pass_number": 1,
@@ -390,5 +805,21 @@
         "## Configuration"
       ]
     }
-  ]
+  ],
+  "legacy_quality_status": "ship",
+  "job_contract": {
+    "primary_job": "Triage Gmail and Google Chat into a deterministic, low-noise attention queue.",
+    "use_when": "The user wants to know what messages need attention or wants an approved comms action workflow.",
+    "works_on": "Email, chat, priority rules, learned preferences, and explicit message actions.",
+    "main_output": "A prioritized communications table and proposed actions.",
+    "not_for": "A multi-source weekly team report or incident-command process management.",
+    "authority": "Triage is read-only; sends, archives, and deletes require the documented explicit approval path.",
+    "routing_question": "Is this personal communications triage, incident process, or a periodic intelligence report?",
+    "nearest_neighbors": [
+      "weekly-intel",
+      "ic-assistant"
+    ],
+    "shape": "stateful_swiss_army_workflow",
+    "portfolio_action": "keep_but_review_scope"
+  }
 }

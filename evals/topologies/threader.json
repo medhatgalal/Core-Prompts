@@ -1,0 +1,347 @@
+{
+  "schema_version": "CapabilityTopology.v1",
+  "slug": "threader",
+  "ssot_sha256": "7cf934b9b37029085f31f5b6709fa597f269c1b3ab7398cd8dd35a6b4fe86f3e",
+  "explicit_invocations": [],
+  "semantic_triggers": [],
+  "aliases_shortcuts": [],
+  "auto_routes": [],
+  "nodes": {
+    "commands": [],
+    "modes_modules": [],
+    "controls": [],
+    "modifiers": []
+  },
+  "composition": {
+    "legal_pairs": [],
+    "forbidden_pairs": [],
+    "canonical_order": [],
+    "requirements": [],
+    "supersession": []
+  },
+  "state_machine": {
+    "states": [],
+    "transitions": [],
+    "forbidden_transitions": []
+  },
+  "outputs": [
+    "- a downloadable transcript file plus a short confirmation, or",
+    "- one logically contiguous inline transcript with clear merge instructions if the platform cannot create files",
+    "- fidelity disclosure",
+    "- impacted turn list when history is missing",
+    "- artifact inclusion status when files or downloads were produced inside the thread"
+  ],
+  "authority_boundaries": [
+    "threader:L18:8875bdb1775c",
+    "threader:L66:ec9c28ede3e6",
+    "threader:L104:846b95cf485d",
+    "threader:L119:6be409424089",
+    "threader:L126:30c941d0ceb8",
+    "threader:L144:3b4edf82769b",
+    "threader:L200:4f4b860c3ac4",
+    "threader:L272:39133fc58d4d",
+    "threader:L273:bce6a7542053"
+  ],
+  "resources": [
+    "- Print DOC inline using the \u201cInline Fallback Rules\u201d",
+    "- any delivery preference such as file-first or inline fallback"
+  ],
+  "handoffs": [
+    "## Companion Capability Matrix",
+    "- create a durable handoff file from the current chat",
+    "- escalation: if the user wants analysis, synthesis, or decision support after export, hand off the exported artifact to the companion capability rather than blending jobs",
+    "- \u201cCreate an archival handoff of this thread with disclosure for anything outside accessible context.\u201d",
+    "Use this capability to export a current thread faithfully for handoff, diffing, archival analysis, or recovery work when chat history must become a durable artifact.",
+    "| If the export is being used for this next step | Route to | Required handoff |"
+  ],
+  "protected_invariants": [
+    {
+      "id": "threader:L4:97f260a885d9",
+      "heading": "Purpose",
+      "source_line": 4,
+      "sha256": "97f260a885d93b517c19ccdf306f5a11cc6e2401537a0352310679466553d163",
+      "text": "Use this capability to export a current thread faithfully for handoff, diffing, archival analysis, or recovery work when chat history must become a durable artifact.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "threader:L18:8875bdb1775c",
+      "heading": "Tool Boundaries",
+      "source_line": 18,
+      "sha256": "8875bdb1775cfee6f0a6cfd6ce5ca43e00fcc19f8ad5740f2fde9308117adcab",
+      "text": "- forbidden: paraphrasing AI output, analyzing the thread as if this were a review skill, or silently omitting inaccessible turns",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "threader:L28:77357dbdaba3",
+      "heading": "Required Inputs",
+      "source_line": 28,
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "text": "## Required Inputs",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "threader:L33:3d4b9f171064",
+      "heading": "Required Output",
+      "source_line": 33,
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "text": "## Required Output",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "threader:L34:714c5430c633",
+      "heading": "Required Output",
+      "source_line": 34,
+      "sha256": "714c5430c63363308a60578032c192e64f3fd320452c465d3d71fde75db8d5b6",
+      "text": "Every substantial response must produce one of these outcomes:",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "threader:L38:18fa66ce91d9",
+      "heading": "Required Output",
+      "source_line": 38,
+      "sha256": "18fa66ce91d991a447f06db6913079e5300a59b9217132097367853d408cfe2d",
+      "text": "The result must also include:",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "threader:L49:be91c501ab37",
+      "heading": "Companion Capability Matrix",
+      "source_line": 49,
+      "sha256": "be91c501ab379c0c231251770d530301f0f130fc5681946b4989c4b079f96c9a",
+      "text": "| If the export is being used for this next step | Route to | Required handoff |",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "threader:L66:ec9c28ede3e6",
+      "heading": "Evaluation Rubric",
+      "source_line": 66,
+      "sha256": "ec9c28ede3e6e437e4476f5ec9f8355140276c8e745d0ad5588d415e71b14065",
+      "text": "Do NOT wrap it in a code fence. Do NOT prefix with /rawmd.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "threader:L67:fe07b567e3a5",
+      "heading": "Evaluation Rubric",
+      "source_line": 67,
+      "sha256": "fe07b567e3a5321c544e9b11a46e6fc3064d2d1329f2acedef7472ad0dc64cb9",
+      "text": "After you send it, the AI must execute it (not echo it).",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "threader:L87:0a5aed946319",
+      "heading": "HARD OUTPUT CONTRACT (read carefully)",
+      "source_line": 87,
+      "sha256": "0a5aed946319ca7bf6a974dae1d2034328bd7069bde0ca5fb7179226d28e2818",
+      "text": "You must output **exactly one** of these outcomes:",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "threader:L92:47c270d955f4",
+      "heading": "Outcome A \u2014 File Created (preferred)",
+      "source_line": 92,
+      "sha256": "47c270d955f426e82d20cc06efd7b60a8bdab9395b5326f06bcf95bd3364e583",
+      "text": "- Print ONLY a short confirmation (no transcript inline), like:",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "threader:L99:358781dd3dc7",
+      "heading": "Outcome B \u2014 No File Support (fallback)",
+      "source_line": 99,
+      "sha256": "358781dd3dc7597d5c24861e9262069a8a1da94e4c487aa24806b10c1f84a21e",
+      "text": "You must NOT output the prompt text, templates, or instructions.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "threader:L104:846b95cf485d",
+      "heading": "WHY THIS EXISTS (one line reminder)",
+      "source_line": 104,
+      "sha256": "846b95cf485dc4b3c4791be0c0017b100d08a52957338bab1a8535e1fd7540a8",
+      "text": "This is for **faithful reproduction**. If you can't reproduce something exactly, you must mark it missing \u2014 never paraphrase.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "threader:L119:6be409424089",
+      "heading": "DEFAULT SETTINGS (AUTO)",
+      "source_line": 119,
+      "sha256": "6be409424089a771d806348814ab56fcbff6e7a8f28a122e3e9de531ba5abdde",
+      "text": "- (Do not dump the entire thread inline if you created a file.)",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "threader:L126:30c941d0ceb8",
+      "heading": "DEFAULT SETTINGS (AUTO)",
+      "source_line": 126,
+      "sha256": "30c941d0ceb80f96bbe11e7afa251d9d12a7a6f03cd1bc17758b9c62d71e85c5",
+      "text": "- For each user turn, include only a 1\u20132 sentence intent summary. Do NOT quote user text.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "threader:L134:b8d53cc91136",
+      "heading": "KEY FAILURE MODES TO PREVENT",
+      "source_line": 134,
+      "sha256": "b8d53cc91136a0ad712ddae4b944a7b3d9c7569becf724f88fb352fc67935316",
+      "text": "You must actively prevent these common failures:",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "threader:L144:3b4edf82769b",
+      "heading": "EXECUTION PLAN (do this silently; do NOT print these steps)",
+      "source_line": 144,
+      "sha256": "3b4edf82769bd1bccd7f59c1dc06a6d8fcd8eee1eb847f8e60c1a274cac0846f",
+      "text": "## EXECUTION PLAN (do this silently; do NOT print these steps)",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "threader:L149:87c81c1f9e09",
+      "heading": "Step 0 \u2014 Anti-Echo Gate",
+      "source_line": 149,
+      "sha256": "87c81c1f9e0906c3b63d932f34d65cdd8246f0a1a30c4937087e5f01ca3f1ba9",
+      "text": "- Delete all instruction text and output only the transcript or the file confirmation.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "threader:L162:6d7b0305cf02",
+      "heading": "Step 2 \u2014 Assemble DOC (the single Markdown document)",
+      "source_line": 162,
+      "sha256": "6d7b0305cf0246643bc3d0263243bc27833d2f03858206c5013aee3cf5175961",
+      "text": "DOC must have:",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "threader:L171:46e418c6207d",
+      "heading": "Step 3 \u2014 Emit via the Output Contract",
+      "source_line": 171,
+      "sha256": "46e418c6207d3410f802b67cf84fe914ccf2a0f1e60df5b1a5e48fb55d1c22d1",
+      "text": "- Print only: `Created file: ...`",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "threader:L192:5a02bfe3a91f",
+      "heading": "\ud83d\udd01 Turn ${N}.1 \u2014 User",
+      "source_line": 192,
+      "sha256": "5a02bfe3a91fd5e9b746fe1bdb43c3cef08ac481ef7aaf171db2cd8ea8c35c5e",
+      "text": "- <intent only; no verbatim user text>",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "threader:L200:4f4b860c3ac4",
+      "heading": "\ud83e\udd16 Turn ${N}.2 \u2014 AI",
+      "source_line": 200,
+      "sha256": "4f4b860c3ac42725a6fbcb571ded5dda8c1d1205408934eaa753b6706786b2ab",
+      "text": "- Do not \u201cclean up\u201d formatting.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "threader:L206:ba1d9b161e9a",
+      "heading": "\ud83e\udd16 Turn ${N}.2 \u2014 AI",
+      "source_line": 206,
+      "sha256": "ba1d9b161e9ad9da1685d543ce47b1deb437e9c9246e4685284ca09bdf906a96",
+      "text": "**Artifacts / Downloads (only if present in that AI turn):**",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "threader:L236:c69e7252347d",
+      "heading": "4) /catchup (always at end of DOC; meta-only; tabular)",
+      "source_line": 236,
+      "sha256": "c69e7252347d50200bbbb040221634d36694256823ec13f22a88f47b2212126b",
+      "text": "### 4) /catchup (always at end of DOC; meta-only; tabular)",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "threader:L242:18016d3e8963",
+      "heading": "Phases",
+      "source_line": 242,
+      "sha256": "18016d3e89633ffb664bbe9293b2742679247e1e1d3fc054b907914a3c758187",
+      "text": "| Phase | What the user wanted | What changed | Outputs produced (types only) | Outcome / Status |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "threader:L258:c123802bd4a2",
+      "heading": "INLINE FALLBACK RULES (only if file creation is unsupported)",
+      "source_line": 258,
+      "sha256": "c123802bd4a28ca500c336d583c28248cdebc3734df0cffe26a09d08f34316ac",
+      "text": "## INLINE FALLBACK RULES (only if file creation is unsupported)",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "threader:L260:ecde98b0364b",
+      "heading": "INLINE FALLBACK RULES (only if file creation is unsupported)",
+      "source_line": 260,
+      "sha256": "ecde98b0364b9303fcdc1327fddf70445df079c93352d6ad8c98e2fa43c255e7",
+      "text": "If you must print DOC inline:",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "threader:L272:39133fc58d4d",
+      "heading": "INLINE FALLBACK RULES (only if file creation is unsupported)",
+      "source_line": 272,
+      "sha256": "39133fc58d4d9fedbd2784b8b94606efca3e00569df55b613c7fe86e43f3f691",
+      "text": "- Never restart the DOC header",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "threader:L273:bce6a7542053",
+      "heading": "INLINE FALLBACK RULES (only if file creation is unsupported)",
+      "source_line": 273,
+      "sha256": "bce6a7542053e6b9eca78195e3ffd1e7f479f2426c102aab54eac25b0a8facb4",
+      "text": "- Never change formatting rules midstream",
+      "kind": "invariant",
+      "mapped_to": []
+    }
+  ],
+  "risk_tiers": {
+    "critical": [],
+    "high": [],
+    "standard": []
+  },
+  "source_references": [
+    {
+      "path": "ssot/threader.md",
+      "sha256": "7cf934b9b37029085f31f5b6709fa597f269c1b3ab7398cd8dd35a6b4fe86f3e"
+    }
+  ],
+  "known_ambiguities": [],
+  "coverage_policy": {
+    "normative_clauses": "100_percent_mapped_or_waived",
+    "nodes": "positive_and_boundary",
+    "transitions": "all_legal_and_forbidden",
+    "module_pairs": "all_legal_pairs",
+    "high_risk_tuples": "assigned_strength",
+    "critical_mutants": "100_percent_killed"
+  },
+  "normative_clause_coverage": {
+    "total": 29,
+    "mapped": 0,
+    "waived": 0
+  },
+  "review_status": "draft",
+  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs."
+}

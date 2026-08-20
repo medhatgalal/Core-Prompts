@@ -1,0 +1,138 @@
+{
+  "schema_version": "GoalContract.v1",
+  "slug": "converge",
+  "target": "Fulfill the canonical intent of converge.",
+  "intended_outcome": "Preserve the canonical SSOT objective and required output.",
+  "change_class": "unknown",
+  "non_goals": [],
+  "protected_behaviors": [
+    "8b97e9494f3e97b44b5d15b2029107a269332326b547cda0cb3db3237018fcfe",
+    "a2debc3e5f2e8a13319c3fe2b9b727a3ca0c87186258da1918f74342184b13c0",
+    "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+    "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+    "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+    "076d33a2406edf0097c3c99b351d408dfb7169bc20633b3333e2a8da6b8ee3f1",
+    "baded02bbe493e82786498d86b54aac14d7520773c0bca46f91194022153d29a",
+    "59e7c12bd4626c63fd05944ad8f25781248cd018b9f91b150d671ce43ef193c9",
+    "409db19b8d6428eb22a2cdcd4173c811dd4a77a6483126ca68f43f28bfa8a22f",
+    "00d8595edbcfe6a6680d0eb0867e752edbaf1e4d8aa2a6fafb34b6aca9770fb8",
+    "57e6b1d178f18cd57b54e0c07fe1c2f6f38e50b577feefc0671ec11f87245426",
+    "8196306b3005ff113b62a447d8bdfc6249f968c15a3bc5b7a28f8eadbe266301",
+    "9175f6ed183695f5f16fd5267b6c4d8aba1130eef6e879ae70a1e46f020aae87",
+    "b083238491563b2a681a8d6413a9e9fd2d1ed8398bec0ec56599d55d55b9f136",
+    "05772d0999a475fbdaebb079e042eeeb27fedea1fb8a64626670928f83e7abac",
+    "a3db8fcf819c40a996f15b851d4f52176e7bc36937540ccc5ce139af56801a42"
+  ],
+  "editable_behavior": [],
+  "primary_outcome": {
+    "metric": "skill_specific_task_success",
+    "definition": "Canonical task success with protected behavior preserved.",
+    "threshold": "human_review_required"
+  },
+  "secondary_outcomes": [],
+  "regression_limits": {
+    "protected_binary_margin": 0.02,
+    "critical_deterministic": "exact_pass"
+  },
+  "cost_latency_limits": {
+    "profile_caps": {
+      "static": 0,
+      "native": 0,
+      "routing-canary": 300000,
+      "canary": 1250000,
+      "promotion": 5000000,
+      "cross-host": 12000000,
+      "sweep": 30000000
+    }
+  },
+  "runtime_envelope": {
+    "required_cells": [],
+    "cross_host_required_for_pilot": false,
+    "status": "unresolved"
+  },
+  "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
+  "rollback_trigger": "Any protected regression or stale bound evidence.",
+  "source_clause_hashes": [
+    {
+      "sha256": "8b97e9494f3e97b44b5d15b2029107a269332326b547cda0cb3db3237018fcfe",
+      "source": "ssot/converge.md",
+      "text": "- allowed: inspect source material, compare options, produce synthesis artifacts, and ask for user steering when taste or judgment is required"
+    },
+    {
+      "sha256": "a2debc3e5f2e8a13319c3fe2b9b727a3ca0c87186258da1918f74342184b13c0",
+      "source": "ssot/converge.md",
+      "text": "- forbidden: pretending incompatible ideas fit together cleanly, inventing missing user preferences, or claiming orchestration or runtime-control authority"
+    },
+    {
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "source": "ssot/converge.md",
+      "text": "## Required Inputs"
+    },
+    {
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "source": "ssot/converge.md",
+      "text": "## Required Output"
+    },
+    {
+      "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+      "source": "ssot/converge.md",
+      "text": "Every substantial response must include:"
+    },
+    {
+      "sha256": "076d33a2406edf0097c3c99b351d408dfb7169bc20633b3333e2a8da6b8ee3f1",
+      "source": "ssot/converge.md",
+      "text": "- `Open Questions` when user steering is still required"
+    },
+    {
+      "sha256": "baded02bbe493e82786498d86b54aac14d7520773c0bca46f91194022153d29a",
+      "source": "ssot/converge.md",
+      "text": "- Do not create a Frankenstein merge."
+    },
+    {
+      "sha256": "59e7c12bd4626c63fd05944ad8f25781248cd018b9f91b150d671ce43ef193c9",
+      "source": "ssot/converge.md",
+      "text": "- Do not invent missing preferences."
+    },
+    {
+      "sha256": "409db19b8d6428eb22a2cdcd4173c811dd4a77a6483126ca68f43f28bfa8a22f",
+      "source": "ssot/converge.md",
+      "text": "- Do not hide major conflicts behind bland synthesis language."
+    },
+    {
+      "sha256": "00d8595edbcfe6a6680d0eb0867e752edbaf1e4d8aa2a6fafb34b6aca9770fb8",
+      "source": "ssot/converge.md",
+      "text": "- Do not skip the rationale for rejected ideas."
+    },
+    {
+      "sha256": "57e6b1d178f18cd57b54e0c07fe1c2f6f38e50b577feefc0671ec11f87245426",
+      "source": "ssot/converge.md",
+      "text": "- Do not claim execution authority beyond synthesis and recommendation."
+    },
+    {
+      "sha256": "8196306b3005ff113b62a447d8bdfc6249f968c15a3bc5b7a28f8eadbe266301",
+      "source": "ssot/converge.md",
+      "text": "Hard constraint: Do NOT create a \u201cFrankenstein\u201d merge. If elements do not fit cleanly, surface the conflict and ask the user to choose."
+    },
+    {
+      "sha256": "9175f6ed183695f5f16fd5267b6c4d8aba1130eef6e879ae70a1e46f020aae87",
+      "source": "ssot/converge.md",
+      "text": "11) Ask the user for a choice when taste/judgment is required."
+    },
+    {
+      "sha256": "b083238491563b2a681a8d6413a9e9fd2d1ed8398bec0ec56599d55d55b9f136",
+      "source": "ssot/converge.md",
+      "text": "- Do not assume preferences."
+    },
+    {
+      "sha256": "05772d0999a475fbdaebb079e042eeeb27fedea1fb8a64626670928f83e7abac",
+      "source": "ssot/converge.md",
+      "text": "PAUSE when user input is required."
+    },
+    {
+      "sha256": "a3db8fcf819c40a996f15b851d4f52176e7bc36937540ccc5ce139af56801a42",
+      "source": "ssot/converge.md",
+      "text": "- Keeps only the strongest elements"
+    }
+  ],
+  "review_status": "draft"
+}

@@ -1,0 +1,108 @@
+{
+  "schema_version": "GoalContract.v1",
+  "slug": "resolve-conflict",
+  "target": "Fulfill the canonical intent of resolve-conflict.",
+  "intended_outcome": "Preserve the canonical SSOT objective and required output.",
+  "change_class": "unknown",
+  "non_goals": [],
+  "protected_behaviors": [
+    "3840987fa88c36cdb266534cde7469dd0185cc5887170e8b2f90edc02458200d",
+    "c7acd9ab21041586f13fed87fbfeb119cbb372660bfb4c53481a5944942259f2",
+    "1eb8e933c1ccdf2870aab487cf3f7c71ab6c7eac961a00ccd25973553f2b5c6f",
+    "a27fa257a67714de3f2eb7e5709a4b88c3dfca8876a85540cabacdd0341323ff",
+    "c713f09d41def9006d91960a92d175203f8d3e9b5202624573697542f281ef83",
+    "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+    "8b8a2747949a1c018c31102f4e73a0712cdfedd424733df2989d5eb3c667fdfb",
+    "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+    "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+    "69f7808264d4a87da7bcbe65c785525663f161105126efc9165a223ada16a983",
+    "4a733c428bbf0b56309663d820a5898f05da26d3978462c6c1d15df770257728"
+  ],
+  "editable_behavior": [],
+  "primary_outcome": {
+    "metric": "skill_specific_task_success",
+    "definition": "Canonical task success with protected behavior preserved.",
+    "threshold": "human_review_required"
+  },
+  "secondary_outcomes": [],
+  "regression_limits": {
+    "protected_binary_margin": 0.02,
+    "critical_deterministic": "exact_pass"
+  },
+  "cost_latency_limits": {
+    "profile_caps": {
+      "static": 0,
+      "native": 0,
+      "routing-canary": 300000,
+      "canary": 1250000,
+      "promotion": 5000000,
+      "cross-host": 12000000,
+      "sweep": 30000000
+    }
+  },
+  "runtime_envelope": {
+    "required_cells": [],
+    "cross_host_required_for_pilot": false,
+    "status": "unresolved"
+  },
+  "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
+  "rollback_trigger": "Any protected regression or stale bound evidence.",
+  "source_clause_hashes": [
+    {
+      "sha256": "3840987fa88c36cdb266534cde7469dd0185cc5887170e8b2f90edc02458200d",
+      "source": "ssot/resolve-conflict.md",
+      "text": "- forbidden: silently choosing between incompatible options without explanation, hiding dropped content, or pretending a conflict is resolved without verification"
+    },
+    {
+      "sha256": "c7acd9ab21041586f13fed87fbfeb119cbb372660bfb4c53481a5944942259f2",
+      "source": "ssot/resolve-conflict.md",
+      "text": "| behavior changed and the merged result needs stronger coverage | `testing` | verification should include test recommendations, not only conflict cleanup |"
+    },
+    {
+      "sha256": "1eb8e933c1ccdf2870aab487cf3f7c71ab6c7eac961a00ccd25973553f2b5c6f",
+      "source": "ssot/resolve-conflict.md",
+      "text": "- **Explicit trade-offs** when choices must be made"
+    },
+    {
+      "sha256": "a27fa257a67714de3f2eb7e5709a4b88c3dfca8876a85540cabacdd0341323ff",
+      "source": "ssot/resolve-conflict.md",
+      "text": "- **Contradictory**: Incompatible approaches, must choose one"
+    },
+    {
+      "sha256": "c713f09d41def9006d91960a92d175203f8d3e9b5202624573697542f281ef83",
+      "source": "ssot/resolve-conflict.md",
+      "text": "- **Do not silently choose** - get user input"
+    },
+    {
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "source": "ssot/resolve-conflict.md",
+      "text": "## Required Inputs"
+    },
+    {
+      "sha256": "8b8a2747949a1c018c31102f4e73a0712cdfedd424733df2989d5eb3c667fdfb",
+      "source": "ssot/resolve-conflict.md",
+      "text": "- any policy or preference constraints that must win"
+    },
+    {
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "source": "ssot/resolve-conflict.md",
+      "text": "## Required Output"
+    },
+    {
+      "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+      "source": "ssot/resolve-conflict.md",
+      "text": "Every substantial response must include:"
+    },
+    {
+      "sha256": "69f7808264d4a87da7bcbe65c785525663f161105126efc9165a223ada16a983",
+      "source": "ssot/resolve-conflict.md",
+      "text": "2. **Never silently drop content** - If content must be removed, explain why"
+    },
+    {
+      "sha256": "4a733c428bbf0b56309663d820a5898f05da26d3978462c6c1d15df770257728",
+      "source": "ssot/resolve-conflict.md",
+      "text": "- **Check**: ensure terminology and patterns do not contradict each other"
+    }
+  ],
+  "review_status": "draft"
+}

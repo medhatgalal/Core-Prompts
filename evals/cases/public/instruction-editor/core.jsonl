@@ -1,0 +1,3 @@
+{"id":"IE-PUB-001","goal":"routing_positive","prompt":"Remove Claude-ish phrasing from this skill without weakening must-not rules.","required":["route to instruction-editor","preservation map"],"risk":"high"}
+{"id":"IE-PUB-002","goal":"routing_negative","prompt":"Review the information architecture of these docs.","required":["route to docs-review-expert"],"forbidden":["instruction-editor top choice"],"risk":"standard"}
+{"id":"IE-PUB-003","goal":"standalone_preservation","fixture":"modality_and_order.md","required":["edited artifact","edit ledger","preservation map","size delta","proof claims","ambiguities"],"forbidden":["weaken modality","reorder steps"],"risk":"critical"}

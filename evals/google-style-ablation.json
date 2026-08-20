@@ -1,0 +1,36 @@
+{
+  "schema_version": "AblationPlan.v1",
+  "experiment_id": "instruction-clarity-causal-value",
+  "status": "preregistered_not_run",
+  "arms": [
+    {"id": "baseline", "uac_structural_uplift": false, "clarity_lens": false},
+    {"id": "uac_only", "uac_structural_uplift": true, "clarity_lens": false},
+    {"id": "clarity_only", "uac_structural_uplift": false, "clarity_lens": true},
+    {"id": "uac_plus_clarity", "uac_structural_uplift": true, "clarity_lens": true}
+  ],
+  "held_constant": ["cases", "context", "host", "resolved_model", "effort", "tools", "scoring", "repetitions"],
+  "blinding": ["candidate identity", "arm label", "ordering", "UAC score", "provenance where avoidable"],
+  "primary_outcomes": {
+    "human": "paired clarity preference with adjudicated rubric",
+    "behavior": "skill-specific task success with protected non-inferiority"
+  },
+  "default_rewrite_gate": {
+    "human_clarity_powered_improvement": true,
+    "protected_behavior_non_inferiority_every_required_cell": true,
+    "routing_precision_no_decline": true,
+    "critical_mutant_kill_rate": 1.0,
+    "maximum_size_growth_without_behavioral_gain": 0.05,
+    "sealed_holdout_survival": true,
+    "verbosity_or_judge_preference_explanation_rejected": true
+  },
+  "instruction_editor_gate": {
+    "top_choice_routing_accuracy_minimum": 0.9,
+    "false_trigger_rate_maximum": 0.05,
+    "critical_preservation_mutant_kill_rate": 1.0,
+    "standalone_useful": true,
+    "stack_handoff_preserved": true
+  },
+  "stopping_rule": "Stop and hold on any critical regression, cap breach, judge disqualification, leakage, or surviving critical mutant. Do not stop early for a favorable mean.",
+  "promotion_allowed": false,
+  "note": "Default candidate rewriting remains off until this plan is executed against an independent sealed holdout."
+}

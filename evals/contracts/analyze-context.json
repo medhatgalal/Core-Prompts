@@ -1,0 +1,138 @@
+{
+  "schema_version": "GoalContract.v1",
+  "slug": "analyze-context",
+  "target": "Fulfill the canonical intent of analyze-context.",
+  "intended_outcome": "Preserve the canonical SSOT objective and required output.",
+  "change_class": "unknown",
+  "non_goals": [],
+  "protected_behaviors": [
+    "f8cbcd9d82447bab9639b2df1f0d564b8f29bb86362c5486b513d5695282a423",
+    "aa5cb7c9b6e729812f25940cec044c7056cc7fcdd87175af41327e42bda3c332",
+    "050433e604b4bf4e3768fef92dd28edd475e8a2ef30a1d0b5782f409ce10c7e6",
+    "58cc6556252e83cb0de755e7341157861d7f8bb4ecc0f397f8cf488efb85459c",
+    "ce29a924a5191687642a21292b70508aa1b1db6cbbcc834f498d5bf214c35c0a",
+    "2bfeab027cf8c50fecca59a18bf827d7af10762861a3bfeac98e63f83e954532",
+    "043edc088932bb39f78b28ae52afde4f2d16f15feec79b37d052d22c3e933698",
+    "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+    "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+    "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+    "47f8eb7b1f5062692ab13223019b0130f4f79b984441288b2a24c0555923cdd4",
+    "983409ed302d318db8aac120b99299a42514161ff5a44b0c5d9eb2c3740e74e8",
+    "2e1127e53b153f7008cb38697e2d2ea9710602151efb20f72b16f35bd737638c",
+    "2ad1af6a8eb9ee6ce57ee09e262a17f75cac09cbea63834b15edf59b390f1fa3",
+    "a6a29a656d24f832189c0c85aa47e89bf86ac4bb2333232e727769ced2dbf1dc",
+    "3a8657310f471c057fd1160548f8962b53524ae461e5288c5d8a321a4a2089de"
+  ],
+  "editable_behavior": [],
+  "primary_outcome": {
+    "metric": "skill_specific_task_success",
+    "definition": "Canonical task success with protected behavior preserved.",
+    "threshold": "human_review_required"
+  },
+  "secondary_outcomes": [],
+  "regression_limits": {
+    "protected_binary_margin": 0.02,
+    "critical_deterministic": "exact_pass"
+  },
+  "cost_latency_limits": {
+    "profile_caps": {
+      "static": 0,
+      "native": 0,
+      "routing-canary": 300000,
+      "canary": 1250000,
+      "promotion": 5000000,
+      "cross-host": 12000000,
+      "sweep": 30000000
+    }
+  },
+  "runtime_envelope": {
+    "required_cells": [],
+    "cross_host_required_for_pilot": false,
+    "status": "unresolved"
+  },
+  "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
+  "rollback_trigger": "Any protected regression or stale bound evidence.",
+  "source_clause_hashes": [
+    {
+      "sha256": "f8cbcd9d82447bab9639b2df1f0d564b8f29bb86362c5486b513d5695282a423",
+      "source": "ssot/analyze-context.md",
+      "text": "description: \"Maintains durable analysis state for long-running multi-file investigations. Use when repo analysis must survive compaction or interruption, not for design, imports, or behavioral comparison.\""
+    },
+    {
+      "sha256": "aa5cb7c9b6e729812f25940cec044c7056cc7fcdd87175af41327e42bda3c332",
+      "source": "ssot/analyze-context.md",
+      "text": "Use this capability for multi-file or multi-source analysis that must preserve context, findings, and progress across long sessions, memory compaction, or multi-turn review work."
+    },
+    {
+      "sha256": "050433e604b4bf4e3768fef92dd28edd475e8a2ef30a1d0b5782f409ce10c7e6",
+      "source": "ssot/analyze-context.md",
+      "text": "Do not use this capability when the main job is to make a final decision, harden a prompt or plan, import a capability, design a system, or prove one variant performs better than another."
+    },
+    {
+      "sha256": "58cc6556252e83cb0de755e7341157861d7f8bb4ecc0f397f8cf488efb85459c",
+      "source": "ssot/analyze-context.md",
+      "text": "- forbidden: pretending analysis is implementation, silently changing unrelated repo state, or replacing canonical source documents with temporary notes"
+    },
+    {
+      "sha256": "ce29a924a5191687642a21292b70508aa1b1db6cbbcc834f498d5bf214c35c0a",
+      "source": "ssot/analyze-context.md",
+      "text": "- Do not fork versioned analysis memory files for the same initiative."
+    },
+    {
+      "sha256": "2bfeab027cf8c50fecca59a18bf827d7af10762861a3bfeac98e63f83e954532",
+      "source": "ssot/analyze-context.md",
+      "text": "- Do not keep important findings only in chat history."
+    },
+    {
+      "sha256": "043edc088932bb39f78b28ae52afde4f2d16f15feec79b37d052d22c3e933698",
+      "source": "ssot/analyze-context.md",
+      "text": "- Archive only when the initiative is complete."
+    },
+    {
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "source": "ssot/analyze-context.md",
+      "text": "## Required Inputs"
+    },
+    {
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "source": "ssot/analyze-context.md",
+      "text": "## Required Output"
+    },
+    {
+      "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+      "source": "ssot/analyze-context.md",
+      "text": "Every substantial response must include:"
+    },
+    {
+      "sha256": "47f8eb7b1f5062692ab13223019b0130f4f79b984441288b2a24c0555923cdd4",
+      "source": "ssot/analyze-context.md",
+      "text": "| If the analysis reveals this need | Route to | Required handoff |"
+    },
+    {
+      "sha256": "983409ed302d318db8aac120b99299a42514161ff5a44b0c5d9eb2c3740e74e8",
+      "source": "ssot/analyze-context.md",
+      "text": "- Do not start long-running analysis directly on `main` or `master`."
+    },
+    {
+      "sha256": "2e1127e53b153f7008cb38697e2d2ea9710602151efb20f72b16f35bd737638c",
+      "source": "ssot/analyze-context.md",
+      "text": "- Do not create multiple competing memory sets for the same initiative."
+    },
+    {
+      "sha256": "2ad1af6a8eb9ee6ce57ee09e262a17f75cac09cbea63834b15edf59b390f1fa3",
+      "source": "ssot/analyze-context.md",
+      "text": "- Do not let insights remain only in the todo file."
+    },
+    {
+      "sha256": "a6a29a656d24f832189c0c85aa47e89bf86ac4bb2333232e727769ced2dbf1dc",
+      "source": "ssot/analyze-context.md",
+      "text": "- Do not archive mid-initiative."
+    },
+    {
+      "sha256": "3a8657310f471c057fd1160548f8962b53524ae461e5288c5d8a321a4a2089de",
+      "source": "ssot/analyze-context.md",
+      "text": "Before proceeding, you MUST check the current branch."
+    }
+  ],
+  "review_status": "draft"
+}

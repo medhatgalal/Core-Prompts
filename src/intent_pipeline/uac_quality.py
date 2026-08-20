@@ -186,7 +186,7 @@ def build_quality_plan(
         },
         "judge_packets": packets,
         "stop_conditions": {
-            "ship": "all judge thresholds met, no blocker, validation green when required",
+            "structural_ready": "all structural judge thresholds met, no blocker, validation green when required",
             "revise": "thresholds not met and passes remain",
             "manual_review": "max passes reached or blocker remains unresolved",
         },
@@ -228,15 +228,15 @@ def run_quality_loop(
         )
         reports.append(pass_report)
         final_pass = pass_number
-        if pass_report["status"] == "ship":
+        if pass_report["status"] == "structural_ready":
             stop_reason = "thresholds_met"
-            final_status = "ship"
+            final_status = "structural_ready"
             break
         if pass_number < max_passes:
             current_text = refine_candidate_text(current_text, pass_report, profile)
             final_status = "revise"
 
-    if final_status != "ship" and reports:
+    if final_status != "structural_ready" and reports:
         final_status = reports[-1]["status"]
     return {
         "quality_profile": profile.name,
@@ -285,7 +285,7 @@ def evaluate_quality_pass(
     ]
     meets_targets = all(judge["score"] >= int(thresholds.get(judge["judge"]) or 0) for judge in judge_reports)
     if meets_targets and not blockers:
-        status = "ship"
+        status = "structural_ready"
     elif pass_number < max_passes:
         status = "revise"
     else:

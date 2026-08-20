@@ -188,7 +188,24 @@
     "Do not infer behavior from docs alone when code or scripts are available to verify it.",
     "Do not leave the caller with generic advice that lacks file placement or evidence."
   ],
-  "modes": [],
+  "modes": [
+    {
+      "mode_slug": "failure-mode-to-avoid",
+      "display_name": "Failure Mode To Avoid",
+      "source_refs": [
+        "ssot/docs-review-expert.md"
+      ],
+      "mode_summary": "Declared by the canonical `Failure Mode To Avoid` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    }
+  ],
   "benchmark_sources": [
     {
       "label": "Architecture benchmark",
@@ -248,5 +265,20 @@
         "## Invocation"
       ]
     }
-  ]
+  ],
+  "job_contract": {
+    "primary_job": "Audit documentation structure, drift, explainability, and release hygiene.",
+    "use_when": "Repository documentation needs a systematic review or governance decision.",
+    "works_on": "README files, docs trees, generated docs, information architecture, and release documentation.",
+    "main_output": "A documentation findings report and prioritized, explainable improvement plan.",
+    "not_for": "Line-editing one prompt or generating a weekly intelligence report.",
+    "authority": "Review is read-only unless documentation edits are explicitly requested.",
+    "routing_question": "Is the problem document-system health or sentence-level instruction editing?",
+    "nearest_neighbors": [
+      "instruction-editor",
+      "weekly-intel"
+    ],
+    "shape": "deep_specialist",
+    "portfolio_action": "keep_and_clarify_boundary"
+  }
 }

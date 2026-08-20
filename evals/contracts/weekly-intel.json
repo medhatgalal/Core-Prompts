@@ -1,0 +1,222 @@
+{
+  "schema_version": "GoalContract.v1",
+  "slug": "weekly-intel",
+  "target": "Fulfill the canonical intent of weekly-intel.",
+  "intended_outcome": "Source coverage, time-window correctness, citation integrity, deduplication, fact/inference separation, uncertainty, synthesis quality, and forwardability.",
+  "change_class": "unknown",
+  "non_goals": [],
+  "protected_behaviors": [
+    "f54ea8e798a60f53a9cbe04c2bae0e93092e82d6d44831ade6a1db7963a2e110",
+    "4544e6580afad28b48a22656a2d0303486373a381c37e37a38cfca895bdc683d",
+    "f4df1515ad8a019c84a2ad398ecd6eb048889b9973f935092f2d0cfff638e66a",
+    "65b8a44549bfd4a7cc1347f79823bddc1fd4986c9706bf405cd82ed6a5496065",
+    "408737a2fdb2aa0eb18804f7e0b4a463aa97caa9e71bc1f2cc73866316575792",
+    "c1ebb0023ea1adc3a896e0bd255a0f4970ef85323e074db415ed1cc9ea567d60",
+    "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+    "5c78da516647002e2e7b28279bdfd73afb940e24c1b47994ad1e848ce9141129",
+    "2141f7742ae64ee0858cdea627d050b3eb7bc8c344b25c1ef7c9d9789438a0c4",
+    "394746493c8f0c472766f751f62396f1ebf73115876a98fda2185899d4a1698b",
+    "edab38b5234094a263fc5d43c899282f27003577661349034978c05cfe7e3cfc",
+    "cd0f0db5e1a5cffbab81830bfb97b1f91e7600154dd3d5272da7cf305b86777c",
+    "2a397b46a4f3b2cab383ed798548fee9903bc88df749a958242b7c2b2ce46a3f",
+    "75d4160a3d3948ca3fd3485bc0ed151223933ccdae2e3dc0eeb9c83f2b7e4b86",
+    "e928f79d4d765aae0f0e5e0c76e4d25f2a33ea9cad9e5893db674d0c00ac43d7",
+    "d3f3f12bc16a10d40faabc1f3393cba2dd2bb2fd7e1e98900c4502d2b1a5f024",
+    "96a8f47b993a2ad66b2aa287d090fc5aba67036ca8bf405323becde2c663728f",
+    "e8506f42237ca16a43eb159404831cdac17a06c40378bf9daa7017bd9ab16327",
+    "dde85d08be0263c060d4fa83a22a9d4585cf59631a7317b9cf89f1a91ea441ea",
+    "d8eacb4f2de266e6eaf514ea6b360851284c3aa5e7f59762795a75572d7c9e29",
+    "98ce20600e47e2959e8efc89f2011285fd307215ad560e8f1dee9f2b126fda86",
+    "a843a3087a1504fb7e29818e1af1185f01ec5509b9c4378938acd916945bd6c3",
+    "98520a766c21b0dac64fcaaeecaf665d16c5a77d5e7b06e7bf5ab171bfbc0d2c",
+    "13d29df8ad07ce6959a62d9e77bd2328f6355bb06afeca708a5ddaee9c59965c",
+    "5d79ffa88b9ce0620d4d6aa1a0f272de884eb469da999f3090f616891aa965c6",
+    "b331a7940c85a5c9e0fee34d500a7c7e11e24eb8d926a8f457d355bb5c719cba",
+    "c5619f4cdf2b06cfab0717358e9ffc5fad58f06b37a735a31dac1d5fe24804b4",
+    "087e2f1469a30b2593e291beb5f6d65cc76fa783faa26e474cd89dac676029d4",
+    "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+    "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1"
+  ],
+  "editable_behavior": [],
+  "primary_outcome": {
+    "metric": "skill_specific_task_success",
+    "definition": "Source coverage, time-window correctness, citation integrity, deduplication, fact/inference separation, uncertainty, synthesis quality, and forwardability.",
+    "threshold": "human_review_required"
+  },
+  "secondary_outcomes": [],
+  "regression_limits": {
+    "protected_binary_margin": 0.02,
+    "critical_deterministic": "exact_pass"
+  },
+  "cost_latency_limits": {
+    "profile_caps": {
+      "static": 0,
+      "native": 0,
+      "routing-canary": 300000,
+      "canary": 1250000,
+      "promotion": 5000000,
+      "cross-host": 12000000,
+      "sweep": 30000000
+    }
+  },
+  "runtime_envelope": {
+    "required_cells": [],
+    "cross_host_required_for_pilot": false,
+    "status": "unresolved"
+  },
+  "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
+  "rollback_trigger": "Any protected regression or stale bound evidence.",
+  "source_clause_hashes": [
+    {
+      "sha256": "f54ea8e798a60f53a9cbe04c2bae0e93092e82d6d44831ade6a1db7963a2e110",
+      "source": "ssot/weekly-intel.md",
+      "text": "- Every quantitative claim must be re-verified before inclusion"
+    },
+    {
+      "sha256": "4544e6580afad28b48a22656a2d0303486373a381c37e37a38cfca895bdc683d",
+      "source": "ssot/weekly-intel.md",
+      "text": "- Self-reported numbers must not be presented as automated measurements"
+    },
+    {
+      "sha256": "f4df1515ad8a019c84a2ad398ecd6eb048889b9973f935092f2d0cfff638e66a",
+      "source": "ssot/weekly-intel.md",
+      "text": "- Numbers must not be rounded in a direction that flatters the result"
+    },
+    {
+      "sha256": "65b8a44549bfd4a7cc1347f79823bddc1fd4986c9706bf405cd82ed6a5496065",
+      "source": "ssot/weekly-intel.md",
+      "text": "- The exec narrative must contain zero ticket numbers, MR numbers, or commit hashes"
+    },
+    {
+      "sha256": "408737a2fdb2aa0eb18804f7e0b4a463aa97caa9e71bc1f2cc73866316575792",
+      "source": "ssot/weekly-intel.md",
+      "text": "- The internal consistency check between the narrative body and appendices must not be skipped"
+    },
+    {
+      "sha256": "c1ebb0023ea1adc3a896e0bd255a0f4970ef85323e074db415ed1cc9ea567d60",
+      "source": "ssot/weekly-intel.md",
+      "text": "- forbidden: modifying tickets, merging code, sending messages, or taking any action beyond reading and reporting"
+    },
+    {
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "source": "ssot/weekly-intel.md",
+      "text": "## Required Inputs"
+    },
+    {
+      "sha256": "5c78da516647002e2e7b28279bdfd73afb940e24c1b47994ad1e848ce9141129",
+      "source": "ssot/weekly-intel.md",
+      "text": "- **Audience = team/self:** Skip audit, produce appendices only (no exec body)"
+    },
+    {
+      "sha256": "2141f7742ae64ee0858cdea627d050b3eb7bc8c344b25c1ef7c9d9789438a0c4",
+      "source": "ssot/weekly-intel.md",
+      "text": "4. **What We Need** \u2014 decisions or support required from leadership"
+    },
+    {
+      "sha256": "394746493c8f0c472766f751f62396f1ebf73115876a98fda2185899d4a1698b",
+      "source": "ssot/weekly-intel.md",
+      "text": "- Every claim must be traceable to an appendix entry"
+    },
+    {
+      "sha256": "edab38b5234094a263fc5d43c899282f27003577661349034978c05cfe7e3cfc",
+      "source": "ssot/weekly-intel.md",
+      "text": "- Quantitative claims must include methodology caveats where relevant"
+    },
+    {
+      "sha256": "cd0f0db5e1a5cffbab81830bfb97b1f91e7600154dd3d5272da7cf305b86777c",
+      "source": "ssot/weekly-intel.md",
+      "text": "- Do not present self-reported numbers as automated measurements"
+    },
+    {
+      "sha256": "2a397b46a4f3b2cab383ed798548fee9903bc88df749a958242b7c2b2ce46a3f",
+      "source": "ssot/weekly-intel.md",
+      "text": "- Do not round numbers in a direction that flatters the result"
+    },
+    {
+      "sha256": "75d4160a3d3948ca3fd3485bc0ed151223933ccdae2e3dc0eeb9c83f2b7e4b86",
+      "source": "ssot/weekly-intel.md",
+      "text": "- Every row must have an inline link to its primary source"
+    },
+    {
+      "sha256": "e928f79d4d765aae0f0e5e0c76e4d25f2a33ea9cad9e5893db674d0c00ac43d7",
+      "source": "ssot/weekly-intel.md",
+      "text": "1. Every number in the main body must match the corresponding appendix data"
+    },
+    {
+      "sha256": "d3f3f12bc16a10d40faabc1f3393cba2dd2bb2fd7e1e98900c4502d2b1a5f024",
+      "source": "ssot/weekly-intel.md",
+      "text": "2. Every claim in the body must have supporting evidence in an appendix"
+    },
+    {
+      "sha256": "96a8f47b993a2ad66b2aa287d090fc5aba67036ca8bf405323becde2c663728f",
+      "source": "ssot/weekly-intel.md",
+      "text": "3. Initiative/epic counts in the body must match Appendix A"
+    },
+    {
+      "sha256": "e8506f42237ca16a43eb159404831cdac17a06c40378bf9daa7017bd9ab16327",
+      "source": "ssot/weekly-intel.md",
+      "text": "4. The By the Numbers table must match Appendix C and D totals"
+    },
+    {
+      "sha256": "dde85d08be0263c060d4fa83a22a9d4585cf59631a7317b9cf89f1a91ea441ea",
+      "source": "ssot/weekly-intel.md",
+      "text": "- This capability is advisory only. It reads and reports but does not modify source systems."
+    },
+    {
+      "sha256": "d8eacb4f2de266e6eaf514ea6b360851284c3aa5e7f59762795a75572d7c9e29",
+      "source": "ssot/weekly-intel.md",
+      "text": "- Do not claim orchestration, delegation, or runtime-control authority."
+    },
+    {
+      "sha256": "98ce20600e47e2959e8efc89f2011285fd307215ad560e8f1dee9f2b126fda86",
+      "source": "ssot/weekly-intel.md",
+      "text": "- Do not modify any source system (tickets, repos, chat). Read only."
+    },
+    {
+      "sha256": "a843a3087a1504fb7e29818e1af1185f01ec5509b9c4378938acd916945bd6c3",
+      "source": "ssot/weekly-intel.md",
+      "text": "- Do not assert a bug is \"fixed\" based on a single chat message without corroboration from the tracker or code."
+    },
+    {
+      "sha256": "98520a766c21b0dac64fcaaeecaf665d16c5a77d5e7b06e7bf5ab171bfbc0d2c",
+      "source": "ssot/weekly-intel.md",
+      "text": "- Do not inflate ticket counts by including unrelated teams' work without disclosure."
+    },
+    {
+      "sha256": "13d29df8ad07ce6959a62d9e77bd2328f6355bb06afeca708a5ddaee9c59965c",
+      "source": "ssot/weekly-intel.md",
+      "text": "- Do not present created-after queries as merged-after without noting the caveat."
+    },
+    {
+      "sha256": "5d79ffa88b9ce0620d4d6aa1a0f272de884eb469da999f3090f616891aa965c6",
+      "source": "ssot/weekly-intel.md",
+      "text": "- Do not skip the internal consistency check between body and appendices."
+    },
+    {
+      "sha256": "b331a7940c85a5c9e0fee34d500a7c7e11e24eb8d926a8f457d355bb5c719cba",
+      "source": "ssot/weekly-intel.md",
+      "text": "- Do not use the word \"impressive\" or \"amazing\" in the main body. Let the numbers speak."
+    },
+    {
+      "sha256": "c5619f4cdf2b06cfab0717358e9ffc5fad58f06b37a735a31dac1d5fe24804b4",
+      "source": "ssot/weekly-intel.md",
+      "text": "- **Single-source claims:** asserting something is \"fixed\" based only on one person's chat message"
+    },
+    {
+      "sha256": "087e2f1469a30b2593e291beb5f6d65cc76fa783faa26e474cd89dac676029d4",
+      "source": "ssot/weekly-intel.md",
+      "text": "- **Jargon creep:** the exec summary must be readable by someone outside the team"
+    },
+    {
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "source": "ssot/weekly-intel.md",
+      "text": "## Required Output"
+    },
+    {
+      "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+      "source": "ssot/weekly-intel.md",
+      "text": "Every substantial response must include:"
+    }
+  ],
+  "review_status": "draft"
+}

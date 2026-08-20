@@ -1,0 +1,71 @@
+{
+  "schema_version": "CapabilityEvaluationPolicy.v1",
+  "enforcement": "advisory",
+  "structural_owner": "uac-import",
+  "behavioral_owner": "auto-research",
+  "execution_substrate": ["direct-cli-adapters", "inspect-ai", "inspect-swe"],
+  "repo_owned_truth": ["goal-contracts", "topologies", "datasets", "scorers", "mutations", "statistics", "promotion-policy"],
+  "profiles": {
+    "static": {"hard_token_cap": 0, "model_calls": false},
+    "native": {"hard_token_cap": 0, "model_calls": false},
+    "routing-canary": {"hard_token_cap": 300000, "model_calls": true},
+    "canary": {"hard_token_cap": 1250000, "model_calls": true},
+    "promotion": {"hard_token_cap": 5000000, "model_calls": true},
+    "cross-host": {"hard_token_cap": 12000000, "model_calls": true},
+    "sweep": {"hard_token_cap": 30000000, "model_calls": true}
+  },
+  "normal_ci_profile": "static",
+  "statistical_defaults": {
+    "binary_optimization_effect": 0.05,
+    "protected_binary_non_inferiority_margin": 0.02,
+    "standardized_effect": 0.2,
+    "planned_power": 0.8,
+    "confidence_level": 0.95,
+    "secondary_family_correction": "Holm"
+  },
+  "judge_qualification": {
+    "binary_agreement_minimum": 0.8,
+    "krippendorff_alpha_minimum": 0.7,
+    "bias_checks": ["A/B order", "label", "verbosity", "qualified-judge substitution"]
+  },
+  "pilot_experiments": [
+    {
+      "id": "supercharge-module-preservation",
+      "skills": ["supercharge"],
+      "question": "Does a change preserve explicit modules, stack order, terminal controls, and state behavior?"
+    },
+    {
+      "id": "code-review-seeded-defect",
+      "skills": ["code-review"],
+      "question": "Does Code Review find a concrete seeded defect with correct evidence and low noise?"
+    },
+    {
+      "id": "product-repo-code-routing",
+      "skills": ["feature-status", "eng-report", "codebase-health-audit"],
+      "question": "Can the runtime distinguish product completeness, repository activity reporting, and structural code health?"
+    },
+    {
+      "id": "uac-import-metadata-safety",
+      "skills": ["uac-import"],
+      "question": "Does UAC preserve useful capability metadata and reject unsafe HTML ingestion without claiming behavioral proof?"
+    }
+  ],
+  "deferred_behavioral_skills": ["architecture", "instruction-editor", "pulse", "weekly-intel"],
+  "promotion_hard_gates": [
+    "goal_contract_complete",
+    "topology_complete",
+    "no_unresolved_contradiction",
+    "critical_invariant_coverage_100_percent",
+    "critical_mutant_kill_100_percent",
+    "overall_mutant_kill_at_least_95_percent",
+    "no_protected_regression",
+    "no_required_not_run_cells",
+    "qualified_judges_only",
+    "sealed_bundle_valid",
+    "preregistered_stopping_rule",
+    "token_budget_observed",
+    "independent_reproduction"
+  ],
+  "baseline_policy": "Preserve historical lineage; materialize a new baseline only when no valid source baseline exists or after promotion.",
+  "inspect_pin_status": "pending_python_3_14_execution_canary"
+}

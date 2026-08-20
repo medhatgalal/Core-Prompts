@@ -1,0 +1,1 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","$id":"EvalImpactPlan.v1","type":"object","required":["schema_version","slug","change_classes","affected_clause_ids","minimum_profile","hard_token_cap"],"properties":{"schema_version":{"const":"EvalImpactPlan.v1"},"minimum_profile":{"enum":["static","native","routing-canary","canary","promotion","cross-host","sweep"]}}}

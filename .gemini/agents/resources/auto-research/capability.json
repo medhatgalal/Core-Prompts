@@ -226,10 +226,139 @@
     "Do not run broad candidate search when one sharply framed hypothesis can be tested first.",
     "Do not parallelize dependent verification steps when regenerated artifacts are involved."
   ],
-  "modes": [],
+  "modes": [
+    {
+      "mode_slug": "safe-starting-mode",
+      "display_name": "Safe Starting Mode",
+      "source_refs": [
+        "ssot/auto-research.md"
+      ],
+      "mode_summary": "Declared by the canonical `Safe Starting Mode` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "goal-setup",
+      "display_name": "Goal Setup",
+      "source_refs": [
+        "ssot/auto-research.md"
+      ],
+      "mode_summary": "Declared by the canonical `Mode 1: Goal Setup` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "minimal-loop",
+      "display_name": "Minimal Loop",
+      "source_refs": [
+        "ssot/auto-research.md"
+      ],
+      "mode_summary": "Declared by the canonical `Mode 2: Minimal Loop` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "search-design",
+      "display_name": "Search Design",
+      "source_refs": [
+        "ssot/auto-research.md"
+      ],
+      "mode_summary": "Declared by the canonical `Mode 3: Search Design` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "experiment-loop",
+      "display_name": "Experiment Loop",
+      "source_refs": [
+        "ssot/auto-research.md"
+      ],
+      "mode_summary": "Declared by the canonical `Mode 4: Experiment Loop` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "capability-evaluation",
+      "display_name": "Capability Evaluation",
+      "source_refs": [
+        "ssot/auto-research.md"
+      ],
+      "mode_summary": "Declared by the canonical `Mode 5: Capability Evaluation` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "trace-to-eval",
+      "display_name": "Trace-to-Eval",
+      "source_refs": [
+        "ssot/auto-research.md"
+      ],
+      "mode_summary": "Declared by the canonical `Mode 5: Trace-to-Eval` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "promotion",
+      "display_name": "Promotion",
+      "source_refs": [
+        "ssot/auto-research.md"
+      ],
+      "mode_summary": "Declared by the canonical `Mode 7: Promotion` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    }
+  ],
   "benchmark_sources": [],
   "quality_profile": "default",
-  "quality_status": "ship",
+  "quality_status": "structural_ready",
   "judge_reports": [
     {
       "pass_number": 1,
@@ -362,5 +491,22 @@
         "## Invocation"
       ]
     }
-  ]
+  ],
+  "legacy_quality_status": "ship",
+  "job_contract": {
+    "primary_job": "Run a bounded evidence loop to discover whether one candidate actually outperforms another.",
+    "use_when": "The user needs behavioral optimization, comparison, calibration, or promotion evidence.",
+    "works_on": "Prompts, skills, workflows, tools, configurations, and other measurable candidates.",
+    "main_output": "A reproducible experiment record and pass, fail, or inconclusive recommendation.",
+    "not_for": "Stylistic polishing without measurement or self-promoting a UAC-produced candidate.",
+    "authority": "Owns behavioral comparison; promotion still obeys independent hard gates and user authority.",
+    "routing_question": "Do we need evidence of better behavior, or only a stronger draft?",
+    "nearest_neighbors": [
+      "supercharge",
+      "uac-import",
+      "instruction-editor"
+    ],
+    "shape": "swiss_army_research_workflow",
+    "portfolio_action": "keep_but_review_scope"
+  }
 }

@@ -1,0 +1,228 @@
+{
+  "schema_version": "CapabilityTopology.v1",
+  "slug": "feature-status",
+  "ssot_sha256": "91bcee05ee3fdb96307afe52d22244fd1c7141bf91d54b274d510585c5352d13",
+  "explicit_invocations": [],
+  "semantic_triggers": [],
+  "aliases_shortcuts": [],
+  "auto_routes": [],
+  "nodes": {
+    "commands": [],
+    "modes_modules": [],
+    "controls": [],
+    "modifiers": []
+  },
+  "composition": {
+    "legal_pairs": [],
+    "forbidden_pairs": [],
+    "canonical_order": [],
+    "requirements": [],
+    "supersession": []
+  },
+  "state_machine": {
+    "states": [],
+    "transitions": [],
+    "forbidden_transitions": []
+  },
+  "outputs": [],
+  "authority_boundaries": [
+    "feature-status:L29:5e1f0692e96c",
+    "feature-status:L32:89e6f3dc9bec",
+    "feature-status:L50:da3f85083148",
+    "feature-status:L71:3ad23f3347ea",
+    "feature-status:L75:db4b31006637",
+    "feature-status:L76:5ddd6b4524e8",
+    "feature-status:L77:84acf3973d8c",
+    "feature-status:L79:196ea1e69014",
+    "feature-status:L222:6816baa9c06d"
+  ],
+  "resources": [
+    "- [Where implementation diverges from OAS/HLD, with file:line references]",
+    "- release: verify shipped behavior, install flow, and references against the final state"
+  ],
+  "handoffs": [
+    "- escalation: if the audit reveals architecture concerns, route to `architecture`; if it reveals test generation needs, route to `testing`; if it reveals docs drift, route to `docs-review-expert`"
+  ],
+  "protected_invariants": [
+    {
+      "id": "feature-status:L29:5e1f0692e96c",
+      "heading": "Phase 1 \u2014 Extract Scope",
+      "source_line": 29,
+      "sha256": "5e1f0692e96c57901a814b27ca263bf7acc6f2d0b318ace0cf304f018bf097c8",
+      "text": "Present the checklist and ask the developer to confirm or adjust before proceeding. Do not proceed to Phase 2 until confirmed.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "feature-status:L32:89e6f3dc9bec",
+      "heading": "Phase 2 \u2014 Gather and Read Proof",
+      "source_line": 32,
+      "sha256": "89e6f3dc9becad2d48c716ce2b3832726e13144b3be317452180b7fe5b48f1d5",
+      "text": "For each category, read the actual code, tests, and config. Do not rely on filenames, commit messages, or assumptions.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "feature-status:L50:da3f85083148",
+      "heading": "Phase 3 \u2014 Deep Status Assessment",
+      "source_line": 50,
+      "sha256": "da3f850831481bfdd98cc3806a1abe99540041eeaf345fddfbb38c5a009440fb",
+      "text": "| \u2753 Unclear | Cannot determine from available proof \u2014 needs manual verification | Do not guess |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "feature-status:L71:3ad23f3347ea",
+      "heading": "Tool Boundaries",
+      "source_line": 71,
+      "sha256": "3ad23f3347eafb243025a00a01b1bdc16fb2e048017256239c0cbf77a6e323a0",
+      "text": "- forbidden: modifying code, running tests, deploying, or making changes without explicit developer approval; guessing scope from code alone when no spec is provided",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "feature-status:L75:db4b31006637",
+      "heading": "Rules",
+      "source_line": 75,
+      "sha256": "db4b31006637812737732a4bd5e7da84584068bb0f4347d18f6f4bc5258403d3",
+      "text": "1. **Demand context** \u2014 always ask for scope documents (pitch, HLD, OAS, tickets) and proof sources (code, tests, config). Do not guess scope from code alone.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "feature-status:L76:5ddd6b4524e8",
+      "heading": "Rules",
+      "source_line": 76,
+      "sha256": "5ddd6b4524e870739a9f23003852facdf79cfbc0c3b3dccae2cf96c213f6e7d6",
+      "text": "2. **Confirm scope first** \u2014 present the extracted checklist for developer approval before gathering proof. Do not skip this gate.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "feature-status:L77:84acf3973d8c",
+      "heading": "Rules",
+      "source_line": 77,
+      "sha256": "84acf3973d8c68bb911171664ef4b29e67bb5de04b40479afcb0c81f38d67ce4",
+      "text": "3. **Read the code** \u2014 inspect actual files, diffs, and test bodies. Never rely on filenames or commit messages as proof.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "feature-status:L79:196ea1e69014",
+      "heading": "Rules",
+      "source_line": 79,
+      "sha256": "196ea1e69014cff1bf9c24f49f6ac0badd0098588dbe299b4a68eee4deab6fc0",
+      "text": "5. **No false greens** \u2014 if you cannot verify an item from proof, mark it \u2753 or \ud83d\udfe1, never \u2705.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "feature-status:L80:1ec15a7a4b85",
+      "heading": "Rules",
+      "source_line": 80,
+      "sha256": "1ec15a7a4b859f1dc0bff02269b988092a7db1e05a4301ccbb4a3a07f4c3e6aa",
+      "text": "6. **Go deeper than the checklist** \u2014 the gap analysis must surface things the developer did not explicitly ask about.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "feature-status:L82:cbffbf2379b4",
+      "heading": "Rules",
+      "source_line": 82,
+      "sha256": "cbffbf2379b4290496090269fb8cb5a3fecc0949dd4627627eedd6f872567c92",
+      "text": "8. **Evidence with references** \u2014 every status must cite a file, line, commit, or test. No hand-waving.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "feature-status:L97:77357dbdaba3",
+      "heading": "Required Inputs",
+      "source_line": 97,
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "text": "## Required Inputs",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "feature-status:L117:3d4b9f171064",
+      "heading": "Required Output",
+      "source_line": 117,
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "text": "## Required Output",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "feature-status:L119:687a410a3960",
+      "heading": "Required Output",
+      "source_line": 119,
+      "sha256": "687a410a3960f347675331e3716b7abc1c7f3821e41f70fc5c79b06d49e564c7",
+      "text": "Every response must include:",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "feature-status:L206:f14995a7f07b",
+      "heading": "Example Request",
+      "source_line": 206,
+      "sha256": "f14995a7f07b76504c615911586021f39e4db1d51d1b77a9d7f6a3681747193d",
+      "text": "Pitch: docs/teams/ai-platform-core-apis/pitches/internal-only-model-framework.md",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "feature-status:L214:8bb681c9e40a",
+      "heading": "Example Follow-Up",
+      "source_line": 214,
+      "sha256": "8bb681c9e40accf99353f5795a677029ab0ad062a288127d58d6f8062e62934a",
+      "text": "> The scope checklist is missing the webhook callback endpoint from the HLD. Add it and re-run Phase 3 for that item only.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "feature-status:L222:6816baa9c06d",
+      "heading": "Evaluation Rubric",
+      "source_line": 222,
+      "sha256": "6816baa9c06d5b598ba9dafaaefbb8524ab7d485f44f4db2cfb375d4f3515e01",
+      "text": "| No false greens | Unverifiable items are marked \u2753 or \ud83d\udfe1, never \u2705 |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "feature-status:L226:51f74f79a397",
+      "heading": "Evaluation Rubric",
+      "source_line": 226,
+      "sha256": "51f74f79a397ca4cfead4d4e82e17e704bacbd9e6f8d4f56e1c9c05cd99d90c2",
+      "text": "| Output contract | The report follows the required output format with all sections populated |",
+      "kind": "invariant",
+      "mapped_to": []
+    }
+  ],
+  "risk_tiers": {
+    "critical": [],
+    "high": [],
+    "standard": []
+  },
+  "source_references": [
+    {
+      "path": "ssot/feature-status.md",
+      "sha256": "91bcee05ee3fdb96307afe52d22244fd1c7141bf91d54b274d510585c5352d13"
+    }
+  ],
+  "known_ambiguities": [],
+  "coverage_policy": {
+    "normative_clauses": "100_percent_mapped_or_waived",
+    "nodes": "positive_and_boundary",
+    "transitions": "all_legal_and_forbidden",
+    "module_pairs": "all_legal_pairs",
+    "high_risk_tuples": "assigned_strength",
+    "critical_mutants": "100_percent_killed"
+  },
+  "normative_clause_coverage": {
+    "total": 17,
+    "mapped": 0,
+    "waived": 0
+  },
+  "review_status": "draft",
+  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs."
+}

@@ -1,0 +1,222 @@
+{
+  "schema_version": "GoalContract.v1",
+  "slug": "architecture",
+  "target": "Fulfill the canonical intent of architecture.",
+  "intended_outcome": "Boundary quality, implementation usability, rejected alternatives, failure awareness, migration safety, and correct routing away from unrelated asks.",
+  "change_class": "unknown",
+  "non_goals": [],
+  "protected_behaviors": [
+    "04d8e6d45308d6386e7f547dfe9628fb74b90b363b0ec31a66131058f0b0412b",
+    "2eac6c7a6b1a3e56eceeceb8da2dbdf005eabe3c17ea260d41d387ad0805ba7b",
+    "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+    "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+    "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+    "0a8e79a060d12a94d58d864d54fdd538d4106b5e3907ec22a329e6b0446238ea",
+    "e63ecfee4a9167cfb7d4be3d1f4efa1fbe32cd31e975c5a009ac93a40cadd77c",
+    "4ff9062c57f5f249c310acecb5360535c35367f30c4e356b9de7f72b3e745ad8",
+    "1e23d48db348b19e25103d75ec783bb1a83de301c30b9dc474860f84d7226b29",
+    "01bb3eecaf408f8fc638f34416c15eb288c6bfa2580a0b11ec86ec4251b09f31",
+    "764a1f78d93f9f3c01413bd1ea932df452e4540f3e17cea539e861e7a079208b",
+    "72b5a2d0b3c2b951edb7e4f0e9da7359ff8a6f6521149e6633cb81a331fd4bf7",
+    "21c4acf6ec7ff046efcc39280e2828227648562f1143529d4a34cab77e86366d",
+    "5b82684f289535056c917362ffe08540413fb7f3699cfc7c59609dc89762d05b",
+    "825ddb017ea9acd43d53677ddb53689139f714334365452df1b1d96d62ec1690",
+    "56dd7611e73fa179a0b67675769339a4c602880433be8fbd4339fc549298c064",
+    "3417c6dd3d4d592ad7f2d15a7fe70eefb29cb9074c82b2875816482e6537a7d9",
+    "c7a2a9e98efd0bf74869f7c5a7c547c7ddbe083d813720ecb4b4a3202c787a50",
+    "02e40b3d1442595bd1248ccc3778f403e566faf362024f1d2dabab681e415709",
+    "365f9818c152b00d703a65cba71a754209d74c8fea94a912abb4d8859c4f09cc",
+    "c22bdb1b8e81e64035cd0cb2ae6f8bc02bcb07c9445af767638e98202d56eb90",
+    "5f14ddd9ba49c2d925eb639b65add54ddf731260764fe3148f26dd12840cae13",
+    "44bc24df870fbcf16f8a710bdd584336afce4b865a2b66b2228b71dfbcc04a53",
+    "822a5d36365e7910204b4640ae4b39cf825644b9ea245c2cd8e45eff9c614223",
+    "46836c815a5ecec4e49e2981742bb7cc8247592e8e2f26b18160025c89c9df84",
+    "c05c6928302db122864f383fc826be21b816c2d92b87615a89a3aaaca92dcbf9",
+    "e9c762ef592f96f46ab4acca0d1204e5499ccd0498508bf879f7f053c64a3fb0",
+    "4d7c6ba61e19d45e3ec2c1006ffa33fed291f797b9f357773cbf6f2f5c85cbd3",
+    "b820d2fd501dc4012bacc3de2b8561e7ea5f16455e3156af0722f608ac2d5ee1",
+    "6f1f8c1439793ec841b24c895e3be6dfd31e680e2a76d7a878141dd99ce01054"
+  ],
+  "editable_behavior": [],
+  "primary_outcome": {
+    "metric": "skill_specific_task_success",
+    "definition": "Boundary quality, implementation usability, rejected alternatives, failure awareness, migration safety, and correct routing away from unrelated asks.",
+    "threshold": "human_review_required"
+  },
+  "secondary_outcomes": [],
+  "regression_limits": {
+    "protected_binary_margin": 0.02,
+    "critical_deterministic": "exact_pass"
+  },
+  "cost_latency_limits": {
+    "profile_caps": {
+      "static": 0,
+      "native": 0,
+      "routing-canary": 300000,
+      "canary": 1250000,
+      "promotion": 5000000,
+      "cross-host": 12000000,
+      "sweep": 30000000
+    }
+  },
+  "runtime_envelope": {
+    "required_cells": [],
+    "cross_host_required_for_pilot": false,
+    "status": "unresolved"
+  },
+  "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
+  "rollback_trigger": "Any protected regression or stale bound evidence.",
+  "source_clause_hashes": [
+    {
+      "sha256": "04d8e6d45308d6386e7f547dfe9628fb74b90b363b0ec31a66131058f0b0412b",
+      "source": "ssot/architecture.md",
+      "text": "Do not use this skill to run orchestration, assign sub-agents, or choose runtime delegation. This skill publishes architecture guidance and decision artifacts only."
+    },
+    {
+      "sha256": "2eac6c7a6b1a3e56eceeceb8da2dbdf005eabe3c17ea260d41d387ad0805ba7b",
+      "source": "ssot/architecture.md",
+      "text": "Do not use this skill when the user mainly needs prompt hardening, capability import judgment, behavioral proof, or persistent multi-file analysis memory."
+    },
+    {
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "source": "ssot/architecture.md",
+      "text": "## Required Inputs"
+    },
+    {
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "source": "ssot/architecture.md",
+      "text": "## Required Output"
+    },
+    {
+      "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+      "source": "ssot/architecture.md",
+      "text": "Every substantial response must include:"
+    },
+    {
+      "sha256": "0a8e79a060d12a94d58d864d54fdd538d4106b5e3907ec22a329e6b0446238ea",
+      "source": "ssot/architecture.md",
+      "text": "- forbidden: runtime routing, agent delegation, workflow control loops, or implementing product code as a side effect of architecture analysis"
+    },
+    {
+      "sha256": "e63ecfee4a9167cfb7d4be3d1f4efa1fbe32cd31e975c5a009ac93a40cadd77c",
+      "source": "ssot/architecture.md",
+      "text": "If the user wants only an inline response, produce the same structure inline and reference the logical artifact names in the output."
+    },
+    {
+      "sha256": "4ff9062c57f5f249c310acecb5360535c35367f30c4e356b9de7f72b3e745ad8",
+      "source": "ssot/architecture.md",
+      "text": "- **Replaceability**: every major module should be replaceable using only its interface contract."
+    },
+    {
+      "sha256": "1e23d48db348b19e25103d75ec783bb1a83de301c30b9dc474860f84d7226b29",
+      "source": "ssot/architecture.md",
+      "text": "- **Explicit trade-offs**: every major recommendation must state what it improves, what it costs, and what was rejected."
+    },
+    {
+      "sha256": "01bb3eecaf408f8fc638f34416c15eb288c6bfa2580a0b11ec86ec4251b09f31",
+      "source": "ssot/architecture.md",
+      "text": "- external systems and dependencies that must be wrapped or isolated"
+    },
+    {
+      "sha256": "764a1f78d93f9f3c01413bd1ea932df452e4540f3e17cea539e861e7a079208b",
+      "source": "ssot/architecture.md",
+      "text": "Every architecture response must include all of the following, even when brief:"
+    },
+    {
+      "sha256": "72b5a2d0b3c2b951edb7e4f0e9da7359ff8a6f6521149e6633cb81a331fd4bf7",
+      "source": "ssot/architecture.md",
+      "text": "#### Required API Outputs"
+    },
+    {
+      "sha256": "21c4acf6ec7ff046efcc39280e2828227648562f1143529d4a34cab77e86366d",
+      "source": "ssot/architecture.md",
+      "text": "#### Required Database Outputs"
+    },
+    {
+      "sha256": "5b82684f289535056c917362ffe08540413fb7f3699cfc7c59609dc89762d05b",
+      "source": "ssot/architecture.md",
+      "text": "#### Required Pattern Outputs"
+    },
+    {
+      "sha256": "825ddb017ea9acd43d53677ddb53689139f714334365452df1b1d96d62ec1690",
+      "source": "ssot/architecture.md",
+      "text": "- Do not default to Singleton for convenience when dependency injection or explicit ownership would keep testability and boundary clarity intact."
+    },
+    {
+      "sha256": "56dd7611e73fa179a0b67675769339a4c602880433be8fbd4339fc549298c064",
+      "source": "ssot/architecture.md",
+      "text": "- pattern recommendations that do not improve testability, replaceability, or ownership"
+    },
+    {
+      "sha256": "3417c6dd3d4d592ad7f2d15a7fe70eefb29cb9074c82b2875816482e6537a7d9",
+      "source": "ssot/architecture.md",
+      "text": "#### Required System Outputs"
+    },
+    {
+      "sha256": "c7a2a9e98efd0bf74869f7c5a7c547c7ddbe083d813720ecb4b4a3202c787a50",
+      "source": "ssot/architecture.md",
+      "text": "1. Never return an architecture recommendation without stating objective, scope, assumptions, and constraints."
+    },
+    {
+      "sha256": "02e40b3d1442595bd1248ccc3778f403e566faf362024f1d2dabab681e415709",
+      "source": "ssot/architecture.md",
+      "text": "2. Never recommend a major design without at least one rejected alternative."
+    },
+    {
+      "sha256": "365f9818c152b00d703a65cba71a754209d74c8fea94a912abb4d8859c4f09cc",
+      "source": "ssot/architecture.md",
+      "text": "3. Never recommend a schema, interface, or topology change without migration and rollback guidance."
+    },
+    {
+      "sha256": "c22bdb1b8e81e64035cd0cb2ae6f8bc02bcb07c9445af767638e98202d56eb90",
+      "source": "ssot/architecture.md",
+      "text": "4. Never hide uncertainty. Mark unknowns explicitly."
+    },
+    {
+      "sha256": "5f14ddd9ba49c2d925eb639b65add54ddf731260764fe3148f26dd12840cae13",
+      "source": "ssot/architecture.md",
+      "text": "5. Never confuse module boundaries with deployment boundaries."
+    },
+    {
+      "sha256": "44bc24df870fbcf16f8a710bdd584336afce4b865a2b66b2228b71dfbcc04a53",
+      "source": "ssot/architecture.md",
+      "text": "6. Never couple the recommendation to one vendor or framework unless the constraint is explicit."
+    },
+    {
+      "sha256": "822a5d36365e7910204b4640ae4b39cf825644b9ea245c2cd8e45eff9c614223",
+      "source": "ssot/architecture.md",
+      "text": "7. Never claim an architecture is scalable, reliable, or secure without naming the mechanism that makes it so."
+    },
+    {
+      "sha256": "46836c815a5ecec4e49e2981742bb7cc8247592e8e2f26b18160025c89c9df84",
+      "source": "ssot/architecture.md",
+      "text": "8. Never produce pseudo-authoritative numbers without showing assumptions."
+    },
+    {
+      "sha256": "c05c6928302db122864f383fc826be21b816c2d92b87615a89a3aaaca92dcbf9",
+      "source": "ssot/architecture.md",
+      "text": "9. Never optimize for novelty over maintainability."
+    },
+    {
+      "sha256": "e9c762ef592f96f46ab4acca0d1204e5499ccd0498508bf879f7f053c64a3fb0",
+      "source": "ssot/architecture.md",
+      "text": "10. Never omit validation steps for a meaningful change."
+    },
+    {
+      "sha256": "4d7c6ba61e19d45e3ec2c1006ffa33fed291f797b9f357773cbf6f2f5c85cbd3",
+      "source": "ssot/architecture.md",
+      "text": "- `Failure-Aware Decisions` must not be `0`"
+    },
+    {
+      "sha256": "b820d2fd501dc4012bacc3de2b8561e7ea5f16455e3156af0722f608ac2d5ee1",
+      "source": "ssot/architecture.md",
+      "text": "- `Migration Clarity` must not be `0`"
+    },
+    {
+      "sha256": "6f1f8c1439793ec841b24c895e3be6dfd31e680e2a76d7a878141dd99ce01054",
+      "source": "ssot/architecture.md",
+      "text": "- `Benchmark Fit` must not be `0`"
+    }
+  ],
+  "review_status": "draft"
+}

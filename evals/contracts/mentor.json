@@ -1,0 +1,138 @@
+{
+  "schema_version": "GoalContract.v1",
+  "slug": "mentor",
+  "target": "Fulfill the canonical intent of mentor.",
+  "intended_outcome": "Preserve the canonical SSOT objective and required output.",
+  "change_class": "unknown",
+  "non_goals": [],
+  "protected_behaviors": [
+    "3aa6ddbb766775567c7bffbdbdf8b84a2050c365187dcc172d842b7f44f29d64",
+    "490408b19753154182c252c18a9e550100119bd9fcd3dc5eb09ea4ed1488eaf1",
+    "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+    "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+    "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+    "1ac3e6f03d4c2d3d6d3a30074635d7bd37a2143bc9c2ddfba5d110429276151f",
+    "42e25a4fc02920b8e2f166416067a9ef74896f487225507b19d59a8329aa6494",
+    "46e81c319d33151f08505802789d057414e0795ba80406512ee5ac1bc04fcfb1",
+    "158ad4536d0ae025c0f3d3790d99f89f02836fd32db217fab64a032235b644ca",
+    "e091d8ee8b1427d38deb8075aa8f59226fa42f0b1782abba8255bbe7e1abe893",
+    "2341d37b08b455f358464e10c19d40f6c753d3d6233cbb3a8a9ee90f65da4c73",
+    "7e7cb2deafccc3e0ba4cd160c24398522bd141f57f170652e32f4cc793ce81bc",
+    "2b0c3fdd8213082c3777ba697c484a1d0f959231dcd58553e09b821d57afd465",
+    "54cff5164562dcc6d2619128fd9b252e7f5d0872b6faf444d510302f069fb93c",
+    "f97ecea7959221708eaeda83258afb3b64e930ee44f0be279b958dc98c717810",
+    "42430cc053948462fbfef70138d6893d06e8c68cf05481c1610f9d5fbdaf748c"
+  ],
+  "editable_behavior": [],
+  "primary_outcome": {
+    "metric": "skill_specific_task_success",
+    "definition": "Canonical task success with protected behavior preserved.",
+    "threshold": "human_review_required"
+  },
+  "secondary_outcomes": [],
+  "regression_limits": {
+    "protected_binary_margin": 0.02,
+    "critical_deterministic": "exact_pass"
+  },
+  "cost_latency_limits": {
+    "profile_caps": {
+      "static": 0,
+      "native": 0,
+      "routing-canary": 300000,
+      "canary": 1250000,
+      "promotion": 5000000,
+      "cross-host": 12000000,
+      "sweep": 30000000
+    }
+  },
+  "runtime_envelope": {
+    "required_cells": [],
+    "cross_host_required_for_pilot": false,
+    "status": "unresolved"
+  },
+  "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
+  "rollback_trigger": "Any protected regression or stale bound evidence.",
+  "source_clause_hashes": [
+    {
+      "sha256": "3aa6ddbb766775567c7bffbdbdf8b84a2050c365187dcc172d842b7f44f29d64",
+      "source": "ssot/mentor.md",
+      "text": "5. Do not call work complete until the expected evidence is available."
+    },
+    {
+      "sha256": "490408b19753154182c252c18a9e550100119bd9fcd3dc5eb09ea4ed1488eaf1",
+      "source": "ssot/mentor.md",
+      "text": "- forbidden: hand-waving over missing evidence, silently skipping stop gates, or replacing specialist review/testing/design work with generic advice when a dedicated capability is a better fit"
+    },
+    {
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "source": "ssot/mentor.md",
+      "text": "## Required Inputs"
+    },
+    {
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "source": "ssot/mentor.md",
+      "text": "## Required Output"
+    },
+    {
+      "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+      "source": "ssot/mentor.md",
+      "text": "Every substantial response must include:"
+    },
+    {
+      "sha256": "1ac3e6f03d4c2d3d6d3a30074635d7bd37a2143bc9c2ddfba5d110429276151f",
+      "source": "ssot/mentor.md",
+      "text": "- evidence required before calling the task done"
+    },
+    {
+      "sha256": "42e25a4fc02920b8e2f166416067a9ef74896f487225507b19d59a8329aa6494",
+      "source": "ssot/mentor.md",
+      "text": "| If the task is primarily about this | Route to | Required handoff |"
+    },
+    {
+      "sha256": "46e81c319d33151f08505802789d057414e0795ba80406512ee5ac1bc04fcfb1",
+      "source": "ssot/mentor.md",
+      "text": "- **\"Done\" requires evidence.** Do not accept \"I fixed it\" without verification."
+    },
+    {
+      "sha256": "158ad4536d0ae025c0f3d3790d99f89f02836fd32db217fab64a032235b644ca",
+      "source": "ssot/mentor.md",
+      "text": "- **No Autonomous Execution**: Never run commands blindly; always ask the user to run or confirm."
+    },
+    {
+      "sha256": "e091d8ee8b1427d38deb8075aa8f59226fa42f0b1782abba8255bbe7e1abe893",
+      "source": "ssot/mentor.md",
+      "text": "- **Source of Truth**: `.beads/issues.jsonl` is the database. `BACKLOG.md` is narrative only."
+    },
+    {
+      "sha256": "2341d37b08b455f358464e10c19d40f6c753d3d6233cbb3a8a9ee90f65da4c73",
+      "source": "ssot/mentor.md",
+      "text": "- **Dual-Entry**: Significant state changes must be reflected in Beads."
+    },
+    {
+      "sha256": "7e7cb2deafccc3e0ba4cd160c24398522bd141f57f170652e32f4cc793ce81bc",
+      "source": "ssot/mentor.md",
+      "text": "- **Canonical Homes**: Every concept has one home. Do not duplicate rules."
+    },
+    {
+      "sha256": "2b0c3fdd8213082c3777ba697c484a1d0f959231dcd58553e09b821d57afd465",
+      "source": "ssot/mentor.md",
+      "text": "- **Separation**: Distinguish between machine-generated views (read-only) and human sources."
+    },
+    {
+      "sha256": "54cff5164562dcc6d2619128fd9b252e7f5d0872b6faf444d510302f069fb93c",
+      "source": "ssot/mentor.md",
+      "text": "4.  **Output**: Present only the refined version."
+    },
+    {
+      "sha256": "f97ecea7959221708eaeda83258afb3b64e930ee44f0be279b958dc98c717810",
+      "source": "ssot/mentor.md",
+      "text": "4.  **Slice Execution:** You can implement code and tests directly. You do not need to hand off to another agent."
+    },
+    {
+      "sha256": "42430cc053948462fbfef70138d6893d06e8c68cf05481c1610f9d5fbdaf748c",
+      "source": "ssot/mentor.md",
+      "text": "**Do not** ask the user to copy-paste terminal output \u2014 just read it."
+    }
+  ],
+  "review_status": "draft"
+}

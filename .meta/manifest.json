@@ -160,7 +160,7 @@
       "modes": [],
       "benchmark_sources": [],
       "quality_profile": "default",
-      "quality_status": "ship",
+      "quality_status": "structural_ready",
       "judge_reports": [
         {
           "pass_number": 1,
@@ -523,7 +523,24 @@
         "Do not let insights remain only in the todo file.",
         "Do not archive mid-initiative."
       ],
-      "modes": [],
+      "modes": [
+        {
+          "mode_slug": "failure-mode-to-avoid",
+          "display_name": "Failure Mode To Avoid",
+          "source_refs": [
+            "ssot/analyze-context.md"
+          ],
+          "mode_summary": "Declared by the canonical `Failure Mode To Avoid` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        }
+      ],
       "benchmark_sources": [],
       "consumption_hints": {},
       "declared_capability": "skill",
@@ -760,7 +777,9 @@
             "Prefer nouns and stable resource boundaries.",
             "Keep auth, pagination, and versioning explicit.",
             "Include at least one explicit rollback path for API changes."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "design-database",
@@ -790,7 +809,9 @@
             "Call out intentional denormalization and failure impact.",
             "Tie indexes to actual query paths.",
             "Include consistency-vs-availability trade-off and rollback checkpoint."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "design-patterns",
@@ -822,7 +843,9 @@
             "Explain trade-offs and why each fit is chosen.",
             "Avoid pattern cargo-culting; always include replacement implications.",
             "Include rollback plan for each non-backward-compatible boundary change."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "system-design",
@@ -854,7 +877,9 @@
           "uplift_notes": [
             "Keep modules replaceable where possible.",
             "Separate policy from mechanism in each subsystem."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         }
       ],
       "benchmark_sources": [
@@ -902,7 +927,7 @@
         }
       ],
       "quality_profile": "architecture",
-      "quality_status": "ship",
+      "quality_status": "structural_ready",
       "judge_reports": [
         {
           "pass_number": 1,
@@ -1176,10 +1201,139 @@
         "Do not run broad candidate search when one sharply framed hypothesis can be tested first.",
         "Do not parallelize dependent verification steps when regenerated artifacts are involved."
       ],
-      "modes": [],
+      "modes": [
+        {
+          "mode_slug": "safe-starting-mode",
+          "display_name": "Safe Starting Mode",
+          "source_refs": [
+            "ssot/auto-research.md"
+          ],
+          "mode_summary": "Declared by the canonical `Safe Starting Mode` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "goal-setup",
+          "display_name": "Goal Setup",
+          "source_refs": [
+            "ssot/auto-research.md"
+          ],
+          "mode_summary": "Declared by the canonical `Mode 1: Goal Setup` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "minimal-loop",
+          "display_name": "Minimal Loop",
+          "source_refs": [
+            "ssot/auto-research.md"
+          ],
+          "mode_summary": "Declared by the canonical `Mode 2: Minimal Loop` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "search-design",
+          "display_name": "Search Design",
+          "source_refs": [
+            "ssot/auto-research.md"
+          ],
+          "mode_summary": "Declared by the canonical `Mode 3: Search Design` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "experiment-loop",
+          "display_name": "Experiment Loop",
+          "source_refs": [
+            "ssot/auto-research.md"
+          ],
+          "mode_summary": "Declared by the canonical `Mode 4: Experiment Loop` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "capability-evaluation",
+          "display_name": "Capability Evaluation",
+          "source_refs": [
+            "ssot/auto-research.md"
+          ],
+          "mode_summary": "Declared by the canonical `Mode 5: Capability Evaluation` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "trace-to-eval",
+          "display_name": "Trace-to-Eval",
+          "source_refs": [
+            "ssot/auto-research.md"
+          ],
+          "mode_summary": "Declared by the canonical `Mode 5: Trace-to-Eval` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "promotion",
+          "display_name": "Promotion",
+          "source_refs": [
+            "ssot/auto-research.md"
+          ],
+          "mode_summary": "Declared by the canonical `Mode 7: Promotion` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        }
+      ],
       "benchmark_sources": [],
       "quality_profile": "default",
-      "quality_status": "ship",
+      "quality_status": "structural_ready",
       "judge_reports": [
         {
           "pass_number": 1,
@@ -1658,7 +1812,24 @@
         "**Conservative.** Prefer false negatives over false positives. If uncertain, don't flag it.",
         "**Actionable.** Every finding \u2265 high severity includes a remediation with complexity estimate."
       ],
-      "modes": [],
+      "modes": [
+        {
+          "mode_slug": "read-only-mode-non-negotiable",
+          "display_name": "READ-ONLY MODE (Non-Negotiable)",
+          "source_refs": [
+            "ssot/codebase-health-audit.md"
+          ],
+          "mode_summary": "Declared by the canonical `READ-ONLY MODE (Non-Negotiable)` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        }
+      ],
       "benchmark_sources": [],
       "consumption_hints": {},
       "declared_capability": "skill",
@@ -1847,7 +2018,24 @@
         "Do not skip the rationale for rejected ideas.",
         "Do not claim execution authority beyond synthesis and recommendation."
       ],
-      "modes": [],
+      "modes": [
+        {
+          "mode_slug": "failure-mode-to-avoid",
+          "display_name": "Failure Mode To Avoid",
+          "source_refs": [
+            "ssot/converge.md"
+          ],
+          "mode_summary": "Declared by the canonical `Failure Mode To Avoid` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        }
+      ],
       "benchmark_sources": [],
       "consumption_hints": {},
       "declared_capability": "both",
@@ -2016,7 +2204,7 @@
       "modes": [],
       "benchmark_sources": [],
       "quality_profile": "default",
-      "quality_status": "ship",
+      "quality_status": "structural_ready",
       "judge_reports": [
         {
           "pass_number": 1,
@@ -2324,7 +2512,24 @@
         "Do not infer behavior from docs alone when code or scripts are available to verify it.",
         "Do not leave the caller with generic advice that lacks file placement or evidence."
       ],
-      "modes": [],
+      "modes": [
+        {
+          "mode_slug": "failure-mode-to-avoid",
+          "display_name": "Failure Mode To Avoid",
+          "source_refs": [
+            "ssot/docs-review-expert.md"
+          ],
+          "mode_summary": "Declared by the canonical `Failure Mode To Avoid` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        }
+      ],
       "benchmark_sources": [
         {
           "label": "Architecture benchmark",
@@ -2541,6 +2746,11 @@
             "validated embedded or relative image asset package when images are used",
             "interaction behavior",
             "DOM and viewport validation evidence"
+          ],
+          "entry_kind": "mode",
+          "invocations": [],
+          "source_refs": [
+            "ssot/dynamic-html-presentations.md"
           ]
         },
         {
@@ -2555,6 +2765,11 @@
           "expected_outputs": [
             "naturally sorted slide PNGs",
             "count, size, and dimension verification"
+          ],
+          "entry_kind": "mode",
+          "invocations": [],
+          "source_refs": [
+            "ssot/dynamic-html-presentations.md"
           ]
         },
         {
@@ -2569,6 +2784,11 @@
             "widescreen PPTX",
             "slide-count verification",
             "flattened-content tradeoff disclosure"
+          ],
+          "entry_kind": "mode",
+          "invocations": [],
+          "source_refs": [
+            "ssot/dynamic-html-presentations.md"
           ]
         },
         {
@@ -2586,12 +2806,17 @@
             "verified PNG set",
             "verified PPTX",
             "artifact and validation summary"
+          ],
+          "entry_kind": "mode",
+          "invocations": [],
+          "source_refs": [
+            "ssot/dynamic-html-presentations.md"
           ]
         }
       ],
       "benchmark_sources": [],
       "quality_profile": "default",
-      "quality_status": "ship",
+      "quality_status": "structural_ready",
       "judge_reports": [
         {
           "blockers": [],
@@ -3228,7 +3453,24 @@
         "Do not invent GitHub or GitLab state from local git alone.",
         "Do not replace companion capability reviews with generic \u201clooks good\u201d language."
       ],
-      "modes": [],
+      "modes": [
+        {
+          "mode_slug": "failure-mode-to-avoid",
+          "display_name": "Failure Mode To Avoid",
+          "source_refs": [
+            "ssot/gitops-review.md"
+          ],
+          "mode_summary": "Declared by the canonical `Failure Mode To Avoid` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        }
+      ],
       "benchmark_sources": [
         {
           "label": "Code Review benchmark",
@@ -3432,10 +3674,75 @@
       "family_slug": "ic-assistant",
       "shared_summary": "Incident Commander Assistant \u2014 keeps the Incident Commander on-process during active incidents. Tracks phase transitions, prompts for required actions, validates artifacts, and flags missed steps per Appian's Incident Commander procedures.",
       "shared_constraints": [],
-      "modes": [],
+      "modes": [
+        {
+          "mode_slug": "generic-mode",
+          "display_name": "Generic Mode",
+          "source_refs": [
+            "ssot/ic-assistant.md"
+          ],
+          "mode_summary": "Declared by the canonical `Generic Mode` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "internal-runbook-mode",
+          "display_name": "Internal Runbook Mode",
+          "source_refs": [
+            "ssot/ic-assistant.md"
+          ],
+          "mode_summary": "Declared by the canonical `Internal Runbook Mode` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "example-generic-mode",
+          "display_name": "Example: Generic Mode",
+          "source_refs": [
+            "ssot/ic-assistant.md"
+          ],
+          "mode_summary": "Declared by the canonical `Example: Generic Mode` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "example-internal-runbook-mode",
+          "display_name": "Example: Internal Runbook Mode",
+          "source_refs": [
+            "ssot/ic-assistant.md"
+          ],
+          "mode_summary": "Declared by the canonical `Example: Internal Runbook Mode` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        }
+      ],
       "benchmark_sources": [],
       "quality_profile": "default",
-      "quality_status": "ship",
+      "quality_status": "structural_ready",
       "judge_reports": [
         {
           "pass_number": 1,
@@ -3665,6 +3972,236 @@
       ]
     },
     {
+      "slug": "instruction-editor",
+      "manifest_version": "capability-fabric.v0",
+      "layers": {
+        "minimal": {
+          "capability_type": "skill",
+          "summary": "Edit prompts, skills, agent instructions, and workflow rules into direct, plain, scannable language without weakening behavior. Use when asked to remove AI-ish, Claude-ish, or ChatGPT-ish phrasing; apply Google developer style; reduce verbosity; tighten a skill; clarify actors and conditions; or preserve semantics while shortening instructions.",
+          "role": "workflow",
+          "domain_tags": [
+            "prompting",
+            "instruction",
+            "editor"
+          ],
+          "required_inputs": [
+            "the instruction artifact or path",
+            "the requested mode, defaulting to `audit`",
+            "any authorized semantic changes",
+            "an upstream Goal Contract or topology when available"
+          ],
+          "expected_outputs": [
+            "`Edited Artifact`",
+            "`Edit Ledger`",
+            "`Preservation Map`",
+            "`Before / After Size`",
+            "`Behavioral Claims Requiring Proof`",
+            "`Unresolved Ambiguities`"
+          ],
+          "tool_policy": {
+            "allowed": [
+              "deterministic classification",
+              "metadata publication",
+              "surface generation"
+            ],
+            "forbidden": [
+              "orchestration",
+              "delegation decisions",
+              "runtime execution control"
+            ]
+          },
+          "resources": [
+            "ssot/instruction-editor.md"
+          ],
+          "packaging_profile": {
+            "capability_type": "skill",
+            "primary_surfaces": {
+              "codex": [
+                "codex_skill"
+              ],
+              "gemini": [
+                "gemini_skill"
+              ],
+              "claude": [
+                "claude_skill"
+              ],
+              "kiro": [
+                "kiro_skill"
+              ]
+            },
+            "wrapper_surfaces": {
+              "codex": [],
+              "gemini": [
+                "skill_wrapper"
+              ],
+              "claude": [
+                "skill_wrapper",
+                "plugin_wrapper"
+              ],
+              "kiro": [
+                "skill_wrapper",
+                "power_wrapper"
+              ]
+            },
+            "notes": [
+              "wrapper surfaces are additive deployment forms, not capability types",
+              "orchestrators must not infer execution authority from wrapper presence alone"
+            ]
+          },
+          "install_target": {
+            "recommended": "repo_local",
+            "confidence": 0.88,
+            "confirmation_required_for_apply": true,
+            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+            "supported": [
+              "global",
+              "repo_local",
+              "both"
+            ]
+          },
+          "emitted_surfaces": {
+            "codex": [
+              "codex_skill"
+            ],
+            "gemini": [
+              "gemini_skill"
+            ],
+            "claude": [
+              "claude_skill"
+            ],
+            "kiro": [
+              "kiro_skill"
+            ]
+          },
+          "source_provenance": {
+            "source_type": "LOCAL_FILE",
+            "normalized_source": "ssot/instruction-editor.md",
+            "policy_rule_id": "ssot.instruction-editor",
+            "content_sha256": "ssot"
+          },
+          "confidence": 0.96,
+          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "Instruction Editor"
+        },
+        "expanded": {
+          "relationship_suggestions": [],
+          "capability_dependencies": [],
+          "overlap_candidates": [],
+          "migration_notes": [
+            "If the capability lands, compare it against existing entries before apply.",
+            "Relationship suggestions are advisory only and do not imply runtime routing."
+          ],
+          "adjustment_recommendations": [
+            "add an explicit primary objective before packaging",
+            "add deterministic in-scope sections to improve routing fitness",
+            "capture quality constraints or non-negotiables"
+          ]
+        },
+        "org_graph": {
+          "org_role": "workflow_provider",
+          "reports_to_suggestions": [],
+          "delegates_to_suggestions": [],
+          "collaborates_with_suggestions": [
+            "prompting",
+            "instruction"
+          ],
+          "authority_tier": "advisory",
+          "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+        }
+      },
+      "display_name": "Instruction Editor",
+      "descriptor_version": "capability-fabric.descriptor.v0",
+      "family_slug": "instruction-editor",
+      "shared_summary": "Edit prompts, skills, agent instructions, and workflow rules into direct, plain, scannable language without weakening behavior. Use when asked to remove AI-ish, Claude-ish, or ChatGPT-ish phrasing; apply Google developer style; reduce verbosity; tighten a skill; clarify actors and conditions; or preserve semantics while shortening instructions.",
+      "shared_constraints": [],
+      "modes": [
+        {
+          "mode_slug": "audit",
+          "display_name": "audit",
+          "source_refs": [
+            "ssot/instruction-editor.md"
+          ],
+          "mode_summary": "Declared by the canonical `audit` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "rewrite",
+          "display_name": "rewrite",
+          "source_refs": [
+            "ssot/instruction-editor.md"
+          ],
+          "mode_summary": "Declared by the canonical `rewrite` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "diff",
+          "display_name": "diff",
+          "source_refs": [
+            "ssot/instruction-editor.md"
+          ],
+          "mode_summary": "Declared by the canonical `diff` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "verify",
+          "display_name": "verify",
+          "source_refs": [
+            "ssot/instruction-editor.md"
+          ],
+          "mode_summary": "Declared by the canonical `verify` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        }
+      ],
+      "benchmark_sources": [],
+      "consumption_hints": {},
+      "declared_capability": "skill",
+      "inferred_capability": "skill",
+      "expected_surface_names": [
+        "codex_skill",
+        "gemini_skill",
+        "claude_skill",
+        "kiro_skill"
+      ],
+      "rubric_version": "capability-fabric.v0",
+      "invocation_hints": [
+        "remove AI-ish, Claude-ish, ChatGPT-ish, corporate, or exhausting phrasing",
+        "apply Google developer documentation style to a prompt or skill",
+        "tighten or shorten instructions without changing behavior",
+        "clarify actors, conditions, commands, or outputs",
+        "audit an instruction artifact for readability or translation risk",
+        "compare an edited instruction against its original contract"
+      ]
+    },
+    {
       "slug": "mentor",
       "manifest_version": "capability-fabric.v0",
       "layers": {
@@ -3818,7 +4355,72 @@
       "family_slug": "mentor",
       "shared_summary": "[Medhat] Senior engineering oversight, planning, and workflow guidance.",
       "shared_constraints": [],
-      "modes": [],
+      "modes": [
+        {
+          "mode_slug": "2-1-standard-help-mode",
+          "display_name": "2.1 Standard Help Mode",
+          "source_refs": [
+            "ssot/mentor.md"
+          ],
+          "mode_summary": "Declared by the canonical `2.1 Standard Help Mode` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "2-2-ult-mode-prompt-engineering",
+          "display_name": "2.2 ULT MODE (Prompt Engineering)",
+          "source_refs": [
+            "ssot/mentor.md"
+          ],
+          "mode_summary": "Declared by the canonical `2.2 ULT MODE (Prompt Engineering)` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "2-3-terminal-cli-mode",
+          "display_name": "2.3 Terminal / CLI Mode",
+          "source_refs": [
+            "ssot/mentor.md"
+          ],
+          "mode_summary": "Declared by the canonical `2.3 Terminal / CLI Mode` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "2-4-diagnostic-mode",
+          "display_name": "2.4 Diagnostic Mode",
+          "source_refs": [
+            "ssot/mentor.md"
+          ],
+          "mode_summary": "Declared by the canonical `2.4 Diagnostic Mode` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        }
+      ],
       "benchmark_sources": [],
       "consumption_hints": {},
       "declared_capability": "both",
@@ -4011,10 +4613,155 @@
       "family_slug": "pitch",
       "shared_summary": "Creates, reviews, scores, improves, and critiques Shape Up pitch documents. Use when working with pitches at any stage: from bootstrapping a new pitch from a goal statement, to hardening an existing pitch for betting, to auditing pitch quality across a portfolio.",
       "shared_constraints": [],
-      "modes": [],
+      "modes": [
+        {
+          "mode_slug": "pitch-create-goal-or-problem-statement",
+          "display_name": "pitch create [goal or problem statement]",
+          "source_refs": [
+            "ssot/pitch.md"
+          ],
+          "mode_summary": "Declared by the canonical `pitch create [goal or problem statement]` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "pitch-review-source",
+          "display_name": "pitch review <source>",
+          "source_refs": [
+            "ssot/pitch.md"
+          ],
+          "mode_summary": "Declared by the canonical `pitch review <source>` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "pitch-score-source",
+          "display_name": "pitch score <source>",
+          "source_refs": [
+            "ssot/pitch.md"
+          ],
+          "mode_summary": "Declared by the canonical `pitch score <source>` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "pitch-improve-source",
+          "display_name": "pitch improve <source>",
+          "source_refs": [
+            "ssot/pitch.md"
+          ],
+          "mode_summary": "Declared by the canonical `pitch improve <source>` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "pitch-compare-source1-source2",
+          "display_name": "pitch compare <source1> <source2>",
+          "source_refs": [
+            "ssot/pitch.md"
+          ],
+          "mode_summary": "Declared by the canonical `pitch compare <source1> <source2>` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "pitch-audit",
+          "display_name": "pitch audit",
+          "source_refs": [
+            "ssot/pitch.md"
+          ],
+          "mode_summary": "Declared by the canonical `pitch audit` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "pitch-bootstrap-goal",
+          "display_name": "pitch bootstrap <goal>",
+          "source_refs": [
+            "ssot/pitch.md"
+          ],
+          "mode_summary": "Declared by the canonical `pitch bootstrap <goal>` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "pitch-export-source-options",
+          "display_name": "pitch export <source> [options]",
+          "source_refs": [
+            "ssot/pitch.md"
+          ],
+          "mode_summary": "Declared by the canonical `pitch export <source> [options]` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "pitch-integration-proof-source",
+          "display_name": "pitch integration-proof <source>",
+          "source_refs": [
+            "ssot/pitch.md"
+          ],
+          "mode_summary": "Declared by the canonical `pitch integration-proof <source>` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        }
+      ],
       "benchmark_sources": [],
       "quality_profile": "default",
-      "quality_status": "ship",
+      "quality_status": "structural_ready",
       "judge_reports": [
         {
           "pass_number": 1,
@@ -4331,7 +5078,422 @@
         "forbidden: send, reply, forward, delete, archive, modify, or label any message during triage. Write commands (`+reply`, `+forward`, `+send`) are ONLY permitted during `/act` mode after explicit per-item user approval.",
         "`gws` CLI authenticated (`gws auth status` must pass)"
       ],
-      "modes": [],
+      "modes": [
+        {
+          "mode_slug": "help",
+          "display_name": "/help",
+          "source_refs": [
+            "ssot/pulse.md"
+          ],
+          "mode_summary": "Declared by the canonical `pulse /help` command table entry.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [
+            "pulse /help"
+          ],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "email",
+          "display_name": "/email",
+          "source_refs": [
+            "ssot/pulse.md"
+          ],
+          "mode_summary": "Declared by the canonical `pulse /email` command table entry.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [
+            "pulse /email"
+          ],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "chat",
+          "display_name": "/chat",
+          "source_refs": [
+            "ssot/pulse.md"
+          ],
+          "mode_summary": "Declared by the canonical `pulse /chat` command table entry.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [
+            "pulse /chat"
+          ],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "hot",
+          "display_name": "/hot",
+          "source_refs": [
+            "ssot/pulse.md"
+          ],
+          "mode_summary": "Declared by the canonical `pulse /hot` command table entry.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [
+            "pulse /hot"
+          ],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "count",
+          "display_name": "/count",
+          "source_refs": [
+            "ssot/pulse.md"
+          ],
+          "mode_summary": "Declared by the canonical `pulse /count` command table entry.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [
+            "pulse /count"
+          ],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "all",
+          "display_name": "/all",
+          "source_refs": [
+            "ssot/pulse.md"
+          ],
+          "mode_summary": "Declared by the canonical `pulse /all` command table entry.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [
+            "pulse /all"
+          ],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "from",
+          "display_name": "/from",
+          "source_refs": [
+            "ssot/pulse.md"
+          ],
+          "mode_summary": "Declared by the canonical `pulse /from` command table entry.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [
+            "pulse /from <person>"
+          ],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "space",
+          "display_name": "/space",
+          "source_refs": [
+            "ssot/pulse.md"
+          ],
+          "mode_summary": "Declared by the canonical `pulse /space` command table entry.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [
+            "pulse /space <name>"
+          ],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "window",
+          "display_name": "/window",
+          "source_refs": [
+            "ssot/pulse.md"
+          ],
+          "mode_summary": "Declared by the canonical `pulse /window` command table entry.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [
+            "pulse /window <time>"
+          ],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "deep",
+          "display_name": "/deep",
+          "source_refs": [
+            "ssot/pulse.md"
+          ],
+          "mode_summary": "Declared by the canonical `pulse /deep` command table entry.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [
+            "pulse /deep"
+          ],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "thread",
+          "display_name": "/thread",
+          "source_refs": [
+            "ssot/pulse.md"
+          ],
+          "mode_summary": "Declared by the canonical `pulse /thread` command table entry.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [
+            "pulse /thread <N>"
+          ],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "open",
+          "display_name": "/open",
+          "source_refs": [
+            "ssot/pulse.md"
+          ],
+          "mode_summary": "Declared by the canonical `pulse /open` command table entry.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [
+            "pulse /open <N...>"
+          ],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "delete",
+          "display_name": "/delete",
+          "source_refs": [
+            "ssot/pulse.md"
+          ],
+          "mode_summary": "Declared by the canonical `pulse /delete` command table entry.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [
+            "pulse /delete <N...>"
+          ],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "archive",
+          "display_name": "/archive",
+          "source_refs": [
+            "ssot/pulse.md"
+          ],
+          "mode_summary": "Declared by the canonical `pulse /archive` command table entry.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [
+            "pulse /archive <N...>"
+          ],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "act",
+          "display_name": "/act",
+          "source_refs": [
+            "ssot/pulse.md"
+          ],
+          "mode_summary": "Declared by the canonical `pulse /act` command table entry.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [
+            "pulse /act"
+          ],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "rate",
+          "display_name": "/rate",
+          "source_refs": [
+            "ssot/pulse.md"
+          ],
+          "mode_summary": "Declared by the canonical `pulse /rate` command table entry.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [
+            "pulse /rate <\u00b1N...>"
+          ],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "memory",
+          "display_name": "/memory",
+          "source_refs": [
+            "ssot/pulse.md"
+          ],
+          "mode_summary": "Declared by the canonical `pulse /memory` command table entry.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [
+            "pulse /memory"
+          ],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "tune",
+          "display_name": "/tune",
+          "source_refs": [
+            "ssot/pulse.md"
+          ],
+          "mode_summary": "Declared by the canonical `pulse /tune` command table entry.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [
+            "pulse /tune"
+          ],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "config",
+          "display_name": "/config",
+          "source_refs": [
+            "ssot/pulse.md"
+          ],
+          "mode_summary": "Declared by the canonical `pulse /config` command table entry.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [
+            "pulse /config"
+          ],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "mute",
+          "display_name": "/mute",
+          "source_refs": [
+            "ssot/pulse.md"
+          ],
+          "mode_summary": "Declared by the canonical `pulse /mute` command table entry.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [
+            "pulse /mute <N...>"
+          ],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "muted",
+          "display_name": "/muted",
+          "source_refs": [
+            "ssot/pulse.md"
+          ],
+          "mode_summary": "Declared by the canonical `pulse /muted` command table entry.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [
+            "pulse /muted"
+          ],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "unmute",
+          "display_name": "/unmute",
+          "source_refs": [
+            "ssot/pulse.md"
+          ],
+          "mode_summary": "Declared by the canonical `pulse /unmute` command table entry.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [
+            "pulse /unmute <N...>"
+          ],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "sweep",
+          "display_name": "/sweep",
+          "source_refs": [
+            "ssot/pulse.md"
+          ],
+          "mode_summary": "Declared by the canonical `pulse /sweep` command table entry.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [
+            "pulse /sweep"
+          ],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        }
+      ],
       "benchmark_sources": [
         {
           "provider": "github",
@@ -4383,7 +5545,7 @@
         }
       ],
       "quality_profile": "default",
-      "quality_status": "ship",
+      "quality_status": "structural_ready",
       "judge_reports": [
         {
           "pass_number": 1,
@@ -4853,7 +6015,312 @@
         "Do not turn grading into generic praise.",
         "Do not claim orchestration, approval, or runtime delegation authority."
       ],
-      "modes": [],
+      "modes": [
+        {
+          "mode_slug": "agentic-orchestration-core-principle-not-a-module",
+          "display_name": "Agentic Orchestration (Core Principle, Not a Module)",
+          "source_refs": [
+            "ssot/supercharge.md"
+          ],
+          "mode_summary": "Declared by the canonical `Agentic Orchestration (Core Principle, Not a Module)` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "module-usage",
+          "display_name": "Module Usage",
+          "source_refs": [
+            "ssot/supercharge.md"
+          ],
+          "mode_summary": "Declared by the canonical `Module Usage` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "per-module-examples",
+          "display_name": "Per-Module Examples",
+          "source_refs": [
+            "ssot/supercharge.md"
+          ],
+          "mode_summary": "Declared by the canonical `Per-Module Examples` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "module-reference-full-spec",
+          "display_name": "MODULE REFERENCE (Full Spec)",
+          "source_refs": [
+            "ssot/supercharge.md"
+          ],
+          "mode_summary": "Declared by the canonical `MODULE REFERENCE (Full Spec)` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "module-ult-ult-agent-prompt-engineer-mode",
+          "display_name": "MODULE: /ult \u2014 ULT-Agent++ (Prompt Engineer Mode)",
+          "source_refs": [
+            "ssot/supercharge.md"
+          ],
+          "mode_summary": "Declared by the canonical `MODULE: /ult \u2014 ULT-Agent++ (Prompt Engineer Mode)` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "mode-behavior",
+          "display_name": "Mode Behavior",
+          "source_refs": [
+            "ssot/supercharge.md"
+          ],
+          "mode_summary": "Declared by the canonical `Mode Behavior` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "module-catchup-deep-forensic-catchup-multi-intent",
+          "display_name": "MODULE: /catchup \u2014 Deep Forensic Catchup (Multi-Intent)",
+          "source_refs": [
+            "ssot/supercharge.md"
+          ],
+          "mode_summary": "Declared by the canonical `MODULE: /catchup \u2014 Deep Forensic Catchup (Multi-Intent)` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "module-basis-first-principles-cost-and-complexity-accounting",
+          "display_name": "MODULE: /basis \u2014 First-Principles Cost and Complexity Accounting",
+          "source_refs": [
+            "ssot/supercharge.md"
+          ],
+          "mode_summary": "Declared by the canonical `MODULE: /basis \u2014 First-Principles Cost and Complexity Accounting` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "module-simple-decomplecting-lens-simple-made-easy",
+          "display_name": "MODULE: /simple \u2014 Decomplecting Lens (\"Simple Made Easy\")",
+          "source_refs": [
+            "ssot/supercharge.md"
+          ],
+          "mode_summary": "Declared by the canonical `MODULE: /simple \u2014 Decomplecting Lens (\"Simple Made Easy\")` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "module-invert-inversion-lens-invert-always-invert",
+          "display_name": "MODULE: /invert \u2014 Inversion Lens (\"Invert, Always Invert\")",
+          "source_refs": [
+            "ssot/supercharge.md"
+          ],
+          "mode_summary": "Declared by the canonical `MODULE: /invert \u2014 Inversion Lens (\"Invert, Always Invert\")` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "module-adversarial-adversarial-red-teaming-devil-s-advocate",
+          "display_name": "MODULE: /adversarial \u2014 Adversarial Red-Teaming (Devil's Advocate)",
+          "source_refs": [
+            "ssot/supercharge.md"
+          ],
+          "mode_summary": "Declared by the canonical `MODULE: /adversarial \u2014 Adversarial Red-Teaming (Devil's Advocate)` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "nested-module-adversarial-debate-surface-bull-bear-decider-debate",
+          "display_name": "Nested Module: /adversarial /debate \u2014 Surface Bull/Bear/Decider Debate",
+          "source_refs": [
+            "ssot/supercharge.md"
+          ],
+          "mode_summary": "Declared by the canonical `Nested Module: /adversarial /debate \u2014 Surface Bull/Bear/Decider Debate` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "nested-module-adversarial-debate-deep-deep-bull-bear-decider-debate",
+          "display_name": "Nested Module: /adversarial /debate /deep \u2014 Deep Bull/Bear/Decider Debate",
+          "source_refs": [
+            "ssot/supercharge.md"
+          ],
+          "mode_summary": "Declared by the canonical `Nested Module: /adversarial /debate /deep \u2014 Deep Bull/Bear/Decider Debate` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "module-contract-2026-contract-qa-unified-spec-evaluation",
+          "display_name": "MODULE: /contract \u2014 2026 Contract + QA (Unified Spec + Evaluation)",
+          "source_refs": [
+            "ssot/supercharge.md"
+          ],
+          "mode_summary": "Declared by the canonical `MODULE: /contract \u2014 2026 Contract + QA (Unified Spec + Evaluation)` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "module-grade-10-iteration-improvement-ladder-score-1-10",
+          "display_name": "MODULE: /grade \u2014 10-Iteration Improvement Ladder (Score 1\u201310)",
+          "source_refs": [
+            "ssot/supercharge.md"
+          ],
+          "mode_summary": "Declared by the canonical `MODULE: /grade \u2014 10-Iteration Improvement Ladder (Score 1\u201310)` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "module-full-illumination-gauntlet-no-execution",
+          "display_name": "MODULE: /full \u2014 Illumination Gauntlet (No Execution)",
+          "source_refs": [
+            "ssot/supercharge.md"
+          ],
+          "mode_summary": "Declared by the canonical `MODULE: /full \u2014 Illumination Gauntlet (No Execution)` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "module-gaslight-gaslight-13-explicit-only",
+          "display_name": "MODULE: /gaslight \u2014 GASLIGHT 13 (Explicit Only)",
+          "source_refs": [
+            "ssot/supercharge.md"
+          ],
+          "mode_summary": "Declared by the canonical `MODULE: /gaslight \u2014 GASLIGHT 13 (Explicit Only)` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "module-stop-ult-exit-ult-mode",
+          "display_name": "MODULE: /stop-ult \u2014 Exit ULT Mode",
+          "source_refs": [
+            "ssot/supercharge.md"
+          ],
+          "mode_summary": "Declared by the canonical `MODULE: /stop-ult \u2014 Exit ULT Mode` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        },
+        {
+          "mode_slug": "failure-mode-to-avoid",
+          "display_name": "Failure Mode To Avoid",
+          "source_refs": [
+            "ssot/supercharge.md"
+          ],
+          "mode_summary": "Declared by the canonical `Failure Mode To Avoid` section.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+          ],
+          "entry_kind": "mode",
+          "invocations": []
+        }
+      ],
       "benchmark_sources": [],
       "consumption_hints": {},
       "declared_capability": "both",
@@ -5051,7 +6518,9 @@
           "uplift_notes": [
             "Include failure and boundary cases.",
             "Prefer readable assertions and deterministic setup."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "generate-e2e-tests",
@@ -5077,7 +6546,9 @@
           "uplift_notes": [
             "Call out test-data setup and synchronization explicitly.",
             "Prefer critical user paths over broad UI clicking."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "edge-cases",
@@ -5103,7 +6574,9 @@
           "uplift_notes": [
             "Rank by business or failure impact.",
             "Avoid flat lists without prioritization."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         },
         {
           "mode_slug": "coverage-analysis",
@@ -5129,7 +6602,9 @@
           "uplift_notes": [
             "Tie missing tests to specific code paths or workflows.",
             "Separate critical gaps from routine improvements."
-          ]
+          ],
+          "entry_kind": "mode",
+          "invocations": []
         }
       ],
       "benchmark_sources": [
@@ -5374,7 +6849,10 @@
             "Next Actions",
             "Behavioral Confidence",
             "Escalation Reason",
-            "Auto-Research Handoff"
+            "Auto-Research Handoff",
+            "Goal Contract and Capability Topology hashes when available",
+            "Eval Impact Plan and hard token cap",
+            "Structural Status (`structural_ready` is not `promote`)"
           ],
           "tool_policy": {
             "allowed": [
@@ -5735,6 +7213,7 @@
       ".gemini/skills/feature-status/SKILL.md",
       ".gemini/skills/gitops-review/SKILL.md",
       ".gemini/skills/ic-assistant/SKILL.md",
+      ".gemini/skills/instruction-editor/SKILL.md",
       ".gemini/skills/mentor/SKILL.md",
       ".gemini/skills/pitch/SKILL.md",
       ".gemini/skills/pulse/SKILL.md",
@@ -5773,6 +7252,7 @@
       ".claude/skills/feature-status/SKILL.md",
       ".claude/skills/gitops-review/SKILL.md",
       ".claude/skills/ic-assistant/SKILL.md",
+      ".claude/skills/instruction-editor/SKILL.md",
       ".claude/skills/mentor/SKILL.md",
       ".claude/skills/pitch/SKILL.md",
       ".claude/skills/pulse/SKILL.md",
@@ -5824,6 +7304,7 @@
       ".kiro/skills/feature-status/SKILL.md",
       ".kiro/skills/gitops-review/SKILL.md",
       ".kiro/skills/ic-assistant/SKILL.md",
+      ".kiro/skills/instruction-editor/SKILL.md",
       ".kiro/skills/mentor/SKILL.md",
       ".kiro/skills/pitch/SKILL.md",
       ".kiro/skills/pulse/SKILL.md",
@@ -5849,6 +7330,7 @@
       ".codex/skills/feature-status/SKILL.md",
       ".codex/skills/gitops-review/SKILL.md",
       ".codex/skills/ic-assistant/SKILL.md",
+      ".codex/skills/instruction-editor/SKILL.md",
       ".codex/skills/mentor/SKILL.md",
       ".codex/skills/pitch/SKILL.md",
       ".codex/skills/pulse/SKILL.md",
@@ -5898,6 +7380,8 @@
       ".codex/skills/gitops-review/resources/capability.json",
       ".codex/skills/ic-assistant/resources/capability.json",
       ".codex/skills/ic-assistant/resources/appian-incident-runbook.md",
+      ".codex/skills/instruction-editor/resources/capability.json",
+      ".codex/skills/instruction-editor/resources/references/instruction-clarity.md",
       ".codex/skills/mentor/resources/capability.json",
       ".codex/skills/pitch/resources/capability.json",
       ".codex/skills/pulse/resources/capability.json",
@@ -5951,6 +7435,8 @@
       ".gemini/skills/gitops-review/resources/capability.json",
       ".gemini/skills/ic-assistant/resources/capability.json",
       ".gemini/skills/ic-assistant/resources/appian-incident-runbook.md",
+      ".gemini/skills/instruction-editor/resources/capability.json",
+      ".gemini/skills/instruction-editor/resources/references/instruction-clarity.md",
       ".gemini/skills/mentor/resources/capability.json",
       ".gemini/skills/pitch/resources/capability.json",
       ".gemini/skills/pulse/resources/capability.json",
@@ -6004,6 +7490,8 @@
       ".claude/skills/gitops-review/resources/capability.json",
       ".claude/skills/ic-assistant/resources/capability.json",
       ".claude/skills/ic-assistant/resources/appian-incident-runbook.md",
+      ".claude/skills/instruction-editor/resources/capability.json",
+      ".claude/skills/instruction-editor/resources/references/instruction-clarity.md",
       ".claude/skills/mentor/resources/capability.json",
       ".claude/skills/pitch/resources/capability.json",
       ".claude/skills/pulse/resources/capability.json",
@@ -6057,6 +7545,8 @@
       ".kiro/skills/gitops-review/resources/capability.json",
       ".kiro/skills/ic-assistant/resources/capability.json",
       ".kiro/skills/ic-assistant/resources/appian-incident-runbook.md",
+      ".kiro/skills/instruction-editor/resources/capability.json",
+      ".kiro/skills/instruction-editor/resources/references/instruction-clarity.md",
       ".kiro/skills/mentor/resources/capability.json",
       ".kiro/skills/pitch/resources/capability.json",
       ".kiro/skills/pulse/resources/capability.json",

@@ -1,0 +1,438 @@
+{
+  "schema_version": "GoalContract.v1",
+  "slug": "pulse",
+  "target": "Fulfill the canonical intent of pulse.",
+  "intended_outcome": "Priority accuracy, conservative uncertainty handling, correct approval boundaries, tool discipline, and no destructive false positives.",
+  "change_class": "unknown",
+  "non_goals": [],
+  "protected_behaviors": [
+    "a35b6e127588fb2b8d120027fe9612e0dc8c1874c057474f8d51558b8e88902f",
+    "3f5c2eb041d9a45b67e98971b27f89db010ed5830cf5df8a3a02c0a26c87ac4e",
+    "41fb3d4c79d7d8e42dd9923b77283c9aea46e0199be676ddd5279d90e78f2101",
+    "20ac10e354c4f428d4ec4b695aa5589abad149cd9040eb9dca25e0d99fb8f726",
+    "c4d23998935eaf43fd8f2078e51d16f7286d167c4b0ec1acb0ca8504da7f9714",
+    "7f2fb54040beedd99d4a778ad6c50774c73edc51274b5bea23bd7a8e6806c52f",
+    "b08cad130d980a6c47fa37b90c3d05c8d7215c999aac2cf5b92086d2a560ae15",
+    "2cb45beb4f45f78151947a7e4860cf58bd5827219e6c943ca935e555df70f038",
+    "0b43cac438002355f1993214cf3e543437179a8d91a01c87ee738e9782f92e2c",
+    "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+    "583b12c7787ceda7c2502e68e73ff754b2a7674def9716df4322d89e14a1256d",
+    "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+    "7363cfd0fc51a80c3ef04f542da4163a9b6b0d3bec0f6e59ecc980a483f0e197",
+    "3992b70df656cf09410040bdea8598a5c974797da9d2de62a06466aeb87f047c",
+    "5a9455d712d78aac206192b763866ba2469702b6002b3eae722a4e92079bbfb5",
+    "f5dd1ee81d602dd1a6ea67d31fb56753430e44adfb3b3951d12e5e15eb694580",
+    "9af93bf9b69079ffa5c713403d0c19330fd0263b3bb65361c9893c2b1f4a5864",
+    "008c17402d8896ca1c135d85128e94c966a81a82c7278675904f6c6938803956",
+    "2e0e09990d45f53c1e4e39fd51b1156e1ec69c9c7928fdf60a5c5afe141e88d5",
+    "781d4010650c7b05e06d165546207b6a1736e6e734187f25693b01bbe6b342f6",
+    "a82d90bfb7b1d244e75f97a7a05b999c1e5a2b2210c6e72c493ab93338e6c033",
+    "050df84335b5343cdb32954be255fdff5a498a9ce6b3753bb9e178a4711cd768",
+    "49654ea5caa6f5e58e9d97f6abc7979b2a441c39e0e1e0ad23a2f88c931c7189",
+    "9ea2048f31782d1d6e82cea49681ef3c6c60add26f589fa6729454a2f798c64c",
+    "4412684a0fa01cfedb254837d30b731f94ce654a76ccbe1479e73b67fd23dd24",
+    "2cdc8c7ad62dc6a74dc6eb2649f86c6a8fa132bfd03760bac690b15764b43144",
+    "2c413e4b1e25eddf2ca6fe4a1dc3a9eae52729fc65062ae39c144dbbce5754b0",
+    "6ab9fa1ac3f53afbd02229209c624a0afc695068ccd2737dc73a5bdb96334eae",
+    "4d5c03a4b6a45ee283f3d7fd8328dcfda9157b1d323ade46fae2a9db204a27ea",
+    "f6141fc71c76aaa2b8a33ea9f03af6f7dcf52be798d8c76a527afad5dfabe217",
+    "72a53acab8460dba58837ddbf895105adbbe949528d292e22ba80b54a15c41c7",
+    "414da4706058c3c7f741072af0b85020ad1f15cf0666e1e995aaee2d5e95c05a",
+    "21cea18b0a087f1183e8874f28d861f6ed226b4399ae55064ea3bba175cf2ea6",
+    "2b2d63bedea24fa51b7717fc00f0be79882c53c2ba33f2ec1b7334bc391e02ea",
+    "a29ffc9328ebb21ceda6b847b18e9585bdeff090a7610e1d4de6b5596002d7f9",
+    "c7f26ac28c1c38452d033bfe0d7603d30e4ca3352a7233848145693061cb7cc6",
+    "9e3ca8874a1da7f51e926cff750ea83c1db6dea719d94bab31f1fe7f1adb1b7e",
+    "5a6092bfcc1f2ce1b25cfe612aeddc65b9d23853f32203622036529c12fb1eb0",
+    "24e78358756a3b6a45af7832163e7d15a22c9a1881b93d754b920504f8770e3e",
+    "ce1cf99622fd0efb923a3dacf5d756ce0b9fb3f853dc0c7d83f0b2239858450d",
+    "86db10d371679d9b13f151df1969bc13a6ec0f8de1afc8da38a465d2940caa64",
+    "757103fac06970051ae15ea4dcaf12672f08c187f5a6595b57fc95271b3937e4",
+    "2d782f5fed8fa1143772df7ff3278277786e4dd230418733b21f13913e17051b",
+    "e136df4ab6f212d208ec5669f879943d5bff9db21cce7e93e5a83fd5e1ff50b2",
+    "2ab0198a7dff188bc48a1004c42b80d176a131c4ade702adf152d66fb55592fe",
+    "63f45e340809b925c3757f6083dc1c8c23b57111f4a9c0c26e3384607561868f",
+    "8488763d032aca6a1821024387b247de3f38618f92b5f2f9bfb017ea4bdbe5c4",
+    "835d2ed8cd15a918fd2a8ff53bd14468c4c7c38f16316c29fbab681b5e46bae1",
+    "a304774228ea73f58f75f41f7f40cfe2c91967b54f230888821af7d074dedcbf",
+    "bcc7db97383bacdaefd1effaaf06a2cde6ac13f43318657a79366fba44ed7f05",
+    "401109e93249c4d2211587472537ff934ba1f6de9dbf7d27744c43f1706b7f13",
+    "54e2e3cbc7884a6705bef680b8335fecec299433ad2bddc79355550ec3f2e2d3",
+    "10736edfea3e2a2905864b96d64ebecde5d1f9a8fb7eae6aaa5ebc588594d40b",
+    "afae242af2450bce7ff462b33fb22abe33c901cb5369091e8680a7d532830708",
+    "3226c183edcddf86df541e0feed8f4ecd7501290e43f248bcb1be38d764e1b25",
+    "0fc8e808576b3f52431f88b1dc7be48af2dd9e99a640570bbbbb8da48f42b1d3",
+    "f65303b4718650820c33d6c44a55b5dae025ceb8bc04086ff728ed3dd003d600",
+    "2a7b9b48b82ddad70772f355ba107cbeb0725ecbc9133eabc86bf4c58cec3113",
+    "106236a346169f8c2d526614f4e5d9d9b2bbad575c9aa62db332aa76c6302e9d",
+    "9f9d339b0d31cdefd6351bd2fe879d2d7fd28b175713439f0cf8965c1928e1cb",
+    "a45e0c3fe6526f36e069c703707982369f5d3de1667e3eae611682866326a208",
+    "4fd018d180b89d520a48f7042dea63c6ea025d20fa432ac2268542a9dd4ea5bf",
+    "94b70b846ae3d5f882cca5a3af5d371f342a1b9a6b63919b786243d92934a9bf",
+    "5d0e6583ac81c512129e1b5c0b56f62f22afaac06575cb1414251ee9d79227e5",
+    "14ad4a061c0f467b4fa6709a11a6cf655bf2d0313c2b5bc61b494742aa9abd7d",
+    "a35faeb97bb3883d195d9fed133cfd2aeb1f57be9feea0cc904d1b39343b68fe"
+  ],
+  "editable_behavior": [],
+  "primary_outcome": {
+    "metric": "skill_specific_task_success",
+    "definition": "Priority accuracy, conservative uncertainty handling, correct approval boundaries, tool discipline, and no destructive false positives.",
+    "threshold": "human_review_required"
+  },
+  "secondary_outcomes": [],
+  "regression_limits": {
+    "protected_binary_margin": 0.02,
+    "critical_deterministic": "exact_pass"
+  },
+  "cost_latency_limits": {
+    "profile_caps": {
+      "static": 0,
+      "native": 0,
+      "routing-canary": 300000,
+      "canary": 1250000,
+      "promotion": 5000000,
+      "cross-host": 12000000,
+      "sweep": 30000000
+    }
+  },
+  "runtime_envelope": {
+    "required_cells": [],
+    "cross_host_required_for_pilot": false,
+    "status": "unresolved"
+  },
+  "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
+  "rollback_trigger": "Any protected regression or stale bound evidence.",
+  "source_clause_hashes": [
+    {
+      "sha256": "a35b6e127588fb2b8d120027fe9612e0dc8c1874c057474f8d51558b8e88902f",
+      "source": "ssot/pulse.md",
+      "text": "description: \"High signal-to-noise comms triage across Gmail and Google Chat. Deterministic priority. Triage is read-only; sweep/act/archive/delete require explicit approval.\""
+    },
+    {
+      "sha256": "3f5c2eb041d9a45b67e98971b27f89db010ed5830cf5df8a3a02c0a26c87ac4e",
+      "source": "ssot/pulse.md",
+      "text": "This skill is **100% read-only** during triage. It MUST NEVER send, reply, forward, delete, archive, or modify any message during triage."
+    },
+    {
+      "sha256": "41fb3d4c79d7d8e42dd9923b77283c9aea46e0199be676ddd5279d90e78f2101",
+      "source": "ssot/pulse.md",
+      "text": "- `gws gmail +reply --id <ID>` \u2014 reply to email (**only during `/act` with user approval**)"
+    },
+    {
+      "sha256": "20ac10e354c4f428d4ec4b695aa5589abad149cd9040eb9dca25e0d99fb8f726",
+      "source": "ssot/pulse.md",
+      "text": "- `gws gmail +forward --id <ID>` \u2014 forward email (**only during `/act` with user approval**)"
+    },
+    {
+      "sha256": "c4d23998935eaf43fd8f2078e51d16f7286d167c4b0ec1acb0ca8504da7f9714",
+      "source": "ssot/pulse.md",
+      "text": "- `gws chat +send` \u2014 send chat message (**only during `/act` with user approval**)"
+    },
+    {
+      "sha256": "7f2fb54040beedd99d4a778ad6c50774c73edc51274b5bea23bd7a8e6806c52f",
+      "source": "ssot/pulse.md",
+      "text": "- `gws gmail users messages modify` \u2014 archive email (**only during `/archive` or `/sweep`, with user approval**)"
+    },
+    {
+      "sha256": "b08cad130d980a6c47fa37b90c3d05c8d7215c999aac2cf5b92086d2a560ae15",
+      "source": "ssot/pulse.md",
+      "text": "- `gws gmail users messages trash` \u2014 delete email (**only during `/delete` or `/sweep`, with user approval**)"
+    },
+    {
+      "sha256": "2cb45beb4f45f78151947a7e4860cf58bd5827219e6c943ca935e555df70f038",
+      "source": "ssot/pulse.md",
+      "text": "Write commands (`+reply`, `+forward`, `+send`) are ONLY allowed during `/act` mode and ONLY after explicit user approval for each action. Pulse triage itself (the default) remains 100% read-only."
+    },
+    {
+      "sha256": "0b43cac438002355f1993214cf3e543437179a8d91a01c87ee738e9782f92e2c",
+      "source": "ssot/pulse.md",
+      "text": "- forbidden: delegation decisions, orchestration, runtime execution control"
+    },
+    {
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "source": "ssot/pulse.md",
+      "text": "## Required Inputs"
+    },
+    {
+      "sha256": "583b12c7787ceda7c2502e68e73ff754b2a7674def9716df4322d89e14a1256d",
+      "source": "ssot/pulse.md",
+      "text": "- `gws` CLI authenticated (`gws auth status` must pass)"
+    },
+    {
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "source": "ssot/pulse.md",
+      "text": "## Required Output"
+    },
+    {
+      "sha256": "7363cfd0fc51a80c3ef04f542da4163a9b6b0d3bec0f6e59ecc980a483f0e197",
+      "source": "ssot/pulse.md",
+      "text": "Every pulse run must include:"
+    },
+    {
+      "sha256": "3992b70df656cf09410040bdea8598a5c974797da9d2de62a06466aeb87f047c",
+      "source": "ssot/pulse.md",
+      "text": "| `pulse /email` | Email only | 20 unread emails |"
+    },
+    {
+      "sha256": "5a9455d712d78aac206192b763866ba2469702b6002b3eae722a4e92079bbfb5",
+      "source": "ssot/pulse.md",
+      "text": "| `pulse /chat` | Chat only | Unread msgs across configured spaces |"
+    },
+    {
+      "sha256": "f5dd1ee81d602dd1a6ea67d31fb56753430e44adfb3b3951d12e5e15eb694580",
+      "source": "ssot/pulse.md",
+      "text": "| `pulse /hot` | High-priority only | \ud83d\udd34+\ud83d\udfe1 only, max 5 items, recency-filtered (12h \ud83d\udd34 / 24h \ud83d\udfe1), executive summary first |"
+    },
+    {
+      "sha256": "9af93bf9b69079ffa5c713403d0c19330fd0263b3bb65361c9893c2b1f4a5864",
+      "source": "ssot/pulse.md",
+      "text": "| `pulse /count` | Counts only, no table | Fastest check: just priority counts per source |"
+    },
+    {
+      "sha256": "008c17402d8896ca1c135d85128e94c966a81a82c7278675904f6c6938803956",
+      "source": "ssot/pulse.md",
+      "text": "| `pulse /act <N>` | Act on specific item | Propose action for item #N only |"
+    },
+    {
+      "sha256": "2e0e09990d45f53c1e4e39fd51b1156e1ec69c9c7928fdf60a5c5afe141e88d5",
+      "source": "ssot/pulse.md",
+      "text": "Help is terminal. Action and guided-workflow commands (`/thread`, `/open`, `/delete`, `/archive`, `/act`, `/rate`, `/memory`, `/tune`, `/config`, `/mute`, `/muted`, `/unmute`, and `/sweep`) do not compose with one another. They may accept only the source filters or arguments their own sections explicitly document. If an invocation contains more than one action or guided-workflow command, stop and ask the user to choose one."
+    },
+    {
+      "sha256": "781d4010650c7b05e06d165546207b6a1736e6e734187f25693b01bbe6b342f6",
+      "source": "ssot/pulse.md",
+      "text": "\ud83d\udce1 Pulse \u2014 Comms Triage (triage is read-only; actions require approval)"
+    },
+    {
+      "sha256": "a82d90bfb7b1d244e75f97a7a05b999c1e5a2b2210c6e72c493ab93338e6c033",
+      "source": "ssot/pulse.md",
+      "text": "pulse /email                   Email only"
+    },
+    {
+      "sha256": "050df84335b5343cdb32954be255fdff5a498a9ce6b3753bb9e178a4711cd768",
+      "source": "ssot/pulse.md",
+      "text": "pulse /chat                    Chat only"
+    },
+    {
+      "sha256": "49654ea5caa6f5e58e9d97f6abc7979b2a441c39e0e1e0ad23a2f88c931c7189",
+      "source": "ssot/pulse.md",
+      "text": "pulse /count                   Priority counts only (fastest)"
+    },
+    {
+      "sha256": "9ea2048f31782d1d6e82cea49681ef3c6c60add26f589fa6729454a2f798c64c",
+      "source": "ssot/pulse.md",
+      "text": "pulse /act <N>                 Propose action for item #N only"
+    },
+    {
+      "sha256": "4412684a0fa01cfedb254837d30b731f94ce654a76ccbe1479e73b67fd23dd24",
+      "source": "ssot/pulse.md",
+      "text": "\ud83d\udd34 Urgent         VIP senders, \"action required\", sole recipient, @mention + urgent"
+    },
+    {
+      "sha256": "2cdc8c7ad62dc6a74dc6eb2649f86c6a8fa132bfd03760bac690b15764b43144",
+      "source": "ssot/pulse.md",
+      "text": "\ud83d\udd35 FYI            Everything else (count only unless \u22645)"
+    },
+    {
+      "sha256": "2c413e4b1e25eddf2ca6fe4a1dc3a9eae52729fc65062ae39c144dbbce5754b0",
+      "source": "ssot/pulse.md",
+      "text": "**`pulse /config` reads and writes this file.** The skill itself never changes."
+    },
+    {
+      "sha256": "6ab9fa1ac3f53afbd02229209c624a0afc695068ccd2737dc73a5bdb96334eae",
+      "source": "ssot/pulse.md",
+      "text": "**When a sender ID is not in the cache:** fall back to the space name as attribution (e.g., \"someone in EGAI\") \u2014 never display \"unknown\" and never guess or fabricate a name."
+    },
+    {
+      "sha256": "4d5c03a4b6a45ee283f3d7fd8328dcfda9157b1d323ade46fae2a9db204a27ea",
+      "source": "ssot/pulse.md",
+      "text": "|          |       | \u2022 Contains: \"urgent\", \"ASAP\", \"blocking\", \"blocked\", \"action required\", \"EOD\", \"critical\" |"
+    },
+    {
+      "sha256": "f6141fc71c76aaa2b8a33ea9f03af6f7dcf52be798d8c76a527afad5dfabe217",
+      "source": "ssot/pulse.md",
+      "text": "|          |       | \u2022 **Always \ud83d\udd35 regardless of other rules. Never promoted above \ud83d\udd35. Excluded from `/hot`.** |"
+    },
+    {
+      "sha256": "72a53acab8460dba58837ddbf895105adbbe949528d292e22ba80b54a15c41c7",
+      "source": "ssot/pulse.md",
+      "text": "- No @mention \u2192 classify by content only"
+    },
+    {
+      "sha256": "414da4706058c3c7f741072af0b85020ad1f15cf0666e1e995aaee2d5e95c05a",
+      "source": "ssot/pulse.md",
+      "text": "**Executive relevance filter (applies to `/hot` only):** After classification and before presentation, apply a final filter that asks: \"Does this require action or a decision from ME specifically, or is it team activity I'm being informed about?\""
+    },
+    {
+      "sha256": "21cea18b0a087f1183e8874f28d861f6ed226b4399ae55064ea3bba175cf2ea6",
+      "source": "ssot/pulse.md",
+      "text": "**Self-message hiding:** Never show items where the sender is you (matching your email or chat user ID), UNLESS:"
+    },
+    {
+      "sha256": "2b2d63bedea24fa51b7717fc00f0be79882c53c2ba33f2ec1b7334bc391e02ea",
+      "source": "ssot/pulse.md",
+      "text": "- **Executive summary first:** Before the table, output 3-5 bullet points summarizing the key actionable items. Format: `[\ud83d\udd34|\ud83d\udfe1] [person/topic]: [what needs your attention] \u2014 [recommended action]`. No age in bullets \u2014 age lives in the table only. This is the primary output \u2014 the table is the detail view."
+    },
+    {
+      "sha256": "a29ffc9328ebb21ceda6b847b18e9585bdeff090a7610e1d4de6b5596002d7f9",
+      "source": "ssot/pulse.md",
+      "text": "- **Max-age filter:** Only show \ud83d\udd34 items \u2264 12h old and \ud83d\udfe1 items \u2264 24h old. Older items drop to a stale footer: `\u23f0 N stale items (>12h/24h) \u2014 run full pulse to see`"
+    },
+    {
+      "sha256": "c7f26ac28c1c38452d033bfe0d7603d30e4ca3352a7233848145693061cb7cc6",
+      "source": "ssot/pulse.md",
+      "text": "- **No plumbing lines.** Omit all meta/stats lines: no \"N emails auto-filtered\", no \"N chat-notification emails suppressed\", no memory/signal counts, no source summary footer, no mute count footer. The only footer lines allowed are: stale count, overflow count, and Jira awareness line (if Jira tickets were downgraded)."
+    },
+    {
+      "sha256": "9e3ca8874a1da7f51e926cff750ea83c1db6dea719d94bab31f1fe7f1adb1b7e",
+      "source": "ssot/pulse.md",
+      "text": "- **No separate action list.** The Action column in the table is sufficient for /hot. Do not append the detailed proposed action list \u2014 it's redundant at this item count."
+    },
+    {
+      "sha256": "5a6092bfcc1f2ce1b25cfe612aeddc65b9d23853f32203622036529c12fb1eb0",
+      "source": "ssot/pulse.md",
+      "text": "- If `/count`, show counts only (no table)"
+    },
+    {
+      "sha256": "24e78358756a3b6a45af7832163e7d15a22c9a1881b93d754b920504f8770e3e",
+      "source": "ssot/pulse.md",
+      "text": "- Only works on email items (chat messages can't be deleted/archived via API)"
+    },
+    {
+      "sha256": "ce1cf99622fd0efb923a3dacf5d756ce0b9fb3f853dc0c7d83f0b2239858450d",
+      "source": "ssot/pulse.md",
+      "text": "| `not_mentioned` | Conditional: only match when you're NOT @mentioned |"
+    },
+    {
+      "sha256": "86db10d371679d9b13f151df1969bc13a6ec0f8de1afc8da38a465d2940caa64",
+      "source": "ssot/pulse.md",
+      "text": "| `no_direct_question` | Conditional: only match when no question is directed at you |"
+    },
+    {
+      "sha256": "757103fac06970051ae15ea4dcaf12672f08c187f5a6595b57fc95271b3937e4",
+      "source": "ssot/pulse.md",
+      "text": "**Safety:** NEVER auto-send. Every response requires explicit approval. NEVER fabricate information."
+    },
+    {
+      "sha256": "2d782f5fed8fa1143772df7ff3278277786e4dd230418733b21f13913e17051b",
+      "source": "ssot/pulse.md",
+      "text": "- `pulse /tune /email` \u2014 only email messages"
+    },
+    {
+      "sha256": "e136df4ab6f212d208ec5669f879943d5bff9db21cce7e93e5a83fd5e1ff50b2",
+      "source": "ssot/pulse.md",
+      "text": "- `pulse /tune /chat` \u2014 only chat messages"
+    },
+    {
+      "sha256": "2ab0198a7dff188bc48a1004c42b80d176a131c4ade702adf152d66fb55592fe",
+      "source": "ssot/pulse.md",
+      "text": "**Storage:** Config lives in `~/.kiro/scratch/pulse/config.json`, never in the generated skill. The agent reads the current JSON values, walks through each property, and writes only that config file after the user approves the proposed changes."
+    },
+    {
+      "sha256": "63f45e340809b925c3757f6083dc1c8c23b57111f4a9c0c26e3384607561868f",
+      "source": "ssot/pulse.md",
+      "text": "- Only update values the user wants to change"
+    },
+    {
+      "sha256": "8488763d032aca6a1821024387b247de3f38618f92b5f2f9bfb017ea4bdbe5c4",
+      "source": "ssot/pulse.md",
+      "text": "- **Stale threads:** messages older than 7 days that were never \ud83d\udd34 or \ud83d\udfe1"
+    },
+    {
+      "sha256": "835d2ed8cd15a918fd2a8ff53bd14468c4c7c38f16316c29fbab681b5e46bae1",
+      "source": "ssot/pulse.md",
+      "text": "- `only <criteria>` \u2014 filter the list by natural language (e.g., `only calendar`, `only datadog`, `only older than 1d`)"
+    },
+    {
+      "sha256": "a304774228ea73f58f75f41f7f40cfe2c91967b54f230888821af7d074dedcbf",
+      "source": "ssot/pulse.md",
+      "text": "**In-session filtering with `only`:**"
+    },
+    {
+      "sha256": "bcc7db97383bacdaefd1effaaf06a2cde6ac13f43318657a79366fba44ed7f05",
+      "source": "ssot/pulse.md",
+      "text": "After the table is shown, `only` re-filters without re-fetching:"
+    },
+    {
+      "sha256": "401109e93249c4d2211587472537ff934ba1f6de9dbf7d27744c43f1706b7f13",
+      "source": "ssot/pulse.md",
+      "text": "> only calendar"
+    },
+    {
+      "sha256": "54e2e3cbc7884a6705bef680b8335fecec299433ad2bddc79355550ec3f2e2d3",
+      "source": "ssot/pulse.md",
+      "text": "> only gitlab              # just GitLab items"
+    },
+    {
+      "sha256": "10736edfea3e2a2905864b96d64ebecde5d1f9a8fb7eae6aaa5ebc588594d40b",
+      "source": "ssot/pulse.md",
+      "text": "> only older than 12h      # just items older than 12 hours"
+    },
+    {
+      "sha256": "afae242af2450bce7ff462b33fb22abe33c901cb5369091e8680a7d532830708",
+      "source": "ssot/pulse.md",
+      "text": "> only siteops datadog    # Site ops + Datadog items"
+    },
+    {
+      "sha256": "3226c183edcddf86df541e0feed8f4ecd7501290e43f248bcb1be38d764e1b25",
+      "source": "ssot/pulse.md",
+      "text": "> only delete              # just items proposed for delete"
+    },
+    {
+      "sha256": "0fc8e808576b3f52431f88b1dc7be48af2dd9e99a640570bbbbb8da48f42b1d3",
+      "source": "ssot/pulse.md",
+      "text": "- NEVER auto-execute. Every batch requires explicit approval."
+    },
+    {
+      "sha256": "f65303b4718650820c33d6c44a55b5dae025ceb8bc04086ff728ed3dd003d600",
+      "source": "ssot/pulse.md",
+      "text": "- All-delete batch: `Type \"delete\" to confirm, or n to cancel` (extra friction for destructive-only operations)"
+    },
+    {
+      "sha256": "2a7b9b48b82ddad70772f355ba107cbeb0725ecbc9133eabc86bf4c58cec3113",
+      "source": "ssot/pulse.md",
+      "text": "- Default to archive, not delete. Only propose delete for vendor marketing, exact duplicates, or obvious spam."
+    },
+    {
+      "sha256": "106236a346169f8c2d526614f4e5d9d9b2bbad575c9aa62db332aa76c6302e9d",
+      "source": "ssot/pulse.md",
+      "text": "- NEVER propose archiving/deleting messages from VIPs or direct reports."
+    },
+    {
+      "sha256": "9f9d339b0d31cdefd6351bd2fe879d2d7fd28b175713439f0cf8965c1928e1cb",
+      "source": "ssot/pulse.md",
+      "text": "- NEVER propose archiving/deleting messages classified as \ud83d\udd34 or \ud83d\udfe1."
+    },
+    {
+      "sha256": "a45e0c3fe6526f36e069c703707982369f5d3de1667e3eae611682866326a208",
+      "source": "ssot/pulse.md",
+      "text": "- Triage mode (default) is 100% read-only \u2014 it never sends, modifies, or deletes anything."
+    },
+    {
+      "sha256": "4fd018d180b89d520a48f7042dea63c6ea025d20fa432ac2268542a9dd4ea5bf",
+      "source": "ssot/pulse.md",
+      "text": "- `/act` mode can send replies/messages, but ONLY with explicit per-item user approval."
+    },
+    {
+      "sha256": "94b70b846ae3d5f882cca5a3af5d371f342a1b9a6b63919b786243d92934a9bf",
+      "source": "ssot/pulse.md",
+      "text": "- It never auto-sends, auto-archives, or auto-deletes. Ever."
+    },
+    {
+      "sha256": "5d0e6583ac81c512129e1b5c0b56f62f22afaac06575cb1414251ee9d79227e5",
+      "source": "ssot/pulse.md",
+      "text": "After reviewing pulse output, the user may want to act. Pulse surfaces the ID and suggests the command but **never auto-executes**:"
+    },
+    {
+      "sha256": "14ad4a061c0f467b4fa6709a11a6cf655bf2d0313c2b5bc61b494742aa9abd7d",
+      "source": "ssot/pulse.md",
+      "text": "### Example: Hot items only"
+    },
+    {
+      "sha256": "a35faeb97bb3883d195d9fed133cfd2aeb1f57be9feea0cc904d1b39343b68fe",
+      "source": "ssot/pulse.md",
+      "text": "Returns only \ud83d\udd34 and \ud83d\udfe1 items, skipping \ud83d\udd35 FYI noise."
+    }
+  ],
+  "review_status": "draft"
+}

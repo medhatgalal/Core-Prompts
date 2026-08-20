@@ -1,0 +1,122 @@
+{
+  "schema_version": "GoalContract.v1",
+  "slug": "code-review",
+  "target": "Fulfill the canonical intent of code-review.",
+  "intended_outcome": "Seeded-defect recall, precision, severity calibration, evidence quality, actionable findings, low noise, and no unauthorized edits.",
+  "change_class": "unknown",
+  "non_goals": [],
+  "protected_behaviors": [
+    "10106438e84f3835333b1fe0221eb483c80ecd0408fa13eb20b9db3ba369f912",
+    "27ff8d3f2a4cf7f6a0c62d38bfeb53a5853926d9e95035748db74c8a017cf091",
+    "b3c42c190f3a838d9eda24a9a6cd35d3987307b0a03edca877076e4cf4eda87a",
+    "c2e0cc42774e19e3e939c8ded9171cb43f9e3d24100b20dbcb28a1e5a18fa686",
+    "23aca3d331b09e9e3cf2cc236213929c713eb27b58d0c7528ee442021717d1e9",
+    "37b9b510e11d3d41e0fc01a4bf0abd3e969f631b6e07cc1bbad1e850ae0bb6ee",
+    "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+    "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+    "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+    "69e2d69e633b3d0936215810f75fc2527ee735626295c990ce7768e6967df477",
+    "d2e95eececf55eecf480dad0149d460303dc1380f7db3cb1883cf57b92c8a2d0",
+    "39749905ad533aa83fe2dd42cc12a5a23f2c959c6d3af474b055fe556c94402c",
+    "6ec4931c2502f4903591cdd096bd5452dc3b51bc580428b092157d46e17c6ba7"
+  ],
+  "editable_behavior": [],
+  "primary_outcome": {
+    "metric": "skill_specific_task_success",
+    "definition": "Seeded-defect recall, precision, severity calibration, evidence quality, actionable findings, low noise, and no unauthorized edits.",
+    "threshold": "human_review_required"
+  },
+  "secondary_outcomes": [],
+  "regression_limits": {
+    "protected_binary_margin": 0.02,
+    "critical_deterministic": "exact_pass"
+  },
+  "cost_latency_limits": {
+    "profile_caps": {
+      "static": 0,
+      "native": 0,
+      "routing-canary": 300000,
+      "canary": 1250000,
+      "promotion": 5000000,
+      "cross-host": 12000000,
+      "sweep": 30000000
+    }
+  },
+  "runtime_envelope": {
+    "required_cells": [
+      "anchor"
+    ],
+    "cross_host_required_for_pilot": false,
+    "status": "unresolved"
+  },
+  "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
+  "rollback_trigger": "Any protected regression or stale bound evidence.",
+  "source_clause_hashes": [
+    {
+      "sha256": "10106438e84f3835333b1fe0221eb483c80ecd0408fa13eb20b9db3ba369f912",
+      "source": "ssot/code-review.md",
+      "text": "description: \"Review staged changes, diffs, or commits before commit, push, merge, or release. Use for findings, scope control, message quality, over-engineering detection, and merge readiness. Do not use to apply reviewer-requested fixes; use address-code-review for that action workflow.\""
+    },
+    {
+      "sha256": "27ff8d3f2a4cf7f6a0c62d38bfeb53a5853926d9e95035748db74c8a017cf091",
+      "source": "ssot/code-review.md",
+      "text": "Use this before you create a commit, before you push a branch, before an MR/PR is merged, or after a fix commit has been prepared. Do not use this capability to modify files or apply reviewer feedback; use `address-code-review` when the user wants selected PR/MR review comments implemented."
+    },
+    {
+      "sha256": "b3c42c190f3a838d9eda24a9a6cd35d3987307b0a03edca877076e4cf4eda87a",
+      "source": "ssot/code-review.md",
+      "text": "Default to `code-review` for pre-commit or pre-push checks. Switch to `address-code-review` only when the user explicitly wants to inspect and implement existing PR/MR review comments."
+    },
+    {
+      "sha256": "c2e0cc42774e19e3e939c8ded9171cb43f9e3d24100b20dbcb28a1e5a18fa686",
+      "source": "ssot/code-review.md",
+      "text": "- **Scope discipline**: changes must match what the commit message describes"
+    },
+    {
+      "sha256": "23aca3d331b09e9e3cf2cc236213929c713eb27b58d0c7528ee442021717d1e9",
+      "source": "ssot/code-review.md",
+      "text": "5. End with a clear readiness decision: ready, blocked, or split required."
+    },
+    {
+      "sha256": "37b9b510e11d3d41e0fc01a4bf0abd3e969f631b6e07cc1bbad1e850ae0bb6ee",
+      "source": "ssot/code-review.md",
+      "text": "- forbidden: applying fixes, modifying files, staging changes, silent approval, hidden execution, or claiming code quality is fine without reading the diff"
+    },
+    {
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "source": "ssot/code-review.md",
+      "text": "## Required Inputs"
+    },
+    {
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "source": "ssot/code-review.md",
+      "text": "## Required Output"
+    },
+    {
+      "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+      "source": "ssot/code-review.md",
+      "text": "Every substantial response must include:"
+    },
+    {
+      "sha256": "69e2d69e633b3d0936215810f75fc2527ee735626295c990ce7768e6967df477",
+      "source": "ssot/code-review.md",
+      "text": "If nothing is staged, inspect the working-tree diff only after saying that the review is not a commit-ready staged review."
+    },
+    {
+      "sha256": "d2e95eececf55eecf480dad0149d460303dc1380f7db3cb1883cf57b92c8a2d0",
+      "source": "ssot/code-review.md",
+      "text": "[Ready for MR / Needs revision before MR / Split required]"
+    },
+    {
+      "sha256": "39749905ad533aa83fe2dd42cc12a5a23f2c959c6d3af474b055fe556c94402c",
+      "source": "ssot/code-review.md",
+      "text": "- Never skip reading the actual diff."
+    },
+    {
+      "sha256": "6ec4931c2502f4903591cdd096bd5452dc3b51bc580428b092157d46e17c6ba7",
+      "source": "ssot/code-review.md",
+      "text": "- Do not rubber-stamp a commit just because tests pass."
+    }
+  ],
+  "review_status": "draft"
+}

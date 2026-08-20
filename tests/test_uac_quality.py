@@ -14,7 +14,7 @@ def test_load_quality_profile_auto_resolves_architecture() -> None:
     assert profile.targets["operational_richness"] == 10
 
 
-def test_run_quality_loop_ships_rich_architecture_candidate() -> None:
+def test_run_quality_loop_marks_rich_architecture_candidate_structural_ready() -> None:
     profile = load_quality_profile(ROOT, "architecture", "auto")
     candidate = (ROOT / "ssot" / "architecture.md").read_text(encoding="utf-8")
     descriptor = json.loads((ROOT / ".meta" / "capabilities" / "architecture.json").read_text(encoding="utf-8"))
@@ -29,7 +29,7 @@ def test_run_quality_loop_ships_rich_architecture_candidate() -> None:
         max_passes=2,
     )
 
-    assert result["status"] == "ship"
+    assert result["status"] == "structural_ready"
     assert result["pass_count"] >= 1
     assert result["scorecard"]["benchmark_readiness"] >= 9
 

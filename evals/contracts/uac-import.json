@@ -1,0 +1,146 @@
+{
+  "schema_version": "GoalContract.v1",
+  "slug": "uac-import",
+  "target": "Fulfill the canonical intent of uac-import.",
+  "intended_outcome": "Source fidelity, correct capability classification, overlap detection, safe landing decisions, and no invented behavioral confidence.",
+  "change_class": "unknown",
+  "non_goals": [],
+  "protected_behaviors": [
+    "f0d947235149d1f776768e53d1bf7eedf6a3f1c185fe10202d102117f85900ec",
+    "83466994e31cb2c5e6568d5df77cc763081ee051e50abf72e348e72013992fb1",
+    "0246bb0452fe016af5e26128122b13e5ef8d943ff6ccd5b437ec5bc65ecf7a89",
+    "4d6263b784139fcdeeeddd1cd03f337fc233055c2de3a8137c9e2a0c287ec390",
+    "3f9a1f147e6e133a3feeac1a08cfb5db72dfa1a4c747847010083ac79fedfd29",
+    "9f04d56b0bac1f7f21a2015dd78cc7745a875637446334978e7eb150a83fccc8",
+    "8ba44b003e7802e5edbf123da16ba40d579aea91b43e247eb6a42d142d65e3ed",
+    "8ad70d4c06b16e005d561cdd08c46311a9385b5842db5c4e79665d51ff7fcf09",
+    "83399f43a9a4c2ae0341169788c0a4f12047bb607cee1f0e50ad938909f4d0e0",
+    "6397b7ce935c0f25a9fd35cca62f78acddd359f26c000fc5526103d13c9108b4",
+    "8b7d3b86f45cf9e39a25bd970d482b06234211b23fc3fb4691490fc2797daeb9",
+    "ac7451b13f5c5b2f0d31ac5063147f068699bbaf54b33c233bd9e50d202ada73",
+    "5fa704203d22267e2fd77798404d1ece0e39b7169e5d94e5d9c37ed521a677a0",
+    "2fdb6c8bba0dc7fbeb44b7383c59db630edc3db3578cbbd862ffb00c2dd44509",
+    "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+    "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+    "b6fcb2a657d0469d0e90e1804952d2fc81b2e0e5ec4cd42e1ac08d62715f0c60"
+  ],
+  "editable_behavior": [],
+  "primary_outcome": {
+    "metric": "skill_specific_task_success",
+    "definition": "Source fidelity, correct capability classification, overlap detection, safe landing decisions, and no invented behavioral confidence.",
+    "threshold": "human_review_required"
+  },
+  "secondary_outcomes": [],
+  "regression_limits": {
+    "protected_binary_margin": 0.02,
+    "critical_deterministic": "exact_pass"
+  },
+  "cost_latency_limits": {
+    "profile_caps": {
+      "static": 0,
+      "native": 0,
+      "routing-canary": 300000,
+      "canary": 1250000,
+      "promotion": 5000000,
+      "cross-host": 12000000,
+      "sweep": 30000000
+    }
+  },
+  "runtime_envelope": {
+    "required_cells": [
+      "anchor"
+    ],
+    "cross_host_required_for_pilot": false,
+    "status": "unresolved"
+  },
+  "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
+  "rollback_trigger": "Any protected regression or stale bound evidence.",
+  "source_clause_hashes": [
+    {
+      "sha256": "f0d947235149d1f776768e53d1bf7eedf6a3f1c185fe10202d102117f85900ec",
+      "source": "ssot/uac-import.md",
+      "text": "Deterministic clarity lint from `instruction_clarity.v1` is available in every mode and enabled by default for `audit`, `plan`, and `judge`. It is advisory and never counts as behavioral evidence."
+    },
+    {
+      "sha256": "83466994e31cb2c5e6568d5df77cc763081ee051e50abf72e348e72013992fb1",
+      "source": "ssot/uac-import.md",
+      "text": "- deploy is separate and must never be implied by `apply`"
+    },
+    {
+      "sha256": "0246bb0452fe016af5e26128122b13e5ef8d943ff6ccd5b437ec5bc65ecf7a89",
+      "source": "ssot/uac-import.md",
+      "text": "- when shell entrypoints are required to complete the workflow, say so explicitly instead of assuming the caller knows them"
+    },
+    {
+      "sha256": "4d6263b784139fcdeeeddd1cd03f337fc233055c2de3a8137c9e2a0c287ec390",
+      "source": "ssot/uac-import.md",
+      "text": "13. Search for benchmark sources only when the source is generic or fit confidence is weak."
+    },
+    {
+      "sha256": "3f9a1f147e6e133a3feeac1a08cfb5db72dfa1a4c747847010083ac79fedfd29",
+      "source": "ssot/uac-import.md",
+      "text": "14. Rename the former structural `ship` result to `structural_ready`. It proves only that deterministic UAC gates passed."
+    },
+    {
+      "sha256": "9f04d56b0bac1f7f21a2015dd78cc7745a875637446334978e7eb150a83fccc8",
+      "source": "ssot/uac-import.md",
+      "text": "17. Materialize a new baseline only after an independent `promote` verdict, or preserve a valid historical baseline without rewriting its lineage."
+    },
+    {
+      "sha256": "8ba44b003e7802e5edbf123da16ba40d579aea91b43e247eb6a42d142d65e3ed",
+      "source": "ssot/uac-import.md",
+      "text": "- forbidden: inventing capability strength that the source does not support, deploying to user homes during `apply`, or silently widening surface recommendations to satisfy packaging preferences"
+    },
+    {
+      "sha256": "8ad70d4c06b16e005d561cdd08c46311a9385b5842db5c4e79665d51ff7fcf09",
+      "source": "ssot/uac-import.md",
+      "text": "- For folders or repo trees, only group files that were actually inventoried."
+    },
+    {
+      "sha256": "83399f43a9a4c2ae0341169788c0a4f12047bb607cee1f0e50ad938909f4d0e0",
+      "source": "ssot/uac-import.md",
+      "text": "- If the source is config-only, require manual review instead of pretending it is a prompt."
+    },
+    {
+      "sha256": "6397b7ce935c0f25a9fd35cca62f78acddd359f26c000fc5526103d13c9108b4",
+      "source": "ssot/uac-import.md",
+      "text": "- Never make orchestration or delegation decisions. Publish advisory metadata only."
+    },
+    {
+      "sha256": "8b7d3b86f45cf9e39a25bd970d482b06234211b23fc3fb4691490fc2797daeb9",
+      "source": "ssot/uac-import.md",
+      "text": "- Quality review artifacts are advisory evidence; they must not encode runtime routing policy."
+    },
+    {
+      "sha256": "ac7451b13f5c5b2f0d31ac5063147f068699bbaf54b33c233bd9e50d202ada73",
+      "source": "ssot/uac-import.md",
+      "text": "- Do not make UAC the long-term owner of behavioral evaluation logic; route to `auto-research` when bounded behavioral proof is needed."
+    },
+    {
+      "sha256": "5fa704203d22267e2fd77798404d1ece0e39b7169e5d94e5d9c37ed521a677a0",
+      "source": "ssot/uac-import.md",
+      "text": "- Do not ingest the Google Style Guide as permissive HTML. Use the reviewed local `instruction_clarity.v1` adapter and preserve the URL content-type rejection boundary."
+    },
+    {
+      "sha256": "2fdb6c8bba0dc7fbeb44b7383c59db630edc3db3578cbbd862ffb00c2dd44509",
+      "source": "ssot/uac-import.md",
+      "text": "- Do not let UAC author a candidate, define or view the sealed promotion set, judge the candidate, and waive its own failures."
+    },
+    {
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "source": "ssot/uac-import.md",
+      "text": "## Required Inputs"
+    },
+    {
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "source": "ssot/uac-import.md",
+      "text": "## Required Output"
+    },
+    {
+      "sha256": "b6fcb2a657d0469d0e90e1804952d2fc81b2e0e5ec4cd42e1ac08d62715f0c60",
+      "source": "ssot/uac-import.md",
+      "text": "| If the import uncovers this need | Route to | Required handoff |"
+    }
+  ],
+  "review_status": "draft"
+}

@@ -208,5 +208,22 @@
         "## Invocation"
       ]
     }
-  ]
+  ],
+  "job_contract": {
+    "primary_job": "Produce a fact-checked periodic narrative from several source systems with traceable appendices.",
+    "use_when": "Leadership or a team needs one forwardable weekly intelligence report across repos, trackers, and communications.",
+    "works_on": "Multiple source systems, reporting windows, metrics, claims, citations, and executive narrative.",
+    "main_output": "One executive report with technical appendices and internal consistency checks.",
+    "not_for": "A git-only engineering dashboard, personal inbox triage, or product feature completeness alone.",
+    "authority": "Read-only reporting; it must not modify source systems.",
+    "routing_question": "Is the report multi-source and executive, repo-activity focused, or about one feature's completeness?",
+    "nearest_neighbors": [
+      "eng-report",
+      "pulse",
+      "feature-status",
+      "converge"
+    ],
+    "shape": "report_workflow",
+    "portfolio_action": "keep_and_clarify_boundary"
+  }
 }

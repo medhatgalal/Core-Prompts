@@ -24,6 +24,8 @@ from intent_pipeline.consumer_shell import (
 )
 from intent_pipeline.uac_descriptors import build_descriptor, load_descriptor, save_descriptor, source_note_path
 from intent_pipeline.uac_baselines import resolve_historical_baseline
+from intent_pipeline.uac_modes import extract_declared_modes, normalize_mode_entries
+from intent_pipeline.skill_jobs import load_skill_job_map_for_build, render_skill_job_map
 from intent_pipeline.uac_ssot import build_ssot_handoff_contract, build_ssot_manifest_entry, extract_section_bullets, load_ssot_entries
 
 SSOT_DIR = ROOT / 'ssot'
@@ -37,6 +39,8 @@ CONSUMER_SHELL_DIR = ROOT / 'dist' / 'consumer-shell'
 CATALOG_DOC_PATH = ROOT / 'docs' / 'CAPABILITY-CATALOG.md'
 STATUS_DOC_PATH = ROOT / 'docs' / 'STATUS.md'
 RELEASE_DELTA_DOC_PATH = ROOT / 'docs' / 'RELEASE-DELTA.md'
+SKILL_JOB_MAP_PATH = META_DIR / 'skill-job-map.json'
+SKILL_JOB_MAP_DOC_PATH = ROOT / 'docs' / 'SKILL-JOB-MAP.md'
 
 GEMINI_SKILL_DIR = ROOT / '.gemini' / 'skills'
 GEMINI_AGENT_DIR = ROOT / '.gemini' / 'agents'
@@ -492,14 +496,17 @@ def copy_capability_resources(surface_name: str, slug: str) -> list[str]:
     return copied
 
 
-def resolve_descriptor(entry, manifest_entry: dict[str, object]) -> dict[str, object]:
+def resolve_descriptor(entry, manifest_entry: dict[str, object], job_contract: dict[str, object]) -> dict[str, object]:
     defaults = descriptor_defaults(entry.slug, entry.display_name)
     baseline = resolve_historical_baseline(ROOT, entry.slug)
     baseline_payload = baseline.as_payload()
     validation_matrix = [scenario.as_payload() for scenario in baseline.scenario_matrix]
+    extracted_modes = extract_declared_modes(entry.slug, entry.body)
     section_constraints = tuple(extract_section_bullets(entry.body, '## Constraints'))
     descriptor = load_descriptor(ROOT, entry.slug)
     if descriptor:
+        stored_quality_status = descriptor.get('quality_status')
+        normalized_quality_status = 'structural_ready' if stored_quality_status == 'ship' else stored_quality_status
         resolved = build_descriptor(
             manifest=manifest_entry,
             display_name=str(
@@ -512,10 +519,10 @@ def resolve_descriptor(entry, manifest_entry: dict[str, object]) -> dict[str, ob
             family_slug=str(descriptor.get('family_slug') or entry.slug),
             shared_summary=str(descriptor.get('shared_summary') or manifest_entry['layers']['minimal'].get('summary') or ''),
             shared_constraints=section_constraints or tuple(descriptor.get('shared_constraints') or ()),
-            modes=tuple(descriptor.get('modes') or ()),
+            modes=tuple(normalize_mode_entries(descriptor.get('modes') or extracted_modes, entry.slug)),
             benchmark_sources=tuple(descriptor.get('benchmark_sources') or defaults.get('benchmark_sources') or ()),
             quality_profile=str(descriptor.get('quality_profile')) if descriptor.get('quality_profile') is not None else None,
-            quality_status=str(descriptor.get('quality_status')) if descriptor.get('quality_status') is not None else None,
+            quality_status=str(normalized_quality_status) if normalized_quality_status is not None else None,
             judge_reports=tuple(descriptor.get('judge_reports') or ()),
             consumption_hints=dict(descriptor.get('consumption_hints') or defaults.get('consumption_hints') or {}),
             quality_pass_count=descriptor.get('quality_pass_count'),
@@ -523,6 +530,8 @@ def resolve_descriptor(entry, manifest_entry: dict[str, object]) -> dict[str, ob
             historical_baseline=dict(descriptor.get('historical_baseline') or baseline_payload),
             quality_validation_matrix=tuple(descriptor.get('quality_validation_matrix') or validation_matrix),
         )
+        if stored_quality_status == 'ship' or descriptor.get('legacy_quality_status') == 'ship':
+            resolved['legacy_quality_status'] = 'ship'
         descriptor_layers = descriptor.get('layers') or {}
         if isinstance(descriptor_layers, dict):
             resolved_layers = resolved.setdefault('layers', {})
@@ -560,6 +569,7 @@ def resolve_descriptor(entry, manifest_entry: dict[str, object]) -> dict[str, ob
             manifest=manifest_entry,
             display_name=str(defaults.get('display_name') or entry.display_name),
             shared_constraints=section_constraints,
+            modes=tuple(normalize_mode_entries(extracted_modes, entry.slug)),
             benchmark_sources=tuple(defaults.get('benchmark_sources') or ()),
             consumption_hints=dict(defaults.get('consumption_hints') or {}),
             historical_baseline=baseline_payload,
@@ -578,6 +588,7 @@ def resolve_descriptor(entry, manifest_entry: dict[str, object]) -> dict[str, ob
                 else item
                 for item in artifact_conventions
             ]
+    resolved['job_contract'] = json.loads(json.dumps(job_contract))
     save_descriptor(ROOT, entry.slug, resolved)
     return resolved
 
@@ -631,6 +642,14 @@ def main():
     entries = load_ssot_entries(SSOT_DIR)
     if not entries:
         raise SystemExit('No SSOT files found in ssot/')
+    job_map = load_skill_job_map_for_build(
+        SKILL_JOB_MAP_PATH,
+        {
+            entry.slug: {"display_name": entry.display_name, "description": entry.description}
+            for entry in entries
+        },
+    )
+    write_json_if_changed(SKILL_JOB_MAP_PATH, job_map)
 
     generator = {
         'script': 'scripts/build-surfaces.py',
@@ -648,7 +667,7 @@ def main():
     for entry in entries:
         cleanup_slug_outputs(entry.slug)
         manifest_entry = build_ssot_manifest_entry(entry, ROOT, merge_descriptor=False)
-        resolve_descriptor(entry, manifest_entry)
+        resolve_descriptor(entry, manifest_entry, job_map['skills'][entry.slug])
         manifest_entry = build_ssot_manifest_entry(entry, ROOT)
         descriptor = load_descriptor(ROOT, entry.slug) or {}
         generated['ssot_sources'].append(manifest_entry)
@@ -714,6 +733,10 @@ def main():
     write_text_if_changed(CATALOG_DOC_PATH, render_catalog_markdown(catalog_payload))
     write_text_if_changed(RELEASE_DELTA_DOC_PATH, render_release_delta_markdown(release_delta_payload))
     write_text_if_changed(STATUS_DOC_PATH, render_status_markdown(status_payload))
+    write_text_if_changed(
+        SKILL_JOB_MAP_DOC_PATH,
+        render_skill_job_map(job_map, {entry.slug: entry.display_name for entry in entries}),
+    )
     for deprecated_dir in (
         ROOT / '.gemini' / 'commands',
         ROOT / '.claude' / 'commands',

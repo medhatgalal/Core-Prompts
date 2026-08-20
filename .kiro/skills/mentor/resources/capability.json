@@ -172,7 +172,72 @@
   "family_slug": "mentor",
   "shared_summary": "[Medhat] Senior engineering oversight, planning, and workflow guidance.",
   "shared_constraints": [],
-  "modes": [],
+  "modes": [
+    {
+      "mode_slug": "2-1-standard-help-mode",
+      "display_name": "2.1 Standard Help Mode",
+      "source_refs": [
+        "ssot/mentor.md"
+      ],
+      "mode_summary": "Declared by the canonical `2.1 Standard Help Mode` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "2-2-ult-mode-prompt-engineering",
+      "display_name": "2.2 ULT MODE (Prompt Engineering)",
+      "source_refs": [
+        "ssot/mentor.md"
+      ],
+      "mode_summary": "Declared by the canonical `2.2 ULT MODE (Prompt Engineering)` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "2-3-terminal-cli-mode",
+      "display_name": "2.3 Terminal / CLI Mode",
+      "source_refs": [
+        "ssot/mentor.md"
+      ],
+      "mode_summary": "Declared by the canonical `2.3 Terminal / CLI Mode` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "2-4-diagnostic-mode",
+      "display_name": "2.4 Diagnostic Mode",
+      "source_refs": [
+        "ssot/mentor.md"
+      ],
+      "mode_summary": "Declared by the canonical `2.4 Diagnostic Mode` section.",
+      "required_inputs": [],
+      "expected_outputs": [],
+      "examples": [],
+      "uplift_notes": [
+        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    }
+  ],
   "benchmark_sources": [],
   "consumption_hints": {},
   "historical_baseline": {
@@ -215,5 +280,21 @@
         "## Workflow Contract"
       ]
     }
-  ]
+  ],
+  "job_contract": {
+    "primary_job": "Provide senior engineering guidance on planning, sequencing, risk, and the next best move.",
+    "use_when": "The user needs ongoing judgment, coaching, or workflow oversight rather than a single specialist artifact.",
+    "works_on": "Engineering plans, execution posture, trade-offs, team workflow, and decision quality.",
+    "main_output": "Practical guidance, prioritized next steps, risks, and review checkpoints.",
+    "not_for": "Producing a full architecture spec or mechanically reconciling competing proposals.",
+    "authority": "Advisory oversight; it does not broaden execution or mutation authority.",
+    "routing_question": "Does the user need coaching and sequencing, a technical design, or a final choice among options?",
+    "nearest_neighbors": [
+      "architecture",
+      "converge",
+      "supercharge"
+    ],
+    "shape": "broad_advisor",
+    "portfolio_action": "keep_but_review_scope"
+  }
 }

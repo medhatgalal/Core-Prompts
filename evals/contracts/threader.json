@@ -1,0 +1,222 @@
+{
+  "schema_version": "GoalContract.v1",
+  "slug": "threader",
+  "target": "Fulfill the canonical intent of threader.",
+  "intended_outcome": "Preserve the canonical SSOT objective and required output.",
+  "change_class": "unknown",
+  "non_goals": [],
+  "protected_behaviors": [
+    "97f260a885d93b517c19ccdf306f5a11cc6e2401537a0352310679466553d163",
+    "8875bdb1775cfee6f0a6cfd6ce5ca43e00fcc19f8ad5740f2fde9308117adcab",
+    "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+    "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+    "714c5430c63363308a60578032c192e64f3fd320452c465d3d71fde75db8d5b6",
+    "18fa66ce91d991a447f06db6913079e5300a59b9217132097367853d408cfe2d",
+    "be91c501ab379c0c231251770d530301f0f130fc5681946b4989c4b079f96c9a",
+    "ec9c28ede3e6e437e4476f5ec9f8355140276c8e745d0ad5588d415e71b14065",
+    "fe07b567e3a5321c544e9b11a46e6fc3064d2d1329f2acedef7472ad0dc64cb9",
+    "0a5aed946319ca7bf6a974dae1d2034328bd7069bde0ca5fb7179226d28e2818",
+    "47c270d955f426e82d20cc06efd7b60a8bdab9395b5326f06bcf95bd3364e583",
+    "358781dd3dc7597d5c24861e9262069a8a1da94e4c487aa24806b10c1f84a21e",
+    "846b95cf485dc4b3c4791be0c0017b100d08a52957338bab1a8535e1fd7540a8",
+    "6be409424089a771d806348814ab56fcbff6e7a8f28a122e3e9de531ba5abdde",
+    "b1506afa793aea9e24e5af9d11cc70d3a2413735d55600455484fd3410beed33",
+    "30c941d0ceb80f96bbe11e7afa251d9d12a7a6f03cd1bc17758b9c62d71e85c5",
+    "b8d53cc91136a0ad712ddae4b944a7b3d9c7569becf724f88fb352fc67935316",
+    "3b4edf82769bd1bccd7f59c1dc06a6d8fcd8eee1eb847f8e60c1a274cac0846f",
+    "87c81c1f9e0906c3b63d932f34d65cdd8246f0a1a30c4937087e5f01ca3f1ba9",
+    "6d7b0305cf0246643bc3d0263243bc27833d2f03858206c5013aee3cf5175961",
+    "46e418c6207d3410f802b67cf84fe914ccf2a0f1e60df5b1a5e48fb55d1c22d1",
+    "5a02bfe3a91fd5e9b746fe1bdb43c3cef08ac481ef7aaf171db2cd8ea8c35c5e",
+    "4f4b860c3ac42725a6fbcb571ded5dda8c1d1205408934eaa753b6706786b2ab",
+    "ba1d9b161e9ad9da1685d543ce47b1deb437e9c9246e4685284ca09bdf906a96",
+    "c69e7252347d50200bbbb040221634d36694256823ec13f22a88f47b2212126b",
+    "18016d3e89633ffb664bbe9293b2742679247e1e1d3fc054b907914a3c758187",
+    "c123802bd4a28ca500c336d583c28248cdebc3734df0cffe26a09d08f34316ac",
+    "ecde98b0364b9303fcdc1327fddf70445df079c93352d6ad8c98e2fa43c255e7",
+    "39133fc58d4d9fedbd2784b8b94606efca3e00569df55b613c7fe86e43f3f691",
+    "bce6a7542053e6b9eca78195e3ffd1e7f479f2426c102aab54eac25b0a8facb4"
+  ],
+  "editable_behavior": [],
+  "primary_outcome": {
+    "metric": "skill_specific_task_success",
+    "definition": "Canonical task success with protected behavior preserved.",
+    "threshold": "human_review_required"
+  },
+  "secondary_outcomes": [],
+  "regression_limits": {
+    "protected_binary_margin": 0.02,
+    "critical_deterministic": "exact_pass"
+  },
+  "cost_latency_limits": {
+    "profile_caps": {
+      "static": 0,
+      "native": 0,
+      "routing-canary": 300000,
+      "canary": 1250000,
+      "promotion": 5000000,
+      "cross-host": 12000000,
+      "sweep": 30000000
+    }
+  },
+  "runtime_envelope": {
+    "required_cells": [],
+    "cross_host_required_for_pilot": false,
+    "status": "unresolved"
+  },
+  "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
+  "rollback_trigger": "Any protected regression or stale bound evidence.",
+  "source_clause_hashes": [
+    {
+      "sha256": "97f260a885d93b517c19ccdf306f5a11cc6e2401537a0352310679466553d163",
+      "source": "ssot/threader.md",
+      "text": "Use this capability to export a current thread faithfully for handoff, diffing, archival analysis, or recovery work when chat history must become a durable artifact."
+    },
+    {
+      "sha256": "8875bdb1775cfee6f0a6cfd6ce5ca43e00fcc19f8ad5740f2fde9308117adcab",
+      "source": "ssot/threader.md",
+      "text": "- forbidden: paraphrasing AI output, analyzing the thread as if this were a review skill, or silently omitting inaccessible turns"
+    },
+    {
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "source": "ssot/threader.md",
+      "text": "## Required Inputs"
+    },
+    {
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "source": "ssot/threader.md",
+      "text": "## Required Output"
+    },
+    {
+      "sha256": "714c5430c63363308a60578032c192e64f3fd320452c465d3d71fde75db8d5b6",
+      "source": "ssot/threader.md",
+      "text": "Every substantial response must produce one of these outcomes:"
+    },
+    {
+      "sha256": "18fa66ce91d991a447f06db6913079e5300a59b9217132097367853d408cfe2d",
+      "source": "ssot/threader.md",
+      "text": "The result must also include:"
+    },
+    {
+      "sha256": "be91c501ab379c0c231251770d530301f0f130fc5681946b4989c4b079f96c9a",
+      "source": "ssot/threader.md",
+      "text": "| If the export is being used for this next step | Route to | Required handoff |"
+    },
+    {
+      "sha256": "ec9c28ede3e6e437e4476f5ec9f8355140276c8e745d0ad5588d415e71b14065",
+      "source": "ssot/threader.md",
+      "text": "Do NOT wrap it in a code fence. Do NOT prefix with /rawmd."
+    },
+    {
+      "sha256": "fe07b567e3a5321c544e9b11a46e6fc3064d2d1329f2acedef7472ad0dc64cb9",
+      "source": "ssot/threader.md",
+      "text": "After you send it, the AI must execute it (not echo it)."
+    },
+    {
+      "sha256": "0a5aed946319ca7bf6a974dae1d2034328bd7069bde0ca5fb7179226d28e2818",
+      "source": "ssot/threader.md",
+      "text": "You must output **exactly one** of these outcomes:"
+    },
+    {
+      "sha256": "47c270d955f426e82d20cc06efd7b60a8bdab9395b5326f06bcf95bd3364e583",
+      "source": "ssot/threader.md",
+      "text": "- Print ONLY a short confirmation (no transcript inline), like:"
+    },
+    {
+      "sha256": "358781dd3dc7597d5c24861e9262069a8a1da94e4c487aa24806b10c1f84a21e",
+      "source": "ssot/threader.md",
+      "text": "You must NOT output the prompt text, templates, or instructions."
+    },
+    {
+      "sha256": "846b95cf485dc4b3c4791be0c0017b100d08a52957338bab1a8535e1fd7540a8",
+      "source": "ssot/threader.md",
+      "text": "This is for **faithful reproduction**. If you can't reproduce something exactly, you must mark it missing \u2014 never paraphrase."
+    },
+    {
+      "sha256": "6be409424089a771d806348814ab56fcbff6e7a8f28a122e3e9de531ba5abdde",
+      "source": "ssot/threader.md",
+      "text": "- (Do not dump the entire thread inline if you created a file.)"
+    },
+    {
+      "sha256": "b1506afa793aea9e24e5af9d11cc70d3a2413735d55600455484fd3410beed33",
+      "source": "ssot/threader.md",
+      "text": "- USER_TURN_POLICY: INTENT_ONLY"
+    },
+    {
+      "sha256": "30c941d0ceb80f96bbe11e7afa251d9d12a7a6f03cd1bc17758b9c62d71e85c5",
+      "source": "ssot/threader.md",
+      "text": "- For each user turn, include only a 1\u20132 sentence intent summary. Do NOT quote user text."
+    },
+    {
+      "sha256": "b8d53cc91136a0ad712ddae4b944a7b3d9c7569becf724f88fb352fc67935316",
+      "source": "ssot/threader.md",
+      "text": "You must actively prevent these common failures:"
+    },
+    {
+      "sha256": "3b4edf82769bd1bccd7f59c1dc06a6d8fcd8eee1eb847f8e60c1a274cac0846f",
+      "source": "ssot/threader.md",
+      "text": "## EXECUTION PLAN (do this silently; do NOT print these steps)"
+    },
+    {
+      "sha256": "87c81c1f9e0906c3b63d932f34d65cdd8246f0a1a30c4937087e5f01ca3f1ba9",
+      "source": "ssot/threader.md",
+      "text": "- Delete all instruction text and output only the transcript or the file confirmation."
+    },
+    {
+      "sha256": "6d7b0305cf0246643bc3d0263243bc27833d2f03858206c5013aee3cf5175961",
+      "source": "ssot/threader.md",
+      "text": "DOC must have:"
+    },
+    {
+      "sha256": "46e418c6207d3410f802b67cf84fe914ccf2a0f1e60df5b1a5e48fb55d1c22d1",
+      "source": "ssot/threader.md",
+      "text": "- Print only: `Created file: ...`"
+    },
+    {
+      "sha256": "5a02bfe3a91fd5e9b746fe1bdb43c3cef08ac481ef7aaf171db2cd8ea8c35c5e",
+      "source": "ssot/threader.md",
+      "text": "- <intent only; no verbatim user text>"
+    },
+    {
+      "sha256": "4f4b860c3ac42725a6fbcb571ded5dda8c1d1205408934eaa753b6706786b2ab",
+      "source": "ssot/threader.md",
+      "text": "- Do not \u201cclean up\u201d formatting."
+    },
+    {
+      "sha256": "ba1d9b161e9ad9da1685d543ce47b1deb437e9c9246e4685284ca09bdf906a96",
+      "source": "ssot/threader.md",
+      "text": "**Artifacts / Downloads (only if present in that AI turn):**"
+    },
+    {
+      "sha256": "c69e7252347d50200bbbb040221634d36694256823ec13f22a88f47b2212126b",
+      "source": "ssot/threader.md",
+      "text": "### 4) /catchup (always at end of DOC; meta-only; tabular)"
+    },
+    {
+      "sha256": "18016d3e89633ffb664bbe9293b2742679247e1e1d3fc054b907914a3c758187",
+      "source": "ssot/threader.md",
+      "text": "| Phase | What the user wanted | What changed | Outputs produced (types only) | Outcome / Status |"
+    },
+    {
+      "sha256": "c123802bd4a28ca500c336d583c28248cdebc3734df0cffe26a09d08f34316ac",
+      "source": "ssot/threader.md",
+      "text": "## INLINE FALLBACK RULES (only if file creation is unsupported)"
+    },
+    {
+      "sha256": "ecde98b0364b9303fcdc1327fddf70445df079c93352d6ad8c98e2fa43c255e7",
+      "source": "ssot/threader.md",
+      "text": "If you must print DOC inline:"
+    },
+    {
+      "sha256": "39133fc58d4d9fedbd2784b8b94606efca3e00569df55b613c7fe86e43f3f691",
+      "source": "ssot/threader.md",
+      "text": "- Never restart the DOC header"
+    },
+    {
+      "sha256": "bce6a7542053e6b9eca78195e3ffd1e7f479f2426c102aab54eac25b0a8facb4",
+      "source": "ssot/threader.md",
+      "text": "- Never change formatting rules midstream"
+    }
+  ],
+  "review_status": "draft"
+}

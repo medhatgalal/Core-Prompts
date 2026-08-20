@@ -1,0 +1,222 @@
+{
+  "schema_version": "CapabilityTopology.v1",
+  "slug": "testing",
+  "ssot_sha256": "7acc2fa2ece3dfaca073942f37dd8d8ff31aad1996ad58e8dd2be484db1122f1",
+  "explicit_invocations": [],
+  "semantic_triggers": [],
+  "aliases_shortcuts": [],
+  "auto_routes": [],
+  "nodes": {
+    "commands": [],
+    "modes_modules": [
+      {
+        "mode_slug": "generate-unit-tests",
+        "display_name": "Generate Unit Tests",
+        "entry_kind": "mode",
+        "invocations": [],
+        "source_refs": [
+          "ssot/testing.md"
+        ],
+        "source_line": 61,
+        "mode_summary": "Explicitly declared mode in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "generate-e2e-tests",
+        "display_name": "Generate E2E Tests",
+        "entry_kind": "mode",
+        "invocations": [],
+        "source_refs": [
+          "ssot/testing.md"
+        ],
+        "source_line": 70,
+        "mode_summary": "Explicitly declared mode in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "edge-cases",
+        "display_name": "Edge Cases",
+        "entry_kind": "mode",
+        "invocations": [],
+        "source_refs": [
+          "ssot/testing.md"
+        ],
+        "source_line": 80,
+        "mode_summary": "Explicitly declared mode in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "coverage-analysis",
+        "display_name": "Coverage Analysis",
+        "entry_kind": "mode",
+        "invocations": [],
+        "source_refs": [
+          "ssot/testing.md"
+        ],
+        "source_line": 89,
+        "mode_summary": "Explicitly declared mode in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      }
+    ],
+    "controls": [],
+    "modifiers": []
+  },
+  "composition": {
+    "legal_pairs": [],
+    "forbidden_pairs": [],
+    "canonical_order": [],
+    "requirements": [],
+    "supersession": []
+  },
+  "state_machine": {
+    "states": [],
+    "transitions": [],
+    "forbidden_transitions": []
+  },
+  "outputs": [
+    "- `Scope`",
+    "- `Assumptions`",
+    "- `Recommended Tests or Gaps`",
+    "- `Priority or Risk`",
+    "- `Framework Notes`",
+    "- `Follow-up Work`"
+  ],
+  "authority_boundaries": [
+    "testing:L27:a13a67440b6c",
+    "testing:L118:efc7137353f0",
+    "testing:L119:c541168a6a14",
+    "testing:L120:aa421c4141e9"
+  ],
+  "resources": [],
+  "handoffs": [],
+  "protected_invariants": [
+    {
+      "id": "testing:L27:a13a67440b6c",
+      "heading": "Tool Boundaries",
+      "source_line": 27,
+      "sha256": "a13a67440b6c5a06a087f285cc990291a8adde279824082aa071ed0422bc009c",
+      "text": "- forbidden: silently executing tests, inventing framework choices that contradict the repo, or claiming coverage numbers without evidence",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "testing:L38:77357dbdaba3",
+      "heading": "Required Inputs",
+      "source_line": 38,
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "text": "## Required Inputs",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "testing:L44:3d4b9f171064",
+      "heading": "Required Output",
+      "source_line": 44,
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "text": "## Required Output",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "testing:L45:c34906b1f1c3",
+      "heading": "Required Output",
+      "source_line": 45,
+      "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+      "text": "Every substantial response must include:",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "testing:L57:4fdce19e68b0",
+      "heading": "Rules",
+      "source_line": 57,
+      "sha256": "4fdce19e68b0a2453e14c85026f2d9ed6179af4a17ffc0a48830cedb52fcd93a",
+      "text": "- Include failure cases and boundary cases, not only happy path.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "testing:L67:b7a8e70ba8ee",
+      "heading": "Generate Unit Tests",
+      "source_line": 67,
+      "sha256": "b7a8e70ba8ee249b10c13fd4798a88c5eb6770f0b12fd6c2f75fd49533790f13",
+      "text": "- mocks or fixtures only where needed",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "testing:L118:efc7137353f0",
+      "heading": "Constraints",
+      "source_line": 118,
+      "sha256": "efc7137353f02e587b1b56a35f88ea5711adbf9a34348ce88e293222c300cfd8",
+      "text": "- Do not execute tests automatically.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "testing:L119:c541168a6a14",
+      "heading": "Constraints",
+      "source_line": 119,
+      "sha256": "c541168a6a146b24f47259f557c38d55d4ead0716e9257689600034b01f0bd79",
+      "text": "- Do not replace project-specific framework decisions when the repository already has a clear testing stack.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "testing:L120:aa421c4141e9",
+      "heading": "Constraints",
+      "source_line": 120,
+      "sha256": "aa421c4141e96d7644768b36e6786d2b9fcffc6ea7c100704a3d67f38eeb91b3",
+      "text": "- Do not claim coverage metrics without a coverage artifact or direct evidence.",
+      "kind": "invariant",
+      "mapped_to": []
+    }
+  ],
+  "risk_tiers": {
+    "critical": [],
+    "high": [],
+    "standard": []
+  },
+  "source_references": [
+    {
+      "path": "ssot/testing.md",
+      "sha256": "7acc2fa2ece3dfaca073942f37dd8d8ff31aad1996ad58e8dd2be484db1122f1"
+    }
+  ],
+  "known_ambiguities": [],
+  "coverage_policy": {
+    "normative_clauses": "100_percent_mapped_or_waived",
+    "nodes": "positive_and_boundary",
+    "transitions": "all_legal_and_forbidden",
+    "module_pairs": "all_legal_pairs",
+    "high_risk_tuples": "assigned_strength",
+    "critical_mutants": "100_percent_killed"
+  },
+  "normative_clause_coverage": {
+    "total": 9,
+    "mapped": 0,
+    "waived": 0
+  },
+  "review_status": "draft",
+  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs."
+}
