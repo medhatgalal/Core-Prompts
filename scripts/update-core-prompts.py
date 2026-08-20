@@ -674,6 +674,11 @@ STATE_HOME="$HOME/.core-prompts-state"
 LOCK_DIR="$STATE_HOME/schedule.lock"
 LOG_DIR="$STATE_HOME/schedule/logs"
 
+# cron supplies a minimal PATH. Include the supported user and package-manager
+# locations so release checks and CLI surface detection use the same runtimes as
+# an interactive install.
+export PATH="$HOME/.local/bin:$HOME/.volta/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin${{PATH:+:$PATH}}"
+
 mkdir -p "$LOG_DIR"
 if ! mkdir "$LOCK_DIR" 2>/dev/null; then
   echo "[WARN] Skipping scheduled Core-Prompts update: another run is active" >> "$LOG_DIR/scheduler.log"

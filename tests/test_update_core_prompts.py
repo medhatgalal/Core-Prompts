@@ -439,6 +439,7 @@ def test_schedule_runner_auto_accepts_by_default_before_normal_update(monkeypatc
     assert '"$UPDATE_SCRIPT" --accept-release --yes --snapshot-retention 2' in runner
     assert runner.index('--check-release') < runner.index('--accept-release')
     assert runner.index('--accept-release') < runner.rindex('--yes')
+    assert 'export PATH="$HOME/.local/bin:$HOME/.volta/bin:/opt/homebrew/bin:' in runner
     assert calls == []
 
 
@@ -459,6 +460,35 @@ def test_schedule_runner_notify_only_preserves_check_only_release_mode(monkeypat
     assert '"$UPDATE_SCRIPT" --check-release' in runner
     assert '"$UPDATE_SCRIPT" --accept-release --yes' not in runner
     assert calls == []
+
+
+def test_schedule_runner_uses_interactive_cli_paths_under_minimal_cron_path(monkeypatch, tmp_path: Path) -> None:
+    monkeypatch.setattr(update_core_prompts.shutil, "which", lambda name: None)
+    home = tmp_path / "home"
+    paths = update_core_prompts.Paths(support_root=tmp_path / "support", home=home)
+    assert update_core_prompts.install_schedule(paths, "11:00", notify_only=False, snapshot_retention=2) == 0
+
+    codex = home / ".volta" / "bin" / "codex"
+    codex.parent.mkdir(parents=True)
+    codex.write_text("#!/bin/sh\nexit 0\n", encoding="utf-8")
+    codex.chmod(0o755)
+
+    fake_update = tmp_path / "fake-update.sh"
+    fake_update.write_text("#!/bin/sh\ncommand -v codex\n", encoding="utf-8")
+    fake_update.chmod(0o755)
+    result = subprocess.run(
+        [str(paths.schedule_runner)],
+        env={"HOME": str(home), "PATH": "/usr/bin:/bin", "UPDATE_SCRIPT": str(fake_update)},
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+    )
+
+    assert result.returncode == 0, result.stdout
+    run_logs = sorted((home / ".core-prompts-state" / "schedule" / "logs").glob("update-*.log"))
+    assert len(run_logs) == 1
+    log_text = run_logs[0].read_text(encoding="utf-8")
+    assert str(codex) in log_text
 
 
 def test_snapshot_retention_keeps_latest_entries(tmp_path: Path) -> None:

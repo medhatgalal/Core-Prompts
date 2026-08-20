@@ -148,6 +148,41 @@ def test_install_wrapper_succeeds_with_no_clis_in_non_strict_mode(tmp_path: Path
     assert "SUMMARY copied=0 missing_source=0 skipped_cli=1" in result.stdout
 
 
+def test_installed_bundle_syncs_existing_surfaces_under_cron_path_without_self_copy(tmp_path: Path) -> None:
+    first_install = run_script(
+        INSTALL_SCRIPT,
+        "--cli",
+        "all",
+        target_root=tmp_path,
+        cli_bins=("codex", "gemini", "claude", "kiro-cli"),
+        use_system_bash=True,
+        allow_nonlocal_target=True,
+    )
+    assert first_install.returncode == 0, first_install.stdout
+
+    installed_skill = tmp_path / ".codex" / "skills" / "instruction-editor" / "SKILL.md"
+    bundled_skill = tmp_path / ".core-prompts-updater" / ".codex" / "skills" / "instruction-editor" / "SKILL.md"
+    assert installed_skill.is_file()
+    assert bundled_skill.is_file()
+    installed_skill.write_text("stale installed skill\n", encoding="utf-8")
+
+    bundled_deploy = tmp_path / ".core-prompts-updater" / "scripts" / "deploy-surfaces.sh"
+    scheduled_sync = run_script(
+        bundled_deploy,
+        "--cli",
+        "all",
+        target_root=tmp_path,
+        use_system_bash=True,
+        allow_nonlocal_target=True,
+    )
+
+    assert scheduled_sync.returncode == 0, scheduled_sync.stdout
+    assert "Target CLIs: gemini claude kiro codex" in scheduled_sync.stdout
+    assert "using existing 'codex' target surface" in scheduled_sync.stdout
+    assert "SameFileError" not in scheduled_sync.stdout
+    assert installed_skill.read_text(encoding="utf-8") == bundled_skill.read_text(encoding="utf-8")
+
+
 def test_nonlocal_install_writes_standalone_updater_bundle_and_prunes_stale_files(tmp_path: Path) -> None:
     stale = tmp_path / ".core-prompts-updater" / "scripts" / "stale.sh"
     stale.parent.mkdir(parents=True)
@@ -197,6 +232,43 @@ def test_deploy_fails_in_strict_mode_when_selected_cli_is_missing(tmp_path: Path
     )
     assert result.returncode == 1, result.stdout
     assert "error: missing required CLI binary for target 'codex'" in result.stdout
+
+
+def test_deploy_strict_mode_still_requires_binary_for_existing_managed_surface(tmp_path: Path) -> None:
+    (tmp_path / ".codex").mkdir()
+    support = tmp_path / ".core-prompts-updater"
+    support.mkdir()
+    (support / "VERSION").write_text("v1.10.1\n", encoding="utf-8")
+
+    result = run_script(
+        DEPLOY_SCRIPT,
+        "--cli",
+        "codex",
+        "--strict-cli",
+        target_root=tmp_path,
+        use_system_bash=True,
+        allow_nonlocal_target=True,
+    )
+
+    assert result.returncode == 1, result.stdout
+    assert "error: missing required CLI binary for target 'codex'" in result.stdout
+
+
+def test_unmanaged_cli_directory_does_not_bypass_binary_detection(tmp_path: Path) -> None:
+    (tmp_path / ".codex").mkdir()
+
+    result = run_script(
+        DEPLOY_SCRIPT,
+        "--cli",
+        "codex",
+        target_root=tmp_path,
+        use_system_bash=True,
+        allow_nonlocal_target=True,
+    )
+
+    assert result.returncode == 0, result.stdout
+    assert "selected CLI 'codex' is unavailable; skipping" in result.stdout
+    assert "Target CLIs:" not in result.stdout
 
 
 def test_deploy_with_only_codex_available_registers_only_codex_agents(tmp_path: Path) -> None:

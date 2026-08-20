@@ -117,11 +117,32 @@ is_cli_available() {
   esac
 }
 
+has_existing_target_surface() {
+  local cli="$1"
+  [[ "$TARGET_ROOT" != "$REPO_ROOT" ]] || return 1
+  [[ -f "$TARGET_ROOT/.core-prompts-updater/VERSION" ]] || return 1
+  case "$cli" in
+    gemini) [[ -d "$TARGET_ROOT/.gemini" ]] ;;
+    claude) [[ -d "$TARGET_ROOT/.claude" ]] ;;
+    kiro) [[ -d "$TARGET_ROOT/.kiro" ]] ;;
+    codex) [[ -d "$TARGET_ROOT/.codex" ]] ;;
+    *) return 1 ;;
+  esac
+}
+
+should_deploy_cli() {
+  local cli="$1"
+  is_cli_available "$cli" || { [[ "$STRICT_CLI" -eq 0 ]] && has_existing_target_surface "$cli"; }
+}
+
 TARGETS=()
 if [[ "$CLI_TARGET" == "all" ]]; then
   for candidate in gemini claude kiro codex; do
-    if is_cli_available "$candidate"; then
+    if should_deploy_cli "$candidate"; then
       TARGETS+=("$candidate")
+      if ! is_cli_available "$candidate"; then
+        echo "info: using existing '$candidate' target surface because its binary is unavailable in PATH"
+      fi
     else
       if [[ "$STRICT_CLI" -eq 1 ]]; then
         echo "error: missing required CLI binary for target '$candidate'"
@@ -131,7 +152,7 @@ if [[ "$CLI_TARGET" == "all" ]]; then
     fi
   done
 else
-  if ! is_cli_available "$CLI_TARGET"; then
+  if ! should_deploy_cli "$CLI_TARGET"; then
     if [[ "$STRICT_CLI" -eq 1 ]]; then
       echo "error: missing required CLI binary for target '$CLI_TARGET'"
       exit 1
@@ -413,8 +434,9 @@ for line in entries_file.read_text(encoding="utf-8").splitlines():
     dst = Path(dst_text)
     expected.add(dst.resolve())
     dst.parent.mkdir(parents=True, exist_ok=True)
-    shutil.copy2(src, dst)
-    count += 1
+    if src.resolve() != dst.resolve():
+        shutil.copy2(src, dst)
+        count += 1
 if root.exists():
     for path in sorted((item for item in root.rglob("*")), key=lambda item: len(item.parts), reverse=True):
         resolved = path.resolve()

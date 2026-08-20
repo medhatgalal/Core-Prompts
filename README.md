@@ -298,7 +298,7 @@ Use release watch to compare that installed standalone bundle against the latest
 ~/update_core_prompts.sh --rollback previous
 ```
 
-`--check-release` checks only, syncs a dedicated clean mirror, updates local release-watch state, and never auto-installs. `--accept-release` is the explicit install/apply step. Daily scheduled runs auto-accept valid releases by default after the release check; use `--schedule-daily HH:MM --notify-only` for check-only scheduling. Accepted releases create rollback snapshots first, retain the latest 2 snapshots by default, update the recorded source checkout when safe, and `--rollback previous` restores the latest installed-state snapshot.
+`--check-release` checks only, syncs a dedicated clean mirror, updates local release-watch state, and never auto-installs. `--accept-release` is the explicit install/apply step. Daily scheduled runs auto-accept valid releases by default after the release check; use `--schedule-daily HH:MM --notify-only` for check-only scheduling. The scheduled runner supplies a deterministic PATH, and the deployer refreshes existing managed CLI surfaces even when a non-interactive process cannot see a CLI binary. Accepted releases create rollback snapshots first, retain the latest 2 snapshots by default, update the recorded source checkout when safe, and `--rollback previous` restores the latest installed-state snapshot.
 
 ## Generated Inspection Views
 
