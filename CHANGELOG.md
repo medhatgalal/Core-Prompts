@@ -1,3 +1,10 @@
+## v1.10.1 - 2026-08-20
+
+- Fixed daily scheduled updates under cron's restricted environment by adding deterministic user, Volta, Homebrew, and system executable paths.
+- Made deployment preserve and refresh already-installed Codex, Gemini, Claude, and Kiro surfaces even when a scheduled process cannot discover the corresponding CLI binary.
+- Made standalone updater refresh idempotent so a bundled updater no longer raises `SameFileError` when its source and destination are the same installed bundle.
+- Added an installed-bundle regression test that corrupts one active skill, runs the bundled updater under a cron-like PATH, and proves the skill is restored without self-copy failure.
+
 ## v1.10.0 - 2026-08-20
 
 - Added the selective capability-evaluation foundation: draft Goal Contracts and topologies for all 24 skills, fail-closed promotion evidence, impact-based token profiles, static evaluator controls, runtime availability probes, and zero-token CI checks.

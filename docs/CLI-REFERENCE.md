@@ -140,7 +140,7 @@ Use this when:
 Expected result:
 
 - `--check-release` fetches release tags, syncs `~/.core-prompts-release-cache/repo`, updates `~/.core-prompts-state/release-watch.json`, and never auto-installs
-- scheduled `--schedule-daily HH:MM` runs auto-accept valid releases by default after the release check; add `--notify-only` to keep scheduling check-only
+- scheduled `--schedule-daily HH:MM` runs auto-accept valid releases by default after the release check; they use a deterministic PATH and continue refreshing existing managed CLI surfaces when cron cannot discover a CLI binary; add `--notify-only` to keep scheduling check-only
 - `--accept-release` shows installed vs pending version, prompts for confirmation, snapshots first, fast-forwards the recorded source checkout when it is clean and safe, runs the installer from that checkout, falls back to the synced mirror when needed, and clears pending state on success
 - rollback snapshot retention defaults to the latest 2 snapshots; override with `--snapshot-retention N`
 - `--rollback previous` restores the latest snapshot from `~/.core-prompts-state/snapshots/`
