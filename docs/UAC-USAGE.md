@@ -245,6 +245,7 @@ UAC can analyze:
 - `--promotion-verdict <path>` validates independent, hash-bound evidence during apply.
 - UAC does not own sealed cases, behavioral judging, promotion, or waivers.
 - A new behavioral baseline is materialized only after promotion. Historical baseline lineage is preserved.
+- During the advisory rollout, apply also compiles a draft Goal Contract and topology so a newly added skill cannot silently skip the evaluation inventory.
 
 - UAC publishes advisory metadata and handoff artifacts only. It does not decide runtime routing or delegation.
 - Direct exposure lands in each vendor `skills/<slug>/SKILL.md` path when a capability is classified for direct use.

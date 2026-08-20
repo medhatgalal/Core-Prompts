@@ -25,7 +25,7 @@ bin/capability-eval compare --skill <slug> --candidate <path> --profile <profile
 bin/capability-eval report --run <run-id>
 ```
 
-Profiles are `static`, `native`, `routing-canary`, `canary`, `promotion`, `cross-host`, and `sweep`. The first two have a hard token cap of zero. Live profiles are fail-closed until explicit model-call authorization, adapter conformance, sealed data, and judge calibration exist.
+Profiles are `static`, `native`, `routing-canary`, `canary`, `promotion`, `cross-host`, and `sweep`. The first two have a hard token cap of zero. `native` reports runtime availability only; it does not prove skill discovery or behavior. Live profiles are fail-closed until explicit model-call authorization, adapter conformance, sealed data, and judge calibration exist.
 
 | Command | Purpose | Mutates repo state |
 | --- | --- | --- |

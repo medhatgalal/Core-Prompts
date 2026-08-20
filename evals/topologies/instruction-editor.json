@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "instruction-editor",
-  "ssot_sha256": "68ddd2d38564f37849dd33b958755efef8e70e3481b6f295628562c246b87c1d",
+  "ssot_sha256": "793664dcb797dfd8f197a84f4f22b10fc8b3e1678c1c7a3a1b21b8f5e847d53b",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -17,7 +17,7 @@
         "source_refs": [
           "ssot/instruction-editor.md"
         ],
-        "source_line": 13,
+        "source_line": 17,
         "mode_summary": "Explicitly declared mode in the canonical skill.",
         "required_inputs": [],
         "expected_outputs": [],
@@ -34,7 +34,7 @@
         "source_refs": [
           "ssot/instruction-editor.md"
         ],
-        "source_line": 16,
+        "source_line": 20,
         "mode_summary": "Explicitly declared mode in the canonical skill.",
         "required_inputs": [],
         "expected_outputs": [],
@@ -51,7 +51,7 @@
         "source_refs": [
           "ssot/instruction-editor.md"
         ],
-        "source_line": 19,
+        "source_line": 23,
         "mode_summary": "Explicitly declared mode in the canonical skill.",
         "required_inputs": [],
         "expected_outputs": [],
@@ -68,7 +68,7 @@
         "source_refs": [
           "ssot/instruction-editor.md"
         ],
-        "source_line": 22,
+        "source_line": 26,
         "mode_summary": "Explicitly declared mode in the canonical skill.",
         "required_inputs": [],
         "expected_outputs": [],
@@ -102,16 +102,16 @@
     "- `Unresolved Ambiguities`"
   ],
   "authority_boundaries": [
-    "instruction-editor:L4:c8f08b4e46a1",
-    "instruction-editor:L31:f564388f6807",
-    "instruction-editor:L43:5d3c1fba3587",
-    "instruction-editor:L47:364de405e96a",
-    "instruction-editor:L59:8f868427c1f0",
-    "instruction-editor:L80:156def58f705",
-    "instruction-editor:L81:193d744fe113",
-    "instruction-editor:L91:d96e716252f7",
-    "instruction-editor:L93:6d508721a698",
-    "instruction-editor:L105:0939cad02ca1"
+    "instruction-editor:L8:c8f08b4e46a1",
+    "instruction-editor:L35:f564388f6807",
+    "instruction-editor:L47:5d3c1fba3587",
+    "instruction-editor:L51:364de405e96a",
+    "instruction-editor:L63:8f868427c1f0",
+    "instruction-editor:L84:156def58f705",
+    "instruction-editor:L85:193d744fe113",
+    "instruction-editor:L95:d96e716252f7",
+    "instruction-editor:L97:6d508721a698",
+    "instruction-editor:L109:0939cad02ca1"
   ],
   "resources": [],
   "handoffs": [
@@ -119,135 +119,135 @@
   ],
   "protected_invariants": [
     {
-      "id": "instruction-editor:L4:c8f08b4e46a1",
+      "id": "instruction-editor:L8:c8f08b4e46a1",
       "heading": "Purpose",
-      "source_line": 4,
+      "source_line": 8,
       "sha256": "c8f08b4e46a17cf667e3e91b29674a13ca4f8e61d301c9c9f93e7cb72ff0544e",
       "text": "Make instruction artifacts easier to read and invoke while preserving their behavior. Treat clarity as an editorial hypothesis, never as proof that an agent will perform better.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "instruction-editor:L17:c0f55eaf04a6",
+      "id": "instruction-editor:L21:c0f55eaf04a6",
       "heading": "`rewrite`",
-      "source_line": 17,
+      "source_line": 21,
       "sha256": "c0f55eaf04a6d0b9373c2365904440f6e7f94c9d8edaf9cb4957b77919583466",
       "text": "Produce a candidate rewrite. Preserve commands, modality, authority, safety, prerequisites, order, schemas, required outputs, examples, exceptions, and fallbacks unless the user explicitly authorizes a semantic change.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "instruction-editor:L29:a49603692bea",
+      "id": "instruction-editor:L33:a49603692bea",
       "heading": "Workflow Contract",
-      "source_line": 29,
+      "source_line": 33,
       "sha256": "a49603692bea6f50bd4f7341bd71727a03029217b944eeb638be576a7810f4f5",
       "text": "4. Apply only contract-neutral formatting automatically.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "instruction-editor:L31:f564388f6807",
+      "id": "instruction-editor:L35:f564388f6807",
       "heading": "Workflow Contract",
-      "source_line": 31,
+      "source_line": 35,
       "sha256": "f564388f6807e0f62f2cb9240ab60f28381636c2ac3e9d6ac281b24b02786bbc",
       "text": "6. Mark contradictions or missing intent as unresolved; do not silently resolve them.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "instruction-editor:L43:5d3c1fba3587",
+      "id": "instruction-editor:L47:5d3c1fba3587",
       "heading": "Stack Contract",
-      "source_line": 43,
+      "source_line": 47,
       "sha256": "5d3c1fba35876b3e4db1eec925212d0c51a8fc690ed764b33688b006e8131f21",
       "text": "Preserve upstream artifact identifiers, clause hashes, unresolved questions, and requested output. Add editorial evidence; do not replace upstream evidence.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "instruction-editor:L47:364de405e96a",
+      "id": "instruction-editor:L51:364de405e96a",
       "heading": "Tool Boundaries",
-      "source_line": 47,
+      "source_line": 51,
       "sha256": "364de405e96af94bef621de3eef64dbbdcbf173ab390a8dc54a45e5e8a492971",
       "text": "- forbidden: promote the editor's own output, weaken behavior for fluency, invent missing intent, fetch Google HTML through UAC, or treat style compliance as task success",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "instruction-editor:L59:8f868427c1f0",
+      "id": "instruction-editor:L63:8f868427c1f0",
       "heading": "Invocation Hints",
-      "source_line": 59,
+      "source_line": 63,
       "sha256": "8f868427c1f083db5244095e9aeb3907321953380f985102b64a290a03c0dbdf",
       "text": "Do not auto-route ordinary prose editing, general documentation architecture, prompt hardening, or capability intake here unless instruction preservation is the central job.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "instruction-editor:L61:77357dbdaba3",
+      "id": "instruction-editor:L65:77357dbdaba3",
       "heading": "Required Inputs",
-      "source_line": 61,
+      "source_line": 65,
       "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
       "text": "## Required Inputs",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "instruction-editor:L67:3d4b9f171064",
+      "id": "instruction-editor:L71:3d4b9f171064",
       "heading": "Required Output",
-      "source_line": 67,
+      "source_line": 71,
       "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
       "text": "## Required Output",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "instruction-editor:L79:a03e0a9fcfb3",
+      "id": "instruction-editor:L83:a03e0a9fcfb3",
       "heading": "Rules",
-      "source_line": 79,
+      "source_line": 83,
       "sha256": "a03e0a9fcfb336e9ad2db5bd4e1f90673ed085fea19f8950272c88fbee147fe1",
       "text": "- Use direct language only when it preserves the named actor and action.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "instruction-editor:L80:156def58f705",
+      "id": "instruction-editor:L84:156def58f705",
       "heading": "Rules",
-      "source_line": 80,
+      "source_line": 84,
       "sha256": "156def58f705b7a91639a1fbdd70200463d66e81e97b0b9f4fb1b09c5d5bf004",
       "text": "- Keep `must`, `must not`, `never`, `only`, and approval requirements exact.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "instruction-editor:L81:193d744fe113",
+      "id": "instruction-editor:L85:193d744fe113",
       "heading": "Rules",
-      "source_line": 81,
+      "source_line": 85,
       "sha256": "193d744fe113654924c6f1dbf70fa0633ff9a3bcd1479e1aac5f5b58eb8a781a",
       "text": "- Do not delete low-frequency modules or examples merely to reduce size.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "instruction-editor:L91:d96e716252f7",
+      "id": "instruction-editor:L95:d96e716252f7",
       "heading": "Audit request",
-      "source_line": 91,
+      "source_line": 95,
       "sha256": "d96e716252f70c554ac57293d10ce34ba25b3843cb89708dd2dc12a13b3413a3",
       "text": "> Audit this skill for Claude-ish phrasing and buried conditions. Do not rewrite it.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "instruction-editor:L93:6d508721a698",
+      "id": "instruction-editor:L97:6d508721a698",
       "heading": "Audit request",
-      "source_line": 93,
+      "source_line": 97,
       "sha256": "6d508721a69854e1894ff058f59206a2e0a179630e6238755e745582ca7d78c9",
       "text": "Return findings with rule IDs, clause references, and risk. Do not claim behavior improved.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "instruction-editor:L105:0939cad02ca1",
+      "id": "instruction-editor:L109:0939cad02ca1",
       "heading": "Evaluation Rubric",
-      "source_line": 105,
+      "source_line": 109,
       "sha256": "0939cad02ca14e09d71103f320e8119d2bf8256a6723e5bd6bc2999f2c30128a",
       "text": "| Honesty | Editorial quality is never reported as behavioral proof |",
       "kind": "invariant",
@@ -262,7 +262,7 @@
   "source_references": [
     {
       "path": "ssot/instruction-editor.md",
-      "sha256": "68ddd2d38564f37849dd33b958755efef8e70e3481b6f295628562c246b87c1d"
+      "sha256": "793664dcb797dfd8f197a84f4f22b10fc8b3e1678c1c7a3a1b21b8f5e847d53b"
     }
   ],
   "known_ambiguities": [],

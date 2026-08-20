@@ -33,6 +33,7 @@ The package should include:
 - `.meta/manifest.json`
 - `.meta/capability-handoff.json`
 - `.meta/capabilities/`
+- evaluation, clarity, descriptor, and plain-English job-map policy under `.meta/`
 - `dist/consumer-shell/`
 - `sources/ssot-baselines/`
 - deploy/install scripts
@@ -40,6 +41,7 @@ The package should include:
 - local source checkout metadata, when a home install is performed from a durable checkout
 - curated operator/integrator docs
 - generated consumer-shell docs (`docs/CAPABILITY-CATALOG.md`, `docs/RELEASE-DELTA.md`, `docs/STATUS.md`)
+- capability-evaluation and Skill Job Map documentation
 - `README.md`
 - `CHANGELOG.md`
 

@@ -77,6 +77,8 @@ bin/capability-eval probe
 
 These commands make zero model calls. `structural_ready` means deterministic gates passed; only an independent, current `PromotionVerdict.v1` can mean `promote`.
 
+The live runner is not enabled in this release. `instruction-editor` is available as an experimental editor, while Google-style rewriting remains off by default in UAC.
+
 Once you are working at the repo layer, this is the shortest useful verification loop:
 
 ```bash

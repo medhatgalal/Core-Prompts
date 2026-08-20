@@ -8,7 +8,24 @@ Core-Prompts separates candidate production from behavioral promotion.
 - `instruction-editor` owns auditable editorial candidates and preservation maps.
 - Auto-Research owns behavioral experiments and promotion decisions.
 - `capability-eval` enforces repo-owned contracts, profiles, budgets, evidence binding, and fail-closed statuses.
-- Inspect AI, Inspect SWE, and direct host adapters are interchangeable execution mechanisms, not truth oracles.
+- Inspect AI, Inspect SWE, and direct host adapters are planned interchangeable execution mechanisms, not truth oracles. Inspect is not bundled or active in this release.
+
+## What works now
+
+- compile draft Goal Contracts and capability topologies for all skills
+- detect known contract contradictions and generated drift
+- run Google-derived clarity lint, structural controls, fixtures, and runtime availability probes with zero model calls
+- calculate the minimum allowed evaluation profile and hard token cap
+- reject missing, stale, or incomplete promotion evidence
+
+## What is still gated
+
+- live baseline-versus-candidate execution
+- qualified semantic judges and sealed promotion cases
+- causal proof that Google-style rewriting improves people or agents
+- behavioral promotion of `instruction-editor` or another changed skill
+
+Until those gates exist, a model-mediated comparison returns `inconclusive`. This is a preview of the proof system, not proof that a candidate is better.
 
 ## Evidence flow
 

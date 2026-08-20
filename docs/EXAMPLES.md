@@ -481,6 +481,8 @@ Follow with:
 
 ### `instruction-editor`
 
+Preview status: available for auditable editing, but not behaviorally promoted. Treat every semantic rewrite as a candidate until independent evaluation exists.
+
 Use when:
 
 - prompt or skill language feels AI-ish, Claude-ish, ChatGPT-ish, or exhausting

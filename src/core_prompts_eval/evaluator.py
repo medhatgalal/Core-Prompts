@@ -16,6 +16,7 @@ from .contracts import (
 )
 from .impact import build_impact_plan
 from .pilot import validate_pilot_foundations
+from .runtime import probe_runtime
 from .topology import compile_topology
 
 
@@ -167,12 +168,13 @@ def calibrate_static(repo_root: Path) -> dict[str, Any]:
     missing = sorted(required - present)
     corpus = compile_all(repo_root, write=False)
     pilot = validate_pilot_foundations(repo_root)
+    blockers = corpus["blocked_contract"]
     return {
         "schema_version": "EvaluatorCalibration.v1",
-        "status": "structural_ready" if not missing and pilot["status"] == "structural_ready" else "hold",
+        "status": "structural_ready" if not missing and not blockers and pilot["status"] == "structural_ready" else "hold",
         "controls_present": len(present),
         "missing_controls": missing,
-        "corpus_contract_blockers": corpus["blocked_contract"],
+        "corpus_contract_blockers": blockers,
         "pilot_foundations": pilot,
         "judge_qualified": False,
         "judge_note": "Semantic judges remain unqualified until gold-label agreement and bias checks are run.",
@@ -201,7 +203,7 @@ def compare(
     if profile in {"static", "native"}:
         before = artifact_metrics(baseline)
         after = artifact_metrics(candidate)
-        return {
+        result = {
             "status": "structural_ready",
             "slug": slug,
             "profile": profile,
@@ -213,6 +215,10 @@ def compare(
             "model_calls": 0,
             "behavioral_claim": "none",
         }
+        if profile == "native":
+            result["runtime_probe"] = probe_runtime(repo_root)
+            result["native_claim"] = "availability_only"
+        return result
     if not allow_model_calls:
         return {
             "status": "inconclusive",

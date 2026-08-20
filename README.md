@@ -178,7 +178,7 @@ This is the right starting move when the user is uncertain which installed capab
 
 ## UAC Second
 
-UAC now reports `structural_ready`, not behavioral promotion. It runs deterministic `instruction_clarity.v1` lint and can emit an `EvalImpactPlan.v1`; Auto-Research and `bin/capability-eval` own behavioral comparison.
+UAC now reports `structural_ready`, not behavioral promotion. It runs deterministic `instruction_clarity.v1` lint and can emit an `EvalImpactPlan.v1`. Auto-Research and `bin/capability-eval` are the behavioral-proof path, but this release deliberately stops before live model runs until adapters, sealed cases, and judges pass calibration.
 
 ```bash
 bin/uac audit --clarity on
@@ -189,6 +189,8 @@ bin/capability-eval compare --skill code-review --candidate ./candidate.md --pro
 ```
 
 Normal CI uses only the zero-token `static` profile. Model-mediated profiles require an explicit operator or workflow gate and cannot promote while contracts, runtime cells, judges, or sealed cases are incomplete.
+
+In plain English: this release adds the checklist, contracts, static controls, and cost brakes. It does not claim that Google-style rewriting, `instruction-editor`, UAC rewrites, or any other skill change has already beaten its baseline in live model trials.
 
 Use UAC, the capability intake and uplift workflow, when you are bringing new prompt-like source into canonical Core-Prompts state.
 

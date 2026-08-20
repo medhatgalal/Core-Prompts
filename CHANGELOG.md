@@ -1,3 +1,12 @@
+## v1.10.0 - 2026-08-20
+
+- Added the selective capability-evaluation foundation: draft Goal Contracts and topologies for all 24 skills, fail-closed promotion evidence, impact-based token profiles, static evaluator controls, runtime availability probes, and zero-token CI checks.
+- Renamed UAC's legacy `ship` result to `structural_ready` so structural quality cannot be mistaken for behavioral proof; UAC apply now preserves metadata, binds promotion evidence to the current baseline and candidate, and creates draft evaluation inventory for new skills.
+- Added the plain-English Skill Job Map to distinguish each skill's purpose, neighbors, and boundaries without forcing unsupported mergers or deletions.
+- Added experimental `instruction-editor` surfaces and a reviewed, source-linked `instruction_clarity.v1` policy for Google-style clarity lint and auditable edit candidates. Automatic rewriting remains off, and the skill cannot promote its own output.
+- Reconciled SuperCharge, Pulse, and Auto-Research mode, stacking, state, authority, and output-contract contradictions found during topology review.
+- Documented the preview boundary explicitly: live model comparison, Inspect AI/Inspect SWE integration, sealed promotion cases, and qualified semantic judges remain gated and are not claimed by this release.
+
 ## v1.9.6 - 2026-07-19
 
 - Shipped `dynamic-html-presentations` as a direct skill for polished standalone HTML decks, deterministic PNG export, and image-faithful flattened PPTX delivery across Codex, Gemini, Claude, and Kiro.

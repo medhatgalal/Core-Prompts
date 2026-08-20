@@ -69,6 +69,7 @@ from intent_pipeline.uplift.engine import run_uplift_engine
 from core_prompts_eval.clarity import audit_text as clarity_audit_text, load_policy as load_clarity_policy
 from core_prompts_eval.contracts import ContractError, artifact_hash, load_json, validate_promotion_verdict
 from core_prompts_eval.impact import build_impact_plan
+from core_prompts_eval.evaluator import compile_skill
 
 
 def _parse_args() -> argparse.Namespace:
@@ -1690,6 +1691,37 @@ def _persist_quality_reviews(slug: str, quality_plan: Mapping[str, Any], quality
     return changed
 
 
+def _snapshot_apply_artifacts() -> dict[str, str]:
+    """Hash every artifact family UAC may change during one apply transaction."""
+    targets = (
+        ROOT / 'ssot',
+        ROOT / '.meta' / 'capabilities',
+        ROOT / '.meta' / 'manifest.json',
+        ROOT / '.meta' / 'capability-handoff.json',
+        ROOT / '.meta' / 'skill-job-map.json',
+        ROOT / '.codex',
+        ROOT / '.gemini',
+        ROOT / '.claude',
+        ROOT / '.kiro',
+        ROOT / 'dist' / 'consumer-shell',
+        ROOT / 'docs' / 'CAPABILITY-CATALOG.md',
+        ROOT / 'docs' / 'RELEASE-DELTA.md',
+        ROOT / 'docs' / 'STATUS.md',
+        ROOT / 'docs' / 'SKILL-JOB-MAP.md',
+        ROOT / 'evals' / 'contracts',
+        ROOT / 'evals' / 'topologies',
+        ROOT / 'reports' / 'quality-reviews',
+        ROOT / 'sources' / 'ssot-baselines',
+    )
+    files: set[Path] = set()
+    for target in targets:
+        if target.is_file():
+            files.add(target)
+        elif target.is_dir():
+            files.update(path for path in target.rglob('*') if path.is_file())
+    return {path.relative_to(ROOT).as_posix(): artifact_hash(path) for path in sorted(files)}
+
+
 def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: list[str]) -> dict[str, Any]:
     if payload.get('status') != 'accepted':
         return payload
@@ -1726,6 +1758,12 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
             result['status'] = str(promotion_verdict.get('status') or 'hold')
             result['detail'] = 'The supplied independent verdict does not authorize apply.'
             return result
+        existing_ssot = ROOT / 'ssot' / f'{expected_slug}.md'
+        if existing_ssot.is_file() and artifact_hash(existing_ssot) != promotion_verdict.get('baseline_sha256'):
+            result = dict(payload)
+            result['status'] = 'stale_evidence'
+            result['detail'] = 'Promotion verdict baseline hash does not match the current canonical SSOT.'
+            return result
     if not args.yes:
         confirmation = input('Apply will write SSOT + descriptor into this repo, rebuild surfaces, and validate. Type yes to continue: ').strip().lower()
         if confirmation not in {'y', 'yes'}:
@@ -1733,6 +1771,7 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
             payload['status'] = 'cancelled'
             payload['detail'] = 'apply cancelled by user'
             return payload
+    before_apply = _snapshot_apply_artifacts()
     result = dict(payload)
     if args.quality_loop == 'on' and 'quality_result' not in result:
         result = _run_quality_for_payload(result, args)
@@ -1844,14 +1883,31 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
             rationale=str(result['manifest']['layers']['minimal'].get('rationale') or result['manifest']['layers']['minimal'].get('summary') or ''),
         )
     build_proc = subprocess.run([sys.executable, str(ROOT / 'scripts' / 'build-surfaces.py')], capture_output=True, text=True)
+    compile_result = None
+    compile_error = None
+    if build_proc.returncode == 0:
+        try:
+            compiled = compile_skill(ROOT, slug, write=True)
+            compile_result = {
+                'status': compiled['status'],
+                'goal_contract': f'evals/contracts/{slug}.json',
+                'topology': f'evals/topologies/{slug}.json',
+                'behavioral_claim': 'none',
+            }
+        except Exception as exc:
+            compile_error = str(exc)
     validate_proc = subprocess.run([sys.executable, str(ROOT / 'scripts' / 'validate-surfaces.py'), '--strict'], capture_output=True, text=True)
     result['mode'] = 'apply'
+    after_apply = _snapshot_apply_artifacts()
+    changed_paths = sorted(
+        path
+        for path in set(before_apply) | set(after_apply)
+        if before_apply.get(path) != after_apply.get(path)
+    )
     result['apply_result'] = {
-        'changed_paths': [str(ssot_path.relative_to(ROOT)), str(descriptor_path.relative_to(ROOT))]
-        + ([baseline_materialization['baseline_path']] if baseline_materialization else [])
-        + ([str(source_note.relative_to(ROOT))] if source_note else [])
-        + [str(path.relative_to(ROOT)) for path in quality_paths],
+        'changed_paths': changed_paths,
         'build': {'returncode': build_proc.returncode, 'stdout': build_proc.stdout.strip(), 'stderr': build_proc.stderr.strip()},
+        'compile': compile_result or {'status': 'failed', 'error': compile_error or 'build failed before compilation'},
         'validate': {'returncode': validate_proc.returncode, 'stdout': validate_proc.stdout.strip(), 'stderr': validate_proc.stderr.strip()},
         'quality': {
             'profile': (quality_plan or {}).get('quality_profile'),
@@ -1868,9 +1924,9 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
     }
     if apply_guard:
         result['apply_guard'] = apply_guard
-    if build_proc.returncode == 0 and validate_proc.returncode == 0:
+    if build_proc.returncode == 0 and (compile_result or {}).get('status') == 'structural_ready' and validate_proc.returncode == 0:
         result['status'] = 'applied'
-        result['detail'] = 'SSOT and descriptor landed in repo, surfaces rebuilt, validation passed.'
+        result['detail'] = 'SSOT, descriptor, draft evaluation contracts, and generated surfaces landed; validation passed.'
     else:
         result['status'] = 'apply_failed_validation'
         result['detail'] = 'Repo changes were written, but build or validation failed. Review the recorded outputs before deploy.'

@@ -14,6 +14,7 @@ Use this page to pick the right documentation path quickly. The intended order i
 | I want richer, copyable example asks | [Examples](EXAMPLES.md) |
 | I am importing or uplifting a capability | [UAC usage](UAC-USAGE.md) |
 | I need to choose the right skill or understand neighboring boundaries | [Skill Job Map](SKILL-JOB-MAP.md) |
+| I need to understand structural checks, behavioral proof, or token budgets | [Capability evaluation](CAPABILITY-EVALUATION.md) |
 | I need exact commands, paths, and generated-surface locations | [CLI reference](CLI-REFERENCE.md) |
 | I want to inspect what ships or what changed | [Capability catalog](CAPABILITY-CATALOG.md), [Release delta](RELEASE-DELTA.md), and [Consumer status](STATUS.md) |
 | I maintain builds, releases, release-watch updates, or docs hygiene | [Maintainer hygiene](MAINTAINER-HYGIENE.md), [CLI reference](CLI-REFERENCE.md), and [Release packaging](RELEASE-PACKAGING.md) |

@@ -445,6 +445,11 @@ Constraints:
     assert descriptor["historical_baseline"]["baseline_path"] is None
     assert payload["apply_result"]["behavioral_evidence"]["status"] == "behavioral_pending"
     assert payload["apply_result"]["build"]["returncode"] == 0
+    assert payload["apply_result"]["compile"]["status"] == "structural_ready"
+    assert (workspace / "evals" / "contracts" / f"{slug}.json").is_file()
+    assert (workspace / "evals" / "topologies" / f"{slug}.json").is_file()
+    assert f".codex/skills/{slug}/SKILL.md" in payload["apply_result"]["changed_paths"]
+    assert "docs/SKILL-JOB-MAP.md" in payload["apply_result"]["changed_paths"]
     assert payload["apply_result"]["validate"]["returncode"] in {0, 2}
 
 

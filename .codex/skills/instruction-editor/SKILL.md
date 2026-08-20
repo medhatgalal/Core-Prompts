@@ -4,6 +4,10 @@ description: "Edit prompts, skills, agent instructions, and workflow rules into 
 ---
 # Instruction Editor
 
+## Evidence Status
+
+This skill is experimental during the advisory evaluation rollout. It can produce auditable edits and preservation evidence, but it cannot promote its own rewrite or claim that clearer language improved agent behavior. UAC keeps automatic candidate rewriting off until independent evaluation proves value.
+
 ## Purpose
 Make instruction artifacts easier to read and invoke while preserving their behavior. Treat clarity as an editorial hypothesis, never as proof that an agent will perform better.
 
