@@ -1,0 +1,16 @@
+diff --git a/src/service.py b/src/service.py
+index 1111111..2222222 100644
+--- a/src/service.py
++++ b/src/service.py
+@@ -1,5 +1,10 @@
++from dataclasses import dataclass
++
++@dataclass(frozen=True)
++class Settings:
++    feature_enabled: bool
++
+ async def handle(request, settings: Settings):
+-    return await execute(request)
++    if settings.feature_enabled:
++        return await execute_new_path(request)
++    return await execute_legacy_path(request)

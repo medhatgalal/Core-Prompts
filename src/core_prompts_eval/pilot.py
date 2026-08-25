@@ -73,7 +73,36 @@ def validate_pilot_foundations(repo_root: Path) -> dict[str, Any]:
                 for defect in defects:
                     if defect.get("line_marker") not in artifact:
                         errors.append(f"{experiment_id}: seed marker missing for {defect.get('id')}")
-                case_count += len(defects)
+                lifecycle_cases = fixture.get("lifecycle_cases") or []
+                lifecycle_ids = [str(case.get("id")) for case in lifecycle_cases if isinstance(case, dict)]
+                if len(lifecycle_ids) != len(set(lifecycle_ids)):
+                    errors.append(f"{experiment_id}: lifecycle case ids must be unique")
+                categories: dict[str, set[bool]] = {}
+                for case in lifecycle_cases:
+                    case_artifact = _resolve(repo_root, str(case.get("artifact"))).read_text(encoding="utf-8")
+                    if str(case.get("line_marker") or "") not in case_artifact:
+                        errors.append(f"{experiment_id}: lifecycle marker missing for {case.get('id')}")
+                    category = str(case.get("category") or "")
+                    categories.setdefault(category, set()).add(bool(case.get("should_flag")))
+                required_categories = {"resource", "concurrency_init", "operational_readiness", "api_contract"}
+                if set(categories) != required_categories:
+                    errors.append(f"{experiment_id}: lifecycle category coverage is {sorted(categories)}")
+                for category in sorted(required_categories):
+                    if categories.get(category) != {False, True}:
+                        errors.append(f"{experiment_id}: {category} needs positive and negative controls")
+
+                public_cases_path = _resolve(repo_root, str(fixture.get("public_cases")))
+                public_cases = [
+                    json.loads(line)
+                    for line in public_cases_path.read_text(encoding="utf-8").splitlines()
+                    if line.strip()
+                ]
+                public_ids = [str(case.get("id")) for case in public_cases]
+                if len(public_ids) != len(set(public_ids)):
+                    errors.append(f"{experiment_id}: public case ids must be unique")
+                for case in public_cases:
+                    _resolve(repo_root, f"evals/fixtures/code-review/{case.get('fixture')}")
+                case_count += len(defects) + len(lifecycle_cases) + len(public_cases)
             elif experiment_id == "product-repo-code-routing":
                 cases = [json.loads(line) for line in fixture_path.read_text(encoding="utf-8").splitlines() if line.strip()]
                 expected_skills = set(experiment.get("skills") or [])

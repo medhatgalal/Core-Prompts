@@ -199,6 +199,7 @@ Use when:
 - you want to review a commit before push or merge
 - the diff may be too broad
 - you suspect AI-generated over-engineering or weak commit hygiene
+- the change creates temporary artifacts, shared or initialization-time state, operational failure paths, or downstream API/schema changes
 - you need findings and readiness guidance, not file edits
 
 Why this skill first:
@@ -207,11 +208,12 @@ Why this skill first:
 
 Ask:
 
-> Use `code-review` to review my staged changes before I commit.
+> Use `code-review` to review my staged changes before I commit. Check resource cleanup and bounds, concurrency and initialization-time state, operational observability and graceful degradation, and downstream API/schema compatibility.
 
 Expected output:
 
 - findings first
+- evidence-based resource, concurrency, operational-readiness, or API-contract findings when those risks are present
 - scope and risk assessment
 - commit-message or change-summary feedback
 - open questions or residual risks

@@ -237,14 +237,18 @@ UAC can analyze:
 - multiple `--source` values in one run
 - repomix-reduced repo inputs
 
+For a local generated skill named `SKILL.md`, UAC resolves the capability slug from frontmatter `name` before falling back to the filename. A same-slug update preserves canonical-only SSOT frontmatter and curated descriptor metadata instead of replacing them with generated-surface or generic intake defaults.
+
 ## Important Boundaries
 
 - `structural_ready` replaces the old `ship` label and is structural evidence only.
 - Google-derived clarity lint is always available, advisory, and backed by the reviewed local `instruction_clarity.v1` policy. UAC still rejects unsupported HTML ingestion.
 - `--emit-impact-plan` selects the minimum safe evaluation profile; unknown impact escalates rather than guessing downward.
+- Body changes that add safety, resource-lifecycle, concurrency, operational-readiness, or contract checks select the promotion profile and publish candidate clause identifiers; generated summary drift alone does not downgrade them to a description-only canary.
 - `--promotion-verdict <path>` validates independent, hash-bound evidence during apply.
 - UAC does not own sealed cases, behavioral judging, promotion, or waivers.
 - A new behavioral baseline is materialized only after promotion. Historical baseline lineage is preserved.
+- During the advisory rollout, apply without a promotion verdict may land structurally ready canonical state, but the result remains `behavioral_pending` and cannot advance the behavioral baseline.
 - During the advisory rollout, apply also compiles a draft Goal Contract and topology so a newly added skill cannot silently skip the evaluation inventory.
 
 - UAC publishes advisory metadata and handoff artifacts only. It does not decide runtime routing or delegation.

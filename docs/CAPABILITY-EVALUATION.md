@@ -15,6 +15,7 @@ Core-Prompts separates candidate production from behavioral promotion.
 - compile draft Goal Contracts and capability topologies for all skills
 - detect known contract contradictions and generated drift
 - run Google-derived clarity lint, structural controls, fixtures, and runtime availability probes with zero model calls
+- validate public Code Review cases for correctness, low noise, resource lifecycle, initialization-time state, operational readiness, and API-contract compatibility, including matched positive and negative controls
 - calculate the minimum allowed evaluation profile and hard token cap
 - reject missing, stale, or incomplete promotion evidence
 
@@ -68,7 +69,7 @@ The public evaluator controls are present, but semantic judges are not yet quali
 The first paid pilot is deliberately narrower than the available public cases. It asks four questions:
 
 1. Does SuperCharge preserve modules, stacking, terminal controls, and state?
-2. Does Code Review find a concrete seeded defect with good evidence and low noise?
+2. Does Code Review find seeded correctness and lifecycle defects with good evidence while remaining quiet on matched safe controls?
 3. Can routing distinguish product completeness (`feature-status`), repository activity (`eng-report`), and structural code health (`codebase-health-audit`)?
 4. Does UAC Import preserve agent-useful metadata and its HTML safety boundary without claiming behavioral proof?
 

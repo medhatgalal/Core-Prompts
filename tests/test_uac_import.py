@@ -62,6 +62,94 @@ def test_uac_import_local_file_flow(tmp_path: Path) -> None:
     assert payload["handoff_contract"]["advisory_only"] is True
 
 
+def test_uac_import_local_skill_uses_frontmatter_name_instead_of_generic_filename(tmp_path: Path) -> None:
+    skill_dir = tmp_path / "code-review"
+    skill_dir.mkdir()
+    sample = skill_dir / "SKILL.md"
+    sample.write_text(
+        """---
+name: "code-review"
+description: "Review code changes."
+---
+# Code Review
+
+## Primary Objective
+Review a diff.
+
+## Required Output
+- findings
+
+## Evaluation Rubric
+| Check | Passing |
+| --- | --- |
+| Evidence | Findings cite the diff |
+""",
+        encoding="utf-8",
+    )
+
+    payload = UAC_IMPORT._import_local_file(
+        sample,
+        target_system="all",
+        install_target="auto",
+        benchmark_policy="off",
+    )
+
+    assert payload["manifest"]["slug"] == "code-review"
+
+
+def test_same_slug_canonicalization_preserves_ssot_frontmatter_and_drops_generated_footer() -> None:
+    generated = (ROOT / ".kiro" / "skills" / "code-review" / "SKILL.md").read_text(encoding="utf-8")
+
+    canonicalized = UAC_IMPORT._canonicalize_same_slug_ssot("code-review", generated)
+
+    assert 'display_name: "Commit Review — Git Commit Quality Gate"' in canonicalized
+    assert 'kind: "skill"' in canonicalized
+    assert 'capability_type: "skill"' in canonicalized
+    assert "Capability resource:" not in canonicalized
+
+
+def test_same_slug_descriptor_preserves_curated_metadata_when_quality_text_differs() -> None:
+    candidate = {
+        "shared_summary": "generic uplift summary",
+        "consumption_hints": {"preferred_use_cases": ["generic"]},
+        "quality_status": "structural_ready",
+    }
+    applied = (ROOT / "ssot" / "code-review.md").read_text(encoding="utf-8")
+    quality_result = {"final_candidate_text": applied + "\n## Rules\n- intermediate-only marker\n"}
+
+    merged, quality_bound = UAC_IMPORT._merge_existing_descriptor_for_apply(
+        "code-review",
+        candidate,
+        ssot_text=applied,
+        quality_result=quality_result,
+    )
+
+    assert quality_bound is False
+    assert merged["shared_summary"] == "[ScottP] Git commit review with scope control and over-engineering detection"
+    assert merged["consumption_hints"]["preferred_use_cases"] == [
+        "pre-merge commit review",
+        "scope creep detection",
+        "over-engineering checks",
+    ]
+    assert "quality_status" not in merged
+
+
+def test_behavioral_checklist_changes_select_promotion_profile_and_clause_ids() -> None:
+    current = (ROOT / "ssot" / "code-review.md").read_text(encoding="utf-8")
+    candidate = current + "\n## Additional Safety Rule\n- Require cleanup for every new resource allocation.\n"
+
+    change_classes, affected_clause_ids = UAC_IMPORT._classify_candidate_impact(
+        "code-review",
+        candidate,
+        {"change_kind": "update_existing_capability", "changed_fields": ["summary"]},
+    )
+    impact = UAC_IMPORT.build_impact_plan("code-review", change_classes, affected_clause_ids)
+
+    assert change_classes == ["safety"]
+    assert affected_clause_ids
+    assert impact["minimum_profile"] == "promotion"
+
+
 def test_uac_import_respects_target_system_override(tmp_path: Path) -> None:
     sample = tmp_path / "prompt.md"
     sample.write_text(

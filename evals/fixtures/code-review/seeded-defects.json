@@ -1,6 +1,7 @@
 {
   "schema_version": "SeededDefectFixture.v1",
   "artifact": "evals/fixtures/code-review/off-by-one.diff",
+  "public_cases": "evals/cases/public/code-review/core.jsonl",
   "seeded_defects": [
     {
       "id": "CR-OFF-BY-ONE-001",
@@ -9,6 +10,72 @@
       "minimum_severity": "medium",
       "expected_reason": "A one-based page number must subtract one before multiplying by page size.",
       "repair_shape": "start = (page_number - 1) * page_size"
+    }
+  ],
+  "lifecycle_cases": [
+    {
+      "id": "CR-RESOURCE-POSITIVE-001",
+      "artifact": "evals/fixtures/code-review/unbounded-temp-storage.diff",
+      "line_marker": "artifact_path.write_text(request.payload)",
+      "category": "resource",
+      "should_flag": true,
+      "expected_reason": "A repeatable temporary artifact write has no cleanup or explicit lifecycle bound."
+    },
+    {
+      "id": "CR-RESOURCE-CONTROL-001",
+      "artifact": "evals/fixtures/code-review/bounded-temp-storage.diff",
+      "line_marker": "TemporaryDirectory(prefix=\"artifact-\")",
+      "category": "resource",
+      "should_flag": false,
+      "expected_reason": "The context-managed temporary directory provides scoped cleanup."
+    },
+    {
+      "id": "CR-INIT-POSITIVE-001",
+      "artifact": "evals/fixtures/code-review/init-time-config.diff",
+      "line_marker": "FEATURE_ENABLED = os.environ.get",
+      "category": "concurrency_init",
+      "should_flag": true,
+      "expected_reason": "Runtime configuration is frozen during module initialization."
+    },
+    {
+      "id": "CR-INIT-CONTROL-001",
+      "artifact": "evals/fixtures/code-review/immutable-startup-config.diff",
+      "line_marker": "class Settings:",
+      "category": "concurrency_init",
+      "should_flag": false,
+      "expected_reason": "Immutable settings are injected explicitly rather than read during module import."
+    },
+    {
+      "id": "CR-OPS-POSITIVE-001",
+      "artifact": "evals/fixtures/code-review/unconsumed-warning.diff",
+      "line_marker": "logger.warning(\"critical dependency failed; using stale data\")",
+      "category": "operational_readiness",
+      "should_flag": true,
+      "expected_reason": "The critical fallback emits a warning without a machine-consumable monitoring path."
+    },
+    {
+      "id": "CR-OPS-CONTROL-001",
+      "artifact": "evals/fixtures/code-review/monitored-warning.diff",
+      "line_marker": "alerts.emit(\"dependency_fallback\"",
+      "category": "operational_readiness",
+      "should_flag": false,
+      "expected_reason": "The failure path emits both a metric and an owned alert."
+    },
+    {
+      "id": "CR-API-POSITIVE-001",
+      "artifact": "evals/fixtures/code-review/schema-exposure.diff",
+      "line_marker": "include_archived: bool = False",
+      "category": "api_contract",
+      "should_flag": true,
+      "expected_reason": "A defaulted parameter is source-compatible but becomes visible through the generated tool schema."
+    },
+    {
+      "id": "CR-API-CONTROL-001",
+      "artifact": "evals/fixtures/code-review/versioned-schema.diff",
+      "line_marker": "@tool(schema_version=\"v2\"",
+      "category": "api_contract",
+      "should_flag": false,
+      "expected_reason": "The new contract is exposed through an explicitly versioned schema while retaining v1."
     }
   ],
   "precision_rule": "Do not invent additional findings without evidence in the diff or documented contract."

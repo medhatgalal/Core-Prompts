@@ -36,6 +36,34 @@ def test_static_pilot_foundations_are_executable_at_zero_tokens() -> None:
     assert result["behavioral_claim"] == "none"
 
 
+def test_code_review_public_cases_cover_each_lifecycle_dimension_and_control() -> None:
+    fixture = json.loads(
+        (ROOT / "evals" / "fixtures" / "code-review" / "seeded-defects.json").read_text(encoding="utf-8")
+    )
+    lifecycle_cases = fixture["lifecycle_cases"]
+    by_category: dict[str, set[bool]] = {}
+    for case in lifecycle_cases:
+        by_category.setdefault(case["category"], set()).add(case["should_flag"])
+        assert (ROOT / case["artifact"]).is_file()
+
+    assert by_category == {
+        "resource": {False, True},
+        "concurrency_init": {False, True},
+        "operational_readiness": {False, True},
+        "api_contract": {False, True},
+    }
+
+    public_cases = [
+        json.loads(line)
+        for line in (ROOT / fixture["public_cases"]).read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
+    assert len(public_cases) == 10
+    assert len({case["id"] for case in public_cases}) == len(public_cases)
+    for case in public_cases:
+        assert (ROOT / "evals" / "fixtures" / "code-review" / case["fixture"]).is_file()
+
+
 def test_pilot_does_not_pretend_anchor_evidence_is_cross_host_proof() -> None:
     pilot = draft_goal_contract(ROOT, "supercharge")["runtime_envelope"]
     deferred = draft_goal_contract(ROOT, "pulse")["runtime_envelope"]
@@ -68,3 +96,17 @@ def test_static_pilot_validator_fails_when_a_protected_marker_disappears(tmp_pat
 
     assert result["status"] == "hold"
     assert any("missing marker" in error for error in result["errors"])
+
+
+def test_static_pilot_validator_fails_when_a_lifecycle_fixture_is_missing(tmp_path: Path) -> None:
+    shutil.copytree(ROOT / "evals", tmp_path / "evals")
+    shutil.copytree(ROOT / ".meta", tmp_path / ".meta")
+    shutil.copytree(ROOT / "ssot", tmp_path / "ssot")
+    (tmp_path / "scripts").mkdir()
+    shutil.copy2(ROOT / "scripts" / "uac-import.py", tmp_path / "scripts" / "uac-import.py")
+    (tmp_path / "evals" / "fixtures" / "code-review" / "unbounded-temp-storage.diff").unlink()
+
+    result = validate_pilot_foundations(tmp_path)
+
+    assert result["status"] == "hold"
+    assert any("unbounded-temp-storage.diff" in error for error in result["errors"])
