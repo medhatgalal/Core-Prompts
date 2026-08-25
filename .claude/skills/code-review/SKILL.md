@@ -56,6 +56,7 @@ Use companion capabilities deliberately instead of flattening every review into 
 | release readiness, changelog, CI, packaging, or merge gates matter | `gitops-review` | commit quality alone is not enough for release or branch health |
 | behavior changed and test confidence is weak | `testing` | test coverage and edge-case discovery need a dedicated pass |
 | interface, architecture, or migration risk is material | `architecture` | structural risk needs architectural judgment, not just commit review |
+| resource growth, capacity exhaustion, or missing cleanup is material | `architecture` | identify an eviction strategy or explicit lifecycle bounds |
 | doc drift or example drift is part of the commit | `docs-review-expert` | keep documentation review explicit and separate |
 | reviewer comments need to be implemented | `address-code-review` | this review gate should not mutate files |
 
@@ -151,6 +152,12 @@ Look for:
 - new abstractions or helper layers appear for a simple change
 - files change that are not implied by the commit description
 - refactoring is mixed with behavior changes
+- resources are created without cleanup, eviction, retention, or capacity bounds
+- runtime configuration is frozen during initialization without an explicit immutability contract
+- shared mutable state or non-atomic writes appear in concurrent execution paths
+- critical warnings have no machine-consumable monitoring or escalation path
+- failure modes are silent, unrecoverable, or diagnosable only after redeployment
+- parameters or schema changes appear without downstream compatibility analysis
 
 **When to Reject**
 If the change is over-engineered or out of scope, recommend one or more of:
@@ -183,7 +190,44 @@ Look for:
 - [ ] no commented-out code or stray debug statements
 - [ ] new dependencies are justified and noted
 
-### 6. Provide Feedback
+### 6. Check Resource & Lifecycle
+Look for resource accumulation, initialization-order hazards, concurrency defects, operational blind spots, and downstream contract changes that can make an otherwise correct diff unsafe in production.
+
+**Resource Management Checklist**
+- [ ] files, directories, caches, queues, buffers, connections, tasks, subprocesses, and other resources have explicit growth bounds
+- [ ] every newly created resource has a clear owner and lifecycle
+- [ ] cleanup runs on success, error, timeout, and cancellation paths
+- [ ] accumulation is bounded by TTL, eviction, rotation, quotas, size caps, backpressure, or another explicit mechanism
+- [ ] temporary artifacts do not persist without a cleanup mechanism
+- [ ] disk writes include retention, capacity, and failure handling
+- [ ] early returns and partial failures do not leak resources
+
+**Concurrency and Initialization-Time Checklist**
+- [ ] environment, configuration, feature flags, clocks, clients, and mutable dependencies are not frozen during initialization when runtime evaluation is required
+- [ ] initialization order cannot leave state stale unless startup-time immutability is an explicit contract
+- [ ] shared mutable dictionaries, caches, registries, files, and singleton state have documented ownership and synchronization
+- [ ] async and multi-worker paths avoid lost updates, duplicate work, partial writes, and read-modify-write races
+- [ ] file replacement and state publication are atomic where inconsistent reads are possible
+- [ ] concurrent operations handle cleanup and cancellation safely
+
+**Operational Readiness Checklist**
+- [ ] warnings and errors are actionable rather than repetitive noise
+- [ ] critical failures produce machine-consumable metrics, traces, events, health signals, or alerts
+- [ ] operational signals include stable context for diagnosis and ownership
+- [ ] repeated warnings are aggregated or rate-limited when necessary
+- [ ] operators can inspect or safely change relevant runtime state without redeployment when the system requires it
+- [ ] timeouts, retries, fallbacks, circuit breaking, and partial failures degrade gracefully
+- [ ] failures remain observable instead of silently switching behavior
+
+**API Contract Checklist**
+- [ ] changes to parameters, return values, defaults, ordering, serialization, and error behavior preserve existing callers
+- [ ] defaults retain established behavior rather than merely preventing a syntax error
+- [ ] generated schemas, clients, descriptors, documentation, and reflection-based interfaces are reviewed for contract changes
+- [ ] optional parameters do not become visible to downstream consumers without compatibility analysis
+- [ ] tool-calling and schema-driven consumers can interpret the new contract safely
+- [ ] versioning, migration, deprecation, and compatibility tests are added when required
+
+### 7. Provide Feedback
 If issues are found:
 - describe each problem clearly
 - identify the file and approximate location
@@ -259,6 +303,7 @@ Structure the review like this:
 | Simplicity | The implementation avoids unnecessary abstraction or spread |
 | Evidence quality | Findings are based on the actual diff and reference specific files |
 | Merge guidance | The response ends with a clear ready / blocked / split recommendation |
+| Resource & lifecycle | No unbounded growth, no incorrectly frozen initialization state, and failure modes are observable and recoverable |
 
 ## Hard Constraints
 - Never skip reading the actual diff.

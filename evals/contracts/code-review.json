@@ -16,6 +16,12 @@
     "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
     "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
     "69e2d69e633b3d0936215810f75fc2527ee735626295c990ce7768e6967df477",
+    "a6f77e91ee6c5fd3af9d3deb0640bd277de10352692763bb9b6173e1be1f03fc",
+    "45eb57c3f020e224c1a857d07246b4495766195c3e8bbdeb426fee8afa303ae2",
+    "b80d593de097b89e33641755c29754158ac219cd2a1c18aa0dae17473f342eb5",
+    "b9e0596a4fd2fa3c6a94dfff083d86915bbdabb45dc8fe99406c1a6a5a4f4c6b",
+    "de3a6a2de402a98c4220e93d7c4388418802b6a618c5130037ad525950c7921b",
+    "485e7c6d8d964cee25ce619514a5aaeaca192b9bfc8f35dd8c39527431f49e67",
     "d2e95eececf55eecf480dad0149d460303dc1380f7db3cb1883cf57b92c8a2d0",
     "39749905ad533aa83fe2dd42cc12a5a23f2c959c6d3af474b055fe556c94402c",
     "6ec4931c2502f4903591cdd096bd5452dc3b51bc580428b092157d46e17c6ba7"
@@ -101,6 +107,36 @@
       "sha256": "69e2d69e633b3d0936215810f75fc2527ee735626295c990ce7768e6967df477",
       "source": "ssot/code-review.md",
       "text": "If nothing is staged, inspect the working-tree diff only after saying that the review is not a commit-ready staged review."
+    },
+    {
+      "sha256": "a6f77e91ee6c5fd3af9d3deb0640bd277de10352692763bb9b6173e1be1f03fc",
+      "source": "ssot/code-review.md",
+      "text": "- failure modes are silent, unrecoverable, or diagnosable only after redeployment"
+    },
+    {
+      "sha256": "45eb57c3f020e224c1a857d07246b4495766195c3e8bbdeb426fee8afa303ae2",
+      "source": "ssot/code-review.md",
+      "text": "- [ ] temporary artifacts do not persist without a cleanup mechanism"
+    },
+    {
+      "sha256": "b80d593de097b89e33641755c29754158ac219cd2a1c18aa0dae17473f342eb5",
+      "source": "ssot/code-review.md",
+      "text": "- [ ] early returns and partial failures do not leak resources"
+    },
+    {
+      "sha256": "b9e0596a4fd2fa3c6a94dfff083d86915bbdabb45dc8fe99406c1a6a5a4f4c6b",
+      "source": "ssot/code-review.md",
+      "text": "- [ ] environment, configuration, feature flags, clocks, clients, and mutable dependencies are not frozen during initialization when runtime evaluation is required"
+    },
+    {
+      "sha256": "de3a6a2de402a98c4220e93d7c4388418802b6a618c5130037ad525950c7921b",
+      "source": "ssot/code-review.md",
+      "text": "- [ ] optional parameters do not become visible to downstream consumers without compatibility analysis"
+    },
+    {
+      "sha256": "485e7c6d8d964cee25ce619514a5aaeaca192b9bfc8f35dd8c39527431f49e67",
+      "source": "ssot/code-review.md",
+      "text": "- [ ] versioning, migration, deprecation, and compatibility tests are added when required"
     },
     {
       "sha256": "d2e95eececf55eecf480dad0149d460303dc1380f7db3cb1883cf57b92c8a2d0",
