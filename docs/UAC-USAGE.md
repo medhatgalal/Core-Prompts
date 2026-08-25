@@ -225,6 +225,7 @@ Notes:
 - deployment copies the full emitted bundle for each selected surface
 - deploying `--slug auto-research` removes stale installed `autosearch` skill, agent, and resource paths for the selected CLIs
 - deploy is copy-only and does not rewrite capability metadata paths
+- for a narrowly approved repair or rollout, add `--surface-only`; it requires at least one `--slug` and skips the standalone updater, launcher, and local binary refresh
 
 ## Source Kinds
 

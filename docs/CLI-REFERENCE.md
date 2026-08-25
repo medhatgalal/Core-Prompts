@@ -32,6 +32,7 @@ Profiles are `static`, `native`, `routing-canary`, `canary`, `promotion`, `cross
 | `bin/capability-fabric build` | generate all CLI surfaces, bundled resources, and generated inspection views | no |
 | `bin/capability-fabric validate --strict` | validate generated surfaces and contracts | no |
 | `bin/capability-fabric deploy --dry-run --cli all` | preview copy-only deployment to a target root | no |
+| `bin/capability-fabric deploy --surface-only --slug <slug> --cli <cli>` | copy only the selected generated surface bundle without refreshing the standalone updater, launcher, or local binaries | yes |
 | `bin/capability-fabric update --check-release` | check installed standalone bundle vs latest immutable release and update release-watch state | no |
 | `bin/capability-fabric update --accept-release` | explicitly accept and apply a pending release from the synced mirror | yes |
 | `bin/capability-fabric update --rollback previous` | restore the latest pre-release snapshot | yes |
@@ -107,6 +108,8 @@ Use this when:
 - you want the copy plan before touching a target root
 - you are reviewing install behavior
 - you want to scope deploy to specific CLIs or slugs
+
+For an intentionally narrow external-target deployment, combine `--surface-only` with one or more `--slug` values. The command fails closed when `--surface-only` has no slug filter.
 
 Example with slug targeting:
 

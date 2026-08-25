@@ -220,6 +220,69 @@ def test_install_help_mentions_release_watch_metadata() -> None:
     assert "RELEASE_SOURCE.env" in result.stdout
 
 
+def test_surface_only_requires_an_explicit_slug(tmp_path: Path) -> None:
+    result = run_script(
+        DEPLOY_SCRIPT,
+        "--cli",
+        "kiro",
+        "--surface-only",
+        target_root=tmp_path,
+        cli_bins=("kiro-cli",),
+        use_system_bash=True,
+        allow_nonlocal_target=True,
+    )
+
+    assert result.returncode == 1
+    assert "--surface-only requires at least one --slug" in result.stdout
+    assert not (tmp_path / ".kiro").exists()
+
+
+def test_surface_only_nonlocal_deploy_writes_only_selected_kiro_bundle(tmp_path: Path) -> None:
+    result = run_script(
+        DEPLOY_SCRIPT,
+        "--cli",
+        "kiro",
+        "--slug",
+        "code-review",
+        "--surface-only",
+        target_root=tmp_path,
+        cli_bins=("kiro-cli",),
+        use_system_bash=True,
+        allow_nonlocal_target=True,
+    )
+
+    assert result.returncode == 0, result.stdout
+    assert (tmp_path / ".kiro" / "skills" / "code-review" / "SKILL.md").is_file()
+    assert (tmp_path / ".kiro" / "skills" / "code-review" / "resources" / "capability.json").is_file()
+    assert not (tmp_path / ".kiro" / "skills" / "architecture").exists()
+    assert not (tmp_path / ".core-prompts-updater").exists()
+    assert not (tmp_path / "update_core_prompts.sh").exists()
+    assert not (tmp_path / ".local" / "bin" / "eng-report").exists()
+    assert "STANDALONE updater=" not in result.stdout
+
+
+def test_nonlocal_dry_run_does_not_write_updater_launcher_or_local_binary(tmp_path: Path) -> None:
+    result = run_script(
+        DEPLOY_SCRIPT,
+        "--cli",
+        "kiro",
+        "--slug",
+        "code-review",
+        "--dry-run",
+        target_root=tmp_path,
+        cli_bins=("kiro-cli",),
+        use_system_bash=True,
+        allow_nonlocal_target=True,
+    )
+
+    assert result.returncode == 0, result.stdout
+    assert not (tmp_path / ".kiro").exists()
+    assert not (tmp_path / ".core-prompts-updater").exists()
+    assert not (tmp_path / "update_core_prompts.sh").exists()
+    assert not (tmp_path / ".local" / "bin" / "eng-report").exists()
+    assert f"DRY-RUN WRITE {tmp_path}/.local/bin/eng-report" in result.stdout
+
+
 def test_deploy_fails_in_strict_mode_when_selected_cli_is_missing(tmp_path: Path) -> None:
     result = run_script(
         DEPLOY_SCRIPT,
