@@ -1,0 +1,15 @@
+diff --git a/src/artifacts.py b/src/artifacts.py
+index 1111111..2222222 100644
+--- a/src/artifacts.py
++++ b/src/artifacts.py
+@@ -1,3 +1,10 @@
++from pathlib import Path
++from tempfile import TemporaryDirectory
++
++
+ def process(request):
+-    return run_pipeline(request)
++    with TemporaryDirectory(prefix="artifact-") as directory:
++        artifact_path = Path(directory) / "request.json"
++        artifact_path.write_text(request.payload)
++        return run_pipeline(request, artifact_path)

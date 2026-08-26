@@ -1,0 +1,14 @@
+diff --git a/src/service.py b/src/service.py
+index 1111111..2222222 100644
+--- a/src/service.py
++++ b/src/service.py
+@@ -1,5 +1,9 @@
++import os
++
++FEATURE_ENABLED = os.environ.get("FEATURE_ENABLED") == "1"
++
+ async def handle(request):
+-    return await execute(request)
++    if FEATURE_ENABLED:
++        return await execute_new_path(request)
++    return await execute_legacy_path(request)

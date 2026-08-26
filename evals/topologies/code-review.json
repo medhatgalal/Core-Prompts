@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "code-review",
-  "ssot_sha256": "aec9e89dd7027e8f34e35c5bbf0ff89c3788e514cfe2f75e1c5ae9a4cdaf091f",
+  "ssot_sha256": "3850dd535f929c5fdcece8a4e5039f2140a002e8b14835baafde2056d266035f",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -35,12 +35,21 @@
   "authority_boundaries": [
     "code-review:L6:27ff8d3f2a4c",
     "code-review:L44:37b9b510e11d",
-    "code-review:L260:39749905ad53",
-    "code-review:L265:6ec4931c2502"
+    "code-review:L197:45eb57c3f020",
+    "code-review:L199:b80d593de097",
+    "code-review:L222:de3a6a2de402",
+    "code-review:L305:39749905ad53",
+    "code-review:L310:6ec4931c2502"
   ],
   "resources": [
+    "- [ ] early returns and partial failures do not leak resources",
+    "- [ ] every newly created resource has a clear owner and lifecycle",
+    "- [ ] files, directories, caches, queues, buffers, connections, tasks, subprocesses, and other resources have explicit growth bounds",
     "- findings with file references",
-    "| Evidence quality | Findings are based on the actual diff and reference specific files |"
+    "- resources are created without cleanup, eviction, retention, or capacity bounds",
+    "| Evidence quality | Findings are based on the actual diff and reference specific files |",
+    "| Resource & lifecycle | No unbounded growth, no incorrectly frozen initialization state, and failure modes are observable and recoverable |",
+    "| resource growth, capacity exhaustion, or missing cleanup is material | `architecture` | identify an eviction strategy or explicit lifecycle bounds |"
   ],
   "handoffs": [
     "## Companion Capability Matrix",
@@ -93,63 +102,117 @@
       "mapped_to": []
     },
     {
-      "id": "code-review:L67:77357dbdaba3",
+      "id": "code-review:L68:77357dbdaba3",
       "heading": "Required Inputs",
-      "source_line": 67,
+      "source_line": 68,
       "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
       "text": "## Required Inputs",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "code-review:L72:3d4b9f171064",
+      "id": "code-review:L73:3d4b9f171064",
       "heading": "Required Output",
-      "source_line": 72,
+      "source_line": 73,
       "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
       "text": "## Required Output",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "code-review:L73:c34906b1f1c3",
+      "id": "code-review:L74:c34906b1f1c3",
       "heading": "Required Output",
-      "source_line": 73,
+      "source_line": 74,
       "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
       "text": "Every substantial response must include:",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "code-review:L102:69e2d69e633b",
+      "id": "code-review:L103:69e2d69e633b",
       "heading": "1. Capture the Commit",
-      "source_line": 102,
+      "source_line": 103,
       "sha256": "69e2d69e633b3d0936215810f75fc2527ee735626295c990ce7768e6967df477",
       "text": "If nothing is staged, inspect the working-tree diff only after saying that the review is not a commit-ready staged review.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "code-review:L247:d2e95eececf5",
+      "id": "code-review:L155:a6f77e91ee6c",
+      "heading": "4. Check Scope and Complexity",
+      "source_line": 155,
+      "sha256": "a6f77e91ee6c5fd3af9d3deb0640bd277de10352692763bb9b6173e1be1f03fc",
+      "text": "- failure modes are silent, unrecoverable, or diagnosable only after redeployment",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "code-review:L197:45eb57c3f020",
+      "heading": "6. Check Resource & Lifecycle",
+      "source_line": 197,
+      "sha256": "45eb57c3f020e224c1a857d07246b4495766195c3e8bbdeb426fee8afa303ae2",
+      "text": "- [ ] temporary artifacts do not persist without a cleanup mechanism",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "code-review:L199:b80d593de097",
+      "heading": "6. Check Resource & Lifecycle",
+      "source_line": 199,
+      "sha256": "b80d593de097b89e33641755c29754158ac219cd2a1c18aa0dae17473f342eb5",
+      "text": "- [ ] early returns and partial failures do not leak resources",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "code-review:L202:b9e0596a4fd2",
+      "heading": "6. Check Resource & Lifecycle",
+      "source_line": 202,
+      "sha256": "b9e0596a4fd2fa3c6a94dfff083d86915bbdabb45dc8fe99406c1a6a5a4f4c6b",
+      "text": "- [ ] environment, configuration, feature flags, clocks, clients, and mutable dependencies are not frozen during initialization when runtime evaluation is required",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "code-review:L222:de3a6a2de402",
+      "heading": "6. Check Resource & Lifecycle",
+      "source_line": 222,
+      "sha256": "de3a6a2de402a98c4220e93d7c4388418802b6a618c5130037ad525950c7921b",
+      "text": "- [ ] optional parameters do not become visible to downstream consumers without compatibility analysis",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "code-review:L224:485e7c6d8d96",
+      "heading": "6. Check Resource & Lifecycle",
+      "source_line": 224,
+      "sha256": "485e7c6d8d964cee25ce619514a5aaeaca192b9bfc8f35dd8c39527431f49e67",
+      "text": "- [ ] versioning, migration, deprecation, and compatibility tests are added when required",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "code-review:L291:d2e95eececf5",
       "heading": "Recommendation",
-      "source_line": 247,
+      "source_line": 291,
       "sha256": "d2e95eececf55eecf480dad0149d460303dc1380f7db3cb1883cf57b92c8a2d0",
       "text": "[Ready for MR / Needs revision before MR / Split required]",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "code-review:L260:39749905ad53",
+      "id": "code-review:L305:39749905ad53",
       "heading": "Hard Constraints",
-      "source_line": 260,
+      "source_line": 305,
       "sha256": "39749905ad533aa83fe2dd42cc12a5a23f2c959c6d3af474b055fe556c94402c",
       "text": "- Never skip reading the actual diff.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "code-review:L265:6ec4931c2502",
+      "id": "code-review:L310:6ec4931c2502",
       "heading": "Hard Constraints",
-      "source_line": 265,
+      "source_line": 310,
       "sha256": "6ec4931c2502f4903591cdd096bd5452dc3b51bc580428b092157d46e17c6ba7",
       "text": "- Do not rubber-stamp a commit just because tests pass.",
       "kind": "invariant",
@@ -164,7 +227,7 @@
   "source_references": [
     {
       "path": "ssot/code-review.md",
-      "sha256": "aec9e89dd7027e8f34e35c5bbf0ff89c3788e514cfe2f75e1c5ae9a4cdaf091f"
+      "sha256": "3850dd535f929c5fdcece8a4e5039f2140a002e8b14835baafde2056d266035f"
     }
   ],
   "known_ambiguities": [],
@@ -177,7 +240,7 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 12,
+    "total": 18,
     "mapped": 0,
     "waived": 0
   },

@@ -3,7 +3,7 @@ set -euo pipefail
 
 usage() {
   cat <<'EOF'
-Usage: scripts/deploy-surfaces.sh [--cli gemini|claude|kiro|codex|all] [--slug SLUG] [--target PATH] [--allow-nonlocal-target] [--dry-run] [--strict-cli]
+Usage: scripts/deploy-surfaces.sh [--cli gemini|claude|kiro|codex|all] [--slug SLUG] [--target PATH] [--allow-nonlocal-target] [--surface-only] [--dry-run] [--strict-cli]
 
 Copy-only deployment of SSOT-managed generated surfaces to CLI directories under a target root.
 This script never creates symlinks.
@@ -16,6 +16,7 @@ Options:
   --slug SLUG                         Limit deployment to one slug (repeatable)
   --target PATH                       Destination root path. Default: repository root
   --allow-nonlocal-target             Allow explicit --target outside repository root
+  --surface-only                      Copy only selected generated surfaces; requires at least one --slug and skips updater, launcher, and local binaries
   --dry-run                           Show copy actions without writing
   --strict-cli                        Fail when selected CLI binary is not installed
   -h, --help                          Show this help
@@ -29,6 +30,7 @@ TARGET_ROOT="$REPO_ROOT"
 DRY_RUN=0
 STRICT_CLI=0
 ALLOW_NONLOCAL_TARGET=0
+SURFACE_ONLY=0
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -50,6 +52,9 @@ while [[ $# -gt 0 ]]; do
       ;;
     --allow-nonlocal-target)
       ALLOW_NONLOCAL_TARGET=1
+      ;;
+    --surface-only)
+      SURFACE_ONLY=1
       ;;
     --dry-run)
       DRY_RUN=1
@@ -86,6 +91,11 @@ PY
 if [[ "$ALLOW_NONLOCAL_TARGET" -ne 1 && "$TARGET_ROOT" != "$REPO_ROOT" && "$TARGET_ROOT" != "$REPO_ROOT"/* ]]; then
   echo "error: --target is restricted to repository root by default: $REPO_ROOT"
   echo "Use --allow-nonlocal-target to write outside repository root"
+  exit 1
+fi
+
+if [[ "$SURFACE_ONLY" -eq 1 && ${#SLUG_FILTERS[@]} -eq 0 ]]; then
+  echo "error: --surface-only requires at least one --slug"
   exit 1
 fi
 
@@ -552,24 +562,28 @@ if [[ " ${TARGETS[*]} " == *" codex "* ]]; then
   register_codex_agents "$AGENT_LINES"
 fi
 
-if [[ "$TARGET_ROOT" != "$REPO_ROOT" ]]; then
+if [[ "$TARGET_ROOT" != "$REPO_ROOT" && "$SURFACE_ONLY" -eq 0 ]]; then
   install_standalone_bundle
 fi
 
 
 # Install eng-report binary to ~/.local/bin if deploying to home
-if [[ "$TARGET_ROOT" != "$REPO_ROOT" ]]; then
-  mkdir -p "$TARGET_ROOT/.local/bin"
+if [[ "$TARGET_ROOT" != "$REPO_ROOT" && "$SURFACE_ONLY" -eq 0 ]]; then
   ENG_SCRIPT="$REPO_ROOT/scripts/eng-report.py"
   if [[ -f "$ENG_SCRIPT" ]]; then
-    cat > "$TARGET_ROOT/.local/bin/eng-report" <<WRAPPER
+    if [[ "$DRY_RUN" -eq 1 ]]; then
+      echo "DRY-RUN WRITE $TARGET_ROOT/.local/bin/eng-report"
+    else
+      mkdir -p "$TARGET_ROOT/.local/bin"
+      cat > "$TARGET_ROOT/.local/bin/eng-report" <<WRAPPER
 #!/usr/bin/env bash
 set -euo pipefail
 SCRIPT="$ENG_SCRIPT"
 if [[ ! -f "\$SCRIPT" ]]; then echo "error: eng-report.py not found at \$SCRIPT" >&2; exit 1; fi
 exec python3 "\$SCRIPT" "\$@"
 WRAPPER
-    chmod +x "$TARGET_ROOT/.local/bin/eng-report"
+      chmod +x "$TARGET_ROOT/.local/bin/eng-report"
+    fi
   fi
 fi
 

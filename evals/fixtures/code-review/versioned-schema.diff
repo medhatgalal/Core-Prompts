@@ -1,0 +1,12 @@
+diff --git a/src/tools.py b/src/tools.py
+index 1111111..2222222 100644
+--- a/src/tools.py
++++ b/src/tools.py
+@@ -1,5 +1,6 @@
+-@tool
+-def search(query: str):
++@tool(schema_version="v2", previous_version="v1")
++def search_v2(query: str, include_archived: bool = False):
+     """Search records through the explicitly versioned v2 schema."""
+-    return index.search(query)
++    return index.search(query, include_archived=include_archived)

@@ -27,6 +27,10 @@ Capability Fabric is the provider layer for reusable prompt capabilities.
 ## Direct Surface Rule
 For direct exposure, Capability Fabric standardizes on skill directories with `SKILL.md` files. Vendor `commands/` and `prompts/` locations are not direct deployment targets in this repo.
 
+When UAC ingests a generated `SKILL.md`, frontmatter `name` is authoritative for capability identity. Same-slug apply preserves canonical-only SSOT frontmatter and curated descriptor state instead of treating generated-surface omissions as deletions.
+
+Use slug-scoped `--surface-only` deployment when an approved external-target update must copy one emitted bundle without refreshing the standalone updater, launcher, or local binaries.
+
 ## UAC Inside Capability Fabric
 UAC is the intake, classification, uplift, quality-review, and packaging subsystem.
 

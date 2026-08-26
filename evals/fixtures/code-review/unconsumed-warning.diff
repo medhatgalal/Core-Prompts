@@ -1,0 +1,12 @@
+diff --git a/src/fallback.py b/src/fallback.py
+index 1111111..2222222 100644
+--- a/src/fallback.py
++++ b/src/fallback.py
+@@ -1,5 +1,9 @@
+ async def fetch(client, key):
+-    return await client.fetch(key)
++    try:
++        return await client.fetch(key)
++    except CriticalDependencyError:
++        logger.warning("critical dependency failed; using stale data")
++        return cache.get_stale(key)

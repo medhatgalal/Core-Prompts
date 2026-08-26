@@ -18,7 +18,7 @@ Required behavior:
 - `sources/ssot-baselines/<slug>/baseline.md` is the canonical prompt-body fidelity oracle for that capability
 - historical commit SHAs may appear only as lineage evidence in `historical_proof`
 - `judge` and `apply` must resolve baseline source files first, so workspace copies without `.git` still have deterministic fidelity oracles
-- new capabilities landed through UAC should materialize a baseline source snapshot before or during `apply`
+- a new behavioral baseline may be materialized only after an independent promotion verdict; structurally ready advisory applies remain `behavioral_pending` and preserve historical baseline lineage
 
 ## Canonical Capability Types
 | Type | Meaning | Auto-deployable |

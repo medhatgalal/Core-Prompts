@@ -1,0 +1,11 @@
+diff --git a/src/tools.py b/src/tools.py
+index 1111111..2222222 100644
+--- a/src/tools.py
++++ b/src/tools.py
+@@ -1,5 +1,5 @@
+ @tool
+-def search(query: str):
++def search(query: str, include_archived: bool = False):
+     """Search records exposed through the generated tool schema."""
+-    return index.search(query)
++    return index.search(query, include_archived=include_archived)

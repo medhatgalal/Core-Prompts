@@ -154,8 +154,9 @@ def assert_discovery(
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description='Smoke CLI startup checks for known vendors.')
     parser.add_argument('--strict', action='store_true', help='treat missing/failed probes as hard failure')
-    parser.add_argument('--smoke-timeout', type=int, default=15)
+    parser.add_argument('--smoke-timeout', type=int, default=None, help='override startup and discovery probe timeouts')
     args = parser.parse_args(argv)
+    smoke_timeout = args.smoke_timeout or 15
 
     rules = load_rules()
     manifest = load_manifest()
@@ -189,14 +190,14 @@ def main(argv: list[str] | None = None) -> int:
             continue
 
         try:
-            code, out = run_probe([binary] + version_args, timeout=args.smoke_timeout)
+            code, out = run_probe([binary] + version_args, timeout=smoke_timeout)
             report['results'].append({'tool': name, 'command': 'version', 'status': 'ok' if code == 0 else 'error', 'code': code, 'output': out})
         except Exception as exc:
             report['results'].append({'tool': name, 'command': 'version', 'status': 'error', 'error': str(exc)})
             warnings.append(f'{name}: version probe failed ({exc})')
 
         try:
-            code, out = run_probe([binary] + smoke_args, timeout=args.smoke_timeout)
+            code, out = run_probe([binary] + smoke_args, timeout=smoke_timeout)
             report['results'].append({'tool': name, 'command': 'smoke', 'status': 'ok' if code == 0 else 'error', 'code': code, 'output': out})
             if code != 0 and (required or args.strict):
                 failures.append(f'{name}: smoke command returned {code}')
@@ -226,7 +227,7 @@ def main(argv: list[str] | None = None) -> int:
         discovery_enabled = bool(tool.get('discovery_enabled', True))
         discovery_args = tool.get('discovery_args') or []
         discovery_surface_names = list(tool.get('discovery_surface_names') or [])
-        discovery_timeout = int(tool.get('discovery_timeout_seconds') or args.smoke_timeout)
+        discovery_timeout = int(args.smoke_timeout or tool.get('discovery_timeout_seconds') or smoke_timeout)
         expected_slugs = expected_discovery_slugs(manifest, discovery_surface_names)
         pattern_builder = discovery_pattern_builder(name)
 
@@ -248,6 +249,18 @@ def main(argv: list[str] | None = None) -> int:
                         failures.append(msg)
                     else:
                         warnings.append(msg)
+                    report['results'].append(
+                        {
+                            'tool': name,
+                            'command': 'discovery',
+                            'run': ' '.join(discovery_cmd),
+                            'status': 'error',
+                            'code': code,
+                            'output': clean_out,
+                            'expected_surface_names': discovery_surface_names,
+                        }
+                    )
+                    continue
                 elif is_approval_gated_output(clean_out):
                     report['results'].append(
                         {

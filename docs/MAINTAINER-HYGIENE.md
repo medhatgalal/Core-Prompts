@@ -61,6 +61,8 @@ Check:
 - updater help for `bin/capability-fabric update --help`
 - generated inspection views such as `docs/CAPABILITY-CATALOG.md`, `docs/RELEASE-DELTA.md`, and `docs/STATUS.md`
 - dry-run deploy output before local install when the release overwrites installed home surfaces
+- whether a narrowly approved repair should use `--surface-only --slug <slug>` so updater, launcher, local binaries, and unrelated surfaces remain untouched
+- confirm that every dry-run path is actually read-only; treat attempted writes during dry-run as a release blocker
 - direct comparison between generated outputs and installed state when local customizations or prior tool-written state may exist
 - whether concurrent UAC engine work and docs or prompt work should be split into separate worktrees before more edits land
 - release-watch behavior: scheduled runs check first, auto-accept valid releases by default, update the recorded source checkout only when it is clean and fast-forwardable, `--notify-only` preserves check-only scheduling, `--check-release` never auto-installs when run directly, `--accept-release` remains the explicit install/apply step, and `--rollback previous` restores the latest snapshot

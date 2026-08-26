@@ -20,6 +20,8 @@ bin/capability-fabric build
 bin/capability-fabric deploy --dry-run --cli all
 ```
 
+For a bounded repair or rollout, use `--surface-only` with at least one `--slug`. Review the exact copy set before the real command; surface-only deploy skips updater, launcher, and local-binary refresh.
+
 ## Package
 ```bash
 scripts/package-surfaces.sh --version "$(tr -d '[:space:]' < VERSION)"
@@ -70,7 +72,9 @@ Local release gates retain `bin/capability-fabric validate --strict`, including 
 3. merge only after the hosted checks are green
 4. verify `VERSION`, `CHANGELOG.md`, docs, and updater help all describe the same shipped version and release-watch contract
 5. build the release package from the merged state
-6. create the tag and publish the release artifacts
+6. create the tag and push the same tag object to GitHub and GitLab
+7. publish the release artifacts and checksums on both remotes
+8. accept or install the released version, then verify installed `VERSION`, surface parity, release-watch state, and rollback metadata separately from repository release evidence
 
 ## Installed Release Watch Contract
 

@@ -24,6 +24,6 @@ Use this index when you need operational and implementation detail beyond the ro
 2. Build surfaces: `bin/capability-fabric build`.
 3. Validate artifacts: `bin/capability-fabric validate --strict`.
 4. Optionally run CLI smoke checks: `python3 scripts/smoke-clis.py --strict`.
-5. Deploy managed files: `bin/capability-fabric deploy --cli all`.
+5. Deploy managed files: `bin/capability-fabric deploy --cli all`. For an exact external-target repair, use `--surface-only --slug <slug>` after reviewing the dry-run copy set.
 
 Direct skill exposure is standardized on `skills/<slug>/SKILL.md` across all supported CLIs.

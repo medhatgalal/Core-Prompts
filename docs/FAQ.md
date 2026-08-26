@@ -8,6 +8,8 @@ Edit `ssot/`. Generated surfaces and most descriptor details are derived.
 - `deploy`: copies generated surfaces to a target root
 - `package`: creates release archives from the curated runtime/integration boundary
 
+Use `deploy --surface-only --slug <slug>` for an intentionally narrow external-target copy that must not refresh the standalone updater, launcher, or local binaries.
+
 ## What does `judge` do?
 `judge` runs the quality loop without landing canonical repo state. It is the safest way to see whether a candidate is ready for `apply`.
 
@@ -26,3 +28,6 @@ Read [ORCHESTRATOR-CONTRACT.md](ORCHESTRATOR-CONTRACT.md), then `.meta/capabilit
 
 ## Does Capability Fabric decide which capability should run?
 No. Capability Fabric/UAC publish advisory metadata only. Routing and delegation stay outside.
+
+## Do behavioral evals require users to return production review results?
+No. Repository-owned synthetic diffs provide repeatable positive defects and matched safe controls for baseline-versus-candidate evaluation. De-identified field misses are useful additions when available, but the standing regression loop does not depend on users checking results back into Core-Prompts.

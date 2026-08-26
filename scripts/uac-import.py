@@ -5,6 +5,7 @@ import argparse
 import datetime
 import json
 import mimetypes
+import re
 import subprocess
 import sys
 import tempfile
@@ -341,8 +342,9 @@ def _analyze_text_source(
 def _import_local_file(path: Path, *, target_system: str, install_target: str, benchmark_policy: str) -> dict[str, Any]:
     ingestion = ingest_phase1_source(path)
     summary = run_phase1_pipeline(path)
+    frontmatter, _ = parse_ssot_frontmatter_and_body(ingestion.raw_text)
     return _analyze_text_source(
-        slug=_slugify(path.stem),
+        slug=_slugify(frontmatter.get('name') or path.stem),
         raw_text=ingestion.raw_text,
         source_metadata=ingestion.source_metadata,
         source_hint=path,
@@ -1281,6 +1283,142 @@ def _source_body_text(payload: Mapping[str, Any]) -> str | None:
         return None
 
 
+def _strip_generated_resource_footer(text: str) -> str:
+    lines = text.rstrip().splitlines()
+    if lines and re.fullmatch(r'Capability resource: `[^`]+`', lines[-1].strip()):
+        lines.pop()
+        while lines and not lines[-1].strip():
+            lines.pop()
+    return '\n'.join(lines).rstrip() + '\n'
+
+
+def _canonicalize_same_slug_ssot(slug: str, text: str) -> str:
+    normalized = _strip_generated_resource_footer(text)
+    existing_path = ROOT / 'ssot' / f'{slug}.md'
+    if not existing_path.is_file() or not normalized.startswith('---\n'):
+        return normalized
+    existing_text = existing_path.read_text(encoding='utf-8')
+    if not existing_text.startswith('---\n'):
+        return normalized
+
+    candidate_end = normalized.find('\n---', 4)
+    existing_end = existing_text.find('\n---', 4)
+    if candidate_end == -1 or existing_end == -1:
+        return normalized
+
+    candidate_header = normalized[4:candidate_end]
+    existing_header_lines = existing_text[4:existing_end].splitlines()
+    candidate_fields, _ = parse_ssot_frontmatter_and_body(normalized)
+    preserved_lines = []
+    for key in ('display_name', 'kind', 'capability_type'):
+        if key in candidate_fields:
+            continue
+        prefix = f'{key}:'
+        matching = next((line for line in existing_header_lines if line.strip().startswith(prefix)), None)
+        if matching:
+            preserved_lines.append(matching)
+    if not preserved_lines:
+        return normalized
+
+    merged_header = '\n'.join([candidate_header, *preserved_lines])
+    return normalized[:4] + merged_header + normalized[candidate_end:]
+
+
+def _merge_existing_descriptor_for_apply(
+    slug: str,
+    candidate: Mapping[str, Any],
+    *,
+    ssot_text: str,
+    quality_result: Mapping[str, Any] | None,
+) -> tuple[dict[str, Any], bool]:
+    existing = load_descriptor(ROOT, slug)
+    if not existing:
+        return dict(candidate), True
+    final_candidate = str((quality_result or {}).get('final_candidate_text') or '')
+    quality_bound = bool(final_candidate) and (
+        _canonicalize_same_slug_ssot(slug, final_candidate).strip() == ssot_text.strip()
+    )
+    merged = json.loads(json.dumps(existing))
+    if quality_bound:
+        for key in (
+            'quality_profile',
+            'quality_status',
+            'judge_reports',
+            'quality_pass_count',
+            'quality_stop_reason',
+            'quality_validation_matrix',
+        ):
+            if key in candidate:
+                merged[key] = candidate[key]
+    return merged, quality_bound
+
+
+_SAFETY_IMPACT_TERMS = (
+    'security',
+    'safety',
+    'resource',
+    'cleanup',
+    'eviction',
+    'concurrency',
+    'race',
+    'operational',
+    'failure',
+    'backward compatibility',
+    'api contract',
+    'schema',
+)
+
+
+def _classify_candidate_impact(
+    slug: str,
+    candidate_text: str,
+    impact: Mapping[str, Any],
+) -> tuple[list[str], list[str]]:
+    existing_path = ROOT / 'ssot' / f'{slug}.md'
+    if impact.get('change_kind') == 'new_capability' or not existing_path.is_file():
+        return ['new_skill'], []
+
+    existing_text = existing_path.read_text(encoding='utf-8')
+    existing_frontmatter, existing_body = parse_ssot_frontmatter_and_body(existing_text)
+    candidate_frontmatter, candidate_body = parse_ssot_frontmatter_and_body(
+        _canonicalize_same_slug_ssot(slug, candidate_text)
+    )
+    change_classes: list[str] = []
+    if any(
+        existing_frontmatter.get(key) != candidate_frontmatter.get(key)
+        for key in ('name', 'description')
+    ):
+        change_classes.append('name_description')
+    if extract_invocation_hints(existing_body) != extract_invocation_hints(candidate_body):
+        change_classes.append('invocation_hints')
+
+    affected_clause_ids: list[str] = []
+    if existing_body.strip() != candidate_body.strip():
+        existing_lines = {line.strip() for line in existing_body.splitlines() if line.strip()}
+        added_lines = [
+            line.strip()
+            for line in candidate_body.splitlines()
+            if line.strip() and line.strip() not in existing_lines
+        ]
+        lowered = '\n'.join(added_lines).casefold()
+        change_classes.append(
+            'safety' if any(term in lowered for term in _SAFETY_IMPACT_TERMS) else 'module_output'
+        )
+        affected_clause_ids = [
+            f'{slug}:candidate:{artifact_hash(line)[:12]}'
+            for line in added_lines
+            if line.startswith(('-', '## ', '### '))
+        ]
+
+    if not change_classes:
+        changed_fields = set(impact.get('changed_fields') or ())
+        if changed_fields & {'capability_type', 'expected_surface_names'}:
+            change_classes.append('authority')
+        else:
+            change_classes.append('safe_metadata')
+    return sorted(set(change_classes)), sorted(set(affected_clause_ids))
+
+
 def _is_repo_relative_source(normalized_source: str, rel_prefix: str) -> bool:
     if not normalized_source:
         return False
@@ -1454,13 +1592,17 @@ def _safe_apply_ssot_text(
     *,
     quality_result: Mapping[str, Any] | None = None,
 ) -> tuple[str, dict[str, Any] | None]:
-    ssot_text = _preferred_ssot_text(slug, payload, quality_result=quality_result)
+    ssot_text = _canonicalize_same_slug_ssot(
+        slug,
+        _preferred_ssot_text(slug, payload, quality_result=quality_result),
+    )
     fidelity = _evaluate_ssot_fidelity(slug, ssot_text)
     if not fidelity['hard_failures']:
         return ssot_text, None
 
     source_text = _source_body_text(payload)
     if source_text and source_text.strip() and source_text.strip() != ssot_text.strip():
+        source_text = _canonicalize_same_slug_ssot(slug, source_text)
         source_fidelity = _evaluate_ssot_fidelity(slug, source_text)
         if not source_fidelity['hard_failures']:
             return source_text, {
@@ -1841,6 +1983,15 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
             'deploy_next_step': 'Revise the candidate or preserve the operational source body before apply.',
         }
         return result
+    descriptor, quality_bound = _merge_existing_descriptor_for_apply(
+        slug,
+        descriptor,
+        ssot_text=ssot_text,
+        quality_result=quality_result,
+    )
+    if not quality_bound and load_descriptor(ROOT, slug):
+        apply_guard = dict(apply_guard or {})
+        apply_guard['descriptor_preservation'] = 'existing curated descriptor retained because quality evidence did not bind the applied SSOT text'
     if promotion_verdict and promotion_verdict.get('status') == 'promote':
         final_text = ssot_text + ('\n' if not ssot_text.endswith('\n') else '')
         if artifact_hash(final_text) != promotion_verdict.get('candidate_sha256'):
@@ -1965,15 +2116,17 @@ def main() -> int:
             payload['clarity'] = clarity_audit_text(candidate_text, load_clarity_policy(ROOT))
         if args.emit_impact_plan or args.mode in {'judge', 'apply'}:
             impact = payload['preview'].get('user_visible_impact') or {}
-            changed_fields = set(impact.get('changed_fields') or ())
-            change_classes = []
-            if impact.get('change_kind') == 'new_capability':
-                change_classes.append('new_skill')
-            if changed_fields & {'summary', 'invocation_hints'}:
-                change_classes.append('name_description')
-            if not change_classes:
-                change_classes.append('unknown')
-            payload['eval_impact_plan'] = build_impact_plan(str(payload['manifest']['slug']), change_classes)
+            impact_text = _source_body_text(payload) or candidate_text
+            change_classes, affected_clause_ids = _classify_candidate_impact(
+                str(payload['manifest']['slug']),
+                impact_text,
+                impact,
+            )
+            payload['eval_impact_plan'] = build_impact_plan(
+                str(payload['manifest']['slug']),
+                change_classes,
+                affected_clause_ids,
+            )
             payload['behavioral_status'] = (
                 'behavioral_pending'
                 if payload['eval_impact_plan']['minimum_profile'] not in {'static', 'native'}
