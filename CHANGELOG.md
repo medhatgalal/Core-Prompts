@@ -1,3 +1,12 @@
+## v1.10.2 - 2026-08-25
+
+- Expanded `code-review` with explicit resource-lifecycle, concurrency and initialization-time, operational-readiness, and downstream API/schema compatibility checks while preserving its read-only review boundary and invocation contract.
+- Added ten repository-owned public Code Review cases: four seeded lifecycle defects, four matched safe controls, the existing correctness defect, and a clean-change precision control. Static calibration now validates 57 cases without depending on users returning production review traces.
+- Hardened same-slug UAC updates so generic `SKILL.md` inputs resolve identity from frontmatter, preserve canonical SSOT metadata and curated descriptors, remove generated-only resource footers, and classify safety-oriented body changes at the promotion profile with affected candidate clauses.
+- Added fail-closed `--surface-only` deployment for exact slug-scoped repairs and releases. It requires an explicit slug, skips standalone updater/launcher/local-binary refresh, and fixes external-target dry runs so they perform no writes.
+- Made Gemini discovery smoke noninteractive in untrusted worktrees, honored explicit timeout overrides, and stopped one command failure from being double-reported as every skill missing.
+- Kept behavioral status honest: the new static cases and structural checks do not claim model-mediated superiority while semantic judges and sealed promotion evidence remain unavailable.
+
 ## v1.10.1 - 2026-08-20
 
 - Fixed daily scheduled updates under cron's restricted environment by adding deterministic user, Volta, Homebrew, and system executable paths.

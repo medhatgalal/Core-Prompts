@@ -10,13 +10,13 @@ The right mental model is simple:
 
 If you are already using Core-Prompts in a CLI, start there. If you are importing a new capability family, go to UAC next. If you are rebuilding surfaces, validating state, deploying, or preparing release work, use the repo tooling after that.
 
-The current generated surfaces ship `23` skills across all supported CLIs and `11` advisory agents on agent-capable surfaces.
+The current generated surfaces ship `24` skills across all supported CLIs and `11` advisory agents on agent-capable surfaces.
 
 For review work, pick the capability by intent:
 
 | Intent | Use | Boundary |
 | --- | --- | --- |
-| Review staged changes, a diff, or a commit before committing, pushing, merging, or releasing | `code-review` | Read-only review gate; produces findings and readiness guidance |
+| Review staged changes, a diff, or a commit before committing, pushing, merging, or releasing | `code-review` | Read-only review gate; covers correctness, scope, resource lifecycle, concurrency, operational readiness, API compatibility, and merge guidance |
 | Implement selected reviewer comments from an existing PR/MR | `address-code-review` | Mutating action workflow; edits only files tied to selected review feedback |
 
 ## Installed Capabilities First
@@ -33,7 +33,7 @@ These are the currently shipped skills with a concrete starter ask for each one:
 | `architecture` | design or review interfaces, boundaries, and migration safety | "Use `architecture` to recommend the safest design for this capability layout." | options, tradeoffs, migration guidance, and a rollback-aware recommendation |
 | `auto-research` | improve a prompt, workflow, or system through experiments | "Use `auto-research` to improve our review prompt so it catches more behavioral regressions without increasing noise." | goal contract, evaluation plan, experiments, and a winner only after evidence |
 | `codebase-health-audit` | audit brownfield structural health without changing the repo | "Use `codebase-health-audit` to audit this repo for LOC hotspots, god objects, coupling, dead code, and drift from this prior audit block." | verified structural findings, drift analysis, and slice-ready remediation |
-| `code-review` | review staged changes, diffs, or commits before commit, push, merge, or release | "Use `code-review` to review my staged changes before I commit." | findings first, scope risks, message-quality feedback, and merge readiness |
+| `code-review` | review staged changes, diffs, or commits before commit, push, merge, or release | "Use `code-review` to review my staged changes, including resource cleanup, concurrency, operational readiness, and API/schema compatibility." | evidence-based findings, scope risks, message-quality feedback, and merge readiness |
 | `address-code-review` | apply selected fixes for existing PR/MR reviewer comments | "Use `address-code-review` to inspect the open review comments on this MR and address the selected fixes only." | comments found, selected fixes, changes applied, commit guidance, and follow-up review |
 | `converge` | compare competing proposals and force one recommendation | "Use `converge` to compare these rollout plans and recommend one." | overlap map, explicit conflicts, decision criteria, and one final recommendation |
 | `demo-recorder` | automate polished demo recordings with Playwright scripts | "Use `demo-recorder` to create a Playwright demo of the agent feedback feature on our Swagger UI." | demo plan, complete Playwright script with recording enabled, run command, and output path |
@@ -188,7 +188,7 @@ bin/capability-eval compile --skill code-review
 bin/capability-eval compare --skill code-review --candidate ./candidate.md --profile static
 ```
 
-Normal CI uses only the zero-token `static` profile. Model-mediated profiles require an explicit operator or workflow gate and cannot promote while contracts, runtime cells, judges, or sealed cases are incomplete.
+Normal CI uses only the zero-token `static` profile. The Code Review pilot now validates seeded lifecycle defects and matched safe controls without relying on user telemetry. Model-mediated profiles still require an explicit operator or workflow gate and cannot promote while contracts, runtime cells, judges, or sealed cases are incomplete.
 
 In plain English: this release adds the checklist, contracts, static controls, and cost brakes. It does not claim that Google-style rewriting, `instruction-editor`, UAC rewrites, or any other skill change has already beaten its baseline in live model trials.
 
@@ -214,7 +214,7 @@ bin/uac apply /absolute/path/to/family-folder --yes
 What each step is for:
 
 - `plan`: show the proposed landing shape without writing repo state
-- `judge`: run the quality loop and produce a ship or block decision without writing repo state
+- `judge`: run the quality loop and report structural readiness, revision needs, or blockers without writing repo state
 - `apply`: write canonical repo state, then rebuild and validate
 
 Typical UAC examples:
@@ -280,6 +280,12 @@ bin/capability-fabric deploy --dry-run --cli all
 ```
 
 Use deploy after review when you want generated surfaces copied to a target root. Deploy is copy-only. It does not classify sources and it does not mutate canonical SSOT.
+
+For an exact repair or bounded rollout, require a slug and skip updater/launcher refresh:
+
+```bash
+bin/capability-fabric deploy --dry-run --surface-only --cli kiro --slug code-review --target "$HOME" --allow-nonlocal-target
+```
 
 ### Installed Release Watch
 

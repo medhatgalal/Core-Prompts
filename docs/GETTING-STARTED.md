@@ -17,7 +17,7 @@ If Core-Prompts is already installed in Codex, Gemini, Claude, or Kiro, begin wi
 | `docs-review-expert` | "Use `docs-review-expert` to review our docs IA and recommend the smallest rewrite that restores clarity." | placement decisions, drift findings, and rewrite guidance |
 | `gitops-review` | "Use `gitops-review` to tell me whether this branch is ready for PR and what blockers remain." | gate type, blockers, companion reviews, and next steps |
 | `codebase-health-audit` | "Use `codebase-health-audit` to audit this repo for LOC hotspots, god objects, coupling, likely dead code, and drift from this prior audit block." | metric-backed structural findings, drift analysis, and slice-ready remediation |
-| `code-review` | "Use `code-review` to review my staged changes before I commit." | findings, scope assessment, message guidance, and merge readiness |
+| `code-review` | "Use `code-review` to review my staged changes, including resource cleanup, concurrency, operational readiness, and API/schema compatibility." | evidence-based findings, scope assessment, lifecycle and contract risks, message guidance, and merge readiness |
 | `address-code-review` | "Use `address-code-review` to inspect the open MR comments and apply only the selected reviewer-requested fixes." | comments found, targeted fixes, changed files, commit guidance, and follow-up review |
 | `eng-report` | "Use `eng-report` to generate an HTML progress report for this repo since 2026-06-01." | git-derived metrics, report path, and narrative tied to deterministic data |
 | `ic-assistant` | "Use `ic-assistant` to track this active incident and tell me the current phase, overdue items, and next required action." | mode, phase, next action, status-update timer, and escalation flags |
@@ -61,7 +61,7 @@ Practical rule:
 - use `judge` for the quality decision
 - use `apply` only when you intend to change canonical repo state
 
-If `judge` says the landing is structurally close but still needs bounded behavioral proof, use `auto-research` for that proof step before `apply`.
+If `judge` says the landing is structurally close but still needs bounded behavioral proof, use `auto-research` for that proof step. During the advisory rollout, a structurally ready apply may land as `behavioral_pending`, but it cannot advance the behavioral baseline or claim promotion.
 
 For the full flow, go to [UAC usage](UAC-USAGE.md).
 
@@ -97,6 +97,12 @@ Optional deploy dry run:
 
 ```bash
 bin/capability-fabric deploy --dry-run --cli all
+```
+
+For a narrow external-target repair, use `--surface-only` with an explicit slug. It copies only that emitted bundle and skips the standalone updater, launcher, and local binaries:
+
+```bash
+bin/capability-fabric deploy --dry-run --surface-only --cli kiro --slug code-review --target "$HOME" --allow-nonlocal-target
 ```
 
 For the breaking `autosearch` rename, deploy `auto-research` to replace installed stale surfaces:

@@ -8,6 +8,7 @@
 - Keep PRs scoped to one behavior change and include a brief validation summary.
 - Keep `docs/CLI-REFERENCE.md` aligned when changing deployment flags, CLI settings, or discovery behavior.
 - Deployment policy is copy-only with symlinks forbidden at destination paths.
+- Narrow external-target deployment must use `--surface-only` with one or more explicit `--slug` values and an inspected dry-run write set.
 - Direct skill exposure is standardized on `skills/<slug>/SKILL.md`; do not add vendor `commands/` or `prompts/` targets for direct surfaces.
 
 ## Adding a new prompt

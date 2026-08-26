@@ -57,6 +57,13 @@ def test_discovery_pattern_builder_knows_supported_tools() -> None:
     assert smoke_clis.discovery_pattern_builder("codex") is None
 
 
+def test_gemini_discovery_is_noninteractive_in_untrusted_worktrees() -> None:
+    rules = json.loads((ROOT / ".meta" / "surface-rules.json").read_text(encoding="utf-8"))
+    gemini = next(tool for tool in rules["tooling"] if tool["name"] == "gemini")
+
+    assert gemini["discovery_args"] == ["--skip-trust", "skills", "list"]
+
+
 def test_normalize_discovery_output_synthesizes_gemini_override_entries() -> None:
     output = (
         'MCP issues detected. Run /mcp list for status.'
@@ -172,6 +179,89 @@ def test_main_uses_file_capture_for_gemini_discovery(monkeypatch) -> None:
     ]
     assert payloads[0]["warnings"] == []
     assert payloads[0]["failures"] == []
+
+
+def test_explicit_smoke_timeout_overrides_tool_discovery_timeout(monkeypatch) -> None:
+    observed: list[tuple[tuple[str, ...], int]] = []
+    monkeypatch.setattr(
+        smoke_clis,
+        "load_rules",
+        lambda: {
+            "tooling": [
+                {
+                    "name": "gemini",
+                    "surface": "gemini",
+                    "command": "gemini",
+                    "version_args": ["--version"],
+                    "smoke_args": ["--help"],
+                    "discovery_args": ["skills", "list"],
+                    "discovery_surface_names": ["gemini_skill"],
+                    "discovery_timeout_seconds": 30,
+                }
+            ],
+            "artifacts": [],
+        },
+    )
+    monkeypatch.setattr(
+        smoke_clis,
+        "load_manifest",
+        lambda: {"ssot_sources": [{"slug": "code-review", "expected_surface_names": ["gemini_skill"]}]},
+    )
+    monkeypatch.setattr(smoke_clis.shutil, "which", lambda binary: f"/usr/bin/{binary}")
+
+    def fake_run_probe(command, timeout=15, max_chars=4000, capture_mode="pipe"):
+        observed.append((tuple(command), timeout))
+        if command == ["gemini", "skills", "list"]:
+            return 0, "code-review [Enabled]"
+        return 0, "ok"
+
+    monkeypatch.setattr(smoke_clis, "run_probe", fake_run_probe)
+    monkeypatch.setattr(smoke_clis, "write_smoke_report", lambda payload: None)
+
+    assert smoke_clis.main(["--smoke-timeout", "90"]) == 0
+    assert (("gemini", "skills", "list"), 90) in observed
+
+
+def test_failed_discovery_command_does_not_also_report_every_slug_missing(monkeypatch) -> None:
+    payloads: list[dict] = []
+    monkeypatch.setattr(
+        smoke_clis,
+        "load_rules",
+        lambda: {
+            "tooling": [
+                {
+                    "name": "gemini",
+                    "surface": "gemini",
+                    "command": "gemini",
+                    "version_args": ["--version"],
+                    "smoke_args": ["--help"],
+                    "discovery_args": ["--skip-trust", "skills", "list"],
+                    "discovery_surface_names": ["gemini_skill"],
+                }
+            ],
+            "artifacts": [],
+        },
+    )
+    monkeypatch.setattr(
+        smoke_clis,
+        "load_manifest",
+        lambda: {"ssot_sources": [{"slug": "code-review", "expected_surface_names": ["gemini_skill"]}]},
+    )
+    monkeypatch.setattr(smoke_clis.shutil, "which", lambda binary: f"/usr/bin/{binary}")
+
+    def fake_run_probe(command, timeout=15, max_chars=4000, capture_mode="pipe"):
+        if command == ["gemini", "--skip-trust", "skills", "list"]:
+            return 41, "provider credentials unavailable"
+        return 0, "ok"
+
+    monkeypatch.setattr(smoke_clis, "run_probe", fake_run_probe)
+    monkeypatch.setattr(smoke_clis, "write_smoke_report", lambda payload: payloads.append(payload))
+
+    assert smoke_clis.main([]) == 0
+    assert payloads[0]["warnings"] == ["gemini: discovery command returned 41"]
+    discovery = next(item for item in payloads[0]["results"] if item.get("command") == "discovery")
+    assert discovery["status"] == "error"
+    assert discovery["code"] == 41
 
 
 def test_main_treats_gemini_override_conflicts_as_discovery_success(monkeypatch) -> None:
