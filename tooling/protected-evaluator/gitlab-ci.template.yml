@@ -71,12 +71,10 @@ adapter-conformance-codex:
     variables: false
   variables:
     CONFORMANCE_RUNNER_IDENTITY: $PROTECTED_CONFORMANCE_RUNNER_IDENTITY
-    OPENAI_API_KEY: $PROTECTED_OPENAI_API_KEY
   tags: [protected-evaluator-conformance-codex]
   needs: [authorize-global-budget]
   script:
     - test "$CI_RUNNER_ID" = "$CONFORMANCE_RUNNER_IDENTITY"
-    - test -n "$OPENAI_API_KEY"
     - ./protected-runner --phase adapter-probe-codex --config config/protected-evaluator.json --private-output protected-output --public-output public-output -- --prompt-inputs conformance-inputs/ --token-ledger-in protected-output/token-ledger/000000.json --output protected-output/conformance-unsigned/codex/
   artifacts:
     access: maintainer
@@ -204,12 +202,10 @@ evaluate-primary-codex:
     variables: false
   variables:
     PRIMARY_RUNNER_IDENTITY: $PROTECTED_PRIMARY_RUNNER_IDENTITY
-    OPENAI_API_KEY: $PROTECTED_OPENAI_API_KEY
   tags: [protected-evaluator-primary-codex]
   needs: [prepare-sealed-cases]
   script:
     - test "$CI_RUNNER_ID" = "$PRIMARY_RUNNER_IDENTITY"
-    - test -n "$OPENAI_API_KEY"
     - ./protected-runner --phase model-primary-codex --config config/protected-evaluator.json --private-output protected-output --public-output public-output -- --prompt-inputs prompt-inputs/ --token-ledger-in protected-output/token-ledger/000001.json --conformance protected-output/conformance-signed/ --output model-output/primary/codex/
   artifacts:
     access: maintainer
@@ -277,12 +273,10 @@ evaluate-reproduction-codex:
     variables: false
   variables:
     REPRODUCTION_RUNNER_IDENTITY: $PROTECTED_REPRODUCTION_RUNNER_IDENTITY
-    OPENAI_API_KEY: $PROTECTED_OPENAI_API_KEY
   tags: [protected-evaluator-reproduction-codex]
   needs: [reconcile-primary-ledger]
   script:
     - test "$CI_RUNNER_ID" = "$REPRODUCTION_RUNNER_IDENTITY"
-    - test -n "$OPENAI_API_KEY"
     - ./protected-runner --phase model-reproduction-codex --config config/protected-evaluator.json --private-output protected-output --public-output public-output -- --prompt-inputs prompt-inputs/ --token-ledger-in protected-output/token-ledger/000002.json --conformance protected-output/conformance-signed/ --output model-output/reproduction/codex/
   artifacts:
     access: maintainer

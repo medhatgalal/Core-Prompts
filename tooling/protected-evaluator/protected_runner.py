@@ -197,7 +197,7 @@ def _configured_identity(value: object, label: str) -> str:
     return raw
 
 
-def load_config(path: Path) -> dict[str, Any]:
+def load_config(path: Path, *, phase: str | None = None) -> dict[str, Any]:
     payload = _read_json(path.resolve(), "protected evaluator config")
     _closed(payload, TOP_FIELDS, "protected evaluator config")
     if payload["schema_version"] != "ProtectedEvaluatorConfig.v1":
@@ -235,21 +235,34 @@ def load_config(path: Path) -> dict[str, Any]:
     phase_commands = _object(payload["phase_commands"], "phase_commands")
     expected_phases = NON_SIGNING_PHASES | set(PHASE_SIGNING_PURPOSE)
     _closed(phase_commands, expected_phases, "phase_commands")
-    for phase in sorted(expected_phases):
-        command = _argv(phase_commands[phase], f"phase_commands.{phase}")
+    for configured_phase in sorted(expected_phases):
+        command = _argv(
+            phase_commands[configured_phase],
+            f"phase_commands.{configured_phase}",
+        )
         if not Path(command[0]).is_absolute():
-            raise ConfigError(f"phase_commands.{phase} must use an absolute protected executable")
-        phase_commands[phase] = command
+            raise ConfigError(
+                f"phase_commands.{configured_phase} must use an absolute protected executable"
+            )
+        phase_commands[configured_phase] = command
     if not Path(payload["adapter_conformance_command"][0]).is_absolute():
         raise ConfigError("adapter_conformance_command must use an absolute protected executable path")
-    _configured_identity(
-        payload["adapter_conformance_runner_identity"],
-        "adapter conformance runner identity",
-    )
-    _configured_identity(
-        payload["budget_authorizer_runner_identity"],
-        "budget authorizer runner identity",
-    )
+    if phase is None or phase.startswith("adapter-probe-"):
+        _configured_identity(
+            payload["adapter_conformance_runner_identity"],
+            "adapter conformance runner identity",
+        )
+    if phase is None or phase in {
+        "authorize-budget",
+        "reconcile-conformance-ledger",
+        "reconcile-primary-ledger",
+        "reconcile-reproduction-ledger",
+        "finalize-ledger",
+    }:
+        _configured_identity(
+            payload["budget_authorizer_runner_identity"],
+            "budget authorizer runner identity",
+        )
     credentials = _object(payload["adapter_credentials"], "adapter_credentials")
     _closed(credentials, {"codex", "kiro"}, "adapter_credentials")
     codex_credential = _object(credentials["codex"], "adapter_credentials.codex")
@@ -334,46 +347,45 @@ def load_config(path: Path) -> dict[str, Any]:
             raise ConfigError(f"limits.{field} must be a positive integer")
     trust_store_binding = _object(payload["evaluator_trust_store"], "evaluator_trust_store")
     _closed(trust_store_binding, {"path", "sha256"}, "evaluator_trust_store")
-    trust_store_path = _configured_path(trust_store_binding["path"], "evaluator trust store")
     expected_store_hash = str(trust_store_binding["sha256"])
-    if (
-        not HASH_RE.fullmatch(expected_store_hash)
-        or not trust_store_path.is_file()
-        or artifact_hash(trust_store_path) != expected_store_hash
-    ):
-        raise ConfigError("evaluator trust store binding is missing or stale")
-    trust_store = _read_json(trust_store_path, "evaluator trust store")
-    if set(trust_store) != {"schema_version", "keys"} or trust_store.get("schema_version") != "ProtectedTrustStore.v1":
-        raise ConfigError("evaluator trust store has an invalid closed shape")
-    store_keys = trust_store.get("keys")
-    if not isinstance(store_keys, list) or len(store_keys) != len(PURPOSES):
-        raise ConfigError("evaluator trust store must contain every purpose-separated verification key")
-    roots_by_purpose: dict[str, dict[str, Any]] = {}
-    for raw_root in store_keys:
-        root = _object(raw_root, "evaluator trust-store key")
-        if set(root) != PUBLIC_TRUST_ROOT_FIELDS or root.get("schema_version") != "ProtectedTrustRoot.v1":
-            raise ConfigError("evaluator trust store contains a non-public or invalid root")
-        purposes = root.get("purposes")
-        if (
-            not isinstance(purposes, list)
-            or len(purposes) != 1
-            or purposes[0] not in PURPOSES
-            or purposes[0] in roots_by_purpose
-        ):
-            raise ConfigError("evaluator trust store must contain five unique one-purpose roots")
-        roots_by_purpose[purposes[0]] = root
-    if set(roots_by_purpose) != set(PURPOSES):
-        raise ConfigError("evaluator trust store must contain every evaluator signing purpose")
+    if not HASH_RE.fullmatch(expected_store_hash):
+        raise ConfigError("evaluator trust store SHA-256 binding is invalid")
     signing_key_ids = _object(payload["signing_key_ids"], "signing_key_ids")
     _closed(signing_key_ids, set(PURPOSES), "signing_key_ids")
-    key_ids: list[str] = []
-    for purpose in PURPOSES:
-        key_id = str(signing_key_ids[purpose])
-        if not key_id or roots_by_purpose[purpose].get("key_id") != key_id:
-            raise ConfigError("signing key ID does not match its purpose-separated trust-store root")
-        key_ids.append(key_id)
+    key_ids = [str(signing_key_ids[purpose]) for purpose in PURPOSES]
+    if any(not key_id for key_id in key_ids):
+        raise ConfigError("signing key IDs must not be empty")
     if len(set(key_ids)) != len(PURPOSES):
         raise ConfigError("signing keys and key IDs must be purpose-separated")
+    if phase is None or phase in PHASE_SIGNING_PURPOSE:
+        trust_store_path = _configured_path(trust_store_binding["path"], "evaluator trust store")
+        if not trust_store_path.is_file() or artifact_hash(trust_store_path) != expected_store_hash:
+            raise ConfigError("evaluator trust store binding is missing or stale")
+        trust_store = _read_json(trust_store_path, "evaluator trust store")
+        if set(trust_store) != {"schema_version", "keys"} or trust_store.get("schema_version") != "ProtectedTrustStore.v1":
+            raise ConfigError("evaluator trust store has an invalid closed shape")
+        store_keys = trust_store.get("keys")
+        if not isinstance(store_keys, list) or len(store_keys) != len(PURPOSES):
+            raise ConfigError("evaluator trust store must contain every purpose-separated verification key")
+        roots_by_purpose: dict[str, dict[str, Any]] = {}
+        for raw_root in store_keys:
+            root = _object(raw_root, "evaluator trust-store key")
+            if set(root) != PUBLIC_TRUST_ROOT_FIELDS or root.get("schema_version") != "ProtectedTrustRoot.v1":
+                raise ConfigError("evaluator trust store contains a non-public or invalid root")
+            purposes = root.get("purposes")
+            if (
+                not isinstance(purposes, list)
+                or len(purposes) != 1
+                or purposes[0] not in PURPOSES
+                or purposes[0] in roots_by_purpose
+            ):
+                raise ConfigError("evaluator trust store must contain unique one-purpose roots")
+            roots_by_purpose[purposes[0]] = root
+        if set(roots_by_purpose) != set(PURPOSES):
+            raise ConfigError("evaluator trust store must contain every evaluator signing purpose")
+        for purpose in PURPOSES:
+            if roots_by_purpose[purpose].get("key_id") != signing_key_ids[purpose]:
+                raise ConfigError("signing key ID does not match its purpose-separated trust-store root")
     return payload
 
 
@@ -564,11 +576,9 @@ class ProtectedRunner:
     def adapter_credential_environment(self, host: str) -> dict[str, str]:
         credentials = _object(self.config["adapter_credentials"], "adapter_credentials")
         if host == "codex":
-            variable = str(_object(credentials["codex"], "Codex credential")["variable"])
-            value = os.environ.get(variable)
-            if not value:
-                raise ConfigError("Codex protected credential is absent")
-            return {variable: value}
+            raise ConfigError(
+                "Codex protected credential broker and OS isolation are unavailable"
+            )
         if host == "kiro":
             binding = _object(credentials["kiro"], "Kiro credential")
             variable = str(binding["variable"])
@@ -1153,6 +1163,14 @@ class ProtectedRunner:
             "sealed_bundle": "SealedBundleAttestation.v1",
             "promotion_verdict": "PromotionVerdict.v2",
         }[purpose]
+        schema_file = {
+            "adapter_conformance": "adapter-conformance.schema.json",
+            "execution_receipt": "execution-receipt.schema.json",
+            "global_token_ledger": "global-token-ledger.schema.json",
+            "judge_qualification": "judge-qualification.schema.json",
+            "sealed_bundle": "sealed-bundle-attestation.schema.json",
+            "promotion_verdict": "promotion-verdict.schema.json",
+        }[purpose]
         bindings: list[dict[str, str]] = []
         for source in sources:
             resolved = source.resolve()
@@ -1167,6 +1185,11 @@ class ProtectedRunner:
             if output.exists():
                 raise ConfigError("fixed signed output already exists")
             signed = self.sign_inline(unsigned, purpose)
+            self._validate_canonical_schema(
+                signed,
+                schema_file,
+                f"{purpose} phase artifact",
+            )
             _exclusive_json(output, signed)
             bindings.append({"path": str(output), "sha256": artifact_hash(output)})
         return bindings
@@ -2593,7 +2616,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     args = parser.parse_args(argv)
     try:
         validate_phase_signing(args.phase, args.signing_purpose, args.signing_key)
-        config = load_config(args.config)
+        config = load_config(args.config, phase=args.phase)
         with tempfile.TemporaryDirectory(prefix="protected-evaluator-") as temporary:
             runner = ProtectedRunner(
                 config,

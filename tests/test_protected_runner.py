@@ -51,6 +51,59 @@ def test_phase_minimal_signing_rejects_keys_in_model_jobs_and_requires_exact_pur
         validate_phase_signing("sign-verdict", None, None)
 
 
+def test_every_ci_phase_loads_with_only_its_exact_protected_variables(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    payload = _config(tmp_path)
+    trust_store = str(payload["evaluator_trust_store"]["path"])
+    payload["evaluator_trust_store"] = {
+        **payload["evaluator_trust_store"],
+        "path": "env:EVALUATOR_TRUST_STORE_FILE",
+    }
+    payload["adapter_conformance_runner_identity"] = "env:CONFORMANCE_RUNNER_IDENTITY"
+    payload["budget_authorizer_runner_identity"] = "env:BUDGET_AUTHORIZER_RUNNER_IDENTITY"
+    config_path = _write_json(tmp_path / "phase-config.json", payload)
+    for variable in (
+        "EVALUATOR_TRUST_STORE_FILE",
+        "CONFORMANCE_RUNNER_IDENTITY",
+        "BUDGET_AUTHORIZER_RUNNER_IDENTITY",
+    ):
+        monkeypatch.delenv(variable, raising=False)
+    for phase in sorted(set(payload["phase_commands"])):
+        for variable in (
+            "EVALUATOR_TRUST_STORE_FILE",
+            "CONFORMANCE_RUNNER_IDENTITY",
+            "BUDGET_AUTHORIZER_RUNNER_IDENTITY",
+        ):
+            monkeypatch.delenv(variable, raising=False)
+        if phase.startswith("adapter-probe-"):
+            monkeypatch.setenv("CONFORMANCE_RUNNER_IDENTITY", "conformance-runner-c")
+        if phase in {
+            "authorize-budget",
+            "reconcile-conformance-ledger",
+            "reconcile-primary-ledger",
+            "reconcile-reproduction-ledger",
+            "finalize-ledger",
+        }:
+            monkeypatch.setenv("BUDGET_AUTHORIZER_RUNNER_IDENTITY", "budget-runner-d")
+        if phase in {
+            "authorize-budget",
+            "sign-adapter-conformance",
+            "reconcile-conformance-ledger",
+            "reconcile-primary-ledger",
+            "reconcile-reproduction-ledger",
+            "sign-execution-receipts",
+            "sign-judge-qualification",
+            "sign-sealed-attestation",
+            "finalize-ledger",
+            "sign-verdict",
+        }:
+            monkeypatch.setenv("EVALUATOR_TRUST_STORE_FILE", trust_store)
+        loaded = load_config(config_path, phase=phase)
+        assert loaded["phase_commands"][phase]
+
+
 def _write_json(path: Path, payload: object) -> Path:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -377,9 +430,8 @@ def test_adapter_credentials_are_explicit_and_fail_closed(
     kiro_credential.write_text('{"service":"test"}\n', encoding="utf-8")
     kiro_credential.chmod(0o600)
     monkeypatch.setenv("KIRO_SERVICE_CREDENTIAL_FILE", str(kiro_credential))
-    assert runner.adapter_credential_environment("codex") == {
-        "OPENAI_API_KEY": "test-protected-token"
-    }
+    with pytest.raises(ConfigError, match="broker and OS isolation"):
+        runner.adapter_credential_environment("codex")
     assert runner.adapter_credential_environment("kiro") == {
         "KIRO_SERVICE_CREDENTIAL_FILE": str(kiro_credential.resolve())
     }
@@ -741,7 +793,7 @@ def test_gitlab_pipeline_separates_model_seal_score_and_signing_trust_domains() 
         assert secret not in default_block
     codex_conformance = template.split("adapter-conformance-codex:", 1)[1].split("adapter-conformance-kiro:", 1)[0]
     kiro_conformance = template.split("adapter-conformance-kiro:", 1)[1].split("sign-adapter-conformance:", 1)[0]
-    assert "OPENAI_API_KEY" in codex_conformance
+    assert "OPENAI_API_KEY" not in codex_conformance
     assert "KIRO_SERVICE_CREDENTIAL_FILE" not in codex_conformance
     assert "KIRO_SERVICE_CREDENTIAL_FILE" in kiro_conformance
     assert "OPENAI_API_KEY" not in kiro_conformance
