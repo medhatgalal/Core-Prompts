@@ -263,6 +263,8 @@ def test_persist_source_baseline_refuses_structurally_noisy_overwrite(tmp_path: 
 
     baseline_path = workspace / "sources" / "ssot-baselines" / "auto-research" / "baseline.md"
     baseline_before = baseline_path.read_text(encoding="utf-8")
+    registry_path = workspace / "sources" / "ssot-baselines" / "index.json"
+    registry_before = registry_path.read_bytes()
     noisy_candidate = """## Invocation Hints
 Intent
 - malformed flattening marker
@@ -282,14 +284,10 @@ Rejected/Out-of-Scope Signals
         source_sha256="test",
         source_commit=None,
     )
-    registry = json.loads((workspace / "sources" / "ssot-baselines" / "index.json").read_text(encoding="utf-8"))
-
     assert result["updated"] is False
     assert "artifact:flattened_uac_prompt_sections" in result["blocked_reasons"]
     assert baseline_path.read_text(encoding="utf-8") == baseline_before
-    assert "artifact:flattened_uac_prompt_sections" in (
-        registry["skills"]["auto-research"]["historical_proof"]["last_blocked_reasons"]
-    )
+    assert registry_path.read_bytes() == registry_before
 
 
 def test_materialize_baseline_sources_refreshes_auto_research_from_current_ssot(tmp_path: Path) -> None:

@@ -493,12 +493,17 @@ def preview_source_baseline(
     path = repo_root / baseline_path
     candidate_text = baseline_text.rstrip() + "\n"
     existing_text = path.read_text(encoding="utf-8") if path.exists() else None
-    blocked_reasons = () if overwrite else tuple(_baseline_regression_reasons(candidate_text, existing_text))
+    blocked_reasons = (
+        ()
+        if overwrite or existing_text is None
+        else tuple(_baseline_regression_reasons(candidate_text, existing_text))
+    )
     return {
         "slug": slug,
         "baseline_path": baseline_path,
         "created": not path.exists(),
-        "updated": overwrite or not path.exists() or existing_text != candidate_text,
+        "updated": not blocked_reasons
+        and (overwrite or not path.exists() or existing_text != candidate_text),
         "blocked_reasons": list(blocked_reasons),
         "candidate_sha256": text_sha256(candidate_text),
         "existing_sha256": text_sha256(existing_text) if existing_text is not None else None,
