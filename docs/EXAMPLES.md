@@ -916,6 +916,40 @@ Expected output:
 - preserved baseline in `sources/ssot-baselines/<slug>/baseline.md`
 - automatic `build` and `validate --strict`
 
+### Finalize `behavioral_pending` After Independent Proof
+
+Use when:
+
+- the evaluated candidate is already present unchanged in canonical SSOT
+- the evaluator foundation and approved trust policy landed before the evaluated baseline
+- the protected evaluator returned a signed, redacted public bundle with `status: promote`
+
+Command:
+
+```bash
+bin/uac apply /absolute/path/to/candidate-source \
+  --promotion-verdict /absolute/path/to/public-bundle/promotion-verdict.json \
+  --promotion-trust-root /absolute/path/to/public-bundle/evaluator-trust-store.json \
+  --approved-trust-policy-sha256 <64-hex-policy-sha256> \
+  --approved-trust-policy-revision <40-hex-policy-commit> \
+  --finalize-existing-candidate \
+  --yes
+```
+
+Expected output on accepted evidence:
+
+- `behavioral_status: promote` in canonical capability metadata
+- the promoted candidate becomes the new behavioral baseline
+- reviewed Goal Contract and topology hashes remain unchanged
+- build and strict validation complete after the evidence gate
+
+Expected output when proof cannot be completed:
+
+- `inconclusive` for missing credentials, adapter drift, exhausted budget, incomplete receipts, missing sealed data, or judge-qualification failure
+- `hold` when valid results miss the preregistered bar
+- `stale_evidence` for expired, mismatched, self-authorized, or incorrectly ancestried evidence
+- no behavioral-baseline advancement
+
 ## Transcript-Style Examples
 
 ### Transcript: Use A Skill To Decide What To Do Next
