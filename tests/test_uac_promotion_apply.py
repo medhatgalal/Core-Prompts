@@ -25,22 +25,42 @@ def _revision(rev: str) -> str:
     ).stdout.strip()
 
 
-def test_finalize_existing_candidate_requires_exact_revision_hashes_and_ancestry() -> None:
-    baseline_revision = _revision("22654fb")
-    candidate_revision = _revision("6be4830")
+def test_finalize_existing_candidate_requires_exact_revision_hashes_and_ancestry(tmp_path: Path) -> None:
+    repo = tmp_path / "repo"
+    repo.mkdir()
+    subprocess.run(["git", "init", "-b", "main"], cwd=repo, check=True, capture_output=True)
+    subprocess.run(["git", "config", "user.email", "test@example.com"], cwd=repo, check=True)
+    subprocess.run(["git", "config", "user.name", "Test"], cwd=repo, check=True)
+    ssot = repo / "ssot"
+    ssot.mkdir()
+    path = ssot / "batman.md"
+    path.write_text("baseline\n", encoding="utf-8")
+    subprocess.run(["git", "add", "ssot/batman.md"], cwd=repo, check=True)
+    subprocess.run(["git", "commit", "-m", "baseline"], cwd=repo, check=True, capture_output=True)
+    baseline_revision = subprocess.run(
+        ["git", "rev-parse", "HEAD"], cwd=repo, check=True, capture_output=True, text=True
+    ).stdout.strip()
+    baseline_sha256 = artifact_hash(path)
+    path.write_text("candidate\n", encoding="utf-8")
+    subprocess.run(["git", "add", "ssot/batman.md"], cwd=repo, check=True)
+    subprocess.run(["git", "commit", "-m", "candidate"], cwd=repo, check=True, capture_output=True)
+    candidate_revision = subprocess.run(
+        ["git", "rev-parse", "HEAD"], cwd=repo, check=True, capture_output=True, text=True
+    ).stdout.strip()
+    candidate_sha256 = artifact_hash(path)
     verdict = {
         "slug": "batman",
         "baseline_revision": baseline_revision,
         "candidate_revision": candidate_revision,
-        "baseline_sha256": "ac7e2684d99dc6a0267d785d1a6751a742e39e74ce3853a9877f98051690b3f2",
-        "candidate_sha256": artifact_hash(ROOT / "ssot/batman.md"),
+        "baseline_sha256": baseline_sha256,
+        "candidate_sha256": candidate_sha256,
     }
 
     mode = UAC_IMPORT._validate_promotion_revision_bindings(
-        ROOT,
+        repo,
         verdict,
         slug="batman",
-        candidate_text=(ROOT / "ssot/batman.md").read_text(encoding="utf-8"),
+        candidate_text="candidate\n",
         finalize_existing_candidate=True,
     )
 
