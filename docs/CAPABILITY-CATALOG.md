@@ -2,7 +2,7 @@
 
 Generated from canonical manifest and descriptor metadata. Use this page to see what Core-Prompts ships, what each capability is for, and where it lands.
 
-- Capability count: `24`
+- Capability count: `25`
 
 ## Start Here
 - `docs-review-expert` — Docs Review Expert — Documentation IA, Drift, and Release Hygiene: Documentation Review Expert for information architecture, explainable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.
@@ -12,10 +12,10 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `testing` — Testing Studio — Test Design and Coverage Analysis: Testing Studio for unit-test generation, end-to-end test design, edge-case discovery, and coverage gap analysis.
 
 ## By CLI
-- `claude`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `instruction-editor`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `codex`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `instruction-editor`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `gemini`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `instruction-editor`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `kiro`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `instruction-editor`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `claude`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `batman`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `instruction-editor`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `codex`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `batman`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `instruction-editor`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `gemini`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `batman`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `instruction-editor`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `kiro`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `batman`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `instruction-editor`, `mentor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
 
 ## By Use Case
 - `address`: `address-code-review`
@@ -25,6 +25,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `assistant`: `ic-assistant`
 - `audit`: `codebase-health-audit`
 - `auto`: `auto-research`
+- `batman`: `batman`
 - `code`: `address-code-review`, `code-review`
 - `codebase`: `codebase-health-audit`
 - `conflict`: `resolve-conflict`
@@ -52,7 +53,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `report`: `eng-report`
 - `research`: `auto-research`
 - `resolve`: `resolve-conflict`
-- `review`: `address-code-review`, `code-review`, `codebase-health-audit`, `docs-review-expert`, `gitops-review`, `weekly-intel`
+- `review`: `address-code-review`, `batman`, `code-review`, `codebase-health-audit`, `docs-review-expert`, `gitops-review`, `weekly-intel`
 - `status`: `feature-status`
 - `supercharge`: `supercharge`
 - `testing`: `testing`
@@ -118,6 +119,19 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
   - optimize this system without regressing quality
   - guide me from setup to experiments to commit and merge
 - Summary: Researches and optimizes prompts, skills, tools, workflows, and code with minimal-loop investigation, bounded search, and baseline comparison. Use for experiments, behavioral variant comparison, or proof that a candidate beats baseline.
+
+### Batman — Evidence-Gated Delivery Controller
+- Slug: `batman`
+- Type: `both`
+- Install target: `repo_local`
+- Supported CLIs: `claude, codex, gemini, kiro`
+- Invocation hints:
+  - Use `batman` to run the full evidence-gated delivery controller for this work item.
+  - Use `superman` as an alias for the same Batman protocol and the same SSOT body.
+  - Use Batman for a contract, metric, safety path, shipped defect, or other change that needs independent implementation and review.
+  - Use Batman when the parent must remain a controller rather than becoming the implementer after research.
+  - Do not invoke Batman for ordinary advice, one-pass editing, or a review that does not include implementation and landing.
+- Summary: Runs an explicitly invoked, evidence-gated delivery protocol through independent research, design, TDD implementation, verification, adversarial review, documentation, Git health, PR or MR, merge, and cleanup. Trigger with batman or the alias superman.
 
 ### Codebase Health Audit — Brownfield Structural Risk Report
 - Slug: `codebase-health-audit`

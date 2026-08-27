@@ -378,6 +378,18 @@
       ],
       "shape": "report_workflow",
       "portfolio_action": "keep_and_clarify_boundary"
+    },
+    "batman": {
+      "primary_job": "Runs an explicitly invoked, evidence-gated delivery protocol through independent research, design, TDD implementation, verification, adversarial review, documentation, Git health, PR or MR, merge, and cleanup. Trigger with batman or the alias superman.",
+      "use_when": "The request directly matches the canonical purpose of Batman \u2014 Evidence-Gated Delivery Controller.",
+      "works_on": "The inputs and target declared by the canonical SSOT.",
+      "main_output": "The required output declared by the canonical SSOT.",
+      "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
+      "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
+      "routing_question": "Does this request directly require Batman \u2014 Evidence-Gated Delivery Controller?",
+      "nearest_neighbors": [],
+      "shape": "unclassified_new_skill",
+      "portfolio_action": "draft_new_skill_pending_review"
     }
   }
 }
