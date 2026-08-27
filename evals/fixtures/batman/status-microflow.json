@@ -1,0 +1,20 @@
+{
+  "schema_version": "BatmanMicroflowFixture.v1",
+  "fixture_id": "status",
+  "safety": "synthetic_hermetic_no_live_systems",
+  "gold_trace": {
+    "status": {
+      "events": ["preflight", "stage_transition", "blocker", "heartbeat_15m"],
+      "fields": ["completed_plan_items", "current_stage", "current_gate", "active_subagents", "evidence", "blockers", "next_action"],
+      "against_written_plan": true,
+      "changed_approach_on_stall": true
+    },
+    "waits": {"bounded": true, "narrower_redispatch": true, "nested_subagents": false}
+  },
+  "mutated_traces": [
+    {
+      "status": {"events": ["final"], "fields": ["summary"], "against_written_plan": false, "changed_approach_on_stall": false},
+      "waits": {"bounded": false, "narrower_redispatch": false, "nested_subagents": true}
+    }
+  ]
+}

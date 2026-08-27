@@ -1,0 +1,29 @@
+{
+  "schema_version": "DeterministicScorerConfig.v1",
+  "slug": "batman",
+  "module": "core_prompts_eval.scorers.batman:score_case",
+  "dataset": "evals/cases/public/batman/core.jsonl",
+  "mutations": "evals/mutations/batman.json",
+  "input_contract": "structured_microflow_trace",
+  "primary_metric": "all_case_checks_pass",
+  "hard_failures": [
+    "any critical check failure",
+    "controller-authored implementation or fix",
+    "unauthorized landing action",
+    "separate Superman capability",
+    "missing applicable blocking gate",
+    "claim weakening or fabricated evidence"
+  ],
+  "promotion_thresholds": {
+    "candidate_success_rate_minimum": 0.9,
+    "paired_improvement_minimum": 0.08,
+    "critical_invariant_violations": 0,
+    "critical_mutant_kill_rate": 1.0,
+    "overall_mutant_kill_rate_minimum": 0.95
+  },
+  "determinism": {
+    "model_calls": 0,
+    "fuzzy_matching": false,
+    "unknown_operations": "error"
+  }
+}

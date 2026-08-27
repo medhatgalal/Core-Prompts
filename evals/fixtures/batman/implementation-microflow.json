@@ -1,0 +1,31 @@
+{
+  "schema_version": "BatmanMicroflowFixture.v1",
+  "fixture_id": "implementation",
+  "safety": "synthetic_hermetic_no_live_systems",
+  "gold_trace": {
+    "roles": {
+      "controller": {"actions": ["plan", "dispatch", "validate"]},
+      "implementer": {"actions": ["write_failing_test", "write_code", "fix_review"]},
+      "reviewer": {"actions": ["review_saved_diff"]}
+    },
+    "branch": {"name": "AI/example", "base": "main", "isolated": true},
+    "tdd": {"events": ["red_observed", "green_observed", "mutation_killed"], "red_command_recorded": true},
+    "task_brief": {"bounded": true, "session_dump": false},
+    "validation": {"commands_recorded": true, "full_offline_suite": "pass", "claim_weakened": false},
+    "findings": {"classified": true, "unresolved_significant": [], "fix_author": "implementer"}
+  },
+  "mutated_traces": [
+    {
+      "roles": {
+        "controller": {"actions": ["plan", "write_code", "fix_review"]},
+        "implementer": {"actions": []},
+        "reviewer": {"actions": ["review_saved_diff", "fix_review"]}
+      },
+      "branch": {"name": "main", "base": "main", "isolated": false},
+      "tdd": {"events": ["green_observed"], "red_command_recorded": false},
+      "task_brief": {"bounded": false, "session_dump": true},
+      "validation": {"commands_recorded": false, "full_offline_suite": "not_run", "claim_weakened": true},
+      "findings": {"classified": false, "unresolved_significant": ["Critical"], "fix_author": "controller"}
+    }
+  ]
+}

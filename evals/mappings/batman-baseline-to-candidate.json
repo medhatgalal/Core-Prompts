@@ -1,0 +1,50 @@
+{
+  "schema_version": "BaselineCandidateMapping.v1",
+  "slug": "batman",
+  "baseline_commit": "22eeab3cb5018fea46bdcc6cf67514dfdd19eb68",
+  "baseline_ssot_sha256": "ac7e2684d99dc6a0267d785d1a6751a742e39e74ce3853a9877f98051690b3f2",
+  "candidate_commit": "e602e19c757b7e0c9ac81fc9f89730ecdf3ba237",
+  "candidate_ssot_sha256": "3f649676d77fad3ef73e068bd0b8544c7511b696dd2511b73b2835f136da8ca1",
+  "material_changes": [
+    {
+      "class": "subagent_implementation",
+      "baseline": "Independent workers implement, but the controller flow and milestone ownership are distributed across prose.",
+      "candidate": "Independent subagents are the only implementation and fix authors; controller substitution and reviewer fixes are explicitly forbidden.",
+      "evaluation_focus": ["BAT-PUB-003", "BAT-PUB-015", "BAT-PUB-019"]
+    },
+    {
+      "class": "milestone_backpressure",
+      "baseline": "Review appears in stages but does not define four named, uniformly blocking milestones.",
+      "candidate": "Scope, design readiness, every task implementation, and landing readiness have independent blocking gates and explicit return paths.",
+      "evaluation_focus": ["BAT-PUB-008", "BAT-PUB-013", "BAT-PUB-020"]
+    },
+    {
+      "class": "progress_reporting",
+      "baseline": "A 15-minute status rule exists without a complete event-triggered status contract.",
+      "candidate": "Preflight, every stage transition, immediate blockers, and 15-minute heartbeats report against the written plan with fixed fields.",
+      "evaluation_focus": ["BAT-PUB-005"]
+    },
+    {
+      "class": "portability",
+      "baseline": "The body permits global discovery and contains a WorkGraph-specific addendum.",
+      "candidate": "The body uses only host subagents and named Core-Prompts companions, with no machine, provider, WorkGraph, or arbitrary external dependency.",
+      "evaluation_focus": ["BAT-PUB-004", "BAT-PUB-012"]
+    },
+    {
+      "class": "mentor_retirement",
+      "baseline": "Mentor remained a neighboring deployable capability.",
+      "candidate": "Mentor is retired from Core-Prompts delivery so Batman has one explicit controller surface rather than an overlapping oversight deployment.",
+      "evaluation_focus": ["BAT-PUB-001", "BAT-PUB-004"]
+    }
+  ],
+  "preserved_invariants": [
+    "batman and superman invoke one canonical body",
+    "controller does not author implementation or self-review",
+    "written specification plan implementation plan and tasks precede TDD",
+    "observed red green and mutation evidence",
+    "claim integrity and independent reconciliation",
+    "authorization-gated landing and cleanup",
+    "SuperCharge remains a called lens"
+  ],
+  "behavioral_claim": "pending_execution"
+}

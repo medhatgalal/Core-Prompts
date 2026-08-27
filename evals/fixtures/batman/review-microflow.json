@@ -1,0 +1,25 @@
+{
+  "schema_version": "BatmanMicroflowFixture.v1",
+  "fixture_id": "review",
+  "safety": "synthetic_hermetic_no_live_systems",
+  "gold_trace": {
+    "companions": {"selected": ["architecture", "supercharge", "converge", "code-review"], "external": [], "all_available": false},
+    "gates": {"order": ["scope", "design", "task", "landing"], "blocking": true, "independent_reviewers": true, "failed_gate_action": "return_to_implementer"},
+    "design": {"artifacts": ["specification", "delivery_plan", "implementation_plan", "tasks"], "tdd_started_after_pass": true},
+    "research": {"context_designs": false, "adversarial_lens": true, "full_means_all_capabilities": false},
+    "size": {"classification": "small", "stages": ["1-context", "3", "4", "5", "6"], "shipped_defect_trivial": false},
+    "review_rounds": {"count": 1, "human_stop_after_five": true, "significant_finding_parked": false},
+    "address_review": {"existing_pr_only": true, "internal_fixer": "implementer"}
+  },
+  "mutated_traces": [
+    {
+      "companions": {"selected": ["all"], "external": ["machine-local-tool"], "all_available": true},
+      "gates": {"order": ["task", "scope", "landing"], "blocking": false, "independent_reviewers": false, "failed_gate_action": "continue"},
+      "design": {"artifacts": ["tasks"], "tdd_started_after_pass": false},
+      "research": {"context_designs": true, "adversarial_lens": false, "full_means_all_capabilities": true},
+      "size": {"classification": "small", "stages": ["3"], "shipped_defect_trivial": true},
+      "review_rounds": {"count": 6, "human_stop_after_five": false, "significant_finding_parked": true},
+      "address_review": {"existing_pr_only": false, "internal_fixer": "controller"}
+    }
+  ]
+}

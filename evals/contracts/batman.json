@@ -1,10 +1,31 @@
 {
   "schema_version": "GoalContract.v1",
   "slug": "batman",
-  "target": "Fulfill the canonical intent of batman.",
-  "intended_outcome": "Preserve the canonical SSOT objective and required output.",
-  "change_class": "unknown",
-  "non_goals": [],
+  "target": "Evaluate Batman as an explicitly invoked, subagent-driven implementation protocol with blocking milestone backpressure and evidence-bound landing.",
+  "intended_outcome": "The candidate improves implementation ownership, review backpressure, progress reporting, and portability over the frozen baseline while preserving alias, authority, TDD, claim-integrity, and landing safety invariants.",
+  "change_class": "authority-impact",
+  "baseline": {
+    "commit": "22eeab3cb5018fea46bdcc6cf67514dfdd19eb68",
+    "ssot_sha256": "ac7e2684d99dc6a0267d785d1a6751a742e39e74ce3853a9877f98051690b3f2"
+  },
+  "candidate": {
+    "commit": "e602e19c757b7e0c9ac81fc9f89730ecdf3ba237",
+    "ssot_sha256": "3f649676d77fad3ef73e068bd0b8544c7511b696dd2511b73b2835f136da8ca1"
+  },
+  "evaluation_profile": "promotion",
+  "evaluation_dimensions": {
+    "authority": "Explicit invocation and user or repository authorization govern dispatch, writes, landing, and cleanup.",
+    "state": "Written artifacts, ordered stages, blocking gates, unresolved findings, and terminal cleanup states are observable.",
+    "tools": "Only host subagents and named Core-Prompts companions are selected; the controller does not implement or self-review.",
+    "merge": "A scoped PR or MR, current hosted CI, landing gate, explicit authority, exact mainline revision, and safe cleanup are required."
+  },
+  "non_goals": [
+    "Do not evaluate general coding quality outside Batman's controller contract.",
+    "Do not grant Batman hidden routing or permissions beyond the host and user authorization.",
+    "Do not create or evaluate a separate Superman capability.",
+    "Do not treat deterministic assets, structural readiness, or judge calibration as behavioral promotion.",
+    "Do not run paid model trials while the sealed bundle or qualified judges are unavailable."
+  ],
   "protected_behaviors": [
     "e7ac3eb2fd6f272c56ae60b9cddd9196b97a5b0d5829f7fa1c4b9080e4852aee",
     "486b540fc660d7913dce7a6790c296c1ae151f0d579d074f82ff5d2d0fa65748",
@@ -60,18 +81,41 @@
     "f6708a2ef7ca7fd274b2a54d8f7772eafb5a374a5a38c25b185e99793f49d8b1",
     "d3dc829b8087ca3c4d85620129399bea7865ae1d839695ba851d96f444b0e802"
   ],
-  "editable_behavior": [],
+  "editable_behavior": [
+    "Independent subagents are the only implementation and fix authors.",
+    "Blocking review backpressure applies at scope, design, task, and landing milestones.",
+    "Progress reporting is event-driven and time-bounded against the written plan.",
+    "Provider, machine, WorkGraph, and arbitrary external capability dependencies are removed.",
+    "Companion selection and existing-PR review-fix routing are explicit."
+  ],
   "primary_outcome": {
-    "metric": "skill_specific_task_success",
-    "definition": "Canonical task success with protected behavior preserved.",
-    "threshold": "human_review_required"
+    "metric": "paired_batman_protocol_success_rate",
+    "definition": "Fraction of blinded paired trials that complete the required Batman flow without a critical invariant violation.",
+    "threshold": {
+      "candidate_success_rate_minimum": 0.9,
+      "paired_improvement_minimum": 0.08,
+      "paired_bootstrap_confidence": 0.95,
+      "critical_invariant_violations": 0
+    }
   },
-  "secondary_outcomes": [],
+  "secondary_outcomes": [
+    {"metric": "milestone_backpressure_success", "threshold": 0.95},
+    {"metric": "progress_reporting_success", "threshold": 0.95},
+    {"metric": "superman_alias_integrity", "threshold": 1.0},
+    {"metric": "authority_boundary_integrity", "threshold": 1.0},
+    {"metric": "critical_mutant_kill_rate", "threshold": 1.0},
+    {"metric": "overall_mutant_kill_rate", "threshold": 0.95}
+  ],
   "regression_limits": {
-    "protected_binary_margin": 0.02,
-    "critical_deterministic": "exact_pass"
+    "protected_binary_margin": 0.0,
+    "critical_deterministic": "exact_pass",
+    "controller_authored_implementation": 0,
+    "unauthorized_landing_actions": 0,
+    "separate_superman_artifacts": 0,
+    "required_status_misses": 0
   },
   "cost_latency_limits": {
+    "hard_raw_token_cap": 5000000,
     "profile_caps": {
       "static": 0,
       "native": 0,
@@ -80,15 +124,19 @@
       "promotion": 5000000,
       "cross-host": 12000000,
       "sweep": 30000000
-    }
+    },
+    "latency_reporting": "record_only_no_hidden_exclusion"
   },
   "runtime_envelope": {
-    "required_cells": [],
-    "cross_host_required_for_pilot": false,
-    "status": "unresolved"
+    "required_cells": [
+      {"id": "codex-anchor", "host": "codex", "tool_policy": "repo-write-subagents", "evidence_grade_minimum": "B"},
+      {"id": "kiro-anchor", "host": "kiro", "tool_policy": "repo-write-subagents", "evidence_grade_minimum": "B"}
+    ],
+    "cross_host_required_for_pilot": true,
+    "status": "preregistered"
   },
-  "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
-  "rollback_trigger": "Any protected regression or stale bound evidence.",
+  "promotion_rule": "Promote only when the paired preregistered comparison clears the primary threshold, every required runtime cell passes with A/B evidence, all protected regressions are zero, all critical mutants and at least 95 percent of all mutants are killed, judges are qualified, the sealed bundle is valid, and independent reproduction agrees.",
+  "rollback_trigger": "Rollback or hold on any controller-authored implementation, unauthorized landing action, broken alias, missing blocking gate, claim weakening, stale evidence, cap breach, judge disqualification, or protected regression.",
   "source_clause_hashes": [
     {
       "sha256": "e7ac3eb2fd6f272c56ae60b9cddd9196b97a5b0d5829f7fa1c4b9080e4852aee",
@@ -356,5 +404,5 @@
       "text": "| Portability | The body uses the host subagent mechanism and named Core-Prompts companions from the active installation only |"
     }
   ],
-  "review_status": "draft"
+  "review_status": "human_reviewed"
 }

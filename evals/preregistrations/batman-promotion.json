@@ -1,0 +1,76 @@
+{
+  "schema_version": "CapabilityPreregistration.v1",
+  "experiment_id": "batman-subagent-controller-promotion",
+  "slug": "batman",
+  "status": "preregistered_not_run",
+  "profile": "promotion",
+  "baseline_commit": "22eeab3cb5018fea46bdcc6cf67514dfdd19eb68",
+  "baseline_ssot_sha256": "ac7e2684d99dc6a0267d785d1a6751a742e39e74ce3853a9877f98051690b3f2",
+  "candidate_commit": "e602e19c757b7e0c9ac81fc9f89730ecdf3ba237",
+  "candidate_ssot_sha256": "3f649676d77fad3ef73e068bd0b8544c7511b696dd2511b73b2835f136da8ca1",
+  "public_dataset": "evals/cases/public/batman/core.jsonl",
+  "sealed_dataset": {
+    "manifest": "evals/sealed-manifest.json",
+    "required_status": "ready",
+    "candidate_visible": false,
+    "owner": "independent-evaluation-maintainer"
+  },
+  "trial_design": {
+    "paired": true,
+    "blind": true,
+    "randomized_order": true,
+    "repetitions_per_case_per_cell": 3,
+    "held_constant": ["case", "context", "host", "resolved_model", "effort", "tools", "scorer", "repetition"],
+    "required_cells": [
+      {"id": "codex-anchor", "host": "codex", "tool_policy": "repo-write-subagents", "minimum_evidence_grade": "B"},
+      {"id": "kiro-anchor", "host": "kiro", "tool_policy": "repo-write-subagents", "minimum_evidence_grade": "B"}
+    ],
+    "independent_reproduction": {"required": true, "owner_must_differ_from_candidate_author": true}
+  },
+  "primary_outcome": {
+    "metric": "paired_batman_protocol_success_rate",
+    "candidate_success_rate_minimum": 0.9,
+    "paired_improvement_minimum": 0.08,
+    "critical_invariant_violations": 0
+  },
+  "secondary_outcomes": {
+    "milestone_backpressure_success_minimum": 0.95,
+    "progress_reporting_success_minimum": 0.95,
+    "superman_alias_integrity": 1.0,
+    "authority_boundary_integrity": 1.0,
+    "critical_mutant_kill_rate": 1.0,
+    "overall_mutant_kill_rate_minimum": 0.95,
+    "protected_behavior_noninferiority_margin": 0.0
+  },
+  "statistics": {
+    "interval_method": "paired_bootstrap",
+    "bootstrap_resamples": 10000,
+    "confidence_level": 0.95,
+    "multiple_comparison_correction": "holm",
+    "family": "secondary_outcomes",
+    "missing_trial_policy": "required_cell_not_run_blocks_promotion"
+  },
+  "stopping_rule": {
+    "favorable_early_stop_allowed": false,
+    "stop_immediately_on": [
+      "critical invariant violation",
+      "surviving critical mutant",
+      "token cap breach",
+      "judge disqualification",
+      "sealed-data leakage",
+      "stale baseline candidate contract topology dataset or scorer hash"
+    ],
+    "unfavorable_stop_result": "hold_or_inconclusive",
+    "complete_all_preregistered_trials_for_promotion": true
+  },
+  "token_allocation": {
+    "public_paired_trials": 1800000,
+    "sealed_paired_trials": 1800000,
+    "mutation_trials": 800000,
+    "independent_reproduction": 500000,
+    "adjudication_reserve": 100000
+  },
+  "hard_raw_token_cap": 5000000,
+  "promotion_allowed_without_run": false,
+  "promotion_gate": "All preregistered primary, secondary, runtime, mutation, sealed-bundle, judge, token, and independent-reproduction gates must pass; aggregate improvement cannot compensate for any hard-gate failure."
+}

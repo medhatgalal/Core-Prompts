@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "CapabilityTopologyReview.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "slug", "ssot_sha256", "review_status", "reviewed_by", "reviewed_at", "clause_mappings", "waivers", "risk_tiers"],
+  "properties": {
+    "schema_version": {"const": "CapabilityTopologyReview.v1"},
+    "slug": {"const": "batman"},
+    "ssot_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "review_status": {"const": "human_reviewed"},
+    "reviewed_by": {"type": "string", "minLength": 1},
+    "reviewed_at": {"type": "string", "format": "date"},
+    "clause_mappings": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^BAT-PUB-[0-9]{3}$"}}},
+    "waivers": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["clause_id", "reason", "reviewer"], "properties": {"clause_id": {"type": "string"}, "reason": {"type": "string", "minLength": 1}, "reviewer": {"type": "string", "minLength": 1}}}},
+    "risk_tiers": {"type": "object", "additionalProperties": false, "required": ["critical", "high", "standard"], "properties": {"critical": {"type": "array", "items": {"type": "string"}}, "high": {"type": "array", "items": {"type": "string"}}, "standard": {"type": "array", "items": {"type": "string"}}}}
+  }
+}
