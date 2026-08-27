@@ -1,0 +1,118 @@
+{
+  "schema_version": "EvalAdapterRegistry.v1",
+  "adapters": [
+    {
+      "id": "fake",
+      "version": "1.0.0",
+      "argv": [
+        "{python}",
+        "{repo_root}/evals/adapters/fake_adapter.py"
+      ],
+      "parser": "eval-adapter-json-v1",
+      "source": "evals/adapters/fake_adapter.py",
+      "supported_tool_policy_modes": ["none"],
+      "environment_allowlist": [],
+      "promotion_eligible": false,
+      "experimental": false
+    },
+    {
+      "id": "claude-json-experimental",
+      "version": "0.1.0",
+      "argv": [
+        "claude",
+        "--print",
+        "--output-format",
+        "json",
+        "--model",
+        "{model}",
+        "--tools",
+        "",
+        "--disable-slash-commands",
+        "--strict-mcp-config",
+        "--no-session-persistence",
+        "--no-chrome"
+      ],
+      "parser": "claude-json-v1",
+      "source": null,
+      "supported_tool_policy_modes": ["none"],
+      "environment_allowlist": [
+        "CLAUDE_CONFIG_DIR"
+      ],
+      "promotion_eligible": false,
+      "experimental": true
+    },
+    {
+      "id": "codex-jsonl-experimental",
+      "version": "0.1.0",
+      "argv": [
+        "codex",
+        "exec",
+        "--ephemeral",
+        "--ignore-user-config",
+        "--ignore-rules",
+        "--json",
+        "-C",
+        "{workspace}",
+        "-m",
+        "{model}",
+        "-s",
+        "workspace-write",
+        "--approve-for-me",
+        "-"
+      ],
+      "parser": "codex-jsonl-v1",
+      "source": null,
+      "supported_tool_policy_modes": ["repo-write-subagents"],
+      "environment_allowlist": ["OPENAI_API_KEY"],
+      "fixed_environment": {
+        "CODEX_HOME": "{session_dir}",
+        "HOME": "{session_dir}",
+        "NO_COLOR": "1",
+        "TMPDIR": "{session_dir}"
+      },
+      "hermetic": true,
+      "cli_version_argv": ["codex", "--version"],
+      "cli_version_pattern": "codex-cli 0\\.150\\.1",
+      "conformance_path": "evals/fixtures/adapters/codex-0.150.1-conformance-redacted.json",
+      "conformance_sha256": "4e6ff1cb2b75c10eb984b8321b10df56abb302d63f9dc7c5791cb8ff97c344d6",
+      "promotion_eligible": false,
+      "experimental": true
+    },
+    {
+      "id": "kiro-stream-json-experimental",
+      "version": "0.1.0",
+      "argv": [
+        "kiro-cli",
+        "chat",
+        "--no-interactive",
+        "--agent",
+        "batman",
+        "--model",
+        "{model}",
+        "--effort",
+        "{effort}",
+        "--output-format",
+        "stream-json",
+        "--trust-tools={trusted_tools}"
+      ],
+      "parser": "kiro-stream-json-v1",
+      "source": null,
+      "supported_tool_policy_modes": ["repo-write-subagents"],
+      "environment_allowlist": [],
+      "fixed_environment": {
+        "HOME": "{session_dir}",
+        "KIRO_HOME": "{session_dir}",
+        "NO_COLOR": "1",
+        "TMPDIR": "{session_dir}"
+      },
+      "hermetic": true,
+      "bootstrap_agent": "batman",
+      "cli_version_argv": ["kiro-cli", "--version"],
+      "cli_version_pattern": "kiro-cli 2\\.20\\.0",
+      "conformance_path": "evals/fixtures/adapters/kiro-2.20.0-conformance-redacted.json",
+      "conformance_sha256": "d04e5946c3af286910d15dad09a84c94a3571b6ae11b2c3e5c41c8d694317ebc",
+      "promotion_eligible": false,
+      "experimental": true
+    }
+  ]
+}

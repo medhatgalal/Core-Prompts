@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "CapabilityPreregistration.v1",
+  "type": "object",
+  "required": ["schema_version", "experiment_id", "slug", "status", "profile", "baseline_commit", "candidate_commit", "trial_design", "primary_outcome", "secondary_outcomes", "statistics", "stopping_rule", "token_allocation", "hard_raw_token_cap", "promotion_allowed_without_run", "promotion_gate"],
+  "properties": {
+    "schema_version": {"const": "CapabilityPreregistration.v1"},
+    "slug": {"const": "batman"},
+    "status": {"const": "preregistered_not_run"},
+    "profile": {"const": "promotion"},
+    "baseline_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "candidate_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "hard_raw_token_cap": {"const": 5000000},
+    "promotion_allowed_without_run": {"const": false}
+  }
+}

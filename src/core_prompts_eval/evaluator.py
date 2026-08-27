@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Any
 
 from .clarity import audit_text, load_policy
+from .artifacts import verify_artifact_chain
 from .contracts import (
     PROFILE_TOKEN_CAPS,
     artifact_hash,
@@ -17,6 +18,7 @@ from .contracts import (
 from .impact import build_impact_plan
 from .pilot import validate_pilot_foundations
 from .runtime import probe_runtime
+from .runner import run_model_comparison
 from .topology import compile_topology
 
 
@@ -190,6 +192,9 @@ def compare(
     *,
     allow_model_calls: bool,
     max_tokens: int | None,
+    baseline: Path | None = None,
+    run_plan: Path | None = None,
+    reports_root: Path | None = None,
 ) -> dict[str, Any]:
     if profile not in PROFILE_TOKEN_CAPS:
         raise ValueError(f"unknown profile: {profile}")
@@ -197,17 +202,17 @@ def compare(
     if max_tokens is not None and max_tokens > cap:
         raise ValueError(f"requested token budget exceeds {profile} hard cap of {cap}")
     compiled = compile_skill(repo_root, slug, write=False)
-    baseline = repo_root / "ssot" / f"{slug}.md"
+    baseline_path = baseline or repo_root / "ssot" / f"{slug}.md"
     if compiled["status"] == "blocked_contract":
         return {"status": "blocked_contract", "slug": slug, "profile": profile, "model_calls": 0, "blockers": compiled["topology"]["known_ambiguities"]}
     if profile in {"static", "native"}:
-        before = artifact_metrics(baseline)
+        before = artifact_metrics(baseline_path)
         after = artifact_metrics(candidate)
         result = {
             "status": "structural_ready",
             "slug": slug,
             "profile": profile,
-            "baseline_sha256": artifact_hash(baseline),
+            "baseline_sha256": artifact_hash(baseline_path),
             "candidate_sha256": artifact_hash(candidate),
             "before": before,
             "after": after,
@@ -228,19 +233,32 @@ def compare(
             "hard_token_cap": cap,
             "model_calls": 0,
         }
-    return {
-        "status": "inconclusive",
-        "slug": slug,
-        "profile": profile,
-        "reason": "live provider execution is intentionally disabled until adapter conformance and judge calibration pass",
-        "hard_token_cap": cap,
-        "model_calls": 0,
-    }
+    if run_plan is None:
+        return {
+            "status": "inconclusive",
+            "slug": slug,
+            "profile": profile,
+            "reason": "model-mediated profile requires a validated preregistered --run-plan",
+            "hard_token_cap": cap,
+            "model_calls": 0,
+        }
+    return run_model_comparison(
+        repo_root,
+        slug=slug,
+        profile=profile,
+        baseline=baseline_path,
+        candidate=candidate,
+        run_plan_path=run_plan,
+        max_tokens=max_tokens,
+        reports_root=reports_root,
+    )
 
 
 def report_run(repo_root: Path, run_id: str) -> dict[str, Any]:
-    path = repo_root / "reports" / "evals" / run_id / "summary.json"
+    run_dir = repo_root / "reports" / "evals" / run_id
+    path = run_dir / "summary.json"
     payload = load_json(path)
+    payload["artifact_verification"] = verify_artifact_chain(run_dir)
     verdict = payload.get("promotion_verdict")
     if isinstance(verdict, dict):
         validate_promotion_verdict(verdict, repo_root=repo_root)

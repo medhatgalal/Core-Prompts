@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "CapabilityMutationInventory.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "slug", "source_sha256", "critical_mutation_ids", "promotion_thresholds", "mutations"],
+  "properties": {
+    "schema_version": {"const": "CapabilityMutationInventory.v1"},
+    "slug": {"const": "batman"},
+    "source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "critical_mutation_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^BAT-MUT-[0-9]{3}$"}},
+    "promotion_thresholds": {"type": "object", "additionalProperties": false, "required": ["critical_mutant_kill_rate", "overall_mutant_kill_rate_minimum"], "properties": {"critical_mutant_kill_rate": {"const": 1.0}, "overall_mutant_kill_rate_minimum": {"type": "number", "minimum": 0.95, "maximum": 1.0}}},
+    "mutations": {
+      "type": "array",
+      "minItems": 20,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "critical", "class", "change", "killed_by"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^BAT-MUT-[0-9]{3}$"},
+          "critical": {"type": "boolean"},
+          "class": {"type": "string", "minLength": 1},
+          "change": {"type": "string", "minLength": 1},
+          "killed_by": {"type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^BAT-PUB-[0-9]{3}$"}}
+        }
+      }
+    }
+  }
+}

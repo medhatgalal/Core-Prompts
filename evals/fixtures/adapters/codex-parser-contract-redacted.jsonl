@@ -1,0 +1,6 @@
+{"type":"thread.started","thread_id":"thread_redacted","resolved_model_identifier":"gpt-5.6-sol","model_version":"gpt-5.6-sol"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_1","type":"mcp_tool_call","server":"collaboration","tool":"spawn_agent","status":"completed","agent_id":"implementer_redacted"}}
+{"type":"item.completed","item":{"id":"item_2","type":"mcp_tool_call","server":"supercharge","tool":"adversarial_review","status":"completed","agent_id":"reviewer_redacted"}}
+{"type":"item.completed","item":{"id":"item_3","type":"agent_message","text":"Delivered and independently reviewed."}}
+{"type":"turn.completed","usage":{"input_tokens":100,"cached_input_tokens":40,"cache_write_input_tokens":0,"output_tokens":50,"reasoning_output_tokens":10}}

@@ -34,7 +34,7 @@ def test_impact_plan_escalates_unknown_and_caps_tokens() -> None:
     assert plan["hard_token_cap"] == PROFILE_TOKEN_CAPS["canary"]
 
 
-def test_promotion_verdict_cannot_average_over_failed_gate() -> None:
+def test_legacy_unbound_promotion_verdict_is_rejected() -> None:
     verdict = {
         "schema_version": "PromotionVerdict.v1",
         "run_id": "run-1",
@@ -55,7 +55,7 @@ def test_promotion_verdict_cannot_average_over_failed_gate() -> None:
         "created_at": "2026-08-18T00:00:00Z",
     }
 
-    with pytest.raises(ContractError, match="failed hard gates"):
+    with pytest.raises(ContractError, match="missing required fields"):
         validate_promotion_verdict(verdict)
 
 

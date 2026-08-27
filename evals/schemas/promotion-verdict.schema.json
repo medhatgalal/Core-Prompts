@@ -1,1 +1,151 @@
-{"$schema":"https://json-schema.org/draft/2020-12/schema","$id":"PromotionVerdict.v1","type":"object","required":["schema_version","run_id","slug","status","baseline_sha256","candidate_sha256","goal_contract_sha256","topology_sha256","dataset_sha256","scorer_sha256","evaluator_version","profile","token_cap","required_cells","hard_gates","token_usage","created_at"],"properties":{"schema_version":{"const":"PromotionVerdict.v1"},"status":{"enum":["structural_ready","behavioral_pending","promote","hold","blocked_contract","inconclusive","rollback","stale_evidence"]},"profile":{"enum":["static","native","routing-canary","canary","promotion","cross-host","sweep"]}}}
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "PromotionVerdict.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "run_id", "slug", "status", "baseline_revision", "candidate_revision",
+    "baseline_sha256", "candidate_sha256", "goal_contract_sha256", "topology_sha256",
+    "dataset_sha256", "scorer_sha256", "run_manifest_path", "run_manifest_sha256", "sealed_bundle_attestation_binding", "score_report_binding", "token_ledger_binding", "approved_trust_policy_binding", "primary_runner_identity_sha256",
+    "receipt_bindings", "auxiliary_receipt_bindings", "adapter_bindings", "judge_qualification_bindings",
+    "reproduction_manifest_bindings", "evaluation_policy_path", "evaluation_policy_sha256", "impact_plan_path",
+    "impact_plan_sha256", "evaluator_path", "evaluator_sha256", "trust_root_sha256",
+    "evaluator_version", "profile", "token_cap", "required_cells", "hard_gates", "token_usage",
+    "issued_at", "expires_at", "issuer", "signature"
+  ],
+  "properties": {
+    "schema_version": {"const": "PromotionVerdict.v1"},
+    "run_id": {"type": "string", "minLength": 1},
+    "slug": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "status": {"enum": ["structural_ready", "behavioral_pending", "promote", "hold", "blocked_contract", "inconclusive", "rollback", "stale_evidence"]},
+    "baseline_revision": {"$ref": "#/$defs/revision"},
+    "candidate_revision": {"$ref": "#/$defs/revision"},
+    "baseline_sha256": {"$ref": "#/$defs/digest"},
+    "candidate_sha256": {"$ref": "#/$defs/digest"},
+    "goal_contract_sha256": {"$ref": "#/$defs/digest"},
+    "topology_sha256": {"$ref": "#/$defs/digest"},
+    "dataset_sha256": {"$ref": "#/$defs/digest"},
+    "scorer_sha256": {"$ref": "#/$defs/digest"},
+    "run_manifest_path": {"$ref": "#/$defs/path"},
+    "run_manifest_sha256": {"$ref": "#/$defs/digest"},
+    "sealed_bundle_attestation_binding": {"$ref": "#/$defs/binding"},
+    "score_report_binding": {"$ref": "#/$defs/binding"},
+    "token_ledger_binding": {"$ref": "#/$defs/binding"},
+    "approved_trust_policy_binding": {"$ref": "#/$defs/approvedTrustPolicyBinding"},
+    "primary_runner_identity_sha256": {"$ref": "#/$defs/digest"},
+    "receipt_bindings": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/receiptBinding"}},
+    "auxiliary_receipt_bindings": {"type": "array", "minItems": 2, "items": {"$ref": "#/$defs/auxiliaryReceiptBinding"}},
+    "adapter_bindings": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/adapterBinding"}},
+    "judge_qualification_bindings": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/judgeBinding"}},
+    "reproduction_manifest_bindings": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/reproductionBinding"}},
+    "evaluation_policy_path": {"$ref": "#/$defs/path"},
+    "evaluation_policy_sha256": {"$ref": "#/$defs/digest"},
+    "impact_plan_path": {"$ref": "#/$defs/path"},
+    "impact_plan_sha256": {"$ref": "#/$defs/digest"},
+    "evaluator_path": {"$ref": "#/$defs/path"},
+    "evaluator_sha256": {"$ref": "#/$defs/digest"},
+    "trust_root_sha256": {"$ref": "#/$defs/digest"},
+    "evaluator_version": {"type": "string", "minLength": 1},
+    "profile": {"enum": ["static", "native", "routing-canary", "canary", "promotion", "cross-host", "sweep"]},
+    "token_cap": {"type": "integer", "minimum": 0},
+    "required_cells": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/cell"}},
+    "hard_gates": {"$ref": "#/$defs/hardGates"},
+    "token_usage": {"$ref": "#/$defs/tokenUsage"},
+    "issued_at": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": "string", "format": "date-time"},
+    "issuer": {"type": "string", "minLength": 1},
+    "signature": {"$ref": "#/$defs/signature"}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "revision": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "path": {"type": "string", "minLength": 1, "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"},
+    "binding": {
+      "type": "object", "additionalProperties": false, "required": ["path", "sha256"],
+      "properties": {"path": {"$ref": "#/$defs/path"}, "sha256": {"$ref": "#/$defs/digest"}}
+    },
+    "approvedTrustPolicyBinding": {
+      "type": "object", "additionalProperties": false, "required": ["path", "sha256", "revision"],
+      "properties": {"path": {"$ref": "#/$defs/path"}, "sha256": {"$ref": "#/$defs/digest"}, "revision": {"$ref": "#/$defs/revision"}}
+    },
+    "receiptBinding": {
+      "type": "object", "additionalProperties": false, "required": ["receipt_id", "path", "sha256"],
+      "properties": {"receipt_id": {"type": "string", "minLength": 1}, "path": {"$ref": "#/$defs/path"}, "sha256": {"$ref": "#/$defs/digest"}}
+    },
+    "auxiliaryReceiptBinding": {
+      "type": "object", "additionalProperties": false,
+      "required": ["binding_id", "phase", "run_id", "path", "sha256"],
+      "properties": {
+        "binding_id": {"type": "string", "minLength": 1},
+        "phase": {"enum": ["adapter_conformance", "adjudication"]},
+        "run_id": {"type": "string", "minLength": 1},
+        "path": {"$ref": "#/$defs/path"}, "sha256": {"$ref": "#/$defs/digest"}
+      }
+    },
+    "adapterBinding": {
+      "type": "object", "additionalProperties": false,
+      "required": ["adapter_id", "version", "phase", "runner_identity_sha256", "path", "sha256"],
+      "properties": {
+        "adapter_id": {"type": "string", "minLength": 1}, "version": {"type": "string", "minLength": 1},
+        "phase": {"enum": ["primary", "reproduction"]}, "runner_identity_sha256": {"$ref": "#/$defs/digest"},
+        "path": {"$ref": "#/$defs/path"}, "sha256": {"$ref": "#/$defs/digest"}
+      }
+    },
+    "judgeBinding": {
+      "type": "object", "additionalProperties": false,
+      "required": ["judge_id", "path", "sha256", "judge_model_sha256", "judge_prompt_sha256", "judge_rubric_sha256", "judge_tool_policy_sha256", "judge_preregistration_sha256", "gold_set_commitment_sha256"],
+      "properties": {
+        "judge_id": {"type": "string", "minLength": 1}, "path": {"$ref": "#/$defs/path"}, "sha256": {"$ref": "#/$defs/digest"},
+        "judge_model_sha256": {"$ref": "#/$defs/digest"}, "judge_prompt_sha256": {"$ref": "#/$defs/digest"},
+        "judge_rubric_sha256": {"$ref": "#/$defs/digest"}, "judge_tool_policy_sha256": {"$ref": "#/$defs/digest"},
+        "judge_preregistration_sha256": {"$ref": "#/$defs/digest"}, "gold_set_commitment_sha256": {"$ref": "#/$defs/digest"}
+      }
+    },
+    "reproductionBinding": {
+      "type": "object", "additionalProperties": false, "required": ["run_id", "path", "sha256", "seed", "runner_identity_sha256", "receipt_bindings"],
+      "properties": {
+        "run_id": {"type": "string", "minLength": 1}, "path": {"$ref": "#/$defs/path"},
+        "sha256": {"$ref": "#/$defs/digest"}, "seed": {"type": "integer"},
+        "runner_identity_sha256": {"$ref": "#/$defs/digest"},
+        "receipt_bindings": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/receiptBinding"}}
+      }
+    },
+    "cell": {
+      "type": "object", "additionalProperties": false,
+      "required": ["host", "result", "evidence_grade", "resolved_model_identifier", "critical", "receipt_ids"],
+      "properties": {
+        "host": {"type": "string", "minLength": 1}, "result": {"enum": ["pass", "PASS"]},
+        "evidence_grade": {"enum": ["A", "B"]}, "resolved_model_identifier": {"type": "string", "minLength": 1},
+        "effort": {"type": "string"}, "approval_policy": {"type": "string"},
+        "tool_policy": {"type": ["string", "object"]}, "critical": {"type": "boolean"},
+        "receipt_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "hardGates": {
+      "type": "object", "additionalProperties": false,
+      "required": ["goal_contract_complete", "topology_complete", "no_unresolved_contradiction", "critical_invariant_coverage_100_percent", "critical_mutant_kill_100_percent", "overall_mutant_kill_at_least_95_percent", "no_protected_regression", "no_required_not_run_cells", "qualified_judges_only", "sealed_bundle_valid", "preregistered_stopping_rule", "token_budget_observed", "independent_reproduction"],
+      "properties": {
+        "goal_contract_complete": {"type": "boolean"}, "topology_complete": {"type": "boolean"},
+        "no_unresolved_contradiction": {"type": "boolean"}, "critical_invariant_coverage_100_percent": {"type": "boolean"},
+        "critical_mutant_kill_100_percent": {"type": "boolean"}, "overall_mutant_kill_at_least_95_percent": {"type": "boolean"},
+        "no_protected_regression": {"type": "boolean"}, "no_required_not_run_cells": {"type": "boolean"},
+        "qualified_judges_only": {"type": "boolean"}, "sealed_bundle_valid": {"type": "boolean"},
+        "preregistered_stopping_rule": {"type": "boolean"}, "token_budget_observed": {"type": "boolean"},
+        "independent_reproduction": {"type": "boolean"}
+      }
+    },
+    "tokenUsage": {
+      "type": "object", "additionalProperties": false, "required": ["raw", "cached", "billed"],
+      "properties": {"raw": {"type": "integer", "minimum": 0}, "cached": {"type": "integer", "minimum": 0}, "billed": {"type": "integer", "minimum": 0}}
+    },
+    "signature": {
+      "type": "object", "additionalProperties": false,
+      "required": ["algorithm", "key_id", "purpose", "signed_at", "payload_sha256", "value_base64"],
+      "properties": {
+        "algorithm": {"const": "Ed25519"}, "key_id": {"type": "string", "minLength": 1},
+        "purpose": {"const": "promotion_verdict"}, "signed_at": {"type": "string", "format": "date-time"},
+        "payload_sha256": {"$ref": "#/$defs/digest"}, "value_base64": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

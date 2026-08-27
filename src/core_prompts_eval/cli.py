@@ -23,6 +23,8 @@ def parser() -> argparse.ArgumentParser:
     compare_cmd = sub.add_parser("compare", help="compare canonical baseline and candidate")
     compare_cmd.add_argument("--skill", required=True)
     compare_cmd.add_argument("--candidate", required=True, type=Path)
+    compare_cmd.add_argument("--baseline", type=Path)
+    compare_cmd.add_argument("--run-plan", type=Path)
     compare_cmd.add_argument("--profile", required=True)
     compare_cmd.add_argument("--allow-model-calls", action="store_true")
     compare_cmd.add_argument("--max-tokens", type=int)
@@ -58,7 +60,16 @@ def main(argv: list[str] | None = None) -> int:
     elif args.command == "calibrate":
         payload = calibrate_static(repo_root)
     elif args.command == "compare":
-        payload = compare(repo_root, args.skill, args.candidate.resolve(), args.profile, allow_model_calls=args.allow_model_calls, max_tokens=args.max_tokens)
+        payload = compare(
+            repo_root,
+            args.skill,
+            args.candidate.resolve(),
+            args.profile,
+            allow_model_calls=args.allow_model_calls,
+            max_tokens=args.max_tokens,
+            baseline=args.baseline.resolve() if args.baseline else None,
+            run_plan=args.run_plan.resolve() if args.run_plan else None,
+        )
     elif args.command == "report":
         payload = report_run(repo_root, args.run)
     else:

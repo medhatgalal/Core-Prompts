@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "JudgeQualification.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "qualification_id",
+    "judge_id",
+    "judge_model_sha256",
+    "judge_prompt_sha256",
+    "judge_rubric_sha256",
+    "judge_tool_policy_sha256",
+    "judge_preregistration_sha256",
+    "gold_set_commitment_sha256",
+    "metrics",
+    "qualified",
+    "created_at",
+    "expires_at",
+    "signature"
+  ],
+  "properties": {
+    "schema_version": {"const": "JudgeQualification.v1"},
+    "qualification_id": {"type": "string", "minLength": 1},
+    "judge_id": {"type": "string", "minLength": 1},
+    "judge_model_sha256": {"$ref": "#/$defs/sha256"},
+    "judge_prompt_sha256": {"$ref": "#/$defs/sha256"},
+    "judge_rubric_sha256": {"$ref": "#/$defs/sha256"},
+    "judge_tool_policy_sha256": {"$ref": "#/$defs/sha256"},
+    "judge_preregistration_sha256": {"$ref": "#/$defs/sha256"},
+    "gold_set_commitment_sha256": {"$ref": "#/$defs/sha256"},
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "binary_agreement",
+        "krippendorff_alpha",
+        "critical_exact",
+        "mirrored_bias_delta",
+        "label_bias_delta",
+        "verbosity_bias_delta",
+        "expected_samples",
+        "observed_samples"
+      ],
+      "properties": {
+        "binary_agreement": {"type": "number", "minimum": 0, "maximum": 1},
+        "krippendorff_alpha": {"type": "number", "minimum": -1, "maximum": 1},
+        "critical_exact": {"type": "boolean"},
+        "mirrored_bias_delta": {"type": "number", "minimum": -1, "maximum": 1},
+        "label_bias_delta": {"type": "number", "minimum": -1, "maximum": 1},
+        "verbosity_bias_delta": {"type": "number", "minimum": -1, "maximum": 1},
+        "expected_samples": {"type": "integer", "minimum": 1},
+        "observed_samples": {"type": "integer", "minimum": 0}
+      }
+    },
+    "qualified": {"type": "boolean"},
+    "created_at": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": "string", "format": "date-time"},
+    "signature": {"$ref": "#/$defs/signature"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "signature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "key_id", "purpose", "signed_at", "payload_sha256", "value_base64"],
+      "properties": {
+        "algorithm": {"const": "Ed25519"},
+        "key_id": {"type": "string", "minLength": 1},
+        "purpose": {"const": "judge_qualification"},
+        "signed_at": {"type": "string", "format": "date-time"},
+        "payload_sha256": {"$ref": "#/$defs/sha256"},
+        "value_base64": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

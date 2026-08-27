@@ -1,0 +1,34 @@
+{
+  "schema_version": "AdapterConformance.v1",
+  "adapter_id": "kiro-stream-json-experimental",
+  "adapter_version": "0.1.0",
+  "cli_binding": {
+    "executable": "kiro-cli",
+    "version_argv": ["kiro-cli", "--version"],
+    "observed_version": "kiro-cli 2.20.0",
+    "help_argv": ["kiro-cli", "chat", "--help"],
+    "observed_at": "2026-08-27"
+  },
+  "evidence": {
+    "fixture_path": "evals/fixtures/adapters/kiro-parser-contract-redacted.jsonl",
+    "fixture_sha256": "08bb5a5491e0bcdde62c4057275143b5caca19bfb656de0cec0e418acb36e8b3",
+    "fixture_kind": "synthetic_parser_contract_redacted",
+    "redacted": true
+  },
+  "checks": {
+    "argv_help_verified": true,
+    "exact_model_response_derived": false,
+    "complete_token_usage": false,
+    "event_capture": false,
+    "hidden_retry_detection": false,
+    "session_persistence_detection": true,
+    "signed_protected": false
+  },
+  "promotion_eligible": false,
+  "blockers": [
+    "Help-only evidence does not prove that stream-json emits an exact response-derived model identifier and complete token usage.",
+    "Help-only evidence cannot expose provider-internal retry count.",
+    "Kiro persists sessions by design; only isolated-session detection is implemented and no signed protected conformance run exists.",
+    "The checked-in stream is a synthetic parser contract, not native promotion evidence."
+  ]
+}

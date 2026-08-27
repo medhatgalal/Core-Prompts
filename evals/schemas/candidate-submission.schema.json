@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "CandidateSubmission.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "submission_id",
+    "slug",
+    "baseline_sha256",
+    "candidate_sha256",
+    "goal_contract_sha256",
+    "topology_sha256",
+    "evaluation_policy_sha256",
+    "submitted_at",
+    "expires_at",
+    "signature"
+  ],
+  "properties": {
+    "schema_version": {"const": "CandidateSubmission.v1"},
+    "submission_id": {"type": "string", "minLength": 1},
+    "slug": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "baseline_sha256": {"$ref": "#/$defs/sha256"},
+    "candidate_sha256": {"$ref": "#/$defs/sha256"},
+    "goal_contract_sha256": {"$ref": "#/$defs/sha256"},
+    "topology_sha256": {"$ref": "#/$defs/sha256"},
+    "evaluation_policy_sha256": {"$ref": "#/$defs/sha256"},
+    "submitted_at": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": "string", "format": "date-time"},
+    "signature": {"$ref": "#/$defs/signature"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "signature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "key_id", "purpose", "signed_at", "payload_sha256", "value_base64"],
+      "properties": {
+        "algorithm": {"const": "Ed25519"},
+        "key_id": {"type": "string", "minLength": 1},
+        "purpose": {"const": "candidate_submission"},
+        "signed_at": {"type": "string", "format": "date-time"},
+        "payload_sha256": {"$ref": "#/$defs/sha256"},
+        "value_base64": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

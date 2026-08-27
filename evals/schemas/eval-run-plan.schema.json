@@ -1,0 +1,228 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "EvalRunPlan.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "preregistration_status",
+    "run_id",
+    "slug",
+    "profile",
+    "baseline_revision",
+    "candidate_revision",
+    "baseline_sha256",
+    "candidate_sha256",
+    "goal_contract_sha256",
+    "topology_sha256",
+    "evaluation_policy_sha256",
+    "evaluation_policy_path",
+    "impact_plan_sha256",
+    "impact_plan_path",
+    "judge_qualification_sha256",
+    "judge_qualifications",
+    "sealed_bundle_attestation_sha256",
+    "sealed_bundle_attestation_path",
+    "evaluator_package_sha256",
+    "dataset",
+    "scorer_sha256",
+    "scorer_path",
+    "cli_versions",
+    "cli_sha256",
+    "trust_root_path",
+    "trust_root_sha256",
+    "model_cells",
+    "approval_policy",
+    "seed",
+    "runner_identity",
+    "order",
+    "repetitions",
+    "max_tokens_per_call",
+    "token_budget",
+    "timeout_seconds",
+    "max_output_bytes",
+    "stopping_rule",
+    "independent_reproduction_required",
+    "created_at"
+  ],
+  "properties": {
+    "schema_version": {"const": "EvalRunPlan.v1"},
+    "preregistration_status": {"const": "locked"},
+    "run_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{2,127}$"},
+    "slug": {"type": "string", "minLength": 1},
+    "profile": {"enum": ["routing-canary", "canary", "promotion", "cross-host", "sweep"]},
+    "baseline_revision": {"type": "string", "minLength": 1},
+    "candidate_revision": {"type": "string", "minLength": 1},
+    "baseline_sha256": {"$ref": "#/$defs/sha256"},
+    "candidate_sha256": {"$ref": "#/$defs/sha256"},
+    "goal_contract_sha256": {"$ref": "#/$defs/sha256"},
+    "topology_sha256": {"$ref": "#/$defs/sha256"},
+    "evaluation_policy_sha256": {"$ref": "#/$defs/sha256"},
+    "evaluation_policy_path": {"type": "string", "minLength": 1},
+    "impact_plan_sha256": {"$ref": "#/$defs/sha256"},
+    "impact_plan_path": {"type": "string", "minLength": 1},
+    "judge_qualification_sha256": {"$ref": "#/$defs/sha256"},
+    "judge_qualifications": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "sha256"],
+        "properties": {"path": {"type": "string", "minLength": 1}, "sha256": {"$ref": "#/$defs/sha256"}}
+      }
+    },
+    "sealed_bundle_attestation_sha256": {"$ref": "#/$defs/sha256"},
+    "sealed_bundle_attestation_path": {"type": "string", "minLength": 1},
+    "evaluator_package_sha256": {"$ref": "#/$defs/sha256"},
+    "dataset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {"path": {"type": "string", "minLength": 1}, "sha256": {"$ref": "#/$defs/sha256"}}
+    },
+    "scorer_sha256": {"$ref": "#/$defs/sha256"},
+    "scorer_path": {"type": "string", "minLength": 1},
+    "adapter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "sha256"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "cli_versions": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "string", "minLength": 1}},
+    "cli_sha256": {"$ref": "#/$defs/sha256"},
+    "trust_root_path": {"type": "string", "minLength": 1},
+    "trust_root_sha256": {"$ref": "#/$defs/sha256"},
+    "model_cells": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "host", "provider", "resolved_model_identifier", "model_version", "effort", "cli_version", "cli_sha256", "required", "credential_binding"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "host": {"type": "string", "minLength": 1},
+          "provider": {"type": "string", "minLength": 1},
+          "resolved_model_identifier": {"type": "string", "minLength": 1},
+          "model_version": {"type": "string", "minLength": 1},
+          "effort": {"type": "string", "minLength": 1},
+          "cli_version": {"type": "string", "minLength": 1},
+          "cli_sha256": {"$ref": "#/$defs/sha256"},
+          "required": {"type": "boolean"},
+          "adapter": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "version", "sha256"],
+            "properties": {
+              "id": {"type": "string", "minLength": 1},
+              "version": {"type": "string", "minLength": 1},
+              "sha256": {"$ref": "#/$defs/sha256"}
+            }
+          },
+          "tool_policy": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["mode", "allowed"],
+            "properties": {
+              "mode": {"type": "string", "minLength": 1},
+              "allowed": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^[A-Za-z0-9_.:@/-]+$"}}
+            }
+          },
+          "credential_binding": {
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["kind", "descriptor_path", "descriptor_sha256"],
+                "properties": {
+                  "kind": {"const": "none"},
+                  "descriptor_path": {"type": "string", "minLength": 1},
+                  "descriptor_sha256": {"$ref": "#/$defs/sha256"}
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["kind", "name", "descriptor_path", "descriptor_sha256"],
+                "properties": {
+                  "kind": {"const": "protected_env"},
+                  "name": {"const": "OPENAI_API_KEY"},
+                  "descriptor_path": {"type": "string", "minLength": 1},
+                  "descriptor_sha256": {"$ref": "#/$defs/sha256"}
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["kind", "name", "format", "source_path", "source_sha256", "descriptor_path", "descriptor_sha256"],
+                "properties": {
+                  "kind": {"const": "protected_service_file"},
+                  "name": {"const": "KIRO_SERVICE_CREDENTIAL_FILE"},
+                  "format": {"const": "kiro-service-credential-v1"},
+                  "source_path": {"type": "string", "minLength": 1},
+                  "source_sha256": {"$ref": "#/$defs/sha256"},
+                  "descriptor_path": {"type": "string", "minLength": 1},
+                  "descriptor_sha256": {"$ref": "#/$defs/sha256"}
+                }
+              }
+            ]
+          },
+          "adapter_conformance_binding": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["path", "sha256"],
+            "properties": {
+              "path": {"type": "string", "minLength": 1},
+              "sha256": {"$ref": "#/$defs/sha256"}
+            }
+          }
+        },
+        "allOf": [
+          {
+            "if": {"properties": {"required": {"const": true}}},
+            "then": {"required": ["adapter_conformance_binding"]}
+          }
+        ]
+      }
+    },
+    "tool_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "allowed"],
+      "properties": {
+        "mode": {"type": "string", "minLength": 1},
+        "allowed": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^[A-Za-z0-9_.:@/-]+$"}}
+      }
+    },
+    "approval_policy": {
+      "type": "object",
+      "required": ["model_calls", "human_reviewed"],
+      "properties": {
+        "model_calls": {"const": "explicit_cli_flag"},
+        "human_reviewed": {"const": true}
+      }
+    },
+    "seed": {"type": "integer"},
+    "runner_identity": {"type": "string", "minLength": 1},
+    "order": {"enum": ["baseline_first", "candidate_first", "seeded_balanced"]},
+    "repetitions": {"type": "integer", "minimum": 1},
+    "max_tokens_per_call": {"type": "integer", "minimum": 1},
+    "token_budget": {"type": "integer", "minimum": 1},
+    "timeout_seconds": {"type": "integer", "minimum": 1},
+    "max_output_bytes": {"type": "integer", "minimum": 1},
+    "stopping_rule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "repetitions"],
+      "properties": {"kind": {"const": "fixed_repetitions"}, "repetitions": {"type": "integer", "minimum": 1}}
+    },
+    "independent_reproduction_required": {"type": "boolean"},
+    "created_at": {"type": "string", "format": "date-time"}
+  },
+  "$defs": {"sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+}

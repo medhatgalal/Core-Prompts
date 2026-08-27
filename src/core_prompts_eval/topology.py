@@ -6,7 +6,7 @@ from typing import Any
 
 from intent_pipeline.uac_modes import extract_declared_modes
 
-from .contracts import artifact_hash
+from .contracts import ContractError, artifact_hash, load_json
 
 
 NORMATIVE = re.compile(r"\b(must|must not|never|required|only|forbidden|explicit approval|do not|shall)\b", re.I)
@@ -24,6 +24,81 @@ def _body(text: str) -> str:
 
 def _clause_id(slug: str, line_number: int, line: str) -> str:
     return f"{slug}:L{line_number}:{artifact_hash(line)[:12]}"
+
+
+def _review_path(path: Path, slug: str) -> Path:
+    if path.parent.name == "ssot":
+        return path.parent.parent / "evals" / "reviews" / f"{slug}.json"
+    return path.parent / f"{slug}.review.json"
+
+
+def _apply_review_overlay(path: Path, topology: dict[str, Any]) -> dict[str, Any]:
+    review_path = _review_path(path, topology["slug"])
+    if not review_path.exists():
+        return topology
+
+    review = load_json(review_path)
+    if review.get("schema_version") != "CapabilityTopologyReview.v1":
+        raise ContractError("unsupported Capability Topology review overlay schema")
+    if review.get("slug") != topology["slug"]:
+        raise ContractError("review overlay slug does not match topology")
+    if review.get("ssot_sha256") != topology["ssot_sha256"]:
+        raise ContractError("review overlay SSOT hash is stale")
+
+    clauses = {clause["id"]: clause for clause in topology["protected_invariants"]}
+    mappings = review.get("clause_mappings", {})
+    waivers = review.get("waivers", [])
+    if not isinstance(mappings, dict) or not isinstance(waivers, list):
+        raise ContractError("review overlay mappings and waivers have invalid shape")
+
+    unknown_mappings = sorted(set(mappings) - set(clauses))
+    waiver_by_id = {str(item.get("clause_id")): item for item in waivers if isinstance(item, dict)}
+    unknown_waivers = sorted(set(waiver_by_id) - set(clauses))
+    overlap = sorted(set(mappings) & set(waiver_by_id))
+    if unknown_mappings or unknown_waivers or overlap:
+        raise ContractError("review overlay contains unknown or multiply classified clauses")
+
+    for clause_id in sorted(mappings):
+        targets = mappings[clause_id]
+        if not isinstance(targets, list) or not targets or not all(isinstance(target, str) and target for target in targets):
+            raise ContractError(f"review overlay mapping must name at least one case: {clause_id}")
+        clauses[clause_id]["mapped_to"] = sorted(set(targets))
+    for clause_id in sorted(waiver_by_id):
+        waiver = waiver_by_id[clause_id]
+        if not waiver.get("reason") or not waiver.get("reviewer"):
+            raise ContractError(f"review overlay waiver lacks review evidence: {clause_id}")
+        clauses[clause_id]["waiver"] = {
+            "reason": str(waiver["reason"]),
+            "reviewer": str(waiver["reviewer"]),
+        }
+
+    classified = set(mappings) | set(waiver_by_id)
+    missing = sorted(set(clauses) - classified)
+    risk_tiers = review.get("risk_tiers", {})
+    if set(risk_tiers) != {"critical", "high", "standard"}:
+        raise ContractError("review overlay must declare critical, high, and standard risk tiers")
+    tiered = [clause_id for tier in ("critical", "high", "standard") for clause_id in risk_tiers[tier]]
+    if len(tiered) != len(set(tiered)) or set(tiered) != set(clauses):
+        raise ContractError("review overlay risk tiers must classify every clause exactly once")
+
+    review_status = review.get("review_status")
+    if review_status not in {"draft", "human_reviewed", "blocked"}:
+        raise ContractError("review overlay has invalid review_status")
+    if review_status == "human_reviewed" and missing:
+        raise ContractError("human-reviewed overlay leaves normative clauses uncovered")
+    topology["risk_tiers"] = {tier: sorted(risk_tiers[tier]) for tier in ("critical", "high", "standard")}
+    topology["normative_clause_coverage"] = {
+        "total": len(clauses),
+        "mapped": len(mappings),
+        "waived": len(waiver_by_id),
+    }
+    topology["review_status"] = str(review_status)
+    topology["compiler_note"] = "Human review is hash-bound through evals/reviews/<slug>.json; mappings, waivers, and risk tiers are deterministic."
+    topology["review_overlay"] = {
+        "path": review_path.relative_to(path.parent.parent).as_posix() if path.parent.name == "ssot" else review_path.name,
+        "sha256": artifact_hash(review_path),
+    }
+    return topology
 
 
 def compile_topology(path: Path) -> dict[str, Any]:
@@ -62,7 +137,7 @@ def compile_topology(path: Path) -> dict[str, Any]:
 
     ambiguities = detect_ambiguities(slug, text)
     mapped = 0
-    return {
+    topology = {
         "schema_version": "CapabilityTopology.v1",
         "slug": slug,
         "ssot_sha256": artifact_hash(text),
@@ -98,6 +173,7 @@ def compile_topology(path: Path) -> dict[str, Any]:
         "review_status": "blocked" if ambiguities else "draft",
         "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs.",
     }
+    return _apply_review_overlay(path, topology)
 
 
 def detect_ambiguities(slug: str, text: str) -> list[dict[str, str]]:

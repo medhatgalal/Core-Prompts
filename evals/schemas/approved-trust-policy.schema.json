@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ApprovedTrustPolicy.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "policy_id", "status", "trust_store_sha256",
+    "authorized_keys", "approved_at", "expires_at"
+  ],
+  "properties": {
+    "schema_version": {"const": "ApprovedTrustPolicy.v1"},
+    "policy_id": {"type": "string", "minLength": 1},
+    "status": {"const": "approved"},
+    "trust_store_sha256": {"$ref": "#/$defs/digest"},
+    "authorized_keys": {
+      "type": "array", "minItems": 6, "maxItems": 6,
+      "items": {"$ref": "#/$defs/key"}
+    },
+    "approved_at": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": "string", "format": "date-time"}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "key": {
+      "type": "object", "additionalProperties": false,
+      "required": ["purpose", "key_id"],
+      "properties": {
+        "purpose": {
+          "enum": [
+            "adapter_conformance", "execution_receipt", "global_token_ledger",
+            "judge_qualification", "promotion_verdict", "sealed_bundle"
+          ]
+        },
+        "key_id": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

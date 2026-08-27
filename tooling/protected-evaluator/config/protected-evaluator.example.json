@@ -1,0 +1,95 @@
+{
+  "schema_version": "ProtectedEvaluatorConfig.v1",
+  "evaluator": {
+    "repository": "REPLACE_WITH_REVIEWED_CORE_PROMPTS_CLONE_URL",
+    "revision": "REPLACE_WITH_REVIEWED_40_HEX_EVALUATOR_COMMIT"
+  },
+  "artifacts": {
+    "repository": "REPLACE_WITH_REVIEWED_CORE_PROMPTS_CLONE_URL",
+    "baseline_revision": "REPLACE_WITH_40_HEX_BASELINE_COMMIT",
+    "candidate_revision": "REPLACE_WITH_40_HEX_CANDIDATE_COMMIT",
+    "skill_path": "ssot/batman.md"
+  },
+  "submission_trust_root": "env:SUBMISSION_TRUST_ROOT_FILE",
+  "evaluator_trust_store": {
+    "path": "env:EVALUATOR_TRUST_STORE_FILE",
+    "sha256": "REPLACE_WITH_REVIEWED_64_HEX_TRUST_STORE_SHA256"
+  },
+  "candidate_submission_schema": "evals/schemas/candidate-submission.schema.json",
+  "primary": {
+    "run_plan": "env:PRIMARY_RUN_PLAN_FILE",
+    "runner_identity": "env:PRIMARY_RUNNER_IDENTITY"
+  },
+  "reproduction": {
+    "run_plan": "env:REPRODUCTION_RUN_PLAN_FILE",
+    "runner_identity": "env:REPRODUCTION_RUNNER_IDENTITY"
+  },
+  "sealed_bundle": "env:SEALED_BUNDLE_FILE",
+  "sealed_attestation": "env:SEALED_ATTESTATION_FILE",
+  "adapter_conformance_command": ["/protected/bin/protected-adapter-conformance"],
+  "adapter_conformance_runner_identity": "env:CONFORMANCE_RUNNER_IDENTITY",
+  "budget_authorizer_runner_identity": "env:BUDGET_AUTHORIZER_RUNNER_IDENTITY",
+  "capability_eval_command": ["./bin/capability-eval"],
+  "score_command": ["./protected-score"],
+  "judge_commands": [
+    {"judge_id": "REPLACE_WITH_QUALIFIED_JUDGE_ID", "command": ["./protected-judge"]}
+  ],
+  "verdict_command": ["./protected-verdict"],
+  "adapter_credentials": {
+    "codex": {
+      "kind": "environment",
+      "variable": "OPENAI_API_KEY"
+    },
+    "kiro": {
+      "kind": "file",
+      "variable": "KIRO_SERVICE_CREDENTIAL_FILE",
+      "documentation_reference": "REPLACE_WITH_PROTECTED_KIRO_SERVICE_CREDENTIAL_RUNBOOK"
+    }
+  },
+  "registered_trial_tool_policy": {
+    "mode": "repo-write-subagents",
+    "allowed": ["subagents"]
+  },
+  "global_token_budget": {
+    "cap": 5000000,
+    "allocations": {
+      "adapter_conformance": 100000,
+      "primary": 2000000,
+      "reproduction": 2000000,
+      "judge_adjudication": 900000
+    },
+    "conformance_max_tokens_per_probe": 50000,
+    "judge_max_tokens_per_call": 100000
+  },
+  "signing": {
+    "adapter_conformance": {
+      "private_key": "env:ADAPTER_CONFORMANCE_KEY_FILE",
+      "key_id": "REPLACE_WITH_ADAPTER_CONFORMANCE_KEY_ID"
+    },
+    "execution_receipt": {
+      "private_key": "env:EXECUTION_RECEIPT_KEY_FILE",
+      "key_id": "REPLACE_WITH_EXECUTION_RECEIPT_KEY_ID"
+    },
+    "global_token_ledger": {
+      "private_key": "env:GLOBAL_TOKEN_LEDGER_KEY_FILE",
+      "key_id": "REPLACE_WITH_GLOBAL_TOKEN_LEDGER_KEY_ID"
+    },
+    "judge_qualification": {
+      "private_key": "env:JUDGE_QUALIFICATION_KEY_FILE",
+      "key_id": "REPLACE_WITH_JUDGE_QUALIFICATION_KEY_ID"
+    },
+    "sealed_bundle": {
+      "private_key": "env:SEALED_BUNDLE_KEY_FILE",
+      "key_id": "REPLACE_WITH_SEALED_BUNDLE_KEY_ID"
+    },
+    "promotion_verdict": {
+      "private_key": "env:PROMOTION_VERDICT_KEY_FILE",
+      "key_id": "REPLACE_WITH_PROMOTION_VERDICT_KEY_ID"
+    }
+  },
+  "limits": {
+    "timeout_seconds": 3600,
+    "max_public_bytes": 10000000,
+    "raw_token_cap": 5000000
+  }
+}

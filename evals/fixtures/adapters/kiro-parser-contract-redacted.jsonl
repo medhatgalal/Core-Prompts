@@ -1,0 +1,8 @@
+{"id":"event_1","payload":{"kind":"session_start","sessionId":"session_redacted","resumed":false}}
+{"id":"event_2","payload":{"kind":"session_metadata","sessionId":"session_redacted","modelId":"gpt-5.6-sol","modelVersion":"gpt-5.6-sol"}}
+{"id":"event_3","payload":{"kind":"turn_start"}}
+{"id":"event_4","payload":{"kind":"sub_agent_start","toolName":"orchestrate_subagent","agentSubtaskId":"implementer_redacted"}}
+{"id":"event_5","payload":{"kind":"tool_call","toolName":"adversarial_review","agentSubtaskId":"reviewer_redacted","status":"completed"}}
+{"id":"event_6","payload":{"kind":"assistant","content":"Delivered and independently reviewed."}}
+{"id":"event_7","payload":{"kind":"usage_summary","usage":{"input_tokens":100,"cached_input_tokens":40,"cache_write_input_tokens":0,"output_tokens":50,"reasoning_output_tokens":10}}}
+{"id":"event_8","payload":{"kind":"turn_end","status":"completed"}}
