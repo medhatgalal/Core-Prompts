@@ -23,6 +23,7 @@ If Core-Prompts is already installed in Codex, Gemini, Claude, or Kiro, begin wi
 | `ic-assistant` | "Use `ic-assistant` to track this active incident and tell me the current phase, overdue items, and next required action." | mode, phase, next action, status-update timer, and escalation flags |
 | `supercharge` | "Use `supercharge /adversarial /debate /deep` to stress-test this release decision with Bull/Bear/Decider analysis, risks, mitigants, and flip conditions." | stronger framing, constraints, sequencing, first-principles accounting, and adversarial debate when requested |
 | `auto-research` | "Use `auto-research` to improve our review prompt so it catches more regressions without increasing noise." | experiment design, evaluation, and a validated winner |
+| `batman` | "Batman: deliver this shipped-defect correction through independent research, TDD, verification, review, docs, PR, merge, and cleanup." | a written plan, independent worker evidence, observed red and mutation checks, and a verified landing receipt |
 | `demo-recorder` | "Use `demo-recorder` to create a Playwright demo of the new dashboard feature with video recording." | demo plan, complete Playwright script, run command, and output path |
 | `dynamic-html-presentations` | "Use `dynamic-html-presentations` to create a standalone HTML deck and ask me whether I want PNG, PPTX, or all formats." | narrative-first deck, polished 16:9 visuals, interaction behavior, and validated requested exports |
 | `testing` | "Use `testing` to identify the edge cases and tests this change needs." | prioritized tests and missing edge cases |
@@ -31,6 +32,7 @@ If you want an advisory agent rather than a direct skill invocation, start with:
 
 | Agent | Example ask | Best when you need... |
 | --- | --- | --- |
+| `batman` | "Superman: use the Batman protocol for this contract change and keep the parent out of implementation." | explicitly invoked, evidence-gated delivery through independent implementation, review, and landing |
 | `mentor` | "Use `mentor` to tell me the next reversible move on this repo, or look at the left pane and review the error if I am in tmux." | sequencing, scope control, and tmux-aware terminal context recovery |
 | `docs-review-expert` | "Use `docs-review-expert` to review our onboarding docs for drift before release." | structured documentation review |
 | `gitops-review` | "Use `gitops-review` to judge whether we are ready to merge and release." | a merge or release gate |

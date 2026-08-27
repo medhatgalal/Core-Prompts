@@ -99,6 +99,40 @@ Follow with:
 
 > Now tell me the minimum experiment set that will separate the strongest two variants.
 
+### `batman`
+
+Use when:
+
+- a contract, metric, safety path, or shipped-defect correction needs independent implementation and review
+- the parent must remain a controller instead of implementing after research
+- landing requires written gates, observed TDD evidence, verification, docs, current CI, merge, and cleanup
+
+Why this skill first:
+
+- start here when the job is end-to-end delivery control, not advisory sequencing (`mentor`), prompt or plan hardening (`supercharge`), or the final Git gate alone (`gitops-review`)
+
+Ask:
+
+> Batman: deliver this shipped-defect correction through independent research, design, TDD implementation, verification, adversarial review, docs, PR, merge, and cleanup. Keep the parent out of implementation, paste the observed red evidence, run the mutation check, and never weaken the metric claim.
+
+Alias ask:
+
+> Superman: use the same Batman protocol for this safety-path change. Report every 15 minutes against the written plan and stop for critical decisions.
+
+Expected output:
+
+- verified repository, base revision, branch, and worktree
+- specification, delivery plan, implementation plan, and bounded task briefs
+- independent implementation and review reports
+- observed red, green, and mutation-check evidence
+- validation, reconciliation, and classified finding dispositions
+- docs and Git health review
+- PR or MR, current hosted CI, authorized merge, mainline verification, and cleanup receipt
+
+Follow with:
+
+> Show me the current stage, the gate evidence, and any unresolved finding against the written plan.
+
 ### `supercharge /basis`
 
 Use when:

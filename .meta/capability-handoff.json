@@ -427,6 +427,108 @@
       "advisory_only": true
     },
     {
+      "slug": "batman",
+      "display_name": "Batman \u2014 Evidence-Gated Delivery Controller",
+      "capability_type": "both",
+      "summary": "Runs an explicitly invoked, evidence-gated delivery protocol through independent research, design, TDD implementation, verification, adversarial review, documentation, Git health, PR or MR, merge, and cleanup. Trigger with batman or the alias superman.",
+      "role": "analyst",
+      "domain_tags": [
+        "review",
+        "batman"
+      ],
+      "required_inputs": [
+        "the explicit work item and its success criteria",
+        "the target repository or working context",
+        "applicable repository instructions and authorization boundaries",
+        "the base branch or revision and intended landing target",
+        "known safety, live-write, deployment, or release constraints"
+      ],
+      "expected_outputs": [
+        "work-item identity, repository identity, base revision, branch, and worktree",
+        "size classification and selected stage set",
+        "written specification, delivery plan, implementation plan, and ordered tasks",
+        "decision record with rejected alternatives and reasons",
+        "per-task briefs, worker reports, review reports, and classified findings",
+        "observed TDD red evidence and mutation-check evidence for implemented behavior",
+        "validation and verification evidence, including independent reconciliation when required",
+        "documentation review and Git health result",
+        "PR or MR, CI, merge, mainline verification, and cleanup receipt when landing is authorized",
+        "explicit blockers, parked work authorized by the human, and remaining uncertainty"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill",
+          "codex_agent"
+        ],
+        "gemini": [
+          "gemini_skill",
+          "gemini_agent"
+        ],
+        "claude": [
+          "claude_skill",
+          "claude_agent"
+        ],
+        "kiro": [
+          "kiro_skill",
+          "kiro_agent"
+        ]
+      },
+      "confidence": 0.98,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [
+        "prefer explicit review or analyst companions before high-authority use"
+      ],
+      "quality_status": "structural_ready",
+      "benchmark_profile": "default",
+      "preferred_use_cases": [
+        "AI-assisted capability selection",
+        "deterministic prompt uplift review"
+      ],
+      "artifact_conventions": [
+        "ssot/<slug>.md",
+        ".meta/capabilities/<slug>.json",
+        "reports/quality-reviews/<slug>/LATEST.md"
+      ],
+      "invocation_style": "assistant_first_but_scriptable",
+      "requires_human_confirmation": true,
+      "org_graph": {
+        "org_role": "specialist_with_workflow_surface",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "review",
+          "routing"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a both capability with route profile None."
+      },
+      "advisory_only": true
+    },
+    {
       "slug": "code-review",
       "display_name": "Commit Review \u2014 Git Commit Quality Gate",
       "capability_type": "skill",
