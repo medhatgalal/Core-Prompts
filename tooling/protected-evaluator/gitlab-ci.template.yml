@@ -30,7 +30,7 @@ validate-submission:
   tags: [protected-evaluator-validation]
   script:
     - test "$CI_RUNNER_ID" = "$VALIDATION_RUNNER_IDENTITY"
-    - python3 scripts/validate_submission.py --submission "$CANDIDATE_SUBMISSION_FILE" --trust-root "$SUBMISSION_TRUST_ROOT_FILE" --schema "$CANDIDATE_SUBMISSION_SCHEMA_FILE"
+    - ./protected-runner --phase validate --config config/protected-evaluator.json --private-output protected-output --public-output public-output -- --submission "$CANDIDATE_SUBMISSION_FILE" --trust-root "$SUBMISSION_TRUST_ROOT_FILE" --schema "$CANDIDATE_SUBMISSION_SCHEMA_FILE"
   artifacts:
     access: maintainer
     when: always
@@ -55,7 +55,7 @@ authorize-global-budget:
     - test "$CI_RUNNER_ID" = "$BUDGET_AUTHORIZER_RUNNER_IDENTITY"
     - test -f "$EVALUATOR_TRUST_STORE_FILE"
     - test -n "$GLOBAL_TOKEN_LEDGER_KEY_FILE"
-    - ./protected-budget-authorizer --config config/protected-evaluator.json --primary-plan "$PRIMARY_RUN_PLAN_FILE" --reproduction-plan "$REPRODUCTION_RUN_PLAN_FILE" --output protected-output/token-ledger/000000.json
+    - ./protected-runner --phase authorize-budget --signing-purpose global_token_ledger --signing-key "$GLOBAL_TOKEN_LEDGER_KEY_FILE" --config config/protected-evaluator.json --private-output protected-output --public-output public-output -- --primary-plan "$PRIMARY_RUN_PLAN_FILE" --reproduction-plan "$REPRODUCTION_RUN_PLAN_FILE" --output protected-output/token-ledger/000000.unsigned.json
   artifacts:
     access: maintainer
     when: always
@@ -77,7 +77,7 @@ adapter-conformance-codex:
   script:
     - test "$CI_RUNNER_ID" = "$CONFORMANCE_RUNNER_IDENTITY"
     - test -n "$OPENAI_API_KEY"
-    - ./protected-adapter-probe --adapter codex --config config/protected-evaluator.json --prompt-inputs conformance-inputs/ --token-ledger-in protected-output/token-ledger/000000.json --output protected-output/conformance-unsigned/codex/
+    - ./protected-runner --phase adapter-probe-codex --config config/protected-evaluator.json --private-output protected-output --public-output public-output -- --prompt-inputs conformance-inputs/ --token-ledger-in protected-output/token-ledger/000000.json --output protected-output/conformance-unsigned/codex/
   artifacts:
     access: maintainer
     when: always
@@ -100,7 +100,7 @@ adapter-conformance-kiro:
     - test "$CI_RUNNER_ID" = "$CONFORMANCE_RUNNER_IDENTITY"
     - test -n "$KIRO_SERVICE_CREDENTIAL_FILE"
     - test -f "$KIRO_SERVICE_CREDENTIAL_FILE"
-    - ./protected-adapter-probe --adapter kiro --config config/protected-evaluator.json --prompt-inputs conformance-inputs/ --token-ledger-in protected-output/token-ledger/000000.json --output protected-output/conformance-unsigned/kiro/
+    - ./protected-runner --phase adapter-probe-kiro --config config/protected-evaluator.json --private-output protected-output --public-output public-output -- --prompt-inputs conformance-inputs/ --token-ledger-in protected-output/token-ledger/000000.json --output protected-output/conformance-unsigned/kiro/
   artifacts:
     access: maintainer
     when: always
@@ -124,7 +124,7 @@ sign-adapter-conformance:
     - test "$CI_RUNNER_ID" = "$CONFORMANCE_SIGNER_RUNNER_IDENTITY"
     - test -f "$EVALUATOR_TRUST_STORE_FILE"
     - test -n "$ADAPTER_CONFORMANCE_KEY_FILE"
-    - ./protected-conformance-signer --config config/protected-evaluator.json --input protected-output/conformance-unsigned/ --token-ledger-in protected-output/token-ledger/000000.json --token-ledger-out protected-output/token-ledger/000001.json --output protected-output/conformance-signed/
+    - ./protected-runner --phase sign-adapter-conformance --signing-purpose adapter_conformance --signing-key "$ADAPTER_CONFORMANCE_KEY_FILE" --config config/protected-evaluator.json --private-output protected-output --public-output public-output -- --input protected-output/conformance-unsigned/ --token-ledger-in protected-output/token-ledger/000000.json --output protected-output/conformance-unsigned/
   artifacts:
     access: maintainer
     when: always
@@ -132,6 +132,25 @@ sign-adapter-conformance:
       - protected-output/token-ledger/
       - protected-output/conformance-signed/
       - public-output/adapter-conformance/
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_REF_PROTECTED == "true"'
+
+reconcile-conformance-ledger:
+  stage: sign-conformance
+  inherit:
+    variables: false
+  variables:
+    EVALUATOR_TRUST_STORE_FILE: $PROTECTED_EVALUATOR_TRUST_STORE_FILE
+    GLOBAL_TOKEN_LEDGER_KEY_FILE: $PROTECTED_GLOBAL_TOKEN_LEDGER_KEY_FILE
+  tags: [protected-evaluator-budget]
+  needs: [adapter-conformance-codex, adapter-conformance-kiro]
+  script:
+    - ./protected-runner --phase reconcile-conformance-ledger --signing-purpose global_token_ledger --signing-key "$GLOBAL_TOKEN_LEDGER_KEY_FILE" --config config/protected-evaluator.json --private-output protected-output --public-output public-output -- --token-ledger-in protected-output/token-ledger/000000.json --usage-input protected-output/conformance-unsigned/ --token-ledger-out protected-output/token-ledger/000001.unsigned.json
+  artifacts:
+    access: maintainer
+    when: always
+    paths:
+      - protected-output/token-ledger/
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_REF_PROTECTED == "true"'
 
@@ -143,11 +162,11 @@ prepare-sealed-cases:
     CASE_PREPARER_RUNNER_IDENTITY: $PROTECTED_CASE_PREPARER_RUNNER_IDENTITY
     SEALED_BUNDLE_FILE: $PROTECTED_SEALED_BUNDLE_FILE
   tags: [protected-evaluator-case-preparer]
-  needs: [sign-adapter-conformance]
+  needs: [sign-adapter-conformance, reconcile-conformance-ledger]
   script:
     - test "$CI_RUNNER_ID" = "$CASE_PREPARER_RUNNER_IDENTITY"
     - test -f "$SEALED_BUNDLE_FILE"
-    - ./protected-case-preparer --mode prompts --sealed-bundle "$SEALED_BUNDLE_FILE" --output prompt-inputs/
+    - ./protected-runner --phase prepare-prompts --config config/protected-evaluator.json --private-output protected-output --public-output public-output -- --sealed-bundle "$SEALED_BUNDLE_FILE" --output prompt-inputs/
   artifacts:
     access: maintainer
     when: on_success
@@ -166,11 +185,11 @@ prepare-gold-evidence:
     CASE_PREPARER_RUNNER_IDENTITY: $PROTECTED_CASE_PREPARER_RUNNER_IDENTITY
     SEALED_BUNDLE_FILE: $PROTECTED_SEALED_BUNDLE_FILE
   tags: [protected-evaluator-case-preparer]
-  needs: [sign-adapter-conformance]
+  needs: [sign-adapter-conformance, reconcile-conformance-ledger]
   script:
     - test "$CI_RUNNER_ID" = "$CASE_PREPARER_RUNNER_IDENTITY"
     - test -f "$SEALED_BUNDLE_FILE"
-    - ./protected-case-preparer --mode gold --sealed-bundle "$SEALED_BUNDLE_FILE" --output gold-evidence/
+    - ./protected-runner --phase prepare-gold --config config/protected-evaluator.json --private-output protected-output --public-output public-output -- --sealed-bundle "$SEALED_BUNDLE_FILE" --output gold-evidence/
   artifacts:
     access: maintainer
     when: on_success
@@ -191,7 +210,7 @@ evaluate-primary-codex:
   script:
     - test "$CI_RUNNER_ID" = "$PRIMARY_RUNNER_IDENTITY"
     - test -n "$OPENAI_API_KEY"
-    - ./protected-model-runner --phase primary --adapter codex --config config/protected-evaluator.json --prompt-inputs prompt-inputs/ --token-ledger-in protected-output/token-ledger/000001.json --conformance protected-output/conformance-signed/ --output model-output/primary/codex/
+    - ./protected-runner --phase model-primary-codex --config config/protected-evaluator.json --private-output protected-output --public-output public-output -- --prompt-inputs prompt-inputs/ --token-ledger-in protected-output/token-ledger/000001.json --conformance protected-output/conformance-signed/ --output model-output/primary/codex/
   artifacts:
     access: maintainer
     when: always
@@ -216,7 +235,7 @@ evaluate-primary-kiro:
     - test "$CI_RUNNER_ID" = "$PRIMARY_RUNNER_IDENTITY"
     - test -n "$KIRO_SERVICE_CREDENTIAL_FILE"
     - test -f "$KIRO_SERVICE_CREDENTIAL_FILE"
-    - ./protected-model-runner --phase primary --adapter kiro --config config/protected-evaluator.json --prompt-inputs prompt-inputs/ --token-ledger-in protected-output/token-ledger/000001.json --conformance protected-output/conformance-signed/ --output model-output/primary/kiro/
+    - ./protected-runner --phase model-primary-kiro --config config/protected-evaluator.json --private-output protected-output --public-output public-output -- --prompt-inputs prompt-inputs/ --token-ledger-in protected-output/token-ledger/000001.json --conformance protected-output/conformance-signed/ --output model-output/primary/kiro/
   artifacts:
     access: maintainer
     when: always
@@ -240,7 +259,7 @@ reconcile-primary-ledger:
   needs: [evaluate-primary-codex, evaluate-primary-kiro]
   script:
     - test "$CI_RUNNER_ID" = "$BUDGET_AUTHORIZER_RUNNER_IDENTITY"
-    - ./protected-ledger-reconciler --phase primary --token-ledger-in protected-output/token-ledger/000001.json --usage-input model-output/primary/ --token-ledger-out protected-output/token-ledger/000002.json
+    - ./protected-runner --phase reconcile-primary-ledger --signing-purpose global_token_ledger --signing-key "$GLOBAL_TOKEN_LEDGER_KEY_FILE" --config config/protected-evaluator.json --private-output protected-output --public-output public-output -- --token-ledger-in protected-output/token-ledger/000001.json --usage-input model-output/primary/ --token-ledger-out protected-output/token-ledger/000002.unsigned.json
   artifacts:
     access: maintainer
     when: always
@@ -264,7 +283,7 @@ evaluate-reproduction-codex:
   script:
     - test "$CI_RUNNER_ID" = "$REPRODUCTION_RUNNER_IDENTITY"
     - test -n "$OPENAI_API_KEY"
-    - ./protected-model-runner --phase reproduction --adapter codex --config config/protected-evaluator.json --prompt-inputs prompt-inputs/ --token-ledger-in protected-output/token-ledger/000002.json --conformance protected-output/conformance-signed/ --output model-output/reproduction/codex/
+    - ./protected-runner --phase model-reproduction-codex --config config/protected-evaluator.json --private-output protected-output --public-output public-output -- --prompt-inputs prompt-inputs/ --token-ledger-in protected-output/token-ledger/000002.json --conformance protected-output/conformance-signed/ --output model-output/reproduction/codex/
   artifacts:
     access: maintainer
     when: always
@@ -289,7 +308,7 @@ evaluate-reproduction-kiro:
     - test "$CI_RUNNER_ID" = "$REPRODUCTION_RUNNER_IDENTITY"
     - test -n "$KIRO_SERVICE_CREDENTIAL_FILE"
     - test -f "$KIRO_SERVICE_CREDENTIAL_FILE"
-    - ./protected-model-runner --phase reproduction --adapter kiro --config config/protected-evaluator.json --prompt-inputs prompt-inputs/ --token-ledger-in protected-output/token-ledger/000002.json --conformance protected-output/conformance-signed/ --output model-output/reproduction/kiro/
+    - ./protected-runner --phase model-reproduction-kiro --config config/protected-evaluator.json --private-output protected-output --public-output public-output -- --prompt-inputs prompt-inputs/ --token-ledger-in protected-output/token-ledger/000002.json --conformance protected-output/conformance-signed/ --output model-output/reproduction/kiro/
   artifacts:
     access: maintainer
     when: always
@@ -313,7 +332,7 @@ reconcile-reproduction-ledger:
   needs: [evaluate-reproduction-codex, evaluate-reproduction-kiro]
   script:
     - test "$CI_RUNNER_ID" = "$BUDGET_AUTHORIZER_RUNNER_IDENTITY"
-    - ./protected-ledger-reconciler --phase reproduction --token-ledger-in protected-output/token-ledger/000002.json --usage-input model-output/reproduction/ --token-ledger-out protected-output/token-ledger/000003.json
+    - ./protected-runner --phase reconcile-reproduction-ledger --signing-purpose global_token_ledger --signing-key "$GLOBAL_TOKEN_LEDGER_KEY_FILE" --config config/protected-evaluator.json --private-output protected-output --public-output public-output -- --token-ledger-in protected-output/token-ledger/000002.json --usage-input model-output/reproduction/ --token-ledger-out protected-output/token-ledger/000003.unsigned.json
   artifacts:
     access: maintainer
     when: always
@@ -335,7 +354,7 @@ score-and-judge:
   needs: [reconcile-reproduction-ledger, prepare-gold-evidence]
   script:
     - test "$CI_RUNNER_ID" = "$SCORING_RUNNER_IDENTITY"
-    - ./protected-score-and-judge --config config/protected-evaluator.json --model-output model-output/ --gold-evidence gold-evidence/ --token-ledger-in protected-output/token-ledger/000003.json --output protected-output/scored/
+    - ./protected-runner --phase score-judge --config config/protected-evaluator.json --private-output protected-output --public-output public-output -- --model-output model-output/ --gold-evidence gold-evidence/ --token-ledger-in protected-output/token-ledger/000003.json --output protected-output/scored/
   artifacts:
     access: maintainer
     when: always
@@ -347,6 +366,78 @@ score-and-judge:
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_REF_PROTECTED == "true"'
 
+sign-execution-receipts:
+  stage: finalize
+  inherit:
+    variables: false
+  variables:
+    EVALUATOR_TRUST_STORE_FILE: $PROTECTED_EVALUATOR_TRUST_STORE_FILE
+    EXECUTION_RECEIPT_KEY_FILE: $PROTECTED_EXECUTION_RECEIPT_KEY_FILE
+  tags: [protected-evaluator-finalizer]
+  needs: [score-and-judge]
+  script:
+    - ./protected-runner --phase sign-execution-receipts --signing-purpose execution_receipt --signing-key "$EXECUTION_RECEIPT_KEY_FILE" --config config/protected-evaluator.json --private-output protected-output --public-output public-output
+  artifacts:
+    access: maintainer
+    when: always
+    paths: [protected-output/signed/receipts/]
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_REF_PROTECTED == "true"'
+
+sign-judge-qualification:
+  stage: finalize
+  inherit:
+    variables: false
+  variables:
+    EVALUATOR_TRUST_STORE_FILE: $PROTECTED_EVALUATOR_TRUST_STORE_FILE
+    JUDGE_QUALIFICATION_KEY_FILE: $PROTECTED_JUDGE_QUALIFICATION_KEY_FILE
+  tags: [protected-evaluator-finalizer]
+  needs: [score-and-judge]
+  script:
+    - ./protected-runner --phase sign-judge-qualification --signing-purpose judge_qualification --signing-key "$JUDGE_QUALIFICATION_KEY_FILE" --config config/protected-evaluator.json --private-output protected-output --public-output public-output
+  artifacts:
+    access: maintainer
+    when: always
+    paths: [protected-output/signed/judges/]
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_REF_PROTECTED == "true"'
+
+sign-sealed-attestation:
+  stage: finalize
+  inherit:
+    variables: false
+  variables:
+    EVALUATOR_TRUST_STORE_FILE: $PROTECTED_EVALUATOR_TRUST_STORE_FILE
+    SEALED_BUNDLE_KEY_FILE: $PROTECTED_SEALED_BUNDLE_KEY_FILE
+  tags: [protected-evaluator-finalizer]
+  needs: [score-and-judge]
+  script:
+    - ./protected-runner --phase sign-sealed-attestation --signing-purpose sealed_bundle --signing-key "$SEALED_BUNDLE_KEY_FILE" --config config/protected-evaluator.json --private-output protected-output --public-output public-output
+  artifacts:
+    access: maintainer
+    when: always
+    paths: [protected-output/signed/sealed-attestation.json]
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_REF_PROTECTED == "true"'
+
+finalize-global-ledger:
+  stage: finalize
+  inherit:
+    variables: false
+  variables:
+    EVALUATOR_TRUST_STORE_FILE: $PROTECTED_EVALUATOR_TRUST_STORE_FILE
+    GLOBAL_TOKEN_LEDGER_KEY_FILE: $PROTECTED_GLOBAL_TOKEN_LEDGER_KEY_FILE
+  tags: [protected-evaluator-finalizer]
+  needs: [score-and-judge]
+  script:
+    - ./protected-runner --phase finalize-ledger --signing-purpose global_token_ledger --signing-key "$GLOBAL_TOKEN_LEDGER_KEY_FILE" --config config/protected-evaluator.json --private-output protected-output --public-output public-output -- --token-ledger-in protected-output/token-ledger/000003.json --usage-input protected-output/scored/ --token-ledger-out protected-output/token-ledger/000004.unsigned.json
+  artifacts:
+    access: maintainer
+    when: always
+    paths: [protected-output/token-ledger/000004.json]
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_COMMIT_REF_PROTECTED == "true"'
+
 finalize-protected-verdict:
   stage: finalize
   inherit:
@@ -354,22 +445,14 @@ finalize-protected-verdict:
   variables:
     FINALIZER_RUNNER_IDENTITY: $PROTECTED_FINALIZER_RUNNER_IDENTITY
     EVALUATOR_TRUST_STORE_FILE: $PROTECTED_EVALUATOR_TRUST_STORE_FILE
-    EXECUTION_RECEIPT_KEY_FILE: $PROTECTED_EXECUTION_RECEIPT_KEY_FILE
-    GLOBAL_TOKEN_LEDGER_KEY_FILE: $PROTECTED_GLOBAL_TOKEN_LEDGER_KEY_FILE
-    JUDGE_QUALIFICATION_KEY_FILE: $PROTECTED_JUDGE_QUALIFICATION_KEY_FILE
-    SEALED_BUNDLE_KEY_FILE: $PROTECTED_SEALED_BUNDLE_KEY_FILE
     PROMOTION_VERDICT_KEY_FILE: $PROTECTED_PROMOTION_VERDICT_KEY_FILE
   tags: [protected-evaluator-finalizer]
-  needs: [score-and-judge]
+  needs: [score-and-judge, sign-execution-receipts, sign-judge-qualification, sign-sealed-attestation, finalize-global-ledger]
   script:
     - test "$CI_RUNNER_ID" = "$FINALIZER_RUNNER_IDENTITY"
     - test -f "$EVALUATOR_TRUST_STORE_FILE"
-    - test -n "$EXECUTION_RECEIPT_KEY_FILE"
-    - test -n "$GLOBAL_TOKEN_LEDGER_KEY_FILE"
-    - test -n "$JUDGE_QUALIFICATION_KEY_FILE"
-    - test -n "$SEALED_BUNDLE_KEY_FILE"
     - test -n "$PROMOTION_VERDICT_KEY_FILE"
-    - ./protected-finalizer --config config/protected-evaluator.json --scored protected-output/scored/ --model-output model-output/ --conformance protected-output/conformance-signed/ --token-ledger-in protected-output/token-ledger/000003.json --token-ledger-out protected-output/token-ledger/000004.json --token-ledger protected-output/token-ledger/000004.json --private-output protected-output/final/ --public-output public-output/
+    - ./protected-runner --phase sign-verdict --signing-purpose promotion_verdict --signing-key "$PROMOTION_VERDICT_KEY_FILE" --config config/protected-evaluator.json --private-output protected-output --public-output public-output -- --scored protected-output/scored/ --model-output model-output/ --conformance protected-output/conformance-signed/ --token-ledger protected-output/token-ledger/000004.json --output protected-output/verdict/promotion-verdict-v2.unsigned.json
   artifacts:
     access: maintainer
     when: always

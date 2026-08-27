@@ -5,9 +5,10 @@ import json
 import os
 import random
 import time
+from collections.abc import Mapping
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any
 
 from .adapters import (
     AdapterError,
@@ -16,11 +17,10 @@ from .adapters import (
     load_adapter_registry,
     resolve_adapter_cli_sha256,
 )
-from .attestations import AttestationError, validate_adapter_conformance
 from .artifacts import ArtifactError, evaluator_package_hash, write_run_artifacts
+from .attestations import AttestationError, validate_adapter_conformance
 from .contracts import PROFILE_TOKEN_CAPS, artifact_hash
 from .run_plan import RunPlan, RunPlanError, load_run_plan
-
 
 ADAPTER_CONFORMANCE_FIELDS = {
     "schema_version",
@@ -46,7 +46,6 @@ ADAPTER_CONFORMANCE_FIELDS = {
     "tool_semantics_verified",
     "session_isolation_verified",
     "authorship_boundary_verified",
-    "authentication_verified",
     "fixture_receipt_sha256s",
     "probe_receipt_sha256s",
     "qualified",
@@ -546,6 +545,50 @@ def _cell_tool_policy(payload: Mapping[str, Any], cell: Mapping[str, Any]) -> di
     return dict(cell.get("tool_policy") or payload["tool_policy"])
 
 
+def _public_manifest_cell(
+    payload: Mapping[str, Any], cell: Mapping[str, Any]
+) -> dict[str, Any]:
+    """Project one validated run-plan cell into path-free public evidence."""
+
+    public = {
+        field: cell[field]
+        for field in (
+            "id",
+            "host",
+            "provider",
+            "resolved_model_identifier",
+            "model_version",
+            "effort",
+            "cli_version",
+            "cli_sha256",
+            "required",
+        )
+    }
+    adapter = _cell_adapter_binding(payload, cell)
+    public["adapter"] = {
+        "id": str(adapter["id"]),
+        "version": str(adapter["version"]),
+        "sha256": str(adapter["sha256"]),
+    }
+    policy = _cell_tool_policy(payload, cell)
+    public["tool_policy"] = {
+        "mode": str(policy["mode"]),
+        "allowed": [str(item) for item in policy["allowed"]],
+    }
+    credential = dict(cell["credential_binding"])
+    public["credential_binding"] = {
+        key: credential[key]
+        for key in ("kind", "name", "format", "descriptor_sha256")
+        if key in credential
+    }
+    conformance = cell.get("adapter_conformance_binding")
+    if isinstance(conformance, Mapping):
+        public["adapter_conformance_binding"] = {
+            "sha256": str(conformance["sha256"]),
+        }
+    return public
+
+
 def _validate_cell_credential_binding(
     repo_root: Path,
     cell: Mapping[str, Any],
@@ -669,7 +712,9 @@ def _manifest(
         },
         "runner_identity": str(payload["runner_identity"]),
         "randomization_seed": int(payload["seed"]),
-        "model_cells": list(payload["model_cells"]),
+        "model_cells": [
+            _public_manifest_cell(payload, cell) for cell in payload["model_cells"]
+        ],
         "tool_policies": {
             str(cell["id"]): _cell_tool_policy(payload, cell)
             for cell in payload["model_cells"]

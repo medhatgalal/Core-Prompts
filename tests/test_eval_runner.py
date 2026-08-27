@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-import json
 import base64
+import json
 import sys
 from pathlib import Path
 
@@ -10,15 +10,30 @@ import pytest
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
 from cryptography.hazmat.primitives.serialization import Encoding, PublicFormat
 
-from core_prompts_eval.adapters import AdapterError, AdapterResponse, AdapterSpec, execute_adapter, load_adapter_registry, parse_claude_json, resolve_adapter_cli_sha256
+from core_prompts_eval.adapters import (
+    AdapterError,
+    AdapterResponse,
+    AdapterSpec,
+    execute_adapter,
+    load_adapter_registry,
+    parse_claude_json,
+    resolve_adapter_cli_sha256,
+)
 from core_prompts_eval.artifacts import verify_artifact_chain
-from core_prompts_eval.contracts import artifact_hash
 from core_prompts_eval.attestations import signature_message
+from core_prompts_eval.contracts import artifact_hash
 from core_prompts_eval.evaluator import compare
 from core_prompts_eval.run_plan import RunPlanError, load_run_plan
 
-
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def _nested_strings(value: object) -> list[str]:
+    if isinstance(value, dict):
+        return [item for nested in value.values() for item in _nested_strings(nested)]
+    if isinstance(value, list):
+        return [item for nested in value for item in _nested_strings(nested)]
+    return [value] if isinstance(value, str) else []
 HEX = "a" * 64
 
 
@@ -360,7 +375,6 @@ def test_all_preflight_failures_happen_before_adapter_invocation(tmp_path: Path,
 
 def test_fake_adapter_is_ineligible_for_promotion_and_is_not_invoked(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     plan_path = _plan(tmp_path, profile="promotion", adapter_id="fake")
-    plan = json.loads(plan_path.read_text(encoding="utf-8"))
     baseline = tmp_path / "baseline.md"
     candidate = tmp_path / "candidate.md"
     calls: list[object] = []
@@ -729,6 +743,18 @@ def test_fake_adapter_executes_deterministic_paired_trials_and_writes_atomic_cha
     assert manifest["provider_cli_sha256s"] == {
         "anchor": plan["model_cells"][0]["cli_sha256"]
     }
+    public_cell = manifest["model_cells"][0]
+    assert public_cell["credential_binding"] == {
+        "kind": "none",
+        "descriptor_sha256": plan["model_cells"][0]["credential_binding"]["descriptor_sha256"],
+    }
+    assert "descriptor_path" not in public_cell["credential_binding"]
+    assert "source_path" not in public_cell["credential_binding"]
+    assert "path" not in public_cell.get("adapter_conformance_binding", {})
+    assert not any(
+        value.startswith("/")
+        for value in _nested_strings(manifest["model_cells"])
+    )
     assert (run_dir / "preregistered-plan.json").exists()
     assert (run_dir / "scores.jsonl").exists()
     assert verify_artifact_chain(run_dir)["status"] == "valid"

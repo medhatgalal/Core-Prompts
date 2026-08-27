@@ -38,6 +38,7 @@ class AdapterSpec:
     conformance_path: str | None = None
     conformance_sha256: str | None = None
     bootstrap_agent: str | None = None
+    unavailable_reason: str | None = None
 
     def binding(self, repo_root: Path | None = None) -> dict[str, Any]:
         payload: dict[str, Any] = {
@@ -57,6 +58,7 @@ class AdapterSpec:
             "conformance_path": self.conformance_path,
             "conformance_sha256": self.conformance_sha256,
             "bootstrap_agent": self.bootstrap_agent,
+            "unavailable_reason": self.unavailable_reason,
         }
         if self.source is not None and repo_root is not None:
             source_path = (repo_root / self.source).resolve()
@@ -191,8 +193,46 @@ def load_adapter_registry(repo_root: Path) -> dict[str, AdapterSpec]:
             bootstrap_agent=str(raw["bootstrap_agent"])
             if raw.get("bootstrap_agent") is not None
             else None,
+            unavailable_reason=str(raw["unavailable_reason"])
+            if raw.get("unavailable_reason") is not None
+            else None,
         )
+        if adapter_id == "codex-jsonl-experimental":
+            _validate_disabled_codex_boundary(registry[adapter_id])
     return registry
+
+
+def _validate_disabled_codex_boundary(spec: AdapterSpec) -> None:
+    if spec.environment_allowlist:
+        raise AdapterError("Codex credential boundary must not allow provider secrets in the child environment")
+    if not spec.unavailable_reason or spec.promotion_eligible:
+        raise AdapterError("Codex credential boundary must remain explicitly unavailable and promotion-ineligible")
+    argv = spec.argv
+    if (
+        "--strict-config" not in argv
+        or "--approve-for-me" in argv
+        or "workspace-write" in argv
+        or "danger-full-access" in argv
+        or "features.shell_tool=true" in argv
+    ):
+        raise AdapterError("Codex runtime tool boundary must remain strict, read-only, and non-escalating")
+    try:
+        sandbox_mode = argv[argv.index("-s") + 1]
+    except (ValueError, IndexError) as exc:
+        raise AdapterError("Codex runtime tool boundary must bind a read-only sandbox") from exc
+    required_config = {
+        'approval_policy="never"',
+        "features.shell_tool=false",
+        "features.remote_plugin=false",
+        "features.skill_mcp_dependency_install=false",
+        'web_search="disabled"',
+        "apps._default.enabled=false",
+        "allow_login_shell=false",
+        'history.persistence="none"',
+    }
+    configured = {argv[index + 1] for index, value in enumerate(argv[:-1]) if value == "-c"}
+    if sandbox_mode != "read-only" or not required_config.issubset(configured):
+        raise AdapterError("Codex runtime tool boundary is incomplete or broadened")
 
 
 def load_adapter_conformance(
@@ -309,6 +349,8 @@ def execute_adapter(
     max_output_bytes: int,
     credential_binding: Mapping[str, Any] | None = None,
 ) -> AdapterResponse:
+    if spec.unavailable_reason is not None:
+        raise AdapterError(spec.unavailable_reason)
     with tempfile.TemporaryDirectory(prefix="core-prompts-eval-") as temporary:
         isolation_root = Path(temporary)
         workspace = (
@@ -552,6 +594,8 @@ def _configure_protected_credential(
     kind = binding.get("kind")
     name = str(binding.get("name") or "")
     if kind == "protected_env":
+        if spec.adapter_id == "codex-jsonl-experimental":
+            raise AdapterError("authenticated Codex execution is disabled")
         if name != "OPENAI_API_KEY" or name not in spec.environment_allowlist:
             raise AdapterError("protected environment credential is not allowed for this adapter")
         if not environment.get(name):

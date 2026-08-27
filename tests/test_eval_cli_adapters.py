@@ -33,6 +33,7 @@ def test_codex_and_kiro_registry_entries_are_hermetic_and_not_promotion_eligible
     assert codex.argv == (
         "codex",
         "exec",
+        "--strict-config",
         "--ephemeral",
         "--ignore-user-config",
         "--ignore-rules",
@@ -42,8 +43,27 @@ def test_codex_and_kiro_registry_entries_are_hermetic_and_not_promotion_eligible
         "-m",
         "{model}",
         "-s",
-        "workspace-write",
-        "--approve-for-me",
+        "read-only",
+        "-c",
+        'approval_policy="never"',
+        "-c",
+        "agents.enabled=true",
+        "-c",
+        "agents.max_concurrent_threads_per_session=4",
+        "-c",
+        "features.shell_tool=false",
+        "-c",
+        "features.remote_plugin=false",
+        "-c",
+        "features.skill_mcp_dependency_install=false",
+        "-c",
+        'web_search="disabled"',
+        "-c",
+        "apps._default.enabled=false",
+        "-c",
+        "allow_login_shell=false",
+        "-c",
+        'history.persistence="none"',
         "-",
     )
     assert kiro.argv == (
@@ -61,7 +81,11 @@ def test_codex_and_kiro_registry_entries_are_hermetic_and_not_promotion_eligible
         "--trust-tools={trusted_tools}",
     )
     assert kiro.bootstrap_agent == "batman"
-    assert codex.environment_allowlist == ("OPENAI_API_KEY",)
+    assert codex.environment_allowlist == ()
+    assert codex.unavailable_reason == (
+        "authenticated Codex execution is disabled until a reviewed secret-isolating "
+        "provider boundary and enforced runtime tool allowlist exist"
+    )
     assert kiro.environment_allowlist == ()
     for spec in (codex, kiro):
         assert spec.hermetic is True
@@ -92,6 +116,57 @@ def test_kiro_argv_renders_preregistered_effort_without_shell() -> None:
 
     assert rendered[rendered.index("--effort") + 1] == "high"
     assert Path(rendered[0]) == resolve_adapter_cli_executable(spec)
+
+
+def test_codex_registry_rejects_secret_env_and_mutating_or_broad_tool_controls(
+    tmp_path: Path,
+) -> None:
+    registry = json.loads((ROOT / "evals/adapters/registry.json").read_text(encoding="utf-8"))
+    codex = next(item for item in registry["adapters"] if item["id"] == "codex-jsonl-experimental")
+    variants = (
+        {"environment_allowlist": ["OPENAI_API_KEY"]},
+        {"argv": [*codex["argv"], "--approve-for-me"]},
+        {"argv": ["workspace-write" if item == "read-only" else item for item in codex["argv"]]},
+        {"argv": ["features.shell_tool=true" if item == "features.shell_tool=false" else item for item in codex["argv"]]},
+    )
+    for index, update in enumerate(variants):
+        root = tmp_path / str(index)
+        path = root / "evals/adapters/registry.json"
+        path.parent.mkdir(parents=True)
+        replacement = json.loads(json.dumps(registry))
+        replacement_codex = next(
+            item for item in replacement["adapters"] if item["id"] == "codex-jsonl-experimental"
+        )
+        replacement_codex.update(update)
+        path.write_text(json.dumps(replacement), encoding="utf-8")
+        with pytest.raises(AdapterError, match="credential boundary|runtime tool boundary"):
+            load_adapter_registry(root)
+
+
+def test_codex_authenticated_execution_fails_before_child_and_never_passes_secret(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    spec = load_adapter_registry(ROOT)["codex-jsonl-experimental"]
+    child_calls: list[object] = []
+    monkeypatch.setattr(
+        "core_prompts_eval.adapters.subprocess.Popen",
+        lambda *args, **kwargs: child_calls.append((args, kwargs)),
+    )
+    monkeypatch.setenv("OPENAI_API_KEY", "protected-fixture-secret")
+    with pytest.raises(AdapterError, match="authenticated Codex execution is disabled"):
+        execute_adapter(
+            spec,
+            {
+                "resolved_model_identifier": "fixture-model",
+                "model_version": "fixture-version",
+                "tool_policy": {"mode": "repo-write-subagents", "allowed": ["spawn_agent"]},
+            },
+            credential_binding={"kind": "protected_env", "name": "OPENAI_API_KEY"},
+            repo_root=ROOT,
+            timeout_seconds=3,
+            max_output_bytes=8192,
+        )
+    assert child_calls == []
 
 
 def test_adapter_conformance_is_closed_and_hash_bound(tmp_path: Path) -> None:

@@ -29,6 +29,28 @@
   "adapter_conformance_command": ["/protected/bin/protected-adapter-conformance"],
   "adapter_conformance_runner_identity": "env:CONFORMANCE_RUNNER_IDENTITY",
   "budget_authorizer_runner_identity": "env:BUDGET_AUTHORIZER_RUNNER_IDENTITY",
+  "phase_commands": {
+    "validate": ["/protected/bin/validate-submission"],
+    "adapter-probe-codex": ["/protected/bin/protected-adapter-probe", "--adapter", "codex"],
+    "adapter-probe-kiro": ["/protected/bin/protected-adapter-probe", "--adapter", "kiro"],
+    "prepare-prompts": ["/protected/bin/protected-case-preparer", "--mode", "prompts"],
+    "prepare-gold": ["/protected/bin/protected-case-preparer", "--mode", "gold"],
+    "model-primary-codex": ["/protected/bin/protected-model-runner", "--phase", "primary", "--adapter", "codex"],
+    "model-primary-kiro": ["/protected/bin/protected-model-runner", "--phase", "primary", "--adapter", "kiro"],
+    "model-reproduction-codex": ["/protected/bin/protected-model-runner", "--phase", "reproduction", "--adapter", "codex"],
+    "model-reproduction-kiro": ["/protected/bin/protected-model-runner", "--phase", "reproduction", "--adapter", "kiro"],
+    "score-judge": ["/protected/bin/protected-score-and-judge"],
+    "authorize-budget": ["/protected/bin/protected-budget-authorizer"],
+    "sign-adapter-conformance": ["/protected/bin/protected-conformance-signer"],
+    "reconcile-conformance-ledger": ["/protected/bin/protected-ledger-reconciler", "--phase", "adapter_conformance"],
+    "reconcile-primary-ledger": ["/protected/bin/protected-ledger-reconciler", "--phase", "primary"],
+    "reconcile-reproduction-ledger": ["/protected/bin/protected-ledger-reconciler", "--phase", "reproduction"],
+    "sign-execution-receipts": ["/protected/bin/protected-evidence-signer", "--purpose", "execution_receipt"],
+    "sign-judge-qualification": ["/protected/bin/protected-evidence-signer", "--purpose", "judge_qualification"],
+    "sign-sealed-attestation": ["/protected/bin/protected-evidence-signer", "--purpose", "sealed_bundle"],
+    "finalize-ledger": ["/protected/bin/protected-ledger-reconciler", "--phase", "adjudication", "--final"],
+    "sign-verdict": ["/protected/bin/protected-verdict"]
+  },
   "capability_eval_command": ["./bin/capability-eval"],
   "score_command": ["./protected-score"],
   "judge_commands": [
@@ -61,31 +83,13 @@
     "conformance_max_tokens_per_probe": 50000,
     "judge_max_tokens_per_call": 100000
   },
-  "signing": {
-    "adapter_conformance": {
-      "private_key": "env:ADAPTER_CONFORMANCE_KEY_FILE",
-      "key_id": "REPLACE_WITH_ADAPTER_CONFORMANCE_KEY_ID"
-    },
-    "execution_receipt": {
-      "private_key": "env:EXECUTION_RECEIPT_KEY_FILE",
-      "key_id": "REPLACE_WITH_EXECUTION_RECEIPT_KEY_ID"
-    },
-    "global_token_ledger": {
-      "private_key": "env:GLOBAL_TOKEN_LEDGER_KEY_FILE",
-      "key_id": "REPLACE_WITH_GLOBAL_TOKEN_LEDGER_KEY_ID"
-    },
-    "judge_qualification": {
-      "private_key": "env:JUDGE_QUALIFICATION_KEY_FILE",
-      "key_id": "REPLACE_WITH_JUDGE_QUALIFICATION_KEY_ID"
-    },
-    "sealed_bundle": {
-      "private_key": "env:SEALED_BUNDLE_KEY_FILE",
-      "key_id": "REPLACE_WITH_SEALED_BUNDLE_KEY_ID"
-    },
-    "promotion_verdict": {
-      "private_key": "env:PROMOTION_VERDICT_KEY_FILE",
-      "key_id": "REPLACE_WITH_PROMOTION_VERDICT_KEY_ID"
-    }
+  "signing_key_ids": {
+    "adapter_conformance": "REPLACE_WITH_ADAPTER_CONFORMANCE_KEY_ID",
+    "execution_receipt": "REPLACE_WITH_EXECUTION_RECEIPT_KEY_ID",
+    "global_token_ledger": "REPLACE_WITH_GLOBAL_TOKEN_LEDGER_KEY_ID",
+    "judge_qualification": "REPLACE_WITH_JUDGE_QUALIFICATION_KEY_ID",
+    "sealed_bundle": "REPLACE_WITH_SEALED_BUNDLE_KEY_ID",
+    "promotion_verdict": "REPLACE_WITH_PROMOTION_VERDICT_KEY_ID"
   },
   "limits": {
     "timeout_seconds": 3600,

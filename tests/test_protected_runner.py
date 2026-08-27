@@ -27,11 +27,28 @@ sys.path.insert(0, str(TOOLING))
 from protected_runner import (
     ConfigError,
     ProtectedRunner,
+    _contains_private_key,
     artifact_hash,
     load_config,
     validate_adapter_probe_evidence,
+    validate_phase_signing,
     verify_reproduction_independence,
 )
+
+
+def test_phase_minimal_signing_rejects_keys_in_model_jobs_and_requires_exact_purpose(
+    tmp_path: Path,
+) -> None:
+    key = tmp_path / "signing.key"
+    key.write_text("fixture\n", encoding="utf-8")
+    validate_phase_signing("model-primary-codex", None, None)
+    with pytest.raises(ConfigError, match="rejects every signing-key"):
+        validate_phase_signing("model-primary-codex", "execution_receipt", key)
+    validate_phase_signing("sign-verdict", "promotion_verdict", key)
+    with pytest.raises(ConfigError, match="exactly one promotion_verdict"):
+        validate_phase_signing("sign-verdict", "execution_receipt", key)
+    with pytest.raises(ConfigError, match="exactly one promotion_verdict"):
+        validate_phase_signing("sign-verdict", None, None)
 
 
 def _write_json(path: Path, payload: object) -> Path:
@@ -123,6 +140,31 @@ def _config(tmp_path: Path) -> dict[str, object]:
         "adapter_conformance_command": [sys.executable, str(tmp_path / "fake-conformance.py")],
         "adapter_conformance_runner_identity": "conformance-runner-c",
         "budget_authorizer_runner_identity": "budget-runner-d",
+        "phase_commands": {
+            phase: [sys.executable, str(tmp_path / f"fake-{phase}.py")]
+            for phase in (
+                "validate",
+                "adapter-probe-codex",
+                "adapter-probe-kiro",
+                "prepare-prompts",
+                "prepare-gold",
+                "model-primary-codex",
+                "model-primary-kiro",
+                "model-reproduction-codex",
+                "model-reproduction-kiro",
+                "score-judge",
+                "authorize-budget",
+                "sign-adapter-conformance",
+                "reconcile-conformance-ledger",
+                "reconcile-primary-ledger",
+                "reconcile-reproduction-ledger",
+                "sign-execution-receipts",
+                "sign-judge-qualification",
+                "sign-sealed-attestation",
+                "finalize-ledger",
+                "sign-verdict",
+            )
+        },
         "adapter_credentials": {
             "codex": {
                 "kind": "environment",
@@ -138,7 +180,9 @@ def _config(tmp_path: Path) -> dict[str, object]:
             "mode": "repo-write-subagents",
             "allowed": ["subagents"],
         },
-        "signing": keys,
+        "signing_key_ids": {
+            purpose: str(keys[purpose]["key_id"]) for purpose in purposes
+        },
         "limits": {"timeout_seconds": 60, "max_public_bytes": 1_000_000, "raw_token_cap": 5_000_000},
         "global_token_budget": {
             "cap": 5_000_000,
@@ -174,9 +218,9 @@ def test_config_is_closed_and_requires_argv_commands_and_separate_keys(tmp_path:
         load_config(config_path)
 
     shared = dict(payload)
-    signing = dict(shared["signing"])
-    signing["promotion_verdict"] = signing["execution_receipt"]
-    shared["signing"] = signing
+    signing_key_ids = dict(shared["signing_key_ids"])
+    signing_key_ids["promotion_verdict"] = signing_key_ids["execution_receipt"]
+    shared["signing_key_ids"] = signing_key_ids
     _write_json(config_path, shared)
     with pytest.raises(ConfigError, match="purpose-separated"):
         load_config(config_path)
@@ -193,7 +237,14 @@ def test_config_is_closed_and_requires_argv_commands_and_separate_keys(tmp_path:
 
 def test_protected_signatures_use_canonical_domain_separated_message(tmp_path: Path) -> None:
     payload = _config(tmp_path)
-    runner = ProtectedRunner(payload, work_root=tmp_path / "work", public_root=tmp_path / "public", private_root=tmp_path / "private")
+    runner = ProtectedRunner(
+        payload,
+        work_root=tmp_path / "work",
+        public_root=tmp_path / "public",
+        private_root=tmp_path / "private",
+        signing_purpose="adapter_conformance",
+        signing_key=tmp_path / "keys" / "adapter_conformance.key",
+    )
     runner.evaluator_root = ROOT
     unsigned = {
         "schema_version": "AdapterConformance.v1",
@@ -214,7 +265,14 @@ def test_protected_signatures_use_canonical_domain_separated_message(tmp_path: P
 
 def test_evaluator_trust_store_is_copied_exactly_to_public_output(tmp_path: Path) -> None:
     payload = _config(tmp_path)
-    runner = ProtectedRunner(payload, work_root=tmp_path / "work", public_root=tmp_path / "public", private_root=tmp_path / "private")
+    runner = ProtectedRunner(
+        payload,
+        work_root=tmp_path / "work",
+        public_root=tmp_path / "public",
+        private_root=tmp_path / "private",
+        signing_purpose="global_token_ledger",
+        signing_key=tmp_path / "keys" / "global_token_ledger.key",
+    )
     materialized = runner._materialize_evaluator_trust_store()
     public = tmp_path / "public" / "evaluator-trust-store.json"
     assert artifact_hash(materialized) == payload["evaluator_trust_store"]["sha256"]
@@ -224,7 +282,14 @@ def test_evaluator_trust_store_is_copied_exactly_to_public_output(tmp_path: Path
 
 def test_signed_global_ledger_reserves_once_and_finalizes_exact_cumulative_usage(tmp_path: Path) -> None:
     payload = _config(tmp_path)
-    runner = ProtectedRunner(payload, work_root=tmp_path / "work", public_root=tmp_path / "public", private_root=tmp_path / "private")
+    runner = ProtectedRunner(
+        payload,
+        work_root=tmp_path / "work",
+        public_root=tmp_path / "public",
+        private_root=tmp_path / "private",
+        signing_purpose="global_token_ledger",
+        signing_key=tmp_path / "keys" / "global_token_ledger.key",
+    )
     runner.evaluator_root = ROOT
     runner._materialize_evaluator_trust_store()
     reservations = [
@@ -447,7 +512,14 @@ def test_primary_phase_requires_two_signed_adapter_conformance_certificates(tmp_
 
 def test_qualified_signed_codex_and_kiro_certificates_unblock_cells(tmp_path: Path) -> None:
     payload = _config(tmp_path)
-    runner = ProtectedRunner(payload, work_root=tmp_path / "work", public_root=tmp_path / "public", private_root=tmp_path / "private")
+    runner = ProtectedRunner(
+        payload,
+        work_root=tmp_path / "work",
+        public_root=tmp_path / "public",
+        private_root=tmp_path / "private",
+        signing_purpose="adapter_conformance",
+        signing_key=tmp_path / "keys" / "adapter_conformance.key",
+    )
     runner.evaluator_root = ROOT
     cells = []
     for adapter_id in ("codex-jsonl-experimental", "kiro-stream-json-experimental"):
@@ -554,6 +626,28 @@ def test_redacted_public_failure_contains_no_paths_commands_or_secrets(tmp_path:
     assert "abc" not in encoded
 
 
+def test_publication_accepts_hash_only_credential_evidence_and_rejects_private_paths() -> None:
+    assert not _contains_private_key(
+        {
+            "credential_binding": {
+                "kind": "protected_service_file",
+                "name": "KIRO_SERVICE_CREDENTIAL_FILE",
+                "format": "kiro-service-credential-v1",
+                "descriptor_sha256": "a" * 64,
+            },
+            "adapter_conformance_binding": {"sha256": "b" * 64},
+        }
+    )
+    assert _contains_private_key(
+        {
+            "credential_binding": {
+                "source_path": "/protected/kiro-service-credential.json",
+                "descriptor_sha256": "a" * 64,
+            }
+        }
+    )
+
+
 def test_read_only_checkout_verifies_exact_commit(tmp_path: Path) -> None:
     source = tmp_path / "source"
     source.mkdir()
@@ -598,7 +692,7 @@ def test_missing_receipts_stops_before_scoring(tmp_path: Path) -> None:
             "root_sha256": root,
         },
     )
-    result = runner.protect_run(run_dir, label="primary", signing=payload["signing"])
+    result = runner.protect_run(run_dir, label="primary")
     assert result["promotion_allowed"] is False
     assert result["reason_codes"] == ["missing_receipts"]
     assert not called.exists()
@@ -664,13 +758,47 @@ def test_gitlab_pipeline_separates_model_seal_score_and_signing_trust_domains() 
         assert "SEALED_BUNDLE_FILE" not in block
         assert "_KEY_FILE" not in block
         assert "prompt-inputs/" in block
-    score = template.split("score-and-judge:", 1)[1].split("finalize-protected-verdict:", 1)[0]
+    score = template.split("score-and-judge:", 1)[1].split("sign-execution-receipts:", 1)[0]
     assert "gold-evidence/" in score
     assert "_KEY_FILE" not in score
     finalize = template.split("finalize-protected-verdict:", 1)[1]
     assert "PROMOTION_VERDICT_KEY_FILE" in finalize
     assert "OPENAI_API_KEY" not in finalize
     assert "KIRO_SERVICE_CREDENTIAL_FILE" not in finalize
+
+
+def test_gitlab_pipeline_uses_one_runner_ssot_and_phase_minimal_signing() -> None:
+    template = (TOOLING / "gitlab-ci.template.yml").read_text(encoding="utf-8")
+    command_lines = [line.strip() for line in template.splitlines() if line.strip().startswith("- ./protected-")]
+    assert command_lines
+    assert all(line.startswith("- ./protected-runner ") for line in command_lines)
+    for phase in (
+        "adapter-probe-codex",
+        "adapter-probe-kiro",
+        "model-primary-codex",
+        "model-primary-kiro",
+        "model-reproduction-codex",
+        "model-reproduction-kiro",
+        "score-judge",
+    ):
+        line = next(item for item in command_lines if f"--phase {phase} " in item)
+        assert "--signing-key" not in line
+        assert "--signing-purpose" not in line
+    expected_signers = {
+        "sign-adapter-conformance": "adapter_conformance",
+        "reconcile-conformance-ledger": "global_token_ledger",
+        "reconcile-primary-ledger": "global_token_ledger",
+        "reconcile-reproduction-ledger": "global_token_ledger",
+        "sign-execution-receipts": "execution_receipt",
+        "sign-judge-qualification": "judge_qualification",
+        "sign-sealed-attestation": "sealed_bundle",
+        "finalize-ledger": "global_token_ledger",
+        "sign-verdict": "promotion_verdict",
+    }
+    for phase, purpose in expected_signers.items():
+        line = next(item for item in command_lines if f"--phase {phase} " in item)
+        assert line.count("--signing-key") == 1
+        assert f"--signing-purpose {purpose}" in line
 
 
 def _score_report(primary_manifest: Path, reproduction_manifest: Path) -> dict[str, object]:
@@ -765,7 +893,14 @@ def test_protected_score_report_is_closed_bound_and_fail_closed(tmp_path: Path) 
 
 def test_scored_receipt_gets_canonical_embedded_signature(tmp_path: Path) -> None:
     payload = _config(tmp_path)
-    runner = ProtectedRunner(payload, work_root=tmp_path / "work", public_root=tmp_path / "public", private_root=tmp_path / "private")
+    runner = ProtectedRunner(
+        payload,
+        work_root=tmp_path / "work",
+        public_root=tmp_path / "public",
+        private_root=tmp_path / "private",
+        signing_purpose="execution_receipt",
+        signing_key=tmp_path / "keys" / "execution_receipt.key",
+    )
     runner.evaluator_root = ROOT
     run_dir = tmp_path / "run"
     manifest = _write_json(
@@ -829,7 +964,6 @@ def test_scored_receipt_gets_canonical_embedded_signature(tmp_path: Path) -> Non
     protected = runner.protect_run(
         run_dir,
         label="primary",
-        signing=payload["signing"],
         receipt_results={
             "receipt-primary": {
                 "receipt_id": "receipt-primary",

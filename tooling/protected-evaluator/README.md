@@ -23,13 +23,17 @@ Use this directory as the seed for a separate, private GitLab project. The publi
 
 ## Executable contract
 
-`protected-runner` is the public controller used by `gitlab-ci.template.yml`. It never accepts a command from a candidate submission and never invokes a shell. Protected configuration supplies five reviewed command families:
+`protected-runner` is the only executable entrypoint used by `gitlab-ci.template.yml`. It never accepts a command from a candidate submission and never invokes a shell. The closed `phase_commands` map binds each subcommand to one reviewed absolute executable and fixed leading argv.
+
+Private signing-key paths never appear in configuration. Configuration binds only the six reviewed public key IDs. A signing invocation must provide exactly one `--signing-purpose` and matching `--signing-key`; non-signing, model, case-preparation, validation, scoring, and judging phases reject both flags. Signing phases accept unsigned artifacts only at their purpose-specific, fixed paths under private output and enforce the canonical evidence schema before signing.
+
+The reviewed phase commands cover these operations:
 
 - `adapter_conformance_command`: the protected Codex/Kiro probe controller described below.
 - `capability_eval_command`: the pinned Core-Prompts `capability-eval compare` executable. The runner appends the reviewed repository root, baseline, candidate, adapter-bound run plan, promotion profile, explicit model-call authorization, and exact token cap.
 - `score_command`: a deterministic protected scorer. It receives only fixed `--primary-run`, `--reproduction-run`, `--sealed-bundle`, and `--output` arguments and must emit one `ProtectedScoreReport.v1` JSON object.
 - `judge_commands`: independently qualified semantic judges. Each receives fixed judge ID, run, sealed-bundle, and output arguments and must emit one passing `JudgeQualification.v1` JSON object.
-- `verdict_command`: the reviewed verdict builder. It receives a hash-only protected input and output path and must emit an unsigned `PromotionVerdict.v1`. The runner signs it only when status is `promote` and every earlier gate passed.
+- `verdict_command`: the reviewed verdict builder. It receives a hash-only protected input and output path and must emit an unsigned `PromotionVerdict.v2`. The runner signs it only when status is `promote` and every earlier gate passed. `PromotionVerdict.v1` is accepted only by its legacy read-only validator and is refused for promotion.
 
 Adapter credentials are explicit and provider-specific. Codex accepts only the masked, protected `OPENAI_API_KEY` environment variable, and only after its protected conformance certificate proves the corresponding redacted credential binding. Kiro requires `KIRO_SERVICE_CREDENTIAL_FILE`, an absolute, mode-`0600`, nonsymlink protected service credential documented by `documentation_reference`; personal `~/.kiro`, AWS profiles, cached sessions, and copied home configuration are forbidden. Missing credentials make conformance and the affected trial phase inconclusive before model calls. Child stderr and credential values are never published.
 
@@ -54,7 +58,7 @@ The CI phases are ordered, runner-bound, and split by trust domain:
 
 Every secret-bearing job uses an explicit protected runner tag and checks `CI_RUNNER_ID`. Model jobs must use a separate UID/container or mount namespace that cannot read sealed storage, gold labels, private evaluator output, or signing-key paths. Prompt and gold artifacts are produced by separate jobs so model jobs cannot download the gold artifact. Primary and reproduction raw artifacts travel between protected jobs under maintainer-only access. Only `public-output/` is suitable for external publication.
 
-The signed token ledger advances explicitly across those domains: budget authorization writes `000000`; conformance signing validates that predecessor and writes `000001`; primary models read `000001` and the primary reconciler signs `000002`; reproduction models read `000002` and the reproduction reconciler signs `000003`; scoring and judging read `000003`; finalization signs `000004` with `status: final` and binds that exact file into `PromotionVerdict.v1.token_ledger_binding`. No command discovers a sibling ledger implicitly.
+The signed token ledger advances explicitly across those domains: budget authorization writes `000000`; conformance signing validates that predecessor and writes `000001`; primary models read `000001` and the primary reconciler signs `000002`; reproduction models read `000002` and the reproduction reconciler signs `000003`; scoring and judging read `000003`; finalization signs `000004` with `status: final` and binds that exact file into `PromotionVerdict.v2.token_ledger_binding`. No command discovers a sibling ledger implicitly.
 
 ## Initial setup
 

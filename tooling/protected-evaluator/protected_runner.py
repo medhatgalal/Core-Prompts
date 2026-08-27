@@ -47,6 +47,42 @@ PURPOSES = (
     "sealed_bundle",
     "promotion_verdict",
 )
+PHASE_SIGNING_PURPOSE = {
+    "authorize-budget": "global_token_ledger",
+    "sign-adapter-conformance": "adapter_conformance",
+    "reconcile-conformance-ledger": "global_token_ledger",
+    "reconcile-primary-ledger": "global_token_ledger",
+    "reconcile-reproduction-ledger": "global_token_ledger",
+    "sign-execution-receipts": "execution_receipt",
+    "sign-judge-qualification": "judge_qualification",
+    "sign-sealed-attestation": "sealed_bundle",
+    "finalize-ledger": "global_token_ledger",
+    "sign-verdict": "promotion_verdict",
+}
+NON_SIGNING_PHASES = {
+    "validate",
+    "adapter-probe-codex",
+    "adapter-probe-kiro",
+    "prepare-prompts",
+    "prepare-gold",
+    "model-primary-codex",
+    "model-primary-kiro",
+    "model-reproduction-codex",
+    "model-reproduction-kiro",
+    "score-judge",
+}
+PHASE_SIGNING_FILES = {
+    "authorize-budget": ("token-ledger/000000.unsigned.json", "token-ledger/000000.json"),
+    "sign-adapter-conformance": ("conformance-unsigned/*/*.json", "conformance-signed"),
+    "reconcile-conformance-ledger": ("token-ledger/000001.unsigned.json", "token-ledger/000001.json"),
+    "reconcile-primary-ledger": ("token-ledger/000002.unsigned.json", "token-ledger/000002.json"),
+    "reconcile-reproduction-ledger": ("token-ledger/000003.unsigned.json", "token-ledger/000003.json"),
+    "sign-execution-receipts": ("scored/receipt-payloads/*.json", "signed/receipts"),
+    "sign-judge-qualification": ("scored/judge-qualifications/*.json", "signed/judges"),
+    "sign-sealed-attestation": ("scored/sealed-attestation.json", "signed/sealed-attestation.json"),
+    "finalize-ledger": ("token-ledger/000004.unsigned.json", "token-ledger/000004.json"),
+    "sign-verdict": ("verdict/promotion-verdict-v2.unsigned.json", "verdict/promotion-verdict-v2.json"),
+}
 TOP_FIELDS = {
     "schema_version",
     "evaluator",
@@ -68,13 +104,30 @@ TOP_FIELDS = {
     "adapter_credentials",
     "registered_trial_tool_policy",
     "global_token_budget",
-    "signing",
+    "signing_key_ids",
+    "phase_commands",
     "limits",
 }
 
 
 class ConfigError(RuntimeError):
     """Raised when protected configuration or evidence fails closed."""
+
+
+def validate_phase_signing(
+    phase: str,
+    signing_purpose: str | None,
+    signing_key: Path | None,
+) -> None:
+    expected = PHASE_SIGNING_PURPOSE.get(phase)
+    if phase in NON_SIGNING_PHASES:
+        if signing_purpose is not None or signing_key is not None:
+            raise ConfigError("non-signing phase rejects every signing-key configuration")
+        return
+    if expected is None:
+        raise ConfigError("unsupported protected-runner phase")
+    if signing_purpose != expected or signing_key is None:
+        raise ConfigError(f"phase requires exactly one {expected} signing key")
 
 
 def canonical_json(payload: object) -> str:
@@ -179,6 +232,14 @@ def load_config(path: Path) -> dict[str, Any]:
         "verdict_command",
     ):
         payload[field] = _argv(payload[field], field)
+    phase_commands = _object(payload["phase_commands"], "phase_commands")
+    expected_phases = NON_SIGNING_PHASES | set(PHASE_SIGNING_PURPOSE)
+    _closed(phase_commands, expected_phases, "phase_commands")
+    for phase in sorted(expected_phases):
+        command = _argv(phase_commands[phase], f"phase_commands.{phase}")
+        if not Path(command[0]).is_absolute():
+            raise ConfigError(f"phase_commands.{phase} must use an absolute protected executable")
+        phase_commands[phase] = command
     if not Path(payload["adapter_conformance_command"][0]).is_absolute():
         raise ConfigError("adapter_conformance_command must use an absolute protected executable path")
     _configured_identity(
@@ -303,19 +364,15 @@ def load_config(path: Path) -> dict[str, Any]:
         roots_by_purpose[purposes[0]] = root
     if set(roots_by_purpose) != set(PURPOSES):
         raise ConfigError("evaluator trust store must contain every evaluator signing purpose")
-    signing = _object(payload["signing"], "signing")
-    _closed(signing, set(PURPOSES), "signing")
-    private_paths: list[Path] = []
+    signing_key_ids = _object(payload["signing_key_ids"], "signing_key_ids")
+    _closed(signing_key_ids, set(PURPOSES), "signing_key_ids")
     key_ids: list[str] = []
     for purpose in PURPOSES:
-        binding = _object(signing[purpose], f"signing.{purpose}")
-        _closed(binding, {"private_key", "key_id"}, f"signing.{purpose}")
-        private_paths.append(_configured_path(binding["private_key"], f"{purpose} private key"))
-        key_id = str(binding["key_id"])
+        key_id = str(signing_key_ids[purpose])
         if not key_id or roots_by_purpose[purpose].get("key_id") != key_id:
             raise ConfigError("signing key ID does not match its purpose-separated trust-store root")
         key_ids.append(key_id)
-    if len(set(private_paths)) != len(PURPOSES) or len(set(key_ids)) != len(PURPOSES):
+    if len(set(key_ids)) != len(PURPOSES):
         raise ConfigError("signing keys and key IDs must be purpose-separated")
     return payload
 
@@ -430,6 +487,8 @@ class ProtectedRunner:
         work_root: Path,
         public_root: Path,
         private_root: Path,
+        signing_purpose: str | None = None,
+        signing_key: Path | None = None,
     ) -> None:
         self.config = dict(config)
         self.work_root = work_root.resolve()
@@ -438,6 +497,12 @@ class ProtectedRunner:
         self.timeout = int(dict(config["limits"])["timeout_seconds"])
         self.raw_token_cap = int(dict(config["limits"])["raw_token_cap"])
         self.evaluator_root: Path | None = None
+        self.signing_purpose = signing_purpose
+        self.signing_key = signing_key.resolve() if signing_key is not None else None
+        if (self.signing_purpose is None) != (self.signing_key is None):
+            raise ConfigError("signing purpose and private key must be provided together")
+        if self.signing_purpose is not None and self.signing_purpose not in PURPOSES:
+            raise ConfigError("unsupported invocation-scoped signing purpose")
         self.evaluator_trust_store_path: Path | None = None
         self._attestations: Any | None = None
         self.work_root.mkdir(parents=True, exist_ok=True)
@@ -691,7 +756,6 @@ class ProtectedRunner:
         run_dir: Path,
         *,
         label: str,
-        signing: Mapping[str, Any],
         receipt_results: Mapping[str, Mapping[str, Any]] | None = None,
     ) -> dict[str, Any]:
         try:
@@ -729,7 +793,7 @@ class ProtectedRunner:
                 "result": scored["result"],
                 "derived_evidence_grade": scored["derived_evidence_grade"],
             }
-            signed_receipts.append(self.sign_inline(updated, "execution_receipt", signing))
+            signed_receipts.append(self.sign_inline(updated, "execution_receipt"))
         for receipt in signed_receipts:
             self._validate_canonical_schema(receipt, "execution-receipt.schema.json", "execution receipt")
         protected_dir = self.private_root / label
@@ -762,12 +826,14 @@ class ProtectedRunner:
         self,
         payload: Mapping[str, Any],
         purpose: str,
-        signing: Mapping[str, Any] | None = None,
     ) -> dict[str, Any]:
         if "signature" in payload:
             raise ConfigError("refusing to replace an existing artifact signature")
-        material = dict((signing or self.config["signing"])[purpose])
-        root = self._trust_root_for_purpose(purpose, str(material["key_id"]))
+        if self.signing_purpose != purpose or self.signing_key is None:
+            raise ConfigError(f"invocation lacks its exact {purpose} signing key")
+        key_id = str(_object(self.config["signing_key_ids"], "signing_key_ids")[purpose])
+        material = {"private_key": str(self.signing_key), "key_id": key_id}
+        root = self._trust_root_for_purpose(purpose, key_id)
         key = _load_signer(material, purpose, root)
         unsigned = dict(payload)
         attestations = self._canonical_attestation_module()
@@ -955,7 +1021,7 @@ class ProtectedRunner:
                     primary_plan,
                     "primary",
                 )
-                protected = self.protect_run(run_dir, label="primary", signing=self.config["signing"])
+                protected = self.protect_run(run_dir, label="primary")
                 if protected.get("promotion_allowed") is not True:
                     return protected
                 self._persist_run(run_dir, "primary")
@@ -977,7 +1043,7 @@ class ProtectedRunner:
                     reproduction_plan,
                     "reproduction",
                 )
-                protected = self.protect_run(run_dir, label="reproduction", signing=self.config["signing"])
+                protected = self.protect_run(run_dir, label="reproduction")
                 if protected.get("promotion_allowed") is not True:
                     return protected
                 self._persist_run(run_dir, "reproduction")
@@ -995,13 +1061,11 @@ class ProtectedRunner:
                 primary = self.protect_run(
                     primary_run,
                     label="primary-final",
-                    signing=self.config["signing"],
                     receipt_results=receipt_results,
                 )
                 reproduction = self.protect_run(
                     reproduction_run,
                     label="reproduction-final",
-                    signing=self.config["signing"],
                     receipt_results=receipt_results,
                 )
                 if primary.get("promotion_allowed") is not True:
@@ -1038,6 +1102,74 @@ class ProtectedRunner:
         except ConfigError as exc:
             reason = "adapter_conformance_inconclusive" if phase == "conformance" else "protected_failure"
             return self.non_promote(reason, str(exc))
+
+    def execute_command_phase(
+        self,
+        phase: str,
+        phase_args: Sequence[str],
+    ) -> dict[str, Any]:
+        validate_phase_signing(phase, self.signing_purpose, self.signing_key)
+        if phase in PHASE_SIGNING_PURPOSE:
+            self._prepare_evaluator_only()
+        command = list(_object(self.config["phase_commands"], "phase_commands")[phase])
+        command.extend(str(value) for value in phase_args)
+        authority = (
+            "repo-write-subagents"
+            if phase.startswith(("adapter-probe-", "model-"))
+            else "tools-off"
+        )
+        result = self.run_json_command(
+            command,
+            stage=phase,
+            authority=authority,
+            tool_policy=(
+                dict(self.config["registered_trial_tool_policy"])
+                if authority == "repo-write-subagents"
+                else None
+            ),
+        )
+        if phase in PHASE_SIGNING_PURPOSE:
+            result = {
+                **result,
+                "signed_artifacts": self._sign_fixed_phase_artifacts(phase),
+            }
+        return result
+
+    def _sign_fixed_phase_artifacts(self, phase: str) -> list[dict[str, str]]:
+        source_pattern, destination_value = PHASE_SIGNING_FILES[phase]
+        sources = sorted(self.private_root.glob(source_pattern))
+        if not sources:
+            raise ConfigError("signing phase produced no artifact at its fixed input path")
+        destination = self.private_root / destination_value
+        destination_is_directory = "*" in source_pattern
+        if destination_is_directory:
+            destination.mkdir(parents=True, exist_ok=True)
+        purpose = PHASE_SIGNING_PURPOSE[phase]
+        expected_schema = {
+            "adapter_conformance": "AdapterConformance.v1",
+            "execution_receipt": "ExecutionReceipt.v1",
+            "global_token_ledger": "GlobalTokenLedger.v1",
+            "judge_qualification": "JudgeQualification.v1",
+            "sealed_bundle": "SealedBundleAttestation.v1",
+            "promotion_verdict": "PromotionVerdict.v2",
+        }[purpose]
+        bindings: list[dict[str, str]] = []
+        for source in sources:
+            resolved = source.resolve()
+            try:
+                resolved.relative_to(self.private_root)
+            except ValueError as exc:
+                raise ConfigError("fixed signing input escapes private output root") from exc
+            unsigned = _read_json(resolved, "fixed phase signing input")
+            if unsigned.get("schema_version") != expected_schema:
+                raise ConfigError("fixed signing input has the wrong evidence schema")
+            output = destination / source.name if destination_is_directory else destination
+            if output.exists():
+                raise ConfigError("fixed signed output already exists")
+            signed = self.sign_inline(unsigned, purpose)
+            _exclusive_json(output, signed)
+            bindings.append({"path": str(output), "sha256": artifact_hash(output)})
+        return bindings
 
     def _prepare_evaluator_only(self) -> Path:
         evaluator_cfg = dict(self.config["evaluator"])
@@ -1136,10 +1268,14 @@ class ProtectedRunner:
     ) -> dict[str, Path]:
         if self.private_root.joinpath("adapter-conformance").exists():
             raise ConfigError("immutable adapter conformance output already exists")
-        signing = dict(dict(self.config["signing"])["adapter_conformance"])
+        key_id = str(
+            _object(self.config["signing_key_ids"], "signing_key_ids")[
+                "adapter_conformance"
+            ]
+        )
         trust_root_payload = self._trust_root_for_purpose(
             "adapter_conformance",
-            str(signing["key_id"]),
+            key_id,
         )
         primary_cells = {str(cell["id"]): dict(cell) for cell in primary_plan["model_cells"]}
         reproduction_cells = {str(cell["id"]): dict(cell) for cell in reproduction_plan["model_cells"]}
@@ -2092,8 +2228,10 @@ class ProtectedRunner:
         command = list(self.config["verdict_command"])
         command.extend(["--input", str(input_path), "--output", str(output)])
         verdict = self.run_output_command(command, stage="build_verdict", output=output)
-        if verdict.get("schema_version") != "PromotionVerdict.v1":
-            raise ConfigError("verdict command did not emit PromotionVerdict.v1")
+        if verdict.get("schema_version") == "PromotionVerdict.v1":
+            raise ConfigError("legacy PromotionVerdict.v1 is read-only and cannot authorize promotion")
+        if verdict.get("schema_version") != "PromotionVerdict.v2":
+            raise ConfigError("verdict command did not emit PromotionVerdict.v2")
         if verdict.get("status") != "promote":
             raise ConfigError("protected evidence did not authorize promotion")
         self._validate_verdict_bindings(
@@ -2440,17 +2578,21 @@ def _phase_complete(phase: str, run_id: str) -> dict[str, Any]:
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Run a protected Core-Prompts behavioral evaluation.")
     parser.add_argument("--config", type=Path, required=True)
-    parser.add_argument("--submission", type=Path, required=True)
+    parser.add_argument("--submission", type=Path)
     parser.add_argument("--sealed-bundle", type=Path)
     parser.add_argument(
         "--phase",
-        choices=("validate", "authorize-budget", "conformance", "primary", "reproduction", "finalize"),
+        choices=tuple(sorted(NON_SIGNING_PHASES | set(PHASE_SIGNING_PURPOSE))),
         required=True,
     )
+    parser.add_argument("--signing-purpose", choices=PURPOSES)
+    parser.add_argument("--signing-key", type=Path)
     parser.add_argument("--public-output", type=Path, required=True)
     parser.add_argument("--private-output", type=Path, required=True)
+    parser.add_argument("phase_args", nargs=argparse.REMAINDER)
     args = parser.parse_args(argv)
     try:
+        validate_phase_signing(args.phase, args.signing_purpose, args.signing_key)
         config = load_config(args.config)
         with tempfile.TemporaryDirectory(prefix="protected-evaluator-") as temporary:
             runner = ProtectedRunner(
@@ -2458,8 +2600,13 @@ def main(argv: Sequence[str] | None = None) -> int:
                 work_root=Path(temporary),
                 public_root=args.public_output,
                 private_root=args.private_output,
+                signing_purpose=args.signing_purpose,
+                signing_key=args.signing_key,
             )
-            result = runner.execute_phase(args.phase, args.submission, args.sealed_bundle)
+            forwarded = list(args.phase_args)
+            if forwarded and forwarded[0] == "--":
+                forwarded = forwarded[1:]
+            result = runner.execute_command_phase(args.phase, forwarded)
             _exclusive_json(args.public_output / f"result-{args.phase}.json", result)
             return 0 if result.get("promotion_allowed") is True or result.get("status", "").endswith("_complete") else 2
     except Exception:  # noqa: BLE001 - the public failure path must redact every unexpected error
