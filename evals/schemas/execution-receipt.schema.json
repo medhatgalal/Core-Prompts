@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ExecutionReceipt.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "receipt_id", "issuer", "run_id", "runner_identity", "randomization_seed", "cell_id", "trial_id",
+    "repetition", "planned_repetitions", "order_index", "host", "adapter_id",
+    "adapter_version", "adapter_sha256", "resolved_model_identifier", "model_version",
+    "effort", "cli_version", "cli_sha256", "tool_policy_sha256", "approval_policy_sha256", "credential_descriptor_sha256",
+    "candidate_sha256", "dataset_sha256", "input_sha256", "output_sha256",
+    "raw_trace_sha256", "trace_commitment_sha256", "trace_complete", "result",
+    "token_usage", "attempts", "latency_ms", "started_at", "completed_at", "expires_at",
+    "derived_evidence_grade", "signature"
+  ],
+  "properties": {
+    "schema_version": {"const": "ExecutionReceipt.v1"},
+    "receipt_id": {"type": "string", "minLength": 1},
+    "issuer": {"type": "string", "minLength": 1},
+    "run_id": {"type": "string", "minLength": 1},
+    "runner_identity": {"type": "string", "minLength": 1},
+    "randomization_seed": {"type": "integer"},
+    "cell_id": {"type": "string", "minLength": 1},
+    "trial_id": {"type": "string", "minLength": 1},
+    "repetition": {"type": "integer", "minimum": 1},
+    "planned_repetitions": {"type": "integer", "minimum": 1},
+    "order_index": {"type": "integer", "minimum": 0},
+    "host": {"type": "string", "minLength": 1},
+    "adapter_id": {"type": "string", "minLength": 1},
+    "adapter_version": {"type": "string", "minLength": 1},
+    "adapter_sha256": {"$ref": "#/$defs/sha256"},
+    "resolved_model_identifier": {"type": "string", "minLength": 1},
+    "model_version": {"type": "string", "minLength": 1},
+    "effort": {"type": "string", "minLength": 1},
+    "cli_version": {"type": "string", "minLength": 1},
+    "cli_sha256": {"$ref": "#/$defs/sha256"},
+    "tool_policy_sha256": {"$ref": "#/$defs/sha256"},
+    "approval_policy_sha256": {"$ref": "#/$defs/sha256"},
+    "credential_descriptor_sha256": {"$ref": "#/$defs/sha256"},
+    "candidate_sha256": {"$ref": "#/$defs/sha256"},
+    "dataset_sha256": {"$ref": "#/$defs/sha256"},
+    "input_sha256": {"$ref": "#/$defs/sha256"},
+    "output_sha256": {"$ref": "#/$defs/sha256"},
+    "raw_trace_sha256": {"$ref": "#/$defs/sha256"},
+    "trace_commitment_sha256": {"$ref": "#/$defs/sha256"},
+    "trace_complete": {"type": "boolean"},
+    "result": {"enum": ["PASS", "FAIL", "INCONCLUSIVE", "NOT_RUN"]},
+    "token_usage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["raw", "cached", "billed", "reserved"],
+      "properties": {
+        "raw": {"type": "integer", "minimum": 0},
+        "cached": {"type": "integer", "minimum": 0},
+        "billed": {"type": "integer", "minimum": 0},
+        "reserved": {"type": "integer", "minimum": 0}
+      }
+    },
+    "attempts": {"type": "integer", "minimum": 0},
+    "latency_ms": {"type": "integer", "minimum": 0},
+    "started_at": {"type": "string", "format": "date-time"},
+    "completed_at": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": "string", "format": "date-time"},
+    "derived_evidence_grade": {"enum": ["A", "B", "C", "NOT_RUN"]},
+    "signature": {"$ref": "#/$defs/signature"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "signature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "key_id", "purpose", "signed_at", "payload_sha256", "value_base64"],
+      "properties": {
+        "algorithm": {"const": "Ed25519"},
+        "key_id": {"type": "string", "minLength": 1},
+        "purpose": {"const": "execution_receipt"},
+        "signed_at": {"type": "string", "format": "date-time"},
+        "payload_sha256": {"$ref": "#/$defs/sha256"},
+        "value_base64": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

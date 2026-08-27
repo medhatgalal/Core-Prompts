@@ -1,0 +1,33 @@
+{
+  "schema_version": "AdapterConformance.v1",
+  "adapter_id": "codex-jsonl-experimental",
+  "adapter_version": "0.1.0",
+  "cli_binding": {
+    "executable": "codex",
+    "version_argv": ["codex", "--version"],
+    "observed_version": "codex-cli 0.150.1",
+    "help_argv": ["codex", "exec", "--help"],
+    "observed_at": "2026-08-27"
+  },
+  "evidence": {
+    "fixture_path": "evals/fixtures/adapters/codex-native-shape-redacted.jsonl",
+    "fixture_sha256": "035477ede13193e6123069e4f7bde3d72b52864a633ad047864d9155b72f9ed2",
+    "fixture_kind": "documented_native_shape_redacted",
+    "redacted": true
+  },
+  "checks": {
+    "argv_help_verified": true,
+    "exact_model_response_derived": false,
+    "complete_token_usage": true,
+    "event_capture": false,
+    "hidden_retry_detection": false,
+    "session_persistence_detection": false,
+    "signed_protected": false
+  },
+  "promotion_eligible": false,
+  "blockers": [
+    "The native JSONL stream does not expose a response-derived exact model identifier.",
+    "The native stream does not prove independent subagent authorship or provider-internal retry count.",
+    "No signed protected conformance run proves ephemeral session behavior or event completeness."
+  ]
+}

@@ -44,6 +44,7 @@ from intent_pipeline.uac_quality import (
 from intent_pipeline.uac_baselines import (
     evaluate_candidate_against_baseline,
     historical_richness_score,
+    preview_source_baseline,
     persist_source_baseline,
     resolve_historical_baseline,
     text_sha256,
@@ -143,7 +144,26 @@ def _parse_args() -> argparse.Namespace:
     )
     parser.add_argument('--clarity', choices=('on', 'off'), default='on', help='Run advisory instruction_clarity.v1 lint')
     parser.add_argument('--emit-impact-plan', action='store_true', help='Emit the minimum safe capability-eval profile')
-    parser.add_argument('--promotion-verdict', type=Path, help='Independent PromotionVerdict.v1 to validate during apply')
+    parser.add_argument('--promotion-verdict', type=Path, help='Independent PromotionVerdict.v2 to validate during apply')
+    parser.add_argument(
+        '--promotion-trust-root',
+        type=Path,
+        default=ROOT / 'evals' / 'trust-root.json',
+        help='Public promotion trust root. Required and hash-bound for promote verdicts.',
+    )
+    parser.add_argument(
+        '--finalize-existing-candidate',
+        action='store_true',
+        help='Finalize a candidate already present in canonical SSOT after exact revision, hash, and ancestry checks.',
+    )
+    parser.add_argument(
+        '--approved-trust-policy-sha256',
+        help='Operator-approved SHA-256 of the protected-main ApprovedTrustPolicy.v1 artifact.',
+    )
+    parser.add_argument(
+        '--approved-trust-policy-revision',
+        help='Operator-approved full Git revision containing the protected trust policy.',
+    )
     return parser.parse_args()
 
 
@@ -1477,6 +1497,181 @@ def _repo_head_commit(repo_root: Path) -> str | None:
     return head[:8] if head else None
 
 
+def _git_commit(repo_root: Path, revision: object, label: str) -> str:
+    value = str(revision or '')
+    if not re.fullmatch(r'[0-9a-f]{40}', value):
+        raise ContractError(f'{label} must be a full lowercase Git commit ID')
+    try:
+        result = subprocess.run(
+            ['git', 'rev-parse', '--verify', f'{value}^{{commit}}'],
+            cwd=repo_root,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+    except (subprocess.CalledProcessError, FileNotFoundError) as exc:
+        raise ContractError(f'{label} is not a repository commit') from exc
+    resolved = result.stdout.strip()
+    if resolved != value:
+        raise ContractError(f'{label} does not resolve exactly')
+    return resolved
+
+
+def _git_file_at_revision(repo_root: Path, revision: str, relative_path: str, label: str) -> bytes:
+    try:
+        result = subprocess.run(
+            ['git', 'show', f'{revision}:{relative_path}'],
+            cwd=repo_root,
+            check=True,
+            capture_output=True,
+        )
+    except (subprocess.CalledProcessError, FileNotFoundError) as exc:
+        raise ContractError(f'{label} does not contain {relative_path}') from exc
+    return result.stdout
+
+
+def _require_git_ancestor(repo_root: Path, ancestor: str, descendant: str, detail: str) -> None:
+    try:
+        result = subprocess.run(
+            ['git', 'merge-base', '--is-ancestor', ancestor, descendant],
+            cwd=repo_root,
+            capture_output=True,
+        )
+    except FileNotFoundError as exc:
+        raise ContractError('Git is unavailable for promotion ancestry checks') from exc
+    if result.returncode != 0:
+        raise ContractError(detail)
+
+
+def _validate_promotion_revision_bindings(
+    repo_root: Path,
+    verdict: Mapping[str, Any],
+    *,
+    slug: str,
+    candidate_text: str,
+    finalize_existing_candidate: bool,
+) -> str:
+    baseline_revision = _git_commit(repo_root, verdict.get('baseline_revision'), 'baseline_revision')
+    candidate_revision = _git_commit(repo_root, verdict.get('candidate_revision'), 'candidate_revision')
+    relative_ssot = f'ssot/{slug}.md'
+    baseline_bytes = _git_file_at_revision(repo_root, baseline_revision, relative_ssot, 'baseline_revision')
+    candidate_bytes = _git_file_at_revision(repo_root, candidate_revision, relative_ssot, 'candidate_revision')
+    if artifact_hash(baseline_bytes) != verdict.get('baseline_sha256'):
+        raise ContractError('baseline_revision SSOT hash does not match the promotion verdict')
+    if artifact_hash(candidate_bytes) != verdict.get('candidate_sha256'):
+        raise ContractError('candidate_revision SSOT hash does not match the promotion verdict')
+    normalized_candidate = candidate_text + ('\n' if not candidate_text.endswith('\n') else '')
+    if artifact_hash(normalized_candidate) != verdict.get('candidate_sha256'):
+        raise ContractError('promotion verdict candidate hash does not match the SSOT text that would be applied')
+    _require_git_ancestor(
+        repo_root,
+        baseline_revision,
+        candidate_revision,
+        'baseline_revision is not an ancestor of candidate_revision',
+    )
+    current_ssot = repo_root / relative_ssot
+    if not current_ssot.is_file():
+        raise ContractError('current canonical SSOT is missing')
+    current_hash = artifact_hash(current_ssot)
+    if finalize_existing_candidate:
+        if current_hash != verdict.get('candidate_sha256'):
+            raise ContractError('finalize-existing-candidate requires canonical SSOT to equal the candidate hash')
+        head = _git_commit(
+            repo_root,
+            subprocess.run(
+                ['git', 'rev-parse', 'HEAD'], cwd=repo_root, check=True, capture_output=True, text=True
+            ).stdout.strip(),
+            'HEAD',
+        )
+        _require_git_ancestor(
+            repo_root,
+            candidate_revision,
+            head,
+            'candidate_revision is not an ancestor of HEAD',
+        )
+        if artifact_hash(_git_file_at_revision(repo_root, head, relative_ssot, 'HEAD')) != verdict.get(
+            'candidate_sha256'
+        ):
+            raise ContractError('HEAD canonical SSOT does not equal the candidate hash')
+        return 'finalize_existing_candidate'
+    if current_hash != verdict.get('baseline_sha256'):
+        raise ContractError('promotion verdict baseline hash does not match the current canonical SSOT')
+    return 'baseline_to_candidate'
+
+
+def _promotion_descriptor_fields(verdict: Mapping[str, Any]) -> dict[str, Any]:
+    evidence_keys = (
+        'run_id',
+        'baseline_revision',
+        'candidate_revision',
+        'baseline_sha256',
+        'candidate_sha256',
+        'goal_contract_sha256',
+        'topology_sha256',
+        'dataset_sha256',
+        'scorer_sha256',
+        'run_manifest_sha256',
+        'evaluation_policy_sha256',
+        'impact_plan_sha256',
+        'evaluator_sha256',
+        'trust_root_sha256',
+        'issued_at',
+        'expires_at',
+        'profile',
+        'evaluator_version',
+    )
+    evidence = {key: verdict[key] for key in evidence_keys if key in verdict}
+    sealed = verdict.get('sealed_bundle_attestation_binding')
+    if isinstance(sealed, Mapping):
+        evidence['sealed_bundle_attestation_sha256'] = sealed.get('sha256')
+    score_report = verdict.get('score_report_binding')
+    if isinstance(score_report, Mapping):
+        evidence['score_report_sha256'] = score_report.get('sha256')
+    token_ledger = verdict.get('token_ledger_binding')
+    if isinstance(token_ledger, Mapping):
+        evidence['token_ledger_sha256'] = token_ledger.get('sha256')
+    approved_policy = verdict.get('approved_trust_policy_binding')
+    if isinstance(approved_policy, Mapping):
+        evidence['approved_trust_policy_sha256'] = approved_policy.get('sha256')
+        evidence['approved_trust_policy_revision'] = approved_policy.get('revision')
+    if verdict.get('primary_runner_identity_sha256'):
+        evidence['primary_runner_identity_sha256'] = verdict['primary_runner_identity_sha256']
+    for source, target, identity in (
+        ('receipt_bindings', 'receipt_bindings', 'receipt_id'),
+        ('auxiliary_receipt_bindings', 'auxiliary_receipt_bindings', 'binding_id'),
+        ('adapter_bindings', 'adapter_bindings', 'adapter_id'),
+        ('judge_qualification_bindings', 'judge_qualification_bindings', 'judge_id'),
+        ('reproduction_manifest_bindings', 'reproduction_manifest_bindings', 'run_id'),
+    ):
+        bindings = verdict.get(source)
+        if isinstance(bindings, list):
+            evidence[target] = [
+                {
+                    key: binding.get(key)
+                    for key in (
+                        identity,
+                        'phase',
+                        'run_id',
+                        'seed',
+                        'runner_identity_sha256',
+                        'version',
+                        'sha256',
+                    )
+                    if binding.get(key) is not None
+                }
+                for binding in bindings
+                if isinstance(binding, Mapping)
+            ]
+    return {
+        'behavioral_status': str(verdict['status']),
+        'promotion_evidence': evidence,
+    }
+
+
+def _compile_applied_skill(repo_root: Path, slug: str, *, promotion: bool) -> dict[str, Any]:
+    return compile_skill(repo_root, slug, write=not promotion)
+
+
 def _repo_relative_source_path(path: str) -> str | None:
     try:
         resolved = Path(path).expanduser().resolve()
@@ -1879,11 +2074,27 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
         payload['detail'] = 'Cross-analysis flagged duplicate or conflicting graph roles. Resolve those before apply.'
         return payload
     promotion_verdict = None
+    promotion_apply_mode = None
+    promotion_trust_root = None
     promotion_verdict_path = getattr(args, 'promotion_verdict', None)
     if promotion_verdict_path:
         try:
             promotion_verdict = load_json(promotion_verdict_path.resolve())
-            validate_promotion_verdict(promotion_verdict, repo_root=ROOT)
+            if promotion_verdict.get('schema_version') != 'PromotionVerdict.v2':
+                raise ContractError(
+                    'UAC promotion apply requires PromotionVerdict.v2; V1 remains readable but cannot authorize apply'
+                )
+            trust_root = Path(getattr(args, 'promotion_trust_root', ROOT / 'evals' / 'trust-root.json'))
+            if not trust_root.is_absolute():
+                trust_root = ROOT / trust_root
+            promotion_trust_root = trust_root.resolve()
+            validate_promotion_verdict(
+                promotion_verdict,
+                repo_root=ROOT,
+                trust_root=promotion_trust_root,
+                approved_trust_policy_sha256=getattr(args, 'approved_trust_policy_sha256', None),
+                approved_trust_policy_revision=getattr(args, 'approved_trust_policy_revision', None),
+            )
         except (OSError, ValueError, ContractError) as exc:
             result = dict(payload)
             result['status'] = 'stale_evidence'
@@ -1900,12 +2111,29 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
             result['status'] = str(promotion_verdict.get('status') or 'hold')
             result['detail'] = 'The supplied independent verdict does not authorize apply.'
             return result
-        existing_ssot = ROOT / 'ssot' / f'{expected_slug}.md'
-        if existing_ssot.is_file() and artifact_hash(existing_ssot) != promotion_verdict.get('baseline_sha256'):
+        try:
+            promotion_candidate_text, _ = _safe_apply_ssot_text(
+                expected_slug,
+                payload,
+                quality_result=payload.get('quality_result'),
+            )
+            promotion_apply_mode = _validate_promotion_revision_bindings(
+                ROOT,
+                promotion_verdict,
+                slug=expected_slug,
+                candidate_text=promotion_candidate_text,
+                finalize_existing_candidate=bool(getattr(args, 'finalize_existing_candidate', False)),
+            )
+        except (OSError, ValueError, ContractError, subprocess.CalledProcessError) as exc:
             result = dict(payload)
             result['status'] = 'stale_evidence'
-            result['detail'] = 'Promotion verdict baseline hash does not match the current canonical SSOT.'
+            result['detail'] = f'Promotion revision binding refused: {exc}'
             return result
+    elif bool(getattr(args, 'finalize_existing_candidate', False)):
+        result = dict(payload)
+        result['status'] = 'stale_evidence'
+        result['detail'] = 'Finalize-existing-candidate requires a signed promotion verdict.'
+        return result
     if not args.yes:
         confirmation = input('Apply will write SSOT + descriptor into this repo, rebuild surfaces, and validate. Type yes to continue: ').strip().lower()
         if confirmation not in {'y', 'yes'}:
@@ -1920,9 +2148,37 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
     slug = str(result['manifest']['slug'])
     quality_plan = result.get('quality_plan')
     quality_result = result.get('quality_result')
+    promotion_baseline_preflight = None
+    if promotion_verdict and promotion_verdict.get('status') == 'promote':
+        try:
+            preflight_text, _preflight_guard = _safe_apply_ssot_text(
+                slug,
+                result,
+                quality_result=quality_result,
+            )
+            promotion_baseline_preflight = preview_source_baseline(
+                ROOT,
+                slug=slug,
+                baseline_text=preflight_text,
+                overwrite=False,
+            )
+        except (OSError, ValueError) as exc:
+            result['mode'] = 'apply'
+            result['status'] = 'stale_evidence'
+            result['detail'] = f'Promotion baseline materialization preflight refused: {exc}'
+            return result
+        if promotion_baseline_preflight.get('blocked_reasons'):
+            result['mode'] = 'apply'
+            result['status'] = 'stale_evidence'
+            result['detail'] = (
+                'Promotion baseline materialization preflight refused: '
+                + '; '.join(str(item) for item in promotion_baseline_preflight['blocked_reasons'])
+            )
+            return result
     quality_paths: list[Path] = []
     if quality_plan and quality_result:
-        quality_paths = _persist_quality_reviews(slug, quality_plan, quality_result)
+        if not (promotion_verdict and promotion_verdict.get('status') == 'promote'):
+            quality_paths = _persist_quality_reviews(slug, quality_plan, quality_result)
         if quality_result.get('status') != 'structural_ready':
             result['mode'] = 'apply'
             result['status'] = 'manual_review'
@@ -1993,30 +2249,46 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
         apply_guard = dict(apply_guard or {})
         apply_guard['descriptor_preservation'] = 'existing curated descriptor retained because quality evidence did not bind the applied SSOT text'
     if promotion_verdict and promotion_verdict.get('status') == 'promote':
+        descriptor.update(_promotion_descriptor_fields(promotion_verdict))
+    if promotion_verdict and promotion_verdict.get('status') == 'promote':
         final_text = ssot_text + ('\n' if not ssot_text.endswith('\n') else '')
         if artifact_hash(final_text) != promotion_verdict.get('candidate_sha256'):
             result['mode'] = 'apply'
             result['status'] = 'stale_evidence'
             result['detail'] = 'Promotion verdict candidate hash does not match the SSOT text that would be applied.'
             return result
-    ssot_path.write_text(ssot_text + ('\n' if not ssot_text.endswith('\n') else ''), encoding='utf-8')
+    promoted_contract_hashes = None
+    if promotion_verdict and promotion_verdict.get('status') == 'promote':
+        promoted_contract_hashes = {
+            ROOT / 'evals' / 'contracts' / f'{slug}.json': promotion_verdict['goal_contract_sha256'],
+            ROOT / 'evals' / 'topologies' / f'{slug}.json': promotion_verdict['topology_sha256'],
+        }
     # Structural readiness cannot materialize a behavioral baseline. A new
     # baseline is created only after an independently validated promotion.
     if promotion_verdict and promotion_verdict.get('status') == 'promote':
-        baseline_source = _baseline_materialization_payload(slug, result, ssot_text=ssot_text, ssot_path=ssot_path)
-        baseline_materialization = persist_source_baseline(
-            ROOT,
-            slug=slug,
-            baseline_text=str(baseline_source['text'] or ''),
-            overwrite=False,
-            source_kind=str(baseline_source['source_kind'] or ''),
-            source_path=baseline_source['source_path'],
-            source_sha256=baseline_source['source_sha256'],
-            source_commit=baseline_source['source_commit'],
-        )
+        try:
+            baseline_materialization = persist_source_baseline(
+                ROOT,
+                slug=slug,
+                baseline_text=ssot_text,
+                overwrite=False,
+                source_kind='promoted_candidate_revision',
+                source_path=f'ssot/{slug}.md',
+                source_sha256=str(promotion_verdict['candidate_sha256']),
+                source_commit=str(promotion_verdict['candidate_revision']),
+                preflight=promotion_baseline_preflight,
+            )
+        except (OSError, ValueError) as exc:
+            result['mode'] = 'apply'
+            result['status'] = 'stale_evidence'
+            result['detail'] = f'Promotion baseline materialization refused after preflight: {exc}'
+            return result
     if baseline_materialization:
         descriptor['historical_baseline'] = dict(descriptor.get('historical_baseline') or {})
         descriptor['historical_baseline']['baseline_path'] = baseline_materialization['baseline_path']
+    if promotion_verdict and quality_plan and quality_result:
+        quality_paths = _persist_quality_reviews(slug, quality_plan, quality_result)
+    ssot_path.write_text(ssot_text + ('\n' if not ssot_text.endswith('\n') else ''), encoding='utf-8')
     descriptor_path = save_descriptor(ROOT, slug, descriptor)
     source_note = None
     source_refs = []
@@ -2038,7 +2310,24 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
     compile_error = None
     if build_proc.returncode == 0:
         try:
-            compiled = compile_skill(ROOT, slug, write=True)
+            compiled = _compile_applied_skill(
+                ROOT,
+                slug,
+                promotion=bool(promotion_verdict and promotion_verdict.get('status') == 'promote'),
+            )
+            if promoted_contract_hashes:
+                for contract_path, expected_hash in promoted_contract_hashes.items():
+                    if not contract_path.is_file() or artifact_hash(contract_path) != expected_hash:
+                        raise ContractError(f'human-reviewed promotion contract changed during build: {contract_path}')
+                if compiled['topology'].get('ssot_sha256') != promotion_verdict.get('candidate_sha256'):
+                    raise ContractError('compiled topology does not bind the promoted candidate SSOT')
+                validate_promotion_verdict(
+                    promotion_verdict,
+                    repo_root=ROOT,
+                    trust_root=promotion_trust_root,
+                    approved_trust_policy_sha256=getattr(args, 'approved_trust_policy_sha256', None),
+                    approved_trust_policy_revision=getattr(args, 'approved_trust_policy_revision', None),
+                )
             compile_result = {
                 'status': compiled['status'],
                 'goal_contract': f'evals/contracts/{slug}.json',
@@ -2070,6 +2359,7 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
             'status': (promotion_verdict or {}).get('status', 'behavioral_pending'),
             'run_id': (promotion_verdict or {}).get('run_id'),
             'enforcement': 'advisory' if not promotion_verdict else 'verdict_validated',
+            'apply_mode': promotion_apply_mode,
         },
         'deploy_next_step': 'Run bin/capability-fabric deploy or scripts/deploy-surfaces.sh after reviewing repo changes.',
     }

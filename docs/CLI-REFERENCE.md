@@ -22,10 +22,11 @@ bin/capability-eval compile --all --check
 bin/capability-eval calibrate --static-only
 bin/capability-eval probe
 bin/capability-eval compare --skill <slug> --candidate <path> --profile <profile>
+bin/capability-eval compare --skill <slug> --baseline <path> --candidate <path> --run-plan <path> --profile promotion --allow-model-calls --max-tokens 5000000
 bin/capability-eval report --run <run-id>
 ```
 
-Profiles are `static`, `native`, `routing-canary`, `canary`, `promotion`, `cross-host`, and `sweep`. The first two have a hard token cap of zero. `native` reports runtime availability only; it does not prove skill discovery or behavior. Live profiles are fail-closed until explicit model-call authorization, adapter conformance, sealed data, and judge calibration exist.
+Profiles are `static`, `native`, `routing-canary`, `canary`, `promotion`, `cross-host`, and `sweep`. The first two have a hard token cap of zero. `native` reports runtime availability only; it does not prove skill discovery or behavior. A live command also requires a closed run plan, explicit model-call authorization, conforming registered adapters, and a cap no larger than the profile limit. The protected promotion flow adds sealed data, independent scoring and judging, reproduction, signed receipts, and a cumulative token ledger.
 
 | Command | Purpose | Mutates repo state |
 | --- | --- | --- |
@@ -42,8 +43,25 @@ Profiles are `static`, `native`, `routing-canary`, `canary`, `promotion`, `cross
 | `bin/uac plan <source...>` | show proposed landing shape for one or more sources | no |
 | `bin/uac judge <source...> --quality-profile architecture` | run the built-in quality loop without writing repo state; may recommend bounded behavioral proof via `auto-research` when structural quality is close but confidence is weak | no |
 | `bin/uac apply <source...> --yes` | write canonical SSOT and descriptors, then build and validate | yes |
+| `bin/uac apply <source...> --promotion-verdict <path> --promotion-trust-root <path> --approved-trust-policy-sha256 <sha256> --approved-trust-policy-revision <commit> --finalize-existing-candidate --yes` | finalize an already-canonical candidate only after current independent evidence and a pre-candidate approved trust policy pass every gate | yes |
 
 ## Task-Oriented Examples
+
+### Finalize A Behaviorally Proven Candidate
+
+```bash
+bin/uac apply /absolute/path/to/candidate-source \
+  --promotion-verdict /absolute/path/to/public-bundle/promotion-verdict.json \
+  --promotion-trust-root /absolute/path/to/public-bundle/evaluator-trust-store.json \
+  --approved-trust-policy-sha256 <64-hex-policy-sha256> \
+  --approved-trust-policy-revision <40-hex-policy-commit> \
+  --finalize-existing-candidate \
+  --yes
+```
+
+Use this only after the evaluator foundation and approved trust policy have landed on protected main, the policy revision is an ancestor of the evaluated baseline, and the candidate already exists unchanged in canonical SSOT. Success records `behavioral_status: promote`; `inconclusive`, `hold`, or `stale_evidence` leaves the behavioral baseline unchanged.
+
+See [Capability evaluation](CAPABILITY-EVALUATION.md) for the protected trust model and [UAC usage](UAC-USAGE.md) for the full gate list.
 
 ### Rebuild Everything From Canonical State
 

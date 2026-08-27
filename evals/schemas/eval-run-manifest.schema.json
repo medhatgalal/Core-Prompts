@@ -1,1 +1,83 @@
-{"$schema":"https://json-schema.org/draft/2020-12/schema","$id":"EvalRunManifest.v1","type":"object","required":["schema_version","run_id","repo_head","baseline_sha256","candidate_sha256","goal_contract_sha256","topology_sha256","dataset_sha256","scorer_sha256","adapter_versions","cli_versions","model_cells","tool_policy","order","repetitions","token_budget","raw_trace_hashes"],"properties":{"schema_version":{"const":"EvalRunManifest.v1"}}}
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "EvalRunManifest.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "run_id", "run_plan_sha256", "repo_head", "baseline_revision", "candidate_revision",
+    "baseline_sha256", "candidate_sha256", "goal_contract_sha256", "topology_sha256",
+    "dataset_sha256", "scorer_sha256", "evaluation_policy_sha256", "impact_plan_sha256",
+    "judge_qualification_sha256", "sealed_bundle_attestation_sha256", "evaluator_package_sha256",
+    "adapter_versions", "adapter_sha256s", "cli_versions", "cli_sha256", "trust_root_sha256", "provider_cli_sha256s", "credential_descriptor_sha256s", "runner_identity", "randomization_seed", "model_cells",
+    "tool_policies", "approval_policy", "order", "seed", "repetitions", "planned_repetitions",
+    "completed_repetitions", "stopping_rule", "independent_reproduction_required",
+    "token_budget", "token_usage", "raw_trace_hashes", "scoring_status", "mutation_summary",
+    "protected_regression_count", "paired_order_commitment_sha256"
+  ],
+  "properties": {
+    "schema_version": {"const": "EvalRunManifest.v1"},
+    "run_id": {"type": "string", "minLength": 1},
+    "run_plan_sha256": {"$ref": "#/$defs/sha256"},
+    "repo_head": {"type": "string", "minLength": 1},
+    "baseline_revision": {"type": "string", "minLength": 1},
+    "candidate_revision": {"type": "string", "minLength": 1},
+    "baseline_sha256": {"$ref": "#/$defs/sha256"},
+    "candidate_sha256": {"$ref": "#/$defs/sha256"},
+    "goal_contract_sha256": {"$ref": "#/$defs/sha256"},
+    "topology_sha256": {"$ref": "#/$defs/sha256"},
+    "dataset_sha256": {"$ref": "#/$defs/sha256"},
+    "scorer_sha256": {"$ref": "#/$defs/sha256"},
+    "evaluation_policy_sha256": {"$ref": "#/$defs/sha256"},
+    "impact_plan_sha256": {"$ref": "#/$defs/sha256"},
+    "judge_qualification_sha256": {"$ref": "#/$defs/sha256"},
+    "sealed_bundle_attestation_sha256": {"$ref": "#/$defs/sha256"},
+    "evaluator_package_sha256": {"$ref": "#/$defs/sha256"},
+    "adapter_versions": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "string", "minLength": 1}},
+    "adapter_sha256s": {"type": "object", "minProperties": 1, "additionalProperties": {"$ref": "#/$defs/sha256"}},
+    "cli_versions": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "string", "minLength": 1}},
+    "cli_sha256": {"$ref": "#/$defs/sha256"},
+    "trust_root_sha256": {"$ref": "#/$defs/sha256"},
+    "provider_cli_sha256s": {"type": "object", "additionalProperties": {"$ref": "#/$defs/sha256"}},
+    "credential_descriptor_sha256s": {"type": "object", "additionalProperties": {"$ref": "#/$defs/sha256"}},
+    "runner_identity": {"type": "string", "minLength": 1},
+    "randomization_seed": {"type": "integer"},
+    "model_cells": {"type": "array", "minItems": 1, "items": {"type": "object"}},
+    "tool_policies": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "object"}},
+    "approval_policy": {"type": "object"},
+    "order": {"enum": ["baseline_first", "candidate_first", "seeded_balanced"]},
+    "seed": {"type": "integer"},
+    "repetitions": {"type": "integer", "minimum": 1},
+    "planned_repetitions": {"type": "integer", "minimum": 1},
+    "completed_repetitions": {"type": "integer", "minimum": 0},
+    "stopping_rule": {"type": "object"},
+    "independent_reproduction_required": {"type": "boolean"},
+    "token_budget": {"type": "integer", "minimum": 1},
+    "token_usage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reserved", "raw", "cached", "billed"],
+      "properties": {
+        "reserved": {"type": "integer", "minimum": 0},
+        "raw": {"type": "integer", "minimum": 0},
+        "cached": {"type": "integer", "minimum": 0},
+        "billed": {"type": "integer", "minimum": 0}
+      }
+    },
+    "raw_trace_hashes": {"type": "array", "items": {"$ref": "#/$defs/sha256"}},
+    "scoring_status": {"enum": ["not_run", "completed"]},
+    "mutation_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["critical_total", "critical_killed", "overall_total", "overall_killed"],
+      "properties": {
+        "critical_total": {"type": "integer", "minimum": 0},
+        "critical_killed": {"type": "integer", "minimum": 0},
+        "overall_total": {"type": "integer", "minimum": 0},
+        "overall_killed": {"type": "integer", "minimum": 0}
+      }
+    },
+    "protected_regression_count": {"type": "integer", "minimum": 0},
+    "paired_order_commitment_sha256": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {"sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+}

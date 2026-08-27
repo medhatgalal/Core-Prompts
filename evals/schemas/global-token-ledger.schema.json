@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "GlobalTokenLedger.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "ledger_id", "issuer", "experiment_id", "profile", "token_cap",
+    "sequence", "previous_ledger_sha256", "entries", "totals", "remaining_raw_tokens",
+    "status", "created_at", "updated_at", "expires_at", "signature"
+  ],
+  "properties": {
+    "schema_version": {"const": "GlobalTokenLedger.v1"},
+    "ledger_id": {"type": "string", "minLength": 1},
+    "issuer": {"type": "string", "minLength": 1},
+    "experiment_id": {"type": "string", "minLength": 1},
+    "profile": {"const": "promotion"},
+    "token_cap": {"const": 5000000},
+    "sequence": {"type": "integer", "minimum": 0},
+    "previous_ledger_sha256": {"oneOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]},
+    "entries": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/entry"}},
+    "totals": {"$ref": "#/$defs/usage"},
+    "remaining_raw_tokens": {"type": "integer", "minimum": 0, "maximum": 5000000},
+    "status": {"enum": ["open", "final"]},
+    "created_at": {"type": "string", "format": "date-time"},
+    "updated_at": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": "string", "format": "date-time"},
+    "signature": {"$ref": "#/$defs/signature"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "usage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reserved", "raw", "cached", "billed"],
+      "properties": {
+        "reserved": {"type": "integer", "minimum": 0},
+        "raw": {"type": "integer", "minimum": 0},
+        "cached": {"type": "integer", "minimum": 0},
+        "billed": {"type": "integer", "minimum": 0}
+      }
+    },
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "entry_id", "phase", "run_id", "receipt_sha256s", "reserved", "raw",
+        "cached", "billed", "recorded_at"
+      ],
+      "properties": {
+        "entry_id": {"type": "string", "minLength": 1},
+        "phase": {"enum": ["adapter_conformance", "primary", "reproduction", "adjudication"]},
+        "run_id": {"type": "string", "minLength": 1},
+        "receipt_sha256s": {
+          "type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/sha256"}
+        },
+        "reserved": {"type": "integer", "minimum": 0},
+        "raw": {"type": "integer", "minimum": 0},
+        "cached": {"type": "integer", "minimum": 0},
+        "billed": {"type": "integer", "minimum": 0},
+        "recorded_at": {"type": "string", "format": "date-time"}
+      }
+    },
+    "signature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "key_id", "purpose", "signed_at", "payload_sha256", "value_base64"],
+      "properties": {
+        "algorithm": {"const": "Ed25519"},
+        "key_id": {"type": "string", "minLength": 1},
+        "purpose": {"const": "global_token_ledger"},
+        "signed_at": {"type": "string", "format": "date-time"},
+        "payload_sha256": {"$ref": "#/$defs/sha256"},
+        "value_base64": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

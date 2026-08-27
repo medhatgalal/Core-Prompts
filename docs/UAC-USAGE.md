@@ -211,6 +211,36 @@ Next step:
 
 Use `apply` only when you intend to change canonical repo state.
 
+### Example: Finalize An Existing Candidate After Behavioral Proof
+
+Use this path when a structurally ready candidate is already canonical with `behavioral_status: behavioral_pending`, and an independent protected evaluator later returns a signed `PromotionVerdict.v2` with `status: promote`. UAC may read a legacy `PromotionVerdict.v1`, but V1 cannot authorize promotion.
+
+The trust policy must be landed first. Its protected-main revision must be an ancestor of the evaluated baseline; the candidate revision cannot authorize its own evaluator keys.
+
+```bash
+bin/uac apply /absolute/path/to/candidate-source \
+  --promotion-verdict /absolute/path/to/public-bundle/promotion-verdict.json \
+  --promotion-trust-root /absolute/path/to/public-bundle/evaluator-trust-store.json \
+  --approved-trust-policy-sha256 <64-hex-policy-sha256> \
+  --approved-trust-policy-revision <40-hex-policy-commit> \
+  --finalize-existing-candidate \
+  --yes
+```
+
+UAC accepts this only when:
+
+- canonical `ssot/<slug>.md` exactly matches the verdict's candidate hash
+- the verdict's baseline is an ancestor of its candidate, and the candidate is an ancestor of current `HEAD`
+- current `HEAD` contains the same candidate SSOT
+- the reviewed Goal Contract, topology, trust store, approved trust policy, receipts, ledger, judge qualifications, score report, and reproduction evidence all match their signed bindings
+- every hard gate passed within the preregistered global token cap
+
+On success, UAC records `behavioral_status: promote`, preserves the reviewed contract and topology, and materializes the promoted behavioral baseline. Invalid, stale, expired, incomplete, or self-authorized evidence returns a non-promote status and does not advance the baseline.
+
+Do not use `--finalize-existing-candidate` when canonical SSOT still equals the evaluated baseline. In that case, use the same evidence arguments without the flag so apply can introduce the evaluated candidate.
+
+The protected runner may return `inconclusive` before or during evaluation. Common causes include missing Codex or Kiro service credentials, adapter conformance failure, unavailable protected runner identity, token-cap exhaustion, incomplete usage or retry evidence, missing sealed data, or an unqualified judge. `inconclusive` is an honest stop, not a retry-shaped promotion.
+
 ## Deploy After Apply
 
 `apply` does not deploy to CLI homes automatically. Deploy is a separate explicit step.
@@ -247,10 +277,14 @@ For a local generated skill named `SKILL.md`, UAC resolves the capability slug f
 - `--emit-impact-plan` selects the minimum safe evaluation profile; unknown impact escalates rather than guessing downward.
 - Body changes that add safety, resource-lifecycle, concurrency, operational-readiness, or contract checks select the promotion profile and publish candidate clause identifiers; generated summary drift alone does not downgrade them to a description-only canary.
 - `--promotion-verdict <path>` validates independent, hash-bound evidence during apply.
+- `--promotion-trust-root <path>` selects the public purpose-separated evaluator trust store; it does not authorize that store by itself.
+- `--approved-trust-policy-sha256` and `--approved-trust-policy-revision` provide explicit operator approval for an `ApprovedTrustPolicy.v1` already present on the evaluated baseline's ancestry.
+- `--finalize-existing-candidate` is only for a candidate already present in canonical SSOT and requires exact candidate-to-`HEAD` ancestry and hash equality.
 - UAC does not own sealed cases, behavioral judging, promotion, or waivers.
 - A new behavioral baseline is materialized only after promotion. Historical baseline lineage is preserved.
 - During the advisory rollout, apply without a promotion verdict may land structurally ready canonical state, but the result remains `behavioral_pending` and cannot advance the behavioral baseline.
 - During the advisory rollout, apply also compiles a draft Goal Contract and topology so a newly added skill cannot silently skip the evaluation inventory.
+- The protected evaluator template lives under `tooling/protected-evaluator/`, but real keys, credentials, sealed cases, labels, and private judge or scorer implementations stay outside Core-Prompts.
 
 - UAC publishes advisory metadata and handoff artifacts only. It does not decide runtime routing or delegation.
 - Direct exposure lands in each vendor `skills/<slug>/SKILL.md` path when a capability is classified for direct use.

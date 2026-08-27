@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ProtectedScoreReport.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "run_id",
+    "reproduction_run_id",
+    "baseline_sha256",
+    "candidate_sha256",
+    "dataset_sha256",
+    "scorer_sha256",
+    "primary_manifest_sha256",
+    "reproduction_manifest_sha256",
+    "scoring_status",
+    "trial_completeness",
+    "repetition_completeness",
+    "token_totals",
+    "metrics",
+    "receipt_results",
+    "mutation_summary",
+    "critical_invariant_violations",
+    "protected_regression_count",
+    "hard_gates"
+  ],
+  "properties": {
+    "schema_version": {"const": "ProtectedScoreReport.v1"},
+    "run_id": {"type": "string", "minLength": 1},
+    "reproduction_run_id": {"type": "string", "minLength": 1},
+    "baseline_sha256": {"$ref": "#/$defs/sha256"},
+    "candidate_sha256": {"$ref": "#/$defs/sha256"},
+    "dataset_sha256": {"$ref": "#/$defs/sha256"},
+    "scorer_sha256": {"$ref": "#/$defs/sha256"},
+    "primary_manifest_sha256": {"$ref": "#/$defs/sha256"},
+    "reproduction_manifest_sha256": {"$ref": "#/$defs/sha256"},
+    "scoring_status": {"const": "completed"},
+    "trial_completeness": {"$ref": "#/$defs/completeness"},
+    "repetition_completeness": {"$ref": "#/$defs/repetitionCompleteness"},
+    "token_totals": {"$ref": "#/$defs/tokenTotals"},
+    "metrics": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/metric"}
+    },
+    "receipt_results": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/receiptResult"}
+    },
+    "mutation_summary": {"$ref": "#/$defs/mutationSummary"},
+    "critical_invariant_violations": {"type": "integer", "minimum": 0},
+    "protected_regression_count": {"type": "integer", "minimum": 0},
+    "hard_gates": {"$ref": "#/$defs/hardGates"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "completeness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["planned", "completed", "missing"],
+      "properties": {
+        "planned": {"type": "integer", "minimum": 1},
+        "completed": {"type": "integer", "minimum": 0},
+        "missing": {"type": "integer", "minimum": 0}
+      }
+    },
+    "repetitionCompleteness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["planned", "completed"],
+      "properties": {
+        "planned": {"type": "integer", "minimum": 1},
+        "completed": {"type": "integer", "minimum": 0}
+      }
+    },
+    "tokenTotals": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["raw", "cached", "billed", "cap"],
+      "properties": {
+        "raw": {"type": "integer", "minimum": 0},
+        "cached": {"type": "integer", "minimum": 0},
+        "billed": {"type": "integer", "minimum": 0},
+        "cap": {"type": "integer", "minimum": 1}
+      }
+    },
+    "metric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "baseline", "candidate", "delta", "threshold", "passed"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$"},
+        "baseline": {"type": "number"},
+        "candidate": {"type": "number"},
+        "delta": {"type": "number"},
+        "threshold": {"type": "number"},
+        "passed": {"type": "boolean"}
+      }
+    },
+    "receiptResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["receipt_id", "run_id", "result", "derived_evidence_grade"],
+      "properties": {
+        "receipt_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$"},
+        "run_id": {"type": "string", "minLength": 1},
+        "result": {"const": "PASS"},
+        "derived_evidence_grade": {"enum": ["A", "B"]}
+      }
+    },
+    "mutationSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["critical_total", "critical_killed", "overall_total", "overall_killed"],
+      "properties": {
+        "critical_total": {"type": "integer", "minimum": 1},
+        "critical_killed": {"type": "integer", "minimum": 0},
+        "overall_total": {"type": "integer", "minimum": 1},
+        "overall_killed": {"type": "integer", "minimum": 0}
+      }
+    },
+    "hardGates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "critical_invariant_zero",
+        "primary_outcome_pass",
+        "secondary_outcomes_pass",
+        "mutation_thresholds_pass",
+        "protected_noninferiority_pass",
+        "trial_completeness_pass",
+        "repetition_completeness_pass",
+        "token_cap_pass"
+      ],
+      "properties": {
+        "critical_invariant_zero": {"type": "boolean"},
+        "primary_outcome_pass": {"type": "boolean"},
+        "secondary_outcomes_pass": {"type": "boolean"},
+        "mutation_thresholds_pass": {"type": "boolean"},
+        "protected_noninferiority_pass": {"type": "boolean"},
+        "trial_completeness_pass": {"type": "boolean"},
+        "repetition_completeness_pass": {"type": "boolean"},
+        "token_cap_pass": {"type": "boolean"}
+      }
+    }
+  }
+}
