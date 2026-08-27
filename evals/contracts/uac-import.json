@@ -11,6 +11,7 @@
     "0246bb0452fe016af5e26128122b13e5ef8d943ff6ccd5b437ec5bc65ecf7a89",
     "4d6263b784139fcdeeeddd1cd03f337fc233055c2de3a8137c9e2a0c287ec390",
     "3f9a1f147e6e133a3feeac1a08cfb5db72dfa1a4c747847010083ac79fedfd29",
+    "082360db6cc59590c03f5d502f1aeb2e5311ecf003058abf6c6a13a0f480a535",
     "9f04d56b0bac1f7f21a2015dd78cc7745a875637446334978e7eb150a83fccc8",
     "8ba44b003e7802e5edbf123da16ba40d579aea91b43e247eb6a42d142d65e3ed",
     "8ad70d4c06b16e005d561cdd08c46311a9385b5842db5c4e79665d51ff7fcf09",
@@ -80,6 +81,11 @@
       "sha256": "3f9a1f147e6e133a3feeac1a08cfb5db72dfa1a4c747847010083ac79fedfd29",
       "source": "ssot/uac-import.md",
       "text": "14. Rename the former structural `ship` result to `structural_ready`. It proves only that deterministic UAC gates passed."
+    },
+    {
+      "sha256": "082360db6cc59590c03f5d502f1aeb2e5311ecf003058abf6c6a13a0f480a535",
+      "source": "ssot/uac-import.md",
+      "text": "16. On `apply`, refuse landing unless the quality loop reaches `structural_ready`. Validate any supplied `PromotionVerdict.v2`; reject stale hashes or a mismatched slug. Treat `PromotionVerdict.v1` as read-only legacy evidence that cannot authorize promotion. During advisory rollout, an absent verdict leaves the result `behavioral_pending` and cannot materialize a new behavioral baseline."
     },
     {
       "sha256": "9f04d56b0bac1f7f21a2015dd78cc7745a875637446334978e7eb150a83fccc8",

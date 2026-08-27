@@ -64,7 +64,7 @@ Operational rule:
 13. Search for benchmark sources only when the source is generic or fit confidence is weak.
 14. Rename the former structural `ship` result to `structural_ready`. It proves only that deterministic UAC gates passed.
 15. Emit `EvalImpactPlan.v1` when requested and on `judge` or `apply` so the behavioral evaluator can select the minimum safe profile.
-16. On `apply`, refuse landing unless the quality loop reaches `structural_ready`. Validate any supplied `PromotionVerdict.v1`; reject stale hashes or a mismatched slug. During advisory rollout, an absent verdict leaves the result `behavioral_pending` and cannot materialize a new behavioral baseline.
+16. On `apply`, refuse landing unless the quality loop reaches `structural_ready`. Validate any supplied `PromotionVerdict.v2`; reject stale hashes or a mismatched slug. Treat `PromotionVerdict.v1` as read-only legacy evidence that cannot authorize promotion. During advisory rollout, an absent verdict leaves the result `behavioral_pending` and cannot materialize a new behavioral baseline.
 17. Materialize a new baseline only after an independent `promote` verdict, or preserve a valid historical baseline without rewriting its lineage.
 18. Keep deployment separate from apply.
 

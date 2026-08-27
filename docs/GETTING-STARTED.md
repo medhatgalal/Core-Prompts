@@ -64,6 +64,8 @@ Practical rule:
 
 If `judge` says the landing is structurally close but still needs bounded behavioral proof, use `auto-research` for that proof step. During the advisory rollout, a structurally ready apply may land as `behavioral_pending`, but it cannot advance the behavioral baseline or claim promotion.
 
+To move an already-canonical candidate from `behavioral_pending` to `promote`, use an independently signed public evidence bundle. The approved evaluator trust policy must already be on protected main and on the evaluated baseline's ancestry; a candidate cannot authorize its own evaluator. See [Capability evaluation](CAPABILITY-EVALUATION.md#from-behavioral_pending-to-promote) for the status model and [UAC usage](UAC-USAGE.md#example-finalize-an-existing-candidate-after-behavioral-proof) for the exact command.
+
 For the full flow, go to [UAC usage](UAC-USAGE.md).
 
 ## Step 3: Use Repo Tooling To Verify Or Operate The Repo
@@ -76,9 +78,9 @@ bin/capability-eval calibrate --static-only
 bin/capability-eval probe
 ```
 
-These commands make zero model calls. `structural_ready` means deterministic gates passed; only an independent, current `PromotionVerdict.v1` can mean `promote`.
+These commands make zero model calls. `structural_ready` means deterministic gates passed; only an independent, current `PromotionVerdict.v2` can mean `promote`. Version 1 verdicts remain readable but cannot authorize promotion.
 
-The live runner is not enabled in this release. `instruction-editor` is available as an experimental editor, while Google-style rewriting remains off by default in UAC.
+Live comparison is available only through explicit run plans and operator-authorized model calls. Behavioral promotion additionally requires the separately operated protected evaluator, conforming adapters, protected credentials and runner identities, external sealed data, qualified judges, purpose-separated signatures, and reproduction evidence. The bundled Codex adapter is fail-closed until a separately approved credential broker or equivalent isolation boundary exists. Missing prerequisites return `inconclusive`; the checked-in template cannot manufacture a promotion. `instruction-editor` remains experimental, and Google-style rewriting remains off by default in UAC.
 
 Once you are working at the repo layer, this is the shortest useful verification loop:
 

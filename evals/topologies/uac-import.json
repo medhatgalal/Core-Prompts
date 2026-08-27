@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "uac-import",
-  "ssot_sha256": "dadffc493d592f2405797925abbeb9e379cd897a60463713274aad6775f1c105",
+  "ssot_sha256": "386c457bb9bb257ae19f2794ab135b02dec9c9b58d90550bf5be3c7476423e6b",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -111,6 +111,15 @@
       "sha256": "3f9a1f147e6e133a3feeac1a08cfb5db72dfa1a4c747847010083ac79fedfd29",
       "text": "14. Rename the former structural `ship` result to `structural_ready`. It proves only that deterministic UAC gates passed.",
       "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "uac-import:L63:082360db6cc5",
+      "heading": "Workflow",
+      "source_line": 63,
+      "sha256": "082360db6cc59590c03f5d502f1aeb2e5311ecf003058abf6c6a13a0f480a535",
+      "text": "16. On `apply`, refuse landing unless the quality loop reaches `structural_ready`. Validate any supplied `PromotionVerdict.v2`; reject stale hashes or a mismatched slug. Treat `PromotionVerdict.v1` as read-only legacy evidence that cannot authorize promotion. During advisory rollout, an absent verdict leaves the result `behavioral_pending` and cannot materialize a new behavioral baseline.",
+      "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
@@ -230,7 +239,7 @@
   "source_references": [
     {
       "path": "ssot/uac-import.md",
-      "sha256": "dadffc493d592f2405797925abbeb9e379cd897a60463713274aad6775f1c105"
+      "sha256": "386c457bb9bb257ae19f2794ab135b02dec9c9b58d90550bf5be3c7476423e6b"
     }
   ],
   "known_ambiguities": [],
@@ -243,7 +252,7 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 17,
+    "total": 18,
     "mapped": 0,
     "waived": 0
   },

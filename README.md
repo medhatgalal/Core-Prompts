@@ -180,7 +180,7 @@ This is the right starting move when the user is uncertain which installed capab
 
 ## UAC Second
 
-UAC now reports `structural_ready`, not behavioral promotion. It runs deterministic `instruction_clarity.v1` lint and can emit an `EvalImpactPlan.v1`. Auto-Research and `bin/capability-eval` are the behavioral-proof path, but this release deliberately stops before live model runs until adapters, sealed cases, and judges pass calibration.
+UAC reports `structural_ready`, not behavioral promotion. It runs deterministic `instruction_clarity.v1` lint and can emit an `EvalImpactPlan.v1`. Auto-Research and `bin/capability-eval` are the behavioral-proof path. Live comparisons are explicit and fail closed; promotion additionally requires a separately operated protected evaluator with conforming adapters, protected credentials and runner identities, external sealed data, qualified judges, reproduction, and signed evidence.
 
 ```bash
 bin/uac audit --clarity on
@@ -190,7 +190,7 @@ bin/capability-eval compile --skill code-review
 bin/capability-eval compare --skill code-review --candidate ./candidate.md --profile static
 ```
 
-Normal CI uses only the zero-token `static` profile. The Code Review pilot now validates seeded lifecycle defects and matched safe controls without relying on user telemetry. Model-mediated profiles still require an explicit operator or workflow gate and cannot promote while contracts, runtime cells, judges, or sealed cases are incomplete.
+Normal CI uses only the zero-token `static` profile. The Code Review pilot validates seeded lifecycle defects and matched safe controls without relying on user telemetry. A structurally applied candidate stays `behavioral_pending` until UAC accepts an independent, current `PromotionVerdict.v2` with `status: promote`. `PromotionVerdict.v1` remains readable for historical evidence but cannot authorize promotion. Missing credentials, adapter conformance, sealed data, judge qualification, receipts, or reproduction returns `inconclusive`, never an inferred pass. See [Capability evaluation](docs/CAPABILITY-EVALUATION.md#from-behavioral_pending-to-promote) for the two-stage trust prerequisite and finalization command.
 
 In plain English: this release adds the checklist, contracts, static controls, and cost brakes. It does not claim that Google-style rewriting, `instruction-editor`, UAC rewrites, or any other skill change has already beaten its baseline in live model trials.
 

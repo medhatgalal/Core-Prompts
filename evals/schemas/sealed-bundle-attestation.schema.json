@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "SealedBundleAttestation.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "bundle_id",
+    "bundle_sha256",
+    "dataset_sha256",
+    "scorer_sha256",
+    "case_count",
+    "critical_case_count",
+    "candidate_visible",
+    "storage_class",
+    "created_at",
+    "expires_at",
+    "signature"
+  ],
+  "properties": {
+    "schema_version": {"const": "SealedBundleAttestation.v1"},
+    "bundle_id": {"type": "string", "minLength": 1},
+    "bundle_sha256": {"$ref": "#/$defs/sha256"},
+    "dataset_sha256": {"$ref": "#/$defs/sha256"},
+    "scorer_sha256": {"$ref": "#/$defs/sha256"},
+    "case_count": {"type": "integer", "minimum": 1},
+    "critical_case_count": {"type": "integer", "minimum": 1},
+    "candidate_visible": {"const": false},
+    "storage_class": {"const": "protected"},
+    "created_at": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": "string", "format": "date-time"},
+    "signature": {"$ref": "#/$defs/signature"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "signature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "key_id", "purpose", "signed_at", "payload_sha256", "value_base64"],
+      "properties": {
+        "algorithm": {"const": "Ed25519"},
+        "key_id": {"type": "string", "minLength": 1},
+        "purpose": {"const": "sealed_bundle"},
+        "signed_at": {"type": "string", "format": "date-time"},
+        "payload_sha256": {"$ref": "#/$defs/sha256"},
+        "value_base64": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

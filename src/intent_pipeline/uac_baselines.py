@@ -478,6 +478,39 @@ def validate_registry_entry(repo_root: Path, slug: str) -> dict[str, object]:
     }
 
 
+def preview_source_baseline(
+    repo_root: Path,
+    *,
+    slug: str,
+    baseline_text: str,
+    overwrite: bool = False,
+) -> dict[str, object]:
+    """Plan one baseline materialization without creating directories or writing state."""
+
+    registry = load_historical_baseline_registry(repo_root)
+    entry = dict(dict(registry.get("skills") or {}).get(slug) or {})
+    baseline_path = _clean_relpath(entry.get("baseline_path")) or f"sources/ssot-baselines/{slug}/baseline.md"
+    path = repo_root / baseline_path
+    candidate_text = baseline_text.rstrip() + "\n"
+    existing_text = path.read_text(encoding="utf-8") if path.exists() else None
+    blocked_reasons = (
+        ()
+        if overwrite or existing_text is None
+        else tuple(_baseline_regression_reasons(candidate_text, existing_text))
+    )
+    return {
+        "slug": slug,
+        "baseline_path": baseline_path,
+        "created": not path.exists(),
+        "updated": not blocked_reasons
+        and (overwrite or not path.exists() or existing_text != candidate_text),
+        "blocked_reasons": list(blocked_reasons),
+        "candidate_sha256": text_sha256(candidate_text),
+        "existing_sha256": text_sha256(existing_text) if existing_text is not None else None,
+        "overwrite": overwrite,
+    }
+
+
 def persist_source_baseline(
     repo_root: Path,
     *,
@@ -488,7 +521,18 @@ def persist_source_baseline(
     source_path: str | None = None,
     source_sha256: str | None = None,
     source_commit: str | None = None,
+    preflight: Mapping[str, object] | None = None,
 ) -> dict[str, object]:
+    plan = preview_source_baseline(
+        repo_root,
+        slug=slug,
+        baseline_text=baseline_text,
+        overwrite=overwrite,
+    )
+    if preflight is not None and dict(preflight) != plan:
+        raise ValueError("baseline materialization changed after preflight")
+    if plan["blocked_reasons"]:
+        return plan
     registry = load_historical_baseline_registry(repo_root)
     skills = dict(registry.get("skills") or {})
     entry = dict(skills.get(slug) or {})
@@ -497,13 +541,12 @@ def persist_source_baseline(
     path.parent.mkdir(parents=True, exist_ok=True)
     candidate_text = baseline_text.rstrip() + "\n"
     existing_text = path.read_text(encoding="utf-8") if path.exists() else None
-    blocked_reasons = tuple(_baseline_regression_reasons(candidate_text, existing_text))
+    blocked_reasons: tuple[str, ...] = ()
     created = not path.exists()
     updated = False
     if overwrite or not path.exists():
         path.write_text(candidate_text, encoding="utf-8")
         updated = True
-        blocked_reasons = ()
     elif existing_text != candidate_text and not blocked_reasons:
         path.write_text(candidate_text, encoding="utf-8")
         updated = True
@@ -695,6 +738,7 @@ __all__ = [
     "historical_baseline_registry_path",
     "historical_richness_score",
     "load_historical_baseline_registry",
+    "preview_source_baseline",
     "persist_source_baseline",
     "resolve_historical_baseline",
     "text_sha256",

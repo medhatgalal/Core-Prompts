@@ -23,11 +23,16 @@ def parser() -> argparse.ArgumentParser:
     compare_cmd = sub.add_parser("compare", help="compare canonical baseline and candidate")
     compare_cmd.add_argument("--skill", required=True)
     compare_cmd.add_argument("--candidate", required=True, type=Path)
+    compare_cmd.add_argument("--baseline", type=Path)
+    compare_cmd.add_argument("--run-plan", type=Path)
     compare_cmd.add_argument("--profile", required=True)
     compare_cmd.add_argument("--allow-model-calls", action="store_true")
     compare_cmd.add_argument("--max-tokens", type=int)
     report_cmd = sub.add_parser("report", help="validate and render an immutable run summary")
     report_cmd.add_argument("--run", required=True)
+    report_cmd.add_argument("--promotion-trust-root", type=Path)
+    report_cmd.add_argument("--approved-trust-policy-sha256")
+    report_cmd.add_argument("--approved-trust-policy-revision")
     sub.add_parser("probe", help="probe local runtimes without model calls")
     return root
 
@@ -58,9 +63,24 @@ def main(argv: list[str] | None = None) -> int:
     elif args.command == "calibrate":
         payload = calibrate_static(repo_root)
     elif args.command == "compare":
-        payload = compare(repo_root, args.skill, args.candidate.resolve(), args.profile, allow_model_calls=args.allow_model_calls, max_tokens=args.max_tokens)
+        payload = compare(
+            repo_root,
+            args.skill,
+            args.candidate.resolve(),
+            args.profile,
+            allow_model_calls=args.allow_model_calls,
+            max_tokens=args.max_tokens,
+            baseline=args.baseline.resolve() if args.baseline else None,
+            run_plan=args.run_plan.resolve() if args.run_plan else None,
+        )
     elif args.command == "report":
-        payload = report_run(repo_root, args.run)
+        payload = report_run(
+            repo_root,
+            args.run,
+            trust_root=args.promotion_trust_root.resolve() if args.promotion_trust_root else None,
+            approved_trust_policy_sha256=args.approved_trust_policy_sha256,
+            approved_trust_policy_revision=args.approved_trust_policy_revision,
+        )
     else:
         payload = probe_runtime(repo_root)
     json.dump(payload, sys.stdout, indent=2)

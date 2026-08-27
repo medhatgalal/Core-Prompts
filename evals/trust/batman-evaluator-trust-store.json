@@ -1,0 +1,77 @@
+{
+  "keys": [
+    {
+      "algorithm": "Ed25519",
+      "expires_at": "2027-08-27T21:29:43.812369Z",
+      "key_id": "batman-v5-adapter_conformance-dad0127f813b430188d97172",
+      "not_before": "2026-08-27T21:24:43.812369Z",
+      "public_key_base64": "Nk4fRZp69Pw1RxwyU/b44GZuWbvWVQlMYd4ps7FoTGI=",
+      "purposes": [
+        "adapter_conformance"
+      ],
+      "revoked_at": null,
+      "schema_version": "ProtectedTrustRoot.v1"
+    },
+    {
+      "algorithm": "Ed25519",
+      "expires_at": "2027-08-27T21:29:43.812369Z",
+      "key_id": "batman-v5-execution_receipt-782b713588a3c925486c418b",
+      "not_before": "2026-08-27T21:24:43.812369Z",
+      "public_key_base64": "WLkn+iPzRyzC/nfNxJKMwJUrK/yQmZCxfBBO5uAv6pA=",
+      "purposes": [
+        "execution_receipt"
+      ],
+      "revoked_at": null,
+      "schema_version": "ProtectedTrustRoot.v1"
+    },
+    {
+      "algorithm": "Ed25519",
+      "expires_at": "2027-08-27T21:29:43.812369Z",
+      "key_id": "batman-v5-global_token_ledger-60e9ca7864f5cf5f6b705c7b",
+      "not_before": "2026-08-27T21:24:43.812369Z",
+      "public_key_base64": "HD4fZNnBx2osulmrG2UBAgNqiS4gGKDBf2mlpDQPO78=",
+      "purposes": [
+        "global_token_ledger"
+      ],
+      "revoked_at": null,
+      "schema_version": "ProtectedTrustRoot.v1"
+    },
+    {
+      "algorithm": "Ed25519",
+      "expires_at": "2027-08-27T21:29:43.812369Z",
+      "key_id": "batman-v5-judge_qualification-213e2e2d89c072c89a8a43b6",
+      "not_before": "2026-08-27T21:24:43.812369Z",
+      "public_key_base64": "v+fbUHKDuPr4xRe5icSGtDSjufAfLr87zvASTaRsO6Q=",
+      "purposes": [
+        "judge_qualification"
+      ],
+      "revoked_at": null,
+      "schema_version": "ProtectedTrustRoot.v1"
+    },
+    {
+      "algorithm": "Ed25519",
+      "expires_at": "2027-08-27T21:29:43.812369Z",
+      "key_id": "batman-v5-promotion_verdict-bb8b10a6188cdfbb5337080f",
+      "not_before": "2026-08-27T21:24:43.812369Z",
+      "public_key_base64": "6RSmZN4KVNFNS6qUxn8iMJ35KJkPu4t928ARbxMbHCc=",
+      "purposes": [
+        "promotion_verdict"
+      ],
+      "revoked_at": null,
+      "schema_version": "ProtectedTrustRoot.v1"
+    },
+    {
+      "algorithm": "Ed25519",
+      "expires_at": "2027-08-27T21:29:43.812369Z",
+      "key_id": "batman-v5-sealed_bundle-eac72a9a173e3d694d68c758",
+      "not_before": "2026-08-27T21:24:43.812369Z",
+      "public_key_base64": "GcODXuZflU0XMV7Bxmln9Xm9fPQ7ItjaNaHyCPig5Yw=",
+      "purposes": [
+        "sealed_bundle"
+      ],
+      "revoked_at": null,
+      "schema_version": "ProtectedTrustRoot.v1"
+    }
+  ],
+  "schema_version": "ProtectedTrustStore.v1"
+}

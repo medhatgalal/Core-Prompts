@@ -6,8 +6,15 @@ from pathlib import Path
 import pytest
 
 from core_prompts_eval.clarity import audit_text, load_policy, safe_fixes
-from core_prompts_eval.contracts import ContractError, PROFILE_TOKEN_CAPS, REQUIRED_PROMOTION_GATES, validate_promotion_verdict
-from core_prompts_eval.evaluator import calibrate_static, compare, compile_skill
+from core_prompts_eval.contracts import (
+    ContractError,
+    PROFILE_TOKEN_CAPS,
+    REQUIRED_PROMOTION_GATES,
+    artifact_hash,
+    validate_legacy_promotion_verdict_v1,
+    validate_promotion_verdict,
+)
+from core_prompts_eval.evaluator import calibrate_static, compare, compile_skill, report_run
 from core_prompts_eval.impact import build_impact_plan
 from core_prompts_eval.topology import compile_topology
 
@@ -34,7 +41,7 @@ def test_impact_plan_escalates_unknown_and_caps_tokens() -> None:
     assert plan["hard_token_cap"] == PROFILE_TOKEN_CAPS["canary"]
 
 
-def test_promotion_verdict_cannot_average_over_failed_gate() -> None:
+def test_legacy_unbound_promotion_verdict_is_rejected() -> None:
     verdict = {
         "schema_version": "PromotionVerdict.v1",
         "run_id": "run-1",
@@ -55,8 +62,81 @@ def test_promotion_verdict_cannot_average_over_failed_gate() -> None:
         "created_at": "2026-08-18T00:00:00Z",
     }
 
-    with pytest.raises(ContractError, match="failed hard gates"):
+    with pytest.raises(ContractError, match="legacy read-only"):
         validate_promotion_verdict(verdict)
+
+
+def test_legacy_v1_behavioral_pending_verdict_remains_readable() -> None:
+    verdict = {
+        "schema_version": "PromotionVerdict.v1",
+        "run_id": "legacy-run",
+        "slug": "example",
+        "status": "behavioral_pending",
+        "baseline_sha256": "a" * 64,
+        "candidate_sha256": "b" * 64,
+        "goal_contract_sha256": "c" * 64,
+        "topology_sha256": "d" * 64,
+        "dataset_sha256": "e" * 64,
+        "scorer_sha256": "f" * 64,
+        "evaluator_version": "1",
+        "profile": "promotion",
+        "token_cap": 5_000_000,
+        "required_cells": [],
+        "hard_gates": {},
+        "token_usage": {"raw": 0, "cached": 0, "billed": 0},
+        "created_at": "2026-08-18T00:00:00Z",
+    }
+
+    validate_legacy_promotion_verdict_v1(verdict)
+
+
+def test_report_marks_embedded_v1_verdict_explicitly_non_authorizing(tmp_path: Path) -> None:
+    verdict = {
+        "schema_version": "PromotionVerdict.v1",
+        "run_id": "legacy-run",
+        "slug": "example",
+        "status": "behavioral_pending",
+        "baseline_sha256": "a" * 64,
+        "candidate_sha256": "b" * 64,
+        "goal_contract_sha256": "c" * 64,
+        "topology_sha256": "d" * 64,
+        "dataset_sha256": "e" * 64,
+        "scorer_sha256": "f" * 64,
+        "evaluator_version": "1",
+        "profile": "promotion",
+        "token_cap": 5_000_000,
+        "required_cells": [],
+        "hard_gates": {},
+        "token_usage": {"raw": 0, "cached": 0, "billed": 0},
+        "created_at": "2026-08-18T00:00:00Z",
+    }
+    run_dir = tmp_path / "reports/evals/legacy-run"
+    run_dir.mkdir(parents=True)
+    summary_path = run_dir / "summary.json"
+    summary_path.write_text(json.dumps({"promotion_verdict": verdict}) + "\n", encoding="utf-8")
+    digest = artifact_hash(summary_path)
+    chain_digest = artifact_hash(f"{'0' * 64}\0summary.json\0{digest}")
+    (run_dir / "hash-chain.json").write_text(
+        json.dumps(
+            {
+                "schema_version": "EvalArtifactChain.v1",
+                "entries": [
+                    {"path": "summary.json", "sha256": digest, "chain_sha256": chain_digest}
+                ],
+                "root_sha256": chain_digest,
+            }
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    report = report_run(tmp_path, "legacy-run")
+
+    assert report["promotion_authorization"] == {
+        "schema_version": "PromotionAuthorization.v1",
+        "authorizing": False,
+        "reason": "PromotionVerdict.v1 is legacy read-only evidence",
+    }
 
 
 def test_compile_supercharge_has_no_known_contract_blocker() -> None:
