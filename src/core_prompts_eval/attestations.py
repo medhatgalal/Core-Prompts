@@ -7,9 +7,6 @@ import hashlib
 import re
 from typing import Any, Mapping
 
-from cryptography.exceptions import InvalidSignature
-from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PublicKey
-
 from .contracts import artifact_hash, canonical_json
 
 
@@ -234,6 +231,14 @@ def validate_signed_attestation(
 
     if "expires_at" in unsigned and current >= _parse_time(unsigned["expires_at"], "expires_at"):
         raise AttestationError("attestation is expired")
+    try:
+        from cryptography.exceptions import InvalidSignature
+        from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PublicKey
+    except ImportError as exc:
+        raise AttestationError(
+            "signed evidence verification requires the optional cryptography package"
+        ) from exc
+
     public_key = Ed25519PublicKey.from_public_bytes(
         _decode_base64(root["public_key_base64"], field="public_key_base64", expected_length=32)
     )
