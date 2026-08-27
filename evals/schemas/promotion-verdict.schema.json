@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "PromotionVerdict.v1",
+  "$id": "PromotionVerdict.v2",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -14,7 +14,7 @@
     "issued_at", "expires_at", "issuer", "signature"
   ],
   "properties": {
-    "schema_version": {"const": "PromotionVerdict.v1"},
+    "schema_version": {"const": "PromotionVerdict.v2"},
     "run_id": {"type": "string", "minLength": 1},
     "slug": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
     "status": {"enum": ["structural_ready", "behavioral_pending", "promote", "hold", "blocked_contract", "inconclusive", "rollback", "stale_evidence"]},

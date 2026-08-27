@@ -21,6 +21,7 @@ SCHEMA_PURPOSES = {
     "JudgeQualification.v1": "judge_qualification",
     "ExecutionReceipt.v1": "execution_receipt",
     "PromotionVerdict.v1": "promotion_verdict",
+    "PromotionVerdict.v2": "promotion_verdict",
     "AdapterConformance.v1": "adapter_conformance",
     "GlobalTokenLedger.v1": "global_token_ledger",
 }

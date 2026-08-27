@@ -44,6 +44,7 @@ from intent_pipeline.uac_quality import (
 from intent_pipeline.uac_baselines import (
     evaluate_candidate_against_baseline,
     historical_richness_score,
+    preview_source_baseline,
     persist_source_baseline,
     resolve_historical_baseline,
     text_sha256,
@@ -143,7 +144,7 @@ def _parse_args() -> argparse.Namespace:
     )
     parser.add_argument('--clarity', choices=('on', 'off'), default='on', help='Run advisory instruction_clarity.v1 lint')
     parser.add_argument('--emit-impact-plan', action='store_true', help='Emit the minimum safe capability-eval profile')
-    parser.add_argument('--promotion-verdict', type=Path, help='Independent PromotionVerdict.v1 to validate during apply')
+    parser.add_argument('--promotion-verdict', type=Path, help='Independent PromotionVerdict.v2 to validate during apply')
     parser.add_argument(
         '--promotion-trust-root',
         type=Path,
@@ -2079,6 +2080,10 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
     if promotion_verdict_path:
         try:
             promotion_verdict = load_json(promotion_verdict_path.resolve())
+            if promotion_verdict.get('schema_version') != 'PromotionVerdict.v2':
+                raise ContractError(
+                    'UAC promotion apply requires PromotionVerdict.v2; V1 remains readable but cannot authorize apply'
+                )
             trust_root = Path(getattr(args, 'promotion_trust_root', ROOT / 'evals' / 'trust-root.json'))
             if not trust_root.is_absolute():
                 trust_root = ROOT / trust_root
@@ -2143,6 +2148,33 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
     slug = str(result['manifest']['slug'])
     quality_plan = result.get('quality_plan')
     quality_result = result.get('quality_result')
+    promotion_baseline_preflight = None
+    if promotion_verdict and promotion_verdict.get('status') == 'promote':
+        try:
+            preflight_text, _preflight_guard = _safe_apply_ssot_text(
+                slug,
+                result,
+                quality_result=quality_result,
+            )
+            promotion_baseline_preflight = preview_source_baseline(
+                ROOT,
+                slug=slug,
+                baseline_text=preflight_text,
+                overwrite=False,
+            )
+        except (OSError, ValueError) as exc:
+            result['mode'] = 'apply'
+            result['status'] = 'stale_evidence'
+            result['detail'] = f'Promotion baseline materialization preflight refused: {exc}'
+            return result
+        if promotion_baseline_preflight.get('blocked_reasons'):
+            result['mode'] = 'apply'
+            result['status'] = 'stale_evidence'
+            result['detail'] = (
+                'Promotion baseline materialization preflight refused: '
+                + '; '.join(str(item) for item in promotion_baseline_preflight['blocked_reasons'])
+            )
+            return result
     quality_paths: list[Path] = []
     if quality_plan and quality_result:
         quality_paths = _persist_quality_reviews(slug, quality_plan, quality_result)
@@ -2243,12 +2275,8 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
             source_path=f'ssot/{slug}.md',
             source_sha256=str(promotion_verdict['candidate_sha256']),
             source_commit=str(promotion_verdict['candidate_revision']),
+            preflight=promotion_baseline_preflight,
         )
-        if baseline_materialization.get('blocked_reasons'):
-            result['mode'] = 'apply'
-            result['status'] = 'apply_failed_validation'
-            result['detail'] = 'Promoted baseline materialization was blocked to preserve historical evidence.'
-            return result
     if baseline_materialization:
         descriptor['historical_baseline'] = dict(descriptor.get('historical_baseline') or {})
         descriptor['historical_baseline']['baseline_path'] = baseline_materialization['baseline_path']

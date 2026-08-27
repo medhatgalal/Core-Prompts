@@ -31,6 +31,8 @@ Core-Prompts separates candidate production from behavioral promotion.
 
 The repository contains the evaluator and public orchestration template, not real credentials, private keys, sealed cases, labels, qualified judge implementations, or executed model results. Missing or non-conforming protected inputs return `inconclusive`; they never become an inferred pass.
 
+The bundled Codex adapter is fail-closed and promotion-ineligible. It never passes `OPENAI_API_KEY` to candidate-influenced execution. Enabling authenticated Codex promotion runs requires a separately approved, bounded credential broker or an equivalent OS-enforced boundary; ordinary environment-variable authentication is rejected. `PromotionVerdict.v1` remains readable as legacy evidence, but only `PromotionVerdict.v2` can authorize promotion.
+
 ## Evidence flow
 
 ```mermaid
@@ -43,7 +45,7 @@ flowchart LR
   D --> I
   I --> R["Paired evaluator run"]
   H["Independent sealed bundle"] --> R
-  R --> V["PromotionVerdict.v1"]
+  R --> V["PromotionVerdict.v2"]
   V --> A["Reviewed UAC apply"]
 ```
 

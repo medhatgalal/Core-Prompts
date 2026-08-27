@@ -6,7 +6,13 @@ from pathlib import Path
 import pytest
 
 from core_prompts_eval.clarity import audit_text, load_policy, safe_fixes
-from core_prompts_eval.contracts import ContractError, PROFILE_TOKEN_CAPS, REQUIRED_PROMOTION_GATES, validate_promotion_verdict
+from core_prompts_eval.contracts import (
+    ContractError,
+    PROFILE_TOKEN_CAPS,
+    REQUIRED_PROMOTION_GATES,
+    validate_legacy_promotion_verdict_v1,
+    validate_promotion_verdict,
+)
 from core_prompts_eval.evaluator import calibrate_static, compare, compile_skill
 from core_prompts_eval.impact import build_impact_plan
 from core_prompts_eval.topology import compile_topology
@@ -55,8 +61,32 @@ def test_legacy_unbound_promotion_verdict_is_rejected() -> None:
         "created_at": "2026-08-18T00:00:00Z",
     }
 
-    with pytest.raises(ContractError, match="missing required fields"):
+    with pytest.raises(ContractError, match="legacy read-only"):
         validate_promotion_verdict(verdict)
+
+
+def test_legacy_v1_behavioral_pending_verdict_remains_readable() -> None:
+    verdict = {
+        "schema_version": "PromotionVerdict.v1",
+        "run_id": "legacy-run",
+        "slug": "example",
+        "status": "behavioral_pending",
+        "baseline_sha256": "a" * 64,
+        "candidate_sha256": "b" * 64,
+        "goal_contract_sha256": "c" * 64,
+        "topology_sha256": "d" * 64,
+        "dataset_sha256": "e" * 64,
+        "scorer_sha256": "f" * 64,
+        "evaluator_version": "1",
+        "profile": "promotion",
+        "token_cap": 5_000_000,
+        "required_cells": [],
+        "hard_gates": {},
+        "token_usage": {"raw": 0, "cached": 0, "billed": 0},
+        "created_at": "2026-08-18T00:00:00Z",
+    }
+
+    validate_legacy_promotion_verdict_v1(verdict)
 
 
 def test_compile_supercharge_has_no_known_contract_blocker() -> None:

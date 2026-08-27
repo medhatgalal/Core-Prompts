@@ -192,7 +192,7 @@ bin/capability-eval compile --skill code-review
 bin/capability-eval compare --skill code-review --candidate ./candidate.md --profile static
 ```
 
-Normal CI uses only the zero-token `static` profile. The Code Review pilot validates seeded lifecycle defects and matched safe controls without relying on user telemetry. A structurally applied candidate stays `behavioral_pending` until UAC accepts an independent, current `PromotionVerdict.v1` with `status: promote`. Missing credentials, adapter conformance, sealed data, judge qualification, receipts, or reproduction returns `inconclusive`, never an inferred pass. See [Capability evaluation](docs/CAPABILITY-EVALUATION.md#from-behavioral_pending-to-promote) for the two-stage trust prerequisite and finalization command.
+Normal CI uses only the zero-token `static` profile. The Code Review pilot validates seeded lifecycle defects and matched safe controls without relying on user telemetry. A structurally applied candidate stays `behavioral_pending` until UAC accepts an independent, current `PromotionVerdict.v2` with `status: promote`. `PromotionVerdict.v1` remains readable for historical evidence but cannot authorize promotion. Missing credentials, adapter conformance, sealed data, judge qualification, receipts, or reproduction returns `inconclusive`, never an inferred pass. See [Capability evaluation](docs/CAPABILITY-EVALUATION.md#from-behavioral_pending-to-promote) for the two-stage trust prerequisite and finalization command.
 
 In plain English: this release adds the checklist, contracts, static controls, and cost brakes. It does not claim that Google-style rewriting, `instruction-editor`, UAC rewrites, or any other skill change has already beaten its baseline in live model trials.
 

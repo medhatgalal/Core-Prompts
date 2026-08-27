@@ -257,6 +257,147 @@ def test_invalid_promotion_verdict_refusal_is_an_exact_noop(tmp_path: Path) -> N
     }
 
     assert result["status"] == "stale_evidence"
+    assert "requires PromotionVerdict.v2" in result["detail"]
+    assert after == before
+
+
+def test_blocked_promoted_baseline_materialization_is_an_exact_noop(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    workspace = tmp_path / "workspace"
+    shutil.copytree(
+        ROOT,
+        workspace,
+        ignore=shutil.ignore_patterns(".git", ".pytest_cache", "__pycache__", ".DS_Store"),
+    )
+    baseline_path = workspace / "sources/ssot-baselines/batman/baseline.md"
+    baseline_path.parent.mkdir(parents=True)
+    baseline_path.write_text("\n".join(f"## Section {index}\n- Required behavior {index}" for index in range(100)) + "\n", encoding="utf-8")
+    registry_path = workspace / "sources/ssot-baselines/index.json"
+    registry = json.loads(registry_path.read_text(encoding="utf-8"))
+    registry["skills"]["batman"] = {
+        "strategy": "source_library",
+        "group": "applied_baseline",
+        "baseline_path": "sources/ssot-baselines/batman/baseline.md",
+    }
+    registry_path.write_text(json.dumps(registry, indent=2) + "\n", encoding="utf-8")
+    verdict_path = tmp_path / "promotion-verdict.json"
+    verdict_path.write_text(
+        json.dumps(
+            {
+                "schema_version": "PromotionVerdict.v2",
+                "slug": "batman",
+                "status": "promote",
+                "candidate_sha256": artifact_hash("thin candidate\n"),
+                "candidate_revision": "b" * 40,
+                "goal_contract_sha256": "c" * 64,
+                "topology_sha256": "d" * 64,
+            }
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    before = {
+        path.relative_to(workspace).as_posix(): path.read_bytes()
+        for path in workspace.rglob("*")
+        if path.is_file()
+    }
+    original_root = UAC_IMPORT.ROOT
+    try:
+        UAC_IMPORT.ROOT = workspace
+        monkeypatch.setattr(UAC_IMPORT, "validate_promotion_verdict", lambda *args, **kwargs: None)
+        monkeypatch.setattr(
+            UAC_IMPORT,
+            "_validate_promotion_revision_bindings",
+            lambda *args, **kwargs: "finalize_existing_candidate",
+        )
+        monkeypatch.setattr(
+            UAC_IMPORT,
+            "_safe_apply_ssot_text",
+            lambda *args, **kwargs: ("thin candidate\n", {}),
+        )
+        result = UAC_IMPORT._apply_payload(
+            {
+                "status": "accepted",
+                "source": {"normalized_source": str(workspace / "ssot/batman.md")},
+                "cross_analysis": {"fit_assessment": "fits_cleanly"},
+                "manifest": {
+                    "slug": "batman",
+                    "layers": {
+                        "minimal": {
+                            "capability_type": "both",
+                            "summary": "Batman",
+                            "required_inputs": [],
+                            "expected_outputs": [],
+                        },
+                        "expanded": {"adjustment_recommendations": []},
+                    },
+                },
+                "quality_result": {"status": "structural_ready"},
+                "benchmark_sources": [],
+            },
+            SimpleNamespace(
+                promotion_verdict=verdict_path,
+                promotion_trust_root=workspace / "trust-root.json",
+                finalize_existing_candidate=True,
+                approved_trust_policy_sha256="e" * 64,
+                approved_trust_policy_revision="f" * 40,
+                yes=True,
+                quality_loop="off",
+            ),
+            [str(workspace / "ssot/batman.md")],
+        )
+    finally:
+        UAC_IMPORT.ROOT = original_root
+    after = {
+        path.relative_to(workspace).as_posix(): path.read_bytes()
+        for path in workspace.rglob("*")
+        if path.is_file()
+    }
+
+    assert result["status"] == "stale_evidence"
+    assert "baseline materialization" in result["detail"]
+    assert after == before
+
+
+def test_baseline_materialization_refuses_if_preflight_state_changes(tmp_path: Path) -> None:
+    root = tmp_path / "repo"
+    baseline = root / "sources/ssot-baselines/batman/baseline.md"
+    baseline.parent.mkdir(parents=True)
+    baseline.write_text("original\n", encoding="utf-8")
+    index = root / "sources/ssot-baselines/index.json"
+    index.write_text(
+        json.dumps(
+            {
+                "version": "uac-baseline-sources.v1",
+                "skills": {
+                    "batman": {
+                        "baseline_path": "sources/ssot-baselines/batman/baseline.md",
+                    }
+                },
+            }
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    preflight = UAC_IMPORT.preview_source_baseline(
+        root,
+        slug="batman",
+        baseline_text="promoted candidate\n",
+    )
+    baseline.write_text("concurrent change\n", encoding="utf-8")
+    before = {path.relative_to(root).as_posix(): path.read_bytes() for path in root.rglob("*") if path.is_file()}
+
+    with pytest.raises(ValueError, match="changed after preflight"):
+        UAC_IMPORT.persist_source_baseline(
+            root,
+            slug="batman",
+            baseline_text="promoted candidate\n",
+            preflight=preflight,
+        )
+
+    after = {path.relative_to(root).as_posix(): path.read_bytes() for path in root.rglob("*") if path.is_file()}
     assert after == before
 
 

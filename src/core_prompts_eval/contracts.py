@@ -69,6 +69,26 @@ TOPOLOGY_REQUIRED = (
     "review_status",
 )
 
+PROMOTION_V1_REQUIRED = (
+    "schema_version",
+    "run_id",
+    "slug",
+    "status",
+    "baseline_sha256",
+    "candidate_sha256",
+    "goal_contract_sha256",
+    "topology_sha256",
+    "dataset_sha256",
+    "scorer_sha256",
+    "evaluator_version",
+    "profile",
+    "token_cap",
+    "required_cells",
+    "hard_gates",
+    "token_usage",
+    "created_at",
+)
+
 PROMOTION_REQUIRED = (
     "schema_version",
     "run_id",
@@ -354,6 +374,30 @@ def _derived_field(verified: Mapping[str, Any], name: str) -> Any:
     raise ContractError(f"signed promotion evidence omitted derived {name}")
 
 
+def validate_legacy_promotion_verdict_v1(payload: Mapping[str, Any]) -> None:
+    """Validate the published V1 read contract; V1 never authorizes promotion apply."""
+
+    _require(payload, PROMOTION_V1_REQUIRED, "PromotionVerdict.v1")
+    if payload["schema_version"] != "PromotionVerdict.v1":
+        raise ContractError("unsupported legacy promotion verdict schema")
+    if payload["status"] not in EVIDENCE_STATUSES:
+        raise ContractError(f"invalid promotion status: {payload['status']}")
+    for field in (
+        "baseline_sha256",
+        "candidate_sha256",
+        "goal_contract_sha256",
+        "topology_sha256",
+        "dataset_sha256",
+        "scorer_sha256",
+    ):
+        if not re.fullmatch(r"[0-9a-f]{64}", str(payload[field])):
+            raise ContractError(f"{field} must be a lowercase SHA-256 digest")
+    if payload["profile"] not in PROFILE_TOKEN_CAPS:
+        raise ContractError("legacy promotion verdict uses an unknown profile")
+    if int(payload["token_cap"]) != PROFILE_TOKEN_CAPS[payload["profile"]]:
+        raise ContractError("legacy promotion verdict token cap does not match policy")
+
+
 def validate_promotion_verdict(
     payload: Mapping[str, Any],
     *,
@@ -364,11 +408,16 @@ def validate_promotion_verdict(
     now: str | datetime | None = None,
     evidence_verifier: PromotionEvidenceVerifier | None = None,
 ) -> None:
-    _require(payload, PROMOTION_REQUIRED, "PromotionVerdict.v1")
+    if payload.get("schema_version") == "PromotionVerdict.v1":
+        validate_legacy_promotion_verdict_v1(payload)
+        raise ContractError(
+            "PromotionVerdict.v1 is legacy read-only evidence and cannot authorize apply; migrate to PromotionVerdict.v2"
+        )
+    _require(payload, PROMOTION_REQUIRED, "PromotionVerdict.v2")
     unknown = sorted(set(payload) - PROMOTION_ALLOWED)
     if unknown:
-        raise ContractError(f"PromotionVerdict.v1 contains unknown fields: {', '.join(unknown)}")
-    if payload["schema_version"] != "PromotionVerdict.v1":
+        raise ContractError(f"PromotionVerdict.v2 contains unknown fields: {', '.join(unknown)}")
+    if payload["schema_version"] != "PromotionVerdict.v2":
         raise ContractError("unsupported promotion verdict schema")
     if payload["status"] not in EVIDENCE_STATUSES:
         raise ContractError(f"invalid promotion status: {payload['status']}")

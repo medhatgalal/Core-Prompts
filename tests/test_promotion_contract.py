@@ -104,7 +104,7 @@ def _promotion_verdict(tmp_path: Path) -> tuple[dict[str, object], dict[str, obj
     usage = {"raw": 100, "cached": 0, "billed": 100}
     gates = {name: True for name in REQUIRED_PROMOTION_GATES}
     verdict: dict[str, object] = {
-        "schema_version": "PromotionVerdict.v1",
+        "schema_version": "PromotionVerdict.v2",
         "run_id": "run-primary",
         "slug": "batman",
         "status": "promote",
@@ -210,6 +210,8 @@ def _promotion_verdict(tmp_path: Path) -> tuple[dict[str, object], dict[str, obj
 def test_promotion_verdict_schema_is_closed_and_requires_immutable_bindings() -> None:
     schema = json.loads((ROOT / "evals/schemas/promotion-verdict.schema.json").read_text(encoding="utf-8"))
 
+    assert schema["$id"] == "PromotionVerdict.v2"
+    assert schema["properties"]["schema_version"]["const"] == "PromotionVerdict.v2"
     assert schema["additionalProperties"] is False
     for field in (
         "baseline_revision",
@@ -239,6 +241,11 @@ def test_promotion_verdict_schema_is_closed_and_requires_immutable_bindings() ->
         "signature",
     ):
         assert field in schema["required"]
+
+    legacy = json.loads(
+        (ROOT / "evals/schemas/promotion-verdict-v1.schema.json").read_text(encoding="utf-8")
+    )
+    assert legacy["$id"] == "PromotionVerdict.v1"
 
 
 def test_approved_trust_policy_schema_is_closed_and_binds_store_and_keys() -> None:

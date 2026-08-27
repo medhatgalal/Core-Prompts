@@ -1027,7 +1027,7 @@ def _promotion_evidence(
     token_ledger_path = _write_json(repo, "evidence/token-ledger.json", token_ledger)
 
     verdict = {
-        "schema_version": "PromotionVerdict.v1",
+        "schema_version": "PromotionVerdict.v2",
         "run_id": "run-1",
         "slug": "batman",
         "status": "promote",

@@ -109,11 +109,11 @@ def _direct_bound_path(repo_root: Path, payload: Mapping[str, Any], path_field: 
 def _validate_verdict_body(payload: Mapping[str, Any]) -> None:
     missing = [field for field in PROMOTION_REQUIRED if field not in payload]
     if missing:
-        raise VerdictError(f"PromotionVerdict.v1 missing required fields: {', '.join(missing)}")
+        raise VerdictError(f"PromotionVerdict.v2 missing required fields: {', '.join(missing)}")
     unknown = sorted(set(payload) - PROMOTION_ALLOWED)
     if unknown:
-        raise VerdictError(f"PromotionVerdict.v1 contains unknown fields: {', '.join(unknown)}")
-    if payload.get("schema_version") != "PromotionVerdict.v1":
+        raise VerdictError(f"PromotionVerdict.v2 contains unknown fields: {', '.join(unknown)}")
+    if payload.get("schema_version") != "PromotionVerdict.v2":
         raise VerdictError("unsupported promotion verdict schema")
     if payload.get("status") not in EVIDENCE_STATUSES:
         raise VerdictError("invalid promotion verdict status")

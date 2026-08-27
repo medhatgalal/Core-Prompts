@@ -213,7 +213,7 @@ Use `apply` only when you intend to change canonical repo state.
 
 ### Example: Finalize An Existing Candidate After Behavioral Proof
 
-Use this path when a structurally ready candidate is already canonical with `behavioral_status: behavioral_pending`, and an independent protected evaluator later returns a signed `PromotionVerdict.v1` with `status: promote`.
+Use this path when a structurally ready candidate is already canonical with `behavioral_status: behavioral_pending`, and an independent protected evaluator later returns a signed `PromotionVerdict.v2` with `status: promote`. UAC may read a legacy `PromotionVerdict.v1`, but V1 cannot authorize promotion.
 
 The trust policy must be landed first. Its protected-main revision must be an ancestor of the evaluated baseline; the candidate revision cannot authorize its own evaluator keys.
 
