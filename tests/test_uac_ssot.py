@@ -26,7 +26,7 @@ def test_audit_ssot_entries_detects_hybrid_capability() -> None:
     audits = {entry.slug: entry for entry in audit_ssot_entries(ROOT)}
 
     assert audits['supercharge'].inferred.capability_type == 'both'
-    assert audits['mentor'].inferred.capability_type == 'both'
+    assert audits['batman'].inferred.capability_type == 'both'
 
 
 def test_architecture_entry_publishes_display_name_and_agent_surfaces() -> None:

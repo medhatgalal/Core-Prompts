@@ -365,7 +365,7 @@ def test_deploy_with_only_codex_available_registers_only_codex_agents(tmp_path: 
     assert (tmp_path / ".codex" / "agents" / "resources" / "auto-research" / "bootstrap.py").is_file()
 
     config_text = (tmp_path / ".codex" / "config.toml").read_text(encoding="utf-8")
-    for slug in ("converge", "mentor", "supercharge"):
+    for slug in ("converge", "supercharge"):
         assert f"[agents.{slug}]" in config_text
     for slug in ("code-review", "resolve-conflict"):
         assert f"[agents.{slug}]" not in config_text
@@ -397,7 +397,7 @@ def test_deploy_with_all_clis_available_deploys_new_skill_surfaces(tmp_path: Pat
         assert not (tmp_path / ".kiro" / "agents" / f"{slug}.json").exists()
         assert not (tmp_path / ".codex" / "agents" / f"{slug}.toml").exists()
 
-    for slug in ("converge", "mentor", "supercharge"):
+    for slug in ("converge", "supercharge"):
         assert (tmp_path / ".codex" / "skills" / slug / "SKILL.md").is_file()
         assert (tmp_path / ".codex" / "skills" / slug / "resources" / "capability.json").is_file()
         assert (tmp_path / ".codex" / "agents" / f"{slug}.toml").is_file()
@@ -509,7 +509,7 @@ def test_deploy_codex_registration_is_idempotent(tmp_path: Path) -> None:
     assert second.returncode == 0, second.stdout
 
     config_text = (tmp_path / ".codex" / "config.toml").read_text(encoding="utf-8")
-    for slug in ("architecture", "converge", "docs-review-expert", "gitops-review", "mentor", "supercharge"):
+    for slug in ("architecture", "converge", "docs-review-expert", "gitops-review", "supercharge"):
         assert config_text.count(f"[agents.{slug}]") == 1
 
 
@@ -613,11 +613,177 @@ def test_deploy_codex_registration_completes_with_populated_home_style_config(tm
         "converge",
         "docs-review-expert",
         "gitops-review",
-        "mentor",
         "supercharge",
         "weekly-intel",
     ):
         assert config_text.count(f"[agents.{slug}]") == 1
+
+
+def test_deploy_retires_mentor_surfaces_and_registration_without_harming_unrelated_state(
+    tmp_path: Path,
+) -> None:
+    mentor_paths = (
+        tmp_path / ".codex" / "skills" / "mentor",
+        tmp_path / ".codex" / "agents" / "mentor.toml",
+        tmp_path / ".codex" / "agents" / "resources" / "mentor",
+        tmp_path / ".gemini" / "skills" / "mentor",
+        tmp_path / ".gemini" / "agents" / "mentor.md",
+        tmp_path / ".gemini" / "agents" / "resources" / "mentor",
+        tmp_path / ".claude" / "skills" / "mentor",
+        tmp_path / ".claude" / "agents" / "mentor.md",
+        tmp_path / ".claude" / "agents" / "resources" / "mentor",
+        tmp_path / ".kiro" / "skills" / "mentor",
+        tmp_path / ".kiro" / "agents" / "mentor.json",
+        tmp_path / ".kiro" / "agents" / "resources" / "mentor",
+    )
+    for path in mentor_paths:
+        if path.suffix:
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text("stale mentor\n", encoding="utf-8")
+        else:
+            path.mkdir(parents=True, exist_ok=True)
+            (path / "stale.txt").write_text("stale mentor\n", encoding="utf-8")
+
+    preserved_skill = tmp_path / ".codex" / "skills" / "local-helper" / "SKILL.md"
+    preserved_skill.parent.mkdir(parents=True, exist_ok=True)
+    preserved_skill.write_text("local helper\n", encoding="utf-8")
+    config_path = tmp_path / ".codex" / "config.toml"
+    config_path.write_text(
+        "\n".join(
+            [
+                "[agents.mentor]",
+                f'config_file = "{tmp_path / ".codex" / "agents" / "mentor.toml"}"',
+                "",
+                "[agents.local-helper]",
+                'config_file = "/tmp/local-helper.toml"',
+                "",
+            ]
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_script(
+        DEPLOY_SCRIPT,
+        "--cli",
+        "all",
+        target_root=tmp_path,
+        cli_bins=("codex", "gemini", "claude", "kiro-cli"),
+        use_system_bash=True,
+        allow_nonlocal_target=True,
+    )
+
+    assert result.returncode == 0, result.stdout
+    assert "stale_pruned=12" in result.stdout
+    assert all(not path.exists() for path in mentor_paths)
+    assert preserved_skill.read_text(encoding="utf-8") == "local helper\n"
+    config_text = config_path.read_text(encoding="utf-8")
+    assert "[agents.mentor]" not in config_text
+    assert str(tmp_path / ".codex" / "agents" / "mentor.toml") not in config_text
+    assert "[agents.local-helper]" in config_text
+    assert "/tmp/local-helper.toml" in config_text
+    archived = tmp_path / ".core-prompts-state" / "stale-pruned"
+    assert len(list(archived.glob("**/mentor*"))) == 12
+
+
+def test_filtered_mentor_retirement_prunes_codex_files_and_registration(
+    tmp_path: Path,
+) -> None:
+    mentor_paths = (
+        tmp_path / ".codex" / "skills" / "mentor",
+        tmp_path / ".codex" / "agents" / "mentor.toml",
+        tmp_path / ".codex" / "agents" / "resources" / "mentor",
+    )
+    for path in mentor_paths:
+        if path.suffix:
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text("stale mentor\n", encoding="utf-8")
+        else:
+            path.mkdir(parents=True, exist_ok=True)
+            (path / "stale.txt").write_text("stale mentor\n", encoding="utf-8")
+
+    config_path = tmp_path / ".codex" / "config.toml"
+    config_path.write_text(
+        "\n".join(
+            [
+                "# >>> core-prompts codex agents start >>>",
+                "[agents.batman]",
+                f'config_file = "{tmp_path / ".codex" / "agents" / "batman.toml"}"',
+                "",
+                "[agents.mentor]",
+                f'config_file = "{tmp_path / ".codex" / "agents" / "mentor.toml"}"',
+                "",
+                "# <<< core-prompts codex agents end <<<",
+                "",
+                "[agents.local-helper]",
+                'config_file = "/tmp/local-helper.toml"',
+                "",
+            ]
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_script(
+        DEPLOY_SCRIPT,
+        "--cli",
+        "codex",
+        "--slug",
+        "mentor",
+        target_root=tmp_path,
+        cli_bins=("codex",),
+        use_system_bash=True,
+        allow_nonlocal_target=True,
+    )
+
+    assert result.returncode == 0, result.stdout
+    assert "warning: nothing to deploy for selected CLI targets" in result.stdout
+    assert "stale_pruned=3" in result.stdout
+    assert all(not path.exists() for path in mentor_paths)
+    config_text = config_path.read_text(encoding="utf-8")
+    assert "[agents.mentor]" not in config_text
+    assert str(tmp_path / ".codex" / "agents" / "mentor.toml") not in config_text
+    assert "[agents.batman]" in config_text
+    assert str(tmp_path / ".codex" / "agents" / "batman.toml") in config_text
+    assert "[agents.local-helper]" in config_text
+    assert "/tmp/local-helper.toml" in config_text
+    archived = tmp_path / ".core-prompts-state" / "stale-pruned"
+    assert len(list(archived.glob("**/mentor*"))) == 3
+
+
+def test_filtered_mentor_retirement_preserves_custom_registration(tmp_path: Path) -> None:
+    config_path = tmp_path / ".codex" / "config.toml"
+    config_path.parent.mkdir(parents=True, exist_ok=True)
+    config_path.write_text(
+        "\n".join(
+            [
+                "[agents.mentor]",
+                'config_file = "/opt/custom-agents/mentor.toml"',
+                "",
+                "[agents.local-helper]",
+                'config_file = "/tmp/local-helper.toml"',
+                "",
+            ]
+        ),
+        encoding="utf-8",
+    )
+
+    result = run_script(
+        DEPLOY_SCRIPT,
+        "--cli",
+        "codex",
+        "--slug",
+        "mentor",
+        target_root=tmp_path,
+        cli_bins=("codex",),
+        use_system_bash=True,
+        allow_nonlocal_target=True,
+    )
+
+    assert result.returncode == 0, result.stdout
+    config_text = config_path.read_text(encoding="utf-8")
+    assert "[agents.mentor]" in config_text
+    assert 'config_file = "/opt/custom-agents/mentor.toml"' in config_text
+    assert "[agents.local-helper]" in config_text
+    assert 'config_file = "/tmp/local-helper.toml"' in config_text
 
 
 def test_deploy_slug_filter_limits_copy_and_registration(tmp_path: Path) -> None:

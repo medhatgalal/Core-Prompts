@@ -342,13 +342,7 @@ def write_kiro_agent(slug: str, desc: str, body: str, resource_uri: str, include
         'description': desc,
         'prompt': f'# {prompt_title}\n\n{body}\n\nCapability resource: `{resource_uri}`\n',
         'resources': resources,
-        'hooks': {
-            'agentSpawn': [
-                {
-                    'command': 'if [ -x ./scripts/engos ]; then ./scripts/engos prime >/dev/null 2>&1 || true; elif [ -x ./engos ]; then ./engos context prime >/dev/null 2>&1 || true; fi'
-                }
-            ]
-        },
+        'hooks': {},
         'tools': ['*'],
     }
     path.write_text(json.dumps(obj, indent=2) + '\n', encoding='utf-8')

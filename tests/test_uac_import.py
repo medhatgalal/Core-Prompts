@@ -134,6 +134,24 @@ def test_same_slug_descriptor_preserves_curated_metadata_when_quality_text_diffe
     assert "quality_status" not in merged
 
 
+def test_same_slug_descriptor_refreshes_bound_explicit_description() -> None:
+    applied = (ROOT / "ssot" / "code-review.md").read_text(encoding="utf-8")
+    frontmatter, _ = UAC_IMPORT.parse_ssot_frontmatter_and_body(applied)
+    explicit_description = str(frontmatter["description"])
+    existing = UAC_IMPORT.load_descriptor(ROOT, "code-review")
+    assert existing["shared_summary"] != explicit_description
+
+    merged, quality_bound = UAC_IMPORT._merge_existing_descriptor_for_apply(
+        "code-review",
+        {"shared_summary": explicit_description},
+        ssot_text=applied,
+        quality_result={"final_candidate_text": applied},
+    )
+
+    assert quality_bound is True
+    assert merged["shared_summary"] == explicit_description
+
+
 def test_behavioral_checklist_changes_select_promotion_profile_and_clause_ids() -> None:
     current = (ROOT / "ssot" / "code-review.md").read_text(encoding="utf-8")
     candidate = current + "\n## Additional Safety Rule\n- Require cleanup for every new resource allocation.\n"

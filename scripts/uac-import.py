@@ -1340,6 +1340,12 @@ def _merge_existing_descriptor_for_apply(
     )
     merged = json.loads(json.dumps(existing))
     if quality_bound:
+        source_fields, _ = parse_ssot_frontmatter_and_body(ssot_text)
+        if (
+            'description' in source_fields
+            and candidate.get('shared_summary') == source_fields['description']
+        ):
+            merged['shared_summary'] = candidate['shared_summary']
         for key in (
             'quality_profile',
             'quality_status',

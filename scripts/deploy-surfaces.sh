@@ -263,34 +263,60 @@ PY
 }
 
 prune_deprecated_slug_outputs() {
-  if ! slug_filter_matches "auto-research" && ! slug_filter_matches "autosearch"; then
-    return 0
-  fi
   local cli
-  for cli in "${TARGETS[@]}"; do
-    case "$cli" in
-      codex)
-        prune_path "$TARGET_ROOT/.codex/skills/autosearch"
-        prune_path "$TARGET_ROOT/.codex/agents/autosearch.toml"
-        prune_path "$TARGET_ROOT/.codex/agents/resources/autosearch"
-        ;;
-      gemini)
-        prune_path "$TARGET_ROOT/.gemini/skills/autosearch"
-        prune_path "$TARGET_ROOT/.gemini/agents/autosearch.md"
-        prune_path "$TARGET_ROOT/.gemini/agents/resources/autosearch"
-        ;;
-      claude)
-        prune_path "$TARGET_ROOT/.claude/skills/autosearch"
-        prune_path "$TARGET_ROOT/.claude/agents/autosearch.md"
-        prune_path "$TARGET_ROOT/.claude/agents/resources/autosearch"
-        ;;
-      kiro)
-        prune_path "$TARGET_ROOT/.kiro/skills/autosearch"
-        prune_path "$TARGET_ROOT/.kiro/agents/autosearch.json"
-        prune_path "$TARGET_ROOT/.kiro/agents/resources/autosearch"
-        ;;
-    esac
-  done
+  if slug_filter_matches "auto-research" || slug_filter_matches "autosearch"; then
+    for cli in "${TARGETS[@]}"; do
+      case "$cli" in
+        codex)
+          prune_path "$TARGET_ROOT/.codex/skills/autosearch"
+          prune_path "$TARGET_ROOT/.codex/agents/autosearch.toml"
+          prune_path "$TARGET_ROOT/.codex/agents/resources/autosearch"
+          ;;
+        gemini)
+          prune_path "$TARGET_ROOT/.gemini/skills/autosearch"
+          prune_path "$TARGET_ROOT/.gemini/agents/autosearch.md"
+          prune_path "$TARGET_ROOT/.gemini/agents/resources/autosearch"
+          ;;
+        claude)
+          prune_path "$TARGET_ROOT/.claude/skills/autosearch"
+          prune_path "$TARGET_ROOT/.claude/agents/autosearch.md"
+          prune_path "$TARGET_ROOT/.claude/agents/resources/autosearch"
+          ;;
+        kiro)
+          prune_path "$TARGET_ROOT/.kiro/skills/autosearch"
+          prune_path "$TARGET_ROOT/.kiro/agents/autosearch.json"
+          prune_path "$TARGET_ROOT/.kiro/agents/resources/autosearch"
+          ;;
+      esac
+    done
+  fi
+
+  if slug_filter_matches "mentor"; then
+    for cli in "${TARGETS[@]}"; do
+      case "$cli" in
+        codex)
+          prune_path "$TARGET_ROOT/.codex/skills/mentor"
+          prune_path "$TARGET_ROOT/.codex/agents/mentor.toml"
+          prune_path "$TARGET_ROOT/.codex/agents/resources/mentor"
+          ;;
+        gemini)
+          prune_path "$TARGET_ROOT/.gemini/skills/mentor"
+          prune_path "$TARGET_ROOT/.gemini/agents/mentor.md"
+          prune_path "$TARGET_ROOT/.gemini/agents/resources/mentor"
+          ;;
+        claude)
+          prune_path "$TARGET_ROOT/.claude/skills/mentor"
+          prune_path "$TARGET_ROOT/.claude/agents/mentor.md"
+          prune_path "$TARGET_ROOT/.claude/agents/resources/mentor"
+          ;;
+        kiro)
+          prune_path "$TARGET_ROOT/.kiro/skills/mentor"
+          prune_path "$TARGET_ROOT/.kiro/agents/mentor.json"
+          prune_path "$TARGET_ROOT/.kiro/agents/resources/mentor"
+          ;;
+      esac
+    done
+  fi
 }
 
 write_launcher() {
@@ -500,6 +526,20 @@ for entry in manifest.get('ssot_sources', []):
 PY
 }
 
+prune_retired_codex_agent_registration() {
+  if [[ " ${TARGETS[*]} " != *" codex "* ]] || ! slug_filter_matches "mentor"; then
+    return 0
+  fi
+  local config_path="$TARGET_ROOT/.codex/config.toml"
+  [[ -f "$config_path" ]] || return 0
+  if [[ "$DRY_RUN" -eq 1 ]]; then
+    echo "DRY-RUN PRUNE retired codex agent registration in $config_path: mentor"
+    return 0
+  fi
+  python3 scripts/register-codex-agents.py --prune-retired-only "$config_path" "$TARGET_ROOT"
+  echo "PRUNED retired codex agent registration in $config_path: mentor"
+}
+
 COPY_PLAN_FILE="$(mktemp "${TMPDIR:-/tmp}/core-prompts-deploy-plan.XXXXXX")"
 trap 'rm -f "$COPY_PLAN_FILE"' EXIT
 
@@ -507,6 +547,7 @@ python3 scripts/deploy-copy-plan.py "$REPO_ROOT" "$TARGET_ROOT" "${TARGETS[@]}" 
 if [[ ! -s "$COPY_PLAN_FILE" ]]; then
   echo "warning: nothing to deploy for selected CLI targets"
   prune_deprecated_slug_outputs
+  prune_retired_codex_agent_registration
   echo "SUMMARY copied=0 missing_source=0 skipped_cli=0 replaced_symlink=0 stale_pruned=$STALE_PRUNED"
   exit 0
 fi

@@ -1159,7 +1159,6 @@
             "code-review",
             "docs-review-expert",
             "gitops-review",
-            "mentor",
             "resolve-conflict",
             "supercharge",
             "testing"
@@ -1467,10 +1466,9 @@
       "layers": {
         "minimal": {
           "capability_type": "both",
-          "summary": "Runs an explicitly invoked, evidence-gated delivery protocol through independent research, design, TDD implementation, verification, adversarial review, documentation, Git health, PR or MR, merge, and cleanup. Trigger with batman or the alias superman.",
-          "role": "analyst",
+          "summary": "Runs an explicitly invoked, subagent-driven delivery protocol through research, design, TDD implementation, blocking reviews, verification, documentation, Git health, PR or MR, merge, and cleanup. Trigger with batman or the alias superman.",
+          "role": "resolver",
           "domain_tags": [
-            "review",
             "batman"
           ],
           "required_inputs": [
@@ -1485,12 +1483,12 @@
             "size classification and selected stage set",
             "written specification, delivery plan, implementation plan, and ordered tasks",
             "decision record with rejected alternatives and reasons",
-            "per-task briefs, worker reports, review reports, and classified findings",
+            "task briefs, subagent reports, milestone review decisions, and classified findings",
             "observed TDD red evidence and mutation-check evidence for implemented behavior",
             "validation and verification evidence, including independent reconciliation when required",
             "documentation review and Git health result",
             "PR or MR, CI, merge, mainline verification, and cleanup receipt when landing is authorized",
-            "explicit blockers, parked work authorized by the human, and remaining uncertainty"
+            "progress reports, explicit blockers, parked work authorized by the human, and remaining uncertainty"
           ],
           "tool_policy": {
             "allowed": [
@@ -1621,13 +1619,13 @@
       "display_name": "Batman \u2014 Evidence-Gated Delivery Controller",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "batman",
-      "shared_summary": "Runs an explicitly invoked, evidence-gated delivery protocol through independent research, design, TDD implementation, verification, adversarial review, documentation, Git health, PR or MR, merge, and cleanup. Trigger with batman or the alias superman.",
+      "shared_summary": "Runs an explicitly invoked, subagent-driven delivery protocol through research, design, TDD implementation, blocking reviews, verification, documentation, Git health, PR or MR, merge, and cleanup. Trigger with batman or the alias superman.",
       "shared_constraints": [
         "One canonical Batman SSOT body.",
         "`superman` is an alias only; no Superman SSOT, descriptor, skill, agent, or generated surface.",
-        "No provider-specific orchestration APIs or machine-specific agent paths in the canonical body.",
-        "No instruction to use all available agents, skills, or tools.",
-        "No controller implementation, failing-test authorship, or review-fix authorship.",
+        "No provider-specific orchestration API, machine-specific path, or arbitrary external capability dependency.",
+        "No instruction to use every agent, skill, or tool.",
+        "No controller implementation, failing-test authorship, review-fix authorship, or self-approval.",
         "No claim weakening, fabricated evidence, invented score, or behavioral-promotion claim from structural validation.",
         "No live write, deployment, push, publish, merge, destructive cleanup, or security-sensitive action without the required authority.",
         "No committed run-scoped scratch or secrets in evidence excerpts."
@@ -1642,20 +1640,29 @@
           "status": "structural_ready",
           "historical_baseline": {
             "slug": "batman",
-            "strategy": "candidate_seed",
-            "group": "new_or_untracked",
+            "strategy": "derived_history",
+            "group": "derived",
             "baseline_path": null,
-            "selected_commit": null,
+            "selected_commit": "7691d9d5",
             "richness_score": 5,
             "line_count": 276,
-            "reason": "No registry entry or git history available; use the candidate as the provisional seed baseline.",
+            "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
             "equivalent_commits": [],
             "expected_companions": [],
             "operator_invariants": [],
-            "scenario_matrix": [],
+            "scenario_matrix": [
+              {
+                "id": "operational_invocation",
+                "kind": "operational_contract",
+                "label": "operational invocation surface",
+                "must_contain": [
+                  "## Invocation"
+                ]
+              }
+            ],
             "historical_proof": {},
-            "source": "candidate_seed",
-            "verified_by_git_history": false,
+            "source": "git_history",
+            "verified_by_git_history": true,
             "has_baseline_text": true
           },
           "judge_reports": [
@@ -1665,7 +1672,15 @@
               "score": 10,
               "blockers": [],
               "classification": "preserved",
-              "scenario_results": [],
+              "scenario_results": [
+                {
+                  "id": "operational_invocation",
+                  "kind": "operational_contract",
+                  "label": "operational invocation surface",
+                  "passed": true,
+                  "missing_markers": []
+                }
+              ],
               "scorecard": {
                 "baseline_richness": 5,
                 "candidate_richness": 5,
@@ -1673,7 +1688,7 @@
                 "candidate_operational_score": 2,
                 "baseline_preserved_in_resource": false
               },
-              "baseline_commit": null,
+              "baseline_commit": "7691d9d5",
               "baseline_slug": "batman"
             },
             {
@@ -1755,11 +1770,10 @@
       ],
       "rubric_version": "capability-fabric.v0",
       "invocation_hints": [
-        "Use `batman` to run the full evidence-gated delivery controller for this work item.",
+        "Use `batman` for end-to-end implementation through subagent-driven development and blocking review gates.",
         "Use `superman` as an alias for the same Batman protocol and the same SSOT body.",
-        "Use Batman for a contract, metric, safety path, shipped defect, or other change that needs independent implementation and review.",
-        "Use Batman when the parent must remain a controller rather than becoming the implementer after research.",
-        "Do not invoke Batman for ordinary advice, one-pass editing, or a review that does not include implementation and landing."
+        "Use Batman for a contract, metric, safety path, shipped defect, or other implementation that requires independent evidence and landing.",
+        "Do not invoke Batman for advice, a one-pass edit, or a review that excludes implementation."
       ]
     },
     {
@@ -4500,249 +4514,6 @@
         "clarify actors, conditions, commands, or outputs",
         "audit an instruction artifact for readability or translation risk",
         "compare an edited instruction against its original contract"
-      ]
-    },
-    {
-      "slug": "mentor",
-      "manifest_version": "capability-fabric.v0",
-      "layers": {
-        "minimal": {
-          "capability_type": "both",
-          "summary": "[Medhat] Senior engineering oversight, planning, and workflow guidance.",
-          "role": "advisor",
-          "domain_tags": [
-            "prompting",
-            "mentor"
-          ],
-          "required_inputs": [
-            "the current goal or obstacle",
-            "repo state when relevant, such as branch, diff, failing checks, or active work slice",
-            "any constraints around safety, time, release risk, or coordination with other agents"
-          ],
-          "expected_outputs": [
-            "the current working interpretation of the task",
-            "the next recommended action or ordered plan",
-            "evidence required before calling the task done",
-            "the specialist capability to invoke when Mentor should route instead of own the work"
-          ],
-          "tool_policy": {
-            "allowed": [
-              "deterministic classification",
-              "metadata publication",
-              "surface generation"
-            ],
-            "forbidden": [
-              "orchestration",
-              "delegation decisions",
-              "runtime execution control"
-            ]
-          },
-          "resources": [
-            "ssot/mentor.md"
-          ],
-          "packaging_profile": {
-            "capability_type": "both",
-            "primary_surfaces": {
-              "codex": [
-                "codex_skill",
-                "codex_agent"
-              ],
-              "gemini": [
-                "gemini_skill",
-                "gemini_agent"
-              ],
-              "claude": [
-                "claude_skill",
-                "claude_agent"
-              ],
-              "kiro": [
-                "kiro_skill",
-                "kiro_agent"
-              ]
-            },
-            "wrapper_surfaces": {
-              "codex": [
-                "plugin_wrapper"
-              ],
-              "gemini": [
-                "skill_wrapper"
-              ],
-              "claude": [
-                "skill_wrapper",
-                "plugin_wrapper"
-              ],
-              "kiro": [
-                "skill_wrapper",
-                "power_wrapper"
-              ]
-            },
-            "notes": [
-              "wrapper surfaces are additive deployment forms, not capability types",
-              "orchestrators must not infer execution authority from wrapper presence alone"
-            ]
-          },
-          "install_target": {
-            "recommended": "repo_local",
-            "confidence": 0.88,
-            "confirmation_required_for_apply": true,
-            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
-            "supported": [
-              "global",
-              "repo_local",
-              "both"
-            ]
-          },
-          "emitted_surfaces": {
-            "codex": [
-              "codex_skill",
-              "codex_agent"
-            ],
-            "gemini": [
-              "gemini_skill",
-              "gemini_agent"
-            ],
-            "claude": [
-              "claude_skill",
-              "claude_agent"
-            ],
-            "kiro": [
-              "kiro_skill",
-              "kiro_agent"
-            ]
-          },
-          "source_provenance": {
-            "source_type": "LOCAL_FILE",
-            "normalized_source": "ssot/mentor.md",
-            "policy_rule_id": "ssot.mentor",
-            "content_sha256": "ssot"
-          },
-          "confidence": 0.98,
-          "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
-          "review_status": "ready_for_orchestrator_review",
-          "display_name": "Mentor \u2014 Senior Engineering Oversight and Workflow Guidance"
-        },
-        "expanded": {
-          "relationship_suggestions": [
-            "prefer explicit review or analyst companions before high-authority use"
-          ],
-          "capability_dependencies": [
-            "context"
-          ],
-          "overlap_candidates": [],
-          "migration_notes": [
-            "If the capability lands, compare it against existing entries before apply.",
-            "Relationship suggestions are advisory only and do not imply runtime routing."
-          ],
-          "adjustment_recommendations": [
-            "add an explicit primary objective before packaging",
-            "add deterministic in-scope sections to improve routing fitness",
-            "capture quality constraints or non-negotiables"
-          ]
-        },
-        "org_graph": {
-          "org_role": "specialist_with_workflow_surface",
-          "reports_to_suggestions": [],
-          "delegates_to_suggestions": [],
-          "collaborates_with_suggestions": [
-            "review",
-            "analysis"
-          ],
-          "authority_tier": "advisory",
-          "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
-        }
-      },
-      "display_name": "Mentor \u2014 Senior Engineering Oversight and Workflow Guidance",
-      "descriptor_version": "capability-fabric.descriptor.v0",
-      "family_slug": "mentor",
-      "shared_summary": "[Medhat] Senior engineering oversight, planning, and workflow guidance.",
-      "shared_constraints": [],
-      "modes": [
-        {
-          "mode_slug": "2-1-standard-help-mode",
-          "display_name": "2.1 Standard Help Mode",
-          "source_refs": [
-            "ssot/mentor.md"
-          ],
-          "mode_summary": "Declared by the canonical `2.1 Standard Help Mode` section.",
-          "required_inputs": [],
-          "expected_outputs": [],
-          "examples": [],
-          "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
-        },
-        {
-          "mode_slug": "2-2-ult-mode-prompt-engineering",
-          "display_name": "2.2 ULT MODE (Prompt Engineering)",
-          "source_refs": [
-            "ssot/mentor.md"
-          ],
-          "mode_summary": "Declared by the canonical `2.2 ULT MODE (Prompt Engineering)` section.",
-          "required_inputs": [],
-          "expected_outputs": [],
-          "examples": [],
-          "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
-        },
-        {
-          "mode_slug": "2-3-terminal-cli-mode",
-          "display_name": "2.3 Terminal / CLI Mode",
-          "source_refs": [
-            "ssot/mentor.md"
-          ],
-          "mode_summary": "Declared by the canonical `2.3 Terminal / CLI Mode` section.",
-          "required_inputs": [],
-          "expected_outputs": [],
-          "examples": [],
-          "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
-        },
-        {
-          "mode_slug": "2-4-diagnostic-mode",
-          "display_name": "2.4 Diagnostic Mode",
-          "source_refs": [
-            "ssot/mentor.md"
-          ],
-          "mode_summary": "Declared by the canonical `2.4 Diagnostic Mode` section.",
-          "required_inputs": [],
-          "expected_outputs": [],
-          "examples": [],
-          "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
-        }
-      ],
-      "benchmark_sources": [],
-      "consumption_hints": {},
-      "declared_capability": "both",
-      "inferred_capability": "both",
-      "expected_surface_names": [
-        "codex_skill",
-        "codex_agent",
-        "gemini_skill",
-        "gemini_agent",
-        "claude_skill",
-        "claude_agent",
-        "kiro_skill",
-        "kiro_agent"
-      ],
-      "rubric_version": "capability-fabric.v0",
-      "invocation_hints": [
-        "what should I do next",
-        "help me plan this change safely",
-        "check repo health and tell me the next reversible move",
-        "supervise execution across several capabilities",
-        "turn this rough request into a sharper plan or higher-quality prompt"
       ]
     },
     {
@@ -7516,7 +7287,6 @@
       ".gemini/skills/gitops-review/SKILL.md",
       ".gemini/skills/ic-assistant/SKILL.md",
       ".gemini/skills/instruction-editor/SKILL.md",
-      ".gemini/skills/mentor/SKILL.md",
       ".gemini/skills/pitch/SKILL.md",
       ".gemini/skills/pulse/SKILL.md",
       ".gemini/skills/resolve-conflict/SKILL.md",
@@ -7534,7 +7304,6 @@
       ".gemini/agents/docs-review-expert.md",
       ".gemini/agents/gitops-review.md",
       ".gemini/agents/ic-assistant.md",
-      ".gemini/agents/mentor.md",
       ".gemini/agents/pitch.md",
       ".gemini/agents/pulse.md",
       ".gemini/agents/supercharge.md",
@@ -7557,7 +7326,6 @@
       ".claude/skills/gitops-review/SKILL.md",
       ".claude/skills/ic-assistant/SKILL.md",
       ".claude/skills/instruction-editor/SKILL.md",
-      ".claude/skills/mentor/SKILL.md",
       ".claude/skills/pitch/SKILL.md",
       ".claude/skills/pulse/SKILL.md",
       ".claude/skills/resolve-conflict/SKILL.md",
@@ -7575,7 +7343,6 @@
       ".claude/agents/docs-review-expert.md",
       ".claude/agents/gitops-review.md",
       ".claude/agents/ic-assistant.md",
-      ".claude/agents/mentor.md",
       ".claude/agents/pitch.md",
       ".claude/agents/pulse.md",
       ".claude/agents/supercharge.md",
@@ -7589,7 +7356,6 @@
       ".kiro/agents/docs-review-expert.json",
       ".kiro/agents/gitops-review.json",
       ".kiro/agents/ic-assistant.json",
-      ".kiro/agents/mentor.json",
       ".kiro/agents/pitch.json",
       ".kiro/agents/pulse.json",
       ".kiro/agents/supercharge.json",
@@ -7612,7 +7378,6 @@
       ".kiro/skills/gitops-review/SKILL.md",
       ".kiro/skills/ic-assistant/SKILL.md",
       ".kiro/skills/instruction-editor/SKILL.md",
-      ".kiro/skills/mentor/SKILL.md",
       ".kiro/skills/pitch/SKILL.md",
       ".kiro/skills/pulse/SKILL.md",
       ".kiro/skills/resolve-conflict/SKILL.md",
@@ -7639,7 +7404,6 @@
       ".codex/skills/gitops-review/SKILL.md",
       ".codex/skills/ic-assistant/SKILL.md",
       ".codex/skills/instruction-editor/SKILL.md",
-      ".codex/skills/mentor/SKILL.md",
       ".codex/skills/pitch/SKILL.md",
       ".codex/skills/pulse/SKILL.md",
       ".codex/skills/resolve-conflict/SKILL.md",
@@ -7657,7 +7421,6 @@
       ".codex/agents/docs-review-expert.toml",
       ".codex/agents/gitops-review.toml",
       ".codex/agents/ic-assistant.toml",
-      ".codex/agents/mentor.toml",
       ".codex/agents/pitch.toml",
       ".codex/agents/pulse.toml",
       ".codex/agents/supercharge.toml",
@@ -7692,7 +7455,6 @@
       ".codex/skills/ic-assistant/resources/appian-incident-runbook.md",
       ".codex/skills/instruction-editor/resources/capability.json",
       ".codex/skills/instruction-editor/resources/references/instruction-clarity.md",
-      ".codex/skills/mentor/resources/capability.json",
       ".codex/skills/pitch/resources/capability.json",
       ".codex/skills/pulse/resources/capability.json",
       ".codex/skills/resolve-conflict/resources/capability.json",
@@ -7716,7 +7478,6 @@
       ".codex/agents/resources/gitops-review/capability.json",
       ".codex/agents/resources/ic-assistant/capability.json",
       ".codex/agents/resources/ic-assistant/appian-incident-runbook.md",
-      ".codex/agents/resources/mentor/capability.json",
       ".codex/agents/resources/pitch/capability.json",
       ".codex/agents/resources/pulse/capability.json",
       ".codex/agents/resources/supercharge/capability.json",
@@ -7749,7 +7510,6 @@
       ".gemini/skills/ic-assistant/resources/appian-incident-runbook.md",
       ".gemini/skills/instruction-editor/resources/capability.json",
       ".gemini/skills/instruction-editor/resources/references/instruction-clarity.md",
-      ".gemini/skills/mentor/resources/capability.json",
       ".gemini/skills/pitch/resources/capability.json",
       ".gemini/skills/pulse/resources/capability.json",
       ".gemini/skills/resolve-conflict/resources/capability.json",
@@ -7773,7 +7533,6 @@
       ".gemini/agents/resources/gitops-review/capability.json",
       ".gemini/agents/resources/ic-assistant/capability.json",
       ".gemini/agents/resources/ic-assistant/appian-incident-runbook.md",
-      ".gemini/agents/resources/mentor/capability.json",
       ".gemini/agents/resources/pitch/capability.json",
       ".gemini/agents/resources/pulse/capability.json",
       ".gemini/agents/resources/supercharge/capability.json",
@@ -7806,7 +7565,6 @@
       ".claude/skills/ic-assistant/resources/appian-incident-runbook.md",
       ".claude/skills/instruction-editor/resources/capability.json",
       ".claude/skills/instruction-editor/resources/references/instruction-clarity.md",
-      ".claude/skills/mentor/resources/capability.json",
       ".claude/skills/pitch/resources/capability.json",
       ".claude/skills/pulse/resources/capability.json",
       ".claude/skills/resolve-conflict/resources/capability.json",
@@ -7830,7 +7588,6 @@
       ".claude/agents/resources/gitops-review/capability.json",
       ".claude/agents/resources/ic-assistant/capability.json",
       ".claude/agents/resources/ic-assistant/appian-incident-runbook.md",
-      ".claude/agents/resources/mentor/capability.json",
       ".claude/agents/resources/pitch/capability.json",
       ".claude/agents/resources/pulse/capability.json",
       ".claude/agents/resources/supercharge/capability.json",
@@ -7863,7 +7620,6 @@
       ".kiro/skills/ic-assistant/resources/appian-incident-runbook.md",
       ".kiro/skills/instruction-editor/resources/capability.json",
       ".kiro/skills/instruction-editor/resources/references/instruction-clarity.md",
-      ".kiro/skills/mentor/resources/capability.json",
       ".kiro/skills/pitch/resources/capability.json",
       ".kiro/skills/pulse/resources/capability.json",
       ".kiro/skills/resolve-conflict/resources/capability.json",
@@ -7887,7 +7643,6 @@
       ".kiro/agents/resources/gitops-review/capability.json",
       ".kiro/agents/resources/ic-assistant/capability.json",
       ".kiro/agents/resources/ic-assistant/appian-incident-runbook.md",
-      ".kiro/agents/resources/mentor/capability.json",
       ".kiro/agents/resources/pitch/capability.json",
       ".kiro/agents/resources/pulse/capability.json",
       ".kiro/agents/resources/supercharge/capability.json",

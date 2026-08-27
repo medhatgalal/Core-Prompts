@@ -43,7 +43,6 @@
       "routing_question": "Is the deliverable a technical design, or merely a recommendation among existing options?",
       "nearest_neighbors": [
         "converge",
-        "mentor",
         "codebase-health-audit"
       ],
       "shape": "deep_specialist",
@@ -107,7 +106,6 @@
       "routing_question": "Are there multiple competing inputs that must become one decision?",
       "nearest_neighbors": [
         "architecture",
-        "mentor",
         "supercharge"
       ],
       "shape": "general_synthesis_specialist",
@@ -215,8 +213,7 @@
       "authority": "Advisory process guard; the human Incident Commander retains decision authority.",
       "routing_question": "Is there an active incident with a commander and a required process?",
       "nearest_neighbors": [
-        "pulse",
-        "mentor"
+        "pulse"
       ],
       "shape": "stateful_specialist",
       "portfolio_action": "keep"
@@ -236,22 +233,6 @@
       ],
       "shape": "experimental_specialist",
       "portfolio_action": "experimental_keep_pending_evidence"
-    },
-    "mentor": {
-      "primary_job": "Provide senior engineering guidance on planning, sequencing, risk, and the next best move.",
-      "use_when": "The user needs ongoing judgment, coaching, or workflow oversight rather than a single specialist artifact.",
-      "works_on": "Engineering plans, execution posture, trade-offs, team workflow, and decision quality.",
-      "main_output": "Practical guidance, prioritized next steps, risks, and review checkpoints.",
-      "not_for": "Producing a full architecture spec or mechanically reconciling competing proposals.",
-      "authority": "Advisory oversight; it does not broaden execution or mutation authority.",
-      "routing_question": "Does the user need coaching and sequencing, a technical design, or a final choice among options?",
-      "nearest_neighbors": [
-        "architecture",
-        "converge",
-        "supercharge"
-      ],
-      "shape": "broad_advisor",
-      "portfolio_action": "keep_but_review_scope"
     },
     "pitch": {
       "primary_job": "Create or improve a Shape Up pitch until it is ready for a betting decision.",
@@ -310,8 +291,7 @@
       "nearest_neighbors": [
         "auto-research",
         "converge",
-        "instruction-editor",
-        "mentor"
+        "instruction-editor"
       ],
       "shape": "swiss_army_artifact_workflow",
       "portfolio_action": "keep_but_review_scope"
@@ -380,16 +360,25 @@
       "portfolio_action": "keep_and_clarify_boundary"
     },
     "batman": {
-      "primary_job": "Runs an explicitly invoked, evidence-gated delivery protocol through independent research, design, TDD implementation, verification, adversarial review, documentation, Git health, PR or MR, merge, and cleanup. Trigger with batman or the alias superman.",
-      "use_when": "The request directly matches the canonical purpose of Batman \u2014 Evidence-Gated Delivery Controller.",
-      "works_on": "The inputs and target declared by the canonical SSOT.",
-      "main_output": "The required output declared by the canonical SSOT.",
-      "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
-      "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
-      "routing_question": "Does this request directly require Batman \u2014 Evidence-Gated Delivery Controller?",
-      "nearest_neighbors": [],
-      "shape": "unclassified_new_skill",
-      "portfolio_action": "draft_new_skill_pending_review"
+      "primary_job": "Implements an authorized work item through an explicitly invoked, subagent-driven delivery protocol with written plans, TDD evidence, blocking milestone reviews, progress reporting, verification, documentation, and landing.",
+      "use_when": "A repository implementation needs independent subagents, controller-owned flow and evidence, adversarial backpressure, and authorized delivery to mainline. Trigger with batman or the alias superman.",
+      "works_on": "One scoped repository work item with success criteria, applicable instructions, a base revision, and explicit landing boundaries.",
+      "main_output": "Implemented behavior plus observed red, green, and mutation evidence; applicable milestone decisions; status reports; validation; documentation; Git health; and an authorized landing receipt.",
+      "not_for": "Advice-only, review-only, or one-pass editing requests, or work that cannot provide independent implementation and review subagents.",
+      "authority": "The controller coordinates subagents and performs authorized delivery actions; it never authors production code, failing tests, or implementation fixes, and metadata never auto-invokes the protocol.",
+      "routing_question": "Does this authorized repository change require subagent-driven implementation with blocking review backpressure and evidence through landing?",
+      "nearest_neighbors": [
+        "architecture",
+        "auto-research",
+        "supercharge",
+        "converge",
+        "code-review",
+        "address-code-review",
+        "docs-review-expert",
+        "gitops-review"
+      ],
+      "shape": "implementation_delivery_controller",
+      "portfolio_action": "ship_and_preserve_superman_alias"
     }
   }
 }

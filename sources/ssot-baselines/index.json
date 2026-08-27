@@ -354,24 +354,6 @@
       "scenario_matrix": [],
       "baseline_path": "sources/ssot-baselines/docs-review-expert/baseline.md"
     },
-    "mentor": {
-      "group": "current_oracle",
-      "strategy": "head_snapshot",
-      "selected_commit": "db5c3789",
-      "richness_score": 2,
-      "line_count": 214,
-      "equivalent_commits": [],
-      "reason": "Current SSOT baseline source snapshot materialized into the source library because no stronger curated pre-SSOT baseline has been recorded yet.",
-      "historical_proof": {
-        "current_head_commit": "db5c3789",
-        "current_head_richness_score": 2,
-        "current_head_line_count": 214,
-        "materialized_from_commit": "db5c3789"
-      },
-      "expected_companions": [],
-      "scenario_matrix": [],
-      "baseline_path": "sources/ssot-baselines/mentor/baseline.md"
-    },
     "testing": {
       "group": "current_oracle",
       "strategy": "head_snapshot",
