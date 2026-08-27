@@ -10,7 +10,7 @@ The right mental model is simple:
 
 If you are already using Core-Prompts in a CLI, start there. If you are importing a new capability family, go to UAC next. If you are rebuilding surfaces, validating state, deploying, or preparing release work, use the repo tooling after that.
 
-The current generated surfaces ship `24` skills across all supported CLIs and `11` advisory agents on agent-capable surfaces.
+The current generated surfaces ship `25` skills across all supported CLIs and `12` advisory agents on agent-capable surfaces.
 
 For review work, pick the capability by intent:
 
@@ -32,6 +32,7 @@ These are the currently shipped skills with a concrete starter ask for each one:
 | `analyze-context` | work through a broad repo investigation without losing context | "Use `analyze-context` to inspect this subsystem over several files and keep a durable analysis trail before you recommend changes." | file map, durable findings trail, unresolved questions, and a scoped change plan |
 | `architecture` | design or review interfaces, boundaries, and migration safety | "Use `architecture` to recommend the safest design for this capability layout." | options, tradeoffs, migration guidance, and a rollback-aware recommendation |
 | `auto-research` | improve a prompt, workflow, or system through experiments | "Use `auto-research` to improve our review prompt so it catches more behavioral regressions without increasing noise." | goal contract, evaluation plan, experiments, and a winner only after evidence |
+| `batman` | run an evidence-gated delivery controller that keeps the parent out of implementation | "Batman: deliver this shipped-defect correction through independent research, TDD, verification, review, docs, PR, merge, and cleanup." | written plan, independent worker evidence, observed red and mutation checks, finding dispositions, and a verified landing receipt |
 | `codebase-health-audit` | audit brownfield structural health without changing the repo | "Use `codebase-health-audit` to audit this repo for LOC hotspots, god objects, coupling, dead code, and drift from this prior audit block." | verified structural findings, drift analysis, and slice-ready remediation |
 | `code-review` | review staged changes, diffs, or commits before commit, push, merge, or release | "Use `code-review` to review my staged changes, including resource cleanup, concurrency, operational readiness, and API/schema compatibility." | evidence-based findings, scope risks, message-quality feedback, and merge readiness |
 | `address-code-review` | apply selected fixes for existing PR/MR reviewer comments | "Use `address-code-review` to inspect the open review comments on this MR and address the selected fixes only." | comments found, selected fixes, changes applied, commit guidance, and follow-up review |
@@ -58,6 +59,7 @@ These are the currently shipped skills with a concrete starter ask for each one:
 | Capability | Start with it when you need to... | Example ask | What good output looks like |
 | --- | --- | --- | --- |
 | `auto-research` | improve a prompt, workflow, or system through bounded experiments | "Use `auto-research` to improve our review prompt so it catches more behavioral regressions without increasing noise." | a goal contract, experiment plan, evaluation criteria, and a winner only after evidence |
+| `batman` | deliver a contract, metric, safety path, or shipped-defect correction with an independent controller/implementer split | "Superman: use the Batman protocol for this safety-path change and report every 15 minutes against the written plan." | one Batman protocol, bounded worker briefs, evidence gates, independent review, and authorized landing |
 | `codebase-health-audit` | find structural brownfield risk without mutating code | "Use `codebase-health-audit` to audit this repo for LOC hotspots, god objects, coupling, likely dead code, and drift." | metric-backed findings, prior-claim verification when provided, and slice-ready remediation |
 | `supercharge` | harden a rough prompt, plan, proposal, first-principles audit, or adversarial decision before execution | "Use `supercharge /adversarial /debate` to compare the strongest case for and against this rollout plan before we choose." | sharper framing, stronger constraints, clearer sequencing, first-principles accounting, and debate-mode decision pressure when requested |
 | `converge` | compare competing options and force one recommendation | "Use `converge` to compare these rollout plans and recommend one." | explicit conflicts, common comparison criteria, and one final recommendation |
@@ -72,6 +74,7 @@ These current advisory agents are emitted by the repo and available on agent-cap
 
 | Agent | Use it for | Example ask | What good output looks like |
 | --- | --- | --- | --- |
+| `batman` | explicitly invoked, evidence-gated delivery control | "Batman: take this contract change through independent implementation, adversarial review, PR, merge, and cleanup." | controller-owned plan and gates, independent implementation evidence, current CI, and mainline verification |
 | `mentor` | next-step guidance, risk-aware sequencing, and tmux-aware context recovery | "Use `mentor` to look at the left pane and tell me what happened before recommending the next reversible move." | pragmatic step order, scope control, risk-aware sequencing, and direct terminal-context recovery |
 | `docs-review-expert` | documentation IA, drift review, and release-facing docs checks | "Use `docs-review-expert` to review our onboarding docs for drift and weak entrypoints." | concrete doc findings and rewrite targets |
 | `gitops-review` | repo hygiene, CI, merge, and release gates | "Use `gitops-review` to judge whether we are ready to merge and release." | a go or no-go recommendation with evidence and next actions |
@@ -96,6 +99,7 @@ Use these as copy-paste starting points when you want to exercise the higher-lev
 
 | Scenario | Ask |
 | --- | --- |
+| Evidence-gated delivery | "Batman: deliver this shipped-defect correction end to end. Keep the parent out of implementation, show observed red and mutation evidence, run independent reconciliation, and land only after review and current CI." |
 | First-principles release audit | "Use `supercharge /basis` to audit our release process. Find irreducible steps, stale ceremony, actual-to-minimum ratio, and what should be automated or deleted." |
 | Adversarial release debate | "Use `supercharge /adversarial /debate /deep` to run a Bull/Bear/Decider debate on this release plan. Include risks, mitigants, flip conditions, and the evidence that would change the decision." |
 | Release plan hardening | "Use `supercharge /full` to harden the v1.9.2 release plan before I tag it. Include risks, failure modes, verification gates, and rollback." |
