@@ -2177,7 +2177,8 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
             return result
     quality_paths: list[Path] = []
     if quality_plan and quality_result:
-        quality_paths = _persist_quality_reviews(slug, quality_plan, quality_result)
+        if not (promotion_verdict and promotion_verdict.get('status') == 'promote'):
+            quality_paths = _persist_quality_reviews(slug, quality_plan, quality_result)
         if quality_result.get('status') != 'structural_ready':
             result['mode'] = 'apply'
             result['status'] = 'manual_review'
@@ -2262,24 +2263,32 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
             ROOT / 'evals' / 'contracts' / f'{slug}.json': promotion_verdict['goal_contract_sha256'],
             ROOT / 'evals' / 'topologies' / f'{slug}.json': promotion_verdict['topology_sha256'],
         }
-    ssot_path.write_text(ssot_text + ('\n' if not ssot_text.endswith('\n') else ''), encoding='utf-8')
     # Structural readiness cannot materialize a behavioral baseline. A new
     # baseline is created only after an independently validated promotion.
     if promotion_verdict and promotion_verdict.get('status') == 'promote':
-        baseline_materialization = persist_source_baseline(
-            ROOT,
-            slug=slug,
-            baseline_text=ssot_path.read_text(encoding='utf-8'),
-            overwrite=False,
-            source_kind='promoted_candidate_revision',
-            source_path=f'ssot/{slug}.md',
-            source_sha256=str(promotion_verdict['candidate_sha256']),
-            source_commit=str(promotion_verdict['candidate_revision']),
-            preflight=promotion_baseline_preflight,
-        )
+        try:
+            baseline_materialization = persist_source_baseline(
+                ROOT,
+                slug=slug,
+                baseline_text=ssot_text,
+                overwrite=False,
+                source_kind='promoted_candidate_revision',
+                source_path=f'ssot/{slug}.md',
+                source_sha256=str(promotion_verdict['candidate_sha256']),
+                source_commit=str(promotion_verdict['candidate_revision']),
+                preflight=promotion_baseline_preflight,
+            )
+        except (OSError, ValueError) as exc:
+            result['mode'] = 'apply'
+            result['status'] = 'stale_evidence'
+            result['detail'] = f'Promotion baseline materialization refused after preflight: {exc}'
+            return result
     if baseline_materialization:
         descriptor['historical_baseline'] = dict(descriptor.get('historical_baseline') or {})
         descriptor['historical_baseline']['baseline_path'] = baseline_materialization['baseline_path']
+    if promotion_verdict and quality_plan and quality_result:
+        quality_paths = _persist_quality_reviews(slug, quality_plan, quality_result)
+    ssot_path.write_text(ssot_text + ('\n' if not ssot_text.endswith('\n') else ''), encoding='utf-8')
     descriptor_path = save_descriptor(ROOT, slug, descriptor)
     source_note = None
     source_refs = []

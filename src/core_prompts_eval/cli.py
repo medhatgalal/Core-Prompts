@@ -30,6 +30,9 @@ def parser() -> argparse.ArgumentParser:
     compare_cmd.add_argument("--max-tokens", type=int)
     report_cmd = sub.add_parser("report", help="validate and render an immutable run summary")
     report_cmd.add_argument("--run", required=True)
+    report_cmd.add_argument("--promotion-trust-root", type=Path)
+    report_cmd.add_argument("--approved-trust-policy-sha256")
+    report_cmd.add_argument("--approved-trust-policy-revision")
     sub.add_parser("probe", help="probe local runtimes without model calls")
     return root
 
@@ -71,7 +74,13 @@ def main(argv: list[str] | None = None) -> int:
             run_plan=args.run_plan.resolve() if args.run_plan else None,
         )
     elif args.command == "report":
-        payload = report_run(repo_root, args.run)
+        payload = report_run(
+            repo_root,
+            args.run,
+            trust_root=args.promotion_trust_root.resolve() if args.promotion_trust_root else None,
+            approved_trust_policy_sha256=args.approved_trust_policy_sha256,
+            approved_trust_policy_revision=args.approved_trust_policy_revision,
+        )
     else:
         payload = probe_runtime(repo_root)
     json.dump(payload, sys.stdout, indent=2)

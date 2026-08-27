@@ -11,6 +11,7 @@ from .contracts import (
     PROFILE_TOKEN_CAPS,
     artifact_hash,
     load_json,
+    validate_legacy_promotion_verdict_v1,
     validate_goal_contract,
     validate_promotion_verdict,
     validate_topology,
@@ -254,12 +255,38 @@ def compare(
     )
 
 
-def report_run(repo_root: Path, run_id: str) -> dict[str, Any]:
+def report_run(
+    repo_root: Path,
+    run_id: str,
+    *,
+    trust_root: Path | None = None,
+    approved_trust_policy_sha256: str | None = None,
+    approved_trust_policy_revision: str | None = None,
+) -> dict[str, Any]:
     run_dir = repo_root / "reports" / "evals" / run_id
     path = run_dir / "summary.json"
     payload = load_json(path)
     payload["artifact_verification"] = verify_artifact_chain(run_dir)
     verdict = payload.get("promotion_verdict")
     if isinstance(verdict, dict):
-        validate_promotion_verdict(verdict, repo_root=repo_root)
+        if verdict.get("schema_version") == "PromotionVerdict.v1":
+            validate_legacy_promotion_verdict_v1(verdict)
+            payload["promotion_authorization"] = {
+                "schema_version": "PromotionAuthorization.v1",
+                "authorizing": False,
+                "reason": "PromotionVerdict.v1 is legacy read-only evidence",
+            }
+        else:
+            validate_promotion_verdict(
+                verdict,
+                repo_root=repo_root,
+                trust_root=trust_root,
+                approved_trust_policy_sha256=approved_trust_policy_sha256,
+                approved_trust_policy_revision=approved_trust_policy_revision,
+            )
+            payload["promotion_authorization"] = {
+                "schema_version": "PromotionAuthorization.v1",
+                "authorizing": verdict.get("status") == "promote",
+                "reason": "PromotionVerdict.v2 validated",
+            }
     return payload
