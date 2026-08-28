@@ -589,7 +589,16 @@ class ProtectedRunner:
         raise ConfigError(f"{host} authenticated provider boundary is unavailable before process launch")
 
     def adapter_credential_binding_sha256(self, host: str) -> str:
-        return str(self.materialize_credential_binding(host)["descriptor_sha256"])
+        credentials = _object(self.config["adapter_credentials"], "adapter_credentials")
+        binding = _object(credentials[host], f"adapter_credentials.{host}")
+        return artifact_hash(
+            {
+                "kind": binding["kind"],
+                "name": binding["variable"],
+                "status": binding["status"],
+                "reason": binding["reason"],
+            }
+        )
 
     def materialize_credential_binding(self, host: str) -> dict[str, Any]:
         self.adapter_credential_environment(host)
@@ -1279,7 +1288,9 @@ class ProtectedRunner:
             cell_tool_policy = _cell_tool_policy(primary_plan, cell)
             tool_policy_sha256 = artifact_hash(cell_tool_policy)
             approval_policy_sha256 = artifact_hash(dict(primary_plan["approval_policy"]))
-            credential_binding = self.materialize_credential_binding(host)
+            credential_binding = {
+                "descriptor_sha256": self.adapter_credential_binding_sha256(host)
+            }
             evidence_dir = self.private_root / "adapter-conformance" / cell_id
             evidence_path = evidence_dir / "probe-evidence.json"
             raw_trace_path = evidence_dir / "raw-trace.jsonl"
@@ -1306,8 +1317,6 @@ class ProtectedRunner:
                     str(cell["effort"]),
                     "--tool-policy-json",
                     canonical_json(cell_tool_policy),
-                    "--credential-descriptor",
-                    str(credential_binding["descriptor_path"]),
                     "--workspace",
                     str(workspace),
                     "--session-root",
@@ -1458,7 +1467,18 @@ class ProtectedRunner:
             cell["cli_version"] = certificate_payload["cli_version"]
             cell["cli_sha256"] = certificate_payload["cli_sha256"]
             cell["tool_policy"] = dict(self.config["registered_trial_tool_policy"])
-            cell["credential_binding"] = self.materialize_credential_binding(str(cell["host"]))
+            host = str(cell["host"])
+            variable = {
+                "codex": "OPENAI_API_KEY",
+                "kiro": "KIRO_API_KEY",
+            }.get(host)
+            if variable is None:
+                raise ConfigError("unsupported provider credential host")
+            cell["credential_binding"] = {
+                "kind": "protected_env",
+                "name": variable,
+                "descriptor_sha256": self.adapter_credential_binding_sha256(host),
+            }
             cells.append(cell)
         bound = {**plan, "model_cells": cells}
         if len(cells) > 1:
