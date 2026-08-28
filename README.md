@@ -32,7 +32,7 @@ These are the currently shipped skills with a concrete starter ask for each one:
 | `analyze-context` | work through a broad repo investigation without losing context | "Use `analyze-context` to inspect this subsystem over several files and keep a durable analysis trail before you recommend changes." | file map, durable findings trail, unresolved questions, and a scoped change plan |
 | `architecture` | design or review interfaces, boundaries, and migration safety | "Use `architecture` to recommend the safest design for this capability layout." | options, tradeoffs, migration guidance, and a rollback-aware recommendation |
 | `auto-research` | improve a prompt, workflow, or system through experiments | "Use `auto-research` to improve our review prompt so it catches more behavioral regressions without increasing noise." | goal contract, evaluation plan, experiments, and a winner only after evidence |
-| `batman` | implement through subagent-driven development with blocking review gates | "Batman: implement this shipped-defect correction through subagent-driven TDD, all applicable milestone reviews, verification, docs, PR, merge, and cleanup." | written plan, subagent implementation evidence, observed red and mutation checks, milestone decisions, progress reports, and a verified landing receipt |
+| `batman` | implement through subagent-driven development with blocking review gates | "Batman: implement this shipped-defect correction through subagent-driven TDD, all applicable milestone reviews, verification, docs, PR, merge, and cleanup." | written plan, capability-aware companion dispatch, subagent implementation evidence, observed red and mutation checks, milestone decisions, progress reports, and a verified landing receipt |
 | `codebase-health-audit` | audit brownfield structural health without changing the repo | "Use `codebase-health-audit` to audit this repo for LOC hotspots, god objects, coupling, dead code, and drift from this prior audit block." | verified structural findings, drift analysis, and slice-ready remediation |
 | `code-review` | review staged changes, diffs, or commits before commit, push, merge, or release | "Use `code-review` to review my staged changes, including resource cleanup, concurrency, operational readiness, and API/schema compatibility." | evidence-based findings, scope risks, message-quality feedback, and merge readiness |
 | `address-code-review` | apply selected fixes for existing PR/MR reviewer comments | "Use `address-code-review` to inspect the open review comments on this MR and address the selected fixes only." | comments found, selected fixes, changes applied, commit guidance, and follow-up review |
@@ -70,6 +70,8 @@ These are the currently shipped skills with a concrete starter ask for each one:
 ### Agent Surfaces Available Now
 
 These current agents are emitted by the repo and available on agent-capable surfaces. Their Fabric metadata is advisory; explicit invocation follows the capability contract, including Batman's implementation authority and review gates.
+
+Batman companion names identify capabilities, not guaranteed agent registrations. Batman prefers a usable registered agent, falls back to a fresh default independent subagent applying the installed skill, and stops the dependent stage or gate when neither surface exists. That resolution does not grant additional authority.
 
 | Agent | Use it for | Example ask | What good output looks like |
 | --- | --- | --- | --- |

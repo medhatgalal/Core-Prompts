@@ -1203,6 +1203,12 @@ def test_uac_accepts_signed_sealed_attestation_with_distinct_bundle_and_dataset(
     original_root = uac.ROOT
     try:
         uac.ROOT = tmp_path
+        validate_promotion_verdict = uac.validate_promotion_verdict
+
+        def validate_at_fixture_clock(*args, **kwargs):
+            return validate_promotion_verdict(*args, **kwargs, now=NOW)
+
+        monkeypatch.setattr(uac, "validate_promotion_verdict", validate_at_fixture_clock)
         monkeypatch.setattr(uac, "_safe_apply_ssot_text", lambda *args, **kwargs: ("candidate\n", {}))
 
         def stop_after_signed_evidence(*args, **kwargs):
