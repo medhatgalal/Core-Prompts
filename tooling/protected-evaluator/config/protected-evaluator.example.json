@@ -59,13 +59,16 @@
   "verdict_command": ["./protected-verdict"],
   "adapter_credentials": {
     "codex": {
-      "kind": "environment",
-      "variable": "OPENAI_API_KEY"
+      "kind": "protected_env",
+      "variable": "OPENAI_API_KEY",
+      "status": "unavailable",
+      "reason": "reviewed broker and OS isolation are not installed"
     },
     "kiro": {
-      "kind": "file",
-      "variable": "KIRO_SERVICE_CREDENTIAL_FILE",
-      "documentation_reference": "REPLACE_WITH_PROTECTED_KIRO_SERVICE_CREDENTIAL_RUNBOOK"
+      "kind": "protected_env",
+      "variable": "KIRO_API_KEY",
+      "status": "unavailable",
+      "reason": "reviewed broker and OS isolation are not installed"
     }
   },
   "registered_trial_tool_policy": {

@@ -199,6 +199,8 @@ def load_adapter_registry(repo_root: Path) -> dict[str, AdapterSpec]:
         )
         if adapter_id == "codex-jsonl-experimental":
             _validate_disabled_codex_boundary(registry[adapter_id])
+        if adapter_id == "kiro-stream-json-experimental":
+            _validate_disabled_kiro_boundary(registry[adapter_id])
     return registry
 
 
@@ -233,6 +235,15 @@ def _validate_disabled_codex_boundary(spec: AdapterSpec) -> None:
     configured = {argv[index + 1] for index, value in enumerate(argv[:-1]) if value == "-c"}
     if sandbox_mode != "read-only" or not required_config.issubset(configured):
         raise AdapterError("Codex runtime tool boundary is incomplete or broadened")
+
+
+def _validate_disabled_kiro_boundary(spec: AdapterSpec) -> None:
+    if spec.environment_allowlist:
+        raise AdapterError("Kiro credential boundary must not allow provider secrets in the child environment")
+    if not spec.unavailable_reason or spec.promotion_eligible:
+        raise AdapterError("Kiro credential boundary must remain explicitly unavailable and promotion-ineligible")
+    if any(item.startswith("--trust-tools") for item in spec.argv):
+        raise AdapterError("Kiro runtime tool boundary must not trust candidate-selected tools")
 
 
 def load_adapter_conformance(
@@ -596,37 +607,16 @@ def _configure_protected_credential(
     if kind == "protected_env":
         if spec.adapter_id == "codex-jsonl-experimental":
             raise AdapterError("authenticated Codex execution is disabled")
+        if spec.adapter_id == "kiro-stream-json-experimental" or name == "KIRO_API_KEY":
+            raise AdapterError("authenticated Kiro execution is disabled pending a reviewed bounded gateway")
         if name != "OPENAI_API_KEY" or name not in spec.environment_allowlist:
             raise AdapterError("protected environment credential is not allowed for this adapter")
         if not environment.get(name):
             raise AdapterError("protected environment credential is missing")
         return
-    if kind != "protected_service_file":
-        raise AdapterError("unknown protected credential kind")
-    if name != "KIRO_SERVICE_CREDENTIAL_FILE" or binding.get("format") != "kiro-service-credential-v1":
-        raise AdapterError("unknown Kiro service credential format")
-    source = Path(str(binding.get("source_path") or "")).expanduser().absolute()
-    if any(component.is_symlink() for component in (source, *source.parents)):
-        raise AdapterError("protected service credential cannot use a symlink path")
-    try:
-        resolved = source.resolve(strict=True)
-        resolved.relative_to(repo_root.resolve())
-    except ValueError:
-        pass
-    except OSError as exc:
-        raise AdapterError("protected service credential is missing") from exc
-    else:
-        raise AdapterError("protected service credential must remain outside the repository")
-    if not resolved.is_file() or artifact_hash(resolved) != binding.get("source_sha256"):
-        raise AdapterError("protected service credential binding is missing or stale")
-    if resolved.stat().st_mode & 0o077:
-        raise AdapterError("protected service credential permissions are too broad")
-    destination_dir = session_dir / "credentials"
-    destination_dir.mkdir(mode=0o700)
-    destination = destination_dir / "kiro-service-credential.json"
-    shutil.copyfile(resolved, destination)
-    destination.chmod(0o600)
-    environment[name] = str(destination)
+    if kind == "protected_service_file":
+        raise AdapterError("Kiro service-file credentials are unsupported; official headless auth is KIRO_API_KEY")
+    raise AdapterError("unknown protected credential kind")
 
 
 def _probe_cli_version(

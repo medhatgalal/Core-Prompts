@@ -220,13 +220,16 @@ def _config(tmp_path: Path) -> dict[str, object]:
         },
         "adapter_credentials": {
             "codex": {
-                "kind": "environment",
+                "kind": "protected_env",
                 "variable": "OPENAI_API_KEY",
+                "status": "unavailable",
+                "reason": "reviewed broker and OS isolation are not installed",
             },
             "kiro": {
-                "kind": "file",
-                "variable": "KIRO_SERVICE_CREDENTIAL_FILE",
-                "documentation_reference": "protected://kiro-service-credential",
+                "kind": "protected_env",
+                "variable": "KIRO_API_KEY",
+                "status": "unavailable",
+                "reason": "reviewed broker and OS isolation are not installed",
             },
         },
         "registered_trial_tool_policy": {
@@ -419,22 +422,18 @@ def test_adapter_credentials_are_explicit_and_fail_closed(
     payload = _config(tmp_path)
     runner = ProtectedRunner(payload, work_root=tmp_path / "work", public_root=tmp_path / "public", private_root=tmp_path / "private")
     monkeypatch.delenv("OPENAI_API_KEY", raising=False)
-    monkeypatch.delenv("KIRO_SERVICE_CREDENTIAL_FILE", raising=False)
-    with pytest.raises(ConfigError, match="Codex protected credential"):
+    monkeypatch.delenv("KIRO_API_KEY", raising=False)
+    with pytest.raises(ConfigError, match="codex authenticated provider boundary"):
         runner.adapter_credential_environment("codex")
-    with pytest.raises(ConfigError, match="Kiro protected service credential"):
+    with pytest.raises(ConfigError, match="kiro authenticated provider boundary"):
         runner.adapter_credential_environment("kiro")
 
     monkeypatch.setenv("OPENAI_API_KEY", "test-protected-token")
-    kiro_credential = tmp_path / "kiro-service-credential.json"
-    kiro_credential.write_text('{"service":"test"}\n', encoding="utf-8")
-    kiro_credential.chmod(0o600)
-    monkeypatch.setenv("KIRO_SERVICE_CREDENTIAL_FILE", str(kiro_credential))
-    with pytest.raises(ConfigError, match="broker and OS isolation"):
+    monkeypatch.setenv("KIRO_API_KEY", "test-protected-token")
+    with pytest.raises(ConfigError, match="codex authenticated provider boundary"):
         runner.adapter_credential_environment("codex")
-    assert runner.adapter_credential_environment("kiro") == {
-        "KIRO_SERVICE_CREDENTIAL_FILE": str(kiro_credential.resolve())
-    }
+    with pytest.raises(ConfigError, match="kiro authenticated provider boundary"):
+        runner.adapter_credential_environment("kiro")
 
 
 def test_protected_plan_rejects_tools_off_or_unregistered_cell_policy(tmp_path: Path) -> None:
@@ -682,9 +681,8 @@ def test_publication_accepts_hash_only_credential_evidence_and_rejects_private_p
     assert not _contains_private_key(
         {
             "credential_binding": {
-                "kind": "protected_service_file",
-                "name": "KIRO_SERVICE_CREDENTIAL_FILE",
-                "format": "kiro-service-credential-v1",
+                "kind": "protected_env",
+                "name": "KIRO_API_KEY",
                 "descriptor_sha256": "a" * 64,
             },
             "adapter_conformance_binding": {"sha256": "b" * 64},
@@ -789,13 +787,13 @@ def test_gitlab_pipeline_separates_model_seal_score_and_signing_trust_domains() 
     ):
         assert f"{job}:" in template
     default_block = template.split("validate-submission:", 1)[0]
-    for secret in ("SEALED_BUNDLE_FILE", "SIGNING_KEY_FILE", "OPENAI_API_KEY", "KIRO_SERVICE_CREDENTIAL_FILE"):
+    for secret in ("SEALED_BUNDLE_FILE", "SIGNING_KEY_FILE", "OPENAI_API_KEY", "KIRO_API_KEY"):
         assert secret not in default_block
     codex_conformance = template.split("adapter-conformance-codex:", 1)[1].split("adapter-conformance-kiro:", 1)[0]
     kiro_conformance = template.split("adapter-conformance-kiro:", 1)[1].split("sign-adapter-conformance:", 1)[0]
     assert "OPENAI_API_KEY" not in codex_conformance
-    assert "KIRO_SERVICE_CREDENTIAL_FILE" not in codex_conformance
-    assert "KIRO_SERVICE_CREDENTIAL_FILE" in kiro_conformance
+    assert "KIRO_API_KEY" not in codex_conformance
+    assert "KIRO_API_KEY" not in kiro_conformance
     assert "OPENAI_API_KEY" not in kiro_conformance
     for conformance in (codex_conformance, kiro_conformance):
         assert "SEALED_BUNDLE_FILE" not in conformance
@@ -816,7 +814,7 @@ def test_gitlab_pipeline_separates_model_seal_score_and_signing_trust_domains() 
     finalize = template.split("finalize-protected-verdict:", 1)[1]
     assert "PROMOTION_VERDICT_KEY_FILE" in finalize
     assert "OPENAI_API_KEY" not in finalize
-    assert "KIRO_SERVICE_CREDENTIAL_FILE" not in finalize
+    assert "KIRO_API_KEY" not in finalize
 
 
 def test_gitlab_pipeline_uses_one_runner_ssot_and_phase_minimal_signing() -> None:
@@ -851,6 +849,45 @@ def test_gitlab_pipeline_uses_one_runner_ssot_and_phase_minimal_signing() -> Non
         line = next(item for item in command_lines if f"--phase {phase} " in item)
         assert line.count("--signing-key") == 1
         assert f"--signing-purpose {purpose}" in line
+
+
+def test_provider_phases_are_explicitly_unavailable_without_reviewed_broker() -> None:
+    template = (TOOLING / "gitlab-ci.template.yml").read_text(encoding="utf-8")
+    assert "start-codex-broker:" not in template
+    assert "stop-codex-broker:" not in template
+    assert "CODEX_BROKER_SERVICE_SECRET" not in template
+    assert "CODEX_BROKER_SOCKET" not in template
+    assert "CODEX_BROKER_CAPABILITY_FILE" not in template
+    assert "OPENAI_API_KEY" not in template
+    assert "KIRO_API_KEY" not in template
+    assert "KIRO_SERVICE_CREDENTIAL_FILE" not in template
+
+
+def test_provider_phase_returns_inconclusive_before_configured_process_launch(
+    tmp_path: Path,
+) -> None:
+    payload = _config(tmp_path)
+    marker = tmp_path / "provider-command-ran"
+    script = tmp_path / "provider.py"
+    script.write_text(
+        f"from pathlib import Path\nPath({str(marker)!r}).touch()\n",
+        encoding="utf-8",
+    )
+    payload["phase_commands"]["model-primary-codex"] = [sys.executable, str(script)]
+    runner = ProtectedRunner(
+        payload,
+        work_root=tmp_path / "work",
+        public_root=tmp_path / "public",
+        private_root=tmp_path / "private",
+    )
+    result = runner.execute_command_phase("model-primary-codex", [])
+    assert result == {
+        "schema_version": "ProtectedEvaluationPublicResult.v1",
+        "status": "inconclusive",
+        "promotion_allowed": False,
+        "reason_codes": ["provider_authentication_boundary_unavailable"],
+    }
+    assert not marker.exists()
 
 
 def _score_report(primary_manifest: Path, reproduction_manifest: Path) -> dict[str, object]:
