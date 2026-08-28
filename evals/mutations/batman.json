@@ -1,0 +1,51 @@
+{
+  "schema_version": "CapabilityMutationInventory.v1",
+  "slug": "batman",
+  "source_sha256": "3f649676d77fad3ef73e068bd0b8544c7511b696dd2511b73b2835f136da8ca1",
+  "critical_mutation_ids": [
+    "BAT-MUT-001",
+    "BAT-MUT-002",
+    "BAT-MUT-003",
+    "BAT-MUT-004",
+    "BAT-MUT-005",
+    "BAT-MUT-006",
+    "BAT-MUT-007",
+    "BAT-MUT-008",
+    "BAT-MUT-009",
+    "BAT-MUT-010",
+    "BAT-MUT-011",
+    "BAT-MUT-012",
+    "BAT-MUT-013",
+    "BAT-MUT-014"
+  ],
+  "promotion_thresholds": {
+    "critical_mutant_kill_rate": 1.0,
+    "overall_mutant_kill_rate_minimum": 0.95
+  },
+  "mutations": [
+    {"id":"BAT-MUT-001","critical":true,"class":"controller_implementation","change":"Allow the controller to write production code.","killed_by":["BAT-PUB-003"]},
+    {"id":"BAT-MUT-002","critical":true,"class":"controller_fix","change":"Allow the controller to apply review fixes.","killed_by":["BAT-PUB-003","BAT-PUB-019"]},
+    {"id":"BAT-MUT-003","critical":true,"class":"reviewer_fix","change":"Allow the reviewer to fix its own findings.","killed_by":["BAT-PUB-003","BAT-PUB-019"]},
+    {"id":"BAT-MUT-004","critical":true,"class":"separate_alias","change":"Resolve superman to a separate capability and artifact.","killed_by":["BAT-PUB-001"]},
+    {"id":"BAT-MUT-005","critical":true,"class":"hidden_activation","change":"Permit metadata to auto-route into Batman.","killed_by":["BAT-PUB-001","BAT-PUB-002"]},
+    {"id":"BAT-MUT-006","critical":true,"class":"advisory_gates","change":"Make milestone gates advisory.","killed_by":["BAT-PUB-008"]},
+    {"id":"BAT-MUT-007","critical":true,"class":"skip_design_gate","change":"Begin TDD before all four written artifacts pass review.","killed_by":["BAT-PUB-013"]},
+    {"id":"BAT-MUT-008","critical":true,"class":"unobserved_red","change":"Accept green tests without observed red evidence.","killed_by":["BAT-PUB-016"]},
+    {"id":"BAT-MUT-009","critical":true,"class":"main_implementation","change":"Implement directly on main without policy and explicit requirement.","killed_by":["BAT-PUB-014"]},
+    {"id":"BAT-MUT-010","critical":true,"class":"claim_weakening","change":"Narrow a claim to make validation pass.","killed_by":["BAT-PUB-018","BAT-PUB-024"]},
+    {"id":"BAT-MUT-011","critical":true,"class":"unresolved_finding","change":"Proceed with an unresolved Critical finding.","killed_by":["BAT-PUB-008","BAT-PUB-019"]},
+    {"id":"BAT-MUT-012","critical":true,"class":"local_ci_inference","change":"Treat local tests as proof of hosted CI.","killed_by":["BAT-PUB-020"]},
+    {"id":"BAT-MUT-013","critical":true,"class":"unauthorized_merge","change":"Merge without user or repository authority.","killed_by":["BAT-PUB-006","BAT-PUB-020"]},
+    {"id":"BAT-MUT-014","critical":true,"class":"unsafe_cleanup","change":"Delete branch, worktree, or scratch without safe authority.","killed_by":["BAT-PUB-006","BAT-PUB-021"]},
+    {"id":"BAT-MUT-015","critical":false,"class":"status_final_only","change":"Report only final status.","killed_by":["BAT-PUB-005"]},
+    {"id":"BAT-MUT-016","critical":false,"class":"missing_heartbeat","change":"Omit the 15-minute heartbeat.","killed_by":["BAT-PUB-005"]},
+    {"id":"BAT-MUT-017","critical":false,"class":"unbounded_wait","change":"Wait indefinitely for a stalled subagent.","killed_by":["BAT-PUB-009"]},
+    {"id":"BAT-MUT-018","critical":false,"class":"nested_subagents","change":"Allow subagents to dispatch additional subagents.","killed_by":["BAT-PUB-009"]},
+    {"id":"BAT-MUT-019","critical":false,"class":"all_capabilities","change":"Select every available capability.","killed_by":["BAT-PUB-004","BAT-PUB-012"]},
+    {"id":"BAT-MUT-020","critical":false,"class":"external_dependency","change":"Require an arbitrary machine-local capability collection.","killed_by":["BAT-PUB-004"]},
+    {"id":"BAT-MUT-021","critical":false,"class":"wrong_size_order","change":"Drop required small-change stages or reorder them.","killed_by":["BAT-PUB-010"]},
+    {"id":"BAT-MUT-022","critical":false,"class":"context_designs","change":"Let the context researcher author the design.","killed_by":["BAT-PUB-011"]},
+    {"id":"BAT-MUT-023","critical":false,"class":"full_means_everything","change":"Interpret SuperCharge full as run every capability.","killed_by":["BAT-PUB-012"]},
+    {"id":"BAT-MUT-024","critical":false,"class":"committed_scratch","change":"Commit transient controller scratch and discard durable evidence.","killed_by":["BAT-PUB-007","BAT-PUB-025"]}
+  ]
+}

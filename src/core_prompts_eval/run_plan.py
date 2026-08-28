@@ -213,7 +213,10 @@ def validate_run_plan(payload: Mapping[str, Any]) -> None:
         if not isinstance(cell.get("required"), bool):
             raise RunPlanError(f"model_cells[{index}].required must be boolean")
         _validate_credential_binding(
-            cell.get("credential_binding"), f"model_cells[{index}].credential_binding"
+            cell.get("credential_binding"),
+            f"model_cells[{index}].credential_binding",
+            provider=str(cell.get("provider") or ""),
+            host=str(cell.get("host") or ""),
         )
         binding = cell.get("adapter_conformance_binding")
         if cell["required"] is True:
@@ -309,33 +312,32 @@ def _validate_tool_policy(value: object, label: str) -> None:
         raise RunPlanError(f"{label} non-none mode requires an explicit allowlist")
 
 
-def _validate_credential_binding(value: object, label: str) -> None:
+def _validate_credential_binding(
+    value: object,
+    label: str,
+    *,
+    provider: str,
+    host: str,
+) -> None:
     if not isinstance(value, Mapping):
         raise RunPlanError(f"{label} must be an object")
     kind = value.get("kind")
-    common = {"kind", "descriptor_path", "descriptor_sha256"}
+    common = {"kind", "descriptor_sha256"}
     expected = {
         "none": common,
         "protected_env": common | {"name"},
-        "protected_service_file": common
-        | {"name", "format", "source_path", "source_sha256"},
     }.get(str(kind))
     if expected is None or set(value) != expected:
         raise RunPlanError(f"{label} has an unsupported closed credential shape")
-    if not str(value.get("descriptor_path") or "") or not re.fullmatch(
-        r"[0-9a-f]{64}", str(value.get("descriptor_sha256") or "")
-    ):
+    if not re.fullmatch(r"[0-9a-f]{64}", str(value.get("descriptor_sha256") or "")):
         raise RunPlanError(f"{label} descriptor binding is invalid")
-    if kind == "protected_env" and value.get("name") != "OPENAI_API_KEY":
-        raise RunPlanError(f"{label} supports only protected OPENAI_API_KEY")
-    if kind == "protected_service_file":
-        if (
-            value.get("name") != "KIRO_SERVICE_CREDENTIAL_FILE"
-            or value.get("format") != "kiro-service-credential-v1"
-            or not Path(str(value.get("source_path") or "")).expanduser().is_absolute()
-            or not re.fullmatch(r"[0-9a-f]{64}", str(value.get("source_sha256") or ""))
-        ):
-            raise RunPlanError(f"{label} Kiro service credential binding is invalid")
+    if kind == "protected_env":
+        expected_name = {
+            ("codex", "codex"): "OPENAI_API_KEY",
+            ("kiro", "kiro"): "KIRO_API_KEY",
+        }.get((provider, host))
+        if expected_name is None or value.get("name") != expected_name:
+            raise RunPlanError(f"{label} does not match the provider's official protected environment variable")
 
 
 __all__ = ["RunPlan", "RunPlanError", "load_run_plan", "validate_run_plan"]

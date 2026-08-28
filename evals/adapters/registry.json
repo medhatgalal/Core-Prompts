@@ -113,8 +113,7 @@
         "--effort",
         "{effort}",
         "--output-format",
-        "stream-json",
-        "--trust-tools={trusted_tools}"
+        "stream-json"
       ],
       "parser": "kiro-stream-json-v1",
       "source": null,
@@ -132,6 +131,7 @@
       "cli_version_pattern": "kiro-cli 2\\.20\\.0",
       "conformance_path": "evals/fixtures/adapters/kiro-2.20.0-conformance-redacted.json",
       "conformance_sha256": "d04e5946c3af286910d15dad09a84c94a3571b6ae11b2c3e5c41c8d694317ebc",
+      "unavailable_reason": "authenticated Kiro execution is disabled until KIRO_API_KEY can be confined to a reviewed bounded gateway with enforced runtime tool limits",
       "promotion_eligible": false,
       "experimental": true
     }

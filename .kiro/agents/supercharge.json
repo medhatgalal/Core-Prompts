@@ -6,13 +6,7 @@
     "file://.kiro/agents/resources/supercharge/capability.json",
     "skill://.kiro/skills/supercharge/SKILL.md"
   ],
-  "hooks": {
-    "agentSpawn": [
-      {
-        "command": "if [ -x ./scripts/engos ]; then ./scripts/engos prime >/dev/null 2>&1 || true; elif [ -x ./engos ]; then ./engos context prime >/dev/null 2>&1 || true; fi"
-      }
-    ]
-  },
+  "hooks": {},
   "tools": [
     "*"
   ]

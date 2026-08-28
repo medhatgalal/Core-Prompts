@@ -78,7 +78,6 @@ def test_codex_and_kiro_registry_entries_are_hermetic_and_not_promotion_eligible
         "{effort}",
         "--output-format",
         "stream-json",
-        "--trust-tools={trusted_tools}",
     )
     assert kiro.bootstrap_agent == "batman"
     assert codex.environment_allowlist == ()
@@ -87,6 +86,10 @@ def test_codex_and_kiro_registry_entries_are_hermetic_and_not_promotion_eligible
         "provider boundary and enforced runtime tool allowlist exist"
     )
     assert kiro.environment_allowlist == ()
+    assert kiro.unavailable_reason == (
+        "authenticated Kiro execution is disabled until KIRO_API_KEY can be confined "
+        "to a reviewed bounded gateway with enforced runtime tool limits"
+    )
     for spec in (codex, kiro):
         assert spec.hermetic is True
         assert spec.promotion_eligible is False
@@ -162,6 +165,50 @@ def test_codex_authenticated_execution_fails_before_child_and_never_passes_secre
                 "tool_policy": {"mode": "repo-write-subagents", "allowed": ["spawn_agent"]},
             },
             credential_binding={"kind": "protected_env", "name": "OPENAI_API_KEY"},
+            repo_root=ROOT,
+            timeout_seconds=3,
+            max_output_bytes=8192,
+        )
+    assert child_calls == []
+
+
+def test_kiro_registry_and_execution_reject_direct_api_key_or_trusted_tools(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    registry_payload = json.loads((ROOT / "evals/adapters/registry.json").read_text(encoding="utf-8"))
+    for index, update in enumerate(
+        (
+            {"environment_allowlist": ["KIRO_API_KEY"]},
+            {"argv": [*next(item for item in registry_payload["adapters"] if item["id"] == "kiro-stream-json-experimental")["argv"], "--trust-tools=shell"]},
+        )
+    ):
+        root = tmp_path / str(index)
+        path = root / "evals/adapters/registry.json"
+        path.parent.mkdir(parents=True)
+        replacement = json.loads(json.dumps(registry_payload))
+        kiro = next(item for item in replacement["adapters"] if item["id"] == "kiro-stream-json-experimental")
+        kiro.update(update)
+        path.write_text(json.dumps(replacement), encoding="utf-8")
+        with pytest.raises(AdapterError, match="Kiro credential boundary|Kiro runtime tool boundary"):
+            load_adapter_registry(root)
+
+    spec = load_adapter_registry(ROOT)["kiro-stream-json-experimental"]
+    child_calls: list[object] = []
+    monkeypatch.setattr(
+        "core_prompts_eval.adapters.subprocess.Popen",
+        lambda *args, **kwargs: child_calls.append((args, kwargs)),
+    )
+    monkeypatch.setenv("KIRO_API_KEY", "protected-fixture-secret")
+    with pytest.raises(AdapterError, match="authenticated Kiro execution is disabled"):
+        execute_adapter(
+            spec,
+            {
+                "resolved_model_identifier": "fixture-model",
+                "model_version": "fixture-version",
+                "tool_policy": {"mode": "repo-write-subagents", "allowed": ["spawn_agent"]},
+            },
+            credential_binding={"kind": "protected_env", "name": "KIRO_API_KEY"},
             repo_root=ROOT,
             timeout_seconds=3,
             max_output_bytes=8192,
@@ -432,7 +479,7 @@ def test_cli_binary_hash_resolves_symlink_target_and_detects_same_version_replac
     assert second != first
 
 
-def test_kiro_service_credential_is_copied_into_isolated_home_without_path_leak(
+def test_kiro_service_file_contract_is_rejected_as_non_official(
     tmp_path: Path,
 ) -> None:
     source = tmp_path / "protected-service-credential.json"
@@ -470,23 +517,22 @@ print(json.dumps({
         ),
     )
 
-    response = execute_adapter(
-        spec,
-        {
-            "resolved_model_identifier": "fixture-model",
-            "model_version": "fixture-version",
-            "tool_policy": {"mode": "none", "allowed": []},
-        },
-        credential_binding={
-            "kind": "protected_service_file",
-            "name": "KIRO_SERVICE_CREDENTIAL_FILE",
-            "format": "kiro-service-credential-v1",
-            "source_path": str(source),
-            "source_sha256": artifact_hash(source),
-        },
-        repo_root=ROOT,
-        timeout_seconds=3,
-        max_output_bytes=8192,
-    )
-    output = json.loads(response.output)
-    assert output == {"inside_kiro_home": True, "mode": 0o600, "source_path_leaked": False}
+    with pytest.raises(AdapterError, match="service-file credentials are unsupported"):
+        execute_adapter(
+            spec,
+            {
+                "resolved_model_identifier": "fixture-model",
+                "model_version": "fixture-version",
+                "tool_policy": {"mode": "none", "allowed": []},
+            },
+            credential_binding={
+                "kind": "protected_service_file",
+                "name": "KIRO_SERVICE_CREDENTIAL_FILE",
+                "format": "kiro-service-credential-v1",
+                "source_path": str(source),
+                "source_sha256": artifact_hash(source),
+            },
+            repo_root=ROOT,
+            timeout_seconds=3,
+            max_output_bytes=8192,
+        )

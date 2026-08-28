@@ -103,27 +103,27 @@ Follow with:
 
 Use when:
 
-- a contract, metric, safety path, or shipped-defect correction needs independent implementation and review
-- the parent must remain a controller instead of implementing after research
-- landing requires written gates, observed TDD evidence, verification, docs, current CI, merge, and cleanup
+- a contract, metric, safety path, or shipped-defect correction needs implementation through independent subagents
+- the controller must own flow, evidence, progress, and backpressure without authoring code
+- landing requires all applicable blocking milestone reviews, observed TDD evidence, verification, docs, current CI, merge, and cleanup
 
 Why this skill first:
 
-- start here when the job is end-to-end delivery control, not advisory sequencing (`mentor`), prompt or plan hardening (`supercharge`), or the final Git gate alone (`gitops-review`)
+- start here when the job is end-to-end implementation delivery, not prompt or plan hardening (`supercharge`) or the final Git gate alone (`gitops-review`)
 
 Ask:
 
-> Batman: deliver this shipped-defect correction through independent research, design, TDD implementation, verification, adversarial review, docs, PR, merge, and cleanup. Keep the parent out of implementation, paste the observed red evidence, run the mutation check, and never weaken the metric claim.
+> Batman: implement this shipped-defect correction through subagent-driven research, design, TDD, all applicable blocking milestone reviews, verification, docs, PR, merge, and cleanup. Paste the observed red evidence, run the mutation check, report progress, and never weaken the metric claim.
 
 Alias ask:
 
-> Superman: use the same Batman protocol for this safety-path change. Report every 15 minutes against the written plan and stop for critical decisions.
+> Superman: use the same Batman body for this safety-path implementation. Report initial status, every stage transition, blockers immediately, and a heartbeat every 15 minutes against the written plan.
 
 Expected output:
 
 - verified repository, base revision, branch, and worktree
 - specification, delivery plan, implementation plan, and bounded task briefs
-- independent implementation and review reports
+- independent subagent implementation reports and four milestone-gate decisions
 - observed red, green, and mutation-check evidence
 - validation, reconciliation, and classified finding dispositions
 - docs and Git health review
@@ -131,7 +131,7 @@ Expected output:
 
 Follow with:
 
-> Show me the current stage, the gate evidence, and any unresolved finding against the written plan.
+> Show me completed plan items, the current stage and gate, active subagents, evidence received, blockers, and the next action.
 
 ### `supercharge /basis`
 
@@ -545,42 +545,6 @@ Follow with:
 
 > Hand the baseline, candidate, preservation map, and Goal Contract to `auto-research`; do not promote the rewrite from style evidence alone.
 
-### `mentor`
-
-Use when:
-
-- you need the next best move, not a big plan dump
-- the work has risk or sequencing uncertainty
-- you want a senior perspective on scope control
-
-Why this skill first:
-
-- start here when the main need is sequencing and scope control, not deep analysis or formal gating
-
-Ask:
-
-> Use `mentor` to tell me the next reversible move on this branch.
-
-Expected output:
-
-- the next move
-- why it is the next move
-- what to avoid mixing in
-
-Follow with:
-
-> Now tell me the next move after that one if the first step succeeds cleanly.
-
-Tmux follow-up:
-
-> Use `mentor` to look at the left pane and tell me what happened before you recommend the next reversible move.
-
-Expected output:
-
-- a short read of the terminal context from tmux
-- the likely failure or state transition that matters
-- the next reversible move after reading that context
-
 ### `pitch`
 
 Use when:
@@ -799,15 +763,9 @@ Follow with:
 
 > Now shorten that into a one-screen executive update for leadership.
 
-## Advisory Agent Examples
+## Agent Surface Examples
 
-These examples are for the current advisory agents emitted by the repo.
-
-### `mentor`
-
-> Use `mentor` to tell me the next reversible move on this branch, or look at the left pane and review this error if I am in tmux.
-
-Use this when you want scoped sequencing, risk-aware guidance, or direct tmux-aware terminal context recovery without copy-pasting logs.
+These examples are for the current agents emitted by the repo. Fabric metadata is advisory; explicit invocation follows each capability's operating contract.
 
 ### `docs-review-expert`
 
@@ -952,18 +910,6 @@ Expected output when proof cannot be completed:
 
 ## Transcript-Style Examples
 
-### Transcript: Use A Skill To Decide What To Do Next
-
-```text
-User:
-Use `mentor` to tell me the next reversible move on this branch.
-
-Good response:
-- Next move: run `bin/capability-fabric validate --strict`
-- Why: the docs changed and the branch now needs current validation evidence before PR
-- Avoid mixing in: do not combine unrelated cleanup or release packaging changes yet
-```
-
 ### Transcript: Use A Skill To Review Documentation
 
 ```text
@@ -1011,13 +957,12 @@ Good response:
 
 ```text
 User:
-I am not sure whether to use `docs-review-expert`, `gitops-review`, or `mentor` on this branch. Pick the right one and explain why.
+I am not sure whether to use `docs-review-expert` or `gitops-review` on this branch. Pick the right one and explain why.
 
 Good response:
 - Start with: `docs-review-expert`
 - Why first: the branch risk is doc drift and weak onboarding, not merge gating yet
 - Use `gitops-review` next when the rewrites are complete and you need a PR or release gate
-- Use `mentor` only if the remaining issue is sequencing or scope control
 ```
 
 ## Repo Tooling Examples

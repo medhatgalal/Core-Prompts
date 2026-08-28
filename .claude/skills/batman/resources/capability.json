@@ -4,10 +4,9 @@
   "layers": {
     "minimal": {
       "capability_type": "both",
-      "summary": "Runs an explicitly invoked, evidence-gated delivery protocol through independent research, design, TDD implementation, verification, adversarial review, documentation, Git health, PR or MR, merge, and cleanup. Trigger with batman or the alias superman.",
-      "role": "analyst",
+      "summary": "Runs an explicitly invoked, subagent-driven delivery protocol through research, design, TDD implementation, blocking reviews, verification, documentation, Git health, PR or MR, merge, and cleanup. Trigger with batman or the alias superman.",
+      "role": "resolver",
       "domain_tags": [
-        "review",
         "batman"
       ],
       "required_inputs": [
@@ -22,12 +21,12 @@
         "size classification and selected stage set",
         "written specification, delivery plan, implementation plan, and ordered tasks",
         "decision record with rejected alternatives and reasons",
-        "per-task briefs, worker reports, review reports, and classified findings",
+        "task briefs, subagent reports, milestone review decisions, and classified findings",
         "observed TDD red evidence and mutation-check evidence for implemented behavior",
         "validation and verification evidence, including independent reconciliation when required",
         "documentation review and Git health result",
         "PR or MR, CI, merge, mainline verification, and cleanup receipt when landing is authorized",
-        "explicit blockers, parked work authorized by the human, and remaining uncertainty"
+        "progress reports, explicit blockers, parked work authorized by the human, and remaining uncertainty"
       ],
       "tool_policy": {
         "allowed": [
@@ -170,21 +169,20 @@
   ],
   "rubric_version": "capability-fabric.v0",
   "invocation_hints": [
-    "Use `batman` to run the full evidence-gated delivery controller for this work item.",
+    "Use `batman` for end-to-end implementation through subagent-driven development and blocking review gates.",
     "Use `superman` as an alias for the same Batman protocol and the same SSOT body.",
-    "Use Batman for a contract, metric, safety path, shipped defect, or other change that needs independent implementation and review.",
-    "Use Batman when the parent must remain a controller rather than becoming the implementer after research.",
-    "Do not invoke Batman for ordinary advice, one-pass editing, or a review that does not include implementation and landing."
+    "Use Batman for a contract, metric, safety path, shipped defect, or other implementation that requires independent evidence and landing.",
+    "Do not invoke Batman for advice, a one-pass edit, or a review that excludes implementation."
   ],
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "batman",
-  "shared_summary": "Runs an explicitly invoked, evidence-gated delivery protocol through independent research, design, TDD implementation, verification, adversarial review, documentation, Git health, PR or MR, merge, and cleanup. Trigger with batman or the alias superman.",
+  "shared_summary": "Runs an explicitly invoked, subagent-driven delivery protocol through research, design, TDD implementation, blocking reviews, verification, documentation, Git health, PR or MR, merge, and cleanup. Trigger with batman or the alias superman.",
   "shared_constraints": [
     "One canonical Batman SSOT body.",
     "`superman` is an alias only; no Superman SSOT, descriptor, skill, agent, or generated surface.",
-    "No provider-specific orchestration APIs or machine-specific agent paths in the canonical body.",
-    "No instruction to use all available agents, skills, or tools.",
-    "No controller implementation, failing-test authorship, or review-fix authorship.",
+    "No provider-specific orchestration API, machine-specific path, or arbitrary external capability dependency.",
+    "No instruction to use every agent, skill, or tool.",
+    "No controller implementation, failing-test authorship, review-fix authorship, or self-approval.",
     "No claim weakening, fabricated evidence, invented score, or behavioral-promotion claim from structural validation.",
     "No live write, deployment, push, publish, merge, destructive cleanup, or security-sensitive action without the required authority.",
     "No committed run-scoped scratch or secrets in evidence excerpts."
@@ -199,20 +197,29 @@
       "status": "structural_ready",
       "historical_baseline": {
         "slug": "batman",
-        "strategy": "candidate_seed",
-        "group": "new_or_untracked",
+        "strategy": "derived_history",
+        "group": "derived",
         "baseline_path": null,
-        "selected_commit": null,
+        "selected_commit": "7691d9d5",
         "richness_score": 5,
         "line_count": 276,
-        "reason": "No registry entry or git history available; use the candidate as the provisional seed baseline.",
+        "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
         "equivalent_commits": [],
         "expected_companions": [],
         "operator_invariants": [],
-        "scenario_matrix": [],
+        "scenario_matrix": [
+          {
+            "id": "operational_invocation",
+            "kind": "operational_contract",
+            "label": "operational invocation surface",
+            "must_contain": [
+              "## Invocation"
+            ]
+          }
+        ],
         "historical_proof": {},
-        "source": "candidate_seed",
-        "verified_by_git_history": false,
+        "source": "git_history",
+        "verified_by_git_history": true,
         "has_baseline_text": true
       },
       "judge_reports": [
@@ -222,7 +229,15 @@
           "score": 10,
           "blockers": [],
           "classification": "preserved",
-          "scenario_results": [],
+          "scenario_results": [
+            {
+              "id": "operational_invocation",
+              "kind": "operational_contract",
+              "label": "operational invocation surface",
+              "passed": true,
+              "missing_markers": []
+            }
+          ],
           "scorecard": {
             "baseline_richness": 5,
             "candidate_richness": 5,
@@ -230,7 +245,7 @@
             "candidate_operational_score": 2,
             "baseline_preserved_in_resource": false
           },
-          "baseline_commit": null,
+          "baseline_commit": "7691d9d5",
           "baseline_slug": "batman"
         },
         {
@@ -327,15 +342,24 @@
     }
   ],
   "job_contract": {
-    "primary_job": "Runs an explicitly invoked, evidence-gated delivery protocol through independent research, design, TDD implementation, verification, adversarial review, documentation, Git health, PR or MR, merge, and cleanup. Trigger with batman or the alias superman.",
-    "use_when": "The request directly matches the canonical purpose of Batman \u2014 Evidence-Gated Delivery Controller.",
-    "works_on": "The inputs and target declared by the canonical SSOT.",
-    "main_output": "The required output declared by the canonical SSOT.",
-    "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
-    "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
-    "routing_question": "Does this request directly require Batman \u2014 Evidence-Gated Delivery Controller?",
-    "nearest_neighbors": [],
-    "shape": "unclassified_new_skill",
-    "portfolio_action": "draft_new_skill_pending_review"
+    "primary_job": "Implements an authorized work item through an explicitly invoked, subagent-driven delivery protocol with written plans, TDD evidence, blocking milestone reviews, progress reporting, verification, documentation, and landing.",
+    "use_when": "A repository implementation needs independent subagents, controller-owned flow and evidence, adversarial backpressure, and authorized delivery to mainline. Trigger with batman or the alias superman.",
+    "works_on": "One scoped repository work item with success criteria, applicable instructions, a base revision, and explicit landing boundaries.",
+    "main_output": "Implemented behavior plus observed red, green, and mutation evidence; applicable milestone decisions; status reports; validation; documentation; Git health; and an authorized landing receipt.",
+    "not_for": "Advice-only, review-only, or one-pass editing requests, or work that cannot provide independent implementation and review subagents.",
+    "authority": "The controller coordinates subagents and performs authorized delivery actions; it never authors production code, failing tests, or implementation fixes, and metadata never auto-invokes the protocol.",
+    "routing_question": "Does this authorized repository change require subagent-driven implementation with blocking review backpressure and evidence through landing?",
+    "nearest_neighbors": [
+      "architecture",
+      "auto-research",
+      "supercharge",
+      "converge",
+      "code-review",
+      "address-code-review",
+      "docs-review-expert",
+      "gitops-review"
+    ],
+    "shape": "implementation_delivery_controller",
+    "portfolio_action": "ship_and_preserve_superman_alias"
   }
 }

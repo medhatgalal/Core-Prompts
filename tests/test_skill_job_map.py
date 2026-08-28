@@ -26,7 +26,9 @@ def test_job_map_preserves_user_identified_product_repo_and_code_boundaries() ->
     assert "product feature" in skills["feature-status"]["primary_job"].lower()
     assert "repository activity" in skills["eng-report"]["primary_job"].lower()
     assert "structural risks" in skills["codebase-health-audit"]["primary_job"].lower()
-    assert len({skills[slug]["primary_job"] for slug in ("architecture", "converge", "mentor")}) == 3
+    assert len({skills[slug]["primary_job"] for slug in ("architecture", "converge", "supercharge")}) == 3
+    assert "mentor" not in skills
+    assert all("mentor" not in job["nearest_neighbors"] for job in skills.values())
 
 
 def test_job_map_does_not_claim_unproven_merger_or_deletion() -> None:

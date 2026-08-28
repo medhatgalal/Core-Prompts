@@ -138,35 +138,19 @@
               {
                 "type": "object",
                 "additionalProperties": false,
-                "required": ["kind", "descriptor_path", "descriptor_sha256"],
+                "required": ["kind", "descriptor_sha256"],
                 "properties": {
                   "kind": {"const": "none"},
-                  "descriptor_path": {"type": "string", "minLength": 1},
                   "descriptor_sha256": {"$ref": "#/$defs/sha256"}
                 }
               },
               {
                 "type": "object",
                 "additionalProperties": false,
-                "required": ["kind", "name", "descriptor_path", "descriptor_sha256"],
+                "required": ["kind", "name", "descriptor_sha256"],
                 "properties": {
                   "kind": {"const": "protected_env"},
-                  "name": {"const": "OPENAI_API_KEY"},
-                  "descriptor_path": {"type": "string", "minLength": 1},
-                  "descriptor_sha256": {"$ref": "#/$defs/sha256"}
-                }
-              },
-              {
-                "type": "object",
-                "additionalProperties": false,
-                "required": ["kind", "name", "format", "source_path", "source_sha256", "descriptor_path", "descriptor_sha256"],
-                "properties": {
-                  "kind": {"const": "protected_service_file"},
-                  "name": {"const": "KIRO_SERVICE_CREDENTIAL_FILE"},
-                  "format": {"const": "kiro-service-credential-v1"},
-                  "source_path": {"type": "string", "minLength": 1},
-                  "source_sha256": {"$ref": "#/$defs/sha256"},
-                  "descriptor_path": {"type": "string", "minLength": 1},
+                  "name": {"enum": ["OPENAI_API_KEY", "KIRO_API_KEY"]},
                   "descriptor_sha256": {"$ref": "#/$defs/sha256"}
                 }
               }

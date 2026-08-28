@@ -63,7 +63,7 @@ Check each surface:
 Test that critical skills are reachable:
 1. ls ~/.kiro/skills/code-review/ (must exist)
 2. ls ~/.kiro/skills/supercharge/ (must exist)
-3. ls ~/.kiro/skills/mentor/ (must exist)
+3. ls ~/.kiro/skills/batman/ (must exist)
 4. For each: confirm SKILL.md file exists inside
 
 If any critical skill is missing:
@@ -82,7 +82,7 @@ Check: ls ~/.kiro/agents/ 2>/dev/null | wc -l
 Run these checks:
 1. Skill count: ls ~/.kiro/skills/ | wc -l (should be 15+)
 2. No broken symlinks: find ~/.kiro/skills/ -type l ! -exec test -e {} \; -print (should be empty)
-3. Key skills present: ls ~/.kiro/skills/{code-review,supercharge,mentor,auto-research}/SKILL.md
+3. Key skills present: ls ~/.kiro/skills/{code-review,supercharge,batman,auto-research}/SKILL.md
 
 If ALL pass: report "✓ Core-Prompts fully installed — N skills across M CLI surfaces"
 If any fail: diagnose and fix (go back to Phase 4)

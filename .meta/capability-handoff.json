@@ -392,7 +392,6 @@
         "code-review",
         "docs-review-expert",
         "gitops-review",
-        "mentor",
         "resolve-conflict",
         "supercharge",
         "testing"
@@ -430,10 +429,9 @@
       "slug": "batman",
       "display_name": "Batman \u2014 Evidence-Gated Delivery Controller",
       "capability_type": "both",
-      "summary": "Runs an explicitly invoked, evidence-gated delivery protocol through independent research, design, TDD implementation, verification, adversarial review, documentation, Git health, PR or MR, merge, and cleanup. Trigger with batman or the alias superman.",
-      "role": "analyst",
+      "summary": "Runs an explicitly invoked, subagent-driven delivery protocol through research, design, TDD implementation, blocking reviews, verification, documentation, Git health, PR or MR, merge, and cleanup. Trigger with batman or the alias superman.",
+      "role": "resolver",
       "domain_tags": [
-        "review",
         "batman"
       ],
       "required_inputs": [
@@ -448,12 +446,12 @@
         "size classification and selected stage set",
         "written specification, delivery plan, implementation plan, and ordered tasks",
         "decision record with rejected alternatives and reasons",
-        "per-task briefs, worker reports, review reports, and classified findings",
+        "task briefs, subagent reports, milestone review decisions, and classified findings",
         "observed TDD red evidence and mutation-check evidence for implemented behavior",
         "validation and verification evidence, including independent reconciliation when required",
         "documentation review and Git health result",
         "PR or MR, CI, merge, mainline verification, and cleanup receipt when landing is authorized",
-        "explicit blockers, parked work authorized by the human, and remaining uncertainty"
+        "progress reports, explicit blockers, parked work authorized by the human, and remaining uncertainty"
       ],
       "tool_policy": {
         "allowed": [
@@ -1567,93 +1565,6 @@
         ],
         "authority_tier": "advisory",
         "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
-      },
-      "advisory_only": true
-    },
-    {
-      "slug": "mentor",
-      "display_name": "Mentor \u2014 Senior Engineering Oversight and Workflow Guidance",
-      "capability_type": "both",
-      "summary": "[Medhat] Senior engineering oversight, planning, and workflow guidance.",
-      "role": "advisor",
-      "domain_tags": [
-        "prompting",
-        "mentor"
-      ],
-      "required_inputs": [
-        "the current goal or obstacle",
-        "repo state when relevant, such as branch, diff, failing checks, or active work slice",
-        "any constraints around safety, time, release risk, or coordination with other agents"
-      ],
-      "expected_outputs": [
-        "the current working interpretation of the task",
-        "the next recommended action or ordered plan",
-        "evidence required before calling the task done",
-        "the specialist capability to invoke when Mentor should route instead of own the work"
-      ],
-      "tool_policy": {
-        "allowed": [
-          "deterministic classification",
-          "metadata publication",
-          "surface generation"
-        ],
-        "forbidden": [
-          "orchestration",
-          "delegation decisions",
-          "runtime execution control"
-        ]
-      },
-      "install_target": {
-        "recommended": "repo_local",
-        "confidence": 0.88,
-        "confirmation_required_for_apply": true,
-        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
-        "supported": [
-          "global",
-          "repo_local",
-          "both"
-        ]
-      },
-      "emitted_surfaces": {
-        "codex": [
-          "codex_skill",
-          "codex_agent"
-        ],
-        "gemini": [
-          "gemini_skill",
-          "gemini_agent"
-        ],
-        "claude": [
-          "claude_skill",
-          "claude_agent"
-        ],
-        "kiro": [
-          "kiro_skill",
-          "kiro_agent"
-        ]
-      },
-      "confidence": 0.98,
-      "review_status": "ready_for_orchestrator_review",
-      "overlap_candidates": [],
-      "relationship_suggestions": [
-        "prefer explicit review or analyst companions before high-authority use"
-      ],
-      "quality_status": null,
-      "benchmark_profile": null,
-      "preferred_use_cases": [],
-      "artifact_conventions": [],
-      "invocation_style": null,
-      "requires_human_confirmation": null,
-      "org_graph": {
-        "org_role": "specialist_with_workflow_surface",
-        "reports_to_suggestions": [],
-        "delegates_to_suggestions": [],
-        "collaborates_with_suggestions": [
-          "review",
-          "analysis"
-        ],
-        "authority_tier": "advisory",
-        "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
       },
       "advisory_only": true
     },

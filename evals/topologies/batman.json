@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "batman",
-  "ssot_sha256": "ac7e2684d99dc6a0267d785d1a6751a742e39e74ce3853a9877f98051690b3f2",
+  "ssot_sha256": "3f649676d77fad3ef73e068bd0b8544c7511b696dd2511b73b2835f136da8ca1",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -29,524 +29,709 @@
     "- size classification and selected stage set",
     "- written specification, delivery plan, implementation plan, and ordered tasks",
     "- decision record with rejected alternatives and reasons",
-    "- per-task briefs, worker reports, review reports, and classified findings",
+    "- task briefs, subagent reports, milestone review decisions, and classified findings",
     "- observed TDD red evidence and mutation-check evidence for implemented behavior",
     "- validation and verification evidence, including independent reconciliation when required",
     "- documentation review and Git health result",
     "- PR or MR, CI, merge, mainline verification, and cleanup receipt when landing is authorized",
-    "- explicit blockers, parked work authorized by the human, and remaining uncertainty"
+    "- progress reports, explicit blockers, parked work authorized by the human, and remaining uncertainty"
   ],
   "authority_boundaries": [
-    "batman:L6:c550d059fec1",
-    "batman:L24:b99596b10e18",
-    "batman:L52:1697eb5d7ecd",
-    "batman:L62:e58d3e4eec57",
-    "batman:L87:90eec1f15f1e",
-    "batman:L90:0a35e5f02883",
-    "batman:L96:8f0c8b8e68d3",
-    "batman:L98:a7b71ade6e97",
-    "batman:L101:cf6db48c8214",
-    "batman:L112:a7362b90d53f",
-    "batman:L117:1b0690edce2c",
-    "batman:L121:ba3c8c02d2be",
-    "batman:L135:fc7e386e23e9",
-    "batman:L150:b7f2aa2b6d7a",
-    "batman:L153:b9c821c0b4f9",
-    "batman:L156:b956198cb6fa",
-    "batman:L159:bda3c614bb4d",
-    "batman:L160:7cd93c52f759",
-    "batman:L172:0f7eea1d9e2c",
-    "batman:L179:dc98bfc240ec",
-    "batman:L180:8846d453f363",
-    "batman:L189:aae67dcb77e2",
-    "batman:L221:a323f827ebfc",
-    "batman:L227:de73d2fb29a1",
-    "batman:L242:6291b69d6f75",
-    "batman:L253:750886ae371b",
-    "batman:L259:914d9dc40431",
-    "batman:L263:f6708a2ef7ca"
+    "batman:L4:e7ac3eb2fd6f",
+    "batman:L6:486b540fc660",
+    "batman:L54:f02a4078e8a9",
+    "batman:L58:c5b515d5a94d",
+    "batman:L67:b8f53650c4ad",
+    "batman:L92:90eec1f15f1e",
+    "batman:L102:917d35b2f033",
+    "batman:L105:0ae01a47a8b3",
+    "batman:L119:0a35e5f02883",
+    "batman:L130:14dbd90c5681",
+    "batman:L141:5bf15bebd9ca",
+    "batman:L147:330fc246c06f",
+    "batman:L163:999fa7e364c5",
+    "batman:L179:b7f2aa2b6d7a",
+    "batman:L182:b9c821c0b4f9",
+    "batman:L185:b956198cb6fa",
+    "batman:L188:bda3c614bb4d",
+    "batman:L189:7cd93c52f759",
+    "batman:L202:0f7eea1d9e2c",
+    "batman:L211:ef76432ab764",
+    "batman:L212:d9b0582f79bb",
+    "batman:L221:334dddaa2f2c",
+    "batman:L250:6666019f279e",
+    "batman:L280:914d9dc40431",
+    "batman:L285:f6708a2ef7ca"
   ],
   "resources": [],
   "handoffs": [],
   "protected_invariants": [
     {
-      "id": "batman:L6:c550d059fec1",
+      "id": "batman:L4:e7ac3eb2fd6f",
+      "heading": "Purpose",
+      "source_line": 4,
+      "sha256": "e7ac3eb2fd6f272c56ae60b9cddd9196b97a5b0d5829f7fa1c4b9080e4852aee",
+      "text": "Batman delivers implementation through independent subagents. The controller owns the flow, written plan, task briefs, review backpressure, evidence, status, and authorized landing actions. It never becomes the implementer or reviewer of its own work.",
+      "kind": "invariant",
+      "mapped_to": [
+        "BAT-PUB-003"
+      ]
+    },
+    {
+      "id": "batman:L6:486b540fc660",
       "heading": "Purpose",
       "source_line": 6,
-      "sha256": "c550d059fec1d7e4e080b0dbaf36898e0ef503cf9dee98d23f51720a41a2dbb5",
-      "text": "Batman has one canonical name and body. `superman` is a keyword alias for this same protocol. Do not create, maintain, register, or generate a separate Superman capability.",
+      "sha256": "486b540fc660d7913dce7a6790c296c1ae151f0d579d074f82ff5d2d0fa65748",
+      "text": "Batman has one canonical name and body. `superman` invokes this exact Batman body as a keyword alias. Do not create, register, or generate a separate Superman capability.",
       "kind": "invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-001"
+      ]
     },
     {
-      "id": "batman:L24:b99596b10e18",
+      "id": "batman:L25:25b6627d7d4d",
       "heading": "Agent Operating Contract",
-      "source_line": 24,
-      "sha256": "b99596b10e188eb5ad9739f8d9481e49608ff22c9ee1d25f2c187813bf306dc0",
-      "text": "Batman is active only when the user explicitly invokes `batman`, invokes `superman`, or asks for this evidence-gated controller protocol by intent. Capability Fabric descriptors and relationship hints remain advisory; they do not auto-route work or grant execution authority.",
+      "source_line": 25,
+      "sha256": "25b6627d7d4ded176799e7030525ed112e9bec048dc1a3bfc3b577ba0b1fbc0a",
+      "text": "Batman is active only when the user invokes `batman`, invokes `superman`, or explicitly asks for this evidence-gated delivery protocol. Metadata does not auto-route work or grant execution authority.",
       "kind": "guarded_invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-001"
+      ]
     },
     {
-      "id": "batman:L29:da7947e39517",
+      "id": "batman:L27:b0f810e89d40",
       "heading": "Agent Operating Contract",
-      "source_line": 29,
-      "sha256": "da7947e395171fe1b4db39ddb363b5de514585dd953b685f017754ad0f659405",
-      "text": "- discover and dispatch only the independent seats required by the current stage",
+      "source_line": 27,
+      "sha256": "b0f810e89d404665669acd92c21fb78ce26bed0e27ce2167f4d56b1a008022da",
+      "text": "The controller must:",
       "kind": "invariant",
-      "mapped_to": []
+      "mapped_to": [],
+      "waiver": {
+        "reason": "Lead-in only; each substantive controller obligation is mapped independently.",
+        "reviewer": "independent-evaluation-maintainer"
+      }
     },
     {
-      "id": "batman:L32:3b070058807c",
+      "id": "batman:L33:0c4bd08443e5",
       "heading": "Agent Operating Contract",
-      "source_line": 32,
-      "sha256": "3b070058807c6180ed8ac39dcfcbfd9d310f7e62973e601b25a0c975517f5be2",
-      "text": "- land only through the repository's authorization and Git health gates",
+      "source_line": 33,
+      "sha256": "0c4bd08443e5b39967b692ca6c7c9b538616d2f1002c63a46303cfce2596cc5e",
+      "text": "- report progress at required events and every 15 minutes during long-running work",
       "kind": "invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-005"
+      ]
     },
     {
-      "id": "batman:L41:9ccba9d2f85a",
+      "id": "batman:L34:cdbd82782609",
       "heading": "Agent Operating Contract",
+      "source_line": 34,
+      "sha256": "cdbd82782609b32bc63af55ee6822cf09a94db74bfccdf7fe64213a057d2d179",
+      "text": "- land only through repository policy and user authorization",
+      "kind": "invariant",
+      "mapped_to": [
+        "BAT-PUB-006"
+      ]
+    },
+    {
+      "id": "batman:L36:1fbcab9f4faf",
+      "heading": "Agent Operating Contract",
+      "source_line": 36,
+      "sha256": "1fbcab9f4faf7c563a854c63dc11e50d56b37ec7c042cbac31abe8a33b1b9c05",
+      "text": "The controller must not author production code, failing tests, or implementation fixes. It must not perform the implementer's self-review, substitute its own work when a subagent stalls, or let a reviewer fix the implementation it reviewed.",
+      "kind": "guarded_invariant",
+      "mapped_to": [
+        "BAT-PUB-003"
+      ]
+    },
+    {
+      "id": "batman:L41:a8ddad7daadb",
+      "heading": "Companion Contract",
       "source_line": 41,
-      "sha256": "9ccba9d2f85ad61d8ee3395a5e5bbb9bbe00bafb74ddfa1413f349693c30a25e",
-      "text": "The controller must not:",
-      "kind": "invariant",
-      "mapped_to": []
-    },
-    {
-      "id": "batman:L52:1697eb5d7ecd",
-      "heading": "Tool Boundaries",
-      "source_line": 52,
-      "sha256": "1697eb5d7ecdbc5527efb3f03c52fbaa68ec46ab12441d384628286ed4174b34",
-      "text": "- forbidden: hidden routing, undeclared delegation, nested worker spawning, production-code implementation by the controller, unauthorized live writes, destructive operations without approval, or deployment merely because apply/build succeeded",
-      "kind": "invariant",
-      "mapped_to": []
-    },
-    {
-      "id": "batman:L61:2c9c10059f93",
-      "heading": "Invocation Hints",
-      "source_line": 61,
-      "sha256": "2c9c10059f9321a40e781269035d008597ace4f93ca0481721cd91275383d6d8",
-      "text": "- Use Batman when the parent must remain a controller rather than becoming the implementer after research.",
+      "sha256": "a8ddad7daadbd799b60204ca200092983c059096e9ce6d3e620bfe8fa2de1663",
+      "text": "Use only the host's subagent mechanism and Core-Prompts companions available in the active installation and named in this contract. Batman may dispatch a precise role to a default independent subagent when a named companion is unavailable. It must not depend on arbitrary external capability collections.",
       "kind": "guarded_invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-004"
+      ]
     },
     {
-      "id": "batman:L62:e58d3e4eec57",
-      "heading": "Invocation Hints",
-      "source_line": 62,
-      "sha256": "e58d3e4eec57201c9c043de1c4b6f1eb8ae7d691646986408e2e925afcc6d89d",
-      "text": "- Do not invoke Batman for ordinary advice, one-pass editing, or a review that does not include implementation and landing.",
+      "id": "batman:L45:4297fce82cf0",
+      "heading": "Companion Contract",
+      "source_line": 45,
+      "sha256": "4297fce82cf0977265b7ddce8ccfac724e7835baa8039312f6b36de77ecc3cd3",
+      "text": "- `auto-research` for bounded behavioral comparison when proof is required",
+      "kind": "guarded_invariant",
+      "mapped_to": [
+        "BAT-PUB-023"
+      ]
+    },
+    {
+      "id": "batman:L50:606768aab490",
+      "heading": "Companion Contract",
+      "source_line": 50,
+      "sha256": "606768aab49074d20ded6a65d7d591b2022849f5c90ef5982a30a735fb99a1e9",
+      "text": "- `address-code-review` only for selected comments on an existing PR or MR",
       "kind": "invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-022"
+      ]
     },
     {
-      "id": "batman:L64:77357dbdaba3",
+      "id": "batman:L54:f02a4078e8a9",
+      "heading": "Companion Contract",
+      "source_line": 54,
+      "sha256": "f02a4078e8a9d79d66f73ea9f42cc5b786c4199516a93f12a4fe9cf1fd662585",
+      "text": "Call only the companions required by the current stage. Never instruct the host to use every available capability. SuperCharge supplies lenses; it does not own or execute Batman's flow.",
+      "kind": "invariant",
+      "mapped_to": [
+        "BAT-PUB-012"
+      ]
+    },
+    {
+      "id": "batman:L58:c5b515d5a94d",
+      "heading": "Tool Boundaries",
+      "source_line": 58,
+      "sha256": "c5b515d5a94dc92312559a0219df93e124c2365cd397700a84b29463e436daab",
+      "text": "- forbidden: hidden routing, undeclared delegation, production code, failing tests, or implementation fixes by the controller, reviewer self-approval, unauthorized live writes, or destructive actions without approval",
+      "kind": "invariant",
+      "mapped_to": [
+        "BAT-PUB-003"
+      ]
+    },
+    {
+      "id": "batman:L67:b8f53650c4ad",
+      "heading": "Invocation Hints",
+      "source_line": 67,
+      "sha256": "b8f53650c4ade4f93b0960da2f76fd49aae5b1ecee539a8aa8e5a0a94bf5bf3d",
+      "text": "- Do not invoke Batman for advice, a one-pass edit, or a review that excludes implementation.",
+      "kind": "invariant",
+      "mapped_to": [
+        "BAT-PUB-002"
+      ]
+    },
+    {
+      "id": "batman:L69:77357dbdaba3",
       "heading": "Required Inputs",
-      "source_line": 64,
+      "source_line": 69,
       "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
       "text": "## Required Inputs",
       "kind": "invariant",
-      "mapped_to": []
+      "mapped_to": [],
+      "waiver": {
+        "reason": "Section heading only; input-dependent behaviors are exercised by the public microflows.",
+        "reviewer": "independent-evaluation-maintainer"
+      }
     },
     {
-      "id": "batman:L71:3d4b9f171064",
+      "id": "batman:L76:3d4b9f171064",
       "heading": "Required Output",
-      "source_line": 71,
+      "source_line": 76,
       "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
       "text": "## Required Output",
       "kind": "invariant",
-      "mapped_to": []
+      "mapped_to": [],
+      "waiver": {
+        "reason": "Section heading only; substantive evidence outputs are mapped independently.",
+        "reviewer": "independent-evaluation-maintainer"
+      }
     },
     {
-      "id": "batman:L72:a9b93168e82b",
+      "id": "batman:L77:a9b93168e82b",
       "heading": "Required Output",
-      "source_line": 72,
+      "source_line": 77,
       "sha256": "a9b93168e82baa0f9329d22f027a40511c3f540af88d31d19e48e7309282c0ae",
       "text": "Batman must maintain or return:",
       "kind": "invariant",
-      "mapped_to": []
+      "mapped_to": [],
+      "waiver": {
+        "reason": "Lead-in only; substantive output obligations are mapped independently.",
+        "reviewer": "independent-evaluation-maintainer"
+      }
     },
     {
-      "id": "batman:L79:c7cf21409d9a",
+      "id": "batman:L84:c7cf21409d9a",
       "heading": "Required Output",
-      "source_line": 79,
+      "source_line": 84,
       "sha256": "c7cf21409d9adfeffba1f745250ee2eb1f0f0ee3b606aafcb98975b31b2a78ec",
       "text": "- validation and verification evidence, including independent reconciliation when required",
       "kind": "guarded_invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-007",
+        "BAT-PUB-024"
+      ]
     },
     {
-      "id": "batman:L85:be5484fc7ed3",
+      "id": "batman:L90:be5484fc7ed3",
       "heading": "Output Directory",
-      "source_line": 85,
+      "source_line": 90,
       "sha256": "be5484fc7ed37a48a6372173579ee27996d700ec94cba90ca9e825a653e10953",
       "text": "Store the controller ledger and run-scoped scratch evidence under the repository's ignored validation directory when one exists; otherwise use a temporary directory outside canonical source. The first line must name the work item and base revision.",
       "kind": "guarded_invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-025"
+      ]
     },
     {
-      "id": "batman:L87:90eec1f15f1e",
+      "id": "batman:L92:90eec1f15f1e",
       "heading": "Output Directory",
-      "source_line": 87,
+      "source_line": 92,
       "sha256": "90eec1f15f1e39080c730c4f9a49bc85d0f2c1adb9c05a7db6179793ca657c89",
       "text": "Do not commit transient scratch. Preserve durable evidence in the PR or MR description, an approved report path, or another repository-defined evidence artifact before removing scratch.",
       "kind": "invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-025"
+      ]
     },
     {
-      "id": "batman:L90:0a35e5f02883",
+      "id": "batman:L102:917d35b2f033",
+      "heading": "Progress Reporting",
+      "source_line": 102,
+      "sha256": "917d35b2f03377aea2cd22846414b1549b4c13924c92cb2d7075a5b07d658bf5",
+      "text": "Every status states completed plan items, current stage and gate, active subagents, evidence received, blockers, and the next action. Report a changed approach when breaking a stall. Event reports do not replace the 15-minute heartbeat.",
+      "kind": "guarded_invariant",
+      "mapped_to": [
+        "BAT-PUB-005"
+      ]
+    },
+    {
+      "id": "batman:L105:0ae01a47a8b3",
+      "heading": "Milestone Backpressure",
+      "source_line": 105,
+      "sha256": "0ae01a47a8b3ea987a5d2a4855049dd38a8825c469220b2635d1b6ac0c0c024a",
+      "text": "All four milestone gates are blocking. A size rule may mark a milestone inapplicable; it never makes a selected gate advisory. Dispatch reviewers independently from the implementation subagent. A failed gate returns work to the assigned implementer or fixer and blocks downstream work.",
+      "kind": "invariant",
+      "mapped_to": [
+        "BAT-PUB-008"
+      ]
+    },
+    {
+      "id": "batman:L107:36aa04ba00df",
+      "heading": "Milestone Backpressure",
+      "source_line": 107,
+      "sha256": "36aa04ba00df44d6cb7ba6133392bb30a142b820cc0da6907bbbfe47416abcf9",
+      "text": "Internal milestone findings return to the original implementer or a bounded default fixer. Use `address-code-review` only for selected comments on an existing PR or MR.",
+      "kind": "invariant",
+      "mapped_to": [
+        "BAT-PUB-022"
+      ]
+    },
+    {
+      "id": "batman:L119:0a35e5f02883",
       "heading": "Workflow",
-      "source_line": 90,
+      "source_line": 119,
       "sha256": "0a35e5f028837a3f69a4e52eeb1560453d593483ced2216cfc510e92405a066e",
       "text": "Run stages in order. Do not ask for permission between ordinary, reversible stages already covered by the user's request. Do not interpret that continuity as authority for a critical or destructive action.",
       "kind": "invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-006"
+      ]
     },
     {
-      "id": "batman:L96:8f0c8b8e68d3",
-      "heading": "Preflight \u2014 Verify and discover",
-      "source_line": 96,
-      "sha256": "8f0c8b8e68d3623b600184782b1fe339f7d32473f1539b1e8572b26efc9b2962",
-      "text": "4. Select only the seats required by the current stage. Never instruct the host to use all agents, skills, or tools.",
+      "id": "batman:L125:52fa7028b5a4",
+      "heading": "Preflight \u2014 Verify and dispatch",
+      "source_line": 125,
+      "sha256": "52fa7028b5a48f7dfc62711a2f0bb40cf7158b18aebf055071fa5cf7ed61d066",
+      "text": "4. Select only the named companions and default subagent roles required by the current stage.",
       "kind": "invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-004"
+      ]
     },
     {
-      "id": "batman:L98:a7b71ade6e97",
-      "heading": "Preflight \u2014 Verify and discover",
-      "source_line": 98,
-      "sha256": "a7b71ade6e97f6070517bb3c0410ba01dda48fdeea1a450c95e19c2feccae878",
-      "text": "6. Workers do not dispatch additional workers. Reviewers are dispatched by the controller after the implementation report.",
-      "kind": "invariant",
-      "mapped_to": []
-    },
-    {
-      "id": "batman:L101:cf6db48c8214",
-      "heading": "Preflight \u2014 Verify and discover",
-      "source_line": 101,
-      "sha256": "cf6db48c821421eaa68889affc6dbe55cc5c27548527e9f22ee12ed52a72d75e",
-      "text": "While a worker runs, update the ledger and prepare the next brief. Use bounded waits appropriate to the host. If a worker makes no reportable progress after the bounded wait, cancel or interrupt it and dispatch a narrower brief. Do not retry the same vague brief.",
+      "id": "batman:L130:14dbd90c5681",
+      "heading": "Preflight \u2014 Verify and dispatch",
+      "source_line": 130,
+      "sha256": "14dbd90c5681cb0cb353c43b6b9b8618c1814be0db9e3f8e4d582326235dc015",
+      "text": "Use bounded waits appropriate to the host. If a subagent makes no reportable progress, interrupt it and dispatch a narrower brief. Do not retry the same vague brief. Subagents must not dispatch additional subagents.",
       "kind": "guarded_invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-009"
+      ]
     },
     {
-      "id": "batman:L104:cc60bb15401c",
+      "id": "batman:L133:cc60bb15401c",
       "heading": "Size gate",
-      "source_line": 104,
+      "source_line": 133,
       "sha256": "cc60bb15401cc58ffa0ee8470fca48a57d8e0212b0cc59d491e9d378bde31996",
       "text": "Keep stage order. Drop stages only by the following size rules:",
       "kind": "invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-010"
+      ]
     },
     {
-      "id": "batman:L106:968022479c3b",
+      "id": "batman:L135:968022479c3b",
       "heading": "Size gate",
-      "source_line": 106,
+      "source_line": 135,
       "sha256": "968022479c3bbcc5aee76808bad59358ddcdd432fe6571b5ab9387c5a4ed6c1b",
       "text": "| Size | Required stages |",
       "kind": "invariant",
-      "mapped_to": []
+      "mapped_to": [],
+      "waiver": {
+        "reason": "Markdown table header only; size behavior and stage selection are mapped.",
+        "reviewer": "independent-evaluation-maintainer"
+      }
     },
     {
-      "id": "batman:L109:3cdda6007b44",
+      "id": "batman:L138:3cdda6007b44",
       "heading": "Size gate",
-      "source_line": 109,
+      "source_line": 138,
       "sha256": "3cdda6007b4450c644119f889c676b947f14036a3a72c98674f94f345ab4cc7a",
       "text": "| Small: one behavior and no new interface | 1 context-only, 3, 4, 5, 6 |",
       "kind": "invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-010"
+      ]
     },
     {
-      "id": "batman:L112:a7362b90d53f",
+      "id": "batman:L141:5bf15bebd9ca",
       "heading": "Size gate",
-      "source_line": 112,
-      "sha256": "a7362b90d53f10d7e884367fd30f79388e7f268f07bef134c4e155886941876b",
-      "text": "A correction for a shipped defect is never trivial.",
+      "source_line": 141,
+      "sha256": "5bf15bebd9ca4967f3bc75270f2e86dd4c794e5e72ab8a026cb42ded12cf8324",
+      "text": "A correction for a shipped defect is never trivial. Every size still passes applicable task and landing milestone gates.",
       "kind": "invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-010"
+      ]
     },
     {
-      "id": "batman:L117:1b0690edce2c",
+      "id": "batman:L146:f86a839a43aa",
       "heading": "Stage 1 \u2014 Research and challenge",
-      "source_line": 117,
-      "sha256": "1b0690edce2c13ad3ccd3b4b620ef13ed0fe5444fe0bd463f1b8eb0340c097d6",
-      "text": "1. Context seat: explain how the affected system actually works with files, lines, state, and observed behavior. Do not design.",
+      "source_line": 146,
+      "sha256": "f86a839a43aa6e4b843f0a43ad5e95d649fc4fa61a166e131bda4f96f2f87308",
+      "text": "1. Dispatch a context subagent to explain observed behavior with repository evidence. It must not design.",
       "kind": "invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-011"
+      ]
     },
     {
-      "id": "batman:L118:93281cde85f1",
+      "id": "batman:L147:330fc246c06f",
       "heading": "Stage 1 \u2014 Research and challenge",
-      "source_line": 118,
-      "sha256": "93281cde85f12bd9b300f4c69ff9cfa140998e3ac02021935b61517066684b35",
-      "text": "2. SuperCharge seat: call the existing SuperCharge capability as a lens. Use `/adversarial /debate` to test the premise, falsifiers, and cheapest correct slice. Use `/full` only when the written plan justifies the full gauntlet; `/full` is not an instruction to run every installed capability.",
+      "source_line": 147,
+      "sha256": "330fc246c06fb409151c37e13d172768224ceffeec08ec911a9d4277da59ae24",
+      "text": "2. Dispatch an independent challenge using `supercharge /adversarial /debate` to test the premise, falsifiers, and smallest valid slice. Use `/full` only when the written plan justifies the full gauntlet; `/full` never means run every capability.",
       "kind": "guarded_invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-012"
+      ]
     },
     {
-      "id": "batman:L121:ba3c8c02d2be",
-      "heading": "Stage 1 \u2014 Research and challenge",
-      "source_line": 121,
-      "sha256": "ba3c8c02d2bedcdc4cad50dab1883e3a92e8b5a1be2041ac56f481386f62aca3",
-      "text": "Gate: if the problem is misframed, revise the scope. Do not design the original wrong object.",
-      "kind": "guarded_invariant",
-      "mapped_to": []
-    },
-    {
-      "id": "batman:L135:fc7e386e23e9",
+      "id": "batman:L163:999fa7e364c5",
       "heading": "Stage 2 \u2014 Design, simplify, specify, and plan",
-      "source_line": 135,
-      "sha256": "fc7e386e23e9fb6ec7be4e9f3bc0103024a5f22194ef86576c53cafe86628e90",
-      "text": "Do not begin TDD until all four written artifacts\u2014specification, delivery plan, implementation plan, and tasks\u2014exist and agree.",
+      "source_line": 163,
+      "sha256": "999fa7e364c55e0cb7528e4f4c993a2e4c83548a5d5139905dd990a7974cd7a6",
+      "text": "9. Run milestone gate 2. Do not begin TDD until the specification, delivery plan, implementation plan, and tasks exist, agree, and pass review.",
       "kind": "invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-013"
+      ]
     },
     {
-      "id": "batman:L150:b7f2aa2b6d7a",
-      "heading": "Stage 3 \u2014 TDD-led implementation",
-      "source_line": 150,
+      "id": "batman:L179:b7f2aa2b6d7a",
+      "heading": "Stage 3 \u2014 TDD-led subagent implementation",
+      "source_line": 179,
       "sha256": "b7f2aa2b6d7a29c961fbd1b8638115680923bcb8bdfd3146d150e306dbb6f5c2",
       "text": "1. Create a dedicated branch from current main, preferably in an isolated worktree. Never implement on `main` unless the user explicitly requires it and repository policy allows it.",
       "kind": "guarded_invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-014"
+      ]
     },
     {
-      "id": "batman:L151:13538acf07df",
-      "heading": "Stage 3 \u2014 TDD-led implementation",
-      "source_line": 151,
-      "sha256": "13538acf07df606208ce56d6e685aee21cd0a2f4359ce350dad1e04e77dd75db",
-      "text": "2. Dispatch one independent implementer per bounded task. Provide only the task brief and required context, not a session-history dump.",
+      "id": "batman:L180:ff1ff4a96fa8",
+      "heading": "Stage 3 \u2014 TDD-led subagent implementation",
+      "source_line": 180,
+      "sha256": "ff1ff4a96fa824b3d32aae0527699b3038f560d7294c9c7b98a7041540d8c80b",
+      "text": "2. Dispatch one independent implementer subagent per bounded task. Provide only the task brief and required context, not a session-history dump.",
       "kind": "invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-015"
+      ]
     },
     {
-      "id": "batman:L153:b9c821c0b4f9",
-      "heading": "Stage 3 \u2014 TDD-led implementation",
-      "source_line": 153,
+      "id": "batman:L182:b9c821c0b4f9",
+      "heading": "Stage 3 \u2014 TDD-led subagent implementation",
+      "source_line": 182,
       "sha256": "b9c821c0b4f9c665f912b9650d328841e6d59d32238b2e75bacd1005f906f3ad",
       "text": "4. The implementer reports the exact command and a sanitized relevant red excerpt. A test that was never observed red is not evidence.",
       "kind": "invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-016"
+      ]
     },
     {
-      "id": "batman:L156:b956198cb6fa",
-      "heading": "Stage 3 \u2014 TDD-led implementation",
-      "source_line": 156,
+      "id": "batman:L185:b956198cb6fa",
+      "heading": "Stage 3 \u2014 TDD-led subagent implementation",
+      "source_line": 185,
       "sha256": "b956198cb6fa7d6a6d64fc25eee6e0ff3225b6ad0a606e38d453bd032fc7d721",
       "text": "7. Test design lives in the failing tests. Do not add a second post-hoc test-design ceremony after implementation.",
       "kind": "invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-017"
+      ]
     },
     {
-      "id": "batman:L159:bda3c614bb4d",
-      "heading": "Stage 3 \u2014 TDD-led implementation",
-      "source_line": 159,
+      "id": "batman:L188:bda3c614bb4d",
+      "heading": "Stage 3 \u2014 TDD-led subagent implementation",
+      "source_line": 188,
       "sha256": "bda3c614bb4d403d2b56ae1dfc153cf28a4e6fc39ca28ac4499020ae31b79106",
       "text": "10. Re-review the fix diff. After five unresolved rounds, stop for a human ruling. Do not silently park a Critical or Important finding.",
       "kind": "invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-008"
+      ]
     },
     {
-      "id": "batman:L160:7cd93c52f759",
-      "heading": "Stage 3 \u2014 TDD-led implementation",
-      "source_line": 160,
+      "id": "batman:L189:7cd93c52f759",
+      "heading": "Stage 3 \u2014 TDD-led subagent implementation",
+      "source_line": 189,
       "sha256": "7cd93c52f759b241a1b063013490ed143e8f98973accaaf2ffad4092b17855e7",
       "text": "11. Do not begin the next task while a Critical or Important finding remains unresolved.",
       "kind": "invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-008"
+      ]
     },
     {
-      "id": "batman:L165:efddd23982fd",
+      "id": "batman:L195:efddd23982fd",
       "heading": "Stage 4 \u2014 Validation and verification",
-      "source_line": 165,
+      "source_line": 195,
       "sha256": "efddd23982fd3edf3d89568b50733e12a8027083f01061d7ff67c43a2ddfd942",
       "text": "Run the repository-required formatter, linter, strict type checks, targeted tests, and full offline suite. Record exact commands and outcomes.",
       "kind": "invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-018"
+      ]
     },
     {
-      "id": "batman:L172:0f7eea1d9e2c",
+      "id": "batman:L202:0f7eea1d9e2c",
       "heading": "Stage 4 \u2014 Validation and verification",
-      "source_line": 172,
+      "source_line": 202,
       "sha256": "0f7eea1d9e2cfa5c89be768a412e86ffe43934bd4a010610337f6fcac12b833e",
       "text": "Never weaken a claim to make validation pass. If a claim cannot be verified, refuse the claim and report the missing proof. A refusal is a successful answer.",
       "kind": "guarded_invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-018"
+      ]
     },
     {
-      "id": "batman:L179:dc98bfc240ec",
+      "id": "batman:L211:ef76432ab764",
       "heading": "Stage 5 \u2014 Code review and address review",
-      "source_line": 179,
-      "sha256": "dc98bfc240ecc56f98535d6ee6e3c7ea115f2c34f4e0ed4e084068ef4a1d459f",
-      "text": "3. Convergence seat: classify every finding as `MUST-FIX`, `CHEAP`, `TRACKED`, or `REJECT`. Resolve disagreement; do not average or silently dismiss it.",
+      "source_line": 211,
+      "sha256": "ef76432ab7642df99c9619ef93467091fa42345a97f274f8981127cc23a8250e",
+      "text": "3. Use `converge` to classify every finding as `MUST-FIX`, `CHEAP`, `TRACKED`, or `REJECT`. Resolve disagreement; do not average or silently dismiss it.",
       "kind": "invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-019"
+      ]
     },
     {
-      "id": "batman:L180:8846d453f363",
+      "id": "batman:L212:d9b0582f79bb",
       "heading": "Stage 5 \u2014 Code review and address review",
-      "source_line": 180,
-      "sha256": "8846d453f36386b865ec1a7f4d12aa134448fb14122bb2127320ad21af0c92c1",
-      "text": "4. Address accepted review findings through the implementer or assigned fixer, never through the controller.",
+      "source_line": 212,
+      "sha256": "d9b0582f79bb986cc68b75639d75e7962b868650452d406482af3af778abd3a4",
+      "text": "4. Address accepted findings through the implementer or a bounded default fixer, never through the controller.",
       "kind": "invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-019"
+      ]
     },
     {
-      "id": "batman:L188:dd6a55f93581",
+      "id": "batman:L220:0a769d7bcaec",
       "heading": "Stage 6 \u2014 Document, land, and clean",
-      "source_line": 188,
-      "sha256": "dd6a55f93581fa51c36c4f3864a037a3119c3a56ae4bd95c746486a68187a080",
-      "text": "3. Open a scoped PR or MR whose description reports measurements and evidence, not only intent.",
+      "source_line": 220,
+      "sha256": "0a769d7bcaecefa4b1f3675f8b4bdea8ed78c46936d63524ad452c50b932c32b",
+      "text": "2. Open a scoped PR or MR whose description reports measurements and evidence, not only intent.",
       "kind": "invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-020"
+      ]
     },
     {
-      "id": "batman:L189:aae67dcb77e2",
+      "id": "batman:L221:334dddaa2f2c",
       "heading": "Stage 6 \u2014 Document, land, and clean",
-      "source_line": 189,
-      "sha256": "aae67dcb77e2e39f7fad2ff335320fb381e97e4c7745714a9c488ea680aa0d78",
-      "text": "4. Verify current hosted CI on every required forge. Do not infer hosted CI from local tests.",
+      "source_line": 221,
+      "sha256": "334dddaa2f2cebf9044c66fad490881aec55b59f83e19760872ce6f9ba1b1bb3",
+      "text": "3. Verify current hosted CI on every required forge. Do not infer hosted CI from local tests.",
       "kind": "invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-020"
+      ]
     },
     {
-      "id": "batman:L192:e5749670d99f",
+      "id": "batman:L225:e5749670d99f",
       "heading": "Stage 6 \u2014 Document, land, and clean",
-      "source_line": 192,
+      "source_line": 225,
       "sha256": "e5749670d99f3e7bcbacbe1f1401ffb1805b1672aa0b6fe3bf1a5c5ca2b100f0",
       "text": "7. Remove run-scoped scratch. Delete the delivery branch and worktree only when authorized and safe.",
       "kind": "guarded_invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-021"
+      ]
     },
     {
-      "id": "batman:L199:fe1fbcda6368",
+      "id": "batman:L231:84c4a41ecd61",
       "heading": "Rules",
-      "source_line": 199,
-      "sha256": "fe1fbcda63685488aaf3c61c4847b91dadb799845537d97c25e617e434c21f0b",
-      "text": "- Dispatch only the seats required by the current stage.",
+      "source_line": 231,
+      "sha256": "84c4a41ecd618100967e9ca27daf2bb53a7dcd172819049238cde6460f051a05",
+      "text": "- Dispatch only the subagents required by the current stage.",
       "kind": "invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-004"
+      ]
     },
     {
-      "id": "batman:L204:11b0041a298e",
+      "id": "batman:L236:4449897e2023",
       "heading": "Rules",
-      "source_line": 204,
-      "sha256": "11b0041a298ed355e5c14b1de2d28b883afbb0ac15d09c5ff06396127ea10b0f",
-      "text": "- SuperCharge is a called lens. Batman is not a SuperCharge module and must not be added to `/full`, `/ult`, or any other SuperCharge module list.",
+      "source_line": 236,
+      "sha256": "4449897e20239b08c2ddd9e8dcb8290a129b9d7eeea43612b4c20392eb557062",
+      "text": "- SuperCharge is a called lens. Batman is not a SuperCharge module and must not appear in any SuperCharge module list.",
       "kind": "invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-012"
+      ]
     },
     {
-      "id": "batman:L208:22ffad4cb779",
+      "id": "batman:L240:22ffad4cb779",
       "heading": "Constraints",
-      "source_line": 208,
+      "source_line": 240,
       "sha256": "22ffad4cb77973c5cbb5518bb4ead4f94440301f3b120624c0a9557411fe3e64",
       "text": "- `superman` is an alias only; no Superman SSOT, descriptor, skill, agent, or generated surface.",
       "kind": "invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-001"
+      ]
     },
     {
-      "id": "batman:L213:cc2349e3bd8f",
+      "id": "batman:L245:cc2349e3bd8f",
       "heading": "Constraints",
-      "source_line": 213,
+      "source_line": 245,
       "sha256": "cc2349e3bd8f92238a5c3cdd43dfa98e9f8cbe2fb35450b16de2a53bc0e3a4a8",
       "text": "- No live write, deployment, push, publish, merge, destructive cleanup, or security-sensitive action without the required authority.",
       "kind": "invariant",
-      "mapped_to": []
+      "mapped_to": [
+        "BAT-PUB-006"
+      ]
     },
     {
-      "id": "batman:L217:4e1d96995ee4",
-      "heading": "WorkGraph addendum",
-      "source_line": 217,
-      "sha256": "4e1d96995ee4199bfc22b051e74538874cfb672b84338577c079536d9251a0d7",
-      "text": "Apply this section only inside `workgraph-jira`. It does not change the core stages.",
+      "id": "batman:L250:6666019f279e",
+      "heading": "Implementation request",
+      "source_line": 250,
+      "sha256": "6666019f279ec0fecf41e316ea6e6f87fe1e76dcb95b41574d768d73d67dbe4c",
+      "text": "> Batman: implement this shipped-defect correction through subagent-driven TDD, all applicable milestone gates, verification, docs, PR, authorized merge, and cleanup. Never weaken the metric claim.",
       "kind": "invariant",
-      "mapped_to": []
+      "mapped_to": [],
+      "waiver": {
+        "reason": "Illustrative request duplicates mapped implementation and claim-integrity obligations.",
+        "reviewer": "independent-evaluation-maintainer"
+      }
     },
     {
-      "id": "batman:L221:a323f827ebfc",
-      "heading": "WorkGraph addendum",
-      "source_line": 221,
-      "sha256": "a323f827ebfc9c8ac48c549cdeefc955f4f30c2256ebf5516ae395b801fc0664",
-      "text": "- Product writes outside authorized AT or PT projects are forbidden.",
-      "kind": "invariant",
-      "mapped_to": []
-    },
-    {
-      "id": "batman:L222:46b2d30ceb79",
-      "heading": "WorkGraph addendum",
-      "source_line": 222,
-      "sha256": "46b2d30ceb795335aaf42945a3e82746d55c23ee83f3ed03088fe998dfaee12b",
-      "text": "- A new verb must include the capability row, top-level operator registration, live-access declaration, dispatch, both dispatch-gate test tables, acceptance-schema constants, and command documentation.",
-      "kind": "invariant",
-      "mapped_to": []
-    },
-    {
-      "id": "batman:L227:de73d2fb29a1",
-      "heading": "Example request",
-      "source_line": 227,
-      "sha256": "de73d2fb29a1bdfd4cb05be69f96d8c9d543d25810396dc67a580c79ef02efcd",
-      "text": "> Batman: deliver this shipped-defect correction through independent research, TDD, review, verification, docs, PR, merge, and cleanup. Do not weaken the metric claim.",
-      "kind": "invariant",
-      "mapped_to": []
-    },
-    {
-      "id": "batman:L242:6291b69d6f75",
-      "heading": "What Good Looks Like",
-      "source_line": 242,
-      "sha256": "6291b69d6f758a8b7777c981c30b615c11ae9408d6d69933512adfc13d31455f",
-      "text": "- The controller never becomes the implementer.",
-      "kind": "invariant",
-      "mapped_to": []
-    },
-    {
-      "id": "batman:L253:750886ae371b",
-      "heading": "Review Timing",
-      "source_line": 253,
-      "sha256": "750886ae371b42ae145446c1a22c1543c195755e5cced81d88d164d13c615f5c",
-      "text": "- merge: verify authority, final diff, required approvals, and mainline target",
-      "kind": "invariant",
-      "mapped_to": []
-    },
-    {
-      "id": "batman:L254:eb111e6baeba",
-      "heading": "Review Timing",
-      "source_line": 254,
-      "sha256": "eb111e6baeba96522bbfe525914f0162b0931ecfb4749a921122e63c5d985472",
-      "text": "- post-merge: verify the merged revision and remove only authorized scratch, branch, and worktree state",
-      "kind": "invariant",
-      "mapped_to": []
-    },
-    {
-      "id": "batman:L259:914d9dc40431",
+      "id": "batman:L280:914d9dc40431",
       "heading": "Evaluation Rubric",
-      "source_line": 259,
+      "source_line": 280,
       "sha256": "914d9dc40431896335ed656847679ee05827442eaf2e24184eef04436364ad06",
       "text": "| Controller separation | The controller never authors production code, failing tests, or implementation fixes |",
       "kind": "invariant",
-      "mapped_to": []
+      "mapped_to": [],
+      "waiver": {
+        "reason": "Rubric restatement duplicates the mapped controller-separation invariant.",
+        "reviewer": "independent-evaluation-maintainer"
+      }
     },
     {
-      "id": "batman:L263:f6708a2ef7ca",
+      "id": "batman:L285:f6708a2ef7ca",
       "heading": "Evaluation Rubric",
-      "source_line": 263,
+      "source_line": 285,
       "sha256": "f6708a2ef7ca7fd274b2a54d8f7772eafb5a374a5a38c25b185e99793f49d8b1",
       "text": "| Claim integrity | Validation never weakens the claim; unverifiable claims are refused |",
       "kind": "invariant",
-      "mapped_to": []
+      "mapped_to": [],
+      "waiver": {
+        "reason": "Rubric restatement duplicates the mapped claim-integrity invariant.",
+        "reviewer": "independent-evaluation-maintainer"
+      }
+    },
+    {
+      "id": "batman:L287:d3dc829b8087",
+      "heading": "Evaluation Rubric",
+      "source_line": 287,
+      "sha256": "d3dc829b8087ca3c4d85620129399bea7865ae1d839695ba851d96f444b0e802",
+      "text": "| Portability | The body uses the host subagent mechanism and named Core-Prompts companions from the active installation only |",
+      "kind": "invariant",
+      "mapped_to": [
+        "BAT-PUB-004"
+      ]
     }
   ],
   "risk_tiers": {
-    "critical": [],
-    "high": [],
-    "standard": []
+    "critical": [
+      "batman:L105:0ae01a47a8b3",
+      "batman:L163:999fa7e364c5",
+      "batman:L179:b7f2aa2b6d7a",
+      "batman:L182:b9c821c0b4f9",
+      "batman:L188:bda3c614bb4d",
+      "batman:L189:7cd93c52f759",
+      "batman:L202:0f7eea1d9e2c",
+      "batman:L212:d9b0582f79bb",
+      "batman:L221:334dddaa2f2c",
+      "batman:L240:22ffad4cb779",
+      "batman:L245:cc2349e3bd8f",
+      "batman:L25:25b6627d7d4d",
+      "batman:L280:914d9dc40431",
+      "batman:L285:f6708a2ef7ca",
+      "batman:L34:cdbd82782609",
+      "batman:L36:1fbcab9f4faf",
+      "batman:L4:e7ac3eb2fd6f",
+      "batman:L58:c5b515d5a94d",
+      "batman:L6:486b540fc660"
+    ],
+    "high": [
+      "batman:L102:917d35b2f033",
+      "batman:L107:36aa04ba00df",
+      "batman:L119:0a35e5f02883",
+      "batman:L130:14dbd90c5681",
+      "batman:L133:cc60bb15401c",
+      "batman:L141:5bf15bebd9ca",
+      "batman:L147:330fc246c06f",
+      "batman:L180:ff1ff4a96fa8",
+      "batman:L195:efddd23982fd",
+      "batman:L211:ef76432ab764",
+      "batman:L220:0a769d7bcaec",
+      "batman:L225:e5749670d99f",
+      "batman:L236:4449897e2023",
+      "batman:L33:0c4bd08443e5",
+      "batman:L41:a8ddad7daadb",
+      "batman:L54:f02a4078e8a9",
+      "batman:L67:b8f53650c4ad",
+      "batman:L84:c7cf21409d9a",
+      "batman:L90:be5484fc7ed3",
+      "batman:L92:90eec1f15f1e"
+    ],
+    "standard": [
+      "batman:L125:52fa7028b5a4",
+      "batman:L135:968022479c3b",
+      "batman:L138:3cdda6007b44",
+      "batman:L146:f86a839a43aa",
+      "batman:L185:b956198cb6fa",
+      "batman:L231:84c4a41ecd61",
+      "batman:L250:6666019f279e",
+      "batman:L27:b0f810e89d40",
+      "batman:L287:d3dc829b8087",
+      "batman:L45:4297fce82cf0",
+      "batman:L50:606768aab490",
+      "batman:L69:77357dbdaba3",
+      "batman:L76:3d4b9f171064",
+      "batman:L77:a9b93168e82b"
+    ]
   },
   "source_references": [
     {
       "path": "ssot/batman.md",
-      "sha256": "ac7e2684d99dc6a0267d785d1a6751a742e39e74ce3853a9877f98051690b3f2"
+      "sha256": "3f649676d77fad3ef73e068bd0b8544c7511b696dd2511b73b2835f136da8ca1"
     }
   ],
   "known_ambiguities": [],
@@ -559,10 +744,14 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 52,
-    "mapped": 0,
-    "waived": 0
+    "total": 53,
+    "mapped": 45,
+    "waived": 8
   },
-  "review_status": "draft",
-  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs."
+  "review_status": "human_reviewed",
+  "compiler_note": "Human review is hash-bound through evals/reviews/<slug>.json; mappings, waivers, and risk tiers are deterministic.",
+  "review_overlay": {
+    "path": "evals/reviews/batman.json",
+    "sha256": "be9612621e9d30421fd293d5f9cbd05ab171690c34850a3a320c064de11e9261"
+  }
 }

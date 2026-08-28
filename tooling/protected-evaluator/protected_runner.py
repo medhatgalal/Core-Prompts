@@ -266,21 +266,31 @@ def load_config(path: Path, *, phase: str | None = None) -> dict[str, Any]:
     credentials = _object(payload["adapter_credentials"], "adapter_credentials")
     _closed(credentials, {"codex", "kiro"}, "adapter_credentials")
     codex_credential = _object(credentials["codex"], "adapter_credentials.codex")
-    _closed(codex_credential, {"kind", "variable"}, "adapter_credentials.codex")
-    if codex_credential != {"kind": "environment", "variable": "OPENAI_API_KEY"}:
-        raise ConfigError("Codex credential must be the protected OPENAI_API_KEY environment variable")
+    _closed(
+        codex_credential,
+        {"kind", "variable", "status", "reason"},
+        "adapter_credentials.codex",
+    )
+    if (
+        codex_credential.get("kind") != "protected_env"
+        or codex_credential.get("variable") != "OPENAI_API_KEY"
+        or codex_credential.get("status") != "unavailable"
+        or not str(codex_credential.get("reason") or "").strip()
+    ):
+        raise ConfigError("Codex reusable credential boundary must remain explicitly unavailable")
     kiro_credential = _object(credentials["kiro"], "adapter_credentials.kiro")
     _closed(
         kiro_credential,
-        {"kind", "variable", "documentation_reference"},
+        {"kind", "variable", "status", "reason"},
         "adapter_credentials.kiro",
     )
     if (
-        kiro_credential.get("kind") != "file"
-        or kiro_credential.get("variable") != "KIRO_SERVICE_CREDENTIAL_FILE"
-        or not str(kiro_credential.get("documentation_reference") or "").strip()
+        kiro_credential.get("kind") != "protected_env"
+        or kiro_credential.get("variable") != "KIRO_API_KEY"
+        or kiro_credential.get("status") != "unavailable"
+        or not str(kiro_credential.get("reason") or "").strip()
     ):
-        raise ConfigError("Kiro credential must bind a documented protected service credential file")
+        raise ConfigError("Kiro reusable credential boundary must remain explicitly unavailable")
     tool_policy = _object(payload["registered_trial_tool_policy"], "registered_trial_tool_policy")
     if set(tool_policy) != {"mode", "allowed"} or tool_policy.get("mode") != "repo-write-subagents":
         raise ConfigError("registered_trial_tool_policy must use repo-write-subagents with an explicit allowlist")
@@ -574,80 +584,25 @@ class ProtectedRunner:
         return env
 
     def adapter_credential_environment(self, host: str) -> dict[str, str]:
-        credentials = _object(self.config["adapter_credentials"], "adapter_credentials")
-        if host == "codex":
-            raise ConfigError(
-                "Codex protected credential broker and OS isolation are unavailable"
-            )
-        if host == "kiro":
-            binding = _object(credentials["kiro"], "Kiro credential")
-            variable = str(binding["variable"])
-            configured = os.environ.get(variable)
-            if not configured:
-                raise ConfigError("Kiro protected service credential file is absent")
-            path = Path(configured).expanduser()
-            if not path.is_absolute() or path.is_symlink() or not path.is_file():
-                raise ConfigError("Kiro protected service credential file is missing or unsafe")
-            resolved = path.resolve()
-            try:
-                resolved.relative_to(Path.home().resolve())
-            except ValueError:
-                pass
-            else:
-                raise ConfigError("Kiro protected service credential must not use personal configuration")
-            if resolved.stat().st_mode & 0o077:
-                raise ConfigError("Kiro protected service credential permissions are too broad")
-            return {variable: str(resolved)}
-        raise ConfigError("unsupported protected adapter credential host")
+        if host not in {"codex", "kiro"}:
+            raise ConfigError("unsupported protected adapter credential host")
+        raise ConfigError(f"{host} authenticated provider boundary is unavailable before process launch")
 
     def adapter_credential_binding_sha256(self, host: str) -> str:
-        return str(self.materialize_credential_binding(host)["descriptor_sha256"])
+        credentials = _object(self.config["adapter_credentials"], "adapter_credentials")
+        binding = _object(credentials[host], f"adapter_credentials.{host}")
+        return artifact_hash(
+            {
+                "kind": binding["kind"],
+                "name": binding["variable"],
+                "status": binding["status"],
+                "reason": binding["reason"],
+            }
+        )
 
     def materialize_credential_binding(self, host: str) -> dict[str, Any]:
-        credential_environment = self.adapter_credential_environment(host)
-        descriptor_dir = self.private_root / "credential-descriptors"
-        descriptor_path = descriptor_dir / f"{host}.json"
-        if host == "codex":
-            descriptor = {
-                "schema_version": "CredentialDescriptor.v1",
-                "kind": "protected_env",
-                "name": "OPENAI_API_KEY",
-                "format": "opaque-env-v1",
-                "issuer": "protected-core-prompts-evaluator",
-            }
-            binding: dict[str, Any] = {
-                "kind": "protected_env",
-                "name": "OPENAI_API_KEY",
-            }
-        elif host == "kiro":
-            source = Path(credential_environment["KIRO_SERVICE_CREDENTIAL_FILE"])
-            descriptor = {
-                "schema_version": "CredentialDescriptor.v1",
-                "kind": "protected_service_file",
-                "name": "KIRO_SERVICE_CREDENTIAL_FILE",
-                "format": "kiro-service-credential-v1",
-                "issuer": "protected-core-prompts-evaluator",
-            }
-            binding = {
-                "kind": "protected_service_file",
-                "name": "KIRO_SERVICE_CREDENTIAL_FILE",
-                "format": "kiro-service-credential-v1",
-                "source_path": str(source),
-                "source_sha256": artifact_hash(source),
-            }
-        else:
-            raise ConfigError("unsupported protected adapter credential host")
-        if descriptor_path.exists():
-            existing = _read_json(descriptor_path, "credential descriptor")
-            if existing != descriptor:
-                raise ConfigError("credential descriptor is stale")
-        else:
-            _exclusive_json(descriptor_path, descriptor)
-        return {
-            **binding,
-            "descriptor_path": str(descriptor_path),
-            "descriptor_sha256": artifact_hash(descriptor_path),
-        }
+        self.adapter_credential_environment(host)
+        raise ConfigError("provider credential materialization is unavailable")
 
     def _run(
         self,
@@ -1119,6 +1074,8 @@ class ProtectedRunner:
         phase_args: Sequence[str],
     ) -> dict[str, Any]:
         validate_phase_signing(phase, self.signing_purpose, self.signing_key)
+        if phase.startswith(("adapter-probe-", "model-")):
+            return self.non_promote("provider_authentication_boundary_unavailable")
         if phase in PHASE_SIGNING_PURPOSE:
             self._prepare_evaluator_only()
         command = list(_object(self.config["phase_commands"], "phase_commands")[phase])
@@ -1331,7 +1288,9 @@ class ProtectedRunner:
             cell_tool_policy = _cell_tool_policy(primary_plan, cell)
             tool_policy_sha256 = artifact_hash(cell_tool_policy)
             approval_policy_sha256 = artifact_hash(dict(primary_plan["approval_policy"]))
-            credential_binding = self.materialize_credential_binding(host)
+            credential_binding = {
+                "descriptor_sha256": self.adapter_credential_binding_sha256(host)
+            }
             evidence_dir = self.private_root / "adapter-conformance" / cell_id
             evidence_path = evidence_dir / "probe-evidence.json"
             raw_trace_path = evidence_dir / "raw-trace.jsonl"
@@ -1358,8 +1317,6 @@ class ProtectedRunner:
                     str(cell["effort"]),
                     "--tool-policy-json",
                     canonical_json(cell_tool_policy),
-                    "--credential-descriptor",
-                    str(credential_binding["descriptor_path"]),
                     "--workspace",
                     str(workspace),
                     "--session-root",
@@ -1510,7 +1467,18 @@ class ProtectedRunner:
             cell["cli_version"] = certificate_payload["cli_version"]
             cell["cli_sha256"] = certificate_payload["cli_sha256"]
             cell["tool_policy"] = dict(self.config["registered_trial_tool_policy"])
-            cell["credential_binding"] = self.materialize_credential_binding(str(cell["host"]))
+            host = str(cell["host"])
+            variable = {
+                "codex": "OPENAI_API_KEY",
+                "kiro": "KIRO_API_KEY",
+            }.get(host)
+            if variable is None:
+                raise ConfigError("unsupported provider credential host")
+            cell["credential_binding"] = {
+                "kind": "protected_env",
+                "name": variable,
+                "descriptor_sha256": self.adapter_credential_binding_sha256(host),
+            }
             cells.append(cell)
         bound = {**plan, "model_cells": cells}
         if len(cells) > 1:

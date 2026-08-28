@@ -91,13 +91,10 @@ adapter-conformance-kiro:
     variables: false
   variables:
     CONFORMANCE_RUNNER_IDENTITY: $PROTECTED_CONFORMANCE_RUNNER_IDENTITY
-    KIRO_SERVICE_CREDENTIAL_FILE: $PROTECTED_KIRO_SERVICE_CREDENTIAL_FILE
   tags: [protected-evaluator-conformance-kiro]
   needs: [authorize-global-budget]
   script:
     - test "$CI_RUNNER_ID" = "$CONFORMANCE_RUNNER_IDENTITY"
-    - test -n "$KIRO_SERVICE_CREDENTIAL_FILE"
-    - test -f "$KIRO_SERVICE_CREDENTIAL_FILE"
     - ./protected-runner --phase adapter-probe-kiro --config config/protected-evaluator.json --private-output protected-output --public-output public-output -- --prompt-inputs conformance-inputs/ --token-ledger-in protected-output/token-ledger/000000.json --output protected-output/conformance-unsigned/kiro/
   artifacts:
     access: maintainer
@@ -224,13 +221,10 @@ evaluate-primary-kiro:
     variables: false
   variables:
     PRIMARY_RUNNER_IDENTITY: $PROTECTED_PRIMARY_RUNNER_IDENTITY
-    KIRO_SERVICE_CREDENTIAL_FILE: $PROTECTED_KIRO_SERVICE_CREDENTIAL_FILE
   tags: [protected-evaluator-primary-kiro]
   needs: [prepare-sealed-cases]
   script:
     - test "$CI_RUNNER_ID" = "$PRIMARY_RUNNER_IDENTITY"
-    - test -n "$KIRO_SERVICE_CREDENTIAL_FILE"
-    - test -f "$KIRO_SERVICE_CREDENTIAL_FILE"
     - ./protected-runner --phase model-primary-kiro --config config/protected-evaluator.json --private-output protected-output --public-output public-output -- --prompt-inputs prompt-inputs/ --token-ledger-in protected-output/token-ledger/000001.json --conformance protected-output/conformance-signed/ --output model-output/primary/kiro/
   artifacts:
     access: maintainer
@@ -295,13 +289,10 @@ evaluate-reproduction-kiro:
     variables: false
   variables:
     REPRODUCTION_RUNNER_IDENTITY: $PROTECTED_REPRODUCTION_RUNNER_IDENTITY
-    KIRO_SERVICE_CREDENTIAL_FILE: $PROTECTED_KIRO_SERVICE_CREDENTIAL_FILE
   tags: [protected-evaluator-reproduction-kiro]
   needs: [reconcile-primary-ledger]
   script:
     - test "$CI_RUNNER_ID" = "$REPRODUCTION_RUNNER_IDENTITY"
-    - test -n "$KIRO_SERVICE_CREDENTIAL_FILE"
-    - test -f "$KIRO_SERVICE_CREDENTIAL_FILE"
     - ./protected-runner --phase model-reproduction-kiro --config config/protected-evaluator.json --private-output protected-output --public-output public-output -- --prompt-inputs prompt-inputs/ --token-ledger-in protected-output/token-ledger/000002.json --conformance protected-output/conformance-signed/ --output model-output/reproduction/kiro/
   artifacts:
     access: maintainer
