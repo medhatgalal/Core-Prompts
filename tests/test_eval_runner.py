@@ -142,7 +142,6 @@ def _plan(tmp_path: Path, *, profile: str = "canary", adapter_id: str = "fake") 
                 "required": profile == "promotion",
                 "credential_binding": {
                     "kind": "none",
-                    "descriptor_path": str(credential_descriptor),
                     "descriptor_sha256": artifact_hash(credential_descriptor),
                 },
             }
@@ -245,29 +244,17 @@ def _multi_adapter_promotion_plan(tmp_path: Path) -> Path:
         descriptor = tmp_path / f"credential-descriptor-{host}.json"
         descriptor_payload = {
             "schema_version": "CredentialDescriptor.v1",
-            "kind": "protected_env" if host == "codex" else "protected_service_file",
-            "name": "OPENAI_API_KEY" if host == "codex" else "KIRO_SERVICE_CREDENTIAL_FILE",
-            "format": "opaque-env-v1" if host == "codex" else "kiro-service-credential-v1",
+            "kind": "protected_env",
+            "name": "OPENAI_API_KEY" if host == "codex" else "KIRO_API_KEY",
+            "format": "opaque-env-v1",
             "issuer": "protected-fixture",
         }
         descriptor.write_text(json.dumps(descriptor_payload) + "\n", encoding="utf-8")
         credential_binding: dict[str, object] = {
-            "kind": descriptor_payload["kind"],
+            "kind": "protected_env",
             "name": descriptor_payload["name"],
-            "descriptor_path": str(descriptor),
             "descriptor_sha256": artifact_hash(descriptor),
         }
-        if host == "kiro":
-            source = tmp_path / "kiro-service-credential.json"
-            source.write_text('{"service":"fixture"}\n', encoding="utf-8")
-            source.chmod(0o600)
-            credential_binding.update(
-                {
-                    "format": "kiro-service-credential-v1",
-                    "source_path": str(source),
-                    "source_sha256": artifact_hash(source),
-                }
-            )
         cells.append(
             {
                 "id": f"{host}-anchor",
@@ -477,7 +464,7 @@ def test_multi_cell_plan_rejects_ambiguous_global_adapter(tmp_path: Path) -> Non
         load_run_plan(plan_path)
 
 
-def test_codex_and_kiro_cells_dispatch_their_own_bound_adapters(
+def test_codex_and_kiro_cells_fail_before_dispatch_without_approved_gateways(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
     monkeypatch.setenv("OPENAI_API_KEY", "protected-fixture-secret")
@@ -516,24 +503,9 @@ def test_codex_and_kiro_cells_dispatch_their_own_bound_adapters(
         reports_root=tmp_path / "reports",
     )
 
-    assert result["status"] == "completed"
-    assert {adapter_id for adapter_id, _effort, _policy in calls} == {
-        "codex-jsonl-experimental",
-        "kiro-stream-json-experimental",
-    }
-    assert {effort for _adapter_id, effort, _policy in calls} == {"high"}
-    assert all(policy["mode"] == "repo-write-subagents" for _adapter_id, _effort, policy in calls)
-    manifest = json.loads(
-        (tmp_path / "reports" / plan["run_id"] / "manifest.json").read_text(encoding="utf-8")
-    )
-    jsonschema.validate(
-        manifest,
-        json.loads((ROOT / "evals" / "schemas" / "eval-run-manifest.schema.json").read_text(encoding="utf-8")),
-    )
-    assert set(manifest["adapter_versions"]) == {
-        "codex-jsonl-experimental",
-        "kiro-stream-json-experimental",
-    }
+    assert result["status"] == "blocked_preflight"
+    assert sum("authenticated gateway is unavailable" in blocker for blocker in result["blockers"]) == 2
+    assert calls == []
 
 
 def test_missing_protected_codex_credential_blocks_all_cells_before_invocation(
@@ -556,7 +528,7 @@ def test_missing_protected_codex_credential_blocks_all_cells_before_invocation(
     )
 
     assert result["status"] == "blocked_preflight"
-    assert any("protected Codex credential" in blocker for blocker in result["blockers"])
+    assert any("codex authenticated gateway is unavailable" in blocker for blocker in result["blockers"])
     assert calls == []
 
 
@@ -748,8 +720,6 @@ def test_fake_adapter_executes_deterministic_paired_trials_and_writes_atomic_cha
         "kind": "none",
         "descriptor_sha256": plan["model_cells"][0]["credential_binding"]["descriptor_sha256"],
     }
-    assert "descriptor_path" not in public_cell["credential_binding"]
-    assert "source_path" not in public_cell["credential_binding"]
     assert "path" not in public_cell.get("adapter_conformance_binding", {})
     assert not any(
         value.startswith("/")

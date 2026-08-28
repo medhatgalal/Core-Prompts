@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import datetime as dt
 import json
-import os
 import random
 import time
 from collections.abc import Mapping
@@ -594,57 +593,20 @@ def _validate_cell_credential_binding(
     cell: Mapping[str, Any],
     adapter: AdapterSpec,
 ) -> list[str]:
+    del repo_root
     binding = dict(cell["credential_binding"])
-    descriptor_path = _resolve_binding_path(binding["descriptor_path"], repo_root)
-    if not descriptor_path.is_file() or artifact_hash(descriptor_path) != binding["descriptor_sha256"]:
-        return [f"cell {cell['id']} credential descriptor is missing or stale"]
-    try:
-        descriptor = json.loads(descriptor_path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError) as exc:
-        return [f"cell {cell['id']} credential descriptor cannot be loaded: {exc}"]
-    if not isinstance(descriptor, Mapping) or set(descriptor) != {
-        "schema_version",
-        "kind",
-        "name",
-        "format",
-        "issuer",
-    }:
-        return [f"cell {cell['id']} credential descriptor has an invalid redacted shape"]
-    if descriptor.get("schema_version") != "CredentialDescriptor.v1" or descriptor.get("kind") != binding["kind"]:
-        return [f"cell {cell['id']} credential descriptor identity is stale"]
     kind = binding["kind"]
     if kind == "none":
         return []
-    if descriptor.get("name") != binding.get("name"):
-        return [f"cell {cell['id']} credential descriptor name is stale"]
-    if kind == "protected_env":
-        if adapter.adapter_id != "codex-jsonl-experimental" or not os.environ.get("OPENAI_API_KEY"):
-            return [f"cell {cell['id']} protected Codex credential is unavailable"]
-        return []
-    if (
-        adapter.adapter_id != "kiro-stream-json-experimental"
-        or descriptor.get("format") != binding.get("format")
-    ):
-        return [f"cell {cell['id']} Kiro credential format is unsupported"]
-    source = Path(str(binding["source_path"])).expanduser().absolute()
-    if _has_symlink_component(source):
-        return [f"cell {cell['id']} Kiro credential cannot use a symlink path"]
-    try:
-        resolved = source.resolve(strict=True)
-        resolved.relative_to(repo_root.resolve())
-    except ValueError:
-        pass
-    except OSError:
-        return [f"cell {cell['id']} Kiro credential is missing"]
-    else:
-        return [f"cell {cell['id']} Kiro credential must remain outside the repository"]
-    if (
-        not resolved.is_file()
-        or artifact_hash(resolved) != binding["source_sha256"]
-        or resolved.stat().st_mode & 0o077
-    ):
-        return [f"cell {cell['id']} Kiro credential binding or permissions are invalid"]
-    return []
+    expected = {
+        "codex-jsonl-experimental": "OPENAI_API_KEY",
+        "kiro-stream-json-experimental": "KIRO_API_KEY",
+    }.get(adapter.adapter_id)
+    if kind != "protected_env" or expected is None or binding.get("name") != expected:
+        return [f"cell {cell['id']} protected credential metadata is incompatible with its adapter"]
+    return [
+        f"cell {cell['id']} {cell['host']} authenticated gateway is unavailable before process launch"
+    ]
 
 
 def _paired_order(plan: RunPlan, case_id: str, repetition: int, cell_id: str) -> tuple[str, str]:
