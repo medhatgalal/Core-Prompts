@@ -1643,11 +1643,14 @@
             "strategy": "derived_history",
             "group": "derived",
             "baseline_path": null,
-            "selected_commit": "7691d9d5",
+            "selected_commit": "4e880e24",
             "richness_score": 5,
-            "line_count": 276,
+            "line_count": 311,
             "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
-            "equivalent_commits": [],
+            "equivalent_commits": [
+              "6be48300",
+              "7691d9d5"
+            ],
             "expected_companions": [],
             "operator_invariants": [],
             "scenario_matrix": [
@@ -1688,7 +1691,7 @@
                 "candidate_operational_score": 2,
                 "baseline_preserved_in_resource": false
               },
-              "baseline_commit": "7691d9d5",
+              "baseline_commit": "4e880e24",
               "baseline_slug": "batman"
             },
             {
