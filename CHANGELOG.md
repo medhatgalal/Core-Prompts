@@ -1,3 +1,11 @@
+## v1.11.0 - 2026-08-27
+
+- Shipped Batman as the self-contained, implementation-owning delivery controller across Codex, Gemini, Claude, and Kiro, with evidence-gated subagent development, milestone review backpressure, TDD, verification, documentation, Git/MR delivery, merge, and cleanup.
+- Folded `superman` into Batman as an invocation alias only. No Superman SSOT, module, skill, descriptor, or generated artifact is shipped, and the obsolete Mentor capability is no longer deployed.
+- Added the protected behavioral-evaluation foundation: preregistered run plans, public cases and mutations, signed purpose-separated evidence, cumulative token accounting, independent reproduction, phase-minimal protected CI, transactional promotion apply, and the closed `PromotionVerdict.v2` contract.
+- Kept behavioral status fail-closed. Batman's proof package is preregistered but not run; direct reusable Codex and Kiro API keys are rejected from candidate-influenced processes, so the release makes no fabricated `promote` claim while an approved secret-isolating gateway remains unavailable.
+- Updated onboarding, examples, UAC usage, CLI reference, capability-evaluation guidance, generated surfaces, and release tooling documentation for the `behavioral_pending` to `promote` path.
+
 ## v1.10.2 - 2026-08-25
 
 - Expanded `code-review` with explicit resource-lifecycle, concurrency and initialization-time, operational-readiness, and downstream API/schema compatibility checks while preserving its read-only review boundary and invocation contract.
