@@ -1,3 +1,11 @@
+## v1.11.1 - 2026-08-28
+
+- Made Batman companion dispatch portable across hosts: companion names identify capabilities, usable registered agents take precedence, skill-only companions run through fresh default independent subagents, and missing required surfaces stop fail-closed.
+- Clarified that context, challenger, implementer, reviewer, attacker, adversarial reviewer, and fixer are role briefs rather than guaranteed agent registrations; dispatch resolution grants no additional write, review, merge, deployment, or cleanup authority.
+- Archived the released `e602e19` evaluation corpus byte-for-byte outside active discovery, removed its five stale active promotion inputs, and added zero-model maintenance mutations for agent/skill fallback, freshness, independence, and authority boundaries.
+- Refreshed current UAC structural metadata and user/maintainer documentation while keeping the active evaluation contract, topology, and review draft and non-promoting.
+- Made the signed-evidence integration fixture use a deterministic validation clock without weakening signature or expiry enforcement.
+
 ## v1.11.0 - 2026-08-27
 
 - Shipped Batman as the self-contained, implementation-owning delivery controller across Codex, Gemini, Claude, and Kiro, with evidence-gated subagent development, milestone review backpressure, TDD, verification, documentation, Git/MR delivery, merge, and cleanup.
