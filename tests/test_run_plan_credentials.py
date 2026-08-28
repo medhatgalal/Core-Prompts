@@ -86,4 +86,3 @@ def test_run_plan_schema_contains_only_hash_only_env_credential_variants() -> No
     assert "source_path" not in encoded
     assert "source_sha256" not in encoded
     assert "descriptor_path" not in encoded
-
