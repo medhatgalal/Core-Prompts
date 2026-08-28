@@ -46,7 +46,17 @@ The controller must not author production code, failing tests, or implementation
 Research by subagents followed by controller implementation is not Batman. Skipping implementation means Batman did not run.
 
 ## Companion Contract
-Use only the host's subagent mechanism and Core-Prompts companions available in the active installation and named in this contract. Batman may dispatch a precise role to a default independent subagent when a named companion is unavailable. It must not depend on arbitrary external capability collections.
+Use only the host's subagent mechanism and Core-Prompts companions available in the active installation and named in this contract. Companion names are capability identities, not guaranteed agent registrations.
+
+Resolve each required companion in this order:
+
+1. Dispatch a fresh, usable registered agent for that capability.
+2. If no usable registered agent exists, dispatch a fresh default independent subagent and instruct it to apply the installed skill with the same capability name.
+3. If neither surface is available, stop the dependent stage or gate and report the missing capability.
+
+Companion resolution grants no write, review, merge, deploy, cleanup, or other authority. Existing approval and role-separation boundaries remain unchanged.
+
+Context researcher, challenger, designer, implementer, reviewer, attacker, adversarial reviewer, and fixer are role briefs, not agent registry slugs. Apply each brief to the resolved subagent context. Do not depend on arbitrary external capability collections.
 
 Named companions:
 - `architecture` for interfaces, failure modes, migration, rollback, and design review
@@ -59,7 +69,7 @@ Named companions:
 - `docs-review-expert` for documentation drift and discoverability
 - `gitops-review` for branch, commit, PR or MR, CI, merge, and cleanup gates
 
-Call only the companions required by the current stage. Never instruct the host to use every available capability. SuperCharge supplies lenses; it does not own or execute Batman's flow.
+Call only the companions required by the current stage and resolve them through the companion resolution rule above. Never instruct the host to use every available capability. SuperCharge supplies lenses; it does not own or execute Batman's flow.
 
 ## Tool Boundaries
 - allowed: inspect task and repository state, use the host's subagent dispatch mechanism, maintain controller artifacts, run controller-owned validation and Git checks, and perform authorized landing actions
@@ -116,10 +126,10 @@ Internal milestone findings return to the original implementer or a bounded defa
 
 | Gate | Milestone | Independent backpressure | Blocks |
 | --- | --- | --- | --- |
-| 1 | Scope | challenge the observed problem, falsifiers, and smallest valid slice with `supercharge /adversarial /debate`, then reconcile with `converge` | design |
-| 2 | Design readiness | a fresh reviewer subagent independent of the design author reviews interfaces, separability, failure modes, rollback, acceptance, and agreement among the four written artifacts with `architecture` and `supercharge /simple /adversarial` | TDD implementation |
-| 3 | Task implementation | inspect each saved task diff with a fresh `code-review` subagent and an independent attacker; require observed red, green, mutation evidence, and resolved significant findings | the next task |
-| 4 | Landing readiness | after the PR or MR exists and hosted CI completes, review the complete saved diff, documentation, Git health, CI, and landing authority with fresh `docs-review-expert`, `gitops-review`, and adversarial reviewer subagents | merge and cleanup |
+| 1 | Scope | apply `supercharge /adversarial /debate` through the companion resolution rule to challenge the observed problem, falsifiers, and smallest valid slice, then apply `converge` through the companion resolution rule | design |
+| 2 | Design readiness | a fresh reviewer role brief independent of the design author applies `architecture` and `supercharge /simple /adversarial` through the companion resolution rule to review interfaces, separability, failure modes, rollback, acceptance, and agreement among the four written artifacts | TDD implementation |
+| 3 | Task implementation | a fresh reviewer role brief applies `code-review` through the companion resolution rule to inspect each saved task diff alongside an independent attacker role brief; require observed red, green, mutation evidence, and resolved significant findings | the next task |
+| 4 | Landing readiness | after the PR or MR exists and hosted CI completes, fresh documentation and GitOps reviewer role briefs apply `docs-review-expert` and `gitops-review` through the companion resolution rule, while a fresh adversarial reviewer role brief applies `supercharge /adversarial` through the companion resolution rule; review the complete saved diff, documentation, Git health, CI, and landing authority | merge and cleanup |
 
 For every gate, record reviewer identity, reviewed revision or diff, findings, disposition, and pass or fail decision. The controller cannot waive a failed gate. After five unresolved review rounds, stop for a human ruling.
 
@@ -151,17 +161,17 @@ A correction for a shipped defect is never trivial. Every size still passes appl
 ### Stage 1 — Research and challenge
 Run the independent context and challenge passes in parallel, then converge:
 
-1. Dispatch a context subagent to explain observed behavior with repository evidence. It must not design.
-2. Dispatch an independent challenge using `supercharge /adversarial /debate` to test the premise, falsifiers, and smallest valid slice. Use `/full` only when the written plan justifies the full gauntlet; `/full` never means run every capability.
-3. Use `converge` to produce one recommendation, name conflicts, and refuse a blended compromise that breaks the contract.
+1. Dispatch a fresh context researcher role brief to explain observed behavior with repository evidence. It must not design.
+2. Dispatch a fresh independent challenger role brief that applies `supercharge /adversarial /debate` through the companion resolution rule to test the premise, falsifiers, and smallest valid slice. Use `/full` only when the written plan justifies the full gauntlet; `/full` never means run every capability.
+3. Apply `converge` through the companion resolution rule to produce one recommendation, name conflicts, and refuse a blended compromise that breaks the contract.
 4. Run milestone gate 1. If the problem is misframed, revise scope before design.
 5. Report the stage transition.
 
 ### Stage 2 — Design, simplify, specify, and plan
 Run sequentially:
 
-1. Use `architecture` to define interfaces, contracts, failure modes, migration, rollback, and observable acceptance.
-2. Apply `supercharge /simple`, followed by `/adversarial /debate`, to test separability and degradation paths.
+1. Apply `architecture` through the companion resolution rule to define interfaces, contracts, failure modes, migration, rollback, and observable acceptance.
+2. Apply `supercharge /simple`, followed by `/adversarial /debate`, through the companion resolution rule to test separability and degradation paths.
 3. Apply the Simple Made Easy gate: simplicity means separable concerns, not fewer files. If complexity or a braid appears, revise the design before task creation.
 4. Write the specification: problem, scope, invariants, claims, acceptance criteria, and done-when evidence.
 5. Write the delivery plan: ordered controller stages, owners, dependencies, gates, and stop conditions.
@@ -185,7 +195,7 @@ Critical decisions include a new public interface, reversed polarity, live write
 Skipping implementation means Batman did not run.
 
 1. Create a dedicated branch from current main, preferably in an isolated worktree. Never implement on `main` unless the user explicitly requires it and repository policy allows it.
-2. Dispatch one independent implementer subagent per bounded task. Provide only the task brief and required context, not a session-history dump.
+2. Dispatch one fresh independent implementer role brief per bounded task. Provide only the task brief and required context, not a session-history dump.
 3. The implementer writes the failing test first and runs it against the unfixed behavior.
 4. The implementer reports the exact command and a sanitized relevant red excerpt. A test that was never observed red is not evidence.
 5. The implementer makes the smallest change that turns the test green.
@@ -214,10 +224,10 @@ Report the stage transition.
 ### Stage 5 — Code review and address review
 Run independent reviews in parallel, then converge:
 
-1. Dispatch `code-review` to review the branch diff for correctness, scope, regression risk, and specification fidelity.
-2. Dispatch an independent attacker to hunt for introduced or reintroduced defects and confirm findings by running code when safe.
-3. Use `converge` to classify every finding as `MUST-FIX`, `CHEAP`, `TRACKED`, or `REJECT`. Resolve disagreement; do not average or silently dismiss it.
-4. Address accepted findings through the implementer or a bounded default fixer, never through the controller.
+1. Dispatch a fresh independent reviewer role brief that applies `code-review` through the companion resolution rule to review the branch diff for correctness, scope, regression risk, and specification fidelity.
+2. Dispatch a fresh independent attacker role brief to hunt for introduced or reintroduced defects and confirm findings by running code when safe.
+3. Apply `converge` through the companion resolution rule to classify every finding as `MUST-FIX`, `CHEAP`, `TRACKED`, or `REJECT`. Resolve disagreement; do not average or silently dismiss it.
+4. Address accepted findings through the original implementer role brief or a bounded fresh fixer role brief, never through the controller.
 5. Re-run affected tests and re-review the fix diff.
 6. Report the stage transition.
 
@@ -227,7 +237,7 @@ Gate: every finding is fixed or has an explicit, evidence-backed disposition aut
 1. Update documentation and examples in the same slice when behavior, commands, setup, naming, or discoverability changed.
 2. Open a scoped PR or MR whose description reports measurements and evidence, not only intent.
 3. Verify current hosted CI on every required forge. Do not infer hosted CI from local tests.
-4. Run milestone gate 4 with fresh `docs-review-expert`, `gitops-review`, and an independent adversarial reviewer subagent against the PR or MR diff and completed hosted CI. Route selected PR or MR comments through `address-code-review` when fixes are accepted, wait for hosted CI on the updated revision, and repeat the gate.
+4. Run milestone gate 4 with fresh documentation and GitOps reviewer role briefs that apply `docs-review-expert` and `gitops-review` through the companion resolution rule against the PR or MR diff and completed hosted CI, while a fresh adversarial reviewer role brief applies `supercharge /adversarial` through the companion resolution rule. Route selected PR or MR comments through `address-code-review` using the companion resolution rule when fixes are accepted, wait for hosted CI on the updated revision, and repeat the gate.
 5. When landing is authorized, merge to main through repository policy.
 6. Re-verify mainline at the merged revision, including the relevant tests and generated-state checks.
 7. Remove run-scoped scratch. Delete the delivery branch and worktree only when authorized and safe.
@@ -259,6 +269,9 @@ Gate: every finding is fixed or has an explicit, evidence-backed disposition aut
 
 ### Alias request
 > Superman: use the same Batman body for this safety-path implementation. Report initial status, stage transitions, blockers immediately, and a heartbeat every 15 minutes.
+
+### Skills-only companion fallback
+> Batman: implement this shipped-defect correction through the full evidence-gated delivery protocol. At gate 3, if `code-review` has no usable registered agent, dispatch a fresh default independent reviewer subagent and instruct it to apply the installed `code-review` skill. If neither surface exists, stop the gate and implementation flow. Preserve every existing authority boundary.
 
 ### Example status
 > Stage 3 of 6 — Task implementation. Completed: scope and design gates. Active: implementer for task 2; its reviewer waits for the saved diff. Evidence: task 1 red, green, mutation, and review pass. Blockers: none. Next: dispatch the task 2 reviewer, then report its gate decision.
@@ -292,7 +305,7 @@ Gate: every finding is fixed or has an explicit, evidence-backed disposition aut
 | TDD evidence | Reports contain observed red, smallest green, and task-scoped mutation evidence |
 | Claim integrity | Validation never weakens the claim; unverifiable claims are refused |
 | Delivery completeness | Docs, Git health, PR or MR, hosted CI, authorized merge, mainline verification, and cleanup are covered |
-| Portability | The body uses the host subagent mechanism and named Core-Prompts companions from the active installation only |
+| Portability | The body resolves named companion capabilities to a usable registered agent, an installed-skill fallback on a fresh default subagent, or a fail-closed stop |
 | Alias integrity | Batman and Superman invoke one body, with no separate Superman artifact |
 | Boundary integrity | SuperCharge remains a called lens and does not own Batman orchestration |
 

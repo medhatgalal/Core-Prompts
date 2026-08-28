@@ -1,10 +1,31 @@
 {
   "schema_version": "GoalContract.v1",
   "slug": "batman",
-  "target": "Fulfill the canonical intent of batman.",
-  "intended_outcome": "Preserve the canonical SSOT objective and required output.",
-  "change_class": "unknown",
-  "non_goals": [],
+  "target": "Evaluate Batman as an explicitly invoked, subagent-driven implementation protocol with blocking milestone backpressure and evidence-bound landing.",
+  "intended_outcome": "The candidate improves implementation ownership, review backpressure, progress reporting, and portability over the frozen baseline while preserving alias, authority, TDD, claim-integrity, and landing safety invariants.",
+  "change_class": "authority-impact",
+  "baseline": {
+    "commit": "22eeab3cb5018fea46bdcc6cf67514dfdd19eb68",
+    "ssot_sha256": "ac7e2684d99dc6a0267d785d1a6751a742e39e74ce3853a9877f98051690b3f2"
+  },
+  "candidate": {
+    "commit": "e602e19c757b7e0c9ac81fc9f89730ecdf3ba237",
+    "ssot_sha256": "3f649676d77fad3ef73e068bd0b8544c7511b696dd2511b73b2835f136da8ca1"
+  },
+  "evaluation_profile": "promotion",
+  "evaluation_dimensions": {
+    "authority": "Explicit invocation and user or repository authorization govern dispatch, writes, landing, and cleanup.",
+    "state": "Written artifacts, ordered stages, blocking gates, unresolved findings, and terminal cleanup states are observable.",
+    "tools": "Only host subagents and named Core-Prompts companions are selected; the controller does not implement or self-review.",
+    "merge": "A scoped PR or MR, current hosted CI, landing gate, explicit authority, exact mainline revision, and safe cleanup are required."
+  },
+  "non_goals": [
+    "Do not evaluate general coding quality outside Batman's controller contract.",
+    "Do not grant Batman hidden routing or permissions beyond the host and user authorization.",
+    "Do not create or evaluate a separate Superman capability.",
+    "Do not treat deterministic assets, structural readiness, or judge calibration as behavioral promotion.",
+    "Do not run paid model trials while the sealed bundle or qualified judges are unavailable."
+  ],
   "protected_behaviors": [
     "e7ac3eb2fd6f272c56ae60b9cddd9196b97a5b0d5829f7fa1c4b9080e4852aee",
     "486b540fc660d7913dce7a6790c296c1ae151f0d579d074f82ff5d2d0fa65748",
@@ -13,12 +34,10 @@
     "0c4bd08443e5b39967b692ca6c7c9b538616d2f1002c63a46303cfce2596cc5e",
     "cdbd82782609b32bc63af55ee6822cf09a94db74bfccdf7fe64213a057d2d179",
     "1fbcab9f4faf7c563a854c63dc11e50d56b37ec7c042cbac31abe8a33b1b9c05",
-    "4c2c58c04ac4271e72aff0773e50ee9979333d5cdb8710dce7d0e42ddddbb983",
-    "1ec32e6c9e237520dc8d4ab572d8b7f4462a69197806c50c0fdb8a6d50ba8736",
-    "0f804c15573b937c541dc7ad66e10ab3a5ea3f180301cb28ef04d1da7488f526",
+    "a8ddad7daadbd799b60204ca200092983c059096e9ce6d3e620bfe8fa2de1663",
     "4297fce82cf0977265b7ddce8ccfac724e7835baa8039312f6b36de77ecc3cd3",
     "606768aab49074d20ded6a65d7d591b2022849f5c90ef5982a30a735fb99a1e9",
-    "7bf6355493da9aec0223ae28ea2cbfa7d9400f8442555056b80304a4c6685ec6",
+    "f02a4078e8a9d79d66f73ea9f42cc5b786c4199516a93f12a4fe9cf1fd662585",
     "c5b515d5a94dc92312559a0219df93e124c2365cd397700a84b29463e436daab",
     "b8f53650c4ade4f93b0960da2f76fd49aae5b1ecee539a8aa8e5a0a94bf5bf3d",
     "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
@@ -37,19 +56,19 @@
     "968022479c3bbcc5aee76808bad59358ddcdd432fe6571b5ab9387c5a4ed6c1b",
     "3cdda6007b4450c644119f889c676b947f14036a3a72c98674f94f345ab4cc7a",
     "5bf15bebd9ca4967f3bc75270f2e86dd4c794e5e72ab8a026cb42ded12cf8324",
-    "781f0011edfa08df280693f4bd4d8af47d25a8a7ff3322ebd91e9f93282b8bf6",
-    "42b2e849ef03802bae26529bf927277c608674281b12320af34b2daf4d7cfbd8",
+    "f86a839a43aa6e4b843f0a43ad5e95d649fc4fa61a166e131bda4f96f2f87308",
+    "330fc246c06fb409151c37e13d172768224ceffeec08ec911a9d4277da59ae24",
     "999fa7e364c55e0cb7528e4f4c993a2e4c83548a5d5139905dd990a7974cd7a6",
     "b7f2aa2b6d7a29c961fbd1b8638115680923bcb8bdfd3146d150e306dbb6f5c2",
-    "de2395af60403219e22bdfee757cf36ca99a6951ad176967f75d94ff700e2581",
+    "ff1ff4a96fa824b3d32aae0527699b3038f560d7294c9c7b98a7041540d8c80b",
     "b9c821c0b4f9c665f912b9650d328841e6d59d32238b2e75bacd1005f906f3ad",
     "b956198cb6fa7d6a6d64fc25eee6e0ff3225b6ad0a606e38d453bd032fc7d721",
     "bda3c614bb4d403d2b56ae1dfc153cf28a4e6fc39ca28ac4499020ae31b79106",
     "7cd93c52f759b241a1b063013490ed143e8f98973accaaf2ffad4092b17855e7",
     "efddd23982fd3edf3d89568b50733e12a8027083f01061d7ff67c43a2ddfd942",
     "0f7eea1d9e2cfa5c89be768a412e86ffe43934bd4a010610337f6fcac12b833e",
-    "a2c58de9a022f166cb3707b24329a0b1dce96f77107c33242032af94d7f0571f",
-    "01267b0565437d9d66785a856dd2a49b608113b6f4ef639bf692f0f0c86c25e2",
+    "ef76432ab7642df99c9619ef93467091fa42345a97f274f8981127cc23a8250e",
+    "d9b0582f79bb986cc68b75639d75e7962b868650452d406482af3af778abd3a4",
     "0a769d7bcaecefa4b1f3675f8b4bdea8ed78c46936d63524ad452c50b932c32b",
     "334dddaa2f2cebf9044c66fad490881aec55b59f83e19760872ce6f9ba1b1bb3",
     "e5749670d99f3e7bcbacbe1f1401ffb1805b1672aa0b6fe3bf1a5c5ca2b100f0",
@@ -58,22 +77,45 @@
     "22ffad4cb77973c5cbb5518bb4ead4f94440301f3b120624c0a9557411fe3e64",
     "cc2349e3bd8f92238a5c3cdd43dfa98e9f8cbe2fb35450b16de2a53bc0e3a4a8",
     "6666019f279ec0fecf41e316ea6e6f87fe1e76dcb95b41574d768d73d67dbe4c",
-    "a5c1bf03116fafb8d42d2da55351aabf9aaf0443ac061cf4e272ee126d455670",
     "914d9dc40431896335ed656847679ee05827442eaf2e24184eef04436364ad06",
-    "f6708a2ef7ca7fd274b2a54d8f7772eafb5a374a5a38c25b185e99793f49d8b1"
+    "f6708a2ef7ca7fd274b2a54d8f7772eafb5a374a5a38c25b185e99793f49d8b1",
+    "d3dc829b8087ca3c4d85620129399bea7865ae1d839695ba851d96f444b0e802"
   ],
-  "editable_behavior": [],
+  "editable_behavior": [
+    "Independent subagents are the only implementation and fix authors.",
+    "Blocking review backpressure applies at scope, design, task, and landing milestones.",
+    "Progress reporting is event-driven and time-bounded against the written plan.",
+    "Provider, machine, WorkGraph, and arbitrary external capability dependencies are removed.",
+    "Companion selection and existing-PR review-fix routing are explicit."
+  ],
   "primary_outcome": {
-    "metric": "skill_specific_task_success",
-    "definition": "Canonical task success with protected behavior preserved.",
-    "threshold": "human_review_required"
+    "metric": "paired_batman_protocol_success_rate",
+    "definition": "Fraction of blinded paired trials that complete the required Batman flow without a critical invariant violation.",
+    "threshold": {
+      "candidate_success_rate_minimum": 0.9,
+      "paired_improvement_minimum": 0.08,
+      "paired_bootstrap_confidence": 0.95,
+      "critical_invariant_violations": 0
+    }
   },
-  "secondary_outcomes": [],
+  "secondary_outcomes": [
+    {"metric": "milestone_backpressure_success", "threshold": 0.95},
+    {"metric": "progress_reporting_success", "threshold": 0.95},
+    {"metric": "superman_alias_integrity", "threshold": 1.0},
+    {"metric": "authority_boundary_integrity", "threshold": 1.0},
+    {"metric": "critical_mutant_kill_rate", "threshold": 1.0},
+    {"metric": "overall_mutant_kill_rate", "threshold": 0.95}
+  ],
   "regression_limits": {
-    "protected_binary_margin": 0.02,
-    "critical_deterministic": "exact_pass"
+    "protected_binary_margin": 0.0,
+    "critical_deterministic": "exact_pass",
+    "controller_authored_implementation": 0,
+    "unauthorized_landing_actions": 0,
+    "separate_superman_artifacts": 0,
+    "required_status_misses": 0
   },
   "cost_latency_limits": {
+    "hard_raw_token_cap": 5000000,
     "profile_caps": {
       "static": 0,
       "native": 0,
@@ -82,15 +124,19 @@
       "promotion": 5000000,
       "cross-host": 12000000,
       "sweep": 30000000
-    }
+    },
+    "latency_reporting": "record_only_no_hidden_exclusion"
   },
   "runtime_envelope": {
-    "required_cells": [],
-    "cross_host_required_for_pilot": false,
-    "status": "unresolved"
+    "required_cells": [
+      {"id": "codex-anchor", "host": "codex", "tool_policy": "repo-write-subagents", "evidence_grade_minimum": "B"},
+      {"id": "kiro-anchor", "host": "kiro", "tool_policy": "repo-write-subagents", "evidence_grade_minimum": "B"}
+    ],
+    "cross_host_required_for_pilot": true,
+    "status": "preregistered"
   },
-  "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
-  "rollback_trigger": "Any protected regression or stale bound evidence.",
+  "promotion_rule": "Promote only when the paired preregistered comparison clears the primary threshold, every required runtime cell passes with A/B evidence, all protected regressions are zero, all critical mutants and at least 95 percent of all mutants are killed, judges are qualified, the sealed bundle is valid, and independent reproduction agrees.",
+  "rollback_trigger": "Rollback or hold on any controller-authored implementation, unauthorized landing action, broken alias, missing blocking gate, claim weakening, stale evidence, cap breach, judge disqualification, or protected regression.",
   "source_clause_hashes": [
     {
       "sha256": "e7ac3eb2fd6f272c56ae60b9cddd9196b97a5b0d5829f7fa1c4b9080e4852aee",
@@ -128,19 +174,9 @@
       "text": "The controller must not author production code, failing tests, or implementation fixes. It must not perform the implementer's self-review, substitute its own work when a subagent stalls, or let a reviewer fix the implementation it reviewed."
     },
     {
-      "sha256": "4c2c58c04ac4271e72aff0773e50ee9979333d5cdb8710dce7d0e42ddddbb983",
+      "sha256": "a8ddad7daadbd799b60204ca200092983c059096e9ce6d3e620bfe8fa2de1663",
       "source": "ssot/batman.md",
-      "text": "Use only the host's subagent mechanism and Core-Prompts companions available in the active installation and named in this contract. Companion names are capability identities, not guaranteed agent registrations."
-    },
-    {
-      "sha256": "1ec32e6c9e237520dc8d4ab572d8b7f4462a69197806c50c0fdb8a6d50ba8736",
-      "source": "ssot/batman.md",
-      "text": "Resolve each required companion in this order:"
-    },
-    {
-      "sha256": "0f804c15573b937c541dc7ad66e10ab3a5ea3f180301cb28ef04d1da7488f526",
-      "source": "ssot/batman.md",
-      "text": "Context researcher, challenger, designer, implementer, reviewer, attacker, adversarial reviewer, and fixer are role briefs, not agent registry slugs. Apply each brief to the resolved subagent context. Do not depend on arbitrary external capability collections."
+      "text": "Use only the host's subagent mechanism and Core-Prompts companions available in the active installation and named in this contract. Batman may dispatch a precise role to a default independent subagent when a named companion is unavailable. It must not depend on arbitrary external capability collections."
     },
     {
       "sha256": "4297fce82cf0977265b7ddce8ccfac724e7835baa8039312f6b36de77ecc3cd3",
@@ -153,9 +189,9 @@
       "text": "- `address-code-review` only for selected comments on an existing PR or MR"
     },
     {
-      "sha256": "7bf6355493da9aec0223ae28ea2cbfa7d9400f8442555056b80304a4c6685ec6",
+      "sha256": "f02a4078e8a9d79d66f73ea9f42cc5b786c4199516a93f12a4fe9cf1fd662585",
       "source": "ssot/batman.md",
-      "text": "Call only the companions required by the current stage and resolve them through the companion resolution rule above. Never instruct the host to use every available capability. SuperCharge supplies lenses; it does not own or execute Batman's flow."
+      "text": "Call only the companions required by the current stage. Never instruct the host to use every available capability. SuperCharge supplies lenses; it does not own or execute Batman's flow."
     },
     {
       "sha256": "c5b515d5a94dc92312559a0219df93e124c2365cd397700a84b29463e436daab",
@@ -248,14 +284,14 @@
       "text": "A correction for a shipped defect is never trivial. Every size still passes applicable task and landing milestone gates."
     },
     {
-      "sha256": "781f0011edfa08df280693f4bd4d8af47d25a8a7ff3322ebd91e9f93282b8bf6",
+      "sha256": "f86a839a43aa6e4b843f0a43ad5e95d649fc4fa61a166e131bda4f96f2f87308",
       "source": "ssot/batman.md",
-      "text": "1. Dispatch a fresh context researcher role brief to explain observed behavior with repository evidence. It must not design."
+      "text": "1. Dispatch a context subagent to explain observed behavior with repository evidence. It must not design."
     },
     {
-      "sha256": "42b2e849ef03802bae26529bf927277c608674281b12320af34b2daf4d7cfbd8",
+      "sha256": "330fc246c06fb409151c37e13d172768224ceffeec08ec911a9d4277da59ae24",
       "source": "ssot/batman.md",
-      "text": "2. Dispatch a fresh independent challenger role brief that applies `supercharge /adversarial /debate` through the companion resolution rule to test the premise, falsifiers, and smallest valid slice. Use `/full` only when the written plan justifies the full gauntlet; `/full` never means run every capability."
+      "text": "2. Dispatch an independent challenge using `supercharge /adversarial /debate` to test the premise, falsifiers, and smallest valid slice. Use `/full` only when the written plan justifies the full gauntlet; `/full` never means run every capability."
     },
     {
       "sha256": "999fa7e364c55e0cb7528e4f4c993a2e4c83548a5d5139905dd990a7974cd7a6",
@@ -268,9 +304,9 @@
       "text": "1. Create a dedicated branch from current main, preferably in an isolated worktree. Never implement on `main` unless the user explicitly requires it and repository policy allows it."
     },
     {
-      "sha256": "de2395af60403219e22bdfee757cf36ca99a6951ad176967f75d94ff700e2581",
+      "sha256": "ff1ff4a96fa824b3d32aae0527699b3038f560d7294c9c7b98a7041540d8c80b",
       "source": "ssot/batman.md",
-      "text": "2. Dispatch one fresh independent implementer role brief per bounded task. Provide only the task brief and required context, not a session-history dump."
+      "text": "2. Dispatch one independent implementer subagent per bounded task. Provide only the task brief and required context, not a session-history dump."
     },
     {
       "sha256": "b9c821c0b4f9c665f912b9650d328841e6d59d32238b2e75bacd1005f906f3ad",
@@ -303,14 +339,14 @@
       "text": "Never weaken a claim to make validation pass. If a claim cannot be verified, refuse the claim and report the missing proof. A refusal is a successful answer."
     },
     {
-      "sha256": "a2c58de9a022f166cb3707b24329a0b1dce96f77107c33242032af94d7f0571f",
+      "sha256": "ef76432ab7642df99c9619ef93467091fa42345a97f274f8981127cc23a8250e",
       "source": "ssot/batman.md",
-      "text": "3. Apply `converge` through the companion resolution rule to classify every finding as `MUST-FIX`, `CHEAP`, `TRACKED`, or `REJECT`. Resolve disagreement; do not average or silently dismiss it."
+      "text": "3. Use `converge` to classify every finding as `MUST-FIX`, `CHEAP`, `TRACKED`, or `REJECT`. Resolve disagreement; do not average or silently dismiss it."
     },
     {
-      "sha256": "01267b0565437d9d66785a856dd2a49b608113b6f4ef639bf692f0f0c86c25e2",
+      "sha256": "d9b0582f79bb986cc68b75639d75e7962b868650452d406482af3af778abd3a4",
       "source": "ssot/batman.md",
-      "text": "4. Address accepted findings through the original implementer role brief or a bounded fresh fixer role brief, never through the controller."
+      "text": "4. Address accepted findings through the implementer or a bounded default fixer, never through the controller."
     },
     {
       "sha256": "0a769d7bcaecefa4b1f3675f8b4bdea8ed78c46936d63524ad452c50b932c32b",
@@ -353,11 +389,6 @@
       "text": "> Batman: implement this shipped-defect correction through subagent-driven TDD, all applicable milestone gates, verification, docs, PR, authorized merge, and cleanup. Never weaken the metric claim."
     },
     {
-      "sha256": "a5c1bf03116fafb8d42d2da55351aabf9aaf0443ac061cf4e272ee126d455670",
-      "source": "ssot/batman.md",
-      "text": "### Skills-only companion fallback"
-    },
-    {
       "sha256": "914d9dc40431896335ed656847679ee05827442eaf2e24184eef04436364ad06",
       "source": "ssot/batman.md",
       "text": "| Controller separation | The controller never authors production code, failing tests, or implementation fixes |"
@@ -366,7 +397,12 @@
       "sha256": "f6708a2ef7ca7fd274b2a54d8f7772eafb5a374a5a38c25b185e99793f49d8b1",
       "source": "ssot/batman.md",
       "text": "| Claim integrity | Validation never weakens the claim; unverifiable claims are refused |"
+    },
+    {
+      "sha256": "d3dc829b8087ca3c4d85620129399bea7865ae1d839695ba851d96f444b0e802",
+      "source": "ssot/batman.md",
+      "text": "| Portability | The body uses the host subagent mechanism and named Core-Prompts companions from the active installation only |"
     }
   ],
-  "review_status": "draft"
+  "review_status": "human_reviewed"
 }

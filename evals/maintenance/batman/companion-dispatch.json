@@ -1,0 +1,125 @@
+{
+  "schema_version": "BatmanCompanionDispatchMaintenance.v1",
+  "slug": "batman",
+  "promotion_eligible": false,
+  "model_calls": 0,
+  "purpose": "Exercise companion capability resolution without entering the Batman promotion corpus.",
+  "scenarios": [
+    {
+      "id": "registered-agent-preferred",
+      "inventory": {
+        "usable_registered_agents": ["architecture"],
+        "installed_skills": ["architecture"],
+        "prior_context_ids": []
+      },
+      "request": {
+        "capability": "architecture",
+        "role_brief": "designer"
+      },
+      "gold_result": {
+        "action": "registered_agent",
+        "agent": "architecture",
+        "apply_skill": null,
+        "role_brief": "designer",
+        "role_is_registry_slug": false,
+        "fresh_context": true,
+        "context_id": "design-review-2",
+        "authority_delta": [],
+        "dependent_outcome": "proceed"
+      }
+    },
+    {
+      "id": "installed-skill-fallback",
+      "inventory": {
+        "usable_registered_agents": [],
+        "installed_skills": ["code-review"],
+        "prior_context_ids": []
+      },
+      "request": {
+        "capability": "code-review",
+        "role_brief": "reviewer"
+      },
+      "gold_result": {
+        "action": "default_independent_subagent",
+        "agent": "default",
+        "apply_skill": "code-review",
+        "role_brief": "reviewer",
+        "role_is_registry_slug": false,
+        "fresh_context": true,
+        "context_id": "task-review-7",
+        "authority_delta": [],
+        "dependent_outcome": "proceed"
+      }
+    },
+    {
+      "id": "registered-agent-unusable-skill-fallback",
+      "inventory": {
+        "registered_agents": ["code-review"],
+        "usable_registered_agents": [],
+        "installed_skills": ["code-review"],
+        "prior_context_ids": []
+      },
+      "request": {
+        "capability": "code-review",
+        "role_brief": "reviewer"
+      },
+      "gold_result": {
+        "action": "default_independent_subagent",
+        "agent": "default",
+        "apply_skill": "code-review",
+        "role_brief": "reviewer",
+        "role_is_registry_slug": false,
+        "fresh_context": true,
+        "context_id": "task-review-8",
+        "authority_delta": [],
+        "dependent_outcome": "proceed"
+      }
+    },
+    {
+      "id": "missing-capability-stops",
+      "inventory": {
+        "usable_registered_agents": [],
+        "installed_skills": [],
+        "prior_context_ids": []
+      },
+      "request": {
+        "capability": "testing",
+        "role_brief": "reviewer"
+      },
+      "gold_result": {
+        "action": "stop",
+        "agent": null,
+        "apply_skill": null,
+        "role_brief": "reviewer",
+        "role_is_registry_slug": false,
+        "fresh_context": false,
+        "context_id": null,
+        "authority_delta": [],
+        "dependent_outcome": "stop"
+      }
+    },
+    {
+      "id": "fresh-reviewer-fallback",
+      "inventory": {
+        "usable_registered_agents": [],
+        "installed_skills": ["docs-review-expert"],
+        "prior_context_ids": ["landing-review-1"]
+      },
+      "request": {
+        "capability": "docs-review-expert",
+        "role_brief": "reviewer"
+      },
+      "gold_result": {
+        "action": "default_independent_subagent",
+        "agent": "default",
+        "apply_skill": "docs-review-expert",
+        "role_brief": "reviewer",
+        "role_is_registry_slug": false,
+        "fresh_context": true,
+        "context_id": "landing-review-2",
+        "authority_delta": [],
+        "dependent_outcome": "proceed"
+      }
+    }
+  ]
+}

@@ -38,6 +38,10 @@ If you want an agent surface rather than a direct skill invocation, start with t
 | `ic-assistant` | "Use `ic-assistant` to keep the incident process on-track and flag the next required action." | generic phase-aware guidance, with internal runbook mode only on request |
 | `weekly-intel` | "Use `weekly-intel` to produce this week's update from our source set." | a multi-source status summary |
 
+### How Batman resolves companions
+
+Batman companion names identify capabilities, not guaranteed agent registrations. For each required companion, Batman uses a usable registered agent first, otherwise dispatches a fresh default independent subagent that applies the installed skill with the same name, and stops the dependent stage or gate when neither surface is available. Context researcher, challenger, designer, implementer, reviewer, attacker, adversarial reviewer, and fixer are role briefs rather than agent names; companion resolution grants no additional authority and preserves existing approval boundaries.
+
 ## Step 2: Use UAC When You Are Landing New Capability Source
 
 Use UAC, the capability intake and uplift workflow, only when you are bringing in a new prompt-like source or intentionally changing canonical capability state.

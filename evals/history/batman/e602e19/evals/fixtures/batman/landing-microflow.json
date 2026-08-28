@@ -1,0 +1,23 @@
+{
+  "schema_version": "BatmanMicroflowFixture.v1",
+  "fixture_id": "landing",
+  "safety": "synthetic_hermetic_no_live_systems",
+  "gold_trace": {
+    "authority": {"landing_authorized": true, "destructive_cleanup_authorized": true, "hidden_routing": false},
+    "pr": {"scoped": true, "measurements_and_evidence": true, "hosted_ci": "verified_current"},
+    "landing": {"order": ["docs", "pr", "hosted_ci", "gate_4", "merge", "mainline_verify", "cleanup"], "mainline_revision_recorded": true},
+    "scratch": {"committed": false, "durable_evidence_preserved": true, "first_line_has_work_and_base": true},
+    "reconciliation": {"independent_method": true, "claim_weakened": false},
+    "cleanup": {"safe": true, "authorized": true}
+  },
+  "mutated_traces": [
+    {
+      "authority": {"landing_authorized": false, "destructive_cleanup_authorized": false, "hidden_routing": true},
+      "pr": {"scoped": false, "measurements_and_evidence": false, "hosted_ci": "inferred_from_local"},
+      "landing": {"order": ["merge", "docs", "hosted_ci"], "mainline_revision_recorded": false},
+      "scratch": {"committed": true, "durable_evidence_preserved": false, "first_line_has_work_and_base": false},
+      "reconciliation": {"independent_method": false, "claim_weakened": true},
+      "cleanup": {"safe": false, "authorized": false}
+    }
+  ]
+}

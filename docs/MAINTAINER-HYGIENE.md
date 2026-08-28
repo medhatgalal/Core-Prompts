@@ -67,6 +67,10 @@ Check:
 - whether concurrent UAC engine work and docs or prompt work should be split into separate worktrees before more edits land
 - release-watch behavior: scheduled runs check first, auto-accept valid releases by default, update the recorded source checkout only when it is clean and fast-forwardable, `--notify-only` preserves check-only scheduling, `--check-release` never auto-installs when run directly, `--accept-release` remains the explicit install/apply step, and `--rollback previous` restores the latest snapshot
 
+### When evaluation evidence is archived
+
+Follow [Historical evaluation archives](CAPABILITY-EVALUATION.md#historical-evaluation-archives). Verify the archive manifest and byte hashes, keep the archive outside automatic discovery and promotion, rebuild the active contract, topology, and review overlay after SSOT changes, and treat maintenance fixtures as structural evidence only.
+
 ## Generated Views: How To Use Them
 
 - `docs/CAPABILITY-CATALOG.md`: use for inventory lookup and current surface placement

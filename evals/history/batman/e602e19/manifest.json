@@ -1,0 +1,27 @@
+{
+  "schema_version": "BatmanHistoricalEvidence.v1",
+  "slug": "batman",
+  "candidate_commit": "e602e19c757b7e0c9ac81fc9f89730ecdf3ba237",
+  "release_commit": "0d4fb0eba016f4c4d045a1922e75582507026f00",
+  "archive_only": true,
+  "auto_discovery": false,
+  "promotion_eligible": false,
+  "purpose": "Preserve the released e602e19 Batman SSOT and promotion evidence byte-for-byte after the active contract changes.",
+  "artifacts": [
+    {"source":"ssot/batman.md","sha256":"3f649676d77fad3ef73e068bd0b8544c7511b696dd2511b73b2835f136da8ca1"},
+    {"source":"evals/contracts/batman.json","sha256":"1316f9882c27b9f8247514c78b5a16f8a400f91b9f40de2d393969ffd5c33e8f"},
+    {"source":"evals/topologies/batman.json","sha256":"98691d7f04d8dec8b72b13ca23ab0bb51317aa99723b483d3c519bb1cf3191ec"},
+    {"source":"evals/reviews/batman.json","sha256":"be9612621e9d30421fd293d5f9cbd05ab171690c34850a3a320c064de11e9261"},
+    {"source":"evals/mutations/batman.json","sha256":"66b61af1839d57f3d4eb0b2fbaf5a23f4e9cf6cb0f9b52c19fb57a35f2b4a808"},
+    {"source":"evals/scorers/batman.json","sha256":"627d7f0ccacdfa0a65cf32ec4b767ee95d37257bb84a4e298a3d62f717c85597"},
+    {"source":"evals/mappings/batman-baseline-to-candidate.json","sha256":"8ec04b9743e0b69f500ef7324b510fa20cc6f7607c12a9ac897fc6039b11a88c"},
+    {"source":"evals/preregistrations/batman-promotion.json","sha256":"798182ec3b362447cdcaa0454d5a558fc858bfeaf9cd776de301615ca447ab6c"},
+    {"source":"evals/cases/public/batman/core.jsonl","sha256":"77d2c21dae2011354462096e7a3adb2cee6067fad0dffe6f0d6c4c94c2845b7b"},
+    {"source":"evals/fixtures/batman/alias-microflow.json","sha256":"be3d67e6fe9a83f92ed4a4938376a19a99da3098777d113a0e31be3e8c34d710"},
+    {"source":"evals/fixtures/batman/implementation-microflow.json","sha256":"3a1132a9549311ab03f3155704f1869793205a5969e26d60f219350bf5bc4989"},
+    {"source":"evals/fixtures/batman/landing-microflow.json","sha256":"13ad353352f65adf4be7567ae47e56eb8fce770f26652c073a875f3d98cd9924"},
+    {"source":"evals/fixtures/batman/review-microflow.json","sha256":"0b583ff8d052ac7dcab35ba4542dba882c380ecbedbebab4d7894df42727f948"},
+    {"source":"evals/fixtures/batman/status-microflow.json","sha256":"59c8658fc6b0b5b697235bbad663e28f850f3aecae748bf7be707cca73b5ce10"},
+    {"source":"src/core_prompts_eval/scorers/batman.py","sha256":"c56f4ca78267da2f16690985b19ed5013033979bc9975801b24bd24adc5b2279"}
+  ]
+}

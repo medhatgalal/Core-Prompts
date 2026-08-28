@@ -1,0 +1,56 @@
+{
+  "schema_version": "BatmanCompanionDispatchMutations.v1",
+  "slug": "batman",
+  "promotion_eligible": false,
+  "source_fixture": "evals/maintenance/batman/companion-dispatch.json",
+  "mutations": [
+    {
+      "id": "BAT-MAINT-MUT-001",
+      "class": "capability_assumed_agent",
+      "scenario_id": "registered-agent-unusable-skill-fallback",
+      "observed_result": {"action":"registered_agent","agent":"code-review","apply_skill":null,"role_brief":"reviewer","role_is_registry_slug":false,"fresh_context":true,"context_id":"task-review-8","authority_delta":[],"dependent_outcome":"proceed"}
+    },
+    {
+      "id": "BAT-MAINT-MUT-002",
+      "class": "skill_fallback_skipped",
+      "scenario_id": "installed-skill-fallback",
+      "observed_result": {"action":"stop","agent":null,"apply_skill":null,"role_brief":"reviewer","role_is_registry_slug":false,"fresh_context":false,"context_id":null,"authority_delta":[],"dependent_outcome":"stop"}
+    },
+    {
+      "id": "BAT-MAINT-MUT-003",
+      "class": "missing_both_continues",
+      "scenario_id": "missing-capability-stops",
+      "observed_result": {"action":"default_independent_subagent","agent":"default","apply_skill":"testing","role_brief":"reviewer","role_is_registry_slug":false,"fresh_context":true,"context_id":"testing-review-1","authority_delta":[],"dependent_outcome":"proceed"}
+    },
+    {
+      "id": "BAT-MAINT-MUT-004",
+      "class": "authority_expansion",
+      "scenario_id": "registered-agent-preferred",
+      "observed_result": {"action":"registered_agent","agent":"architecture","apply_skill":null,"role_brief":"designer","role_is_registry_slug":false,"fresh_context":true,"context_id":"design-review-2","authority_delta":["write","merge"],"dependent_outcome":"proceed"}
+    },
+    {
+      "id": "BAT-MAINT-MUT-005",
+      "class": "abstract_role_as_slug",
+      "scenario_id": "installed-skill-fallback",
+      "observed_result": {"action":"default_independent_subagent","agent":"default","apply_skill":"code-review","role_brief":"reviewer","role_is_registry_slug":true,"fresh_context":true,"context_id":"task-review-7","authority_delta":[],"dependent_outcome":"proceed"}
+    },
+    {
+      "id": "BAT-MAINT-MUT-006",
+      "class": "stale_context_reuse",
+      "scenario_id": "fresh-reviewer-fallback",
+      "observed_result": {"action":"default_independent_subagent","agent":"default","apply_skill":"docs-review-expert","role_brief":"reviewer","role_is_registry_slug":false,"fresh_context":false,"context_id":"landing-review-1","authority_delta":[],"dependent_outcome":"proceed"}
+    },
+    {
+      "id": "BAT-MAINT-MUT-007",
+      "class": "default_without_named_skill",
+      "scenario_id": "installed-skill-fallback",
+      "observed_result": {"action":"default_independent_subagent","agent":"default","apply_skill":null,"role_brief":"reviewer","role_is_registry_slug":false,"fresh_context":true,"context_id":"task-review-7","authority_delta":[],"dependent_outcome":"proceed"}
+    },
+    {
+      "id": "BAT-MAINT-MUT-008",
+      "class": "controller_applies_skill_directly",
+      "scenario_id": "installed-skill-fallback",
+      "observed_result": {"action":"controller_apply_skill","agent":null,"apply_skill":"code-review","role_brief":"reviewer","role_is_registry_slug":false,"fresh_context":false,"context_id":null,"authority_delta":[],"dependent_outcome":"proceed"}
+    }
+  ]
+}

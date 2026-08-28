@@ -119,11 +119,16 @@ Alias ask:
 
 > Superman: use the same Batman body for this safety-path implementation. Report initial status, every stage transition, blockers immediately, and a heartbeat every 15 minutes against the written plan.
 
+Portable companion ask:
+
+> Batman: implement this shipped-defect correction through research, design, TDD, all blocking milestone gates, verification, docs, PR, authorized merge, and cleanup. At gate 3, use a usable registered agent for `code-review` when one exists; otherwise dispatch a fresh default independent reviewer subagent and instruct it to apply the installed `code-review` skill. Stop the gate and implementation flow if neither surface exists, and preserve all existing authority boundaries.
+
 Expected output:
 
 - verified repository, base revision, branch, and worktree
 - specification, delivery plan, implementation plan, and bounded task briefs
 - independent subagent implementation reports and four milestone-gate decisions
+- capability-aware companion resolution without assuming every installed skill is a registered agent
 - observed red, green, and mutation-check evidence
 - validation, reconciliation, and classified finding dispositions
 - docs and Git health review

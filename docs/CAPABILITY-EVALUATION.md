@@ -137,3 +137,9 @@ The causal experiment has four blinded arms: baseline, UAC without clarity, clar
 ## Evidence staleness
 
 A verdict binds baseline, candidate, Goal Contract, topology, dataset, scorer, evaluator, adapter, CLI, model, effort, tool-policy, and runtime hashes or versions. Any bound change makes the verdict `stale_evidence`; historical records remain intact but cannot authorize a new apply.
+
+## Historical evaluation archives
+
+Preserve released evaluation evidence under `evals/history/<slug>/<candidate>/`. Its manifest binds every archived file by byte hash and declares `archive_only: true`, `auto_discovery: false`, and `promotion_eligible: false`.
+
+When canonical SSOT changes, rebuild the active Goal Contract, topology, and review overlay for the new body. An archived verdict remains historical evidence and cannot authorize the current body. Keep structural maintenance fixtures outside the promotion corpus; they make zero behavioral-promotion claim.

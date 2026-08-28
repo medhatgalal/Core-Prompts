@@ -32,7 +32,7 @@ def test_batman_has_four_blocking_milestone_review_gates() -> None:
     ]
     for milestone in ("Scope", "Design readiness", "Task implementation", "Landing readiness"):
         assert milestone in text
-    assert "a fresh reviewer subagent independent of the design author" in text
+    assert "a fresh reviewer role brief independent of the design author" in text
     assert "Every applicable milestone gate reviews its declared evidence and blocks downstream work on failure." in text
     assert "All four milestone gates review the actual saved revision or diff" not in text
 
@@ -50,7 +50,8 @@ def test_batman_landing_gate_follows_pr_and_hosted_ci() -> None:
 
     positions = [stage_six.index(step) for step in ordered_steps]
     assert positions == sorted(positions)
-    assert "an independent adversarial reviewer subagent" in stage_six
+    assert "fresh documentation and GitOps reviewer role briefs" in stage_six
+    assert "fresh adversarial reviewer role brief applies `supercharge /adversarial`" in stage_six
 
 
 def test_batman_progress_reporting_is_event_driven_and_time_bounded() -> None:
