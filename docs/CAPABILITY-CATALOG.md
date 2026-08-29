@@ -128,7 +128,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
   - Use `batman` for end-to-end implementation through subagent-driven development and blocking review gates.
   - Use Batman for a contract, metric, safety path, shipped defect, or other implementation that requires independent evidence and landing.
   - Do not invoke Batman for advice, a one-pass edit, or a review that excludes implementation.
-- Summary: Runs an explicitly invoked, host-aware, subagent-driven delivery protocol through research, design, TDD implementation, blocking reviews, verification, documentation, Git health, PR or MR, merge, and cleanup. Trigger with batman.
+- Summary: Runs an explicitly invoked, host-aware, topology-declared, subagent-driven delivery protocol through research, design, TDD implementation, blocking reviews, verification, documentation, Git health, PR or MR, merge, and cleanup. Trigger with batman.
 
 ### Codebase Health Audit — Brownfield Structural Risk Report
 - Slug: `codebase-health-audit`
