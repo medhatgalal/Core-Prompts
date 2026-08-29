@@ -4,6 +4,7 @@
 - Tightened delivery evidence: controller-authored, prior-session, or first-seen-green tests cannot establish red; offline checks cannot establish hosted CI or live ship proof; and merge, tag, package release, deployment, installation, and cleanup remain distinct receipt-backed states.
 - Added portable adapter, evidence-class, and cleanup-integrity rules while preserving controller/implementer/reviewer separation, four blocking milestones, progress against the written plan, claim refusal, and UAC's structural-versus-behavioral boundary.
 - Removed the retired Batman invocation alias from active capability discovery and examples. Mentions in earlier changelog entries remain immutable, non-routable release history and do not describe current invocation behavior.
+- Made Batman-selected Kiro deploy cleanup bounded and recoverable: dry-run reports only `PROTOCOL.md`, `PROMPT-AMENDMENT.md`, and `CODEX-UAC-INTAKE.md`; live deploy moves those residues under `.core-prompts-state/stale-pruned/` with source-to-archive receipts while preserving `SKILL.md`, resources, and unrelated files.
 
 ## v1.11.1 - 2026-08-28
 

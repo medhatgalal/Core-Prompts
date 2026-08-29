@@ -131,6 +131,22 @@ For a narrow external-target repair, use `--surface-only` with an explicit slug.
 bin/capability-fabric deploy --dry-run --surface-only --cli kiro --slug code-review --target "$HOME" --allow-nonlocal-target
 ```
 
+For Batman on Kiro, the same dry-run also previews the bounded cleanup of obsolete source files:
+
+```bash
+bin/capability-fabric deploy --dry-run --surface-only --cli kiro --slug batman --target "$HOME" --allow-nonlocal-target
+```
+
+When all three residues exist, the prune plan lists exactly:
+
+- `.kiro/skills/batman/PROTOCOL.md`
+- `.kiro/skills/batman/PROMPT-AMENDMENT.md`
+- `.kiro/skills/batman/CODEX-UAC-INTAKE.md`
+
+Dry-run prints one `DRY-RUN PRUNE` line per existing residue and does not move anything. The live command recoverably archives only those existing files under `.core-prompts-state/stale-pruned/<timestamp>/...` and prints a `source -> archive` receipt for each move. It preserves `.kiro/skills/batman/SKILL.md`, `resources/`, and unrelated files in the Batman skill directory.
+
+Use the printed receipt to recover an individual file from its timestamped archive to the original source path. If the cleanup occurred as part of an accepted release install, `~/update_core_prompts.sh --rollback previous` can instead restore the pre-install rollback snapshot.
+
 For the breaking `autosearch` rename, deploy `auto-research` to replace installed stale surfaces:
 
 ```bash
