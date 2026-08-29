@@ -1466,7 +1466,7 @@
       "layers": {
         "minimal": {
           "capability_type": "both",
-          "summary": "Runs an explicitly invoked, host-aware, subagent-driven delivery protocol through research, design, TDD implementation, blocking reviews, verification, documentation, Git health, PR or MR, merge, and cleanup. Trigger with batman.",
+          "summary": "Runs an explicitly invoked, host-aware, topology-declared, subagent-driven delivery protocol through research, design, TDD implementation, blocking reviews, verification, documentation, Git health, PR or MR, merge, and cleanup. Trigger with batman.",
           "role": "resolver",
           "domain_tags": [
             "batman"
@@ -1622,7 +1622,7 @@
       "display_name": "Batman \u2014 Evidence-Gated Delivery Controller",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "batman",
-      "shared_summary": "Runs an explicitly invoked, host-aware, subagent-driven delivery protocol through research, design, TDD implementation, blocking reviews, verification, documentation, Git health, PR or MR, merge, and cleanup. Trigger with batman.",
+      "shared_summary": "Runs an explicitly invoked, host-aware, topology-declared, subagent-driven delivery protocol through research, design, TDD implementation, blocking reviews, verification, documentation, Git health, PR or MR, merge, and cleanup. Trigger with batman.",
       "shared_constraints": [
         "One canonical Batman SSOT body.",
         "One active public identity: `batman`. Do not create a second SSOT, descriptor, skill, agent, route, invocation hint, example, or generated surface for this capability.",
@@ -1646,11 +1646,12 @@
             "strategy": "derived_history",
             "group": "derived",
             "baseline_path": null,
-            "selected_commit": "bd6cfd14",
+            "selected_commit": "83157939",
             "richness_score": 5,
-            "line_count": 357,
+            "line_count": 363,
             "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
             "equivalent_commits": [
+              "bd6cfd14",
               "4e880e24",
               "6be48300",
               "7691d9d5"
@@ -1704,7 +1705,7 @@
                 "candidate_operational_score": 3,
                 "baseline_preserved_in_resource": false
               },
-              "baseline_commit": "bd6cfd14",
+              "baseline_commit": "83157939",
               "baseline_slug": "batman"
             },
             {
