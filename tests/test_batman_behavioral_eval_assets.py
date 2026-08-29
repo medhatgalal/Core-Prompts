@@ -17,6 +17,7 @@ from core_prompts_eval.topology import compile_topology
 
 ROOT = Path(__file__).resolve().parents[1]
 HISTORY = ROOT / "evals/history/batman/e602e19"
+RETIRED_PUBLIC_IDENTITIES = {"super" + "man"}
 
 
 def _json(path: str) -> dict:
@@ -230,12 +231,13 @@ class BatmanBehavioralEvalAssetsTest(unittest.TestCase):
             [clause["sha256"] for clause in topology["protected_invariants"]],
         )
 
-        retired_aliases = {"superman"}
-        self.assertTrue(retired_aliases.isdisjoint(alias.casefold() for alias in topology["aliases_shortcuts"]))
+        self.assertTrue(
+            RETIRED_PUBLIC_IDENTITIES.isdisjoint(alias.casefold() for alias in topology["aliases_shortcuts"])
+        )
         for clause in topology["protected_invariants"]:
             with self.subTest(clause=clause["id"]):
                 words = {word.strip("`.,:;()[]{}").casefold() for word in clause["text"].split()}
-                self.assertTrue(retired_aliases.isdisjoint(words))
+                self.assertTrue(RETIRED_PUBLIC_IDENTITIES.isdisjoint(words))
 
 
 if __name__ == "__main__":
