@@ -518,7 +518,8 @@
       "family_slug": "analyze-context",
       "shared_summary": "[Medhat] Iterative Analysis Workflow for multi-file processing",
       "shared_constraints": [
-        "Do not start long-running analysis directly on `main` or `master`.",
+        "Reading an existing canonical set from the main checkout is allowed.",
+        "Writing analysis memory requires a non-main linked worktree.",
         "Do not create multiple competing memory sets for the same initiative.",
         "Do not let insights remain only in the todo file.",
         "Do not archive mid-initiative."

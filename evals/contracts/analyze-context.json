@@ -9,19 +9,25 @@
     "f8cbcd9d82447bab9639b2df1f0d564b8f29bb86362c5486b513d5695282a423",
     "aa5cb7c9b6e729812f25940cec044c7056cc7fcdd87175af41327e42bda3c332",
     "050433e604b4bf4e3768fef92dd28edd475e8a2ef30a1d0b5782f409ce10c7e6",
+    "102d32a44831743abf53910d0070508de1ee2a3e8f80bbd5d9f3e6f55ab1a106",
     "58cc6556252e83cb0de755e7341157861d7f8bb4ecc0f397f8cf488efb85459c",
     "ce29a924a5191687642a21292b70508aa1b1db6cbbcc834f498d5bf214c35c0a",
+    "6309bab670fe450e1a697a6aebc07232e95904c1de802118ac6be8fc1080d367",
+    "fcf57f43ea6f386735df9f953dc9e0f5897173b63b97374cc91a6dd299441e4f",
     "2bfeab027cf8c50fecca59a18bf827d7af10762861a3bfeac98e63f83e954532",
     "043edc088932bb39f78b28ae52afde4f2d16f15feec79b37d052d22c3e933698",
     "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
     "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
     "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
     "47f8eb7b1f5062692ab13223019b0130f4f79b984441288b2a24c0555923cdd4",
-    "983409ed302d318db8aac120b99299a42514161ff5a44b0c5d9eb2c3740e74e8",
     "2e1127e53b153f7008cb38697e2d2ea9710602151efb20f72b16f35bd737638c",
     "2ad1af6a8eb9ee6ce57ee09e262a17f75cac09cbea63834b15edf59b390f1fa3",
     "a6a29a656d24f832189c0c85aa47e89bf86ac4bb2333232e727769ced2dbf1dc",
-    "3a8657310f471c057fd1160548f8962b53524ae461e5288c5d8a321a4a2089de"
+    "9da5af73073c62d61b73ccde81abf5103f1d059a232ddff72ff055cc1d61fb88",
+    "3fb4e79ba749765291579c9de269be3d180248e45b8dd06983318e8503e9dc6a",
+    "2db9f82e6c030a2c1da851a3b160b17dc25593b008a42134e12e5269cda0a49e",
+    "996ff2fc4f3cd07471075cce3c31a9ef9d7beb5c6179533078b6dd06bb9f9597",
+    "9ce70cfe33191860d955d924c0486cde3465719e2f325fa50df9cf6ce749917a"
   ],
   "editable_behavior": [],
   "primary_outcome": {
@@ -69,6 +75,11 @@
       "text": "Do not use this capability when the main job is to make a final decision, harden a prompt or plan, import a capability, design a system, or prove one variant performs better than another."
     },
     {
+      "sha256": "102d32a44831743abf53910d0070508de1ee2a3e8f80bbd5d9f3e6f55ab1a106",
+      "source": "ssot/analyze-context.md",
+      "text": "3. Look for an existing canonical memory set in the main checkout first for backward compatibility and cross-session continuity, but treat it as read-only."
+    },
+    {
       "sha256": "58cc6556252e83cb0de755e7341157861d7f8bb4ecc0f397f8cf488efb85459c",
       "source": "ssot/analyze-context.md",
       "text": "- forbidden: pretending analysis is implementation, silently changing unrelated repo state, or replacing canonical source documents with temporary notes"
@@ -77,6 +88,16 @@
       "sha256": "ce29a924a5191687642a21292b70508aa1b1db6cbbcc834f498d5bf214c35c0a",
       "source": "ssot/analyze-context.md",
       "text": "- Do not fork versioned analysis memory files for the same initiative."
+    },
+    {
+      "sha256": "6309bab670fe450e1a697a6aebc07232e95904c1de802118ac6be8fc1080d367",
+      "source": "ssot/analyze-context.md",
+      "text": "- Never write analysis memory to the main checkout."
+    },
+    {
+      "sha256": "fcf57f43ea6f386735df9f953dc9e0f5897173b63b97374cc91a6dd299441e4f",
+      "source": "ssot/analyze-context.md",
+      "text": "- `.analyze-context-memory/` must be gitignored; if it is tracked, untrack it before starting."
     },
     {
       "sha256": "2bfeab027cf8c50fecca59a18bf827d7af10762861a3bfeac98e63f83e954532",
@@ -109,11 +130,6 @@
       "text": "| If the analysis reveals this need | Route to | Required handoff |"
     },
     {
-      "sha256": "983409ed302d318db8aac120b99299a42514161ff5a44b0c5d9eb2c3740e74e8",
-      "source": "ssot/analyze-context.md",
-      "text": "- Do not start long-running analysis directly on `main` or `master`."
-    },
-    {
       "sha256": "2e1127e53b153f7008cb38697e2d2ea9710602151efb20f72b16f35bd737638c",
       "source": "ssot/analyze-context.md",
       "text": "- Do not create multiple competing memory sets for the same initiative."
@@ -129,9 +145,29 @@
       "text": "- Do not archive mid-initiative."
     },
     {
-      "sha256": "3a8657310f471c057fd1160548f8962b53524ae461e5288c5d8a321a4a2089de",
+      "sha256": "9da5af73073c62d61b73ccde81abf5103f1d059a232ddff72ff055cc1d61fb88",
       "source": "ssot/analyze-context.md",
-      "text": "Before proceeding, you MUST check the current branch."
+      "text": "Before proceeding, you MUST resolve the active worktree, main checkout, and current branch."
+    },
+    {
+      "sha256": "3fb4e79ba749765291579c9de269be3d180248e45b8dd06983318e8503e9dc6a",
+      "source": "ssot/analyze-context.md",
+      "text": "Reading a canonical set from the main checkout is allowed. Before writing, stop and request a dedicated linked worktree if `CURRENT_BRANCH` is `main` or `master`, or if `ACTIVE_WORKTREE_ROOT` equals `MAIN_CHECKOUT_ROOT`. Confirm that `.analyze-context-memory/` is gitignored in the active worktree. If Git already tracks the directory, untrack it with an index-only operation that preserves the local files before starting."
+    },
+    {
+      "sha256": "2db9f82e6c030a2c1da851a3b160b17dc25593b008a42134e12e5269cda0a49e",
+      "source": "ssot/analyze-context.md",
+      "text": "- **READ:** On initial discovery, inspect the matching set under `MAIN_CHECKOUT_ROOT/.analyze-context-memory/` first for backward compatibility and cross-session continuity. Never modify that set in place. If an active-worktree set already exists, it remains the current working state; the main-checkout set is read-only background, not a competing write target."
+    },
+    {
+      "sha256": "996ff2fc4f3cd07471075cce3c31a9ef9d7beb5c6179533078b6dd06bb9f9597",
+      "source": "ssot/analyze-context.md",
+      "text": "- **WRITE:** Always create and update the set under `ACTIVE_WORKTREE_ROOT/.analyze-context-memory/`, where `ACTIVE_WORKTREE_ROOT` is resolved with `git rev-parse --show-toplevel`. If only a main-checkout set exists, initialize the active-worktree set from it before recording new progress."
+    },
+    {
+      "sha256": "9ce70cfe33191860d955d924c0486cde3465719e2f325fa50df9cf6ce749917a",
+      "source": "ssot/analyze-context.md",
+      "text": "2. if no active-worktree set exists, fall back to the read-only set in the main checkout and initialize the active-worktree set before recording new progress"
     }
   ],
   "review_status": "draft"

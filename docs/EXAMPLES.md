@@ -28,13 +28,19 @@ Why this skill first:
 
 - start here when the main risk is losing context across files, not choosing between architectural options or writing tests yet
 
+Worktree memory rule:
+
+- read legacy canonical state from the main checkout only for continuity
+- write the one active context/todo/insights set only under `.analyze-context-memory/` in the active non-main linked worktree
+- ensure `.analyze-context-memory/` is gitignored and untracked before starting
+
 Ask:
 
-> Use `analyze-context` to inspect this subsystem across the relevant files, keep a durable analysis trail, and tell me the smallest safe change plan.
+> Use `analyze-context` to inspect this subsystem across the relevant files, keep its durable analysis state in the active non-main worktree, and tell me the smallest safe change plan.
 
 Expected output:
 
-- current state and file map
+- active-worktree memory paths and current file map
 - accumulated findings
 - unresolved questions
 - a scoped change plan

@@ -14,6 +14,7 @@ If Core-Prompts is already installed in Codex, Gemini, Claude, or Kiro, begin wi
 
 | Capability | Example ask | What good output looks like |
 | --- | --- | --- |
+| `analyze-context` | "Use `analyze-context` to inspect this subsystem across several files and keep resumable state in the active non-main worktree." | one gitignored context/todo/insights set in the active worktree; legacy main-checkout state may be read for continuity but is never updated |
 | `docs-review-expert` | "Use `docs-review-expert` to review our docs IA and recommend the smallest rewrite that restores clarity." | placement decisions, drift findings, and rewrite guidance |
 | `gitops-review` | "Use `gitops-review` to tell me whether this branch is ready for PR and what blockers remain." | gate type, blockers, companion reviews, and next steps |
 | `codebase-health-audit` | "Use `codebase-health-audit` to audit this repo for LOC hotspots, god objects, coupling, likely dead code, and drift from this prior audit block." | metric-backed structural findings, drift analysis, and slice-ready remediation |
