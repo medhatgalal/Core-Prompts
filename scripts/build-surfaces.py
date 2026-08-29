@@ -16,17 +16,30 @@ from intent_pipeline.consumer_shell import (
     build_capability_catalog,
     build_release_delta,
     build_status_payload,
-    load_previous_manifest_from_git,
     load_status_inputs,
     render_catalog_markdown,
     render_release_delta_markdown,
     render_status_markdown,
+    resolve_release_baseline,
 )
-from intent_pipeline.uac_descriptors import build_descriptor, load_descriptor, save_descriptor, source_note_path
+from intent_pipeline.skill_jobs import (
+    load_skill_job_map_for_build,
+    render_skill_job_map,
+)
 from intent_pipeline.uac_baselines import resolve_historical_baseline
+from intent_pipeline.uac_descriptors import (
+    build_descriptor,
+    load_descriptor,
+    save_descriptor,
+    source_note_path,
+)
 from intent_pipeline.uac_modes import extract_declared_modes, normalize_mode_entries
-from intent_pipeline.skill_jobs import load_skill_job_map_for_build, render_skill_job_map
-from intent_pipeline.uac_ssot import build_ssot_handoff_contract, build_ssot_manifest_entry, extract_section_bullets, load_ssot_entries
+from intent_pipeline.uac_ssot import (
+    build_ssot_handoff_contract,
+    build_ssot_manifest_entry,
+    extract_section_bullets,
+    load_ssot_entries,
+)
 
 SSOT_DIR = ROOT / 'ssot'
 META_DIR = ROOT / '.meta'
@@ -650,7 +663,7 @@ def main():
         'python': '3.14 preferred (3.11+ supported)',
         'version': '6.0',
     }
-    previous_manifest = load_previous_manifest_from_git(ROOT)
+    previous_manifest, release_comparison_basis = resolve_release_baseline(ROOT)
     generated = {
         'generator': generator,
         'ssot_sources': [],
@@ -714,7 +727,11 @@ def main():
     write_build_report(generator, manifest_changed, handoff_changed, len(entries))
     status_inputs = load_status_inputs(ROOT)
     catalog_payload = build_capability_catalog(generated)
-    release_delta_payload = build_release_delta(generated, previous_manifest)
+    release_delta_payload = build_release_delta(
+        generated,
+        previous_manifest,
+        comparison_basis=release_comparison_basis,
+    )
     status_payload = build_status_payload(
         generated,
         build_report=status_inputs['build_report'],

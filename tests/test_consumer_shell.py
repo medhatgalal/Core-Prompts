@@ -1,22 +1,69 @@
 from __future__ import annotations
 
-from pathlib import Path
+import json
+import subprocess
 import sys
-
+import tempfile
+import unittest
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC_ROOT = ROOT / "src"
 if str(SRC_ROOT) not in sys.path:
     sys.path.insert(0, str(SRC_ROOT))
 
-from intent_pipeline.consumer_shell import (  # noqa: E402
+from intent_pipeline.consumer_shell import (
+    ReleaseBaselineError,
     build_capability_catalog,
     build_release_delta,
     build_status_payload,
     render_catalog_markdown,
     render_release_delta_markdown,
     render_status_markdown,
+    resolve_release_baseline,
 )
+
+
+def _git(repo: Path, *args: str) -> str:
+    proc = subprocess.run(
+        ["git", *args],
+        cwd=repo,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    return proc.stdout.strip()
+
+
+def _write_manifest(repo: Path, summary: str) -> dict[str, object]:
+    manifest = {
+        "ssot_sources": [
+            {
+                "slug": "batman",
+                "layers": {"minimal": {"summary": summary}},
+            }
+        ]
+    }
+    path = repo / ".meta/manifest.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(manifest), encoding="utf-8")
+    return manifest
+
+
+def _commit_manifest(repo: Path, summary: str, message: str) -> str:
+    _write_manifest(repo, summary)
+    _git(repo, "add", ".meta/manifest.json")
+    _git(repo, "commit", "-m", message)
+    return _git(repo, "rev-parse", "HEAD")
+
+
+def _commit_evidence(repo: Path, message: str) -> str:
+    path = repo / "release-evidence.txt"
+    previous = path.read_text(encoding="utf-8") if path.exists() else ""
+    path.write_text(f"{previous}{message}\n", encoding="utf-8")
+    _git(repo, "add", "release-evidence.txt")
+    _git(repo, "commit", "-m", message)
+    return _git(repo, "rev-parse", "HEAD")
 
 
 def _entry(
@@ -191,3 +238,258 @@ def test_build_status_payload_warns_on_smoke_warnings_without_failures() -> None
     )
 
     assert status["health"] == "warn"
+
+
+class ReleaseBaselineTests(unittest.TestCase):
+    def _init_repo(self, root: Path) -> Path:
+        repo = root / "repo"
+        repo.mkdir()
+        _git(repo, "init", "-b", "main")
+        _git(repo, "config", "user.name", "Core Prompts Test")
+        _git(repo, "config", "user.email", "core-prompts@example.test")
+        return repo
+
+    def _add_origin(self, root: Path, repo: Path) -> Path:
+        remote = root / "origin.git"
+        remote.mkdir()
+        _git(remote, "init", "--bare")
+        _git(repo, "remote", "add", "origin", str(remote))
+        _git(repo, "push", "-u", "origin", "main")
+        _git(repo, "remote", "set-head", "origin", "main")
+        return remote
+
+    def assertBasis(self, basis: str, ref: str, sha: str) -> None:
+        self.assertEqual(basis, f"git:{ref}@{sha} .meta/manifest.json")
+
+    def test_pushed_feature_tracking_itself_uses_remote_default(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            repo = self._init_repo(root)
+            baseline = _commit_manifest(repo, "baseline", "baseline")
+            self._add_origin(root, repo)
+            _git(repo, "checkout", "-b", "feature")
+            _commit_manifest(repo, "batman changed", "feature change")
+            _git(repo, "push", "-u", "origin", "feature")
+
+            previous, basis = resolve_release_baseline(repo)
+
+            self.assertEqual(previous, _write_manifest_snapshot("baseline"))
+            self.assertBasis(basis, "origin/main", baseline)
+            delta = build_release_delta(
+                _write_manifest_snapshot("batman changed"),
+                previous,
+                comparison_basis=basis,
+            )
+            self.assertEqual(delta["comparison_basis"], basis)
+            self.assertEqual(delta["summary"]["material_change_count"], 1)
+
+    def test_merge_commit_uses_distinct_first_parent(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            repo = self._init_repo(Path(temp_dir))
+            baseline = _commit_manifest(repo, "baseline", "baseline")
+            _git(repo, "checkout", "-b", "feature")
+            _commit_manifest(repo, "batman changed", "feature change")
+            _git(repo, "checkout", "main")
+            _git(repo, "merge", "--no-ff", "feature", "-m", "merge feature")
+
+            previous, basis = resolve_release_baseline(repo)
+
+            self.assertEqual(previous, _write_manifest_snapshot("baseline"))
+            self.assertBasis(basis, "HEAD^1", baseline)
+
+    def test_explicit_environment_ref_precedes_tags_and_branches(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            repo = self._init_repo(Path(temp_dir))
+            baseline = _commit_manifest(repo, "baseline", "baseline")
+            _git(repo, "tag", "v1.0.0")
+            _commit_manifest(repo, "current", "current")
+
+            previous, basis = resolve_release_baseline(
+                repo,
+                env={"CORE_PROMPTS_RELEASE_BASE_REF": baseline},
+            )
+
+            self.assertEqual(previous, _write_manifest_snapshot("baseline"))
+            self.assertBasis(basis, baseline, baseline)
+            previous, basis = resolve_release_baseline(
+                repo,
+                explicit_ref=baseline,
+                env={"CORE_PROMPTS_RELEASE_BASE_REF": "does-not-exist"},
+            )
+            self.assertEqual(previous, _write_manifest_snapshot("baseline"))
+            self.assertBasis(basis, baseline, baseline)
+
+    def test_invalid_explicit_ref_fails_closed(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            repo = self._init_repo(Path(temp_dir))
+            _commit_manifest(repo, "current", "current")
+
+            with self.assertRaisesRegex(ReleaseBaselineError, "explicit release baseline"):
+                resolve_release_baseline(
+                    repo,
+                    env={"CORE_PROMPTS_RELEASE_BASE_REF": "does-not-exist"},
+                )
+
+    def test_explicit_ref_without_manifest_fails_closed(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            repo = self._init_repo(Path(temp_dir))
+            (repo / "README.md").write_text("baseline\n", encoding="utf-8")
+            _git(repo, "add", "README.md")
+            _git(repo, "commit", "-m", "no manifest")
+            no_manifest = _git(repo, "rev-parse", "HEAD")
+            _commit_manifest(repo, "current", "current")
+
+            with self.assertRaisesRegex(ReleaseBaselineError, "no valid .meta/manifest.json"):
+                resolve_release_baseline(repo, explicit_ref=no_manifest)
+
+    def test_current_tag_is_skipped_for_previous_version_tag(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            repo = self._init_repo(Path(temp_dir))
+            baseline = _commit_manifest(repo, "baseline", "baseline")
+            _git(repo, "tag", "v1.9.0")
+            current = _commit_manifest(repo, "current", "current")
+            _git(repo, "tag", "v1.10.0")
+
+            previous, basis = resolve_release_baseline(repo)
+
+            self.assertNotEqual(current, baseline)
+            self.assertEqual(previous, _write_manifest_snapshot("baseline"))
+            self.assertBasis(basis, "v1.9.0", baseline)
+
+    def test_pre_tag_release_uses_newest_tag_even_when_manifest_is_unchanged(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            repo = self._init_repo(Path(temp_dir))
+            baseline = _commit_manifest(repo, "unchanged", "v1 baseline")
+            _git(repo, "tag", "v1.0.0")
+            _commit_evidence(repo, "release prep")
+
+            previous, basis = resolve_release_baseline(repo)
+            delta = build_release_delta(
+                _write_manifest_snapshot("unchanged"),
+                previous,
+                comparison_basis=basis,
+            )
+
+            self.assertBasis(basis, "v1.0.0", baseline)
+            self.assertEqual(delta["baseline_status"], "available")
+            self.assertEqual(delta["summary"]["changed_count"], 0)
+            self.assertEqual(delta["summary"]["material_change_count"], 0)
+
+    def test_post_current_tag_uses_previous_tag_when_manifest_is_unchanged(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            repo = self._init_repo(Path(temp_dir))
+            baseline = _commit_manifest(repo, "unchanged", "v1 baseline")
+            _git(repo, "tag", "v1.0.0")
+            _commit_evidence(repo, "release prep")
+            _git(repo, "tag", "v1.1.0")
+
+            previous, basis = resolve_release_baseline(repo)
+            delta = build_release_delta(
+                _write_manifest_snapshot("unchanged"),
+                previous,
+                comparison_basis=basis,
+            )
+
+            self.assertBasis(basis, "v1.0.0", baseline)
+            self.assertEqual(delta["baseline_status"], "available")
+            self.assertEqual(delta["summary"]["changed_count"], 0)
+            self.assertEqual(delta["summary"]["material_change_count"], 0)
+
+    def test_remote_baseline_uses_distinct_commit_when_manifest_is_unchanged(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            repo = self._init_repo(root)
+            baseline = _commit_manifest(repo, "unchanged", "baseline")
+            self._add_origin(root, repo)
+            _git(repo, "checkout", "-b", "feature")
+            _commit_evidence(repo, "feature evidence")
+            _git(repo, "push", "-u", "origin", "feature")
+
+            previous, basis = resolve_release_baseline(repo)
+            delta = build_release_delta(
+                _write_manifest_snapshot("unchanged"),
+                previous,
+                comparison_basis=basis,
+            )
+
+            self.assertBasis(basis, "origin/main", baseline)
+            self.assertEqual(delta["baseline_status"], "available")
+            self.assertEqual(delta["summary"]["changed_count"], 0)
+            self.assertEqual(delta["summary"]["material_change_count"], 0)
+
+    def test_release_prep_after_merge_uses_previous_release_tag(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            repo = self._init_repo(Path(temp_dir))
+            baseline = _commit_manifest(repo, "baseline", "baseline")
+            _git(repo, "tag", "v1.0.0")
+            _git(repo, "checkout", "-b", "feature")
+            _commit_manifest(repo, "batman changed", "feature change")
+            _git(repo, "checkout", "main")
+            _git(repo, "merge", "--no-ff", "feature", "-m", "merge feature")
+            (repo / "release.txt").write_text("prepare\n", encoding="utf-8")
+            _git(repo, "add", "release.txt")
+            _git(repo, "commit", "-m", "release prep")
+
+            previous, basis = resolve_release_baseline(repo)
+
+            self.assertEqual(previous, _write_manifest_snapshot("baseline"))
+            self.assertBasis(basis, "v1.0.0", baseline)
+
+    def test_detached_multi_commit_without_trustworthy_baseline_is_unavailable(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            repo = self._init_repo(Path(temp_dir))
+            _commit_manifest(repo, "baseline", "baseline")
+            _commit_manifest(repo, "current", "current")
+            _git(repo, "checkout", "--detach")
+
+            previous, basis = resolve_release_baseline(repo)
+
+            self.assertIsNone(previous)
+            self.assertEqual(basis, "unavailable")
+
+    def test_no_upstream_multi_commit_branch_is_unavailable(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            repo = self._init_repo(Path(temp_dir))
+            _commit_manifest(repo, "baseline", "baseline")
+            _git(repo, "checkout", "-b", "feature")
+            _commit_manifest(repo, "current", "current")
+
+            previous, basis = resolve_release_baseline(repo)
+
+            self.assertIsNone(previous)
+            self.assertEqual(basis, "unavailable")
+
+    def test_missing_baseline_delta_is_empty_and_explicit(self) -> None:
+        current = _write_manifest_snapshot("current")
+
+        delta = build_release_delta(current, None, comparison_basis="unavailable")
+
+        self.assertEqual(delta["baseline_status"], "missing")
+        self.assertEqual(delta["comparison_basis"], "unavailable")
+        self.assertEqual(delta["new_capabilities"], [])
+        self.assertEqual(delta["changed_capabilities"], [])
+        self.assertEqual(delta["summary"]["new_count"], 0)
+
+    def test_in_memory_manifest_default_is_neutral(self) -> None:
+        delta = build_release_delta(
+            _write_manifest_snapshot("current"),
+            _write_manifest_snapshot("baseline"),
+        )
+
+        self.assertEqual(delta["baseline_status"], "available")
+        self.assertEqual(delta["comparison_basis"], "provided manifest")
+
+
+def _write_manifest_snapshot(summary: str) -> dict[str, object]:
+    return {
+        "ssot_sources": [
+            {
+                "slug": "batman",
+                "layers": {"minimal": {"summary": summary}},
+            }
+        ]
+    }
+
+
+if __name__ == "__main__":
+    unittest.main()

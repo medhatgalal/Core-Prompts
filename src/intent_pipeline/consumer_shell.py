@@ -1,10 +1,12 @@
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 from collections import defaultdict
+from collections.abc import Mapping, Sequence
 from pathlib import Path
-from typing import Any, Mapping, Sequence
+from typing import Any
 
 
 def _manifest_entries(manifest: Mapping[str, Any]) -> list[dict[str, Any]]:
@@ -123,18 +125,119 @@ def load_previous_manifest_from_git(repo_root: Path, ref: str = "HEAD") -> dict[
         proc = subprocess.run(
             ["git", "show", f"{ref}:.meta/manifest.json"],
             cwd=repo_root,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
+            capture_output=True,
             text=True,
             timeout=10,
             check=True,
         )
-    except Exception:
+    except (OSError, subprocess.SubprocessError):
         return None
     try:
         return json.loads(proc.stdout)
     except json.JSONDecodeError:
         return None
+
+
+def _git_text(repo_root: Path, *args: str) -> str | None:
+    try:
+        proc = subprocess.run(
+            ["git", *args],
+            cwd=repo_root,
+            capture_output=True,
+            text=True,
+            timeout=10,
+            check=True,
+        )
+    except (OSError, subprocess.SubprocessError):
+        return None
+    value = proc.stdout.strip()
+    return value or None
+
+
+class ReleaseBaselineError(RuntimeError):
+    """Raised when an explicitly requested release baseline is unusable."""
+
+
+def _resolve_commit(repo_root: Path, ref: str) -> str | None:
+    return _git_text(repo_root, "rev-parse", "--verify", f"{ref}^{{commit}}")
+
+
+def _release_basis(ref: str, sha: str) -> str:
+    return f"git:{ref}@{sha} .meta/manifest.json"
+
+
+def _distinct_baseline(
+    repo_root: Path,
+    ref: str,
+    head_sha: str,
+) -> tuple[dict[str, Any], str] | None:
+    sha = _resolve_commit(repo_root, ref)
+    if not sha or sha == head_sha:
+        return None
+    manifest = load_previous_manifest_from_git(repo_root, sha)
+    if manifest is None:
+        return None
+    return manifest, _release_basis(ref, sha)
+
+
+def resolve_release_baseline(
+    repo_root: Path,
+    *,
+    explicit_ref: str | None = None,
+    env: Mapping[str, str] | None = None,
+) -> tuple[dict[str, Any] | None, str]:
+    environment = os.environ if env is None else env
+    override = explicit_ref or environment.get("CORE_PROMPTS_RELEASE_BASE_REF")
+    if override:
+        sha = _resolve_commit(repo_root, override)
+        if not sha:
+            raise ReleaseBaselineError(f"explicit release baseline ref is invalid: {override}")
+        manifest = load_previous_manifest_from_git(repo_root, sha)
+        if manifest is None:
+            raise ReleaseBaselineError(
+                f"explicit release baseline has no valid .meta/manifest.json: {override}@{sha}"
+            )
+        return manifest, _release_basis(override, sha)
+
+    head_sha = _resolve_commit(repo_root, "HEAD")
+    if not head_sha:
+        return None, "unavailable"
+    tags = _git_text(repo_root, "tag", "--merged", "HEAD", "--sort=-version:refname")
+    for tag in (tags or "").splitlines():
+        baseline = _distinct_baseline(repo_root, tag, head_sha)
+        if baseline:
+            return baseline
+
+    upstream = _git_text(
+        repo_root,
+        "rev-parse",
+        "--abbrev-ref",
+        "--symbolic-full-name",
+        "@{upstream}",
+    )
+    remote_default = _git_text(
+        repo_root,
+        "symbolic-ref",
+        "--quiet",
+        "--short",
+        "refs/remotes/origin/HEAD",
+    )
+    branch_candidates = [remote_default, "origin/main", "origin/master", upstream]
+    seen: set[str] = set()
+    for ref in branch_candidates:
+        if not ref or ref in seen:
+            continue
+        seen.add(ref)
+        baseline = _distinct_baseline(repo_root, ref, head_sha)
+        if baseline:
+            return baseline
+
+    parents = (_git_text(repo_root, "rev-list", "--parents", "-n", "1", "HEAD") or "").split()
+    if len(parents) > 2:
+        baseline = _distinct_baseline(repo_root, "HEAD^1", head_sha)
+        if baseline:
+            return baseline
+    return None, "unavailable"
 
 
 def _compare_list(before: Sequence[Any], after: Sequence[Any]) -> tuple[list[Any], list[Any]]:
@@ -252,9 +355,32 @@ def _entry_delta(previous: Mapping[str, Any], current: Mapping[str, Any]) -> dic
     }
 
 
-def build_release_delta(current_manifest: Mapping[str, Any], previous_manifest: Mapping[str, Any] | None) -> dict[str, Any]:
+def build_release_delta(
+    current_manifest: Mapping[str, Any],
+    previous_manifest: Mapping[str, Any] | None,
+    *,
+    comparison_basis: str | None = None,
+) -> dict[str, Any]:
+    basis = comparison_basis or ("provided manifest" if previous_manifest is not None else "unavailable")
+    if previous_manifest is None:
+        return {
+            "schema_version": "capability-fabric.release-delta.v1",
+            "baseline_status": "missing",
+            "comparison_basis": basis,
+            "new_capabilities": [],
+            "removed_capabilities": [],
+            "changed_capabilities": [],
+            "material_changes": [],
+            "summary": {
+                "new_count": 0,
+                "removed_count": 0,
+                "changed_count": 0,
+                "material_change_count": 0,
+            },
+        }
+
     current_entries = {_slug(entry): entry for entry in _manifest_entries(current_manifest)}
-    previous_entries = {_slug(entry): entry for entry in _manifest_entries(previous_manifest or {})}
+    previous_entries = {_slug(entry): entry for entry in _manifest_entries(previous_manifest)}
     new_slugs = sorted(slug for slug in current_entries if slug not in previous_entries)
     removed_slugs = sorted(slug for slug in previous_entries if slug not in current_entries)
     changed = []
@@ -267,7 +393,8 @@ def build_release_delta(current_manifest: Mapping[str, Any], previous_manifest: 
     material_changes = [item for item in changed if item["material"]]
     return {
         "schema_version": "capability-fabric.release-delta.v1",
-        "comparison_basis": "git:HEAD .meta/manifest.json" if previous_manifest else "unavailable",
+        "baseline_status": "available",
+        "comparison_basis": basis,
         "new_capabilities": [
             {"slug": slug, "display_name": _display_name(current_entries[slug])}
             for slug in new_slugs
@@ -391,6 +518,7 @@ def render_release_delta_markdown(delta: Mapping[str, Any]) -> str:
     lines = [
         "# Release Delta",
         "",
+        f"- Baseline status: `{delta.get('baseline_status', 'unknown')}`",
         f"- Comparison basis: `{delta.get('comparison_basis')}`",
         f"- New capabilities: `{delta.get('summary', {}).get('new_count', 0)}`",
         f"- Removed capabilities: `{delta.get('summary', {}).get('removed_count', 0)}`",
