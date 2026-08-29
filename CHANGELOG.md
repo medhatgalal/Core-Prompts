@@ -1,3 +1,10 @@
+## v1.12.2 - 2026-08-29
+
+- Scoped `analyze-context` writes to `.analyze-context-memory/` in the active non-main linked worktree while retaining read-only fallback to legacy canonical state in the main checkout.
+- Required analysis-memory directories to be gitignored and untracked before use so concurrent agents cannot overwrite shared scratch or accidentally commit it.
+- Updated recovery guidance to prefer the active worktree, fall back to main only for continuity, and preserve the one-set-per-initiative, no-forking, anti-sprawl, and completion-only archive rules.
+- Updated onboarding and examples so users can discover the worktree-scoped memory contract without reading SSOT or generated skill files.
+
 ## v1.12.1 - 2026-08-29
 
 - Made every Host-Fit Plan declare one topology from a closed enum—`sequential`, `fan-out/fan-in`, or `dependency-pipeline`—over an acyclic child-dependency graph, with atomic `plan_generation` refresh when reviewed nodes or dependencies change.

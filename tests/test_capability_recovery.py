@@ -62,6 +62,21 @@ def test_analyze_context_memory_is_worktree_scoped() -> None:
     assert '- Archive only when the initiative is complete.' in text
 
 
+def test_analyze_context_worktree_contract_is_discoverable() -> None:
+    docs = {
+        'README.md': (ROOT / 'README.md').read_text(encoding='utf-8'),
+        'docs/GETTING-STARTED.md': (ROOT / 'docs' / 'GETTING-STARTED.md').read_text(encoding='utf-8'),
+        'docs/EXAMPLES.md': (ROOT / 'docs' / 'EXAMPLES.md').read_text(encoding='utf-8'),
+    }
+
+    for path, text in docs.items():
+        assert 'analyze-context' in text, path
+        assert 'active non-main' in text, path
+
+    assert 'legacy main-checkout state is read-only fallback only' in docs['README.md']
+    assert 'gitignored and untracked' in docs['docs/EXAMPLES.md']
+
+
 def test_capability_templates_exist_for_all_supported_types() -> None:
     template_dir = ROOT / '.meta' / 'capability-templates'
     for name in ('skill', 'agent', 'both'):

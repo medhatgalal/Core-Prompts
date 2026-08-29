@@ -1,11 +1,11 @@
 # Release Delta
 
 - Baseline status: `available`
-- Comparison basis: `git:v1.12.0@99d2ac24f734784a1fb40614794d61998c1c0cdd .meta/manifest.json`
+- Comparison basis: `git:v1.12.1@7dae6f679f2dce31ce8b2620c5dd2e6b6dda5cdb .meta/manifest.json`
 - New capabilities: `0`
 - Removed capabilities: `0`
-- Changed capabilities: `2`
-- Material changes: `2`
+- Changed capabilities: `1`
+- Material changes: `1`
 
 ## New Capabilities
 - none
@@ -15,8 +15,6 @@
 
 ## Material Changes
 - `analyze-context` — changed `shared_constraints`
-- `batman` — changed `summary`
 
 ## All Changed Capabilities
 - `analyze-context` — changed `shared_constraints`
-- `batman` — changed `summary`
