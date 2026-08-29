@@ -3,10 +3,9 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+import tempfile
+import unittest
 from pathlib import Path
-
-import pytest
-
 
 ROOT = Path(__file__).resolve().parents[1]
 HISTORY = ROOT / "evals/history/batman/e602e19"
@@ -21,13 +20,14 @@ FROZEN_ARTIFACTS = {
     "evals/mappings/batman-baseline-to-candidate.json": "8ec04b9743e0b69f500ef7324b510fa20cc6f7607c12a9ac897fc6039b11a88c",
     "evals/preregistrations/batman-promotion.json": "798182ec3b362447cdcaa0454d5a558fc858bfeaf9cd776de301615ca447ab6c",
     "evals/cases/public/batman/core.jsonl": "77d2c21dae2011354462096e7a3adb2cee6067fad0dffe6f0d6c4c94c2845b7b",
-    "evals/fixtures/batman/alias-microflow.json": "be3d67e6fe9a83f92ed4a4938376a19a99da3098777d113a0e31be3e8c34d710",
     "evals/fixtures/batman/implementation-microflow.json": "3a1132a9549311ab03f3155704f1869793205a5969e26d60f219350bf5bc4989",
     "evals/fixtures/batman/landing-microflow.json": "13ad353352f65adf4be7567ae47e56eb8fce770f26652c073a875f3d98cd9924",
     "evals/fixtures/batman/review-microflow.json": "0b583ff8d052ac7dcab35ba4542dba882c380ecbedbebab4d7894df42727f948",
     "evals/fixtures/batman/status-microflow.json": "59c8658fc6b0b5b697235bbad663e28f850f3aecae748bf7be707cca73b5ce10",
     "src/core_prompts_eval/scorers/batman.py": "c56f4ca78267da2f16690985b19ed5013033979bc9975801b24bd24adc5b2279",
 }
+
+RETIRED_ACTIVE_ARTIFACTS = {"evals/fixtures/batman/alias-microflow.json"}
 
 ABSTRACT_ROLE_BRIEFS = {
     "context researcher",
@@ -65,7 +65,8 @@ def _assert_closed_world_archive(root: Path, allowed: set[str]) -> None:
     actual = {path.relative_to(root).as_posix() for path in root.rglob("*") if path.is_file()}
     unexpected = sorted(actual - allowed)
     missing = sorted(allowed - actual)
-    assert not unexpected and not missing, f"unexpected={unexpected}; missing={missing}"
+    if unexpected or missing:
+        raise AssertionError(f"unexpected={unexpected}; missing={missing}")
 
 
 def _expected_dispatch(scenario: dict) -> dict:
@@ -123,126 +124,6 @@ def _dispatch_violations(scenario: dict, observed: dict) -> list[str]:
     return violations
 
 
-def test_companion_names_resolve_as_capabilities_not_assumed_agent_slugs() -> None:
-    text = _read("ssot/batman.md")
-
-    assert "Companion names are capability identities, not guaranteed agent registrations." in text
-    registered = text.index("usable registered agent for that capability")
-    fallback = text.index("fresh default independent subagent")
-    missing = text.index("stop the dependent stage or gate")
-    assert registered < fallback < missing
-    assert "apply the installed skill with the same capability name" in text
-
-    for ambiguous_dispatch in (
-        r"fresh `code-review` subagent",
-        r"Dispatch `code-review`",
-        r"fresh `docs-review-expert`",
-    ):
-        assert re.search(ambiguous_dispatch, text) is None
-
-
-def test_companion_resolution_is_authority_neutral_and_fail_closed() -> None:
-    text = _read("ssot/batman.md")
-
-    assert (
-        "Companion resolution grants no write, review, merge, deploy, cleanup, or other authority."
-        in text
-    )
-    assert "Existing approval and role-separation boundaries remain unchanged." in text
-    assert "If neither surface is available, stop the dependent stage or gate" in text
-
-
-def test_abstract_seats_are_role_briefs_not_registry_slugs() -> None:
-    text = _read("ssot/batman.md")
-
-    assert (
-        "Context researcher, challenger, designer, implementer, reviewer, attacker, adversarial "
-        "reviewer, and fixer are role briefs, not agent registry slugs."
-    ) in text
-    assert (
-        "fresh adversarial reviewer role brief applies `supercharge /adversarial` through the "
-        "companion resolution rule"
-    ) in text
-
-
-def test_companion_call_sites_reference_one_resolution_rule_and_examples_remain_end_to_end() -> None:
-    text = _read("ssot/batman.md")
-    examples = _read("docs/EXAMPLES.md")
-
-    assert "through companion resolution" not in text
-    assert text.count("through the companion resolution rule") >= 10
-    assert "### Skills-only companion fallback\n> Batman: implement" in text
-    portable_example = examples.split("Portable companion ask:", 1)[1].split("\nExpected output:", 1)[0]
-    assert "> Batman: implement" in portable_example
-    assert "review-only" not in portable_example
-
-
-def test_maintenance_fixture_covers_resolution_freshness_authority_and_mutations() -> None:
-    fixture = _json("evals/maintenance/batman/companion-dispatch.json")
-    inventory = _json("evals/maintenance/batman/companion-dispatch-mutations.json")
-
-    assert fixture["schema_version"] == "BatmanCompanionDispatchMaintenance.v1"
-    assert fixture["promotion_eligible"] is False
-    assert fixture["model_calls"] == 0
-    scenarios = {scenario["id"]: scenario for scenario in fixture["scenarios"]}
-    assert {
-        "registered-agent-preferred",
-        "installed-skill-fallback",
-        "registered-agent-unusable-skill-fallback",
-        "missing-capability-stops",
-        "fresh-reviewer-fallback",
-    } <= scenarios.keys()
-    assert {scenario["request"]["role_brief"] for scenario in scenarios.values()} <= ABSTRACT_ROLE_BRIEFS
-    assert all(not _dispatch_violations(scenario, scenario["gold_result"]) for scenario in scenarios.values())
-
-    assert inventory["schema_version"] == "BatmanCompanionDispatchMutations.v1"
-    assert inventory["promotion_eligible"] is False
-    assert inventory["source_fixture"] == "evals/maintenance/batman/companion-dispatch.json"
-    assert {
-        "capability_assumed_agent",
-        "skill_fallback_skipped",
-        "default_without_named_skill",
-        "controller_applies_skill_directly",
-        "missing_both_continues",
-        "authority_expansion",
-        "abstract_role_as_slug",
-        "stale_context_reuse",
-    } == {mutation["class"] for mutation in inventory["mutations"]}
-    assert all(
-        _dispatch_violations(scenarios[mutation["scenario_id"]], mutation["observed_result"])
-        for mutation in inventory["mutations"]
-    )
-
-
-def test_released_e602e19_evidence_is_archived_byte_identically_and_non_promoting() -> None:
-    manifest = json.loads((HISTORY / "manifest.json").read_text(encoding="utf-8"))
-
-    assert manifest["schema_version"] == "BatmanHistoricalEvidence.v1"
-    assert manifest["candidate_commit"] == "e602e19c757b7e0c9ac81fc9f89730ecdf3ba237"
-    assert manifest["archive_only"] is True
-    assert manifest["auto_discovery"] is False
-    assert manifest["promotion_eligible"] is False
-    assert {artifact["source"]: artifact["sha256"] for artifact in manifest["artifacts"]} == FROZEN_ARTIFACTS
-    _assert_closed_world_archive(HISTORY, {"manifest.json", *FROZEN_ARTIFACTS})
-
-    for source, expected_hash in FROZEN_ARTIFACTS.items():
-        archived = HISTORY / source
-        assert archived.is_file(), source
-        assert _sha256(archived) == expected_hash
-
-
-def test_historical_archive_closed_world_rejects_an_unexpected_file(tmp_path: Path) -> None:
-    archive = tmp_path / "history"
-    expected = archive / "ssot/batman.md"
-    expected.parent.mkdir(parents=True)
-    expected.write_text("frozen\n", encoding="utf-8")
-    (archive / "manifest.json").write_text("{}\n", encoding="utf-8")
-    (archive / "unexpected.txt").write_text("residue\n", encoding="utf-8")
-
-    with pytest.raises(AssertionError, match=r"unexpected\.txt"):
-        _assert_closed_world_archive(archive, {"manifest.json", "ssot/batman.md"})
-
-
 def _is_absent_or_machine_disabled(path: Path) -> bool:
     if not path.exists():
         return True
@@ -252,6 +133,149 @@ def _is_absent_or_machine_disabled(path: Path) -> bool:
     return payload.get("active") is False and payload.get("promotion_eligible") is False
 
 
-def test_stale_active_promotion_artifacts_are_absent_or_machine_disabled() -> None:
-    stale = [path for path in STALE_ACTIVE_PROMOTION_ARTIFACTS if not _is_absent_or_machine_disabled(ROOT / path)]
-    assert stale == []
+class BatmanCompanionPortabilityTests(unittest.TestCase):
+    def test_companion_names_resolve_as_capabilities_not_assumed_agent_slugs(self) -> None:
+        text = _read("ssot/batman.md")
+
+        self.assertIn("Companion names are capability identities, not guaranteed agent registrations.", text)
+        registered = text.index("usable registered agent for that capability")
+        fallback = text.index("fresh default independent subagent")
+        missing = text.index("stop the dependent stage or gate")
+        self.assertLess(registered, fallback)
+        self.assertLess(fallback, missing)
+        self.assertIn("apply the installed skill with the same capability name", text)
+
+        for ambiguous_dispatch in (
+            r"fresh `code-review` subagent",
+            r"Dispatch `code-review`",
+            r"fresh `docs-review-expert`",
+        ):
+            self.assertIsNone(re.search(ambiguous_dispatch, text))
+
+    def test_companion_resolution_is_authority_neutral_and_fail_closed(self) -> None:
+        text = _read("ssot/batman.md")
+
+        self.assertIn(
+            "Companion resolution grants no write, review, merge, deploy, cleanup, or other authority.",
+            text,
+        )
+        self.assertIn("Existing approval and role-separation boundaries remain unchanged.", text)
+        self.assertIn("If neither surface is available, stop the dependent stage or gate", text)
+
+    def test_abstract_seats_are_role_briefs_not_registry_slugs(self) -> None:
+        text = _read("ssot/batman.md")
+
+        self.assertIn(
+            "Context researcher, challenger, designer, implementer, reviewer, attacker, adversarial "
+            "reviewer, and fixer are role briefs, not agent registry slugs.",
+            text,
+        )
+        self.assertIn(
+            "fresh adversarial reviewer role brief applies `supercharge /adversarial` through the "
+            "companion resolution rule",
+            text,
+        )
+
+    def test_companion_call_sites_reference_one_resolution_rule_and_examples_remain_end_to_end(self) -> None:
+        text = _read("ssot/batman.md")
+        examples = _read("docs/EXAMPLES.md")
+
+        self.assertNotIn("through companion resolution", text)
+        self.assertGreaterEqual(text.count("through the companion resolution rule"), 10)
+        self.assertIn("### Skills-only companion fallback\n> Batman: implement", text)
+        portable_example = examples.split("Portable companion ask:", 1)[1].split("\nExpected output:", 1)[0]
+        self.assertIn("> Batman: implement", portable_example)
+        self.assertNotIn("review-only", portable_example)
+
+    def test_maintenance_fixture_covers_resolution_freshness_authority_and_mutations(self) -> None:
+        fixture = _json("evals/maintenance/batman/companion-dispatch.json")
+        inventory = _json("evals/maintenance/batman/companion-dispatch-mutations.json")
+
+        self.assertEqual(fixture["schema_version"], "BatmanCompanionDispatchMaintenance.v1")
+        self.assertFalse(fixture["promotion_eligible"])
+        self.assertEqual(fixture["model_calls"], 0)
+        scenarios = {scenario["id"]: scenario for scenario in fixture["scenarios"]}
+        self.assertTrue(
+            {
+                "registered-agent-preferred",
+                "installed-skill-fallback",
+                "registered-agent-unusable-skill-fallback",
+                "missing-capability-stops",
+                "fresh-reviewer-fallback",
+            }.issubset(scenarios)
+        )
+        self.assertTrue(
+            {scenario["request"]["role_brief"] for scenario in scenarios.values()}.issubset(
+                ABSTRACT_ROLE_BRIEFS
+            )
+        )
+        self.assertTrue(
+            all(not _dispatch_violations(scenario, scenario["gold_result"]) for scenario in scenarios.values())
+        )
+
+        self.assertEqual(inventory["schema_version"], "BatmanCompanionDispatchMutations.v1")
+        self.assertFalse(inventory["promotion_eligible"])
+        self.assertEqual(inventory["source_fixture"], "evals/maintenance/batman/companion-dispatch.json")
+        self.assertEqual(
+            {
+                "capability_assumed_agent",
+                "skill_fallback_skipped",
+                "default_without_named_skill",
+                "controller_applies_skill_directly",
+                "missing_both_continues",
+                "authority_expansion",
+                "abstract_role_as_slug",
+                "stale_context_reuse",
+            },
+            {mutation["class"] for mutation in inventory["mutations"]},
+        )
+        self.assertTrue(
+            all(
+                _dispatch_violations(scenarios[mutation["scenario_id"]], mutation["observed_result"])
+                for mutation in inventory["mutations"]
+            )
+        )
+
+    def test_released_e602e19_evidence_is_archived_byte_identically_and_non_promoting(self) -> None:
+        manifest = json.loads((HISTORY / "manifest.json").read_text(encoding="utf-8"))
+        archived_artifacts = {artifact["source"]: artifact["sha256"] for artifact in manifest["artifacts"]}
+
+        self.assertEqual(manifest["schema_version"], "BatmanHistoricalEvidence.v1")
+        self.assertEqual(manifest["candidate_commit"], "e602e19c757b7e0c9ac81fc9f89730ecdf3ba237")
+        self.assertTrue(manifest["archive_only"])
+        self.assertFalse(manifest["auto_discovery"])
+        self.assertFalse(manifest["promotion_eligible"])
+        self.assertEqual(set(FROZEN_ARTIFACTS), set(archived_artifacts) - RETIRED_ACTIVE_ARTIFACTS)
+        self.assertTrue(RETIRED_ACTIVE_ARTIFACTS.issubset(archived_artifacts))
+        _assert_closed_world_archive(HISTORY, {"manifest.json", *archived_artifacts})
+
+        for source, expected_hash in FROZEN_ARTIFACTS.items():
+            self.assertEqual(archived_artifacts[source], expected_hash)
+        for source, expected_hash in archived_artifacts.items():
+            archived = HISTORY / source
+            self.assertTrue(archived.is_file(), source)
+            self.assertEqual(_sha256(archived), expected_hash)
+
+    def test_historical_archive_closed_world_rejects_an_unexpected_file(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            archive = Path(temp_dir) / "history"
+            expected = archive / "ssot/batman.md"
+            expected.parent.mkdir(parents=True)
+            expected.write_text("frozen\n", encoding="utf-8")
+            (archive / "manifest.json").write_text("{}\n", encoding="utf-8")
+            (archive / "unexpected.txt").write_text("residue\n", encoding="utf-8")
+
+            with self.assertRaisesRegex(AssertionError, r"unexpected\.txt"):
+                _assert_closed_world_archive(archive, {"manifest.json", "ssot/batman.md"})
+
+    def test_stale_active_promotion_artifacts_are_absent_or_machine_disabled(self) -> None:
+        stale = [
+            path
+            for path in STALE_ACTIVE_PROMOTION_ARTIFACTS
+            if not _is_absent_or_machine_disabled(ROOT / path)
+        ]
+        self.assertEqual(stale, [])
+
+
+if __name__ == "__main__":
+    unittest.main()

@@ -1,13 +1,13 @@
 ---
 name: "batman"
-description: "Runs an explicitly invoked, subagent-driven delivery protocol through research, design, TDD implementation, blocking reviews, verification, documentation, Git health, PR or MR, merge, and cleanup. Trigger with batman or the alias superman."
+description: "Runs an explicitly invoked, host-aware, subagent-driven delivery protocol through research, design, TDD implementation, blocking reviews, verification, documentation, Git health, PR or MR, merge, and cleanup. Trigger with batman."
 ---
 # Batman — Evidence-Gated Delivery Controller
 
 ## Purpose
 Batman delivers implementation through independent subagents. The controller owns the flow, written plan, task briefs, review backpressure, evidence, status, and authorized landing actions. It never becomes the implementer or reviewer of its own work.
 
-Batman has one canonical name and body. `superman` invokes this exact Batman body as a keyword alias. Do not create, register, or generate a separate Superman capability.
+Batman has one canonical name and body. Do not create, register, route, or generate another public identity for this capability.
 
 ## Primary Objective
 Take one authorized work item from verified context to a clean mainline result through subagent-driven development, without weakening claims, combining independent roles, skipping a blocking review gate, or treating plausible output as proof.
@@ -22,11 +22,11 @@ Take one authorized work item from verified context to a clean mainline result t
 ## Out of Scope
 - production-code, failing-test, or implementation-fix authorship by the controller
 - automatic runtime routing by descriptors or metadata
-- a separate Superman capability or a Batman module inside SuperCharge
+- a duplicate Batman capability or a Batman module inside SuperCharge
 - unauthorized live writes, deployment, push, publish, merge, or destructive cleanup
 
 ## Agent Operating Contract
-Batman is active only when the user invokes `batman`, invokes `superman`, or explicitly asks for this evidence-gated delivery protocol. Metadata does not auto-route work or grant execution authority.
+Batman is active only when the user invokes `batman` or explicitly asks for this evidence-gated delivery protocol. Metadata does not auto-route work or grant execution authority.
 
 The controller must:
 - verify the work item, repository, branch, base revision, dirty state, permissions, and local instructions before dispatch
@@ -76,7 +76,6 @@ Batman does not expand host authority. Approval-gated mutations remain approval-
 
 ## Invocation Hints
 - Use `batman` for end-to-end implementation through subagent-driven development and blocking review gates.
-- Use `superman` as an alias for the same Batman protocol and the same SSOT body.
 - Use Batman for a contract, metric, safety path, shipped defect, or other implementation that requires independent evidence and landing.
 - Do not invoke Batman for advice, a one-pass edit, or a review that excludes implementation.
 
@@ -87,9 +86,20 @@ Batman does not expand host authority. Approval-gated mutations remain approval-
 - the base branch or revision and intended landing target
 - known safety, live-write, deployment, or release constraints
 
+## Instruction Integrity
+Run this check on every invocation before implementation:
+
+1. Identify the requested outcome, success evidence, scope, authority, and contradictions.
+2. Preserve a complete, consistent brief without adding ceremony.
+3. Expand a resolvable one-word work-item key into a reviewed specification, delivery plan, implementation plan, and ordered tasks before TDD.
+4. For a bare invocation or unresolved key, stop and request the missing evidence or human decision.
+
+The controller must never fabricate intent, success criteria, live-write authority, landing authority, or a missing repository fact. Resolve a contradiction only from authoritative context; otherwise stop and present it.
+
 ## Required Output
 Batman must maintain or return:
 - work-item identity, repository identity, base revision, branch, and worktree
+- Host-Fit Plan and the verified inventory revision used to produce it
 - size classification and selected stage set
 - written specification, delivery plan, implementation plan, and ordered tasks
 - decision record with rejected alternatives and reasons
@@ -97,7 +107,9 @@ Batman must maintain or return:
 - observed TDD red evidence and mutation-check evidence for implemented behavior
 - validation and verification evidence, including independent reconciliation when required
 - documentation review and Git health result
-- PR or MR, CI, merge, mainline verification, and cleanup receipt when landing is authorized
+- PR or MR, CI, merge, and mainline verification receipts when landing is authorized
+- separate tag, package release, deployment, and installation states and receipts: report each as actual, skipped, or refused with its reason
+- cleanup receipt after every required durable delivery receipt exists
 - progress reports, explicit blockers, parked work authorized by the human, and remaining uncertainty
 
 ## Output Directory
@@ -114,6 +126,15 @@ Report status against the written delivery plan using all four triggers:
 - heartbeat status every 15 minutes during long-running work
 
 Every status states completed plan items, current stage and gate, active subagents, evidence received, blockers, and the next action. Report a changed approach when breaking a stall. Event reports do not replace the 15-minute heartbeat.
+
+## Conditional Interface and Evidence Rules
+Apply these rules only when the approved work creates or changes the named concern:
+
+- **Public surface:** Keep one canonical identity per public operation. Do not add dual paths without an evidenced production migration need. Treat a new public interface as contract-sized work and a critical decision.
+- **Capability nesting:** Place a new analysis capability under an existing job. If none fits, present three options with A/B/C variants, upstream and downstream impacts, reversibility, and one recommendation; wait for the human decision.
+- **Walk-up interface:** When humans use a public CLI, support bound project context or readable names. Require opaque IDs only when they are already available or contractually necessary.
+- **Evidence classes:** Mark evidence durable or run-scoped. Tests, current gate results, release anchors, and approved reports are durable. Ignored validation and temporary artifacts are run-scoped. Never delete the only live receipt before persisting its required facts durably.
+- **Typed CLI errors:** For agent- or program-consumed CLIs, distinguish absence, permission, rate limit, and outage with stable machine-readable codes. Prose may explain a code but cannot replace it.
 
 ## Milestone Backpressure
 All four milestone gates are blocking. A size rule may mark a milestone inapplicable; it never makes a selected gate advisory. Dispatch reviewers independently from the implementation subagent. A failed gate returns work to the assigned implementer or fixer and blocks downstream work.
@@ -136,12 +157,36 @@ Run stages in order. Do not ask for permission between ordinary, reversible stag
 1. Verify task identity, current working directory, repository root, branch, base revision, dirty state, remotes, permissions, and applicable instructions.
 2. Record the base revision and initialize the written delivery plan and evidence ledger.
 3. Confirm that the host can provide independent implementation and review subagents.
-4. Select only the named companions and default subagent roles required by the current stage.
+4. Inventory the live host and repository facilities needed by Dynamic Planning.
 5. Issue the initial status report.
 
 If the host cannot provide independent implementation and review contexts, stop before implementation and report that Batman cannot run faithfully.
 
-Use bounded waits appropriate to the host. If a subagent makes no reportable progress, interrupt it and dispatch a narrower brief. Do not retry the same vague brief. Subagents must not dispatch additional subagents.
+Use bounded waits appropriate to the host. If an implementation subagent makes no reportable progress, interrupt it and narrow or reassign the task to a fresh implementer. Do not retry the same vague brief. The controller never takes over the task. Subagents must not dispatch additional subagents.
+
+### Dynamic Planning — Fit the verified host
+After Preflight and before Size, produce one controller-owned Host-Fit Plan from the live host and recorded repository revision. This step is not a second controller, autonomous router, or gate.
+
+Inventory:
+- callable tools, integration servers, browser facilities, and verification facilities
+- usable registered subagent types, isolation, installed skills, and agent-versus-skill fallbacks
+- allowed child models and observable selection controls
+- repository languages and existing build, test, lint, type, smoke, package, CI, deploy, and release commands
+- repository instructions, safety and live-write policy, forge requirements, and authorized install targets
+- explicit time, agent-call, token, and cost budgets; mark missing budgets `unknown`
+
+The Host-Fit Plan must name:
+- selected companions and resolution paths
+- independent parallel work and dependencies
+- bounded expert briefs
+- the cheapest valid path
+- a higher-assurance path for contract, metric, safety, or shipped-defect work
+- missing-facility degradations
+- a cost, quality, and speed ranking
+
+Apply this precedence: fail-closed evidence; safety and authority; correctness; quality, modularity, and clean code; speed; cost. The planner may drop unused companions, choose isolation, batch same-shape edits, choose available verification, and assign an expert who judges but does not implement its reviewed slice.
+
+The planner must not waive or reorder gates, let the controller implement, invent facilities, skip TDD or review, or invoke SuperCharge `/full` without written need. It must not expand authority. Use only verified facilities. When inventory is incomplete, prohibit live writes, use verified skill fallbacks, use sequential implementation, and stop only when a facility required by the current gate is unknown or unavailable.
 
 ### Size gate
 Keep stage order. Drop stages only by the following size rules:
@@ -192,21 +237,24 @@ Skipping implementation means Batman did not run.
 
 1. Create a dedicated branch from current main, preferably in an isolated worktree. Never implement on `main` unless the user explicitly requires it and repository policy allows it.
 2. Dispatch one fresh independent implementer role brief per bounded task. Provide only the task brief and required context, not a session-history dump.
-3. The implementer writes the failing test first and runs it against the unfixed behavior.
-4. The implementer reports the exact command and a sanitized relevant red excerpt. A test that was never observed red is not evidence.
-5. The implementer makes the smallest change that turns the test green.
-6. The implementer performs a task-scoped mutation check: temporarily remove or reverse the owned fix, confirm the specific tests fail for the expected reason, restore the fix, and rerun green. Protect unrelated changes throughout.
-7. Test design lives in the failing tests. Do not add a second post-hoc test-design ceremony after implementation.
-8. Run milestone gate 3 against the saved task diff. Implementer self-review does not count.
-9. Critical or Important findings return to the implementer or a bounded default fixer; the controller does not edit the fix.
-10. Re-review the fix diff. After five unresolved rounds, stop for a human ruling. Do not silently park a Critical or Important finding.
-11. Do not begin the next task while a Critical or Important finding remains unresolved.
-12. Report each task gate and the stage transition.
+3. Prior-session or controller-authored tests are dirty input and cannot satisfy observed-red evidence unchanged. After Gate 2, a fresh implementer may inspect and validate it only to decide whether to revise, rewrite, or discard it. The fresh implementer must author the evidence-bearing version independently, bind its provenance to the recorded unfixed revision, and freshly observe the intended failure. Mere adoption never converts controller authorship into independent test evidence.
+4. The implementer writes any remaining failing test first and runs it against the unfixed behavior.
+5. The implementer reports the exact command and a sanitized relevant red excerpt. A test that was never observed red is not evidence.
+6. The implementer makes the smallest change that turns the test green.
+7. The implementer performs a task-scoped mutation check: temporarily remove or reverse the owned fix, confirm the specific tests fail for the expected reason, restore the fix, and rerun green. Protect unrelated changes throughout.
+8. Test design lives in the failing tests. Do not add a second post-hoc test-design ceremony after implementation.
+9. Run milestone gate 3 against the saved task diff. Implementer self-review does not count.
+10. Critical or Important findings return to the implementer or a bounded default fixer; the controller does not edit the fix.
+11. Re-review the fix diff. After five unresolved rounds, stop for a human ruling. Do not silently park a Critical or Important finding.
+12. Do not begin the next task while a Critical or Important finding remains unresolved.
+13. Report each task gate and the stage transition.
 
 Batch same-shape edits rather than dispatching one subagent for every one-line change. Keep one clear implementation owner per task and one clear fixer for a consolidated findings list.
 
 ### Stage 4 — Validation and verification
 Run the repository-required formatter, linter, strict type checks, targeted tests, and full offline suite. Record exact commands and outcomes.
+
+An offline suite is necessary but not sufficient when the requested or repository-default outcome is live. Name the authorized live environment and freshness proof. If either is unavailable or unauthorized, refuse the live claim; do not substitute offline tests for live evidence.
 
 For count or rate claims, also require:
 - scale verification on a production-scale copy when caps, paging, or sampling can affect the result
@@ -236,8 +284,9 @@ Gate: every finding is fixed or has an explicit, evidence-backed disposition aut
 4. Run milestone gate 4 with fresh documentation and GitOps reviewer role briefs that apply `docs-review-expert` and `gitops-review` through the companion resolution rule against the PR or MR diff and completed hosted CI, while a fresh adversarial reviewer role brief applies `supercharge /adversarial` through the companion resolution rule. Route selected PR or MR comments through `address-code-review` using the companion resolution rule when fixes are accepted, wait for hosted CI on the updated revision, and repeat the gate.
 5. When landing is authorized, merge to main through repository policy.
 6. Re-verify mainline at the merged revision, including the relevant tests and generated-state checks.
-7. Remove run-scoped scratch. Delete the delivery branch and worktree only when authorized and safe.
-8. Report the final mainline revision, evidence, remaining tracked work, and cleanup state.
+7. Handle tag, package release, deployment, and installation separately after mainline verification. Execute an action only when it is separately authorized and its repository preconditions pass. For each action, perform it and record its receipt, mark it skipped when it was not requested or does not apply, or refuse it when authority or required proof is missing. Report each actual, skipped, or refused state and reason; never infer one action's authority from another.
+8. Persist required run-scoped facts durably before cleanup, including all actual, skipped, and refused delivery states. Never delete the only live receipt. Remove only authorized run-scoped scratch, branch, and worktree targets after readback confirms the durable record.
+9. Report the final mainline revision, evidence, remaining tracked work, exact removed and retained targets, and cleanup state.
 
 ## Rules
 - Keep one controller and one canonical evidence ledger.
@@ -251,7 +300,7 @@ Gate: every finding is fixed or has an explicit, evidence-backed disposition aut
 
 ## Constraints
 - One canonical Batman SSOT body.
-- `superman` is an alias only; no Superman SSOT, descriptor, skill, agent, or generated surface.
+- One active public identity: `batman`. Do not create a second SSOT, descriptor, skill, agent, route, invocation hint, example, or generated surface for this capability.
 - No provider-specific orchestration API, machine-specific path, or arbitrary external capability dependency.
 - No instruction to use every agent, skill, or tool.
 - No controller implementation, failing-test authorship, review-fix authorship, or self-approval.
@@ -262,9 +311,6 @@ Gate: every finding is fixed or has an explicit, evidence-backed disposition aut
 ## Examples
 ### Implementation request
 > Batman: implement this shipped-defect correction through subagent-driven TDD, all applicable milestone gates, verification, docs, PR, authorized merge, and cleanup. Never weaken the metric claim.
-
-### Alias request
-> Superman: use the same Batman body for this safety-path implementation. Report initial status, stage transitions, blockers immediately, and a heartbeat every 15 minutes.
 
 ### Skills-only companion fallback
 > Batman: implement this shipped-defect correction through the full evidence-gated delivery protocol. At gate 3, if `code-review` has no usable registered agent, dispatch a fresh default independent reviewer subagent and instruct it to apply the installed `code-review` skill. If neither surface exists, stop the gate and implementation flow. Preserve every existing authority boundary.
@@ -302,7 +348,7 @@ Gate: every finding is fixed or has an explicit, evidence-backed disposition aut
 | Claim integrity | Validation never weakens the claim; unverifiable claims are refused |
 | Delivery completeness | Docs, Git health, PR or MR, hosted CI, authorized merge, mainline verification, and cleanup are covered |
 | Portability | The body resolves named companion capabilities to a usable registered agent, an installed-skill fallback on a fresh default subagent, or a fail-closed stop |
-| Alias integrity | Batman and Superman invoke one body, with no separate Superman artifact |
+| Identity integrity | Only Batman invokes this body; no duplicate public identity or surface exists |
 | Boundary integrity | SuperCharge remains a called lens and does not own Batman orchestration |
 
 
