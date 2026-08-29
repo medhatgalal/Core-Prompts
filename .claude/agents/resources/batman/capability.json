@@ -202,16 +202,19 @@
         "strategy": "derived_history",
         "group": "derived",
         "baseline_path": null,
-        "selected_commit": "4e880e24",
+        "selected_commit": "bd6cfd14",
         "richness_score": 5,
-        "line_count": 311,
+        "line_count": 357,
         "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
         "equivalent_commits": [
+          "4e880e24",
           "6be48300",
           "7691d9d5"
         ],
         "expected_companions": [],
-        "operator_invariants": [],
+        "operator_invariants": [
+          "MUST NEVER"
+        ],
         "scenario_matrix": [
           {
             "id": "operational_invocation",
@@ -241,16 +244,23 @@
               "label": "operational invocation surface",
               "passed": true,
               "missing_markers": []
+            },
+            {
+              "id": "operator_invariants",
+              "kind": "hybrid_invariants",
+              "label": "historical operator invariants",
+              "passed": true,
+              "missing_markers": []
             }
           ],
           "scorecard": {
             "baseline_richness": 5,
             "candidate_richness": 5,
-            "baseline_operational_score": 2,
+            "baseline_operational_score": 3,
             "candidate_operational_score": 3,
             "baseline_preserved_in_resource": false
           },
-          "baseline_commit": "4e880e24",
+          "baseline_commit": "bd6cfd14",
           "baseline_slug": "batman"
         },
         {
@@ -286,7 +296,7 @@
         "source_fidelity": 10,
         "baseline_richness": 5,
         "candidate_richness": 5,
-        "baseline_operational_score": 2,
+        "baseline_operational_score": 3,
         "candidate_operational_score": 3,
         "baseline_preserved_in_resource": false,
         "operational_richness": 10,
