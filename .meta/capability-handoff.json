@@ -429,7 +429,7 @@
       "slug": "batman",
       "display_name": "Batman \u2014 Evidence-Gated Delivery Controller",
       "capability_type": "both",
-      "summary": "Runs an explicitly invoked, subagent-driven delivery protocol through research, design, TDD implementation, blocking reviews, verification, documentation, Git health, PR or MR, merge, and cleanup. Trigger with batman or the alias superman.",
+      "summary": "Runs an explicitly invoked, host-aware, subagent-driven delivery protocol through research, design, TDD implementation, blocking reviews, verification, documentation, Git health, PR or MR, merge, and cleanup. Trigger with batman.",
       "role": "resolver",
       "domain_tags": [
         "batman"
@@ -443,6 +443,7 @@
       ],
       "expected_outputs": [
         "work-item identity, repository identity, base revision, branch, and worktree",
+        "Host-Fit Plan and the verified inventory revision used to produce it",
         "size classification and selected stage set",
         "written specification, delivery plan, implementation plan, and ordered tasks",
         "decision record with rejected alternatives and reasons",
@@ -450,7 +451,9 @@
         "observed TDD red evidence and mutation-check evidence for implemented behavior",
         "validation and verification evidence, including independent reconciliation when required",
         "documentation review and Git health result",
-        "PR or MR, CI, merge, mainline verification, and cleanup receipt when landing is authorized",
+        "PR or MR, CI, merge, and mainline verification receipts when landing is authorized",
+        "separate tag, package release, deployment, and installation states and receipts: report each as actual, skipped, or refused with its reason",
+        "cleanup receipt after every required durable delivery receipt exists",
         "progress reports, explicit blockers, parked work authorized by the human, and remaining uncertainty"
       ],
       "tool_policy": {

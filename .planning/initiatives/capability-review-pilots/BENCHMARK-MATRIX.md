@@ -6,7 +6,7 @@ Scores use a 1-5 scale where 5 is strong and reusable.
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | analyze-context | 4 | 5 | 5 | 5 | 5 | 4 | 4 | pending rebuild audit | uplifted in recovery slice |
 | architecture | 5 | 5 | 5 | 5 | 5 | 5 | 5 | manual_review | benchmark anchor |
-| batman | 5 | 5 | 5 | 5 | 5 | 5 | 5 | structural_ready | ship as `both`; preserve `superman` alias only |
+| batman | 5 | 5 | 5 | 5 | 5 | 5 | 5 | structural_ready | ship as `both`; one Batman identity with host-fit planning |
 | code-review | 5 | 5 | 5 | 5 | 5 | 5 | 5 | requires_adjustment | benchmark anchor |
 | converge | 4 | 5 | 5 | 5 | 5 | 4 | 5 | pending rebuild audit | uplifted in recovery slice |
 | docs-review-expert | 5 | 5 | 5 | 5 | 5 | 5 | 5 | pending rebuild audit | landed as `both` |

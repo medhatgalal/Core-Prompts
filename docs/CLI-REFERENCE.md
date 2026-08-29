@@ -135,6 +135,22 @@ Example with slug targeting:
 bin/capability-fabric deploy --dry-run --cli codex --slug auto-research --slug supercharge
 ```
 
+Batman-selected Kiro deploys have one additional, bounded cleanup contract. Preview it before changing an external target:
+
+```bash
+bin/capability-fabric deploy --dry-run --surface-only --cli kiro --slug batman --target "$HOME" --allow-nonlocal-target
+```
+
+When present, the dry-run lists exactly these deprecated prune candidates and does not move them:
+
+- `.kiro/skills/batman/PROTOCOL.md`
+- `.kiro/skills/batman/PROMPT-AMENDMENT.md`
+- `.kiro/skills/batman/CODEX-UAC-INTAKE.md`
+
+Removing `--dry-run` copies the current generated Batman surface and recoverably moves only those existing files under `.core-prompts-state/stale-pruned/<timestamp>/...`. Each live move prints a `source -> archive` receipt. The cleanup preserves `.kiro/skills/batman/SKILL.md`, its `resources/` tree, and unrelated files. A non-Batman slug or non-Kiro deploy does not trigger this cleanup.
+
+For targeted recovery, use the receipt to restore the archived entry to its original source path. For a release install, the pre-install rollback snapshot remains available through `bin/capability-fabric update --rollback previous`.
+
 Expected result:
 
 - explicit copy plan
@@ -214,6 +230,9 @@ Direct exposure is standardized on `skills/<slug>/SKILL.md` for every supported 
 - `bin/capability-fabric update --accept-release` is the explicit install/apply step
 - `bin/capability-fabric update --schedule-daily HH:MM --notify-only` preserves check-only scheduling
 - `bin/capability-fabric update --rollback previous` restores the latest pre-release snapshot
+- a Batman-selected Kiro dry-run lists exactly `.kiro/skills/batman/PROTOCOL.md`, `.kiro/skills/batman/PROMPT-AMENDMENT.md`, and `.kiro/skills/batman/CODEX-UAC-INTAKE.md` when present, without moving them
+- the corresponding live deploy archives those exact files under `.core-prompts-state/stale-pruned/<timestamp>/...`, prints `source -> archive` receipts, and preserves `SKILL.md`, `resources/`, and unrelated files
+- archived Batman residues remain individually recoverable from the receipt path; a release install can instead use its rollback snapshot
 - install and deploy do not rewrite capability metadata paths
 - repeated no-op `build` and `validate` runs should not rewrite `.meta/manifest.json`; volatile run evidence belongs under `reports/`
 

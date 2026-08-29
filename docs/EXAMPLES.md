@@ -105,6 +105,7 @@ Use when:
 
 - a contract, metric, safety path, or shipped-defect correction needs implementation through independent subagents
 - the controller must own flow, evidence, progress, and backpressure without authoring code
+- the implementation language, verification tools, available companions, safe parallelism, or execution budget must be selected from the live host rather than assumed
 - landing requires all applicable blocking milestone reviews, observed TDD evidence, verification, docs, current CI, merge, and cleanup
 
 Why this skill first:
@@ -113,26 +114,43 @@ Why this skill first:
 
 Ask:
 
-> Batman: implement this shipped-defect correction through subagent-driven research, design, TDD, all applicable blocking milestone reviews, verification, docs, PR, merge, and cleanup. Paste the observed red evidence, run the mutation check, report progress, and never weaken the metric claim.
+> Batman: verify the instruction, publish the Host-Fit Plan, then implement this shipped-defect correction through subagent-driven research, design, TDD, all applicable blocking milestone reviews, verification, docs, PR, authorized merge, release, install, and cleanup. Paste provenance-qualified red and mutation evidence, distinguish offline checks from hosted or live proof, report progress, and never weaken the metric claim.
 
-Alias ask:
+Instruction-integrity ask:
 
-> Superman: use the same Batman body for this safety-path implementation. Report initial status, every stage transition, blockers immediately, and a heartbeat every 15 minutes against the written plan.
+> Batman: fix it.
+
+Expected first response:
+
+- identify the referenced work item and repository from current context, if unambiguous
+- state any missing outcome, success criterion, boundary, or authority that would materially change implementation
+- pause for the missing decision instead of inventing scope
+- continue directly to preflight and the Host-Fit Plan when the instruction is already coherent
 
 Portable companion ask:
 
 > Batman: implement this shipped-defect correction through research, design, TDD, all blocking milestone gates, verification, docs, PR, authorized merge, and cleanup. At gate 3, use a usable registered agent for `code-review` when one exists; otherwise dispatch a fresh default independent reviewer subagent and instruct it to apply the installed `code-review` skill. Stop the gate and implementation flow if neither surface exists, and preserve all existing authority boundaries.
 
+Host-fit and test-provenance ask:
+
+> Batman: inspect the repository before choosing tools. Use the language-native test, lint, type, smoke, and CI commands actually available; do not assume pytest. Record why the selected subagents and parallelism fit the current host and budget. Do not count controller-authored, prior-session, or first-seen-green tests as red evidence.
+
+Landing-state ask:
+
+> Batman: take the accepted change through PR, current hosted CI, authorized merge, tag, package release, install verification, and cleanup. Report each as a distinct state. Do not treat the offline suite as live proof or claim cleanup until durable evidence is preserved and the authorized branch, worktree, and scratch removals are verified.
+
 Expected output:
 
 - verified repository, base revision, branch, and worktree
+- instruction-integrity result and Host-Fit Plan covering language, tools, companions, parallelism, and cost/quality/speed trade-offs
 - specification, delivery plan, implementation plan, and bounded task briefs
 - independent subagent implementation reports and four milestone-gate decisions
 - capability-aware companion resolution without assuming every installed skill is a registered agent
-- observed red, green, and mutation-check evidence
+- observed red, green, and mutation-check evidence with current-task test provenance
 - validation, reconciliation, and classified finding dispositions
 - docs and Git health review
-- PR or MR, current hosted CI, authorized merge, mainline verification, and cleanup receipt
+- separate receipts for offline verification, hosted CI, authorized live checks, merge, release, install, and cleanup as applicable
+- UAC structural status reported separately from behavioral evidence or promotion
 
 Follow with:
 

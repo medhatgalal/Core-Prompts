@@ -23,7 +23,7 @@ If Core-Prompts is already installed in Codex, Gemini, Claude, or Kiro, begin wi
 | `ic-assistant` | "Use `ic-assistant` to track this active incident and tell me the current phase, overdue items, and next required action." | mode, phase, next action, status-update timer, and escalation flags |
 | `supercharge` | "Use `supercharge /adversarial /debate /deep` to stress-test this release decision with Bull/Bear/Decider analysis, risks, mitigants, and flip conditions." | stronger framing, constraints, sequencing, first-principles accounting, and adversarial debate when requested |
 | `auto-research` | "Use `auto-research` to improve our review prompt so it catches more regressions without increasing noise." | experiment design, evaluation, and a validated winner |
-| `batman` | "Batman: implement this shipped-defect correction through subagent-driven TDD, all applicable blocking milestone reviews, verification, docs, PR, merge, and cleanup." | a written plan, independent subagent evidence, observed red and mutation checks, progress reports, milestone decisions, and a verified landing receipt |
+| `batman` | "Batman: verify this request, publish the Host-Fit Plan, then implement this shipped-defect correction through independent-subagent TDD, blocking milestone reviews, verification, docs, PR, authorized merge, release, install, and cleanup." | instruction-integrity and host-fit decisions, independent subagent evidence, provenance-qualified red and mutation checks, progress reports, milestone decisions, and state-specific landing receipts |
 | `demo-recorder` | "Use `demo-recorder` to create a Playwright demo of the new dashboard feature with video recording." | demo plan, complete Playwright script, run command, and output path |
 | `dynamic-html-presentations` | "Use `dynamic-html-presentations` to create a standalone HTML deck and ask me whether I want PNG, PPTX, or all formats." | narrative-first deck, polished 16:9 visuals, interaction behavior, and validated requested exports |
 | `testing` | "Use `testing` to identify the edge cases and tests this change needs." | prioritized tests and missing edge cases |
@@ -32,15 +32,34 @@ If you want an agent surface rather than a direct skill invocation, start with t
 
 | Agent | Example ask | Best when you need... |
 | --- | --- | --- |
-| `batman` | "Superman: use the same Batman body for this implementation and report initial, stage, blocker, and 15-minute progress." | explicitly invoked implementation through subagents, all applicable blocking milestone reviews, and authorized landing |
+| `batman` | "Batman: take this implementation through instruction integrity, a Host-Fit Plan, independent-subagent TDD, all applicable blocking reviews, and authorized landing. Report initial, stage, blocker, and 15-minute progress." | explicitly invoked implementation through subagents, all applicable blocking milestone reviews, evidence-class honesty, and authorized landing |
 | `docs-review-expert` | "Use `docs-review-expert` to review our onboarding docs for drift before release." | structured documentation review |
 | `gitops-review` | "Use `gitops-review` to judge whether we are ready to merge and release." | a merge or release gate |
 | `ic-assistant` | "Use `ic-assistant` to keep the incident process on-track and flag the next required action." | generic phase-aware guidance, with internal runbook mode only on request |
 | `weekly-intel` | "Use `weekly-intel` to produce this week's update from our source set." | a multi-source status summary |
 
-### How Batman resolves companions
+### How Batman starts and resolves companions
 
-Batman companion names identify capabilities, not guaranteed agent registrations. For each required companion, Batman uses a usable registered agent first, otherwise dispatches a fresh default independent subagent that applies the installed skill with the same name, and stops the dependent stage or gate when neither surface is available. Context researcher, challenger, designer, implementer, reviewer, attacker, adversarial reviewer, and fixer are role briefs rather than agent names; companion resolution grants no additional authority and preserves existing approval boundaries.
+Batman starts with instruction integrity. It verifies that the request has a coherent outcome, observable success criteria, boundaries, and authority. A terse or ambiguous request is not expanded silently; Batman states the missing contract and pauses when proceeding would materially change the result.
+
+After preflight, Batman inventories the live repository and host and publishes a Host-Fit Plan. The plan names the implementation language, available build/test/lint/type/smoke/CI tools, usable independent subagents and Core-Prompts companions, safe parallel work, and cost/quality/speed trade-offs. It adapts execution to what exists. It cannot waive a milestone gate, collapse controller/implementer/reviewer separation, invent a budget, or grant write, merge, deploy, release, install, or cleanup authority.
+
+Companion names identify capabilities, not guaranteed agent registrations. For each required companion, Batman uses a usable registered agent first, otherwise dispatches a fresh default independent subagent that applies the installed skill with the same name, and stops the dependent stage or gate when neither surface is available. Context researcher, challenger, designer, implementer, reviewer, attacker, adversarial reviewer, and fixer are role briefs rather than agent names.
+
+### How Batman reports proof and landing state
+
+The controller owns the written plan, evidence ledger, progress, and four blocking milestone gates. Independent implementers author code and failing tests. Fresh reviewers and attackers provide backpressure and cannot fix or approve their own work.
+
+Batman accepts red evidence only when the assigned implementer wrote or took explicit ownership of the test in the current task and observed it fail against the unfixed behavior for the expected reason. Controller-authored tests, prior-session tests, and tests first seen green are context, not red proof. Mutation evidence must reverse or remove the owned fix, observe the expected failure, restore it, and rerun green.
+
+Keep these outcomes separate:
+
+- local targeted checks and the full offline suite prove only the tested local revision
+- hosted CI proves only the reported forge revision and completed required checks
+- authorized live verification proves only the named environment, time, and claim it exercised
+- merge, tag, package release, deployment, and installation are distinct completed states with distinct receipts
+- UAC `structural_ready` permits structural landing; it does not mean behavioral promotion
+- cleanup is complete only after durable evidence is preserved and authorized run-scoped branches, worktrees, and scratch are removed; unknown or failed cleanup is reported, never rewritten as success
 
 ## Step 2: Use UAC When You Are Landing New Capability Source
 
@@ -111,6 +130,22 @@ For a narrow external-target repair, use `--surface-only` with an explicit slug.
 ```bash
 bin/capability-fabric deploy --dry-run --surface-only --cli kiro --slug code-review --target "$HOME" --allow-nonlocal-target
 ```
+
+For Batman on Kiro, the same dry-run also previews the bounded cleanup of obsolete source files:
+
+```bash
+bin/capability-fabric deploy --dry-run --surface-only --cli kiro --slug batman --target "$HOME" --allow-nonlocal-target
+```
+
+When all three residues exist, the prune plan lists exactly:
+
+- `.kiro/skills/batman/PROTOCOL.md`
+- `.kiro/skills/batman/PROMPT-AMENDMENT.md`
+- `.kiro/skills/batman/CODEX-UAC-INTAKE.md`
+
+Dry-run prints one `DRY-RUN PRUNE` line per existing residue and does not move anything. The live command recoverably archives only those existing files under `.core-prompts-state/stale-pruned/<timestamp>/...` and prints a `source -> archive` receipt for each move. It preserves `.kiro/skills/batman/SKILL.md`, `resources/`, and unrelated files in the Batman skill directory.
+
+Use the printed receipt to recover an individual file from its timestamped archive to the original source path. If the cleanup occurred as part of an accepted release install, `~/update_core_prompts.sh --rollback previous` can instead restore the pre-install rollback snapshot.
 
 For the breaking `autosearch` rename, deploy `auto-research` to replace installed stale surfaces:
 

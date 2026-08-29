@@ -361,7 +361,7 @@
     },
     "batman": {
       "primary_job": "Implements an authorized work item through an explicitly invoked, subagent-driven delivery protocol with written plans, TDD evidence, blocking milestone reviews, progress reporting, verification, documentation, and landing.",
-      "use_when": "A repository implementation needs independent subagents, controller-owned flow and evidence, adversarial backpressure, and authorized delivery to mainline. Trigger with batman or the alias superman.",
+      "use_when": "A repository implementation needs independent subagents, controller-owned host-fit planning and evidence, adversarial backpressure, and authorized delivery to mainline. Trigger with batman.",
       "works_on": "One scoped repository work item with success criteria, applicable instructions, a base revision, and explicit landing boundaries.",
       "main_output": "Implemented behavior plus observed red, green, and mutation evidence; applicable milestone decisions; status reports; validation; documentation; Git health; and an authorized landing receipt.",
       "not_for": "Advice-only, review-only, or one-pass editing requests, or work that cannot provide independent implementation and review subagents.",
@@ -378,7 +378,7 @@
         "gitops-review"
       ],
       "shape": "implementation_delivery_controller",
-      "portfolio_action": "ship_and_preserve_superman_alias"
+      "portfolio_action": "ship_single_batman_identity"
     }
   }
 }
