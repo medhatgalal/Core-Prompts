@@ -1,3 +1,9 @@
+## v1.12.1 - 2026-08-29
+
+- Made every Host-Fit Plan declare one topology from a closed enum—`sequential`, `fan-out/fan-in`, or `dependency-pipeline`—over an acyclic child-dependency graph, with atomic `plan_generation` refresh when reviewed nodes or dependencies change.
+- Closed the child-controller loophole around one sole controller: controller checkpoints own dispatch, reconciliation, gates, status, and the ledger but never implementation or review; children cannot dispatch children, advance the workflow, reconcile peers, or emit consolidated completion.
+- Made gate aggregation fail closed: every and only required reviewer must return one current-generation, identity- and revision-matched `PASS`; missing, unexpected, duplicate, stale, blocker-bearing, or non-`PASS` results cannot pass. Batman remains `behavioral_pending`; this release does not claim behavioral promotion.
+
 ## v1.12.0 - 2026-08-29
 
 - Made Batman start fail-closed with instruction-integrity review and a live Host-Fit Plan that selects repository-native languages, verification tools, independent companions, safe parallelism, and explicit cost/quality/speed trade-offs without changing authority or waiving gates.
