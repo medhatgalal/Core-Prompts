@@ -241,9 +241,11 @@ prune_path() {
     return 0
   fi
   local relative="${target#"$TARGET_ROOT"/}"
-  local archive_root="$TARGET_ROOT/.core-prompts-state/stale-pruned/$(date -u +%Y%m%dT%H%M%SZ)"
+  local archive_root
+  archive_root="$TARGET_ROOT/.core-prompts-state/stale-pruned/$(date -u +%Y%m%dT%H%M%SZ)"
   local archive="$archive_root/$relative"
-  python3 - "$target" "$archive" <<'PY'
+  local archive_destination
+  archive_destination="$(python3 - "$target" "$archive" <<'PY'
 import shutil
 import sys
 from pathlib import Path
@@ -257,9 +259,11 @@ while candidate.exists() or candidate.is_symlink():
     candidate = archive.with_name(f"{archive.name}.{counter}")
     counter += 1
 shutil.move(str(target), str(candidate))
+print(candidate.absolute())
 PY
+)"
   STALE_PRUNED=$((STALE_PRUNED + 1))
-  echo "PRUNED stale deprecated surface $target"
+  echo "PRUNED stale deprecated surface $target -> $archive_destination"
 }
 
 prune_deprecated_slug_outputs() {
@@ -313,6 +317,18 @@ prune_deprecated_slug_outputs() {
           prune_path "$TARGET_ROOT/.kiro/skills/mentor"
           prune_path "$TARGET_ROOT/.kiro/agents/mentor.json"
           prune_path "$TARGET_ROOT/.kiro/agents/resources/mentor"
+          ;;
+      esac
+    done
+  fi
+
+  if slug_filter_matches "batman"; then
+    for cli in "${TARGETS[@]}"; do
+      case "$cli" in
+        kiro)
+          prune_path "$TARGET_ROOT/.kiro/skills/batman/PROTOCOL.md"
+          prune_path "$TARGET_ROOT/.kiro/skills/batman/PROMPT-AMENDMENT.md"
+          prune_path "$TARGET_ROOT/.kiro/skills/batman/CODEX-UAC-INTAKE.md"
           ;;
       esac
     done
