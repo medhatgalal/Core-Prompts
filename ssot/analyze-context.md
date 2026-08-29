@@ -16,12 +16,13 @@ Do not use this capability when the main job is to make a final decision, harden
 Turn broad analysis into one deterministic working set: one canonical context file, one canonical todo file, one canonical insights file, and a repeatable workflow that survives session loss without scattering notes across the repo.
 
 ## Workflow
-1. Check the current branch before starting any long-running analysis work.
+1. Resolve the active worktree root, the main checkout root, and the current branch before starting any long-running analysis work.
 2. Establish the analysis goal, success criteria, scope, and exclusion rules.
-3. Create or reuse one canonical memory set under `.analyze-context-memory/`.
-4. Process one item at a time and update the canonical files before moving on.
-5. Restore state from those files first after compaction or interruption.
-6. End with a complete insights summary and no dangling analysis state.
+3. Look for an existing canonical memory set in the main checkout first for backward compatibility and cross-session continuity, but treat it as read-only.
+4. Create or reuse one canonical memory set under `.analyze-context-memory/` in the active non-main worktree.
+5. Process one item at a time and update the canonical files before moving on.
+6. Restore state from those files first after compaction or interruption.
+7. End with a complete insights summary and no dangling analysis state.
 
 ## Tool Boundaries
 - allowed: create and maintain canonical memory files, inspect source material, summarize findings, and keep durable progress state
@@ -31,6 +32,8 @@ Turn broad analysis into one deterministic working set: one canonical context fi
 ## Rules
 - One initiative gets one active memory set.
 - Do not fork versioned analysis memory files for the same initiative.
+- Never write analysis memory to the main checkout.
+- `.analyze-context-memory/` must be gitignored; if it is tracked, untrack it before starting.
 - Do not keep important findings only in chat history.
 - Update memory files before any likely context loss.
 - Merge scattered analysis notes back into the canonical set immediately.
@@ -69,22 +72,31 @@ Every substantial response must include:
 | The analysis identifies implementation quality or review risk | `code-review` | diff or commit scope, review goals, suspected regressions or over-engineering risks |
 
 ## Constraints
-- Do not start long-running analysis directly on `main` or `master`.
+- Reading an existing canonical set from the main checkout is allowed.
+- Writing analysis memory requires a non-main linked worktree.
 - Do not create multiple competing memory sets for the same initiative.
 - Do not let insights remain only in the todo file.
 - Do not archive mid-initiative.
 
 ## Safety Check
-Before proceeding, you MUST check the current branch.
+Before proceeding, you MUST resolve the active worktree, main checkout, and current branch.
 
 ```bash
+ACTIVE_WORKTREE_ROOT="$(git rev-parse --show-toplevel)"
+MAIN_CHECKOUT_ROOT="$(dirname "$(git rev-parse --path-format=absolute --git-common-dir)")"
+CURRENT_BRANCH="$(git branch --show-current)"
 git status --short --branch
 ```
 
-If the current branch is `main` or `master`, stop and request a dedicated branch before starting long-running analysis work.
+Reading a canonical set from the main checkout is allowed. Before writing, stop and request a dedicated linked worktree if `CURRENT_BRANCH` is `main` or `master`, or if `ACTIVE_WORKTREE_ROOT` equals `MAIN_CHECKOUT_ROOT`. Confirm that `.analyze-context-memory/` is gitignored in the active worktree. If Git already tracks the directory, untrack it with an index-only operation that preserves the local files before starting.
 
 ## Canonical Memory Files
-Create these files in `.analyze-context-memory/` at the project root.
+Use an explicit read/write split:
+
+- **READ:** On initial discovery, inspect the matching set under `MAIN_CHECKOUT_ROOT/.analyze-context-memory/` first for backward compatibility and cross-session continuity. Never modify that set in place. If an active-worktree set already exists, it remains the current working state; the main-checkout set is read-only background, not a competing write target.
+- **WRITE:** Always create and update the set under `ACTIVE_WORKTREE_ROOT/.analyze-context-memory/`, where `ACTIVE_WORKTREE_ROOT` is resolved with `git rev-parse --show-toplevel`. If only a main-checkout set exists, initialize the active-worktree set from it before recording new progress.
+
+Analysis state is then born and dies with the slice it belongs to: concurrent agents cannot overwrite one another's memory, and removing the worktree disposes of the state automatically.
 
 ### `<task>-context.md`
 Contains:
@@ -110,10 +122,12 @@ Contains:
 
 ## Recovery Procedure
 After interruption or compaction:
-1. read the context file to restore the goal
-2. read the todo file to restore progress position
-3. read the insights file to restore accumulated knowledge
-4. continue from the recorded next item instead of restarting from memory
+1. check the active worktree for the initiative's canonical set first
+2. if no active-worktree set exists, fall back to the read-only set in the main checkout and initialize the active-worktree set before recording new progress
+3. read the context file to restore the goal
+4. read the todo file to restore progress position
+5. read the insights file to restore accumulated knowledge
+6. continue from the recorded next item instead of restarting from memory
 
 ## Examples
 ### Example Request

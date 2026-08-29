@@ -41,6 +41,27 @@ def test_rewritten_ssot_files_have_single_frontmatter_and_required_sections() ->
             assert heading in text
 
 
+def test_analyze_context_memory_is_worktree_scoped() -> None:
+    text = (ROOT / 'ssot' / 'analyze-context.md').read_text(encoding='utf-8')
+
+    required_contract = [
+        'Never write analysis memory to the main checkout.',
+        '`.analyze-context-memory/` must be gitignored; if it is tracked, untrack it before starting.',
+        'Reading an existing canonical set from the main checkout is allowed.',
+        'Writing analysis memory requires a non-main linked worktree.',
+        'ACTIVE_WORKTREE_ROOT="$(git rev-parse --show-toplevel)"',
+        'check the active worktree for the initiative\'s canonical set first',
+        'fall back to the read-only set in the main checkout',
+    ]
+    for clause in required_contract:
+        assert clause in text
+
+    assert 'Create these files in `.analyze-context-memory/` at the project root.' not in text
+    assert '- One initiative gets one active memory set.' in text
+    assert '- Do not fork versioned analysis memory files for the same initiative.' in text
+    assert '- Archive only when the initiative is complete.' in text
+
+
 def test_capability_templates_exist_for_all_supported_types() -> None:
     template_dir = ROOT / '.meta' / 'capability-templates'
     for name in ('skill', 'agent', 'both'):
