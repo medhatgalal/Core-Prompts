@@ -1,3 +1,10 @@
+## v1.12.0 - 2026-08-29
+
+- Made Batman start fail-closed with instruction-integrity review and a live Host-Fit Plan that selects repository-native languages, verification tools, independent companions, safe parallelism, and explicit cost/quality/speed trade-offs without changing authority or waiving gates.
+- Tightened delivery evidence: controller-authored, prior-session, or first-seen-green tests cannot establish red; offline checks cannot establish hosted CI or live ship proof; and merge, tag, package release, deployment, installation, and cleanup remain distinct receipt-backed states.
+- Added portable adapter, evidence-class, and cleanup-integrity rules while preserving controller/implementer/reviewer separation, four blocking milestones, progress against the written plan, claim refusal, and UAC's structural-versus-behavioral boundary.
+- Removed the retired Batman invocation alias from active capability discovery and examples. Mentions in earlier changelog entries remain immutable, non-routable release history and do not describe current invocation behavior.
+
 ## v1.11.1 - 2026-08-28
 
 - Made Batman companion dispatch portable across hosts: companion names identify capabilities, usable registered agents take precedence, skill-only companions run through fresh default independent subagents, and missing required surfaces stop fail-closed.
