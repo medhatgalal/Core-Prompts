@@ -98,6 +98,8 @@ def packet_payload(repo: Path, packet_dir: Path, host: str = "kiro", iterations:
             "goal": {"path": "goal.txt", "sha256": None},
             "spec": {"path": "spec.md", "sha256": None},
             "baseline": {"path": "baseline.json", "sha256": None},
+            "criterion_flips": {"path": "criterion-flips.json", "sha256": None},
+            "judge_amendments": {"path": "judge-amendments.json", "sha256": None},
             "verify": {"path": "verify.sh", "sha256": None},
         },
         "created_at": "2026-08-29T00:00:00Z",
@@ -110,6 +112,11 @@ def make_packet(tmp_path: Path, *, host: str = "kiro", iterations: int | None = 
     packet_dir = tmp_path / "packet"
     packet_dir.mkdir()
     (tmp_path / "hostile").mkdir()
+    present = packet_dir / "criteria" / "C1" / "present"
+    absent = packet_dir / "criteria" / "C1" / "absent"
+    present.mkdir(parents=True)
+    absent.mkdir(parents=True)
+    (present / "outcome.done").write_text("real evidence\n", encoding="utf-8")
     (packet_dir / "goal.txt").write_text(goal_text(), encoding="utf-8")
     spec_text = (RESOURCE_ROOT / "templates" / "spec.md.tmpl").read_text(encoding="utf-8")
     answers = {
@@ -130,6 +137,14 @@ def make_packet(tmp_path: Path, *, host: str = "kiro", iterations: int | None = 
                 "captured_at": "2026-08-30T00:00:00Z",
                 "source_revision": run_git(repo, "rev-parse", "HEAD"),
                 "frozen_ids": ["fixture"],
+                "anchor_scope": {
+                    "type": "bounded_mechanism_proof",
+                    "sample_size": 1,
+                    "bulk_execution": "routine_operation",
+                    "authorization_owner": "none",
+                    "author_can_grant_anchor_authority": True,
+                },
+                "exclusion_lists": {"do_not_touch": []},
                 "baseline_state": {"fixture": "missing"},
                 "target_state": {"fixture": "complete"},
             },
@@ -138,10 +153,33 @@ def make_packet(tmp_path: Path, *, host: str = "kiro", iterations: int | None = 
         + "\n",
         encoding="utf-8",
     )
+    (packet_dir / "criterion-flips.json").write_text(
+        json.dumps(
+            {
+                "schema_version": "plan-to-goal.criterion-flips.v1",
+                "criteria": [
+                    {
+                        "id": "C1",
+                        "role": "anchor",
+                        "present_tree": "criteria/C1/present",
+                        "absent_tree": "criteria/C1/absent",
+                    }
+                ],
+            },
+            indent=2,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    (packet_dir / "judge-amendments.json").write_text(
+        json.dumps({"schema_version": "plan-to-goal.judge-amendments.v1", "amendments": []}, indent=2)
+        + "\n",
+        encoding="utf-8",
+    )
     verify = packet_dir / "verify.sh"
     verify.write_text(
         verifier_body
-        or "#!/bin/sh\nroot=${ANCHOR_ROOT:-}\n[ -n \"$root\" ] || { echo 'ANCHOR C1 UNVERIFIABLE'; exit 2; }\nanchor_ok=0\n[ -f \"$root/outcome.done\" ] && anchor_ok=1\n[ \"$anchor_ok\" -ne 1 ] && { echo 'ANCHOR C1 target behavior is not implemented'; exit 1; }\necho 'ANCHOR C1 complete'\nexit 0\n",
+        or "#!/bin/sh\n[ \"${1:-}\" = '--list-criteria' ] && { echo C1; exit 0; }\nroot=${ANCHOR_ROOT:-}\n[ -n \"$root\" ] || { echo 'ANCHOR C1 UNVERIFIABLE'; exit 2; }\nif [ -n \"${CRITERION_ID:-}\" ]; then [ \"$CRITERION_ID\" = C1 ] || exit 2; [ -f \"$root/outcome.done\" ] && { echo 'CRITERION C1 PASS'; exit 0; }; echo 'CRITERION C1 FAIL'; exit 1; fi\nanchor_ok=0\n[ -f \"$root/outcome.done\" ] && anchor_ok=1\n[ \"$anchor_ok\" -ne 1 ] && { echo 'ANCHOR C1 target behavior is not implemented'; exit 1; }\necho 'ANCHOR C1 complete'\nexit 0\n",
         encoding="utf-8",
     )
     verify.chmod(0o644)
@@ -175,15 +213,20 @@ def test_seal_and_check_bind_goal_spec_verifier_and_repository(tmp_path: Path) -
     assert sealed["status"] == "SEALED_READY"
     assert sealed["baseline_verifier"]["exit_code"] == 1
     assert sealed["verifier_validation"]["hostile_pass"]["exit_code"] == 1
+    assert sealed["goal_lint"]["status"] == "clean"
+    assert any(item["id"] == "criterion-flip.C1" for item in sealed["goal_lint"]["checks"])
     assert sealed["iterations"] == {"value": 5, "source": "user"}
 
     checked = GOAL_PACKET.command_check(args(packet_dir, run_verifier=False))
     assert checked["status"] == "PASS"
     assert checked["verifier_validation"]["falsifiability"]["exit_code"] == 1
     assert checked["verifier_validation"]["hostile_pass"]["exit_code"] == 1
+    assert checked["goal_lint"]["status"] == "clean"
     packet = json.loads((packet_dir / "packet.json").read_text(encoding="utf-8"))
     assert packet["status"] == "SEALED_READY"
-    assert all(packet["artifacts"][name]["sha256"] for name in ("goal", "spec", "baseline", "verify"))
+    assert all(packet["artifacts"][name]["sha256"] for name in GOAL_PACKET.REQUIRED_ARTIFACTS)
+    flips = json.loads((packet_dir / "criterion-flips.json").read_text(encoding="utf-8"))
+    assert all(flips["criteria"][0][key] for key in ("present_sha256", "absent_sha256"))
 
 
 def test_check_rejects_tampered_artifact(tmp_path: Path) -> None:
@@ -194,11 +237,30 @@ def test_check_rejects_tampered_artifact(tmp_path: Path) -> None:
         GOAL_PACKET.command_check(args(packet_dir, run_verifier=False))
 
 
+def test_check_rejects_tampered_criterion_flip_manifest(tmp_path: Path) -> None:
+    _, packet_dir = make_packet(tmp_path)
+    GOAL_PACKET.command_seal(args(packet_dir))
+    manifest_path = packet_dir / "criterion-flips.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["criteria"][0]["absent_tree"] = "criteria/C1/present"
+    manifest_path.write_text(json.dumps(manifest) + "\n", encoding="utf-8")
+    with pytest.raises(GOAL_PACKET.PacketError, match="hash mismatch for criterion_flips"):
+        GOAL_PACKET.command_check(args(packet_dir, run_verifier=False))
+
+
+def test_check_rejects_tampered_criterion_fixture_tree(tmp_path: Path) -> None:
+    _, packet_dir = make_packet(tmp_path)
+    GOAL_PACKET.command_seal(args(packet_dir))
+    (packet_dir / "criteria" / "C1" / "present" / "extra.txt").write_text("tampered\n", encoding="utf-8")
+    with pytest.raises(GOAL_PACKET.PacketError, match="goal-lint blocked the packet: criterion-flip.coverage"):
+        GOAL_PACKET.command_check(args(packet_dir, run_verifier=False))
+
+
 def test_check_rejects_hostile_tree_that_changes_after_sealing(tmp_path: Path) -> None:
     _, packet_dir = make_packet(tmp_path)
     GOAL_PACKET.command_seal(args(packet_dir))
     (packet_dir.parent / "hostile" / "outcome.done").write_text("forged after seal\n", encoding="utf-8")
-    with pytest.raises(GOAL_PACKET.PacketError, match="hostile_pass verifier returned 0"):
+    with pytest.raises(GOAL_PACKET.PacketError, match="goal-lint blocked the packet: verifier.hostile-pass"):
         GOAL_PACKET.command_check(args(packet_dir, run_verifier=False))
 
 
@@ -213,15 +275,16 @@ def test_check_rejects_repository_head_drift(tmp_path: Path) -> None:
 
 
 def test_seal_rejects_verifier_that_passes_untouched_tree(tmp_path: Path) -> None:
-    _, packet_dir = make_packet(tmp_path, verifier_body="#!/bin/sh\necho 'C1 pass'\nexit 0\n")
-    with pytest.raises(GOAL_PACKET.PacketError, match="falsifiability verifier returned 0"):
+    body = "#!/bin/sh\n[ \"${1:-}\" = '--list-criteria' ] && { echo C1; exit 0; }\nroot=${ANCHOR_ROOT:-}\n[ -n \"$root\" ] || { echo 'ANCHOR C1 UNVERIFIABLE'; exit 2; }\nif [ -n \"${CRITERION_ID:-}\" ]; then [ -f \"$root/outcome.done\" ] && { echo 'CRITERION C1 PASS'; exit 0; }; echo 'CRITERION C1 FAIL'; exit 1; fi\nanchor_ok=0\n[ \"$anchor_ok\" -ne 1 ] && true\necho 'ANCHOR C1 pass'\nexit 0\n"
+    _, packet_dir = make_packet(tmp_path, verifier_body=body)
+    with pytest.raises(GOAL_PACKET.PacketError, match="goal-lint blocked the packet: verifier.falsifiability"):
         GOAL_PACKET.command_seal(args(packet_dir))
 
 
 def test_seal_rejects_verifier_that_passes_cheapest_fake(tmp_path: Path) -> None:
-    body = "#!/bin/sh\nroot=${ANCHOR_ROOT:-}\ncase \"$root\" in *'/repo') echo 'ANCHOR C1 unmet'; exit 1;; *) echo 'ANCHOR C1 fake pass'; exit 0;; esac\n"
+    body = "#!/bin/sh\n[ \"${1:-}\" = '--list-criteria' ] && { echo C1; exit 0; }\nroot=${ANCHOR_ROOT:-}\n[ -n \"$root\" ] || { echo 'ANCHOR C1 UNVERIFIABLE'; exit 2; }\nif [ -n \"${CRITERION_ID:-}\" ]; then [ -f \"$root/outcome.done\" ] && { echo 'CRITERION C1 PASS'; exit 0; }; echo 'CRITERION C1 FAIL'; exit 1; fi\nanchor_ok=0\n[ \"$anchor_ok\" -ne 1 ] && true\ncase \"$root\" in *'/repo') echo 'ANCHOR C1 unmet'; exit 1;; *) echo 'ANCHOR C1 fake pass'; exit 0;; esac\n"
     _, packet_dir = make_packet(tmp_path, verifier_body=body)
-    with pytest.raises(GOAL_PACKET.PacketError, match="hostile_pass verifier returned 0"):
+    with pytest.raises(GOAL_PACKET.PacketError, match="goal-lint blocked the packet: verifier.hostile-pass"):
         GOAL_PACKET.command_seal(args(packet_dir))
 
 
@@ -291,8 +354,12 @@ def test_build_surfaces_copies_plan_to_goal_resources(tmp_path: Path) -> None:
     for surface in (".codex", ".gemini", ".claude", ".kiro"):
         resource_root = workspace / surface / "skills" / "plan-to-goal-design" / "resources"
         assert (resource_root / "scripts" / "goal_packet.py").is_file()
+        assert (resource_root / "scripts" / "criterion_flip.py").is_file()
         assert (resource_root / "goal-lint").is_file()
         assert (resource_root / "goal-lint").stat().st_mode & 0o777 == 0o644
         assert (resource_root / "scripts" / "goal_packet.py").stat().st_mode & 0o777 == 0o644
+        assert (resource_root / "scripts" / "criterion_flip.py").stat().st_mode & 0o777 == 0o644
         assert (resource_root / "adapters" / "hosts.json").is_file()
         assert (resource_root / "schemas" / "packet.schema.json").is_file()
+        assert (resource_root / "templates" / "criterion-flips.json.tmpl").is_file()
+        assert (resource_root / "templates" / "judge-amendments.json.tmpl").is_file()

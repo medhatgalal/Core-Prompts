@@ -12,6 +12,8 @@ FORMAT="human"
 TREE=""
 HOSTILE_TREE=""
 GOAL_DIR=""
+RESOURCE_DIR=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)
+CRITERION_FLIP="$RESOURCE_DIR/scripts/criterion_flip.py"
 
 CHECK_IDS=()
 CHECK_CLASSES=()
@@ -36,6 +38,7 @@ Usage: bash resources/goal-lint [OPTIONS] GOAL_DIR
 
 Audit a goal.txt, spec.md, baseline.json, and verify.sh before dispatch.
 The verifier must fail on both the untouched tree and a cheapest-fake hostile tree.
+Every named criterion must also pass when its condition is present and fail when absent.
 
 Options:
   --tree PATH          Untouched repository/tree used for falsifiability.
@@ -47,6 +50,8 @@ Expected files:
   goal.txt             Short outcome and references, at most 4,000 chars/bytes.
   spec.md              Anchor, frozen population, fake/block table, and five answers.
   baseline.json        Frozen identifier set used by the outcome anchor.
+  criterion-flips.json Criterion inventory plus synthetic present/absent tree paths.
+  judge-amendments.json Disclosure log for any mid-flight verifier repair.
   verify.sh            Bash verifier invoked with: bash verify.sh
   prompt.txt           Optional; when present, checked for size and spec duplication.
 
@@ -106,7 +111,7 @@ run_verifier() {
   local root=$1 output_file=$2
   (
     cd "$root" || exit 3
-    ANCHOR_ROOT="$root" REPO_ROOT="$root" bash "$VERIFY_FILE"
+    env -u CRITERION_ID ANCHOR_ROOT="$root" REPO_ROOT="$root" bash "$VERIFY_FILE"
   ) >"$output_file" 2>&1
   return $?
 }
@@ -170,7 +175,10 @@ SPEC_FILE="$GOAL_DIR/spec.md"
 BASELINE_FILE="$GOAL_DIR/baseline.json"
 VERIFY_FILE="$GOAL_DIR/verify.sh"
 
-for required in "$GOAL_FILE" "$SPEC_FILE" "$BASELINE_FILE" "$VERIFY_FILE"; do
+CRITERION_FILE="$GOAL_DIR/criterion-flips.json"
+AMENDMENT_FILE="$GOAL_DIR/judge-amendments.json"
+
+for required in "$GOAL_FILE" "$SPEC_FILE" "$BASELINE_FILE" "$CRITERION_FILE" "$AMENDMENT_FILE" "$VERIFY_FILE"; do
   if [ -f "$required" ]; then
     record "artifact.$(basename "$required")" "artifact_boundary" pass "found $(basename "$required")"
   else
@@ -216,7 +224,7 @@ if [ -f "$SPEC_FILE" ]; then
     fi
   done
 
-  for heading in "Outcome Anchor" "Frozen Population" "Fake / Block Table" "Two-Sided Verifier Validation" "Exit-Gate Truth Table"; do
+  for heading in "Outcome Anchor" "Anchor Granularity" "Frozen Population" "Population Exclusions" "Fake / Block Table" "Two-Sided Verifier Validation" "Per-Criterion Flip Tests" "Exit-Gate Truth Table" "Judge Amendment Protocol"; do
     heading_count=$(grep -c "^## ${heading}$" "$SPEC_FILE" 2>/dev/null || true)
     if [ "$heading_count" -eq 1 ]; then
       record "spec.${heading// /-}" "metric_outcome" pass "spec.md contains ${heading}"
@@ -247,11 +255,103 @@ if not all(isinstance(item, str) and item for item in frozen_ids):
     raise SystemExit(1)
 if len(frozen_ids) != len(set(frozen_ids)):
     raise SystemExit(1)
+anchor_scope = payload.get("anchor_scope")
+if not isinstance(anchor_scope, dict):
+    raise SystemExit(1)
+if anchor_scope.get("type") != "bounded_mechanism_proof":
+    raise SystemExit(1)
+if anchor_scope.get("sample_size") != len(frozen_ids):
+    raise SystemExit(1)
+if anchor_scope.get("bulk_execution") not in {"not_applicable", "policy", "routine_operation"}:
+    raise SystemExit(1)
+if not isinstance(anchor_scope.get("authorization_owner"), str) or not anchor_scope["authorization_owner"].strip():
+    raise SystemExit(1)
+if anchor_scope.get("author_can_grant_anchor_authority") is not True:
+    raise SystemExit(1)
 PY
   then
-    record "baseline.frozen_ids" "metric_outcome" pass "baseline.json is valid with nonempty unique frozen_ids"
+    record "baseline.frozen_ids" "metric_outcome" pass "baseline.json has a bounded mechanism-proof anchor with available authority"
   else
-    record "baseline.frozen_ids" "metric_outcome" fail "baseline.json must be valid JSON with nonempty unique frozen_ids"
+    record "baseline.frozen_ids" "metric_outcome" fail "baseline.json requires a bounded sample and authority the author can grant"
+  fi
+
+  if python3 - "$BASELINE_FILE" 2>/dev/null <<'PY'
+import json
+import sys
+from pathlib import Path
+
+payload = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
+frozen = set(payload.get("frozen_ids", []))
+exclusions = payload.get("exclusion_lists")
+if not isinstance(exclusions, dict):
+    raise SystemExit(1)
+for name, values in exclusions.items():
+    if not isinstance(name, str) or not name or not isinstance(values, list):
+        raise SystemExit(1)
+    if not all(isinstance(item, str) and item for item in values):
+        raise SystemExit(1)
+    if frozen.intersection(values):
+        raise SystemExit(1)
+PY
+  then
+    record "baseline.exclusions" "metric_outcome" pass "frozen population has empty intersection with every exclusion list"
+  else
+    record "baseline.exclusions" "metric_outcome" fail "baseline.json requires exclusion_lists whose intersection with frozen_ids is empty"
+  fi
+fi
+
+if [ -f "$AMENDMENT_FILE" ] && [ -f "$VERIFY_FILE" ] && [ -f "$CRITERION_FILE" ]; then
+  if python3 - "$AMENDMENT_FILE" "$VERIFY_FILE" "$CRITERION_FILE" 2>/dev/null <<'PY'
+import hashlib
+import json
+import re
+import sys
+from pathlib import Path
+
+payload = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
+if payload.get("schema_version") != "plan-to-goal.judge-amendments.v1":
+    raise SystemExit(1)
+amendments = payload.get("amendments")
+if not isinstance(amendments, list):
+    raise SystemExit(1)
+criterion_payload = json.loads(Path(sys.argv[3]).read_text(encoding="utf-8"))
+criterion_ids = {
+    item.get("id") for item in criterion_payload.get("criteria", []) if isinstance(item, dict)
+}
+if not criterion_ids or not all(isinstance(item, str) and item for item in criterion_ids):
+    raise SystemExit(1)
+previous_new = None
+for amendment in amendments:
+    if not isinstance(amendment, dict):
+        raise SystemExit(1)
+    for key in ("previous_sha256", "new_sha256"):
+        if not isinstance(amendment.get(key), str) or not re.fullmatch(r"[0-9a-f]{64}", amendment[key]):
+            raise SystemExit(1)
+    diff = amendment.get("one_line_diff")
+    if not isinstance(diff, str) or not diff.strip() or "\n" in diff:
+        raise SystemExit(1)
+    for key in ("changed_criteria", "unchanged_criteria"):
+        if not isinstance(amendment.get(key), list) or not all(isinstance(item, str) and item for item in amendment[key]):
+            raise SystemExit(1)
+    changed = set(amendment["changed_criteria"])
+    unchanged = set(amendment["unchanged_criteria"])
+    if changed.intersection(unchanged) or changed.union(unchanged) != criterion_ids:
+        raise SystemExit(1)
+    if previous_new is not None and amendment["previous_sha256"] != previous_new:
+        raise SystemExit(1)
+    previous_new = amendment["new_sha256"]
+    instruction = amendment.get("diff_instruction")
+    if not isinstance(instruction, str) or "diff" not in instruction.lower():
+        raise SystemExit(1)
+if amendments:
+    current = hashlib.sha256(Path(sys.argv[2]).read_bytes()).hexdigest()
+    if amendments[-1]["new_sha256"] != current:
+        raise SystemExit(1)
+PY
+  then
+    record "judge.amendments" "judge_instrument" pass "judge amendment log is valid and binds the current verifier hash"
+  else
+    record "judge.amendments" "judge_instrument" fail "judge amendments require one-line diff, chained hashes, complete changed/unchanged criterion partition, and a diff instruction"
   fi
 fi
 
@@ -291,8 +391,35 @@ if [ -f "$VERIFY_FILE" ]; then
     && record "verifier.root" "judge_instrument" pass "evidence root is explicit" \
     || record "verifier.root" "judge_instrument" fail "verifier infers its evidence root from cwd"
 
+  flip_output=$(mktemp "${TMPDIR:-/tmp}/goal-lint-flips.XXXXXX") || { diagnose "cannot create criterion-flip output"; exit "$EXIT_INPUT"; }
+  flip_error=$(mktemp "${TMPDIR:-/tmp}/goal-lint-flips-error.XXXXXX") || { unlink "$flip_output"; diagnose "cannot create criterion-flip error output"; exit "$EXIT_INPUT"; }
+  python3 "$CRITERION_FLIP" --json "$GOAL_DIR" >"$flip_output" 2>"$flip_error"
+  flip_rc=$?
+  if [ "$flip_rc" -le 1 ]; then
+    record "criterion-flip.coverage" "criterion_flip" pass "criterion inventory matches verify.sh --list-criteria"
+    while IFS=$'\t' read -r criterion_id criterion_status criterion_message; do
+      [ -n "$criterion_id" ] || continue
+      record "criterion-flip.${criterion_id}" "criterion_flip" "$criterion_status" "$criterion_message"
+    done < <(python3 - "$flip_output" <<'PY'
+import json
+import sys
+from pathlib import Path
+
+payload = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
+for item in payload.get("criteria", []):
+    message = str(item.get("message", "")).replace("\t", " ").replace("\n", " ")
+    print(f"{item.get('id', '')}\t{item.get('status', 'fail')}\t{message}")
+PY
+    )
+  else
+    flip_detail=$(tr '\n' ' ' <"$flip_error")
+    record "criterion-flip.coverage" "criterion_flip" fail "criterion flip contract failed: ${flip_detail:-unknown input error}"
+  fi
+  unlink "$flip_output"
+  unlink "$flip_error"
+
   abort_output=$(mktemp "${TMPDIR:-/tmp}/goal-lint-abort.XXXXXX") || { diagnose "cannot create temporary output"; exit "$EXIT_INPUT"; }
-  env -u ANCHOR_ROOT -u REPO_ROOT bash "$VERIFY_FILE" >"$abort_output" 2>&1
+  env -u ANCHOR_ROOT -u REPO_ROOT -u CRITERION_ID bash "$VERIFY_FILE" >"$abort_output" 2>&1
   abort_rc=$?
   unlink "$abort_output"
   if [ "$abort_rc" -ne 0 ]; then

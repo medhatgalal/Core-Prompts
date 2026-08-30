@@ -80,13 +80,14 @@ Research is a sealing requirement, not motivational prose.
 Before drafting:
 1. Verify the runtime, cwd, repository root, worktree, remotes, branch, HEAD/tree, and exact dirty state.
 2. Read every applicable instruction file from global scope through the target directory.
-3. Write exactly one outcome anchor as a world-state delta against a frozen identifier set, and save that set in `baseline.json` before planning implementation mechanisms.
-4. Measure the population and prove the target is arithmetically and operationally achievable; split out members that require another disposition.
-5. Inspect relevant entrypoints, callers, dependencies, tests, build and CI commands, generated surfaces, ownership, and concurrent work.
-6. Identify likely, owned, protected, generated, and out-of-scope files.
-7. Classify material statements as `FACT`, `INFERENCE`, `CONTRADICTION`, or `UNKNOWN` and cite repository facts by path and line or by exact command evidence.
-8. Use current primary sources when versioned, external, uncertain, or high-impact facts affect the packet. Record retrieval date, relevance, and disconfirming evidence. If external research is unnecessary, state why local evidence is sufficient.
-9. Ask only for decisions that cannot be discovered and would materially change scope, safety, or acceptance.
+3. Separate proving the mechanism from executing a population. Write exactly one anchor over a small, measured sample with real work evidence; move bulk execution to a policy or routine operation. If the anchor requires authorization its author cannot grant, return `APPROVAL_REQUIRED` instead of disguising a queue as a goal.
+4. Save the bounded sample in `baseline.json`. Before freezing it, intersect every sampled identifier with every exclusion or do-not-touch list and require every intersection to be empty.
+5. Measure the wider population and prove its target is arithmetically and operationally achievable; split out members that require another disposition.
+6. Inspect relevant entrypoints, callers, dependencies, tests, build and CI commands, generated surfaces, ownership, and concurrent work.
+7. Identify likely, owned, protected, generated, and out-of-scope files.
+8. Classify material statements as `FACT`, `INFERENCE`, `CONTRADICTION`, or `UNKNOWN` and cite repository facts by path and line or by exact command evidence.
+9. Use current primary sources when versioned, external, uncertain, or high-impact facts affect the packet. Record retrieval date, relevance, and disconfirming evidence. If external research is unnecessary, state why local evidence is sufficient.
+10. Ask only for decisions that cannot be discovered and would materially change scope, safety, or acceptance.
 
 Put the receipt in `spec.md`. The executor must repeat a lightweight current-state and rule preflight before editing. Material drift yields `STALE_PACKET`; the executor must not silently rewrite the goal or verifier.
 
@@ -94,13 +95,15 @@ Put the receipt in `spec.md`. The executor must repeat a lightweight current-sta
 `spec.md` must contain:
 - provenance and source-plan identity
 - outcome, non-goals, and completion semantics
-- exactly one outcome anchor, its frozen population, and the baseline file that records stable identifiers
+- exactly one bounded mechanism-proof anchor, its small sample, the wider-population disposition, and the baseline file that records stable identifiers
+- every exclusion list considered before freezing plus evidence that all sample intersections are empty
 - research receipt with rules, code, tests, CI, files, sources, facts, inferences, contradictions, unknowns, and approval decisions
 - behavioral requirements and acceptance criteria; use EARS only where it improves testability
 - dependency-ordered milestones and ownership boundaries
 - constraints, prohibited shortcuts, protected surfaces, rollback, and decomposition decisions
 - requirement-to-verifier mapping and operator-observed criteria
-- a fake/block table, falsifiability case, cheapest-fake hostile-pass case, and exit-gate truth table
+- a fake/block table, falsifiability case, cheapest-fake hostile-pass case, per-criterion flip plan, and exit-gate truth table
+- a judge amendment protocol naming `judge-amendments.json` and its current state
 - nonblank written answers for `PROXY`, `FORGERY`, `ARITHMETIC`, `ACHIEVABLE`, and `TRAP`
 - drift triggers and terminal states
 
@@ -114,6 +117,10 @@ Assign exactly one trust level:
 - `self_check`: controlled by the executor; never sufficient for completion
 
 Hashes prove tamper evidence, not independence. The verifier must:
+- implement `bash verify.sh --list-criteria`, printing every machine criterion ID exactly once
+- evaluate only the named criterion when `CRITERION_ID=<id>` is set, emitting the exact line `CRITERION <id> PASS` with exit `0` when its condition is present or `CRITERION <id> FAIL` with exit `1` when absent; invalid or unverifiable input uses a distinct error and must not fall through to the full suite
+- pass every entry in `criterion-flips.json`: the exact criterion logic must be executed against synthetic condition-present and condition-absent trees and its verdict must flip in the required direction
+- bind both synthetic tree hashes during sealing and reject fixture drift during every later lint or check
 - map output to named requirement or criterion identifiers
 - return a nonzero code on the untouched tree for the expected unmet criteria
 - return a nonzero code on the cheapest fake tree even when mechanism checks appear satisfied
@@ -123,6 +130,8 @@ Hashes prove tamper evidence, not independence. The verifier must:
 - remain deterministic and cheap unless the requirement itself is external or nondeterministic
 
 If the verifier passes either the untouched tree or cheapest fake, refuse `SEALED_READY`. Require an independent audit before returning `NO_GOAL_NEEDED`; a permissive verifier is not proof that the goal already exists. Run verifiers with `bash verify.sh`; never require their execute bit.
+
+When a verifier defect is repaired after dispatch or a blocker report, treat it as a judge amendment. Record the previous and new SHA-256 hashes, one-line diff, changed and unchanged criterion IDs, and an instruction to diff before trusting. The implementer reports the defect but does not silently repair the judge. A missing or hash-mismatched disclosure blocks resealing.
 
 ## Storage and State Contract
 Resolve storage in this order:
@@ -146,7 +155,7 @@ Valid compiler states:
 1. Inspect the plan, repository, rules, runtime, and relevant external evidence.
 2. Decide whether a long-running goal is warranted. Return `NO_GOAL_NEEDED` for a truly complete or one-step outcome only after evidence supports that decision.
 3. Select and verify the host adapter.
-4. Draft `goal.txt`, `spec.md`, `baseline.json`, a task-specific `verify.sh`, an untouched tree, a cheapest-fake hostile tree, and `packet.json` from the bundled templates.
+4. Draft `goal.txt`, `spec.md`, `baseline.json`, `criterion-flips.json`, `judge-amendments.json`, a task-specific `verify.sh`, per-criterion synthetic trees, an untouched tree, a cheapest-fake hostile tree, and `packet.json` from the bundled templates.
 5. In read-only Plan mode, return the exact draft as `DRAFTED_UNSEALED` and name the required materialization action.
 6. After writes are authorized, materialize the packet in the resolved durable location.
 7. Run `bash resources/goal-lint --tree <untouched-tree> --hostile-tree <cheapest-fake-tree> <packet-dir>`. Fix every finding; warnings must be acknowledged in the spec.
@@ -165,6 +174,10 @@ Valid compiler states:
 - Do not write packet paths while the active mode forbids writes.
 - Do not call a writable verifier independent.
 - Do not design the anchor after the implementation plan or park a load-bearing outcome check in advisory output.
+- Do not make bulk population execution the goal anchor; prove the mechanism over a bounded sample and route bulk work to its authorization-owning policy or routine.
+- Do not freeze an identifier that appears in any exclusion or do-not-touch list.
+- Do not accept a criterion that returns the same verdict for condition-present and condition-absent trees, returns an error instead of a valid verdict, or is absent from the verifier inventory.
+- Do not trust a repaired judge until its amendment discloses the diff, old/new hashes, and criterion impact.
 - Do not seal while any of the five manual design answers is blank.
 - Do not emit a launch command for an unsupported or unverified runner.
 - Do not call `structural_ready`, a sealed packet, green local tests, or a model review behavioral promotion.
@@ -190,7 +203,7 @@ Return these fields in order:
 
 For `DRAFTED_UNSEALED`, `Launch Command` must be `null`. For `UNSUPPORTED_NATIVE_GOAL`, keep the packet useful but state which runner contract is missing. For `SEALED_READY`, report goal characters, UTF-8 bytes, adapter version, repository binding, artifact hashes, baseline verifier result, and exact command.
 
-Also report the `goal-lint` result, the falsifiability exit, the hostile-pass exit, the anchor identifier, and whether all five written answers are present.
+Also report the `goal-lint` result, each criterion-flip result, the falsifiability exit, the hostile-pass exit, the anchor identifier and sample size, the population/exclusion intersection, judge amendment state, and whether all five written answers are present.
 
 ## Constraints
 - Do not mutate source code while compiling a packet in read-only Plan mode.
@@ -227,5 +240,9 @@ Run `check` first. If HEAD, dirty state, rules, files, adapter, or hashes materi
 | Verification honesty | Trust reflects write authority; expected baseline failures and operator gaps are explicit |
 | Metric integrity | One frozen-population anchor is defined before the plan and survives proxy, forgery, arithmetic, achievability, and trap review |
 | Two-sided validation | The verifier rejects both the untouched tree and the cheapest fake implementation for the expected reason |
+| Criterion discrimination | Every machine criterion is inventoried and flips from pass to fail across its synthetic present/absent trees |
+| Anchor granularity | A bounded real-evidence sample proves the mechanism; bulk execution and its approvals are outside the goal anchor |
+| Population consistency | The frozen sample has empty intersection with every exclusion and do-not-touch list |
+| Judge change integrity | Mid-flight judge repairs disclose one-line diff, hashes, changed/unchanged criteria, and diff-before-trust instruction |
 | Drift safety | Material repository, rule, adapter, or artifact changes prevent launch |
 | Boundary clarity | Compilation does not imply execution, promotion, deployment, or approval authority |

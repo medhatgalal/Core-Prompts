@@ -29,6 +29,14 @@ Construct the cheapest tree that makes convenient mechanism checks look complete
 
 Publish a truth table for misconfigured, untouched, cheapest-fake, partial, machine-ready/operator-pending, and achieved states. Test the verifier process directly rather than observing a downstream command in a pipe.
 
+## Per-Criterion Flip Test
+
+Hostile pass tests the suite. It does not show whether one criterion distinguishes its own two states. Require `verify.sh --list-criteria` to inventory every machine criterion and `CRITERION_ID=<id> bash verify.sh` to execute only that criterion. For every ID, the condition-present synthetic tree must emit `CRITERION <id> PASS` and exit `0`; the condition-absent tree must emit `CRITERION <id> FAIL` and exit `1`. Equal verdicts, missing markers, fallthrough to the full suite, or any other exit block sealing. Seal both fixture-tree hashes so later edits cannot redefine the tested states silently.
+
+## Judge Amendments
+
+When the verifier is repaired after dispatch or a blocker report, publish a judge amendment before trusting later results. Bind the previous and new hashes, summarize the exact one-line diff, enumerate changed and unchanged criterion IDs, and tell the implementer to inspect the diff. Silence turns a legitimate repair into an indistinguishable goalpost move.
+
 ## Anti-Gaming Review
 For each criterion, identify the cheapest way to make it pass without satisfying intent. Where relevant, check for deleted tests, new skips or xfails, weakened thresholds, hardcoded fixtures, empty logs, missing execution, one-sided paired surfaces, or changed verifier inputs.
 
