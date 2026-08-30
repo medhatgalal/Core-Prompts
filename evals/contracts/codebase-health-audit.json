@@ -9,14 +9,16 @@
     "eb9e3fd101415083a1e75850f582d7dd547ccffb4119fd7235e61407506aae39",
     "1f013308a12fc6fd66b3b7821cfdbdc488de218eabe57b5c7c93fe9a22e3fa09",
     "d69fe723b3887def45dca57abfef8166fafcde3dbc66c808c8ad8e0dec58c039",
-    "f44515edb12d510a15fddde43c3521950109e0b4543d6de1e067ddb3ddf47aa4",
-    "f5b0b0c0aee9a6a717887c83a885a2820ffafd21f051fea395c1aab663d01f17",
-    "0f2d482de6d2583334fbc42431bcd866839114c23508507f5190383d5d7663e2",
+    "2d9f614a2daa074ad5340d050d26e2ca590b858c3df44039d6f812ba63ebad89",
+    "209de507b86718df20faab51846e4fd8edf3be9cb7ead334daa4c4f367e99a4f",
+    "7eaea818bbf8727739d263a1f8e87fb94188d078343889a50f575eafd5d4e485",
+    "276dd992b40c532985fbd1cf72d03b0ed836b4fea7293dc98818b7d34a9a903b",
     "e3449c878c05d744334f9aa7af2d8aa02e73dd31297b37bb6abe3489e981c93b",
     "cc7e75cac40682cb7593c56064ee9394e362c350793f92da8108bcaccebe4766",
     "0885e217a2ed838c3caa07eb501cd20465206c8cb258fe17ad73d196015c2d5d",
     "54683e0251043ba51e2c63472e388de8cf1c0b0b0c8a62e886726872e33bfdd8",
     "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+    "3c173ef642adcc0e4bc30af8528440bc87a3edec1c72ad9d6d64acaa535078ef",
     "882ae0abbe84e71dd35fb14defca06bf63b3c12232051b0fdfd5efecfb15db16",
     "378f44d68babd5603f1913f66b98afe173ed03ba02dd40fbfedc206db1350760",
     "e77e9c49f191e08f17554be0cfabdb5b529aa1840d87f8f9df5fb39634f22ca4",
@@ -36,7 +38,8 @@
     "f7f2a39173d968e1630542ba7544afc6dfc2d4df78d05b0be5a840c3b6cce327",
     "ec47980ffc2e3615f42aaab11e8aee6d30b6711b2dbd082f005eb2dfd7f87b49",
     "6cd8b78d112144317fb67db7d9d1cd064cc6683c232329f531bb60bb9e0649b0",
-    "4017ff33c4382d79682621cdb049f4ef5475b2b059935b5ec40a8f272f5442b7"
+    "495ab00fe4ccdf0906a036810e9057ef39860cd82a69092212252a019cefa1c4",
+    "db8e49467720840db501582ff5cce010117bfb6a997dc2b9271ec2c7e43f47cd"
   ],
   "editable_behavior": [],
   "primary_outcome": {
@@ -86,19 +89,24 @@
       "text": "This is a direct skill surface, not an autonomous agent. It may read files, list directories, inspect symbols, and search references. It must not modify, create, delete, stage, commit, install dependencies, run tests, or deploy anything in the target codebase."
     },
     {
-      "sha256": "f44515edb12d510a15fddde43c3521950109e0b4543d6de1e067ddb3ddf47aa4",
+      "sha256": "2d9f614a2daa074ad5340d050d26e2ca590b858c3df44039d6f812ba63ebad89",
       "source": "ssot/codebase-health-audit.md",
-      "text": "The authored and generated resource is intentionally mode 644; invoke it through Bash. Default report mode is read-only and emits either a human table or one JSON object. Diagnostics go to stderr."
+      "text": "`cruft_inventory` is a distinct optional mode. It requires Bash plus Python 3.11 or newer. Enter it only when the user explicitly asks to scan the configured home-level agent-tool locations; do not infer it from a repository health request, do not traverse arbitrary home paths, and do not merge its results into the target-repository audit unless the user asks. In this mode, use the bundled resource to inventory generated, backup, or temporary-file sprawl:"
     },
     {
-      "sha256": "f5b0b0c0aee9a6a717887c83a885a2820ffafd21f051fea395c1aab663d01f17",
+      "sha256": "209de507b86718df20faab51846e4fd8edf3be9cb7ead334daa4c4f367e99a4f",
       "source": "ssot/codebase-health-audit.md",
-      "text": "Actual Trash moves are outside the read-only audit. Run `bash resources/cruft-report --json --trash <category> --confirm` only when the user separately asks to clean that exact category after reviewing the preview. Never infer `--confirm`, never prompt on a TTY, and never widen the category."
+      "text": "The authored wrapper and its Python helper are intentionally mode 644; invoke the wrapper through Bash. Default report mode is read-only and emits either a human table or one JSON object. Diagnostics go to stderr."
     },
     {
-      "sha256": "0f2d482de6d2583334fbc42431bcd866839114c23508507f5190383d5d7663e2",
+      "sha256": "7eaea818bbf8727739d263a1f8e87fb94188d078343889a50f575eafd5d4e485",
       "source": "ssot/codebase-health-audit.md",
-      "text": "Exit codes are `0` success/no-op, `2` usage, `3` unavailable environment dependency, `4` explicit confirmation required, and `5` one or more Trash moves failed."
+      "text": "The audit stops after the preview and never invokes `--confirm`. Actual Trash moves are outside this capability and require a separately authorized operator workflow. The standalone tool requires `--confirm` plus the exact `--expect-sha256` digest emitted by the reviewed dry-run; it rejects additions, removals, replacements, or metadata/content changes in the selected set. Never infer cleanup authority, never prompt on a TTY, and never widen the category."
+    },
+    {
+      "sha256": "276dd992b40c532985fbd1cf72d03b0ed836b4fea7293dc98818b7d34a9a903b",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "Exit codes are `0` success/no-op, `1` unexpected internal failure, `2` usage, `3` unavailable environment dependency, `4` explicit confirmation or reviewed digest required, `5` one or more Trash moves failed, and `6` stale selection."
     },
     {
       "sha256": "e3449c878c05d744334f9aa7af2d8aa02e73dd31297b37bb6abe3489e981c93b",
@@ -124,6 +132,11 @@
       "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
       "source": "ssot/codebase-health-audit.md",
       "text": "## Required Inputs"
+    },
+    {
+      "sha256": "3c173ef642adcc0e4bc30af8528440bc87a3edec1c72ad9d6d64acaa535078ef",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "- cruft inventory: `mode: cruft_inventory` plus an explicit request to scan the fixed home-level agent-tool categories; no repository target is required."
     },
     {
       "sha256": "882ae0abbe84e71dd35fb14defca06bf63b3c12232051b0fdfd5efecfb15db16",
@@ -221,9 +234,14 @@
       "text": "- **Non-interactive.** Bundled tools take flags, provide `--help` and `--json`, and never wait for TTY input."
     },
     {
-      "sha256": "4017ff33c4382d79682621cdb049f4ef5475b2b059935b5ec40a8f272f5442b7",
+      "sha256": "495ab00fe4ccdf0906a036810e9057ef39860cd82a69092212252a019cefa1c4",
       "source": "ssot/codebase-health-audit.md",
-      "text": "- **Forbidden:** Write files, run code, install dependencies, execute tests, modify git state."
+      "text": "- **Allowed:** Read files, grep/search, count lines, inspect AST/symbols, list directories; in explicit `cruft_inventory` mode, invoke the bundled reporter only in report or dry-run mode."
+    },
+    {
+      "sha256": "db8e49467720840db501582ff5cce010117bfb6a997dc2b9271ec2c7e43f47cd",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "- **Forbidden:** Write files, run target/application code, install dependencies, execute tests, modify git state. The only executable exception is the bundled reporter in explicit `cruft_inventory` report or dry-run mode."
     }
   ],
   "review_status": "draft"
