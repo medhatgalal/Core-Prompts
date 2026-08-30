@@ -379,6 +379,18 @@
       ],
       "shape": "implementation_delivery_controller",
       "portfolio_action": "ship_single_batman_identity"
+    },
+    "plan-to-goal-design": {
+      "primary_job": "Turns an inspected implementation plan or intent into a compact, host-aware goal plus a durable specification and verifier packet. Use when a user wants to move from read-only Plan mode into a bounded long-running goal without losing repository evidence, rules, scope, or honest stop conditions.",
+      "use_when": "The request directly matches the canonical purpose of Plan to Goal Design.",
+      "works_on": "The inputs and target declared by the canonical SSOT.",
+      "main_output": "The required output declared by the canonical SSOT.",
+      "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
+      "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
+      "routing_question": "Does this request directly require Plan to Goal Design?",
+      "nearest_neighbors": [],
+      "shape": "unclassified_new_skill",
+      "portfolio_action": "draft_new_skill_pending_review"
     }
   }
 }

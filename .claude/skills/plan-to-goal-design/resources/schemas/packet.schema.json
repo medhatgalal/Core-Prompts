@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://core-prompts.local/schemas/plan-to-goal-packet.v1.json",
+  "title": "Plan to Goal Packet",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "goal_id",
+    "host",
+    "repository",
+    "source_plan",
+    "rules_read",
+    "research_receipt",
+    "iterations",
+    "verification",
+    "artifacts"
+  ],
+  "properties": {
+    "schema_version": {"const": "plan-to-goal.packet.v1"},
+    "status": {
+      "enum": [
+        "DRAFTED_UNSEALED",
+        "MATERIALIZATION_REQUIRED",
+        "SEALED_READY",
+        "STALE_PACKET",
+        "NO_GOAL_NEEDED",
+        "BLOCKED",
+        "UNSUPPORTED_NATIVE_GOAL"
+      ]
+    },
+    "goal_id": {"type": "string", "minLength": 1, "maxLength": 120},
+    "host": {"type": "string", "minLength": 1},
+    "adapter_version": {"type": ["string", "null"]},
+    "repository": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["root", "branch", "head", "dirty", "status_sha256"],
+      "properties": {
+        "root": {"type": "string", "minLength": 1},
+        "branch": {"type": "string", "minLength": 1},
+        "head": {"type": "string", "pattern": "^[0-9a-fA-F]{40}$"},
+        "dirty": {"type": "boolean"},
+        "status_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "worktree": {"type": ["string", "null"]},
+        "remotes": {"type": "object", "additionalProperties": {"type": "string"}}
+      }
+    },
+    "source_plan": {
+      "type": "object",
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string"},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      },
+      "additionalProperties": false
+    },
+    "rules_read": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "research_receipt": {
+      "type": "object",
+      "required": ["code_evidence", "external_sources", "external_research_not_required_reason", "facts", "inferences", "contradictions", "unknowns", "approval_decisions"],
+      "properties": {
+        "code_evidence": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+        "external_sources": {"type": "array", "items": {"type": "object"}},
+        "external_research_not_required_reason": {"type": ["string", "null"]},
+        "facts": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+        "inferences": {"type": "array", "items": {"type": "string"}},
+        "contradictions": {"type": "array", "items": {"type": "string"}},
+        "unknowns": {"type": "array", "items": {"type": "string"}},
+        "approval_decisions": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": true
+    },
+    "iterations": {
+      "type": "object",
+      "required": ["value", "source"],
+      "properties": {
+        "value": {"type": ["integer", "null"], "minimum": 1},
+        "source": {"enum": ["user", "host_default", "none"]}
+      },
+      "additionalProperties": false
+    },
+    "verification": {
+      "type": "object",
+      "required": ["trust", "command", "hostile_tree", "expected_unmet_criteria", "baseline_exit_codes"],
+      "properties": {
+        "trust": {"enum": ["external_oracle", "operator_gate", "sealed_visible", "self_check"]},
+        "command": {"type": "string", "minLength": 1},
+        "hostile_tree": {"type": "string", "minLength": 1},
+        "expected_unmet_criteria": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1},
+        "baseline_exit_codes": {"type": "array", "items": {"type": "integer", "not": {"const": 0}}, "minItems": 1},
+        "timeout_seconds": {"type": "integer", "minimum": 1, "maximum": 3600},
+        "operator_checks": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["path", "sha256"],
+        "properties": {
+          "path": {"type": "string"},
+          "sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "goal_size": {
+      "type": "object",
+      "properties": {
+        "unicode_characters": {"type": "integer", "minimum": 1},
+        "utf8_bytes": {"type": "integer", "minimum": 1},
+        "lines": {"type": "integer", "minimum": 1}
+      },
+      "additionalProperties": false
+    },
+    "baseline_verifier": {"type": "object"},
+    "verifier_validation": {"type": "object"},
+    "created_at": {"type": ["string", "null"]},
+    "sealed_at": {"type": ["string", "null"]}
+  }
+}

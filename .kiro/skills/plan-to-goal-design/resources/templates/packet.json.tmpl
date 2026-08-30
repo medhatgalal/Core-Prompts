@@ -1,0 +1,52 @@
+{
+  "schema_version": "plan-to-goal.packet.v1",
+  "status": "DRAFTED_UNSEALED",
+  "goal_id": "<goal-id>",
+  "host": "<kiro|codex|claude|gemini|custom>",
+  "adapter_version": null,
+  "repository": {
+    "root": "<absolute repository root>",
+    "branch": "<branch>",
+    "head": "<40-character commit SHA>",
+    "dirty": false,
+    "status_sha256": "<sha256 of exact porcelain status excluding packet root>",
+    "worktree": "<absolute worktree path>",
+    "remotes": {}
+  },
+  "source_plan": {
+    "path": "<plan path or conversation identifier>",
+    "sha256": "<sha256>"
+  },
+  "rules_read": ["<instruction path>"],
+  "research_receipt": {
+    "code_evidence": [],
+    "external_sources": [],
+    "external_research_not_required_reason": null,
+    "facts": [],
+    "inferences": [],
+    "contradictions": [],
+    "unknowns": [],
+    "approval_decisions": []
+  },
+  "iterations": {
+    "value": null,
+    "source": "none"
+  },
+  "verification": {
+    "trust": "sealed_visible",
+    "command": "bash verify.sh",
+    "hostile_tree": "<absolute cheapest-fake tree path>",
+    "expected_unmet_criteria": ["<criterion-id>"],
+    "baseline_exit_codes": [1],
+    "timeout_seconds": 300,
+    "operator_checks": []
+  },
+  "artifacts": {
+    "goal": {"path": "goal.txt", "sha256": null},
+    "spec": {"path": "spec.md", "sha256": null},
+    "baseline": {"path": "baseline.json", "sha256": null},
+    "verify": {"path": "verify.sh", "sha256": null}
+  },
+  "created_at": null,
+  "sealed_at": null
+}

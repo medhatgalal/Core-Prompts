@@ -5003,6 +5003,307 @@
       ]
     },
     {
+      "slug": "plan-to-goal-design",
+      "manifest_version": "capability-fabric.v0",
+      "layers": {
+        "minimal": {
+          "capability_type": "skill",
+          "summary": "Turns an inspected implementation plan or intent into a compact, host-aware goal plus a durable specification and verifier packet. Use when a user wants to move from read-only Plan mode into a bounded long-running goal without losing repository evidence, rules, scope, or honest stop conditions.",
+          "role": "workflow",
+          "domain_tags": [
+            "planning",
+            "plan",
+            "goal",
+            "design"
+          ],
+          "required_inputs": [
+            "an implementation plan, intent, issue, or approved planning artifact",
+            "the target repository or working context",
+            "the active host/runtime when detectable",
+            "any user-supplied iteration, token, time, or cost bound",
+            "explicit protected surfaces, approvals, or operator checks when already known"
+          ],
+          "expected_outputs": [
+            "`Research Receipt`",
+            "`Goal Packet Status`",
+            "`Artifact Manifest`",
+            "`Goal Prose`",
+            "`Host Budget`",
+            "`Verification Trust`",
+            "`Launch Command`",
+            "`Next Action`"
+          ],
+          "tool_policy": {
+            "allowed": [
+              "deterministic classification",
+              "metadata publication",
+              "surface generation"
+            ],
+            "forbidden": [
+              "orchestration",
+              "delegation decisions",
+              "runtime execution control"
+            ]
+          },
+          "resources": [
+            "ssot/plan-to-goal-design.md"
+          ],
+          "packaging_profile": {
+            "capability_type": "skill",
+            "primary_surfaces": {
+              "codex": [
+                "codex_skill"
+              ],
+              "gemini": [
+                "gemini_skill"
+              ],
+              "claude": [
+                "claude_skill"
+              ],
+              "kiro": [
+                "kiro_skill"
+              ]
+            },
+            "wrapper_surfaces": {
+              "codex": [],
+              "gemini": [
+                "skill_wrapper"
+              ],
+              "claude": [
+                "skill_wrapper",
+                "plugin_wrapper"
+              ],
+              "kiro": [
+                "skill_wrapper",
+                "power_wrapper"
+              ]
+            },
+            "notes": [
+              "wrapper surfaces are additive deployment forms, not capability types",
+              "orchestrators must not infer execution authority from wrapper presence alone"
+            ]
+          },
+          "install_target": {
+            "recommended": "global",
+            "confidence": 1.0,
+            "confirmation_required_for_apply": true,
+            "rationale": "SSOT frontmatter explicitly declares global installation.",
+            "supported": [
+              "global",
+              "repo_local",
+              "both"
+            ]
+          },
+          "emitted_surfaces": {
+            "codex": [
+              "codex_skill"
+            ],
+            "gemini": [
+              "gemini_skill"
+            ],
+            "claude": [
+              "claude_skill"
+            ],
+            "kiro": [
+              "kiro_skill"
+            ]
+          },
+          "source_provenance": {
+            "source_type": "LOCAL_FILE",
+            "normalized_source": "ssot/plan-to-goal-design.md",
+            "policy_rule_id": "ssot.plan-to-goal-design",
+            "content_sha256": "ssot"
+          },
+          "confidence": 0.97,
+          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "Plan to Goal Design"
+        },
+        "expanded": {
+          "relationship_suggestions": [],
+          "capability_dependencies": [
+            "context"
+          ],
+          "overlap_candidates": [],
+          "migration_notes": [
+            "If the capability lands, compare it against existing entries before apply.",
+            "Relationship suggestions are advisory only and do not imply runtime routing."
+          ],
+          "adjustment_recommendations": [
+            "add an explicit primary objective before packaging",
+            "add deterministic in-scope sections to improve routing fitness",
+            "capture quality constraints or non-negotiables"
+          ]
+        },
+        "org_graph": {
+          "org_role": "analyst",
+          "reports_to_suggestions": [],
+          "delegates_to_suggestions": [],
+          "collaborates_with_suggestions": [
+            "review",
+            "planning"
+          ],
+          "authority_tier": "advisory",
+          "work_graph_impact": "Adds or updates a skill capability with route profile None."
+        }
+      },
+      "display_name": "Plan to Goal Design",
+      "descriptor_version": "capability-fabric.descriptor.v0",
+      "family_slug": "plan-to-goal-design",
+      "shared_summary": "Turns an inspected implementation plan or intent into a compact, host-aware goal plus a durable specification and verifier packet. Use when a user wants to move from read-only Plan mode into a bounded long-running goal without losing repository evidence, rules, scope, or honest stop conditions.",
+      "shared_constraints": [
+        "Do not mutate source code while compiling a packet in read-only Plan mode.",
+        "Do not use chat history as the only durable source for a long-running goal.",
+        "Do not exceed 3,500 characters or bytes even when a host permits more.",
+        "Do not hide unknowns, unsupported behavior, manual checks, or external-state dependencies.",
+        "Do not rely on an execute bit for bundled scripts or task verifiers; invoke Bash and Python resources through their interpreters.",
+        "Do not create, replace, pause, resume, or clear a goal unless the user separately requests that runtime action.",
+        "Do not deploy, commit, merge, or alter global skill installations merely because the packet is ready."
+      ],
+      "modes": [],
+      "benchmark_sources": [],
+      "quality_profile": "default",
+      "quality_status": "structural_ready",
+      "judge_reports": [
+        {
+          "pass_number": 1,
+          "status": "structural_ready",
+          "historical_baseline": {
+            "slug": "plan-to-goal-design",
+            "strategy": "head_snapshot",
+            "group": "derived_current",
+            "baseline_path": "ssot/plan-to-goal-design.md",
+            "selected_commit": null,
+            "richness_score": 5,
+            "line_count": 231,
+            "reason": "No git history was available, so the current SSOT body is the strongest available baseline.",
+            "equivalent_commits": [],
+            "expected_companions": [],
+            "operator_invariants": [],
+            "scenario_matrix": [
+              {
+                "id": "operational_invocation",
+                "kind": "operational_contract",
+                "label": "operational invocation surface",
+                "must_contain": [
+                  "## Invocation"
+                ]
+              }
+            ],
+            "historical_proof": {},
+            "source": "current_ssot",
+            "verified_by_git_history": false,
+            "has_baseline_text": true
+          },
+          "judge_reports": [
+            {
+              "judge": "source_fidelity",
+              "title": "Source Fidelity and Uplift",
+              "score": 10,
+              "blockers": [],
+              "classification": "preserved",
+              "scenario_results": [
+                {
+                  "id": "operational_invocation",
+                  "kind": "operational_contract",
+                  "label": "operational invocation surface",
+                  "passed": true,
+                  "missing_markers": []
+                }
+              ],
+              "scorecard": {
+                "baseline_richness": 5,
+                "candidate_richness": 5,
+                "baseline_operational_score": 2,
+                "candidate_operational_score": 2,
+                "baseline_preserved_in_resource": false
+              },
+              "baseline_commit": null,
+              "baseline_slug": "plan-to-goal-design"
+            },
+            {
+              "judge": "operational_richness",
+              "title": "Operational Richness",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "metadata_integrity",
+              "title": "Metadata and Handoff Integrity",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "benchmark_readiness",
+              "title": "Benchmark Readiness and Template Fit",
+              "score": 10,
+              "blockers": [],
+              "scorecard": {
+                "title_clarity": 10,
+                "description_richness": 10,
+                "intent_coverage": 10,
+                "boundary_clarity": 10,
+                "output_specificity": 10,
+                "metadata_completeness": 8,
+                "surface_usability": 10
+              }
+            }
+          ],
+          "blockers": [],
+          "scorecard": {
+            "source_fidelity": 10,
+            "baseline_richness": 5,
+            "candidate_richness": 5,
+            "baseline_operational_score": 2,
+            "candidate_operational_score": 2,
+            "baseline_preserved_in_resource": false,
+            "operational_richness": 10,
+            "metadata_integrity": 10,
+            "benchmark_readiness": 10,
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 10,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          },
+          "template_name": "skill"
+        }
+      ],
+      "consumption_hints": {
+        "preferred_use_cases": [
+          "AI-assisted capability selection",
+          "deterministic prompt uplift review"
+        ],
+        "artifact_conventions": [
+          "ssot/<slug>.md",
+          ".meta/capabilities/<slug>.json",
+          "reports/quality-reviews/<slug>/LATEST.md"
+        ],
+        "invocation_style": "assistant_first_but_scriptable",
+        "requires_human_confirmation": true
+      },
+      "quality_pass_count": 1,
+      "quality_stop_reason": "thresholds_met",
+      "declared_capability": "skill",
+      "inferred_capability": "skill",
+      "expected_surface_names": [
+        "codex_skill",
+        "gemini_skill",
+        "claude_skill",
+        "kiro_skill"
+      ],
+      "rubric_version": "capability-fabric.v0",
+      "invocation_hints": [
+        "turn this approved plan into a goal",
+        "prepare a copyable Goal-mode objective and iteration setting",
+        "convert this implementation brief into a durable goal packet",
+        "make this long-running goal research the repository before it edits",
+        "create a goal, spec, and verifier without assuming every CLI has `/goal`"
+      ]
+    },
+    {
       "slug": "pulse",
       "manifest_version": "capability-fabric.v0",
       "layers": {
@@ -7305,6 +7606,7 @@
       ".gemini/skills/ic-assistant/SKILL.md",
       ".gemini/skills/instruction-editor/SKILL.md",
       ".gemini/skills/pitch/SKILL.md",
+      ".gemini/skills/plan-to-goal-design/SKILL.md",
       ".gemini/skills/pulse/SKILL.md",
       ".gemini/skills/resolve-conflict/SKILL.md",
       ".gemini/skills/supercharge/SKILL.md",
@@ -7344,6 +7646,7 @@
       ".claude/skills/ic-assistant/SKILL.md",
       ".claude/skills/instruction-editor/SKILL.md",
       ".claude/skills/pitch/SKILL.md",
+      ".claude/skills/plan-to-goal-design/SKILL.md",
       ".claude/skills/pulse/SKILL.md",
       ".claude/skills/resolve-conflict/SKILL.md",
       ".claude/skills/supercharge/SKILL.md",
@@ -7396,6 +7699,7 @@
       ".kiro/skills/ic-assistant/SKILL.md",
       ".kiro/skills/instruction-editor/SKILL.md",
       ".kiro/skills/pitch/SKILL.md",
+      ".kiro/skills/plan-to-goal-design/SKILL.md",
       ".kiro/skills/pulse/SKILL.md",
       ".kiro/skills/resolve-conflict/SKILL.md",
       ".kiro/skills/supercharge/SKILL.md",
@@ -7422,6 +7726,7 @@
       ".codex/skills/ic-assistant/SKILL.md",
       ".codex/skills/instruction-editor/SKILL.md",
       ".codex/skills/pitch/SKILL.md",
+      ".codex/skills/plan-to-goal-design/SKILL.md",
       ".codex/skills/pulse/SKILL.md",
       ".codex/skills/resolve-conflict/SKILL.md",
       ".codex/skills/supercharge/SKILL.md",
@@ -7473,6 +7778,20 @@
       ".codex/skills/instruction-editor/resources/capability.json",
       ".codex/skills/instruction-editor/resources/references/instruction-clarity.md",
       ".codex/skills/pitch/resources/capability.json",
+      ".codex/skills/plan-to-goal-design/resources/capability.json",
+      ".codex/skills/plan-to-goal-design/resources/adapters/hosts.json",
+      ".codex/skills/plan-to-goal-design/resources/goal-lint",
+      ".codex/skills/plan-to-goal-design/resources/references/evidence.md",
+      ".codex/skills/plan-to-goal-design/resources/references/goal-authoring.md",
+      ".codex/skills/plan-to-goal-design/resources/references/goal-design-lessons.md",
+      ".codex/skills/plan-to-goal-design/resources/references/verifier-trust.md",
+      ".codex/skills/plan-to-goal-design/resources/schemas/packet.schema.json",
+      ".codex/skills/plan-to-goal-design/resources/scripts/goal_packet.py",
+      ".codex/skills/plan-to-goal-design/resources/templates/baseline.json.tmpl",
+      ".codex/skills/plan-to-goal-design/resources/templates/goal.txt.tmpl",
+      ".codex/skills/plan-to-goal-design/resources/templates/packet.json.tmpl",
+      ".codex/skills/plan-to-goal-design/resources/templates/receipt.json.tmpl",
+      ".codex/skills/plan-to-goal-design/resources/templates/spec.md.tmpl",
       ".codex/skills/pulse/resources/capability.json",
       ".codex/skills/resolve-conflict/resources/capability.json",
       ".codex/skills/supercharge/resources/capability.json",
@@ -7528,6 +7847,20 @@
       ".gemini/skills/instruction-editor/resources/capability.json",
       ".gemini/skills/instruction-editor/resources/references/instruction-clarity.md",
       ".gemini/skills/pitch/resources/capability.json",
+      ".gemini/skills/plan-to-goal-design/resources/capability.json",
+      ".gemini/skills/plan-to-goal-design/resources/adapters/hosts.json",
+      ".gemini/skills/plan-to-goal-design/resources/goal-lint",
+      ".gemini/skills/plan-to-goal-design/resources/references/evidence.md",
+      ".gemini/skills/plan-to-goal-design/resources/references/goal-authoring.md",
+      ".gemini/skills/plan-to-goal-design/resources/references/goal-design-lessons.md",
+      ".gemini/skills/plan-to-goal-design/resources/references/verifier-trust.md",
+      ".gemini/skills/plan-to-goal-design/resources/schemas/packet.schema.json",
+      ".gemini/skills/plan-to-goal-design/resources/scripts/goal_packet.py",
+      ".gemini/skills/plan-to-goal-design/resources/templates/baseline.json.tmpl",
+      ".gemini/skills/plan-to-goal-design/resources/templates/goal.txt.tmpl",
+      ".gemini/skills/plan-to-goal-design/resources/templates/packet.json.tmpl",
+      ".gemini/skills/plan-to-goal-design/resources/templates/receipt.json.tmpl",
+      ".gemini/skills/plan-to-goal-design/resources/templates/spec.md.tmpl",
       ".gemini/skills/pulse/resources/capability.json",
       ".gemini/skills/resolve-conflict/resources/capability.json",
       ".gemini/skills/supercharge/resources/capability.json",
@@ -7583,6 +7916,20 @@
       ".claude/skills/instruction-editor/resources/capability.json",
       ".claude/skills/instruction-editor/resources/references/instruction-clarity.md",
       ".claude/skills/pitch/resources/capability.json",
+      ".claude/skills/plan-to-goal-design/resources/capability.json",
+      ".claude/skills/plan-to-goal-design/resources/adapters/hosts.json",
+      ".claude/skills/plan-to-goal-design/resources/goal-lint",
+      ".claude/skills/plan-to-goal-design/resources/references/evidence.md",
+      ".claude/skills/plan-to-goal-design/resources/references/goal-authoring.md",
+      ".claude/skills/plan-to-goal-design/resources/references/goal-design-lessons.md",
+      ".claude/skills/plan-to-goal-design/resources/references/verifier-trust.md",
+      ".claude/skills/plan-to-goal-design/resources/schemas/packet.schema.json",
+      ".claude/skills/plan-to-goal-design/resources/scripts/goal_packet.py",
+      ".claude/skills/plan-to-goal-design/resources/templates/baseline.json.tmpl",
+      ".claude/skills/plan-to-goal-design/resources/templates/goal.txt.tmpl",
+      ".claude/skills/plan-to-goal-design/resources/templates/packet.json.tmpl",
+      ".claude/skills/plan-to-goal-design/resources/templates/receipt.json.tmpl",
+      ".claude/skills/plan-to-goal-design/resources/templates/spec.md.tmpl",
       ".claude/skills/pulse/resources/capability.json",
       ".claude/skills/resolve-conflict/resources/capability.json",
       ".claude/skills/supercharge/resources/capability.json",
@@ -7638,6 +7985,20 @@
       ".kiro/skills/instruction-editor/resources/capability.json",
       ".kiro/skills/instruction-editor/resources/references/instruction-clarity.md",
       ".kiro/skills/pitch/resources/capability.json",
+      ".kiro/skills/plan-to-goal-design/resources/capability.json",
+      ".kiro/skills/plan-to-goal-design/resources/adapters/hosts.json",
+      ".kiro/skills/plan-to-goal-design/resources/goal-lint",
+      ".kiro/skills/plan-to-goal-design/resources/references/evidence.md",
+      ".kiro/skills/plan-to-goal-design/resources/references/goal-authoring.md",
+      ".kiro/skills/plan-to-goal-design/resources/references/goal-design-lessons.md",
+      ".kiro/skills/plan-to-goal-design/resources/references/verifier-trust.md",
+      ".kiro/skills/plan-to-goal-design/resources/schemas/packet.schema.json",
+      ".kiro/skills/plan-to-goal-design/resources/scripts/goal_packet.py",
+      ".kiro/skills/plan-to-goal-design/resources/templates/baseline.json.tmpl",
+      ".kiro/skills/plan-to-goal-design/resources/templates/goal.txt.tmpl",
+      ".kiro/skills/plan-to-goal-design/resources/templates/packet.json.tmpl",
+      ".kiro/skills/plan-to-goal-design/resources/templates/receipt.json.tmpl",
+      ".kiro/skills/plan-to-goal-design/resources/templates/spec.md.tmpl",
       ".kiro/skills/pulse/resources/capability.json",
       ".kiro/skills/resolve-conflict/resources/capability.json",
       ".kiro/skills/supercharge/resources/capability.json",
