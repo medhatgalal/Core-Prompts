@@ -9,6 +9,10 @@
     "eb9e3fd101415083a1e75850f582d7dd547ccffb4119fd7235e61407506aae39",
     "1f013308a12fc6fd66b3b7821cfdbdc488de218eabe57b5c7c93fe9a22e3fa09",
     "d69fe723b3887def45dca57abfef8166fafcde3dbc66c808c8ad8e0dec58c039",
+    "f44515edb12d510a15fddde43c3521950109e0b4543d6de1e067ddb3ddf47aa4",
+    "f5b0b0c0aee9a6a717887c83a885a2820ffafd21f051fea395c1aab663d01f17",
+    "0f2d482de6d2583334fbc42431bcd866839114c23508507f5190383d5d7663e2",
+    "e3449c878c05d744334f9aa7af2d8aa02e73dd31297b37bb6abe3489e981c93b",
     "cc7e75cac40682cb7593c56064ee9394e362c350793f92da8108bcaccebe4766",
     "0885e217a2ed838c3caa07eb501cd20465206c8cb258fe17ad73d196015c2d5d",
     "54683e0251043ba51e2c63472e388de8cf1c0b0b0c8a62e886726872e33bfdd8",
@@ -31,6 +35,7 @@
     "3185b2c8579672e73d79697e380c37aef30b3a8e426502ef97d4c3fa1435dc1b",
     "f7f2a39173d968e1630542ba7544afc6dfc2d4df78d05b0be5a840c3b6cce327",
     "ec47980ffc2e3615f42aaab11e8aee6d30b6711b2dbd082f005eb2dfd7f87b49",
+    "6cd8b78d112144317fb67db7d9d1cd064cc6683c232329f531bb60bb9e0649b0",
     "4017ff33c4382d79682621cdb049f4ef5475b2b059935b5ec40a8f272f5442b7"
   ],
   "editable_behavior": [],
@@ -79,6 +84,26 @@
       "sha256": "d69fe723b3887def45dca57abfef8166fafcde3dbc66c808c8ad8e0dec58c039",
       "source": "ssot/codebase-health-audit.md",
       "text": "This is a direct skill surface, not an autonomous agent. It may read files, list directories, inspect symbols, and search references. It must not modify, create, delete, stage, commit, install dependencies, run tests, or deploy anything in the target codebase."
+    },
+    {
+      "sha256": "f44515edb12d510a15fddde43c3521950109e0b4543d6de1e067ddb3ddf47aa4",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "The authored and generated resource is intentionally mode 644; invoke it through Bash. Default report mode is read-only and emits either a human table or one JSON object. Diagnostics go to stderr."
+    },
+    {
+      "sha256": "f5b0b0c0aee9a6a717887c83a885a2820ffafd21f051fea395c1aab663d01f17",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "Actual Trash moves are outside the read-only audit. Run `bash resources/cruft-report --json --trash <category> --confirm` only when the user separately asks to clean that exact category after reviewing the preview. Never infer `--confirm`, never prompt on a TTY, and never widen the category."
+    },
+    {
+      "sha256": "0f2d482de6d2583334fbc42431bcd866839114c23508507f5190383d5d7663e2",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "Exit codes are `0` success/no-op, `2` usage, `3` unavailable environment dependency, `4` explicit confirmation required, and `5` one or more Trash moves failed."
+    },
+    {
+      "sha256": "e3449c878c05d744334f9aa7af2d8aa02e73dd31297b37bb6abe3489e981c93b",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "- read-only inventory of known generated, backup, and temporary-file categories"
     },
     {
       "sha256": "cc7e75cac40682cb7593c56064ee9394e362c350793f92da8108bcaccebe4766",
@@ -189,6 +214,11 @@
       "sha256": "ec47980ffc2e3615f42aaab11e8aee6d30b6711b2dbd082f005eb2dfd7f87b49",
       "source": "ssot/codebase-health-audit.md",
       "text": "- **Scoped.** Only analyze files matching `languages` config. Skip everything else."
+    },
+    {
+      "sha256": "6cd8b78d112144317fb67db7d9d1cd064cc6683c232329f531bb60bb9e0649b0",
+      "source": "ssot/codebase-health-audit.md",
+      "text": "- **Non-interactive.** Bundled tools take flags, provide `--help` and `--json`, and never wait for TTY input."
     },
     {
       "sha256": "4017ff33c4382d79682621cdb049f4ef5475b2b059935b5ec40a8f272f5442b7",

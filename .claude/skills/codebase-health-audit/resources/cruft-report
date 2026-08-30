@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Stable interpreter wrapper; resources are intentionally mode 644.
+set -uo pipefail
+
+RESOURCE_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+JSON_OUTPUT=false
+for argument in "$@"; do
+  [ "$argument" = "--json" ] && JSON_OUTPUT=true
+done
+if ! command -v python3 >/dev/null 2>&1 || ! python3 -c 'import sys; raise SystemExit(sys.version_info < (3, 11))' >/dev/null 2>&1; then
+  printf '%s\n' 'cruft-report: Python 3.11 or newer is required' >&2
+  if [ "$JSON_OUTPUT" = true ]; then
+    printf '%s\n' '{"error":"Python 3.11 or newer is required","exit_code":3,"schema_version":"cruft-report.v1","status":"environment_error"}'
+  fi
+  exit 3
+fi
+exec python3 -B "$RESOURCE_DIR/cruft_report.py" "$@"

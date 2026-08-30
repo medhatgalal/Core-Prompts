@@ -146,6 +146,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
   - produce a read-only brownfield health report
   - identify slice-ready refactors from concrete structural metrics
   - detect structural drift since the last audit
+  - inventory generated, backup, and temporary-file cruft without deleting it
 - Summary: Read-only brownfield codebase structural audit for LOC hotspots, god objects, import fan-out, dead code, prior-claim verification, drift detection, and slice-ready remediation.
 
 ### Commit Review — Git Commit Quality Gate
