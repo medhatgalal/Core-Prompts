@@ -1,0 +1,369 @@
+#!/usr/bin/env bash
+# Agent-facing pre-dispatch audit for a goal/spec/verifier triple.
+# Invoke with: bash resources/goal-lint [OPTIONS] GOAL_DIR
+set -uo pipefail
+
+EXIT_CLEAN=0
+EXIT_FINDINGS=1
+EXIT_USAGE=2
+EXIT_INPUT=3
+
+FORMAT="human"
+TREE=""
+HOSTILE_TREE=""
+GOAL_DIR=""
+
+CHECK_IDS=()
+CHECK_CLASSES=()
+CHECK_STATUSES=()
+CHECK_MESSAGES=()
+pass_count=0
+warning_count=0
+finding_count=0
+
+MANUAL_IDS=(PROXY FORGERY ARITHMETIC ACHIEVABLE TRAP)
+MANUAL_QUESTIONS=(
+  "Could the metric move while the outcome does not? Name the scenario."
+  "Who besides the real work can write the evidence? What ties it to a real run?"
+  "Walk one awkward instance end to end. Does the metric add up?"
+  "Measure the population first. Is the target reachable from today's state?"
+  "If every planned step landed and the anchor did not move, does the verifier fail?"
+)
+
+usage() {
+  cat <<'EOF'
+Usage: bash resources/goal-lint [OPTIONS] GOAL_DIR
+
+Audit a goal.txt, spec.md, baseline.json, and verify.sh before dispatch.
+The verifier must fail on both the untouched tree and a cheapest-fake hostile tree.
+
+Options:
+  --tree PATH          Untouched repository/tree used for falsifiability.
+  --hostile-tree PATH  Cheapest fake implementation that must not satisfy the outcome.
+  --json               Emit one JSON object to stdout; diagnostics stay on stderr.
+  -h, --help           Show this help.
+
+Expected files:
+  goal.txt             Short outcome and references, at most 4,000 chars/bytes.
+  spec.md              Anchor, frozen population, fake/block table, and five answers.
+  baseline.json        Frozen identifier set used by the outcome anchor.
+  verify.sh            Bash verifier invoked with: bash verify.sh
+  prompt.txt           Optional; when present, checked for size and spec duplication.
+
+Dependencies:
+  Bash plus Python 3 for strict baseline.json validation.
+
+Exit codes:
+  0  clean: no blocking findings
+  1  findings: fix the reported goal/verifier defects before dispatch
+  2  usage error: invalid or missing command-line arguments
+  3  input/environment error: required directory or dependency is unavailable
+
+Examples:
+  bash resources/goal-lint --tree /repo --hostile-tree /tmp/fake /goals/task
+  bash resources/goal-lint --json --tree /repo --hostile-tree /tmp/fake /goals/task
+EOF
+}
+
+diagnose() {
+  printf 'goal-lint: %s\n' "$*" >&2
+}
+
+json_escape() {
+  local value=${1-}
+  value=${value//\\/\\\\}
+  value=${value//\"/\\\"}
+  value=${value//$'\n'/\\n}
+  value=${value//$'\r'/\\r}
+  value=${value//$'\t'/\\t}
+  printf '%s' "$value"
+}
+
+record() {
+  local id=$1 class=$2 status=$3 message=$4
+  CHECK_IDS+=("$id")
+  CHECK_CLASSES+=("$class")
+  CHECK_STATUSES+=("$status")
+  CHECK_MESSAGES+=("$message")
+  case "$status" in
+    pass) pass_count=$((pass_count + 1)) ;;
+    warning) warning_count=$((warning_count + 1)) ;;
+    fail) finding_count=$((finding_count + 1)) ;;
+  esac
+}
+
+section_has_answer() {
+  local heading=$1 file=$2
+  awk -v heading="$heading" '
+    $0 == "### " heading {inside=1; next}
+    inside && /^###? / {exit}
+    inside && $0 !~ /^[[:space:]]*$/ && $0 !~ /<[^>]+>/ {found=1}
+    END {exit(found ? 0 : 1)}
+  ' "$file"
+}
+
+run_verifier() {
+  local root=$1 output_file=$2
+  (
+    cd "$root" || exit 3
+    ANCHOR_ROOT="$root" REPO_ROOT="$root" bash "$VERIFY_FILE"
+  ) >"$output_file" 2>&1
+  return $?
+}
+
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    -h|--help)
+      usage
+      exit "$EXIT_CLEAN"
+      ;;
+    --json)
+      FORMAT="json"
+      shift
+      ;;
+    --tree)
+      [ "$#" -ge 2 ] || { diagnose "--tree requires a path"; exit "$EXIT_USAGE"; }
+      TREE=$2
+      shift 2
+      ;;
+    --hostile-tree)
+      [ "$#" -ge 2 ] || { diagnose "--hostile-tree requires a path"; exit "$EXIT_USAGE"; }
+      HOSTILE_TREE=$2
+      shift 2
+      ;;
+    --)
+      shift
+      [ "$#" -eq 1 ] || { diagnose "expected exactly one GOAL_DIR after --"; exit "$EXIT_USAGE"; }
+      GOAL_DIR=$1
+      shift
+      ;;
+    -*)
+      diagnose "unknown option: $1"
+      exit "$EXIT_USAGE"
+      ;;
+    *)
+      [ -z "$GOAL_DIR" ] || { diagnose "expected one GOAL_DIR, got an extra argument: $1"; exit "$EXIT_USAGE"; }
+      GOAL_DIR=$1
+      shift
+      ;;
+  esac
+done
+
+[ -n "$GOAL_DIR" ] || { diagnose "GOAL_DIR is required; run --help for usage"; exit "$EXIT_USAGE"; }
+[ -d "$GOAL_DIR" ] || { diagnose "goal directory does not exist: $GOAL_DIR"; exit "$EXIT_INPUT"; }
+GOAL_DIR=$(cd "$GOAL_DIR" && pwd -P) || { diagnose "cannot resolve goal directory"; exit "$EXIT_INPUT"; }
+if [ -n "$TREE" ]; then
+  [ -d "$TREE" ] || { diagnose "untouched tree does not exist: $TREE"; exit "$EXIT_INPUT"; }
+  TREE=$(cd "$TREE" && pwd -P) || { diagnose "cannot resolve untouched tree"; exit "$EXIT_INPUT"; }
+fi
+if [ -n "$HOSTILE_TREE" ]; then
+  [ -d "$HOSTILE_TREE" ] || { diagnose "hostile tree does not exist: $HOSTILE_TREE"; exit "$EXIT_INPUT"; }
+  HOSTILE_TREE=$(cd "$HOSTILE_TREE" && pwd -P) || { diagnose "cannot resolve hostile tree"; exit "$EXIT_INPUT"; }
+fi
+for dependency in awk basename bash env grep head mktemp python3 sed sort tr unlink wc xargs; do
+  command -v "$dependency" >/dev/null 2>&1 || { diagnose "required command is unavailable: $dependency"; exit "$EXIT_INPUT"; }
+done
+
+GOAL_FILE="$GOAL_DIR/goal.txt"
+PROMPT_FILE="$GOAL_DIR/prompt.txt"
+SPEC_FILE="$GOAL_DIR/spec.md"
+BASELINE_FILE="$GOAL_DIR/baseline.json"
+VERIFY_FILE="$GOAL_DIR/verify.sh"
+
+for required in "$GOAL_FILE" "$SPEC_FILE" "$BASELINE_FILE" "$VERIFY_FILE"; do
+  if [ -f "$required" ]; then
+    record "artifact.$(basename "$required")" "artifact_boundary" pass "found $(basename "$required")"
+  else
+    record "artifact.$(basename "$required")" "artifact_boundary" fail "missing $(basename "$required")"
+  fi
+done
+
+for prose_file in "$GOAL_FILE" "$PROMPT_FILE"; do
+  [ -f "$prose_file" ] || continue
+  char_count=$(wc -m <"$prose_file" | tr -d ' ')
+  byte_count=$(wc -c <"$prose_file" | tr -d ' ')
+  if [ "$char_count" -le 4000 ] && [ "$byte_count" -le 4000 ]; then
+    record "size.$(basename "$prose_file")" "artifact_boundary" pass "$(basename "$prose_file") is ${char_count} chars and ${byte_count} bytes"
+  else
+    record "size.$(basename "$prose_file")" "artifact_boundary" fail "$(basename "$prose_file") exceeds the 4,000 char/byte portable limit (${char_count}/${byte_count})"
+  fi
+  if [ "$char_count" -gt 1200 ]; then
+    record "size-preferred.$(basename "$prose_file")" "artifact_boundary" warning "$(basename "$prose_file") is above the measured compact range; move detail into spec.md"
+  fi
+done
+
+if [ -f "$SPEC_FILE" ]; then
+  for prose_file in "$GOAL_FILE" "$PROMPT_FILE"; do
+    [ -f "$prose_file" ] || continue
+    duplicate=0
+    total=0
+    while IFS= read -r line; do
+      shingles=$(printf '%s\n' "$line" | tr -cs '[:alnum:]' ' ' | tr '[:upper:]' '[:lower:]' | xargs -n8 2>/dev/null | head -3)
+      [ -n "$shingles" ] || continue
+      while IFS= read -r shingle; do
+        [ "$(printf '%s\n' "$shingle" | wc -w | tr -d ' ')" -ge 6 ] || continue
+        total=$((total + 1))
+        grep -qiF "$shingle" "$SPEC_FILE" 2>/dev/null && duplicate=$((duplicate + 1))
+      done <<<"$shingles"
+    done <"$prose_file"
+    if [ "$total" -gt 0 ]; then
+      overlap=$((duplicate * 100 / total))
+      if [ "$overlap" -lt 25 ]; then
+        record "overlap.$(basename "$prose_file")" "artifact_boundary" pass "${overlap}% shingle overlap with spec.md"
+      else
+        record "overlap.$(basename "$prose_file")" "artifact_boundary" fail "${overlap}% shingle overlap with spec.md; reference it instead of restating it"
+      fi
+    fi
+  done
+
+  for heading in "Outcome Anchor" "Frozen Population" "Fake / Block Table" "Two-Sided Verifier Validation" "Exit-Gate Truth Table"; do
+    heading_count=$(grep -c "^## ${heading}$" "$SPEC_FILE" 2>/dev/null || true)
+    if [ "$heading_count" -eq 1 ]; then
+      record "spec.${heading// /-}" "metric_outcome" pass "spec.md contains ${heading}"
+    else
+      record "spec.${heading// /-}" "metric_outcome" fail "spec.md requires exactly one ## ${heading}; found ${heading_count}"
+    fi
+  done
+  for manual_id in "${MANUAL_IDS[@]}"; do
+    if section_has_answer "$manual_id" "$SPEC_FILE"; then
+      record "manual.${manual_id}" "human_design" pass "${manual_id} has a written answer"
+    else
+      record "manual.${manual_id}" "human_design" fail "${manual_id} answer is missing or blank"
+    fi
+  done
+fi
+
+if [ -f "$BASELINE_FILE" ]; then
+  if python3 - "$BASELINE_FILE" 2>/dev/null <<'PY'
+import json
+import sys
+from pathlib import Path
+
+payload = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
+frozen_ids = payload.get("frozen_ids")
+if not isinstance(frozen_ids, list) or not frozen_ids:
+    raise SystemExit(1)
+if not all(isinstance(item, str) and item for item in frozen_ids):
+    raise SystemExit(1)
+if len(frozen_ids) != len(set(frozen_ids)):
+    raise SystemExit(1)
+PY
+  then
+    record "baseline.frozen_ids" "metric_outcome" pass "baseline.json is valid with nonempty unique frozen_ids"
+  else
+    record "baseline.frozen_ids" "metric_outcome" fail "baseline.json must be valid JSON with nonempty unique frozen_ids"
+  fi
+fi
+
+for prose_file in "$GOAL_FILE" "$PROMPT_FILE"; do
+  [ -f "$prose_file" ] || continue
+  while IFS= read -r referenced_path; do
+    [ -n "$referenced_path" ] || continue
+    if [ -e "$referenced_path" ]; then
+      record "reference.$(basename "$prose_file")" "artifact_boundary" pass "referenced path exists: $referenced_path"
+    else
+      record "reference.$(basename "$prose_file")" "artifact_boundary" fail "referenced path is missing: $referenced_path"
+    fi
+  done < <(grep -ohE '(/tmp|/Users)/[A-Za-z0-9._/-]+' "$prose_file" 2>/dev/null | sort -u)
+done
+
+if [ -f "$VERIFY_FILE" ]; then
+  if bash -n "$VERIFY_FILE" 2>/dev/null; then
+    record "verifier.syntax" "judge_instrument" pass "verify.sh syntax is valid"
+  else
+    record "verifier.syntax" "judge_instrument" fail "verify.sh has Bash syntax errors"
+  fi
+  grep -qi 'ANCHOR' "$VERIFY_FILE" \
+    && record "verifier.anchor" "metric_outcome" pass "verifier names the outcome anchor" \
+    || record "verifier.anchor" "metric_outcome" fail "verifier has no named outcome anchor"
+  grep -qE 'anchor_ok.*-ne 1|anchor_ok.*!=.*1' "$VERIFY_FILE" \
+    && record "verifier.anchor-gate" "metric_outcome" pass "anchor gates independently of mechanism totals" \
+    || record "verifier.anchor-gate" "metric_outcome" fail "anchor does not gate independently"
+  grep -qiE 'UNVERIFIABLE|cannot read|unreadable' "$VERIFY_FILE" \
+    && record "verifier.unverifiable" "metric_outcome" pass "unreadable anchor fails closed" \
+    || record "verifier.unverifiable" "metric_outcome" fail "no fail-closed handling for an unreadable anchor"
+  if grep -qE "grep .*def [a-z_]+\\(" "$VERIFY_FILE"; then
+    record "verifier.signature" "judge_instrument" fail "verifier greps a function signature; introspect instead"
+  else
+    record "verifier.signature" "judge_instrument" pass "no function-signature text matching"
+  fi
+  grep -qiE 'ANCHOR_ROOT|REPO_ROOT|--tree' "$VERIFY_FILE" \
+    && record "verifier.root" "judge_instrument" pass "evidence root is explicit" \
+    || record "verifier.root" "judge_instrument" fail "verifier infers its evidence root from cwd"
+
+  abort_output=$(mktemp "${TMPDIR:-/tmp}/goal-lint-abort.XXXXXX") || { diagnose "cannot create temporary output"; exit "$EXIT_INPUT"; }
+  env -u ANCHOR_ROOT -u REPO_ROOT bash "$VERIFY_FILE" >"$abort_output" 2>&1
+  abort_rc=$?
+  unlink "$abort_output"
+  if [ "$abort_rc" -ne 0 ]; then
+    record "verifier.abort" "judge_instrument" pass "misconfigured verifier aborts nonzero (exit ${abort_rc})"
+  else
+    record "verifier.abort" "judge_instrument" fail "misconfigured verifier exits zero"
+  fi
+
+  if [ -n "$TREE" ] && [ -d "$TREE" ]; then
+    falsify_output=$(mktemp "${TMPDIR:-/tmp}/goal-lint-falsify.XXXXXX") || { diagnose "cannot create temporary output"; exit "$EXIT_INPUT"; }
+    run_verifier "$TREE" "$falsify_output"
+    falsify_rc=$?
+    if [ "$falsify_rc" -ne 0 ] && grep -qiE 'ANCHOR|C[0-9]+' "$falsify_output"; then
+      record "verifier.falsifiability" "two_sided_validation" pass "verifier fails on untouched tree for a named anchor/criterion (exit ${falsify_rc})"
+    else
+      record "verifier.falsifiability" "two_sided_validation" fail "untouched-tree failure is absent or not tied to a named anchor/criterion (exit ${falsify_rc})"
+    fi
+    unlink "$falsify_output"
+  else
+    record "verifier.falsifiability" "two_sided_validation" fail "--tree must name an existing untouched tree"
+  fi
+
+  if [ -n "$HOSTILE_TREE" ] && [ -d "$HOSTILE_TREE" ]; then
+    hostile_output=$(mktemp "${TMPDIR:-/tmp}/goal-lint-hostile.XXXXXX") || { diagnose "cannot create temporary output"; exit "$EXIT_INPUT"; }
+    run_verifier "$HOSTILE_TREE" "$hostile_output"
+    hostile_rc=$?
+    if [ "$hostile_rc" -ne 0 ] && grep -qiE 'ANCHOR|C[0-9]+' "$hostile_output"; then
+      record "verifier.hostile-pass" "two_sided_validation" pass "verifier rejects the cheapest fake tree for a named anchor/criterion (exit ${hostile_rc})"
+    else
+      record "verifier.hostile-pass" "two_sided_validation" fail "cheapest fake tree passes or fails for an unrelated reason (exit ${hostile_rc})"
+    fi
+    unlink "$hostile_output"
+  else
+    record "verifier.hostile-pass" "two_sided_validation" fail "--hostile-tree must name an existing cheapest-fake tree"
+  fi
+fi
+
+if [ "$finding_count" -eq 0 ]; then
+  overall_status="clean"
+  exit_code=$EXIT_CLEAN
+else
+  overall_status="findings"
+  exit_code=$EXIT_FINDINGS
+fi
+
+if [ "$FORMAT" = "json" ]; then
+  printf '{"schema_version":"goal-lint.v1","status":"%s","counts":{"pass":%d,"warning":%d,"finding":%d},"checks":[' "$overall_status" "$pass_count" "$warning_count" "$finding_count"
+  for index in "${!CHECK_IDS[@]}"; do
+    [ "$index" -eq 0 ] || printf ','
+    printf '{"id":"%s","class":"%s","status":"%s","message":"%s"}' \
+      "$(json_escape "${CHECK_IDS[$index]}")" \
+      "$(json_escape "${CHECK_CLASSES[$index]}")" \
+      "$(json_escape "${CHECK_STATUSES[$index]}")" \
+      "$(json_escape "${CHECK_MESSAGES[$index]}")"
+  done
+  printf '],"manual_questions":['
+  for index in "${!MANUAL_IDS[@]}"; do
+    [ "$index" -eq 0 ] || printf ','
+    printf '{"id":"%s","question":"%s"}' "${MANUAL_IDS[$index]}" "$(json_escape "${MANUAL_QUESTIONS[$index]}")"
+  done
+  printf ']}\n'
+else
+  for index in "${!CHECK_IDS[@]}"; do
+    status_upper=$(printf '%s' "${CHECK_STATUSES[$index]}" | tr '[:lower:]' '[:upper:]')
+    printf '%-7s %-22s %s\n' "$status_upper" "${CHECK_IDS[$index]}" "${CHECK_MESSAGES[$index]}"
+  done
+  printf '\nNOT MECHANICALLY ANSWERABLE — written answers are required in spec.md:\n'
+  for index in "${!MANUAL_IDS[@]}"; do
+    printf '  %s: %s\n' "${MANUAL_IDS[$index]}" "${MANUAL_QUESTIONS[$index]}"
+  done
+  printf '\ngoal-lint: %s (%d finding(s), %d warning(s))\n' "$overall_status" "$finding_count" "$warning_count"
+fi
+
+exit "$exit_code"

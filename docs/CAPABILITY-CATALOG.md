@@ -2,7 +2,7 @@
 
 Generated from canonical manifest and descriptor metadata. Use this page to see what Core-Prompts ships, what each capability is for, and where it lands.
 
-- Capability count: `24`
+- Capability count: `25`
 
 ## Start Here
 - `docs-review-expert` — Docs Review Expert — Documentation IA, Drift, and Release Hygiene: Documentation Review Expert for information architecture, explainable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.
@@ -12,10 +12,10 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `testing` — Testing Studio — Test Design and Coverage Analysis: Testing Studio for unit-test generation, end-to-end test design, edge-case discovery, and coverage gap analysis.
 
 ## By CLI
-- `claude`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `batman`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `instruction-editor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `codex`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `batman`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `instruction-editor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `gemini`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `batman`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `instruction-editor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `kiro`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `batman`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `instruction-editor`, `pitch`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `claude`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `batman`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `instruction-editor`, `pitch`, `plan-to-goal-design`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `codex`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `batman`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `instruction-editor`, `pitch`, `plan-to-goal-design`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `gemini`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `batman`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `instruction-editor`, `pitch`, `plan-to-goal-design`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `kiro`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `batman`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `instruction-editor`, `pitch`, `plan-to-goal-design`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
 
 ## By Use Case
 - `address`: `address-code-review`
@@ -32,19 +32,22 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `context`: `analyze-context`, `threader`
 - `converge`: `converge`
 - `demo`: `demo-recorder`
+- `design`: `plan-to-goal-design`
 - `docs`: `docs-review-expert`
 - `dynamic`: `dynamic-html-presentations`
 - `editor`: `instruction-editor`
 - `expert`: `docs-review-expert`
 - `feature`: `feature-status`
 - `gitops`: `gitops-review`
+- `goal`: `plan-to-goal-design`
 - `health`: `codebase-health-audit`
 - `html`: `dynamic-html-presentations`
 - `import`: `codebase-health-audit`, `uac-import`
 - `instruction`: `instruction-editor`
 - `intel`: `weekly-intel`
 - `pitch`: `pitch`
-- `planning`: `uac-import`
+- `plan`: `plan-to-goal-design`
+- `planning`: `plan-to-goal-design`, `uac-import`
 - `presentations`: `dynamic-html-presentations`
 - `prompting`: `code-review`, `instruction-editor`, `uac-import`
 - `pulse`: `pulse`
@@ -307,6 +310,19 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
   - bootstrap a pitch from this goal
   - what does good integration proof look like / how do I prove integration / what spike do I need
 - Summary: Creates, reviews, scores, improves, and critiques Shape Up pitch documents. Use when working with pitches at any stage: from bootstrapping a new pitch from a goal statement, to hardening an existing pitch for betting, to auditing pitch quality across a portfolio.
+
+### Plan to Goal Design
+- Slug: `plan-to-goal-design`
+- Type: `skill`
+- Install target: `global`
+- Supported CLIs: `claude, codex, gemini, kiro`
+- Invocation hints:
+  - turn this approved plan into a goal
+  - prepare a copyable Goal-mode objective and iteration setting
+  - convert this implementation brief into a durable goal packet
+  - make this long-running goal research the repository before it edits
+  - create a goal, spec, and verifier without assuming every CLI has `/goal`
+- Summary: Turns an inspected implementation plan or intent into a compact, host-aware goal plus a durable specification and verifier packet. Use when a user wants to move from read-only Plan mode into a bounded long-running goal without losing repository evidence, rules, scope, or honest stop conditions.
 
 ### Pulse — Comms Triage
 - Slug: `pulse`

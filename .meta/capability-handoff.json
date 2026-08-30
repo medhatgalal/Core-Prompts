@@ -1679,6 +1679,102 @@
       "advisory_only": true
     },
     {
+      "slug": "plan-to-goal-design",
+      "display_name": "Plan to Goal Design",
+      "capability_type": "skill",
+      "summary": "Turns an inspected implementation plan or intent into a compact, host-aware goal plus a durable specification and verifier packet. Use when a user wants to move from read-only Plan mode into a bounded long-running goal without losing repository evidence, rules, scope, or honest stop conditions.",
+      "role": "workflow",
+      "domain_tags": [
+        "planning",
+        "plan",
+        "goal",
+        "design"
+      ],
+      "required_inputs": [
+        "an implementation plan, intent, issue, or approved planning artifact",
+        "the target repository or working context",
+        "the active host/runtime when detectable",
+        "any user-supplied iteration, token, time, or cost bound",
+        "explicit protected surfaces, approvals, or operator checks when already known"
+      ],
+      "expected_outputs": [
+        "`Research Receipt`",
+        "`Goal Packet Status`",
+        "`Artifact Manifest`",
+        "`Goal Prose`",
+        "`Host Budget`",
+        "`Verification Trust`",
+        "`Launch Command`",
+        "`Next Action`"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "global",
+        "confidence": 1.0,
+        "confirmation_required_for_apply": true,
+        "rationale": "SSOT frontmatter explicitly declares global installation.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ]
+      },
+      "confidence": 0.97,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [],
+      "quality_status": "structural_ready",
+      "benchmark_profile": "default",
+      "preferred_use_cases": [
+        "AI-assisted capability selection",
+        "deterministic prompt uplift review"
+      ],
+      "artifact_conventions": [
+        "ssot/<slug>.md",
+        ".meta/capabilities/<slug>.json",
+        "reports/quality-reviews/<slug>/LATEST.md"
+      ],
+      "invocation_style": "assistant_first_but_scriptable",
+      "requires_human_confirmation": true,
+      "org_graph": {
+        "org_role": "analyst",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "review",
+          "planning"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile None."
+      },
+      "advisory_only": true
+    },
+    {
       "slug": "pulse",
       "display_name": "Pulse \u2014 Comms Triage",
       "capability_type": "both",

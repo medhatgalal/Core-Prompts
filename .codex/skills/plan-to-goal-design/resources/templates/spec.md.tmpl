@@ -1,0 +1,134 @@
+# <Goal title>
+
+## Provenance
+- Source plan: `<path>`
+- Source SHA-256: `<sha256>`
+- Repository: `<root>`
+- Worktree: `<path>`
+- Remotes: `<name=url>`
+- Branch: `<branch>`
+- HEAD: `<full SHA>`
+- Dirty state: `<clean or exact status hash>`
+- Researched at: `<UTC timestamp>`
+
+## Outcome
+<One observable end state and why it matters.>
+
+## Outcome Anchor
+- Anchor ID: `<ANCHOR-ID>`
+- World-state delta: `<frozen ids move from baseline state to target state>`
+- Load-bearing check: `<criterion that must fail independently of mechanisms>`
+
+## Frozen Population
+- Baseline file: `baseline.json`
+- Frozen identifier count: `<count>`
+- Measured reachable: `<count>`
+- Alternate disposition required: `<count and reason>`
+
+## Non-Goals
+- <Explicitly excluded outcome or surface.>
+
+## Completion Semantics
+<What machine evidence and operator evidence are required for achieved.>
+
+## Research Receipt
+
+### Rules Read
+- `<instruction path>` — <applicable constraint>
+
+### Code and Test Evidence
+- `FACT` — `<path:line or command>` — <finding>
+
+### File and Ownership Map
+- Likely: `<path or symbol>`
+- Owned: `<path or boundary>`
+- Protected: `<path or boundary>`
+- Generated: `<path or surface>`
+- Out of scope: `<path or boundary>`
+
+### External Sources
+- `<primary URL>` — retrieved `<date>` — <decision affected>
+
+### Facts, Inferences, Contradictions, and Unknowns
+- `FACT` — <statement and evidence>
+- `INFERENCE` — <statement and falsifier>
+- `CONTRADICTION` — <conflicting claims and controlling evidence>
+- `UNKNOWN` — <missing evidence and consequence>
+
+### Approval Decisions
+- <Action requiring approval and current authorization state.>
+
+## Requirements and Acceptance Criteria
+- `R1` — WHEN <trigger> THEN <system> SHALL <observable behavior>.
+
+## Milestones and Ownership
+1. <Dependency-ordered milestone, owner, and affected boundary.>
+
+## Constraints and Limits
+- Constraint: <required working method or protected policy>
+- Limit: <shortcut that would satisfy the wording while betraying intent>
+
+## Fake / Block Table
+| Criterion | Cheapest fake | Required block |
+| --- | --- | --- |
+| ANCHOR | <how evidence or proxy could move without outcome> | <check that fails it> |
+
+## Two-Sided Verifier Validation
+
+### Falsifiability
+- Untouched tree: `<path>`
+- Expected exit: `<nonzero>`
+- Expected unmet anchor/criteria: `<ids>`
+
+### Hostile Pass
+- Cheapest-fake tree: `<path>`
+- Mechanisms made to appear complete: `<checks>`
+- Expected exit: `<nonzero>`
+- Expected unmet anchor/criteria: `<ids>`
+
+## Exit-Gate Truth Table
+| State | Expected exit | Expected result |
+| --- | --- | --- |
+| misconfigured | 2 | invalid/unverifiable |
+| untouched | 1 | anchor unmet |
+| cheapest fake | 1 | anchor unmet |
+| partial work | 1 | named criteria unmet |
+| machine ready, operator pending | 3 | approval required |
+| achieved | 0 | all required evidence present |
+
+## Manual Design Answers
+
+### PROXY
+<Could the metric move while the outcome does not? Name the scenario.>
+
+### FORGERY
+<Who besides real work can write evidence, and what binds it to a real run?>
+
+### ARITHMETIC
+<Walk one awkward instance end to end and show that the metric adds up.>
+
+### ACHIEVABLE
+<Measure the population and separate unreachable members.>
+
+### TRAP
+<If every step landed and the anchor did not move, show that the verifier fails.>
+
+## Verification Map
+| Requirement | Check | Evidence source | Trust | Operator check |
+| --- | --- | --- | --- | --- |
+| R1 | C1 | `<command or oracle>` | `<trust>` | `<none or named observation>` |
+
+## Rollback and Recovery
+- Rollback trigger: <observable regression>
+- Recovery: <safe reversible action>
+
+## Drift and Stop Conditions
+- `STALE_PACKET`: <material state changes that require replanning>
+- `BLOCKED`: <impasse requiring user or external change>
+- `APPROVAL_REQUIRED`: <action that cannot proceed silently>
+- `NO_PROGRESS`: <repeated evidence state that stops the loop>
+- `EXHAUSTED`: <host budget reached without completion>
+- `ACHIEVED`: <all required evidence present>
+
+## Decomposition Decision
+<Why this is one goal, or the ordered successor packet identifiers.>
