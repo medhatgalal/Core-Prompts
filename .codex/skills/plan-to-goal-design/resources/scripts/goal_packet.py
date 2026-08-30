@@ -30,11 +30,14 @@ REQUIRED_LABELS = (
     "DONE",
     "STOP / REPORT",
 )
+REQUIRED_ARTIFACTS = ("goal", "spec", "baseline", "criterion_flips", "judge_amendments", "verify")
 REQUIRED_SPEC_HEADINGS = (
     "## Provenance",
     "## Outcome",
     "## Outcome Anchor",
+    "## Anchor Granularity",
     "## Frozen Population",
+    "## Population Exclusions",
     "## Non-Goals",
     "## Research Receipt",
     "### Rules Read",
@@ -49,7 +52,9 @@ REQUIRED_SPEC_HEADINGS = (
     "## Two-Sided Verifier Validation",
     "### Falsifiability",
     "### Hostile Pass",
+    "## Per-Criterion Flip Tests",
     "## Exit-Gate Truth Table",
+    "## Judge Amendment Protocol",
     "## Manual Design Answers",
     "### PROXY",
     "### FORGERY",
@@ -85,6 +90,21 @@ def sha256_bytes(data: bytes) -> str:
 
 def sha256_file(path: Path) -> str:
     return sha256_bytes(path.read_bytes())
+
+
+def sha256_tree(root: Path) -> str:
+    digest = hashlib.sha256()
+    for path in sorted(root.rglob("*"), key=lambda item: item.relative_to(root).as_posix()):
+        relative = path.relative_to(root).as_posix().encode("utf-8")
+        if path.is_symlink():
+            raise PacketError(f"criterion fixture trees must not contain symlinks: {path}")
+        if path.is_dir():
+            digest.update(b"D\0" + relative + b"\0")
+        elif path.is_file():
+            digest.update(b"F\0" + relative + b"\0" + hashlib.sha256(path.read_bytes()).digest())
+        else:
+            raise PacketError(f"unsupported criterion fixture entry: {path}")
+    return digest.hexdigest()
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -288,8 +308,8 @@ def validate_packet_shape(packet: dict[str, Any]) -> None:
     if not isinstance(codes, list) or not codes or not all(isinstance(code, int) and code != 0 for code in codes):
         raise PacketError("verification.baseline_exit_codes must contain nonzero integers")
     artifacts = packet.get("artifacts")
-    if not isinstance(artifacts, dict) or not all(name in artifacts for name in ("goal", "spec", "baseline", "verify")):
-        raise PacketError("artifacts must define goal, spec, baseline, and verify")
+    if not isinstance(artifacts, dict) or not all(name in artifacts for name in REQUIRED_ARTIFACTS):
+        raise PacketError("artifacts must define " + ", ".join(REQUIRED_ARTIFACTS))
 
 
 def validate_repository_binding(packet: dict[str, Any], packet_dir: Path) -> dict[str, Any]:
@@ -332,6 +352,101 @@ def validate_baseline(payload: dict[str, Any]) -> None:
         raise PacketError("baseline.json requires a nonempty frozen_ids list")
     if len(frozen_ids) != len(set(frozen_ids)):
         raise PacketError("baseline.json frozen_ids must be unique")
+    anchor_scope = payload.get("anchor_scope")
+    if not isinstance(anchor_scope, dict) or anchor_scope.get("type") != "bounded_mechanism_proof":
+        raise PacketError("baseline.json anchor_scope.type must be bounded_mechanism_proof")
+    if anchor_scope.get("sample_size") != len(frozen_ids):
+        raise PacketError("baseline.json anchor_scope.sample_size must equal the frozen identifier count")
+    if anchor_scope.get("bulk_execution") not in {"not_applicable", "policy", "routine_operation"}:
+        raise PacketError("baseline.json anchor_scope.bulk_execution must separate bulk work from the goal")
+    owner = anchor_scope.get("authorization_owner")
+    if not isinstance(owner, str) or not owner.strip():
+        raise PacketError("baseline.json anchor_scope.authorization_owner is required")
+    if anchor_scope.get("author_can_grant_anchor_authority") is not True:
+        raise PacketError("baseline.json anchor requires authority the author cannot grant; this is a queue")
+    exclusion_lists = payload.get("exclusion_lists")
+    if not isinstance(exclusion_lists, dict):
+        raise PacketError("baseline.json exclusion_lists must be an object, even when empty")
+    frozen = set(frozen_ids)
+    for name, values in exclusion_lists.items():
+        if not isinstance(name, str) or not name or not isinstance(values, list):
+            raise PacketError("baseline.json exclusion lists require named arrays")
+        if not all(isinstance(item, str) and item for item in values):
+            raise PacketError(f"baseline.json exclusion list {name} contains an invalid identifier")
+        overlap = sorted(frozen.intersection(values))
+        if overlap:
+            raise PacketError(f"baseline.json frozen population intersects exclusion list {name}: {overlap}")
+
+
+def validate_judge_amendments(payload: dict[str, Any], verify_path: Path, criterion_path: Path) -> None:
+    if payload.get("schema_version") != "plan-to-goal.judge-amendments.v1":
+        raise PacketError("judge-amendments.json requires schema_version plan-to-goal.judge-amendments.v1")
+    amendments = payload.get("amendments")
+    if not isinstance(amendments, list):
+        raise PacketError("judge-amendments.json amendments must be a list")
+    criterion_payload = load_json(criterion_path)
+    criterion_entries = criterion_payload.get("criteria")
+    if not isinstance(criterion_entries, list):
+        raise PacketError("criterion-flips.json criteria must be a list")
+    criterion_ids = {
+        item.get("id") for item in criterion_entries if isinstance(item, dict) and isinstance(item.get("id"), str)
+    }
+    if not criterion_ids:
+        raise PacketError("criterion-flips.json requires criterion IDs")
+    previous_new: str | None = None
+    for amendment in amendments:
+        if not isinstance(amendment, dict):
+            raise PacketError("judge amendment entries must be objects")
+        for key in ("previous_sha256", "new_sha256"):
+            if not isinstance(amendment.get(key), str) or re.fullmatch(r"[0-9a-f]{64}", amendment[key]) is None:
+                raise PacketError(f"judge amendment {key} must be a SHA-256 hash")
+        one_line_diff = amendment.get("one_line_diff")
+        if not isinstance(one_line_diff, str) or not one_line_diff.strip() or "\n" in one_line_diff:
+            raise PacketError("judge amendment one_line_diff must contain exactly one nonblank line")
+        for key in ("changed_criteria", "unchanged_criteria"):
+            if not isinstance(amendment.get(key), list) or not all(
+                isinstance(item, str) and item for item in amendment[key]
+            ):
+                raise PacketError(f"judge amendment {key} must be an explicit criterion-ID list")
+        changed = set(amendment["changed_criteria"])
+        unchanged = set(amendment["unchanged_criteria"])
+        if changed.intersection(unchanged) or changed.union(unchanged) != criterion_ids:
+            raise PacketError("judge amendment changed/unchanged criteria must partition the full criterion inventory")
+        if previous_new is not None and amendment["previous_sha256"] != previous_new:
+            raise PacketError("judge amendment hashes must form an unbroken chain")
+        previous_new = amendment["new_sha256"]
+        instruction = amendment.get("diff_instruction")
+        if not isinstance(instruction, str) or "diff" not in instruction.lower():
+            raise PacketError("judge amendment must instruct the implementer to diff before trusting")
+    if amendments and amendments[-1]["new_sha256"] != sha256_file(verify_path):
+        raise PacketError("latest judge amendment new_sha256 does not match verify.sh")
+
+
+def bind_criterion_fixture_hashes(packet_dir: Path, criterion_path: Path) -> dict[str, Any]:
+    payload = load_json(criterion_path)
+    entries = payload.get("criteria")
+    if not isinstance(entries, list) or not entries:
+        raise PacketError("criterion-flips.json requires a nonempty criteria list")
+    for entry in entries:
+        if not isinstance(entry, dict) or not isinstance(entry.get("id"), str):
+            raise PacketError("criterion-flips.json entries require criterion IDs")
+        for state in ("present", "absent"):
+            value = entry.get(f"{state}_tree")
+            if not isinstance(value, str) or not value:
+                raise PacketError(f"criterion {entry['id']} requires {state}_tree")
+            relative = Path(value)
+            if relative.is_absolute() or ".." in relative.parts:
+                raise PacketError(f"criterion {entry['id']} {state}_tree must stay inside the packet")
+            root = (packet_dir / relative).resolve()
+            try:
+                root.relative_to(packet_dir)
+            except ValueError as error:
+                raise PacketError(f"criterion {entry['id']} {state}_tree escapes the packet") from error
+            if not root.is_dir():
+                raise PacketError(f"criterion {entry['id']} {state}_tree does not exist: {root}")
+            entry[f"{state}_sha256"] = sha256_tree(root)
+    write_json_atomic(criterion_path, payload)
+    return payload
 
 
 def validate_iterations(packet: dict[str, Any], adapter: dict[str, Any]) -> dict[str, Any]:
@@ -364,6 +479,8 @@ def run_verifier_case(packet: dict[str, Any], verify_path: Path, root: Path, lab
         raise PacketError("required command is unavailable: bash")
     verification = packet["verification"]
     timeout = int(verification.get("timeout_seconds") or 300)
+    verifier_env = {**os.environ, "ANCHOR_ROOT": str(root), "REPO_ROOT": str(root)}
+    verifier_env.pop("CRITERION_ID", None)
     try:
         proc = subprocess.run(
             ["bash", str(verify_path)],
@@ -373,7 +490,7 @@ def run_verifier_case(packet: dict[str, Any], verify_path: Path, root: Path, lab
             text=True,
             timeout=timeout,
             check=False,
-            env={**os.environ, "ANCHOR_ROOT": str(root), "REPO_ROOT": str(root)},
+            env=verifier_env,
         )
     except subprocess.TimeoutExpired as exc:
         raise PacketError(f"{label} verifier timed out after {timeout}s") from exc
@@ -408,6 +525,45 @@ def run_two_sided_verifier(packet: dict[str, Any], verify_path: Path) -> dict[st
     }
 
 
+def run_goal_lint(packet_dir: Path, packet: dict[str, Any]) -> dict[str, Any]:
+    lint_path = resource_root() / "goal-lint"
+    if not lint_path.is_file():
+        raise PacketError(f"goal-lint resource is missing: {lint_path}")
+    hostile = Path(packet["verification"]["hostile_tree"]).expanduser().resolve()
+    untouched = Path(packet["repository"]["root"]).expanduser().resolve()
+    try:
+        result = subprocess.run(
+            [
+                "bash",
+                str(lint_path),
+                "--json",
+                "--tree",
+                str(untouched),
+                "--hostile-tree",
+                str(hostile),
+                str(packet_dir),
+            ],
+            capture_output=True,
+            text=True,
+            check=False,
+            timeout=int(packet["verification"].get("timeout_seconds") or 300),
+        )
+    except (OSError, subprocess.SubprocessError) as error:
+        raise PacketError(f"cannot run goal-lint: {error}") from error
+    try:
+        payload = json.loads(result.stdout)
+    except json.JSONDecodeError as error:
+        raise PacketError(f"goal-lint returned invalid JSON: {result.stderr.strip()}") from error
+    if result.returncode != 0 or payload.get("status") != "clean":
+        failures = [
+            item.get("id", "unknown")
+            for item in payload.get("checks", [])
+            if isinstance(item, dict) and item.get("status") == "fail"
+        ]
+        raise PacketError("goal-lint blocked the packet: " + ", ".join(failures or [result.stderr.strip() or "unknown"]))
+    return payload
+
+
 def command_lint(args: argparse.Namespace) -> dict[str, Any]:
     packet_dir = args.packet_dir.resolve()
     packet = load_json(packet_dir / "packet.json")
@@ -418,7 +574,8 @@ def command_lint(args: argparse.Namespace) -> dict[str, Any]:
         raise PacketError(f"no host adapter for {args.host or packet['host']}")
     goal_path = resolve_artifact(packet_dir, packet["artifacts"]["goal"], "goal")
     result = lint_goal_text(goal_path.read_text(encoding="utf-8"), adapter)
-    return {"status": "PASS", "host": args.host or packet["host"], **result}
+    packet_lint = run_goal_lint(packet_dir, packet)
+    return {"status": "PASS", "host": args.host or packet["host"], "packet_lint": packet_lint, **result}
 
 
 def command_seal(args: argparse.Namespace) -> dict[str, Any]:
@@ -438,10 +595,14 @@ def command_seal(args: argparse.Namespace) -> dict[str, Any]:
     goal_path = resolve_artifact(packet_dir, packet["artifacts"]["goal"], "goal")
     spec_path = resolve_artifact(packet_dir, packet["artifacts"]["spec"], "spec")
     baseline_path = resolve_artifact(packet_dir, packet["artifacts"]["baseline"], "baseline")
+    criterion_path = resolve_artifact(packet_dir, packet["artifacts"]["criterion_flips"], "criterion_flips")
+    amendments_path = resolve_artifact(packet_dir, packet["artifacts"]["judge_amendments"], "judge_amendments")
     verify_path = resolve_artifact(packet_dir, packet["artifacts"]["verify"], "verify")
     goal_result = lint_goal_text(goal_path.read_text(encoding="utf-8"), adapter)
     validate_spec(spec_path.read_text(encoding="utf-8"))
     validate_baseline(load_json(baseline_path))
+    load_json(criterion_path)
+    validate_judge_amendments(load_json(amendments_path), verify_path, criterion_path)
     goal_text = goal_path.read_text(encoding="utf-8")
     if packet["verification"]["trust"] not in goal_text:
         raise PacketError("goal.txt must name the packet verification trust level")
@@ -459,9 +620,19 @@ def command_seal(args: argparse.Namespace) -> dict[str, Any]:
         )
     snapshot = validate_repository_binding(packet, packet_dir)
     iterations = validate_iterations(packet, adapter)
+    bind_criterion_fixture_hashes(packet_dir, criterion_path)
+    packet_lint = run_goal_lint(packet_dir, packet)
     verifier_validation = run_two_sided_verifier(packet, verify_path)
 
-    for name, path in (("goal", goal_path), ("spec", spec_path), ("baseline", baseline_path), ("verify", verify_path)):
+    artifact_paths = {
+        "goal": goal_path,
+        "spec": spec_path,
+        "baseline": baseline_path,
+        "criterion_flips": criterion_path,
+        "judge_amendments": amendments_path,
+        "verify": verify_path,
+    }
+    for name, path in artifact_paths.items():
         packet["artifacts"][name]["sha256"] = sha256_file(path)
         packet["artifacts"][name]["path"] = str(path.relative_to(packet_dir))
     result_status = "SEALED_READY" if native_goal else "UNSUPPORTED_NATIVE_GOAL"
@@ -482,6 +653,7 @@ def command_seal(args: argparse.Namespace) -> dict[str, Any]:
         "warnings": goal_result["warnings"],
         "iterations": packet["iterations"],
         "verification_trust": packet["verification"]["trust"],
+        "goal_lint": packet_lint,
         "artifact_hashes": {name: value["sha256"] for name, value in packet["artifacts"].items()},
         "baseline_verifier": verifier_validation["falsifiability"],
         "verifier_validation": verifier_validation,
@@ -500,7 +672,7 @@ def command_check(args: argparse.Namespace) -> dict[str, Any]:
         raise PacketError(f"no verified host adapter for {packet['host']}")
 
     artifacts: dict[str, Path] = {}
-    for name in ("goal", "spec", "baseline", "verify"):
+    for name in REQUIRED_ARTIFACTS:
         path = resolve_artifact(packet_dir, packet["artifacts"][name], name)
         expected = packet["artifacts"][name].get("sha256")
         actual = sha256_file(path)
@@ -510,7 +682,12 @@ def command_check(args: argparse.Namespace) -> dict[str, Any]:
     lint = lint_goal_text(artifacts["goal"].read_text(encoding="utf-8"), adapter)
     validate_spec(artifacts["spec"].read_text(encoding="utf-8"))
     validate_baseline(load_json(artifacts["baseline"]))
+    load_json(artifacts["criterion_flips"])
+    validate_judge_amendments(
+        load_json(artifacts["judge_amendments"]), artifacts["verify"], artifacts["criterion_flips"]
+    )
     validate_repository_binding(packet, packet_dir)
+    packet_lint = run_goal_lint(packet_dir, packet)
     verifier_validation = run_two_sided_verifier(packet, artifacts["verify"])
     result: dict[str, Any] = {
         "status": "PASS",
@@ -518,6 +695,7 @@ def command_check(args: argparse.Namespace) -> dict[str, Any]:
         "goal_size": lint["metrics"],
         "warnings": lint["warnings"],
         "verification_trust": packet["verification"]["trust"],
+        "goal_lint": packet_lint,
         "verifier_validation": verifier_validation,
     }
     if args.run_verifier:

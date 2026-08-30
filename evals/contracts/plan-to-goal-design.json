@@ -18,13 +18,16 @@
     "b4d322f30989c5868c4dab89e28db2e3e2a0dd41ca3dbb62fed2f401de5c1a43",
     "c9b610c83a09c740a76659dfb7dacac74871dcd0f8480cf6b9e02ab4adacc6ae",
     "0be6fc7bce33c795e2baeca9c59cb2e16d94d35e3b5c384cd383e9bf31ae8e28",
-    "0f63466ca93b38d522962d8584998258000554594a1582275f7aba8b85ab27ce",
+    "51e68bab1856f63e33abbfd2883c4d9dad878ec27231544338a6096cfa19fdf9",
+    "af933f4e8b0933e9dc8cb531ca2eedf2af23c650629c74fb89f92d95a830bd14",
     "8c45fa7059eb9c185de3c36c431576e2efc5ec9d264dabba9f337e1fe84c8848",
     "eba3ee6da9d0734d451e52d5ff6962b5d9de2b8ede1abcf2f4221523c2cc4de3",
     "60c4b0b8b283ae3fee8dcb6c91adac9fcb506c8abfcddd1b309569f2048df953",
     "8180750feadbc112b64fa9433857c518d291dac5d1145a67eb91205e523afb64",
     "7cf117d5879268ba14d41c46cd4ce3304ad0157d059ca57c022d08118391306b",
     "1987ab66fd8728630e84d457d47fb9db0f4c7542c69c34ef434b1404b97a6327",
+    "d6a2c2a636cd66fb3e5254ccc7317d29329e6281b30ac21c50b919db60ae2c33",
+    "39132c35920cd442442cc99dffda44a87c859f6b6ae7925429c02dc9c3b5d8a2",
     "78285bd988278cbf2f9af2574706d60a0fb2ae0e7791fcfed669c5f088c27c5d",
     "37e9e3f6396740886c6d1d1f866557dc7302e892c7981b91ac5c56f562de81f3",
     "984d4cd5fc1ad651d05fef2c2086e617bb0897c8df9600c4d4a68811637c8f46",
@@ -43,6 +46,10 @@
     "72976d60b178aa78e76a8bb40c4f1a89cbf68f26cf6c6c1c7f4b57e30be9f2ed",
     "9919e84c6c0033485471e882b8baf0106ce38ee6796254a94e62190c65b17a6a",
     "f801c581c85d9f2666cebed31b909a514d3a0e075b011cf7aebf007a35baa31d",
+    "da71f2de36ef81fd4b7dbf625488f9abd108d1eafdfdb1d90961085a8fbb1180",
+    "02116aca08c6b600c53552213cc904b2e71f7ac9fa42cd19a4884cf7da3e3998",
+    "8e7583343a6a115ce384dcd8e0375fbacd0db426912c83ef5a754bf1ad03c29e",
+    "261f81ed1bb69e57e1578738c864ecd66ec6bcbaf40180bf69a495e21ca3ea9a",
     "6e4a02c19d03718ef64e8a8a04ebac825e083ca2eee56e2a51e7efd91cb72ef3",
     "c244b7cf14a664f75d451a03044c58f3cf8d2115edf6fa4f7820a8225fb9947f",
     "a71324d791b62368ac534bd8bb61c9c472ce1a1dcd6d8b13df3765b9fabae1b4",
@@ -150,9 +157,14 @@
       "text": "Do not place evidence dumps, long file inventories, source commentary, design rationale, or full task lists in `goal.txt`."
     },
     {
-      "sha256": "0f63466ca93b38d522962d8584998258000554594a1582275f7aba8b85ab27ce",
+      "sha256": "51e68bab1856f63e33abbfd2883c4d9dad878ec27231544338a6096cfa19fdf9",
       "source": "ssot/plan-to-goal-design.md",
-      "text": "9. Ask only for decisions that cannot be discovered and would materially change scope, safety, or acceptance."
+      "text": "3. Separate proving the mechanism from executing a population. Write exactly one anchor over a small, measured sample with real work evidence; move bulk execution to a policy or routine operation. If the anchor requires authorization its author cannot grant, return `APPROVAL_REQUIRED` instead of disguising a queue as a goal."
+    },
+    {
+      "sha256": "af933f4e8b0933e9dc8cb531ca2eedf2af23c650629c74fb89f92d95a830bd14",
+      "source": "ssot/plan-to-goal-design.md",
+      "text": "10. Ask only for decisions that cannot be discovered and would materially change scope, safety, or acceptance."
     },
     {
       "sha256": "8c45fa7059eb9c185de3c36c431576e2efc5ec9d264dabba9f337e1fe84c8848",
@@ -183,6 +195,16 @@
       "sha256": "1987ab66fd8728630e84d457d47fb9db0f4c7542c69c34ef434b1404b97a6327",
       "source": "ssot/plan-to-goal-design.md",
       "text": "Hashes prove tamper evidence, not independence. The verifier must:"
+    },
+    {
+      "sha256": "d6a2c2a636cd66fb3e5254ccc7317d29329e6281b30ac21c50b919db60ae2c33",
+      "source": "ssot/plan-to-goal-design.md",
+      "text": "- evaluate only the named criterion when `CRITERION_ID=<id>` is set, emitting the exact line `CRITERION <id> PASS` with exit `0` when its condition is present or `CRITERION <id> FAIL` with exit `1` when absent; invalid or unverifiable input uses a distinct error and must not fall through to the full suite"
+    },
+    {
+      "sha256": "39132c35920cd442442cc99dffda44a87c859f6b6ae7925429c02dc9c3b5d8a2",
+      "source": "ssot/plan-to-goal-design.md",
+      "text": "- pass every entry in `criterion-flips.json`: the exact criterion logic must be executed against synthetic condition-present and condition-absent trees and its verdict must flip in the required direction"
     },
     {
       "sha256": "78285bd988278cbf2f9af2574706d60a0fb2ae0e7791fcfed669c5f088c27c5d",
@@ -273,6 +295,26 @@
       "sha256": "f801c581c85d9f2666cebed31b909a514d3a0e075b011cf7aebf007a35baa31d",
       "source": "ssot/plan-to-goal-design.md",
       "text": "- Do not design the anchor after the implementation plan or park a load-bearing outcome check in advisory output."
+    },
+    {
+      "sha256": "da71f2de36ef81fd4b7dbf625488f9abd108d1eafdfdb1d90961085a8fbb1180",
+      "source": "ssot/plan-to-goal-design.md",
+      "text": "- Do not make bulk population execution the goal anchor; prove the mechanism over a bounded sample and route bulk work to its authorization-owning policy or routine."
+    },
+    {
+      "sha256": "02116aca08c6b600c53552213cc904b2e71f7ac9fa42cd19a4884cf7da3e3998",
+      "source": "ssot/plan-to-goal-design.md",
+      "text": "- Do not freeze an identifier that appears in any exclusion or do-not-touch list."
+    },
+    {
+      "sha256": "8e7583343a6a115ce384dcd8e0375fbacd0db426912c83ef5a754bf1ad03c29e",
+      "source": "ssot/plan-to-goal-design.md",
+      "text": "- Do not accept a criterion that returns the same verdict for condition-present and condition-absent trees, returns an error instead of a valid verdict, or is absent from the verifier inventory."
+    },
+    {
+      "sha256": "261f81ed1bb69e57e1578738c864ecd66ec6bcbaf40180bf69a495e21ca3ea9a",
+      "source": "ssot/plan-to-goal-design.md",
+      "text": "- Do not trust a repaired judge until its amendment discloses the diff, old/new hashes, and criterion impact."
     },
     {
       "sha256": "6e4a02c19d03718ef64e8a8a04ebac825e083ca2eee56e2a51e7efd91cb72ef3",

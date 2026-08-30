@@ -60,9 +60,25 @@ Measure the population. Which members can reach the target, and which require an
 ### TRAP
 If every implementation step landed and the anchor did not move, does the verifier fail?
 
+## Round 2: Four Author-Side Failures
+
+### Anchor granularity
+Do not combine proving a route with draining its entire backlog. Prove the mechanism over a small measured sample with real work evidence, then put bulk execution under a policy or routine owned by the actor who can authorize it. If the author cannot grant a permission required by the anchor, the artifact is a queue rather than a runnable goal.
+
+### Per-criterion flip testing
+Whole-suite hostile testing does not prove that each criterion discriminates its own condition. Inventory every machine criterion, execute the exact criterion logic against synthetic condition-present and condition-absent trees, and require exits `0` and `1` respectively. Equal verdicts, inverted verdicts, or error exits block sealing even when printed output looks correct.
+
+The observed failure used a recursive/count grep whose zero-match output contained both a filename-prefixed count and an appended zero. An integer comparison then failed on a non-integer while displaying zero, making the complete suite impossible to satisfy.
+
+### Population versus exclusions
+Before freezing the anchor sample, intersect it with every exclusion and do-not-touch list. Any overlap is a contradictory specification and blocks the baseline. Repeated implementer questions about the same contradiction are defect reports about the spec.
+
+### Judge-fix disclosure
+A verifier repair after dispatch has the shape of moving the goalposts. Publish an amendment with the one-line diff, previous and new hashes, changed and unchanged criterion IDs, and an instruction to diff before trusting the next green run. The implementer reports judge defects; the author repairs and discloses them.
+
 ## Known Gaps
 
-- `goal-lint` mechanizes only the checks that can be derived from artifacts. Arithmetic and forgery still require written reasoning.
+- `goal-lint` mechanizes artifact checks, population/exclusion intersection, and per-criterion flip behavior. Arithmetic and forgery still require written reasoning.
 - Hash pinning detects writable-verifier tampering only when another actor checks the hash. Prevention needs an oracle outside executor write authority or an operator-owned run.
 - Goal-iteration conventions remain practitioner folklore unless a task-specific budget is supplied or a host default is measured.
 - These rules are evidence-informed but the complete bundle has not yet earned behavioral promotion through controlled comparison.

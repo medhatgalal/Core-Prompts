@@ -5,7 +5,7 @@ Keep the repeatedly injected goal small. Put repository evidence, requirements, 
 
 Use one observable outcome. A conjunction is acceptable only when every part is judged by the same verifier and has no independent value, owner, or approval boundary.
 
-Write the outcome anchor and freeze its identifier population before writing the implementation plan. Attack whether the anchor can move without the outcome, be forged, miscount awkward cases, or target an unreachable population.
+Write the outcome anchor before the implementation plan. Use a small frozen sample to prove the mechanism with real evidence; keep bulk population execution in a policy or routine owned by whoever can authorize it. Before freezing, intersect the sample with every exclusion list and require an empty result. Attack whether the anchor can move without the outcome, be forged, miscount awkward cases, or depend on permission the author cannot grant.
 
 ## Size Contract
 - portable compiler cap: 3,500 Unicode characters and 3,500 UTF-8 bytes
@@ -37,12 +37,14 @@ Split when outcomes have separate value, verifiers, owners, or approvals, or whe
 Do not derive an iteration count from milestone arithmetic. Honor a user bound; otherwise use a verified native default and stop earlier on achievement, material drift, an approval boundary, or no progress.
 
 ## Verifier Design Order
-1. Define the world-state outcome and frozen population.
-2. Write the anchor criterion and baseline before mechanism tasks.
-3. List the cheapest fake for each criterion and the corresponding block.
-4. Build a cheapest-fake hostile tree that satisfies convenient mechanism checks without the outcome.
-5. Require the verifier to fail on both untouched and hostile trees for a named anchor or criterion.
-6. Publish the exit-gate truth table and answer PROXY, FORGERY, ARITHMETIC, ACHIEVABLE, and TRAP.
+1. Define the world-state outcome, bounded mechanism sample, wider population, and authorization owner.
+2. Intersect the sample with every exclusion list; freeze only an empty intersection.
+3. Write the anchor criterion and baseline before mechanism tasks.
+4. Inventory every machine criterion and build condition-present and condition-absent synthetic trees for the exact criterion logic.
+5. List the cheapest fake for each criterion and the corresponding block.
+6. Build a cheapest-fake hostile tree that satisfies convenient mechanism checks without the outcome.
+7. Require the verifier to fail on both untouched and hostile trees for a named anchor or criterion.
+8. Publish the exit-gate truth table, judge-amendment state, and written answers for PROXY, FORGERY, ARITHMETIC, ACHIEVABLE, and TRAP.
 
 ## Sources
 - Kiro Goal: https://kiro.dev/docs/cli/chat/goal/

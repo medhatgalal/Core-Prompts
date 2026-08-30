@@ -16,14 +16,26 @@
 
 ## Outcome Anchor
 - Anchor ID: `<ANCHOR-ID>`
-- World-state delta: `<frozen ids move from baseline state to target state>`
-- Load-bearing check: `<criterion that must fail independently of mechanisms>`
+- World-state delta: `<bounded sample proves the mechanism with real work evidence>`
+- Load-bearing check: `<criterion that fails when the mechanism is not proven>`
+
+## Anchor Granularity
+- Mechanism sample size: `<small measured n>`
+- Why this sample proves the route: `<evidence argument>`
+- Bulk population disposition: `<not applicable, policy, or routine operation>`
+- Authorization owner: `<who can approve bulk execution, or none>`
+- Queue test: `<show that the goal anchor requires no permission its author cannot grant>`
 
 ## Frozen Population
 - Baseline file: `baseline.json`
 - Frozen identifier count: `<count>`
 - Measured reachable: `<count>`
 - Alternate disposition required: `<count and reason>`
+
+## Population Exclusions
+- Exclusion lists checked: `<names or none>`
+- Intersection result: `<empty; command or calculation evidence>`
+- Freeze permitted: `<yes only when every intersection is empty>`
 
 ## Non-Goals
 - <Explicitly excluded outcome or surface.>
@@ -86,6 +98,13 @@
 - Expected exit: `<nonzero>`
 - Expected unmet anchor/criteria: `<ids>`
 
+## Per-Criterion Flip Tests
+- Manifest: `criterion-flips.json`
+- Verifier inventory: `bash verify.sh --list-criteria`
+- Single-criterion interface: `CRITERION_ID=<id> bash verify.sh` emits exactly `CRITERION <id> PASS` or `CRITERION <id> FAIL`
+- Required direction: condition present exits `0`; condition absent exits `1`; any other exit is broken
+- Coverage: `<every verifier criterion has both synthetic trees>`
+
 ## Exit-Gate Truth Table
 | State | Expected exit | Expected result |
 | --- | --- | --- |
@@ -95,6 +114,12 @@
 | partial work | 1 | named criteria unmet |
 | machine ready, operator pending | 3 | approval required |
 | achieved | 0 | all required evidence present |
+
+## Judge Amendment Protocol
+- Log: `judge-amendments.json`
+- Current verifier SHA-256: `<hash>`
+- Mid-flight repair rule: publish one-line diff, previous and new hashes, changed and unchanged criterion IDs, and instruct the implementer to diff before trusting
+- Current state: `<no amendments, or latest amendment identifier>`
 
 ## Manual Design Answers
 
