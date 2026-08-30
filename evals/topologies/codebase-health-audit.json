@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "codebase-health-audit",
-  "ssot_sha256": "1ffb301944263f68d4f796536d924574b9e51f10b9a5e2436d4644b7fa303234",
+  "ssot_sha256": "eeedb29c048c1733dfc2d351b4f439aa6e802d17abbd26bfc300266b5ad67b0b",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -29,10 +29,13 @@
     "---"
   ],
   "authority_boundaries": [
-    "codebase-health-audit:L395:6e7b14ee84ce",
-    "codebase-health-audit:L409:3185b2c85796",
-    "codebase-health-audit:L417:f7f2a39173d9",
-    "codebase-health-audit:L427:4017ff33c438"
+    "codebase-health-audit:L19:2d9f614a2daa",
+    "codebase-health-audit:L34:7eaea818bbf8",
+    "codebase-health-audit:L427:6e7b14ee84ce",
+    "codebase-health-audit:L441:3185b2c85796",
+    "codebase-health-audit:L449:f7f2a39173d9",
+    "codebase-health-audit:L455:6cd8b78d1121",
+    "codebase-health-audit:L460:db8e49467720"
   ],
   "resources": [
     "- `high` confidence: no references anywhere, not in `__init__.py` exports, not in test files",
@@ -60,209 +63,281 @@
       "mapped_to": []
     },
     {
-      "id": "codebase-health-audit:L46:cc7e75cac406",
+      "id": "codebase-health-audit:L19:2d9f614a2daa",
+      "heading": "Bundled cruft inventory",
+      "source_line": 19,
+      "sha256": "2d9f614a2daa074ad5340d050d26e2ca590b858c3df44039d6f812ba63ebad89",
+      "text": "`cruft_inventory` is a distinct optional mode. It requires Bash plus Python 3.11 or newer. Enter it only when the user explicitly asks to scan the configured home-level agent-tool locations; do not infer it from a repository health request, do not traverse arbitrary home paths, and do not merge its results into the target-repository audit unless the user asks. In this mode, use the bundled resource to inventory generated, backup, or temporary-file sprawl:",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "codebase-health-audit:L26:209de507b867",
+      "heading": "Bundled cruft inventory",
+      "source_line": 26,
+      "sha256": "209de507b86718df20faab51846e4fd8edf3be9cb7ead334daa4c4f367e99a4f",
+      "text": "The authored wrapper and its Python helper are intentionally mode 644; invoke the wrapper through Bash. Default report mode is read-only and emits either a human table or one JSON object. Diagnostics go to stderr.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "codebase-health-audit:L34:7eaea818bbf8",
+      "heading": "Bundled cruft inventory",
+      "source_line": 34,
+      "sha256": "7eaea818bbf8727739d263a1f8e87fb94188d078343889a50f575eafd5d4e485",
+      "text": "The audit stops after the preview and never invokes `--confirm`. Actual Trash moves are outside this capability and require a separately authorized operator workflow. The standalone tool requires `--confirm` plus the exact `--expect-sha256` digest emitted by the reviewed dry-run; it rejects additions, removals, replacements, or metadata/content changes in the selected set. Never infer cleanup authority, never prompt on a TTY, and never widen the category.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "codebase-health-audit:L36:276dd992b40c",
+      "heading": "Bundled cruft inventory",
+      "source_line": 36,
+      "sha256": "276dd992b40c532985fbd1cf72d03b0ed836b4fea7293dc98818b7d34a9a903b",
+      "text": "Exit codes are `0` success/no-op, `1` unexpected internal failure, `2` usage, `3` unavailable environment dependency, `4` explicit confirmation or reviewed digest required, `5` one or more Trash moves failed, and `6` stale selection.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "codebase-health-audit:L48:e3449c878c05",
+      "heading": "In Scope",
+      "source_line": 48,
+      "sha256": "e3449c878c05d744334f9aa7af2d8aa02e73dd31297b37bb6abe3489e981c93b",
+      "text": "- read-only inventory of known generated, backup, and temporary-file categories",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "codebase-health-audit:L69:cc7e75cac406",
       "heading": "Invocation Hints",
-      "source_line": 46,
+      "source_line": 69,
       "sha256": "cc7e75cac40682cb7593c56064ee9394e362c350793f92da8108bcaccebe4766",
       "text": "- produce a read-only brownfield health report",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "codebase-health-audit:L50:0885e217a2ed",
+      "id": "codebase-health-audit:L74:0885e217a2ed",
       "heading": "READ-ONLY MODE (Non-Negotiable)",
-      "source_line": 50,
+      "source_line": 74,
       "sha256": "0885e217a2ed838c3caa07eb501cd20465206c8cb258fe17ad73d196015c2d5d",
       "text": "## READ-ONLY MODE (Non-Negotiable)",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "codebase-health-audit:L52:54683e025104",
+      "id": "codebase-health-audit:L76:54683e025104",
       "heading": "READ-ONLY MODE (Non-Negotiable)",
-      "source_line": 52,
+      "source_line": 76,
       "sha256": "54683e0251043ba51e2c63472e388de8cf1c0b0b0c8a62e886726872e33bfdd8",
       "text": "You MUST NOT modify, create, or delete any files in the target codebase. You are a read-only analyst. Any file-write attempt is a skill violation.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "codebase-health-audit:L54:77357dbdaba3",
+      "id": "codebase-health-audit:L78:77357dbdaba3",
       "heading": "Required Inputs",
-      "source_line": 54,
+      "source_line": 78,
       "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
       "text": "## Required Inputs",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "codebase-health-audit:L65:882ae0abbe84",
+      "id": "codebase-health-audit:L83:3c173ef642ad",
+      "heading": "Required Inputs",
+      "source_line": 83,
+      "sha256": "3c173ef642adcc0e4bc30af8528440bc87a3edec1c72ad9d6d64acaa535078ef",
+      "text": "- cruft inventory: `mode: cruft_inventory` plus an explicit request to scan the fixed home-level agent-tool categories; no repository target is required.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "codebase-health-audit:L89:882ae0abbe84",
       "heading": "Inputs",
-      "source_line": 65,
+      "source_line": 89,
       "sha256": "882ae0abbe84e71dd35fb14defca06bf63b3c12232051b0fdfd5efecfb15db16",
       "text": "1. **Target path** (required) \u2014 Root directory of the codebase to analyze.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "codebase-health-audit:L72:378f44d68bab",
+      "id": "codebase-health-audit:L96:378f44d68bab",
       "heading": "Input Schema",
-      "source_line": 72,
+      "source_line": 96,
       "sha256": "378f44d68babd5603f1913f66b98afe173ed03ba02dd40fbfedc206db1350760",
       "text": "# Target (required)",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "codebase-health-audit:L125:e77e9c49f191",
+      "id": "codebase-health-audit:L157:e77e9c49f191",
       "heading": "Phase 1: Configuration Resolution",
-      "source_line": 125,
+      "source_line": 157,
       "sha256": "e77e9c49f191e08f17554be0cfabdb5b529aa1840d87f8f9df5fb39634f22ca4",
       "text": "- Must have `timestamp` (ISO 8601)",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "codebase-health-audit:L126:24cae4235ef6",
+      "id": "codebase-health-audit:L158:24cae4235ef6",
       "heading": "Phase 1: Configuration Resolution",
-      "source_line": 126,
+      "source_line": 158,
       "sha256": "24cae4235ef6ca00a7c3388eb226022f069b44d72e20f73c5215b9fa19f672bc",
       "text": "- Must have `findings` (list, may be empty)",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "codebase-health-audit:L127:d0ebc5bf0cfe",
+      "id": "codebase-health-audit:L159:d0ebc5bf0cfe",
       "heading": "Phase 1: Configuration Resolution",
-      "source_line": 127,
+      "source_line": 159,
       "sha256": "d0ebc5bf0cfe27a3d195db775e018f44be95296af2beb89c115dc36076c9b88d",
       "text": "- Each finding must have: `id`, `category`, `severity`, `file_path`, `evidence`",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "codebase-health-audit:L134:49cfdb753255",
+      "id": "codebase-health-audit:L166:49cfdb753255",
       "heading": "Phase 2: Structural Analysis",
-      "source_line": 134,
+      "source_line": 166,
       "sha256": "49cfdb7532554776d0b528844c7a3628cfde52afbf5b05f494e9751dafcc95d6",
       "text": "Run these sub-phases. For each, scan only files matching `languages` config and not matching `exclude_patterns`.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "codebase-health-audit:L166:14d27afbed8a",
+      "id": "codebase-health-audit:L198:14d27afbed8a",
       "heading": "Phase 2d: Dead Code Detection",
-      "source_line": 166,
+      "source_line": 198,
       "sha256": "14d27afbed8a1c6ef5f6969969bfcac5ef78ae81a75312636992b9f509efb716",
       "text": "- `medium` confidence: only referenced in tests (possibly test-only utility)",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "codebase-health-audit:L167:5dbf3373cc3e",
+      "id": "codebase-health-audit:L199:5dbf3373cc3e",
       "heading": "Phase 2d: Dead Code Detection",
-      "source_line": 167,
+      "source_line": 199,
       "sha256": "5dbf3373cc3eca7daf4925bc64525cc602b6458a96f5c56f76cf0b32d424ae31",
       "text": "- `low` confidence: referenced only in strings/comments (dynamic dispatch possible)",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "codebase-health-audit:L168:82a950be68b1",
+      "id": "codebase-health-audit:L200:82a950be68b1",
       "heading": "Phase 2d: Dead Code Detection",
-      "source_line": 168,
+      "source_line": 200,
       "sha256": "82a950be68b15972827c701c01a36572b742de8f132e5e16190db2f5487ff045",
       "text": "3. Filter by `dead_code_confidence_floor` config \u2014 only report findings at or above this level.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "codebase-health-audit:L236:77f58a436a96",
+      "id": "codebase-health-audit:L268:77f58a436a96",
       "heading": "Output Format",
-      "source_line": 236,
+      "source_line": 268,
       "sha256": "77f58a436a960bf778f726b1cbc724dc2b61f3b01800df59ced7af039ee90293",
       "text": "trajectory:  # only present if prior_state provided",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "codebase-health-audit:L289:13bd277404e7",
+      "id": "codebase-health-audit:L321:13bd277404e7",
       "heading": "Claim Verification",
-      "source_line": 289,
+      "source_line": 321,
       "sha256": "13bd277404e79960bb0a5157a4bd6c869022c4bebb35e73cfdb09c7927236cd6",
       "text": "*Only present when prior_state is provided.*",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "codebase-health-audit:L298:13bd277404e7",
+      "id": "codebase-health-audit:L330:13bd277404e7",
       "heading": "Drift Analysis",
-      "source_line": 298,
+      "source_line": 330,
       "sha256": "13bd277404e79960bb0a5157a4bd6c869022c4bebb35e73cfdb09c7927236cd6",
       "text": "*Only present when prior_state is provided.*",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "codebase-health-audit:L308:59c80a92975d",
+      "id": "codebase-health-audit:L340:59c80a92975d",
       "heading": "Drift Analysis",
-      "source_line": 308,
+      "source_line": 340,
       "sha256": "59c80a92975d26c6e763498120b0cd5f58e7491d0ffc11900dfa57e8b154df48",
       "text": "**Trajectory:** degrading \u2014 3 new findings and 1 worsened vs only 1 resolved.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "codebase-health-audit:L360:c64a24006f7b",
+      "id": "codebase-health-audit:L392:c64a24006f7b",
       "heading": "First Audit",
-      "source_line": 360,
+      "source_line": 392,
       "sha256": "c64a24006f7b2703ebc01885718e063d81ef98d835239a88c5a37622b3524301",
       "text": "- read-only scan of matching files only",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "codebase-health-audit:L395:6e7b14ee84ce",
+      "id": "codebase-health-audit:L427:6e7b14ee84ce",
       "heading": "Evaluation Rubric",
-      "source_line": 395,
+      "source_line": 427,
       "sha256": "6e7b14ee84cec870bc1ec5d30ea8a3ae14fa7992268674e923a076581858ecaf",
       "text": "| Read-only safety | The audit never modifies files, runs tests, installs dependencies, stages changes, commits, or deploys |",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "codebase-health-audit:L409:3185b2c85796",
+      "id": "codebase-health-audit:L441:3185b2c85796",
       "heading": "Edge Cases",
-      "source_line": 409,
+      "source_line": 441,
       "sha256": "3185b2c8579672e73d79697e380c37aef30b3a8e426502ef97d4c3fa1435dc1b",
       "text": "4. **Monorepo:** Analyze only the subtree at `target`. Do not traverse parent directories.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "codebase-health-audit:L417:f7f2a39173d9",
+      "id": "codebase-health-audit:L449:f7f2a39173d9",
       "heading": "Constraints",
-      "source_line": 417,
+      "source_line": 449,
       "sha256": "f7f2a39173d968e1630542ba7544afc6dfc2d4df78d05b0be5a840c3b6cce327",
       "text": "- **Read-only.** Never modify, create, or delete files in the target.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "codebase-health-audit:L420:ec47980ffc2e",
+      "id": "codebase-health-audit:L452:ec47980ffc2e",
       "heading": "Constraints",
-      "source_line": 420,
+      "source_line": 452,
       "sha256": "ec47980ffc2e3615f42aaab11e8aee6d30b6711b2dbd082f005eb2dfd7f87b49",
       "text": "- **Scoped.** Only analyze files matching `languages` config. Skip everything else.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "codebase-health-audit:L427:4017ff33c438",
+      "id": "codebase-health-audit:L455:6cd8b78d1121",
+      "heading": "Constraints",
+      "source_line": 455,
+      "sha256": "6cd8b78d112144317fb67db7d9d1cd064cc6683c232329f531bb60bb9e0649b0",
+      "text": "- **Non-interactive.** Bundled tools take flags, provide `--help` and `--json`, and never wait for TTY input.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "codebase-health-audit:L459:495ab00fe4cc",
       "heading": "Tool Boundaries",
-      "source_line": 427,
-      "sha256": "4017ff33c4382d79682621cdb049f4ef5475b2b059935b5ec40a8f272f5442b7",
-      "text": "- **Forbidden:** Write files, run code, install dependencies, execute tests, modify git state.",
+      "source_line": 459,
+      "sha256": "495ab00fe4ccdf0906a036810e9057ef39860cd82a69092212252a019cefa1c4",
+      "text": "- **Allowed:** Read files, grep/search, count lines, inspect AST/symbols, list directories; in explicit `cruft_inventory` mode, invoke the bundled reporter only in report or dry-run mode.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "codebase-health-audit:L460:db8e49467720",
+      "heading": "Tool Boundaries",
+      "source_line": 460,
+      "sha256": "db8e49467720840db501582ff5cce010117bfb6a997dc2b9271ec2c7e43f47cd",
+      "text": "- **Forbidden:** Write files, run target/application code, install dependencies, execute tests, modify git state. The only executable exception is the bundled reporter in explicit `cruft_inventory` report or dry-run mode.",
       "kind": "invariant",
       "mapped_to": []
     }
@@ -275,7 +350,7 @@
   "source_references": [
     {
       "path": "ssot/codebase-health-audit.md",
-      "sha256": "1ffb301944263f68d4f796536d924574b9e51f10b9a5e2436d4644b7fa303234"
+      "sha256": "eeedb29c048c1733dfc2d351b4f439aa6e802d17abbd26bfc300266b5ad67b0b"
     }
   ],
   "known_ambiguities": [],
@@ -288,7 +363,7 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 25,
+    "total": 33,
     "mapped": 0,
     "waived": 0
   },

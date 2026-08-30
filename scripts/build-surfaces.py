@@ -496,6 +496,8 @@ def copy_capability_resources(surface_name: str, slug: str) -> list[str]:
         if not source_path.is_file():
             continue
         relative = source_path.relative_to(source_dir)
+        if '__pycache__' in relative.parts or source_path.suffix == '.pyc':
+            continue
         target_path = target_dir / relative
         target_path.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(source_path, target_path)

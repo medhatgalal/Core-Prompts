@@ -633,10 +633,8 @@
         "audit"
       ],
       "required_inputs": [
-        "target path for the repository or subtree to audit",
-        "optional prior state block from a previous audit when claim verification or drift detection is requested",
-        "optional threshold overrides for LOC, method count, import fan-out, dead-code confidence floor, excludes, and language filters",
-        "any explicit scope boundaries, such as a monorepo subdirectory or language subset"
+        "repository audit: a target path for the repository or subtree, plus optional prior state, threshold overrides, and scope boundaries;",
+        "cruft inventory: `mode: cruft_inventory` plus an explicit request to scan the fixed home-level agent-tool categories; no repository target is required."
       ],
       "expected_outputs": [
         "critical",
@@ -699,7 +697,7 @@
           "kiro_skill"
         ]
       },
-      "confidence": 0.94,
+      "confidence": 0.96,
       "review_status": "ready_for_orchestrator_review",
       "overlap_candidates": [],
       "relationship_suggestions": [

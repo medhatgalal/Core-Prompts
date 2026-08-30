@@ -1,7 +1,7 @@
 # Release Delta
 
 - Baseline status: `available`
-- Comparison basis: `git:v1.12.1@7dae6f679f2dce31ce8b2620c5dd2e6b6dda5cdb .meta/manifest.json`
+- Comparison basis: `git:v1.12.2@3de43b80c98dd8442c7ac1b39fb30e0ecc5ac65c .meta/manifest.json`
 - New capabilities: `1`
 - Removed capabilities: `0`
 - Changed capabilities: `1`
@@ -14,7 +14,7 @@
 - none
 
 ## Material Changes
-- `analyze-context` — changed `shared_constraints`
+- `codebase-health-audit` — changed `invocation_hints, required_inputs, shared_constraints`
 
 ## All Changed Capabilities
-- `analyze-context` — changed `shared_constraints`
+- `codebase-health-audit` — changed `invocation_hints, required_inputs, shared_constraints`

@@ -14,10 +14,8 @@
         "audit"
       ],
       "required_inputs": [
-        "target path for the repository or subtree to audit",
-        "optional prior state block from a previous audit when claim verification or drift detection is requested",
-        "optional threshold overrides for LOC, method count, import fan-out, dead-code confidence floor, excludes, and language filters",
-        "any explicit scope boundaries, such as a monorepo subdirectory or language subset"
+        "repository audit: a target path for the repository or subtree, plus optional prior state, threshold overrides, and scope boundaries;",
+        "cruft inventory: `mode: cruft_inventory` plus an explicit request to scan the fixed home-level agent-tool categories; no repository target is required."
       ],
       "expected_outputs": [
         "critical",
@@ -124,7 +122,7 @@
         "policy_rule_id": "ssot.codebase-health-audit",
         "content_sha256": "ssot"
       },
-      "confidence": 0.94,
+      "confidence": 0.96,
       "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
       "review_status": "ready_for_orchestrator_review",
       "display_name": "Codebase Health Audit \u2014 Brownfield Structural Risk Report"
@@ -177,7 +175,8 @@
     "compare this repo against a previous audit snapshot",
     "produce a read-only brownfield health report",
     "identify slice-ready refactors from concrete structural metrics",
-    "detect structural drift since the last audit"
+    "detect structural drift since the last audit",
+    "inventory generated, backup, and temporary-file cruft without deleting it"
   ],
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "codebase-health-audit",
@@ -188,7 +187,8 @@
     "**Reproducible.** Same input + same codebase state = same output.",
     "**Scoped.** Only analyze files matching `languages` config. Skip everything else.",
     "**Conservative.** Prefer false negatives over false positives. If uncertain, don't flag it.",
-    "**Actionable.** Every finding \u2265 high severity includes a remediation with complexity estimate."
+    "**Actionable.** Every finding \u2265 high severity includes a remediation with complexity estimate.",
+    "**Non-interactive.** Bundled tools take flags, provide `--help` and `--json`, and never wait for TTY input."
   ],
   "modes": [
     {

@@ -22,6 +22,27 @@ Given a target repository path, optional prior audit state, and optional thresho
 
 This is a direct skill surface, not an autonomous agent. It may read files, list directories, inspect symbols, and search references. It must not modify, create, delete, stage, commit, install dependencies, run tests, or deploy anything in the target codebase.
 
+### Bundled cruft inventory
+
+`cruft_inventory` is a distinct optional mode. It requires Bash plus Python 3.11 or newer. Enter it only when the user explicitly asks to scan the configured home-level agent-tool locations; do not infer it from a repository health request, do not traverse arbitrary home paths, and do not merge its results into the target-repository audit unless the user asks. In this mode, use the bundled resource to inventory generated, backup, or temporary-file sprawl:
+
+```bash
+bash resources/cruft-report --help
+bash resources/cruft-report --json
+```
+
+The authored wrapper and its Python helper are intentionally mode 644; invoke the wrapper through Bash. Default report mode is read-only and emits either a human table or one JSON object. Diagnostics go to stderr.
+
+For a cleanup preview, the user may explicitly request:
+
+```bash
+bash resources/cruft-report --json --dry-run --trash <category>
+```
+
+The audit stops after the preview and never invokes `--confirm`. Actual Trash moves are outside this capability and require a separately authorized operator workflow. The standalone tool requires `--confirm` plus the exact `--expect-sha256` digest emitted by the reviewed dry-run; it rejects additions, removals, replacements, or metadata/content changes in the selected set. Never infer cleanup authority, never prompt on a TTY, and never widen the category.
+
+Exit codes are `0` success/no-op, `1` unexpected internal failure, `2` usage, `3` unavailable environment dependency, `4` explicit confirmation or reviewed digest required, `5` one or more Trash moves failed, and `6` stale selection.
+
 ## In Scope
 
 - LOC hotspot detection
@@ -32,6 +53,7 @@ This is a direct skill surface, not an autonomous agent. It may read files, list
 - drift computation
 - machine-readable audit frontmatter
 - slice-ready remediation recommendations
+- read-only inventory of known generated, backup, and temporary-file categories
 
 ## Out Of Scope
 
@@ -42,6 +64,7 @@ This is a direct skill surface, not an autonomous agent. It may read files, list
 - feature scope completeness review
 - pre-commit diff review
 - declaring dynamic code dead when references are uncertain
+- moving cruft to Trash during an audit or without a separate category-specific cleanup request
 
 ## Invocation Hints
 
@@ -54,6 +77,7 @@ Use this capability when the user asks any of the following, even without naming
 - produce a read-only brownfield health report
 - identify slice-ready refactors from concrete structural metrics
 - detect structural drift since the last audit
+- inventory generated, backup, and temporary-file cruft without deleting it
 
 ## READ-ONLY MODE (Non-Negotiable)
 
@@ -61,14 +85,14 @@ You MUST NOT modify, create, or delete any files in the target codebase. You are
 
 ## Required Inputs
 
-- target path for the repository or subtree to audit
-- optional prior state block from a previous audit when claim verification or drift detection is requested
-- optional threshold overrides for LOC, method count, import fan-out, dead-code confidence floor, excludes, and language filters
-- any explicit scope boundaries, such as a monorepo subdirectory or language subset
+Choose exactly one invocation shape:
+
+- repository audit: a target path for the repository or subtree, plus optional prior state, threshold overrides, and scope boundaries;
+- cruft inventory: `mode: cruft_inventory` plus an explicit request to scan the fixed home-level agent-tool categories; no repository target is required.
 
 ## Inputs
 
-You receive up to three inputs:
+The repository-audit shape accepts up to three inputs:
 
 1. **Target path** (required) — Root directory of the codebase to analyze.
 2. **Prior state block** (optional) — YAML block from a previous audit, enabling drift detection and claim verification.
@@ -120,6 +144,14 @@ prior_state:
       file_path: "src/manager.py"
       metrics: {method_count: 28, public_methods: 22}
       evidence: "Class Manager has 28 methods, 22 public"
+```
+
+Or, for the separate inventory shape:
+
+```yaml
+mode: cruft_inventory
+scope: configured_agent_tool_locations
+home_scope_authorized: true
 ```
 
 ## Analysis Phases
@@ -428,9 +460,10 @@ Expected result:
 - **Scoped.** Only analyze files matching `languages` config. Skip everything else.
 - **Conservative.** Prefer false negatives over false positives. If uncertain, don't flag it.
 - **Actionable.** Every finding ≥ high severity includes a remediation with complexity estimate.
+- **Non-interactive.** Bundled tools take flags, provide `--help` and `--json`, and never wait for TTY input.
 
 ## Tool Boundaries
 
-- **Allowed:** Read files, grep/search, count lines, inspect AST/symbols, list directories.
-- **Forbidden:** Write files, run code, install dependencies, execute tests, modify git state.
+- **Allowed:** Read files, grep/search, count lines, inspect AST/symbols, list directories; in explicit `cruft_inventory` mode, invoke the bundled reporter only in report or dry-run mode.
+- **Forbidden:** Write files, run target/application code, install dependencies, execute tests, modify git state. The only executable exception is the bundled reporter in explicit `cruft_inventory` report or dry-run mode.
 - **Escalation:** If structural problems suggest architectural redesign, recommend invoking the `architecture` skill. If dead code is extensive, recommend `testing` skill for coverage analysis.
