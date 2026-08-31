@@ -101,9 +101,9 @@
     },
     {
       "slug": "analyze-context",
-      "display_name": "Analyze Context \u2014 Iterative Multi-File Analysis Workflow",
+      "display_name": "Analyze Context \u2014 Durable Multi-File Investigation",
       "capability_type": "skill",
-      "summary": "Maintains durable analysis state for long-running multi-file investigations. Use when repo analysis must survive compaction or interruption, not for design, imports, or behavioral comparison.",
+      "summary": "Maintains repository-scoped durable state for long-running multi-file investigations. Use when evidence and progress must survive compaction, new sessions, branch changes, or worktree removal.",
       "role": "analyst",
       "domain_tags": [
         "analysis",
@@ -111,13 +111,13 @@
         "analyze"
       ],
       "required_inputs": [
-        "a task slug or clear initiative name",
+        "a stable task ID or clear task name",
         "the analysis goal and success criteria",
         "the set of files, transcripts, or items to process",
         "any extraction criteria, constraints, or stop conditions"
       ],
       "expected_outputs": [
-        "the canonical memory file set in use",
+        "the canonical external state paths in use",
         "current progress state",
         "key findings accumulated so far",
         "next item or next analysis action"

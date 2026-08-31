@@ -382,7 +382,7 @@
       "layers": {
         "minimal": {
           "capability_type": "skill",
-          "summary": "Maintains durable analysis state for long-running multi-file investigations. Use when repo analysis must survive compaction or interruption, not for design, imports, or behavioral comparison.",
+          "summary": "Maintains repository-scoped durable state for long-running multi-file investigations. Use when evidence and progress must survive compaction, new sessions, branch changes, or worktree removal.",
           "role": "analyst",
           "domain_tags": [
             "analysis",
@@ -390,13 +390,13 @@
             "analyze"
           ],
           "required_inputs": [
-            "a task slug or clear initiative name",
+            "a stable task ID or clear task name",
             "the analysis goal and success criteria",
             "the set of files, transcripts, or items to process",
             "any extraction criteria, constraints, or stop conditions"
           ],
           "expected_outputs": [
-            "the canonical memory file set in use",
+            "the canonical external state paths in use",
             "current progress state",
             "key findings accumulated so far",
             "next item or next analysis action"
@@ -485,7 +485,7 @@
           "confidence": 0.97,
           "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
           "review_status": "ready_for_orchestrator_review",
-          "display_name": "Analyze Context \u2014 Iterative Multi-File Analysis Workflow"
+          "display_name": "Analyze Context \u2014 Durable Multi-File Investigation"
         },
         "expanded": {
           "relationship_suggestions": [],
@@ -513,16 +513,17 @@
           "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
         }
       },
-      "display_name": "Analyze Context \u2014 Iterative Multi-File Analysis Workflow",
+      "display_name": "Analyze Context \u2014 Durable Multi-File Investigation",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "analyze-context",
       "shared_summary": "[Medhat] Iterative Analysis Workflow for multi-file processing",
       "shared_constraints": [
-        "Reading an existing canonical set from the main checkout is allowed.",
-        "Writing analysis memory requires a non-main linked worktree.",
-        "Do not create multiple competing memory sets for the same initiative.",
+        "Canonical state must live outside every Git working tree and survive session, branch, or worktree removal.",
+        "Branch and worktree paths are execution metadata, not task identity.",
+        "Do not create multiple competing sets for one task.",
+        "Do not allow concurrent writers for one task without explicit handoff.",
         "Do not let insights remain only in the todo file.",
-        "Do not archive mid-initiative."
+        "Do not clean up an incomplete task."
       ],
       "modes": [
         {
@@ -556,6 +557,7 @@
       "invocation_hints": [
         "analyze several files or transcripts over a long session",
         "keep durable analysis notes that survive context loss",
+        "continue an investigation after its branch or worktree was removed",
         "process a broad repo investigation one item at a time",
         "recover and continue a previously interrupted analysis",
         "preserve progress across a long research or audit workflow before a later recommendation step"
@@ -7753,6 +7755,7 @@
     "codex_skill": [
       ".codex/skills/address-code-review/resources/capability.json",
       ".codex/skills/analyze-context/resources/capability.json",
+      ".codex/skills/analyze-context/resources/state_store.py",
       ".codex/skills/architecture/resources/capability.json",
       ".codex/skills/auto-research/resources/capability.json",
       ".codex/skills/auto-research/resources/bootstrap.py",
@@ -7827,6 +7830,7 @@
     "gemini_skill": [
       ".gemini/skills/address-code-review/resources/capability.json",
       ".gemini/skills/analyze-context/resources/capability.json",
+      ".gemini/skills/analyze-context/resources/state_store.py",
       ".gemini/skills/architecture/resources/capability.json",
       ".gemini/skills/auto-research/resources/capability.json",
       ".gemini/skills/auto-research/resources/bootstrap.py",
@@ -7901,6 +7905,7 @@
     "claude_skill": [
       ".claude/skills/address-code-review/resources/capability.json",
       ".claude/skills/analyze-context/resources/capability.json",
+      ".claude/skills/analyze-context/resources/state_store.py",
       ".claude/skills/architecture/resources/capability.json",
       ".claude/skills/auto-research/resources/capability.json",
       ".claude/skills/auto-research/resources/bootstrap.py",
@@ -7975,6 +7980,7 @@
     "kiro_skill": [
       ".kiro/skills/address-code-review/resources/capability.json",
       ".kiro/skills/analyze-context/resources/capability.json",
+      ".kiro/skills/analyze-context/resources/state_store.py",
       ".kiro/skills/architecture/resources/capability.json",
       ".kiro/skills/auto-research/resources/capability.json",
       ".kiro/skills/auto-research/resources/bootstrap.py",

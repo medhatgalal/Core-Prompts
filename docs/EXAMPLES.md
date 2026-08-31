@@ -28,19 +28,21 @@ Why this skill first:
 
 - start here when the main risk is losing context across files, not choosing between architectural options or writing tests yet
 
-Worktree memory rule:
+Durable state rule:
 
-- read legacy canonical state from the main checkout only for continuity
-- write the one active context/todo/insights set only under `.analyze-context-memory/` in the active non-main linked worktree
-- ensure `.analyze-context-memory/` is gitignored and untracked before starting
+- keep one `<task-id>-context.md`, `<task-id>-todo.md`, and `<task-id>-insights.md` set under `~/.analyze-context/<project>/<task-id>/`
+- recover the exact task before new analysis and update all three files after meaningful progress
+- checkpoint before likely compaction, session end, or worktree cleanup; optional hooks may remind the model but never delete state
+- mark work complete only when every TODO is checked and insights contains the final summary
+- leave completed files on disk until later user-approved cleanup
 
 Ask:
 
-> Use `analyze-context` to inspect this subsystem across the relevant files, keep its durable analysis state in the active non-main worktree, and tell me the smallest safe change plan.
+> Use `analyze-context` to inspect this subsystem across the relevant files, keep its context, todo, and insights files current until every TODO is complete, and tell me the smallest safe change plan.
 
 Expected output:
 
-- active-worktree memory paths and current file map
+- the three canonical task paths and current file map
 - accumulated findings
 - unresolved questions
 - a scoped change plan
