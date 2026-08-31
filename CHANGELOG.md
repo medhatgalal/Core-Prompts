@@ -1,3 +1,11 @@
+## v1.12.3 - 2026-08-31
+
+- Reworked `analyze-context` around one external three-file task set under `~/.analyze-context`: stable collision-resistant project IDs across linked worktrees, validated task IDs, path-containment checks, private permissions, one-writer locking, atomic replacement writes, legacy read-only migration, portable checkpoint rules, optional hook reminders, TODO-based completion, and deferred user-approved cleanup.
+- Added behavioral Analyze Context coverage for differently named linked worktrees, unrelated same-name repositories, valid and hostile task IDs, external-path containment, private file modes, atomic writes, concurrent-writer rejection, generated resource parity, and separation of historical baseline requirements from the current quality matrix.
+- Shipped `plan-to-goal-design` with host-aware goal/spec/verifier packets, sealed manifests and receipts, per-criterion flip testing, bounded evidence anchors, explicit operator checks, and fail-closed native-runner detection. Structural gates pass; behavioral promotion remains pending independent qualified evidence.
+- Extended `codebase-health-audit` with an explicit read-only cruft inventory and a separately authorized, digest-bound Trash workflow while preserving its non-mutating audit boundary.
+- Updated onboarding, examples, CLI reference, generated capability views, descriptors, contracts, and topologies for the shipped behavior.
+
 ## v1.12.2 - 2026-08-29
 
 - Scoped `analyze-context` writes to `.analyze-context-memory/` in the active non-main linked worktree while retaining read-only fallback to legacy canonical state in the main checkout.
