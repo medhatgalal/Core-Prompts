@@ -41,28 +41,37 @@ def test_rewritten_ssot_files_have_single_frontmatter_and_required_sections() ->
             assert heading in text
 
 
-def test_analyze_context_memory_is_worktree_scoped() -> None:
+def test_analyze_context_memory_is_repository_scoped_outside_worktrees() -> None:
     text = (ROOT / 'ssot' / 'analyze-context.md').read_text(encoding='utf-8')
 
     required_contract = [
-        'Never write analysis memory to the main checkout.',
-        '`.analyze-context-memory/` must be gitignored; if it is tracked, untrack it before starting.',
-        'Reading an existing canonical set from the main checkout is allowed.',
-        'Writing analysis memory requires a non-main linked worktree.',
+        'Never write canonical analysis state inside a branch, linked worktree, or main checkout.',
+        'Do not treat session end, compaction, branch removal, or worktree removal as completion or cleanup authority.',
         'ACTIVE_WORKTREE_ROOT="$(git rev-parse --show-toplevel)"',
-        'check the active worktree for the initiative\'s canonical set first',
-        'fall back to the read-only set in the main checkout',
+        'REPO_COMMON_DIR="$(git rev-parse --path-format=absolute --git-common-dir)"',
+        'ANALYZE_CONTEXT_STATE_HOME',
+        'STATE_HOME="${ANALYZE_CONTEXT_STATE_HOME:-$HOME/.analyze-context}"',
+        'TASK_DIR="$STATE_HOME/$PROJECT_ID/$TASK_ID"',
+        'Verify `TASK_DIR` is outside every worktree',
+        '`<task-id>-context.md`',
+        '`<task-id>-todo.md`',
+        '`<task-id>-insights.md`',
+        'every checkbox in `<task-id>-todo.md` is checked',
+        'Completed files may remain on disk.',
+        'Hooks are optional reminders',
+        'They must not invent findings, mark completion, move files, or delete state.',
     ]
     for clause in required_contract:
         assert clause in text
 
     assert 'Create these files in `.analyze-context-memory/` at the project root.' not in text
-    assert '- One initiative gets one active memory set.' in text
-    assert '- Do not fork versioned analysis memory files for the same initiative.' in text
-    assert '- Archive only when the initiative is complete.' in text
+    assert 'Always create and update the set under `ACTIVE_WORKTREE_ROOT/.analyze-context-memory/`' not in text
+    assert '- One task gets one context/todo/insights set.' in text
+    assert '- Do not fork versioned analysis files for the same task.' in text
+    assert 'Do not clean up an incomplete task.' in text
 
 
-def test_analyze_context_worktree_contract_is_discoverable() -> None:
+def test_analyze_context_repository_state_contract_is_discoverable() -> None:
     docs = {
         'README.md': (ROOT / 'README.md').read_text(encoding='utf-8'),
         'docs/GETTING-STARTED.md': (ROOT / 'docs' / 'GETTING-STARTED.md').read_text(encoding='utf-8'),
@@ -71,10 +80,12 @@ def test_analyze_context_worktree_contract_is_discoverable() -> None:
 
     for path, text in docs.items():
         assert 'analyze-context' in text, path
-        assert 'active non-main' in text, path
+        assert '.analyze-context' in text, path
+        assert 'context' in text and 'todo' in text and 'insights' in text, path
 
-    assert 'legacy main-checkout state is read-only fallback only' in docs['README.md']
-    assert 'gitignored and untracked' in docs['docs/EXAMPLES.md']
+    assert 'branch and worktree paths are metadata only' in docs['README.md']
+    assert '~/.analyze-context/<project>/<task-id>/' in docs['docs/EXAMPLES.md']
+    assert 'leave completed files on disk until later user-approved cleanup' in docs['docs/EXAMPLES.md']
 
 
 def test_capability_templates_exist_for_all_supported_types() -> None:

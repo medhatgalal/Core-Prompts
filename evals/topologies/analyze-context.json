@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "analyze-context",
-  "ssot_sha256": "c54b6b4b377c944eeca2aa8e207e2485f5f2c8ceb7b6022ea9c2f5c23983db9a",
+  "ssot_sha256": "a45f68b8c8d355f01fe7d860abc9c439dcf4d35c5f41ccdf78b126f5058b82ef",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -25,216 +25,346 @@
     "forbidden_transitions": []
   },
   "outputs": [
-    "- the canonical memory file set in use",
+    "- the canonical external state paths in use",
     "- current progress state",
     "- key findings accumulated so far",
     "- next item or next analysis action"
   ],
   "authority_boundaries": [
-    "analyze-context:L6:050433e604b4",
-    "analyze-context:L22:58cc6556252e",
-    "analyze-context:L27:ce29a924a519",
-    "analyze-context:L28:6309bab670fe",
-    "analyze-context:L30:2bfeab027cf8",
-    "analyze-context:L70:2e1127e53b15",
-    "analyze-context:L71:2ad1af6a8eb9",
-    "analyze-context:L72:a6a29a656d24",
-    "analyze-context:L89:2db9f82e6c03"
+    "analyze-context:L6:ac3306740e69",
+    "analyze-context:L8:050433e604b4",
+    "analyze-context:L33:b0e8467c1567",
+    "analyze-context:L35:4690068debcb",
+    "analyze-context:L36:a9e95275f18f",
+    "analyze-context:L40:4b0f7babb257",
+    "analyze-context:L45:e9ce2fdada70",
+    "analyze-context:L46:6be6efa79bda",
+    "analyze-context:L47:9919e22e6020",
+    "analyze-context:L50:2bfeab027cf8",
+    "analyze-context:L53:55acc6f8dba9",
+    "analyze-context:L54:608e248bbee5",
+    "analyze-context:L66:1da0cc04596e",
+    "analyze-context:L72:c54d0465cef7",
+    "analyze-context:L73:3476fd9b6406",
+    "analyze-context:L112:ba107ebb2d9c",
+    "analyze-context:L113:2ad1af6a8eb9",
+    "analyze-context:L114:c13447c12080",
+    "analyze-context:L133:7f603cf2a50a"
   ],
-  "resources": [],
+  "resources": [
+    "- `<task-id>-insights.md`: accumulated findings, cross-item patterns, evidence references, and the growing summary or final conclusion"
+  ],
   "handoffs": [
     "## Companion Capability Matrix",
+    "- The store is machine-local. Use a reviewed export or `threader` for cross-machine handoff; never commit scratch state automatically.",
     "- escalation: if the work becomes design, review, testing, or decision synthesis, route to the companion capability instead of overextending this one",
     "| If the analysis reveals this need | Route to | Required handoff |"
   ],
   "protected_invariants": [
     {
-      "id": "analyze-context:L4:aa5cb7c9b6e7",
+      "id": "analyze-context:L4:1c3f41efe054",
       "heading": "Purpose",
       "source_line": 4,
-      "sha256": "aa5cb7c9b6e729812f25940cec044c7056cc7fcdd87175af41327e42bda3c332",
-      "text": "Use this capability for multi-file or multi-source analysis that must preserve context, findings, and progress across long sessions, memory compaction, or multi-turn review work.",
+      "sha256": "1c3f41efe054d3acfa733797b0c0b16c7535f136bdf90af83a6030152eeb9936",
+      "text": "Use this capability when a multi-file or multi-source investigation must preserve its goal, evidence, findings, and progress across long sessions, compaction, session replacement, branch changes, or worktree removal.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "analyze-context:L6:ac3306740e69",
+      "heading": "Purpose",
+      "source_line": 6,
+      "sha256": "ac3306740e697acc9ce358aa33bc13095ec1e9069b5c129a7f47769079ba9719",
+      "text": "Large context windows and conversation compaction reduce recovery frequency. They do not replace durable state on disk.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "analyze-context:L6:050433e604b4",
+      "id": "analyze-context:L8:050433e604b4",
       "heading": "Purpose",
-      "source_line": 6,
+      "source_line": 8,
       "sha256": "050433e604b4bf4e3768fef92dd28edd475e8a2ef30a1d0b5782f409ce10c7e6",
       "text": "Do not use this capability when the main job is to make a final decision, harden a prompt or plan, import a capability, design a system, or prove one variant performs better than another.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "analyze-context:L14:102d32a44831",
+      "id": "analyze-context:L18:1e6a8ec73c63",
       "heading": "Workflow",
-      "source_line": 14,
-      "sha256": "102d32a44831743abf53910d0070508de1ee2a3e8f80bbd5d9f3e6f55ab1a106",
-      "text": "3. Look for an existing canonical memory set in the main checkout first for backward compatibility and cross-session continuity, but treat it as read-only.",
+      "source_line": 18,
+      "sha256": "1e6a8ec73c63aa2c52da42757d3373ef25b52176dbc7278efd853db031e32b84",
+      "text": "5. Mark the task complete only after every TODO is checked and the insights file contains the final summary.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "analyze-context:L22:58cc6556252e",
-      "heading": "Tool Boundaries",
-      "source_line": 22,
-      "sha256": "58cc6556252e83cb0de755e7341157861d7f8bb4ecc0f397f8cf488efb85459c",
-      "text": "- forbidden: pretending analysis is implementation, silently changing unrelated repo state, or replacing canonical source documents with temporary notes",
-      "kind": "invariant",
-      "mapped_to": []
-    },
-    {
-      "id": "analyze-context:L27:ce29a924a519",
-      "heading": "Rules",
-      "source_line": 27,
-      "sha256": "ce29a924a5191687642a21292b70508aa1b1db6cbbcc834f498d5bf214c35c0a",
-      "text": "- Do not fork versioned analysis memory files for the same initiative.",
-      "kind": "invariant",
-      "mapped_to": []
-    },
-    {
-      "id": "analyze-context:L28:6309bab670fe",
-      "heading": "Rules",
-      "source_line": 28,
-      "sha256": "6309bab670fe450e1a697a6aebc07232e95904c1de802118ac6be8fc1080d367",
-      "text": "- Never write analysis memory to the main checkout.",
-      "kind": "invariant",
-      "mapped_to": []
-    },
-    {
-      "id": "analyze-context:L29:fcf57f43ea6f",
-      "heading": "Rules",
-      "source_line": 29,
-      "sha256": "fcf57f43ea6f386735df9f953dc9e0f5897173b63b97374cc91a6dd299441e4f",
-      "text": "- `.analyze-context-memory/` must be gitignored; if it is tracked, untrack it before starting.",
+      "id": "analyze-context:L33:b0e8467c1567",
+      "heading": "Storage Contract",
+      "source_line": 33,
+      "sha256": "b0e8467c1567be0349a50172fced787b47535822875671f2596f7deb4b482e68",
+      "text": "- `ANALYZE_CONTEXT_STATE_HOME` may override the default, but it must remain outside every worktree. If policy blocks the location, request permission or another external path; never fall back silently.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "analyze-context:L30:2bfeab027cf8",
+      "id": "analyze-context:L35:4690068debcb",
+      "heading": "Storage Contract",
+      "source_line": 35,
+      "sha256": "4690068debcbed610e352c993039af9b79da442e2da567d66ce40388b17ef108",
+      "text": "- Branch and worktree names belong in the context file as metadata. They do not determine the task directory.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "analyze-context:L36:a9e95275f18f",
+      "heading": "Storage Contract",
+      "source_line": 36,
+      "sha256": "a9e95275f18ff67af4561d8e88b92dfa42ef40ad39b30b98d695087ca6b693f7",
+      "text": "- The store is machine-local. Use a reviewed export or `threader` for cross-machine handoff; never commit scratch state automatically.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "analyze-context:L40:4b0f7babb257",
+      "heading": "Tool Boundaries",
+      "source_line": 40,
+      "sha256": "4b0f7babb257872e4d853cf378c907d84b7debe26ba0fea78494df0df2baa4f5",
+      "text": "- forbidden: pretending analysis is implementation, silently changing unrelated repo state, treating provider-native memory as canonical, or replacing canonical source documents with temporary notes",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "analyze-context:L45:e9ce2fdada70",
       "heading": "Rules",
-      "source_line": 30,
+      "source_line": 45,
+      "sha256": "e9ce2fdada701792eafcbc4dcda8ecbfbf3049550c9b2c7cdefdb2fed676366e",
+      "text": "- Do not fork versioned analysis files for the same task.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "analyze-context:L46:6be6efa79bda",
+      "heading": "Rules",
+      "source_line": 46,
+      "sha256": "6be6efa79bda361054a1a1ff0ae0e578999407e319be37afd2ff5e650b0dfcf6",
+      "text": "- Never write canonical analysis state inside a branch, linked worktree, or main checkout.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "analyze-context:L47:9919e22e6020",
+      "heading": "Rules",
+      "source_line": 47,
+      "sha256": "9919e22e6020d51ae7a614e5bbc562bdc71caa01c4f821390882dcd04c572128",
+      "text": "- Do not treat session end, compaction, branch removal, or worktree removal as completion or cleanup authority.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "analyze-context:L48:d983c4341add",
+      "heading": "Rules",
+      "source_line": 48,
+      "sha256": "d983c4341adda708e0751816db5069b8ede3a568218da1ae5c7cbaa122090737",
+      "text": "- Use a distinct task ID for each concurrent task. Read only the exact task selected for the current work.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "analyze-context:L49:6f3bd53b0f28",
+      "heading": "Rules",
+      "source_line": 49,
+      "sha256": "6f3bd53b0f28d5a5b01416aba0bdeece03f087ca7f7f98e6f018f16b1159381b",
+      "text": "- Treat legacy `.analyze-context-memory/` directories as read-only migration sources. They must remain gitignored and untracked until migrated.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "analyze-context:L50:2bfeab027cf8",
+      "heading": "Rules",
+      "source_line": 50,
       "sha256": "2bfeab027cf8c50fecca59a18bf827d7af10762861a3bfeac98e63f83e954532",
       "text": "- Do not keep important findings only in chat history.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "analyze-context:L33:043edc088932",
+      "id": "analyze-context:L52:ffc51a116d08",
       "heading": "Rules",
-      "source_line": 33,
-      "sha256": "043edc088932bb39f78b28ae52afde4f2d16f15feec79b37d052d22c3e933698",
-      "text": "- Archive only when the initiative is complete.",
+      "source_line": 52,
+      "sha256": "ffc51a116d08d4d0445ff1a3b9fa1f41ca42f9b775611489973fb4d21da99a4e",
+      "text": "- Mark a task complete only when every TODO checkbox is checked and `insights` contains the final summary.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "analyze-context:L43:77357dbdaba3",
+      "id": "analyze-context:L53:55acc6f8dba9",
+      "heading": "Rules",
+      "source_line": 53,
+      "sha256": "55acc6f8dba906f771965d3cb036bec211962ba4ccc48527b119247a8b9232e3",
+      "text": "- Completed files may remain on disk. Cleanup is optional, later, and user-approved; hooks must never delete them.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "analyze-context:L54:608e248bbee5",
+      "heading": "Rules",
+      "source_line": 54,
+      "sha256": "608e248bbee5d8bcda3de63b15df4af1793476fc62bb49f74e35fa45f5b53ea8",
+      "text": "- Do not store secrets, credentials, or unrestricted sensitive source content in analysis state.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "analyze-context:L66:1da0cc04596e",
+      "heading": "Trigger and Checkpoint Rule",
+      "source_line": 66,
+      "sha256": "1da0cc04596ed0715c2207aeeb810bf21675b787413b89ef9ff5c02c39d08440",
+      "text": "Do not invoke this skill for a quick one-file answer, ordinary code review, or short-lived lookup.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "analyze-context:L72:c54d0465cef7",
+      "heading": "Hook Reminders",
+      "source_line": 72,
+      "sha256": "c54d0465cef74ce130c73fcc9fa81e7ff7e60dfcbd2638474f632fceca4b3401",
+      "text": "- On `PreCompact` or `PreCompress`, remind the model to update context, todo, and insights before compaction. If the host event is advisory, do not treat it as the only checkpoint guarantee.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "analyze-context:L73:3476fd9b6406",
+      "heading": "Hook Reminders",
+      "source_line": 73,
+      "sha256": "3476fd9b64062246da7ecc1dee0f08888dcfe9309e97039f05250f960ad59888",
+      "text": "- If a host lacks either event, continue with the skill rule; do not emulate it with noisy per-tool hooks.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "analyze-context:L74:b4eda42ec7af",
+      "heading": "Hook Reminders",
+      "source_line": 74,
+      "sha256": "b4eda42ec7af33584fc8c5e5a7f5c522b7d5e5d75216fcb496f15bf04921b506",
+      "text": "- Hooks may read paths, validate freshness, or add a reminder. They must not invent findings, mark completion, move files, or delete state.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "analyze-context:L85:77357dbdaba3",
       "heading": "Required Inputs",
-      "source_line": 43,
+      "source_line": 85,
       "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
       "text": "## Required Inputs",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "analyze-context:L49:3d4b9f171064",
+      "id": "analyze-context:L91:3d4b9f171064",
       "heading": "Required Output",
-      "source_line": 49,
+      "source_line": 91,
       "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
       "text": "## Required Output",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "analyze-context:L50:c34906b1f1c3",
+      "id": "analyze-context:L92:c34906b1f1c3",
       "heading": "Required Output",
-      "source_line": 50,
+      "source_line": 92,
       "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
       "text": "Every substantial response must include:",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "analyze-context:L57:47f8eb7b1f50",
+      "id": "analyze-context:L99:47f8eb7b1f50",
       "heading": "Companion Capability Matrix",
-      "source_line": 57,
+      "source_line": 99,
       "sha256": "47f8eb7b1f5062692ab13223019b0130f4f79b984441288b2a24c0555923cdd4",
       "text": "| If the analysis reveals this need | Route to | Required handoff |",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "analyze-context:L70:2e1127e53b15",
+      "id": "analyze-context:L110:9b1e376e47c5",
       "heading": "Constraints",
-      "source_line": 70,
-      "sha256": "2e1127e53b153f7008cb38697e2d2ea9710602151efb20f72b16f35bd737638c",
-      "text": "- Do not create multiple competing memory sets for the same initiative.",
+      "source_line": 110,
+      "sha256": "9b1e376e47c5d9b7d902e56f816ab2c7e790d67abb18eda69df640ace5565e87",
+      "text": "- Canonical state must live outside every Git working tree and survive session, branch, or worktree removal.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "analyze-context:L71:2ad1af6a8eb9",
+      "id": "analyze-context:L112:ba107ebb2d9c",
       "heading": "Constraints",
-      "source_line": 71,
+      "source_line": 112,
+      "sha256": "ba107ebb2d9c7d22edc52c6a16479ea7cbc5d0126c2263fe76af975dd5f6b7bc",
+      "text": "- Do not create multiple competing sets for one task.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "analyze-context:L113:2ad1af6a8eb9",
+      "heading": "Constraints",
+      "source_line": 113,
       "sha256": "2ad1af6a8eb9ee6ce57ee09e262a17f75cac09cbea63834b15edf59b390f1fa3",
       "text": "- Do not let insights remain only in the todo file.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "analyze-context:L72:a6a29a656d24",
+      "id": "analyze-context:L114:c13447c12080",
       "heading": "Constraints",
-      "source_line": 72,
-      "sha256": "a6a29a656d24f832189c0c85aa47e89bf86ac4bb2333232e727769ced2dbf1dc",
-      "text": "- Do not archive mid-initiative.",
+      "source_line": 114,
+      "sha256": "c13447c120806df4f31b340f630247cabb40f13b3272c86711fe7fdae4067349",
+      "text": "- Do not clean up an incomplete task.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "analyze-context:L75:9da5af73073c",
+      "id": "analyze-context:L122:1e17937adc9c",
       "heading": "Safety Check",
-      "source_line": 75,
-      "sha256": "9da5af73073c62d61b73ccde81abf5103f1d059a232ddff72ff055cc1d61fb88",
-      "text": "Before proceeding, you MUST resolve the active worktree, main checkout, and current branch.",
-      "kind": "invariant",
-      "mapped_to": []
-    },
-    {
-      "id": "analyze-context:L84:3fb4e79ba749",
-      "heading": "Safety Check",
-      "source_line": 84,
-      "sha256": "3fb4e79ba749765291579c9de269be3d180248e45b8dd06983318e8503e9dc6a",
-      "text": "Reading a canonical set from the main checkout is allowed. Before writing, stop and request a dedicated linked worktree if `CURRENT_BRANCH` is `main` or `master`, or if `ACTIVE_WORKTREE_ROOT` equals `MAIN_CHECKOUT_ROOT`. Confirm that `.analyze-context-memory/` is gitignored in the active worktree. If Git already tracks the directory, untrack it with an index-only operation that preserves the local files before starting.",
+      "source_line": 122,
+      "sha256": "1e17937adc9c41a757605a4671f6ff79cd1b7f98b998f0554574f3375a010736",
+      "text": "4. If legacy state is tracked, untrack it with an index-only operation that preserves local files before migration.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "analyze-context:L89:2db9f82e6c03",
-      "heading": "Canonical Memory Files",
-      "source_line": 89,
-      "sha256": "2db9f82e6c030a2c1da851a3b160b17dc25593b008a42134e12e5269cda0a49e",
-      "text": "- **READ:** On initial discovery, inspect the matching set under `MAIN_CHECKOUT_ROOT/.analyze-context-memory/` first for backward compatibility and cross-session continuity. Never modify that set in place. If an active-worktree set already exists, it remains the current working state; the main-checkout set is read-only background, not a competing write target.",
-      "kind": "guarded_invariant",
-      "mapped_to": []
-    },
-    {
-      "id": "analyze-context:L90:996ff2fc4f3c",
-      "heading": "Canonical Memory Files",
-      "source_line": 90,
-      "sha256": "996ff2fc4f3cd07471075cce3c31a9ef9d7beb5c6179533078b6dd06bb9f9597",
-      "text": "- **WRITE:** Always create and update the set under `ACTIVE_WORKTREE_ROOT/.analyze-context-memory/`, where `ACTIVE_WORKTREE_ROOT` is resolved with `git rev-parse --show-toplevel`. If only a main-checkout set exists, initialize the active-worktree set from it before recording new progress.",
-      "kind": "guarded_invariant",
-      "mapped_to": []
-    },
-    {
-      "id": "analyze-context:L119:9ce70cfe3319",
+      "id": "analyze-context:L133:7f603cf2a50a",
       "heading": "Recovery Procedure",
-      "source_line": 119,
-      "sha256": "9ce70cfe33191860d955d924c0486cde3465719e2f325fa50df9cf6ce749917a",
-      "text": "2. if no active-worktree set exists, fall back to the read-only set in the main checkout and initialize the active-worktree set before recording new progress",
+      "source_line": 133,
+      "sha256": "7f603cf2a50ac9a7a341ee7f6d2c5ff741f51d7032d065cd1867341168ee6ce2",
+      "text": "1. Resolve `TASK_DIR` and select the exact task ID. Never infer the current task from the newest timestamp alone.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "analyze-context:L134:8ea48feff6a0",
+      "heading": "Recovery Procedure",
+      "source_line": 134,
+      "sha256": "8ea48feff6a07fe7c2ccc4063635158bf57a9013fcd8dc30a2235c4ed45bcb7c",
+      "text": "2. If no canonical set exists, inspect legacy `.analyze-context-memory/` locations read-only and copy the matching set into `TASK_DIR` before any update.",
       "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "analyze-context:L139:d3415bd415c2",
+      "heading": "Completion and Cleanup",
+      "source_line": 139,
+      "sha256": "d3415bd415c27dff1f14399a094fc1a4db0c619b27c7fc6b9faad7524d63dff5",
+      "text": "A task is complete only when every checkbox in `<task-id>-todo.md` is checked, `<task-id>-insights.md` contains the final summary and evidence, and `<task-id>-context.md` is marked `complete`. Leave completed files in place unless the user later approves cleanup. Cleanup must target the exact completed task directory and should use a recoverable operation such as Trash.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "analyze-context:L161:42f8414d23b1",
+      "heading": "Evaluation Rubric",
+      "source_line": 161,
+      "sha256": "42f8414d23b109cf2117aca9d430dbbe5e5227d3e7c2ffad2bbe5e3afb56570c",
+      "text": "| Stale-state prevention | Only the selected task is loaded; unrelated sets are not presented as current |",
+      "kind": "invariant",
       "mapped_to": []
     }
   ],
@@ -246,7 +376,7 @@
   "source_references": [
     {
       "path": "ssot/analyze-context.md",
-      "sha256": "c54b6b4b377c944eeca2aa8e207e2485f5f2c8ceb7b6022ea9c2f5c23983db9a"
+      "sha256": "a45f68b8c8d355f01fe7d860abc9c439dcf4d35c5f41ccdf78b126f5058b82ef"
     }
   ],
   "known_ambiguities": [],
@@ -259,7 +389,7 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 21,
+    "total": 34,
     "mapped": 0,
     "waived": 0
   },

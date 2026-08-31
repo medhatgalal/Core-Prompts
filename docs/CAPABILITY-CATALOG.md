@@ -78,7 +78,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
   - implement requested changes from MR discussions
 - Summary: [Chema] Apply selected PR/MR review feedback with tight scope control. Use after reviewers have left actionable comments and the user wants fixes implemented. Do not use as a pre-commit review gate; use code-review for staged-change, commit, and merge-readiness review.
 
-### Analyze Context — Iterative Multi-File Analysis Workflow
+### Analyze Context — Durable Multi-File Investigation
 - Slug: `analyze-context`
 - Type: `skill`
 - Install target: `repo_local`
@@ -86,10 +86,11 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Invocation hints:
   - analyze several files or transcripts over a long session
   - keep durable analysis notes that survive context loss
+  - continue an investigation after its branch or worktree was removed
   - process a broad repo investigation one item at a time
   - recover and continue a previously interrupted analysis
   - preserve progress across a long research or audit workflow before a later recommendation step
-- Summary: Maintains durable analysis state for long-running multi-file investigations. Use when repo analysis must survive compaction or interruption, not for design, imports, or behavioral comparison.
+- Summary: Maintains repository-scoped durable state for long-running multi-file investigations. Use when evidence and progress must survive compaction, new sessions, branch changes, or worktree removal.
 
 ### Architecture Studio
 - Slug: `architecture`
