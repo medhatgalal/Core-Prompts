@@ -521,6 +521,7 @@
         "Canonical state must live outside every Git working tree and survive session, branch, or worktree removal.",
         "Branch and worktree paths are execution metadata, not task identity.",
         "Do not create multiple competing sets for one task.",
+        "Do not allow concurrent writers for one task without explicit handoff.",
         "Do not let insights remain only in the todo file.",
         "Do not clean up an incomplete task."
       ],
@@ -7754,6 +7755,7 @@
     "codex_skill": [
       ".codex/skills/address-code-review/resources/capability.json",
       ".codex/skills/analyze-context/resources/capability.json",
+      ".codex/skills/analyze-context/resources/state_store.py",
       ".codex/skills/architecture/resources/capability.json",
       ".codex/skills/auto-research/resources/capability.json",
       ".codex/skills/auto-research/resources/bootstrap.py",
@@ -7828,6 +7830,7 @@
     "gemini_skill": [
       ".gemini/skills/address-code-review/resources/capability.json",
       ".gemini/skills/analyze-context/resources/capability.json",
+      ".gemini/skills/analyze-context/resources/state_store.py",
       ".gemini/skills/architecture/resources/capability.json",
       ".gemini/skills/auto-research/resources/capability.json",
       ".gemini/skills/auto-research/resources/bootstrap.py",
@@ -7902,6 +7905,7 @@
     "claude_skill": [
       ".claude/skills/address-code-review/resources/capability.json",
       ".claude/skills/analyze-context/resources/capability.json",
+      ".claude/skills/analyze-context/resources/state_store.py",
       ".claude/skills/architecture/resources/capability.json",
       ".claude/skills/auto-research/resources/capability.json",
       ".claude/skills/auto-research/resources/bootstrap.py",
@@ -7976,6 +7980,7 @@
     "kiro_skill": [
       ".kiro/skills/address-code-review/resources/capability.json",
       ".kiro/skills/analyze-context/resources/capability.json",
+      ".kiro/skills/analyze-context/resources/state_store.py",
       ".kiro/skills/architecture/resources/capability.json",
       ".kiro/skills/auto-research/resources/capability.json",
       ".kiro/skills/auto-research/resources/bootstrap.py",

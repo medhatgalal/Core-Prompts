@@ -115,6 +115,20 @@ Expected result:
 - smoke evidence under `reports/smoke-clis/`
 - visibility checks for supported discovery-backed surfaces
 
+### Resolve Analyze Context State Safely
+
+Use the helper bundled with the installed `analyze-context` skill instead of constructing state paths manually:
+
+```bash
+STATE_HELPER="<installed-analyze-context-skill>/resources/state_store.py"
+python3 "$STATE_HELPER" paths --cwd "$(pwd)" --task-id <safe-task-id>
+python3 "$STATE_HELPER" init --cwd "$(pwd)" --task-id <safe-task-id>
+python3 "$STATE_HELPER" write --cwd "$(pwd)" --task-id <safe-task-id> \
+  --kind todo --input /absolute/path/to/updated-todo.md
+```
+
+The helper derives a readable project slug plus a deterministic hash from the normalized Git common directory, so linked worktrees share one project ID while unrelated same-name repositories do not. Task IDs accept only 1–80 lowercase letters, digits, hyphens, or underscores and must start and end alphanumeric. State stays under `${ANALYZE_CONTEXT_STATE_HOME:-$HOME/.analyze-context}`, outside Git worktrees, with `0700` directories, `0600` files, one-writer locking, path-containment checks, and atomic replacement writes.
+
 ### Preview A Deploy Without Mutating A Target
 
 ```bash

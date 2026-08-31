@@ -160,6 +160,7 @@
     "Canonical state must live outside every Git working tree and survive session, branch, or worktree removal.",
     "Branch and worktree paths are execution metadata, not task identity.",
     "Do not create multiple competing sets for one task.",
+    "Do not allow concurrent writers for one task without explicit handoff.",
     "Do not let insights remain only in the todo file.",
     "Do not clean up an incomplete task."
   ],
@@ -242,15 +243,16 @@
   },
   "quality_validation_matrix": [
     {
-      "id": "branch_and_memory_guardrails",
+      "id": "external_state_guardrails",
       "kind": "individual_module",
-      "label": "branch safety and canonical memory files",
+      "label": "external private state and canonical task files",
       "must_contain": [
-        "git status --short --branch",
-        ".analyze-context-memory/",
-        "<task>-context.md",
-        "<task>-todo.md",
-        "<task>-insights.md"
+        "~/.analyze-context",
+        "resources/state_store.py",
+        "<task-id>-context.md",
+        "<task-id>-todo.md",
+        "<task-id>-insights.md",
+        "one writer"
       ]
     },
     {
@@ -258,9 +260,9 @@
       "kind": "individual_module",
       "label": "recovery and continuation loop",
       "must_contain": [
-        "Process one item at a time.",
+        "process one item at a time",
         "After interruption or compaction:",
-        "continue from the recorded next item instead of restarting from memory"
+        "continue from the recorded next action"
       ]
     }
   ],
