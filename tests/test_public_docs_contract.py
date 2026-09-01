@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import re
 import subprocess
 from pathlib import Path
@@ -61,3 +62,33 @@ def test_public_help_contract_mentions_release_watch() -> None:
     assert "checks only and never auto-installs" in update.stdout
     assert "standalone updater bundle" in install.stdout
     assert "RELEASE_SOURCE.env" in install.stdout
+
+
+def test_readme_skill_count_matches_generated_manifest() -> None:
+    manifest = json.loads(read(".meta/manifest.json"))
+    shipped_skills = manifest["surfaces"]["codex_skill"]
+    readme = read("README.md")
+    match = re.search(r"current generated surfaces ship `(\d+)` skills", readme)
+    assert match, "README.md must publish the current generated skill count"
+    assert int(match.group(1)) == len(shipped_skills)
+
+
+def test_plan_to_goal_is_discoverable_from_public_onboarding() -> None:
+    public_docs = (
+        "README.md",
+        "docs/GETTING-STARTED.md",
+        "docs/EXAMPLES.md",
+        "docs/CLI-REFERENCE.md",
+    )
+    for path in public_docs:
+        assert "plan-to-goal-design" in read(path), f"{path} must include plan-to-goal-design"
+
+    examples = read("docs/EXAMPLES.md")
+    for required in (
+        "criterion-flips.json",
+        "judge-amendments.json",
+        "CRITERION_ID=ANCHOR_ROUTE",
+        "goal_packet.py seal",
+        "behavioral promotion",
+    ):
+        assert required in examples, f"docs/EXAMPLES.md missing {required}"

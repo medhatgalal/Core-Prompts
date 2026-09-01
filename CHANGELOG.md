@@ -1,3 +1,9 @@
+## v1.12.4 - 2026-09-01
+
+- Corrected onboarding inventory from 24 to 25 shipped skills and added `plan-to-goal-design` to the README and Getting Started capability indexes.
+- Added a concrete two-criterion goal-packet example covering bounded mechanism proof, population exclusions, per-criterion present/absent flips, fixture hashes, judge-amendment disclosure, and the final lint/seal/check sequence.
+- Added exact Plan to Goal commands and artifact expectations to the CLI reference while preserving the evidence boundary: deterministic structural checks are documented proof, and behavioral promotion remains pending independent qualified evaluation.
+
 ## v1.12.3 - 2026-08-31
 
 - Reworked `analyze-context` around one external three-file task set under `~/.analyze-context`: stable collision-resistant project IDs across linked worktrees, validated task IDs, path-containment checks, private permissions, one-writer locking, atomic replacement writes, legacy read-only migration, portable checkpoint rules, optional hook reminders, TODO-based completion, and deferred user-approved cleanup.

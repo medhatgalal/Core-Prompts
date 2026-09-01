@@ -78,6 +78,80 @@ Follow with:
 
 > Now turn that recommendation into the smallest migration-safe implementation plan.
 
+### `plan-to-goal-design`
+
+Use when:
+
+- a reviewed plan needs to survive compaction or a long-running goal loop
+- repository research, scope, verifier trust, and stop conditions need durable artifacts
+- the mechanism can be proven over a bounded sample while bulk execution belongs to a separate policy or routine
+
+Why this skill first:
+
+- start here after planning but before implementation when a short goal alone would lose the evidence, constraints, or honest completion gate
+- do not use it to invent a native Goal command for an unsupported host or to claim behavioral promotion from structural checks
+
+Ask:
+
+> Use `plan-to-goal-design` to inspect this migration plan and the current repository. Prove the migration mechanism over two representative items with real evidence, keep the remaining backlog in the operator-owned rollout policy, reject any sample item found in a do-not-touch list, and produce a compact goal plus a sealed packet. Do not start the goal.
+
+Expected packet:
+
+- `goal.txt` — compact wrapper-free goal that points to the durable packet
+- `spec.md` — research receipt, bounded anchor, wider-population disposition, exclusions, criteria, trust, and stop conditions
+- `baseline.json` — two sampled identifiers, `bounded_mechanism_proof`, authorization availability, and explicit exclusion lists
+- `criterion-flips.json` — one anchor criterion and one mechanism criterion, each with condition-present and condition-absent trees
+- `judge-amendments.json` — empty initially; later judge repairs require old/new hashes, one-line diff, complete changed/unchanged criterion partition, and diff-before-trust instruction
+- `verify.sh` — lists both criteria and evaluates exactly one when `CRITERION_ID` is set
+- `packet.json` and `receipt.json` — sealed artifact bindings and terminal evidence
+
+Two-criterion verifier interface:
+
+```bash
+bash verify.sh --list-criteria
+# Expected, one ID per line:
+# ANCHOR_ROUTE
+# C_MECHANISM
+
+CRITERION_ID=ANCHOR_ROUTE ANCHOR_ROOT=criteria/ANCHOR_ROUTE/present bash verify.sh
+# Expected: CRITERION ANCHOR_ROUTE PASS, exit 0
+
+CRITERION_ID=ANCHOR_ROUTE ANCHOR_ROOT=criteria/ANCHOR_ROUTE/absent bash verify.sh
+# Expected: CRITERION ANCHOR_ROUTE FAIL, exit 1
+
+CRITERION_ID=C_MECHANISM ANCHOR_ROOT=criteria/C_MECHANISM/present bash verify.sh
+# Expected: CRITERION C_MECHANISM PASS, exit 0
+
+CRITERION_ID=C_MECHANISM ANCHOR_ROOT=criteria/C_MECHANISM/absent bash verify.sh
+# Expected: CRITERION C_MECHANISM FAIL, exit 1
+```
+
+Final validation sequence from the installed skill root:
+
+```bash
+bash resources/goal-lint \
+  --tree /absolute/path/to/untouched-tree \
+  --hostile-tree /absolute/path/to/cheapest-fake-tree \
+  /absolute/path/to/packet
+
+python3 resources/scripts/goal_packet.py lint /absolute/path/to/packet
+python3 resources/scripts/goal_packet.py seal /absolute/path/to/packet
+python3 resources/scripts/goal_packet.py check /absolute/path/to/packet
+```
+
+What good output looks like:
+
+- every machine criterion appears in `--list-criteria` and flips in the required direction
+- sampled population intersects no exclusion list and needs no authority unavailable to the author
+- untouched and cheapest-fake trees fail for the expected named criteria
+- fixture-tree and artifact hashes are bound before `SEALED_READY`
+- unsupported native runners return `UNSUPPORTED_NATIVE_GOAL`, not invented syntax
+- `structural_ready` or `SEALED_READY` is not described as behavioral promotion
+
+Follow with:
+
+> Show me the research receipt, anchor sample and authority owner, exclusion intersection, every criterion-flip result, verifier trust, packet hashes, and the exact reason this packet is or is not ready to launch.
+
 ### `auto-research`
 
 Use when:

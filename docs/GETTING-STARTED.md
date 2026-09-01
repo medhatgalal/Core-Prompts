@@ -22,12 +22,15 @@ If Core-Prompts is already installed in Codex, Gemini, Claude, or Kiro, begin wi
 | `address-code-review` | "Use `address-code-review` to inspect the open MR comments and apply only the selected reviewer-requested fixes." | comments found, targeted fixes, changed files, commit guidance, and follow-up review |
 | `eng-report` | "Use `eng-report` to generate an HTML progress report for this repo since 2026-06-01." | git-derived metrics, report path, and narrative tied to deterministic data |
 | `ic-assistant` | "Use `ic-assistant` to track this active incident and tell me the current phase, overdue items, and next required action." | mode, phase, next action, status-update timer, and escalation flags |
+| `plan-to-goal-design` | "Use `plan-to-goal-design` to inspect this rollout plan and repository, then compile a compact goal plus a sealed spec/verifier packet without starting execution." | research receipt, bounded mechanism-proof anchor, empty population/exclusion intersection, per-criterion flip evidence, packet status, and host-correct next action |
 | `supercharge` | "Use `supercharge /adversarial /debate /deep` to stress-test this release decision with Bull/Bear/Decider analysis, risks, mitigants, and flip conditions." | stronger framing, constraints, sequencing, first-principles accounting, and adversarial debate when requested |
 | `auto-research` | "Use `auto-research` to improve our review prompt so it catches more regressions without increasing noise." | experiment design, evaluation, and a validated winner |
 | `batman` | "Batman: verify this request, publish the Host-Fit Plan, then implement this shipped-defect correction through independent-subagent TDD, blocking milestone reviews, verification, docs, PR, authorized merge, release, install, and cleanup." | instruction-integrity and host-fit decisions, independent subagent evidence, provenance-qualified red and mutation checks, progress reports, milestone decisions, and state-specific landing receipts |
 | `demo-recorder` | "Use `demo-recorder` to create a Playwright demo of the new dashboard feature with video recording." | demo plan, complete Playwright script, run command, and output path |
 | `dynamic-html-presentations` | "Use `dynamic-html-presentations` to create a standalone HTML deck and ask me whether I want PNG, PPTX, or all formats." | narrative-first deck, polished 16:9 visuals, interaction behavior, and validated requested exports |
 | `testing` | "Use `testing` to identify the edge cases and tests this change needs." | prioritized tests and missing edge cases |
+
+For a complete Plan to Goal walkthrough, including a two-criterion verifier and the lint/seal/check commands, see [Plan to Goal Design](EXAMPLES.md#plan-to-goal-design).
 
 If you want an agent surface rather than a direct skill invocation, start with the table below. Capability Fabric metadata is advisory; explicit invocation follows the selected capability's operating contract.
 
