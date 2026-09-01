@@ -129,6 +129,31 @@ python3 "$STATE_HELPER" write --cwd "$(pwd)" --task-id <safe-task-id> \
 
 The helper derives a readable project slug plus a deterministic hash from the normalized Git common directory, so linked worktrees share one project ID while unrelated same-name repositories do not. Task IDs accept only 1–80 lowercase letters, digits, hyphens, or underscores and must start and end alphanumeric. State stays under `${ANALYZE_CONTEXT_STATE_HOME:-$HOME/.analyze-context}`, outside Git worktrees, with `0700` directories, `0600` files, one-writer locking, path-containment checks, and atomic replacement writes.
 
+### Lint, Seal, And Check A Plan To Goal Packet
+
+Run these from the installed `plan-to-goal-design` skill directory after the skill has produced and materialized a packet:
+
+```bash
+bash resources/goal-lint \
+  --tree /absolute/path/to/untouched-tree \
+  --hostile-tree /absolute/path/to/cheapest-fake-tree \
+  /absolute/path/to/packet
+
+python3 resources/scripts/goal_packet.py lint /absolute/path/to/packet
+python3 resources/scripts/goal_packet.py seal /absolute/path/to/packet
+python3 resources/scripts/goal_packet.py check /absolute/path/to/packet
+```
+
+The packet must contain:
+
+- `goal.txt`, `spec.md`, `baseline.json`, `verify.sh`, and `packet.json`
+- `criterion-flips.json` plus separate present/absent fixture trees for every machine criterion
+- `judge-amendments.json`, even when its initial amendment list is empty
+
+`verify.sh --list-criteria` must print every machine criterion exactly once. With `CRITERION_ID=<id>`, the verifier must execute only that criterion, emit `CRITERION <id> PASS` with exit `0` when present, and emit `CRITERION <id> FAIL` with exit `1` when absent. Sealing binds packet artifacts and criterion fixture-tree hashes; `check` must pass immediately before launch.
+
+See [Plan to Goal Design](EXAMPLES.md#plan-to-goal-design) for a two-criterion example. These commands establish deterministic packet integrity only. Behavioral promotion still requires independent qualified evaluation.
+
 ### Preview A Deploy Without Mutating A Target
 
 ```bash

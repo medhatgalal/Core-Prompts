@@ -10,7 +10,7 @@ The right mental model is simple:
 
 If you are already using Core-Prompts in a CLI, start there. If you are importing a new capability family, go to UAC next. If you are rebuilding surfaces, validating state, deploying, or preparing release work, use the repo tooling after that.
 
-The current generated surfaces ship `24` skills across all supported CLIs and `11` agents on agent-capable surfaces. Capability Fabric metadata is advisory; explicit invocation follows the selected capability's operating contract.
+The current generated surfaces ship `25` skills across all supported CLIs and `11` agents on agent-capable surfaces. Capability Fabric metadata is advisory; explicit invocation follows the selected capability's operating contract.
 
 For review work, pick the capability by intent:
 
@@ -45,6 +45,7 @@ These are the currently shipped skills with a concrete starter ask for each one:
 | `gitops-review` | judge branch, PR, merge, or release readiness | "Use `gitops-review` to tell me whether this branch is ready for PR and what blockers remain." | gate type, blockers, required companion reviews, and next actions |
 | `ic-assistant` | keep an Incident Commander on-process with generic guidance by default and internal runbook mode only on request | "Use `ic-assistant` to track this incident, identify the current phase, and tell me the next required action." | mode, current phase, next action, status-update timer, and overdue or escalation flags |
 | `pitch` | create, review, score, or improve Shape Up pitches | "Use `pitch` to review this Shape Up pitch for appetite, risks, and betting readiness." | shaped problem, appetite fit, risks, score, and concrete improvement guidance |
+| `plan-to-goal-design` | turn a researched implementation plan into a bounded goal packet | "Use `plan-to-goal-design` to inspect this migration plan and repo, then produce a compact goal, durable spec, bounded anchor, per-criterion flip fixtures, and a sealed verifier packet." | research receipt, goal/spec/baseline packet, criterion-flip results, verifier trust, honest terminal state, and a host-correct launch command only when supported |
 | `pulse` | triage Gmail and Google Chat noise into clear priorities | "Use `pulse` to tell me what needs my attention across Gmail and Google Chat, then propose the next actions without sending anything." | priority-classified comms table, source summary, and proposed next actions for the hot items |
 | `resolve-conflict` | analyze a merge conflict or competing edits | "Use `resolve-conflict` to compare these conflicting branch edits and tell me what should survive." | conflict map, additive merge opportunities, explicit tradeoffs, and a recommended resolution |
 | `supercharge` | harden a rough prompt, plan, proposal, first-principles audit, or adversarial decision before execution | "Use `supercharge /adversarial /debate /deep` to run a Bull/Bear/Decider debate on this architecture decision, then list flip conditions." | sharper framing, stronger constraints, execution plan, failure-mode coverage, `/basis` accounting, or Bull/Bear/Decider debate when requested |
