@@ -10,7 +10,7 @@ The right mental model is simple:
 
 If you are already using Core-Prompts in a CLI, start there. If you are importing a new capability family, go to UAC next. If you are rebuilding surfaces, validating state, deploying, or preparing release work, use the repo tooling after that.
 
-The current generated surfaces ship `25` skills across all supported CLIs and `11` agents on agent-capable surfaces. Capability Fabric metadata is advisory; explicit invocation follows the selected capability's operating contract.
+The current generated surfaces ship `26` skills across all supported CLIs and `11` agents on agent-capable surfaces. Capability Fabric metadata is advisory; explicit invocation follows the selected capability's operating contract.
 
 For review work, pick the capability by intent:
 
@@ -41,6 +41,7 @@ These are the currently shipped skills with a concrete starter ask for each one:
 | `dynamic-html-presentations` | create polished standalone slide decks with optional PNG and PPTX delivery | "Use `dynamic-html-presentations` to turn this quarterly review into interactive HTML, 1920×1080 PNGs, and an image-faithful PPTX." | narrative-first HTML deck, validated images, optional flattened PPTX, and explicit export evidence |
 | `docs-review-expert` | fix docs structure, drift, and explainability | "Use `docs-review-expert` to tell me what belongs in `README.md` versus `docs/`, what drifted, and what to fix first." | doc placement, drift findings, rewrite targets, and review timing |
 | `eng-report` | generate a git-derived engineering progress report | "Use `eng-report` to generate an HTML progress report for this repo since 2026-06-01." | deterministic git metrics, local or Drive report path, and narrative clearly tied to the data |
+| `engos-audit-opex-incident-review` | audit an Operational Excellence incident estate against the prior snapshot | "Use `engos-audit-opex-incident-review` to build today's Daily OpEx Digest for Blocker and Critical incidents, compared with yesterday." | decision queue, owner obligations, reconciled metrics, progress and correction ledger, stalled cohorts, DPA tracker, all-open board, evidence caveats, and optional incident drill-downs |
 | `feature-status` | audit a feature against its stated scope and proof sources | "Use `feature-status` to compare this feature's pitch, HLD, OAS, code, and tests, then tell me what is complete, what drifted, and what is blocking ship." | evidence-backed status tables, spec drift findings, gap analysis, and prioritized recommendations |
 | `gitops-review` | judge branch, PR, merge, or release readiness | "Use `gitops-review` to tell me whether this branch is ready for PR and what blockers remain." | gate type, blockers, required companion reviews, and next actions |
 | `ic-assistant` | keep an Incident Commander on-process with generic guidance by default and internal runbook mode only on request | "Use `ic-assistant` to track this incident, identify the current phase, and tell me the next required action." | mode, current phase, next action, status-update timer, and overdue or escalation flags |

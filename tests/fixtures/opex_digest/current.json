@@ -1,0 +1,84 @@
+{
+  "schema_version": "OpExDigestSnapshot.v1",
+  "as_of": "2026-09-02T08:52:00-04:00",
+  "scope": {
+    "label": "SBU = Example Engineering",
+    "priorities": ["Blocker", "Critical"],
+    "jira_base_url": "https://jira.example.test/browse"
+  },
+  "coverage": {
+    "status": "complete",
+    "sources": ["Jira fixture", "postmortem fixture"],
+    "gaps": [],
+    "generated_at": "2026-09-02 08:52"
+  },
+  "thresholds": {"stuck_days": 7, "chronic_days": 14},
+  "dpa_sla_days": {"Highest": 14},
+  "incidents": [
+    {
+      "key": "INC-101",
+      "summary": "Database startup incident",
+      "group": "Runtime",
+      "priority": "Blocker",
+      "status": "Remediated",
+      "owner": "Owner One",
+      "created": "2026-07-22",
+      "last_meaningful_progress": "2026-07-23",
+      "why_open": "awaiting close-out",
+      "dpa_keys": ["DPA-201"],
+      "unlinked_dpa_keys": [],
+      "affected_entities": ["site-alpha", "site-beta"],
+      "postmortem": {"required": true, "state": "filled", "due": "2026-08-06", "signoff_complete": false},
+      "deep_dive": {
+        "facts": "The service did not start.",
+        "customer_risk": "Other matching deployments remain exposed.",
+        "five_whys": ["The service used an incompatible image.", "Image selection lacked the required input."],
+        "preventive_action": "Select the image from the verified deployment input.",
+        "talking_points": ["The remediation is complete; the preventive action is overdue."],
+        "questions": [{"question": "Is the action deployed?", "answer": "No deployment evidence was supplied."}]
+      }
+    },
+    {
+      "key": "INC-102",
+      "summary": "Closed incident awaiting preventive work",
+      "group": "Network",
+      "priority": "Critical",
+      "status": "Closed",
+      "owner": "Owner Two",
+      "created": "2026-08-20",
+      "last_meaningful_progress": "2026-08-24",
+      "why_open": "no DPAs filed",
+      "dpa_keys": [],
+      "unlinked_dpa_keys": [],
+      "affected_entities": ["site-alpha"],
+      "postmortem": {"required": false, "state": "not_needed", "complete": true}
+    },
+    {
+      "key": "INC-103",
+      "summary": "Certificate incident <script>alert(1)</script>",
+      "group": "Identity",
+      "priority": "Blocker",
+      "status": "Remediated",
+      "owner": "Owner Three",
+      "created": "2026-08-28",
+      "last_meaningful_progress": "2026-08-28",
+      "why_open": "one DPA named but not linked",
+      "dpa_keys": [],
+      "unlinked_dpa_keys": ["DPA-999"],
+      "postmortem": {"required": true, "state": "filled", "due": "2026-09-11", "signoff_complete": false}
+    }
+  ],
+  "dpas": [
+    {"key": "DPA-201", "summary": "Select compatible image", "parent": "INC-101", "priority": "Highest", "status": "In Progress", "created": "2026-07-28"},
+    {"key": "DPA-202", "summary": "Add health probe", "parent": "INC-090", "priority": "Not Set", "status": "Backlog", "created": "2026-08-27", "historical_parent": true}
+  ],
+  "changes": [
+    {"subject": "INC-103", "group": "Identity", "kind": "postmortem_state", "description": "postmortem blank → filled", "current_status": "Remediated", "counts_as_progress": true},
+    {"subject": "DPA-201", "group": "Runtime", "kind": "link_discovered", "description": "an older link was recovered", "current_status": "In Progress", "counts_as_progress": false, "exclusion_reason": "R2 correction"}
+  ],
+  "history": [
+    {"open": 4, "dpas_overdue": 1, "postmortems_overdue": 2, "chronic": 1},
+    {"open": 3, "dpas_overdue": 1, "postmortems_overdue": 1, "chronic": 1}
+  ],
+  "caveats": ["One Jira field disagreed with the verified document body."]
+}

@@ -564,6 +564,54 @@ Follow with:
 
 > Now rerun it with `--json` first so I can inspect the metrics before writing the narrative.
 
+### `engos-audit-opex-incident-review`
+
+Use when:
+
+- you need a Daily OpEx Digest from current incident, DPA, and postmortem evidence
+- today's board must be compared with an immutable prior snapshot
+- decision items, owner obligations, progress, corrections, stalled work, and drop-off need one reconciled view
+- selected incidents also need Five Whys, customer risk, talking points, and anticipated questions
+
+Why this skill first:
+
+- start here for a stateful Operational Excellence incident-estate audit
+- use `ic-assistant` for active Incident Commander process support, `weekly-intel` for a broad multi-source update, and `eng-report` for Git-only activity
+
+Ask:
+
+> Use `engos-audit-opex-incident-review` to build today's Daily OpEx Digest for the verified Blocker and Critical population, compare it with yesterday, and add drill-downs for incidents needing a decision.
+
+Expected output:
+
+- `Needs a Decision` and `Who Owes What` first
+- exact headline and table reconciliation across new, progressed, stalled, chronic, resolved, open, and DPA counts
+- R2 data-quality corrections excluded from progress
+- closed incidents retained until the postmortem and DPA drop-off rule passes
+- policy-backed overdue, on-track, and no-SLA DPA states
+- all ten daily-board sections in HTML, plus requested Markdown and sourced incident drill-downs
+- current/prior snapshot hashes, complete/partial/blocked coverage, and explicit caveats
+
+Follow with:
+
+> Validate the two snapshots and render them locally without querying Jira or Drive again.
+
+The bundled deterministic helper is:
+
+```bash
+python3 resources/opex_digest.py validate \
+  --current <current-snapshot.json> \
+  --previous <prior-snapshot.json>
+
+python3 resources/opex_digest.py render \
+  --current <current-snapshot.json> \
+  --previous <prior-snapshot.json> \
+  --output-dir <output-directory> \
+  --format both
+```
+
+The helper performs no network access and refuses to overwrite an existing report.
+
 ### `gitops-review`
 
 Use when:

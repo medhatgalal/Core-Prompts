@@ -1,3 +1,9 @@
+## v1.12.5 - 2026-09-05
+
+- Added `engos-audit-opex-incident-review`, derived from Amol Shah's Operational Excellence contribution, with the full Daily OpEx Digest: decisions, owner obligations, reconciled metrics, new/progressed/stalled/resolved cohorts, estate patterns, DPA tracking, all-open retention, evidence caveats, and optional Five Whys and meeting drill-downs.
+- Added a network-free snapshot validator and deterministic HTML/Markdown renderer with explicit R1–R8 comparison rules, complete/partial/blocked coverage, policy-backed SLA states, combined-postmortem handling, HTML escaping, responsive/print layout, and overwrite refusal.
+- Replayed the supplied September report through 41 deterministic checks and killed 5 focused regressions. UAC landed the exact reviewed SSOT and four generated skill surfaces as `structural_ready`; formal behavioral status remains `behavioral_pending` because no independent signed promotion evaluation ran.
+
 ## v1.12.4 - 2026-09-01
 
 - Corrected onboarding inventory from 24 to 25 shipped skills and added `plan-to-goal-design` to the README and Getting Started capability indexes.
