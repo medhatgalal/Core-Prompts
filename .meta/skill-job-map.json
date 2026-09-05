@@ -391,6 +391,22 @@
       "nearest_neighbors": [],
       "shape": "unclassified_new_skill",
       "portfolio_action": "draft_new_skill_pending_review"
+    },
+    "engos-audit-opex-incident-review": {
+      "primary_job": "Audit the Operational Excellence incident estate against a prior snapshot and generate a decisions-first Daily OpEx Digest with owner obligations, progress, stalled work, DPAs, postmortems, evidence caveats, and optional incident drill-downs.",
+      "use_when": "The user needs a current-versus-prior Operational Excellence board, DPA or postmortem tracking, owner accountability, estate patterns, or executive incident-review preparation.",
+      "works_on": "Current and prior normalized incident snapshots backed by Jira records, DPA records, postmortem bodies, policy inputs, and retrieval coverage evidence.",
+      "main_output": "A validated snapshot pair, evidence and comparison ledgers, and a deterministic Daily OpEx Digest in HTML with optional Markdown and incident drill-downs.",
+      "not_for": "Active Incident Commander process support, Git-only engineering activity, broad weekly intelligence, or modifying Jira, Drive, owners, priorities, links, or statuses.",
+      "authority": "Read incident and document evidence and write local audit artifacts only; external mutations, messages, uploads, and distribution require separate explicit authorization.",
+      "routing_question": "Does this request require a stateful Operational Excellence incident-estate audit and Daily OpEx Digest?",
+      "nearest_neighbors": [
+        "ic-assistant",
+        "weekly-intel",
+        "eng-report"
+      ],
+      "shape": "stateful_incident_estate_audit",
+      "portfolio_action": "keep_and_clarify_boundary"
     }
   }
 }

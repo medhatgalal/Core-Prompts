@@ -1194,6 +1194,105 @@
       "advisory_only": true
     },
     {
+      "slug": "engos-audit-opex-incident-review",
+      "display_name": "EngOS Audit \u2014 Operational Excellence Incident Review",
+      "capability_type": "skill",
+      "summary": "Generate an evidence-backed Daily OpEx Digest and optional incident drill-downs from current Jira incidents, prior snapshots, DPAs, and postmortems. Use for decisions, owner accountability, daily progress, stalled work, estate patterns, SLA tracking, Five Whys, and executive meeting preparation.",
+      "role": "analyst",
+      "domain_tags": [
+        "review",
+        "engos",
+        "audit",
+        "opex",
+        "incident"
+      ],
+      "required_inputs": [
+        "exact scope label and verified Jira filter field/value or explicit ticket set",
+        "included priorities; default only when the user states or accepts it",
+        "reporting timestamp and timezone",
+        "prior snapshot path, or a declared first-run baseline",
+        "output directory and requested format (`html`, `md`, or `both`)",
+        "current Jira read access; Drive/Docs is optional but missing document access must remain a visible gap",
+        "current DPA and postmortem policy source, including effective date, deadline anchor, calendar rule, and priority mapping"
+      ],
+      "expected_outputs": [
+        "timestamped current snapshot and its SHA-256",
+        "prior snapshot path and SHA-256",
+        "coverage/evidence ledger with query and page accounting",
+        "comparison ledger with R1\u2013R8 rule decisions",
+        "Daily OpEx Digest HTML and requested Markdown companion",
+        "rendered metrics and reconciliation result",
+        "complete list of source timestamps, access gaps, contradictions, and caveats",
+        "optional drill-down sections without removing any daily-board section"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "global",
+        "confidence": 1.0,
+        "confirmation_required_for_apply": true,
+        "rationale": "SSOT frontmatter explicitly declares global installation.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ]
+      },
+      "confidence": 0.97,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [],
+      "quality_status": "structural_ready",
+      "benchmark_profile": "default",
+      "preferred_use_cases": [
+        "AI-assisted capability selection",
+        "deterministic prompt uplift review"
+      ],
+      "artifact_conventions": [
+        "ssot/<slug>.md",
+        ".meta/capabilities/<slug>.json",
+        "reports/quality-reviews/<slug>/LATEST.md"
+      ],
+      "invocation_style": "assistant_first_but_scriptable",
+      "requires_human_confirmation": true,
+      "org_graph": {
+        "org_role": "analyst",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "review",
+          "engos"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile None."
+      },
+      "advisory_only": true
+    },
+    {
       "slug": "feature-status",
       "display_name": "Feature Status \u2014 Deep Completeness Analysis",
       "capability_type": "skill",

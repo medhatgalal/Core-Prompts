@@ -1,0 +1,14 @@
+{
+  "schema_version": "OpExDigestSnapshot.v1",
+  "as_of": "2026-09-01T08:52:00-04:00",
+  "scope": {"label": "SBU = Example Engineering", "priorities": ["Blocker", "Critical"], "jira_base_url": "https://jira.example.test/browse"},
+  "coverage": {"status": "complete", "sources": ["Jira fixture", "postmortem fixture"], "gaps": [], "generated_at": "2026-09-01 08:52"},
+  "incidents": [
+    {"key": "INC-101", "summary": "Database startup incident", "group": "Runtime", "priority": "Blocker", "status": "Remediated", "owner": "Owner One", "created": "2026-07-22", "last_meaningful_progress": "2026-07-23", "dpa_keys": ["DPA-201"], "unlinked_dpa_keys": []},
+    {"key": "INC-102", "summary": "Closed incident awaiting preventive work", "group": "Network", "priority": "Critical", "status": "Closed", "owner": "Owner Two", "created": "2026-08-20", "last_meaningful_progress": "2026-08-24", "dpa_keys": [], "unlinked_dpa_keys": []},
+    {"key": "INC-103", "summary": "Certificate incident", "group": "Identity", "priority": "Blocker", "status": "Remediated", "owner": "Owner Three", "created": "2026-08-28", "last_meaningful_progress": "2026-08-28", "dpa_keys": [], "unlinked_dpa_keys": []}
+  ],
+  "dpas": [
+    {"key": "DPA-201", "summary": "Select compatible image", "parent": "INC-101", "priority": "Highest", "status": "In Progress", "created": "2026-07-28"}
+  ]
+}

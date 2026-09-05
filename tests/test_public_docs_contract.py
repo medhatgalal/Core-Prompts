@@ -5,7 +5,6 @@ import re
 import subprocess
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -16,7 +15,7 @@ def read(path: str) -> str:
 def test_version_changelog_and_docs_contract_are_aligned() -> None:
     version = read("VERSION").strip()
     changelog = read("CHANGELOG.md")
-    match = re.search(r"^##\s+([^ ]+)\s+-\s+", changelog, re.M)
+    match = re.search(r"^##\s+([^ ]+)\s+-\s+", changelog, re.MULTILINE)
     assert match
     assert match.group(1) == version
 
@@ -90,5 +89,26 @@ def test_plan_to_goal_is_discoverable_from_public_onboarding() -> None:
         "CRITERION_ID=ANCHOR_ROUTE",
         "goal_packet.py seal",
         "behavioral promotion",
+    ):
+        assert required in examples, f"docs/EXAMPLES.md missing {required}"
+
+
+def test_opex_incident_audit_is_discoverable_with_snapshot_examples() -> None:
+    public_docs = (
+        "README.md",
+        "docs/GETTING-STARTED.md",
+        "docs/EXAMPLES.md",
+        "docs/CLI-REFERENCE.md",
+    )
+    for path in public_docs:
+        assert "engos-audit-opex-incident-review" in read(path), f"{path} missing the OpEx audit skill"
+
+    examples = read("docs/EXAMPLES.md")
+    for required in (
+        "Needs a Decision",
+        "Who Owes What",
+        "R2 data-quality corrections",
+        "opex_digest.py validate",
+        "opex_digest.py render",
     ):
         assert required in examples, f"docs/EXAMPLES.md missing {required}"

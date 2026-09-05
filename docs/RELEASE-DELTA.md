@@ -1,22 +1,20 @@
 # Release Delta
 
 - Baseline status: `available`
-- Comparison basis: `git:v1.12.2@3de43b80c98dd8442c7ac1b39fb30e0ecc5ac65c .meta/manifest.json`
+- Comparison basis: `git:v1.12.3@2ec30417c94484400eab429818589fa26261f95e .meta/manifest.json`
 - New capabilities: `1`
 - Removed capabilities: `0`
-- Changed capabilities: `2`
-- Material changes: `2`
+- Changed capabilities: `0`
+- Material changes: `0`
 
 ## New Capabilities
-- `plan-to-goal-design` — Plan to Goal Design
+- `engos-audit-opex-incident-review` — EngOS Audit — Operational Excellence Incident Review
 
 ## Removed Capabilities
 - none
 
 ## Material Changes
-- `analyze-context` — changed `summary, display_name, invocation_hints, required_inputs, expected_outputs, shared_constraints`
-- `codebase-health-audit` — changed `invocation_hints, required_inputs, shared_constraints`
+- none
 
 ## All Changed Capabilities
-- `analyze-context` — changed `summary, display_name, invocation_hints, required_inputs, expected_outputs, shared_constraints`
-- `codebase-health-audit` — changed `invocation_hints, required_inputs, shared_constraints`
+- none

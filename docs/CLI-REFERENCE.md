@@ -47,6 +47,24 @@ Profiles are `static`, `native`, `routing-canary`, `canary`, `promotion`, `cross
 
 ## Task-Oriented Examples
 
+### Validate Or Render An OpEx Digest Snapshot
+
+From an emitted `engos-audit-opex-incident-review` skill directory:
+
+```bash
+python3 resources/opex_digest.py validate \
+  --current <current-snapshot.json> \
+  --previous <prior-snapshot.json>
+
+python3 resources/opex_digest.py render \
+  --current <current-snapshot.json> \
+  --previous <prior-snapshot.json> \
+  --output-dir <output-directory> \
+  --format both
+```
+
+`validate` and `render` use local normalized snapshots and make no network calls. The renderer owns count reconciliation, section order, SLA labels, links, escaping, responsive/print CSS, and overwrite refusal. Live Jira and Drive collection remains a skill workflow with its own read-access and coverage requirements.
+
 ### Finalize A Behaviorally Proven Candidate
 
 ```bash

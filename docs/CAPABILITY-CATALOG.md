@@ -2,7 +2,7 @@
 
 Generated from canonical manifest and descriptor metadata. Use this page to see what Core-Prompts ships, what each capability is for, and where it lands.
 
-- Capability count: `25`
+- Capability count: `26`
 
 ## Start Here
 - `docs-review-expert` — Docs Review Expert — Documentation IA, Drift, and Release Hygiene: Documentation Review Expert for information architecture, explainable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.
@@ -12,10 +12,10 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `testing` — Testing Studio — Test Design and Coverage Analysis: Testing Studio for unit-test generation, end-to-end test design, edge-case discovery, and coverage gap analysis.
 
 ## By CLI
-- `claude`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `batman`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `instruction-editor`, `pitch`, `plan-to-goal-design`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `codex`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `batman`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `instruction-editor`, `pitch`, `plan-to-goal-design`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `gemini`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `batman`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `instruction-editor`, `pitch`, `plan-to-goal-design`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
-- `kiro`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `batman`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `feature-status`, `gitops-review`, `ic-assistant`, `instruction-editor`, `pitch`, `plan-to-goal-design`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `claude`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `batman`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `engos-audit-opex-incident-review`, `feature-status`, `gitops-review`, `ic-assistant`, `instruction-editor`, `pitch`, `plan-to-goal-design`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `codex`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `batman`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `engos-audit-opex-incident-review`, `feature-status`, `gitops-review`, `ic-assistant`, `instruction-editor`, `pitch`, `plan-to-goal-design`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `gemini`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `batman`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `engos-audit-opex-incident-review`, `feature-status`, `gitops-review`, `ic-assistant`, `instruction-editor`, `pitch`, `plan-to-goal-design`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `kiro`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `batman`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `engos-audit-opex-incident-review`, `feature-status`, `gitops-review`, `ic-assistant`, `instruction-editor`, `pitch`, `plan-to-goal-design`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
 
 ## By Use Case
 - `address`: `address-code-review`
@@ -23,7 +23,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `analyze`: `analyze-context`
 - `architecture`: `architecture`, `docs-review-expert`, `eng-report`
 - `assistant`: `ic-assistant`
-- `audit`: `codebase-health-audit`
+- `audit`: `codebase-health-audit`, `engos-audit-opex-incident-review`
 - `auto`: `auto-research`
 - `batman`: `batman`
 - `code`: `address-code-review`, `code-review`
@@ -36,6 +36,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `docs`: `docs-review-expert`
 - `dynamic`: `dynamic-html-presentations`
 - `editor`: `instruction-editor`
+- `engos`: `engos-audit-opex-incident-review`
 - `expert`: `docs-review-expert`
 - `feature`: `feature-status`
 - `gitops`: `gitops-review`
@@ -43,8 +44,10 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `health`: `codebase-health-audit`
 - `html`: `dynamic-html-presentations`
 - `import`: `codebase-health-audit`, `uac-import`
+- `incident`: `engos-audit-opex-incident-review`
 - `instruction`: `instruction-editor`
 - `intel`: `weekly-intel`
+- `opex`: `engos-audit-opex-incident-review`
 - `pitch`: `pitch`
 - `plan`: `plan-to-goal-design`
 - `planning`: `plan-to-goal-design`, `uac-import`
@@ -55,7 +58,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `report`: `eng-report`
 - `research`: `auto-research`
 - `resolve`: `resolve-conflict`
-- `review`: `address-code-review`, `code-review`, `codebase-health-audit`, `docs-review-expert`, `gitops-review`, `weekly-intel`
+- `review`: `address-code-review`, `code-review`, `codebase-health-audit`, `docs-review-expert`, `engos-audit-opex-incident-review`, `gitops-review`, `weekly-intel`
 - `status`: `feature-status`
 - `supercharge`: `supercharge`
 - `testing`: `testing`
@@ -221,6 +224,15 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
   - refresh author-scoped report configuration from an organization directory
   - sync previously generated reports from Drive to the local report folder
 - Summary: Generate a weekly/periodic HTML engineering dashboard from git data for any repo or org team. Use for velocity reporting, architecture evolution, and release tracking. Do not use to access Jira, estimate story points, or replace sprint planning tools. Do not use to modify code or run tests.
+
+### EngOS Audit — Operational Excellence Incident Review
+- Slug: `engos-audit-opex-incident-review`
+- Type: `skill`
+- Install target: `global`
+- Supported CLIs: `claude, codex, gemini, kiro`
+- Version: `3.0.0`
+- Author: `Amol Shah; uplifted for Core-Prompts`
+- Summary: Generate an evidence-backed Daily OpEx Digest and optional incident drill-downs from current Jira incidents, prior snapshots, DPAs, and postmortems. Use for decisions, owner accountability, daily progress, stalled work, estate patterns, SLA tracking, Five Whys, and executive meeting preparation.
 
 ### Feature Status — Deep Completeness Analysis
 - Slug: `feature-status`

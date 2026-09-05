@@ -1,0 +1,92 @@
+{
+  "schema_version": "OpExReferenceReplay.v1",
+  "candidate_slug": "engos-audit-opex-incident-review",
+  "source_mr": {
+    "project": "medhat.galal/core-prompts",
+    "iid": 31,
+    "author": "Amol Shah",
+    "revision": "d7e2057cbafa62f22122da2eda516603a47edeeb"
+  },
+  "reference": {
+    "description": "User-supplied September 2 Daily OpEx Digest text and four screenshots",
+    "text_sha256": "03aabc09dea969ad5f02284687dd0ab6acba054253e651c6a7fa9c41a1039233",
+    "image_sha256s": [
+      "8b7fac1c097d8f00b4ddadc1a5f2ba3e8a2d179f695699063bdf534e460b9501",
+      "d2366071c37afcf77a1a9cbc8fc7e5c3913dc0b9becd26888be35ecc1887da95",
+      "4f2d5fa73ae1c835de91493ccb3bd11321deb75714c15beb034a539707775468",
+      "3785dcf4aa2b4e94633cdca7e080193de841106fe1847f07178a8090d8359c63"
+    ]
+  },
+  "bindings": {
+    "candidate_sha256": "8faa660c5092c151e22ac1d2daf4ed08ca7c6b7dc9a7eeae693954cc9aeb24ec",
+    "renderer_sha256": "b36b1544a27571e4dfc8e5e3008e9cd7b1f4c2849832acd65c5974d8c11ee00b",
+    "snapshot_schema_sha256": "dcf64986163e0ad096a396bfd1b9968f7f11749481724898e37a6698d16237df",
+    "reference_render_sha256": "4fa58fbd795525b8cd1a3ab848010807a8e662dbd709f1ff0988ef8c765f8ecc"
+  },
+  "expected_metrics": {
+    "new": 0,
+    "progressed": 2,
+    "stalled": 7,
+    "chronic": 3,
+    "resolved": 0,
+    "open": 8,
+    "open_dpas": 10,
+    "dpas_overdue": 1,
+    "dpas_without_sla": 1
+  },
+  "required_sections": [
+    "Needs a Decision",
+    "Who Owes What",
+    "Metrics",
+    "New Today",
+    "Progressed",
+    "Stalled",
+    "Estate Patterns",
+    "Resolved / Dropped-off",
+    "DPA Tracker",
+    "All Open Incidents"
+  ],
+  "checks": {
+    "passed": 41,
+    "total": 41,
+    "failures": 0,
+    "categories": [
+      "section order and presence",
+      "headline and table reconciliation",
+      "decision conditions",
+      "owner accountability",
+      "three-run trend",
+      "progress versus R2 correction",
+      "stalled cohorts",
+      "DPA SLA states",
+      "all-open retention and order",
+      "postmortem caveats",
+      "deep-dive preservation",
+      "HTML escaping",
+      "responsive and print structure"
+    ]
+  },
+  "mutation_run": {
+    "killed": 5,
+    "total": 5,
+    "mutants": [
+      "R2_COUNTS_AS_PROGRESS",
+      "MISSING_MEANS_RESOLVED",
+      "UNESCAPED_EVIDENCE",
+      "OVERWRITE_EXISTING_REPORT",
+      "TERMINAL_DPA_STAYS_OPEN"
+    ]
+  },
+  "result": "select_candidate",
+  "evidence_class": "local_deterministic_behavioral_replay",
+  "model_calls": 0,
+  "network_calls": 0,
+  "formal_behavioral_status": "behavioral_pending",
+  "promotion_eligible": false,
+  "limits": [
+    "No live Jira or Drive retrieval was performed.",
+    "No AWS, Bedrock, or other model provider was called.",
+    "The reference screenshots were inspected directly; browser rendering of the local candidate was blocked by browser URL policy, so visual fidelity is structurally checked rather than pixel-diffed.",
+    "This receipt is public maintenance evidence and is not an independently signed PromotionVerdict."
+  ]
+}

@@ -1,0 +1,323 @@
+{
+  "slug": "engos-audit-opex-incident-review",
+  "manifest_version": "capability-fabric.v0",
+  "layers": {
+    "minimal": {
+      "capability_type": "skill",
+      "summary": "Generate an evidence-backed Daily OpEx Digest and optional incident drill-downs from current Jira incidents, prior snapshots, DPAs, and postmortems. Use for decisions, owner accountability, daily progress, stalled work, estate patterns, SLA tracking, Five Whys, and executive meeting preparation.",
+      "role": "analyst",
+      "domain_tags": [
+        "review",
+        "engos",
+        "audit",
+        "opex",
+        "incident"
+      ],
+      "required_inputs": [
+        "exact scope label and verified Jira filter field/value or explicit ticket set",
+        "included priorities; default only when the user states or accepts it",
+        "reporting timestamp and timezone",
+        "prior snapshot path, or a declared first-run baseline",
+        "output directory and requested format (`html`, `md`, or `both`)",
+        "current Jira read access; Drive/Docs is optional but missing document access must remain a visible gap",
+        "current DPA and postmortem policy source, including effective date, deadline anchor, calendar rule, and priority mapping"
+      ],
+      "expected_outputs": [
+        "timestamped current snapshot and its SHA-256",
+        "prior snapshot path and SHA-256",
+        "coverage/evidence ledger with query and page accounting",
+        "comparison ledger with R1\u2013R8 rule decisions",
+        "Daily OpEx Digest HTML and requested Markdown companion",
+        "rendered metrics and reconciliation result",
+        "complete list of source timestamps, access gaps, contradictions, and caveats",
+        "optional drill-down sections without removing any daily-board section"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "resources": [
+        "ssot/engos-audit-opex-incident-review.md"
+      ],
+      "packaging_profile": {
+        "capability_type": "skill",
+        "primary_surfaces": {
+          "codex": [
+            "codex_skill"
+          ],
+          "gemini": [
+            "gemini_skill"
+          ],
+          "claude": [
+            "claude_skill"
+          ],
+          "kiro": [
+            "kiro_skill"
+          ]
+        },
+        "wrapper_surfaces": {
+          "codex": [],
+          "gemini": [
+            "skill_wrapper"
+          ],
+          "claude": [
+            "skill_wrapper",
+            "plugin_wrapper"
+          ],
+          "kiro": [
+            "skill_wrapper",
+            "power_wrapper"
+          ]
+        },
+        "notes": [
+          "wrapper surfaces are additive deployment forms, not capability types",
+          "orchestrators must not infer execution authority from wrapper presence alone"
+        ]
+      },
+      "install_target": {
+        "recommended": "global",
+        "confidence": 1.0,
+        "confirmation_required_for_apply": true,
+        "rationale": "SSOT frontmatter explicitly declares global installation.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ]
+      },
+      "source_provenance": {
+        "source_type": "LOCAL_FILE",
+        "normalized_source": "ssot/engos-audit-opex-incident-review.md",
+        "policy_rule_id": "ssot.engos-audit-opex-incident-review",
+        "content_sha256": "ssot"
+      },
+      "confidence": 0.97,
+      "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+      "review_status": "ready_for_orchestrator_review",
+      "display_name": "EngOS Audit \u2014 Operational Excellence Incident Review",
+      "version": "3.0.0",
+      "author": "Amol Shah; uplifted for Core-Prompts"
+    },
+    "expanded": {
+      "relationship_suggestions": [],
+      "capability_dependencies": [
+        "context"
+      ],
+      "overlap_candidates": [],
+      "migration_notes": [
+        "If the capability lands, compare it against existing entries before apply.",
+        "Relationship suggestions are advisory only and do not imply runtime routing."
+      ],
+      "adjustment_recommendations": [
+        "add an explicit primary objective before packaging",
+        "add deterministic in-scope sections to improve routing fitness",
+        "capture quality constraints or non-negotiables"
+      ]
+    },
+    "org_graph": {
+      "org_role": "analyst",
+      "reports_to_suggestions": [],
+      "delegates_to_suggestions": [],
+      "collaborates_with_suggestions": [
+        "review",
+        "engos"
+      ],
+      "authority_tier": "advisory",
+      "work_graph_impact": "Adds or updates a skill capability with route profile None."
+    }
+  },
+  "display_name": "EngOS Audit \u2014 Operational Excellence Incident Review",
+  "declared_capability": "skill",
+  "inferred_capability": "skill",
+  "expected_surface_names": [
+    "codex_skill",
+    "gemini_skill",
+    "claude_skill",
+    "kiro_skill"
+  ],
+  "rubric_version": "capability-fabric.v0",
+  "descriptor_version": "capability-fabric.descriptor.v0",
+  "family_slug": "engos-audit-opex-incident-review",
+  "shared_summary": "Generate an evidence-backed Daily OpEx Digest and optional incident drill-downs from current Jira incidents, prior snapshots, DPAs, and postmortems. Use for decisions, owner accountability, daily progress, stalled work, estate patterns, SLA tracking, Five Whys, and executive meeting preparation.",
+  "shared_constraints": [
+    "Never trade completeness for a shorter report; use navigation, tables, and drill-downs to manage density.",
+    "Never call a candidate better because it is newer, shorter, or structurally valid.",
+    "Never claim formal behavioral promotion without the repository's independent, qualified, hash-bound evaluator evidence.",
+    "Preserve Amol's contribution attribution in canonical metadata and review materials."
+  ],
+  "modes": [],
+  "benchmark_sources": [],
+  "quality_profile": "default",
+  "quality_status": "structural_ready",
+  "judge_reports": [
+    {
+      "pass_number": 1,
+      "status": "structural_ready",
+      "historical_baseline": {
+        "slug": "engos-audit-opex-incident-review",
+        "strategy": "candidate_seed",
+        "group": "new_or_untracked",
+        "baseline_path": null,
+        "selected_commit": null,
+        "richness_score": 5,
+        "line_count": 187,
+        "reason": "No registry entry or git history available; use the candidate as the provisional seed baseline.",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [],
+        "historical_proof": {},
+        "source": "candidate_seed",
+        "verified_by_git_history": false,
+        "has_baseline_text": true
+      },
+      "judge_reports": [
+        {
+          "judge": "source_fidelity",
+          "title": "Source Fidelity and Uplift",
+          "score": 10,
+          "blockers": [],
+          "classification": "preserved",
+          "scenario_results": [],
+          "scorecard": {
+            "baseline_richness": 5,
+            "candidate_richness": 5,
+            "baseline_operational_score": 2,
+            "candidate_operational_score": 2,
+            "baseline_preserved_in_resource": false
+          },
+          "baseline_commit": null,
+          "baseline_slug": "engos-audit-opex-incident-review"
+        },
+        {
+          "judge": "operational_richness",
+          "title": "Operational Richness",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "metadata_integrity",
+          "title": "Metadata and Handoff Integrity",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "benchmark_readiness",
+          "title": "Benchmark Readiness and Template Fit",
+          "score": 9,
+          "blockers": [],
+          "scorecard": {
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 8,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          }
+        }
+      ],
+      "blockers": [],
+      "scorecard": {
+        "source_fidelity": 10,
+        "baseline_richness": 5,
+        "candidate_richness": 5,
+        "baseline_operational_score": 2,
+        "candidate_operational_score": 2,
+        "baseline_preserved_in_resource": false,
+        "operational_richness": 10,
+        "metadata_integrity": 10,
+        "benchmark_readiness": 9,
+        "title_clarity": 10,
+        "description_richness": 10,
+        "intent_coverage": 10,
+        "boundary_clarity": 8,
+        "output_specificity": 10,
+        "metadata_completeness": 8,
+        "surface_usability": 10
+      },
+      "template_name": "skill"
+    }
+  ],
+  "consumption_hints": {
+    "preferred_use_cases": [
+      "AI-assisted capability selection",
+      "deterministic prompt uplift review"
+    ],
+    "artifact_conventions": [
+      "ssot/<slug>.md",
+      ".meta/capabilities/<slug>.json",
+      "reports/quality-reviews/<slug>/LATEST.md"
+    ],
+    "invocation_style": "assistant_first_but_scriptable",
+    "requires_human_confirmation": true
+  },
+  "quality_pass_count": 1,
+  "quality_stop_reason": "thresholds_met",
+  "historical_baseline": {
+    "slug": "engos-audit-opex-incident-review",
+    "strategy": "candidate_seed",
+    "group": "new_or_untracked",
+    "baseline_path": null,
+    "selected_commit": null,
+    "richness_score": 5,
+    "line_count": 178,
+    "reason": "No registry entry or git history available; use the candidate as the provisional seed baseline.",
+    "equivalent_commits": [],
+    "expected_companions": [],
+    "operator_invariants": [],
+    "scenario_matrix": [],
+    "historical_proof": {},
+    "source": "candidate_seed",
+    "verified_by_git_history": false,
+    "has_baseline_text": true
+  },
+  "quality_validation_matrix": [
+    {
+      "id": "operational_invocation",
+      "kind": "operational_contract",
+      "label": "operational invocation surface",
+      "must_contain": [
+        "## Invocation"
+      ]
+    }
+  ],
+  "job_contract": {
+    "primary_job": "Audit the Operational Excellence incident estate against a prior snapshot and generate a decisions-first Daily OpEx Digest with owner obligations, progress, stalled work, DPAs, postmortems, evidence caveats, and optional incident drill-downs.",
+    "use_when": "The user needs a current-versus-prior Operational Excellence board, DPA or postmortem tracking, owner accountability, estate patterns, or executive incident-review preparation.",
+    "works_on": "Current and prior normalized incident snapshots backed by Jira records, DPA records, postmortem bodies, policy inputs, and retrieval coverage evidence.",
+    "main_output": "A validated snapshot pair, evidence and comparison ledgers, and a deterministic Daily OpEx Digest in HTML with optional Markdown and incident drill-downs.",
+    "not_for": "Active Incident Commander process support, Git-only engineering activity, broad weekly intelligence, or modifying Jira, Drive, owners, priorities, links, or statuses.",
+    "authority": "Read incident and document evidence and write local audit artifacts only; external mutations, messages, uploads, and distribution require separate explicit authorization.",
+    "routing_question": "Does this request require a stateful Operational Excellence incident-estate audit and Daily OpEx Digest?",
+    "nearest_neighbors": [
+      "ic-assistant",
+      "weekly-intel",
+      "eng-report"
+    ],
+    "shape": "stateful_incident_estate_audit",
+    "portfolio_action": "keep_and_clarify_boundary"
+  }
+}
