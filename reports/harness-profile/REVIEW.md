@@ -1,7 +1,7 @@
 # Harness deployment and Loopy packaging review
 
 Baseline: `45c06d2d99129780a1864212c3ff4602a70950d6` in the assigned isolated worktree,
-branch `AI/harness-profile-loopy`. UAC integration at `8b1efb1ba05f272ddd437aa90f014091c5049861` is complete.
+branch `AI/harness-profile-loopy`. UAC integration at `8b1efb1ba05f272ddd437aa90f014091c5049861` and accepted OpEx integration at `8ccdd810f615c5c9cad0b349373a692b41d7380d` are complete.
 Namespace integration remains pending its accepted main.
 No merge, tag, release, home installation, or paid model evaluation was performed.
 
@@ -28,7 +28,7 @@ No merge, tag, release, home installation, or paid model evaluation was performe
   sources. Cache fetch failure was an environment result; a successful network
   refresh resolved it without weakening validation.
 - Initial regression run before the lifecycle guard: 674 tests and 122 subtests passed.
-- Integrated UAC/Loopy run: 712 passed and 122 subtests passed, with four docs/package failures; corrected stale README count and dated changelog parsing before rerunning the affected checks.
+- Integrated UAC/Loopy run: 712 passed and 122 subtests passed, with four docs/package failures; corrected stale README count and dated changelog parsing then all eight affected docs/package checks passed.
 - Latest automatic updater/package subset: 21 tests passed; independent lifecycle test passed after polling/recovery fixes; profile/package prerequisite subset: 18 tests passed.
 - Earlier deployment/package regression run: 39 tests passed.
 - UAC capability/validator subset: 19 tests passed.
@@ -72,3 +72,15 @@ is introduced.
 The dry-run includes selected copies, receipt/profile writes, exact transaction
 artifact paths, and the atomic staging-file contract. Backups remain recoverable;
 rollback checks hashes and preserves later edits.
+
+Both small resource-link changes also completed same-slug UAC plan/judge/apply
+with structural_ready and preserved source fidelity. The accepted continuity
+helper is byte-identical in generated Grok output (SHA-256
+`f0c6a6d56194185df8b5c8426c53365234c4664425faa516714a5b45b86f976e`).
+Loopy keeps its upstream name as a documented exception to first-party
+`engos-*` names. Its installed ownership transfer remains a later home action.
+
+After accepted OpEx integration and final same-slug UAC readbacks, the focused
+OpEx/continuity/Loopy/package/public-doc suite passed 39 tests. Strict validation
+and all contract checks passed. The final exact-commit full-run result is recorded
+in the PR/MR; earlier full-run evidence above remains explicitly scoped.

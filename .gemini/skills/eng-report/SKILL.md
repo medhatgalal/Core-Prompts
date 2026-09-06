@@ -544,6 +544,3 @@ Capability resource: `resources/capability.json`
 
 
 Capability resource: `resources/capability.json`
-
-
-Capability resource: `resources/capability.json`

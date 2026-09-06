@@ -220,7 +220,7 @@
   ],
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "auto-research",
-  "shared_summary": "Auto-Research for goal-oriented search, minimal-loop investigation, experiment design, repeated-trial evaluation, trace-to-regression distillation, and promotion-ready improvement loops across prompts, tools, systems, workflows, services, and code.",
+  "shared_summary": "Researches and optimizes prompts, skills, tools, workflows, and code with minimal-loop investigation, bounded search, and baseline comparison. Use for experiments, behavioral variant comparison, or proof that a candidate beats baseline.",
   "shared_constraints": [
     "Do not start search without a measurable goal.",
     "Do not claim a winner from a single run unless the system is strictly deterministic and the user agrees.",
@@ -368,23 +368,37 @@
   "judge_reports": [
     {
       "pass_number": 1,
-      "status": "ship",
+      "status": "structural_ready",
       "historical_baseline": {
         "slug": "auto-research",
-        "strategy": "source_library",
-        "group": "applied_baseline",
+        "strategy": "head_snapshot",
+        "group": "current_oracle",
         "baseline_path": "sources/ssot-baselines/auto-research/baseline.md",
-        "selected_commit": null,
-        "richness_score": 2,
-        "line_count": 186,
-        "reason": "Repo-resident baseline source snapshot used as the fidelity oracle for future UAC judging.",
+        "selected_commit": "28b1f2f7",
+        "richness_score": 7,
+        "line_count": 676,
+        "reason": "Current SSOT baseline source snapshot materialized into the source library because the stored baseline was missing, stale, or structurally degraded.",
         "equivalent_commits": [],
         "expected_companions": [],
-        "operator_invariants": [],
-        "scenario_matrix": [],
+        "operator_invariants": [
+          "MUST NEVER"
+        ],
+        "scenario_matrix": [
+          {
+            "id": "operational_invocation",
+            "kind": "operational_contract",
+            "label": "operational invocation surface",
+            "must_contain": [
+              "## Invocation"
+            ]
+          }
+        ],
         "historical_proof": {
-          "materialized_from_commit": null,
-          "last_materialized_at": "2026-04-04T12:21:31.756292+00:00"
+          "materialized_from_commit": "28b1f2f7",
+          "last_materialized_at": "2026-06-07T21:35:17.391757+00:00",
+          "materialized_from_source_kind": "current_ssot",
+          "materialized_from_path": "ssot/auto-research.md",
+          "materialized_from_sha256": "758e7a7579d97620f2f0b4979e9a0841454c447cf7c22223249e7c377a3fd2d6"
         },
         "source": "source_library",
         "verified_by_git_history": false,
@@ -396,13 +410,31 @@
           "title": "Source Fidelity and Uplift",
           "score": 10,
           "blockers": [],
-          "classification": "additive",
-          "scenario_results": [],
+          "classification": "preserved",
+          "scenario_results": [
+            {
+              "id": "operational_invocation",
+              "kind": "operational_contract",
+              "label": "operational invocation surface",
+              "passed": true,
+              "missing_markers": []
+            },
+            {
+              "id": "operator_invariants",
+              "kind": "hybrid_invariants",
+              "label": "historical operator invariants",
+              "passed": true,
+              "missing_markers": []
+            }
+          ],
           "scorecard": {
-            "baseline_richness": 2,
-            "candidate_richness": 4
+            "baseline_richness": 7,
+            "candidate_richness": 7,
+            "baseline_operational_score": 3,
+            "candidate_operational_score": 3,
+            "baseline_preserved_in_resource": false
           },
-          "baseline_commit": null,
+          "baseline_commit": "28b1f2f7",
           "baseline_slug": "auto-research"
         },
         {
@@ -436,8 +468,11 @@
       "blockers": [],
       "scorecard": {
         "source_fidelity": 10,
-        "baseline_richness": 2,
-        "candidate_richness": 4,
+        "baseline_richness": 7,
+        "candidate_richness": 7,
+        "baseline_operational_score": 3,
+        "candidate_operational_score": 3,
+        "baseline_preserved_in_resource": false,
         "operational_richness": 10,
         "metadata_integrity": 10,
         "benchmark_readiness": 10,
