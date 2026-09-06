@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-audit-opex-incident-review",
-  "ssot_sha256": "8faa660c5092c151e22ac1d2daf4ed08ca7c6b7dc9a7eeae693954cc9aeb24ec",
+  "ssot_sha256": "5906b9e3c8405546ef9d636873cd853c55a5083ae1c746af3f41156472b809c5",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -56,7 +56,8 @@
     "engos-audit-opex-incident-review:L328:ac1ecbea17e7",
     "engos-audit-opex-incident-review:L338:e647b1f21701",
     "engos-audit-opex-incident-review:L339:d4507c01323b",
-    "engos-audit-opex-incident-review:L340:1870d4f52f9c"
+    "engos-audit-opex-incident-review:L340:1870d4f52f9c",
+    "engos-audit-opex-incident-review:L346:d8eacb4f2de2"
   ],
   "resources": [
     "- `validate` \u2014 snapshot and reference-integrity checks only.",
@@ -450,6 +451,15 @@
       "text": "- Never claim formal behavioral promotion without the repository's independent, qualified, hash-bound evaluator evidence.",
       "kind": "invariant",
       "mapped_to": []
+    },
+    {
+      "id": "engos-audit-opex-incident-review:L346:d8eacb4f2de2",
+      "heading": "Rules",
+      "source_line": 346,
+      "sha256": "d8eacb4f2de266e6eaf514ea6b360851284c3aa5e7f59762795a75572d7c9e29",
+      "text": "- Do not claim orchestration, delegation, or runtime-control authority.",
+      "kind": "invariant",
+      "mapped_to": []
     }
   ],
   "risk_tiers": {
@@ -460,7 +470,7 @@
   "source_references": [
     {
       "path": "ssot/engos-audit-opex-incident-review.md",
-      "sha256": "8faa660c5092c151e22ac1d2daf4ed08ca7c6b7dc9a7eeae693954cc9aeb24ec"
+      "sha256": "5906b9e3c8405546ef9d636873cd853c55a5083ae1c746af3f41156472b809c5"
     }
   ],
   "known_ambiguities": [],
@@ -473,7 +483,7 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 43,
+    "total": 44,
     "mapped": 0,
     "waived": 0
   },

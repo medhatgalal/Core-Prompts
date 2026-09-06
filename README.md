@@ -55,6 +55,8 @@ These are the currently shipped skills with a concrete starter ask for each one:
 | `uac-import` | import and uplift new capability source into canonical state | "Use `uac-import` to inspect this external prompt family and tell me how it should land into SSOT before apply." | landing shape, classification, overlap concerns, and the next UAC step |
 | `weekly-intel` | build a weekly report from multiple sources | "Use `weekly-intel` to produce a weekly status report from these sources." | executive summary, technical appendix, and fact-check audit |
 
+OpEx incident drill-downs supplied in the normalized snapshot appear in both HTML and Markdown. They retain facts, risk, Five Whys, preventive action, talking points, and follow-up questions.
+
 ### High-Value Skill Examples
 
 | Capability | Start with it when you need to... | Example ask | What good output looks like |

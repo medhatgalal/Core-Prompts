@@ -872,6 +872,13 @@ def current_threshold(model: dict[str, Any], name: str) -> int:
     )
 
 
+def _markdown_evidence(value: Any) -> str:
+    """Keep supplied drill-down prose from becoming Markdown or raw HTML."""
+    text = html.escape(str(value), quote=False)
+    text = re.sub(r"([\\`*_{}\[\]()#+!|>~-])", r"\\\1", text).replace("\n", " ").replace("\r", " ")
+    return re.sub(r"^(\d+)\.", r"\1\\.", text)
+
+
 def render_markdown(model: dict[str, Any]) -> str:
     metrics = model["metrics"]
     lines = [
@@ -968,6 +975,46 @@ def render_markdown(model: dict[str, Any]) -> str:
         f"| {item['key']} | {item['group']} | {item['priority']} | {item['status']} | {item['age_days']} | {item['stalled_days']} | {item['postmortem_label']} | {len(item.get('open_dpa_keys', []))} | {item['owner']} |"
         for item in model["incidents"]
     )
+    drilldowns = [
+        item for item in model["incidents"] if isinstance(item.get("deep_dive"), dict)
+    ]
+    if drilldowns:
+        lines.extend(["", "## 🔎 Incident Drill-downs", ""])
+    for incident in drilldowns:
+        details = incident["deep_dive"]
+        lines.extend([
+            f"### {incident['key']} — {_markdown_evidence(incident['summary'])}", "",
+            "#### Facts and customer risk", "",
+            _markdown_evidence(details.get("facts") or "Not available from current evidence."),
+            "",
+            "**Customer risk:** " + _markdown_evidence(details.get("customer_risk") or "Not assessed."),
+            "", "#### Five Whys", "",
+        ])
+        whys = details.get("five_whys", [])
+        lines.extend(
+            f"{index}. {_markdown_evidence(why)}"
+            for index, why in enumerate(whys, 1)
+        )
+        if not whys:
+            lines.append("Root cause: Not yet determined.")
+        lines.extend([
+            "", "**Preventive action:** " + _markdown_evidence(details.get("preventive_action") or "Not yet defined."),
+            "", "#### What to say", "",
+        ])
+        talking = details.get("talking_points", [])
+        lines.extend(f"- {_markdown_evidence(item)}" for item in talking)
+        if not talking:
+            lines.append("No sourced talking point.")
+        lines.extend(["", "#### If they ask", ""])
+        questions = details.get("questions", [])
+        for item in questions:
+            lines.extend([
+                "**" + _markdown_evidence(item.get("question", "")) + "**",
+                "", _markdown_evidence(item.get("answer", "")), "",
+            ])
+        if not questions:
+            lines.append("No sourced questions.")
+
     lines.extend(
         [
             "",

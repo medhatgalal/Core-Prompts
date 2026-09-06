@@ -1,14 +1,14 @@
 # Release Delta
 
 - Baseline status: `available`
-- Comparison basis: `git:v1.12.4@6c7f122ab1366db83ee9a5155882978d82202131 .meta/manifest.json`
-- New capabilities: `1`
+- Comparison basis: `git:v1.12.5@45c06d2d99129780a1864212c3ff4602a70950d6 .meta/manifest.json`
+- New capabilities: `0`
 - Removed capabilities: `0`
 - Changed capabilities: `1`
 - Material changes: `1`
 
 ## New Capabilities
-- `engos-audit-opex-incident-review` — EngOS Audit — Operational Excellence Incident Review
+- none
 
 ## Removed Capabilities
 - none

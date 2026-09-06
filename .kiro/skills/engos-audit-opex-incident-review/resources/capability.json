@@ -177,20 +177,37 @@
       "status": "structural_ready",
       "historical_baseline": {
         "slug": "engos-audit-opex-incident-review",
-        "strategy": "candidate_seed",
-        "group": "new_or_untracked",
+        "strategy": "derived_history",
+        "group": "derived",
         "baseline_path": null,
-        "selected_commit": null,
-        "richness_score": 5,
-        "line_count": 187,
-        "reason": "No registry entry or git history available; use the candidate as the provisional seed baseline.",
+        "selected_commit": "63ef9172",
+        "richness_score": 8,
+        "line_count": 350,
+        "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
         "equivalent_commits": [],
         "expected_companions": [],
         "operator_invariants": [],
-        "scenario_matrix": [],
+        "scenario_matrix": [
+          {
+            "id": "operational_invocation",
+            "kind": "operational_contract",
+            "label": "operational invocation surface",
+            "must_contain": [
+              "## Invocation"
+            ]
+          },
+          {
+            "id": "stepwise_workflow_contract",
+            "kind": "operational_contract",
+            "label": "stepwise workflow contract",
+            "must_contain": [
+              "## Workflow Contract"
+            ]
+          }
+        ],
         "historical_proof": {},
-        "source": "candidate_seed",
-        "verified_by_git_history": false,
+        "source": "git_history",
+        "verified_by_git_history": true,
         "has_baseline_text": true
       },
       "judge_reports": [
@@ -200,15 +217,30 @@
           "score": 10,
           "blockers": [],
           "classification": "preserved",
-          "scenario_results": [],
+          "scenario_results": [
+            {
+              "id": "operational_invocation",
+              "kind": "operational_contract",
+              "label": "operational invocation surface",
+              "passed": true,
+              "missing_markers": []
+            },
+            {
+              "id": "stepwise_workflow_contract",
+              "kind": "operational_contract",
+              "label": "stepwise workflow contract",
+              "passed": true,
+              "missing_markers": []
+            }
+          ],
           "scorecard": {
-            "baseline_richness": 5,
-            "candidate_richness": 5,
-            "baseline_operational_score": 2,
-            "candidate_operational_score": 2,
+            "baseline_richness": 8,
+            "candidate_richness": 8,
+            "baseline_operational_score": 4,
+            "candidate_operational_score": 4,
             "baseline_preserved_in_resource": false
           },
-          "baseline_commit": null,
+          "baseline_commit": "63ef9172",
           "baseline_slug": "engos-audit-opex-incident-review"
         },
         {
@@ -242,10 +274,10 @@
       "blockers": [],
       "scorecard": {
         "source_fidelity": 10,
-        "baseline_richness": 5,
-        "candidate_richness": 5,
-        "baseline_operational_score": 2,
-        "candidate_operational_score": 2,
+        "baseline_richness": 8,
+        "candidate_richness": 8,
+        "baseline_operational_score": 4,
+        "candidate_operational_score": 4,
         "baseline_preserved_in_resource": false,
         "operational_richness": 10,
         "metadata_integrity": 10,

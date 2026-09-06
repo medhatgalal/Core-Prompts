@@ -627,6 +627,10 @@ python3 resources/opex_digest.py render \
 
 The helper performs no network access and refuses to overwrite an existing report.
 
+For Markdown drill-downs, use `--format md` or `--format both` with the same normalized snapshots. Each supplied `deep_dive` retains its facts, customer risk, Five Whys, preventive action, talking points, and questions after the daily board. Incidents without `deep_dive` do not get a fabricated drill-down.
+
+The deterministic renderer still lacks dedicated incident-specific recurring-pattern and per-DPA “Why it helps” output fields. This repair does not establish full deep-dive equivalence.
+
 ### `gitops-review`
 
 Use when:

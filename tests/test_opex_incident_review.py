@@ -327,7 +327,7 @@ def test_skill_contract_preserves_daily_board_and_deep_review() -> None:
     assert all(marker in candidate for marker in required)
 
 
-def test_reference_replay_receipt_is_bound_to_canonical_artifacts() -> None:
+def test_reference_replay_receipt_preserves_historical_bindings() -> None:
     receipt = json.loads(
         (
             ROOT
@@ -338,10 +338,13 @@ def test_reference_replay_receipt_is_bound_to_canonical_artifacts() -> None:
     def digest(path: Path) -> str:
         return hashlib.sha256(path.read_bytes()).hexdigest()
 
-    assert receipt["bindings"]["candidate_sha256"] == digest(
-        ROOT / "ssot/engos-audit-opex-incident-review.md"
+    assert receipt["bindings"]["candidate_sha256"] == (
+        "8faa660c5092c151e22ac1d2daf4ed08ca7c6b7dc9a7eeae693954cc9aeb24ec"
     )
-    assert receipt["bindings"]["renderer_sha256"] == digest(SCRIPT)
+    # The original replay is historical evidence, not a receipt for later repairs.
+    assert receipt["bindings"]["renderer_sha256"] == (
+        "b36b1544a27571e4dfc8e5e3008e9cd7b1f4c2849832acd65c5974d8c11ee00b"
+    )
     assert receipt["bindings"]["snapshot_schema_sha256"] == digest(
         RESOURCE_DIR / "snapshot.schema.json"
     )
@@ -351,4 +354,55 @@ def test_reference_replay_receipt_is_bound_to_canonical_artifacts() -> None:
     assert receipt["mutation_run"]["killed"] == receipt["mutation_run"]["total"] == 5
     assert receipt["model_calls"] == 0
     assert receipt["network_calls"] == 0
+    assert receipt["formal_behavioral_status"] == "behavioral_pending"
+
+
+def test_markdown_preserves_supplied_incident_drilldown() -> None:
+    rendered = MODULE.render_markdown(model())
+    details = load("current.json")["incidents"][0]["deep_dive"]
+    for value in (
+        details["facts"], details["customer_risk"], details["preventive_action"],
+        *details["five_whys"], *details["talking_points"],
+        details["questions"][0]["question"], details["questions"][0]["answer"],
+    ):
+        assert value in rendered
+    assert rendered.index("All Open Incidents") < rendered.index("Incident Drill-downs")
+    assert "## INC-102" not in rendered
+
+
+def test_markdown_drilldown_absence_and_missing_evidence() -> None:
+    result = model()
+    result["incidents"][0].pop("deep_dive")
+    assert "Incident Drill-downs" not in MODULE.render_markdown(result)
+    result["incidents"][0]["deep_dive"] = {}
+    rendered = MODULE.render_markdown(result)
+    for marker in (
+        "Not available from current evidence.", "Not assessed.",
+        "Root cause: Not yet determined.", "Not yet defined.",
+        "No sourced talking point.", "No sourced questions.",
+    ):
+        assert marker in rendered
+
+
+def test_markdown_drilldown_treats_evidence_as_literal_text() -> None:
+    result = model()
+    result["incidents"][0]["deep_dive"]["facts"] = '<script>alert(1)</script> [open](https://example.test)\n# forged heading'
+    rendered = MODULE.render_markdown(result)
+    assert "<script>" not in rendered.split("Incident Drill-downs", 1)[1]
+    assert "&lt;script&gt;" in rendered
+    assert "\\[open\\]\\(https://example.test\\)" in rendered
+    assert "\n# forged heading" not in rendered
+    assert MODULE._markdown_evidence("1. Supplied literal text") == "1\\. Supplied literal text"
+
+
+def test_markdown_replay_receipt_is_bound_to_current_renderer() -> None:
+    receipt = json.loads((ROOT / "evals/maintenance/engos-audit-opex-incident-review/markdown-drilldown-replay.json").read_text())
+    for name, path in {
+        "renderer_sha256": SCRIPT,
+        "candidate_sha256": ROOT / "ssot/engos-audit-opex-incident-review.md",
+        "current_fixture_sha256": FIXTURES / "current.json",
+        "previous_fixture_sha256": FIXTURES / "previous.json",
+    }.items():
+        assert receipt["bindings"][name] == hashlib.sha256(path.read_bytes()).hexdigest()
+    assert receipt["evidence_class"] == "local deterministic regression"
     assert receipt["formal_behavioral_status"] == "behavioral_pending"
