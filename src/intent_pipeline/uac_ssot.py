@@ -5,6 +5,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 import re
+import json
+import textwrap
 from typing import Any, Sequence
 
 from intent_pipeline.uac_assessment import UacAssessment, assess_uac_source
@@ -305,15 +307,46 @@ def parse_ssot_frontmatter_and_body(text: str) -> tuple[dict[str, str], str]:
         if remainder.startswith('\n'):
             remainder = remainder[1:]
     for block in blocks:
-        for line in block.splitlines():
-            line = line.strip()
-            if not line or ':' not in line:
+        lines = block.splitlines()
+        for index, line in enumerate(lines):
+            # Only root scalar metadata belongs in the flat SSOT contract.
+            # Indented input schemas must never shadow name or description.
+            if not line or line[0].isspace() or line.startswith('#') or ':' not in line:
                 continue
             key, value = line.split(':', 1)
-            key = key.strip()
-            value = value.strip().strip('"').strip("'")
-            if key not in front:
-                front[key] = value
+            key = key.strip().strip('"').strip("'")
+            value = value.strip()
+            if not key or not value or key in front:
+                continue
+            block_scalar = re.fullmatch(r'([>|])(?:([1-9])[+-]?|[+-]([1-9])?|)(?:[ \t]+#.*)?', value)
+            if block_scalar:
+                continuation = []
+                for following in lines[index + 1:]:
+                    if following and not following[0].isspace():
+                        break
+                    continuation.append(following)
+                indent = block_scalar.group(2) or block_scalar.group(3)
+                scalar = ('\n'.join(line[int(indent):] for line in continuation)
+                          if indent else textwrap.dedent('\n'.join(continuation))).strip('\n')
+                if block_scalar.group(1) == '|':
+                    value = scalar
+                else:
+                    parts = scalar.splitlines()
+                    value = ''
+                    for pos, part in enumerate(parts):
+                        value += part
+                        if pos + 1 < len(parts):
+                            following = parts[pos + 1]
+                            value += (' ' if part and following and not part[0].isspace() and not following[0].isspace()
+                                      else '' if part and not following else '\n')
+            elif value.startswith('"') and value.endswith('"'):
+                try:
+                    value = json.loads(value)
+                except ValueError:
+                    value = value[1:-1]
+            else:
+                value = value.strip('"').strip("'")
+            front[key] = value
     return front, remainder.strip('\n')
 
 

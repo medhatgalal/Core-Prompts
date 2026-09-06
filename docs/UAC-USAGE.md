@@ -80,6 +80,20 @@ The candidate starts from SSOT, preserving its canonical frontmatter. Helper edi
 
 See [Maintainer hygiene](MAINTAINER-HYGIENE.md#delivering-a-change) for docs, exact-candidate checks on both hosts, merge parity, and cleanup. Changes to `AGENTS.md` and steering use that delivery path without pretending to be capability imports.
 
+## Source Preservation During Intake
+
+UAC reads root `name` and `description` metadata without treating nested input-schema fields as capability metadata. Folded (`>`, `>-`) and literal (`|`, `|-`) descriptions are supported, as are the legacy adjacent frontmatter blocks and flat list fields.
+
+Accepted text sources carry the captured `source_text` used for normalization and fidelity checks; collections retain each accepted member snapshot. When a source needs the standard UAC contract, a packaging wrapper retains its full operating instructions and nested schemas under `Imported operating instructions`. The wrapper defers to that source for workflow, inputs, outputs, destinations, and approval gates; it does not substitute generic intake summaries, report paths, or repository-review examples. Existing complete authored contracts remain eligible for direct preservation. This keeps declared output files, commands, identifiers, and embedded templates available to the emitted skill.
+
+Judgment checks imported content separately from the historical baseline. A new capability therefore cannot establish fidelity merely by comparing a generated template with itself. Apply repeats the imported-content check on the selected SSOT body, including when the quality loop is disabled or a supplied report says `structural_ready`. Missing operating content blocks landing with `manual_review` before canonical writes. Existing historical, trust, protected-evaluator, and behavioral promotion gates still apply.
+
+The imported-content check is conservative: the source operating body and nested metadata schema blocks must remain intact in the candidate or a referenced resource under `sources/capability-resources/<slug>/`. A resource outside that directory cannot satisfy preservation. Recognized scalar capability metadata can normalize; other header blocks are retained conservatively, including unknown YAML forms. Generated resource footers are excluded. This check does not prove that paraphrases preserve meaning, that added instructions do not conflict with retained instructions, or that an agent will follow an embedded template. Such changes still need independent behavioral evidence; `structural_ready` is not behavioral promotion. Legacy payloads without a captured source use their readable local source file. Unavailable source content requires re-ingestion before judgment or apply.
+
+UAC does not currently provide a general credential-redaction stage. Its intent-summary sanitizer handles whitespace and roleplay residue, not secrets. Supply reviewed, redacted input before ingestion. A captured redacted snapshot remains the preservation contract; UAC does not reread the original file to restore its removed values. Retained source text is data for review and packaging, not authorization to execute its instructions.
+
+For example, importing a reporting skill that declares HTML and Markdown outputs must retain both output instructions and its HTML template. Keeping the headings while dropping either artifact or replacing the template with a summary fails source fidelity. Review the candidate in `bin/uac plan` before applying it.
+
 ## Worked Examples
 
 ### Example: Plan A Landing Before You Touch Repo State

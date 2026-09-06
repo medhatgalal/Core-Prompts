@@ -1,5 +1,7 @@
 ## Unreleased
 
+- Fixed UAC root YAML metadata extraction and loss of imported operating contracts. Source-aware packaging now preserves original outputs and templates; judgment and apply independently reject lost source content while retaining historical and behavioral promotion gates. Added nested-schema, actual-apply, resource, redacted-snapshot, and cross-skill regression coverage.
+
 - Fixed same-slug UAC apply replacing a curated current validation matrix with historical fidelity scenarios.
 
 - Added active-task consolidation to `analyze-context`: read-only size/milestone checks, current-state-first rewrites, explicit supersession/evidence retention, mid-session standing-rule retrieval, and measured before/after counts without changing the three-file store or atomic writer.
