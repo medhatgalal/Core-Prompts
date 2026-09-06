@@ -202,6 +202,7 @@ def run_quality_loop(
     source_refs: Sequence[str],
     benchmark_sources: Sequence[Mapping[str, Any]],
     max_passes: int,
+    source_text: str | Sequence[str] | None = None,
 ) -> dict[str, Any]:
     current_text = candidate_text
     reports: list[dict[str, Any]] = []
@@ -218,6 +219,7 @@ def run_quality_loop(
             profile=profile,
             candidate_text=current_text,
             baseline=baseline,
+            source_text=source_text,
             descriptor=descriptor,
             source_refs=source_refs,
             benchmark_sources=benchmark_sources,
@@ -264,8 +266,17 @@ def evaluate_quality_pass(
     max_passes: int,
     template_name: str,
     template: Mapping[str, Any],
+    source_text: str | Sequence[str] | None = None,
 ) -> dict[str, Any]:
     source_fidelity = _judge_source_fidelity(profile, slug, candidate_text, baseline, source_refs, benchmark_sources)
+    source_failures = evaluate_imported_source_fidelity(
+        candidate_text, source_text,
+        preserved_resource_texts=_load_declared_capability_resource_texts(slug, candidate_text),
+    )
+    if source_failures:
+        source_fidelity['blockers'].extend(source_failures)
+        source_fidelity['score'] = min(source_fidelity['score'], 1)
+        source_fidelity['classification'] = 'flattened'
     operational_richness = _judge_operational_richness(profile, candidate_text)
     metadata_integrity = _judge_metadata_integrity(profile, slug, candidate_text, descriptor)
     benchmark_readiness = _judge_benchmark_readiness(profile, candidate_text, descriptor, template_name=template_name, template=template)
@@ -434,15 +445,71 @@ def _judge_source_fidelity(
     }
 
 
-def _load_declared_capability_resource_texts(slug: str, candidate_text: str) -> tuple[str, ...]:
+def evaluate_imported_source_fidelity(
+    candidate_text: str, source_text: str | Sequence[str] | None, *,
+    preserved_resource_texts: Sequence[str] = (),
+) -> list[str]:
+    """Conservative content retention, separate from historical and behavioral proof.
+
+    Require the operating body and nested metadata schemas to remain intact in
+    the candidate or one declared resource. Scalar root metadata may normalize.
+    This deliberately does not certify paraphrases or semantic equivalence.
+    """
+    if source_text is None:
+        return []  # Backward-compatible API for historical-only quality runs.
+    if not isinstance(source_text, str):
+        return [failure for text in source_text for failure in evaluate_imported_source_fidelity(
+            candidate_text, text, preserved_resource_texts=preserved_resource_texts,
+        )]
+    if not source_text.strip():
+        return ['imported source content is unavailable; re-ingest before judging or applying']
+    source = source_text.replace('\r\n', '\n').strip()
+    source = re.sub(r'\nCapability resource: `[^`]+`\s*$', '', source).strip()
+    contracts = []
+    while source.startswith('---\n'):
+        end = re.search(r'^---[ \t]*$', source[4:], re.MULTILINE)
+        if not end:
+            break
+        header = source[4:4 + end.start()]
+        # A root entry extends to the next root key, including comments,
+        # blank lines, unindented sequences, and multiline flow collections.
+        entries = list(re.finditer(r'^(?P<key>[^ \t#\n][^:\n]*):[ \t]*(?P<value>[^\n]*)', header, re.MULTILINE))
+        normalizable_metadata = {
+            'name', 'display_name', 'description', 'kind', 'capability_type',
+            'install_target', 'agent_tools', 'version', 'author', 'compatibility',
+            'supported_agents', 'agents',
+        }
+        if not entries and header.strip():
+            contracts.append(header.strip())
+        for index, entry in enumerate(entries):
+            key = entry.group('key').strip().strip('"').strip("'")
+            value = entry.group('value').strip()
+            # Only recognized scalar metadata may normalize. Everything else
+            # is retained verbatim, including YAML forms we do not interpret.
+            scalar_metadata = key in normalizable_metadata and value and not value.startswith(('#', '{', '[', '&', '*', '!'))
+            if not scalar_metadata:
+                stop = entries[index + 1].start() if index + 1 < len(entries) else len(header)
+                contracts.append(header[entry.start():stop].strip())
+        source = source[4 + end.end():].strip('\n')
+    if source.strip():
+        contracts.append(source.strip())
+    candidates = [text.replace('\r\n', '\n') for text in (candidate_text, *preserved_resource_texts)]
+    missing = sum(not any(contract in text for text in candidates) for contract in contracts)
+    return [f'imported source content was not preserved ({missing} operating body/schema blocks missing)'] if missing else []
+
+
+def _load_declared_capability_resource_texts(
+    slug: str, candidate_text: str, *, repo_root: Path | None = None,
+) -> tuple[str, ...]:
     resource_refs = set()
     for match in re.finditer(r"`?(resources/[A-Za-z0-9_.:/@+~=-][A-Za-z0-9_./:@+~=-]*)`?", candidate_text):
         resource_refs.add(match.group(1))
     texts: list[str] = []
     for resource_ref in sorted(resource_refs):
         relative = resource_ref.removeprefix("resources/")
-        source_path = REPO_ROOT / "sources" / "capability-resources" / slug / relative
-        if source_path.exists() and source_path.is_file():
+        resource_root = ((repo_root or REPO_ROOT) / "sources" / "capability-resources" / slug).resolve()
+        source_path = (resource_root / relative).resolve()
+        if source_path.is_relative_to(resource_root) and source_path.is_file():
             texts.append(source_path.read_text(encoding="utf-8"))
     return tuple(texts)
 

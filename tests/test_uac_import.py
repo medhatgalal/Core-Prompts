@@ -343,7 +343,13 @@ def test_uac_judge_preserves_pitch_body_and_scores_additive_metadata() -> None:
     baseline = quality_result["historical_baseline"]
     final_judges = quality_result["judge_reports"][-1]["judge_reports"]
     source_fidelity = next(judge for judge in final_judges if judge["judge"] == "source_fidelity")
-    generic_rendered = UAC_IMPORT._render_ssot_markdown("pitch", payload)
+    preserved_rendered = UAC_IMPORT._render_ssot_markdown("pitch", payload)
+    assert (ROOT / "ssot" / "pitch.md").read_text().strip() in preserved_rendered
+    # Exercise the source-less generic fallback explicitly: source-aware
+    # rendering now retains the original instead of producing this regression.
+    generic_rendered = UAC_IMPORT._render_ssot_markdown(
+        "pitch", {**payload, "source": {}, "source_text": None},
+    )
     baseline_context = resolve_historical_baseline(ROOT, "pitch")
     generic_eval = evaluate_candidate_against_baseline(generic_rendered, baseline_context)
 
