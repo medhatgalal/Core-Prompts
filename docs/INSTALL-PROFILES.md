@@ -127,10 +127,14 @@ shadowed by package resources. Existing `sources/capability-resources/<slug>/`
 continues to supply resources under the generated `resources/` directory.
 
 Loopy's seven-file installed package and installer receipt are pinned under
-`sources/intake/loopy/` as intake evidence. Its familiar `$loopy` invocation,
-references, and OpenAI UI metadata must survive the normal UAC fidelity and quality
-gates before it becomes canonical. A preservation snapshot is not an accepted
-Core-Prompts capability or authorization to replace its current installation.
+`sources/intake/loopy/` as intake evidence. Normal UAC intake passed with only a
+descriptive display-title addition: the original operating body and all companion
+files remain intact. Canonical `ssot/loopy.md` and its package resources generate
+one `loopy` skill per supported client, retaining `$loopy` and `/loopy`. Loopy is
+an upstream-named, hash-pinned exception to first-party `engos-*` naming; no alias
+package is emitted. The pin is the preserved installed package, not a claim of
+byte parity with an unverified historical upstream checkout. Structural
+acceptance remains distinct from behavioral promotion and home ownership adoption.
 
 Reproduce the optional no-model reader checks with explicit native executable paths:
 

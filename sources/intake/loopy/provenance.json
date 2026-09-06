@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "status": "preserved_pending_uac_fidelity_gate",
+  "status": "canonical_intake_structural_ready_behavioral_pending",
   "owner": "Forward-Future/loop-library (installer receipt); local modifications unverified",
   "installer_receipt": {
     "source": "Forward-Future/loop-library",
@@ -47,5 +47,8 @@
     "license_blob_sha": "4157dfcc0e73f2359c314987a9ab7eb67085fa4e",
     "checked_on": "2026-09-06",
     "note": "Repository redirects from installer URL; no upstream skill update was imported."
-  }
+  },
+  "canonical_source": "ssot/loopy.md",
+  "canonical_companions": "sources/skill-package-resources/loopy",
+  "installed_ownership": "Existing skills installer retained; transfer requires the coordinator home turn"
 }

@@ -1,7 +1,8 @@
 # Harness deployment and Loopy packaging review
 
 Baseline: `45c06d2d99129780a1864212c3ff4602a70950d6` in the assigned isolated worktree,
-branch `AI/harness-profile-loopy`. Namespace and UAC integration remain pending.
+branch `AI/harness-profile-loopy`. UAC integration at `8b1efb1ba05f272ddd437aa90f014091c5049861` is complete.
+Namespace integration remains pending its accepted main.
 No merge, tag, release, home installation, or paid model evaluation was performed.
 
 ## Source and write ownership
@@ -16,15 +17,18 @@ No merge, tag, release, home installation, or paid model evaluation was performe
 - Profile scope is skills only. Agents, registrations, shared client configs,
   launcher/updater refresh, and other owners' installers are separate write sets.
 - Loopy's full seven-file package is pinned under `sources/intake/loopy/` with
-  installer provenance and separately verified upstream MIT license. It is not
-  accepted SSOT yet. Generic UAC rewriting was detected and not applied.
+  installer provenance and separately verified upstream MIT license. Normal UAC intake on accepted fix
+  `8b1efb1` passed after a descriptive display-title normalization. The complete
+  original body and companion files are preserved; behavioral evidence remains
+  pending. Earlier generic rewriting was detected and not applied.
 
 ## Verification
 
 - Strict surface validation passed after refreshing seven official documentation
   sources. Cache fetch failure was an environment result; a successful network
   refresh resolved it without weakening validation.
-- Full regression run before the lifecycle guard: 674 tests and 122 subtests passed.
+- Initial regression run before the lifecycle guard: 674 tests and 122 subtests passed.
+- Integrated UAC/Loopy run: 712 passed and 122 subtests passed, with four docs/package failures; corrected stale README count and dated changelog parsing before rerunning the affected checks.
 - Latest automatic updater/package subset: 21 tests passed; independent lifecycle test passed after polling/recovery fixes; profile/package prerequisite subset: 18 tests passed.
 - Earlier deployment/package regression run: 39 tests passed.
 - UAC capability/validator subset: 19 tests passed.
@@ -55,7 +59,9 @@ standalone-bundle refresh establishes matching deployment code.
 
 Unknown or customized packages are preserved as a whole. Identical bytes do not
 establish ownership. Core-Prompts must not adopt GWS, third-party installer data,
-unknown customizations, or the independently edited Kiro continuity package.
+or unknown customizations. The approved continuity improvement is included from
+accepted main; final namespace-aligned home comparison must preserve any extra
+unrecognized delta and the unchanged `.analyze-context` data location.
 Initial ownership attribution for old installs remains a separate reviewed step.
 The extracted-package lifecycle test verifies successful ordinary sync and
 release acceptance using the saved profile and pinned verified bundle, without

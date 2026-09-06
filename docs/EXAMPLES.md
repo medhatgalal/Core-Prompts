@@ -1175,3 +1175,10 @@ Example ask: “Preview the Codex/Kiro/Grok skill profile in a disposable home a
 show preserved customizations and discovery source identities.” Expected result:
 a JSON write plan, ownership evidence, source-path readback, and unresolved
 conflicts; no home installation is implied.
+
+### Loopy: bounded agent loops
+
+Use `$loopy` in Codex or `/loopy` in Kiro and Grok to find, audit, craft, run, or
+debrief a loop. For example: “Use Loopy to audit this loop and repair only material
+weaknesses.” Expect a concise verdict and a minimally repaired loop; execution,
+scheduling, and publication retain their separate authorization boundaries.

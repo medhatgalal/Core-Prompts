@@ -44,3 +44,17 @@ def test_grok_generated_packages_use_relative_descriptor_links():
         text = (ROOT / relative).read_text()
         assert 'Capability resource: `resources/capability.json`' in text
         assert (ROOT / relative).parent.joinpath('resources/capability.json').is_file()
+
+
+def test_loopy_canonical_and_all_packages_preserve_original_contract():
+    package = ROOT / 'sources/intake/loopy/package'
+    original = (package / 'SKILL.md').read_text().split('---', 2)[2].strip()
+    assert original in (ROOT / 'ssot/loopy.md').read_text()
+    for cli in ['codex', 'kiro', 'grok', 'claude', 'gemini']:
+        generated = ROOT / f'.{cli}/skills/loopy'
+        assert original in (generated / 'SKILL.md').read_text()
+        for source in package.rglob('*'):
+            if source.is_file() and source.name != 'SKILL.md':
+                assert (generated / source.relative_to(package)).read_bytes() == source.read_bytes()
+        assert '$loopy' in (generated / 'agents/openai.yaml').read_text()
+        assert not (ROOT / f'.{cli}/skills/loop-library').exists()

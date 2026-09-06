@@ -10,7 +10,7 @@ The right mental model is simple:
 
 If you are already using Core-Prompts in a CLI, start there. If you are importing a new capability family, go to UAC next. If you are rebuilding surfaces, validating state, deploying, or preparing release work, use the repo tooling after that.
 
-The current generated surfaces ship `26` skills across all supported CLIs and `11` agents on agent-capable surfaces. Capability Fabric metadata is advisory; explicit invocation follows the selected capability's operating contract.
+The current generated surfaces ship `27` skills across all supported CLIs and `11` agents on agent-capable surfaces. Capability Fabric metadata is advisory; explicit invocation follows the selected capability's operating contract.
 
 For review work, pick the capability by intent:
 
@@ -374,3 +374,10 @@ Choose Codex, Kiro, and Grok with an explicit skills-only profile. Codex skills 
 under `.agents/skills`; Grok gets native `.grok/skills` packages. Preview the exact
 write set and preserve unknown or customized copies before applying. See
 [installation profiles and rollback](docs/INSTALL-PROFILES.md).
+
+### Loopy: bounded agent loops
+
+Use `$loopy` in Codex or `/loopy` in Kiro and Grok to find, audit, craft, run, or
+debrief a loop. For example: “Use Loopy to audit this loop and repair only material
+weaknesses.” Expect a concise verdict and a minimally repaired loop; execution,
+scheduling, and publication retain their separate authorization boundaries.

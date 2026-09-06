@@ -5137,6 +5137,274 @@
       ]
     },
     {
+      "slug": "loopy",
+      "manifest_version": "capability-fabric.v0",
+      "layers": {
+        "minimal": {
+          "capability_type": "skill",
+          "summary": "Discover, find, compare, audit, repair, adapt, craft, run, debrief, and prepare repeatable AI-agent loops for publication. Use when a user asks to analyze code or coding threads for recurring work, find a published loop, interview them to turn a goal into a bounded loop, review a loop for weak checks or unsafe authority, execute a loop with an evidence receipt, learn from completed runs, or validate and submit a loop to Loop Library.",
+          "role": "analyst",
+          "domain_tags": [
+            "review",
+            "analysis",
+            "loopy"
+          ],
+          "required_inputs": [
+            "source text",
+            "user intent/context"
+          ],
+          "expected_outputs": [
+            "deterministic summary",
+            "uplift payload",
+            "capability recommendation",
+            "deployment guidance"
+          ],
+          "tool_policy": {
+            "allowed": [
+              "deterministic classification",
+              "metadata publication",
+              "surface generation"
+            ],
+            "forbidden": [
+              "orchestration",
+              "delegation decisions",
+              "runtime execution control"
+            ]
+          },
+          "resources": [
+            "ssot/loopy.md"
+          ],
+          "packaging_profile": {
+            "capability_type": "skill",
+            "primary_surfaces": {
+              "codex": [
+                "codex_skill"
+              ],
+              "gemini": [
+                "gemini_skill"
+              ],
+              "claude": [
+                "claude_skill"
+              ],
+              "kiro": [
+                "kiro_skill"
+              ],
+              "grok": [
+                "grok_skill"
+              ]
+            },
+            "wrapper_surfaces": {
+              "codex": [],
+              "gemini": [
+                "skill_wrapper"
+              ],
+              "claude": [
+                "skill_wrapper",
+                "plugin_wrapper"
+              ],
+              "kiro": [
+                "skill_wrapper",
+                "power_wrapper"
+              ]
+            },
+            "notes": [
+              "wrapper surfaces are additive deployment forms, not capability types",
+              "orchestrators must not infer execution authority from wrapper presence alone"
+            ]
+          },
+          "install_target": {
+            "recommended": "repo_local",
+            "confidence": 0.88,
+            "confirmation_required_for_apply": true,
+            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+            "supported": [
+              "global",
+              "repo_local",
+              "both"
+            ]
+          },
+          "emitted_surfaces": {
+            "codex": [
+              "codex_skill"
+            ],
+            "gemini": [
+              "gemini_skill"
+            ],
+            "claude": [
+              "claude_skill"
+            ],
+            "kiro": [
+              "kiro_skill"
+            ],
+            "grok": [
+              "grok_skill"
+            ]
+          },
+          "source_provenance": {
+            "source_type": "LOCAL_FILE",
+            "normalized_source": "ssot/loopy.md",
+            "policy_rule_id": "ssot.loopy",
+            "content_sha256": "ssot"
+          },
+          "confidence": 0.97,
+          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "Loopy \u2014 Bounded Agent Loops"
+        },
+        "expanded": {
+          "relationship_suggestions": [],
+          "capability_dependencies": [
+            "context"
+          ],
+          "overlap_candidates": [],
+          "migration_notes": [
+            "If the capability lands, compare it against existing entries before apply.",
+            "Relationship suggestions are advisory only and do not imply runtime routing."
+          ],
+          "adjustment_recommendations": [
+            "add an explicit primary objective before packaging",
+            "add deterministic in-scope sections to improve routing fitness",
+            "capture quality constraints or non-negotiables"
+          ]
+        },
+        "org_graph": {
+          "org_role": "analyst",
+          "reports_to_suggestions": [],
+          "delegates_to_suggestions": [],
+          "collaborates_with_suggestions": [
+            "review",
+            "analysis"
+          ],
+          "authority_tier": "advisory",
+          "work_graph_impact": "Adds or updates a skill capability with route profile None."
+        }
+      },
+      "display_name": "Loopy \u2014 Bounded Agent Loops",
+      "descriptor_version": "capability-fabric.descriptor.v0",
+      "family_slug": "loopy",
+      "shared_summary": "Discover, find, compare, audit, repair, adapt, craft, run, debrief, and prepare repeatable AI-agent loops for publication. Use when a user asks to analyze code or coding threads for recurring work, find a published loop, interview them to turn a goal into a bounded loop, review a loop for weak checks or unsafe authority, execute a loop with an evidence receipt, learn from completed runs, or validate and submit a loop to Loop Library.",
+      "shared_constraints": [],
+      "modes": [],
+      "benchmark_sources": [],
+      "quality_profile": "default",
+      "quality_status": "structural_ready",
+      "judge_reports": [
+        {
+          "pass_number": 1,
+          "status": "structural_ready",
+          "historical_baseline": {
+            "slug": "loopy",
+            "strategy": "candidate_seed",
+            "group": "new_or_untracked",
+            "baseline_path": null,
+            "selected_commit": null,
+            "richness_score": 5,
+            "line_count": 326,
+            "reason": "No registry entry or git history available; use the candidate as the provisional seed baseline.",
+            "equivalent_commits": [],
+            "expected_companions": [],
+            "operator_invariants": [],
+            "scenario_matrix": [],
+            "historical_proof": {},
+            "source": "candidate_seed",
+            "verified_by_git_history": false,
+            "has_baseline_text": true
+          },
+          "judge_reports": [
+            {
+              "judge": "source_fidelity",
+              "title": "Source Fidelity and Uplift",
+              "score": 10,
+              "blockers": [],
+              "classification": "preserved",
+              "scenario_results": [],
+              "scorecard": {
+                "baseline_richness": 5,
+                "candidate_richness": 5,
+                "baseline_operational_score": 2,
+                "candidate_operational_score": 2,
+                "baseline_preserved_in_resource": false
+              },
+              "baseline_commit": null,
+              "baseline_slug": "loopy"
+            },
+            {
+              "judge": "operational_richness",
+              "title": "Operational Richness",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "metadata_integrity",
+              "title": "Metadata and Handoff Integrity",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "benchmark_readiness",
+              "title": "Benchmark Readiness and Template Fit",
+              "score": 10,
+              "blockers": [],
+              "scorecard": {
+                "title_clarity": 10,
+                "description_richness": 10,
+                "intent_coverage": 10,
+                "boundary_clarity": 10,
+                "output_specificity": 10,
+                "metadata_completeness": 8,
+                "surface_usability": 10
+              }
+            }
+          ],
+          "blockers": [],
+          "scorecard": {
+            "source_fidelity": 10,
+            "baseline_richness": 5,
+            "candidate_richness": 5,
+            "baseline_operational_score": 2,
+            "candidate_operational_score": 2,
+            "baseline_preserved_in_resource": false,
+            "operational_richness": 10,
+            "metadata_integrity": 10,
+            "benchmark_readiness": 10,
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 10,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          },
+          "template_name": "skill"
+        }
+      ],
+      "consumption_hints": {
+        "preferred_use_cases": [
+          "AI-assisted capability selection",
+          "deterministic prompt uplift review"
+        ],
+        "artifact_conventions": [
+          "ssot/<slug>.md",
+          ".meta/capabilities/<slug>.json",
+          "reports/quality-reviews/<slug>/LATEST.md"
+        ],
+        "invocation_style": "assistant_first_but_scriptable",
+        "requires_human_confirmation": true
+      },
+      "quality_pass_count": 1,
+      "quality_stop_reason": "thresholds_met",
+      "declared_capability": "skill",
+      "inferred_capability": "skill",
+      "expected_surface_names": [
+        "codex_skill",
+        "gemini_skill",
+        "claude_skill",
+        "kiro_skill",
+        "grok_skill"
+      ],
+      "rubric_version": "capability-fabric.v0"
+    },
+    {
       "slug": "pitch",
       "manifest_version": "capability-fabric.v0",
       "layers": {
@@ -8272,6 +8540,7 @@
       ".grok/skills/gitops-review/SKILL.md",
       ".grok/skills/ic-assistant/SKILL.md",
       ".grok/skills/instruction-editor/SKILL.md",
+      ".grok/skills/loopy/SKILL.md",
       ".grok/skills/pitch/SKILL.md",
       ".grok/skills/plan-to-goal-design/SKILL.md",
       ".grok/skills/pulse/SKILL.md",
@@ -8300,6 +8569,7 @@
       ".gemini/skills/gitops-review/SKILL.md",
       ".gemini/skills/ic-assistant/SKILL.md",
       ".gemini/skills/instruction-editor/SKILL.md",
+      ".gemini/skills/loopy/SKILL.md",
       ".gemini/skills/pitch/SKILL.md",
       ".gemini/skills/plan-to-goal-design/SKILL.md",
       ".gemini/skills/pulse/SKILL.md",
@@ -8341,6 +8611,7 @@
       ".claude/skills/gitops-review/SKILL.md",
       ".claude/skills/ic-assistant/SKILL.md",
       ".claude/skills/instruction-editor/SKILL.md",
+      ".claude/skills/loopy/SKILL.md",
       ".claude/skills/pitch/SKILL.md",
       ".claude/skills/plan-to-goal-design/SKILL.md",
       ".claude/skills/pulse/SKILL.md",
@@ -8395,6 +8666,7 @@
       ".kiro/skills/gitops-review/SKILL.md",
       ".kiro/skills/ic-assistant/SKILL.md",
       ".kiro/skills/instruction-editor/SKILL.md",
+      ".kiro/skills/loopy/SKILL.md",
       ".kiro/skills/pitch/SKILL.md",
       ".kiro/skills/plan-to-goal-design/SKILL.md",
       ".kiro/skills/pulse/SKILL.md",
@@ -8423,6 +8695,7 @@
       ".codex/skills/gitops-review/SKILL.md",
       ".codex/skills/ic-assistant/SKILL.md",
       ".codex/skills/instruction-editor/SKILL.md",
+      ".codex/skills/loopy/SKILL.md",
       ".codex/skills/pitch/SKILL.md",
       ".codex/skills/plan-to-goal-design/SKILL.md",
       ".codex/skills/pulse/SKILL.md",
@@ -8481,6 +8754,14 @@
       ".grok/skills/ic-assistant/resources/appian-incident-runbook.md",
       ".grok/skills/instruction-editor/resources/capability.json",
       ".grok/skills/instruction-editor/resources/references/instruction-clarity.md",
+      ".grok/skills/loopy/resources/capability.json",
+      ".grok/skills/loopy/LICENSE",
+      ".grok/skills/loopy/agents/openai.yaml",
+      ".grok/skills/loopy/references/audit.md",
+      ".grok/skills/loopy/references/debrief.md",
+      ".grok/skills/loopy/references/discover.md",
+      ".grok/skills/loopy/references/publish.md",
+      ".grok/skills/loopy/references/run.md",
       ".grok/skills/pitch/resources/capability.json",
       ".grok/skills/plan-to-goal-design/resources/capability.json",
       ".grok/skills/plan-to-goal-design/resources/adapters/hosts.json",
@@ -8540,6 +8821,14 @@
       ".codex/skills/ic-assistant/resources/appian-incident-runbook.md",
       ".codex/skills/instruction-editor/resources/capability.json",
       ".codex/skills/instruction-editor/resources/references/instruction-clarity.md",
+      ".codex/skills/loopy/resources/capability.json",
+      ".codex/skills/loopy/LICENSE",
+      ".codex/skills/loopy/agents/openai.yaml",
+      ".codex/skills/loopy/references/audit.md",
+      ".codex/skills/loopy/references/debrief.md",
+      ".codex/skills/loopy/references/discover.md",
+      ".codex/skills/loopy/references/publish.md",
+      ".codex/skills/loopy/references/run.md",
       ".codex/skills/pitch/resources/capability.json",
       ".codex/skills/plan-to-goal-design/resources/capability.json",
       ".codex/skills/plan-to-goal-design/resources/adapters/hosts.json",
@@ -8618,6 +8907,14 @@
       ".gemini/skills/ic-assistant/resources/appian-incident-runbook.md",
       ".gemini/skills/instruction-editor/resources/capability.json",
       ".gemini/skills/instruction-editor/resources/references/instruction-clarity.md",
+      ".gemini/skills/loopy/resources/capability.json",
+      ".gemini/skills/loopy/LICENSE",
+      ".gemini/skills/loopy/agents/openai.yaml",
+      ".gemini/skills/loopy/references/audit.md",
+      ".gemini/skills/loopy/references/debrief.md",
+      ".gemini/skills/loopy/references/discover.md",
+      ".gemini/skills/loopy/references/publish.md",
+      ".gemini/skills/loopy/references/run.md",
       ".gemini/skills/pitch/resources/capability.json",
       ".gemini/skills/plan-to-goal-design/resources/capability.json",
       ".gemini/skills/plan-to-goal-design/resources/adapters/hosts.json",
@@ -8696,6 +8993,14 @@
       ".claude/skills/ic-assistant/resources/appian-incident-runbook.md",
       ".claude/skills/instruction-editor/resources/capability.json",
       ".claude/skills/instruction-editor/resources/references/instruction-clarity.md",
+      ".claude/skills/loopy/resources/capability.json",
+      ".claude/skills/loopy/LICENSE",
+      ".claude/skills/loopy/agents/openai.yaml",
+      ".claude/skills/loopy/references/audit.md",
+      ".claude/skills/loopy/references/debrief.md",
+      ".claude/skills/loopy/references/discover.md",
+      ".claude/skills/loopy/references/publish.md",
+      ".claude/skills/loopy/references/run.md",
       ".claude/skills/pitch/resources/capability.json",
       ".claude/skills/plan-to-goal-design/resources/capability.json",
       ".claude/skills/plan-to-goal-design/resources/adapters/hosts.json",
@@ -8774,6 +9079,14 @@
       ".kiro/skills/ic-assistant/resources/appian-incident-runbook.md",
       ".kiro/skills/instruction-editor/resources/capability.json",
       ".kiro/skills/instruction-editor/resources/references/instruction-clarity.md",
+      ".kiro/skills/loopy/resources/capability.json",
+      ".kiro/skills/loopy/LICENSE",
+      ".kiro/skills/loopy/agents/openai.yaml",
+      ".kiro/skills/loopy/references/audit.md",
+      ".kiro/skills/loopy/references/debrief.md",
+      ".kiro/skills/loopy/references/discover.md",
+      ".kiro/skills/loopy/references/publish.md",
+      ".kiro/skills/loopy/references/run.md",
       ".kiro/skills/pitch/resources/capability.json",
       ".kiro/skills/plan-to-goal-design/resources/capability.json",
       ".kiro/skills/plan-to-goal-design/resources/adapters/hosts.json",

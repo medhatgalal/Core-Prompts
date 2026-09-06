@@ -2,13 +2,13 @@
 
 - Baseline status: `available`
 - Comparison basis: `git:v1.12.5@45c06d2d99129780a1864212c3ff4602a70950d6 .meta/manifest.json`
-- New capabilities: `0`
+- New capabilities: `1`
 - Removed capabilities: `0`
 - Changed capabilities: `26`
 - Material changes: `26`
 
 ## New Capabilities
-- none
+- `loopy` — Loopy — Bounded Agent Loops
 
 ## Removed Capabilities
 - none

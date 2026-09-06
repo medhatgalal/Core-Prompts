@@ -15,7 +15,7 @@ def read(path: str) -> str:
 def test_version_changelog_and_docs_contract_are_aligned() -> None:
     version = read("VERSION").strip()
     changelog = read("CHANGELOG.md")
-    match = re.search(r"^##\s+([^ ]+)\s+-\s+", changelog, re.MULTILINE)
+    match = re.search(r"^##[ \t]+(\S+)[ \t]+-[ \t]+", changelog, re.MULTILINE)
     assert match
     assert match.group(1) == version
 

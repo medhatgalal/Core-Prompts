@@ -66,7 +66,7 @@ from pathlib import Path
 import re
 
 text = Path("CHANGELOG.md").read_text(encoding="utf-8")
-match = re.search(r"^##\s+([^ ]+)\s+-\s+", text, re.M)
+match = re.search(r"^##[ \t]+(\S+)[ \t]+-[ \t]+", text, re.M)
 print(match.group(1) if match else "")
 PY
 )"
@@ -90,6 +90,7 @@ INCLUDE_PATHS=(
   ".meta/skill-job-map.json"
   "dist/consumer-shell"
   "sources/ssot-baselines"
+  "scripts/probe-skill-readers.py"
   "scripts/deploy-profile.py"
   "scripts/install_bundle.py"
   ".meta/install-bundle.json"
@@ -102,6 +103,7 @@ INCLUDE_PATHS=(
   "VERSION"
   "RELEASE_SOURCE.env"
   "docs/CAPABILITY-CATALOG.md"
+  "docs/INSTALL-PROFILES.md"
   "docs/CLI-REFERENCE.md"
   "docs/CAPABILITY-FABRIC.md"
   "docs/UAC-USAGE.md"
