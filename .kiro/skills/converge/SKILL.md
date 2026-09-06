@@ -196,4 +196,4 @@ A strong convergence result should:
 | Surface usability | The body is strong enough to support both reusable skill and advisory agent surfaces |
 
 
-Capability resource: `.kiro/skills/converge/resources/capability.json`
+Capability resource: `resources/capability.json`

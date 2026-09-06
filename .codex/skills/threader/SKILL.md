@@ -292,4 +292,4 @@ Before final output:
 ## END
 
 
-Capability resource: `.codex/skills/threader/resources/capability.json`
+Capability resource: `resources/capability.json`

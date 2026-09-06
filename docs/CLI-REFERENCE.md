@@ -317,3 +317,10 @@ Direct exposure is standardized on `skills/<slug>/SKILL.md` for every supported 
 - [Consumer status](STATUS.md)
 - [UAC usage](UAC-USAGE.md)
 - [Release packaging](RELEASE-PACKAGING.md)
+
+## Selected local skill targets
+
+Choose Codex, Kiro, and Grok with an explicit skills-only profile. Codex skills install
+under `.agents/skills`; Grok gets native `.grok/skills` packages. Preview the exact
+write set and preserve unknown or customized copies before applying. See
+[installation profiles and rollback](INSTALL-PROFILES.md).

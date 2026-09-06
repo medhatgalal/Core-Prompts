@@ -283,4 +283,4 @@ Every substantial response must include:
 | Convergence quality | No conflicts between sources were hidden; discrepancies are surfaced |
 
 
-Capability resource: `.kiro/skills/weekly-intel/resources/capability.json`
+Capability resource: `resources/capability.json`

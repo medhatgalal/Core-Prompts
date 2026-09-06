@@ -128,4 +128,4 @@ Given a feature to demo and a target service URL, produce a complete demo plan, 
 - Do not mix demo recording concerns with testing, CI, or deployment concerns.
 
 
-Capability resource: `.kiro/skills/demo-recorder/resources/capability.json`
+Capability resource: `resources/capability.json`

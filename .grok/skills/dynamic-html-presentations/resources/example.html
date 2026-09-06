@@ -1,0 +1,817 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quarterly Product Review — Standalone Example</title>
+  <style>
+    :root {
+      --canvas: #eef2f8;
+      --stage: #f9fbff;
+      --ink: #172033;
+      --muted: #61708a;
+      --line: #dce3ef;
+      --accent: #2457d6;
+      --accent-soft: #e6edff;
+      --teal: #008d8d;
+      --teal-soft: #dff6f3;
+      --amber: #bb6b00;
+      --amber-soft: #fff1d8;
+      --white: #ffffff;
+      --shadow: 0 28px 70px rgba(22, 41, 79, 0.18);
+      --safe-x: clamp(36px, 5vw, 96px);
+      --safe-y: clamp(30px, 5vh, 64px);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; margin: 0; }
+    body {
+      overflow: hidden;
+      background: #101522;
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button { font: inherit; }
+
+    .app {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+    }
+
+    .deck {
+      position: relative;
+      width: min(100vw, calc(100vh * 16 / 9));
+      height: min(100vh, calc(100vw * 9 / 16));
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 92% 8%, rgba(36, 87, 214, 0.09), transparent 30%),
+        linear-gradient(135deg, var(--stage), var(--canvas));
+      box-shadow: var(--shadow);
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: none;
+      flex-direction: column;
+      padding: var(--safe-y) var(--safe-x) calc(var(--safe-y) + 34px);
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.82), rgba(249, 251, 255, 0.62)),
+        radial-gradient(circle at 100% 0%, rgba(0, 141, 141, 0.08), transparent 35%);
+    }
+
+    .slide.active {
+      display: flex;
+      animation: slide-in 340ms cubic-bezier(.2, .75, .25, 1) both;
+    }
+
+    @keyframes slide-in {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .slide::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 7px;
+      background: linear-gradient(var(--accent), var(--teal));
+    }
+
+    .eyebrow-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: clamp(16px, 2.6vh, 30px);
+    }
+
+    .eyebrow {
+      margin: 0;
+      color: var(--accent);
+      font-size: clamp(13px, 1.1vw, 20px);
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border: 1px solid rgba(36, 87, 214, 0.25);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.82);
+      color: var(--accent);
+      font-size: clamp(12px, 0.9vw, 16px);
+      font-weight: 750;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 14ch;
+      margin-bottom: clamp(14px, 2vh, 26px);
+      font-size: clamp(42px, 5.1vw, 92px);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+    }
+
+    h2 {
+      max-width: 21ch;
+      margin-bottom: clamp(16px, 2.4vh, 30px);
+      font-size: clamp(34px, 3.7vw, 68px);
+      line-height: 1.03;
+      letter-spacing: -0.035em;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: clamp(18px, 1.55vw, 28px);
+      line-height: 1.16;
+    }
+
+    .lede {
+      max-width: 54ch;
+      color: var(--muted);
+      font-size: clamp(18px, 1.45vw, 27px);
+      line-height: 1.42;
+    }
+
+    .hero-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: clamp(34px, 5vw, 92px);
+    }
+
+    .hero-mark {
+      position: relative;
+      min-height: 58%;
+      display: grid;
+      place-items: center;
+    }
+
+    .hero-mark::before,
+    .hero-mark::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+    }
+
+    .hero-mark::before {
+      width: min(31vw, 480px);
+      aspect-ratio: 1;
+      background: conic-gradient(var(--accent) 0 72%, var(--teal) 72% 100%);
+      opacity: 0.12;
+    }
+
+    .hero-mark::after {
+      width: min(23vw, 350px);
+      aspect-ratio: 1;
+      border: 2px solid rgba(36, 87, 214, 0.24);
+    }
+
+    .hero-number {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .hero-number strong {
+      display: block;
+      color: var(--accent);
+      font-size: clamp(64px, 8vw, 140px);
+      line-height: 0.9;
+      letter-spacing: -0.06em;
+    }
+
+    .hero-number span {
+      display: block;
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: clamp(15px, 1.2vw, 22px);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(14px, 1.8vw, 28px);
+    }
+
+    .card {
+      min-width: 0;
+      padding: clamp(18px, 2vw, 34px);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.88);
+      box-shadow: 0 12px 28px rgba(30, 48, 82, 0.08);
+    }
+
+    .metric-label {
+      color: var(--muted);
+      font-size: clamp(13px, 1vw, 18px);
+      font-weight: 750;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .metric-value {
+      display: block;
+      margin: 12px 0 8px;
+      color: var(--ink);
+      font-size: clamp(38px, 4vw, 72px);
+      font-weight: 850;
+      letter-spacing: -0.05em;
+      line-height: 0.95;
+    }
+
+    .metric-delta {
+      color: var(--teal);
+      font-size: clamp(14px, 1.1vw, 20px);
+      font-weight: 750;
+    }
+
+    .ratio-wrap {
+      margin-top: clamp(20px, 3vh, 36px);
+      padding: clamp(20px, 2.3vw, 36px);
+      border-radius: 20px;
+      background: #172033;
+      color: var(--white);
+    }
+
+    .ratio-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 16px;
+    }
+
+    .ratio-head strong { font-size: clamp(18px, 1.5vw, 28px); }
+    .ratio-head span { color: #b9c5da; font-size: clamp(13px, 1vw, 18px); }
+
+    .ratio-bar {
+      display: flex;
+      width: 100%;
+      height: clamp(48px, 6vh, 74px);
+      overflow: hidden;
+      border-radius: 14px;
+      font-weight: 800;
+    }
+
+    .ratio-bar div { display: grid; place-items: center; }
+    .ratio-primary { width: 72%; background: var(--accent); }
+    .ratio-secondary { width: 28%; background: var(--teal); }
+
+    .flow {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      align-items: center;
+      gap: clamp(12px, 1.8vw, 28px);
+    }
+
+    .flow-step {
+      position: relative;
+      min-height: clamp(210px, 27vh, 310px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .step-number {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 850;
+    }
+
+    .flow-step p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: clamp(15px, 1.15vw, 21px);
+      line-height: 1.42;
+    }
+
+    .flow-arrow {
+      color: var(--accent);
+      font-size: clamp(28px, 3vw, 52px);
+      font-weight: 300;
+    }
+
+    .decision-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: clamp(20px, 2.5vw, 40px);
+      min-height: 0;
+    }
+
+    .decision-table {
+      display: grid;
+      grid-template-rows: auto repeat(3, 1fr);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .table-row {
+      display: grid;
+      grid-template-columns: 1.25fr 0.8fr 1fr;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .table-row:last-child { border-bottom: 0; }
+    .table-row > div { padding: 14px 18px; font-size: clamp(14px, 1vw, 18px); }
+    .table-head { background: #172033; color: var(--white); font-weight: 800; }
+    .table-row:not(.table-head) > div:first-child { font-weight: 750; }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-weight: 750;
+    }
+
+    .status::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .status.good { color: var(--teal); }
+    .status.watch { color: var(--amber); }
+
+    .callout {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-color: rgba(36, 87, 214, 0.28);
+      background: linear-gradient(160deg, var(--accent), #173f9f);
+      color: var(--white);
+    }
+
+    .callout .eyebrow { color: #cdd9ff; }
+    .callout h3 { font-size: clamp(24px, 2.4vw, 44px); }
+    .callout p {
+      color: #d8e1ff;
+      font-size: clamp(15px, 1.15vw, 21px);
+      line-height: 1.45;
+    }
+
+    .callout .action {
+      display: inline-flex;
+      align-items: center;
+      align-self: flex-start;
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: var(--white);
+      color: var(--accent);
+      font-weight: 850;
+    }
+
+    .appendix-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(16px, 2vw, 28px);
+    }
+
+    .appendix-grid .card { min-height: clamp(170px, 21vh, 235px); }
+    .appendix-grid p {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(15px, 1.1vw, 20px);
+      line-height: 1.45;
+    }
+
+    .footer {
+      position: absolute;
+      left: var(--safe-x);
+      right: var(--safe-x);
+      bottom: clamp(18px, 2.2vh, 28px);
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      color: var(--muted);
+      font-size: clamp(11px, 0.8vw, 15px);
+    }
+
+    .footer strong { color: var(--ink); }
+
+    .progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 30;
+      height: 4px;
+      width: 0;
+      background: linear-gradient(90deg, var(--accent), var(--teal));
+      transition: width 220ms ease;
+    }
+
+    .controls {
+      position: fixed;
+      right: 20px;
+      bottom: 18px;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 15px;
+      background: rgba(16, 21, 34, 0.88);
+      color: var(--white);
+      backdrop-filter: blur(16px);
+    }
+
+    .controls button {
+      min-width: 38px;
+      height: 36px;
+      padding: 0 11px;
+      border: 0;
+      border-radius: 10px;
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+      font-weight: 750;
+    }
+
+    .controls button:hover,
+    .controls button:focus-visible { background: rgba(255, 255, 255, 0.13); outline: none; }
+    .slide-count { min-width: 62px; text-align: center; font-variant-numeric: tabular-nums; }
+
+    .help,
+    .notes {
+      position: fixed;
+      z-index: 40;
+      display: none;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 18px;
+      background: rgba(16, 21, 34, 0.96);
+      color: var(--white);
+      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.32);
+      backdrop-filter: blur(20px);
+    }
+
+    .help.open,
+    .notes.open { display: block; }
+
+    .help {
+      left: 50%;
+      top: 50%;
+      width: min(620px, calc(100vw - 40px));
+      transform: translate(-50%, -50%);
+      padding: 26px 30px;
+    }
+
+    .help h2,
+    .notes h2 { font-size: 24px; margin-bottom: 16px; }
+    .help-grid { display: grid; grid-template-columns: auto 1fr; gap: 10px 18px; }
+    .help kbd { color: #bfcfff; font-weight: 800; }
+
+    .notes {
+      left: 18px;
+      bottom: 18px;
+      width: min(520px, calc(100vw - 36px));
+      max-height: min(62vh, 520px);
+      padding: 24px 28px;
+      overflow: auto;
+    }
+
+    .notes ul { margin: 0; padding-left: 20px; }
+    .notes li { margin: 8px 0; color: #d6deed; line-height: 1.4; }
+    .speaker-note { display: none !important; }
+
+    body.export .controls,
+    body.export .help,
+    body.export .progress,
+    body.export .notes { display: none !important; }
+    body.export .slide.active { animation: none !important; }
+    body.export .deck { box-shadow: none; }
+
+    @media (max-width: 900px) {
+      .hero-grid, .decision-grid { grid-template-columns: 1fr 0.72fr; }
+      .metric-grid { gap: 12px; }
+      .card { border-radius: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <main class="app">
+    <div class="deck" id="deck">
+      <section class="slide active" data-title="Quarterly product review" aria-hidden="false">
+        <div class="hero-grid">
+          <div>
+            <p class="eyebrow">Quarterly product review</p>
+            <h1>Faster onboarding is becoming a growth lever.</h1>
+            <p class="lede">A generic example of a decision-oriented narrative, reusable components, and standalone browser interactions.</p>
+          </div>
+          <div class="hero-mark" aria-label="Seventy-two percent illustrative completion metric">
+            <div class="hero-number">
+              <strong>72%</strong>
+              <span>illustrative completion</span>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span><strong>Example deck</strong> · Sample data only</span><span>01</span></div>
+        <aside class="speaker-note" hidden>
+          <ul>
+            <li>Open with the decision context, not a status-report agenda.</li>
+            <li>All metrics in this example are explicitly illustrative.</li>
+            <li>The 72% visual is proportional and repeated consistently later.</li>
+            <li>Use this slide to establish the narrative: onboarding speed affects growth.</li>
+            <li>Transition to the evidence that supports the claim.</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section class="slide" data-title="Evidence is moving together" aria-hidden="true">
+        <div class="eyebrow-row">
+          <p class="eyebrow">01 · Evidence</p>
+          <span class="badge">Illustrative metrics</span>
+        </div>
+        <h2>Three signals are moving in the same direction.</h2>
+        <div class="metric-grid">
+          <article class="card">
+            <span class="metric-label">Completion</span>
+            <strong class="metric-value">72%</strong>
+            <span class="metric-delta">↑ 12 points</span>
+          </article>
+          <article class="card">
+            <span class="metric-label">Time to value</span>
+            <strong class="metric-value">4.8d</strong>
+            <span class="metric-delta">↓ 1.6 days</span>
+          </article>
+          <article class="card">
+            <span class="metric-label">Support demand</span>
+            <strong class="metric-value">−18%</strong>
+            <span class="metric-delta">quarter over quarter</span>
+          </article>
+        </div>
+        <div class="ratio-wrap">
+          <div class="ratio-head"><strong>Completion mix</strong><span>Sample cohort · current quarter</span></div>
+          <div class="ratio-bar" role="img" aria-label="Seventy-two percent completed and twenty-eight percent incomplete">
+            <div class="ratio-primary">72% completed</div>
+            <div class="ratio-secondary">28%</div>
+          </div>
+        </div>
+        <div class="footer"><span><strong>Caveat:</strong> Replace sample values with sourced results before delivery.</span><span>02</span></div>
+        <aside class="speaker-note" hidden>
+          <ul>
+            <li>Explain the three metrics as corroborating signals, not isolated wins.</li>
+            <li>Name the period and cohort whenever real data replaces the sample.</li>
+            <li>Point out that the ratio bar uses exact 72/28 geometry.</li>
+            <li>Keep the caveat visible beside the evidence.</li>
+            <li>Transition from outcomes to the workflow change behind them.</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section class="slide" data-title="The workflow removed uncertainty" aria-hidden="true">
+        <div class="eyebrow-row">
+          <p class="eyebrow">02 · Mechanism</p>
+          <span class="badge">Three-step flow</span>
+        </div>
+        <h2>The workflow removes uncertainty before it becomes delay.</h2>
+        <div class="flow">
+          <article class="card flow-step">
+            <span class="step-number">1</span>
+            <div>
+              <h3>Show the next action</h3>
+              <p>Each stage names one clear task and the evidence needed to finish it.</p>
+            </div>
+          </article>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <article class="card flow-step">
+            <span class="step-number">2</span>
+            <div>
+              <h3>Validate in context</h3>
+              <p>Guidance appears where the user is already making the decision.</p>
+            </div>
+          </article>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <article class="card flow-step">
+            <span class="step-number">3</span>
+            <div>
+              <h3>Escalate exceptions</h3>
+              <p>Complex cases reach a specialist with the prior steps preserved.</p>
+            </div>
+          </article>
+        </div>
+        <div class="footer"><span>Visual rule: mechanism before implementation detail</span><span>03</span></div>
+        <aside class="speaker-note" hidden>
+          <ul>
+            <li>Use the flow to explain why the outcomes changed.</li>
+            <li>Keep each step phrased as a user-visible behavior.</li>
+            <li>Avoid implementation detail unless the audience needs it.</li>
+            <li>Call out the preserved context at escalation as the reliability mechanism.</li>
+            <li>Transition to the decision needed for the next quarter.</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section class="slide" data-title="Protect the winning path" aria-hidden="true">
+        <div class="eyebrow-row">
+          <p class="eyebrow">03 · Decision</p>
+          <span class="badge">Next quarter</span>
+        </div>
+        <h2>Protect the winning path; experiment at the edges.</h2>
+        <div class="decision-grid">
+          <div class="decision-table" role="table" aria-label="Priority decision table">
+            <div class="table-row table-head" role="row">
+              <div role="columnheader">Workstream</div><div role="columnheader">Signal</div><div role="columnheader">Action</div>
+            </div>
+            <div class="table-row" role="row">
+              <div role="cell">Core onboarding</div><div role="cell"><span class="status good">Strong</span></div><div role="cell">Standardize</div>
+            </div>
+            <div class="table-row" role="row">
+              <div role="cell">Complex migrations</div><div role="cell"><span class="status watch">Mixed</span></div><div role="cell">Targeted tests</div>
+            </div>
+            <div class="table-row" role="row">
+              <div role="cell">Self-service help</div><div role="cell"><span class="status good">Promising</span></div><div role="cell">Expand carefully</div>
+            </div>
+          </div>
+          <aside class="card callout">
+            <div>
+              <p class="eyebrow">Recommendation</p>
+              <h3>Fund one quarter of focused expansion.</h3>
+              <p>Keep the proven path stable while validating the two highest-friction exceptions.</p>
+            </div>
+            <span class="action">Decision requested →</span>
+          </aside>
+        </div>
+        <div class="footer"><span><strong>Decision:</strong> scope and funding for one focused quarter</span><span>04</span></div>
+        <aside class="speaker-note" hidden>
+          <ul>
+            <li>State the recommendation before walking through the workstreams.</li>
+            <li>Separate strong signals from mixed signals visually and verbally.</li>
+            <li>Protect the working core from unnecessary redesign.</li>
+            <li>Frame expansion as bounded validation, not a broad rollout.</li>
+            <li>End with the exact decision requested from the audience.</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section class="slide" data-title="Appendix and validation notes" data-appendix="true" aria-hidden="true">
+        <div class="eyebrow-row">
+          <p class="eyebrow">Appendix</p>
+          <span class="badge">Press A to jump here</span>
+        </div>
+        <h2>Validation notes for this example.</h2>
+        <div class="appendix-grid">
+          <article class="card">
+            <h3>Portable by default</h3>
+            <p>CSS, JavaScript, diagrams, controls, and presenter notes are contained in this single file.</p>
+          </article>
+          <article class="card">
+            <h3>Deterministic export</h3>
+            <p>Add <code>?export=1</code> or the <code>export</code> body class to hide chrome and disable slide animation.</p>
+          </article>
+          <article class="card">
+            <h3>Accessible state</h3>
+            <p>The runtime updates <code>aria-hidden</code>, button labels, slide title, hash, progress, and notes together.</p>
+          </article>
+          <article class="card">
+            <h3>Evidence integrity</h3>
+            <p>Every sample metric is labeled illustrative and includes a visible replacement caveat.</p>
+          </article>
+        </div>
+        <div class="footer"><span>Standalone presentation example</span><span>05</span></div>
+        <aside class="speaker-note" hidden>
+          <ul>
+            <li>Use the appendix for methodology and implementation detail.</li>
+            <li>Confirm the example has no external asset or network dependency.</li>
+            <li>Demonstrate the appendix shortcut and hash deep link.</li>
+            <li>Explain that export mode is scoped and reversible.</li>
+            <li>Close by inviting the audience to adapt the components, not copy the sample story.</li>
+          </ul>
+        </aside>
+      </section>
+    </div>
+  </main>
+
+  <nav class="controls" aria-label="Presentation controls">
+    <button id="prev" type="button" aria-label="Previous slide">←</button>
+    <span class="slide-count" id="slide-count" aria-live="polite">1 / 5</span>
+    <button id="next" type="button" aria-label="Next slide">→</button>
+    <button id="notes-button" type="button" aria-label="Toggle presenter notes">N</button>
+    <button id="fullscreen" type="button" aria-label="Toggle fullscreen">F</button>
+    <button id="help-button" type="button" aria-label="Show keyboard shortcuts">?</button>
+  </nav>
+
+  <aside class="help" id="help" role="dialog" aria-modal="false" aria-label="Keyboard shortcuts">
+    <h2>Keyboard shortcuts</h2>
+    <div class="help-grid">
+      <kbd>→ / Space / Page Down</kbd><span>Next slide</span>
+      <kbd>← / Page Up</kbd><span>Previous slide</span>
+      <kbd>Home / End</kbd><span>First / last slide</span>
+      <kbd>N</kbd><span>Presenter notes</span>
+      <kbd>F</kbd><span>Fullscreen</span>
+      <kbd>A</kbd><span>Jump to appendix</span>
+      <kbd>?</kbd><span>Toggle this help</span>
+      <kbd>Esc</kbd><span>Close overlays</span>
+    </div>
+  </aside>
+
+  <aside class="notes" id="notes" aria-live="polite">
+    <h2 id="notes-title">Presenter notes</h2>
+    <div id="notes-content"></div>
+  </aside>
+
+  <script>
+    (() => {
+      const slides = [...document.querySelectorAll(".slide")];
+      const progress = document.getElementById("progress");
+      const count = document.getElementById("slide-count");
+      const notes = document.getElementById("notes");
+      const notesTitle = document.getElementById("notes-title");
+      const notesContent = document.getElementById("notes-content");
+      const help = document.getElementById("help");
+      const params = new URLSearchParams(location.search);
+      document.body.classList.toggle("export", params.get("export") === "1");
+
+      const clamp = value => Math.max(0, Math.min(slides.length - 1, value));
+      const hashIndex = () => {
+        const match = location.hash.match(/^#slide-(\d+)$/);
+        return match ? clamp(Number(match[1]) - 1) : 0;
+      };
+
+      let index = hashIndex();
+
+      function render(nextIndex, updateHash = true) {
+        index = clamp(nextIndex);
+        slides.forEach((slide, slideIndex) => {
+          const active = slideIndex === index;
+          slide.classList.toggle("active", active);
+          slide.setAttribute("aria-hidden", String(!active));
+        });
+        count.textContent = `${index + 1} / ${slides.length}`;
+        progress.style.width = `${((index + 1) / slides.length) * 100}%`;
+        document.title = `${slides[index].dataset.title} — Quarterly Product Review`;
+        const note = slides[index].querySelector(".speaker-note");
+        notesTitle.textContent = `Notes · ${slides[index].dataset.title}`;
+        notesContent.innerHTML = note ? note.innerHTML : "<p>No presenter notes for this slide.</p>";
+        if (updateHash && location.hash !== `#slide-${index + 1}`) {
+          history.replaceState(null, "", `#slide-${index + 1}`);
+        }
+      }
+
+      function move(delta) { render(index + delta); }
+      function toggleNotes() { notes.classList.toggle("open"); help.classList.remove("open"); }
+      function toggleHelp() { help.classList.toggle("open"); notes.classList.remove("open"); }
+      function closeOverlays() { help.classList.remove("open"); notes.classList.remove("open"); }
+      function toggleFullscreen() {
+        if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+        else document.exitFullscreen?.();
+      }
+      function jumpToAppendix() {
+        const appendix = slides.findIndex(slide => slide.dataset.appendix === "true");
+        if (appendix >= 0) render(appendix);
+      }
+
+      document.getElementById("prev").addEventListener("click", () => move(-1));
+      document.getElementById("next").addEventListener("click", () => move(1));
+      document.getElementById("notes-button").addEventListener("click", toggleNotes);
+      document.getElementById("fullscreen").addEventListener("click", toggleFullscreen);
+      document.getElementById("help-button").addEventListener("click", toggleHelp);
+
+      addEventListener("hashchange", () => render(hashIndex(), false));
+      addEventListener("keydown", event => {
+        if (["ArrowRight", "PageDown", " "].includes(event.key)) { event.preventDefault(); move(1); }
+        else if (["ArrowLeft", "PageUp"].includes(event.key)) { event.preventDefault(); move(-1); }
+        else if (event.key === "Home") { event.preventDefault(); render(0); }
+        else if (event.key === "End") { event.preventDefault(); render(slides.length - 1); }
+        else if (event.key.toLowerCase() === "n") toggleNotes();
+        else if (event.key.toLowerCase() === "f") toggleFullscreen();
+        else if (event.key.toLowerCase() === "a") jumpToAppendix();
+        else if (event.key === "?") toggleHelp();
+        else if (event.key === "Escape") closeOverlays();
+      });
+
+      render(index, !location.hash);
+    })();
+  </script>
+</body>
+</html>

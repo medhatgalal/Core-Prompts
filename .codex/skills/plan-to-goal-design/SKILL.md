@@ -244,4 +244,4 @@ Run `check` first. If HEAD, dirty state, rules, files, adapter, or hashes materi
 | Boundary clarity | Compilation does not imply execution, promotion, deployment, or approval authority |
 
 
-Capability resource: `.codex/skills/plan-to-goal-design/resources/capability.json`
+Capability resource: `resources/capability.json`

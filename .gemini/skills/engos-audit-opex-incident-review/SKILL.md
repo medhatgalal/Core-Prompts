@@ -352,4 +352,4 @@ Expected result:
 - Do not claim orchestration, delegation, or runtime-control authority.
 
 
-Capability resource: `.gemini/skills/engos-audit-opex-incident-review/resources/capability.json`
+Capability resource: `resources/capability.json`

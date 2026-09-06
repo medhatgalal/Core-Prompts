@@ -838,4 +838,4 @@ Include this block at the end of every substantive response:
 ```
 
 
-Capability resource: `.kiro/skills/architecture/resources/capability.json`
+Capability resource: `resources/capability.json`

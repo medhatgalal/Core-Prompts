@@ -201,4 +201,4 @@ A task is complete only when every checkbox in `<task-id>-todo.md` is checked, `
 | Boundary clarity | The capability stays analysis-focused and does not pretend to own unrelated execution |
 
 
-Capability resource: `.gemini/skills/analyze-context/resources/capability.json`
+Capability resource: `resources/capability.json`

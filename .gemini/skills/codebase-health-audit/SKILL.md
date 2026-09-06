@@ -465,4 +465,4 @@ Expected result:
 - **Escalation:** If structural problems suggest architectural redesign, recommend invoking the `architecture` skill. If dead code is extensive, recommend `testing` skill for coverage analysis.
 
 
-Capability resource: `.gemini/skills/codebase-health-audit/resources/capability.json`
+Capability resource: `resources/capability.json`

@@ -105,9 +105,10 @@ def read_state(path: Path) -> dict[str, str]:
     return {str(key): "" if value is None else str(value) for key, value in data.items()}
 
 
-def write_state(paths: Paths, *, installed_version: str, latest_version: str, pending_version: str, status: str, note: str, last_notified_at: str | None = None) -> dict[str, str]:
+def write_state(paths: Paths, *, installed_version: str, latest_version: str, pending_version: str, status: str, note: str, last_notified_at: str | None = None, verified_bundle_sha256: str = "") -> dict[str, str]:
     previous = read_state(paths.state_file)
     doc = {
+        "verified_bundle_sha256": verified_bundle_sha256,
         "installed_version": installed_version,
         "latest_version": latest_version,
         "pending_version": pending_version,
@@ -289,7 +290,20 @@ def read_snapshot_manifest(snapshot_dir: Path) -> dict[str, object]:
 def snapshot_dirs(paths: Paths) -> list[Path]:
     if not paths.snapshot_root.is_dir():
         return []
-    return sorted(path for path in paths.snapshot_root.iterdir() if path.is_dir() and (path / "manifest.json").is_file())
+    visible = []
+    for path in paths.snapshot_root.iterdir():
+        if not path.is_dir() or not (path / 'manifest.json').is_file():
+            continue
+        record = read_snapshot_manifest(path)
+        if record.get('kind') == 'profile_transaction':
+            transaction = str(record.get('transaction', ''))
+            if len(transaction) != 32 or any(c not in '0123456789abcdef' for c in transaction):
+                continue
+            journal = paths.state_root / 'profile-install/transactions' / transaction / 'journal.json'
+            if not journal.is_file():
+                continue  # Planned attempt stopped before any installation mutation.
+        visible.append(path)
+    return sorted(visible)
 
 
 def list_snapshots(paths: Paths, *, as_json: bool) -> int:
@@ -336,6 +350,15 @@ def restore_snapshot(paths: Paths, selector: str) -> int:
         print(f"No Core-Prompts rollback snapshot found for selector: {selector or 'previous'}", file=sys.stderr)
         return 1
     manifest = read_snapshot_manifest(snapshot)
+    if manifest.get('kind') == 'profile_transaction':
+        try:
+            engine = profile_module(paths)
+            engine.rollback(paths.home, manifest['transaction'])
+            print(f"Restored Core-Prompts profile snapshot {snapshot.name}.")
+            return 0
+        except (ValueError, OSError, KeyError) as exc:
+            print('Profile rollback refused: ' + str(exc), file=sys.stderr)
+            return 1
     records = manifest.get("paths", [])
     if not isinstance(records, list):
         print(f"Invalid rollback snapshot manifest: {snapshot / 'manifest.json'}", file=sys.stderr)
@@ -553,6 +576,14 @@ def check_release(paths: Paths, *, notify_mode: bool) -> dict[str, str]:
     if not checkout_mirror(paths, latest_version):
         return write_state(paths, installed_version=installed_version, latest_version=latest_version, pending_version="", status="remote-error", note=f"Failed to check out {latest_version} in dedicated release mirror")
 
+    bundle_pin = ""
+    inventory = paths.mirror_path / '.meta/install-bundle.json'
+    if inventory.is_file():
+        if (git_text(paths.mirror_path, 'rev-parse', f'refs/tags/{latest_version}') != origin_ref
+                or git_text(paths.mirror_path, 'status', '--porcelain')):
+            return write_state(paths, installed_version=installed_version, latest_version=latest_version,
+                               pending_version='', status='remote-error', note='Release mirror identity or clean state differs')
+        bundle_pin = hashlib.sha256(inventory.read_bytes()).hexdigest()
     if tag_is_newer(latest_version, installed_version):
         note = "Run ~/update_core_prompts.sh --accept-release to refresh the installed bundle"
         last_notified = None
@@ -560,7 +591,7 @@ def check_release(paths: Paths, *, notify_mode: bool) -> dict[str, str]:
             message = f"Install {latest_version} to refresh Core-Prompts surfaces (installed: {installed_version})."
             if notify("Core-Prompts Release Available", message):
                 last_notified = today()
-        return write_state(paths, installed_version=installed_version, latest_version=latest_version, pending_version=latest_version, status="pending-install", note=note, last_notified_at=last_notified)
+        return write_state(paths, installed_version=installed_version, latest_version=latest_version, pending_version=latest_version, status="pending-install", note=note, last_notified_at=last_notified, verified_bundle_sha256=bundle_pin)
 
     return write_state(paths, installed_version=installed_version, latest_version=latest_version, pending_version="", status="current", note="Installed standalone bundle matches the latest release")
 
@@ -592,6 +623,51 @@ def default_sync(paths: Paths, args: argparse.Namespace) -> int:
     return proc.returncode
 
 
+def profile_module(paths: Paths):
+    import importlib.util
+    module_path = installed_support_root(paths) / 'scripts/deploy-profile.py'
+    spec = importlib.util.spec_from_file_location('installed_deploy_profile', module_path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def accept_profile_release(paths: Paths, state: dict[str, str], mirror: Path) -> int:
+    """Use the existing verified release mirror and persisted file scope."""
+    try:
+        engine = profile_module(paths)
+        inventory = engine.safe(mirror, '.meta/install-bundle.json')
+        expected = state.get('verified_bundle_sha256')
+        if not expected or engine.digest(inventory.read_bytes()) != expected:
+            raise ValueError('release bundle lacks the pinned verification receipt from release check')
+        if not release_versions_match(read_first_line(mirror / 'VERSION'), state['pending_version']):
+            raise ValueError('release bundle version differs from pending version')
+        profile = json.loads(engine.safe(paths.home, engine.PROFILE).read_text())
+        current = dict(state)
+        current.update(installed_version=state['pending_version'], latest_version=state['pending_version'],
+                       pending_version='', status='current', last_checked_at=now_iso(),
+                       note='Accepted verified bundle through the saved managed skill profile')
+        concrete = engine.plan(mirror, paths.home, profile, routine=True, release_state=current)
+        if concrete['blockers']:
+            raise ValueError('; '.join(concrete['blockers']))
+        transaction = concrete['transaction']
+        snapshot = paths.snapshot_root / (datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ') + '-profile-' + transaction)
+        snapshot.mkdir(parents=True, exist_ok=False)
+        record = {'id': snapshot.name, 'kind': 'profile_transaction', 'transaction': transaction,
+                  'installed_version': state.get('installed_version'), 'target_version': state['pending_version'],
+                  'previous_state': state}
+        engine.atomic_write(snapshot / 'manifest.json', engine.encoded(record))
+        # Recovery is discoverable before the first installation mutation.
+        result = engine.apply(mirror, paths.home, profile, concrete)
+        print(json.dumps({'status': 'current', 'transaction': transaction,
+                          'installed_version': current['installed_version']}))
+        return 0
+    except (ValueError, OSError, KeyError) as exc:
+        recovery = f' Recover with --rollback {snapshot.name}.' if 'snapshot' in locals() else ''
+        print('Profile release refused: ' + str(exc) + recovery, file=sys.stderr)
+        return 1
+
+
 def accept_release(paths: Paths, *, assume_yes: bool, snapshot_retention: int = DEFAULT_SNAPSHOT_RETENTION) -> int:
     if not paths.state_file.is_file():
         check_release(paths, notify_mode=False)
@@ -606,6 +682,7 @@ def accept_release(paths: Paths, *, assume_yes: bool, snapshot_retention: int = 
         print(f"Release mirror install script is unavailable: {install_script}", file=sys.stderr)
         return 1
     support = installed_support_root(paths)
+    profile = paths.home / ".core-prompts-state/profile-install/profile.json"
     installed = read_first_line(support / "VERSION") or "unknown"
     print("\nPending Core-Prompts Release", file=sys.stderr)
     print("----------------------------", file=sys.stderr)
@@ -619,6 +696,8 @@ def accept_release(paths: Paths, *, assume_yes: bool, snapshot_retention: int = 
     if not approved:
         print("Release acceptance declined; pending install remains queued.", file=sys.stderr)
         return 0
+    if profile.exists() or profile.is_symlink():
+        return accept_profile_release(paths, state, mirror_path)
     snapshot = create_snapshot(paths, installed_version=installed, target_version=pending, retention=snapshot_retention)
     print(f"Snapshot saved: {snapshot}", file=sys.stderr)
     install_root, install_note = release_install_root(paths, pending, mirror_path)

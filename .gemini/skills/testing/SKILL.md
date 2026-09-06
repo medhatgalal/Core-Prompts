@@ -123,4 +123,4 @@ Produce:
 - Do not claim coverage metrics without a coverage artifact or direct evidence.
 
 
-Capability resource: `.gemini/skills/testing/resources/capability.json`
+Capability resource: `resources/capability.json`

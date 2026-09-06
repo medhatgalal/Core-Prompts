@@ -292,4 +292,4 @@ Before final output:
 ## END
 
 
-Capability resource: `.gemini/skills/threader/resources/capability.json`
+Capability resource: `resources/capability.json`

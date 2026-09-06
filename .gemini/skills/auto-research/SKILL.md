@@ -319,7 +319,7 @@ Use the Python helper only when the operator wants those templates materialized 
 When that convenience is useful, recommend:
 
 ```bash
-python3.14 .codex/skills/auto-research/resources/bootstrap.py \
+python3.14 "<resolved-skill-directory>/resources/bootstrap.py" \
   --target "<target>" \
   --goal "<measurable goal>" \
   --editable-scope "<what may change>" \
@@ -328,7 +328,7 @@ python3.14 .codex/skills/auto-research/resources/bootstrap.py \
   --promotion-threshold "<required improvement>"
 ```
 
-Use the matching emitted `resources/bootstrap.py` path for the active surface when not running under Codex. The helper fills the bundled templates and writes the initial goal contract, experiment ledger, promotion packet, and scorecard under `reports/auto-research/`.
+Resolve `<resolved-skill-directory>` from the active skill file, then use its bundled `resources/bootstrap.py` on every surface. The helper fills the bundled templates and writes the initial goal contract, experiment ledger, promotion packet, and scorecard under `reports/auto-research/`.
 
 ### Default Scorecard
 Use this when the user has not yet defined one:
@@ -694,4 +694,4 @@ Use this capability before:
 | Dual-surface clarity | The skill and agent variants are both useful without implying hidden authority |
 
 
-Capability resource: `.gemini/skills/auto-research/resources/capability.json`
+Capability resource: `resources/capability.json`

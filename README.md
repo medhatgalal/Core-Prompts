@@ -367,3 +367,10 @@ Then go to:
 - [docs/CLI-REFERENCE.md](docs/CLI-REFERENCE.md)
 - [docs/RELEASE-PACKAGING.md](docs/RELEASE-PACKAGING.md)
 - [docs/MAINTAINER-HYGIENE.md](docs/MAINTAINER-HYGIENE.md)
+
+## Selected local skill targets
+
+Choose Codex, Kiro, and Grok with an explicit skills-only profile. Codex skills install
+under `.agents/skills`; Grok gets native `.grok/skills` packages. Preview the exact
+write set and preserve unknown or customized copies before applying. See
+[installation profiles and rollback](docs/INSTALL-PROFILES.md).

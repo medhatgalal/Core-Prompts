@@ -15,6 +15,7 @@ def main(argv: list[str]) -> int:
     manifest = json.loads((repo_root / ".meta" / "manifest.json").read_text(encoding="utf-8"))
 
     path_templates = {
+        "grok_skill": [".grok/skills/{slug}/SKILL.md"],
         "gemini_skill": [".gemini/skills/{slug}/SKILL.md"],
         "gemini_agent": [".gemini/agents/{slug}.md"],
         "claude_skill": [".claude/skills/{slug}/SKILL.md"],
@@ -25,6 +26,7 @@ def main(argv: list[str]) -> int:
         "codex_agent": [".codex/agents/{slug}.toml"],
     }
     resource_dirs = {
+        "grok_skill": ".grok/skills/{slug}/resources",
         "gemini_skill": ".gemini/skills/{slug}/resources",
         "gemini_agent": ".gemini/agents/resources/{slug}",
         "claude_skill": ".claude/skills/{slug}/resources",
@@ -35,6 +37,7 @@ def main(argv: list[str]) -> int:
         "codex_agent": ".codex/agents/resources/{slug}",
     }
     surface_cli = {
+        "grok_skill": "grok",
         "gemini_skill": "gemini",
         "gemini_agent": "gemini",
         "claude_skill": "claude",
@@ -60,11 +63,15 @@ def main(argv: list[str]) -> int:
                 src = repo_root / rel
                 if src.exists():
                     print(f"{src}\t{target_root / rel}\t{surface_name}\t{slug}")
-            resource_root = repo_root / resource_dirs[surface_name].format(slug=slug)
-            if resource_root.is_dir():
-                for resource_path in sorted(path for path in resource_root.rglob("*") if path.is_file()):
-                    rel = resource_path.relative_to(repo_root)
-                    print(f"{resource_path}\t{target_root / rel}\t{surface_name}\t{slug}")
+            for rel in manifest.get("resources", {}).get(surface_name, []):
+                root = resource_dirs[surface_name].format(slug=slug)
+                package = str(Path(root).parent) if surface_name.endswith("_skill") else root
+                if not rel.startswith(package + "/"):
+                    continue
+                resource_path = repo_root / rel
+                if not resource_path.is_file():
+                    raise ValueError(f"missing generated resource: {rel}")
+                print(f"{resource_path}\t{target_root / rel}\t{surface_name}\t{slug}")
     return 0
 
 

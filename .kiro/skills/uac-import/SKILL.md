@@ -166,4 +166,4 @@ When `judge` escalates to behavioral proof, also include:
 | Boundary clarity | Deployment wrappers are not confused with capability types |
 
 
-Capability resource: `.kiro/skills/uac-import/resources/capability.json`
+Capability resource: `resources/capability.json`

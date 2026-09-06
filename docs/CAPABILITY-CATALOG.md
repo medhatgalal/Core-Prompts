@@ -15,6 +15,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `claude`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `batman`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `engos-audit-opex-incident-review`, `feature-status`, `gitops-review`, `ic-assistant`, `instruction-editor`, `pitch`, `plan-to-goal-design`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
 - `codex`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `batman`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `engos-audit-opex-incident-review`, `feature-status`, `gitops-review`, `ic-assistant`, `instruction-editor`, `pitch`, `plan-to-goal-design`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
 - `gemini`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `batman`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `engos-audit-opex-incident-review`, `feature-status`, `gitops-review`, `ic-assistant`, `instruction-editor`, `pitch`, `plan-to-goal-design`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
+- `grok`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `batman`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `engos-audit-opex-incident-review`, `feature-status`, `gitops-review`, `ic-assistant`, `instruction-editor`, `pitch`, `plan-to-goal-design`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
 - `kiro`: `address-code-review`, `analyze-context`, `architecture`, `auto-research`, `batman`, `code-review`, `codebase-health-audit`, `converge`, `demo-recorder`, `docs-review-expert`, `dynamic-html-presentations`, `eng-report`, `engos-audit-opex-incident-review`, `feature-status`, `gitops-review`, `ic-assistant`, `instruction-editor`, `pitch`, `plan-to-goal-design`, `pulse`, `resolve-conflict`, `supercharge`, `testing`, `threader`, `uac-import`, `weekly-intel`
 
 ## By Use Case
@@ -70,7 +71,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `address-code-review`
 - Type: `skill`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - address the review comments
   - fix the MR feedback
@@ -85,7 +86,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `analyze-context`
 - Type: `skill`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - analyze several files or transcripts over a long session
   - keep durable analysis notes that survive context loss
@@ -99,7 +100,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `architecture`
 - Type: `both`
 - Install target: `global`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - design or review an API contract
   - propose a schema, indexing plan, or data model
@@ -112,7 +113,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `auto-research`
 - Type: `both`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Version: `v2.0`
 - Invocation hints:
   - improve this prompt, workflow, tool, or system and prove it got better
@@ -130,7 +131,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `batman`
 - Type: `both`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - Use `batman` for end-to-end implementation through subagent-driven development and blocking review gates.
   - Use Batman for a contract, metric, safety path, shipped defect, or other implementation that requires independent evidence and landing.
@@ -141,7 +142,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `codebase-health-audit`
 - Type: `skill`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - audit this codebase for structural health
   - find LOC hotspots, god objects, coupling, or likely dead code
@@ -157,7 +158,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `code-review`
 - Type: `skill`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - review the latest commit
   - review my staged changes before I commit
@@ -171,7 +172,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `converge`
 - Type: `both`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - compare these ideas and pick one
   - synthesize these documents into one proposal
@@ -184,7 +185,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `demo-recorder`
 - Type: `skill`
 - Install target: `global`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - "Use `demo-recorder` to create a Playwright demo of the agent feedback feature on our Swagger UI."
   - "Use `demo-recorder` to generate a recorded walkthrough of the new dashboard."
@@ -195,7 +196,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `docs-review-expert`
 - Type: `both`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - judge the repo documentation quality or organization
   - tell me what belongs in `README.md` versus `docs/`
@@ -208,7 +209,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `dynamic-html-presentations`
 - Type: `skill`
 - Install target: `global`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Compatibility: HTML works in modern browsers; bundled PNG exporter requires macOS 13+; PPTX helper requires Python 3.9+.
 - Summary: Creates polished, responsive, standalone HTML slide decks with optional deterministic PNG and image-faithful PPTX export. Use for presentations, pitch decks, reviews, talks, and visual narratives that need browser-native interactivity and portable outputs.
 
@@ -216,7 +217,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `eng-report`
 - Type: `skill`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - generate an engineering progress report from git history
   - summarize team velocity, code churn, release timeline, or architecture movement
@@ -229,7 +230,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `engos-audit-opex-incident-review`
 - Type: `skill`
 - Install target: `global`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Version: `3.0.0`
 - Author: `Amol Shah; uplifted for Core-Prompts`
 - Summary: Generate an evidence-backed Daily OpEx Digest and optional incident drill-downs from current Jira incidents, prior snapshots, DPAs, and postmortems. Use for decisions, owner accountability, daily progress, stalled work, estate patterns, SLA tracking, Five Whys, and executive meeting preparation.
@@ -238,7 +239,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `feature-status`
 - Type: `skill`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - how complete is this feature
   - what is left to ship
@@ -255,7 +256,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `gitops-review`
 - Type: `both`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - judge the repo organization or GitOps hygiene
   - make sure my commits are logically scoped and messages are strong
@@ -269,7 +270,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `ic-assistant`
 - Type: `both`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - track an active incident and prompt for next steps
   - validate incident artifacts and process compliance
@@ -285,7 +286,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `instruction-editor`
 - Type: `skill`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - remove AI-ish, Claude-ish, ChatGPT-ish, corporate, or exhausting phrasing
   - apply Google developer documentation style to a prompt or skill
@@ -299,7 +300,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `resolve-conflict`
 - Type: `skill`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - help me resolve this merge conflict
   - compare these conflicting branch edits and tell me what survives
@@ -311,7 +312,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `pitch`
 - Type: `both`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Version: `v1.1`
 - Invocation hints:
   - create a pitch / write a pitch / scaffold a pitch
@@ -329,7 +330,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `plan-to-goal-design`
 - Type: `skill`
 - Install target: `global`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - turn this approved plan into a goal
   - prepare a copyable Goal-mode objective and iteration setting
@@ -342,7 +343,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `pulse`
 - Type: `both`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - check my email / inbox / messages
   - what needs my attention
@@ -356,7 +357,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `supercharge`
 - Type: `both`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Version: `v4.2`
 - Invocation hints:
   - make this prompt better
@@ -373,7 +374,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `testing`
 - Type: `skill`
 - Install target: `global`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - generate unit tests
   - design end-to-end tests
@@ -386,7 +387,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `threader`
 - Type: `skill`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - export this thread
   - give me a transcript of this conversation
@@ -398,7 +399,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `uac-import`
 - Type: `skill`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - import a prompt, prompt pack, or capability into this repo
   - classify whether this source should become a skill, agent, or manual review
@@ -411,7 +412,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `weekly-intel`
 - Type: `both`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - what happened this week / last week / since Tuesday
   - weekly status report for my team

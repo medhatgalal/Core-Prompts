@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "status": "preserved_pending_uac_fidelity_gate",
+  "owner": "Forward-Future/loop-library (installer receipt); local modifications unverified",
+  "installer_receipt": {
+    "source": "Forward-Future/loop-library",
+    "sourceType": "github",
+    "sourceUrl": "https://github.com/Forward-Future/loop-library.git",
+    "skillPath": "skills/loopy/SKILL.md",
+    "skillFolderHash": "75f8dcfe20ffb47313cc6f3b94588485cedb7583",
+    "installedAt": "2026-06-28T21:59:14.827Z",
+    "updatedAt": "2026-06-28T21:59:14.827Z"
+  },
+  "files": {
+    "SKILL.md": {
+      "sha256": "b80b4d5dee5a030204df7b111b2a97adcfe5e78d0b278ced32efe71ef831fb08",
+      "bytes": 13707
+    },
+    "agents/openai.yaml": {
+      "sha256": "192879afaec992ec273aa2795eebd5206baa5c4be88cb725e7f68e369c709102",
+      "bytes": 229
+    },
+    "references/audit.md": {
+      "sha256": "c58d26f53df9a762c40f7d0286f7f0fa31812a2ce85cb8c368adc0bb0fb2906f",
+      "bytes": 2742
+    },
+    "references/debrief.md": {
+      "sha256": "909669215acd8aa68c582fbe50aea7d3bdc0195878f12560ce35bcdf029c88da",
+      "bytes": 1792
+    },
+    "references/discover.md": {
+      "sha256": "f3c46e4cc66740e99eda7df026e1be8ff582b33c8874eff4aeff2ebe291a453a",
+      "bytes": 3872
+    },
+    "references/publish.md": {
+      "sha256": "d4a32db541fa9d619546046acd6adfc20f42c83cce5274d8f060acc9415f4e82",
+      "bytes": 3249
+    },
+    "references/run.md": {
+      "sha256": "2f27835d5e4d06b67e334813665aeb6ede5daa8c03c6ffba3765751be8b533c4",
+      "bytes": 3422
+    }
+  },
+  "upstream_license": {
+    "repository": "https://github.com/Forward-Future/loopy",
+    "spdx": "MIT",
+    "license_blob_sha": "4157dfcc0e73f2359c314987a9ab7eb67085fa4e",
+    "checked_on": "2026-09-06",
+    "note": "Repository redirects from installer URL; no upstream skill update was imported."
+  }
+}

@@ -207,3 +207,10 @@ These are useful inspection aids, not the first thing a new user should read.
 - [UAC usage](UAC-USAGE.md)
 - [CLI reference](CLI-REFERENCE.md)
 - [FAQ](FAQ.md)
+
+## Selected local skill targets
+
+Choose Codex, Kiro, and Grok with an explicit skills-only profile. Codex skills install
+under `.agents/skills`; Grok gets native `.grok/skills` packages. Preview the exact
+write set and preserve unknown or customized copies before applying. See
+[installation profiles and rollback](INSTALL-PROFILES.md).

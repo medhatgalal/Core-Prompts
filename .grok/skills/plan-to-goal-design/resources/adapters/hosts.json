@@ -1,0 +1,158 @@
+{
+  "schema_version": "plan-to-goal.hosts.v1",
+  "portable_goal_limit": {
+    "unicode_characters": 3500,
+    "utf8_bytes": 3500,
+    "preferred_min_characters": 1000,
+    "preferred_max_characters": 1800,
+    "warning_characters": 2000,
+    "note": "Preferred values are heuristics pending behavioral evaluation."
+  },
+  "hosts": {
+    "kiro": {
+      "product": "Kiro CLI",
+      "tested_version": "2.20.1",
+      "verified_at": "2026-08-29",
+      "plan_mode": {
+        "entry": ["/plan", "Shift+Tab"],
+        "write_policy": "read_only"
+      },
+      "native_goal": true,
+      "goal_command_template": "/goal --max {iterations} {prose}",
+      "goal_option_positions": ["start", "end"],
+      "objective_limit": {
+        "value": 4000,
+        "unit": "unicode_characters"
+      },
+      "iteration": {
+        "supported": true,
+        "flag": "--max",
+        "default": 5,
+        "maximum": 50
+      },
+      "file_reference": {
+        "special_syntax_documented_for_goal": false,
+        "guidance": "Name a readable path in the prose; do not claim @file or attachment expansion as /goal behavior."
+      },
+      "evidence": [
+        {
+          "kind": "installed_embedded_docs",
+          "version": "2.20.1",
+          "checked_at": "2026-08-29",
+          "claim": "4,000-character description limit; --max at start or end; default 5; maximum 50"
+        },
+        {
+          "kind": "official_docs",
+          "url": "https://kiro.dev/docs/cli/chat/goal/",
+          "checked_at": "2026-08-29",
+          "claim": "native /goal loop and documented --max examples"
+        }
+      ],
+      "unsupported": []
+    },
+    "codex": {
+      "product": "Codex",
+      "tested_version": "0.151.0",
+      "verified_at": "2026-08-29",
+      "plan_mode": {
+        "entry": ["/plan", "mode selector"],
+        "write_policy": "host_managed_read_only"
+      },
+      "native_goal": true,
+      "goal_command_template": "/goal {prose}",
+      "goal_tool_supported": true,
+      "objective_limit": {
+        "value": 4000,
+        "unit": "unicode_characters"
+      },
+      "iteration": {
+        "supported": false,
+        "flag": null,
+        "default": null,
+        "maximum": null,
+        "note": "Codex token budgets are a separate user-controlled mechanism and are not derived from iteration counts."
+      },
+      "file_reference": {
+        "special_syntax_documented_for_goal": true,
+        "guidance": "Reference a durable objective/specification file when detail exceeds the persisted objective budget."
+      },
+      "evidence": [
+        {
+          "kind": "official_source",
+          "url": "https://github.com/openai/codex/blob/main/codex-rs/tui/src/goal_files.rs",
+          "checked_at": "2026-08-29",
+          "claim": "persisted goal limit and oversized-objective file materialization"
+        },
+        {
+          "kind": "official_docs",
+          "url": "https://learn.chatgpt.com/docs/long-running-work",
+          "checked_at": "2026-08-29",
+          "claim": "native Goal mode in Codex CLI and IDE"
+        }
+      ],
+      "unsupported": ["iteration_flag"]
+    },
+    "claude": {
+      "product": "Claude Code",
+      "tested_version": "2.1.9",
+      "verified_at": "2026-08-29",
+      "plan_mode": {
+        "entry": ["/plan", "Shift+Tab", "--permission-mode plan"],
+        "write_policy": "source_read_only_plan_artifact_host_managed"
+      },
+      "native_goal": false,
+      "goal_command_template": null,
+      "objective_limit": null,
+      "iteration": {
+        "supported": false,
+        "flag": null,
+        "default": null,
+        "maximum": null
+      },
+      "file_reference": {
+        "special_syntax_documented_for_goal": false,
+        "guidance": "No native Goal runner is claimed."
+      },
+      "evidence": [
+        {
+          "kind": "official_docs",
+          "url": "https://code.claude.com/docs/en/permission-modes",
+          "checked_at": "2026-08-29",
+          "claim": "documented Plan mode; no native Goal runner contract"
+        }
+      ],
+      "unsupported": ["native_goal", "iteration_flag", "goal_limit"]
+    },
+    "gemini": {
+      "product": "Gemini CLI",
+      "tested_version": "0.46.0",
+      "verified_at": "2026-08-29",
+      "plan_mode": {
+        "entry": ["/plan", "Shift+Tab", "--approval-mode plan"],
+        "write_policy": "managed_markdown_plan_only"
+      },
+      "native_goal": false,
+      "goal_command_template": null,
+      "objective_limit": null,
+      "iteration": {
+        "supported": false,
+        "flag": null,
+        "default": null,
+        "maximum": null
+      },
+      "file_reference": {
+        "special_syntax_documented_for_goal": false,
+        "guidance": "No native Goal runner is claimed."
+      },
+      "evidence": [
+        {
+          "kind": "official_docs",
+          "url": "https://geminicli.com/docs/cli/plan-mode/",
+          "checked_at": "2026-08-29",
+          "claim": "managed Plan mode and approved-plan execution; no native Goal runner contract"
+        }
+      ],
+      "unsupported": ["native_goal", "iteration_flag", "goal_limit"]
+    }
+  }
+}

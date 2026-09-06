@@ -134,4 +134,4 @@ Use `code-review` for this instead; no reviewer feedback exists yet.
 - merge: reviewer verifies fixes before approving
 
 
-Capability resource: `.kiro/skills/address-code-review/resources/capability.json`
+Capability resource: `resources/capability.json`

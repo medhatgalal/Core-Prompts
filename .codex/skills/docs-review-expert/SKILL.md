@@ -139,4 +139,4 @@ Use these default review triggers unless the user asks for a different cadence:
 - vague advice such as “improve the documentation” without naming files, audience, drift evidence, or review timing
 
 
-Capability resource: `.codex/skills/docs-review-expert/resources/capability.json`
+Capability resource: `resources/capability.json`

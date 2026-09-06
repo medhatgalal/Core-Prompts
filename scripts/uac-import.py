@@ -99,7 +99,7 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument(
         '--target-system',
         default='all',
-        choices=('auto', 'all', 'codex', 'gemini', 'claude', 'kiro'),
+        choices=('auto', 'all', 'codex', 'gemini', 'claude', 'kiro', 'grok'),
         help='Preferred output target for packaging guidance',
     )
     parser.add_argument(
@@ -499,7 +499,7 @@ def _collection_manifest(
             'deduplicate overlapping modes',
             'preserve per-item specialization under one canonical family',
         ],
-        'target_systems': ['codex', 'gemini', 'claude', 'kiro'],
+        'target_systems': ['codex', 'gemini', 'claude', 'kiro', 'grok'],
         'content_kind': collection['collection_type'],
     }
     manifest = build_capability_manifest(

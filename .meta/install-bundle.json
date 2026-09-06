@@ -1,0 +1,2394 @@
+{
+  "files": {
+    ".claude/agents/architecture.md": {
+      "mode": 420,
+      "sha256": "615251376d91e414794d181da34f6c2fda0e85a8e60f70ef5450c0dc6357b718"
+    },
+    ".claude/agents/auto-research.md": {
+      "mode": 420,
+      "sha256": "d8f7bde8c57dd938956e8ec4caec17cd03d1bb2d6c2c5efb3f82c0141ad72fa3"
+    },
+    ".claude/agents/batman.md": {
+      "mode": 420,
+      "sha256": "0470a67f51dccb16d77cd680f2bcb42a8bc75563a16559b704befeb15ad1d060"
+    },
+    ".claude/agents/converge.md": {
+      "mode": 420,
+      "sha256": "20374e7da7152abb0d052b36a79f2abcd002939b394a4b950443fddd8f7d540f"
+    },
+    ".claude/agents/docs-review-expert.md": {
+      "mode": 420,
+      "sha256": "60d16a3a8d247a1e6b3d381c7f59cc3cfac04530601bf2e92d18a6cb33a0f1f3"
+    },
+    ".claude/agents/gitops-review.md": {
+      "mode": 420,
+      "sha256": "268f514de1c6c8d97ab3b3d10141e1a70ca5eaed1589e9f589542c5bcf39a6b1"
+    },
+    ".claude/agents/ic-assistant.md": {
+      "mode": 420,
+      "sha256": "9b0e586adabfe5a3f5a2784b2d58f915edd6a15c41c2f4bb46aaeaea2c949146"
+    },
+    ".claude/agents/pitch.md": {
+      "mode": 420,
+      "sha256": "cd3dd62016484cc2a3841fb81bf68bfcae2ad310f730b521572a506a17efe438"
+    },
+    ".claude/agents/pulse.md": {
+      "mode": 420,
+      "sha256": "0c2a8a1206223cc96b6aa3c13c91f94760fe791fd4f4a47c95d048d05444315b"
+    },
+    ".claude/agents/resources/architecture/capability.json": {
+      "mode": 420,
+      "sha256": "f4a409263aef0e023c625acb5e9d833dc3cd973e2fe4b4f141ec0ee47f5c282a"
+    },
+    ".claude/agents/resources/auto-research/bootstrap.py": {
+      "mode": 420,
+      "sha256": "28f8bf54916ad9ad786a8ad98e8d53e431e2ece0fe41201c80cf80355e6d6398"
+    },
+    ".claude/agents/resources/auto-research/capability.json": {
+      "mode": 420,
+      "sha256": "cba847fe338f2e381d689cd21e8719bdacac6bda2d84c5a4824efa2405b92f86"
+    },
+    ".claude/agents/resources/auto-research/templates/experiment-ledger.md.tmpl": {
+      "mode": 420,
+      "sha256": "05296c9a93b00c34edfadc507a008c8940e2d5599de3e394908e47571071a7dc"
+    },
+    ".claude/agents/resources/auto-research/templates/goal-contract.md.tmpl": {
+      "mode": 420,
+      "sha256": "ad151eed554870699e90613a7a1f93eb083a1e5827da74ce6fbc300d3efdb6a6"
+    },
+    ".claude/agents/resources/auto-research/templates/promotion-packet.md.tmpl": {
+      "mode": 420,
+      "sha256": "baa7a3d81d84cecfa2cc5374e7777b7a196a232b419132b4f7284bfc58b33c77"
+    },
+    ".claude/agents/resources/auto-research/templates/scorecard.json.tmpl": {
+      "mode": 420,
+      "sha256": "a905e3211e3001698debf4a5bfd9cb45e5c493b3fb29f91e5bad8d69771a243e"
+    },
+    ".claude/agents/resources/batman/capability.json": {
+      "mode": 420,
+      "sha256": "f2ca651313f2cddab6a3d92c8d81876931e541094efd157bdace4280617bd116"
+    },
+    ".claude/agents/resources/converge/capability.json": {
+      "mode": 420,
+      "sha256": "15afb6a1c8cc106539787e50b0b9fbfd87a8556e54412750c4dad96ed2d5d7d1"
+    },
+    ".claude/agents/resources/docs-review-expert/capability.json": {
+      "mode": 420,
+      "sha256": "2bd74e84e85587af991d191ab4cff9e7be08806e5e498e78b6fe9b622af77726"
+    },
+    ".claude/agents/resources/gitops-review/capability.json": {
+      "mode": 420,
+      "sha256": "2b13e055033eb034297b6a36e3e4c6296e077ad2f6ee065e25bd1bff3c93795e"
+    },
+    ".claude/agents/resources/ic-assistant/appian-incident-runbook.md": {
+      "mode": 420,
+      "sha256": "6f765b332cdb59352d9a58486e0e22355bae786d57f0717ddf0f200d508aa2d8"
+    },
+    ".claude/agents/resources/ic-assistant/capability.json": {
+      "mode": 420,
+      "sha256": "09a7f302181862bf91e1b4088886589554dc757f0d2e41dc4151188161f4df85"
+    },
+    ".claude/agents/resources/pitch/capability.json": {
+      "mode": 420,
+      "sha256": "f6b93b24f546a15641fb39012ad3f68d7845ec6376ff07a0b59fa37986eb4795"
+    },
+    ".claude/agents/resources/pulse/capability.json": {
+      "mode": 420,
+      "sha256": "6f908e49390a64362f1d9664cb1d576f5e8562da5399541b7e50ddc059cbab4b"
+    },
+    ".claude/agents/resources/supercharge/capability.json": {
+      "mode": 420,
+      "sha256": "e7bc5ca9f316fb1fe252fdffcf7a7be762ddd32c0cc89d546fcc5dcb347c454f"
+    },
+    ".claude/agents/resources/weekly-intel/capability.json": {
+      "mode": 420,
+      "sha256": "bf53e788d360f1d3a6f168e65aa6db11b491f9ee86957a678658510920a2d254"
+    },
+    ".claude/agents/supercharge.md": {
+      "mode": 420,
+      "sha256": "1d510efd43566cbd8e4c6e0644b17a1a66e60ba0914d1c4584942dd8a1c8c2a3"
+    },
+    ".claude/agents/weekly-intel.md": {
+      "mode": 420,
+      "sha256": "9f3929bfbbfabd22464f1c1db42df86285c3e2d13be1716ae3cec90a73c72615"
+    },
+    ".claude/skills/address-code-review/SKILL.md": {
+      "mode": 420,
+      "sha256": "c2bc8a440d0e01dc79db4692ed6ae21259fe9340af2b05fe711711dd3cc875b4"
+    },
+    ".claude/skills/address-code-review/resources/capability.json": {
+      "mode": 420,
+      "sha256": "4dfea248f8699c60ce840426f93db5210d20dd2becaaaa2b1926b0912149ea16"
+    },
+    ".claude/skills/analyze-context/SKILL.md": {
+      "mode": 420,
+      "sha256": "29bb1410bdef7ffbe20127366783b543daa90e5449ea93ad429e886f08737f0e"
+    },
+    ".claude/skills/analyze-context/resources/capability.json": {
+      "mode": 420,
+      "sha256": "550d7e60759915efa59d805503bcf149a276e535c8b97bdbd9f32adbce04f37f"
+    },
+    ".claude/skills/analyze-context/resources/state_store.py": {
+      "mode": 420,
+      "sha256": "f0c6a6d56194185df8b5c8426c53365234c4664425faa516714a5b45b86f976e"
+    },
+    ".claude/skills/architecture/SKILL.md": {
+      "mode": 420,
+      "sha256": "9474e9c1ca374de8a9351931db750fa8201439bdaf284fc01fcb0e54acb51ab5"
+    },
+    ".claude/skills/architecture/resources/capability.json": {
+      "mode": 420,
+      "sha256": "f4a409263aef0e023c625acb5e9d833dc3cd973e2fe4b4f141ec0ee47f5c282a"
+    },
+    ".claude/skills/auto-research/SKILL.md": {
+      "mode": 420,
+      "sha256": "00633b8b1cb33eb07ff7ba3ffbef6e42389cbedc1bb7ed50c3150a29a69dba1c"
+    },
+    ".claude/skills/auto-research/resources/bootstrap.py": {
+      "mode": 420,
+      "sha256": "28f8bf54916ad9ad786a8ad98e8d53e431e2ece0fe41201c80cf80355e6d6398"
+    },
+    ".claude/skills/auto-research/resources/capability.json": {
+      "mode": 420,
+      "sha256": "cba847fe338f2e381d689cd21e8719bdacac6bda2d84c5a4824efa2405b92f86"
+    },
+    ".claude/skills/auto-research/resources/templates/experiment-ledger.md.tmpl": {
+      "mode": 420,
+      "sha256": "05296c9a93b00c34edfadc507a008c8940e2d5599de3e394908e47571071a7dc"
+    },
+    ".claude/skills/auto-research/resources/templates/goal-contract.md.tmpl": {
+      "mode": 420,
+      "sha256": "ad151eed554870699e90613a7a1f93eb083a1e5827da74ce6fbc300d3efdb6a6"
+    },
+    ".claude/skills/auto-research/resources/templates/promotion-packet.md.tmpl": {
+      "mode": 420,
+      "sha256": "baa7a3d81d84cecfa2cc5374e7777b7a196a232b419132b4f7284bfc58b33c77"
+    },
+    ".claude/skills/auto-research/resources/templates/scorecard.json.tmpl": {
+      "mode": 420,
+      "sha256": "a905e3211e3001698debf4a5bfd9cb45e5c493b3fb29f91e5bad8d69771a243e"
+    },
+    ".claude/skills/batman/SKILL.md": {
+      "mode": 420,
+      "sha256": "87e11fe591b228be257258e6606ba24489562ee4380afb7ee7caf9e181716f00"
+    },
+    ".claude/skills/batman/resources/capability.json": {
+      "mode": 420,
+      "sha256": "f2ca651313f2cddab6a3d92c8d81876931e541094efd157bdace4280617bd116"
+    },
+    ".claude/skills/code-review/SKILL.md": {
+      "mode": 420,
+      "sha256": "0fb1c2c25cc423ad8e7e04d89c4a7bf2c69a32df33a961b2b18e75215ae074e3"
+    },
+    ".claude/skills/code-review/resources/capability.json": {
+      "mode": 420,
+      "sha256": "c4b5689e7fff19215a04a8bb78dc3724c5ab282a27e0abfeacbd3756812681c4"
+    },
+    ".claude/skills/codebase-health-audit/SKILL.md": {
+      "mode": 420,
+      "sha256": "166d70c3257aff3dbd35b17d610b876111e9717c87058b3f3765468db384e622"
+    },
+    ".claude/skills/codebase-health-audit/resources/capability.json": {
+      "mode": 420,
+      "sha256": "eee98af58c9f9c9de6c69f6a153c238ffb0d50df819a7080e26970fbeace4f23"
+    },
+    ".claude/skills/codebase-health-audit/resources/cruft-report": {
+      "mode": 420,
+      "sha256": "21d8afe3d730c78be3a41d92bce78dd230fbb6debe452e2e885e59314e0107ce"
+    },
+    ".claude/skills/codebase-health-audit/resources/cruft_report.py": {
+      "mode": 420,
+      "sha256": "4ad1c326447eeccc9a6f6abd1c39ac75716c8754278d89879d5f7df579d547d6"
+    },
+    ".claude/skills/converge/SKILL.md": {
+      "mode": 420,
+      "sha256": "d66205a626de4139447be4cf3d3ae809f16882fa303fe23740660a5f041f8a04"
+    },
+    ".claude/skills/converge/resources/capability.json": {
+      "mode": 420,
+      "sha256": "15afb6a1c8cc106539787e50b0b9fbfd87a8556e54412750c4dad96ed2d5d7d1"
+    },
+    ".claude/skills/demo-recorder/SKILL.md": {
+      "mode": 420,
+      "sha256": "99ccd7276cf84a904f842dbb66ff9f5c6d023d915ce28bcdfc516a52af5fd8ad"
+    },
+    ".claude/skills/demo-recorder/resources/capability.json": {
+      "mode": 420,
+      "sha256": "4fa1ad9ec568fe26e3ed0f33e3cdc679ef2669aa33967780fba5e85399646de2"
+    },
+    ".claude/skills/docs-review-expert/SKILL.md": {
+      "mode": 420,
+      "sha256": "baf047981c76ccd29fc72bb439205fead246da6ec26de9d9a63c09407a1a2a3b"
+    },
+    ".claude/skills/docs-review-expert/resources/capability.json": {
+      "mode": 420,
+      "sha256": "2bd74e84e85587af991d191ab4cff9e7be08806e5e498e78b6fe9b622af77726"
+    },
+    ".claude/skills/dynamic-html-presentations/SKILL.md": {
+      "mode": 420,
+      "sha256": "a0840ad3502070900526205eea11c2c2f212b0486f41efa4916d5053ea38e8d7"
+    },
+    ".claude/skills/dynamic-html-presentations/resources/capability.json": {
+      "mode": 420,
+      "sha256": "26f2c2f1f563840d0e3dbb175b06746f51629067b80f6b00051983997aeb8ace"
+    },
+    ".claude/skills/dynamic-html-presentations/resources/example.html": {
+      "mode": 420,
+      "sha256": "e9b6c64b18ecd14084ea9d9b3b3d17f231aed6ed5bc8b49d0731fa90c4d1518a"
+    },
+    ".claude/skills/dynamic-html-presentations/resources/export_slides.swift": {
+      "mode": 420,
+      "sha256": "c14ba219035bd04d28233af5aa36b5af5272255d886abb489ec24e391415f750"
+    },
+    ".claude/skills/dynamic-html-presentations/resources/images_to_pptx.py": {
+      "mode": 420,
+      "sha256": "c3ae776e1868e3894809de63a53e3c37263bfdc1a10ca50e96cc047e7280ea98"
+    },
+    ".claude/skills/eng-report/SKILL.md": {
+      "mode": 420,
+      "sha256": "881d964c903b6cfaec12b151744084579037c79f5b43c956a64295a2b2087e36"
+    },
+    ".claude/skills/eng-report/resources/capability.json": {
+      "mode": 420,
+      "sha256": "e8a56790ecff7eb3de9966610ef9f5f07b4c3008b6f45aa6fc4384e761ebb1fc"
+    },
+    ".claude/skills/engos-audit-opex-incident-review/SKILL.md": {
+      "mode": 420,
+      "sha256": "b94cc3c9ddee8b06af9c8469b05f4aeb1521845e1ae50384de09aa0e4dba115d"
+    },
+    ".claude/skills/engos-audit-opex-incident-review/resources/capability.json": {
+      "mode": 420,
+      "sha256": "640959baa92bde367b589b5dab5e163ac5ecf0efebd3726164feeeaf8dff8d86"
+    },
+    ".claude/skills/engos-audit-opex-incident-review/resources/opex_digest.py": {
+      "mode": 420,
+      "sha256": "d6933b3bf32a23e3c1bfc332c4c63e1ac9f6efa6460ec2bf0a1de96b8bfbbe71"
+    },
+    ".claude/skills/engos-audit-opex-incident-review/resources/snapshot.schema.json": {
+      "mode": 420,
+      "sha256": "dcf64986163e0ad096a396bfd1b9968f7f11749481724898e37a6698d16237df"
+    },
+    ".claude/skills/feature-status/SKILL.md": {
+      "mode": 420,
+      "sha256": "56a270f09cc66713347d9ee11b0142c6e10cb6c180441724f747de656588566a"
+    },
+    ".claude/skills/feature-status/resources/capability.json": {
+      "mode": 420,
+      "sha256": "5137da45e9010c4b0f09f6dbd6afcd994a617355f706d588119d0ae25b4a3ca5"
+    },
+    ".claude/skills/gitops-review/SKILL.md": {
+      "mode": 420,
+      "sha256": "b1e6d2d65f1d8ed30a688c6cb26bb458fb47a48e766fea48338b0aef6cdfa542"
+    },
+    ".claude/skills/gitops-review/resources/capability.json": {
+      "mode": 420,
+      "sha256": "2b13e055033eb034297b6a36e3e4c6296e077ad2f6ee065e25bd1bff3c93795e"
+    },
+    ".claude/skills/ic-assistant/SKILL.md": {
+      "mode": 420,
+      "sha256": "3f502b69a07221f8d5d0f340c11ab920198f655eb3fe5cdd594fe716fca76688"
+    },
+    ".claude/skills/ic-assistant/resources/appian-incident-runbook.md": {
+      "mode": 420,
+      "sha256": "6f765b332cdb59352d9a58486e0e22355bae786d57f0717ddf0f200d508aa2d8"
+    },
+    ".claude/skills/ic-assistant/resources/capability.json": {
+      "mode": 420,
+      "sha256": "09a7f302181862bf91e1b4088886589554dc757f0d2e41dc4151188161f4df85"
+    },
+    ".claude/skills/instruction-editor/SKILL.md": {
+      "mode": 420,
+      "sha256": "fedb0602ebb9228c383cb1c39cd23d46eead60fca3b7a83d302b6a91122e3436"
+    },
+    ".claude/skills/instruction-editor/resources/capability.json": {
+      "mode": 420,
+      "sha256": "3f6cbc3252d940564c4ecf7b0ead69d4add096afc4d7e11f59604ef0db5f42c0"
+    },
+    ".claude/skills/instruction-editor/resources/references/instruction-clarity.md": {
+      "mode": 420,
+      "sha256": "cfd61f749bd1dcf07a56a10f36fce091a17d8e9b63b70836fecea8d8a9f63b61"
+    },
+    ".claude/skills/pitch/SKILL.md": {
+      "mode": 420,
+      "sha256": "96652f0206e027e35289ed8a69f7ff62501ce7c0c9ef6e8337ac805038670650"
+    },
+    ".claude/skills/pitch/resources/capability.json": {
+      "mode": 420,
+      "sha256": "f6b93b24f546a15641fb39012ad3f68d7845ec6376ff07a0b59fa37986eb4795"
+    },
+    ".claude/skills/plan-to-goal-design/SKILL.md": {
+      "mode": 420,
+      "sha256": "aad53115445c677d88b5814a4d71c53a48f65a60f2e18dac7e32976e64d2abb0"
+    },
+    ".claude/skills/plan-to-goal-design/resources/adapters/hosts.json": {
+      "mode": 420,
+      "sha256": "3e56e00f7ce2e776b1c70e1f693151efade433dbfbd4323d70449ca20c553048"
+    },
+    ".claude/skills/plan-to-goal-design/resources/capability.json": {
+      "mode": 420,
+      "sha256": "4e1bf6178458f3c5393fbc63a58dbcbd13a13db02336ca8150344583e1667904"
+    },
+    ".claude/skills/plan-to-goal-design/resources/goal-lint": {
+      "mode": 420,
+      "sha256": "ae126fc5b1d7ad655a0ebc4aa79edc95b93b1f674a7bfac27b319d198619191d"
+    },
+    ".claude/skills/plan-to-goal-design/resources/references/evidence.md": {
+      "mode": 420,
+      "sha256": "1a0985e59bf9036554f45264b4c326385d487fc7895d2f50270464327586ab57"
+    },
+    ".claude/skills/plan-to-goal-design/resources/references/goal-authoring.md": {
+      "mode": 420,
+      "sha256": "ed998401b88da54e776a019eb6ea3c7e948cab83d8224d3c8e82e03849707c30"
+    },
+    ".claude/skills/plan-to-goal-design/resources/references/goal-design-lessons.md": {
+      "mode": 420,
+      "sha256": "583c6d8b46aaf227bf43aaf0de4105b7d06d670b90f325e1c11bc517d2ec4637"
+    },
+    ".claude/skills/plan-to-goal-design/resources/references/verifier-trust.md": {
+      "mode": 420,
+      "sha256": "fef011ae0cf7c47ad1b3ce6393983b25e06849d6aa4e4b81240037ddd246606a"
+    },
+    ".claude/skills/plan-to-goal-design/resources/schemas/packet.schema.json": {
+      "mode": 420,
+      "sha256": "3248411d95ac5c5b42a376ba9a352761f1b89fa8db6459093f988a0096c3efbc"
+    },
+    ".claude/skills/plan-to-goal-design/resources/scripts/criterion_flip.py": {
+      "mode": 420,
+      "sha256": "c3fb05ff903f0bc4390cfdded79caf8ab4180933f6c3d6798451a90bdb59541d"
+    },
+    ".claude/skills/plan-to-goal-design/resources/scripts/goal_packet.py": {
+      "mode": 420,
+      "sha256": "dacff09aabd973852829bd8c3ea4a77ac8469299be4c1fb126eaf4eca6237c2b"
+    },
+    ".claude/skills/plan-to-goal-design/resources/templates/baseline.json.tmpl": {
+      "mode": 420,
+      "sha256": "9e7f0bc3e95d10655e87fa43f05638dfb5fa2c5515631dd1828e19bb97371dfa"
+    },
+    ".claude/skills/plan-to-goal-design/resources/templates/criterion-flips.json.tmpl": {
+      "mode": 420,
+      "sha256": "7bd2fd326fa9f94e955c1a7c8ddde21a7fa67c9f03cb78893c0103633bb1a874"
+    },
+    ".claude/skills/plan-to-goal-design/resources/templates/goal.txt.tmpl": {
+      "mode": 420,
+      "sha256": "ce0eb16dafabe54b658c1dceeb242ddb549aa9593bcd2b2d010aa0a4555f2001"
+    },
+    ".claude/skills/plan-to-goal-design/resources/templates/judge-amendments.json.tmpl": {
+      "mode": 420,
+      "sha256": "adb989a6d8ddecf527a778fe168bcfcaab2ec8f8777ea10edff19a10c2008793"
+    },
+    ".claude/skills/plan-to-goal-design/resources/templates/packet.json.tmpl": {
+      "mode": 420,
+      "sha256": "b8f09376bfbde81a4476122db20cbf1191b067bf1f120d546af80d2fd2936687"
+    },
+    ".claude/skills/plan-to-goal-design/resources/templates/receipt.json.tmpl": {
+      "mode": 420,
+      "sha256": "9e93d1ac697c713a337cc8bef4af1eefd531fa4c6e7f1284944b5ce2a8a725ff"
+    },
+    ".claude/skills/plan-to-goal-design/resources/templates/spec.md.tmpl": {
+      "mode": 420,
+      "sha256": "745dcc9066d548e74acc3da842b843c91858b2438588aac4e79e57fb7aeaf21d"
+    },
+    ".claude/skills/pulse/SKILL.md": {
+      "mode": 420,
+      "sha256": "61c130884dd0f85643334465c342287c9dabc01abdf61862651ac44b3382816a"
+    },
+    ".claude/skills/pulse/resources/capability.json": {
+      "mode": 420,
+      "sha256": "6f908e49390a64362f1d9664cb1d576f5e8562da5399541b7e50ddc059cbab4b"
+    },
+    ".claude/skills/resolve-conflict/SKILL.md": {
+      "mode": 420,
+      "sha256": "ef3e86580f3a2c237bc8951c4f976aa307b6bc97a251cb35e87b4b1a6d606d67"
+    },
+    ".claude/skills/resolve-conflict/resources/capability.json": {
+      "mode": 420,
+      "sha256": "e0599401d2f122fdf9933630b965ec752e3f747974aa1c9d735356f3d2d30f32"
+    },
+    ".claude/skills/supercharge/SKILL.md": {
+      "mode": 420,
+      "sha256": "c4169a4e218702a81ae51998a2b911d8d55c71eb47db9625a0e967a3da5dc353"
+    },
+    ".claude/skills/supercharge/resources/capability.json": {
+      "mode": 420,
+      "sha256": "e7bc5ca9f316fb1fe252fdffcf7a7be762ddd32c0cc89d546fcc5dcb347c454f"
+    },
+    ".claude/skills/testing/SKILL.md": {
+      "mode": 420,
+      "sha256": "713228dc4728994046774074e48c074730638ca35f6152198a08419567fc7bd6"
+    },
+    ".claude/skills/testing/resources/capability.json": {
+      "mode": 420,
+      "sha256": "bea276628f5e4b70c643718bcc56b1135f119dcad2a7bdde803043eb4e55a205"
+    },
+    ".claude/skills/threader/SKILL.md": {
+      "mode": 420,
+      "sha256": "6595acf60439bb771208c0e6d76ac46cc613cd5a3f5d66fa1fb3ec2963969ac0"
+    },
+    ".claude/skills/threader/resources/capability.json": {
+      "mode": 420,
+      "sha256": "069d9552009b6672eb49bd5e2ebd0832b77c006ca6b8e6fc527f8ef050a4f362"
+    },
+    ".claude/skills/uac-import/SKILL.md": {
+      "mode": 420,
+      "sha256": "c6a11cb17363bdf2c204a295cc7b2d311ff8b5cd70346ec23e6d3875ada83e8c"
+    },
+    ".claude/skills/uac-import/resources/capability.json": {
+      "mode": 420,
+      "sha256": "132cf312d98eba74db285bca7f0909dc40075b043f0d620a5dc98aff249cea6a"
+    },
+    ".claude/skills/weekly-intel/SKILL.md": {
+      "mode": 420,
+      "sha256": "ee24d30bf4a8d9149ca859a4dcd42e94e4561fa319b515e9f21bd4f48baad263"
+    },
+    ".claude/skills/weekly-intel/resources/capability.json": {
+      "mode": 420,
+      "sha256": "bf53e788d360f1d3a6f168e65aa6db11b491f9ee86957a678658510920a2d254"
+    },
+    ".codex/agents/architecture.toml": {
+      "mode": 420,
+      "sha256": "8ba9d45c2eec04973af4c14d0b25a9473e854aef184c990709ec900743075943"
+    },
+    ".codex/agents/auto-research.toml": {
+      "mode": 420,
+      "sha256": "737a76dd6ec6d9297a713b127af6d048ffa3f4304ccf773017db1e0a755c09b8"
+    },
+    ".codex/agents/batman.toml": {
+      "mode": 420,
+      "sha256": "f14f5591411886deed3d830d71f4405cb430f08b60a04d9544632ba7aa29fc91"
+    },
+    ".codex/agents/converge.toml": {
+      "mode": 420,
+      "sha256": "27f8ba8287b25533b9ec165d54ac7f1b7d02621ae2b7298aa7fe36a7bbd73365"
+    },
+    ".codex/agents/docs-review-expert.toml": {
+      "mode": 420,
+      "sha256": "c51d0a6b4922c6b9a5b4cb24f6b5d48b9d97f112d8110108f30cadc54a01ea12"
+    },
+    ".codex/agents/gitops-review.toml": {
+      "mode": 420,
+      "sha256": "ba655d0eaa1512771e5b578d096d8827e94d589a9df1182426f23a1a5473bf4c"
+    },
+    ".codex/agents/ic-assistant.toml": {
+      "mode": 420,
+      "sha256": "0d57451a1f2c33eca692353b9d07ac5b4571c2245ca02b7ae9e034a7754e0677"
+    },
+    ".codex/agents/pitch.toml": {
+      "mode": 420,
+      "sha256": "9ffe52fb2342d958cff9dac321f7e07e42a3954cf815ef7d16eaecb7dbcdd993"
+    },
+    ".codex/agents/pulse.toml": {
+      "mode": 420,
+      "sha256": "cce2ecab9636d6fd4a6fe8b82bcc54e960d00b7e4459ffb3b2c3598c645b6216"
+    },
+    ".codex/agents/resources/architecture/capability.json": {
+      "mode": 420,
+      "sha256": "f4a409263aef0e023c625acb5e9d833dc3cd973e2fe4b4f141ec0ee47f5c282a"
+    },
+    ".codex/agents/resources/auto-research/bootstrap.py": {
+      "mode": 420,
+      "sha256": "28f8bf54916ad9ad786a8ad98e8d53e431e2ece0fe41201c80cf80355e6d6398"
+    },
+    ".codex/agents/resources/auto-research/capability.json": {
+      "mode": 420,
+      "sha256": "cba847fe338f2e381d689cd21e8719bdacac6bda2d84c5a4824efa2405b92f86"
+    },
+    ".codex/agents/resources/auto-research/templates/experiment-ledger.md.tmpl": {
+      "mode": 420,
+      "sha256": "05296c9a93b00c34edfadc507a008c8940e2d5599de3e394908e47571071a7dc"
+    },
+    ".codex/agents/resources/auto-research/templates/goal-contract.md.tmpl": {
+      "mode": 420,
+      "sha256": "ad151eed554870699e90613a7a1f93eb083a1e5827da74ce6fbc300d3efdb6a6"
+    },
+    ".codex/agents/resources/auto-research/templates/promotion-packet.md.tmpl": {
+      "mode": 420,
+      "sha256": "baa7a3d81d84cecfa2cc5374e7777b7a196a232b419132b4f7284bfc58b33c77"
+    },
+    ".codex/agents/resources/auto-research/templates/scorecard.json.tmpl": {
+      "mode": 420,
+      "sha256": "a905e3211e3001698debf4a5bfd9cb45e5c493b3fb29f91e5bad8d69771a243e"
+    },
+    ".codex/agents/resources/batman/capability.json": {
+      "mode": 420,
+      "sha256": "f2ca651313f2cddab6a3d92c8d81876931e541094efd157bdace4280617bd116"
+    },
+    ".codex/agents/resources/converge/capability.json": {
+      "mode": 420,
+      "sha256": "15afb6a1c8cc106539787e50b0b9fbfd87a8556e54412750c4dad96ed2d5d7d1"
+    },
+    ".codex/agents/resources/docs-review-expert/capability.json": {
+      "mode": 420,
+      "sha256": "2bd74e84e85587af991d191ab4cff9e7be08806e5e498e78b6fe9b622af77726"
+    },
+    ".codex/agents/resources/gitops-review/capability.json": {
+      "mode": 420,
+      "sha256": "2b13e055033eb034297b6a36e3e4c6296e077ad2f6ee065e25bd1bff3c93795e"
+    },
+    ".codex/agents/resources/ic-assistant/appian-incident-runbook.md": {
+      "mode": 420,
+      "sha256": "6f765b332cdb59352d9a58486e0e22355bae786d57f0717ddf0f200d508aa2d8"
+    },
+    ".codex/agents/resources/ic-assistant/capability.json": {
+      "mode": 420,
+      "sha256": "09a7f302181862bf91e1b4088886589554dc757f0d2e41dc4151188161f4df85"
+    },
+    ".codex/agents/resources/pitch/capability.json": {
+      "mode": 420,
+      "sha256": "f6b93b24f546a15641fb39012ad3f68d7845ec6376ff07a0b59fa37986eb4795"
+    },
+    ".codex/agents/resources/pulse/capability.json": {
+      "mode": 420,
+      "sha256": "6f908e49390a64362f1d9664cb1d576f5e8562da5399541b7e50ddc059cbab4b"
+    },
+    ".codex/agents/resources/supercharge/capability.json": {
+      "mode": 420,
+      "sha256": "e7bc5ca9f316fb1fe252fdffcf7a7be762ddd32c0cc89d546fcc5dcb347c454f"
+    },
+    ".codex/agents/resources/weekly-intel/capability.json": {
+      "mode": 420,
+      "sha256": "bf53e788d360f1d3a6f168e65aa6db11b491f9ee86957a678658510920a2d254"
+    },
+    ".codex/agents/supercharge.toml": {
+      "mode": 420,
+      "sha256": "f81eaff979d980c2d774b243835901e32a3e25ac066fc6c1b17de33b7dca268a"
+    },
+    ".codex/agents/weekly-intel.toml": {
+      "mode": 420,
+      "sha256": "2884330efc844feb698cb33e9056be1381ff3fe7179014383e73f0c1dc4b3299"
+    },
+    ".codex/skills/address-code-review/SKILL.md": {
+      "mode": 420,
+      "sha256": "c2bc8a440d0e01dc79db4692ed6ae21259fe9340af2b05fe711711dd3cc875b4"
+    },
+    ".codex/skills/address-code-review/resources/capability.json": {
+      "mode": 420,
+      "sha256": "4dfea248f8699c60ce840426f93db5210d20dd2becaaaa2b1926b0912149ea16"
+    },
+    ".codex/skills/analyze-context/SKILL.md": {
+      "mode": 420,
+      "sha256": "29bb1410bdef7ffbe20127366783b543daa90e5449ea93ad429e886f08737f0e"
+    },
+    ".codex/skills/analyze-context/resources/capability.json": {
+      "mode": 420,
+      "sha256": "550d7e60759915efa59d805503bcf149a276e535c8b97bdbd9f32adbce04f37f"
+    },
+    ".codex/skills/analyze-context/resources/state_store.py": {
+      "mode": 420,
+      "sha256": "f0c6a6d56194185df8b5c8426c53365234c4664425faa516714a5b45b86f976e"
+    },
+    ".codex/skills/architecture/SKILL.md": {
+      "mode": 420,
+      "sha256": "9474e9c1ca374de8a9351931db750fa8201439bdaf284fc01fcb0e54acb51ab5"
+    },
+    ".codex/skills/architecture/resources/capability.json": {
+      "mode": 420,
+      "sha256": "f4a409263aef0e023c625acb5e9d833dc3cd973e2fe4b4f141ec0ee47f5c282a"
+    },
+    ".codex/skills/auto-research/SKILL.md": {
+      "mode": 420,
+      "sha256": "00633b8b1cb33eb07ff7ba3ffbef6e42389cbedc1bb7ed50c3150a29a69dba1c"
+    },
+    ".codex/skills/auto-research/resources/bootstrap.py": {
+      "mode": 420,
+      "sha256": "28f8bf54916ad9ad786a8ad98e8d53e431e2ece0fe41201c80cf80355e6d6398"
+    },
+    ".codex/skills/auto-research/resources/capability.json": {
+      "mode": 420,
+      "sha256": "cba847fe338f2e381d689cd21e8719bdacac6bda2d84c5a4824efa2405b92f86"
+    },
+    ".codex/skills/auto-research/resources/templates/experiment-ledger.md.tmpl": {
+      "mode": 420,
+      "sha256": "05296c9a93b00c34edfadc507a008c8940e2d5599de3e394908e47571071a7dc"
+    },
+    ".codex/skills/auto-research/resources/templates/goal-contract.md.tmpl": {
+      "mode": 420,
+      "sha256": "ad151eed554870699e90613a7a1f93eb083a1e5827da74ce6fbc300d3efdb6a6"
+    },
+    ".codex/skills/auto-research/resources/templates/promotion-packet.md.tmpl": {
+      "mode": 420,
+      "sha256": "baa7a3d81d84cecfa2cc5374e7777b7a196a232b419132b4f7284bfc58b33c77"
+    },
+    ".codex/skills/auto-research/resources/templates/scorecard.json.tmpl": {
+      "mode": 420,
+      "sha256": "a905e3211e3001698debf4a5bfd9cb45e5c493b3fb29f91e5bad8d69771a243e"
+    },
+    ".codex/skills/batman/SKILL.md": {
+      "mode": 420,
+      "sha256": "87e11fe591b228be257258e6606ba24489562ee4380afb7ee7caf9e181716f00"
+    },
+    ".codex/skills/batman/resources/capability.json": {
+      "mode": 420,
+      "sha256": "f2ca651313f2cddab6a3d92c8d81876931e541094efd157bdace4280617bd116"
+    },
+    ".codex/skills/code-review/SKILL.md": {
+      "mode": 420,
+      "sha256": "0fb1c2c25cc423ad8e7e04d89c4a7bf2c69a32df33a961b2b18e75215ae074e3"
+    },
+    ".codex/skills/code-review/resources/capability.json": {
+      "mode": 420,
+      "sha256": "c4b5689e7fff19215a04a8bb78dc3724c5ab282a27e0abfeacbd3756812681c4"
+    },
+    ".codex/skills/codebase-health-audit/SKILL.md": {
+      "mode": 420,
+      "sha256": "166d70c3257aff3dbd35b17d610b876111e9717c87058b3f3765468db384e622"
+    },
+    ".codex/skills/codebase-health-audit/resources/capability.json": {
+      "mode": 420,
+      "sha256": "eee98af58c9f9c9de6c69f6a153c238ffb0d50df819a7080e26970fbeace4f23"
+    },
+    ".codex/skills/codebase-health-audit/resources/cruft-report": {
+      "mode": 420,
+      "sha256": "21d8afe3d730c78be3a41d92bce78dd230fbb6debe452e2e885e59314e0107ce"
+    },
+    ".codex/skills/codebase-health-audit/resources/cruft_report.py": {
+      "mode": 420,
+      "sha256": "4ad1c326447eeccc9a6f6abd1c39ac75716c8754278d89879d5f7df579d547d6"
+    },
+    ".codex/skills/converge/SKILL.md": {
+      "mode": 420,
+      "sha256": "d66205a626de4139447be4cf3d3ae809f16882fa303fe23740660a5f041f8a04"
+    },
+    ".codex/skills/converge/resources/capability.json": {
+      "mode": 420,
+      "sha256": "15afb6a1c8cc106539787e50b0b9fbfd87a8556e54412750c4dad96ed2d5d7d1"
+    },
+    ".codex/skills/demo-recorder/SKILL.md": {
+      "mode": 420,
+      "sha256": "99ccd7276cf84a904f842dbb66ff9f5c6d023d915ce28bcdfc516a52af5fd8ad"
+    },
+    ".codex/skills/demo-recorder/resources/capability.json": {
+      "mode": 420,
+      "sha256": "4fa1ad9ec568fe26e3ed0f33e3cdc679ef2669aa33967780fba5e85399646de2"
+    },
+    ".codex/skills/docs-review-expert/SKILL.md": {
+      "mode": 420,
+      "sha256": "baf047981c76ccd29fc72bb439205fead246da6ec26de9d9a63c09407a1a2a3b"
+    },
+    ".codex/skills/docs-review-expert/resources/capability.json": {
+      "mode": 420,
+      "sha256": "2bd74e84e85587af991d191ab4cff9e7be08806e5e498e78b6fe9b622af77726"
+    },
+    ".codex/skills/dynamic-html-presentations/SKILL.md": {
+      "mode": 420,
+      "sha256": "a0840ad3502070900526205eea11c2c2f212b0486f41efa4916d5053ea38e8d7"
+    },
+    ".codex/skills/dynamic-html-presentations/resources/capability.json": {
+      "mode": 420,
+      "sha256": "26f2c2f1f563840d0e3dbb175b06746f51629067b80f6b00051983997aeb8ace"
+    },
+    ".codex/skills/dynamic-html-presentations/resources/example.html": {
+      "mode": 420,
+      "sha256": "e9b6c64b18ecd14084ea9d9b3b3d17f231aed6ed5bc8b49d0731fa90c4d1518a"
+    },
+    ".codex/skills/dynamic-html-presentations/resources/export_slides.swift": {
+      "mode": 420,
+      "sha256": "c14ba219035bd04d28233af5aa36b5af5272255d886abb489ec24e391415f750"
+    },
+    ".codex/skills/dynamic-html-presentations/resources/images_to_pptx.py": {
+      "mode": 420,
+      "sha256": "c3ae776e1868e3894809de63a53e3c37263bfdc1a10ca50e96cc047e7280ea98"
+    },
+    ".codex/skills/eng-report/SKILL.md": {
+      "mode": 420,
+      "sha256": "881d964c903b6cfaec12b151744084579037c79f5b43c956a64295a2b2087e36"
+    },
+    ".codex/skills/eng-report/resources/capability.json": {
+      "mode": 420,
+      "sha256": "e8a56790ecff7eb3de9966610ef9f5f07b4c3008b6f45aa6fc4384e761ebb1fc"
+    },
+    ".codex/skills/engos-audit-opex-incident-review/SKILL.md": {
+      "mode": 420,
+      "sha256": "b94cc3c9ddee8b06af9c8469b05f4aeb1521845e1ae50384de09aa0e4dba115d"
+    },
+    ".codex/skills/engos-audit-opex-incident-review/resources/capability.json": {
+      "mode": 420,
+      "sha256": "640959baa92bde367b589b5dab5e163ac5ecf0efebd3726164feeeaf8dff8d86"
+    },
+    ".codex/skills/engos-audit-opex-incident-review/resources/opex_digest.py": {
+      "mode": 420,
+      "sha256": "d6933b3bf32a23e3c1bfc332c4c63e1ac9f6efa6460ec2bf0a1de96b8bfbbe71"
+    },
+    ".codex/skills/engos-audit-opex-incident-review/resources/snapshot.schema.json": {
+      "mode": 420,
+      "sha256": "dcf64986163e0ad096a396bfd1b9968f7f11749481724898e37a6698d16237df"
+    },
+    ".codex/skills/feature-status/SKILL.md": {
+      "mode": 420,
+      "sha256": "56a270f09cc66713347d9ee11b0142c6e10cb6c180441724f747de656588566a"
+    },
+    ".codex/skills/feature-status/resources/capability.json": {
+      "mode": 420,
+      "sha256": "5137da45e9010c4b0f09f6dbd6afcd994a617355f706d588119d0ae25b4a3ca5"
+    },
+    ".codex/skills/gitops-review/SKILL.md": {
+      "mode": 420,
+      "sha256": "b1e6d2d65f1d8ed30a688c6cb26bb458fb47a48e766fea48338b0aef6cdfa542"
+    },
+    ".codex/skills/gitops-review/resources/capability.json": {
+      "mode": 420,
+      "sha256": "2b13e055033eb034297b6a36e3e4c6296e077ad2f6ee065e25bd1bff3c93795e"
+    },
+    ".codex/skills/ic-assistant/SKILL.md": {
+      "mode": 420,
+      "sha256": "3f502b69a07221f8d5d0f340c11ab920198f655eb3fe5cdd594fe716fca76688"
+    },
+    ".codex/skills/ic-assistant/resources/appian-incident-runbook.md": {
+      "mode": 420,
+      "sha256": "6f765b332cdb59352d9a58486e0e22355bae786d57f0717ddf0f200d508aa2d8"
+    },
+    ".codex/skills/ic-assistant/resources/capability.json": {
+      "mode": 420,
+      "sha256": "09a7f302181862bf91e1b4088886589554dc757f0d2e41dc4151188161f4df85"
+    },
+    ".codex/skills/instruction-editor/SKILL.md": {
+      "mode": 420,
+      "sha256": "fedb0602ebb9228c383cb1c39cd23d46eead60fca3b7a83d302b6a91122e3436"
+    },
+    ".codex/skills/instruction-editor/resources/capability.json": {
+      "mode": 420,
+      "sha256": "3f6cbc3252d940564c4ecf7b0ead69d4add096afc4d7e11f59604ef0db5f42c0"
+    },
+    ".codex/skills/instruction-editor/resources/references/instruction-clarity.md": {
+      "mode": 420,
+      "sha256": "cfd61f749bd1dcf07a56a10f36fce091a17d8e9b63b70836fecea8d8a9f63b61"
+    },
+    ".codex/skills/pitch/SKILL.md": {
+      "mode": 420,
+      "sha256": "96652f0206e027e35289ed8a69f7ff62501ce7c0c9ef6e8337ac805038670650"
+    },
+    ".codex/skills/pitch/resources/capability.json": {
+      "mode": 420,
+      "sha256": "f6b93b24f546a15641fb39012ad3f68d7845ec6376ff07a0b59fa37986eb4795"
+    },
+    ".codex/skills/plan-to-goal-design/SKILL.md": {
+      "mode": 420,
+      "sha256": "aad53115445c677d88b5814a4d71c53a48f65a60f2e18dac7e32976e64d2abb0"
+    },
+    ".codex/skills/plan-to-goal-design/resources/adapters/hosts.json": {
+      "mode": 420,
+      "sha256": "3e56e00f7ce2e776b1c70e1f693151efade433dbfbd4323d70449ca20c553048"
+    },
+    ".codex/skills/plan-to-goal-design/resources/capability.json": {
+      "mode": 420,
+      "sha256": "4e1bf6178458f3c5393fbc63a58dbcbd13a13db02336ca8150344583e1667904"
+    },
+    ".codex/skills/plan-to-goal-design/resources/goal-lint": {
+      "mode": 420,
+      "sha256": "ae126fc5b1d7ad655a0ebc4aa79edc95b93b1f674a7bfac27b319d198619191d"
+    },
+    ".codex/skills/plan-to-goal-design/resources/references/evidence.md": {
+      "mode": 420,
+      "sha256": "1a0985e59bf9036554f45264b4c326385d487fc7895d2f50270464327586ab57"
+    },
+    ".codex/skills/plan-to-goal-design/resources/references/goal-authoring.md": {
+      "mode": 420,
+      "sha256": "ed998401b88da54e776a019eb6ea3c7e948cab83d8224d3c8e82e03849707c30"
+    },
+    ".codex/skills/plan-to-goal-design/resources/references/goal-design-lessons.md": {
+      "mode": 420,
+      "sha256": "583c6d8b46aaf227bf43aaf0de4105b7d06d670b90f325e1c11bc517d2ec4637"
+    },
+    ".codex/skills/plan-to-goal-design/resources/references/verifier-trust.md": {
+      "mode": 420,
+      "sha256": "fef011ae0cf7c47ad1b3ce6393983b25e06849d6aa4e4b81240037ddd246606a"
+    },
+    ".codex/skills/plan-to-goal-design/resources/schemas/packet.schema.json": {
+      "mode": 420,
+      "sha256": "3248411d95ac5c5b42a376ba9a352761f1b89fa8db6459093f988a0096c3efbc"
+    },
+    ".codex/skills/plan-to-goal-design/resources/scripts/criterion_flip.py": {
+      "mode": 420,
+      "sha256": "c3fb05ff903f0bc4390cfdded79caf8ab4180933f6c3d6798451a90bdb59541d"
+    },
+    ".codex/skills/plan-to-goal-design/resources/scripts/goal_packet.py": {
+      "mode": 420,
+      "sha256": "dacff09aabd973852829bd8c3ea4a77ac8469299be4c1fb126eaf4eca6237c2b"
+    },
+    ".codex/skills/plan-to-goal-design/resources/templates/baseline.json.tmpl": {
+      "mode": 420,
+      "sha256": "9e7f0bc3e95d10655e87fa43f05638dfb5fa2c5515631dd1828e19bb97371dfa"
+    },
+    ".codex/skills/plan-to-goal-design/resources/templates/criterion-flips.json.tmpl": {
+      "mode": 420,
+      "sha256": "7bd2fd326fa9f94e955c1a7c8ddde21a7fa67c9f03cb78893c0103633bb1a874"
+    },
+    ".codex/skills/plan-to-goal-design/resources/templates/goal.txt.tmpl": {
+      "mode": 420,
+      "sha256": "ce0eb16dafabe54b658c1dceeb242ddb549aa9593bcd2b2d010aa0a4555f2001"
+    },
+    ".codex/skills/plan-to-goal-design/resources/templates/judge-amendments.json.tmpl": {
+      "mode": 420,
+      "sha256": "adb989a6d8ddecf527a778fe168bcfcaab2ec8f8777ea10edff19a10c2008793"
+    },
+    ".codex/skills/plan-to-goal-design/resources/templates/packet.json.tmpl": {
+      "mode": 420,
+      "sha256": "b8f09376bfbde81a4476122db20cbf1191b067bf1f120d546af80d2fd2936687"
+    },
+    ".codex/skills/plan-to-goal-design/resources/templates/receipt.json.tmpl": {
+      "mode": 420,
+      "sha256": "9e93d1ac697c713a337cc8bef4af1eefd531fa4c6e7f1284944b5ce2a8a725ff"
+    },
+    ".codex/skills/plan-to-goal-design/resources/templates/spec.md.tmpl": {
+      "mode": 420,
+      "sha256": "745dcc9066d548e74acc3da842b843c91858b2438588aac4e79e57fb7aeaf21d"
+    },
+    ".codex/skills/pulse/SKILL.md": {
+      "mode": 420,
+      "sha256": "61c130884dd0f85643334465c342287c9dabc01abdf61862651ac44b3382816a"
+    },
+    ".codex/skills/pulse/resources/capability.json": {
+      "mode": 420,
+      "sha256": "6f908e49390a64362f1d9664cb1d576f5e8562da5399541b7e50ddc059cbab4b"
+    },
+    ".codex/skills/resolve-conflict/SKILL.md": {
+      "mode": 420,
+      "sha256": "ef3e86580f3a2c237bc8951c4f976aa307b6bc97a251cb35e87b4b1a6d606d67"
+    },
+    ".codex/skills/resolve-conflict/resources/capability.json": {
+      "mode": 420,
+      "sha256": "e0599401d2f122fdf9933630b965ec752e3f747974aa1c9d735356f3d2d30f32"
+    },
+    ".codex/skills/supercharge/SKILL.md": {
+      "mode": 420,
+      "sha256": "c4169a4e218702a81ae51998a2b911d8d55c71eb47db9625a0e967a3da5dc353"
+    },
+    ".codex/skills/supercharge/resources/capability.json": {
+      "mode": 420,
+      "sha256": "e7bc5ca9f316fb1fe252fdffcf7a7be762ddd32c0cc89d546fcc5dcb347c454f"
+    },
+    ".codex/skills/testing/SKILL.md": {
+      "mode": 420,
+      "sha256": "713228dc4728994046774074e48c074730638ca35f6152198a08419567fc7bd6"
+    },
+    ".codex/skills/testing/resources/capability.json": {
+      "mode": 420,
+      "sha256": "bea276628f5e4b70c643718bcc56b1135f119dcad2a7bdde803043eb4e55a205"
+    },
+    ".codex/skills/threader/SKILL.md": {
+      "mode": 420,
+      "sha256": "6595acf60439bb771208c0e6d76ac46cc613cd5a3f5d66fa1fb3ec2963969ac0"
+    },
+    ".codex/skills/threader/resources/capability.json": {
+      "mode": 420,
+      "sha256": "069d9552009b6672eb49bd5e2ebd0832b77c006ca6b8e6fc527f8ef050a4f362"
+    },
+    ".codex/skills/uac-import/SKILL.md": {
+      "mode": 420,
+      "sha256": "c6a11cb17363bdf2c204a295cc7b2d311ff8b5cd70346ec23e6d3875ada83e8c"
+    },
+    ".codex/skills/uac-import/resources/capability.json": {
+      "mode": 420,
+      "sha256": "132cf312d98eba74db285bca7f0909dc40075b043f0d620a5dc98aff249cea6a"
+    },
+    ".codex/skills/weekly-intel/SKILL.md": {
+      "mode": 420,
+      "sha256": "ee24d30bf4a8d9149ca859a4dcd42e94e4561fa319b515e9f21bd4f48baad263"
+    },
+    ".codex/skills/weekly-intel/resources/capability.json": {
+      "mode": 420,
+      "sha256": "bf53e788d360f1d3a6f168e65aa6db11b491f9ee86957a678658510920a2d254"
+    },
+    ".gemini/agents/architecture.md": {
+      "mode": 420,
+      "sha256": "48b51efd4c18a779981cd780150850f1d541d2c714645436087980fb9ed7b505"
+    },
+    ".gemini/agents/auto-research.md": {
+      "mode": 420,
+      "sha256": "fb05942178755c247409db552d7aa004a9a757c643051a9037246aff7a753749"
+    },
+    ".gemini/agents/batman.md": {
+      "mode": 420,
+      "sha256": "f3c9fdaa638377bacd1626c5e484f132233a8031cd136f7bfcbe8cdafdb5850a"
+    },
+    ".gemini/agents/converge.md": {
+      "mode": 420,
+      "sha256": "db990520adf2fe6d4e9614fca387bc67582b2cab76c4e504ad518eef47e324b0"
+    },
+    ".gemini/agents/docs-review-expert.md": {
+      "mode": 420,
+      "sha256": "4c9922e84a90087ace23189417d78a8da6a2dfd5a130d65e8ec8041338ce6b2a"
+    },
+    ".gemini/agents/gitops-review.md": {
+      "mode": 420,
+      "sha256": "4edb2ac2e274cc8cb54e7271aa455215a210b32ff0cad971d18ef6ed8d04ccaa"
+    },
+    ".gemini/agents/ic-assistant.md": {
+      "mode": 420,
+      "sha256": "b70f54dfc58548bea5a3aafe45409a04d5a6593d620256ee283b7594c744a8cc"
+    },
+    ".gemini/agents/pitch.md": {
+      "mode": 420,
+      "sha256": "dd7a154a06c1a1e191d2f958582a3b7c5a3dbb0b48aa48b22f3bd4597d8b24ba"
+    },
+    ".gemini/agents/pulse.md": {
+      "mode": 420,
+      "sha256": "88f81d7bbccc4f2fa0db8540b8074c23767e1c98e6504fd67085e606af59c7d2"
+    },
+    ".gemini/agents/resources/architecture/capability.json": {
+      "mode": 420,
+      "sha256": "f4a409263aef0e023c625acb5e9d833dc3cd973e2fe4b4f141ec0ee47f5c282a"
+    },
+    ".gemini/agents/resources/auto-research/bootstrap.py": {
+      "mode": 420,
+      "sha256": "28f8bf54916ad9ad786a8ad98e8d53e431e2ece0fe41201c80cf80355e6d6398"
+    },
+    ".gemini/agents/resources/auto-research/capability.json": {
+      "mode": 420,
+      "sha256": "cba847fe338f2e381d689cd21e8719bdacac6bda2d84c5a4824efa2405b92f86"
+    },
+    ".gemini/agents/resources/auto-research/templates/experiment-ledger.md.tmpl": {
+      "mode": 420,
+      "sha256": "05296c9a93b00c34edfadc507a008c8940e2d5599de3e394908e47571071a7dc"
+    },
+    ".gemini/agents/resources/auto-research/templates/goal-contract.md.tmpl": {
+      "mode": 420,
+      "sha256": "ad151eed554870699e90613a7a1f93eb083a1e5827da74ce6fbc300d3efdb6a6"
+    },
+    ".gemini/agents/resources/auto-research/templates/promotion-packet.md.tmpl": {
+      "mode": 420,
+      "sha256": "baa7a3d81d84cecfa2cc5374e7777b7a196a232b419132b4f7284bfc58b33c77"
+    },
+    ".gemini/agents/resources/auto-research/templates/scorecard.json.tmpl": {
+      "mode": 420,
+      "sha256": "a905e3211e3001698debf4a5bfd9cb45e5c493b3fb29f91e5bad8d69771a243e"
+    },
+    ".gemini/agents/resources/batman/capability.json": {
+      "mode": 420,
+      "sha256": "f2ca651313f2cddab6a3d92c8d81876931e541094efd157bdace4280617bd116"
+    },
+    ".gemini/agents/resources/converge/capability.json": {
+      "mode": 420,
+      "sha256": "15afb6a1c8cc106539787e50b0b9fbfd87a8556e54412750c4dad96ed2d5d7d1"
+    },
+    ".gemini/agents/resources/docs-review-expert/capability.json": {
+      "mode": 420,
+      "sha256": "2bd74e84e85587af991d191ab4cff9e7be08806e5e498e78b6fe9b622af77726"
+    },
+    ".gemini/agents/resources/gitops-review/capability.json": {
+      "mode": 420,
+      "sha256": "2b13e055033eb034297b6a36e3e4c6296e077ad2f6ee065e25bd1bff3c93795e"
+    },
+    ".gemini/agents/resources/ic-assistant/appian-incident-runbook.md": {
+      "mode": 420,
+      "sha256": "6f765b332cdb59352d9a58486e0e22355bae786d57f0717ddf0f200d508aa2d8"
+    },
+    ".gemini/agents/resources/ic-assistant/capability.json": {
+      "mode": 420,
+      "sha256": "09a7f302181862bf91e1b4088886589554dc757f0d2e41dc4151188161f4df85"
+    },
+    ".gemini/agents/resources/pitch/capability.json": {
+      "mode": 420,
+      "sha256": "f6b93b24f546a15641fb39012ad3f68d7845ec6376ff07a0b59fa37986eb4795"
+    },
+    ".gemini/agents/resources/pulse/capability.json": {
+      "mode": 420,
+      "sha256": "6f908e49390a64362f1d9664cb1d576f5e8562da5399541b7e50ddc059cbab4b"
+    },
+    ".gemini/agents/resources/supercharge/capability.json": {
+      "mode": 420,
+      "sha256": "e7bc5ca9f316fb1fe252fdffcf7a7be762ddd32c0cc89d546fcc5dcb347c454f"
+    },
+    ".gemini/agents/resources/weekly-intel/capability.json": {
+      "mode": 420,
+      "sha256": "bf53e788d360f1d3a6f168e65aa6db11b491f9ee86957a678658510920a2d254"
+    },
+    ".gemini/agents/supercharge.md": {
+      "mode": 420,
+      "sha256": "72700d663ce4e8f322528e45fccab3702b74fa611910f52ef90bcbc579c3b0c6"
+    },
+    ".gemini/agents/weekly-intel.md": {
+      "mode": 420,
+      "sha256": "3a18ea41da0637a3defacbcf5b26e42017cb3f570560096281b02f6755125d7f"
+    },
+    ".gemini/skills/address-code-review/SKILL.md": {
+      "mode": 420,
+      "sha256": "c2bc8a440d0e01dc79db4692ed6ae21259fe9340af2b05fe711711dd3cc875b4"
+    },
+    ".gemini/skills/address-code-review/resources/capability.json": {
+      "mode": 420,
+      "sha256": "4dfea248f8699c60ce840426f93db5210d20dd2becaaaa2b1926b0912149ea16"
+    },
+    ".gemini/skills/analyze-context/SKILL.md": {
+      "mode": 420,
+      "sha256": "29bb1410bdef7ffbe20127366783b543daa90e5449ea93ad429e886f08737f0e"
+    },
+    ".gemini/skills/analyze-context/resources/capability.json": {
+      "mode": 420,
+      "sha256": "550d7e60759915efa59d805503bcf149a276e535c8b97bdbd9f32adbce04f37f"
+    },
+    ".gemini/skills/analyze-context/resources/state_store.py": {
+      "mode": 420,
+      "sha256": "f0c6a6d56194185df8b5c8426c53365234c4664425faa516714a5b45b86f976e"
+    },
+    ".gemini/skills/architecture/SKILL.md": {
+      "mode": 420,
+      "sha256": "9474e9c1ca374de8a9351931db750fa8201439bdaf284fc01fcb0e54acb51ab5"
+    },
+    ".gemini/skills/architecture/resources/capability.json": {
+      "mode": 420,
+      "sha256": "f4a409263aef0e023c625acb5e9d833dc3cd973e2fe4b4f141ec0ee47f5c282a"
+    },
+    ".gemini/skills/auto-research/SKILL.md": {
+      "mode": 420,
+      "sha256": "00633b8b1cb33eb07ff7ba3ffbef6e42389cbedc1bb7ed50c3150a29a69dba1c"
+    },
+    ".gemini/skills/auto-research/resources/bootstrap.py": {
+      "mode": 420,
+      "sha256": "28f8bf54916ad9ad786a8ad98e8d53e431e2ece0fe41201c80cf80355e6d6398"
+    },
+    ".gemini/skills/auto-research/resources/capability.json": {
+      "mode": 420,
+      "sha256": "cba847fe338f2e381d689cd21e8719bdacac6bda2d84c5a4824efa2405b92f86"
+    },
+    ".gemini/skills/auto-research/resources/templates/experiment-ledger.md.tmpl": {
+      "mode": 420,
+      "sha256": "05296c9a93b00c34edfadc507a008c8940e2d5599de3e394908e47571071a7dc"
+    },
+    ".gemini/skills/auto-research/resources/templates/goal-contract.md.tmpl": {
+      "mode": 420,
+      "sha256": "ad151eed554870699e90613a7a1f93eb083a1e5827da74ce6fbc300d3efdb6a6"
+    },
+    ".gemini/skills/auto-research/resources/templates/promotion-packet.md.tmpl": {
+      "mode": 420,
+      "sha256": "baa7a3d81d84cecfa2cc5374e7777b7a196a232b419132b4f7284bfc58b33c77"
+    },
+    ".gemini/skills/auto-research/resources/templates/scorecard.json.tmpl": {
+      "mode": 420,
+      "sha256": "a905e3211e3001698debf4a5bfd9cb45e5c493b3fb29f91e5bad8d69771a243e"
+    },
+    ".gemini/skills/batman/SKILL.md": {
+      "mode": 420,
+      "sha256": "87e11fe591b228be257258e6606ba24489562ee4380afb7ee7caf9e181716f00"
+    },
+    ".gemini/skills/batman/resources/capability.json": {
+      "mode": 420,
+      "sha256": "f2ca651313f2cddab6a3d92c8d81876931e541094efd157bdace4280617bd116"
+    },
+    ".gemini/skills/code-review/SKILL.md": {
+      "mode": 420,
+      "sha256": "0fb1c2c25cc423ad8e7e04d89c4a7bf2c69a32df33a961b2b18e75215ae074e3"
+    },
+    ".gemini/skills/code-review/resources/capability.json": {
+      "mode": 420,
+      "sha256": "c4b5689e7fff19215a04a8bb78dc3724c5ab282a27e0abfeacbd3756812681c4"
+    },
+    ".gemini/skills/codebase-health-audit/SKILL.md": {
+      "mode": 420,
+      "sha256": "166d70c3257aff3dbd35b17d610b876111e9717c87058b3f3765468db384e622"
+    },
+    ".gemini/skills/codebase-health-audit/resources/capability.json": {
+      "mode": 420,
+      "sha256": "eee98af58c9f9c9de6c69f6a153c238ffb0d50df819a7080e26970fbeace4f23"
+    },
+    ".gemini/skills/codebase-health-audit/resources/cruft-report": {
+      "mode": 420,
+      "sha256": "21d8afe3d730c78be3a41d92bce78dd230fbb6debe452e2e885e59314e0107ce"
+    },
+    ".gemini/skills/codebase-health-audit/resources/cruft_report.py": {
+      "mode": 420,
+      "sha256": "4ad1c326447eeccc9a6f6abd1c39ac75716c8754278d89879d5f7df579d547d6"
+    },
+    ".gemini/skills/converge/SKILL.md": {
+      "mode": 420,
+      "sha256": "d66205a626de4139447be4cf3d3ae809f16882fa303fe23740660a5f041f8a04"
+    },
+    ".gemini/skills/converge/resources/capability.json": {
+      "mode": 420,
+      "sha256": "15afb6a1c8cc106539787e50b0b9fbfd87a8556e54412750c4dad96ed2d5d7d1"
+    },
+    ".gemini/skills/demo-recorder/SKILL.md": {
+      "mode": 420,
+      "sha256": "99ccd7276cf84a904f842dbb66ff9f5c6d023d915ce28bcdfc516a52af5fd8ad"
+    },
+    ".gemini/skills/demo-recorder/resources/capability.json": {
+      "mode": 420,
+      "sha256": "4fa1ad9ec568fe26e3ed0f33e3cdc679ef2669aa33967780fba5e85399646de2"
+    },
+    ".gemini/skills/docs-review-expert/SKILL.md": {
+      "mode": 420,
+      "sha256": "baf047981c76ccd29fc72bb439205fead246da6ec26de9d9a63c09407a1a2a3b"
+    },
+    ".gemini/skills/docs-review-expert/resources/capability.json": {
+      "mode": 420,
+      "sha256": "2bd74e84e85587af991d191ab4cff9e7be08806e5e498e78b6fe9b622af77726"
+    },
+    ".gemini/skills/dynamic-html-presentations/SKILL.md": {
+      "mode": 420,
+      "sha256": "a0840ad3502070900526205eea11c2c2f212b0486f41efa4916d5053ea38e8d7"
+    },
+    ".gemini/skills/dynamic-html-presentations/resources/capability.json": {
+      "mode": 420,
+      "sha256": "26f2c2f1f563840d0e3dbb175b06746f51629067b80f6b00051983997aeb8ace"
+    },
+    ".gemini/skills/dynamic-html-presentations/resources/example.html": {
+      "mode": 420,
+      "sha256": "e9b6c64b18ecd14084ea9d9b3b3d17f231aed6ed5bc8b49d0731fa90c4d1518a"
+    },
+    ".gemini/skills/dynamic-html-presentations/resources/export_slides.swift": {
+      "mode": 420,
+      "sha256": "c14ba219035bd04d28233af5aa36b5af5272255d886abb489ec24e391415f750"
+    },
+    ".gemini/skills/dynamic-html-presentations/resources/images_to_pptx.py": {
+      "mode": 420,
+      "sha256": "c3ae776e1868e3894809de63a53e3c37263bfdc1a10ca50e96cc047e7280ea98"
+    },
+    ".gemini/skills/eng-report/SKILL.md": {
+      "mode": 420,
+      "sha256": "881d964c903b6cfaec12b151744084579037c79f5b43c956a64295a2b2087e36"
+    },
+    ".gemini/skills/eng-report/resources/capability.json": {
+      "mode": 420,
+      "sha256": "e8a56790ecff7eb3de9966610ef9f5f07b4c3008b6f45aa6fc4384e761ebb1fc"
+    },
+    ".gemini/skills/engos-audit-opex-incident-review/SKILL.md": {
+      "mode": 420,
+      "sha256": "b94cc3c9ddee8b06af9c8469b05f4aeb1521845e1ae50384de09aa0e4dba115d"
+    },
+    ".gemini/skills/engos-audit-opex-incident-review/resources/capability.json": {
+      "mode": 420,
+      "sha256": "640959baa92bde367b589b5dab5e163ac5ecf0efebd3726164feeeaf8dff8d86"
+    },
+    ".gemini/skills/engos-audit-opex-incident-review/resources/opex_digest.py": {
+      "mode": 420,
+      "sha256": "d6933b3bf32a23e3c1bfc332c4c63e1ac9f6efa6460ec2bf0a1de96b8bfbbe71"
+    },
+    ".gemini/skills/engos-audit-opex-incident-review/resources/snapshot.schema.json": {
+      "mode": 420,
+      "sha256": "dcf64986163e0ad096a396bfd1b9968f7f11749481724898e37a6698d16237df"
+    },
+    ".gemini/skills/feature-status/SKILL.md": {
+      "mode": 420,
+      "sha256": "56a270f09cc66713347d9ee11b0142c6e10cb6c180441724f747de656588566a"
+    },
+    ".gemini/skills/feature-status/resources/capability.json": {
+      "mode": 420,
+      "sha256": "5137da45e9010c4b0f09f6dbd6afcd994a617355f706d588119d0ae25b4a3ca5"
+    },
+    ".gemini/skills/gitops-review/SKILL.md": {
+      "mode": 420,
+      "sha256": "b1e6d2d65f1d8ed30a688c6cb26bb458fb47a48e766fea48338b0aef6cdfa542"
+    },
+    ".gemini/skills/gitops-review/resources/capability.json": {
+      "mode": 420,
+      "sha256": "2b13e055033eb034297b6a36e3e4c6296e077ad2f6ee065e25bd1bff3c93795e"
+    },
+    ".gemini/skills/ic-assistant/SKILL.md": {
+      "mode": 420,
+      "sha256": "3f502b69a07221f8d5d0f340c11ab920198f655eb3fe5cdd594fe716fca76688"
+    },
+    ".gemini/skills/ic-assistant/resources/appian-incident-runbook.md": {
+      "mode": 420,
+      "sha256": "6f765b332cdb59352d9a58486e0e22355bae786d57f0717ddf0f200d508aa2d8"
+    },
+    ".gemini/skills/ic-assistant/resources/capability.json": {
+      "mode": 420,
+      "sha256": "09a7f302181862bf91e1b4088886589554dc757f0d2e41dc4151188161f4df85"
+    },
+    ".gemini/skills/instruction-editor/SKILL.md": {
+      "mode": 420,
+      "sha256": "fedb0602ebb9228c383cb1c39cd23d46eead60fca3b7a83d302b6a91122e3436"
+    },
+    ".gemini/skills/instruction-editor/resources/capability.json": {
+      "mode": 420,
+      "sha256": "3f6cbc3252d940564c4ecf7b0ead69d4add096afc4d7e11f59604ef0db5f42c0"
+    },
+    ".gemini/skills/instruction-editor/resources/references/instruction-clarity.md": {
+      "mode": 420,
+      "sha256": "cfd61f749bd1dcf07a56a10f36fce091a17d8e9b63b70836fecea8d8a9f63b61"
+    },
+    ".gemini/skills/pitch/SKILL.md": {
+      "mode": 420,
+      "sha256": "96652f0206e027e35289ed8a69f7ff62501ce7c0c9ef6e8337ac805038670650"
+    },
+    ".gemini/skills/pitch/resources/capability.json": {
+      "mode": 420,
+      "sha256": "f6b93b24f546a15641fb39012ad3f68d7845ec6376ff07a0b59fa37986eb4795"
+    },
+    ".gemini/skills/plan-to-goal-design/SKILL.md": {
+      "mode": 420,
+      "sha256": "aad53115445c677d88b5814a4d71c53a48f65a60f2e18dac7e32976e64d2abb0"
+    },
+    ".gemini/skills/plan-to-goal-design/resources/adapters/hosts.json": {
+      "mode": 420,
+      "sha256": "3e56e00f7ce2e776b1c70e1f693151efade433dbfbd4323d70449ca20c553048"
+    },
+    ".gemini/skills/plan-to-goal-design/resources/capability.json": {
+      "mode": 420,
+      "sha256": "4e1bf6178458f3c5393fbc63a58dbcbd13a13db02336ca8150344583e1667904"
+    },
+    ".gemini/skills/plan-to-goal-design/resources/goal-lint": {
+      "mode": 420,
+      "sha256": "ae126fc5b1d7ad655a0ebc4aa79edc95b93b1f674a7bfac27b319d198619191d"
+    },
+    ".gemini/skills/plan-to-goal-design/resources/references/evidence.md": {
+      "mode": 420,
+      "sha256": "1a0985e59bf9036554f45264b4c326385d487fc7895d2f50270464327586ab57"
+    },
+    ".gemini/skills/plan-to-goal-design/resources/references/goal-authoring.md": {
+      "mode": 420,
+      "sha256": "ed998401b88da54e776a019eb6ea3c7e948cab83d8224d3c8e82e03849707c30"
+    },
+    ".gemini/skills/plan-to-goal-design/resources/references/goal-design-lessons.md": {
+      "mode": 420,
+      "sha256": "583c6d8b46aaf227bf43aaf0de4105b7d06d670b90f325e1c11bc517d2ec4637"
+    },
+    ".gemini/skills/plan-to-goal-design/resources/references/verifier-trust.md": {
+      "mode": 420,
+      "sha256": "fef011ae0cf7c47ad1b3ce6393983b25e06849d6aa4e4b81240037ddd246606a"
+    },
+    ".gemini/skills/plan-to-goal-design/resources/schemas/packet.schema.json": {
+      "mode": 420,
+      "sha256": "3248411d95ac5c5b42a376ba9a352761f1b89fa8db6459093f988a0096c3efbc"
+    },
+    ".gemini/skills/plan-to-goal-design/resources/scripts/criterion_flip.py": {
+      "mode": 420,
+      "sha256": "c3fb05ff903f0bc4390cfdded79caf8ab4180933f6c3d6798451a90bdb59541d"
+    },
+    ".gemini/skills/plan-to-goal-design/resources/scripts/goal_packet.py": {
+      "mode": 420,
+      "sha256": "dacff09aabd973852829bd8c3ea4a77ac8469299be4c1fb126eaf4eca6237c2b"
+    },
+    ".gemini/skills/plan-to-goal-design/resources/templates/baseline.json.tmpl": {
+      "mode": 420,
+      "sha256": "9e7f0bc3e95d10655e87fa43f05638dfb5fa2c5515631dd1828e19bb97371dfa"
+    },
+    ".gemini/skills/plan-to-goal-design/resources/templates/criterion-flips.json.tmpl": {
+      "mode": 420,
+      "sha256": "7bd2fd326fa9f94e955c1a7c8ddde21a7fa67c9f03cb78893c0103633bb1a874"
+    },
+    ".gemini/skills/plan-to-goal-design/resources/templates/goal.txt.tmpl": {
+      "mode": 420,
+      "sha256": "ce0eb16dafabe54b658c1dceeb242ddb549aa9593bcd2b2d010aa0a4555f2001"
+    },
+    ".gemini/skills/plan-to-goal-design/resources/templates/judge-amendments.json.tmpl": {
+      "mode": 420,
+      "sha256": "adb989a6d8ddecf527a778fe168bcfcaab2ec8f8777ea10edff19a10c2008793"
+    },
+    ".gemini/skills/plan-to-goal-design/resources/templates/packet.json.tmpl": {
+      "mode": 420,
+      "sha256": "b8f09376bfbde81a4476122db20cbf1191b067bf1f120d546af80d2fd2936687"
+    },
+    ".gemini/skills/plan-to-goal-design/resources/templates/receipt.json.tmpl": {
+      "mode": 420,
+      "sha256": "9e93d1ac697c713a337cc8bef4af1eefd531fa4c6e7f1284944b5ce2a8a725ff"
+    },
+    ".gemini/skills/plan-to-goal-design/resources/templates/spec.md.tmpl": {
+      "mode": 420,
+      "sha256": "745dcc9066d548e74acc3da842b843c91858b2438588aac4e79e57fb7aeaf21d"
+    },
+    ".gemini/skills/pulse/SKILL.md": {
+      "mode": 420,
+      "sha256": "61c130884dd0f85643334465c342287c9dabc01abdf61862651ac44b3382816a"
+    },
+    ".gemini/skills/pulse/resources/capability.json": {
+      "mode": 420,
+      "sha256": "6f908e49390a64362f1d9664cb1d576f5e8562da5399541b7e50ddc059cbab4b"
+    },
+    ".gemini/skills/resolve-conflict/SKILL.md": {
+      "mode": 420,
+      "sha256": "ef3e86580f3a2c237bc8951c4f976aa307b6bc97a251cb35e87b4b1a6d606d67"
+    },
+    ".gemini/skills/resolve-conflict/resources/capability.json": {
+      "mode": 420,
+      "sha256": "e0599401d2f122fdf9933630b965ec752e3f747974aa1c9d735356f3d2d30f32"
+    },
+    ".gemini/skills/supercharge/SKILL.md": {
+      "mode": 420,
+      "sha256": "c4169a4e218702a81ae51998a2b911d8d55c71eb47db9625a0e967a3da5dc353"
+    },
+    ".gemini/skills/supercharge/resources/capability.json": {
+      "mode": 420,
+      "sha256": "e7bc5ca9f316fb1fe252fdffcf7a7be762ddd32c0cc89d546fcc5dcb347c454f"
+    },
+    ".gemini/skills/testing/SKILL.md": {
+      "mode": 420,
+      "sha256": "713228dc4728994046774074e48c074730638ca35f6152198a08419567fc7bd6"
+    },
+    ".gemini/skills/testing/resources/capability.json": {
+      "mode": 420,
+      "sha256": "bea276628f5e4b70c643718bcc56b1135f119dcad2a7bdde803043eb4e55a205"
+    },
+    ".gemini/skills/threader/SKILL.md": {
+      "mode": 420,
+      "sha256": "6595acf60439bb771208c0e6d76ac46cc613cd5a3f5d66fa1fb3ec2963969ac0"
+    },
+    ".gemini/skills/threader/resources/capability.json": {
+      "mode": 420,
+      "sha256": "069d9552009b6672eb49bd5e2ebd0832b77c006ca6b8e6fc527f8ef050a4f362"
+    },
+    ".gemini/skills/uac-import/SKILL.md": {
+      "mode": 420,
+      "sha256": "c6a11cb17363bdf2c204a295cc7b2d311ff8b5cd70346ec23e6d3875ada83e8c"
+    },
+    ".gemini/skills/uac-import/resources/capability.json": {
+      "mode": 420,
+      "sha256": "132cf312d98eba74db285bca7f0909dc40075b043f0d620a5dc98aff249cea6a"
+    },
+    ".gemini/skills/weekly-intel/SKILL.md": {
+      "mode": 420,
+      "sha256": "ee24d30bf4a8d9149ca859a4dcd42e94e4561fa319b515e9f21bd4f48baad263"
+    },
+    ".gemini/skills/weekly-intel/resources/capability.json": {
+      "mode": 420,
+      "sha256": "bf53e788d360f1d3a6f168e65aa6db11b491f9ee86957a678658510920a2d254"
+    },
+    ".grok/skills/address-code-review/SKILL.md": {
+      "mode": 420,
+      "sha256": "c2bc8a440d0e01dc79db4692ed6ae21259fe9340af2b05fe711711dd3cc875b4"
+    },
+    ".grok/skills/address-code-review/resources/capability.json": {
+      "mode": 420,
+      "sha256": "4dfea248f8699c60ce840426f93db5210d20dd2becaaaa2b1926b0912149ea16"
+    },
+    ".grok/skills/analyze-context/SKILL.md": {
+      "mode": 420,
+      "sha256": "29bb1410bdef7ffbe20127366783b543daa90e5449ea93ad429e886f08737f0e"
+    },
+    ".grok/skills/analyze-context/resources/capability.json": {
+      "mode": 420,
+      "sha256": "550d7e60759915efa59d805503bcf149a276e535c8b97bdbd9f32adbce04f37f"
+    },
+    ".grok/skills/analyze-context/resources/state_store.py": {
+      "mode": 420,
+      "sha256": "f0c6a6d56194185df8b5c8426c53365234c4664425faa516714a5b45b86f976e"
+    },
+    ".grok/skills/architecture/SKILL.md": {
+      "mode": 420,
+      "sha256": "9474e9c1ca374de8a9351931db750fa8201439bdaf284fc01fcb0e54acb51ab5"
+    },
+    ".grok/skills/architecture/resources/capability.json": {
+      "mode": 420,
+      "sha256": "f4a409263aef0e023c625acb5e9d833dc3cd973e2fe4b4f141ec0ee47f5c282a"
+    },
+    ".grok/skills/auto-research/SKILL.md": {
+      "mode": 420,
+      "sha256": "00633b8b1cb33eb07ff7ba3ffbef6e42389cbedc1bb7ed50c3150a29a69dba1c"
+    },
+    ".grok/skills/auto-research/resources/bootstrap.py": {
+      "mode": 420,
+      "sha256": "28f8bf54916ad9ad786a8ad98e8d53e431e2ece0fe41201c80cf80355e6d6398"
+    },
+    ".grok/skills/auto-research/resources/capability.json": {
+      "mode": 420,
+      "sha256": "cba847fe338f2e381d689cd21e8719bdacac6bda2d84c5a4824efa2405b92f86"
+    },
+    ".grok/skills/auto-research/resources/templates/experiment-ledger.md.tmpl": {
+      "mode": 420,
+      "sha256": "05296c9a93b00c34edfadc507a008c8940e2d5599de3e394908e47571071a7dc"
+    },
+    ".grok/skills/auto-research/resources/templates/goal-contract.md.tmpl": {
+      "mode": 420,
+      "sha256": "ad151eed554870699e90613a7a1f93eb083a1e5827da74ce6fbc300d3efdb6a6"
+    },
+    ".grok/skills/auto-research/resources/templates/promotion-packet.md.tmpl": {
+      "mode": 420,
+      "sha256": "baa7a3d81d84cecfa2cc5374e7777b7a196a232b419132b4f7284bfc58b33c77"
+    },
+    ".grok/skills/auto-research/resources/templates/scorecard.json.tmpl": {
+      "mode": 420,
+      "sha256": "a905e3211e3001698debf4a5bfd9cb45e5c493b3fb29f91e5bad8d69771a243e"
+    },
+    ".grok/skills/batman/SKILL.md": {
+      "mode": 420,
+      "sha256": "87e11fe591b228be257258e6606ba24489562ee4380afb7ee7caf9e181716f00"
+    },
+    ".grok/skills/batman/resources/capability.json": {
+      "mode": 420,
+      "sha256": "f2ca651313f2cddab6a3d92c8d81876931e541094efd157bdace4280617bd116"
+    },
+    ".grok/skills/code-review/SKILL.md": {
+      "mode": 420,
+      "sha256": "0fb1c2c25cc423ad8e7e04d89c4a7bf2c69a32df33a961b2b18e75215ae074e3"
+    },
+    ".grok/skills/code-review/resources/capability.json": {
+      "mode": 420,
+      "sha256": "c4b5689e7fff19215a04a8bb78dc3724c5ab282a27e0abfeacbd3756812681c4"
+    },
+    ".grok/skills/codebase-health-audit/SKILL.md": {
+      "mode": 420,
+      "sha256": "166d70c3257aff3dbd35b17d610b876111e9717c87058b3f3765468db384e622"
+    },
+    ".grok/skills/codebase-health-audit/resources/capability.json": {
+      "mode": 420,
+      "sha256": "eee98af58c9f9c9de6c69f6a153c238ffb0d50df819a7080e26970fbeace4f23"
+    },
+    ".grok/skills/codebase-health-audit/resources/cruft-report": {
+      "mode": 420,
+      "sha256": "21d8afe3d730c78be3a41d92bce78dd230fbb6debe452e2e885e59314e0107ce"
+    },
+    ".grok/skills/codebase-health-audit/resources/cruft_report.py": {
+      "mode": 420,
+      "sha256": "4ad1c326447eeccc9a6f6abd1c39ac75716c8754278d89879d5f7df579d547d6"
+    },
+    ".grok/skills/converge/SKILL.md": {
+      "mode": 420,
+      "sha256": "d66205a626de4139447be4cf3d3ae809f16882fa303fe23740660a5f041f8a04"
+    },
+    ".grok/skills/converge/resources/capability.json": {
+      "mode": 420,
+      "sha256": "15afb6a1c8cc106539787e50b0b9fbfd87a8556e54412750c4dad96ed2d5d7d1"
+    },
+    ".grok/skills/demo-recorder/SKILL.md": {
+      "mode": 420,
+      "sha256": "99ccd7276cf84a904f842dbb66ff9f5c6d023d915ce28bcdfc516a52af5fd8ad"
+    },
+    ".grok/skills/demo-recorder/resources/capability.json": {
+      "mode": 420,
+      "sha256": "4fa1ad9ec568fe26e3ed0f33e3cdc679ef2669aa33967780fba5e85399646de2"
+    },
+    ".grok/skills/docs-review-expert/SKILL.md": {
+      "mode": 420,
+      "sha256": "baf047981c76ccd29fc72bb439205fead246da6ec26de9d9a63c09407a1a2a3b"
+    },
+    ".grok/skills/docs-review-expert/resources/capability.json": {
+      "mode": 420,
+      "sha256": "2bd74e84e85587af991d191ab4cff9e7be08806e5e498e78b6fe9b622af77726"
+    },
+    ".grok/skills/dynamic-html-presentations/SKILL.md": {
+      "mode": 420,
+      "sha256": "a0840ad3502070900526205eea11c2c2f212b0486f41efa4916d5053ea38e8d7"
+    },
+    ".grok/skills/dynamic-html-presentations/resources/capability.json": {
+      "mode": 420,
+      "sha256": "26f2c2f1f563840d0e3dbb175b06746f51629067b80f6b00051983997aeb8ace"
+    },
+    ".grok/skills/dynamic-html-presentations/resources/example.html": {
+      "mode": 420,
+      "sha256": "e9b6c64b18ecd14084ea9d9b3b3d17f231aed6ed5bc8b49d0731fa90c4d1518a"
+    },
+    ".grok/skills/dynamic-html-presentations/resources/export_slides.swift": {
+      "mode": 420,
+      "sha256": "c14ba219035bd04d28233af5aa36b5af5272255d886abb489ec24e391415f750"
+    },
+    ".grok/skills/dynamic-html-presentations/resources/images_to_pptx.py": {
+      "mode": 420,
+      "sha256": "c3ae776e1868e3894809de63a53e3c37263bfdc1a10ca50e96cc047e7280ea98"
+    },
+    ".grok/skills/eng-report/SKILL.md": {
+      "mode": 420,
+      "sha256": "881d964c903b6cfaec12b151744084579037c79f5b43c956a64295a2b2087e36"
+    },
+    ".grok/skills/eng-report/resources/capability.json": {
+      "mode": 420,
+      "sha256": "e8a56790ecff7eb3de9966610ef9f5f07b4c3008b6f45aa6fc4384e761ebb1fc"
+    },
+    ".grok/skills/engos-audit-opex-incident-review/SKILL.md": {
+      "mode": 420,
+      "sha256": "b94cc3c9ddee8b06af9c8469b05f4aeb1521845e1ae50384de09aa0e4dba115d"
+    },
+    ".grok/skills/engos-audit-opex-incident-review/resources/capability.json": {
+      "mode": 420,
+      "sha256": "640959baa92bde367b589b5dab5e163ac5ecf0efebd3726164feeeaf8dff8d86"
+    },
+    ".grok/skills/engos-audit-opex-incident-review/resources/opex_digest.py": {
+      "mode": 420,
+      "sha256": "d6933b3bf32a23e3c1bfc332c4c63e1ac9f6efa6460ec2bf0a1de96b8bfbbe71"
+    },
+    ".grok/skills/engos-audit-opex-incident-review/resources/snapshot.schema.json": {
+      "mode": 420,
+      "sha256": "dcf64986163e0ad096a396bfd1b9968f7f11749481724898e37a6698d16237df"
+    },
+    ".grok/skills/feature-status/SKILL.md": {
+      "mode": 420,
+      "sha256": "56a270f09cc66713347d9ee11b0142c6e10cb6c180441724f747de656588566a"
+    },
+    ".grok/skills/feature-status/resources/capability.json": {
+      "mode": 420,
+      "sha256": "5137da45e9010c4b0f09f6dbd6afcd994a617355f706d588119d0ae25b4a3ca5"
+    },
+    ".grok/skills/gitops-review/SKILL.md": {
+      "mode": 420,
+      "sha256": "b1e6d2d65f1d8ed30a688c6cb26bb458fb47a48e766fea48338b0aef6cdfa542"
+    },
+    ".grok/skills/gitops-review/resources/capability.json": {
+      "mode": 420,
+      "sha256": "2b13e055033eb034297b6a36e3e4c6296e077ad2f6ee065e25bd1bff3c93795e"
+    },
+    ".grok/skills/ic-assistant/SKILL.md": {
+      "mode": 420,
+      "sha256": "3f502b69a07221f8d5d0f340c11ab920198f655eb3fe5cdd594fe716fca76688"
+    },
+    ".grok/skills/ic-assistant/resources/appian-incident-runbook.md": {
+      "mode": 420,
+      "sha256": "6f765b332cdb59352d9a58486e0e22355bae786d57f0717ddf0f200d508aa2d8"
+    },
+    ".grok/skills/ic-assistant/resources/capability.json": {
+      "mode": 420,
+      "sha256": "09a7f302181862bf91e1b4088886589554dc757f0d2e41dc4151188161f4df85"
+    },
+    ".grok/skills/instruction-editor/SKILL.md": {
+      "mode": 420,
+      "sha256": "fedb0602ebb9228c383cb1c39cd23d46eead60fca3b7a83d302b6a91122e3436"
+    },
+    ".grok/skills/instruction-editor/resources/capability.json": {
+      "mode": 420,
+      "sha256": "3f6cbc3252d940564c4ecf7b0ead69d4add096afc4d7e11f59604ef0db5f42c0"
+    },
+    ".grok/skills/instruction-editor/resources/references/instruction-clarity.md": {
+      "mode": 420,
+      "sha256": "cfd61f749bd1dcf07a56a10f36fce091a17d8e9b63b70836fecea8d8a9f63b61"
+    },
+    ".grok/skills/pitch/SKILL.md": {
+      "mode": 420,
+      "sha256": "96652f0206e027e35289ed8a69f7ff62501ce7c0c9ef6e8337ac805038670650"
+    },
+    ".grok/skills/pitch/resources/capability.json": {
+      "mode": 420,
+      "sha256": "f6b93b24f546a15641fb39012ad3f68d7845ec6376ff07a0b59fa37986eb4795"
+    },
+    ".grok/skills/plan-to-goal-design/SKILL.md": {
+      "mode": 420,
+      "sha256": "aad53115445c677d88b5814a4d71c53a48f65a60f2e18dac7e32976e64d2abb0"
+    },
+    ".grok/skills/plan-to-goal-design/resources/adapters/hosts.json": {
+      "mode": 420,
+      "sha256": "3e56e00f7ce2e776b1c70e1f693151efade433dbfbd4323d70449ca20c553048"
+    },
+    ".grok/skills/plan-to-goal-design/resources/capability.json": {
+      "mode": 420,
+      "sha256": "4e1bf6178458f3c5393fbc63a58dbcbd13a13db02336ca8150344583e1667904"
+    },
+    ".grok/skills/plan-to-goal-design/resources/goal-lint": {
+      "mode": 420,
+      "sha256": "ae126fc5b1d7ad655a0ebc4aa79edc95b93b1f674a7bfac27b319d198619191d"
+    },
+    ".grok/skills/plan-to-goal-design/resources/references/evidence.md": {
+      "mode": 420,
+      "sha256": "1a0985e59bf9036554f45264b4c326385d487fc7895d2f50270464327586ab57"
+    },
+    ".grok/skills/plan-to-goal-design/resources/references/goal-authoring.md": {
+      "mode": 420,
+      "sha256": "ed998401b88da54e776a019eb6ea3c7e948cab83d8224d3c8e82e03849707c30"
+    },
+    ".grok/skills/plan-to-goal-design/resources/references/goal-design-lessons.md": {
+      "mode": 420,
+      "sha256": "583c6d8b46aaf227bf43aaf0de4105b7d06d670b90f325e1c11bc517d2ec4637"
+    },
+    ".grok/skills/plan-to-goal-design/resources/references/verifier-trust.md": {
+      "mode": 420,
+      "sha256": "fef011ae0cf7c47ad1b3ce6393983b25e06849d6aa4e4b81240037ddd246606a"
+    },
+    ".grok/skills/plan-to-goal-design/resources/schemas/packet.schema.json": {
+      "mode": 420,
+      "sha256": "3248411d95ac5c5b42a376ba9a352761f1b89fa8db6459093f988a0096c3efbc"
+    },
+    ".grok/skills/plan-to-goal-design/resources/scripts/criterion_flip.py": {
+      "mode": 420,
+      "sha256": "c3fb05ff903f0bc4390cfdded79caf8ab4180933f6c3d6798451a90bdb59541d"
+    },
+    ".grok/skills/plan-to-goal-design/resources/scripts/goal_packet.py": {
+      "mode": 420,
+      "sha256": "dacff09aabd973852829bd8c3ea4a77ac8469299be4c1fb126eaf4eca6237c2b"
+    },
+    ".grok/skills/plan-to-goal-design/resources/templates/baseline.json.tmpl": {
+      "mode": 420,
+      "sha256": "9e7f0bc3e95d10655e87fa43f05638dfb5fa2c5515631dd1828e19bb97371dfa"
+    },
+    ".grok/skills/plan-to-goal-design/resources/templates/criterion-flips.json.tmpl": {
+      "mode": 420,
+      "sha256": "7bd2fd326fa9f94e955c1a7c8ddde21a7fa67c9f03cb78893c0103633bb1a874"
+    },
+    ".grok/skills/plan-to-goal-design/resources/templates/goal.txt.tmpl": {
+      "mode": 420,
+      "sha256": "ce0eb16dafabe54b658c1dceeb242ddb549aa9593bcd2b2d010aa0a4555f2001"
+    },
+    ".grok/skills/plan-to-goal-design/resources/templates/judge-amendments.json.tmpl": {
+      "mode": 420,
+      "sha256": "adb989a6d8ddecf527a778fe168bcfcaab2ec8f8777ea10edff19a10c2008793"
+    },
+    ".grok/skills/plan-to-goal-design/resources/templates/packet.json.tmpl": {
+      "mode": 420,
+      "sha256": "b8f09376bfbde81a4476122db20cbf1191b067bf1f120d546af80d2fd2936687"
+    },
+    ".grok/skills/plan-to-goal-design/resources/templates/receipt.json.tmpl": {
+      "mode": 420,
+      "sha256": "9e93d1ac697c713a337cc8bef4af1eefd531fa4c6e7f1284944b5ce2a8a725ff"
+    },
+    ".grok/skills/plan-to-goal-design/resources/templates/spec.md.tmpl": {
+      "mode": 420,
+      "sha256": "745dcc9066d548e74acc3da842b843c91858b2438588aac4e79e57fb7aeaf21d"
+    },
+    ".grok/skills/pulse/SKILL.md": {
+      "mode": 420,
+      "sha256": "61c130884dd0f85643334465c342287c9dabc01abdf61862651ac44b3382816a"
+    },
+    ".grok/skills/pulse/resources/capability.json": {
+      "mode": 420,
+      "sha256": "6f908e49390a64362f1d9664cb1d576f5e8562da5399541b7e50ddc059cbab4b"
+    },
+    ".grok/skills/resolve-conflict/SKILL.md": {
+      "mode": 420,
+      "sha256": "ef3e86580f3a2c237bc8951c4f976aa307b6bc97a251cb35e87b4b1a6d606d67"
+    },
+    ".grok/skills/resolve-conflict/resources/capability.json": {
+      "mode": 420,
+      "sha256": "e0599401d2f122fdf9933630b965ec752e3f747974aa1c9d735356f3d2d30f32"
+    },
+    ".grok/skills/supercharge/SKILL.md": {
+      "mode": 420,
+      "sha256": "c4169a4e218702a81ae51998a2b911d8d55c71eb47db9625a0e967a3da5dc353"
+    },
+    ".grok/skills/supercharge/resources/capability.json": {
+      "mode": 420,
+      "sha256": "e7bc5ca9f316fb1fe252fdffcf7a7be762ddd32c0cc89d546fcc5dcb347c454f"
+    },
+    ".grok/skills/testing/SKILL.md": {
+      "mode": 420,
+      "sha256": "713228dc4728994046774074e48c074730638ca35f6152198a08419567fc7bd6"
+    },
+    ".grok/skills/testing/resources/capability.json": {
+      "mode": 420,
+      "sha256": "bea276628f5e4b70c643718bcc56b1135f119dcad2a7bdde803043eb4e55a205"
+    },
+    ".grok/skills/threader/SKILL.md": {
+      "mode": 420,
+      "sha256": "6595acf60439bb771208c0e6d76ac46cc613cd5a3f5d66fa1fb3ec2963969ac0"
+    },
+    ".grok/skills/threader/resources/capability.json": {
+      "mode": 420,
+      "sha256": "069d9552009b6672eb49bd5e2ebd0832b77c006ca6b8e6fc527f8ef050a4f362"
+    },
+    ".grok/skills/uac-import/SKILL.md": {
+      "mode": 420,
+      "sha256": "c6a11cb17363bdf2c204a295cc7b2d311ff8b5cd70346ec23e6d3875ada83e8c"
+    },
+    ".grok/skills/uac-import/resources/capability.json": {
+      "mode": 420,
+      "sha256": "132cf312d98eba74db285bca7f0909dc40075b043f0d620a5dc98aff249cea6a"
+    },
+    ".grok/skills/weekly-intel/SKILL.md": {
+      "mode": 420,
+      "sha256": "ee24d30bf4a8d9149ca859a4dcd42e94e4561fa319b515e9f21bd4f48baad263"
+    },
+    ".grok/skills/weekly-intel/resources/capability.json": {
+      "mode": 420,
+      "sha256": "bf53e788d360f1d3a6f168e65aa6db11b491f9ee86957a678658510920a2d254"
+    },
+    ".kiro/agents/architecture.json": {
+      "mode": 420,
+      "sha256": "014edc3fa521d6ff4bead901f6ca5d06f47a1b2c2d4c3fb76950b2e5c759800f"
+    },
+    ".kiro/agents/auto-research.json": {
+      "mode": 420,
+      "sha256": "d9275f15b0cd5e12094c64c7951b86c57a0177506a927b382b98257e76d9bb00"
+    },
+    ".kiro/agents/batman.json": {
+      "mode": 420,
+      "sha256": "27b54a2f890d0d639e073ddcc6a0702ca3292bad37c1866247cccdca2e9f189f"
+    },
+    ".kiro/agents/converge.json": {
+      "mode": 420,
+      "sha256": "eb36564ab957748b52b403f869ce26fea9bae50db896752e141ccdef6a9db422"
+    },
+    ".kiro/agents/docs-review-expert.json": {
+      "mode": 420,
+      "sha256": "3841165c58a888198a83f1b179af3b7cbb31b1acde004e6f650a266fcd55f3f3"
+    },
+    ".kiro/agents/gitops-review.json": {
+      "mode": 420,
+      "sha256": "4854c57ce95b1d8dfa2d627893c3024f9579cbc194f21d04d489011b82dbde02"
+    },
+    ".kiro/agents/ic-assistant.json": {
+      "mode": 420,
+      "sha256": "f3e72ef7a21ea8a0a859a06a58417971e8898b8019390d66dee78536d92c225e"
+    },
+    ".kiro/agents/pitch.json": {
+      "mode": 420,
+      "sha256": "f63496f26f11c7e20d05d2b5adf4dded7e5be20231cb03a9e279668daa0458e4"
+    },
+    ".kiro/agents/pulse.json": {
+      "mode": 420,
+      "sha256": "220be0c837aa282c9235618531020f25f8962601551f143d859e90d0bd4e370f"
+    },
+    ".kiro/agents/resources/architecture/capability.json": {
+      "mode": 420,
+      "sha256": "f4a409263aef0e023c625acb5e9d833dc3cd973e2fe4b4f141ec0ee47f5c282a"
+    },
+    ".kiro/agents/resources/auto-research/bootstrap.py": {
+      "mode": 420,
+      "sha256": "28f8bf54916ad9ad786a8ad98e8d53e431e2ece0fe41201c80cf80355e6d6398"
+    },
+    ".kiro/agents/resources/auto-research/capability.json": {
+      "mode": 420,
+      "sha256": "cba847fe338f2e381d689cd21e8719bdacac6bda2d84c5a4824efa2405b92f86"
+    },
+    ".kiro/agents/resources/auto-research/templates/experiment-ledger.md.tmpl": {
+      "mode": 420,
+      "sha256": "05296c9a93b00c34edfadc507a008c8940e2d5599de3e394908e47571071a7dc"
+    },
+    ".kiro/agents/resources/auto-research/templates/goal-contract.md.tmpl": {
+      "mode": 420,
+      "sha256": "ad151eed554870699e90613a7a1f93eb083a1e5827da74ce6fbc300d3efdb6a6"
+    },
+    ".kiro/agents/resources/auto-research/templates/promotion-packet.md.tmpl": {
+      "mode": 420,
+      "sha256": "baa7a3d81d84cecfa2cc5374e7777b7a196a232b419132b4f7284bfc58b33c77"
+    },
+    ".kiro/agents/resources/auto-research/templates/scorecard.json.tmpl": {
+      "mode": 420,
+      "sha256": "a905e3211e3001698debf4a5bfd9cb45e5c493b3fb29f91e5bad8d69771a243e"
+    },
+    ".kiro/agents/resources/batman/capability.json": {
+      "mode": 420,
+      "sha256": "f2ca651313f2cddab6a3d92c8d81876931e541094efd157bdace4280617bd116"
+    },
+    ".kiro/agents/resources/converge/capability.json": {
+      "mode": 420,
+      "sha256": "15afb6a1c8cc106539787e50b0b9fbfd87a8556e54412750c4dad96ed2d5d7d1"
+    },
+    ".kiro/agents/resources/docs-review-expert/capability.json": {
+      "mode": 420,
+      "sha256": "2bd74e84e85587af991d191ab4cff9e7be08806e5e498e78b6fe9b622af77726"
+    },
+    ".kiro/agents/resources/gitops-review/capability.json": {
+      "mode": 420,
+      "sha256": "2b13e055033eb034297b6a36e3e4c6296e077ad2f6ee065e25bd1bff3c93795e"
+    },
+    ".kiro/agents/resources/ic-assistant/appian-incident-runbook.md": {
+      "mode": 420,
+      "sha256": "6f765b332cdb59352d9a58486e0e22355bae786d57f0717ddf0f200d508aa2d8"
+    },
+    ".kiro/agents/resources/ic-assistant/capability.json": {
+      "mode": 420,
+      "sha256": "09a7f302181862bf91e1b4088886589554dc757f0d2e41dc4151188161f4df85"
+    },
+    ".kiro/agents/resources/pitch/capability.json": {
+      "mode": 420,
+      "sha256": "f6b93b24f546a15641fb39012ad3f68d7845ec6376ff07a0b59fa37986eb4795"
+    },
+    ".kiro/agents/resources/pulse/capability.json": {
+      "mode": 420,
+      "sha256": "6f908e49390a64362f1d9664cb1d576f5e8562da5399541b7e50ddc059cbab4b"
+    },
+    ".kiro/agents/resources/supercharge/capability.json": {
+      "mode": 420,
+      "sha256": "e7bc5ca9f316fb1fe252fdffcf7a7be762ddd32c0cc89d546fcc5dcb347c454f"
+    },
+    ".kiro/agents/resources/weekly-intel/capability.json": {
+      "mode": 420,
+      "sha256": "bf53e788d360f1d3a6f168e65aa6db11b491f9ee86957a678658510920a2d254"
+    },
+    ".kiro/agents/supercharge.json": {
+      "mode": 420,
+      "sha256": "c5f88679a078e380604f82054d84be1517cd869aef11caa893c1da9372638fa2"
+    },
+    ".kiro/agents/weekly-intel.json": {
+      "mode": 420,
+      "sha256": "1f16c0344c691d4e5ec4492a849e62e050d79f9ff7098019d76d03a3d077de82"
+    },
+    ".kiro/skills/address-code-review/SKILL.md": {
+      "mode": 420,
+      "sha256": "c2bc8a440d0e01dc79db4692ed6ae21259fe9340af2b05fe711711dd3cc875b4"
+    },
+    ".kiro/skills/address-code-review/resources/capability.json": {
+      "mode": 420,
+      "sha256": "4dfea248f8699c60ce840426f93db5210d20dd2becaaaa2b1926b0912149ea16"
+    },
+    ".kiro/skills/analyze-context/SKILL.md": {
+      "mode": 420,
+      "sha256": "29bb1410bdef7ffbe20127366783b543daa90e5449ea93ad429e886f08737f0e"
+    },
+    ".kiro/skills/analyze-context/resources/capability.json": {
+      "mode": 420,
+      "sha256": "550d7e60759915efa59d805503bcf149a276e535c8b97bdbd9f32adbce04f37f"
+    },
+    ".kiro/skills/analyze-context/resources/state_store.py": {
+      "mode": 420,
+      "sha256": "f0c6a6d56194185df8b5c8426c53365234c4664425faa516714a5b45b86f976e"
+    },
+    ".kiro/skills/architecture/SKILL.md": {
+      "mode": 420,
+      "sha256": "9474e9c1ca374de8a9351931db750fa8201439bdaf284fc01fcb0e54acb51ab5"
+    },
+    ".kiro/skills/architecture/resources/capability.json": {
+      "mode": 420,
+      "sha256": "f4a409263aef0e023c625acb5e9d833dc3cd973e2fe4b4f141ec0ee47f5c282a"
+    },
+    ".kiro/skills/auto-research/SKILL.md": {
+      "mode": 420,
+      "sha256": "00633b8b1cb33eb07ff7ba3ffbef6e42389cbedc1bb7ed50c3150a29a69dba1c"
+    },
+    ".kiro/skills/auto-research/resources/bootstrap.py": {
+      "mode": 420,
+      "sha256": "28f8bf54916ad9ad786a8ad98e8d53e431e2ece0fe41201c80cf80355e6d6398"
+    },
+    ".kiro/skills/auto-research/resources/capability.json": {
+      "mode": 420,
+      "sha256": "cba847fe338f2e381d689cd21e8719bdacac6bda2d84c5a4824efa2405b92f86"
+    },
+    ".kiro/skills/auto-research/resources/templates/experiment-ledger.md.tmpl": {
+      "mode": 420,
+      "sha256": "05296c9a93b00c34edfadc507a008c8940e2d5599de3e394908e47571071a7dc"
+    },
+    ".kiro/skills/auto-research/resources/templates/goal-contract.md.tmpl": {
+      "mode": 420,
+      "sha256": "ad151eed554870699e90613a7a1f93eb083a1e5827da74ce6fbc300d3efdb6a6"
+    },
+    ".kiro/skills/auto-research/resources/templates/promotion-packet.md.tmpl": {
+      "mode": 420,
+      "sha256": "baa7a3d81d84cecfa2cc5374e7777b7a196a232b419132b4f7284bfc58b33c77"
+    },
+    ".kiro/skills/auto-research/resources/templates/scorecard.json.tmpl": {
+      "mode": 420,
+      "sha256": "a905e3211e3001698debf4a5bfd9cb45e5c493b3fb29f91e5bad8d69771a243e"
+    },
+    ".kiro/skills/batman/SKILL.md": {
+      "mode": 420,
+      "sha256": "87e11fe591b228be257258e6606ba24489562ee4380afb7ee7caf9e181716f00"
+    },
+    ".kiro/skills/batman/resources/capability.json": {
+      "mode": 420,
+      "sha256": "f2ca651313f2cddab6a3d92c8d81876931e541094efd157bdace4280617bd116"
+    },
+    ".kiro/skills/code-review/SKILL.md": {
+      "mode": 420,
+      "sha256": "0fb1c2c25cc423ad8e7e04d89c4a7bf2c69a32df33a961b2b18e75215ae074e3"
+    },
+    ".kiro/skills/code-review/resources/capability.json": {
+      "mode": 420,
+      "sha256": "c4b5689e7fff19215a04a8bb78dc3724c5ab282a27e0abfeacbd3756812681c4"
+    },
+    ".kiro/skills/codebase-health-audit/SKILL.md": {
+      "mode": 420,
+      "sha256": "166d70c3257aff3dbd35b17d610b876111e9717c87058b3f3765468db384e622"
+    },
+    ".kiro/skills/codebase-health-audit/resources/capability.json": {
+      "mode": 420,
+      "sha256": "eee98af58c9f9c9de6c69f6a153c238ffb0d50df819a7080e26970fbeace4f23"
+    },
+    ".kiro/skills/codebase-health-audit/resources/cruft-report": {
+      "mode": 420,
+      "sha256": "21d8afe3d730c78be3a41d92bce78dd230fbb6debe452e2e885e59314e0107ce"
+    },
+    ".kiro/skills/codebase-health-audit/resources/cruft_report.py": {
+      "mode": 420,
+      "sha256": "4ad1c326447eeccc9a6f6abd1c39ac75716c8754278d89879d5f7df579d547d6"
+    },
+    ".kiro/skills/converge/SKILL.md": {
+      "mode": 420,
+      "sha256": "d66205a626de4139447be4cf3d3ae809f16882fa303fe23740660a5f041f8a04"
+    },
+    ".kiro/skills/converge/resources/capability.json": {
+      "mode": 420,
+      "sha256": "15afb6a1c8cc106539787e50b0b9fbfd87a8556e54412750c4dad96ed2d5d7d1"
+    },
+    ".kiro/skills/demo-recorder/SKILL.md": {
+      "mode": 420,
+      "sha256": "99ccd7276cf84a904f842dbb66ff9f5c6d023d915ce28bcdfc516a52af5fd8ad"
+    },
+    ".kiro/skills/demo-recorder/resources/capability.json": {
+      "mode": 420,
+      "sha256": "4fa1ad9ec568fe26e3ed0f33e3cdc679ef2669aa33967780fba5e85399646de2"
+    },
+    ".kiro/skills/docs-review-expert/SKILL.md": {
+      "mode": 420,
+      "sha256": "baf047981c76ccd29fc72bb439205fead246da6ec26de9d9a63c09407a1a2a3b"
+    },
+    ".kiro/skills/docs-review-expert/resources/capability.json": {
+      "mode": 420,
+      "sha256": "2bd74e84e85587af991d191ab4cff9e7be08806e5e498e78b6fe9b622af77726"
+    },
+    ".kiro/skills/dynamic-html-presentations/SKILL.md": {
+      "mode": 420,
+      "sha256": "a0840ad3502070900526205eea11c2c2f212b0486f41efa4916d5053ea38e8d7"
+    },
+    ".kiro/skills/dynamic-html-presentations/resources/capability.json": {
+      "mode": 420,
+      "sha256": "26f2c2f1f563840d0e3dbb175b06746f51629067b80f6b00051983997aeb8ace"
+    },
+    ".kiro/skills/dynamic-html-presentations/resources/example.html": {
+      "mode": 420,
+      "sha256": "e9b6c64b18ecd14084ea9d9b3b3d17f231aed6ed5bc8b49d0731fa90c4d1518a"
+    },
+    ".kiro/skills/dynamic-html-presentations/resources/export_slides.swift": {
+      "mode": 420,
+      "sha256": "c14ba219035bd04d28233af5aa36b5af5272255d886abb489ec24e391415f750"
+    },
+    ".kiro/skills/dynamic-html-presentations/resources/images_to_pptx.py": {
+      "mode": 420,
+      "sha256": "c3ae776e1868e3894809de63a53e3c37263bfdc1a10ca50e96cc047e7280ea98"
+    },
+    ".kiro/skills/eng-report/SKILL.md": {
+      "mode": 420,
+      "sha256": "881d964c903b6cfaec12b151744084579037c79f5b43c956a64295a2b2087e36"
+    },
+    ".kiro/skills/eng-report/resources/capability.json": {
+      "mode": 420,
+      "sha256": "e8a56790ecff7eb3de9966610ef9f5f07b4c3008b6f45aa6fc4384e761ebb1fc"
+    },
+    ".kiro/skills/engos-audit-opex-incident-review/SKILL.md": {
+      "mode": 420,
+      "sha256": "b94cc3c9ddee8b06af9c8469b05f4aeb1521845e1ae50384de09aa0e4dba115d"
+    },
+    ".kiro/skills/engos-audit-opex-incident-review/resources/capability.json": {
+      "mode": 420,
+      "sha256": "640959baa92bde367b589b5dab5e163ac5ecf0efebd3726164feeeaf8dff8d86"
+    },
+    ".kiro/skills/engos-audit-opex-incident-review/resources/opex_digest.py": {
+      "mode": 420,
+      "sha256": "d6933b3bf32a23e3c1bfc332c4c63e1ac9f6efa6460ec2bf0a1de96b8bfbbe71"
+    },
+    ".kiro/skills/engos-audit-opex-incident-review/resources/snapshot.schema.json": {
+      "mode": 420,
+      "sha256": "dcf64986163e0ad096a396bfd1b9968f7f11749481724898e37a6698d16237df"
+    },
+    ".kiro/skills/feature-status/SKILL.md": {
+      "mode": 420,
+      "sha256": "56a270f09cc66713347d9ee11b0142c6e10cb6c180441724f747de656588566a"
+    },
+    ".kiro/skills/feature-status/resources/capability.json": {
+      "mode": 420,
+      "sha256": "5137da45e9010c4b0f09f6dbd6afcd994a617355f706d588119d0ae25b4a3ca5"
+    },
+    ".kiro/skills/gitops-review/SKILL.md": {
+      "mode": 420,
+      "sha256": "b1e6d2d65f1d8ed30a688c6cb26bb458fb47a48e766fea48338b0aef6cdfa542"
+    },
+    ".kiro/skills/gitops-review/resources/capability.json": {
+      "mode": 420,
+      "sha256": "2b13e055033eb034297b6a36e3e4c6296e077ad2f6ee065e25bd1bff3c93795e"
+    },
+    ".kiro/skills/ic-assistant/SKILL.md": {
+      "mode": 420,
+      "sha256": "3f502b69a07221f8d5d0f340c11ab920198f655eb3fe5cdd594fe716fca76688"
+    },
+    ".kiro/skills/ic-assistant/resources/appian-incident-runbook.md": {
+      "mode": 420,
+      "sha256": "6f765b332cdb59352d9a58486e0e22355bae786d57f0717ddf0f200d508aa2d8"
+    },
+    ".kiro/skills/ic-assistant/resources/capability.json": {
+      "mode": 420,
+      "sha256": "09a7f302181862bf91e1b4088886589554dc757f0d2e41dc4151188161f4df85"
+    },
+    ".kiro/skills/instruction-editor/SKILL.md": {
+      "mode": 420,
+      "sha256": "fedb0602ebb9228c383cb1c39cd23d46eead60fca3b7a83d302b6a91122e3436"
+    },
+    ".kiro/skills/instruction-editor/resources/capability.json": {
+      "mode": 420,
+      "sha256": "3f6cbc3252d940564c4ecf7b0ead69d4add096afc4d7e11f59604ef0db5f42c0"
+    },
+    ".kiro/skills/instruction-editor/resources/references/instruction-clarity.md": {
+      "mode": 420,
+      "sha256": "cfd61f749bd1dcf07a56a10f36fce091a17d8e9b63b70836fecea8d8a9f63b61"
+    },
+    ".kiro/skills/pitch/SKILL.md": {
+      "mode": 420,
+      "sha256": "96652f0206e027e35289ed8a69f7ff62501ce7c0c9ef6e8337ac805038670650"
+    },
+    ".kiro/skills/pitch/resources/capability.json": {
+      "mode": 420,
+      "sha256": "f6b93b24f546a15641fb39012ad3f68d7845ec6376ff07a0b59fa37986eb4795"
+    },
+    ".kiro/skills/plan-to-goal-design/SKILL.md": {
+      "mode": 420,
+      "sha256": "aad53115445c677d88b5814a4d71c53a48f65a60f2e18dac7e32976e64d2abb0"
+    },
+    ".kiro/skills/plan-to-goal-design/resources/adapters/hosts.json": {
+      "mode": 420,
+      "sha256": "3e56e00f7ce2e776b1c70e1f693151efade433dbfbd4323d70449ca20c553048"
+    },
+    ".kiro/skills/plan-to-goal-design/resources/capability.json": {
+      "mode": 420,
+      "sha256": "4e1bf6178458f3c5393fbc63a58dbcbd13a13db02336ca8150344583e1667904"
+    },
+    ".kiro/skills/plan-to-goal-design/resources/goal-lint": {
+      "mode": 420,
+      "sha256": "ae126fc5b1d7ad655a0ebc4aa79edc95b93b1f674a7bfac27b319d198619191d"
+    },
+    ".kiro/skills/plan-to-goal-design/resources/references/evidence.md": {
+      "mode": 420,
+      "sha256": "1a0985e59bf9036554f45264b4c326385d487fc7895d2f50270464327586ab57"
+    },
+    ".kiro/skills/plan-to-goal-design/resources/references/goal-authoring.md": {
+      "mode": 420,
+      "sha256": "ed998401b88da54e776a019eb6ea3c7e948cab83d8224d3c8e82e03849707c30"
+    },
+    ".kiro/skills/plan-to-goal-design/resources/references/goal-design-lessons.md": {
+      "mode": 420,
+      "sha256": "583c6d8b46aaf227bf43aaf0de4105b7d06d670b90f325e1c11bc517d2ec4637"
+    },
+    ".kiro/skills/plan-to-goal-design/resources/references/verifier-trust.md": {
+      "mode": 420,
+      "sha256": "fef011ae0cf7c47ad1b3ce6393983b25e06849d6aa4e4b81240037ddd246606a"
+    },
+    ".kiro/skills/plan-to-goal-design/resources/schemas/packet.schema.json": {
+      "mode": 420,
+      "sha256": "3248411d95ac5c5b42a376ba9a352761f1b89fa8db6459093f988a0096c3efbc"
+    },
+    ".kiro/skills/plan-to-goal-design/resources/scripts/criterion_flip.py": {
+      "mode": 420,
+      "sha256": "c3fb05ff903f0bc4390cfdded79caf8ab4180933f6c3d6798451a90bdb59541d"
+    },
+    ".kiro/skills/plan-to-goal-design/resources/scripts/goal_packet.py": {
+      "mode": 420,
+      "sha256": "dacff09aabd973852829bd8c3ea4a77ac8469299be4c1fb126eaf4eca6237c2b"
+    },
+    ".kiro/skills/plan-to-goal-design/resources/templates/baseline.json.tmpl": {
+      "mode": 420,
+      "sha256": "9e7f0bc3e95d10655e87fa43f05638dfb5fa2c5515631dd1828e19bb97371dfa"
+    },
+    ".kiro/skills/plan-to-goal-design/resources/templates/criterion-flips.json.tmpl": {
+      "mode": 420,
+      "sha256": "7bd2fd326fa9f94e955c1a7c8ddde21a7fa67c9f03cb78893c0103633bb1a874"
+    },
+    ".kiro/skills/plan-to-goal-design/resources/templates/goal.txt.tmpl": {
+      "mode": 420,
+      "sha256": "ce0eb16dafabe54b658c1dceeb242ddb549aa9593bcd2b2d010aa0a4555f2001"
+    },
+    ".kiro/skills/plan-to-goal-design/resources/templates/judge-amendments.json.tmpl": {
+      "mode": 420,
+      "sha256": "adb989a6d8ddecf527a778fe168bcfcaab2ec8f8777ea10edff19a10c2008793"
+    },
+    ".kiro/skills/plan-to-goal-design/resources/templates/packet.json.tmpl": {
+      "mode": 420,
+      "sha256": "b8f09376bfbde81a4476122db20cbf1191b067bf1f120d546af80d2fd2936687"
+    },
+    ".kiro/skills/plan-to-goal-design/resources/templates/receipt.json.tmpl": {
+      "mode": 420,
+      "sha256": "9e93d1ac697c713a337cc8bef4af1eefd531fa4c6e7f1284944b5ce2a8a725ff"
+    },
+    ".kiro/skills/plan-to-goal-design/resources/templates/spec.md.tmpl": {
+      "mode": 420,
+      "sha256": "745dcc9066d548e74acc3da842b843c91858b2438588aac4e79e57fb7aeaf21d"
+    },
+    ".kiro/skills/pulse/SKILL.md": {
+      "mode": 420,
+      "sha256": "61c130884dd0f85643334465c342287c9dabc01abdf61862651ac44b3382816a"
+    },
+    ".kiro/skills/pulse/resources/capability.json": {
+      "mode": 420,
+      "sha256": "6f908e49390a64362f1d9664cb1d576f5e8562da5399541b7e50ddc059cbab4b"
+    },
+    ".kiro/skills/resolve-conflict/SKILL.md": {
+      "mode": 420,
+      "sha256": "ef3e86580f3a2c237bc8951c4f976aa307b6bc97a251cb35e87b4b1a6d606d67"
+    },
+    ".kiro/skills/resolve-conflict/resources/capability.json": {
+      "mode": 420,
+      "sha256": "e0599401d2f122fdf9933630b965ec752e3f747974aa1c9d735356f3d2d30f32"
+    },
+    ".kiro/skills/supercharge/SKILL.md": {
+      "mode": 420,
+      "sha256": "c4169a4e218702a81ae51998a2b911d8d55c71eb47db9625a0e967a3da5dc353"
+    },
+    ".kiro/skills/supercharge/resources/capability.json": {
+      "mode": 420,
+      "sha256": "e7bc5ca9f316fb1fe252fdffcf7a7be762ddd32c0cc89d546fcc5dcb347c454f"
+    },
+    ".kiro/skills/testing/SKILL.md": {
+      "mode": 420,
+      "sha256": "713228dc4728994046774074e48c074730638ca35f6152198a08419567fc7bd6"
+    },
+    ".kiro/skills/testing/resources/capability.json": {
+      "mode": 420,
+      "sha256": "bea276628f5e4b70c643718bcc56b1135f119dcad2a7bdde803043eb4e55a205"
+    },
+    ".kiro/skills/threader/SKILL.md": {
+      "mode": 420,
+      "sha256": "6595acf60439bb771208c0e6d76ac46cc613cd5a3f5d66fa1fb3ec2963969ac0"
+    },
+    ".kiro/skills/threader/resources/capability.json": {
+      "mode": 420,
+      "sha256": "069d9552009b6672eb49bd5e2ebd0832b77c006ca6b8e6fc527f8ef050a4f362"
+    },
+    ".kiro/skills/uac-import/SKILL.md": {
+      "mode": 420,
+      "sha256": "c6a11cb17363bdf2c204a295cc7b2d311ff8b5cd70346ec23e6d3875ada83e8c"
+    },
+    ".kiro/skills/uac-import/resources/capability.json": {
+      "mode": 420,
+      "sha256": "132cf312d98eba74db285bca7f0909dc40075b043f0d620a5dc98aff249cea6a"
+    },
+    ".kiro/skills/weekly-intel/SKILL.md": {
+      "mode": 420,
+      "sha256": "ee24d30bf4a8d9149ca859a4dcd42e94e4561fa319b515e9f21bd4f48baad263"
+    },
+    ".kiro/skills/weekly-intel/resources/capability.json": {
+      "mode": 420,
+      "sha256": "bf53e788d360f1d3a6f168e65aa6db11b491f9ee86957a678658510920a2d254"
+    },
+    ".kiro/steering/README.md": {
+      "mode": 420,
+      "sha256": "4cd091235a533ab9123c4b740f46cdcd485e38e6c26850f8186842854693f3e8"
+    },
+    ".kiro/steering/agent-behavior.md": {
+      "mode": 420,
+      "sha256": "c9148894d7278f63ba3b03a1843ca9c9fa202d7f64924d3b7c4c2e46d861c311"
+    },
+    ".kiro/steering/docs-governance.md": {
+      "mode": 420,
+      "sha256": "15dfce1cdcbf8f9522a86166593e34fe8094513d8f15a7730b2ba27858b798f8"
+    },
+    ".kiro/steering/repo-workflow.md": {
+      "mode": 420,
+      "sha256": "2abff3dd20992b1f729a3b9ddd3ab999e66bf4d972a3bf9f3c448e20d39f245c"
+    },
+    ".meta/capabilities/address-code-review.json": {
+      "mode": 420,
+      "sha256": "4dfea248f8699c60ce840426f93db5210d20dd2becaaaa2b1926b0912149ea16"
+    },
+    ".meta/capabilities/analyze-context.json": {
+      "mode": 420,
+      "sha256": "550d7e60759915efa59d805503bcf149a276e535c8b97bdbd9f32adbce04f37f"
+    },
+    ".meta/capabilities/architecture.json": {
+      "mode": 420,
+      "sha256": "f4a409263aef0e023c625acb5e9d833dc3cd973e2fe4b4f141ec0ee47f5c282a"
+    },
+    ".meta/capabilities/architecture.sources.md": {
+      "mode": 420,
+      "sha256": "2c1a229cc1a25e3108a4aa0f742ee54452c17ee7fd6ce875fff404627ba3805f"
+    },
+    ".meta/capabilities/auto-research.json": {
+      "mode": 420,
+      "sha256": "cba847fe338f2e381d689cd21e8719bdacac6bda2d84c5a4824efa2405b92f86"
+    },
+    ".meta/capabilities/auto-research.sources.md": {
+      "mode": 420,
+      "sha256": "683c81f16c42b2b86bec4d784f930a9fa44c430156b91c948c9b9990cfcfb7ab"
+    },
+    ".meta/capabilities/batman.json": {
+      "mode": 420,
+      "sha256": "f2ca651313f2cddab6a3d92c8d81876931e541094efd157bdace4280617bd116"
+    },
+    ".meta/capabilities/code-review.json": {
+      "mode": 420,
+      "sha256": "c4b5689e7fff19215a04a8bb78dc3724c5ab282a27e0abfeacbd3756812681c4"
+    },
+    ".meta/capabilities/codebase-health-audit.json": {
+      "mode": 420,
+      "sha256": "eee98af58c9f9c9de6c69f6a153c238ffb0d50df819a7080e26970fbeace4f23"
+    },
+    ".meta/capabilities/converge.json": {
+      "mode": 420,
+      "sha256": "15afb6a1c8cc106539787e50b0b9fbfd87a8556e54412750c4dad96ed2d5d7d1"
+    },
+    ".meta/capabilities/demo-recorder.json": {
+      "mode": 420,
+      "sha256": "4fa1ad9ec568fe26e3ed0f33e3cdc679ef2669aa33967780fba5e85399646de2"
+    },
+    ".meta/capabilities/docs-review-expert.json": {
+      "mode": 420,
+      "sha256": "2bd74e84e85587af991d191ab4cff9e7be08806e5e498e78b6fe9b622af77726"
+    },
+    ".meta/capabilities/dynamic-html-presentations.json": {
+      "mode": 420,
+      "sha256": "26f2c2f1f563840d0e3dbb175b06746f51629067b80f6b00051983997aeb8ace"
+    },
+    ".meta/capabilities/eng-report.json": {
+      "mode": 420,
+      "sha256": "e8a56790ecff7eb3de9966610ef9f5f07b4c3008b6f45aa6fc4384e761ebb1fc"
+    },
+    ".meta/capabilities/engos-audit-opex-incident-review.json": {
+      "mode": 420,
+      "sha256": "640959baa92bde367b589b5dab5e163ac5ecf0efebd3726164feeeaf8dff8d86"
+    },
+    ".meta/capabilities/feature-status.json": {
+      "mode": 420,
+      "sha256": "5137da45e9010c4b0f09f6dbd6afcd994a617355f706d588119d0ae25b4a3ca5"
+    },
+    ".meta/capabilities/gitops-review.json": {
+      "mode": 420,
+      "sha256": "2b13e055033eb034297b6a36e3e4c6296e077ad2f6ee065e25bd1bff3c93795e"
+    },
+    ".meta/capabilities/ic-assistant.json": {
+      "mode": 420,
+      "sha256": "09a7f302181862bf91e1b4088886589554dc757f0d2e41dc4151188161f4df85"
+    },
+    ".meta/capabilities/instruction-editor.json": {
+      "mode": 420,
+      "sha256": "3f6cbc3252d940564c4ecf7b0ead69d4add096afc4d7e11f59604ef0db5f42c0"
+    },
+    ".meta/capabilities/pitch.json": {
+      "mode": 420,
+      "sha256": "f6b93b24f546a15641fb39012ad3f68d7845ec6376ff07a0b59fa37986eb4795"
+    },
+    ".meta/capabilities/plan-to-goal-design.json": {
+      "mode": 420,
+      "sha256": "4e1bf6178458f3c5393fbc63a58dbcbd13a13db02336ca8150344583e1667904"
+    },
+    ".meta/capabilities/pulse.json": {
+      "mode": 420,
+      "sha256": "6f908e49390a64362f1d9664cb1d576f5e8562da5399541b7e50ddc059cbab4b"
+    },
+    ".meta/capabilities/pulse.sources.md": {
+      "mode": 420,
+      "sha256": "f8819dee7e2b887d57efad0b3280710952b75309fbef745454d16540676cfc80"
+    },
+    ".meta/capabilities/resolve-conflict.json": {
+      "mode": 420,
+      "sha256": "e0599401d2f122fdf9933630b965ec752e3f747974aa1c9d735356f3d2d30f32"
+    },
+    ".meta/capabilities/supercharge.json": {
+      "mode": 420,
+      "sha256": "e7bc5ca9f316fb1fe252fdffcf7a7be762ddd32c0cc89d546fcc5dcb347c454f"
+    },
+    ".meta/capabilities/testing.json": {
+      "mode": 420,
+      "sha256": "bea276628f5e4b70c643718bcc56b1135f119dcad2a7bdde803043eb4e55a205"
+    },
+    ".meta/capabilities/testing.sources.md": {
+      "mode": 420,
+      "sha256": "4bb60c2e27b3875234fa744c133cfc477aabe0f398b2ba73e63035976e11b310"
+    },
+    ".meta/capabilities/threader.json": {
+      "mode": 420,
+      "sha256": "069d9552009b6672eb49bd5e2ebd0832b77c006ca6b8e6fc527f8ef050a4f362"
+    },
+    ".meta/capabilities/uac-import.json": {
+      "mode": 420,
+      "sha256": "132cf312d98eba74db285bca7f0909dc40075b043f0d620a5dc98aff249cea6a"
+    },
+    ".meta/capabilities/weekly-intel.json": {
+      "mode": 420,
+      "sha256": "bf53e788d360f1d3a6f168e65aa6db11b491f9ee86957a678658510920a2d254"
+    },
+    ".meta/capability-handoff.json": {
+      "mode": 420,
+      "sha256": "46e4da7f5475c1022123ee4cede6e11daf55d721a2642bb9b81b6e7232649672"
+    },
+    ".meta/install-profiles/codex-kiro-grok.json": {
+      "mode": 420,
+      "sha256": "5ebe10a010c39c5b6842b2133597a7ff9c3bf130672636831488919b5a1acabe"
+    },
+    ".meta/manifest.json": {
+      "mode": 420,
+      "sha256": "e51eda53b00c5702c0c01e5633155bc412f7e74233efd3ad32d450e61ba76070"
+    },
+    "RELEASE_SOURCE.env": {
+      "mode": 420,
+      "sha256": "af73bd04c436591eeb2f199f7bf07f5e2604d82a556eae2db19e80de524e0980"
+    },
+    "VERSION": {
+      "mode": 420,
+      "sha256": "7dcf8edbcfdbe136fc3a6045af9b724d621dc8537a4e7cb73a08e01eaee1eecc"
+    },
+    "dist/consumer-shell/capability-catalog.json": {
+      "mode": 420,
+      "sha256": "130627bce6c0cf6e35b49913a1c34f4ddb68cf59de9a43a577a694580ebdc38e"
+    },
+    "dist/consumer-shell/release-delta.json": {
+      "mode": 420,
+      "sha256": "f936a837bb4291baff9a40e52449f2fbd2c4dbac1551c4ae42fd45676ca10a2b"
+    },
+    "dist/consumer-shell/status.json": {
+      "mode": 420,
+      "sha256": "b0f52f2c87d64f65c4e977bc83de8df75213f4bc8c4fdae04e757d887b257da3"
+    },
+    "scripts/deploy-copy-plan.py": {
+      "mode": 420,
+      "sha256": "8104dea557694062d9351008987d0058e2f60ad53add0923a2641598b81c7ab5"
+    },
+    "scripts/deploy-profile.py": {
+      "mode": 420,
+      "sha256": "0d53b88011caf675ab228876ceb867511b50f307b66c3d6f50b786ed8a4d2e54"
+    },
+    "scripts/deploy-surfaces.sh": {
+      "mode": 493,
+      "sha256": "149f67ef9ad3b493d03d3314486f7b6ea4c8d8612a7ad3ff4443ccab3b5dfddd"
+    },
+    "scripts/install-local.sh": {
+      "mode": 493,
+      "sha256": "a546b0e5453d28f7de8eaf81bbc926aceb0c85ff812953200d0501670b99af9e"
+    },
+    "scripts/install_bundle.py": {
+      "mode": 420,
+      "sha256": "cb7fefc1be2cf8bca6c390e4b74699c5abccdeceb783289e5a5f663fe7e5686c"
+    },
+    "scripts/register-codex-agents.py": {
+      "mode": 420,
+      "sha256": "938c8c36a696500476cb445a1a5f52fa7247e0a96dbcc219db7a97f1af23fb9c"
+    },
+    "scripts/update-core-prompts.py": {
+      "mode": 493,
+      "sha256": "eb818392abdbe0d4c01382b7bcbaf19e87e32abd59678b17f96076284baf4593"
+    },
+    "sources/ssot-baselines/README.md": {
+      "mode": 420,
+      "sha256": "ed4265f81e84890e62e74ad5ffb77e0562c89401b1aa54ef886398cd7889087e"
+    },
+    "sources/ssot-baselines/address-code-review/baseline.md": {
+      "mode": 420,
+      "sha256": "1b98697ba26198c8a9fa5f6e751917b91e8dcce8d87262277667688312020c5d"
+    },
+    "sources/ssot-baselines/analyze-context/baseline.md": {
+      "mode": 420,
+      "sha256": "a10237c998b8d45222cc62240a68c4f11c6f515823b98a55a6610f1bbce7f126"
+    },
+    "sources/ssot-baselines/architecture/baseline.md": {
+      "mode": 420,
+      "sha256": "b68b463312c76b971a9553b2dc7bf92a7bd6d5f66c3a841326c2012e1cd9cc48"
+    },
+    "sources/ssot-baselines/auto-research/baseline.md": {
+      "mode": 420,
+      "sha256": "758e7a7579d97620f2f0b4979e9a0841454c447cf7c22223249e7c377a3fd2d6"
+    },
+    "sources/ssot-baselines/code-review/baseline.md": {
+      "mode": 420,
+      "sha256": "3d69c961effabd6074d5bb90dd9c4546f61c2b5a2020ff1928de08bdd25448b7"
+    },
+    "sources/ssot-baselines/codebase-health-audit/baseline.md": {
+      "mode": 420,
+      "sha256": "1ffb301944263f68d4f796536d924574b9e51f10b9a5e2436d4644b7fa303234"
+    },
+    "sources/ssot-baselines/converge/baseline.md": {
+      "mode": 420,
+      "sha256": "2d836405d6df11ec0267f53a5ab4d74f020675b46296fe04ca72835464060cf1"
+    },
+    "sources/ssot-baselines/demo-recorder/baseline.md": {
+      "mode": 420,
+      "sha256": "a2474f56bcb530c850191ad48a78f0c7ed4d2f67620669e78ffaec307cdb9508"
+    },
+    "sources/ssot-baselines/docs-review-expert/baseline.md": {
+      "mode": 420,
+      "sha256": "b52adde380a5beb338a9426beb5e57420717516b1424eec75d9946e58804abeb"
+    },
+    "sources/ssot-baselines/dynamic-html-presentations/baseline.md": {
+      "mode": 420,
+      "sha256": "da45c3dd8143e2c1e74c8ad77f3b2b5b1fb311ba9579ab6b010cf28bc0fd2be6"
+    },
+    "sources/ssot-baselines/gitops-review/baseline.md": {
+      "mode": 420,
+      "sha256": "087c7156e2c9f140df3b9cd67076b2dbd2089dbda3a168044c8630e63893292d"
+    },
+    "sources/ssot-baselines/ic-assistant/baseline.md": {
+      "mode": 420,
+      "sha256": "6f765b332cdb59352d9a58486e0e22355bae786d57f0717ddf0f200d508aa2d8"
+    },
+    "sources/ssot-baselines/index.json": {
+      "mode": 420,
+      "sha256": "85b8ede9365a8dd5ccd140fbbd75f70eb7e6c971ef0c888125d233badba124bc"
+    },
+    "sources/ssot-baselines/pitch/baseline.md": {
+      "mode": 420,
+      "sha256": "2570975eae752eda8e9acb1227f478e4e25ae05f5e0d07ba1385a20ecb3a01d4"
+    },
+    "sources/ssot-baselines/pulse/baseline.md": {
+      "mode": 420,
+      "sha256": "fed9ca321d23eaedcdb9b4e49085e4b57a19c53996ed47af239ab1a70ceea793"
+    },
+    "sources/ssot-baselines/resolve-conflict/baseline.md": {
+      "mode": 420,
+      "sha256": "6141dcd4736ea4c174d64cc02a2c3e0bd902c4bff4f4d5acfc9e907742962b2d"
+    },
+    "sources/ssot-baselines/supercharge/baseline.md": {
+      "mode": 420,
+      "sha256": "488bc14a2fa4e3ce625adad07c98b2aa7a6af38d6ddbee64e182b2db82d9897a"
+    },
+    "sources/ssot-baselines/testing/baseline.md": {
+      "mode": 420,
+      "sha256": "7acc2fa2ece3dfaca073942f37dd8d8ff31aad1996ad58e8dd2be484db1122f1"
+    },
+    "sources/ssot-baselines/threader/baseline.md": {
+      "mode": 420,
+      "sha256": "7cf934b9b37029085f31f5b6709fa597f269c1b3ab7398cd8dd35a6b4fe86f3e"
+    },
+    "sources/ssot-baselines/uac-import/baseline.md": {
+      "mode": 420,
+      "sha256": "cb1f7429d00eaea306e753bbc9cadb7444177083886d4c5b393927ba9ca1b683"
+    }
+  },
+  "owner": "Core-Prompts",
+  "schema": 1
+}

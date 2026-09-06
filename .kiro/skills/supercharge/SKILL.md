@@ -810,4 +810,4 @@ Use this capability before:
 # End of SuperCharge v4.2
 
 
-Capability resource: `.kiro/skills/supercharge/resources/capability.json`
+Capability resource: `resources/capability.json`

@@ -541,4 +541,4 @@ When emitted as an agent:
 - Distinguish between pitches written before vs. after the architecture requirement (note it, don't penalize legacy pitches without context)
 
 
-Capability resource: `.kiro/skills/pitch/resources/capability.json`
+Capability resource: `resources/capability.json`
