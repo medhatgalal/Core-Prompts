@@ -348,3 +348,8 @@ Expected result:
 - Never call a candidate better because it is newer, shorter, or structurally valid.
 - Never claim formal behavioral promotion without the repository's independent, qualified, hash-bound evaluator evidence.
 - Preserve Amol's contribution attribution in canonical metadata and review materials.
+
+## Rules
+- Keep the capability reusable and deterministic.
+- Make boundaries, evidence, and review timing explicit.
+- Do not claim orchestration, delegation, or runtime-control authority.

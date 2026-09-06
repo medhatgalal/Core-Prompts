@@ -1,0 +1,18 @@
+{
+  "schema_version": "OpExMarkdownReplay.v1",
+  "evidence_class": "local deterministic regression",
+  "base": "8b1efb1ba05f272ddd437aa90f014091c5049861",
+  "bindings": {
+    "renderer_sha256": "d6933b3bf32a23e3c1bfc332c4c63e1ac9f6efa6460ec2bf0a1de96b8bfbbe71",
+    "current_fixture_sha256": "9086150b131643978dd40052bf344c580a2908510885716d7edb126401c902bf",
+    "previous_fixture_sha256": "d19e5e733dd393f279e8473ed77f3780574788c21dfcf2060d14996d2182ee35",
+    "candidate_sha256": "5906b9e3c8405546ef9d636873cd853c55a5083ae1c746af3f41156472b809c5"
+  },
+  "command": "python3.14 -m pytest -q tests/test_opex_incident_review.py -k 'not receipt'",
+  "checks": {
+    "passed": 20,
+    "failed": 0
+  },
+  "formal_behavioral_status": "behavioral_pending",
+  "scope": "Existing-field Markdown drilldowns only. No schema or HTML change. Historical reference-replay.json unchanged."
+}

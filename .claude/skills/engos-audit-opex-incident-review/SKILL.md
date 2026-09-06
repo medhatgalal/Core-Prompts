@@ -346,5 +346,10 @@ Expected result:
 - Never claim formal behavioral promotion without the repository's independent, qualified, hash-bound evaluator evidence.
 - Preserve Amol's contribution attribution in canonical metadata and review materials.
 
+## Rules
+- Keep the capability reusable and deterministic.
+- Make boundaries, evidence, and review timing explicit.
+- Do not claim orchestration, delegation, or runtime-control authority.
+
 
 Capability resource: `.claude/skills/engos-audit-opex-incident-review/resources/capability.json`
