@@ -66,6 +66,20 @@ How to think about that sequence:
 
 If `judge` finds the candidate is structurally close to ready but still needs bounded behavioral proof, keep the landing decision open and route that proof to `auto-research` before `apply`.
 
+## Update An Existing Capability
+
+An installed-skill improvement follows the same quality gate as an addition. Resolve its name to the current mainline `ssot/<slug>.md`, prepare a same-slug candidate in an isolated linked worktree, and review the UAC plan before applying it. A pending rename in another checkout is not the mainline name.
+
+```bash
+bin/uac plan reports/<run>/<slug>.md
+bin/uac judge reports/<run>/<slug>.md --emit-impact-plan
+bin/uac apply reports/<run>/<slug>.md --yes
+```
+
+The candidate starts from SSOT, preserving its canonical frontmatter. Helper edits belong in `sources/capability-resources/<slug>/`. Apply rebuilds surfaces; verify that its resulting SSOT preserves the reviewed body and existing metadata, including the current validation matrix; historical judge scenarios remain separate. A structural pass can remain `behavioral_pending`; it does not advance the historical baseline. Keep candidate and judge evidence through validation, then preserve useful results in the PR/MR and remove run scratch after landing.
+
+See [Maintainer hygiene](MAINTAINER-HYGIENE.md#delivering-a-change) for docs, exact-candidate checks on both hosts, merge parity, and cleanup. Changes to `AGENTS.md` and steering use that delivery path without pretending to be capability imports.
+
 ## Worked Examples
 
 ### Example: Plan A Landing Before You Touch Repo State

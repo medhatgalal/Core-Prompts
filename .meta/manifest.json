@@ -399,7 +399,8 @@
             "the canonical external state paths in use",
             "current progress state",
             "key findings accumulated so far",
-            "next item or next analysis action"
+            "next item or next analysis action",
+            "after a consolidation pass, before/after line and byte counts for each rewritten file, the trigger, and any evidence references retained; if footprint did not shrink, report that limitation rather than claiming reduction"
           ],
           "tool_policy": {
             "allowed": [
@@ -516,7 +517,7 @@
       "display_name": "Analyze Context \u2014 Durable Multi-File Investigation",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "analyze-context",
-      "shared_summary": "[Medhat] Iterative Analysis Workflow for multi-file processing",
+      "shared_summary": "Maintains repository-scoped durable state for long-running multi-file investigations. Use when evidence and progress must survive compaction, new sessions, branch changes, or worktree removal.",
       "shared_constraints": [
         "Canonical state must live outside every Git working tree and survive session, branch, or worktree removal.",
         "Branch and worktree paths are execution metadata, not task identity.",
@@ -544,7 +545,177 @@
         }
       ],
       "benchmark_sources": [],
+      "quality_profile": "default",
+      "quality_status": "structural_ready",
+      "judge_reports": [
+        {
+          "pass_number": 1,
+          "status": "structural_ready",
+          "historical_baseline": {
+            "slug": "analyze-context",
+            "strategy": "head_plus_invariants",
+            "group": "hybrid_additive",
+            "baseline_path": "sources/ssot-baselines/analyze-context/baseline.md",
+            "selected_commit": "4bb1f7e5",
+            "richness_score": 2,
+            "line_count": 133,
+            "reason": "Strongest additive body in history; keeps the durable memory workflow and adds explicit boundaries plus companion routing. Selected earlier operator-flow invariants must still survive future rewrites.",
+            "equivalent_commits": [],
+            "expected_companions": [
+              "converge",
+              "threader",
+              "code-review"
+            ],
+            "operator_invariants": [
+              "git status --short --branch",
+              "Process one item at a time.",
+              "After interruption or compaction:",
+              "<task>-context.md",
+              "<task>-todo.md",
+              "<task>-insights.md"
+            ],
+            "scenario_matrix": [
+              {
+                "id": "branch_and_memory_guardrails",
+                "kind": "individual_module",
+                "label": "branch safety and canonical memory files",
+                "must_contain": [
+                  "git status --short --branch",
+                  ".analyze-context-memory/",
+                  "<task>-context.md",
+                  "<task>-todo.md",
+                  "<task>-insights.md"
+                ]
+              },
+              {
+                "id": "recovery_loop",
+                "kind": "individual_module",
+                "label": "recovery and continuation loop",
+                "must_contain": [
+                  "Process one item at a time.",
+                  "After interruption or compaction:",
+                  "continue from the recorded next item instead of restarting from memory"
+                ]
+              },
+              {
+                "id": "operational_invocation",
+                "kind": "operational_contract",
+                "label": "operational invocation surface",
+                "must_contain": [
+                  "## Invocation"
+                ]
+              }
+            ],
+            "historical_proof": {
+              "current_head_commit": "4bb1f7e5",
+              "current_head_richness_score": 2,
+              "current_head_line_count": 134,
+              "materialized_from_commit": "4bb1f7e5"
+            },
+            "source": "source_library",
+            "verified_by_git_history": false,
+            "has_baseline_text": true
+          },
+          "judge_reports": [
+            {
+              "judge": "source_fidelity",
+              "title": "Source Fidelity and Uplift",
+              "score": 10,
+              "blockers": [],
+              "classification": "additive",
+              "scenario_results": [
+                {
+                  "id": "branch_and_memory_guardrails",
+                  "kind": "individual_module",
+                  "label": "branch safety and canonical memory files",
+                  "passed": true,
+                  "missing_markers": []
+                },
+                {
+                  "id": "recovery_loop",
+                  "kind": "individual_module",
+                  "label": "recovery and continuation loop",
+                  "passed": true,
+                  "missing_markers": []
+                },
+                {
+                  "id": "operational_invocation",
+                  "kind": "operational_contract",
+                  "label": "operational invocation surface",
+                  "passed": true,
+                  "missing_markers": []
+                },
+                {
+                  "id": "operator_invariants",
+                  "kind": "hybrid_invariants",
+                  "label": "historical operator invariants",
+                  "passed": true,
+                  "missing_markers": []
+                }
+              ],
+              "scorecard": {
+                "baseline_richness": 2,
+                "candidate_richness": 5,
+                "baseline_operational_score": 2,
+                "candidate_operational_score": 3,
+                "baseline_preserved_in_resource": false
+              },
+              "baseline_commit": "4bb1f7e5",
+              "baseline_slug": "analyze-context"
+            },
+            {
+              "judge": "operational_richness",
+              "title": "Operational Richness",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "metadata_integrity",
+              "title": "Metadata and Handoff Integrity",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "benchmark_readiness",
+              "title": "Benchmark Readiness and Template Fit",
+              "score": 10,
+              "blockers": [],
+              "scorecard": {
+                "title_clarity": 10,
+                "description_richness": 10,
+                "intent_coverage": 10,
+                "boundary_clarity": 10,
+                "output_specificity": 10,
+                "metadata_completeness": 8,
+                "surface_usability": 10
+              }
+            }
+          ],
+          "blockers": [],
+          "scorecard": {
+            "source_fidelity": 10,
+            "baseline_richness": 2,
+            "candidate_richness": 5,
+            "baseline_operational_score": 2,
+            "candidate_operational_score": 3,
+            "baseline_preserved_in_resource": false,
+            "operational_richness": 10,
+            "metadata_integrity": 10,
+            "benchmark_readiness": 10,
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 10,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          },
+          "template_name": "skill"
+        }
+      ],
       "consumption_hints": {},
+      "quality_pass_count": 1,
+      "quality_stop_reason": "thresholds_met",
       "declared_capability": "skill",
       "inferred_capability": "skill",
       "expected_surface_names": [

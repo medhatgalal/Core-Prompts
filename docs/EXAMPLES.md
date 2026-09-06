@@ -51,6 +51,21 @@ Follow with:
 
 > Now tell me the smallest reversible change worth making first.
 
+#### Consolidate An Active Task
+
+> This sub-effort is closed, but the investigation is still active. Consolidate its context and insights, preserve superseded decisions and their evidence, and report before/after sizes.
+
+The read-only check measures both files without opening their text in the agent's context:
+
+```bash
+python3 <skill-dir>/resources/state_store.py consolidate --cwd <repo> --task-id <task-id>
+# Add --milestone when a tracked sub-effort fully closes.
+```
+
+At 450 lines or 45,000 bytes in either file, or at milestone closure, the agent performs a deliberate rewrite using the existing atomic `write` path. Insights starts with CURRENT STATE and STANDING RULES / LESSONS, followed by HISTORICAL RECORD. Context starts with ACTIVE CHECKPOINT, followed by SESSION ARC SUMMARY and DECISION-BY-DECISION DETAIL. Unique evidence remains in the files unless a verified durable reference preserves it; Git history is not assumed for external state.
+
+Expected output includes each rewritten file's before/after lines and bytes, the trigger, and evidence references. Missing files trigger recovery. TODOs and task completion are unaffected; passing the check does not mean a rewrite happened.
+
 ### `architecture`
 
 Use when:

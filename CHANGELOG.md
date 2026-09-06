@@ -1,3 +1,10 @@
+## Unreleased
+
+- Fixed same-slug UAC apply replacing a curated current validation matrix with historical fidelity scenarios.
+
+- Added active-task consolidation to `analyze-context`: read-only size/milestone checks, current-state-first rewrites, explicit supersession/evidence retention, mid-session standing-rule retrieval, and measured before/after counts without changing the three-file store or atomic writer.
+- Clarified the SSOT/UAC delivery path for existing skills and the shared isolated-worktree, PR/MR, mainline verification, and cleanup workflow for capability, docs, and steering changes.
+
 ## v1.12.5 - 2026-09-05
 
 - Added `engos-audit-opex-incident-review`, derived from Amol Shah's Operational Excellence contribution, with the full Daily OpEx Digest: decisions, owner obligations, reconciled metrics, new/progressed/stalled/resolved cohorts, estate patterns, DPA tracking, all-open retention, evidence caveats, and optional Five Whys and meeting drill-downs.

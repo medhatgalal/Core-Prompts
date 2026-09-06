@@ -120,7 +120,8 @@
         "the canonical external state paths in use",
         "current progress state",
         "key findings accumulated so far",
-        "next item or next analysis action"
+        "next item or next analysis action",
+        "after a consolidation pass, before/after line and byte counts for each rewritten file, the trigger, and any evidence references retained; if footprint did not shrink, report that limitation rather than claiming reduction"
       ],
       "tool_policy": {
         "allowed": [
@@ -163,8 +164,8 @@
       "review_status": "ready_for_orchestrator_review",
       "overlap_candidates": [],
       "relationship_suggestions": [],
-      "quality_status": null,
-      "benchmark_profile": null,
+      "quality_status": "structural_ready",
+      "benchmark_profile": "default",
       "preferred_use_cases": [],
       "artifact_conventions": [],
       "invocation_style": null,

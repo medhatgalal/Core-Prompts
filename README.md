@@ -99,6 +99,8 @@ Evidence is state-specific. Controller-authored tests, tests inherited from an e
 2. Use `gitops-review` on your current branch before you open a PR.
 3. Use `supercharge /basis` to audit irreducible work, or `supercharge /adversarial /debate /deep` to stress-test a high-stakes decision, then use `auto-research` when a measured experiment is needed.
 
+Long-running `analyze-context` tasks now consolidate context and insights at a milestone or size threshold, keeping verified current state first and reporting before/after counts. See the [active-task example](docs/EXAMPLES.md#consolidate-an-active-task).
+
 ### Scenario Starters
 
 Use these as copy-paste starting points when you want to exercise the higher-leverage skills:
@@ -202,7 +204,7 @@ Normal CI uses only the zero-token `static` profile. The Code Review pilot valid
 
 In plain English: this release adds the checklist, contracts, static controls, and cost brakes. It does not claim that Google-style rewriting, `instruction-editor`, UAC rewrites, or any other skill change has already beaten its baseline in live model trials.
 
-Use UAC, the capability intake and uplift workflow, when you are bringing new prompt-like source into canonical Core-Prompts state.
+Use UAC, the capability intake and uplift workflow, when adding or changing canonical capability behavior. Existing-skill improvements use the [same-slug update flow](docs/UAC-USAGE.md#update-an-existing-capability).
 
 Do not start with UAC if your goal is just to use what is already installed. Start with installed skills and agents for that.
 
