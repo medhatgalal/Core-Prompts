@@ -18,7 +18,7 @@ Maintain one canonical context/todo/insights set per task under `~/.analyze-cont
 1. Establish a stable task ID, goal, success criteria, scope, and exclusions.
 2. Use the bundled `resources/state_store.py` helper to resolve or initialize the task directory; migrate matching legacy state before writing.
 3. Claim one-writer ownership or receive an explicit handoff, then record the current branch and worktree as metadata.
-4. Process one item at a time and update the three files atomically after meaningful progress and before likely context loss or worktree cleanup.
+4. Process one item at a time. Update the three files atomically after meaningful progress and before likely context loss or worktree cleanup.
 5. Mark the task complete only after every TODO is checked and the insights file contains the final summary.
 
 ## Storage Contract
@@ -62,8 +62,9 @@ Invoke `analyze-context` when work spans several files or turns, the user asks t
 
 When the skill is active:
 
-- recover the exact task set before new analysis
+- recover the exact task set before new analysis; at each substantial new sub-task within a session, re-read its standing rules, active checkpoint, and TODOs before choosing tools or proposing work
 - update context, todo, and insights after meaningful progress
+- **Consolidation check:** at recovery and meaningful checkpoints, run `consolidate`; pass `--milestone` when a tracked sub-effort fully closes. Perform the Consolidation Pass when either trigger fires. This is distinct from checkpointing and is not a prerequisite for every write
 - checkpoint all three through the helper's atomic write path before likely compaction, session end, or worktree cleanup
 - report the three paths, progress, findings, and next action in substantial responses
 
@@ -98,6 +99,7 @@ Every substantial response must include:
 - current progress state
 - key findings accumulated so far
 - next item or next analysis action
+- after a consolidation pass, before/after line and byte counts for each rewritten file, the trigger, and any evidence references retained; if footprint did not shrink, report that limitation rather than claiming reduction
 
 ## Companion Capability Matrix
 | If the analysis reveals this need | Route to | Required handoff |
@@ -119,7 +121,7 @@ Every substantial response must include:
 - Do not clean up an incomplete task.
 
 ## Safety Check
-Before the first write:
+Before the first write, run `git status --short --branch` to verify execution metadata without changing task identity:
 
 1. Run the helper's `paths` command and report the resolved project ID, `TASK_DIR`, branch, and worktree.
 2. Require the helper's task-ID, path-containment, and outside-worktree checks to pass.
@@ -133,12 +135,42 @@ Store exactly three canonical files under `TASK_DIR`; transient lock and same-di
 - `<task-id>-todo.md`: full item list, checkbox state, brief per-item notes, current status, and next item
 - `<task-id>-insights.md`: accumulated findings, cross-item patterns, evidence references, and the growing summary or final conclusion
 
+Legacy migration may encounter `<task>-context.md`, `<task>-todo.md`, and `<task>-insights.md`. Map that task name to the selected stable task ID and retain their content in the corresponding canonical files; do not create a second live set.
+
 ## Recovery Procedure
+At each substantial new sub-task within a session, re-read the selected task's standing rules, active checkpoint, and TODOs before proposing actions. If the set is stale or contradictory, perform the full recovery procedure below.
+
 After interruption or compaction:
 1. Resolve `TASK_DIR` and select the exact task ID. Never infer the current task from the newest timestamp alone.
 2. If no canonical set exists, inspect legacy `.analyze-context-memory/` locations read-only and copy the matching set into `TASK_DIR` before any update.
 3. Read all three files; verify status, freshness, checked TODOs, blockers, and next action.
-4. Update worktree and branch metadata if execution moved, then continue from the recorded next action without moving the task directory.
+4. Update worktree and branch metadata if execution moved, then continue from the recorded next action without moving the task directory; continue from the recorded next item instead of restarting from memory.
+
+## Consolidation Pass
+Apply this pass to ACTIVE tasks without marking them complete or cleaning them up. Trigger when either context or insights reaches **450 lines or 45,000 bytes**, or when a tracked sub-effort fully closes, whichever comes first. A milestone is semantic: the agent identifies it; the helper cannot infer it from prose.
+
+```bash
+python3 "$STATE_HELPER" consolidate --cwd "$(pwd)" --task-id "$TASK_ID"
+# At a tracked sub-effort's closure, add --milestone to the same check.
+```
+
+The read-only command reports line/byte counts, missing files, thresholds, and whether a pass is due. It never initializes, rewrites, archives, or trims state. Missing files require recovery, not an assumption that the task is below threshold. A successful command exit means the check ran, not that consolidation occurred.
+
+1. Retain one-writer ownership for the entire read/rewrite/verification pass. Record the before counts; read context and insights in full, and consult TODOs for active scope. Do not infer the final position from the latest paragraph alone.
+2. Verify proposed current facts against the real system and attach evidence with its observation date or revision. Keep unverified or stale claims explicitly labeled in reference detail, outside verified current facts. When checking in-flight agents, cross-check reported status against available live work output (for example, pane content); report unknown when corroboration is unavailable.
+3. Rewrite insights with these sections in this order, immediately after its title or metadata:
+   - `CURRENT STATE`: only durable, still-true facts supported by current verification.
+   - `STANDING RULES / LESSONS`: applicable behavioral corrections, their scope, and retrieval cues so the next sub-task does not repeat them.
+   - `HISTORICAL RECORD`: compressed narrative, explicitly marking superseded claims and linking each to its replacement, rationale, and evidence.
+4. Rewrite context with these sections in this order, immediately after its title or metadata:
+   - `ACTIVE CHECKPOINT`: current live state, task identity/status, goal, success criteria, scope and constraints, in-flight agents/work and ownership, blockers, and immediate next actions.
+   - `SESSION ARC SUMMARY`: compressed sequence of milestones and direction changes.
+   - `DECISION-BY-DECISION DETAIL`: the specific evidence, rationale, and supersession chain behind past decisions.
+5. Compress and reorganize; do not delete substance. Preserve unique findings, corrections, unresolved questions, and decision reversals. Replace repetitive prose with a faithful summary. Before cutting unique detail, verify an existing durable evidence reference and record its exact locator in the retained text. Git history is valid only if that content is actually committed and retrievable there; these external files are not automatically versioned. If no durable trail exists, retain the detail. Do not create extra canonical files, automatically commit scratch state, or silently discard content to satisfy a size cap.
+6. Write each agent-authored rewrite using the existing helper, for example `python3 "$STATE_HELPER" write --cwd "$(pwd)" --task-id "$TASK_ID" --kind insights --input "<private-rewrite-file>"`, then repeat for context. Use private staging files (mode `0600`) outside worktrees and remove those task-owned staging files after successful readback; preserve them for recovery if a write fails. The helper retains its same-directory temporary file and atomic replacement mechanics. Each file is atomic independently; on interruption, recover and reconcile both files before continuing.
+7. Read back both files and rerun `consolidate` to capture after counts. Verify summaries begin within the first 20% of each file, evidence remains findable, and active work is preserved. Report measured reduction or explain why retained substance prevents it. If still above threshold, record the residual reason in the active checkpoint and reassess at the next meaningful checkpoint; do not loop or trim automatically.
+
+Allowed: a deliberate current-state-first rewrite during ongoing work. Forbidden: automatic truncation, silent loss of superseded claims, declaring completion to enable consolidation, or using this pass as cleanup authority. `todo.md` is unaffected by consolidation; its ordinary replace-in-place checkpoint contract still applies.
 
 ## Completion and Cleanup
 A task is complete only when every checkbox in `<task-id>-todo.md` is checked, `<task-id>-insights.md` contains the final summary and evidence, and `<task-id>-context.md` is marked `complete`. Leave completed files in place unless the user later approves cleanup. Cleanup must target the exact completed task directory and should use a recoverable operation such as Trash.
@@ -164,7 +196,7 @@ A task is complete only when every checkbox in `<task-id>-todo.md` is checked, `
 | Progress recoverability | Another engineer can resume the exact task from disk alone |
 | Collision safety | Concurrent tasks use distinct task IDs and one task never has concurrent writers |
 | Stale-state prevention | Only the selected task is loaded; unrelated sets are not presented as current |
-| Anti-sprawl | Findings are consolidated rather than scattered |
+| Anti-sprawl | At a size or milestone trigger, context and insights receive a consolidation pass with current-state summaries beginning within the first 20% of each file; before/after counts and supersession references are reported |
 | Output discipline | Progress, findings, and next steps are explicit each pass |
 | Boundary clarity | The capability stays analysis-focused and does not pretend to own unrelated execution |
 

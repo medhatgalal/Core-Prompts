@@ -42,8 +42,15 @@
     "2ad1af6a8eb9ee6ce57ee09e262a17f75cac09cbea63834b15edf59b390f1fa3",
     "c13447c120806df4f31b340f630247cabb40f13b3272c86711fe7fdae4067349",
     "1e17937adc9c41a757605a4671f6ff79cd1b7f98b998f0554574f3375a010736",
+    "743618109dc7edbe3c4720bfd794b4fe4134b96652beee24b9a1438c10739b20",
     "7f603cf2a50ac9a7a341ee7f6d2c5ff741f51d7032d065cd1867341168ee6ce2",
     "8ea48feff6a07fe7c2ccc4063635158bf57a9013fcd8dc30a2235c4ed45bcb7c",
+    "1b95926a6ff418861eab1efc2f74df4c369fdf52494b4aa2f93134fbde32f183",
+    "689c9d2456211c0d479b3acc23da56508933637c2bc4ec88e5e5a0ef94865982",
+    "489f67a46adb65655687b493a903b8a05118ccd8f314a1877e86cb4e04d6d2ee",
+    "48c58fdd5b70fbed3e708c7d06d958a468f8fa1dff43c53791d1c6dbf4659660",
+    "403250da210a1bc5ee1d80458a2371157c8506f7ff6c68691b1e09ddd3aaa2ab",
+    "433dd197b3d9ac335a5cb1504baf40e38e641b4887c81501442fba39a4a5b41f",
     "d3415bd415c27dff1f14399a094fc1a4db0c619b27c7fc6b9faad7524d63dff5",
     "b9713bbe3620b0669b062a7d0ffe29c186e0367d72be02e72181d0fe568e6090",
     "42f8414d23b109cf2117aca9d430dbbe5e5227d3e7c2ffad2bbe5e3afb56570c"
@@ -259,6 +266,11 @@
       "text": "4. If legacy state is tracked, untrack it with an index-only operation that preserves local files before migration."
     },
     {
+      "sha256": "743618109dc7edbe3c4720bfd794b4fe4134b96652beee24b9a1438c10739b20",
+      "source": "ssot/analyze-context.md",
+      "text": "Legacy migration may encounter `<task>-context.md`, `<task>-todo.md`, and `<task>-insights.md`. Map that task name to the selected stable task ID and retain their content in the corresponding canonical files; do not create a second live set."
+    },
+    {
       "sha256": "7f603cf2a50ac9a7a341ee7f6d2c5ff741f51d7032d065cd1867341168ee6ce2",
       "source": "ssot/analyze-context.md",
       "text": "1. Resolve `TASK_DIR` and select the exact task ID. Never infer the current task from the newest timestamp alone."
@@ -267,6 +279,36 @@
       "sha256": "8ea48feff6a07fe7c2ccc4063635158bf57a9013fcd8dc30a2235c4ed45bcb7c",
       "source": "ssot/analyze-context.md",
       "text": "2. If no canonical set exists, inspect legacy `.analyze-context-memory/` locations read-only and copy the matching set into `TASK_DIR` before any update."
+    },
+    {
+      "sha256": "1b95926a6ff418861eab1efc2f74df4c369fdf52494b4aa2f93134fbde32f183",
+      "source": "ssot/analyze-context.md",
+      "text": "The read-only command reports line/byte counts, missing files, thresholds, and whether a pass is due. It never initializes, rewrites, archives, or trims state. Missing files require recovery, not an assumption that the task is below threshold. A successful command exit means the check ran, not that consolidation occurred."
+    },
+    {
+      "sha256": "689c9d2456211c0d479b3acc23da56508933637c2bc4ec88e5e5a0ef94865982",
+      "source": "ssot/analyze-context.md",
+      "text": "1. Retain one-writer ownership for the entire read/rewrite/verification pass. Record the before counts; read context and insights in full, and consult TODOs for active scope. Do not infer the final position from the latest paragraph alone."
+    },
+    {
+      "sha256": "489f67a46adb65655687b493a903b8a05118ccd8f314a1877e86cb4e04d6d2ee",
+      "source": "ssot/analyze-context.md",
+      "text": "- `CURRENT STATE`: only durable, still-true facts supported by current verification."
+    },
+    {
+      "sha256": "48c58fdd5b70fbed3e708c7d06d958a468f8fa1dff43c53791d1c6dbf4659660",
+      "source": "ssot/analyze-context.md",
+      "text": "5. Compress and reorganize; do not delete substance. Preserve unique findings, corrections, unresolved questions, and decision reversals. Replace repetitive prose with a faithful summary. Before cutting unique detail, verify an existing durable evidence reference and record its exact locator in the retained text. Git history is valid only if that content is actually committed and retrievable there; these external files are not automatically versioned. If no durable trail exists, retain the detail. Do not create extra canonical files, automatically commit scratch state, or silently discard content to satisfy a size cap."
+    },
+    {
+      "sha256": "403250da210a1bc5ee1d80458a2371157c8506f7ff6c68691b1e09ddd3aaa2ab",
+      "source": "ssot/analyze-context.md",
+      "text": "7. Read back both files and rerun `consolidate` to capture after counts. Verify summaries begin within the first 20% of each file, evidence remains findable, and active work is preserved. Report measured reduction or explain why retained substance prevents it. If still above threshold, record the residual reason in the active checkpoint and reassess at the next meaningful checkpoint; do not loop or trim automatically."
+    },
+    {
+      "sha256": "433dd197b3d9ac335a5cb1504baf40e38e641b4887c81501442fba39a4a5b41f",
+      "source": "ssot/analyze-context.md",
+      "text": "Allowed: a deliberate current-state-first rewrite during ongoing work. Forbidden: automatic truncation, silent loss of superseded claims, declaring completion to enable consolidation, or using this pass as cleanup authority. `todo.md` is unaffected by consolidation; its ordinary replace-in-place checkpoint contract still applies."
     },
     {
       "sha256": "d3415bd415c27dff1f14399a094fc1a4db0c619b27c7fc6b9faad7524d63dff5",

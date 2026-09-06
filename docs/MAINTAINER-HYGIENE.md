@@ -26,6 +26,12 @@ When you are reviewing or updating this repo, keep these priorities in mind:
 7. Keep one canonical home per concept and link instead of duplicating unless the duplication is intentionally user-serving.
 8. When multiple branches are moving at once, prefer separate worktrees over layering unrelated edits into the same checkout.
 
+## Delivering A Change
+
+The [delivery workflow](../.kiro/steering/repo-workflow.md#delivery-workflow) applies to skill improvements, docs, and steering alike. Work starts in a linked worktree from current main and finishes through the GitHub PR and GitLab MR, verified main parity, and task-owned cleanup. An explicit review-only or no-merge scope stops at that boundary.
+
+For existing capabilities, prepare the candidate from current SSOT and use the [same-slug UAC update flow](UAC-USAGE.md#update-an-existing-capability). Helpers live under `sources/capability-resources/<slug>/`; generated and installed bundles are outputs. User docs travel with the change. Installation and versioned release checks are separate from merge evidence.
+
 ## Practical Review Checklist
 
 ### When onboarding or examples changed

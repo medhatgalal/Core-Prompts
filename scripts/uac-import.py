@@ -1374,6 +1374,10 @@ def _merge_existing_descriptor_for_apply(
             'quality_stop_reason',
             'quality_validation_matrix',
         ):
+            if key == 'quality_validation_matrix' and key in existing:
+                # The judge plan describes historical fidelity, not the current
+                # curated contract. Preserve the latter on same-slug updates.
+                continue
             if key in candidate:
                 merged[key] = candidate[key]
     return merged, quality_bound

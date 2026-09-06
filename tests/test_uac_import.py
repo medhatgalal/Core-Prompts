@@ -134,6 +134,26 @@ def test_same_slug_descriptor_preserves_curated_metadata_when_quality_text_diffe
     assert "quality_status" not in merged
 
 
+@pytest.mark.parametrize("has_current_matrix", [True, False])
+def test_same_slug_apply_preserves_current_matrix_over_historical_judge_plan(monkeypatch, has_current_matrix) -> None:
+    current = [{"id": "external_state", "must_contain": ["~/.analyze-context"]}]
+    historical = [{"id": "legacy_state", "must_contain": [".analyze-context-memory/"]}]
+    existing = {"slug": "sample"}
+    if has_current_matrix:
+        existing["quality_validation_matrix"] = current
+    monkeypatch.setattr(UAC_IMPORT, "load_descriptor", lambda root, slug: existing)
+    applied = "# Sample\n"
+    merged, bound = UAC_IMPORT._merge_existing_descriptor_for_apply(
+        "sample",
+        {"quality_status": "structural_ready", "quality_validation_matrix": historical},
+        ssot_text=applied,
+        quality_result={"final_candidate_text": applied},
+    )
+    assert bound is True
+    assert merged["quality_status"] == "structural_ready"
+    assert merged["quality_validation_matrix"] == (current if has_current_matrix else historical)
+
+
 def test_same_slug_descriptor_refreshes_bound_explicit_description() -> None:
     applied = (ROOT / "ssot" / "code-review.md").read_text(encoding="utf-8")
     frontmatter, _ = UAC_IMPORT.parse_ssot_frontmatter_and_body(applied)

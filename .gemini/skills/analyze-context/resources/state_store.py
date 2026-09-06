@@ -19,6 +19,8 @@ from typing import Iterator, NoReturn
 
 TASK_ID_PATTERN = re.compile(r"^[a-z0-9](?:[a-z0-9_-]{0,78}[a-z0-9])?$")
 FILE_KINDS = ("context", "todo", "insights")
+CONSOLIDATION_LINES = 450
+CONSOLIDATION_BYTES = 45_000
 
 
 class StateStoreError(ValueError):
@@ -250,20 +252,50 @@ def initialize_and_write(layout: StateLayout, kind: str, content: str) -> Path:
         return _atomic_write_unlocked(layout, kind, content)
 
 
+def consolidation_report(layout: StateLayout, milestone: bool = False) -> dict[str, object]:
+    """Measure active-task rewrite triggers without mutating or interpreting state."""
+    files: dict[str, object] = {}
+    size_trigger = False
+    missing: list[str] = []
+    for kind in ("context", "insights"):
+        path = layout.files[kind]
+        try:
+            with path.open("rb") as handle:
+                byte_count = line_count = 0
+                for line in handle:
+                    byte_count += len(line)
+                    line_count += 1
+        except FileNotFoundError:
+            missing.append(kind)
+            files[kind] = {"path": str(path), "exists": False}
+            continue
+        over = line_count >= CONSOLIDATION_LINES or byte_count >= CONSOLIDATION_BYTES
+        size_trigger = size_trigger or over
+        files[kind] = {"path": str(path), "exists": True, "lines": line_count,
+                       "bytes": byte_count, "size_trigger": over}
+    return {"thresholds": {"lines": CONSOLIDATION_LINES, "bytes": CONSOLIDATION_BYTES},
+            "files": files, "missing_files": missing, "check_complete": not missing,
+            "size_trigger": size_trigger, "milestone_trigger": milestone,
+            "consolidation_due": size_trigger or milestone}
+
+
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("command", choices=("paths", "init", "write"))
+    parser.add_argument("command", choices=("paths", "init", "write", "consolidate"))
     parser.add_argument("--cwd", type=Path, default=Path.cwd())
     parser.add_argument("--task-id", required=True)
     parser.add_argument("--state-home", type=Path)
     parser.add_argument("--kind", choices=FILE_KINDS)
     parser.add_argument("--input", type=Path, help="UTF-8 input file, or omit to read stdin")
+    parser.add_argument("--milestone", action="store_true", help="consolidate only: a tracked sub-effort fully closed")
     return parser
 
 
 def main(argv: list[str] | None = None) -> int:
     args = _parser().parse_args(argv)
     try:
+        if args.milestone and args.command != "consolidate":
+            fail("--milestone requires consolidate")
         layout = resolve_layout(args.cwd, args.task_id, args.state_home)
         if args.command == "init":
             initialize(layout)
@@ -272,7 +304,12 @@ def main(argv: list[str] | None = None) -> int:
                 fail("write requires --kind")
             content = args.input.read_text(encoding="utf-8") if args.input else sys.stdin.read()
             initialize_and_write(layout, args.kind, content)
-        print(json.dumps(layout.as_dict(), indent=2, sort_keys=True))
+        result = layout.as_dict()
+        if args.command == "consolidate":
+            if args.kind is not None or args.input is not None:
+                fail("consolidate is read-only; --kind and --input are not accepted")
+            result["consolidation"] = consolidation_report(layout, args.milestone)
+        print(json.dumps(result, indent=2, sort_keys=True))
         return 0
     except (OSError, StateStoreError) as exc:
         print(f"analyze-context-state: {exc}", file=sys.stderr)

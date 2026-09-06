@@ -6,6 +6,11 @@
 - Canonical generated outputs: `.codex/`, `.gemini/`, `.claude/`, `.kiro/` in repository root.
 - `clis/` is legacy/deprecated and must not be treated as source-of-truth.
 
+## Change delivery
+
+- For every capability addition or behavior change, including an installed-skill request, follow [Repo Workflow](.kiro/steering/repo-workflow.md): isolated linked worktree from verified main, same-slug UAC plan/judge/apply, canonical resources, regenerated surfaces, docs, and validation. Never make the installed bundle the lasting fix.
+- Carry authorized implementation through GitHub PR and GitLab MR checks, merge to main, verify remote parity, and clean task-owned branches, worktrees, and scratch. Apply the same delivery path to `AGENTS.md` and steering changes; honor explicit review-only or no-merge scope. Deployment and releases remain separate steps when in scope.
+
 ## Surface rules
 
 - UAC is advisory and recommends the surface area for each SSOT entry.
