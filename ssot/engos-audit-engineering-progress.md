@@ -283,7 +283,7 @@ Interactive first-time setup. Reads current `config.yaml` if it exists.
 
 ### For `run`
 
-**This command delegates all git data gathering to `scripts/engos-audit-engineering-progress.py`.** Do not run git commands manually — use the script.
+**This command delegates all git data gathering to `scripts/eng-report.py`.** Do not run git commands manually — use the script.
 
 **Mandatory sequence — no shortcuts:**
 1. Pass 1: Run `eng-report run --json --config <config>` → read the JSON output

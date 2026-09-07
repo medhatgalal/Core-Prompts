@@ -11,7 +11,7 @@ This skill is experimental during the advisory evaluation rollout. It can produc
 ## Purpose
 Make instruction artifacts easier to read and invoke while preserving their behavior. Treat clarity as an editorial hypothesis, never as proof that an agent will perform better.
 
-Read `references/instruction-clarity.md` before applying the policy or proposing a rewrite.
+Read `resources/references/instruction-clarity.md` before applying the policy or proposing a rewrite.
 
 ## Primary Objective
 Return a clearer artifact plus an auditable map from every meaningful edit to the behavior it preserves, changes, or leaves unresolved.
