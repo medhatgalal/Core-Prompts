@@ -66,7 +66,7 @@ from pathlib import Path
 import re
 
 text = Path("CHANGELOG.md").read_text(encoding="utf-8")
-match = re.search(r"^##\s+([^ ]+)\s+-\s+", text, re.M)
+match = re.search(r"^##[ \t]+([^ \t\r\n]+)[ \t]+-[ \t]+", text, re.M)
 print(match.group(1) if match else "")
 PY
 )"

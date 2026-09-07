@@ -105,7 +105,7 @@ Evidence is state-specific. Controller-authored tests, tests inherited from an e
 2. Use `engos-quality-gitops-review` on your current branch before you open a PR.
 3. Use `engos-meta-supercharge /basis` to audit irreducible work, or `engos-meta-supercharge /adversarial /debate /deep` to stress-test a high-stakes decision, then use `engos-optimization-auto-research` when a measured experiment is needed.
 
-Long-running `analyze-context` tasks now consolidate context and insights at a milestone or size threshold, keeping verified current state first and reporting before/after counts. See the [active-task example](docs/EXAMPLES.md#consolidate-an-active-task).
+Long-running `engos-memory-context-continuity` tasks now consolidate context and insights at a milestone or size threshold, keeping verified current state first and reporting before/after counts. See the [active-task example](docs/EXAMPLES.md#consolidate-an-active-task).
 
 ### Scenario Starters
 
