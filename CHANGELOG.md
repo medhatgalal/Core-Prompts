@@ -1,5 +1,7 @@
 ## Unreleased
 
+- Corrected the Instruction Editor bundled-reference path and Engineering Progress Report script filename to their shipped locations.
+
 - Moved Supercharge terminal help and examples into bundled references while preserving the accepted module body, conversational aliases, stacking, precedence, and ten explicit grading iterations byte-for-byte.
 
 - Preserved legacy OpEx meeting preparation inside the canonical incident-review capability: full selected-incident depth, complete linked fixes, verified recurrence, customer counts, sourced coaching, and explicit optional TXT/PDF/Google Doc export boundaries. Existing daily output and snapshot requirements remain compatible.
