@@ -1,3 +1,12 @@
+## v1.13.2 - 2026-09-07
+
+- Corrected the quickstart to use an explicit home target, reviewed installation profiles and ownership/parity checks instead of inferring success from directory counts.
+- Distinguished legacy checkout-based updates from saved-profile release acceptance, which updates the managed installation from a verified mirror without advancing the development checkout.
+- Documented and regenerated the release comparison against the previous published release.
+- Explained native skill/agent discovery versus KiroCrew's persistent member roster. Legacy application rows can survive a namespace migration; Core updates do not rewrite application preferences or history.
+
+No capability behavior or KiroCrew configuration was changed by this documentation release.
+
 ## v1.13.1 - 2026-09-07
 
 - Fixed `eng-report run --json` creating report directories and overwriting HTML/JavaScript. Metrics collection now skips rendering; ordinary HTML reports remain supported.

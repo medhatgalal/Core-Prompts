@@ -14,6 +14,22 @@ bin/capability-fabric validate --strict
 python3 scripts/smoke-clis.py
 ```
 
+## Release comparison baseline
+
+Before the release build, select and record the previous published release:
+
+```bash
+CORE_PROMPTS_RELEASE_BASE_REF=v1.13.1 bin/capability-fabric build
+```
+
+For this v1.13.2 release the comparison baseline is v1.13.1. Choose the preceding
+published tag for future releases. The generator supports an explicit baseline
+and otherwise selects the latest distinct ancestor tag available locally. Fetch
+and verify the intended baseline; do not let missing local tags silently turn a
+patch-release review into an older cumulative comparison. Check the recorded
+comparison basis in `docs/RELEASE-DELTA.md` before packaging. Regenerate this view;
+do not hand-edit its capability counts or alter historical published release notes.
+
 ## Build and Dry-Run
 ```bash
 bin/capability-fabric build
@@ -91,6 +107,11 @@ Initial install writes the installed version, release-source metadata, and local
 - `~/.core-prompts-updater/LOCAL_REPO.env`
 - `~/update_core_prompts.sh`
 
-Daily scheduled updater runs execute `~/update_core_prompts.sh --check-release` before normal update sync. `--check-release` checks only, fetches release tags, syncs a dedicated clean mirror, persists release-watch state, and never auto-installs when run directly. Scheduled runs use a deterministic PATH, treat existing managed CLI surface directories as durable update targets when binaries are unavailable to cron, and auto-accept valid releases by default after the release check; `--schedule-daily HH:MM --notify-only` preserves check-only scheduling. Bundled self-refresh is idempotent when the installed updater is both source and destination. `--accept-release` is the explicit install/apply step for manual acceptance. Accepted releases fast-forward the recorded source checkout and run its installer when the checkout is clean and can fast-forward to the accepted tag; otherwise they fall back to the clean release mirror.
+Daily scheduled updater runs execute `~/update_core_prompts.sh --check-release` before normal update sync. `--check-release` checks only, fetches release tags, syncs a dedicated clean mirror, persists release-watch state, and never auto-installs when run directly. Scheduled runs use a deterministic PATH, treat existing managed CLI surface directories as durable update targets when binaries are unavailable to cron, and auto-accept valid releases by default after the release check; `--schedule-daily HH:MM --notify-only` preserves check-only scheduling. Bundled self-refresh is idempotent when the installed updater is both source and destination. `--accept-release` is the explicit install/apply step for manual acceptance. Legacy installs without a saved profile fast-forward the recorded source checkout and run its installer when it is clean and can fast-forward to the accepted tag; otherwise they fall back to the clean release mirror.
 
-Every accepted release writes a rollback snapshot under `~/.core-prompts-state/snapshots/` before installing. Older snapshots are pruned so the latest 2 are retained by default; use `--snapshot-retention N` to override that. `--list-snapshots` shows rollback points, and `--rollback previous` restores the latest pre-release snapshot.
+Saved-profile release acceptance uses a verified release mirror and its own recoverable transaction; it does not update the development checkout. The installed version and local checkout may therefore differ. See [Installation Profiles](INSTALL-PROFILES.md).
+
+Legacy accepted releases write a rollback snapshot under `~/.core-prompts-state/snapshots/` before installing. Older snapshots are pruned so the latest 2 are retained by default; use `--snapshot-retention N` to override that. `--list-snapshots` shows rollback points, and `--rollback previous` restores the latest pre-release snapshot.
+
+
+Saved-profile acceptance records rollback metadata and uses profile transactions; the legacy two-snapshot pruning policy and `--snapshot-retention` setting are not applied on that path. Preserve profile recovery data unless separately reviewed for cleanup.

@@ -187,7 +187,9 @@ Use the explicit acceptance step when you want to refresh the installed bundle m
 ~/update_core_prompts.sh --rollback previous
 ```
 
-Install `--schedule-daily HH:MM --notify-only` if you want scheduled release checks without automatic release acceptance. Scheduled runs use deterministic user, package-manager, and system executable paths; an existing managed CLI surface remains an update target even when cron cannot discover that CLI binary. Every accepted release writes a pre-install rollback snapshot under `~/.core-prompts-state/snapshots/`; older snapshots are pruned so the latest 2 are retained by default. `--list-snapshots` lists rollback points and `--rollback previous` restores the latest snapshot.
+Install `--schedule-daily HH:MM --notify-only` if you want scheduled release checks without automatic release acceptance. Scheduled runs use deterministic user, package-manager, and system executable paths; an existing managed CLI surface remains an update target even when cron cannot discover that CLI binary. Legacy accepted releases write a pre-install rollback snapshot under `~/.core-prompts-state/snapshots/`; older snapshots are pruned so the latest 2 are retained by default. `--list-snapshots` lists rollback points and `--rollback previous` restores the latest snapshot.
+
+Saved-profile release acceptance uses a verified release mirror and its own recoverable transaction; it does not update the development checkout. The installed version and local checkout may therefore differ. See [Installation Profiles](INSTALL-PROFILES.md).
 
 ## What The Generated Views Are For
 
