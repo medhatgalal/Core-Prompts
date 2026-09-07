@@ -73,6 +73,8 @@ def test_package_boundary_includes_release_watch_contract(tmp_path: Path) -> Non
     assert expected <= zip_names
 
     retired_package_paths = (
+        "skills/opex-briefing/",
+        "sources/retired/opex-briefing/",
         ".codex/skills/mentor/",
         ".codex/agents/mentor.toml",
         ".codex/agents/resources/mentor/",
