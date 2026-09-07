@@ -53,9 +53,14 @@ Local customizations and unknown files block the routine update before any write
 
 Release checking pins the bundle inventory from the clean tagged mirror after the
 existing dual-remote tag check. Release acceptance verifies that inventory and
-all bundled file hashes, then refreshes the standalone bundle, selected skills,
+all runtime file hashes, then refreshes the standalone bundle, selected skills,
 ownership receipt, and release-watch state in one recoverable transaction. It
 uses the verified release mirror, with no development-checkout fallback for profiles.
+Optional `dist/consumer-shell` views are distribution extras rather than updater
+runtime inputs; tagged Git mirrors do not contain them, and existing extras are
+preserved. Release receipts label verification as `managed_runtime` and optional
+views as `retained_unverified`; later release polling reports only `release_version`
+verification. Retained rendered views are never certified as current release data.
 The existing scheduler and `--accept-release`/`--rollback` commands remain in use.
 The updater's rollback menu includes profile transactions; later edits block restore.
 Initial adoption and legacy retirement still require an exact reviewed plan.

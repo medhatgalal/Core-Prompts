@@ -118,6 +118,10 @@ def write_state(paths: Paths, *, installed_version: str, latest_version: str, pe
         "status": status if status in STATUSES else "remote-error",
         "note": note,
     }
+    if (paths.home / '.core-prompts-state/profile-install/profile.json').exists():
+        doc['verification_scope'] = 'release_version'
+        doc['optional_views_status'] = 'retained_unverified'
+        doc['note'] += ' Version observation only; optional consumer views remain unverified.'
     paths.state_file.parent.mkdir(parents=True, exist_ok=True)
     paths.state_file.write_text(json.dumps(doc, indent=2) + "\n", encoding="utf-8")
     return doc
@@ -135,6 +139,9 @@ def render_state(doc: dict[str, str]) -> str:
         f"  Pending   : {doc.get('pending_version') or 'none'}",
         f"  Mirror    : {doc.get('mirror_path') or 'unset'}",
     ]
+    if doc.get("verification_scope"):
+        lines.append(f"  Verified  : {doc['verification_scope']}")
+        lines.append(f"  Views     : {doc.get('optional_views_status', 'unverified')}")
     if doc.get("note"):
         lines.append(f"  Note      : {doc['note']}")
     if doc.get("last_checked_at"):
@@ -593,7 +600,7 @@ def check_release(paths: Paths, *, notify_mode: bool) -> dict[str, str]:
                 last_notified = today()
         return write_state(paths, installed_version=installed_version, latest_version=latest_version, pending_version=latest_version, status="pending-install", note=note, last_notified_at=last_notified, verified_bundle_sha256=bundle_pin)
 
-    return write_state(paths, installed_version=installed_version, latest_version=latest_version, pending_version="", status="current", note="Installed standalone bundle matches the latest release")
+    return write_state(paths, installed_version=installed_version, latest_version=latest_version, pending_version="", status="current", note="Installed version matches the latest release")
 
 
 def pending_warning(paths: Paths) -> str:
@@ -646,7 +653,8 @@ def accept_profile_release(paths: Paths, state: dict[str, str], mirror: Path) ->
         current = dict(state)
         current.update(installed_version=state['pending_version'], latest_version=state['pending_version'],
                        pending_version='', status='current', last_checked_at=now_iso(),
-                       note='Accepted verified bundle through the saved managed skill profile')
+                       verification_scope='managed_runtime', optional_views_status='retained_unverified',
+                       note='Accepted verified managed runtime; optional consumer views retained unverified')
         concrete = engine.plan(mirror, paths.home, profile, routine=True, release_state=current)
         if concrete['blockers']:
             raise ValueError('; '.join(concrete['blockers']))
@@ -660,7 +668,8 @@ def accept_profile_release(paths: Paths, state: dict[str, str], mirror: Path) ->
         # Recovery is discoverable before the first installation mutation.
         result = engine.apply(mirror, paths.home, profile, concrete)
         print(json.dumps({'status': 'current', 'transaction': transaction,
-                          'installed_version': current['installed_version']}))
+                          'installed_version': current['installed_version'], 'verification_scope': 'managed_runtime',
+                          'optional_views_status': 'retained_unverified'}))
         return 0
     except (ValueError, OSError, KeyError) as exc:
         recovery = f' Recover with --rollback {snapshot.name}.' if 'snapshot' in locals() else ''

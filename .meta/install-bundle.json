@@ -2448,18 +2448,6 @@
       "mode": 420,
       "sha256": "7dcf8edbcfdbe136fc3a6045af9b724d621dc8537a4e7cb73a08e01eaee1eecc"
     },
-    "dist/consumer-shell/capability-catalog.json": {
-      "mode": 420,
-      "sha256": "11452f9316dfaebae2e0f9db96d43a36445af996adf719ea402305c2cfcb0f9c"
-    },
-    "dist/consumer-shell/release-delta.json": {
-      "mode": 420,
-      "sha256": "804dbaf197e3321064faa5cdc7c5ef0c1a4992de4261644c18cb0b2bac226b7e"
-    },
-    "dist/consumer-shell/status.json": {
-      "mode": 420,
-      "sha256": "52741075e9ce76dc7deebd50e40039b42cf1cf300bf44e15b605f9af943ba0c4"
-    },
     "scripts/deploy-copy-plan.py": {
       "mode": 420,
       "sha256": "8104dea557694062d9351008987d0058e2f60ad53add0923a2641598b81c7ab5"
@@ -2478,7 +2466,7 @@
     },
     "scripts/install_bundle.py": {
       "mode": 420,
-      "sha256": "cb7fefc1be2cf8bca6c390e4b74699c5abccdeceb783289e5a5f663fe7e5686c"
+      "sha256": "1e7556cfd8122afa656284f702141c8f8b115b43c8c06daf1be0c5c2f9e24475"
     },
     "scripts/register-codex-agents.py": {
       "mode": 420,
@@ -2486,7 +2474,7 @@
     },
     "scripts/update-core-prompts.py": {
       "mode": 493,
-      "sha256": "eb818392abdbe0d4c01382b7bcbaf19e87e32abd59678b17f96076284baf4593"
+      "sha256": "5fca5adaaea833338eada2b285314812666efdce9ea138eeac037713528841d4"
     },
     "sources/ssot-baselines/README.md": {
       "mode": 420,
@@ -2574,5 +2562,6 @@
     }
   },
   "owner": "Core-Prompts",
-  "schema": 1
+  "schema": 1,
+  "scope": "standalone_runtime"
 }

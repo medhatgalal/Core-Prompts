@@ -84,3 +84,18 @@ After accepted OpEx integration and final same-slug UAC readbacks, the focused
 OpEx/continuity/Loopy/package/public-doc suite passed 39 tests. Strict validation
 and all contract checks passed. The final exact-commit full-run result is recorded
 in the PR/MR; earlier full-run evidence above remains explicitly scoped.
+
+Exact commit `619ccb98d83e55d51b1870e9dd922d83c94150eb`: full regression
+passed 720 tests and 122 subtests; GitHub hosted surface validation succeeded.
+A subsequent clean tracked-tree probe exposed optional dist views in the runtime
+inventory. The final correction removes only those optional views from runtime
+ownership and adds a tracked-only release fixture plus preservation assertions.
+
+Final runtime-inventory correction: 37 focused profile/package/updater tests
+passed, and the independent reviewer passed both tracked-release tests. Existing
+optional consumer views are preserved. No new material review findings remain.
+Namespace integration remains a coordinator-owned pre-merge hold.
+
+The final scope-label delta also passed the 37-test focused suite and independent
+static review. Acceptance certifies managed runtime only; optional views are
+retained_unverified, and polling is labeled release_version observation.

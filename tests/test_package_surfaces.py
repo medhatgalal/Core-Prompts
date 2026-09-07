@@ -127,6 +127,9 @@ def test_packaged_profile_updates_verified_release_and_rolls_back(tmp_path: Path
         shutil.copy2(support / legacy, dst)
         profile['retire'].append(legacy)
         known[legacy] = {'source': legacy, 'identity': module.snapshot(dst)}
+    optional_view = support / 'dist/consumer-shell/local-view.json'
+    optional_view.parent.mkdir(parents=True, exist_ok=True)
+    optional_view.write_text('retained optional view')
     receipt = home / module.RECEIPT; receipt.parent.mkdir(parents=True)
     receipt.write_text(json.dumps({'schema': 1, 'owner': 'Core-Prompts', 'files': known}))
     plan = module.plan(support, home, profile)
@@ -141,7 +144,10 @@ def test_packaged_profile_updates_verified_release_and_rolls_back(tmp_path: Path
     release_root = tmp_path / 'released-package'
     release_root.mkdir()
     with tarfile.open(artifacts / f'core-prompts-{version}-surfaces.tar.gz') as archive:
-        archive.extractall(release_root, filter='data')
+        tracked = set(subprocess.check_output(['git', 'ls-files'], cwd=ROOT, text=True).splitlines())
+        members = [m for m in archive.getmembers() if m.name in tracked]
+        archive.extractall(release_root, members=members, filter='data')
+    assert not (release_root / 'dist').exists()
     (release_root / 'VERSION').write_text('v99.0.0\n')
     changed = release_root / f'.codex/skills/{slug}/SKILL.md'
     changed.write_text(changed.read_text() + '\nReleased update fixture.\n')
@@ -164,9 +170,12 @@ def test_packaged_profile_updates_verified_release_and_rolls_back(tmp_path: Path
     release = subprocess.run([*base, '--accept-release', '--yes'], cwd=tmp_path, text=True, capture_output=True)
     assert release.returncode == 0, release.stderr
     assert skill.read_bytes() == changed.read_bytes()
+    assert optional_view.read_text() == 'retained optional view'
     assert (support / 'VERSION').read_text().strip() == 'v99.0.0'
     assert not (home / f'.codex/skills/{slug}/SKILL.md').exists()
     assert json.loads(state_file.read_text())['status'] == 'current'
+    assert json.loads(state_file.read_text())['verification_scope'] == 'managed_runtime'
+    assert json.loads(state_file.read_text())['optional_views_status'] == 'retained_unverified'
     ordinary = subprocess.run(base, cwd=tmp_path, text=True, capture_output=True)
     assert ordinary.returncode == 0, ordinary.stderr
     assert not (home / f'.codex/skills/{slug}/SKILL.md').exists()
@@ -189,3 +198,11 @@ def test_packaged_profile_updates_verified_release_and_rolls_back(tmp_path: Path
     assert json.loads((home / module.PROFILE).read_text())['retire'] == []
     assert json.loads(state_file.read_text())['last_checked_at'] == 'later scheduled check'
     assert json.loads(state_file.read_text())['installed_version'] == version
+
+
+def test_runtime_inventory_is_available_in_a_tagged_git_mirror() -> None:
+    import json
+    inventory = json.loads((ROOT / '.meta/install-bundle.json').read_text())['files']
+    tracked = set(subprocess.check_output(['git', 'ls-files'], cwd=ROOT, text=True).splitlines())
+    assert set(inventory) <= tracked
+    assert not any(path.startswith('dist/') for path in inventory)
