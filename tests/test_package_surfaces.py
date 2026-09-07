@@ -65,6 +65,7 @@ def test_package_boundary_includes_release_watch_contract(tmp_path: Path) -> Non
         ".meta/skill-job-map.json",
         "docs/CAPABILITY-EVALUATION.md",
         "docs/SKILL-JOB-MAP.md",
+        "scripts/eng-report.py",
         "scripts/update-core-prompts.py",
         "scripts/deploy-surfaces.sh",
         "scripts/deploy-profile.py",

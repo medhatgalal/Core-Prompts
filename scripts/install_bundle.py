@@ -11,7 +11,7 @@ MANIFEST = '.meta/install-bundle.json'
 ROOTS = ('.codex', '.gemini', '.claude', '.kiro', '.grok',
          '.meta/manifest.json', '.meta/capability-handoff.json', '.meta/capabilities',
          '.meta/install-profiles', 'sources/ssot-baselines',
-         'scripts/deploy-copy-plan.py', 'scripts/deploy-profile.py', 'scripts/install_bundle.py',
+         'scripts/eng-report.py', 'scripts/deploy-copy-plan.py', 'scripts/deploy-profile.py', 'scripts/install_bundle.py',
          'scripts/register-codex-agents.py', 'scripts/deploy-surfaces.sh',
          'scripts/install-local.sh', 'scripts/update-core-prompts.py', 'VERSION', 'RELEASE_SOURCE.env')
 

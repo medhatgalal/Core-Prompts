@@ -193,6 +193,7 @@ def test_nonlocal_install_writes_standalone_updater_bundle_and_prunes_stale_file
         "--cli",
         "all",
         target_root=tmp_path,
+        cli_bins=("codex",),
         allow_nonlocal_target=True,
     )
 
@@ -210,6 +211,16 @@ def test_nonlocal_install_writes_standalone_updater_bundle_and_prunes_stale_file
     assert (tmp_path / ".core-prompts-updater" / "scripts" / "deploy-surfaces.sh").is_file()
     assert (tmp_path / ".core-prompts-updater" / "scripts" / "install-local.sh").is_file()
     assert not stale.exists()
+    helper = tmp_path / ".core-prompts-updater/scripts/eng-report.py"
+    launcher = tmp_path / ".local/bin/eng-report"
+    assert helper.read_bytes() == (ROOT / "scripts/eng-report.py").read_bytes()
+    assert str(ROOT) not in launcher.read_text()
+    assert str(helper) in launcher.read_text()
+    # Execute from outside the checkout to prove the standalone launcher resolves.
+    help_result = subprocess.run([str(launcher), "run", "--help"], cwd=tmp_path,
+                                 capture_output=True, text=True, check=True)
+    assert "--json" in help_result.stdout
+
 
 
 def test_install_help_mentions_release_watch_metadata() -> None:

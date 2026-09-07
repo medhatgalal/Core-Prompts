@@ -1,3 +1,12 @@
+## v1.13.1 - 2026-09-07
+
+- Fixed `eng-report run --json` creating report directories and overwriting HTML/JavaScript. Metrics collection now skips rendering; ordinary HTML reports remain supported.
+- Included the engineering-report helper in release/runtime packages and bound new launchers to the installed copy so checkout cleanup cannot break the CLI.
+- Corrected Engineering Progress help and examples to distinguish supported executable flags from explicit integration workflows. The current namespaced skill keeps its three-pass metrics/narrative/rendering contract.
+- Reviewed the two preserved pre-namespace commits. Retained the missing JSON fix and reporting guidance; the old global help gate conflicts with current capability contracts, and UAC already preserves complete authored source. Supercharge, OpEx, and pinned Loopy behavior remain unchanged.
+
+Structural readiness and deterministic regression checks do not claim formal behavioral promotion.
+
 ## v1.13.0 - 2026-09-07
 
 - Established one canonical `engos-<category>-<name>` identity for Core-authored skills, retired superseded generated routes and evaluation filenames, and updated onboarding, examples, catalogs, and repository delivery guidance. The release contains 27 canonical capabilities including Loopy.

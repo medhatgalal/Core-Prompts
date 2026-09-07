@@ -498,6 +498,7 @@ roots = [
     ".meta/capabilities",
     "dist/consumer-shell",
     "sources/ssot-baselines",
+    "scripts/eng-report.py",
     "scripts/deploy-profile.py",
     "scripts/install_bundle.py",
     ".meta/install-bundle.json",
@@ -749,8 +750,8 @@ fi
 
 # Install eng-report binary to ~/.local/bin if deploying to home
 if [[ "$TARGET_ROOT" != "$REPO_ROOT" && "$SURFACE_ONLY" -eq 0 ]]; then
-  ENG_SCRIPT="$REPO_ROOT/scripts/eng-report.py"
-  if [[ -f "$ENG_SCRIPT" ]]; then
+  ENG_SCRIPT="$TARGET_ROOT/.core-prompts-updater/scripts/eng-report.py"
+  if [[ -f "$REPO_ROOT/scripts/eng-report.py" ]]; then
     if [[ "$DRY_RUN" -eq 1 ]]; then
       echo "DRY-RUN WRITE $TARGET_ROOT/.local/bin/eng-report"
     else

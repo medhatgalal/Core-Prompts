@@ -39,7 +39,7 @@ The package should include:
 - evaluation, clarity, descriptor, and plain-English job-map policy under `.meta/`
 - `dist/consumer-shell/`
 - `sources/ssot-baselines/`
-- deploy/install scripts
+- deploy/install scripts and `scripts/eng-report.py`; installed launchers resolve the standalone runtime copy, independently of the source checkout
 - release-watch updater scripts, `VERSION`, and `RELEASE_SOURCE.env`
 - local source checkout metadata, when a home install is performed from a durable checkout
 - curated operator/integrator docs
