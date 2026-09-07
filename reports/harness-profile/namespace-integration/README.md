@@ -2,14 +2,14 @@
 
 Integrated accepted namespace `66f10899bc9901e4f41fcc86257e1b872aa09896` and accepted
 obsolete-eval cleanup `4059a0e22584be05b43ecf82633828a608a711bf` into the existing
-harness lane. No shared-main, release, or home mutation occurred.
+harness lane. Accepted capability preservation `766e743ebd14d96811e0eb7b75592ffe843de552` is also integrated. No shared-main, release, or home mutation occurred.
 
 Git guessed several cross-root renames between generated skills and canonical
 SSOT files. An exact hash-bound resolution restored the frozen canonical text,
 retained the two reviewed portability examples, and preserved all conflict
 preimages. The plan used 18 writes and 141 recoverable local archives, with no
 permanent deletion. `recovery/` and the detailed conflict plan remain local,
-ignored recovery data until the controller's approved cleanup. The inherited
+ignored recovery data with `.preimage` suffixes (not executable/test-discovered files) until the controller's approved cleanup. The inherited
 50 obsolete eval files are absent; 27 canonical contract/topology pairs remain.
 
 Regeneration yields 27 skills on all five clients, with `loopy` the sole explicit
@@ -43,3 +43,7 @@ Any unknown body/helper/metadata difference needs controller reconciliation befo
 rollout. Rebind all hashes to the final released candidate before execution.
 The targeted prototype file/registration checks found no matching named entry;
 that is not final authenticated discovery proof or approval for cleanup.
+
+Release packaging must use the exact tracked source archive. The primary
+checkout's untracked absolute-path Codex configuration is runtime state, not
+a release input; preserve and compare it separately.

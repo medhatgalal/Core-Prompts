@@ -1,0 +1,183 @@
+{
+  "evidence_class": "acceptance specification; not model execution or native menu discovery",
+  "input_artifact": "A release plan with three alternatives, fixed no-deploy boundary, supplied evidence, and explicit success criteria.",
+  "cases": [
+    {
+      "id": "full",
+      "ask": "supercharge /full <artifact>",
+      "expect": [
+        "PASS 1 — SIMPLE",
+        "PASS 2 — INVERT",
+        "PASS 3 — ADVERSARIAL",
+        "PASS 4 — CONTRACT",
+        "PASS 5 — GRADE (10 iterations)",
+        "ten actual ladder entries, each with improved artifact, score, and improvement reason"
+      ],
+      "forbid": [
+        "executing the final prompt",
+        "adaptive shortening of ten grading rounds"
+      ]
+    },
+    {
+      "id": "full_skip_grade",
+      "ask": "supercharge /full skip grade <artifact>",
+      "expect": [
+        "SIMPLE",
+        "INVERT",
+        "ADVERSARIAL",
+        "CONTRACT"
+      ],
+      "forbid": [
+        "grade pass",
+        "execution"
+      ]
+    },
+    {
+      "id": "basis_full",
+      "ask": "supercharge /basis /full <artifact>",
+      "expect": [
+        "PASS 0 — BASIS before PASS 1",
+        "all five full passes",
+        "exactly ten grading iterations"
+      ]
+    },
+    {
+      "id": "stack",
+      "ask": "supercharge /simple /invert /contract <artifact>",
+      "expect": [
+        "simple then invert then contract",
+        "Contract Spec",
+        "QA Evaluation JSON"
+      ],
+      "forbid": [
+        "unrequested grade",
+        "concurrent heavy-framework mixing"
+      ]
+    },
+    {
+      "id": "debate_deep",
+      "ask": "supercharge /debate /deep <artifact>",
+      "expect": [
+        "nested adversarial debate",
+        "Bull Opening",
+        "Bear Rebuttal",
+        "Bull Counter",
+        "Bear Final Challenge",
+        "Decider Verdict",
+        "Decision-Risk Table",
+        "Recommended Next Validation"
+      ]
+    },
+    {
+      "id": "route",
+      "ask": "supercharge /route /simple /invert /contract <artifact>",
+      "expect": [
+        "one Routing: <sequence> (reason: <short>) line first",
+        "then requested modules"
+      ]
+    },
+    {
+      "id": "default",
+      "ask": "supercharge assess this architecture: <artifact>",
+      "expect": [
+        "announce default route",
+        "simple then invert then contract"
+      ]
+    },
+    {
+      "id": "help_examples",
+      "ask": "supercharge /help examples",
+      "expect": [
+        "bundled help-examples.md output contract",
+        "Single Modules",
+        "Common Stacks"
+      ],
+      "forbid": [
+        "execution of examples",
+        "operational module output"
+      ]
+    },
+    {
+      "id": "help",
+      "ask": "supercharge help",
+      "expect": [
+        "bundled help.md only"
+      ],
+      "forbid": [
+        "operational execution"
+      ]
+    },
+    {
+      "id": "stop_precedence",
+      "ask": "supercharge /route /full /help examples /stop",
+      "expect": [
+        "stop acknowledgement only",
+        "exit active modes"
+      ],
+      "forbid": [
+        "routing line",
+        "help output",
+        "module output"
+      ]
+    },
+    {
+      "id": "stop_ult_precedence",
+      "ask": "supercharge /stop-ult /full",
+      "expect": [
+        "exit ULT and ignore modules"
+      ],
+      "forbid": [
+        "full pass output"
+      ]
+    },
+    {
+      "id": "missing_help_resource",
+      "ask": "supercharge help",
+      "setup": "required help resource unavailable",
+      "expect": [
+        "report the missing resource"
+      ],
+      "forbid": [
+        "invented or shortened help"
+      ]
+    },
+    {
+      "id": "details",
+      "ask": "supercharge details",
+      "expect": [
+        "complete MODULE REFERENCE only"
+      ],
+      "forbid": [
+        "module execution",
+        "routing line"
+      ]
+    },
+    {
+      "id": "conflicting_terminal_controls",
+      "ask": "supercharge help details",
+      "expect": [
+        "ask user to select one terminal control"
+      ],
+      "forbid": [
+        "combined outputs",
+        "routing",
+        "execution"
+      ]
+    },
+    {
+      "id": "missing_examples_resource",
+      "ask": "supercharge /help examples",
+      "setup": "help-examples.md unavailable",
+      "expect": [
+        "report missing examples resource"
+      ],
+      "forbid": [
+        "invented or shortened examples",
+        "executing examples"
+      ]
+    }
+  ],
+  "namespace_requirement": "Exercise the same suffixes through engos-meta-supercharge and short conversational supercharge prefixes. No native menu alias is registered.",
+  "packaging_requirement": "All four generated skill bundles and all four agent resource bundles must contain byte-identical help resources and resolvable capability.json-relative paths. Native startup/menu discovery is a distinct harness check.",
+  "source_base": "66f10899bc9901e4f41fcc86257e1b872aa09896"
+}

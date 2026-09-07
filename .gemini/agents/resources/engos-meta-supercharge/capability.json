@@ -196,7 +196,7 @@
   ],
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "engos-meta-supercharge",
-  "shared_summary": "[Medhat] SuperCharge \u2014 Prompt Engineering Swiss Army Knife (ULT-Agent++ \u2022 Catchup Deep \u2022 Simple \u2022 Invert \u2022 Adversarial \u2022 Contract+QA \u2022 Grade \u2022 GASLIGHT 13)",
+  "shared_summary": "Harden a prompt, plan, proposal, or workflow through the smallest useful sequence of simplification, inversion, adversarial critique, contract checks, debate, or grading. Use when the artifact needs stronger reasoning or execution guidance; use behavioral evaluation for proof.",
   "shared_constraints": [
     "Do not stack heavy frameworks concurrently without reason.",
     "Do not bloat the answer with every module when a smaller route is enough.",
@@ -511,7 +511,203 @@
     }
   ],
   "benchmark_sources": [],
+  "quality_profile": "default",
+  "quality_status": "structural_ready",
+  "judge_reports": [
+    {
+      "pass_number": 1,
+      "status": "structural_ready",
+      "historical_baseline": {
+        "slug": "engos-meta-supercharge",
+        "strategy": "historical_gold",
+        "group": "flattened_regression",
+        "baseline_path": "sources/ssot-baselines/engos-meta-supercharge/baseline.md",
+        "selected_commit": "3bc88b43",
+        "richness_score": 19,
+        "line_count": 526,
+        "reason": "Latest pre-flatten rich body with full activation grammar, help/details contract, module reference, hard constraints, and executable module sections.",
+        "equivalent_commits": [
+          "e4b12fc3",
+          "f6025ddb",
+          "719fb303"
+        ],
+        "expected_companions": [
+          "engos-reconciliation-converge",
+          "engos-memory-context-continuity"
+        ],
+        "operator_invariants": [],
+        "scenario_matrix": [
+          {
+            "id": "individual_ult",
+            "kind": "individual_module",
+            "label": "/ult module contract",
+            "must_contain": [
+              "### HARD CONSTRAINTS (Non-Negotiable)",
+              "### Critical Execution Rule (ULT)",
+              "### Output Structure (MANDATORY)"
+            ]
+          },
+          {
+            "id": "individual_catchup",
+            "kind": "individual_module",
+            "label": "/catchup forensic contract",
+            "must_contain": [
+              "## MODULE: /catchup",
+              "### HARD CONSTRAINTS (Non-Negotiable)",
+              "Validation Status: PASS | FAIL"
+            ]
+          },
+          {
+            "id": "stacked_and_full",
+            "kind": "stacked_or_full",
+            "label": "stacked modules and /full coverage",
+            "must_contain": [
+              "## HELP OUTPUT",
+              "## MODULE REFERENCE",
+              "/full",
+              "/simple",
+              "/invert",
+              "/adversarial",
+              "/contract",
+              "/grade"
+            ]
+          },
+          {
+            "id": "agentic_overlay",
+            "kind": "agentic",
+            "label": "agentic orchestration guidance",
+            "must_contain": [
+              "### Agentic Orchestration (Core Principle, Not a Module)",
+              "### Auto-Routing (Smart Defaults)",
+              "### Reflective Controls (Optional Modifiers)"
+            ]
+          },
+          {
+            "id": "help_output_contract",
+            "kind": "operational_contract",
+            "label": "help output contract",
+            "must_contain": [
+              "## Help Output"
+            ]
+          }
+        ],
+        "historical_proof": {
+          "current_head_commit": "0a2c1e46",
+          "current_head_richness_score": 2,
+          "current_head_line_count": 162,
+          "materialized_from_commit": "3bc88b43"
+        },
+        "source": "source_library",
+        "verified_by_git_history": false,
+        "has_baseline_text": true
+      },
+      "judge_reports": [
+        {
+          "judge": "source_fidelity",
+          "title": "Source Fidelity and Uplift",
+          "score": 10,
+          "blockers": [],
+          "classification": "additive",
+          "scenario_results": [
+            {
+              "id": "individual_ult",
+              "kind": "individual_module",
+              "label": "/ult module contract",
+              "passed": true,
+              "missing_markers": []
+            },
+            {
+              "id": "individual_catchup",
+              "kind": "individual_module",
+              "label": "/catchup forensic contract",
+              "passed": true,
+              "missing_markers": []
+            },
+            {
+              "id": "stacked_and_full",
+              "kind": "stacked_or_full",
+              "label": "stacked modules and /full coverage",
+              "passed": true,
+              "missing_markers": []
+            },
+            {
+              "id": "agentic_overlay",
+              "kind": "agentic",
+              "label": "agentic orchestration guidance",
+              "passed": true,
+              "missing_markers": []
+            },
+            {
+              "id": "help_output_contract",
+              "kind": "operational_contract",
+              "label": "help output contract",
+              "passed": true,
+              "missing_markers": []
+            }
+          ],
+          "scorecard": {
+            "baseline_richness": 19,
+            "candidate_richness": 24,
+            "baseline_operational_score": 2,
+            "candidate_operational_score": 4,
+            "baseline_preserved_in_resource": false
+          },
+          "baseline_commit": "3bc88b43",
+          "baseline_slug": "engos-meta-supercharge"
+        },
+        {
+          "judge": "operational_richness",
+          "title": "Operational Richness",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "metadata_integrity",
+          "title": "Metadata and Handoff Integrity",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "benchmark_readiness",
+          "title": "Benchmark Readiness and Template Fit",
+          "score": 10,
+          "blockers": [],
+          "scorecard": {
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 10,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          }
+        }
+      ],
+      "blockers": [],
+      "scorecard": {
+        "source_fidelity": 10,
+        "baseline_richness": 19,
+        "candidate_richness": 24,
+        "baseline_operational_score": 2,
+        "candidate_operational_score": 4,
+        "baseline_preserved_in_resource": false,
+        "operational_richness": 10,
+        "metadata_integrity": 10,
+        "benchmark_readiness": 10,
+        "title_clarity": 10,
+        "description_richness": 10,
+        "intent_coverage": 10,
+        "boundary_clarity": 10,
+        "output_specificity": 10,
+        "metadata_completeness": 8,
+        "surface_usability": 10
+      },
+      "template_name": "both"
+    }
+  ],
   "consumption_hints": {},
+  "quality_pass_count": 1,
+  "quality_stop_reason": "thresholds_met",
   "historical_baseline": {
     "slug": "engos-meta-supercharge",
     "strategy": "historical_gold",

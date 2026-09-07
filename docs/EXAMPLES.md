@@ -253,6 +253,17 @@ Follow with:
 
 > Show me completed plan items, the current stage and gate, active subagents, evidence received, blockers, and the next action.
 
+### Supercharge help and full passes
+
+- `supercharge help` — return the bundled command guide and stop.
+- `supercharge /help examples` — return module/stack examples without executing them.
+- `supercharge /full <plan>` — run the five preserved passes, ending with exactly ten grading iterations; do not execute the final prompt.
+- `supercharge /full skip grade <plan>` — retain the first four passes and omit grading explicitly.
+- `supercharge /basis /full <plan>` — run the basis pass first, then all five full passes.
+- `supercharge /stop /full` — stop acknowledgement only; terminal stop takes precedence.
+
+The short conversational prefix routes within `engos-meta-supercharge`. Help is bundled with the skill and agent resources; no separate short-name skill or native menu alias is added.
+
 ### `engos-meta-supercharge /basis`
 
 Use when:
@@ -629,7 +640,21 @@ The helper performs no network access and refuses to overwrite an existing repor
 
 For Markdown drill-downs, use `--format md` or `--format both` with the same normalized snapshots. Each supplied `deep_dive` retains its facts, customer risk, Five Whys, preventive action, talking points, and questions after the daily board. Incidents without `deep_dive` do not get a fabricated drill-down.
 
-The deterministic renderer still lacks dedicated incident-specific recurring-pattern and per-DPA “Why it helps” output fields. This repair does not establish full deep-dive equivalence.
+For complete meeting preparation:
+
+> Use `engos-audit-opex-incident-review briefing INC-101 INC-103` for the next review. Include every linked remediation ticket, verified prior-incident recurrence, customer impact, current postmortem evidence, and sourced talking points for both incidents. Keep the daily board and write both briefing files to my selected output directory.
+
+The optional briefing evidence fields add complete fix tables, recurrence evidence, customer counts per incident, and evidence gaps. Ordinary daily/deep-dive snapshots retain their existing output. See `help briefing` for input preparation and the historical Appian field mappings that require current-site verification.
+
+After rendering, export additional requested formats from the local HTML:
+
+```bash
+python3 resources/export_report.py --source BRIEFING.html --format txt --output BRIEFING.txt
+python3 resources/export_report.py --source BRIEFING.html --format pdf --output BRIEFING.pdf
+python3 resources/export_report.py --source BRIEFING.html --format gdoc --document DOC_ID --dry-run
+```
+
+PDF export preserves report text through Pandoc and requires a working local PDF engine; it does not promise identical HTML layout. Google Doc export appends text only when the named existing document is explicitly authorized with `--authorize-google-write`. Its dry-run returns a local plan before invoking GWS. A successful write acknowledgement still requires content readback. Missing converters, missing authorization, or provider failures leave local HTML/Markdown intact and the requested export incomplete.
 
 ### `engos-quality-gitops-review`
 
