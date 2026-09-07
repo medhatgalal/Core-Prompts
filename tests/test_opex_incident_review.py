@@ -395,20 +395,151 @@ def test_markdown_drilldown_treats_evidence_as_literal_text() -> None:
     assert MODULE._markdown_evidence("1. Supplied literal text") == "1\\. Supplied literal text"
 
 
-def test_markdown_replay_receipt_is_bound_to_current_renderer() -> None:
-    receipt = json.loads((ROOT / "evals/maintenance/engos-audit-opex-incident-review/markdown-drilldown-replay.json").read_text())
+def test_markdown_replay_receipt_remains_historical() -> None:
+    path = ROOT / "evals/maintenance/engos-audit-opex-incident-review/markdown-drilldown-replay.json"
+    assert hashlib.sha256(path.read_bytes()).hexdigest() == "89069f2251b921d4f1833536b1fd757cf7d23ec97c0960941a5371502c517e36"
+
+
+def briefing_snapshot() -> dict:
+    current = load("current.json")
+    incident = current["incidents"][0]
+    incident["affected_customers"] = ["Customer Alpha", "Customer Alpha", "Customer Beta"]
+    incident["deep_dive"].update({
+        "briefing": True,
+        "customer_impact": "Two verified customers experienced startup failures.",
+        "interim_mitigation": "Pin the verified image.",
+        "residual_risk": "Other deployments remain exposed.",
+        "recurrence_window": "2026-03-02 through 2026-09-02",
+        "evidence_gaps": ["One linked document is unavailable."],
+        "fix_tickets": [
+            {"key": "FIX-11", "summary": "Remediate startup", "status": "Done", "owner": "Owner One", "target_date": "no date", "relationship": "child of INC-101", "evidence": "INC-101 link read 2026-09-02", "why_it_helps": "Selects the compatible image", "deployment": "not evidenced", "effectiveness": "not evidenced"},
+            {"key": "DPA-201", "summary": "Prevent bad selection", "status": "In Progress", "owner": "Owner Two", "relationship": "linked by INC-101", "evidence": "DPA-201 read 2026-09-02", "why_it_helps": "Checks input compatibility"},
+        ],
+        "recurring_incidents": [
+            {"key": "OLD-1", "summary": "Earlier startup", "relevance": "Same verified image selection defect", "evidence": "OLD-1 RCA read 2026-09-02", "prior_remediation": "Pin image"},
+            {"key": "OLD-2", "summary": "Second startup", "relevance": "Same verified image selection defect", "evidence": "OLD-2 RCA read 2026-09-02", "prior_remediation": "Manual validation"},
+        ],
+    })
+    return current
+
+
+@pytest.mark.parametrize("renderer", [MODULE.render_html, MODULE.render_markdown])
+def test_briefing_preserves_complete_fix_recurrence_customer_and_risk_evidence(renderer) -> None:
+    current = briefing_snapshot()
+    value = MODULE.build_model(current, load("previous.json"))
+    rendered = renderer(value)
+    for marker in ("FIX-11", "Done", "Selects the compatible image", "Checks input compatibility", "Recurring Pattern", "OLD-1", "OLD-2", "Manual validation", "Customer Alpha", "Customer Beta", "2 verified affected customers", "Pin the verified image.", "One linked document is unavailable."):
+        assert marker in rendered
+    # Broader incident evidence must not change daily DPA counts or reconciliation.
+    assert value["metrics"] == model()["metrics"]
+    assert "https://jira.example.test/browse/FIX-11" in rendered
+    assert "https://jira.example.test/browse/OLD-1" in rendered
+
+
+def test_briefing_missing_evidence_and_single_prior_do_not_claim_completeness() -> None:
+    current = briefing_snapshot()
+    details = current["incidents"][0]["deep_dive"]
+    details["fix_tickets"] = []
+    details["recurring_incidents"] = details["recurring_incidents"][:1]
+    for render in (MODULE.render_html, MODULE.render_markdown):
+        text = render(MODULE.build_model(current, load("previous.json")))
+        assert "No verified fix records supplied" in text
+        assert "Prior-incident evidence" in text
+        assert "Recurring Pattern" not in text
+        assert "customer coverage unknown" in text
+
+
+@pytest.mark.parametrize("field", ["fix_tickets", "recurring_incidents"])
+def test_briefing_rejects_duplicate_or_unattributed_evidence(field) -> None:
+    current = briefing_snapshot()
+    rows = current["incidents"][0]["deep_dive"][field]
+    rows.append(deepcopy(rows[0]))
+    with pytest.raises(MODULE.SnapshotError, match="duplicate"):
+        MODULE.build_model(current, load("previous.json"))
+    rows.pop()
+    rows[0].pop("evidence")
+    with pytest.raises(MODULE.SnapshotError, match="evidence"):
+        MODULE.build_model(current, load("previous.json"))
+
+
+@pytest.mark.parametrize("query", ["", "?foo=1&focusedCommentId=123"])
+def test_briefing_links_preserve_urls_and_complete_ticket_keys(query) -> None:
+    current = briefing_snapshot()
+    current["incidents"][0]["deep_dive"]["facts"] = f"See ABC_DEF-12 and ABC-DEF-12 and https://jira.example.test/browse/INC-101{query}."
+    rendered = MODULE.render_markdown(MODULE.build_model(current, load("previous.json")))
+    assert "browse/[INC" not in rendered
+    assert f"<https://jira.example.test/browse/INC-101{query}>." in rendered
+    assert "[ABC_DEF-12](<https://jira.example.test/browse/ABC_DEF-12>)" in rendered
+    assert "[ABC-DEF-12](<https://jira.example.test/browse/ABC-DEF-12>)" in rendered
+    assert "/browse/DEF-12" not in rendered
+    assert "Owner | Customers |" in rendered
+    assert "Owner One | 2 |" in rendered
+    html_output = MODULE.render_html(MODULE.build_model(current, load("previous.json")))
+    assert "<th>Customers</th>" in html_output
+    assert '<details id="incident-INC-101" open>' in html_output
+    escaped_query = query.replace("&", "&amp;")
+    assert f'href="https://jira.example.test/browse/INC-101{escaped_query}">https://jira.example.test/browse/INC-101{escaped_query}</a>.' in html_output
+    assert "<td>Owner One</td><td>2</td>" in html_output
+
+
+@pytest.mark.parametrize("invalid", [None, 0, "", [], "true"])
+def test_briefing_marker_is_boolean_even_when_falsey(invalid) -> None:
+    current = briefing_snapshot()
+    current["incidents"][0]["deep_dive"]["briefing"] = invalid
+    with pytest.raises(MODULE.SnapshotError, match="briefing must be boolean"):
+        MODULE.build_model(current, load("previous.json"))
+
+
+def test_non_briefing_rendered_outputs_remain_byte_identical() -> None:
+    expected = {
+        "html": "358b04f896639d72a8a24f6859a9be91341224c4eeb6b9e33f9f162625144102",
+        "markdown": "624b0632a7ba80def286f4a5c53943ca36d1e7b8bd625081b662ea33bd312fa6",
+    }
+    value = MODULE.build_model(load("current.json"), load("previous.json"))
+    for name, digest in expected.items():
+        assert hashlib.sha256(getattr(MODULE, "render_" + name)(value).encode()).hexdigest() == digest
+
+
+def test_briefing_keeps_namespaced_incident_command_handoff() -> None:
+    text = (ROOT / "ssot/engos-audit-opex-incident-review.md").read_text()
+    assert text.count("`engos-operations-ic-assistant`") == 1
+    assert "`ic-assistant`" not in text
+
+
+def test_briefing_snapshot_uses_existing_schema_without_new_required_fields() -> None:
+    schema = json.loads((RESOURCE_DIR / "snapshot.schema.json").read_text())
+    validator = jsonschema.Draft202012Validator(schema, format_checker=jsonschema.FormatChecker())
+    validator.validate(briefing_snapshot())
+    validator.validate(load("current.json"))
+
+
+def test_plain_export_preserves_extended_briefing_evidence() -> None:
+    spec = importlib.util.spec_from_file_location("briefing_export", RESOURCE_DIR / "export_report.py")
+    exporter = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(exporter)
+    result = MODULE.build_model(briefing_snapshot(), load("previous.json"))
+    text = exporter.plain_text(MODULE.render_html(result))
+    for marker in ("2 verified affected customers", "FIX-11 | Remediate startup | Done", "Selects the compatible image", "OLD-1 | Earlier startup", "Manual validation", "One linked document is unavailable."):
+        assert marker in text
+
+
+def test_briefing_receipt_binds_current_canonical_resources() -> None:
+    receipt = json.loads((ROOT / "evals/maintenance/engos-audit-opex-incident-review/briefing-preservation-replay.json").read_text())
     for name, path in {
-        "renderer_sha256": SCRIPT,
         "candidate_sha256": ROOT / "ssot/engos-audit-opex-incident-review.md",
-        "current_fixture_sha256": FIXTURES / "current.json",
-        "previous_fixture_sha256": FIXTURES / "previous.json",
+        "renderer_sha256": SCRIPT,
+        "exporter_sha256": RESOURCE_DIR / "export_report.py",
+        "briefing_reference_sha256": RESOURCE_DIR / "references/briefing.md",
+        "schema_sha256": RESOURCE_DIR / "snapshot.schema.json",
     }.items():
-        content = path.read_bytes()
-        if name == "candidate_sha256":
-            # Preserve the replay's original source binding across the exact
-            # companion namespace rename; do not manufacture a new replay.
-            assert content.count(b"`engos-operations-ic-assistant`") == 1
-            content = content.replace(b"`engos-operations-ic-assistant`", b"`ic-assistant`")
-        assert receipt["bindings"][name] == hashlib.sha256(content).hexdigest()
-    assert receipt["evidence_class"] == "local deterministic regression"
+        assert receipt["bindings"][name] == hashlib.sha256(path.read_bytes()).hexdigest()
     assert receipt["formal_behavioral_status"] == "behavioral_pending"
+    assert "No live Google Doc write/readback" in receipt["limitations"]
+
+
+def test_briefing_linking_never_unescapes_hostile_source_markup() -> None:
+    current = briefing_snapshot()
+    current["incidents"][0]["deep_dive"]["facts"] = '<script>alert(1)</script> & evidence FIX-11'
+    rendered = MODULE.render_html(MODULE.build_model(current, load("previous.json")))
+    assert "<script>alert(1)</script>" not in rendered
+    assert "&lt;script&gt;alert(1)&lt;/script&gt; &amp; evidence" in rendered

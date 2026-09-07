@@ -1,0 +1,31 @@
+{
+  "schema_version": "BriefingPreservationReplay.v1",
+  "base": "4059a0e22584be05b43ecf82633828a608a711bf",
+  "evidence_class": "local deterministic regressions and mocked optional export boundaries",
+  "bindings": {
+    "candidate_sha256": "2f256da3a7ca86fd6e6ea227c1d3e6a0abe37d19fe6a118b8f473b75e65d5530",
+    "renderer_sha256": "8f4e780752d42dbaa5c360fa129a3e3d7fa186beebec3091da6e39c29890f6a2",
+    "exporter_sha256": "5bc4738f332fb7c9bf5a3c226aa3d271c8049dc9c5e47816cbe12f7249fc9e3c",
+    "briefing_reference_sha256": "732f9b25e44d8f940e664a30771b24588333925ab0641bfcaf67979b75179400",
+    "schema_sha256": "dcf64986163e0ad096a396bfd1b9968f7f11749481724898e37a6698d16237df"
+  },
+  "command": "python3.14 -m pytest -q tests/test_opex_incident_review.py tests/test_opex_exports.py -k 'not receipt'",
+  "checks": {
+    "passed": 45,
+    "failed": 0
+  },
+  "preserved": [
+    "existing required snapshot schema",
+    "byte-identical non-briefing fixture HTML/Markdown",
+    "unchanged daily calculations",
+    "historical receipts",
+    "complete selected briefing evidence and gaps"
+  ],
+  "limitations": [
+    "No live Google Doc write/readback",
+    "No actual PDF conversion; local PDF engine absent",
+    "Mocked export execution and missing prerequisites are not live acceptance",
+    "No formal model behavioral promotion"
+  ],
+  "formal_behavioral_status": "behavioral_pending"
+}

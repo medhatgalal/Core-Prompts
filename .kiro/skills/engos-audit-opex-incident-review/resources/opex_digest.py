@@ -11,6 +11,7 @@ import html
 import json
 import re
 from collections import defaultdict
+from html.parser import HTMLParser
 from datetime import date, datetime, timedelta
 from pathlib import Path
 from typing import Any
@@ -154,6 +155,25 @@ def validate_snapshot(snapshot: dict[str, Any], *, previous: bool = False) -> No
             isinstance(value, str) and value for value in affected
         ):
             raise SnapshotError(f"{where}.affected_entities must be a string array")
+        if "affected_customers" in incident:
+            customers = incident["affected_customers"]
+            if not isinstance(customers, list) or not all(isinstance(item, str) and item.strip() for item in customers):
+                raise SnapshotError(f"{where}.affected_customers must be a string array")
+        details = incident.get("deep_dive")
+        if isinstance(details, dict) and "briefing" in details and not isinstance(details["briefing"], bool):
+            raise SnapshotError(f"{where}.deep_dive.briefing must be boolean")
+        if isinstance(details, dict) and details.get("briefing"):
+            for field, required in (("fix_tickets", ("summary", "relationship", "evidence")), ("recurring_incidents", ("summary", "relevance", "evidence"))):
+                rows = details.get(field, [])
+                if not isinstance(rows, list):
+                    raise SnapshotError(f"{where}.deep_dive.{field} must be an array")
+                _unique_keys(rows, field)
+                for row in rows:
+                    for key in required:
+                        _require_string(row, key, f"{where}.deep_dive.{field}")
+            gaps = details.get("evidence_gaps", [])
+            if not isinstance(gaps, list) or not all(isinstance(item, str) for item in gaps):
+                raise SnapshotError(f"{where}.deep_dive.evidence_gaps must be a string array")
         missing = sorted(set(incident.get("dpa_keys", [])) - dpa_keys)
         if missing:
             raise SnapshotError(
@@ -657,7 +677,7 @@ def _rows(items: list[str]) -> str:
 
 
 def _incident_table_rows(
-    items: list[dict[str, Any]], base_url: str, *, stalled: bool = False
+    items: list[dict[str, Any]], base_url: str, *, stalled: bool = False, customers: bool = False
 ) -> str:
     rows = []
     for item in items:
@@ -677,7 +697,8 @@ def _incident_table_rows(
                 f"<td>{html.escape(item['priority'])}</td><td>{_badge(item['status'])}</td>"
                 f"<td>{item['age_days']}</td><td>{item['stalled_days']}</td><td>{pm}</td>"
                 f"<td>{len(item.get('open_dpa_keys', []))}</td><td>{html.escape(item['owner'])}</td>"
-                "</tr>"
+                + (f"<td>{_customer_count(item)}</td>" if customers else "")
+                + "</tr>"
             )
     return "".join(rows)
 
@@ -700,6 +721,114 @@ def _trend(history: list[dict[str, Any]], metrics: dict[str, int]) -> str:
         )
         parts.append(f"{label} {' → '.join(map(str, values))} {arrow}")
     return f"Trend over {len(series)} runs: " + " · ".join(parts)
+
+
+def _briefing_tables(incident: dict[str, Any]) -> list[tuple[str, list[str], list[list[str]]]]:
+    details = incident.get("deep_dive", {})
+    if not details.get("briefing"):
+        return []
+    fixes = details.get("fix_tickets", [])
+    prior = details.get("recurring_incidents", [])
+    rows = []
+    for fix in fixes:
+        rows.append([str(fix.get(key) or fallback) for key, fallback in (
+            ("key", "Unknown"), ("summary", "Unknown"), ("status", "Unknown"),
+            ("owner", "Unknown"), ("target_date", "no date"),
+            ("relationship", "Unknown"), ("why_it_helps", "Not evidenced"),
+            ("deployment", "Not evidenced"), ("effectiveness", "Not evidenced"),
+            ("evidence", "Unknown"),
+        )])
+    postmortem = incident.get("postmortem", {})
+    facts = [
+        ["Customer impact", str(details.get("customer_impact") or "Not available from current evidence")],
+        ["Verified customers", str(len(set(incident["affected_customers"]))) + " — " + ", ".join(sorted(set(incident["affected_customers"]))) if "affected_customers" in incident else "Unknown"],
+        ["Postmortem", str(postmortem.get("state") or "Unknown")],
+        ["Postmortem evidence", str(postmortem.get("evidence") or "Not supplied")],
+        ["Interim mitigation", str(details.get("interim_mitigation") or "Not evidenced")],
+        ["Residual risk", str(details.get("residual_risk") or "Not assessed")],
+        ["Recurrence search window", str(details.get("recurrence_window") or "Not supplied")],
+    ]
+    return [
+        ("Incident evidence", ["Subject", "Evidence"], facts),
+        ("Fix Tickets", ["Ticket", "What", "Status", "Owner", "Target", "Relationship", "Why it helps", "Deployment", "Effectiveness", "Evidence"], rows or [["No verified fix records supplied; coverage is not established"]]),
+        ("Recurring Pattern" if len(prior) >= 2 else "Prior-incident evidence", ["Ticket", "Summary", "Verified relevance", "Evidence", "Prior remediation"],
+         [[str(item.get(key) or "Not supplied") for key in ("key", "summary", "relevance", "evidence", "prior_remediation")] for item in prior] or [["No verified prior records supplied; search coverage is not established"]]),
+        ("Evidence gaps", ["Gap"], [[str(item)] for item in details.get("evidence_gaps", [])] or [["No additional gap recorded; verify source coverage"]]),
+    ]
+
+
+def _briefing_html(incident: dict[str, Any]) -> str:
+    return "".join(
+        f"<h3>{title}</h3><div class=\"table-wrap\"><table><thead><tr>"
+        + "".join(f"<th>{html.escape(column)}</th>" for column in columns)
+        + "</tr></thead><tbody>"
+        + "".join("<tr>" + "".join(f"<td>{html.escape(cell)}</td>" for cell in row + [""] * (len(columns) - len(row))) + "</tr>" for row in rows)
+        + "</tbody></table></div>"
+        for title, columns, rows in _briefing_tables(incident)
+    )
+
+
+def _customer_count(incident: dict[str, Any]) -> str:
+    return str(len(set(incident["affected_customers"]))) if "affected_customers" in incident else "Unknown"
+
+
+def _customer_summary(model: dict[str, Any]) -> str:
+    customers = {customer for incident in model["incidents"] for customer in incident.get("affected_customers", [])}
+    unknown = sum("affected_customers" not in item for item in model["incidents"])
+    return f"{len(customers)} verified affected customers" + (f"; customer coverage unknown for {unknown} incident(s)" if unknown else "")
+
+
+class _TicketLinks(HTMLParser):
+    """Link visible ticket text without touching attributes, CSS or existing links."""
+    def __init__(self, base_url: str):
+        super().__init__(convert_charrefs=True)
+        self.base_url = base_url
+        self.parts: list[str] = []
+        self.skip: list[str] = []
+
+    def handle_starttag(self, tag, attrs):
+        self.parts.append(self.get_starttag_text())
+        if tag in {"a", "style", "script"}:
+            self.skip.append(tag)
+
+    def handle_endtag(self, tag):
+        self.parts.append(f"</{tag}>")
+        if self.skip and self.skip[-1] == tag:
+            self.skip.pop()
+
+    def handle_startendtag(self, tag, attrs):
+        self.parts.append(self.get_starttag_text())
+
+    def handle_data(self, data):
+        def linked(match):
+            raw = match[0]
+            if raw.startswith(("https://", "http://")):
+                url = raw.rstrip(".,;:!?")
+                return '<a href="' + html.escape(html.unescape(url), quote=True) + '">' + url + '</a>' + raw[len(url):]
+            return _ticket(raw, self.base_url)
+        if self.skip and self.skip[-1] in {"style", "script"}:
+            self.parts.append(data)
+            return
+        # Decoded entities remain in the same data callback, so a query string
+        # cannot be split at an ampersand. Escape text before adding safe links.
+        escaped = html.escape(data, quote=False)
+        self.parts.append(escaped if self.skip else re.sub(r"https?://[^\s<>]+|\b[A-Z][A-Z0-9_-]*-\d+\b", linked, escaped))
+
+    def handle_entityref(self, name):
+        self.parts.append(f"&{name};")
+
+    def handle_charref(self, name):
+        self.parts.append(f"&#{name};")
+
+    def handle_decl(self, decl):
+        self.parts.append(f"<!{decl}>")
+
+    def handle_comment(self, data):
+        self.parts.append(f"<!--{data}-->")
+
+
+def _has_briefing(model: dict[str, Any]) -> bool:
+    return any(isinstance(item.get("deep_dive"), dict) and item["deep_dive"].get("briefing") for item in model["incidents"])
 
 
 def render_html(model: dict[str, Any]) -> str:
@@ -804,11 +933,11 @@ def render_html(model: dict[str, Any]) -> str:
             for item in details.get("questions", [])
         )
         drilldowns.append(
-            f'<details id="incident-{html.escape(incident["key"])}"><summary>{_ticket(incident["key"], base_url)} — {html.escape(incident["summary"])}</summary>'
+            f'<details id="incident-{html.escape(incident["key"])}"{" open" if details.get("briefing") else ""}><summary>{_ticket(incident["key"], base_url)} — {html.escape(incident["summary"])}</summary>'
             f"<h3>Facts and customer risk</h3><p>{html.escape(str(details.get('facts') or 'Not available from current evidence.'))}</p>"
             f"<p><strong>Customer risk:</strong> {html.escape(str(details.get('customer_risk') or 'Not assessed.'))}</p>"
             f"<h3>Five Whys</h3><ol>{whys}</ol><p><strong>Preventive action:</strong> {html.escape(str(details.get('preventive_action') or 'Not yet defined.'))}</p>"
-            f"<h3>What to say</h3><ul>{talking}</ul><h3>If they ask</h3><dl>{questions or '<dt>No sourced questions.</dt><dd>—</dd>'}</dl></details>"
+            f"{_briefing_html(incident)}<h3>What to say</h3><ul>{talking}</ul><h3>If they ask</h3><dl>{questions or '<dt>No sourced questions.</dt><dd>—</dd>'}</dl></details>"
         )
     coverage_gaps = coverage.get("gaps", [])
     coverage_html = (
@@ -826,7 +955,7 @@ def render_html(model: dict[str, Any]) -> str:
         f"{metrics['open_dpas']} open DPAs ({metrics['dpas_overdue']} overdue, "
         f"{sum(item['due_date'] is None for item in model['dpas'])} no SLA)"
     )
-    return f"""<!doctype html>
+    rendered = f"""<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -859,10 +988,17 @@ footer{{border-top:2px solid #999;margin-top:28px;padding-top:12px}} footer p{{m
 <section id="patterns"><h2>🔁 Estate Patterns</h2><ul>{_rows(model["patterns"])}</ul></section>
 <section id="resolved"><h2>✅ Resolved / Dropped-off</h2><div class="table-wrap"><table><thead><tr><th>Ticket</th><th>Group</th><th>Last status</th></tr></thead><tbody>{resolved_rows}</tbody></table></div></section>
 <section id="dpas"><h2>🛡️ DPA Tracker</h2><div class="table-wrap"><table><thead><tr><th>DPA</th><th>Parent</th><th>Priority</th><th>Status</th><th>Created</th><th>SLA due</th><th>Flag</th></tr></thead><tbody>{dpa_rows}</tbody></table></div></section>
-<section id="all-open"><h2>📋 All Open Incidents</h2><div class="table-wrap"><table><thead><tr><th>Ticket</th><th>Group</th><th>Priority</th><th>Status</th><th>Age (d)</th><th>Stalled (d)</th><th>Postmortem</th><th>Open DPAs</th><th>Owner</th></tr></thead><tbody>{_incident_table_rows(model["incidents"], base_url)}</tbody></table></div></section>
+<section id="all-open"><h2>📋 All Open Incidents</h2><div class="table-wrap"><table><thead><tr><th>Ticket</th><th>Group</th><th>Priority</th><th>Status</th><th>Age (d)</th><th>Stalled (d)</th><th>Postmortem</th><th>Open DPAs</th><th>Owner</th>{"<th>Customers</th>" if _has_briefing(model) else ""}</tr></thead><tbody>{_incident_table_rows(model["incidents"], base_url, customers=_has_briefing(model))}</tbody></table></div></section>
 {('<section id="drill-downs"><h2>🔎 Incident Drill-downs</h2>' + "".join(drilldowns) + "</section>") if drilldowns else ""}
 <footer><p>Generated {html.escape(str(model["coverage"].get("generated_at") or model["as_of"].isoformat()))} · prior snapshot {model["previous_as_of"].isoformat()} · sources: {", ".join(html.escape(str(item)) for item in coverage["sources"])}.</p><p><strong>Caveats:</strong> {caveats}</p></footer>
 </main></body></html>"""
+    if _has_briefing(model):
+        rendered = rendered.replace("</h1>", "</h1><p><strong>" + html.escape(_customer_summary(model)) + "</strong></p>", 1)
+        linker = _TicketLinks(base_url)
+        linker.feed(rendered)
+        rendered = "".join(linker.parts)
+    return rendered
+
 
 
 def current_threshold(model: dict[str, Any], name: str) -> int:
@@ -967,12 +1103,12 @@ def render_markdown(model: dict[str, Any]) -> str:
             "",
             "## 📋 All Open Incidents",
             "",
-            "| Ticket | Group | Priority | Status | Age | Stalled | Postmortem | DPAs | Owner |",
-            "| --- | --- | --- | --- | ---: | ---: | --- | ---: | --- |",
+            "| Ticket | Group | Priority | Status | Age | Stalled | Postmortem | DPAs | Owner |" + (" Customers |" if _has_briefing(model) else ""),
+            "| --- | --- | --- | --- | ---: | ---: | --- | ---: | --- |" + (" ---: |" if _has_briefing(model) else ""),
         ]
     )
     lines.extend(
-        f"| {item['key']} | {item['group']} | {item['priority']} | {item['status']} | {item['age_days']} | {item['stalled_days']} | {item['postmortem_label']} | {len(item.get('open_dpa_keys', []))} | {item['owner']} |"
+        f"| {item['key']} | {item['group']} | {item['priority']} | {item['status']} | {item['age_days']} | {item['stalled_days']} | {item['postmortem_label']} | {len(item.get('open_dpa_keys', []))} | {item['owner']} |" + (f" {_customer_count(item)} |" if _has_briefing(model) else "")
         for item in model["incidents"]
     )
     drilldowns = [
@@ -999,8 +1135,12 @@ def render_markdown(model: dict[str, Any]) -> str:
             lines.append("Root cause: Not yet determined.")
         lines.extend([
             "", "**Preventive action:** " + _markdown_evidence(details.get("preventive_action") or "Not yet defined."),
-            "", "#### What to say", "",
+
         ])
+        for title, columns, rows in _briefing_tables(incident):
+            lines.extend(["", f"#### {title}", "", "| " + " | ".join(columns) + " |", "| " + " | ".join("---" for _ in columns) + " |"])
+            lines.extend("| " + " | ".join(_markdown_evidence(cell) for cell in row + [""] * (len(columns) - len(row))) + " |" for row in rows)
+        lines.extend(["", "#### What to say", ""])
         talking = details.get("talking_points", [])
         lines.extend(f"- {_markdown_evidence(item)}" for item in talking)
         if not talking:
@@ -1024,7 +1164,20 @@ def render_markdown(model: dict[str, Any]) -> str:
             "",
         ]
     )
-    return "\n".join(lines)
+    rendered = "\n".join(lines)
+    if _has_briefing(model):
+        rendered = rendered.replace("\n", "\n\n**" + _markdown_evidence(_customer_summary(model)) + "**\n", 1)
+        base_url = str(model["scope"].get("jira_base_url") or "https://example.invalid/browse").rstrip("/")
+        def ticket_or_url(match):
+            value = match[0].replace("\\", "")
+            if value.startswith(("https://", "http://")):
+                url = value.rstrip(".,;:!?")
+                # Sentence punctuation is visible prose, not part of the target.
+                target = html.unescape(url).replace("<", "%3C").replace(">", "%3E")
+                return "<" + target + ">" + _markdown_evidence(value[len(url):])
+            return "[" + value + "](<" + base_url + "/" + value + ">)"
+        rendered = re.sub(r"https?://[^\s<>]+|\b[A-Z](?:[A-Z0-9]|\\?[_-])*\\?-\d+\b", ticket_or_url, rendered)
+    return rendered
 
 
 def parse_args() -> argparse.Namespace:

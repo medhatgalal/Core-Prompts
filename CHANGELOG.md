@@ -1,5 +1,7 @@
 ## Unreleased
 
+- Preserved legacy OpEx meeting preparation inside the canonical incident-review capability: full selected-incident depth, complete linked fixes, verified recurrence, customer counts, sourced coaching, and explicit optional TXT/PDF/Google Doc export boundaries. Existing daily output and snapshot requirements remain compatible.
+
 - Fixed UAC root YAML metadata extraction and loss of imported operating contracts. Source-aware packaging now preserves original outputs and templates; judgment and apply independently reject lost source content while retaining historical and behavioral promotion gates. Added nested-schema, actual-apply, resource, redacted-snapshot, and cross-skill regression coverage.
 
 - Restored existing OpEx incident drill-down evidence in Markdown output, including Five Whys, preventive action, meeting talking points and questions. Existing snapshots remain compatible; the original reference replay remains historical evidence.
