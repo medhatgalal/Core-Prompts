@@ -376,4 +376,4 @@ git diff HEAD
 | Boundary clarity | The capability surfaces adjacent architecture or GitOps decisions instead of hiding them |
 
 
-Capability resource: `.kiro/skills/engos-delivery-resolve-conflict/resources/capability.json`
+Capability resource: `resources/capability.json`

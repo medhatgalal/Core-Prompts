@@ -1,0 +1,1587 @@
+{
+  "schema": 1,
+  "scope": "read-only; not an executable home plan",
+  "source_namespace": "66f10899bc9901e4f41fcc86257e1b872aa09896",
+  "registration_helper_sha256": "f142e475a8e0f2e3561960cd63e4bffb21fe093cf6432011c1a6328b39a9ae60",
+  "agent_slugs": [
+    "engos-audit-pitch-review",
+    "engos-audit-weekly-intel",
+    "engos-design-architecture",
+    "engos-meta-supercharge",
+    "engos-operations-ic-assistant",
+    "engos-optimization-auto-research",
+    "engos-orchestration-batman",
+    "engos-quality-docs-review",
+    "engos-quality-gitops-review",
+    "engos-reconciliation-converge",
+    "engos-triage-my-inbox-chat-pulse"
+  ],
+  "files": [
+    {
+      "path": "/Users/medhat.galal/.codex/agents/engos-audit-pitch-review.toml",
+      "sha256": "05b34e67739ba647dbb8624cdc9fdc84cda69cd9ce30bc5d910de181a7953e2e",
+      "source_sha256": "05b34e67739ba647dbb8624cdc9fdc84cda69cd9ce30bc5d910de181a7953e2e",
+      "prior_bundle_sha256": "05b34e67739ba647dbb8624cdc9fdc84cda69cd9ce30bc5d910de181a7953e2e",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "codex",
+      "slug": "engos-audit-pitch-review",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/pitch.toml",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-audit-pitch-review",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/engos-audit-pitch-review/capability.json",
+      "sha256": "63648cbdb0671d88bb23c4c1a0faacad6b9ae1528d558bd3f5a4ed257128845e",
+      "source_sha256": "8717c5c48388156e60fc17bbb06d5a45a5816344f2f01f8e2f2a588bc2adb182",
+      "prior_bundle_sha256": "63648cbdb0671d88bb23c4c1a0faacad6b9ae1528d558bd3f5a4ed257128845e",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "codex",
+      "slug": "engos-audit-pitch-review",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "replace verified prior-owned file with canonical source"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/pitch/capability.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-audit-pitch-review",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/engos-audit-pitch-review.json",
+      "sha256": "64fc8fb42b17f15337d0a679ef72e6cbd42fdf8f0a80903499c3ac836dba7866",
+      "source_sha256": "a6bd2c2c2b9707461489fcfe4068e4ccc426c357814085ed500d890c93670ee3",
+      "prior_bundle_sha256": "a6bd2c2c2b9707461489fcfe4068e4ccc426c357814085ed500d890c93670ee3",
+      "status": "unknown_or_customized_preserve",
+      "cli": "kiro",
+      "slug": "engos-audit-pitch-review",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/pitch.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-audit-pitch-review",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/engos-audit-pitch-review/capability.json",
+      "sha256": "63648cbdb0671d88bb23c4c1a0faacad6b9ae1528d558bd3f5a4ed257128845e",
+      "source_sha256": "8717c5c48388156e60fc17bbb06d5a45a5816344f2f01f8e2f2a588bc2adb182",
+      "prior_bundle_sha256": "63648cbdb0671d88bb23c4c1a0faacad6b9ae1528d558bd3f5a4ed257128845e",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "kiro",
+      "slug": "engos-audit-pitch-review",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/pitch/capability.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-audit-pitch-review",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/engos-audit-weekly-intel.toml",
+      "sha256": "1af76dfd376c436bf93de81c6a5c315f94dc62365beb08177c3656f9717c28e1",
+      "source_sha256": "1af76dfd376c436bf93de81c6a5c315f94dc62365beb08177c3656f9717c28e1",
+      "prior_bundle_sha256": "1af76dfd376c436bf93de81c6a5c315f94dc62365beb08177c3656f9717c28e1",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "codex",
+      "slug": "engos-audit-weekly-intel",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/weekly-intel.toml",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-audit-weekly-intel",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/engos-audit-weekly-intel/capability.json",
+      "sha256": "d7b036d72b2f2d43eebd9624e374da52ea81d82f0a21163d55f766c5627e2f6c",
+      "source_sha256": "f2e8b78cead473ae82f467ce88c278372631f7024ace1af54ac1ee859a0eb8de",
+      "prior_bundle_sha256": "d7b036d72b2f2d43eebd9624e374da52ea81d82f0a21163d55f766c5627e2f6c",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "codex",
+      "slug": "engos-audit-weekly-intel",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "replace verified prior-owned file with canonical source"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/weekly-intel/capability.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-audit-weekly-intel",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/engos-audit-weekly-intel.json",
+      "sha256": "3eb8d6b207e50372c586af422c8a1685b3f271149bd05f9de1cf314430d458fe",
+      "source_sha256": "045f0fe158233495e5aadf13d889c230ae4800cf52867139d61aa7d41bf14bdc",
+      "prior_bundle_sha256": "045f0fe158233495e5aadf13d889c230ae4800cf52867139d61aa7d41bf14bdc",
+      "status": "unknown_or_customized_preserve",
+      "cli": "kiro",
+      "slug": "engos-audit-weekly-intel",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/weekly-intel.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-audit-weekly-intel",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/engos-audit-weekly-intel/capability.json",
+      "sha256": "d7b036d72b2f2d43eebd9624e374da52ea81d82f0a21163d55f766c5627e2f6c",
+      "source_sha256": "f2e8b78cead473ae82f467ce88c278372631f7024ace1af54ac1ee859a0eb8de",
+      "prior_bundle_sha256": "d7b036d72b2f2d43eebd9624e374da52ea81d82f0a21163d55f766c5627e2f6c",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "kiro",
+      "slug": "engos-audit-weekly-intel",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/weekly-intel/capability.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-audit-weekly-intel",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/engos-design-architecture.toml",
+      "sha256": "8d193d9974d3bf840d11c58b646c4df8513c1ed53ffb10341b22704da46c9cc0",
+      "source_sha256": "8d193d9974d3bf840d11c58b646c4df8513c1ed53ffb10341b22704da46c9cc0",
+      "prior_bundle_sha256": "8d193d9974d3bf840d11c58b646c4df8513c1ed53ffb10341b22704da46c9cc0",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "codex",
+      "slug": "engos-design-architecture",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/architecture.toml",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-design-architecture",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/engos-design-architecture/capability.json",
+      "sha256": "b3040048427089f492aa3cb384762256aea5831ccd4866a4ccac3846ba0c0329",
+      "source_sha256": "6aec85579d09148bb8bbcdbfd3fe3ee20d1fa78ffc526d782b828d9d4dd1a538",
+      "prior_bundle_sha256": "b3040048427089f492aa3cb384762256aea5831ccd4866a4ccac3846ba0c0329",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "codex",
+      "slug": "engos-design-architecture",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "replace verified prior-owned file with canonical source"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/architecture/capability.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-design-architecture",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/engos-design-architecture.json",
+      "sha256": "4a6e215e6344030996a566d0d86d804de9f0e5d35e213ca0083258dad6e7d1a6",
+      "source_sha256": "169da0ded5270dfcc8be1f0de6409c54867c26716bb65d304e8edf284cdf78c7",
+      "prior_bundle_sha256": "169da0ded5270dfcc8be1f0de6409c54867c26716bb65d304e8edf284cdf78c7",
+      "status": "unknown_or_customized_preserve",
+      "cli": "kiro",
+      "slug": "engos-design-architecture",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/architecture.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-design-architecture",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/engos-design-architecture/capability.json",
+      "sha256": "b3040048427089f492aa3cb384762256aea5831ccd4866a4ccac3846ba0c0329",
+      "source_sha256": "6aec85579d09148bb8bbcdbfd3fe3ee20d1fa78ffc526d782b828d9d4dd1a538",
+      "prior_bundle_sha256": "b3040048427089f492aa3cb384762256aea5831ccd4866a4ccac3846ba0c0329",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "kiro",
+      "slug": "engos-design-architecture",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/architecture/capability.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-design-architecture",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/engos-meta-supercharge.toml",
+      "sha256": "342e5e715a1093be0b54b9b323ab88659ff906365ac798852962df67dc5212ec",
+      "source_sha256": "e778a419a4e8c75c0fed0fae1c3cfd9fca0f3e23d83811bab4d5fcb7e1e77fbb",
+      "prior_bundle_sha256": "342e5e715a1093be0b54b9b323ab88659ff906365ac798852962df67dc5212ec",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "codex",
+      "slug": "engos-meta-supercharge",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "replace verified prior-owned file with canonical source"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/supercharge.toml",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-meta-supercharge",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/engos-meta-supercharge/capability.json",
+      "sha256": "81d20341271ca027053a368716c2c27ffc912f6683f00e18b645fcbc53f767a1",
+      "source_sha256": "643db46cdb6e0c5e560caeb79305c3d10fdff02e5e9cf9768131533e1a280a1b",
+      "prior_bundle_sha256": "81d20341271ca027053a368716c2c27ffc912f6683f00e18b645fcbc53f767a1",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "codex",
+      "slug": "engos-meta-supercharge",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "replace verified prior-owned file with canonical source"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/supercharge/capability.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-meta-supercharge",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/engos-meta-supercharge/references/help-examples.md",
+      "sha256": null,
+      "source_sha256": "70c62c8b599629939e5d99c6baa08c58d8aa3b66d8dbb2a536119373b3349176",
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-meta-supercharge",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "create exact canonical file"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/supercharge/references/help-examples.md",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-meta-supercharge",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/engos-meta-supercharge/references/help.md",
+      "sha256": null,
+      "source_sha256": "aeaf887ac539164c230f4d3e450de47e01037787cb1fd0a15ed60a9593572b47",
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-meta-supercharge",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "create exact canonical file"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/supercharge/references/help.md",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-meta-supercharge",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/engos-meta-supercharge.json",
+      "sha256": "27cc1eee020c9ba37aa6bb70661515e9d8b3516738c75033b97cfc42879f7de4",
+      "source_sha256": "0693dbad02778611f2ca359016eb1c66108349773f9e9fd2b9c25c1e55264515",
+      "prior_bundle_sha256": "3eae60268d20a4d1572e44365cf92eb1028dbb94b54e13f8bba031ceb7a2f153",
+      "status": "unknown_or_customized_preserve",
+      "cli": "kiro",
+      "slug": "engos-meta-supercharge",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/supercharge.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-meta-supercharge",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/engos-meta-supercharge/capability.json",
+      "sha256": "81d20341271ca027053a368716c2c27ffc912f6683f00e18b645fcbc53f767a1",
+      "source_sha256": "643db46cdb6e0c5e560caeb79305c3d10fdff02e5e9cf9768131533e1a280a1b",
+      "prior_bundle_sha256": "81d20341271ca027053a368716c2c27ffc912f6683f00e18b645fcbc53f767a1",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "kiro",
+      "slug": "engos-meta-supercharge",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/supercharge/capability.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-meta-supercharge",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/engos-meta-supercharge/references/help-examples.md",
+      "sha256": null,
+      "source_sha256": "70c62c8b599629939e5d99c6baa08c58d8aa3b66d8dbb2a536119373b3349176",
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-meta-supercharge",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/supercharge/references/help-examples.md",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-meta-supercharge",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/engos-meta-supercharge/references/help.md",
+      "sha256": null,
+      "source_sha256": "aeaf887ac539164c230f4d3e450de47e01037787cb1fd0a15ed60a9593572b47",
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-meta-supercharge",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/supercharge/references/help.md",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-meta-supercharge",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/engos-operations-ic-assistant.toml",
+      "sha256": "ffde193be453f75038a45690e66aafc9733d2547e22ec33d59cdb71d9677b743",
+      "source_sha256": "ffde193be453f75038a45690e66aafc9733d2547e22ec33d59cdb71d9677b743",
+      "prior_bundle_sha256": "ffde193be453f75038a45690e66aafc9733d2547e22ec33d59cdb71d9677b743",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "codex",
+      "slug": "engos-operations-ic-assistant",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/ic-assistant.toml",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-operations-ic-assistant",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/engos-operations-ic-assistant/capability.json",
+      "sha256": "99824a482b5e5bc0f20da76afd16535dcbbfeaabc9ae8712362c0348531b44ea",
+      "source_sha256": "6a284cfe9335ffe12c7600e3a0b5dc595cb2ca0b7f139325f289e3f080b4393a",
+      "prior_bundle_sha256": "99824a482b5e5bc0f20da76afd16535dcbbfeaabc9ae8712362c0348531b44ea",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "codex",
+      "slug": "engos-operations-ic-assistant",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "replace verified prior-owned file with canonical source"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/ic-assistant/capability.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-operations-ic-assistant",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/engos-operations-ic-assistant/appian-incident-runbook.md",
+      "sha256": "466b84c35a716a9c9da09bc5d3f19c5b2b2724b55bf52aee62b7df5869f08033",
+      "source_sha256": "466b84c35a716a9c9da09bc5d3f19c5b2b2724b55bf52aee62b7df5869f08033",
+      "prior_bundle_sha256": "466b84c35a716a9c9da09bc5d3f19c5b2b2724b55bf52aee62b7df5869f08033",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "codex",
+      "slug": "engos-operations-ic-assistant",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/ic-assistant/appian-incident-runbook.md",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-operations-ic-assistant",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/engos-operations-ic-assistant.json",
+      "sha256": "d89265a793f0f3dc4b443ceda70734c9b16f92c36f09dd2eabe33162bd19d99b",
+      "source_sha256": "8f84a2772d266041e87570271e55e3ae62870420d1bb1b767e1605fb5981241f",
+      "prior_bundle_sha256": "8f84a2772d266041e87570271e55e3ae62870420d1bb1b767e1605fb5981241f",
+      "status": "unknown_or_customized_preserve",
+      "cli": "kiro",
+      "slug": "engos-operations-ic-assistant",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/ic-assistant.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-operations-ic-assistant",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/engos-operations-ic-assistant/capability.json",
+      "sha256": "99824a482b5e5bc0f20da76afd16535dcbbfeaabc9ae8712362c0348531b44ea",
+      "source_sha256": "6a284cfe9335ffe12c7600e3a0b5dc595cb2ca0b7f139325f289e3f080b4393a",
+      "prior_bundle_sha256": "99824a482b5e5bc0f20da76afd16535dcbbfeaabc9ae8712362c0348531b44ea",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "kiro",
+      "slug": "engos-operations-ic-assistant",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/ic-assistant/capability.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-operations-ic-assistant",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/engos-operations-ic-assistant/appian-incident-runbook.md",
+      "sha256": "466b84c35a716a9c9da09bc5d3f19c5b2b2724b55bf52aee62b7df5869f08033",
+      "source_sha256": "466b84c35a716a9c9da09bc5d3f19c5b2b2724b55bf52aee62b7df5869f08033",
+      "prior_bundle_sha256": "466b84c35a716a9c9da09bc5d3f19c5b2b2724b55bf52aee62b7df5869f08033",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "kiro",
+      "slug": "engos-operations-ic-assistant",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/ic-assistant/appian-incident-runbook.md",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-operations-ic-assistant",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/engos-optimization-auto-research.toml",
+      "sha256": "e28dae89ce7e081db2915a148f8bfed59ba4b0d7c40aff2ecc2b4803ba8c013c",
+      "source_sha256": "bc491d64e4eadfa1f1a3e4abc80551de52109a4c3420256ed8fe128101250f01",
+      "prior_bundle_sha256": "e28dae89ce7e081db2915a148f8bfed59ba4b0d7c40aff2ecc2b4803ba8c013c",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "codex",
+      "slug": "engos-optimization-auto-research",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "replace verified prior-owned file with canonical source"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/auto-research.toml",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-optimization-auto-research",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/engos-optimization-auto-research/capability.json",
+      "sha256": "3cf1a161b35f666b0d3fe13a6b96ce8cb79b3de11807bf35cb242a1d3f071767",
+      "source_sha256": "0ae587f1f89944e2b82c4f86e038f04d203b05d11800e2a005bcf96cd43acc41",
+      "prior_bundle_sha256": "3cf1a161b35f666b0d3fe13a6b96ce8cb79b3de11807bf35cb242a1d3f071767",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "codex",
+      "slug": "engos-optimization-auto-research",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "replace verified prior-owned file with canonical source"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/auto-research/capability.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-optimization-auto-research",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/engos-optimization-auto-research/bootstrap.py",
+      "sha256": "28f8bf54916ad9ad786a8ad98e8d53e431e2ece0fe41201c80cf80355e6d6398",
+      "source_sha256": "28f8bf54916ad9ad786a8ad98e8d53e431e2ece0fe41201c80cf80355e6d6398",
+      "prior_bundle_sha256": "28f8bf54916ad9ad786a8ad98e8d53e431e2ece0fe41201c80cf80355e6d6398",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "codex",
+      "slug": "engos-optimization-auto-research",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/auto-research/bootstrap.py",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-optimization-auto-research",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/engos-optimization-auto-research/templates/experiment-ledger.md.tmpl",
+      "sha256": "05296c9a93b00c34edfadc507a008c8940e2d5599de3e394908e47571071a7dc",
+      "source_sha256": "05296c9a93b00c34edfadc507a008c8940e2d5599de3e394908e47571071a7dc",
+      "prior_bundle_sha256": "05296c9a93b00c34edfadc507a008c8940e2d5599de3e394908e47571071a7dc",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "codex",
+      "slug": "engos-optimization-auto-research",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/auto-research/templates/experiment-ledger.md.tmpl",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-optimization-auto-research",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/engos-optimization-auto-research/templates/goal-contract.md.tmpl",
+      "sha256": "ad151eed554870699e90613a7a1f93eb083a1e5827da74ce6fbc300d3efdb6a6",
+      "source_sha256": "ad151eed554870699e90613a7a1f93eb083a1e5827da74ce6fbc300d3efdb6a6",
+      "prior_bundle_sha256": "ad151eed554870699e90613a7a1f93eb083a1e5827da74ce6fbc300d3efdb6a6",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "codex",
+      "slug": "engos-optimization-auto-research",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/auto-research/templates/goal-contract.md.tmpl",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-optimization-auto-research",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/engos-optimization-auto-research/templates/promotion-packet.md.tmpl",
+      "sha256": "baa7a3d81d84cecfa2cc5374e7777b7a196a232b419132b4f7284bfc58b33c77",
+      "source_sha256": "baa7a3d81d84cecfa2cc5374e7777b7a196a232b419132b4f7284bfc58b33c77",
+      "prior_bundle_sha256": "baa7a3d81d84cecfa2cc5374e7777b7a196a232b419132b4f7284bfc58b33c77",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "codex",
+      "slug": "engos-optimization-auto-research",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/auto-research/templates/promotion-packet.md.tmpl",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-optimization-auto-research",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/engos-optimization-auto-research/templates/scorecard.json.tmpl",
+      "sha256": "a905e3211e3001698debf4a5bfd9cb45e5c493b3fb29f91e5bad8d69771a243e",
+      "source_sha256": "a905e3211e3001698debf4a5bfd9cb45e5c493b3fb29f91e5bad8d69771a243e",
+      "prior_bundle_sha256": "a905e3211e3001698debf4a5bfd9cb45e5c493b3fb29f91e5bad8d69771a243e",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "codex",
+      "slug": "engos-optimization-auto-research",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/auto-research/templates/scorecard.json.tmpl",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-optimization-auto-research",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/engos-optimization-auto-research.json",
+      "sha256": "f5260eeac27b31c5da0acc843253d04bbb48f5ae95591515d9070400f94e8ccb",
+      "source_sha256": "03c9a55cee72e7a8019a7fa8fa538bc5b9405810f3f1ba995340bf36132730b7",
+      "prior_bundle_sha256": "6b0fe4e4d537fae355b9b06fa50b421893fb0e3d7c96b7648a78780114cd5882",
+      "status": "unknown_or_customized_preserve",
+      "cli": "kiro",
+      "slug": "engos-optimization-auto-research",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/auto-research.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-optimization-auto-research",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/engos-optimization-auto-research/capability.json",
+      "sha256": "3cf1a161b35f666b0d3fe13a6b96ce8cb79b3de11807bf35cb242a1d3f071767",
+      "source_sha256": "0ae587f1f89944e2b82c4f86e038f04d203b05d11800e2a005bcf96cd43acc41",
+      "prior_bundle_sha256": "3cf1a161b35f666b0d3fe13a6b96ce8cb79b3de11807bf35cb242a1d3f071767",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "kiro",
+      "slug": "engos-optimization-auto-research",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/auto-research/capability.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-optimization-auto-research",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/engos-optimization-auto-research/bootstrap.py",
+      "sha256": "28f8bf54916ad9ad786a8ad98e8d53e431e2ece0fe41201c80cf80355e6d6398",
+      "source_sha256": "28f8bf54916ad9ad786a8ad98e8d53e431e2ece0fe41201c80cf80355e6d6398",
+      "prior_bundle_sha256": "28f8bf54916ad9ad786a8ad98e8d53e431e2ece0fe41201c80cf80355e6d6398",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "kiro",
+      "slug": "engos-optimization-auto-research",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/auto-research/bootstrap.py",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-optimization-auto-research",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/engos-optimization-auto-research/templates/experiment-ledger.md.tmpl",
+      "sha256": "05296c9a93b00c34edfadc507a008c8940e2d5599de3e394908e47571071a7dc",
+      "source_sha256": "05296c9a93b00c34edfadc507a008c8940e2d5599de3e394908e47571071a7dc",
+      "prior_bundle_sha256": "05296c9a93b00c34edfadc507a008c8940e2d5599de3e394908e47571071a7dc",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "kiro",
+      "slug": "engos-optimization-auto-research",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/auto-research/templates/experiment-ledger.md.tmpl",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-optimization-auto-research",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/engos-optimization-auto-research/templates/goal-contract.md.tmpl",
+      "sha256": "ad151eed554870699e90613a7a1f93eb083a1e5827da74ce6fbc300d3efdb6a6",
+      "source_sha256": "ad151eed554870699e90613a7a1f93eb083a1e5827da74ce6fbc300d3efdb6a6",
+      "prior_bundle_sha256": "ad151eed554870699e90613a7a1f93eb083a1e5827da74ce6fbc300d3efdb6a6",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "kiro",
+      "slug": "engos-optimization-auto-research",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/auto-research/templates/goal-contract.md.tmpl",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-optimization-auto-research",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/engos-optimization-auto-research/templates/promotion-packet.md.tmpl",
+      "sha256": "baa7a3d81d84cecfa2cc5374e7777b7a196a232b419132b4f7284bfc58b33c77",
+      "source_sha256": "baa7a3d81d84cecfa2cc5374e7777b7a196a232b419132b4f7284bfc58b33c77",
+      "prior_bundle_sha256": "baa7a3d81d84cecfa2cc5374e7777b7a196a232b419132b4f7284bfc58b33c77",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "kiro",
+      "slug": "engos-optimization-auto-research",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/auto-research/templates/promotion-packet.md.tmpl",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-optimization-auto-research",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/engos-optimization-auto-research/templates/scorecard.json.tmpl",
+      "sha256": "a905e3211e3001698debf4a5bfd9cb45e5c493b3fb29f91e5bad8d69771a243e",
+      "source_sha256": "a905e3211e3001698debf4a5bfd9cb45e5c493b3fb29f91e5bad8d69771a243e",
+      "prior_bundle_sha256": "a905e3211e3001698debf4a5bfd9cb45e5c493b3fb29f91e5bad8d69771a243e",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "kiro",
+      "slug": "engos-optimization-auto-research",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/auto-research/templates/scorecard.json.tmpl",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-optimization-auto-research",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/engos-orchestration-batman.toml",
+      "sha256": "cd65639d447cff6fbef1a837d0f028c59c97e6d188b7de7444efcc6c324e4752",
+      "source_sha256": "cd65639d447cff6fbef1a837d0f028c59c97e6d188b7de7444efcc6c324e4752",
+      "prior_bundle_sha256": "cd65639d447cff6fbef1a837d0f028c59c97e6d188b7de7444efcc6c324e4752",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "codex",
+      "slug": "engos-orchestration-batman",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/batman.toml",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-orchestration-batman",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/engos-orchestration-batman/capability.json",
+      "sha256": "55a9ec6b7b61d0b9b2fcecfbd44d6836461df9768af671b7fc69cd8903d6df4a",
+      "source_sha256": "6f389741ff6f484194a3eae7c0dfd658e167a9079c8ae4bc326583d98ab6f9ef",
+      "prior_bundle_sha256": "55a9ec6b7b61d0b9b2fcecfbd44d6836461df9768af671b7fc69cd8903d6df4a",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "codex",
+      "slug": "engos-orchestration-batman",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "replace verified prior-owned file with canonical source"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/batman/capability.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-orchestration-batman",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/engos-orchestration-batman.json",
+      "sha256": "918e28831eec092fdcaf1edf371bf7a4b10b86f19fe8ebbcfa99e1148ef943f6",
+      "source_sha256": "ed8da3609c1b98a6ee3e25e21b17eda5e0393e8264083b02ee8f7bd030634ead",
+      "prior_bundle_sha256": "ed8da3609c1b98a6ee3e25e21b17eda5e0393e8264083b02ee8f7bd030634ead",
+      "status": "unknown_or_customized_preserve",
+      "cli": "kiro",
+      "slug": "engos-orchestration-batman",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/batman.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-orchestration-batman",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/engos-orchestration-batman/capability.json",
+      "sha256": "55a9ec6b7b61d0b9b2fcecfbd44d6836461df9768af671b7fc69cd8903d6df4a",
+      "source_sha256": "6f389741ff6f484194a3eae7c0dfd658e167a9079c8ae4bc326583d98ab6f9ef",
+      "prior_bundle_sha256": "55a9ec6b7b61d0b9b2fcecfbd44d6836461df9768af671b7fc69cd8903d6df4a",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "kiro",
+      "slug": "engos-orchestration-batman",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/batman/capability.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-orchestration-batman",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/engos-quality-docs-review.toml",
+      "sha256": "108ff71726be1708da7ab45e4726afebcf240ee4562ba7f7748edb833d84029f",
+      "source_sha256": "108ff71726be1708da7ab45e4726afebcf240ee4562ba7f7748edb833d84029f",
+      "prior_bundle_sha256": "108ff71726be1708da7ab45e4726afebcf240ee4562ba7f7748edb833d84029f",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "codex",
+      "slug": "engos-quality-docs-review",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/docs-review-expert.toml",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-quality-docs-review",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/engos-quality-docs-review/capability.json",
+      "sha256": "f1b25fd5fce41e484327489cfe703c28d619f6afa546a51557123b648b92df2b",
+      "source_sha256": "8982a2f08bc86fe205d11207f7db536fbd2bde0b47e149a1d26c0d7c29abfdd3",
+      "prior_bundle_sha256": "f1b25fd5fce41e484327489cfe703c28d619f6afa546a51557123b648b92df2b",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "codex",
+      "slug": "engos-quality-docs-review",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "replace verified prior-owned file with canonical source"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/docs-review-expert/capability.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-quality-docs-review",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/engos-quality-docs-review.json",
+      "sha256": "b9d8dc17d5b0c7165988375bf84087fc3d5a67246f6ea7dc4383087812e2cfa4",
+      "source_sha256": "6edde7aa80e7b8ebaea9badca2f58055444feb830ee5b5a70a728de00ba41a26",
+      "prior_bundle_sha256": "6edde7aa80e7b8ebaea9badca2f58055444feb830ee5b5a70a728de00ba41a26",
+      "status": "unknown_or_customized_preserve",
+      "cli": "kiro",
+      "slug": "engos-quality-docs-review",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/docs-review-expert.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-quality-docs-review",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/engos-quality-docs-review/capability.json",
+      "sha256": "f1b25fd5fce41e484327489cfe703c28d619f6afa546a51557123b648b92df2b",
+      "source_sha256": "8982a2f08bc86fe205d11207f7db536fbd2bde0b47e149a1d26c0d7c29abfdd3",
+      "prior_bundle_sha256": "f1b25fd5fce41e484327489cfe703c28d619f6afa546a51557123b648b92df2b",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "kiro",
+      "slug": "engos-quality-docs-review",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/docs-review-expert/capability.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-quality-docs-review",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/engos-quality-gitops-review.toml",
+      "sha256": "8fee4d1484d8ef99194f3588dc391874e46bc2259a0b648f709e9cdfd78c921a",
+      "source_sha256": "8fee4d1484d8ef99194f3588dc391874e46bc2259a0b648f709e9cdfd78c921a",
+      "prior_bundle_sha256": "8fee4d1484d8ef99194f3588dc391874e46bc2259a0b648f709e9cdfd78c921a",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "codex",
+      "slug": "engos-quality-gitops-review",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/gitops-review.toml",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-quality-gitops-review",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/engos-quality-gitops-review/capability.json",
+      "sha256": "525cafbbff11ac11c719123eb3733c2387d3fce510d6fb5e6d905518eb0c927c",
+      "source_sha256": "adec0a599d657c0700f7971f00341c0e02292937a0cb6e39c6f49eebce9aa325",
+      "prior_bundle_sha256": "525cafbbff11ac11c719123eb3733c2387d3fce510d6fb5e6d905518eb0c927c",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "codex",
+      "slug": "engos-quality-gitops-review",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "replace verified prior-owned file with canonical source"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/gitops-review/capability.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-quality-gitops-review",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/engos-quality-gitops-review.json",
+      "sha256": "bdd0523fbd8989fb59fc246e8e41047279bc2d3f697d955dd9d8055f22e515cb",
+      "source_sha256": "4dfa816c5412dc1bc4a108ea10e65942d6851114205558f7c131be240353087a",
+      "prior_bundle_sha256": "4dfa816c5412dc1bc4a108ea10e65942d6851114205558f7c131be240353087a",
+      "status": "unknown_or_customized_preserve",
+      "cli": "kiro",
+      "slug": "engos-quality-gitops-review",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/gitops-review.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-quality-gitops-review",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/engos-quality-gitops-review/capability.json",
+      "sha256": "525cafbbff11ac11c719123eb3733c2387d3fce510d6fb5e6d905518eb0c927c",
+      "source_sha256": "adec0a599d657c0700f7971f00341c0e02292937a0cb6e39c6f49eebce9aa325",
+      "prior_bundle_sha256": "525cafbbff11ac11c719123eb3733c2387d3fce510d6fb5e6d905518eb0c927c",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "kiro",
+      "slug": "engos-quality-gitops-review",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/gitops-review/capability.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-quality-gitops-review",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/engos-reconciliation-converge.toml",
+      "sha256": "83ae35e6cdd3606ed7bde2e773dafdd8477a57e4351760db2b7a5c289cbf4f6c",
+      "source_sha256": "83ae35e6cdd3606ed7bde2e773dafdd8477a57e4351760db2b7a5c289cbf4f6c",
+      "prior_bundle_sha256": "83ae35e6cdd3606ed7bde2e773dafdd8477a57e4351760db2b7a5c289cbf4f6c",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "codex",
+      "slug": "engos-reconciliation-converge",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/converge.toml",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-reconciliation-converge",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/engos-reconciliation-converge/capability.json",
+      "sha256": "e6bad64aff240bf2464c2a5aed25b7c77a62b611959bef077d6b5b56c2762f5a",
+      "source_sha256": "3519e2a42671b4e2d1028744ccdaa771b85b004f25e21aaf20a7097e7f1fe78c",
+      "prior_bundle_sha256": "e6bad64aff240bf2464c2a5aed25b7c77a62b611959bef077d6b5b56c2762f5a",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "codex",
+      "slug": "engos-reconciliation-converge",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "replace verified prior-owned file with canonical source"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/converge/capability.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-reconciliation-converge",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/engos-reconciliation-converge.json",
+      "sha256": "e69eabbdf84add738b528668291d5d75d8b70ce07d06d2907d6859f306fb2814",
+      "source_sha256": "207b14a05fdb9ac7a4d36de62062042ed904a23a23b3169ff43d35a2a3b2bd56",
+      "prior_bundle_sha256": "207b14a05fdb9ac7a4d36de62062042ed904a23a23b3169ff43d35a2a3b2bd56",
+      "status": "unknown_or_customized_preserve",
+      "cli": "kiro",
+      "slug": "engos-reconciliation-converge",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/converge.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-reconciliation-converge",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/engos-reconciliation-converge/capability.json",
+      "sha256": "e6bad64aff240bf2464c2a5aed25b7c77a62b611959bef077d6b5b56c2762f5a",
+      "source_sha256": "3519e2a42671b4e2d1028744ccdaa771b85b004f25e21aaf20a7097e7f1fe78c",
+      "prior_bundle_sha256": "e6bad64aff240bf2464c2a5aed25b7c77a62b611959bef077d6b5b56c2762f5a",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "kiro",
+      "slug": "engos-reconciliation-converge",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/converge/capability.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-reconciliation-converge",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/engos-triage-my-inbox-chat-pulse.toml",
+      "sha256": "badea6f39e76b236a38af1d9b09a3952276043ad39e751dd34727d6ff827f323",
+      "source_sha256": "3e7a85784de5fc626aa1a7be6adf9e72f294e5cfc1377b09ecc33df9088dc4d4",
+      "prior_bundle_sha256": "badea6f39e76b236a38af1d9b09a3952276043ad39e751dd34727d6ff827f323",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "codex",
+      "slug": "engos-triage-my-inbox-chat-pulse",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "replace verified prior-owned file with canonical source"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/pulse.toml",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-triage-my-inbox-chat-pulse",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/engos-triage-my-inbox-chat-pulse/capability.json",
+      "sha256": "b5dee850b9aff071c81b1def37c2033b1dd337cea0ff807223200afd0c72e811",
+      "source_sha256": "c2d7b984d91b12415475dea64434ae9fa0aa428c44217cfb671b22b7fa2e5d9d",
+      "prior_bundle_sha256": "b5dee850b9aff071c81b1def37c2033b1dd337cea0ff807223200afd0c72e811",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "codex",
+      "slug": "engos-triage-my-inbox-chat-pulse",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "replace verified prior-owned file with canonical source"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/pulse/capability.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-triage-my-inbox-chat-pulse",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/engos-triage-my-inbox-chat-pulse.json",
+      "sha256": "141202e6ed437f0c6bcbbf870d3bfbe3f4db5f6d1104279e8d2ebcf9423c40a9",
+      "source_sha256": "82a682cf63f41bb7f439b7825c6383ec783deb63a0e2c24bac84274eab15adff",
+      "prior_bundle_sha256": "3ef21f1285e998f71434fc1a762878488deb35dfb2f55f87cab100489c9093d9",
+      "status": "unknown_or_customized_preserve",
+      "cli": "kiro",
+      "slug": "engos-triage-my-inbox-chat-pulse",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/pulse.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-triage-my-inbox-chat-pulse",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/engos-triage-my-inbox-chat-pulse/capability.json",
+      "sha256": "b5dee850b9aff071c81b1def37c2033b1dd337cea0ff807223200afd0c72e811",
+      "source_sha256": "c2d7b984d91b12415475dea64434ae9fa0aa428c44217cfb671b22b7fa2e5d9d",
+      "prior_bundle_sha256": "b5dee850b9aff071c81b1def37c2033b1dd337cea0ff807223200afd0c72e811",
+      "status": "matches_recorded_prior_bundle",
+      "cli": "kiro",
+      "slug": "engos-triage-my-inbox-chat-pulse",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/pulse/capability.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-triage-my-inbox-chat-pulse",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    }
+  ],
+  "config_previews": [
+    {
+      "scope": "home",
+      "path": "/Users/medhat.galal/.codex/config.toml",
+      "before_sha256": "f2694d61e03009e667cdaf9d90ec1fc6dff0e3184e8410482387a9e3a5ca4560",
+      "proposed_sha256": "a6ab2cfa9625244a135796510d3540a2247c051015bdba86d621817df73da322",
+      "eligible_slugs": [
+        "engos-audit-pitch-review",
+        "engos-audit-weekly-intel",
+        "engos-design-architecture",
+        "engos-meta-supercharge",
+        "engos-operations-ic-assistant",
+        "engos-optimization-auto-research",
+        "engos-orchestration-batman",
+        "engos-quality-docs-review",
+        "engos-quality-gitops-review",
+        "engos-reconciliation-converge",
+        "engos-triage-my-inbox-chat-pulse"
+      ],
+      "preserve_custom_sections": [],
+      "other_configuration_preserved": true,
+      "managed_before": {
+        "engos-audit-pitch-review": {
+          "config_file": "/Users/medhat.galal/.codex/agents/engos-audit-pitch-review.toml"
+        },
+        "engos-audit-weekly-intel": {
+          "config_file": "/Users/medhat.galal/.codex/agents/engos-audit-weekly-intel.toml"
+        },
+        "engos-design-architecture": {
+          "config_file": "/Users/medhat.galal/.codex/agents/engos-design-architecture.toml"
+        },
+        "engos-meta-supercharge": {
+          "config_file": "/Users/medhat.galal/.codex/agents/engos-meta-supercharge.toml"
+        },
+        "engos-operations-ic-assistant": {
+          "config_file": "/Users/medhat.galal/.codex/agents/engos-operations-ic-assistant.toml"
+        },
+        "engos-optimization-auto-research": {
+          "config_file": "/Users/medhat.galal/.codex/agents/engos-optimization-auto-research.toml"
+        },
+        "engos-orchestration-batman": {
+          "config_file": "/Users/medhat.galal/.codex/agents/engos-orchestration-batman.toml"
+        },
+        "engos-quality-docs-review": {
+          "config_file": "/Users/medhat.galal/.codex/agents/engos-quality-docs-review.toml"
+        },
+        "engos-quality-gitops-review": {
+          "config_file": "/Users/medhat.galal/.codex/agents/engos-quality-gitops-review.toml"
+        },
+        "engos-reconciliation-converge": {
+          "config_file": "/Users/medhat.galal/.codex/agents/engos-reconciliation-converge.toml"
+        },
+        "engos-triage-my-inbox-chat-pulse": {
+          "config_file": "/Users/medhat.galal/.codex/agents/engos-triage-my-inbox-chat-pulse.toml"
+        }
+      },
+      "managed_after": {
+        "engos-audit-pitch-review": {
+          "config_file": "/Users/medhat.galal/.codex/agents/engos-audit-pitch-review.toml"
+        },
+        "engos-audit-weekly-intel": {
+          "config_file": "/Users/medhat.galal/.codex/agents/engos-audit-weekly-intel.toml"
+        },
+        "engos-design-architecture": {
+          "config_file": "/Users/medhat.galal/.codex/agents/engos-design-architecture.toml"
+        },
+        "engos-meta-supercharge": {
+          "config_file": "/Users/medhat.galal/.codex/agents/engos-meta-supercharge.toml"
+        },
+        "engos-operations-ic-assistant": {
+          "config_file": "/Users/medhat.galal/.codex/agents/engos-operations-ic-assistant.toml"
+        },
+        "engos-optimization-auto-research": {
+          "config_file": "/Users/medhat.galal/.codex/agents/engos-optimization-auto-research.toml"
+        },
+        "engos-orchestration-batman": {
+          "config_file": "/Users/medhat.galal/.codex/agents/engos-orchestration-batman.toml"
+        },
+        "engos-quality-docs-review": {
+          "config_file": "/Users/medhat.galal/.codex/agents/engos-quality-docs-review.toml"
+        },
+        "engos-quality-gitops-review": {
+          "config_file": "/Users/medhat.galal/.codex/agents/engos-quality-gitops-review.toml"
+        },
+        "engos-reconciliation-converge": {
+          "config_file": "/Users/medhat.galal/.codex/agents/engos-reconciliation-converge.toml"
+        },
+        "engos-triage-my-inbox-chat-pulse": {
+          "config_file": "/Users/medhat.galal/.codex/agents/engos-triage-my-inbox-chat-pulse.toml"
+        }
+      },
+      "proposed_removed_registrations": [],
+      "action": "no-op preserve bytes"
+    },
+    {
+      "scope": "primary_untracked_runtime",
+      "path": "/Users/medhat.galal/Desktop/Core-Prompts/.codex/config.toml",
+      "before_sha256": "8ba44abe98e99632f12886fb3793801ffbb4ec1e0f0886417bdb760f38308200",
+      "proposed_sha256": "8ba44abe98e99632f12886fb3793801ffbb4ec1e0f0886417bdb760f38308200",
+      "eligible_slugs": [
+        "engos-audit-pitch-review",
+        "engos-audit-weekly-intel",
+        "engos-design-architecture",
+        "engos-meta-supercharge",
+        "engos-operations-ic-assistant",
+        "engos-optimization-auto-research",
+        "engos-orchestration-batman",
+        "engos-quality-docs-review",
+        "engos-quality-gitops-review",
+        "engos-reconciliation-converge",
+        "engos-triage-my-inbox-chat-pulse"
+      ],
+      "preserve_custom_sections": [],
+      "other_configuration_preserved": true,
+      "managed_before": {
+        "engos-audit-pitch-review": {
+          "config_file": "/Users/medhat.galal/Desktop/Core-Prompts/.codex/agents/engos-audit-pitch-review.toml"
+        },
+        "engos-audit-weekly-intel": {
+          "config_file": "/Users/medhat.galal/Desktop/Core-Prompts/.codex/agents/engos-audit-weekly-intel.toml"
+        },
+        "engos-design-architecture": {
+          "config_file": "/Users/medhat.galal/Desktop/Core-Prompts/.codex/agents/engos-design-architecture.toml"
+        },
+        "engos-meta-supercharge": {
+          "config_file": "/Users/medhat.galal/Desktop/Core-Prompts/.codex/agents/engos-meta-supercharge.toml"
+        },
+        "engos-operations-ic-assistant": {
+          "config_file": "/Users/medhat.galal/Desktop/Core-Prompts/.codex/agents/engos-operations-ic-assistant.toml"
+        },
+        "engos-optimization-auto-research": {
+          "config_file": "/Users/medhat.galal/Desktop/Core-Prompts/.codex/agents/engos-optimization-auto-research.toml"
+        },
+        "engos-orchestration-batman": {
+          "config_file": "/Users/medhat.galal/Desktop/Core-Prompts/.codex/agents/engos-orchestration-batman.toml"
+        },
+        "engos-quality-docs-review": {
+          "config_file": "/Users/medhat.galal/Desktop/Core-Prompts/.codex/agents/engos-quality-docs-review.toml"
+        },
+        "engos-quality-gitops-review": {
+          "config_file": "/Users/medhat.galal/Desktop/Core-Prompts/.codex/agents/engos-quality-gitops-review.toml"
+        },
+        "engos-reconciliation-converge": {
+          "config_file": "/Users/medhat.galal/Desktop/Core-Prompts/.codex/agents/engos-reconciliation-converge.toml"
+        },
+        "engos-triage-my-inbox-chat-pulse": {
+          "config_file": "/Users/medhat.galal/Desktop/Core-Prompts/.codex/agents/engos-triage-my-inbox-chat-pulse.toml"
+        }
+      },
+      "managed_after": {
+        "engos-audit-pitch-review": {
+          "config_file": "/Users/medhat.galal/Desktop/Core-Prompts/.codex/agents/engos-audit-pitch-review.toml"
+        },
+        "engos-audit-weekly-intel": {
+          "config_file": "/Users/medhat.galal/Desktop/Core-Prompts/.codex/agents/engos-audit-weekly-intel.toml"
+        },
+        "engos-design-architecture": {
+          "config_file": "/Users/medhat.galal/Desktop/Core-Prompts/.codex/agents/engos-design-architecture.toml"
+        },
+        "engos-meta-supercharge": {
+          "config_file": "/Users/medhat.galal/Desktop/Core-Prompts/.codex/agents/engos-meta-supercharge.toml"
+        },
+        "engos-operations-ic-assistant": {
+          "config_file": "/Users/medhat.galal/Desktop/Core-Prompts/.codex/agents/engos-operations-ic-assistant.toml"
+        },
+        "engos-optimization-auto-research": {
+          "config_file": "/Users/medhat.galal/Desktop/Core-Prompts/.codex/agents/engos-optimization-auto-research.toml"
+        },
+        "engos-orchestration-batman": {
+          "config_file": "/Users/medhat.galal/Desktop/Core-Prompts/.codex/agents/engos-orchestration-batman.toml"
+        },
+        "engos-quality-docs-review": {
+          "config_file": "/Users/medhat.galal/Desktop/Core-Prompts/.codex/agents/engos-quality-docs-review.toml"
+        },
+        "engos-quality-gitops-review": {
+          "config_file": "/Users/medhat.galal/Desktop/Core-Prompts/.codex/agents/engos-quality-gitops-review.toml"
+        },
+        "engos-reconciliation-converge": {
+          "config_file": "/Users/medhat.galal/Desktop/Core-Prompts/.codex/agents/engos-reconciliation-converge.toml"
+        },
+        "engos-triage-my-inbox-chat-pulse": {
+          "config_file": "/Users/medhat.galal/Desktop/Core-Prompts/.codex/agents/engos-triage-my-inbox-chat-pulse.toml"
+        }
+      },
+      "proposed_removed_registrations": [],
+      "action": "no-op preserve bytes"
+    }
+  ],
+  "prototype_gate": [],
+  "instructions": "Controller must bind final released source and exact ownership/preimage checks. Preserve unknown/custom files. Skills-profile parity does not establish agent registration parity. Primary absolute config paths remain untracked runtime state.",
+  "source_base": "969a32b7b5dc3902c85a5ce9bcd5eb54b41cc5f4",
+  "source_manifest_sha256": "3bc4a7cca09edc52cbbf09978fa030e48baaffa30caf01c55c00e6761304e655",
+  "captured_at": "2026-09-07T04:51:42.029388+00:00",
+  "planner_contract": "Select only *_agent rows from deploy-copy-plan.py; do not use broad legacy codex deployment, which includes skills. Preserve semantic no-op config bytes. Root must verify released source, full group ownership and readback before archive.",
+  "group_blockers": [
+    {
+      "cli": "kiro",
+      "slug": "engos-audit-pitch-review"
+    },
+    {
+      "cli": "kiro",
+      "slug": "engos-audit-weekly-intel"
+    },
+    {
+      "cli": "kiro",
+      "slug": "engos-design-architecture"
+    },
+    {
+      "cli": "kiro",
+      "slug": "engos-meta-supercharge"
+    },
+    {
+      "cli": "kiro",
+      "slug": "engos-operations-ic-assistant"
+    },
+    {
+      "cli": "kiro",
+      "slug": "engos-optimization-auto-research"
+    },
+    {
+      "cli": "kiro",
+      "slug": "engos-orchestration-batman"
+    },
+    {
+      "cli": "kiro",
+      "slug": "engos-quality-docs-review"
+    },
+    {
+      "cli": "kiro",
+      "slug": "engos-quality-gitops-review"
+    },
+    {
+      "cli": "kiro",
+      "slug": "engos-reconciliation-converge"
+    },
+    {
+      "cli": "kiro",
+      "slug": "engos-triage-my-inbox-chat-pulse"
+    }
+  ],
+  "kiro_settings": {
+    "path": "/Users/medhat.galal/.kiro/settings/cli.json",
+    "sha256": "5136f9ce160bb34d8f374a287e7c538f1fcbe96c72fce512f2961603c227ca8d",
+    "matching_core_agent_references": [],
+    "action": "No automatic settings change; controller must verify active default/reader after agent rollout."
+  }
+}

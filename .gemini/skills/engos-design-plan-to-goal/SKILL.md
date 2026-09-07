@@ -244,4 +244,4 @@ Run `check` first. If HEAD, dirty state, rules, files, adapter, or hashes materi
 | Boundary clarity | Compilation does not imply execution, promotion, deployment, or approval authority |
 
 
-Capability resource: `.gemini/skills/engos-design-plan-to-goal/resources/capability.json`
+Capability resource: `resources/capability.json`

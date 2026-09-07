@@ -292,4 +292,4 @@ Before final output:
 ## END
 
 
-Capability resource: `.codex/skills/engos-memory-threader/resources/capability.json`
+Capability resource: `resources/capability.json`

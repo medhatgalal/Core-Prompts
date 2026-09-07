@@ -1,0 +1,223 @@
+{
+  "fixture_root": "/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/core-prompts-readers-qb3ltb6l",
+  "policy": "disposable home; Claude and Cursor compatibility disabled; no model calls",
+  "scenarios": [
+    {
+      "name": "repository native takes precedence",
+      "exit": 0,
+      "skills": [
+        {
+          "name": "identity-probe",
+          "description": "native repository source",
+          "source": {
+            "type": "project",
+            "path": "/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/core-prompts-readers-qb3ltb6l/repo/.grok/skills/identity-probe/SKILL.md"
+          },
+          "userInvocable": true
+        },
+        {
+          "name": "agents-repo-probe",
+          "description": "Codex standard repo source",
+          "source": {
+            "type": "project",
+            "path": "/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/core-prompts-readers-qb3ltb6l/repo/.agents/skills/agents-repo-probe/SKILL.md"
+          },
+          "userInvocable": true
+        }
+      ]
+    },
+    {
+      "name": "home native plus agents compatibility",
+      "exit": 0,
+      "skills": [
+        {
+          "name": "agents-repo-probe",
+          "description": "Codex standard repo source",
+          "source": {
+            "type": "project",
+            "path": "/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/core-prompts-readers-qb3ltb6l/repo/.agents/skills/agents-repo-probe/SKILL.md"
+          },
+          "userInvocable": true
+        },
+        {
+          "name": "identity-probe",
+          "description": ".grok user source",
+          "source": {
+            "type": "user",
+            "path": "/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/core-prompts-readers-qb3ltb6l/home/.grok/skills/identity-probe/SKILL.md"
+          },
+          "userInvocable": true
+        }
+      ]
+    },
+    {
+      "name": "exact agents ignore keeps native home source",
+      "exit": 0,
+      "skills": [
+        {
+          "name": "agents-repo-probe",
+          "description": "Codex standard repo source",
+          "source": {
+            "type": "project",
+            "path": "/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/core-prompts-readers-qb3ltb6l/repo/.agents/skills/agents-repo-probe/SKILL.md"
+          },
+          "userInvocable": true
+        },
+        {
+          "name": "identity-probe",
+          "description": ".grok user source",
+          "source": {
+            "type": "user",
+            "path": "/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/core-prompts-readers-qb3ltb6l/home/.grok/skills/identity-probe/SKILL.md"
+          },
+          "userInvocable": true
+        }
+      ]
+    },
+    {
+      "name": "agents ignore without native leaves only disabled compatibility skill",
+      "exit": 0,
+      "skills": [
+        {
+          "name": "agents-repo-probe",
+          "description": "Codex standard repo source",
+          "source": {
+            "type": "project",
+            "path": "/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/core-prompts-readers-qb3ltb6l/repo/.agents/skills/agents-repo-probe/SKILL.md"
+          },
+          "userInvocable": true
+        },
+        {
+          "name": "identity-probe",
+          "description": ".claude user source",
+          "source": {
+            "type": "user",
+            "path": "/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/core-prompts-readers-qb3ltb6l/home/.claude/skills/identity-probe/SKILL.md"
+          },
+          "userInvocable": true,
+          "vendor": "claude",
+          "disabled": true,
+          "compatibilityStatus": "disabled"
+        }
+      ]
+    },
+    {
+      "name": "agents fallback when native absent and ignore cleared",
+      "exit": 0,
+      "skills": [
+        {
+          "name": "agents-repo-probe",
+          "description": "Codex standard repo source",
+          "source": {
+            "type": "project",
+            "path": "/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/core-prompts-readers-qb3ltb6l/repo/.agents/skills/agents-repo-probe/SKILL.md"
+          },
+          "userInvocable": true
+        },
+        {
+          "name": "identity-probe",
+          "description": ".agents user source",
+          "source": {
+            "type": "user",
+            "path": "/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/core-prompts-readers-qb3ltb6l/home/.agents/skills/identity-probe/SKILL.md"
+          },
+          "userInvocable": true
+        }
+      ]
+    }
+  ],
+  "codex_initialize": {
+    "id": 1,
+    "result": {
+      "userAgent": "source_probe/0.153.4 (Mac OS 26.6.2; arm64) dumb (source_probe; 1.0)",
+      "codexHome": "/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/core-prompts-readers-qb3ltb6l/home/.codex",
+      "platformFamily": "unix",
+      "platformOs": "macos"
+    }
+  },
+  "codex_skills": {
+    "id": 2,
+    "result": {
+      "data": [
+        {
+          "cwd": "/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/core-prompts-readers-qb3ltb6l/repo",
+          "skills": [
+            {
+              "name": "agents-repo-probe",
+              "description": "Codex standard repo source",
+              "path": "/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/core-prompts-readers-qb3ltb6l/repo/.agents/skills/agents-repo-probe/SKILL.md",
+              "scope": "repo",
+              "enabled": true,
+              "pluginId": null
+            },
+            {
+              "name": "repo-identity-probe",
+              "description": "Codex generated repo source",
+              "path": "/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/core-prompts-readers-qb3ltb6l/repo/.codex/skills/repo-identity-probe/SKILL.md",
+              "scope": "repo",
+              "enabled": true,
+              "pluginId": null
+            },
+            {
+              "name": "identity-probe",
+              "description": ".agents user source",
+              "path": "/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/core-prompts-readers-qb3ltb6l/home/.agents/skills/identity-probe/SKILL.md",
+              "scope": "user",
+              "enabled": true,
+              "pluginId": null
+            },
+            {
+              "name": "identity-probe",
+              "description": ".codex user source",
+              "path": "/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/core-prompts-readers-qb3ltb6l/home/.codex/skills/identity-probe/SKILL.md",
+              "scope": "user",
+              "enabled": true,
+              "pluginId": null
+            }
+          ],
+          "errors": []
+        }
+      ]
+    }
+  },
+  "codex_after_retirement": {
+    "id": 3,
+    "result": {
+      "data": [
+        {
+          "cwd": "/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/core-prompts-readers-qb3ltb6l/repo",
+          "skills": [
+            {
+              "name": "agents-repo-probe",
+              "description": "Codex standard repo source",
+              "path": "/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/core-prompts-readers-qb3ltb6l/repo/.agents/skills/agents-repo-probe/SKILL.md",
+              "scope": "repo",
+              "enabled": true,
+              "pluginId": null
+            },
+            {
+              "name": "repo-identity-probe",
+              "description": "Codex generated repo source",
+              "path": "/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/core-prompts-readers-qb3ltb6l/repo/.codex/skills/repo-identity-probe/SKILL.md",
+              "scope": "repo",
+              "enabled": true,
+              "pluginId": null
+            },
+            {
+              "name": "identity-probe",
+              "description": ".agents user source",
+              "path": "/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/core-prompts-readers-qb3ltb6l/home/.agents/skills/identity-probe/SKILL.md",
+              "scope": "user",
+              "enabled": true,
+              "pluginId": null
+            }
+          ],
+          "errors": []
+        }
+      ]
+    }
+  },
+  "grok_version": "grok 1.0.5 (5115b46bc909)",
+  "codex_version": "codex-cli 0.153.4",
+  "errors": []
+}

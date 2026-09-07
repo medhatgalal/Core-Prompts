@@ -914,4 +914,4 @@ Walks through each 🔴/🟡 item, proposes a response, waits for approval befor
 | Output scannability | Table is readable in < 10 seconds, links are clickable |
 
 
-Capability resource: `.kiro/skills/engos-triage-my-inbox-chat-pulse/resources/capability.json`
+Capability resource: `resources/capability.json`

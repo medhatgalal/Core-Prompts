@@ -1191,3 +1191,22 @@ Expected output:
 
 - explicit copy plan
 - no target mutation
+
+## Selected local skill targets
+
+Choose Codex, Kiro, and Grok with an explicit skills-only profile. Codex skills install
+under `.agents/skills`; Grok gets native `.grok/skills` packages. Preview the exact
+write set and preserve unknown or customized copies before applying. See
+[installation profiles and rollback](INSTALL-PROFILES.md).
+
+Example ask: “Preview the Codex/Kiro/Grok skill profile in a disposable home and
+show preserved customizations and discovery source identities.” Expected result:
+a JSON write plan, ownership evidence, source-path readback, and unresolved
+conflicts; no home installation is implied.
+
+### Loopy: bounded agent loops
+
+Use `$loopy` in Codex or `/loopy` in Kiro and Grok to find, audit, craft, run, or
+debrief a loop. For example: “Use Loopy to audit this loop and repair only material
+weaknesses.” Expect a concise verdict and a minimally repaired loop; execution,
+scheduling, and publication retain their separate authorization boundaries.

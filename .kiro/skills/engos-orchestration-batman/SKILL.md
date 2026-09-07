@@ -358,4 +358,4 @@ Gate: every finding is fixed or has an explicit, evidence-backed disposition aut
 | Boundary integrity | SuperCharge remains a called lens and does not own Batman orchestration |
 
 
-Capability resource: `.kiro/skills/engos-orchestration-batman/resources/capability.json`
+Capability resource: `resources/capability.json`

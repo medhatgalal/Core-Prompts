@@ -14,24 +14,28 @@ _CAPABILITY_MATRIX: dict[str, dict[str, tuple[str, ...]]] = {
         "gemini": ("gemini_skill",),
         "claude": ("claude_skill",),
         "kiro": ("kiro_skill",),
+        "grok": ("grok_skill",),
     },
     "agent": {
         "codex": ("codex_agent",),
         "gemini": ("gemini_agent",),
         "claude": ("claude_agent",),
         "kiro": ("kiro_agent",),
+        "grok": (),
     },
     "both": {
         "codex": ("codex_skill", "codex_agent"),
         "gemini": ("gemini_skill", "gemini_agent"),
         "claude": ("claude_skill", "claude_agent"),
         "kiro": ("kiro_skill", "kiro_agent"),
+        "grok": ("grok_skill",),
     },
     "manual_review": {
         "codex": (),
         "gemini": (),
         "claude": (),
         "kiro": (),
+        "grok": (),
     },
 }
 
@@ -193,7 +197,7 @@ def audit_surface_alignment(
 
 def recommended_target_systems(target_system: str, capability_type: str) -> list[str]:
     if target_system == "all":
-        return ["codex", "gemini", "claude", "kiro"]
+        return ["codex", "gemini", "claude", "kiro", "grok"]
     if target_system == "auto":
         return [cli for cli, names in emitted_surfaces_by_cli(capability_type).items() if names]
     return [target_system]

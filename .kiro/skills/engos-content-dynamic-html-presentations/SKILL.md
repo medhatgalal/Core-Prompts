@@ -444,4 +444,4 @@ Use these as starting points, not as immutable templates. Replace the example na
 | Portability and privacy | The HTML is self-contained by default and contains no unintended private names, URLs, assets, or credentials |
 
 
-Capability resource: `.kiro/skills/engos-content-dynamic-html-presentations/resources/capability.json`
+Capability resource: `resources/capability.json`

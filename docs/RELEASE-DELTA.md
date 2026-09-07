@@ -2,10 +2,10 @@
 
 - Baseline status: `available`
 - Comparison basis: `git:v1.12.5@45c06d2d99129780a1864212c3ff4602a70950d6 .meta/manifest.json`
-- New capabilities: `25`
+- New capabilities: `26`
 - Removed capabilities: `25`
-- Changed capabilities: `0`
-- Material changes: `0`
+- Changed capabilities: `1`
+- Material changes: `1`
 
 ## New Capabilities
 - `engos-audit-code-health` — Codebase Health Audit — Brownfield Structural Risk Report
@@ -33,6 +33,7 @@
 - `engos-quality-testing-review` — Testing Studio — Test Design and Coverage Analysis
 - `engos-reconciliation-converge` — Converge — Multi-Source Synthesis, Conflict Surfacing, and Final Recommendation
 - `engos-triage-my-inbox-chat-pulse` — Pulse — Comms Triage
+- `loopy` — Loopy — Bounded Agent Loops
 
 ## Removed Capabilities
 - `address-code-review` — Address Code Review — PR/MR Feedback Resolution
@@ -62,7 +63,7 @@
 - `weekly-intel` — Weekly Intelligence — Multi-Source Progress Report with Fact-Check Audit
 
 ## Material Changes
-- none
+- `engos-audit-opex-incident-review` — changed `expected_surface_names`
 
 ## All Changed Capabilities
-- none
+- `engos-audit-opex-incident-review` — changed `expected_surface_names`

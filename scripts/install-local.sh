@@ -3,7 +3,7 @@ set -euo pipefail
 
 usage() {
   cat <<'EOF'
-Usage: scripts/install-local.sh [--cli gemini|claude|kiro|codex|all] [--target PATH] [--allow-nonlocal-target] [--dry-run] [--strict-cli] [--mode copy]
+Usage: scripts/install-local.sh [--cli gemini|claude|kiro|codex|grok|all] [--target PATH] [--allow-nonlocal-target] [--dry-run] [--strict-cli] [--mode copy]
 
 Legacy compatibility wrapper around deploy-surfaces.sh.
 Copy-only behavior is enforced. Symlink mode is removed.
@@ -12,7 +12,10 @@ installed VERSION, RELEASE_SOURCE.env, LOCAL_REPO.env when available, and update
 for later release checks.
 
 Options:
-  --cli gemini|claude|kiro|codex|all  Target CLI(s). Default: all
+  --profile PATH                     Use a receipt-protected skills profile
+  --apply-plan PATH                  Apply a reviewed JSON plan
+  --rollback ID                      Restore a profile transaction
+  --cli gemini|claude|kiro|codex|grok|all  Target CLI(s). Default: all
   --target PATH                       Destination root path. Default: repository root
   --allow-nonlocal-target             Allow explicit --target outside repository root
   --dry-run                           Show copy actions without writing
@@ -35,7 +38,7 @@ while [[ $# -gt 0 ]]; do
         exit 1
       fi
       ;;
-    --cli|--target)
+    --cli|--target|--profile|--apply-plan|--rollback)
       flag="$1"
       shift
       value="${1:-}"

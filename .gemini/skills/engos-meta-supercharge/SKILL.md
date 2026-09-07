@@ -718,4 +718,4 @@ Use this capability before:
 # End of SuperCharge v4.2
 
 
-Capability resource: `.gemini/skills/engos-meta-supercharge/resources/capability.json`
+Capability resource: `resources/capability.json`

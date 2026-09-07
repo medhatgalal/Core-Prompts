@@ -76,6 +76,7 @@ if [[ "$CHANGELOG_VERSION" != "$SHIPPED_VERSION" ]]; then
 fi
 
 INCLUDE_PATHS=(
+  ".grok"
   ".codex"
   ".gemini"
   ".claude"
@@ -89,6 +90,11 @@ INCLUDE_PATHS=(
   ".meta/skill-job-map.json"
   "dist/consumer-shell"
   "sources/ssot-baselines"
+  "scripts/probe-skill-readers.py"
+  "scripts/deploy-profile.py"
+  "scripts/install_bundle.py"
+  ".meta/install-bundle.json"
+  ".meta/install-profiles"
   "scripts/deploy-copy-plan.py"
   "scripts/register-codex-agents.py"
   "scripts/deploy-surfaces.sh"
@@ -97,6 +103,7 @@ INCLUDE_PATHS=(
   "VERSION"
   "RELEASE_SOURCE.env"
   "docs/CAPABILITY-CATALOG.md"
+  "docs/INSTALL-PROFILES.md"
   "docs/CLI-REFERENCE.md"
   "docs/CAPABILITY-FABRIC.md"
   "docs/UAC-USAGE.md"

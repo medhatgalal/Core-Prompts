@@ -1,0 +1,39 @@
+{
+  "source": "sources/intake/loopy/candidate.md",
+  "normalization": "display_name only; original package preserved",
+  "quality": "structural_ready",
+  "scores": {
+    "baseline_operational_score": 2,
+    "baseline_preserved_in_resource": false,
+    "baseline_richness": 5,
+    "benchmark_readiness": 10,
+    "boundary_clarity": 10,
+    "candidate_operational_score": 2,
+    "candidate_richness": 5,
+    "description_richness": 10,
+    "intent_coverage": 10,
+    "metadata_completeness": 8,
+    "metadata_integrity": 10,
+    "operational_richness": 10,
+    "output_specificity": 10,
+    "source_fidelity": 10,
+    "surface_usability": 10,
+    "title_clarity": 10
+  },
+  "build": {
+    "returncode": 0,
+    "stderr": "",
+    "stdout": "Generated 27 ssot entries"
+  },
+  "validate": {
+    "returncode": 0,
+    "stderr": "",
+    "stdout": "Validation passed.\nSSOT files: 27"
+  },
+  "behavioral_evidence": {
+    "apply_mode": null,
+    "enforcement": "advisory",
+    "run_id": null,
+    "status": "behavioral_pending"
+  }
+}

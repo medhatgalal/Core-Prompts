@@ -10,9 +10,9 @@ The right mental model is simple:
 
 If you are already using Core-Prompts in a CLI, start there. If you are importing a new capability family, go to UAC next. If you are rebuilding surfaces, validating state, deploying, or preparing release work, use the repo tooling after that.
 
-The current generated surfaces ship `26` skills across all supported CLIs and `11` agents on agent-capable surfaces. Capability Fabric metadata is advisory; explicit invocation follows the selected capability's operating contract.
+The current generated surfaces ship `27` skills across all supported CLIs and `11` agents on agent-capable surfaces. Capability Fabric metadata is advisory; explicit invocation follows the selected capability's operating contract.
 
-All shipped skills use the `engos-<category>-<skill-name>` namespace so Core-Prompts capabilities stay together in CLI and app autocomplete. The category identifies the primary job; the final segment identifies the capability. For example, use `engos-memory-context-continuity` for durable investigation state, `engos-quality-code-review` for diff review, and `engos-triage-my-inbox-chat-pulse` for Gmail and Chat triage.
+First-party skills use the `engos-<category>-<skill-name>` namespace so Core-Prompts capabilities stay together in CLI and app autocomplete. The upstream-pinned Loopy package retains the single name `loopy`, without an alias package. The category identifies the primary job; the final segment identifies the capability. For example, use `engos-memory-context-continuity` for durable investigation state, `engos-quality-code-review` for diff review, and `engos-triage-my-inbox-chat-pulse` for Gmail and Chat triage.
 
 Conversational `Supercharge /full` and stacked forms such as `supercharge /simple /invert /contract <task>` remain supported by `engos-meta-supercharge`. Use the full namespaced name for native skill selection; no separate short-name package or native menu alias is emitted. Ask `supercharge help` or `supercharge /help examples` for the bundled terminal guide; help does not execute examples. `/full` still includes ten grading iterations unless you explicitly say `skip grade`.
 
@@ -371,3 +371,17 @@ Then go to:
 - [docs/CLI-REFERENCE.md](docs/CLI-REFERENCE.md)
 - [docs/RELEASE-PACKAGING.md](docs/RELEASE-PACKAGING.md)
 - [docs/MAINTAINER-HYGIENE.md](docs/MAINTAINER-HYGIENE.md)
+
+## Selected local skill targets
+
+Choose Codex, Kiro, and Grok with an explicit skills-only profile. Codex skills install
+under `.agents/skills`; Grok gets native `.grok/skills` packages. Preview the exact
+write set and preserve unknown or customized copies before applying. See
+[installation profiles and rollback](docs/INSTALL-PROFILES.md).
+
+### Loopy: bounded agent loops
+
+Use `$loopy` in Codex or `/loopy` in Kiro and Grok to find, audit, craft, run, or
+debrief a loop. For example: “Use Loopy to audit this loop and repair only material
+weaknesses.” Expect a concise verdict and a minimally repaired loop; execution,
+scheduling, and publication retain their separate authorization boundaries.

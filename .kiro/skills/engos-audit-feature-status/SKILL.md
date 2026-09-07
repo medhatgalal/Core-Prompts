@@ -240,4 +240,4 @@ Tests: services/ai-platform/test/integration/
 - Emit surfaces for: `claude_skill, codex_skill, gemini_skill, kiro_skill`
 
 
-Capability resource: `.kiro/skills/engos-audit-feature-status/resources/capability.json`
+Capability resource: `resources/capability.json`

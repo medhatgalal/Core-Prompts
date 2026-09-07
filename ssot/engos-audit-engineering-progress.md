@@ -540,7 +540,7 @@ CONFIG: ~/.kiro/skills/eng-report/config.yaml
 ```
 
 
-Capability resource: `.kiro/skills/engos-audit-engineering-progress/resources/capability.json`
+Capability resource: `resources/capability.json`
 
 
-Capability resource: `.kiro/skills/engos-audit-engineering-progress/resources/capability.json`
+Capability resource: `resources/capability.json`

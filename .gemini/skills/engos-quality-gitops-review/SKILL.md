@@ -146,4 +146,4 @@ Default GitOps review timing:
 - saying “CI looks good” without checking the current hosted runs or ignoring release steps such as changelog, package, tag, or remote parity
 
 
-Capability resource: `.gemini/skills/engos-quality-gitops-review/resources/capability.json`
+Capability resource: `resources/capability.json`

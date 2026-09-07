@@ -465,4 +465,4 @@ Expected result:
 - **Escalation:** If structural problems suggest architectural redesign, recommend invoking the `engos-design-architecture` skill. If dead code is extensive, recommend `engos-quality-testing-review` skill for coverage analysis.
 
 
-Capability resource: `.kiro/skills/engos-audit-code-health/resources/capability.json`
+Capability resource: `resources/capability.json`
