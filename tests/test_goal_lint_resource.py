@@ -6,7 +6,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parent.parent
-GOAL_LINT = ROOT / "sources" / "capability-resources" / "plan-to-goal-design" / "goal-lint"
+GOAL_LINT = ROOT / "sources" / "capability-resources" / "engos-design-plan-to-goal" / "goal-lint"
 
 
 def write_fixture(tmp_path: Path, *, hostile_passes: bool = False) -> tuple[Path, Path, Path]:

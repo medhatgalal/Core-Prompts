@@ -5,7 +5,7 @@ import sys
 import tempfile
 import unittest
 
-HELPER = Path(__file__).resolve().parents[1] / 'sources/capability-resources/analyze-context/state_store.py'
+HELPER = Path(__file__).resolve().parents[1] / 'sources/capability-resources/engos-memory-context-continuity/state_store.py'
 spec = importlib.util.spec_from_file_location('context_store', HELPER)
 store = importlib.util.module_from_spec(spec)
 sys.modules[spec.name] = store

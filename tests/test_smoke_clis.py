@@ -18,15 +18,15 @@ SPEC.loader.exec_module(smoke_clis)
 def test_expected_discovery_slugs_is_surface_aware() -> None:
     manifest = {
         "ssot_sources": [
-            {"slug": "code-review", "expected_surface_names": ["codex_skill", "gemini_skill", "claude_skill"]},
-            {"slug": "architecture", "expected_surface_names": ["codex_skill", "claude_agent", "kiro_agent"]},
-            {"slug": "testing", "expected_surface_names": ["codex_skill", "kiro_skill"]},
+            {"slug": "engos-quality-code-review", "expected_surface_names": ["codex_skill", "gemini_skill", "claude_skill"]},
+            {"slug": "engos-design-architecture", "expected_surface_names": ["codex_skill", "claude_agent", "kiro_agent"]},
+            {"slug": "engos-quality-testing-review", "expected_surface_names": ["codex_skill", "kiro_skill"]},
         ]
     }
 
-    assert smoke_clis.expected_discovery_slugs(manifest, ["gemini_skill"]) == ["code-review"]
-    assert smoke_clis.expected_discovery_slugs(manifest, ["claude_agent"]) == ["architecture"]
-    assert smoke_clis.expected_discovery_slugs(manifest, ["kiro_agent"]) == ["architecture"]
+    assert smoke_clis.expected_discovery_slugs(manifest, ["gemini_skill"]) == ["engos-quality-code-review"]
+    assert smoke_clis.expected_discovery_slugs(manifest, ["claude_agent"]) == ["engos-design-architecture"]
+    assert smoke_clis.expected_discovery_slugs(manifest, ["kiro_agent"]) == ["engos-design-architecture"]
 
 
 def test_expected_artifact_paths_uses_surface_rules_and_manifest() -> None:
@@ -35,7 +35,7 @@ def test_expected_artifact_paths_uses_surface_rules_and_manifest() -> None:
     manifest = {
         "ssot_sources": [
             {
-                "slug": "architecture",
+                "slug": "engos-design-architecture",
                 "expected_surface_names": ["claude_skill", "claude_agent", "kiro_skill", "kiro_agent"],
             }
         ]
@@ -44,10 +44,10 @@ def test_expected_artifact_paths_uses_surface_rules_and_manifest() -> None:
     claude_paths = smoke_clis.expected_artifact_paths(manifest, artifact_rules, "claude")
     kiro_paths = smoke_clis.expected_artifact_paths(manifest, artifact_rules, "kiro")
 
-    assert ".claude/skills/architecture/SKILL.md" in claude_paths
-    assert ".claude/agents/architecture.md" in claude_paths
-    assert ".kiro/skills/architecture/SKILL.md" in kiro_paths
-    assert ".kiro/agents/architecture.json" in kiro_paths
+    assert ".claude/skills/engos-design-architecture/SKILL.md" in claude_paths
+    assert ".claude/agents/engos-design-architecture.md" in claude_paths
+    assert ".kiro/skills/engos-design-architecture/SKILL.md" in kiro_paths
+    assert ".kiro/agents/engos-design-architecture.json" in kiro_paths
 
 
 def test_discovery_pattern_builder_knows_supported_tools() -> None:
@@ -67,17 +67,17 @@ def test_gemini_discovery_is_noninteractive_in_untrusted_worktrees() -> None:
 def test_normalize_discovery_output_synthesizes_gemini_override_entries() -> None:
     output = (
         'MCP issues detected. Run /mcp list for status.'
-        'Skill conflict detected: "pulse" from "/tmp/repo/.gemini/skills/pulse/SKILL.md" '
-        'is overriding the same skill from "/Users/example/.gemini/skills/pulse/SKILL.md".'
-        'Skill conflict detected: "feature-status" from "/tmp/repo/.gemini/skills/feature-status/SKILL.md" '
-        'is overriding the same skill from "/Users/example/.gemini/skills/feature-status/SKILL.md".'
+        'Skill conflict detected: "engos-triage-my-inbox-chat-pulse" from "/tmp/repo/.gemini/skills/engos-triage-my-inbox-chat-pulse/SKILL.md" '
+        'is overriding the same skill from "/Users/example/.gemini/skills/engos-triage-my-inbox-chat-pulse/SKILL.md".'
+        'Skill conflict detected: "engos-audit-feature-status" from "/tmp/repo/.gemini/skills/engos-audit-feature-status/SKILL.md" '
+        'is overriding the same skill from "/Users/example/.gemini/skills/engos-audit-feature-status/SKILL.md".'
     )
 
     normalized = smoke_clis.normalize_discovery_output("gemini", output)
 
-    assert 'pulse [Override]' in normalized
-    assert 'feature-status [Override]' in normalized
-    assert smoke_clis.gemini_override_discovery_slugs(output) == ["feature-status", "pulse"]
+    assert 'engos-triage-my-inbox-chat-pulse [Override]' in normalized
+    assert 'engos-audit-feature-status [Override]' in normalized
+    assert smoke_clis.gemini_override_discovery_slugs(output) == ["engos-audit-feature-status", "engos-triage-my-inbox-chat-pulse"]
 
 
 def test_approval_gated_output_is_detected() -> None:
@@ -154,7 +154,7 @@ def test_main_uses_file_capture_for_gemini_discovery(monkeypatch) -> None:
         lambda: {
             "ssot_sources": [
                 {
-                    "slug": "analyze-context",
+                    "slug": "engos-memory-context-continuity",
                     "expected_surface_names": ["gemini_skill"],
                 }
             ]
@@ -165,7 +165,7 @@ def test_main_uses_file_capture_for_gemini_discovery(monkeypatch) -> None:
     def fake_run_probe(command, timeout=15, max_chars=4000, capture_mode="pipe"):
         calls.append((tuple(command), capture_mode))
         if command == ["gemini", "skills", "list"]:
-            return 0, "analyze-context [Enabled]"
+            return 0, "engos-memory-context-continuity [Enabled]"
         return 0, "ok"
 
     monkeypatch.setattr(smoke_clis, "run_probe", fake_run_probe)
@@ -205,14 +205,14 @@ def test_explicit_smoke_timeout_overrides_tool_discovery_timeout(monkeypatch) ->
     monkeypatch.setattr(
         smoke_clis,
         "load_manifest",
-        lambda: {"ssot_sources": [{"slug": "code-review", "expected_surface_names": ["gemini_skill"]}]},
+        lambda: {"ssot_sources": [{"slug": "engos-quality-code-review", "expected_surface_names": ["gemini_skill"]}]},
     )
     monkeypatch.setattr(smoke_clis.shutil, "which", lambda binary: f"/usr/bin/{binary}")
 
     def fake_run_probe(command, timeout=15, max_chars=4000, capture_mode="pipe"):
         observed.append((tuple(command), timeout))
         if command == ["gemini", "skills", "list"]:
-            return 0, "code-review [Enabled]"
+            return 0, "engos-quality-code-review [Enabled]"
         return 0, "ok"
 
     monkeypatch.setattr(smoke_clis, "run_probe", fake_run_probe)
@@ -245,7 +245,7 @@ def test_failed_discovery_command_does_not_also_report_every_slug_missing(monkey
     monkeypatch.setattr(
         smoke_clis,
         "load_manifest",
-        lambda: {"ssot_sources": [{"slug": "code-review", "expected_surface_names": ["gemini_skill"]}]},
+        lambda: {"ssot_sources": [{"slug": "engos-quality-code-review", "expected_surface_names": ["gemini_skill"]}]},
     )
     monkeypatch.setattr(smoke_clis.shutil, "which", lambda binary: f"/usr/bin/{binary}")
 
@@ -290,8 +290,8 @@ def test_main_treats_gemini_override_conflicts_as_discovery_success(monkeypatch)
         "load_manifest",
         lambda: {
             "ssot_sources": [
-                {"slug": "feature-status", "expected_surface_names": ["gemini_skill"]},
-                {"slug": "pulse", "expected_surface_names": ["gemini_skill"]},
+                {"slug": "engos-audit-feature-status", "expected_surface_names": ["gemini_skill"]},
+                {"slug": "engos-triage-my-inbox-chat-pulse", "expected_surface_names": ["gemini_skill"]},
             ]
         },
     )
@@ -301,10 +301,10 @@ def test_main_treats_gemini_override_conflicts_as_discovery_success(monkeypatch)
         if command == ["gemini", "skills", "list"]:
             return (
                 0,
-                'Skill conflict detected: "pulse" from "/tmp/repo/.gemini/skills/pulse/SKILL.md" '
-                'is overriding the same skill from "/Users/example/.gemini/skills/pulse/SKILL.md".'
-                'Skill conflict detected: "feature-status" from "/tmp/repo/.gemini/skills/feature-status/SKILL.md" '
-                'is overriding the same skill from "/Users/example/.gemini/skills/feature-status/SKILL.md".',
+                'Skill conflict detected: "engos-triage-my-inbox-chat-pulse" from "/tmp/repo/.gemini/skills/engos-triage-my-inbox-chat-pulse/SKILL.md" '
+                'is overriding the same skill from "/Users/example/.gemini/skills/engos-triage-my-inbox-chat-pulse/SKILL.md".'
+                'Skill conflict detected: "engos-audit-feature-status" from "/tmp/repo/.gemini/skills/engos-audit-feature-status/SKILL.md" '
+                'is overriding the same skill from "/Users/example/.gemini/skills/engos-audit-feature-status/SKILL.md".',
             )
         return 0, "ok"
 
@@ -344,8 +344,8 @@ def test_main_skips_gemini_discovery_when_override_output_is_partial(monkeypatch
         "load_manifest",
         lambda: {
             "ssot_sources": [
-                {"slug": "feature-status", "expected_surface_names": ["gemini_skill"]},
-                {"slug": "pulse", "expected_surface_names": ["gemini_skill"]},
+                {"slug": "engos-audit-feature-status", "expected_surface_names": ["gemini_skill"]},
+                {"slug": "engos-triage-my-inbox-chat-pulse", "expected_surface_names": ["gemini_skill"]},
             ]
         },
     )
@@ -355,8 +355,8 @@ def test_main_skips_gemini_discovery_when_override_output_is_partial(monkeypatch
         if command == ["gemini", "skills", "list"]:
             return (
                 0,
-                'Skill conflict detected: "pulse" from "/tmp/repo/.gemini/skills/pulse/SKILL.md" '
-                'is overriding the same skill from "/Users/example/.gemini/skills/pulse/SKILL.md".',
+                'Skill conflict detected: "engos-triage-my-inbox-chat-pulse" from "/tmp/repo/.gemini/skills/engos-triage-my-inbox-chat-pulse/SKILL.md" '
+                'is overriding the same skill from "/Users/example/.gemini/skills/engos-triage-my-inbox-chat-pulse/SKILL.md".',
             )
         return 0, "ok"
 

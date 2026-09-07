@@ -352,9 +352,9 @@
     "authority": "Read incident and document evidence and write local audit artifacts only; external mutations, messages, uploads, and distribution require separate explicit authorization.",
     "routing_question": "Does this request require a stateful Operational Excellence incident-estate audit and Daily OpEx Digest?",
     "nearest_neighbors": [
-      "ic-assistant",
-      "weekly-intel",
-      "eng-report"
+      "engos-operations-ic-assistant",
+      "engos-audit-weekly-intel",
+      "engos-audit-engineering-progress"
     ],
     "shape": "stateful_incident_estate_audit",
     "portfolio_action": "keep_and_clarify_boundary"

@@ -165,7 +165,7 @@ def derive_role(raw_text: str, capability_type: str, slug: str) -> str:
         return "specialist"
     if capability_type == "both":
         return "specialist_workflow"
-    if slug == "uac-import":
+    if slug == "engos-meta-uac-import":
         return "importer"
     return "workflow"
 

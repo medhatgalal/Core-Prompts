@@ -17,7 +17,7 @@ SPEC = importlib.util.spec_from_file_location("uac_import_script", SCRIPT_PATH)
 assert SPEC and SPEC.loader
 UAC_IMPORT = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(UAC_IMPORT)
-BOOTSTRAP_SOURCE_PATH = ROOT / "sources" / "capability-resources" / "auto-research" / "bootstrap.py"
+BOOTSTRAP_SOURCE_PATH = ROOT / "sources" / "capability-resources" / "engos-optimization-auto-research" / "bootstrap.py"
 
 
 def _uac_comparison_score(*, quality_result: dict, baseline_line_count: int) -> float:
@@ -98,9 +98,9 @@ Review a diff.
 
 
 def test_same_slug_canonicalization_preserves_ssot_frontmatter_and_drops_generated_footer() -> None:
-    generated = (ROOT / ".kiro" / "skills" / "code-review" / "SKILL.md").read_text(encoding="utf-8")
+    generated = (ROOT / ".kiro" / "skills" / "engos-quality-code-review" / "SKILL.md").read_text(encoding="utf-8")
 
-    canonicalized = UAC_IMPORT._canonicalize_same_slug_ssot("code-review", generated)
+    canonicalized = UAC_IMPORT._canonicalize_same_slug_ssot("engos-quality-code-review", generated)
 
     assert 'display_name: "Commit Review — Git Commit Quality Gate"' in canonicalized
     assert 'kind: "skill"' in canonicalized
@@ -114,11 +114,11 @@ def test_same_slug_descriptor_preserves_curated_metadata_when_quality_text_diffe
         "consumption_hints": {"preferred_use_cases": ["generic"]},
         "quality_status": "structural_ready",
     }
-    applied = (ROOT / "ssot" / "code-review.md").read_text(encoding="utf-8")
+    applied = (ROOT / "ssot" / "engos-quality-code-review.md").read_text(encoding="utf-8")
     quality_result = {"final_candidate_text": applied + "\n## Rules\n- intermediate-only marker\n"}
 
     merged, quality_bound = UAC_IMPORT._merge_existing_descriptor_for_apply(
-        "code-review",
+        "engos-quality-code-review",
         candidate,
         ssot_text=applied,
         quality_result=quality_result,
@@ -155,14 +155,14 @@ def test_same_slug_apply_preserves_current_matrix_over_historical_judge_plan(mon
 
 
 def test_same_slug_descriptor_refreshes_bound_explicit_description() -> None:
-    applied = (ROOT / "ssot" / "code-review.md").read_text(encoding="utf-8")
+    applied = (ROOT / "ssot" / "engos-quality-code-review.md").read_text(encoding="utf-8")
     frontmatter, _ = UAC_IMPORT.parse_ssot_frontmatter_and_body(applied)
     explicit_description = str(frontmatter["description"])
-    existing = UAC_IMPORT.load_descriptor(ROOT, "code-review")
+    existing = UAC_IMPORT.load_descriptor(ROOT, "engos-quality-code-review")
     assert existing["shared_summary"] != explicit_description
 
     merged, quality_bound = UAC_IMPORT._merge_existing_descriptor_for_apply(
-        "code-review",
+        "engos-quality-code-review",
         {"shared_summary": explicit_description},
         ssot_text=applied,
         quality_result={"final_candidate_text": applied},
@@ -173,15 +173,15 @@ def test_same_slug_descriptor_refreshes_bound_explicit_description() -> None:
 
 
 def test_behavioral_checklist_changes_select_promotion_profile_and_clause_ids() -> None:
-    current = (ROOT / "ssot" / "code-review.md").read_text(encoding="utf-8")
+    current = (ROOT / "ssot" / "engos-quality-code-review.md").read_text(encoding="utf-8")
     candidate = current + "\n## Additional Safety Rule\n- Require cleanup for every new resource allocation.\n"
 
     change_classes, affected_clause_ids = UAC_IMPORT._classify_candidate_impact(
-        "code-review",
+        "engos-quality-code-review",
         candidate,
         {"change_kind": "update_existing_capability", "changed_fields": ["summary"]},
     )
-    impact = UAC_IMPORT.build_impact_plan("code-review", change_classes, affected_clause_ids)
+    impact = UAC_IMPORT.build_impact_plan("engos-quality-code-review", change_classes, affected_clause_ids)
 
     assert change_classes == ["safety"]
     assert affected_clause_ids
@@ -327,7 +327,7 @@ def test_uac_judge_preserves_pitch_body_and_scores_additive_metadata() -> None:
             "--mode",
             "judge",
             "--source",
-            str(ROOT / "ssot" / "pitch.md"),
+            str(ROOT / "ssot" / "engos-audit-pitch-review.md"),
             "--benchmark-search",
             "off",
             "--use-repomix",
@@ -343,14 +343,14 @@ def test_uac_judge_preserves_pitch_body_and_scores_additive_metadata() -> None:
     baseline = quality_result["historical_baseline"]
     final_judges = quality_result["judge_reports"][-1]["judge_reports"]
     source_fidelity = next(judge for judge in final_judges if judge["judge"] == "source_fidelity")
-    preserved_rendered = UAC_IMPORT._render_ssot_markdown("pitch", payload)
-    assert (ROOT / "ssot" / "pitch.md").read_text().strip() in preserved_rendered
+    preserved_rendered = UAC_IMPORT._render_ssot_markdown("engos-audit-pitch-review", payload)
+    assert (ROOT / "ssot" / "engos-audit-pitch-review.md").read_text().strip() in preserved_rendered
     # Exercise the source-less generic fallback explicitly: source-aware
     # rendering now retains the original instead of producing this regression.
     generic_rendered = UAC_IMPORT._render_ssot_markdown(
-        "pitch", {**payload, "source": {}, "source_text": None},
+        "engos-audit-pitch-review", {**payload, "source": {}, "source_text": None},
     )
-    baseline_context = resolve_historical_baseline(ROOT, "pitch")
+    baseline_context = resolve_historical_baseline(ROOT, "engos-audit-pitch-review")
     generic_eval = evaluate_candidate_against_baseline(generic_rendered, baseline_context)
 
     assert quality_result["status"] == "structural_ready"
@@ -688,14 +688,14 @@ Copy-Ready Starter Invocation
     }
     quality_result = {"final_candidate_text": "# Generic fallback\n"}
 
-    chosen = UAC_IMPORT._preferred_ssot_text("auto-research", payload, quality_result=quality_result)
+    chosen = UAC_IMPORT._preferred_ssot_text("engos-optimization-auto-research", payload, quality_result=quality_result)
 
     assert "Copy-Ready Starter Invocation" in chosen
     assert "Generic fallback" not in chosen
 
 
 def test_safe_apply_ssot_text_refuses_regressed_final_candidate() -> None:
-    source = ROOT / "sources" / "ssot-baselines" / "pulse" / "baseline.md"
+    source = ROOT / "sources" / "ssot-baselines" / "engos-triage-my-inbox-chat-pulse" / "baseline.md"
     payload = {
         "source": {"normalized_source": str(source)},
         "manifest": {"layers": {"minimal": {"capability_type": "skill"}}},
@@ -711,17 +711,17 @@ def test_safe_apply_ssot_text_refuses_regressed_final_candidate() -> None:
     }
 
     with pytest.raises(ValueError, match="regressed SSOT body"):
-        UAC_IMPORT._safe_apply_ssot_text("pulse", payload, quality_result=quality_result)
+        UAC_IMPORT._safe_apply_ssot_text("engos-triage-my-inbox-chat-pulse", payload, quality_result=quality_result)
 
 
 def test_normalize_payload_for_same_slug_update_allows_judge_and_apply() -> None:
     payload = {
         "status": "accepted",
         "manifest": {
-            "slug": "auto-research",
+            "slug": "engos-optimization-auto-research",
             "layers": {
                 "minimal": {"capability_type": "both"},
-                "expanded": {"overlap_candidates": ["auto-research"]},
+                "expanded": {"overlap_candidates": ["engos-optimization-auto-research"]},
             },
         },
         "uac": {"capability_type": "both"},
@@ -730,11 +730,11 @@ def test_normalize_payload_for_same_slug_update_allows_judge_and_apply() -> None
         "cross_analysis": {
             "duplicate_risk": "high",
             "fit_assessment": "manual_review",
-            "conflict_report": ["slug auto-research already exists"],
-            "overlap_report": [{"slug": "auto-research", "score": 1.0, "reason": "same slug"}],
+            "conflict_report": ["slug engos-optimization-auto-research already exists"],
+            "overlap_report": [{"slug": "engos-optimization-auto-research", "score": 1.0, "reason": "same slug"}],
             "required_existing_adjustments": [],
             "required_new_entry_adjustments": [],
-            "work_graph_change_summary": "auto-research risks duplicate or conflicting graph roles and should not auto-apply.",
+            "work_graph_change_summary": "engos-optimization-auto-research risks duplicate or conflicting graph roles and should not auto-apply.",
         },
     }
 
@@ -765,7 +765,7 @@ def test_source_constraints_prefer_authored_constraints(tmp_path: Path) -> None:
 
 def test_descriptor_shared_constraints_do_not_promote_noisy_uplift_constraints() -> None:
     payload = {
-        "source": {"normalized_source": str(ROOT / "ssot" / "pitch.md")},
+        "source": {"normalized_source": str(ROOT / "ssot" / "engos-audit-pitch-review.md")},
         "uplift": {
             "quality_constraints": [
                 "| Architecture | 20% | Shaping | Components named | No architectural awareness |",
@@ -852,7 +852,7 @@ Copy-Ready Starter Invocation
         encoding="utf-8",
     )
 
-    baseline_path = workspace / "sources" / "ssot-baselines" / "auto-research" / "baseline.md"
+    baseline_path = workspace / "sources" / "ssot-baselines" / "engos-optimization-auto-research" / "baseline.md"
     baseline_before = baseline_path.read_text(encoding="utf-8")
     original_root = UAC_IMPORT.ROOT
     original_run = UAC_IMPORT.subprocess.run
@@ -866,7 +866,7 @@ Copy-Ready Starter Invocation
             "source": {"normalized_source": str(source)},
             "cross_analysis": {"fit_assessment": "fits_cleanly"},
             "manifest": {
-                "slug": "auto-research",
+                "slug": "engos-optimization-auto-research",
                 "layers": {
                     "minimal": {
                         "capability_type": "both",
@@ -908,10 +908,10 @@ def test_apply_payload_refuses_regressed_final_candidate(tmp_path: Path) -> None
         UAC_IMPORT.subprocess.run = lambda *args, **kwargs: SimpleNamespace(returncode=0, stdout="", stderr="")
         payload = {
             "status": "accepted",
-            "source": {"normalized_source": str(workspace / "sources" / "ssot-baselines" / "pulse" / "baseline.md")},
+            "source": {"normalized_source": str(workspace / "sources" / "ssot-baselines" / "engos-triage-my-inbox-chat-pulse" / "baseline.md")},
             "cross_analysis": {"fit_assessment": "fits_cleanly"},
             "manifest": {
-                "slug": "pulse",
+                "slug": "engos-triage-my-inbox-chat-pulse",
                 "layers": {
                     "minimal": {
                         "capability_type": "skill",
@@ -939,7 +939,7 @@ def test_apply_payload_refuses_regressed_final_candidate(tmp_path: Path) -> None
             "benchmark_sources": [],
         }
         args = SimpleNamespace(yes=True, quality_loop="off")
-        result = UAC_IMPORT._apply_payload(payload, args, [str(workspace / "sources" / "ssot-baselines" / "pulse" / "baseline.md")])
+        result = UAC_IMPORT._apply_payload(payload, args, [str(workspace / "sources" / "ssot-baselines" / "engos-triage-my-inbox-chat-pulse" / "baseline.md")])
     finally:
         UAC_IMPORT.ROOT = original_root
         UAC_IMPORT.subprocess.run = original_run
@@ -1002,7 +1002,7 @@ def test_build_surfaces_emits_auto_research_bootstrap_resource(tmp_path: Path) -
         text=True,
     )
 
-    assert (workspace / ".codex" / "skills" / "auto-research" / "resources" / "bootstrap.py").is_file()
-    assert (workspace / ".codex" / "agents" / "resources" / "auto-research" / "bootstrap.py").is_file()
-    assert (workspace / ".codex" / "skills" / "auto-research" / "resources" / "templates" / "goal-contract.md.tmpl").is_file()
-    assert (workspace / ".codex" / "skills" / "auto-research" / "resources" / "templates" / "scorecard.json.tmpl").is_file()
+    assert (workspace / ".codex" / "skills" / "engos-optimization-auto-research" / "resources" / "bootstrap.py").is_file()
+    assert (workspace / ".codex" / "agents" / "resources" / "engos-optimization-auto-research" / "bootstrap.py").is_file()
+    assert (workspace / ".codex" / "skills" / "engos-optimization-auto-research" / "resources" / "templates" / "goal-contract.md.tmpl").is_file()
+    assert (workspace / ".codex" / "skills" / "engos-optimization-auto-research" / "resources" / "templates" / "scorecard.json.tmpl").is_file()

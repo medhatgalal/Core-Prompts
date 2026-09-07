@@ -1,6 +1,6 @@
 {
   "schema_version": "CapabilityTopology.v1",
-  "slug": "demo-recorder",
+  "slug": "engos-browser-demo-recorder",
   "ssot_sha256": "a2474f56bcb530c850191ad48a78f0c7ed4d2f67620669e78ffaec307cdb9508",
   "explicit_invocations": [],
   "semantic_triggers": [],
@@ -37,7 +37,7 @@
     "demo-recorder:L125:44b3825e9222"
   ],
   "resources": [
-    "- \"Use `demo-recorder` to script a demo that creates a resource, runs it, and shows the trace output.\"",
+    "- \"Use `engos-browser-demo-recorder` to script a demo that creates a resource, runs it, and shows the trace output.\"",
     "- Always reference credentials through environment variables, never inline.",
     "- Storing, transmitting, or reading credentials directly \u2014 reference environment variables only"
   ],
@@ -177,7 +177,7 @@
   },
   "source_references": [
     {
-      "path": "ssot/demo-recorder.md",
+      "path": "ssot/engos-browser-demo-recorder.md",
       "sha256": "a2474f56bcb530c850191ad48a78f0c7ed4d2f67620669e78ffaec307cdb9508"
     }
   ],

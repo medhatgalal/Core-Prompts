@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_architecture_ssot_contains_strict_quality_contract() -> None:
-    text = (ROOT / "ssot" / "architecture.md").read_text(encoding="utf-8")
+    text = (ROOT / "ssot" / "engos-design-architecture.md").read_text(encoding="utf-8")
     required_headings = [
         "## Purpose",
         "## Output Directory",
@@ -41,7 +41,7 @@ def test_architecture_ssot_contains_strict_quality_contract() -> None:
 
 
 def test_architecture_descriptor_enforces_benchmark_gate() -> None:
-    descriptor_path = ROOT / ".meta" / "capabilities" / "architecture.json"
+    descriptor_path = ROOT / ".meta" / "capabilities" / "engos-design-architecture.json"
     descriptor = json.loads(descriptor_path.read_text(encoding="utf-8"))
 
     expanded = descriptor["layers"]["expanded"]

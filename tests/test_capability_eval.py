@@ -140,7 +140,7 @@ def test_report_marks_embedded_v1_verdict_explicitly_non_authorizing(tmp_path: P
 
 
 def test_compile_supercharge_has_no_known_contract_blocker() -> None:
-    topology = compile_topology(ROOT / "ssot" / "supercharge.md")
+    topology = compile_topology(ROOT / "ssot" / "engos-meta-supercharge.md")
 
     assert topology["schema_version"] == "CapabilityTopology.v1"
     assert topology["normative_clause_coverage"]["total"] > 0
@@ -150,25 +150,25 @@ def test_compile_supercharge_has_no_known_contract_blocker() -> None:
 
 def test_static_compare_uses_zero_model_calls(tmp_path: Path) -> None:
     candidate = tmp_path / "candidate.md"
-    candidate.write_text((ROOT / "ssot" / "code-review.md").read_text(encoding="utf-8"), encoding="utf-8")
-    result = compare(ROOT, "code-review", candidate, "static", allow_model_calls=False, max_tokens=0)
+    candidate.write_text((ROOT / "ssot" / "engos-quality-code-review.md").read_text(encoding="utf-8"), encoding="utf-8")
+    result = compare(ROOT, "engos-quality-code-review", candidate, "static", allow_model_calls=False, max_tokens=0)
 
     assert result["status"] == "structural_ready"
     assert result["model_calls"] == 0
     assert result["behavioral_claim"] == "none"
-    assert result["before"]["name"] == "code-review"
+    assert result["before"]["name"] == "engos-quality-code-review"
     assert result["size_delta"] == {"lines": 0, "words": 0, "bytes": 0, "model_tokens_estimate": 0}
 
 
 def test_native_compare_reports_availability_without_behavioral_claim(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     candidate = tmp_path / "candidate.md"
-    candidate.write_text((ROOT / "ssot" / "code-review.md").read_text(encoding="utf-8"), encoding="utf-8")
+    candidate.write_text((ROOT / "ssot" / "engos-quality-code-review.md").read_text(encoding="utf-8"), encoding="utf-8")
     monkeypatch.setattr(
         "core_prompts_eval.evaluator.probe_runtime",
         lambda repo_root: {"schema_version": "RuntimeProbe.v1", "providers": [], "model_calls": 0},
     )
 
-    result = compare(ROOT, "code-review", candidate, "native", allow_model_calls=False, max_tokens=0)
+    result = compare(ROOT, "engos-quality-code-review", candidate, "native", allow_model_calls=False, max_tokens=0)
 
     assert result["status"] == "structural_ready"
     assert result["native_claim"] == "availability_only"
@@ -178,8 +178,8 @@ def test_native_compare_reports_availability_without_behavioral_claim(tmp_path: 
 
 def test_model_profile_is_inconclusive_without_explicit_permission(tmp_path: Path) -> None:
     candidate = tmp_path / "candidate.md"
-    candidate.write_text((ROOT / "ssot" / "code-review.md").read_text(encoding="utf-8"), encoding="utf-8")
-    result = compare(ROOT, "code-review", candidate, "promotion", allow_model_calls=False, max_tokens=None)
+    candidate.write_text((ROOT / "ssot" / "engos-quality-code-review.md").read_text(encoding="utf-8"), encoding="utf-8")
+    result = compare(ROOT, "engos-quality-code-review", candidate, "promotion", allow_model_calls=False, max_tokens=None)
 
     assert result["status"] == "inconclusive"
     assert result["model_calls"] == 0
@@ -210,7 +210,7 @@ def test_calibration_holds_when_any_contract_is_blocked(monkeypatch: pytest.Monk
 
 
 def test_instruction_editor_compiles_as_a_skill() -> None:
-    result = compile_skill(ROOT, "instruction-editor")
+    result = compile_skill(ROOT, "engos-meta-instruction-editor")
 
-    assert result["goal_contract"]["slug"] == "instruction-editor"
+    assert result["goal_contract"]["slug"] == "engos-meta-instruction-editor"
     assert result["clarity"]["behavioral_claim"] == "none"

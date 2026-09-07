@@ -11,7 +11,7 @@ import pytest
 
 
 ROOT = Path(__file__).resolve().parent.parent
-RESOURCE = ROOT / "sources" / "capability-resources" / "codebase-health-audit" / "cruft-report"
+RESOURCE = ROOT / "sources" / "capability-resources" / "engos-audit-code-health" / "cruft-report"
 HELPER = RESOURCE.with_name("cruft_report.py")
 
 
@@ -332,7 +332,7 @@ def test_build_surfaces_copies_cruft_report_to_all_skill_surfaces(tmp_path: Path
         workspace
         / "sources"
         / "capability-resources"
-        / "codebase-health-audit"
+        / "engos-audit-code-health"
         / "__pycache__"
         / "cruft_report.cpython-999.pyc"
     )
@@ -346,10 +346,10 @@ def test_build_surfaces_copies_cruft_report_to_all_skill_surfaces(tmp_path: Path
         text=True,
     )
     for surface in (".codex", ".gemini", ".claude", ".kiro"):
-        resources = workspace / surface / "skills" / "codebase-health-audit" / "resources"
+        resources = workspace / surface / "skills" / "engos-audit-code-health" / "resources"
         for name in ("cruft-report", "cruft_report.py"):
             deployed = resources / name
-            authored = workspace / "sources" / "capability-resources" / "codebase-health-audit" / name
+            authored = workspace / "sources" / "capability-resources" / "engos-audit-code-health" / name
             assert deployed.read_bytes() == authored.read_bytes()
             assert deployed.stat().st_mode & 0o777 == 0o644
         assert not list(resources.rglob("*.pyc"))

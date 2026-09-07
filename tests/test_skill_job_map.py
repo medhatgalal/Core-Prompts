@@ -23,10 +23,10 @@ def test_job_map_covers_every_skill_exactly_once() -> None:
 def test_job_map_preserves_user_identified_product_repo_and_code_boundaries() -> None:
     skills = load_skill_job_map(JOB_MAP, (path.stem for path in (ROOT / "ssot").glob("*.md")))["skills"]
 
-    assert "product feature" in skills["feature-status"]["primary_job"].lower()
-    assert "repository activity" in skills["eng-report"]["primary_job"].lower()
-    assert "structural risks" in skills["codebase-health-audit"]["primary_job"].lower()
-    assert len({skills[slug]["primary_job"] for slug in ("architecture", "converge", "supercharge")}) == 3
+    assert "product feature" in skills["engos-audit-feature-status"]["primary_job"].lower()
+    assert "repository activity" in skills["engos-audit-engineering-progress"]["primary_job"].lower()
+    assert "structural risks" in skills["engos-audit-code-health"]["primary_job"].lower()
+    assert len({skills[slug]["primary_job"] for slug in ("engos-design-architecture", "engos-reconciliation-converge", "engos-meta-supercharge")}) == 3
     assert "mentor" not in skills
     assert all("mentor" not in job["nearest_neighbors"] for job in skills.values())
 

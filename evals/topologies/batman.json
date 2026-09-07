@@ -1,6 +1,6 @@
 {
   "schema_version": "CapabilityTopology.v1",
-  "slug": "batman",
+  "slug": "engos-orchestration-batman",
   "ssot_sha256": "8da5d6941e860b566e7b73c8af6a97cacc2b76bbf51b6f050a041e3bb941ad12",
   "explicit_invocations": [],
   "semantic_triggers": [],
@@ -106,7 +106,7 @@
       "heading": "Agent Operating Contract",
       "source_line": 25,
       "sha256": "e011a55d2cc542ca37268fd758e9583397aed6c588c961543ca310a5da32e7b5",
-      "text": "Batman is active only when the user invokes `batman` or explicitly asks for this evidence-gated delivery protocol. Metadata does not auto-route work or grant execution authority.",
+      "text": "Batman is active only when the user invokes `engos-orchestration-batman` or explicitly asks for this evidence-gated delivery protocol. Metadata does not auto-route work or grant execution authority.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
@@ -178,7 +178,7 @@
       "heading": "Companion Contract",
       "source_line": 55,
       "sha256": "4297fce82cf0977265b7ddce8ccfac724e7835baa8039312f6b36de77ecc3cd3",
-      "text": "- `auto-research` for bounded behavioral comparison when proof is required",
+      "text": "- `engos-optimization-auto-research` for bounded behavioral comparison when proof is required",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
@@ -187,7 +187,7 @@
       "heading": "Companion Contract",
       "source_line": 60,
       "sha256": "606768aab49074d20ded6a65d7d591b2022849f5c90ef5982a30a735fb99a1e9",
-      "text": "- `address-code-review` only for selected comments on an existing PR or MR",
+      "text": "- `engos-delivery-address-code-review` only for selected comments on an existing PR or MR",
       "kind": "invariant",
       "mapped_to": []
     },
@@ -349,7 +349,7 @@
       "heading": "Milestone Backpressure",
       "source_line": 138,
       "sha256": "36aa04ba00df44d6cb7ba6133392bb30a142b820cc0da6907bbbfe47416abcf9",
-      "text": "Internal milestone findings return to the original implementer or a bounded default fixer. Use `address-code-review` only for selected comments on an existing PR or MR.",
+      "text": "Internal milestone findings return to the original implementer or a bounded default fixer. Use `engos-delivery-address-code-review` only for selected comments on an existing PR or MR.",
       "kind": "invariant",
       "mapped_to": []
     },
@@ -574,7 +574,7 @@
       "heading": "Stage 5 \u2014 Code review and address review",
       "source_line": 275,
       "sha256": "a2c58de9a022f166cb3707b24329a0b1dce96f77107c33242032af94d7f0571f",
-      "text": "3. Apply `converge` through the companion resolution rule to classify every finding as `MUST-FIX`, `CHEAP`, `TRACKED`, or `REJECT`. Resolve disagreement; do not average or silently dismiss it.",
+      "text": "3. Apply `engos-reconciliation-converge` through the companion resolution rule to classify every finding as `MUST-FIX`, `CHEAP`, `TRACKED`, or `REJECT`. Resolve disagreement; do not average or silently dismiss it.",
       "kind": "invariant",
       "mapped_to": []
     },
@@ -646,7 +646,7 @@
       "heading": "Constraints",
       "source_line": 305,
       "sha256": "618b3f1df59417893f7dd2f97fe1fd88d9f33bef0df592ec95a9c7c5137c9408",
-      "text": "- One active public identity: `batman`. Do not create a second SSOT, descriptor, skill, agent, route, invocation hint, example, or generated surface for this capability.",
+      "text": "- One active public identity: `engos-orchestration-batman`. Do not create a second SSOT, descriptor, skill, agent, route, invocation hint, example, or generated surface for this capability.",
       "kind": "invariant",
       "mapped_to": []
     },
@@ -712,7 +712,7 @@
   },
   "source_references": [
     {
-      "path": "ssot/batman.md",
+      "path": "ssot/engos-orchestration-batman.md",
       "sha256": "8da5d6941e860b566e7b73c8af6a97cacc2b76bbf51b6f050a041e3bb941ad12"
     }
   ],

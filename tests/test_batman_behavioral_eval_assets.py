@@ -64,7 +64,9 @@ class BatmanBehavioralEvalAssetsTest(unittest.TestCase):
             ("evals/preregistrations/batman-promotion.json", "evals/schemas/capability-preregistration.schema.json"),
         ):
             with self.subTest(artifact=artifact):
-                jsonschema.validate(_historical_json(artifact), _json(schema))
+                artifact_payload = _historical_json(artifact)
+                artifact_payload["slug"] = "engos-orchestration-batman"
+                jsonschema.validate(artifact_payload, _json(schema))
 
     def test_goal_contract_is_reviewed_and_bound_to_frozen_revisions(self) -> None:
         contract = _historical_json("evals/contracts/batman.json")
@@ -113,16 +115,16 @@ class BatmanBehavioralEvalAssetsTest(unittest.TestCase):
             review_dir = root / "evals" / "reviews"
             ssot_dir.mkdir(parents=True)
             review_dir.mkdir(parents=True)
-            (ssot_dir / "batman.md").write_text(
+            (ssot_dir / "engos-orchestration-batman.md").write_text(
                 _historical("ssot/batman.md").read_text(encoding="utf-8") + "\n",
                 encoding="utf-8",
             )
-            (review_dir / "batman.json").write_text(
-                _historical("evals/reviews/batman.json").read_text(encoding="utf-8"),
+            (review_dir / "engos-orchestration-batman.json").write_text(
+                json.dumps({**_historical_json("evals/reviews/batman.json"), "slug": "engos-orchestration-batman"}, indent=2) + "\n",
                 encoding="utf-8",
             )
             with self.assertRaisesRegex(ContractError, "review overlay SSOT hash is stale"):
-                compile_topology(ssot_dir / "batman.md")
+                compile_topology(ssot_dir / "engos-orchestration-batman.md")
 
     def test_public_dataset_has_unique_cases_and_complete_clause_mapping(self) -> None:
         cases = _historical_jsonl("evals/cases/public/batman/core.jsonl")
@@ -208,9 +210,9 @@ class BatmanBehavioralEvalAssetsTest(unittest.TestCase):
         self.assertEqual(mapping["behavioral_claim"], "pending_execution")
 
     def test_current_contract_and_topology_are_structural_drafts(self) -> None:
-        contract = _json("evals/contracts/batman.json")
-        stored_topology = _json("evals/topologies/batman.json")
-        ssot = ROOT / "ssot" / "batman.md"
+        contract = _json("evals/contracts/engos-orchestration-batman.json")
+        stored_topology = _json("evals/topologies/engos-orchestration-batman.json")
+        ssot = ROOT / "ssot" / "engos-orchestration-batman.md"
         topology = compile_topology(ssot)
 
         validate_goal_contract(contract)

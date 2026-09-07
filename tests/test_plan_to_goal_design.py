@@ -13,7 +13,7 @@ import pytest
 
 
 ROOT = Path(__file__).resolve().parent.parent
-RESOURCE_ROOT = ROOT / "sources" / "capability-resources" / "plan-to-goal-design"
+RESOURCE_ROOT = ROOT / "sources" / "capability-resources" / "engos-design-plan-to-goal"
 SCRIPT_PATH = RESOURCE_ROOT / "scripts" / "goal_packet.py"
 SPEC = importlib.util.spec_from_file_location("plan_to_goal_packet", SCRIPT_PATH)
 assert SPEC and SPEC.loader
@@ -352,7 +352,7 @@ def test_build_surfaces_copies_plan_to_goal_resources(tmp_path: Path) -> None:
         text=True,
     )
     for surface in (".codex", ".gemini", ".claude", ".kiro"):
-        resource_root = workspace / surface / "skills" / "plan-to-goal-design" / "resources"
+        resource_root = workspace / surface / "skills" / "engos-design-plan-to-goal" / "resources"
         assert (resource_root / "scripts" / "goal_packet.py").is_file()
         assert (resource_root / "scripts" / "criterion_flip.py").is_file()
         assert (resource_root / "goal-lint").is_file()

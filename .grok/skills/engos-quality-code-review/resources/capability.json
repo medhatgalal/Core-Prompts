@@ -1,0 +1,256 @@
+{
+  "slug": "engos-quality-code-review",
+  "manifest_version": "capability-fabric.v0",
+  "layers": {
+    "minimal": {
+      "capability_type": "skill",
+      "summary": "Review a staged change, diff, commit, or branch for correctness, scope, simplicity, lifecycle risk, and merge readiness before commit, push, merge, or release. Use for judgment; do not use to apply reviewer feedback.",
+      "role": "analyst",
+      "domain_tags": [
+        "review",
+        "engos",
+        "quality",
+        "code"
+      ],
+      "required_inputs": [
+        "commit hash, staged diff, working-tree diff, branch diff, or the default target of `HEAD`",
+        "repository context when the commit depends on surrounding conventions",
+        "any specific review focus such as scope, message quality, or simplicity"
+      ],
+      "expected_outputs": [
+        "`Commit Under Review`",
+        "`Findings`",
+        "`Scope Assessment`",
+        "`Message Assessment`",
+        "`Recommended Fixes`",
+        "`Merge Readiness`"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "resources": [
+        "ssot/engos-quality-code-review.md"
+      ],
+      "packaging_profile": {
+        "capability_type": "skill",
+        "primary_surfaces": {
+          "codex": [
+            "codex_skill"
+          ],
+          "gemini": [
+            "gemini_skill"
+          ],
+          "claude": [
+            "claude_skill"
+          ],
+          "kiro": [
+            "kiro_skill"
+          ],
+          "grok": [
+            "grok_skill"
+          ]
+        },
+        "wrapper_surfaces": {
+          "codex": [],
+          "gemini": [
+            "skill_wrapper"
+          ],
+          "claude": [
+            "skill_wrapper",
+            "plugin_wrapper"
+          ],
+          "kiro": [
+            "skill_wrapper",
+            "power_wrapper"
+          ]
+        },
+        "notes": [
+          "wrapper surfaces are additive deployment forms, not capability types",
+          "orchestrators must not infer execution authority from wrapper presence alone"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
+        ]
+      },
+      "source_provenance": {
+        "source_type": "LOCAL_FILE",
+        "normalized_source": "ssot/engos-quality-code-review.md",
+        "policy_rule_id": "ssot.engos-quality-code-review",
+        "content_sha256": "ssot"
+      },
+      "confidence": 0.97,
+      "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+      "review_status": "ready_for_orchestrator_review",
+      "display_name": "Commit Review \u2014 Git Commit Quality Gate"
+    },
+    "expanded": {
+      "relationship_suggestions": [],
+      "capability_dependencies": [
+        "context"
+      ],
+      "overlap_candidates": [],
+      "migration_notes": [
+        "If the capability lands, compare it against existing entries before apply.",
+        "Relationship suggestions are advisory only and do not imply runtime routing."
+      ],
+      "adjustment_recommendations": [
+        "add an explicit primary objective before packaging",
+        "add deterministic in-scope sections to improve routing fitness",
+        "capture quality constraints or non-negotiables"
+      ]
+    },
+    "org_graph": {
+      "org_role": "analyst",
+      "reports_to_suggestions": [],
+      "delegates_to_suggestions": [],
+      "collaborates_with_suggestions": [
+        "review",
+        "debugging"
+      ],
+      "authority_tier": "advisory",
+      "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+    }
+  },
+  "display_name": "Commit Review \u2014 Git Commit Quality Gate",
+  "declared_capability": "skill",
+  "inferred_capability": "skill",
+  "expected_surface_names": [
+    "codex_skill",
+    "gemini_skill",
+    "claude_skill",
+    "kiro_skill",
+    "grok_skill"
+  ],
+  "rubric_version": "capability-fabric.v0",
+  "invocation_hints": [
+    "review the latest commit",
+    "review my staged changes before I commit",
+    "review this diff before I push",
+    "check whether this diff is too broad",
+    "judge whether AI-generated changes are over-engineered",
+    "tell me if this commit message and change scope are strong enough to merge"
+  ],
+  "descriptor_version": "capability-fabric.descriptor.v0",
+  "family_slug": "engos-quality-code-review",
+  "shared_summary": "[ScottP] Git commit review with scope control and over-engineering detection",
+  "shared_constraints": [],
+  "modes": [],
+  "benchmark_sources": [],
+  "consumption_hints": {
+    "preferred_use_cases": [
+      "pre-merge commit review",
+      "scope creep detection",
+      "over-engineering checks"
+    ],
+    "artifact_conventions": [
+      "reports/code-reviews/<timestamp>-<commit>.md"
+    ],
+    "invocation_style": "git_commit_review",
+    "requires_human_confirmation": false
+  },
+  "historical_baseline": {
+    "slug": "engos-quality-code-review",
+    "strategy": "head_snapshot",
+    "group": "additive_preserved",
+    "baseline_path": "sources/ssot-baselines/engos-quality-code-review/baseline.md",
+    "selected_commit": "a78c1c21",
+    "richness_score": 4,
+    "line_count": 236,
+    "reason": "Latest additive version preserves the full commit-review procedure and sharpens boundaries plus companion routing.",
+    "equivalent_commits": [],
+    "expected_companions": [
+      "engos-quality-gitops-review",
+      "engos-quality-testing-review",
+      "engos-design-architecture",
+      "engos-quality-docs-review"
+    ],
+    "operator_invariants": [],
+    "scenario_matrix": [
+      {
+        "id": "commit_review_procedure",
+        "kind": "individual_module",
+        "label": "commit review procedure and checklists",
+        "must_contain": [
+          "## Review Process",
+          "### 1. Capture the Commit",
+          "### 3. Commit Message Quality Checklist",
+          "### 4. Check Scope and Complexity",
+          "### 5. Check Code Risk"
+        ]
+      }
+    ],
+    "historical_proof": {
+      "current_head_commit": "a78c1c21",
+      "current_head_richness_score": 4,
+      "current_head_line_count": 237,
+      "materialized_from_commit": "a78c1c21"
+    },
+    "source": "source_library",
+    "verified_by_git_history": true,
+    "has_baseline_text": true
+  },
+  "quality_validation_matrix": [
+    {
+      "id": "commit_review_procedure",
+      "kind": "individual_module",
+      "label": "commit review procedure and checklists",
+      "must_contain": [
+        "## Review Process",
+        "### 1. Capture the Commit",
+        "### 3. Commit Message Quality Checklist",
+        "### 4. Check Scope and Complexity",
+        "### 5. Check Code Risk"
+      ]
+    }
+  ],
+  "job_contract": {
+    "primary_job": "Find actionable defects and release risks in a diff, commit, or staged change.",
+    "use_when": "Code exists and needs a quality gate before commit, push, merge, or release.",
+    "works_on": "Git diffs, changed code, tests, and supporting repository evidence.",
+    "main_output": "Prioritized findings with file evidence, severity, and a readiness verdict.",
+    "not_for": "Applying reviewer comments, writing a test suite as the primary job, or general repo hygiene.",
+    "authority": "Read-only review unless the user separately asks for fixes.",
+    "routing_question": "Are we reviewing code for defects, applying feedback, or checking release mechanics?",
+    "nearest_neighbors": [
+      "engos-delivery-address-code-review",
+      "engos-quality-testing-review",
+      "engos-quality-gitops-review"
+    ],
+    "shape": "focused_specialist",
+    "portfolio_action": "keep"
+  }
+}

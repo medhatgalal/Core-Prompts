@@ -6,6 +6,10 @@ Use this page in the same order Core-Prompts is meant to be used:
 2. UAC second
 3. broader repo tooling third
 
+Core-Prompts skills use the `engos-<category>-<skill-name>` namespace. Use the full prefixed name in autocomplete or direct invocation; the category keeps related Core-Prompts skills together across supported CLI and app surfaces.
+
+Conversational `Supercharge /full` and stacked forms such as `supercharge /simple /invert /contract <task>` remain supported by `engos-meta-supercharge`. Use the full namespaced name for native skill selection; no separate short-name package or native menu alias is emitted.
+
 ## Step 1: Use Installed Capabilities
 
 Start in your CLI, not in the repo.
@@ -14,36 +18,36 @@ If Core-Prompts is already installed in Codex, Gemini, Claude, or Kiro, begin wi
 
 | Capability | Example ask | What good output looks like |
 | --- | --- | --- |
-| `analyze-context` | "Use `analyze-context` to inspect this subsystem across several files and keep its context, todo, and insights files current until every TODO is complete." | one three-file task set under `~/.analyze-context/<project>/<task-id>/`; milestone/size-triggered consolidation keeps current state first and reports before/after counts; hooks never delete state |
-| `docs-review-expert` | "Use `docs-review-expert` to review our docs IA and recommend the smallest rewrite that restores clarity." | placement decisions, drift findings, and rewrite guidance |
-| `gitops-review` | "Use `gitops-review` to tell me whether this branch is ready for PR and what blockers remain." | gate type, blockers, companion reviews, and next steps |
-| `codebase-health-audit` | "Use `codebase-health-audit` to audit this repo for LOC hotspots, god objects, coupling, likely dead code, and drift from this prior audit block." | metric-backed structural findings, drift analysis, and slice-ready remediation |
-| `code-review` | "Use `code-review` to review my staged changes, including resource cleanup, concurrency, operational readiness, and API/schema compatibility." | evidence-based findings, scope assessment, lifecycle and contract risks, message guidance, and merge readiness |
-| `address-code-review` | "Use `address-code-review` to inspect the open MR comments and apply only the selected reviewer-requested fixes." | comments found, targeted fixes, changed files, commit guidance, and follow-up review |
-| `eng-report` | "Use `eng-report` to generate an HTML progress report for this repo since 2026-06-01." | git-derived metrics, report path, and narrative tied to deterministic data |
+| `engos-memory-context-continuity` | "Use `engos-memory-context-continuity` to inspect this subsystem across several files and keep its context, todo, and insights files current until every TODO is complete." | one three-file task set under `~/.analyze-context/<project>/<task-id>/`; milestone/size-triggered consolidation keeps current state first and reports before/after counts; hooks never delete state |
+| `engos-quality-docs-review` | "Use `engos-quality-docs-review` to review our docs IA and recommend the smallest rewrite that restores clarity." | placement decisions, drift findings, and rewrite guidance |
+| `engos-quality-gitops-review` | "Use `engos-quality-gitops-review` to tell me whether this branch is ready for PR and what blockers remain." | gate type, blockers, companion reviews, and next steps |
+| `engos-audit-code-health` | "Use `engos-audit-code-health` to audit this repo for LOC hotspots, god objects, coupling, likely dead code, and drift from this prior audit block." | metric-backed structural findings, drift analysis, and slice-ready remediation |
+| `engos-quality-code-review` | "Use `engos-quality-code-review` to review my staged changes, including resource cleanup, concurrency, operational readiness, and API/schema compatibility." | evidence-based findings, scope assessment, lifecycle and contract risks, message guidance, and merge readiness |
+| `engos-delivery-address-code-review` | "Use `engos-delivery-address-code-review` to inspect the open MR comments and apply only the selected reviewer-requested fixes." | comments found, targeted fixes, changed files, commit guidance, and follow-up review |
+| `engos-audit-engineering-progress` | "Use `engos-audit-engineering-progress` to generate an HTML progress report for this repo since 2026-06-01." | git-derived metrics, report path, and narrative tied to deterministic data |
 | `engos-audit-opex-incident-review` | "Use `engos-audit-opex-incident-review` to build today's Daily OpEx Digest and compare it with yesterday's snapshot." | decisions, owner obligations, reconciled incident and DPA metrics, progress/correction separation, stalled cohorts, evidence caveats, and the local report path |
-| `ic-assistant` | "Use `ic-assistant` to track this active incident and tell me the current phase, overdue items, and next required action." | mode, phase, next action, status-update timer, and escalation flags |
-| `plan-to-goal-design` | "Use `plan-to-goal-design` to inspect this rollout plan and repository, then compile a compact goal plus a sealed spec/verifier packet without starting execution." | research receipt, bounded mechanism-proof anchor, empty population/exclusion intersection, per-criterion flip evidence, packet status, and host-correct next action |
-| `supercharge` | "Use `supercharge /adversarial /debate /deep` to stress-test this release decision with Bull/Bear/Decider analysis, risks, mitigants, and flip conditions." | stronger framing, constraints, sequencing, first-principles accounting, and adversarial debate when requested |
-| `auto-research` | "Use `auto-research` to improve our review prompt so it catches more regressions without increasing noise." | experiment design, evaluation, and a validated winner |
-| `batman` | "Batman: verify this request, publish the Host-Fit Plan, then implement this shipped-defect correction through independent-subagent TDD, blocking milestone reviews, verification, docs, PR, authorized merge, release, install, and cleanup." | instruction-integrity and host-fit decisions, independent subagent evidence, provenance-qualified red and mutation checks, progress reports, milestone decisions, and state-specific landing receipts |
-| `demo-recorder` | "Use `demo-recorder` to create a Playwright demo of the new dashboard feature with video recording." | demo plan, complete Playwright script, run command, and output path |
-| `dynamic-html-presentations` | "Use `dynamic-html-presentations` to create a standalone HTML deck and ask me whether I want PNG, PPTX, or all formats." | narrative-first deck, polished 16:9 visuals, interaction behavior, and validated requested exports |
-| `testing` | "Use `testing` to identify the edge cases and tests this change needs." | prioritized tests and missing edge cases |
+| `engos-operations-ic-assistant` | "Use `engos-operations-ic-assistant` to track this active incident and tell me the current phase, overdue items, and next required action." | mode, phase, next action, status-update timer, and escalation flags |
+| `engos-design-plan-to-goal` | "Use `engos-design-plan-to-goal` to inspect this rollout plan and repository, then compile a compact goal plus a sealed spec/verifier packet without starting execution." | research receipt, bounded mechanism-proof anchor, empty population/exclusion intersection, per-criterion flip evidence, packet status, and host-correct next action |
+| `engos-meta-supercharge` | "Use `engos-meta-supercharge /adversarial /debate /deep` to stress-test this release decision with Bull/Bear/Decider analysis, risks, mitigants, and flip conditions." | stronger framing, constraints, sequencing, first-principles accounting, and adversarial debate when requested |
+| `engos-optimization-auto-research` | "Use `engos-optimization-auto-research` to improve our review prompt so it catches more regressions without increasing noise." | experiment design, evaluation, and a validated winner |
+| `engos-orchestration-batman` | "Batman: verify this request, publish the Host-Fit Plan, then implement this shipped-defect correction through independent-subagent TDD, blocking milestone reviews, verification, docs, PR, authorized merge, release, install, and cleanup." | instruction-integrity and host-fit decisions, independent subagent evidence, provenance-qualified red and mutation checks, progress reports, milestone decisions, and state-specific landing receipts |
+| `engos-browser-demo-recorder` | "Use `engos-browser-demo-recorder` to create a Playwright demo of the new dashboard feature with video recording." | demo plan, complete Playwright script, run command, and output path |
+| `engos-content-dynamic-html-presentations` | "Use `engos-content-dynamic-html-presentations` to create a standalone HTML deck and ask me whether I want PNG, PPTX, or all formats." | narrative-first deck, polished 16:9 visuals, interaction behavior, and validated requested exports |
+| `engos-quality-testing-review` | "Use `engos-quality-testing-review` to identify the edge cases and tests this change needs." | prioritized tests and missing edge cases |
 
 For an OpEx deep review, request `deep-dive` with the incident keys and choose Markdown or both formats. The renderer includes supplied drill-down evidence and labels missing evidence explicitly.
 
-For a complete Plan to Goal walkthrough, including a two-criterion verifier and the lint/seal/check commands, see [Plan to Goal Design](EXAMPLES.md#plan-to-goal-design).
+For a complete Plan to Goal walkthrough, including a two-criterion verifier and the lint/seal/check commands, see [Plan to Goal Design](EXAMPLES.md#engos-design-plan-to-goal).
 
 If you want an agent surface rather than a direct skill invocation, start with the table below. Capability Fabric metadata is advisory; explicit invocation follows the selected capability's operating contract.
 
 | Agent | Example ask | Best when you need... |
 | --- | --- | --- |
-| `batman` | "Batman: take this implementation through instruction integrity, a Host-Fit Plan, independent-subagent TDD, all applicable blocking reviews, and authorized landing. Report initial, stage, blocker, and 15-minute progress." | explicitly invoked implementation through subagents, all applicable blocking milestone reviews, evidence-class honesty, and authorized landing |
-| `docs-review-expert` | "Use `docs-review-expert` to review our onboarding docs for drift before release." | structured documentation review |
-| `gitops-review` | "Use `gitops-review` to judge whether we are ready to merge and release." | a merge or release gate |
-| `ic-assistant` | "Use `ic-assistant` to keep the incident process on-track and flag the next required action." | generic phase-aware guidance, with internal runbook mode only on request |
-| `weekly-intel` | "Use `weekly-intel` to produce this week's update from our source set." | a multi-source status summary |
+| `engos-orchestration-batman` | "Batman: take this implementation through instruction integrity, a Host-Fit Plan, independent-subagent TDD, all applicable blocking reviews, and authorized landing. Report initial, stage, blocker, and 15-minute progress." | explicitly invoked implementation through subagents, all applicable blocking milestone reviews, evidence-class honesty, and authorized landing |
+| `engos-quality-docs-review` | "Use `engos-quality-docs-review` to review our onboarding docs for drift before release." | structured documentation review |
+| `engos-quality-gitops-review` | "Use `engos-quality-gitops-review` to judge whether we are ready to merge and release." | a merge or release gate |
+| `engos-operations-ic-assistant` | "Use `engos-operations-ic-assistant` to keep the incident process on-track and flag the next required action." | generic phase-aware guidance, with internal runbook mode only on request |
+| `engos-audit-weekly-intel` | "Use `engos-audit-weekly-intel` to produce this week's update from our source set." | a multi-source status summary |
 
 ### How Batman starts and resolves companions
 
@@ -92,7 +96,7 @@ Practical rule:
 - use `judge` for the quality decision
 - use `apply` only when you intend to change canonical repo state
 
-If `judge` says the landing is structurally close but still needs bounded behavioral proof, use `auto-research` for that proof step. During the advisory rollout, a structurally ready apply may land as `behavioral_pending`, but it cannot advance the behavioral baseline or claim promotion.
+If `judge` says the landing is structurally close but still needs bounded behavioral proof, use `engos-optimization-auto-research` for that proof step. During the advisory rollout, a structurally ready apply may land as `behavioral_pending`, but it cannot advance the behavioral baseline or claim promotion.
 
 To move an already-canonical candidate from `behavioral_pending` to `promote`, use an independently signed public evidence bundle. The approved evaluator trust policy must already be on protected main and on the evaluated baseline's ancestry; a candidate cannot authorize its own evaluator. See [Capability evaluation](CAPABILITY-EVALUATION.md#from-behavioral_pending-to-promote) for the status model and [UAC usage](UAC-USAGE.md#example-finalize-an-existing-candidate-after-behavioral-proof) for the exact command.
 
@@ -103,14 +107,14 @@ For the full flow, go to [UAC usage](UAC-USAGE.md).
 Compile the skill's goal and topology before claiming that an instruction change is behavior-neutral:
 
 ```bash
-bin/capability-eval compile --skill supercharge
+bin/capability-eval compile --skill engos-meta-supercharge
 bin/capability-eval calibrate --static-only
 bin/capability-eval probe
 ```
 
 These commands make zero model calls. `structural_ready` means deterministic gates passed; only an independent, current `PromotionVerdict.v2` can mean `promote`. Version 1 verdicts remain readable but cannot authorize promotion.
 
-Live comparison is available only through explicit run plans and operator-authorized model calls. Behavioral promotion additionally requires the separately operated protected evaluator, conforming adapters, protected credentials and runner identities, external sealed data, qualified judges, purpose-separated signatures, and reproduction evidence. The bundled Codex adapter is fail-closed until a separately approved credential broker or equivalent isolation boundary exists. Missing prerequisites return `inconclusive`; the checked-in template cannot manufacture a promotion. `instruction-editor` remains experimental, and Google-style rewriting remains off by default in UAC.
+Live comparison is available only through explicit run plans and operator-authorized model calls. Behavioral promotion additionally requires the separately operated protected evaluator, conforming adapters, protected credentials and runner identities, external sealed data, qualified judges, purpose-separated signatures, and reproduction evidence. The bundled Codex adapter is fail-closed until a separately approved credential broker or equivalent isolation boundary exists. Missing prerequisites return `inconclusive`; the checked-in template cannot manufacture a promotion. `engos-meta-instruction-editor` remains experimental, and Google-style rewriting remains off by default in UAC.
 
 Once you are working at the repo layer, this is the shortest useful verification loop:
 
@@ -135,32 +139,32 @@ bin/capability-fabric deploy --dry-run --cli all
 For a narrow external-target repair, use `--surface-only` with an explicit slug. It copies only that emitted bundle and skips the standalone updater, launcher, and local binaries:
 
 ```bash
-bin/capability-fabric deploy --dry-run --surface-only --cli kiro --slug code-review --target "$HOME" --allow-nonlocal-target
+bin/capability-fabric deploy --dry-run --surface-only --cli kiro --slug engos-quality-code-review --target "$HOME" --allow-nonlocal-target
 ```
 
 For Batman on Kiro, the same dry-run also previews the bounded cleanup of obsolete source files:
 
 ```bash
-bin/capability-fabric deploy --dry-run --surface-only --cli kiro --slug batman --target "$HOME" --allow-nonlocal-target
+bin/capability-fabric deploy --dry-run --surface-only --cli kiro --slug engos-orchestration-batman --target "$HOME" --allow-nonlocal-target
 ```
 
 When all three residues exist, the prune plan lists exactly:
 
-- `.kiro/skills/batman/PROTOCOL.md`
-- `.kiro/skills/batman/PROMPT-AMENDMENT.md`
-- `.kiro/skills/batman/CODEX-UAC-INTAKE.md`
+- `.kiro/skills/engos-orchestration-batman/PROTOCOL.md`
+- `.kiro/skills/engos-orchestration-batman/PROMPT-AMENDMENT.md`
+- `.kiro/skills/engos-orchestration-batman/CODEX-UAC-INTAKE.md`
 
-Dry-run prints one `DRY-RUN PRUNE` line per existing residue and does not move anything. The live command recoverably archives only those existing files under `.core-prompts-state/stale-pruned/<timestamp>/...` and prints a `source -> archive` receipt for each move. It preserves `.kiro/skills/batman/SKILL.md`, `resources/`, and unrelated files in the Batman skill directory.
+Dry-run prints one `DRY-RUN PRUNE` line per existing residue and does not move anything. The live command recoverably archives only those existing files under `.core-prompts-state/stale-pruned/<timestamp>/...` and prints a `source -> archive` receipt for each move. It preserves `.kiro/skills/engos-orchestration-batman/SKILL.md`, `resources/`, and unrelated files in the Batman skill directory.
 
 Use the printed receipt to recover an individual file from its timestamped archive to the original source path. If the cleanup occurred as part of an accepted release install, `~/update_core_prompts.sh --rollback previous` can instead restore the pre-install rollback snapshot.
 
-For the breaking `autosearch` rename, deploy `auto-research` to replace installed stale surfaces:
+For the breaking `autosearch` rename, deploy `engos-optimization-auto-research` to replace installed stale surfaces:
 
 ```bash
-bin/capability-fabric deploy --cli all --slug auto-research --target "$HOME" --allow-nonlocal-target
+bin/capability-fabric deploy --cli all --slug engos-optimization-auto-research --target "$HOME" --allow-nonlocal-target
 ```
 
-Deploying `auto-research` prunes the old installed `autosearch` skill, agent, and resource paths for the selected CLIs.
+Deploying `engos-optimization-auto-research` prunes the old installed `autosearch` skill, agent, and resource paths for the selected CLIs.
 
 ## Installed Release Watch
 

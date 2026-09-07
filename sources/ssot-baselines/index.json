@@ -2,7 +2,7 @@
   "version": "uac-baseline-sources.v1",
   "canonical_root": "sources/ssot-baselines",
   "skills": {
-    "analyze-context": {
+    "engos-memory-context-continuity": {
       "group": "hybrid_additive",
       "strategy": "head_plus_invariants",
       "selected_commit": "4bb1f7e5",
@@ -25,9 +25,9 @@
         "<task>-insights.md"
       ],
       "expected_companions": [
-        "converge",
-        "threader",
-        "code-review"
+        "engos-reconciliation-converge",
+        "engos-memory-threader",
+        "engos-quality-code-review"
       ],
       "scenario_matrix": [
         {
@@ -53,9 +53,9 @@
           ]
         }
       ],
-      "baseline_path": "sources/ssot-baselines/analyze-context/baseline.md"
+      "baseline_path": "sources/ssot-baselines/engos-memory-context-continuity/baseline.md"
     },
-    "code-review": {
+    "engos-quality-code-review": {
       "group": "additive_preserved",
       "strategy": "head_snapshot",
       "selected_commit": "a78c1c21",
@@ -70,10 +70,10 @@
         "materialized_from_commit": "a78c1c21"
       },
       "expected_companions": [
-        "gitops-review",
-        "testing",
-        "architecture",
-        "docs-review-expert"
+        "engos-quality-gitops-review",
+        "engos-quality-testing-review",
+        "engos-design-architecture",
+        "engos-quality-docs-review"
       ],
       "scenario_matrix": [
         {
@@ -89,9 +89,9 @@
           ]
         }
       ],
-      "baseline_path": "sources/ssot-baselines/code-review/baseline.md"
+      "baseline_path": "sources/ssot-baselines/engos-quality-code-review/baseline.md"
     },
-    "converge": {
+    "engos-reconciliation-converge": {
       "group": "flattened_regression",
       "strategy": "historical_gold",
       "selected_commit": "3bc88b43",
@@ -110,7 +110,7 @@
         "materialized_from_commit": "3bc88b43"
       },
       "expected_companions": [
-        "supercharge"
+        "engos-meta-supercharge"
       ],
       "scenario_matrix": [
         {
@@ -137,9 +137,9 @@
           ]
         }
       ],
-      "baseline_path": "sources/ssot-baselines/converge/baseline.md"
+      "baseline_path": "sources/ssot-baselines/engos-reconciliation-converge/baseline.md"
     },
-    "gitops-review": {
+    "engos-quality-gitops-review": {
       "group": "single_history",
       "strategy": "head_snapshot",
       "selected_commit": "4e16d6a4",
@@ -154,10 +154,10 @@
         "materialized_from_commit": "4e16d6a4"
       },
       "expected_companions": [
-        "code-review",
-        "docs-review-expert",
-        "testing",
-        "architecture"
+        "engos-quality-code-review",
+        "engos-quality-docs-review",
+        "engos-quality-testing-review",
+        "engos-design-architecture"
       ],
       "scenario_matrix": [
         {
@@ -172,9 +172,9 @@
           ]
         }
       ],
-      "baseline_path": "sources/ssot-baselines/gitops-review/baseline.md"
+      "baseline_path": "sources/ssot-baselines/engos-quality-gitops-review/baseline.md"
     },
-    "resolve-conflict": {
+    "engos-delivery-resolve-conflict": {
       "group": "additive_preserved",
       "strategy": "head_snapshot",
       "selected_commit": "db5c3789",
@@ -191,10 +191,10 @@
         "materialized_from_commit": "db5c3789"
       },
       "expected_companions": [
-        "architecture",
-        "gitops-review",
-        "testing",
-        "docs-review-expert"
+        "engos-design-architecture",
+        "engos-quality-gitops-review",
+        "engos-quality-testing-review",
+        "engos-quality-docs-review"
       ],
       "scenario_matrix": [
         {
@@ -210,9 +210,9 @@
           ]
         }
       ],
-      "baseline_path": "sources/ssot-baselines/resolve-conflict/baseline.md"
+      "baseline_path": "sources/ssot-baselines/engos-delivery-resolve-conflict/baseline.md"
     },
-    "supercharge": {
+    "engos-meta-supercharge": {
       "group": "flattened_regression",
       "strategy": "historical_gold",
       "selected_commit": "3bc88b43",
@@ -231,8 +231,8 @@
         "materialized_from_commit": "3bc88b43"
       },
       "expected_companions": [
-        "converge",
-        "analyze-context"
+        "engos-reconciliation-converge",
+        "engos-memory-context-continuity"
       ],
       "scenario_matrix": [
         {
@@ -281,9 +281,9 @@
           ]
         }
       ],
-      "baseline_path": "sources/ssot-baselines/supercharge/baseline.md"
+      "baseline_path": "sources/ssot-baselines/engos-meta-supercharge/baseline.md"
     },
-    "threader": {
+    "engos-memory-threader": {
       "group": "additive_preserved",
       "strategy": "head_snapshot",
       "selected_commit": "db5c3789",
@@ -298,10 +298,10 @@
         "materialized_from_commit": "db5c3789"
       },
       "expected_companions": [
-        "analyze-context",
-        "converge",
-        "supercharge",
-        "resolve-conflict"
+        "engos-memory-context-continuity",
+        "engos-reconciliation-converge",
+        "engos-meta-supercharge",
+        "engos-delivery-resolve-conflict"
       ],
       "scenario_matrix": [
         {
@@ -310,15 +310,15 @@
           "label": "hard transcript export contract",
           "must_contain": [
             "## COMMAND",
-            "/threader export",
+            "/engos-memory-threader export",
             "## HARD OUTPUT CONTRACT (read carefully)",
             "## INLINE FALLBACK RULES (only if file creation is unsupported)"
           ]
         }
       ],
-      "baseline_path": "sources/ssot-baselines/threader/baseline.md"
+      "baseline_path": "sources/ssot-baselines/engos-memory-threader/baseline.md"
     },
-    "architecture": {
+    "engos-design-architecture": {
       "group": "current_oracle",
       "strategy": "head_snapshot",
       "selected_commit": "db5c3789",
@@ -334,9 +334,9 @@
       },
       "expected_companions": [],
       "scenario_matrix": [],
-      "baseline_path": "sources/ssot-baselines/architecture/baseline.md"
+      "baseline_path": "sources/ssot-baselines/engos-design-architecture/baseline.md"
     },
-    "docs-review-expert": {
+    "engos-quality-docs-review": {
       "group": "current_oracle",
       "strategy": "head_snapshot",
       "selected_commit": "0a2c1e46",
@@ -352,9 +352,9 @@
       },
       "expected_companions": [],
       "scenario_matrix": [],
-      "baseline_path": "sources/ssot-baselines/docs-review-expert/baseline.md"
+      "baseline_path": "sources/ssot-baselines/engos-quality-docs-review/baseline.md"
     },
-    "testing": {
+    "engos-quality-testing-review": {
       "group": "current_oracle",
       "strategy": "head_snapshot",
       "selected_commit": "0a2c1e46",
@@ -370,9 +370,9 @@
       },
       "expected_companions": [],
       "scenario_matrix": [],
-      "baseline_path": "sources/ssot-baselines/testing/baseline.md"
+      "baseline_path": "sources/ssot-baselines/engos-quality-testing-review/baseline.md"
     },
-    "uac-import": {
+    "engos-meta-uac-import": {
       "group": "current_oracle",
       "strategy": "head_snapshot",
       "selected_commit": "4bb1f7e5",
@@ -388,12 +388,12 @@
       },
       "expected_companions": [],
       "scenario_matrix": [],
-      "baseline_path": "sources/ssot-baselines/uac-import/baseline.md"
+      "baseline_path": "sources/ssot-baselines/engos-meta-uac-import/baseline.md"
     },
-    "auto-research": {
+    "engos-optimization-auto-research": {
       "strategy": "head_snapshot",
       "group": "current_oracle",
-      "baseline_path": "sources/ssot-baselines/auto-research/baseline.md",
+      "baseline_path": "sources/ssot-baselines/engos-optimization-auto-research/baseline.md",
       "richness_score": 7,
       "line_count": 676,
       "reason": "Current SSOT baseline source snapshot materialized into the source library because the stored baseline was missing, stale, or structurally degraded.",
@@ -401,63 +401,63 @@
         "materialized_from_commit": "28b1f2f7",
         "last_materialized_at": "2026-06-07T21:35:17.391757+00:00",
         "materialized_from_source_kind": "current_ssot",
-        "materialized_from_path": "ssot/auto-research.md",
+        "materialized_from_path": "ssot/engos-optimization-auto-research.md",
         "materialized_from_sha256": "758e7a7579d97620f2f0b4979e9a0841454c447cf7c22223249e7c377a3fd2d6"
       },
       "selected_commit": null
     },
-    "pitch": {
+    "engos-audit-pitch-review": {
       "strategy": "source_library",
       "group": "applied_baseline",
-      "baseline_path": "sources/ssot-baselines/pitch/baseline.md",
+      "baseline_path": "sources/ssot-baselines/engos-audit-pitch-review/baseline.md",
       "richness_score": 5,
       "line_count": 456,
       "reason": "Repo-resident baseline source snapshot used as the fidelity oracle for future UAC judging.",
       "historical_proof": {
         "materialized_from_commit": "c6b3203b",
         "materialized_from_source_kind": "current_ssot",
-        "materialized_from_path": "ssot/pitch.md",
+        "materialized_from_path": "ssot/engos-audit-pitch-review.md",
         "materialized_from_sha256": "2570975eae752eda8e9acb1227f478e4e25ae05f5e0d07ba1385a20ecb3a01d4",
         "last_materialized_at": "2026-05-21T05:35:48.457257+00:00"
       },
       "selected_commit": "c6b3203b"
     },
-    "address-code-review": {
+    "engos-delivery-address-code-review": {
       "strategy": "source_library",
       "group": "applied_baseline",
-      "baseline_path": "sources/ssot-baselines/address-code-review/baseline.md",
+      "baseline_path": "sources/ssot-baselines/engos-delivery-address-code-review/baseline.md",
       "richness_score": 5,
       "line_count": 109,
       "reason": "Repo-resident baseline source snapshot used as the fidelity oracle for future UAC judging.",
       "historical_proof": {
         "materialized_from_commit": "e4f32a18",
         "materialized_from_source_kind": "current_ssot",
-        "materialized_from_path": "ssot/address-code-review.md",
+        "materialized_from_path": "ssot/engos-delivery-address-code-review.md",
         "materialized_from_sha256": "1b98697ba26198c8a9fa5f6e751917b91e8dcce8d87262277667688312020c5d",
         "last_materialized_at": "2026-06-02T18:41:30.995407+00:00"
       },
       "selected_commit": "e4f32a18"
     },
-    "ic-assistant": {
+    "engos-operations-ic-assistant": {
       "strategy": "source_library",
       "group": "applied_baseline",
-      "baseline_path": "sources/ssot-baselines/ic-assistant/baseline.md",
+      "baseline_path": "sources/ssot-baselines/engos-operations-ic-assistant/baseline.md",
       "richness_score": 8,
       "line_count": 466,
       "reason": "Repo-resident baseline source snapshot used as the fidelity oracle for future UAC judging.",
       "historical_proof": {
         "materialized_from_commit": "e4f32a18",
         "materialized_from_source_kind": "current_ssot",
-        "materialized_from_path": "ssot/ic-assistant.md",
+        "materialized_from_path": "ssot/engos-operations-ic-assistant.md",
         "materialized_from_sha256": "6f765b332cdb59352d9a58486e0e22355bae786d57f0717ddf0f200d508aa2d8",
         "last_materialized_at": "2026-06-02T18:41:46.795733+00:00"
       },
       "selected_commit": "e4f32a18"
     },
-    "codebase-health-audit": {
+    "engos-audit-code-health": {
       "strategy": "head_snapshot",
       "group": "current_oracle",
-      "baseline_path": "sources/ssot-baselines/codebase-health-audit/baseline.md",
+      "baseline_path": "sources/ssot-baselines/engos-audit-code-health/baseline.md",
       "richness_score": 7,
       "line_count": 436,
       "reason": "Current SSOT baseline source snapshot materialized into the source library because the stored baseline was missing, stale, or structurally degraded.",
@@ -467,7 +467,7 @@
         "current_head_line_count": 436,
         "materialized_from_commit": null,
         "materialized_from_source_kind": "current_ssot",
-        "materialized_from_path": "ssot/codebase-health-audit.md",
+        "materialized_from_path": "ssot/engos-audit-code-health.md",
         "materialized_from_sha256": "1ffb301944263f68d4f796536d924574b9e51f10b9a5e2436d4644b7fa303234",
         "last_materialized_at": "2026-06-21T01:56:31.403032+00:00"
       },
@@ -476,26 +476,26 @@
       "expected_companions": [],
       "scenario_matrix": []
     },
-    "demo-recorder": {
+    "engos-browser-demo-recorder": {
       "strategy": "source_library",
       "group": "applied_baseline",
-      "baseline_path": "sources/ssot-baselines/demo-recorder/baseline.md",
+      "baseline_path": "sources/ssot-baselines/engos-browser-demo-recorder/baseline.md",
       "richness_score": 5,
       "line_count": 132,
       "reason": "Repo-resident baseline source snapshot used as the fidelity oracle for future UAC judging.",
       "historical_proof": {
         "materialized_from_commit": "306bc39c",
         "materialized_from_source_kind": "canonical_source",
-        "materialized_from_path": "ssot/demo-recorder.md",
+        "materialized_from_path": "ssot/engos-browser-demo-recorder.md",
         "materialized_from_sha256": "a2474f56bcb530c850191ad48a78f0c7ed4d2f67620669e78ffaec307cdb9508",
         "last_materialized_at": "2026-07-09T03:29:22.675807+00:00"
       },
       "selected_commit": "306bc39c"
     },
-    "dynamic-html-presentations": {
+    "engos-content-dynamic-html-presentations": {
       "strategy": "head_snapshot",
       "group": "current_oracle",
-      "baseline_path": "sources/ssot-baselines/dynamic-html-presentations/baseline.md",
+      "baseline_path": "sources/ssot-baselines/engos-content-dynamic-html-presentations/baseline.md",
       "richness_score": 3,
       "line_count": 448,
       "reason": "Current SSOT baseline source snapshot materialized into the source library because the stored baseline was missing, stale, or structurally degraded.",
@@ -505,7 +505,7 @@
         "current_head_line_count": 448,
         "materialized_from_commit": "848ab93b",
         "materialized_from_source_kind": "current_ssot",
-        "materialized_from_path": "ssot/dynamic-html-presentations.md",
+        "materialized_from_path": "ssot/engos-content-dynamic-html-presentations.md",
         "materialized_from_sha256": "da45c3dd8143e2c1e74c8ad77f3b2b5b1fb311ba9579ab6b010cf28bc0fd2be6",
         "last_materialized_at": "2026-07-19T09:45:51.008369+00:00"
       },

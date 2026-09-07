@@ -61,8 +61,8 @@ while [[ $# -gt 0 ]]; do
     --slug)
       shift
       slug_value="${1:-}"
-      if [[ "$slug_value" == "autosearch" ]]; then
-        slug_value="auto-research"
+      if [[ "$slug_value" == "autosearch" || "$slug_value" == "auto-research" ]]; then
+        slug_value="engos-optimization-auto-research"
       fi
       SLUG_FILTERS+=("$slug_value")
       ;;
@@ -304,7 +304,7 @@ PY
 
 prune_deprecated_slug_outputs() {
   local cli
-  if slug_filter_matches "auto-research" || slug_filter_matches "autosearch"; then
+  if slug_filter_matches "engos-optimization-auto-research" || slug_filter_matches "autosearch"; then
     for cli in "${TARGETS[@]}"; do
       case "$cli" in
         codex)
@@ -358,17 +358,77 @@ prune_deprecated_slug_outputs() {
     done
   fi
 
-  if slug_filter_matches "batman"; then
+  if slug_filter_matches "engos-orchestration-batman"; then
     for cli in "${TARGETS[@]}"; do
       case "$cli" in
         kiro)
-          prune_path "$TARGET_ROOT/.kiro/skills/batman/PROTOCOL.md"
-          prune_path "$TARGET_ROOT/.kiro/skills/batman/PROMPT-AMENDMENT.md"
-          prune_path "$TARGET_ROOT/.kiro/skills/batman/CODEX-UAC-INTAKE.md"
+          prune_path "$TARGET_ROOT/.kiro/skills/engos-orchestration-batman/PROTOCOL.md"
+          prune_path "$TARGET_ROOT/.kiro/skills/engos-orchestration-batman/PROMPT-AMENDMENT.md"
+          prune_path "$TARGET_ROOT/.kiro/skills/engos-orchestration-batman/CODEX-UAC-INTAKE.md"
           ;;
       esac
     done
   fi
+}
+
+prune_legacy_namespace_outputs() {
+  local pair new_slug old_slug cli
+  local legacy_pairs=(
+    "engos-delivery-address-code-review:address-code-review"
+    "engos-memory-context-continuity:analyze-context"
+    "engos-design-architecture:architecture"
+    "engos-optimization-auto-research:auto-research"
+    "engos-orchestration-batman:batman"
+    "engos-quality-code-review:code-review"
+    "engos-audit-code-health:codebase-health-audit"
+    "engos-reconciliation-converge:converge"
+    "engos-browser-demo-recorder:demo-recorder"
+    "engos-quality-docs-review:docs-review-expert"
+    "engos-content-dynamic-html-presentations:dynamic-html-presentations"
+    "engos-audit-engineering-progress:eng-report"
+    "engos-audit-feature-status:feature-status"
+    "engos-quality-gitops-review:gitops-review"
+    "engos-operations-ic-assistant:ic-assistant"
+    "engos-meta-instruction-editor:instruction-editor"
+    "engos-audit-pitch-review:pitch"
+    "engos-design-plan-to-goal:plan-to-goal-design"
+    "engos-triage-my-inbox-chat-pulse:pulse"
+    "engos-delivery-resolve-conflict:resolve-conflict"
+    "engos-meta-supercharge:supercharge"
+    "engos-quality-testing-review:testing"
+    "engos-memory-threader:threader"
+    "engos-meta-uac-import:uac-import"
+    "engos-audit-weekly-intel:weekly-intel"
+  )
+  for pair in "${legacy_pairs[@]}"; do
+    new_slug="${pair%%:*}"
+    old_slug="${pair#*:}"
+    slug_filter_matches "$new_slug" || continue
+    for cli in "${TARGETS[@]}"; do
+      case "$cli" in
+        codex)
+          prune_path "$TARGET_ROOT/.codex/skills/$old_slug"
+          prune_path "$TARGET_ROOT/.codex/agents/$old_slug.toml"
+          prune_path "$TARGET_ROOT/.codex/agents/resources/$old_slug"
+          ;;
+        gemini)
+          prune_path "$TARGET_ROOT/.gemini/skills/$old_slug"
+          prune_path "$TARGET_ROOT/.gemini/agents/$old_slug.md"
+          prune_path "$TARGET_ROOT/.gemini/agents/resources/$old_slug"
+          ;;
+        claude)
+          prune_path "$TARGET_ROOT/.claude/skills/$old_slug"
+          prune_path "$TARGET_ROOT/.claude/agents/$old_slug.md"
+          prune_path "$TARGET_ROOT/.claude/agents/resources/$old_slug"
+          ;;
+        kiro)
+          prune_path "$TARGET_ROOT/.kiro/skills/$old_slug"
+          prune_path "$TARGET_ROOT/.kiro/agents/$old_slug.json"
+          prune_path "$TARGET_ROOT/.kiro/agents/resources/$old_slug"
+          ;;
+      esac
+    done
+  done
 }
 
 write_launcher() {
@@ -604,6 +664,7 @@ python3 scripts/deploy-copy-plan.py "$REPO_ROOT" "$TARGET_ROOT" "${TARGETS[@]}" 
 if [[ ! -s "$COPY_PLAN_FILE" ]]; then
   echo "warning: nothing to deploy for selected CLI targets"
   prune_deprecated_slug_outputs
+  prune_legacy_namespace_outputs
   prune_retired_codex_agent_registration
   echo "SUMMARY copied=0 missing_source=0 skipped_cli=0 replaced_symlink=0 stale_pruned=$STALE_PRUNED"
   exit 0
@@ -636,6 +697,7 @@ while IFS=$'\t' read -r src dst surface slug; do
 done < "$COPY_PLAN_FILE"
 
 prune_deprecated_slug_outputs
+prune_legacy_namespace_outputs
 
 register_codex_agents() {
   local agent_lines="$1"

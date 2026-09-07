@@ -41,7 +41,7 @@ Profiles are `static`, `native`, `routing-canary`, `canary`, `promotion`, `cross
 | `python3 scripts/smoke-clis.py` | probe installed vendor CLIs and surface visibility | no |
 | `bin/uac audit` | inspect current SSOT and generated surface alignment | no |
 | `bin/uac plan <source...>` | show proposed landing shape for one or more sources | no |
-| `bin/uac judge <source...> --quality-profile architecture` | run the built-in quality loop without writing repo state; may recommend bounded behavioral proof via `auto-research` when structural quality is close but confidence is weak | no |
+| `bin/uac judge <source...> --quality-profile architecture` | run the built-in quality loop without writing repo state; may recommend bounded behavioral proof via `engos-optimization-auto-research` when structural quality is close but confidence is weak | no |
 | `bin/uac apply <source...> --yes` | write canonical SSOT and descriptors, then build and validate | yes |
 | `bin/uac apply <source...> --promotion-verdict <path> --promotion-trust-root <path> --approved-trust-policy-sha256 <sha256> --approved-trust-policy-revision <commit> --finalize-existing-candidate --yes` | finalize an already-canonical candidate only after current independent evidence and a pre-candidate approved trust policy pass every gate | yes |
 
@@ -135,10 +135,10 @@ Expected result:
 
 ### Resolve Analyze Context State Safely
 
-Use the helper bundled with the installed `analyze-context` skill instead of constructing state paths manually:
+Use the helper bundled with the installed `engos-memory-context-continuity` skill instead of constructing state paths manually:
 
 ```bash
-STATE_HELPER="<installed-analyze-context-skill>/resources/state_store.py"
+STATE_HELPER="<installed-engos-memory-context-continuity-skill>/resources/state_store.py"
 python3 "$STATE_HELPER" paths --cwd "$(pwd)" --task-id <safe-task-id>
 python3 "$STATE_HELPER" init --cwd "$(pwd)" --task-id <safe-task-id>
 python3 "$STATE_HELPER" write --cwd "$(pwd)" --task-id <safe-task-id> \
@@ -149,7 +149,7 @@ The helper derives a readable project slug plus a deterministic hash from the no
 
 ### Lint, Seal, And Check A Plan To Goal Packet
 
-Run these from the installed `plan-to-goal-design` skill directory after the skill has produced and materialized a packet:
+Run these from the installed `engos-design-plan-to-goal` skill directory after the skill has produced and materialized a packet:
 
 ```bash
 bash resources/goal-lint \
@@ -170,7 +170,7 @@ The packet must contain:
 
 `verify.sh --list-criteria` must print every machine criterion exactly once. With `CRITERION_ID=<id>`, the verifier must execute only that criterion, emit `CRITERION <id> PASS` with exit `0` when present, and emit `CRITERION <id> FAIL` with exit `1` when absent. Sealing binds packet artifacts and criterion fixture-tree hashes; `check` must pass immediately before launch.
 
-See [Plan to Goal Design](EXAMPLES.md#plan-to-goal-design) for a two-criterion example. These commands establish deterministic packet integrity only. Behavioral promotion still requires independent qualified evaluation.
+See [Plan to Goal Design](EXAMPLES.md#engos-design-plan-to-goal) for a two-criterion example. These commands establish deterministic packet integrity only. Behavioral promotion still requires independent qualified evaluation.
 
 ### Preview A Deploy Without Mutating A Target
 
@@ -189,22 +189,22 @@ For an intentionally narrow external-target deployment, combine `--surface-only`
 Example with slug targeting:
 
 ```bash
-bin/capability-fabric deploy --dry-run --cli codex --slug auto-research --slug supercharge
+bin/capability-fabric deploy --dry-run --cli codex --slug engos-optimization-auto-research --slug engos-meta-supercharge
 ```
 
 Batman-selected Kiro deploys have one additional, bounded cleanup contract. Preview it before changing an external target:
 
 ```bash
-bin/capability-fabric deploy --dry-run --surface-only --cli kiro --slug batman --target "$HOME" --allow-nonlocal-target
+bin/capability-fabric deploy --dry-run --surface-only --cli kiro --slug engos-orchestration-batman --target "$HOME" --allow-nonlocal-target
 ```
 
 When present, the dry-run lists exactly these deprecated prune candidates and does not move them:
 
-- `.kiro/skills/batman/PROTOCOL.md`
-- `.kiro/skills/batman/PROMPT-AMENDMENT.md`
-- `.kiro/skills/batman/CODEX-UAC-INTAKE.md`
+- `.kiro/skills/engos-orchestration-batman/PROTOCOL.md`
+- `.kiro/skills/engos-orchestration-batman/PROMPT-AMENDMENT.md`
+- `.kiro/skills/engos-orchestration-batman/CODEX-UAC-INTAKE.md`
 
-Removing `--dry-run` copies the current generated Batman surface and recoverably moves only those existing files under `.core-prompts-state/stale-pruned/<timestamp>/...`. Each live move prints a `source -> archive` receipt. The cleanup preserves `.kiro/skills/batman/SKILL.md`, its `resources/` tree, and unrelated files. A non-Batman slug or non-Kiro deploy does not trigger this cleanup.
+Removing `--dry-run` copies the current generated Batman surface and recoverably moves only those existing files under `.core-prompts-state/stale-pruned/<timestamp>/...`. Each live move prints a `source -> archive` receipt. The cleanup preserves `.kiro/skills/engos-orchestration-batman/SKILL.md`, its `resources/` tree, and unrelated files. A non-Batman slug or non-Kiro deploy does not trigger this cleanup.
 
 For targeted recovery, use the receipt to restore the archived entry to its original source path. For a release install, the pre-install rollback snapshot remains available through `bin/capability-fabric update --rollback previous`.
 
@@ -213,7 +213,9 @@ Expected result:
 - explicit copy plan
 - no target mutation
 
-When `auto-research` is deployed, stale installed `autosearch` paths for the selected CLIs are pruned as part of the breaking rename.
+When `engos-optimization-auto-research` is deployed, stale installed `autosearch` paths for the selected CLIs are pruned as part of the breaking rename.
+
+The `engos-<category>-<skill-name>` namespace migration also prunes the matching unprefixed skill, agent, and agent-resource paths for the selected slug. Live pruning is recoverable: existing entries are moved under `.core-prompts-state/stale-pruned/<timestamp>/...` and each move prints a `source -> archive` receipt. No duplicate short-name packages or native menu aliases are emitted. Supercharge retains conversational prefix aliases within its canonical instructions. For Codex, matching legacy agent stanzas that point to the target's old managed agent files are removed during registration; unrelated custom stanzas are preserved.
 
 ### Check Or Accept Installed Releases
 
@@ -287,7 +289,7 @@ Direct exposure is standardized on `skills/<slug>/SKILL.md` for every supported 
 - `bin/capability-fabric update --accept-release` is the explicit install/apply step
 - `bin/capability-fabric update --schedule-daily HH:MM --notify-only` preserves check-only scheduling
 - `bin/capability-fabric update --rollback previous` restores the latest pre-release snapshot
-- a Batman-selected Kiro dry-run lists exactly `.kiro/skills/batman/PROTOCOL.md`, `.kiro/skills/batman/PROMPT-AMENDMENT.md`, and `.kiro/skills/batman/CODEX-UAC-INTAKE.md` when present, without moving them
+- a Batman-selected Kiro dry-run lists exactly `.kiro/skills/engos-orchestration-batman/PROTOCOL.md`, `.kiro/skills/engos-orchestration-batman/PROMPT-AMENDMENT.md`, and `.kiro/skills/engos-orchestration-batman/CODEX-UAC-INTAKE.md` when present, without moving them
 - the corresponding live deploy archives those exact files under `.core-prompts-state/stale-pruned/<timestamp>/...`, prints `source -> archive` receipts, and preserves `SKILL.md`, `resources/`, and unrelated files
 - archived Batman residues remain individually recoverable from the receipt path; a release install can instead use its rollback snapshot
 - install and deploy do not rewrite capability metadata paths

@@ -1135,7 +1135,7 @@ def _slugify(value: str) -> str:
     import re
 
     normalized = re.sub(r'[^a-z0-9]+', '-', value.casefold()).strip('-')
-    return normalized or 'uac-import'
+    return normalized or 'engos-meta-uac-import'
 
 
 def _benchmark_payloads(*, slug: str, fit_assessment: str, collection_type: str | None, query: str, policy: str) -> list[dict[str, str]]:

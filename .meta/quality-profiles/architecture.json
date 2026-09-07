@@ -1,7 +1,7 @@
 {
-  "profile": "architecture",
+  "profile": "engos-design-architecture",
   "display_name": "Architecture Studio",
-  "title": "Architecture Studio — Systems Design and Decision Skill",
+  "title": "Architecture Studio \u2014 Systems Design and Decision Skill",
   "description": "Architecture Studio for API design, database design, pattern selection, and system design with black-box boundaries, concrete artifacts, and migration-safe recommendations.",
   "judge_targets": {
     "operational_richness": 10,
@@ -11,13 +11,13 @@
   },
   "max_passes": 10,
   "local_benchmarks": [
-    "ssot/code-review.md",
-    "ssot/resolve-conflict.md",
-    "ssot/testing.md",
-    "ssot/uac-import.md"
+    "ssot/engos-quality-code-review.md",
+    "ssot/engos-delivery-resolve-conflict.md",
+    "ssot/engos-quality-testing-review.md",
+    "ssot/engos-meta-uac-import.md"
   ],
   "external_sources": [
-    "https://github.com/harish-garg/gemini-cli-prompt-library/tree/main/commands/architecture",
+    "https://github.com/harish-garg/gemini-cli-prompt-library/tree/main/commands/engos-design-architecture",
     "https://github.com/Alexanderdunlop/ai-architecture-prompts"
   ],
   "must_exceed": [
@@ -73,8 +73,8 @@
       "migration-safe architecture review"
     ],
     "artifact_conventions": [
-      "reports/architecture/<timestamp>-summary.md",
-      "reports/architecture/<timestamp>-decision-log.md",
+      "reports/engos-design-architecture/<timestamp>-summary.md",
+      "reports/engos-design-architecture/<timestamp>-decision-log.md",
       "architecture/spec.md",
       "architecture/decision-log.md",
       "architecture/migration-plan.md",

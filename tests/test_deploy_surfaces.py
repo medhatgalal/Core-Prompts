@@ -160,8 +160,8 @@ def test_installed_bundle_syncs_existing_surfaces_under_cron_path_without_self_c
     )
     assert first_install.returncode == 0, first_install.stdout
 
-    installed_skill = tmp_path / ".codex" / "skills" / "instruction-editor" / "SKILL.md"
-    bundled_skill = tmp_path / ".core-prompts-updater" / ".codex" / "skills" / "instruction-editor" / "SKILL.md"
+    installed_skill = tmp_path / ".codex" / "skills" / "engos-meta-instruction-editor" / "SKILL.md"
+    bundled_skill = tmp_path / ".core-prompts-updater" / ".codex" / "skills" / "engos-meta-instruction-editor" / "SKILL.md"
     assert installed_skill.is_file()
     assert bundled_skill.is_file()
     installed_skill.write_text("stale installed skill\n", encoding="utf-8")
@@ -243,7 +243,7 @@ def test_surface_only_nonlocal_deploy_writes_only_selected_kiro_bundle(tmp_path:
         "--cli",
         "kiro",
         "--slug",
-        "code-review",
+        "engos-quality-code-review",
         "--surface-only",
         target_root=tmp_path,
         cli_bins=("kiro-cli",),
@@ -252,12 +252,12 @@ def test_surface_only_nonlocal_deploy_writes_only_selected_kiro_bundle(tmp_path:
     )
 
     assert result.returncode == 0, result.stdout
-    assert (tmp_path / ".kiro" / "skills" / "code-review" / "SKILL.md").is_file()
-    assert (tmp_path / ".kiro" / "skills" / "code-review" / "resources" / "capability.json").is_file()
-    assert not (tmp_path / ".kiro" / "skills" / "architecture").exists()
+    assert (tmp_path / ".kiro" / "skills" / "engos-quality-code-review" / "SKILL.md").is_file()
+    assert (tmp_path / ".kiro" / "skills" / "engos-quality-code-review" / "resources" / "capability.json").is_file()
+    assert not (tmp_path / ".kiro" / "skills" / "engos-design-architecture").exists()
     assert not (tmp_path / ".core-prompts-updater").exists()
     assert not (tmp_path / "update_core_prompts.sh").exists()
-    assert not (tmp_path / ".local" / "bin" / "eng-report").exists()
+    assert not (tmp_path / ".local" / "bin" / "engos-audit-engineering-progress").exists()
     assert "STANDALONE updater=" not in result.stdout
 
 
@@ -267,7 +267,7 @@ def test_nonlocal_dry_run_does_not_write_updater_launcher_or_local_binary(tmp_pa
         "--cli",
         "kiro",
         "--slug",
-        "code-review",
+        "engos-quality-code-review",
         "--dry-run",
         target_root=tmp_path,
         cli_bins=("kiro-cli",),
@@ -347,27 +347,27 @@ def test_deploy_with_only_codex_available_registers_only_codex_agents(tmp_path: 
     assert result.returncode == 0, result.stdout
     assert "Target CLIs: codex" in result.stdout
 
-    for slug in ("code-review", "resolve-conflict"):
+    for slug in ("engos-quality-code-review", "engos-delivery-resolve-conflict"):
         assert (tmp_path / ".codex" / "skills" / slug / "SKILL.md").is_file()
         assert (tmp_path / ".codex" / "skills" / slug / "resources" / "capability.json").is_file()
         assert not (tmp_path / ".codex" / "agents" / f"{slug}.toml").exists()
 
-    assert (tmp_path / ".codex" / "skills" / "auto-research" / "resources" / "bootstrap.py").is_file()
+    assert (tmp_path / ".codex" / "skills" / "engos-optimization-auto-research" / "resources" / "bootstrap.py").is_file()
     assert (
         tmp_path
         / ".codex"
         / "skills"
-        / "auto-research"
+        / "engos-optimization-auto-research"
         / "resources"
         / "templates"
         / "goal-contract.md.tmpl"
     ).is_file()
-    assert (tmp_path / ".codex" / "agents" / "resources" / "auto-research" / "bootstrap.py").is_file()
+    assert (tmp_path / ".codex" / "agents" / "resources" / "engos-optimization-auto-research" / "bootstrap.py").is_file()
 
     config_text = (tmp_path / ".codex" / "config.toml").read_text(encoding="utf-8")
-    for slug in ("converge", "supercharge"):
+    for slug in ("engos-reconciliation-converge", "engos-meta-supercharge"):
         assert f"[agents.{slug}]" in config_text
-    for slug in ("code-review", "resolve-conflict"):
+    for slug in ("engos-quality-code-review", "engos-delivery-resolve-conflict"):
         assert f"[agents.{slug}]" not in config_text
 
 
@@ -383,7 +383,7 @@ def test_deploy_with_all_clis_available_deploys_new_skill_surfaces(tmp_path: Pat
     )
     assert result.returncode == 0, result.stdout
 
-    for slug in ("code-review", "resolve-conflict"):
+    for slug in ("engos-quality-code-review", "engos-delivery-resolve-conflict"):
         assert (tmp_path / ".codex" / "skills" / slug / "SKILL.md").is_file()
         assert (tmp_path / ".codex" / "skills" / slug / "resources" / "capability.json").is_file()
         assert (tmp_path / ".gemini" / "skills" / slug / "SKILL.md").is_file()
@@ -397,7 +397,7 @@ def test_deploy_with_all_clis_available_deploys_new_skill_surfaces(tmp_path: Pat
         assert not (tmp_path / ".kiro" / "agents" / f"{slug}.json").exists()
         assert not (tmp_path / ".codex" / "agents" / f"{slug}.toml").exists()
 
-    for slug in ("converge", "supercharge"):
+    for slug in ("engos-reconciliation-converge", "engos-meta-supercharge"):
         assert (tmp_path / ".codex" / "skills" / slug / "SKILL.md").is_file()
         assert (tmp_path / ".codex" / "skills" / slug / "resources" / "capability.json").is_file()
         assert (tmp_path / ".codex" / "agents" / f"{slug}.toml").is_file()
@@ -416,24 +416,24 @@ def test_deploy_with_all_clis_available_deploys_new_skill_surfaces(tmp_path: Pat
         assert (tmp_path / ".kiro" / "agents" / "resources" / slug / "capability.json").is_file()
 
     for cli_dir in (".codex", ".gemini", ".claude", ".kiro"):
-        assert (tmp_path / cli_dir / "skills" / "auto-research" / "resources" / "bootstrap.py").is_file()
+        assert (tmp_path / cli_dir / "skills" / "engos-optimization-auto-research" / "resources" / "bootstrap.py").is_file()
         assert (
             tmp_path
             / cli_dir
             / "skills"
-            / "auto-research"
+            / "engos-optimization-auto-research"
             / "resources"
             / "templates"
             / "scorecard.json.tmpl"
         ).is_file()
 
-    assert (tmp_path / ".codex" / "agents" / "resources" / "auto-research" / "bootstrap.py").is_file()
+    assert (tmp_path / ".codex" / "agents" / "resources" / "engos-optimization-auto-research" / "bootstrap.py").is_file()
     assert (
         tmp_path
         / ".gemini"
         / "agents"
         / "resources"
-        / "auto-research"
+        / "engos-optimization-auto-research"
         / "templates"
         / "promotion-packet.md.tmpl"
     ).is_file()
@@ -442,7 +442,7 @@ def test_deploy_with_all_clis_available_deploys_new_skill_surfaces(tmp_path: Pat
         / ".claude"
         / "agents"
         / "resources"
-        / "auto-research"
+        / "engos-optimization-auto-research"
         / "templates"
         / "experiment-ledger.md.tmpl"
     ).is_file()
@@ -451,7 +451,7 @@ def test_deploy_with_all_clis_available_deploys_new_skill_surfaces(tmp_path: Pat
         / ".kiro"
         / "agents"
         / "resources"
-        / "auto-research"
+        / "engos-optimization-auto-research"
         / "templates"
         / "goal-contract.md.tmpl"
     ).is_file()
@@ -479,8 +479,8 @@ def test_install_wrapper_matches_deploy_for_partial_cli_targets(tmp_path: Path) 
     )
     assert result.returncode == 0, result.stdout
     assert "Target CLIs: gemini codex" in result.stdout
-    assert (tmp_path / ".gemini" / "skills" / "code-review" / "SKILL.md").is_file()
-    assert (tmp_path / ".codex" / "skills" / "resolve-conflict" / "SKILL.md").is_file()
+    assert (tmp_path / ".gemini" / "skills" / "engos-quality-code-review" / "SKILL.md").is_file()
+    assert (tmp_path / ".codex" / "skills" / "engos-delivery-resolve-conflict" / "SKILL.md").is_file()
     assert not (tmp_path / ".claude").exists()
     assert not (tmp_path / ".kiro").exists()
 
@@ -509,7 +509,7 @@ def test_deploy_codex_registration_is_idempotent(tmp_path: Path) -> None:
     assert second.returncode == 0, second.stdout
 
     config_text = (tmp_path / ".codex" / "config.toml").read_text(encoding="utf-8")
-    for slug in ("architecture", "converge", "docs-review-expert", "gitops-review", "supercharge"):
+    for slug in ("engos-design-architecture", "engos-reconciliation-converge", "engos-quality-docs-review", "engos-quality-gitops-review", "engos-meta-supercharge"):
         assert config_text.count(f"[agents.{slug}]") == 1
 
 
@@ -521,22 +521,22 @@ def test_deploy_codex_registration_removes_legacy_duplicate_stanzas(tmp_path: Pa
             [
                 'model = "gpt-5.4"',
                 "",
-                "[agents.supercharge]",
+                "[agents.engos-meta-supercharge]",
                 'config_file = "/tmp/legacy-supercharge.toml"',
                 "",
                 "[agents.unmanaged-custom]",
                 'config_file = "/tmp/custom.toml"',
                 "",
                 "# >>> core-prompts codex agents start >>>",
-                "[agents.supercharge]",
+                "[agents.engos-meta-supercharge]",
                 'config_file = "/tmp/stale-supercharge.toml"',
                 "",
-                "[agents.converge]",
+                "[agents.engos-reconciliation-converge]",
                 'config_file = "/tmp/stale-converge.toml"',
                 "",
                 "# <<< core-prompts codex agents end <<<",
                 "",
-                "[agents.docs-review-expert]",
+                "[agents.engos-quality-docs-review]",
                 'config_file = "/tmp/legacy-docs-review.toml"',
                 "",
             ]
@@ -557,9 +557,9 @@ def test_deploy_codex_registration_removes_legacy_duplicate_stanzas(tmp_path: Pa
     assert result.returncode == 0, result.stdout
 
     config_text = config_path.read_text(encoding="utf-8")
-    assert config_text.count("[agents.supercharge]") == 1
-    assert config_text.count("[agents.converge]") == 1
-    assert config_text.count("[agents.docs-review-expert]") == 1
+    assert config_text.count("[agents.engos-meta-supercharge]") == 1
+    assert config_text.count("[agents.engos-reconciliation-converge]") == 1
+    assert config_text.count("[agents.engos-quality-docs-review]") == 1
     assert "[agents.unmanaged-custom]" in config_text
     assert "/tmp/legacy-supercharge.toml" not in config_text
     assert "/tmp/stale-supercharge.toml" not in config_text
@@ -608,13 +608,13 @@ def test_deploy_codex_registration_completes_with_populated_home_style_config(tm
     assert "[agents.autosearch]" not in config_text
     assert "/tmp/stale-autosearch.toml" not in config_text
     for slug in (
-        "architecture",
-        "auto-research",
-        "converge",
-        "docs-review-expert",
-        "gitops-review",
-        "supercharge",
-        "weekly-intel",
+        "engos-design-architecture",
+        "engos-optimization-auto-research",
+        "engos-reconciliation-converge",
+        "engos-quality-docs-review",
+        "engos-quality-gitops-review",
+        "engos-meta-supercharge",
+        "engos-audit-weekly-intel",
     ):
         assert config_text.count(f"[agents.{slug}]") == 1
 
@@ -706,8 +706,8 @@ def test_filtered_mentor_retirement_prunes_codex_files_and_registration(
         "\n".join(
             [
                 "# >>> core-prompts codex agents start >>>",
-                "[agents.batman]",
-                f'config_file = "{tmp_path / ".codex" / "agents" / "batman.toml"}"',
+                "[agents.engos-orchestration-batman]",
+                f'config_file = "{tmp_path / ".codex" / "agents" / "engos-orchestration-batman.toml"}"',
                 "",
                 "[agents.mentor]",
                 f'config_file = "{tmp_path / ".codex" / "agents" / "mentor.toml"}"',
@@ -741,8 +741,8 @@ def test_filtered_mentor_retirement_prunes_codex_files_and_registration(
     config_text = config_path.read_text(encoding="utf-8")
     assert "[agents.mentor]" not in config_text
     assert str(tmp_path / ".codex" / "agents" / "mentor.toml") not in config_text
-    assert "[agents.batman]" in config_text
-    assert str(tmp_path / ".codex" / "agents" / "batman.toml") in config_text
+    assert "[agents.engos-orchestration-batman]" in config_text
+    assert str(tmp_path / ".codex" / "agents" / "engos-orchestration-batman.toml") in config_text
     assert "[agents.local-helper]" in config_text
     assert "/tmp/local-helper.toml" in config_text
     archived = tmp_path / ".core-prompts-state" / "stale-pruned"
@@ -799,24 +799,24 @@ def test_deploy_slug_filter_limits_copy_and_registration(tmp_path: Path) -> None
         "--cli",
         "codex",
         "--slug",
-        "auto-research",
+        "engos-optimization-auto-research",
         target_root=tmp_path,
         cli_bins=("codex",),
         use_system_bash=True,
         allow_nonlocal_target=True,
     )
     assert result.returncode == 0, result.stdout
-    assert "Deploying managed slugs: auto-research" in result.stdout
-    assert (tmp_path / ".codex" / "skills" / "auto-research" / "SKILL.md").is_file()
-    assert (tmp_path / ".codex" / "skills" / "auto-research" / "resources" / "bootstrap.py").is_file()
+    assert "Deploying managed slugs: engos-optimization-auto-research" in result.stdout
+    assert (tmp_path / ".codex" / "skills" / "engos-optimization-auto-research" / "SKILL.md").is_file()
+    assert (tmp_path / ".codex" / "skills" / "engos-optimization-auto-research" / "resources" / "bootstrap.py").is_file()
     assert not (tmp_path / ".codex" / "skills" / "autosearch").exists()
     assert not (tmp_path / ".codex" / "agents" / "autosearch.toml").exists()
     assert not (tmp_path / ".codex" / "agents" / "resources" / "autosearch").exists()
-    assert not (tmp_path / ".codex" / "skills" / "code-review" / "SKILL.md").exists()
+    assert not (tmp_path / ".codex" / "skills" / "engos-quality-code-review" / "SKILL.md").exists()
 
     config_text = (tmp_path / ".codex" / "config.toml").read_text(encoding="utf-8")
-    assert "[agents.auto-research]" in config_text
-    assert "[agents.converge]" not in config_text
+    assert "[agents.engos-optimization-auto-research]" in config_text
+    assert "[agents.engos-reconciliation-converge]" not in config_text
 
 
 def test_deploy_legacy_autosearch_slug_installs_auto_research_and_prunes_stale(tmp_path: Path) -> None:
@@ -840,9 +840,9 @@ def test_deploy_legacy_autosearch_slug_installs_auto_research_and_prunes_stale(t
     )
 
     assert result.returncode == 0, result.stdout
-    assert "Deploying managed slugs: auto-research" in result.stdout
+    assert "Deploying managed slugs: engos-optimization-auto-research" in result.stdout
     assert "stale_pruned=3" in result.stdout
-    assert (tmp_path / ".codex" / "skills" / "auto-research" / "SKILL.md").is_file()
+    assert (tmp_path / ".codex" / "skills" / "engos-optimization-auto-research" / "SKILL.md").is_file()
     assert not (tmp_path / ".codex" / "skills" / "autosearch").exists()
     assert not (tmp_path / ".codex" / "agents" / "autosearch.toml").exists()
     assert not (tmp_path / ".codex" / "agents" / "resources" / "autosearch").exists()

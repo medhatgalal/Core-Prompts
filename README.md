@@ -12,12 +12,16 @@ If you are already using Core-Prompts in a CLI, start there. If you are importin
 
 The current generated surfaces ship `27` skills across all supported CLIs and `11` agents on agent-capable surfaces. Capability Fabric metadata is advisory; explicit invocation follows the selected capability's operating contract.
 
+All shipped skills use the `engos-<category>-<skill-name>` namespace so Core-Prompts capabilities stay together in CLI and app autocomplete. The category identifies the primary job; the final segment identifies the capability. For example, use `engos-memory-context-continuity` for durable investigation state, `engos-quality-code-review` for diff review, and `engos-triage-my-inbox-chat-pulse` for Gmail and Chat triage.
+
+Conversational `Supercharge /full` and stacked forms such as `supercharge /simple /invert /contract <task>` remain supported by `engos-meta-supercharge`. Use the full namespaced name for native skill selection; no separate short-name package or native menu alias is emitted.
+
 For review work, pick the capability by intent:
 
 | Intent | Use | Boundary |
 | --- | --- | --- |
-| Review staged changes, a diff, or a commit before committing, pushing, merging, or releasing | `code-review` | Read-only review gate; covers correctness, scope, resource lifecycle, concurrency, operational readiness, API compatibility, and merge guidance |
-| Implement selected reviewer comments from an existing PR/MR | `address-code-review` | Mutating action workflow; edits only files tied to selected review feedback |
+| Review staged changes, a diff, or a commit before committing, pushing, merging, or releasing | `engos-quality-code-review` | Read-only review gate; covers correctness, scope, resource lifecycle, concurrency, operational readiness, API compatibility, and merge guidance |
+| Implement selected reviewer comments from an existing PR/MR | `engos-delivery-address-code-review` | Mutating action workflow; edits only files tied to selected review feedback |
 
 ## Installed Capabilities First
 
@@ -29,31 +33,31 @@ These are the currently shipped skills with a concrete starter ask for each one:
 
 | Skill | Use it when you need to... | Starter ask | What good output looks like |
 | --- | --- | --- | --- |
-| `analyze-context` | work through a broad repo investigation without losing context | "Use `analyze-context` to inspect this subsystem over several files and keep its context, todo, and insights files current until the work is complete." | one three-file task set under `~/.analyze-context/<project>/<task-id>/`, accumulated findings, checked progress, and a scoped next action; branch and worktree paths are metadata only |
-| `architecture` | design or review interfaces, boundaries, and migration safety | "Use `architecture` to recommend the safest design for this capability layout." | options, tradeoffs, migration guidance, and a rollback-aware recommendation |
-| `auto-research` | improve a prompt, workflow, or system through experiments | "Use `auto-research` to improve our review prompt so it catches more behavioral regressions without increasing noise." | goal contract, evaluation plan, experiments, and a winner only after evidence |
-| `batman` | implement through subagent-driven development with blocking review gates | "Batman: verify this request, publish the Host-Fit Plan, then implement this shipped-defect correction through subagent-driven TDD, blocking milestone reviews, verification, docs, PR, authorized merge, release, install, and cleanup." | instruction-integrity result, host-fit decisions, independent subagent evidence, provenance-qualified red and mutation checks, milestone decisions, progress reports, and state-specific landing receipts |
-| `codebase-health-audit` | audit brownfield structural health without changing the repo | "Use `codebase-health-audit` to audit this repo for LOC hotspots, god objects, coupling, dead code, and drift from this prior audit block." | verified structural findings, drift analysis, and slice-ready remediation |
-| `code-review` | review staged changes, diffs, or commits before commit, push, merge, or release | "Use `code-review` to review my staged changes, including resource cleanup, concurrency, operational readiness, and API/schema compatibility." | evidence-based findings, scope risks, message-quality feedback, and merge readiness |
-| `address-code-review` | apply selected fixes for existing PR/MR reviewer comments | "Use `address-code-review` to inspect the open review comments on this MR and address the selected fixes only." | comments found, selected fixes, changes applied, commit guidance, and follow-up review |
-| `converge` | compare competing proposals and force one recommendation | "Use `converge` to compare these rollout plans and recommend one." | overlap map, explicit conflicts, decision criteria, and one final recommendation |
-| `demo-recorder` | automate polished demo recordings with Playwright scripts | "Use `demo-recorder` to create a Playwright demo of the agent feedback feature on our Swagger UI." | demo plan, complete Playwright script with recording enabled, run command, and output path |
-| `dynamic-html-presentations` | create polished standalone slide decks with optional PNG and PPTX delivery | "Use `dynamic-html-presentations` to turn this quarterly review into interactive HTML, 1920×1080 PNGs, and an image-faithful PPTX." | narrative-first HTML deck, validated images, optional flattened PPTX, and explicit export evidence |
-| `docs-review-expert` | fix docs structure, drift, and explainability | "Use `docs-review-expert` to tell me what belongs in `README.md` versus `docs/`, what drifted, and what to fix first." | doc placement, drift findings, rewrite targets, and review timing |
-| `eng-report` | generate a git-derived engineering progress report | "Use `eng-report` to generate an HTML progress report for this repo since 2026-06-01." | deterministic git metrics, local or Drive report path, and narrative clearly tied to the data |
+| `engos-memory-context-continuity` | work through a broad repo investigation without losing context | "Use `engos-memory-context-continuity` to inspect this subsystem over several files and keep its context, todo, and insights files current until the work is complete." | one three-file task set under `~/.analyze-context/<project>/<task-id>/`, accumulated findings, checked progress, and a scoped next action; branch and worktree paths are metadata only |
+| `engos-design-architecture` | design or review interfaces, boundaries, and migration safety | "Use `engos-design-architecture` to recommend the safest design for this capability layout." | options, tradeoffs, migration guidance, and a rollback-aware recommendation |
+| `engos-optimization-auto-research` | improve a prompt, workflow, or system through experiments | "Use `engos-optimization-auto-research` to improve our review prompt so it catches more behavioral regressions without increasing noise." | goal contract, evaluation plan, experiments, and a winner only after evidence |
+| `engos-orchestration-batman` | implement through subagent-driven development with blocking review gates | "Batman: verify this request, publish the Host-Fit Plan, then implement this shipped-defect correction through subagent-driven TDD, blocking milestone reviews, verification, docs, PR, authorized merge, release, install, and cleanup." | instruction-integrity result, host-fit decisions, independent subagent evidence, provenance-qualified red and mutation checks, milestone decisions, progress reports, and state-specific landing receipts |
+| `engos-audit-code-health` | audit brownfield structural health without changing the repo | "Use `engos-audit-code-health` to audit this repo for LOC hotspots, god objects, coupling, dead code, and drift from this prior audit block." | verified structural findings, drift analysis, and slice-ready remediation |
+| `engos-quality-code-review` | review staged changes, diffs, or commits before commit, push, merge, or release | "Use `engos-quality-code-review` to review my staged changes, including resource cleanup, concurrency, operational readiness, and API/schema compatibility." | evidence-based findings, scope risks, message-quality feedback, and merge readiness |
+| `engos-delivery-address-code-review` | apply selected fixes for existing PR/MR reviewer comments | "Use `engos-delivery-address-code-review` to inspect the open review comments on this MR and address the selected fixes only." | comments found, selected fixes, changes applied, commit guidance, and follow-up review |
+| `engos-reconciliation-converge` | compare competing proposals and force one recommendation | "Use `engos-reconciliation-converge` to compare these rollout plans and recommend one." | overlap map, explicit conflicts, decision criteria, and one final recommendation |
+| `engos-browser-demo-recorder` | automate polished demo recordings with Playwright scripts | "Use `engos-browser-demo-recorder` to create a Playwright demo of the agent feedback feature on our Swagger UI." | demo plan, complete Playwright script with recording enabled, run command, and output path |
+| `engos-content-dynamic-html-presentations` | create polished standalone slide decks with optional PNG and PPTX delivery | "Use `engos-content-dynamic-html-presentations` to turn this quarterly review into interactive HTML, 1920×1080 PNGs, and an image-faithful PPTX." | narrative-first HTML deck, validated images, optional flattened PPTX, and explicit export evidence |
+| `engos-quality-docs-review` | fix docs structure, drift, and explainability | "Use `engos-quality-docs-review` to tell me what belongs in `README.md` versus `docs/`, what drifted, and what to fix first." | doc placement, drift findings, rewrite targets, and review timing |
+| `engos-audit-engineering-progress` | generate a git-derived engineering progress report | "Use `engos-audit-engineering-progress` to generate an HTML progress report for this repo since 2026-06-01." | deterministic git metrics, local or Drive report path, and narrative clearly tied to the data |
 | `engos-audit-opex-incident-review` | audit an Operational Excellence incident estate against the prior snapshot | "Use `engos-audit-opex-incident-review` to build today's Daily OpEx Digest for Blocker and Critical incidents, compared with yesterday." | decision queue, owner obligations, reconciled metrics, progress and correction ledger, stalled cohorts, DPA tracker, all-open board, evidence caveats, and optional incident drill-downs |
-| `feature-status` | audit a feature against its stated scope and proof sources | "Use `feature-status` to compare this feature's pitch, HLD, OAS, code, and tests, then tell me what is complete, what drifted, and what is blocking ship." | evidence-backed status tables, spec drift findings, gap analysis, and prioritized recommendations |
-| `gitops-review` | judge branch, PR, merge, or release readiness | "Use `gitops-review` to tell me whether this branch is ready for PR and what blockers remain." | gate type, blockers, required companion reviews, and next actions |
-| `ic-assistant` | keep an Incident Commander on-process with generic guidance by default and internal runbook mode only on request | "Use `ic-assistant` to track this incident, identify the current phase, and tell me the next required action." | mode, current phase, next action, status-update timer, and overdue or escalation flags |
-| `pitch` | create, review, score, or improve Shape Up pitches | "Use `pitch` to review this Shape Up pitch for appetite, risks, and betting readiness." | shaped problem, appetite fit, risks, score, and concrete improvement guidance |
-| `plan-to-goal-design` | turn a researched implementation plan into a bounded goal packet | "Use `plan-to-goal-design` to inspect this migration plan and repo, then produce a compact goal, durable spec, bounded anchor, per-criterion flip fixtures, and a sealed verifier packet." | research receipt, goal/spec/baseline packet, criterion-flip results, verifier trust, honest terminal state, and a host-correct launch command only when supported |
-| `pulse` | triage Gmail and Google Chat noise into clear priorities | "Use `pulse` to tell me what needs my attention across Gmail and Google Chat, then propose the next actions without sending anything." | priority-classified comms table, source summary, and proposed next actions for the hot items |
-| `resolve-conflict` | analyze a merge conflict or competing edits | "Use `resolve-conflict` to compare these conflicting branch edits and tell me what should survive." | conflict map, additive merge opportunities, explicit tradeoffs, and a recommended resolution |
-| `supercharge` | harden a rough prompt, plan, proposal, first-principles audit, or adversarial decision before execution | "Use `supercharge /adversarial /debate /deep` to run a Bull/Bear/Decider debate on this architecture decision, then list flip conditions." | sharper framing, stronger constraints, execution plan, failure-mode coverage, `/basis` accounting, or Bull/Bear/Decider debate when requested |
-| `testing` | decide what to test first and what edge cases matter | "Use `testing` to identify the highest-value tests and edge cases for this change." | prioritized tests, edge cases, and coverage gaps |
-| `threader` | export a conversation or create a durable handoff | "Use `threader` to turn this chat into a reusable handoff for another engineer or model." | durable summary, preserved decisions, and next-step continuity |
-| `uac-import` | import and uplift new capability source into canonical state | "Use `uac-import` to inspect this external prompt family and tell me how it should land into SSOT before apply." | landing shape, classification, overlap concerns, and the next UAC step |
-| `weekly-intel` | build a weekly report from multiple sources | "Use `weekly-intel` to produce a weekly status report from these sources." | executive summary, technical appendix, and fact-check audit |
+| `engos-audit-feature-status` | audit a feature against its stated scope and proof sources | "Use `engos-audit-feature-status` to compare this feature's engos-audit-pitch-review, HLD, OAS, code, and tests, then tell me what is complete, what drifted, and what is blocking ship." | evidence-backed status tables, spec drift findings, gap analysis, and prioritized recommendations |
+| `engos-quality-gitops-review` | judge branch, PR, merge, or release readiness | "Use `engos-quality-gitops-review` to tell me whether this branch is ready for PR and what blockers remain." | gate type, blockers, required companion reviews, and next actions |
+| `engos-operations-ic-assistant` | keep an Incident Commander on-process with generic guidance by default and internal runbook mode only on request | "Use `engos-operations-ic-assistant` to track this incident, identify the current phase, and tell me the next required action." | mode, current phase, next action, status-update timer, and overdue or escalation flags |
+| `engos-audit-pitch-review` | create, review, score, or improve Shape Up pitches | "Use `engos-audit-pitch-review` to review this Shape Up engos-audit-pitch-review for appetite, risks, and betting readiness." | shaped problem, appetite fit, risks, score, and concrete improvement guidance |
+| `engos-design-plan-to-goal` | turn a researched implementation plan into a bounded goal packet | "Use `engos-design-plan-to-goal` to inspect this migration plan and repo, then produce a compact goal, durable spec, bounded anchor, per-criterion flip fixtures, and a sealed verifier packet." | research receipt, goal/spec/baseline packet, criterion-flip results, verifier trust, honest terminal state, and a host-correct launch command only when supported |
+| `engos-triage-my-inbox-chat-pulse` | triage Gmail and Google Chat noise into clear priorities | "Use `engos-triage-my-inbox-chat-pulse` to tell me what needs my attention across Gmail and Google Chat, then propose the next actions without sending anything." | priority-classified comms table, source summary, and proposed next actions for the hot items |
+| `engos-delivery-resolve-conflict` | analyze a merge conflict or competing edits | "Use `engos-delivery-resolve-conflict` to compare these conflicting branch edits and tell me what should survive." | conflict map, additive merge opportunities, explicit tradeoffs, and a recommended resolution |
+| `engos-meta-supercharge` | harden a rough prompt, plan, proposal, first-principles audit, or adversarial decision before execution | "Use `engos-meta-supercharge /adversarial /debate /deep` to run a Bull/Bear/Decider debate on this engos-design-architecture decision, then list flip conditions." | sharper framing, stronger constraints, execution plan, failure-mode coverage, `/basis` accounting, or Bull/Bear/Decider debate when requested |
+| `engos-quality-testing-review` | decide what to test first and what edge cases matter | "Use `engos-quality-testing-review` to identify the highest-value tests and edge cases for this change." | prioritized tests, edge cases, and coverage gaps |
+| `engos-memory-threader` | export a conversation or create a durable handoff | "Use `engos-memory-threader` to turn this chat into a reusable handoff for another engineer or model." | durable summary, preserved decisions, and next-step continuity |
+| `engos-meta-uac-import` | import and uplift new capability source into canonical state | "Use `engos-meta-uac-import` to inspect this external prompt family and tell me how it should land into SSOT before apply." | landing shape, classification, overlap concerns, and the next UAC step |
+| `engos-audit-weekly-intel` | build a weekly report from multiple sources | "Use `engos-audit-weekly-intel` to produce a weekly status report from these sources." | executive summary, technical appendix, and fact-check audit |
 
 OpEx incident drill-downs supplied in the normalized snapshot appear in both HTML and Markdown. They retain facts, risk, Five Whys, preventive action, talking points, and follow-up questions.
 
@@ -61,15 +65,15 @@ OpEx incident drill-downs supplied in the normalized snapshot appear in both HTM
 
 | Capability | Start with it when you need to... | Example ask | What good output looks like |
 | --- | --- | --- | --- |
-| `auto-research` | improve a prompt, workflow, or system through bounded experiments | "Use `auto-research` to improve our review prompt so it catches more behavioral regressions without increasing noise." | a goal contract, experiment plan, evaluation criteria, and a winner only after evidence |
-| `batman` | deliver a contract, metric, safety path, or shipped-defect correction through independent implementation subagents | "Batman: verify instruction integrity, select the live host's language and test tools, then implement this safety path with independent subagents and report initial, stage, blocker, and 15-minute progress." | one controller-owned flow, a Host-Fit Plan, bounded subagent briefs, all applicable blocking milestone gates, independent evidence, and authorized landing |
-| `codebase-health-audit` | find structural brownfield risk without mutating code | "Use `codebase-health-audit` to audit this repo for LOC hotspots, god objects, coupling, likely dead code, and drift." | metric-backed findings, prior-claim verification when provided, and slice-ready remediation |
-| `supercharge` | harden a rough prompt, plan, proposal, first-principles audit, or adversarial decision before execution | "Use `supercharge /adversarial /debate` to compare the strongest case for and against this rollout plan before we choose." | sharper framing, stronger constraints, clearer sequencing, first-principles accounting, and debate-mode decision pressure when requested |
-| `converge` | compare competing options and force one recommendation | "Use `converge` to compare these rollout plans and recommend one." | explicit conflicts, common comparison criteria, and one final recommendation |
-| `docs-review-expert` | fix docs structure, drift, and explainability | "Use `docs-review-expert` to tell me what belongs in `README.md` versus `docs/`, what drifted, and what to fix first." | placement decisions, drift findings, rewrite guidance, and review timing |
-| `gitops-review` | judge branch, PR, merge, or release readiness | "Use `gitops-review` to tell me whether this branch is ready for PR and what blockers remain." | gate type, blockers, companion reviews, and exact next actions |
-| `testing` | decide what to test first and what edge cases matter | "Use `testing` to identify the highest-value tests and edge cases for this change." | prioritized test ideas, edge cases, and coverage gaps |
-| `architecture` | review interfaces, boundaries, and migration safety | "Use `architecture` to recommend the safest design for this capability layout." | tradeoffs, boundary decisions, migration thinking, and rollback-aware recommendations |
+| `engos-optimization-auto-research` | improve a prompt, workflow, or system through bounded experiments | "Use `engos-optimization-auto-research` to improve our review prompt so it catches more behavioral regressions without increasing noise." | a goal contract, experiment plan, evaluation criteria, and a winner only after evidence |
+| `engos-orchestration-batman` | deliver a contract, metric, safety path, or shipped-defect correction through independent implementation subagents | "Batman: verify instruction integrity, select the live host's language and test tools, then implement this safety path with independent subagents and report initial, stage, blocker, and 15-minute progress." | one controller-owned flow, a Host-Fit Plan, bounded subagent briefs, all applicable blocking milestone gates, independent evidence, and authorized landing |
+| `engos-audit-code-health` | find structural brownfield risk without mutating code | "Use `engos-audit-code-health` to audit this repo for LOC hotspots, god objects, coupling, likely dead code, and drift." | metric-backed findings, prior-claim verification when provided, and slice-ready remediation |
+| `engos-meta-supercharge` | harden a rough prompt, plan, proposal, first-principles audit, or adversarial decision before execution | "Use `engos-meta-supercharge /adversarial /debate` to compare the strongest case for and against this rollout plan before we choose." | sharper framing, stronger constraints, clearer sequencing, first-principles accounting, and debate-mode decision pressure when requested |
+| `engos-reconciliation-converge` | compare competing options and force one recommendation | "Use `engos-reconciliation-converge` to compare these rollout plans and recommend one." | explicit conflicts, common comparison criteria, and one final recommendation |
+| `engos-quality-docs-review` | fix docs structure, drift, and explainability | "Use `engos-quality-docs-review` to tell me what belongs in `README.md` versus `docs/`, what drifted, and what to fix first." | placement decisions, drift findings, rewrite guidance, and review timing |
+| `engos-quality-gitops-review` | judge branch, PR, merge, or release readiness | "Use `engos-quality-gitops-review` to tell me whether this branch is ready for PR and what blockers remain." | gate type, blockers, companion reviews, and exact next actions |
+| `engos-quality-testing-review` | decide what to test first and what edge cases matter | "Use `engos-quality-testing-review` to identify the highest-value tests and edge cases for this change." | prioritized test ideas, edge cases, and coverage gaps |
+| `engos-design-architecture` | review interfaces, boundaries, and migration safety | "Use `engos-design-architecture` to recommend the safest design for this capability layout." | tradeoffs, boundary decisions, migration thinking, and rollback-aware recommendations |
 
 ### Agent Surfaces Available Now
 
@@ -83,25 +87,25 @@ Evidence is state-specific. Controller-authored tests, tests inherited from an e
 
 | Agent | Use it for | Example ask | What good output looks like |
 | --- | --- | --- | --- |
-| `batman` | explicitly invoked, subagent-driven implementation delivery | "Batman: take this contract change through subagent TDD, all applicable blocking reviews, PR, merge, and cleanup." | controller-owned flow and status, independent implementation evidence, current CI, and mainline verification |
-| `docs-review-expert` | documentation IA, drift review, and release-facing docs checks | "Use `docs-review-expert` to review our onboarding docs for drift and weak entrypoints." | concrete doc findings and rewrite targets |
-| `gitops-review` | repo hygiene, CI, merge, and release gates | "Use `gitops-review` to judge whether we are ready to merge and release." | a go or no-go recommendation with evidence and next actions |
-| `ic-assistant` | phase-aware Incident Commander process guidance with optional internal runbook mode | "Use `ic-assistant` to track this incident and keep me on the required checklist." | mode, phase, next action, overdue items, and escalation flags |
-| `pitch` | Shape Up pitch creation, review, and scoring | "Use `pitch` to harden this pitch before betting." | pitch quality score, risks, appetite fit, and rewrite guidance |
-| `pulse` | Gmail and Google Chat triage | "Use `pulse` to triage what needs my attention and propose next actions without sending anything." | prioritized comms, source summaries, and proposed actions |
-| `auto-research` | experiment-driven improvement loops | "Use `auto-research` to improve this workflow and prove which variant wins." | bounded experiments, evaluation, and promotion guidance |
-| `supercharge` | plan, prompt, or adversarial debate hardening before execution | "Use `supercharge /debate /deep` to stress-test this operating decision before we ship it." | stronger prompt structure, clearer failure handling, and Bull/Bear/Decider trade-off analysis |
-| `converge` | synthesis across competing proposals | "Use `converge` to synthesize these competing proposals into one decision." | overlap map, decision logic, and one coherent recommendation |
-| `architecture` | architecture review and migration-safe design | "Use `architecture` to review this interface change for rollback risk." | architecture findings and a defensible direction |
-| `weekly-intel` | multi-source weekly reporting | "Use `weekly-intel` to produce a weekly status report from these sources." | executive summary, technical appendix, and fact-check audit |
+| `engos-orchestration-batman` | explicitly invoked, subagent-driven implementation delivery | "Batman: take this contract change through subagent TDD, all applicable blocking reviews, PR, merge, and cleanup." | controller-owned flow and status, independent implementation evidence, current CI, and mainline verification |
+| `engos-quality-docs-review` | documentation IA, drift review, and release-facing docs checks | "Use `engos-quality-docs-review` to review our onboarding docs for drift and weak entrypoints." | concrete doc findings and rewrite targets |
+| `engos-quality-gitops-review` | repo hygiene, CI, merge, and release gates | "Use `engos-quality-gitops-review` to judge whether we are ready to merge and release." | a go or no-go recommendation with evidence and next actions |
+| `engos-operations-ic-assistant` | phase-aware Incident Commander process guidance with optional internal runbook mode | "Use `engos-operations-ic-assistant` to track this incident and keep me on the required checklist." | mode, phase, next action, overdue items, and escalation flags |
+| `engos-audit-pitch-review` | Shape Up pitch creation, review, and scoring | "Use `engos-audit-pitch-review` to harden this pitch before betting." | pitch quality score, risks, appetite fit, and rewrite guidance |
+| `engos-triage-my-inbox-chat-pulse` | Gmail and Google Chat triage | "Use `engos-triage-my-inbox-chat-pulse` to triage what needs my attention and propose next actions without sending anything." | prioritized comms, source summaries, and proposed actions |
+| `engos-optimization-auto-research` | experiment-driven improvement loops | "Use `engos-optimization-auto-research` to improve this workflow and prove which variant wins." | bounded experiments, evaluation, and promotion guidance |
+| `engos-meta-supercharge` | plan, prompt, or adversarial debate hardening before execution | "Use `engos-meta-supercharge /debate /deep` to stress-test this operating decision before we ship it." | stronger prompt structure, clearer failure handling, and Bull/Bear/Decider trade-off analysis |
+| `engos-reconciliation-converge` | synthesis across competing proposals | "Use `engos-reconciliation-converge` to synthesize these competing proposals into one decision." | overlap map, decision logic, and one coherent recommendation |
+| `engos-design-architecture` | architecture review and migration-safe design | "Use `engos-design-architecture` to review this interface change for rollback risk." | architecture findings and a defensible direction |
+| `engos-audit-weekly-intel` | multi-source weekly reporting | "Use `engos-audit-weekly-intel` to produce a weekly status report from these sources." | executive summary, technical appendix, and fact-check audit |
 
 ### If You Only Try Three Things
 
-1. Use `docs-review-expert` on a docs surface that feels bloated or unclear.
-2. Use `gitops-review` on your current branch before you open a PR.
-3. Use `supercharge /basis` to audit irreducible work, or `supercharge /adversarial /debate /deep` to stress-test a high-stakes decision, then use `auto-research` when a measured experiment is needed.
+1. Use `engos-quality-docs-review` on a docs surface that feels bloated or unclear.
+2. Use `engos-quality-gitops-review` on your current branch before you open a PR.
+3. Use `engos-meta-supercharge /basis` to audit irreducible work, or `engos-meta-supercharge /adversarial /debate /deep` to stress-test a high-stakes decision, then use `engos-optimization-auto-research` when a measured experiment is needed.
 
-Long-running `analyze-context` tasks now consolidate context and insights at a milestone or size threshold, keeping verified current state first and reporting before/after counts. See the [active-task example](docs/EXAMPLES.md#consolidate-an-active-task).
+Long-running `engos-memory-context-continuity` tasks now consolidate context and insights at a milestone or size threshold, keeping verified current state first and reporting before/after counts. See the [active-task example](docs/EXAMPLES.md#consolidate-an-active-task).
 
 ### Scenario Starters
 
@@ -110,13 +114,13 @@ Use these as copy-paste starting points when you want to exercise the higher-lev
 | Scenario | Ask |
 | --- | --- |
 | Evidence-gated delivery | "Batman: verify instruction integrity, publish the Host-Fit Plan, then implement this shipped-defect correction through independent subagents. Show provenance-qualified red and mutation evidence, pass every applicable milestone review, distinguish offline checks from hosted or live proof, report progress against the written plan, and land only with current CI and explicit authority." |
-| First-principles release audit | "Use `supercharge /basis` to audit our release process. Find irreducible steps, stale ceremony, actual-to-minimum ratio, and what should be automated or deleted." |
-| Adversarial release debate | "Use `supercharge /adversarial /debate /deep` to run a Bull/Bear/Decider debate on this release plan. Include risks, mitigants, flip conditions, and the evidence that would change the decision." |
-| Release plan hardening | "Use `supercharge /full` to harden the v1.9.2 release plan before I tag it. Include risks, failure modes, verification gates, and rollback." |
-| Measured prompt or skill improvement | "Use `auto-research` to compare the old autosearch prompt behavior against auto-research v2.0 on five representative improvement tasks, with a scorecard and promotion packet." |
-| Release strategy decision | "Use `converge /mcda /conflicts` to compare three release strategies: tag from this branch, merge then tag from main, or publish package-only. Recommend one and reject the others explicitly." |
-| Release gate review | "Use `gitops-review` to judge whether this branch is ready for PR, CI, merge, tag, and release. Include exact blockers and commands." |
-| Release docs drift check | "Use `docs-review-expert` to review README, Getting Started, CLI reference, release delta, and changelog for v1.9.2 drift before release." |
+| First-principles release audit | "Use `engos-meta-supercharge /basis` to audit our release process. Find irreducible steps, stale ceremony, actual-to-minimum ratio, and what should be automated or deleted." |
+| Adversarial release debate | "Use `engos-meta-supercharge /adversarial /debate /deep` to run a Bull/Bear/Decider debate on this release plan. Include risks, mitigants, flip conditions, and the evidence that would change the decision." |
+| Release plan hardening | "Use `engos-meta-supercharge /full` to harden the v1.9.2 release plan before I tag it. Include risks, failure modes, verification gates, and rollback." |
+| Measured prompt or skill improvement | "Use `engos-optimization-auto-research` to compare the old autosearch prompt behavior against auto-research v2.0 on five representative improvement tasks, with a scorecard and promotion packet." |
+| Release strategy decision | "Use `engos-reconciliation-converge /mcda /conflicts` to compare three release strategies: tag from this branch, merge then tag from main, or publish package-only. Recommend one and reject the others explicitly." |
+| Release gate review | "Use `engos-quality-gitops-review` to judge whether this branch is ready for PR, CI, merge, tag, and release. Include exact blockers and commands." |
+| Release docs drift check | "Use `engos-quality-docs-review` to review README, Getting Started, CLI reference, release delta, and changelog for v1.9.2 drift before release." |
 
 ### Where The Deeper Examples Live
 
@@ -128,7 +132,7 @@ This is the shape of a real ask a user might make:
 
 ```text
 User:
-Use `docs-review-expert` to review our onboarding docs, identify drift, tell me what belongs in README.md versus docs/, and recommend the smallest rewrite that restores clarity.
+Use `engos-quality-docs-review` to review our onboarding docs, identify drift, tell me what belongs in README.md versus docs/, and recommend the smallest rewrite that restores clarity.
 
 Good response shape:
 - Current State
@@ -145,7 +149,7 @@ This is often the best first move when the problem is not "we need more docs" bu
 
 ```text
 User:
-Use `gitops-review` to tell me whether this branch is ready for PR and what blockers remain.
+Use `engos-quality-gitops-review` to tell me whether this branch is ready for PR and what blockers remain.
 
 Good response shape:
 - Current State
@@ -163,7 +167,7 @@ This is often the best first move when you think the work is done but want an ac
 
 ```text
 User:
-Use `auto-research` to improve our review workflow so it catches more behavioral regressions without increasing false positives.
+Use `engos-optimization-auto-research` to improve our review workflow so it catches more behavioral regressions without increasing false positives.
 
 Good response shape:
 - Goal Contract
@@ -198,13 +202,13 @@ UAC reports `structural_ready`, not behavioral promotion. It runs deterministic 
 bin/uac audit --clarity on
 bin/uac plan ./candidate.md --emit-impact-plan
 bin/uac judge ./candidate.md
-bin/capability-eval compile --skill code-review
-bin/capability-eval compare --skill code-review --candidate ./candidate.md --profile static
+bin/capability-eval compile --skill engos-quality-code-review
+bin/capability-eval compare --skill engos-quality-code-review --candidate ./candidate.md --profile static
 ```
 
 Normal CI uses only the zero-token `static` profile. The Code Review pilot validates seeded lifecycle defects and matched safe controls without relying on user telemetry. A structurally applied candidate stays `behavioral_pending` until UAC accepts an independent, current `PromotionVerdict.v2` with `status: promote`. `PromotionVerdict.v1` remains readable for historical evidence but cannot authorize promotion. Missing credentials, adapter conformance, sealed data, judge qualification, receipts, or reproduction returns `inconclusive`, never an inferred pass. See [Capability evaluation](docs/CAPABILITY-EVALUATION.md#from-behavioral_pending-to-promote) for the two-stage trust prerequisite and finalization command.
 
-In plain English: this release adds the checklist, contracts, static controls, and cost brakes. It does not claim that Google-style rewriting, `instruction-editor`, UAC rewrites, or any other skill change has already beaten its baseline in live model trials.
+In plain English: this release adds the checklist, contracts, static controls, and cost brakes. It does not claim that Google-style rewriting, `engos-meta-instruction-editor`, UAC rewrites, or any other skill change has already beaten its baseline in live model trials.
 
 Use UAC, the capability intake and uplift workflow, when adding or changing canonical capability behavior. Existing-skill improvements use the [same-slug update flow](docs/UAC-USAGE.md#update-an-existing-capability).
 
@@ -253,13 +257,13 @@ bin/uac judge /absolute/path/to/prompt-family --quality-profile architecture
 
 Use [docs/UAC-USAGE.md](docs/UAC-USAGE.md) for the full intake and uplift guide.
 
-If `judge` finds a candidate is structurally close to ready but still needs bounded behavioral proof, route that proof step to `auto-research` instead of treating structural quality alone as evidence.
+If `judge` finds a candidate is structurally close to ready but still needs bounded behavioral proof, route that proof step to `engos-optimization-auto-research` instead of treating structural quality alone as evidence.
 
 ### Sample Transcript: UAC Planning
 
 ```text
 User:
-I found a strong external prompt family. Use `uac-import` to inspect it and tell me how it should land into SSOT before apply.
+I found a strong external prompt family. Use `engos-meta-uac-import` to inspect it and tell me how it should land into SSOT before apply.
 
 Good response shape:
 - source summary
@@ -298,7 +302,7 @@ Use deploy after review when you want generated surfaces copied to a target root
 For an exact repair or bounded rollout, require a slug and skip updater/launcher refresh:
 
 ```bash
-bin/capability-fabric deploy --dry-run --surface-only --cli kiro --slug code-review --target "$HOME" --allow-nonlocal-target
+bin/capability-fabric deploy --dry-run --surface-only --cli kiro --slug engos-quality-code-review --target "$HOME" --allow-nonlocal-target
 ```
 
 ### Installed Release Watch
