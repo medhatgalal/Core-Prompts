@@ -6,7 +6,7 @@ UAC is the authoritative classifier for imported sources and SSOT entries.
 Before `apply` lands a new or uplifted capability, UAC must judge it against:
 - a capability template from `.meta/capability-templates/`
 - the active quality profile from `.meta/quality-profiles/`
-- the current benchmark bar represented by strong local capabilities such as `architecture`, `code-review`, `testing`, and `uac-import`
+- the current benchmark bar represented by strong local capabilities such as `engos-design-architecture`, `engos-quality-code-review`, `engos-quality-testing-review`, and `engos-meta-uac-import`
 
 The goal is to prevent weak SSOT bodies from landing with strong metadata or overly broad emitted surfaces.
 
@@ -54,7 +54,7 @@ These are deployment wrappers, not peer capability classes:
 - `review_status`
 - `display_name`
 
-For repo-local SSOT capabilities, persisted `resources` and `source_provenance.normalized_source` must use repo-relative paths such as `ssot/architecture.md`. Canonical metadata and bundled capability resources must not persist machine-specific absolute filesystem paths.
+For repo-local SSOT capabilities, persisted `resources` and `source_provenance.normalized_source` must use repo-relative paths such as `ssot/engos-design-architecture.md`. Canonical metadata and bundled capability resources must not persist machine-specific absolute filesystem paths.
 
 ### Expanded
 - `relationship_suggestions`

@@ -24,7 +24,9 @@
       "risk": "medium",
       "pattern": "\\b(it should be|should be (?:done|performed|used|created|provided))\\b",
       "deterministic_repair": false,
-      "exceptions": ["When the actor is intentionally unknown or irrelevant."]
+      "exceptions": [
+        "When the actor is intentionally unknown or irrelevant."
+      ]
     },
     {
       "id": "IC-LINT-002",
@@ -34,7 +36,9 @@
       "risk": "medium",
       "pattern": "\\b(and so on|etc\\.|simply|obviously|just)\\b",
       "deterministic_repair": false,
-      "exceptions": ["Quoted source material."]
+      "exceptions": [
+        "Quoted source material."
+      ]
     },
     {
       "id": "IC-LINT-003",
@@ -44,7 +48,9 @@
       "risk": "low",
       "pattern": "\\b(the (?:model|agent|system) (?:believes|wants|feels|knows))\\b",
       "deterministic_repair": false,
-      "exceptions": ["A behavior test intentionally probes model self-report."]
+      "exceptions": [
+        "A behavior test intentionally probes model self-report."
+      ]
     },
     {
       "id": "IC-CANDIDATE-001",
@@ -53,7 +59,9 @@
       "class": "candidate_only",
       "risk": "high",
       "deterministic_repair": false,
-      "exceptions": ["Passive voice is clearer when the actor is irrelevant."]
+      "exceptions": [
+        "Passive voice is clearer when the actor is irrelevant."
+      ]
     },
     {
       "id": "IC-FORBIDDEN-001",
@@ -71,7 +79,9 @@
       "class": "safe_fix",
       "risk": "low",
       "deterministic_repair": true,
-      "exceptions": ["Whitespace-significant code blocks or formats."]
+      "exceptions": [
+        "Whitespace-significant code blocks or formats."
+      ]
     }
   ]
 }

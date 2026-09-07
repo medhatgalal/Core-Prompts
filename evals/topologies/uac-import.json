@@ -1,6 +1,6 @@
 {
   "schema_version": "CapabilityTopology.v1",
-  "slug": "uac-import",
+  "slug": "engos-meta-uac-import",
   "ssot_sha256": "386c457bb9bb257ae19f2794ab135b02dec9c9b58d90550bf5be3c7476423e6b",
   "explicit_invocations": [],
   "semantic_triggers": [],
@@ -60,9 +60,9 @@
     "## Companion Capability Matrix",
     "- Advisory Handoff Contract",
     "- Auto-Research Handoff",
-    "- Do not make UAC the long-term owner of behavioral evaluation logic; route to `auto-research` when bounded behavioral proof is needed.",
+    "- Do not make UAC the long-term owner of behavioral evaluation logic; route to `engos-optimization-auto-research` when bounded behavioral proof is needed.",
     "- escalation: if the work shifts from intake to architecture, docs quality, testing, or release readiness, route to the companion capability with a concrete handoff instead of stretching the import workflow",
-    "12. If `judge` finds that structural quality is close to passing but behavioral confidence is insufficient, route to `auto-research` for bounded capability evaluation instead of guessing.",
+    "12. If `judge` finds that structural quality is close to passing but behavioral confidence is insufficient, route to `engos-optimization-auto-research` for bounded capability evaluation instead of guessing.",
     "8. Build layered manifests, cross-analysis, and advisory handoff data.",
     "Take one or more external prompt-like sources and turn them into deterministic UAC assessments, layered manifests, canonical SSOT entries, machine-readable descriptors, quality-review artifacts, and advisory handoff contracts.",
     "| If the import uncovers this need | Route to | Required handoff |"
@@ -181,7 +181,7 @@
       "heading": "Rules",
       "source_line": 83,
       "sha256": "ac7451b13f5c5b2f0d31ac5063147f068699bbaf54b33c233bd9e50d202ada73",
-      "text": "- Do not make UAC the long-term owner of behavioral evaluation logic; route to `auto-research` when bounded behavioral proof is needed.",
+      "text": "- Do not make UAC the long-term owner of behavioral evaluation logic; route to `engos-optimization-auto-research` when bounded behavioral proof is needed.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
@@ -238,7 +238,7 @@
   },
   "source_references": [
     {
-      "path": "ssot/uac-import.md",
+      "path": "ssot/engos-meta-uac-import.md",
       "sha256": "386c457bb9bb257ae19f2794ab135b02dec9c9b58d90550bf5be3c7476423e6b"
     }
   ],

@@ -11,7 +11,7 @@ def _text(slug: str) -> str:
 
 
 def test_supercharge_declares_one_terminal_precedence_and_modifier_failure_path() -> None:
-    text = _text("supercharge")
+    text = _text("engos-meta-supercharge")
 
     assert "### Terminal-Control Precedence" in text
     assert "`/stop` wins over every other command" in text
@@ -20,7 +20,7 @@ def test_supercharge_declares_one_terminal_precedence_and_modifier_failure_path(
 
 
 def test_supercharge_ult_and_gaslight_counts_are_consistent() -> None:
-    text = _text("supercharge")
+    text = _text("engos-meta-supercharge")
 
     assert "Separate response into exactly:" not in text
     assert "Use 2–4 techniques" not in text
@@ -29,7 +29,7 @@ def test_supercharge_ult_and_gaslight_counts_are_consistent() -> None:
 
 
 def test_pulse_write_boundaries_and_composition_are_explicit() -> None:
-    text = _text("pulse")
+    text = _text("engos-triage-my-inbox-chat-pulse")
 
     assert "all commands compose" not in text.lower()
     assert "only during `/delete` or `/sweep`, with user approval" in text
@@ -39,14 +39,14 @@ def test_pulse_write_boundaries_and_composition_are_explicit() -> None:
 
 
 def test_auto_research_numbered_modes_and_profiles_are_unique() -> None:
-    topology = compile_topology(ROOT / "ssot" / "auto-research.md")
+    topology = compile_topology(ROOT / "ssot" / "engos-optimization-auto-research.md")
 
     assert topology["known_ambiguities"] == []
-    assert _text("auto-research").count("### Mode 6: Trace-to-Eval") == 1
-    assert _text("auto-research").count("### Profile 4: Bounded Execution") == 1
+    assert _text("engos-optimization-auto-research").count("### Mode 6: Trace-to-Eval") == 1
+    assert _text("engos-optimization-auto-research").count("### Profile 4: Bounded Execution") == 1
 
 
 def test_known_multi_mode_contracts_are_no_longer_blocked_by_contradictions() -> None:
-    for slug in ("supercharge", "pulse", "auto-research"):
+    for slug in ("engos-meta-supercharge", "engos-triage-my-inbox-chat-pulse", "engos-optimization-auto-research"):
         topology = compile_topology(ROOT / "ssot" / f"{slug}.md")
         assert topology["known_ambiguities"] == [], (slug, topology["known_ambiguities"])

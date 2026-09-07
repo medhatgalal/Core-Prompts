@@ -33,23 +33,23 @@ def test_finalize_existing_candidate_requires_exact_revision_hashes_and_ancestry
     subprocess.run(["git", "config", "user.name", "Test"], cwd=repo, check=True)
     ssot = repo / "ssot"
     ssot.mkdir()
-    path = ssot / "batman.md"
+    path = ssot / "engos-orchestration-batman.md"
     path.write_text("baseline\n", encoding="utf-8")
-    subprocess.run(["git", "add", "ssot/batman.md"], cwd=repo, check=True)
+    subprocess.run(["git", "add", "ssot/engos-orchestration-batman.md"], cwd=repo, check=True)
     subprocess.run(["git", "commit", "-m", "baseline"], cwd=repo, check=True, capture_output=True)
     baseline_revision = subprocess.run(
         ["git", "rev-parse", "HEAD"], cwd=repo, check=True, capture_output=True, text=True
     ).stdout.strip()
     baseline_sha256 = artifact_hash(path)
     path.write_text("candidate\n", encoding="utf-8")
-    subprocess.run(["git", "add", "ssot/batman.md"], cwd=repo, check=True)
+    subprocess.run(["git", "add", "ssot/engos-orchestration-batman.md"], cwd=repo, check=True)
     subprocess.run(["git", "commit", "-m", "candidate"], cwd=repo, check=True, capture_output=True)
     candidate_revision = subprocess.run(
         ["git", "rev-parse", "HEAD"], cwd=repo, check=True, capture_output=True, text=True
     ).stdout.strip()
     candidate_sha256 = artifact_hash(path)
     verdict = {
-        "slug": "batman",
+        "slug": "engos-orchestration-batman",
         "baseline_revision": baseline_revision,
         "candidate_revision": candidate_revision,
         "baseline_sha256": baseline_sha256,
@@ -59,7 +59,7 @@ def test_finalize_existing_candidate_requires_exact_revision_hashes_and_ancestry
     mode = UAC_IMPORT._validate_promotion_revision_bindings(
         repo,
         verdict,
-        slug="batman",
+        slug="engos-orchestration-batman",
         candidate_text="candidate\n",
         finalize_existing_candidate=True,
     )
@@ -69,19 +69,19 @@ def test_finalize_existing_candidate_requires_exact_revision_hashes_and_ancestry
 
 def test_finalize_existing_candidate_refuses_non_ancestor_candidate() -> None:
     verdict = {
-        "slug": "batman",
+        "slug": "engos-orchestration-batman",
         "baseline_revision": _revision("22654fb"),
         "candidate_revision": "0" * 40,
         "baseline_sha256": "ac7e2684d99dc6a0267d785d1a6751a742e39e74ce3853a9877f98051690b3f2",
-        "candidate_sha256": artifact_hash(ROOT / "ssot/batman.md"),
+        "candidate_sha256": artifact_hash(ROOT / "ssot/engos-orchestration-batman.md"),
     }
 
     with pytest.raises(ContractError, match="candidate_revision is not a repository commit"):
         UAC_IMPORT._validate_promotion_revision_bindings(
             ROOT,
             verdict,
-            slug="batman",
-            candidate_text=(ROOT / "ssot/batman.md").read_text(encoding="utf-8"),
+            slug="engos-orchestration-batman",
+            candidate_text=(ROOT / "ssot/engos-orchestration-batman.md").read_text(encoding="utf-8"),
             finalize_existing_candidate=True,
         )
 
@@ -94,16 +94,16 @@ def test_normal_baseline_to_candidate_apply_mode_remains_supported(tmp_path: Pat
     subprocess.run(["git", "config", "user.name", "Test"], cwd=repo, check=True)
     ssot = repo / "ssot"
     ssot.mkdir()
-    path = ssot / "batman.md"
+    path = ssot / "engos-orchestration-batman.md"
     path.write_text("baseline\n", encoding="utf-8")
-    subprocess.run(["git", "add", "ssot/batman.md"], cwd=repo, check=True)
+    subprocess.run(["git", "add", "ssot/engos-orchestration-batman.md"], cwd=repo, check=True)
     subprocess.run(["git", "commit", "-m", "baseline"], cwd=repo, check=True, capture_output=True)
     baseline_revision = subprocess.run(
         ["git", "rev-parse", "HEAD"], cwd=repo, check=True, capture_output=True, text=True
     ).stdout.strip()
     baseline_sha256 = artifact_hash(path)
     path.write_text("candidate\n", encoding="utf-8")
-    subprocess.run(["git", "add", "ssot/batman.md"], cwd=repo, check=True)
+    subprocess.run(["git", "add", "ssot/engos-orchestration-batman.md"], cwd=repo, check=True)
     subprocess.run(["git", "commit", "-m", "candidate"], cwd=repo, check=True, capture_output=True)
     candidate_revision = subprocess.run(
         ["git", "rev-parse", "HEAD"], cwd=repo, check=True, capture_output=True, text=True
@@ -119,7 +119,7 @@ def test_normal_baseline_to_candidate_apply_mode_remains_supported(tmp_path: Pat
             "baseline_sha256": baseline_sha256,
             "candidate_sha256": candidate_sha256,
         },
-        slug="batman",
+        slug="engos-orchestration-batman",
         candidate_text="candidate\n",
         finalize_existing_candidate=False,
     )
@@ -135,9 +135,9 @@ def test_finalize_refuses_candidate_that_is_not_an_ancestor_of_head(tmp_path: Pa
     subprocess.run(["git", "config", "user.name", "Test"], cwd=repo, check=True)
     ssot = repo / "ssot"
     ssot.mkdir()
-    path = ssot / "batman.md"
+    path = ssot / "engos-orchestration-batman.md"
     path.write_text("baseline\n", encoding="utf-8")
-    subprocess.run(["git", "add", "ssot/batman.md"], cwd=repo, check=True)
+    subprocess.run(["git", "add", "ssot/engos-orchestration-batman.md"], cwd=repo, check=True)
     subprocess.run(["git", "commit", "-m", "baseline"], cwd=repo, check=True, capture_output=True)
     baseline_revision = subprocess.run(
         ["git", "rev-parse", "HEAD"], cwd=repo, check=True, capture_output=True, text=True
@@ -145,7 +145,7 @@ def test_finalize_refuses_candidate_that_is_not_an_ancestor_of_head(tmp_path: Pa
     baseline_sha256 = artifact_hash(path)
     subprocess.run(["git", "checkout", "-b", "candidate"], cwd=repo, check=True, capture_output=True)
     path.write_text("candidate\n", encoding="utf-8")
-    subprocess.run(["git", "add", "ssot/batman.md"], cwd=repo, check=True)
+    subprocess.run(["git", "add", "ssot/engos-orchestration-batman.md"], cwd=repo, check=True)
     subprocess.run(["git", "commit", "-m", "candidate"], cwd=repo, check=True, capture_output=True)
     candidate_revision = subprocess.run(
         ["git", "rev-parse", "HEAD"], cwd=repo, check=True, capture_output=True, text=True
@@ -166,7 +166,7 @@ def test_finalize_refuses_candidate_that_is_not_an_ancestor_of_head(tmp_path: Pa
                 "baseline_sha256": baseline_sha256,
                 "candidate_sha256": candidate_sha256,
             },
-            slug="batman",
+            slug="engos-orchestration-batman",
             candidate_text="candidate\n",
             finalize_existing_candidate=True,
         )
@@ -180,23 +180,23 @@ def test_finalize_refuses_candidate_present_only_as_a_dirty_worktree_edit(tmp_pa
     subprocess.run(["git", "config", "user.name", "Test"], cwd=repo, check=True)
     ssot = repo / "ssot"
     ssot.mkdir()
-    path = ssot / "batman.md"
+    path = ssot / "engos-orchestration-batman.md"
     path.write_text("baseline\n", encoding="utf-8")
-    subprocess.run(["git", "add", "ssot/batman.md"], cwd=repo, check=True)
+    subprocess.run(["git", "add", "ssot/engos-orchestration-batman.md"], cwd=repo, check=True)
     subprocess.run(["git", "commit", "-m", "baseline"], cwd=repo, check=True, capture_output=True)
     baseline_revision = subprocess.run(
         ["git", "rev-parse", "HEAD"], cwd=repo, check=True, capture_output=True, text=True
     ).stdout.strip()
     baseline_sha256 = artifact_hash(path)
     path.write_text("candidate\n", encoding="utf-8")
-    subprocess.run(["git", "add", "ssot/batman.md"], cwd=repo, check=True)
+    subprocess.run(["git", "add", "ssot/engos-orchestration-batman.md"], cwd=repo, check=True)
     subprocess.run(["git", "commit", "-m", "candidate"], cwd=repo, check=True, capture_output=True)
     candidate_revision = subprocess.run(
         ["git", "rev-parse", "HEAD"], cwd=repo, check=True, capture_output=True, text=True
     ).stdout.strip()
     candidate_sha256 = artifact_hash(path)
     path.write_text("baseline\n", encoding="utf-8")
-    subprocess.run(["git", "add", "ssot/batman.md"], cwd=repo, check=True)
+    subprocess.run(["git", "add", "ssot/engos-orchestration-batman.md"], cwd=repo, check=True)
     subprocess.run(["git", "commit", "-m", "revert candidate"], cwd=repo, check=True, capture_output=True)
     path.write_text("candidate\n", encoding="utf-8")
 
@@ -209,7 +209,7 @@ def test_finalize_refuses_candidate_present_only_as_a_dirty_worktree_edit(tmp_pa
                 "baseline_sha256": baseline_sha256,
                 "candidate_sha256": candidate_sha256,
             },
-            slug="batman",
+            slug="engos-orchestration-batman",
             candidate_text="candidate\n",
             finalize_existing_candidate=True,
         )
@@ -235,9 +235,9 @@ def test_invalid_promotion_verdict_refusal_is_an_exact_noop(tmp_path: Path) -> N
         result = UAC_IMPORT._apply_payload(
             {
                 "status": "accepted",
-                "source": {"normalized_source": str(workspace / "ssot/batman.md")},
+                "source": {"normalized_source": str(workspace / "ssot/engos-orchestration-batman.md")},
                 "cross_analysis": {"fit_assessment": "fits_cleanly"},
-                "manifest": {"slug": "batman"},
+                "manifest": {"slug": "engos-orchestration-batman"},
             },
             SimpleNamespace(
                 promotion_verdict=verdict_path,
@@ -246,7 +246,7 @@ def test_invalid_promotion_verdict_refusal_is_an_exact_noop(tmp_path: Path) -> N
                 yes=True,
                 quality_loop="off",
             ),
-            [str(workspace / "ssot/batman.md")],
+            [str(workspace / "ssot/engos-orchestration-batman.md")],
         )
     finally:
         UAC_IMPORT.ROOT = original_root
@@ -271,15 +271,15 @@ def test_blocked_promoted_baseline_materialization_is_an_exact_noop(
         workspace,
         ignore=shutil.ignore_patterns(".git", ".pytest_cache", "__pycache__", ".DS_Store"),
     )
-    baseline_path = workspace / "sources/ssot-baselines/batman/baseline.md"
+    baseline_path = workspace / "sources/ssot-baselines/engos-orchestration-batman/baseline.md"
     baseline_path.parent.mkdir(parents=True)
     baseline_path.write_text("\n".join(f"## Section {index}\n- Required behavior {index}" for index in range(100)) + "\n", encoding="utf-8")
     registry_path = workspace / "sources/ssot-baselines/index.json"
     registry = json.loads(registry_path.read_text(encoding="utf-8"))
-    registry["skills"]["batman"] = {
+    registry["skills"]["engos-orchestration-batman"] = {
         "strategy": "source_library",
         "group": "applied_baseline",
-        "baseline_path": "sources/ssot-baselines/batman/baseline.md",
+        "baseline_path": "sources/ssot-baselines/engos-orchestration-batman/baseline.md",
     }
     registry_path.write_text(json.dumps(registry, indent=2) + "\n", encoding="utf-8")
     verdict_path = tmp_path / "promotion-verdict.json"
@@ -287,7 +287,7 @@ def test_blocked_promoted_baseline_materialization_is_an_exact_noop(
         json.dumps(
             {
                 "schema_version": "PromotionVerdict.v2",
-                "slug": "batman",
+                "slug": "engos-orchestration-batman",
                 "status": "promote",
                 "candidate_sha256": artifact_hash("thin candidate\n"),
                 "candidate_revision": "b" * 40,
@@ -320,10 +320,10 @@ def test_blocked_promoted_baseline_materialization_is_an_exact_noop(
         result = UAC_IMPORT._apply_payload(
             {
                 "status": "accepted",
-                "source": {"normalized_source": str(workspace / "ssot/batman.md")},
+                "source": {"normalized_source": str(workspace / "ssot/engos-orchestration-batman.md")},
                 "cross_analysis": {"fit_assessment": "fits_cleanly"},
                 "manifest": {
-                    "slug": "batman",
+                    "slug": "engos-orchestration-batman",
                     "layers": {
                         "minimal": {
                             "capability_type": "both",
@@ -346,7 +346,7 @@ def test_blocked_promoted_baseline_materialization_is_an_exact_noop(
                 yes=True,
                 quality_loop="off",
             ),
-            [str(workspace / "ssot/batman.md")],
+            [str(workspace / "ssot/engos-orchestration-batman.md")],
         )
     finally:
         UAC_IMPORT.ROOT = original_root
@@ -363,7 +363,7 @@ def test_blocked_promoted_baseline_materialization_is_an_exact_noop(
 
 def test_baseline_materialization_refuses_if_preflight_state_changes(tmp_path: Path) -> None:
     root = tmp_path / "repo"
-    baseline = root / "sources/ssot-baselines/batman/baseline.md"
+    baseline = root / "sources/ssot-baselines/engos-orchestration-batman/baseline.md"
     baseline.parent.mkdir(parents=True)
     baseline.write_text("original\n", encoding="utf-8")
     index = root / "sources/ssot-baselines/index.json"
@@ -372,8 +372,8 @@ def test_baseline_materialization_refuses_if_preflight_state_changes(tmp_path: P
             {
                 "version": "uac-baseline-sources.v1",
                 "skills": {
-                    "batman": {
-                        "baseline_path": "sources/ssot-baselines/batman/baseline.md",
+                    "engos-orchestration-batman": {
+                        "baseline_path": "sources/ssot-baselines/engos-orchestration-batman/baseline.md",
                     }
                 },
             }
@@ -383,7 +383,7 @@ def test_baseline_materialization_refuses_if_preflight_state_changes(tmp_path: P
     )
     preflight = UAC_IMPORT.preview_source_baseline(
         root,
-        slug="batman",
+        slug="engos-orchestration-batman",
         baseline_text="promoted candidate\n",
     )
     baseline.write_text("concurrent change\n", encoding="utf-8")
@@ -392,7 +392,7 @@ def test_baseline_materialization_refuses_if_preflight_state_changes(tmp_path: P
     with pytest.raises(ValueError, match="changed after preflight"):
         UAC_IMPORT.persist_source_baseline(
             root,
-            slug="batman",
+            slug="engos-orchestration-batman",
             baseline_text="promoted candidate\n",
             preflight=preflight,
         )
@@ -414,15 +414,15 @@ def test_uac_promotion_toctou_refusal_leaves_entire_workspace_noop(
     candidate_text = "\n".join(
         f"## Section {index}\n- Required behavior {index}" for index in range(100)
     ) + "\n"
-    baseline_path = workspace / "sources/ssot-baselines/batman/baseline.md"
+    baseline_path = workspace / "sources/ssot-baselines/engos-orchestration-batman/baseline.md"
     baseline_path.parent.mkdir(parents=True)
     baseline_path.write_text(candidate_text, encoding="utf-8")
     registry_path = workspace / "sources/ssot-baselines/index.json"
     registry = json.loads(registry_path.read_text(encoding="utf-8"))
-    registry["skills"]["batman"] = {
+    registry["skills"]["engos-orchestration-batman"] = {
         "strategy": "source_library",
         "group": "applied_baseline",
-        "baseline_path": "sources/ssot-baselines/batman/baseline.md",
+        "baseline_path": "sources/ssot-baselines/engos-orchestration-batman/baseline.md",
     }
     registry_path.write_text(json.dumps(registry, indent=2) + "\n", encoding="utf-8")
     verdict_path = tmp_path / "promotion-verdict.json"
@@ -430,7 +430,7 @@ def test_uac_promotion_toctou_refusal_leaves_entire_workspace_noop(
         json.dumps(
             {
                 "schema_version": "PromotionVerdict.v2",
-                "slug": "batman",
+                "slug": "engos-orchestration-batman",
                 "status": "promote",
                 "candidate_sha256": artifact_hash(candidate_text),
                 "candidate_revision": "b" * 40,
@@ -471,10 +471,10 @@ def test_uac_promotion_toctou_refusal_leaves_entire_workspace_noop(
         result = UAC_IMPORT._apply_payload(
             {
                 "status": "accepted",
-                "source": {"normalized_source": str(workspace / "ssot/batman.md")},
+                "source": {"normalized_source": str(workspace / "ssot/engos-orchestration-batman.md")},
                 "cross_analysis": {"fit_assessment": "fits_cleanly"},
                 "manifest": {
-                    "slug": "batman",
+                    "slug": "engos-orchestration-batman",
                     "layers": {
                         "minimal": {
                             "capability_type": "both",
@@ -497,7 +497,7 @@ def test_uac_promotion_toctou_refusal_leaves_entire_workspace_noop(
                 yes=True,
                 quality_loop="off",
             ),
-            [str(workspace / "ssot/batman.md")],
+            [str(workspace / "ssot/engos-orchestration-batman.md")],
         )
     finally:
         UAC_IMPORT.ROOT = original_root
@@ -548,7 +548,7 @@ def test_promote_compile_check_never_writes_human_reviewed_contracts(monkeypatch
 
     monkeypatch.setattr(UAC_IMPORT, "compile_skill", fake_compile)
 
-    result = UAC_IMPORT._compile_applied_skill(ROOT, "batman", promotion=True)
+    result = UAC_IMPORT._compile_applied_skill(ROOT, "engos-orchestration-batman", promotion=True)
 
     assert result["status"] == "structural_ready"
     assert calls == [False]

@@ -166,7 +166,7 @@ def _config(tmp_path: Path) -> dict[str, object]:
             "repository": str(tmp_path / "artifacts.git"),
             "baseline_revision": "b" * 40,
             "candidate_revision": "c" * 40,
-            "skill_path": "ssot/batman.md",
+            "skill_path": "ssot/engos-orchestration-batman.md",
         },
         "submission_trust_root": str(tmp_path / "submission-root.json"),
         "evaluator_trust_store": {

@@ -15,7 +15,7 @@ def read(path: str) -> str:
 def test_version_changelog_and_docs_contract_are_aligned() -> None:
     version = read("VERSION").strip()
     changelog = read("CHANGELOG.md")
-    match = re.search(r"^##\s+([^ ]+)\s+-\s+", changelog, re.MULTILINE)
+    match = re.search(r"^##[ \t]+([^ \t\r\n]+)[ \t]+-[ \t]+", changelog, re.MULTILINE)
     assert match
     assert match.group(1) == version
 
@@ -80,7 +80,7 @@ def test_plan_to_goal_is_discoverable_from_public_onboarding() -> None:
         "docs/CLI-REFERENCE.md",
     )
     for path in public_docs:
-        assert "plan-to-goal-design" in read(path), f"{path} must include plan-to-goal-design"
+        assert "engos-design-plan-to-goal" in read(path), f"{path} must include engos-design-plan-to-goal"
 
     examples = read("docs/EXAMPLES.md")
     for required in (

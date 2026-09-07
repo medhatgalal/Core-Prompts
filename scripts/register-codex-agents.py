@@ -8,6 +8,33 @@ from pathlib import Path
 START_MARKER = "# >>> core-prompts codex agents start >>>"
 END_MARKER = "# <<< core-prompts codex agents end <<<"
 RETIRED_AGENT_SLUGS = {"mentor"}
+LEGACY_NAMESPACE_AGENT_SLUGS = {
+    "engos-delivery-address-code-review": "address-code-review",
+    "engos-memory-context-continuity": "analyze-context",
+    "engos-design-architecture": "architecture",
+    "engos-optimization-auto-research": "auto-research",
+    "engos-orchestration-batman": "batman",
+    "engos-quality-code-review": "code-review",
+    "engos-audit-code-health": "codebase-health-audit",
+    "engos-reconciliation-converge": "converge",
+    "engos-browser-demo-recorder": "demo-recorder",
+    "engos-quality-docs-review": "docs-review-expert",
+    "engos-content-dynamic-html-presentations": "dynamic-html-presentations",
+    "engos-audit-engineering-progress": "eng-report",
+    "engos-audit-feature-status": "feature-status",
+    "engos-quality-gitops-review": "gitops-review",
+    "engos-operations-ic-assistant": "ic-assistant",
+    "engos-meta-instruction-editor": "instruction-editor",
+    "engos-audit-pitch-review": "pitch",
+    "engos-design-plan-to-goal": "plan-to-goal-design",
+    "engos-triage-my-inbox-chat-pulse": "pulse",
+    "engos-delivery-resolve-conflict": "resolve-conflict",
+    "engos-meta-supercharge": "supercharge",
+    "engos-quality-testing-review": "testing",
+    "engos-memory-threader": "threader",
+    "engos-meta-uac-import": "uac-import",
+    "engos-audit-weekly-intel": "weekly-intel",
+}
 
 
 def drop_retired_agent_stanzas(
@@ -69,30 +96,46 @@ def drop_legacy_managed_agent_stanzas(
     start_marker: str,
     end_marker: str,
     managed_section_headers: set[str],
+    legacy_section_headers: set[str] | None = None,
+    legacy_config_files: set[Path] | None = None,
 ) -> list[str]:
+    legacy_section_headers = legacy_section_headers or set()
+    legacy_config_files = legacy_config_files or set()
+    config_file_pattern = re.compile(r'^\s*config_file\s*=\s*(["\'])(.*?)\1\s*$')
     cleaned: list[str] = []
-    in_managed_block = False
-    skipping_legacy_stanza = False
+    index = 0
 
-    for line in source_lines:
+    while index < len(source_lines):
+        line = source_lines[index]
         stripped = line.strip()
-        if stripped == start_marker:
-            in_managed_block = True
-            continue
-        if in_managed_block:
-            if stripped == end_marker:
-                in_managed_block = False
+        if stripped in {start_marker, end_marker}:
+            index += 1
             continue
 
-        is_section_header = bool(re.match(r"^\s*\[[^\]]+\]\s*$", line))
-        if stripped in managed_section_headers:
-            skipping_legacy_stanza = True
+        if stripped in managed_section_headers or stripped in legacy_section_headers:
+            stanza_end = index + 1
+            while stanza_end < len(source_lines):
+                candidate = source_lines[stanza_end].strip()
+                if candidate == start_marker or candidate == end_marker or re.match(
+                    r"^\s*\[[^\]]+\]\s*$", source_lines[stanza_end]
+                ):
+                    break
+                stanza_end += 1
+            stanza = source_lines[index:stanza_end]
+            drop_stanza = stripped in managed_section_headers
+            if stripped in legacy_section_headers:
+                drop_stanza = any(
+                    (match := config_file_pattern.match(candidate)) is not None
+                    and Path(match.group(2)).expanduser().resolve() in legacy_config_files
+                    for candidate in stanza[1:]
+                )
+            if not drop_stanza:
+                cleaned.extend(stanza)
+            index = stanza_end
             continue
-        if skipping_legacy_stanza and is_section_header:
-            skipping_legacy_stanza = False
-        if skipping_legacy_stanza:
-            continue
+
         cleaned.append(line)
+        index += 1
 
     return cleaned
 
@@ -126,7 +169,7 @@ def main() -> int:
     target_root = Path(sys.argv[2]).expanduser().resolve()
     agent_slugs = sorted(set(sys.argv[3:]) - RETIRED_AGENT_SLUGS)
     deprecated_agent_aliases = {
-        "auto-research": {"autosearch"},
+        "engos-optimization-auto-research": {"autosearch"},
     }
 
     if config_path.exists():
@@ -142,11 +185,23 @@ def main() -> int:
     for slug in agent_slugs:
         for alias in deprecated_agent_aliases.get(slug, set()):
             managed_section_headers.add(f"[agents.{alias}]")
+    legacy_slugs = {
+        LEGACY_NAMESPACE_AGENT_SLUGS[slug]
+        for slug in agent_slugs
+        if slug in LEGACY_NAMESPACE_AGENT_SLUGS
+    }
+    legacy_section_headers = {f"[agents.{slug}]" for slug in legacy_slugs}
+    legacy_config_files = {
+        (target_root / ".codex" / "agents" / f"{slug}.toml").resolve()
+        for slug in legacy_slugs
+    }
     cleaned_lines = drop_legacy_managed_agent_stanzas(
         lines,
         START_MARKER,
         END_MARKER,
         managed_section_headers,
+        legacy_section_headers,
+        legacy_config_files,
     )
 
     managed = [START_MARKER]

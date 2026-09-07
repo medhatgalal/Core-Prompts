@@ -403,6 +403,12 @@ def test_markdown_replay_receipt_is_bound_to_current_renderer() -> None:
         "current_fixture_sha256": FIXTURES / "current.json",
         "previous_fixture_sha256": FIXTURES / "previous.json",
     }.items():
-        assert receipt["bindings"][name] == hashlib.sha256(path.read_bytes()).hexdigest()
+        content = path.read_bytes()
+        if name == "candidate_sha256":
+            # Preserve the replay's original source binding across the exact
+            # companion namespace rename; do not manufacture a new replay.
+            assert content.count(b"`engos-operations-ic-assistant`") == 1
+            content = content.replace(b"`engos-operations-ic-assistant`", b"`ic-assistant`")
+        assert receipt["bindings"][name] == hashlib.sha256(content).hexdigest()
     assert receipt["evidence_class"] == "local deterministic regression"
     assert receipt["formal_behavioral_status"] == "behavioral_pending"

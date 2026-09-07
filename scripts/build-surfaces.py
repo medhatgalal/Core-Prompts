@@ -124,7 +124,7 @@ RESOURCE_DIRS = {
 
 def descriptor_defaults(slug: str, display_name: str) -> dict[str, object]:
     defaults: dict[str, dict[str, object]] = {
-        'architecture': {
+        'engos-design-architecture': {
             'display_name': 'Architecture Studio',
             'consumption_hints': {
                 'preferred_use_cases': [
@@ -164,7 +164,7 @@ def descriptor_defaults(slug: str, display_name: str) -> dict[str, object]:
                 },
             },
         },
-        'code-review': {
+        'engos-quality-code-review': {
             'display_name': 'Commit Review — Git Commit Quality Gate',
             'consumption_hints': {
                 'preferred_use_cases': [
@@ -179,7 +179,7 @@ def descriptor_defaults(slug: str, display_name: str) -> dict[str, object]:
                 'requires_human_confirmation': False,
             },
         },
-        'resolve-conflict': {
+        'engos-delivery-resolve-conflict': {
             'display_name': 'Merge Conflict Resolution — Structured Conflict Analysis',
             'consumption_hints': {
                 'preferred_use_cases': [
@@ -194,7 +194,7 @@ def descriptor_defaults(slug: str, display_name: str) -> dict[str, object]:
                 'requires_human_confirmation': True,
             },
         },
-        'testing': {
+        'engos-quality-testing-review': {
             'display_name': 'Testing Studio — Test Design and Coverage Analysis',
             'consumption_hints': {
                 'preferred_use_cases': [
@@ -212,7 +212,7 @@ def descriptor_defaults(slug: str, display_name: str) -> dict[str, object]:
                 'requires_human_confirmation': False,
             },
         },
-        'uac-import': {
+        'engos-meta-uac-import': {
             'display_name': 'UAC Import — Capability Intake, Quality Review, and Uplift',
             'consumption_hints': {
                 'preferred_use_cases': [
@@ -229,7 +229,7 @@ def descriptor_defaults(slug: str, display_name: str) -> dict[str, object]:
                 'requires_human_confirmation': True,
             },
         },
-        'docs-review-expert': {
+        'engos-quality-docs-review': {
             'display_name': 'Docs Review Expert — Documentation IA, Drift, and Release Hygiene',
             'consumption_hints': {
                 'preferred_use_cases': [
@@ -249,17 +249,17 @@ def descriptor_defaults(slug: str, display_name: str) -> dict[str, object]:
             'benchmark_sources': [
                 {
                     'label': 'Architecture benchmark',
-                    'url': 'ssot/architecture.md',
+                    'url': 'ssot/engos-design-architecture.md',
                     'note': 'Benchmark for explicit operating contracts and artifact-oriented outputs.',
                 },
                 {
                     'label': 'Code Review benchmark',
-                    'url': 'ssot/code-review.md',
+                    'url': 'ssot/engos-quality-code-review.md',
                     'note': 'Benchmark for deterministic review timing and concrete findings.',
                 },
             ],
         },
-        'gitops-review': {
+        'engos-quality-gitops-review': {
             'display_name': 'GitOps Review — Repo Hygiene, CI, Release, and Merge Gate',
             'consumption_hints': {
                 'preferred_use_cases': [
@@ -279,12 +279,12 @@ def descriptor_defaults(slug: str, display_name: str) -> dict[str, object]:
             'benchmark_sources': [
                 {
                     'label': 'Code Review benchmark',
-                    'url': 'ssot/code-review.md',
+                    'url': 'ssot/engos-quality-code-review.md',
                     'note': 'Benchmark for commit quality and review rigor.',
                 },
                 {
                     'label': 'UAC Import benchmark',
-                    'url': 'ssot/uac-import.md',
+                    'url': 'ssot/engos-meta-uac-import.md',
                     'note': 'Benchmark for deterministic workflow contracts and machine-readable metadata.',
                 },
             ],

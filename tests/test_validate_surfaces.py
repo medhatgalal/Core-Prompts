@@ -20,9 +20,9 @@ def test_validate_portable_capability_metadata_rejects_absolute_local_refs(tmp_p
         """{
   "layers": {
     "minimal": {
-      "resources": ["/Users/example/repo/ssot/architecture.md"],
+      "resources": ["/Users/example/repo/ssot/engos-design-architecture.md"],
       "source_provenance": {
-        "normalized_source": "/Users/example/repo/ssot/architecture.md"
+        "normalized_source": "/Users/example/repo/ssot/engos-design-architecture.md"
       }
     }
   }
@@ -43,9 +43,9 @@ def test_validate_portable_capability_metadata_allows_repo_relative_refs(tmp_pat
         """{
   "layers": {
     "minimal": {
-      "resources": ["ssot/architecture.md"],
+      "resources": ["ssot/engos-design-architecture.md"],
       "source_provenance": {
-        "normalized_source": "ssot/architecture.md"
+        "normalized_source": "ssot/engos-design-architecture.md"
       }
     }
   }
@@ -234,10 +234,10 @@ def test_validate_ssot_source_rejects_missing_benchmark_sections(tmp_path: Path)
         descriptor_dir = tmp_path / ".meta" / "capabilities"
         ssot_dir.mkdir(parents=True)
         descriptor_dir.mkdir(parents=True)
-        path = ssot_dir / "testing.md"
+        path = ssot_dir / "engos-quality-testing-review.md"
         path.write_text(
             """---
-name: "testing"
+name: "engos-quality-testing-review"
 description: "Testing Studio"
 ---
 # Testing Studio

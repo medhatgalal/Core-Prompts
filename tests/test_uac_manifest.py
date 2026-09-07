@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def test_infer_install_target_prefers_repo_local_for_repo_file() -> None:
     target = infer_install_target(
-        'ssot/uac-import.md',
+        'ssot/engos-meta-uac-import.md',
         source_type='LOCAL_FILE',
         repo_root=ROOT,
     )
@@ -39,12 +39,12 @@ def test_infer_install_target_prefers_global_for_remote_source() -> None:
 
 def test_normalize_persisted_source_reference_uses_repo_relative_for_repo_file() -> None:
     normalized = normalize_persisted_source_reference(
-        str((ROOT / 'ssot' / 'architecture.md').resolve()),
+        str((ROOT / 'ssot' / 'engos-design-architecture.md').resolve()),
         source_type='LOCAL_FILE',
         repo_root=ROOT,
     )
 
-    assert normalized == 'ssot/architecture.md'
+    assert normalized == 'ssot/engos-design-architecture.md'
 
 
 def test_build_capability_manifest_creates_layered_schema() -> None:
@@ -91,7 +91,7 @@ def test_build_capability_manifest_extracts_numbered_required_outputs() -> None:
         slug='demo-recorder',
         source_metadata={
             'source_type': 'LOCAL_FILE',
-            'normalized_source': str(ROOT / 'ssot' / 'demo-recorder.md'),
+            'normalized_source': str(ROOT / 'ssot' / 'engos-browser-demo-recorder.md'),
             'policy_rule_id': 'ssot.demo-recorder',
             'content_sha256': 'abc123',
         },
@@ -121,7 +121,7 @@ def test_build_capability_manifest_persists_repo_relative_local_sources() -> Non
         slug='architecture',
         source_metadata={
             'source_type': 'LOCAL_FILE',
-            'normalized_source': str((ROOT / 'ssot' / 'architecture.md').resolve()),
+            'normalized_source': str((ROOT / 'ssot' / 'engos-design-architecture.md').resolve()),
             'policy_rule_id': 'ssot.architecture',
             'content_type': 'text/markdown',
             'content_sha256': 'ssot',
@@ -140,8 +140,8 @@ def test_build_capability_manifest_persists_repo_relative_local_sources() -> Non
     )
 
     minimal = manifest['layers']['minimal']
-    assert minimal['resources'] == ['ssot/architecture.md']
-    assert minimal['source_provenance']['normalized_source'] == 'ssot/architecture.md'
+    assert minimal['resources'] == ['ssot/engos-design-architecture.md']
+    assert minimal['source_provenance']['normalized_source'] == 'ssot/engos-design-architecture.md'
     assert minimal['install_target']['recommended'] == 'repo_local'
 
 
@@ -150,7 +150,7 @@ def test_build_capability_manifest_uses_signal_text_not_full_body_for_role_and_t
         slug='auto-research',
         source_metadata={
             'source_type': 'LOCAL_FILE',
-            'normalized_source': str((ROOT / 'ssot' / 'auto-research.md').resolve()),
+            'normalized_source': str((ROOT / 'ssot' / 'engos-optimization-auto-research.md').resolve()),
             'policy_rule_id': 'ssot.auto-research',
             'content_type': 'text/markdown',
             'content_sha256': 'signal',

@@ -7,631 +7,17 @@
   ],
   "capabilities": [
     {
-      "slug": "address-code-review",
-      "display_name": "Address Code Review \u2014 PR/MR Feedback Resolution",
-      "capability_type": "skill",
-      "summary": "[Chema] Apply selected PR/MR review feedback with tight scope control. Use after reviewers have left actionable comments and the user wants fixes implemented. Do not use as a pre-commit review gate; use code-review for staged-change, commit, and merge-readiness review.",
-      "role": "analyst",
-      "domain_tags": [
-        "review",
-        "address",
-        "code"
-      ],
-      "required_inputs": [
-        "an open PR/MR on the current branch (auto-detected) or an explicit PR/MR link",
-        "platform context: GitLab project ID or GitHub owner/repo (detected from git remote)",
-        "which comments to address (all open, or user-selected subset)",
-        "confirmation before editing when comments are ambiguous, broad, or architectural"
-      ],
-      "expected_outputs": [
-        "`Comments Found` \u2014 numbered list of open review comments with author, file, line, and summary",
-        "`User Selection` \u2014 which comments the user chose to address",
-        "`Changes Applied` \u2014 per-comment summary of what was modified",
-        "`Commit Guidance` \u2014 suggested commit message and push instructions",
-        "`Follow-up Review` \u2014 whether to run `code-review`, `testing`, `architecture`, or `gitops-review`"
-      ],
-      "tool_policy": {
-        "allowed": [
-          "deterministic classification",
-          "metadata publication",
-          "surface generation"
-        ],
-        "forbidden": [
-          "orchestration",
-          "delegation decisions",
-          "runtime execution control"
-        ]
-      },
-      "install_target": {
-        "recommended": "repo_local",
-        "confidence": 0.88,
-        "confirmation_required_for_apply": true,
-        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
-        "supported": [
-          "global",
-          "repo_local",
-          "both"
-        ]
-      },
-      "emitted_surfaces": {
-        "codex": [
-          "codex_skill"
-        ],
-        "gemini": [
-          "gemini_skill"
-        ],
-        "claude": [
-          "claude_skill"
-        ],
-        "kiro": [
-          "kiro_skill"
-        ]
-      },
-      "confidence": 0.97,
-      "review_status": "ready_for_orchestrator_review",
-      "overlap_candidates": [
-        "code-review"
-      ],
-      "relationship_suggestions": [],
-      "quality_status": "structural_ready",
-      "benchmark_profile": "default",
-      "preferred_use_cases": [
-        "AI-assisted capability selection",
-        "deterministic prompt uplift review"
-      ],
-      "artifact_conventions": [
-        "ssot/<slug>.md",
-        ".meta/capabilities/<slug>.json",
-        "reports/quality-reviews/<slug>/LATEST.md"
-      ],
-      "invocation_style": "assistant_first_but_scriptable",
-      "requires_human_confirmation": true,
-      "org_graph": {
-        "org_role": "analyst",
-        "reports_to_suggestions": [],
-        "delegates_to_suggestions": [],
-        "collaborates_with_suggestions": [
-          "review",
-          "address"
-        ],
-        "authority_tier": "advisory",
-        "work_graph_impact": "Adds or updates a skill capability with route profile None."
-      },
-      "advisory_only": true
-    },
-    {
-      "slug": "analyze-context",
-      "display_name": "Analyze Context \u2014 Durable Multi-File Investigation",
-      "capability_type": "skill",
-      "summary": "Maintains repository-scoped durable state for long-running multi-file investigations. Use when evidence and progress must survive compaction, new sessions, branch changes, or worktree removal.",
-      "role": "analyst",
-      "domain_tags": [
-        "analysis",
-        "context",
-        "analyze"
-      ],
-      "required_inputs": [
-        "a stable task ID or clear task name",
-        "the analysis goal and success criteria",
-        "the set of files, transcripts, or items to process",
-        "any extraction criteria, constraints, or stop conditions"
-      ],
-      "expected_outputs": [
-        "the canonical external state paths in use",
-        "current progress state",
-        "key findings accumulated so far",
-        "next item or next analysis action",
-        "after a consolidation pass, before/after line and byte counts for each rewritten file, the trigger, and any evidence references retained; if footprint did not shrink, report that limitation rather than claiming reduction"
-      ],
-      "tool_policy": {
-        "allowed": [
-          "deterministic classification",
-          "metadata publication",
-          "surface generation"
-        ],
-        "forbidden": [
-          "orchestration",
-          "delegation decisions",
-          "runtime execution control"
-        ]
-      },
-      "install_target": {
-        "recommended": "repo_local",
-        "confidence": 0.88,
-        "confirmation_required_for_apply": true,
-        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
-        "supported": [
-          "global",
-          "repo_local",
-          "both"
-        ]
-      },
-      "emitted_surfaces": {
-        "codex": [
-          "codex_skill"
-        ],
-        "gemini": [
-          "gemini_skill"
-        ],
-        "claude": [
-          "claude_skill"
-        ],
-        "kiro": [
-          "kiro_skill"
-        ]
-      },
-      "confidence": 0.97,
-      "review_status": "ready_for_orchestrator_review",
-      "overlap_candidates": [],
-      "relationship_suggestions": [],
-      "quality_status": "structural_ready",
-      "benchmark_profile": "default",
-      "preferred_use_cases": [],
-      "artifact_conventions": [],
-      "invocation_style": null,
-      "requires_human_confirmation": null,
-      "org_graph": {
-        "org_role": "analyst",
-        "reports_to_suggestions": [],
-        "delegates_to_suggestions": [],
-        "collaborates_with_suggestions": [
-          "analysis",
-          "context"
-        ],
-        "authority_tier": "advisory",
-        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
-      },
-      "advisory_only": true
-    },
-    {
-      "slug": "architecture",
-      "display_name": "Architecture Studio",
-      "capability_type": "both",
-      "summary": "Designs APIs, schemas, patterns, and system topology with explicit boundaries and trade-offs. Use for concrete architecture decisions, interface design, or rollback-aware system plans.",
-      "role": "architect",
-      "domain_tags": [
-        "architecture"
-      ],
-      "required_inputs": [
-        "problem statement, feature request, or architectural question",
-        "current system context when refactoring or integrating with existing code",
-        "explicit constraints such as scale, latency, compliance, staffing, timeline, or vendor boundaries",
-        "any non-goals, fixed decisions, or compatibility requirements"
-      ],
-      "expected_outputs": [
-        "`Problem Framing`",
-        "`Objective`",
-        "`In Scope`",
-        "`Out of Scope`",
-        "`Assumptions & Constraints`",
-        "`Architecture Recommendation`",
-        "`Component or Module Boundaries`",
-        "`Interface Contracts`",
-        "`Trade-offs`",
-        "`Rejected Alternatives`",
-        "`Migration / Rollback Plan`",
-        "`Risks & Validation`",
-        "`Decision Log`",
-        "`Confidence`"
-      ],
-      "tool_policy": {
-        "allowed": [
-          "deterministic classification",
-          "metadata publication",
-          "surface generation"
-        ],
-        "forbidden": [
-          "orchestration",
-          "delegation decisions",
-          "runtime execution control"
-        ]
-      },
-      "install_target": {
-        "recommended": "global",
-        "confidence": 1.0,
-        "confirmation_required_for_apply": true,
-        "rationale": "SSOT frontmatter explicitly declares global installation.",
-        "supported": [
-          "global",
-          "repo_local",
-          "both"
-        ]
-      },
-      "emitted_surfaces": {
-        "codex": [
-          "codex_skill",
-          "codex_agent"
-        ],
-        "gemini": [
-          "gemini_skill",
-          "gemini_agent"
-        ],
-        "claude": [
-          "claude_skill",
-          "claude_agent"
-        ],
-        "kiro": [
-          "kiro_skill",
-          "kiro_agent"
-        ]
-      },
-      "confidence": 0.98,
-      "review_status": "ready_for_orchestrator_review",
-      "overlap_candidates": [],
-      "relationship_suggestions": [
-        "prefer explicit review or analyst companions before high-authority use",
-        "pair with review and analysis capabilities when converging design proposals"
-      ],
-      "quality_status": "structural_ready",
-      "benchmark_profile": "architecture",
-      "preferred_use_cases": [
-        "API design",
-        "database design",
-        "design-pattern selection",
-        "system design",
-        "migration-safe architecture review"
-      ],
-      "artifact_conventions": [
-        "reports/architecture/<timestamp>-summary.md",
-        "reports/architecture/<timestamp>-decision-log.md",
-        "architecture/spec.md",
-        "architecture/decision-log.md",
-        "architecture/migration-plan.md",
-        "architecture/validation-plan.md"
-      ],
-      "invocation_style": "interactive_or_artifact_oriented",
-      "requires_human_confirmation": false,
-      "org_graph": {
-        "org_role": "specialist_with_workflow_surface",
-        "reports_to_suggestions": [],
-        "delegates_to_suggestions": [],
-        "collaborates_with_suggestions": [
-          "architecture",
-          "review"
-        ],
-        "authority_tier": "advisory",
-        "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
-      },
-      "advisory_only": true
-    },
-    {
-      "slug": "auto-research",
-      "display_name": "Auto-Research \u2014 Goal-Driven Improvement Research, Evaluation, and Promotion",
-      "capability_type": "both",
-      "summary": "Researches and optimizes prompts, skills, tools, workflows, and code with minimal-loop investigation, bounded search, and baseline comparison. Use for experiments, behavioral variant comparison, or proof that a candidate beats baseline.",
-      "role": "specialist_workflow",
-      "domain_tags": [
-        "auto",
-        "research"
-      ],
-      "required_inputs": [
-        "target system, artifact, or scope to improve",
-        "explicit goal or desired outcome",
-        "baseline artifact and candidate artifact or variants when evaluating a candidate directly",
-        "constraints:",
-        "editable scope",
-        "budget",
-        "risk tolerance",
-        "review requirements",
-        "available evidence:",
-        "tests",
-        "traces",
-        "benchmarks",
-        "existing metrics",
-        "examples",
-        "host policy for commits, pull requests, and merge if promotion work is expected"
-      ],
-      "expected_outputs": [
-        "`Target Summary`",
-        "`Goal Contract`",
-        "`Baseline`",
-        "`Search Surface`",
-        "`Scorecard`",
-        "`Experiment Plan or Ledger`",
-        "`Promotion Decision`",
-        "`Trace-to-Eval Follow-up`",
-        "`Risks and Limits`",
-        "`Commit Plan`",
-        "`Review Packet`",
-        "`Merge Readiness`",
-        "`Behavioral Evaluation`",
-        "`Eval Profile`",
-        "`Dataset`",
-        "`Trials`",
-        "`Result`",
-        "`Top Failure Modes`",
-        "`Regression Promotions`",
-        "`Discriminating Check`",
-        "`Fix or Rejected Hypothesis`",
-        "`Verification`"
-      ],
-      "tool_policy": {
-        "allowed": [
-          "deterministic classification",
-          "metadata publication",
-          "surface generation"
-        ],
-        "forbidden": [
-          "orchestration",
-          "delegation decisions",
-          "runtime execution control"
-        ]
-      },
-      "install_target": {
-        "recommended": "repo_local",
-        "confidence": 0.88,
-        "confirmation_required_for_apply": true,
-        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
-        "supported": [
-          "global",
-          "repo_local",
-          "both"
-        ]
-      },
-      "emitted_surfaces": {
-        "codex": [
-          "codex_skill",
-          "codex_agent"
-        ],
-        "gemini": [
-          "gemini_skill",
-          "gemini_agent"
-        ],
-        "claude": [
-          "claude_skill",
-          "claude_agent"
-        ],
-        "kiro": [
-          "kiro_skill",
-          "kiro_agent"
-        ]
-      },
-      "confidence": 0.98,
-      "review_status": "ready_for_orchestrator_review",
-      "overlap_candidates": [
-        "architecture",
-        "code-review",
-        "docs-review-expert",
-        "gitops-review",
-        "resolve-conflict",
-        "supercharge",
-        "testing"
-      ],
-      "relationship_suggestions": [
-        "prefer explicit review or analyst companions before high-authority use"
-      ],
-      "quality_status": "structural_ready",
-      "benchmark_profile": "default",
-      "preferred_use_cases": [
-        "AI-assisted capability selection",
-        "deterministic prompt uplift review"
-      ],
-      "artifact_conventions": [
-        "ssot/<slug>.md",
-        ".meta/capabilities/<slug>.json",
-        "reports/quality-reviews/<slug>/LATEST.md"
-      ],
-      "invocation_style": "assistant_first_but_scriptable",
-      "requires_human_confirmation": true,
-      "org_graph": {
-        "org_role": "specialist_with_workflow_surface",
-        "reports_to_suggestions": [],
-        "delegates_to_suggestions": [],
-        "collaborates_with_suggestions": [
-          "review",
-          "routing"
-        ],
-        "authority_tier": "advisory",
-        "work_graph_impact": "Adds or updates a both capability with route profile None."
-      },
-      "advisory_only": true
-    },
-    {
-      "slug": "batman",
-      "display_name": "Batman \u2014 Evidence-Gated Delivery Controller",
-      "capability_type": "both",
-      "summary": "Runs an explicitly invoked, host-aware, topology-declared, subagent-driven delivery protocol through research, design, TDD implementation, blocking reviews, verification, documentation, Git health, PR or MR, merge, and cleanup. Trigger with batman.",
-      "role": "resolver",
-      "domain_tags": [
-        "batman"
-      ],
-      "required_inputs": [
-        "the explicit work item and its success criteria",
-        "the target repository or working context",
-        "applicable repository instructions and authorization boundaries",
-        "the base branch or revision and intended landing target",
-        "known safety, live-write, deployment, or release constraints"
-      ],
-      "expected_outputs": [
-        "work-item identity, repository identity, base revision, branch, and worktree",
-        "Host-Fit Plan and the verified inventory revision used to produce it",
-        "size classification and selected stage set",
-        "written specification, delivery plan, implementation plan, and ordered tasks",
-        "decision record with rejected alternatives and reasons",
-        "task briefs, subagent reports, milestone review decisions, and classified findings",
-        "observed TDD red evidence and mutation-check evidence for implemented behavior",
-        "validation and verification evidence, including independent reconciliation when required",
-        "documentation review and Git health result",
-        "PR or MR, CI, merge, and mainline verification receipts when landing is authorized",
-        "separate tag, package release, deployment, and installation states and receipts: report each as actual, skipped, or refused with its reason",
-        "cleanup receipt after every required durable delivery receipt exists",
-        "progress reports, explicit blockers, parked work authorized by the human, and remaining uncertainty"
-      ],
-      "tool_policy": {
-        "allowed": [
-          "deterministic classification",
-          "metadata publication",
-          "surface generation"
-        ],
-        "forbidden": [
-          "orchestration",
-          "delegation decisions",
-          "runtime execution control"
-        ]
-      },
-      "install_target": {
-        "recommended": "repo_local",
-        "confidence": 0.88,
-        "confirmation_required_for_apply": true,
-        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
-        "supported": [
-          "global",
-          "repo_local",
-          "both"
-        ]
-      },
-      "emitted_surfaces": {
-        "codex": [
-          "codex_skill",
-          "codex_agent"
-        ],
-        "gemini": [
-          "gemini_skill",
-          "gemini_agent"
-        ],
-        "claude": [
-          "claude_skill",
-          "claude_agent"
-        ],
-        "kiro": [
-          "kiro_skill",
-          "kiro_agent"
-        ]
-      },
-      "confidence": 0.98,
-      "review_status": "ready_for_orchestrator_review",
-      "overlap_candidates": [],
-      "relationship_suggestions": [
-        "prefer explicit review or analyst companions before high-authority use"
-      ],
-      "quality_status": "structural_ready",
-      "benchmark_profile": "default",
-      "preferred_use_cases": [
-        "AI-assisted capability selection",
-        "deterministic prompt uplift review"
-      ],
-      "artifact_conventions": [
-        "ssot/<slug>.md",
-        ".meta/capabilities/<slug>.json",
-        "reports/quality-reviews/<slug>/LATEST.md"
-      ],
-      "invocation_style": "assistant_first_but_scriptable",
-      "requires_human_confirmation": true,
-      "org_graph": {
-        "org_role": "specialist_with_workflow_surface",
-        "reports_to_suggestions": [],
-        "delegates_to_suggestions": [],
-        "collaborates_with_suggestions": [
-          "review",
-          "routing"
-        ],
-        "authority_tier": "advisory",
-        "work_graph_impact": "Adds or updates a both capability with route profile None."
-      },
-      "advisory_only": true
-    },
-    {
-      "slug": "code-review",
-      "display_name": "Commit Review \u2014 Git Commit Quality Gate",
-      "capability_type": "skill",
-      "summary": "Review staged changes, diffs, or commits before commit, push, merge, or release. Use for findings, scope control, message quality, over-engineering detection, and merge readiness. Do not use to apply reviewer-requested fixes; use address-code-review for that action workflow.",
-      "role": "analyst",
-      "domain_tags": [
-        "review",
-        "prompting",
-        "code"
-      ],
-      "required_inputs": [
-        "commit hash, staged diff, working-tree diff, branch diff, or the default target of `HEAD`",
-        "repository context when the commit depends on surrounding conventions",
-        "any specific review focus such as scope, message quality, or simplicity"
-      ],
-      "expected_outputs": [
-        "`Commit Under Review`",
-        "`Findings`",
-        "`Scope Assessment`",
-        "`Message Assessment`",
-        "`Recommended Fixes`",
-        "`Merge Readiness`"
-      ],
-      "tool_policy": {
-        "allowed": [
-          "deterministic classification",
-          "metadata publication",
-          "surface generation"
-        ],
-        "forbidden": [
-          "orchestration",
-          "delegation decisions",
-          "runtime execution control"
-        ]
-      },
-      "install_target": {
-        "recommended": "repo_local",
-        "confidence": 0.88,
-        "confirmation_required_for_apply": true,
-        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
-        "supported": [
-          "global",
-          "repo_local",
-          "both"
-        ]
-      },
-      "emitted_surfaces": {
-        "codex": [
-          "codex_skill"
-        ],
-        "gemini": [
-          "gemini_skill"
-        ],
-        "claude": [
-          "claude_skill"
-        ],
-        "kiro": [
-          "kiro_skill"
-        ]
-      },
-      "confidence": 0.97,
-      "review_status": "ready_for_orchestrator_review",
-      "overlap_candidates": [],
-      "relationship_suggestions": [],
-      "quality_status": null,
-      "benchmark_profile": null,
-      "preferred_use_cases": [
-        "pre-merge commit review",
-        "scope creep detection",
-        "over-engineering checks"
-      ],
-      "artifact_conventions": [
-        "reports/code-reviews/<timestamp>-<commit>.md"
-      ],
-      "invocation_style": "git_commit_review",
-      "requires_human_confirmation": false,
-      "org_graph": {
-        "org_role": "analyst",
-        "reports_to_suggestions": [],
-        "delegates_to_suggestions": [],
-        "collaborates_with_suggestions": [
-          "review",
-          "debugging"
-        ],
-        "authority_tier": "advisory",
-        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
-      },
-      "advisory_only": true
-    },
-    {
-      "slug": "codebase-health-audit",
+      "slug": "engos-audit-code-health",
       "display_name": "Codebase Health Audit \u2014 Brownfield Structural Risk Report",
       "capability_type": "skill",
-      "summary": "Read-only brownfield codebase structural audit for LOC hotspots, god objects, import fan-out, dead code, prior-claim verification, drift detection, and slice-ready remediation.",
+      "summary": "Perform a read-only structural audit of a brownfield codebase, measuring hotspots, coupling, god objects, dead-code candidates, prior findings, and drift. Use for repository health; do not use for feature completeness or diff review.",
       "role": "analyst",
       "domain_tags": [
         "review",
-        "import",
-        "codebase",
-        "health",
-        "audit"
+        "engos",
+        "audit",
+        "code",
+        "health"
       ],
       "required_inputs": [
         "repository audit: a target path for the repository or subtree, plus optional prior state, threshold overrides, and scope boundaries;",
@@ -724,399 +110,17 @@
       "advisory_only": true
     },
     {
-      "slug": "converge",
-      "display_name": "Converge \u2014 Multi-Source Synthesis, Conflict Surfacing, and Final Recommendation",
-      "capability_type": "both",
-      "summary": "Universal Synthesis and Convergence for multi-source proposal comparison, conflict surfacing, decision analysis, and one coherent final recommendation.",
-      "role": "resolver",
-      "domain_tags": [
-        "converge"
-      ],
-      "required_inputs": [
-        "a short intent statement",
-        "the source set to compare",
-        "decision criteria and weights when known",
-        "explicit constraints, audience, or success metrics when available"
-      ],
-      "expected_outputs": [
-        "`Executive Summary`",
-        "`Overlap Map`",
-        "`Decision Analysis`",
-        "`Final Converged Proposal`",
-        "`Decision Rationale`",
-        "`Muted / Rejected Ideas`",
-        "`Risks + Next Experiments`",
-        "`Open Questions` when user steering is still required"
-      ],
-      "tool_policy": {
-        "allowed": [
-          "deterministic classification",
-          "metadata publication",
-          "surface generation"
-        ],
-        "forbidden": [
-          "orchestration",
-          "delegation decisions",
-          "runtime execution control"
-        ]
-      },
-      "install_target": {
-        "recommended": "repo_local",
-        "confidence": 0.88,
-        "confirmation_required_for_apply": true,
-        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
-        "supported": [
-          "global",
-          "repo_local",
-          "both"
-        ]
-      },
-      "emitted_surfaces": {
-        "codex": [
-          "codex_skill",
-          "codex_agent"
-        ],
-        "gemini": [
-          "gemini_skill",
-          "gemini_agent"
-        ],
-        "claude": [
-          "claude_skill",
-          "claude_agent"
-        ],
-        "kiro": [
-          "kiro_skill",
-          "kiro_agent"
-        ]
-      },
-      "confidence": 0.98,
-      "review_status": "ready_for_orchestrator_review",
-      "overlap_candidates": [],
-      "relationship_suggestions": [
-        "prefer explicit review or analyst companions before high-authority use",
-        "pair with review and analysis capabilities when converging design proposals"
-      ],
-      "quality_status": null,
-      "benchmark_profile": null,
-      "preferred_use_cases": [],
-      "artifact_conventions": [],
-      "invocation_style": null,
-      "requires_human_confirmation": null,
-      "org_graph": {
-        "org_role": "specialist_with_workflow_surface",
-        "reports_to_suggestions": [],
-        "delegates_to_suggestions": [],
-        "collaborates_with_suggestions": [
-          "architecture",
-          "review"
-        ],
-        "authority_tier": "advisory",
-        "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
-      },
-      "advisory_only": true
-    },
-    {
-      "slug": "demo-recorder",
-      "display_name": "Demo Recorder \u2014 Automated Playwright Demo Generation",
-      "capability_type": "skill",
-      "summary": "Generates Playwright scripts and demo plans for automated feature recordings with realistic pacing and video capture.",
-      "role": "workflow",
-      "domain_tags": [
-        "demo",
-        "recorder"
-      ],
-      "required_inputs": [
-        "**Feature description** \u2014 what is being demoed and why it matters",
-        "**Target URL** \u2014 where the demo runs (can be local or deployed)",
-        "**Auth method** \u2014 how to authenticate (JWT env var, login flow, none)"
-      ],
-      "expected_outputs": [
-        "Demo plan",
-        "Playwright script",
-        "Run command",
-        "Output location"
-      ],
-      "tool_policy": {
-        "allowed": [
-          "deterministic classification",
-          "metadata publication",
-          "surface generation"
-        ],
-        "forbidden": [
-          "orchestration",
-          "delegation decisions",
-          "runtime execution control"
-        ]
-      },
-      "install_target": {
-        "recommended": "global",
-        "confidence": 1.0,
-        "confirmation_required_for_apply": true,
-        "rationale": "SSOT frontmatter explicitly declares global installation.",
-        "supported": [
-          "global",
-          "repo_local",
-          "both"
-        ]
-      },
-      "emitted_surfaces": {
-        "codex": [
-          "codex_skill"
-        ],
-        "gemini": [
-          "gemini_skill"
-        ],
-        "claude": [
-          "claude_skill"
-        ],
-        "kiro": [
-          "kiro_skill"
-        ]
-      },
-      "confidence": 0.97,
-      "review_status": "ready_for_orchestrator_review",
-      "overlap_candidates": [],
-      "relationship_suggestions": [],
-      "quality_status": "structural_ready",
-      "benchmark_profile": "default",
-      "preferred_use_cases": [
-        "AI-assisted capability selection",
-        "deterministic prompt uplift review"
-      ],
-      "artifact_conventions": [
-        "ssot/<slug>.md",
-        ".meta/capabilities/<slug>.json",
-        "reports/quality-reviews/<slug>/LATEST.md"
-      ],
-      "invocation_style": "assistant_first_but_scriptable",
-      "requires_human_confirmation": true,
-      "org_graph": {
-        "org_role": "workflow_provider",
-        "reports_to_suggestions": [],
-        "delegates_to_suggestions": [],
-        "collaborates_with_suggestions": [
-          "demo",
-          "recorder"
-        ],
-        "authority_tier": "advisory",
-        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
-      },
-      "advisory_only": true
-    },
-    {
-      "slug": "docs-review-expert",
-      "display_name": "Docs Review Expert \u2014 Documentation IA, Drift, and Release Hygiene",
-      "capability_type": "both",
-      "summary": "Documentation Review Expert for information architecture, explainable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.",
-      "role": "analyst",
-      "domain_tags": [
-        "architecture",
-        "review",
-        "docs",
-        "expert"
-      ],
-      "required_inputs": [
-        "current README and docs structure",
-        "the intended reader or audience when known",
-        "relevant code, scripts, workflows, or release behavior when drift is suspected",
-        "the change scope when reviewing a commit, pull request, merge, or release"
-      ],
-      "expected_outputs": [
-        "`Current State`",
-        "`What Belongs Where`",
-        "`Drift Findings`",
-        "`Recommended Changes`",
-        "`Examples of Good Output`",
-        "`Review Timing`",
-        "`Open Risks`",
-        "exact target paths",
-        "section-level rewrite guidance",
-        "link or navigation updates that must be changed"
-      ],
-      "tool_policy": {
-        "allowed": [
-          "deterministic classification",
-          "metadata publication",
-          "surface generation"
-        ],
-        "forbidden": [
-          "orchestration",
-          "delegation decisions",
-          "runtime execution control"
-        ]
-      },
-      "install_target": {
-        "recommended": "repo_local",
-        "confidence": 0.88,
-        "confirmation_required_for_apply": true,
-        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
-        "supported": [
-          "global",
-          "repo_local",
-          "both"
-        ]
-      },
-      "emitted_surfaces": {
-        "codex": [
-          "codex_skill",
-          "codex_agent"
-        ],
-        "gemini": [
-          "gemini_skill",
-          "gemini_agent"
-        ],
-        "claude": [
-          "claude_skill",
-          "claude_agent"
-        ],
-        "kiro": [
-          "kiro_skill",
-          "kiro_agent"
-        ]
-      },
-      "confidence": 0.96,
-      "review_status": "ready_for_orchestrator_review",
-      "overlap_candidates": [],
-      "relationship_suggestions": [
-        "pair with review and analysis capabilities when converging design proposals"
-      ],
-      "quality_status": null,
-      "benchmark_profile": null,
-      "preferred_use_cases": [
-        "docs information architecture review",
-        "README and docs placement decisions",
-        "release-facing documentation drift detection",
-        "commit, PR, merge, and release docs hygiene"
-      ],
-      "artifact_conventions": [
-        "reports/docs-review/<timestamp>-assessment.md",
-        "reports/docs-review/<timestamp>-rewrite-examples.md",
-        "reports/docs-review/<timestamp>-review-checklist.md"
-      ],
-      "invocation_style": "review_or_artifact_oriented",
-      "requires_human_confirmation": false,
-      "org_graph": {
-        "org_role": "advisor",
-        "reports_to_suggestions": [],
-        "delegates_to_suggestions": [],
-        "collaborates_with_suggestions": [
-          "architecture",
-          "review"
-        ],
-        "authority_tier": "advisory",
-        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
-      },
-      "advisory_only": true
-    },
-    {
-      "slug": "dynamic-html-presentations",
-      "display_name": "Dynamic HTML Presentations",
-      "capability_type": "skill",
-      "summary": "Creates polished, responsive, standalone HTML slide decks with optional deterministic PNG and image-faithful PPTX export. Use for presentations, pitch decks, reviews, talks, and visual narratives that need browser-native interactivity and portable outputs.",
-      "role": "workflow",
-      "domain_tags": [
-        "dynamic",
-        "html",
-        "presentations"
-      ],
-      "required_inputs": [
-        "topic, source material, or outline",
-        "audience and desired outcome",
-        "requested output: HTML, PNG, PPTX, or all",
-        "target duration or slide count when constrained",
-        "evidence and branding requirements when applicable",
-        "approved image assets, usage rights, alternative text, and focal crop when applicable",
-        "speaker-note and appendix expectations"
-      ],
-      "expected_outputs": [
-        "`Narrative` \u2014 the story arc and slide-level claims",
-        "`Artifacts` \u2014 exact paths to HTML, optional `images/` package, PNG directory, and/or PPTX",
-        "`Image Assets` \u2014 delivery profile, relative or embedded references, fit behavior, alternative text, and provenance assumptions when images are used",
-        "`Interaction` \u2014 navigation, notes, fullscreen, and deep-link behavior implemented",
-        "`Validation` \u2014 slide count, active-state, geometry, console, export-mode, and file checks actually run",
-        "`Export Tradeoffs` \u2014 platform requirements and image-only PPTX limitation",
-        "`Open Assumptions` \u2014 illustrative data, missing sources, or content still needing confirmation"
-      ],
-      "tool_policy": {
-        "allowed": [
-          "deterministic classification",
-          "metadata publication",
-          "surface generation"
-        ],
-        "forbidden": [
-          "orchestration",
-          "delegation decisions",
-          "runtime execution control"
-        ]
-      },
-      "install_target": {
-        "recommended": "global",
-        "confidence": 1.0,
-        "confirmation_required_for_apply": true,
-        "rationale": "SSOT frontmatter explicitly declares global installation.",
-        "supported": [
-          "global",
-          "repo_local",
-          "both"
-        ]
-      },
-      "emitted_surfaces": {
-        "codex": [
-          "codex_skill"
-        ],
-        "gemini": [
-          "gemini_skill"
-        ],
-        "claude": [
-          "claude_skill"
-        ],
-        "kiro": [
-          "kiro_skill"
-        ]
-      },
-      "confidence": 0.97,
-      "review_status": "ready_for_orchestrator_review",
-      "overlap_candidates": [],
-      "relationship_suggestions": [],
-      "quality_status": "structural_ready",
-      "benchmark_profile": "default",
-      "preferred_use_cases": [
-        "executive and product reviews",
-        "technical talks and training",
-        "pitch decks and proposals",
-        "standalone browser presentations",
-        "visually faithful PNG and PPTX delivery"
-      ],
-      "artifact_conventions": [
-        "<deck-slug>/index.html",
-        "<deck-slug>/images/<role>-<subject>[-<variant>].<ext>",
-        "<deck-slug>/slides/slide-01.png",
-        "<deck-slug>/<deck-slug>.pptx"
-      ],
-      "invocation_style": "artifact_generation_and_validation",
-      "requires_human_confirmation": false,
-      "org_graph": {
-        "org_role": "workflow_provider",
-        "reports_to_suggestions": [],
-        "delegates_to_suggestions": [],
-        "collaborates_with_suggestions": [
-          "dynamic",
-          "html"
-        ],
-        "authority_tier": "advisory",
-        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
-      },
-      "advisory_only": true
-    },
-    {
-      "slug": "eng-report",
+      "slug": "engos-audit-engineering-progress",
       "display_name": "Engineering Progress Report",
       "capability_type": "skill",
-      "summary": "Generate a weekly/periodic HTML engineering dashboard from git data for any repo or org team. Use for velocity reporting, architecture evolution, and release tracking. Do not use to access Jira, estimate story points, or replace sprint planning tools. Do not use to modify code or run tests.",
-      "role": "architect",
+      "summary": "Generate a Git-derived engineering progress dashboard for one repository or a configured fleet, including activity, churn, authors, and releases. Use for periodic engineering activity audits; do not use for Jira story points, feature completeness, code review, or code-quality approval.",
+      "role": "analyst",
       "domain_tags": [
-        "architecture",
-        "report"
+        "review",
+        "engos",
+        "audit",
+        "engineering",
+        "progress"
       ],
       "required_inputs": [
         "one local git repository path, or a configured fleet file with repository paths",
@@ -1188,6 +192,100 @@
         "delegates_to_suggestions": [],
         "collaborates_with_suggestions": [
           "report"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "engos-audit-feature-status",
+      "display_name": "Feature Status \u2014 Deep Completeness Analysis",
+      "capability_type": "skill",
+      "summary": "Audit a feature\u2019s stated scope against code, tests, configuration, specifications, tickets, and Git history, then report completion states, drift, gaps, and shipping priorities. Use for feature readiness; do not use for repository-wide health or Git-only activity reports.",
+      "role": "analyst",
+      "domain_tags": [
+        "review",
+        "engos",
+        "audit",
+        "feature",
+        "status"
+      ],
+      "required_inputs": [
+        "Scope Documents: Pitch / Spec",
+        "Scope Documents: High-Level Design (HLD)",
+        "Scope Documents: OpenAPI Spec (OAS)",
+        "Scope Documents: Ticket / Epic",
+        "Proof Sources: Source code",
+        "Proof Sources: Integration tests",
+        "Proof Sources: Unit tests",
+        "Proof Sources: Git history",
+        "Proof Sources: Config / Infra",
+        "Proof Sources: OpenAPI output"
+      ],
+      "expected_outputs": [
+        "feature status report",
+        "scope sources",
+        "summary",
+        "categorized status tables",
+        "gap analysis",
+        "prioritized recommendations",
+        "risks / blockers"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ]
+      },
+      "confidence": 0.97,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [],
+      "quality_status": null,
+      "benchmark_profile": null,
+      "preferred_use_cases": [],
+      "artifact_conventions": [],
+      "invocation_style": null,
+      "requires_human_confirmation": null,
+      "org_graph": {
+        "org_role": "workflow_provider",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "feature",
+          "status"
         ],
         "authority_tier": "advisory",
         "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
@@ -1294,388 +392,16 @@
       "advisory_only": true
     },
     {
-      "slug": "feature-status",
-      "display_name": "Feature Status \u2014 Deep Completeness Analysis",
-      "capability_type": "skill",
-      "summary": "[BenK] Deep feature completeness analysis \u2014 scope vs. proof with prioritized recommendations",
-      "role": "workflow",
-      "domain_tags": [
-        "feature",
-        "status"
-      ],
-      "required_inputs": [
-        "Scope Documents: Pitch / Spec",
-        "Scope Documents: High-Level Design (HLD)",
-        "Scope Documents: OpenAPI Spec (OAS)",
-        "Scope Documents: Ticket / Epic",
-        "Proof Sources: Source code",
-        "Proof Sources: Integration tests",
-        "Proof Sources: Unit tests",
-        "Proof Sources: Git history",
-        "Proof Sources: Config / Infra",
-        "Proof Sources: OpenAPI output"
-      ],
-      "expected_outputs": [
-        "feature status report",
-        "scope sources",
-        "summary",
-        "categorized status tables",
-        "gap analysis",
-        "prioritized recommendations",
-        "risks / blockers"
-      ],
-      "tool_policy": {
-        "allowed": [
-          "deterministic classification",
-          "metadata publication",
-          "surface generation"
-        ],
-        "forbidden": [
-          "orchestration",
-          "delegation decisions",
-          "runtime execution control"
-        ]
-      },
-      "install_target": {
-        "recommended": "repo_local",
-        "confidence": 0.88,
-        "confirmation_required_for_apply": true,
-        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
-        "supported": [
-          "global",
-          "repo_local",
-          "both"
-        ]
-      },
-      "emitted_surfaces": {
-        "codex": [
-          "codex_skill"
-        ],
-        "gemini": [
-          "gemini_skill"
-        ],
-        "claude": [
-          "claude_skill"
-        ],
-        "kiro": [
-          "kiro_skill"
-        ]
-      },
-      "confidence": 0.97,
-      "review_status": "ready_for_orchestrator_review",
-      "overlap_candidates": [],
-      "relationship_suggestions": [],
-      "quality_status": null,
-      "benchmark_profile": null,
-      "preferred_use_cases": [],
-      "artifact_conventions": [],
-      "invocation_style": null,
-      "requires_human_confirmation": null,
-      "org_graph": {
-        "org_role": "workflow_provider",
-        "reports_to_suggestions": [],
-        "delegates_to_suggestions": [],
-        "collaborates_with_suggestions": [
-          "feature",
-          "status"
-        ],
-        "authority_tier": "advisory",
-        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
-      },
-      "advisory_only": true
-    },
-    {
-      "slug": "gitops-review",
-      "display_name": "GitOps Review \u2014 Repo Hygiene, CI, Release, and Merge Gate",
-      "capability_type": "both",
-      "summary": "GitOps Review for repo hygiene, commit quality, PR readiness, CI state, packaging, changelog, merge, tag, push, and release gates across GitHub and GitLab.",
-      "role": "analyst",
-      "domain_tags": [
-        "review",
-        "gitops"
-      ],
-      "required_inputs": [
-        "current branch and worktree state",
-        "target gate: commit, PR, merge, release, or cleanup",
-        "remote context when GitHub or GitLab parity matters",
-        "explicit execution permission when mutating git or release state"
-      ],
-      "expected_outputs": [
-        "`Current State`",
-        "`Gate Type`",
-        "`Findings`",
-        "`Required Companion Reviews`",
-        "`Recommended Commands or Actions`",
-        "`Release / Merge Readiness`",
-        "`Open Risks`",
-        "exact commands run",
-        "exact branch, tag, PR, or MR identifiers",
-        "final state after execution"
-      ],
-      "tool_policy": {
-        "allowed": [
-          "deterministic classification",
-          "metadata publication",
-          "surface generation"
-        ],
-        "forbidden": [
-          "orchestration",
-          "delegation decisions",
-          "runtime execution control"
-        ]
-      },
-      "install_target": {
-        "recommended": "repo_local",
-        "confidence": 0.88,
-        "confirmation_required_for_apply": true,
-        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
-        "supported": [
-          "global",
-          "repo_local",
-          "both"
-        ]
-      },
-      "emitted_surfaces": {
-        "codex": [
-          "codex_skill",
-          "codex_agent"
-        ],
-        "gemini": [
-          "gemini_skill",
-          "gemini_agent"
-        ],
-        "claude": [
-          "claude_skill",
-          "claude_agent"
-        ],
-        "kiro": [
-          "kiro_skill",
-          "kiro_agent"
-        ]
-      },
-      "confidence": 0.96,
-      "review_status": "ready_for_orchestrator_review",
-      "overlap_candidates": [],
-      "relationship_suggestions": [
-        "prefer explicit review or analyst companions before high-authority use",
-        "pair with review and analysis capabilities when converging design proposals"
-      ],
-      "quality_status": null,
-      "benchmark_profile": null,
-      "preferred_use_cases": [
-        "repo hygiene review",
-        "commit and PR readiness checks",
-        "CI and release gate review",
-        "merge, tag, package, and release flow checks"
-      ],
-      "artifact_conventions": [
-        "reports/gitops-review/<timestamp>-assessment.md",
-        "reports/gitops-review/<timestamp>-release-gate.md",
-        "reports/gitops-review/<timestamp>-pr-checklist.md"
-      ],
-      "invocation_style": "review_or_execution_assist",
-      "requires_human_confirmation": true,
-      "org_graph": {
-        "org_role": "specialist_with_workflow_surface",
-        "reports_to_suggestions": [],
-        "delegates_to_suggestions": [],
-        "collaborates_with_suggestions": [
-          "architecture",
-          "review"
-        ],
-        "authority_tier": "advisory",
-        "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
-      },
-      "advisory_only": true
-    },
-    {
-      "slug": "ic-assistant",
-      "display_name": "Incident Commander Assistant",
-      "capability_type": "both",
-      "summary": "Incident Commander Assistant \u2014 keeps an Incident Commander on-process during active incidents. Tracks phase transitions, prompts for required actions, validates artifacts, and flags missed steps without making incident decisions.",
-      "role": "specialist_workflow",
-      "domain_tags": [
-        "assistant"
-      ],
-      "required_inputs": [
-        "incident ticket ID, link, or summary",
-        "current incident phase or enough context to infer it",
-        "customer or user impact count when escalation thresholds matter",
-        "last status update time when cadence checks matter",
-        "whether to use Generic Mode or Internal Runbook Mode"
-      ],
-      "expected_outputs": [
-        "`Mode` \u2014 Generic Mode or Internal Runbook Mode",
-        "`Current Phase` \u2014 identified phase and confidence",
-        "`Next Required Action` \u2014 specific and actionable",
-        "`Timer / Cadence` \u2014 last update timing or missing timing input",
-        "`Overdue / Escalation Flags` \u2014 process risks and required IC confirmation",
-        "`Assumptions` \u2014 any missing context or policy source used"
-      ],
-      "tool_policy": {
-        "allowed": [
-          "deterministic classification",
-          "metadata publication",
-          "surface generation"
-        ],
-        "forbidden": [
-          "orchestration",
-          "delegation decisions",
-          "runtime execution control"
-        ]
-      },
-      "install_target": {
-        "recommended": "repo_local",
-        "confidence": 0.88,
-        "confirmation_required_for_apply": true,
-        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
-        "supported": [
-          "global",
-          "repo_local",
-          "both"
-        ]
-      },
-      "emitted_surfaces": {
-        "codex": [
-          "codex_skill",
-          "codex_agent"
-        ],
-        "gemini": [
-          "gemini_skill",
-          "gemini_agent"
-        ],
-        "claude": [
-          "claude_skill",
-          "claude_agent"
-        ],
-        "kiro": [
-          "kiro_skill",
-          "kiro_agent"
-        ]
-      },
-      "confidence": 0.92,
-      "review_status": "ready_for_orchestrator_review",
-      "overlap_candidates": [],
-      "relationship_suggestions": [
-        "prefer explicit review or analyst companions before high-authority use"
-      ],
-      "quality_status": "structural_ready",
-      "benchmark_profile": "default",
-      "preferred_use_cases": [
-        "AI-assisted capability selection",
-        "deterministic prompt uplift review"
-      ],
-      "artifact_conventions": [
-        "ssot/<slug>.md",
-        ".meta/capabilities/<slug>.json",
-        "reports/quality-reviews/<slug>/LATEST.md"
-      ],
-      "invocation_style": "assistant_first_but_scriptable",
-      "requires_human_confirmation": true,
-      "org_graph": {
-        "org_role": "specialist_with_workflow_surface",
-        "reports_to_suggestions": [],
-        "delegates_to_suggestions": [],
-        "collaborates_with_suggestions": [
-          "assistant"
-        ],
-        "authority_tier": "advisory",
-        "work_graph_impact": "Adds or updates a both capability with route profile None."
-      },
-      "advisory_only": true
-    },
-    {
-      "slug": "instruction-editor",
-      "display_name": "Instruction Editor",
-      "capability_type": "skill",
-      "summary": "Edit prompts, skills, agent instructions, and workflow rules into direct, plain, scannable language without weakening behavior. Use when asked to remove AI-ish, Claude-ish, or ChatGPT-ish phrasing; apply Google developer style; reduce verbosity; tighten a skill; clarify actors and conditions; or preserve semantics while shortening instructions.",
-      "role": "workflow",
-      "domain_tags": [
-        "prompting",
-        "instruction",
-        "editor"
-      ],
-      "required_inputs": [
-        "the instruction artifact or path",
-        "the requested mode, defaulting to `audit`",
-        "any authorized semantic changes",
-        "an upstream Goal Contract or topology when available"
-      ],
-      "expected_outputs": [
-        "`Edited Artifact`",
-        "`Edit Ledger`",
-        "`Preservation Map`",
-        "`Before / After Size`",
-        "`Behavioral Claims Requiring Proof`",
-        "`Unresolved Ambiguities`"
-      ],
-      "tool_policy": {
-        "allowed": [
-          "deterministic classification",
-          "metadata publication",
-          "surface generation"
-        ],
-        "forbidden": [
-          "orchestration",
-          "delegation decisions",
-          "runtime execution control"
-        ]
-      },
-      "install_target": {
-        "recommended": "repo_local",
-        "confidence": 0.88,
-        "confirmation_required_for_apply": true,
-        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
-        "supported": [
-          "global",
-          "repo_local",
-          "both"
-        ]
-      },
-      "emitted_surfaces": {
-        "codex": [
-          "codex_skill"
-        ],
-        "gemini": [
-          "gemini_skill"
-        ],
-        "claude": [
-          "claude_skill"
-        ],
-        "kiro": [
-          "kiro_skill"
-        ]
-      },
-      "confidence": 0.96,
-      "review_status": "ready_for_orchestrator_review",
-      "overlap_candidates": [],
-      "relationship_suggestions": [],
-      "quality_status": null,
-      "benchmark_profile": null,
-      "preferred_use_cases": [],
-      "artifact_conventions": [],
-      "invocation_style": null,
-      "requires_human_confirmation": null,
-      "org_graph": {
-        "org_role": "workflow_provider",
-        "reports_to_suggestions": [],
-        "delegates_to_suggestions": [],
-        "collaborates_with_suggestions": [
-          "prompting",
-          "instruction"
-        ],
-        "authority_tier": "advisory",
-        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
-      },
-      "advisory_only": true
-    },
-    {
-      "slug": "pitch",
+      "slug": "engos-audit-pitch-review",
       "display_name": "Pitch \u2014 Shape Up Pitch Creation, Review, Scoring, and Improvement",
       "capability_type": "both",
-      "summary": "Creates, reviews, scores, improves, and critiques Shape Up pitch documents. Use when working with pitches at any stage: from bootstrapping a new pitch from a goal statement, to hardening an existing pitch for betting, to auditing pitch quality across a portfolio.",
-      "role": "specialist_workflow",
+      "summary": "Create, review, score, improve, or export Shape Up pitches by checking problem framing, appetite, architecture, dependencies, integration proof, risks, and betting readiness. Use for pitch artifacts; do not use for feature status or general proposal synthesis.",
+      "role": "analyst",
       "domain_tags": [
+        "architecture",
+        "review",
+        "engos",
+        "audit",
         "pitch"
       ],
       "required_inputs": [
@@ -1744,7 +470,7 @@
       "confidence": 0.9,
       "review_status": "ready_for_orchestrator_review",
       "overlap_candidates": [
-        "architecture"
+        "engos-design-architecture"
       ],
       "relationship_suggestions": [
         "prefer explicit review or analyst companions before high-authority use",
@@ -1768,7 +494,7 @@
         "reports_to_suggestions": [],
         "delegates_to_suggestions": [],
         "collaborates_with_suggestions": [
-          "architecture",
+          "engos-design-architecture",
           "review"
         ],
         "authority_tier": "advisory",
@@ -1777,16 +503,603 @@
       "advisory_only": true
     },
     {
-      "slug": "plan-to-goal-design",
-      "display_name": "Plan to Goal Design",
+      "slug": "engos-audit-weekly-intel",
+      "display_name": "Weekly Intelligence \u2014 Multi-Source Progress Report with Fact-Check Audit",
+      "capability_type": "both",
+      "summary": "Collect and fact-check project information from issue trackers, Git, code review, Chat, and documents, then produce one executive report with technical appendices and source confidence. Use for multi-source periodic intelligence; do not use for Git-only reports, inbox triage, or feature audits.",
+      "role": "analyst",
+      "domain_tags": [
+        "review",
+        "engos",
+        "audit",
+        "weekly",
+        "intel"
+      ],
+      "required_inputs": [
+        "source text",
+        "user intent/context"
+      ],
+      "expected_outputs": [
+        "a single report document with exec-friendly body and technical appendices (A through F)",
+        "a confidence assessment in Appendix F rating each source (High/Medium/Low) with methodology notes",
+        "an internal consistency check confirming body numbers match appendix data"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill",
+          "codex_agent"
+        ],
+        "gemini": [
+          "gemini_skill",
+          "gemini_agent"
+        ],
+        "claude": [
+          "claude_skill",
+          "claude_agent"
+        ],
+        "kiro": [
+          "kiro_skill",
+          "kiro_agent"
+        ]
+      },
+      "confidence": 0.98,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [
+        "prefer explicit review or analyst companions before high-authority use"
+      ],
+      "quality_status": null,
+      "benchmark_profile": null,
+      "preferred_use_cases": [],
+      "artifact_conventions": [],
+      "invocation_style": null,
+      "requires_human_confirmation": null,
+      "org_graph": {
+        "org_role": "specialist_with_workflow_surface",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "review",
+          "analysis"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "engos-browser-demo-recorder",
+      "display_name": "Demo Recorder \u2014 Automated Playwright Demo Generation",
       "capability_type": "skill",
-      "summary": "Turns an inspected implementation plan or intent into a compact, host-aware goal plus a durable specification and verifier packet. Use when a user wants to move from read-only Plan mode into a bounded long-running goal without losing repository evidence, rules, scope, or honest stop conditions.",
+      "summary": "Plan and generate a complete Playwright browser walkthrough with authentication, realistic pacing, and video capture. Use when the goal is a shareable product demo; do not use for test coverage or CI.",
       "role": "workflow",
       "domain_tags": [
         "planning",
-        "plan",
-        "goal",
+        "engos",
+        "browser",
+        "demo",
+        "recorder"
+      ],
+      "required_inputs": [
+        "**Feature description** \u2014 what is being demoed and why it matters",
+        "**Target URL** \u2014 where the demo runs (can be local or deployed)",
+        "**Auth method** \u2014 how to authenticate (JWT env var, login flow, none)"
+      ],
+      "expected_outputs": [
+        "Demo plan",
+        "Playwright script",
+        "Run command",
+        "Output location"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "global",
+        "confidence": 1.0,
+        "confirmation_required_for_apply": true,
+        "rationale": "SSOT frontmatter explicitly declares global installation.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ]
+      },
+      "confidence": 0.97,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [],
+      "quality_status": "structural_ready",
+      "benchmark_profile": "default",
+      "preferred_use_cases": [
+        "AI-assisted capability selection",
+        "deterministic prompt uplift review"
+      ],
+      "artifact_conventions": [
+        "ssot/<slug>.md",
+        ".meta/capabilities/<slug>.json",
+        "reports/quality-reviews/<slug>/LATEST.md"
+      ],
+      "invocation_style": "assistant_first_but_scriptable",
+      "requires_human_confirmation": true,
+      "org_graph": {
+        "org_role": "workflow_provider",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "demo",
+          "recorder"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "engos-content-dynamic-html-presentations",
+      "display_name": "Dynamic HTML Presentations",
+      "capability_type": "skill",
+      "summary": "Create a self-contained HTML presentation and, when requested, validated PNG or image-only PPTX exports from a topic, outline, or source material. Use for visual narrative deliverables; do not use for browser demos or plain reports.",
+      "role": "workflow",
+      "domain_tags": [
+        "engos",
+        "content",
+        "dynamic",
+        "html",
+        "presentations"
+      ],
+      "required_inputs": [
+        "topic, source material, or outline",
+        "audience and desired outcome",
+        "requested output: HTML, PNG, PPTX, or all",
+        "target duration or slide count when constrained",
+        "evidence and branding requirements when applicable",
+        "approved image assets, usage rights, alternative text, and focal crop when applicable",
+        "speaker-note and appendix expectations"
+      ],
+      "expected_outputs": [
+        "`Narrative` \u2014 the story arc and slide-level claims",
+        "`Artifacts` \u2014 exact paths to HTML, optional `images/` package, PNG directory, and/or PPTX",
+        "`Image Assets` \u2014 delivery profile, relative or embedded references, fit behavior, alternative text, and provenance assumptions when images are used",
+        "`Interaction` \u2014 navigation, notes, fullscreen, and deep-link behavior implemented",
+        "`Validation` \u2014 slide count, active-state, geometry, console, export-mode, and file checks actually run",
+        "`Export Tradeoffs` \u2014 platform requirements and image-only PPTX limitation",
+        "`Open Assumptions` \u2014 illustrative data, missing sources, or content still needing confirmation"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "global",
+        "confidence": 1.0,
+        "confirmation_required_for_apply": true,
+        "rationale": "SSOT frontmatter explicitly declares global installation.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ]
+      },
+      "confidence": 0.97,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [],
+      "quality_status": "structural_ready",
+      "benchmark_profile": "default",
+      "preferred_use_cases": [
+        "executive and product reviews",
+        "technical talks and training",
+        "pitch decks and proposals",
+        "standalone browser presentations",
+        "visually faithful PNG and PPTX delivery"
+      ],
+      "artifact_conventions": [
+        "<deck-slug>/index.html",
+        "<deck-slug>/images/<role>-<subject>[-<variant>].<ext>",
+        "<deck-slug>/slides/slide-01.png",
+        "<deck-slug>/<deck-slug>.pptx"
+      ],
+      "invocation_style": "artifact_generation_and_validation",
+      "requires_human_confirmation": false,
+      "org_graph": {
+        "org_role": "workflow_provider",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "dynamic",
+          "html"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "engos-delivery-address-code-review",
+      "display_name": "Address Code Review \u2014 PR/MR Feedback Resolution",
+      "capability_type": "skill",
+      "summary": "Apply selected pull request or merge request feedback with tightly scoped edits, then prepare the fix for re-review. Use only when actionable reviewer comments already exist; use code review for pre-commit or pre-push judgment.",
+      "role": "analyst",
+      "domain_tags": [
+        "review",
+        "engos",
+        "delivery",
+        "address",
+        "code"
+      ],
+      "required_inputs": [
+        "an open PR/MR on the current branch (auto-detected) or an explicit PR/MR link",
+        "platform context: GitLab project ID or GitHub owner/repo (detected from git remote)",
+        "which comments to address (all open, or user-selected subset)",
+        "confirmation before editing when comments are ambiguous, broad, or architectural"
+      ],
+      "expected_outputs": [
+        "`Comments Found` \u2014 numbered list of open review comments with author, file, line, and summary",
+        "`User Selection` \u2014 which comments the user chose to address",
+        "`Changes Applied` \u2014 per-comment summary of what was modified",
+        "`Commit Guidance` \u2014 suggested commit message and push instructions",
+        "`Follow-up Review` \u2014 whether to run `engos-quality-code-review`, `engos-quality-testing-review`, `engos-design-architecture`, or `engos-quality-gitops-review`"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ]
+      },
+      "confidence": 0.97,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [
+        "engos-quality-code-review"
+      ],
+      "relationship_suggestions": [],
+      "quality_status": "structural_ready",
+      "benchmark_profile": "default",
+      "preferred_use_cases": [
+        "AI-assisted capability selection",
+        "deterministic prompt uplift review"
+      ],
+      "artifact_conventions": [
+        "ssot/<slug>.md",
+        ".meta/capabilities/<slug>.json",
+        "reports/quality-reviews/<slug>/LATEST.md"
+      ],
+      "invocation_style": "assistant_first_but_scriptable",
+      "requires_human_confirmation": true,
+      "org_graph": {
+        "org_role": "analyst",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "review",
+          "address"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile None."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "engos-delivery-resolve-conflict",
+      "display_name": "Merge Conflict Resolution \u2014 Structured Conflict Analysis",
+      "capability_type": "skill",
+      "summary": "Analyze and plan the safe resolution of Git or document conflicts while preserving valuable content, exposing contradictions, and defining verification. Use when an actual merge or content conflict exists; do not use for ordinary proposal disagreement without conflict markers.",
+      "role": "analyst",
+      "domain_tags": [
+        "analysis",
+        "planning",
+        "engos",
+        "delivery",
+        "resolve",
+        "conflict"
+      ],
+      "required_inputs": [
+        "conflicting file or files",
+        "the two sides of the conflict, or access to the current git conflict markers",
+        "branch context or merge/rebase context when known",
+        "any policy or preference constraints that must win"
+      ],
+      "expected_outputs": [
+        "`Conflict Summary`",
+        "`Inversion Analysis`",
+        "`Content Comparison`",
+        "`Resolution Strategy`",
+        "`Resolution Plan`",
+        "`Verification Steps`",
+        "`Open Decisions or Risks`"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ]
+      },
+      "confidence": 0.97,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [],
+      "quality_status": null,
+      "benchmark_profile": null,
+      "preferred_use_cases": [
+        "merge conflict analysis",
+        "additive conflict resolution planning",
+        "contradiction detection before merge"
+      ],
+      "artifact_conventions": [
+        "reports/merge-conflicts/<descriptive-name>.md"
+      ],
+      "invocation_style": "conflict_analysis",
+      "requires_human_confirmation": true,
+      "org_graph": {
+        "org_role": "advisor",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "review",
+          "analysis"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "engos-design-architecture",
+      "display_name": "Architecture Studio",
+      "capability_type": "both",
+      "summary": "Design APIs, data models, patterns, or systems with explicit boundaries, trade-offs, failure modes, migration, rollback, and validation. Use for concrete architecture decisions; do not use for prompt hardening or behavioral evaluation.",
+      "role": "architect",
+      "domain_tags": [
+        "architecture",
+        "debugging",
+        "prompting",
+        "engos",
         "design"
+      ],
+      "required_inputs": [
+        "problem statement, feature request, or architectural question",
+        "current system context when refactoring or integrating with existing code",
+        "explicit constraints such as scale, latency, compliance, staffing, timeline, or vendor boundaries",
+        "any non-goals, fixed decisions, or compatibility requirements"
+      ],
+      "expected_outputs": [
+        "`Problem Framing`",
+        "`Objective`",
+        "`In Scope`",
+        "`Out of Scope`",
+        "`Assumptions & Constraints`",
+        "`Architecture Recommendation`",
+        "`Component or Module Boundaries`",
+        "`Interface Contracts`",
+        "`Trade-offs`",
+        "`Rejected Alternatives`",
+        "`Migration / Rollback Plan`",
+        "`Risks & Validation`",
+        "`Decision Log`",
+        "`Confidence`"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "global",
+        "confidence": 1.0,
+        "confirmation_required_for_apply": true,
+        "rationale": "SSOT frontmatter explicitly declares global installation.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill",
+          "codex_agent"
+        ],
+        "gemini": [
+          "gemini_skill",
+          "gemini_agent"
+        ],
+        "claude": [
+          "claude_skill",
+          "claude_agent"
+        ],
+        "kiro": [
+          "kiro_skill",
+          "kiro_agent"
+        ]
+      },
+      "confidence": 0.98,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [
+        "prefer explicit review or analyst companions before high-authority use",
+        "pair with review and analysis capabilities when converging design proposals"
+      ],
+      "quality_status": "structural_ready",
+      "benchmark_profile": "architecture",
+      "preferred_use_cases": [
+        "API design",
+        "database design",
+        "design-pattern selection",
+        "system design",
+        "migration-safe architecture review"
+      ],
+      "artifact_conventions": [
+        "reports/engos-design-architecture/<timestamp>-summary.md",
+        "reports/engos-design-architecture/<timestamp>-decision-log.md",
+        "architecture/spec.md",
+        "architecture/decision-log.md",
+        "architecture/migration-plan.md",
+        "architecture/validation-plan.md"
+      ],
+      "invocation_style": "interactive_or_artifact_oriented",
+      "requires_human_confirmation": false,
+      "org_graph": {
+        "org_role": "specialist_with_workflow_surface",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "engos-design-architecture",
+          "review"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "engos-design-plan-to-goal",
+      "display_name": "Plan to Goal Design",
+      "capability_type": "skill",
+      "summary": "Compile a reviewed plan or intent into a host-aware goal, durable specification, and task-specific verifier with explicit trust, drift, stop, and rollback conditions. Use when a bounded long-running goal packet is needed; do not use for ordinary one-step implementation.",
+      "role": "workflow",
+      "domain_tags": [
+        "planning",
+        "engos",
+        "design",
+        "plan",
+        "goal"
       ],
       "required_inputs": [
         "an implementation plan, intent, issue, or approved planning artifact",
@@ -1873,123 +1186,29 @@
       "advisory_only": true
     },
     {
-      "slug": "pulse",
-      "display_name": "Pulse \u2014 Comms Triage",
-      "capability_type": "both",
-      "summary": "High signal-to-noise comms triage across Gmail and Google Chat. Deterministic priority. Triage is read-only; sweep/act/archive/delete require explicit approval.",
-      "role": "specialist_workflow",
-      "domain_tags": [
-        "pulse"
-      ],
-      "required_inputs": [
-        "`gws` CLI authenticated (`gws auth status` must pass)",
-        "Configured chat spaces (auto-discovered on first run or manually configured)"
-      ],
-      "expected_outputs": [
-        "Timestamp header",
-        "Priority-classified table with: #, Addr, From, Subject (clickable link), Age, Action",
-        "Source summary footer (Gmail count, Chat spaces/msgs, memory signal count)",
-        "Proposed action list for \ud83d\udd34 and \ud83d\udfe1 items"
-      ],
-      "tool_policy": {
-        "allowed": [
-          "deterministic classification",
-          "metadata publication",
-          "surface generation"
-        ],
-        "forbidden": [
-          "orchestration",
-          "delegation decisions",
-          "runtime execution control"
-        ]
-      },
-      "install_target": {
-        "recommended": "repo_local",
-        "confidence": 0.88,
-        "confirmation_required_for_apply": true,
-        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
-        "supported": [
-          "global",
-          "repo_local",
-          "both"
-        ]
-      },
-      "emitted_surfaces": {
-        "codex": [
-          "codex_skill",
-          "codex_agent"
-        ],
-        "gemini": [
-          "gemini_skill",
-          "gemini_agent"
-        ],
-        "claude": [
-          "claude_skill",
-          "claude_agent"
-        ],
-        "kiro": [
-          "kiro_skill",
-          "kiro_agent"
-        ]
-      },
-      "confidence": 0.9,
-      "review_status": "ready_for_orchestrator_review",
-      "overlap_candidates": [
-        "uac-import"
-      ],
-      "relationship_suggestions": [
-        "pair with convergence capability for multi-source synthesis"
-      ],
-      "quality_status": "structural_ready",
-      "benchmark_profile": "default",
-      "preferred_use_cases": [
-        "AI-assisted capability selection",
-        "deterministic prompt uplift review"
-      ],
-      "artifact_conventions": [
-        "ssot/<slug>.md",
-        ".meta/capabilities/<slug>.json",
-        "reports/quality-reviews/<slug>/LATEST.md"
-      ],
-      "invocation_style": "assistant_first_but_scriptable",
-      "requires_human_confirmation": true,
-      "org_graph": {
-        "org_role": "importer",
-        "reports_to_suggestions": [],
-        "delegates_to_suggestions": [],
-        "collaborates_with_suggestions": [
-          "packaging",
-          "context"
-        ],
-        "authority_tier": "advisory",
-        "work_graph_impact": "Adds or updates a skill capability with route profile None."
-      },
-      "advisory_only": true
-    },
-    {
-      "slug": "resolve-conflict",
-      "display_name": "Merge Conflict Resolution \u2014 Structured Conflict Analysis",
+      "slug": "engos-memory-context-continuity",
+      "display_name": "Analyze Context \u2014 Durable Multi-File Investigation",
       "capability_type": "skill",
-      "summary": "Merge Conflict Resolution for structured conflict analysis, additive merging, and inversion-led trade-off handling.",
-      "role": "resolver",
+      "summary": "Maintain durable context, todo, and insight state for a multi-file or multi-source investigation that must survive compaction, session changes, branch changes, or worktree removal. Use when analysis must be resumed; do not use for a one-off report or final decision.",
+      "role": "workflow",
       "domain_tags": [
-        "resolve",
-        "conflict"
+        "context",
+        "engos",
+        "memory",
+        "continuity"
       ],
       "required_inputs": [
-        "conflicting file or files",
-        "the two sides of the conflict, or access to the current git conflict markers",
-        "branch context or merge/rebase context when known",
-        "any policy or preference constraints that must win"
+        "a stable task ID or clear task name",
+        "the analysis goal and success criteria",
+        "the set of files, transcripts, or items to process",
+        "any extraction criteria, constraints, or stop conditions"
       ],
       "expected_outputs": [
-        "`Conflict Summary`",
-        "`Inversion Analysis`",
-        "`Content Comparison`",
-        "`Resolution Strategy`",
-        "`Resolution Plan`",
-        "`Verification Steps`",
-        "`Open Decisions or Risks`"
+        "the canonical external state paths in use",
+        "current progress state",
+        "key findings accumulated so far",
+        "next item or next analysis action",
+        "after a consolidation pass, before/after line and byte counts for each rewritten file, the trigger, and any evidence references retained; if footprint did not shrink, report that limitation rather than claiming reduction"
       ],
       "tool_policy": {
         "allowed": [
@@ -2032,25 +1251,19 @@
       "review_status": "ready_for_orchestrator_review",
       "overlap_candidates": [],
       "relationship_suggestions": [],
-      "quality_status": null,
-      "benchmark_profile": null,
-      "preferred_use_cases": [
-        "merge conflict analysis",
-        "additive conflict resolution planning",
-        "contradiction detection before merge"
-      ],
-      "artifact_conventions": [
-        "reports/merge-conflicts/<descriptive-name>.md"
-      ],
-      "invocation_style": "conflict_analysis",
-      "requires_human_confirmation": true,
+      "quality_status": "structural_ready",
+      "benchmark_profile": "default",
+      "preferred_use_cases": [],
+      "artifact_conventions": [],
+      "invocation_style": null,
+      "requires_human_confirmation": null,
       "org_graph": {
-        "org_role": "advisor",
+        "org_role": "analyst",
         "reports_to_suggestions": [],
         "delegates_to_suggestions": [],
         "collaborates_with_suggestions": [
-          "review",
-          "analysis"
+          "analysis",
+          "context"
         ],
         "authority_tier": "advisory",
         "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
@@ -2058,12 +1271,187 @@
       "advisory_only": true
     },
     {
-      "slug": "supercharge",
-      "display_name": "SuperCharge \u2014 Prompt Engineering, Planning Hardening, and Graded Improvement",
-      "capability_type": "both",
-      "summary": "Hardens prompts, plans, and workflows through structured critique, adversarial debate, and graded refinement. Use when the user wants a better artifact, a sharper comparison, or a Bull/Bear/Decider debate before measured evaluation.",
+      "slug": "engos-memory-threader",
+      "display_name": "Threader \u2014 Full-Thread Transcript Export and Recall Capture",
+      "capability_type": "skill",
+      "summary": "Export the current conversation as a faithful transcript or durable handoff, preserving turn order, AI output fidelity, artifacts, and missing-history disclosure. Use for archival or transfer; do not blend export with analysis.",
       "role": "specialist_workflow",
       "domain_tags": [
+        "context",
+        "engos",
+        "memory",
+        "threader"
+      ],
+      "required_inputs": [
+        "the current thread or the exact conversation scope to export",
+        "any delivery preference such as file-first or inline fallback",
+        "fidelity expectations when the user needs disclosure for inaccessible turns or missing artifacts"
+      ],
+      "expected_outputs": [
+        "a downloadable transcript file plus a short confirmation, or",
+        "one logically contiguous inline transcript with clear merge instructions if the platform cannot create files",
+        "fidelity disclosure",
+        "impacted turn list when history is missing",
+        "artifact inclusion status when files or downloads were produced inside the thread"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ]
+      },
+      "confidence": 0.86,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [],
+      "quality_status": null,
+      "benchmark_profile": null,
+      "preferred_use_cases": [],
+      "artifact_conventions": [],
+      "invocation_style": null,
+      "requires_human_confirmation": null,
+      "org_graph": {
+        "org_role": "resolver",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "planning",
+          "debugging"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "engos-meta-instruction-editor",
+      "display_name": "Instruction Editor",
+      "capability_type": "skill",
+      "summary": "Audit, rewrite, diff, or verify prompts, skills, and agent instructions for clarity while preserving commands, authority, safety boundaries, and behavior. Use when instruction preservation is the central task; do not use for general prose editing.",
+      "role": "analyst",
+      "domain_tags": [
+        "review",
+        "engos",
+        "meta",
+        "instruction",
+        "editor"
+      ],
+      "required_inputs": [
+        "the instruction artifact or path",
+        "the requested mode, defaulting to `audit`",
+        "any authorized semantic changes",
+        "an upstream Goal Contract or topology when available"
+      ],
+      "expected_outputs": [
+        "`Edited Artifact`",
+        "`Edit Ledger`",
+        "`Preservation Map`",
+        "`Before / After Size`",
+        "`Behavioral Claims Requiring Proof`",
+        "`Unresolved Ambiguities`"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ]
+      },
+      "confidence": 0.96,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [],
+      "quality_status": null,
+      "benchmark_profile": null,
+      "preferred_use_cases": [],
+      "artifact_conventions": [],
+      "invocation_style": null,
+      "requires_human_confirmation": null,
+      "org_graph": {
+        "org_role": "workflow_provider",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "prompting",
+          "instruction"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "engos-meta-supercharge",
+      "display_name": "SuperCharge \u2014 Prompt Engineering, Planning Hardening, and Graded Improvement",
+      "capability_type": "both",
+      "summary": "Harden a prompt, plan, proposal, or workflow through the smallest useful sequence of simplification, inversion, adversarial critique, contract checks, debate, or grading. Use when the artifact needs stronger reasoning or execution guidance; use behavioral evaluation for proof.",
+      "role": "advisor",
+      "domain_tags": [
+        "planning",
+        "prompting",
+        "engos",
+        "meta",
         "supercharge"
       ],
       "required_inputs": [
@@ -2147,7 +1535,7 @@
         "reports_to_suggestions": [],
         "delegates_to_suggestions": [],
         "collaborates_with_suggestions": [
-          "architecture",
+          "engos-design-architecture",
           "analysis"
         ],
         "authority_tier": "advisory",
@@ -2156,189 +1544,17 @@
       "advisory_only": true
     },
     {
-      "slug": "testing",
-      "display_name": "Testing Studio \u2014 Test Design and Coverage Analysis",
-      "capability_type": "skill",
-      "summary": "Testing Studio for unit-test generation, end-to-end test design, edge-case discovery, and coverage gap analysis.",
-      "role": "workflow",
-      "domain_tags": [
-        "testing"
-      ],
-      "required_inputs": [
-        "source code, feature description, or failing scenario",
-        "repository testing stack when known",
-        "risk areas or priority workflows",
-        "existing tests or coverage report when available"
-      ],
-      "expected_outputs": [
-        "`Scope`",
-        "`Assumptions`",
-        "`Recommended Tests or Gaps`",
-        "`Priority or Risk`",
-        "`Framework Notes`",
-        "`Follow-up Work`"
-      ],
-      "tool_policy": {
-        "allowed": [
-          "deterministic classification",
-          "metadata publication",
-          "surface generation"
-        ],
-        "forbidden": [
-          "orchestration",
-          "delegation decisions",
-          "runtime execution control"
-        ]
-      },
-      "install_target": {
-        "recommended": "global",
-        "confidence": 1.0,
-        "confirmation_required_for_apply": true,
-        "rationale": "SSOT frontmatter explicitly declares global installation.",
-        "supported": [
-          "global",
-          "repo_local",
-          "both"
-        ]
-      },
-      "emitted_surfaces": {
-        "codex": [
-          "codex_skill"
-        ],
-        "gemini": [
-          "gemini_skill"
-        ],
-        "claude": [
-          "claude_skill"
-        ],
-        "kiro": [
-          "kiro_skill"
-        ]
-      },
-      "confidence": 0.97,
-      "review_status": "ready_for_orchestrator_review",
-      "overlap_candidates": [],
-      "relationship_suggestions": [],
-      "quality_status": null,
-      "benchmark_profile": null,
-      "preferred_use_cases": [
-        "unit test design",
-        "end-to-end test design",
-        "edge-case discovery",
-        "coverage gap analysis"
-      ],
-      "artifact_conventions": [
-        "reports/testing/<timestamp>-plan.md",
-        "reports/testing/<timestamp>-coverage-gap.md",
-        "reports/testing/<timestamp>-edge-cases.md"
-      ],
-      "invocation_style": "analysis_or_generation",
-      "requires_human_confirmation": false,
-      "org_graph": {
-        "org_role": "advisor",
-        "reports_to_suggestions": [],
-        "delegates_to_suggestions": [],
-        "collaborates_with_suggestions": [
-          "analysis",
-          "planning"
-        ],
-        "authority_tier": "advisory",
-        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
-      },
-      "advisory_only": true
-    },
-    {
-      "slug": "threader",
-      "display_name": "Threader \u2014 Full-Thread Transcript Export and Recall Capture",
-      "capability_type": "skill",
-      "summary": "[Medhat] Context Threader & Exporter (Memory Management)",
-      "role": "specialist_workflow",
-      "domain_tags": [
-        "context",
-        "threader"
-      ],
-      "required_inputs": [
-        "the current thread or the exact conversation scope to export",
-        "any delivery preference such as file-first or inline fallback",
-        "fidelity expectations when the user needs disclosure for inaccessible turns or missing artifacts"
-      ],
-      "expected_outputs": [
-        "a downloadable transcript file plus a short confirmation, or",
-        "one logically contiguous inline transcript with clear merge instructions if the platform cannot create files",
-        "fidelity disclosure",
-        "impacted turn list when history is missing",
-        "artifact inclusion status when files or downloads were produced inside the thread"
-      ],
-      "tool_policy": {
-        "allowed": [
-          "deterministic classification",
-          "metadata publication",
-          "surface generation"
-        ],
-        "forbidden": [
-          "orchestration",
-          "delegation decisions",
-          "runtime execution control"
-        ]
-      },
-      "install_target": {
-        "recommended": "repo_local",
-        "confidence": 0.88,
-        "confirmation_required_for_apply": true,
-        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
-        "supported": [
-          "global",
-          "repo_local",
-          "both"
-        ]
-      },
-      "emitted_surfaces": {
-        "codex": [
-          "codex_skill"
-        ],
-        "gemini": [
-          "gemini_skill"
-        ],
-        "claude": [
-          "claude_skill"
-        ],
-        "kiro": [
-          "kiro_skill"
-        ]
-      },
-      "confidence": 0.86,
-      "review_status": "ready_for_orchestrator_review",
-      "overlap_candidates": [],
-      "relationship_suggestions": [],
-      "quality_status": null,
-      "benchmark_profile": null,
-      "preferred_use_cases": [],
-      "artifact_conventions": [],
-      "invocation_style": null,
-      "requires_human_confirmation": null,
-      "org_graph": {
-        "org_role": "resolver",
-        "reports_to_suggestions": [],
-        "delegates_to_suggestions": [],
-        "collaborates_with_suggestions": [
-          "planning",
-          "debugging"
-        ],
-        "authority_tier": "advisory",
-        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
-      },
-      "advisory_only": true
-    },
-    {
-      "slug": "uac-import",
+      "slug": "engos-meta-uac-import",
       "display_name": "UAC Import \u2014 Capability Intake, Quality Review, and Uplift",
       "capability_type": "skill",
-      "summary": "Inspects external prompt-like sources and maps them into Core-Prompts plan, judge, and apply flows. Use when importing, planning, judging, or applying a new or updated capability.",
+      "summary": "Inspect an external prompt-like source, classify its fit, and prepare a quality-gated Core-Prompts plan, judge, or apply result. Use for capability intake; do not use for ordinary prompt editing or deployment.",
       "role": "importer",
       "domain_tags": [
         "import",
         "planning",
-        "prompting"
+        "prompting",
+        "engos",
+        "meta"
       ],
       "required_inputs": [
         "one or more explicit sources",
@@ -2437,24 +1653,269 @@
       "advisory_only": true
     },
     {
-      "slug": "weekly-intel",
-      "display_name": "Weekly Intelligence \u2014 Multi-Source Progress Report with Fact-Check Audit",
+      "slug": "engos-operations-ic-assistant",
+      "display_name": "Incident Commander Assistant",
       "capability_type": "both",
-      "summary": "Multi-source weekly intelligence gathering, convergence, fact-check audit, and single-document report generation (exec narrative body + technical appendices) for any team, project, or time window.",
-      "role": "analyst",
+      "summary": "Guide an Incident Commander through phase tracking, status cadence, artifact checks, escalation prompts, handoff, resolution, and postmortem work without making incident decisions. Use during an active incident or postmortem.",
+      "role": "specialist_workflow",
       "domain_tags": [
-        "review",
-        "weekly",
-        "intel"
+        "engos",
+        "operations",
+        "assistant"
       ],
       "required_inputs": [
-        "source text",
-        "user intent/context"
+        "incident ticket ID, link, or summary",
+        "current incident phase or enough context to infer it",
+        "customer or user impact count when escalation thresholds matter",
+        "last status update time when cadence checks matter",
+        "whether to use Generic Mode or Internal Runbook Mode"
       ],
       "expected_outputs": [
-        "a single report document with exec-friendly body and technical appendices (A through F)",
-        "a confidence assessment in Appendix F rating each source (High/Medium/Low) with methodology notes",
-        "an internal consistency check confirming body numbers match appendix data"
+        "`Mode` \u2014 Generic Mode or Internal Runbook Mode",
+        "`Current Phase` \u2014 identified phase and confidence",
+        "`Next Required Action` \u2014 specific and actionable",
+        "`Timer / Cadence` \u2014 last update timing or missing timing input",
+        "`Overdue / Escalation Flags` \u2014 process risks and required IC confirmation",
+        "`Assumptions` \u2014 any missing context or policy source used"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill",
+          "codex_agent"
+        ],
+        "gemini": [
+          "gemini_skill",
+          "gemini_agent"
+        ],
+        "claude": [
+          "claude_skill",
+          "claude_agent"
+        ],
+        "kiro": [
+          "kiro_skill",
+          "kiro_agent"
+        ]
+      },
+      "confidence": 0.92,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [
+        "prefer explicit review or analyst companions before high-authority use"
+      ],
+      "quality_status": "structural_ready",
+      "benchmark_profile": "default",
+      "preferred_use_cases": [
+        "AI-assisted capability selection",
+        "deterministic prompt uplift review"
+      ],
+      "artifact_conventions": [
+        "ssot/<slug>.md",
+        ".meta/capabilities/<slug>.json",
+        "reports/quality-reviews/<slug>/LATEST.md"
+      ],
+      "invocation_style": "assistant_first_but_scriptable",
+      "requires_human_confirmation": true,
+      "org_graph": {
+        "org_role": "specialist_with_workflow_surface",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "assistant"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a both capability with route profile None."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "engos-optimization-auto-research",
+      "display_name": "Auto-Research \u2014 Goal-Driven Improvement Research, Evaluation, and Promotion",
+      "capability_type": "both",
+      "summary": "Run bounded, baseline-controlled experiments to improve prompts, skills, workflows, tools, or code and decide whether a candidate is ready for promotion. Use when better behavior must be measured; do not use for unmeasured brainstorming.",
+      "role": "specialist_workflow",
+      "domain_tags": [
+        "engos",
+        "optimization",
+        "auto",
+        "research"
+      ],
+      "required_inputs": [
+        "target system, artifact, or scope to improve",
+        "explicit goal or desired outcome",
+        "baseline artifact and candidate artifact or variants when evaluating a candidate directly",
+        "constraints:",
+        "editable scope",
+        "budget",
+        "risk tolerance",
+        "review requirements",
+        "available evidence:",
+        "tests",
+        "traces",
+        "benchmarks",
+        "existing metrics",
+        "examples",
+        "host policy for commits, pull requests, and merge if promotion work is expected"
+      ],
+      "expected_outputs": [
+        "`Target Summary`",
+        "`Goal Contract`",
+        "`Baseline`",
+        "`Search Surface`",
+        "`Scorecard`",
+        "`Experiment Plan or Ledger`",
+        "`Promotion Decision`",
+        "`Trace-to-Eval Follow-up`",
+        "`Risks and Limits`",
+        "`Commit Plan`",
+        "`Review Packet`",
+        "`Merge Readiness`",
+        "`Behavioral Evaluation`",
+        "`Eval Profile`",
+        "`Dataset`",
+        "`Trials`",
+        "`Result`",
+        "`Top Failure Modes`",
+        "`Regression Promotions`",
+        "`Discriminating Check`",
+        "`Fix or Rejected Hypothesis`",
+        "`Verification`"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill",
+          "codex_agent"
+        ],
+        "gemini": [
+          "gemini_skill",
+          "gemini_agent"
+        ],
+        "claude": [
+          "claude_skill",
+          "claude_agent"
+        ],
+        "kiro": [
+          "kiro_skill",
+          "kiro_agent"
+        ]
+      },
+      "confidence": 0.98,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [
+        "engos-design-architecture",
+        "engos-quality-code-review",
+        "engos-quality-docs-review",
+        "engos-quality-gitops-review",
+        "engos-delivery-resolve-conflict",
+        "engos-meta-supercharge",
+        "engos-quality-testing-review"
+      ],
+      "relationship_suggestions": [
+        "prefer explicit review or analyst companions before high-authority use"
+      ],
+      "quality_status": "structural_ready",
+      "benchmark_profile": "default",
+      "preferred_use_cases": [
+        "AI-assisted capability selection",
+        "deterministic prompt uplift review"
+      ],
+      "artifact_conventions": [
+        "ssot/<slug>.md",
+        ".meta/capabilities/<slug>.json",
+        "reports/quality-reviews/<slug>/LATEST.md"
+      ],
+      "invocation_style": "assistant_first_but_scriptable",
+      "requires_human_confirmation": true,
+      "org_graph": {
+        "org_role": "specialist_with_workflow_surface",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "review",
+          "routing"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a both capability with route profile None."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "engos-orchestration-batman",
+      "display_name": "Batman \u2014 Evidence-Gated Delivery Controller",
+      "capability_type": "both",
+      "summary": "Run the explicitly requested, evidence-gated delivery protocol through independent subagents, TDD, blocking reviews, verification, documentation, Git health, and authorized landing. Use for implementation work that requires controller-owned sequencing and evidence.",
+      "role": "specialist_workflow",
+      "domain_tags": [
+        "engos",
+        "orchestration",
+        "batman"
+      ],
+      "required_inputs": [
+        "the explicit work item and its success criteria",
+        "the target repository or working context",
+        "applicable repository instructions and authorization boundaries",
+        "the base branch or revision and intended landing target",
+        "known safety, live-write, deployment, or release constraints"
+      ],
+      "expected_outputs": [
+        "work-item identity, repository identity, base revision, branch, and worktree",
+        "Host-Fit Plan and the verified inventory revision used to produce it",
+        "size classification and selected stage set",
+        "written specification, delivery plan, implementation plan, and ordered tasks",
+        "decision record with rejected alternatives and reasons",
+        "task briefs, subagent reports, milestone review decisions, and classified findings",
+        "observed TDD red evidence and mutation-check evidence for implemented behavior",
+        "validation and verification evidence, including independent reconciliation when required",
+        "documentation review and Git health result",
+        "PR or MR, CI, merge, and mainline verification receipts when landing is authorized",
+        "separate tag, package release, deployment, and installation states and receipts: report each as actual, skipped, or refused with its reason",
+        "cleanup receipt after every required durable delivery receipt exists",
+        "progress reports, explicit blockers, parked work authorized by the human, and remaining uncertainty"
       ],
       "tool_policy": {
         "allowed": [
@@ -2503,6 +1964,506 @@
       "relationship_suggestions": [
         "prefer explicit review or analyst companions before high-authority use"
       ],
+      "quality_status": "structural_ready",
+      "benchmark_profile": "default",
+      "preferred_use_cases": [
+        "AI-assisted capability selection",
+        "deterministic prompt uplift review"
+      ],
+      "artifact_conventions": [
+        "ssot/<slug>.md",
+        ".meta/capabilities/<slug>.json",
+        "reports/quality-reviews/<slug>/LATEST.md"
+      ],
+      "invocation_style": "assistant_first_but_scriptable",
+      "requires_human_confirmation": true,
+      "org_graph": {
+        "org_role": "specialist_with_workflow_surface",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "review",
+          "routing"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a both capability with route profile None."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "engos-quality-code-review",
+      "display_name": "Commit Review \u2014 Git Commit Quality Gate",
+      "capability_type": "skill",
+      "summary": "Review a staged change, diff, commit, or branch for correctness, scope, simplicity, lifecycle risk, and merge readiness before commit, push, merge, or release. Use for judgment; do not use to apply reviewer feedback.",
+      "role": "analyst",
+      "domain_tags": [
+        "review",
+        "engos",
+        "quality",
+        "code"
+      ],
+      "required_inputs": [
+        "commit hash, staged diff, working-tree diff, branch diff, or the default target of `HEAD`",
+        "repository context when the commit depends on surrounding conventions",
+        "any specific review focus such as scope, message quality, or simplicity"
+      ],
+      "expected_outputs": [
+        "`Commit Under Review`",
+        "`Findings`",
+        "`Scope Assessment`",
+        "`Message Assessment`",
+        "`Recommended Fixes`",
+        "`Merge Readiness`"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ]
+      },
+      "confidence": 0.97,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [],
+      "quality_status": null,
+      "benchmark_profile": null,
+      "preferred_use_cases": [
+        "pre-merge commit review",
+        "scope creep detection",
+        "over-engineering checks"
+      ],
+      "artifact_conventions": [
+        "reports/code-reviews/<timestamp>-<commit>.md"
+      ],
+      "invocation_style": "git_commit_review",
+      "requires_human_confirmation": false,
+      "org_graph": {
+        "org_role": "analyst",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "review",
+          "debugging"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "engos-quality-docs-review",
+      "display_name": "Docs Review Expert \u2014 Documentation IA, Drift, and Release Hygiene",
+      "capability_type": "both",
+      "summary": "Review repository documentation for information architecture, stale commands, broken links, misplaced content, drift, and release hygiene. Use when docs quality or discoverability is the primary concern; do not use for ordinary sentence editing.",
+      "role": "analyst",
+      "domain_tags": [
+        "architecture",
+        "review",
+        "engos",
+        "quality",
+        "docs"
+      ],
+      "required_inputs": [
+        "current README and docs structure",
+        "the intended reader or audience when known",
+        "relevant code, scripts, workflows, or release behavior when drift is suspected",
+        "the change scope when reviewing a commit, pull request, merge, or release"
+      ],
+      "expected_outputs": [
+        "`Current State`",
+        "`What Belongs Where`",
+        "`Drift Findings`",
+        "`Recommended Changes`",
+        "`Examples of Good Output`",
+        "`Review Timing`",
+        "`Open Risks`",
+        "exact target paths",
+        "section-level rewrite guidance",
+        "link or navigation updates that must be changed"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill",
+          "codex_agent"
+        ],
+        "gemini": [
+          "gemini_skill",
+          "gemini_agent"
+        ],
+        "claude": [
+          "claude_skill",
+          "claude_agent"
+        ],
+        "kiro": [
+          "kiro_skill",
+          "kiro_agent"
+        ]
+      },
+      "confidence": 0.96,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [
+        "pair with review and analysis capabilities when converging design proposals"
+      ],
+      "quality_status": null,
+      "benchmark_profile": null,
+      "preferred_use_cases": [
+        "docs information architecture review",
+        "README and docs placement decisions",
+        "release-facing documentation drift detection",
+        "commit, PR, merge, and release docs hygiene"
+      ],
+      "artifact_conventions": [
+        "reports/docs-review/<timestamp>-assessment.md",
+        "reports/docs-review/<timestamp>-rewrite-examples.md",
+        "reports/docs-review/<timestamp>-review-checklist.md"
+      ],
+      "invocation_style": "review_or_artifact_oriented",
+      "requires_human_confirmation": false,
+      "org_graph": {
+        "org_role": "advisor",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "engos-design-architecture",
+          "review"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "engos-quality-gitops-review",
+      "display_name": "GitOps Review \u2014 Repo Hygiene, CI, Release, and Merge Gate",
+      "capability_type": "both",
+      "summary": "Assess repository hygiene, commit and pull request or merge request readiness, CI, packaging, merge, tag, and release prerequisites across GitHub and GitLab. Use for release or merge gates; do not claim hosted state without current verification.",
+      "role": "analyst",
+      "domain_tags": [
+        "review",
+        "engos",
+        "quality",
+        "gitops"
+      ],
+      "required_inputs": [
+        "current branch and worktree state",
+        "target gate: commit, PR, merge, release, or cleanup",
+        "remote context when GitHub or GitLab parity matters",
+        "explicit execution permission when mutating git or release state"
+      ],
+      "expected_outputs": [
+        "`Current State`",
+        "`Gate Type`",
+        "`Findings`",
+        "`Required Companion Reviews`",
+        "`Recommended Commands or Actions`",
+        "`Release / Merge Readiness`",
+        "`Open Risks`",
+        "exact commands run",
+        "exact branch, tag, PR, or MR identifiers",
+        "final state after execution"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill",
+          "codex_agent"
+        ],
+        "gemini": [
+          "gemini_skill",
+          "gemini_agent"
+        ],
+        "claude": [
+          "claude_skill",
+          "claude_agent"
+        ],
+        "kiro": [
+          "kiro_skill",
+          "kiro_agent"
+        ]
+      },
+      "confidence": 0.96,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [
+        "prefer explicit review or analyst companions before high-authority use",
+        "pair with review and analysis capabilities when converging design proposals"
+      ],
+      "quality_status": null,
+      "benchmark_profile": null,
+      "preferred_use_cases": [
+        "repo hygiene review",
+        "commit and PR readiness checks",
+        "CI and release gate review",
+        "merge, tag, package, and release flow checks"
+      ],
+      "artifact_conventions": [
+        "reports/engos-quality-gitops-review/<timestamp>-assessment.md",
+        "reports/engos-quality-gitops-review/<timestamp>-release-gate.md",
+        "reports/engos-quality-gitops-review/<timestamp>-pr-checklist.md"
+      ],
+      "invocation_style": "review_or_execution_assist",
+      "requires_human_confirmation": true,
+      "org_graph": {
+        "org_role": "specialist_with_workflow_surface",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "engos-design-architecture",
+          "review"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "engos-quality-testing-review",
+      "display_name": "Testing Studio \u2014 Test Design and Coverage Analysis",
+      "capability_type": "skill",
+      "summary": "Design or generate tests, edge cases, and coverage-gap analysis for a defined behavior without claiming tests were run. Use when test design is the primary deliverable; use GitOps review for release readiness.",
+      "role": "analyst",
+      "domain_tags": [
+        "review",
+        "engos",
+        "quality",
+        "testing"
+      ],
+      "required_inputs": [
+        "source code, feature description, or failing scenario",
+        "repository testing stack when known",
+        "risk areas or priority workflows",
+        "existing tests or coverage report when available"
+      ],
+      "expected_outputs": [
+        "`Scope`",
+        "`Assumptions`",
+        "`Recommended Tests or Gaps`",
+        "`Priority or Risk`",
+        "`Framework Notes`",
+        "`Follow-up Work`"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "global",
+        "confidence": 1.0,
+        "confirmation_required_for_apply": true,
+        "rationale": "SSOT frontmatter explicitly declares global installation.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ]
+      },
+      "confidence": 0.97,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [],
+      "quality_status": null,
+      "benchmark_profile": null,
+      "preferred_use_cases": [
+        "unit test design",
+        "end-to-end test design",
+        "edge-case discovery",
+        "coverage gap analysis"
+      ],
+      "artifact_conventions": [
+        "reports/engos-quality-testing-review/<timestamp>-plan.md",
+        "reports/engos-quality-testing-review/<timestamp>-coverage-gap.md",
+        "reports/engos-quality-testing-review/<timestamp>-edge-cases.md"
+      ],
+      "invocation_style": "analysis_or_generation",
+      "requires_human_confirmation": false,
+      "org_graph": {
+        "org_role": "advisor",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "analysis",
+          "planning"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "engos-reconciliation-converge",
+      "display_name": "Converge \u2014 Multi-Source Synthesis, Conflict Surfacing, and Final Recommendation",
+      "capability_type": "both",
+      "summary": "Compare multiple sources, drafts, or proposals, surface conflicts and gaps, and produce one defensible recommendation with explicit trade-offs. Use when competing inputs must converge; do not hide incompatible ideas in a blended summary.",
+      "role": "specialist_workflow",
+      "domain_tags": [
+        "packaging",
+        "engos",
+        "reconciliation",
+        "converge"
+      ],
+      "required_inputs": [
+        "a short intent statement",
+        "the source set to compare",
+        "decision criteria and weights when known",
+        "explicit constraints, audience, or success metrics when available"
+      ],
+      "expected_outputs": [
+        "`Executive Summary`",
+        "`Overlap Map`",
+        "`Decision Analysis`",
+        "`Final Converged Proposal`",
+        "`Decision Rationale`",
+        "`Muted / Rejected Ideas`",
+        "`Risks + Next Experiments`",
+        "`Open Questions` when user steering is still required"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill",
+          "codex_agent"
+        ],
+        "gemini": [
+          "gemini_skill",
+          "gemini_agent"
+        ],
+        "claude": [
+          "claude_skill",
+          "claude_agent"
+        ],
+        "kiro": [
+          "kiro_skill",
+          "kiro_agent"
+        ]
+      },
+      "confidence": 0.98,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [
+        "prefer explicit review or analyst companions before high-authority use",
+        "pair with review and analysis capabilities when converging design proposals"
+      ],
       "quality_status": null,
       "benchmark_profile": null,
       "preferred_use_cases": [],
@@ -2514,11 +2475,109 @@
         "reports_to_suggestions": [],
         "delegates_to_suggestions": [],
         "collaborates_with_suggestions": [
-          "review",
-          "analysis"
+          "engos-design-architecture",
+          "review"
         ],
         "authority_tier": "advisory",
         "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "engos-triage-my-inbox-chat-pulse",
+      "display_name": "Pulse \u2014 Comms Triage",
+      "capability_type": "both",
+      "summary": "Triage Gmail and Google Chat into a deterministic attention queue with priority, links, and approved follow-up actions. Use when deciding what communications need attention; triage is read-only and actions require explicit approval.",
+      "role": "specialist_workflow",
+      "domain_tags": [
+        "engos",
+        "triage",
+        "inbox",
+        "chat",
+        "pulse"
+      ],
+      "required_inputs": [
+        "`gws` CLI authenticated (`gws auth status` must pass)",
+        "Configured chat spaces (auto-discovered on first run or manually configured)"
+      ],
+      "expected_outputs": [
+        "Timestamp header",
+        "Priority-classified table with: #, Addr, From, Subject (clickable link), Age, Action",
+        "Source summary footer (Gmail count, Chat spaces/msgs, memory signal count)",
+        "Proposed action list for \ud83d\udd34 and \ud83d\udfe1 items"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill",
+          "codex_agent"
+        ],
+        "gemini": [
+          "gemini_skill",
+          "gemini_agent"
+        ],
+        "claude": [
+          "claude_skill",
+          "claude_agent"
+        ],
+        "kiro": [
+          "kiro_skill",
+          "kiro_agent"
+        ]
+      },
+      "confidence": 0.9,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [
+        "engos-meta-uac-import"
+      ],
+      "relationship_suggestions": [
+        "pair with convergence capability for multi-source synthesis"
+      ],
+      "quality_status": "structural_ready",
+      "benchmark_profile": "default",
+      "preferred_use_cases": [
+        "AI-assisted capability selection",
+        "deterministic prompt uplift review"
+      ],
+      "artifact_conventions": [
+        "ssot/<slug>.md",
+        ".meta/capabilities/<slug>.json",
+        "reports/quality-reviews/<slug>/LATEST.md"
+      ],
+      "invocation_style": "assistant_first_but_scriptable",
+      "requires_human_confirmation": true,
+      "org_graph": {
+        "org_role": "importer",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "packaging",
+          "context"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile None."
       },
       "advisory_only": true
     }

@@ -1,0 +1,249 @@
+{
+  "slug": "engos-meta-uac-import",
+  "manifest_version": "capability-fabric.v0",
+  "layers": {
+    "minimal": {
+      "capability_type": "skill",
+      "summary": "Inspect an external prompt-like source, classify its fit, and prepare a quality-gated Core-Prompts plan, judge, or apply result. Use for capability intake; do not use for ordinary prompt editing or deployment.",
+      "role": "importer",
+      "domain_tags": [
+        "import",
+        "planning",
+        "prompting",
+        "engos",
+        "meta"
+      ],
+      "required_inputs": [
+        "one or more explicit sources",
+        "desired mode such as `plan`, `judge`, or `apply`",
+        "target system or install target when that materially affects the recommendation",
+        "any benchmark or quality expectations when the caller wants a stricter gate"
+      ],
+      "expected_outputs": [
+        "Source",
+        "Summary",
+        "Uplift",
+        "Routing",
+        "UAC Classification",
+        "Collection Recommendation",
+        "Layered Manifest",
+        "Cross-Analysis",
+        "Quality Plan / Judge Reports",
+        "Install Target",
+        "Advisory Handoff Contract",
+        "Recommended Surface",
+        "Modernization Focus",
+        "Next Actions",
+        "Behavioral Confidence",
+        "Escalation Reason",
+        "Auto-Research Handoff",
+        "Goal Contract and Capability Topology hashes when available",
+        "Eval Impact Plan and hard token cap",
+        "Structural Status (`structural_ready` is not `promote`)"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "resources": [
+        "ssot/engos-meta-uac-import.md"
+      ],
+      "packaging_profile": {
+        "capability_type": "skill",
+        "primary_surfaces": {
+          "codex": [
+            "codex_skill"
+          ],
+          "gemini": [
+            "gemini_skill"
+          ],
+          "claude": [
+            "claude_skill"
+          ],
+          "kiro": [
+            "kiro_skill"
+          ]
+        },
+        "wrapper_surfaces": {
+          "codex": [],
+          "gemini": [
+            "skill_wrapper"
+          ],
+          "claude": [
+            "skill_wrapper",
+            "plugin_wrapper"
+          ],
+          "kiro": [
+            "skill_wrapper",
+            "power_wrapper"
+          ]
+        },
+        "notes": [
+          "wrapper surfaces are additive deployment forms, not capability types",
+          "orchestrators must not infer execution authority from wrapper presence alone"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ]
+      },
+      "source_provenance": {
+        "source_type": "LOCAL_FILE",
+        "normalized_source": "ssot/engos-meta-uac-import.md",
+        "policy_rule_id": "ssot.engos-meta-uac-import",
+        "content_sha256": "ssot"
+      },
+      "confidence": 0.97,
+      "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+      "review_status": "ready_for_orchestrator_review",
+      "display_name": "UAC Import \u2014 Capability Intake, Quality Review, and Uplift"
+    },
+    "expanded": {
+      "relationship_suggestions": [],
+      "capability_dependencies": [
+        "context",
+        "packaging"
+      ],
+      "overlap_candidates": [],
+      "migration_notes": [
+        "If the capability lands, compare it against existing entries before apply.",
+        "Relationship suggestions are advisory only and do not imply runtime routing."
+      ],
+      "adjustment_recommendations": [
+        "add an explicit primary objective before packaging",
+        "add deterministic in-scope sections to improve routing fitness",
+        "capture quality constraints or non-negotiables"
+      ]
+    },
+    "org_graph": {
+      "org_role": "analyst",
+      "reports_to_suggestions": [],
+      "delegates_to_suggestions": [],
+      "collaborates_with_suggestions": [
+        "review",
+        "packaging"
+      ],
+      "authority_tier": "advisory",
+      "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+    }
+  },
+  "display_name": "UAC Import \u2014 Capability Intake, Quality Review, and Uplift",
+  "declared_capability": "skill",
+  "inferred_capability": "skill",
+  "expected_surface_names": [
+    "codex_skill",
+    "gemini_skill",
+    "claude_skill",
+    "kiro_skill"
+  ],
+  "rubric_version": "capability-fabric.v0",
+  "invocation_hints": [
+    "import a prompt, prompt pack, or capability into this repo",
+    "classify whether this source should become a skill, agent, or manual review",
+    "explain how this external source would land into SSOT and descriptors",
+    "judge whether a candidate is ready to apply",
+    "tell me whether this import needs stronger behavioral proof before landing"
+  ],
+  "descriptor_version": "capability-fabric.descriptor.v0",
+  "family_slug": "engos-meta-uac-import",
+  "shared_summary": "Import external prompt, skill, or agent sources into the deterministic UAC uplift and packaging flow.",
+  "shared_constraints": [
+    "No hidden execution.",
+    "No packaging claims without evidence.",
+    "No deployment during `apply`.",
+    "For local folders or GitHub repos, inventory the files first and justify whether they belong under one roof."
+  ],
+  "modes": [],
+  "benchmark_sources": [],
+  "consumption_hints": {
+    "preferred_use_cases": [
+      "external prompt import",
+      "multi-source capability convergence",
+      "descriptor and handoff generation"
+    ],
+    "artifact_conventions": [
+      "ssot/<slug>.md",
+      ".meta/capabilities/<slug>.json",
+      "reports/quality-reviews/<slug>/LATEST.md"
+    ],
+    "invocation_style": "assistant_first_but_scriptable",
+    "requires_human_confirmation": true
+  },
+  "historical_baseline": {
+    "slug": "engos-meta-uac-import",
+    "strategy": "head_snapshot",
+    "group": "current_oracle",
+    "baseline_path": "sources/ssot-baselines/engos-meta-uac-import/baseline.md",
+    "selected_commit": "4bb1f7e5",
+    "richness_score": 2,
+    "line_count": 145,
+    "reason": "Current SSOT baseline source snapshot materialized into the source library because no stronger curated pre-SSOT baseline has been recorded yet.",
+    "equivalent_commits": [],
+    "expected_companions": [],
+    "operator_invariants": [],
+    "scenario_matrix": [],
+    "historical_proof": {
+      "current_head_commit": "4bb1f7e5",
+      "current_head_richness_score": 2,
+      "current_head_line_count": 145,
+      "materialized_from_commit": "4bb1f7e5"
+    },
+    "source": "source_library",
+    "verified_by_git_history": true,
+    "has_baseline_text": true
+  },
+  "quality_validation_matrix": [
+    {
+      "id": "operational_invocation",
+      "kind": "operational_contract",
+      "label": "operational invocation surface",
+      "must_contain": [
+        "## Invocation"
+      ]
+    }
+  ],
+  "job_contract": {
+    "primary_job": "Inspect an external prompt-like source and decide how, or whether, it should enter Core-Prompts.",
+    "use_when": "A prompt, skill, agent file, config, or URL is being considered for import or uplift.",
+    "works_on": "External source material, source provenance, capability classification, metadata, and landing plans.",
+    "main_output": "A source-fidelity assessment, structural uplift plan, metadata handoff, and safe apply decision.",
+    "not_for": "Claiming behavioral superiority or editing arbitrary prose with no import intent.",
+    "authority": "Structural intake only; behavioral promotion belongs to independent evaluation.",
+    "routing_question": "Are we importing a capability, editing instructions, or proving behavior?",
+    "nearest_neighbors": [
+      "engos-meta-instruction-editor",
+      "engos-optimization-auto-research"
+    ],
+    "shape": "meta_workflow",
+    "portfolio_action": "keep_and_improve_process"
+  }
+}

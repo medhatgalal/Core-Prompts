@@ -24,12 +24,12 @@ from .topology import compile_topology
 
 
 PILOT_SKILLS = (
-    "supercharge",
-    "code-review",
-    "feature-status",
-    "eng-report",
-    "codebase-health-audit",
-    "uac-import",
+    "engos-meta-supercharge",
+    "engos-quality-code-review",
+    "engos-audit-feature-status",
+    "engos-audit-engineering-progress",
+    "engos-audit-code-health",
+    "engos-meta-uac-import",
 )
 
 SKILL_OUTCOMES = {

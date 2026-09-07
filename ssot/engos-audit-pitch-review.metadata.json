@@ -1,0 +1,19 @@
+{
+  "name": "engos-audit-pitch-review",
+  "display_name": "Pitch — Shape Up Pitch Creation, Review, Scoring, and Improvement",
+  "version": "1.2.0",
+  "description": "Create, review, score, improve, or export Shape Up pitches against appetite, problem framing, architecture, dependencies, integration proof, risks, and betting readiness. Use for pitch artifacts; do not use for feature status or general proposal synthesis.",
+  "kind": "agent",
+  "capability_type": "both",
+  "agent_tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob", "GWS"],
+  "triggers": [
+    "engos-audit-pitch-review create",
+    "engos-audit-pitch-review review",
+    "engos-audit-pitch-review score",
+    "engos-audit-pitch-review improve",
+    "engos-audit-pitch-review compare",
+    "engos-audit-pitch-review audit",
+    "engos-audit-pitch-review bootstrap",
+    "engos-audit-pitch-review integration-proof"
+  ]
+}

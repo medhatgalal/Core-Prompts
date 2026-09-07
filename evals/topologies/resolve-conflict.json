@@ -1,6 +1,6 @@
 {
   "schema_version": "CapabilityTopology.v1",
-  "slug": "resolve-conflict",
+  "slug": "engos-delivery-resolve-conflict",
   "ssot_sha256": "6141dcd4736ea4c174d64cc02a2c3e0bd902c4bff4f4d5acfc9e907742962b2d",
   "explicit_invocations": [],
   "semantic_triggers": [],
@@ -42,7 +42,7 @@
   "resources": [],
   "handoffs": [
     "## Companion Capability Matrix",
-    "- escalation: if the conflict is really an architecture, policy, or release decision, surface it and route to `architecture` or `gitops-review` instead of burying it in the merge",
+    "- escalation: if the conflict is really an architecture, policy, or release decision, surface it and route to `engos-design-architecture` or `engos-quality-gitops-review` instead of burying it in the merge",
     "| Situation | Companion Capability | Why |"
   ],
   "protected_invariants": [
@@ -60,7 +60,7 @@
       "heading": "Companion Capability Matrix",
       "source_line": 35,
       "sha256": "c7acd9ab21041586f13fed87fbfeb119cbb372660bfb4c53481a5944942259f2",
-      "text": "| behavior changed and the merged result needs stronger coverage | `testing` | verification should include test recommendations, not only conflict cleanup |",
+      "text": "| behavior changed and the merged result needs stronger coverage | `engos-quality-testing-review` | verification should include test recommendations, not only conflict cleanup |",
       "kind": "invariant",
       "mapped_to": []
     },
@@ -153,7 +153,7 @@
   },
   "source_references": [
     {
-      "path": "ssot/resolve-conflict.md",
+      "path": "ssot/engos-delivery-resolve-conflict.md",
       "sha256": "6141dcd4736ea4c174d64cc02a2c3e0bd902c4bff4f4d5acfc9e907742962b2d"
     }
   ],

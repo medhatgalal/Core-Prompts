@@ -98,14 +98,14 @@ def _plan(tmp_path: Path, *, profile: str = "canary", adapter_id: str = "fake") 
         "schema_version": "EvalRunPlan.v1",
         "preregistration_status": "locked",
         "run_id": "batman-canary-001",
-        "slug": "batman",
+        "slug": "engos-orchestration-batman",
         "profile": profile,
         "baseline_revision": "base-rev",
         "candidate_revision": "candidate-rev",
         "baseline_sha256": artifact_hash(baseline),
         "candidate_sha256": artifact_hash(candidate),
-        "goal_contract_sha256": artifact_hash(ROOT / "evals" / "contracts" / "batman.json"),
-        "topology_sha256": artifact_hash(ROOT / "evals" / "topologies" / "batman.json"),
+        "goal_contract_sha256": artifact_hash(ROOT / "evals" / "contracts" / "engos-orchestration-batman.json"),
+        "topology_sha256": artifact_hash(ROOT / "evals" / "topologies" / "engos-orchestration-batman.json"),
         "evaluation_policy_sha256": artifact_hash(evidence_paths["evaluation-policy"]),
         "evaluation_policy_path": str(evidence_paths["evaluation-policy"]),
         "impact_plan_sha256": artifact_hash(evidence_paths["impact-plan"]),
@@ -298,12 +298,12 @@ def test_run_plan_rejects_unlocked_or_unresolved_bindings(tmp_path: Path) -> Non
 def test_static_compare_accepts_explicit_baseline_without_run_plan(tmp_path: Path) -> None:
     baseline = tmp_path / "baseline.md"
     candidate = tmp_path / "candidate.md"
-    baseline.write_text("---\nname: batman\n---\nbase\n", encoding="utf-8")
-    candidate.write_text("---\nname: batman\n---\ncandidate\n", encoding="utf-8")
+    baseline.write_text("---\nname: engos-orchestration-batman\n---\nbase\n", encoding="utf-8")
+    candidate.write_text("---\nname: engos-orchestration-batman\n---\ncandidate\n", encoding="utf-8")
 
     result = compare(
         ROOT,
-        "batman",
+        "engos-orchestration-batman",
         candidate,
         "static",
         allow_model_calls=False,
@@ -319,12 +319,12 @@ def test_static_compare_accepts_explicit_baseline_without_run_plan(tmp_path: Pat
 
 def test_model_profile_requires_permission_and_plan_before_adapter_lookup(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     candidate = tmp_path / "candidate.md"
-    candidate.write_text((ROOT / "ssot" / "batman.md").read_text(encoding="utf-8"), encoding="utf-8")
+    candidate.write_text((ROOT / "ssot" / "engos-orchestration-batman.md").read_text(encoding="utf-8"), encoding="utf-8")
     calls: list[object] = []
     monkeypatch.setattr("core_prompts_eval.evaluator.run_model_comparison", lambda *args, **kwargs: calls.append(args))
 
-    denied = compare(ROOT, "batman", candidate, "promotion", allow_model_calls=False, max_tokens=None)
-    missing = compare(ROOT, "batman", candidate, "promotion", allow_model_calls=True, max_tokens=None)
+    denied = compare(ROOT, "engos-orchestration-batman", candidate, "promotion", allow_model_calls=False, max_tokens=None)
+    missing = compare(ROOT, "engos-orchestration-batman", candidate, "promotion", allow_model_calls=True, max_tokens=None)
 
     assert denied["reason"] == "model-mediated profile requires explicit --allow-model-calls"
     assert missing["reason"] == "model-mediated profile requires a validated preregistered --run-plan"
@@ -344,7 +344,7 @@ def test_all_preflight_failures_happen_before_adapter_invocation(tmp_path: Path,
 
     result = compare(
         ROOT,
-        "batman",
+        "engos-orchestration-batman",
         candidate,
         "canary",
         allow_model_calls=True,
@@ -369,7 +369,7 @@ def test_fake_adapter_is_ineligible_for_promotion_and_is_not_invoked(tmp_path: P
 
     result = compare(
         ROOT,
-        "batman",
+        "engos-orchestration-batman",
         candidate,
         "promotion",
         allow_model_calls=True,
@@ -400,7 +400,7 @@ def test_promotion_conformance_binding_fails_closed_before_invocation(
 
     result = compare(
         ROOT,
-        "batman",
+        "engos-orchestration-batman",
         tmp_path / "candidate.md",
         "promotion",
         allow_model_calls=True,
@@ -438,7 +438,7 @@ def test_signed_matching_conformance_overrides_registry_execution_block_only(
     monkeypatch.setattr("core_prompts_eval.runner.execute_adapter", fake_execute)
     result = compare(
         ROOT,
-        "batman",
+        "engos-orchestration-batman",
         tmp_path / "candidate.md",
         "promotion",
         allow_model_calls=True,
@@ -493,7 +493,7 @@ def test_codex_and_kiro_cells_fail_before_dispatch_without_approved_gateways(
     monkeypatch.setattr("core_prompts_eval.runner.execute_adapter", fake_execute)
     result = compare(
         ROOT,
-        "batman",
+        "engos-orchestration-batman",
         tmp_path / "candidate.md",
         "promotion",
         allow_model_calls=True,
@@ -518,7 +518,7 @@ def test_missing_protected_codex_credential_blocks_all_cells_before_invocation(
 
     result = compare(
         ROOT,
-        "batman",
+        "engos-orchestration-batman",
         tmp_path / "candidate.md",
         "promotion",
         allow_model_calls=True,
@@ -544,7 +544,7 @@ def test_adapter_must_enforce_preregistered_tool_policy_before_invocation(
 
     result = compare(
         ROOT,
-        "batman",
+        "engos-orchestration-batman",
         tmp_path / "candidate.md",
         "canary",
         allow_model_calls=True,
@@ -570,7 +570,7 @@ def test_stale_provider_cli_binary_hash_blocks_before_adapter_invocation(
 
     result = compare(
         ROOT,
-        "batman",
+        "engos-orchestration-batman",
         tmp_path / "candidate.md",
         "canary",
         allow_model_calls=True,
@@ -600,7 +600,7 @@ def test_provider_cli_binary_replacement_after_preflight_prevents_call(
 
     result = compare(
         ROOT,
-        "batman",
+        "engos-orchestration-batman",
         tmp_path / "candidate.md",
         "canary",
         allow_model_calls=True,
@@ -632,7 +632,7 @@ def test_runner_passes_preregistered_effort_to_adapter(tmp_path: Path, monkeypat
     monkeypatch.setattr("core_prompts_eval.runner.execute_adapter", fake_execute)
     result = compare(
         ROOT,
-        "batman",
+        "engos-orchestration-batman",
         tmp_path / "candidate.md",
         "canary",
         allow_model_calls=True,
@@ -660,7 +660,7 @@ def test_sealed_dataset_symlink_is_rejected_before_invocation(tmp_path: Path, mo
 
     result = compare(
         ROOT,
-        "batman",
+        "engos-orchestration-batman",
         tmp_path / "candidate.md",
         "canary",
         allow_model_calls=True,
@@ -683,7 +683,7 @@ def test_fake_adapter_executes_deterministic_paired_trials_and_writes_atomic_cha
 
     result = compare(
         ROOT,
-        "batman",
+        "engos-orchestration-batman",
         candidate,
         "canary",
         allow_model_calls=True,

@@ -1,6 +1,6 @@
 {
   "schema_version": "CapabilityTopology.v1",
-  "slug": "architecture",
+  "slug": "engos-design-architecture",
   "ssot_sha256": "af7bd2f6876f877f8b602f67666a14cbbdc6e12cbc95aea11e647b06c670132b",
   "explicit_invocations": [],
   "semantic_triggers": [],
@@ -66,7 +66,7 @@
     "- resource or aggregate model"
   ],
   "handoffs": [
-    "- companion route: if the work is actually prompt or plan hardening, route to `supercharge`; if it is import classification, route to `uac-import`; if it needs durable multi-file analysis memory, route to `analyze-context`"
+    "- companion route: if the work is actually prompt or plan hardening, route to `engos-meta-supercharge`; if it is import classification, route to `engos-meta-uac-import`; if it needs durable multi-file analysis memory, route to `engos-memory-context-continuity`"
   ],
   "protected_invariants": [
     {
@@ -347,7 +347,7 @@
   },
   "source_references": [
     {
-      "path": "ssot/architecture.md",
+      "path": "ssot/engos-design-architecture.md",
       "sha256": "af7bd2f6876f877f8b602f67666a14cbbdc6e12cbc95aea11e647b06c670132b"
     }
   ],

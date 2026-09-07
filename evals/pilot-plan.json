@@ -6,7 +6,9 @@
   "experiments": [
     {
       "id": "supercharge-module-preservation",
-      "skills": ["supercharge"],
+      "skills": [
+        "engos-meta-supercharge"
+      ],
       "question": "Does a change preserve explicit modules, stack order, terminal controls, invalid combinations, and state behavior?",
       "static_fixture": "evals/fixtures/supercharge/module-preservation.json",
       "behavioral_profile_after_calibration": "canary",
@@ -14,7 +16,9 @@
     },
     {
       "id": "code-review-seeded-defect",
-      "skills": ["code-review"],
+      "skills": [
+        "engos-quality-code-review"
+      ],
       "question": "Does Code Review find a concrete seeded defect with correct severity, file evidence, and low noise?",
       "static_fixture": "evals/fixtures/code-review/seeded-defects.json",
       "behavioral_profile_after_calibration": "canary",
@@ -22,7 +26,11 @@
     },
     {
       "id": "product-repo-code-routing",
-      "skills": ["feature-status", "eng-report", "codebase-health-audit"],
+      "skills": [
+        "engos-audit-feature-status",
+        "engos-audit-engineering-progress",
+        "engos-audit-code-health"
+      ],
       "question": "Can the runtime distinguish product completeness, repository activity reporting, and structural code health?",
       "static_fixture": "evals/fixtures/routing/product-repo-code.jsonl",
       "behavioral_profile_after_calibration": "routing-canary",
@@ -30,7 +38,9 @@
     },
     {
       "id": "uac-import-metadata-safety",
-      "skills": ["uac-import"],
+      "skills": [
+        "engos-meta-uac-import"
+      ],
       "question": "Does UAC preserve agent-useful metadata and reject unsafe HTML ingestion without claiming behavioral proof?",
       "static_fixture": "evals/fixtures/uac-import/metadata-preservation.json",
       "behavioral_profile_after_calibration": "canary",
@@ -38,7 +48,12 @@
     }
   ],
   "deferred": {
-    "skills": ["architecture", "instruction-editor", "pulse", "weekly-intel"],
+    "skills": [
+      "engos-design-architecture",
+      "engos-meta-instruction-editor",
+      "engos-triage-my-inbox-chat-pulse",
+      "engos-audit-weekly-intel"
+    ],
     "reason": "Useful public cases remain available, but these skills are outside the first paid pilot until the four selected experiments validate the runner and evaluator."
   }
 }

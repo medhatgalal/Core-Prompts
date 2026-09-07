@@ -1,6 +1,6 @@
 {
   "schema_version": "GoalContract.v1",
-  "slug": "testing",
+  "slug": "engos-quality-testing-review",
   "target": "Fulfill the canonical intent of testing.",
   "intended_outcome": "Preserve the canonical SSOT objective and required output.",
   "change_class": "unknown",
@@ -48,47 +48,47 @@
   "source_clause_hashes": [
     {
       "sha256": "a13a67440b6c5a06a087f285cc990291a8adde279824082aa071ed0422bc009c",
-      "source": "ssot/testing.md",
+      "source": "ssot/engos-quality-testing-review.md",
       "text": "- forbidden: silently executing tests, inventing framework choices that contradict the repo, or claiming coverage numbers without evidence"
     },
     {
       "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
-      "source": "ssot/testing.md",
+      "source": "ssot/engos-quality-testing-review.md",
       "text": "## Required Inputs"
     },
     {
       "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
-      "source": "ssot/testing.md",
+      "source": "ssot/engos-quality-testing-review.md",
       "text": "## Required Output"
     },
     {
       "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
-      "source": "ssot/testing.md",
+      "source": "ssot/engos-quality-testing-review.md",
       "text": "Every substantial response must include:"
     },
     {
       "sha256": "4fdce19e68b0a2453e14c85026f2d9ed6179af4a17ffc0a48830cedb52fcd93a",
-      "source": "ssot/testing.md",
+      "source": "ssot/engos-quality-testing-review.md",
       "text": "- Include failure cases and boundary cases, not only happy path."
     },
     {
       "sha256": "b7a8e70ba8ee249b10c13fd4798a88c5eb6770f0b12fd6c2f75fd49533790f13",
-      "source": "ssot/testing.md",
+      "source": "ssot/engos-quality-testing-review.md",
       "text": "- mocks or fixtures only where needed"
     },
     {
       "sha256": "efc7137353f02e587b1b56a35f88ea5711adbf9a34348ce88e293222c300cfd8",
-      "source": "ssot/testing.md",
+      "source": "ssot/engos-quality-testing-review.md",
       "text": "- Do not execute tests automatically."
     },
     {
       "sha256": "c541168a6a146b24f47259f557c38d55d4ead0716e9257689600034b01f0bd79",
-      "source": "ssot/testing.md",
+      "source": "ssot/engos-quality-testing-review.md",
       "text": "- Do not replace project-specific framework decisions when the repository already has a clear testing stack."
     },
     {
       "sha256": "aa421c4141e96d7644768b36e6786d2b9fcffc6ea7c100704a3d67f38eeb91b3",
-      "source": "ssot/testing.md",
+      "source": "ssot/engos-quality-testing-review.md",
       "text": "- Do not claim coverage metrics without a coverage artifact or direct evidence."
     }
   ],

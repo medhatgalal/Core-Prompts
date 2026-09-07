@@ -135,7 +135,7 @@ def _is_absent_or_machine_disabled(path: Path) -> bool:
 
 class BatmanCompanionPortabilityTests(unittest.TestCase):
     def test_companion_names_resolve_as_capabilities_not_assumed_agent_slugs(self) -> None:
-        text = _read("ssot/batman.md")
+        text = _read("ssot/engos-orchestration-batman.md")
 
         self.assertIn("Companion names are capability identities, not guaranteed agent registrations.", text)
         registered = text.index("usable registered agent for that capability")
@@ -146,14 +146,14 @@ class BatmanCompanionPortabilityTests(unittest.TestCase):
         self.assertIn("apply the installed skill with the same capability name", text)
 
         for ambiguous_dispatch in (
-            r"fresh `code-review` subagent",
-            r"Dispatch `code-review`",
-            r"fresh `docs-review-expert`",
+            r"fresh `engos-quality-code-review` subagent",
+            r"Dispatch `engos-quality-code-review`",
+            r"fresh `engos-quality-docs-review`",
         ):
             self.assertIsNone(re.search(ambiguous_dispatch, text))
 
     def test_companion_resolution_is_authority_neutral_and_fail_closed(self) -> None:
-        text = _read("ssot/batman.md")
+        text = _read("ssot/engos-orchestration-batman.md")
 
         self.assertIn(
             "Companion resolution grants no write, review, merge, deploy, cleanup, or other authority.",
@@ -163,7 +163,7 @@ class BatmanCompanionPortabilityTests(unittest.TestCase):
         self.assertIn("If neither surface is available, stop the dependent stage or gate", text)
 
     def test_abstract_seats_are_role_briefs_not_registry_slugs(self) -> None:
-        text = _read("ssot/batman.md")
+        text = _read("ssot/engos-orchestration-batman.md")
 
         self.assertIn(
             "Context researcher, challenger, designer, implementer, reviewer, attacker, adversarial "
@@ -171,13 +171,13 @@ class BatmanCompanionPortabilityTests(unittest.TestCase):
             text,
         )
         self.assertIn(
-            "fresh adversarial reviewer role brief applies `supercharge /adversarial` through the "
+            "fresh adversarial reviewer role brief applies `engos-meta-supercharge /adversarial` through the "
             "companion resolution rule",
             text,
         )
 
     def test_companion_call_sites_reference_one_resolution_rule_and_examples_remain_end_to_end(self) -> None:
-        text = _read("ssot/batman.md")
+        text = _read("ssot/engos-orchestration-batman.md")
         examples = _read("docs/EXAMPLES.md")
 
         self.assertNotIn("through companion resolution", text)
@@ -188,8 +188,8 @@ class BatmanCompanionPortabilityTests(unittest.TestCase):
         self.assertNotIn("review-only", portable_example)
 
     def test_maintenance_fixture_covers_resolution_freshness_authority_and_mutations(self) -> None:
-        fixture = _json("evals/maintenance/batman/companion-dispatch.json")
-        inventory = _json("evals/maintenance/batman/companion-dispatch-mutations.json")
+        fixture = _json("evals/maintenance/engos-orchestration-batman/companion-dispatch.json")
+        inventory = _json("evals/maintenance/engos-orchestration-batman/companion-dispatch-mutations.json")
 
         self.assertEqual(fixture["schema_version"], "BatmanCompanionDispatchMaintenance.v1")
         self.assertFalse(fixture["promotion_eligible"])
@@ -215,7 +215,7 @@ class BatmanCompanionPortabilityTests(unittest.TestCase):
 
         self.assertEqual(inventory["schema_version"], "BatmanCompanionDispatchMutations.v1")
         self.assertFalse(inventory["promotion_eligible"])
-        self.assertEqual(inventory["source_fixture"], "evals/maintenance/batman/companion-dispatch.json")
+        self.assertEqual(inventory["source_fixture"], "evals/maintenance/engos-orchestration-batman/companion-dispatch.json")
         self.assertEqual(
             {
                 "capability_assumed_agent",
@@ -259,14 +259,14 @@ class BatmanCompanionPortabilityTests(unittest.TestCase):
     def test_historical_archive_closed_world_rejects_an_unexpected_file(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             archive = Path(temp_dir) / "history"
-            expected = archive / "ssot/batman.md"
+            expected = archive / "ssot/engos-orchestration-batman.md"
             expected.parent.mkdir(parents=True)
             expected.write_text("frozen\n", encoding="utf-8")
             (archive / "manifest.json").write_text("{}\n", encoding="utf-8")
             (archive / "unexpected.txt").write_text("residue\n", encoding="utf-8")
 
             with self.assertRaisesRegex(AssertionError, r"unexpected\.txt"):
-                _assert_closed_world_archive(archive, {"manifest.json", "ssot/batman.md"})
+                _assert_closed_world_archive(archive, {"manifest.json", "ssot/engos-orchestration-batman.md"})
 
     def test_stale_active_promotion_artifacts_are_absent_or_machine_disabled(self) -> None:
         stale = [

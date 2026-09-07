@@ -5,10 +5,10 @@
 - Best use: family skeleton
 - Classification: architecture skill family
 - Limitation: weak deterministic objective/in-scope extraction in raw form
-- Result: imported and uplifted into `ssot/architecture.md`, but only after replacing the default scaffold with a stronger family-level SSOT entry
+- Result: imported and uplifted into `ssot/engos-design-architecture.md`, but only after replacing the default scaffold with a stronger family-level SSOT entry
 
 ## Alexanderdunlop ai-architecture-prompts
 - Source: `https://github.com/Alexanderdunlop/ai-architecture-prompts`
 - Best use: architecture quality benchmark and design input
 - Strength: black-box interfaces, replaceability, constant velocity, human cognitive load
-- Result: used as the benchmark for the shipped `architecture` family and for the Capability Fabric boundary design itself
+- Result: used as the benchmark for the shipped `engos-design-architecture` family and for the Capability Fabric boundary design itself

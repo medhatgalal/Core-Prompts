@@ -1,0 +1,18 @@
+{
+  "name": "engos-audit-engineering-progress",
+  "display_name": "Engineering Report — 2-Week Git Progress Dashboard",
+  "version": "2.0.0",
+  "description": "Generate a Git-derived engineering progress dashboard with deterministic velocity, churn, release timeline, contributor, and repository metrics. Use for progress reporting; do not use for Jira story points, feature completeness, or code-review or release approval.",
+  "kind": "agent",
+  "capability_type": "both",
+  "agent_tools": ["Read", "Write", "Edit", "Bash", "Grep", "Glob", "GWS"],
+  "triggers": [
+    "engos-audit-engineering-progress",
+    "engineering report",
+    "git report",
+    "progress report",
+    "velocity report",
+    "engos-audit-engineering-progress fleet",
+    "engos-audit-engineering-progress --configure"
+  ]
+}
