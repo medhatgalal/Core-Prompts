@@ -97,3 +97,7 @@ They are useful generated inspection aids. They should not replace the real onbo
 - use `engos-quality-docs-review` when the change is primarily about docs hierarchy, drift, and rewrite quality
 - use `engos-quality-gitops-review` when the change affects branch hygiene, CI, packaging, merge, or release readiness
 - use `engos-quality-testing-review`, `engos-quality-code-review`, and `engos-design-architecture` when the changed behavior crosses those boundaries
+
+## Archived OpEx source
+
+The original OpEx briefing source and metadata are retained as [archive-only history](../sources/retired/opex-briefing/README.md). The active capability is `engos-audit-opex-incident-review`; its optional `briefing` module carries the preserved meeting-preparation outcomes. The archive is not an installable skill or promotion baseline.
