@@ -253,6 +253,17 @@ Follow with:
 
 > Show me completed plan items, the current stage and gate, active subagents, evidence received, blockers, and the next action.
 
+### Supercharge help and full passes
+
+- `supercharge help` — return the bundled command guide and stop.
+- `supercharge /help examples` — return module/stack examples without executing them.
+- `supercharge /full <plan>` — run the five preserved passes, ending with exactly ten grading iterations; do not execute the final prompt.
+- `supercharge /full skip grade <plan>` — retain the first four passes and omit grading explicitly.
+- `supercharge /basis /full <plan>` — run the basis pass first, then all five full passes.
+- `supercharge /stop /full` — stop acknowledgement only; terminal stop takes precedence.
+
+The short conversational prefix routes within `engos-meta-supercharge`. Help is bundled with the skill and agent resources; no separate short-name skill or native menu alias is added.
+
 ### `engos-meta-supercharge /basis`
 
 Use when:

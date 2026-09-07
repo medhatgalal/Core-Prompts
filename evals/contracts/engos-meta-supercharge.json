@@ -37,10 +37,9 @@
     "dc0d10422bbcb7ace55e7bebe30260ff8accc6d62ecc8382e4e750428b871758",
     "1f2f66d251cf2341cfc491f9858cf5894c47d33e810a06a3d1c77e3e3284b4ce",
     "0f7011d4f63204ffbe768e8ca1563c9c913aaa43b10d7b02b88e54f85e37be3f",
-    "ac4d8076807b6bdc99836bc359eb459940cb228abc75f8cf7e3adeb963d55a19",
-    "0fad14a2faae5696b0d9be9756469418989058975d216d5c6b4d350c25dd5741",
-    "f22c32a7ac824db3bf31aed9188c53b4ba9e7018bc4c6cd224dd284c17766e47",
-    "d843560debc916a96d63e774ead3fa0c6f047e3c7a11ed7cb68d997455105226",
+    "82618388368668cd6c2f2d6ed65ce4f5561364bb3485e9f118cd3efe0415209d",
+    "f469c0e64db1ecbe42ec551022c1749699f97a8adf3107eca1e658d6aa0f2e25",
+    "bc6e78faf2d2f8a6f485af354eff43935a788e688825b2e17fdfd55c77156d0d",
     "ce6961476a4e9e7676627a9acb5877842d40c19a18379b1f773a23eb3ea2f40e",
     "a446d38b39cb00ab73d6438d66d7402e611f4858498552fc18efce0097aba3f0",
     "0fce815130135c0c5743295967f64cb29cc1fcc9282b19bcc6a22d6342ade716",
@@ -265,24 +264,19 @@
       "text": "- Do not run capstone after small replies."
     },
     {
-      "sha256": "ac4d8076807b6bdc99836bc359eb459940cb228abc75f8cf7e3adeb963d55a19",
+      "sha256": "82618388368668cd6c2f2d6ed65ce4f5561364bb3485e9f118cd3efe0415209d",
       "source": "ssot/engos-meta-supercharge.md",
-      "text": "- Explicit-only: `/gaslight`"
+      "text": "For a terminal help request, read `resources/references/help.md` and return its help content only. Do not execute its examples or continue into an operational module."
     },
     {
-      "sha256": "0fad14a2faae5696b0d9be9756469418989058975d216d5c6b4d350c25dd5741",
+      "sha256": "f469c0e64db1ecbe42ec551022c1749699f97a8adf3107eca1e658d6aa0f2e25",
       "source": "ssot/engos-meta-supercharge.md",
-      "text": "- `/gaslight <task>` -> explicit-only GASLIGHT 13 prompt hardening"
+      "text": "For a terminal help-examples request, read `resources/references/help-examples.md` and follow its exact example-generation and output contract. Do not execute the examples."
     },
     {
-      "sha256": "f22c32a7ac824db3bf31aed9188c53b4ba9e7018bc4c6cd224dd284c17766e47",
+      "sha256": "bc6e78faf2d2f8a6f485af354eff43935a788e688825b2e17fdfd55c77156d0d",
       "source": "ssot/engos-meta-supercharge.md",
-      "text": "- `engos-meta-supercharge /adversarial /debate /deep stress-test this investment thesis using only the provided data: <paste>`"
-    },
-    {
-      "sha256": "d843560debc916a96d63e774ead3fa0c6f047e3c7a11ed7cb68d997455105226",
-      "source": "ssot/engos-meta-supercharge.md",
-      "text": "Use this output when the user asks `engos-meta-supercharge /help examples`. Do not execute any examples."
+      "text": "For a skill surface, these paths are relative to the skill directory. For an agent surface, resolve `references/help.md` and `references/help-examples.md` relative to the directory containing its bundled `capability.json`. If a required help resource is unavailable, report the missing resource instead of inventing or silently shortening the help contract."
     },
     {
       "sha256": "ce6961476a4e9e7676627a9acb5877842d40c19a18379b1f773a23eb3ea2f40e",

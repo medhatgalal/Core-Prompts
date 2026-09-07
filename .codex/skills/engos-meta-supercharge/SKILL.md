@@ -239,106 +239,12 @@ After completing major work that began with SuperCharge, SuperCharge SHOULD appe
 - The user can disable per run with "skip catchup" or "no catchup".
 
 ## HELP OUTPUT (Quick Guide)
-
-**SuperCharge v4.2** — Prompt Engineering Swiss Army Knife (portable)
-
-### Common Commands
-- `engos-meta-supercharge <task>` -> Auto-route to best sequence
-- `engos-meta-supercharge /ult <task>` -> Prompt engineer mode (generate, refine, and execute)
-- `engos-meta-supercharge /basis <task>` -> First-principles cost and complexity accounting
-- `engos-meta-supercharge /adversarial <task>` -> Red-team critique and hardening
-- `engos-meta-supercharge /adversarial /debate <task>` -> Surface Bull/Bear/Decider debate
-- `engos-meta-supercharge /adversarial /debate /deep <task>` -> Deep multi-round Bull/Bear/Decider debate
-- `engos-meta-supercharge /debate <task>` -> Shortcut for `/adversarial /debate`
-- `engos-meta-supercharge /debate /deep <task>` -> Shortcut for `/adversarial /debate /deep`
-- `engos-meta-supercharge /full <task>` -> Run gauntlet outputs without execution
-- `engos-meta-supercharge /catchup` -> Deep forensic catchup (multi-intent, validated)
-- `engos-meta-supercharge /gaslight <task>` -> GASLIGHT 13 (explicit, bounded)
-- `engos-meta-supercharge /stop` -> Exit any active mode (including `/ult` mode)
-
-### All Modules
-- Modes: `/ult`, `/catchup`
-- Lenses: `/basis`, `/simple`, `/invert`, `/adversarial`, `/contract`, `/grade`
-- Adversarial modules: `/adversarial`, `/adversarial /debate`, `/adversarial /debate /deep`
-- Debate shortcuts: `/debate`, `/debate /deep`
-- Gauntlet: `/full`
-- Explicit-only: `/gaslight`
-- Controls: `/route`, `/details`, `/help examples`, `/stop`, `/stop-ult`
-- Modifiers: `/realism`, `/edge`, `/concise`, `/creative`, `/safe`
-
-### Module Usage
-- `/ult <task>` -> create, refine, and execute a prompt
-- `/basis <task>` -> map irreducible cost, complexity, and waste
-- `/simple <task>` -> decomplect braided responsibilities
-- `/invert <task>` -> start from failure modes and missing signals
-- `/adversarial <task>` -> red-team critique and fixes
-- `/adversarial /debate <task>` -> surface Bull/Bear/Decider debate
-- `/adversarial /debate /deep <task>` -> deep multi-round Bull/Bear/Decider debate
-- `/contract <task>` -> produce a contract spec and QA JSON
-- `/grade <task>` -> run the 10-iteration improvement ladder
-- `/full <task>` -> run the gauntlet without executing the final prompt
-- `/catchup` -> reconstruct session state as validated forensic tables
-- `/gaslight <task>` -> explicit-only GASLIGHT 13 prompt hardening
-
-### Per-Module Examples
-- `engos-meta-supercharge /ult improve this agent prompt: <paste>`
-- `engos-meta-supercharge /basis audit this onboarding workflow for actual-to-minimum waste: <paste>`
-- `engos-meta-supercharge /simple separate product requirements from implementation choices: <paste>`
-- `engos-meta-supercharge /invert find how this migration plan could fail: <paste>`
-- `engos-meta-supercharge /adversarial red-team this release plan: <paste>`
-- `engos-meta-supercharge /adversarial /debate decide whether to adopt this architecture: <paste>`
-- `engos-meta-supercharge /adversarial /debate /deep stress-test this investment thesis using only the provided data: <paste>`
-- `engos-meta-supercharge /contract turn this plan into a verifiable execution contract: <paste>`
-- `engos-meta-supercharge /grade improve this prompt to a 10/10: <paste>`
-- `engos-meta-supercharge /full design an agentic CI gate for OpenAPI breaking changes`
-- `engos-meta-supercharge /catchup`
-- `engos-meta-supercharge /gaslight refine this prompt to reduce drift: <paste>`
-
-### Stack Examples
-- `engos-meta-supercharge /simple /invert analyze micro-frontends adoption`
-- `engos-meta-supercharge /basis /simple /contract reduce this workflow's operator burden: <paste>`
-- `engos-meta-supercharge /invert /adversarial harden this rollout plan: <paste>`
-- `engos-meta-supercharge /adversarial /debate /contract decide and specify this API change: <paste>`
-- `engos-meta-supercharge /adversarial /debate /deep /contract decide and specify this migration: <paste>`
-- `engos-meta-supercharge /ult /contract create a prompt and then evaluate its contract: <paste>`
-- `engos-meta-supercharge /full skip grade compare these three plans: <paste>`
-
-Stacking is sequential, not simultaneous heavy-framework mixing. SuperCharge runs passes in canonical order and keeps the smallest useful route.
-
-Ask `engos-meta-supercharge /help examples` to auto-generate example usage for each module and common module stacks.
-
-### Routing Preview
-- `engos-meta-supercharge /route <task>` -> prints routing line, then proceeds
-
-### Full Spec
-- `engos-meta-supercharge details` -> prints the module reference
+For a terminal help request, read `resources/references/help.md` and return its help content only. Do not execute its examples or continue into an operational module.
 
 ## HELP EXAMPLES OUTPUT (Auto-Generated Examples)
+For a terminal help-examples request, read `resources/references/help-examples.md` and follow its exact example-generation and output contract. Do not execute the examples.
 
-Use this output when the user asks `engos-meta-supercharge /help examples`. Do not execute any examples.
-
-### Single Modules
-- `/ult`: `engos-meta-supercharge /ult improve this support-agent prompt: <paste>`
-- `/basis`: `engos-meta-supercharge /basis identify the irreducible cost in this approval workflow: <paste>`
-- `/simple`: `engos-meta-supercharge /simple decomplect this planning doc into intent, constraints, and execution: <paste>`
-- `/invert`: `engos-meta-supercharge /invert find the top failure modes in this deployment plan: <paste>`
-- `/adversarial`: `engos-meta-supercharge /adversarial red-team this proposal for hidden assumptions: <paste>`
-- `/adversarial /debate`: `engos-meta-supercharge /adversarial /debate decide whether this architecture trade-off is worth it: <paste>`
-- `/adversarial /debate /deep`: `engos-meta-supercharge /adversarial /debate /deep run a deep Bull/Bear/Decider debate on this thesis: <paste>`
-- `/contract`: `engos-meta-supercharge /contract turn this into a verifiable spec and QA JSON: <paste>`
-- `/grade`: `engos-meta-supercharge /grade iterate this prompt to a 10/10: <paste>`
-- `/full`: `engos-meta-supercharge /full compare these competing implementation plans: <paste>`
-- `/catchup`: `engos-meta-supercharge /catchup`
-- `/gaslight`: `engos-meta-supercharge /gaslight refine this prompt to reduce drift: <paste>`
-
-### Common Stacks
-- `engos-meta-supercharge /simple /invert simplify this architecture and expose how it fails: <paste>`
-- `engos-meta-supercharge /basis /simple /contract reduce waste and specify the new workflow: <paste>`
-- `engos-meta-supercharge /invert /adversarial harden this release plan before review: <paste>`
-- `engos-meta-supercharge /adversarial /debate /contract debate this decision, then turn the verdict into a contract: <paste>`
-- `engos-meta-supercharge /adversarial /debate /deep /contract deep-debate this migration, then specify acceptance criteria: <paste>`
-- `engos-meta-supercharge /ult /contract create the prompt, execute it, then evaluate the contract: <paste>`
-- `engos-meta-supercharge /full skip grade compare these three candidate prompts without executing them: <paste>`
+For a skill surface, these paths are relative to the skill directory. For an agent surface, resolve `references/help.md` and `references/help-examples.md` relative to the directory containing its bundled `capability.json`. If a required help resource is unavailable, report the missing resource instead of inventing or silently shortening the help contract.
 
 ## MODULE REFERENCE (Full Spec)
 
