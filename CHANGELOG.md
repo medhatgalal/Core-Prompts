@@ -1,24 +1,17 @@
-## Unreleased
+## v1.13.0 - 2026-09-07
 
-- Corrected the Instruction Editor bundled-reference path and Engineering Progress Report script filename to their shipped locations.
+- Established one canonical `engos-<category>-<name>` identity for Core-authored skills, retired superseded generated routes and evaluation filenames, and updated onboarding, examples, catalogs, and repository delivery guidance. The release contains 27 canonical capabilities including Loopy.
+- Added native Grok skill output and selected Codex/Kiro/Grok installation profiles. Codex profiles use `.agents/skills`; ownership checks preserve unknown/customized packages, and saved profiles support verified updates, release acceptance, and rollback. Agent registrations remain a separately verified deployment surface.
+- Added the pinned upstream Loopy capability with its workflow, companion resources, and MIT license preserved. Its familiar `loopy` name is the explicit upstream namespace exception.
+- Added consolidation checks and current-state-first updates to `engos-memory-context-continuity`, including standing-rule recovery and measured before/after counts. The three-file store and existing `~/.analyze-context` state paths remain unchanged.
+- Moved Supercharge terminal help into bundled references while preserving its module body, familiar conversational prefixes, stacking, precedence, and ten-round full workflow.
+- Restored supplied OpEx Markdown drill-down evidence and preserved legacy meeting preparation in the canonical incident-review capability. Optional briefing covers complete selected incidents, linked remediation, recurrence, customer impact, sourced coaching, and export boundaries; ordinary digest output and required snapshot fields remain compatible.
+- Retired the separate `skills/opex-briefing` entry after preservation review, retaining exact original source and metadata under `sources/retired/opex-briefing` outside active discovery and runtime packaging.
+- Hardened UAC YAML/source-fidelity handling and preserved curated validation matrices during same-slug updates. Corrected Instruction Editor's bundled reference path and Engineering Progress's script reference without changing their workflows.
+- Excluded local Codex registration configuration from release archives and standalone runtime inventories/copies. ZIP packaging now replaces a freshly built archive, preventing stale excluded members from surviving a rerun.
+- Made optional native validation honor policy-declared error diagnostics, including Kiro's zero-exit `Error:` output. Refreshed Kiro documentation references without performing a CLI-version or hook migration.
 
-- Moved Supercharge terminal help and examples into bundled references while preserving the accepted module body, conversational aliases, stacking, precedence, and ten explicit grading iterations byte-for-byte.
-
-- Preserved legacy OpEx meeting preparation inside the canonical incident-review capability: full selected-incident depth, complete linked fixes, verified recurrence, customer counts, sourced coaching, and explicit optional TXT/PDF/Google Doc export boundaries. Existing daily output and snapshot requirements remain compatible.
-
-- Fixed UAC root YAML metadata extraction and loss of imported operating contracts. Source-aware packaging now preserves original outputs and templates; judgment and apply independently reject lost source content while retaining historical and behavioral promotion gates. Added nested-schema, actual-apply, resource, redacted-snapshot, and cross-skill regression coverage.
-
-- Restored existing OpEx incident drill-down evidence in Markdown output, including Five Whys, preventive action, meeting talking points and questions. Existing snapshots remain compatible; the original reference replay remains historical evidence.
-
-- Fixed same-slug UAC apply replacing a curated current validation matrix with historical fidelity scenarios.
-
-- Added active-task consolidation to `analyze-context`: read-only size/milestone checks, current-state-first rewrites, explicit supersession/evidence retention, mid-session standing-rule retrieval, and measured before/after counts without changing the three-file store or atomic writer.
-- Clarified the SSOT/UAC delivery path for existing skills and the shared isolated-worktree, PR/MR, mainline verification, and cleanup workflow for capability, docs, and steering changes.
-
-- Renamed the 25 public Core-Prompts skill identities into the `engos-<category>-<skill-name>` namespace so related capabilities remain grouped in CLI and app autocomplete. The `analyze-context` capability is now `engos-memory-context-continuity`; its external storage remains under `~/.analyze-context`.
-- Clarified every skill description to make activation intent, primary job, and boundaries more discriminating while preserving the existing skill bodies and operating contracts.
-- Rebuilt all Codex, Gemini, Claude, and Kiro surfaces, removed the old unprefixed generated skill and agent paths, and refreshed active documentation, capability metadata, evaluation contracts, and release inspection views.
-- Preserved familiar Supercharge conversational prefixes and module stacking without duplicate skill packages; kept unrelated Codex registrations during filtered namespace updates.
+Structural checks, deterministic tests, hosted CI, installation, and authenticated runtime acceptance remain separate evidence. This release does not claim formal behavioral promotion or live PDF/Google Docs export acceptance.
 
 ## v1.12.5 - 2026-09-05
 

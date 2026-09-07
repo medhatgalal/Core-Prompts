@@ -31,10 +31,11 @@ scripts/package-surfaces.sh --version "$(tr -d '[:space:]' < VERSION)"
 
 ## Packaged Boundary
 The package should include:
-- generated surfaces under `.codex/`, `.gemini/`, `.claude/`, `.kiro/`
+- generated surfaces under `.codex/`, `.gemini/`, `.claude/`, `.kiro/`, `.grok/`
 - `.meta/manifest.json`
 - `.meta/capability-handoff.json`
 - `.meta/capabilities/`
+- `.meta/install-bundle.json` and `.meta/install-profiles/`
 - evaluation, clarity, descriptor, and plain-English job-map policy under `.meta/`
 - `dist/consumer-shell/`
 - `sources/ssot-baselines/`
@@ -68,6 +69,8 @@ Do not call the repo release-green until the hosted CI surface is green after pu
   - runs on merge request pipelines
 
 Local release gates retain `bin/capability-fabric validate --strict`, including schema cache checks, so transient hosted network or vendor-doc failures do not mask local schema drift review.
+
+When using `validate --with-cli`, native validator results also honor error-output patterns declared in `.meta/surface-rules.json`. Kiro CLI 2.21.1 can print an `Error:` diagnostic while returning zero; this is a failure, including when ANSI color codes surround the diagnostic. The Kiro reference set includes the current configuration page and the versioned CLI 2.x reference; it does not imply that a CLI 3.x migration was performed.
 
 ## Recommended Release Order
 1. run the local release gate
