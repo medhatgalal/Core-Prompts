@@ -53,7 +53,7 @@ The package should not include:
 - `reports/quality-reviews/`
 - stray local artifacts such as `.DS_Store`
 
-Both archive formats exclude local Codex registration configuration. ZIP creation uses a fresh temporary archive before replacing the output, so excluded or retired members cannot survive from an earlier package with the same filename.
+Both archive formats and standalone runtime inventories/copies exclude local Codex registration configuration. A runtime inventory claiming this local file is rejected; agent registration still generates configuration at the installation target. ZIP creation uses a fresh temporary archive before replacing the output, so excluded or retired members cannot survive from an earlier package with the same filename.
 
 ## Remote CI
 Do not call the repo release-green until the hosted CI surface is green after push.

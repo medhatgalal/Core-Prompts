@@ -514,7 +514,7 @@ for rel in roots:
     src = repo / rel
     if src.is_dir():
         for path in sorted(item for item in src.rglob("*") if item.is_file()):
-            if path.name == ".DS_Store":
+            if path.name == ".DS_Store" or path.relative_to(repo).as_posix() == ".codex/config.toml":
                 continue
             print(f"{path}\t{support / path.relative_to(repo)}")
     elif src.is_file():
