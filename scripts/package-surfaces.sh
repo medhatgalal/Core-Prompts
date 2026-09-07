@@ -91,6 +91,7 @@ INCLUDE_PATHS=(
   "dist/consumer-shell"
   "sources/ssot-baselines"
   "scripts/probe-skill-readers.py"
+  "scripts/eng-report.py"
   "scripts/deploy-profile.py"
   "scripts/install_bundle.py"
   ".meta/install-bundle.json"

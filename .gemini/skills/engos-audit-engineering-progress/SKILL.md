@@ -4,6 +4,29 @@ description: "Generate a Git-derived engineering progress dashboard for one repo
 ---
 # Engineering Progress Report
 
+## Help
+
+When the invocation requests `help`, `/help`, `--help`, or `-h`, return usage, examples, keywords, and supported modules from this section, then stop. `help examples` returns examples; `help <module>` explains that supported module. Unknown topics list valid choices. Do not run workflows, tools, authentication checks, or write files for help. A quoted word or target filename containing help is not a help request. Existing stop/cancel controls take precedence.
+
+### Usage
+
+`/engos-audit-engineering-progress help`, `$engos-audit-engineering-progress help`, or `engos-audit-engineering-progress help`.
+
+Provide a local git repository or fleet config and a time window. Returns git-derived JSON metrics or HTML. Terminal commands use `eng-report run`; integration/setup requests are handled by the skill.
+
+### Examples
+
+- `/engos-audit-engineering-progress help run` — Explains report inputs and metric/narrative passes without running them.
+- `eng-report run --config <config.yaml> --since "2 weeks ago" --json` — Terminal command: returns metrics for configured repositories.
+
+### Keywords
+
+engineering report, git history, churn, contributors, releases, fleet.
+
+### Modules
+
+Skill workflows: `run`, `configure`, `add PATH`, `sync-authors`, `sync`. The bundled CLI currently implements `run`; Drive and notifications are explicit integration workflows, not CLI switches. See Usage for boundaries.
+
 ## Dependencies
 
 | Command | Requires |
@@ -61,7 +84,7 @@ Use `engos-audit-engineering-progress` when the job is **observing git activity*
 - Claim orchestration or delegation authority over other agents
 
 ## Purpose
-Generate a standalone HTML engineering report for any git repository covering the last 2 weeks (or a custom date range). Supports single-repo and fleet (multi-repo) modes. Reports can be saved locally, uploaded to Google Drive in dated directories, and announced via Google Chat or email.
+Generate a standalone HTML engineering report for any git repository covering the configured window (default one week, or a custom start date). Supports single-repo and fleet (multi-repo) modes. Reports can be saved locally, uploaded to Google Drive in dated directories, and announced via Google Chat or email.
 
 ## Primary Objective
 Produce an evidence-backed engineering progress dashboard from git history without inventing metrics, judging code quality, or mutating the target repositories.
@@ -85,12 +108,12 @@ Do not invoke this capability for sprint planning, Jira status, story-point repo
 
 ## Required Inputs
 At minimum, `run` needs:
-- one local git repository path, or a configured fleet file with repository paths
+- a configuration file containing one local git repository or a fleet of repository paths
 - a reporting window through `--since` or the default window
 - readable git history for the selected repositories
 
 Optional inputs include:
-- `--repo PATH` to limit execution to one repository
+- `--name NAME` to select one configured repository entry
 - `--author NAME` to scope reports to one contributor
 - `--narrative-file FILE` to provide AI-written narrative JSON for final rendering
 - Drive folder, Chat space, or email settings when upload or notification is requested
@@ -101,53 +124,36 @@ For `run`, return or create:
 - deterministic metrics sourced from git commands when `--json` is used
 - standalone HTML report files when rendering is requested
 - an `_index.html` summary in fleet mode
-- local output path, and Drive URL when `--drive` is used
+- local output path, and Drive URL when upload is requested
 - warnings for missing optional notification targets or unavailable optional integrations
 
 The generated report must keep all visible metrics traceable to git data and must not include invented Jira counts, story points, PR review timings, or unverified external facts.
 
 ## Usage
 
+Skill requests use `/engos-audit-engineering-progress <workflow> [details]` (or the host's native skill selector). Supported workflows are `run`, `configure`, `add PATH`, `sync-authors`, and `sync`. Configuration, author synchronization, Drive upload/download, and notifications are agent-guided integration workflows. They are not subcommands of the bundled executable.
+
+The terminal executable implements `run`:
+
+```bash
+eng-report run --config <config.yaml> --name <entry-name> --since "2 weeks ago" --json
+eng-report run --config <config.yaml> --name <entry-name> --since "2 weeks ago" --narrative-file <narrative.json> --output <directory>
 ```
-/engos-audit-engineering-progress <command> [options]
-```
 
-**Commands:**
+| CLI option | Meaning |
+| --- | --- |
+| `--config FILE` | Configuration file; default `~/.kiro/skills/eng-report/config.yaml` |
+| `--name NAME` | Select a configured entry by its exact name |
+| `--since DATE` | Override start date; otherwise config `local.window`, default `1 week ago` |
+| `--output DIR` | Report directory; default `/tmp/YYYY-MM-DD/` |
+| `--json` | Print metrics JSON to stdout; do not create or overwrite HTML/JavaScript report artifacts or create the output directory |
+| `--narrative-file FILE` | JSON mapping entry names to supplied narratives |
+| `--author NAME` | Select one author across configured repositories |
+| `--branch-scope all\|shipped\|in-flight` | Select the report's branch scope |
+| `--ai` | Explicitly request model-generated narrative through the available CLI adapter |
+| `--no-index` | Skip the HTML index |
 
-| Command | Description |
-|---------|-------------|
-| `run` | Generate reports for all configured repos (or one with `--repo`). Saves to `/tmp/YYYY-MM-DD/` locally and opens in browser. |
-| `sync` | Pull latest reports from Google Drive to `~/eng-reports/`. |
-| `configure` | Interactive one-time setup (Drive folder, local sync path, notify defaults) |
-| `add PATH` | Add a repo to the configured repo list |
-| `sync-authors` | Re-resolve group membership via Home MCP and update `authors` lists in config for all scoped repos |
-
-**Options for `run`:**
-
-| Option | Default | Description |
-|--------|---------|-------------|
-| `--repo PATH` | all configured repos | Limit to one specific repo |
-| `--since DATE` | `1 week ago` | Start date — accepts ISO format `YYYY-MM-DD` or relative `N weeks ago` / `N days ago` |
-| `--drive` | false | Upload to Google Drive, then auto-sync to `~/eng-reports/` |
-| `--open` | false | Open `_index.html` (or single report) in browser after generating |
-| `--notify` | false | Send notification via Chat/email |
-| `--folder NAME` | config value | Drive folder override for this run |
-| `--email ADDR` | config value | Email override for this run |
-| `--chat SPACE` | config value | Chat space override for this run |
-
-**Options for `sync`:**
-
-| Option | Default | Description |
-|--------|---------|-------------|
-| `--open` | false | Open `_index.html` in browser after syncing |
-| `--date DATE` | latest | Sync a specific date folder (`2026-05-29`) |
-| `--force` | false | Re-download all files even if already local |
-
-**Auto-sync behavior:**
-- `run --drive` → generates, uploads, automatically syncs to `~/eng-reports/YYYY-MM-DD/`
-- `run` (no `--drive`) → generates to `/tmp/YYYY-MM-DD/` only, opens each report in browser
-- `run --drive --open` → generates, uploads, syncs, opens `_index.html`
-- `sync` → explicit pull from Drive, no generation
+`--json` still gathers git data and may fetch configured repositories; it is not an offline mode. The CLI does not accept `--repo`, `--drive`, `--open`, `--notify`, `--folder`, `--email`, or `--chat`. Configure a path and select its `name` for one repository. Request uploads, notifications, or browser opening explicitly through the skill's integration workflow after report generation.
 
 ## Configuration
 
@@ -224,7 +230,7 @@ team           →  "Agent Studio Enabling Team", "AI Platform Core APIs", etc.
 **`sync-authors` behavior for group entries:**
 Queries authors across ALL repos in the `repos` list (90-day window each), merges the unique set, resolves each against Home MCP, filters by the declared org level.
 
-Set once with `configure`, override per-run with `--folder`, `--email`, `--chat`.
+Set once with `configure`, override per-run with explicit folder, email, or Chat integration requests.
 
 ## Workflow
 
@@ -266,11 +272,10 @@ Interactive first-time setup. Reads current `config.yaml` if it exists.
 7. Offer to run `sync-authors` now to resolve all org memberships: "Resolve team memberships from Home MCP now? (y/n)"
    - If yes: run `sync-authors` workflow for all scoped entries
 8. Validate git access: for each `remote:` URL, run `git ls-remote <url> HEAD` — warn if unreachable
-9. Install the CLI to `~/.local/bin/engos-audit-engineering-progress`:
-   - Find the script: `SCRIPT=$(find ~ -name "eng-report.py" -path "*/Core-Prompts/scripts/*" -not -path "*/.git/*" 2>/dev/null | head -1)`
-   - Write a wrapper to `~/.local/bin/engos-audit-engineering-progress` that hardcodes `SCRIPT="$SCRIPT"` and calls `python3 "$SCRIPT" "$@"`
-   - `chmod +x ~/.local/bin/engos-audit-engineering-progress`
-   - Add `export PATH="$HOME/.local/bin:$PATH"` to `~/.zshrc` if not already present
+9. Use the installed CLI `~/.local/bin/eng-report`:
+   - The standalone runtime ships `~/.core-prompts-updater/scripts/eng-report.py`; the launcher must resolve that installed copy, not a temporary checkout.
+   - If the launcher is missing, resolve that exact installed helper and prepare a wrapper calling `python3` with forwarded arguments. Compare any existing launcher before replacement and preserve customizations.
+   - If the helper is missing, request the Core-Prompts installation workflow; do not search the home directory for an arbitrary checkout.
    - Verify: `eng-report --help`
 10. Confirm: "Configuration saved. {N} repos configured. Run `eng-report run` to generate your first reports."
 
@@ -295,12 +300,12 @@ You CANNOT skip Pass 1. You CANNOT write narrative JSON without first reading th
 ### Step 1 — Gather metrics (deterministic)
 #### Pass 1 — Gather metrics (deterministic)
 
-The script is installed to `~/.local/bin/eng-report` by `configure`. Run:
+The launcher `~/.local/bin/eng-report` calls the installed runtime helper. Run:
 ```bash
 eng-report run --json > /tmp/metrics.json
 ```
 
-If `eng-report` is not found, run `eng-report configure` first — it installs the script.
+If `eng-report` is not found, request the skill configuration workflow to check the installed helper and prepare its launcher.
 
 The script handles everything — git fetch, all git log commands, author filtering, multi-repo aggregation. `--json` outputs full metrics per entry including: commit subjects (up to 50), top files with churn, contributors, categories, daily breakdown. No extra git commands needed for narrative generation.
 
@@ -342,14 +347,14 @@ Process all active entries. Work through them directly — do not write a Python
 
 ```bash
 eng-report run --narrative-file /tmp/narrative.json
-# With Drive upload:
-eng-report run --narrative-file /tmp/narrative.json --drive --open
+# Render locally, then request Drive upload separately:
+eng-report run --narrative-file /tmp/narrative.json --config <config.yaml> --output <directory>
 ```
 
-`_index.html` is always generated, grouped by: Repos → SBU → Groups → Teams → Individuals.
+`_index.html` is generated for fleet HTML output unless `--no-index`, `--name`, or `--author` is selected; its groups are Repos → SBU → Groups → Teams → Individuals.
 ### Index Page (`_index.html`)
 
-A summary page generated whenever ≥2 repos are processed. Uses same design tokens and dark theme.
+A summary page generated for unfiltered HTML runs, even with one configured entry. Uses same design tokens and dark theme.
 
 **Structure:**
 - Header: "Engineering Reports — YYYY-MM-DD"
@@ -362,7 +367,7 @@ A summary page generated whenever ≥2 repos are processed. Uses same design tok
 - Each repo name is a relative hyperlink to `<RepoName>.html` (works locally and in Drive)
 - Footer: "Generated: YYYY-MM-DD HH:MM" timestamp
 
-### Drive Upload (`--drive`)
+### Drive Upload (explicit integration request)
 
 Uses `gws-drive-upload` skill tools:
 
@@ -380,13 +385,13 @@ Uses `gws-drive-upload` skill tools:
 4. If no `--date`: sync the most recent dated folder (sorted lexicographically descending, take first).
 5. For each `.html` file in the folder: download to `local.sync_path/YYYY-MM-DD/<filename>`. Skip if file already exists locally AND `--force` is not set.
 6. Print: "Synced N files to ~/eng-reports/YYYY-MM-DD/"
-7. If `--open`: open `local.sync_path/YYYY-MM-DD/_index.html` in browser
+7. If browser opening is explicitly requested: open `local.sync_path/YYYY-MM-DD/_index.html` in browser
 
 ### Notifications (`--notify`)
 
 After fleet run completes (and Drive upload if applicable):
 
-**Google Chat** (if `chat_space` configured or `--chat` provided):
+**Google Chat** (when notification is explicitly authorized, using the configured or supplied space):
 Post exactly this format:
 ```
 📊 Engineering Reports — YYYY-MM-DD
@@ -396,15 +401,15 @@ N repos analyzed:
 [repeat for each repo]
 
 Reports saved to: <folder_name>/YYYY-MM-DD/
-[If --drive was used, append: "Drive: <folder_url>"]
+[If upload was requested and completed, append: "Drive: <folder_url>"]
 ```
 Use `gws-chat-send` skill.
 
-**Email** (if `email` configured or `--email` provided):
+**Email** (when notification is explicitly authorized, using the configured or supplied recipient):
 Send with subject "Engineering Reports — YYYY-MM-DD" and same body content as Chat message.
 Use `gws-gmail-send` skill.
 
-**If neither chat nor email is configured and `--notify` is passed:** Print warning "No notification targets configured. Use `configure` or pass --email/--chat."
+**If notification is requested without a target:** Ask for the recipient or Chat space before sending.
 
 ## Output Quality Standards
 
@@ -430,7 +435,7 @@ A 10/10 report MUST satisfy ALL of the following. Treat each as a gate — if an
 User: Generate an engineering progress report for ~/repo/Core-Prompts since 2026-06-01 and open it.
 
 Action:
-eng-report run --repo ~/repo/Core-Prompts --since 2026-06-01 --open
+eng-report run --config <config.yaml> --name Core-Prompts --since 2026-06-01 --output <directory>
 
 Expected result:
 - reads only git history from the selected repository
@@ -444,7 +449,7 @@ Expected result:
 User: Build the deterministic metrics first, then I will provide the narrative JSON.
 
 Action:
-eng-report run --repo ~/repo/Core-Prompts --since "2 weeks ago" --json > /tmp/metrics.json
+eng-report run --config <config.yaml> --name Core-Prompts --since "2 weeks ago" --json > /tmp/metrics.json
 
 Expected result:
 - outputs metric JSON only
@@ -496,54 +501,26 @@ Write to `/tmp/narrative.json`: `{"AgenticAI-Group": {"summary": "...", "themes"
 eng-report run --narrative-file /tmp/narrative.json
 ```
 
-`_index.html` is always generated, grouped by: Repos → SBU → Groups → Teams → Individuals.
+`_index.html` is generated for fleet HTML output unless `--no-index`, `--name`, or `--author` is selected; its groups are Repos → SBU → Groups → Teams → Individuals.
 
-## /help
+## Rules
 
-```
-eng-report — Engineering progress report for any git repo
+- Help is terminal and follows the Help dispatch above.
+- Gather metrics before writing narratives; preserve the three-pass workflow.
+- Keep CLI generation separate from explicitly requested integrations.
 
-COMMANDS:
-  run                              Generate reports for all configured repos, open in browser
-  run --repo ~/repo/my-repo         Generate for one specific repo
-  run --since 2026-05-01          Custom start date (also: '2 weeks ago', '30 days ago') (ISO date or "N weeks ago")
-  run --narrative-file FILE       JSON file with AI narratives per entry (see workflow)
-  run --json                 Output metrics JSON only, no HTML (pipe to AI for narrative generation)
-  run --author "Jane Smith"       Generate report for a single person across all repos
-  run --drive                     Generate + upload to Drive + auto-sync locally
-  run --drive --open              Generate + upload + sync + open _index.html
-  run --drive --folder "Q2"       Upload to a specific Drive folder
-  run --notify                    Notify via Chat/email (uses config)
-  run --notify --email a@b.com    Override notification email for this run
-  run --drive --notify            Upload + sync + notify
+## Integration Reference
 
-  sync                            Pull latest reports from Drive to ~/eng-reports/
-  sync --open                     Pull + open _index.html in browser
-  sync --date 2026-05-29          Sync a specific date folder
-  sync --force                    Re-download all files
+Use skill requests for operations outside the bundled CLI:
 
-  configure                       Interactive setup (Drive folder, sync path, notify, repos)
-  add ~/repo/MyRepo               Add a repo to the configured repo list
+- `/engos-audit-engineering-progress configure` — prepare or update the configuration with the user.
+- `/engos-audit-engineering-progress add <path>` — add a repository to that configuration.
+- `/engos-audit-engineering-progress sync-authors` — refresh organization-scoped author lists with Home MCP when available.
+- `/engos-audit-engineering-progress sync` — retrieve previously generated reports from Drive; a requested date selects a dated folder.
+- `/engos-audit-engineering-progress upload <report-directory> to <Drive-folder>` — upload the selected artifacts through the Drive integration.
+- `/engos-audit-engineering-progress notify <recipient-or-space> about <report>` — prepare and send only when the user explicitly authorized the recipient and communication.
 
-LOCAL OUTPUT:
-  run (no --drive):  /tmp/YYYY-MM-DD/            temporary, opens in browser
-  run --drive:       ~/eng-reports/YYYY-MM-DD/   persistent after auto-sync
-
-DRIVE STRUCTURE:
-  Engineering Reports/
-    2026-06-05/
-      _index.html   ← summary + links to each repo report
-      MyRepo.html
-      Composer.html
-
-CONFIG: ~/.kiro/skills/eng-report/config.yaml
-```
-
-
-Capability resource: `resources/capability.json`
-
-
-Capability resource: `resources/capability.json`
+Help describes these operations without invoking integrations, reading user configuration, installing wrappers, or changing files. For actual execution, retain the workflow-specific authority and dependency requirements above.
 
 
 Capability resource: `resources/capability.json`

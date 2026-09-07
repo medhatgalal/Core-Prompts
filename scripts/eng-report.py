@@ -1163,8 +1163,8 @@ def _stale_warning(scope: dict, since: str) -> str | None:
 
 # ── Main ───────────────────────────────────────────────────────────────────────
 
-def run_entry(entry: dict, since: str, output_dir: Path, author_filter: str | None = None, narrative: dict | None = None, fetched_paths: set | None = None, use_ai: bool = False) -> dict[str, Any]:
-    """Process one config entry and write its HTML file. Returns summary row."""
+def run_entry(entry: dict, since: str, output_dir: Path, author_filter: str | None = None, narrative: dict | None = None, fetched_paths: set | None = None, use_ai: bool = False, *, render_html: bool = True) -> dict[str, Any]:
+    """Process one config entry, optionally render HTML, and return its metrics."""
     name = entry.get("label", entry["name"])
     file_key = entry["name"]
     if fetched_paths is None:
@@ -1275,23 +1275,24 @@ def run_entry(entry: dict, since: str, output_dir: Path, author_filter: str | No
             for m in per_repo
         ]
 
-    html = render_report(
-        name=name,
-        subtitle=subtitle,
-        metrics=agg,
-        since=since,
-        repo_breakdown=breakdown,
-        scope_warning=scope_warning,
-        narrative=narrative,
-    )
-
-    out_path = output_dir / f"{file_key}.html"
-    out_path.write_text(html, encoding="utf-8")
-    _write_modal_js(output_dir)
+    if render_html:
+        html = render_report(
+            name=name,
+            subtitle=subtitle,
+            metrics=agg,
+            since=since,
+            repo_breakdown=breakdown,
+            scope_warning=scope_warning,
+            narrative=narrative,
+        )
+        out_path = output_dir / f"{file_key}.html"
+        out_path.write_text(html, encoding="utf-8")
+        _write_modal_js(output_dir)
 
     top_contributor = agg["contributors"][0][1] if agg["contributors"] else "—"
     top_pct = int(agg["contributors"][0][0] / max(agg["commits"], 1) * 100) if agg["contributors"] else 0
-    print(f"  ✓ {name}: {agg['commits']} commits, {agg['net']:+,} lines → {out_path.name}", file=sys.stderr)
+    destination = f" → {out_path.name}" if render_html else " (JSON metrics)"
+    print(f"  ✓ {name}: {agg['commits']} commits, {agg['net']:+,} lines{destination}", file=sys.stderr)
 
     # Summary row (for index) — always returned
     summary = {
@@ -1463,7 +1464,8 @@ def main() -> None:
     config = load_config(Path(args.config).expanduser())
     since = args.since or config.get("local", {}).get("window", "1 week ago")
     output_dir = Path(args.output).expanduser()
-    output_dir.mkdir(parents=True, exist_ok=True)
+    if not args.json_only:
+        output_dir.mkdir(parents=True, exist_ok=True)
 
     entries = config.get("repos", [])
     if args.name:
@@ -1517,7 +1519,7 @@ def main() -> None:
     for entry in entries:
         narrative = narratives.get(entry["name"])
         entry["_branch_scope"] = branch_scope
-        row = run_entry(entry, since, output_dir, author_filter=author, narrative=narrative, fetched_paths=fetched_paths, use_ai=use_ai)
+        row = run_entry(entry, since, output_dir, author_filter=author, narrative=narrative, fetched_paths=fetched_paths, use_ai=use_ai, render_html=not json_only)
         rows.append(row)
 
     if getattr(args, "json_only", False):

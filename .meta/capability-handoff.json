@@ -126,10 +126,10 @@
         "progress"
       ],
       "required_inputs": [
-        "one local git repository path, or a configured fleet file with repository paths",
+        "a configuration file containing one local git repository or a fleet of repository paths",
         "a reporting window through `--since` or the default window",
         "readable git history for the selected repositories",
-        "`--repo PATH` to limit execution to one repository",
+        "`--name NAME` to select one configured repository entry",
         "`--author NAME` to scope reports to one contributor",
         "`--narrative-file FILE` to provide AI-written narrative JSON for final rendering",
         "Drive folder, Chat space, or email settings when upload or notification is requested",
@@ -139,7 +139,7 @@
         "deterministic metrics sourced from git commands when `--json` is used",
         "standalone HTML report files when rendering is requested",
         "an `_index.html` summary in fleet mode",
-        "local output path, and Drive URL when `--drive` is used",
+        "local output path, and Drive URL when upload is requested",
         "warnings for missing optional notification targets or unavailable optional integrations"
       ],
       "tool_policy": {
@@ -186,8 +186,8 @@
       "review_status": "ready_for_orchestrator_review",
       "overlap_candidates": [],
       "relationship_suggestions": [],
-      "quality_status": null,
-      "benchmark_profile": null,
+      "quality_status": "structural_ready",
+      "benchmark_profile": "default",
       "preferred_use_cases": [],
       "artifact_conventions": [],
       "invocation_style": null,

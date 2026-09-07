@@ -10,6 +10,8 @@ Core-authored skills use the `engos-<category>-<skill-name>` namespace. Use the 
 
 Conversational `Supercharge /full` and stacked forms such as `supercharge /simple /invert /contract <task>` remain supported by `engos-meta-supercharge`. Use the full namespaced name for native skill selection; no separate short-name package or native menu alias is emitted. Ask `supercharge help` or `supercharge /help examples` for the bundled terminal guide; help does not execute examples. `/full` still includes ten grading iterations unless you explicitly say `skip grade`.
 
+For engineering activity, start with `engos-audit-engineering-progress help`. Supply a repository configuration and reporting window when ready; JSON collection leaves HTML reports untouched, then a separate rendering pass uses your narrative. See the [worked example](EXAMPLES.md#engos-audit-engineering-progress).
+
 ## Step 1: Use Installed Capabilities
 
 Start in your CLI, not in the repo.

@@ -7,6 +7,7 @@
   "non_goals": [],
   "protected_behaviors": [
     "abf397c18bedff2e839f4debdeba4d40cb557e09716688c6e5c39a0a08446b4d",
+    "217541507de29315cbaa6063f4010e2b5bb15184ddcaf4cd7fc54289f39ecfd6",
     "af97ae5b5f3628c1c812e7f2031acacd235eb3f1491598cd64298cde23977236",
     "d824b51e5281571aa826840b22778689935225e4b5cef46cd72aafee95e2c27c",
     "713c0d9f37b8a34fbbe93273c173c7a569c4af7d6b01ec774a4ce2924b82e546",
@@ -18,7 +19,9 @@
     "eab8a3de4245dcf32cfed8d445912b48c2e4cce4f7967a7db5a2f6ab06721ccd",
     "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
     "6eaa2c46a6e6068ba40f4fb63f5f496cdf75d73da513636c4faf2fbcb42c9f78",
-    "a8248c9e10e987705d92bc100863ef170fd7be0ef746d5c09256afdc11fe1a93",
+    "52e985ce39b3a0afe88f80fc9260c2ef4c39cf3dc3c09627eaacd202da4fbaea",
+    "26c2ba108386d488ea162e74c5bd6948d6a67b665d92abb61e7af5b721f23552",
+    "3a4a475b672d37b0885661bfacbce55566349db8a2686da2a8b8a616d7e4b50d",
     "6e56ead7fa758e8f097156f4a90f46dfd065e64768174443e62c99b139c3b6fa",
     "c433da1366f2a270758bd7dba17ace1935ddd41159b8943d1df7b13bea0c4622",
     "413b7609242ea2b30e87d6bea925804b0e6313b91221a37754724d4fab730be9",
@@ -29,7 +32,6 @@
     "91eb0b0a682f3701ca23308a6afdebce71370c1966b57a7975645c1d02650ea4",
     "6d02e7bab45f0fea66f08730ffef8c41d1167a36eb0e195e9e596f9df4f52afa",
     "a7b831d99f1c1b69b43e1c3981d23eb1007ccdee7a27ceff2a0412b165442cbb",
-    "9a0230f649da046fce63514a1b4e27f02647ccd97510b92b316d1b736c9b9499",
     "9b3d34de14caa887c3f804d77f1ac6cbd2a3a28bcea6ed7e4086ba4fdc83499b",
     "86ceea02a1c06e0e9f559308bb68574b6aaf695d301a2a9eb3569b596d4d6ff1",
     "e7b96872bd720bee4f63deb5ba1af9e21c7b8a54fe871e228cf7c75cd29ba257",
@@ -40,7 +42,7 @@
     "c30b8eb0eb7f94dfeda553dd1ee65a13f4b17edd145ba1ddf52de7196ebd824e",
     "deaa42f421847cd0a964cdfbf79b4c21f5b97635566d05df5e085cb3fe8be77f",
     "1c022ba68bff4c155a53e4a1b1e1bd76ea6ecf368e69eb7fa434b52f8f333cf3",
-    "2a90a8e136383b940f1f0b71e3b238bbaefd00c553befcb711cebba673e2858c"
+    "2a10f84af9680242693a058af497caf59870b8edea287b8a890e645c16eebc69"
   ],
   "editable_behavior": [],
   "primary_outcome": {
@@ -78,6 +80,11 @@
       "sha256": "abf397c18bedff2e839f4debdeba4d40cb557e09716688c6e5c39a0a08446b4d",
       "source": "ssot/engos-audit-engineering-progress.md",
       "text": "description: \"Generate a Git-derived engineering progress dashboard for one repository or a configured fleet, including activity, churn, authors, and releases. Use for periodic engineering activity audits; do not use for Jira story points, feature completeness, code review, or code-quality approval.\""
+    },
+    {
+      "sha256": "217541507de29315cbaa6063f4010e2b5bb15184ddcaf4cd7fc54289f39ecfd6",
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "text": "When the invocation requests `help`, `/help`, `--help`, or `-h`, return usage, examples, keywords, and supported modules from this section, then stop. `help examples` returns examples; `help <module>` explains that supported module. Unknown topics list valid choices. Do not run workflows, tools, authentication checks, or write files for help. A quoted word or target filename containing help is not a help request. Existing stop/cancel controls take precedence."
     },
     {
       "sha256": "af97ae5b5f3628c1c812e7f2031acacd235eb3f1491598cd64298cde23977236",
@@ -135,9 +142,19 @@
       "text": "The generated report must keep all visible metrics traceable to git data and must not include invented Jira counts, story points, PR review timings, or unverified external facts."
     },
     {
-      "sha256": "a8248c9e10e987705d92bc100863ef170fd7be0ef746d5c09256afdc11fe1a93",
+      "sha256": "52e985ce39b3a0afe88f80fc9260c2ef4c39cf3dc3c09627eaacd202da4fbaea",
       "source": "ssot/engos-audit-engineering-progress.md",
-      "text": "- `run` (no `--drive`) \u2192 generates to `/tmp/YYYY-MM-DD/` only, opens each report in browser"
+      "text": "| `--json` | Print metrics JSON to stdout; do not create or overwrite HTML/JavaScript report artifacts or create the output directory |"
+    },
+    {
+      "sha256": "26c2ba108386d488ea162e74c5bd6948d6a67b665d92abb61e7af5b721f23552",
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "text": "- The standalone runtime ships `~/.core-prompts-updater/scripts/eng-report.py`; the launcher must resolve that installed copy, not a temporary checkout."
+    },
+    {
+      "sha256": "3a4a475b672d37b0885661bfacbce55566349db8a2686da2a8b8a616d7e4b50d",
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "text": "- If the helper is missing, request the Core-Prompts installation workflow; do not search the home directory for an arbitrary checkout."
     },
     {
       "sha256": "6e56ead7fa758e8f097156f4a90f46dfd065e64768174443e62c99b139c3b6fa",
@@ -190,11 +207,6 @@
       "text": "Process all active entries. Work through them directly \u2014 do not write a Python script to generate the narratives algorithmically."
     },
     {
-      "sha256": "9a0230f649da046fce63514a1b4e27f02647ccd97510b92b316d1b736c9b9499",
-      "source": "ssot/engos-audit-engineering-progress.md",
-      "text": "A summary page generated whenever \u22652 repos are processed. Uses same design tokens and dark theme."
-    },
-    {
       "sha256": "9b3d34de14caa887c3f804d77f1ac6cbd2a3a28bcea6ed7e4086ba4fdc83499b",
       "source": "ssot/engos-audit-engineering-progress.md",
       "text": "3. If `--date` specified: sync only that folder. If folder not found in Drive, abort with error."
@@ -245,9 +257,9 @@
       "text": "- `summary`: 3\u20134 sentences synthesizing the arc of the period. Team-framing only."
     },
     {
-      "sha256": "2a90a8e136383b940f1f0b71e3b238bbaefd00c553befcb711cebba673e2858c",
+      "sha256": "2a10f84af9680242693a058af497caf59870b8edea287b8a890e645c16eebc69",
       "source": "ssot/engos-audit-engineering-progress.md",
-      "text": "run --json                 Output metrics JSON only, no HTML (pipe to AI for narrative generation)"
+      "text": "- `/engos-audit-engineering-progress notify <recipient-or-space> about <report>` \u2014 prepare and send only when the user explicitly authorized the recipient and communication."
     }
   ],
   "review_status": "draft"

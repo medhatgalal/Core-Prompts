@@ -590,6 +590,15 @@ Follow with:
 
 > Now rerun it with `--json` first so I can inspect the metrics before writing the narrative.
 
+Metrics-first example (terminal, after configuring an entry named `Core-Prompts`):
+
+```bash
+eng-report run --config /path/to/config.yaml --name Core-Prompts --since "2 weeks ago" --json > /tmp/metrics.json
+eng-report run --config /path/to/config.yaml --name Core-Prompts --since "2 weeks ago" --narrative-file /tmp/narrative.json --output /tmp/progress-report
+```
+
+Read the first command's metrics and write the narrative file before running the second command. JSON mode does not create the report directory or overwrite HTML/JavaScript; it can still fetch Git history. The shell redirection creates `/tmp/metrics.json`. Browser opening, Drive upload, and notifications are separate explicit integration requests. Ask `engos-audit-engineering-progress help run` to inspect the workflow without executing it.
+
 ### `engos-audit-opex-incident-review`
 
 Use when:
