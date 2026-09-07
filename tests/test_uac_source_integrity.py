@@ -195,7 +195,7 @@ def test_folded_paragraphs_and_quoted_root_keys():
 
 
 def test_rich_collection_gets_canonical_root_frontmatter():
-    rich = (ROOT / 'ssot/code-review.md').read_text()
+    rich = (ROOT / 'ssot/engos-quality-code-review.md').read_text()
     collection = {**payload('collection'), 'items': [
         {'status': 'accepted', 'display_name': 'review', 'source_text': rich, 'source': {'normalized_source': 'remote'}}]}
     candidate = UAC._preferred_ssot_text('unregistered-rich-skill', collection)
