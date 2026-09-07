@@ -316,7 +316,7 @@ Initial home installs through `bin/capability-fabric deploy --target "$HOME" --a
 - `~/.core-prompts-updater/LOCAL_REPO.env`
 - `~/update_core_prompts.sh`
 
-Use release watch to compare that installed standalone bundle against the latest immutable release tag. Home installs also record the source checkout that performed the install; accepted releases safely fast-forward that checkout first when it is clean, then run the installer from it. If the checkout is dirty, missing, detached, or cannot fast-forward, release-watch falls back to the clean release mirror:
+Use release watch to compare that installed standalone bundle against the latest immutable release tag. Legacy installs without a saved profile record the source checkout; their accepted releases safely fast-forward that checkout first when it is clean, then run the installer from it. If the checkout is dirty, missing, detached, or cannot fast-forward, release-watch falls back to the clean release mirror:
 
 ```bash
 ~/update_core_prompts.sh --check-release
@@ -324,7 +324,9 @@ Use release watch to compare that installed standalone bundle against the latest
 ~/update_core_prompts.sh --rollback previous
 ```
 
-`--check-release` checks only, syncs a dedicated clean mirror, updates local release-watch state, and never auto-installs. `--accept-release` is the explicit install/apply step. Daily scheduled runs auto-accept valid releases by default after the release check; use `--schedule-daily HH:MM --notify-only` for check-only scheduling. The scheduled runner supplies a deterministic PATH, and the deployer refreshes existing managed CLI surfaces even when a non-interactive process cannot see a CLI binary. Accepted releases create rollback snapshots first, retain the latest 2 snapshots by default, update the recorded source checkout when safe, and `--rollback previous` restores the latest installed-state snapshot.
+`--check-release` checks only, syncs a dedicated clean mirror, updates local release-watch state, and never auto-installs. `--accept-release` is the explicit install/apply step. Daily scheduled runs auto-accept valid releases by default after the release check; use `--schedule-daily HH:MM --notify-only` for check-only scheduling. The scheduled runner supplies a deterministic PATH, and the deployer refreshes existing managed CLI surfaces even when a non-interactive process cannot see a CLI binary. Legacy accepted releases create rollback snapshots first, retain the latest 2 snapshots by default, update the recorded source checkout when safe, and `--rollback previous` restores the latest installed-state snapshot.
+
+Saved-profile release acceptance uses a verified release mirror and its own recoverable transaction; it does not update the development checkout. The installed version and local checkout may therefore differ. See [Installation Profiles](docs/INSTALL-PROFILES.md).
 
 ## Generated Inspection Views
 

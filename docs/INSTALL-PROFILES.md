@@ -152,3 +152,30 @@ Legacy namespace deployment also preflights old paths before any copy or
 registration: every old package member must match its recorded standalone bundle
 and manifest. Unknown, customized, or symlinked packages stop the operation and
 remain discoverable until the controller resolves them explicitly.
+
+## Discovery and member registries
+
+A capability can emit both a skill and an agent. These are different invocation
+surfaces for one SSOT definition, not competing canonical skills. Repository and
+home copies are intentional; `kiro-cli agent list` inside this repository may warn
+that its same-named workspace agent overrides the global one. Run the list from a
+neutral directory as well to distinguish global and workspace discovery.
+
+KiroCrew's Crew Members roster is separate from Kiro CLI's discovered agent files.
+A renamed JSON file does not necessarily rename a previously saved crew member.
+Check both `.kiro/agents` and the application's configured member registry before
+claiming old names are fully retired. Do not infer duplicate skill packages from
+an agent roster screenshot, or treat `Built-in` as proof that Kiro ships that agent.
+
+A local KiroCrew investigation found old Core member names retained alongside their
+namespaced successors: its roster reads saved `agents` configuration, adds newly
+discovered names, and prunes missing package rows but retains rows marked `builtin`.
+This is an application-registry migration, outside the Core skills profile's write
+set. Use supported application management after checking member preferences,
+favorites, bindings and active sessions. Preserve history and avoid wholesale
+config/cache deletion. A routine Core update must not rewrite KiroCrew's config.
+
+Example: `ic-assistant` maps to `engos-operations-ic-assistant`. Verify that the new
+agent is available and that the old name is absent from native CLI discovery,
+then reconcile the saved application member separately. Installed bytes, native
+CLI discovery and the application's roster require separate verification.
