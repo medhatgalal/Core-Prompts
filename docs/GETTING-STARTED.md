@@ -6,7 +6,7 @@ Use this page in the same order Core-Prompts is meant to be used:
 2. UAC second
 3. broader repo tooling third
 
-Core-Prompts skills use the `engos-<category>-<skill-name>` namespace. Use the full prefixed name in autocomplete or direct invocation; the category keeps related Core-Prompts skills together across supported CLI and app surfaces.
+Core-authored skills use the `engos-<category>-<skill-name>` namespace. Use the full prefixed name in autocomplete or direct invocation; the category keeps related Core-Prompts skills together across supported CLI and app surfaces. The pinned upstream `loopy` capability retains its familiar name as an explicit exception.
 
 Conversational `Supercharge /full` and stacked forms such as `supercharge /simple /invert /contract <task>` remain supported by `engos-meta-supercharge`. Use the full namespaced name for native skill selection; no separate short-name package or native menu alias is emitted. Ask `supercharge help` or `supercharge /help examples` for the bundled terminal guide; help does not execute examples. `/full` still includes ten grading iterations unless you explicitly say `skip grade`.
 

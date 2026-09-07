@@ -2,7 +2,7 @@
 
 Rendered dist/consumer-shell views are optional distribution extras, not runtime
 inputs. They are absent from tagged Git mirrors and remain untouched by updates."""
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 import hashlib
 import json
 import stat
@@ -22,6 +22,8 @@ def identity(path):
 
 
 def permitted(rel):
+    if PurePosixPath(rel).as_posix() != rel or rel == '.codex/config.toml':
+        return False
     return rel == MANIFEST or any(rel == root or rel.startswith(root + '/') for root in ROOTS)
 
 
@@ -31,6 +33,8 @@ def build(root):
         source = root / relative
         paths = sorted(source.rglob('*')) if source.is_dir() else [source]
         for path in paths:
+            if not permitted(path.relative_to(root).as_posix()):
+                continue
             if path.is_symlink():
                 raise ValueError(f'bundle contains symlink: {path}')
             if path.is_file() and path.name != '.DS_Store' and '__pycache__' not in path.parts and path.suffix != '.pyc':

@@ -1,5 +1,7 @@
 # Harness deployment and Loopy packaging review
 
+> Historical review snapshot. The namespace integration hold below was resolved by the [namespace integration receipt](namespace-integration/README.md). For current deployment and ownership behavior, use [Install Profiles](../../docs/INSTALL-PROFILES.md). Earlier counts, proposed plans, and home blockers below are dated evidence, not current authorization or readiness.
+
 Baseline: `45c06d2d99129780a1864212c3ff4602a70950d6` in the assigned isolated worktree,
 branch `AI/harness-profile-loopy`. UAC integration at `8b1efb1ba05f272ddd437aa90f014091c5049861` and accepted OpEx integration at `8ccdd810f615c5c9cad0b349373a692b41d7380d` are complete.
 Namespace integration remains pending its accepted main.

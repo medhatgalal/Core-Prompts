@@ -440,6 +440,10 @@ def run_artifact_validator(path: Path, rule: dict, strict: bool, warnings: list[
 
     if code != 0:
         return [f'{path}: validator failed with code {code}: {out}']
+    plain_output = re.sub(r'\x1b\[[0-?]*[ -/]*[@-~]', '', out)
+    if any(re.search(pattern, plain_output, re.MULTILINE)
+           for pattern in validator.get('error_output_patterns', [])):
+        return [f'{path}: validator reported an error despite exit code 0: {plain_output}']
     return []
 
 

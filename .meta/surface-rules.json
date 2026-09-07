@@ -302,10 +302,12 @@
       ],
       "match": "filename",
       "source_of_truth": [
-        "https://kiro.dev/docs/cli/custom-agents/configuration-reference/"
+        "https://kiro.dev/docs/custom-agents/configuration-reference/",
+        "https://kiro.dev/docs/cli/2x-reference/"
       ],
       "source_urls": [
-        "https://kiro.dev/docs/cli/custom-agents/configuration-reference/"
+        "https://kiro.dev/docs/custom-agents/configuration-reference/",
+        "https://kiro.dev/docs/cli/2x-reference/"
       ],
       "resource_uri_patterns": [
         "^skill://\\.kiro/skills/.+/SKILL\\.md$",
@@ -318,6 +320,9 @@
           "agent",
           "validate",
           "--path"
+        ],
+        "error_output_patterns": [
+          "^Error:"
         ]
       },
       "schema_mode": "remote",

@@ -35,3 +35,6 @@ __pycache__/
 MagicMock/
 *.mock
 .mock_*
+
+# Local Codex agent registrations contain checkout-specific absolute paths
+/.codex/config.toml
