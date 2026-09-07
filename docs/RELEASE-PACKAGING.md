@@ -48,9 +48,12 @@ The package should include:
 - `CHANGELOG.md`
 
 The package should not include:
+- `.codex/config.toml`: generated local agent registrations can contain absolute checkout paths; keep this ignored local file and regenerate registrations at the installation target
 - `.planning/`
 - `reports/quality-reviews/`
 - stray local artifacts such as `.DS_Store`
+
+Both archive formats exclude local Codex registration configuration. ZIP creation uses a fresh temporary archive before replacing the output, so excluded or retired members cannot survive from an earlier package with the same filename.
 
 ## Remote CI
 Do not call the repo release-green until the hosted CI surface is green after push.

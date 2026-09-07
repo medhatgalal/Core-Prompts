@@ -130,8 +130,15 @@ BASE_NAME="core-prompts-${VERSION}-surfaces"
 TAR_PATH="$OUTPUT_DIR/${BASE_NAME}.tar.gz"
 ZIP_PATH="$OUTPUT_DIR/${BASE_NAME}.zip"
 
-COPYFILE_DISABLE=1 tar --exclude='.DS_Store' -czf "$TAR_PATH" "${INCLUDE_PATHS[@]}"
-zip -rq "$ZIP_PATH" "${INCLUDE_PATHS[@]}" -x '*/.DS_Store' '*.DS_Store'
+COPYFILE_DISABLE=1 tar --exclude='.DS_Store' --exclude='.codex/config.toml' -czf "$TAR_PATH" "${INCLUDE_PATHS[@]}"
+# zip updates an existing archive, including members now excluded or retired.
+# Build a fresh archive so no stale local configuration can survive a rerun.
+ZIP_TMP_DIR="$(mktemp -d "$OUTPUT_DIR/.core-prompts-zip.XXXXXX")"
+trap 'rm -f "$ZIP_TMP_DIR/$BASE_NAME.zip"; rmdir "$ZIP_TMP_DIR"' EXIT
+zip -rq "$ZIP_TMP_DIR/$BASE_NAME.zip" "${INCLUDE_PATHS[@]}" -x '*/.DS_Store' '*.DS_Store' '.codex/config.toml'
+mv -f "$ZIP_TMP_DIR/$BASE_NAME.zip" "$ZIP_PATH"
+rmdir "$ZIP_TMP_DIR"
+trap - EXIT
 
 echo "PACKAGED $TAR_PATH"
 echo "PACKAGED $ZIP_PATH"
