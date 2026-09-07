@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-audit-engineering-progress",
-  "ssot_sha256": "021012e9a68ea38ffe606f6af433f527cdf4afa114cfea867c0ae20f99d70546",
+  "ssot_sha256": "66a396b4bdb282db28e179cab317f36ee5c7c0c179abec58a460b313f1b12ec4",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -34,7 +34,7 @@
   "authority_boundaries": [
     "engos-audit-engineering-progress:L25:247b41e99ff2",
     "engos-audit-engineering-progress:L80:d03fa22f48be",
-    "engos-audit-engineering-progress:L282:00f13ea6169b",
+    "engos-audit-engineering-progress:L282:6e56ead7fa75",
     "engos-audit-engineering-progress:L319:4f05ad30b4b3",
     "engos-audit-engineering-progress:L321:91eb0b0a682f",
     "engos-audit-engineering-progress:L334:a7b831d99f1c",
@@ -157,11 +157,11 @@
       "mapped_to": []
     },
     {
-      "id": "engos-audit-engineering-progress:L282:00f13ea6169b",
+      "id": "engos-audit-engineering-progress:L282:6e56ead7fa75",
       "heading": "For `run`",
       "source_line": 282,
-      "sha256": "00f13ea6169b095c2af7f2462588750d89ae014f32bc1dd0eae3c5190b093322",
-      "text": "**This command delegates all git data gathering to `scripts/engos-audit-engineering-progress.py`.** Do not run git commands manually \u2014 use the script.",
+      "sha256": "6e56ead7fa758e8f097156f4a90f46dfd065e64768174443e62c99b139c3b6fa",
+      "text": "**This command delegates all git data gathering to `scripts/eng-report.py`.** Do not run git commands manually \u2014 use the script.",
       "kind": "invariant",
       "mapped_to": []
     },
@@ -354,7 +354,7 @@
   "source_references": [
     {
       "path": "ssot/engos-audit-engineering-progress.md",
-      "sha256": "021012e9a68ea38ffe606f6af433f527cdf4afa114cfea867c0ae20f99d70546"
+      "sha256": "66a396b4bdb282db28e179cab317f36ee5c7c0c179abec58a460b313f1b12ec4"
     }
   ],
   "known_ambiguities": [],
