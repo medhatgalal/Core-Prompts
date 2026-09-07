@@ -94,6 +94,6 @@ They are useful generated inspection aids. They should not replace the real onbo
 
 ## Companion Review Capabilities
 
-- use `docs-review-expert` when the change is primarily about docs hierarchy, drift, and rewrite quality
-- use `gitops-review` when the change affects branch hygiene, CI, packaging, merge, or release readiness
-- use `testing`, `code-review`, and `architecture` when the changed behavior crosses those boundaries
+- use `engos-quality-docs-review` when the change is primarily about docs hierarchy, drift, and rewrite quality
+- use `engos-quality-gitops-review` when the change affects branch hygiene, CI, packaging, merge, or release readiness
+- use `engos-quality-testing-review`, `engos-quality-code-review`, and `engos-design-architecture` when the changed behavior crosses those boundaries

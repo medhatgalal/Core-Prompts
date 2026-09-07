@@ -71,7 +71,7 @@ def test_codex_and_kiro_registry_entries_are_hermetic_and_not_promotion_eligible
         "chat",
         "--no-interactive",
         "--agent",
-        "batman",
+        "engos-orchestration-batman",
         "--model",
         "{model}",
         "--effort",
@@ -79,7 +79,7 @@ def test_codex_and_kiro_registry_entries_are_hermetic_and_not_promotion_eligible
         "--output-format",
         "stream-json",
     )
-    assert kiro.bootstrap_agent == "batman"
+    assert kiro.bootstrap_agent == "engos-orchestration-batman"
     assert codex.environment_allowlist == ()
     assert codex.unavailable_reason == (
         "authenticated Codex execution is disabled until a reviewed secret-isolating "

@@ -36,7 +36,7 @@ Operational Excellence, OpEx digest, incident review, daily board, decisions, ow
 
 ## Invocation Hints
 
-Use this capability when the user asks for a Daily OpEx Digest, an Operational Excellence incident board, current-versus-prior incident progress, stalled or chronic incident analysis, DPA or postmortem tracking, owner accountability, Five Whys, customer-risk analysis, or meeting talking points. Route active Incident Commander process support to `ic-assistant`; this capability audits the incident estate and prepares review artifacts.
+Use this capability when the user asks for a Daily OpEx Digest, an Operational Excellence incident board, current-versus-prior incident progress, stalled or chronic incident analysis, DPA or postmortem tracking, owner accountability, Five Whys, customer-risk analysis, or meeting talking points. Route active Incident Commander process support to `engos-operations-ic-assistant`; this capability audits the incident estate and prepares review artifacts.
 
 ## Purpose
 

@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_multi_mode_capabilities_have_descriptor_modes() -> None:
-    for slug in ("supercharge", "pulse", "auto-research", "ic-assistant", "instruction-editor"):
+    for slug in ("engos-meta-supercharge", "engos-triage-my-inbox-chat-pulse", "engos-optimization-auto-research", "engos-operations-ic-assistant", "engos-meta-instruction-editor"):
         descriptor = json.loads((ROOT / ".meta" / "capabilities" / f"{slug}.json").read_text(encoding="utf-8"))
         assert descriptor["modes"], f"{slug} descriptor lost its declared mode index"
         assert all(mode["source_refs"] == [f"ssot/{slug}.md"] for mode in descriptor["modes"])
@@ -23,8 +23,8 @@ def test_generated_descriptors_do_not_expose_legacy_ship_as_promotion() -> None:
 
 
 def test_supercharge_index_contains_only_explicit_modules() -> None:
-    body = (ROOT / "ssot" / "supercharge.md").read_text(encoding="utf-8")
-    entries = extract_declared_modes("supercharge", body)
+    body = (ROOT / "ssot" / "engos-meta-supercharge.md").read_text(encoding="utf-8")
+    entries = extract_declared_modes("engos-meta-supercharge", body)
     names = {entry["display_name"] for entry in entries}
 
     assert "/ult — ULT-Agent++ (Prompt Engineer Mode)" in names
@@ -35,13 +35,13 @@ def test_supercharge_index_contains_only_explicit_modules() -> None:
 
 
 def test_pulse_command_variants_are_combined() -> None:
-    body = (ROOT / "ssot" / "pulse.md").read_text(encoding="utf-8")
-    entries = extract_declared_modes("pulse", body)
+    body = (ROOT / "ssot" / "engos-triage-my-inbox-chat-pulse.md").read_text(encoding="utf-8")
+    entries = extract_declared_modes("engos-triage-my-inbox-chat-pulse", body)
     by_slug = {entry["mode_slug"]: entry for entry in entries}
 
     assert "deep" in by_slug
-    assert "pulse /deep" in by_slug["deep"]["invocations"]
-    assert "pulse /deep <N>" in by_slug["deep"]["invocations"]
+    assert "engos-triage-my-inbox-chat-pulse /deep" in by_slug["deep"]["invocations"]
+    assert "engos-triage-my-inbox-chat-pulse /deep <N>" in by_slug["deep"]["invocations"]
     assert len([entry for entry in entries if entry["mode_slug"] == "deep"]) == 1
 
 

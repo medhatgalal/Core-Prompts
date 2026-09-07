@@ -16,14 +16,14 @@ def test_pilot_is_four_questions_not_a_repo_wide_behavioral_sweep() -> None:
 
     assert len(plan["experiments"]) == 4
     assert set(PILOT_SKILLS) == {
-        "supercharge",
-        "code-review",
-        "feature-status",
-        "eng-report",
-        "codebase-health-audit",
-        "uac-import",
+        "engos-meta-supercharge",
+        "engos-quality-code-review",
+        "engos-audit-feature-status",
+        "engos-audit-engineering-progress",
+        "engos-audit-code-health",
+        "engos-meta-uac-import",
     }
-    assert set(plan["deferred"]["skills"]) == {"architecture", "instruction-editor", "pulse", "weekly-intel"}
+    assert set(plan["deferred"]["skills"]) == {"engos-design-architecture", "engos-meta-instruction-editor", "engos-triage-my-inbox-chat-pulse", "engos-audit-weekly-intel"}
 
 
 def test_static_pilot_foundations_are_executable_at_zero_tokens() -> None:
@@ -65,8 +65,8 @@ def test_code_review_public_cases_cover_each_lifecycle_dimension_and_control() -
 
 
 def test_pilot_does_not_pretend_anchor_evidence_is_cross_host_proof() -> None:
-    pilot = draft_goal_contract(ROOT, "supercharge")["runtime_envelope"]
-    deferred = draft_goal_contract(ROOT, "pulse")["runtime_envelope"]
+    pilot = draft_goal_contract(ROOT, "engos-meta-supercharge")["runtime_envelope"]
+    deferred = draft_goal_contract(ROOT, "engos-triage-my-inbox-chat-pulse")["runtime_envelope"]
 
     assert pilot["required_cells"] == ["anchor"]
     assert pilot["cross_host_required_for_pilot"] is False
@@ -85,8 +85,8 @@ def test_static_pilot_validator_fails_when_a_protected_marker_disappears(tmp_pat
     shutil.copytree(ROOT / ".meta", tmp_path / ".meta")
     (tmp_path / "ssot").mkdir()
     (tmp_path / "scripts").mkdir()
-    supercharge = (ROOT / "ssot" / "supercharge.md").read_text(encoding="utf-8")
-    (tmp_path / "ssot" / "supercharge.md").write_text(
+    supercharge = (ROOT / "ssot" / "engos-meta-supercharge.md").read_text(encoding="utf-8")
+    (tmp_path / "ssot" / "engos-meta-supercharge.md").write_text(
         supercharge.replace("## MODULE: /basis", "## REMOVED MODULE: /basis"),
         encoding="utf-8",
     )

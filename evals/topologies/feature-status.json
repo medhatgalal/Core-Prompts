@@ -1,6 +1,6 @@
 {
   "schema_version": "CapabilityTopology.v1",
-  "slug": "feature-status",
+  "slug": "engos-audit-feature-status",
   "ssot_sha256": "91bcee05ee3fdb96307afe52d22244fd1c7141bf91d54b274d510585c5352d13",
   "explicit_invocations": [],
   "semantic_triggers": [],
@@ -41,7 +41,7 @@
     "- release: verify shipped behavior, install flow, and references against the final state"
   ],
   "handoffs": [
-    "- escalation: if the audit reveals architecture concerns, route to `architecture`; if it reveals test generation needs, route to `testing`; if it reveals docs drift, route to `docs-review-expert`"
+    "- escalation: if the audit reveals architecture concerns, route to `engos-design-architecture`; if it reveals test generation needs, route to `engos-quality-testing-review`; if it reveals docs drift, route to `engos-quality-docs-review`"
   ],
   "protected_invariants": [
     {
@@ -205,7 +205,7 @@
   },
   "source_references": [
     {
-      "path": "ssot/feature-status.md",
+      "path": "ssot/engos-audit-feature-status.md",
       "sha256": "91bcee05ee3fdb96307afe52d22244fd1c7141bf91d54b274d510585c5352d13"
     }
   ],

@@ -1,6 +1,6 @@
 {
   "schema_version": "CapabilityTopology.v1",
-  "slug": "address-code-review",
+  "slug": "engos-delivery-address-code-review",
   "ssot_sha256": "ca3fe7fef93c366ef97fd0c286b9784e20a774dec0b6ac669da5fcf9c6696c01",
   "explicit_invocations": [],
   "semantic_triggers": [],
@@ -29,7 +29,7 @@
     "- `User Selection` \u2014 which comments the user chose to address",
     "- `Changes Applied` \u2014 per-comment summary of what was modified",
     "- `Commit Guidance` \u2014 suggested commit message and push instructions",
-    "- `Follow-up Review` \u2014 whether to run `code-review`, `testing`, `architecture`, or `gitops-review`"
+    "- `Follow-up Review` \u2014 whether to run `engos-quality-code-review`, `engos-quality-testing-review`, `engos-design-architecture`, or `engos-quality-gitops-review`"
   ],
   "authority_boundaries": [
     "address-code-review:L22:54b46041dc34",
@@ -53,7 +53,7 @@
       "heading": "Purpose",
       "source_line": 6,
       "sha256": "0a5d48cf06cc8c8b9e602c5800b5cb082f70cbaf8ca181807e48ef84215d1962",
-      "text": "Use this only after there is an existing PR/MR review thread, inline comment, requested-change discussion, or explicit reviewer note to address. If the user has not received review feedback yet and wants a quality gate before committing or pushing, use `code-review` instead.",
+      "text": "Use this only after there is an existing PR/MR review thread, inline comment, requested-change discussion, or explicit reviewer note to address. If the user has not received review feedback yet and wants a quality gate before committing or pushing, use `engos-quality-code-review` instead.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
@@ -71,7 +71,7 @@
       "heading": "Choose the Right Review Capability",
       "source_line": 19,
       "sha256": "3c128e1bf0f9310b3e05fb2e424e1326ff28f82f1e88d130b0c68e448232fbcb",
-      "text": "| \"Address only comments 2 and 4\" | `address-code-review` | selected-comment implementation with narrow scope |",
+      "text": "| \"Address only comments 2 and 4\" | `engos-delivery-address-code-review` | selected-comment implementation with narrow scope |",
       "kind": "invariant",
       "mapped_to": []
     },
@@ -80,7 +80,7 @@
       "heading": "Choose the Right Review Capability",
       "source_line": 22,
       "sha256": "54b46041dc34e5c898a778b5a28d4fd606a61760b784d2258fc39da62a457c34",
-      "text": "Do not use `address-code-review` to proactively improve code, clean up adjacent issues, or review a diff before a reviewer has commented. It should only mutate files that are tied to selected review feedback.",
+      "text": "Do not use `engos-delivery-address-code-review` to proactively improve code, clean up adjacent issues, or review a diff before a reviewer has commented. It should only mutate files that are tied to selected review feedback.",
       "kind": "invariant",
       "mapped_to": []
     },
@@ -182,7 +182,7 @@
   },
   "source_references": [
     {
-      "path": "ssot/address-code-review.md",
+      "path": "ssot/engos-delivery-address-code-review.md",
       "sha256": "ca3fe7fef93c366ef97fd0c286b9784e20a774dec0b6ac669da5fcf9c6696c01"
     }
   ],

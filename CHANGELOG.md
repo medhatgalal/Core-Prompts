@@ -15,6 +15,13 @@
 - Added a network-free snapshot validator and deterministic HTML/Markdown renderer with explicit R1–R8 comparison rules, complete/partial/blocked coverage, policy-backed SLA states, combined-postmortem handling, HTML escaping, responsive/print layout, and overwrite refusal.
 - Replayed the supplied September report through 41 deterministic checks and killed 5 focused regressions. UAC landed the exact reviewed SSOT and four generated skill surfaces as `structural_ready`; formal behavioral status remains `behavioral_pending` because no independent signed promotion evaluation ran.
 
+## Unreleased
+
+- Renamed the 25 public Core-Prompts skill identities into the `engos-<category>-<skill-name>` namespace so related capabilities remain grouped in CLI and app autocomplete. The `analyze-context` capability is now `engos-memory-context-continuity`; its external storage remains under `~/.analyze-context`.
+- Clarified every skill description to make activation intent, primary job, and boundaries more discriminating while preserving the existing skill bodies and operating contracts.
+- Rebuilt all Codex, Gemini, Claude, and Kiro surfaces, removed the old unprefixed generated skill and agent paths, and refreshed active documentation, capability metadata, evaluation contracts, and release inspection views.
+- Preserved familiar Supercharge conversational prefixes and module stacking without duplicate skill packages; kept unrelated Codex registrations during filtered namespace updates.
+
 ## v1.12.4 - 2026-09-01
 
 - Corrected onboarding inventory from 24 to 25 shipped skills and added `plan-to-goal-design` to the README and Getting Started capability indexes.

@@ -10,9 +10,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DEPLOY_SCRIPT = ROOT / "scripts" / "deploy-surfaces.sh"
 LEGACY_RELATIVE_PATHS = (
-    Path(".kiro/skills/batman/PROTOCOL.md"),
-    Path(".kiro/skills/batman/PROMPT-AMENDMENT.md"),
-    Path(".kiro/skills/batman/CODEX-UAC-INTAKE.md"),
+    Path(".kiro/skills/engos-orchestration-batman/PROTOCOL.md"),
+    Path(".kiro/skills/engos-orchestration-batman/PROMPT-AMENDMENT.md"),
+    Path(".kiro/skills/engos-orchestration-batman/CODEX-UAC-INTAKE.md"),
 )
 
 
@@ -78,7 +78,7 @@ class BatmanCleanupTests(unittest.TestCase):
             "--cli",
             "kiro",
             "--slug",
-            "batman",
+            "engos-orchestration-batman",
             "--surface-only",
             "--dry-run",
         )
@@ -103,9 +103,9 @@ class BatmanCleanupTests(unittest.TestCase):
 
     def test_batman_kiro_deploy_archives_only_legacy_files(self) -> None:
         original = self.seed_legacy_sources()
-        valid_skill = self.target / ".kiro/skills/batman/SKILL.md"
-        valid_resource = self.target / ".kiro/skills/batman/resources/local.json"
-        unrelated = self.target / ".kiro/skills/batman/LOCAL-NOTES.md"
+        valid_skill = self.target / ".kiro/skills/engos-orchestration-batman/SKILL.md"
+        valid_resource = self.target / ".kiro/skills/engos-orchestration-batman/resources/local.json"
+        unrelated = self.target / ".kiro/skills/engos-orchestration-batman/LOCAL-NOTES.md"
         for path in (valid_skill, valid_resource, unrelated):
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text("preserve\n", encoding="utf-8")
@@ -114,7 +114,7 @@ class BatmanCleanupTests(unittest.TestCase):
             "--cli",
             "kiro",
             "--slug",
-            "batman",
+            "engos-orchestration-batman",
             "--surface-only",
         )
 
@@ -158,7 +158,7 @@ class BatmanCleanupTests(unittest.TestCase):
             "--cli",
             "kiro",
             "--slug",
-            "batman",
+            "engos-orchestration-batman",
             "--surface-only",
         )
 
@@ -191,7 +191,7 @@ class BatmanCleanupTests(unittest.TestCase):
             "--cli",
             "kiro",
             "--slug",
-            "code-review",
+            "engos-quality-code-review",
             "--surface-only",
         )
 
@@ -209,7 +209,7 @@ class BatmanCleanupTests(unittest.TestCase):
             "--cli",
             "codex",
             "--slug",
-            "batman",
+            "engos-orchestration-batman",
             "--surface-only",
         )
 
@@ -222,7 +222,7 @@ class BatmanCleanupTests(unittest.TestCase):
 
     def test_full_kiro_install_cleanup_remains_bounded_to_three_files(self) -> None:
         original = self.seed_legacy_sources()
-        unrelated = self.target / ".kiro/skills/batman/KEEP.md"
+        unrelated = self.target / ".kiro/skills/engos-orchestration-batman/KEEP.md"
         unrelated.write_text("preserve\n", encoding="utf-8")
 
         result = self.run_deploy("--cli", "kiro")
@@ -230,9 +230,9 @@ class BatmanCleanupTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stdout)
         self.assertEqual(self.archived_file_bytes(), original)
         self.assertTrue(unrelated.is_file())
-        self.assertTrue((self.target / ".kiro/skills/batman/SKILL.md").is_file())
+        self.assertTrue((self.target / ".kiro/skills/engos-orchestration-batman/SKILL.md").is_file())
         self.assertTrue(
-            (self.target / ".kiro/skills/batman/resources/capability.json").is_file()
+            (self.target / ".kiro/skills/engos-orchestration-batman/resources/capability.json").is_file()
         )
         self.assertIn("stale_pruned=3", result.stdout)
 

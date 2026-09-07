@@ -10,7 +10,7 @@ from pathlib import Path
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
-STATE_STORE_PATH = ROOT / 'sources' / 'capability-resources' / 'analyze-context' / 'state_store.py'
+STATE_STORE_PATH = ROOT / 'sources' / 'capability-resources' / 'engos-memory-context-continuity' / 'state_store.py'
 
 
 def _load_state_store():
@@ -43,8 +43,8 @@ def _init_repo(path: Path) -> Path:
 
 
 def test_docs_review_and_gitops_review_land_as_both() -> None:
-    docs = json.loads((ROOT / '.meta' / 'capabilities' / 'docs-review-expert.json').read_text(encoding='utf-8'))
-    gitops_path = ROOT / '.meta' / 'capabilities' / 'gitops-review.json'
+    docs = json.loads((ROOT / '.meta' / 'capabilities' / 'engos-quality-docs-review.json').read_text(encoding='utf-8'))
+    gitops_path = ROOT / '.meta' / 'capabilities' / 'engos-quality-gitops-review.json'
     if gitops_path.exists():
         gitops = json.loads(gitops_path.read_text(encoding='utf-8'))
     else:
@@ -60,11 +60,11 @@ def test_docs_review_and_gitops_review_land_as_both() -> None:
 
 def test_rewritten_ssot_files_have_single_frontmatter_and_required_sections() -> None:
     expectations = {
-        'supercharge.md': ['## Purpose', '## Primary Objective', '## Agent Operating Contract', '## Required Output', '## Evaluation Rubric'],
-        'analyze-context.md': ['## Purpose', '## Primary Objective', '## Workflow', '## Required Output', '## Evaluation Rubric'],
-        'converge.md': ['## Purpose', '## Primary Objective', '## Agent Operating Contract', '## Required Output', '## Evaluation Rubric'],
-        'docs-review-expert.md': ['## Purpose', '## Agent Operating Contract', '## Review Timing', '## Evaluation Rubric'],
-        'gitops-review.md': ['## Purpose', '## Agent Operating Contract', '## Required Companion Reviews', '## Evaluation Rubric'],
+        'engos-meta-supercharge.md': ['## Purpose', '## Primary Objective', '## Agent Operating Contract', '## Required Output', '## Evaluation Rubric'],
+        'engos-memory-context-continuity.md': ['## Purpose', '## Primary Objective', '## Workflow', '## Required Output', '## Evaluation Rubric'],
+        'engos-reconciliation-converge.md': ['## Purpose', '## Primary Objective', '## Agent Operating Contract', '## Required Output', '## Evaluation Rubric'],
+        'engos-quality-docs-review.md': ['## Purpose', '## Agent Operating Contract', '## Review Timing', '## Evaluation Rubric'],
+        'engos-quality-gitops-review.md': ['## Purpose', '## Agent Operating Contract', '## Required Companion Reviews', '## Evaluation Rubric'],
     }
 
     for name, headings in expectations.items():
@@ -78,7 +78,7 @@ def test_rewritten_ssot_files_have_single_frontmatter_and_required_sections() ->
 
 
 def test_analyze_context_memory_is_repository_scoped_outside_worktrees() -> None:
-    text = (ROOT / 'ssot' / 'analyze-context.md').read_text(encoding='utf-8')
+    text = (ROOT / 'ssot' / 'engos-memory-context-continuity.md').read_text(encoding='utf-8')
 
     required_contract = [
         'Never write canonical analysis state inside a branch, linked worktree, or main checkout.',
@@ -117,7 +117,7 @@ def test_analyze_context_repository_state_contract_is_discoverable() -> None:
     }
 
     for path, text in docs.items():
-        assert 'analyze-context' in text, path
+        assert 'engos-memory-context-continuity' in text, path
         assert '.analyze-context' in text, path
         assert 'context' in text and 'todo' in text and 'insights' in text, path
 
@@ -247,19 +247,19 @@ def test_analyze_context_cli_write_initializes_all_three_files(tmp_path: Path) -
 
 
 def test_analyze_context_generated_surfaces_and_helper_match_ssot() -> None:
-    source_text = (ROOT / 'ssot' / 'analyze-context.md').read_text(encoding='utf-8')
+    source_text = (ROOT / 'ssot' / 'engos-memory-context-continuity.md').read_text(encoding='utf-8')
     source_body = source_text.split('\n---\n', 1)[1].strip()
     helper_bytes = STATE_STORE_PATH.read_bytes()
 
     for surface in ('.codex', '.gemini', '.claude', '.kiro'):
-        skill_text = (ROOT / surface / 'skills' / 'analyze-context' / 'SKILL.md').read_text(encoding='utf-8')
+        skill_text = (ROOT / surface / 'skills' / 'engos-memory-context-continuity' / 'SKILL.md').read_text(encoding='utf-8')
         assert source_body in skill_text, surface
-        generated_helper = ROOT / surface / 'skills' / 'analyze-context' / 'resources' / 'state_store.py'
+        generated_helper = ROOT / surface / 'skills' / 'engos-memory-context-continuity' / 'resources' / 'state_store.py'
         assert generated_helper.read_bytes() == helper_bytes, surface
 
 
 def test_analyze_context_current_quality_matrix_excludes_legacy_contract() -> None:
-    descriptor = json.loads((ROOT / '.meta' / 'capabilities' / 'analyze-context.json').read_text(encoding='utf-8'))
+    descriptor = json.loads((ROOT / '.meta' / 'capabilities' / 'engos-memory-context-continuity.json').read_text(encoding='utf-8'))
     historical = json.dumps(descriptor['historical_baseline'])
     current = json.dumps(descriptor['quality_validation_matrix'])
 

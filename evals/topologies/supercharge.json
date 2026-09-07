@@ -1,6 +1,6 @@
 {
   "schema_version": "CapabilityTopology.v1",
-  "slug": "supercharge",
+  "slug": "engos-meta-supercharge",
   "ssot_sha256": "03271e50e081fce1e6ae5e23ae3b957045885f63b9b42ec5cb1d9dbfe9fb8200",
   "explicit_invocations": [
     "/adversarial",
@@ -31,7 +31,7 @@
           "/ult"
         ],
         "source_refs": [
-          "ssot/supercharge.md"
+          "ssot/engos-meta-supercharge.md"
         ],
         "source_line": 343,
         "mode_summary": "Explicitly declared module in the canonical skill.",
@@ -50,7 +50,7 @@
           "/catchup"
         ],
         "source_refs": [
-          "ssot/supercharge.md"
+          "ssot/engos-meta-supercharge.md"
         ],
         "source_line": 375,
         "mode_summary": "Explicitly declared module in the canonical skill.",
@@ -69,7 +69,7 @@
           "/basis"
         ],
         "source_refs": [
-          "ssot/supercharge.md"
+          "ssot/engos-meta-supercharge.md"
         ],
         "source_line": 424,
         "mode_summary": "Explicitly declared module in the canonical skill.",
@@ -88,7 +88,7 @@
           "/simple"
         ],
         "source_refs": [
-          "ssot/supercharge.md"
+          "ssot/engos-meta-supercharge.md"
         ],
         "source_line": 469,
         "mode_summary": "Explicitly declared module in the canonical skill.",
@@ -107,7 +107,7 @@
           "/invert"
         ],
         "source_refs": [
-          "ssot/supercharge.md"
+          "ssot/engos-meta-supercharge.md"
         ],
         "source_line": 553,
         "mode_summary": "Explicitly declared module in the canonical skill.",
@@ -126,7 +126,7 @@
           "/adversarial"
         ],
         "source_refs": [
-          "ssot/supercharge.md"
+          "ssot/engos-meta-supercharge.md"
         ],
         "source_line": 568,
         "mode_summary": "Explicitly declared module in the canonical skill.",
@@ -145,7 +145,7 @@
           "/adversarial /debate"
         ],
         "source_refs": [
-          "ssot/supercharge.md"
+          "ssot/engos-meta-supercharge.md"
         ],
         "source_line": 589,
         "mode_summary": "Explicitly declared module in the canonical skill.",
@@ -164,7 +164,7 @@
           "/adversarial /debate /deep"
         ],
         "source_refs": [
-          "ssot/supercharge.md"
+          "ssot/engos-meta-supercharge.md"
         ],
         "source_line": 619,
         "mode_summary": "Explicitly declared module in the canonical skill.",
@@ -183,7 +183,7 @@
           "/contract"
         ],
         "source_refs": [
-          "ssot/supercharge.md"
+          "ssot/engos-meta-supercharge.md"
         ],
         "source_line": 655,
         "mode_summary": "Explicitly declared module in the canonical skill.",
@@ -202,7 +202,7 @@
           "/grade"
         ],
         "source_refs": [
-          "ssot/supercharge.md"
+          "ssot/engos-meta-supercharge.md"
         ],
         "source_line": 695,
         "mode_summary": "Explicitly declared module in the canonical skill.",
@@ -221,7 +221,7 @@
           "/full"
         ],
         "source_refs": [
-          "ssot/supercharge.md"
+          "ssot/engos-meta-supercharge.md"
         ],
         "source_line": 711,
         "mode_summary": "Explicitly declared module in the canonical skill.",
@@ -240,7 +240,7 @@
           "/gaslight"
         ],
         "source_refs": [
-          "ssot/supercharge.md"
+          "ssot/engos-meta-supercharge.md"
         ],
         "source_line": 732,
         "mode_summary": "Explicitly declared module in the canonical skill.",
@@ -259,7 +259,7 @@
           "/stop-ult"
         ],
         "source_refs": [
-          "ssot/supercharge.md"
+          "ssot/engos-meta-supercharge.md"
         ],
         "source_line": 770,
         "mode_summary": "Explicitly declared module in the canonical skill.",
@@ -339,10 +339,10 @@
     "- `supercharge details` -> prints the module reference"
   ],
   "handoffs": [
-    "- Propose redesign moves in order: delete, combine, automate, defer, prove necessary, or route to `auto-research` for measured comparison.",
+    "- Propose redesign moves in order: delete, combine, automate, defer, prove necessary, or route to `engos-optimization-auto-research` for measured comparison.",
     "- `Auto-Research Handoff`",
     "- `supercharge <task>` -> Auto-route to best sequence",
-    "- escalation: if the user asks for unsafe or destructive execution, stop and require explicit confirmation rather than folding it into prompt work; if the user needs bounded behavioral proof across variants, route to `auto-research`"
+    "- escalation: if the user asks for unsafe or destructive execution, stop and require explicit confirmation rather than folding it into prompt work; if the user needs bounded behavioral proof across variants, route to `engos-optimization-auto-research`"
   ],
   "protected_invariants": [
     {
@@ -746,7 +746,7 @@
       "heading": "Examples",
       "source_line": 463,
       "sha256": "797e9a73f17ada9f5034772f5a30ea96848f7e003c2e78f1419386f4f79196cc",
-      "text": "After: Map the irreducible quality requirement, measure the added operator burden, remove modules that duplicate `/simple` or `/contract`, and route only unproven behavioral claims to `auto-research`.",
+      "text": "After: Map the irreducible quality requirement, measure the added operator burden, remove modules that duplicate `/simple` or `/contract`, and route only unproven behavioral claims to `engos-optimization-auto-research`.",
       "kind": "invariant",
       "mapped_to": []
     },
@@ -809,7 +809,7 @@
       "heading": "HARD CONSTRAINTS",
       "source_line": 581,
       "sha256": "4dca0d8742862c8bf10151a49664131f40542a052f63a5789adeb31ece488835",
-      "text": "- Do not claim that debate proves behavioral superiority; route proof requests to `auto-research`.",
+      "text": "- Do not claim that debate proves behavioral superiority; route proof requests to `engos-optimization-auto-research`.",
       "kind": "invariant",
       "mapped_to": []
     },
@@ -965,7 +965,7 @@
   },
   "source_references": [
     {
-      "path": "ssot/supercharge.md",
+      "path": "ssot/engos-meta-supercharge.md",
       "sha256": "03271e50e081fce1e6ae5e23ae3b957045885f63b9b42ec5cb1d9dbfe9fb8200"
     }
   ],

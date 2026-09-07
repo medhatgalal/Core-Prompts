@@ -18,20 +18,20 @@ def test_audit_ssot_entries_reports_known_entries() -> None:
     audits = audit_ssot_entries(ROOT)
     slugs = {entry.slug for entry in audits}
 
-    assert 'supercharge' in slugs
-    assert 'uac-import' in slugs
+    assert 'engos-meta-supercharge' in slugs
+    assert 'engos-meta-uac-import' in slugs
 
 
 def test_audit_ssot_entries_detects_hybrid_capability() -> None:
     audits = {entry.slug: entry for entry in audit_ssot_entries(ROOT)}
 
-    assert audits['supercharge'].inferred.capability_type == 'both'
-    assert audits['batman'].inferred.capability_type == 'both'
+    assert audits['engos-meta-supercharge'].inferred.capability_type == 'both'
+    assert audits['engos-orchestration-batman'].inferred.capability_type == 'both'
 
 
 def test_architecture_entry_publishes_display_name_and_agent_surfaces() -> None:
     audits = {entry.slug: entry for entry in audit_ssot_entries(ROOT)}
-    architecture = audits['architecture']
+    architecture = audits['engos-design-architecture']
 
     assert architecture.manifest['display_name'] == 'Architecture Studio'
     assert 'codex_agent' in architecture.expected_surface_names
@@ -64,15 +64,15 @@ def test_build_ssot_handoff_contract_is_advisory() -> None:
 
 def test_audit_ssot_entries_persist_repo_relative_source_refs() -> None:
     audits = {entry.slug: entry for entry in audit_ssot_entries(ROOT)}
-    architecture = audits["architecture"].manifest["layers"]["minimal"]
+    architecture = audits["engos-design-architecture"].manifest["layers"]["minimal"]
 
-    assert architecture["resources"] == ["ssot/architecture.md"]
-    assert architecture["source_provenance"]["normalized_source"] == "ssot/architecture.md"
+    assert architecture["resources"] == ["ssot/engos-design-architecture.md"]
+    assert architecture["source_provenance"]["normalized_source"] == "ssot/engos-design-architecture.md"
 
 
 def test_build_ssot_manifest_entry_honors_install_target_frontmatter() -> None:
     entries = {entry.slug: entry for entry in load_ssot_entries(ROOT / "ssot")}
-    manifest = build_ssot_manifest_entry(entries["dynamic-html-presentations"], ROOT)
+    manifest = build_ssot_manifest_entry(entries["engos-content-dynamic-html-presentations"], ROOT)
     install_target = manifest["layers"]["minimal"]["install_target"]
 
     assert install_target["recommended"] == "global"

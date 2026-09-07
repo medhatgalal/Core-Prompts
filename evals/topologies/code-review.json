@@ -1,6 +1,6 @@
 {
   "schema_version": "CapabilityTopology.v1",
-  "slug": "code-review",
+  "slug": "engos-quality-code-review",
   "ssot_sha256": "3850dd535f929c5fdcece8a4e5039f2140a002e8b14835baafde2056d266035f",
   "explicit_invocations": [],
   "semantic_triggers": [],
@@ -49,7 +49,7 @@
     "- resources are created without cleanup, eviction, retention, or capacity bounds",
     "| Evidence quality | Findings are based on the actual diff and reference specific files |",
     "| Resource & lifecycle | No unbounded growth, no incorrectly frozen initialization state, and failure modes are observable and recoverable |",
-    "| resource growth, capacity exhaustion, or missing cleanup is material | `architecture` | identify an eviction strategy or explicit lifecycle bounds |"
+    "| resource growth, capacity exhaustion, or missing cleanup is material | `engos-design-architecture` | identify an eviction strategy or explicit lifecycle bounds |"
   ],
   "handoffs": [
     "## Companion Capability Matrix",
@@ -61,7 +61,7 @@
       "heading": "Purpose",
       "source_line": 6,
       "sha256": "27ff8d3f2a4cf7f6a0c62d38bfeb53a5853926d9e95035748db74c8a017cf091",
-      "text": "Use this before you create a commit, before you push a branch, before an MR/PR is merged, or after a fix commit has been prepared. Do not use this capability to modify files or apply reviewer feedback; use `address-code-review` when the user wants selected PR/MR review comments implemented.",
+      "text": "Use this before you create a commit, before you push a branch, before an MR/PR is merged, or after a fix commit has been prepared. Do not use this capability to modify files or apply reviewer feedback; use `engos-delivery-address-code-review` when the user wants selected PR/MR review comments implemented.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
@@ -70,7 +70,7 @@
       "heading": "Choose the Right Review Capability",
       "source_line": 22,
       "sha256": "b3c42c190f3a838d9eda24a9a6cd35d3987307b0a03edca877076e4cf4eda87a",
-      "text": "Default to `code-review` for pre-commit or pre-push checks. Switch to `address-code-review` only when the user explicitly wants to inspect and implement existing PR/MR review comments.",
+      "text": "Default to `engos-quality-code-review` for pre-commit or pre-push checks. Switch to `engos-delivery-address-code-review` only when the user explicitly wants to inspect and implement existing PR/MR review comments.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
@@ -226,7 +226,7 @@
   },
   "source_references": [
     {
-      "path": "ssot/code-review.md",
+      "path": "ssot/engos-quality-code-review.md",
       "sha256": "3850dd535f929c5fdcece8a4e5039f2140a002e8b14835baafde2056d266035f"
     }
   ],

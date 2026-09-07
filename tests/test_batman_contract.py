@@ -82,13 +82,13 @@ def _assert_dynamic_mutation_detected(scenario: dict, observed: dict) -> None:
 
 class BatmanContractTests(unittest.TestCase):
     def test_batman_is_subagent_driven_implementation_not_parent_authorship(self) -> None:
-        text = _read("ssot/batman.md")
+        text = _read("ssot/engos-orchestration-batman.md")
         self.assertIn("Batman delivers implementation through independent subagents", text)
         self.assertIn("The controller must not author production code, failing tests, or implementation fixes.", text)
         self.assertIn("Skipping implementation means Batman did not run.", text)
 
     def test_batman_has_four_blocking_milestone_review_gates(self) -> None:
-        text = _read("ssot/batman.md")
+        text = _read("ssot/engos-orchestration-batman.md")
         self.assertIn("All four milestone gates are blocking.", text)
         self.assertEqual(
             re.findall(r"^\| [1-4] \|", text, flags=re.MULTILINE),
@@ -101,7 +101,7 @@ class BatmanContractTests(unittest.TestCase):
         self.assertNotIn("All four milestone gates review the actual saved revision or diff", text)
 
     def test_batman_landing_gate_follows_pr_and_hosted_ci(self) -> None:
-        text = _read("ssot/batman.md")
+        text = _read("ssot/engos-orchestration-batman.md")
         stage_six = text.split("### Stage 6 — Document, land, and clean", 1)[1].split("\n## Rules", 1)[0]
         ordered_steps = (
             "Update documentation and examples",
@@ -113,10 +113,10 @@ class BatmanContractTests(unittest.TestCase):
         positions = [stage_six.index(step) for step in ordered_steps]
         self.assertEqual(positions, sorted(positions))
         self.assertIn("fresh documentation and GitOps reviewer role briefs", stage_six)
-        self.assertIn("fresh adversarial reviewer role brief applies `supercharge /adversarial`", stage_six)
+        self.assertIn("fresh adversarial reviewer role brief applies `engos-meta-supercharge /adversarial`", stage_six)
 
     def test_batman_progress_reporting_is_event_driven_and_time_bounded(self) -> None:
-        text = _read("ssot/batman.md")
+        text = _read("ssot/engos-orchestration-batman.md")
         for trigger in (
             "initial status immediately after preflight",
             "stage status at every stage transition",
@@ -127,16 +127,16 @@ class BatmanContractTests(unittest.TestCase):
         self.assertIn("against the written delivery plan", text)
 
     def test_batman_is_portable_and_has_one_active_identity(self) -> None:
-        text = _read("ssot/batman.md")
-        supercharge = _read("ssot/supercharge.md")
+        text = _read("ssot/engos-orchestration-batman.md")
+        supercharge = _read("ssot/engos-meta-supercharge.md")
         fixture = _read("evals/fixtures/supercharge/module-preservation.json")
         self.assertNotIn(FORMER_ALIAS, text.lower())
         self.assertFalse((ROOT / "evals/fixtures/batman/alias-microflow.json").exists())
         self.assertIn("Use only the host's subagent mechanism", text)
         self.assertIn("Core-Prompts companions available in the active installation and named in this contract", text)
         for companion in (
-            "architecture", "auto-research", "supercharge", "converge", "testing",
-            "code-review", "address-code-review", "docs-review-expert", "gitops-review",
+            "engos-design-architecture", "engos-optimization-auto-research", "engos-meta-supercharge", "engos-reconciliation-converge", "engos-quality-testing-review",
+            "engos-quality-code-review", "engos-delivery-address-code-review", "engos-quality-docs-review", "engos-quality-gitops-review",
         ):
             self.assertIn(f"- `{companion}`", text)
         for term in ("WorkGraph", "workgraph-jira", "globally installed", "orchestrate_subagent", "Grok", "Kiro"):
@@ -145,13 +145,13 @@ class BatmanContractTests(unittest.TestCase):
         self.assertIsNone(re.search(r"\b(?:PT|AT)\b", text))
         self.assertIsNone(re.search(r"/Users/|~/|https?://", text))
         self.assertIn("Internal milestone findings return to the original implementer or a bounded default fixer.", text)
-        self.assertIn("Use `address-code-review` only for selected comments on an existing PR or MR.", text)
+        self.assertIn("Use `engos-delivery-address-code-review` only for selected comments on an existing PR or MR.", text)
         self.assertIn("all applicable milestone gates", text)
         self.assertNotIn("## MODULE: /batman", supercharge)
         self.assertNotIn('"heading": "## MODULE: /batman"', fixture)
 
     def test_instruction_integrity_precedes_implementation(self) -> None:
-        text = _read("ssot/batman.md")
+        text = _read("ssot/engos-orchestration-batman.md")
         integrity = text.split("## Instruction Integrity", 1)[1].split("\n## ", 1)[0]
         for field in ("outcome", "success evidence", "scope", "authority", "contradictions"):
             self.assertIn(field, integrity)
@@ -160,7 +160,7 @@ class BatmanContractTests(unittest.TestCase):
         self.assertIn("stop", integrity)
 
     def test_dynamic_planning_is_between_preflight_and_size_and_cannot_waive_gates(self) -> None:
-        text = _read("ssot/batman.md")
+        text = _read("ssot/engos-orchestration-batman.md")
         preflight = text.index("### Preflight — Verify and dispatch")
         planning = text.index("### Dynamic Planning — Fit the verified host")
         size = text.index("### Size gate")
@@ -181,7 +181,7 @@ class BatmanContractTests(unittest.TestCase):
         self.assertIn("stop only when a facility required by the current gate", planner)
 
     def test_dynamic_planning_discovers_repository_verification_and_budgets(self) -> None:
-        text = _read("ssot/batman.md")
+        text = _read("ssot/engos-orchestration-batman.md")
         planner = text.split("### Dynamic Planning — Fit the verified host", 1)[1].split("### Size gate", 1)[0]
         for term in (
             "repository languages",
@@ -192,7 +192,7 @@ class BatmanContractTests(unittest.TestCase):
             self.assertIn(term, planner)
 
     def test_fresh_implementer_owns_test_provenance_and_red(self) -> None:
-        text = _read("ssot/batman.md")
+        text = _read("ssot/engos-orchestration-batman.md")
         stage_three = text.split("### Stage 3 — TDD-led subagent implementation", 1)[1].split("### Stage 4", 1)[0]
         self.assertIn("Prior-session or controller-authored tests are dirty input", stage_three)
         self.assertIn("fresh implementer", stage_three)
@@ -204,12 +204,12 @@ class BatmanContractTests(unittest.TestCase):
         self.assertIn("must author the evidence-bearing version independently", stage_three)
 
     def test_stalled_implementation_is_narrowed_or_reassigned_not_taken_over(self) -> None:
-        text = _read("ssot/batman.md")
+        text = _read("ssot/engos-orchestration-batman.md")
         self.assertIn("narrow or reassign the task to a fresh implementer", text)
         self.assertIn("The controller never takes over the task.", text)
 
     def test_offline_suite_is_not_live_ship_proof(self) -> None:
-        text = _read("ssot/batman.md")
+        text = _read("ssot/engos-orchestration-batman.md")
         stage_four = text.split("### Stage 4 — Validation and verification", 1)[1].split("### Stage 5", 1)[0]
         self.assertIn("An offline suite is necessary but not sufficient", stage_four)
         self.assertIn("Name the authorized live environment", stage_four)
@@ -217,7 +217,7 @@ class BatmanContractTests(unittest.TestCase):
         self.assertIn("do not substitute offline tests", stage_four)
 
     def test_conditional_interface_and_evidence_rules_are_explicit(self) -> None:
-        text = _read("ssot/batman.md")
+        text = _read("ssot/engos-orchestration-batman.md")
         rules = text.split("## Conditional Interface and Evidence Rules", 1)[1].split("\n## Milestone Backpressure", 1)[0]
         for clause in (
             "one canonical identity per public operation", "under an existing job",
@@ -228,14 +228,14 @@ class BatmanContractTests(unittest.TestCase):
             self.assertIn(clause, rules)
 
     def test_cleanup_receipt_preserves_durable_facts_before_scratch_removal(self) -> None:
-        text = _read("ssot/batman.md")
+        text = _read("ssot/engos-orchestration-batman.md")
         stage_six = text.split("### Stage 6 — Document, land, and clean", 1)[1].split("\n## Rules", 1)[0]
         self.assertIn("Persist required run-scoped facts durably", stage_six)
         self.assertIn("Never delete the only live receipt", stage_six)
         self.assertIn("exact removed and retained targets", stage_six)
 
     def test_post_merge_delivery_actions_are_authority_gated_and_reported_separately(self) -> None:
-        text = _read("ssot/batman.md")
+        text = _read("ssot/engos-orchestration-batman.md")
         required_output = text.split("## Required Output", 1)[1].split("\n## Output Directory", 1)[0]
         stage_six = text.split("### Stage 6 — Document, land, and clean", 1)[1].split("\n## Rules", 1)[0]
 
@@ -254,8 +254,8 @@ class BatmanContractTests(unittest.TestCase):
         self.assertIn("record its receipt", stage_six)
 
     def test_dynamic_planning_maintenance_assets_cover_gold_and_mutations(self) -> None:
-        scenarios = json.loads(_read("evals/maintenance/batman/dynamic-planning.json"))
-        mutations = json.loads(_read("evals/maintenance/batman/dynamic-planning-mutations.json"))
+        scenarios = json.loads(_read("evals/maintenance/engos-orchestration-batman/dynamic-planning.json"))
+        mutations = json.loads(_read("evals/maintenance/engos-orchestration-batman/dynamic-planning-mutations.json"))
         self.assertEqual(
             set(scenarios),
             {"schema_version", "slug", "promotion_eligible", "model_calls", "purpose", "scenarios"},
@@ -269,7 +269,7 @@ class BatmanContractTests(unittest.TestCase):
         )
         self.assertEqual(mutations["schema_version"], "BatmanDynamicPlanningMutations.v2")
         self.assertFalse(mutations["promotion_eligible"])
-        self.assertEqual(mutations["source_fixture"], "evals/maintenance/batman/dynamic-planning.json")
+        self.assertEqual(mutations["source_fixture"], "evals/maintenance/engos-orchestration-batman/dynamic-planning.json")
         scenario_ids = {scenario["id"] for scenario in scenarios["scenarios"]}
         mutation_classes = {mutation["class"] for mutation in mutations["mutations"]}
         self.assertTrue({
@@ -317,7 +317,7 @@ class BatmanContractTests(unittest.TestCase):
             self.assertEqual(set(scenario["gold_result"]), set(scenario["allowed_result_fields"]))
 
     def test_gold_identical_dynamic_planning_mutation_is_rejected(self) -> None:
-        scenarios = json.loads(_read("evals/maintenance/batman/dynamic-planning.json"))["scenarios"]
+        scenarios = json.loads(_read("evals/maintenance/engos-orchestration-batman/dynamic-planning.json"))["scenarios"]
         scenario = next(item for item in scenarios if item["id"] == "complete-host-fit-plan")
 
         with self.assertRaisesRegex(AssertionError, "mutation produced no contract violation"):
@@ -332,13 +332,14 @@ class BatmanContractTests(unittest.TestCase):
         self.assertIn(FORMER_ALIAS, historical.lower())
 
     def test_batman_job_map_and_benchmark_are_ship_ready(self) -> None:
-        job_map = json.loads(_read(".meta/skill-job-map.json"))["skills"]["batman"]
+        job_map = json.loads(_read(".meta/skill-job-map.json"))["skills"]["engos-orchestration-batman"]
         benchmark = _read(".planning/initiatives/capability-review-pilots/BENCHMARK-MATRIX.md")
         self.assertEqual(job_map["shape"], "implementation_delivery_controller")
         self.assertEqual(job_map["portfolio_action"], "ship_single_batman_identity")
         self.assertNotIn(FORMER_ALIAS, json.dumps(job_map).lower())
         self.assertNotIn("draft", " ".join(str(value) for value in job_map.values()).lower())
         self.assertNotIn("pending", " ".join(str(value) for value in job_map.values()).lower())
+        # The historical benchmark predates the public namespace migration.
         self.assertIn("| batman | 5 | 5 | 5 | 5 | 5 | 5 | 5 | structural_ready |", benchmark)
         self.assertNotIn(FORMER_ALIAS, benchmark.lower())
 

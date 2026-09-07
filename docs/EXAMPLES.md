@@ -16,7 +16,7 @@ Each current skill example uses the same pattern:
 
 ## Installed Skill Examples
 
-### `analyze-context`
+### `engos-memory-context-continuity`
 
 Use when:
 
@@ -38,7 +38,7 @@ Durable state rule:
 
 Ask:
 
-> Use `analyze-context` to inspect this subsystem across the relevant files, keep its context, todo, and insights files current until every TODO is complete, and tell me the smallest safe change plan.
+> Use `engos-memory-context-continuity` to inspect this subsystem across the relevant files, keep its context, todo, and insights files current until every TODO is complete, and tell me the smallest safe change plan.
 
 Expected output:
 
@@ -66,7 +66,7 @@ At 450 lines or 45,000 bytes in either file, or at milestone closure, the agent 
 
 Expected output includes each rewritten file's before/after lines and bytes, the trigger, and evidence references. Missing files trigger recovery. TODOs and task completion are unaffected; passing the check does not mean a rewrite happened.
 
-### `architecture`
+### `engos-design-architecture`
 
 Use when:
 
@@ -80,7 +80,7 @@ Why this skill first:
 
 Ask:
 
-> Use `architecture` to recommend the safest design for this capability layout, including migration and rollback considerations.
+> Use `engos-design-architecture` to recommend the safest design for this capability layout, including migration and rollback considerations.
 
 Expected output:
 
@@ -93,7 +93,7 @@ Follow with:
 
 > Now turn that recommendation into the smallest migration-safe implementation plan.
 
-### `plan-to-goal-design`
+### `engos-design-plan-to-goal`
 
 Use when:
 
@@ -108,7 +108,7 @@ Why this skill first:
 
 Ask:
 
-> Use `plan-to-goal-design` to inspect this migration plan and the current repository. Prove the migration mechanism over two representative items with real evidence, keep the remaining backlog in the operator-owned rollout policy, reject any sample item found in a do-not-touch list, and produce a compact goal plus a sealed packet. Do not start the goal.
+> Use `engos-design-plan-to-goal` to inspect this migration plan and the current repository. Prove the migration mechanism over two representative items with real evidence, keep the remaining backlog in the operator-owned rollout policy, reject any sample item found in a do-not-touch list, and produce a compact goal plus a sealed packet. Do not start the goal.
 
 Expected packet:
 
@@ -167,7 +167,7 @@ Follow with:
 
 > Show me the research receipt, anchor sample and authority owner, exclusion intersection, every criterion-flip result, verifier trust, packet hashes, and the exact reason this packet is or is not ready to launch.
 
-### `auto-research`
+### `engos-optimization-auto-research`
 
 Use when:
 
@@ -181,7 +181,7 @@ Why this skill first:
 
 Ask:
 
-> Use `auto-research` to improve our code-review prompt so it catches more behavioral regressions without increasing review noise.
+> Use `engos-optimization-auto-research` to improve our code-review prompt so it catches more behavioral regressions without increasing review noise.
 
 Expected output:
 
@@ -190,13 +190,13 @@ Expected output:
 - bounded experiment plan
 - promotion guidance only after a verified winner exists
 
-Also use `auto-research` when a candidate import or revised capability needs bounded behavioral proof before promotion.
+Also use `engos-optimization-auto-research` when a candidate import or revised capability needs bounded behavioral proof before promotion.
 
 Follow with:
 
 > Now tell me the minimum experiment set that will separate the strongest two variants.
 
-### `batman`
+### `engos-orchestration-batman`
 
 Use when:
 
@@ -207,7 +207,7 @@ Use when:
 
 Why this skill first:
 
-- start here when the job is end-to-end implementation delivery, not prompt or plan hardening (`supercharge`) or the final Git gate alone (`gitops-review`)
+- start here when the job is end-to-end implementation delivery, not prompt or plan hardening (`engos-meta-supercharge`) or the final Git gate alone (`engos-quality-gitops-review`)
 
 Ask:
 
@@ -226,7 +226,7 @@ Expected first response:
 
 Portable companion ask:
 
-> Batman: implement this shipped-defect correction through research, design, TDD, all blocking milestone gates, verification, docs, PR, authorized merge, and cleanup. At gate 3, use a usable registered agent for `code-review` when one exists; otherwise dispatch a fresh default independent reviewer subagent and instruct it to apply the installed `code-review` skill. Stop the gate and implementation flow if neither surface exists, and preserve all existing authority boundaries.
+> Batman: implement this shipped-defect correction through research, design, TDD, all blocking milestone gates, verification, docs, PR, authorized merge, and cleanup. At gate 3, use a usable registered agent for `engos-quality-code-review` when one exists; otherwise dispatch a fresh default independent reviewer subagent and instruct it to apply the installed `engos-quality-code-review` skill. Stop the gate and implementation flow if neither surface exists, and preserve all existing authority boundaries.
 
 Host-fit and test-provenance ask:
 
@@ -253,7 +253,7 @@ Follow with:
 
 > Show me completed plan items, the current stage and gate, active subagents, evidence received, blockers, and the next action.
 
-### `supercharge /basis`
+### `engos-meta-supercharge /basis`
 
 Use when:
 
@@ -267,7 +267,7 @@ Why this module first:
 
 Ask:
 
-> Use `supercharge /basis` to audit this literature-review workflow for irreducible inputs, actual-to-minimum ratio, waste drivers, and redesign moves.
+> Use `engos-meta-supercharge /basis` to audit this literature-review workflow for irreducible inputs, actual-to-minimum ratio, waste drivers, and redesign moves.
 
 Expected output:
 
@@ -280,9 +280,9 @@ Expected output:
 
 Follow with:
 
-> Now route only the unproven redesign claims to `auto-research` for measured comparison.
+> Now route only the unproven redesign claims to `engos-optimization-auto-research` for measured comparison.
 
-### `supercharge /adversarial /debate`
+### `engos-meta-supercharge /adversarial /debate`
 
 Use when:
 
@@ -296,7 +296,7 @@ Why this module first:
 
 Ask:
 
-> Use `supercharge /adversarial /debate` to decide whether this rollout plan is worth shipping now. Include the strongest Bull case, strongest Bear case, Decider verdict, confidence, risks, mitigants, and flip conditions.
+> Use `engos-meta-supercharge /adversarial /debate` to decide whether this rollout plan is worth shipping now. Include the strongest Bull case, strongest Bear case, Decider verdict, confidence, risks, mitigants, and flip conditions.
 
 Expected output:
 
@@ -310,15 +310,15 @@ Expected output:
 
 Follow with:
 
-> Now turn the Decider verdict into a `supercharge /contract` acceptance checklist.
+> Now turn the Decider verdict into an `engos-meta-supercharge /contract` acceptance checklist.
 
-### `supercharge /adversarial /debate /deep`
+### `engos-meta-supercharge /adversarial /debate /deep`
 
 Use when:
 
 - the decision is high-stakes, high-uncertainty, or likely to have hidden asymmetric downside
 - the first Bear case deserves a Bull counter and final Bear challenge before synthesis
-- the output may feed a decision record, release gate, or follow-up `auto-research` proof loop
+- the output may feed a decision record, release gate, or follow-up `engos-optimization-auto-research` proof loop
 
 Why this module first:
 
@@ -326,7 +326,7 @@ Why this module first:
 
 Ask:
 
-> Use `supercharge /adversarial /debate /deep` to run a deep Bull/Bear/Decider debate on this architecture change. Include missing evidence, decision-risk table, mitigation plan, flip conditions, and recommended next validation.
+> Use `engos-meta-supercharge /adversarial /debate /deep` to run a deep Bull/Bear/Decider debate on this architecture change. Include missing evidence, decision-risk table, mitigation plan, flip conditions, and recommended next validation.
 
 Expected output:
 
@@ -343,9 +343,9 @@ Expected output:
 
 Follow with:
 
-> Now route any unproven behavioral claims to `auto-research` with a bounded scorecard.
+> Now route any unproven behavioral claims to `engos-optimization-auto-research` with a bounded scorecard.
 
-### `code-review`
+### `engos-quality-code-review`
 
 Use when:
 
@@ -362,7 +362,7 @@ Why this skill first:
 
 Ask:
 
-> Use `code-review` to review my staged changes before I commit. Check resource cleanup and bounds, concurrency and initialization-time state, operational observability and graceful degradation, and downstream API/schema compatibility.
+> Use `engos-quality-code-review` to review my staged changes before I commit. Check resource cleanup and bounds, concurrency and initialization-time state, operational observability and graceful degradation, and downstream API/schema compatibility.
 
 Expected output:
 
@@ -377,7 +377,7 @@ Follow with:
 
 > Now tell me which findings are blocking merge versus follow-up cleanup.
 
-### `codebase-health-audit`
+### `engos-audit-code-health`
 
 Use when:
 
@@ -389,11 +389,11 @@ Use when:
 Why this skill first:
 
 - start here when the job is structural codebase health, not feature scope completeness, commit review, or architecture redesign
-- overlap with `architecture`, `feature-status`, and `code-review` is expected; use this skill when metric-backed repository structure is the primary evidence source
+- overlap with `engos-design-architecture`, `engos-audit-feature-status`, and `engos-quality-code-review` is expected; use this skill when metric-backed repository structure is the primary evidence source
 
 Ask:
 
-> Use `codebase-health-audit` to audit this repo for LOC hotspots, god objects, coupling, likely dead code, and drift from this prior audit block.
+> Use `engos-audit-code-health` to audit this repo for LOC hotspots, god objects, coupling, likely dead code, and drift from this prior audit block.
 
 Expected output:
 
@@ -406,9 +406,9 @@ Expected output:
 
 Follow with:
 
-> Now route only the high-severity structural findings to `architecture` for remediation design, without editing files yet.
+> Now route only the high-severity structural findings to `engos-design-architecture` for remediation design, without editing files yet.
 
-### `address-code-review`
+### `engos-delivery-address-code-review`
 
 Use when:
 
@@ -420,11 +420,11 @@ Use when:
 Why this skill first:
 
 - start here when the immediate task is applying selected reviewer-requested fixes, not producing a new review
-- do not start here for pre-commit review; use `code-review` first
+- do not start here for pre-commit review; use `engos-quality-code-review` first
 
 Ask:
 
-> Use `address-code-review` to inspect the open review comments on this MR and address only the selected fixes.
+> Use `engos-delivery-address-code-review` to inspect the open review comments on this MR and address only the selected fixes.
 
 Expected output:
 
@@ -432,13 +432,13 @@ Expected output:
 - selected comments to address
 - changes applied per comment
 - commit guidance
-- follow-up recommendation to run `code-review`
+- follow-up recommendation to run `engos-quality-code-review`
 
 Follow with:
 
-> Now use `code-review` on the fix commit before I push it back for reviewer verification.
+> Now use `engos-quality-code-review` on the fix commit before I push it back for reviewer verification.
 
-### `converge`
+### `engos-reconciliation-converge`
 
 Use when:
 
@@ -452,7 +452,7 @@ Why this skill first:
 
 Ask:
 
-> Use `converge` to compare these rollout plans and recommend one final approach.
+> Use `engos-reconciliation-converge` to compare these rollout plans and recommend one final approach.
 
 Expected output:
 
@@ -465,7 +465,7 @@ Follow with:
 
 > Now rewrite the winning proposal as the one plan we should actually execute.
 
-### `demo-recorder`
+### `engos-browser-demo-recorder`
 
 Use when:
 
@@ -479,7 +479,7 @@ Why this skill first:
 
 Ask:
 
-> Use `demo-recorder` to create a Playwright demo of the agent feedback feature on our Swagger UI at https://agents.dev-01.example.com. Show creating an agent, running it, then submitting feedback. Use TypeScript and record with Playwright video.
+> Use `engos-browser-demo-recorder` to create a Playwright demo of the agent feedback feature on our Swagger UI at https://agents.dev-01.example.com. Show creating an agent, running it, then submitting feedback. Use TypeScript and record with Playwright video.
 
 Expected output:
 
@@ -492,7 +492,7 @@ Follow with:
 
 > The pauses between steps are too short — increase them to 3 seconds and add a scroll-into-view before each major action.
 
-### `dynamic-html-presentations`
+### `engos-content-dynamic-html-presentations`
 
 Use when:
 
@@ -503,11 +503,11 @@ Use when:
 
 Why this skill first:
 
-- start here when the job is presentation narrative, visual composition, and multi-format delivery; use `demo-recorder` instead when the primary artifact is a watchable product video
+- start here when the job is presentation narrative, visual composition, and multi-format delivery; use `engos-browser-demo-recorder` instead when the primary artifact is a watchable product video
 
 Ask:
 
-> Use `dynamic-html-presentations` to turn this quarterly product review into a polished portable HTML deck package with speaker notes. Use my approved local photos and screenshots, prepare deck-ready copies under `images/` with descriptive filenames and intentional crops, and do not fetch remote imagery. Deliver 1920×1080 PNGs and an image-faithful PPTX too, and label all sample metrics as illustrative.
+> Use `engos-content-dynamic-html-presentations` to turn this quarterly product review into a polished portable HTML deck package with speaker notes. Use my approved local photos and screenshots, prepare deck-ready copies under `images/` with descriptive filenames and intentional crops, and do not fetch remote imagery. Deliver 1920×1080 PNGs and an image-faithful PPTX too, and label all sample metrics as illustrative.
 
 Expected output:
 
@@ -523,7 +523,7 @@ Follow with:
 
 > Validate every slide at 1920×1080, confirm there is exactly one active slide, and report any clipping, control collision, broken or distorted image, absolute image path, unapproved network dependency, or unlabeled illustrative value before final export.
 
-### `docs-review-expert`
+### `engos-quality-docs-review`
 
 Use when:
 
@@ -537,7 +537,7 @@ Why this skill first:
 
 Ask:
 
-> Use `docs-review-expert` to review our onboarding docs, identify drift, tell me what belongs in `README.md` versus `docs/`, and recommend the smallest rewrite that restores clarity.
+> Use `engos-quality-docs-review` to review our onboarding docs, identify drift, tell me what belongs in `README.md` versus `docs/`, and recommend the smallest rewrite that restores clarity.
 
 Expected output:
 
@@ -551,7 +551,7 @@ Follow with:
 
 > Now give me the exact README and docs outline you would ship.
 
-### `eng-report`
+### `engos-audit-engineering-progress`
 
 Use when:
 
@@ -565,7 +565,7 @@ Why this skill first:
 
 Ask:
 
-> Use `eng-report` to generate an HTML progress report for this repo since 2026-06-01 and open it.
+> Use `engos-audit-engineering-progress` to generate an HTML progress report for this repo since 2026-06-01 and open it.
 
 Expected output:
 
@@ -591,7 +591,7 @@ Use when:
 Why this skill first:
 
 - start here for a stateful Operational Excellence incident-estate audit
-- use `ic-assistant` for active Incident Commander process support, `weekly-intel` for a broad multi-source update, and `eng-report` for Git-only activity
+- use `engos-operations-ic-assistant` for active Incident Commander process support, `engos-audit-weekly-intel` for a broad multi-source update, and `engos-audit-engineering-progress` for Git-only activity
 
 Ask:
 
@@ -631,7 +631,7 @@ For Markdown drill-downs, use `--format md` or `--format both` with the same nor
 
 The deterministic renderer still lacks dedicated incident-specific recurring-pattern and per-DPA “Why it helps” output fields. This repair does not establish full deep-dive equivalence.
 
-### `gitops-review`
+### `engos-quality-gitops-review`
 
 Use when:
 
@@ -645,7 +645,7 @@ Why this skill first:
 
 Ask:
 
-> Use `gitops-review` to judge whether this branch is ready for PR and release. Check docs drift, validation evidence, and any remaining blockers.
+> Use `engos-quality-gitops-review` to judge whether this branch is ready for PR and release. Check docs drift, validation evidence, and any remaining blockers.
 
 Expected output:
 
@@ -659,7 +659,7 @@ Follow with:
 
 > Now separate the blocking issues from the nice-to-have follow-ups.
 
-### `ic-assistant`
+### `engos-operations-ic-assistant`
 
 Use when:
 
@@ -674,7 +674,7 @@ Why this skill first:
 
 Ask:
 
-> Use `ic-assistant` to track this incident, identify the current phase, and tell me the next required action.
+> Use `engos-operations-ic-assistant` to track this incident, identify the current phase, and tell me the next required action.
 
 Expected output:
 
@@ -687,7 +687,7 @@ Follow with:
 
 > Now generate the handoff summary for the next Incident Commander.
 
-### `instruction-editor`
+### `engos-meta-instruction-editor`
 
 Preview status: available for auditable editing, but not behaviorally promoted. Treat every semantic rewrite as a candidate until independent evaluation exists.
 
@@ -699,11 +699,11 @@ Use when:
 
 Why this skill first:
 
-- start here when the central job is instruction clarity and semantic preservation; use `supercharge` for hardening, `docs-review-expert` for information architecture, and `auto-research` for behavioral proof
+- start here when the central job is instruction clarity and semantic preservation; use `engos-meta-supercharge` for hardening, `engos-quality-docs-review` for information architecture, and `engos-optimization-auto-research` for behavioral proof
 
 Ask:
 
-> Use `instruction-editor` in rewrite mode to remove Claude-ish phrasing from this skill. Preserve every command, must-not rule, approval boundary, output field, exception, and fallback.
+> Use `engos-meta-instruction-editor` in rewrite mode to remove Claude-ish phrasing from this skill. Preserve every command, must-not rule, approval boundary, output field, exception, and fallback.
 
 Expected output:
 
@@ -715,9 +715,9 @@ Expected output:
 
 Follow with:
 
-> Hand the baseline, candidate, preservation map, and Goal Contract to `auto-research`; do not promote the rewrite from style evidence alone.
+> Hand the baseline, candidate, preservation map, and Goal Contract to `engos-optimization-auto-research`; do not promote the rewrite from style evidence alone.
 
-### `pitch`
+### `engos-audit-pitch-review`
 
 Use when:
 
@@ -731,7 +731,7 @@ Why this skill first:
 
 Ask:
 
-> Use `pitch` to review this Shape Up pitch for appetite, risks, and betting readiness.
+> Use `engos-audit-pitch-review` to review this Shape Up pitch for appetite, risks, and betting readiness.
 
 Expected output:
 
@@ -744,7 +744,7 @@ Follow with:
 
 > Now rewrite the weakest section so it is ready for betting.
 
-### `pulse`
+### `engos-triage-my-inbox-chat-pulse`
 
 Use when:
 
@@ -758,7 +758,7 @@ Why this skill first:
 
 Ask:
 
-> Use `pulse` to triage what needs my attention across Gmail and Google Chat, then propose next actions without sending anything.
+> Use `engos-triage-my-inbox-chat-pulse` to triage what needs my attention across Gmail and Google Chat, then propose next actions without sending anything.
 
 Expected output:
 
@@ -771,7 +771,7 @@ Follow with:
 
 > Now draft the highest-priority reply, but do not send it.
 
-### `resolve-conflict`
+### `engos-delivery-resolve-conflict`
 
 Use when:
 
@@ -785,7 +785,7 @@ Why this skill first:
 
 Ask:
 
-> Use `resolve-conflict` to compare these conflicting branch edits and tell me what should survive, what can combine cleanly, and what needs an explicit choice.
+> Use `engos-delivery-resolve-conflict` to compare these conflicting branch edits and tell me what should survive, what can combine cleanly, and what needs an explicit choice.
 
 Expected output:
 
@@ -798,7 +798,10 @@ Follow with:
 
 > Now draft the merged shape and call out the few lines that still require a human decision.
 
-### `supercharge`
+### `engos-meta-supercharge`
+
+Familiar conversational forms remain valid: `Supercharge /full <task>`, `supercharge /simple /invert /contract <task>`, and `/supercharge /help`. They route to the same canonical capability and preserve module order and stop/help precedence. Native skill selection uses `engos-meta-supercharge`.
+
 
 Use when:
 
@@ -812,7 +815,7 @@ Why this skill first:
 
 Ask:
 
-> Use `supercharge` to turn this rough feature idea into an execution-ready plan with tradeoffs and failure modes.
+> Use `engos-meta-supercharge` to turn this rough feature idea into an execution-ready plan with tradeoffs and failure modes.
 
 Expected output:
 
@@ -827,9 +830,9 @@ Follow with:
 
 If the decision itself is contentious, use:
 
-> Use `supercharge /debate /deep` to stress-test this feature direction before we turn it into an execution brief.
+> Use `engos-meta-supercharge /debate /deep` to stress-test this feature direction before we turn it into an execution brief.
 
-### `testing`
+### `engos-quality-testing-review`
 
 Use when:
 
@@ -843,7 +846,7 @@ Why this skill first:
 
 Ask:
 
-> Use `testing` to identify the highest-value tests and edge cases for this change.
+> Use `engos-quality-testing-review` to identify the highest-value tests and edge cases for this change.
 
 Expected output:
 
@@ -856,7 +859,7 @@ Follow with:
 
 > Now turn the top three items into concrete test cases with names and expected behavior.
 
-### `threader`
+### `engos-memory-threader`
 
 Use when:
 
@@ -870,7 +873,7 @@ Why this skill first:
 
 Ask:
 
-> Use `threader` to turn this chat into a reusable handoff for another engineer or model.
+> Use `engos-memory-threader` to turn this chat into a reusable handoff for another engineer or model.
 
 Expected output:
 
@@ -882,7 +885,7 @@ Follow with:
 
 > Now trim that handoff so another engineer can start in under five minutes.
 
-### `uac-import`
+### `engos-meta-uac-import`
 
 Use when:
 
@@ -896,7 +899,7 @@ Why this skill first:
 
 Ask:
 
-> Use `uac-import` to inspect this external prompt family and tell me how it should land into SSOT before apply.
+> Use `engos-meta-uac-import` to inspect this external prompt family and tell me how it should land into SSOT before apply.
 
 Expected output:
 
@@ -909,7 +912,7 @@ Follow with:
 
 > Now tell me whether the candidate should stay one capability or split into two before judge.
 
-### `weekly-intel`
+### `engos-audit-weekly-intel`
 
 Use when:
 
@@ -923,7 +926,7 @@ Why this skill first:
 
 Ask:
 
-> Use `weekly-intel` to produce a weekly status report from these sources.
+> Use `engos-audit-weekly-intel` to produce a weekly status report from these sources.
 
 Expected output:
 
@@ -939,67 +942,67 @@ Follow with:
 
 These examples are for the current agents emitted by the repo. Fabric metadata is advisory; explicit invocation follows each capability's operating contract.
 
-### `docs-review-expert`
+### `engos-quality-docs-review`
 
-> Use `docs-review-expert` to review the docs set before release and call out drift.
+> Use `engos-quality-docs-review` to review the docs set before release and call out drift.
 
 Use this when you want documentation findings, rewrite targets, and release-facing doc checks.
 
-### `gitops-review`
+### `engos-quality-gitops-review`
 
-> Use `gitops-review` to judge whether we are ready to merge and release.
+> Use `engos-quality-gitops-review` to judge whether we are ready to merge and release.
 
 Use this when you want a merge or release gate with blockers and next actions.
 
-### `auto-research`
+### `engos-optimization-auto-research`
 
-> Use `auto-research` to improve this workflow and prove which version wins.
+> Use `engos-optimization-auto-research` to improve this workflow and prove which version wins.
 
 Use this when you want an experiment loop, not a one-shot rewrite.
 
-### `supercharge`
+### `engos-meta-supercharge`
 
-> Use `supercharge /basis` to harden this operating prompt by finding the irreducible work, waste, and proof gaps before we ship it.
+> Use `engos-meta-supercharge /basis` to harden this operating prompt by finding the irreducible work, waste, and proof gaps before we ship it.
 
 Use this when you want a stronger plan or prompt before execution.
 
-> Use `supercharge /adversarial /debate /deep` to run a Bull/Bear/Decider debate on this operating decision before we ship it.
+> Use `engos-meta-supercharge /adversarial /debate /deep` to run a Bull/Bear/Decider debate on this operating decision before we ship it.
 
 Use this when you want structured dissent before committing to a plan.
 
-### `converge`
+### `engos-reconciliation-converge`
 
-> Use `converge` to synthesize these sources into one final recommendation.
+> Use `engos-reconciliation-converge` to synthesize these sources into one final recommendation.
 
 Use this when several proposals overlap and you want one coherent answer.
 
-### `architecture`
+### `engos-design-architecture`
 
-> Use `architecture` to review this system change for migration and rollback risk.
+> Use `engos-design-architecture` to review this system change for migration and rollback risk.
 
 Use this when the decision will shape interfaces or system boundaries.
 
-### `ic-assistant`
+### `engos-operations-ic-assistant`
 
-> Use `ic-assistant` to track this incident and keep me on the required checklist.
+> Use `engos-operations-ic-assistant` to track this incident and keep me on the required checklist.
 
 Use this when you need phase-aware Incident Commander process guidance without taking incident decisions for the IC. It uses generic guidance by default and consults the internal runbook resource only when explicitly requested.
 
-### `pitch`
+### `engos-audit-pitch-review`
 
-> Use `pitch` to review this Shape Up pitch before betting.
+> Use `engos-audit-pitch-review` to review this Shape Up pitch before betting.
 
 Use this when you want pitch scoring, risks, and rewrite guidance.
 
-### `pulse`
+### `engos-triage-my-inbox-chat-pulse`
 
-> Use `pulse` to triage Gmail and Google Chat and propose next actions without sending anything.
+> Use `engos-triage-my-inbox-chat-pulse` to triage Gmail and Google Chat and propose next actions without sending anything.
 
 Use this when you want communication prioritization with explicit approval boundaries.
 
-### `weekly-intel`
+### `engos-audit-weekly-intel`
 
-> Use `weekly-intel` to produce a weekly status report from these sources.
+> Use `engos-audit-weekly-intel` to produce a weekly status report from these sources.
 
 Use this when you want a multi-source weekly report with fact-checking.
 
@@ -1086,7 +1089,7 @@ Expected output when proof cannot be completed:
 
 ```text
 User:
-Use `docs-review-expert` to review our onboarding docs, identify drift, tell me what belongs in README.md versus docs/, and recommend the smallest rewrite that restores clarity.
+Use `engos-quality-docs-review` to review our onboarding docs, identify drift, tell me what belongs in README.md versus docs/, and recommend the smallest rewrite that restores clarity.
 
 Good response:
 - Current State: README and examples lead with usage, but UAC guidance is still denser than it needs to be
@@ -1100,11 +1103,11 @@ Good response:
 
 ```text
 User:
-Use `uac-import` to inspect this external prompt family and tell me how it should land into SSOT before apply.
+Use `engos-meta-uac-import` to inspect this external prompt family and tell me how it should land into SSOT before apply.
 
 Good response:
 - Source summary: 5 files, strongest theme is architecture review
-- Proposed landing: `ssot/architecture.md`, `.meta/capabilities/architecture.json`
+- Proposed landing: `ssot/engos-design-architecture.md`, `.meta/capabilities/engos-design-architecture.json`
 - Capability type: likely `both`
 - Concerns: one file is mostly release-process guidance and may need to split out
 - Next step: run `bin/uac judge ... --quality-profile architecture`
@@ -1114,7 +1117,7 @@ Good response:
 
 ```text
 User:
-Use `testing` to identify the highest-value tests and edge cases for this change, then tell me the smallest local verification loop I should run before PR.
+Use `engos-quality-testing-review` to identify the highest-value tests and edge cases for this change, then tell me the smallest local verification loop I should run before PR.
 
 Good response:
 - Top-priority tests: validation contract drift, docs command examples, generated-surface path checks
@@ -1129,12 +1132,12 @@ Good response:
 
 ```text
 User:
-I am not sure whether to use `docs-review-expert` or `gitops-review` on this branch. Pick the right one and explain why.
+I am not sure whether to use `engos-quality-docs-review` or `engos-quality-gitops-review` on this branch. Pick the right one and explain why.
 
 Good response:
-- Start with: `docs-review-expert`
+- Start with: `engos-quality-docs-review`
 - Why first: the branch risk is doc drift and weak onboarding, not merge gating yet
-- Use `gitops-review` next when the rewrites are complete and you need a PR or release gate
+- Use `engos-quality-gitops-review` next when the rewrites are complete and you need a PR or release gate
 ```
 
 ## Repo Tooling Examples

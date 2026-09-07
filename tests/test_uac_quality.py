@@ -16,11 +16,11 @@ def test_load_quality_profile_auto_resolves_architecture() -> None:
 
 def test_run_quality_loop_marks_rich_architecture_candidate_structural_ready() -> None:
     profile = load_quality_profile(ROOT, "architecture", "auto")
-    candidate = (ROOT / "ssot" / "architecture.md").read_text(encoding="utf-8")
-    descriptor = json.loads((ROOT / ".meta" / "capabilities" / "architecture.json").read_text(encoding="utf-8"))
+    candidate = (ROOT / "ssot" / "engos-design-architecture.md").read_text(encoding="utf-8")
+    descriptor = json.loads((ROOT / ".meta" / "capabilities" / "engos-design-architecture.json").read_text(encoding="utf-8"))
 
     result = run_quality_loop(
-        slug="architecture",
+        slug="engos-design-architecture",
         profile=profile,
         candidate_text=candidate,
         descriptor=descriptor,
@@ -92,11 +92,11 @@ Emit a deterministic summary.
 """
 
     result = run_quality_loop(
-        slug="pulse",
+        slug="engos-triage-my-inbox-chat-pulse",
         profile=profile,
         candidate_text=candidate,
-        descriptor={"slug": "pulse"},
-        source_refs=["ssot/pulse.md"],
+        descriptor={"slug": "engos-triage-my-inbox-chat-pulse"},
+        source_refs=["ssot/engos-triage-my-inbox-chat-pulse.md"],
         benchmark_sources=[],
         max_passes=1,
     )

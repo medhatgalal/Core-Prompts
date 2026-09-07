@@ -80,7 +80,7 @@ def test_plan_to_goal_is_discoverable_from_public_onboarding() -> None:
         "docs/CLI-REFERENCE.md",
     )
     for path in public_docs:
-        assert "plan-to-goal-design" in read(path), f"{path} must include plan-to-goal-design"
+        assert "engos-design-plan-to-goal" in read(path), f"{path} must include engos-design-plan-to-goal"
 
     examples = read("docs/EXAMPLES.md")
     for required in (

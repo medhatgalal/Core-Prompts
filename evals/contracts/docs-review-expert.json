@@ -1,6 +1,6 @@
 {
   "schema_version": "GoalContract.v1",
-  "slug": "docs-review-expert",
+  "slug": "engos-quality-docs-review",
   "target": "Fulfill the canonical intent of docs-review-expert.",
   "intended_outcome": "Preserve the canonical SSOT objective and required output.",
   "change_class": "unknown",
@@ -55,82 +55,82 @@
   "source_clause_hashes": [
     {
       "sha256": "04153dcb8e47af5834495062c91852908060eb1de20f808a3a12c0199d5f51cd",
-      "source": "ssot/docs-review-expert.md",
+      "source": "ssot/engos-quality-docs-review.md",
       "text": "- define when docs review must happen at commit, pull request, merge, and release time"
     },
     {
       "sha256": "9cdecf0f9449ff2b22f8bca844b063b2676b15cb7c334a70d860a25ddfcbde64",
-      "source": "ssot/docs-review-expert.md",
+      "source": "ssot/engos-quality-docs-review.md",
       "text": "- forbidden: runtime orchestration, delegation decisions, unrelated product-code refactors, or inventing process rules that are not grounded in repo behavior or maintainer intent"
     },
     {
       "sha256": "dbf9fb0bad2d1829f33a35bf68a0cc1c7685e4f7df0cf6d61c6b7992f53ea540",
-      "source": "ssot/docs-review-expert.md",
+      "source": "ssot/engos-quality-docs-review.md",
       "text": "- escalation: if a requested fix requires architecture or code changes beyond documentation scope, hand it off explicitly instead of smuggling it into a docs-only recommendation"
     },
     {
       "sha256": "65a1e99533c8527af07f84e9da2de087e7b6fda64799f90170678afcf7b6d176",
-      "source": "ssot/docs-review-expert.md",
+      "source": "ssot/engos-quality-docs-review.md",
       "text": "6. For significant repo changes, define the review timing required at commit, pull request, merge, and release."
     },
     {
       "sha256": "691b4e6739f7bfff49088d528f92e68c45d7b325e4bb3efe0b558bcf2c7a5125",
-      "source": "ssot/docs-review-expert.md",
+      "source": "ssot/engos-quality-docs-review.md",
       "text": "- Include diagrams, tables, and richer markdown only when they materially reduce ambiguity."
     },
     {
       "sha256": "5f8f4e249421413f028b09dccd3a345c208dd2040495bdfe0fc561988e18d7cf",
-      "source": "ssot/docs-review-expert.md",
+      "source": "ssot/engos-quality-docs-review.md",
       "text": "- Do not claim orchestration, routing, or delegation authority."
     },
     {
       "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
-      "source": "ssot/docs-review-expert.md",
+      "source": "ssot/engos-quality-docs-review.md",
       "text": "## Required Inputs"
     },
     {
       "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
-      "source": "ssot/docs-review-expert.md",
+      "source": "ssot/engos-quality-docs-review.md",
       "text": "## Required Output"
     },
     {
       "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
-      "source": "ssot/docs-review-expert.md",
+      "source": "ssot/engos-quality-docs-review.md",
       "text": "Every substantial response must include:"
     },
     {
       "sha256": "cee203c4dc74f4cd29b1ed953c43241b5b68954bc3543563cde4c8cc6f6337a6",
-      "source": "ssot/docs-review-expert.md",
+      "source": "ssot/engos-quality-docs-review.md",
       "text": "- link or navigation updates that must be changed"
     },
     {
       "sha256": "25ab61c113191e98052ee5149f1bea9372e79aeb8fab7ef2a37ab78de74524d8",
-      "source": "ssot/docs-review-expert.md",
+      "source": "ssot/engos-quality-docs-review.md",
       "text": "- Do not rewrite large doc sets when targeted cleanup is enough."
     },
     {
       "sha256": "53221802b953ac8eff269f6f9d1b4babfacda6721a047e44a326995ef050dd3e",
-      "source": "ssot/docs-review-expert.md",
+      "source": "ssot/engos-quality-docs-review.md",
       "text": "- Do not create duplicate docs for the same concept."
     },
     {
       "sha256": "c7872241e87d6a78bf6ed598aa106085076b24d22ffa8913766a2af8d1aeb1cf",
-      "source": "ssot/docs-review-expert.md",
+      "source": "ssot/engos-quality-docs-review.md",
       "text": "- Do not move technical or research material into user-facing docs without a clear reason."
     },
     {
       "sha256": "022ff49a95b851c369f47825a65cab328eff37bfee12b4dabb8a01d3c561a605",
-      "source": "ssot/docs-review-expert.md",
+      "source": "ssot/engos-quality-docs-review.md",
       "text": "- Do not infer behavior from docs alone when code or scripts are available to verify it."
     },
     {
       "sha256": "5f619f06cf007b997a479379a87b3eb8cab4d046adb8964530ca04f0d7b70b16",
-      "source": "ssot/docs-review-expert.md",
+      "source": "ssot/engos-quality-docs-review.md",
       "text": "- Do not leave the caller with generic advice that lacks file placement or evidence."
     },
     {
       "sha256": "76a0b3c80ac0a7f1310b94c3d9e18aecfb8f5cd732b26ca40a810422993c56e3",
-      "source": "ssot/docs-review-expert.md",
+      "source": "ssot/engos-quality-docs-review.md",
       "text": "- tell the caller when documentation review must happen again"
     }
   ],

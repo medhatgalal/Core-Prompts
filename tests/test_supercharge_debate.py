@@ -7,7 +7,7 @@ from intent_pipeline.uac_baselines import evaluate_candidate_against_baseline, r
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SSOT_PATH = ROOT / "ssot" / "supercharge.md"
+SSOT_PATH = ROOT / "ssot" / "engos-meta-supercharge.md"
 
 
 def _text(path: Path) -> str:
@@ -91,9 +91,9 @@ def test_supercharge_help_exposes_debate_deep_and_examples() -> None:
     assert "# End of SuperCharge v4.2" in text
     assert "# End of SuperCharge v4.1" not in text
     assert "SuperCharge v4.2" in help_text
-    assert "Ask `supercharge /help examples`" in help_text
-    assert "`supercharge /adversarial /debate <task>`" in help_text
-    assert "`supercharge /adversarial /debate /deep <task>`" in help_text
+    assert "Ask `engos-meta-supercharge /help examples`" in help_text
+    assert "`engos-meta-supercharge /adversarial /debate <task>`" in help_text
+    assert "`engos-meta-supercharge /adversarial /debate /deep <task>`" in help_text
     assert help_text.index("/adversarial /debate <task>") < help_text.index("/adversarial /debate /deep <task>")
     assert "### Stack Examples" in help_text
     assert "Stacking is sequential" in help_text
@@ -135,7 +135,7 @@ def test_supercharge_adversarial_debate_contract_is_operational() -> None:
 
 
 def test_supercharge_baseline_remains_additive() -> None:
-    baseline = resolve_historical_baseline(ROOT, "supercharge")
+    baseline = resolve_historical_baseline(ROOT, "engos-meta-supercharge")
     result = evaluate_candidate_against_baseline(_text(SSOT_PATH), baseline)
 
     assert result["classification"] == "additive"
@@ -144,10 +144,10 @@ def test_supercharge_baseline_remains_additive() -> None:
 
 def test_supercharge_generated_surfaces_include_debate_contract() -> None:
     generated_paths = [
-        ROOT / ".codex" / "skills" / "supercharge" / "SKILL.md",
-        ROOT / ".gemini" / "skills" / "supercharge" / "SKILL.md",
-        ROOT / ".claude" / "skills" / "supercharge" / "SKILL.md",
-        ROOT / ".kiro" / "skills" / "supercharge" / "SKILL.md",
+        ROOT / ".codex" / "skills" / "engos-meta-supercharge" / "SKILL.md",
+        ROOT / ".gemini" / "skills" / "engos-meta-supercharge" / "SKILL.md",
+        ROOT / ".claude" / "skills" / "engos-meta-supercharge" / "SKILL.md",
+        ROOT / ".kiro" / "skills" / "engos-meta-supercharge" / "SKILL.md",
     ]
 
     for path in generated_paths:
@@ -162,7 +162,7 @@ def test_supercharge_generated_surfaces_include_debate_contract() -> None:
 
 
 def test_supercharge_descriptor_and_resources_preserve_uac_boundaries() -> None:
-    descriptor = json.loads((ROOT / ".meta" / "capabilities" / "supercharge.json").read_text(encoding="utf-8"))
+    descriptor = json.loads((ROOT / ".meta" / "capabilities" / "engos-meta-supercharge.json").read_text(encoding="utf-8"))
     descriptor_text = json.dumps(descriptor, sort_keys=True)
 
     assert descriptor["layers"]["minimal"]["capability_type"] == "both"
@@ -174,16 +174,33 @@ def test_supercharge_descriptor_and_resources_preserve_uac_boundaries() -> None:
     assert "adversarial debate" in descriptor_text.lower()
     assert any("run adversarial debate" in hint for hint in descriptor["invocation_hints"])
 
-    codex_agent = (ROOT / ".codex" / "agents" / "supercharge.toml").read_text(encoding="utf-8")
+    codex_agent = (ROOT / ".codex" / "agents" / "engos-meta-supercharge.toml").read_text(encoding="utf-8")
     assert "\ntools =" not in codex_agent
 
     resource_paths = [
-        ROOT / ".codex" / "skills" / "supercharge" / "resources" / "capability.json",
-        ROOT / ".gemini" / "skills" / "supercharge" / "resources" / "capability.json",
-        ROOT / ".claude" / "skills" / "supercharge" / "resources" / "capability.json",
-        ROOT / ".kiro" / "skills" / "supercharge" / "resources" / "capability.json",
+        ROOT / ".codex" / "skills" / "engos-meta-supercharge" / "resources" / "capability.json",
+        ROOT / ".gemini" / "skills" / "engos-meta-supercharge" / "resources" / "capability.json",
+        ROOT / ".claude" / "skills" / "engos-meta-supercharge" / "resources" / "capability.json",
+        ROOT / ".kiro" / "skills" / "engos-meta-supercharge" / "resources" / "capability.json",
     ]
     for path in resource_paths:
         payload = json.loads(path.read_text(encoding="utf-8"))
         assert payload["layers"]["minimal"]["capability_type"] == "both"
         assert payload["layers"]["minimal"]["version"] == "v4.2"
+
+
+def test_supercharge_namespace_keeps_conversational_prefix_and_dispatch_contract():
+    text = _text(SSOT_PATH)
+    activation = text.split('### Activation Triggers', 1)[1].split('### Help Triggers', 1)[0]
+    for prefix in ('`engos-meta-supercharge`', '`/engos-meta-supercharge`',
+                   '`supercharge`', '`/supercharge`'):
+        assert prefix in activation
+    assert 'case-insensitive' in activation
+    assert 'Normalize only the leading capability name' in activation
+    assert 'preserve every following module, modifier, argument, and their order' in activation
+    assert 'same help, examples, details, stacking, and terminal-control precedence' in activation
+    assert '`Supercharge /full`' in activation
+    assert '`supercharge /simple /invert /contract <task>`' in activation
+    assert 'do not register native CLI menu aliases' in activation
+    precedence = text.split('### Terminal-Control Precedence', 1)[1].split('### Command Grammar', 1)[0]
+    assert precedence.index('`/stop`') < precedence.index('`/stop-ult`') < precedence.index('Help, examples, and details')

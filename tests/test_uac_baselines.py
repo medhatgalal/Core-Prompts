@@ -21,25 +21,25 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_resolve_historical_baseline_returns_expected_gold_commits() -> None:
-    assert resolve_historical_baseline(ROOT, "supercharge").baseline_path == "sources/ssot-baselines/supercharge/baseline.md"
-    assert resolve_historical_baseline(ROOT, "supercharge").selected_commit == "3bc88b43"
-    assert resolve_historical_baseline(ROOT, "converge").baseline_path == "sources/ssot-baselines/converge/baseline.md"
-    assert resolve_historical_baseline(ROOT, "converge").selected_commit == "3bc88b43"
-    assert resolve_historical_baseline(ROOT, "analyze-context").baseline_path == "sources/ssot-baselines/analyze-context/baseline.md"
-    assert resolve_historical_baseline(ROOT, "analyze-context").selected_commit == "4bb1f7e5"
-    assert resolve_historical_baseline(ROOT, "threader").baseline_path == "sources/ssot-baselines/threader/baseline.md"
-    assert resolve_historical_baseline(ROOT, "threader").selected_commit == "db5c3789"
-    assert resolve_historical_baseline(ROOT, "code-review").baseline_path == "sources/ssot-baselines/code-review/baseline.md"
-    assert resolve_historical_baseline(ROOT, "code-review").selected_commit == "a78c1c21"
-    assert resolve_historical_baseline(ROOT, "resolve-conflict").baseline_path == "sources/ssot-baselines/resolve-conflict/baseline.md"
-    assert resolve_historical_baseline(ROOT, "resolve-conflict").selected_commit == "db5c3789"
-    assert resolve_historical_baseline(ROOT, "gitops-review").baseline_path == "sources/ssot-baselines/gitops-review/baseline.md"
-    assert resolve_historical_baseline(ROOT, "gitops-review").selected_commit == "4e16d6a4"
+    assert resolve_historical_baseline(ROOT, "engos-meta-supercharge").baseline_path == "sources/ssot-baselines/engos-meta-supercharge/baseline.md"
+    assert resolve_historical_baseline(ROOT, "engos-meta-supercharge").selected_commit == "3bc88b43"
+    assert resolve_historical_baseline(ROOT, "engos-reconciliation-converge").baseline_path == "sources/ssot-baselines/engos-reconciliation-converge/baseline.md"
+    assert resolve_historical_baseline(ROOT, "engos-reconciliation-converge").selected_commit == "3bc88b43"
+    assert resolve_historical_baseline(ROOT, "engos-memory-context-continuity").baseline_path == "sources/ssot-baselines/engos-memory-context-continuity/baseline.md"
+    assert resolve_historical_baseline(ROOT, "engos-memory-context-continuity").selected_commit == "4bb1f7e5"
+    assert resolve_historical_baseline(ROOT, "engos-memory-threader").baseline_path == "sources/ssot-baselines/engos-memory-threader/baseline.md"
+    assert resolve_historical_baseline(ROOT, "engos-memory-threader").selected_commit == "db5c3789"
+    assert resolve_historical_baseline(ROOT, "engos-quality-code-review").baseline_path == "sources/ssot-baselines/engos-quality-code-review/baseline.md"
+    assert resolve_historical_baseline(ROOT, "engos-quality-code-review").selected_commit == "a78c1c21"
+    assert resolve_historical_baseline(ROOT, "engos-delivery-resolve-conflict").baseline_path == "sources/ssot-baselines/engos-delivery-resolve-conflict/baseline.md"
+    assert resolve_historical_baseline(ROOT, "engos-delivery-resolve-conflict").selected_commit == "db5c3789"
+    assert resolve_historical_baseline(ROOT, "engos-quality-gitops-review").baseline_path == "sources/ssot-baselines/engos-quality-gitops-review/baseline.md"
+    assert resolve_historical_baseline(ROOT, "engos-quality-gitops-review").selected_commit == "4e16d6a4"
 
 
 def test_registry_entries_match_git_history_for_known_regressions() -> None:
-    supercharge = validate_registry_entry(ROOT, "supercharge")
-    converge = validate_registry_entry(ROOT, "converge")
+    supercharge = validate_registry_entry(ROOT, "engos-meta-supercharge")
+    converge = validate_registry_entry(ROOT, "engos-reconciliation-converge")
 
     assert supercharge["registry_commit"] == "3bc88b43"
     assert converge["registry_commit"] == "3bc88b43"
@@ -52,8 +52,8 @@ def test_registry_entries_match_git_history_for_known_regressions() -> None:
 
 
 def test_recovered_supercharge_is_additive_against_historical_baseline() -> None:
-    baseline = resolve_historical_baseline(ROOT, "supercharge")
-    candidate = (ROOT / "ssot" / "supercharge.md").read_text(encoding="utf-8")
+    baseline = resolve_historical_baseline(ROOT, "engos-meta-supercharge")
+    candidate = (ROOT / "ssot" / "engos-meta-supercharge.md").read_text(encoding="utf-8")
 
     result = evaluate_candidate_against_baseline(candidate, baseline)
 
@@ -62,8 +62,8 @@ def test_recovered_supercharge_is_additive_against_historical_baseline() -> None
 
 
 def test_additive_threader_preserves_hard_export_contract() -> None:
-    baseline = resolve_historical_baseline(ROOT, "threader")
-    candidate = (ROOT / "ssot" / "threader.md").read_text(encoding="utf-8")
+    baseline = resolve_historical_baseline(ROOT, "engos-memory-threader")
+    candidate = (ROOT / "ssot" / "engos-memory-threader.md").read_text(encoding="utf-8")
 
     result = evaluate_candidate_against_baseline(candidate, baseline)
 
@@ -83,10 +83,10 @@ def test_thinner_candidate_can_preserve_baseline_through_exact_resource() -> Non
 - Preserve the internal runbook as a bundled resource.
 """
     baseline = BaselineContext(
-        slug="ic-assistant",
+        slug="engos-operations-ic-assistant",
         strategy="resource_preservation_repro",
         group="applied_baseline",
-        baseline_path="sources/ssot-baselines/ic-assistant/baseline.md",
+        baseline_path="sources/ssot-baselines/engos-operations-ic-assistant/baseline.md",
         selected_commit="test",
         richness_score=0,
         line_count=len(baseline_text.splitlines()),
@@ -131,7 +131,7 @@ def test_pulse_release_regression_fails_historical_operational_baseline() -> Non
     ).stdout
 
     baseline = BaselineContext(
-        slug="pulse",
+        slug="engos-triage-my-inbox-chat-pulse",
         strategy="derived_history",
         group="derived",
         baseline_path=None,
@@ -201,7 +201,7 @@ Emit a deterministic summary.
 """
 
     baseline = BaselineContext(
-        slug="pulse",
+        slug="engos-triage-my-inbox-chat-pulse",
         strategy="derived_history",
         group="derived",
         baseline_path=None,
@@ -233,12 +233,12 @@ def test_registry_fallback_works_without_git_history(tmp_path: Path) -> None:
         ignore=shutil.ignore_patterns(".git", ".pytest_cache", "__pycache__", ".DS_Store", ".venv", "node_modules"),
     )
 
-    baseline = resolve_historical_baseline(workspace, "supercharge")
-    candidate = (workspace / "ssot" / "supercharge.md").read_text(encoding="utf-8")
+    baseline = resolve_historical_baseline(workspace, "engos-meta-supercharge")
+    candidate = (workspace / "ssot" / "engos-meta-supercharge.md").read_text(encoding="utf-8")
     result = evaluate_candidate_against_baseline(candidate, baseline)
 
     assert baseline.selected_commit == "3bc88b43"
-    assert baseline.baseline_path == "sources/ssot-baselines/supercharge/baseline.md"
+    assert baseline.baseline_path == "sources/ssot-baselines/engos-meta-supercharge/baseline.md"
     assert baseline.source == "source_library"
     assert baseline.verified_by_git_history is False
     assert result["classification"] == "additive"
@@ -261,7 +261,7 @@ def test_persist_source_baseline_refuses_structurally_noisy_overwrite(tmp_path: 
         ignore=shutil.ignore_patterns(".git", ".pytest_cache", "__pycache__", ".DS_Store", ".venv", "node_modules"),
     )
 
-    baseline_path = workspace / "sources" / "ssot-baselines" / "auto-research" / "baseline.md"
+    baseline_path = workspace / "sources" / "ssot-baselines" / "engos-optimization-auto-research" / "baseline.md"
     baseline_before = baseline_path.read_text(encoding="utf-8")
     registry_path = workspace / "sources" / "ssot-baselines" / "index.json"
     registry_before = registry_path.read_bytes()
@@ -276,7 +276,7 @@ Rejected/Out-of-Scope Signals
 
     result = persist_source_baseline(
         workspace,
-        slug="auto-research",
+        slug="engos-optimization-auto-research",
         baseline_text=noisy_candidate,
         overwrite=False,
         source_kind="canonical_source",
@@ -299,7 +299,7 @@ def test_materialize_baseline_sources_refreshes_auto_research_from_current_ssot(
     )
 
     result = subprocess.run(
-        [sys.executable, str(workspace / "scripts" / "materialize-baseline-sources.py"), "--slug", "auto-research"],
+        [sys.executable, str(workspace / "scripts" / "materialize-baseline-sources.py"), "--slug", "engos-optimization-auto-research"],
         cwd=workspace,
         check=True,
         capture_output=True,
@@ -307,13 +307,13 @@ def test_materialize_baseline_sources_refreshes_auto_research_from_current_ssot(
     )
     assert result.returncode == 0
 
-    baseline_path = workspace / "sources" / "ssot-baselines" / "auto-research" / "baseline.md"
-    ssot_path = workspace / "ssot" / "auto-research.md"
+    baseline_path = workspace / "sources" / "ssot-baselines" / "engos-optimization-auto-research" / "baseline.md"
+    ssot_path = workspace / "ssot" / "engos-optimization-auto-research.md"
     registry = json.loads((workspace / "sources" / "ssot-baselines" / "index.json").read_text(encoding="utf-8"))
 
     assert baseline_path.read_text(encoding="utf-8") == ssot_path.read_text(encoding="utf-8")
-    assert registry["skills"]["auto-research"]["strategy"] == "head_snapshot"
-    assert registry["skills"]["auto-research"]["group"] == "current_oracle"
-    assert registry["skills"]["auto-research"]["line_count"] == len(ssot_path.read_text(encoding="utf-8").splitlines())
-    assert registry["skills"]["auto-research"]["historical_proof"]["materialized_from_source_kind"] == "current_ssot"
-    assert not (workspace / "sources" / "ssot-baselines" / "weekly-intel" / "baseline.md").exists()
+    assert registry["skills"]["engos-optimization-auto-research"]["strategy"] == "head_snapshot"
+    assert registry["skills"]["engos-optimization-auto-research"]["group"] == "current_oracle"
+    assert registry["skills"]["engos-optimization-auto-research"]["line_count"] == len(ssot_path.read_text(encoding="utf-8").splitlines())
+    assert registry["skills"]["engos-optimization-auto-research"]["historical_proof"]["materialized_from_source_kind"] == "current_ssot"
+    assert not (workspace / "sources" / "ssot-baselines" / "engos-audit-weekly-intel" / "baseline.md").exists()

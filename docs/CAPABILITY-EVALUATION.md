@@ -5,7 +5,7 @@ Core-Prompts separates candidate production from behavioral promotion.
 ## Ownership
 
 - UAC owns deterministic intake, overlap analysis, structural readiness, clarity diagnostics, candidate generation, and impact planning.
-- `instruction-editor` owns auditable editorial candidates and preservation maps.
+- `engos-meta-instruction-editor` owns auditable editorial candidates and preservation maps.
 - Auto-Research owns behavioral experiments and promotion decisions.
 - `capability-eval` enforces repo-owned contracts, profiles, budgets, evidence binding, and fail-closed statuses.
 - Inspect AI, Inspect SWE, and direct host adapters are planned interchangeable execution mechanisms, not truth oracles. Inspect is not bundled or active in this release.
@@ -123,7 +123,7 @@ The first paid pilot is deliberately narrower than the available public cases. I
 
 1. Does SuperCharge preserve modules, stacking, terminal controls, and state?
 2. Does Code Review find seeded correctness and lifecycle defects with good evidence while remaining quiet on matched safe controls?
-3. Can routing distinguish product completeness (`feature-status`), repository activity (`eng-report`), and structural code health (`codebase-health-audit`)?
+3. Can routing distinguish product completeness (`engos-audit-feature-status`), repository activity (`engos-audit-engineering-progress`), and structural code health (`engos-audit-code-health`)?
 4. Does UAC Import preserve agent-useful metadata and its HTML safety boundary without claiming behavioral proof?
 
 Architecture, Instruction Editor, Pulse, and Weekly Intel cases remain available but are deferred from the first paid run. Static pilot-fixture validation runs in ordinary CI at zero tokens. A model-mediated run proceeds only after its adapters conform, its judge qualifies on a separate preregistered gold set, and every protected input is current.
