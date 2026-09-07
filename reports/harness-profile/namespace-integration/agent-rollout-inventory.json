@@ -284,7 +284,7 @@
     {
       "path": "/Users/medhat.galal/.codex/agents/engos-meta-supercharge.toml",
       "sha256": "342e5e715a1093be0b54b9b323ab88659ff906365ac798852962df67dc5212ec",
-      "source_sha256": "e13e2e38d741f06a54472fd57f9b47a79266c99c715df74396c5ceb1de845c12",
+      "source_sha256": "e778a419a4e8c75c0fed0fae1c3cfd9fca0f3e23d83811bab4d5fcb7e1e77fbb",
       "prior_bundle_sha256": "342e5e715a1093be0b54b9b323ab88659ff906365ac798852962df67dc5212ec",
       "status": "matches_recorded_prior_bundle",
       "cli": "codex",
@@ -306,7 +306,7 @@
     {
       "path": "/Users/medhat.galal/.codex/agents/resources/engos-meta-supercharge/capability.json",
       "sha256": "81d20341271ca027053a368716c2c27ffc912f6683f00e18b645fcbc53f767a1",
-      "source_sha256": "09d87088bf22e7c18d47c8f1475393a94cb502d451c2c64a38ea153a02f24b22",
+      "source_sha256": "643db46cdb6e0c5e560caeb79305c3d10fdff02e5e9cf9768131533e1a280a1b",
       "prior_bundle_sha256": "81d20341271ca027053a368716c2c27ffc912f6683f00e18b645fcbc53f767a1",
       "status": "matches_recorded_prior_bundle",
       "cli": "codex",
@@ -326,9 +326,53 @@
       "proposed_action": "no-op"
     },
     {
+      "path": "/Users/medhat.galal/.codex/agents/resources/engos-meta-supercharge/references/help-examples.md",
+      "sha256": null,
+      "source_sha256": "70c62c8b599629939e5d99c6baa08c58d8aa3b66d8dbb2a536119373b3349176",
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-meta-supercharge",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "create exact canonical file"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/supercharge/references/help-examples.md",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-meta-supercharge",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/engos-meta-supercharge/references/help.md",
+      "sha256": null,
+      "source_sha256": "aeaf887ac539164c230f4d3e450de47e01037787cb1fd0a15ed60a9593572b47",
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-meta-supercharge",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "create exact canonical file"
+    },
+    {
+      "path": "/Users/medhat.galal/.codex/agents/resources/supercharge/references/help.md",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "codex",
+      "slug": "engos-meta-supercharge",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "no-op"
+    },
+    {
       "path": "/Users/medhat.galal/.kiro/agents/engos-meta-supercharge.json",
       "sha256": "27cc1eee020c9ba37aa6bb70661515e9d8b3516738c75033b97cfc42879f7de4",
-      "source_sha256": "d6343b282a8d555279161d345dd98876b39ce1b2b75b128543a63ffe9c2b742c",
+      "source_sha256": "0693dbad02778611f2ca359016eb1c66108349773f9e9fd2b9c25c1e55264515",
       "prior_bundle_sha256": "3eae60268d20a4d1572e44365cf92eb1028dbb94b54e13f8bba031ceb7a2f153",
       "status": "unknown_or_customized_preserve",
       "cli": "kiro",
@@ -350,7 +394,7 @@
     {
       "path": "/Users/medhat.galal/.kiro/agents/resources/engos-meta-supercharge/capability.json",
       "sha256": "81d20341271ca027053a368716c2c27ffc912f6683f00e18b645fcbc53f767a1",
-      "source_sha256": "09d87088bf22e7c18d47c8f1475393a94cb502d451c2c64a38ea153a02f24b22",
+      "source_sha256": "643db46cdb6e0c5e560caeb79305c3d10fdff02e5e9cf9768131533e1a280a1b",
       "prior_bundle_sha256": "81d20341271ca027053a368716c2c27ffc912f6683f00e18b645fcbc53f767a1",
       "status": "matches_recorded_prior_bundle",
       "cli": "kiro",
@@ -360,6 +404,50 @@
     },
     {
       "path": "/Users/medhat.galal/.kiro/agents/resources/supercharge/capability.json",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-meta-supercharge",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/engos-meta-supercharge/references/help-examples.md",
+      "sha256": null,
+      "source_sha256": "70c62c8b599629939e5d99c6baa08c58d8aa3b66d8dbb2a536119373b3349176",
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-meta-supercharge",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/supercharge/references/help-examples.md",
+      "sha256": null,
+      "source_sha256": null,
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-meta-supercharge",
+      "kind": "legacy_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/engos-meta-supercharge/references/help.md",
+      "sha256": null,
+      "source_sha256": "aeaf887ac539164c230f4d3e450de47e01037787cb1fd0a15ed60a9593572b47",
+      "prior_bundle_sha256": null,
+      "status": "absent",
+      "cli": "kiro",
+      "slug": "engos-meta-supercharge",
+      "kind": "canonical_agent_or_resource",
+      "proposed_action": "preserve group; resolve unknown/customized member first"
+    },
+    {
+      "path": "/Users/medhat.galal/.kiro/agents/resources/supercharge/references/help.md",
       "sha256": null,
       "source_sha256": null,
       "prior_bundle_sha256": null,
@@ -1342,8 +1430,7 @@
         }
       },
       "proposed_removed_registrations": [],
-      "action": "no-op preserve bytes",
-      "formatting_only_preview_change": true
+      "action": "no-op preserve bytes"
     },
     {
       "scope": "primary_untracked_runtime",
@@ -1436,20 +1523,15 @@
         }
       },
       "proposed_removed_registrations": [],
-      "action": "no-op preserve bytes",
-      "formatting_only_preview_change": false
+      "action": "no-op preserve bytes"
     }
   ],
   "prototype_gate": [],
   "instructions": "Controller must bind final released source and exact ownership/preimage checks. Preserve unknown/custom files. Skills-profile parity does not establish agent registration parity. Primary absolute config paths remain untracked runtime state.",
-  "kiro_settings": {
-    "path": "/Users/medhat.galal/.kiro/settings/cli.json",
-    "present": true,
-    "matching_agent_references": [],
-    "note": "Read-only exact known settings file; no Kiro settings mutation supplied by legacy deploy helper. Runtime discovery remains a separate rollout gate.",
-    "sha256": "5136f9ce160bb34d8f374a287e7c538f1fcbe96c72fce512f2961603c227ca8d"
-  },
-  "planner_contract": "Use existing deploy-copy-plan.py and select only *_agent rows; do not invoke a broad legacy codex deploy that could recreate .codex/skills copies. Register only semantic config deltas with register-codex-agents.py after file verification. Saved skills-profile scope is unchanged.",
+  "source_base": "969a32b7b5dc3902c85a5ce9bcd5eb54b41cc5f4",
+  "source_manifest_sha256": "3bc4a7cca09edc52cbbf09978fa030e48baaffa30caf01c55c00e6761304e655",
+  "captured_at": "2026-09-07T04:51:42.029388+00:00",
+  "planner_contract": "Select only *_agent rows from deploy-copy-plan.py; do not use broad legacy codex deployment, which includes skills. Preserve semantic no-op config bytes. Root must verify released source, full group ownership and readback before archive.",
   "group_blockers": [
     {
       "cli": "kiro",
@@ -1495,5 +1577,11 @@
       "cli": "kiro",
       "slug": "engos-triage-my-inbox-chat-pulse"
     }
-  ]
+  ],
+  "kiro_settings": {
+    "path": "/Users/medhat.galal/.kiro/settings/cli.json",
+    "sha256": "5136f9ce160bb34d8f374a287e7c538f1fcbe96c72fce512f2961603c227ca8d",
+    "matching_core_agent_references": [],
+    "action": "No automatic settings change; controller must verify active default/reader after agent rollout."
+  }
 }

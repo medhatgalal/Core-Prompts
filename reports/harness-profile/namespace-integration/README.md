@@ -30,9 +30,9 @@ were independently reviewed with no remaining material findings.
 
 ## Separate controller agent rollout
 
-`agent-rollout-inventory.json` records 11 canonical agents and 112 exact file
-observations. It proposes 14 verified-prior-owned replacements, 42 no-ops, and
-preserves 56 observations in groups containing unknown/customized members.
+`agent-rollout-inventory.json` records 11 canonical agents and 120 exact file
+observations. It proposes 14 verified-prior-owned replacements, two creates, 44 no-ops, and
+preserves 60 observations in groups containing unknown/customized members.
 Both home and primary Codex registration previews have no semantic change; retain
 original bytes. The primary's absolute runtime config must not be committed.
 
@@ -47,3 +47,9 @@ that is not final authenticated discovery proof or approval for cleanup.
 Release packaging must use the exact tracked source archive. The primary
 checkout's untracked absolute-path Codex configuration is runtime state, not
 a release input; preserve and compare it separately.
+
+Exact `0ec2bd6675bb2c9446c12ea962bffa1eaa4187b7` clean full run: 757 tests
+and 122 subtests passed. Accepted `969a32b7b5dc3902c85a5ce9bcd5eb54b41cc5f4`
+retirement then merged without code conflicts: 71 relevant tests, strict validation,
+contract checks, and final independent review pass. No full rerun was attributed
+to the later data/docs-only delta. Final release remains controller-owned.
