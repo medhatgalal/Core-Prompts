@@ -85,7 +85,7 @@ def test_supercharge_preserves_existing_module_contract_markers() -> None:
 
 def test_supercharge_help_exposes_debate_deep_and_examples() -> None:
     text = _text(SSOT_PATH)
-    help_text = _section(text, "## HELP OUTPUT")
+    help_text = _text(ROOT / "sources/capability-resources/engos-meta-supercharge/references/help.md")
 
     assert 'version: "v4.2"' in text
     assert "# End of SuperCharge v4.2" in text
@@ -98,7 +98,7 @@ def test_supercharge_help_exposes_debate_deep_and_examples() -> None:
     assert "### Stack Examples" in help_text
     assert "Stacking is sequential" in help_text
 
-    examples = _section(text, "## HELP EXAMPLES OUTPUT")
+    examples = _text(ROOT / "sources/capability-resources/engos-meta-supercharge/references/help-examples.md")
     assert "/adversarial /debate`" in examples
     assert "/adversarial /debate /deep`" in examples
     assert examples.index("/adversarial /debate`") < examples.index("/adversarial /debate /deep`")
@@ -136,7 +136,11 @@ def test_supercharge_adversarial_debate_contract_is_operational() -> None:
 
 def test_supercharge_baseline_remains_additive() -> None:
     baseline = resolve_historical_baseline(ROOT, "engos-meta-supercharge")
-    result = evaluate_candidate_against_baseline(_text(SSOT_PATH), baseline)
+    text = _text(SSOT_PATH)
+    start, end = text.index("## HELP OUTPUT"), text.index("## MODULE REFERENCE")
+    resource = ROOT / "sources/capability-resources/engos-meta-supercharge/references"
+    effective = text[:start] + _text(resource / "help.md") + _text(resource / "help-examples.md") + text[end:]
+    result = evaluate_candidate_against_baseline(effective, baseline)
 
     assert result["classification"] == "additive"
     assert result["hard_failures"] == []

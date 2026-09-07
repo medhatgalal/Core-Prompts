@@ -180,11 +180,14 @@
         "strategy": "derived_history",
         "group": "derived",
         "baseline_path": null,
-        "selected_commit": "63ef9172",
+        "selected_commit": "6fbcff2d",
         "richness_score": 8,
-        "line_count": 350,
+        "line_count": 355,
         "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
-        "equivalent_commits": [],
+        "equivalent_commits": [
+          "616e936d",
+          "63ef9172"
+        ],
         "expected_companions": [],
         "operator_invariants": [],
         "scenario_matrix": [
@@ -240,7 +243,7 @@
             "candidate_operational_score": 4,
             "baseline_preserved_in_resource": false
           },
-          "baseline_commit": "63ef9172",
+          "baseline_commit": "6fbcff2d",
           "baseline_slug": "engos-audit-opex-incident-review"
         },
         {

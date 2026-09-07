@@ -736,11 +736,14 @@
             "strategy": "derived_history",
             "group": "derived",
             "baseline_path": null,
-            "selected_commit": "63ef9172",
+            "selected_commit": "6fbcff2d",
             "richness_score": 8,
-            "line_count": 350,
+            "line_count": 355,
             "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
-            "equivalent_commits": [],
+            "equivalent_commits": [
+              "616e936d",
+              "63ef9172"
+            ],
             "expected_companions": [],
             "operator_invariants": [],
             "scenario_matrix": [
@@ -796,7 +799,7 @@
                 "candidate_operational_score": 4,
                 "baseline_preserved_in_resource": false
               },
-              "baseline_commit": "63ef9172",
+              "baseline_commit": "6fbcff2d",
               "baseline_slug": "engos-audit-opex-incident-review"
             },
             {
@@ -4405,7 +4408,7 @@
       "display_name": "SuperCharge \u2014 Prompt Engineering, Planning Hardening, and Graded Improvement",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "engos-meta-supercharge",
-      "shared_summary": "[Medhat] SuperCharge \u2014 Prompt Engineering Swiss Army Knife (ULT-Agent++ \u2022 Catchup Deep \u2022 Simple \u2022 Invert \u2022 Adversarial \u2022 Contract+QA \u2022 Grade \u2022 GASLIGHT 13)",
+      "shared_summary": "Harden a prompt, plan, proposal, or workflow through the smallest useful sequence of simplification, inversion, adversarial critique, contract checks, debate, or grading. Use when the artifact needs stronger reasoning or execution guidance; use behavioral evaluation for proof.",
       "shared_constraints": [
         "Do not stack heavy frameworks concurrently without reason.",
         "Do not bloat the answer with every module when a smaller route is enough.",
@@ -4720,7 +4723,203 @@
         }
       ],
       "benchmark_sources": [],
+      "quality_profile": "default",
+      "quality_status": "structural_ready",
+      "judge_reports": [
+        {
+          "pass_number": 1,
+          "status": "structural_ready",
+          "historical_baseline": {
+            "slug": "engos-meta-supercharge",
+            "strategy": "historical_gold",
+            "group": "flattened_regression",
+            "baseline_path": "sources/ssot-baselines/engos-meta-supercharge/baseline.md",
+            "selected_commit": "3bc88b43",
+            "richness_score": 19,
+            "line_count": 526,
+            "reason": "Latest pre-flatten rich body with full activation grammar, help/details contract, module reference, hard constraints, and executable module sections.",
+            "equivalent_commits": [
+              "e4b12fc3",
+              "f6025ddb",
+              "719fb303"
+            ],
+            "expected_companions": [
+              "engos-reconciliation-converge",
+              "engos-memory-context-continuity"
+            ],
+            "operator_invariants": [],
+            "scenario_matrix": [
+              {
+                "id": "individual_ult",
+                "kind": "individual_module",
+                "label": "/ult module contract",
+                "must_contain": [
+                  "### HARD CONSTRAINTS (Non-Negotiable)",
+                  "### Critical Execution Rule (ULT)",
+                  "### Output Structure (MANDATORY)"
+                ]
+              },
+              {
+                "id": "individual_catchup",
+                "kind": "individual_module",
+                "label": "/catchup forensic contract",
+                "must_contain": [
+                  "## MODULE: /catchup",
+                  "### HARD CONSTRAINTS (Non-Negotiable)",
+                  "Validation Status: PASS | FAIL"
+                ]
+              },
+              {
+                "id": "stacked_and_full",
+                "kind": "stacked_or_full",
+                "label": "stacked modules and /full coverage",
+                "must_contain": [
+                  "## HELP OUTPUT",
+                  "## MODULE REFERENCE",
+                  "/full",
+                  "/simple",
+                  "/invert",
+                  "/adversarial",
+                  "/contract",
+                  "/grade"
+                ]
+              },
+              {
+                "id": "agentic_overlay",
+                "kind": "agentic",
+                "label": "agentic orchestration guidance",
+                "must_contain": [
+                  "### Agentic Orchestration (Core Principle, Not a Module)",
+                  "### Auto-Routing (Smart Defaults)",
+                  "### Reflective Controls (Optional Modifiers)"
+                ]
+              },
+              {
+                "id": "help_output_contract",
+                "kind": "operational_contract",
+                "label": "help output contract",
+                "must_contain": [
+                  "## Help Output"
+                ]
+              }
+            ],
+            "historical_proof": {
+              "current_head_commit": "0a2c1e46",
+              "current_head_richness_score": 2,
+              "current_head_line_count": 162,
+              "materialized_from_commit": "3bc88b43"
+            },
+            "source": "source_library",
+            "verified_by_git_history": false,
+            "has_baseline_text": true
+          },
+          "judge_reports": [
+            {
+              "judge": "source_fidelity",
+              "title": "Source Fidelity and Uplift",
+              "score": 10,
+              "blockers": [],
+              "classification": "additive",
+              "scenario_results": [
+                {
+                  "id": "individual_ult",
+                  "kind": "individual_module",
+                  "label": "/ult module contract",
+                  "passed": true,
+                  "missing_markers": []
+                },
+                {
+                  "id": "individual_catchup",
+                  "kind": "individual_module",
+                  "label": "/catchup forensic contract",
+                  "passed": true,
+                  "missing_markers": []
+                },
+                {
+                  "id": "stacked_and_full",
+                  "kind": "stacked_or_full",
+                  "label": "stacked modules and /full coverage",
+                  "passed": true,
+                  "missing_markers": []
+                },
+                {
+                  "id": "agentic_overlay",
+                  "kind": "agentic",
+                  "label": "agentic orchestration guidance",
+                  "passed": true,
+                  "missing_markers": []
+                },
+                {
+                  "id": "help_output_contract",
+                  "kind": "operational_contract",
+                  "label": "help output contract",
+                  "passed": true,
+                  "missing_markers": []
+                }
+              ],
+              "scorecard": {
+                "baseline_richness": 19,
+                "candidate_richness": 24,
+                "baseline_operational_score": 2,
+                "candidate_operational_score": 4,
+                "baseline_preserved_in_resource": false
+              },
+              "baseline_commit": "3bc88b43",
+              "baseline_slug": "engos-meta-supercharge"
+            },
+            {
+              "judge": "operational_richness",
+              "title": "Operational Richness",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "metadata_integrity",
+              "title": "Metadata and Handoff Integrity",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "benchmark_readiness",
+              "title": "Benchmark Readiness and Template Fit",
+              "score": 10,
+              "blockers": [],
+              "scorecard": {
+                "title_clarity": 10,
+                "description_richness": 10,
+                "intent_coverage": 10,
+                "boundary_clarity": 10,
+                "output_specificity": 10,
+                "metadata_completeness": 8,
+                "surface_usability": 10
+              }
+            }
+          ],
+          "blockers": [],
+          "scorecard": {
+            "source_fidelity": 10,
+            "baseline_richness": 19,
+            "candidate_richness": 24,
+            "baseline_operational_score": 2,
+            "candidate_operational_score": 4,
+            "baseline_preserved_in_resource": false,
+            "operational_richness": 10,
+            "metadata_integrity": 10,
+            "benchmark_readiness": 10,
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 10,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          },
+          "template_name": "both"
+        }
+      ],
       "consumption_hints": {},
+      "quality_pass_count": 1,
+      "quality_stop_reason": "thresholds_met",
       "declared_capability": "both",
       "inferred_capability": "both",
       "expected_surface_names": [
@@ -8304,7 +8503,9 @@
       ".codex/skills/engos-audit-engineering-progress/resources/capability.json",
       ".codex/skills/engos-audit-feature-status/resources/capability.json",
       ".codex/skills/engos-audit-opex-incident-review/resources/capability.json",
+      ".codex/skills/engos-audit-opex-incident-review/resources/export_report.py",
       ".codex/skills/engos-audit-opex-incident-review/resources/opex_digest.py",
+      ".codex/skills/engos-audit-opex-incident-review/resources/references/briefing.md",
       ".codex/skills/engos-audit-opex-incident-review/resources/snapshot.schema.json",
       ".codex/skills/engos-audit-pitch-review/resources/capability.json",
       ".codex/skills/engos-audit-weekly-intel/resources/capability.json",
@@ -8339,6 +8540,8 @@
       ".codex/skills/engos-meta-instruction-editor/resources/capability.json",
       ".codex/skills/engos-meta-instruction-editor/resources/references/instruction-clarity.md",
       ".codex/skills/engos-meta-supercharge/resources/capability.json",
+      ".codex/skills/engos-meta-supercharge/resources/references/help-examples.md",
+      ".codex/skills/engos-meta-supercharge/resources/references/help.md",
       ".codex/skills/engos-meta-uac-import/resources/capability.json",
       ".codex/skills/engos-operations-ic-assistant/resources/capability.json",
       ".codex/skills/engos-operations-ic-assistant/resources/appian-incident-runbook.md",
@@ -8361,6 +8564,8 @@
       ".codex/agents/resources/engos-audit-weekly-intel/capability.json",
       ".codex/agents/resources/engos-design-architecture/capability.json",
       ".codex/agents/resources/engos-meta-supercharge/capability.json",
+      ".codex/agents/resources/engos-meta-supercharge/references/help-examples.md",
+      ".codex/agents/resources/engos-meta-supercharge/references/help.md",
       ".codex/agents/resources/engos-operations-ic-assistant/capability.json",
       ".codex/agents/resources/engos-operations-ic-assistant/appian-incident-runbook.md",
       ".codex/agents/resources/engos-optimization-auto-research/capability.json",
@@ -8382,7 +8587,9 @@
       ".gemini/skills/engos-audit-engineering-progress/resources/capability.json",
       ".gemini/skills/engos-audit-feature-status/resources/capability.json",
       ".gemini/skills/engos-audit-opex-incident-review/resources/capability.json",
+      ".gemini/skills/engos-audit-opex-incident-review/resources/export_report.py",
       ".gemini/skills/engos-audit-opex-incident-review/resources/opex_digest.py",
+      ".gemini/skills/engos-audit-opex-incident-review/resources/references/briefing.md",
       ".gemini/skills/engos-audit-opex-incident-review/resources/snapshot.schema.json",
       ".gemini/skills/engos-audit-pitch-review/resources/capability.json",
       ".gemini/skills/engos-audit-weekly-intel/resources/capability.json",
@@ -8417,6 +8624,8 @@
       ".gemini/skills/engos-meta-instruction-editor/resources/capability.json",
       ".gemini/skills/engos-meta-instruction-editor/resources/references/instruction-clarity.md",
       ".gemini/skills/engos-meta-supercharge/resources/capability.json",
+      ".gemini/skills/engos-meta-supercharge/resources/references/help-examples.md",
+      ".gemini/skills/engos-meta-supercharge/resources/references/help.md",
       ".gemini/skills/engos-meta-uac-import/resources/capability.json",
       ".gemini/skills/engos-operations-ic-assistant/resources/capability.json",
       ".gemini/skills/engos-operations-ic-assistant/resources/appian-incident-runbook.md",
@@ -8439,6 +8648,8 @@
       ".gemini/agents/resources/engos-audit-weekly-intel/capability.json",
       ".gemini/agents/resources/engos-design-architecture/capability.json",
       ".gemini/agents/resources/engos-meta-supercharge/capability.json",
+      ".gemini/agents/resources/engos-meta-supercharge/references/help-examples.md",
+      ".gemini/agents/resources/engos-meta-supercharge/references/help.md",
       ".gemini/agents/resources/engos-operations-ic-assistant/capability.json",
       ".gemini/agents/resources/engos-operations-ic-assistant/appian-incident-runbook.md",
       ".gemini/agents/resources/engos-optimization-auto-research/capability.json",
@@ -8460,7 +8671,9 @@
       ".claude/skills/engos-audit-engineering-progress/resources/capability.json",
       ".claude/skills/engos-audit-feature-status/resources/capability.json",
       ".claude/skills/engos-audit-opex-incident-review/resources/capability.json",
+      ".claude/skills/engos-audit-opex-incident-review/resources/export_report.py",
       ".claude/skills/engos-audit-opex-incident-review/resources/opex_digest.py",
+      ".claude/skills/engos-audit-opex-incident-review/resources/references/briefing.md",
       ".claude/skills/engos-audit-opex-incident-review/resources/snapshot.schema.json",
       ".claude/skills/engos-audit-pitch-review/resources/capability.json",
       ".claude/skills/engos-audit-weekly-intel/resources/capability.json",
@@ -8495,6 +8708,8 @@
       ".claude/skills/engos-meta-instruction-editor/resources/capability.json",
       ".claude/skills/engos-meta-instruction-editor/resources/references/instruction-clarity.md",
       ".claude/skills/engos-meta-supercharge/resources/capability.json",
+      ".claude/skills/engos-meta-supercharge/resources/references/help-examples.md",
+      ".claude/skills/engos-meta-supercharge/resources/references/help.md",
       ".claude/skills/engos-meta-uac-import/resources/capability.json",
       ".claude/skills/engos-operations-ic-assistant/resources/capability.json",
       ".claude/skills/engos-operations-ic-assistant/resources/appian-incident-runbook.md",
@@ -8517,6 +8732,8 @@
       ".claude/agents/resources/engos-audit-weekly-intel/capability.json",
       ".claude/agents/resources/engos-design-architecture/capability.json",
       ".claude/agents/resources/engos-meta-supercharge/capability.json",
+      ".claude/agents/resources/engos-meta-supercharge/references/help-examples.md",
+      ".claude/agents/resources/engos-meta-supercharge/references/help.md",
       ".claude/agents/resources/engos-operations-ic-assistant/capability.json",
       ".claude/agents/resources/engos-operations-ic-assistant/appian-incident-runbook.md",
       ".claude/agents/resources/engos-optimization-auto-research/capability.json",
@@ -8538,7 +8755,9 @@
       ".kiro/skills/engos-audit-engineering-progress/resources/capability.json",
       ".kiro/skills/engos-audit-feature-status/resources/capability.json",
       ".kiro/skills/engos-audit-opex-incident-review/resources/capability.json",
+      ".kiro/skills/engos-audit-opex-incident-review/resources/export_report.py",
       ".kiro/skills/engos-audit-opex-incident-review/resources/opex_digest.py",
+      ".kiro/skills/engos-audit-opex-incident-review/resources/references/briefing.md",
       ".kiro/skills/engos-audit-opex-incident-review/resources/snapshot.schema.json",
       ".kiro/skills/engos-audit-pitch-review/resources/capability.json",
       ".kiro/skills/engos-audit-weekly-intel/resources/capability.json",
@@ -8573,6 +8792,8 @@
       ".kiro/skills/engos-meta-instruction-editor/resources/capability.json",
       ".kiro/skills/engos-meta-instruction-editor/resources/references/instruction-clarity.md",
       ".kiro/skills/engos-meta-supercharge/resources/capability.json",
+      ".kiro/skills/engos-meta-supercharge/resources/references/help-examples.md",
+      ".kiro/skills/engos-meta-supercharge/resources/references/help.md",
       ".kiro/skills/engos-meta-uac-import/resources/capability.json",
       ".kiro/skills/engos-operations-ic-assistant/resources/capability.json",
       ".kiro/skills/engos-operations-ic-assistant/resources/appian-incident-runbook.md",
@@ -8595,6 +8816,8 @@
       ".kiro/agents/resources/engos-audit-weekly-intel/capability.json",
       ".kiro/agents/resources/engos-design-architecture/capability.json",
       ".kiro/agents/resources/engos-meta-supercharge/capability.json",
+      ".kiro/agents/resources/engos-meta-supercharge/references/help-examples.md",
+      ".kiro/agents/resources/engos-meta-supercharge/references/help.md",
       ".kiro/agents/resources/engos-operations-ic-assistant/capability.json",
       ".kiro/agents/resources/engos-operations-ic-assistant/appian-incident-runbook.md",
       ".kiro/agents/resources/engos-optimization-auto-research/capability.json",

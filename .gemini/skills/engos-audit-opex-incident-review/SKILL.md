@@ -12,6 +12,7 @@ When the user asks `engos-audit-opex-incident-review help`, `/engos-audit-opex-i
 
 ### Usage
 
+- `engos-audit-opex-incident-review briefing <ticket...>` prepares complete meeting drill-downs for every confirmed selected incident, preserving the daily board; see `resources/references/briefing.md`.
 - `engos-audit-opex-incident-review daily` builds the complete daily board against the latest prior snapshot.
 - `engos-audit-opex-incident-review deep-dive <ticket...>` builds the board and expands selected incidents with facts, Five Whys, DPAs, risk, talking points, and anticipated questions.
 - `engos-audit-opex-incident-review validate <current.json> <previous.json>` validates normalized evidence without retrieving data or writing a report.
@@ -29,6 +30,7 @@ Operational Excellence, OpEx digest, incident review, daily board, decisions, ow
 
 ### Modules
 
+- `briefing` — complete selected-incident meeting preparation, compatible briefing filenames, and explicitly requested optional exports.
 - `daily` — default; current-versus-prior decisions and accountability board.
 - `deep-dive` — the daily board plus Amol's per-incident causal and meeting-preparation sections.
 - `validate` — snapshot and reference-integrity checks only.
@@ -350,6 +352,14 @@ Expected result:
 - Keep the capability reusable and deterministic.
 - Make boundaries, evidence, and review timing explicit.
 - Do not claim orchestration, delegation, or runtime-control authority.
+
+## Meeting briefing compatibility
+
+For `briefing`, or conversational asks "opex briefing", "prepare opex", "operational excellence prep", or "incident briefing", read `resources/references/briefing.md` and follow its evidence, selection, complete incident-depth, output and export contract. This is one module in this canonical package; these phrases do not register native CLI aliases. Daily/deep-dive behavior stays unchanged unless briefing is selected.
+
+Briefing preserves complete linked remediation beyond DPAs, verified recurrence research, customer-impact visibility, source-aware coaching and explicit missing evidence. Use the optional briefing fields described in that resource; existing snapshot required fields and version remain unchanged. Complete daily-board membership does not replace complete briefing depth for the confirmed selected population.
+
+Additional requested `txt`, `pdf`, and `gdoc` exports use `resources/export_report.py` after HTML/Markdown rendering. Google writes require the user's explicit existing document destination and write authorization; a CLI acknowledgement requires readback before reporting verified content. Converter or provider failures retain local reports and remain incomplete outputs. No automatic upload, sharing, new-document creation, or distribution is authorized by legacy metadata.
 
 
 Capability resource: `.gemini/skills/engos-audit-opex-incident-review/resources/capability.json`
