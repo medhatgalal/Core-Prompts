@@ -147,3 +147,8 @@ Reproduce the optional no-model reader checks with explicit native executable pa
 python3 scripts/probe-skill-readers.py --codex /path/to/native/codex \
   --grok /path/to/grok --output /tmp/native-readers.json
 ```
+
+Legacy namespace deployment also preflights old paths before any copy or
+registration: every old package member must match its recorded standalone bundle
+and manifest. Unknown, customized, or symlinked packages stop the operation and
+remain discoverable until the controller resolves them explicitly.

@@ -12,7 +12,7 @@ If you are already using Core-Prompts in a CLI, start there. If you are importin
 
 The current generated surfaces ship `27` skills across all supported CLIs and `11` agents on agent-capable surfaces. Capability Fabric metadata is advisory; explicit invocation follows the selected capability's operating contract.
 
-All shipped skills use the `engos-<category>-<skill-name>` namespace so Core-Prompts capabilities stay together in CLI and app autocomplete. The category identifies the primary job; the final segment identifies the capability. For example, use `engos-memory-context-continuity` for durable investigation state, `engos-quality-code-review` for diff review, and `engos-triage-my-inbox-chat-pulse` for Gmail and Chat triage.
+First-party skills use the `engos-<category>-<skill-name>` namespace so Core-Prompts capabilities stay together in CLI and app autocomplete. The upstream-pinned Loopy package retains the single name `loopy`, without an alias package. The category identifies the primary job; the final segment identifies the capability. For example, use `engos-memory-context-continuity` for durable investigation state, `engos-quality-code-review` for diff review, and `engos-triage-my-inbox-chat-pulse` for Gmail and Chat triage.
 
 Conversational `Supercharge /full` and stacked forms such as `supercharge /simple /invert /contract <task>` remain supported by `engos-meta-supercharge`. Use the full namespaced name for native skill selection; no separate short-name package or native menu alias is emitted.
 

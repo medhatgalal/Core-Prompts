@@ -371,6 +371,22 @@ prune_deprecated_slug_outputs() {
   fi
 }
 
+NAMESPACE_PRUNE_PREFLIGHT=0
+prune_namespace_path() {
+  local target="$1"
+  [[ -e "$target" || -L "$target" ]] || return 0
+  if [[ "$TARGET_ROOT" != "$REPO_ROOT" ]]; then
+    local relative="${target#"$TARGET_ROOT"/}"
+    if ! python3 "$REPO_ROOT/scripts/deploy-copy-plan.py" --check-legacy-owned "$TARGET_ROOT" "$relative"; then
+      echo "error: preserving unproven or customized legacy package: $target"
+      echo "Resolve its exact ownership/customization before namespace deployment."
+      return 1
+    fi
+  fi
+  [[ "$NAMESPACE_PRUNE_PREFLIGHT" -eq 0 ]] || return 0
+  prune_path "$target"
+}
+
 prune_legacy_namespace_outputs() {
   local pair new_slug old_slug cli
   local legacy_pairs=(
@@ -407,24 +423,24 @@ prune_legacy_namespace_outputs() {
     for cli in "${TARGETS[@]}"; do
       case "$cli" in
         codex)
-          prune_path "$TARGET_ROOT/.codex/skills/$old_slug"
-          prune_path "$TARGET_ROOT/.codex/agents/$old_slug.toml"
-          prune_path "$TARGET_ROOT/.codex/agents/resources/$old_slug"
+          prune_namespace_path "$TARGET_ROOT/.codex/skills/$old_slug"
+          prune_namespace_path "$TARGET_ROOT/.codex/agents/$old_slug.toml"
+          prune_namespace_path "$TARGET_ROOT/.codex/agents/resources/$old_slug"
           ;;
         gemini)
-          prune_path "$TARGET_ROOT/.gemini/skills/$old_slug"
-          prune_path "$TARGET_ROOT/.gemini/agents/$old_slug.md"
-          prune_path "$TARGET_ROOT/.gemini/agents/resources/$old_slug"
+          prune_namespace_path "$TARGET_ROOT/.gemini/skills/$old_slug"
+          prune_namespace_path "$TARGET_ROOT/.gemini/agents/$old_slug.md"
+          prune_namespace_path "$TARGET_ROOT/.gemini/agents/resources/$old_slug"
           ;;
         claude)
-          prune_path "$TARGET_ROOT/.claude/skills/$old_slug"
-          prune_path "$TARGET_ROOT/.claude/agents/$old_slug.md"
-          prune_path "$TARGET_ROOT/.claude/agents/resources/$old_slug"
+          prune_namespace_path "$TARGET_ROOT/.claude/skills/$old_slug"
+          prune_namespace_path "$TARGET_ROOT/.claude/agents/$old_slug.md"
+          prune_namespace_path "$TARGET_ROOT/.claude/agents/resources/$old_slug"
           ;;
         kiro)
-          prune_path "$TARGET_ROOT/.kiro/skills/$old_slug"
-          prune_path "$TARGET_ROOT/.kiro/agents/$old_slug.json"
-          prune_path "$TARGET_ROOT/.kiro/agents/resources/$old_slug"
+          prune_namespace_path "$TARGET_ROOT/.kiro/skills/$old_slug"
+          prune_namespace_path "$TARGET_ROOT/.kiro/agents/$old_slug.json"
+          prune_namespace_path "$TARGET_ROOT/.kiro/agents/resources/$old_slug"
           ;;
       esac
     done
@@ -656,6 +672,10 @@ prune_retired_codex_agent_registration() {
   python3 scripts/register-codex-agents.py --prune-retired-only "$config_path" "$TARGET_ROOT"
   echo "PRUNED retired codex agent registration in $config_path: mentor"
 }
+
+NAMESPACE_PRUNE_PREFLIGHT=1
+prune_legacy_namespace_outputs
+NAMESPACE_PRUNE_PREFLIGHT=0
 
 COPY_PLAN_FILE="$(mktemp "${TMPDIR:-/tmp}/core-prompts-deploy-plan.XXXXXX")"
 trap 'rm -f "$COPY_PLAN_FILE"' EXIT
