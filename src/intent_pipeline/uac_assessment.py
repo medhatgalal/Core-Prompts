@@ -15,7 +15,7 @@ from intent_pipeline.uac_capabilities import (
     summarized_emitted_surfaces,
 )
 
-_DEFAULT_TARGET_SYSTEMS = ("codex", "gemini", "claude", "kiro")
+_DEFAULT_TARGET_SYSTEMS = ("codex", "gemini", "claude", "kiro", "grok")
 _AGENT_SIGNAL_PATTERNS = (
     re.compile(r"^kind\s*:\s*[\"']?agent[\"']?\b", re.IGNORECASE | re.MULTILINE),
     re.compile(r"^role\s*:\s*[\"']?agent[\"']?\b", re.IGNORECASE | re.MULTILINE),

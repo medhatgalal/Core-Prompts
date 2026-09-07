@@ -56,6 +56,9 @@
           "kiro": [
             "kiro_skill",
             "kiro_agent"
+          ],
+          "grok": [
+            "grok_skill"
           ]
         },
         "wrapper_surfaces": {
@@ -106,6 +109,9 @@
         "kiro": [
           "kiro_skill",
           "kiro_agent"
+        ],
+        "grok": [
+          "grok_skill"
         ]
       },
       "source_provenance": {
@@ -160,7 +166,8 @@
     "claude_skill",
     "claude_agent",
     "kiro_skill",
-    "kiro_agent"
+    "kiro_agent",
+    "grok_skill"
   ],
   "rubric_version": "capability-fabric.v0",
   "invocation_hints": [

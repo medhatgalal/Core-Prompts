@@ -10,7 +10,15 @@
     "notes": [
       "Deployment must not create symlinks.",
       "If destination path is a symlink, unlink that path and copy a regular file."
-    ]
+    ],
+    "profile_policy": {
+      "codex_skill_destination": ".agents/skills",
+      "unknown_or_customized": "preserve",
+      "retirement": "exact_receipted_files_only",
+      "rollback": "hash_guarded",
+      "tool_metadata": "descriptive_not_permission",
+      "routine_updates": "saved profile and receipt scope; verified bundle; hash-guarded transaction and rollback"
+    }
   },
   "metadata_policy": {
     "portable_local_source_refs": true,
@@ -94,6 +102,25 @@
       ],
       "discovery_timeout_seconds": 20,
       "discovery_strip_ansi": true,
+      "required": false
+    },
+    {
+      "name": "grok",
+      "surface": "grok",
+      "command": "grok",
+      "version_args": [
+        "--version"
+      ],
+      "smoke_args": [
+        "--help"
+      ],
+      "discovery_args": [
+        "inspect",
+        "--json"
+      ],
+      "discovery_surface_names": [
+        "grok_skill"
+      ],
       "required": false
     }
   ],
@@ -298,6 +325,29 @@
       "capability_types": [
         "agent",
         "both"
+      ]
+    },
+    {
+      "name": "grok_skill",
+      "surface": "grok",
+      "path": ".grok/skills/{slug}/SKILL.md",
+      "format": "frontmatter_markdown",
+      "required_frontmatter": [
+        "name",
+        "description"
+      ],
+      "match": "skill_dir",
+      "skill_root": ".grok/skills",
+      "source_of_truth": [
+        "https://docs.x.ai/build/features/skills-plugins-marketplaces"
+      ],
+      "schema_mode": "local",
+      "capability_types": [
+        "skill",
+        "both"
+      ],
+      "source_urls": [
+        "https://docs.x.ai/build/features/skills-plugins-marketplaces"
       ]
     }
   ],

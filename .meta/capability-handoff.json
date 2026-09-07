@@ -82,6 +82,9 @@
         ],
         "kiro": [
           "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
         ]
       },
       "confidence": 0.96,
@@ -174,6 +177,9 @@
         ],
         "kiro": [
           "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
         ]
       },
       "confidence": 0.97,
@@ -267,6 +273,9 @@
         ],
         "kiro": [
           "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
         ]
       },
       "confidence": 0.97,
@@ -359,6 +368,9 @@
         ],
         "kiro": [
           "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
         ]
       },
       "confidence": 0.97,
@@ -465,6 +477,9 @@
         "kiro": [
           "kiro_skill",
           "kiro_agent"
+        ],
+        "grok": [
+          "grok_skill"
         ]
       },
       "confidence": 0.9,
@@ -563,6 +578,9 @@
         "kiro": [
           "kiro_skill",
           "kiro_agent"
+        ],
+        "grok": [
+          "grok_skill"
         ]
       },
       "confidence": 0.98,
@@ -649,6 +667,9 @@
         ],
         "kiro": [
           "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
         ]
       },
       "confidence": 0.97,
@@ -747,6 +768,9 @@
         ],
         "kiro": [
           "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
         ]
       },
       "confidence": 0.97,
@@ -844,6 +868,9 @@
         ],
         "kiro": [
           "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
         ]
       },
       "confidence": 0.97,
@@ -942,6 +969,9 @@
         ],
         "kiro": [
           "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
         ]
       },
       "confidence": 0.97,
@@ -1047,6 +1077,9 @@
         "kiro": [
           "kiro_skill",
           "kiro_agent"
+        ],
+        "grok": [
+          "grok_skill"
         ]
       },
       "confidence": 0.98,
@@ -1153,6 +1186,9 @@
         ],
         "kiro": [
           "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
         ]
       },
       "confidence": 0.97,
@@ -1245,6 +1281,9 @@
         ],
         "kiro": [
           "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
         ]
       },
       "confidence": 0.97,
@@ -1329,6 +1368,9 @@
         ],
         "kiro": [
           "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
         ]
       },
       "confidence": 0.86,
@@ -1416,6 +1458,9 @@
         ],
         "kiro": [
           "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
         ]
       },
       "confidence": 0.96,
@@ -1515,6 +1560,9 @@
         "kiro": [
           "kiro_skill",
           "kiro_agent"
+        ],
+        "grok": [
+          "grok_skill"
         ]
       },
       "confidence": 0.98,
@@ -1619,6 +1667,9 @@
         ],
         "kiro": [
           "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
         ]
       },
       "confidence": 0.97,
@@ -1717,6 +1768,9 @@
         "kiro": [
           "kiro_skill",
           "kiro_agent"
+        ],
+        "grok": [
+          "grok_skill"
         ]
       },
       "confidence": 0.92,
@@ -1842,6 +1896,9 @@
         "kiro": [
           "kiro_skill",
           "kiro_agent"
+        ],
+        "grok": [
+          "grok_skill"
         ]
       },
       "confidence": 0.98,
@@ -1956,6 +2013,9 @@
         "kiro": [
           "kiro_skill",
           "kiro_agent"
+        ],
+        "grok": [
+          "grok_skill"
         ]
       },
       "confidence": 0.98,
@@ -2050,6 +2110,9 @@
         ],
         "kiro": [
           "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
         ]
       },
       "confidence": 0.97,
@@ -2151,6 +2214,9 @@
         "kiro": [
           "kiro_skill",
           "kiro_agent"
+        ],
+        "grok": [
+          "grok_skill"
         ]
       },
       "confidence": 0.96,
@@ -2256,6 +2322,9 @@
         "kiro": [
           "kiro_skill",
           "kiro_agent"
+        ],
+        "grok": [
+          "grok_skill"
         ]
       },
       "confidence": 0.96,
@@ -2354,6 +2423,9 @@
         ],
         "kiro": [
           "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
         ]
       },
       "confidence": 0.97,
@@ -2455,6 +2527,9 @@
         "kiro": [
           "kiro_skill",
           "kiro_agent"
+        ],
+        "grok": [
+          "grok_skill"
         ]
       },
       "confidence": 0.98,
@@ -2545,6 +2620,9 @@
         "kiro": [
           "kiro_skill",
           "kiro_agent"
+        ],
+        "grok": [
+          "grok_skill"
         ]
       },
       "confidence": 0.9,
@@ -2575,6 +2653,97 @@
         "collaborates_with_suggestions": [
           "packaging",
           "context"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile None."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "loopy",
+      "display_name": "Loopy \u2014 Bounded Agent Loops",
+      "capability_type": "skill",
+      "summary": "Discover, find, compare, audit, repair, adapt, craft, run, debrief, and prepare repeatable AI-agent loops for publication. Use when a user asks to analyze code or coding threads for recurring work, find a published loop, interview them to turn a goal into a bounded loop, review a loop for weak checks or unsafe authority, execute a loop with an evidence receipt, learn from completed runs, or validate and submit a loop to Loop Library.",
+      "role": "analyst",
+      "domain_tags": [
+        "review",
+        "analysis",
+        "loopy"
+      ],
+      "required_inputs": [
+        "source text",
+        "user intent/context"
+      ],
+      "expected_outputs": [
+        "deterministic summary",
+        "uplift payload",
+        "capability recommendation",
+        "deployment guidance"
+      ],
+      "tool_policy": {
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
+        ]
+      },
+      "confidence": 0.97,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [],
+      "quality_status": "structural_ready",
+      "benchmark_profile": "default",
+      "preferred_use_cases": [
+        "AI-assisted capability selection",
+        "deterministic prompt uplift review"
+      ],
+      "artifact_conventions": [
+        "ssot/<slug>.md",
+        ".meta/capabilities/<slug>.json",
+        "reports/quality-reviews/<slug>/LATEST.md"
+      ],
+      "invocation_style": "assistant_first_but_scriptable",
+      "requires_human_confirmation": true,
+      "org_graph": {
+        "org_role": "analyst",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "review",
+          "analysis"
         ],
         "authority_tier": "advisory",
         "work_graph_impact": "Adds or updates a skill capability with route profile None."

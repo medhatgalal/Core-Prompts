@@ -3,7 +3,7 @@
 ## Scope and priority
 
 - Canonical source for all surface initialization: `ssot/`.
-- Canonical generated outputs: `.codex/`, `.gemini/`, `.claude/`, `.kiro/` in repository root.
+- Canonical generated outputs: `.codex/`, `.gemini/`, `.claude/`, `.kiro/`, `.grok/` in repository root.
 - `clis/` is legacy/deprecated and must not be treated as source-of-truth.
 
 ## Change delivery
@@ -19,6 +19,7 @@
   - `.gemini/skills/<slug>/SKILL.md`
   - `.claude/skills/<slug>/SKILL.md`
   - `.kiro/skills/<slug>/SKILL.md`
+  - `.grok/skills/<slug>/SKILL.md`
 - Agent capabilities emit:
   - `.codex/agents/<slug>.toml`
   - `.gemini/agents/<slug>.md`
@@ -32,6 +33,9 @@
   - `gemini`: skill in `.gemini/skills/<slug>/SKILL.md`
   - `claude`: skill in `.claude/skills/<slug>/SKILL.md`
   - `kiro`: skill in `.kiro/skills/<slug>/SKILL.md` and paired agent in `.kiro/agents/<slug>.json`
+
+- Grok exposes native skills through `/<slug>`; no native Grok agent surface is claimed.
+- Loopy retains its upstream `loopy` identity as a hash-pinned exception to first-party `engos-*` naming. Do not emit an alias package.
 
 ## Source-of-truth policy and schema controls
 

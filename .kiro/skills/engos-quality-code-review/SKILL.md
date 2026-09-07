@@ -314,4 +314,4 @@ Structure the review like this:
 - Do not rubber-stamp a commit just because tests pass.
 
 
-Capability resource: `.kiro/skills/engos-quality-code-review/resources/capability.json`
+Capability resource: `resources/capability.json`

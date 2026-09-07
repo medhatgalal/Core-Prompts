@@ -3,7 +3,7 @@ set -euo pipefail
 
 usage() {
   cat <<'EOF'
-Usage: scripts/deploy-surfaces.sh [--cli gemini|claude|kiro|codex|all] [--slug SLUG] [--target PATH] [--allow-nonlocal-target] [--surface-only] [--dry-run] [--strict-cli]
+Usage: scripts/deploy-surfaces.sh [--cli gemini|claude|kiro|codex|grok|all] [--slug SLUG] [--target PATH] [--allow-nonlocal-target] [--surface-only] [--dry-run] [--strict-cli]
 
 Copy-only deployment of SSOT-managed generated surfaces to CLI directories under a target root.
 This script never creates symlinks.
@@ -12,7 +12,10 @@ Existing files are overwritten in place with cp -f.
 When --target points outside this repository, deployment also writes a standalone updater bundle under .core-prompts-updater plus update_core_prompts.sh, release-watch metadata, and local source checkout metadata when available.
 
 Options:
-  --cli gemini|claude|kiro|codex|all  Target CLI(s). Default: all
+  --profile PATH                     Use explicit receipt-protected skills target profile
+  --apply-plan PATH                  Apply only a byte/hash-verified reviewed JSON dry-run plan
+  --rollback ID                      Restore exact transaction preimages, preserving later edits
+  --cli gemini|claude|kiro|codex|grok|all  Target CLI(s). Default: all
   --slug SLUG                         Limit deployment to one slug (repeatable)
   --target PATH                       Destination root path. Default: repository root
   --allow-nonlocal-target             Allow explicit --target outside repository root
@@ -31,9 +34,22 @@ DRY_RUN=0
 STRICT_CLI=0
 ALLOW_NONLOCAL_TARGET=0
 SURFACE_ONLY=0
+PROFILE=""
+PROFILE_AUTO=0
+APPLY_PLAN=""
+ROLLBACK=""
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
+    --profile|--apply-plan|--rollback)
+      flag="$1"; shift
+      [[ -n "${1:-}" ]] || { echo "error: $flag requires a value"; exit 1; }
+      case "$flag" in
+        --profile) PROFILE="$1" ;;
+        --apply-plan) APPLY_PLAN="$1" ;;
+        --rollback) ROLLBACK="$1" ;;
+      esac
+      ;;
     --cli)
       shift
       CLI_TARGET="${1:-}"
@@ -94,13 +110,31 @@ if [[ "$ALLOW_NONLOCAL_TARGET" -ne 1 && "$TARGET_ROOT" != "$REPO_ROOT" && "$TARG
   exit 1
 fi
 
+# A saved profile keeps later updater syncs on the selected installation contract.
+if [[ -z "$PROFILE" && -f "$TARGET_ROOT/.core-prompts-state/profile-install/profile.json" ]]; then
+  PROFILE="$TARGET_ROOT/.core-prompts-state/profile-install/profile.json"
+  PROFILE_AUTO=1
+fi
+if [[ -n "$PROFILE" || -n "$ROLLBACK" || -n "$APPLY_PLAN" ]]; then
+  if [[ "$CLI_TARGET" != "all" || ${#SLUG_FILTERS[@]} -ne 0 || "$SURFACE_ONLY" -ne 0 || "$STRICT_CLI" -ne 0 ]]; then
+    echo "error: profile selection cannot be mixed with legacy selection flags"; exit 1
+  fi
+  args=(--repo "$REPO_ROOT" --target "$TARGET_ROOT")
+  [[ -z "$PROFILE" ]] || args+=(--profile "$PROFILE")
+  [[ -z "$APPLY_PLAN" ]] || args+=(--apply-plan "$APPLY_PLAN")
+  [[ -z "$ROLLBACK" ]] || args+=(--rollback "$ROLLBACK")
+  [[ "$DRY_RUN" -eq 0 ]] || args+=(--dry-run)
+  if [[ "$PROFILE_AUTO" -eq 1 && -z "$APPLY_PLAN" && -z "$ROLLBACK" ]]; then args+=(--sync); fi
+  exec python3 "$REPO_ROOT/scripts/deploy-profile.py" "${args[@]}"
+fi
+
 if [[ "$SURFACE_ONLY" -eq 1 && ${#SLUG_FILTERS[@]} -eq 0 ]]; then
   echo "error: --surface-only requires at least one --slug"
   exit 1
 fi
 
 case "$CLI_TARGET" in
-  gemini|claude|kiro|codex|all) ;;
+  gemini|claude|kiro|codex|grok|all) ;;
   *)
     echo "error: invalid --cli value: $CLI_TARGET"
     usage
@@ -122,6 +156,7 @@ is_cli_available() {
     gemini) command -v gemini >/dev/null 2>&1 ;;
     claude) command -v claude >/dev/null 2>&1 ;;
     kiro) command -v kiro-cli >/dev/null 2>&1 ;;
+    grok) command -v grok >/dev/null 2>&1 ;;
     codex) command -v codex >/dev/null 2>&1 ;;
     *) return 1 ;;
   esac
@@ -135,6 +170,7 @@ has_existing_target_surface() {
     gemini) [[ -d "$TARGET_ROOT/.gemini" ]] ;;
     claude) [[ -d "$TARGET_ROOT/.claude" ]] ;;
     kiro) [[ -d "$TARGET_ROOT/.kiro" ]] ;;
+    grok) [[ -d "$TARGET_ROOT/.grok" ]] ;;
     codex) [[ -d "$TARGET_ROOT/.codex" ]] ;;
     *) return 1 ;;
   esac
@@ -147,7 +183,7 @@ should_deploy_cli() {
 
 TARGETS=()
 if [[ "$CLI_TARGET" == "all" ]]; then
-  for candidate in gemini claude kiro codex; do
+  for candidate in gemini claude kiro codex grok; do
     if should_deploy_cli "$candidate"; then
       TARGETS+=("$candidate")
       if ! is_cli_available "$candidate"; then
@@ -335,6 +371,22 @@ prune_deprecated_slug_outputs() {
   fi
 }
 
+NAMESPACE_PRUNE_PREFLIGHT=0
+prune_namespace_path() {
+  local target="$1"
+  [[ -e "$target" || -L "$target" ]] || return 0
+  if [[ "$TARGET_ROOT" != "$REPO_ROOT" ]]; then
+    local relative="${target#"$TARGET_ROOT"/}"
+    if ! python3 "$REPO_ROOT/scripts/deploy-copy-plan.py" --check-legacy-owned "$TARGET_ROOT" "$relative"; then
+      echo "error: preserving unproven or customized legacy package: $target"
+      echo "Resolve its exact ownership/customization before namespace deployment."
+      return 1
+    fi
+  fi
+  [[ "$NAMESPACE_PRUNE_PREFLIGHT" -eq 0 ]] || return 0
+  prune_path "$target"
+}
+
 prune_legacy_namespace_outputs() {
   local pair new_slug old_slug cli
   local legacy_pairs=(
@@ -371,24 +423,24 @@ prune_legacy_namespace_outputs() {
     for cli in "${TARGETS[@]}"; do
       case "$cli" in
         codex)
-          prune_path "$TARGET_ROOT/.codex/skills/$old_slug"
-          prune_path "$TARGET_ROOT/.codex/agents/$old_slug.toml"
-          prune_path "$TARGET_ROOT/.codex/agents/resources/$old_slug"
+          prune_namespace_path "$TARGET_ROOT/.codex/skills/$old_slug"
+          prune_namespace_path "$TARGET_ROOT/.codex/agents/$old_slug.toml"
+          prune_namespace_path "$TARGET_ROOT/.codex/agents/resources/$old_slug"
           ;;
         gemini)
-          prune_path "$TARGET_ROOT/.gemini/skills/$old_slug"
-          prune_path "$TARGET_ROOT/.gemini/agents/$old_slug.md"
-          prune_path "$TARGET_ROOT/.gemini/agents/resources/$old_slug"
+          prune_namespace_path "$TARGET_ROOT/.gemini/skills/$old_slug"
+          prune_namespace_path "$TARGET_ROOT/.gemini/agents/$old_slug.md"
+          prune_namespace_path "$TARGET_ROOT/.gemini/agents/resources/$old_slug"
           ;;
         claude)
-          prune_path "$TARGET_ROOT/.claude/skills/$old_slug"
-          prune_path "$TARGET_ROOT/.claude/agents/$old_slug.md"
-          prune_path "$TARGET_ROOT/.claude/agents/resources/$old_slug"
+          prune_namespace_path "$TARGET_ROOT/.claude/skills/$old_slug"
+          prune_namespace_path "$TARGET_ROOT/.claude/agents/$old_slug.md"
+          prune_namespace_path "$TARGET_ROOT/.claude/agents/resources/$old_slug"
           ;;
         kiro)
-          prune_path "$TARGET_ROOT/.kiro/skills/$old_slug"
-          prune_path "$TARGET_ROOT/.kiro/agents/$old_slug.json"
-          prune_path "$TARGET_ROOT/.kiro/agents/resources/$old_slug"
+          prune_namespace_path "$TARGET_ROOT/.kiro/skills/$old_slug"
+          prune_namespace_path "$TARGET_ROOT/.kiro/agents/$old_slug.json"
+          prune_namespace_path "$TARGET_ROOT/.kiro/agents/resources/$old_slug"
           ;;
       esac
     done
@@ -436,6 +488,7 @@ repo = Path(sys.argv[1])
 target = Path(sys.argv[2])
 support = target / ".core-prompts-updater"
 roots = [
+    ".grok",
     ".codex",
     ".gemini",
     ".claude",
@@ -445,6 +498,10 @@ roots = [
     ".meta/capabilities",
     "dist/consumer-shell",
     "sources/ssot-baselines",
+    "scripts/deploy-profile.py",
+    "scripts/install_bundle.py",
+    ".meta/install-bundle.json",
+    ".meta/install-profiles",
     "scripts/deploy-copy-plan.py",
     "scripts/register-codex-agents.py",
     "scripts/deploy-surfaces.sh",
@@ -615,6 +672,10 @@ prune_retired_codex_agent_registration() {
   python3 scripts/register-codex-agents.py --prune-retired-only "$config_path" "$TARGET_ROOT"
   echo "PRUNED retired codex agent registration in $config_path: mentor"
 }
+
+NAMESPACE_PRUNE_PREFLIGHT=1
+prune_legacy_namespace_outputs
+NAMESPACE_PRUNE_PREFLIGHT=0
 
 COPY_PLAN_FILE="$(mktemp "${TMPDIR:-/tmp}/core-prompts-deploy-plan.XXXXXX")"
 trap 'rm -f "$COPY_PLAN_FILE"' EXIT

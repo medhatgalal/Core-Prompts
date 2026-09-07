@@ -847,3 +847,36 @@ def test_deploy_legacy_autosearch_slug_installs_auto_research_and_prunes_stale(t
     assert not (tmp_path / ".codex" / "agents" / "autosearch.toml").exists()
     assert not (tmp_path / ".codex" / "agents" / "resources" / "autosearch").exists()
     assert list((tmp_path / ".core-prompts-state" / "stale-pruned").glob("**/autosearch*"))
+
+
+def test_namespace_deploy_preserves_unknown_legacy_package_before_any_copy(tmp_path):
+    old = tmp_path / '.kiro/skills/analyze-context/SKILL.md'
+    old.parent.mkdir(parents=True)
+    old.write_text('independent customized continuity')
+    result = run_script(DEPLOY_SCRIPT, '--cli', 'kiro', '--slug', 'engos-memory-context-continuity',
+                        '--surface-only', target_root=tmp_path, cli_bins=('kiro-cli',), allow_nonlocal_target=True)
+    assert result.returncode != 0
+    assert 'preserving unproven or customized legacy package' in result.stdout
+    assert old.read_text() == 'independent customized continuity'
+    assert not (tmp_path / '.kiro/skills/engos-memory-context-continuity').exists()
+
+
+def test_namespace_deploy_requires_complete_prior_bundle_identity(tmp_path):
+    import json
+    old = tmp_path / '.kiro/skills/analyze-context/SKILL.md'
+    old.parent.mkdir(parents=True); old.write_text('old managed continuity')
+    rel = old.relative_to(tmp_path)
+    prior = tmp_path / '.core-prompts-updater' / rel
+    prior.parent.mkdir(parents=True); prior.write_bytes(old.read_bytes())
+    meta = tmp_path / '.core-prompts-updater/.meta/manifest.json'
+    meta.parent.mkdir(parents=True); meta.write_text(json.dumps({'surfaces': {'kiro_skill': [str(rel)]}, 'resources': {}}))
+    extra = old.parent / 'custom.txt'; extra.write_text('retain me')
+    args = ('--cli', 'kiro', '--slug', 'engos-memory-context-continuity', '--surface-only')
+    refused = run_script(DEPLOY_SCRIPT, *args, target_root=tmp_path, cli_bins=('kiro-cli',), allow_nonlocal_target=True)
+    assert refused.returncode != 0 and extra.read_text() == 'retain me'
+    extra.unlink()  # Disposable fixture only; now the entire package matches prior provenance.
+    result = run_script(DEPLOY_SCRIPT, *args, target_root=tmp_path, cli_bins=('kiro-cli',), allow_nonlocal_target=True)
+    assert result.returncode == 0, result.stdout
+    assert not old.exists()
+    assert (tmp_path / '.kiro/skills/engos-memory-context-continuity/SKILL.md').is_file()
+    assert list((tmp_path / '.core-prompts-state/stale-pruned').rglob('SKILL.md'))

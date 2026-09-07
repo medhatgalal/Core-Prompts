@@ -116,4 +116,4 @@ Return the candidate, edit ledger, preservation map, size delta, and the cases n
 | Routing | The skill triggers for instruction editing and avoids neighboring general editing or hardening asks |
 
 
-Capability resource: `.gemini/skills/engos-meta-instruction-editor/resources/capability.json`
+Capability resource: `resources/capability.json`

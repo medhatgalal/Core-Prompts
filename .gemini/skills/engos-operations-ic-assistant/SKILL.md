@@ -233,4 +233,4 @@ Assumptions: Internal runbook mode was explicitly requested.
 | Non-decision | Never makes IC decisions, only surfaces requirements and prompts | Makes decisions on behalf of the IC |
 
 
-Capability resource: `.gemini/skills/engos-operations-ic-assistant/resources/capability.json`
+Capability resource: `resources/capability.json`

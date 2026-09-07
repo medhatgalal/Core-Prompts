@@ -388,6 +388,7 @@ def extract_section_bullets(body: str, heading: str) -> list[str]:
 
 def discover_actual_surfaces(root: Path, slug: str) -> set[str]:
     surface_paths = {
+        "grok_skill": root / ".grok" / "skills" / slug / "SKILL.md",
         "codex_skill": root / ".codex" / "skills" / slug / "SKILL.md",
         "codex_agent": root / ".codex" / "agents" / f"{slug}.toml",
         "gemini_skill": root / ".gemini" / "skills" / slug / "SKILL.md",

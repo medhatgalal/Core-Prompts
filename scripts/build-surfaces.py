@@ -48,6 +48,7 @@ HANDOFF_PATH = META_DIR / 'capability-handoff.json'
 CAPABILITY_DIR = META_DIR / 'capabilities'
 BUILD_REPORT_DIR = ROOT / 'reports' / 'build-surfaces'
 CAPABILITY_RESOURCE_SOURCE_DIR = ROOT / 'sources' / 'capability-resources'
+SKILL_PACKAGE_SOURCE_DIR = ROOT / 'sources' / 'skill-package-resources'
 CONSUMER_SHELL_DIR = ROOT / 'dist' / 'consumer-shell'
 CATALOG_DOC_PATH = ROOT / 'docs' / 'CAPABILITY-CATALOG.md'
 STATUS_DOC_PATH = ROOT / 'docs' / 'STATUS.md'
@@ -63,6 +64,7 @@ CLAUDE_RESOURCE_DIR = CLAUDE_AGENT_DIR / 'resources'
 KIRO_AGENT_DIR = ROOT / '.kiro' / 'agents'
 KIRO_AGENT_RESOURCE_DIR = KIRO_AGENT_DIR / 'resources'
 KIRO_SKILL_DIR = ROOT / '.kiro' / 'skills'
+GROK_SKILL_DIR = ROOT / '.grok' / 'skills'
 CODEX_SKILL_DIR = ROOT / '.codex' / 'skills'
 CODEX_AGENT_DIR = ROOT / '.codex' / 'agents'
 CODEX_AGENT_RESOURCE_DIR = CODEX_AGENT_DIR / 'resources'
@@ -77,6 +79,7 @@ for d in [
     KIRO_AGENT_RESOURCE_DIR,
     KIRO_SKILL_DIR,
     CODEX_SKILL_DIR,
+    GROK_SKILL_DIR,
     CODEX_AGENT_DIR,
     CODEX_AGENT_RESOURCE_DIR,
     META_DIR,
@@ -87,6 +90,7 @@ for d in [
 
 
 SURFACE_PATHS = {
+    'grok_skill': lambda slug: GROK_SKILL_DIR / slug / 'SKILL.md',
     'gemini_skill': lambda slug: GEMINI_SKILL_DIR / slug / 'SKILL.md',
     'gemini_agent': lambda slug: GEMINI_AGENT_DIR / f'{slug}.md',
     'claude_skill': lambda slug: CLAUDE_SKILL_DIR / slug / 'SKILL.md',
@@ -99,6 +103,7 @@ SURFACE_PATHS = {
 
 
 RESOURCE_PATHS = {
+    'grok_skill': lambda slug: GROK_SKILL_DIR / slug / 'resources' / 'capability.json',
     'codex_skill': lambda slug: CODEX_SKILL_DIR / slug / 'resources' / 'capability.json',
     'codex_agent': lambda slug: CODEX_AGENT_RESOURCE_DIR / slug / 'capability.json',
     'gemini_skill': lambda slug: GEMINI_SKILL_DIR / slug / 'resources' / 'capability.json',
@@ -111,6 +116,7 @@ RESOURCE_PATHS = {
 
 
 RESOURCE_DIRS = {
+    'grok_skill': lambda slug: GROK_SKILL_DIR / slug / 'resources',
     'codex_skill': lambda slug: CODEX_SKILL_DIR / slug / 'resources',
     'codex_agent': lambda slug: CODEX_AGENT_RESOURCE_DIR / slug,
     'gemini_skill': lambda slug: GEMINI_SKILL_DIR / slug / 'resources',
@@ -320,6 +326,8 @@ def write_skill(
 ):
     path = base_dir / slug / 'SKILL.md'
     path.parent.mkdir(parents=True, exist_ok=True)
+    if resource_hint:
+        resource_hint = str(Path(resource_hint).relative_to(path.parent.relative_to(ROOT)))
     resource_block = f'\n\nCapability resource: `{resource_hint}`\n' if resource_hint else '\n'
     frontmatter_lines = [
         '---',
@@ -502,6 +510,30 @@ def copy_capability_resources(surface_name: str, slug: str) -> list[str]:
         target_path.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(source_path, target_path)
         copied.append(str(target_path.relative_to(ROOT)))
+    return copied
+
+
+def copy_skill_package_resources(surface_name: str, slug: str) -> list[str]:
+    """Preserve reference/dependency paths relative to SKILL.md on every skill host."""
+    if not surface_name.endswith('_skill'):
+        return []
+    source_dir = SKILL_PACKAGE_SOURCE_DIR / slug
+    target_dir = SURFACE_PATHS[surface_name](slug).parent
+    copied = []
+    for source in sorted(source_dir.rglob('*')):
+        relative = source.relative_to(source_dir)
+        if source.is_symlink():
+            raise ValueError(f'skill package resources must be regular files: {source}')
+        if not source.is_file() or '__pycache__' in relative.parts or source.suffix == '.pyc':
+            continue
+        if relative.as_posix() in {'SKILL.md', 'resources/capability.json'}:
+            raise ValueError(f'skill package resource collides with generated authority: {relative}')
+        target = target_dir / relative
+        if target.exists():
+            raise ValueError(f'skill package resource collision: {target}')
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source, target)
+        copied.append(str(target.relative_to(ROOT)))
     return copied
 
 
@@ -692,6 +724,7 @@ def main():
                 resource_rel = write_resource(surface_name, entry.slug, descriptor)
                 generated['resources'][surface_name].append(resource_rel)
                 generated['resources'][surface_name].extend(copy_capability_resources(surface_name, entry.slug))
+                generated['resources'][surface_name].extend(copy_skill_package_resources(surface_name, entry.slug))
                 if surface_name.endswith('skill'):
                     skill_resource_hint[surface_name] = resource_rel
                 else:
@@ -719,6 +752,8 @@ def main():
             )
         if 'kiro_skill' in emitted:
             generated['surfaces']['kiro_skill'].append(write_kiro_skill(entry.slug, entry.description, entry.body, skill_resource_hint.get('kiro_skill'), extra_frontmatter=skill_frontmatter))
+        if 'grok_skill' in emitted:
+            generated['surfaces']['grok_skill'].append(write_skill(GROK_SKILL_DIR, entry.slug, entry.description, entry.body, skill_resource_hint.get('grok_skill'), extra_frontmatter=skill_frontmatter))
         if 'codex_skill' in emitted:
             generated['surfaces']['codex_skill'].append(write_codex_skill(entry.slug, entry.description, entry.body, skill_resource_hint.get('codex_skill'), extra_frontmatter=skill_frontmatter))
         if 'codex_agent' in emitted:
@@ -756,6 +791,9 @@ def main():
         ROOT / '.kiro' / 'prompts',
     ):
         prune_empty_directory(deprecated_dir)
+    sys.path.insert(0, str(ROOT / 'scripts'))
+    from install_bundle import build as build_install_bundle
+    build_install_bundle(ROOT)
     print('Generated', len(entries), 'ssot entries')
 
 

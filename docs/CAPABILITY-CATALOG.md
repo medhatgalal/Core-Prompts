@@ -2,7 +2,7 @@
 
 Generated from canonical manifest and descriptor metadata. Use this page to see what Core-Prompts ships, what each capability is for, and where it lands.
 
-- Capability count: `26`
+- Capability count: `27`
 
 ## Start Here
 - `engos-quality-docs-review` — Docs Review Expert — Documentation IA, Drift, and Release Hygiene: Review repository documentation for information architecture, stale commands, broken links, misplaced content, drift, and release hygiene. Use when docs quality or discoverability is the primary concern; do not use for ordinary sentence editing.
@@ -12,14 +12,15 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `engos-delivery-resolve-conflict` — Merge Conflict Resolution — Structured Conflict Analysis: Analyze and plan the safe resolution of Git or document conflicts while preserving valuable content, exposing contradictions, and defining verification. Use when an actual merge or content conflict exists; do not use for ordinary proposal disagreement without conflict markers.
 
 ## By CLI
-- `claude`: `engos-audit-code-health`, `engos-audit-engineering-progress`, `engos-audit-feature-status`, `engos-audit-opex-incident-review`, `engos-audit-pitch-review`, `engos-audit-weekly-intel`, `engos-browser-demo-recorder`, `engos-content-dynamic-html-presentations`, `engos-delivery-address-code-review`, `engos-delivery-resolve-conflict`, `engos-design-architecture`, `engos-design-plan-to-goal`, `engos-memory-context-continuity`, `engos-memory-threader`, `engos-meta-instruction-editor`, `engos-meta-supercharge`, `engos-meta-uac-import`, `engos-operations-ic-assistant`, `engos-optimization-auto-research`, `engos-orchestration-batman`, `engos-quality-code-review`, `engos-quality-docs-review`, `engos-quality-gitops-review`, `engos-quality-testing-review`, `engos-reconciliation-converge`, `engos-triage-my-inbox-chat-pulse`
-- `codex`: `engos-audit-code-health`, `engos-audit-engineering-progress`, `engos-audit-feature-status`, `engos-audit-opex-incident-review`, `engos-audit-pitch-review`, `engos-audit-weekly-intel`, `engos-browser-demo-recorder`, `engos-content-dynamic-html-presentations`, `engos-delivery-address-code-review`, `engos-delivery-resolve-conflict`, `engos-design-architecture`, `engos-design-plan-to-goal`, `engos-memory-context-continuity`, `engos-memory-threader`, `engos-meta-instruction-editor`, `engos-meta-supercharge`, `engos-meta-uac-import`, `engos-operations-ic-assistant`, `engos-optimization-auto-research`, `engos-orchestration-batman`, `engos-quality-code-review`, `engos-quality-docs-review`, `engos-quality-gitops-review`, `engos-quality-testing-review`, `engos-reconciliation-converge`, `engos-triage-my-inbox-chat-pulse`
-- `gemini`: `engos-audit-code-health`, `engos-audit-engineering-progress`, `engos-audit-feature-status`, `engos-audit-opex-incident-review`, `engos-audit-pitch-review`, `engos-audit-weekly-intel`, `engos-browser-demo-recorder`, `engos-content-dynamic-html-presentations`, `engos-delivery-address-code-review`, `engos-delivery-resolve-conflict`, `engos-design-architecture`, `engos-design-plan-to-goal`, `engos-memory-context-continuity`, `engos-memory-threader`, `engos-meta-instruction-editor`, `engos-meta-supercharge`, `engos-meta-uac-import`, `engos-operations-ic-assistant`, `engos-optimization-auto-research`, `engos-orchestration-batman`, `engos-quality-code-review`, `engos-quality-docs-review`, `engos-quality-gitops-review`, `engos-quality-testing-review`, `engos-reconciliation-converge`, `engos-triage-my-inbox-chat-pulse`
-- `kiro`: `engos-audit-code-health`, `engos-audit-engineering-progress`, `engos-audit-feature-status`, `engos-audit-opex-incident-review`, `engos-audit-pitch-review`, `engos-audit-weekly-intel`, `engos-browser-demo-recorder`, `engos-content-dynamic-html-presentations`, `engos-delivery-address-code-review`, `engos-delivery-resolve-conflict`, `engos-design-architecture`, `engos-design-plan-to-goal`, `engos-memory-context-continuity`, `engos-memory-threader`, `engos-meta-instruction-editor`, `engos-meta-supercharge`, `engos-meta-uac-import`, `engos-operations-ic-assistant`, `engos-optimization-auto-research`, `engos-orchestration-batman`, `engos-quality-code-review`, `engos-quality-docs-review`, `engos-quality-gitops-review`, `engos-quality-testing-review`, `engos-reconciliation-converge`, `engos-triage-my-inbox-chat-pulse`
+- `claude`: `engos-audit-code-health`, `engos-audit-engineering-progress`, `engos-audit-feature-status`, `engos-audit-opex-incident-review`, `engos-audit-pitch-review`, `engos-audit-weekly-intel`, `engos-browser-demo-recorder`, `engos-content-dynamic-html-presentations`, `engos-delivery-address-code-review`, `engos-delivery-resolve-conflict`, `engos-design-architecture`, `engos-design-plan-to-goal`, `engos-memory-context-continuity`, `engos-memory-threader`, `engos-meta-instruction-editor`, `engos-meta-supercharge`, `engos-meta-uac-import`, `engos-operations-ic-assistant`, `engos-optimization-auto-research`, `engos-orchestration-batman`, `engos-quality-code-review`, `engos-quality-docs-review`, `engos-quality-gitops-review`, `engos-quality-testing-review`, `engos-reconciliation-converge`, `engos-triage-my-inbox-chat-pulse`, `loopy`
+- `codex`: `engos-audit-code-health`, `engos-audit-engineering-progress`, `engos-audit-feature-status`, `engos-audit-opex-incident-review`, `engos-audit-pitch-review`, `engos-audit-weekly-intel`, `engos-browser-demo-recorder`, `engos-content-dynamic-html-presentations`, `engos-delivery-address-code-review`, `engos-delivery-resolve-conflict`, `engos-design-architecture`, `engos-design-plan-to-goal`, `engos-memory-context-continuity`, `engos-memory-threader`, `engos-meta-instruction-editor`, `engos-meta-supercharge`, `engos-meta-uac-import`, `engos-operations-ic-assistant`, `engos-optimization-auto-research`, `engos-orchestration-batman`, `engos-quality-code-review`, `engos-quality-docs-review`, `engos-quality-gitops-review`, `engos-quality-testing-review`, `engos-reconciliation-converge`, `engos-triage-my-inbox-chat-pulse`, `loopy`
+- `gemini`: `engos-audit-code-health`, `engos-audit-engineering-progress`, `engos-audit-feature-status`, `engos-audit-opex-incident-review`, `engos-audit-pitch-review`, `engos-audit-weekly-intel`, `engos-browser-demo-recorder`, `engos-content-dynamic-html-presentations`, `engos-delivery-address-code-review`, `engos-delivery-resolve-conflict`, `engos-design-architecture`, `engos-design-plan-to-goal`, `engos-memory-context-continuity`, `engos-memory-threader`, `engos-meta-instruction-editor`, `engos-meta-supercharge`, `engos-meta-uac-import`, `engos-operations-ic-assistant`, `engos-optimization-auto-research`, `engos-orchestration-batman`, `engos-quality-code-review`, `engos-quality-docs-review`, `engos-quality-gitops-review`, `engos-quality-testing-review`, `engos-reconciliation-converge`, `engos-triage-my-inbox-chat-pulse`, `loopy`
+- `grok`: `engos-audit-code-health`, `engos-audit-engineering-progress`, `engos-audit-feature-status`, `engos-audit-opex-incident-review`, `engos-audit-pitch-review`, `engos-audit-weekly-intel`, `engos-browser-demo-recorder`, `engos-content-dynamic-html-presentations`, `engos-delivery-address-code-review`, `engos-delivery-resolve-conflict`, `engos-design-architecture`, `engos-design-plan-to-goal`, `engos-memory-context-continuity`, `engos-memory-threader`, `engos-meta-instruction-editor`, `engos-meta-supercharge`, `engos-meta-uac-import`, `engos-operations-ic-assistant`, `engos-optimization-auto-research`, `engos-orchestration-batman`, `engos-quality-code-review`, `engos-quality-docs-review`, `engos-quality-gitops-review`, `engos-quality-testing-review`, `engos-reconciliation-converge`, `engos-triage-my-inbox-chat-pulse`, `loopy`
+- `kiro`: `engos-audit-code-health`, `engos-audit-engineering-progress`, `engos-audit-feature-status`, `engos-audit-opex-incident-review`, `engos-audit-pitch-review`, `engos-audit-weekly-intel`, `engos-browser-demo-recorder`, `engos-content-dynamic-html-presentations`, `engos-delivery-address-code-review`, `engos-delivery-resolve-conflict`, `engos-design-architecture`, `engos-design-plan-to-goal`, `engos-memory-context-continuity`, `engos-memory-threader`, `engos-meta-instruction-editor`, `engos-meta-supercharge`, `engos-meta-uac-import`, `engos-operations-ic-assistant`, `engos-optimization-auto-research`, `engos-orchestration-batman`, `engos-quality-code-review`, `engos-quality-docs-review`, `engos-quality-gitops-review`, `engos-quality-testing-review`, `engos-reconciliation-converge`, `engos-triage-my-inbox-chat-pulse`, `loopy`
 
 ## By Use Case
 - `address`: `engos-delivery-address-code-review`
-- `analysis`: `engos-delivery-resolve-conflict`
+- `analysis`: `engos-delivery-resolve-conflict`, `loopy`
 - `architecture`: `engos-audit-pitch-review`, `engos-design-architecture`, `engos-quality-docs-review`
 - `assistant`: `engos-operations-ic-assistant`
 - `audit`: `engos-audit-code-health`, `engos-audit-engineering-progress`, `engos-audit-feature-status`, `engos-audit-opex-incident-review`, `engos-audit-pitch-review`, `engos-audit-weekly-intel`
@@ -52,6 +53,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `incident`: `engos-audit-opex-incident-review`
 - `instruction`: `engos-meta-instruction-editor`
 - `intel`: `engos-audit-weekly-intel`
+- `loopy`: `loopy`
 - `memory`: `engos-memory-context-continuity`, `engos-memory-threader`
 - `meta`: `engos-meta-instruction-editor`, `engos-meta-supercharge`, `engos-meta-uac-import`
 - `operations`: `engos-operations-ic-assistant`
@@ -71,7 +73,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `recorder`: `engos-browser-demo-recorder`
 - `research`: `engos-optimization-auto-research`
 - `resolve`: `engos-delivery-resolve-conflict`
-- `review`: `engos-audit-code-health`, `engos-audit-engineering-progress`, `engos-audit-feature-status`, `engos-audit-opex-incident-review`, `engos-audit-pitch-review`, `engos-audit-weekly-intel`, `engos-delivery-address-code-review`, `engos-meta-instruction-editor`, `engos-quality-code-review`, `engos-quality-docs-review`, `engos-quality-gitops-review`, `engos-quality-testing-review`
+- `review`: `engos-audit-code-health`, `engos-audit-engineering-progress`, `engos-audit-feature-status`, `engos-audit-opex-incident-review`, `engos-audit-pitch-review`, `engos-audit-weekly-intel`, `engos-delivery-address-code-review`, `engos-meta-instruction-editor`, `engos-quality-code-review`, `engos-quality-docs-review`, `engos-quality-gitops-review`, `engos-quality-testing-review`, `loopy`
 - `status`: `engos-audit-feature-status`
 - `supercharge`: `engos-meta-supercharge`
 - `testing`: `engos-quality-testing-review`
@@ -84,7 +86,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `engos-delivery-address-code-review`
 - Type: `skill`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - address the review comments
   - fix the MR feedback
@@ -99,7 +101,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `engos-memory-context-continuity`
 - Type: `skill`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - analyze several files or transcripts over a long session
   - keep durable analysis notes that survive context loss
@@ -113,7 +115,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `engos-design-architecture`
 - Type: `both`
 - Install target: `global`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - design or review an API contract
   - propose a schema, indexing plan, or data model
@@ -126,7 +128,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `engos-optimization-auto-research`
 - Type: `both`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Version: `v2.0`
 - Invocation hints:
   - improve this prompt, workflow, tool, or system and prove it got better
@@ -144,7 +146,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `engos-orchestration-batman`
 - Type: `both`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - Use `engos-orchestration-batman` for end-to-end implementation through subagent-driven development and blocking review gates.
   - Use Batman for a contract, metric, safety path, shipped defect, or other implementation that requires independent evidence and landing.
@@ -155,7 +157,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `engos-audit-code-health`
 - Type: `skill`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - audit this codebase for structural health
   - find LOC hotspots, god objects, coupling, or likely dead code
@@ -171,7 +173,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `engos-quality-code-review`
 - Type: `skill`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - review the latest commit
   - review my staged changes before I commit
@@ -185,7 +187,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `engos-reconciliation-converge`
 - Type: `both`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - compare these ideas and pick one
   - synthesize these documents into one proposal
@@ -198,7 +200,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `engos-browser-demo-recorder`
 - Type: `skill`
 - Install target: `global`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - "Use `engos-browser-demo-recorder` to create a Playwright demo of the agent feedback feature on our Swagger UI."
   - "Use `engos-browser-demo-recorder` to generate a recorded walkthrough of the new dashboard."
@@ -209,7 +211,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `engos-quality-docs-review`
 - Type: `both`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - judge the repo documentation quality or organization
   - tell me what belongs in `README.md` versus `docs/`
@@ -222,7 +224,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `engos-content-dynamic-html-presentations`
 - Type: `skill`
 - Install target: `global`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Compatibility: HTML works in modern browsers; bundled PNG exporter requires macOS 13+; PPTX helper requires Python 3.9+.
 - Summary: Create a self-contained HTML presentation and, when requested, validated PNG or image-only PPTX exports from a topic, outline, or source material. Use for visual narrative deliverables; do not use for browser demos or plain reports.
 
@@ -230,7 +232,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `engos-audit-engineering-progress`
 - Type: `skill`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - generate an engineering progress report from git history
   - summarize team velocity, code churn, release timeline, or architecture movement
@@ -243,7 +245,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `engos-audit-opex-incident-review`
 - Type: `skill`
 - Install target: `global`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Version: `3.0.0`
 - Author: `Amol Shah; uplifted for Core-Prompts`
 - Summary: Generate an evidence-backed Daily OpEx Digest and optional incident drill-downs from current Jira incidents, prior snapshots, DPAs, and postmortems. Use for decisions, owner accountability, daily progress, stalled work, estate patterns, SLA tracking, Five Whys, and executive meeting preparation.
@@ -252,7 +254,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `engos-audit-feature-status`
 - Type: `skill`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - how complete is this feature
   - what is left to ship
@@ -269,7 +271,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `engos-quality-gitops-review`
 - Type: `both`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - judge the repo organization or GitOps hygiene
   - make sure my commits are logically scoped and messages are strong
@@ -283,7 +285,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `engos-operations-ic-assistant`
 - Type: `both`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - track an active incident and prompt for next steps
   - validate incident artifacts and process compliance
@@ -299,7 +301,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `engos-meta-instruction-editor`
 - Type: `skill`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - remove AI-ish, Claude-ish, ChatGPT-ish, corporate, or exhausting phrasing
   - apply Google developer documentation style to a prompt or skill
@@ -309,11 +311,18 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
   - compare an edited instruction against its original contract
 - Summary: Audit, rewrite, diff, or verify prompts, skills, and agent instructions for clarity while preserving commands, authority, safety boundaries, and behavior. Use when instruction preservation is the central task; do not use for general prose editing.
 
+### Loopy — Bounded Agent Loops
+- Slug: `loopy`
+- Type: `skill`
+- Install target: `repo_local`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
+- Summary: Discover, find, compare, audit, repair, adapt, craft, run, debrief, and prepare repeatable AI-agent loops for publication. Use when a user asks to analyze code or coding threads for recurring work, find a published loop, interview them to turn a goal into a bounded loop, review a loop for weak checks or unsafe authority, execute a loop with an evidence receipt, learn from completed runs, or validate and submit a loop to Loop Library.
+
 ### Merge Conflict Resolution — Structured Conflict Analysis
 - Slug: `engos-delivery-resolve-conflict`
 - Type: `skill`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - help me resolve this merge conflict
   - compare these conflicting branch edits and tell me what survives
@@ -325,7 +334,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `engos-audit-pitch-review`
 - Type: `both`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Version: `v1.1`
 - Invocation hints:
   - create a pitch / write a pitch / scaffold a pitch
@@ -343,7 +352,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `engos-design-plan-to-goal`
 - Type: `skill`
 - Install target: `global`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - turn this approved plan into a goal
   - prepare a copyable Goal-mode objective and iteration setting
@@ -356,7 +365,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `engos-triage-my-inbox-chat-pulse`
 - Type: `both`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - check my email / inbox / messages
   - what needs my attention
@@ -370,7 +379,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `engos-meta-supercharge`
 - Type: `both`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Version: `v4.2`
 - Invocation hints:
   - make this prompt better
@@ -387,7 +396,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `engos-quality-testing-review`
 - Type: `skill`
 - Install target: `global`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - generate unit tests
   - design end-to-end tests
@@ -400,7 +409,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `engos-memory-threader`
 - Type: `skill`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - export this thread
   - give me a transcript of this conversation
@@ -412,7 +421,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `engos-meta-uac-import`
 - Type: `skill`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - import a prompt, prompt pack, or capability into this repo
   - classify whether this source should become a skill, agent, or manual review
@@ -425,7 +434,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Slug: `engos-audit-weekly-intel`
 - Type: `both`
 - Install target: `repo_local`
-- Supported CLIs: `claude, codex, gemini, kiro`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
   - what happened this week / last week / since Tuesday
   - weekly status report for my team

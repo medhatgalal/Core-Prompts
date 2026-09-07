@@ -362,4 +362,4 @@ Briefing preserves complete linked remediation beyond DPAs, verified recurrence 
 Additional requested `txt`, `pdf`, and `gdoc` exports use `resources/export_report.py` after HTML/Markdown rendering. Google writes require the user's explicit existing document destination and write authorization; a CLI acknowledgement requires readback before reporting verified content. Converter or provider failures retain local reports and remain incomplete outputs. No automatic upload, sharing, new-document creation, or distribution is authorized by legacy metadata.
 
 
-Capability resource: `.codex/skills/engos-audit-opex-incident-review/resources/capability.json`
+Capability resource: `resources/capability.json`

@@ -134,4 +134,4 @@ Use `engos-quality-code-review` for this instead; no reviewer feedback exists ye
 - merge: reviewer verifies fixes before approving
 
 
-Capability resource: `.gemini/skills/engos-delivery-address-code-review/resources/capability.json`
+Capability resource: `resources/capability.json`

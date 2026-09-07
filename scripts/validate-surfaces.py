@@ -502,7 +502,7 @@ def safe_rglob(base: Path, pattern: str) -> list[Path]:
 
 def collect_capability_metadata_paths() -> list[Path]:
     descriptor_paths = sorted((ROOT / '.meta' / 'capabilities').glob('*.json'))
-    bundled_paths = safe_rglob(ROOT / '.codex', 'capability.json')
+    bundled_paths = safe_rglob(ROOT / '.grok', 'capability.json') + safe_rglob(ROOT / '.codex', 'capability.json')
     bundled_paths += safe_rglob(ROOT / '.gemini', 'capability.json')
     bundled_paths += safe_rglob(ROOT / '.claude', 'capability.json')
     bundled_paths += safe_rglob(ROOT / '.kiro', 'capability.json')
@@ -511,7 +511,7 @@ def collect_capability_metadata_paths() -> list[Path]:
 
 def collect_surface_text_paths() -> list[Path]:
     paths: list[Path] = []
-    for base in (ROOT / '.codex', ROOT / '.gemini', ROOT / '.claude', ROOT / '.kiro'):
+    for base in (ROOT / '.grok', ROOT / '.codex', ROOT / '.gemini', ROOT / '.claude', ROOT / '.kiro'):
         if not base.exists():
             continue
         paths.extend(safe_rglob(base, 'SKILL.md'))
