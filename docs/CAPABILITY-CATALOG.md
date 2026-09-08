@@ -129,7 +129,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Type: `both`
 - Install target: `repo_local`
 - Supported CLIs: `claude, codex, gemini, grok, kiro`
-- Version: `v2.0`
+- Version: `v2.1`
 - Invocation hints:
   - improve this prompt, workflow, tool, or system and prove it got better
   - search for a better version of this component
@@ -380,7 +380,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Type: `both`
 - Install target: `repo_local`
 - Supported CLIs: `claude, codex, gemini, grok, kiro`
-- Version: `v4.2`
+- Version: `v5.0`
 - Invocation hints:
   - make this prompt better
   - harden this plan

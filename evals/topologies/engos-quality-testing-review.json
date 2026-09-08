@@ -17,7 +17,7 @@
         "source_refs": [
           "ssot/engos-quality-testing-review.md"
         ],
-        "source_line": 61,
+        "source_line": 68,
         "mode_summary": "Explicitly declared mode in the canonical skill.",
         "required_inputs": [],
         "expected_outputs": [],
@@ -34,7 +34,7 @@
         "source_refs": [
           "ssot/engos-quality-testing-review.md"
         ],
-        "source_line": 70,
+        "source_line": 77,
         "mode_summary": "Explicitly declared mode in the canonical skill.",
         "required_inputs": [],
         "expected_outputs": [],
@@ -51,7 +51,7 @@
         "source_refs": [
           "ssot/engos-quality-testing-review.md"
         ],
-        "source_line": 80,
+        "source_line": 87,
         "mode_summary": "Explicitly declared mode in the canonical skill.",
         "required_inputs": [],
         "expected_outputs": [],
@@ -68,7 +68,7 @@
         "source_refs": [
           "ssot/engos-quality-testing-review.md"
         ],
-        "source_line": 89,
+        "source_line": 96,
         "mode_summary": "Explicitly declared mode in the canonical skill.",
         "required_inputs": [],
         "expected_outputs": [],
@@ -113,7 +113,8 @@
     {
       "id": "engos-quality-testing-review:L27:a13a67440b6c",
       "heading": "Tool Boundaries",
-      "source_line": 27,
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 34,
       "sha256": "a13a67440b6c5a06a087f285cc990291a8adde279824082aa071ed0422bc009c",
       "text": "- forbidden: silently executing tests, inventing framework choices that contradict the repo, or claiming coverage numbers without evidence",
       "kind": "invariant",
@@ -122,7 +123,8 @@
     {
       "id": "engos-quality-testing-review:L38:77357dbdaba3",
       "heading": "Required Inputs",
-      "source_line": 38,
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 45,
       "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
       "text": "## Required Inputs",
       "kind": "invariant",
@@ -131,7 +133,8 @@
     {
       "id": "engos-quality-testing-review:L44:3d4b9f171064",
       "heading": "Required Output",
-      "source_line": 44,
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 51,
       "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
       "text": "## Required Output",
       "kind": "invariant",
@@ -140,7 +143,8 @@
     {
       "id": "engos-quality-testing-review:L45:c34906b1f1c3",
       "heading": "Required Output",
-      "source_line": 45,
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 52,
       "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
       "text": "Every substantial response must include:",
       "kind": "invariant",
@@ -149,7 +153,8 @@
     {
       "id": "engos-quality-testing-review:L57:4fdce19e68b0",
       "heading": "Rules",
-      "source_line": 57,
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 64,
       "sha256": "4fdce19e68b0a2453e14c85026f2d9ed6179af4a17ffc0a48830cedb52fcd93a",
       "text": "- Include failure cases and boundary cases, not only happy path.",
       "kind": "invariant",
@@ -158,7 +163,8 @@
     {
       "id": "engos-quality-testing-review:L67:b7a8e70ba8ee",
       "heading": "Generate Unit Tests",
-      "source_line": 67,
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 74,
       "sha256": "b7a8e70ba8ee249b10c13fd4798a88c5eb6770f0b12fd6c2f75fd49533790f13",
       "text": "- mocks or fixtures only where needed",
       "kind": "invariant",
@@ -167,7 +173,8 @@
     {
       "id": "engos-quality-testing-review:L118:efc7137353f0",
       "heading": "Constraints",
-      "source_line": 118,
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 125,
       "sha256": "efc7137353f02e587b1b56a35f88ea5711adbf9a34348ce88e293222c300cfd8",
       "text": "- Do not execute tests automatically.",
       "kind": "invariant",
@@ -176,7 +183,8 @@
     {
       "id": "engos-quality-testing-review:L119:c541168a6a14",
       "heading": "Constraints",
-      "source_line": 119,
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 126,
       "sha256": "c541168a6a146b24f47259f557c38d55d4ead0716e9257689600034b01f0bd79",
       "text": "- Do not replace project-specific framework decisions when the repository already has a clear testing stack.",
       "kind": "guarded_invariant",
@@ -185,7 +193,8 @@
     {
       "id": "engos-quality-testing-review:L120:aa421c4141e9",
       "heading": "Constraints",
-      "source_line": 120,
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 127,
       "sha256": "aa421c4141e96d7644768b36e6786d2b9fcffc6ea7c100704a3d67f38eeb91b3",
       "text": "- Do not claim coverage metrics without a coverage artifact or direct evidence.",
       "kind": "invariant",

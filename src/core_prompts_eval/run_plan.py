@@ -52,7 +52,7 @@ RUN_PLAN_REQUIRED = (
     "created_at",
 )
 
-RUN_PLAN_OPTIONAL = {"adapter", "tool_policy"}
+RUN_PLAN_OPTIONAL = {"adapter", "tool_policy", "artifact_resource_bindings"}
 
 HASH_FIELDS = (
     "baseline_sha256",
@@ -141,6 +141,7 @@ def validate_run_plan(payload: Mapping[str, Any]) -> None:
     for field in HASH_FIELDS:
         if not re.fullmatch(r"[0-9a-f]{64}", str(payload[field])):
             raise RunPlanError(f"{field} must be a lowercase SHA-256 digest")
+    _validate_artifact_resource_bindings(payload.get("artifact_resource_bindings", {}))
     for field in ("baseline_revision", "candidate_revision", "slug", "created_at"):
         if not str(payload[field]).strip():
             raise RunPlanError(f"{field} must not be empty")
@@ -272,6 +273,24 @@ def validate_run_plan(payload: Mapping[str, Any]) -> None:
         raise RunPlanError("promotion plans must require independent reproduction")
     if payload["profile"] == "promotion" and any(cell["required"] is not True for cell in cells):
         raise RunPlanError("promotion plans must mark every model cell required")
+
+
+def _validate_artifact_resource_bindings(bindings: Any) -> None:
+    if not isinstance(bindings, Mapping) or set(bindings) - {"baseline", "candidate"}:
+        raise RunPlanError("artifact_resource_bindings must contain only baseline and candidate arms")
+    required = {"resource_root", "manifest_sha256", "bundle_sha256", "route"}
+    for arm, binding in bindings.items():
+        if not isinstance(binding, Mapping) or set(binding) != required:
+            raise RunPlanError(f"{arm} resource binding requires resource_root, manifest_sha256, bundle_sha256, route")
+        root = binding["resource_root"]
+        if (not isinstance(root, str) or not re.fullmatch(r"[^\s\\:\x00]+", root)
+                or root.startswith("/") or any(part in {"", ".", ".."} for part in root.split("/"))):
+            raise RunPlanError(f"{arm} resource_root must be a confined repo-relative POSIX path")
+        for field in ("manifest_sha256", "bundle_sha256"):
+            if not isinstance(binding[field], str) or not re.fullmatch(r"[0-9a-f]{64}", binding[field]):
+                raise RunPlanError(f"{arm} resource binding {field} must be a lowercase SHA-256 digest")
+        if not isinstance(binding["route"], str) or not re.fullmatch(r"[^\s]+(?: [^\s]+)*", binding["route"]):
+            raise RunPlanError(f"{arm} resource binding route must be a canonical route name")
 
 
 def _positive_int(payload: Mapping[str, Any], field: str) -> int:

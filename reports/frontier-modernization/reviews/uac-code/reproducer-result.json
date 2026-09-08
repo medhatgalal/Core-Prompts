@@ -1,0 +1,31 @@
+{
+  "scoped_heading_conflict": [
+    {
+      "code": "potential_boundary_conflict",
+      "disposition": "semantic_review_required",
+      "message": "unconditional opposing instructions for 'execute the prompt'",
+      "evidence": [
+        "Always execute the prompt.",
+        "Never execute the prompt."
+      ]
+    }
+  ],
+  "literal_fence_changed": true,
+  "malformed_disposition_exception": "TypeError: cannot use 'list' as a set element (unhashable type: 'list')",
+  "stale_review_exact_source_failures": [],
+  "real_judge_quality_status": "structural_ready",
+  "real_judge_with_rejected_review_quality_status": "structural_ready",
+  "changed_final_source_conflicts": [
+    {
+      "code": "potential_boundary_conflict",
+      "disposition": "semantic_review_required",
+      "message": "unconditional opposing instructions for 'execute the prompt'",
+      "evidence": [
+        "Always execute the prompt.",
+        "Never execute the prompt."
+      ]
+    }
+  ],
+  "real_apply_return_status": "apply_failed_validation",
+  "real_apply_wrote_conflicting_final_text": true
+}

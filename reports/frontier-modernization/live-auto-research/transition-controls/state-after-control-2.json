@@ -1,0 +1,149 @@
+{
+  "incumbent_id": "seed-from-original-trial-01",
+  "incumbent_sha256": "5bbee2fd62ddf4073214f4592e3ef2a5b9ddae0651b4df2fcdd909bcaa2b4ed3",
+  "score": {
+    "ast_nodes": 60,
+    "candidate_sha256": "5bbee2fd62ddf4073214f4592e3ef2a5b9ddae0651b4df2fcdd909bcaa2b4ed3",
+    "case_count": 16,
+    "cases": [
+      {
+        "actual": "",
+        "expected": "",
+        "id": "empty",
+        "input": "",
+        "passed": true
+      },
+      {
+        "actual": "plain",
+        "expected": "plain",
+        "id": "unchanged",
+        "input": "plain",
+        "passed": true
+      },
+      {
+        "actual": "hello",
+        "expected": "hello",
+        "id": "trim_ascii",
+        "input": "  hello  ",
+        "passed": true
+      },
+      {
+        "actual": "",
+        "expected": "",
+        "id": "only_whitespace",
+        "input": " \t\n\r\u000b\f",
+        "passed": true
+      },
+      {
+        "actual": "a b",
+        "expected": "a b",
+        "id": "repeated_spaces",
+        "input": "a   b",
+        "passed": true
+      },
+      {
+        "actual": "a b",
+        "expected": "a b",
+        "id": "internal_tab",
+        "input": "a\tb",
+        "passed": true
+      },
+      {
+        "actual": "a b",
+        "expected": "a b",
+        "id": "internal_newline",
+        "input": "a\nb",
+        "passed": true
+      },
+      {
+        "actual": "a b c",
+        "expected": "a b c",
+        "id": "mixed_runs",
+        "input": " \ta \n\tb\r\n c  ",
+        "passed": true
+      },
+      {
+        "actual": "café 東京",
+        "expected": "café 東京",
+        "id": "nonbreaking_space",
+        "input": "café  東京",
+        "passed": true
+      },
+      {
+        "actual": "東京 مرحبا",
+        "expected": "東京 مرحبا",
+        "id": "unicode_em_space",
+        "input": " 東京  مرحبا ",
+        "passed": true
+      },
+      {
+        "actual": "café 東京 مرحبا",
+        "expected": "café 東京 مرحبا",
+        "id": "unicode_unchanged",
+        "input": "café 東京 مرحبا",
+        "passed": true
+      },
+      {
+        "actual": "🙂 🚀",
+        "expected": "🙂 🚀",
+        "id": "emoji",
+        "input": " 🙂\t🚀 ",
+        "passed": true
+      },
+      {
+        "actual": "é café",
+        "expected": "é café",
+        "id": "combining_character",
+        "input": "é  café",
+        "passed": true
+      },
+      {
+        "actual": "a​b",
+        "expected": "a​b",
+        "id": "zero_width_preserved",
+        "input": "a​b",
+        "passed": true
+      },
+      {
+        "actual": "a b",
+        "expected": "a b",
+        "id": "vertical_whitespace",
+        "input": "a\u000b\fb",
+        "passed": true
+      },
+      {
+        "actual": "a b",
+        "expected": "a b",
+        "id": "crlf",
+        "input": "a\r\nb",
+        "passed": true
+      }
+    ],
+    "failed": 0,
+    "import_statements": 0,
+    "passed": 16,
+    "status": "valid",
+    "provenance": {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/protected/evaluator.py",
+        "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/active/trial-01.py"
+      ],
+      "cwd": "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/active",
+      "exit_code": 0,
+      "elapsed_seconds_observed_not_ranked": 0.08172279107384384,
+      "timeout_seconds": 5,
+      "stdout_sha256": "4a899fcb34b70272a71e4444bf97c3eec09a4039365e3323b4c28fba961b2517",
+      "candidate_path": "active/trial-01.py",
+      "evaluator_sha256": "5a4ef4ee317495e126a6e8fbf5d6fc44153622fe579b5540770d0f05ec328fc4",
+      "python": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]"
+    },
+    "integrity_after": {
+      "frozen_hashes_match": true,
+      "package_hashes_match": true
+    }
+  },
+  "optimization_trials_completed": 2
+}

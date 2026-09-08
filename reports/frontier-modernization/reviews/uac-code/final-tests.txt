@@ -1,0 +1,1047 @@
+........................................................................ [ 52%]
+.......................F.FF.................FF.....FF.F.....FF.F..       [100%]
+=================================== FAILURES ===================================
+_______________ test_registry_fallback_works_without_git_history _______________
+
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_registry_fallback_works_w0')
+
+    def test_registry_fallback_works_without_git_history(tmp_path: Path) -> None:
+        workspace = tmp_path / "workspace"
+>       shutil.copytree(
+            ROOT,
+            workspace,
+            ignore=shutil.ignore_patterns(".git", ".pytest_cache", "__pycache__", ".DS_Store", ".venv", "node_modules"),
+        )
+
+tests/test_uac_baselines.py:230: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/shutil.py:654: in copytree
+    return _copytree(entries=entries, src=src, dst=dst, symlinks=symlinks,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+entries = [<DirEntry '.meta'>, <DirEntry '.gemini'>, <DirEntry 'tooling'>, <DirEntry 'evals'>, <DirEntry '.grok'>, <DirEntry 'pytest.ini'>, ...]
+src = PosixPath('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts')
+dst = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_registry_fallback_works_w0/workspace')
+symlinks = False
+ignore = <function ignore_patterns.<locals>._ignore_patterns at 0x109813950>
+copy_function = <function copy2 at 0x107b36da0>
+ignore_dangling_symlinks = False, dirs_exist_ok = False
+
+    def _copytree(entries, src, dst, symlinks, ignore, copy_function,
+                  ignore_dangling_symlinks, dirs_exist_ok=False):
+        if ignore is not None:
+            ignored_names = ignore(os.fspath(src), [x.name for x in entries])
+        else:
+            ignored_names = ()
+    
+        os.makedirs(dst, exist_ok=dirs_exist_ok)
+        errors = []
+        use_srcentry = copy_function is copy2 or copy_function is copy
+    
+        for srcentry in entries:
+            if srcentry.name in ignored_names:
+                continue
+            srcname = os.path.join(src, srcentry.name)
+            dstname = os.path.join(dst, srcentry.name)
+            srcobj = srcentry if use_srcentry else srcname
+            try:
+                is_symlink = srcentry.is_symlink()
+                if is_symlink and os.name == 'nt':
+                    # Special check for directory junctions, which appear as
+                    # symlinks but we want to recurse.
+                    lstat = srcentry.stat(follow_symlinks=False)
+                    if lstat.st_reparse_tag == stat.IO_REPARSE_TAG_MOUNT_POINT:
+                        is_symlink = False
+                if is_symlink:
+                    linkto = os.readlink(srcname)
+                    if symlinks:
+                        # We can't just leave it to `copy_function` because legacy
+                        # code with a custom `copy_function` may rely on copytree
+                        # doing the right thing.
+                        os.symlink(linkto, dstname)
+                        copystat(srcobj, dstname, follow_symlinks=not symlinks)
+                    else:
+                        # ignore dangling symlink if the flag is on
+                        if not os.path.exists(linkto) and ignore_dangling_symlinks:
+                            continue
+                        # otherwise let the copy occur. copy2 will raise an error
+                        if srcentry.is_dir():
+                            copytree(srcobj, dstname, symlinks, ignore,
+                                     copy_function, ignore_dangling_symlinks,
+                                     dirs_exist_ok)
+                        else:
+                            copy_function(srcobj, dstname)
+                elif srcentry.is_dir():
+                    copytree(srcobj, dstname, symlinks, ignore, copy_function,
+                             ignore_dangling_symlinks, dirs_exist_ok)
+                else:
+                    # Will raise a SpecialFileError for unsupported file types
+                    copy_function(srcobj, dstname)
+            # catch the Error from the recursive copytree so that we can
+            # continue with other files
+            except Error as err:
+                errors.extend(err.args[0])
+            except OSError as why:
+                errors.append((srcname, dstname, str(why)))
+        try:
+            copystat(src, dst)
+        except OSError as why:
+            # Copying file access times may fail on Windows
+            if getattr(why, 'winerror', None) is None:
+                errors.append((src, dst, str(why)))
+        if errors:
+>           raise Error(errors)
+E           shutil.Error: [('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declared2/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_registry_fallback_works_w0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declared2/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declared2/sources/capability-resources/example/resource-map.json'"), ('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_fcurrent/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_registry_fallback_works_w0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_fcurrent/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_fcurrent/sources/capability-resources/example/resource-map.json'"), ('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_f2/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_registry_fallback_works_w0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_f2/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_f2/sources/capability-resources/example/resource-map.json'"), ('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declaredcurrent/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_registry_fallback_works_w0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declaredcurrent/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declaredcurrent/sources/capability-resources/example/resource-map.json'")]
+
+/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/shutil.py:608: Error
+______ test_persist_source_baseline_refuses_structurally_noisy_overwrite _______
+
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_persist_source_baseline_r0')
+
+    def test_persist_source_baseline_refuses_structurally_noisy_overwrite(tmp_path: Path) -> None:
+        workspace = tmp_path / "workspace"
+>       shutil.copytree(
+            ROOT,
+            workspace,
+            ignore=shutil.ignore_patterns(".git", ".pytest_cache", "__pycache__", ".DS_Store", ".venv", "node_modules"),
+        )
+
+tests/test_uac_baselines.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/shutil.py:654: in copytree
+    return _copytree(entries=entries, src=src, dst=dst, symlinks=symlinks,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+entries = [<DirEntry '.meta'>, <DirEntry '.gemini'>, <DirEntry 'tooling'>, <DirEntry 'evals'>, <DirEntry '.grok'>, <DirEntry 'pytest.ini'>, ...]
+src = PosixPath('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts')
+dst = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_persist_source_baseline_r0/workspace')
+symlinks = False
+ignore = <function ignore_patterns.<locals>._ignore_patterns at 0x10984ddd0>
+copy_function = <function copy2 at 0x107b36da0>
+ignore_dangling_symlinks = False, dirs_exist_ok = False
+
+    def _copytree(entries, src, dst, symlinks, ignore, copy_function,
+                  ignore_dangling_symlinks, dirs_exist_ok=False):
+        if ignore is not None:
+            ignored_names = ignore(os.fspath(src), [x.name for x in entries])
+        else:
+            ignored_names = ()
+    
+        os.makedirs(dst, exist_ok=dirs_exist_ok)
+        errors = []
+        use_srcentry = copy_function is copy2 or copy_function is copy
+    
+        for srcentry in entries:
+            if srcentry.name in ignored_names:
+                continue
+            srcname = os.path.join(src, srcentry.name)
+            dstname = os.path.join(dst, srcentry.name)
+            srcobj = srcentry if use_srcentry else srcname
+            try:
+                is_symlink = srcentry.is_symlink()
+                if is_symlink and os.name == 'nt':
+                    # Special check for directory junctions, which appear as
+                    # symlinks but we want to recurse.
+                    lstat = srcentry.stat(follow_symlinks=False)
+                    if lstat.st_reparse_tag == stat.IO_REPARSE_TAG_MOUNT_POINT:
+                        is_symlink = False
+                if is_symlink:
+                    linkto = os.readlink(srcname)
+                    if symlinks:
+                        # We can't just leave it to `copy_function` because legacy
+                        # code with a custom `copy_function` may rely on copytree
+                        # doing the right thing.
+                        os.symlink(linkto, dstname)
+                        copystat(srcobj, dstname, follow_symlinks=not symlinks)
+                    else:
+                        # ignore dangling symlink if the flag is on
+                        if not os.path.exists(linkto) and ignore_dangling_symlinks:
+                            continue
+                        # otherwise let the copy occur. copy2 will raise an error
+                        if srcentry.is_dir():
+                            copytree(srcobj, dstname, symlinks, ignore,
+                                     copy_function, ignore_dangling_symlinks,
+                                     dirs_exist_ok)
+                        else:
+                            copy_function(srcobj, dstname)
+                elif srcentry.is_dir():
+                    copytree(srcobj, dstname, symlinks, ignore, copy_function,
+                             ignore_dangling_symlinks, dirs_exist_ok)
+                else:
+                    # Will raise a SpecialFileError for unsupported file types
+                    copy_function(srcobj, dstname)
+            # catch the Error from the recursive copytree so that we can
+            # continue with other files
+            except Error as err:
+                errors.extend(err.args[0])
+            except OSError as why:
+                errors.append((srcname, dstname, str(why)))
+        try:
+            copystat(src, dst)
+        except OSError as why:
+            # Copying file access times may fail on Windows
+            if getattr(why, 'winerror', None) is None:
+                errors.append((src, dst, str(why)))
+        if errors:
+>           raise Error(errors)
+E           shutil.Error: [('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declared2/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_persist_source_baseline_r0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declared2/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declared2/sources/capability-resources/example/resource-map.json'"), ('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_fcurrent/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_persist_source_baseline_r0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_fcurrent/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_fcurrent/sources/capability-resources/example/resource-map.json'"), ('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_f2/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_persist_source_baseline_r0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_f2/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_f2/sources/capability-resources/example/resource-map.json'"), ('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declaredcurrent/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_persist_source_baseline_r0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declaredcurrent/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declaredcurrent/sources/capability-resources/example/resource-map.json'")]
+
+/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/shutil.py:608: Error
+_ test_materialize_baseline_sources_refreshes_auto_research_from_current_ssot __
+
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_materialize_baseline_sour0')
+
+    def test_materialize_baseline_sources_refreshes_auto_research_from_current_ssot(tmp_path: Path) -> None:
+        workspace = tmp_path / "workspace"
+>       shutil.copytree(
+            ROOT,
+            workspace,
+            ignore=shutil.ignore_patterns(".git", ".pytest_cache", "__pycache__", ".DS_Store", ".venv", "node_modules"),
+        )
+
+tests/test_uac_baselines.py:295: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/shutil.py:654: in copytree
+    return _copytree(entries=entries, src=src, dst=dst, symlinks=symlinks,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+entries = [<DirEntry '.meta'>, <DirEntry '.gemini'>, <DirEntry 'tooling'>, <DirEntry 'evals'>, <DirEntry '.grok'>, <DirEntry 'pytest.ini'>, ...]
+src = PosixPath('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts')
+dst = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_materialize_baseline_sour0/workspace')
+symlinks = False
+ignore = <function ignore_patterns.<locals>._ignore_patterns at 0x10984e400>
+copy_function = <function copy2 at 0x107b36da0>
+ignore_dangling_symlinks = False, dirs_exist_ok = False
+
+    def _copytree(entries, src, dst, symlinks, ignore, copy_function,
+                  ignore_dangling_symlinks, dirs_exist_ok=False):
+        if ignore is not None:
+            ignored_names = ignore(os.fspath(src), [x.name for x in entries])
+        else:
+            ignored_names = ()
+    
+        os.makedirs(dst, exist_ok=dirs_exist_ok)
+        errors = []
+        use_srcentry = copy_function is copy2 or copy_function is copy
+    
+        for srcentry in entries:
+            if srcentry.name in ignored_names:
+                continue
+            srcname = os.path.join(src, srcentry.name)
+            dstname = os.path.join(dst, srcentry.name)
+            srcobj = srcentry if use_srcentry else srcname
+            try:
+                is_symlink = srcentry.is_symlink()
+                if is_symlink and os.name == 'nt':
+                    # Special check for directory junctions, which appear as
+                    # symlinks but we want to recurse.
+                    lstat = srcentry.stat(follow_symlinks=False)
+                    if lstat.st_reparse_tag == stat.IO_REPARSE_TAG_MOUNT_POINT:
+                        is_symlink = False
+                if is_symlink:
+                    linkto = os.readlink(srcname)
+                    if symlinks:
+                        # We can't just leave it to `copy_function` because legacy
+                        # code with a custom `copy_function` may rely on copytree
+                        # doing the right thing.
+                        os.symlink(linkto, dstname)
+                        copystat(srcobj, dstname, follow_symlinks=not symlinks)
+                    else:
+                        # ignore dangling symlink if the flag is on
+                        if not os.path.exists(linkto) and ignore_dangling_symlinks:
+                            continue
+                        # otherwise let the copy occur. copy2 will raise an error
+                        if srcentry.is_dir():
+                            copytree(srcobj, dstname, symlinks, ignore,
+                                     copy_function, ignore_dangling_symlinks,
+                                     dirs_exist_ok)
+                        else:
+                            copy_function(srcobj, dstname)
+                elif srcentry.is_dir():
+                    copytree(srcobj, dstname, symlinks, ignore, copy_function,
+                             ignore_dangling_symlinks, dirs_exist_ok)
+                else:
+                    # Will raise a SpecialFileError for unsupported file types
+                    copy_function(srcobj, dstname)
+            # catch the Error from the recursive copytree so that we can
+            # continue with other files
+            except Error as err:
+                errors.extend(err.args[0])
+            except OSError as why:
+                errors.append((srcname, dstname, str(why)))
+        try:
+            copystat(src, dst)
+        except OSError as why:
+            # Copying file access times may fail on Windows
+            if getattr(why, 'winerror', None) is None:
+                errors.append((src, dst, str(why)))
+        if errors:
+>           raise Error(errors)
+E           shutil.Error: [('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declared2/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_materialize_baseline_sour0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declared2/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declared2/sources/capability-resources/example/resource-map.json'"), ('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_fcurrent/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_materialize_baseline_sour0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_fcurrent/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_fcurrent/sources/capability-resources/example/resource-map.json'"), ('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_f2/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_materialize_baseline_sour0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_f2/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_f2/sources/capability-resources/example/resource-map.json'"), ('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declaredcurrent/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_materialize_baseline_sour0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declaredcurrent/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declaredcurrent/sources/capability-resources/example/resource-map.json'")]
+
+/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/shutil.py:608: Error
+_________ test_uac_apply_writes_ssot_and_descriptor_in_workspace_copy __________
+
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_uac_apply_writes_ssot_and0')
+
+    def test_uac_apply_writes_ssot_and_descriptor_in_workspace_copy(tmp_path: Path) -> None:
+        workspace = tmp_path / "workspace"
+>       shutil.copytree(
+            ROOT,
+            workspace,
+            ignore=shutil.ignore_patterns('.git', '.pytest_cache', '__pycache__', '.DS_Store', '.venv', 'node_modules'),
+        )
+
+tests/test_uac_import.py:479: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/shutil.py:654: in copytree
+    return _copytree(entries=entries, src=src, dst=dst, symlinks=symlinks,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+entries = [<DirEntry '.meta'>, <DirEntry '.gemini'>, <DirEntry 'tooling'>, <DirEntry 'evals'>, <DirEntry '.grok'>, <DirEntry 'pytest.ini'>, ...]
+src = PosixPath('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts')
+dst = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_uac_apply_writes_ssot_and0/workspace')
+symlinks = False
+ignore = <function ignore_patterns.<locals>._ignore_patterns at 0x10993e6c0>
+copy_function = <function copy2 at 0x107b36da0>
+ignore_dangling_symlinks = False, dirs_exist_ok = False
+
+    def _copytree(entries, src, dst, symlinks, ignore, copy_function,
+                  ignore_dangling_symlinks, dirs_exist_ok=False):
+        if ignore is not None:
+            ignored_names = ignore(os.fspath(src), [x.name for x in entries])
+        else:
+            ignored_names = ()
+    
+        os.makedirs(dst, exist_ok=dirs_exist_ok)
+        errors = []
+        use_srcentry = copy_function is copy2 or copy_function is copy
+    
+        for srcentry in entries:
+            if srcentry.name in ignored_names:
+                continue
+            srcname = os.path.join(src, srcentry.name)
+            dstname = os.path.join(dst, srcentry.name)
+            srcobj = srcentry if use_srcentry else srcname
+            try:
+                is_symlink = srcentry.is_symlink()
+                if is_symlink and os.name == 'nt':
+                    # Special check for directory junctions, which appear as
+                    # symlinks but we want to recurse.
+                    lstat = srcentry.stat(follow_symlinks=False)
+                    if lstat.st_reparse_tag == stat.IO_REPARSE_TAG_MOUNT_POINT:
+                        is_symlink = False
+                if is_symlink:
+                    linkto = os.readlink(srcname)
+                    if symlinks:
+                        # We can't just leave it to `copy_function` because legacy
+                        # code with a custom `copy_function` may rely on copytree
+                        # doing the right thing.
+                        os.symlink(linkto, dstname)
+                        copystat(srcobj, dstname, follow_symlinks=not symlinks)
+                    else:
+                        # ignore dangling symlink if the flag is on
+                        if not os.path.exists(linkto) and ignore_dangling_symlinks:
+                            continue
+                        # otherwise let the copy occur. copy2 will raise an error
+                        if srcentry.is_dir():
+                            copytree(srcobj, dstname, symlinks, ignore,
+                                     copy_function, ignore_dangling_symlinks,
+                                     dirs_exist_ok)
+                        else:
+                            copy_function(srcobj, dstname)
+                elif srcentry.is_dir():
+                    copytree(srcobj, dstname, symlinks, ignore, copy_function,
+                             ignore_dangling_symlinks, dirs_exist_ok)
+                else:
+                    # Will raise a SpecialFileError for unsupported file types
+                    copy_function(srcobj, dstname)
+            # catch the Error from the recursive copytree so that we can
+            # continue with other files
+            except Error as err:
+                errors.extend(err.args[0])
+            except OSError as why:
+                errors.append((srcname, dstname, str(why)))
+        try:
+            copystat(src, dst)
+        except OSError as why:
+            # Copying file access times may fail on Windows
+            if getattr(why, 'winerror', None) is None:
+                errors.append((src, dst, str(why)))
+        if errors:
+>           raise Error(errors)
+E           shutil.Error: [('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declared2/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_uac_apply_writes_ssot_and0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declared2/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declared2/sources/capability-resources/example/resource-map.json'"), ('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_fcurrent/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_uac_apply_writes_ssot_and0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_fcurrent/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_fcurrent/sources/capability-resources/example/resource-map.json'"), ('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_f2/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_uac_apply_writes_ssot_and0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_f2/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_f2/sources/capability-resources/example/resource-map.json'"), ('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declaredcurrent/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_uac_apply_writes_ssot_and0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declaredcurrent/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declaredcurrent/sources/capability-resources/example/resource-map.json'")]
+
+/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/shutil.py:608: Error
+____________ test_uac_apply_refuses_landing_when_quality_gate_fails ____________
+
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_uac_apply_refuses_landing0')
+
+    def test_uac_apply_refuses_landing_when_quality_gate_fails(tmp_path: Path) -> None:
+        workspace = tmp_path / "workspace"
+>       shutil.copytree(
+            ROOT,
+            workspace,
+            ignore=shutil.ignore_patterns('.git', '.pytest_cache', '__pycache__', '.DS_Store', '.venv', 'node_modules'),
+        )
+
+tests/test_uac_import.py:590: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/shutil.py:654: in copytree
+    return _copytree(entries=entries, src=src, dst=dst, symlinks=symlinks,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+entries = [<DirEntry '.meta'>, <DirEntry '.gemini'>, <DirEntry 'tooling'>, <DirEntry 'evals'>, <DirEntry '.grok'>, <DirEntry 'pytest.ini'>, ...]
+src = PosixPath('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts')
+dst = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_uac_apply_refuses_landing0/workspace')
+symlinks = False
+ignore = <function ignore_patterns.<locals>._ignore_patterns at 0x109813ab0>
+copy_function = <function copy2 at 0x107b36da0>
+ignore_dangling_symlinks = False, dirs_exist_ok = False
+
+    def _copytree(entries, src, dst, symlinks, ignore, copy_function,
+                  ignore_dangling_symlinks, dirs_exist_ok=False):
+        if ignore is not None:
+            ignored_names = ignore(os.fspath(src), [x.name for x in entries])
+        else:
+            ignored_names = ()
+    
+        os.makedirs(dst, exist_ok=dirs_exist_ok)
+        errors = []
+        use_srcentry = copy_function is copy2 or copy_function is copy
+    
+        for srcentry in entries:
+            if srcentry.name in ignored_names:
+                continue
+            srcname = os.path.join(src, srcentry.name)
+            dstname = os.path.join(dst, srcentry.name)
+            srcobj = srcentry if use_srcentry else srcname
+            try:
+                is_symlink = srcentry.is_symlink()
+                if is_symlink and os.name == 'nt':
+                    # Special check for directory junctions, which appear as
+                    # symlinks but we want to recurse.
+                    lstat = srcentry.stat(follow_symlinks=False)
+                    if lstat.st_reparse_tag == stat.IO_REPARSE_TAG_MOUNT_POINT:
+                        is_symlink = False
+                if is_symlink:
+                    linkto = os.readlink(srcname)
+                    if symlinks:
+                        # We can't just leave it to `copy_function` because legacy
+                        # code with a custom `copy_function` may rely on copytree
+                        # doing the right thing.
+                        os.symlink(linkto, dstname)
+                        copystat(srcobj, dstname, follow_symlinks=not symlinks)
+                    else:
+                        # ignore dangling symlink if the flag is on
+                        if not os.path.exists(linkto) and ignore_dangling_symlinks:
+                            continue
+                        # otherwise let the copy occur. copy2 will raise an error
+                        if srcentry.is_dir():
+                            copytree(srcobj, dstname, symlinks, ignore,
+                                     copy_function, ignore_dangling_symlinks,
+                                     dirs_exist_ok)
+                        else:
+                            copy_function(srcobj, dstname)
+                elif srcentry.is_dir():
+                    copytree(srcobj, dstname, symlinks, ignore, copy_function,
+                             ignore_dangling_symlinks, dirs_exist_ok)
+                else:
+                    # Will raise a SpecialFileError for unsupported file types
+                    copy_function(srcobj, dstname)
+            # catch the Error from the recursive copytree so that we can
+            # continue with other files
+            except Error as err:
+                errors.extend(err.args[0])
+            except OSError as why:
+                errors.append((srcname, dstname, str(why)))
+        try:
+            copystat(src, dst)
+        except OSError as why:
+            # Copying file access times may fail on Windows
+            if getattr(why, 'winerror', None) is None:
+                errors.append((src, dst, str(why)))
+        if errors:
+>           raise Error(errors)
+E           shutil.Error: [('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declared2/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_uac_apply_refuses_landing0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declared2/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declared2/sources/capability-resources/example/resource-map.json'"), ('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_fcurrent/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_uac_apply_refuses_landing0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_fcurrent/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_fcurrent/sources/capability-resources/example/resource-map.json'"), ('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_f2/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_uac_apply_refuses_landing0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_f2/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_f2/sources/capability-resources/example/resource-map.json'"), ('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declaredcurrent/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_uac_apply_refuses_landing0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declaredcurrent/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declaredcurrent/sources/capability-resources/example/resource-map.json'")]
+
+/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/shutil.py:608: Error
+_________ test_same_slug_apply_does_not_degrade_auto_research_baseline _________
+
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_same_slug_apply_does_not_0')
+
+    def test_same_slug_apply_does_not_degrade_auto_research_baseline(tmp_path: Path) -> None:
+        workspace = tmp_path / "workspace"
+>       shutil.copytree(
+            ROOT,
+            workspace,
+            ignore=shutil.ignore_patterns(".git", ".pytest_cache", "__pycache__", ".DS_Store", ".venv", "node_modules"),
+        )
+
+tests/test_uac_import.py:783: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/shutil.py:654: in copytree
+    return _copytree(entries=entries, src=src, dst=dst, symlinks=symlinks,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+entries = [<DirEntry '.meta'>, <DirEntry '.gemini'>, <DirEntry 'tooling'>, <DirEntry 'evals'>, <DirEntry '.grok'>, <DirEntry 'pytest.ini'>, ...]
+src = PosixPath('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts')
+dst = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_same_slug_apply_does_not_0/workspace')
+symlinks = False
+ignore = <function ignore_patterns.<locals>._ignore_patterns at 0x10993fd70>
+copy_function = <function copy2 at 0x107b36da0>
+ignore_dangling_symlinks = False, dirs_exist_ok = False
+
+    def _copytree(entries, src, dst, symlinks, ignore, copy_function,
+                  ignore_dangling_symlinks, dirs_exist_ok=False):
+        if ignore is not None:
+            ignored_names = ignore(os.fspath(src), [x.name for x in entries])
+        else:
+            ignored_names = ()
+    
+        os.makedirs(dst, exist_ok=dirs_exist_ok)
+        errors = []
+        use_srcentry = copy_function is copy2 or copy_function is copy
+    
+        for srcentry in entries:
+            if srcentry.name in ignored_names:
+                continue
+            srcname = os.path.join(src, srcentry.name)
+            dstname = os.path.join(dst, srcentry.name)
+            srcobj = srcentry if use_srcentry else srcname
+            try:
+                is_symlink = srcentry.is_symlink()
+                if is_symlink and os.name == 'nt':
+                    # Special check for directory junctions, which appear as
+                    # symlinks but we want to recurse.
+                    lstat = srcentry.stat(follow_symlinks=False)
+                    if lstat.st_reparse_tag == stat.IO_REPARSE_TAG_MOUNT_POINT:
+                        is_symlink = False
+                if is_symlink:
+                    linkto = os.readlink(srcname)
+                    if symlinks:
+                        # We can't just leave it to `copy_function` because legacy
+                        # code with a custom `copy_function` may rely on copytree
+                        # doing the right thing.
+                        os.symlink(linkto, dstname)
+                        copystat(srcobj, dstname, follow_symlinks=not symlinks)
+                    else:
+                        # ignore dangling symlink if the flag is on
+                        if not os.path.exists(linkto) and ignore_dangling_symlinks:
+                            continue
+                        # otherwise let the copy occur. copy2 will raise an error
+                        if srcentry.is_dir():
+                            copytree(srcobj, dstname, symlinks, ignore,
+                                     copy_function, ignore_dangling_symlinks,
+                                     dirs_exist_ok)
+                        else:
+                            copy_function(srcobj, dstname)
+                elif srcentry.is_dir():
+                    copytree(srcobj, dstname, symlinks, ignore, copy_function,
+                             ignore_dangling_symlinks, dirs_exist_ok)
+                else:
+                    # Will raise a SpecialFileError for unsupported file types
+                    copy_function(srcobj, dstname)
+            # catch the Error from the recursive copytree so that we can
+            # continue with other files
+            except Error as err:
+                errors.extend(err.args[0])
+            except OSError as why:
+                errors.append((srcname, dstname, str(why)))
+        try:
+            copystat(src, dst)
+        except OSError as why:
+            # Copying file access times may fail on Windows
+            if getattr(why, 'winerror', None) is None:
+                errors.append((src, dst, str(why)))
+        if errors:
+>           raise Error(errors)
+E           shutil.Error: [('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declared2/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_same_slug_apply_does_not_0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declared2/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declared2/sources/capability-resources/example/resource-map.json'"), ('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_fcurrent/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_same_slug_apply_does_not_0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_fcurrent/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_fcurrent/sources/capability-resources/example/resource-map.json'"), ('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_f2/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_same_slug_apply_does_not_0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_f2/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_f2/sources/capability-resources/example/resource-map.json'"), ('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declaredcurrent/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_same_slug_apply_does_not_0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declaredcurrent/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declaredcurrent/sources/capability-resources/example/resource-map.json'")]
+
+/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/shutil.py:608: Error
+_____________ test_apply_payload_refuses_regressed_final_candidate _____________
+
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_apply_payload_refuses_reg0')
+
+    def test_apply_payload_refuses_regressed_final_candidate(tmp_path: Path) -> None:
+        workspace = tmp_path / "workspace"
+>       shutil.copytree(
+            ROOT,
+            workspace,
+            ignore=shutil.ignore_patterns(".git", ".pytest_cache", "__pycache__", ".DS_Store", ".venv", "node_modules"),
+        )
+
+tests/test_uac_import.py:897: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/shutil.py:654: in copytree
+    return _copytree(entries=entries, src=src, dst=dst, symlinks=symlinks,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+entries = [<DirEntry '.meta'>, <DirEntry '.gemini'>, <DirEntry 'tooling'>, <DirEntry 'evals'>, <DirEntry '.grok'>, <DirEntry 'pytest.ini'>, ...]
+src = PosixPath('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts')
+dst = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_apply_payload_refuses_reg0/workspace')
+symlinks = False
+ignore = <function ignore_patterns.<locals>._ignore_patterns at 0x10993eda0>
+copy_function = <function copy2 at 0x107b36da0>
+ignore_dangling_symlinks = False, dirs_exist_ok = False
+
+    def _copytree(entries, src, dst, symlinks, ignore, copy_function,
+                  ignore_dangling_symlinks, dirs_exist_ok=False):
+        if ignore is not None:
+            ignored_names = ignore(os.fspath(src), [x.name for x in entries])
+        else:
+            ignored_names = ()
+    
+        os.makedirs(dst, exist_ok=dirs_exist_ok)
+        errors = []
+        use_srcentry = copy_function is copy2 or copy_function is copy
+    
+        for srcentry in entries:
+            if srcentry.name in ignored_names:
+                continue
+            srcname = os.path.join(src, srcentry.name)
+            dstname = os.path.join(dst, srcentry.name)
+            srcobj = srcentry if use_srcentry else srcname
+            try:
+                is_symlink = srcentry.is_symlink()
+                if is_symlink and os.name == 'nt':
+                    # Special check for directory junctions, which appear as
+                    # symlinks but we want to recurse.
+                    lstat = srcentry.stat(follow_symlinks=False)
+                    if lstat.st_reparse_tag == stat.IO_REPARSE_TAG_MOUNT_POINT:
+                        is_symlink = False
+                if is_symlink:
+                    linkto = os.readlink(srcname)
+                    if symlinks:
+                        # We can't just leave it to `copy_function` because legacy
+                        # code with a custom `copy_function` may rely on copytree
+                        # doing the right thing.
+                        os.symlink(linkto, dstname)
+                        copystat(srcobj, dstname, follow_symlinks=not symlinks)
+                    else:
+                        # ignore dangling symlink if the flag is on
+                        if not os.path.exists(linkto) and ignore_dangling_symlinks:
+                            continue
+                        # otherwise let the copy occur. copy2 will raise an error
+                        if srcentry.is_dir():
+                            copytree(srcobj, dstname, symlinks, ignore,
+                                     copy_function, ignore_dangling_symlinks,
+                                     dirs_exist_ok)
+                        else:
+                            copy_function(srcobj, dstname)
+                elif srcentry.is_dir():
+                    copytree(srcobj, dstname, symlinks, ignore, copy_function,
+                             ignore_dangling_symlinks, dirs_exist_ok)
+                else:
+                    # Will raise a SpecialFileError for unsupported file types
+                    copy_function(srcobj, dstname)
+            # catch the Error from the recursive copytree so that we can
+            # continue with other files
+            except Error as err:
+                errors.extend(err.args[0])
+            except OSError as why:
+                errors.append((srcname, dstname, str(why)))
+        try:
+            copystat(src, dst)
+        except OSError as why:
+            # Copying file access times may fail on Windows
+            if getattr(why, 'winerror', None) is None:
+                errors.append((src, dst, str(why)))
+        if errors:
+>           raise Error(errors)
+E           shutil.Error: [('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declared2/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_apply_payload_refuses_reg0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declared2/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declared2/sources/capability-resources/example/resource-map.json'"), ('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_fcurrent/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_apply_payload_refuses_reg0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_fcurrent/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_fcurrent/sources/capability-resources/example/resource-map.json'"), ('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_f2/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_apply_payload_refuses_reg0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_f2/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_f2/sources/capability-resources/example/resource-map.json'"), ('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declaredcurrent/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_apply_payload_refuses_reg0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declaredcurrent/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declaredcurrent/sources/capability-resources/example/resource-map.json'")]
+
+/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/shutil.py:608: Error
+__________ test_build_surfaces_emits_auto_research_bootstrap_resource __________
+
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_build_surfaces_emits_auto0')
+
+    def test_build_surfaces_emits_auto_research_bootstrap_resource(tmp_path: Path) -> None:
+        workspace = tmp_path / "workspace"
+>       shutil.copytree(
+            ROOT,
+            workspace,
+            ignore=shutil.ignore_patterns('.git', '.pytest_cache', '__pycache__', '.DS_Store', '.venv', 'node_modules'),
+        )
+
+tests/test_uac_import.py:991: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/shutil.py:654: in copytree
+    return _copytree(entries=entries, src=src, dst=dst, symlinks=symlinks,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+entries = [<DirEntry '.meta'>, <DirEntry '.gemini'>, <DirEntry 'tooling'>, <DirEntry 'evals'>, <DirEntry '.grok'>, <DirEntry 'pytest.ini'>, ...]
+src = PosixPath('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts')
+dst = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_build_surfaces_emits_auto0/workspace')
+symlinks = False
+ignore = <function ignore_patterns.<locals>._ignore_patterns at 0x10993cca0>
+copy_function = <function copy2 at 0x107b36da0>
+ignore_dangling_symlinks = False, dirs_exist_ok = False
+
+    def _copytree(entries, src, dst, symlinks, ignore, copy_function,
+                  ignore_dangling_symlinks, dirs_exist_ok=False):
+        if ignore is not None:
+            ignored_names = ignore(os.fspath(src), [x.name for x in entries])
+        else:
+            ignored_names = ()
+    
+        os.makedirs(dst, exist_ok=dirs_exist_ok)
+        errors = []
+        use_srcentry = copy_function is copy2 or copy_function is copy
+    
+        for srcentry in entries:
+            if srcentry.name in ignored_names:
+                continue
+            srcname = os.path.join(src, srcentry.name)
+            dstname = os.path.join(dst, srcentry.name)
+            srcobj = srcentry if use_srcentry else srcname
+            try:
+                is_symlink = srcentry.is_symlink()
+                if is_symlink and os.name == 'nt':
+                    # Special check for directory junctions, which appear as
+                    # symlinks but we want to recurse.
+                    lstat = srcentry.stat(follow_symlinks=False)
+                    if lstat.st_reparse_tag == stat.IO_REPARSE_TAG_MOUNT_POINT:
+                        is_symlink = False
+                if is_symlink:
+                    linkto = os.readlink(srcname)
+                    if symlinks:
+                        # We can't just leave it to `copy_function` because legacy
+                        # code with a custom `copy_function` may rely on copytree
+                        # doing the right thing.
+                        os.symlink(linkto, dstname)
+                        copystat(srcobj, dstname, follow_symlinks=not symlinks)
+                    else:
+                        # ignore dangling symlink if the flag is on
+                        if not os.path.exists(linkto) and ignore_dangling_symlinks:
+                            continue
+                        # otherwise let the copy occur. copy2 will raise an error
+                        if srcentry.is_dir():
+                            copytree(srcobj, dstname, symlinks, ignore,
+                                     copy_function, ignore_dangling_symlinks,
+                                     dirs_exist_ok)
+                        else:
+                            copy_function(srcobj, dstname)
+                elif srcentry.is_dir():
+                    copytree(srcobj, dstname, symlinks, ignore, copy_function,
+                             ignore_dangling_symlinks, dirs_exist_ok)
+                else:
+                    # Will raise a SpecialFileError for unsupported file types
+                    copy_function(srcobj, dstname)
+            # catch the Error from the recursive copytree so that we can
+            # continue with other files
+            except Error as err:
+                errors.extend(err.args[0])
+            except OSError as why:
+                errors.append((srcname, dstname, str(why)))
+        try:
+            copystat(src, dst)
+        except OSError as why:
+            # Copying file access times may fail on Windows
+            if getattr(why, 'winerror', None) is None:
+                errors.append((src, dst, str(why)))
+        if errors:
+>           raise Error(errors)
+E           shutil.Error: [('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declared2/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_build_surfaces_emits_auto0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declared2/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declared2/sources/capability-resources/example/resource-map.json'"), ('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_fcurrent/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_build_surfaces_emits_auto0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_fcurrent/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_fcurrent/sources/capability-resources/example/resource-map.json'"), ('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_f2/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_build_surfaces_emits_auto0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_f2/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_f2/sources/capability-resources/example/resource-map.json'"), ('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declaredcurrent/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_build_surfaces_emits_auto0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declaredcurrent/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declaredcurrent/sources/capability-resources/example/resource-map.json'")]
+
+/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/shutil.py:608: Error
+___________ test_invalid_promotion_verdict_refusal_is_an_exact_noop ____________
+
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_invalid_promotion_verdict0')
+
+    def test_invalid_promotion_verdict_refusal_is_an_exact_noop(tmp_path: Path) -> None:
+        workspace = tmp_path / "workspace"
+>       shutil.copytree(
+            ROOT,
+            workspace,
+            ignore=shutil.ignore_patterns(".git", ".pytest_cache", "__pycache__", ".DS_Store"),
+        )
+
+tests/test_uac_promotion_apply.py:220: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/shutil.py:654: in copytree
+    return _copytree(entries=entries, src=src, dst=dst, symlinks=symlinks,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+entries = [<DirEntry '.meta'>, <DirEntry '.gemini'>, <DirEntry 'tooling'>, <DirEntry 'evals'>, <DirEntry '.grok'>, <DirEntry 'pytest.ini'>, ...]
+src = PosixPath('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts')
+dst = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_invalid_promotion_verdict0/workspace')
+symlinks = False
+ignore = <function ignore_patterns.<locals>._ignore_patterns at 0x1098905c0>
+copy_function = <function copy2 at 0x107b36da0>
+ignore_dangling_symlinks = False, dirs_exist_ok = False
+
+    def _copytree(entries, src, dst, symlinks, ignore, copy_function,
+                  ignore_dangling_symlinks, dirs_exist_ok=False):
+        if ignore is not None:
+            ignored_names = ignore(os.fspath(src), [x.name for x in entries])
+        else:
+            ignored_names = ()
+    
+        os.makedirs(dst, exist_ok=dirs_exist_ok)
+        errors = []
+        use_srcentry = copy_function is copy2 or copy_function is copy
+    
+        for srcentry in entries:
+            if srcentry.name in ignored_names:
+                continue
+            srcname = os.path.join(src, srcentry.name)
+            dstname = os.path.join(dst, srcentry.name)
+            srcobj = srcentry if use_srcentry else srcname
+            try:
+                is_symlink = srcentry.is_symlink()
+                if is_symlink and os.name == 'nt':
+                    # Special check for directory junctions, which appear as
+                    # symlinks but we want to recurse.
+                    lstat = srcentry.stat(follow_symlinks=False)
+                    if lstat.st_reparse_tag == stat.IO_REPARSE_TAG_MOUNT_POINT:
+                        is_symlink = False
+                if is_symlink:
+                    linkto = os.readlink(srcname)
+                    if symlinks:
+                        # We can't just leave it to `copy_function` because legacy
+                        # code with a custom `copy_function` may rely on copytree
+                        # doing the right thing.
+                        os.symlink(linkto, dstname)
+                        copystat(srcobj, dstname, follow_symlinks=not symlinks)
+                    else:
+                        # ignore dangling symlink if the flag is on
+                        if not os.path.exists(linkto) and ignore_dangling_symlinks:
+                            continue
+                        # otherwise let the copy occur. copy2 will raise an error
+                        if srcentry.is_dir():
+                            copytree(srcobj, dstname, symlinks, ignore,
+                                     copy_function, ignore_dangling_symlinks,
+                                     dirs_exist_ok)
+                        else:
+                            copy_function(srcobj, dstname)
+                elif srcentry.is_dir():
+                    copytree(srcobj, dstname, symlinks, ignore, copy_function,
+                             ignore_dangling_symlinks, dirs_exist_ok)
+                else:
+                    # Will raise a SpecialFileError for unsupported file types
+                    copy_function(srcobj, dstname)
+            # catch the Error from the recursive copytree so that we can
+            # continue with other files
+            except Error as err:
+                errors.extend(err.args[0])
+            except OSError as why:
+                errors.append((srcname, dstname, str(why)))
+        try:
+            copystat(src, dst)
+        except OSError as why:
+            # Copying file access times may fail on Windows
+            if getattr(why, 'winerror', None) is None:
+                errors.append((src, dst, str(why)))
+        if errors:
+>           raise Error(errors)
+E           shutil.Error: [('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declared2/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_invalid_promotion_verdict0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declared2/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declared2/sources/capability-resources/example/resource-map.json'"), ('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_fcurrent/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_invalid_promotion_verdict0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_fcurrent/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_fcurrent/sources/capability-resources/example/resource-map.json'"), ('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_f2/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_invalid_promotion_verdict0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_f2/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_f2/sources/capability-resources/example/resource-map.json'"), ('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declaredcurrent/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_invalid_promotion_verdict0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declaredcurrent/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declaredcurrent/sources/capability-resources/example/resource-map.json'")]
+
+/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/shutil.py:608: Error
+_______ test_blocked_promoted_baseline_materialization_is_an_exact_noop ________
+
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_blocked_promoted_baseline0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x109807a00>
+
+    def test_blocked_promoted_baseline_materialization_is_an_exact_noop(
+        tmp_path: Path,
+        monkeypatch: pytest.MonkeyPatch,
+    ) -> None:
+        workspace = tmp_path / "workspace"
+>       shutil.copytree(
+            ROOT,
+            workspace,
+            ignore=shutil.ignore_patterns(".git", ".pytest_cache", "__pycache__", ".DS_Store"),
+        )
+
+tests/test_uac_promotion_apply.py:269: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/shutil.py:654: in copytree
+    return _copytree(entries=entries, src=src, dst=dst, symlinks=symlinks,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+entries = [<DirEntry '.meta'>, <DirEntry '.gemini'>, <DirEntry 'tooling'>, <DirEntry 'evals'>, <DirEntry '.grok'>, <DirEntry 'pytest.ini'>, ...]
+src = PosixPath('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts')
+dst = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_blocked_promoted_baseline0/workspace')
+symlinks = False
+ignore = <function ignore_patterns.<locals>._ignore_patterns at 0x1098907d0>
+copy_function = <function copy2 at 0x107b36da0>
+ignore_dangling_symlinks = False, dirs_exist_ok = False
+
+    def _copytree(entries, src, dst, symlinks, ignore, copy_function,
+                  ignore_dangling_symlinks, dirs_exist_ok=False):
+        if ignore is not None:
+            ignored_names = ignore(os.fspath(src), [x.name for x in entries])
+        else:
+            ignored_names = ()
+    
+        os.makedirs(dst, exist_ok=dirs_exist_ok)
+        errors = []
+        use_srcentry = copy_function is copy2 or copy_function is copy
+    
+        for srcentry in entries:
+            if srcentry.name in ignored_names:
+                continue
+            srcname = os.path.join(src, srcentry.name)
+            dstname = os.path.join(dst, srcentry.name)
+            srcobj = srcentry if use_srcentry else srcname
+            try:
+                is_symlink = srcentry.is_symlink()
+                if is_symlink and os.name == 'nt':
+                    # Special check for directory junctions, which appear as
+                    # symlinks but we want to recurse.
+                    lstat = srcentry.stat(follow_symlinks=False)
+                    if lstat.st_reparse_tag == stat.IO_REPARSE_TAG_MOUNT_POINT:
+                        is_symlink = False
+                if is_symlink:
+                    linkto = os.readlink(srcname)
+                    if symlinks:
+                        # We can't just leave it to `copy_function` because legacy
+                        # code with a custom `copy_function` may rely on copytree
+                        # doing the right thing.
+                        os.symlink(linkto, dstname)
+                        copystat(srcobj, dstname, follow_symlinks=not symlinks)
+                    else:
+                        # ignore dangling symlink if the flag is on
+                        if not os.path.exists(linkto) and ignore_dangling_symlinks:
+                            continue
+                        # otherwise let the copy occur. copy2 will raise an error
+                        if srcentry.is_dir():
+                            copytree(srcobj, dstname, symlinks, ignore,
+                                     copy_function, ignore_dangling_symlinks,
+                                     dirs_exist_ok)
+                        else:
+                            copy_function(srcobj, dstname)
+                elif srcentry.is_dir():
+                    copytree(srcobj, dstname, symlinks, ignore, copy_function,
+                             ignore_dangling_symlinks, dirs_exist_ok)
+                else:
+                    # Will raise a SpecialFileError for unsupported file types
+                    copy_function(srcobj, dstname)
+            # catch the Error from the recursive copytree so that we can
+            # continue with other files
+            except Error as err:
+                errors.extend(err.args[0])
+            except OSError as why:
+                errors.append((srcname, dstname, str(why)))
+        try:
+            copystat(src, dst)
+        except OSError as why:
+            # Copying file access times may fail on Windows
+            if getattr(why, 'winerror', None) is None:
+                errors.append((src, dst, str(why)))
+        if errors:
+>           raise Error(errors)
+E           shutil.Error: [('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declared2/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_blocked_promoted_baseline0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declared2/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declared2/sources/capability-resources/example/resource-map.json'"), ('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_fcurrent/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_blocked_promoted_baseline0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_fcurrent/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_fcurrent/sources/capability-resources/example/resource-map.json'"), ('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_f2/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_blocked_promoted_baseline0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_f2/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_f2/sources/capability-resources/example/resource-map.json'"), ('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declaredcurrent/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_blocked_promoted_baseline0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declaredcurrent/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declaredcurrent/sources/capability-resources/example/resource-map.json'")]
+
+/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/shutil.py:608: Error
+________ test_uac_promotion_toctou_refusal_leaves_entire_workspace_noop ________
+
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_uac_promotion_toctou_refu0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10983cf50>
+
+    def test_uac_promotion_toctou_refusal_leaves_entire_workspace_noop(
+        tmp_path: Path,
+        monkeypatch: pytest.MonkeyPatch,
+    ) -> None:
+        workspace = tmp_path / "workspace"
+>       shutil.copytree(
+            ROOT,
+            workspace,
+            ignore=shutil.ignore_patterns(".git", ".pytest_cache", "__pycache__", ".DS_Store"),
+        )
+
+tests/test_uac_promotion_apply.py:409: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/shutil.py:654: in copytree
+    return _copytree(entries=entries, src=src, dst=dst, symlinks=symlinks,
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+entries = [<DirEntry '.meta'>, <DirEntry '.gemini'>, <DirEntry 'tooling'>, <DirEntry 'evals'>, <DirEntry '.grok'>, <DirEntry 'pytest.ini'>, ...]
+src = PosixPath('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts')
+dst = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_uac_promotion_toctou_refu0/workspace')
+symlinks = False
+ignore = <function ignore_patterns.<locals>._ignore_patterns at 0x10993f110>
+copy_function = <function copy2 at 0x107b36da0>
+ignore_dangling_symlinks = False, dirs_exist_ok = False
+
+    def _copytree(entries, src, dst, symlinks, ignore, copy_function,
+                  ignore_dangling_symlinks, dirs_exist_ok=False):
+        if ignore is not None:
+            ignored_names = ignore(os.fspath(src), [x.name for x in entries])
+        else:
+            ignored_names = ()
+    
+        os.makedirs(dst, exist_ok=dirs_exist_ok)
+        errors = []
+        use_srcentry = copy_function is copy2 or copy_function is copy
+    
+        for srcentry in entries:
+            if srcentry.name in ignored_names:
+                continue
+            srcname = os.path.join(src, srcentry.name)
+            dstname = os.path.join(dst, srcentry.name)
+            srcobj = srcentry if use_srcentry else srcname
+            try:
+                is_symlink = srcentry.is_symlink()
+                if is_symlink and os.name == 'nt':
+                    # Special check for directory junctions, which appear as
+                    # symlinks but we want to recurse.
+                    lstat = srcentry.stat(follow_symlinks=False)
+                    if lstat.st_reparse_tag == stat.IO_REPARSE_TAG_MOUNT_POINT:
+                        is_symlink = False
+                if is_symlink:
+                    linkto = os.readlink(srcname)
+                    if symlinks:
+                        # We can't just leave it to `copy_function` because legacy
+                        # code with a custom `copy_function` may rely on copytree
+                        # doing the right thing.
+                        os.symlink(linkto, dstname)
+                        copystat(srcobj, dstname, follow_symlinks=not symlinks)
+                    else:
+                        # ignore dangling symlink if the flag is on
+                        if not os.path.exists(linkto) and ignore_dangling_symlinks:
+                            continue
+                        # otherwise let the copy occur. copy2 will raise an error
+                        if srcentry.is_dir():
+                            copytree(srcobj, dstname, symlinks, ignore,
+                                     copy_function, ignore_dangling_symlinks,
+                                     dirs_exist_ok)
+                        else:
+                            copy_function(srcobj, dstname)
+                elif srcentry.is_dir():
+                    copytree(srcobj, dstname, symlinks, ignore, copy_function,
+                             ignore_dangling_symlinks, dirs_exist_ok)
+                else:
+                    # Will raise a SpecialFileError for unsupported file types
+                    copy_function(srcobj, dstname)
+            # catch the Error from the recursive copytree so that we can
+            # continue with other files
+            except Error as err:
+                errors.extend(err.args[0])
+            except OSError as why:
+                errors.append((srcname, dstname, str(why)))
+        try:
+            copystat(src, dst)
+        except OSError as why:
+            # Copying file access times may fail on Windows
+            if getattr(why, 'winerror', None) is None:
+                errors.append((src, dst, str(why)))
+        if errors:
+>           raise Error(errors)
+E           shutil.Error: [('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declared2/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_uac_promotion_toctou_refu0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declared2/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declared2/sources/capability-resources/example/resource-map.json'"), ('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_fcurrent/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_uac_promotion_toctou_refu0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_fcurrent/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_fcurrent/sources/capability-resources/example/resource-map.json'"), ('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_f2/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_uac_promotion_toctou_refu0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_f2/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_declared_manifest_never_f2/sources/capability-resources/example/resource-map.json'"), ('/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declaredcurrent/sources/capability-resources/example/resource-map.json', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-4662/test_uac_promotion_toctou_refu0/workspace/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declaredcurrent/sources/capability-resources/example/resource-map.json', "[Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/recheck-pytest-tmp/test_topology_rejects_declaredcurrent/sources/capability-resources/example/resource-map.json'")]
+
+/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/shutil.py:608: Error
+=========================== short test summary info ============================
+FAILED tests/test_uac_baselines.py::test_registry_fallback_works_without_git_history
+FAILED tests/test_uac_baselines.py::test_persist_source_baseline_refuses_structurally_noisy_overwrite
+FAILED tests/test_uac_baselines.py::test_materialize_baseline_sources_refreshes_auto_research_from_current_ssot
+FAILED tests/test_uac_import.py::test_uac_apply_writes_ssot_and_descriptor_in_workspace_copy
+FAILED tests/test_uac_import.py::test_uac_apply_refuses_landing_when_quality_gate_fails
+FAILED tests/test_uac_import.py::test_same_slug_apply_does_not_degrade_auto_research_baseline
+FAILED tests/test_uac_import.py::test_apply_payload_refuses_regressed_final_candidate
+FAILED tests/test_uac_import.py::test_build_surfaces_emits_auto_research_bootstrap_resource
+FAILED tests/test_uac_promotion_apply.py::test_invalid_promotion_verdict_refusal_is_an_exact_noop
+FAILED tests/test_uac_promotion_apply.py::test_blocked_promoted_baseline_materialization_is_an_exact_noop
+FAILED tests/test_uac_promotion_apply.py::test_uac_promotion_toctou_refusal_leaves_entire_workspace_noop
+11 failed, 127 passed in 72.74s (0:01:12)

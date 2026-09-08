@@ -1,0 +1,43 @@
+{
+  "verdict": "approved_reviewed_implementation_scope",
+  "prior_findings": "resolved",
+  "helper_sha256": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+  "focused_tests": {
+    "passed": 81,
+    "failed": 0
+  },
+  "packaged_helpers": 18,
+  "route_assemblies": 225,
+  "actual_subprocess_requests": 4,
+  "paid_model_calls": 0,
+  "mode_provenance_rows": 200,
+  "clause_provenance_rows": 186,
+  "source_hash_rows": 26,
+  "report_sha256": "af4eabce63ae3a5ac3327cef046551c38e3588209bb3a4a6cb01100609f826ac",
+  "requirements": {
+    "S17": {
+      "implementation": "verified_in_reviewed_scope",
+      "evidence": "RECHECK.md",
+      "model_comprehension": "not_assessed",
+      "model_behavioral_promotion": "not_established"
+    },
+    "S18": {
+      "implementation": "verified_in_reviewed_scope",
+      "evidence": "RECHECK.md",
+      "model_comprehension": "not_assessed",
+      "model_behavioral_promotion": "not_established"
+    },
+    "U01": {
+      "implementation": "verified_in_reviewed_scope",
+      "evidence": "RECHECK.md",
+      "model_comprehension": "not_assessed",
+      "model_behavioral_promotion": "not_established"
+    },
+    "U07": {
+      "implementation": "verified_in_reviewed_scope",
+      "evidence": "RECHECK.md",
+      "model_comprehension": "not_assessed",
+      "model_behavioral_promotion": "not_established"
+    }
+  }
+}

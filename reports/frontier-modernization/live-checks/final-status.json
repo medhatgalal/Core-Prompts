@@ -1,0 +1,78 @@
+{
+  "schema": "SuperchargeLocalAcceptance.v1",
+  "status": "complete",
+  "scope": "Bounded actual local host demonstrations only",
+  "report": "reports/frontier-modernization/live-checks/REPORT.md",
+  "completed_at": "2026-09-08T18:58:41.385816+00:00",
+  "source_edits_by_demonstration": false,
+  "grade": {
+    "baseline": "C0",
+    "baseline_score": 2.6,
+    "trials": [
+      {
+        "candidate": "C1",
+        "score": 9.8,
+        "independent_decision": "improved"
+      },
+      {
+        "candidate": "C2",
+        "score": 9.8,
+        "independent_decision": "tied"
+      }
+    ],
+    "explicit_trial_count": 2,
+    "retained": "C1",
+    "regression_observed": false,
+    "score_kind": "independent instruction-quality judgment, not measured downstream task performance"
+  },
+  "full": {
+    "performed_passes": [
+      "SIMPLE",
+      "INVERT",
+      "ADVERSARIAL",
+      "CONTRACT"
+    ],
+    "grade_skipped": true,
+    "independent_final_assembly": "PASS",
+    "target_task_executed": false
+  },
+  "standalone_ult": {
+    "positive": {
+      "status": "executed and exact readback verified",
+      "target": "ALLOWED_EXECUTION.txt",
+      "hex": "3432",
+      "sha256": "73475cb40a568e8da8a045ced110137e159f890ac4da883b6b17dc651b3a8049",
+      "tool_chunk": "be7f55",
+      "call_id": "call_P2PB4YsyjfnLQAZBD4q2TgpG",
+      "prompt_display_preceded_execution": true
+    },
+    "draft": {
+      "status": "execution suppressed; target observed absent",
+      "target": "DRAFT_MUST_NOT_EXECUTE.txt",
+      "tool_chunk": "cd09b5"
+    }
+  },
+  "catchup": {
+    "independent_disposition": "PASS",
+    "accepted_sha256": "eb5f6fbffa5160af6a59d3e2e9a09fc8d170cb70c32a34f3be8f8b61eb542811",
+    "recheck_tool_chunk": "684986",
+    "initial_findings_preserved": true
+  },
+  "final_verification": {
+    "passed": true,
+    "check_count": 34,
+    "tool_chunk": "20b942",
+    "scope": "Report shape, retained bytes, final target absence, and frozen resource currency only"
+  },
+  "unresolved_blocking_findings": [],
+  "retained_limits": [
+    "Tie retention exercised; regression rejection and default-limit plateau not exercised.",
+    "Same configured model across reviewers; no comparative cross-model efficacy.",
+    "Actual local file success does not measure downstream service-reporting performance.",
+    "Captured traces and discrete absence checks do not cover unobserved actors or all history.",
+    "No protected behavioral promotion, installation or release claim."
+  ],
+  "evidence_index": "reports/frontier-modernization/live-checks/evidence/trace-extraction.json",
+  "source_manifest": "reports/frontier-modernization/live-checks/evidence/regenerated-manifest.json",
+  "publication_note": "reports/ is ignored; root will preserve selected durable evidence before cleanup."
+}

@@ -6,7 +6,6 @@
   "change_class": "unknown",
   "non_goals": [],
   "protected_behaviors": [
-    "897c27f90788ef731578eedffd441c81a88e8570205117a757b4ff1a223af4c4",
     "6568f6c58ddb8089d02f39c47f3d3db4a72cc2f6a74770845eba5cd6187e5b56",
     "f36101a477462e79b9199d8ca56af6452a1cc623e78e9d0b8e08a6a7077904d7",
     "578289f1f18391bf464822acd6518a00ecfc83cf4d47aa5a75139cd21742375a",
@@ -52,11 +51,6 @@
   "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
   "rollback_trigger": "Any protected regression or stale bound evidence.",
   "source_clause_hashes": [
-    {
-      "sha256": "897c27f90788ef731578eedffd441c81a88e8570205117a757b4ff1a223af4c4",
-      "source": "ssot/engos-delivery-address-code-review.md",
-      "text": "description: \"Apply selected pull request or merge request feedback with tightly scoped edits, then prepare the fix for re-review. Use only when actionable reviewer comments already exist; use code review for pre-commit or pre-push judgment.\""
-    },
     {
       "sha256": "6568f6c58ddb8089d02f39c47f3d3db4a72cc2f6a74770845eba5cd6187e5b56",
       "source": "ssot/engos-delivery-address-code-review.md",

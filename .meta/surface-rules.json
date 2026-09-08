@@ -29,6 +29,28 @@
       "Bundled capability.json resources must remain machine-portable and must not persist build-machine absolute filesystem paths."
     ]
   },
+  "capability_resource_policy": {
+    "manifest": "resource-map.json",
+    "schema_version": "CapabilityResourceMap.v1",
+    "required_fields": ["schema_version", "shared", "routes", "dependencies"],
+    "path_format": "resource-root-relative POSIX paths without a resources/ prefix",
+    "closure_order": "shared then selected routes; dependencies before dependents; stable first occurrence",
+    "all_route": "all explicitly declared routes plus shared resources",
+    "route_format": "nonempty tokens optionally separated by single ASCII spaces; all is reserved",
+    "reject": ["unknown routes", "malformed references", "missing declared files", "dependency cycles", "absolute or traversing paths", "symlink escapes"],
+    "undeclared_archive_policy": "exclude from active assembly",
+    "infrastructure_reference_exemptions": ["resource-map.json", "scripts/load_module.py", "capability.json"],
+    "bundle_schema_version": "CapabilityResourceBundle.v1",
+    "content_binding": "manifest SHA256, selected route, ordered resource paths and SHA256 of exact UTF-8 file bytes",
+    "delivery_claim": "assembled_not_proof_of_consumption",
+    "missing_manifest_policy": "reject explicitly resource-backed entries; preserve legacy entries without a manifest declaration",
+    "source_location_policy": "mode and clause source references identify original files and one-based raw file lines",
+    "notes": [
+      "Required module content must be supplied through host context or successful complete tool reads before dependent work.",
+      "Assembly and matching hashes demonstrate available content, not model consumption, comprehension, or compliant behavior.",
+      "Entry and resource-local resources/ references must resolve to files declared in the manifest and loaded in the selected closure when their owning document is active."
+    ]
+  },
   "tooling": [
     {
       "name": "codex",

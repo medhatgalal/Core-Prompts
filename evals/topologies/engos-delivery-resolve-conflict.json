@@ -49,7 +49,8 @@
     {
       "id": "engos-delivery-resolve-conflict:L25:3840987fa88c",
       "heading": "Tool Boundaries",
-      "source_line": 25,
+      "source": "ssot/engos-delivery-resolve-conflict.md",
+      "source_line": 32,
       "sha256": "3840987fa88c36cdb266534cde7469dd0185cc5887170e8b2f90edc02458200d",
       "text": "- forbidden: silently choosing between incompatible options without explanation, hiding dropped content, or pretending a conflict is resolved without verification",
       "kind": "invariant",
@@ -58,7 +59,8 @@
     {
       "id": "engos-delivery-resolve-conflict:L35:97c998112aba",
       "heading": "Companion Capability Matrix",
-      "source_line": 35,
+      "source": "ssot/engos-delivery-resolve-conflict.md",
+      "source_line": 42,
       "sha256": "97c998112abaa7d5eb4fa8fcb4d5f8623ad6fbe4d3e56ba66b096f14f3724825",
       "text": "| behavior changed and the merged result needs stronger coverage | `engos-quality-testing-review` | verification should include test recommendations, not only conflict cleanup |",
       "kind": "invariant",
@@ -67,7 +69,8 @@
     {
       "id": "engos-delivery-resolve-conflict:L56:1eb8e933c1cc",
       "heading": "Therefore, Success Means:",
-      "source_line": 56,
+      "source": "ssot/engos-delivery-resolve-conflict.md",
+      "source_line": 63,
       "sha256": "1eb8e933c1ccdf2870aab487cf3f7c71ab6c7eac961a00ccd25973553f2b5c6f",
       "text": "- **Explicit trade-offs** when choices must be made",
       "kind": "guarded_invariant",
@@ -76,7 +79,8 @@
     {
       "id": "engos-delivery-resolve-conflict:L88:a27fa257a677",
       "heading": "2.3 Relationship Analysis",
-      "source_line": 88,
+      "source": "ssot/engos-delivery-resolve-conflict.md",
+      "source_line": 95,
       "sha256": "a27fa257a67714de3f2eb7e5709a4b88c3dfca8876a85540cabacdd0341323ff",
       "text": "- **Contradictory**: Incompatible approaches, must choose one",
       "kind": "invariant",
@@ -85,7 +89,8 @@
     {
       "id": "engos-delivery-resolve-conflict:L125:c713f09d41de",
       "heading": "3.2 Check for Contradictions",
-      "source_line": 125,
+      "source": "ssot/engos-delivery-resolve-conflict.md",
+      "source_line": 132,
       "sha256": "c713f09d41def9006d91960a92d175203f8d3e9b5202624573697542f281ef83",
       "text": "- **Do not silently choose** - get user input",
       "kind": "invariant",
@@ -94,7 +99,8 @@
     {
       "id": "engos-delivery-resolve-conflict:L164:77357dbdaba3",
       "heading": "Required Inputs",
-      "source_line": 164,
+      "source": "ssot/engos-delivery-resolve-conflict.md",
+      "source_line": 171,
       "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
       "text": "## Required Inputs",
       "kind": "invariant",
@@ -103,7 +109,8 @@
     {
       "id": "engos-delivery-resolve-conflict:L168:8b8a2747949a",
       "heading": "Required Inputs",
-      "source_line": 168,
+      "source": "ssot/engos-delivery-resolve-conflict.md",
+      "source_line": 175,
       "sha256": "8b8a2747949a1c018c31102f4e73a0712cdfedd424733df2989d5eb3c667fdfb",
       "text": "- any policy or preference constraints that must win",
       "kind": "invariant",
@@ -112,7 +119,8 @@
     {
       "id": "engos-delivery-resolve-conflict:L170:3d4b9f171064",
       "heading": "Required Output",
-      "source_line": 170,
+      "source": "ssot/engos-delivery-resolve-conflict.md",
+      "source_line": 177,
       "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
       "text": "## Required Output",
       "kind": "invariant",
@@ -121,7 +129,8 @@
     {
       "id": "engos-delivery-resolve-conflict:L171:c34906b1f1c3",
       "heading": "Required Output",
-      "source_line": 171,
+      "source": "ssot/engos-delivery-resolve-conflict.md",
+      "source_line": 178,
       "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
       "text": "Every substantial response must include:",
       "kind": "invariant",
@@ -130,7 +139,8 @@
     {
       "id": "engos-delivery-resolve-conflict:L286:69f7808264d4",
       "heading": "Hard Constraints",
-      "source_line": 286,
+      "source": "ssot/engos-delivery-resolve-conflict.md",
+      "source_line": 293,
       "sha256": "69f7808264d4a87da7bcbe65c785525663f161105126efc9165a223ada16a983",
       "text": "2. **Never silently drop content** - If content must be removed, explain why",
       "kind": "guarded_invariant",
@@ -139,7 +149,8 @@
     {
       "id": "engos-delivery-resolve-conflict:L331:4a733c428bbf",
       "heading": "Documentation Conflicts",
-      "source_line": 331,
+      "source": "ssot/engos-delivery-resolve-conflict.md",
+      "source_line": 338,
       "sha256": "4a733c428bbf0b56309663d820a5898f05da26d3978462c6c1d15df770257728",
       "text": "- **Check**: ensure terminology and patterns do not contradict each other",
       "kind": "invariant",

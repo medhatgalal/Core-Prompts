@@ -42,6 +42,7 @@
         "Structural Status (`structural_ready` is not `promote`)"
       ],
       "tool_policy": {
+        "scope": "uac_intake_only",
         "allowed": [
           "deterministic classification",
           "metadata publication",
@@ -51,7 +52,8 @@
           "orchestration",
           "delegation decisions",
           "runtime execution control"
-        ]
+        ],
+        "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
       },
       "resources": [
         "ssot/engos-meta-uac-import.md"
@@ -128,8 +130,8 @@
         "policy_rule_id": "ssot.engos-meta-uac-import",
         "content_sha256": "ssot"
       },
-      "confidence": 0.97,
-      "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+      "confidence": 0.86,
+      "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
       "review_status": "ready_for_orchestrator_review",
       "display_name": "UAC Import \u2014 Capability Intake, Quality Review, and Uplift"
     },
@@ -164,7 +166,7 @@
   },
   "display_name": "UAC Import \u2014 Capability Intake, Quality Review, and Uplift",
   "declared_capability": "skill",
-  "inferred_capability": "skill",
+  "inferred_capability": "both",
   "expected_surface_names": [
     "codex_skill",
     "gemini_skill",
@@ -182,15 +184,169 @@
   ],
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "engos-meta-uac-import",
-  "shared_summary": "Import external prompt, skill, or agent sources into the deterministic UAC uplift and packaging flow.",
+  "shared_summary": "Inspect an external prompt-like source, classify its fit, and prepare a quality-gated Core-Prompts plan, judge, or apply result. Use for capability intake; do not use for ordinary prompt editing or deployment.",
   "shared_constraints": [
-    "No hidden execution.",
+    "No hidden execution. UAC coordinates exhaustive onboarding checks; it does not require a separate paid model API for every import. The invoking agent may prepare semantic repairs within authorized scope, and a separate subagent reviews them.",
     "No packaging claims without evidence.",
     "No deployment during `apply`.",
     "For local folders or GitHub repos, inventory the files first and justify whether they belong under one roof."
   ],
   "modes": [],
   "benchmark_sources": [],
+  "quality_profile": "default",
+  "quality_status": "structural_ready",
+  "judge_reports": [
+    {
+      "pass_number": 1,
+      "status": "structural_ready",
+      "historical_baseline": {
+        "slug": "engos-meta-uac-import",
+        "strategy": "head_snapshot",
+        "group": "current_oracle",
+        "baseline_path": "sources/ssot-baselines/engos-meta-uac-import/baseline.md",
+        "selected_commit": "4bb1f7e5",
+        "richness_score": 2,
+        "line_count": 145,
+        "reason": "Current SSOT baseline source snapshot materialized into the source library because no stronger curated pre-SSOT baseline has been recorded yet.",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "operator_invariants": [
+          "MUST NEVER"
+        ],
+        "scenario_matrix": [
+          {
+            "id": "operational_invocation",
+            "kind": "operational_contract",
+            "label": "operational invocation surface",
+            "must_contain": [
+              "## Invocation"
+            ]
+          }
+        ],
+        "historical_proof": {
+          "current_head_commit": "4bb1f7e5",
+          "current_head_richness_score": 2,
+          "current_head_line_count": 145,
+          "materialized_from_commit": "4bb1f7e5"
+        },
+        "source": "source_library",
+        "verified_by_git_history": false,
+        "has_baseline_text": true
+      },
+      "judge_reports": [
+        {
+          "judge": "source_fidelity",
+          "title": "Source Fidelity and Uplift",
+          "score": 10,
+          "blockers": [],
+          "classification": "reviewed_modernization",
+          "scenario_results": [
+            {
+              "id": "operational_invocation",
+              "kind": "operational_contract",
+              "label": "operational invocation surface",
+              "passed": true,
+              "missing_markers": []
+            },
+            {
+              "id": "operator_invariants",
+              "kind": "hybrid_invariants",
+              "label": "historical operator invariants",
+              "passed": true,
+              "missing_markers": []
+            }
+          ],
+          "reviewed_deltas": [],
+          "requirement_review": {
+            "status": "bound_attestation",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
+          "scorecard": {
+            "baseline_richness": 2,
+            "candidate_richness": 5,
+            "baseline_operational_score": 3,
+            "candidate_operational_score": 3,
+            "baseline_preserved_in_resource": false
+          },
+          "baseline_commit": "4bb1f7e5",
+          "baseline_slug": "engos-meta-uac-import"
+        },
+        {
+          "judge": "operational_richness",
+          "title": "Operational Richness",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "metadata_integrity",
+          "title": "Metadata and Handoff Integrity",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "benchmark_readiness",
+          "title": "Benchmark Readiness and Template Fit",
+          "score": 9,
+          "blockers": [],
+          "scorecard": {
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 8,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          }
+        }
+      ],
+      "blockers": [],
+      "scorecard": {
+        "source_fidelity": 10,
+        "baseline_richness": 2,
+        "candidate_richness": 5,
+        "baseline_operational_score": 3,
+        "candidate_operational_score": 3,
+        "baseline_preserved_in_resource": false,
+        "operational_richness": 10,
+        "metadata_integrity": 10,
+        "benchmark_readiness": 9,
+        "title_clarity": 10,
+        "description_richness": 10,
+        "intent_coverage": 10,
+        "boundary_clarity": 8,
+        "output_specificity": 10,
+        "metadata_completeness": 8,
+        "surface_usability": 10
+      },
+      "template_name": "both",
+      "effective_sha256": "4d81b852a81e7d1cc8b18d41c50b36c9ce97515db66aa1984940eae8e3526571",
+      "semantic_findings": [],
+      "repair_requests": [],
+      "dimension_inventory": [
+        {
+          "dimension": "source_fidelity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "operational_richness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "metadata_integrity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "benchmark_readiness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "semantic_consistency",
+          "status": "no_detected_conflict_not_semantic_proof"
+        }
+      ]
+    }
+  ],
   "consumption_hints": {
     "preferred_use_cases": [
       "external prompt import",
@@ -205,6 +361,8 @@
     "invocation_style": "assistant_first_but_scriptable",
     "requires_human_confirmation": true
   },
+  "quality_pass_count": 1,
+  "quality_stop_reason": "thresholds_met",
   "historical_baseline": {
     "slug": "engos-meta-uac-import",
     "strategy": "head_snapshot",

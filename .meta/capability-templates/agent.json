@@ -40,5 +40,6 @@
     "## Constraints": "## Constraints\n- no hidden orchestration authority\n- no runtime delegation claims\n- no unrelated code changes without explicit instruction",
     "## Examples": "## Examples\n### Example Request\n> Inspect this repo change and produce a deterministic recommendation with explicit boundaries.\n\n### Example Output Shape\n- current state\n- recommendation\n- evidence\n- escalation or next step",
     "## Evaluation Rubric": "## Evaluation Rubric\n| Check | What Passing Looks Like |\n| --- | --- |\n| Operating contract | The agent mission, responsibilities, and escalation path are explicit |\n| Tool boundaries | Allowed and forbidden actions are clear |\n| Output contract | Deliverables are deterministic and reviewable |\n| Advisory discipline | The capability does not claim runtime control it does not own |"
-  }
+  },
+  "section_stub_policy": "authoring references only; never automatically insert as completed semantic repairs"
 }

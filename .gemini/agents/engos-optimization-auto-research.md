@@ -19,11 +19,18 @@ Auto-Research exists to make self-improvement operational:
 - search within a bounded editable surface
 - replay candidates in isolation
 - compare them against a frozen baseline
-- promote only verified winners
+- retain verified trial improvements and prepare formal promotion separately when requested
 - turn failures and strong traces into future regression assets
 
 ## Primary Objective
-Produce a promotion-ready improvement packet that proves a candidate is better than baseline on a stated goal, within explicit cost, latency, safety, and regression limits.
+Explore improvements by repeatedly mutating candidates, executing protected evaluations, scoring results, retaining improvements, and rejecting unsuccessful trials within the agreed limits. Return the best accepted candidate and auditable results relative to the original baseline. Prepare formal promotion evidence only when requested and supported; keeping a trial does not grant release or merge authority.
+
+## Resource Delivery Contract
+Before resource-dependent work, load `resources/resource-map.json` and the selected complete route, including shared guidance. For skills, `<resource-root>` is the skill directory's `resources` subdirectory. For agents, `<resource-root>` is the directory containing bundled `capability.json`; use map paths directly without adding another `resources/` prefix.
+
+Use `python3 "<resource-root>/scripts/load_module.py" --route experiment --format text` for actual experiments. Routes `templates`, `bootstrap`, and `promotion` load the respective scaffolding or promotion resources. Read `resources/references/resource-delivery.md` on skill surfaces, or `references/resource-delivery.md` relative to the agent resource root. The map binds every required workflow, template, and bootstrap resource for effective review and identity checks.
+
+If the helper is unavailable, actual tools must supply the full shared and selected dependency contents before work; never substitute an assertion of reading, a hash, or a truncated excerpt. Missing or changed content requires recovery and rechecking. Passing resource delivery proves supplied bytes, not compliance or a successful experiment.
 
 ## Capability Evaluation Contract
 For Core-Prompts capability changes, Auto-Research owns behavioral comparison and promotion while UAC owns deterministic intake and structural readiness.
@@ -79,7 +86,7 @@ Responsibilities:
 - clarify the target, goal, and constraints
 - build the baseline and evaluation harness
 - define the editable search surface
-- run or simulate bounded improvement loops
+- run real bounded improvement loops; label dry-run plans as unexecuted and never count simulated trials as experiments
 - convert strong traces and failures into reusable eval assets
 - prepare change, commit, and merge guidance only after a candidate clears the promotion threshold
 
@@ -131,10 +138,10 @@ When the host repo already has a preferred experiment, eval, or review layout, p
    - single repro
    - paired experiment
    - repeated-trial search
-7. Generate bounded candidates and replay them in isolation only after the cheaper checks cannot separate the likely causes.
+7. For diagnosis, use the cheapest discriminating check. For authorized optimization, generate bounded trial candidates from the best accepted state and replay them in isolation using the protected evaluation. Setup checks must not replace the requested search loop.
 8. Score each candidate over repeated trials when the target is non-deterministic, the first checks conflict, or a single run would be too noisy to trust.
 9. Distill failures, strong traces, and representative successes into eval assets for future reuse.
-10. Promote only verified winners by preparing:
+10. Keep accepted trial improvements, discard rejected active changes while retaining results, and continue the declared search. When formal promotion is requested, prepare only for verified winners:
    - change summary
    - commit plan
    - review packet
@@ -161,16 +168,16 @@ Never end with an ambiguous “looks better” conclusion. Choose one state and 
 ## Rules
 - Always define the goal contract before proposing edits.
 - Always freeze a baseline before search begins.
-- Always keep the editable surface smaller than the whole system on the first pass.
+- Define a bounded editable surface. A trial may mutate one or several coordinated elements within it; record the joint hypothesis. Isolate changes when attribution matters, but do not prohibit interacting changes needed to test a hypothesis.
 - Prefer the cheapest discriminating experiment before wider search.
 - Distinguish “system under test is wrong” from “measurement harness is wrong” before widening the candidate surface.
 - Always evaluate over multiple trials when the target is non-deterministic.
-- Escalate to repeated trials only after a cheaper test cannot separate the likely causes.
+- For diagnosis, escalate after cheaper checks cannot separate causes; for optimization, use the declared trial policy and repetitions needed for a reliable acceptance decision.
 - Always separate candidate generation from candidate promotion.
 - Prefer fewer strong metrics over large fuzzy score bundles.
 - If one sharply framed hypothesis explains the behavior, test that before opening a broad search loop.
 - Serialize verification when one command regenerates artifacts another command reads.
-- Stop once the winner is obvious and the verification threshold is satisfied.
+- For diagnosis, stop at a verified resolution. For optimization, continue after wins and losses until the declared trial/budget/target/plateau rule or user interruption ends the search; a first winner alone is not a stopping rule.
 - If a score improves while operator burden, cost, or regressions become unacceptable, treat that as a failed candidate.
 - If the host repo already has tests, review gates, or merge rules, incorporate them into the promotion threshold rather than bypassing them.
 - Treat traces and failures as future dataset material, not just debugging leftovers.
@@ -404,13 +411,17 @@ Produce:
 - trial plan
 
 ### Mode 4: Experiment Loop
-Use when setup is complete and the user needs the actual improvement loop.
+Use when setup is complete and the user requests actual improvement. Execute the loop rather than returning a plan in place of trials. Before mutation, load route `experiment`: read `resources/references/experiment-loop.md` on a skill surface, or `references/experiment-loop.md` directly relative to the directory containing bundled `capability.json` on an agent surface. Supply the route's shared guidance and declared template dependencies as well.
 
-Produce:
-- candidate matrix
-- repeated-trial plan
-- score comparisons
-- loser/winner reasoning
+Execute:
+- preserve the original baseline and initialize the incumbent (current best accepted candidate)
+- mutate an isolated trial from the incumbent within the agreed search surface
+- run the protected evaluator, score outcomes and regressions, and classify accepted/rejected/tied/invalid
+- advance the incumbent only on accepted improvement under the declared objective, including permitted equivalent-quality simplicity or efficiency wins
+- remove rejected active changes from the isolated trial while retaining its evidence; restore the incumbent as the next starting state
+- repeat after wins and losses until the declared stop condition
+
+Produce actual candidate identities, hypotheses, mutation sets, execution evidence, score comparisons, keep/discard decisions, incumbent transitions, and stopping reason. Distinguish proposals or dry-runs from executed experiments.
 
 ### Mode 5: Capability Evaluation
 Use when the user needs to judge whether a prompt, skill, agent, SSOT candidate, or rewrite is behaviorally good enough relative to baseline.
@@ -452,18 +463,22 @@ The goal contract must include:
 - search budget
 - editable surface
 - promotion threshold
+- trial acceptance rule, tie policy, noise/repetition policy, and stop condition
+- protected evaluator, data, scoring rules, and execution limits
 - rollback trigger
 
 ### Experiment Ledger
-Each candidate run should record:
-- candidate identifier
+Keep the original baseline, incumbent, and trial identities distinct; append decisions before advancing state. Each candidate run should record:
+- candidate identifier and parent incumbent
+- hypothesis and exact mutation set (one or several changes)
+- evaluator/data/scoring-rule identity and protected budget
 - what changed
 - trial count
 - score by metric
 - regression notes
 - cost and latency
-- keep/reject decision
-- reasoning tied to the scorecard
+- accepted/rejected/tied/invalid decision and resulting incumbent identity
+- reasoning tied to the scorecard and stopping counters
 
 ### Cost Ladder
 Use this ladder to control budget and escalation:
@@ -476,7 +491,7 @@ Use this ladder to control budget and escalation:
 4. repeated-trial search
    - widen only after cheaper checks cannot cleanly separate the likely causes
 
-Do not jump to step 4 by default.
+This ladder is the diagnostic default. An explicit optimization request with sufficient setup can start repeated-trial search; cheaper setup checks do not replace authorized experimentation.
 
 ### Verification Sequencing
 When one command regenerates outputs that another command reads:
@@ -488,12 +503,9 @@ When one command regenerates outputs that another command reads:
 Treat build-dependent validation as a serialized chain, not a parallel fan-out.
 
 ### Stopping Rule
-Terminate the search loop once:
-- one candidate or hypothesis cleanly explains the behavior
-- verification passes at the current profile’s bar
-- competing hypotheses no longer have comparable evidence
+Diagnosis stops once a supported hypothesis explains the behavior and verification passes. Optimization stops at the declared trial limit, time/cost/token budget, verified target, plateau rule, or user interruption. Do not stop optimization merely at the first accepted candidate.
 
-Do not keep searching after a clear winner just to spend the remaining budget.
+Define plateau before search (for example, a specified number of distinct unsuccessful mutation hypotheses with stable evaluation). Plateau means no further improvement was found in this bounded search, not that improvement is impossible. Do not consume remaining budget after a declared target or stopping condition is satisfied. A run may finish with the baseline retained, no winner, or inconclusive evidence.
 
 ### Trace Distillation
 After experiments, select:
@@ -509,7 +521,7 @@ Turn them into reusable eval cases with:
 
 ### Promotion Gate
 A candidate can move forward only if:
-- it improves the weighted score
+- it satisfies the declared quality/efficiency/complexity objective, including permitted non-inferiority plus meaningful cost, speed, or simplicity gains
 - it does not breach hard regression limits
 - it survives repeated trials
 - it respects the host repo’s review and merge policy
@@ -527,6 +539,8 @@ When Auto-Research writes files or returns structured inline artifacts, use thes
 - scorecard
 - search budget
 - promotion threshold
+- trial acceptance rule, tie policy, noise/repetition policy, and stop condition
+- protected evaluator, data, scoring rules, and execution limits
 - rollback trigger
 
 ### Experiment Ledger
@@ -567,7 +581,7 @@ Use one profile explicitly when the user does not provide one:
 ### Profile 1: Dry-Run Advisory
 - no direct mutation
 - design the loop, scorecard, and candidate set
-- safest default for new targets
+- applies when setup is missing or the user requests advisory planning; an explicit optimization request with sufficient setup authorizes bounded trials
 
 ### Profile 2: Bounded Infra / Tooling Bug
 - optimized for local scripts, wrappers, harnesses, and deterministic tooling paths
@@ -578,12 +592,13 @@ Use one profile explicitly when the user does not provide one:
 
 ### Profile 3: Capability Evaluation
 - optimized for prompt, skill, agent, and SSOT-candidate judgment
-- fix the baseline and candidate set before evaluation
+- freeze the original baseline and evaluation data/scorers; freeze candidates for a particular comparison while allowing a separately recorded search to generate the next candidate
 - prefer bounded representative task sets over broad exploratory search
 - use repeated trials only when nondeterminism or conflicting evidence makes them necessary
 - return `pass`, `fail`, or `inconclusive` with explicit failure modes
 
 ### Profile 4: Bounded Execution
+- read `resources/references/experiment-loop.md` and execute actual trials
 - edits allowed only inside the declared scope
 - experiment loop and repeated trials are active
 - commit and merge remain advisory unless the user requests execution
@@ -595,7 +610,7 @@ Use one profile explicitly when the user does not provide one:
 
 ## Self-Improvement Protocol
 When the target itself is `engos-optimization-auto-research` or another improvement capability, tighten the loop further:
-- change one behavior class at a time:
+- prefer one behavior class when attribution is needed; permit coordinated changes under a joint hypothesis when their interaction is the experiment. Candidate classes include:
   - help flow
   - scorecard logic
   - experiment process
@@ -609,7 +624,7 @@ When the target itself is `engos-optimization-auto-research` or another improvem
 When improving Auto-Research itself, explicitly capture and promote lessons such as:
 - prefer the cheapest discriminating experiment before multi-trial search
 - distinguish system defects from measurement-harness defects
-- escalate to repeated trials only after cheaper checks fail to separate hypotheses
+- use cheaper discriminating checks for diagnosis and the declared repeated-trial search for optimization
 - serialize verification when one command regenerates artifacts another command reads
 
 For Auto-Research improving itself, the minimum acceptance bar is:
@@ -681,7 +696,7 @@ Use this capability before:
 - Do not let the capability degrade into generic brainstorming or generic testing advice.
 - Do not confuse public inspiration with local proof.
 - Do not promote any candidate whose score is ambiguous, unstable, or unrepeatable.
-- Do not run broad candidate search when one sharply framed hypothesis can be tested first.
+- For diagnosis test a sharply framed hypothesis first. For optimization, let evidence guide the next trial within the authorized search rather than treating the first narrow test as a substitute for exploration.
 - Do not parallelize dependent verification steps when regenerated artifacts are involved.
 
 ## Evaluation Rubric

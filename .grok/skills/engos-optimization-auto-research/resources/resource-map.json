@@ -1,0 +1,36 @@
+{
+  "schema_version": "CapabilityResourceMap.v1",
+  "shared": [
+    "references/resource-delivery.md"
+  ],
+  "routes": {
+    "experiment": [
+      "references/experiment-loop.md"
+    ],
+    "templates": [
+      "templates/goal-contract.md.tmpl",
+      "templates/experiment-ledger.md.tmpl",
+      "templates/scorecard.json.tmpl",
+      "templates/promotion-packet.md.tmpl"
+    ],
+    "bootstrap": [
+      "bootstrap.py"
+    ],
+    "promotion": [
+      "templates/promotion-packet.md.tmpl"
+    ]
+  },
+  "dependencies": {
+    "references/experiment-loop.md": [
+      "templates/goal-contract.md.tmpl",
+      "templates/experiment-ledger.md.tmpl",
+      "templates/scorecard.json.tmpl"
+    ],
+    "bootstrap.py": [
+      "templates/goal-contract.md.tmpl",
+      "templates/experiment-ledger.md.tmpl",
+      "templates/scorecard.json.tmpl",
+      "templates/promotion-packet.md.tmpl"
+    ]
+  }
+}

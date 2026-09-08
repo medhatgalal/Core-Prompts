@@ -1,0 +1,31 @@
+{
+  "event": "optimization_trial",
+  "trial_id": "trial-02",
+  "trial_number": 2,
+  "parent_incumbent": "seed-from-original-trial-01",
+  "parent_sha256": "5bbee2fd62ddf4073214f4592e3ef2a5b9ddae0651b4df2fcdd909bcaa2b4ed3",
+  "hypothesis": "CONTROL ONLY: equal-score tie control",
+  "mutation_set": [
+    "active/trial-02.py"
+  ],
+  "candidate_archive": "trials/trial-02/normalize.py",
+  "candidate_sha256": "bec87f91055cfdeaa93bfcfc0dbc71410e4680dc346374f9f507e669795519c2",
+  "evaluator_sha256": "5a4ef4ee317495e126a6e8fbf5d6fc44153622fe579b5540770d0f05ec328fc4",
+  "contract_sha256": "22657e71b4214fe1418a0b902698459a459bb0581f5222d543d4d82b6928d3cf",
+  "score_before": {
+    "passed": 16,
+    "ast_nodes": 60
+  },
+  "score_after": {
+    "passed": 16,
+    "ast_nodes": 60
+  },
+  "regressions": [],
+  "decision": "tied",
+  "reason": "Equal correctness and complexity; keep incumbent.",
+  "resulting_incumbent": "seed-from-original-trial-01",
+  "raw_result": "raw/trial-02.json",
+  "repetitions": 1,
+  "remaining_trial_budget": 1,
+  "at": "2026-09-08T18:37:16.955106+00:00"
+}

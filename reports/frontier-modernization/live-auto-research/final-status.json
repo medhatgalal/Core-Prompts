@@ -1,0 +1,56 @@
+{
+  "fixture_verdict": "pass",
+  "formal_promotion": "hold; not requested or established",
+  "optimization_trials": 3,
+  "optimization_decisions": {
+    "accepted": 3,
+    "rejected": 0,
+    "tied": 0,
+    "invalid": 0
+  },
+  "genuine_correctness_gain_cases": 10,
+  "baseline_passed": 6,
+  "incumbent_passed": 16,
+  "case_count": 16,
+  "incumbent_id": "trial-03",
+  "incumbent_sha256": "87649224bef74bdb41260e7bb8bd1b393da872a54a41579f7197d20eea857250",
+  "simplicity_metric": "AST node count; proxy only, no speed claim",
+  "fully_correct_incumbent_ast_sequence": [
+    60,
+    19,
+    14
+  ],
+  "initial_integrity_controls": 3,
+  "same_controller_transition_controls": {
+    "count": 3,
+    "decisions": [
+      "rejected",
+      "tied",
+      "accepted"
+    ],
+    "optimization_trials_added": 0,
+    "optimization_gain_added": 0
+  },
+  "independent_verification": {
+    "initial": {
+      "verdict": "pass",
+      "checks": 155,
+      "report": "verification/independent-review.md"
+    },
+    "transition_followup": {
+      "verdict": "pass",
+      "checks": 76,
+      "report": "verification/independent-transition-review.md"
+    }
+  },
+  "evaluator_sha256": "5a4ef4ee317495e126a6e8fbf5d6fc44153622fe579b5540770d0f05ec328fc4",
+  "stop_reason": "declared 3-trial optimization budget exhausted; separate controls and review completed",
+  "preserved_original_summary_sha256": "a501b61652cab3d0cba0b4651fadbbe6ab3ee08044a6720dd82e9bcde1e3006a",
+  "limitations": [
+    "Visible deterministic fixture only",
+    "AST metric is not speed/readability/global-optimum evidence",
+    "No real losing or tied optimization hypothesis; those transitions are shown by prescribed controls",
+    "Invalid-candidate controller branch, crash/timeout recovery, durable transactions and hostile-code isolation untested",
+    "No formal capability promotion or frontier/model comparison"
+  ]
+}

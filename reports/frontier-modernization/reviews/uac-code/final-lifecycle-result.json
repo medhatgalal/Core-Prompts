@@ -1,0 +1,91 @@
+[
+  {
+    "quality_loop": "on",
+    "variation": "revoked",
+    "status": "stale_evidence",
+    "no_writes": true
+  },
+  {
+    "quality_loop": "on",
+    "variation": "bytes_only_changed",
+    "status": "stale_evidence",
+    "no_writes": true
+  },
+  {
+    "quality_loop": "on",
+    "variation": "removed",
+    "status": "stale_evidence",
+    "no_writes": true
+  },
+  {
+    "quality_loop": "on",
+    "variation": "corrupt_json",
+    "status": "stale_evidence",
+    "no_writes": true
+  },
+  {
+    "quality_loop": "on",
+    "variation": "replacement_path",
+    "status": "stale_evidence",
+    "no_writes": true
+  },
+  {
+    "quality_loop": "on",
+    "variation": "captured_path_only_revoked",
+    "status": "stale_evidence",
+    "no_writes": true
+  },
+  {
+    "quality_loop": "on",
+    "variation": "revoked_at_confirmation",
+    "status": "stale_evidence",
+    "no_writes": true
+  },
+  {
+    "quality_loop": "off",
+    "variation": "revoked",
+    "status": "stale_evidence",
+    "no_writes": true
+  },
+  {
+    "quality_loop": "off",
+    "variation": "bytes_only_changed",
+    "status": "stale_evidence",
+    "no_writes": true
+  },
+  {
+    "quality_loop": "off",
+    "variation": "removed",
+    "status": "stale_evidence",
+    "no_writes": true
+  },
+  {
+    "quality_loop": "off",
+    "variation": "corrupt_json",
+    "status": "stale_evidence",
+    "no_writes": true
+  },
+  {
+    "quality_loop": "off",
+    "variation": "replacement_path",
+    "status": "stale_evidence",
+    "no_writes": true
+  },
+  {
+    "quality_loop": "off",
+    "variation": "captured_path_only_revoked",
+    "status": "stale_evidence",
+    "no_writes": true
+  },
+  {
+    "quality_loop": "off",
+    "variation": "revoked_at_confirmation",
+    "status": "stale_evidence",
+    "no_writes": true
+  },
+  {
+    "variation": "unchanged_positive_control",
+    "status": "apply_failed_validation",
+    "exact_ssot_written": true
+  }
+]

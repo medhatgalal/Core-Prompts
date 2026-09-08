@@ -1,0 +1,13 @@
+[
+  "tests/test_uac_baselines.py::test_registry_fallback_works_without_git_history",
+  "tests/test_uac_baselines.py::test_persist_source_baseline_refuses_structurally_noisy_overwrite",
+  "tests/test_uac_baselines.py::test_materialize_baseline_sources_refreshes_auto_research_from_current_ssot",
+  "tests/test_uac_import.py::test_uac_apply_writes_ssot_and_descriptor_in_workspace_copy",
+  "tests/test_uac_import.py::test_uac_apply_refuses_landing_when_quality_gate_fails",
+  "tests/test_uac_import.py::test_same_slug_apply_does_not_degrade_auto_research_baseline",
+  "tests/test_uac_import.py::test_apply_payload_refuses_regressed_final_candidate",
+  "tests/test_uac_import.py::test_build_surfaces_emits_auto_research_bootstrap_resource",
+  "tests/test_uac_promotion_apply.py::test_invalid_promotion_verdict_refusal_is_an_exact_noop",
+  "tests/test_uac_promotion_apply.py::test_blocked_promoted_baseline_materialization_is_an_exact_noop",
+  "tests/test_uac_promotion_apply.py::test_uac_promotion_toctou_refusal_leaves_entire_workspace_noop"
+]

@@ -1,0 +1,766 @@
+{
+  "verdict": "pass",
+  "scope": "Independent verification of separately labeled state-transition controls using the unchanged real trial() implementation",
+  "formal_promotion": "hold; not requested or established",
+  "created_at": "2026-09-08T18:40:41.364775+00:00",
+  "reviewer_task_id": "01a08247-96ae-78d2-9ca4-f391f61ee3f4",
+  "runtime": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+  "runner_sha256": "025678cc6651c1235e8c202879c79e192d462b9d6db33bbde9888152d079b94d",
+  "wrapper_sha256": "473454b0956b157d52fc14843b4305af9c1b160136d18b2659e176f83f561ce1",
+  "verifier_sha256": "14898737d098650d54f302b777e532aa28cc19d4d702269d28bc812eba74a95a",
+  "control_contract_sha256": "cd6f47fbed90632be018cb63462884a580671ba0d7fca3e8b4e8d773b3dfad23",
+  "evaluator_sha256": "5a4ef4ee317495e126a6e8fbf5d6fc44153622fe579b5540770d0f05ec328fc4",
+  "checks": [
+    {
+      "check": "authorized cwd, HEAD and branch retained",
+      "pass": true
+    },
+    {
+      "check": "runner identical to initial independently reviewed implementation",
+      "pass": true
+    },
+    {
+      "check": "control seed comes from accepted original scanner",
+      "pass": true
+    },
+    {
+      "check": "control-only declaration and unchanged real trial count",
+      "pass": true
+    },
+    {
+      "check": "control wrapper preserved original tracked inputs",
+      "pass": true
+    },
+    {
+      "check": "package: ssot/engos-optimization-auto-research.md",
+      "pass": true
+    },
+    {
+      "check": "package: .codex/skills/engos-optimization-auto-research/SKILL.md",
+      "pass": true
+    },
+    {
+      "check": "package: .codex/skills/engos-optimization-auto-research/resources/bootstrap.py",
+      "pass": true
+    },
+    {
+      "check": "package: .codex/skills/engos-optimization-auto-research/resources/capability.json",
+      "pass": true
+    },
+    {
+      "check": "package: .codex/skills/engos-optimization-auto-research/resources/references/experiment-loop.md",
+      "pass": true
+    },
+    {
+      "check": "package: .codex/skills/engos-optimization-auto-research/resources/references/resource-delivery.md",
+      "pass": true
+    },
+    {
+      "check": "package: .codex/skills/engos-optimization-auto-research/resources/resource-map.json",
+      "pass": true
+    },
+    {
+      "check": "package: .codex/skills/engos-optimization-auto-research/resources/scripts/load_module.py",
+      "pass": true
+    },
+    {
+      "check": "package: .codex/skills/engos-optimization-auto-research/resources/templates/experiment-ledger.md.tmpl",
+      "pass": true
+    },
+    {
+      "check": "package: .codex/skills/engos-optimization-auto-research/resources/templates/goal-contract.md.tmpl",
+      "pass": true
+    },
+    {
+      "check": "package: .codex/skills/engos-optimization-auto-research/resources/templates/promotion-packet.md.tmpl",
+      "pass": true
+    },
+    {
+      "check": "package: .codex/skills/engos-optimization-auto-research/resources/templates/scorecard.json.tmpl",
+      "pass": true
+    },
+    {
+      "check": "original and copied protected identity: protected/evaluator.py",
+      "pass": true
+    },
+    {
+      "check": "original and copied protected identity: protected/goal-contract.json",
+      "pass": true
+    },
+    {
+      "check": "original and copied protected identity: original/normalize.py",
+      "pass": true
+    },
+    {
+      "check": "original and copied protected identity: preservation-sentinel.txt",
+      "pass": true
+    },
+    {
+      "check": "control manifest is exact protected manifest copy",
+      "pass": true
+    },
+    {
+      "check": "host-called wrapper byte-identical to reviewed wrapper",
+      "pass": true
+    },
+    {
+      "check": "host actual wrapper process succeeded",
+      "pass": true
+    },
+    {
+      "check": "host actual outputs equal control ledger and summary",
+      "pass": true
+    },
+    {
+      "check": "actual host transition tool record located",
+      "pass": true
+    },
+    {
+      "check": "fresh seed execution exactly matches accepted scanner",
+      "pass": true
+    },
+    {
+      "check": "only runner ROOT context redirected",
+      "pass": true
+    },
+    {
+      "check": "trial code loaded from original unchanged source path",
+      "pass": true
+    },
+    {
+      "check": "tie control changes bytes but has identical AST",
+      "pass": true
+    },
+    {
+      "check": "trial-01: independently constructed control source equals archived control",
+      "pass": true
+    },
+    {
+      "check": "trial-01: independently recomputed score and AST nodes",
+      "pass": true
+    },
+    {
+      "check": "trial-01: actual same-controller decision equals independent derivation",
+      "pass": true
+    },
+    {
+      "check": "trial-01: parent retained through loss and tie",
+      "pass": true
+    },
+    {
+      "check": "trial-01: replay event equals historical event except timestamp",
+      "pass": true
+    },
+    {
+      "check": "trial-01: original transition-call output equals ledger",
+      "pass": true
+    },
+    {
+      "check": "trial-01: identical captured evaluator output and hash",
+      "pass": true
+    },
+    {
+      "check": "trial-01: original raw score consistent with output",
+      "pass": true
+    },
+    {
+      "check": "trial-01: process succeeded under original evaluator and limits",
+      "pass": true
+    },
+    {
+      "check": "trial-01: state-after evidence agrees",
+      "pass": true
+    },
+    {
+      "check": "trial-01: incumbent bytes reflect decision",
+      "pass": true
+    },
+    {
+      "check": "trial-01: rejected/tied/accepted active copy disposed, archive retained",
+      "pass": true
+    },
+    {
+      "check": "trial-01: original fixture unchanged after controller call",
+      "pass": true
+    },
+    {
+      "check": "trial-02: independently constructed control source equals archived control",
+      "pass": true
+    },
+    {
+      "check": "trial-02: independently recomputed score and AST nodes",
+      "pass": true
+    },
+    {
+      "check": "trial-02: actual same-controller decision equals independent derivation",
+      "pass": true
+    },
+    {
+      "check": "trial-02: parent retained through loss and tie",
+      "pass": true
+    },
+    {
+      "check": "trial-02: replay event equals historical event except timestamp",
+      "pass": true
+    },
+    {
+      "check": "trial-02: original transition-call output equals ledger",
+      "pass": true
+    },
+    {
+      "check": "trial-02: identical captured evaluator output and hash",
+      "pass": true
+    },
+    {
+      "check": "trial-02: original raw score consistent with output",
+      "pass": true
+    },
+    {
+      "check": "trial-02: process succeeded under original evaluator and limits",
+      "pass": true
+    },
+    {
+      "check": "trial-02: state-after evidence agrees",
+      "pass": true
+    },
+    {
+      "check": "trial-02: incumbent bytes reflect decision",
+      "pass": true
+    },
+    {
+      "check": "trial-02: rejected/tied/accepted active copy disposed, archive retained",
+      "pass": true
+    },
+    {
+      "check": "trial-02: original fixture unchanged after controller call",
+      "pass": true
+    },
+    {
+      "check": "trial-03: independently constructed control source equals archived control",
+      "pass": true
+    },
+    {
+      "check": "trial-03: independently recomputed score and AST nodes",
+      "pass": true
+    },
+    {
+      "check": "trial-03: actual same-controller decision equals independent derivation",
+      "pass": true
+    },
+    {
+      "check": "trial-03: parent retained through loss and tie",
+      "pass": true
+    },
+    {
+      "check": "trial-03: replay event equals historical event except timestamp",
+      "pass": true
+    },
+    {
+      "check": "trial-03: original transition-call output equals ledger",
+      "pass": true
+    },
+    {
+      "check": "trial-03: identical captured evaluator output and hash",
+      "pass": true
+    },
+    {
+      "check": "trial-03: original raw score consistent with output",
+      "pass": true
+    },
+    {
+      "check": "trial-03: process succeeded under original evaluator and limits",
+      "pass": true
+    },
+    {
+      "check": "trial-03: state-after evidence agrees",
+      "pass": true
+    },
+    {
+      "check": "trial-03: incumbent bytes reflect decision",
+      "pass": true
+    },
+    {
+      "check": "trial-03: rejected/tied/accepted active copy disposed, archive retained",
+      "pass": true
+    },
+    {
+      "check": "trial-03: original fixture unchanged after controller call",
+      "pass": true
+    },
+    {
+      "check": "exact rejected/tied/accepted sequence independently executed",
+      "pass": true
+    },
+    {
+      "check": "control and replay active directories both empty",
+      "pass": true
+    },
+    {
+      "check": "final original control state equals final snapshot",
+      "pass": true
+    },
+    {
+      "check": "new replica final incumbent equals existing control result",
+      "pass": true
+    },
+    {
+      "check": "all frozen, replica and package identities still match",
+      "pass": true
+    },
+    {
+      "check": "original fixture and transition evidence unchanged",
+      "pass": true
+    },
+    {
+      "check": "initial independent review unchanged",
+      "pass": true
+    }
+  ],
+  "transitions": [
+    {
+      "control": 1,
+      "decision": "rejected",
+      "parent": "seed-from-original-trial-01",
+      "resulting_incumbent": "seed-from-original-trial-01",
+      "score": {
+        "passed": 6,
+        "ast_nodes": 10
+      },
+      "regressions": [
+        "combining_character",
+        "crlf",
+        "emoji",
+        "internal_newline",
+        "internal_tab",
+        "mixed_runs",
+        "nonbreaking_space",
+        "repeated_spaces",
+        "unicode_em_space",
+        "vertical_whitespace"
+      ],
+      "candidate_sha256": "9dddc7b60600c6f6e45190da9fe055d16883d9d13c3ec00479245255c2978459",
+      "incumbent_sha256": "5bbee2fd62ddf4073214f4592e3ef2a5b9ddae0651b4df2fcdd909bcaa2b4ed3"
+    },
+    {
+      "control": 2,
+      "decision": "tied",
+      "parent": "seed-from-original-trial-01",
+      "resulting_incumbent": "seed-from-original-trial-01",
+      "score": {
+        "passed": 16,
+        "ast_nodes": 60
+      },
+      "regressions": [],
+      "candidate_sha256": "bec87f91055cfdeaa93bfcfc0dbc71410e4680dc346374f9f507e669795519c2",
+      "incumbent_sha256": "5bbee2fd62ddf4073214f4592e3ef2a5b9ddae0651b4df2fcdd909bcaa2b4ed3"
+    },
+    {
+      "control": 3,
+      "decision": "accepted",
+      "parent": "seed-from-original-trial-01",
+      "resulting_incumbent": "trial-03",
+      "score": {
+        "passed": 16,
+        "ast_nodes": 14
+      },
+      "regressions": [],
+      "candidate_sha256": "87649224bef74bdb41260e7bb8bd1b393da872a54a41579f7197d20eea857250",
+      "incumbent_sha256": "87649224bef74bdb41260e7bb8bd1b393da872a54a41579f7197d20eea857250"
+    }
+  ],
+  "original_optimization_trials": 3,
+  "optimization_trials_added": 0,
+  "claimed_optimization_gain_added": 0,
+  "actual_evaluator_processes": 4,
+  "replay_directory": "verification/transition-replay",
+  "historical_provenance": {
+    "host_session": "/Users/medhat.galal/.codex/sessions/2026/09/08/rollout-2026-09-08T14-21-47-01a08241-3656-7832-ae51-9d33f361756f.jsonl",
+    "record": {
+      "chunk": "37ca1f",
+      "call_id": "call_aNReHEdFx6q5Q1m3RtQyJX0w",
+      "call_line": 254,
+      "output_line": 257,
+      "timestamp": "2026-09-08T18:37:17.090Z",
+      "exit_code": 0,
+      "wrapper_sha256": "473454b0956b157d52fc14843b4305af9c1b160136d18b2659e176f83f561ce1",
+      "tool_output_sha256": "35f76941f6a17fcc8b3a3115b161bc0639cc93a5716a295a0410e429799b2443"
+    }
+  },
+  "seed_execution": {
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-I",
+      "-B",
+      "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/verification/transition-replay/protected/evaluator.py",
+      "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/verification/transition-replay/incumbent/normalize.py"
+    ],
+    "exit_code": 0,
+    "stdout_sha256": "4a899fcb34b70272a71e4444bf97c3eec09a4039365e3323b4c28fba961b2517"
+  },
+  "original_fixture_snapshot_before_and_after": {
+    "controls/negative-control-invalid-syntax.py": {
+      "sha256": "0261724eeb714bbc7dcb7f5c000484399cb54c98f289b15d38187c63525df060",
+      "mode": "0o644"
+    },
+    "controls/negative-control-mutated-evaluator.py": {
+      "sha256": "57666a6faee54de24f8693917a887a2148a72f6b711616b6782d44b41d78f287",
+      "mode": "0o644"
+    },
+    "controls/negative-control-wrong-output.py": {
+      "sha256": "9dddc7b60600c6f6e45190da9fe055d16883d9d13c3ec00479245255c2978459",
+      "mode": "0o644"
+    },
+    "controls/results.json": {
+      "sha256": "e7d87e5946025a41f9dd9bd5818304ae40a13f6bac1bb9cd6419b1a4784c5608",
+      "mode": "0o644"
+    },
+    "incumbent/normalize.py": {
+      "sha256": "87649224bef74bdb41260e7bb8bd1b393da872a54a41579f7197d20eea857250",
+      "mode": "0o644"
+    },
+    "ledger.jsonl": {
+      "sha256": "36bebf4187dbe8411692197cfe986ac57424b701e8cd195dfd06a78f9792a437",
+      "mode": "0o644"
+    },
+    "original/normalize.py": {
+      "sha256": "9dddc7b60600c6f6e45190da9fe055d16883d9d13c3ec00479245255c2978459",
+      "mode": "0o444"
+    },
+    "preservation-sentinel.txt": {
+      "sha256": "6d62b508ac38369d44116eadae212c6f6e9256559b512f3804fc95c2a84afa8e",
+      "mode": "0o644"
+    },
+    "protected/evaluator.py": {
+      "sha256": "5a4ef4ee317495e126a6e8fbf5d6fc44153622fe579b5540770d0f05ec328fc4",
+      "mode": "0o444"
+    },
+    "protected/goal-contract.json": {
+      "sha256": "22657e71b4214fe1418a0b902698459a459bb0581f5222d543d4d82b6928d3cf",
+      "mode": "0o444"
+    },
+    "protected/manifest.json": {
+      "sha256": "5b83dabd5fdce3c7f1ea131d7e964659f1c762839cde88dac630644d5d7f2d6e",
+      "mode": "0o444"
+    },
+    "raw/baseline.json": {
+      "sha256": "0e91bd39fc5f2f2edb584762f413da4eac5f53f4bd298bca3cb0782954e29cf3",
+      "mode": "0o644"
+    },
+    "raw/baseline.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    "raw/baseline.stdout.txt": {
+      "sha256": "2301dbe3cca72540ed3d79b220c65a79edec5458df98907ada9587ee7a51068d",
+      "mode": "0o644"
+    },
+    "raw/final-baseline.json": {
+      "sha256": "3e96a8787dee5fa89936411092d2a2b0f165bb000d876024924573614047a2d6",
+      "mode": "0o644"
+    },
+    "raw/final-baseline.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    "raw/final-baseline.stdout.txt": {
+      "sha256": "2301dbe3cca72540ed3d79b220c65a79edec5458df98907ada9587ee7a51068d",
+      "mode": "0o644"
+    },
+    "raw/final-incumbent.json": {
+      "sha256": "4344e2fb80ecdbda8fdedd59645f243c8a2c44e43fbda2b2e8cbf10b5566ba32",
+      "mode": "0o644"
+    },
+    "raw/final-incumbent.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    "raw/final-incumbent.stdout.txt": {
+      "sha256": "6ddd4f532cc8745c6bd8a1256e0e71080e627438c6766ee4357726d78767943d",
+      "mode": "0o644"
+    },
+    "raw/negative-control-evaluator-mutation.json": {
+      "sha256": "54f9b0129bc155f815152f3cc94b11470c1bf36e6f7c027ff3247c43979282c1",
+      "mode": "0o644"
+    },
+    "raw/negative-control-invalid-syntax.json": {
+      "sha256": "1f72ca10b113abd8bd124a3bd3908c16074cc71dccbb2cb0e4dc968d796ccb09",
+      "mode": "0o644"
+    },
+    "raw/negative-control-invalid-syntax.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    "raw/negative-control-invalid-syntax.stdout.txt": {
+      "sha256": "a283324d569ac5cf88fdc981b6cdd7da0fd3fb67801e8d04db0c8aa51e7a9a3e",
+      "mode": "0o644"
+    },
+    "raw/negative-control-wrong-output.json": {
+      "sha256": "ecdf7eb31ab3fb66dc16daf7187a65549feeb98787ba08b7ba9016807ed67899",
+      "mode": "0o644"
+    },
+    "raw/negative-control-wrong-output.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    "raw/negative-control-wrong-output.stdout.txt": {
+      "sha256": "2301dbe3cca72540ed3d79b220c65a79edec5458df98907ada9587ee7a51068d",
+      "mode": "0o644"
+    },
+    "raw/resource-delivery-command.json": {
+      "sha256": "e8e49d16a9f21927ccb08756abe8aea76fa4c428186344fd63af8ac52a69005a",
+      "mode": "0o644"
+    },
+    "raw/resource-delivery.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    "raw/resource-delivery.stdout.txt": {
+      "sha256": "86ebeed1c7700c95c8a3dd9ebe7f16c47b067329c969e6434030560b9be89540",
+      "mode": "0o644"
+    },
+    "raw/trial-01.json": {
+      "sha256": "e2a6c807a6845e17c4b06a17647ee8b31d9762568fbd2a67fbfd3e008a6c109d",
+      "mode": "0o644"
+    },
+    "raw/trial-01.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    "raw/trial-01.stdout.txt": {
+      "sha256": "4a899fcb34b70272a71e4444bf97c3eec09a4039365e3323b4c28fba961b2517",
+      "mode": "0o644"
+    },
+    "raw/trial-02.json": {
+      "sha256": "be263627d9408b50d3760848a49f48c034f5acc1ad4326b18e5a84521f54408e",
+      "mode": "0o644"
+    },
+    "raw/trial-02.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    "raw/trial-02.stdout.txt": {
+      "sha256": "429df3432ecf0d29fe913c32ee5dc0b6ca059bf199603d664556bbb9b9b56c70",
+      "mode": "0o644"
+    },
+    "raw/trial-03.json": {
+      "sha256": "4a6989b64ead40c3d8f34b0bb8e8b4a37ae6190216fdb5d9c876f8e11fade069",
+      "mode": "0o644"
+    },
+    "raw/trial-03.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    "raw/trial-03.stdout.txt": {
+      "sha256": "6ddd4f532cc8745c6bd8a1256e0e71080e627438c6766ee4357726d78767943d",
+      "mode": "0o644"
+    },
+    "report.md": {
+      "sha256": "aed2cddc02d8be63f959c6643082c5b4e38de645e43f279aad139771f1e57065",
+      "mode": "0o644"
+    },
+    "run_fixture.py": {
+      "sha256": "025678cc6651c1235e8c202879c79e192d462b9d6db33bbde9888152d079b94d",
+      "mode": "0o644"
+    },
+    "run_transition_controls.py": {
+      "sha256": "473454b0956b157d52fc14843b4305af9c1b160136d18b2659e176f83f561ce1",
+      "mode": "0o644"
+    },
+    "state.json": {
+      "sha256": "581005ff2f89139721d93b085aa5d437d7e6a9bd4b5e50310e92ffcfc0db6058",
+      "mode": "0o644"
+    },
+    "summary.json": {
+      "sha256": "a501b61652cab3d0cba0b4651fadbbe6ab3ee08044a6720dd82e9bcde1e3006a",
+      "mode": "0o644"
+    },
+    "tool-provenance.md": {
+      "sha256": "5f3aa089cba04b8ee632b53fa5f5c7ef5af06a7c3ffaae846e71afd52e101c24",
+      "mode": "0o644"
+    },
+    "transition-controls/control-contract.json": {
+      "sha256": "cd6f47fbed90632be018cb63462884a580671ba0d7fca3e8b4e8d773b3dfad23",
+      "mode": "0o644"
+    },
+    "transition-controls/incumbent/normalize.py": {
+      "sha256": "87649224bef74bdb41260e7bb8bd1b393da872a54a41579f7197d20eea857250",
+      "mode": "0o644"
+    },
+    "transition-controls/ledger.jsonl": {
+      "sha256": "33a1e7e4c80d76d2d7b1134582be46befb2fae05304f938e413e5f3d6b668eae",
+      "mode": "0o644"
+    },
+    "transition-controls/original/normalize.py": {
+      "sha256": "9dddc7b60600c6f6e45190da9fe055d16883d9d13c3ec00479245255c2978459",
+      "mode": "0o444"
+    },
+    "transition-controls/preservation-sentinel.txt": {
+      "sha256": "6d62b508ac38369d44116eadae212c6f6e9256559b512f3804fc95c2a84afa8e",
+      "mode": "0o444"
+    },
+    "transition-controls/protected/evaluator.py": {
+      "sha256": "5a4ef4ee317495e126a6e8fbf5d6fc44153622fe579b5540770d0f05ec328fc4",
+      "mode": "0o444"
+    },
+    "transition-controls/protected/goal-contract.json": {
+      "sha256": "22657e71b4214fe1418a0b902698459a459bb0581f5222d543d4d82b6928d3cf",
+      "mode": "0o444"
+    },
+    "transition-controls/protected/manifest.json": {
+      "sha256": "5b83dabd5fdce3c7f1ea131d7e964659f1c762839cde88dac630644d5d7f2d6e",
+      "mode": "0o444"
+    },
+    "transition-controls/raw/transition-call-1.stdout.txt": {
+      "sha256": "01f10272504e2d3c302f13ff535d07b1252cc4c7ba3005b7cce62f889e5f069a",
+      "mode": "0o644"
+    },
+    "transition-controls/raw/transition-call-2.stdout.txt": {
+      "sha256": "b3790bfc45675c6b287cebce2a73d11a36d1ff11ab275049b8cfd1a640ac2040",
+      "mode": "0o644"
+    },
+    "transition-controls/raw/transition-call-3.stdout.txt": {
+      "sha256": "d9af5f9b0d4bf5d76758b51036368ee10b775ad30cf0a0b1adee6da6ee4a229b",
+      "mode": "0o644"
+    },
+    "transition-controls/raw/trial-01.json": {
+      "sha256": "431220c38cb7629816a6f8cc736ef97ff0e1d3d3611ca8c3f85cf3318c4c43c0",
+      "mode": "0o644"
+    },
+    "transition-controls/raw/trial-01.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    "transition-controls/raw/trial-01.stdout.txt": {
+      "sha256": "2301dbe3cca72540ed3d79b220c65a79edec5458df98907ada9587ee7a51068d",
+      "mode": "0o644"
+    },
+    "transition-controls/raw/trial-02.json": {
+      "sha256": "166b5c199720154d0a6b531ae6619494c9c74129beb5af669fc2305361e97237",
+      "mode": "0o644"
+    },
+    "transition-controls/raw/trial-02.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    "transition-controls/raw/trial-02.stdout.txt": {
+      "sha256": "eda71c8bc4f196aa000d1fc920c7781b2f3a5f67211d6047cb8f2205d0c95b7b",
+      "mode": "0o644"
+    },
+    "transition-controls/raw/trial-03.json": {
+      "sha256": "00261d9382a3fd1b0901da5159ec4548ed0f7b553a6b02b1bd732219bb00ee0e",
+      "mode": "0o644"
+    },
+    "transition-controls/raw/trial-03.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    "transition-controls/raw/trial-03.stdout.txt": {
+      "sha256": "6ddd4f532cc8745c6bd8a1256e0e71080e627438c6766ee4357726d78767943d",
+      "mode": "0o644"
+    },
+    "transition-controls/seed-state.json": {
+      "sha256": "bfb51cca022b373d83f60c015b97a044656075c6504d3372ce847cb067b98d95",
+      "mode": "0o644"
+    },
+    "transition-controls/state-after-control-1.json": {
+      "sha256": "4b31401a14a1c1b3da061cf2211af4c54d426d2cb1d70d2d36d416b527a40aeb",
+      "mode": "0o644"
+    },
+    "transition-controls/state-after-control-2.json": {
+      "sha256": "279a10b09255b77493fd3983eb84393fa8586f7af41a823d575b1adf6cafadb7",
+      "mode": "0o644"
+    },
+    "transition-controls/state-after-control-3.json": {
+      "sha256": "fd02df186c36e1a037d59187b2914d3c4e79157c26ae2f891f15df4600ad8e78",
+      "mode": "0o644"
+    },
+    "transition-controls/state.json": {
+      "sha256": "fd02df186c36e1a037d59187b2914d3c4e79157c26ae2f891f15df4600ad8e78",
+      "mode": "0o644"
+    },
+    "transition-controls/summary.json": {
+      "sha256": "0c4be0aa99e869269ba144f2354cddba8308ccde5db8f734e7207824e1eeb6bf",
+      "mode": "0o644"
+    },
+    "transition-controls/trials/trial-01/disposal.json": {
+      "sha256": "7bd9c06eb167dc4fd5069905569b98d9819f4fa1efdae41d362f17937a0dc42a",
+      "mode": "0o644"
+    },
+    "transition-controls/trials/trial-01/normalize.py": {
+      "sha256": "9dddc7b60600c6f6e45190da9fe055d16883d9d13c3ec00479245255c2978459",
+      "mode": "0o444"
+    },
+    "transition-controls/trials/trial-02/disposal.json": {
+      "sha256": "7bd9c06eb167dc4fd5069905569b98d9819f4fa1efdae41d362f17937a0dc42a",
+      "mode": "0o644"
+    },
+    "transition-controls/trials/trial-02/normalize.py": {
+      "sha256": "bec87f91055cfdeaa93bfcfc0dbc71410e4680dc346374f9f507e669795519c2",
+      "mode": "0o444"
+    },
+    "transition-controls/trials/trial-03/disposal.json": {
+      "sha256": "7bd9c06eb167dc4fd5069905569b98d9819f4fa1efdae41d362f17937a0dc42a",
+      "mode": "0o644"
+    },
+    "transition-controls/trials/trial-03/normalize.py": {
+      "sha256": "87649224bef74bdb41260e7bb8bd1b393da872a54a41579f7197d20eea857250",
+      "mode": "0o444"
+    },
+    "trials/proposal-01.py": {
+      "sha256": "5bbee2fd62ddf4073214f4592e3ef2a5b9ddae0651b4df2fcdd909bcaa2b4ed3",
+      "mode": "0o644"
+    },
+    "trials/proposal-02.py": {
+      "sha256": "6bfb5aed470269e5374527dcbf993e6165c91bc0bc3c04184c7f402a1b880cd4",
+      "mode": "0o644"
+    },
+    "trials/proposal-03.py": {
+      "sha256": "87649224bef74bdb41260e7bb8bd1b393da872a54a41579f7197d20eea857250",
+      "mode": "0o644"
+    },
+    "trials/trial-01/disposal.json": {
+      "sha256": "7bd9c06eb167dc4fd5069905569b98d9819f4fa1efdae41d362f17937a0dc42a",
+      "mode": "0o644"
+    },
+    "trials/trial-01/normalize.py": {
+      "sha256": "5bbee2fd62ddf4073214f4592e3ef2a5b9ddae0651b4df2fcdd909bcaa2b4ed3",
+      "mode": "0o444"
+    },
+    "trials/trial-02/disposal.json": {
+      "sha256": "7bd9c06eb167dc4fd5069905569b98d9819f4fa1efdae41d362f17937a0dc42a",
+      "mode": "0o644"
+    },
+    "trials/trial-02/normalize.py": {
+      "sha256": "6bfb5aed470269e5374527dcbf993e6165c91bc0bc3c04184c7f402a1b880cd4",
+      "mode": "0o444"
+    },
+    "trials/trial-03/disposal.json": {
+      "sha256": "7bd9c06eb167dc4fd5069905569b98d9819f4fa1efdae41d362f17937a0dc42a",
+      "mode": "0o644"
+    },
+    "trials/trial-03/normalize.py": {
+      "sha256": "87649224bef74bdb41260e7bb8bd1b393da872a54a41579f7197d20eea857250",
+      "mode": "0o444"
+    }
+  },
+  "initial_review_hashes": {
+    "independent-review.json": "afcaef9a1c8bf8b22415f588d4ec7c2f10f866be5796d106ad7e3dbc02cfef20",
+    "independent-review.md": "6a3518f05a2cb758fa55884680980dfda98c3f48a7c79d4294a4330c38b7800f",
+    "independent_replay.py": "7934f24b6d34acc2b8de82cee7199b3fcd6631f5938958aeab29f31ee73bd333"
+  },
+  "coverage": {
+    "same_trial_function": true,
+    "rejection_retains_parent": true,
+    "tie_retains_parent": true,
+    "rejected_active_candidate_disposed": true,
+    "tied_active_candidate_disposed": true,
+    "archives_retained": true,
+    "later_acceptance_after_loss_and_tie": true
+  },
+  "limits": [
+    "These are prescribed negative/tie/positive controls, not three new optimization hypotheses or additional gains.",
+    "The original search still had three accepted trials and no losing/tied optimization trial; controls close only its controller-state coverage gap.",
+    "Controller invalid-candidate state, timeout/crash recovery, crash-consistent durability and hostile-code isolation remain untested.",
+    "No formal promotion, held-out generalization, frontier-model benchmark, statistical or runtime-speed claim is supported."
+  ]
+}

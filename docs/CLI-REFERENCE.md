@@ -330,3 +330,16 @@ Choose Codex, Kiro, and Grok with an explicit skills-only profile. Codex skills 
 under `.agents/skills`; Grok gets native `.grok/skills` packages. Preview the exact
 write set and preserve unknown or customized copies before applying. See
 [installation profiles and rollback](INSTALL-PROFILES.md).
+
+## Resolve a module resource package
+
+From an emitted skill directory:
+
+```bash
+python3 resources/scripts/load_module.py --route /grade --format text
+python3 resources/scripts/load_module.py --route "/adversarial /debate /deep" --format json
+```
+
+The helper is read-only and uses the standard library. It emits the selected dependency closure and bound content identifiers; output can be large because required text is not summarized. On agent surfaces, locate the helper relative to the directory containing the bundled `capability.json`.
+
+For reviewed semantic intake, `bin/uac judge <candidate> --requirement-review <review.json>` and `bin/uac apply <candidate> --requirement-review <review.json> --yes` accept independently reviewed, hash-bound requirement dispositions. They do not imply behavioral promotion. See [UAC usage](UAC-USAGE.md#resource-aware-and-reviewed-modernization).

@@ -1,0 +1,79 @@
+{
+  "schema": "IndependentSimpleReviewEvidence.v1",
+  "verdict": "NEEDS_CHANGES",
+  "finding_ids": [
+    "S1"
+  ],
+  "artifact": "reports/frontier-modernization/live-checks/full/pass-1-draft.md",
+  "host_thread_id": "01a08234-e21f-70f1-bda9-1d252bf32804",
+  "workspace": {
+    "cwd": "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts",
+    "branch": "AI/frontier-capability-modernization",
+    "head": "c9d6de07b4d1918970a5f70350cf50200a6a0ff4",
+    "dirty_path_count": 558,
+    "state_policy": "Existing changes preserved; writes scoped to full/reviews/simple/."
+  },
+  "tool_results": [
+    {
+      "chunk_id": "34044d",
+      "purpose": "Workspace, branch, HEAD, dirty-state count, and host thread identity",
+      "exit_code": 0,
+      "full_payload": true
+    },
+    {
+      "chunk_id": "769706",
+      "purpose": "Actual complete emitted /ult resource payload",
+      "command": "python3 .codex/skills/engos-meta-supercharge/resources/scripts/load_module.py --route /ult --format text",
+      "exit_code": 0,
+      "full_payload": true
+    },
+    {
+      "chunk_id": "3c2654",
+      "purpose": "Actual complete emitted /full resource payload including SIMPLE and all route dependencies",
+      "command": "python3 .codex/skills/engos-meta-supercharge/resources/scripts/load_module.py --route /full --format text",
+      "exit_code": 0,
+      "full_payload": true
+    },
+    {
+      "chunk_id": "d449f9",
+      "purpose": "Full input, contract v1, and pass 1 draft reads with line numbers and SHA-256",
+      "exit_code": 0,
+      "full_payload": true
+    },
+    {
+      "chunk_id": "5586fc",
+      "purpose": "Resource rehash; map and dependencies match delivered resource hashes",
+      "exit_code": 0,
+      "full_payload": true
+    }
+  ],
+  "resource_bundles": {
+    "/ult": {
+      "manifest_sha256": "56fee7ec78e0bac117fb3f517e8577890cfa638c3ac3a758f236ec64ee3df91f",
+      "bundle_sha256": "791152fa6f311a3d9a82a0f1a7fb46166b82eaba069ddaaa83151b25cd28d16f"
+    },
+    "/full": {
+      "manifest_sha256": "56fee7ec78e0bac117fb3f517e8577890cfa638c3ac3a758f236ec64ee3df91f",
+      "bundle_sha256": "d259d4328534c1a630e8dbcb166c96f498254b05858bb6690490ae7904417fcd"
+    }
+  },
+  "resource_sha256": {
+    "references/shared-review.md": "92fe588ebc996fa935204ced17e9761dd8927d7ee6906466988af0ee2285d791",
+    "references/modules/ult.md": "feefa5eeca27af194bf359ab795cae62dfdadc26701b0e6a83425c28f66e68d2",
+    "references/modules/full.md": "f97d60c8609bdbc1da6dc09b94b88b40d8ba6eb076d148f5ada6f850de41231c",
+    "references/modules/simple.md": "8ee70354b7b346145095eb1081732d93166ef79187e2b312a269f4a741e29770",
+    "references/modules/invert.md": "7750f226cc0da7f1237b23f3f13bc5e7212163e8dcaf94d92638e55a14015f40",
+    "references/modules/adversarial.md": "2948880659615f25dbcc3ac2d0a27977f20510932a97536b6b9ad24b86b56d49",
+    "references/modules/contract.md": "15f72081c0f36d7ccba4c58c1202e79d96aad9c4ff704b16f08f26c9a91234ea",
+    "references/modules/grade.md": "a605e4d384f5d9b16e459a96c7e10d7dec52e6496c3e650b7fdbbc32d94af86a"
+  },
+  "input_sha256": {
+    "input.md": "db234e6e10dfab450d9c8fb2fea04e6390278affbb5cf46b6e80a9d9667d3998",
+    "contract-v1.md": "4719d34b21a250bdf7b2a5f8814a2d7285835e01464c223566c3105804f6a846",
+    "pass-1-draft.md": "6baf7135172ab2a1531f15eb9c618f3a554aeb52379f5cb91e3d20ce1b460732"
+  },
+  "limitations": [
+    "Actual tool output establishes delivery, not comprehension; this JSON records evidence and does not replace delivery.",
+    "Independent local textual review only. No target checks, marker creation, operational execution, model CLI calls, or cross-model comparison."
+  ]
+}

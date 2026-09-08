@@ -1,0 +1,1982 @@
+{
+  "verdict": "pass",
+  "scope": "Independent deterministic local fixture acceptance verification only",
+  "formal_promotion": "hold; not requested or evaluated",
+  "created_at": "2026-09-08T18:33:49.256355+00:00",
+  "reviewer_task_id": "01a08247-96ae-78d2-9ca4-f391f61ee3f4",
+  "runtime": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+  "head": "c9d6de07b4d1918970a5f70350cf50200a6a0ff4",
+  "manifest_sha256": "5b83dabd5fdce3c7f1ea131d7e964659f1c762839cde88dac630644d5d7f2d6e",
+  "runner_sha256": "025678cc6651c1235e8c202879c79e192d462b9d6db33bbde9888152d079b94d",
+  "verifier_sha256": "7934f24b6d34acc2b8de82cee7199b3fcd6631f5938958aeab29f31ee73bd333",
+  "resource_route": "experiment fully loaded through actual helper",
+  "checks": [
+    {
+      "check": "cwd and repository match authorized worktree",
+      "pass": true
+    },
+    {
+      "check": "runtime matches frozen executable",
+      "pass": true
+    },
+    {
+      "check": "HEAD matches frozen HEAD",
+      "pass": true
+    },
+    {
+      "check": "branch matches frozen branch",
+      "pass": true
+    },
+    {
+      "check": "frozen_hashes: protected/evaluator.py",
+      "pass": true
+    },
+    {
+      "check": "frozen_hashes: protected/goal-contract.json",
+      "pass": true
+    },
+    {
+      "check": "frozen_hashes: original/normalize.py",
+      "pass": true
+    },
+    {
+      "check": "frozen_hashes: preservation-sentinel.txt",
+      "pass": true
+    },
+    {
+      "check": "package_hashes: ssot/engos-optimization-auto-research.md",
+      "pass": true
+    },
+    {
+      "check": "package_hashes: .codex/skills/engos-optimization-auto-research/SKILL.md",
+      "pass": true
+    },
+    {
+      "check": "package_hashes: .codex/skills/engos-optimization-auto-research/resources/bootstrap.py",
+      "pass": true
+    },
+    {
+      "check": "package_hashes: .codex/skills/engos-optimization-auto-research/resources/capability.json",
+      "pass": true
+    },
+    {
+      "check": "package_hashes: .codex/skills/engos-optimization-auto-research/resources/references/experiment-loop.md",
+      "pass": true
+    },
+    {
+      "check": "package_hashes: .codex/skills/engos-optimization-auto-research/resources/references/resource-delivery.md",
+      "pass": true
+    },
+    {
+      "check": "package_hashes: .codex/skills/engos-optimization-auto-research/resources/resource-map.json",
+      "pass": true
+    },
+    {
+      "check": "package_hashes: .codex/skills/engos-optimization-auto-research/resources/scripts/load_module.py",
+      "pass": true
+    },
+    {
+      "check": "package_hashes: .codex/skills/engos-optimization-auto-research/resources/templates/experiment-ledger.md.tmpl",
+      "pass": true
+    },
+    {
+      "check": "package_hashes: .codex/skills/engos-optimization-auto-research/resources/templates/goal-contract.md.tmpl",
+      "pass": true
+    },
+    {
+      "check": "package_hashes: .codex/skills/engos-optimization-auto-research/resources/templates/promotion-packet.md.tmpl",
+      "pass": true
+    },
+    {
+      "check": "package_hashes: .codex/skills/engos-optimization-auto-research/resources/templates/scorecard.json.tmpl",
+      "pass": true
+    },
+    {
+      "check": "case identifiers unique",
+      "pass": true
+    },
+    {
+      "check": "exactly three optimization trials",
+      "pass": true
+    },
+    {
+      "check": "ledger event sequence",
+      "pass": true
+    },
+    {
+      "check": "baseline: process success and empty stderr",
+      "pass": true
+    },
+    {
+      "check": "baseline: recorded raw stderr empty",
+      "pass": true
+    },
+    {
+      "check": "baseline: recorded output hash",
+      "pass": true
+    },
+    {
+      "check": "baseline: parsed recorded stdout equals stored score",
+      "pass": true
+    },
+    {
+      "check": "baseline: replay byte-identical stdout",
+      "pass": true
+    },
+    {
+      "check": "baseline: candidate hash",
+      "pass": true
+    },
+    {
+      "check": "baseline: historical process provenance",
+      "pass": true
+    },
+    {
+      "check": "baseline: integrity reported after evaluation",
+      "pass": true
+    },
+    {
+      "check": "baseline: exact case inputs and answers",
+      "pass": true
+    },
+    {
+      "check": "baseline: independently derived score",
+      "pass": true
+    },
+    {
+      "check": "baseline: each pass flag independently derived",
+      "pass": true
+    },
+    {
+      "check": "trial-01: process success and empty stderr",
+      "pass": true
+    },
+    {
+      "check": "trial-01: recorded raw stderr empty",
+      "pass": true
+    },
+    {
+      "check": "trial-01: recorded output hash",
+      "pass": true
+    },
+    {
+      "check": "trial-01: parsed recorded stdout equals stored score",
+      "pass": true
+    },
+    {
+      "check": "trial-01: replay byte-identical stdout",
+      "pass": true
+    },
+    {
+      "check": "trial-01: candidate hash",
+      "pass": true
+    },
+    {
+      "check": "trial-01: historical process provenance",
+      "pass": true
+    },
+    {
+      "check": "trial-01: integrity reported after evaluation",
+      "pass": true
+    },
+    {
+      "check": "trial-01: exact case inputs and answers",
+      "pass": true
+    },
+    {
+      "check": "trial-01: independently derived score",
+      "pass": true
+    },
+    {
+      "check": "trial-01: each pass flag independently derived",
+      "pass": true
+    },
+    {
+      "check": "trial-02: process success and empty stderr",
+      "pass": true
+    },
+    {
+      "check": "trial-02: recorded raw stderr empty",
+      "pass": true
+    },
+    {
+      "check": "trial-02: recorded output hash",
+      "pass": true
+    },
+    {
+      "check": "trial-02: parsed recorded stdout equals stored score",
+      "pass": true
+    },
+    {
+      "check": "trial-02: replay byte-identical stdout",
+      "pass": true
+    },
+    {
+      "check": "trial-02: candidate hash",
+      "pass": true
+    },
+    {
+      "check": "trial-02: historical process provenance",
+      "pass": true
+    },
+    {
+      "check": "trial-02: integrity reported after evaluation",
+      "pass": true
+    },
+    {
+      "check": "trial-02: exact case inputs and answers",
+      "pass": true
+    },
+    {
+      "check": "trial-02: independently derived score",
+      "pass": true
+    },
+    {
+      "check": "trial-02: each pass flag independently derived",
+      "pass": true
+    },
+    {
+      "check": "trial-03: process success and empty stderr",
+      "pass": true
+    },
+    {
+      "check": "trial-03: recorded raw stderr empty",
+      "pass": true
+    },
+    {
+      "check": "trial-03: recorded output hash",
+      "pass": true
+    },
+    {
+      "check": "trial-03: parsed recorded stdout equals stored score",
+      "pass": true
+    },
+    {
+      "check": "trial-03: replay byte-identical stdout",
+      "pass": true
+    },
+    {
+      "check": "trial-03: candidate hash",
+      "pass": true
+    },
+    {
+      "check": "trial-03: historical process provenance",
+      "pass": true
+    },
+    {
+      "check": "trial-03: integrity reported after evaluation",
+      "pass": true
+    },
+    {
+      "check": "trial-03: exact case inputs and answers",
+      "pass": true
+    },
+    {
+      "check": "trial-03: independently derived score",
+      "pass": true
+    },
+    {
+      "check": "trial-03: each pass flag independently derived",
+      "pass": true
+    },
+    {
+      "check": "final-baseline: process success and empty stderr",
+      "pass": true
+    },
+    {
+      "check": "final-baseline: recorded raw stderr empty",
+      "pass": true
+    },
+    {
+      "check": "final-baseline: recorded output hash",
+      "pass": true
+    },
+    {
+      "check": "final-baseline: parsed recorded stdout equals stored score",
+      "pass": true
+    },
+    {
+      "check": "final-baseline: replay byte-identical stdout",
+      "pass": true
+    },
+    {
+      "check": "final-baseline: candidate hash",
+      "pass": true
+    },
+    {
+      "check": "final-baseline: historical process provenance",
+      "pass": true
+    },
+    {
+      "check": "final-baseline: integrity reported after evaluation",
+      "pass": true
+    },
+    {
+      "check": "final-baseline: exact case inputs and answers",
+      "pass": true
+    },
+    {
+      "check": "final-baseline: independently derived score",
+      "pass": true
+    },
+    {
+      "check": "final-baseline: each pass flag independently derived",
+      "pass": true
+    },
+    {
+      "check": "final-incumbent: process success and empty stderr",
+      "pass": true
+    },
+    {
+      "check": "final-incumbent: recorded raw stderr empty",
+      "pass": true
+    },
+    {
+      "check": "final-incumbent: recorded output hash",
+      "pass": true
+    },
+    {
+      "check": "final-incumbent: parsed recorded stdout equals stored score",
+      "pass": true
+    },
+    {
+      "check": "final-incumbent: replay byte-identical stdout",
+      "pass": true
+    },
+    {
+      "check": "final-incumbent: candidate hash",
+      "pass": true
+    },
+    {
+      "check": "final-incumbent: historical process provenance",
+      "pass": true
+    },
+    {
+      "check": "final-incumbent: integrity reported after evaluation",
+      "pass": true
+    },
+    {
+      "check": "final-incumbent: exact case inputs and answers",
+      "pass": true
+    },
+    {
+      "check": "final-incumbent: independently derived score",
+      "pass": true
+    },
+    {
+      "check": "final-incumbent: each pass flag independently derived",
+      "pass": true
+    },
+    {
+      "check": "negative-control-wrong-output: process success and empty stderr",
+      "pass": true
+    },
+    {
+      "check": "negative-control-wrong-output: recorded raw stderr empty",
+      "pass": true
+    },
+    {
+      "check": "negative-control-wrong-output: recorded output hash",
+      "pass": true
+    },
+    {
+      "check": "negative-control-wrong-output: parsed recorded stdout equals stored score",
+      "pass": true
+    },
+    {
+      "check": "negative-control-wrong-output: replay byte-identical stdout",
+      "pass": true
+    },
+    {
+      "check": "negative-control-wrong-output: candidate hash",
+      "pass": true
+    },
+    {
+      "check": "negative-control-wrong-output: historical process provenance",
+      "pass": true
+    },
+    {
+      "check": "negative-control-wrong-output: integrity reported after evaluation",
+      "pass": true
+    },
+    {
+      "check": "negative-control-wrong-output: exact case inputs and answers",
+      "pass": true
+    },
+    {
+      "check": "negative-control-wrong-output: independently derived score",
+      "pass": true
+    },
+    {
+      "check": "negative-control-wrong-output: each pass flag independently derived",
+      "pass": true
+    },
+    {
+      "check": "negative-control-invalid-syntax: process success and empty stderr",
+      "pass": true
+    },
+    {
+      "check": "negative-control-invalid-syntax: recorded raw stderr empty",
+      "pass": true
+    },
+    {
+      "check": "negative-control-invalid-syntax: recorded output hash",
+      "pass": true
+    },
+    {
+      "check": "negative-control-invalid-syntax: parsed recorded stdout equals stored score",
+      "pass": true
+    },
+    {
+      "check": "negative-control-invalid-syntax: replay byte-identical stdout",
+      "pass": true
+    },
+    {
+      "check": "negative-control-invalid-syntax: candidate hash",
+      "pass": true
+    },
+    {
+      "check": "negative-control-invalid-syntax: historical process provenance",
+      "pass": true
+    },
+    {
+      "check": "negative-control-invalid-syntax: integrity reported after evaluation",
+      "pass": true
+    },
+    {
+      "check": "negative-control-invalid-syntax: invalid syntax independently confirmed",
+      "pass": true
+    },
+    {
+      "check": "negative-control-invalid-syntax: AST parser rejects source",
+      "pass": true
+    },
+    {
+      "check": "trial-01: parent, number and budget",
+      "pass": true
+    },
+    {
+      "check": "trial-01: identities and archive match proposal",
+      "pass": true
+    },
+    {
+      "check": "trial-01: independent decision and scores",
+      "pass": true
+    },
+    {
+      "check": "trial-01: resulting incumbent",
+      "pass": true
+    },
+    {
+      "check": "trial-01: exact active file removed and archive protected",
+      "pass": true
+    },
+    {
+      "check": "trial-01: disposal assertions",
+      "pass": true
+    },
+    {
+      "check": "trial-02: parent, number and budget",
+      "pass": true
+    },
+    {
+      "check": "trial-02: identities and archive match proposal",
+      "pass": true
+    },
+    {
+      "check": "trial-02: independent decision and scores",
+      "pass": true
+    },
+    {
+      "check": "trial-02: resulting incumbent",
+      "pass": true
+    },
+    {
+      "check": "trial-02: exact active file removed and archive protected",
+      "pass": true
+    },
+    {
+      "check": "trial-02: disposal assertions",
+      "pass": true
+    },
+    {
+      "check": "trial-03: parent, number and budget",
+      "pass": true
+    },
+    {
+      "check": "trial-03: identities and archive match proposal",
+      "pass": true
+    },
+    {
+      "check": "trial-03: independent decision and scores",
+      "pass": true
+    },
+    {
+      "check": "trial-03: resulting incumbent",
+      "pass": true
+    },
+    {
+      "check": "trial-03: exact active file removed and archive protected",
+      "pass": true
+    },
+    {
+      "check": "trial-03: disposal assertions",
+      "pass": true
+    },
+    {
+      "check": "final state agrees with independently retained incumbent",
+      "pass": true
+    },
+    {
+      "check": "state score equals recorded retained trial",
+      "pass": true
+    },
+    {
+      "check": "summary agrees with replay and gain",
+      "pass": true
+    },
+    {
+      "check": "active directory empty",
+      "pass": true
+    },
+    {
+      "check": "controls separate from optimization count",
+      "pass": true
+    },
+    {
+      "check": "wrong output control is a regression",
+      "pass": true
+    },
+    {
+      "check": "invalid candidate is invalid rather than gain",
+      "pass": true
+    },
+    {
+      "check": "changed evaluator refused by independent identity preflight",
+      "pass": true
+    },
+    {
+      "check": "changed evaluator control matches captured result",
+      "pass": true
+    },
+    {
+      "check": "all control archives match result index",
+      "pass": true
+    },
+    {
+      "check": "0eead6: host-recorded successful actual tool result",
+      "pass": true
+    },
+    {
+      "check": "host-delivered complete resource route matches captured bytes",
+      "pass": true
+    },
+    {
+      "check": "c777a4: host-recorded successful actual tool result",
+      "pass": true
+    },
+    {
+      "check": "251dfd: host-recorded successful actual tool result",
+      "pass": true
+    },
+    {
+      "check": "executed runner is byte-identical to reviewed runner",
+      "pass": true
+    },
+    {
+      "check": "538f1b: host-recorded successful actual tool result",
+      "pass": true
+    },
+    {
+      "check": "538f1b: host trial event equals ledger",
+      "pass": true
+    },
+    {
+      "check": "653cc4: host-recorded successful actual tool result",
+      "pass": true
+    },
+    {
+      "check": "653cc4: host trial event equals ledger",
+      "pass": true
+    },
+    {
+      "check": "d516df: host-recorded successful actual tool result",
+      "pass": true
+    },
+    {
+      "check": "d516df: host trial event equals ledger",
+      "pass": true
+    },
+    {
+      "check": "all required original tool chunks present in historical order",
+      "pass": true
+    },
+    {
+      "check": "independent full resource load matches raw delivery and recorded hash",
+      "pass": true
+    },
+    {
+      "check": "reviewed trial function records decision before incumbent copy",
+      "pass": true
+    },
+    {
+      "check": "frozen_hashes: unchanged after replay",
+      "pass": true
+    },
+    {
+      "check": "package_hashes: unchanged after replay",
+      "pass": true
+    },
+    {
+      "check": "all original fixture files and modes unchanged during verification",
+      "pass": true
+    }
+  ],
+  "transitions": [
+    {
+      "trial": "trial-01",
+      "parent": "original",
+      "decision": "accepted",
+      "passed": 16,
+      "ast_nodes": 60,
+      "regressions": []
+    },
+    {
+      "trial": "trial-02",
+      "parent": "trial-01",
+      "decision": "accepted",
+      "passed": 16,
+      "ast_nodes": 19,
+      "regressions": []
+    },
+    {
+      "trial": "trial-03",
+      "parent": "trial-02",
+      "decision": "accepted",
+      "passed": 16,
+      "ast_nodes": 14,
+      "regressions": []
+    }
+  ],
+  "retained_incumbent": {
+    "id": "trial-03",
+    "sha256": "87649224bef74bdb41260e7bb8bd1b393da872a54a41579f7197d20eea857250",
+    "passed": 16,
+    "case_count": 16,
+    "ast_nodes": 14
+  },
+  "gain_cases": 10,
+  "replays": {
+    "baseline": {
+      "candidate": "original/normalize.py",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/protected/evaluator.py",
+        "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/original/normalize.py"
+      ],
+      "cwd": "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/verification",
+      "exit_code": 0,
+      "elapsed_seconds_observed_not_ranked": 0.07601283304393291,
+      "stdout_sha256": "2301dbe3cca72540ed3d79b220c65a79edec5458df98907ada9587ee7a51068d",
+      "result": {
+        "ast_nodes": 10,
+        "candidate_sha256": "9dddc7b60600c6f6e45190da9fe055d16883d9d13c3ec00479245255c2978459",
+        "case_count": 16,
+        "cases": [
+          {
+            "actual": "",
+            "expected": "",
+            "id": "empty",
+            "input": "",
+            "passed": true
+          },
+          {
+            "actual": "plain",
+            "expected": "plain",
+            "id": "unchanged",
+            "input": "plain",
+            "passed": true
+          },
+          {
+            "actual": "hello",
+            "expected": "hello",
+            "id": "trim_ascii",
+            "input": "  hello  ",
+            "passed": true
+          },
+          {
+            "actual": "",
+            "expected": "",
+            "id": "only_whitespace",
+            "input": " \t\n\r\u000b\f",
+            "passed": true
+          },
+          {
+            "actual": "a   b",
+            "expected": "a b",
+            "id": "repeated_spaces",
+            "input": "a   b",
+            "passed": false
+          },
+          {
+            "actual": "a\tb",
+            "expected": "a b",
+            "id": "internal_tab",
+            "input": "a\tb",
+            "passed": false
+          },
+          {
+            "actual": "a\nb",
+            "expected": "a b",
+            "id": "internal_newline",
+            "input": "a\nb",
+            "passed": false
+          },
+          {
+            "actual": "a \n\tb\r\n c",
+            "expected": "a b c",
+            "id": "mixed_runs",
+            "input": " \ta \n\tb\r\n c  ",
+            "passed": false
+          },
+          {
+            "actual": "café  東京",
+            "expected": "café 東京",
+            "id": "nonbreaking_space",
+            "input": "café  東京",
+            "passed": false
+          },
+          {
+            "actual": "東京  مرحبا",
+            "expected": "東京 مرحبا",
+            "id": "unicode_em_space",
+            "input": " 東京  مرحبا ",
+            "passed": false
+          },
+          {
+            "actual": "café 東京 مرحبا",
+            "expected": "café 東京 مرحبا",
+            "id": "unicode_unchanged",
+            "input": "café 東京 مرحبا",
+            "passed": true
+          },
+          {
+            "actual": "🙂\t🚀",
+            "expected": "🙂 🚀",
+            "id": "emoji",
+            "input": " 🙂\t🚀 ",
+            "passed": false
+          },
+          {
+            "actual": "é  café",
+            "expected": "é café",
+            "id": "combining_character",
+            "input": "é  café",
+            "passed": false
+          },
+          {
+            "actual": "a​b",
+            "expected": "a​b",
+            "id": "zero_width_preserved",
+            "input": "a​b",
+            "passed": true
+          },
+          {
+            "actual": "a\u000b\fb",
+            "expected": "a b",
+            "id": "vertical_whitespace",
+            "input": "a\u000b\fb",
+            "passed": false
+          },
+          {
+            "actual": "a\r\nb",
+            "expected": "a b",
+            "id": "crlf",
+            "input": "a\r\nb",
+            "passed": false
+          }
+        ],
+        "failed": 10,
+        "import_statements": 0,
+        "passed": 6,
+        "status": "valid"
+      }
+    },
+    "trial-01": {
+      "candidate": "trials/trial-01/normalize.py",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/protected/evaluator.py",
+        "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/trials/trial-01/normalize.py"
+      ],
+      "cwd": "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/verification",
+      "exit_code": 0,
+      "elapsed_seconds_observed_not_ranked": 0.08310187491588295,
+      "stdout_sha256": "4a899fcb34b70272a71e4444bf97c3eec09a4039365e3323b4c28fba961b2517",
+      "result": {
+        "ast_nodes": 60,
+        "candidate_sha256": "5bbee2fd62ddf4073214f4592e3ef2a5b9ddae0651b4df2fcdd909bcaa2b4ed3",
+        "case_count": 16,
+        "cases": [
+          {
+            "actual": "",
+            "expected": "",
+            "id": "empty",
+            "input": "",
+            "passed": true
+          },
+          {
+            "actual": "plain",
+            "expected": "plain",
+            "id": "unchanged",
+            "input": "plain",
+            "passed": true
+          },
+          {
+            "actual": "hello",
+            "expected": "hello",
+            "id": "trim_ascii",
+            "input": "  hello  ",
+            "passed": true
+          },
+          {
+            "actual": "",
+            "expected": "",
+            "id": "only_whitespace",
+            "input": " \t\n\r\u000b\f",
+            "passed": true
+          },
+          {
+            "actual": "a b",
+            "expected": "a b",
+            "id": "repeated_spaces",
+            "input": "a   b",
+            "passed": true
+          },
+          {
+            "actual": "a b",
+            "expected": "a b",
+            "id": "internal_tab",
+            "input": "a\tb",
+            "passed": true
+          },
+          {
+            "actual": "a b",
+            "expected": "a b",
+            "id": "internal_newline",
+            "input": "a\nb",
+            "passed": true
+          },
+          {
+            "actual": "a b c",
+            "expected": "a b c",
+            "id": "mixed_runs",
+            "input": " \ta \n\tb\r\n c  ",
+            "passed": true
+          },
+          {
+            "actual": "café 東京",
+            "expected": "café 東京",
+            "id": "nonbreaking_space",
+            "input": "café  東京",
+            "passed": true
+          },
+          {
+            "actual": "東京 مرحبا",
+            "expected": "東京 مرحبا",
+            "id": "unicode_em_space",
+            "input": " 東京  مرحبا ",
+            "passed": true
+          },
+          {
+            "actual": "café 東京 مرحبا",
+            "expected": "café 東京 مرحبا",
+            "id": "unicode_unchanged",
+            "input": "café 東京 مرحبا",
+            "passed": true
+          },
+          {
+            "actual": "🙂 🚀",
+            "expected": "🙂 🚀",
+            "id": "emoji",
+            "input": " 🙂\t🚀 ",
+            "passed": true
+          },
+          {
+            "actual": "é café",
+            "expected": "é café",
+            "id": "combining_character",
+            "input": "é  café",
+            "passed": true
+          },
+          {
+            "actual": "a​b",
+            "expected": "a​b",
+            "id": "zero_width_preserved",
+            "input": "a​b",
+            "passed": true
+          },
+          {
+            "actual": "a b",
+            "expected": "a b",
+            "id": "vertical_whitespace",
+            "input": "a\u000b\fb",
+            "passed": true
+          },
+          {
+            "actual": "a b",
+            "expected": "a b",
+            "id": "crlf",
+            "input": "a\r\nb",
+            "passed": true
+          }
+        ],
+        "failed": 0,
+        "import_statements": 0,
+        "passed": 16,
+        "status": "valid"
+      }
+    },
+    "trial-02": {
+      "candidate": "trials/trial-02/normalize.py",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/protected/evaluator.py",
+        "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/trials/trial-02/normalize.py"
+      ],
+      "cwd": "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/verification",
+      "exit_code": 0,
+      "elapsed_seconds_observed_not_ranked": 0.08158225007355213,
+      "stdout_sha256": "429df3432ecf0d29fe913c32ee5dc0b6ca059bf199603d664556bbb9b9b56c70",
+      "result": {
+        "ast_nodes": 19,
+        "candidate_sha256": "6bfb5aed470269e5374527dcbf993e6165c91bc0bc3c04184c7f402a1b880cd4",
+        "case_count": 16,
+        "cases": [
+          {
+            "actual": "",
+            "expected": "",
+            "id": "empty",
+            "input": "",
+            "passed": true
+          },
+          {
+            "actual": "plain",
+            "expected": "plain",
+            "id": "unchanged",
+            "input": "plain",
+            "passed": true
+          },
+          {
+            "actual": "hello",
+            "expected": "hello",
+            "id": "trim_ascii",
+            "input": "  hello  ",
+            "passed": true
+          },
+          {
+            "actual": "",
+            "expected": "",
+            "id": "only_whitespace",
+            "input": " \t\n\r\u000b\f",
+            "passed": true
+          },
+          {
+            "actual": "a b",
+            "expected": "a b",
+            "id": "repeated_spaces",
+            "input": "a   b",
+            "passed": true
+          },
+          {
+            "actual": "a b",
+            "expected": "a b",
+            "id": "internal_tab",
+            "input": "a\tb",
+            "passed": true
+          },
+          {
+            "actual": "a b",
+            "expected": "a b",
+            "id": "internal_newline",
+            "input": "a\nb",
+            "passed": true
+          },
+          {
+            "actual": "a b c",
+            "expected": "a b c",
+            "id": "mixed_runs",
+            "input": " \ta \n\tb\r\n c  ",
+            "passed": true
+          },
+          {
+            "actual": "café 東京",
+            "expected": "café 東京",
+            "id": "nonbreaking_space",
+            "input": "café  東京",
+            "passed": true
+          },
+          {
+            "actual": "東京 مرحبا",
+            "expected": "東京 مرحبا",
+            "id": "unicode_em_space",
+            "input": " 東京  مرحبا ",
+            "passed": true
+          },
+          {
+            "actual": "café 東京 مرحبا",
+            "expected": "café 東京 مرحبا",
+            "id": "unicode_unchanged",
+            "input": "café 東京 مرحبا",
+            "passed": true
+          },
+          {
+            "actual": "🙂 🚀",
+            "expected": "🙂 🚀",
+            "id": "emoji",
+            "input": " 🙂\t🚀 ",
+            "passed": true
+          },
+          {
+            "actual": "é café",
+            "expected": "é café",
+            "id": "combining_character",
+            "input": "é  café",
+            "passed": true
+          },
+          {
+            "actual": "a​b",
+            "expected": "a​b",
+            "id": "zero_width_preserved",
+            "input": "a​b",
+            "passed": true
+          },
+          {
+            "actual": "a b",
+            "expected": "a b",
+            "id": "vertical_whitespace",
+            "input": "a\u000b\fb",
+            "passed": true
+          },
+          {
+            "actual": "a b",
+            "expected": "a b",
+            "id": "crlf",
+            "input": "a\r\nb",
+            "passed": true
+          }
+        ],
+        "failed": 0,
+        "import_statements": 1,
+        "passed": 16,
+        "status": "valid"
+      }
+    },
+    "trial-03": {
+      "candidate": "trials/trial-03/normalize.py",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/protected/evaluator.py",
+        "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/trials/trial-03/normalize.py"
+      ],
+      "cwd": "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/verification",
+      "exit_code": 0,
+      "elapsed_seconds_observed_not_ranked": 0.08985383401159197,
+      "stdout_sha256": "6ddd4f532cc8745c6bd8a1256e0e71080e627438c6766ee4357726d78767943d",
+      "result": {
+        "ast_nodes": 14,
+        "candidate_sha256": "87649224bef74bdb41260e7bb8bd1b393da872a54a41579f7197d20eea857250",
+        "case_count": 16,
+        "cases": [
+          {
+            "actual": "",
+            "expected": "",
+            "id": "empty",
+            "input": "",
+            "passed": true
+          },
+          {
+            "actual": "plain",
+            "expected": "plain",
+            "id": "unchanged",
+            "input": "plain",
+            "passed": true
+          },
+          {
+            "actual": "hello",
+            "expected": "hello",
+            "id": "trim_ascii",
+            "input": "  hello  ",
+            "passed": true
+          },
+          {
+            "actual": "",
+            "expected": "",
+            "id": "only_whitespace",
+            "input": " \t\n\r\u000b\f",
+            "passed": true
+          },
+          {
+            "actual": "a b",
+            "expected": "a b",
+            "id": "repeated_spaces",
+            "input": "a   b",
+            "passed": true
+          },
+          {
+            "actual": "a b",
+            "expected": "a b",
+            "id": "internal_tab",
+            "input": "a\tb",
+            "passed": true
+          },
+          {
+            "actual": "a b",
+            "expected": "a b",
+            "id": "internal_newline",
+            "input": "a\nb",
+            "passed": true
+          },
+          {
+            "actual": "a b c",
+            "expected": "a b c",
+            "id": "mixed_runs",
+            "input": " \ta \n\tb\r\n c  ",
+            "passed": true
+          },
+          {
+            "actual": "café 東京",
+            "expected": "café 東京",
+            "id": "nonbreaking_space",
+            "input": "café  東京",
+            "passed": true
+          },
+          {
+            "actual": "東京 مرحبا",
+            "expected": "東京 مرحبا",
+            "id": "unicode_em_space",
+            "input": " 東京  مرحبا ",
+            "passed": true
+          },
+          {
+            "actual": "café 東京 مرحبا",
+            "expected": "café 東京 مرحبا",
+            "id": "unicode_unchanged",
+            "input": "café 東京 مرحبا",
+            "passed": true
+          },
+          {
+            "actual": "🙂 🚀",
+            "expected": "🙂 🚀",
+            "id": "emoji",
+            "input": " 🙂\t🚀 ",
+            "passed": true
+          },
+          {
+            "actual": "é café",
+            "expected": "é café",
+            "id": "combining_character",
+            "input": "é  café",
+            "passed": true
+          },
+          {
+            "actual": "a​b",
+            "expected": "a​b",
+            "id": "zero_width_preserved",
+            "input": "a​b",
+            "passed": true
+          },
+          {
+            "actual": "a b",
+            "expected": "a b",
+            "id": "vertical_whitespace",
+            "input": "a\u000b\fb",
+            "passed": true
+          },
+          {
+            "actual": "a b",
+            "expected": "a b",
+            "id": "crlf",
+            "input": "a\r\nb",
+            "passed": true
+          }
+        ],
+        "failed": 0,
+        "import_statements": 0,
+        "passed": 16,
+        "status": "valid"
+      }
+    },
+    "final-baseline": {
+      "candidate": "original/normalize.py",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/protected/evaluator.py",
+        "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/original/normalize.py"
+      ],
+      "cwd": "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/verification",
+      "exit_code": 0,
+      "elapsed_seconds_observed_not_ranked": 0.07444341597147286,
+      "stdout_sha256": "2301dbe3cca72540ed3d79b220c65a79edec5458df98907ada9587ee7a51068d",
+      "result": {
+        "ast_nodes": 10,
+        "candidate_sha256": "9dddc7b60600c6f6e45190da9fe055d16883d9d13c3ec00479245255c2978459",
+        "case_count": 16,
+        "cases": [
+          {
+            "actual": "",
+            "expected": "",
+            "id": "empty",
+            "input": "",
+            "passed": true
+          },
+          {
+            "actual": "plain",
+            "expected": "plain",
+            "id": "unchanged",
+            "input": "plain",
+            "passed": true
+          },
+          {
+            "actual": "hello",
+            "expected": "hello",
+            "id": "trim_ascii",
+            "input": "  hello  ",
+            "passed": true
+          },
+          {
+            "actual": "",
+            "expected": "",
+            "id": "only_whitespace",
+            "input": " \t\n\r\u000b\f",
+            "passed": true
+          },
+          {
+            "actual": "a   b",
+            "expected": "a b",
+            "id": "repeated_spaces",
+            "input": "a   b",
+            "passed": false
+          },
+          {
+            "actual": "a\tb",
+            "expected": "a b",
+            "id": "internal_tab",
+            "input": "a\tb",
+            "passed": false
+          },
+          {
+            "actual": "a\nb",
+            "expected": "a b",
+            "id": "internal_newline",
+            "input": "a\nb",
+            "passed": false
+          },
+          {
+            "actual": "a \n\tb\r\n c",
+            "expected": "a b c",
+            "id": "mixed_runs",
+            "input": " \ta \n\tb\r\n c  ",
+            "passed": false
+          },
+          {
+            "actual": "café  東京",
+            "expected": "café 東京",
+            "id": "nonbreaking_space",
+            "input": "café  東京",
+            "passed": false
+          },
+          {
+            "actual": "東京  مرحبا",
+            "expected": "東京 مرحبا",
+            "id": "unicode_em_space",
+            "input": " 東京  مرحبا ",
+            "passed": false
+          },
+          {
+            "actual": "café 東京 مرحبا",
+            "expected": "café 東京 مرحبا",
+            "id": "unicode_unchanged",
+            "input": "café 東京 مرحبا",
+            "passed": true
+          },
+          {
+            "actual": "🙂\t🚀",
+            "expected": "🙂 🚀",
+            "id": "emoji",
+            "input": " 🙂\t🚀 ",
+            "passed": false
+          },
+          {
+            "actual": "é  café",
+            "expected": "é café",
+            "id": "combining_character",
+            "input": "é  café",
+            "passed": false
+          },
+          {
+            "actual": "a​b",
+            "expected": "a​b",
+            "id": "zero_width_preserved",
+            "input": "a​b",
+            "passed": true
+          },
+          {
+            "actual": "a\u000b\fb",
+            "expected": "a b",
+            "id": "vertical_whitespace",
+            "input": "a\u000b\fb",
+            "passed": false
+          },
+          {
+            "actual": "a\r\nb",
+            "expected": "a b",
+            "id": "crlf",
+            "input": "a\r\nb",
+            "passed": false
+          }
+        ],
+        "failed": 10,
+        "import_statements": 0,
+        "passed": 6,
+        "status": "valid"
+      }
+    },
+    "final-incumbent": {
+      "candidate": "incumbent/normalize.py",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/protected/evaluator.py",
+        "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/incumbent/normalize.py"
+      ],
+      "cwd": "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/verification",
+      "exit_code": 0,
+      "elapsed_seconds_observed_not_ranked": 0.0758717090357095,
+      "stdout_sha256": "6ddd4f532cc8745c6bd8a1256e0e71080e627438c6766ee4357726d78767943d",
+      "result": {
+        "ast_nodes": 14,
+        "candidate_sha256": "87649224bef74bdb41260e7bb8bd1b393da872a54a41579f7197d20eea857250",
+        "case_count": 16,
+        "cases": [
+          {
+            "actual": "",
+            "expected": "",
+            "id": "empty",
+            "input": "",
+            "passed": true
+          },
+          {
+            "actual": "plain",
+            "expected": "plain",
+            "id": "unchanged",
+            "input": "plain",
+            "passed": true
+          },
+          {
+            "actual": "hello",
+            "expected": "hello",
+            "id": "trim_ascii",
+            "input": "  hello  ",
+            "passed": true
+          },
+          {
+            "actual": "",
+            "expected": "",
+            "id": "only_whitespace",
+            "input": " \t\n\r\u000b\f",
+            "passed": true
+          },
+          {
+            "actual": "a b",
+            "expected": "a b",
+            "id": "repeated_spaces",
+            "input": "a   b",
+            "passed": true
+          },
+          {
+            "actual": "a b",
+            "expected": "a b",
+            "id": "internal_tab",
+            "input": "a\tb",
+            "passed": true
+          },
+          {
+            "actual": "a b",
+            "expected": "a b",
+            "id": "internal_newline",
+            "input": "a\nb",
+            "passed": true
+          },
+          {
+            "actual": "a b c",
+            "expected": "a b c",
+            "id": "mixed_runs",
+            "input": " \ta \n\tb\r\n c  ",
+            "passed": true
+          },
+          {
+            "actual": "café 東京",
+            "expected": "café 東京",
+            "id": "nonbreaking_space",
+            "input": "café  東京",
+            "passed": true
+          },
+          {
+            "actual": "東京 مرحبا",
+            "expected": "東京 مرحبا",
+            "id": "unicode_em_space",
+            "input": " 東京  مرحبا ",
+            "passed": true
+          },
+          {
+            "actual": "café 東京 مرحبا",
+            "expected": "café 東京 مرحبا",
+            "id": "unicode_unchanged",
+            "input": "café 東京 مرحبا",
+            "passed": true
+          },
+          {
+            "actual": "🙂 🚀",
+            "expected": "🙂 🚀",
+            "id": "emoji",
+            "input": " 🙂\t🚀 ",
+            "passed": true
+          },
+          {
+            "actual": "é café",
+            "expected": "é café",
+            "id": "combining_character",
+            "input": "é  café",
+            "passed": true
+          },
+          {
+            "actual": "a​b",
+            "expected": "a​b",
+            "id": "zero_width_preserved",
+            "input": "a​b",
+            "passed": true
+          },
+          {
+            "actual": "a b",
+            "expected": "a b",
+            "id": "vertical_whitespace",
+            "input": "a\u000b\fb",
+            "passed": true
+          },
+          {
+            "actual": "a b",
+            "expected": "a b",
+            "id": "crlf",
+            "input": "a\r\nb",
+            "passed": true
+          }
+        ],
+        "failed": 0,
+        "import_statements": 0,
+        "passed": 16,
+        "status": "valid"
+      }
+    },
+    "negative-control-wrong-output": {
+      "candidate": "controls/negative-control-wrong-output.py",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/protected/evaluator.py",
+        "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/controls/negative-control-wrong-output.py"
+      ],
+      "cwd": "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/verification",
+      "exit_code": 0,
+      "elapsed_seconds_observed_not_ranked": 0.09928729105740786,
+      "stdout_sha256": "2301dbe3cca72540ed3d79b220c65a79edec5458df98907ada9587ee7a51068d",
+      "result": {
+        "ast_nodes": 10,
+        "candidate_sha256": "9dddc7b60600c6f6e45190da9fe055d16883d9d13c3ec00479245255c2978459",
+        "case_count": 16,
+        "cases": [
+          {
+            "actual": "",
+            "expected": "",
+            "id": "empty",
+            "input": "",
+            "passed": true
+          },
+          {
+            "actual": "plain",
+            "expected": "plain",
+            "id": "unchanged",
+            "input": "plain",
+            "passed": true
+          },
+          {
+            "actual": "hello",
+            "expected": "hello",
+            "id": "trim_ascii",
+            "input": "  hello  ",
+            "passed": true
+          },
+          {
+            "actual": "",
+            "expected": "",
+            "id": "only_whitespace",
+            "input": " \t\n\r\u000b\f",
+            "passed": true
+          },
+          {
+            "actual": "a   b",
+            "expected": "a b",
+            "id": "repeated_spaces",
+            "input": "a   b",
+            "passed": false
+          },
+          {
+            "actual": "a\tb",
+            "expected": "a b",
+            "id": "internal_tab",
+            "input": "a\tb",
+            "passed": false
+          },
+          {
+            "actual": "a\nb",
+            "expected": "a b",
+            "id": "internal_newline",
+            "input": "a\nb",
+            "passed": false
+          },
+          {
+            "actual": "a \n\tb\r\n c",
+            "expected": "a b c",
+            "id": "mixed_runs",
+            "input": " \ta \n\tb\r\n c  ",
+            "passed": false
+          },
+          {
+            "actual": "café  東京",
+            "expected": "café 東京",
+            "id": "nonbreaking_space",
+            "input": "café  東京",
+            "passed": false
+          },
+          {
+            "actual": "東京  مرحبا",
+            "expected": "東京 مرحبا",
+            "id": "unicode_em_space",
+            "input": " 東京  مرحبا ",
+            "passed": false
+          },
+          {
+            "actual": "café 東京 مرحبا",
+            "expected": "café 東京 مرحبا",
+            "id": "unicode_unchanged",
+            "input": "café 東京 مرحبا",
+            "passed": true
+          },
+          {
+            "actual": "🙂\t🚀",
+            "expected": "🙂 🚀",
+            "id": "emoji",
+            "input": " 🙂\t🚀 ",
+            "passed": false
+          },
+          {
+            "actual": "é  café",
+            "expected": "é café",
+            "id": "combining_character",
+            "input": "é  café",
+            "passed": false
+          },
+          {
+            "actual": "a​b",
+            "expected": "a​b",
+            "id": "zero_width_preserved",
+            "input": "a​b",
+            "passed": true
+          },
+          {
+            "actual": "a\u000b\fb",
+            "expected": "a b",
+            "id": "vertical_whitespace",
+            "input": "a\u000b\fb",
+            "passed": false
+          },
+          {
+            "actual": "a\r\nb",
+            "expected": "a b",
+            "id": "crlf",
+            "input": "a\r\nb",
+            "passed": false
+          }
+        ],
+        "failed": 10,
+        "import_statements": 0,
+        "passed": 6,
+        "status": "valid"
+      }
+    },
+    "negative-control-invalid-syntax": {
+      "candidate": "controls/negative-control-invalid-syntax.py",
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/protected/evaluator.py",
+        "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/controls/negative-control-invalid-syntax.py"
+      ],
+      "cwd": "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/verification",
+      "exit_code": 0,
+      "elapsed_seconds_observed_not_ranked": 0.09434487496037036,
+      "stdout_sha256": "a283324d569ac5cf88fdc981b6cdd7da0fd3fb67801e8d04db0c8aa51e7a9a3e",
+      "result": {
+        "candidate_sha256": "0261724eeb714bbc7dcb7f5c000484399cb54c98f289b15d38187c63525df060",
+        "case_count": 16,
+        "cases": [],
+        "error": "SyntaxError: expected ':' (<unknown>, line 1)",
+        "failed": 16,
+        "passed": 0,
+        "status": "invalid"
+      }
+    }
+  },
+  "evaluator_identity_control": {
+    "status": "invalid_evaluator_identity",
+    "executed": false,
+    "observed_sha256": "57666a6faee54de24f8693917a887a2148a72f6b711616b6782d44b41d78f287",
+    "expected_sha256": "5a4ef4ee317495e126a6e8fbf5d6fc44153622fe579b5540770d0f05ec328fc4"
+  },
+  "historical_provenance": {
+    "host_session": "/Users/medhat.galal/.codex/sessions/2026/09/08/rollout-2026-09-08T14-21-47-01a08241-3656-7832-ae51-9d33f361756f.jsonl",
+    "records": {
+      "0eead6": {
+        "call_line": 24,
+        "output_line": 28,
+        "timestamp": "2026-09-08T18:22:15.754Z",
+        "call_id": "call_PyFSEspPko1i10lusGpgaKhz",
+        "exit_code": 0,
+        "tool_output_sha256": "86ebeed1c7700c95c8a3dd9ebe7f16c47b067329c969e6434030560b9be89540",
+        "command_sha256": [
+          "ad97b563365d6cf488245162f8177557f83e6b752fc2bb070817c537625e426c",
+          "a3fa1fe6de32a70c79c8ef6d8572fb263f49854a1b7cd30f3fb3f843dd1fa314"
+        ]
+      },
+      "c777a4": {
+        "call_line": 54,
+        "output_line": 57,
+        "timestamp": "2026-09-08T18:24:18.676Z",
+        "call_id": "call_0egnx6W0Fhfngo4OqKu3ELLb",
+        "exit_code": 0,
+        "tool_output_sha256": "e521bcd8de1c4ea2aeef6d6a153c7616e75f45c964824e0d8b382ffe721b0c37",
+        "command_sha256": [
+          "2c15aecc7b3434f2e767de2fc628fdf75514cb0ad7164d7ba8da16e843d857f7"
+        ]
+      },
+      "251dfd": {
+        "call_line": 61,
+        "output_line": 64,
+        "timestamp": "2026-09-08T18:25:54.431Z",
+        "call_id": "call_h5PVM0ypiYpJJBgBUX7PWLmD",
+        "exit_code": 0,
+        "tool_output_sha256": "45bcf7802556e26a5cbb3d21b55402d537347e225264f65da17bf6e191fc9344",
+        "command_sha256": [
+          "63a6f7c5d2779643119a4e3d50b4b80ca00672dd82e3ebb6968b11c0308380c5"
+        ]
+      },
+      "538f1b": {
+        "call_line": 68,
+        "output_line": 71,
+        "timestamp": "2026-09-08T18:26:09.735Z",
+        "call_id": "call_koKoLmwmXLzwFmb7vxFRB7lX",
+        "exit_code": 0,
+        "tool_output_sha256": "db806269e68043ef7a5ce347c77bfbe91dc75157c4b91256b51be0020d23a293",
+        "command_sha256": [
+          "a735ef574492246f51ab0f0e350606ca41c81f7dd6c125399271659c7b6f3345"
+        ]
+      },
+      "653cc4": {
+        "call_line": 73,
+        "output_line": 76,
+        "timestamp": "2026-09-08T18:26:17.845Z",
+        "call_id": "call_RMu1IQjwhtdT8ve1R6kM1Th7",
+        "exit_code": 0,
+        "tool_output_sha256": "16b555547eead0f7420aa9ff27a49d5f480d6d133bbca08ce70abe3b6c261829",
+        "command_sha256": [
+          "e9d367f7eb2b761f2b9f8d058d55f91e2d2b8c2eb0707b050c96f21197c35904"
+        ]
+      },
+      "d516df": {
+        "call_line": 78,
+        "output_line": 81,
+        "timestamp": "2026-09-08T18:26:27.782Z",
+        "call_id": "call_MYeu2BCaHcTV5IGszdnSCIiT",
+        "exit_code": 0,
+        "tool_output_sha256": "660566ef43100644ef8bdcd0009c604ae00f5f3c6baeccb0a4b8860fea23f791",
+        "command_sha256": [
+          "d61bf411e9fdc6306f7610137f2142d86df017351512e909905f22459b13c459"
+        ]
+      }
+    }
+  },
+  "decision_before_advance": {
+    "append_line": 132,
+    "advance_line": 134
+  },
+  "fixture_snapshot_before_and_after": {
+    "controls/negative-control-invalid-syntax.py": {
+      "sha256": "0261724eeb714bbc7dcb7f5c000484399cb54c98f289b15d38187c63525df060",
+      "mode": "0o644"
+    },
+    "controls/negative-control-mutated-evaluator.py": {
+      "sha256": "57666a6faee54de24f8693917a887a2148a72f6b711616b6782d44b41d78f287",
+      "mode": "0o644"
+    },
+    "controls/negative-control-wrong-output.py": {
+      "sha256": "9dddc7b60600c6f6e45190da9fe055d16883d9d13c3ec00479245255c2978459",
+      "mode": "0o644"
+    },
+    "controls/results.json": {
+      "sha256": "e7d87e5946025a41f9dd9bd5818304ae40a13f6bac1bb9cd6419b1a4784c5608",
+      "mode": "0o644"
+    },
+    "incumbent/normalize.py": {
+      "sha256": "87649224bef74bdb41260e7bb8bd1b393da872a54a41579f7197d20eea857250",
+      "mode": "0o644"
+    },
+    "ledger.jsonl": {
+      "sha256": "36bebf4187dbe8411692197cfe986ac57424b701e8cd195dfd06a78f9792a437",
+      "mode": "0o644"
+    },
+    "original/normalize.py": {
+      "sha256": "9dddc7b60600c6f6e45190da9fe055d16883d9d13c3ec00479245255c2978459",
+      "mode": "0o444"
+    },
+    "preservation-sentinel.txt": {
+      "sha256": "6d62b508ac38369d44116eadae212c6f6e9256559b512f3804fc95c2a84afa8e",
+      "mode": "0o644"
+    },
+    "protected/evaluator.py": {
+      "sha256": "5a4ef4ee317495e126a6e8fbf5d6fc44153622fe579b5540770d0f05ec328fc4",
+      "mode": "0o444"
+    },
+    "protected/goal-contract.json": {
+      "sha256": "22657e71b4214fe1418a0b902698459a459bb0581f5222d543d4d82b6928d3cf",
+      "mode": "0o444"
+    },
+    "protected/manifest.json": {
+      "sha256": "5b83dabd5fdce3c7f1ea131d7e964659f1c762839cde88dac630644d5d7f2d6e",
+      "mode": "0o444"
+    },
+    "raw/baseline.json": {
+      "sha256": "0e91bd39fc5f2f2edb584762f413da4eac5f53f4bd298bca3cb0782954e29cf3",
+      "mode": "0o644"
+    },
+    "raw/baseline.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    "raw/baseline.stdout.txt": {
+      "sha256": "2301dbe3cca72540ed3d79b220c65a79edec5458df98907ada9587ee7a51068d",
+      "mode": "0o644"
+    },
+    "raw/final-baseline.json": {
+      "sha256": "3e96a8787dee5fa89936411092d2a2b0f165bb000d876024924573614047a2d6",
+      "mode": "0o644"
+    },
+    "raw/final-baseline.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    "raw/final-baseline.stdout.txt": {
+      "sha256": "2301dbe3cca72540ed3d79b220c65a79edec5458df98907ada9587ee7a51068d",
+      "mode": "0o644"
+    },
+    "raw/final-incumbent.json": {
+      "sha256": "4344e2fb80ecdbda8fdedd59645f243c8a2c44e43fbda2b2e8cbf10b5566ba32",
+      "mode": "0o644"
+    },
+    "raw/final-incumbent.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    "raw/final-incumbent.stdout.txt": {
+      "sha256": "6ddd4f532cc8745c6bd8a1256e0e71080e627438c6766ee4357726d78767943d",
+      "mode": "0o644"
+    },
+    "raw/negative-control-evaluator-mutation.json": {
+      "sha256": "54f9b0129bc155f815152f3cc94b11470c1bf36e6f7c027ff3247c43979282c1",
+      "mode": "0o644"
+    },
+    "raw/negative-control-invalid-syntax.json": {
+      "sha256": "1f72ca10b113abd8bd124a3bd3908c16074cc71dccbb2cb0e4dc968d796ccb09",
+      "mode": "0o644"
+    },
+    "raw/negative-control-invalid-syntax.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    "raw/negative-control-invalid-syntax.stdout.txt": {
+      "sha256": "a283324d569ac5cf88fdc981b6cdd7da0fd3fb67801e8d04db0c8aa51e7a9a3e",
+      "mode": "0o644"
+    },
+    "raw/negative-control-wrong-output.json": {
+      "sha256": "ecdf7eb31ab3fb66dc16daf7187a65549feeb98787ba08b7ba9016807ed67899",
+      "mode": "0o644"
+    },
+    "raw/negative-control-wrong-output.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    "raw/negative-control-wrong-output.stdout.txt": {
+      "sha256": "2301dbe3cca72540ed3d79b220c65a79edec5458df98907ada9587ee7a51068d",
+      "mode": "0o644"
+    },
+    "raw/resource-delivery-command.json": {
+      "sha256": "e8e49d16a9f21927ccb08756abe8aea76fa4c428186344fd63af8ac52a69005a",
+      "mode": "0o644"
+    },
+    "raw/resource-delivery.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    "raw/resource-delivery.stdout.txt": {
+      "sha256": "86ebeed1c7700c95c8a3dd9ebe7f16c47b067329c969e6434030560b9be89540",
+      "mode": "0o644"
+    },
+    "raw/trial-01.json": {
+      "sha256": "e2a6c807a6845e17c4b06a17647ee8b31d9762568fbd2a67fbfd3e008a6c109d",
+      "mode": "0o644"
+    },
+    "raw/trial-01.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    "raw/trial-01.stdout.txt": {
+      "sha256": "4a899fcb34b70272a71e4444bf97c3eec09a4039365e3323b4c28fba961b2517",
+      "mode": "0o644"
+    },
+    "raw/trial-02.json": {
+      "sha256": "be263627d9408b50d3760848a49f48c034f5acc1ad4326b18e5a84521f54408e",
+      "mode": "0o644"
+    },
+    "raw/trial-02.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    "raw/trial-02.stdout.txt": {
+      "sha256": "429df3432ecf0d29fe913c32ee5dc0b6ca059bf199603d664556bbb9b9b56c70",
+      "mode": "0o644"
+    },
+    "raw/trial-03.json": {
+      "sha256": "4a6989b64ead40c3d8f34b0bb8e8b4a37ae6190216fdb5d9c876f8e11fade069",
+      "mode": "0o644"
+    },
+    "raw/trial-03.stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mode": "0o644"
+    },
+    "raw/trial-03.stdout.txt": {
+      "sha256": "6ddd4f532cc8745c6bd8a1256e0e71080e627438c6766ee4357726d78767943d",
+      "mode": "0o644"
+    },
+    "report.md": {
+      "sha256": "aed2cddc02d8be63f959c6643082c5b4e38de645e43f279aad139771f1e57065",
+      "mode": "0o644"
+    },
+    "run_fixture.py": {
+      "sha256": "025678cc6651c1235e8c202879c79e192d462b9d6db33bbde9888152d079b94d",
+      "mode": "0o644"
+    },
+    "state.json": {
+      "sha256": "581005ff2f89139721d93b085aa5d437d7e6a9bd4b5e50310e92ffcfc0db6058",
+      "mode": "0o644"
+    },
+    "summary.json": {
+      "sha256": "a501b61652cab3d0cba0b4651fadbbe6ab3ee08044a6720dd82e9bcde1e3006a",
+      "mode": "0o644"
+    },
+    "tool-provenance.md": {
+      "sha256": "5f3aa089cba04b8ee632b53fa5f5c7ef5af06a7c3ffaae846e71afd52e101c24",
+      "mode": "0o644"
+    },
+    "trials/proposal-01.py": {
+      "sha256": "5bbee2fd62ddf4073214f4592e3ef2a5b9ddae0651b4df2fcdd909bcaa2b4ed3",
+      "mode": "0o644"
+    },
+    "trials/proposal-02.py": {
+      "sha256": "6bfb5aed470269e5374527dcbf993e6165c91bc0bc3c04184c7f402a1b880cd4",
+      "mode": "0o644"
+    },
+    "trials/proposal-03.py": {
+      "sha256": "87649224bef74bdb41260e7bb8bd1b393da872a54a41579f7197d20eea857250",
+      "mode": "0o644"
+    },
+    "trials/trial-01/disposal.json": {
+      "sha256": "7bd9c06eb167dc4fd5069905569b98d9819f4fa1efdae41d362f17937a0dc42a",
+      "mode": "0o644"
+    },
+    "trials/trial-01/normalize.py": {
+      "sha256": "5bbee2fd62ddf4073214f4592e3ef2a5b9ddae0651b4df2fcdd909bcaa2b4ed3",
+      "mode": "0o444"
+    },
+    "trials/trial-02/disposal.json": {
+      "sha256": "7bd9c06eb167dc4fd5069905569b98d9819f4fa1efdae41d362f17937a0dc42a",
+      "mode": "0o644"
+    },
+    "trials/trial-02/normalize.py": {
+      "sha256": "6bfb5aed470269e5374527dcbf993e6165c91bc0bc3c04184c7f402a1b880cd4",
+      "mode": "0o444"
+    },
+    "trials/trial-03/disposal.json": {
+      "sha256": "7bd9c06eb167dc4fd5069905569b98d9819f4fa1efdae41d362f17937a0dc42a",
+      "mode": "0o644"
+    },
+    "trials/trial-03/normalize.py": {
+      "sha256": "87649224bef74bdb41260e7bb8bd1b393da872a54a41579f7197d20eea857250",
+      "mode": "0o444"
+    }
+  },
+  "findings": [
+    {
+      "severity": "limit",
+      "finding": "No tied or losing optimization trial ran. All three optimization trials were accepted. Separate controls test scoring/identity rejection, not trial() rejected/tied state transitions or continuation after a loss."
+    },
+    {
+      "severity": "limit",
+      "finding": "The wrong-output and syntax-control dispositions are assigned in controls(), not routed through trial() acceptance. Independent classification confirms the outcomes, but controller rejection-state coverage remains absent."
+    },
+    {
+      "severity": "limit",
+      "finding": "A small visible deterministic dataset and a local AST-node proxy support only this fixture. No held-out transfer, statistical, runtime speed, cross-model, or frontier-performance conclusion follows."
+    },
+    {
+      "severity": "limit",
+      "finding": "Read-only modes and hashes guard a trusted fixture. Candidate execution uses exec and is not an OS security sandbox; malicious candidates and crash/timeout recovery were not evaluated."
+    },
+    {
+      "severity": "limit",
+      "finding": "The ledger append occurs before copy/state update in the actual historic runner, but crash-consistent durability (fsync/transaction/recovery) was neither promised nor demonstrated."
+    },
+    {
+      "severity": "info",
+      "finding": "All three hypotheses are plausible task improvements. Trial 1 fixes 10 cases; trials 2 and 3 simplify at equal correctness under the preregistered metric. No deliberately bad control contributes to the gain."
+    }
+  ],
+  "limits": {
+    "tie_branch_demonstrated": false,
+    "losing_trial_transition_demonstrated": false,
+    "negative_controls_are_optimization_trials": false,
+    "formal_promotion_evidence": false,
+    "frontier_benchmark": false
+  }
+}

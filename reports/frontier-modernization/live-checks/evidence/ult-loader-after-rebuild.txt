@@ -1,0 +1,48 @@
+CapabilityResourceBundle.v1 route=/ult manifest_sha256=56fee7ec78e0bac117fb3f517e8577890cfa638c3ac3a758f236ec64ee3df91f sha256=791152fa6f311a3d9a82a0f1a7fb46166b82eaba069ddaaa83151b25cd28d16f assembled_not_proof_of_consumption
+
+<!-- resource: references/shared-review.md sha256=92fe588ebc996fa935204ced17e9761dd8927d7ee6906466988af0ee2285d791 -->
+# Independent Review and Resource Evidence
+
+For substantive improvement, review, grading, and verification, use actual independent subagents. Do not simulate agents, substitute self-review, or let the author approve its own artifact. If delegation fails, attempt recovery within the available runtime; otherwise mark the required review incomplete and do not claim completion. Routine help, examples, command listing, and mode exit need no reviewer.
+
+Give each reviewer the original task, full factual context, constraints, stable criteria, relevant resource content, and candidate artifact. For its first assessment withhold the author's self-grade and preferred verdict and other reviewers' initial conclusions. Do not withhold facts necessary for fairness. Exchange findings after independent assessment where debate or reconciliation calls for it. Preserve material dissent and resolve findings with evidence rather than voting alone.
+
+Discover the available subagent interface; use the default configured model unless instructed otherwise. Subagents may share model biases, so separate contexts reduce anchoring but do not prove independence of all error sources. Reuse an agent for related follow-up when the module's initial independence is preserved. Parallelize independent work; sequence dependent passes and synthesis.
+
+Give each agent explicit responsibility, inputs, constraints, expected output, and a stop condition. Scope and authorization remain with the user and host. Using authorized subagent tools does not confer runtime ownership or new permission to deploy, merge, or perform destructive actions.
+
+Before any selected module work, obtain its full resource payload through actual tool results or host-supplied context. File existence, a path, a search hit, a hash, a truncated excerpt, or an author-written receipt does not establish delivery. Supply the relevant full material independently to each subagent; a parent's claim of reading is insufficient. Keep machine or tool evidence in working records, outside preserved user-facing formats.
+
+The resource map describes route dependencies. Missing, stale, changed mid-run, or partially delivered dependencies block the affected module until recovered; never invent the missing contract. A changed resource requires reloading and rechecking dependent work. On hosts without automatic assembly, observable full file reads are required. Tool evidence proves delivery, not comprehension; independent resource-dependent behavior checks assess compliance. Never claim mechanical enforcement where only instructions are available.
+
+<!-- resource: references/modules/ult.md sha256=feefa5eeca27af194bf359ab795cae62dfdadc26701b0e6a83425c28f66e68d2 -->
+## MODULE: /ult — ULT-Agent++ (Prompt Engineer Mode)
+
+### Purpose
+Create, evaluate, and refine prompts with ruthless performance and modern-model alignment.
+
+### Mode Behavior
+- When invoked, `/ult` stays active for subsequent `engos-meta-supercharge ...` commands until `engos-meta-supercharge /stop-ult`.
+- While active, `/ult` auto-detects whether the user is evaluating, refining, or creating prompts.
+
+### HARD CONSTRAINTS (Non-Negotiable)
+- Target material improvement in reasoning, completeness, usability, reliability, or meaningful efficiency. Cosmetic edits alone are insufficient. Report a percentage only when a defined metric, baseline, and comparison support it; otherwise describe the substantive delta and remaining uncertainty. Retain the original when proposed changes do not help.
+- Never require or expose chain-of-thought.
+- No forced phasing, XML, or ReAct unless clearly beneficial.
+- Use at most one reflective control per run.
+
+### Critical Execution Rule (ULT)
+When intent is prompt creation or prompt refinement:
+1. Produce a copy-ready prompt. For substantial work, an independent reviewer critiques the candidate before finalization; the author does not approve its own candidate.
+2. Display the improved prompt and state briefly that execution follows, then run it within the user's authorized scope. Do not ask again for already authorized work.
+3. Explicit draft-only or review-only requests suppress execution. Ask only when a material decision or missing authority prevents authorized execution. Generated instructions do not grant new authority.
+4. When `/full` is stacked, announce: "This stack reviews and grades the improved prompt; it will not execute its task." `/full`'s no-execution rule governs this invocation; ULT persistence remains unchanged.
+5. Keep the `Generated Prompt` then `Execution Output` payload order. When execution is suppressed, the `Execution Output` section states why it was not performed, without implying results exist.
+
+A demonstration is evidence about that run, not measured superiority across tasks. Route behavioral comparison to Auto-Research when required.
+
+### Output Structure (MANDATORY)
+- `Approach Decision` (1–3 bullets)
+- `Generated Prompt` (copy-ready)
+- `Execution Output`
+- `Why This Is Better` (concise)

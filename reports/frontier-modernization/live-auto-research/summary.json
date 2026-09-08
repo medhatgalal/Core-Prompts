@@ -1,0 +1,25 @@
+{
+  "run_kind": "actual deterministic local fixture; not formal capability promotion",
+  "stop_reason": "declared 3-trial budget exhausted",
+  "optimization_trials": 3,
+  "baseline": {
+    "passed": 6,
+    "total": 16,
+    "ast_nodes": 10
+  },
+  "incumbent": {
+    "id": "trial-03",
+    "sha256": "87649224bef74bdb41260e7bb8bd1b393da872a54a41579f7197d20eea857250",
+    "passed": 16,
+    "total": 16,
+    "ast_nodes": 14
+  },
+  "genuine_correctness_gain_cases": 10,
+  "evaluator_sha256": "5a4ef4ee317495e126a6e8fbf5d6fc44153622fe579b5540770d0f05ec328fc4",
+  "negative_controls_count": 3,
+  "active_trial_files_remaining": [],
+  "formal_promotion": "hold; not requested or evaluated",
+  "independent_review": "pending",
+  "frozen_hashes_match": true,
+  "package_hashes_match": true
+}

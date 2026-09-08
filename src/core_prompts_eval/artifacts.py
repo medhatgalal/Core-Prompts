@@ -19,6 +19,8 @@ def evaluator_package_hash(repo_root: Path) -> str:
     entries: list[dict[str, str]] = []
     for path in sorted(package_root.glob("*.py")):
         entries.append({"path": str(path.relative_to(repo_root)), "sha256": artifact_hash(path)})
+    resource_helper = repo_root / "src" / "intent_pipeline" / "capability_resources.py"
+    entries.append({"path": "src/intent_pipeline/capability_resources.py", "sha256": artifact_hash(resource_helper)})
     return artifact_hash({"files": entries})
 
 

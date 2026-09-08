@@ -1,0 +1,33 @@
+{
+  "baseline": "C0",
+  "baseline_neutral_id": "harbor",
+  "baseline_grade": 2.6,
+  "baseline_reviewer": "/root/verify_live_skill_behaviors/grade_harbor",
+  "trials": [
+    {
+      "candidate": "C1",
+      "neutral_id": "meadow",
+      "compared_with": "C0",
+      "score": 9.8,
+      "decision": "improved; keep",
+      "reviewer": "/root/verify_live_skill_behaviors/grade_meadow",
+      "review": "grade/reviews/meadow/review.md",
+      "resource_delivery_chunk": "c76000"
+    },
+    {
+      "candidate": "C2",
+      "neutral_id": "cedar",
+      "compared_with": "C1",
+      "score": 9.8,
+      "decision": "tied; retain C1",
+      "reviewer": "/root/verify_live_skill_behaviors/grade_cedar",
+      "review": "grade/reviews/cedar/review.md",
+      "resource_delivery_chunk": "e7dc67"
+    }
+  ],
+  "retained": "C1",
+  "stop_reason": "Explicit two-candidate-trial limit reached after both independently reviewed trials.",
+  "target_met": true,
+  "regression_observed": false,
+  "limits": "Actual independent instruction-quality judgments. Tie retention observed; regression rejection and default-limit plateau not exercised. No downstream behavior, cross-model efficacy or promotion evidence."
+}

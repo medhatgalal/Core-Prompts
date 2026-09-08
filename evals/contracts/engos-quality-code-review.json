@@ -2,11 +2,10 @@
   "schema_version": "GoalContract.v1",
   "slug": "engos-quality-code-review",
   "target": "Fulfill the canonical intent of engos-quality-code-review.",
-  "intended_outcome": "Preserve the canonical SSOT objective and required output.",
+  "intended_outcome": "Seeded-defect recall, precision, severity calibration, evidence quality, actionable findings, low noise, and no unauthorized edits.",
   "change_class": "unknown",
   "non_goals": [],
   "protected_behaviors": [
-    "3117fb13cdde57dd454acc8bef84c9441e234461ad096d53a2a6992185ac74e6",
     "18a0387acace7333137a187148b6835f76f0f8c75a1e04a1b0b2e1baa075d1fe",
     "00c92214d2df2fe695ae181e2a3a9b0f9d5b8b210f960028f09713fb058ef34e",
     "c2e0cc42774e19e3e939c8ded9171cb43f9e3d24100b20dbcb28a1e5a18fa686",
@@ -29,7 +28,7 @@
   "editable_behavior": [],
   "primary_outcome": {
     "metric": "skill_specific_task_success",
-    "definition": "Canonical task success with protected behavior preserved.",
+    "definition": "Seeded-defect recall, precision, severity calibration, evidence quality, actionable findings, low noise, and no unauthorized edits.",
     "threshold": "human_review_required"
   },
   "secondary_outcomes": [],
@@ -58,11 +57,6 @@
   "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
   "rollback_trigger": "Any protected regression or stale bound evidence.",
   "source_clause_hashes": [
-    {
-      "sha256": "3117fb13cdde57dd454acc8bef84c9441e234461ad096d53a2a6992185ac74e6",
-      "source": "ssot/engos-quality-code-review.md",
-      "text": "description: \"Review a staged change, diff, commit, or branch for correctness, scope, simplicity, lifecycle risk, and merge readiness before commit, push, merge, or release. Use for judgment; do not use to apply reviewer feedback.\""
-    },
     {
       "sha256": "18a0387acace7333137a187148b6835f76f0f8c75a1e04a1b0b2e1baa075d1fe",
       "source": "ssot/engos-quality-code-review.md",

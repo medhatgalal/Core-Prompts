@@ -6,16 +6,16 @@
       "id": "full",
       "ask": "supercharge /full <artifact>",
       "expect": [
-        "PASS 1 — SIMPLE",
-        "PASS 2 — INVERT",
-        "PASS 3 — ADVERSARIAL",
-        "PASS 4 — CONTRACT",
-        "PASS 5 — GRADE (10 iterations)",
-        "ten actual ladder entries, each with improved artifact, score, and improvement reason"
+        "PASS 1 \u2014 SIMPLE",
+        "PASS 2 \u2014 INVERT",
+        "PASS 3 \u2014 ADVERSARIAL",
+        "PASS 4 \u2014 CONTRACT",
+        "PASS 5 \u2014 GRADE (up to 10 trials)",
+        "actual candidate ladder entries with independent scores, keep/reject decisions, and truthful stopping reason"
       ],
       "forbid": [
         "executing the final prompt",
-        "adaptive shortening of ten grading rounds"
+        "fabricated trials or guaranteed improvement"
       ]
     },
     {
@@ -36,9 +36,9 @@
       "id": "basis_full",
       "ask": "supercharge /basis /full <artifact>",
       "expect": [
-        "PASS 0 — BASIS before PASS 1",
+        "PASS 0 \u2014 BASIS before PASS 1",
         "all five full passes",
-        "exactly ten grading iterations"
+        "up to ten actual independently graded candidate trials with the declared stopping rule"
       ]
     },
     {
@@ -108,16 +108,14 @@
       ]
     },
     {
-      "id": "stop_precedence",
-      "ask": "supercharge /route /full /help examples /stop",
+      "id": "help_precedence",
+      "ask": "supercharge /route /full /help examples",
       "expect": [
-        "stop acknowledgement only",
-        "exit active modes"
+        "bundled help-examples output only"
       ],
       "forbid": [
         "routing line",
-        "help output",
-        "module output"
+        "operational module execution"
       ]
     },
     {

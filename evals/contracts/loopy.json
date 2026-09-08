@@ -39,16 +39,15 @@
     "eda9624016bad98b4cb519cd1c85054b6e936964cd34cea292e2b8f8145d6e24",
     "f7b4a3f2c0954b0a81bd2ff0255ef7741063d69b3aa63a59747756ed639c3168",
     "c2ad303a43d7f62ed112cf11883098a1c3e7fccbe520713de69a4388c4b06c14",
-    "8fed3a076b4e389294cd436ab6b2ac43956ccb36b687837a581114535b71d6cd",
     "abda94ac8b821ce666ad623e4da354c352ef167e3cd5fbd80da8fcc41c7dfee7",
     "bdcf76f3db0cf80f07991bf2a36d889273b20544ad771a946537d4a39a0cfaf9",
     "4e7221eb2ae07134e7b2c9328ac66a000b0aa42995811533117d8e6635388202",
     "d2f1de0add129a1e4463e41e0ee02f6cf289ef185d7b505c716a5b83c74f8f57",
+    "0dcbd7104d7878a3e297d9cb18a6c0d6e0ba001ece4d5a7e9bf51b32f7df8f8c",
     "9caa03773288346f9828f26bc03af743150439c1a2410c0e74d12e35ec755b1f",
     "587505979ec271ba56fa33cf4357ec6af700aea58c3973df9e58d7929b08e773",
     "478b1f61b16ccd5ea5e2e9ed24573b462debceb510dac8807d51f8152a0306f0",
     "f433001ee79d80f0c295f8d304106f6c5588a369fb74f7839c8bf06f9885f4b1",
-    "56769fbed95cb1f56f76e87dcf0a9dc07e9e9d91218f373327ac9c837c78fc80",
     "e2e09db5a6b1c1499454575024ed803ce9b06f269a4a8e1981174790f8c5326b",
     "e4871dd55e7a68d272e6bed5592cd09eb2adb60fe593c947b813837f022fa6e4",
     "5716009d175837072f3462409ac1fd92b1d393ad0b291a50c5ae04b906b45d63",
@@ -253,11 +252,6 @@
       "text": "6. **Repeat or stop:** Continue only while progress is measurable and any"
     },
     {
-      "sha256": "8fed3a076b4e389294cd436ab6b2ac43956ccb36b687837a581114535b71d6cd",
-      "source": "ssot/loopy.md",
-      "text": "set whenever possible."
-    },
-    {
       "sha256": "abda94ac8b821ce666ad623e4da354c352ef167e3cd5fbd80da8fcc41c7dfee7",
       "source": "ssot/loopy.md",
       "text": "- Define success, clean no-op, blocked, approval-required, exhausted, and"
@@ -278,6 +272,11 @@
       "text": "- Re-read current state before consequential actions. Do not ship stale code,"
     },
     {
+      "sha256": "0dcbd7104d7878a3e297d9cb18a6c0d6e0ba001ece4d5a7e9bf51b32f7df8f8c",
+      "source": "ssot/loopy.md",
+      "text": "- Preserve unrelated user work. Require explicit approval for destructive,"
+    },
+    {
       "sha256": "9caa03773288346f9828f26bc03af743150439c1a2410c0e74d12e35ec755b1f",
       "source": "ssot/loopy.md",
       "text": "- success, clean no-op, blocked, approval-required, and no-progress stops are"
@@ -296,11 +295,6 @@
       "sha256": "f433001ee79d80f0c295f8d304106f6c5588a369fb74f7839c8bf06f9885f4b1",
       "source": "ssot/loopy.md",
       "text": "For a Find-only request, return the concise recommendations required by the"
-    },
-    {
-      "sha256": "56769fbed95cb1f56f76e87dcf0a9dc07e9e9d91218f373327ac9c837c78fc80",
-      "source": "ssot/loopy.md",
-      "text": "before the loop; cite at least two occurrences whenever claiming repeated work,"
     },
     {
       "sha256": "e2e09db5a6b1c1499454575024ed803ce9b06f269a4a8e1981174790f8c5326b",

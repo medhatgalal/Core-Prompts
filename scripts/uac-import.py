@@ -52,6 +52,8 @@ from intent_pipeline.uac_baselines import (
     text_sha256,
 )
 from intent_pipeline.uac_templates import load_capability_template
+from intent_pipeline.capability_resources import effective_capability_text
+from intent_pipeline.uac_modes import extract_capability_modes
 from intent_pipeline.uac_repomix import collect_repomix_candidates, materialize_repomix_candidate, repomix_available
 from intent_pipeline.uac_sources import (
     UacSourceCandidate,
@@ -147,6 +149,8 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument('--clarity', choices=('on', 'off'), default='on', help='Run advisory instruction_clarity.v1 lint')
     parser.add_argument('--emit-impact-plan', action='store_true', help='Emit the minimum safe capability-eval profile')
     parser.add_argument('--promotion-verdict', type=Path, help='Independent PromotionVerdict.v2 to validate during apply')
+    parser.add_argument('--requirement-review', type=Path, action='append', default=[],
+                        help='Operator-supplied, independently reviewed UACRequirementReview.v1; permits only bound, mapped semantic changes, never behavioral promotion')
     parser.add_argument(
         '--promotion-trust-root',
         type=Path,
@@ -915,7 +919,7 @@ def _preview_payload(
 
 
 def _run_quality_for_payload(payload: dict[str, Any], args: argparse.Namespace) -> dict[str, Any]:
-    if payload.get('status') != 'accepted' or args.quality_loop == 'off':
+    if payload.get('status') != 'accepted' or (args.quality_loop == 'off' and not getattr(args, 'requirement_review', None)):
         return payload
     slug = str(payload['manifest']['slug'])
     descriptor_seed = _quality_descriptor_seed(payload)
@@ -931,6 +935,15 @@ def _run_quality_for_payload(payload: dict[str, Any], args: argparse.Namespace) 
         max_passes_override=args.max_quality_passes,
     )
     candidate_text = _preferred_ssot_text(slug, payload)
+    requirement_reviews = []
+    requirement_review_files = []
+    for review_path in getattr(args, 'requirement_review', ()) or ():
+        raw_review = Path(review_path).read_bytes()
+        review = json.loads(raw_review)
+        if not isinstance(review, dict) or review.get('schema_version') != 'UACRequirementReview.v1':
+            raise ValueError(f'Invalid requirement review: {review_path}')
+        requirement_reviews.append(review)
+        requirement_review_files.append({'path': str(Path(review_path).resolve()), 'sha256': sha256(raw_review).hexdigest()})
     quality_result = run_quality_loop(
         slug=slug,
         profile=profile,
@@ -939,10 +952,13 @@ def _run_quality_for_payload(payload: dict[str, Any], args: argparse.Namespace) 
         descriptor=descriptor_seed,
         source_refs=source_refs,
         benchmark_sources=payload.get('benchmark_sources') or (),
-        max_passes=max(1, min(args.max_quality_passes, profile.max_passes)),
+        max_passes=1 if args.quality_loop == 'off' else max(1, min(args.max_quality_passes, profile.max_passes)),
+        semantic_reviews=requirement_reviews,
     )
     result = dict(payload)
     result['quality_plan'] = plan
+    result['requirement_reviews'] = requirement_reviews
+    result['requirement_review_files'] = requirement_review_files
     result['quality_result'] = quality_result
     result['quality_result']['final_candidate_text'] = quality_result['final_candidate_text']
     return result
@@ -1358,6 +1374,8 @@ def _merge_existing_descriptor_for_apply(
     merged = json.loads(json.dumps(existing))
     if quality_bound:
         source_fields, _ = parse_ssot_frontmatter_and_body(ssot_text)
+        if (ROOT / 'sources' / 'capability-resources' / slug / 'resource-map.json').is_file():
+            merged['modes'] = extract_capability_modes(ROOT, slug, ssot_text)
         if (
             'description' in source_fields
             and candidate.get('shared_summary') == source_fields['description']
@@ -1783,11 +1801,14 @@ def _preferred_ssot_text(slug: str, payload: Mapping[str, Any], *, quality_resul
     return _render_ssot_markdown(slug, dict(payload))
 
 
-def _evaluate_ssot_fidelity(slug: str, candidate_text: str) -> dict[str, Any]:
+def _evaluate_ssot_fidelity(slug: str, candidate_text: str, *, semantic_reviews=(), review_original_texts=()) -> dict[str, Any]:
     baseline = resolve_historical_baseline(ROOT, slug, candidate_text=candidate_text)
     return evaluate_candidate_against_baseline(
         candidate_text, baseline,
         preserved_resource_texts=_load_declared_capability_resource_texts(slug, candidate_text, repo_root=ROOT),
+        effective_text=effective_capability_text(ROOT, slug, candidate_text),
+        semantic_reviews=semantic_reviews,
+        review_original_texts=review_original_texts,
     )
 
 
@@ -1797,6 +1818,33 @@ def _safe_apply_ssot_text(
     *,
     quality_result: Mapping[str, Any] | None = None,
 ) -> tuple[str, dict[str, Any] | None]:
+    captured = _source_fidelity_input(payload)
+    review_originals = [captured] if isinstance(captured, str) else list(captured or ())
+    canonical = ROOT / 'ssot' / f'{slug}.md'
+    if canonical.is_file():
+        review_originals.append(canonical.read_text(encoding='utf-8'))
+    historical = resolve_historical_baseline(ROOT, slug).baseline_text
+    if historical:
+        review_originals.append(historical)
+    def check_final_quality(selected_text: str) -> None:
+        if quality_result is not None or payload.get('requirement_reviews'):
+            # Canonicalization/source selection is itself a transformation. Never
+            # reuse an earlier quality verdict for different final text/resources.
+            final_quality = run_quality_loop(
+                slug=slug,
+                profile=load_quality_profile(ROOT, slug, str((quality_result or {}).get('quality_profile') or 'auto')),
+                candidate_text=selected_text,
+                source_text=_source_fidelity_input(payload),
+                descriptor=_quality_descriptor_seed(payload),
+                source_refs=_payload_source_refs(payload),
+                benchmark_sources=payload.get('benchmark_sources') or (),
+                max_passes=1,
+                semantic_reviews=payload.get('requirement_reviews') or (),
+            )
+            if final_quality['status'] != 'structural_ready':
+                blockers = (final_quality.get('judge_reports') or [{}])[-1].get('blockers') or []
+                raise ValueError('Apply refused final candidate quality: ' + '; '.join(blockers))
+
     ssot_text = _canonicalize_same_slug_ssot(
         slug,
         _preferred_ssot_text(slug, payload, quality_result=quality_result),
@@ -1804,11 +1852,15 @@ def _safe_apply_ssot_text(
     source_failures = evaluate_imported_source_fidelity(
         ssot_text, _source_fidelity_input(payload),
         preserved_resource_texts=_load_declared_capability_resource_texts(slug, ssot_text, repo_root=ROOT),
+        slug=slug, effective_text=effective_capability_text(ROOT, slug, ssot_text),
+        semantic_reviews=payload.get('requirement_reviews') or (),
+        review_original_texts=review_originals,
     )
     if source_failures:
         raise ValueError('Apply refused to land a regressed SSOT body: ' + '; '.join(source_failures))
-    fidelity = _evaluate_ssot_fidelity(slug, ssot_text)
+    fidelity = _evaluate_ssot_fidelity(slug, ssot_text, semantic_reviews=payload.get('requirement_reviews') or (), review_original_texts=review_originals)
     if not fidelity['hard_failures']:
+        check_final_quality(ssot_text)
         return ssot_text, None
 
     source_text = _source_body_text(payload)
@@ -1816,6 +1868,7 @@ def _safe_apply_ssot_text(
         source_text = _canonicalize_same_slug_ssot(slug, source_text)
         source_fidelity = _evaluate_ssot_fidelity(slug, source_text)
         if not source_fidelity['hard_failures']:
+            check_final_quality(source_text)
             return source_text, {
                 'selected_text': 'source_text',
                 'blocked_candidate_failures': list(fidelity['hard_failures']),
@@ -2220,6 +2273,28 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
             payload['status'] = 'cancelled'
             payload['detail'] = 'apply cancelled by user'
             return payload
+    # Re-read after any interactive delay. An approval may have been revoked or
+    # replaced since plan/judge; cached dictionaries are not fresh authority.
+    try:
+        supplied_paths = list(getattr(args, 'requirement_review', ()) or ())
+        captured_files = payload.get('requirement_review_files') or []
+        if supplied_paths or captured_files:
+            paths = supplied_paths or [item['path'] for item in captured_files]
+            current_reviews = []
+            current_files = []
+            for review_path in paths:
+                raw_review = Path(review_path).read_bytes()
+                current_reviews.append(json.loads(raw_review))
+                current_files.append({'path': str(Path(review_path).resolve()), 'sha256': sha256(raw_review).hexdigest()})
+            if current_reviews != (payload.get('requirement_reviews') or []):
+                raise ValueError('requirement review changed after judgment')
+            if captured_files and current_files != captured_files:
+                raise ValueError('requirement review file binding changed after judgment')
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        result = dict(payload)
+        result['status'] = 'stale_evidence'
+        result['detail'] = f'Apply refused changed requirement review: {exc}'
+        return result
     before_apply = _snapshot_apply_artifacts()
     result = dict(payload)
     if args.quality_loop == 'on' and 'quality_result' not in result:

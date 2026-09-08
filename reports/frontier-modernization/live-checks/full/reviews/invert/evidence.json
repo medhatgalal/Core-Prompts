@@ -1,0 +1,93 @@
+{
+  "schema": "IndependentInvertPassEvidence.v1",
+  "host_thread_id": "01a08234-e21f-70f1-bda9-1d252bf32804",
+  "workspace": {
+    "cwd": "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts",
+    "branch": "AI/frontier-capability-modernization",
+    "head": "c9d6de07b4d1918970a5f70350cf50200a6a0ff4",
+    "dirty_path_count": 558
+  },
+  "sequence": [
+    {
+      "phase": "Reacquire full route and fixed inputs",
+      "chunks": [
+        "add6de",
+        "11e0ae",
+        "7c3581"
+      ]
+    },
+    {
+      "phase": "Independently accept revised SIMPLE: S1 resolved",
+      "artifact": "reports/frontier-modernization/live-checks/full/reviews/simple/recheck.md",
+      "write_result_chunk": "ccfb5c"
+    },
+    {
+      "phase": "Perform INVERT only after SIMPLE acceptance",
+      "artifact": "reports/frontier-modernization/live-checks/full/reviews/invert/pass-output.md"
+    }
+  ],
+  "tool_results": [
+    {
+      "chunk_id": "add6de",
+      "purpose": "Workspace, branch, HEAD, dirty state and host thread identity",
+      "exit_code": 0,
+      "full_payload": true
+    },
+    {
+      "chunk_id": "11e0ae",
+      "purpose": "Actual full emitted /full resource read after helper rebuild",
+      "command": "python3 .codex/skills/engos-meta-supercharge/resources/scripts/load_module.py --route /full --format text",
+      "exit_code": 0,
+      "full_payload": true
+    },
+    {
+      "chunk_id": "7c3581",
+      "purpose": "Actual full input, frozen contract v1, revised SIMPLE artifact reads and input/helper hashes",
+      "exit_code": 0,
+      "full_payload": true
+    },
+    {
+      "chunk_id": "ccfb5c",
+      "purpose": "Persist SIMPLE recheck acceptance before beginning INVERT",
+      "exit_code": 0,
+      "full_payload": true
+    }
+  ],
+  "resource_bundle": {
+    "route": "/full",
+    "manifest_sha256": "56fee7ec78e0bac117fb3f517e8577890cfa638c3ac3a758f236ec64ee3df91f",
+    "bundle_sha256": "d259d4328534c1a630e8dbcb166c96f498254b05858bb6690490ae7904417fcd",
+    "helper_sha256": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+    "full_delivery_chunk": "11e0ae"
+  },
+  "resource_sha256": {
+    "references/shared-review.md": "92fe588ebc996fa935204ced17e9761dd8927d7ee6906466988af0ee2285d791",
+    "references/modules/full.md": "f97d60c8609bdbc1da6dc09b94b88b40d8ba6eb076d148f5ada6f850de41231c",
+    "references/modules/simple.md": "8ee70354b7b346145095eb1081732d93166ef79187e2b312a269f4a741e29770",
+    "references/modules/invert.md": "7750f226cc0da7f1237b23f3f13bc5e7212163e8dcaf94d92638e55a14015f40",
+    "references/modules/adversarial.md": "2948880659615f25dbcc3ac2d0a27977f20510932a97536b6b9ad24b86b56d49",
+    "references/modules/contract.md": "15f72081c0f36d7ccba4c58c1202e79d96aad9c4ff704b16f08f26c9a91234ea",
+    "references/modules/grade.md": "a605e4d384f5d9b16e459a96c7e10d7dec52e6496c3e650b7fdbbc32d94af86a"
+  },
+  "input_sha256": {
+    "input.md": "db234e6e10dfab450d9c8fb2fea04e6390278affbb5cf46b6e80a9d9667d3998",
+    "contract-v1.md": "4719d34b21a250bdf7b2a5f8814a2d7285835e01464c223566c3105804f6a846",
+    "pass-1-revised.md": "d5f4a78bb31df98c35e9eb069e9bd5bd5bd7b82a8e96199277d55b68c93f7c15"
+  },
+  "output_sha256": {
+    "simple/recheck.md": "76a10c84bb001ffc4c7b4d0208c35d92935e9edb3a3c9384e8b1ba939d4fb332",
+    "invert/pass-output.md": "7bf35324d17914d436e3f5d3a5396ba3b11fe6cadbf46ea13134f7d8a8694c47"
+  },
+  "independence": "Performed by an actual independent subagent on the accepted prior-pass artifact. No author score, preferred verdict, or other INVERT reviewer verdict was supplied. Final synthesis still requires its separate reviewer.",
+  "finding_status": {
+    "S1": "resolved",
+    "I1": "textual prevention retained; whole-run observation evidence open",
+    "I2": "textual concurrency safeguard strengthened; implementation unverified",
+    "I3": "readback safeguard retained; precise recovery guidance proposed"
+  },
+  "limits": [
+    "Tool delivery is evidence of resource delivery, not comprehension or mechanical enforcement.",
+    "No target marker was created, read, checked, removed, or executed by this pass. Marker-before statement is supplied context and supports initial absence only.",
+    "No source edits, external messages, model CLI calls, or measured performance claims."
+  ]
+}

@@ -54,7 +54,8 @@
     {
       "id": "engos-audit-engineering-progress:L5:217541507de2",
       "heading": "Help",
-      "source_line": 5,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 10,
       "sha256": "217541507de29315cbaa6063f4010e2b5bb15184ddcaf4cd7fc54289f39ecfd6",
       "text": "When the invocation requests `help`, `/help`, `--help`, or `-h`, return usage, examples, keywords, and supported modules from this section, then stop. `help examples` returns examples; `help <module>` explains that supported module. Unknown topics list valid choices. Do not run workflows, tools, authentication checks, or write files for help. A quoted word or target filename containing help is not a help request. Existing stop/cancel controls take precedence.",
       "kind": "guarded_invariant",
@@ -63,7 +64,8 @@
     {
       "id": "engos-audit-engineering-progress:L30:af97ae5b5f36",
       "heading": "Dependencies",
-      "source_line": 30,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 35,
       "sha256": "af97ae5b5f3628c1c812e7f2031acacd235eb3f1491598cd64298cde23977236",
       "text": "| `run` | `git` only \u2014 no external dependencies |",
       "kind": "invariant",
@@ -72,7 +74,8 @@
     {
       "id": "engos-audit-engineering-progress:L36:d824b51e5281",
       "heading": "Dependencies",
-      "source_line": 36,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 41,
       "sha256": "d824b51e5281571aa826840b22778689935225e4b5cef46cd72aafee95e2c27c",
       "text": "`sync-authors` is the only command that requires Home MCP. It is optional \u2014 author lists can be maintained manually in `config.yaml` if Home MCP is unavailable.",
       "kind": "guarded_invariant",
@@ -81,7 +84,8 @@
     {
       "id": "engos-audit-engineering-progress:L45:713c0d9f37b8",
       "heading": "Tool Boundaries",
-      "source_line": 45,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 50,
       "sha256": "713c0d9f37b8a34fbbe93273c173c7a569c4af7d6b01ec774a4ce2924b82e546",
       "text": "- use Home MCP only to refresh configured author lists when `sync-authors` is requested",
       "kind": "guarded_invariant",
@@ -90,7 +94,8 @@
     {
       "id": "engos-audit-engineering-progress:L46:f0ee8c2c9ac6",
       "heading": "Tool Boundaries",
-      "source_line": 46,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 51,
       "sha256": "f0ee8c2c9ac6f26c51f1d3fa5bf637aa9c10f9aa2c4f7b5a9df31be08a38afec",
       "text": "- use Drive, Chat, or email integrations only for explicit upload, sync, or notification flows",
       "kind": "invariant",
@@ -99,7 +104,8 @@
     {
       "id": "engos-audit-engineering-progress:L48:247b41e99ff2",
       "heading": "Tool Boundaries",
-      "source_line": 48,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 53,
       "sha256": "247b41e99ff275442db2523eb78ebef8d0594fb10bfceae8f5f374644420ee18",
       "text": "Forbidden:",
       "kind": "invariant",
@@ -108,7 +114,8 @@
     {
       "id": "engos-audit-engineering-progress:L64:e45f1310b988",
       "heading": "When to Use This Capability",
-      "source_line": 64,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 69,
       "sha256": "e45f1310b9881b47b68415a8abf1220f8a72c1d1fd10f1d45b4fb6209ba6389c",
       "text": "| \"Update my Jira tickets\" | Not this skill | eng-report is read-only against git |",
       "kind": "invariant",
@@ -117,7 +124,8 @@
     {
       "id": "engos-audit-engineering-progress:L103:d03fa22f48be",
       "heading": "Invocation Hints",
-      "source_line": 103,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 108,
       "sha256": "d03fa22f48be46a26504664397538450bcc4b277c8c4b96b4d55b00865a2620f",
       "text": "Do not invoke this capability for sprint planning, Jira status, story-point reporting, PR review, test execution, incident management, or any request that requires modifying source code.",
       "kind": "invariant",
@@ -126,7 +134,8 @@
     {
       "id": "engos-audit-engineering-progress:L105:77357dbdaba3",
       "heading": "Required Inputs",
-      "source_line": 105,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 110,
       "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
       "text": "## Required Inputs",
       "kind": "invariant",
@@ -135,7 +144,8 @@
     {
       "id": "engos-audit-engineering-progress:L116:eab8a3de4245",
       "heading": "Required Inputs",
-      "source_line": 116,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 121,
       "sha256": "eab8a3de4245dcf32cfed8d445912b48c2e4cce4f7967a7db5a2f6ab06721ccd",
       "text": "- Home MCP access only for `sync-authors`; manually maintained author lists are valid without Home MCP",
       "kind": "invariant",
@@ -144,7 +154,8 @@
     {
       "id": "engos-audit-engineering-progress:L118:3d4b9f171064",
       "heading": "Required Output",
-      "source_line": 118,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 123,
       "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
       "text": "## Required Output",
       "kind": "invariant",
@@ -153,7 +164,8 @@
     {
       "id": "engos-audit-engineering-progress:L126:6eaa2c46a6e6",
       "heading": "Required Output",
-      "source_line": 126,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 131,
       "sha256": "6eaa2c46a6e6068ba40f4fb63f5f496cdf75d73da513636c4faf2fbcb42c9f78",
       "text": "The generated report must keep all visible metrics traceable to git data and must not include invented Jira counts, story points, PR review timings, or unverified external facts.",
       "kind": "invariant",
@@ -162,7 +174,8 @@
     {
       "id": "engos-audit-engineering-progress:L145:52e985ce39b3",
       "heading": "Usage",
-      "source_line": 145,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 150,
       "sha256": "52e985ce39b3a0afe88f80fc9260c2ef4c39cf3dc3c09627eaacd202da4fbaea",
       "text": "| `--json` | Print metrics JSON to stdout; do not create or overwrite HTML/JavaScript report artifacts or create the output directory |",
       "kind": "invariant",
@@ -171,7 +184,8 @@
     {
       "id": "engos-audit-engineering-progress:L272:26c2ba108386",
       "heading": "For `configure`",
-      "source_line": 272,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 277,
       "sha256": "26c2ba108386d488ea162e74c5bd6948d6a67b665d92abb61e7af5b721f23552",
       "text": "- The standalone runtime ships `~/.core-prompts-updater/scripts/eng-report.py`; the launcher must resolve that installed copy, not a temporary checkout.",
       "kind": "invariant",
@@ -180,7 +194,8 @@
     {
       "id": "engos-audit-engineering-progress:L274:3a4a475b672d",
       "heading": "For `configure`",
-      "source_line": 274,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 279,
       "sha256": "3a4a475b672d37b0885661bfacbce55566349db8a2686da2a8b8a616d7e4b50d",
       "text": "- If the helper is missing, request the Core-Prompts installation workflow; do not search the home directory for an arbitrary checkout.",
       "kind": "guarded_invariant",
@@ -189,7 +204,8 @@
     {
       "id": "engos-audit-engineering-progress:L287:6e56ead7fa75",
       "heading": "For `run`",
-      "source_line": 287,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 292,
       "sha256": "6e56ead7fa758e8f097156f4a90f46dfd065e64768174443e62c99b139c3b6fa",
       "text": "**This command delegates all git data gathering to `scripts/eng-report.py`.** Do not run git commands manually \u2014 use the script.",
       "kind": "invariant",
@@ -198,7 +214,8 @@
     {
       "id": "engos-audit-engineering-progress:L294:c433da1366f2",
       "heading": "For `run`",
-      "source_line": 294,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 299,
       "sha256": "c433da1366f2a270758bd7dba17ace1935ddd41159b8943d1df7b13bea0c4622",
       "text": "You CANNOT skip Pass 1. You CANNOT write narrative JSON without first reading the --json output. The metrics are the ground truth \u2014 narratives must describe what the data shows.",
       "kind": "invariant",
@@ -207,7 +224,8 @@
     {
       "id": "engos-audit-engineering-progress:L312:413b7609242e",
       "heading": "Pass 2 \u2014 Generate AI narrative",
-      "source_line": 312,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 317,
       "sha256": "413b7609242ea2b30e87d6bea925804b0e6313b91221a37754724d4fab730be9",
       "text": "1. You MUST first run `eng-report run --json --config <config>` and READ the actual JSON output.",
       "kind": "invariant",
@@ -216,7 +234,8 @@
     {
       "id": "engos-audit-engineering-progress:L313:b90894eda99b",
       "heading": "Pass 2 \u2014 Generate AI narrative",
-      "source_line": 313,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 318,
       "sha256": "b90894eda99b5f9c2fa588f1d87337c7e789c4275b7d746584d2da29b75fdd49",
       "text": "2. You MUST synthesize narratives from the REAL metrics data you just read \u2014 not from memory, assumptions, or prior knowledge of the repos.",
       "kind": "invariant",
@@ -225,7 +244,8 @@
     {
       "id": "engos-audit-engineering-progress:L314:f99b3a1b5134",
       "heading": "Pass 2 \u2014 Generate AI narrative",
-      "source_line": 314,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 319,
       "sha256": "f99b3a1b5134c5064ce03b22e9f54c2a65c652ca4d7d3cf9ccbcfe2c05d2c358",
       "text": "3. You MUST NOT pre-write narrative JSON before reading metrics. The narrative is a RESPONSE to the data.",
       "kind": "invariant",
@@ -234,7 +254,8 @@
     {
       "id": "engos-audit-engineering-progress:L315:10998de14d4b",
       "heading": "Pass 2 \u2014 Generate AI narrative",
-      "source_line": 315,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 320,
       "sha256": "10998de14d4b5f7b6dec14122de20d38a17a7473055f441adb0eb5072c4db61e",
       "text": "4. You MUST NOT write a Python script to generate narratives \u2014 use your own synthesis capabilities on the real data.",
       "kind": "invariant",
@@ -243,7 +264,8 @@
     {
       "id": "engos-audit-engineering-progress:L324:4f05ad30b4b3",
       "heading": "Pass 2 \u2014 Generate AI narrative",
-      "source_line": 324,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 329,
       "sha256": "4f05ad30b4b38954fca3bbb5d27a3059c28b979baf504f730c3acbea13935737",
       "text": "- Never list raw filenames with date-hash names. Never name individual contributors. Describe what the team built, not who typed it.",
       "kind": "invariant",
@@ -252,7 +274,8 @@
     {
       "id": "engos-audit-engineering-progress:L326:91eb0b0a682f",
       "heading": "Pass 2 \u2014 Generate AI narrative",
-      "source_line": 326,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 331,
       "sha256": "91eb0b0a682f3701ca23308a6afdebce71370c1966b57a7975645c1d02650ea4",
       "text": "- \u274c WRONG: `[engos-71sfe.47] fix: add doctor dry-run repair plan` (raw commit subject \u2014 never do this)",
       "kind": "invariant",
@@ -261,7 +284,8 @@
     {
       "id": "engos-audit-engineering-progress:L333:6d02e7bab45f",
       "heading": "Pass 2 \u2014 Generate AI narrative",
-      "source_line": 333,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 338,
       "sha256": "6d02e7bab45f0fea66f08730ffef8c41d1167a36eb0e195e9e596f9df4f52afa",
       "text": "- **`work_areas`**: Jira repos only. Read the commit subjects, strip ticket prefixes, cluster into 5\u20137 plain-English themes you identify. Render as `<div style=\"margin-bottom:12px\"><div style=\"display:flex;justify-content:space-between;margin-bottom:4px\"><span style=\"color:#e6edf3;font-size:13px\">AREA LABEL</span><span style=\"color:#8b949e;font-size:12px\">N commits</span></div><div style=\"height:8px;width:PCT%;background:COLOR;border-radius:4px;min-width:6px\"></div></div>` bars (scale to max area).",
       "kind": "invariant",
@@ -270,7 +294,8 @@
     {
       "id": "engos-audit-engineering-progress:L339:a7b831d99f1c",
       "heading": "Pass 2 \u2014 Generate AI narrative",
-      "source_line": 339,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 344,
       "sha256": "a7b831d99f1c1b69b43e1c3981d23eb1007ccdee7a27ceff2a0412b165442cbb",
       "text": "Process all active entries. Work through them directly \u2014 do not write a Python script to generate the narratives algorithmically.",
       "kind": "invariant",
@@ -279,7 +304,8 @@
     {
       "id": "engos-audit-engineering-progress:L380:9b3d34de14ca",
       "heading": "For `sync`",
-      "source_line": 380,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 385,
       "sha256": "9b3d34de14caa887c3f804d77f1ac6cbd2a3a28bcea6ed7e4086ba4fdc83499b",
       "text": "3. If `--date` specified: sync only that folder. If folder not found in Drive, abort with error.",
       "kind": "guarded_invariant",
@@ -288,7 +314,8 @@
     {
       "id": "engos-audit-engineering-progress:L412:86ceea02a1c0",
       "heading": "Output Quality Standards",
-      "source_line": 412,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 417,
       "sha256": "86ceea02a1c06e0e9f559308bb68574b6aaf695d301a2a9eb3569b596d4d6ff1",
       "text": "A 10/10 report MUST satisfy ALL of the following. Treat each as a gate \u2014 if any fails, fix before outputting:",
       "kind": "guarded_invariant",
@@ -297,7 +324,8 @@
     {
       "id": "engos-audit-engineering-progress:L416:e7b96872bd72",
       "heading": "Output Quality Standards",
-      "source_line": 416,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 421,
       "sha256": "e7b96872bd720bee4f63deb5ba1af9e21c7b8a54fe871e228cf7c75cd29ba257",
       "text": "- [ ] Category bars: only conventional prefixes (lowercase words before `:`, `(`, `!`). No Jira keys (e.g., `LCP-123`) appear as categories.",
       "kind": "invariant",
@@ -306,7 +334,8 @@
     {
       "id": "engos-audit-engineering-progress:L418:13d030c228b7",
       "heading": "Output Quality Standards",
-      "source_line": 418,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 423,
       "sha256": "13d030c228b73d523478b9bc5b350f6bd49fa01e6c351c2f009da5901b9688d8",
       "text": "- [ ] Release timeline: only git tags or explicit version-bump commits \u2014 merge commits NEVER appear here",
       "kind": "invariant",
@@ -315,7 +344,8 @@
     {
       "id": "engos-audit-engineering-progress:L437:633eaaba9df6",
       "heading": "Example: Single Repository Report",
-      "source_line": 437,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 442,
       "sha256": "633eaaba9df6263ca34639900d397a375aeea0ac6aa3469c91419501650d0280",
       "text": "- reads only git history from the selected repository",
       "kind": "invariant",
@@ -324,7 +354,8 @@
     {
       "id": "engos-audit-engineering-progress:L451:39a79adb5c4b",
       "heading": "Example: Two-Pass Narrative Report",
-      "source_line": 451,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 456,
       "sha256": "39a79adb5c4be8c8215391c0a36ab18780c9d4822e32ced8543dfdd49901dcda",
       "text": "- outputs metric JSON only",
       "kind": "invariant",
@@ -333,7 +364,8 @@
     {
       "id": "engos-audit-engineering-progress:L461:9b2e8893ca1d",
       "heading": "Example: Out-of-Scope Request",
-      "source_line": 461,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 466,
       "sha256": "9b2e8893ca1da5d91459d8c1c613744c4ea030dea9ed44d2573c17d7f1d1064f",
       "text": "Do not use eng-report for story points. State that the capability only reports git-derived metrics and ask for a Jira-capable workflow if story-point reporting is required.",
       "kind": "guarded_invariant",
@@ -342,7 +374,8 @@
     {
       "id": "engos-audit-engineering-progress:L469:c30b8eb0eb7f",
       "heading": "Evaluation Rubric",
-      "source_line": 469,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 474,
       "sha256": "c30b8eb0eb7f94dfeda553dd1ee65a13f4b17edd145ba1ddf52de7196ebd824e",
       "text": "| Read-only behavior | The capability observes repositories and writes reports outside source trees unless explicitly configured | The capability modifies code, tests, branches, or repo metadata |",
       "kind": "guarded_invariant",
@@ -351,7 +384,8 @@
     {
       "id": "engos-audit-engineering-progress:L473:deaa42f42184",
       "heading": "Evaluation Rubric",
-      "source_line": 473,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 478,
       "sha256": "deaa42f421847cd0a964cdfbf79b4c21f5b97635566d05df5e085cb3fe8be77f",
       "text": "| Integration clarity | Optional Home MCP, Drive, Chat, and email dependencies are used only for their specific commands | Optional integrations are treated as required for basic git reporting |",
       "kind": "invariant",
@@ -360,7 +394,8 @@
     {
       "id": "engos-audit-engineering-progress:L488:1c022ba68bff",
       "heading": "AI Narrative Integration",
-      "source_line": 488,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 493,
       "sha256": "1c022ba68bff4c155a53e4a1b1e1bd76ea6ecf368e69eb7fa434b52f8f333cf3",
       "text": "- `summary`: 3\u20134 sentences synthesizing the arc of the period. Team-framing only.",
       "kind": "invariant",
@@ -369,7 +404,8 @@
     {
       "id": "engos-audit-engineering-progress:L517:2a10f84af968",
       "heading": "Integration Reference",
-      "source_line": 517,
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 522,
       "sha256": "2a10f84af9680242693a058af497caf59870b8edea287b8a890e645c16eebc69",
       "text": "- `/engos-audit-engineering-progress notify <recipient-or-space> about <report>` \u2014 prepare and send only when the user explicitly authorized the recipient and communication.",
       "kind": "guarded_invariant",

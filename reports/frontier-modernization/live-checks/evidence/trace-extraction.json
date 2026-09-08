@@ -1,0 +1,49 @@
+{
+  "capture_time": "2026-09-08T18:58:41.599358+00:00",
+  "scope": "This demonstration controller and its direct independent reviewers only; cedar ends after its second final answer, before release to unrelated parent work",
+  "filter": "Actual tool calls/results, visible controller progress and reviewer final answers; excludes reasoning, all other messages, world state, unrelated agent inventory and the initial irrelevant read-only memory result (identified omission; original remains in native history).",
+  "cutoff": "Snapshot of completed records available at capture; excludes pending capture output and any later events.",
+  "reasoning_records_exported": 0,
+  "sessions": [
+    {
+      "thread_id": "01a08233-5e2d-7c20-b46b-68e3aee1c9fc",
+      "agent_path": "/root/verify_live_skill_behaviors",
+      "trace": "evidence/controller-tool-trace.jsonl",
+      "tool_record_count": 183,
+      "call_count": 92,
+      "sha256": "70683b5add6c82c284ac92013655f7e9b07b2683ea14aaf4b6651063d224044d"
+    },
+    {
+      "thread_id": "01a08234-e21f-70f1-bda9-1d252bf32804",
+      "agent_path": "/root/verify_live_skill_behaviors/grade_harbor",
+      "trace": "evidence/grade_harbor-tool-trace.jsonl",
+      "tool_record_count": 24,
+      "call_count": 12,
+      "sha256": "1ebcded4f182c18b101c424d38691ef8f6f5b069033e932fe891cbfc414f6067"
+    },
+    {
+      "thread_id": "01a08237-0f36-7073-a347-0b38cfe03fe2",
+      "agent_path": "/root/verify_live_skill_behaviors/grade_meadow",
+      "trace": "evidence/grade_meadow-tool-trace.jsonl",
+      "tool_record_count": 52,
+      "call_count": 26,
+      "sha256": "3eef2e0ea864c8a8a380c4f69c93f9f484ad0710bfb40c2b7e6537e7e9222222"
+    },
+    {
+      "thread_id": "01a0823c-a467-7173-938b-6c5cbead3781",
+      "agent_path": "/root/verify_live_skill_behaviors/grade_cedar",
+      "trace": "evidence/grade_cedar-tool-trace.jsonl",
+      "tool_record_count": 40,
+      "call_count": 20,
+      "sha256": "2af15974dac4249582b62900823ccf4ec6adcac5b0e047ff2e1778959e731e4e"
+    },
+    {
+      "thread_id": "01a08253-cae3-76a2-aa5e-8954db6dc3ff",
+      "agent_path": "/root/verify_live_skill_behaviors/ult_acceptance",
+      "trace": "evidence/ult_acceptance-tool-trace.jsonl",
+      "tool_record_count": 12,
+      "call_count": 6,
+      "sha256": "fbefb59f539ac67a3a61c70fac5f887bb76d4ed786ebaf74bdebac271c330ec8"
+    }
+  ]
+}

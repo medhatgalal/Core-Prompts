@@ -1,0 +1,71 @@
+CapabilityResourceBundle.v1 route=/catchup manifest_sha256=56fee7ec78e0bac117fb3f517e8577890cfa638c3ac3a758f236ec64ee3df91f sha256=e5129c59f933efd6e189446437fd62b96b031a5858589b9330cfc9077b4a001d assembled_not_proof_of_consumption
+
+<!-- resource: references/shared-review.md sha256=92fe588ebc996fa935204ced17e9761dd8927d7ee6906466988af0ee2285d791 -->
+# Independent Review and Resource Evidence
+
+For substantive improvement, review, grading, and verification, use actual independent subagents. Do not simulate agents, substitute self-review, or let the author approve its own artifact. If delegation fails, attempt recovery within the available runtime; otherwise mark the required review incomplete and do not claim completion. Routine help, examples, command listing, and mode exit need no reviewer.
+
+Give each reviewer the original task, full factual context, constraints, stable criteria, relevant resource content, and candidate artifact. For its first assessment withhold the author's self-grade and preferred verdict and other reviewers' initial conclusions. Do not withhold facts necessary for fairness. Exchange findings after independent assessment where debate or reconciliation calls for it. Preserve material dissent and resolve findings with evidence rather than voting alone.
+
+Discover the available subagent interface; use the default configured model unless instructed otherwise. Subagents may share model biases, so separate contexts reduce anchoring but do not prove independence of all error sources. Reuse an agent for related follow-up when the module's initial independence is preserved. Parallelize independent work; sequence dependent passes and synthesis.
+
+Give each agent explicit responsibility, inputs, constraints, expected output, and a stop condition. Scope and authorization remain with the user and host. Using authorized subagent tools does not confer runtime ownership or new permission to deploy, merge, or perform destructive actions.
+
+Before any selected module work, obtain its full resource payload through actual tool results or host-supplied context. File existence, a path, a search hit, a hash, a truncated excerpt, or an author-written receipt does not establish delivery. Supply the relevant full material independently to each subagent; a parent's claim of reading is insufficient. Keep machine or tool evidence in working records, outside preserved user-facing formats.
+
+The resource map describes route dependencies. Missing, stale, changed mid-run, or partially delivered dependencies block the affected module until recovered; never invent the missing contract. A changed resource requires reloading and rechecking dependent work. On hosts without automatic assembly, observable full file reads are required. Tool evidence proves delivery, not comprehension; independent resource-dependent behavior checks assess compliance. Never claim mechanical enforcement where only instructions are available.
+
+<!-- resource: references/modules/catchup.md sha256=4e7a94bf82cc0531b0778efba4c6906fb421ec578fcad3dd9c260ed40e69afa2 -->
+## MODULE: /catchup — Deep Forensic Catchup (Multi-Intent)
+
+### Purpose
+Reconstruct the conversation as a forensic report, not a new deliverable.
+If multiple intent-result threads exist, decomplect them and output one table per intent group.
+
+### HARD CONSTRAINTS (Non-Negotiable)
+- Reconstruction only. Do not propose new solutions.
+- No prose before each table.
+- Do not invent missing info; label unknowns as `[Unclear]`.
+- Use markers: `✅ Confirmed` · `🟡 Proposed` · `🔴 Not decided`.
+- Temporal discipline: Initially, Then, Afterward, Currently, Not yet decided.
+- If timestamps are present, include them; otherwise use turn numbers or sequence indices.
+
+### Evidence and Cognitive Load
+Restore the user's understanding of the session in plain English: work categories, original goals, resolved work, decisions, current activity, and recorded next steps. Keep recognizable task names and preserve the exact table and validation output below.
+Verify the reconstruction against accessible conversation history, artifacts, and subagent results. An independent subagent checks substantial reconstruction before finalization. Mark inaccessible history `[Unclear]`; distinguish agent-reported completion from independently verified completion where it changes the current state.
+Keep evidence collection details in working records. Do not turn the table into a source-log dump. `Next Steps` contains recorded commitments, not a new plan; if fewer than 3–5 are recorded, say so in that cell instead of inventing actions. Preserve all rows and visible validation checks.
+
+### Output Structure (MANDATORY)
+For each intent group, output exactly one table:
+
+| Section | Content |
+| --- | --- |
+| Thread Purpose | Why this intent exists |
+| Original Ask | Initial request for this intent |
+| Current Goal | What it evolved into |
+| Timeline / Phases | Ordered phases with temporal markers + time or turn hints |
+| Key Decisions | ✅ Confirmed |
+| Proposed (Not Final) | 🟡 Proposed |
+| Artifacts Produced | Prompts, docs, outputs already created |
+| Open Questions | 🔴 Not decided, blockers, missing inputs |
+| Drift / Risks | Gaps, staleness, contradictions |
+| Current State | Snapshot of where things stand |
+| Next Steps | 3–5 concrete actions to resume |
+
+### Catchup Validation (Run After Each Intent Table)
+After each table, run this check and print the result:
+
+```text
+/VALIDATE-CATCHUP
+Checks:
+1) Reconstruction only (no new solution)
+2) Exactly one table, no leading prose
+3) Markers present (✅/🟡/🔴)
+4) Temporal phases explicit
+5) One-page, scannable output
+
+If any check fails: revise once, re-run validation
+Print:
+Validation Status: PASS | FAIL
+Failed Checks: (if any)
+```

@@ -6,7 +6,6 @@
   "change_class": "unknown",
   "non_goals": [],
   "protected_behaviors": [
-    "14b5f079903bf6a91adf9c966b6e28fb8b7153ea828d47430d628bdee805b584",
     "4f489f6deceea4cac14caf270d30c4a22c38096315c377da3a6ebaaf71af0b8f",
     "5c01406ac676edfa3d26c3492bfae9d47d2aaf29900d19a7fbdee8a10305c005",
     "6e742ea93af388211154ad677b8f8c7002d7001f80cd74376d6e8b1fc2e94225",
@@ -57,11 +56,6 @@
   "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
   "rollback_trigger": "Any protected regression or stale bound evidence.",
   "source_clause_hashes": [
-    {
-      "sha256": "14b5f079903bf6a91adf9c966b6e28fb8b7153ea828d47430d628bdee805b584",
-      "source": "ssot/engos-quality-gitops-review.md",
-      "text": "description: \"Assess repository hygiene, commit and pull request or merge request readiness, CI, packaging, merge, tag, and release prerequisites across GitHub and GitLab. Use for release or merge gates; do not claim hosted state without current verification.\""
-    },
     {
       "sha256": "4f489f6deceea4cac14caf270d30c4a22c38096315c377da3a6ebaaf71af0b8f",
       "source": "ssot/engos-quality-gitops-review.md",

@@ -1,0 +1,43 @@
+CapabilityResourceBundle.v1 route=/grade manifest_sha256=56fee7ec78e0bac117fb3f517e8577890cfa638c3ac3a758f236ec64ee3df91f sha256=cc455648f3db75347d131cfae2ca86a434458112a522a7dbcaeda5a6ae43b21f assembled_not_proof_of_consumption
+
+<!-- resource: references/shared-review.md sha256=92fe588ebc996fa935204ced17e9761dd8927d7ee6906466988af0ee2285d791 -->
+# Independent Review and Resource Evidence
+
+For substantive improvement, review, grading, and verification, use actual independent subagents. Do not simulate agents, substitute self-review, or let the author approve its own artifact. If delegation fails, attempt recovery within the available runtime; otherwise mark the required review incomplete and do not claim completion. Routine help, examples, command listing, and mode exit need no reviewer.
+
+Give each reviewer the original task, full factual context, constraints, stable criteria, relevant resource content, and candidate artifact. For its first assessment withhold the author's self-grade and preferred verdict and other reviewers' initial conclusions. Do not withhold facts necessary for fairness. Exchange findings after independent assessment where debate or reconciliation calls for it. Preserve material dissent and resolve findings with evidence rather than voting alone.
+
+Discover the available subagent interface; use the default configured model unless instructed otherwise. Subagents may share model biases, so separate contexts reduce anchoring but do not prove independence of all error sources. Reuse an agent for related follow-up when the module's initial independence is preserved. Parallelize independent work; sequence dependent passes and synthesis.
+
+Give each agent explicit responsibility, inputs, constraints, expected output, and a stop condition. Scope and authorization remain with the user and host. Using authorized subagent tools does not confer runtime ownership or new permission to deploy, merge, or perform destructive actions.
+
+Before any selected module work, obtain its full resource payload through actual tool results or host-supplied context. File existence, a path, a search hit, a hash, a truncated excerpt, or an author-written receipt does not establish delivery. Supply the relevant full material independently to each subagent; a parent's claim of reading is insufficient. Keep machine or tool evidence in working records, outside preserved user-facing formats.
+
+The resource map describes route dependencies. Missing, stale, changed mid-run, or partially delivered dependencies block the affected module until recovered; never invent the missing contract. A changed resource requires reloading and rechecking dependent work. On hosts without automatic assembly, observable full file reads are required. Tool evidence proves delivery, not comprehension; independent resource-dependent behavior checks assess compliance. Never claim mechanical enforcement where only instructions are available.
+
+<!-- resource: references/modules/grade.md sha256=a605e4d384f5d9b16e459a96c7e10d7dec52e6496c3e650b7fdbbc32d94af86a -->
+## MODULE: /grade — Graded Candidate Improvement Ladder (Score 1–10)
+
+### Purpose
+Improve through real candidate revisions and independent grading, preserving the best artifact instead of forcing an upward score story.
+
+### Activation
+Activate `/grade` only when the user explicitly invokes it or selects `/full` without `skip grade`. Do not add grading automatically to another route.
+
+### Trial Contract
+- Freeze the original artifact, anchored rubric, quality target, protected behavior, and trial budget. Default to up to 10 actual candidate trials; a user-specified count or limit overrides that default within available authority and budget.
+- Produce at least two substantive candidates unless the user sets a shorter limit or a hard budget/user interruption prevents it. The first successful rewrite alone is insufficient to finish. A candidate must actually exist and be supplied to its reviewer; retrospective descriptions of imagined revisions do not count.
+- An actual independent reviewer grades each candidate against the same rubric without the author's self-grade or preferred verdict. Identify the candidate, evidence, score (1–10), and decision: improved, tied, regressed, or inconclusive.
+- Keep the original baseline, best retained artifact, and active trial distinct. Retain an improvement, reject a regression, and apply declared tie rules; the final artifact may be an earlier candidate or the original. Do not inflate scores or force every attempt to improve.
+- Early completion under the default limit requires independent confirmation that the quality target is met AND a plateau of two distinct substantive unsuccessful attempts to improve the retained best. Distinct attempts test different plausible improvement hypotheses, not cosmetic rewordings. An explicit user count runs that count unless a hard bound or interruption intervenes.
+- Otherwise stop at the trial limit, hard budget, or user interruption and report the actual reason. Plateau means no improvement found in this search, not proof no better answer exists.
+- Keep intermediate artifacts inspectable in working records or files; report compact deltas in the ladder and the final artifact in full. Distinguish review scores from measured downstream behavior. Route comparative performance claims to Auto-Research.
+- If independent review fails, recover delegation or mark the review incomplete. Never replace it with self-review or simulated reviewers.
+
+### Output Structure (MANDATORY)
+1. `Rubric`
+2. `Iteration Ladder`
+3. `Final Artifact`
+4. `Top 3 Remaining Gaps`
+
+The ladder records actual trials only: candidate ID, substantive change, independent grade, keep/reject/tie decision, and concise evidence. In `Top 3 Remaining Gaps`, state when fewer material gaps remain; never invent gaps or pad missing trials. Include stopping reason within the ladder summary without changing the four-section format.

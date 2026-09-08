@@ -3,8 +3,10 @@ from __future__ import annotations
 import re
 from copy import deepcopy
 from collections.abc import Iterable, Mapping
+from pathlib import Path
 from typing import Any
 
+from .capability_resources import load_capability_bundle
 
 HEADING = re.compile(r"^(#{2,4})\s+(.+?)\s*$")
 TABLE_COMMAND = re.compile(r"^\|\s*`([^`]+)`\s*\|")
@@ -134,6 +136,33 @@ def extract_declared_modes(slug: str, body: str) -> list[dict[str, Any]]:
                 )
             )
     return entries
+
+
+def extract_capability_modes(repo_root: Path, slug: str, entry_text: str) -> list[dict[str, Any]]:
+    """Extract each original document separately so line references remain meaningful."""
+    parts = [(f"ssot/{slug}.md", entry_text)]
+    bundle = load_capability_bundle(repo_root, slug, entry_text)
+    if bundle is not None:
+        parts.extend((f"sources/capability-resources/{slug}/{item['path']}", item["content"])
+                     for item in bundle["resources"])
+    return extract_modes_from_sources(slug, parts)
+
+
+def extract_modes_from_sources(slug: str, sources: Iterable[tuple[str, str]]) -> list[dict[str, Any]]:
+    """Index already-captured original documents without re-reading a moving package."""
+    modes: list[dict[str, Any]] = []
+    seen: dict[tuple[str, str], dict[str, Any]] = {}
+    for source, text in sources:
+        for entry in extract_declared_modes(slug, text):
+            entry["source_refs"] = [source]
+            key = (entry["entry_kind"], entry["mode_slug"])
+            if key in seen:
+                existing = seen[key]
+                existing["invocations"] = list(dict.fromkeys([*existing["invocations"], *entry["invocations"]]))
+            else:
+                seen[key] = entry
+                modes.append(entry)
+    return modes
 
 
 def normalize_mode_entries(entries: Iterable[Mapping[str, Any]], slug: str) -> list[dict[str, Any]]:

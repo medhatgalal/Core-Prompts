@@ -33,7 +33,8 @@ from intent_pipeline.uac_descriptors import (
     save_descriptor,
     source_note_path,
 )
-from intent_pipeline.uac_modes import extract_declared_modes, normalize_mode_entries
+from intent_pipeline.uac_modes import extract_declared_modes, extract_capability_modes, normalize_mode_entries
+from intent_pipeline.capability_resources import effective_capability_text, load_resource_bundle
 from intent_pipeline.uac_ssot import (
     build_ssot_handoff_contract,
     build_ssot_manifest_entry,
@@ -500,6 +501,8 @@ def copy_capability_resources(surface_name: str, slug: str) -> list[str]:
     target_dir = RESOURCE_DIRS[surface_name](slug)
     target_dir.mkdir(parents=True, exist_ok=True)
     copied: list[str] = []
+    if (source_dir / 'resource-map.json').is_file():
+        load_resource_bundle(source_dir)
     for source_path in sorted(source_dir.rglob('*')):
         if not source_path.is_file():
             continue
@@ -510,6 +513,11 @@ def copy_capability_resources(surface_name: str, slug: str) -> list[str]:
         target_path.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(source_path, target_path)
         copied.append(str(target_path.relative_to(ROOT)))
+    if (source_dir / 'resource-map.json').is_file():
+        helper = target_dir / 'scripts' / 'load_module.py'
+        helper.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(ROOT / 'src' / 'intent_pipeline' / 'capability_resources.py', helper)
+        copied.append(str(helper.relative_to(ROOT)))
     return copied
 
 
@@ -542,7 +550,7 @@ def resolve_descriptor(entry, manifest_entry: dict[str, object], job_contract: d
     baseline = resolve_historical_baseline(ROOT, entry.slug)
     baseline_payload = baseline.as_payload()
     validation_matrix = [scenario.as_payload() for scenario in baseline.scenario_matrix]
-    extracted_modes = extract_declared_modes(entry.slug, entry.body)
+    extracted_modes = extract_capability_modes(ROOT, entry.slug, entry.path.read_text(encoding='utf-8'))
     section_constraints = tuple(extract_section_bullets(entry.body, '## Constraints'))
     descriptor = load_descriptor(ROOT, entry.slug)
     if descriptor:
@@ -560,7 +568,9 @@ def resolve_descriptor(entry, manifest_entry: dict[str, object], job_contract: d
             family_slug=str(descriptor.get('family_slug') or entry.slug),
             shared_summary=str(descriptor.get('shared_summary') or manifest_entry['layers']['minimal'].get('summary') or ''),
             shared_constraints=section_constraints or tuple(descriptor.get('shared_constraints') or ()),
-            modes=tuple(normalize_mode_entries(descriptor.get('modes') or extracted_modes, entry.slug)),
+            modes=tuple(normalize_mode_entries(
+                extracted_modes if (CAPABILITY_RESOURCE_SOURCE_DIR / entry.slug / 'resource-map.json').is_file()
+                else descriptor.get('modes') or extracted_modes, entry.slug)),
             benchmark_sources=tuple(descriptor.get('benchmark_sources') or defaults.get('benchmark_sources') or ()),
             quality_profile=str(descriptor.get('quality_profile')) if descriptor.get('quality_profile') is not None else None,
             quality_status=str(normalized_quality_status) if normalized_quality_status is not None else None,

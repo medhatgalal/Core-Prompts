@@ -46,7 +46,8 @@
     {
       "id": "engos-browser-demo-recorder:L41:63588b3eb232",
       "heading": "Out of Scope",
-      "source_line": 41,
+      "source": "ssot/engos-browser-demo-recorder.md",
+      "source_line": 48,
       "sha256": "63588b3eb23278fd94dd33f12a072f39a91dad6c3676ed86f8f8ed96dd108e3c",
       "text": "- Storing, transmitting, or reading credentials directly \u2014 reference environment variables only",
       "kind": "invariant",
@@ -55,7 +56,8 @@
     {
       "id": "engos-browser-demo-recorder:L45:c2a7258c4023",
       "heading": "Out of Scope",
-      "source_line": 45,
+      "source": "ssot/engos-browser-demo-recorder.md",
+      "source_line": 52,
       "sha256": "c2a7258c4023633f83c9072fe6904eb33dd1a49656bdebc533b919194002e2ab",
       "text": "- Generating partial or placeholder scripts \u2014 every output must be complete and runnable",
       "kind": "invariant",
@@ -64,7 +66,8 @@
     {
       "id": "engos-browser-demo-recorder:L52:ccfd09ac6dfc",
       "heading": "Tool Boundaries",
-      "source_line": 52,
+      "source": "ssot/engos-browser-demo-recorder.md",
+      "source_line": 59,
       "sha256": "ccfd09ac6dfc6450c1b7b7a8fe952c383bb4d8106148f644ee2d76535caad993",
       "text": "- Do not execute shell commands to run Playwright or start services",
       "kind": "invariant",
@@ -73,7 +76,8 @@
     {
       "id": "engos-browser-demo-recorder:L53:13c411747cea",
       "heading": "Tool Boundaries",
-      "source_line": 53,
+      "source": "ssot/engos-browser-demo-recorder.md",
+      "source_line": 60,
       "sha256": "13c411747cea34b0a1f8d81b52edfafabda20c3e62f88e95a6aea1a45aea1eae",
       "text": "- Do not access `.env` files, credential stores, or secret managers",
       "kind": "invariant",
@@ -82,7 +86,8 @@
     {
       "id": "engos-browser-demo-recorder:L61:77357dbdaba3",
       "heading": "Required Inputs",
-      "source_line": 61,
+      "source": "ssot/engos-browser-demo-recorder.md",
+      "source_line": 68,
       "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
       "text": "## Required Inputs",
       "kind": "invariant",
@@ -91,7 +96,8 @@
     {
       "id": "engos-browser-demo-recorder:L74:3d4b9f171064",
       "heading": "Required Output",
-      "source_line": 74,
+      "source": "ssot/engos-browser-demo-recorder.md",
+      "source_line": 81,
       "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
       "text": "## Required Output",
       "kind": "invariant",
@@ -100,7 +106,8 @@
     {
       "id": "engos-browser-demo-recorder:L112:cc19be8bcf9e",
       "heading": "Rules",
-      "source_line": 112,
+      "source": "ssot/engos-browser-demo-recorder.md",
+      "source_line": 119,
       "sha256": "cc19be8bcf9ea81e4b9efdba976d81c13a063e8ed54a8087cf3859ad3f5eed39",
       "text": "- Always reference credentials through environment variables, never inline.",
       "kind": "invariant",
@@ -109,7 +116,8 @@
     {
       "id": "engos-browser-demo-recorder:L114:f20a2cefe53c",
       "heading": "Rules",
-      "source_line": 114,
+      "source": "ssot/engos-browser-demo-recorder.md",
+      "source_line": 121,
       "sha256": "f20a2cefe53c10e643434b6f6399f16e06a86718d40b011c762b2d1b6c348419",
       "text": "- Always state prerequisites the user must verify before running.",
       "kind": "invariant",
@@ -118,7 +126,8 @@
     {
       "id": "engos-browser-demo-recorder:L117:d8eacb4f2de2",
       "heading": "Rules",
-      "source_line": 117,
+      "source": "ssot/engos-browser-demo-recorder.md",
+      "source_line": 124,
       "sha256": "d8eacb4f2de266e6eaf514ea6b360851284c3aa5e7f59762795a75572d7c9e29",
       "text": "- Do not claim orchestration, delegation, or runtime-control authority.",
       "kind": "invariant",
@@ -127,7 +136,8 @@
     {
       "id": "engos-browser-demo-recorder:L121:daffaa159311",
       "heading": "Constraints",
-      "source_line": 121,
+      "source": "ssot/engos-browser-demo-recorder.md",
+      "source_line": 128,
       "sha256": "daffaa159311fb831fe3c83109ab70566c7356590bd514c42a2922ad8149e9c3",
       "text": "- Do not invent service behavior or assume API shapes without user confirmation.",
       "kind": "invariant",
@@ -136,7 +146,8 @@
     {
       "id": "engos-browser-demo-recorder:L122:af51ed8554e8",
       "heading": "Constraints",
-      "source_line": 122,
+      "source": "ssot/engos-browser-demo-recorder.md",
+      "source_line": 129,
       "sha256": "af51ed8554e8727c6c3688c05b6f218208c366eb2ba8b2375913a0b66d1e4c7c",
       "text": "- Do not replace operational procedure with vague summaries.",
       "kind": "invariant",
@@ -145,7 +156,8 @@
     {
       "id": "engos-browser-demo-recorder:L123:97b9d1da72c4",
       "heading": "Constraints",
-      "source_line": 123,
+      "source": "ssot/engos-browser-demo-recorder.md",
+      "source_line": 130,
       "sha256": "97b9d1da72c4cd3ca81ace3bd28296aa5cbbf0533877c69b1c222b258b420fc4",
       "text": "- Do not imply execution authority that the capability does not own.",
       "kind": "invariant",
@@ -154,7 +166,8 @@
     {
       "id": "engos-browser-demo-recorder:L124:2110b5a2ba53",
       "heading": "Constraints",
-      "source_line": 124,
+      "source": "ssot/engos-browser-demo-recorder.md",
+      "source_line": 131,
       "sha256": "2110b5a2ba533875f9abfa6d441dc9bc2a2c5445a58fcc549654d5284fb98999",
       "text": "- Do not produce scripts that depend on undeclared external tools beyond Playwright itself.",
       "kind": "invariant",
@@ -163,7 +176,8 @@
     {
       "id": "engos-browser-demo-recorder:L125:44b3825e9222",
       "heading": "Constraints",
-      "source_line": 125,
+      "source": "ssot/engos-browser-demo-recorder.md",
+      "source_line": 132,
       "sha256": "44b3825e92225225e023fba0e20c1cc314119185422297940ef612dae59c6569",
       "text": "- Do not mix demo recording concerns with testing, CI, or deployment concerns.",
       "kind": "invariant",
