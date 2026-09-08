@@ -32,3 +32,7 @@ The [32-item register](acceptance-register.json) preserves S01–S19, U01–U07,
 Source review, structural tests, resource assembly, actual transport delivery, model behavior in bounded demonstrations, hosted CI, installation, and formal promotion are distinct. These changes remain **behavioral_pending** under the protected evaluation policy. No Fable/Sol/Astra/Grok-wide superiority, guaranteed resource comprehension, native discovery across every host, home installation, or versioned release is claimed.
 
 Hosted PR/MR and post-merge parity evidence is supplied in the delivery receipt and task response after those gates complete. Historical raw plan/judge/apply outputs and diagnostic logs are retained in raw-evidence.tar.gz; reports are evidence, never canonical rebuild input.
+
+## Hosted checkout repair
+
+The first GitHub and GitLab runs exposed one test assumption: resolving an old repository commit from a shallow checkout. The nonexistent-candidate test now uses HEAD as its valid baseline while retaining the exact invalid-candidate assertion. Independent review reproduced the original failure in a depth-one clone and verified all 14 tests in that file after overlaying only the repair; real divergent-ancestry coverage remains intact. Application code and the reviewed skill resources are unchanged. [Review](reviews/ci-fixture/review.md).

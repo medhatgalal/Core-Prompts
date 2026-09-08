@@ -1,0 +1,99 @@
+{
+  "root": "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts",
+  "source_head": "f5e92c92e74282707fc42b8bb447d4e9b954bbaa",
+  "clone": "/private/tmp/core-prompts-ci-fixture-nv5bjy1c/shallow",
+  "python": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]",
+  "runs": [
+    {
+      "label": "clone",
+      "args": [
+        "git",
+        "clone",
+        "--depth",
+        "1",
+        "--single-branch",
+        "--no-tags",
+        "--branch",
+        "AI/frontier-capability-modernization",
+        "file:///Users/medhat.galal/.codex/worktrees/921d/Core-Prompts",
+        "/private/tmp/core-prompts-ci-fixture-nv5bjy1c/shallow"
+      ],
+      "cwd": "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts",
+      "returncode": 0
+    },
+    {
+      "label": "shallow",
+      "args": [
+        "git",
+        "rev-parse",
+        "--is-shallow-repository"
+      ],
+      "cwd": "/private/tmp/core-prompts-ci-fixture-nv5bjy1c/shallow",
+      "returncode": 0
+    },
+    {
+      "label": "depth",
+      "args": [
+        "git",
+        "rev-list",
+        "--count",
+        "HEAD"
+      ],
+      "cwd": "/private/tmp/core-prompts-ci-fixture-nv5bjy1c/shallow",
+      "returncode": 0
+    },
+    {
+      "label": "clone-head",
+      "args": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/private/tmp/core-prompts-ci-fixture-nv5bjy1c/shallow",
+      "returncode": 0
+    },
+    {
+      "label": "before-repair",
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_uac_promotion_apply.py::test_finalize_existing_candidate_refuses_non_ancestor_candidate",
+        "-q"
+      ],
+      "cwd": "/private/tmp/core-prompts-ci-fixture-nv5bjy1c/shallow",
+      "returncode": 1
+    },
+    {
+      "label": "after-repair",
+      "args": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_uac_promotion_apply.py",
+        "-q"
+      ],
+      "cwd": "/private/tmp/core-prompts-ci-fixture-nv5bjy1c/shallow",
+      "returncode": 0
+    },
+    {
+      "label": "clone-diff-stat",
+      "args": [
+        "git",
+        "diff",
+        "--stat"
+      ],
+      "cwd": "/private/tmp/core-prompts-ci-fixture-nv5bjy1c/shallow",
+      "returncode": 0
+    }
+  ],
+  "shallow": "true",
+  "depth": "1",
+  "clone-head": "f5e92c92e74282707fc42b8bb447d4e9b954bbaa",
+  "test_sha256": "9304f346c3f30defff0b04b4dbfcea412d0f92eccd130c8f7772bd2ddc25b74a",
+  "clone_diff_stat": " tests/test_uac_promotion_apply.py | 6 +++---\n 1 file changed, 3 insertions(+), 3 deletions(-)\n"
+}
