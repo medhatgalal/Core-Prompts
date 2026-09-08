@@ -59,7 +59,8 @@
     {
       "id": "engos-quality-code-review:L6:18a0387acace",
       "heading": "Purpose",
-      "source_line": 6,
+      "source": "ssot/engos-quality-code-review.md",
+      "source_line": 13,
       "sha256": "18a0387acace7333137a187148b6835f76f0f8c75a1e04a1b0b2e1baa075d1fe",
       "text": "Use this before you create a commit, before you push a branch, before an MR/PR is merged, or after a fix commit has been prepared. Do not use this capability to modify files or apply reviewer feedback; use `engos-delivery-address-code-review` when the user wants selected PR/MR review comments implemented.",
       "kind": "guarded_invariant",
@@ -68,7 +69,8 @@
     {
       "id": "engos-quality-code-review:L22:00c92214d2df",
       "heading": "Choose the Right Review Capability",
-      "source_line": 22,
+      "source": "ssot/engos-quality-code-review.md",
+      "source_line": 29,
       "sha256": "00c92214d2df2fe695ae181e2a3a9b0f9d5b8b210f960028f09713fb058ef34e",
       "text": "Default to `engos-quality-code-review` for pre-commit or pre-push checks. Switch to `engos-delivery-address-code-review` only when the user explicitly wants to inspect and implement existing PR/MR review comments.",
       "kind": "guarded_invariant",
@@ -77,7 +79,8 @@
     {
       "id": "engos-quality-code-review:L29:c2e0cc42774e",
       "heading": "Core Principles",
-      "source_line": 29,
+      "source": "ssot/engos-quality-code-review.md",
+      "source_line": 36,
       "sha256": "c2e0cc42774e19e3e939c8ded9171cb43f9e3d24100b20dbcb28a1e5a18fa686",
       "text": "- **Scope discipline**: changes must match what the commit message describes",
       "kind": "invariant",
@@ -86,7 +89,8 @@
     {
       "id": "engos-quality-code-review:L40:23aca3d331b0",
       "heading": "Workflow",
-      "source_line": 40,
+      "source": "ssot/engos-quality-code-review.md",
+      "source_line": 47,
       "sha256": "23aca3d331b09e9e3cf2cc236213929c713eb27b58d0c7528ee442021717d1e9",
       "text": "5. End with a clear readiness decision: ready, blocked, or split required.",
       "kind": "invariant",
@@ -95,7 +99,8 @@
     {
       "id": "engos-quality-code-review:L44:37b9b510e11d",
       "heading": "Tool Boundaries",
-      "source_line": 44,
+      "source": "ssot/engos-quality-code-review.md",
+      "source_line": 51,
       "sha256": "37b9b510e11d3d41e0fc01a4bf0abd3e969f631b6e07cc1bbad1e850ae0bb6ee",
       "text": "- forbidden: applying fixes, modifying files, staging changes, silent approval, hidden execution, or claiming code quality is fine without reading the diff",
       "kind": "invariant",
@@ -104,7 +109,8 @@
     {
       "id": "engos-quality-code-review:L68:77357dbdaba3",
       "heading": "Required Inputs",
-      "source_line": 68,
+      "source": "ssot/engos-quality-code-review.md",
+      "source_line": 75,
       "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
       "text": "## Required Inputs",
       "kind": "invariant",
@@ -113,7 +119,8 @@
     {
       "id": "engos-quality-code-review:L73:3d4b9f171064",
       "heading": "Required Output",
-      "source_line": 73,
+      "source": "ssot/engos-quality-code-review.md",
+      "source_line": 80,
       "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
       "text": "## Required Output",
       "kind": "invariant",
@@ -122,7 +129,8 @@
     {
       "id": "engos-quality-code-review:L74:c34906b1f1c3",
       "heading": "Required Output",
-      "source_line": 74,
+      "source": "ssot/engos-quality-code-review.md",
+      "source_line": 81,
       "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
       "text": "Every substantial response must include:",
       "kind": "invariant",
@@ -131,7 +139,8 @@
     {
       "id": "engos-quality-code-review:L103:69e2d69e633b",
       "heading": "1. Capture the Commit",
-      "source_line": 103,
+      "source": "ssot/engos-quality-code-review.md",
+      "source_line": 110,
       "sha256": "69e2d69e633b3d0936215810f75fc2527ee735626295c990ce7768e6967df477",
       "text": "If nothing is staged, inspect the working-tree diff only after saying that the review is not a commit-ready staged review.",
       "kind": "guarded_invariant",
@@ -140,7 +149,8 @@
     {
       "id": "engos-quality-code-review:L155:a6f77e91ee6c",
       "heading": "4. Check Scope and Complexity",
-      "source_line": 155,
+      "source": "ssot/engos-quality-code-review.md",
+      "source_line": 162,
       "sha256": "a6f77e91ee6c5fd3af9d3deb0640bd277de10352692763bb9b6173e1be1f03fc",
       "text": "- failure modes are silent, unrecoverable, or diagnosable only after redeployment",
       "kind": "invariant",
@@ -149,7 +159,8 @@
     {
       "id": "engos-quality-code-review:L197:45eb57c3f020",
       "heading": "6. Check Resource & Lifecycle",
-      "source_line": 197,
+      "source": "ssot/engos-quality-code-review.md",
+      "source_line": 204,
       "sha256": "45eb57c3f020e224c1a857d07246b4495766195c3e8bbdeb426fee8afa303ae2",
       "text": "- [ ] temporary artifacts do not persist without a cleanup mechanism",
       "kind": "invariant",
@@ -158,7 +169,8 @@
     {
       "id": "engos-quality-code-review:L199:b80d593de097",
       "heading": "6. Check Resource & Lifecycle",
-      "source_line": 199,
+      "source": "ssot/engos-quality-code-review.md",
+      "source_line": 206,
       "sha256": "b80d593de097b89e33641755c29754158ac219cd2a1c18aa0dae17473f342eb5",
       "text": "- [ ] early returns and partial failures do not leak resources",
       "kind": "invariant",
@@ -167,7 +179,8 @@
     {
       "id": "engos-quality-code-review:L202:b9e0596a4fd2",
       "heading": "6. Check Resource & Lifecycle",
-      "source_line": 202,
+      "source": "ssot/engos-quality-code-review.md",
+      "source_line": 209,
       "sha256": "b9e0596a4fd2fa3c6a94dfff083d86915bbdabb45dc8fe99406c1a6a5a4f4c6b",
       "text": "- [ ] environment, configuration, feature flags, clocks, clients, and mutable dependencies are not frozen during initialization when runtime evaluation is required",
       "kind": "guarded_invariant",
@@ -176,7 +189,8 @@
     {
       "id": "engos-quality-code-review:L222:de3a6a2de402",
       "heading": "6. Check Resource & Lifecycle",
-      "source_line": 222,
+      "source": "ssot/engos-quality-code-review.md",
+      "source_line": 229,
       "sha256": "de3a6a2de402a98c4220e93d7c4388418802b6a618c5130037ad525950c7921b",
       "text": "- [ ] optional parameters do not become visible to downstream consumers without compatibility analysis",
       "kind": "invariant",
@@ -185,7 +199,8 @@
     {
       "id": "engos-quality-code-review:L224:485e7c6d8d96",
       "heading": "6. Check Resource & Lifecycle",
-      "source_line": 224,
+      "source": "ssot/engos-quality-code-review.md",
+      "source_line": 231,
       "sha256": "485e7c6d8d964cee25ce619514a5aaeaca192b9bfc8f35dd8c39527431f49e67",
       "text": "- [ ] versioning, migration, deprecation, and compatibility tests are added when required",
       "kind": "guarded_invariant",
@@ -194,7 +209,8 @@
     {
       "id": "engos-quality-code-review:L291:d2e95eececf5",
       "heading": "Recommendation",
-      "source_line": 291,
+      "source": "ssot/engos-quality-code-review.md",
+      "source_line": 298,
       "sha256": "d2e95eececf55eecf480dad0149d460303dc1380f7db3cb1883cf57b92c8a2d0",
       "text": "[Ready for MR / Needs revision before MR / Split required]",
       "kind": "invariant",
@@ -203,7 +219,8 @@
     {
       "id": "engos-quality-code-review:L305:39749905ad53",
       "heading": "Hard Constraints",
-      "source_line": 305,
+      "source": "ssot/engos-quality-code-review.md",
+      "source_line": 312,
       "sha256": "39749905ad533aa83fe2dd42cc12a5a23f2c959c6d3af474b055fe556c94402c",
       "text": "- Never skip reading the actual diff.",
       "kind": "invariant",
@@ -212,7 +229,8 @@
     {
       "id": "engos-quality-code-review:L310:6ec4931c2502",
       "heading": "Hard Constraints",
-      "source_line": 310,
+      "source": "ssot/engos-quality-code-review.md",
+      "source_line": 317,
       "sha256": "6ec4931c2502f4903591cdd096bd5452dc3b51bc580428b092157d46e17c6ba7",
       "text": "- Do not rubber-stamp a commit just because tests pass.",
       "kind": "invariant",

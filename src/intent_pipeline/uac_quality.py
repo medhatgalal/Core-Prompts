@@ -9,7 +9,10 @@ from typing import Any, Mapping, Sequence
 from intent_pipeline.uac_baselines import (
     BaselineContext,
     evaluate_candidate_against_baseline,
+    matching_requirement_review,
     resolve_historical_baseline,
+    text_sha256,
+    validate_requirement_reviews,
 )
 from intent_pipeline.uac_templates import load_capability_template
 
@@ -33,7 +36,7 @@ JUDGE_TITLES = {
 }
 
 MARKER_ALIASES = {
-    "## workflow": ("## Invocation", "## Commands", "## Workflow Contract"),
+    "## workflow": ("## Invocation", "## Commands", "## Workflow Contract", "## Standard Workflow"),
     "## rules": (
         "## Rules",
         "### Gate Condition",
@@ -42,7 +45,9 @@ MARKER_ALIASES = {
         "### Review Output Rules",
         "### Scoring Thresholds",
         "Non-Negotiable",
+        "## Core Principles",
     ),
+    "## tool boundaries": ("Tool Boundaries:",),
     "## constraints": ("## Constraints", "## Tool Boundaries", "No-Gos & Boundaries", "Forbidden:"),
     "## output directory": (
         "## Output Directory",
@@ -105,7 +110,7 @@ def latest_quality_review_path(repo_root: Path, slug: str) -> Path:
 def load_quality_profile(repo_root: Path, slug: str, requested: str) -> QualityProfile:
     if requested != "auto":
         name = requested
-    elif slug == "architecture":
+    elif slug in {"architecture", "engos-design-architecture"}:
         name = "architecture"
     else:
         name = "default"
@@ -157,6 +162,7 @@ def build_quality_plan(
         )
     return {
         "quality_profile": profile.name,
+        "assessment_scope": "mechanical_structure_only_not_semantic_or_behavioral_proof",
         "judge_targets": profile.targets,
         "max_passes": max_passes,
         "gate_order": [
@@ -188,7 +194,7 @@ def build_quality_plan(
         "stop_conditions": {
             "structural_ready": "all structural judge thresholds met, no blocker, validation green when required",
             "revise": "thresholds not met and passes remain",
-            "manual_review": "max passes reached or blocker remains unresolved",
+            "manual_review": "candidate unchanged or repeated, max passes reached, or blocker remains unresolved",
         },
     }
 
@@ -203,6 +209,7 @@ def run_quality_loop(
     benchmark_sources: Sequence[Mapping[str, Any]],
     max_passes: int,
     source_text: str | Sequence[str] | None = None,
+    semantic_reviews: Sequence[Mapping[str, Any]] = (),
 ) -> dict[str, Any]:
     current_text = candidate_text
     reports: list[dict[str, Any]] = []
@@ -212,6 +219,7 @@ def run_quality_loop(
     capability_type = str(((descriptor.get("layers") or {}).get("minimal") or {}).get("capability_type") or descriptor.get("capability_type") or "skill")
     template = load_capability_template(REPO_ROOT, capability_type)
     baseline = resolve_historical_baseline(REPO_ROOT, slug, candidate_text=candidate_text)
+    seen_candidates = {text_sha256(current_text)}
 
     for pass_number in range(1, max_passes + 1):
         pass_report = evaluate_quality_pass(
@@ -227,6 +235,7 @@ def run_quality_loop(
             max_passes=max_passes,
             template_name=template.name,
             template=template.payload,
+            semantic_reviews=semantic_reviews,
         )
         reports.append(pass_report)
         final_pass = pass_number
@@ -235,11 +244,21 @@ def run_quality_loop(
             final_status = "structural_ready"
             break
         if pass_number < max_passes:
-            current_text = refine_candidate_text(current_text, pass_report, profile)
+            refined = refine_candidate_text(current_text, pass_report, profile)
+            if refined == current_text:
+                stop_reason = "candidate_unchanged"
+                final_status = "manual_review"
+                break
+            if text_sha256(refined) in seen_candidates:
+                stop_reason = "candidate_cycle_detected"
+                final_status = "manual_review"
+                break
+            seen_candidates.add(text_sha256(refined))
+            current_text = refined
             final_status = "revise"
 
-    if final_status != "structural_ready" and reports:
-        final_status = reports[-1]["status"]
+    if final_status != "structural_ready":
+        final_status = "manual_review"
     return {
         "quality_profile": profile.name,
         "status": final_status,
@@ -250,6 +269,9 @@ def run_quality_loop(
         "final_candidate_text": current_text,
         "scorecard": dict(reports[-1].get("scorecard") or {}) if reports else {},
         "consumption_hints": dict(profile.payload.get("consumption_hints") or {}),
+        "repair_requests": reports[-1].get("repair_requests", []) if reports else [],
+        "assessment_scope": "mechanical_structure_and_bound_external_review_attestations",
+        "behavioral_status": "behavioral_pending",
     }
 
 
@@ -267,19 +289,41 @@ def evaluate_quality_pass(
     template_name: str,
     template: Mapping[str, Any],
     source_text: str | Sequence[str] | None = None,
+    semantic_reviews: Sequence[Mapping[str, Any]] = (),
 ) -> dict[str, Any]:
-    source_fidelity = _judge_source_fidelity(profile, slug, candidate_text, baseline, source_refs, benchmark_sources)
+    # Package assembly establishes available content, never actual model consumption.
+    from intent_pipeline.capability_resources import ResourceContractError, effective_capability_text
+    resource_failures: list[str] = []
+    try:
+        effective_text = effective_capability_text(REPO_ROOT, slug, candidate_text)
+        resource_texts = _load_declared_capability_resource_texts(slug, candidate_text)
+    except ResourceContractError as error:
+        effective_text = candidate_text
+        resource_texts = ()
+        resource_failures.append(f"resource contract invalid: {error}")
+    review_original_texts = [source_text] if isinstance(source_text, str) else list(source_text or ())
+    if baseline.baseline_text is not None:
+        review_original_texts.append(baseline.baseline_text)
+    current_source = REPO_ROOT / "ssot" / f"{slug}.md"
+    if current_source.is_file():
+        review_original_texts.append(current_source.read_text(encoding="utf-8"))
+    source_fidelity = _judge_source_fidelity(profile, slug, candidate_text, baseline, source_refs, benchmark_sources,
+        effective_text=effective_text, preserved_resource_texts=resource_texts, semantic_reviews=semantic_reviews,
+        review_original_texts=review_original_texts)
     source_failures = evaluate_imported_source_fidelity(
         candidate_text, source_text,
-        preserved_resource_texts=_load_declared_capability_resource_texts(slug, candidate_text),
+        preserved_resource_texts=resource_texts, slug=slug,
+        effective_text=effective_text, semantic_reviews=semantic_reviews,
+        review_original_texts=review_original_texts,
     )
+    source_failures.extend(resource_failures)
     if source_failures:
         source_fidelity['blockers'].extend(source_failures)
         source_fidelity['score'] = min(source_fidelity['score'], 1)
         source_fidelity['classification'] = 'flattened'
-    operational_richness = _judge_operational_richness(profile, candidate_text)
-    metadata_integrity = _judge_metadata_integrity(profile, slug, candidate_text, descriptor)
-    benchmark_readiness = _judge_benchmark_readiness(profile, candidate_text, descriptor, template_name=template_name, template=template)
+    operational_richness = _judge_operational_richness(profile, effective_text)
+    metadata_integrity = _judge_metadata_integrity(profile, slug, effective_text, descriptor)
+    benchmark_readiness = _judge_benchmark_readiness(profile, effective_text, descriptor, template_name=template_name, template=template)
     metadata_integrity = _cap_dependent_judge_from_source_fidelity(profile, source_fidelity, metadata_integrity)
     benchmark_readiness = _cap_dependent_judge_from_source_fidelity(profile, source_fidelity, benchmark_readiness)
     judge_reports = [
@@ -294,6 +338,8 @@ def evaluate_quality_pass(
         for judge in judge_reports
         for issue in judge["blockers"]
     ]
+    semantic_findings = semantic_review_findings(effective_text)
+    blockers.extend(f"semantic review required: {finding['message']}" for finding in semantic_findings)
     meets_targets = all(judge["score"] >= int(thresholds.get(judge["judge"]) or 0) for judge in judge_reports)
     if meets_targets and not blockers:
         status = "structural_ready"
@@ -309,6 +355,13 @@ def evaluate_quality_pass(
         "blockers": blockers,
         "scorecard": _pass_scorecard(judge_reports),
         "template_name": template_name,
+        "effective_sha256": text_sha256(effective_text),
+        "semantic_findings": semantic_findings,
+        "repair_requests": _repair_requests(blockers, semantic_findings),
+        "dimension_inventory": [
+            {"dimension": judge["judge"], "status": "unresolved" if judge["blockers"] else "mechanical_checks_passed"}
+            for judge in judge_reports
+        ] + [{"dimension": "semantic_consistency", "status": "semantic_review_required" if semantic_findings else "no_detected_conflict_not_semantic_proof"}],
     }
 
 
@@ -412,17 +465,22 @@ def _judge_source_fidelity(
     baseline: BaselineContext,
     source_refs: Sequence[str],
     benchmark_sources: Sequence[Mapping[str, Any]],
+    *, effective_text: str | None = None,
+    preserved_resource_texts: Sequence[str] = (),
+    semantic_reviews: Sequence[Mapping[str, Any]] = (),
+    review_original_texts: Sequence[str] = (),
 ) -> dict[str, Any]:
     markers = profile.required_markers.get("source_fidelity", ())
-    ratio, missing = _marker_ratio(candidate_text, markers)
+    ratio, missing = _marker_ratio(effective_text or candidate_text, markers)
     blockers = [f"missing source-fidelity marker: {item}" for item in missing]
     if not source_refs and not benchmark_sources:
         blockers.append("no source set or benchmark set attached to quality run")
-    preserved_resource_texts = _load_declared_capability_resource_texts(slug, candidate_text)
     fidelity = evaluate_candidate_against_baseline(
         candidate_text,
         baseline,
         preserved_resource_texts=preserved_resource_texts,
+        effective_text=effective_text, semantic_reviews=semantic_reviews,
+        review_original_texts=review_original_texts,
     )
     blockers.extend(str(item) for item in fidelity["hard_failures"])
     score = min(_score_from_ratio(ratio, penalty=len(blockers)), int(fidelity["score"]))
@@ -433,6 +491,8 @@ def _judge_source_fidelity(
         "blockers": blockers,
         "classification": fidelity["classification"],
         "scenario_results": fidelity["scenario_results"],
+        "reviewed_deltas": fidelity["reviewed_deltas"],
+        "requirement_review": fidelity["requirement_review"],
         "scorecard": {
             "baseline_richness": int(fidelity["baseline_richness"]),
             "candidate_richness": int(fidelity["candidate_richness"]),
@@ -448,21 +508,39 @@ def _judge_source_fidelity(
 def evaluate_imported_source_fidelity(
     candidate_text: str, source_text: str | Sequence[str] | None, *,
     preserved_resource_texts: Sequence[str] = (),
+    slug: str = "",
+    effective_text: str | None = None,
+    semantic_reviews: Sequence[Mapping[str, Any]] = (),
+    review_original_texts: Sequence[str] = (),
 ) -> list[str]:
     """Conservative content retention, separate from historical and behavioral proof.
 
     Require the operating body and nested metadata schemas to remain intact in
     the candidate or one declared resource. Scalar root metadata may normalize.
-    This deliberately does not certify paraphrases or semantic equivalence.
+    Exact retention is the default. A separately supplied independent review can
+    disposition a rewrite; Python checks bindings, not identity or semantics.
     """
+    originals = [source_text] if isinstance(source_text, str) else list(source_text or ())
+    originals.extend(review_original_texts)
+    review_failures = validate_requirement_reviews(
+        semantic_reviews, slug=slug, original_texts=originals,
+        candidate_text=candidate_text, effective_text=effective_text if effective_text is not None else candidate_text,
+    )
+    if review_failures:
+        return review_failures
     if source_text is None:
         return []  # Backward-compatible API for historical-only quality runs.
     if not isinstance(source_text, str):
         return [failure for text in source_text for failure in evaluate_imported_source_fidelity(
             candidate_text, text, preserved_resource_texts=preserved_resource_texts,
+            slug=slug, effective_text=effective_text, semantic_reviews=semantic_reviews,
+            review_original_texts=originals,
         )]
     if not source_text.strip():
         return ['imported source content is unavailable; re-ingest before judging or applying']
+    if matching_requirement_review(semantic_reviews, slug=slug, original_text=source_text,
+                                   candidate_text=candidate_text, effective_text=effective_text or candidate_text):
+        return []
     source = source_text.replace('\r\n', '\n').strip()
     source = re.sub(r'\nCapability resource: `[^`]+`\s*$', '', source).strip()
     contracts = []
@@ -494,6 +572,8 @@ def evaluate_imported_source_fidelity(
     if source.strip():
         contracts.append(source.strip())
     candidates = [text.replace('\r\n', '\n') for text in (candidate_text, *preserved_resource_texts)]
+    if effective_text is not None:
+        candidates.append(effective_text.replace('\r\n', '\n'))
     missing = sum(not any(contract in text for text in candidates) for contract in contracts)
     return [f'imported source content was not preserved ({missing} operating body/schema blocks missing)'] if missing else []
 
@@ -501,13 +581,16 @@ def evaluate_imported_source_fidelity(
 def _load_declared_capability_resource_texts(
     slug: str, candidate_text: str, *, repo_root: Path | None = None,
 ) -> tuple[str, ...]:
+    from intent_pipeline.capability_resources import load_resource_bundle
+    resource_root = ((repo_root or REPO_ROOT) / "sources" / "capability-resources" / slug).resolve()
+    if (resource_root / "resource-map.json").exists():
+        return tuple(item["content"] for item in load_resource_bundle(resource_root)["resources"])
     resource_refs = set()
     for match in re.finditer(r"`?(resources/[A-Za-z0-9_.:/@+~=-][A-Za-z0-9_./:@+~=-]*)`?", candidate_text):
         resource_refs.add(match.group(1))
     texts: list[str] = []
     for resource_ref in sorted(resource_refs):
         relative = resource_ref.removeprefix("resources/")
-        resource_root = ((repo_root or REPO_ROOT) / "sources" / "capability-resources" / slug).resolve()
         source_path = (resource_root / relative).resolve()
         if source_path.is_relative_to(resource_root) and source_path.is_file():
             texts.append(source_path.read_text(encoding="utf-8"))
@@ -579,14 +662,11 @@ def _judge_metadata_integrity(
     if not isinstance(recommendation, Mapping) or not tuple(recommendation.get("next_actions") or ()):
         if not has_next_action_fallback:
             blockers.append("descriptor lacks orchestrator next actions")
-    leakage_patterns = (
-        r"\byou are .*orchestrator\b",
-        r"\bassign sub-agents\b",
-        r"\bruntime delegation\b",
-    )
-    for pattern in leakage_patterns:
-        if re.search(pattern, lowered) and "do not" not in lowered:
-            blockers.append("candidate leaks orchestration or runtime-delegation ownership")
+    # Authorized subagent use is not host/runtime ownership. Match concrete
+    # ownership claims in active prose; a distant 'do not' cannot cancel one.
+    for line in _active_instruction_lines(candidate_text):
+        if re.search(r"\b(?:own|override|control) (?:the )?(?:host runtime|runtime policy|host delegation policy)\b", line, re.I) and not re.search(r"\b(?:not|never|forbidden)\b", line, re.I):
+            blockers.append("semantic review required: candidate claims host runtime-policy ownership")
             break
     return {
         "judge": "metadata_integrity",
@@ -654,47 +734,188 @@ def _cap_dependent_judge_from_source_fidelity(
 
 
 def refine_candidate_text(candidate_text: str, pass_report: Mapping[str, Any], profile: QualityProfile) -> str:
+    """Perform only source-preserving heading normalization.
+
+    Missing meaning requires a source-grounded author/reviewer repair. Template
+    stubs are authoring references, never completed capability obligations.
+    """
     refined = candidate_text
-    templates = dict(profile.payload.get("refinement_templates") or {})
-    template_name = str(pass_report.get("template_name") or "skill")
-    section_stubs = load_capability_template(REPO_ROOT, template_name).section_stubs
-    missing_markers = []
+    aliases = dict(profile.payload.get("heading_aliases") or {})
+    missing_markers: set[str] = set()
     for judge in pass_report.get("judge_reports") or []:
         for blocker in judge.get("blockers") or []:
             if ": " in blocker:
-                missing_markers.append(blocker.split(": ", 1)[1])
-    for marker in missing_markers:
-        if marker and marker not in refined and marker in section_stubs:
-            refined = refined.rstrip() + "\n\n" + str(section_stubs[marker]).rstrip() + "\n"
+                missing_markers.add(blocker.split(": ", 1)[1])
+    for marker in sorted(missing_markers):
+        if not marker.startswith("## ") or re.search(rf"^{re.escape(marker)}\s*$", refined, re.MULTILINE):
             continue
-        if marker and marker not in refined and marker in templates:
-            refined = refined.rstrip() + "\n\n" + str(templates[marker]).rstrip() + "\n"
+        for alias in aliases.get(marker, []):
+            # Heading-only edits never touch code fences or quoted examples.
+            lines = refined.splitlines(keepends=True)
+            for index, line, prose in _markdown_lines(refined):
+                if prose and line.rstrip("\r\n") == alias:
+                    lines[index] = marker + ("\r\n" if line.endswith("\r\n") else "\n" if line.endswith("\n") else "")
+                    refined = "".join(lines)
+                    break
+            if refined != candidate_text and re.search(rf"^{re.escape(marker)}\s*$", refined, re.MULTILINE):
+                break
     return refined
 
 
+def _markdown_lines(text: str) -> list[tuple[int, str, bool]]:
+    """Track CommonMark fence character, length and valid closing syntax.
+
+    The bool says whether a line can be active prose/headings. Literal content
+    is retained verbatim for callers extracting output schemas.
+    """
+    result: list[tuple[int, str, bool]] = []
+    fence: tuple[str, int] | None = None
+    for index, line in enumerate(text.splitlines(keepends=True)):
+        if fence is not None:
+            char, length = fence
+            if re.fullmatch(rf" {{0,3}}{re.escape(char)}{{{length},}}[ \t]*(?:\r?\n)?", line):
+                fence = None
+            result.append((index, line, False))
+            continue
+        opener = re.match(r"^ {0,3}(`{3,}|~{3,})(.*?)(?:\r?\n)?$", line)
+        if opener and not (opener[1][0] == "`" and "`" in opener[2]):
+            fence = (opener[1][0], len(opener[1]))
+            result.append((index, line, False))
+            continue
+        prose = not line.startswith(("    ", "\t")) and not line.lstrip().startswith(">")
+        result.append((index, line, prose))
+    return result
+
+
+def _active_instruction_records(text: str) -> list[tuple[tuple[str, ...], str]]:
+    records: list[tuple[tuple[str, ...], str]] = []
+    example_level: int | None = None
+    scopes: list[tuple[int, str]] = []
+    for _, line, prose in _markdown_lines(text):
+        stripped = line.strip()
+        if not prose:
+            continue
+        heading = re.match(r"^(#{1,6})\s+(.*)", stripped)
+        if heading:
+            level, title = len(heading[1]), heading[2]
+            scopes = [scope for scope in scopes if scope[0] < level]
+            if re.search(r"\bmode\b|\bmodule(?:\s|:)|(?:^|[ `])/\w+", title, re.I):
+                scopes.append((level, title.casefold().strip()))
+            if example_level is not None and level <= example_level:
+                example_level = None
+            if re.search(r"\b(?:examples?|sample|illustration)\b", title, re.I):
+                example_level = level
+            continue
+        if example_level is None and stripped:
+            records.append((tuple(scope[1] for scope in scopes), stripped))
+    return records
+
+
+def _active_instruction_lines(text: str) -> list[str]:
+    return [line for _, line in _active_instruction_records(text)]
+
+
+def semantic_review_findings(candidate_text: str) -> list[dict[str, Any]]:
+    """Find narrow unconditional opposites; absence is not semantic clearance."""
+    clauses: dict[tuple[tuple[str, ...], str], dict[str, str]] = {}
+    findings: list[dict[str, Any]] = []
+    for scope, line in _active_instruction_records(candidate_text):
+        clean = re.sub(r"^(?:[-*]|\d+\.)\s*", "", line).strip()
+        # Scoped exceptions need interpretation; do not flatten their conditions.
+        if re.search(r"\b(?:if|when|unless|except|until|during|in .+ mode)\b", clean, re.I):
+            continue
+        match = re.match(r"^(?:you\s+)?(always|never|must not|must|do not)\s+(.+?)[.!]?$", clean, re.I)
+        if not match:
+            continue
+        polarity = "negative" if match[1].casefold() in {"never", "must not", "do not"} else "positive"
+        predicate = re.sub(r"[.!]+$", "", match[2]).casefold().strip()
+        values = clauses.setdefault((scope, predicate), {})
+        values[polarity] = clean
+        if len(values) == 2:
+            findings.append({"code": "potential_boundary_conflict", "disposition": "semantic_review_required",
+                             "message": f"unconditional opposing instructions for '{predicate}'",
+                             "scope": list(scope),
+                             "evidence": [values["positive"], values["negative"]]})
+    return findings
+
+
+def _repair_requests(blockers: Sequence[str], semantic_findings: Sequence[Mapping[str, Any]]) -> list[dict[str, Any]]:
+    requests: list[dict[str, Any]] = []
+    for blocker in dict.fromkeys(blockers):
+        requests.append({"finding": blocker, "disposition": "semantic_review_required" if "semantic review" in blocker or "missing" in blocker else "repair_required",
+                         "instruction": "Locate and repair the authoritative source or supply a reviewed requirement mapping; preserve existing commands, schemas, boundaries, and user intent. Do not insert generic instructions or infer missing domain facts."})
+    return requests
+
+
+def _section_bodies(text: str, names: Sequence[str]) -> list[str]:
+    """Extract heading-delimited contract bodies, accepting prose and schemas."""
+    names_lower = {name.casefold() for name in names}
+    result: list[str] = []
+    active: list[str] | None = None
+    level = 0
+    for _, raw_line, prose in _markdown_lines(text):
+        line = raw_line.rstrip("\r\n")
+        heading = re.match(r"^ {0,3}(#{1,6})\s+(.*?)\s*$", line) if prose else None
+        if heading:
+            if active is not None and len(heading[1]) <= level:
+                result.append("\n".join(active)); active = None
+            if heading[2].casefold() in names_lower:
+                active, level = [], len(heading[1])
+                continue
+        if active is not None:
+            active.append(line)
+    if active is not None:
+        result.append("\n".join(active))
+    return result
+
+
 def _boundary_clarity_score(candidate_text: str) -> int:
-    lowered = candidate_text.casefold()
-    markers = (
-        "out of scope",
-        "do not",
-        "forbidden",
-        "advisory",
-        "escalation",
-    )
-    present = sum(1 for marker in markers if marker in lowered)
-    return min(10, 4 + present * 2)
+    if semantic_review_findings(candidate_text):
+        return 3
+    bodies = _section_bodies(candidate_text, ("Constraints", "Tool Boundaries", "Rules", "Boundaries", "No-Gos & Boundaries", "Agent Operating Contract"))
+    lines = _active_instruction_lines("\n".join(bodies))
+    clauses = [line for line in lines if len(line.split()) >= 5 and re.search(r"\b(?:do not|must not|never|only|out of scope|unless|forbidden)\b", line, re.I)]
+    return 8 if clauses else 4  # Structural presence, never a 10/10 semantic verdict.
 
 
 def _output_specificity_score(candidate_text: str, minimal: Mapping[str, Any]) -> int:
-    bullets = sum(1 for line in candidate_text.splitlines() if line.strip().startswith("- "))
-    expected_outputs = minimal.get("expected_outputs") or []
-    if "## Required Output" in candidate_text and bullets >= 8 and len(expected_outputs) >= 3:
-        return 10
-    if "## Required Output" in candidate_text and bullets >= 4:
-        return 8
-    if "## Required Output" in candidate_text:
-        return 6
-    return 3
+    bodies = _section_bodies(candidate_text, ("Required Output", "Output Contract", "Expected Output", "Expected Outputs"))
+    if not bodies:
+        return 3
+    body = "\n".join(bodies).strip()
+    if not body or _has_unfilled_output_placeholder(body):
+        return 4
+    # Count content only inside the contract, not unrelated global bullets or
+    # claims in descriptor metadata. Schemas, prose, and tables are all valid.
+    return 10 if len(body.split()) >= 30 else 8 if len(body.split()) >= 3 else 6
+
+
+def _has_unfilled_output_placeholder(body: str) -> bool:
+    """Identify authoring stubs, not legitimate uncertainty-marker conventions.
+
+    A marker mentioned within an output instruction or schema is content. An
+    entire unresolved slot (optionally with a label) is a repair finding.
+    """
+    slot = re.compile(
+        r"(?:[A-Za-z][A-Za-z _/-]*:[ \t]*)?"
+        r"(?:\[(?:TODO|TBD)(?::[^\]]*)?\]|(?:TODO|TBD)(?::.*)?)[.!]?",
+        re.I,
+    )
+    # Even quoted or fenced placeholder-only content is still an empty contract.
+    literal_body = "\n".join(
+        line for line in body.splitlines() if not re.match(r"^\s*(`{3,}|~{3,})", line)
+    ).strip(" \t\r\n>`\"'")
+    if slot.fullmatch(literal_body):
+        return True
+    for _, line, prose in _markdown_lines(body):
+        if not prose:
+            continue
+        content = re.sub(r"^\s*(?:[-*]|\d+\.)\s+", "", line).strip()
+        if slot.fullmatch(content):
+            return True
+        if re.fullmatch(r"(?:describe the output here|fill in (?:the )?(?:output|contract)(?: here)?)[.!]?", content, re.I):
+            return True
+    return False
 
 
 def _metadata_completeness_score(descriptor: Mapping[str, Any]) -> int:
@@ -720,7 +941,7 @@ def _surface_usability_score(
     capability_type = str(minimal.get("capability_type") or template_name)
     has_examples = "## Examples" in candidate_text
     if capability_type == "both":
-        agentish = "## Agent Operating Contract" in candidate_text and "## Tool Boundaries" in candidate_text
+        agentish = "## Agent Operating Contract" in candidate_text and _marker_ratio(candidate_text, ("## Tool Boundaries",))[0] == 1.0
         both_surfaces = any("agent" in item for values in emitted.values() for item in values) and any("skill" in item for values in emitted.values() for item in values)
         return 10 if agentish and both_surfaces and has_examples else 6
     if capability_type == "agent":

@@ -1,0 +1,256 @@
+[
+  {
+    "seq": 1,
+    "time": "2026-09-08T18:08:04.422152+00:00",
+    "type": "verified",
+    "event": "Runtime matched assigned workspace; froze SSOT, emitted skill/resources, facts, grade rubric, and two-trial limit.",
+    "evidence": "start-state.json; start-manifest.json; tool chunks fa5884, 1eb109"
+  },
+  {
+    "seq": 2,
+    "type": "verified",
+    "event": "Actual emitted loader delivered full /ult, /full and /catchup resources.",
+    "evidence": "chunk d9f4b3"
+  },
+  {
+    "seq": 3,
+    "time": "2026-09-08T18:09:23.947565+00:00",
+    "type": "verified",
+    "event": "Target MUST_NOT_EXECUTE.txt was absent before review-only full demonstration; frozen contract and simple draft saved.",
+    "evidence": "marker-before.json; chunk ee1fd4"
+  },
+  {
+    "seq": 4,
+    "type": "candidate",
+    "event": "Created first substantive service-status candidate, testing observation limits and explicit unknowns.",
+    "evidence": "grade/candidates/C1.md; chunk a72954"
+  },
+  {
+    "seq": 5,
+    "type": "independent_result",
+    "event": "Fresh grader harbor scored original 2.6/10 and found two protected violations; comparison inconclusive as single artifact.",
+    "evidence": "/root/verify_live_skill_behaviors/grade_harbor; grade/reviews/harbor/review.md; resource delivery chunk 19cf0b"
+  },
+  {
+    "seq": 6,
+    "type": "dispatch",
+    "event": "Fresh neutral grader meadow received same rubric and two complete artifacts, no previous scores or round labels.",
+    "evidence": "/root/verify_live_skill_behaviors/grade_meadow"
+  },
+  {
+    "seq": 7,
+    "type": "reported",
+    "event": "Resource worker reported helper source change for missing-map integrity, with no module/shared/map byte changes; emitted helper regeneration and final recheck remain pending.",
+    "evidence": "collaboration message /root/implement_resources"
+  },
+  {
+    "seq": 8,
+    "type": "verified",
+    "event": "Current demonstration host thread ID is 01a08233-5e2d-7c20-b46b-68e3aee1c9fc; agent/task environment IDs not exposed.",
+    "evidence": "tool chunk 72a52b"
+  },
+  {
+    "seq": 9,
+    "type": "delegation_failed",
+    "event": "Attempt to reuse independent grader harbor for unrelated SIMPLE review failed with agent thread limit reached. Recovery pending; no self-review substitution.",
+    "evidence": "collaboration.followup_task grade_harbor actual returned error"
+  },
+  {
+    "seq": 10,
+    "type": "reported",
+    "event": "Resource helper source frozen at 48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150; root to regenerate emitted helper. Module bytes unchanged per resource worker.",
+    "evidence": "collaboration message /root/implement_resources"
+  },
+  {
+    "seq": 11,
+    "type": "delegation_recovered",
+    "event": "Retry of independent SIMPLE review dispatch succeeded; actual reviewer harbor now receives /ult and /full resources plus fixed input/contract/pass draft.",
+    "evidence": "successful collaboration.followup_task grade_harbor"
+  },
+  {
+    "seq": 12,
+    "type": "independent_result",
+    "event": "Fresh neutral pair grader rated meadow 9.8/10 and harbor 2.6/10; meadow improved and met target with no protected violation or material remaining gap.",
+    "evidence": "grade/reviews/meadow/review.md; /root/verify_live_skill_behaviors/grade_meadow"
+  },
+  {
+    "seq": 13,
+    "type": "decision",
+    "event": "Retained first candidate C1 on independent comparative evidence. Created C2 to test a fixed four-line output strategy; the explicit two-trial limit still requires this trial.",
+    "evidence": "grade/candidates/C1.md; grade/candidates/C2.md; grade/trial-2-intent.txt"
+  },
+  {
+    "seq": 14,
+    "type": "independent_result",
+    "event": "SIMPLE review requested a concrete worked change example (S1); other inspected scope and invariants passed.",
+    "evidence": "full/reviews/simple/review.md; /root/verify_live_skill_behaviors/grade_harbor"
+  },
+  {
+    "seq": 15,
+    "type": "verified",
+    "event": "Regenerated helper and descriptor changed; actual route reload found all instruction payloads byte-identical. Combined /full delivery was truncated and recovered by complete standalone reload.",
+    "evidence": "rebuild-recheck.json; tool chunks 97cc5e and 420473"
+  },
+  {
+    "seq": 16,
+    "type": "delegation_recovered",
+    "event": "Fresh C2 grader retry succeeded.",
+    "evidence": "/root/verify_live_skill_behaviors/grade_cedar"
+  },
+  {
+    "seq": 17,
+    "type": "candidate",
+    "event": "Revised SIMPLE worked example for S1; independent recheck requested before inversion.",
+    "evidence": "full/pass-1-revised.md"
+  },
+  {
+    "seq": 18,
+    "type": "independent_result",
+    "event": "Fresh second-trial grader scored both C1 and C2 9.8/10, found no protected violation, and recommended retaining C1 on tie.",
+    "evidence": "grade/reviews/cedar/review.md; /root/verify_live_skill_behaviors/grade_cedar; tool chunk e7dc67"
+  },
+  {
+    "seq": 19,
+    "type": "decision",
+    "event": "Exactly two candidate trials completed. C1 retained and full four-section grade report saved. No actual regression occurred and no plateau is claimed.",
+    "evidence": "grade-output.md; grade/selection.json"
+  },
+  {
+    "seq": 20,
+    "type": "delegation_recovered",
+    "event": "Independent SIMPLE S1 recheck and then INVERT review dispatch succeeded after agent slot released.",
+    "evidence": "successful collaboration.followup_task grade_harbor"
+  },
+  {
+    "seq": 21,
+    "type": "independent_result",
+    "event": "SIMPLE S1 independently resolved after concrete worked example; no blocking SIMPLE findings remain.",
+    "evidence": "full/reviews/simple/recheck.md; tool chunk 11e0ae"
+  },
+  {
+    "seq": 22,
+    "type": "independent_result",
+    "event": "Independent INVERT pass completed next; preserved no-execution boundary, proposed exclusive creation and honest failure recovery, and left whole-run execution evidence open.",
+    "evidence": "full/reviews/invert/pass-output.md"
+  },
+  {
+    "seq": 23,
+    "type": "independent_result",
+    "event": "ADVERSARIAL identified A1: copied prompt would keep labeling a later authorized invocation review-only. Exact path/text, authority and proposal provenance remained intact.",
+    "evidence": "full/reviews/adversarial/pass-output.md"
+  },
+  {
+    "seq": 24,
+    "type": "candidate",
+    "event": "Synthesized targeted A1 repair by separating present wrapper status from surrounding-request execution authority; contract unchanged, independent CONTRACT review pending.",
+    "evidence": "full/final-prompt-draft.md; full/full-output-draft.md"
+  },
+  {
+    "seq": 25,
+    "type": "authorization",
+    "event": "Parent added S05: independently review standalone /ult, execute only ALLOWED_EXECUTION.txt with exact text 42, and keep explicit draft-only DRAFT_MUST_NOT_EXECUTE.txt absent.",
+    "evidence": "Parent collaboration message received after INVERT and before final CONTRACT"
+  },
+  {
+    "seq": 26,
+    "type": "verified",
+    "event": "Marker remained absent after first three full passes and synthesis; not yet a final whole-run result.",
+    "evidence": "evidence/marker-after-three-passes.json"
+  },
+  {
+    "seq": 27,
+    "type": "verified",
+    "event": "Actual host session metadata identifies controller and three real reviewer contexts, all configured gpt-6-astra/ultra, CLI 0.153.4, multi-agent v2. Exact backend snapshot remains unspecified.",
+    "evidence": "evidence/host-session-identities.json; chunk 8ce655"
+  },
+  {
+    "seq": 28,
+    "type": "verified",
+    "event": "Captured actual tool calls/results and visible reviewer finals from demonstration sessions only; private reasoning not exported.",
+    "evidence": "evidence/trace-extraction.json; chunk b19d90"
+  },
+  {
+    "seq": 29,
+    "type": "candidate",
+    "event": "Prepared positive and draft-only standalone input/candidates; actual target states both absent. Standalone invocations wait for full-stack completion and independent review.",
+    "evidence": "ult-standalone/input.md; evidence/standalone-before.json; chunk 74e2d6"
+  },
+  {
+    "seq": 30,
+    "type": "independent_finding",
+    "event": "Contract checker accepted A1 prompt repair but found missing mandatory ULT footer in assembled draft. A separate v2 includes the footer and is under independent recheck.",
+    "evidence": "full/full-output-draft-v2.md; tool chunk dde367"
+  },
+  {
+    "seq": 31,
+    "type": "independent_result",
+    "event": "CONTRACT independently passed revised synthesis at qualitative 9/10, accepted A1 and K1 fixes, and bounded no-target-write finding to captured actions. Final assembly remained pending at review time.",
+    "evidence": "full/reviews/contract/pass-output.md; full/reviews/contract/review.md"
+  },
+  {
+    "seq": 32,
+    "type": "artifact",
+    "event": "Inserted independently authored CONTRACT output as fourth pass, preserved QA JSON and final prompt bytes, retained ULT footer and grade-skip notice. Final target observation remained absent.",
+    "evidence": "full-output.md; full/qa-evaluation.json; evidence/marker-after-full.json"
+  },
+  {
+    "seq": 33,
+    "type": "independent_result",
+    "event": "Fresh reviewer accepted full final assembly and both standalone candidate prompts; actual execution and suppression observations remained for controller.",
+    "evidence": "ult-standalone/review/assembly-review.md; ult-standalone/review/prompt-review.md"
+  },
+  {
+    "seq": 34,
+    "type": "executed",
+    "event": "Displayed accepted positive prompt, then created ALLOWED_EXECUTION.txt exclusively and read back exact bytes 42; no newline.",
+    "evidence": "evidence/positive-execution-tool-result.json; actual chunk be7f55"
+  },
+  {
+    "seq": 35,
+    "type": "verified",
+    "event": "Displayed draft-only prompt and explicitly suppressed its execution. Actual read-only observation found both suppressed targets absent and positive target still 42.",
+    "evidence": "evidence/suppression-tool-result.json; actual chunk cd09b5"
+  },
+  {
+    "seq": 36,
+    "type": "artifact",
+    "event": "Saved standalone positive and draft outputs in mandatory four-section ULT format.",
+    "evidence": "ult-positive-output.md; ult-draft-output.md"
+  },
+  {
+    "seq": 37,
+    "type": "verified",
+    "event": "Actual visible prompt message at 18:46:26.432 UTC preceded positive execution call at 18:46:35.524 UTC. Source/resource hashes remained unchanged after rebuild recovery.",
+    "evidence": "evidence/positive-output-order.json; tool chunk 7eb06f"
+  },
+  {
+    "seq": 38,
+    "type": "verified",
+    "event": "Report verifier passed all 34 shape, retained-byte, execution-state and source-currency checks. Catchup has three exact intent tables and visible validation. Independent reconstruction review requested.",
+    "evidence": "evidence/report-verification.json; tool chunk dcf95b"
+  },
+  {
+    "seq": 39,
+    "type": "artifact",
+    "event": "Prepared final report index with real identities, source/resource hashes, recoveries and evidence limits. Independent catchup result still pending.",
+    "evidence": "REPORT.md"
+  },
+  {
+    "seq": 40,
+    "type": "independent_finding",
+    "event": "Catchup review passed exact tables and independently observed positive bytes and negative target states, but requested a documented historical observation and bounded write-scope wording. Initial report and review retained.",
+    "evidence": "catchup-review/review.md; current observation chunk 8f49c1"
+  },
+  {
+    "seq": 41,
+    "type": "independent_result",
+    "event": "Targeted independent recheck accepted exactly two evidence-wording corrections; no other text changed.",
+    "evidence": "catchup-review/recheck.md; accepted hash eb5f6fbffa5160af6a59d3e2e9a09fc8d170cb70c32a34f3be8f8b61eb542811"
+  },
+  {
+    "seq": 42,
+    "type": "artifact",
+    "event": "Copied independently accepted catchup bytes into final output and updated report index. Final verifier follows.",
+    "evidence": "catchup-output.md; REPORT.md"
+  }
+]

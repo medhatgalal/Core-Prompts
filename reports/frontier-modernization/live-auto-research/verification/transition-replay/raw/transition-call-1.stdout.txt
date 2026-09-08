@@ -1,0 +1,42 @@
+{
+  "event": "optimization_trial",
+  "trial_id": "trial-01",
+  "trial_number": 1,
+  "parent_incumbent": "seed-from-original-trial-01",
+  "parent_sha256": "5bbee2fd62ddf4073214f4592e3ef2a5b9ddae0651b4df2fcdd909bcaa2b4ed3",
+  "hypothesis": "CONTROL ONLY: known lower-quality negative control",
+  "mutation_set": [
+    "active/trial-01.py"
+  ],
+  "candidate_archive": "trials/trial-01/normalize.py",
+  "candidate_sha256": "9dddc7b60600c6f6e45190da9fe055d16883d9d13c3ec00479245255c2978459",
+  "evaluator_sha256": "5a4ef4ee317495e126a6e8fbf5d6fc44153622fe579b5540770d0f05ec328fc4",
+  "contract_sha256": "22657e71b4214fe1418a0b902698459a459bb0581f5222d543d4d82b6928d3cf",
+  "score_before": {
+    "passed": 16,
+    "ast_nodes": 60
+  },
+  "score_after": {
+    "passed": 6,
+    "ast_nodes": 10
+  },
+  "regressions": [
+    "repeated_spaces",
+    "internal_tab",
+    "internal_newline",
+    "mixed_runs",
+    "nonbreaking_space",
+    "unicode_em_space",
+    "emoji",
+    "combining_character",
+    "vertical_whitespace",
+    "crlf"
+  ],
+  "decision": "rejected",
+  "reason": "A previously passing protected case regressed.",
+  "resulting_incumbent": "seed-from-original-trial-01",
+  "raw_result": "raw/trial-01.json",
+  "repetitions": 1,
+  "remaining_trial_budget": 2,
+  "at": "2026-09-08T18:40:41.070219+00:00"
+}

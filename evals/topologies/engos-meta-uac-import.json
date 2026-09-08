@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-meta-uac-import",
-  "ssot_sha256": "31a7d93442b708164e1bd4d7e170d892eaa9bfa4bccff3b6c80130ce643019d6",
+  "ssot_sha256": "4d81b852a81e7d1cc8b18d41c50b36c9ce97515db66aa1984940eae8e3526571",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -48,14 +48,21 @@
   ],
   "authority_boundaries": [
     "engos-meta-uac-import:L22:f0d947235149",
+    "engos-meta-uac-import:L25:797beb40cd37",
     "engos-meta-uac-import:L44:83466994e31c",
-    "engos-meta-uac-import:L69:8ba44b003e78",
-    "engos-meta-uac-import:L79:6397b7ce935c",
-    "engos-meta-uac-import:L83:363a9be21ab0",
-    "engos-meta-uac-import:L84:5fa704203d22",
-    "engos-meta-uac-import:L85:2fdb6c8bba0d"
+    "engos-meta-uac-import:L64:63afafdd71cc",
+    "engos-meta-uac-import:L75:8ba44b003e78",
+    "engos-meta-uac-import:L79:0314ee5563a4",
+    "engos-meta-uac-import:L81:0a8fd6850f58",
+    "engos-meta-uac-import:L90:dcebf1c7ced8",
+    "engos-meta-uac-import:L94:363a9be21ab0",
+    "engos-meta-uac-import:L95:5fa704203d22",
+    "engos-meta-uac-import:L96:2fdb6c8bba0d"
   ],
-  "resources": [],
+  "resources": [
+    "- Exact relocation, reviewed reformulation, and authorized retirement are different changes. Use `--requirement-review <path>` for an operator-supplied `UACRequirementReview.v1` binding the original, candidate, effective resource content, independent reviewer, and complete requirement dispositions. The operator must establish review provenance; the code validates bindings and coverage, not reviewer authenticity or semantic correctness. This record is not a `PromotionVerdict`.",
+    "- Judge the entry and its explicitly routed resource dependencies together. Missing required files, cycles, path escapes, or mismatched content bindings block the affected operation. A model-authored read receipt is not delivery evidence."
+  ],
   "handoffs": [
     "## Companion Capability Matrix",
     "- Advisory Handoff Contract",
@@ -71,16 +78,28 @@
     {
       "id": "engos-meta-uac-import:L22:f0d947235149",
       "heading": "Purpose",
-      "source_line": 22,
+      "source": "ssot/engos-meta-uac-import.md",
+      "source_line": 29,
       "sha256": "f0d947235149d1f776768e53d1bf7eedf6a3f1c185fe10202d102117f85900ec",
       "text": "Deterministic clarity lint from `instruction_clarity.v1` is available in every mode and enabled by default for `audit`, `plan`, and `judge`. It is advisory and never counts as behavioral evidence.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
+      "id": "engos-meta-uac-import:L25:797beb40cd37",
+      "heading": "Primary Objective",
+      "source": "ssot/engos-meta-uac-import.md",
+      "source_line": 32,
+      "sha256": "797beb40cd373b5761a54420b767992f67ce45b81c1af0479cca7113d54eabc5",
+      "text": "Exhaustively improve the source\u2019s clarity, completeness, coherence, structure, and usability during onboarding while preserving its intended capability. Classify safely, recommend the right surfaces, and refuse landing until the structural and reviewed requirement gates pass. Structural diagnostics do not prove downstream model efficacy.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
       "id": "engos-meta-uac-import:L44:83466994e31c",
       "heading": "Invocation Contract",
-      "source_line": 44,
+      "source": "ssot/engos-meta-uac-import.md",
+      "source_line": 51,
       "sha256": "83466994e31cb2c5e6568d5df77cc763081ee051e50abf72e348e72013992fb1",
       "text": "- deploy is separate and must never be implied by `apply`",
       "kind": "invariant",
@@ -89,142 +108,228 @@
     {
       "id": "engos-meta-uac-import:L45:0246bb0452fe",
       "heading": "Invocation Contract",
-      "source_line": 45,
+      "source": "ssot/engos-meta-uac-import.md",
+      "source_line": 52,
       "sha256": "0246bb0452fe016af5e26128122b13e5ef8d943ff6ccd5b437ec5bc65ecf7a89",
       "text": "- when shell entrypoints are required to complete the workflow, say so explicitly instead of assuming the caller knows them",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-meta-uac-import:L60:4d6263b78413",
+      "id": "engos-meta-uac-import:L51:e22510630d6f",
+      "heading": "Output Directory",
+      "source": "ssot/engos-meta-uac-import.md",
+      "source_line": 58,
+      "sha256": "e22510630d6f328dddd3035251d13d56bc2d43006fa3f3f6d5e6af8460d4850a",
+      "text": "Canonical application writes `ssot/<slug>.md` and `.meta/capabilities/<slug>.json`, plus generated surfaces and evaluation contracts. Quality review evidence belongs in `reports/quality-reviews/<slug>/`; baseline lineage lives in `sources/ssot-baselines/<slug>/` and changes only under the independent promotion policy. These are UAC-owned onboarding artifacts, not output paths imposed on the imported capability's own task.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-meta-uac-import:L64:63afafdd71cc",
       "heading": "Workflow",
-      "source_line": 60,
+      "source": "ssot/engos-meta-uac-import.md",
+      "source_line": 71,
+      "sha256": "63afafdd71cc6cdcf95ef2a1cbc255b7841377f88479f27209f457262a84a2e1",
+      "text": "11. On `judge`, do not land or modify canonical repository state. Mechanical repairs produce a candidate artifact only. Inspect structure, formatting, style, ambiguity, contradictions, missing details, references, outputs, boundaries, and preservation. Return an explicit disposition for each applicable dimension. Apply only targeted mechanical repairs; request source-grounded semantic repairs from the invoking agent and an independent reviewer when meaning is unresolved. Do not append generic obligations to satisfy a count.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-meta-uac-import:L66:4d6263b78413",
+      "heading": "Workflow",
+      "source": "ssot/engos-meta-uac-import.md",
+      "source_line": 73,
       "sha256": "4d6263b784139fcdeeeddd1cd03f337fc233055c2de3a8137c9e2a0c287ec390",
       "text": "13. Search for benchmark sources only when the source is generic or fit confidence is weak.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-meta-uac-import:L61:3f9a1f147e6e",
+      "id": "engos-meta-uac-import:L67:508b32565297",
       "heading": "Workflow",
-      "source_line": 61,
-      "sha256": "3f9a1f147e6e133a3feeac1a08cfb5db72dfa1a4c747847010083ac79fedfd29",
-      "text": "14. Rename the former structural `ship` result to `structural_ready`. It proves only that deterministic UAC gates passed.",
+      "source": "ssot/engos-meta-uac-import.md",
+      "source_line": 74,
+      "sha256": "508b32565297a9501887f58024f855d563b375c159cece377080ea9830e29d10",
+      "text": "14. Report `structural_ready` only for structural checks. Keep semantic review attestations, assembled resource content, host delivery evidence, and measured behavioral results distinct. No average score can waive an unresolved blocker.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-meta-uac-import:L63:082360db6cc5",
+      "id": "engos-meta-uac-import:L69:082360db6cc5",
       "heading": "Workflow",
-      "source_line": 63,
+      "source": "ssot/engos-meta-uac-import.md",
+      "source_line": 76,
       "sha256": "082360db6cc59590c03f5d502f1aeb2e5311ecf003058abf6c6a13a0f480a535",
       "text": "16. On `apply`, refuse landing unless the quality loop reaches `structural_ready`. Validate any supplied `PromotionVerdict.v2`; reject stale hashes or a mismatched slug. Treat `PromotionVerdict.v1` as read-only legacy evidence that cannot authorize promotion. During advisory rollout, an absent verdict leaves the result `behavioral_pending` and cannot materialize a new behavioral baseline.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-meta-uac-import:L64:9f04d56b0bac",
+      "id": "engos-meta-uac-import:L70:06b1f12c679f",
       "heading": "Workflow",
-      "source_line": 64,
-      "sha256": "9f04d56b0bac1f7f21a2015dd78cc7745a875637446334978e7eb150a83fccc8",
-      "text": "17. Materialize a new baseline only after an independent `promote` verdict, or preserve a valid historical baseline without rewriting its lineage.",
+      "source": "ssot/engos-meta-uac-import.md",
+      "source_line": 77,
+      "sha256": "06b1f12c679f67ed361af6fdb25665d53b26aba09ae4ec8982ee817c378940ea",
+      "text": "17. On authorized `apply`, write canonical SSOT and the descriptor, persist the quality reviews, then rebuild and validate generated surfaces. Materialize a new baseline only after an independent `promote` verdict, or preserve a valid historical baseline without rewriting its lineage.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-meta-uac-import:L69:8ba44b003e78",
+      "id": "engos-meta-uac-import:L75:8ba44b003e78",
       "heading": "Tool Boundaries",
-      "source_line": 69,
+      "source": "ssot/engos-meta-uac-import.md",
+      "source_line": 82,
       "sha256": "8ba44b003e7802e5edbf123da16ba40d579aea91b43e247eb6a42d142d65e3ed",
       "text": "- forbidden: inventing capability strength that the source does not support, deploying to user homes during `apply`, or silently widening surface recommendations to satisfy packaging preferences",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-meta-uac-import:L76:8ad70d4c06b1",
+      "id": "engos-meta-uac-import:L79:0314ee5563a4",
       "heading": "Rules",
-      "source_line": 76,
+      "source": "ssot/engos-meta-uac-import.md",
+      "source_line": 86,
+      "sha256": "0314ee5563a4d1dc301add50f9bd29b48181bb25dfa3887b123c30022d29a935",
+      "text": "- Evaluate outputs against the operative output contract for the selected route, including terminal and stacked precedence; unrelated bullets are not output evidence. Review contradictions using applicable scope and exceptions. Quoted examples are source material and do not become operative obligations merely by containing a keyword.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-meta-uac-import:L80:e169503450cc",
+      "heading": "Rules",
+      "source": "ssot/engos-meta-uac-import.md",
+      "source_line": 87,
+      "sha256": "e169503450cc332e9eb05a4531ae0a598e6d43a9394842488ef3f354ce0f402b",
+      "text": "- Judge the entry and its explicitly routed resource dependencies together. Missing required files, cycles, path escapes, or mismatched content bindings block the affected operation. A model-authored read receipt is not delivery evidence.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-meta-uac-import:L81:0a8fd6850f58",
+      "heading": "Rules",
+      "source": "ssot/engos-meta-uac-import.md",
+      "source_line": 88,
+      "sha256": "0a8fd6850f58f88a283a7b201368ace1e5bf9e0281b432427b53c3ef65848c8e",
+      "text": "- Repair the authoritative location of a defect; reuse equivalent existing content before adding a section. Preserve commands, schemas, quoted material, user decisions, and task scope. Do not invent missing facts or fixed procedures.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-meta-uac-import:L82:6e900d04bb81",
+      "heading": "Rules",
+      "source": "ssot/engos-meta-uac-import.md",
+      "source_line": 89,
+      "sha256": "6e900d04bb81f43d10cd31e9a984b0d1206f93de8124f0947c437caa5146d778",
+      "text": "- Exact relocation, reviewed reformulation, and authorized retirement are different changes. Use `--requirement-review <path>` for an operator-supplied `UACRequirementReview.v1` binding the original, candidate, effective resource content, independent reviewer, and complete requirement dispositions. The operator must establish review provenance; the code validates bindings and coverage, not reviewer authenticity or semantic correctness. This record is not a `PromotionVerdict`.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-meta-uac-import:L83:28017c4787ea",
+      "heading": "Rules",
+      "source": "ssot/engos-meta-uac-import.md",
+      "source_line": 90,
+      "sha256": "28017c4787ea316296978f1ac330da231d92fe264b8600518d69484ca916e7d2",
+      "text": "- Stop automatic refinement when candidate and findings stagnate or cycle; report unresolved work. Repeated application to an unchanged accepted artifact must not add obligations or oscillate between styles.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-meta-uac-import:L87:8ad70d4c06b1",
+      "heading": "Rules",
+      "source": "ssot/engos-meta-uac-import.md",
+      "source_line": 94,
       "sha256": "8ad70d4c06b16e005d561cdd08c46311a9385b5842db5c4e79665d51ff7fcf09",
       "text": "- For folders or repo trees, only group files that were actually inventoried.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-meta-uac-import:L77:83399f43a9a4",
+      "id": "engos-meta-uac-import:L88:83399f43a9a4",
       "heading": "Rules",
-      "source_line": 77,
+      "source": "ssot/engos-meta-uac-import.md",
+      "source_line": 95,
       "sha256": "83399f43a9a4c2ae0341169788c0a4f12047bb607cee1f0e50ad938909f4d0e0",
       "text": "- If the source is config-only, require manual review instead of pretending it is a prompt.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-meta-uac-import:L79:6397b7ce935c",
+      "id": "engos-meta-uac-import:L90:dcebf1c7ced8",
       "heading": "Rules",
-      "source_line": 79,
-      "sha256": "6397b7ce935c0f25a9fd35cca62f78acddd359f26c000fc5526103d13c9108b4",
-      "text": "- Never make orchestration or delegation decisions. Publish advisory metadata only.",
+      "source": "ssot/engos-meta-uac-import.md",
+      "source_line": 97,
+      "sha256": "dcebf1c7ced8d9b5c6932ac618dca57a7cbd35f1b3100947114ef9ad49702bb0",
+      "text": "- Never make orchestration or delegation decisions for the imported runtime or control plane. Publish advisory metadata only. Independent subagents may review onboarding repairs under the invoking host\u2019s authorized review workflow; that does not grant runtime policy authority.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-meta-uac-import:L82:8b7d3b86f45c",
+      "id": "engos-meta-uac-import:L93:8b7d3b86f45c",
       "heading": "Rules",
-      "source_line": 82,
+      "source": "ssot/engos-meta-uac-import.md",
+      "source_line": 100,
       "sha256": "8b7d3b86f45cf9e39a25bd970d482b06234211b23fc3fb4691490fc2797daeb9",
       "text": "- Quality review artifacts are advisory evidence; they must not encode runtime routing policy.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-meta-uac-import:L83:363a9be21ab0",
+      "id": "engos-meta-uac-import:L94:363a9be21ab0",
       "heading": "Rules",
-      "source_line": 83,
+      "source": "ssot/engos-meta-uac-import.md",
+      "source_line": 101,
       "sha256": "363a9be21ab0edb24f11daf55081526ad874e98d64383ac753273f51fd9105f0",
       "text": "- Do not make UAC the long-term owner of behavioral evaluation logic; route to `engos-optimization-auto-research` when bounded behavioral proof is needed.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-meta-uac-import:L84:5fa704203d22",
+      "id": "engos-meta-uac-import:L95:5fa704203d22",
       "heading": "Rules",
-      "source_line": 84,
+      "source": "ssot/engos-meta-uac-import.md",
+      "source_line": 102,
       "sha256": "5fa704203d22267e2fd77798404d1ece0e39b7169e5d94e5d9c37ed521a677a0",
       "text": "- Do not ingest the Google Style Guide as permissive HTML. Use the reviewed local `instruction_clarity.v1` adapter and preserve the URL content-type rejection boundary.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-meta-uac-import:L85:2fdb6c8bba0d",
+      "id": "engos-meta-uac-import:L96:2fdb6c8bba0d",
       "heading": "Rules",
-      "source_line": 85,
+      "source": "ssot/engos-meta-uac-import.md",
+      "source_line": 103,
       "sha256": "2fdb6c8bba0dc7fbeb44b7383c59db630edc3db3578cbbd862ffb00c2dd44509",
       "text": "- Do not let UAC author a candidate, define or view the sealed promotion set, judge the candidate, and waive its own failures.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-meta-uac-import:L95:77357dbdaba3",
+      "id": "engos-meta-uac-import:L106:77357dbdaba3",
       "heading": "Required Inputs",
-      "source_line": 95,
+      "source": "ssot/engos-meta-uac-import.md",
+      "source_line": 113,
       "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
       "text": "## Required Inputs",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-meta-uac-import:L101:3d4b9f171064",
+      "id": "engos-meta-uac-import:L112:3d4b9f171064",
       "heading": "Required Output",
-      "source_line": 101,
+      "source": "ssot/engos-meta-uac-import.md",
+      "source_line": 119,
       "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
       "text": "## Required Output",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-meta-uac-import:L127:b6fcb2a657d0",
+      "id": "engos-meta-uac-import:L138:b6fcb2a657d0",
       "heading": "Companion Capability Matrix",
-      "source_line": 127,
+      "source": "ssot/engos-meta-uac-import.md",
+      "source_line": 145,
       "sha256": "b6fcb2a657d0469d0e90e1804952d2fc81b2e0e5ec4cd42e1ac08d62715f0c60",
       "text": "| If the import uncovers this need | Route to | Required handoff |",
       "kind": "guarded_invariant",
@@ -239,7 +344,7 @@
   "source_references": [
     {
       "path": "ssot/engos-meta-uac-import.md",
-      "sha256": "31a7d93442b708164e1bd4d7e170d892eaa9bfa4bccff3b6c80130ce643019d6"
+      "sha256": "4d81b852a81e7d1cc8b18d41c50b36c9ce97515db66aa1984940eae8e3526571"
     }
   ],
   "known_ambiguities": [],
@@ -252,7 +357,7 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 18,
+    "total": 26,
     "mapped": 0,
     "waived": 0
   },

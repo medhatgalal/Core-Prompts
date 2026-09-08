@@ -2,11 +2,10 @@
   "schema_version": "GoalContract.v1",
   "slug": "engos-triage-my-inbox-chat-pulse",
   "target": "Fulfill the canonical intent of engos-triage-my-inbox-chat-pulse.",
-  "intended_outcome": "Preserve the canonical SSOT objective and required output.",
+  "intended_outcome": "Priority accuracy, conservative uncertainty handling, correct approval boundaries, tool discipline, and no destructive false positives.",
   "change_class": "unknown",
   "non_goals": [],
   "protected_behaviors": [
-    "8436a85519454530158b1b23413a413e462938349f3495ff19c74994fa4093ea",
     "3f5c2eb041d9a45b67e98971b27f89db010ed5830cf5df8a3a02c0a26c87ac4e",
     "41fb3d4c79d7d8e42dd9923b77283c9aea46e0199be676ddd5279d90e78f2101",
     "20ac10e354c4f428d4ec4b695aa5589abad149cd9040eb9dca25e0d99fb8f726",
@@ -44,7 +43,9 @@
     "c7f26ac28c1c38452d033bfe0d7603d30e4ca3352a7233848145693061cb7cc6",
     "9e3ca8874a1da7f51e926cff750ea83c1db6dea719d94bab31f1fe7f1adb1b7e",
     "5a6092bfcc1f2ce1b25cfe612aeddc65b9d23853f32203622036529c12fb1eb0",
+    "8eade3f917f981fcfe6772a6b0ca873a258dfb4c764f6209159d83740d355f82",
     "24e78358756a3b6a45af7832163e7d15a22c9a1881b93d754b920504f8770e3e",
+    "00200f44de888e4eb1ca2bb0527ca857c59e064e654ef6de868111b19ccd8545",
     "ce1cf99622fd0efb923a3dacf5d756ce0b9fb3f853dc0c7d83f0b2239858450d",
     "86db10d371679d9b13f151df1969bc13a6ec0f8de1afc8da38a465d2940caa64",
     "757103fac06970051ae15ea4dcaf12672f08c187f5a6595b57fc95271b3937e4",
@@ -70,13 +71,14 @@
     "4fd018d180b89d520a48f7042dea63c6ea025d20fa432ac2268542a9dd4ea5bf",
     "94b70b846ae3d5f882cca5a3af5d371f342a1b9a6b63919b786243d92934a9bf",
     "5d0e6583ac81c512129e1b5c0b56f62f22afaac06575cb1414251ee9d79227e5",
+    "09dad9a3a19df24a152cdf9c0e838d6d7d39c39dbb506c8f061c128e16209e20",
     "14ad4a061c0f467b4fa6709a11a6cf655bf2d0313c2b5bc61b494742aa9abd7d",
     "a35faeb97bb3883d195d9fed133cfd2aeb1f57be9feea0cc904d1b39343b68fe"
   ],
   "editable_behavior": [],
   "primary_outcome": {
     "metric": "skill_specific_task_success",
-    "definition": "Canonical task success with protected behavior preserved.",
+    "definition": "Priority accuracy, conservative uncertainty handling, correct approval boundaries, tool discipline, and no destructive false positives.",
     "threshold": "human_review_required"
   },
   "secondary_outcomes": [],
@@ -103,11 +105,6 @@
   "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
   "rollback_trigger": "Any protected regression or stale bound evidence.",
   "source_clause_hashes": [
-    {
-      "sha256": "8436a85519454530158b1b23413a413e462938349f3495ff19c74994fa4093ea",
-      "source": "ssot/engos-triage-my-inbox-chat-pulse.md",
-      "text": "description: \"Triage Gmail and Google Chat into a deterministic attention queue with priority, links, and approved follow-up actions. Use when deciding what communications need attention; triage is read-only and actions require explicit approval.\""
-    },
     {
       "sha256": "3f5c2eb041d9a45b67e98971b27f89db010ed5830cf5df8a3a02c0a26c87ac4e",
       "source": "ssot/engos-triage-my-inbox-chat-pulse.md",
@@ -294,9 +291,19 @@
       "text": "- If `/count`, show counts only (no table)"
     },
     {
+      "sha256": "8eade3f917f981fcfe6772a6b0ca873a258dfb4c764f6209159d83740d355f82",
+      "source": "ssot/engos-triage-my-inbox-chat-pulse.md",
+      "text": "Act on email items by number from the most recent table after explicit approval. No sweep workflow is needed."
+    },
+    {
       "sha256": "24e78358756a3b6a45af7832163e7d15a22c9a1881b93d754b920504f8770e3e",
       "source": "ssot/engos-triage-my-inbox-chat-pulse.md",
       "text": "- Only works on email items (chat messages can't be deleted/archived via API)"
+    },
+    {
+      "sha256": "00200f44de888e4eb1ca2bb0527ca857c59e064e654ef6de868111b19ccd8545",
+      "source": "ssot/engos-triage-my-inbox-chat-pulse.md",
+      "text": "- Single or multiple items: list exactly what will be affected and wait for explicit approval before calling a write command"
     },
     {
       "sha256": "ce1cf99622fd0efb923a3dacf5d756ce0b9fb3f853dc0c7d83f0b2239858450d",
@@ -422,6 +429,11 @@
       "sha256": "5d0e6583ac81c512129e1b5c0b56f62f22afaac06575cb1414251ee9d79227e5",
       "source": "ssot/engos-triage-my-inbox-chat-pulse.md",
       "text": "After reviewing pulse output, the user may want to act. Pulse surfaces the ID and suggests the command but **never auto-executes**:"
+    },
+    {
+      "sha256": "09dad9a3a19df24a152cdf9c0e838d6d7d39c39dbb506c8f061c128e16209e20",
+      "source": "ssot/engos-triage-my-inbox-chat-pulse.md",
+      "text": "Always present the command with the real ID from the table. Always wait for explicit approval."
     },
     {
       "sha256": "14ad4a061c0f467b4fa6709a11a6cf655bf2d0313c2b5bc61b494742aa9abd7d",

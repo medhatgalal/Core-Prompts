@@ -36,5 +36,6 @@
     "## Constraints": "## Constraints\n- do not invent repo behavior\n- do not replace operational procedure with vague summaries\n- do not imply execution authority that the capability does not own",
     "## Examples": "## Examples\n### Example Request\n> Review this capability against the current repo state and tell me what to change.\n\n### Example Output Shape\n- current state\n- findings\n- recommended changes\n- evidence and risks",
     "## Evaluation Rubric": "## Evaluation Rubric\n| Check | What Passing Looks Like |\n| --- | --- |\n| Intent coverage | The capability states when to use it and what success looks like |\n| Output contract | Deliverables are explicit and reviewable |\n| Boundary clarity | The capability says what it will not do |\n| Reusability | The guidance is strong enough to trigger from normal user intent |"
-  }
+  },
+  "section_stub_policy": "authoring references only; never automatically insert as completed semantic repairs"
 }

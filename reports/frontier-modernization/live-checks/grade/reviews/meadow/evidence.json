@@ -1,0 +1,77 @@
+{
+  "schema": "IndependentPairGradeEvidence.v1",
+  "reviewer": "/root/verify_live_skill_behaviors/grade_meadow",
+  "scope": "Independent textual grading only",
+  "cwd": "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts",
+  "head": "c9d6de07b4d1918970a5f70350cf50200a6a0ff4",
+  "branch": "AI/frontier-capability-modernization",
+  "dirty_state": "Pre-existing changes observed and preserved; initial status output was truncated, but cwd, HEAD and branch were fully visible and independently rechecked.",
+  "resource_delivery": {
+    "command": "python3 .codex/skills/engos-meta-supercharge/resources/scripts/load_module.py --route /grade --format text",
+    "chunk_id": "c76000",
+    "exit_code": 0,
+    "output_complete": true,
+    "original_token_count": 1494,
+    "route": "/grade",
+    "manifest_sha256": "56fee7ec78e0bac117fb3f517e8577890cfa638c3ac3a758f236ec64ee3df91f",
+    "bundle_sha256": "cc455648f3db75347d131cfae2ca86a434458112a522a7dbcaeda5a6ae43b21f",
+    "resource_hashes": {
+      "references/shared-review.md": "92fe588ebc996fa935204ced17e9761dd8927d7ee6906466988af0ee2285d791",
+      "references/modules/grade.md": "a605e4d384f5d9b16e459a96c7e10d7dec52e6496c3e650b7fdbbc32d94af86a"
+    },
+    "evidence_limit": "Actual full tool output demonstrates delivery, not comprehension or downstream behavior."
+  },
+  "actual_tool_call_chunk_ids": {
+    "initial_checkout_identity_and_dirty_state": "bf859c",
+    "full_grade_resource_bundle": "c76000",
+    "frozen_rubric": "fa2224",
+    "first_neutral_artifact_meadow": "87170b",
+    "second_neutral_artifact_harbor": "be13ac",
+    "input_hashes_and_checkout_recheck": "5f3cdd"
+  },
+  "read_order": [
+    "grade/rubric.txt",
+    "grade/neutral/meadow.md",
+    "grade/neutral/harbor.md"
+  ],
+  "input_sha256": {
+    "reports/frontier-modernization/live-checks/grade/rubric.txt": "5de20310821cd007e878c453aca633eada800f06c048fd64ee5038cd78b4d6d3",
+    "reports/frontier-modernization/live-checks/grade/neutral/meadow.md": "8f948745f0796315d3fc554ce46445eb07cde45af49d6bd37738b28ac102bdc6",
+    "reports/frontier-modernization/live-checks/grade/neutral/harbor.md": "41ba9e4f89f8fb75fece48957eec899cecc2c3539f8b41accf2d90ac505bc084"
+  },
+  "criterion_order": [
+    "Factual fidelity",
+    "Observation-channel reasoning",
+    "Measurement scope and uncertainty",
+    "Usefulness and execution clarity",
+    "Proportionality and readability"
+  ],
+  "scores": {
+    "meadow": {
+      "criterion_scores": [10, 10, 10, 9, 10],
+      "mean": 9.8,
+      "protected_behavior_violations": [],
+      "quality_target_met": true
+    },
+    "harbor": {
+      "criterion_scores": [1, 1, 2, 1, 8],
+      "mean": 2.6,
+      "protected_behavior_violations": [
+        "Directs a health inference from silence despite a disabled reporting channel.",
+        "Omits supplied observation facts and their limits."
+      ],
+      "quality_target_met": false
+    }
+  },
+  "comparative_decision": "improved",
+  "comparison_direction": "meadow relative to harbor",
+  "preferred_artifact": "meadow",
+  "material_remaining_gaps_in_preferred_artifact": [],
+  "minor_remaining_gap": "Proposed follow-up categories could state the missing question each check would resolve.",
+  "limitations": [
+    "Judgment of supplied instruction text only.",
+    "No service checks or model CLI calls were run; reviewed instructions were not executed.",
+    "No measured behavioral superiority or promotion is claimed.",
+    "No canonical candidate files, prior reviews, trial-intent notes, or other report contents were inspected."
+  ]
+}

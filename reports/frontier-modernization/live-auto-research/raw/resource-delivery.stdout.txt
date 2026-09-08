@@ -1,0 +1,101 @@
+CapabilityResourceBundle.v1 route=experiment manifest_sha256=a485f7eaf1c508e21d130f75ab04c44966ac9700c0a4d33f0d9ad8443bad9dc8 sha256=8937556551fbcf508d8cd11a21c89a5c0ab7583d123529d242b7e16117015c2b assembled_not_proof_of_consumption
+
+<!-- resource: references/resource-delivery.md sha256=e9232c7a9417584fa2f92ad8b5b209af32bb2770ebf3a6cc01e5e1c76c691ed0 -->
+# Resource Delivery for Auto-Research
+
+Before a resource-dependent workflow, load its declared route completely through the bundled loader or actual file-read tools. Skill resources live under the skill directory's `resources/`; agent resource paths are relative to the directory containing bundled `capability.json`, without another `resources/` prefix.
+
+Use `python3 "<resource-root>/scripts/load_module.py" --route experiment --format text` for experiment work, `templates` for scaffolding, `bootstrap` for the convenience helper, or `promotion` for promotion preparation. The loader supplies complete selected content and dependency identities. Its output is evidence of assembly/delivery when actually supplied to the invocation, not proof of comprehension.
+
+Keep shared rules, selected workflow guidance, and required templates available before dependent work. Give independent reviewers the relevant complete contents. Missing, changed, stale, or truncated resources require recovery before proceeding; a filename, hash, self-authored receipt, or an earlier agent's assurance is not a substitute. Never fabricate a run or claim a resource was read without actual supplied content. Resource identity belongs in working evidence, not an invented user-facing verification claim.
+
+Template materialization is scaffolding only. Reading or executing bootstrap.py does not run experiments or satisfy promotion. Scope, budget, evaluation integrity, and user/host authority continue to govern all routes.
+
+<!-- resource: templates/goal-contract.md.tmpl sha256=f5ce6157f5b6030491158f99d56b350dc5a60e1d899f8cf9fdcc50c2977846ed -->
+# Auto-Research Goal Contract
+
+- Target: {{target}}
+- Goal: {{goal}}
+- Profile: {{profile}}
+- Budget: {{budget}}
+
+## Editable Scope
+{{editable_scope}}
+
+## Must Not Change
+{{must_not_change}}
+
+## Baseline Evidence
+{{baseline_evidence}}
+
+## Promotion Threshold
+{{promotion_threshold}}
+
+## Experiment Controls
+- Original baseline and current incumbent: [identities]
+- Protected evaluator, data, scoring rules, and limits: [identities]
+- Acceptance, tie, and noise/repetition policy: [define before mutation]
+- Stop condition: [trial limit / budget / target / plateau / interruption]
+- Formal promotion is separate from retaining a trial improvement.
+
+## Decision State
+- setup_required
+
+<!-- resource: templates/experiment-ledger.md.tmpl sha256=5fb35a2a5f0c25dbbe262ad97f55606978a742e61428f61a8dc59191d37b745b -->
+# Auto-Research Experiment Ledger
+
+Original baseline: [immutable identity and evidence]
+Current incumbent: [best accepted identity; initially baseline]
+Protected evaluator/data/scoring/limits: [identities]
+Acceptance and tie policy: [declared objective]
+Stop condition: [trial limit / budget / target / plateau / interruption]
+
+| Run ID | Trial ID | Parent Incumbent | Hypothesis and Mutation Set | Trials | Metrics / Regressions | Cost / Latency | Accepted / Rejected / Tied / Invalid | Resulting Incumbent | Evidence and Rationale |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+
+Dry-run templates contain no executed trial evidence. Retain rejected results and remove only isolated trial-owned active changes.
+
+<!-- resource: templates/scorecard.json.tmpl sha256=a905e3211e3001698debf4a5bfd9cb45e5c493b3fb29f91e5bad8d69771a243e -->
+{
+  "target": "{{target}}",
+  "goal": "{{goal}}",
+  "profile": "{{profile}}",
+  "budget": "{{budget}}",
+  "metrics": [
+    "task success or goal completion",
+    "regression count",
+    "cost per run",
+    "latency",
+    "repeatability across trials",
+    "operator burden",
+    "rollback risk"
+  ],
+  "decision_state": "setup_required"
+}
+
+<!-- resource: references/experiment-loop.md sha256=c913ea95e9a42ad8485f8dd6807021d2f03d84913c8012291c1bc78584b05c57 -->
+# Executed Improvement Loop
+
+Read this complete resource before an experiment-mode mutation. A dry-run, drafted candidate matrix, or simulated score is not an executed trial. Record actual tools, runtime/model settings, candidate content identity, and evaluator results. If required execution or judging is unavailable, state the limitation instead of fabricating trials.
+
+## State and Evaluation Boundary
+Preserve three identities: original baseline (immutable reference), incumbent (best accepted state), and trial (isolated candidate derived from the incumbent). Protect evaluator code, evaluation data, scoring rules, limits, and comparison settings from trial edits. Changing the measurement system requires a separately declared experiment; do not improve the score by changing its definition.
+
+Define acceptance before mutation: quality gains within hard constraints, or demonstrated equivalent quality with worthwhile speed/cost/simplicity gains when those are objectives. Define regression limits, tie behavior, repetitions for noisy outcomes, and stopping rules. An aggregate score cannot hide a hard failure. For nondeterministic evaluations repeat enough to resolve the declared decision or report inconclusive.
+
+## Loop
+1. Run and record the original baseline; initialize the incumbent from it.
+2. Form the next plausible improvement hypothesis. Mutate one or several coordinated elements within the editable scope, recording the exact set and joint hypothesis. Use single-factor changes when attribution matters; acknowledge interactions when several changes are combined.
+3. Execute the protected evaluation on the isolated trial under comparable conditions. Record invalid/crashed trials separately from quality regressions; fix the harness only through its own controlled work, not by disguising a measurement change as a candidate win.
+4. Compare against the incumbent and original baseline using the declared objective. A real gain advances the incumbent. A tie follows the declared rule (for example, retain equivalent quality at lower verified complexity). A regression or unresolved result does not advance it.
+5. Record the decision and evidence before changing state. Discard only rejected trial-owned active changes, retaining its scores, trace references, hypothesis, and useful lesson. Restore the incumbent as the next starting state. Never reset unrelated work or broadly delete evidence.
+6. Explore again after both wins and losses, using lessons to choose the next hypothesis. Stop only under the agreed trial limit, budget, target, plateau, or user interruption.
+7. Recheck the retained best against the original baseline and required regressions. Report no improvement or inconclusive when justified. Keeping an incumbent is distinct from formal promotion, installation, release, or merge.
+
+## Stopping and Evidence
+A diagnostic task can end with a verified explanation and fix. An optimization request continues through trials until its declared boundary; the first win alone does not finish it. A plateau requires the agreed number of distinct unsuccessful hypotheses under a stable evaluation. It means no improvement was found in the explored space, not proof of a global optimum.
+
+Keep candidate generation separate from evaluators and, where judgment is needed, use independent reviewers or qualified scorers. Do not expose held-out evaluation answers to candidate generation. Trial acceptance is provisional to the evaluated scope; claims of transfer require separate evidence.
+
+## Foundation and Deliberate Adaptations
+[Karpathy's original program instructions](https://raw.githubusercontent.com/karpathy/autoresearch/master/program.md), checked 2026-09-08, motivate repeated mutation, execution, scoring, keep/discard, and further search. The original targets a specific training script and fixed evaluation budget. This skill generalizes the mechanism to prompts, skills, tools, and workflows with task-specific limits, noise handling, authority boundaries, and independent judging. Its bounded stopping and promotion controls are deliberate adaptations, not attributed original requirements.

@@ -11,7 +11,7 @@ Use this output when the user asks `engos-meta-supercharge /help examples`. Do n
 - `/adversarial /debate`: `engos-meta-supercharge /adversarial /debate decide whether this architecture trade-off is worth it: <paste>`
 - `/adversarial /debate /deep`: `engos-meta-supercharge /adversarial /debate /deep run a deep Bull/Bear/Decider debate on this thesis: <paste>`
 - `/contract`: `engos-meta-supercharge /contract turn this into a verifiable spec and QA JSON: <paste>`
-- `/grade`: `engos-meta-supercharge /grade iterate this prompt to a 10/10: <paste>`
+- `/grade`: `engos-meta-supercharge /grade improve this prompt through real independently graded trials: <paste>`
 - `/full`: `engos-meta-supercharge /full compare these competing implementation plans: <paste>`
 - `/catchup`: `engos-meta-supercharge /catchup`
 - `/gaslight`: `engos-meta-supercharge /gaslight refine this prompt to reduce drift: <paste>`

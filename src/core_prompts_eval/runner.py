@@ -9,6 +9,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from intent_pipeline.capability_resources import ResourceContractError, load_resource_bundle
+
 from .adapters import (
     AdapterError,
     AdapterSpec,
@@ -105,26 +107,19 @@ def run_model_comparison(
         return _blocked(slug, profile, [str(exc)])
     registry: dict[str, AdapterSpec] = {}
     cases: list[dict[str, str]] = []
-    artifact_texts: dict[str, str] = {}
+    prepared_artifacts: dict[str, dict[str, Any]] = {}
+    artifact_paths = {"baseline": baseline, "candidate": candidate}
     try:
         registry = load_adapter_registry(repo_root)
     except (OSError, json.JSONDecodeError, AdapterError) as exc:
         blockers.append(f"adapter_registry: {exc}")
     blockers.extend(_preflight(repo_root, plan, slug, profile, baseline, candidate, registry, max_tokens))
     if not blockers:
-        for arm, path, expected in (
-            ("baseline", baseline, plan.payload["baseline_sha256"]),
-            ("candidate", candidate, plan.payload["candidate_sha256"]),
-        ):
+        for arm, path in artifact_paths.items():
             try:
-                text = path.read_text(encoding="utf-8")
-            except OSError as exc:
-                blockers.append(f"{arm} artifact cannot be read: {exc}")
-                continue
-            if artifact_hash(text) != expected:
-                blockers.append(f"{arm}_sha256 binding changed during preflight")
-                continue
-            artifact_texts[arm] = text
+                prepared_artifacts[arm] = _prepare_artifact(repo_root, plan.payload, arm, path)
+            except RunPlanError as exc:
+                blockers.append(str(exc))
     if not blockers:
         try:
             cases = _load_cases(plan, repo_root)
@@ -169,6 +164,14 @@ def run_model_comparison(
                         pair_complete = False
                         break
                     observed_cli_sha256s[str(cell["id"])] = observed_cli_sha256
+                    try:
+                        artifact_fields = _prepare_artifact(repo_root, plan.payload, arm, artifact_paths[arm])
+                        if artifact_fields != prepared_artifacts[arm]:
+                            raise RunPlanError(f"{arm} delivered artifact changed after preflight")
+                    except RunPlanError as exc:
+                        failure = str(exc)
+                        pair_complete = False
+                        break
                     reservation = int(plan.payload["max_tokens_per_call"])
                     ledger.reserve(reservation)
                     opaque_trial_id = artifact_hash(
@@ -179,8 +182,7 @@ def run_model_comparison(
                         "run_id": plan.run_id,
                         "trial_id": opaque_trial_id,
                         "prompt": case["prompt"],
-                        "artifact": artifact_texts[arm],
-                        "artifact_sha256": str(plan.payload[f"{arm}_sha256"]),
+                        **artifact_fields,
                         "resolved_model_identifier": str(cell["resolved_model_identifier"]),
                         "model_version": str(cell["model_version"]),
                         "effort": str(cell["effort"]),
@@ -222,6 +224,7 @@ def run_model_comparison(
                     trace = {
                         "schema_version": "EvalRawTrace.v1",
                         "request_sha256": artifact_hash(request),
+                        "artifact_delivery": {key: value for key, value in artifact_fields.items() if key != "artifact"},
                         "response": dict(response.raw),
                     }
                     traces.append(trace)
@@ -335,6 +338,51 @@ def run_model_comparison(
     return {**summary, "artifact_path": str(run_dir)}
 
 
+def _prepare_artifact(repo_root: Path, payload: Mapping[str, Any], arm: str, path: Path) -> dict[str, Any]:
+    """Build one explicit arm's request; never infer baseline resources from candidate state."""
+    try:
+        entry = path.read_bytes().decode("utf-8")
+    except (OSError, UnicodeError) as exc:
+        raise RunPlanError(f"{arm} artifact cannot be read: {exc}") from exc
+    entry_sha256 = artifact_hash(entry)
+    if entry_sha256 != payload[f"{arm}_sha256"]:
+        raise RunPlanError(f"{arm}_sha256 binding changed during resource preflight")
+    binding = payload.get("artifact_resource_bindings", {}).get(arm)
+    if binding is None:
+        maps = [path.parent / "resources" / "resource-map.json"]
+        if path.resolve().parent == repo_root.resolve() / "ssot":
+            maps.append(repo_root / "sources" / "capability-resources" / path.stem / "resource-map.json")
+        if "resource-map.json" in entry or any(item.exists() or item.is_symlink() for item in maps):
+            raise RunPlanError(f"{arm} resource-backed entry requires an explicit artifact_resource_bindings entry")
+        return {"artifact": entry, "artifact_sha256": entry_sha256, "entry_sha256": entry_sha256}
+    # The plan validator rejects lexical traversal. Resolve again here to reject symlink escape.
+    root = (repo_root / binding["resource_root"]).resolve()
+    if not root.is_relative_to(repo_root.resolve()):
+        raise RunPlanError(f"{arm} resource_root escapes the repository")
+    try:
+        bundle = load_resource_bundle(root, binding["route"], entry_text=entry)
+    except ResourceContractError as exc:
+        raise RunPlanError(f"{arm} resource assembly failed: {exc}") from exc
+    if bundle["manifest_sha256"] != binding["manifest_sha256"] or bundle["sha256"] != binding["bundle_sha256"]:
+        raise RunPlanError(f"{arm} resource manifest or bundle binding is missing or stale")
+    # Complete text is supplied directly; hashes alone or a path to read are insufficient.
+    delivered = entry + f"\n\n<!-- supplied resource bundle: route={bundle['route']} sha256={bundle['sha256']} -->\n"
+    for resource in bundle["resources"]:
+        delivered += f"\n<!-- resource: {resource['path']} sha256={resource['sha256']} -->\n" + resource["content"] + "\n"
+    return {
+        "artifact": delivered,
+        "artifact_sha256": artifact_hash(delivered),
+        "entry_sha256": entry_sha256,
+        "resource_binding": {
+            "manifest_sha256": bundle["manifest_sha256"],
+            "bundle_sha256": bundle["sha256"],
+            "route": bundle["route"],
+            "resources": [{"path": resource["path"], "sha256": resource["sha256"]} for resource in bundle["resources"]],
+            "delivery_claim": "supplied_in_adapter_request_not_proof_of_consumption",
+        },
+    }
+
+
 def _preflight(
     repo_root: Path,
     plan: RunPlan,
@@ -378,8 +426,11 @@ def _preflight(
         path = _resolve_binding_path(binding["path"], repo_root)
         if not path.exists() or artifact_hash(path) != binding["sha256"]:
             blockers.append(f"judge_qualifications[{index}] binding is missing or stale")
-    if evaluator_package_hash(repo_root) != payload["evaluator_package_sha256"]:
-        blockers.append("evaluator_package_sha256 binding is stale")
+    try:
+        if evaluator_package_hash(repo_root) != payload["evaluator_package_sha256"]:
+            blockers.append("evaluator_package_sha256 binding is stale")
+    except OSError as exc:
+        blockers.append(f"evaluator_package_sha256 binding cannot be read: {exc}")
     cli_path = repo_root / "src" / "core_prompts_eval" / "cli.py"
     if not cli_path.exists() or artifact_hash(cli_path) != payload["cli_sha256"]:
         blockers.append("cli_sha256 binding is stale")

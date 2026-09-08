@@ -2,11 +2,10 @@
   "schema_version": "GoalContract.v1",
   "slug": "engos-meta-instruction-editor",
   "target": "Fulfill the canonical intent of engos-meta-instruction-editor.",
-  "intended_outcome": "Preserve the canonical SSOT objective and required output.",
+  "intended_outcome": "Clearer instruction artifacts with exact preservation of commands, modality, authority, ordering, outputs, exceptions, fallbacks, and routing boundaries.",
   "change_class": "unknown",
   "non_goals": [],
   "protected_behaviors": [
-    "e012ab0155ec5dedc04375a6967ad49a2bad8a983e4db5a1b75a50e23660b5d2",
     "c8f08b4e46a17cf667e3e91b29674a13ca4f8e61d301c9c9f93e7cb72ff0544e",
     "c0f55eaf04a6d0b9373c2365904440f6e7f94c9d8edaf9cb4957b77919583466",
     "a49603692bea6f50bd4f7341bd71727a03029217b944eeb638be576a7810f4f5",
@@ -26,7 +25,7 @@
   "editable_behavior": [],
   "primary_outcome": {
     "metric": "skill_specific_task_success",
-    "definition": "Canonical task success with protected behavior preserved.",
+    "definition": "Clearer instruction artifacts with exact preservation of commands, modality, authority, ordering, outputs, exceptions, fallbacks, and routing boundaries.",
     "threshold": "human_review_required"
   },
   "secondary_outcomes": [],
@@ -53,11 +52,6 @@
   "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
   "rollback_trigger": "Any protected regression or stale bound evidence.",
   "source_clause_hashes": [
-    {
-      "sha256": "e012ab0155ec5dedc04375a6967ad49a2bad8a983e4db5a1b75a50e23660b5d2",
-      "source": "ssot/engos-meta-instruction-editor.md",
-      "text": "description: \"Audit, rewrite, diff, or verify prompts, skills, and agent instructions for clarity while preserving commands, authority, safety boundaries, and behavior. Use when instruction preservation is the central task; do not use for general prose editing.\""
-    },
     {
       "sha256": "c8f08b4e46a17cf667e3e91b29674a13ca4f8e61d301c9c9f93e7cb72ff0544e",
       "source": "ssot/engos-meta-instruction-editor.md",

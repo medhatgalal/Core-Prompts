@@ -86,10 +86,11 @@ def test_static_pilot_validator_fails_when_a_protected_marker_disappears(tmp_pat
     (tmp_path / "ssot").mkdir()
     (tmp_path / "scripts").mkdir()
     supercharge = (ROOT / "ssot" / "engos-meta-supercharge.md").read_text(encoding="utf-8")
-    (tmp_path / "ssot" / "engos-meta-supercharge.md").write_text(
-        supercharge.replace("## MODULE: /basis", "## REMOVED MODULE: /basis"),
-        encoding="utf-8",
-    )
+    (tmp_path / "ssot" / "engos-meta-supercharge.md").write_text(supercharge, encoding="utf-8")
+    resource_path = Path("sources/capability-resources/engos-meta-supercharge")
+    shutil.copytree(ROOT / resource_path, tmp_path / resource_path)
+    basis = tmp_path / resource_path / "references/modules/basis.md"
+    basis.write_text(basis.read_text().replace("## MODULE: /basis", "## REMOVED MODULE: /basis"))
     shutil.copy2(ROOT / "scripts" / "uac-import.py", tmp_path / "scripts" / "uac-import.py")
 
     result = validate_pilot_foundations(tmp_path)

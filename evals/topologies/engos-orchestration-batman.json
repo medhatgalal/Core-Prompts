@@ -86,7 +86,8 @@
     {
       "id": "engos-orchestration-batman:L4:e7ac3eb2fd6f",
       "heading": "Purpose",
-      "source_line": 4,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 13,
       "sha256": "e7ac3eb2fd6f272c56ae60b9cddd9196b97a5b0d5829f7fa1c4b9080e4852aee",
       "text": "Batman delivers implementation through independent subagents. The controller owns the flow, written plan, task briefs, review backpressure, evidence, status, and authorized landing actions. It never becomes the implementer or reviewer of its own work.",
       "kind": "invariant",
@@ -95,7 +96,8 @@
     {
       "id": "engos-orchestration-batman:L6:0075ae9c926b",
       "heading": "Purpose",
-      "source_line": 6,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 15,
       "sha256": "0075ae9c926bcc02cb50f8b9f450ce12d2766226b200ee0c6ec2837635c0dc77",
       "text": "Batman has one canonical name and body. Do not create, register, route, or generate another public identity for this capability.",
       "kind": "invariant",
@@ -104,7 +106,8 @@
     {
       "id": "engos-orchestration-batman:L25:af8ac2368aca",
       "heading": "Agent Operating Contract",
-      "source_line": 25,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 34,
       "sha256": "af8ac2368aca4aacd29990887764a2b2992564ca275d1edd4fa541fa2739ad09",
       "text": "Batman is active only when the user invokes `engos-orchestration-batman` or explicitly asks for this evidence-gated delivery protocol. Metadata does not auto-route work or grant execution authority.",
       "kind": "guarded_invariant",
@@ -113,7 +116,8 @@
     {
       "id": "engos-orchestration-batman:L27:b0f810e89d40",
       "heading": "Agent Operating Contract",
-      "source_line": 27,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 36,
       "sha256": "b0f810e89d404665669acd92c21fb78ce26bed0e27ce2167f4d56b1a008022da",
       "text": "The controller must:",
       "kind": "invariant",
@@ -122,7 +126,8 @@
     {
       "id": "engos-orchestration-batman:L33:0c4bd08443e5",
       "heading": "Agent Operating Contract",
-      "source_line": 33,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 42,
       "sha256": "0c4bd08443e5b39967b692ca6c7c9b538616d2f1002c63a46303cfce2596cc5e",
       "text": "- report progress at required events and every 15 minutes during long-running work",
       "kind": "invariant",
@@ -131,7 +136,8 @@
     {
       "id": "engos-orchestration-batman:L34:cdbd82782609",
       "heading": "Agent Operating Contract",
-      "source_line": 34,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 43,
       "sha256": "cdbd82782609b32bc63af55ee6822cf09a94db74bfccdf7fe64213a057d2d179",
       "text": "- land only through repository policy and user authorization",
       "kind": "invariant",
@@ -140,7 +146,8 @@
     {
       "id": "engos-orchestration-batman:L36:1fbcab9f4faf",
       "heading": "Agent Operating Contract",
-      "source_line": 36,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 45,
       "sha256": "1fbcab9f4faf7c563a854c63dc11e50d56b37ec7c042cbac31abe8a33b1b9c05",
       "text": "The controller must not author production code, failing tests, or implementation fixes. It must not perform the implementer's self-review, substitute its own work when a subagent stalls, or let a reviewer fix the implementation it reviewed.",
       "kind": "guarded_invariant",
@@ -149,7 +156,8 @@
     {
       "id": "engos-orchestration-batman:L41:4c2c58c04ac4",
       "heading": "Companion Contract",
-      "source_line": 41,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 50,
       "sha256": "4c2c58c04ac4271e72aff0773e50ee9979333d5cdb8710dce7d0e42ddddbb983",
       "text": "Use only the host's subagent mechanism and Core-Prompts companions available in the active installation and named in this contract. Companion names are capability identities, not guaranteed agent registrations.",
       "kind": "invariant",
@@ -158,7 +166,8 @@
     {
       "id": "engos-orchestration-batman:L43:1ec32e6c9e23",
       "heading": "Companion Contract",
-      "source_line": 43,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 52,
       "sha256": "1ec32e6c9e237520dc8d4ab572d8b7f4462a69197806c50c0fdb8a6d50ba8736",
       "text": "Resolve each required companion in this order:",
       "kind": "invariant",
@@ -167,7 +176,8 @@
     {
       "id": "engos-orchestration-batman:L51:0f804c15573b",
       "heading": "Companion Contract",
-      "source_line": 51,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 60,
       "sha256": "0f804c15573b937c541dc7ad66e10ab3a5ea3f180301cb28ef04d1da7488f526",
       "text": "Context researcher, challenger, designer, implementer, reviewer, attacker, adversarial reviewer, and fixer are role briefs, not agent registry slugs. Apply each brief to the resolved subagent context. Do not depend on arbitrary external capability collections.",
       "kind": "invariant",
@@ -176,7 +186,8 @@
     {
       "id": "engos-orchestration-batman:L55:fd8482cb9ddd",
       "heading": "Companion Contract",
-      "source_line": 55,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 64,
       "sha256": "fd8482cb9ddddbebc3580121f24abdcb43dab49e8d3bfb2f5349168b9ad99580",
       "text": "- `engos-optimization-auto-research` for bounded behavioral comparison when proof is required",
       "kind": "guarded_invariant",
@@ -185,7 +196,8 @@
     {
       "id": "engos-orchestration-batman:L60:14b448572994",
       "heading": "Companion Contract",
-      "source_line": 60,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 69,
       "sha256": "14b448572994534ffefb6faa486ecdb3991f1f8cfceb62a100b2501436337d79",
       "text": "- `engos-delivery-address-code-review` only for selected comments on an existing PR or MR",
       "kind": "invariant",
@@ -194,7 +206,8 @@
     {
       "id": "engos-orchestration-batman:L64:7bf6355493da",
       "heading": "Companion Contract",
-      "source_line": 64,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 73,
       "sha256": "7bf6355493da9aec0223ae28ea2cbfa7d9400f8442555056b80304a4c6685ec6",
       "text": "Call only the companions required by the current stage and resolve them through the companion resolution rule above. Never instruct the host to use every available capability. SuperCharge supplies lenses; it does not own or execute Batman's flow.",
       "kind": "invariant",
@@ -203,7 +216,8 @@
     {
       "id": "engos-orchestration-batman:L68:c5b515d5a94d",
       "heading": "Tool Boundaries",
-      "source_line": 68,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 77,
       "sha256": "c5b515d5a94dc92312559a0219df93e124c2365cd397700a84b29463e436daab",
       "text": "- forbidden: hidden routing, undeclared delegation, production code, failing tests, or implementation fixes by the controller, reviewer self-approval, unauthorized live writes, or destructive actions without approval",
       "kind": "invariant",
@@ -212,7 +226,8 @@
     {
       "id": "engos-orchestration-batman:L76:b8f53650c4ad",
       "heading": "Invocation Hints",
-      "source_line": 76,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 85,
       "sha256": "b8f53650c4ade4f93b0960da2f76fd49aae5b1ecee539a8aa8e5a0a94bf5bf3d",
       "text": "- Do not invoke Batman for advice, a one-pass edit, or a review that excludes implementation.",
       "kind": "invariant",
@@ -221,7 +236,8 @@
     {
       "id": "engos-orchestration-batman:L78:77357dbdaba3",
       "heading": "Required Inputs",
-      "source_line": 78,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 87,
       "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
       "text": "## Required Inputs",
       "kind": "invariant",
@@ -230,7 +246,8 @@
     {
       "id": "engos-orchestration-batman:L93:787663d13959",
       "heading": "Instruction Integrity",
-      "source_line": 93,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 102,
       "sha256": "787663d13959573aa281f185cf51f44ff4716c7a8406a071ef6dc38394d837bd",
       "text": "The controller must never fabricate intent, success criteria, live-write authority, landing authority, or a missing repository fact. Resolve a contradiction only from authoritative context; otherwise stop and present it.",
       "kind": "invariant",
@@ -239,7 +256,8 @@
     {
       "id": "engos-orchestration-batman:L95:3d4b9f171064",
       "heading": "Required Output",
-      "source_line": 95,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 104,
       "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
       "text": "## Required Output",
       "kind": "invariant",
@@ -248,7 +266,8 @@
     {
       "id": "engos-orchestration-batman:L96:a9b93168e82b",
       "heading": "Required Output",
-      "source_line": 96,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 105,
       "sha256": "a9b93168e82baa0f9329d22f027a40511c3f540af88d31d19e48e7309282c0ae",
       "text": "Batman must maintain or return:",
       "kind": "invariant",
@@ -257,7 +276,8 @@
     {
       "id": "engos-orchestration-batman:L104:c7cf21409d9a",
       "heading": "Required Output",
-      "source_line": 104,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 113,
       "sha256": "c7cf21409d9adfeffba1f745250ee2eb1f0f0ee3b606aafcb98975b31b2a78ec",
       "text": "- validation and verification evidence, including independent reconciliation when required",
       "kind": "guarded_invariant",
@@ -266,7 +286,8 @@
     {
       "id": "engos-orchestration-batman:L108:93e4199db016",
       "heading": "Required Output",
-      "source_line": 108,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 117,
       "sha256": "93e4199db016778a8b09e6507d87e1d65710d25a34077fb310b5fe7ad2179c6c",
       "text": "- cleanup receipt after every required durable delivery receipt exists",
       "kind": "invariant",
@@ -275,7 +296,8 @@
     {
       "id": "engos-orchestration-batman:L112:be5484fc7ed3",
       "heading": "Output Directory",
-      "source_line": 112,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 121,
       "sha256": "be5484fc7ed37a48a6372173579ee27996d700ec94cba90ca9e825a653e10953",
       "text": "Store the controller ledger and run-scoped scratch evidence under the repository's ignored validation directory when one exists; otherwise use a temporary directory outside canonical source. The first line must name the work item and base revision.",
       "kind": "guarded_invariant",
@@ -284,7 +306,8 @@
     {
       "id": "engos-orchestration-batman:L114:90eec1f15f1e",
       "heading": "Output Directory",
-      "source_line": 114,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 123,
       "sha256": "90eec1f15f1e39080c730c4f9a49bc85d0f2c1adb9c05a7db6179793ca657c89",
       "text": "Do not commit transient scratch. Preserve durable evidence in the PR or MR description, an approved report path, or another repository-defined evidence artifact before removing scratch.",
       "kind": "invariant",
@@ -293,7 +316,8 @@
     {
       "id": "engos-orchestration-batman:L124:917d35b2f033",
       "heading": "Progress Reporting",
-      "source_line": 124,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 133,
       "sha256": "917d35b2f03377aea2cd22846414b1549b4c13924c92cb2d7075a5b07d658bf5",
       "text": "Every status states completed plan items, current stage and gate, active subagents, evidence received, blockers, and the next action. Report a changed approach when breaking a stall. Event reports do not replace the 15-minute heartbeat.",
       "kind": "guarded_invariant",
@@ -302,7 +326,8 @@
     {
       "id": "engos-orchestration-batman:L127:a79276c4f485",
       "heading": "Conditional Interface and Evidence Rules",
-      "source_line": 127,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 136,
       "sha256": "a79276c4f485fa7f7ec8e999ccbabf4a075b9e7583c19e16eb57a18fb9a15ad0",
       "text": "Apply these rules only when the approved work creates or changes the named concern:",
       "kind": "guarded_invariant",
@@ -311,7 +336,8 @@
     {
       "id": "engos-orchestration-batman:L129:01b1989f590f",
       "heading": "Conditional Interface and Evidence Rules",
-      "source_line": 129,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 138,
       "sha256": "01b1989f590f06479ee8aab6ba544795aa071216fc459802233b52864aec2d1a",
       "text": "- **Public surface:** Keep one canonical identity per public operation. Do not add dual paths without an evidenced production migration need. Treat a new public interface as contract-sized work and a critical decision.",
       "kind": "invariant",
@@ -320,7 +346,8 @@
     {
       "id": "engos-orchestration-batman:L131:782ca8a16386",
       "heading": "Conditional Interface and Evidence Rules",
-      "source_line": 131,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 140,
       "sha256": "782ca8a163863085ebcea3f73561dc9d2cc2033f0fc05069a749d2ae9357e7cb",
       "text": "- **Walk-up interface:** When humans use a public CLI, support bound project context or readable names. Require opaque IDs only when they are already available or contractually necessary.",
       "kind": "guarded_invariant",
@@ -329,7 +356,8 @@
     {
       "id": "engos-orchestration-batman:L132:8b4089169662",
       "heading": "Conditional Interface and Evidence Rules",
-      "source_line": 132,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 141,
       "sha256": "8b4089169662370ff86fcc6be836bbb06d400d946fc7e4ac96b21143fbc615ef",
       "text": "- **Evidence classes:** Mark evidence durable or run-scoped. Tests, current gate results, release anchors, and approved reports are durable. Ignored validation and temporary artifacts are run-scoped. Never delete the only live receipt before persisting its required facts durably.",
       "kind": "invariant",
@@ -338,7 +366,8 @@
     {
       "id": "engos-orchestration-batman:L136:0ae01a47a8b3",
       "heading": "Milestone Backpressure",
-      "source_line": 136,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 145,
       "sha256": "0ae01a47a8b3ea987a5d2a4855049dd38a8825c469220b2635d1b6ac0c0c024a",
       "text": "All four milestone gates are blocking. A size rule may mark a milestone inapplicable; it never makes a selected gate advisory. Dispatch reviewers independently from the implementation subagent. A failed gate returns work to the assigned implementer or fixer and blocks downstream work.",
       "kind": "invariant",
@@ -347,7 +376,8 @@
     {
       "id": "engos-orchestration-batman:L138:993916516905",
       "heading": "Milestone Backpressure",
-      "source_line": 138,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 147,
       "sha256": "9939165169052977cc5f8b0ded3b2c547a3402dc789f16de9d4ccd262a702d5c",
       "text": "Internal milestone findings return to the original implementer or a bounded default fixer. Use `engos-delivery-address-code-review` only for selected comments on an existing PR or MR.",
       "kind": "invariant",
@@ -356,7 +386,8 @@
     {
       "id": "engos-orchestration-batman:L150:0a35e5f02883",
       "heading": "Workflow",
-      "source_line": 150,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 159,
       "sha256": "0a35e5f028837a3f69a4e52eeb1560453d593483ced2216cfc510e92405a066e",
       "text": "Run stages in order. Do not ask for permission between ordinary, reversible stages already covered by the user's request. Do not interpret that continuity as authority for a critical or destructive action.",
       "kind": "invariant",
@@ -365,7 +396,8 @@
     {
       "id": "engos-orchestration-batman:L161:e658e2f81384",
       "heading": "Preflight \u2014 Verify and dispatch",
-      "source_line": 161,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 170,
       "sha256": "e658e2f8138456fcb4e0a593a2922f4e5869ba7c7836be386def2c57b6eed5d3",
       "text": "Use bounded waits appropriate to the host. If an implementation subagent makes no reportable progress, interrupt it and narrow or reassign the task to a fresh implementer. Do not retry the same vague brief. The controller never takes over the task. Subagents must not dispatch additional subagents.",
       "kind": "guarded_invariant",
@@ -374,7 +406,8 @@
     {
       "id": "engos-orchestration-batman:L174:08510b2ad067",
       "heading": "Dynamic Planning \u2014 Fit the verified host",
-      "source_line": 174,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 183,
       "sha256": "08510b2ad067c71981ecaab552eb237a0ab521e348c8512f43ae655a5516c60d",
       "text": "The Host-Fit Plan must name:",
       "kind": "invariant",
@@ -383,7 +416,8 @@
     {
       "id": "engos-orchestration-batman:L183:255c9202243a",
       "heading": "Dynamic Planning \u2014 Fit the verified host",
-      "source_line": 183,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 192,
       "sha256": "255c9202243a5ce83478302683a401a016340c6999e22345d28169c2c041852b",
       "text": "Every Host-Fit Plan must declare exactly one topology from the currently authorized written plan's acyclic child-dependency graph. Classify by first match: `sequential` when child nodes form one total order with at most one dispatched child at a time; `fan-out/fan-in` when the graph contains exactly one independent concurrency group and one all-required controller join before any downstream child dispatch; `dependency-pipeline` for every other acyclic graph, including multiple waves, partial joins, or named fan-out groups. Reject a cycle. Assign a monotonic, run-unique `plan_generation` to the Host-Fit Plan. Refresh the Host-Fit Plan atomically whenever approved scope or any dispatch-relevant child contract changes, including nodes, dependencies, task or owner IDs, role brief, read scope, write scope, isolation boundary, evidence contract, stop condition, reviewed revision or diff, or authority; increment `plan_generation`, record the change, interrupt affected in-flight children when supported, and mark every superseded-generation child and late result abandoned. Dispatch current-generation work after refresh only when each stale child is read-only, isolated from shared state, or all live write scopes are verified mutually disjoint; otherwise stop the dependent node or gate. Before any gate, verify that the reviewed revision or diff contains no abandoned-generation writes. Require Gate 2 to review the refreshed topology before TDD. Only current-generation result and evidence may pass a gate. Initial topology selection never approves scope or design. Controller checkpoints enforce gates; they do not self-decide verdicts. Controller checkpoints may own dispatch, reconciliation, gate enforcement, ledger/status, deterministic generation and validation, authorized Git checks, and authorized landing actions; they never own implementation, test, fix, or review work.",
       "kind": "guarded_invariant",
@@ -392,7 +426,8 @@
     {
       "id": "engos-orchestration-batman:L185:d72537fcbea1",
       "heading": "Dynamic Planning \u2014 Fit the verified host",
-      "source_line": 185,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 194,
       "sha256": "d72537fcbea1843abaf5c4b5a38d3f0ffdb0cb43953924ce9aa5a661f9c5a98e",
       "text": "For every child node, record `task_id`, a run-unique host-visible `owner_id`, `plan_generation`, role brief, dependency task IDs, read scope, write scope, isolation boundary, a bounded evidence contract tied to a revision, diff, artifact, or command, and a stop condition. Each child may send bounded progress receipts only to the sole controller; they cannot satisfy a gate and cannot become consolidated user status or final completion. Every child must return exactly one terminal result only to the sole controller with the same task and owner IDs and `plan_generation`, status `completed`, `blocked`, or `failed`, observed revision or diff, evidence references, findings, blockers, and an advisory next action. Each reviewer child issues an evidence-bound `PASS` or `FAIL` verdict; each non-reviewer child cannot decide a gate. No child may advance the workflow or waive a gate. A reviewer result is gate-eligible if and only if it has current `plan_generation`, matching task and owner IDs, status `completed`, its evidence contract is satisfied, blockers are empty, every finding is evidence-backed and has an allowed resolved disposition, and its verdict is `PASS`. A Critical or Important finding remains a blocker until resolved. `PASS` with an unresolved or significant finding fails closed. Malformed, duplicate, blocked, failed, incomplete, evidence-unsatisfied, blocker-bearing, stale, or non-`PASS` result fails closed. For each gate, record the exact required reviewer `task_id` and `owner_id` set and one reviewed revision or diff. A gate passes if and only if every and only required reviewer node returns exactly one individually gate-eligible `PASS` for the same current `plan_generation` and the same reviewed revision or diff. Missing, unexpected, duplicate, mismatched-revision, stale, or non-`PASS` reviewer result fails closed. The controller records and enforces the reviewer verdict and cannot turn `FAIL` into `PASS`. After a bounded wait for a missing or timed-out result, the controller records that receipt and interrupts when supported. If interruption cannot be confirmed, dispatch current-generation work only when the stale child is read-only, isolated from shared state, or all live write scopes are verified mutually disjoint; mark any late original result abandoned and ineligible to pass a gate. Otherwise stop the dependent node or gate. The controller never fabricates a result or treats a missing result as pass.",
       "kind": "guarded_invariant",
@@ -401,7 +436,8 @@
     {
       "id": "engos-orchestration-batman:L187:ce4b0f6f7365",
       "heading": "Dynamic Planning \u2014 Fit the verified host",
-      "source_line": 187,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 196,
       "sha256": "ce4b0f6f7365d9f5818d698b61f98addab2bb1ad58fedbfa4e7f8951f67c156d",
       "text": "Children must never dispatch children, mutate the evidence ledger, grant authority, or emit consolidated user status or final completion. Children without an explicit bounded synthesis brief must never reconcile peer results. A child with an explicit bounded synthesis brief may compare named peer artifacts and return advisory synthesis only to the sole controller. It cannot authoritatively reconcile, decide a conflict or gate, advance the workflow, mutate the evidence ledger, or emit consolidated status or final completion. Non-reviewer children must never decide a gate. The sole controller is the sole authoritative reconciler. The sole controller reconciles conflicts without averaging, maintains the canonical evidence ledger, emits every consolidated status and final report, controls workflow advancement, records and enforces evidence-bound reviewer verdicts, and never converts `FAIL` to `PASS`. Scope Gate 1 remains a separately evidenced blocking checkpoint; topology selection cannot predeclare it or any later gate passed.",
       "kind": "invariant",
@@ -410,7 +446,8 @@
     {
       "id": "engos-orchestration-batman:L191:3c8641d5c1fe",
       "heading": "Dynamic Planning \u2014 Fit the verified host",
-      "source_line": 191,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 200,
       "sha256": "3c8641d5c1feebc994486e1058bbf03fb11c5558f74d6f27aec796a70b4bde89",
       "text": "The planner must not waive or reorder gates, let the controller implement, invent facilities, skip TDD or review, or invoke SuperCharge `/full` without written need. It must not expand authority. Use only verified facilities. When inventory is incomplete, prohibit live writes, use verified skill fallbacks, use sequential implementation, and stop only when a facility required by the current gate is unknown or unavailable.",
       "kind": "guarded_invariant",
@@ -419,7 +456,8 @@
     {
       "id": "engos-orchestration-batman:L194:cc60bb15401c",
       "heading": "Size gate",
-      "source_line": 194,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 203,
       "sha256": "cc60bb15401cc58ffa0ee8470fca48a57d8e0212b0cc59d491e9d378bde31996",
       "text": "Keep stage order. Drop stages only by the following size rules:",
       "kind": "invariant",
@@ -428,7 +466,8 @@
     {
       "id": "engos-orchestration-batman:L196:968022479c3b",
       "heading": "Size gate",
-      "source_line": 196,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 205,
       "sha256": "968022479c3bbcc5aee76808bad59358ddcdd432fe6571b5ab9387c5a4ed6c1b",
       "text": "| Size | Required stages |",
       "kind": "invariant",
@@ -437,7 +476,8 @@
     {
       "id": "engos-orchestration-batman:L199:3cdda6007b44",
       "heading": "Size gate",
-      "source_line": 199,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 208,
       "sha256": "3cdda6007b4450c644119f889c676b947f14036a3a72c98674f94f345ab4cc7a",
       "text": "| Small: one behavior and no new interface | 1 context-only, 3, 4, 5, 6 |",
       "kind": "invariant",
@@ -446,7 +486,8 @@
     {
       "id": "engos-orchestration-batman:L202:5bf15bebd9ca",
       "heading": "Size gate",
-      "source_line": 202,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 211,
       "sha256": "5bf15bebd9ca4967f3bc75270f2e86dd4c794e5e72ab8a026cb42ded12cf8324",
       "text": "A correction for a shipped defect is never trivial. Every size still passes applicable task and landing milestone gates.",
       "kind": "invariant",
@@ -455,7 +496,8 @@
     {
       "id": "engos-orchestration-batman:L207:781f0011edfa",
       "heading": "Stage 1 \u2014 Research and challenge",
-      "source_line": 207,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 216,
       "sha256": "781f0011edfa08df280693f4bd4d8af47d25a8a7ff3322ebd91e9f93282b8bf6",
       "text": "1. Dispatch a fresh context researcher role brief to explain observed behavior with repository evidence. It must not design.",
       "kind": "invariant",
@@ -464,7 +506,8 @@
     {
       "id": "engos-orchestration-batman:L208:33faead03cf0",
       "heading": "Stage 1 \u2014 Research and challenge",
-      "source_line": 208,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 217,
       "sha256": "33faead03cf0e8d3c8ea341c49432f561cb1935a83f0af59243e3798f13291d3",
       "text": "2. Dispatch a fresh independent challenger role brief that applies `engos-meta-supercharge /adversarial /debate` through the companion resolution rule to test the premise, falsifiers, and smallest valid slice. Use `/full` only when the written plan justifies the full gauntlet; `/full` never means run every capability.",
       "kind": "guarded_invariant",
@@ -473,7 +516,8 @@
     {
       "id": "engos-orchestration-batman:L224:999fa7e364c5",
       "heading": "Stage 2 \u2014 Design, simplify, specify, and plan",
-      "source_line": 224,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 233,
       "sha256": "999fa7e364c55e0cb7528e4f4c993a2e4c83548a5d5139905dd990a7974cd7a6",
       "text": "9. Run milestone gate 2. Do not begin TDD until the specification, delivery plan, implementation plan, and tasks exist, agree, and pass review.",
       "kind": "invariant",
@@ -482,7 +526,8 @@
     {
       "id": "engos-orchestration-batman:L240:b7f2aa2b6d7a",
       "heading": "Stage 3 \u2014 TDD-led subagent implementation",
-      "source_line": 240,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 249,
       "sha256": "b7f2aa2b6d7a29c961fbd1b8638115680923bcb8bdfd3146d150e306dbb6f5c2",
       "text": "1. Create a dedicated branch from current main, preferably in an isolated worktree. Never implement on `main` unless the user explicitly requires it and repository policy allows it.",
       "kind": "guarded_invariant",
@@ -491,7 +536,8 @@
     {
       "id": "engos-orchestration-batman:L241:de2395af6040",
       "heading": "Stage 3 \u2014 TDD-led subagent implementation",
-      "source_line": 241,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 250,
       "sha256": "de2395af60403219e22bdfee757cf36ca99a6951ad176967f75d94ff700e2581",
       "text": "2. Dispatch one fresh independent implementer role brief per bounded task. Provide only the task brief and required context, not a session-history dump.",
       "kind": "invariant",
@@ -500,7 +546,8 @@
     {
       "id": "engos-orchestration-batman:L242:6dbe4f95a7c9",
       "heading": "Stage 3 \u2014 TDD-led subagent implementation",
-      "source_line": 242,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 251,
       "sha256": "6dbe4f95a7c9e98b0c773e0236222cc5be7a1df34a56d23dc3a469d92f67ea21",
       "text": "3. Prior-session or controller-authored tests are dirty input and cannot satisfy observed-red evidence unchanged. After Gate 2, a fresh implementer may inspect and validate it only to decide whether to revise, rewrite, or discard it. The fresh implementer must author the evidence-bearing version independently, bind its provenance to the recorded unfixed revision, and freshly observe the intended failure. Mere adoption never converts controller authorship into independent test evidence.",
       "kind": "invariant",
@@ -509,7 +556,8 @@
     {
       "id": "engos-orchestration-batman:L244:60463d526fea",
       "heading": "Stage 3 \u2014 TDD-led subagent implementation",
-      "source_line": 244,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 253,
       "sha256": "60463d526fea376a2986cad12aea97eaea44bd723d1e59bfcd4f7201a0397712",
       "text": "5. The implementer reports the exact command and a sanitized relevant red excerpt. A test that was never observed red is not evidence.",
       "kind": "invariant",
@@ -518,7 +566,8 @@
     {
       "id": "engos-orchestration-batman:L247:dc8836d26441",
       "heading": "Stage 3 \u2014 TDD-led subagent implementation",
-      "source_line": 247,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 256,
       "sha256": "dc8836d2644191729d34c22042b52d661883ee897ddb4e6780eeec04965759d5",
       "text": "8. Test design lives in the failing tests. Do not add a second post-hoc test-design ceremony after implementation.",
       "kind": "invariant",
@@ -527,7 +576,8 @@
     {
       "id": "engos-orchestration-batman:L250:d582e7ec5408",
       "heading": "Stage 3 \u2014 TDD-led subagent implementation",
-      "source_line": 250,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 259,
       "sha256": "d582e7ec5408eb8a16fe84c899671c4edd4a7fd85687e6e7d692610bc997813e",
       "text": "11. Re-review the fix diff. After five unresolved rounds, stop for a human ruling. Do not silently park a Critical or Important finding.",
       "kind": "invariant",
@@ -536,7 +586,8 @@
     {
       "id": "engos-orchestration-batman:L251:786016d21b16",
       "heading": "Stage 3 \u2014 TDD-led subagent implementation",
-      "source_line": 251,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 260,
       "sha256": "786016d21b1669fa97a5264f0e439a00bdbd8b272eed81216e5cc3ac3187c524",
       "text": "12. Do not begin the next task while a Critical or Important finding remains unresolved.",
       "kind": "invariant",
@@ -545,7 +596,8 @@
     {
       "id": "engos-orchestration-batman:L257:efddd23982fd",
       "heading": "Stage 4 \u2014 Validation and verification",
-      "source_line": 257,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 266,
       "sha256": "efddd23982fd3edf3d89568b50733e12a8027083f01061d7ff67c43a2ddfd942",
       "text": "Run the repository-required formatter, linter, strict type checks, targeted tests, and full offline suite. Record exact commands and outcomes.",
       "kind": "invariant",
@@ -554,7 +606,8 @@
     {
       "id": "engos-orchestration-batman:L259:5fd968b34753",
       "heading": "Stage 4 \u2014 Validation and verification",
-      "source_line": 259,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 268,
       "sha256": "5fd968b347534e177a58376bcd3ebdb905b9603ace5a54746ac9d48f05504b7f",
       "text": "An offline suite is necessary but not sufficient when the requested or repository-default outcome is live. Name the authorized live environment and freshness proof. If either is unavailable or unauthorized, refuse the live claim; do not substitute offline tests for live evidence.",
       "kind": "guarded_invariant",
@@ -563,7 +616,8 @@
     {
       "id": "engos-orchestration-batman:L266:0f7eea1d9e2c",
       "heading": "Stage 4 \u2014 Validation and verification",
-      "source_line": 266,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 275,
       "sha256": "0f7eea1d9e2cfa5c89be768a412e86ffe43934bd4a010610337f6fcac12b833e",
       "text": "Never weaken a claim to make validation pass. If a claim cannot be verified, refuse the claim and report the missing proof. A refusal is a successful answer.",
       "kind": "guarded_invariant",
@@ -572,7 +626,8 @@
     {
       "id": "engos-orchestration-batman:L275:06480f1cb6b2",
       "heading": "Stage 5 \u2014 Code review and address review",
-      "source_line": 275,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 284,
       "sha256": "06480f1cb6b28533fc4008fafa373431e6eb082b4a4d84c5c96b25da9a3756a2",
       "text": "3. Apply `engos-reconciliation-converge` through the companion resolution rule to classify every finding as `MUST-FIX`, `CHEAP`, `TRACKED`, or `REJECT`. Resolve disagreement; do not average or silently dismiss it.",
       "kind": "invariant",
@@ -581,7 +636,8 @@
     {
       "id": "engos-orchestration-batman:L276:01267b056543",
       "heading": "Stage 5 \u2014 Code review and address review",
-      "source_line": 276,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 285,
       "sha256": "01267b0565437d9d66785a856dd2a49b608113b6f4ef639bf692f0f0c86c25e2",
       "text": "4. Address accepted findings through the original implementer role brief or a bounded fresh fixer role brief, never through the controller.",
       "kind": "invariant",
@@ -590,7 +646,8 @@
     {
       "id": "engos-orchestration-batman:L284:0a769d7bcaec",
       "heading": "Stage 6 \u2014 Document, land, and clean",
-      "source_line": 284,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 293,
       "sha256": "0a769d7bcaecefa4b1f3675f8b4bdea8ed78c46936d63524ad452c50b932c32b",
       "text": "2. Open a scoped PR or MR whose description reports measurements and evidence, not only intent.",
       "kind": "invariant",
@@ -599,7 +656,8 @@
     {
       "id": "engos-orchestration-batman:L285:334dddaa2f2c",
       "heading": "Stage 6 \u2014 Document, land, and clean",
-      "source_line": 285,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 294,
       "sha256": "334dddaa2f2cebf9044c66fad490881aec55b59f83e19760872ce6f9ba1b1bb3",
       "text": "3. Verify current hosted CI on every required forge. Do not infer hosted CI from local tests.",
       "kind": "invariant",
@@ -608,7 +666,8 @@
     {
       "id": "engos-orchestration-batman:L289:bdaa516f4446",
       "heading": "Stage 6 \u2014 Document, land, and clean",
-      "source_line": 289,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 298,
       "sha256": "bdaa516f4446c11f1031640eeaa38090880693192eaf9db0ae4ba5a685daa7a3",
       "text": "7. Handle tag, package release, deployment, and installation separately after mainline verification. Execute an action only when it is separately authorized and its repository preconditions pass. For each action, perform it and record its receipt, mark it skipped when it was not requested or does not apply, or refuse it when authority or required proof is missing. Report each actual, skipped, or refused state and reason; never infer one action's authority from another.",
       "kind": "guarded_invariant",
@@ -617,7 +676,8 @@
     {
       "id": "engos-orchestration-batman:L290:f859836bad04",
       "heading": "Stage 6 \u2014 Document, land, and clean",
-      "source_line": 290,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 299,
       "sha256": "f859836bad040cf3849c226592bec30db72c21db381300cba121633e08f4de28",
       "text": "8. Persist required run-scoped facts durably before cleanup, including all actual, skipped, and refused delivery states. Never delete the only live receipt. Remove only authorized run-scoped scratch, branch, and worktree targets after readback confirms the durable record.",
       "kind": "invariant",
@@ -626,7 +686,8 @@
     {
       "id": "engos-orchestration-batman:L296:84c4a41ecd61",
       "heading": "Rules",
-      "source_line": 296,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 305,
       "sha256": "84c4a41ecd618100967e9ca27daf2bb53a7dcd172819049238cde6460f051a05",
       "text": "- Dispatch only the subagents required by the current stage.",
       "kind": "invariant",
@@ -635,7 +696,8 @@
     {
       "id": "engos-orchestration-batman:L301:4449897e2023",
       "heading": "Rules",
-      "source_line": 301,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 310,
       "sha256": "4449897e20239b08c2ddd9e8dcb8290a129b9d7eeea43612b4c20392eb557062",
       "text": "- SuperCharge is a called lens. Batman is not a SuperCharge module and must not appear in any SuperCharge module list.",
       "kind": "invariant",
@@ -644,7 +706,8 @@
     {
       "id": "engos-orchestration-batman:L305:7d9aa919c65c",
       "heading": "Constraints",
-      "source_line": 305,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 314,
       "sha256": "7d9aa919c65c7ccbd4e1a969e363f27d64ef7b4346dfaed3808defa5c0237625",
       "text": "- One active public identity: `engos-orchestration-batman`. Do not create a second SSOT, descriptor, skill, agent, route, invocation hint, example, or generated surface for this capability.",
       "kind": "invariant",
@@ -653,7 +716,8 @@
     {
       "id": "engos-orchestration-batman:L310:cc2349e3bd8f",
       "heading": "Constraints",
-      "source_line": 310,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 319,
       "sha256": "cc2349e3bd8f92238a5c3cdd43dfa98e9f8cbe2fb35450b16de2a53bc0e3a4a8",
       "text": "- No live write, deployment, push, publish, merge, destructive cleanup, or security-sensitive action without the required authority.",
       "kind": "invariant",
@@ -662,7 +726,8 @@
     {
       "id": "engos-orchestration-batman:L315:6666019f279e",
       "heading": "Implementation request",
-      "source_line": 315,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 324,
       "sha256": "6666019f279ec0fecf41e316ea6e6f87fe1e76dcb95b41574d768d73d67dbe4c",
       "text": "> Batman: implement this shipped-defect correction through subagent-driven TDD, all applicable milestone gates, verification, docs, PR, authorized merge, and cleanup. Never weaken the metric claim.",
       "kind": "invariant",
@@ -671,7 +736,8 @@
     {
       "id": "engos-orchestration-batman:L317:a5c1bf03116f",
       "heading": "Skills-only companion fallback",
-      "source_line": 317,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 326,
       "sha256": "a5c1bf03116fafb8d42d2da55351aabf9aaf0443ac061cf4e272ee126d455670",
       "text": "### Skills-only companion fallback",
       "kind": "invariant",
@@ -680,7 +746,8 @@
     {
       "id": "engos-orchestration-batman:L345:914d9dc40431",
       "heading": "Evaluation Rubric",
-      "source_line": 345,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 354,
       "sha256": "914d9dc40431896335ed656847679ee05827442eaf2e24184eef04436364ad06",
       "text": "| Controller separation | The controller never authors production code, failing tests, or implementation fixes |",
       "kind": "invariant",
@@ -689,7 +756,8 @@
     {
       "id": "engos-orchestration-batman:L350:f6708a2ef7ca",
       "heading": "Evaluation Rubric",
-      "source_line": 350,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 359,
       "sha256": "f6708a2ef7ca7fd274b2a54d8f7772eafb5a374a5a38c25b185e99793f49d8b1",
       "text": "| Claim integrity | Validation never weakens the claim; unverifiable claims are refused |",
       "kind": "invariant",
@@ -698,7 +766,8 @@
     {
       "id": "engos-orchestration-batman:L353:a844dc17acfc",
       "heading": "Evaluation Rubric",
-      "source_line": 353,
+      "source": "ssot/engos-orchestration-batman.md",
+      "source_line": 362,
       "sha256": "a844dc17acfc2287d3369fc36aa8bb36415b3d88586016f6f3e7311cba0d08d7",
       "text": "| Identity integrity | Only Batman invokes this body; no duplicate public identity or surface exists |",
       "kind": "invariant",

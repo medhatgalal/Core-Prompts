@@ -1,0 +1,47 @@
+{
+  "schema": "IndependentCatchupRecheckEvidence.v1",
+  "disposition": "PASS",
+  "reviewer": "/root/verify_live_skill_behaviors/grade_meadow",
+  "CODEX_THREAD_ID": "01a08237-0f36-7073-a347-0b38cfe03fe2",
+  "scope": "Targeted comparison of the two requested report corrections only",
+  "original_sha256": "01cdb036681efb6fe43c7e58947fe677beed9f79a27f0af5ef3292e5c7cd711c",
+  "revised_sha256": "eb5f6fbffa5160af6a59d3e2e9a09fc8d170cb70c32a34f3be8f8b61eb542811",
+  "original_matches_initial_reviewed_snapshot": true,
+  "revised_matches_controller_supplied_hash": true,
+  "actual_tool_call_chunk_ids": {
+    "recheck_byte_hashes_and_complete_diff": "684986",
+    "prior_full_catchup_resource": "26df84",
+    "prior_complete_evidence_inputs": "b89eeb",
+    "prior_structure_and_timestamped_file_observations": "8f49c1"
+  },
+  "prior_resource_delivery": {
+    "route": "/catchup",
+    "bundle_sha256": "e5129c59f933efd6e189446437fd62b96b031a5858589b9330cfc9077b4a001d",
+    "manifest_sha256": "56fee7ec78e0bac117fb3f517e8577890cfa638c3ac3a758f236ec64ee3df91f",
+    "module_sha256": "4e7a94bf82cc0531b0778efba4c6906fb421ec578fcad3dd9c260ed40e69afa2",
+    "shared_review_sha256": "92fe588ebc996fa935204ced17e9761dd8927d7ee6906466988af0ee2285d791",
+    "reuse_basis": "Full prior payload already delivered; controller reports source/module bytes unchanged."
+  },
+  "changes": [
+    {
+      "id": "C1",
+      "status": "resolved",
+      "old": "Afterward (18:41 UTC), the assembled review still had no target file.",
+      "new": "Afterward (18:44 UTC), the independent assembly check observed no target file.",
+      "support": "Previously read independent assembly review, observation timestamp 2026-09-08T18:44:17.300540+00:00 and chunk 133889."
+    },
+    {
+      "id": "C2",
+      "status": "resolved",
+      "old": "all writes stayed under live-checks.",
+      "new": "recorded demonstration writes stayed under live-checks.",
+      "support": "Narrows the assertion to the recorded demonstration scope as requested."
+    }
+  ],
+  "other_text_changed": false,
+  "remaining_required_corrections": [],
+  "initial_review_and_evidence_preserved": true,
+  "new_runtime_or_target_checks_performed": false,
+  "report_or_targets_modified": false,
+  "acceptance_binding": "Revised candidate bytes only; final report copy and controller verifier remain separate."
+}

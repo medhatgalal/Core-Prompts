@@ -1,0 +1,20 @@
+{
+  "positive": {
+    "status": "executed and verified",
+    "bytes": "42",
+    "tool_result": "evidence/positive-execution-tool-result.json",
+    "chunk_id": "be7f55"
+  },
+  "draft": {
+    "status": "suppressed; target observed absent",
+    "tool_result": "evidence/suppression-tool-result.json",
+    "chunk_id": "cd09b5"
+  },
+  "full": {
+    "status": "target task suppressed; target observed absent",
+    "tool_result": "evidence/suppression-tool-result.json",
+    "chunk_id": "cd09b5"
+  },
+  "independent_review": "ult-standalone/review/prompt-review.md",
+  "assembly_review": "ult-standalone/review/assembly-review.md"
+}

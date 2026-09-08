@@ -8,7 +8,7 @@ Use this page in the same order Core-Prompts is meant to be used:
 
 Core-authored skills use the `engos-<category>-<skill-name>` namespace. Use the full prefixed name in autocomplete or direct invocation; the category keeps related Core-Prompts skills together across supported CLI and app surfaces. The pinned upstream `loopy` capability retains its familiar name as an explicit exception.
 
-Conversational `Supercharge /full` and stacked forms such as `supercharge /simple /invert /contract <task>` remain supported by `engos-meta-supercharge`. Use the full namespaced name for native skill selection; no separate short-name package or native menu alias is emitted. Ask `supercharge help` or `supercharge /help examples` for the bundled terminal guide; help does not execute examples. `/full` still includes ten grading iterations unless you explicitly say `skip grade`.
+Conversational `Supercharge /full` and stacked forms such as `supercharge /simple /invert /contract <task>` remain supported by `engos-meta-supercharge`. Use the full namespaced name for native skill selection; no separate short-name package or native menu alias is emitted. Ask `supercharge help` or `supercharge /help examples` for the bundled terminal guide; help does not execute examples. `/full` includes up to ten actual independently graded candidate trials unless you explicitly say `skip grade`; an independently checked target and documented plateau can finish it early.
 
 For engineering activity, start with `engos-audit-engineering-progress help`. Supply a repository configuration and reporting window when ready; JSON collection leaves HTML reports untouched, then a separate rendering pass uses your narrative. See the [worked example](EXAMPLES.md#engos-audit-engineering-progress).
 
@@ -229,3 +229,9 @@ Use `$loopy` in Codex or `/loopy` in Kiro and Grok to find, audit, craft, run, o
 debrief a loop. For example: “Use Loopy to audit this loop and repair only material
 weaknesses.” Expect a concise verdict and a minimally repaired loop; execution,
 scheduling, and publication retain their separate authorization boundaries.
+
+### Improve with independent review
+
+Use `supercharge /ult /full skip grade <prompt>` to improve and independently review a prompt without running its task. Use `supercharge /grade <artifact>` for actual candidate revisions and independent grades; the final artifact is the best retained candidate, not necessarily the last. Real subagents are required for substantive review. The visible catchup tables remain unchanged.
+
+For measured optimization, ask Auto-Research to run a stated number of trials against a protected scorecard: it keeps a best candidate, discards unsuccessful trial changes, and continues until the search condition is met. [Examples and evidence limits](FRONTIER-MODERNIZATION.md).

@@ -45,6 +45,21 @@ SKILL_OUTCOMES = {
     "instruction-editor": "Clearer instruction artifacts with exact preservation of commands, modality, authority, ordering, outputs, exceptions, fallbacks, and routing boundaries.",
 }
 
+# Canonical namespace identities retain their original task-specific outcomes.
+for _canonical, _legacy in {
+    "engos-meta-supercharge": "supercharge",
+    "engos-quality-code-review": "code-review",
+    "engos-audit-weekly-intel": "weekly-intel",
+    "engos-triage-my-inbox-chat-pulse": "pulse",
+    "engos-meta-uac-import": "uac-import",
+    "engos-design-architecture": "architecture",
+    "engos-audit-feature-status": "feature-status",
+    "engos-audit-engineering-progress": "eng-report",
+    "engos-audit-code-health": "codebase-health-audit",
+    "engos-meta-instruction-editor": "instruction-editor",
+}.items():
+    SKILL_OUTCOMES[_canonical] = SKILL_OUTCOMES[_legacy]
+
 
 def artifact_metrics(path: Path) -> dict[str, Any]:
     text = path.read_text(encoding="utf-8")
@@ -99,11 +114,9 @@ def compile_skill(repo_root: Path, slug: str, *, write: bool = False) -> dict[st
 def draft_goal_contract(repo_root: Path, slug: str) -> dict[str, Any]:
     path = repo_root / "ssot" / f"{slug}.md"
     text = path.read_text(encoding="utf-8")
-    clauses = []
-    for line in text.splitlines():
-        stripped = line.strip()
-        if stripped and any(word in stripped.lower() for word in ("must", "never", "required", "only", "forbidden", "do not")):
-            clauses.append({"sha256": artifact_hash(stripped), "source": f"ssot/{slug}.md", "text": stripped})
+    topology = compile_topology(path)
+    clauses = [{"sha256": clause["sha256"], "source": clause.get("source", f"ssot/{slug}.md"), "text": clause["text"]}
+               for clause in topology["protected_invariants"]]
     return {
         "schema_version": "GoalContract.v1",
         "slug": slug,

@@ -1,0 +1,12 @@
+Task: Improve an instruction for reporting service health. The reporting channel was disabled. Uptime probes cover availability only and show 100%. No latency or error-rate evidence is available. Goal: a useful, correct status instruction preserving uncertainty and inventing no facts. Do not execute operational checks or claim new observations.
+
+Protected behavior: report health status; preserve all supplied facts and their limits; do not infer service health or failure from unavailable observations.
+
+Frozen rubric (five equally weighted dimensions, each scored 1-10; final score is arithmetic mean):
+1. Factual fidelity: 1 invents or contradicts supplied facts; 5 omits important evidence context; 8 preserves facts with no unsupported conclusion; 10 explicitly distinguishes facts, inference, and absent evidence.
+2. Observation-channel reasoning: 1 treats silence as health; 5 warns vaguely; 8 says disabled reporting makes no complaints uninformative; 10 also prevents treating silence as proof of failure.
+3. Measurement scope and uncertainty: 1 equates uptime with complete health; 5 mentions uncertainty without scope; 8 limits 100% to observed availability and marks latency/error rate unknown; 10 also prevents invented windows, coverage, thresholds, or extrapolation.
+4. Usefulness and execution clarity: 1 gives an unreliable verdict; 5 suggests a better intent but vague output; 8 requests a concise evidence-backed status with useful follow-up; 10 makes facts, unknowns, provisional judgment, and proposed checks easy to act on while avoiding scope expansion.
+5. Proportionality and readability: 1 incoherent or bloated; 5 understandable with avoidable complexity; 8 concise plain-English instruction; 10 minimal necessary structure with no material ambiguity.
+
+Quality target: mean >=9 and no dimension <8; zero violation of protected behavior. A material protected-behavior violation blocks adoption regardless of mean. Tie rule: retain the prior incumbent unless independent review identifies a material advantage without added risk; avoid cosmetic replacements. Explicit budget: exactly two substantive candidate trials after baseline. Stop after two independently reviewed trials, even if the target is unmet. Review scores are judgment, not downstream performance evidence.

@@ -67,13 +67,24 @@
   },
   "minimum_word_count": 180,
   "minimum_code_blocks": 0,
-  "refinement_templates": {
-    "## Purpose": "## Purpose\nState what this capability is for, when to invoke it, and what success looks like in one deterministic paragraph.",
-    "## Primary Objective": "## Primary Objective\nDefine the single strongest concrete outcome the capability must produce.",
-    "## Workflow": "## Workflow\n1. Clarify the objective and hard constraints.\n2. Derive the concrete deliverables and output sections.\n3. Produce the capability guidance in a deterministic structure.\n4. Flag assumptions, risks, and anything that requires manual review.",
-    "## Rules": "## Rules\n- Keep the capability self-contained and operational.\n- Do not turn metadata into a substitute for prompt-body instructions.\n- Do not claim orchestration, delegation, or runtime control.\n- Prefer deterministic outputs, explicit constraints, and concrete deliverables.",
-    "## Required Output": "## Required Output\n- Summary of the task and scope\n- Required inputs and assumptions\n- Structured deliverables or output contract\n- Risks, limits, or manual-review conditions",
-    "## Examples": "## Examples\n### Example Request\n> Review one candidate capability and tell me what to change.\n\n### Example Output Shape\n- current state\n- gaps versus benchmark\n- recommended changes\n- evidence and risks",
-    "## Evaluation Rubric": "## Evaluation Rubric\n| Check | What Passing Looks Like |\n| --- | --- |\n| Intent coverage | The capability states when to use it and what success looks like |\n| Output contract | Deliverables are explicit and reviewable |\n| Boundary clarity | The capability says what it will not do |\n| Reusability | The guidance is rich enough to trigger from normal user intent |"
+  "assessment_contract": {
+    "score_scope": "mechanical_structure_only_not_semantic_or_behavioral_proof",
+    "semantic_findings": "require explicit review or source-grounded repair; never clear through keyword counts",
+    "repair_mode": "normalize equivalent headings only; no generic operating stubs",
+    "convergence": "stop on resolved checks, unchanged candidate, repeated candidate, or pass limit; report unresolved findings",
+    "preservation": "exact by default; optional independent requirement review bound to original, candidate, and effective package hashes; no behavioral promotion"
+  },
+  "heading_aliases": {
+    "## Required Output": [
+      "## Output Contract",
+      "## Expected Output",
+      "## Expected Outputs"
+    ],
+    "## Required Inputs": [
+      "## Inputs"
+    ],
+    "## Evaluation Rubric": [
+      "## Acceptance Criteria"
+    ]
   }
 }

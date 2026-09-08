@@ -1,20 +1,22 @@
 from pathlib import Path
 
 from core_prompts_eval.topology import compile_topology
+from intent_pipeline.capability_resources import effective_capability_text
 
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 def _text(slug: str) -> str:
-    return (ROOT / "ssot" / f"{slug}.md").read_text(encoding="utf-8")
+    return effective_capability_text(ROOT, slug, (ROOT / "ssot" / f"{slug}.md").read_text(encoding="utf-8"))
 
 
 def test_supercharge_declares_one_terminal_precedence_and_modifier_failure_path() -> None:
     text = _text("engos-meta-supercharge")
 
     assert "### Terminal-Control Precedence" in text
-    assert "`/stop` wins over every other command" in text
+    assert "`/stop` wins over every other command" not in text
+    assert "1. `/stop-ult` exits ULT mode" in text
     assert "If the user supplies more than one reflective control, stop and ask them to choose one" in text
     assert "`/deep` without `/debate` is invalid" in text
 

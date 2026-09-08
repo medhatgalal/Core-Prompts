@@ -26,7 +26,7 @@ Supported modes:
 Deterministic clarity lint from `instruction_clarity.v1` is available in every mode and enabled by default for `audit`, `plan`, and `judge`. It is advisory and never counts as behavioral evidence.
 
 ## Primary Objective
-Classify the source safely, recommend the right surface area, and refuse landing until the candidate is structurally strong enough to become canonical SSOT plus descriptor state.
+Exhaustively improve the source’s clarity, completeness, coherence, structure, and usability during onboarding while preserving its intended capability. Classify safely, recommend the right surfaces, and refuse landing until the structural and reviewed requirement gates pass. Structural diagnostics do not prove downstream model efficacy.
 
 When structural quality is near the bar but behavioral confidence is still weak, escalate to a bounded behavioral proof workflow instead of overstating readiness.
 
@@ -48,6 +48,12 @@ Operational rule:
 - deploy is separate and must never be implied by `apply`
 - when shell entrypoints are required to complete the workflow, say so explicitly instead of assuming the caller knows them
 
+## Agent Operating Contract
+When exposed as an agent, inspect the supplied source and repository context, prepare exhaustive onboarding findings and candidate repairs, and return the same UAC deliverables. Use an actual independent subagent to review material meaning changes before supplying a requirement-review attestation. The invoking host retains runtime and authorization control. A judge run returns analysis and candidate artifacts without landing canonical state; an authorized apply performs the documented write/build/validation sequence.
+
+## Output Directory
+Canonical application writes `ssot/<slug>.md` and `.meta/capabilities/<slug>.json`, plus generated surfaces and evaluation contracts. Quality review evidence belongs in `reports/quality-reviews/<slug>/`; baseline lineage lives in `sources/ssot-baselines/<slug>/` and changes only under the independent promotion policy. These are UAC-owned onboarding artifacts, not output paths imposed on the imported capability's own task.
+
 ## Workflow
 1. Ingest the source through the deterministic pipeline.
 2. Produce a clean summary.
@@ -59,13 +65,13 @@ Operational rule:
 8. Build layered manifests, cross-analysis, and advisory handoff data.
 9. Select a quality profile and benchmark set.
 10. Resolve the canonical baseline source from `sources/ssot-baselines/` before judging fidelity.
-11. On `judge`, run the built-in quality loop and return judge packets plus pass/fail reports without landing repo state.
+11. On `judge`, do not land or modify canonical repository state. Mechanical repairs produce a candidate artifact only. Inspect structure, formatting, style, ambiguity, contradictions, missing details, references, outputs, boundaries, and preservation. Return an explicit disposition for each applicable dimension. Apply only targeted mechanical repairs; request source-grounded semantic repairs from the invoking agent and an independent reviewer when meaning is unresolved. Do not append generic obligations to satisfy a count.
 12. If `judge` finds that structural quality is close to passing but behavioral confidence is insufficient, route to `engos-optimization-auto-research` for bounded capability evaluation instead of guessing.
 13. Search for benchmark sources only when the source is generic or fit confidence is weak.
-14. Rename the former structural `ship` result to `structural_ready`. It proves only that deterministic UAC gates passed.
+14. Report `structural_ready` only for structural checks. Keep semantic review attestations, assembled resource content, host delivery evidence, and measured behavioral results distinct. No average score can waive an unresolved blocker.
 15. Emit `EvalImpactPlan.v1` when requested and on `judge` or `apply` so the behavioral evaluator can select the minimum safe profile.
 16. On `apply`, refuse landing unless the quality loop reaches `structural_ready`. Validate any supplied `PromotionVerdict.v2`; reject stale hashes or a mismatched slug. Treat `PromotionVerdict.v1` as read-only legacy evidence that cannot authorize promotion. During advisory rollout, an absent verdict leaves the result `behavioral_pending` and cannot materialize a new behavioral baseline.
-17. Materialize a new baseline only after an independent `promote` verdict, or preserve a valid historical baseline without rewriting its lineage.
+17. On authorized `apply`, write canonical SSOT and the descriptor, persist the quality reviews, then rebuild and validate generated surfaces. Materialize a new baseline only after an independent `promote` verdict, or preserve a valid historical baseline without rewriting its lineage.
 18. Keep deployment separate from apply.
 
 ## Tool Boundaries
@@ -74,13 +80,18 @@ Operational rule:
 - escalation: if the work shifts from intake to architecture, docs quality, testing, or release readiness, route to the companion capability with a concrete handoff instead of stretching the import workflow
 
 ## Rules
+- Evaluate outputs against the operative output contract for the selected route, including terminal and stacked precedence; unrelated bullets are not output evidence. Review contradictions using applicable scope and exceptions. Quoted examples are source material and do not become operative obligations merely by containing a keyword.
+- Judge the entry and its explicitly routed resource dependencies together. Missing required files, cycles, path escapes, or mismatched content bindings block the affected operation. A model-authored read receipt is not delivery evidence.
+- Repair the authoritative location of a defect; reuse equivalent existing content before adding a section. Preserve commands, schemas, quoted material, user decisions, and task scope. Do not invent missing facts or fixed procedures.
+- Exact relocation, reviewed reformulation, and authorized retirement are different changes. Use `--requirement-review <path>` for an operator-supplied `UACRequirementReview.v1` binding the original, candidate, effective resource content, independent reviewer, and complete requirement dispositions. The operator must establish review provenance; the code validates bindings and coverage, not reviewer authenticity or semantic correctness. This record is not a `PromotionVerdict`.
+- Stop automatic refinement when candidate and findings stagnate or cycle; report unresolved work. Repeated application to an unchanged accepted artifact must not add obligations or oscillate between styles.
 - Prefer existing pipeline code over ad-hoc parsing.
 - Keep results deterministic and roleplay-free.
 - Fail closed for unsuitable URL content.
 - For folders or repo trees, only group files that were actually inventoried.
 - If the source is config-only, require manual review instead of pretending it is a prompt.
 - If the source is already an agent definition, preserve its control-plane boundaries.
-- Never make orchestration or delegation decisions. Publish advisory metadata only.
+- Never make orchestration or delegation decisions for the imported runtime or control plane. Publish advisory metadata only. Independent subagents may review onboarding repairs under the invoking host’s authorized review workflow; that does not grant runtime policy authority.
 - Run cross-analysis against current SSOT before any apply is considered safe.
 - Treat commands, plugins, powers, and extensions as deployment wrappers, not capability types.
 - Quality review artifacts are advisory evidence; they must not encode runtime routing policy.
@@ -139,7 +150,7 @@ When `judge` escalates to behavioral proof, also include:
 | The imported capability is ready to land but release, packaging, or CI readiness is the real question | `engos-quality-gitops-review` | applied diff, generated artifacts, validation output, release and deploy intent |
 
 ## Constraints
-- No hidden execution.
+- No hidden execution. UAC coordinates exhaustive onboarding checks; it does not require a separate paid model API for every import. The invoking agent may prepare semantic repairs within authorized scope, and a separate subagent reviews them.
 - No packaging claims without evidence.
 - No deployment during `apply`.
 - For local folders or GitHub repos, inventory the files first and justify whether they belong under one roof.

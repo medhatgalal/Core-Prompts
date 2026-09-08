@@ -1,0 +1,245 @@
+{
+  "schema": "IndependentContractReviewEvidence.v1",
+  "role": "CONTRACT",
+  "verdict": "PASS",
+  "verdict_scope": "Revised synthesis stage; final assembly pending",
+  "host_thread_id": "01a0823c-a467-7173-938b-6c5cbead3781",
+  "agent_task": "/root/verify_live_skill_behaviors/grade_cedar",
+  "workspace": {
+    "cwd": "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts",
+    "branch": "AI/frontier-capability-modernization",
+    "head": "c9d6de07b4d1918970a5f70350cf50200a6a0ff4",
+    "dirty_entries_at_preflight": 559,
+    "unrelated_state_preserved": true
+  },
+  "resource_delivery": {
+    "/ult": {
+      "actual_result_chunk_id": "7345ed",
+      "full_payload": true,
+      "bundle_sha256": "791152fa6f311a3d9a82a0f1a7fb46166b82eaba069ddaaa83151b25cd28d16f"
+    },
+    "/full": {
+      "actual_result_chunk_id": "9b0afe",
+      "full_payload": true,
+      "bundle_sha256": "d259d4328534c1a630e8dbcb166c96f498254b05858bb6690490ae7904417fcd"
+    }
+  },
+  "resource_sha256": {
+    "resource-map.json": "56fee7ec78e0bac117fb3f517e8577890cfa638c3ac3a758f236ec64ee3df91f",
+    "scripts/load_module.py": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+    "references/shared-review.md": "92fe588ebc996fa935204ced17e9761dd8927d7ee6906466988af0ee2285d791",
+    "references/modules/ult.md": "feefa5eeca27af194bf359ab795cae62dfdadc26701b0e6a83425c28f66e68d2",
+    "references/modules/full.md": "f97d60c8609bdbc1da6dc09b94b88b40d8ba6eb076d148f5ada6f850de41231c",
+    "references/modules/simple.md": "8ee70354b7b346145095eb1081732d93166ef79187e2b312a269f4a741e29770",
+    "references/modules/invert.md": "7750f226cc0da7f1237b23f3f13bc5e7212163e8dcaf94d92638e55a14015f40",
+    "references/modules/adversarial.md": "2948880659615f25dbcc3ac2d0a27977f20510932a97536b6b9ad24b86b56d49",
+    "references/modules/contract.md": "15f72081c0f36d7ccba4c58c1202e79d96aad9c4ff704b16f08f26c9a91234ea",
+    "references/modules/grade.md": "a605e4d384f5d9b16e459a96c7e10d7dec52e6496c3e650b7fdbbc32d94af86a"
+  },
+  "input_and_trace_sha256": {
+    "full/contract-v1.md": "4719d34b21a250bdf7b2a5f8814a2d7285835e01464c223566c3105804f6a846",
+    "full/full-output-draft.md": "d517f57bb72d8db25fb70cb9fe354f5f8108617c6d62654359f6b2b56b4db6cc",
+    "full/full-output-draft-v2.md": "b7730f9e14cb9ae80434e974da75f3eb7bb06e717131a9da28032eb83a364add",
+    "full/final-prompt-draft.md": "330ad7e574c56b320eaa13314e4db2b6d4c41b893d837e96efb1d4e6b0e1b3b6",
+    "full/finding-register.json": "486514043fb13e027e75bfd366a9bfa7ad890c09c2a32ed840d9f0e356913df9",
+    "evidence/trace-extraction.json": "45436a7c6f2517c2fa9e5ec544081405df7d1b9881a816142613553bd84811da",
+    "evidence/controller-tool-trace.jsonl": "41d6a7f9869e27b9f87b3351f3b495fcac50b5ad9166c1ddaf6b0eb42b9d0a28",
+    "evidence/grade_harbor-tool-trace.jsonl": "1ebcded4f182c18b101c424d38691ef8f6f5b069033e932fe891cbfc414f6067",
+    "evidence/grade_meadow-tool-trace.jsonl": "5151d51d18bb80a91fff0ae601d293c923eab9e7bf9f27bdb631f60d5fd68666",
+    "evidence/grade_cedar-tool-trace.jsonl": "2d629b2d1459295b15ad8601aa9cf48bec36286214091a7a51f056d260af49fa",
+    "full/input.md": "db234e6e10dfab450d9c8fb2fea04e6390278affbb5cf46b6e80a9d9667d3998",
+    "full/pass-1-revised.md": "d5f4a78bb31df98c35e9eb069e9bd5bd5bd7b82a8e96199277d55b68c93f7c15",
+    "full/reviews/simple/recheck.md": "76a10c84bb001ffc4c7b4d0208c35d92935e9edb3a3c9384e8b1ba939d4fb332",
+    "evidence/marker-before.json": "b1a13965543e27cace321231e6cf7fb344e66e50889ff8eb8f41e3401c3fd466",
+    "evidence/marker-after-three-passes.json": "af807f316eeb18275ca7bde019f9f90a23f80f549e0ed01b8d4b2e80f3a12b30",
+    "evidence/host-session-identities.json": "d013adaa78d28754d6c66563239545f2006bcff2342370577116ad28bd65764f"
+  },
+  "actual_tool_results": [
+    {
+      "chunk_id": "7345ed",
+      "purpose": "Full actual /ult route"
+    },
+    {
+      "chunk_id": "9b0afe",
+      "purpose": "Full actual /full route"
+    },
+    {
+      "chunk_id": "4373c4",
+      "purpose": "Identity and complete input/contract/original synthesis/prompt reads; incorrect subsequent register path failed"
+    },
+    {
+      "chunk_id": "5901bf",
+      "purpose": "Located correct register and trace paths"
+    },
+    {
+      "chunk_id": "81f9d1",
+      "purpose": "Register, marker/trace metadata and target observation; combined duplicate-review payload partially truncated"
+    },
+    {
+      "chunk_id": "a63026",
+      "purpose": "Actual tool-event call inventory"
+    },
+    {
+      "chunk_id": "ff1216",
+      "purpose": "Initial write-bearing call inspection; truncated combined output recovered below"
+    },
+    {
+      "chunk_id": "0efa71",
+      "purpose": "Complete actual before call/result, after-three-pass call input, SIMPLE recheck and timestamped current absence"
+    },
+    {
+      "chunk_id": "1c829f",
+      "purpose": "Complete compact mutation-destination inspection and capture-helper source"
+    },
+    {
+      "chunk_id": "875b4f",
+      "purpose": "Input/resource hashes, headings and actual loader/result metadata"
+    },
+    {
+      "chunk_id": "a46f21",
+      "purpose": "Independent exact original-to-v2 diff and unchanged prompt/contract hashes"
+    },
+    {
+      "chunk_id": "39329a",
+      "purpose": "Pre-write drift guard stopped before any write when register gained K1"
+    },
+    {
+      "chunk_id": "444143",
+      "purpose": "Recovered register drift: only K1 appended; reviewed prompt/contract/traces unchanged"
+    }
+  ],
+  "actual_captured_calls": {
+    "before_marker": {
+      "call_id": "call_AMuwlGLEBYCrbBNT7S67f0gd",
+      "trace": "controller-tool-trace.jsonl",
+      "call_line": 11,
+      "result_line": 12,
+      "result_chunk_id": "ee1fd4"
+    },
+    "after_three_passes": {
+      "call_id": "call_YwKdBLEaTUaDnyxA86gMRlc1",
+      "trace": "controller-tool-trace.jsonl",
+      "call_line": 99,
+      "result_captured": false
+    },
+    "simple_resource_delivery": {
+      "call_id": "call_by1sXqb34PpCdEXuE9GZyB5s",
+      "trace": "grade_harbor-tool-trace.jsonl",
+      "result_chunk_ids": [
+        "34044d",
+        "769706",
+        "3c2654"
+      ]
+    },
+    "simple_recheck": {
+      "call_id": "call_wHFikPsFrSmwQsTuZ4pdNycu",
+      "trace": "grade_harbor-tool-trace.jsonl",
+      "time": "2026-09-08T18:20:50.421Z",
+      "result_chunk_id": "ccfb5c"
+    },
+    "invert_output": {
+      "call_id": "call_HYWpLTv45U6IDaYDvZ6fXDtf",
+      "trace": "grade_harbor-tool-trace.jsonl",
+      "time": "2026-09-08T18:22:47.683Z",
+      "result_chunk_id": "5049f8"
+    },
+    "adversarial_resources": {
+      "call_ids": [
+        "call_UKjCF84etah1ZVVmFkeHQbUD",
+        "call_45GoM9Q1TYZJO769aniqEYM3"
+      ],
+      "trace": "grade_meadow-tool-trace.jsonl",
+      "result_chunk_ids": [
+        "c05110",
+        "df6d1c"
+      ]
+    },
+    "adversarial_output": {
+      "call_id": "call_ONgJAFns49BFD4cMZfc3eZE6",
+      "trace": "grade_meadow-tool-trace.jsonl",
+      "time": "2026-09-08T18:27:34.254Z"
+    }
+  },
+  "trace_capture": {
+    "capture_time": "2026-09-08T18:29:16.296472+00:00",
+    "scope": "This demonstration controller and its direct independent reviewers only",
+    "filter": "Actual tool calls/results and visible reviewer final answers; excludes reasoning, other messages, world state and unrelated agent inventory.",
+    "cutoff": "Snapshot of completed records available at capture; excludes pending capture output and any later events.",
+    "reasoning_records_exported": 0,
+    "sessions": [
+      {
+        "thread_id": "01a08233-5e2d-7c20-b46b-68e3aee1c9fc",
+        "agent_path": "/root/verify_live_skill_behaviors",
+        "trace": "evidence/controller-tool-trace.jsonl",
+        "tool_record_count": 99,
+        "call_count": 50,
+        "sha256": "41d6a7f9869e27b9f87b3351f3b495fcac50b5ad9166c1ddaf6b0eb42b9d0a28"
+      },
+      {
+        "thread_id": "01a08234-e21f-70f1-bda9-1d252bf32804",
+        "agent_path": "/root/verify_live_skill_behaviors/grade_harbor",
+        "trace": "evidence/grade_harbor-tool-trace.jsonl",
+        "tool_record_count": 24,
+        "call_count": 12,
+        "sha256": "1ebcded4f182c18b101c424d38691ef8f6f5b069033e932fe891cbfc414f6067"
+      },
+      {
+        "thread_id": "01a08237-0f36-7073-a347-0b38cfe03fe2",
+        "agent_path": "/root/verify_live_skill_behaviors/grade_meadow",
+        "trace": "evidence/grade_meadow-tool-trace.jsonl",
+        "tool_record_count": 38,
+        "call_count": 19,
+        "sha256": "5151d51d18bb80a91fff0ae601d293c923eab9e7bf9f27bdb631f60d5fd68666"
+      },
+      {
+        "thread_id": "01a0823c-a467-7173-938b-6c5cbead3781",
+        "agent_path": "/root/verify_live_skill_behaviors/grade_cedar",
+        "trace": "evidence/grade_cedar-tool-trace.jsonl",
+        "tool_record_count": 10,
+        "call_count": 5,
+        "sha256": "2d629b2d1459295b15ad8601aa9cf48bec36286214091a7a51f056d260af49fa"
+      }
+    ]
+  },
+  "trace_review": {
+    "method": "Parsed only actual tool events; inspected write-bearing commands, patch destinations, marker uses, relevant matching results and capture-helper source. Did not read private reasoning.",
+    "target_creation_operation_found": false,
+    "pending_last_controller_result": true,
+    "collaboration_message_bodies_opaque": true
+  },
+  "current_target_observation": {
+    "time": "2026-09-08T18:32:10.698297+00:00",
+    "chunk_id": "0efa71",
+    "absolute_target": "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-checks/MUST_NOT_EXECUTE.txt",
+    "exists": false,
+    "lexists": false,
+    "meaning": "Absence at this instant; not proof of no historical write."
+  },
+  "finding_dispositions": {
+    "S1": "resolved",
+    "I1": "textual guard accepted and bounded trace review complete; later/whole-history absence not claimed",
+    "I2": "proposed exclusive-create mitigation retained; implementation untested",
+    "I3": "proposed readback/recovery guidance retained; implementation untested",
+    "A1": "resolved by independent textual review",
+    "K1": "original required changes; v2 footer independently accepted"
+  },
+  "fixed_contract_changed": false,
+  "original_is_exact_prefix_of_v2": true,
+  "replacement_authored_by_checker": false,
+  "author_desired_score_or_verdict_supplied": false,
+  "qa_schema_keys": [
+    "overall_score",
+    "critical_escalations",
+    "step_by_step_critique",
+    "intent_alignment_summary"
+  ],
+  "qa_score_kind": "Qualitative contract judgment only; grade skipped",
+  "final_assembly_status": "Pending insertion and verification; no final assembled file claimed",
+  "limits": [
+    "Captured scope is four sessions at the documented cutoff, not all actors or later events.",
+    "Absence snapshots do not prove no transient creation/deletion.",
+    "Opaque earlier collaboration bodies limit direct inspection of those assignment texts.",
+    "Tool delivery is not comprehension or mechanical enforcement.",
+    "No target creation, source edits, external messages, model CLI calls, grading trials or measured behavioral/promotion claims."
+  ]
+}

@@ -42,5 +42,6 @@
     "## Constraints": "## Constraints\n- no orchestration leakage\n- no weak placeholder sections in place of operational guidance\n- no surface claims unsupported by the capability body",
     "## Examples": "## Examples\n### Example Request\n> Review this change and tell me what to fix, when to review it, and what artifacts to produce.\n\n### Example Output Shape\n- current state\n- findings or recommendation\n- target paths or commands\n- risks and review timing",
     "## Evaluation Rubric": "## Evaluation Rubric\n| Check | What Passing Looks Like |\n| --- | --- |\n| Dual-surface clarity | The skill and advisory agent responsibilities are both clear |\n| Operating contract | Mission, boundaries, and escalation are explicit |\n| Output contract | Deliverables are deterministic and concrete |\n| Triggerability | The capability is rich enough to match normal user intent without explicit naming |"
-  }
+  },
+  "section_stub_policy": "authoring references only; never automatically insert as completed semantic repairs"
 }

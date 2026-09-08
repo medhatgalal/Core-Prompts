@@ -1,0 +1,86 @@
+{
+  "engos-meta-supercharge": {
+    "status": "applied",
+    "detail": "SSOT, descriptor, draft evaluation contracts, and generated surfaces landed; validation passed.",
+    "quality": {
+      "pass_count": 1,
+      "profile": "default",
+      "status": "structural_ready",
+      "stop_reason": "thresholds_met"
+    },
+    "build_returncode": 0,
+    "compile": {
+      "behavioral_claim": "none",
+      "goal_contract": "evals/contracts/engos-meta-supercharge.json",
+      "status": "structural_ready",
+      "topology": "evals/topologies/engos-meta-supercharge.json"
+    },
+    "validate": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Validation passed.\nSSOT files: 27"
+    },
+    "behavioral_evidence": {
+      "apply_mode": null,
+      "enforcement": "advisory",
+      "run_id": null,
+      "status": "behavioral_pending"
+    }
+  },
+  "engos-optimization-auto-research": {
+    "status": "applied",
+    "detail": "SSOT, descriptor, draft evaluation contracts, and generated surfaces landed; validation passed.",
+    "quality": {
+      "pass_count": 1,
+      "profile": "default",
+      "status": "structural_ready",
+      "stop_reason": "thresholds_met"
+    },
+    "build_returncode": 0,
+    "compile": {
+      "behavioral_claim": "none",
+      "goal_contract": "evals/contracts/engos-optimization-auto-research.json",
+      "status": "structural_ready",
+      "topology": "evals/topologies/engos-optimization-auto-research.json"
+    },
+    "validate": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Validation passed.\nSSOT files: 27"
+    },
+    "behavioral_evidence": {
+      "apply_mode": null,
+      "enforcement": "advisory",
+      "run_id": null,
+      "status": "behavioral_pending"
+    }
+  },
+  "engos-meta-uac-import": {
+    "status": "applied",
+    "detail": "SSOT, descriptor, draft evaluation contracts, and generated surfaces landed; validation passed.",
+    "quality": {
+      "pass_count": 1,
+      "profile": "default",
+      "status": "structural_ready",
+      "stop_reason": "thresholds_met"
+    },
+    "build_returncode": 0,
+    "compile": {
+      "behavioral_claim": "none",
+      "goal_contract": "evals/contracts/engos-meta-uac-import.json",
+      "status": "structural_ready",
+      "topology": "evals/topologies/engos-meta-uac-import.json"
+    },
+    "validate": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Validation passed.\nSSOT files: 27"
+    },
+    "behavioral_evidence": {
+      "apply_mode": null,
+      "enforcement": "advisory",
+      "run_id": null,
+      "status": "behavioral_pending"
+    }
+  }
+}

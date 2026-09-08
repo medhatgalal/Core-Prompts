@@ -6,7 +6,6 @@
   "change_class": "unknown",
   "non_goals": [],
   "protected_behaviors": [
-    "ddf8a6e6663cc71de3541b8dc6563174234af1232d891fdc6c30e1d1a91e4bc7",
     "1c3f41efe054d3acfa733797b0c0b16c7535f136bdf90af83a6030152eeb9936",
     "ac3306740e697acc9ce358aa33bc13095ec1e9069b5c129a7f47769079ba9719",
     "050433e604b4bf4e3768fef92dd28edd475e8a2ef30a1d0b5782f409ce10c7e6",
@@ -85,11 +84,6 @@
   "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
   "rollback_trigger": "Any protected regression or stale bound evidence.",
   "source_clause_hashes": [
-    {
-      "sha256": "ddf8a6e6663cc71de3541b8dc6563174234af1232d891fdc6c30e1d1a91e4bc7",
-      "source": "ssot/engos-memory-context-continuity.md",
-      "text": "description: \"Maintain durable context, todo, and insight state for a multi-file or multi-source investigation that must survive compaction, session changes, branch changes, or worktree removal. Use when analysis must be resumed; do not use for a one-off report or final decision.\""
-    },
     {
       "sha256": "1c3f41efe054d3acfa733797b0c0b16c7535f136bdf90af83a6030152eeb9936",
       "source": "ssot/engos-memory-context-continuity.md",

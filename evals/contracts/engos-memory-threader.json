@@ -6,7 +6,6 @@
   "change_class": "unknown",
   "non_goals": [],
   "protected_behaviors": [
-    "f1ad4f03c189427657e2640c7d5d0a865728b0d33780deef20087a603f294783",
     "97f260a885d93b517c19ccdf306f5a11cc6e2401537a0352310679466553d163",
     "8875bdb1775cfee6f0a6cfd6ce5ca43e00fcc19f8ad5740f2fde9308117adcab",
     "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
@@ -21,7 +20,6 @@
     "358781dd3dc7597d5c24861e9262069a8a1da94e4c487aa24806b10c1f84a21e",
     "846b95cf485dc4b3c4791be0c0017b100d08a52957338bab1a8535e1fd7540a8",
     "6be409424089a771d806348814ab56fcbff6e7a8f28a122e3e9de531ba5abdde",
-    "b1506afa793aea9e24e5af9d11cc70d3a2413735d55600455484fd3410beed33",
     "30c941d0ceb80f96bbe11e7afa251d9d12a7a6f03cd1bc17758b9c62d71e85c5",
     "b8d53cc91136a0ad712ddae4b944a7b3d9c7569becf724f88fb352fc67935316",
     "3b4edf82769bd1bccd7f59c1dc06a6d8fcd8eee1eb847f8e60c1a274cac0846f",
@@ -68,11 +66,6 @@
   "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
   "rollback_trigger": "Any protected regression or stale bound evidence.",
   "source_clause_hashes": [
-    {
-      "sha256": "f1ad4f03c189427657e2640c7d5d0a865728b0d33780deef20087a603f294783",
-      "source": "ssot/engos-memory-threader.md",
-      "text": "description: \"Export the current conversation as a faithful transcript or durable handoff, preserving turn order, AI output fidelity, artifacts, and missing-history disclosure. Use for archival or transfer; do not blend export with analysis.\""
-    },
     {
       "sha256": "97f260a885d93b517c19ccdf306f5a11cc6e2401537a0352310679466553d163",
       "source": "ssot/engos-memory-threader.md",
@@ -142,11 +135,6 @@
       "sha256": "6be409424089a771d806348814ab56fcbff6e7a8f28a122e3e9de531ba5abdde",
       "source": "ssot/engos-memory-threader.md",
       "text": "- (Do not dump the entire thread inline if you created a file.)"
-    },
-    {
-      "sha256": "b1506afa793aea9e24e5af9d11cc70d3a2413735d55600455484fd3410beed33",
-      "source": "ssot/engos-memory-threader.md",
-      "text": "- USER_TURN_POLICY: INTENT_ONLY"
     },
     {
       "sha256": "30c941d0ceb80f96bbe11e7afa251d9d12a7a6f03cd1bc17758b9c62d71e85c5",

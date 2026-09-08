@@ -4,7 +4,8 @@ import re
 from pathlib import Path
 from typing import Any
 
-from intent_pipeline.uac_modes import extract_declared_modes
+from intent_pipeline.uac_modes import extract_modes_from_sources
+from intent_pipeline.capability_resources import ResourceContractError, load_capability_bundle
 
 from .contracts import ContractError, artifact_hash, load_json
 
@@ -15,11 +16,8 @@ MODE_HEADING = re.compile(r"^#{2,4}\s+(?:Mode\s+\d+\s*:\s*)?(.+)$", re.I)
 
 
 def _body(text: str) -> str:
-    if text.startswith("---\n"):
-        parts = text.split("---\n", 2)
-        if len(parts) == 3:
-            return parts[2]
-    return text
+    frontmatter = re.match(r"\A---\r?\n.*?^---(?:\r?\n|$)", text, re.M | re.S)
+    return text[frontmatter.end():] if frontmatter else text
 
 
 def _clause_id(slug: str, line_number: int, line: str) -> str:
@@ -44,6 +42,8 @@ def _apply_review_overlay(path: Path, topology: dict[str, Any]) -> dict[str, Any
         raise ContractError("review overlay slug does not match topology")
     if review.get("ssot_sha256") != topology["ssot_sha256"]:
         raise ContractError("review overlay SSOT hash is stale")
+    if review.get("resource_bundle_sha256") != topology.get("resource_bundle_sha256"):
+        raise ContractError("review overlay resource bundle hash is stale")
 
     clauses = {clause["id"]: clause for clause in topology["protected_invariants"]}
     mappings = review.get("clause_mappings", {})
@@ -103,25 +103,44 @@ def _apply_review_overlay(path: Path, topology: dict[str, Any]) -> dict[str, Any
 
 def compile_topology(path: Path) -> dict[str, Any]:
     slug = path.stem
-    text = path.read_text(encoding="utf-8")
-    body = _body(text)
-    lines = body.splitlines()
-    declared_modes = extract_declared_modes(slug, body)
+    text = path.read_bytes().decode("utf-8")
+    entry_body = _body(text)
+    body_offset = len(text[:len(text) - len(entry_body)].splitlines())
+    parts = [(f"ssot/{slug}.md", entry_body, artifact_hash(text))]
+    resource_root = path.parent.parent / "sources" / "capability-resources" / slug
+    bundle = None
+    if path.parent.name == "ssot":
+        bundle = load_capability_bundle(path.parent.parent, slug, text)
+    elif "resource-map.json" in text or "CapabilityResourceMap.v1" in text:
+        raise ResourceContractError("Resource-backed topology requires a canonical SSOT path and explicit resource package")
+    if bundle is not None:
+        for resource in bundle["resources"]:
+            parts.append((f"sources/capability-resources/{slug}/{resource['path']}", resource["content"], resource["sha256"]))
+    body = "\n\n".join(part[1] for part in parts)
+    lines = [(source, number, number + (body_offset if source == f"ssot/{slug}.md" else 0), line)
+             for source, content, _ in parts
+             for number, line in enumerate(content.splitlines(), start=1)]
+    declared_modes = extract_modes_from_sources(slug, [(parts[0][0], text), *[(source, content) for source, content, _ in parts[1:]]])
     clauses: list[dict[str, Any]] = []
     resources: list[str] = []
     handoffs: list[str] = []
     outputs: list[str] = []
     current_heading = "root"
-    for number, line in enumerate(lines, start=1):
+    current_source = None
+    for source, number, source_line, line in lines:
+        if source != current_source:
+            current_heading = "root"
+            current_source = source
         heading = MODE_HEADING.match(line)
         if heading:
             current_heading = heading.group(1).strip()
         if NORMATIVE.search(line):
             clauses.append(
                 {
-                    "id": _clause_id(slug, number, line.strip()),
+                    "id": _clause_id(slug if source.startswith("ssot/") else f"{slug}:{source}", number, line.strip()),
                     "heading": current_heading,
-                    "source_line": number,
+                    "source": source,
+                    "source_line": source_line,
                     "sha256": artifact_hash(line.strip()),
                     "text": line.strip(),
                     "kind": "guarded_invariant" if GUARD.search(line) else "invariant",
@@ -135,7 +154,7 @@ def compile_topology(path: Path) -> dict[str, Any]:
         if current_heading.lower().startswith(("required output", "output contract", "output format")) and line.lstrip().startswith(("-", "|")):
             outputs.append(line.strip())
 
-    ambiguities = detect_ambiguities(slug, text)
+    ambiguities = detect_ambiguities(slug, body)
     mapped = 0
     topology = {
         "schema_version": "CapabilityTopology.v1",
@@ -159,7 +178,7 @@ def compile_topology(path: Path) -> dict[str, Any]:
         "handoffs": sorted(set(handoffs)),
         "protected_invariants": clauses,
         "risk_tiers": {"critical": [], "high": [], "standard": []},
-        "source_references": [{"path": f"ssot/{slug}.md", "sha256": artifact_hash(text)}],
+        "source_references": [{"path": source, "sha256": digest} for source, _, digest in parts],
         "known_ambiguities": ambiguities,
         "coverage_policy": {
             "normative_clauses": "100_percent_mapped_or_waived",
@@ -173,6 +192,12 @@ def compile_topology(path: Path) -> dict[str, Any]:
         "review_status": "blocked" if ambiguities else "draft",
         "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs.",
     }
+    if bundle:
+        topology["resource_bundle_sha256"] = bundle["sha256"]
+        topology["source_references"].append({
+            "path": f"sources/capability-resources/{slug}/resource-map.json",
+            "sha256": bundle["manifest_sha256"],
+        })
     return _apply_review_overlay(path, topology)
 
 
@@ -196,12 +221,12 @@ def detect_ambiguities(slug: str, text: str) -> list[dict[str, str]]:
             findings.append({"id": finding_id, "message": message})
     if "separate response into exactly:" in lower and "`approach decision`" in lower and "`generated prompt`" in lower:
         findings.append({"id": "SC-ULT-OUTPUT", "message": "The exact terminal section count conflicts with the mandatory output structure."})
-    if slug == "supercharge":
+    if slug in {"supercharge", "engos-meta-supercharge"}:
         if "### terminal-control precedence" not in lower:
             findings.append({"id": "SC-TERMINAL-PRECEDENCE", "message": "Terminal controls claim overlapping section-only and supersession behavior; precedence needs one canonical rule."})
         if "if the user supplies more than one reflective control" not in lower:
             findings.append({"id": "SC-MULTIPLE-MODIFIERS", "message": "Behavior for multiple mutually exclusive modifiers is not explicit."})
-    if slug == "pulse":
+    if slug in {"pulse", "engos-triage-my-inbox-chat-pulse"}:
         if "only during `/sweep`" in lower and "`pulse /delete" in lower:
             findings.append({"id": "PULSE-DELETE-BOUNDARY", "message": "The tool boundary permits trash only during /sweep while /delete is a distinct quick-delete command."})
         if "all commands compose" in lower:
