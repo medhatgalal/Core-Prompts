@@ -862,6 +862,13 @@ Follow with:
 
 > Now condense that into the exact prompt or execution brief I should use next.
 
+For a durable artifact, name its existing destination:
+
+> Improve `docs/feature-plan.md` in place. Keep the filename stable and use Git for revisions.
+
+Without a file request, the skill returns its result inline. Trial identities and
+review evidence do not require dated prompt files or permanent draft folders.
+
 If the decision itself is contentious, use:
 
 > Use `engos-meta-supercharge /debate /deep` to stress-test this feature direction before we turn it into an execution brief.

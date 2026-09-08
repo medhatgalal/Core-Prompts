@@ -26,6 +26,12 @@ measured experiments. UAC remains exhaustive onboarding and uplift tooling.
 - `/gaslight` remains explicit-only with thirteen selectable technique IDs. Claimed
   effects are hypotheses unless tested on the relevant task and model.
 - The legacy global `/stop` is retired. `/stop-ult` and persistent ULT remain.
+- Supercharge answers inline by default. Requested file output uses a stable
+  task-specific path; revisions belong in Git rather than dated or numbered copies.
+  Auto-Research keeps one isolated working area and ledger for actual trials,
+  with durable deliverables saved only where the task needs them.
+  The bootstrap helper requires `--report-dir`, preserves existing files on repeat
+  runs, and creates a promotion packet only with `--profile promotion-prep`.
 
 Canonical behavior is in [Supercharge](../ssot/engos-meta-supercharge.md) and its
 declared resources; this page explains the changes rather than adding rules.

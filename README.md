@@ -16,6 +16,8 @@ First-party skills use the `engos-<category>-<skill-name>` namespace so Core-Pro
 
 Conversational `Supercharge /full` and stacked forms such as `supercharge /simple /invert /contract <task>` remain supported by `engos-meta-supercharge`. Use the full namespaced name for native skill selection; no separate short-name package or native menu alias is emitted. Ask `supercharge help` or `supercharge /help examples` for the bundled terminal guide; help does not execute examples. `/full` includes a budget of up to ten real, independently graded candidate trials unless you say `skip grade`; it never executes the target prompt. `/ult` prints the improved prompt and runs it within your authorized scope, while `/ult /full` reviews it without execution. `/stop-ult` still exits persistent ULT mode; the legacy global `/stop` command is retired. Detailed module instructions are loaded from bundled resources before use. See [modernization and evidence boundaries](docs/FRONTIER-MODERNIZATION.md).
 
+Supercharge responds inline unless a file is requested. Requested Supercharge and Auto-Research deliverables use stable project paths and Git revision history; they do not require timestamped prompt archives.
+
 For Git activity, ask `engos-audit-engineering-progress help` for usage and examples without starting a report. Its `eng-report run --json` pass preserves existing reports; see the [metrics-first example](docs/EXAMPLES.md#engos-audit-engineering-progress).
 
 For review work, pick the capability by intent:

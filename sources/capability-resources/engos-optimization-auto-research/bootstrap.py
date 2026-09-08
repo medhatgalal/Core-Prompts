@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import argparse
-import datetime as dt
 import json
 from pathlib import Path
 from typing import Mapping
@@ -18,9 +17,14 @@ def _clean(values: list[str]) -> list[str]:
     return [item.strip() for item in values if item.strip()]
 
 
-def _write(path: Path, text: str) -> None:
+def _write(path: Path, text: str) -> bool:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(text.rstrip() + "\n", encoding="utf-8")
+    try:
+        with path.open("x", encoding="utf-8") as stream:
+            stream.write(text.rstrip() + "\n")
+    except FileExistsError:
+        return False
+    return True
 
 
 def _render_template(path: Path, values: Mapping[str, str]) -> str:
@@ -49,11 +53,10 @@ def main() -> int:
         choices=["dry-run-advisory", "bounded-execution", "promotion-prep"],
         default="dry-run-advisory",
     )
-    parser.add_argument("--report-dir", default="reports/auto-research")
+    parser.add_argument("--report-dir", required=True, help="Chosen parent directory for stable task artifacts; existing files are preserved.")
     args = parser.parse_args()
 
-    stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%d-%H%M%S")
-    prefix = Path(args.report_dir) / f"{stamp}-{_slugify(args.target)}"
+    task_dir = Path(args.report_dir) / _slugify(args.target)
     editable_scope = _clean(args.editable_scope)
     must_not_change = _clean(args.must_not_change)
     baseline_evidence = _clean(args.baseline_evidence)
@@ -71,18 +74,21 @@ def main() -> int:
     }
 
     outputs = {
-        "goal_contract": prefix.with_name(prefix.name + "-goal-contract.md"),
-        "experiment_ledger": prefix.with_name(prefix.name + "-experiment-ledger.md"),
-        "promotion_packet": prefix.with_name(prefix.name + "-promotion-packet.md"),
-        "scorecard": prefix.with_name(prefix.name + "-scorecard.json"),
+        "goal_contract": task_dir / "goal-contract.md",
+        "experiment_ledger": task_dir / "experiment-ledger.md",
+        "scorecard": task_dir / "scorecard.json",
     }
+    if args.profile == "promotion-prep":
+        outputs["promotion_packet"] = task_dir / "promotion-packet.md"
 
-    _write(outputs["goal_contract"], _render_template(template_dir / "goal-contract.md.tmpl", values))
-    _write(outputs["experiment_ledger"], _render_template(template_dir / "experiment-ledger.md.tmpl", values))
-    _write(outputs["promotion_packet"], _render_template(template_dir / "promotion-packet.md.tmpl", values))
-    _write(outputs["scorecard"], _render_template(template_dir / "scorecard.json.tmpl", values))
+    rendered = {name: _render_template(template_dir / (path.name + ".tmpl"), values)
+                for name, path in outputs.items()}
+    result: dict[str, dict[str, str]] = {"created": {}, "preserved": {}}
+    for name, path in outputs.items():
+        disposition = "created" if _write(path, rendered[name]) else "preserved"
+        result[disposition][name] = str(path)
 
-    print(json.dumps({"created": {name: str(path) for name, path in outputs.items()}}, indent=2))
+    print(json.dumps(result, indent=2))
     return 0
 
 
