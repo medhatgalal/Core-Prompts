@@ -72,7 +72,8 @@
     {
       "id": "engos-design-architecture:L13:04d8e6d45308",
       "heading": "Purpose",
-      "source_line": 13,
+      "source": "ssot/engos-design-architecture.md",
+      "source_line": 23,
       "sha256": "04d8e6d45308d6386e7f547dfe9628fb74b90b363b0ec31a66131058f0b0412b",
       "text": "Do not use this skill to run orchestration, assign sub-agents, or choose runtime delegation. This skill publishes architecture guidance and decision artifacts only.",
       "kind": "invariant",
@@ -81,7 +82,8 @@
     {
       "id": "engos-design-architecture:L14:2eac6c7a6b1a",
       "heading": "Purpose",
-      "source_line": 14,
+      "source": "ssot/engos-design-architecture.md",
+      "source_line": 24,
       "sha256": "2eac6c7a6b1a3e56eceeceb8da2dbdf005eabe3c17ea260d41d387ad0805ba7b",
       "text": "Do not use this skill when the user mainly needs prompt hardening, capability import judgment, behavioral proof, or persistent multi-file analysis memory.",
       "kind": "guarded_invariant",
@@ -90,7 +92,8 @@
     {
       "id": "engos-design-architecture:L27:77357dbdaba3",
       "heading": "Required Inputs",
-      "source_line": 27,
+      "source": "ssot/engos-design-architecture.md",
+      "source_line": 37,
       "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
       "text": "## Required Inputs",
       "kind": "invariant",
@@ -99,7 +102,8 @@
     {
       "id": "engos-design-architecture:L33:3d4b9f171064",
       "heading": "Required Output",
-      "source_line": 33,
+      "source": "ssot/engos-design-architecture.md",
+      "source_line": 43,
       "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
       "text": "## Required Output",
       "kind": "invariant",
@@ -108,7 +112,8 @@
     {
       "id": "engos-design-architecture:L34:c34906b1f1c3",
       "heading": "Required Output",
-      "source_line": 34,
+      "source": "ssot/engos-design-architecture.md",
+      "source_line": 44,
       "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
       "text": "Every substantial response must include:",
       "kind": "invariant",
@@ -117,7 +122,8 @@
     {
       "id": "engos-design-architecture:L76:0a8e79a060d1",
       "heading": "Agent Operating Contract",
-      "source_line": 76,
+      "source": "ssot/engos-design-architecture.md",
+      "source_line": 86,
       "sha256": "0a8e79a060d12a94d58d864d54fdd538d4106b5e3907ec22a329e6b0446238ea",
       "text": "- forbidden: runtime routing, agent delegation, workflow control loops, or implementing product code as a side effect of architecture analysis",
       "kind": "invariant",
@@ -126,7 +132,8 @@
     {
       "id": "engos-design-architecture:L93:e63ecfee4a91",
       "heading": "Output Directory",
-      "source_line": 93,
+      "source": "ssot/engos-design-architecture.md",
+      "source_line": 103,
       "sha256": "e63ecfee4a9167cfb7d4be3d1f4efa1fbe32cd31e975c5a009ac93a40cadd77c",
       "text": "If the user wants only an inline response, produce the same structure inline and reference the logical artifact names in the output.",
       "kind": "guarded_invariant",
@@ -135,7 +142,8 @@
     {
       "id": "engos-design-architecture:L98:4ff9062c57f5",
       "heading": "Core Principles",
-      "source_line": 98,
+      "source": "ssot/engos-design-architecture.md",
+      "source_line": 108,
       "sha256": "4ff9062c57f5f249c310acecb5360535c35367f30c4e356b9de7f72b3e745ad8",
       "text": "- **Replaceability**: every major module should be replaceable using only its interface contract.",
       "kind": "invariant",
@@ -144,7 +152,8 @@
     {
       "id": "engos-design-architecture:L102:1e23d48db348",
       "heading": "Core Principles",
-      "source_line": 102,
+      "source": "ssot/engos-design-architecture.md",
+      "source_line": 112,
       "sha256": "1e23d48db348b19e25103d75ec783bb1a83de301c30b9dc474860f84d7226b29",
       "text": "- **Explicit trade-offs**: every major recommendation must state what it improves, what it costs, and what was rejected.",
       "kind": "invariant",
@@ -153,7 +162,8 @@
     {
       "id": "engos-design-architecture:L148:01bb3eecaf40",
       "heading": "Phase 2. Primitive and Boundary Discovery",
-      "source_line": 148,
+      "source": "ssot/engos-design-architecture.md",
+      "source_line": 158,
       "sha256": "01bb3eecaf408f8fc638f34416c15eb288c6bfa2580a0b11ec86ec4251b09f31",
       "text": "- external systems and dependencies that must be wrapped or isolated",
       "kind": "invariant",
@@ -162,7 +172,8 @@
     {
       "id": "engos-design-architecture:L179:764a1f78d93f",
       "heading": "Universal Deliverables",
-      "source_line": 179,
+      "source": "ssot/engos-design-architecture.md",
+      "source_line": 189,
       "sha256": "764a1f78d93f9f3c01413bd1ea932df452e4540f3e17cea539e861e7a079208b",
       "text": "Every architecture response must include all of the following, even when brief:",
       "kind": "guarded_invariant",
@@ -171,7 +182,8 @@
     {
       "id": "engos-design-architecture:L244:72b5a2d0b3c2",
       "heading": "Required API Outputs",
-      "source_line": 244,
+      "source": "ssot/engos-design-architecture.md",
+      "source_line": 254,
       "sha256": "72b5a2d0b3c2b951edb7e4f0e9da7359ff8a6f6521149e6633cb81a331fd4bf7",
       "text": "#### Required API Outputs",
       "kind": "invariant",
@@ -180,7 +192,8 @@
     {
       "id": "engos-design-architecture:L353:21c4acf6ec7f",
       "heading": "Required Database Outputs",
-      "source_line": 353,
+      "source": "ssot/engos-design-architecture.md",
+      "source_line": 363,
       "sha256": "21c4acf6ec7ff046efcc39280e2828227648562f1143529d4a34cab77e86366d",
       "text": "#### Required Database Outputs",
       "kind": "invariant",
@@ -189,7 +202,8 @@
     {
       "id": "engos-design-architecture:L460:5b82684f2895",
       "heading": "Required Pattern Outputs",
-      "source_line": 460,
+      "source": "ssot/engos-design-architecture.md",
+      "source_line": 470,
       "sha256": "5b82684f289535056c917362ffe08540413fb7f3699cfc7c59609dc89762d05b",
       "text": "#### Required Pattern Outputs",
       "kind": "invariant",
@@ -198,7 +212,8 @@
     {
       "id": "engos-design-architecture:L533:825ddb017ea9",
       "heading": "Pattern Exemplars",
-      "source_line": 533,
+      "source": "ssot/engos-design-architecture.md",
+      "source_line": 543,
       "sha256": "825ddb017ea9acd43d53677ddb53689139f714334365452df1b1d96d62ec1690",
       "text": "- Do not default to Singleton for convenience when dependency injection or explicit ownership would keep testability and boundary clarity intact.",
       "kind": "guarded_invariant",
@@ -207,7 +222,8 @@
     {
       "id": "engos-design-architecture:L557:56dd7611e73f",
       "heading": "Pattern Red Flags / Reject These Moves",
-      "source_line": 557,
+      "source": "ssot/engos-design-architecture.md",
+      "source_line": 567,
       "sha256": "56dd7611e73fa179a0b67675769339a4c602880433be8fbd4339fc549298c064",
       "text": "- pattern recommendations that do not improve testability, replaceability, or ownership",
       "kind": "invariant",
@@ -216,7 +232,8 @@
     {
       "id": "engos-design-architecture:L573:3417c6dd3d4d",
       "heading": "Required System Outputs",
-      "source_line": 573,
+      "source": "ssot/engos-design-architecture.md",
+      "source_line": 583,
       "sha256": "3417c6dd3d4d592ad7f2d15a7fe70eefb29cb9074c82b2875816482e6537a7d9",
       "text": "#### Required System Outputs",
       "kind": "invariant",
@@ -225,7 +242,8 @@
     {
       "id": "engos-design-architecture:L772:c7a2a9e98efd",
       "heading": "Hard Constraints",
-      "source_line": 772,
+      "source": "ssot/engos-design-architecture.md",
+      "source_line": 782,
       "sha256": "c7a2a9e98efd0bf74869f7c5a7c547c7ddbe083d813720ecb4b4a3202c787a50",
       "text": "1. Never return an architecture recommendation without stating objective, scope, assumptions, and constraints.",
       "kind": "invariant",
@@ -234,7 +252,8 @@
     {
       "id": "engos-design-architecture:L773:02e40b3d1442",
       "heading": "Hard Constraints",
-      "source_line": 773,
+      "source": "ssot/engos-design-architecture.md",
+      "source_line": 783,
       "sha256": "02e40b3d1442595bd1248ccc3778f403e566faf362024f1d2dabab681e415709",
       "text": "2. Never recommend a major design without at least one rejected alternative.",
       "kind": "invariant",
@@ -243,7 +262,8 @@
     {
       "id": "engos-design-architecture:L774:365f9818c152",
       "heading": "Hard Constraints",
-      "source_line": 774,
+      "source": "ssot/engos-design-architecture.md",
+      "source_line": 784,
       "sha256": "365f9818c152b00d703a65cba71a754209d74c8fea94a912abb4d8859c4f09cc",
       "text": "3. Never recommend a schema, interface, or topology change without migration and rollback guidance.",
       "kind": "invariant",
@@ -252,7 +272,8 @@
     {
       "id": "engos-design-architecture:L775:c22bdb1b8e81",
       "heading": "Hard Constraints",
-      "source_line": 775,
+      "source": "ssot/engos-design-architecture.md",
+      "source_line": 785,
       "sha256": "c22bdb1b8e81e64035cd0cb2ae6f8bc02bcb07c9445af767638e98202d56eb90",
       "text": "4. Never hide uncertainty. Mark unknowns explicitly.",
       "kind": "invariant",
@@ -261,7 +282,8 @@
     {
       "id": "engos-design-architecture:L776:5f14ddd9ba49",
       "heading": "Hard Constraints",
-      "source_line": 776,
+      "source": "ssot/engos-design-architecture.md",
+      "source_line": 786,
       "sha256": "5f14ddd9ba49c2d925eb639b65add54ddf731260764fe3148f26dd12840cae13",
       "text": "5. Never confuse module boundaries with deployment boundaries.",
       "kind": "invariant",
@@ -270,7 +292,8 @@
     {
       "id": "engos-design-architecture:L777:44bc24df870f",
       "heading": "Hard Constraints",
-      "source_line": 777,
+      "source": "ssot/engos-design-architecture.md",
+      "source_line": 787,
       "sha256": "44bc24df870fbcf16f8a710bdd584336afce4b865a2b66b2228b71dfbcc04a53",
       "text": "6. Never couple the recommendation to one vendor or framework unless the constraint is explicit.",
       "kind": "guarded_invariant",
@@ -279,7 +302,8 @@
     {
       "id": "engos-design-architecture:L778:822a5d36365e",
       "heading": "Hard Constraints",
-      "source_line": 778,
+      "source": "ssot/engos-design-architecture.md",
+      "source_line": 788,
       "sha256": "822a5d36365e7910204b4640ae4b39cf825644b9ea245c2cd8e45eff9c614223",
       "text": "7. Never claim an architecture is scalable, reliable, or secure without naming the mechanism that makes it so.",
       "kind": "invariant",
@@ -288,7 +312,8 @@
     {
       "id": "engos-design-architecture:L779:46836c815a5e",
       "heading": "Hard Constraints",
-      "source_line": 779,
+      "source": "ssot/engos-design-architecture.md",
+      "source_line": 789,
       "sha256": "46836c815a5ecec4e49e2981742bb7cc8247592e8e2f26b18160025c89c9df84",
       "text": "8. Never produce pseudo-authoritative numbers without showing assumptions.",
       "kind": "invariant",
@@ -297,7 +322,8 @@
     {
       "id": "engos-design-architecture:L780:c05c6928302d",
       "heading": "Hard Constraints",
-      "source_line": 780,
+      "source": "ssot/engos-design-architecture.md",
+      "source_line": 790,
       "sha256": "c05c6928302db122864f383fc826be21b816c2d92b87615a89a3aaaca92dcbf9",
       "text": "9. Never optimize for novelty over maintainability.",
       "kind": "invariant",
@@ -306,7 +332,8 @@
     {
       "id": "engos-design-architecture:L781:e9c762ef592f",
       "heading": "Hard Constraints",
-      "source_line": 781,
+      "source": "ssot/engos-design-architecture.md",
+      "source_line": 791,
       "sha256": "e9c762ef592f96f46ab4acca0d1204e5499ccd0498508bf879f7f053c64a3fb0",
       "text": "10. Never omit validation steps for a meaningful change.",
       "kind": "invariant",
@@ -315,7 +342,8 @@
     {
       "id": "engos-design-architecture:L816:4d7c6ba61e19",
       "heading": "Architecture Quality Scorecard",
-      "source_line": 816,
+      "source": "ssot/engos-design-architecture.md",
+      "source_line": 826,
       "sha256": "4d7c6ba61e19d45e3ec2c1006ffa33fed291f797b9f357773cbf6f2f5c85cbd3",
       "text": "- `Failure-Aware Decisions` must not be `0`",
       "kind": "invariant",
@@ -324,7 +352,8 @@
     {
       "id": "engos-design-architecture:L817:b820d2fd501d",
       "heading": "Architecture Quality Scorecard",
-      "source_line": 817,
+      "source": "ssot/engos-design-architecture.md",
+      "source_line": 827,
       "sha256": "b820d2fd501dc4012bacc3de2b8561e7ea5f16455e3156af0722f608ac2d5ee1",
       "text": "- `Migration Clarity` must not be `0`",
       "kind": "invariant",
@@ -333,7 +362,8 @@
     {
       "id": "engos-design-architecture:L818:6f1f8c143979",
       "heading": "Architecture Quality Scorecard",
-      "source_line": 818,
+      "source": "ssot/engos-design-architecture.md",
+      "source_line": 828,
       "sha256": "6f1f8c1439793ec841b24c895e3be6dfd31e680e2a76d7a878141dd99ce01054",
       "text": "- `Benchmark Fit` must not be `0`",
       "kind": "invariant",

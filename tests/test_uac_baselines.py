@@ -51,14 +51,14 @@ def test_registry_entries_match_git_history_for_known_regressions() -> None:
     assert converge["derived_commit"] != converge["registry_commit"]
 
 
-def test_recovered_supercharge_is_additive_against_historical_baseline() -> None:
+def test_modernized_supercharge_requires_explicit_review_against_historical_baseline() -> None:
     baseline = resolve_historical_baseline(ROOT, "engos-meta-supercharge")
     candidate = (ROOT / "ssot" / "engos-meta-supercharge.md").read_text(encoding="utf-8")
 
     result = evaluate_candidate_against_baseline(candidate, baseline)
 
-    assert result["classification"] == "additive"
-    assert result["hard_failures"] == []
+    assert result["classification"] == "flattened"
+    assert result["hard_failures"]  # Intentional changes require independent review, not a silent additive verdict.
 
 
 def test_additive_threader_preserves_hard_export_contract() -> None:
@@ -241,7 +241,7 @@ def test_registry_fallback_works_without_git_history(tmp_path: Path) -> None:
     assert baseline.baseline_path == "sources/ssot-baselines/engos-meta-supercharge/baseline.md"
     assert baseline.source == "source_library"
     assert baseline.verified_by_git_history is False
-    assert result["classification"] == "additive"
+    assert result["classification"] == "flattened"
 
 
 def test_baseline_artifact_findings_detects_flattened_auto_research_shape() -> None:

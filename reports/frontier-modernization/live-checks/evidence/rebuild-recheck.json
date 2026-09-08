@@ -1,0 +1,39 @@
+{
+  "changed_paths": {
+    ".codex/skills/engos-meta-supercharge/resources/capability.json": {
+      "before": "5a5734081a7bac5a73b55391914015ef99fcced91c0cefeca71b524056eeb56f",
+      "after": "85048d4cae8a96469b31a2ab8091a58f7c8e2a72d350bb9291fe50acf354a382"
+    },
+    ".codex/skills/engos-meta-supercharge/resources/scripts/load_module.py": {
+      "before": "ab3b38bf85a1e3e8116b42dc330da71445a56458cd52249038f34fea40c0fc53",
+      "after": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150"
+    }
+  },
+  "routes": [
+    {
+      "route": "/grade",
+      "returncode": 0,
+      "stdout_identical_to_start": true,
+      "stdout_sha256": "54ce514fe923505eef9fac9a47d93dfcbaf440c17b39bd66fe7d986f34fc4437"
+    },
+    {
+      "route": "/ult",
+      "returncode": 0,
+      "stdout_identical_to_start": true,
+      "stdout_sha256": "2698d53c6ac831d3a5580e85e6435bc394d9fc836f02e904cd770074d7206eca"
+    },
+    {
+      "route": "/full",
+      "returncode": 0,
+      "stdout_identical_to_start": true,
+      "stdout_sha256": "46756daa5f820a6cf0873991b89111342bffb99496460c5b86cb6fe8d5fbcb8b"
+    },
+    {
+      "route": "/catchup",
+      "returncode": 0,
+      "stdout_identical_to_start": true,
+      "stdout_sha256": "c8dc47365116983a682a643fd0354538befeb14bad1c42845d264cf4736fa1f6"
+    }
+  ],
+  "disposition": "Recovered changed helper by actual full reload; instruction payloads byte-identical. Prior content-dependent review remains applicable; this is not a claim of helper behavioral efficacy."
+}

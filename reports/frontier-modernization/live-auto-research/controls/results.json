@@ -1,0 +1,197 @@
+[
+  {
+    "label": "negative-control-wrong-output",
+    "optimization_trial": false,
+    "disposition": "rejected_quality_regression",
+    "result": {
+      "ast_nodes": 10,
+      "candidate_sha256": "9dddc7b60600c6f6e45190da9fe055d16883d9d13c3ec00479245255c2978459",
+      "case_count": 16,
+      "cases": [
+        {
+          "actual": "",
+          "expected": "",
+          "id": "empty",
+          "input": "",
+          "passed": true
+        },
+        {
+          "actual": "plain",
+          "expected": "plain",
+          "id": "unchanged",
+          "input": "plain",
+          "passed": true
+        },
+        {
+          "actual": "hello",
+          "expected": "hello",
+          "id": "trim_ascii",
+          "input": "  hello  ",
+          "passed": true
+        },
+        {
+          "actual": "",
+          "expected": "",
+          "id": "only_whitespace",
+          "input": " \t\n\r\u000b\f",
+          "passed": true
+        },
+        {
+          "actual": "a   b",
+          "expected": "a b",
+          "id": "repeated_spaces",
+          "input": "a   b",
+          "passed": false
+        },
+        {
+          "actual": "a\tb",
+          "expected": "a b",
+          "id": "internal_tab",
+          "input": "a\tb",
+          "passed": false
+        },
+        {
+          "actual": "a\nb",
+          "expected": "a b",
+          "id": "internal_newline",
+          "input": "a\nb",
+          "passed": false
+        },
+        {
+          "actual": "a \n\tb\r\n c",
+          "expected": "a b c",
+          "id": "mixed_runs",
+          "input": " \ta \n\tb\r\n c  ",
+          "passed": false
+        },
+        {
+          "actual": "café  東京",
+          "expected": "café 東京",
+          "id": "nonbreaking_space",
+          "input": "café  東京",
+          "passed": false
+        },
+        {
+          "actual": "東京  مرحبا",
+          "expected": "東京 مرحبا",
+          "id": "unicode_em_space",
+          "input": " 東京  مرحبا ",
+          "passed": false
+        },
+        {
+          "actual": "café 東京 مرحبا",
+          "expected": "café 東京 مرحبا",
+          "id": "unicode_unchanged",
+          "input": "café 東京 مرحبا",
+          "passed": true
+        },
+        {
+          "actual": "🙂\t🚀",
+          "expected": "🙂 🚀",
+          "id": "emoji",
+          "input": " 🙂\t🚀 ",
+          "passed": false
+        },
+        {
+          "actual": "é  café",
+          "expected": "é café",
+          "id": "combining_character",
+          "input": "é  café",
+          "passed": false
+        },
+        {
+          "actual": "a​b",
+          "expected": "a​b",
+          "id": "zero_width_preserved",
+          "input": "a​b",
+          "passed": true
+        },
+        {
+          "actual": "a\u000b\fb",
+          "expected": "a b",
+          "id": "vertical_whitespace",
+          "input": "a\u000b\fb",
+          "passed": false
+        },
+        {
+          "actual": "a\r\nb",
+          "expected": "a b",
+          "id": "crlf",
+          "input": "a\r\nb",
+          "passed": false
+        }
+      ],
+      "failed": 10,
+      "import_statements": 0,
+      "passed": 6,
+      "status": "valid",
+      "provenance": {
+        "argv": [
+          "/opt/homebrew/opt/python@3.14/bin/python3.14",
+          "-I",
+          "-B",
+          "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/protected/evaluator.py",
+          "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/controls/negative-control-wrong-output.py"
+        ],
+        "cwd": "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/active",
+        "exit_code": 0,
+        "elapsed_seconds_observed_not_ranked": 0.0642413329333067,
+        "timeout_seconds": 5,
+        "stdout_sha256": "2301dbe3cca72540ed3d79b220c65a79edec5458df98907ada9587ee7a51068d",
+        "candidate_path": "controls/negative-control-wrong-output.py",
+        "evaluator_sha256": "5a4ef4ee317495e126a6e8fbf5d6fc44153622fe579b5540770d0f05ec328fc4",
+        "python": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]"
+      },
+      "integrity_after": {
+        "frozen_hashes_match": true,
+        "package_hashes_match": true
+      }
+    }
+  },
+  {
+    "label": "negative-control-invalid-syntax",
+    "optimization_trial": false,
+    "disposition": "invalid_candidate_rejected",
+    "result": {
+      "candidate_sha256": "0261724eeb714bbc7dcb7f5c000484399cb54c98f289b15d38187c63525df060",
+      "case_count": 16,
+      "cases": [],
+      "error": "SyntaxError: expected ':' (<unknown>, line 1)",
+      "failed": 16,
+      "passed": 0,
+      "status": "invalid",
+      "provenance": {
+        "argv": [
+          "/opt/homebrew/opt/python@3.14/bin/python3.14",
+          "-I",
+          "-B",
+          "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/protected/evaluator.py",
+          "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/controls/negative-control-invalid-syntax.py"
+        ],
+        "cwd": "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/active",
+        "exit_code": 0,
+        "elapsed_seconds_observed_not_ranked": 0.06702208297792822,
+        "timeout_seconds": 5,
+        "stdout_sha256": "a283324d569ac5cf88fdc981b6cdd7da0fd3fb67801e8d04db0c8aa51e7a9a3e",
+        "candidate_path": "controls/negative-control-invalid-syntax.py",
+        "evaluator_sha256": "5a4ef4ee317495e126a6e8fbf5d6fc44153622fe579b5540770d0f05ec328fc4",
+        "python": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]"
+      },
+      "integrity_after": {
+        "frozen_hashes_match": true,
+        "package_hashes_match": true
+      }
+    }
+  },
+  {
+    "label": "negative-control-evaluator-mutation",
+    "optimization_trial": false,
+    "disposition": "rejected_before_execution",
+    "result": {
+      "status": "invalid_evaluator_identity",
+      "executed": false,
+      "observed_sha256": "57666a6faee54de24f8693917a887a2148a72f6b711616b6782d44b41d78f287",
+      "expected_sha256": "5a4ef4ee317495e126a6e8fbf5d6fc44153622fe579b5540770d0f05ec328fc4"
+    }
+  }
+]

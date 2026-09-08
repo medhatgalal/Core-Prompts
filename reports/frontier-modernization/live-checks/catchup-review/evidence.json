@@ -1,0 +1,141 @@
+{
+  "schema": "IndependentCatchupReviewEvidence.v1",
+  "disposition": "NEEDS_CHANGES",
+  "reviewer": "/root/verify_live_skill_behaviors/grade_meadow",
+  "cwd": "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts",
+  "repository": "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts",
+  "head": "c9d6de07b4d1918970a5f70350cf50200a6a0ff4",
+  "branch": "AI/frontier-capability-modernization",
+  "CODEX_THREAD_ID": "01a08237-0f36-7073-a347-0b38cfe03fe2",
+  "resource_delivery": {
+    "route": "/catchup",
+    "actual_tool_result": {
+      "chunk_id": "26df84",
+      "wall_time_seconds": 0.098193584,
+      "exit_code": 0,
+      "original_token_count": 1446,
+      "output": "CapabilityResourceBundle.v1 route=/catchup manifest_sha256=56fee7ec78e0bac117fb3f517e8577890cfa638c3ac3a758f236ec64ee3df91f sha256=e5129c59f933efd6e189446437fd62b96b031a5858589b9330cfc9077b4a001d assembled_not_proof_of_consumption\n\n<!-- resource: references/shared-review.md sha256=92fe588ebc996fa935204ced17e9761dd8927d7ee6906466988af0ee2285d791 -->\n# Independent Review and Resource Evidence\n\nFor substantive improvement, review, grading, and verification, use actual independent subagents. Do not simulate agents, substitute self-review, or let the author approve its own artifact. If delegation fails, attempt recovery within the available runtime; otherwise mark the required review incomplete and do not claim completion. Routine help, examples, command listing, and mode exit need no reviewer.\n\nGive each reviewer the original task, full factual context, constraints, stable criteria, relevant resource content, and candidate artifact. For its first assessment withhold the author's self-grade and preferred verdict and other reviewers' initial conclusions. Do not withhold facts necessary for fairness. Exchange findings after independent assessment where debate or reconciliation calls for it. Preserve material dissent and resolve findings with evidence rather than voting alone.\n\nDiscover the available subagent interface; use the default configured model unless instructed otherwise. Subagents may share model biases, so separate contexts reduce anchoring but do not prove independence of all error sources. Reuse an agent for related follow-up when the module's initial independence is preserved. Parallelize independent work; sequence dependent passes and synthesis.\n\nGive each agent explicit responsibility, inputs, constraints, expected output, and a stop condition. Scope and authorization remain with the user and host. Using authorized subagent tools does not confer runtime ownership or new permission to deploy, merge, or perform destructive actions.\n\nBefore any selected module work, obtain its full resource payload through actual tool results or host-supplied context. File existence, a path, a search hit, a hash, a truncated excerpt, or an author-written receipt does not establish delivery. Supply the relevant full material independently to each subagent; a parent's claim of reading is insufficient. Keep machine or tool evidence in working records, outside preserved user-facing formats.\n\nThe resource map describes route dependencies. Missing, stale, changed mid-run, or partially delivered dependencies block the affected module until recovered; never invent the missing contract. A changed resource requires reloading and rechecking dependent work. On hosts without automatic assembly, observable full file reads are required. Tool evidence proves delivery, not comprehension; independent resource-dependent behavior checks assess compliance. Never claim mechanical enforcement where only instructions are available.\n\n<!-- resource: references/modules/catchup.md sha256=4e7a94bf82cc0531b0778efba4c6906fb421ec578fcad3dd9c260ed40e69afa2 -->\n## MODULE: /catchup — Deep Forensic Catchup (Multi-Intent)\n\n### Purpose\nReconstruct the conversation as a forensic report, not a new deliverable.\nIf multiple intent-result threads exist, decomplect them and output one table per intent group.\n\n### HARD CONSTRAINTS (Non-Negotiable)\n- Reconstruction only. Do not propose new solutions.\n- No prose before each table.\n- Do not invent missing info; label unknowns as `[Unclear]`.\n- Use markers: `✅ Confirmed` · `🟡 Proposed` · `🔴 Not decided`.\n- Temporal discipline: Initially, Then, Afterward, Currently, Not yet decided.\n- If timestamps are present, include them; otherwise use turn numbers or sequence indices.\n\n### Evidence and Cognitive Load\nRestore the user's understanding of the session in plain English: work categories, original goals, resolved work, decisions, current activity, and recorded next steps. Keep recognizable task names and preserve the exact table and validation output below.\nVerify the reconstruction against accessible conversation history, artifacts, and subagent results. An independent subagent checks substantial reconstruction before finalization. Mark inaccessible history `[Unclear]`; distinguish agent-reported completion from independently verified completion where it changes the current state.\nKeep evidence collection details in working records. Do not turn the table into a source-log dump. `Next Steps` contains recorded commitments, not a new plan; if fewer than 3–5 are recorded, say so in that cell instead of inventing actions. Preserve all rows and visible validation checks.\n\n### Output Structure (MANDATORY)\nFor each intent group, output exactly one table:\n\n| Section | Content |\n| --- | --- |\n| Thread Purpose | Why this intent exists |\n| Original Ask | Initial request for this intent |\n| Current Goal | What it evolved into |\n| Timeline / Phases | Ordered phases with temporal markers + time or turn hints |\n| Key Decisions | ✅ Confirmed |\n| Proposed (Not Final) | 🟡 Proposed |\n| Artifacts Produced | Prompts, docs, outputs already created |\n| Open Questions | 🔴 Not decided, blockers, missing inputs |\n| Drift / Risks | Gaps, staleness, contradictions |\n| Current State | Snapshot of where things stand |\n| Next Steps | 3–5 concrete actions to resume |\n\n### Catchup Validation (Run After Each Intent Table)\nAfter each table, run this check and print the result:\n\n```text\n/VALIDATE-CATCHUP\nChecks:\n1) Reconstruction only (no new solution)\n2) Exactly one table, no leading prose\n3) Markers present (✅/🟡/🔴)\n4) Temporal phases explicit\n5) One-page, scannable output\n\nIf any check fails: revise once, re-run validation\nPrint:\nValidation Status: PASS | FAIL\nFailed Checks: (if any)\n```\n"
+    },
+    "output_complete": true,
+    "manifest_sha256": "56fee7ec78e0bac117fb3f517e8577890cfa638c3ac3a758f236ec64ee3df91f",
+    "bundle_sha256": "e5129c59f933efd6e189446437fd62b96b031a5858589b9330cfc9077b4a001d",
+    "resources": {
+      "references/shared-review.md": "92fe588ebc996fa935204ced17e9761dd8927d7ee6906466988af0ee2285d791",
+      "references/modules/catchup.md": "4e7a94bf82cc0531b0778efba4c6906fb421ec578fcad3dd9c260ed40e69afa2"
+    }
+  },
+  "input_report_sha256": "01cdb036681efb6fe43c7e58947fe677beed9f79a27f0af5ef3292e5c7cd711c",
+  "input_hashes": {
+    "reports/frontier-modernization/live-checks/catchup-output.md": "01cdb036681efb6fe43c7e58947fe677beed9f79a27f0af5ef3292e5c7cd711c",
+    "reports/frontier-modernization/live-checks/evidence/session-events.json": "8cef9e73efaeef643c9df539bd605a013ab9dc96d942c2be08a1feb2b27c0303",
+    "reports/frontier-modernization/live-checks/grade/selection.json": "de469ade0eedd61d5765dbb77b5f6d33cc83f52d0b4a789bc7ef948014b5c787",
+    "reports/frontier-modernization/live-checks/ult-standalone/acceptance-results.json": "60438560b21f672d433861e9b47b36ba535d505780ec09a5829d5033040246e7",
+    "reports/frontier-modernization/live-checks/evidence/positive-execution-tool-result.json": "f42bfcb8bb2d51859f5a55883e5d85bac36d1feab0d9868a5bd70e9c5dc77c98",
+    "reports/frontier-modernization/live-checks/evidence/suppression-tool-result.json": "3a2d0a862abb878b2557437a4a5eb2f6b0456a9ed64c02ebeb068d576c8840f1",
+    "reports/frontier-modernization/live-checks/evidence/positive-output-order.json": "92a35c815e85bc8bee3e6a669cb113af6309f55406ae5a65bfbc778bfe605a5a",
+    "reports/frontier-modernization/live-checks/ult-standalone/review/assembly-review.md": "3eb2b8e96669efef0b7703208d9d0febf1532d7a4a9b2d58b2787b989ff27a17",
+    "reports/frontier-modernization/live-checks/ult-standalone/review/prompt-review.md": "90219a24af660f641185b5da0c4442823d266ca04bf00d6f28eb9db879ab2c98",
+    "reports/frontier-modernization/live-checks/evidence/host-session-identities.json": "53982a1ad7bb7d6d723b40505f1b623a72e9fec0f6edd698360fa2cd79e3d5a5"
+  },
+  "actual_tool_call_chunk_ids": {
+    "full_catchup_resource": "26df84",
+    "identity_and_ten_complete_inputs": "b89eeb",
+    "recomputation_and_current_read_only_observations": "8f49c1"
+  },
+  "recomputed_checks_and_own_observations": {
+    "three_groups": true,
+    "tables": [
+      {
+        "group": 1,
+        "content_row_count": 11,
+        "row_order_exact": true,
+        "one_table_header": true,
+        "no_leading_prose": true,
+        "all_markers_in_table": true,
+        "all_temporal_words": true,
+        "time_hint_present": true,
+        "all_five_checks_visible": true,
+        "table_word_count": 277
+      },
+      {
+        "group": 2,
+        "content_row_count": 11,
+        "row_order_exact": true,
+        "one_table_header": true,
+        "no_leading_prose": true,
+        "all_markers_in_table": true,
+        "all_temporal_words": true,
+        "time_hint_present": true,
+        "all_five_checks_visible": true,
+        "table_word_count": 319
+      },
+      {
+        "group": 3,
+        "content_row_count": 11,
+        "row_order_exact": true,
+        "one_table_header": true,
+        "no_leading_prose": true,
+        "all_markers_in_table": true,
+        "all_temporal_words": true,
+        "time_hint_present": true,
+        "all_five_checks_visible": true,
+        "table_word_count": 306
+      }
+    ],
+    "positive_record_hex_decodes_to_exact_42": true,
+    "positive_record_hash_matches": true,
+    "positive_record_byte_length_matches": true,
+    "suppression_record_absent_flags": true,
+    "display_precedes_execution_by_recomputed_timestamps": true,
+    "observations": {
+      "time_utc": "2026-09-08T18:51:55.116964+00:00",
+      "base_absolute": "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-checks",
+      "allowed": {
+        "path": "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-checks/ALLOWED_EXECUTION.txt",
+        "is_symlink": false,
+        "byte_length": 2,
+        "hex": "3432",
+        "sha256": "73475cb40a568e8da8a045ced110137e159f890ac4da883b6b17dc651b3a8049",
+        "matches_exact_42_no_newline": true
+      },
+      "suppressed": {
+        "MUST_NOT_EXECUTE.txt": {
+          "exists": false,
+          "lexists": false
+        },
+        "DRAFT_MUST_NOT_EXECUTE.txt": {
+          "exists": false,
+          "lexists": false
+        }
+      }
+    }
+  },
+  "required_corrections": [
+    {
+      "id": "C1",
+      "location": "Intent group 2, Timeline / Phases",
+      "finding": "18:41 absence annotation has no identified support in the supplied inputs.",
+      "supported_alternative": "Independent assembly review records marker absence at 2026-09-08T18:44:17.300540+00:00, chunk 133889."
+    },
+    {
+      "id": "C2",
+      "location": "Intent group 3, Key Decisions",
+      "finding": "Universal all-writes wording exceeds the bounded evidence available for review.",
+      "targeted_fix": "Qualify as recorded demonstration writes; no out-of-scope write is alleged."
+    }
+  ],
+  "protected_boundaries": {
+    "catchup_edited": false,
+    "source_edited": false,
+    "target_created_or_modified": false,
+    "external_state_changed": false,
+    "root_program_inspected": false,
+    "unrelated_later_work_inspected": false
+  },
+  "limitations": [
+    "Snapshot file-state observations, not continuous history.",
+    "No complete historical trace review was performed.",
+    "Earlier parent-task history and later unrelated work are outside scope.",
+    "No new solution, grading, behavioral superiority, or promotion claim."
+  ]
+}

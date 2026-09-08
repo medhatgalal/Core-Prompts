@@ -51,7 +51,8 @@
     {
       "id": "engos-delivery-address-code-review:L6:6568f6c58ddb",
       "heading": "Purpose",
-      "source_line": 6,
+      "source": "ssot/engos-delivery-address-code-review.md",
+      "source_line": 13,
       "sha256": "6568f6c58ddb8089d02f39c47f3d3db4a72cc2f6a74770845eba5cd6187e5b56",
       "text": "Use this only after there is an existing PR/MR review thread, inline comment, requested-change discussion, or explicit reviewer note to address. If the user has not received review feedback yet and wants a quality gate before committing or pushing, use `engos-quality-code-review` instead.",
       "kind": "guarded_invariant",
@@ -60,7 +61,8 @@
     {
       "id": "engos-delivery-address-code-review:L9:f36101a47746",
       "heading": "Primary Objective",
-      "source_line": 9,
+      "source": "ssot/engos-delivery-address-code-review.md",
+      "source_line": 16,
       "sha256": "f36101a477462e79b9199d8ca56af6452a1cc623e78e9d0b8e08a6a7077904d7",
       "text": "Read open review comments from a PR/MR, present them to the user, apply the requested changes with minimal scope, and prepare a commit with only the reviewer-requested fixes.",
       "kind": "invariant",
@@ -69,7 +71,8 @@
     {
       "id": "engos-delivery-address-code-review:L19:578289f1f183",
       "heading": "Choose the Right Review Capability",
-      "source_line": 19,
+      "source": "ssot/engos-delivery-address-code-review.md",
+      "source_line": 26,
       "sha256": "578289f1f18391bf464822acd6518a00ecfc83cf4d47aa5a75139cd21742375a",
       "text": "| \"Address only comments 2 and 4\" | `engos-delivery-address-code-review` | selected-comment implementation with narrow scope |",
       "kind": "invariant",
@@ -78,7 +81,8 @@
     {
       "id": "engos-delivery-address-code-review:L22:733b6cd96c66",
       "heading": "Choose the Right Review Capability",
-      "source_line": 22,
+      "source": "ssot/engos-delivery-address-code-review.md",
+      "source_line": 29,
       "sha256": "733b6cd96c662988a13d726dbd60f89c3ee5928adefef774e2672cd9af45613e",
       "text": "Do not use `engos-delivery-address-code-review` to proactively improve code, clean up adjacent issues, or review a diff before a reviewer has commented. It should only mutate files that are tied to selected review feedback.",
       "kind": "invariant",
@@ -87,7 +91,8 @@
     {
       "id": "engos-delivery-address-code-review:L26:4baa80f8e32d",
       "heading": "Tool Boundaries",
-      "source_line": 26,
+      "source": "ssot/engos-delivery-address-code-review.md",
+      "source_line": 33,
       "sha256": "4baa80f8e32d10e7f7df9823720e5768d545895892edb660c944963cfcf1d93c",
       "text": "- forbidden: modifying code that has no associated review comment, silent bulk refactors, resolving comments without applying the fix",
       "kind": "invariant",
@@ -96,7 +101,8 @@
     {
       "id": "engos-delivery-address-code-review:L48:77357dbdaba3",
       "heading": "Required Inputs",
-      "source_line": 48,
+      "source": "ssot/engos-delivery-address-code-review.md",
+      "source_line": 55,
       "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
       "text": "## Required Inputs",
       "kind": "invariant",
@@ -105,7 +111,8 @@
     {
       "id": "engos-delivery-address-code-review:L54:3d4b9f171064",
       "heading": "Required Output",
-      "source_line": 54,
+      "source": "ssot/engos-delivery-address-code-review.md",
+      "source_line": 61,
       "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
       "text": "## Required Output",
       "kind": "invariant",
@@ -114,7 +121,8 @@
     {
       "id": "engos-delivery-address-code-review:L82:42dae8920882",
       "heading": "3. Present the comments",
-      "source_line": 82,
+      "source": "ssot/engos-delivery-address-code-review.md",
+      "source_line": 89,
       "sha256": "42dae89208821e64edd7232105cbe3a8cb9e1e38176bd750bcc858f37f048234",
       "text": "Do not edit files until the selected comment set is clear.",
       "kind": "invariant",
@@ -123,7 +131,8 @@
     {
       "id": "engos-delivery-address-code-review:L92:61d7bc98cdc3",
       "heading": "5. Commit and push",
-      "source_line": 92,
+      "source": "ssot/engos-delivery-address-code-review.md",
+      "source_line": 99,
       "sha256": "61d7bc98cdc3e63cbd2be5f622dc9a78102fbc75d7c60f92cac7fb4e61a8b495",
       "text": "- Stage only the files that were modified to address comments.",
       "kind": "invariant",
@@ -132,7 +141,8 @@
     {
       "id": "engos-delivery-address-code-review:L98:5c7c9bcf16a0",
       "heading": "Constraints",
-      "source_line": 98,
+      "source": "ssot/engos-delivery-address-code-review.md",
+      "source_line": 105,
       "sha256": "5c7c9bcf16a03d74f317314b929b29ac5eaefd02f3babd88e910e31dc61e1da2",
       "text": "- **Only modify code that has an associated review comment.** Do not touch other changed lines in the diff that have no comments.",
       "kind": "invariant",
@@ -141,7 +151,8 @@
     {
       "id": "engos-delivery-address-code-review:L100:30599702f4ce",
       "heading": "Constraints",
-      "source_line": 100,
+      "source": "ssot/engos-delivery-address-code-review.md",
+      "source_line": 107,
       "sha256": "30599702f4ce404fa450bf87f112729f5368c50cea10a060fcea29071834de4e",
       "text": "- Do not resolve/close review threads programmatically \u2014 let the reviewer verify.",
       "kind": "invariant",
@@ -150,7 +161,8 @@
     {
       "id": "engos-delivery-address-code-review:L101:c44f4bd04d47",
       "heading": "Constraints",
-      "source_line": 101,
+      "source": "ssot/engos-delivery-address-code-review.md",
+      "source_line": 108,
       "sha256": "c44f4bd04d475f33d8d4d33498cc63f9be6625305353e620a1275e54b6559ee4",
       "text": "- Do not mix unrelated changes into the fix commit.",
       "kind": "invariant",
@@ -159,7 +171,8 @@
     {
       "id": "engos-delivery-address-code-review:L123:37bebf8446cb",
       "heading": "Evaluation Rubric",
-      "source_line": 123,
+      "source": "ssot/engos-delivery-address-code-review.md",
+      "source_line": 130,
       "sha256": "37bebf8446cbc7d01a5e11ad77c6ac8b3c4bf40a3d2eb3bcf2bcc41dd674ecc7",
       "text": "| Scope discipline | Only reviewer-requested changes are made, nothing else |",
       "kind": "invariant",
@@ -168,7 +181,8 @@
     {
       "id": "engos-delivery-address-code-review:L125:0dbf8968a8e9",
       "heading": "Evaluation Rubric",
-      "source_line": 125,
+      "source": "ssot/engos-delivery-address-code-review.md",
+      "source_line": 132,
       "sha256": "0dbf8968a8e960224693f6b5979c94146310e35c490cd213a6745b7878bda6e9",
       "text": "| Commit hygiene | Fix commit contains only the review-related changes |",
       "kind": "invariant",

@@ -26,6 +26,7 @@
         "after a consolidation pass, before/after line and byte counts for each rewritten file, the trigger, and any evidence references retained; if footprint did not shrink, report that limitation rather than claiming reduction"
       ],
       "tool_policy": {
+        "scope": "uac_intake_only",
         "allowed": [
           "deterministic classification",
           "metadata publication",
@@ -35,7 +36,8 @@
           "orchestration",
           "delegation decisions",
           "runtime execution control"
-        ]
+        ],
+        "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
       },
       "resources": [
         "ssot/engos-memory-context-continuity.md"

@@ -1,0 +1,20 @@
+diff --git a/tests/test_uac_promotion_apply.py b/tests/test_uac_promotion_apply.py
+index 4c8ada2..17e422e 100644
+--- a/tests/test_uac_promotion_apply.py
++++ b/tests/test_uac_promotion_apply.py
+@@ -93,12 +93,12 @@ def test_finalize_existing_candidate_requires_exact_revision_hashes_and_ancestry
+     assert mode == "finalize_existing_candidate"
+ 
+ 
+-def test_finalize_existing_candidate_refuses_non_ancestor_candidate() -> None:
++def test_finalize_existing_candidate_refuses_nonexistent_candidate() -> None:
+     verdict = {
+         "slug": "engos-orchestration-batman",
+-        "baseline_revision": _revision("22654fb"),
++        "baseline_revision": _revision("HEAD"),
+         "candidate_revision": "0" * 40,
+-        "baseline_sha256": "ac7e2684d99dc6a0267d785d1a6751a742e39e74ce3853a9877f98051690b3f2",
++        "baseline_sha256": artifact_hash(ROOT / "ssot/engos-orchestration-batman.md"),
+         "candidate_sha256": artifact_hash(ROOT / "ssot/engos-orchestration-batman.md"),
+     }
+ 

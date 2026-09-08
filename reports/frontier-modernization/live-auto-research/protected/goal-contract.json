@@ -1,0 +1,32 @@
+{
+  "run_id": "frontier-auto-research-local-20260908",
+  "target": "Python normalize(value: str) -> str fixture",
+  "goal": "Trim boundary whitespace; collapse internal whitespace, including tabs/newlines and Unicode whitespace, to one ASCII space; preserve non-whitespace Unicode text; empty input remains empty.",
+  "profile": "Bounded Execution; deterministic local acceptance demonstration, not capability promotion or frontier benchmark",
+  "non_goals": [
+    "Performance claims",
+    "generalization claims",
+    "model comparisons",
+    "source/provider changes",
+    "installation or release"
+  ],
+  "editable_scope": "Only isolated normalize.py trial module under this report, including coordinated imports and function body; evaluator/data/score rules are protected.",
+  "metrics": {
+    "primary": "Number of exact protected cases passed; higher is better; no formerly passing case may regress.",
+    "secondary": "Total ast.walk(ast.parse(module)) node count; lower is better only at equivalent correctness. One fewer node is a meaningful deterministic simplicity improvement.",
+    "cost_limit": "No external APIs, no paid comparison runs, no third-party imports; <= 5 seconds per evaluator process; no timing used for ranking."
+  },
+  "acceptance_rule": "Reject invalid process or any regression. Accept strictly higher pass count. At equal pass count accept strictly fewer AST nodes. Otherwise reject for higher complexity or tie for equal AST nodes; retain prior incumbent on either.",
+  "tie_policy": "Retain incumbent on equal pass count and AST nodes; import count recorded as descriptive only.",
+  "noise_policy": "One run per deterministic candidate is sufficient for trial decisions; final independent reviewer must rerun baseline and all candidates. No statistical or runtime speed claim.",
+  "budget": {
+    "optimization_trials": 3,
+    "per_process_timeout_seconds": 5,
+    "external_api_calls": 0
+  },
+  "stop_condition": "Exactly 3 completed optimization trials; no stop-on-first-win or target stop. Controls and final verification do not count as optimization trials.",
+  "negative_controls": "After optimization, separately label and test a wrong-output candidate, syntactically invalid candidate, and changed evaluator copy; never include these in optimization gains.",
+  "promotion_threshold": "No formal promotion is requested. Retention only inside this fixture; decision state hold for formal promotion.",
+  "rollback_trigger": "Any changed protected identity or execution-limit violation invalidates the trial; keep incumbent unchanged.",
+  "independent_review": "Fresh subagent receives neutral inspection task without a preferred winner or declared desired verdict."
+}

@@ -1,0 +1,239 @@
+{
+  "result": {
+    "schema_version": "EvalRunSummary.v1",
+    "run_id": "batman-canary-001",
+    "run_plan_sha256": "8fb77932fae43afb5e27c7704be67d7d9d3b92fc877d9eb08a685bf56abe44c7",
+    "slug": "engos-orchestration-batman",
+    "profile": "canary",
+    "status": "completed",
+    "promotion_eligible": false,
+    "promotion_blocker": "protected signing, scoring, judge verification, and independent reproduction remain external gates",
+    "model_calls": 4,
+    "planned_repetitions": 2,
+    "completed_repetitions": 2,
+    "token_usage": {
+      "reserved": 256,
+      "raw": 32,
+      "cached": 0,
+      "billed": 32
+    },
+    "failure": null,
+    "behavioral_claim": "execution_evidence_only",
+    "artifact_path": "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/real-pipe-fixture/reports/batman-canary-001"
+  },
+  "observations": [
+    {
+      "argv": [
+        "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/real-pipe-fixture/repo/evals/adapters/fake_adapter.py"
+      ],
+      "stdin": {
+        "artifact": "# candidate\nLoad resources/resource-map.json and resources/module.md.\n\n\n<!-- supplied resource bundle: route=/ult sha256=e76dcf9a8a90627998b58fe7e4fbbdab8e0f29d2a02088fe9f72e8e7d95aab52 -->\n\n<!-- resource: shared.md sha256=af5f5fc106ad2021a481dbfdf1155c302e3a40c02af3c5ce6034a2ce75e38f9c -->\nShared reviewer instructions.\n\n\n<!-- resource: module.md sha256=e08466de1a5ae990640c0abc073aeee2fe79b83d19e650d867b43f8ae71a6064 -->\nNew candidate exact module with Unicode: \u00e9 \u03bb.\n\n",
+        "artifact_sha256": "5ab29e3998be1395304aa24f8a863b83fa6f3211f54228472870f4c88ced01e4",
+        "effort": "low",
+        "entry_sha256": "e4acf7419d9722322d43453b5c45ac83e8193d4f0615c44d61f6f824640e5bd8",
+        "max_tokens": 64,
+        "model_version": "1",
+        "prompt": "Deliver the requested change.",
+        "resolved_model_identifier": "fixture-model-v1",
+        "resource_binding": {
+          "bundle_sha256": "e76dcf9a8a90627998b58fe7e4fbbdab8e0f29d2a02088fe9f72e8e7d95aab52",
+          "delivery_claim": "supplied_in_adapter_request_not_proof_of_consumption",
+          "manifest_sha256": "da7376cc1de43195b2ef8e2480e4b3189d6d07cf17e3a30f80c1d45caab6d711",
+          "resources": [
+            {
+              "path": "shared.md",
+              "sha256": "af5f5fc106ad2021a481dbfdf1155c302e3a40c02af3c5ce6034a2ce75e38f9c"
+            },
+            {
+              "path": "module.md",
+              "sha256": "e08466de1a5ae990640c0abc073aeee2fe79b83d19e650d867b43f8ae71a6064"
+            }
+          ],
+          "route": "/ult"
+        },
+        "run_id": "batman-canary-001",
+        "schema_version": "EvalAdapterRequest.v1",
+        "tool_policy": {
+          "allowed": [],
+          "mode": "none"
+        },
+        "trial_id": "c8324cb88b31be8e5f66bf2ab5a218d2f8a430e8b91e853fa901c22f6b662e86"
+      },
+      "stdin_sha256": "1b0b31eff04a81d7db6591b6f192da816c9d84f790520c9d27af29b127bf002d",
+      "stdout": {
+        "model_version": "1",
+        "output": "fixture:e19a45990e674bac2a03f3c4c2523dc31fc8b7002558cd2b39ebd7a2e7d1a877",
+        "resolved_model_identifier": "fixture-model-v1",
+        "schema_version": "EvalAdapterResponse.v1",
+        "usage": {
+          "billed": 8,
+          "cached": 0,
+          "raw": 8
+        }
+      },
+      "stderr": "",
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/real-pipe-fixture/repo/evals/adapters/fake_adapter.py"
+      ],
+      "stdin": {
+        "artifact": "# baseline\nLoad resources/resource-map.json and resources/module.md.\n\n\n<!-- supplied resource bundle: route=/ult sha256=69a2b2befe5e090382ca9ab103eedd1f7bbed28e7961ba70cf886ffa91aab928 -->\n\n<!-- resource: shared.md sha256=af5f5fc106ad2021a481dbfdf1155c302e3a40c02af3c5ce6034a2ce75e38f9c -->\nShared reviewer instructions.\n\n\n<!-- resource: module.md sha256=8619512cffc0a49764524648351b8c106eaa3f059b76602b3a02cbf98506ca39 -->\nHistorical exact module.\r\nDo not use the candidate instructions.\r\n\n",
+        "artifact_sha256": "2b76ab7d99683234843b825fde93ee2095eb868fc86e64c1b61b8475c25107c0",
+        "effort": "low",
+        "entry_sha256": "077c94a23bfbba3a932938d36e4ed009c764ade35c9a640d367316cd9b4eec22",
+        "max_tokens": 64,
+        "model_version": "1",
+        "prompt": "Deliver the requested change.",
+        "resolved_model_identifier": "fixture-model-v1",
+        "resource_binding": {
+          "bundle_sha256": "69a2b2befe5e090382ca9ab103eedd1f7bbed28e7961ba70cf886ffa91aab928",
+          "delivery_claim": "supplied_in_adapter_request_not_proof_of_consumption",
+          "manifest_sha256": "da7376cc1de43195b2ef8e2480e4b3189d6d07cf17e3a30f80c1d45caab6d711",
+          "resources": [
+            {
+              "path": "shared.md",
+              "sha256": "af5f5fc106ad2021a481dbfdf1155c302e3a40c02af3c5ce6034a2ce75e38f9c"
+            },
+            {
+              "path": "module.md",
+              "sha256": "8619512cffc0a49764524648351b8c106eaa3f059b76602b3a02cbf98506ca39"
+            }
+          ],
+          "route": "/ult"
+        },
+        "run_id": "batman-canary-001",
+        "schema_version": "EvalAdapterRequest.v1",
+        "tool_policy": {
+          "allowed": [],
+          "mode": "none"
+        },
+        "trial_id": "7788b8d47d82caa1122eb446a811348299f38f01cb6a6a35672965440bcbc6e7"
+      },
+      "stdin_sha256": "f376d28531d7c3f10f42607b12ffc1505ae3a33bb5258c91e7be8e14115478d8",
+      "stdout": {
+        "model_version": "1",
+        "output": "fixture:f2db788c14393cb4dc54fb03800ece2b5bc2ca2c03e697a11ad3f1921ff95064",
+        "resolved_model_identifier": "fixture-model-v1",
+        "schema_version": "EvalAdapterResponse.v1",
+        "usage": {
+          "billed": 8,
+          "cached": 0,
+          "raw": 8
+        }
+      },
+      "stderr": "",
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/real-pipe-fixture/repo/evals/adapters/fake_adapter.py"
+      ],
+      "stdin": {
+        "artifact": "# candidate\nLoad resources/resource-map.json and resources/module.md.\n\n\n<!-- supplied resource bundle: route=/ult sha256=e76dcf9a8a90627998b58fe7e4fbbdab8e0f29d2a02088fe9f72e8e7d95aab52 -->\n\n<!-- resource: shared.md sha256=af5f5fc106ad2021a481dbfdf1155c302e3a40c02af3c5ce6034a2ce75e38f9c -->\nShared reviewer instructions.\n\n\n<!-- resource: module.md sha256=e08466de1a5ae990640c0abc073aeee2fe79b83d19e650d867b43f8ae71a6064 -->\nNew candidate exact module with Unicode: \u00e9 \u03bb.\n\n",
+        "artifact_sha256": "5ab29e3998be1395304aa24f8a863b83fa6f3211f54228472870f4c88ced01e4",
+        "effort": "low",
+        "entry_sha256": "e4acf7419d9722322d43453b5c45ac83e8193d4f0615c44d61f6f824640e5bd8",
+        "max_tokens": 64,
+        "model_version": "1",
+        "prompt": "Deliver the requested change.",
+        "resolved_model_identifier": "fixture-model-v1",
+        "resource_binding": {
+          "bundle_sha256": "e76dcf9a8a90627998b58fe7e4fbbdab8e0f29d2a02088fe9f72e8e7d95aab52",
+          "delivery_claim": "supplied_in_adapter_request_not_proof_of_consumption",
+          "manifest_sha256": "da7376cc1de43195b2ef8e2480e4b3189d6d07cf17e3a30f80c1d45caab6d711",
+          "resources": [
+            {
+              "path": "shared.md",
+              "sha256": "af5f5fc106ad2021a481dbfdf1155c302e3a40c02af3c5ce6034a2ce75e38f9c"
+            },
+            {
+              "path": "module.md",
+              "sha256": "e08466de1a5ae990640c0abc073aeee2fe79b83d19e650d867b43f8ae71a6064"
+            }
+          ],
+          "route": "/ult"
+        },
+        "run_id": "batman-canary-001",
+        "schema_version": "EvalAdapterRequest.v1",
+        "tool_policy": {
+          "allowed": [],
+          "mode": "none"
+        },
+        "trial_id": "a28ae22a490a72cbee4ab3471de91f30c724484f4a4d3a963c61f51c11a50a7e"
+      },
+      "stdin_sha256": "954b5d37cd23fa0cf0b6d32cdf408e4c4fb116e6a4068f5dfdf325fd62d505e7",
+      "stdout": {
+        "model_version": "1",
+        "output": "fixture:a2922fd6f7475bbfbfb74bfe04f0071a4fd7a9c5a5780cacbf939655bd09f5d5",
+        "resolved_model_identifier": "fixture-model-v1",
+        "schema_version": "EvalAdapterResponse.v1",
+        "usage": {
+          "billed": 8,
+          "cached": 0,
+          "raw": 8
+        }
+      },
+      "stderr": "",
+      "returncode": 0
+    },
+    {
+      "argv": [
+        "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/bin/python3.14",
+        "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/reviews/resources-final/real-pipe-fixture/repo/evals/adapters/fake_adapter.py"
+      ],
+      "stdin": {
+        "artifact": "# baseline\nLoad resources/resource-map.json and resources/module.md.\n\n\n<!-- supplied resource bundle: route=/ult sha256=69a2b2befe5e090382ca9ab103eedd1f7bbed28e7961ba70cf886ffa91aab928 -->\n\n<!-- resource: shared.md sha256=af5f5fc106ad2021a481dbfdf1155c302e3a40c02af3c5ce6034a2ce75e38f9c -->\nShared reviewer instructions.\n\n\n<!-- resource: module.md sha256=8619512cffc0a49764524648351b8c106eaa3f059b76602b3a02cbf98506ca39 -->\nHistorical exact module.\r\nDo not use the candidate instructions.\r\n\n",
+        "artifact_sha256": "2b76ab7d99683234843b825fde93ee2095eb868fc86e64c1b61b8475c25107c0",
+        "effort": "low",
+        "entry_sha256": "077c94a23bfbba3a932938d36e4ed009c764ade35c9a640d367316cd9b4eec22",
+        "max_tokens": 64,
+        "model_version": "1",
+        "prompt": "Deliver the requested change.",
+        "resolved_model_identifier": "fixture-model-v1",
+        "resource_binding": {
+          "bundle_sha256": "69a2b2befe5e090382ca9ab103eedd1f7bbed28e7961ba70cf886ffa91aab928",
+          "delivery_claim": "supplied_in_adapter_request_not_proof_of_consumption",
+          "manifest_sha256": "da7376cc1de43195b2ef8e2480e4b3189d6d07cf17e3a30f80c1d45caab6d711",
+          "resources": [
+            {
+              "path": "shared.md",
+              "sha256": "af5f5fc106ad2021a481dbfdf1155c302e3a40c02af3c5ce6034a2ce75e38f9c"
+            },
+            {
+              "path": "module.md",
+              "sha256": "8619512cffc0a49764524648351b8c106eaa3f059b76602b3a02cbf98506ca39"
+            }
+          ],
+          "route": "/ult"
+        },
+        "run_id": "batman-canary-001",
+        "schema_version": "EvalAdapterRequest.v1",
+        "tool_policy": {
+          "allowed": [],
+          "mode": "none"
+        },
+        "trial_id": "990de971b45e5a9b56fbf8f0903f152daab8a0ff3cc9bd22bc49761a6625e85c"
+      },
+      "stdin_sha256": "6567895470846f7fc410aff73ba6cd73a1ce6a4758eaf7a6173b27fe261b4211",
+      "stdout": {
+        "model_version": "1",
+        "output": "fixture:4463c19bf91db10185a08d2f1d5941a5638eb910befdb3fc5092fe957b0e3e71",
+        "resolved_model_identifier": "fixture-model-v1",
+        "schema_version": "EvalAdapterResponse.v1",
+        "usage": {
+          "billed": 8,
+          "cached": 0,
+          "raw": 8
+        }
+      },
+      "stderr": "",
+      "returncode": 0
+    }
+  ],
+  "evidence_limit": "Actual subprocess stdin delivery and transport bindings; no model consumption or compliance proof."
+}

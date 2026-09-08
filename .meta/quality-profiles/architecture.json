@@ -84,5 +84,25 @@
     "requires_human_confirmation": false
   },
   "minimum_word_count": 700,
-  "minimum_code_blocks": 6
+  "minimum_code_blocks": 6,
+  "assessment_contract": {
+    "score_scope": "mechanical_structure_only_not_semantic_or_behavioral_proof",
+    "semantic_findings": "require explicit review or source-grounded repair; never clear through keyword counts",
+    "repair_mode": "normalize equivalent headings only; no generic operating stubs",
+    "convergence": "stop on resolved checks, unchanged candidate, repeated candidate, or pass limit; report unresolved findings",
+    "preservation": "exact by default; optional independent requirement review bound to original, candidate, and effective package hashes; no behavioral promotion"
+  },
+  "heading_aliases": {
+    "## Required Output": [
+      "## Output Contract",
+      "## Expected Output",
+      "## Expected Outputs"
+    ],
+    "## Required Inputs": [
+      "## Inputs"
+    ],
+    "## Evaluation Rubric": [
+      "## Acceptance Criteria"
+    ]
+  }
 }

@@ -1,0 +1,76 @@
+{
+  "schema": "IndependentGradeEvidence.v1",
+  "artifact_id": "harbor",
+  "review_path": "reports/frontier-modernization/live-checks/grade/reviews/harbor/review.md",
+  "scope": "Single-artifact independent local review; no comparison or behavioral promotion claim",
+  "runtime": {
+    "cwd": "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts",
+    "branch": "AI/frontier-capability-modernization",
+    "head": "c9d6de07b4d1918970a5f70350cf50200a6a0ff4",
+    "python": "3.14.7",
+    "python_executable": "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "thread_id": "01a08234-e21f-70f1-bda9-1d252bf32804",
+    "dirty_state": "Pre-existing tracked and untracked changes observed; preserved. Full status output was truncated, but cwd, branch, HEAD, and dirty state were visible."
+  },
+  "tool_results": [
+    {
+      "chunk_id": "91170e",
+      "purpose": "Workspace, branch, HEAD, and dirty-state preflight",
+      "exit_code": 0,
+      "full_payload": false,
+      "note": "Status inventory truncated; identity lines and dirty state visible."
+    },
+    {
+      "chunk_id": "19cf0b",
+      "purpose": "Actual complete selected /grade resource delivery",
+      "command": "python3 .codex/skills/engos-meta-supercharge/resources/scripts/load_module.py --route /grade --format text",
+      "exit_code": 0,
+      "full_payload": true
+    },
+    {
+      "chunk_id": "1497d6",
+      "purpose": "Actual full frozen rubric and harbor artifact read",
+      "exit_code": 0,
+      "full_payload": true
+    },
+    {
+      "chunk_id": "98e353",
+      "purpose": "Actual full skill entrypoint read",
+      "exit_code": 0,
+      "full_payload": true
+    },
+    {
+      "chunk_id": "a60860",
+      "purpose": "Runtime identity and input/resource hashes; dependencies match delivered resource hashes",
+      "exit_code": 0,
+      "full_payload": true
+    }
+  ],
+  "resource_bundle": {
+    "route": "/grade",
+    "manifest_sha256": "56fee7ec78e0bac117fb3f517e8577890cfa638c3ac3a758f236ec64ee3df91f",
+    "bundle_sha256": "cc455648f3db75347d131cfae2ca86a434458112a522a7dbcaeda5a6ae43b21f",
+    "resources": {
+      "references/shared-review.md": "92fe588ebc996fa935204ced17e9761dd8927d7ee6906466988af0ee2285d791",
+      "references/modules/grade.md": "a605e4d384f5d9b16e459a96c7e10d7dec52e6496c3e650b7fdbbc32d94af86a"
+    },
+    "limitation": "Actual tool output establishes delivery, not comprehension; this file records that evidence and is not itself delivery proof."
+  },
+  "input_sha256": {
+    "reports/frontier-modernization/live-checks/grade/rubric.txt": "5de20310821cd007e878c453aca633eada800f06c048fd64ee5038cd78b4d6d3",
+    "reports/frontier-modernization/live-checks/grade/neutral/harbor.md": "41ba9e4f89f8fb75fece48957eec899cecc2c3539f8b41accf2d90ac505bc084",
+    ".codex/skills/engos-meta-supercharge/SKILL.md": "3ecc726652ceae81c5e50bc48b4833bd9f22428c651786b91357a29622e09892"
+  },
+  "scores": [
+    1,
+    1,
+    2,
+    1,
+    8
+  ],
+  "arithmetic_mean": 2.6,
+  "protected_violation_count": 2,
+  "quality_target_met": false,
+  "comparison_decision": "inconclusive",
+  "independence": "Reviewer received one neutral-named artifact and frozen rubric without author scores, preferred verdict, revision labels, or other reviewers initial conclusions."
+}

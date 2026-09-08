@@ -257,10 +257,10 @@ Follow with:
 
 - `supercharge help` — return the bundled command guide and stop.
 - `supercharge /help examples` — return module/stack examples without executing them.
-- `supercharge /full <plan>` — run the five preserved passes, ending with exactly ten grading iterations; do not execute the final prompt.
+- `supercharge /full <plan>` — run the five preserved passes, ending with up to ten actual independently graded candidate trials; do not execute the final prompt.
 - `supercharge /full skip grade <plan>` — retain the first four passes and omit grading explicitly.
 - `supercharge /basis /full <plan>` — run the basis pass first, then all five full passes.
-- `supercharge /stop /full` — stop acknowledgement only; terminal stop takes precedence.
+- `supercharge /stop-ult /full` — exit persistent ULT mode without running the full stack.
 
 The short conversational prefix routes within `engos-meta-supercharge`. Help is bundled with the skill and agent resources; no separate short-name skill or native menu alias is added.
 
@@ -278,7 +278,7 @@ Why this module first:
 
 Ask:
 
-> Use `engos-meta-supercharge /basis` to audit this literature-review workflow for irreducible inputs, actual-to-minimum ratio, waste drivers, and redesign moves.
+> Use `engos-meta-supercharge /basis` to derive the necessary outcomes, supported facts, constraints, and assumptions of this literature-review workflow, then recommend a sufficient design without losing sophistication. Use cost ratios only when defensible.
 
 Expected output:
 
@@ -834,7 +834,7 @@ Follow with:
 
 ### `engos-meta-supercharge`
 
-Familiar conversational forms remain valid: `Supercharge /full <task>`, `supercharge /simple /invert /contract <task>`, and `/supercharge /help`. They route to the same canonical capability and preserve module order and stop/help precedence. Native skill selection uses `engos-meta-supercharge`.
+Familiar conversational forms remain valid: `Supercharge /full <task>`, `supercharge /simple /invert /contract <task>`, and `/supercharge /help`. They route to the same canonical capability and preserve module order and `/stop-ult`/help precedence. Native skill selection uses `engos-meta-supercharge`.
 
 
 Use when:

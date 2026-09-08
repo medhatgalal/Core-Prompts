@@ -2,11 +2,10 @@
   "schema_version": "GoalContract.v1",
   "slug": "engos-design-architecture",
   "target": "Fulfill the canonical intent of engos-design-architecture.",
-  "intended_outcome": "Preserve the canonical SSOT objective and required output.",
+  "intended_outcome": "Boundary quality, implementation usability, rejected alternatives, failure awareness, migration safety, and correct routing away from unrelated asks.",
   "change_class": "unknown",
   "non_goals": [],
   "protected_behaviors": [
-    "c0e04f827573edc03eb9544235bbf841a5415bde2837b5f7556ab4b00280726e",
     "04d8e6d45308d6386e7f547dfe9628fb74b90b363b0ec31a66131058f0b0412b",
     "2eac6c7a6b1a3e56eceeceb8da2dbdf005eabe3c17ea260d41d387ad0805ba7b",
     "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
@@ -41,7 +40,7 @@
   "editable_behavior": [],
   "primary_outcome": {
     "metric": "skill_specific_task_success",
-    "definition": "Canonical task success with protected behavior preserved.",
+    "definition": "Boundary quality, implementation usability, rejected alternatives, failure awareness, migration safety, and correct routing away from unrelated asks.",
     "threshold": "human_review_required"
   },
   "secondary_outcomes": [],
@@ -68,11 +67,6 @@
   "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
   "rollback_trigger": "Any protected regression or stale bound evidence.",
   "source_clause_hashes": [
-    {
-      "sha256": "c0e04f827573edc03eb9544235bbf841a5415bde2837b5f7556ab4b00280726e",
-      "source": "ssot/engos-design-architecture.md",
-      "text": "description: \"Design APIs, data models, patterns, or systems with explicit boundaries, trade-offs, failure modes, migration, rollback, and validation. Use for concrete architecture decisions; do not use for prompt hardening or behavioral evaluation.\""
-    },
     {
       "sha256": "04d8e6d45308d6386e7f547dfe9628fb74b90b363b0ec31a66131058f0b0412b",
       "source": "ssot/engos-design-architecture.md",

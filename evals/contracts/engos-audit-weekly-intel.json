@@ -2,11 +2,10 @@
   "schema_version": "GoalContract.v1",
   "slug": "engos-audit-weekly-intel",
   "target": "Fulfill the canonical intent of engos-audit-weekly-intel.",
-  "intended_outcome": "Preserve the canonical SSOT objective and required output.",
+  "intended_outcome": "Source coverage, time-window correctness, citation integrity, deduplication, fact/inference separation, uncertainty, synthesis quality, and forwardability.",
   "change_class": "unknown",
   "non_goals": [],
   "protected_behaviors": [
-    "3c36580397e1ba989cf2f59f176fbd26cab32c6fc2fccdbc1a1ff9f80a370962",
     "f54ea8e798a60f53a9cbe04c2bae0e93092e82d6d44831ade6a1db7963a2e110",
     "4544e6580afad28b48a22656a2d0303486373a381c37e37a38cfca895bdc683d",
     "f4df1515ad8a019c84a2ad398ecd6eb048889b9973f935092f2d0cfff638e66a",
@@ -41,7 +40,7 @@
   "editable_behavior": [],
   "primary_outcome": {
     "metric": "skill_specific_task_success",
-    "definition": "Canonical task success with protected behavior preserved.",
+    "definition": "Source coverage, time-window correctness, citation integrity, deduplication, fact/inference separation, uncertainty, synthesis quality, and forwardability.",
     "threshold": "human_review_required"
   },
   "secondary_outcomes": [],
@@ -68,11 +67,6 @@
   "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
   "rollback_trigger": "Any protected regression or stale bound evidence.",
   "source_clause_hashes": [
-    {
-      "sha256": "3c36580397e1ba989cf2f59f176fbd26cab32c6fc2fccdbc1a1ff9f80a370962",
-      "source": "ssot/engos-audit-weekly-intel.md",
-      "text": "description: \"Collect and fact-check project information from issue trackers, Git, code review, Chat, and documents, then produce one executive report with technical appendices and source confidence. Use for multi-source periodic intelligence; do not use for Git-only reports, inbox triage, or feature audits.\""
-    },
     {
       "sha256": "f54ea8e798a60f53a9cbe04c2bae0e93092e82d6d44831ade6a1db7963a2e110",
       "source": "ssot/engos-audit-weekly-intel.md",

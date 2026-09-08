@@ -1,0 +1,1708 @@
+{
+  "source_helper_sha256": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+  "helpers": [
+    {
+      "helper": ".codex/skills/engos-meta-supercharge/resources/scripts/load_module.py",
+      "sha256": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+      "route_results": [
+        {
+          "route": "all",
+          "success": true,
+          "stdout_sha256": "1e7ac86d97a6d5d17a0c418bff8519230fa20e68add1759def19eed8f0c93081",
+          "bundle_sha256": "d8d24995c3850e817a179b19e0f84bb3a612725293d9525950038e9811b9660d",
+          "resources": 15
+        },
+        {
+          "route": "/ult",
+          "success": true,
+          "stdout_sha256": "03dbd09b862d46fc675279a8db6bfd554a760f9ea8dfd8357d9d2bf0f04d6b72",
+          "bundle_sha256": "791152fa6f311a3d9a82a0f1a7fb46166b82eaba069ddaaa83151b25cd28d16f",
+          "resources": 2
+        },
+        {
+          "route": "/catchup",
+          "success": true,
+          "stdout_sha256": "2a7b6f6c99fba33b09dbeb9677b2dbd30d076fbf709a5b9cfceffc23824e427a",
+          "bundle_sha256": "e5129c59f933efd6e189446437fd62b96b031a5858589b9330cfc9077b4a001d",
+          "resources": 2
+        },
+        {
+          "route": "/basis",
+          "success": true,
+          "stdout_sha256": "641bdb0449d4c4877c157d15f405505bf8e3abd3cd42985a3133fa75de85c5db",
+          "bundle_sha256": "b690f5fb3930f4f69652a6eaf8eca9d30f4339f2a25e57539c0ffb78b50e30ea",
+          "resources": 2
+        },
+        {
+          "route": "/simple",
+          "success": true,
+          "stdout_sha256": "667ea0135d38aece88020ddd42fe6e759d16a762d2cfb21f4269bb63a096a2ed",
+          "bundle_sha256": "40d7c9584fa3e7b9c10f66285a76d2c4c1656e0ad7e32bbd54f08a5bcf16b15a",
+          "resources": 2
+        },
+        {
+          "route": "/invert",
+          "success": true,
+          "stdout_sha256": "f2cb803e7c53edc2ca4e3bd245ae69ee7174ef86daca3d9cdf0dc46d347a9b8d",
+          "bundle_sha256": "ee147f720bcb8208f04fe79eb6e112fbd0f918b6f20c104c1613385d984c85b0",
+          "resources": 2
+        },
+        {
+          "route": "/adversarial",
+          "success": true,
+          "stdout_sha256": "d9a18a1d883b080545fce23b7d6694ced3bb101472c9cb9d74b1e70b28a93a3b",
+          "bundle_sha256": "c3f30d7f21780d99ee0666e2aa1c4f8fb4a9a7ba57065ea1d9699673402f47b9",
+          "resources": 2
+        },
+        {
+          "route": "/contract",
+          "success": true,
+          "stdout_sha256": "a1a7dbc924ad540c5671f63961a5f79b79202f17a007aa22c803b4951ded5d0d",
+          "bundle_sha256": "3e08e17935ed9fcf7688ba62696e0768306f477bb02d2ea77df374a7825d4995",
+          "resources": 2
+        },
+        {
+          "route": "/grade",
+          "success": true,
+          "stdout_sha256": "c6a7830349dd1236ee4c5b80edb613b3fbabcaf7f99e8f999ad19e3570bac709",
+          "bundle_sha256": "cc455648f3db75347d131cfae2ca86a434458112a522a7dbcaeda5a6ae43b21f",
+          "resources": 2
+        },
+        {
+          "route": "/full",
+          "success": true,
+          "stdout_sha256": "2c37b1cb6ad0e091ba77ac56f8a053c7104e0bdaa0e133ca9659d8c51c956ca7",
+          "bundle_sha256": "d259d4328534c1a630e8dbcb166c96f498254b05858bb6690490ae7904417fcd",
+          "resources": 7
+        },
+        {
+          "route": "/gaslight",
+          "success": true,
+          "stdout_sha256": "04fbfaa536ef04b7a5a0fc3008baecc2f66c22a4dcc4e5e36d9e07357f13b221",
+          "bundle_sha256": "83d0f34a73b9106c462ace89993ea7f70e6f5afad0392b6cfc48d6258c901deb",
+          "resources": 2
+        },
+        {
+          "route": "/stop-ult",
+          "success": true,
+          "stdout_sha256": "a52ff97fd3ca28d1b33c4c9d5c9d1b30b784ac5b077a67a59f92719a2cdb223b",
+          "bundle_sha256": "15e704aaadc71666741a733a7d0227277eafce6b76fb5785fc5d724a036ee323",
+          "resources": 2
+        },
+        {
+          "route": "/debate",
+          "success": true,
+          "stdout_sha256": "3fad7a8e6122a0dfdf7514f807cbe9dfc81ef5b1b6625252237d263b2a5bfdfa",
+          "bundle_sha256": "8956cf1bb125b481b643a2deca72d53d7f46a3b57820e260530b6db3e15a567a",
+          "resources": 2
+        },
+        {
+          "route": "/debate /deep",
+          "success": true,
+          "stdout_sha256": "63d3f6d4aa54fb82d27e8e1fd99724c186dfceecb32ebbc05bd559ba9dcc0a7f",
+          "bundle_sha256": "86a52dc062d7170f9b1f7de4fe8f45a2c46b064588e973a1201f09789db457c0",
+          "resources": 2
+        },
+        {
+          "route": "/adversarial /debate",
+          "success": true,
+          "stdout_sha256": "66f51b4374447fe934ba00922a93ee08ea4d21ebeae710a4a3201992fd00cd76",
+          "bundle_sha256": "4b3138600317fd2173680992659cb7de7707710ab869efee93eb12fa2e5acf58",
+          "resources": 2
+        },
+        {
+          "route": "/adversarial /debate /deep",
+          "success": true,
+          "stdout_sha256": "08ce65db485c36e3c7a1bb9a1e3655c8a5c66848d0d181bdbd1030bfaf340cbe",
+          "bundle_sha256": "b036db9d1a3799e02d12b5146901d7014e5ae97361d49ead8501cc9b14b2a8d1",
+          "resources": 2
+        },
+        {
+          "route": "help",
+          "success": true,
+          "stdout_sha256": "31f65b8e11b10faf84512f4b3528793fc9f20eef5eb998ac66cd231709db204c",
+          "bundle_sha256": "dc55090f2649dc29fa1b6359af1fb6e339f640a96942af8bfcde8ca00c2abeab",
+          "resources": 2
+        },
+        {
+          "route": "examples",
+          "success": true,
+          "stdout_sha256": "dc7cd40fc468a89da46926b1048f8cef1d904e570b5296f0420a7146c20b6ac0",
+          "bundle_sha256": "46f6d4f0711c656dbb4f6a494de015215b65ff5b7c5506aa9f55e564d843695a",
+          "resources": 2
+        },
+        {
+          "route": "details",
+          "success": true,
+          "stdout_sha256": "9ef8c2a4a235ffbd00264eccbe2d25cc15ec4ef79112790d09cbf433981f0ec5",
+          "bundle_sha256": "46b155527a0a67691f6a74071d7d78709a860b2e94c0c502c26f5b60b97a82be",
+          "resources": 12
+        },
+        {
+          "route": "model-guidance",
+          "success": true,
+          "stdout_sha256": "2856805e53ffb219b1d8e2127e4b614d147797f3a90d09c89f1a45dc76dbb4de",
+          "bundle_sha256": "d0873328c47750b5035f30be62b571c57303b6e9b51b6e33dd11ab6c97f9fd55",
+          "resources": 2
+        }
+      ],
+      "unknown_route_fails_closed": true
+    },
+    {
+      "helper": ".codex/agents/resources/engos-meta-supercharge/scripts/load_module.py",
+      "sha256": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+      "route_results": [
+        {
+          "route": "all",
+          "success": true,
+          "stdout_sha256": "1e7ac86d97a6d5d17a0c418bff8519230fa20e68add1759def19eed8f0c93081",
+          "bundle_sha256": "d8d24995c3850e817a179b19e0f84bb3a612725293d9525950038e9811b9660d",
+          "resources": 15
+        },
+        {
+          "route": "/ult",
+          "success": true,
+          "stdout_sha256": "03dbd09b862d46fc675279a8db6bfd554a760f9ea8dfd8357d9d2bf0f04d6b72",
+          "bundle_sha256": "791152fa6f311a3d9a82a0f1a7fb46166b82eaba069ddaaa83151b25cd28d16f",
+          "resources": 2
+        },
+        {
+          "route": "/catchup",
+          "success": true,
+          "stdout_sha256": "2a7b6f6c99fba33b09dbeb9677b2dbd30d076fbf709a5b9cfceffc23824e427a",
+          "bundle_sha256": "e5129c59f933efd6e189446437fd62b96b031a5858589b9330cfc9077b4a001d",
+          "resources": 2
+        },
+        {
+          "route": "/basis",
+          "success": true,
+          "stdout_sha256": "641bdb0449d4c4877c157d15f405505bf8e3abd3cd42985a3133fa75de85c5db",
+          "bundle_sha256": "b690f5fb3930f4f69652a6eaf8eca9d30f4339f2a25e57539c0ffb78b50e30ea",
+          "resources": 2
+        },
+        {
+          "route": "/simple",
+          "success": true,
+          "stdout_sha256": "667ea0135d38aece88020ddd42fe6e759d16a762d2cfb21f4269bb63a096a2ed",
+          "bundle_sha256": "40d7c9584fa3e7b9c10f66285a76d2c4c1656e0ad7e32bbd54f08a5bcf16b15a",
+          "resources": 2
+        },
+        {
+          "route": "/invert",
+          "success": true,
+          "stdout_sha256": "f2cb803e7c53edc2ca4e3bd245ae69ee7174ef86daca3d9cdf0dc46d347a9b8d",
+          "bundle_sha256": "ee147f720bcb8208f04fe79eb6e112fbd0f918b6f20c104c1613385d984c85b0",
+          "resources": 2
+        },
+        {
+          "route": "/adversarial",
+          "success": true,
+          "stdout_sha256": "d9a18a1d883b080545fce23b7d6694ced3bb101472c9cb9d74b1e70b28a93a3b",
+          "bundle_sha256": "c3f30d7f21780d99ee0666e2aa1c4f8fb4a9a7ba57065ea1d9699673402f47b9",
+          "resources": 2
+        },
+        {
+          "route": "/contract",
+          "success": true,
+          "stdout_sha256": "a1a7dbc924ad540c5671f63961a5f79b79202f17a007aa22c803b4951ded5d0d",
+          "bundle_sha256": "3e08e17935ed9fcf7688ba62696e0768306f477bb02d2ea77df374a7825d4995",
+          "resources": 2
+        },
+        {
+          "route": "/grade",
+          "success": true,
+          "stdout_sha256": "c6a7830349dd1236ee4c5b80edb613b3fbabcaf7f99e8f999ad19e3570bac709",
+          "bundle_sha256": "cc455648f3db75347d131cfae2ca86a434458112a522a7dbcaeda5a6ae43b21f",
+          "resources": 2
+        },
+        {
+          "route": "/full",
+          "success": true,
+          "stdout_sha256": "2c37b1cb6ad0e091ba77ac56f8a053c7104e0bdaa0e133ca9659d8c51c956ca7",
+          "bundle_sha256": "d259d4328534c1a630e8dbcb166c96f498254b05858bb6690490ae7904417fcd",
+          "resources": 7
+        },
+        {
+          "route": "/gaslight",
+          "success": true,
+          "stdout_sha256": "04fbfaa536ef04b7a5a0fc3008baecc2f66c22a4dcc4e5e36d9e07357f13b221",
+          "bundle_sha256": "83d0f34a73b9106c462ace89993ea7f70e6f5afad0392b6cfc48d6258c901deb",
+          "resources": 2
+        },
+        {
+          "route": "/stop-ult",
+          "success": true,
+          "stdout_sha256": "a52ff97fd3ca28d1b33c4c9d5c9d1b30b784ac5b077a67a59f92719a2cdb223b",
+          "bundle_sha256": "15e704aaadc71666741a733a7d0227277eafce6b76fb5785fc5d724a036ee323",
+          "resources": 2
+        },
+        {
+          "route": "/debate",
+          "success": true,
+          "stdout_sha256": "3fad7a8e6122a0dfdf7514f807cbe9dfc81ef5b1b6625252237d263b2a5bfdfa",
+          "bundle_sha256": "8956cf1bb125b481b643a2deca72d53d7f46a3b57820e260530b6db3e15a567a",
+          "resources": 2
+        },
+        {
+          "route": "/debate /deep",
+          "success": true,
+          "stdout_sha256": "63d3f6d4aa54fb82d27e8e1fd99724c186dfceecb32ebbc05bd559ba9dcc0a7f",
+          "bundle_sha256": "86a52dc062d7170f9b1f7de4fe8f45a2c46b064588e973a1201f09789db457c0",
+          "resources": 2
+        },
+        {
+          "route": "/adversarial /debate",
+          "success": true,
+          "stdout_sha256": "66f51b4374447fe934ba00922a93ee08ea4d21ebeae710a4a3201992fd00cd76",
+          "bundle_sha256": "4b3138600317fd2173680992659cb7de7707710ab869efee93eb12fa2e5acf58",
+          "resources": 2
+        },
+        {
+          "route": "/adversarial /debate /deep",
+          "success": true,
+          "stdout_sha256": "08ce65db485c36e3c7a1bb9a1e3655c8a5c66848d0d181bdbd1030bfaf340cbe",
+          "bundle_sha256": "b036db9d1a3799e02d12b5146901d7014e5ae97361d49ead8501cc9b14b2a8d1",
+          "resources": 2
+        },
+        {
+          "route": "help",
+          "success": true,
+          "stdout_sha256": "31f65b8e11b10faf84512f4b3528793fc9f20eef5eb998ac66cd231709db204c",
+          "bundle_sha256": "dc55090f2649dc29fa1b6359af1fb6e339f640a96942af8bfcde8ca00c2abeab",
+          "resources": 2
+        },
+        {
+          "route": "examples",
+          "success": true,
+          "stdout_sha256": "dc7cd40fc468a89da46926b1048f8cef1d904e570b5296f0420a7146c20b6ac0",
+          "bundle_sha256": "46f6d4f0711c656dbb4f6a494de015215b65ff5b7c5506aa9f55e564d843695a",
+          "resources": 2
+        },
+        {
+          "route": "details",
+          "success": true,
+          "stdout_sha256": "9ef8c2a4a235ffbd00264eccbe2d25cc15ec4ef79112790d09cbf433981f0ec5",
+          "bundle_sha256": "46b155527a0a67691f6a74071d7d78709a860b2e94c0c502c26f5b60b97a82be",
+          "resources": 12
+        },
+        {
+          "route": "model-guidance",
+          "success": true,
+          "stdout_sha256": "2856805e53ffb219b1d8e2127e4b614d147797f3a90d09c89f1a45dc76dbb4de",
+          "bundle_sha256": "d0873328c47750b5035f30be62b571c57303b6e9b51b6e33dd11ab6c97f9fd55",
+          "resources": 2
+        }
+      ],
+      "unknown_route_fails_closed": true
+    },
+    {
+      "helper": ".codex/skills/engos-optimization-auto-research/resources/scripts/load_module.py",
+      "sha256": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+      "route_results": [
+        {
+          "route": "all",
+          "success": true,
+          "stdout_sha256": "fea6479d0019293347fde67015c913cf9ca390fa9435c6c2a8843bed09a91477",
+          "bundle_sha256": "c4e7ae7c1151f437e3defe3c60d36afc371240e47059b80bf842c939f631e2e3",
+          "resources": 7
+        },
+        {
+          "route": "experiment",
+          "success": true,
+          "stdout_sha256": "171c7046bd62022e9c254561cc64d7472ab9a7f6af2aae1da00b42864012358a",
+          "bundle_sha256": "8937556551fbcf508d8cd11a21c89a5c0ab7583d123529d242b7e16117015c2b",
+          "resources": 5
+        },
+        {
+          "route": "templates",
+          "success": true,
+          "stdout_sha256": "36f1d7940d07830ac16d0e95853d21bd4f4ef5ac3e9a2306d08c087e2e00ec63",
+          "bundle_sha256": "19f97f94003e9a49457acb7a79874f1bbbb2126c55d6dca595022f9f1d895253",
+          "resources": 5
+        },
+        {
+          "route": "bootstrap",
+          "success": true,
+          "stdout_sha256": "f82fd39266c189d042f8519e88126d085c8b55017219cb1c95bcbe3b02a95d2b",
+          "bundle_sha256": "4115c986002e8e8d6290872f7a06cd7bab322f8d0470cb8f5e9161a7eee33388",
+          "resources": 6
+        },
+        {
+          "route": "promotion",
+          "success": true,
+          "stdout_sha256": "eff9f558f092ca56f1cedcd7357caee52d91bc4a1d5376b80dd041e5d6bf0155",
+          "bundle_sha256": "6de04491f52021818f30c0460eaf5f11a8bb8f8ffbb283a6cea42cd659b8645d",
+          "resources": 2
+        }
+      ],
+      "unknown_route_fails_closed": true
+    },
+    {
+      "helper": ".codex/agents/resources/engos-optimization-auto-research/scripts/load_module.py",
+      "sha256": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+      "route_results": [
+        {
+          "route": "all",
+          "success": true,
+          "stdout_sha256": "fea6479d0019293347fde67015c913cf9ca390fa9435c6c2a8843bed09a91477",
+          "bundle_sha256": "c4e7ae7c1151f437e3defe3c60d36afc371240e47059b80bf842c939f631e2e3",
+          "resources": 7
+        },
+        {
+          "route": "experiment",
+          "success": true,
+          "stdout_sha256": "171c7046bd62022e9c254561cc64d7472ab9a7f6af2aae1da00b42864012358a",
+          "bundle_sha256": "8937556551fbcf508d8cd11a21c89a5c0ab7583d123529d242b7e16117015c2b",
+          "resources": 5
+        },
+        {
+          "route": "templates",
+          "success": true,
+          "stdout_sha256": "36f1d7940d07830ac16d0e95853d21bd4f4ef5ac3e9a2306d08c087e2e00ec63",
+          "bundle_sha256": "19f97f94003e9a49457acb7a79874f1bbbb2126c55d6dca595022f9f1d895253",
+          "resources": 5
+        },
+        {
+          "route": "bootstrap",
+          "success": true,
+          "stdout_sha256": "f82fd39266c189d042f8519e88126d085c8b55017219cb1c95bcbe3b02a95d2b",
+          "bundle_sha256": "4115c986002e8e8d6290872f7a06cd7bab322f8d0470cb8f5e9161a7eee33388",
+          "resources": 6
+        },
+        {
+          "route": "promotion",
+          "success": true,
+          "stdout_sha256": "eff9f558f092ca56f1cedcd7357caee52d91bc4a1d5376b80dd041e5d6bf0155",
+          "bundle_sha256": "6de04491f52021818f30c0460eaf5f11a8bb8f8ffbb283a6cea42cd659b8645d",
+          "resources": 2
+        }
+      ],
+      "unknown_route_fails_closed": true
+    },
+    {
+      "helper": ".claude/skills/engos-meta-supercharge/resources/scripts/load_module.py",
+      "sha256": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+      "route_results": [
+        {
+          "route": "all",
+          "success": true,
+          "stdout_sha256": "1e7ac86d97a6d5d17a0c418bff8519230fa20e68add1759def19eed8f0c93081",
+          "bundle_sha256": "d8d24995c3850e817a179b19e0f84bb3a612725293d9525950038e9811b9660d",
+          "resources": 15
+        },
+        {
+          "route": "/ult",
+          "success": true,
+          "stdout_sha256": "03dbd09b862d46fc675279a8db6bfd554a760f9ea8dfd8357d9d2bf0f04d6b72",
+          "bundle_sha256": "791152fa6f311a3d9a82a0f1a7fb46166b82eaba069ddaaa83151b25cd28d16f",
+          "resources": 2
+        },
+        {
+          "route": "/catchup",
+          "success": true,
+          "stdout_sha256": "2a7b6f6c99fba33b09dbeb9677b2dbd30d076fbf709a5b9cfceffc23824e427a",
+          "bundle_sha256": "e5129c59f933efd6e189446437fd62b96b031a5858589b9330cfc9077b4a001d",
+          "resources": 2
+        },
+        {
+          "route": "/basis",
+          "success": true,
+          "stdout_sha256": "641bdb0449d4c4877c157d15f405505bf8e3abd3cd42985a3133fa75de85c5db",
+          "bundle_sha256": "b690f5fb3930f4f69652a6eaf8eca9d30f4339f2a25e57539c0ffb78b50e30ea",
+          "resources": 2
+        },
+        {
+          "route": "/simple",
+          "success": true,
+          "stdout_sha256": "667ea0135d38aece88020ddd42fe6e759d16a762d2cfb21f4269bb63a096a2ed",
+          "bundle_sha256": "40d7c9584fa3e7b9c10f66285a76d2c4c1656e0ad7e32bbd54f08a5bcf16b15a",
+          "resources": 2
+        },
+        {
+          "route": "/invert",
+          "success": true,
+          "stdout_sha256": "f2cb803e7c53edc2ca4e3bd245ae69ee7174ef86daca3d9cdf0dc46d347a9b8d",
+          "bundle_sha256": "ee147f720bcb8208f04fe79eb6e112fbd0f918b6f20c104c1613385d984c85b0",
+          "resources": 2
+        },
+        {
+          "route": "/adversarial",
+          "success": true,
+          "stdout_sha256": "d9a18a1d883b080545fce23b7d6694ced3bb101472c9cb9d74b1e70b28a93a3b",
+          "bundle_sha256": "c3f30d7f21780d99ee0666e2aa1c4f8fb4a9a7ba57065ea1d9699673402f47b9",
+          "resources": 2
+        },
+        {
+          "route": "/contract",
+          "success": true,
+          "stdout_sha256": "a1a7dbc924ad540c5671f63961a5f79b79202f17a007aa22c803b4951ded5d0d",
+          "bundle_sha256": "3e08e17935ed9fcf7688ba62696e0768306f477bb02d2ea77df374a7825d4995",
+          "resources": 2
+        },
+        {
+          "route": "/grade",
+          "success": true,
+          "stdout_sha256": "c6a7830349dd1236ee4c5b80edb613b3fbabcaf7f99e8f999ad19e3570bac709",
+          "bundle_sha256": "cc455648f3db75347d131cfae2ca86a434458112a522a7dbcaeda5a6ae43b21f",
+          "resources": 2
+        },
+        {
+          "route": "/full",
+          "success": true,
+          "stdout_sha256": "2c37b1cb6ad0e091ba77ac56f8a053c7104e0bdaa0e133ca9659d8c51c956ca7",
+          "bundle_sha256": "d259d4328534c1a630e8dbcb166c96f498254b05858bb6690490ae7904417fcd",
+          "resources": 7
+        },
+        {
+          "route": "/gaslight",
+          "success": true,
+          "stdout_sha256": "04fbfaa536ef04b7a5a0fc3008baecc2f66c22a4dcc4e5e36d9e07357f13b221",
+          "bundle_sha256": "83d0f34a73b9106c462ace89993ea7f70e6f5afad0392b6cfc48d6258c901deb",
+          "resources": 2
+        },
+        {
+          "route": "/stop-ult",
+          "success": true,
+          "stdout_sha256": "a52ff97fd3ca28d1b33c4c9d5c9d1b30b784ac5b077a67a59f92719a2cdb223b",
+          "bundle_sha256": "15e704aaadc71666741a733a7d0227277eafce6b76fb5785fc5d724a036ee323",
+          "resources": 2
+        },
+        {
+          "route": "/debate",
+          "success": true,
+          "stdout_sha256": "3fad7a8e6122a0dfdf7514f807cbe9dfc81ef5b1b6625252237d263b2a5bfdfa",
+          "bundle_sha256": "8956cf1bb125b481b643a2deca72d53d7f46a3b57820e260530b6db3e15a567a",
+          "resources": 2
+        },
+        {
+          "route": "/debate /deep",
+          "success": true,
+          "stdout_sha256": "63d3f6d4aa54fb82d27e8e1fd99724c186dfceecb32ebbc05bd559ba9dcc0a7f",
+          "bundle_sha256": "86a52dc062d7170f9b1f7de4fe8f45a2c46b064588e973a1201f09789db457c0",
+          "resources": 2
+        },
+        {
+          "route": "/adversarial /debate",
+          "success": true,
+          "stdout_sha256": "66f51b4374447fe934ba00922a93ee08ea4d21ebeae710a4a3201992fd00cd76",
+          "bundle_sha256": "4b3138600317fd2173680992659cb7de7707710ab869efee93eb12fa2e5acf58",
+          "resources": 2
+        },
+        {
+          "route": "/adversarial /debate /deep",
+          "success": true,
+          "stdout_sha256": "08ce65db485c36e3c7a1bb9a1e3655c8a5c66848d0d181bdbd1030bfaf340cbe",
+          "bundle_sha256": "b036db9d1a3799e02d12b5146901d7014e5ae97361d49ead8501cc9b14b2a8d1",
+          "resources": 2
+        },
+        {
+          "route": "help",
+          "success": true,
+          "stdout_sha256": "31f65b8e11b10faf84512f4b3528793fc9f20eef5eb998ac66cd231709db204c",
+          "bundle_sha256": "dc55090f2649dc29fa1b6359af1fb6e339f640a96942af8bfcde8ca00c2abeab",
+          "resources": 2
+        },
+        {
+          "route": "examples",
+          "success": true,
+          "stdout_sha256": "dc7cd40fc468a89da46926b1048f8cef1d904e570b5296f0420a7146c20b6ac0",
+          "bundle_sha256": "46f6d4f0711c656dbb4f6a494de015215b65ff5b7c5506aa9f55e564d843695a",
+          "resources": 2
+        },
+        {
+          "route": "details",
+          "success": true,
+          "stdout_sha256": "9ef8c2a4a235ffbd00264eccbe2d25cc15ec4ef79112790d09cbf433981f0ec5",
+          "bundle_sha256": "46b155527a0a67691f6a74071d7d78709a860b2e94c0c502c26f5b60b97a82be",
+          "resources": 12
+        },
+        {
+          "route": "model-guidance",
+          "success": true,
+          "stdout_sha256": "2856805e53ffb219b1d8e2127e4b614d147797f3a90d09c89f1a45dc76dbb4de",
+          "bundle_sha256": "d0873328c47750b5035f30be62b571c57303b6e9b51b6e33dd11ab6c97f9fd55",
+          "resources": 2
+        }
+      ],
+      "unknown_route_fails_closed": true
+    },
+    {
+      "helper": ".claude/agents/resources/engos-meta-supercharge/scripts/load_module.py",
+      "sha256": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+      "route_results": [
+        {
+          "route": "all",
+          "success": true,
+          "stdout_sha256": "1e7ac86d97a6d5d17a0c418bff8519230fa20e68add1759def19eed8f0c93081",
+          "bundle_sha256": "d8d24995c3850e817a179b19e0f84bb3a612725293d9525950038e9811b9660d",
+          "resources": 15
+        },
+        {
+          "route": "/ult",
+          "success": true,
+          "stdout_sha256": "03dbd09b862d46fc675279a8db6bfd554a760f9ea8dfd8357d9d2bf0f04d6b72",
+          "bundle_sha256": "791152fa6f311a3d9a82a0f1a7fb46166b82eaba069ddaaa83151b25cd28d16f",
+          "resources": 2
+        },
+        {
+          "route": "/catchup",
+          "success": true,
+          "stdout_sha256": "2a7b6f6c99fba33b09dbeb9677b2dbd30d076fbf709a5b9cfceffc23824e427a",
+          "bundle_sha256": "e5129c59f933efd6e189446437fd62b96b031a5858589b9330cfc9077b4a001d",
+          "resources": 2
+        },
+        {
+          "route": "/basis",
+          "success": true,
+          "stdout_sha256": "641bdb0449d4c4877c157d15f405505bf8e3abd3cd42985a3133fa75de85c5db",
+          "bundle_sha256": "b690f5fb3930f4f69652a6eaf8eca9d30f4339f2a25e57539c0ffb78b50e30ea",
+          "resources": 2
+        },
+        {
+          "route": "/simple",
+          "success": true,
+          "stdout_sha256": "667ea0135d38aece88020ddd42fe6e759d16a762d2cfb21f4269bb63a096a2ed",
+          "bundle_sha256": "40d7c9584fa3e7b9c10f66285a76d2c4c1656e0ad7e32bbd54f08a5bcf16b15a",
+          "resources": 2
+        },
+        {
+          "route": "/invert",
+          "success": true,
+          "stdout_sha256": "f2cb803e7c53edc2ca4e3bd245ae69ee7174ef86daca3d9cdf0dc46d347a9b8d",
+          "bundle_sha256": "ee147f720bcb8208f04fe79eb6e112fbd0f918b6f20c104c1613385d984c85b0",
+          "resources": 2
+        },
+        {
+          "route": "/adversarial",
+          "success": true,
+          "stdout_sha256": "d9a18a1d883b080545fce23b7d6694ced3bb101472c9cb9d74b1e70b28a93a3b",
+          "bundle_sha256": "c3f30d7f21780d99ee0666e2aa1c4f8fb4a9a7ba57065ea1d9699673402f47b9",
+          "resources": 2
+        },
+        {
+          "route": "/contract",
+          "success": true,
+          "stdout_sha256": "a1a7dbc924ad540c5671f63961a5f79b79202f17a007aa22c803b4951ded5d0d",
+          "bundle_sha256": "3e08e17935ed9fcf7688ba62696e0768306f477bb02d2ea77df374a7825d4995",
+          "resources": 2
+        },
+        {
+          "route": "/grade",
+          "success": true,
+          "stdout_sha256": "c6a7830349dd1236ee4c5b80edb613b3fbabcaf7f99e8f999ad19e3570bac709",
+          "bundle_sha256": "cc455648f3db75347d131cfae2ca86a434458112a522a7dbcaeda5a6ae43b21f",
+          "resources": 2
+        },
+        {
+          "route": "/full",
+          "success": true,
+          "stdout_sha256": "2c37b1cb6ad0e091ba77ac56f8a053c7104e0bdaa0e133ca9659d8c51c956ca7",
+          "bundle_sha256": "d259d4328534c1a630e8dbcb166c96f498254b05858bb6690490ae7904417fcd",
+          "resources": 7
+        },
+        {
+          "route": "/gaslight",
+          "success": true,
+          "stdout_sha256": "04fbfaa536ef04b7a5a0fc3008baecc2f66c22a4dcc4e5e36d9e07357f13b221",
+          "bundle_sha256": "83d0f34a73b9106c462ace89993ea7f70e6f5afad0392b6cfc48d6258c901deb",
+          "resources": 2
+        },
+        {
+          "route": "/stop-ult",
+          "success": true,
+          "stdout_sha256": "a52ff97fd3ca28d1b33c4c9d5c9d1b30b784ac5b077a67a59f92719a2cdb223b",
+          "bundle_sha256": "15e704aaadc71666741a733a7d0227277eafce6b76fb5785fc5d724a036ee323",
+          "resources": 2
+        },
+        {
+          "route": "/debate",
+          "success": true,
+          "stdout_sha256": "3fad7a8e6122a0dfdf7514f807cbe9dfc81ef5b1b6625252237d263b2a5bfdfa",
+          "bundle_sha256": "8956cf1bb125b481b643a2deca72d53d7f46a3b57820e260530b6db3e15a567a",
+          "resources": 2
+        },
+        {
+          "route": "/debate /deep",
+          "success": true,
+          "stdout_sha256": "63d3f6d4aa54fb82d27e8e1fd99724c186dfceecb32ebbc05bd559ba9dcc0a7f",
+          "bundle_sha256": "86a52dc062d7170f9b1f7de4fe8f45a2c46b064588e973a1201f09789db457c0",
+          "resources": 2
+        },
+        {
+          "route": "/adversarial /debate",
+          "success": true,
+          "stdout_sha256": "66f51b4374447fe934ba00922a93ee08ea4d21ebeae710a4a3201992fd00cd76",
+          "bundle_sha256": "4b3138600317fd2173680992659cb7de7707710ab869efee93eb12fa2e5acf58",
+          "resources": 2
+        },
+        {
+          "route": "/adversarial /debate /deep",
+          "success": true,
+          "stdout_sha256": "08ce65db485c36e3c7a1bb9a1e3655c8a5c66848d0d181bdbd1030bfaf340cbe",
+          "bundle_sha256": "b036db9d1a3799e02d12b5146901d7014e5ae97361d49ead8501cc9b14b2a8d1",
+          "resources": 2
+        },
+        {
+          "route": "help",
+          "success": true,
+          "stdout_sha256": "31f65b8e11b10faf84512f4b3528793fc9f20eef5eb998ac66cd231709db204c",
+          "bundle_sha256": "dc55090f2649dc29fa1b6359af1fb6e339f640a96942af8bfcde8ca00c2abeab",
+          "resources": 2
+        },
+        {
+          "route": "examples",
+          "success": true,
+          "stdout_sha256": "dc7cd40fc468a89da46926b1048f8cef1d904e570b5296f0420a7146c20b6ac0",
+          "bundle_sha256": "46f6d4f0711c656dbb4f6a494de015215b65ff5b7c5506aa9f55e564d843695a",
+          "resources": 2
+        },
+        {
+          "route": "details",
+          "success": true,
+          "stdout_sha256": "9ef8c2a4a235ffbd00264eccbe2d25cc15ec4ef79112790d09cbf433981f0ec5",
+          "bundle_sha256": "46b155527a0a67691f6a74071d7d78709a860b2e94c0c502c26f5b60b97a82be",
+          "resources": 12
+        },
+        {
+          "route": "model-guidance",
+          "success": true,
+          "stdout_sha256": "2856805e53ffb219b1d8e2127e4b614d147797f3a90d09c89f1a45dc76dbb4de",
+          "bundle_sha256": "d0873328c47750b5035f30be62b571c57303b6e9b51b6e33dd11ab6c97f9fd55",
+          "resources": 2
+        }
+      ],
+      "unknown_route_fails_closed": true
+    },
+    {
+      "helper": ".claude/skills/engos-optimization-auto-research/resources/scripts/load_module.py",
+      "sha256": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+      "route_results": [
+        {
+          "route": "all",
+          "success": true,
+          "stdout_sha256": "fea6479d0019293347fde67015c913cf9ca390fa9435c6c2a8843bed09a91477",
+          "bundle_sha256": "c4e7ae7c1151f437e3defe3c60d36afc371240e47059b80bf842c939f631e2e3",
+          "resources": 7
+        },
+        {
+          "route": "experiment",
+          "success": true,
+          "stdout_sha256": "171c7046bd62022e9c254561cc64d7472ab9a7f6af2aae1da00b42864012358a",
+          "bundle_sha256": "8937556551fbcf508d8cd11a21c89a5c0ab7583d123529d242b7e16117015c2b",
+          "resources": 5
+        },
+        {
+          "route": "templates",
+          "success": true,
+          "stdout_sha256": "36f1d7940d07830ac16d0e95853d21bd4f4ef5ac3e9a2306d08c087e2e00ec63",
+          "bundle_sha256": "19f97f94003e9a49457acb7a79874f1bbbb2126c55d6dca595022f9f1d895253",
+          "resources": 5
+        },
+        {
+          "route": "bootstrap",
+          "success": true,
+          "stdout_sha256": "f82fd39266c189d042f8519e88126d085c8b55017219cb1c95bcbe3b02a95d2b",
+          "bundle_sha256": "4115c986002e8e8d6290872f7a06cd7bab322f8d0470cb8f5e9161a7eee33388",
+          "resources": 6
+        },
+        {
+          "route": "promotion",
+          "success": true,
+          "stdout_sha256": "eff9f558f092ca56f1cedcd7357caee52d91bc4a1d5376b80dd041e5d6bf0155",
+          "bundle_sha256": "6de04491f52021818f30c0460eaf5f11a8bb8f8ffbb283a6cea42cd659b8645d",
+          "resources": 2
+        }
+      ],
+      "unknown_route_fails_closed": true
+    },
+    {
+      "helper": ".claude/agents/resources/engos-optimization-auto-research/scripts/load_module.py",
+      "sha256": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+      "route_results": [
+        {
+          "route": "all",
+          "success": true,
+          "stdout_sha256": "fea6479d0019293347fde67015c913cf9ca390fa9435c6c2a8843bed09a91477",
+          "bundle_sha256": "c4e7ae7c1151f437e3defe3c60d36afc371240e47059b80bf842c939f631e2e3",
+          "resources": 7
+        },
+        {
+          "route": "experiment",
+          "success": true,
+          "stdout_sha256": "171c7046bd62022e9c254561cc64d7472ab9a7f6af2aae1da00b42864012358a",
+          "bundle_sha256": "8937556551fbcf508d8cd11a21c89a5c0ab7583d123529d242b7e16117015c2b",
+          "resources": 5
+        },
+        {
+          "route": "templates",
+          "success": true,
+          "stdout_sha256": "36f1d7940d07830ac16d0e95853d21bd4f4ef5ac3e9a2306d08c087e2e00ec63",
+          "bundle_sha256": "19f97f94003e9a49457acb7a79874f1bbbb2126c55d6dca595022f9f1d895253",
+          "resources": 5
+        },
+        {
+          "route": "bootstrap",
+          "success": true,
+          "stdout_sha256": "f82fd39266c189d042f8519e88126d085c8b55017219cb1c95bcbe3b02a95d2b",
+          "bundle_sha256": "4115c986002e8e8d6290872f7a06cd7bab322f8d0470cb8f5e9161a7eee33388",
+          "resources": 6
+        },
+        {
+          "route": "promotion",
+          "success": true,
+          "stdout_sha256": "eff9f558f092ca56f1cedcd7357caee52d91bc4a1d5376b80dd041e5d6bf0155",
+          "bundle_sha256": "6de04491f52021818f30c0460eaf5f11a8bb8f8ffbb283a6cea42cd659b8645d",
+          "resources": 2
+        }
+      ],
+      "unknown_route_fails_closed": true
+    },
+    {
+      "helper": ".gemini/skills/engos-meta-supercharge/resources/scripts/load_module.py",
+      "sha256": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+      "route_results": [
+        {
+          "route": "all",
+          "success": true,
+          "stdout_sha256": "1e7ac86d97a6d5d17a0c418bff8519230fa20e68add1759def19eed8f0c93081",
+          "bundle_sha256": "d8d24995c3850e817a179b19e0f84bb3a612725293d9525950038e9811b9660d",
+          "resources": 15
+        },
+        {
+          "route": "/ult",
+          "success": true,
+          "stdout_sha256": "03dbd09b862d46fc675279a8db6bfd554a760f9ea8dfd8357d9d2bf0f04d6b72",
+          "bundle_sha256": "791152fa6f311a3d9a82a0f1a7fb46166b82eaba069ddaaa83151b25cd28d16f",
+          "resources": 2
+        },
+        {
+          "route": "/catchup",
+          "success": true,
+          "stdout_sha256": "2a7b6f6c99fba33b09dbeb9677b2dbd30d076fbf709a5b9cfceffc23824e427a",
+          "bundle_sha256": "e5129c59f933efd6e189446437fd62b96b031a5858589b9330cfc9077b4a001d",
+          "resources": 2
+        },
+        {
+          "route": "/basis",
+          "success": true,
+          "stdout_sha256": "641bdb0449d4c4877c157d15f405505bf8e3abd3cd42985a3133fa75de85c5db",
+          "bundle_sha256": "b690f5fb3930f4f69652a6eaf8eca9d30f4339f2a25e57539c0ffb78b50e30ea",
+          "resources": 2
+        },
+        {
+          "route": "/simple",
+          "success": true,
+          "stdout_sha256": "667ea0135d38aece88020ddd42fe6e759d16a762d2cfb21f4269bb63a096a2ed",
+          "bundle_sha256": "40d7c9584fa3e7b9c10f66285a76d2c4c1656e0ad7e32bbd54f08a5bcf16b15a",
+          "resources": 2
+        },
+        {
+          "route": "/invert",
+          "success": true,
+          "stdout_sha256": "f2cb803e7c53edc2ca4e3bd245ae69ee7174ef86daca3d9cdf0dc46d347a9b8d",
+          "bundle_sha256": "ee147f720bcb8208f04fe79eb6e112fbd0f918b6f20c104c1613385d984c85b0",
+          "resources": 2
+        },
+        {
+          "route": "/adversarial",
+          "success": true,
+          "stdout_sha256": "d9a18a1d883b080545fce23b7d6694ced3bb101472c9cb9d74b1e70b28a93a3b",
+          "bundle_sha256": "c3f30d7f21780d99ee0666e2aa1c4f8fb4a9a7ba57065ea1d9699673402f47b9",
+          "resources": 2
+        },
+        {
+          "route": "/contract",
+          "success": true,
+          "stdout_sha256": "a1a7dbc924ad540c5671f63961a5f79b79202f17a007aa22c803b4951ded5d0d",
+          "bundle_sha256": "3e08e17935ed9fcf7688ba62696e0768306f477bb02d2ea77df374a7825d4995",
+          "resources": 2
+        },
+        {
+          "route": "/grade",
+          "success": true,
+          "stdout_sha256": "c6a7830349dd1236ee4c5b80edb613b3fbabcaf7f99e8f999ad19e3570bac709",
+          "bundle_sha256": "cc455648f3db75347d131cfae2ca86a434458112a522a7dbcaeda5a6ae43b21f",
+          "resources": 2
+        },
+        {
+          "route": "/full",
+          "success": true,
+          "stdout_sha256": "2c37b1cb6ad0e091ba77ac56f8a053c7104e0bdaa0e133ca9659d8c51c956ca7",
+          "bundle_sha256": "d259d4328534c1a630e8dbcb166c96f498254b05858bb6690490ae7904417fcd",
+          "resources": 7
+        },
+        {
+          "route": "/gaslight",
+          "success": true,
+          "stdout_sha256": "04fbfaa536ef04b7a5a0fc3008baecc2f66c22a4dcc4e5e36d9e07357f13b221",
+          "bundle_sha256": "83d0f34a73b9106c462ace89993ea7f70e6f5afad0392b6cfc48d6258c901deb",
+          "resources": 2
+        },
+        {
+          "route": "/stop-ult",
+          "success": true,
+          "stdout_sha256": "a52ff97fd3ca28d1b33c4c9d5c9d1b30b784ac5b077a67a59f92719a2cdb223b",
+          "bundle_sha256": "15e704aaadc71666741a733a7d0227277eafce6b76fb5785fc5d724a036ee323",
+          "resources": 2
+        },
+        {
+          "route": "/debate",
+          "success": true,
+          "stdout_sha256": "3fad7a8e6122a0dfdf7514f807cbe9dfc81ef5b1b6625252237d263b2a5bfdfa",
+          "bundle_sha256": "8956cf1bb125b481b643a2deca72d53d7f46a3b57820e260530b6db3e15a567a",
+          "resources": 2
+        },
+        {
+          "route": "/debate /deep",
+          "success": true,
+          "stdout_sha256": "63d3f6d4aa54fb82d27e8e1fd99724c186dfceecb32ebbc05bd559ba9dcc0a7f",
+          "bundle_sha256": "86a52dc062d7170f9b1f7de4fe8f45a2c46b064588e973a1201f09789db457c0",
+          "resources": 2
+        },
+        {
+          "route": "/adversarial /debate",
+          "success": true,
+          "stdout_sha256": "66f51b4374447fe934ba00922a93ee08ea4d21ebeae710a4a3201992fd00cd76",
+          "bundle_sha256": "4b3138600317fd2173680992659cb7de7707710ab869efee93eb12fa2e5acf58",
+          "resources": 2
+        },
+        {
+          "route": "/adversarial /debate /deep",
+          "success": true,
+          "stdout_sha256": "08ce65db485c36e3c7a1bb9a1e3655c8a5c66848d0d181bdbd1030bfaf340cbe",
+          "bundle_sha256": "b036db9d1a3799e02d12b5146901d7014e5ae97361d49ead8501cc9b14b2a8d1",
+          "resources": 2
+        },
+        {
+          "route": "help",
+          "success": true,
+          "stdout_sha256": "31f65b8e11b10faf84512f4b3528793fc9f20eef5eb998ac66cd231709db204c",
+          "bundle_sha256": "dc55090f2649dc29fa1b6359af1fb6e339f640a96942af8bfcde8ca00c2abeab",
+          "resources": 2
+        },
+        {
+          "route": "examples",
+          "success": true,
+          "stdout_sha256": "dc7cd40fc468a89da46926b1048f8cef1d904e570b5296f0420a7146c20b6ac0",
+          "bundle_sha256": "46f6d4f0711c656dbb4f6a494de015215b65ff5b7c5506aa9f55e564d843695a",
+          "resources": 2
+        },
+        {
+          "route": "details",
+          "success": true,
+          "stdout_sha256": "9ef8c2a4a235ffbd00264eccbe2d25cc15ec4ef79112790d09cbf433981f0ec5",
+          "bundle_sha256": "46b155527a0a67691f6a74071d7d78709a860b2e94c0c502c26f5b60b97a82be",
+          "resources": 12
+        },
+        {
+          "route": "model-guidance",
+          "success": true,
+          "stdout_sha256": "2856805e53ffb219b1d8e2127e4b614d147797f3a90d09c89f1a45dc76dbb4de",
+          "bundle_sha256": "d0873328c47750b5035f30be62b571c57303b6e9b51b6e33dd11ab6c97f9fd55",
+          "resources": 2
+        }
+      ],
+      "unknown_route_fails_closed": true
+    },
+    {
+      "helper": ".gemini/agents/resources/engos-meta-supercharge/scripts/load_module.py",
+      "sha256": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+      "route_results": [
+        {
+          "route": "all",
+          "success": true,
+          "stdout_sha256": "1e7ac86d97a6d5d17a0c418bff8519230fa20e68add1759def19eed8f0c93081",
+          "bundle_sha256": "d8d24995c3850e817a179b19e0f84bb3a612725293d9525950038e9811b9660d",
+          "resources": 15
+        },
+        {
+          "route": "/ult",
+          "success": true,
+          "stdout_sha256": "03dbd09b862d46fc675279a8db6bfd554a760f9ea8dfd8357d9d2bf0f04d6b72",
+          "bundle_sha256": "791152fa6f311a3d9a82a0f1a7fb46166b82eaba069ddaaa83151b25cd28d16f",
+          "resources": 2
+        },
+        {
+          "route": "/catchup",
+          "success": true,
+          "stdout_sha256": "2a7b6f6c99fba33b09dbeb9677b2dbd30d076fbf709a5b9cfceffc23824e427a",
+          "bundle_sha256": "e5129c59f933efd6e189446437fd62b96b031a5858589b9330cfc9077b4a001d",
+          "resources": 2
+        },
+        {
+          "route": "/basis",
+          "success": true,
+          "stdout_sha256": "641bdb0449d4c4877c157d15f405505bf8e3abd3cd42985a3133fa75de85c5db",
+          "bundle_sha256": "b690f5fb3930f4f69652a6eaf8eca9d30f4339f2a25e57539c0ffb78b50e30ea",
+          "resources": 2
+        },
+        {
+          "route": "/simple",
+          "success": true,
+          "stdout_sha256": "667ea0135d38aece88020ddd42fe6e759d16a762d2cfb21f4269bb63a096a2ed",
+          "bundle_sha256": "40d7c9584fa3e7b9c10f66285a76d2c4c1656e0ad7e32bbd54f08a5bcf16b15a",
+          "resources": 2
+        },
+        {
+          "route": "/invert",
+          "success": true,
+          "stdout_sha256": "f2cb803e7c53edc2ca4e3bd245ae69ee7174ef86daca3d9cdf0dc46d347a9b8d",
+          "bundle_sha256": "ee147f720bcb8208f04fe79eb6e112fbd0f918b6f20c104c1613385d984c85b0",
+          "resources": 2
+        },
+        {
+          "route": "/adversarial",
+          "success": true,
+          "stdout_sha256": "d9a18a1d883b080545fce23b7d6694ced3bb101472c9cb9d74b1e70b28a93a3b",
+          "bundle_sha256": "c3f30d7f21780d99ee0666e2aa1c4f8fb4a9a7ba57065ea1d9699673402f47b9",
+          "resources": 2
+        },
+        {
+          "route": "/contract",
+          "success": true,
+          "stdout_sha256": "a1a7dbc924ad540c5671f63961a5f79b79202f17a007aa22c803b4951ded5d0d",
+          "bundle_sha256": "3e08e17935ed9fcf7688ba62696e0768306f477bb02d2ea77df374a7825d4995",
+          "resources": 2
+        },
+        {
+          "route": "/grade",
+          "success": true,
+          "stdout_sha256": "c6a7830349dd1236ee4c5b80edb613b3fbabcaf7f99e8f999ad19e3570bac709",
+          "bundle_sha256": "cc455648f3db75347d131cfae2ca86a434458112a522a7dbcaeda5a6ae43b21f",
+          "resources": 2
+        },
+        {
+          "route": "/full",
+          "success": true,
+          "stdout_sha256": "2c37b1cb6ad0e091ba77ac56f8a053c7104e0bdaa0e133ca9659d8c51c956ca7",
+          "bundle_sha256": "d259d4328534c1a630e8dbcb166c96f498254b05858bb6690490ae7904417fcd",
+          "resources": 7
+        },
+        {
+          "route": "/gaslight",
+          "success": true,
+          "stdout_sha256": "04fbfaa536ef04b7a5a0fc3008baecc2f66c22a4dcc4e5e36d9e07357f13b221",
+          "bundle_sha256": "83d0f34a73b9106c462ace89993ea7f70e6f5afad0392b6cfc48d6258c901deb",
+          "resources": 2
+        },
+        {
+          "route": "/stop-ult",
+          "success": true,
+          "stdout_sha256": "a52ff97fd3ca28d1b33c4c9d5c9d1b30b784ac5b077a67a59f92719a2cdb223b",
+          "bundle_sha256": "15e704aaadc71666741a733a7d0227277eafce6b76fb5785fc5d724a036ee323",
+          "resources": 2
+        },
+        {
+          "route": "/debate",
+          "success": true,
+          "stdout_sha256": "3fad7a8e6122a0dfdf7514f807cbe9dfc81ef5b1b6625252237d263b2a5bfdfa",
+          "bundle_sha256": "8956cf1bb125b481b643a2deca72d53d7f46a3b57820e260530b6db3e15a567a",
+          "resources": 2
+        },
+        {
+          "route": "/debate /deep",
+          "success": true,
+          "stdout_sha256": "63d3f6d4aa54fb82d27e8e1fd99724c186dfceecb32ebbc05bd559ba9dcc0a7f",
+          "bundle_sha256": "86a52dc062d7170f9b1f7de4fe8f45a2c46b064588e973a1201f09789db457c0",
+          "resources": 2
+        },
+        {
+          "route": "/adversarial /debate",
+          "success": true,
+          "stdout_sha256": "66f51b4374447fe934ba00922a93ee08ea4d21ebeae710a4a3201992fd00cd76",
+          "bundle_sha256": "4b3138600317fd2173680992659cb7de7707710ab869efee93eb12fa2e5acf58",
+          "resources": 2
+        },
+        {
+          "route": "/adversarial /debate /deep",
+          "success": true,
+          "stdout_sha256": "08ce65db485c36e3c7a1bb9a1e3655c8a5c66848d0d181bdbd1030bfaf340cbe",
+          "bundle_sha256": "b036db9d1a3799e02d12b5146901d7014e5ae97361d49ead8501cc9b14b2a8d1",
+          "resources": 2
+        },
+        {
+          "route": "help",
+          "success": true,
+          "stdout_sha256": "31f65b8e11b10faf84512f4b3528793fc9f20eef5eb998ac66cd231709db204c",
+          "bundle_sha256": "dc55090f2649dc29fa1b6359af1fb6e339f640a96942af8bfcde8ca00c2abeab",
+          "resources": 2
+        },
+        {
+          "route": "examples",
+          "success": true,
+          "stdout_sha256": "dc7cd40fc468a89da46926b1048f8cef1d904e570b5296f0420a7146c20b6ac0",
+          "bundle_sha256": "46f6d4f0711c656dbb4f6a494de015215b65ff5b7c5506aa9f55e564d843695a",
+          "resources": 2
+        },
+        {
+          "route": "details",
+          "success": true,
+          "stdout_sha256": "9ef8c2a4a235ffbd00264eccbe2d25cc15ec4ef79112790d09cbf433981f0ec5",
+          "bundle_sha256": "46b155527a0a67691f6a74071d7d78709a860b2e94c0c502c26f5b60b97a82be",
+          "resources": 12
+        },
+        {
+          "route": "model-guidance",
+          "success": true,
+          "stdout_sha256": "2856805e53ffb219b1d8e2127e4b614d147797f3a90d09c89f1a45dc76dbb4de",
+          "bundle_sha256": "d0873328c47750b5035f30be62b571c57303b6e9b51b6e33dd11ab6c97f9fd55",
+          "resources": 2
+        }
+      ],
+      "unknown_route_fails_closed": true
+    },
+    {
+      "helper": ".gemini/skills/engos-optimization-auto-research/resources/scripts/load_module.py",
+      "sha256": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+      "route_results": [
+        {
+          "route": "all",
+          "success": true,
+          "stdout_sha256": "fea6479d0019293347fde67015c913cf9ca390fa9435c6c2a8843bed09a91477",
+          "bundle_sha256": "c4e7ae7c1151f437e3defe3c60d36afc371240e47059b80bf842c939f631e2e3",
+          "resources": 7
+        },
+        {
+          "route": "experiment",
+          "success": true,
+          "stdout_sha256": "171c7046bd62022e9c254561cc64d7472ab9a7f6af2aae1da00b42864012358a",
+          "bundle_sha256": "8937556551fbcf508d8cd11a21c89a5c0ab7583d123529d242b7e16117015c2b",
+          "resources": 5
+        },
+        {
+          "route": "templates",
+          "success": true,
+          "stdout_sha256": "36f1d7940d07830ac16d0e95853d21bd4f4ef5ac3e9a2306d08c087e2e00ec63",
+          "bundle_sha256": "19f97f94003e9a49457acb7a79874f1bbbb2126c55d6dca595022f9f1d895253",
+          "resources": 5
+        },
+        {
+          "route": "bootstrap",
+          "success": true,
+          "stdout_sha256": "f82fd39266c189d042f8519e88126d085c8b55017219cb1c95bcbe3b02a95d2b",
+          "bundle_sha256": "4115c986002e8e8d6290872f7a06cd7bab322f8d0470cb8f5e9161a7eee33388",
+          "resources": 6
+        },
+        {
+          "route": "promotion",
+          "success": true,
+          "stdout_sha256": "eff9f558f092ca56f1cedcd7357caee52d91bc4a1d5376b80dd041e5d6bf0155",
+          "bundle_sha256": "6de04491f52021818f30c0460eaf5f11a8bb8f8ffbb283a6cea42cd659b8645d",
+          "resources": 2
+        }
+      ],
+      "unknown_route_fails_closed": true
+    },
+    {
+      "helper": ".gemini/agents/resources/engos-optimization-auto-research/scripts/load_module.py",
+      "sha256": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+      "route_results": [
+        {
+          "route": "all",
+          "success": true,
+          "stdout_sha256": "fea6479d0019293347fde67015c913cf9ca390fa9435c6c2a8843bed09a91477",
+          "bundle_sha256": "c4e7ae7c1151f437e3defe3c60d36afc371240e47059b80bf842c939f631e2e3",
+          "resources": 7
+        },
+        {
+          "route": "experiment",
+          "success": true,
+          "stdout_sha256": "171c7046bd62022e9c254561cc64d7472ab9a7f6af2aae1da00b42864012358a",
+          "bundle_sha256": "8937556551fbcf508d8cd11a21c89a5c0ab7583d123529d242b7e16117015c2b",
+          "resources": 5
+        },
+        {
+          "route": "templates",
+          "success": true,
+          "stdout_sha256": "36f1d7940d07830ac16d0e95853d21bd4f4ef5ac3e9a2306d08c087e2e00ec63",
+          "bundle_sha256": "19f97f94003e9a49457acb7a79874f1bbbb2126c55d6dca595022f9f1d895253",
+          "resources": 5
+        },
+        {
+          "route": "bootstrap",
+          "success": true,
+          "stdout_sha256": "f82fd39266c189d042f8519e88126d085c8b55017219cb1c95bcbe3b02a95d2b",
+          "bundle_sha256": "4115c986002e8e8d6290872f7a06cd7bab322f8d0470cb8f5e9161a7eee33388",
+          "resources": 6
+        },
+        {
+          "route": "promotion",
+          "success": true,
+          "stdout_sha256": "eff9f558f092ca56f1cedcd7357caee52d91bc4a1d5376b80dd041e5d6bf0155",
+          "bundle_sha256": "6de04491f52021818f30c0460eaf5f11a8bb8f8ffbb283a6cea42cd659b8645d",
+          "resources": 2
+        }
+      ],
+      "unknown_route_fails_closed": true
+    },
+    {
+      "helper": ".kiro/skills/engos-meta-supercharge/resources/scripts/load_module.py",
+      "sha256": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+      "route_results": [
+        {
+          "route": "all",
+          "success": true,
+          "stdout_sha256": "1e7ac86d97a6d5d17a0c418bff8519230fa20e68add1759def19eed8f0c93081",
+          "bundle_sha256": "d8d24995c3850e817a179b19e0f84bb3a612725293d9525950038e9811b9660d",
+          "resources": 15
+        },
+        {
+          "route": "/ult",
+          "success": true,
+          "stdout_sha256": "03dbd09b862d46fc675279a8db6bfd554a760f9ea8dfd8357d9d2bf0f04d6b72",
+          "bundle_sha256": "791152fa6f311a3d9a82a0f1a7fb46166b82eaba069ddaaa83151b25cd28d16f",
+          "resources": 2
+        },
+        {
+          "route": "/catchup",
+          "success": true,
+          "stdout_sha256": "2a7b6f6c99fba33b09dbeb9677b2dbd30d076fbf709a5b9cfceffc23824e427a",
+          "bundle_sha256": "e5129c59f933efd6e189446437fd62b96b031a5858589b9330cfc9077b4a001d",
+          "resources": 2
+        },
+        {
+          "route": "/basis",
+          "success": true,
+          "stdout_sha256": "641bdb0449d4c4877c157d15f405505bf8e3abd3cd42985a3133fa75de85c5db",
+          "bundle_sha256": "b690f5fb3930f4f69652a6eaf8eca9d30f4339f2a25e57539c0ffb78b50e30ea",
+          "resources": 2
+        },
+        {
+          "route": "/simple",
+          "success": true,
+          "stdout_sha256": "667ea0135d38aece88020ddd42fe6e759d16a762d2cfb21f4269bb63a096a2ed",
+          "bundle_sha256": "40d7c9584fa3e7b9c10f66285a76d2c4c1656e0ad7e32bbd54f08a5bcf16b15a",
+          "resources": 2
+        },
+        {
+          "route": "/invert",
+          "success": true,
+          "stdout_sha256": "f2cb803e7c53edc2ca4e3bd245ae69ee7174ef86daca3d9cdf0dc46d347a9b8d",
+          "bundle_sha256": "ee147f720bcb8208f04fe79eb6e112fbd0f918b6f20c104c1613385d984c85b0",
+          "resources": 2
+        },
+        {
+          "route": "/adversarial",
+          "success": true,
+          "stdout_sha256": "d9a18a1d883b080545fce23b7d6694ced3bb101472c9cb9d74b1e70b28a93a3b",
+          "bundle_sha256": "c3f30d7f21780d99ee0666e2aa1c4f8fb4a9a7ba57065ea1d9699673402f47b9",
+          "resources": 2
+        },
+        {
+          "route": "/contract",
+          "success": true,
+          "stdout_sha256": "a1a7dbc924ad540c5671f63961a5f79b79202f17a007aa22c803b4951ded5d0d",
+          "bundle_sha256": "3e08e17935ed9fcf7688ba62696e0768306f477bb02d2ea77df374a7825d4995",
+          "resources": 2
+        },
+        {
+          "route": "/grade",
+          "success": true,
+          "stdout_sha256": "c6a7830349dd1236ee4c5b80edb613b3fbabcaf7f99e8f999ad19e3570bac709",
+          "bundle_sha256": "cc455648f3db75347d131cfae2ca86a434458112a522a7dbcaeda5a6ae43b21f",
+          "resources": 2
+        },
+        {
+          "route": "/full",
+          "success": true,
+          "stdout_sha256": "2c37b1cb6ad0e091ba77ac56f8a053c7104e0bdaa0e133ca9659d8c51c956ca7",
+          "bundle_sha256": "d259d4328534c1a630e8dbcb166c96f498254b05858bb6690490ae7904417fcd",
+          "resources": 7
+        },
+        {
+          "route": "/gaslight",
+          "success": true,
+          "stdout_sha256": "04fbfaa536ef04b7a5a0fc3008baecc2f66c22a4dcc4e5e36d9e07357f13b221",
+          "bundle_sha256": "83d0f34a73b9106c462ace89993ea7f70e6f5afad0392b6cfc48d6258c901deb",
+          "resources": 2
+        },
+        {
+          "route": "/stop-ult",
+          "success": true,
+          "stdout_sha256": "a52ff97fd3ca28d1b33c4c9d5c9d1b30b784ac5b077a67a59f92719a2cdb223b",
+          "bundle_sha256": "15e704aaadc71666741a733a7d0227277eafce6b76fb5785fc5d724a036ee323",
+          "resources": 2
+        },
+        {
+          "route": "/debate",
+          "success": true,
+          "stdout_sha256": "3fad7a8e6122a0dfdf7514f807cbe9dfc81ef5b1b6625252237d263b2a5bfdfa",
+          "bundle_sha256": "8956cf1bb125b481b643a2deca72d53d7f46a3b57820e260530b6db3e15a567a",
+          "resources": 2
+        },
+        {
+          "route": "/debate /deep",
+          "success": true,
+          "stdout_sha256": "63d3f6d4aa54fb82d27e8e1fd99724c186dfceecb32ebbc05bd559ba9dcc0a7f",
+          "bundle_sha256": "86a52dc062d7170f9b1f7de4fe8f45a2c46b064588e973a1201f09789db457c0",
+          "resources": 2
+        },
+        {
+          "route": "/adversarial /debate",
+          "success": true,
+          "stdout_sha256": "66f51b4374447fe934ba00922a93ee08ea4d21ebeae710a4a3201992fd00cd76",
+          "bundle_sha256": "4b3138600317fd2173680992659cb7de7707710ab869efee93eb12fa2e5acf58",
+          "resources": 2
+        },
+        {
+          "route": "/adversarial /debate /deep",
+          "success": true,
+          "stdout_sha256": "08ce65db485c36e3c7a1bb9a1e3655c8a5c66848d0d181bdbd1030bfaf340cbe",
+          "bundle_sha256": "b036db9d1a3799e02d12b5146901d7014e5ae97361d49ead8501cc9b14b2a8d1",
+          "resources": 2
+        },
+        {
+          "route": "help",
+          "success": true,
+          "stdout_sha256": "31f65b8e11b10faf84512f4b3528793fc9f20eef5eb998ac66cd231709db204c",
+          "bundle_sha256": "dc55090f2649dc29fa1b6359af1fb6e339f640a96942af8bfcde8ca00c2abeab",
+          "resources": 2
+        },
+        {
+          "route": "examples",
+          "success": true,
+          "stdout_sha256": "dc7cd40fc468a89da46926b1048f8cef1d904e570b5296f0420a7146c20b6ac0",
+          "bundle_sha256": "46f6d4f0711c656dbb4f6a494de015215b65ff5b7c5506aa9f55e564d843695a",
+          "resources": 2
+        },
+        {
+          "route": "details",
+          "success": true,
+          "stdout_sha256": "9ef8c2a4a235ffbd00264eccbe2d25cc15ec4ef79112790d09cbf433981f0ec5",
+          "bundle_sha256": "46b155527a0a67691f6a74071d7d78709a860b2e94c0c502c26f5b60b97a82be",
+          "resources": 12
+        },
+        {
+          "route": "model-guidance",
+          "success": true,
+          "stdout_sha256": "2856805e53ffb219b1d8e2127e4b614d147797f3a90d09c89f1a45dc76dbb4de",
+          "bundle_sha256": "d0873328c47750b5035f30be62b571c57303b6e9b51b6e33dd11ab6c97f9fd55",
+          "resources": 2
+        }
+      ],
+      "unknown_route_fails_closed": true
+    },
+    {
+      "helper": ".kiro/agents/resources/engos-meta-supercharge/scripts/load_module.py",
+      "sha256": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+      "route_results": [
+        {
+          "route": "all",
+          "success": true,
+          "stdout_sha256": "1e7ac86d97a6d5d17a0c418bff8519230fa20e68add1759def19eed8f0c93081",
+          "bundle_sha256": "d8d24995c3850e817a179b19e0f84bb3a612725293d9525950038e9811b9660d",
+          "resources": 15
+        },
+        {
+          "route": "/ult",
+          "success": true,
+          "stdout_sha256": "03dbd09b862d46fc675279a8db6bfd554a760f9ea8dfd8357d9d2bf0f04d6b72",
+          "bundle_sha256": "791152fa6f311a3d9a82a0f1a7fb46166b82eaba069ddaaa83151b25cd28d16f",
+          "resources": 2
+        },
+        {
+          "route": "/catchup",
+          "success": true,
+          "stdout_sha256": "2a7b6f6c99fba33b09dbeb9677b2dbd30d076fbf709a5b9cfceffc23824e427a",
+          "bundle_sha256": "e5129c59f933efd6e189446437fd62b96b031a5858589b9330cfc9077b4a001d",
+          "resources": 2
+        },
+        {
+          "route": "/basis",
+          "success": true,
+          "stdout_sha256": "641bdb0449d4c4877c157d15f405505bf8e3abd3cd42985a3133fa75de85c5db",
+          "bundle_sha256": "b690f5fb3930f4f69652a6eaf8eca9d30f4339f2a25e57539c0ffb78b50e30ea",
+          "resources": 2
+        },
+        {
+          "route": "/simple",
+          "success": true,
+          "stdout_sha256": "667ea0135d38aece88020ddd42fe6e759d16a762d2cfb21f4269bb63a096a2ed",
+          "bundle_sha256": "40d7c9584fa3e7b9c10f66285a76d2c4c1656e0ad7e32bbd54f08a5bcf16b15a",
+          "resources": 2
+        },
+        {
+          "route": "/invert",
+          "success": true,
+          "stdout_sha256": "f2cb803e7c53edc2ca4e3bd245ae69ee7174ef86daca3d9cdf0dc46d347a9b8d",
+          "bundle_sha256": "ee147f720bcb8208f04fe79eb6e112fbd0f918b6f20c104c1613385d984c85b0",
+          "resources": 2
+        },
+        {
+          "route": "/adversarial",
+          "success": true,
+          "stdout_sha256": "d9a18a1d883b080545fce23b7d6694ced3bb101472c9cb9d74b1e70b28a93a3b",
+          "bundle_sha256": "c3f30d7f21780d99ee0666e2aa1c4f8fb4a9a7ba57065ea1d9699673402f47b9",
+          "resources": 2
+        },
+        {
+          "route": "/contract",
+          "success": true,
+          "stdout_sha256": "a1a7dbc924ad540c5671f63961a5f79b79202f17a007aa22c803b4951ded5d0d",
+          "bundle_sha256": "3e08e17935ed9fcf7688ba62696e0768306f477bb02d2ea77df374a7825d4995",
+          "resources": 2
+        },
+        {
+          "route": "/grade",
+          "success": true,
+          "stdout_sha256": "c6a7830349dd1236ee4c5b80edb613b3fbabcaf7f99e8f999ad19e3570bac709",
+          "bundle_sha256": "cc455648f3db75347d131cfae2ca86a434458112a522a7dbcaeda5a6ae43b21f",
+          "resources": 2
+        },
+        {
+          "route": "/full",
+          "success": true,
+          "stdout_sha256": "2c37b1cb6ad0e091ba77ac56f8a053c7104e0bdaa0e133ca9659d8c51c956ca7",
+          "bundle_sha256": "d259d4328534c1a630e8dbcb166c96f498254b05858bb6690490ae7904417fcd",
+          "resources": 7
+        },
+        {
+          "route": "/gaslight",
+          "success": true,
+          "stdout_sha256": "04fbfaa536ef04b7a5a0fc3008baecc2f66c22a4dcc4e5e36d9e07357f13b221",
+          "bundle_sha256": "83d0f34a73b9106c462ace89993ea7f70e6f5afad0392b6cfc48d6258c901deb",
+          "resources": 2
+        },
+        {
+          "route": "/stop-ult",
+          "success": true,
+          "stdout_sha256": "a52ff97fd3ca28d1b33c4c9d5c9d1b30b784ac5b077a67a59f92719a2cdb223b",
+          "bundle_sha256": "15e704aaadc71666741a733a7d0227277eafce6b76fb5785fc5d724a036ee323",
+          "resources": 2
+        },
+        {
+          "route": "/debate",
+          "success": true,
+          "stdout_sha256": "3fad7a8e6122a0dfdf7514f807cbe9dfc81ef5b1b6625252237d263b2a5bfdfa",
+          "bundle_sha256": "8956cf1bb125b481b643a2deca72d53d7f46a3b57820e260530b6db3e15a567a",
+          "resources": 2
+        },
+        {
+          "route": "/debate /deep",
+          "success": true,
+          "stdout_sha256": "63d3f6d4aa54fb82d27e8e1fd99724c186dfceecb32ebbc05bd559ba9dcc0a7f",
+          "bundle_sha256": "86a52dc062d7170f9b1f7de4fe8f45a2c46b064588e973a1201f09789db457c0",
+          "resources": 2
+        },
+        {
+          "route": "/adversarial /debate",
+          "success": true,
+          "stdout_sha256": "66f51b4374447fe934ba00922a93ee08ea4d21ebeae710a4a3201992fd00cd76",
+          "bundle_sha256": "4b3138600317fd2173680992659cb7de7707710ab869efee93eb12fa2e5acf58",
+          "resources": 2
+        },
+        {
+          "route": "/adversarial /debate /deep",
+          "success": true,
+          "stdout_sha256": "08ce65db485c36e3c7a1bb9a1e3655c8a5c66848d0d181bdbd1030bfaf340cbe",
+          "bundle_sha256": "b036db9d1a3799e02d12b5146901d7014e5ae97361d49ead8501cc9b14b2a8d1",
+          "resources": 2
+        },
+        {
+          "route": "help",
+          "success": true,
+          "stdout_sha256": "31f65b8e11b10faf84512f4b3528793fc9f20eef5eb998ac66cd231709db204c",
+          "bundle_sha256": "dc55090f2649dc29fa1b6359af1fb6e339f640a96942af8bfcde8ca00c2abeab",
+          "resources": 2
+        },
+        {
+          "route": "examples",
+          "success": true,
+          "stdout_sha256": "dc7cd40fc468a89da46926b1048f8cef1d904e570b5296f0420a7146c20b6ac0",
+          "bundle_sha256": "46f6d4f0711c656dbb4f6a494de015215b65ff5b7c5506aa9f55e564d843695a",
+          "resources": 2
+        },
+        {
+          "route": "details",
+          "success": true,
+          "stdout_sha256": "9ef8c2a4a235ffbd00264eccbe2d25cc15ec4ef79112790d09cbf433981f0ec5",
+          "bundle_sha256": "46b155527a0a67691f6a74071d7d78709a860b2e94c0c502c26f5b60b97a82be",
+          "resources": 12
+        },
+        {
+          "route": "model-guidance",
+          "success": true,
+          "stdout_sha256": "2856805e53ffb219b1d8e2127e4b614d147797f3a90d09c89f1a45dc76dbb4de",
+          "bundle_sha256": "d0873328c47750b5035f30be62b571c57303b6e9b51b6e33dd11ab6c97f9fd55",
+          "resources": 2
+        }
+      ],
+      "unknown_route_fails_closed": true
+    },
+    {
+      "helper": ".kiro/skills/engos-optimization-auto-research/resources/scripts/load_module.py",
+      "sha256": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+      "route_results": [
+        {
+          "route": "all",
+          "success": true,
+          "stdout_sha256": "fea6479d0019293347fde67015c913cf9ca390fa9435c6c2a8843bed09a91477",
+          "bundle_sha256": "c4e7ae7c1151f437e3defe3c60d36afc371240e47059b80bf842c939f631e2e3",
+          "resources": 7
+        },
+        {
+          "route": "experiment",
+          "success": true,
+          "stdout_sha256": "171c7046bd62022e9c254561cc64d7472ab9a7f6af2aae1da00b42864012358a",
+          "bundle_sha256": "8937556551fbcf508d8cd11a21c89a5c0ab7583d123529d242b7e16117015c2b",
+          "resources": 5
+        },
+        {
+          "route": "templates",
+          "success": true,
+          "stdout_sha256": "36f1d7940d07830ac16d0e95853d21bd4f4ef5ac3e9a2306d08c087e2e00ec63",
+          "bundle_sha256": "19f97f94003e9a49457acb7a79874f1bbbb2126c55d6dca595022f9f1d895253",
+          "resources": 5
+        },
+        {
+          "route": "bootstrap",
+          "success": true,
+          "stdout_sha256": "f82fd39266c189d042f8519e88126d085c8b55017219cb1c95bcbe3b02a95d2b",
+          "bundle_sha256": "4115c986002e8e8d6290872f7a06cd7bab322f8d0470cb8f5e9161a7eee33388",
+          "resources": 6
+        },
+        {
+          "route": "promotion",
+          "success": true,
+          "stdout_sha256": "eff9f558f092ca56f1cedcd7357caee52d91bc4a1d5376b80dd041e5d6bf0155",
+          "bundle_sha256": "6de04491f52021818f30c0460eaf5f11a8bb8f8ffbb283a6cea42cd659b8645d",
+          "resources": 2
+        }
+      ],
+      "unknown_route_fails_closed": true
+    },
+    {
+      "helper": ".kiro/agents/resources/engos-optimization-auto-research/scripts/load_module.py",
+      "sha256": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+      "route_results": [
+        {
+          "route": "all",
+          "success": true,
+          "stdout_sha256": "fea6479d0019293347fde67015c913cf9ca390fa9435c6c2a8843bed09a91477",
+          "bundle_sha256": "c4e7ae7c1151f437e3defe3c60d36afc371240e47059b80bf842c939f631e2e3",
+          "resources": 7
+        },
+        {
+          "route": "experiment",
+          "success": true,
+          "stdout_sha256": "171c7046bd62022e9c254561cc64d7472ab9a7f6af2aae1da00b42864012358a",
+          "bundle_sha256": "8937556551fbcf508d8cd11a21c89a5c0ab7583d123529d242b7e16117015c2b",
+          "resources": 5
+        },
+        {
+          "route": "templates",
+          "success": true,
+          "stdout_sha256": "36f1d7940d07830ac16d0e95853d21bd4f4ef5ac3e9a2306d08c087e2e00ec63",
+          "bundle_sha256": "19f97f94003e9a49457acb7a79874f1bbbb2126c55d6dca595022f9f1d895253",
+          "resources": 5
+        },
+        {
+          "route": "bootstrap",
+          "success": true,
+          "stdout_sha256": "f82fd39266c189d042f8519e88126d085c8b55017219cb1c95bcbe3b02a95d2b",
+          "bundle_sha256": "4115c986002e8e8d6290872f7a06cd7bab322f8d0470cb8f5e9161a7eee33388",
+          "resources": 6
+        },
+        {
+          "route": "promotion",
+          "success": true,
+          "stdout_sha256": "eff9f558f092ca56f1cedcd7357caee52d91bc4a1d5376b80dd041e5d6bf0155",
+          "bundle_sha256": "6de04491f52021818f30c0460eaf5f11a8bb8f8ffbb283a6cea42cd659b8645d",
+          "resources": 2
+        }
+      ],
+      "unknown_route_fails_closed": true
+    },
+    {
+      "helper": ".grok/skills/engos-meta-supercharge/resources/scripts/load_module.py",
+      "sha256": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+      "route_results": [
+        {
+          "route": "all",
+          "success": true,
+          "stdout_sha256": "1e7ac86d97a6d5d17a0c418bff8519230fa20e68add1759def19eed8f0c93081",
+          "bundle_sha256": "d8d24995c3850e817a179b19e0f84bb3a612725293d9525950038e9811b9660d",
+          "resources": 15
+        },
+        {
+          "route": "/ult",
+          "success": true,
+          "stdout_sha256": "03dbd09b862d46fc675279a8db6bfd554a760f9ea8dfd8357d9d2bf0f04d6b72",
+          "bundle_sha256": "791152fa6f311a3d9a82a0f1a7fb46166b82eaba069ddaaa83151b25cd28d16f",
+          "resources": 2
+        },
+        {
+          "route": "/catchup",
+          "success": true,
+          "stdout_sha256": "2a7b6f6c99fba33b09dbeb9677b2dbd30d076fbf709a5b9cfceffc23824e427a",
+          "bundle_sha256": "e5129c59f933efd6e189446437fd62b96b031a5858589b9330cfc9077b4a001d",
+          "resources": 2
+        },
+        {
+          "route": "/basis",
+          "success": true,
+          "stdout_sha256": "641bdb0449d4c4877c157d15f405505bf8e3abd3cd42985a3133fa75de85c5db",
+          "bundle_sha256": "b690f5fb3930f4f69652a6eaf8eca9d30f4339f2a25e57539c0ffb78b50e30ea",
+          "resources": 2
+        },
+        {
+          "route": "/simple",
+          "success": true,
+          "stdout_sha256": "667ea0135d38aece88020ddd42fe6e759d16a762d2cfb21f4269bb63a096a2ed",
+          "bundle_sha256": "40d7c9584fa3e7b9c10f66285a76d2c4c1656e0ad7e32bbd54f08a5bcf16b15a",
+          "resources": 2
+        },
+        {
+          "route": "/invert",
+          "success": true,
+          "stdout_sha256": "f2cb803e7c53edc2ca4e3bd245ae69ee7174ef86daca3d9cdf0dc46d347a9b8d",
+          "bundle_sha256": "ee147f720bcb8208f04fe79eb6e112fbd0f918b6f20c104c1613385d984c85b0",
+          "resources": 2
+        },
+        {
+          "route": "/adversarial",
+          "success": true,
+          "stdout_sha256": "d9a18a1d883b080545fce23b7d6694ced3bb101472c9cb9d74b1e70b28a93a3b",
+          "bundle_sha256": "c3f30d7f21780d99ee0666e2aa1c4f8fb4a9a7ba57065ea1d9699673402f47b9",
+          "resources": 2
+        },
+        {
+          "route": "/contract",
+          "success": true,
+          "stdout_sha256": "a1a7dbc924ad540c5671f63961a5f79b79202f17a007aa22c803b4951ded5d0d",
+          "bundle_sha256": "3e08e17935ed9fcf7688ba62696e0768306f477bb02d2ea77df374a7825d4995",
+          "resources": 2
+        },
+        {
+          "route": "/grade",
+          "success": true,
+          "stdout_sha256": "c6a7830349dd1236ee4c5b80edb613b3fbabcaf7f99e8f999ad19e3570bac709",
+          "bundle_sha256": "cc455648f3db75347d131cfae2ca86a434458112a522a7dbcaeda5a6ae43b21f",
+          "resources": 2
+        },
+        {
+          "route": "/full",
+          "success": true,
+          "stdout_sha256": "2c37b1cb6ad0e091ba77ac56f8a053c7104e0bdaa0e133ca9659d8c51c956ca7",
+          "bundle_sha256": "d259d4328534c1a630e8dbcb166c96f498254b05858bb6690490ae7904417fcd",
+          "resources": 7
+        },
+        {
+          "route": "/gaslight",
+          "success": true,
+          "stdout_sha256": "04fbfaa536ef04b7a5a0fc3008baecc2f66c22a4dcc4e5e36d9e07357f13b221",
+          "bundle_sha256": "83d0f34a73b9106c462ace89993ea7f70e6f5afad0392b6cfc48d6258c901deb",
+          "resources": 2
+        },
+        {
+          "route": "/stop-ult",
+          "success": true,
+          "stdout_sha256": "a52ff97fd3ca28d1b33c4c9d5c9d1b30b784ac5b077a67a59f92719a2cdb223b",
+          "bundle_sha256": "15e704aaadc71666741a733a7d0227277eafce6b76fb5785fc5d724a036ee323",
+          "resources": 2
+        },
+        {
+          "route": "/debate",
+          "success": true,
+          "stdout_sha256": "3fad7a8e6122a0dfdf7514f807cbe9dfc81ef5b1b6625252237d263b2a5bfdfa",
+          "bundle_sha256": "8956cf1bb125b481b643a2deca72d53d7f46a3b57820e260530b6db3e15a567a",
+          "resources": 2
+        },
+        {
+          "route": "/debate /deep",
+          "success": true,
+          "stdout_sha256": "63d3f6d4aa54fb82d27e8e1fd99724c186dfceecb32ebbc05bd559ba9dcc0a7f",
+          "bundle_sha256": "86a52dc062d7170f9b1f7de4fe8f45a2c46b064588e973a1201f09789db457c0",
+          "resources": 2
+        },
+        {
+          "route": "/adversarial /debate",
+          "success": true,
+          "stdout_sha256": "66f51b4374447fe934ba00922a93ee08ea4d21ebeae710a4a3201992fd00cd76",
+          "bundle_sha256": "4b3138600317fd2173680992659cb7de7707710ab869efee93eb12fa2e5acf58",
+          "resources": 2
+        },
+        {
+          "route": "/adversarial /debate /deep",
+          "success": true,
+          "stdout_sha256": "08ce65db485c36e3c7a1bb9a1e3655c8a5c66848d0d181bdbd1030bfaf340cbe",
+          "bundle_sha256": "b036db9d1a3799e02d12b5146901d7014e5ae97361d49ead8501cc9b14b2a8d1",
+          "resources": 2
+        },
+        {
+          "route": "help",
+          "success": true,
+          "stdout_sha256": "31f65b8e11b10faf84512f4b3528793fc9f20eef5eb998ac66cd231709db204c",
+          "bundle_sha256": "dc55090f2649dc29fa1b6359af1fb6e339f640a96942af8bfcde8ca00c2abeab",
+          "resources": 2
+        },
+        {
+          "route": "examples",
+          "success": true,
+          "stdout_sha256": "dc7cd40fc468a89da46926b1048f8cef1d904e570b5296f0420a7146c20b6ac0",
+          "bundle_sha256": "46f6d4f0711c656dbb4f6a494de015215b65ff5b7c5506aa9f55e564d843695a",
+          "resources": 2
+        },
+        {
+          "route": "details",
+          "success": true,
+          "stdout_sha256": "9ef8c2a4a235ffbd00264eccbe2d25cc15ec4ef79112790d09cbf433981f0ec5",
+          "bundle_sha256": "46b155527a0a67691f6a74071d7d78709a860b2e94c0c502c26f5b60b97a82be",
+          "resources": 12
+        },
+        {
+          "route": "model-guidance",
+          "success": true,
+          "stdout_sha256": "2856805e53ffb219b1d8e2127e4b614d147797f3a90d09c89f1a45dc76dbb4de",
+          "bundle_sha256": "d0873328c47750b5035f30be62b571c57303b6e9b51b6e33dd11ab6c97f9fd55",
+          "resources": 2
+        }
+      ],
+      "unknown_route_fails_closed": true
+    },
+    {
+      "helper": ".grok/skills/engos-optimization-auto-research/resources/scripts/load_module.py",
+      "sha256": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+      "route_results": [
+        {
+          "route": "all",
+          "success": true,
+          "stdout_sha256": "fea6479d0019293347fde67015c913cf9ca390fa9435c6c2a8843bed09a91477",
+          "bundle_sha256": "c4e7ae7c1151f437e3defe3c60d36afc371240e47059b80bf842c939f631e2e3",
+          "resources": 7
+        },
+        {
+          "route": "experiment",
+          "success": true,
+          "stdout_sha256": "171c7046bd62022e9c254561cc64d7472ab9a7f6af2aae1da00b42864012358a",
+          "bundle_sha256": "8937556551fbcf508d8cd11a21c89a5c0ab7583d123529d242b7e16117015c2b",
+          "resources": 5
+        },
+        {
+          "route": "templates",
+          "success": true,
+          "stdout_sha256": "36f1d7940d07830ac16d0e95853d21bd4f4ef5ac3e9a2306d08c087e2e00ec63",
+          "bundle_sha256": "19f97f94003e9a49457acb7a79874f1bbbb2126c55d6dca595022f9f1d895253",
+          "resources": 5
+        },
+        {
+          "route": "bootstrap",
+          "success": true,
+          "stdout_sha256": "f82fd39266c189d042f8519e88126d085c8b55017219cb1c95bcbe3b02a95d2b",
+          "bundle_sha256": "4115c986002e8e8d6290872f7a06cd7bab322f8d0470cb8f5e9161a7eee33388",
+          "resources": 6
+        },
+        {
+          "route": "promotion",
+          "success": true,
+          "stdout_sha256": "eff9f558f092ca56f1cedcd7357caee52d91bc4a1d5376b80dd041e5d6bf0155",
+          "bundle_sha256": "6de04491f52021818f30c0460eaf5f11a8bb8f8ffbb283a6cea42cd659b8645d",
+          "resources": 2
+        }
+      ],
+      "unknown_route_fails_closed": true
+    }
+  ],
+  "route_runs": 225,
+  "failures": []
+}

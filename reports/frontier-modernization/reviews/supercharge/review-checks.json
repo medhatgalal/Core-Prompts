@@ -1,0 +1,152 @@
+{
+  "schema_version": "IndependentSuperchargeReviewChecks.v1",
+  "checks": {
+    "contract_json_exact_both_baselines": true,
+    "catchup_table_exact_current": true,
+    "catchup_validation_exact_current": true,
+    "gaslight_ids_and_names_exact": true,
+    "global_stop_absent": true,
+    "all_declared_routes_assemble": true,
+    "full_basis_opt_in": true,
+    "details_module_order_exact": true
+  },
+  "reviews": {
+    "current": {
+      "mapped_lines": 722,
+      "requirements": 88,
+      "validation_failures": []
+    },
+    "historical": {
+      "mapped_lines": 526,
+      "requirements": 69,
+      "validation_failures": []
+    }
+  },
+  "routes": {
+    "/ult": [
+      "references/shared-review.md",
+      "references/modules/ult.md"
+    ],
+    "/catchup": [
+      "references/shared-review.md",
+      "references/modules/catchup.md"
+    ],
+    "/basis": [
+      "references/shared-review.md",
+      "references/modules/basis.md"
+    ],
+    "/simple": [
+      "references/shared-review.md",
+      "references/modules/simple.md"
+    ],
+    "/invert": [
+      "references/shared-review.md",
+      "references/modules/invert.md"
+    ],
+    "/adversarial": [
+      "references/shared-review.md",
+      "references/modules/adversarial.md"
+    ],
+    "/contract": [
+      "references/shared-review.md",
+      "references/modules/contract.md"
+    ],
+    "/grade": [
+      "references/shared-review.md",
+      "references/modules/grade.md"
+    ],
+    "/full": [
+      "references/shared-review.md",
+      "references/modules/full.md",
+      "references/modules/simple.md",
+      "references/modules/invert.md",
+      "references/modules/adversarial.md",
+      "references/modules/contract.md",
+      "references/modules/grade.md"
+    ],
+    "/gaslight": [
+      "references/shared-review.md",
+      "references/modules/gaslight.md"
+    ],
+    "/stop-ult": [
+      "references/shared-review.md",
+      "references/modules/stop-ult.md"
+    ],
+    "/debate": [
+      "references/shared-review.md",
+      "references/modules/adversarial.md"
+    ],
+    "/debate /deep": [
+      "references/shared-review.md",
+      "references/modules/adversarial.md"
+    ],
+    "/adversarial /debate": [
+      "references/shared-review.md",
+      "references/modules/adversarial.md"
+    ],
+    "/adversarial /debate /deep": [
+      "references/shared-review.md",
+      "references/modules/adversarial.md"
+    ],
+    "help": [
+      "references/shared-review.md",
+      "references/help.md"
+    ],
+    "examples": [
+      "references/shared-review.md",
+      "references/help-examples.md"
+    ],
+    "details": [
+      "references/shared-review.md",
+      "references/modules/ult.md",
+      "references/modules/catchup.md",
+      "references/modules/basis.md",
+      "references/modules/simple.md",
+      "references/modules/invert.md",
+      "references/modules/adversarial.md",
+      "references/modules/contract.md",
+      "references/modules/grade.md",
+      "references/modules/full.md",
+      "references/modules/gaslight.md",
+      "references/modules/stop-ult.md"
+    ],
+    "model-guidance": [
+      "references/shared-review.md",
+      "references/model-guidance.md"
+    ]
+  },
+  "sizes": {
+    "current_baseline": {
+      "lines": 722,
+      "words": 5202,
+      "bytes": 36102,
+      "estimated_tokens_characters_div_4": 8990,
+      "sha256": "c2d39e85db9267a1ca0acd29394cf1e88255bc5e1f0d797ba42ac091a066aec2"
+    },
+    "historical_baseline": {
+      "lines": 526,
+      "words": 3342,
+      "bytes": 23983,
+      "estimated_tokens_characters_div_4": 5914,
+      "sha256": "488bc14a2fa4e3ce625adad07c98b2aa7a6af38d6ddbee64e182b2db82d9897a"
+    },
+    "candidate_entry": {
+      "lines": 292,
+      "words": 2713,
+      "bytes": 19723,
+      "estimated_tokens_characters_div_4": 4924,
+      "sha256": "4cf3de8aafce2a6ccfc7668e7c3aeb1dee1ed6f2394ecaddb48d6b957f0bec82"
+    },
+    "candidate_effective": {
+      "lines": 923,
+      "words": 9162,
+      "bytes": 67895,
+      "estimated_tokens_characters_div_4": 16938,
+      "sha256": "3cca08e07f6caf656915f8641810bf8d00ad05decc0e2dd359d0b877a57d3524"
+    }
+  },
+  "limits": [
+    "Static assembly and shape checks only; no model experiment or runtime behavioral promotion.",
+    "Provider source claims were not independently fact-checked by this semantic reviewer."
+  ]
+}

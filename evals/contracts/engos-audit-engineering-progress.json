@@ -2,11 +2,10 @@
   "schema_version": "GoalContract.v1",
   "slug": "engos-audit-engineering-progress",
   "target": "Fulfill the canonical intent of engos-audit-engineering-progress.",
-  "intended_outcome": "Preserve the canonical SSOT objective and required output.",
+  "intended_outcome": "Repository activity and velocity reporting with correct time windows, reproducible git evidence, and honest methodology caveats.",
   "change_class": "unknown",
   "non_goals": [],
   "protected_behaviors": [
-    "abf397c18bedff2e839f4debdeba4d40cb557e09716688c6e5c39a0a08446b4d",
     "217541507de29315cbaa6063f4010e2b5bb15184ddcaf4cd7fc54289f39ecfd6",
     "af97ae5b5f3628c1c812e7f2031acacd235eb3f1491598cd64298cde23977236",
     "d824b51e5281571aa826840b22778689935225e4b5cef46cd72aafee95e2c27c",
@@ -47,7 +46,7 @@
   "editable_behavior": [],
   "primary_outcome": {
     "metric": "skill_specific_task_success",
-    "definition": "Canonical task success with protected behavior preserved.",
+    "definition": "Repository activity and velocity reporting with correct time windows, reproducible git evidence, and honest methodology caveats.",
     "threshold": "human_review_required"
   },
   "secondary_outcomes": [],
@@ -76,11 +75,6 @@
   "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
   "rollback_trigger": "Any protected regression or stale bound evidence.",
   "source_clause_hashes": [
-    {
-      "sha256": "abf397c18bedff2e839f4debdeba4d40cb557e09716688c6e5c39a0a08446b4d",
-      "source": "ssot/engos-audit-engineering-progress.md",
-      "text": "description: \"Generate a Git-derived engineering progress dashboard for one repository or a configured fleet, including activity, churn, authors, and releases. Use for periodic engineering activity audits; do not use for Jira story points, feature completeness, code review, or code-quality approval.\""
-    },
     {
       "sha256": "217541507de29315cbaa6063f4010e2b5bb15184ddcaf4cd7fc54289f39ecfd6",
       "source": "ssot/engos-audit-engineering-progress.md",

@@ -1,0 +1,22 @@
+........................................................................ [ 88%]
+...F.....                                                                [100%]
+=================================== FAILURES ===================================
+______________ test_multi_mode_capabilities_have_descriptor_modes ______________
+
+    def test_multi_mode_capabilities_have_descriptor_modes() -> None:
+        for slug in ("engos-meta-supercharge", "engos-triage-my-inbox-chat-pulse", "engos-optimization-auto-research", "engos-operations-ic-assistant", "engos-meta-instruction-editor"):
+            descriptor = json.loads((ROOT / ".meta" / "capabilities" / f"{slug}.json").read_text(encoding="utf-8"))
+            assert descriptor["modes"], f"{slug} descriptor lost its declared mode index"
+            for mode in descriptor["modes"]:
+                assert len(mode["source_refs"]) == 1
+                source_ref = mode["source_refs"][0]
+                assert source_ref == f"ssot/{slug}.md" or source_ref.startswith(f"sources/capability-resources/{slug}/")
+                source_text = (ROOT / source_ref).read_text(encoding="utf-8")
+>               assert 1 <= mode["source_line"] <= len(source_text.splitlines())
+                            ^^^^^^^^^^^^^^^^^^^
+E               KeyError: 'source_line'
+
+tests/test_capability_modes.py:21: KeyError
+=========================== short test summary info ============================
+FAILED tests/test_capability_modes.py::test_multi_mode_capabilities_have_descriptor_modes
+1 failed, 80 passed in 1.80s

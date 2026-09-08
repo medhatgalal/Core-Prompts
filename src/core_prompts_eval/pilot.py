@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 from typing import Any
+from intent_pipeline.capability_resources import effective_capability_text
 
 
 def _load_json(path: Path) -> dict[str, Any]:
@@ -56,7 +57,8 @@ def validate_pilot_foundations(repo_root: Path) -> dict[str, Any]:
             experiment_id = str(experiment["id"])
             if experiment_id == "supercharge-module-preservation":
                 fixture = _load_json(fixture_path)
-                target = _resolve(repo_root, fixture["target"]).read_text(encoding="utf-8")
+                target_path = _resolve(repo_root, fixture["target"])
+                target = effective_capability_text(repo_root, target_path.stem, target_path.read_text(encoding="utf-8"))
                 for marker in fixture.get("required_markers", []):
                     if marker not in target:
                         errors.append(f"{experiment_id}: missing marker {marker!r}")

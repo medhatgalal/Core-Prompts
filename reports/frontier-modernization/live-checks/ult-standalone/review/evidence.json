@@ -1,0 +1,215 @@
+{
+  "schema": "BoundedIndependentAcceptanceReview.v1",
+  "reviewer_task": "/root/verify_live_skill_behaviors/ult_acceptance",
+  "CODEX_THREAD_ID": "01a08253-cae3-76a2-aa5e-8954db6dc3ff",
+  "runtime": {
+    "cwd": "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts",
+    "repository": "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts",
+    "branch": "AI/frontier-capability-modernization",
+    "head": "c9d6de07b4d1918970a5f70350cf50200a6a0ff4",
+    "python": "3.14.7",
+    "dirty_entries_observed": 560,
+    "dirty_status_sha256": "d3a24d85dde2ebd2b8978337bc69f277ff39e03519d90fe06a529a11712edb35"
+  },
+  "dispositions": {
+    "assembly": "PASS",
+    "positive_prompt": "PASS FOR FINALIZATION",
+    "draft_prompt": "PASS FOR FINALIZATION",
+    "runtime_execution": "not performed by reviewer"
+  },
+  "actual_tool_result_chunks": [
+    {
+      "chunk_id": "f6a94d",
+      "exit_code": 0,
+      "original_token_count": 9681
+    },
+    {
+      "chunk_id": "5f9735",
+      "exit_code": 0,
+      "original_token_count": 644
+    },
+    {
+      "chunk_id": "b2d266",
+      "exit_code": 0,
+      "original_token_count": 6575
+    },
+    {
+      "chunk_id": "e2e5d7",
+      "exit_code": 0,
+      "original_token_count": 22677
+    },
+    {
+      "chunk_id": "6589e1",
+      "exit_code": 0,
+      "original_token_count": 1339
+    },
+    {
+      "chunk_id": "912023",
+      "exit_code": 0,
+      "original_token_count": 5450
+    },
+    {
+      "chunk_id": "133889",
+      "exit_code": 0,
+      "original_token_count": 453
+    },
+    {
+      "chunk_id": "48b960",
+      "exit_code": 0,
+      "original_token_count": 842
+    }
+  ],
+  "resource_delivery": [
+    {
+      "route": "/ult",
+      "actual_tool_chunk": "6589e1",
+      "full_payload_delivered": true,
+      "header": "CapabilityResourceBundle.v1 route=/ult manifest_sha256=56fee7ec78e0bac117fb3f517e8577890cfa638c3ac3a758f236ec64ee3df91f sha256=791152fa6f311a3d9a82a0f1a7fb46166b82eaba069ddaaa83151b25cd28d16f assembled_not_proof_of_consumption"
+    },
+    {
+      "route": "/full",
+      "actual_tool_chunk": "912023",
+      "full_payload_delivered": true,
+      "header": "CapabilityResourceBundle.v1 route=/full manifest_sha256=56fee7ec78e0bac117fb3f517e8577890cfa638c3ac3a758f236ec64ee3df91f sha256=d259d4328534c1a630e8dbcb166c96f498254b05858bb6690490ae7904417fcd assembled_not_proof_of_consumption"
+    }
+  ],
+  "resources": [
+    {
+      "path": ".codex/skills/engos-meta-supercharge/resources/references/shared-review.md",
+      "sha256": "92fe588ebc996fa935204ced17e9761dd8927d7ee6906466988af0ee2285d791"
+    },
+    {
+      "path": ".codex/skills/engos-meta-supercharge/resources/references/modules/ult.md",
+      "sha256": "feefa5eeca27af194bf359ab795cae62dfdadc26701b0e6a83425c28f66e68d2"
+    },
+    {
+      "path": ".codex/skills/engos-meta-supercharge/resources/references/modules/full.md",
+      "sha256": "f97d60c8609bdbc1da6dc09b94b88b40d8ba6eb076d148f5ada6f850de41231c"
+    },
+    {
+      "path": ".codex/skills/engos-meta-supercharge/resources/references/modules/simple.md",
+      "sha256": "8ee70354b7b346145095eb1081732d93166ef79187e2b312a269f4a741e29770"
+    },
+    {
+      "path": ".codex/skills/engos-meta-supercharge/resources/references/modules/invert.md",
+      "sha256": "7750f226cc0da7f1237b23f3f13bc5e7212163e8dcaf94d92638e55a14015f40"
+    },
+    {
+      "path": ".codex/skills/engos-meta-supercharge/resources/references/modules/adversarial.md",
+      "sha256": "2948880659615f25dbcc3ac2d0a27977f20510932a97536b6b9ad24b86b56d49"
+    },
+    {
+      "path": ".codex/skills/engos-meta-supercharge/resources/references/modules/contract.md",
+      "sha256": "15f72081c0f36d7ccba4c58c1202e79d96aad9c4ff704b16f08f26c9a91234ea"
+    },
+    {
+      "path": ".codex/skills/engos-meta-supercharge/resources/references/modules/grade.md",
+      "sha256": "a605e4d384f5d9b16e459a96c7e10d7dec52e6496c3e650b7fdbbc32d94af86a"
+    }
+  ],
+  "inspected_files": [
+    {
+      "path": ".codex/skills/engos-meta-supercharge/SKILL.md",
+      "bytes": 19590,
+      "sha256": "3ecc726652ceae81c5e50bc48b4833bd9f22428c651786b91357a29622e09892"
+    },
+    {
+      "path": ".codex/skills/engos-meta-supercharge/resources/references/modules/ult.md",
+      "bytes": 2292,
+      "sha256": "feefa5eeca27af194bf359ab795cae62dfdadc26701b0e6a83425c28f66e68d2"
+    },
+    {
+      "path": ".codex/skills/engos-meta-supercharge/resources/references/modules/full.md",
+      "bytes": 1284,
+      "sha256": "f97d60c8609bdbc1da6dc09b94b88b40d8ba6eb076d148f5ada6f850de41231c"
+    },
+    {
+      "path": "reports/frontier-modernization/live-checks/full-output.md",
+      "bytes": 28632,
+      "sha256": "aa6700ef243fe7c53e205e5ddc20ca07f66b16b27f38af39718e855b01afb08a"
+    },
+    {
+      "path": "reports/frontier-modernization/live-checks/full/full-output-draft-v2.md",
+      "bytes": 18600,
+      "sha256": "b7730f9e14cb9ae80434e974da75f3eb7bb06e717131a9da28032eb83a364add"
+    },
+    {
+      "path": "reports/frontier-modernization/live-checks/full/final-prompt-draft.md",
+      "bytes": 827,
+      "sha256": "330ad7e574c56b320eaa13314e4db2b6d4c41b893d837e96efb1d4e6b0e1b3b6"
+    },
+    {
+      "path": "reports/frontier-modernization/live-checks/full/final-prompt.md",
+      "bytes": 827,
+      "sha256": "330ad7e574c56b320eaa13314e4db2b6d4c41b893d837e96efb1d4e6b0e1b3b6"
+    },
+    {
+      "path": "reports/frontier-modernization/live-checks/full/reviews/contract/pass-output.md",
+      "bytes": 10031,
+      "sha256": "34bd0ce27c01d0ca05789e8f34d76d4d7f8c94bc38840d340521cd6afe55e6b0"
+    },
+    {
+      "path": "reports/frontier-modernization/live-checks/full/reviews/contract/qa-evaluation.json",
+      "bytes": 2885,
+      "sha256": "733ddab55adabae647b7d7258491248a08ed5a50f488952826413c213311c27e"
+    },
+    {
+      "path": "reports/frontier-modernization/live-checks/ult-standalone/input.md",
+      "bytes": 998,
+      "sha256": "47ca3fe1534b21975673da595e6ad7d85575627d1bb3d787f42f38a903cd369e"
+    },
+    {
+      "path": "reports/frontier-modernization/live-checks/ult-standalone/positive-original.md",
+      "bytes": 80,
+      "sha256": "1c5627a7befde083bcfa4f1747864113cd7f340a35e5209e527485b51576f50d"
+    },
+    {
+      "path": "reports/frontier-modernization/live-checks/ult-standalone/positive-candidate.md",
+      "bytes": 593,
+      "sha256": "d3eb99bac3b2ec1745fccfa7b8bc7b33a01f860020543519919389759adf8726"
+    },
+    {
+      "path": "reports/frontier-modernization/live-checks/ult-standalone/draft-original.md",
+      "bytes": 85,
+      "sha256": "27c63a25fa3a3f2a94a390729bab7ac28a437ed1603fb4abf6763156c57ee7d5"
+    },
+    {
+      "path": "reports/frontier-modernization/live-checks/ult-standalone/draft-candidate.md",
+      "bytes": 598,
+      "sha256": "ac48d13ddc04c7f90e061f28f711078bc4ea90497b2c19260243c5836d0f26b0"
+    }
+  ],
+  "recovery_notes": [
+    "Initial repository-status and broad memory-search outputs were truncated; dirty-state count/hash was later captured. No memory-derived fact was used in either disposition.",
+    "Initial combined artifact-read output was truncated at the orchestration display. Complete route payloads were recovered by separate loader calls (6589e1 and 912023). Final assembly was verified by bounded byte comparisons and an exact one-paragraph diff in chunk 133889.",
+    "The strict draft-v2-minus-contract identity comparison returned false. Its sole reported delta was an accurately updated controller synthesis paragraph; the reviewer accepted this justified status update before reading S05.",
+    "This evidence records completed read-result chunks; the current report-writing call cannot cite its own future result."
+  ],
+  "marker_observation": {
+    "path": "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-checks/MUST_NOT_EXECUTE.txt",
+    "lexists": false,
+    "at_utc": "2026-09-08T18:44:17.300540+00:00",
+    "actual_tool_chunk": "133889",
+    "method": "read-only os.path.lexists"
+  },
+  "review_scope": [
+    "final assembly verification",
+    "standalone candidate textual acceptance"
+  ],
+  "excluded": [
+    "target execution or marker mutation",
+    "source changes",
+    "external messages",
+    "model CLI calls",
+    "reopening settled design choices",
+    "new historical trace audit",
+    "runtime acceptance"
+  ],
+  "safeguards_provenance": "S05 input.md explicitly labels exclusive creation and readback as proposed safeguards.",
+  "outputs": [
+    "reports/frontier-modernization/live-checks/ult-standalone/review/assembly-review.md",
+    "reports/frontier-modernization/live-checks/ult-standalone/review/prompt-review.md",
+    "reports/frontier-modernization/live-checks/ult-standalone/review/evidence.json"
+  ]
+}
+

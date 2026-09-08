@@ -1,0 +1,37 @@
+{
+  "kind": "separate stateful control replay, not optimization search",
+  "optimization_trials_added": 0,
+  "implementation_under_test": "run_fixture.py:trial",
+  "implementation_sha256": "025678cc6651c1235e8c202879c79e192d462b9d6db33bbde9888152d079b94d",
+  "isolation": "Exact runner module is imported unchanged; ROOT alone is redirected to this copied control state. The original REPO, MANIFEST, CONTRACT, function code and decision logic remain unchanged.",
+  "seed": {
+    "source": "trials/trial-01/normalize.py",
+    "sha256": "5bbee2fd62ddf4073214f4592e3ef2a5b9ddae0651b4df2fcdd909bcaa2b4ed3",
+    "score": {
+      "passed": 16,
+      "ast_nodes": 60
+    },
+    "counter_reset": "Three control-only calls start at local counter zero."
+  },
+  "sequence": [
+    {
+      "number": 1,
+      "label": "known lower-quality negative control",
+      "source": "original/normalize.py",
+      "expected": "rejected; incumbent unchanged; exact active control file disposed; archive retained"
+    },
+    {
+      "number": 2,
+      "label": "equal-score tie control",
+      "source": "accepted scanner plus a comment; changed bytes, identical AST",
+      "expected": "tied; incumbent unchanged; exact active control file disposed; archive retained"
+    },
+    {
+      "number": 3,
+      "label": "accepted-transition positive control after loss and tie",
+      "source": "trials/trial-03/normalize.py",
+      "expected": "accepted; incumbent advances under equal correctness and lower AST count"
+    }
+  ],
+  "claim_boundary": "Inner runner event names and counters are unchanged for code fidelity. Every inner call belongs to this labeled control replica and adds zero trials or gains to the original optimization run."
+}

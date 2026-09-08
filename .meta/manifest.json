@@ -49,6 +49,7 @@
             "id: \"LOC-001\""
           ],
           "tool_policy": {
+            "scope": "uac_intake_only",
             "allowed": [
               "deterministic classification",
               "metadata publication",
@@ -58,7 +59,8 @@
               "orchestration",
               "delegation decisions",
               "runtime execution control"
-            ]
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
           },
           "resources": [
             "ssot/engos-audit-code-health.md"
@@ -258,6 +260,7 @@
             "warnings for missing optional notification targets or unavailable optional integrations"
           ],
           "tool_policy": {
+            "scope": "uac_intake_only",
             "allowed": [
               "deterministic classification",
               "metadata publication",
@@ -267,7 +270,8 @@
               "orchestration",
               "delegation decisions",
               "runtime execution control"
-            ]
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
           },
           "resources": [
             "ssot/engos-audit-engineering-progress.md"
@@ -583,6 +587,7 @@
             "risks / blockers"
           ],
           "tool_policy": {
+            "scope": "uac_intake_only",
             "allowed": [
               "deterministic classification",
               "metadata publication",
@@ -592,7 +597,8 @@
               "orchestration",
               "delegation decisions",
               "runtime execution control"
-            ]
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
           },
           "resources": [
             "ssot/engos-audit-feature-status.md"
@@ -765,6 +771,7 @@
             "optional drill-down sections without removing any daily-board section"
           ],
           "tool_policy": {
+            "scope": "uac_intake_only",
             "allowed": [
               "deterministic classification",
               "metadata publication",
@@ -774,7 +781,8 @@
               "orchestration",
               "delegation decisions",
               "runtime execution control"
-            ]
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
           },
           "resources": [
             "ssot/engos-audit-opex-incident-review.md"
@@ -1089,6 +1097,7 @@
             "Gap to close (concrete deliverables to reach bet-ready)"
           ],
           "tool_policy": {
+            "scope": "uac_intake_only",
             "allowed": [
               "deterministic classification",
               "metadata publication",
@@ -1098,7 +1107,8 @@
               "orchestration",
               "delegation decisions",
               "runtime execution control"
-            ]
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
           },
           "resources": [
             "ssot/engos-audit-pitch-review.md"
@@ -1556,6 +1566,7 @@
             "an internal consistency check confirming body numbers match appendix data"
           ],
           "tool_policy": {
+            "scope": "uac_intake_only",
             "allowed": [
               "deterministic classification",
               "metadata publication",
@@ -1565,7 +1576,8 @@
               "orchestration",
               "delegation decisions",
               "runtime execution control"
-            ]
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
           },
           "resources": [
             "ssot/engos-audit-weekly-intel.md"
@@ -1751,6 +1763,7 @@
             "Output location"
           ],
           "tool_policy": {
+            "scope": "uac_intake_only",
             "allowed": [
               "deterministic classification",
               "metadata publication",
@@ -1760,7 +1773,8 @@
               "orchestration",
               "delegation decisions",
               "runtime execution control"
-            ]
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
           },
           "resources": [
             "ssot/engos-browser-demo-recorder.md"
@@ -2051,6 +2065,7 @@
             "`Open Assumptions` \u2014 illustrative data, missing sources, or content still needing confirmation"
           ],
           "tool_policy": {
+            "scope": "uac_intake_only",
             "allowed": [
               "deterministic classification",
               "metadata publication",
@@ -2060,7 +2075,8 @@
               "orchestration",
               "delegation decisions",
               "runtime execution control"
-            ]
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
           },
           "resources": [
             "ssot/engos-content-dynamic-html-presentations.md"
@@ -2422,6 +2438,7 @@
             "`Follow-up Review` \u2014 whether to run `engos-quality-code-review`, `engos-quality-testing-review`, `engos-design-architecture`, or `engos-quality-gitops-review`"
           ],
           "tool_policy": {
+            "scope": "uac_intake_only",
             "allowed": [
               "deterministic classification",
               "metadata publication",
@@ -2431,7 +2448,8 @@
               "orchestration",
               "delegation decisions",
               "runtime execution control"
-            ]
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
           },
           "resources": [
             "ssot/engos-delivery-address-code-review.md"
@@ -2805,6 +2823,7 @@
             "`Open Decisions or Risks`"
           ],
           "tool_policy": {
+            "scope": "uac_intake_only",
             "allowed": [
               "deterministic classification",
               "metadata publication",
@@ -2814,7 +2833,8 @@
               "orchestration",
               "delegation decisions",
               "runtime execution control"
-            ]
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
           },
           "resources": [
             "ssot/engos-delivery-resolve-conflict.md"
@@ -2998,6 +3018,7 @@
             "`Confidence`"
           ],
           "tool_policy": {
+            "scope": "uac_intake_only",
             "allowed": [
               "deterministic classification",
               "metadata publication",
@@ -3007,7 +3028,8 @@
               "orchestration",
               "delegation decisions",
               "runtime execution control"
-            ]
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
           },
           "resources": [
             "ssot/engos-design-architecture.md"
@@ -3441,6 +3463,7 @@
             "`Next Action`"
           ],
           "tool_policy": {
+            "scope": "uac_intake_only",
             "allowed": [
               "deterministic classification",
               "metadata publication",
@@ -3450,7 +3473,8 @@
               "orchestration",
               "delegation decisions",
               "runtime execution control"
-            ]
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
           },
           "resources": [
             "ssot/engos-design-plan-to-goal.md"
@@ -3745,6 +3769,7 @@
             "after a consolidation pass, before/after line and byte counts for each rewritten file, the trigger, and any evidence references retained; if footprint did not shrink, report that limitation rather than claiming reduction"
           ],
           "tool_policy": {
+            "scope": "uac_intake_only",
             "allowed": [
               "deterministic classification",
               "metadata publication",
@@ -3754,7 +3779,8 @@
               "orchestration",
               "delegation decisions",
               "runtime execution control"
-            ]
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
           },
           "resources": [
             "ssot/engos-memory-context-continuity.md"
@@ -4110,6 +4136,7 @@
             "artifact inclusion status when files or downloads were produced inside the thread"
           ],
           "tool_policy": {
+            "scope": "uac_intake_only",
             "allowed": [
               "deterministic classification",
               "metadata publication",
@@ -4119,7 +4146,8 @@
               "orchestration",
               "delegation decisions",
               "runtime execution control"
-            ]
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
           },
           "resources": [
             "ssot/engos-memory-threader.md"
@@ -4282,6 +4310,7 @@
             "`Unresolved Ambiguities`"
           ],
           "tool_policy": {
+            "scope": "uac_intake_only",
             "allowed": [
               "deterministic classification",
               "metadata publication",
@@ -4291,7 +4320,8 @@
               "orchestration",
               "delegation decisions",
               "runtime execution control"
-            ]
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
           },
           "resources": [
             "ssot/engos-meta-instruction-editor.md"
@@ -4529,6 +4559,7 @@
             "`Auto-Research Handoff`"
           ],
           "tool_policy": {
+            "scope": "uac_intake_only",
             "allowed": [
               "deterministic classification",
               "metadata publication",
@@ -4538,7 +4569,8 @@
               "orchestration",
               "delegation decisions",
               "runtime execution control"
-            ]
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
           },
           "resources": [
             "ssot/engos-meta-supercharge.md"
@@ -4629,7 +4661,7 @@
           "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "SuperCharge \u2014 Prompt Engineering, Planning Hardening, and Graded Improvement",
-          "version": "v4.2"
+          "version": "v5.0"
         },
         "expanded": {
           "relationship_suggestions": [
@@ -4671,312 +4703,255 @@
         "Do not bloat the answer with every module when a smaller route is enough.",
         "Do not pretend the model knows user preferences it has not been given.",
         "Do not turn grading into generic praise.",
-        "Do not claim orchestration, approval, or runtime delegation authority."
+        "Use authorized subagent tools without claiming host orchestration ownership or new approval authority."
       ],
       "modes": [
         {
-          "mode_slug": "agentic-orchestration-core-principle-not-a-module",
-          "display_name": "Agentic Orchestration (Core Principle, Not a Module)",
-          "source_refs": [
-            "ssot/engos-meta-supercharge.md"
+          "mode_slug": "ult",
+          "display_name": "/ult \u2014 ULT-Agent++ (Prompt Engineer Mode)",
+          "entry_kind": "module",
+          "invocations": [
+            "/ult"
           ],
-          "mode_summary": "Declared by the canonical `Agentic Orchestration (Core Principle, Not a Module)` section.",
+          "source_refs": [
+            "sources/capability-resources/engos-meta-supercharge/references/modules/ult.md"
+          ],
+          "source_line": 1,
+          "mode_summary": "Explicitly declared module in the canonical skill.",
           "required_inputs": [],
           "expected_outputs": [],
           "examples": [],
           "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
         },
         {
-          "mode_slug": "module-usage",
-          "display_name": "Module Usage",
-          "source_refs": [
-            "ssot/engos-meta-supercharge.md"
+          "mode_slug": "catchup",
+          "display_name": "/catchup \u2014 Deep Forensic Catchup (Multi-Intent)",
+          "entry_kind": "module",
+          "invocations": [
+            "/catchup"
           ],
-          "mode_summary": "Declared by the canonical `Module Usage` section.",
+          "source_refs": [
+            "sources/capability-resources/engos-meta-supercharge/references/modules/catchup.md"
+          ],
+          "source_line": 1,
+          "mode_summary": "Explicitly declared module in the canonical skill.",
           "required_inputs": [],
           "expected_outputs": [],
           "examples": [],
           "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
         },
         {
-          "mode_slug": "per-module-examples",
-          "display_name": "Per-Module Examples",
-          "source_refs": [
-            "ssot/engos-meta-supercharge.md"
+          "mode_slug": "basis",
+          "display_name": "/basis \u2014 First-Principles Reasoning and Irreducible Simplicity",
+          "entry_kind": "module",
+          "invocations": [
+            "/basis"
           ],
-          "mode_summary": "Declared by the canonical `Per-Module Examples` section.",
+          "source_refs": [
+            "sources/capability-resources/engos-meta-supercharge/references/modules/basis.md"
+          ],
+          "source_line": 1,
+          "mode_summary": "Explicitly declared module in the canonical skill.",
           "required_inputs": [],
           "expected_outputs": [],
           "examples": [],
           "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
         },
         {
-          "mode_slug": "module-reference-full-spec",
-          "display_name": "MODULE REFERENCE (Full Spec)",
-          "source_refs": [
-            "ssot/engos-meta-supercharge.md"
+          "mode_slug": "simple",
+          "display_name": "/simple \u2014 Decomplecting Lens (\"Simple Made Easy\")",
+          "entry_kind": "module",
+          "invocations": [
+            "/simple"
           ],
-          "mode_summary": "Declared by the canonical `MODULE REFERENCE (Full Spec)` section.",
+          "source_refs": [
+            "sources/capability-resources/engos-meta-supercharge/references/modules/simple.md"
+          ],
+          "source_line": 1,
+          "mode_summary": "Explicitly declared module in the canonical skill.",
           "required_inputs": [],
           "expected_outputs": [],
           "examples": [],
           "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
         },
         {
-          "mode_slug": "module-ult-ult-agent-prompt-engineer-mode",
-          "display_name": "MODULE: /ult \u2014 ULT-Agent++ (Prompt Engineer Mode)",
-          "source_refs": [
-            "ssot/engos-meta-supercharge.md"
+          "mode_slug": "invert",
+          "display_name": "/invert \u2014 Inversion Lens (\"Invert, Always Invert\")",
+          "entry_kind": "module",
+          "invocations": [
+            "/invert"
           ],
-          "mode_summary": "Declared by the canonical `MODULE: /ult \u2014 ULT-Agent++ (Prompt Engineer Mode)` section.",
+          "source_refs": [
+            "sources/capability-resources/engos-meta-supercharge/references/modules/invert.md"
+          ],
+          "source_line": 1,
+          "mode_summary": "Explicitly declared module in the canonical skill.",
           "required_inputs": [],
           "expected_outputs": [],
           "examples": [],
           "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
         },
         {
-          "mode_slug": "mode-behavior",
-          "display_name": "Mode Behavior",
-          "source_refs": [
-            "ssot/engos-meta-supercharge.md"
+          "mode_slug": "adversarial",
+          "display_name": "/adversarial \u2014 Adversarial Red-Teaming (Devil's Advocate)",
+          "entry_kind": "module",
+          "invocations": [
+            "/adversarial"
           ],
-          "mode_summary": "Declared by the canonical `Mode Behavior` section.",
+          "source_refs": [
+            "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md"
+          ],
+          "source_line": 1,
+          "mode_summary": "Explicitly declared module in the canonical skill.",
           "required_inputs": [],
           "expected_outputs": [],
           "examples": [],
           "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
         },
         {
-          "mode_slug": "module-catchup-deep-forensic-catchup-multi-intent",
-          "display_name": "MODULE: /catchup \u2014 Deep Forensic Catchup (Multi-Intent)",
-          "source_refs": [
-            "ssot/engos-meta-supercharge.md"
+          "mode_slug": "adversarial-debate",
+          "display_name": "/adversarial /debate \u2014 Surface Bull/Bear/Decider Debate",
+          "entry_kind": "module",
+          "invocations": [
+            "/adversarial /debate"
           ],
-          "mode_summary": "Declared by the canonical `MODULE: /catchup \u2014 Deep Forensic Catchup (Multi-Intent)` section.",
+          "source_refs": [
+            "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md"
+          ],
+          "source_line": 24,
+          "mode_summary": "Explicitly declared module in the canonical skill.",
           "required_inputs": [],
           "expected_outputs": [],
           "examples": [],
           "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
         },
         {
-          "mode_slug": "module-basis-first-principles-cost-and-complexity-accounting",
-          "display_name": "MODULE: /basis \u2014 First-Principles Cost and Complexity Accounting",
-          "source_refs": [
-            "ssot/engos-meta-supercharge.md"
+          "mode_slug": "adversarial-debate-deep",
+          "display_name": "/adversarial /debate /deep \u2014 Deep Bull/Bear/Decider Debate",
+          "entry_kind": "module",
+          "invocations": [
+            "/adversarial /debate /deep"
           ],
-          "mode_summary": "Declared by the canonical `MODULE: /basis \u2014 First-Principles Cost and Complexity Accounting` section.",
+          "source_refs": [
+            "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md"
+          ],
+          "source_line": 56,
+          "mode_summary": "Explicitly declared module in the canonical skill.",
           "required_inputs": [],
           "expected_outputs": [],
           "examples": [],
           "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
         },
         {
-          "mode_slug": "module-simple-decomplecting-lens-simple-made-easy",
-          "display_name": "MODULE: /simple \u2014 Decomplecting Lens (\"Simple Made Easy\")",
-          "source_refs": [
-            "ssot/engos-meta-supercharge.md"
+          "mode_slug": "contract",
+          "display_name": "/contract \u2014 2026 Contract + QA (Unified Spec + Evaluation)",
+          "entry_kind": "module",
+          "invocations": [
+            "/contract"
           ],
-          "mode_summary": "Declared by the canonical `MODULE: /simple \u2014 Decomplecting Lens (\"Simple Made Easy\")` section.",
+          "source_refs": [
+            "sources/capability-resources/engos-meta-supercharge/references/modules/contract.md"
+          ],
+          "source_line": 1,
+          "mode_summary": "Explicitly declared module in the canonical skill.",
           "required_inputs": [],
           "expected_outputs": [],
           "examples": [],
           "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
         },
         {
-          "mode_slug": "module-invert-inversion-lens-invert-always-invert",
-          "display_name": "MODULE: /invert \u2014 Inversion Lens (\"Invert, Always Invert\")",
-          "source_refs": [
-            "ssot/engos-meta-supercharge.md"
+          "mode_slug": "grade",
+          "display_name": "/grade \u2014 Graded Candidate Improvement Ladder (Score 1\u201310)",
+          "entry_kind": "module",
+          "invocations": [
+            "/grade"
           ],
-          "mode_summary": "Declared by the canonical `MODULE: /invert \u2014 Inversion Lens (\"Invert, Always Invert\")` section.",
+          "source_refs": [
+            "sources/capability-resources/engos-meta-supercharge/references/modules/grade.md"
+          ],
+          "source_line": 1,
+          "mode_summary": "Explicitly declared module in the canonical skill.",
           "required_inputs": [],
           "expected_outputs": [],
           "examples": [],
           "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
         },
         {
-          "mode_slug": "module-adversarial-adversarial-red-teaming-devil-s-advocate",
-          "display_name": "MODULE: /adversarial \u2014 Adversarial Red-Teaming (Devil's Advocate)",
-          "source_refs": [
-            "ssot/engos-meta-supercharge.md"
+          "mode_slug": "full",
+          "display_name": "/full \u2014 Illumination Gauntlet (No Execution)",
+          "entry_kind": "module",
+          "invocations": [
+            "/full"
           ],
-          "mode_summary": "Declared by the canonical `MODULE: /adversarial \u2014 Adversarial Red-Teaming (Devil's Advocate)` section.",
+          "source_refs": [
+            "sources/capability-resources/engos-meta-supercharge/references/modules/full.md"
+          ],
+          "source_line": 1,
+          "mode_summary": "Explicitly declared module in the canonical skill.",
           "required_inputs": [],
           "expected_outputs": [],
           "examples": [],
           "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
         },
         {
-          "mode_slug": "nested-module-adversarial-debate-surface-bull-bear-decider-debate",
-          "display_name": "Nested Module: /adversarial /debate \u2014 Surface Bull/Bear/Decider Debate",
-          "source_refs": [
-            "ssot/engos-meta-supercharge.md"
+          "mode_slug": "gaslight",
+          "display_name": "/gaslight \u2014 GASLIGHT 13 (Explicit Only)",
+          "entry_kind": "module",
+          "invocations": [
+            "/gaslight"
           ],
-          "mode_summary": "Declared by the canonical `Nested Module: /adversarial /debate \u2014 Surface Bull/Bear/Decider Debate` section.",
+          "source_refs": [
+            "sources/capability-resources/engos-meta-supercharge/references/modules/gaslight.md"
+          ],
+          "source_line": 1,
+          "mode_summary": "Explicitly declared module in the canonical skill.",
           "required_inputs": [],
           "expected_outputs": [],
           "examples": [],
           "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
         },
         {
-          "mode_slug": "nested-module-adversarial-debate-deep-deep-bull-bear-decider-debate",
-          "display_name": "Nested Module: /adversarial /debate /deep \u2014 Deep Bull/Bear/Decider Debate",
-          "source_refs": [
-            "ssot/engos-meta-supercharge.md"
+          "mode_slug": "stop-ult",
+          "display_name": "/stop-ult \u2014 Exit ULT Mode",
+          "entry_kind": "module",
+          "invocations": [
+            "/stop-ult"
           ],
-          "mode_summary": "Declared by the canonical `Nested Module: /adversarial /debate /deep \u2014 Deep Bull/Bear/Decider Debate` section.",
+          "source_refs": [
+            "sources/capability-resources/engos-meta-supercharge/references/modules/stop-ult.md"
+          ],
+          "source_line": 1,
+          "mode_summary": "Explicitly declared module in the canonical skill.",
           "required_inputs": [],
           "expected_outputs": [],
           "examples": [],
           "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
-        },
-        {
-          "mode_slug": "module-contract-2026-contract-qa-unified-spec-evaluation",
-          "display_name": "MODULE: /contract \u2014 2026 Contract + QA (Unified Spec + Evaluation)",
-          "source_refs": [
-            "ssot/engos-meta-supercharge.md"
-          ],
-          "mode_summary": "Declared by the canonical `MODULE: /contract \u2014 2026 Contract + QA (Unified Spec + Evaluation)` section.",
-          "required_inputs": [],
-          "expected_outputs": [],
-          "examples": [],
-          "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
-        },
-        {
-          "mode_slug": "module-grade-10-iteration-improvement-ladder-score-1-10",
-          "display_name": "MODULE: /grade \u2014 10-Iteration Improvement Ladder (Score 1\u201310)",
-          "source_refs": [
-            "ssot/engos-meta-supercharge.md"
-          ],
-          "mode_summary": "Declared by the canonical `MODULE: /grade \u2014 10-Iteration Improvement Ladder (Score 1\u201310)` section.",
-          "required_inputs": [],
-          "expected_outputs": [],
-          "examples": [],
-          "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
-        },
-        {
-          "mode_slug": "module-full-illumination-gauntlet-no-execution",
-          "display_name": "MODULE: /full \u2014 Illumination Gauntlet (No Execution)",
-          "source_refs": [
-            "ssot/engos-meta-supercharge.md"
-          ],
-          "mode_summary": "Declared by the canonical `MODULE: /full \u2014 Illumination Gauntlet (No Execution)` section.",
-          "required_inputs": [],
-          "expected_outputs": [],
-          "examples": [],
-          "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
-        },
-        {
-          "mode_slug": "module-gaslight-gaslight-13-explicit-only",
-          "display_name": "MODULE: /gaslight \u2014 GASLIGHT 13 (Explicit Only)",
-          "source_refs": [
-            "ssot/engos-meta-supercharge.md"
-          ],
-          "mode_summary": "Declared by the canonical `MODULE: /gaslight \u2014 GASLIGHT 13 (Explicit Only)` section.",
-          "required_inputs": [],
-          "expected_outputs": [],
-          "examples": [],
-          "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
-        },
-        {
-          "mode_slug": "module-stop-ult-exit-ult-mode",
-          "display_name": "MODULE: /stop-ult \u2014 Exit ULT Mode",
-          "source_refs": [
-            "ssot/engos-meta-supercharge.md"
-          ],
-          "mode_summary": "Declared by the canonical `MODULE: /stop-ult \u2014 Exit ULT Mode` section.",
-          "required_inputs": [],
-          "expected_outputs": [],
-          "examples": [],
-          "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
-        },
-        {
-          "mode_slug": "failure-mode-to-avoid",
-          "display_name": "Failure Mode To Avoid",
-          "source_refs": [
-            "ssot/engos-meta-supercharge.md"
-          ],
-          "mode_summary": "Declared by the canonical `Failure Mode To Avoid` section.",
-          "required_inputs": [],
-          "expected_outputs": [],
-          "examples": [],
-          "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
         }
       ],
       "benchmark_sources": [],
@@ -5076,7 +5051,7 @@
               "title": "Source Fidelity and Uplift",
               "score": 10,
               "blockers": [],
-              "classification": "additive",
+              "classification": "reviewed_modernization",
               "scenario_results": [
                 {
                   "id": "individual_ult",
@@ -5103,8 +5078,10 @@
                   "id": "agentic_overlay",
                   "kind": "agentic",
                   "label": "agentic orchestration guidance",
-                  "passed": true,
-                  "missing_markers": []
+                  "passed": false,
+                  "missing_markers": [
+                    "### Agentic Orchestration (Core Principle, Not a Module)"
+                  ]
                 },
                 {
                   "id": "help_output_contract",
@@ -5114,6 +5091,14 @@
                   "missing_markers": []
                 }
               ],
+              "reviewed_deltas": [
+                "baseline scenario failed: agentic_overlay missing ### Agentic Orchestration (Core Principle, Not a Module)"
+              ],
+              "requirement_review": {
+                "status": "bound_attestation",
+                "identity_authenticated": false,
+                "behavioral_status": "behavioral_pending"
+              },
               "scorecard": {
                 "baseline_richness": 19,
                 "candidate_richness": 24,
@@ -5139,13 +5124,13 @@
             {
               "judge": "benchmark_readiness",
               "title": "Benchmark Readiness and Template Fit",
-              "score": 10,
+              "score": 9,
               "blockers": [],
               "scorecard": {
                 "title_clarity": 10,
                 "description_richness": 10,
                 "intent_coverage": 10,
-                "boundary_clarity": 10,
+                "boundary_clarity": 8,
                 "output_specificity": 10,
                 "metadata_completeness": 8,
                 "surface_usability": 10
@@ -5162,16 +5147,41 @@
             "baseline_preserved_in_resource": false,
             "operational_richness": 10,
             "metadata_integrity": 10,
-            "benchmark_readiness": 10,
+            "benchmark_readiness": 9,
             "title_clarity": 10,
             "description_richness": 10,
             "intent_coverage": 10,
-            "boundary_clarity": 10,
+            "boundary_clarity": 8,
             "output_specificity": 10,
             "metadata_completeness": 8,
             "surface_usability": 10
           },
-          "template_name": "both"
+          "template_name": "both",
+          "effective_sha256": "3cca08e07f6caf656915f8641810bf8d00ad05decc0e2dd359d0b877a57d3524",
+          "semantic_findings": [],
+          "repair_requests": [],
+          "dimension_inventory": [
+            {
+              "dimension": "source_fidelity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "operational_richness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "metadata_integrity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "benchmark_readiness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "semantic_consistency",
+              "status": "no_detected_conflict_not_semantic_proof"
+            }
+          ]
         }
       ],
       "consumption_hints": {},
@@ -5246,6 +5256,7 @@
             "Structural Status (`structural_ready` is not `promote`)"
           ],
           "tool_policy": {
+            "scope": "uac_intake_only",
             "allowed": [
               "deterministic classification",
               "metadata publication",
@@ -5255,7 +5266,8 @@
               "orchestration",
               "delegation decisions",
               "runtime execution control"
-            ]
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
           },
           "resources": [
             "ssot/engos-meta-uac-import.md"
@@ -5332,8 +5344,8 @@
             "policy_rule_id": "ssot.engos-meta-uac-import",
             "content_sha256": "ssot"
           },
-          "confidence": 0.97,
-          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+          "confidence": 0.86,
+          "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "UAC Import \u2014 Capability Intake, Quality Review, and Uplift"
         },
@@ -5369,15 +5381,169 @@
       "display_name": "UAC Import \u2014 Capability Intake, Quality Review, and Uplift",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "engos-meta-uac-import",
-      "shared_summary": "Import external prompt, skill, or agent sources into the deterministic UAC uplift and packaging flow.",
+      "shared_summary": "Inspect an external prompt-like source, classify its fit, and prepare a quality-gated Core-Prompts plan, judge, or apply result. Use for capability intake; do not use for ordinary prompt editing or deployment.",
       "shared_constraints": [
-        "No hidden execution.",
+        "No hidden execution. UAC coordinates exhaustive onboarding checks; it does not require a separate paid model API for every import. The invoking agent may prepare semantic repairs within authorized scope, and a separate subagent reviews them.",
         "No packaging claims without evidence.",
         "No deployment during `apply`.",
         "For local folders or GitHub repos, inventory the files first and justify whether they belong under one roof."
       ],
       "modes": [],
       "benchmark_sources": [],
+      "quality_profile": "default",
+      "quality_status": "structural_ready",
+      "judge_reports": [
+        {
+          "pass_number": 1,
+          "status": "structural_ready",
+          "historical_baseline": {
+            "slug": "engos-meta-uac-import",
+            "strategy": "head_snapshot",
+            "group": "current_oracle",
+            "baseline_path": "sources/ssot-baselines/engos-meta-uac-import/baseline.md",
+            "selected_commit": "4bb1f7e5",
+            "richness_score": 2,
+            "line_count": 145,
+            "reason": "Current SSOT baseline source snapshot materialized into the source library because no stronger curated pre-SSOT baseline has been recorded yet.",
+            "equivalent_commits": [],
+            "expected_companions": [],
+            "operator_invariants": [
+              "MUST NEVER"
+            ],
+            "scenario_matrix": [
+              {
+                "id": "operational_invocation",
+                "kind": "operational_contract",
+                "label": "operational invocation surface",
+                "must_contain": [
+                  "## Invocation"
+                ]
+              }
+            ],
+            "historical_proof": {
+              "current_head_commit": "4bb1f7e5",
+              "current_head_richness_score": 2,
+              "current_head_line_count": 145,
+              "materialized_from_commit": "4bb1f7e5"
+            },
+            "source": "source_library",
+            "verified_by_git_history": false,
+            "has_baseline_text": true
+          },
+          "judge_reports": [
+            {
+              "judge": "source_fidelity",
+              "title": "Source Fidelity and Uplift",
+              "score": 10,
+              "blockers": [],
+              "classification": "reviewed_modernization",
+              "scenario_results": [
+                {
+                  "id": "operational_invocation",
+                  "kind": "operational_contract",
+                  "label": "operational invocation surface",
+                  "passed": true,
+                  "missing_markers": []
+                },
+                {
+                  "id": "operator_invariants",
+                  "kind": "hybrid_invariants",
+                  "label": "historical operator invariants",
+                  "passed": true,
+                  "missing_markers": []
+                }
+              ],
+              "reviewed_deltas": [],
+              "requirement_review": {
+                "status": "bound_attestation",
+                "identity_authenticated": false,
+                "behavioral_status": "behavioral_pending"
+              },
+              "scorecard": {
+                "baseline_richness": 2,
+                "candidate_richness": 5,
+                "baseline_operational_score": 3,
+                "candidate_operational_score": 3,
+                "baseline_preserved_in_resource": false
+              },
+              "baseline_commit": "4bb1f7e5",
+              "baseline_slug": "engos-meta-uac-import"
+            },
+            {
+              "judge": "operational_richness",
+              "title": "Operational Richness",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "metadata_integrity",
+              "title": "Metadata and Handoff Integrity",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "benchmark_readiness",
+              "title": "Benchmark Readiness and Template Fit",
+              "score": 9,
+              "blockers": [],
+              "scorecard": {
+                "title_clarity": 10,
+                "description_richness": 10,
+                "intent_coverage": 10,
+                "boundary_clarity": 8,
+                "output_specificity": 10,
+                "metadata_completeness": 8,
+                "surface_usability": 10
+              }
+            }
+          ],
+          "blockers": [],
+          "scorecard": {
+            "source_fidelity": 10,
+            "baseline_richness": 2,
+            "candidate_richness": 5,
+            "baseline_operational_score": 3,
+            "candidate_operational_score": 3,
+            "baseline_preserved_in_resource": false,
+            "operational_richness": 10,
+            "metadata_integrity": 10,
+            "benchmark_readiness": 9,
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 8,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          },
+          "template_name": "both",
+          "effective_sha256": "4d81b852a81e7d1cc8b18d41c50b36c9ce97515db66aa1984940eae8e3526571",
+          "semantic_findings": [],
+          "repair_requests": [],
+          "dimension_inventory": [
+            {
+              "dimension": "source_fidelity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "operational_richness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "metadata_integrity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "benchmark_readiness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "semantic_consistency",
+              "status": "no_detected_conflict_not_semantic_proof"
+            }
+          ]
+        }
+      ],
       "consumption_hints": {
         "preferred_use_cases": [
           "external prompt import",
@@ -5392,8 +5558,10 @@
         "invocation_style": "assistant_first_but_scriptable",
         "requires_human_confirmation": true
       },
+      "quality_pass_count": 1,
+      "quality_stop_reason": "thresholds_met",
       "declared_capability": "skill",
-      "inferred_capability": "skill",
+      "inferred_capability": "both",
       "expected_surface_names": [
         "codex_skill",
         "gemini_skill",
@@ -5439,6 +5607,7 @@
             "`Assumptions` \u2014 any missing context or policy source used"
           ],
           "tool_policy": {
+            "scope": "uac_intake_only",
             "allowed": [
               "deterministic classification",
               "metadata publication",
@@ -5448,7 +5617,8 @@
               "orchestration",
               "delegation decisions",
               "runtime execution control"
-            ]
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
           },
           "resources": [
             "ssot/engos-operations-ic-assistant.md"
@@ -5926,6 +6096,7 @@
             "`Verification`"
           ],
           "tool_policy": {
+            "scope": "uac_intake_only",
             "allowed": [
               "deterministic classification",
               "metadata publication",
@@ -5935,7 +6106,8 @@
               "orchestration",
               "delegation decisions",
               "runtime execution control"
-            ]
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
           },
           "resources": [
             "ssot/engos-optimization-auto-research.md"
@@ -6026,7 +6198,7 @@
           "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "Auto-Research \u2014 Goal-Driven Improvement Research, Evaluation, and Promotion",
-          "version": "v2.0"
+          "version": "v2.1"
         },
         "expanded": {
           "relationship_suggestions": [
@@ -6069,7 +6241,7 @@
       "display_name": "Auto-Research \u2014 Goal-Driven Improvement Research, Evaluation, and Promotion",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "engos-optimization-auto-research",
-      "shared_summary": "Auto-Research for goal-oriented search, minimal-loop investigation, experiment design, repeated-trial evaluation, trace-to-regression distillation, and promotion-ready improvement loops across prompts, tools, systems, workflows, services, and code.",
+      "shared_summary": "Run bounded, baseline-controlled experiments to improve prompts, skills, workflows, tools, or code and decide whether a candidate is ready for promotion. Use when better behavior must be measured; do not use for unmeasured brainstorming.",
       "shared_constraints": [
         "Do not start search without a measurable goal.",
         "Do not claim a winner from a single run unless the system is strictly deterministic and the user agrees.",
@@ -6078,137 +6250,128 @@
         "Do not let the capability degrade into generic brainstorming or generic testing advice.",
         "Do not confuse public inspiration with local proof.",
         "Do not promote any candidate whose score is ambiguous, unstable, or unrepeatable.",
-        "Do not run broad candidate search when one sharply framed hypothesis can be tested first.",
+        "For diagnosis test a sharply framed hypothesis first. For optimization, let evidence guide the next trial within the authorized search rather than treating the first narrow test as a substitute for exploration.",
         "Do not parallelize dependent verification steps when regenerated artifacts are involved."
       ],
       "modes": [
         {
-          "mode_slug": "safe-starting-mode",
-          "display_name": "Safe Starting Mode",
-          "source_refs": [
-            "ssot/engos-optimization-auto-research.md"
-          ],
-          "mode_summary": "Declared by the canonical `Safe Starting Mode` section.",
-          "required_inputs": [],
-          "expected_outputs": [],
-          "examples": [],
-          "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
-        },
-        {
           "mode_slug": "goal-setup",
           "display_name": "Goal Setup",
+          "entry_kind": "mode",
+          "invocations": [],
           "source_refs": [
             "ssot/engos-optimization-auto-research.md"
           ],
-          "mode_summary": "Declared by the canonical `Mode 1: Goal Setup` section.",
+          "source_line": 386,
+          "mode_summary": "Explicitly declared mode in the canonical skill.",
           "required_inputs": [],
           "expected_outputs": [],
           "examples": [],
           "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
         },
         {
           "mode_slug": "minimal-loop",
           "display_name": "Minimal Loop",
+          "entry_kind": "mode",
+          "invocations": [],
           "source_refs": [
             "ssot/engos-optimization-auto-research.md"
           ],
-          "mode_summary": "Declared by the canonical `Mode 2: Minimal Loop` section.",
+          "source_line": 395,
+          "mode_summary": "Explicitly declared mode in the canonical skill.",
           "required_inputs": [],
           "expected_outputs": [],
           "examples": [],
           "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
         },
         {
           "mode_slug": "search-design",
           "display_name": "Search Design",
+          "entry_kind": "mode",
+          "invocations": [],
           "source_refs": [
             "ssot/engos-optimization-auto-research.md"
           ],
-          "mode_summary": "Declared by the canonical `Mode 3: Search Design` section.",
+          "source_line": 406,
+          "mode_summary": "Explicitly declared mode in the canonical skill.",
           "required_inputs": [],
           "expected_outputs": [],
           "examples": [],
           "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
         },
         {
           "mode_slug": "experiment-loop",
           "display_name": "Experiment Loop",
+          "entry_kind": "mode",
+          "invocations": [],
           "source_refs": [
             "ssot/engos-optimization-auto-research.md"
           ],
-          "mode_summary": "Declared by the canonical `Mode 4: Experiment Loop` section.",
+          "source_line": 415,
+          "mode_summary": "Explicitly declared mode in the canonical skill.",
           "required_inputs": [],
           "expected_outputs": [],
           "examples": [],
           "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
         },
         {
           "mode_slug": "capability-evaluation",
           "display_name": "Capability Evaluation",
+          "entry_kind": "mode",
+          "invocations": [],
           "source_refs": [
             "ssot/engos-optimization-auto-research.md"
           ],
-          "mode_summary": "Declared by the canonical `Mode 5: Capability Evaluation` section.",
+          "source_line": 428,
+          "mode_summary": "Explicitly declared mode in the canonical skill.",
           "required_inputs": [],
           "expected_outputs": [],
           "examples": [],
           "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
         },
         {
           "mode_slug": "trace-to-eval",
           "display_name": "Trace-to-Eval",
+          "entry_kind": "mode",
+          "invocations": [],
           "source_refs": [
             "ssot/engos-optimization-auto-research.md"
           ],
-          "mode_summary": "Declared by the canonical `Mode 5: Trace-to-Eval` section.",
+          "source_line": 439,
+          "mode_summary": "Explicitly declared mode in the canonical skill.",
           "required_inputs": [],
           "expected_outputs": [],
           "examples": [],
           "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
         },
         {
           "mode_slug": "promotion",
           "display_name": "Promotion",
+          "entry_kind": "mode",
+          "invocations": [],
           "source_refs": [
             "ssot/engos-optimization-auto-research.md"
           ],
-          "mode_summary": "Declared by the canonical `Mode 7: Promotion` section.",
+          "source_line": 448,
+          "mode_summary": "Explicitly declared mode in the canonical skill.",
           "required_inputs": [],
           "expected_outputs": [],
           "examples": [],
           "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
         }
       ],
       "benchmark_sources": [],
@@ -6217,23 +6380,37 @@
       "judge_reports": [
         {
           "pass_number": 1,
-          "status": "ship",
+          "status": "structural_ready",
           "historical_baseline": {
             "slug": "engos-optimization-auto-research",
-            "strategy": "source_library",
-            "group": "applied_baseline",
+            "strategy": "head_snapshot",
+            "group": "current_oracle",
             "baseline_path": "sources/ssot-baselines/engos-optimization-auto-research/baseline.md",
-            "selected_commit": null,
-            "richness_score": 2,
-            "line_count": 186,
-            "reason": "Repo-resident baseline source snapshot used as the fidelity oracle for future UAC judging.",
+            "selected_commit": "28b1f2f7",
+            "richness_score": 7,
+            "line_count": 676,
+            "reason": "Current SSOT baseline source snapshot materialized into the source library because the stored baseline was missing, stale, or structurally degraded.",
             "equivalent_commits": [],
             "expected_companions": [],
-            "operator_invariants": [],
-            "scenario_matrix": [],
+            "operator_invariants": [
+              "MUST NEVER"
+            ],
+            "scenario_matrix": [
+              {
+                "id": "operational_invocation",
+                "kind": "operational_contract",
+                "label": "operational invocation surface",
+                "must_contain": [
+                  "## Invocation"
+                ]
+              }
+            ],
             "historical_proof": {
-              "materialized_from_commit": null,
-              "last_materialized_at": "2026-04-04T12:21:31.756292+00:00"
+              "materialized_from_commit": "28b1f2f7",
+              "last_materialized_at": "2026-06-07T21:35:17.391757+00:00",
+              "materialized_from_source_kind": "current_ssot",
+              "materialized_from_path": "ssot/engos-optimization-auto-research.md",
+              "materialized_from_sha256": "758e7a7579d97620f2f0b4979e9a0841454c447cf7c22223249e7c377a3fd2d6"
             },
             "source": "source_library",
             "verified_by_git_history": false,
@@ -6245,13 +6422,37 @@
               "title": "Source Fidelity and Uplift",
               "score": 10,
               "blockers": [],
-              "classification": "additive",
-              "scenario_results": [],
-              "scorecard": {
-                "baseline_richness": 2,
-                "candidate_richness": 4
+              "classification": "reviewed_modernization",
+              "scenario_results": [
+                {
+                  "id": "operational_invocation",
+                  "kind": "operational_contract",
+                  "label": "operational invocation surface",
+                  "passed": true,
+                  "missing_markers": []
+                },
+                {
+                  "id": "operator_invariants",
+                  "kind": "hybrid_invariants",
+                  "label": "historical operator invariants",
+                  "passed": true,
+                  "missing_markers": []
+                }
+              ],
+              "reviewed_deltas": [],
+              "requirement_review": {
+                "status": "bound_attestation",
+                "identity_authenticated": false,
+                "behavioral_status": "behavioral_pending"
               },
-              "baseline_commit": null,
+              "scorecard": {
+                "baseline_richness": 7,
+                "candidate_richness": 7,
+                "baseline_operational_score": 3,
+                "candidate_operational_score": 3,
+                "baseline_preserved_in_resource": false
+              },
+              "baseline_commit": "28b1f2f7",
               "baseline_slug": "engos-optimization-auto-research"
             },
             {
@@ -6269,13 +6470,13 @@
             {
               "judge": "benchmark_readiness",
               "title": "Benchmark Readiness and Template Fit",
-              "score": 10,
+              "score": 9,
               "blockers": [],
               "scorecard": {
                 "title_clarity": 10,
                 "description_richness": 10,
                 "intent_coverage": 10,
-                "boundary_clarity": 10,
+                "boundary_clarity": 8,
                 "output_specificity": 10,
                 "metadata_completeness": 8,
                 "surface_usability": 10
@@ -6285,20 +6486,48 @@
           "blockers": [],
           "scorecard": {
             "source_fidelity": 10,
-            "baseline_richness": 2,
-            "candidate_richness": 4,
+            "baseline_richness": 7,
+            "candidate_richness": 7,
+            "baseline_operational_score": 3,
+            "candidate_operational_score": 3,
+            "baseline_preserved_in_resource": false,
             "operational_richness": 10,
             "metadata_integrity": 10,
-            "benchmark_readiness": 10,
+            "benchmark_readiness": 9,
             "title_clarity": 10,
             "description_richness": 10,
             "intent_coverage": 10,
-            "boundary_clarity": 10,
+            "boundary_clarity": 8,
             "output_specificity": 10,
             "metadata_completeness": 8,
             "surface_usability": 10
           },
-          "template_name": "both"
+          "template_name": "both",
+          "effective_sha256": "2abaaa2e5cd7af15546d22cbb22bb5aafaa43d5ffc709d1765c0ead707500ade",
+          "semantic_findings": [],
+          "repair_requests": [],
+          "dimension_inventory": [
+            {
+              "dimension": "source_fidelity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "operational_richness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "metadata_integrity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "benchmark_readiness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "semantic_consistency",
+              "status": "no_detected_conflict_not_semantic_proof"
+            }
+          ]
         }
       ],
       "consumption_hints": {
@@ -6378,6 +6607,7 @@
             "progress reports, explicit blockers, parked work authorized by the human, and remaining uncertainty"
           ],
           "tool_policy": {
+            "scope": "uac_intake_only",
             "allowed": [
               "deterministic classification",
               "metadata publication",
@@ -6387,7 +6617,8 @@
               "orchestration",
               "delegation decisions",
               "runtime execution control"
-            ]
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
           },
           "resources": [
             "ssot/engos-orchestration-batman.md"
@@ -6711,6 +6942,7 @@
             "`Merge Readiness`"
           ],
           "tool_policy": {
+            "scope": "uac_intake_only",
             "allowed": [
               "deterministic classification",
               "metadata publication",
@@ -6720,7 +6952,8 @@
               "orchestration",
               "delegation decisions",
               "runtime execution control"
-            ]
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
           },
           "resources": [
             "ssot/engos-quality-code-review.md"
@@ -6902,6 +7135,7 @@
             "link or navigation updates that must be changed"
           ],
           "tool_policy": {
+            "scope": "uac_intake_only",
             "allowed": [
               "deterministic classification",
               "metadata publication",
@@ -6911,7 +7145,8 @@
               "orchestration",
               "delegation decisions",
               "runtime execution control"
-            ]
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
           },
           "resources": [
             "ssot/engos-quality-docs-review.md"
@@ -7145,6 +7380,7 @@
             "final state after execution"
           ],
           "tool_policy": {
+            "scope": "uac_intake_only",
             "allowed": [
               "deterministic classification",
               "metadata publication",
@@ -7154,7 +7390,8 @@
               "orchestration",
               "delegation decisions",
               "runtime execution control"
-            ]
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
           },
           "resources": [
             "ssot/engos-quality-gitops-review.md"
@@ -7386,6 +7623,7 @@
             "`Follow-up Work`"
           ],
           "tool_policy": {
+            "scope": "uac_intake_only",
             "allowed": [
               "deterministic classification",
               "metadata publication",
@@ -7395,7 +7633,8 @@
               "orchestration",
               "delegation decisions",
               "runtime execution control"
-            ]
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
           },
           "resources": [
             "ssot/engos-quality-testing-review.md"
@@ -7704,6 +7943,7 @@
             "`Open Questions` when user steering is still required"
           ],
           "tool_policy": {
+            "scope": "uac_intake_only",
             "allowed": [
               "deterministic classification",
               "metadata publication",
@@ -7713,7 +7953,8 @@
               "orchestration",
               "delegation decisions",
               "runtime execution control"
-            ]
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
           },
           "resources": [
             "ssot/engos-reconciliation-converge.md"
@@ -7917,6 +8158,7 @@
             "Proposed action list for \ud83d\udd34 and \ud83d\udfe1 items"
           ],
           "tool_policy": {
+            "scope": "uac_intake_only",
             "allowed": [
               "deterministic classification",
               "metadata publication",
@@ -7926,7 +8168,8 @@
               "orchestration",
               "delegation decisions",
               "runtime execution control"
-            ]
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
           },
           "resources": [
             "ssot/engos-triage-my-inbox-chat-pulse.md"
@@ -8680,6 +8923,7 @@
             "deployment guidance"
           ],
           "tool_policy": {
+            "scope": "uac_intake_only",
             "allowed": [
               "deterministic classification",
               "metadata publication",
@@ -8689,7 +8933,8 @@
               "orchestration",
               "delegation decisions",
               "runtime execution control"
-            ]
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
           },
           "resources": [
             "ssot/loopy.md"
@@ -9171,15 +9416,34 @@
       ".grok/skills/engos-meta-supercharge/resources/capability.json",
       ".grok/skills/engos-meta-supercharge/resources/references/help-examples.md",
       ".grok/skills/engos-meta-supercharge/resources/references/help.md",
+      ".grok/skills/engos-meta-supercharge/resources/references/model-guidance.md",
+      ".grok/skills/engos-meta-supercharge/resources/references/modules/adversarial.md",
+      ".grok/skills/engos-meta-supercharge/resources/references/modules/basis.md",
+      ".grok/skills/engos-meta-supercharge/resources/references/modules/catchup.md",
+      ".grok/skills/engos-meta-supercharge/resources/references/modules/contract.md",
+      ".grok/skills/engos-meta-supercharge/resources/references/modules/full.md",
+      ".grok/skills/engos-meta-supercharge/resources/references/modules/gaslight.md",
+      ".grok/skills/engos-meta-supercharge/resources/references/modules/grade.md",
+      ".grok/skills/engos-meta-supercharge/resources/references/modules/invert.md",
+      ".grok/skills/engos-meta-supercharge/resources/references/modules/simple.md",
+      ".grok/skills/engos-meta-supercharge/resources/references/modules/stop-ult.md",
+      ".grok/skills/engos-meta-supercharge/resources/references/modules/ult.md",
+      ".grok/skills/engos-meta-supercharge/resources/references/shared-review.md",
+      ".grok/skills/engos-meta-supercharge/resources/resource-map.json",
+      ".grok/skills/engos-meta-supercharge/resources/scripts/load_module.py",
       ".grok/skills/engos-meta-uac-import/resources/capability.json",
       ".grok/skills/engos-operations-ic-assistant/resources/capability.json",
       ".grok/skills/engos-operations-ic-assistant/resources/appian-incident-runbook.md",
       ".grok/skills/engos-optimization-auto-research/resources/capability.json",
       ".grok/skills/engos-optimization-auto-research/resources/bootstrap.py",
+      ".grok/skills/engos-optimization-auto-research/resources/references/experiment-loop.md",
+      ".grok/skills/engos-optimization-auto-research/resources/references/resource-delivery.md",
+      ".grok/skills/engos-optimization-auto-research/resources/resource-map.json",
       ".grok/skills/engos-optimization-auto-research/resources/templates/experiment-ledger.md.tmpl",
       ".grok/skills/engos-optimization-auto-research/resources/templates/goal-contract.md.tmpl",
       ".grok/skills/engos-optimization-auto-research/resources/templates/promotion-packet.md.tmpl",
       ".grok/skills/engos-optimization-auto-research/resources/templates/scorecard.json.tmpl",
+      ".grok/skills/engos-optimization-auto-research/resources/scripts/load_module.py",
       ".grok/skills/engos-orchestration-batman/resources/capability.json",
       ".grok/skills/engos-quality-code-review/resources/capability.json",
       ".grok/skills/engos-quality-docs-review/resources/capability.json",
@@ -9242,15 +9506,34 @@
       ".codex/skills/engos-meta-supercharge/resources/capability.json",
       ".codex/skills/engos-meta-supercharge/resources/references/help-examples.md",
       ".codex/skills/engos-meta-supercharge/resources/references/help.md",
+      ".codex/skills/engos-meta-supercharge/resources/references/model-guidance.md",
+      ".codex/skills/engos-meta-supercharge/resources/references/modules/adversarial.md",
+      ".codex/skills/engos-meta-supercharge/resources/references/modules/basis.md",
+      ".codex/skills/engos-meta-supercharge/resources/references/modules/catchup.md",
+      ".codex/skills/engos-meta-supercharge/resources/references/modules/contract.md",
+      ".codex/skills/engos-meta-supercharge/resources/references/modules/full.md",
+      ".codex/skills/engos-meta-supercharge/resources/references/modules/gaslight.md",
+      ".codex/skills/engos-meta-supercharge/resources/references/modules/grade.md",
+      ".codex/skills/engos-meta-supercharge/resources/references/modules/invert.md",
+      ".codex/skills/engos-meta-supercharge/resources/references/modules/simple.md",
+      ".codex/skills/engos-meta-supercharge/resources/references/modules/stop-ult.md",
+      ".codex/skills/engos-meta-supercharge/resources/references/modules/ult.md",
+      ".codex/skills/engos-meta-supercharge/resources/references/shared-review.md",
+      ".codex/skills/engos-meta-supercharge/resources/resource-map.json",
+      ".codex/skills/engos-meta-supercharge/resources/scripts/load_module.py",
       ".codex/skills/engos-meta-uac-import/resources/capability.json",
       ".codex/skills/engos-operations-ic-assistant/resources/capability.json",
       ".codex/skills/engos-operations-ic-assistant/resources/appian-incident-runbook.md",
       ".codex/skills/engos-optimization-auto-research/resources/capability.json",
       ".codex/skills/engos-optimization-auto-research/resources/bootstrap.py",
+      ".codex/skills/engos-optimization-auto-research/resources/references/experiment-loop.md",
+      ".codex/skills/engos-optimization-auto-research/resources/references/resource-delivery.md",
+      ".codex/skills/engos-optimization-auto-research/resources/resource-map.json",
       ".codex/skills/engos-optimization-auto-research/resources/templates/experiment-ledger.md.tmpl",
       ".codex/skills/engos-optimization-auto-research/resources/templates/goal-contract.md.tmpl",
       ".codex/skills/engos-optimization-auto-research/resources/templates/promotion-packet.md.tmpl",
       ".codex/skills/engos-optimization-auto-research/resources/templates/scorecard.json.tmpl",
+      ".codex/skills/engos-optimization-auto-research/resources/scripts/load_module.py",
       ".codex/skills/engos-orchestration-batman/resources/capability.json",
       ".codex/skills/engos-quality-code-review/resources/capability.json",
       ".codex/skills/engos-quality-docs-review/resources/capability.json",
@@ -9274,14 +9557,33 @@
       ".codex/agents/resources/engos-meta-supercharge/capability.json",
       ".codex/agents/resources/engos-meta-supercharge/references/help-examples.md",
       ".codex/agents/resources/engos-meta-supercharge/references/help.md",
+      ".codex/agents/resources/engos-meta-supercharge/references/model-guidance.md",
+      ".codex/agents/resources/engos-meta-supercharge/references/modules/adversarial.md",
+      ".codex/agents/resources/engos-meta-supercharge/references/modules/basis.md",
+      ".codex/agents/resources/engos-meta-supercharge/references/modules/catchup.md",
+      ".codex/agents/resources/engos-meta-supercharge/references/modules/contract.md",
+      ".codex/agents/resources/engos-meta-supercharge/references/modules/full.md",
+      ".codex/agents/resources/engos-meta-supercharge/references/modules/gaslight.md",
+      ".codex/agents/resources/engos-meta-supercharge/references/modules/grade.md",
+      ".codex/agents/resources/engos-meta-supercharge/references/modules/invert.md",
+      ".codex/agents/resources/engos-meta-supercharge/references/modules/simple.md",
+      ".codex/agents/resources/engos-meta-supercharge/references/modules/stop-ult.md",
+      ".codex/agents/resources/engos-meta-supercharge/references/modules/ult.md",
+      ".codex/agents/resources/engos-meta-supercharge/references/shared-review.md",
+      ".codex/agents/resources/engos-meta-supercharge/resource-map.json",
+      ".codex/agents/resources/engos-meta-supercharge/scripts/load_module.py",
       ".codex/agents/resources/engos-operations-ic-assistant/capability.json",
       ".codex/agents/resources/engos-operations-ic-assistant/appian-incident-runbook.md",
       ".codex/agents/resources/engos-optimization-auto-research/capability.json",
       ".codex/agents/resources/engos-optimization-auto-research/bootstrap.py",
+      ".codex/agents/resources/engos-optimization-auto-research/references/experiment-loop.md",
+      ".codex/agents/resources/engos-optimization-auto-research/references/resource-delivery.md",
+      ".codex/agents/resources/engos-optimization-auto-research/resource-map.json",
       ".codex/agents/resources/engos-optimization-auto-research/templates/experiment-ledger.md.tmpl",
       ".codex/agents/resources/engos-optimization-auto-research/templates/goal-contract.md.tmpl",
       ".codex/agents/resources/engos-optimization-auto-research/templates/promotion-packet.md.tmpl",
       ".codex/agents/resources/engos-optimization-auto-research/templates/scorecard.json.tmpl",
+      ".codex/agents/resources/engos-optimization-auto-research/scripts/load_module.py",
       ".codex/agents/resources/engos-orchestration-batman/capability.json",
       ".codex/agents/resources/engos-quality-docs-review/capability.json",
       ".codex/agents/resources/engos-quality-gitops-review/capability.json",
@@ -9334,15 +9636,34 @@
       ".gemini/skills/engos-meta-supercharge/resources/capability.json",
       ".gemini/skills/engos-meta-supercharge/resources/references/help-examples.md",
       ".gemini/skills/engos-meta-supercharge/resources/references/help.md",
+      ".gemini/skills/engos-meta-supercharge/resources/references/model-guidance.md",
+      ".gemini/skills/engos-meta-supercharge/resources/references/modules/adversarial.md",
+      ".gemini/skills/engos-meta-supercharge/resources/references/modules/basis.md",
+      ".gemini/skills/engos-meta-supercharge/resources/references/modules/catchup.md",
+      ".gemini/skills/engos-meta-supercharge/resources/references/modules/contract.md",
+      ".gemini/skills/engos-meta-supercharge/resources/references/modules/full.md",
+      ".gemini/skills/engos-meta-supercharge/resources/references/modules/gaslight.md",
+      ".gemini/skills/engos-meta-supercharge/resources/references/modules/grade.md",
+      ".gemini/skills/engos-meta-supercharge/resources/references/modules/invert.md",
+      ".gemini/skills/engos-meta-supercharge/resources/references/modules/simple.md",
+      ".gemini/skills/engos-meta-supercharge/resources/references/modules/stop-ult.md",
+      ".gemini/skills/engos-meta-supercharge/resources/references/modules/ult.md",
+      ".gemini/skills/engos-meta-supercharge/resources/references/shared-review.md",
+      ".gemini/skills/engos-meta-supercharge/resources/resource-map.json",
+      ".gemini/skills/engos-meta-supercharge/resources/scripts/load_module.py",
       ".gemini/skills/engos-meta-uac-import/resources/capability.json",
       ".gemini/skills/engos-operations-ic-assistant/resources/capability.json",
       ".gemini/skills/engos-operations-ic-assistant/resources/appian-incident-runbook.md",
       ".gemini/skills/engos-optimization-auto-research/resources/capability.json",
       ".gemini/skills/engos-optimization-auto-research/resources/bootstrap.py",
+      ".gemini/skills/engos-optimization-auto-research/resources/references/experiment-loop.md",
+      ".gemini/skills/engos-optimization-auto-research/resources/references/resource-delivery.md",
+      ".gemini/skills/engos-optimization-auto-research/resources/resource-map.json",
       ".gemini/skills/engos-optimization-auto-research/resources/templates/experiment-ledger.md.tmpl",
       ".gemini/skills/engos-optimization-auto-research/resources/templates/goal-contract.md.tmpl",
       ".gemini/skills/engos-optimization-auto-research/resources/templates/promotion-packet.md.tmpl",
       ".gemini/skills/engos-optimization-auto-research/resources/templates/scorecard.json.tmpl",
+      ".gemini/skills/engos-optimization-auto-research/resources/scripts/load_module.py",
       ".gemini/skills/engos-orchestration-batman/resources/capability.json",
       ".gemini/skills/engos-quality-code-review/resources/capability.json",
       ".gemini/skills/engos-quality-docs-review/resources/capability.json",
@@ -9366,14 +9687,33 @@
       ".gemini/agents/resources/engos-meta-supercharge/capability.json",
       ".gemini/agents/resources/engos-meta-supercharge/references/help-examples.md",
       ".gemini/agents/resources/engos-meta-supercharge/references/help.md",
+      ".gemini/agents/resources/engos-meta-supercharge/references/model-guidance.md",
+      ".gemini/agents/resources/engos-meta-supercharge/references/modules/adversarial.md",
+      ".gemini/agents/resources/engos-meta-supercharge/references/modules/basis.md",
+      ".gemini/agents/resources/engos-meta-supercharge/references/modules/catchup.md",
+      ".gemini/agents/resources/engos-meta-supercharge/references/modules/contract.md",
+      ".gemini/agents/resources/engos-meta-supercharge/references/modules/full.md",
+      ".gemini/agents/resources/engos-meta-supercharge/references/modules/gaslight.md",
+      ".gemini/agents/resources/engos-meta-supercharge/references/modules/grade.md",
+      ".gemini/agents/resources/engos-meta-supercharge/references/modules/invert.md",
+      ".gemini/agents/resources/engos-meta-supercharge/references/modules/simple.md",
+      ".gemini/agents/resources/engos-meta-supercharge/references/modules/stop-ult.md",
+      ".gemini/agents/resources/engos-meta-supercharge/references/modules/ult.md",
+      ".gemini/agents/resources/engos-meta-supercharge/references/shared-review.md",
+      ".gemini/agents/resources/engos-meta-supercharge/resource-map.json",
+      ".gemini/agents/resources/engos-meta-supercharge/scripts/load_module.py",
       ".gemini/agents/resources/engos-operations-ic-assistant/capability.json",
       ".gemini/agents/resources/engos-operations-ic-assistant/appian-incident-runbook.md",
       ".gemini/agents/resources/engos-optimization-auto-research/capability.json",
       ".gemini/agents/resources/engos-optimization-auto-research/bootstrap.py",
+      ".gemini/agents/resources/engos-optimization-auto-research/references/experiment-loop.md",
+      ".gemini/agents/resources/engos-optimization-auto-research/references/resource-delivery.md",
+      ".gemini/agents/resources/engos-optimization-auto-research/resource-map.json",
       ".gemini/agents/resources/engos-optimization-auto-research/templates/experiment-ledger.md.tmpl",
       ".gemini/agents/resources/engos-optimization-auto-research/templates/goal-contract.md.tmpl",
       ".gemini/agents/resources/engos-optimization-auto-research/templates/promotion-packet.md.tmpl",
       ".gemini/agents/resources/engos-optimization-auto-research/templates/scorecard.json.tmpl",
+      ".gemini/agents/resources/engos-optimization-auto-research/scripts/load_module.py",
       ".gemini/agents/resources/engos-orchestration-batman/capability.json",
       ".gemini/agents/resources/engos-quality-docs-review/capability.json",
       ".gemini/agents/resources/engos-quality-gitops-review/capability.json",
@@ -9426,15 +9766,34 @@
       ".claude/skills/engos-meta-supercharge/resources/capability.json",
       ".claude/skills/engos-meta-supercharge/resources/references/help-examples.md",
       ".claude/skills/engos-meta-supercharge/resources/references/help.md",
+      ".claude/skills/engos-meta-supercharge/resources/references/model-guidance.md",
+      ".claude/skills/engos-meta-supercharge/resources/references/modules/adversarial.md",
+      ".claude/skills/engos-meta-supercharge/resources/references/modules/basis.md",
+      ".claude/skills/engos-meta-supercharge/resources/references/modules/catchup.md",
+      ".claude/skills/engos-meta-supercharge/resources/references/modules/contract.md",
+      ".claude/skills/engos-meta-supercharge/resources/references/modules/full.md",
+      ".claude/skills/engos-meta-supercharge/resources/references/modules/gaslight.md",
+      ".claude/skills/engos-meta-supercharge/resources/references/modules/grade.md",
+      ".claude/skills/engos-meta-supercharge/resources/references/modules/invert.md",
+      ".claude/skills/engos-meta-supercharge/resources/references/modules/simple.md",
+      ".claude/skills/engos-meta-supercharge/resources/references/modules/stop-ult.md",
+      ".claude/skills/engos-meta-supercharge/resources/references/modules/ult.md",
+      ".claude/skills/engos-meta-supercharge/resources/references/shared-review.md",
+      ".claude/skills/engos-meta-supercharge/resources/resource-map.json",
+      ".claude/skills/engos-meta-supercharge/resources/scripts/load_module.py",
       ".claude/skills/engos-meta-uac-import/resources/capability.json",
       ".claude/skills/engos-operations-ic-assistant/resources/capability.json",
       ".claude/skills/engos-operations-ic-assistant/resources/appian-incident-runbook.md",
       ".claude/skills/engos-optimization-auto-research/resources/capability.json",
       ".claude/skills/engos-optimization-auto-research/resources/bootstrap.py",
+      ".claude/skills/engos-optimization-auto-research/resources/references/experiment-loop.md",
+      ".claude/skills/engos-optimization-auto-research/resources/references/resource-delivery.md",
+      ".claude/skills/engos-optimization-auto-research/resources/resource-map.json",
       ".claude/skills/engos-optimization-auto-research/resources/templates/experiment-ledger.md.tmpl",
       ".claude/skills/engos-optimization-auto-research/resources/templates/goal-contract.md.tmpl",
       ".claude/skills/engos-optimization-auto-research/resources/templates/promotion-packet.md.tmpl",
       ".claude/skills/engos-optimization-auto-research/resources/templates/scorecard.json.tmpl",
+      ".claude/skills/engos-optimization-auto-research/resources/scripts/load_module.py",
       ".claude/skills/engos-orchestration-batman/resources/capability.json",
       ".claude/skills/engos-quality-code-review/resources/capability.json",
       ".claude/skills/engos-quality-docs-review/resources/capability.json",
@@ -9458,14 +9817,33 @@
       ".claude/agents/resources/engos-meta-supercharge/capability.json",
       ".claude/agents/resources/engos-meta-supercharge/references/help-examples.md",
       ".claude/agents/resources/engos-meta-supercharge/references/help.md",
+      ".claude/agents/resources/engos-meta-supercharge/references/model-guidance.md",
+      ".claude/agents/resources/engos-meta-supercharge/references/modules/adversarial.md",
+      ".claude/agents/resources/engos-meta-supercharge/references/modules/basis.md",
+      ".claude/agents/resources/engos-meta-supercharge/references/modules/catchup.md",
+      ".claude/agents/resources/engos-meta-supercharge/references/modules/contract.md",
+      ".claude/agents/resources/engos-meta-supercharge/references/modules/full.md",
+      ".claude/agents/resources/engos-meta-supercharge/references/modules/gaslight.md",
+      ".claude/agents/resources/engos-meta-supercharge/references/modules/grade.md",
+      ".claude/agents/resources/engos-meta-supercharge/references/modules/invert.md",
+      ".claude/agents/resources/engos-meta-supercharge/references/modules/simple.md",
+      ".claude/agents/resources/engos-meta-supercharge/references/modules/stop-ult.md",
+      ".claude/agents/resources/engos-meta-supercharge/references/modules/ult.md",
+      ".claude/agents/resources/engos-meta-supercharge/references/shared-review.md",
+      ".claude/agents/resources/engos-meta-supercharge/resource-map.json",
+      ".claude/agents/resources/engos-meta-supercharge/scripts/load_module.py",
       ".claude/agents/resources/engos-operations-ic-assistant/capability.json",
       ".claude/agents/resources/engos-operations-ic-assistant/appian-incident-runbook.md",
       ".claude/agents/resources/engos-optimization-auto-research/capability.json",
       ".claude/agents/resources/engos-optimization-auto-research/bootstrap.py",
+      ".claude/agents/resources/engos-optimization-auto-research/references/experiment-loop.md",
+      ".claude/agents/resources/engos-optimization-auto-research/references/resource-delivery.md",
+      ".claude/agents/resources/engos-optimization-auto-research/resource-map.json",
       ".claude/agents/resources/engos-optimization-auto-research/templates/experiment-ledger.md.tmpl",
       ".claude/agents/resources/engos-optimization-auto-research/templates/goal-contract.md.tmpl",
       ".claude/agents/resources/engos-optimization-auto-research/templates/promotion-packet.md.tmpl",
       ".claude/agents/resources/engos-optimization-auto-research/templates/scorecard.json.tmpl",
+      ".claude/agents/resources/engos-optimization-auto-research/scripts/load_module.py",
       ".claude/agents/resources/engos-orchestration-batman/capability.json",
       ".claude/agents/resources/engos-quality-docs-review/capability.json",
       ".claude/agents/resources/engos-quality-gitops-review/capability.json",
@@ -9518,15 +9896,34 @@
       ".kiro/skills/engos-meta-supercharge/resources/capability.json",
       ".kiro/skills/engos-meta-supercharge/resources/references/help-examples.md",
       ".kiro/skills/engos-meta-supercharge/resources/references/help.md",
+      ".kiro/skills/engos-meta-supercharge/resources/references/model-guidance.md",
+      ".kiro/skills/engos-meta-supercharge/resources/references/modules/adversarial.md",
+      ".kiro/skills/engos-meta-supercharge/resources/references/modules/basis.md",
+      ".kiro/skills/engos-meta-supercharge/resources/references/modules/catchup.md",
+      ".kiro/skills/engos-meta-supercharge/resources/references/modules/contract.md",
+      ".kiro/skills/engos-meta-supercharge/resources/references/modules/full.md",
+      ".kiro/skills/engos-meta-supercharge/resources/references/modules/gaslight.md",
+      ".kiro/skills/engos-meta-supercharge/resources/references/modules/grade.md",
+      ".kiro/skills/engos-meta-supercharge/resources/references/modules/invert.md",
+      ".kiro/skills/engos-meta-supercharge/resources/references/modules/simple.md",
+      ".kiro/skills/engos-meta-supercharge/resources/references/modules/stop-ult.md",
+      ".kiro/skills/engos-meta-supercharge/resources/references/modules/ult.md",
+      ".kiro/skills/engos-meta-supercharge/resources/references/shared-review.md",
+      ".kiro/skills/engos-meta-supercharge/resources/resource-map.json",
+      ".kiro/skills/engos-meta-supercharge/resources/scripts/load_module.py",
       ".kiro/skills/engos-meta-uac-import/resources/capability.json",
       ".kiro/skills/engos-operations-ic-assistant/resources/capability.json",
       ".kiro/skills/engos-operations-ic-assistant/resources/appian-incident-runbook.md",
       ".kiro/skills/engos-optimization-auto-research/resources/capability.json",
       ".kiro/skills/engos-optimization-auto-research/resources/bootstrap.py",
+      ".kiro/skills/engos-optimization-auto-research/resources/references/experiment-loop.md",
+      ".kiro/skills/engos-optimization-auto-research/resources/references/resource-delivery.md",
+      ".kiro/skills/engos-optimization-auto-research/resources/resource-map.json",
       ".kiro/skills/engos-optimization-auto-research/resources/templates/experiment-ledger.md.tmpl",
       ".kiro/skills/engos-optimization-auto-research/resources/templates/goal-contract.md.tmpl",
       ".kiro/skills/engos-optimization-auto-research/resources/templates/promotion-packet.md.tmpl",
       ".kiro/skills/engos-optimization-auto-research/resources/templates/scorecard.json.tmpl",
+      ".kiro/skills/engos-optimization-auto-research/resources/scripts/load_module.py",
       ".kiro/skills/engos-orchestration-batman/resources/capability.json",
       ".kiro/skills/engos-quality-code-review/resources/capability.json",
       ".kiro/skills/engos-quality-docs-review/resources/capability.json",
@@ -9550,14 +9947,33 @@
       ".kiro/agents/resources/engos-meta-supercharge/capability.json",
       ".kiro/agents/resources/engos-meta-supercharge/references/help-examples.md",
       ".kiro/agents/resources/engos-meta-supercharge/references/help.md",
+      ".kiro/agents/resources/engos-meta-supercharge/references/model-guidance.md",
+      ".kiro/agents/resources/engos-meta-supercharge/references/modules/adversarial.md",
+      ".kiro/agents/resources/engos-meta-supercharge/references/modules/basis.md",
+      ".kiro/agents/resources/engos-meta-supercharge/references/modules/catchup.md",
+      ".kiro/agents/resources/engos-meta-supercharge/references/modules/contract.md",
+      ".kiro/agents/resources/engos-meta-supercharge/references/modules/full.md",
+      ".kiro/agents/resources/engos-meta-supercharge/references/modules/gaslight.md",
+      ".kiro/agents/resources/engos-meta-supercharge/references/modules/grade.md",
+      ".kiro/agents/resources/engos-meta-supercharge/references/modules/invert.md",
+      ".kiro/agents/resources/engos-meta-supercharge/references/modules/simple.md",
+      ".kiro/agents/resources/engos-meta-supercharge/references/modules/stop-ult.md",
+      ".kiro/agents/resources/engos-meta-supercharge/references/modules/ult.md",
+      ".kiro/agents/resources/engos-meta-supercharge/references/shared-review.md",
+      ".kiro/agents/resources/engos-meta-supercharge/resource-map.json",
+      ".kiro/agents/resources/engos-meta-supercharge/scripts/load_module.py",
       ".kiro/agents/resources/engos-operations-ic-assistant/capability.json",
       ".kiro/agents/resources/engos-operations-ic-assistant/appian-incident-runbook.md",
       ".kiro/agents/resources/engos-optimization-auto-research/capability.json",
       ".kiro/agents/resources/engos-optimization-auto-research/bootstrap.py",
+      ".kiro/agents/resources/engos-optimization-auto-research/references/experiment-loop.md",
+      ".kiro/agents/resources/engos-optimization-auto-research/references/resource-delivery.md",
+      ".kiro/agents/resources/engos-optimization-auto-research/resource-map.json",
       ".kiro/agents/resources/engos-optimization-auto-research/templates/experiment-ledger.md.tmpl",
       ".kiro/agents/resources/engos-optimization-auto-research/templates/goal-contract.md.tmpl",
       ".kiro/agents/resources/engos-optimization-auto-research/templates/promotion-packet.md.tmpl",
       ".kiro/agents/resources/engos-optimization-auto-research/templates/scorecard.json.tmpl",
+      ".kiro/agents/resources/engos-optimization-auto-research/scripts/load_module.py",
       ".kiro/agents/resources/engos-orchestration-batman/capability.json",
       ".kiro/agents/resources/engos-quality-docs-review/capability.json",
       ".kiro/agents/resources/engos-quality-gitops-review/capability.json",

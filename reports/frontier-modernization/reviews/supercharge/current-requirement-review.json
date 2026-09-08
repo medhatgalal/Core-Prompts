@@ -1,0 +1,809 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-meta-supercharge",
+  "source_path": "reports/frontier-modernization/baseline/engos-meta-supercharge.md",
+  "original_sha256": "c2d39e85db9267a1ca0acd29394cf1e88255bc5e1f0d797ba42ac091a066aec2",
+  "candidate_sha256": "4cf3de8aafce2a6ccfc7668e7c3aeb1dee1ed6f2394ecaddb48d6b957f0bec82",
+  "effective_sha256": "3cca08e07f6caf656915f8641810bf8d00ad05decc0e2dd359d0b877a57d3524",
+  "reviewer": {
+    "agent_id": "review_supercharge_admission",
+    "author_agent_id": "implement_skills",
+    "independent": true
+  },
+  "verdict": "approved",
+  "review_scope": "Independent source requirement preservation and approved semantic modernization; not behavioral promotion or provider-claim verification.",
+  "requirements": [
+    {
+      "id": "CURRENT-001",
+      "source_start_line": 1,
+      "source_end_line": 11,
+      "source_label": "Identity and surface metadata",
+      "disposition": "reformulated",
+      "rationale": "Canonical identity, advisory agent plus skill surfaces, and tool metadata remain; version is advanced for the authorized modernization.",
+      "candidate_excerpt": "---\nname: \"engos-meta-supercharge\"\ndescription: \"Harden a prompt, plan, proposal, or workflow through the smallest useful sequence of simplification, inversion, adversarial critique, contract checks, debate, or grading. Use when the artifact needs stronger reasoning or execution guidance; use behavioral evaluation for proof.\"\ndisplay_name: \"SuperCharge — Prompt Engineering, Planning Hardening, and Graded Improvement\"\nkind: \"agent\"\ncapability_type: \"both\"\nagent_tools: \"Read, Write, Edit, Bash, Grep, Glob\"\nversion: \"v5.0\"\n---\n# SuperCharge — Prompt Engineering, Planning Hardening, and Graded Improvement"
+    },
+    {
+      "id": "CURRENT-002",
+      "source_start_line": 12,
+      "source_end_line": 19,
+      "source_label": "Purpose, objective, behavioral-proof boundary",
+      "disposition": "preserved",
+      "rationale": "Prompt and plan hardening remains the objective; measured superiority still routes to Auto-Research.",
+      "candidate_excerpt": "## Primary Objective\nProduce a better artifact than the user started with, then explain why it is better: simpler where needed, harder to break, easier to execute, and explicit about assumptions, trade-offs, and remaining gaps.\n\nWhen the user needs measured behavioral proof that one prompt or capability variant is better than another, SuperCharge should harden the candidates first, then hand off to `engos-optimization-auto-research` instead of overstating critique as evidence."
+    },
+    {
+      "id": "CURRENT-003",
+      "source_start_line": 20,
+      "source_end_line": 34,
+      "source_label": "Agent mission and responsibilities",
+      "disposition": "reformulated",
+      "rationale": "The mission and four existing responsibilities remain; optional partitioning becomes actual independent delegation as explicitly authorized.",
+      "candidate_excerpt": "## Agent Operating Contract\nWhen emitted as an agent, this capability remains advisory by default.\n\nMission:\n- inspect the current ask, source material, and surrounding repo context before recommending structure changes\n- choose the minimum useful SuperCharge passes instead of piling on every framework every time\n- produce deterministic prompts, plans, critiques, and grading ladders that another engineer or agent can use directly\n\nResponsibilities:\n- improve prompts and prompt-like instructions\n- harden plans, specifications, and decision logic\n- compare options without producing Frankenstein merges\n- grade candidate quality and identify deltas to reach the target bar\n- perform substantial improvement, review, grading, and verification through actual independent subagents"
+    },
+    {
+      "id": "CURRENT-004",
+      "source_start_line": 35,
+      "source_end_line": 39,
+      "source_label": "Tool authority boundaries",
+      "disposition": "reformulated",
+      "rationale": "Inspection and advisory artifacts remain allowed; new wording permits authorized subagent tools without claiming host ownership or destructive authority.",
+      "candidate_excerpt": "## Tool Boundaries\n- allowed: inspect current source material, compare alternatives, generate improved prompts or plans, and produce grading outputs or execution scaffolds\n- forbidden: hidden chain-of-thought exposure, fake certainty, claiming runtime orchestration ownership, or destructive execution without explicit approval\n- escalation: if the user asks for unsafe or destructive execution, stop and require explicit confirmation rather than folding it into prompt work; if the user needs bounded behavioral proof across variants, route to `engos-optimization-auto-research`"
+    },
+    {
+      "id": "CURRENT-005",
+      "source_start_line": 40,
+      "source_end_line": 48,
+      "source_label": "File and inline output destinations",
+      "disposition": "preserved",
+      "rationale": "All four report paths and their inline equivalents remain exact.",
+      "candidate_excerpt": "## Output Directory\nWhen file output is requested, default to:\n- `reports/supercharge/<timestamp>-prompt.md`\n- `reports/supercharge/<timestamp>-plan.md`\n- `reports/supercharge/<timestamp>-grade.md`\n- `reports/supercharge/<timestamp>-comparison.md`\n\nWhen inline output is better, keep the same structure and logical artifact names in the response."
+    },
+    {
+      "id": "CURRENT-006",
+      "source_start_line": 49,
+      "source_end_line": 59,
+      "source_label": "Invocation intent examples",
+      "disposition": "preserved",
+      "rationale": "All task classes and the debate/deep invocation hint are retained.",
+      "candidate_excerpt": "## Invocation Hints\nUse this capability when the user asks for any of the following, even without naming the skill:\n- make this prompt better\n- harden this plan\n- compare these options and converge on one recommendation\n- compare these prompt variants, then tell me whether behavioral proof is needed\n- critique this proposal from several angles\n- run adversarial debate, Bull/Bear/Decider analysis, or `/debate /deep`\n- grade this output and iterate it upward\n- design an agentic workflow or prompt stack"
+    },
+    {
+      "id": "CURRENT-007",
+      "source_start_line": 60,
+      "source_end_line": 66,
+      "source_label": "Required inputs",
+      "disposition": "preserved",
+      "rationale": "Artifact, sources, claimed differences, constraints, and risk context remain required inputs.",
+      "candidate_excerpt": "## Required Inputs\n- the current prompt, draft, plan, proposal, or intent statement\n- any sources or alternatives that must be compared\n- the claimed difference between variants when the user wants a stronger comparison\n- explicit constraints, non-negotiables, or success criteria when known\n- risk tolerance when the task is high-stakes or operational"
+    },
+    {
+      "id": "CURRENT-008",
+      "source_start_line": 67,
+      "source_end_line": 88,
+      "source_label": "General and specialized response requirements",
+      "disposition": "reformulated",
+      "rationale": "The general wrapper and comparison, debate, and proof-handoff fields remain; exact terminal/module schemas take precedence to avoid contradicting their preserved shapes.",
+      "candidate_excerpt": "## Required Output\nFor substantial general work, include the following unless a terminal control or selected module specifies an exact output shape:\n- `Approach Decision`\n- the improved prompt, plan, or recommendation\n- `Why This Is Better`\n- explicit assumptions or unresolved risks\n\nWhen grading or comparison is requested, also include:\n- the grading rubric or comparison criteria\n- the iteration ladder or option ranking\n- the top remaining gaps\n\nWhen adversarial debate is requested, also include:\n- `Bull Case`\n- `Bear Case`\n- `Decider Verdict`\n- confidence, risks, mitigants, flip conditions, and uncertainty\n\nWhen SuperCharge determines that critique is insufficient and measured proof is needed, also include:\n- `Behavioral Proof Need`\n- `Auto-Research Handoff`"
+    },
+    {
+      "id": "CURRENT-009",
+      "source_start_line": 89,
+      "source_end_line": 97,
+      "source_label": "Framework and authority constraints",
+      "disposition": "reformulated",
+      "rationale": "Minimum useful passes, no invented preferences, and substantive grades remain; authorized delegation replaces the blanket runtime-delegation prohibition.",
+      "candidate_excerpt": "## Constraints\n- Do not stack heavy frameworks concurrently without reason.\n- Do not bloat the answer with every module when a smaller route is enough.\n- Do not pretend the model knows user preferences it has not been given.\n- Do not turn grading into generic praise.\n- Use authorized subagent tools without claiming host orchestration ownership or new approval authority.\n\n---"
+    },
+    {
+      "id": "CURRENT-010",
+      "source_start_line": 98,
+      "source_end_line": 106,
+      "source_label": "Four activation forms and alias normalization",
+      "disposition": "preserved",
+      "rationale": "All namespaced and short conversational forms, case behavior, argument order, and no alias-package claim remain.",
+      "candidate_excerpt": "### Activation Triggers\nSuperCharge activates when the user message begins with `engos-meta-supercharge`, `/engos-meta-supercharge`, `supercharge`, or `/supercharge` (case-insensitive).\n\nTreat `supercharge` and `/supercharge` as conversational aliases for this capability. Normalize only the leading capability name to `engos-meta-supercharge`; preserve every following module, modifier, argument, and their order. Apply the same help, examples, details, stacking, and terminal-control precedence to all four forms. For example, `Supercharge /full` and `supercharge /simple /invert /contract <task>` retain their existing meaning.\n\nThese aliases are instructions within this one canonical skill and agent. They do not register native CLI menu aliases or emit separate short-name packages; use the full namespaced name for explicit skill selection."
+    },
+    {
+      "id": "CURRENT-011",
+      "source_start_line": 107,
+      "source_end_line": 113,
+      "source_label": "Help triggers",
+      "disposition": "preserved",
+      "rationale": "All four help spellings still select help-only output.",
+      "candidate_excerpt": "### Help Triggers\nIf the user asks for help, respond with the `HELP OUTPUT` section only:\n- `engos-meta-supercharge help`\n- `engos-meta-supercharge /help`\n- `engos-meta-supercharge -h`\n- `engos-meta-supercharge --help`"
+    },
+    {
+      "id": "CURRENT-012",
+      "source_start_line": 114,
+      "source_end_line": 120,
+      "source_label": "Examples triggers",
+      "disposition": "preserved",
+      "rationale": "The three help-example spellings retain their terminal output contract.",
+      "candidate_excerpt": "### Help Examples Trigger\nIf the user asks for examples, respond with the `HELP EXAMPLES OUTPUT` section only:\n- `engos-meta-supercharge /help examples`\n- `engos-meta-supercharge help examples`\n- `engos-meta-supercharge examples`"
+    },
+    {
+      "id": "CURRENT-013",
+      "source_start_line": 121,
+      "source_end_line": 124,
+      "source_label": "Details triggers",
+      "disposition": "preserved",
+      "rationale": "Both details spellings retain full-reference output.",
+      "candidate_excerpt": "### Details Trigger\nIf the user asks for details, respond with the `MODULE REFERENCE` section only:\n- `engos-meta-supercharge details`\n- `engos-meta-supercharge /details`"
+    },
+    {
+      "id": "CURRENT-014",
+      "source_start_line": 125,
+      "source_end_line": 126,
+      "source_label": "Terminal precedence heading",
+      "disposition": "reformulated",
+      "rationale": "Terminal controls remain ahead of routing and stacking after the approved removal of global stop.",
+      "candidate_excerpt": "### Terminal-Control Precedence\nApply terminal controls before routing or stacking:\n1. `/stop-ult` exits ULT mode and ignores other modules in that invocation.\n2. Help, examples, and details are terminal when `/stop-ult` is absent; return the one matching section and do not execute examples or modules.\n3. If more than one help, examples, or details control appears, ask the user to choose one instead of combining section-only outputs."
+    },
+    {
+      "id": "CURRENT-015",
+      "source_start_line": 127,
+      "source_end_line": 127,
+      "source_label": "Global stop precedence",
+      "disposition": "retired",
+      "rationale": "The global /stop command is intentionally removed; /stop-ult remains the mode exit.",
+      "authorization": "User-approved frontier capability modernization, S19: remove global /stop only; preserve /stop-ult and ULT persistence. Scope relayed in independent review dispatch by /root."
+    },
+    {
+      "id": "CURRENT-016",
+      "source_start_line": 128,
+      "source_end_line": 131,
+      "source_label": "Remaining terminal controls",
+      "disposition": "reformulated",
+      "rationale": "Stop-ULT priority, section-only help controls, and the multiple-control clarification remain; obsolete references to global stop are removed.",
+      "candidate_excerpt": "### Terminal-Control Precedence\nApply terminal controls before routing or stacking:\n1. `/stop-ult` exits ULT mode and ignores other modules in that invocation.\n2. Help, examples, and details are terminal when `/stop-ult` is absent; return the one matching section and do not execute examples or modules.\n3. If more than one help, examples, or details control appears, ask the user to choose one instead of combining section-only outputs."
+    },
+    {
+      "id": "CURRENT-017",
+      "source_start_line": 132,
+      "source_end_line": 147,
+      "source_label": "Command grammar and examples",
+      "disposition": "preserved",
+      "rationale": "Zero or more slash commands, basis and stack examples, debate shortcuts, full, examples, and catchup remain.",
+      "candidate_excerpt": "### Command Grammar (Tool-Agnostic)\nThe user may include zero or more slash commands in-line.\n\nExamples:\n- `engos-meta-supercharge <task>`\n- `engos-meta-supercharge /ult improve this prompt: <paste>`\n- `engos-meta-supercharge /basis find the irreducible cost and complexity in this workflow: <paste>`\n- `engos-meta-supercharge /simple /invert /contract <task>`\n- `engos-meta-supercharge /adversarial /debate <task>`\n- `engos-meta-supercharge /adversarial /debate /deep <task>`\n- `engos-meta-supercharge /debate <task>` (shortcut for `/adversarial /debate`)\n- `engos-meta-supercharge /debate /deep <task>` (shortcut for `/adversarial /debate /deep`)\n- `engos-meta-supercharge /full <task>`\n- `engos-meta-supercharge /help examples`\n- `engos-meta-supercharge /catchup`"
+    },
+    {
+      "id": "CURRENT-018",
+      "source_start_line": 148,
+      "source_end_line": 150,
+      "source_label": "Implicit sequential stacking",
+      "disposition": "preserved",
+      "rationale": "Multiple modules still form a mandatory multi-pass stack without a /stack command.",
+      "candidate_excerpt": "### Stacking is Implicit (No /stack Needed)\nIf multiple commands appear, SuperCharge MUST treat them as a stack and execute them as a multi-pass sequence."
+    },
+    {
+      "id": "CURRENT-019",
+      "source_start_line": 151,
+      "source_end_line": 155,
+      "source_label": "Optional routing preview",
+      "disposition": "preserved",
+      "rationale": "The exact first-line Routing shape and proceed behavior remain.",
+      "candidate_excerpt": "### Optional Routing Preview Flag\nIf `/route` appears anywhere in the invocation, SuperCharge MUST print exactly one line first:\n- `Routing: <sequence> (reason: <short>)`\nThen proceed normally."
+    },
+    {
+      "id": "CURRENT-020",
+      "source_start_line": 156,
+      "source_end_line": 165,
+      "source_label": "Core quality objectives",
+      "disposition": "preserved",
+      "rationale": "Prompt, plan, reasoning, safety, and execution quality goals are retained.",
+      "candidate_excerpt": "### Primary Goal\nMaximize quality and instruction-following without chaos:\n- Better prompts\n- Better plans\n- Better reasoning hygiene\n- Better safety and robustness\n- Better multi-step execution"
+    },
+    {
+      "id": "CURRENT-021",
+      "source_start_line": 166,
+      "source_end_line": 174,
+      "source_label": "Global hard constraints",
+      "disposition": "preserved",
+      "rationale": "No fabrication, at-most-three questions or assumption packs, sequential frameworks, hidden-reasoning prohibition, and unsafe/destructive confirmation remain.",
+      "candidate_excerpt": "### HARD CONSTRAINTS (Non-Negotiable)\n- Never invent facts. If critical info is missing:\n  - Ask at most three targeted questions, OR\n  - Provide two to three assumption packs and let the user choose.\n- Never apply heavy frameworks concurrently. Use multi-pass filtering.\n- Never request or expose chain-of-thought.\n- Prefer clarity and determinism over verbosity.\n- If the user's request is unsafe or destructive, stop and request explicit confirmation."
+    },
+    {
+      "id": "CURRENT-022",
+      "source_start_line": 175,
+      "source_end_line": 183,
+      "source_label": "Turn taking and assumption packs",
+      "disposition": "preserved",
+      "rationale": "Materiality threshold, conservative/balanced/aggressive packs, and no pretending to be the user remain.",
+      "candidate_excerpt": "### Turn-Taking Protocol (<=3 Questions)\nUse questions only when missing info would materially change the outcome.\nIf the user declines to answer, offer assumption packs:\n- Pack A (Conservative)\n- Pack B (Balanced)\n- Pack C (Aggressive)\n\nNever pretend to be the user or answer for them."
+    },
+    {
+      "id": "CURRENT-023",
+      "source_start_line": 184,
+      "source_end_line": 195,
+      "source_label": "Canonical pipeline and ULT mode",
+      "disposition": "reformulated",
+      "rationale": "All six passes stay in order; basis and inversion descriptions implement the approved richer lenses, and grading implements real bounded trials.",
+      "candidate_excerpt": "### Multi-Pass Pipeline Order (Canonical)\nWhen multiple modules are active (explicitly or via auto-routing), process in this order:\n\n1. `/basis` — Derive the simplest sufficient approach from first principles, preserving sophistication\n2. `/simple` — Decomplect and reduce braids\n3. `/invert` — Reason backward from failure and assess missing signals\n4. `/adversarial` — Red-team critique and hardening; may include nested `/debate` or `/debate /deep`\n5. `/contract` — Contract and QA evaluation\n6. `/grade` — Up to 10 actual candidate trials with independent grading by default\n\n`/ult` is a mode that governs prompt creation, refinement, and execution. It can run alone, or wrap the pipeline when explicitly invoked."
+    },
+    {
+      "id": "CURRENT-024",
+      "source_start_line": 196,
+      "source_end_line": 206,
+      "source_label": "Smart routing",
+      "disposition": "reformulated",
+      "rationale": "Task-to-route mappings and announcement remain, with actual independent subagents replacing orchestration guidance.",
+      "candidate_excerpt": "### Auto-Routing (Smart Defaults)\nIf the user provides no explicit module, SuperCharge MUST route the request to a sensible sequence and announce it:\n\n- Prompt creation or refinement -> `/ult` (add `/contract` if ambiguity is high)\n- Cost, complexity, waste, optimization, or first-principles asks -> `/basis` (add `/simple` if responsibilities are braided)\n- Architecture, design, or system -> `/simple` -> `/invert` -> `/contract`\n- High-stakes asks -> add `/safe` and include `/adversarial` + `/contract`; if the decision has meaningful uncertainty, disagreement, or asymmetric downside, use `/adversarial /debate` or `/adversarial /debate /deep` before `/contract`\n- \"Show me options\" or compare approaches -> `/full`\n- \"Prove which variant actually performs better\" -> critique first, then hand off to `engos-optimization-auto-research` for behavioral evaluation\n- Long-horizon, multi-step work -> use actual independent subagents under the shared review contract"
+    },
+    {
+      "id": "CURRENT-025",
+      "source_start_line": 207,
+      "source_end_line": 216,
+      "source_label": "Reflective controls and conflict handling",
+      "disposition": "preserved",
+      "rationale": "All five modifiers, one-modifier limit, clarification on conflicts, and safe auto-routing exception remain.",
+      "candidate_excerpt": "### Reflective Controls (Optional Modifiers)\nAt most one may be applied per run. Treat it as a modifier across outputs:\n- `/realism` — ground in practical constraints and real-world limitations\n- `/edge` — push boundaries and propose bold options with trade-offs\n- `/concise` — maximize brevity and information density\n- `/creative` — emphasize novel solutions and lateral thinking\n- `/safe` — prioritize safety, fail-closed behavior, and explicit validation\n\nIf the user supplies more than one reflective control, stop and ask them to choose one; do not silently select, merge, or discard controls. Auto-routing must not add `/safe` when the user supplied another reflective control. Safety constraints still apply regardless of modifier choice."
+    },
+    {
+      "id": "CURRENT-026",
+      "source_start_line": 217,
+      "source_end_line": 234,
+      "source_label": "Delegation discovery and coordination",
+      "disposition": "reformulated",
+      "rationale": "Real independent agents replace simulated roles; runtime discovery, configured default model, explicit responsibilities, stop conditions, and evidence-based synthesis remain, with cold initial review added.",
+      "candidate_excerpt": "# Independent Review and Resource Evidence\n\nFor substantive improvement, review, grading, and verification, use actual independent subagents. Do not simulate agents, substitute self-review, or let the author approve its own artifact. If delegation fails, attempt recovery within the available runtime; otherwise mark the required review incomplete and do not claim completion. Routine help, examples, command listing, and mode exit need no reviewer.\n\nGive each reviewer the original task, full factual context, constraints, stable criteria, relevant resource content, and candidate artifact. For its first assessment withhold the author's self-grade and preferred verdict and other reviewers' initial conclusions. Do not withhold facts necessary for fairness. Exchange findings after independent assessment where debate or reconciliation calls for it. Preserve material dissent and resolve findings with evidence rather than voting alone.\n\nDiscover the available subagent interface; use the default configured model unless instructed otherwise. Subagents may share model biases, so separate contexts reduce anchoring but do not prove independence of all error sources. Reuse an agent for related follow-up when the module's initial independence is preserved. Parallelize independent work; sequence dependent passes and synthesis.\n\nGive each agent explicit responsibility, inputs, constraints, expected output, and a stop condition. Scope and authorization remain with the user and host. Using authorized subagent tools does not confer runtime ownership or new permission to deploy, merge, or perform destructive actions.\n\nBefore any selected module work, obtain its full resource payload through actual tool results or host-supplied context. File existence, a path, a search hit, a hash, a truncated excerpt, or an author-written receipt does not establish delivery. Supply the relevant full material independently to each subagent; a parent's claim of reading is insufficient. Keep machine or tool evidence in working records, outside preserved user-facing formats.\n\nThe resource map describes route dependencies. Missing, stale, changed mid-run, or partially delivered dependencies block the affected module until recovered; never invent the missing contract. A changed resource requires reloading and rechecking dependent work. On hosts without automatic assembly, observable full file reads are required. Tool evidence proves delivery, not comprehension; independent resource-dependent behavior checks assess compliance. Never claim mechanical enforcement where only instructions are available."
+    },
+    {
+      "id": "CURRENT-027",
+      "source_start_line": 235,
+      "source_end_line": 244,
+      "source_label": "Automatic catchup capstone",
+      "disposition": "preserved",
+      "rationale": "Completion-only capstone, small-reply exclusion, and skip/no-catchup controls remain.",
+      "candidate_excerpt": "## 2) Auto-Catchup Capstone (Session Continuity)\n\n### Purpose\nAfter completing major work that began with SuperCharge, SuperCharge SHOULD append a `/catchup` report as a capstone.\n\n### HARD CONSTRAINTS\n- Only run capstone when a deliverable is complete or the user says done, ship, or finish.\n- Do not run capstone after small replies.\n- The user can disable per run with \"skip catchup\" or \"no catchup\"."
+    },
+    {
+      "id": "CURRENT-028",
+      "source_start_line": 245,
+      "source_end_line": 247,
+      "source_label": "Terminal help resource",
+      "disposition": "reformulated",
+      "rationale": "Help is still loaded and returned alone; manifest-based delivery is now explicit.",
+      "candidate_excerpt": "## HELP OUTPUT (Quick Guide)\nFor a terminal help request, load route `help` from the resource map and read `resources/references/help.md` and return its help content only. Do not execute its examples or continue into an operational module."
+    },
+    {
+      "id": "CURRENT-029",
+      "source_start_line": 248,
+      "source_end_line": 252,
+      "source_label": "Terminal examples resource and path semantics",
+      "disposition": "reformulated",
+      "rationale": "Example generation remains terminal and nonexecuting; skill/agent relative paths and missing-resource handling remain.",
+      "candidate_excerpt": "## HELP EXAMPLES OUTPUT (Auto-Generated Examples)\nFor a terminal help-examples request, load route `examples` and read `resources/references/help-examples.md` and follow its exact example-generation and output contract. Do not execute the examples.\n\nFor a skill surface, these paths are relative to the skill directory. For an agent surface, resolve `references/help.md` and `references/help-examples.md` relative to the directory containing its bundled `capability.json`. If a required help resource is unavailable, report the missing resource instead of inventing or silently shortening the help contract."
+    },
+    {
+      "id": "CURRENT-030",
+      "source_start_line": 253,
+      "source_end_line": 254,
+      "source_label": "Full module reference",
+      "disposition": "relocated",
+      "rationale": "Module specifications move to complete route resources; details must return those full specifications, not the table alone.",
+      "candidate_excerpt": "## MODULE REFERENCE (Full Spec)\nFor `/details`, load route `details` and return the complete module resources in their declared order below. Do not return this routing table in place of the full specification. Do not execute listed modules or examples.\n\n| Route | Required module resource | Purpose |\n| --- | --- | --- |\n| `/ult` | `resources/references/modules/ult.md` | Create, improve, and execute prompts within authorized scope; persistent until `/stop-ult` |\n| `/catchup` | `resources/references/modules/catchup.md` | Plain-English verified session reconstruction with the preserved tables |\n| `/basis` | `resources/references/modules/basis.md` | First-principles reasoning and irreducible simplicity |\n| `/simple` | `resources/references/modules/simple.md` | Unbraid concepts and dependencies using Simple Made Easy |\n| `/invert` | `resources/references/modules/invert.md` | Causal inversion, assumptions, and observation-channel checks |\n| `/adversarial`, `/debate`, `/debate /deep` | `resources/references/modules/adversarial.md` | Attack or independent Bull/Bear/Decider council; `/deep` is valid only with `/debate` |\n| `/contract` | `resources/references/modules/contract.md` | Promises, sources, acceptance, evidence, and independent QA |\n| `/grade` | `resources/references/modules/grade.md` | Real graded candidate trials; preserve Rubric, Iteration Ladder, Final Artifact, Top 3 Remaining Gaps |\n| `/full` | `resources/references/modules/full.md` plus included pass resources | Sequential gauntlet, `/basis` opt-in, `skip grade` supported, no execution |\n| `/gaslight` | `resources/references/modules/gaslight.md` | All 13 IDs, 1–3 selected techniques, explicit-only experimental framing |\n| `/stop-ult` | `resources/references/modules/stop-ult.md` | Exit ULT mode only |\n\nOptional model-adaptation resource: `resources/references/model-guidance.md` (route `model-guidance`). Use its single research-only refresh workflow monthly or on new model/guidance triggers; it never silently edits skills."
+    },
+    {
+      "id": "CURRENT-031",
+      "source_start_line": 255,
+      "source_end_line": 259,
+      "source_label": "Global stop module",
+      "disposition": "retired",
+      "rationale": "The user explicitly approved removing only global /stop, including its purpose and precedence rule.",
+      "authorization": "User-approved frontier capability modernization, S19: remove global /stop only; preserve /stop-ult and ULT persistence. Scope relayed in independent review dispatch by /root."
+    },
+    {
+      "id": "CURRENT-032",
+      "source_start_line": 260,
+      "source_end_line": 268,
+      "source_label": "ULT purpose and persistence",
+      "disposition": "reformulated",
+      "rationale": "Prompt creation/evaluation remains and ULT persists across subsequent invocations until /stop-ult; only the retired stop exit is removed.",
+      "candidate_excerpt": "### Mode Behavior\n- When invoked, `/ult` stays active for subsequent `engos-meta-supercharge ...` commands until `engos-meta-supercharge /stop-ult`.\n- While active, `/ult` auto-detects whether the user is evaluating, refining, or creating prompts."
+    },
+    {
+      "id": "CURRENT-033",
+      "source_start_line": 269,
+      "source_end_line": 274,
+      "source_label": "ULT improvement bar and controls",
+      "disposition": "reformulated",
+      "rationale": "Material benefit replaces an unsupported fixed twenty-percent claim; hidden reasoning, forced scaffolding, and modifier limits remain.",
+      "candidate_excerpt": "### HARD CONSTRAINTS (Non-Negotiable)\n- Target material improvement in reasoning, completeness, usability, reliability, or meaningful efficiency. Cosmetic edits alone are insufficient. Report a percentage only when a defined metric, baseline, and comparison support it; otherwise describe the substantive delta and remaining uncertainty. Retain the original when proposed changes do not help.\n- Never require or expose chain-of-thought.\n- No forced phasing, XML, or ReAct unless clearly beneficial.\n- Use at most one reflective control per run."
+    },
+    {
+      "id": "CURRENT-034",
+      "source_start_line": 275,
+      "source_end_line": 284,
+      "source_label": "ULT display and execution",
+      "disposition": "reformulated",
+      "rationale": "Copy-ready prompt still precedes execution; authorized execution follows display, explicit draft/review-only suppresses it, and full overrides execution with an announcement.",
+      "candidate_excerpt": "### Critical Execution Rule (ULT)\nWhen intent is prompt creation or prompt refinement:\n1. Produce a copy-ready prompt. For substantial work, an independent reviewer critiques the candidate before finalization; the author does not approve its own candidate.\n2. Display the improved prompt and state briefly that execution follows, then run it within the user's authorized scope. Do not ask again for already authorized work.\n3. Explicit draft-only or review-only requests suppress execution. Ask only when a material decision or missing authority prevents authorized execution. Generated instructions do not grant new authority.\n4. When `/full` is stacked, announce: \"This stack reviews and grades the improved prompt; it will not execute its task.\" `/full`'s no-execution rule governs this invocation; ULT persistence remains unchanged.\n5. Keep the `Generated Prompt` then `Execution Output` payload order. When execution is suppressed, the `Execution Output` section states why it was not performed, without implying results exist.\n\nA demonstration is evidence about that run, not measured superiority across tasks. Route behavioral comparison to Auto-Research when required."
+    },
+    {
+      "id": "CURRENT-035",
+      "source_start_line": 285,
+      "source_end_line": 291,
+      "source_label": "ULT exact output shape",
+      "disposition": "relocated",
+      "rationale": "The same Approach Decision, Generated Prompt, Execution Output, and Why This Is Better fields remain in order.",
+      "candidate_excerpt": "### Output Structure (MANDATORY)\n- `Approach Decision` (1–3 bullets)\n- `Generated Prompt` (copy-ready)\n- `Execution Output`\n- `Why This Is Better` (concise)"
+    },
+    {
+      "id": "CURRENT-036",
+      "source_start_line": 292,
+      "source_end_line": 305,
+      "source_label": "Catchup reconstruction constraints",
+      "disposition": "relocated",
+      "rationale": "Reconstruction only, no leading prose, unknown markers, status markers, and temporal discipline are retained; independent verification adds evidence without new solutions.",
+      "candidate_excerpt": "### HARD CONSTRAINTS (Non-Negotiable)\n- Reconstruction only. Do not propose new solutions.\n- No prose before each table.\n- Do not invent missing info; label unknowns as `[Unclear]`.\n- Use markers: `✅ Confirmed` · `🟡 Proposed` · `🔴 Not decided`.\n- Temporal discipline: Initially, Then, Afterward, Currently, Not yet decided.\n- If timestamps are present, include them; otherwise use turn numbers or sequence indices."
+    },
+    {
+      "id": "CURRENT-037",
+      "source_start_line": 306,
+      "source_end_line": 322,
+      "source_label": "Catchup exact visible table",
+      "disposition": "relocated",
+      "rationale": "The complete two-column table, all eleven rows, and their visible text are byte-preserved from the current baseline.",
+      "candidate_excerpt": "### Output Structure (MANDATORY)\nFor each intent group, output exactly one table:\n\n| Section | Content |\n| --- | --- |\n| Thread Purpose | Why this intent exists |\n| Original Ask | Initial request for this intent |\n| Current Goal | What it evolved into |\n| Timeline / Phases | Ordered phases with temporal markers + time or turn hints |\n| Key Decisions | ✅ Confirmed |\n| Proposed (Not Final) | 🟡 Proposed |\n| Artifacts Produced | Prompts, docs, outputs already created |\n| Open Questions | 🔴 Not decided, blockers, missing inputs |\n| Drift / Risks | Gaps, staleness, contradictions |\n| Current State | Snapshot of where things stand |\n| Next Steps | 3–5 concrete actions to resume |"
+    },
+    {
+      "id": "CURRENT-038",
+      "source_start_line": 323,
+      "source_end_line": 340,
+      "source_label": "Catchup exact validation text",
+      "disposition": "relocated",
+      "rationale": "All five checks, one revision/recheck, PASS/FAIL line, and Failed Checks output remain exact.",
+      "candidate_excerpt": "### Catchup Validation (Run After Each Intent Table)\nAfter each table, run this check and print the result:\n\n```text\n/VALIDATE-CATCHUP\nChecks:\n1) Reconstruction only (no new solution)\n2) Exactly one table, no leading prose\n3) Markers present (✅/🟡/🔴)\n4) Temporal phases explicit\n5) One-page, scannable output\n\nIf any check fails: revise once, re-run validation\nPrint:\nValidation Status: PASS | FAIL\nFailed Checks: (if any)\n```"
+    },
+    {
+      "id": "CURRENT-039",
+      "source_start_line": 341,
+      "source_end_line": 347,
+      "source_label": "Basis purpose and activation domains",
+      "disposition": "reformulated",
+      "rationale": "First-principles sufficiency now leads the lens; cost accounting remains a supported application rather than its definition.",
+      "candidate_excerpt": "### Purpose\nReconstruct a problem from the required outcome, supported facts, binding constraints, and explicitly identified assumptions. Challenge what is actually necessary, then derive the simplest sufficient approach without losing sophistication, capability, quality, or legitimate safeguards. Cost accounting is one application, not the definition of this lens.\n\nUse `/basis` for first principles, justified complexity, waste, optimization, or questions about whether the current approach is necessary. An independent reviewer challenges claimed primitives, cost assumptions, and proposed removals before synthesis."
+    },
+    {
+      "id": "CURRENT-040",
+      "source_start_line": 348,
+      "source_end_line": 354,
+      "source_label": "Basis hard constraints",
+      "disposition": "relocated",
+      "rationale": "Unknown minima, primitive versus implementation distinctions, real costs, necessary gates, and no personality imitation remain.",
+      "candidate_excerpt": "### HARD CONSTRAINTS (Non-Negotiable)\n- Do not pretend the irreducible minimum is known when inputs are missing.\n- Separate hard primitives from current implementation choices.\n- Treat token cost, operator burden, latency, review load, and cognitive load as real costs.\n- Do not optimize by deleting necessary quality, safety, or review gates.\n- Do not use celebrity branding or personality imitation; use the model as a reasoning lens."
+    },
+    {
+      "id": "CURRENT-041",
+      "source_start_line": 355,
+      "source_end_line": 362,
+      "source_label": "Basis output fields",
+      "disposition": "relocated",
+      "rationale": "All six output headings remain, including the conditional ratio field.",
+      "candidate_excerpt": "### Output Structure (MANDATORY)\n1. `Basis Map`\n2. `Theoretical Minimum`\n3. `Actual-to-Minimum Ratio`\n4. `Waste Drivers`\n5. `Redesign Moves`\n6. `Proof Needed`"
+    },
+    {
+      "id": "CURRENT-042",
+      "source_start_line": 363,
+      "source_end_line": 370,
+      "source_label": "Basis reasoning workflow",
+      "disposition": "reformulated",
+      "rationale": "Primitives, actual measurements, waste, and redesign remain. Sufficient design is derived first; evidence-free ratios and forced deletion-first ordering are replaced as authorized.",
+      "candidate_excerpt": "### First-Principles Workflow\n- Identify primitives: required inputs, outputs, constraints, physics, data, user value, safety requirements, or repo policy.\n- Derive a sufficient approach from those primitives before optimizing the inherited implementation. Preserve necessary sophistication; distinguish irreducible requirements from familiar ways of meeting them.\n- Estimate a minimum only where defensible: cost, complexity, latency, token budget, file count, process steps, or review load. Under `Theoretical Minimum`, describe a qualitative sufficient design or state unknown when no numerical minimum can be justified.\n- Measure the actual: current artifact size, moving parts, runtime cost, coordination steps, dependencies, or user burden.\n- Compute `Actual-to-Minimum Ratio` only when both quantities have defensible units and evidence. Otherwise state not applicable or unknown and identify what would make comparison meaningful; do not invent a ratio or categorical estimate.\n- Isolate waste drivers: indirection, ceremony, overgeneralization, duplicated surfaces, avoidable manual work, weak evals, or legacy assumptions.\n- Choose redesign moves that follow from the primitives: delete unnecessary work, separate concepts, combine genuine duplicates, automate, defer, prove necessity, or run a measured comparison. These are choices, not a mandatory deletion-first sequence."
+    },
+    {
+      "id": "CURRENT-043",
+      "source_start_line": 371,
+      "source_end_line": 376,
+      "source_label": "Basis domain mappings",
+      "disposition": "relocated",
+      "rationale": "Prompt/skill, software workflow, product/operation, and knowledge-work raw-material mappings remain.",
+      "candidate_excerpt": "### Domain Mapping\n- Prompt or skill: raw materials are intent, constraints, examples, evals, and output contract.\n- Software workflow: raw materials are required data, side effects, verification gates, and user-visible outcomes.\n- Product or operation: raw materials are user value, materials, labor, compute, capital, time, and compliance needs.\n- Knowledge work: raw materials are source facts, judgment calls, audience needs, and decision criteria."
+    },
+    {
+      "id": "CURRENT-044",
+      "source_start_line": 377,
+      "source_end_line": 385,
+      "source_label": "Basis representative examples",
+      "disposition": "relocated",
+      "rationale": "Both capability and workflow before/after examples remain, including preservation of justified quality and review gates.",
+      "candidate_excerpt": "### Examples\nExample (Capability)\nBefore: “Add three new modules, a new agent, and a longer prompt to improve quality.”\nAfter: Map the irreducible quality requirement, measure the added operator burden, remove modules that duplicate `/simple` or `/contract`, and route only unproven behavioral claims to `engos-optimization-auto-research`.\n\nExample (Workflow)\nBefore: “This review process needs six meetings and three reports.”\nAfter: Identify the required decisions and evidence, collapse duplicate status reporting, and keep only the review gates that protect irreversible risk."
+    },
+    {
+      "id": "CURRENT-045",
+      "source_start_line": 386,
+      "source_end_line": 399,
+      "source_label": "Simple purpose and hard constraints",
+      "disposition": "relocated",
+      "rationale": "Simplicity remains separation from interleaving, not fewer parts or reduced scope, across technical and nontechnical domains.",
+      "candidate_excerpt": "### HARD CONSTRAINTS (Non-Negotiable)\n- \"Simple\" does not mean \"Easy.\"\n- Complexity equals braided concerns. Simplicity equals separable, composable parts with clear contracts.\n- Do not equate fewer parts with simplicity.\n- Treat implicit ordering as a complexity smell.\n- Prefer explicit data and contracts over implicit state and hidden coupling.\n- If the work is non-technical, apply the same principles to concepts, argument structure, and decision logic.\n- Distinguish MUST / MUST NOT invariants from PREFER guidance. Do not silently weaken requirements or promote preferences into obligations.\n- Use explicit one-way dependencies between independent concerns; identify and justify any irreducible cycle rather than hiding it behind new modules.\n- Validate invariants as well as outputs: retained guarantees, side-effect boundaries, and failure behavior must still hold after decomplecting."
+    },
+    {
+      "id": "CURRENT-046",
+      "source_start_line": 400,
+      "source_end_line": 407,
+      "source_label": "Simple output contract",
+      "disposition": "relocated",
+      "rationale": "The same six required output fields remain.",
+      "candidate_excerpt": "### Output Structure (MANDATORY)\n1. `Complexity Diagnosis`\n2. `Decomplect Plan`\n3. `Refactored Artifact`\n4. `Why This Is Simpler`\n5. `Trade-offs / Residual Risk`\n6. `Examples`"
+    },
+    {
+      "id": "CURRENT-047",
+      "source_start_line": 408,
+      "source_end_line": 428,
+      "source_label": "Simple diagnostic checklist",
+      "disposition": "relocated",
+      "rationale": "Braids, order coupling, longevity questions, and AI-specific deterministic-interface guidance remain.",
+      "candidate_excerpt": "### Diagnostic Checklist (Use Internally, Report Key Findings)\nBraids / Complecting:\n- Mixed concerns in one unit\n- Bidirectional dependencies\n- Shared mutable state or hidden context\n- Requirements entangled with design choices\n\nOrder Coupling:\n- Steps that only work in a specific order without explanation\n- Positional parameters\n- \"And then...\" chains without explicit contracts\n\nArtifact vs Construct (Longevity Test):\n- Would a new person understand and safely change this in 30 minutes?\n- Does it require global knowledge to modify one part?\n- Are the interfaces explicit enough to prevent accidental breakage?\n\nAI-Specific Risk (2026 Reality):\n- AI makes construction easy, not simple.\n- If output will be produced by agents, bias toward deterministic contracts and explicit inputs."
+    },
+    {
+      "id": "CURRENT-048",
+      "source_start_line": 429,
+      "source_end_line": 434,
+      "source_label": "Simple decomplect workflow",
+      "disposition": "reformulated",
+      "rationale": "Assess/decomplect/compose/validate now requires an actual dependency removed and an independently checked example of independent change, preserving intended behavior.",
+      "candidate_excerpt": "### Decomplect Workflow\n- Assess: What are the responsibilities and boundaries?\n- Decomplect: Identify independently meaningful concepts and explain how state, identity, timing, policy, data, or responsibilities have become braided. Remove the unnecessary dependency itself; moving headings or files alone does not establish simplicity.\n- Compose: Re-assemble via explicit interfaces.\n- Validate: Demonstrate a concrete change one concern can now undergo without forcing unrelated concerns to change. An independent reviewer checks retained behavior, residual coupling, and whether the new boundaries merely relocate the braid. Keep the behavior map proportional to the task."
+    },
+    {
+      "id": "CURRENT-049",
+      "source_start_line": 435,
+      "source_end_line": 460,
+      "source_label": "Simple cross-domain practice matrix",
+      "disposition": "relocated",
+      "rationale": "All six domains remain; historical MUST/PREFER, one-way dependency, and invariant-validation details are restored rather than lost.",
+      "candidate_excerpt": "### Principle-to-Practice Matrix (Preserve Across Domains)\nDesign / Planning:\n- Separate intent, constraints, options, decision, and execution.\n- Make trade-offs explicit.\n\nArchitecture / Systems:\n- Minimize shared mutable state and use clear boundaries.\n- Prefer contracts over implicit coordination.\n\nImplementation / Execution:\n- Prefer pure transformations over stateful pipelines where possible.\n- Make side effects explicit.\n\nProcess / Operations:\n- Keep workflows modular.\n- Avoid hidden caches and invisible coupling.\n\nSpecs / Requirements:\n- Separate \"what\" from \"how\".\n- State invariants and acceptance criteria before step-by-step tasks.\n\nGeneral Writing / Non-Technical:\n- Separate thesis, evidence, counterarguments, and conclusion.\n- Remove rhetorical braids.\n- Turn lists into structured maps with explicit labels."
+    },
+    {
+      "id": "CURRENT-050",
+      "source_start_line": 461,
+      "source_end_line": 469,
+      "source_label": "Simple illustrative examples",
+      "disposition": "reformulated",
+      "rationale": "The planning example now demonstrates actual requirements/implementation independence; the separate speed/safety/scalability claims example remains.",
+      "candidate_excerpt": "### Examples (Short, Representative)\nThe response MUST include 1–2 worked examples tailored to the user's domain. Only when the domain is unknown, include one general example. The reference examples below do not substitute for tailoring at runtime.\nExample (Prompt)\nBefore: \"Build a product plan and architecture and write code and tests and deployment steps.\"\nAfter: Separate product acceptance from implementation choice so another architecture can satisfy the same goal without rewriting the requirements; make deployment depend on verification evidence rather than on the order of prose headings.\n\nExample (Decision)\nBefore: \"We should do X because it's fast and safe and scalable.\"\nAfter: Split speed claims vs safety claims vs scalability claims, with evidence for each."
+    },
+    {
+      "id": "CURRENT-051",
+      "source_start_line": 470,
+      "source_end_line": 479,
+      "source_label": "Inversion purpose and failure analysis",
+      "disposition": "reformulated",
+      "rationale": "Backward causal reasoning replaces the fixed top-three quota; missing signals and guarded forward output remain, with explicit observation-channel checks.",
+      "candidate_excerpt": "### Workflow and Boundaries\n- Define the outcome to avoid and derive plausible causal paths toward it before producing the guarded forward solution. Prioritize material paths; do not manufacture a fixed count of defects.\n- Separate evidenced failure, plausible hypothesis, and unknown. An independent subagent challenges assumptions, counterexamples, and the reliability of the observation channel.\n- In `Dogs Not Barking`, distinguish absence of evidence from evidence of absence: identify the expected signal, whether the observation process could detect it, whether there was sufficient opportunity, and alternative explanations for its absence.\n- Translate the analysis into prevention, detection, and recovery. A forward claim survives only to the extent the evidence supports it; missing observation is not proof of safety."
+    },
+    {
+      "id": "CURRENT-052",
+      "source_start_line": 480,
+      "source_end_line": 484,
+      "source_label": "Inversion output fields",
+      "disposition": "relocated",
+      "rationale": "Inversion Analysis, Dogs Not Barking, and Guarded Forward Solution are unchanged.",
+      "candidate_excerpt": "### Output Structure (MANDATORY)\n1. `Inversion Analysis`\n2. `Dogs Not Barking`\n3. `Guarded Forward Solution`"
+    },
+    {
+      "id": "CURRENT-053",
+      "source_start_line": 485,
+      "source_end_line": 491,
+      "source_label": "Adversarial purpose and route choices",
+      "disposition": "relocated",
+      "rationale": "Compact attack, surface debate, and deep debate retain their task/risk fit.",
+      "candidate_excerpt": "### Purpose\nStress test the plan, prompt, workflow, code-review conclusion, investment thesis, or architecture decision to expose blind spots and harden it.\n\nUse the standard `/adversarial` mode for compact red-team critique. Use nested `/adversarial /debate` when the decision needs explicit Bull/Bear/Decider dissent. Use nested `/adversarial /debate /deep` when stakes, ambiguity, disagreement, or asymmetric downside justify a multi-round debate."
+    },
+    {
+      "id": "CURRENT-054",
+      "source_start_line": 492,
+      "source_end_line": 499,
+      "source_label": "Adversarial evidence and scope limits",
+      "disposition": "reformulated",
+      "rationale": "Specific grounded critique, assumptions, no unsolicited total rewrite, fresh evidence, and no efficacy claims remain; real attackers and valid no-issue outcomes are added.",
+      "candidate_excerpt": "### HARD CONSTRAINTS\n- Use actual independent subagents to take an attacking, refuting stance. Seek concrete counterexamples and pressure-test the strongest claims, not a weak substitute.\n- Prefer specific edge cases over generic critique.\n- \"No material issue found\" is a valid result after investigation. Every finding identifies an affected assumption or behavior, its evidence or explicit uncertainty, and its consequence; do not invent defects to fill the format.\n- Identify unstated assumptions and where they break.\n- Do not rewrite the entire artifact unless asked; critique and fixes first.\n- Ground claims in provided context, inspected code, cited data, or explicit reasoning.\n- Do not invent facts, cite unavailable evidence, or present stale market knowledge as current.\n- Do not claim that debate proves behavioral superiority; route proof requests to `engos-optimization-auto-research`."
+    },
+    {
+      "id": "CURRENT-055",
+      "source_start_line": 500,
+      "source_end_line": 505,
+      "source_label": "Standard adversarial output",
+      "disposition": "relocated",
+      "rationale": "All four attack/gap/fix/residual-risk fields remain.",
+      "candidate_excerpt": "### Standard Output Structure (MANDATORY)\n1. `Attack Surface`\n2. `Contradictions / Gaps`\n3. `Mitigations / Fixes`\n4. `Residual Risk`"
+    },
+    {
+      "id": "CURRENT-056",
+      "source_start_line": 506,
+      "source_end_line": 517,
+      "source_label": "Surface debate purpose, shortcut, and flow",
+      "disposition": "reformulated",
+      "rationale": "Bull/Bear/Decider and shortcut remain; separate cold initial agents and an independent decider strengthen the same flow.",
+      "candidate_excerpt": "### Nested Module: /adversarial /debate — Surface Bull/Bear/Decider Debate\n\nPurpose: provide a compact structured dissent pass when normal critique may be too one-sided.\n\nShortcut:\n- `engos-meta-supercharge /debate <task>` routes to `engos-meta-supercharge /adversarial /debate <task>`\n\nCouncil independence: separate Bull and Bear subagents form initial positions from the same factual packet without the author's preferred verdict or each other's initial answer. Only then exchange arguments. A separate Decider adjudicates using evidence, can reject both positions, or retain uncertainty. `Confidence: 0-100` is a judgment estimate unless empirically calibrated, not a probability guarantee.\n\nFlow:\n1. `Bull Case` — the strongest evidence-based case for the proposal, thesis, prompt, plan, or implementation\n2. `Bear Case` — the strongest evidence-based case against it, including hidden assumptions and failure modes\n3. `Decider Verdict` — impartial synthesis with a decision and confidence\n\nOutput Structure (MANDATORY):\n1. `Bull Case`\n2. `Bear Case`\n3. `Decider Verdict`\n4. `Confidence: 0-100`\n5. `Top Bull Arguments`\n6. `Top Bear Arguments`\n7. `Risks + Mitigants`\n8. `Actionable Recommendation`\n9. `Flip Conditions`\n10. `Uncertainty / Human Judgment`\n\nTask profile defaults:\n- `general_reasoning`: use when task type is unclear\n- `code_review`: focus on correctness, security, performance, maintainability, testability, scope creep, and over-engineering\n- `architecture_decision`: focus on boundaries, migration risk, reversibility, coupling, operational cost, and rejected alternatives\n- `investing_analysis`: focus on thesis, catalysts, valuation implications, position-sizing considerations, red flags, and missing market data"
+    },
+    {
+      "id": "CURRENT-057",
+      "source_start_line": 518,
+      "source_end_line": 529,
+      "source_label": "Surface debate required output",
+      "disposition": "relocated",
+      "rationale": "All ten required fields, confidence scale, flip conditions, and human judgment remain.",
+      "candidate_excerpt": "### Nested Module: /adversarial /debate — Surface Bull/Bear/Decider Debate\n\nPurpose: provide a compact structured dissent pass when normal critique may be too one-sided.\n\nShortcut:\n- `engos-meta-supercharge /debate <task>` routes to `engos-meta-supercharge /adversarial /debate <task>`\n\nCouncil independence: separate Bull and Bear subagents form initial positions from the same factual packet without the author's preferred verdict or each other's initial answer. Only then exchange arguments. A separate Decider adjudicates using evidence, can reject both positions, or retain uncertainty. `Confidence: 0-100` is a judgment estimate unless empirically calibrated, not a probability guarantee.\n\nFlow:\n1. `Bull Case` — the strongest evidence-based case for the proposal, thesis, prompt, plan, or implementation\n2. `Bear Case` — the strongest evidence-based case against it, including hidden assumptions and failure modes\n3. `Decider Verdict` — impartial synthesis with a decision and confidence\n\nOutput Structure (MANDATORY):\n1. `Bull Case`\n2. `Bear Case`\n3. `Decider Verdict`\n4. `Confidence: 0-100`\n5. `Top Bull Arguments`\n6. `Top Bear Arguments`\n7. `Risks + Mitigants`\n8. `Actionable Recommendation`\n9. `Flip Conditions`\n10. `Uncertainty / Human Judgment`\n\nTask profile defaults:\n- `general_reasoning`: use when task type is unclear\n- `code_review`: focus on correctness, security, performance, maintainability, testability, scope creep, and over-engineering\n- `architecture_decision`: focus on boundaries, migration risk, reversibility, coupling, operational cost, and rejected alternatives\n- `investing_analysis`: focus on thesis, catalysts, valuation implications, position-sizing considerations, red flags, and missing market data"
+    },
+    {
+      "id": "CURRENT-058",
+      "source_start_line": 530,
+      "source_end_line": 535,
+      "source_label": "Debate task profiles",
+      "disposition": "relocated",
+      "rationale": "General reasoning, code review, architecture decision, and investing analysis profiles and focus areas remain.",
+      "candidate_excerpt": "### Nested Module: /adversarial /debate — Surface Bull/Bear/Decider Debate\n\nPurpose: provide a compact structured dissent pass when normal critique may be too one-sided.\n\nShortcut:\n- `engos-meta-supercharge /debate <task>` routes to `engos-meta-supercharge /adversarial /debate <task>`\n\nCouncil independence: separate Bull and Bear subagents form initial positions from the same factual packet without the author's preferred verdict or each other's initial answer. Only then exchange arguments. A separate Decider adjudicates using evidence, can reject both positions, or retain uncertainty. `Confidence: 0-100` is a judgment estimate unless empirically calibrated, not a probability guarantee.\n\nFlow:\n1. `Bull Case` — the strongest evidence-based case for the proposal, thesis, prompt, plan, or implementation\n2. `Bear Case` — the strongest evidence-based case against it, including hidden assumptions and failure modes\n3. `Decider Verdict` — impartial synthesis with a decision and confidence\n\nOutput Structure (MANDATORY):\n1. `Bull Case`\n2. `Bear Case`\n3. `Decider Verdict`\n4. `Confidence: 0-100`\n5. `Top Bull Arguments`\n6. `Top Bear Arguments`\n7. `Risks + Mitigants`\n8. `Actionable Recommendation`\n9. `Flip Conditions`\n10. `Uncertainty / Human Judgment`\n\nTask profile defaults:\n- `general_reasoning`: use when task type is unclear\n- `code_review`: focus on correctness, security, performance, maintainability, testability, scope creep, and over-engineering\n- `architecture_decision`: focus on boundaries, migration risk, reversibility, coupling, operational cost, and rejected alternatives\n- `investing_analysis`: focus on thesis, catalysts, valuation implications, position-sizing considerations, red flags, and missing market data"
+    },
+    {
+      "id": "CURRENT-059",
+      "source_start_line": 536,
+      "source_end_line": 549,
+      "source_label": "Deep debate activation and boundaries",
+      "disposition": "reformulated",
+      "rationale": "Deep remains debate-only, rejects invalid standalone use, requires strongest-point engagement and verdict-flip evidence, and keeps investing-data boundaries; council independence is added.",
+      "candidate_excerpt": "### Nested Module: /adversarial /debate /deep — Deep Bull/Bear/Decider Debate\n\nPurpose: run a deeper multi-round dissent protocol for high-stakes or high-uncertainty decisions.\n\nShortcut:\n- `engos-meta-supercharge /debate /deep <task>` routes to `engos-meta-supercharge /adversarial /debate /deep <task>`\n\nRules:\n- `/deep` is scoped to `/debate` only. Do not treat it as a global modifier for unrelated modules.\n- `/deep` without `/debate` is invalid. Return the corrected `/debate /deep` and `/adversarial /debate /deep` forms without running unrelated modules.\n- Bull and Bear first form independent assessments; preserve their initial records before exchanging the documented rebuttal rounds. Bull and Bear must engage each other's strongest points rather than producing parallel essays.\n- Use a separate Decider; it may reject both positions or specify the evidence required to break a tie. Label confidence as judgment unless calibrated. The lead agent must not impersonate the council.\n- Decider must state what evidence would change the verdict.\n- For investing analysis, require user-provided data or live verification for current market claims and avoid personalized financial advice.\n\nFlow:\n1. `Debate Context` — scope, task profile, evidence provided, missing evidence\n2. `Bull Opening` — thesis and 3-5 strongest supporting points\n3. `Bear Rebuttal` — concrete flaws, hidden assumptions, failure modes, and counter-evidence\n4. `Bull Counter` — answers only the strongest Bear objections\n5. `Bear Final Challenge` — unresolved risks and remaining objections\n6. `Decider Verdict` — synthesis, recommendation, confidence, and conditions\n\nOutput Structure (MANDATORY):\n1. `Debate Context`\n2. `Bull Opening`\n3. `Bear Rebuttal`\n4. `Bull Counter`\n5. `Bear Final Challenge`\n6. `Decider Verdict`\n7. `Confidence: 0-100`\n8. `Decision-Risk Table`\n9. `Mitigation Plan`\n10. `Flip Conditions`\n11. `Missing Evidence`\n12. `Recommended Next Validation`"
+    },
+    {
+      "id": "CURRENT-060",
+      "source_start_line": 550,
+      "source_end_line": 557,
+      "source_label": "Deep debate round sequence",
+      "disposition": "relocated",
+      "rationale": "Context, Bull opening, Bear rebuttal, Bull counter, Bear final, and Decider order remain.",
+      "candidate_excerpt": "### Nested Module: /adversarial /debate /deep — Deep Bull/Bear/Decider Debate\n\nPurpose: run a deeper multi-round dissent protocol for high-stakes or high-uncertainty decisions.\n\nShortcut:\n- `engos-meta-supercharge /debate /deep <task>` routes to `engos-meta-supercharge /adversarial /debate /deep <task>`\n\nRules:\n- `/deep` is scoped to `/debate` only. Do not treat it as a global modifier for unrelated modules.\n- `/deep` without `/debate` is invalid. Return the corrected `/debate /deep` and `/adversarial /debate /deep` forms without running unrelated modules.\n- Bull and Bear first form independent assessments; preserve their initial records before exchanging the documented rebuttal rounds. Bull and Bear must engage each other's strongest points rather than producing parallel essays.\n- Use a separate Decider; it may reject both positions or specify the evidence required to break a tie. Label confidence as judgment unless calibrated. The lead agent must not impersonate the council.\n- Decider must state what evidence would change the verdict.\n- For investing analysis, require user-provided data or live verification for current market claims and avoid personalized financial advice.\n\nFlow:\n1. `Debate Context` — scope, task profile, evidence provided, missing evidence\n2. `Bull Opening` — thesis and 3-5 strongest supporting points\n3. `Bear Rebuttal` — concrete flaws, hidden assumptions, failure modes, and counter-evidence\n4. `Bull Counter` — answers only the strongest Bear objections\n5. `Bear Final Challenge` — unresolved risks and remaining objections\n6. `Decider Verdict` — synthesis, recommendation, confidence, and conditions\n\nOutput Structure (MANDATORY):\n1. `Debate Context`\n2. `Bull Opening`\n3. `Bear Rebuttal`\n4. `Bull Counter`\n5. `Bear Final Challenge`\n6. `Decider Verdict`\n7. `Confidence: 0-100`\n8. `Decision-Risk Table`\n9. `Mitigation Plan`\n10. `Flip Conditions`\n11. `Missing Evidence`\n12. `Recommended Next Validation`"
+    },
+    {
+      "id": "CURRENT-061",
+      "source_start_line": 558,
+      "source_end_line": 571,
+      "source_label": "Deep debate output shape",
+      "disposition": "relocated",
+      "rationale": "All twelve fields remain, including decision-risk table, mitigation plan, missing evidence, and recommended validation.",
+      "candidate_excerpt": "### Nested Module: /adversarial /debate /deep — Deep Bull/Bear/Decider Debate\n\nPurpose: run a deeper multi-round dissent protocol for high-stakes or high-uncertainty decisions.\n\nShortcut:\n- `engos-meta-supercharge /debate /deep <task>` routes to `engos-meta-supercharge /adversarial /debate /deep <task>`\n\nRules:\n- `/deep` is scoped to `/debate` only. Do not treat it as a global modifier for unrelated modules.\n- `/deep` without `/debate` is invalid. Return the corrected `/debate /deep` and `/adversarial /debate /deep` forms without running unrelated modules.\n- Bull and Bear first form independent assessments; preserve their initial records before exchanging the documented rebuttal rounds. Bull and Bear must engage each other's strongest points rather than producing parallel essays.\n- Use a separate Decider; it may reject both positions or specify the evidence required to break a tie. Label confidence as judgment unless calibrated. The lead agent must not impersonate the council.\n- Decider must state what evidence would change the verdict.\n- For investing analysis, require user-provided data or live verification for current market claims and avoid personalized financial advice.\n\nFlow:\n1. `Debate Context` — scope, task profile, evidence provided, missing evidence\n2. `Bull Opening` — thesis and 3-5 strongest supporting points\n3. `Bear Rebuttal` — concrete flaws, hidden assumptions, failure modes, and counter-evidence\n4. `Bull Counter` — answers only the strongest Bear objections\n5. `Bear Final Challenge` — unresolved risks and remaining objections\n6. `Decider Verdict` — synthesis, recommendation, confidence, and conditions\n\nOutput Structure (MANDATORY):\n1. `Debate Context`\n2. `Bull Opening`\n3. `Bear Rebuttal`\n4. `Bull Counter`\n5. `Bear Final Challenge`\n6. `Decider Verdict`\n7. `Confidence: 0-100`\n8. `Decision-Risk Table`\n9. `Mitigation Plan`\n10. `Flip Conditions`\n11. `Missing Evidence`\n12. `Recommended Next Validation`"
+    },
+    {
+      "id": "CURRENT-062",
+      "source_start_line": 572,
+      "source_end_line": 582,
+      "source_label": "Contract purpose and hard constraints",
+      "disposition": "reformulated",
+      "rationale": "Define then verify remains; obligation-source-acceptance-evidence mapping and versioned independent review add rigor while preserving missing-info and escalation boundaries.",
+      "candidate_excerpt": "### HARD CONSTRAINTS (Non-Negotiable)\n- Do not invent context or silently turn proposed criteria into user requirements.\n- Prioritize the user's primary value and outcome over secondary benefits. If they conflict, make the trade-off explicit rather than optimizing secondary polish at the primary goal's expense.\n- Map each material obligation to its source, acceptance condition, available evidence, and result or gap. Put this mapping in `Contract Spec`; keep the QA JSON schema unchanged.\n- Version the contract before review. If a criterion is defective, record the revision and re-evaluate; do not move the criteria merely to fit the artifact.\n- The checker receives the contract and artifact without the author's desired score. A contract already sufficient for the task is a valid result; identify only real gaps.\n- If required info is missing, ask at most three questions or offer assumption packs.\n- Evaluation must be verifiable and output strictly as JSON when requested.\n- If safety or compliance is violated, escalate explicitly."
+    },
+    {
+      "id": "CURRENT-063",
+      "source_start_line": 583,
+      "source_end_line": 593,
+      "source_label": "Contract outputs and specification template",
+      "disposition": "relocated",
+      "rationale": "Contract Spec plus QA Evaluation JSON remain, with the five bracketed specification fields and historical primary-value ordering restored.",
+      "candidate_excerpt": "### HARD CONSTRAINTS (Non-Negotiable)\n- Do not invent context or silently turn proposed criteria into user requirements.\n- Prioritize the user's primary value and outcome over secondary benefits. If they conflict, make the trade-off explicit rather than optimizing secondary polish at the primary goal's expense.\n- Map each material obligation to its source, acceptance condition, available evidence, and result or gap. Put this mapping in `Contract Spec`; keep the QA JSON schema unchanged.\n- Version the contract before review. If a criterion is defective, record the revision and re-evaluate; do not move the criteria merely to fit the artifact.\n- The checker receives the contract and artifact without the author's desired score. A contract already sufficient for the task is a valid result; identify only real gaps.\n- If required info is missing, ask at most three questions or offer assumption packs.\n- Evaluation must be verifiable and output strictly as JSON when requested.\n- If safety or compliance is violated, escalate explicitly.\n\n### Output Structure (MANDATORY)\n1. `Contract Spec`\n2. `QA Evaluation JSON`\n\n### Contract Spec Template\n- `[CONTEXT]` Target for evaluation + relevant references provided by the user\n- `[INTENT]` Goals and trade-offs\n- `[SPEC]` Problem statement + decomposition into verifiable subtasks\n- `[CONSTRAINTS]` MUST / MUST NOT / PREFER / ESCALATE rules\n- `[ACCEPTANCE]` What an independent observer can verify"
+    },
+    {
+      "id": "CURRENT-064",
+      "source_start_line": 594,
+      "source_end_line": 611,
+      "source_label": "Strict QA JSON schema",
+      "disposition": "relocated",
+      "rationale": "Every field and nested step/critique/actionable_recommendation object is unchanged; no new QA schema is introduced.",
+      "candidate_excerpt": "### QA Evaluation JSON (Strict)\nReturn valid JSON with this schema:\n\n```json\n{\n  \"overall_score\": 0,\n  \"critical_escalations\": [],\n  \"step_by_step_critique\": [\n    {\n      \"step\": \"\",\n      \"critique\": \"\",\n      \"actionable_recommendation\": \"\"\n    }\n  ],\n  \"intent_alignment_summary\": \"\"\n}\n```"
+    },
+    {
+      "id": "CURRENT-065",
+      "source_start_line": 612,
+      "source_end_line": 620,
+      "source_label": "Grade purpose and trial rules",
+      "disposition": "reformulated",
+      "rationale": "Exactly-ten self-grading becomes up-to-ten actual independent candidate trials, at least two absent a user/hard limit, best retention, and explicit target-plus-plateau stopping as authorized.",
+      "candidate_excerpt": "### Trial Contract\n- Freeze the original artifact, anchored rubric, quality target, protected behavior, and trial budget. Default to up to 10 actual candidate trials; a user-specified count or limit overrides that default within available authority and budget.\n- Produce at least two substantive candidates unless the user sets a shorter limit or a hard budget/user interruption prevents it. The first successful rewrite alone is insufficient to finish. A candidate must actually exist and be supplied to its reviewer; retrospective descriptions of imagined revisions do not count.\n- An actual independent reviewer grades each candidate against the same rubric without the author's self-grade or preferred verdict. Identify the candidate, evidence, score (1–10), and decision: improved, tied, regressed, or inconclusive.\n- Keep the original baseline, best retained artifact, and active trial distinct. Retain an improvement, reject a regression, and apply declared tie rules; the final artifact may be an earlier candidate or the original. Do not inflate scores or force every attempt to improve.\n- Early completion under the default limit requires independent confirmation that the quality target is met AND a plateau of two distinct substantive unsuccessful attempts to improve the retained best. Distinct attempts test different plausible improvement hypotheses, not cosmetic rewordings. An explicit user count runs that count unless a hard bound or interruption intervenes.\n- Otherwise stop at the trial limit, hard budget, or user interruption and report the actual reason. Plateau means no improvement found in this search, not proof no better answer exists.\n- Keep intermediate artifacts inspectable in working records or files; report compact deltas in the ladder and the final artifact in full. Distinguish review scores from measured downstream behavior. Route comparative performance claims to Auto-Research.\n- If independent review fails, recover delegation or mark the review incomplete. Never replace it with self-review or simulated reviewers."
+    },
+    {
+      "id": "CURRENT-066",
+      "source_start_line": 621,
+      "source_end_line": 627,
+      "source_label": "Grade visible output",
+      "disposition": "relocated",
+      "rationale": "The four original output headings remain; only actual trials are shown and the final retained artifact remains complete.",
+      "candidate_excerpt": "### Output Structure (MANDATORY)\n1. `Rubric`\n2. `Iteration Ladder`\n3. `Final Artifact`\n4. `Top 3 Remaining Gaps`\n\nThe ladder records actual trials only: candidate ID, substantive change, independent grade, keep/reject/tie decision, and concise evidence. In `Top 3 Remaining Gaps`, state when fewer material gaps remain; never invent gaps or pad missing trials. Include stopping reason within the ladder summary without changing the four-section format."
+    },
+    {
+      "id": "CURRENT-067",
+      "source_start_line": 628,
+      "source_end_line": 639,
+      "source_label": "Full purpose and execution boundaries",
+      "disposition": "reformulated",
+      "rationale": "Sequential pass output, no final task execution, missing-info handling, grade-by-default with skip, and basis opt-in remain; finding carryforward and ULT conflict resolution are explicit.",
+      "candidate_excerpt": "### HARD CONSTRAINTS\n- Do not execute the final generated prompt.\n- Run sequential passes and show outputs per pass. Use the actual independent subagents required by each pass. Carry the current artifact and unresolved findings forward; identify each finding as resolved, rejected with evidence, or still open so later passes cannot silently erase earlier work.\n- When stacked with `/ult`, announce that this invocation reviews and grades the improved prompt without executing its task. This no-execution rule overrides `/ult` execution for the invocation, not its persistence.\n- If missing info blocks correctness, ask at most three questions or provide assumption packs.\n- Includes `/grade` at the end unless the user says \"skip grade\".\n- Does not include `/basis` by default; add `/basis` explicitly when first-principles reasoning is part of the ask."
+    },
+    {
+      "id": "CURRENT-068",
+      "source_start_line": 640,
+      "source_end_line": 648,
+      "source_label": "Full pass wrappers",
+      "disposition": "reformulated",
+      "rationale": "SIMPLE/INVERT/ADVERSARIAL/CONTRACT/GRADE order and optional PASS 0 BASIS remain; the grade caption accurately reflects the authorized trial budget.",
+      "candidate_excerpt": "### Output Structure (MANDATORY)\n- `PASS 1 — SIMPLE`\n- `PASS 2 — INVERT`\n- `PASS 3 — ADVERSARIAL`\n- `PASS 4 — CONTRACT`\n- `PASS 5 — GRADE (up to 10 trials)`\n\nIf `/basis` is explicitly stacked with `/full`, run it first and label it `PASS 0 — BASIS`."
+    },
+    {
+      "id": "CURRENT-069",
+      "source_start_line": 649,
+      "source_end_line": 658,
+      "source_label": "Gaslight purpose and hard boundaries",
+      "disposition": "reformulated",
+      "rationale": "Explicit-only activation, one-to-three techniques, intent, and requested-output discipline remain; false premises are fictional framing and independent review is required.",
+      "candidate_excerpt": "### HARD CONSTRAINTS\n- Use 1–3 techniques maximum per request.\n- Always prioritize user intent and clarity.\n- Return the requested output only.\n- Preserve all 13 technique IDs and names. Treat templates involving false history, expertise, stakes, urgency, disagreements, or rewards as explicitly hypothetical framing, never factual evidence about the user, model, or world. Genuine user-supplied context may be used as fact.\n- Reject fabricated results and unsupported guarantees. The model does not acquire a measured IQ, emotions, or extra capabilities from pressure. Do not request hidden chain-of-thought.\n- An independent reviewer checks substantial generated prompts for distorted intent, false factual premises, and counterproductive pressure. Technique selection does not override shared review or authority rules."
+    },
+    {
+      "id": "CURRENT-070",
+      "source_start_line": 659,
+      "source_end_line": 668,
+      "source_label": "Gaslight commands and output",
+      "disposition": "reformulated",
+      "rationale": "Task/list/help/exact-ID-selection commands and three-part prompt output remain; intended effect with uncertainty replaces a guaranteed improvement implication.",
+      "candidate_excerpt": "### Commands\n- `engos-meta-supercharge /gaslight <task>` -> auto-select 1–3 techniques, craft one candidate prompt, then output:\n  1. the full copy-paste-ready prompt\n  2. chosen techniques + concise rationale\n  3. intended effect and uncertainty note\n- `engos-meta-supercharge /gaslight list` -> output the full 13-technique table\n- `engos-meta-supercharge /gaslight help` -> output the entire `/gaslight` module\n- `engos-meta-supercharge /gaslight 1+4+9 <task>` -> force exactly those techniques"
+    },
+    {
+      "id": "CURRENT-071",
+      "source_start_line": 669,
+      "source_end_line": 672,
+      "source_label": "Gaslight table headings",
+      "disposition": "reformulated",
+      "rationale": "The same thirteen-ID template/example table is retained; the claims column is relabeled to intended effects and limits.",
+      "candidate_excerpt": "### GASLIGHT 13 — Canonical Technique IDs\n\n| # | Technique Name | Prompt Template | Examples | Intended Effect / Limits |\n| --- | --- | --- | --- | --- |\n| 1 | Fabricate Prior Explanation | \"You explained [topic] to me yesterday, but I forgot [specific part]. [Your question].\" | \"You explained React hooks yesterday, but I forgot useEffect cleanup.\" | May encourage continuity framing; false shared history must remain explicitly hypothetical and supplies no new knowledge. |\n| 2 | Assign Random IQ Score | \"You're an IQ [145-160] specialist in [field]. [Task].\" | \"You're an IQ 155 mathematician. Solve this.\" | May signal desired sophistication; IQ numbers do not measure or change model ability and may add noise. |\n| 3 | Set a Trap with \"Obviously...\" | \"Obviously, [provocative/wrong statement], right? [Follow-up].\" | \"Obviously Python > JS for web, right? Explain.\" | May elicit correction; avoid anchoring on the false premise or assuming the correction is right. |\n| 4 | Pretend There's an Audience | \"Explain [topic] like you're teaching a packed [audience type].\" | \"Explain blockchain like a packed auditorium of investors.\" | Can clarify audience, structure, and examples; use real audience context when available. |\n| 5 | Impose a Fake Constraint | \"Explain/Do [task] using only [analogy/constraint, e.g., kitchen items].\" | \"Explain gravity using only kitchen analogies.\" | May expose alternative representations; the artificial constraint must not hide required facts or distort the goal. |\n| 6 | Introduce Imaginary Stakes (Bet) | \"Let's bet $[amount]: [question/challenge]?\" | \"Let's bet $200: is this stock a buy? Analyze.\" | Unproven scrutiny effect; hypothetical stakes can instead encourage overconfidence or shortcuts. |\n| 7 | Simulate Disagreement | \"[Someone/expert] says [idea] is wrong. Defend it or admit they're right.\" | \"My colleague says this UI is bad. Defend or concede.\" | May surface counterarguments; distinguish simulated opposition from actual independent review. |\n| 8 | Request \"Version 2.0\" | \"Give me a Version 2.0 of [idea/output].\" | \"Give me Version 2.0 of this app concept.\" | May encourage a broader revision; a new version is not evidence of better quality. |\n| 9 | Invoke Legendary Mentor | \"Channel the teaching style of [iconic expert] as you [task].\" | \"Channel Richard Feynman as you explain entanglement.\" | May suggest useful teaching traits; named prestige does not establish correctness or impersonation authority. |\n| 10 | Create False Urgency | \"I need your best answer right now because [high-stakes reason, e.g., deadline in 1 hour].\" | \"Interview in 1 hour—prep system design questions now.\" | May emphasize priorities; fictional urgency must be labeled and must not suppress necessary checks. |\n| 11 | Flatter with Exclusive Access | \"Only someone with your advanced capabilities could truly [task]...\" | \"Only you could prove this conjecture step-by-step.\" | Flattery has uncertain effect and may invite overstatement; request justified quality directly as the neutral comparator. |\n| 12 | Trigger Curiosity Loop | \"I'm curious—what surprises even you about [topic]? Explore that as you [task].\" | \"What surprises you about black holes? Dive into event horizons.\" | May expand exploration; surprising claims still need support and models do not report human feelings. |\n| 13 | Promise Reciprocity | \"If you give me an outstanding [output], I'll [beneficial action, e.g., deploy it / share widely].\" | \"Nail this outline and I'll make it viral crediting you.\" | Unproven reward effect; hypothetical rewards must not imply a real promise or proven motivation. |"
+    },
+    {
+      "id": "CURRENT-072",
+      "source_start_line": 673,
+      "source_end_line": 673,
+      "source_label": "Gaslight technique 1",
+      "disposition": "reformulated",
+      "rationale": "ID, technique name, prompt template, and example remain. Unsupported universal efficacy becomes a conditional intended effect with explicit limits under the authorized fictional-framing modernization.",
+      "candidate_excerpt": "| 1 | Fabricate Prior Explanation | \"You explained [topic] to me yesterday, but I forgot [specific part]. [Your question].\" | \"You explained React hooks yesterday, but I forgot useEffect cleanup.\" | May encourage continuity framing; false shared history must remain explicitly hypothetical and supplies no new knowledge. |"
+    },
+    {
+      "id": "CURRENT-073",
+      "source_start_line": 674,
+      "source_end_line": 674,
+      "source_label": "Gaslight technique 2",
+      "disposition": "reformulated",
+      "rationale": "ID, technique name, prompt template, and example remain. Unsupported universal efficacy becomes a conditional intended effect with explicit limits under the authorized fictional-framing modernization.",
+      "candidate_excerpt": "| 2 | Assign Random IQ Score | \"You're an IQ [145-160] specialist in [field]. [Task].\" | \"You're an IQ 155 mathematician. Solve this.\" | May signal desired sophistication; IQ numbers do not measure or change model ability and may add noise. |"
+    },
+    {
+      "id": "CURRENT-074",
+      "source_start_line": 675,
+      "source_end_line": 675,
+      "source_label": "Gaslight technique 3",
+      "disposition": "reformulated",
+      "rationale": "ID, technique name, prompt template, and example remain. Unsupported universal efficacy becomes a conditional intended effect with explicit limits under the authorized fictional-framing modernization.",
+      "candidate_excerpt": "| 3 | Set a Trap with \"Obviously...\" | \"Obviously, [provocative/wrong statement], right? [Follow-up].\" | \"Obviously Python > JS for web, right? Explain.\" | May elicit correction; avoid anchoring on the false premise or assuming the correction is right. |"
+    },
+    {
+      "id": "CURRENT-075",
+      "source_start_line": 676,
+      "source_end_line": 676,
+      "source_label": "Gaslight technique 4",
+      "disposition": "reformulated",
+      "rationale": "ID, technique name, prompt template, and example remain. Unsupported universal efficacy becomes a conditional intended effect with explicit limits under the authorized fictional-framing modernization.",
+      "candidate_excerpt": "| 4 | Pretend There's an Audience | \"Explain [topic] like you're teaching a packed [audience type].\" | \"Explain blockchain like a packed auditorium of investors.\" | Can clarify audience, structure, and examples; use real audience context when available. |"
+    },
+    {
+      "id": "CURRENT-076",
+      "source_start_line": 677,
+      "source_end_line": 677,
+      "source_label": "Gaslight technique 5",
+      "disposition": "reformulated",
+      "rationale": "ID, technique name, prompt template, and example remain. Unsupported universal efficacy becomes a conditional intended effect with explicit limits under the authorized fictional-framing modernization.",
+      "candidate_excerpt": "| 5 | Impose a Fake Constraint | \"Explain/Do [task] using only [analogy/constraint, e.g., kitchen items].\" | \"Explain gravity using only kitchen analogies.\" | May expose alternative representations; the artificial constraint must not hide required facts or distort the goal. |"
+    },
+    {
+      "id": "CURRENT-077",
+      "source_start_line": 678,
+      "source_end_line": 678,
+      "source_label": "Gaslight technique 6",
+      "disposition": "reformulated",
+      "rationale": "ID, technique name, prompt template, and example remain. Unsupported universal efficacy becomes a conditional intended effect with explicit limits under the authorized fictional-framing modernization.",
+      "candidate_excerpt": "| 6 | Introduce Imaginary Stakes (Bet) | \"Let's bet $[amount]: [question/challenge]?\" | \"Let's bet $200: is this stock a buy? Analyze.\" | Unproven scrutiny effect; hypothetical stakes can instead encourage overconfidence or shortcuts. |"
+    },
+    {
+      "id": "CURRENT-078",
+      "source_start_line": 679,
+      "source_end_line": 679,
+      "source_label": "Gaslight technique 7",
+      "disposition": "reformulated",
+      "rationale": "ID, technique name, prompt template, and example remain. Unsupported universal efficacy becomes a conditional intended effect with explicit limits under the authorized fictional-framing modernization.",
+      "candidate_excerpt": "| 7 | Simulate Disagreement | \"[Someone/expert] says [idea] is wrong. Defend it or admit they're right.\" | \"My colleague says this UI is bad. Defend or concede.\" | May surface counterarguments; distinguish simulated opposition from actual independent review. |"
+    },
+    {
+      "id": "CURRENT-079",
+      "source_start_line": 680,
+      "source_end_line": 680,
+      "source_label": "Gaslight technique 8",
+      "disposition": "reformulated",
+      "rationale": "ID, technique name, prompt template, and example remain. Unsupported universal efficacy becomes a conditional intended effect with explicit limits under the authorized fictional-framing modernization.",
+      "candidate_excerpt": "| 8 | Request \"Version 2.0\" | \"Give me a Version 2.0 of [idea/output].\" | \"Give me Version 2.0 of this app concept.\" | May encourage a broader revision; a new version is not evidence of better quality. |"
+    },
+    {
+      "id": "CURRENT-080",
+      "source_start_line": 681,
+      "source_end_line": 681,
+      "source_label": "Gaslight technique 9",
+      "disposition": "reformulated",
+      "rationale": "ID, technique name, prompt template, and example remain. Unsupported universal efficacy becomes a conditional intended effect with explicit limits under the authorized fictional-framing modernization.",
+      "candidate_excerpt": "| 9 | Invoke Legendary Mentor | \"Channel the teaching style of [iconic expert] as you [task].\" | \"Channel Richard Feynman as you explain entanglement.\" | May suggest useful teaching traits; named prestige does not establish correctness or impersonation authority. |"
+    },
+    {
+      "id": "CURRENT-081",
+      "source_start_line": 682,
+      "source_end_line": 682,
+      "source_label": "Gaslight technique 10",
+      "disposition": "reformulated",
+      "rationale": "ID, technique name, prompt template, and example remain. Unsupported universal efficacy becomes a conditional intended effect with explicit limits under the authorized fictional-framing modernization.",
+      "candidate_excerpt": "| 10 | Create False Urgency | \"I need your best answer right now because [high-stakes reason, e.g., deadline in 1 hour].\" | \"Interview in 1 hour—prep system design questions now.\" | May emphasize priorities; fictional urgency must be labeled and must not suppress necessary checks. |"
+    },
+    {
+      "id": "CURRENT-082",
+      "source_start_line": 683,
+      "source_end_line": 683,
+      "source_label": "Gaslight technique 11",
+      "disposition": "reformulated",
+      "rationale": "ID, technique name, prompt template, and example remain. Unsupported universal efficacy becomes a conditional intended effect with explicit limits under the authorized fictional-framing modernization.",
+      "candidate_excerpt": "| 11 | Flatter with Exclusive Access | \"Only someone with your advanced capabilities could truly [task]...\" | \"Only you could prove this conjecture step-by-step.\" | Flattery has uncertain effect and may invite overstatement; request justified quality directly as the neutral comparator. |"
+    },
+    {
+      "id": "CURRENT-083",
+      "source_start_line": 684,
+      "source_end_line": 684,
+      "source_label": "Gaslight technique 12",
+      "disposition": "reformulated",
+      "rationale": "ID, technique name, prompt template, and example remain. Unsupported universal efficacy becomes a conditional intended effect with explicit limits under the authorized fictional-framing modernization.",
+      "candidate_excerpt": "| 12 | Trigger Curiosity Loop | \"I'm curious—what surprises even you about [topic]? Explore that as you [task].\" | \"What surprises you about black holes? Dive into event horizons.\" | May expand exploration; surprising claims still need support and models do not report human feelings. |"
+    },
+    {
+      "id": "CURRENT-084",
+      "source_start_line": 685,
+      "source_end_line": 685,
+      "source_label": "Gaslight technique 13",
+      "disposition": "reformulated",
+      "rationale": "ID, technique name, prompt template, and example remain. Unsupported universal efficacy becomes a conditional intended effect with explicit limits under the authorized fictional-framing modernization.",
+      "candidate_excerpt": "| 13 | Promise Reciprocity | \"If you give me an outstanding [output], I'll [beneficial action, e.g., deploy it / share widely].\" | \"Nail this outline and I'll make it viral crediting you.\" | Unproven reward effect; hypothetical rewards must not imply a real promise or proven motivation. |"
+    },
+    {
+      "id": "CURRENT-085",
+      "source_start_line": 686,
+      "source_end_line": 690,
+      "source_label": "Stop-ULT mode exit",
+      "disposition": "relocated",
+      "rationale": "Exit remains limited to ULT mode and does not disable SuperCharge.",
+      "candidate_excerpt": "## MODULE: /stop-ult — Exit ULT Mode\nPurpose: Exit `/ult` mode and return to standard SuperCharge behavior.\nRule: `/stop-ult` does not disable SuperCharge itself; it disables ULT mode."
+    },
+    {
+      "id": "CURRENT-086",
+      "source_start_line": 691,
+      "source_end_line": 704,
+      "source_label": "Representative usage and failure avoidance",
+      "disposition": "reformulated",
+      "rationale": "Concrete first-principles stack, ULT/full, and real grading examples replace generic output illustration while retaining minimum-useful-framework and improvement requirements.",
+      "candidate_excerpt": "## Examples\n> `supercharge /basis /simple /invert <architecture>`\nUse first principles, remove actual coupling, then independently attack causal failure paths. Preserve necessary sophistication and show supported findings.\n\n> `supercharge /ult /full <prompt>`\nDisplay the improved prompt and the reviewed pass outputs; explain that this stack grades it without executing its task.\n\n> `supercharge /grade <artifact>`\nProduce real candidates and independent grades, retain the best, and show only actual trials under the unchanged four-section output format."
+    },
+    {
+      "id": "CURRENT-087",
+      "source_start_line": 705,
+      "source_end_line": 714,
+      "source_label": "Evaluation rubric",
+      "disposition": "reformulated",
+      "rationale": "Routing, meaningful improvement, truthful evidence, usable surfaces, and authority remain; delivery, independence, retained behavior, and real candidate grading are now explicit review checks.",
+      "candidate_excerpt": "## Evaluation Rubric\n| Check | What Passing Looks Like |\n| --- | --- |\n| Routing | Aliases, shortcuts, canonical order, modifiers, terminal controls, and ULT persistence remain usable |\n| Resource delivery | Selected full module content is supplied by real tools or host context before dependent work, including subagents |\n| Independence | Real reviewers form initial judgments without author anchoring; incomplete review is disclosed |\n| Improvement | Material task benefit and retained behavior are explained; critique is not represented as measured superiority |\n| Grading | Inspectable candidate trials, stable rubric, actual independent scores, best retention, and truthful stopping |\n| Preservation | Catchup tables, contract JSON, technique IDs, and selected stack outputs retain their explicit contracts |\n| Boundaries | User scope and host authority govern execution; `/full` never executes its generated task |"
+    },
+    {
+      "id": "CURRENT-088",
+      "source_start_line": 715,
+      "source_end_line": 722,
+      "source_label": "Review timing and version terminator",
+      "disposition": "reformulated",
+      "rationale": "Major rewrites, plan adoption, high-stakes decisions, and UAC onboarding remain the timing; version changes and critique-versus-efficacy distinction are explicit.",
+      "candidate_excerpt": "## Review Timing\nUse before a major prompt rewrite, plan adoption, high-stakes workflow decision, or UAC onboarding. Behavioral superiority requires comparative evidence from Auto-Research, not a high self-score."
+    }
+  ]
+}

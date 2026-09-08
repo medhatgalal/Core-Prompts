@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-optimization-auto-research",
-  "ssot_sha256": "1b1f3fbf69a445b0bde66e4136fd3b98f6282b60cd3c174f91b57c2bcf8a0836",
+  "ssot_sha256": "b8bf02b356e20aeb3465fa77efc50559c42b468c7881f0fdcd098a876521d7da",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -17,7 +17,7 @@
         "source_refs": [
           "ssot/engos-optimization-auto-research.md"
         ],
-        "source_line": 369,
+        "source_line": 386,
         "mode_summary": "Explicitly declared mode in the canonical skill.",
         "required_inputs": [],
         "expected_outputs": [],
@@ -34,7 +34,7 @@
         "source_refs": [
           "ssot/engos-optimization-auto-research.md"
         ],
-        "source_line": 378,
+        "source_line": 395,
         "mode_summary": "Explicitly declared mode in the canonical skill.",
         "required_inputs": [],
         "expected_outputs": [],
@@ -51,7 +51,7 @@
         "source_refs": [
           "ssot/engos-optimization-auto-research.md"
         ],
-        "source_line": 389,
+        "source_line": 406,
         "mode_summary": "Explicitly declared mode in the canonical skill.",
         "required_inputs": [],
         "expected_outputs": [],
@@ -68,7 +68,7 @@
         "source_refs": [
           "ssot/engos-optimization-auto-research.md"
         ],
-        "source_line": 398,
+        "source_line": 415,
         "mode_summary": "Explicitly declared mode in the canonical skill.",
         "required_inputs": [],
         "expected_outputs": [],
@@ -85,7 +85,7 @@
         "source_refs": [
           "ssot/engos-optimization-auto-research.md"
         ],
-        "source_line": 407,
+        "source_line": 428,
         "mode_summary": "Explicitly declared mode in the canonical skill.",
         "required_inputs": [],
         "expected_outputs": [],
@@ -102,7 +102,7 @@
         "source_refs": [
           "ssot/engos-optimization-auto-research.md"
         ],
-        "source_line": 418,
+        "source_line": 439,
         "mode_summary": "Explicitly declared mode in the canonical skill.",
         "required_inputs": [],
         "expected_outputs": [],
@@ -119,7 +119,7 @@
         "source_refs": [
           "ssot/engos-optimization-auto-research.md"
         ],
-        "source_line": 427,
+        "source_line": 448,
         "mode_summary": "Explicitly declared mode in the canonical skill.",
         "required_inputs": [],
         "expected_outputs": [],
@@ -173,33 +173,41 @@
   ],
   "authority_boundaries": [
     "engos-optimization-auto-research:L6:c96cd74da63d",
-    "engos-optimization-auto-research:L34:812649042697",
-    "engos-optimization-auto-research:L43:8d831bbc8ef6",
-    "engos-optimization-auto-research:L78:3544543b4c3b",
-    "engos-optimization-auto-research:L82:01d40c6b796f",
-    "engos-optimization-auto-research:L151:41f58abe6c3f",
-    "engos-optimization-auto-research:L169:ca133c000e11",
-    "engos-optimization-auto-research:L226:9f5eb701b5e0",
-    "engos-optimization-auto-research:L343:fc3755c8134d",
-    "engos-optimization-auto-research:L471:ffa703204280",
-    "engos-optimization-auto-research:L488:3ccfaf080000",
-    "engos-optimization-auto-research:L586:eb18a93d36ed",
-    "engos-optimization-auto-research:L616:997e76d38a96",
-    "engos-optimization-auto-research:L669:e6a2accd11aa",
-    "engos-optimization-auto-research:L670:e311fad67b9c",
-    "engos-optimization-auto-research:L671:dc68c89c6976",
-    "engos-optimization-auto-research:L672:2c0d603e8b71",
-    "engos-optimization-auto-research:L673:cc9e3e2114b1",
-    "engos-optimization-auto-research:L674:319afeea172b",
-    "engos-optimization-auto-research:L675:34190ff1d43f",
-    "engos-optimization-auto-research:L676:ec93e6f4d035",
-    "engos-optimization-auto-research:L677:70468255202b"
+    "engos-optimization-auto-research:L25:aea57beb5b1a",
+    "engos-optimization-auto-research:L41:812649042697",
+    "engos-optimization-auto-research:L50:8d831bbc8ef6",
+    "engos-optimization-auto-research:L81:7c938e14f976",
+    "engos-optimization-auto-research:L85:3544543b4c3b",
+    "engos-optimization-auto-research:L89:01d40c6b796f",
+    "engos-optimization-auto-research:L158:41f58abe6c3f",
+    "engos-optimization-auto-research:L163:4b8080d3e0ad",
+    "engos-optimization-auto-research:L176:ca133c000e11",
+    "engos-optimization-auto-research:L233:9f5eb701b5e0",
+    "engos-optimization-auto-research:L350:fc3755c8134d",
+    "engos-optimization-auto-research:L486:28e960cf0cdd",
+    "engos-optimization-auto-research:L498:c4650436ffce",
+    "engos-optimization-auto-research:L500:4760b282f723",
+    "engos-optimization-auto-research:L601:eb18a93d36ed",
+    "engos-optimization-auto-research:L631:997e76d38a96",
+    "engos-optimization-auto-research:L684:e6a2accd11aa",
+    "engos-optimization-auto-research:L685:e311fad67b9c",
+    "engos-optimization-auto-research:L686:dc68c89c6976",
+    "engos-optimization-auto-research:L687:2c0d603e8b71",
+    "engos-optimization-auto-research:L688:cc9e3e2114b1",
+    "engos-optimization-auto-research:L689:319afeea172b",
+    "engos-optimization-auto-research:L690:34190ff1d43f",
+    "engos-optimization-auto-research:L692:70468255202b",
+    "engos-optimization-auto-research:sources/capability-resources/engos-optimization-auto-research/references/resource-delivery.md:L7:34e6f4ec1273",
+    "engos-optimization-auto-research:sources/capability-resources/engos-optimization-auto-research/references/experiment-loop.md:L6:739eb25e7587",
+    "engos-optimization-auto-research:sources/capability-resources/engos-optimization-auto-research/references/experiment-loop.md:L15:f9024ca8cd66",
+    "engos-optimization-auto-research:sources/capability-resources/engos-optimization-auto-research/references/experiment-loop.md:L22:a1a5bd232770"
   ],
   "resources": [
     "- `resources/templates/experiment-ledger.md.tmpl`",
     "- `resources/templates/goal-contract.md.tmpl`",
     "- `resources/templates/promotion-packet.md.tmpl`",
     "- `resources/templates/scorecard.json.tmpl`",
+    "- read `resources/references/experiment-loop.md` and execute actual trials",
     "- source trace reference"
   ],
   "handoffs": [],
@@ -207,459 +215,680 @@
     {
       "id": "engos-optimization-auto-research:L6:c96cd74da63d",
       "heading": "Purpose",
-      "source_line": 6,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 16,
       "sha256": "c96cd74da63d3012488de26f2409775cee81c7ca1841c64f0caedfd1ed3c3dd1",
       "text": "Do not use this capability when the main job is prompt hardening, import classification, architecture design, or durable long-running analysis memory without a behavioral comparison goal.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L14:d654db97305f",
-      "heading": "Purpose",
-      "source_line": 14,
-      "sha256": "d654db97305faa37de1851e49bbcc24384742ec7a089e4b8fba8e051cf338677",
-      "text": "- promote only verified winners",
+      "id": "engos-optimization-auto-research:L18:a350e3da719b",
+      "heading": "Primary Objective",
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 28,
+      "sha256": "a350e3da719bdc3045eab4a0d3c2d2a39151c02f000f132111e436d112bb2af4",
+      "text": "Explore improvements by repeatedly mutating candidates, executing protected evaluations, scoring results, retaining improvements, and rejecting unsuccessful trials within the agreed limits. Return the best accepted candidate and auditable results relative to the original baseline. Prepare formal promotion evidence only when requested and supported; keeping a trial does not grant release or merge authority.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-optimization-auto-research:L23:f4310ac32ffd",
+      "heading": "Resource Delivery Contract",
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 33,
+      "sha256": "f4310ac32ffd8de4cdfe52a6a7264f044e4bc0799299180789b8252bdb0f0ac3",
+      "text": "Use `python3 \"<resource-root>/scripts/load_module.py\" --route experiment --format text` for actual experiments. Routes `templates`, `bootstrap`, and `promotion` load the respective scaffolding or promotion resources. Read `resources/references/resource-delivery.md` on skill surfaces, or `references/resource-delivery.md` relative to the agent resource root. The map binds every required workflow, template, and bootstrap resource for effective review and identity checks.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L27:7f7a95be10c5",
+      "id": "engos-optimization-auto-research:L25:aea57beb5b1a",
+      "heading": "Resource Delivery Contract",
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 35,
+      "sha256": "aea57beb5b1a6c34c0ea9297330ec41ffd836b6ff4f1c55035e5fbc45e1ed1b0",
+      "text": "If the helper is unavailable, actual tools must supply the full shared and selected dependency contents before work; never substitute an assertion of reading, a hash, or a truncated excerpt. Missing or changed content requires recovery and rechecking. Passing resource delivery proves supplied bytes, not compliance or a successful experiment.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-optimization-auto-research:L34:7f7a95be10c5",
       "heading": "Capability Evaluation Contract",
-      "source_line": 27,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 44,
       "sha256": "7f7a95be10c5b81cd569e8257bf6906c6761cad49b4012a9f77bf314f7a05130",
       "text": "bin/capability-eval calibrate --static-only",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L34:812649042697",
+      "id": "engos-optimization-auto-research:L41:812649042697",
       "heading": "Capability Evaluation Contract",
-      "source_line": 34,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 51,
       "sha256": "812649042697ce72f41ff6117cbcef11a16446cdced28d91958b5ee8bbbb318d",
       "text": "Valid statuses are `structural_ready`, `behavioral_pending`, `promote`, `hold`, `blocked_contract`, `inconclusive`, `rollback`, and `stale_evidence`. Never translate a structural UAC result into `promote`.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L43:8d831bbc8ef6",
+      "id": "engos-optimization-auto-research:L50:8d831bbc8ef6",
       "heading": "Capability Evaluation Contract",
-      "source_line": 43,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 60,
       "sha256": "8d831bbc8ef67ebbfe60d4e5be33a671a461605dea21bbf9180a38c96231ff6d",
       "text": "Normal CI is `static` and uses zero model tokens. Model-mediated profiles require an explicit operator or workflow gate. A cap breach, missing required runtime, unqualified judge, stale hash, or surviving critical mutant returns `inconclusive`, `hold`, or `stale_evidence`; it never silently narrows the experiment.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L76:e9e498ae4987",
+      "id": "engos-optimization-auto-research:L81:7c938e14f976",
       "heading": "Agent Operating Contract",
-      "source_line": 76,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 91,
+      "sha256": "7c938e14f976f3ca92be740bf56dcb870dab112178e340888342404929dc3610",
+      "text": "- run real bounded improvement loops; label dry-run plans as unexecuted and never count simulated trials as experiments",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-optimization-auto-research:L83:e9e498ae4987",
+      "heading": "Agent Operating Contract",
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 93,
       "sha256": "e9e498ae4987e2dbc18311cfe9a5e3249dda5371030dfe58aac12199fd176a95",
       "text": "- prepare change, commit, and merge guidance only after a candidate clears the promotion threshold",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L78:3544543b4c3b",
+      "id": "engos-optimization-auto-research:L85:3544543b4c3b",
       "heading": "Agent Operating Contract",
-      "source_line": 78,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 95,
       "sha256": "3544543b4c3b771c875f41bbe48f2e4de69b1ffa312fb72941939a57f35e7582",
       "text": "The agent surface must never imply unconditional runtime authority. It may recommend, prepare, and validate. It must respect human review gates before promotion unless the user explicitly allows automated action inside the host system.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L82:01d40c6b796f",
+      "id": "engos-optimization-auto-research:L89:01d40c6b796f",
       "heading": "Tool Boundaries",
-      "source_line": 82,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 99,
       "sha256": "01d40c6b796f948458e84e26c0e4e94d756077b493d87378bda101b9bfeab700",
       "text": "- forbidden: claiming an unmeasured improvement, silently widening the editable scope, hiding regressions behind aggregate scores, or merging changes without explicit policy support",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L126:f656c1e45186",
+      "id": "engos-optimization-auto-research:L133:fc5ec02a80d0",
       "heading": "Workflow",
-      "source_line": 126,
-      "sha256": "f656c1e45186ed3c3775e23508b649e4cc7c423334f4b4206433064aaca3300a",
-      "text": "7. Generate bounded candidates and replay them in isolation only after the cheaper checks cannot separate the likely causes.",
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 143,
+      "sha256": "fc5ec02a80d0a34f53ba09bc85df53ba08fa51447938c84ab99124d9fe5cdf33",
+      "text": "7. For diagnosis, use the cheapest discriminating check. For authorized optimization, generate bounded trial candidates from the best accepted state and replay them in isolation using the protected evaluation. Setup checks must not replace the requested search loop.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L129:058153236474",
+      "id": "engos-optimization-auto-research:L136:5cf268c7ff92",
       "heading": "Workflow",
-      "source_line": 129,
-      "sha256": "0581532364743bbd1ea0111ffe919cf185f8a81c610f6298df889353bfd47833",
-      "text": "10. Promote only verified winners by preparing:",
-      "kind": "invariant",
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 146,
+      "sha256": "5cf268c7ff921506a93b3a1a7056dcfe4a10dcb5cb77c69237047b2eb701f997",
+      "text": "10. Keep accepted trial improvements, discard rejected active changes while retaining results, and continue the declared search. When formal promotion is requested, prepare only for verified winners:",
+      "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L137:7508be9ead9c",
+      "id": "engos-optimization-auto-research:L144:7508be9ead9c",
       "heading": "Decision States",
-      "source_line": 137,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 154,
       "sha256": "7508be9ead9c29a6115e024147ba2c4dc22d1da8ffd928a6e77d90be33abf320",
       "text": "Every Auto-Research run must end in one of these states:",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L151:41f58abe6c3f",
+      "id": "engos-optimization-auto-research:L158:41f58abe6c3f",
       "heading": "Decision States",
-      "source_line": 151,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 168,
       "sha256": "41f58abe6c3fd930e36ba2ee18bb9d08233428135cc1a9052fb5cd334f7d31b5",
       "text": "Never end with an ambiguous \u201clooks better\u201d conclusion. Choose one state and explain why.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L160:0e0775a99118",
+      "id": "engos-optimization-auto-research:L163:4b8080d3e0ad",
       "heading": "Rules",
-      "source_line": 160,
-      "sha256": "0e0775a99118576e59b91f01958a8c9db3c6c61da45bdfe3f26ff595ae69da9d",
-      "text": "- Escalate to repeated trials only after a cheaper test cannot separate the likely causes.",
-      "kind": "invariant",
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 173,
+      "sha256": "4b8080d3e0ad3083f3294bc9b65bc70c996682eed4bcfba44b8ff3aa90d7d42b",
+      "text": "- Define a bounded editable surface. A trial may mutate one or several coordinated elements within it; record the joint hypothesis. Isolate changes when attribution matters, but do not prohibit interacting changes needed to test a hypothesis.",
+      "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L169:ca133c000e11",
+      "id": "engos-optimization-auto-research:L176:ca133c000e11",
       "heading": "Rules",
-      "source_line": 169,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 186,
       "sha256": "ca133c000e119317d1df78337b8aba3631d0f234e2a7a19947bc95c493f68ec0",
       "text": "- Never present novelty as evidence.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L183:77357dbdaba3",
+      "id": "engos-optimization-auto-research:L190:77357dbdaba3",
       "heading": "Required Inputs",
-      "source_line": 183,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 200,
       "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
       "text": "## Required Inputs",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L200:3d4b9f171064",
+      "id": "engos-optimization-auto-research:L207:3d4b9f171064",
       "heading": "Required Output",
-      "source_line": 200,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 217,
       "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
       "text": "## Required Output",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L201:c34906b1f1c3",
+      "id": "engos-optimization-auto-research:L208:c34906b1f1c3",
       "heading": "Required Output",
-      "source_line": 201,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 218,
       "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
       "text": "Every substantial response must include:",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L226:9f5eb701b5e0",
+      "id": "engos-optimization-auto-research:L233:9f5eb701b5e0",
       "heading": "Required Output",
-      "source_line": 226,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 243,
       "sha256": "9f5eb701b5e0e53cb4530b70c99415b946efc97e138e3718b42606e7d4140a0a",
       "text": "For bounded local investigations that do not justify a broad search loop yet, a compressed output is allowed:",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L238:75bc1c7fdb87",
+      "id": "engos-optimization-auto-research:L245:75bc1c7fdb87",
       "heading": "Quick Start",
-      "source_line": 238,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 255,
       "sha256": "75bc1c7fdb872b212c025a001aed10b028e687d2a01abb380dfe74b17efa034d",
       "text": "Auto-Research must guide the user through this sequence:",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L250:0bedb8cce764",
+      "id": "engos-optimization-auto-research:L257:0bedb8cce764",
       "heading": "Quick Start",
-      "source_line": 250,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 267,
       "sha256": "0bedb8cce7648b83be4efe961cd0d6d34368dffc15b32c8c79e5270479a597cc",
       "text": "- what must be true before a candidate is allowed to proceed to commit or merge",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L255:30bb6a8d221c",
+      "id": "engos-optimization-auto-research:L262:30bb6a8d221c",
       "heading": "Default Help Response",
-      "source_line": 255,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 272,
       "sha256": "30bb6a8d221c9cd94b16a6a0f2da239942c518c6d40ba7855f9fec1ab691e4dc",
       "text": "- the minimum required setup inputs",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L264:d9b877a9ba77",
+      "id": "engos-optimization-auto-research:L271:d9b877a9ba77",
       "heading": "First-Run Router",
-      "source_line": 264,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 281,
       "sha256": "d9b877a9ba77df8ad361be7c63e2c23a7e84c22fbdd697e877637679da6130ab",
       "text": "- produce only the goal contract, assumptions, missing evidence, and a no-edit starting recommendation",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L284:928891b17115",
+      "id": "engos-optimization-auto-research:L291:928891b17115",
       "heading": "Copy-Ready Starter Invocation",
-      "source_line": 284,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 301,
       "sha256": "928891b17115e00d5c2d6a240ca5bc7e78677d368f3bc6c4f78fd6a7328071ad",
       "text": "Must not change:",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L291:ba9c8a7ac10d",
+      "id": "engos-optimization-auto-research:L298:ba9c8a7ac10d",
       "heading": "Copy-Ready Starter Invocation",
-      "source_line": 291,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 308,
       "sha256": "ba9c8a7ac10d7c0d926a0dd63f1cc1cc762231618df0de2c832026b9b7faeaa3",
       "text": "- <what must improve, what must not regress>",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L312:126170cdb763",
+      "id": "engos-optimization-auto-research:L319:126170cdb763",
       "heading": "Bootstrap Helper",
-      "source_line": 312,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 329,
       "sha256": "126170cdb763ebfd762bb9893d17f3a77f52b9f90359fb62de58802611c6f0c2",
       "text": "Use the Python helper only when the operator wants those templates materialized immediately with fields already filled in.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L321:2f711d491f9d",
+      "id": "engos-optimization-auto-research:L328:2f711d491f9d",
       "heading": "Bootstrap Helper",
-      "source_line": 321,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 338,
       "sha256": "2f711d491f9d1f5e02ea0786c81383384cdc366d2665aa9e37d7465b287d0042",
       "text": "--must-not-change \"<protected surface>\" \\",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L323:339859e792ed",
+      "id": "engos-optimization-auto-research:L330:339859e792ed",
       "heading": "Bootstrap Helper",
-      "source_line": 323,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 340,
       "sha256": "339859e792edad0e88efbf9c03420c4a7d5ccd1d7cd0fbc4f774eabeea94529e",
       "text": "--promotion-threshold \"<required improvement>\"",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L343:fc3755c8134d",
+      "id": "engos-optimization-auto-research:L350:fc3755c8134d",
       "heading": "Safe Starting Mode",
-      "source_line": 343,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 360,
       "sha256": "fc3755c8134dfc6165f6a8df2f2a5fa8a5d0fa0d944d9bd2a6d8f4f8f390b47d",
       "text": "- do not commit or merge automatically",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L353:88ceb035f176",
+      "id": "engos-optimization-auto-research:L360:88ceb035f176",
       "heading": "Minimal Loop Entry",
-      "source_line": 353,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 370,
       "sha256": "88ceb035f17602476db260dfe45c3b12abd56f04ebb2bbdf2047d19c0569839a",
       "text": "Escalate beyond this only if:",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L362:de849f8c38c1",
+      "id": "engos-optimization-auto-research:L369:de849f8c38c1",
       "heading": "Escalation Prompts",
-      "source_line": 362,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 379,
       "sha256": "de849f8c38c1f59f48b4c83738174e7746a8b49a4e31d7e288a02b02c22edef5",
       "text": "Ask targeted setup questions only when missing details would change the result materially. Prefer:",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L364:935a3e170cab",
+      "id": "engos-optimization-auto-research:L371:935a3e170cab",
       "heading": "Escalation Prompts",
-      "source_line": 364,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 381,
       "sha256": "935a3e170cab0e88f9ee09569a14412520e631d0bc07d80e2b56f9e605c2d3c2",
       "text": "- \u201cWhat may change and what must remain frozen?\u201d",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L440:602d33e9d3d8",
+      "id": "engos-optimization-auto-research:L412:cfdced873dc4",
+      "heading": "Experiment Loop",
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 422,
+      "sha256": "cfdced873dc492dc584071e7ba4c460c8f61fef991dd0d359b259519ab57c9c9",
+      "text": "- advance the incumbent only on accepted improvement under the declared objective, including permitted equivalent-quality simplicity or efficiency wins",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-optimization-auto-research:L451:602d33e9d3d8",
       "heading": "Goal Contract",
-      "source_line": 440,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 461,
       "sha256": "602d33e9d3d8d0554c554b3006f1ff6b82389064ed6f359e288d0b7f626f49d2",
       "text": "The goal contract must include:",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L469:23e8dd975900",
+      "id": "engos-optimization-auto-research:L484:23e8dd975900",
       "heading": "Cost Ladder",
-      "source_line": 469,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 494,
       "sha256": "23e8dd9759008fcbeda3e62be994bd42200c9254245e562579f72f8916e0d8e3",
       "text": "- widen only after cheaper checks cannot cleanly separate the likely causes",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L471:ffa703204280",
+      "id": "engos-optimization-auto-research:L486:28e960cf0cdd",
       "heading": "Cost Ladder",
-      "source_line": 471,
-      "sha256": "ffa7032042806c567db9d05b5288526ea8af99edad077bf50a4f57bd974862fb",
-      "text": "Do not jump to step 4 by default.",
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 496,
+      "sha256": "28e960cf0cdd3382419a1f6c48c7208775a4ef2c304da0f9ccea824ddb254daa",
+      "text": "This ladder is the diagnostic default. An explicit optimization request with sufficient setup can start repeated-trial search; cheaper setup checks do not replace authorized experimentation.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L488:3ccfaf080000",
+      "id": "engos-optimization-auto-research:L498:c4650436ffce",
       "heading": "Stopping Rule",
-      "source_line": 488,
-      "sha256": "3ccfaf080000ae8d971294e8454d291eacfda35893a72b8aa98bdb884f260b8b",
-      "text": "Do not keep searching after a clear winner just to spend the remaining budget.",
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 508,
+      "sha256": "c4650436ffce6d0080a299222edb1cd9153433b3ebf2b7470a338aa312407a13",
+      "text": "Diagnosis stops once a supported hypothesis explains the behavior and verification passes. Optimization stops at the declared trial limit, time/cost/token budget, verified target, plateau rule, or user interruption. Do not stop optimization merely at the first accepted candidate.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L503:4004a2cbf3bc",
+      "id": "engos-optimization-auto-research:L500:4760b282f723",
+      "heading": "Stopping Rule",
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 510,
+      "sha256": "4760b282f7233ce7b4d3a53ffb7fcb8dc77c6dc923692323594409adb22f007b",
+      "text": "Define plateau before search (for example, a specified number of distinct unsuccessful mutation hypotheses with stable evaluation). Plateau means no further improvement was found in this bounded search, not that improvement is impossible. Do not consume remaining budget after a declared target or stopping condition is satisfied. A run may finish with the baseline retained, no winner, or inconclusive evidence.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-optimization-auto-research:L515:4004a2cbf3bc",
       "heading": "Promotion Gate",
-      "source_line": 503,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 525,
       "sha256": "4004a2cbf3bccbdd20d3b570cce84cdc6e4c338b8cdf82911d689f3262b42fb8",
       "text": "A candidate can move forward only if:",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L575:6a51e4a275ce",
+      "id": "engos-optimization-auto-research:L589:6a51e4a275ce",
       "heading": "Profile 3: Capability Evaluation",
-      "source_line": 575,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 599,
       "sha256": "6a51e4a275ce4da3eab56b997ee51cce195890476ee0d7a088acc407ae5cb8e6",
       "text": "- use repeated trials only when nondeterminism or conflicting evidence makes them necessary",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L579:6a60d37d2db2",
+      "id": "engos-optimization-auto-research:L594:6a60d37d2db2",
       "heading": "Profile 4: Bounded Execution",
-      "source_line": 579,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 604,
       "sha256": "6a60d37d2db2b4a240160c4a63f277c034f8603c0c0677062a97dce67a4de1fc",
       "text": "- edits allowed only inside the declared scope",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L586:eb18a93d36ed",
+      "id": "engos-optimization-auto-research:L601:eb18a93d36ed",
       "heading": "Profile 5: Promotion Prep",
-      "source_line": 586,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 611,
       "sha256": "eb18a93d36edb9f43849cc2d1433bbd6f11e79eb35bff3d7ee45567d6ed0c960",
       "text": "- do not skip the evidence summary",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L604:3a6378654dd6",
-      "heading": "Self-Improvement Protocol",
-      "source_line": 604,
-      "sha256": "3a6378654dd6ceaea1fc910d8a92fb4f0dddc90f46114a22f81fbd50af6c2464",
-      "text": "- escalate to repeated trials only after cheaper checks fail to separate hypotheses",
-      "kind": "invariant",
-      "mapped_to": []
-    },
-    {
-      "id": "engos-optimization-auto-research:L616:997e76d38a96",
+      "id": "engos-optimization-auto-research:L631:997e76d38a96",
       "heading": "Example Request",
-      "source_line": 616,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 641,
       "sha256": "997e76d38a963ceae17f52b84b84e24a6602b7106aebe1103f4fbe2c75ad8af6",
       "text": "> Use Auto-Research to improve our code-review prompt so it catches behavioral regressions earlier, but do not increase review noise or operator burden.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L669:e6a2accd11aa",
+      "id": "engos-optimization-auto-research:L684:e6a2accd11aa",
       "heading": "Constraints",
-      "source_line": 669,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 694,
       "sha256": "e6a2accd11aa74d653cb70c10f0b8541ced4b72bcf45c4fe393bcfb68801122d",
       "text": "- Do not start search without a measurable goal.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L670:e311fad67b9c",
+      "id": "engos-optimization-auto-research:L685:e311fad67b9c",
       "heading": "Constraints",
-      "source_line": 670,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 695,
       "sha256": "e311fad67b9caee0439b4a59816bd18c512f894eefcbda5eb64cc50f0b5132f0",
       "text": "- Do not claim a winner from a single run unless the system is strictly deterministic and the user agrees.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L671:dc68c89c6976",
+      "id": "engos-optimization-auto-research:L686:dc68c89c6976",
       "heading": "Constraints",
-      "source_line": 671,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 696,
       "sha256": "dc68c89c697664553fb7bb48a2659d68a0250be50b9eb600a064de2a8f6ef7c1",
       "text": "- Do not hide regressions inside one aggregate \u201cscore improved\u201d claim.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L672:2c0d603e8b71",
+      "id": "engos-optimization-auto-research:L687:2c0d603e8b71",
       "heading": "Constraints",
-      "source_line": 672,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 697,
       "sha256": "2c0d603e8b719a34ac451c0b202160110148690d534e7f6edcf2fd982cbb050a",
       "text": "- Do not assume the host repo allows auto-commit or auto-merge.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L673:cc9e3e2114b1",
+      "id": "engos-optimization-auto-research:L688:cc9e3e2114b1",
       "heading": "Constraints",
-      "source_line": 673,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 698,
       "sha256": "cc9e3e2114b1199c269694682e11f27d6d14d73729e763921cae488ed9136966",
       "text": "- Do not let the capability degrade into generic brainstorming or generic testing advice.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L674:319afeea172b",
+      "id": "engos-optimization-auto-research:L689:319afeea172b",
       "heading": "Constraints",
-      "source_line": 674,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 699,
       "sha256": "319afeea172bb09e34ecb56ce56cfc9277817464522c67bea6c3bbebe8d57e91",
       "text": "- Do not confuse public inspiration with local proof.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L675:34190ff1d43f",
+      "id": "engos-optimization-auto-research:L690:34190ff1d43f",
       "heading": "Constraints",
-      "source_line": 675,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 700,
       "sha256": "34190ff1d43fbaffc4b8e45c4046c8c79e8ffdeda462240094c0510844d63f94",
       "text": "- Do not promote any candidate whose score is ambiguous, unstable, or unrepeatable.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L676:ec93e6f4d035",
+      "id": "engos-optimization-auto-research:L692:70468255202b",
       "heading": "Constraints",
-      "source_line": 676,
-      "sha256": "ec93e6f4d035df795498b760d80b94362350ff691a42e87029999764a4512a65",
-      "text": "- Do not run broad candidate search when one sharply framed hypothesis can be tested first.",
-      "kind": "guarded_invariant",
-      "mapped_to": []
-    },
-    {
-      "id": "engos-optimization-auto-research:L677:70468255202b",
-      "heading": "Constraints",
-      "source_line": 677,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 702,
       "sha256": "70468255202b0bc81dac867684bf586ec1c80b51acfa2c62ce60ed6e6e3f03e7",
       "text": "- Do not parallelize dependent verification steps when regenerated artifacts are involved.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-optimization-auto-research:L686:b7be70aac455",
+      "id": "engos-optimization-auto-research:L701:b7be70aac455",
       "heading": "Evaluation Rubric",
-      "source_line": 686,
+      "source": "ssot/engos-optimization-auto-research.md",
+      "source_line": 711,
       "sha256": "b7be70aac455d6397edc44ff9a18a0537779e1c7f99ff7faba82844fdc6e25ac",
       "text": "| Promotion safety | Commit and merge guidance only appear after a verified winner exists |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-optimization-auto-research:sources/capability-resources/engos-optimization-auto-research/references/resource-delivery.md:L7:34e6f4ec1273",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-optimization-auto-research/references/resource-delivery.md",
+      "source_line": 7,
+      "sha256": "34e6f4ec127393b17e2b24a30972f6cb806b8fd2ab75674628b4e63654bad667",
+      "text": "Keep shared rules, selected workflow guidance, and required templates available before dependent work. Give independent reviewers the relevant complete contents. Missing, changed, stale, or truncated resources require recovery before proceeding; a filename, hash, self-authored receipt, or an earlier agent's assurance is not a substitute. Never fabricate a run or claim a resource was read without actual supplied content. Resource identity belongs in working evidence, not an invented user-facing verification claim.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-optimization-auto-research:sources/capability-resources/engos-optimization-auto-research/references/resource-delivery.md:L9:c3bb4c3c49b5",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-optimization-auto-research/references/resource-delivery.md",
+      "source_line": 9,
+      "sha256": "c3bb4c3c49b5503cd85182145a4a39e1fa934cf590fd1914d52028efd9d43c74",
+      "text": "Template materialization is scaffolding only. Reading or executing bootstrap.py does not run experiments or satisfy promotion. Scope, budget, evaluation integrity, and user/host authority continue to govern all routes.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-optimization-auto-research:sources/capability-resources/engos-optimization-auto-research/templates/goal-contract.md.tmpl:L11:62a0df5dab62",
+      "heading": "Must Not Change",
+      "source": "sources/capability-resources/engos-optimization-auto-research/templates/goal-contract.md.tmpl",
+      "source_line": 11,
+      "sha256": "62a0df5dab622761e87dff4a143e8ba145f1f2de2090dbf67a87f2d67b3d9f26",
+      "text": "## Must Not Change",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-optimization-auto-research:sources/capability-resources/engos-optimization-auto-research/templates/experiment-ledger.md.tmpl:L12:af03cfd2445c",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-optimization-auto-research/templates/experiment-ledger.md.tmpl",
+      "source_line": 12,
+      "sha256": "af03cfd2445c36097789c937c28f7ae04e5a0de97c45306879d93441d5385f58",
+      "text": "Dry-run templates contain no executed trial evidence. Retain rejected results and remove only isolated trial-owned active changes.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-optimization-auto-research:sources/capability-resources/engos-optimization-auto-research/references/experiment-loop.md:L3:09578547eb30",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-optimization-auto-research/references/experiment-loop.md",
+      "source_line": 3,
+      "sha256": "09578547eb3051685556941cc2c612a97d9260fc1565f757dab6ea25ba50f769",
+      "text": "Read this complete resource before an experiment-mode mutation. A dry-run, drafted candidate matrix, or simulated score is not an executed trial. Record actual tools, runtime/model settings, candidate content identity, and evaluator results. If required execution or judging is unavailable, state the limitation instead of fabricating trials.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-optimization-auto-research:sources/capability-resources/engos-optimization-auto-research/references/experiment-loop.md:L6:739eb25e7587",
+      "heading": "State and Evaluation Boundary",
+      "source": "sources/capability-resources/engos-optimization-auto-research/references/experiment-loop.md",
+      "source_line": 6,
+      "sha256": "739eb25e75870bd9375502eb35ee691f49522a2de8a6ac826c407e16ba35f1b3",
+      "text": "Preserve three identities: original baseline (immutable reference), incumbent (best accepted state), and trial (isolated candidate derived from the incumbent). Protect evaluator code, evaluation data, scoring rules, limits, and comparison settings from trial edits. Changing the measurement system requires a separately declared experiment; do not improve the score by changing its definition.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-optimization-auto-research:sources/capability-resources/engos-optimization-auto-research/references/experiment-loop.md:L13:39cf095ea39f",
+      "heading": "Loop",
+      "source": "sources/capability-resources/engos-optimization-auto-research/references/experiment-loop.md",
+      "source_line": 13,
+      "sha256": "39cf095ea39f8614bc0c9ac214a9e03d2394dcb77687aa1725208903b8051bca",
+      "text": "3. Execute the protected evaluation on the isolated trial under comparable conditions. Record invalid/crashed trials separately from quality regressions; fix the harness only through its own controlled work, not by disguising a measurement change as a candidate win.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-optimization-auto-research:sources/capability-resources/engos-optimization-auto-research/references/experiment-loop.md:L15:f9024ca8cd66",
+      "heading": "Loop",
+      "source": "sources/capability-resources/engos-optimization-auto-research/references/experiment-loop.md",
+      "source_line": 15,
+      "sha256": "f9024ca8cd6609851c40e3cd9882920f70aa180f6d00529e7846f8a3990ee766",
+      "text": "5. Record the decision and evidence before changing state. Discard only rejected trial-owned active changes, retaining its scores, trace references, hypothesis, and useful lesson. Restore the incumbent as the next starting state. Never reset unrelated work or broadly delete evidence.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-optimization-auto-research:sources/capability-resources/engos-optimization-auto-research/references/experiment-loop.md:L16:1619a4b1efa7",
+      "heading": "Loop",
+      "source": "sources/capability-resources/engos-optimization-auto-research/references/experiment-loop.md",
+      "source_line": 16,
+      "sha256": "1619a4b1efa7acd88b9822fa551d5da94b6451b4ca3a15334ddb2e0739015db1",
+      "text": "6. Explore again after both wins and losses, using lessons to choose the next hypothesis. Stop only under the agreed trial limit, budget, target, plateau, or user interruption.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-optimization-auto-research:sources/capability-resources/engos-optimization-auto-research/references/experiment-loop.md:L17:ea2c2d1bb54f",
+      "heading": "Loop",
+      "source": "sources/capability-resources/engos-optimization-auto-research/references/experiment-loop.md",
+      "source_line": 17,
+      "sha256": "ea2c2d1bb54fe4a7c80da2f71443f08db2cab47b4ba610d309b79ca344ab695f",
+      "text": "7. Recheck the retained best against the original baseline and required regressions. Report no improvement or inconclusive when justified. Keeping an incumbent is distinct from formal promotion, installation, release, or merge.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-optimization-auto-research:sources/capability-resources/engos-optimization-auto-research/references/experiment-loop.md:L22:a1a5bd232770",
+      "heading": "Stopping and Evidence",
+      "source": "sources/capability-resources/engos-optimization-auto-research/references/experiment-loop.md",
+      "source_line": 22,
+      "sha256": "a1a5bd232770d5d0573b5a234e2bb863b42098711932a1295dca82486639efd8",
+      "text": "Keep candidate generation separate from evaluators and, where judgment is needed, use independent reviewers or qualified scorers. Do not expose held-out evaluation answers to candidate generation. Trial acceptance is provisional to the evaluated scope; claims of transfer require separate evidence.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-optimization-auto-research:sources/capability-resources/engos-optimization-auto-research/bootstrap.py:L40:8791a4786f39",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-optimization-auto-research/bootstrap.py",
+      "source_line": 40,
+      "sha256": "8791a4786f39f1650cdfd7c4a177d68fec5817c70ee766a087b1e0e86225f4de",
+      "text": "parser.add_argument(\"--target\", required=True)",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-optimization-auto-research:sources/capability-resources/engos-optimization-auto-research/bootstrap.py:L41:94f83b18dddd",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-optimization-auto-research/bootstrap.py",
+      "source_line": 41,
+      "sha256": "94f83b18dddd03eef701151b56f7418498f3b9ac7b5aa87e917a9e3fbb7c3254",
+      "text": "parser.add_argument(\"--goal\", required=True)",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-optimization-auto-research:sources/capability-resources/engos-optimization-auto-research/bootstrap.py:L43:80e2eca6e91e",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-optimization-auto-research/bootstrap.py",
+      "source_line": 43,
+      "sha256": "80e2eca6e91e2369f66bb0879e5fe1b10903bcb2d48fcd509bd2c6abe1e2022d",
+      "text": "parser.add_argument(\"--must-not-change\", action=\"append\", default=[])",
       "kind": "invariant",
       "mapped_to": []
     }
@@ -672,7 +901,39 @@
   "source_references": [
     {
       "path": "ssot/engos-optimization-auto-research.md",
-      "sha256": "1b1f3fbf69a445b0bde66e4136fd3b98f6282b60cd3c174f91b57c2bcf8a0836"
+      "sha256": "b8bf02b356e20aeb3465fa77efc50559c42b468c7881f0fdcd098a876521d7da"
+    },
+    {
+      "path": "sources/capability-resources/engos-optimization-auto-research/references/resource-delivery.md",
+      "sha256": "e9232c7a9417584fa2f92ad8b5b209af32bb2770ebf3a6cc01e5e1c76c691ed0"
+    },
+    {
+      "path": "sources/capability-resources/engos-optimization-auto-research/templates/goal-contract.md.tmpl",
+      "sha256": "f5ce6157f5b6030491158f99d56b350dc5a60e1d899f8cf9fdcc50c2977846ed"
+    },
+    {
+      "path": "sources/capability-resources/engos-optimization-auto-research/templates/experiment-ledger.md.tmpl",
+      "sha256": "5fb35a2a5f0c25dbbe262ad97f55606978a742e61428f61a8dc59191d37b745b"
+    },
+    {
+      "path": "sources/capability-resources/engos-optimization-auto-research/templates/scorecard.json.tmpl",
+      "sha256": "a905e3211e3001698debf4a5bfd9cb45e5c493b3fb29f91e5bad8d69771a243e"
+    },
+    {
+      "path": "sources/capability-resources/engos-optimization-auto-research/references/experiment-loop.md",
+      "sha256": "c913ea95e9a42ad8485f8dd6807021d2f03d84913c8012291c1bc78584b05c57"
+    },
+    {
+      "path": "sources/capability-resources/engos-optimization-auto-research/templates/promotion-packet.md.tmpl",
+      "sha256": "baa7a3d81d84cecfa2cc5374e7777b7a196a232b419132b4f7284bfc58b33c77"
+    },
+    {
+      "path": "sources/capability-resources/engos-optimization-auto-research/bootstrap.py",
+      "sha256": "28f8bf54916ad9ad786a8ad98e8d53e431e2ece0fe41201c80cf80355e6d6398"
+    },
+    {
+      "path": "sources/capability-resources/engos-optimization-auto-research/resource-map.json",
+      "sha256": "a485f7eaf1c508e21d130f75ab04c44966ac9700c0a4d33f0d9ad8443bad9dc8"
     }
   ],
   "known_ambiguities": [],
@@ -685,10 +946,11 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 51,
+    "total": 68,
     "mapped": 0,
     "waived": 0
   },
   "review_status": "draft",
-  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs."
+  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs.",
+  "resource_bundle_sha256": "c4e7ae7c1151f437e3defe3c60d36afc371240e47059b80bf842c939f631e2e3"
 }

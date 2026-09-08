@@ -1,0 +1,39 @@
+# Final independent resource/evaluator recheck
+
+**Verdict: approved for the reviewed implementation and fixture-delivery scope. Both prior blockers are fixed.** This supersedes the blocking verdict in `REVIEW.md`. It does not establish model comprehension, compliant module execution, behavioral promotion, hosted CI, or deployment.
+
+## Candidate binding
+
+Workspace `/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts`, branch `AI/frontier-capability-modernization`, working-tree diff from HEAD `c9d6de07b4d1918970a5f70350cf50200a6a0ff4`, Python 3.14.7. The 51 inspected source, test, SSOT, descriptor, topology and contract files are hashed in `recheck-start.json` and `recheck-end.json`. The only change during this recheck was the subsequently reviewed correction to `tests/test_capability_modes.py`; no reviewed implementation, canonical resource, descriptor, or topology changed during the checks.
+
+Canonical helper SHA-256: `48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150`. All 18 emitted helper copies match it exactly. All 24 canonical resource payload files are byte-for-byte unchanged from the first independent review. This establishes preservation of those instructions and data; it does not establish a model's output fidelity.
+
+## Resolved findings
+
+1. **Missing-map fallback and stale overlay removal: fixed.** The original missing-manifest reproducer now rejects both effective-text and topology construction with `Declared resource-map.json is missing`. A second independent variant with no map mention in its entry confirms symmetric overlay comparison: removing a previously bound package now rejects `human_reviewed` evidence with `review overlay resource bundle hash is stale`, while preserving intentional legacy effective-text fallback. See `recheck-missing-manifest-result.json` and `recheck-overlay-removed-result.json`.
+2. **Unchecked topology entry references: fixed.** The original undeclared-entry-reference reproducer now rejects both effective text and topology with `entry references undeclared or unloaded resource: absent.md`. See `recheck-topology-entry-reference-result.json`.
+3. **Mode provenance: verified.** Extraction processes original documents individually and indexes the same captured resource snapshot used for topology clauses. Direct inspection of 200 mode rows across 20 canonical/emitted descriptors found correct source paths and exact declaration lines, without calling the mode extractor to verify itself. Also verified 186 clause source lines and 26 raw file hashes; both freshly compiled topologies equal the generated checked-in JSON. See `recheck-mode-provenance-result.json` and `recheck_mode_provenance.py`.
+
+## Executed checks
+
+- **81 passed in 1.65 seconds:** `tests/test_capability_resources.py`, `tests/test_resource_delivery.py`, `tests/test_frontier_eval_integration.py`, `tests/test_resource_source_integrity.py`, and `tests/test_capability_modes.py`. Exact result: `recheck-final-focused-tests.log`. Tests include missing/directory/broken-symlink manifests, overlay bundle removal, a single captured snapshot, original source lines with LF/CRLF frontmatter, document-local headings, confined references, nested closure/cycles, raw-byte/manifest/route binding, per-arm delivery, dispatch drift, canonical aliases, and trace bindings.
+- An earlier expanded run was **80 passed, 1 failed** because a newly broadened provenance assertion required `source_line` on older unmanifested curated metadata. The reviewed test correction preserves their source-path/file checks and enforces exact declaration lines on both manifest-backed resource skills. The final 81-test run passes. This correction changed no resource implementation or metadata.
+- **225 actual packaged-helper route runs, zero mismatches:** 18 skill/agent packages, every declared route plus `all`. Every parsed stdout contains precisely the canonical ordered content and byte-bound identities; every unknown-route invocation exits 2 with empty stdout; every helper equals the canonical helper hash. See `recheck-packaged-helpers-result.json` and `recheck_packaged_helpers.py`.
+- **Four actual subprocess deliveries:** the existing fixture adapter runs through `execute_adapter` and real `Popen.communicate`. A passive observer captures the stdin bytes actually sent; no adapter response is mocked. Historical and candidate resource content remain separate; CRLF and Unicode payload bytes, delivered-artifact hashes, request hashes, and trace resource bindings match. See `recheck-real-pipe-observations.json` and `recheck_real_pipe_capture.py`. Zero paid model calls.
+
+## Requirement evidence
+
+| ID | Declared/present evidence | Supplied-content evidence | Behavior conclusion |
+| --- | --- | --- | --- |
+| S17 | Both canonical maps, complete selected closures, nested dependencies, path confinement, archive exclusion, cycles, missing files and map failure modes are checked. All 18 packages match canonical resources. | Every packaged route is actually assembled; actual evaluator subprocess stdin contains complete separately bound baseline/candidate content. | Resource transport and fail-closed implementation pass their tested cases. Ordinary hosts and real subagents are instructed to obtain complete content; universal host enforcement or comprehension is not claimed. |
+| S18 | Help/examples routes match canonical content; `details` includes shared guidance and all eleven modules in declared order. | Actual helper stdout is compared in full to canonical route bundles across every emitted package. | No model-mediated help-only/details-only formatting or terminal behavior was executed. The preserved output instructions and assembled payload are verified; model response fidelity remains unassessed. |
+| U01 | Full declared-file validation, selected dependency closure, active reference checks, missing/nonfile-map rejection, cycle and escape rejection pass. | Complete route resources are assembled from exact UTF-8 bytes and exercised through real subprocess delivery fixtures. | Static completeness and transport are verified for these cases; semantic understanding and downstream task quality require separate independent behavior evaluation. |
+| U07 | Canonical outcome and ambiguity aliases, resource-aware topology, exact source-line/hash provenance, same-snapshot extraction, symmetric stale-overlay rejection and generated topology parity pass. | Preregistered per-arm roots/maps/routes/content bind the actual outgoing request and trace; drift blocks affected dispatch. | Evaluator binding behavior passes deterministic fixtures. No claim of model efficacy or promotion is made. |
+
+No self-authored read receipt is treated as consumption evidence. Programmatic observations in this review support concrete file, assembly, transport, and verifier behavior only. The `capability.json` infrastructure exemption remains appropriate for the generated metadata footer and does not claim that descriptor content was supplied as a reasoning module.
+
+## Scope and operational limitations
+
+No source edits were made by the reviewer. Review scripts, captures, logs and reports are contained in this directory. Pytest fixture trees created inside the repository were confirmed disposable to the root controller, who is cleaning the three exact scratch directories (`pytest-tmp`, `recheck-pytest-tmp`, `recheck-final-pytest-tmp`) because dangling symlinks from negative tests interfered with another suite's repository-copy setup. All unique review evidence is retained in sibling logs, JSON and probe scripts. Future pytest scratch must use system temporary storage.
+
+No proposed commit message was assessed. Approval is confined to this resource/evaluator implementation slice and the final hashes above; the root controller owns broader tests, hosted checks, delivery, and acceptance reporting.

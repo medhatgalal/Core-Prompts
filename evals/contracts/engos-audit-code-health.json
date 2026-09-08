@@ -2,11 +2,10 @@
   "schema_version": "GoalContract.v1",
   "slug": "engos-audit-code-health",
   "target": "Fulfill the canonical intent of engos-audit-code-health.",
-  "intended_outcome": "Preserve the canonical SSOT objective and required output.",
+  "intended_outcome": "Structural code-health findings with reproducible hotspot evidence, risk calibration, and no product-status or activity-report confusion.",
   "change_class": "unknown",
   "non_goals": [],
   "protected_behaviors": [
-    "c4a050f0f7d6736ac4a95eff8d075f1d9275e230afe4dabcbba4a156ef005c1c",
     "1f013308a12fc6fd66b3b7821cfdbdc488de218eabe57b5c7c93fe9a22e3fa09",
     "d69fe723b3887def45dca57abfef8166fafcde3dbc66c808c8ad8e0dec58c039",
     "2d9f614a2daa074ad5340d050d26e2ca590b858c3df44039d6f812ba63ebad89",
@@ -44,7 +43,7 @@
   "editable_behavior": [],
   "primary_outcome": {
     "metric": "skill_specific_task_success",
-    "definition": "Canonical task success with protected behavior preserved.",
+    "definition": "Structural code-health findings with reproducible hotspot evidence, risk calibration, and no product-status or activity-report confusion.",
     "threshold": "human_review_required"
   },
   "secondary_outcomes": [],
@@ -73,11 +72,6 @@
   "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
   "rollback_trigger": "Any protected regression or stale bound evidence.",
   "source_clause_hashes": [
-    {
-      "sha256": "c4a050f0f7d6736ac4a95eff8d075f1d9275e230afe4dabcbba4a156ef005c1c",
-      "source": "ssot/engos-audit-code-health.md",
-      "text": "description: \"Perform a read-only structural audit of a brownfield codebase, measuring hotspots, coupling, god objects, dead-code candidates, prior findings, and drift. Use for repository health; do not use for feature completeness or diff review.\""
-    },
     {
       "sha256": "1f013308a12fc6fd66b3b7821cfdbdc488de218eabe57b5c7c93fe9a22e3fa09",
       "source": "ssot/engos-audit-code-health.md",

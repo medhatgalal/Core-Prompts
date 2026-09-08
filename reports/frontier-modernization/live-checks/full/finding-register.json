@@ -1,0 +1,39 @@
+[
+  {
+    "id": "S1",
+    "finding": "Concrete worked change example absent in first SIMPLE draft.",
+    "disposition": "resolved and independently accepted",
+    "evidence": "full/reviews/simple/recheck.md"
+  },
+  {
+    "id": "I1",
+    "finding": "Embedded target action might be mistaken for current execution authority.",
+    "disposition": "textual guard accepted; bounded captured trace found no target writes; final-state observation follows",
+    "evidence": "full/reviews/invert/pass-output.md"
+  },
+  {
+    "id": "I2",
+    "finding": "Check-then-overwrite leaves concurrent creation gap.",
+    "disposition": "exclusive-creation mitigation proposed in text; implementation untested",
+    "evidence": "full/reviews/invert/pass-output.md"
+  },
+  {
+    "id": "I3",
+    "finding": "Failed/partial writes could be misreported or silently cleaned up.",
+    "disposition": "exact readback preserved; stop-without-silent-retry guidance proposed; implementation untested",
+    "evidence": "full/reviews/invert/pass-output.md"
+  },
+  {
+    "id": "A1",
+    "finding": "State-dependent review wording makes copied prompt ambiguous in a later authorized invocation.",
+    "disposition": "resolved by independent CONTRACT assessment; final assembly check pending",
+    "resolution": "Current review-only status belongs in wrapper; reusable prompt conditions execution on surrounding explicit request.",
+    "evidence": "full/reviews/adversarial/pass-output.md; full/final-prompt-draft.md"
+  },
+  {
+    "id": "K1",
+    "finding": "Assembled ULT/full draft omitted mandatory Why This Is Better section.",
+    "disposition": "resolved by independent CONTRACT assessment; final assembly check pending",
+    "evidence": "full/full-output-draft-v2.md; checker message; tool chunk dde367"
+  }
+]

@@ -1,0 +1,149 @@
+{
+  "incumbent_id": "trial-03",
+  "incumbent_sha256": "87649224bef74bdb41260e7bb8bd1b393da872a54a41579f7197d20eea857250",
+  "score": {
+    "ast_nodes": 14,
+    "candidate_sha256": "87649224bef74bdb41260e7bb8bd1b393da872a54a41579f7197d20eea857250",
+    "case_count": 16,
+    "cases": [
+      {
+        "actual": "",
+        "expected": "",
+        "id": "empty",
+        "input": "",
+        "passed": true
+      },
+      {
+        "actual": "plain",
+        "expected": "plain",
+        "id": "unchanged",
+        "input": "plain",
+        "passed": true
+      },
+      {
+        "actual": "hello",
+        "expected": "hello",
+        "id": "trim_ascii",
+        "input": "  hello  ",
+        "passed": true
+      },
+      {
+        "actual": "",
+        "expected": "",
+        "id": "only_whitespace",
+        "input": " \t\n\r\u000b\f",
+        "passed": true
+      },
+      {
+        "actual": "a b",
+        "expected": "a b",
+        "id": "repeated_spaces",
+        "input": "a   b",
+        "passed": true
+      },
+      {
+        "actual": "a b",
+        "expected": "a b",
+        "id": "internal_tab",
+        "input": "a\tb",
+        "passed": true
+      },
+      {
+        "actual": "a b",
+        "expected": "a b",
+        "id": "internal_newline",
+        "input": "a\nb",
+        "passed": true
+      },
+      {
+        "actual": "a b c",
+        "expected": "a b c",
+        "id": "mixed_runs",
+        "input": " \ta \n\tb\r\n c  ",
+        "passed": true
+      },
+      {
+        "actual": "café 東京",
+        "expected": "café 東京",
+        "id": "nonbreaking_space",
+        "input": "café  東京",
+        "passed": true
+      },
+      {
+        "actual": "東京 مرحبا",
+        "expected": "東京 مرحبا",
+        "id": "unicode_em_space",
+        "input": " 東京  مرحبا ",
+        "passed": true
+      },
+      {
+        "actual": "café 東京 مرحبا",
+        "expected": "café 東京 مرحبا",
+        "id": "unicode_unchanged",
+        "input": "café 東京 مرحبا",
+        "passed": true
+      },
+      {
+        "actual": "🙂 🚀",
+        "expected": "🙂 🚀",
+        "id": "emoji",
+        "input": " 🙂\t🚀 ",
+        "passed": true
+      },
+      {
+        "actual": "é café",
+        "expected": "é café",
+        "id": "combining_character",
+        "input": "é  café",
+        "passed": true
+      },
+      {
+        "actual": "a​b",
+        "expected": "a​b",
+        "id": "zero_width_preserved",
+        "input": "a​b",
+        "passed": true
+      },
+      {
+        "actual": "a b",
+        "expected": "a b",
+        "id": "vertical_whitespace",
+        "input": "a\u000b\fb",
+        "passed": true
+      },
+      {
+        "actual": "a b",
+        "expected": "a b",
+        "id": "crlf",
+        "input": "a\r\nb",
+        "passed": true
+      }
+    ],
+    "failed": 0,
+    "import_statements": 0,
+    "passed": 16,
+    "status": "valid",
+    "provenance": {
+      "argv": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-I",
+        "-B",
+        "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/verification/transition-replay/protected/evaluator.py",
+        "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/verification/transition-replay/active/trial-03.py"
+      ],
+      "cwd": "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/verification/transition-replay/active",
+      "exit_code": 0,
+      "elapsed_seconds_observed_not_ranked": 0.07272162497974932,
+      "timeout_seconds": 5,
+      "stdout_sha256": "6ddd4f532cc8745c6bd8a1256e0e71080e627438c6766ee4357726d78767943d",
+      "candidate_path": "active/trial-03.py",
+      "evaluator_sha256": "5a4ef4ee317495e126a6e8fbf5d6fc44153622fe579b5540770d0f05ec328fc4",
+      "python": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]"
+    },
+    "integrity_after": {
+      "frozen_hashes_match": true,
+      "package_hashes_match": true
+    }
+  },
+  "optimization_trials_completed": 3
+}

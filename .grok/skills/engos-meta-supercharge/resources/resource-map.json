@@ -1,0 +1,81 @@
+{
+  "shared": [
+    "references/shared-review.md"
+  ],
+  "routes": {
+    "/ult": [
+      "references/modules/ult.md"
+    ],
+    "/catchup": [
+      "references/modules/catchup.md"
+    ],
+    "/basis": [
+      "references/modules/basis.md"
+    ],
+    "/simple": [
+      "references/modules/simple.md"
+    ],
+    "/invert": [
+      "references/modules/invert.md"
+    ],
+    "/adversarial": [
+      "references/modules/adversarial.md"
+    ],
+    "/contract": [
+      "references/modules/contract.md"
+    ],
+    "/grade": [
+      "references/modules/grade.md"
+    ],
+    "/full": [
+      "references/modules/full.md",
+      "references/modules/simple.md",
+      "references/modules/invert.md",
+      "references/modules/adversarial.md",
+      "references/modules/contract.md",
+      "references/modules/grade.md"
+    ],
+    "/gaslight": [
+      "references/modules/gaslight.md"
+    ],
+    "/stop-ult": [
+      "references/modules/stop-ult.md"
+    ],
+    "/debate": [
+      "references/modules/adversarial.md"
+    ],
+    "/debate /deep": [
+      "references/modules/adversarial.md"
+    ],
+    "/adversarial /debate": [
+      "references/modules/adversarial.md"
+    ],
+    "/adversarial /debate /deep": [
+      "references/modules/adversarial.md"
+    ],
+    "help": [
+      "references/help.md"
+    ],
+    "examples": [
+      "references/help-examples.md"
+    ],
+    "details": [
+      "references/modules/ult.md",
+      "references/modules/catchup.md",
+      "references/modules/basis.md",
+      "references/modules/simple.md",
+      "references/modules/invert.md",
+      "references/modules/adversarial.md",
+      "references/modules/contract.md",
+      "references/modules/grade.md",
+      "references/modules/full.md",
+      "references/modules/gaslight.md",
+      "references/modules/stop-ult.md"
+    ],
+    "model-guidance": [
+      "references/model-guidance.md"
+    ]
+  },
+  "dependencies": {},
+  "schema_version": "CapabilityResourceMap.v1"
+}

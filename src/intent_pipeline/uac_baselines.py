@@ -102,6 +102,118 @@ def text_sha256(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
+def validate_requirement_review(
+    review: Mapping[str, Any], *, slug: str, original_text: str,
+    candidate_text: str, effective_text: str,
+) -> list[str]:
+    """Validate the binding and coverage of an operator-supplied review attestation.
+
+    This checks neither reviewer identity authenticity nor semantic correctness.
+    The caller must independently establish review provenance. It is never a
+    PromotionVerdict or evidence of behavioral efficacy.
+    """
+    if not isinstance(review, Mapping):
+        return ["requirement review must be an object"]
+    failures: list[str] = []
+    expected = {
+        "schema_version": "UACRequirementReview.v1", "slug": slug,
+        "original_sha256": text_sha256(original_text),
+        "candidate_sha256": text_sha256(candidate_text),
+        "effective_sha256": text_sha256(effective_text), "verdict": "approved",
+    }
+    failures.extend(f"requirement review {key} does not match" for key, value in expected.items() if review.get(key) != value)
+    reviewer = review.get("reviewer")
+    if not isinstance(reviewer, Mapping) or any(
+        not isinstance(reviewer.get(key), str) or not reviewer[key].strip()
+        for key in ("agent_id", "author_agent_id")
+    ):
+        failures.append("requirement review lacks reviewer/author provenance")
+    elif reviewer.get("independent") is not True or reviewer["agent_id"] == reviewer["author_agent_id"]:
+        failures.append("requirement review does not attest independent authorship")
+    requirements = review.get("requirements")
+    if not isinstance(requirements, list) or not requirements:
+        return failures + ["requirement review lacks complete source requirement mapping"]
+    next_line = 1
+    ids: set[str] = set()
+    line_count = len(original_text.splitlines())
+    for item in requirements:
+        if not isinstance(item, Mapping):
+            failures.append("requirement mapping must be an object")
+            continue
+        identifier = item.get("id")
+        if not isinstance(identifier, str) or not identifier.strip() or identifier in ids:
+            failures.append("requirement IDs must be nonempty and unique")
+        else:
+            ids.add(identifier)
+        start, end = item.get("source_start_line"), item.get("source_end_line")
+        if type(start) is not int or type(end) is not int or start != next_line or end < start or end > line_count:
+            failures.append(f"requirement {identifier} source coverage is missing, overlapping, or out of range")
+        else:
+            next_line = end + 1
+        if not isinstance(item.get("rationale"), str) or not item["rationale"].strip():
+            failures.append(f"requirement {identifier} lacks review rationale")
+        disposition = item.get("disposition")
+        if disposition == "retired":
+            if not isinstance(item.get("authorization"), str) or not item["authorization"].strip():
+                failures.append(f"requirement {identifier} retirement lacks explicit authorization reference")
+        elif isinstance(disposition, str) and disposition in {"preserved", "reformulated", "relocated"}:
+            excerpt = item.get("candidate_excerpt")
+            if not isinstance(excerpt, str) or not excerpt.strip() or excerpt not in effective_text:
+                failures.append(f"requirement {identifier} candidate evidence is absent from the effective package")
+        else:
+            failures.append(f"requirement {identifier} has an unsupported disposition")
+    if next_line != line_count + 1:
+        failures.append("requirement review does not cover the complete original source")
+    return failures
+
+
+def validate_requirement_reviews(
+    reviews: Sequence[Mapping[str, Any]], *, slug: str,
+    original_texts: Sequence[str], candidate_text: str, effective_text: str,
+) -> list[str]:
+    """Reject every explicitly supplied invalid review, even for exact retention."""
+    failures: list[str] = []
+    originals = {text_sha256(text): text for text in original_texts if isinstance(text, str)}
+    accepted_mappings: dict[str, list[tuple[Any, ...]]] = {}
+    for index, review in enumerate(reviews, start=1):
+        if not isinstance(review, Mapping):
+            failures.append(f"requirement review {index} must be an object")
+            continue
+        original_hash = review.get("original_sha256")
+        if not isinstance(original_hash, str) or original_hash not in originals:
+            failures.append(f"requirement review {index} original_sha256 is not a known source or baseline")
+            continue
+        review_failures = validate_requirement_review(
+            review, slug=slug, original_text=originals[original_hash],
+            candidate_text=candidate_text, effective_text=effective_text,
+        )
+        failures.extend(
+            f"requirement review {index}: {failure}"
+            for failure in review_failures
+        )
+        if not review_failures:
+            mapping = [
+                (item["source_start_line"], item["source_end_line"], item["disposition"],
+                 item.get("candidate_excerpt"), item.get("authorization"))
+                for item in review["requirements"]
+            ]
+            if original_hash in accepted_mappings and accepted_mappings[original_hash] != mapping:
+                failures.append(f"requirement review {index} has conflicting requirement mappings for the same original")
+            else:
+                accepted_mappings[original_hash] = mapping
+    return failures
+
+
+def matching_requirement_review(
+    reviews: Sequence[Mapping[str, Any]], *, slug: str, original_text: str,
+    candidate_text: str, effective_text: str,
+) -> Mapping[str, Any] | None:
+    return next((review for review in reviews if isinstance(review, Mapping) and not validate_requirement_review(
+        review, slug=slug, original_text=original_text, candidate_text=candidate_text,
+        effective_text=effective_text,
+    )), None)
+
+
 def baseline_artifact_findings(text: str) -> tuple[str, ...]:
     findings: list[str] = []
     lowered = text.casefold()
@@ -359,14 +471,18 @@ def evaluate_candidate_against_baseline(
     baseline: BaselineContext,
     *,
     preserved_resource_texts: Sequence[str] = (),
+    effective_text: str | None = None,
+    semantic_reviews: Sequence[Mapping[str, Any]] = (),
+    review_original_texts: Sequence[str] = (),
 ) -> dict[str, object]:
-    candidate_richness = historical_richness_score(candidate_text)
-    candidate_lines = len(candidate_text.splitlines())
-    candidate_operational_score = operational_signal_score(candidate_text)
+    package_text = effective_text if effective_text is not None else candidate_text
+    candidate_richness = historical_richness_score(package_text)
+    candidate_lines = len(package_text.splitlines())
+    candidate_operational_score = operational_signal_score(package_text)
     baseline_operational_score = operational_signal_score(baseline.baseline_text or "")
-    scenarios = evaluate_scenarios(candidate_text, baseline.scenario_matrix, baseline.operator_invariants)
+    scenarios = evaluate_scenarios(package_text, baseline.scenario_matrix, baseline.operator_invariants)
     hard_failures: list[str] = []
-    candidate_findings = baseline_artifact_findings(candidate_text)
+    candidate_findings = baseline_artifact_findings(package_text)
     baseline_preserved_in_resource = bool(
         baseline.baseline_text
         and any(resource_text == baseline.baseline_text for resource_text in preserved_resource_texts)
@@ -413,7 +529,29 @@ def evaluate_candidate_against_baseline(
     else:
         classification = "normalized"
 
+    # Keep the original baseline immutable. A reviewed requirement map explicitly
+    # dispositions its legacy invariants instead of silently rewriting them.
+    review = matching_requirement_review(
+        semantic_reviews, slug=baseline.slug, original_text=baseline.baseline_text or "",
+        candidate_text=candidate_text, effective_text=package_text,
+    ) if baseline.baseline_text else None
+    review_failures = validate_requirement_reviews(
+        semantic_reviews, slug=baseline.slug,
+        original_texts=(*review_original_texts, baseline.baseline_text or ""),
+        candidate_text=candidate_text, effective_text=package_text,
+    )
+    reviewed_deltas = list(hard_failures) if review and not review_failures else []
+    if review and not review_failures:
+        hard_failures = []
+        classification = "reviewed_modernization"
+    if review_failures:
+        review = None
+        hard_failures.extend(review_failures)
+        classification = "review_invalid"
+
     pass_rate = 1.0 if not scenarios else sum(1 for item in scenarios if item["passed"]) / len(scenarios)
+    if review:
+        pass_rate = 1.0  # Accepted external disposition, not a claim scenarios passed.
     score = _score_from_ratio(pass_rate, penalty=min(5, len(hard_failures)))
     return {
         "classification": classification,
@@ -427,6 +565,12 @@ def evaluate_candidate_against_baseline(
         "baseline_preserved_in_resource": baseline_preserved_in_resource,
         "scenario_results": scenarios,
         "hard_failures": hard_failures,
+        "reviewed_deltas": reviewed_deltas,
+        "requirement_review": {
+            "status": "bound_attestation" if review else "not_supplied_or_invalid",
+            "identity_authenticated": False,
+            "behavioral_status": "behavioral_pending",
+        },
         "score": score,
     }
 

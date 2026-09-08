@@ -6,7 +6,6 @@
   "change_class": "unknown",
   "non_goals": [],
   "protected_behaviors": [
-    "86d36c44723ad2c527f98e2d43f8dabdb614dfe91eb8355ff475a3f0473ee1af",
     "04153dcb8e47af5834495062c91852908060eb1de20f808a3a12c0199d5f51cd",
     "9cdecf0f9449ff2b22f8bca844b063b2676b15cb7c334a70d860a25ddfcbde64",
     "dbf9fb0bad2d1829f33a35bf68a0cc1c7685e4f7df0cf6d61c6b7992f53ea540",
@@ -54,11 +53,6 @@
   "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
   "rollback_trigger": "Any protected regression or stale bound evidence.",
   "source_clause_hashes": [
-    {
-      "sha256": "86d36c44723ad2c527f98e2d43f8dabdb614dfe91eb8355ff475a3f0473ee1af",
-      "source": "ssot/engos-quality-docs-review.md",
-      "text": "description: \"Review repository documentation for information architecture, stale commands, broken links, misplaced content, drift, and release hygiene. Use when docs quality or discoverability is the primary concern; do not use for ordinary sentence editing.\""
-    },
     {
       "sha256": "04153dcb8e47af5834495062c91852908060eb1de20f808a3a12c0199d5f51cd",
       "source": "ssot/engos-quality-docs-review.md",

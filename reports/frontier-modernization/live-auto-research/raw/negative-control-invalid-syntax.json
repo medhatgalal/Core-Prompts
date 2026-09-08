@@ -1,0 +1,30 @@
+{
+  "candidate_sha256": "0261724eeb714bbc7dcb7f5c000484399cb54c98f289b15d38187c63525df060",
+  "case_count": 16,
+  "cases": [],
+  "error": "SyntaxError: expected ':' (<unknown>, line 1)",
+  "failed": 16,
+  "passed": 0,
+  "status": "invalid",
+  "provenance": {
+    "argv": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-I",
+      "-B",
+      "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/protected/evaluator.py",
+      "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/controls/negative-control-invalid-syntax.py"
+    ],
+    "cwd": "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts/reports/frontier-modernization/live-auto-research/active",
+    "exit_code": 0,
+    "elapsed_seconds_observed_not_ranked": 0.06702208297792822,
+    "timeout_seconds": 5,
+    "stdout_sha256": "a283324d569ac5cf88fdc981b6cdd7da0fd3fb67801e8d04db0c8aa51e7a9a3e",
+    "candidate_path": "controls/negative-control-invalid-syntax.py",
+    "evaluator_sha256": "5a4ef4ee317495e126a6e8fbf5d6fc44153622fe579b5540770d0f05ec328fc4",
+    "python": "3.14.7 (main, Aug  5 2026, 10:29:49) [Clang 21.0.0 (clang-2100.1.1.101)]"
+  },
+  "integrity_after": {
+    "frozen_hashes_match": true,
+    "package_hashes_match": true
+  }
+}

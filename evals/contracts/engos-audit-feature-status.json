@@ -2,11 +2,10 @@
   "schema_version": "GoalContract.v1",
   "slug": "engos-audit-feature-status",
   "target": "Fulfill the canonical intent of engos-audit-feature-status.",
-  "intended_outcome": "Preserve the canonical SSOT objective and required output.",
+  "intended_outcome": "Product-scope completeness, backlog/progress/done separation, evidence quality, missing work, and delivery-speed explanation.",
   "change_class": "unknown",
   "non_goals": [],
   "protected_behaviors": [
-    "32b25fa4150791917e97bd407ffa5794ccbf56828bf12833f8a103a4aba487fd",
     "5e1f0692e96c57901a814b27ca263bf7acc6f2d0b318ace0cf304f018bf097c8",
     "89e6f3dc9becad2d48c716ce2b3832726e13144b3be317452180b7fe5b48f1d5",
     "da3f850831481bfdd98cc3806a1abe99540041eeaf345fddfbb38c5a009440fb",
@@ -28,7 +27,7 @@
   "editable_behavior": [],
   "primary_outcome": {
     "metric": "skill_specific_task_success",
-    "definition": "Canonical task success with protected behavior preserved.",
+    "definition": "Product-scope completeness, backlog/progress/done separation, evidence quality, missing work, and delivery-speed explanation.",
     "threshold": "human_review_required"
   },
   "secondary_outcomes": [],
@@ -57,11 +56,6 @@
   "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
   "rollback_trigger": "Any protected regression or stale bound evidence.",
   "source_clause_hashes": [
-    {
-      "sha256": "32b25fa4150791917e97bd407ffa5794ccbf56828bf12833f8a103a4aba487fd",
-      "source": "ssot/engos-audit-feature-status.md",
-      "text": "description: \"Audit a feature\u2019s stated scope against code, tests, configuration, specifications, tickets, and Git history, then report completion states, drift, gaps, and shipping priorities. Use for feature readiness; do not use for repository-wide health or Git-only activity reports.\""
-    },
     {
       "sha256": "5e1f0692e96c57901a814b27ca263bf7acc6f2d0b318ace0cf304f018bf097c8",
       "source": "ssot/engos-audit-feature-status.md",

@@ -25,6 +25,32 @@ def _revision(rev: str) -> str:
     ).stdout.strip()
 
 
+@pytest.mark.parametrize("change", ["revoked", "removed", "format_changed"])
+def test_apply_rechecks_review_after_user_confirmation(tmp_path, monkeypatch, change):
+    review = tmp_path / "review.json"
+    approved = {"schema_version": "UACRequirementReview.v1", "verdict": "approved"}
+    review.write_text(json.dumps(approved))
+    payload = {
+        "status": "accepted", "requirement_reviews": [approved],
+        "requirement_review_files": [{"path": str(review.resolve()), "sha256": UAC_IMPORT.sha256(review.read_bytes()).hexdigest()}],
+    }
+
+    def confirm(_):
+        if change == "removed":
+            review.unlink()
+        elif change == "revoked":
+            review.write_text(json.dumps({**approved, "verdict": "rejected"}))
+        else:
+            review.write_text(json.dumps(approved, indent=2))
+        return "yes"
+
+    monkeypatch.setattr("builtins.input", confirm)
+    monkeypatch.setattr(UAC_IMPORT, "_snapshot_apply_artifacts", lambda: pytest.fail("apply advanced after review changed"))
+    result = UAC_IMPORT._apply_payload(payload, SimpleNamespace(yes=False, quality_loop="on", requirement_review=[review]), [])
+    assert result["status"] == "stale_evidence"
+    assert "requirement review" in result["detail"]
+
+
 def test_finalize_existing_candidate_requires_exact_revision_hashes_and_ancestry(tmp_path: Path) -> None:
     repo = tmp_path / "repo"
     repo.mkdir()
@@ -67,12 +93,12 @@ def test_finalize_existing_candidate_requires_exact_revision_hashes_and_ancestry
     assert mode == "finalize_existing_candidate"
 
 
-def test_finalize_existing_candidate_refuses_non_ancestor_candidate() -> None:
+def test_finalize_existing_candidate_refuses_nonexistent_candidate() -> None:
     verdict = {
         "slug": "engos-orchestration-batman",
-        "baseline_revision": _revision("22654fb"),
+        "baseline_revision": _revision("HEAD"),
         "candidate_revision": "0" * 40,
-        "baseline_sha256": "ac7e2684d99dc6a0267d785d1a6751a742e39e74ce3853a9877f98051690b3f2",
+        "baseline_sha256": artifact_hash(ROOT / "ssot/engos-orchestration-batman.md"),
         "candidate_sha256": artifact_hash(ROOT / "ssot/engos-orchestration-batman.md"),
     }
 

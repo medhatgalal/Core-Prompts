@@ -24,6 +24,7 @@
         "Proposed action list for \ud83d\udd34 and \ud83d\udfe1 items"
       ],
       "tool_policy": {
+        "scope": "uac_intake_only",
         "allowed": [
           "deterministic classification",
           "metadata publication",
@@ -33,7 +34,8 @@
           "orchestration",
           "delegation decisions",
           "runtime execution control"
-        ]
+        ],
+        "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
       },
       "resources": [
         "ssot/engos-triage-my-inbox-chat-pulse.md"

@@ -1,0 +1,1341 @@
+{
+  "descriptors": [
+    {
+      "path": ".meta/capabilities/engos-meta-supercharge.json",
+      "sha256": "85048d4cae8a96469b31a2ab8091a58f7c8e2a72d350bb9291fe50acf354a382",
+      "modes": [
+        {
+          "mode_slug": "ult",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/ult.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /ult \u2014 ULT-Agent++ (Prompt Engineer Mode)"
+        },
+        {
+          "mode_slug": "catchup",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/catchup.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /catchup \u2014 Deep Forensic Catchup (Multi-Intent)"
+        },
+        {
+          "mode_slug": "basis",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/basis.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /basis \u2014 First-Principles Reasoning and Irreducible Simplicity"
+        },
+        {
+          "mode_slug": "simple",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/simple.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /simple \u2014 Decomplecting Lens (\"Simple Made Easy\")"
+        },
+        {
+          "mode_slug": "invert",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/invert.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /invert \u2014 Inversion Lens (\"Invert, Always Invert\")"
+        },
+        {
+          "mode_slug": "adversarial",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /adversarial \u2014 Adversarial Red-Teaming (Devil's Advocate)"
+        },
+        {
+          "mode_slug": "adversarial-debate",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md",
+          "source_line": 24,
+          "raw_declaration": "### Nested Module: /adversarial /debate \u2014 Surface Bull/Bear/Decider Debate"
+        },
+        {
+          "mode_slug": "adversarial-debate-deep",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md",
+          "source_line": 56,
+          "raw_declaration": "### Nested Module: /adversarial /debate /deep \u2014 Deep Bull/Bear/Decider Debate"
+        },
+        {
+          "mode_slug": "contract",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/contract.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /contract \u2014 2026 Contract + QA (Unified Spec + Evaluation)"
+        },
+        {
+          "mode_slug": "grade",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/grade.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /grade \u2014 Graded Candidate Improvement Ladder (Score 1\u201310)"
+        },
+        {
+          "mode_slug": "full",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/full.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /full \u2014 Illumination Gauntlet (No Execution)"
+        },
+        {
+          "mode_slug": "gaslight",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/gaslight.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /gaslight \u2014 GASLIGHT 13 (Explicit Only)"
+        },
+        {
+          "mode_slug": "stop-ult",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/stop-ult.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /stop-ult \u2014 Exit ULT Mode"
+        }
+      ]
+    },
+    {
+      "path": ".codex/skills/engos-meta-supercharge/resources/capability.json",
+      "sha256": "85048d4cae8a96469b31a2ab8091a58f7c8e2a72d350bb9291fe50acf354a382",
+      "modes": [
+        {
+          "mode_slug": "ult",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/ult.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /ult \u2014 ULT-Agent++ (Prompt Engineer Mode)"
+        },
+        {
+          "mode_slug": "catchup",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/catchup.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /catchup \u2014 Deep Forensic Catchup (Multi-Intent)"
+        },
+        {
+          "mode_slug": "basis",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/basis.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /basis \u2014 First-Principles Reasoning and Irreducible Simplicity"
+        },
+        {
+          "mode_slug": "simple",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/simple.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /simple \u2014 Decomplecting Lens (\"Simple Made Easy\")"
+        },
+        {
+          "mode_slug": "invert",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/invert.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /invert \u2014 Inversion Lens (\"Invert, Always Invert\")"
+        },
+        {
+          "mode_slug": "adversarial",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /adversarial \u2014 Adversarial Red-Teaming (Devil's Advocate)"
+        },
+        {
+          "mode_slug": "adversarial-debate",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md",
+          "source_line": 24,
+          "raw_declaration": "### Nested Module: /adversarial /debate \u2014 Surface Bull/Bear/Decider Debate"
+        },
+        {
+          "mode_slug": "adversarial-debate-deep",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md",
+          "source_line": 56,
+          "raw_declaration": "### Nested Module: /adversarial /debate /deep \u2014 Deep Bull/Bear/Decider Debate"
+        },
+        {
+          "mode_slug": "contract",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/contract.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /contract \u2014 2026 Contract + QA (Unified Spec + Evaluation)"
+        },
+        {
+          "mode_slug": "grade",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/grade.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /grade \u2014 Graded Candidate Improvement Ladder (Score 1\u201310)"
+        },
+        {
+          "mode_slug": "full",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/full.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /full \u2014 Illumination Gauntlet (No Execution)"
+        },
+        {
+          "mode_slug": "gaslight",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/gaslight.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /gaslight \u2014 GASLIGHT 13 (Explicit Only)"
+        },
+        {
+          "mode_slug": "stop-ult",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/stop-ult.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /stop-ult \u2014 Exit ULT Mode"
+        }
+      ]
+    },
+    {
+      "path": ".codex/agents/resources/engos-meta-supercharge/capability.json",
+      "sha256": "85048d4cae8a96469b31a2ab8091a58f7c8e2a72d350bb9291fe50acf354a382",
+      "modes": [
+        {
+          "mode_slug": "ult",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/ult.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /ult \u2014 ULT-Agent++ (Prompt Engineer Mode)"
+        },
+        {
+          "mode_slug": "catchup",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/catchup.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /catchup \u2014 Deep Forensic Catchup (Multi-Intent)"
+        },
+        {
+          "mode_slug": "basis",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/basis.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /basis \u2014 First-Principles Reasoning and Irreducible Simplicity"
+        },
+        {
+          "mode_slug": "simple",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/simple.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /simple \u2014 Decomplecting Lens (\"Simple Made Easy\")"
+        },
+        {
+          "mode_slug": "invert",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/invert.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /invert \u2014 Inversion Lens (\"Invert, Always Invert\")"
+        },
+        {
+          "mode_slug": "adversarial",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /adversarial \u2014 Adversarial Red-Teaming (Devil's Advocate)"
+        },
+        {
+          "mode_slug": "adversarial-debate",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md",
+          "source_line": 24,
+          "raw_declaration": "### Nested Module: /adversarial /debate \u2014 Surface Bull/Bear/Decider Debate"
+        },
+        {
+          "mode_slug": "adversarial-debate-deep",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md",
+          "source_line": 56,
+          "raw_declaration": "### Nested Module: /adversarial /debate /deep \u2014 Deep Bull/Bear/Decider Debate"
+        },
+        {
+          "mode_slug": "contract",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/contract.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /contract \u2014 2026 Contract + QA (Unified Spec + Evaluation)"
+        },
+        {
+          "mode_slug": "grade",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/grade.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /grade \u2014 Graded Candidate Improvement Ladder (Score 1\u201310)"
+        },
+        {
+          "mode_slug": "full",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/full.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /full \u2014 Illumination Gauntlet (No Execution)"
+        },
+        {
+          "mode_slug": "gaslight",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/gaslight.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /gaslight \u2014 GASLIGHT 13 (Explicit Only)"
+        },
+        {
+          "mode_slug": "stop-ult",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/stop-ult.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /stop-ult \u2014 Exit ULT Mode"
+        }
+      ]
+    },
+    {
+      "path": ".claude/skills/engos-meta-supercharge/resources/capability.json",
+      "sha256": "85048d4cae8a96469b31a2ab8091a58f7c8e2a72d350bb9291fe50acf354a382",
+      "modes": [
+        {
+          "mode_slug": "ult",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/ult.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /ult \u2014 ULT-Agent++ (Prompt Engineer Mode)"
+        },
+        {
+          "mode_slug": "catchup",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/catchup.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /catchup \u2014 Deep Forensic Catchup (Multi-Intent)"
+        },
+        {
+          "mode_slug": "basis",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/basis.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /basis \u2014 First-Principles Reasoning and Irreducible Simplicity"
+        },
+        {
+          "mode_slug": "simple",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/simple.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /simple \u2014 Decomplecting Lens (\"Simple Made Easy\")"
+        },
+        {
+          "mode_slug": "invert",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/invert.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /invert \u2014 Inversion Lens (\"Invert, Always Invert\")"
+        },
+        {
+          "mode_slug": "adversarial",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /adversarial \u2014 Adversarial Red-Teaming (Devil's Advocate)"
+        },
+        {
+          "mode_slug": "adversarial-debate",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md",
+          "source_line": 24,
+          "raw_declaration": "### Nested Module: /adversarial /debate \u2014 Surface Bull/Bear/Decider Debate"
+        },
+        {
+          "mode_slug": "adversarial-debate-deep",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md",
+          "source_line": 56,
+          "raw_declaration": "### Nested Module: /adversarial /debate /deep \u2014 Deep Bull/Bear/Decider Debate"
+        },
+        {
+          "mode_slug": "contract",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/contract.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /contract \u2014 2026 Contract + QA (Unified Spec + Evaluation)"
+        },
+        {
+          "mode_slug": "grade",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/grade.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /grade \u2014 Graded Candidate Improvement Ladder (Score 1\u201310)"
+        },
+        {
+          "mode_slug": "full",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/full.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /full \u2014 Illumination Gauntlet (No Execution)"
+        },
+        {
+          "mode_slug": "gaslight",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/gaslight.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /gaslight \u2014 GASLIGHT 13 (Explicit Only)"
+        },
+        {
+          "mode_slug": "stop-ult",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/stop-ult.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /stop-ult \u2014 Exit ULT Mode"
+        }
+      ]
+    },
+    {
+      "path": ".claude/agents/resources/engos-meta-supercharge/capability.json",
+      "sha256": "85048d4cae8a96469b31a2ab8091a58f7c8e2a72d350bb9291fe50acf354a382",
+      "modes": [
+        {
+          "mode_slug": "ult",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/ult.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /ult \u2014 ULT-Agent++ (Prompt Engineer Mode)"
+        },
+        {
+          "mode_slug": "catchup",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/catchup.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /catchup \u2014 Deep Forensic Catchup (Multi-Intent)"
+        },
+        {
+          "mode_slug": "basis",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/basis.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /basis \u2014 First-Principles Reasoning and Irreducible Simplicity"
+        },
+        {
+          "mode_slug": "simple",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/simple.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /simple \u2014 Decomplecting Lens (\"Simple Made Easy\")"
+        },
+        {
+          "mode_slug": "invert",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/invert.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /invert \u2014 Inversion Lens (\"Invert, Always Invert\")"
+        },
+        {
+          "mode_slug": "adversarial",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /adversarial \u2014 Adversarial Red-Teaming (Devil's Advocate)"
+        },
+        {
+          "mode_slug": "adversarial-debate",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md",
+          "source_line": 24,
+          "raw_declaration": "### Nested Module: /adversarial /debate \u2014 Surface Bull/Bear/Decider Debate"
+        },
+        {
+          "mode_slug": "adversarial-debate-deep",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md",
+          "source_line": 56,
+          "raw_declaration": "### Nested Module: /adversarial /debate /deep \u2014 Deep Bull/Bear/Decider Debate"
+        },
+        {
+          "mode_slug": "contract",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/contract.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /contract \u2014 2026 Contract + QA (Unified Spec + Evaluation)"
+        },
+        {
+          "mode_slug": "grade",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/grade.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /grade \u2014 Graded Candidate Improvement Ladder (Score 1\u201310)"
+        },
+        {
+          "mode_slug": "full",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/full.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /full \u2014 Illumination Gauntlet (No Execution)"
+        },
+        {
+          "mode_slug": "gaslight",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/gaslight.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /gaslight \u2014 GASLIGHT 13 (Explicit Only)"
+        },
+        {
+          "mode_slug": "stop-ult",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/stop-ult.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /stop-ult \u2014 Exit ULT Mode"
+        }
+      ]
+    },
+    {
+      "path": ".gemini/skills/engos-meta-supercharge/resources/capability.json",
+      "sha256": "85048d4cae8a96469b31a2ab8091a58f7c8e2a72d350bb9291fe50acf354a382",
+      "modes": [
+        {
+          "mode_slug": "ult",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/ult.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /ult \u2014 ULT-Agent++ (Prompt Engineer Mode)"
+        },
+        {
+          "mode_slug": "catchup",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/catchup.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /catchup \u2014 Deep Forensic Catchup (Multi-Intent)"
+        },
+        {
+          "mode_slug": "basis",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/basis.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /basis \u2014 First-Principles Reasoning and Irreducible Simplicity"
+        },
+        {
+          "mode_slug": "simple",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/simple.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /simple \u2014 Decomplecting Lens (\"Simple Made Easy\")"
+        },
+        {
+          "mode_slug": "invert",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/invert.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /invert \u2014 Inversion Lens (\"Invert, Always Invert\")"
+        },
+        {
+          "mode_slug": "adversarial",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /adversarial \u2014 Adversarial Red-Teaming (Devil's Advocate)"
+        },
+        {
+          "mode_slug": "adversarial-debate",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md",
+          "source_line": 24,
+          "raw_declaration": "### Nested Module: /adversarial /debate \u2014 Surface Bull/Bear/Decider Debate"
+        },
+        {
+          "mode_slug": "adversarial-debate-deep",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md",
+          "source_line": 56,
+          "raw_declaration": "### Nested Module: /adversarial /debate /deep \u2014 Deep Bull/Bear/Decider Debate"
+        },
+        {
+          "mode_slug": "contract",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/contract.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /contract \u2014 2026 Contract + QA (Unified Spec + Evaluation)"
+        },
+        {
+          "mode_slug": "grade",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/grade.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /grade \u2014 Graded Candidate Improvement Ladder (Score 1\u201310)"
+        },
+        {
+          "mode_slug": "full",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/full.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /full \u2014 Illumination Gauntlet (No Execution)"
+        },
+        {
+          "mode_slug": "gaslight",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/gaslight.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /gaslight \u2014 GASLIGHT 13 (Explicit Only)"
+        },
+        {
+          "mode_slug": "stop-ult",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/stop-ult.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /stop-ult \u2014 Exit ULT Mode"
+        }
+      ]
+    },
+    {
+      "path": ".gemini/agents/resources/engos-meta-supercharge/capability.json",
+      "sha256": "85048d4cae8a96469b31a2ab8091a58f7c8e2a72d350bb9291fe50acf354a382",
+      "modes": [
+        {
+          "mode_slug": "ult",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/ult.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /ult \u2014 ULT-Agent++ (Prompt Engineer Mode)"
+        },
+        {
+          "mode_slug": "catchup",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/catchup.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /catchup \u2014 Deep Forensic Catchup (Multi-Intent)"
+        },
+        {
+          "mode_slug": "basis",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/basis.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /basis \u2014 First-Principles Reasoning and Irreducible Simplicity"
+        },
+        {
+          "mode_slug": "simple",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/simple.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /simple \u2014 Decomplecting Lens (\"Simple Made Easy\")"
+        },
+        {
+          "mode_slug": "invert",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/invert.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /invert \u2014 Inversion Lens (\"Invert, Always Invert\")"
+        },
+        {
+          "mode_slug": "adversarial",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /adversarial \u2014 Adversarial Red-Teaming (Devil's Advocate)"
+        },
+        {
+          "mode_slug": "adversarial-debate",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md",
+          "source_line": 24,
+          "raw_declaration": "### Nested Module: /adversarial /debate \u2014 Surface Bull/Bear/Decider Debate"
+        },
+        {
+          "mode_slug": "adversarial-debate-deep",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md",
+          "source_line": 56,
+          "raw_declaration": "### Nested Module: /adversarial /debate /deep \u2014 Deep Bull/Bear/Decider Debate"
+        },
+        {
+          "mode_slug": "contract",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/contract.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /contract \u2014 2026 Contract + QA (Unified Spec + Evaluation)"
+        },
+        {
+          "mode_slug": "grade",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/grade.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /grade \u2014 Graded Candidate Improvement Ladder (Score 1\u201310)"
+        },
+        {
+          "mode_slug": "full",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/full.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /full \u2014 Illumination Gauntlet (No Execution)"
+        },
+        {
+          "mode_slug": "gaslight",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/gaslight.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /gaslight \u2014 GASLIGHT 13 (Explicit Only)"
+        },
+        {
+          "mode_slug": "stop-ult",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/stop-ult.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /stop-ult \u2014 Exit ULT Mode"
+        }
+      ]
+    },
+    {
+      "path": ".kiro/skills/engos-meta-supercharge/resources/capability.json",
+      "sha256": "85048d4cae8a96469b31a2ab8091a58f7c8e2a72d350bb9291fe50acf354a382",
+      "modes": [
+        {
+          "mode_slug": "ult",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/ult.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /ult \u2014 ULT-Agent++ (Prompt Engineer Mode)"
+        },
+        {
+          "mode_slug": "catchup",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/catchup.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /catchup \u2014 Deep Forensic Catchup (Multi-Intent)"
+        },
+        {
+          "mode_slug": "basis",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/basis.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /basis \u2014 First-Principles Reasoning and Irreducible Simplicity"
+        },
+        {
+          "mode_slug": "simple",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/simple.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /simple \u2014 Decomplecting Lens (\"Simple Made Easy\")"
+        },
+        {
+          "mode_slug": "invert",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/invert.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /invert \u2014 Inversion Lens (\"Invert, Always Invert\")"
+        },
+        {
+          "mode_slug": "adversarial",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /adversarial \u2014 Adversarial Red-Teaming (Devil's Advocate)"
+        },
+        {
+          "mode_slug": "adversarial-debate",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md",
+          "source_line": 24,
+          "raw_declaration": "### Nested Module: /adversarial /debate \u2014 Surface Bull/Bear/Decider Debate"
+        },
+        {
+          "mode_slug": "adversarial-debate-deep",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md",
+          "source_line": 56,
+          "raw_declaration": "### Nested Module: /adversarial /debate /deep \u2014 Deep Bull/Bear/Decider Debate"
+        },
+        {
+          "mode_slug": "contract",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/contract.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /contract \u2014 2026 Contract + QA (Unified Spec + Evaluation)"
+        },
+        {
+          "mode_slug": "grade",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/grade.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /grade \u2014 Graded Candidate Improvement Ladder (Score 1\u201310)"
+        },
+        {
+          "mode_slug": "full",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/full.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /full \u2014 Illumination Gauntlet (No Execution)"
+        },
+        {
+          "mode_slug": "gaslight",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/gaslight.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /gaslight \u2014 GASLIGHT 13 (Explicit Only)"
+        },
+        {
+          "mode_slug": "stop-ult",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/stop-ult.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /stop-ult \u2014 Exit ULT Mode"
+        }
+      ]
+    },
+    {
+      "path": ".kiro/agents/resources/engos-meta-supercharge/capability.json",
+      "sha256": "85048d4cae8a96469b31a2ab8091a58f7c8e2a72d350bb9291fe50acf354a382",
+      "modes": [
+        {
+          "mode_slug": "ult",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/ult.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /ult \u2014 ULT-Agent++ (Prompt Engineer Mode)"
+        },
+        {
+          "mode_slug": "catchup",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/catchup.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /catchup \u2014 Deep Forensic Catchup (Multi-Intent)"
+        },
+        {
+          "mode_slug": "basis",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/basis.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /basis \u2014 First-Principles Reasoning and Irreducible Simplicity"
+        },
+        {
+          "mode_slug": "simple",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/simple.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /simple \u2014 Decomplecting Lens (\"Simple Made Easy\")"
+        },
+        {
+          "mode_slug": "invert",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/invert.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /invert \u2014 Inversion Lens (\"Invert, Always Invert\")"
+        },
+        {
+          "mode_slug": "adversarial",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /adversarial \u2014 Adversarial Red-Teaming (Devil's Advocate)"
+        },
+        {
+          "mode_slug": "adversarial-debate",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md",
+          "source_line": 24,
+          "raw_declaration": "### Nested Module: /adversarial /debate \u2014 Surface Bull/Bear/Decider Debate"
+        },
+        {
+          "mode_slug": "adversarial-debate-deep",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md",
+          "source_line": 56,
+          "raw_declaration": "### Nested Module: /adversarial /debate /deep \u2014 Deep Bull/Bear/Decider Debate"
+        },
+        {
+          "mode_slug": "contract",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/contract.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /contract \u2014 2026 Contract + QA (Unified Spec + Evaluation)"
+        },
+        {
+          "mode_slug": "grade",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/grade.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /grade \u2014 Graded Candidate Improvement Ladder (Score 1\u201310)"
+        },
+        {
+          "mode_slug": "full",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/full.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /full \u2014 Illumination Gauntlet (No Execution)"
+        },
+        {
+          "mode_slug": "gaslight",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/gaslight.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /gaslight \u2014 GASLIGHT 13 (Explicit Only)"
+        },
+        {
+          "mode_slug": "stop-ult",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/stop-ult.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /stop-ult \u2014 Exit ULT Mode"
+        }
+      ]
+    },
+    {
+      "path": ".grok/skills/engos-meta-supercharge/resources/capability.json",
+      "sha256": "85048d4cae8a96469b31a2ab8091a58f7c8e2a72d350bb9291fe50acf354a382",
+      "modes": [
+        {
+          "mode_slug": "ult",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/ult.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /ult \u2014 ULT-Agent++ (Prompt Engineer Mode)"
+        },
+        {
+          "mode_slug": "catchup",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/catchup.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /catchup \u2014 Deep Forensic Catchup (Multi-Intent)"
+        },
+        {
+          "mode_slug": "basis",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/basis.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /basis \u2014 First-Principles Reasoning and Irreducible Simplicity"
+        },
+        {
+          "mode_slug": "simple",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/simple.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /simple \u2014 Decomplecting Lens (\"Simple Made Easy\")"
+        },
+        {
+          "mode_slug": "invert",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/invert.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /invert \u2014 Inversion Lens (\"Invert, Always Invert\")"
+        },
+        {
+          "mode_slug": "adversarial",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /adversarial \u2014 Adversarial Red-Teaming (Devil's Advocate)"
+        },
+        {
+          "mode_slug": "adversarial-debate",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md",
+          "source_line": 24,
+          "raw_declaration": "### Nested Module: /adversarial /debate \u2014 Surface Bull/Bear/Decider Debate"
+        },
+        {
+          "mode_slug": "adversarial-debate-deep",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md",
+          "source_line": 56,
+          "raw_declaration": "### Nested Module: /adversarial /debate /deep \u2014 Deep Bull/Bear/Decider Debate"
+        },
+        {
+          "mode_slug": "contract",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/contract.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /contract \u2014 2026 Contract + QA (Unified Spec + Evaluation)"
+        },
+        {
+          "mode_slug": "grade",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/grade.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /grade \u2014 Graded Candidate Improvement Ladder (Score 1\u201310)"
+        },
+        {
+          "mode_slug": "full",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/full.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /full \u2014 Illumination Gauntlet (No Execution)"
+        },
+        {
+          "mode_slug": "gaslight",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/gaslight.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /gaslight \u2014 GASLIGHT 13 (Explicit Only)"
+        },
+        {
+          "mode_slug": "stop-ult",
+          "source": "sources/capability-resources/engos-meta-supercharge/references/modules/stop-ult.md",
+          "source_line": 1,
+          "raw_declaration": "## MODULE: /stop-ult \u2014 Exit ULT Mode"
+        }
+      ]
+    },
+    {
+      "path": ".meta/capabilities/engos-optimization-auto-research.json",
+      "sha256": "885a84c23c4300b3fedfdfb9cae8fa662bb5b564d64852a8ba1a8543f845000e",
+      "modes": [
+        {
+          "mode_slug": "goal-setup",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 386,
+          "raw_declaration": "### Mode 1: Goal Setup"
+        },
+        {
+          "mode_slug": "minimal-loop",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 395,
+          "raw_declaration": "### Mode 2: Minimal Loop"
+        },
+        {
+          "mode_slug": "search-design",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 406,
+          "raw_declaration": "### Mode 3: Search Design"
+        },
+        {
+          "mode_slug": "experiment-loop",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 415,
+          "raw_declaration": "### Mode 4: Experiment Loop"
+        },
+        {
+          "mode_slug": "capability-evaluation",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 428,
+          "raw_declaration": "### Mode 5: Capability Evaluation"
+        },
+        {
+          "mode_slug": "trace-to-eval",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 439,
+          "raw_declaration": "### Mode 6: Trace-to-Eval"
+        },
+        {
+          "mode_slug": "promotion",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 448,
+          "raw_declaration": "### Mode 7: Promotion"
+        }
+      ]
+    },
+    {
+      "path": ".codex/skills/engos-optimization-auto-research/resources/capability.json",
+      "sha256": "885a84c23c4300b3fedfdfb9cae8fa662bb5b564d64852a8ba1a8543f845000e",
+      "modes": [
+        {
+          "mode_slug": "goal-setup",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 386,
+          "raw_declaration": "### Mode 1: Goal Setup"
+        },
+        {
+          "mode_slug": "minimal-loop",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 395,
+          "raw_declaration": "### Mode 2: Minimal Loop"
+        },
+        {
+          "mode_slug": "search-design",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 406,
+          "raw_declaration": "### Mode 3: Search Design"
+        },
+        {
+          "mode_slug": "experiment-loop",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 415,
+          "raw_declaration": "### Mode 4: Experiment Loop"
+        },
+        {
+          "mode_slug": "capability-evaluation",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 428,
+          "raw_declaration": "### Mode 5: Capability Evaluation"
+        },
+        {
+          "mode_slug": "trace-to-eval",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 439,
+          "raw_declaration": "### Mode 6: Trace-to-Eval"
+        },
+        {
+          "mode_slug": "promotion",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 448,
+          "raw_declaration": "### Mode 7: Promotion"
+        }
+      ]
+    },
+    {
+      "path": ".codex/agents/resources/engos-optimization-auto-research/capability.json",
+      "sha256": "885a84c23c4300b3fedfdfb9cae8fa662bb5b564d64852a8ba1a8543f845000e",
+      "modes": [
+        {
+          "mode_slug": "goal-setup",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 386,
+          "raw_declaration": "### Mode 1: Goal Setup"
+        },
+        {
+          "mode_slug": "minimal-loop",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 395,
+          "raw_declaration": "### Mode 2: Minimal Loop"
+        },
+        {
+          "mode_slug": "search-design",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 406,
+          "raw_declaration": "### Mode 3: Search Design"
+        },
+        {
+          "mode_slug": "experiment-loop",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 415,
+          "raw_declaration": "### Mode 4: Experiment Loop"
+        },
+        {
+          "mode_slug": "capability-evaluation",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 428,
+          "raw_declaration": "### Mode 5: Capability Evaluation"
+        },
+        {
+          "mode_slug": "trace-to-eval",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 439,
+          "raw_declaration": "### Mode 6: Trace-to-Eval"
+        },
+        {
+          "mode_slug": "promotion",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 448,
+          "raw_declaration": "### Mode 7: Promotion"
+        }
+      ]
+    },
+    {
+      "path": ".claude/skills/engos-optimization-auto-research/resources/capability.json",
+      "sha256": "885a84c23c4300b3fedfdfb9cae8fa662bb5b564d64852a8ba1a8543f845000e",
+      "modes": [
+        {
+          "mode_slug": "goal-setup",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 386,
+          "raw_declaration": "### Mode 1: Goal Setup"
+        },
+        {
+          "mode_slug": "minimal-loop",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 395,
+          "raw_declaration": "### Mode 2: Minimal Loop"
+        },
+        {
+          "mode_slug": "search-design",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 406,
+          "raw_declaration": "### Mode 3: Search Design"
+        },
+        {
+          "mode_slug": "experiment-loop",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 415,
+          "raw_declaration": "### Mode 4: Experiment Loop"
+        },
+        {
+          "mode_slug": "capability-evaluation",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 428,
+          "raw_declaration": "### Mode 5: Capability Evaluation"
+        },
+        {
+          "mode_slug": "trace-to-eval",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 439,
+          "raw_declaration": "### Mode 6: Trace-to-Eval"
+        },
+        {
+          "mode_slug": "promotion",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 448,
+          "raw_declaration": "### Mode 7: Promotion"
+        }
+      ]
+    },
+    {
+      "path": ".claude/agents/resources/engos-optimization-auto-research/capability.json",
+      "sha256": "885a84c23c4300b3fedfdfb9cae8fa662bb5b564d64852a8ba1a8543f845000e",
+      "modes": [
+        {
+          "mode_slug": "goal-setup",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 386,
+          "raw_declaration": "### Mode 1: Goal Setup"
+        },
+        {
+          "mode_slug": "minimal-loop",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 395,
+          "raw_declaration": "### Mode 2: Minimal Loop"
+        },
+        {
+          "mode_slug": "search-design",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 406,
+          "raw_declaration": "### Mode 3: Search Design"
+        },
+        {
+          "mode_slug": "experiment-loop",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 415,
+          "raw_declaration": "### Mode 4: Experiment Loop"
+        },
+        {
+          "mode_slug": "capability-evaluation",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 428,
+          "raw_declaration": "### Mode 5: Capability Evaluation"
+        },
+        {
+          "mode_slug": "trace-to-eval",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 439,
+          "raw_declaration": "### Mode 6: Trace-to-Eval"
+        },
+        {
+          "mode_slug": "promotion",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 448,
+          "raw_declaration": "### Mode 7: Promotion"
+        }
+      ]
+    },
+    {
+      "path": ".gemini/skills/engos-optimization-auto-research/resources/capability.json",
+      "sha256": "885a84c23c4300b3fedfdfb9cae8fa662bb5b564d64852a8ba1a8543f845000e",
+      "modes": [
+        {
+          "mode_slug": "goal-setup",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 386,
+          "raw_declaration": "### Mode 1: Goal Setup"
+        },
+        {
+          "mode_slug": "minimal-loop",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 395,
+          "raw_declaration": "### Mode 2: Minimal Loop"
+        },
+        {
+          "mode_slug": "search-design",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 406,
+          "raw_declaration": "### Mode 3: Search Design"
+        },
+        {
+          "mode_slug": "experiment-loop",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 415,
+          "raw_declaration": "### Mode 4: Experiment Loop"
+        },
+        {
+          "mode_slug": "capability-evaluation",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 428,
+          "raw_declaration": "### Mode 5: Capability Evaluation"
+        },
+        {
+          "mode_slug": "trace-to-eval",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 439,
+          "raw_declaration": "### Mode 6: Trace-to-Eval"
+        },
+        {
+          "mode_slug": "promotion",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 448,
+          "raw_declaration": "### Mode 7: Promotion"
+        }
+      ]
+    },
+    {
+      "path": ".gemini/agents/resources/engos-optimization-auto-research/capability.json",
+      "sha256": "885a84c23c4300b3fedfdfb9cae8fa662bb5b564d64852a8ba1a8543f845000e",
+      "modes": [
+        {
+          "mode_slug": "goal-setup",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 386,
+          "raw_declaration": "### Mode 1: Goal Setup"
+        },
+        {
+          "mode_slug": "minimal-loop",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 395,
+          "raw_declaration": "### Mode 2: Minimal Loop"
+        },
+        {
+          "mode_slug": "search-design",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 406,
+          "raw_declaration": "### Mode 3: Search Design"
+        },
+        {
+          "mode_slug": "experiment-loop",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 415,
+          "raw_declaration": "### Mode 4: Experiment Loop"
+        },
+        {
+          "mode_slug": "capability-evaluation",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 428,
+          "raw_declaration": "### Mode 5: Capability Evaluation"
+        },
+        {
+          "mode_slug": "trace-to-eval",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 439,
+          "raw_declaration": "### Mode 6: Trace-to-Eval"
+        },
+        {
+          "mode_slug": "promotion",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 448,
+          "raw_declaration": "### Mode 7: Promotion"
+        }
+      ]
+    },
+    {
+      "path": ".kiro/skills/engos-optimization-auto-research/resources/capability.json",
+      "sha256": "885a84c23c4300b3fedfdfb9cae8fa662bb5b564d64852a8ba1a8543f845000e",
+      "modes": [
+        {
+          "mode_slug": "goal-setup",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 386,
+          "raw_declaration": "### Mode 1: Goal Setup"
+        },
+        {
+          "mode_slug": "minimal-loop",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 395,
+          "raw_declaration": "### Mode 2: Minimal Loop"
+        },
+        {
+          "mode_slug": "search-design",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 406,
+          "raw_declaration": "### Mode 3: Search Design"
+        },
+        {
+          "mode_slug": "experiment-loop",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 415,
+          "raw_declaration": "### Mode 4: Experiment Loop"
+        },
+        {
+          "mode_slug": "capability-evaluation",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 428,
+          "raw_declaration": "### Mode 5: Capability Evaluation"
+        },
+        {
+          "mode_slug": "trace-to-eval",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 439,
+          "raw_declaration": "### Mode 6: Trace-to-Eval"
+        },
+        {
+          "mode_slug": "promotion",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 448,
+          "raw_declaration": "### Mode 7: Promotion"
+        }
+      ]
+    },
+    {
+      "path": ".kiro/agents/resources/engos-optimization-auto-research/capability.json",
+      "sha256": "885a84c23c4300b3fedfdfb9cae8fa662bb5b564d64852a8ba1a8543f845000e",
+      "modes": [
+        {
+          "mode_slug": "goal-setup",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 386,
+          "raw_declaration": "### Mode 1: Goal Setup"
+        },
+        {
+          "mode_slug": "minimal-loop",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 395,
+          "raw_declaration": "### Mode 2: Minimal Loop"
+        },
+        {
+          "mode_slug": "search-design",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 406,
+          "raw_declaration": "### Mode 3: Search Design"
+        },
+        {
+          "mode_slug": "experiment-loop",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 415,
+          "raw_declaration": "### Mode 4: Experiment Loop"
+        },
+        {
+          "mode_slug": "capability-evaluation",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 428,
+          "raw_declaration": "### Mode 5: Capability Evaluation"
+        },
+        {
+          "mode_slug": "trace-to-eval",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 439,
+          "raw_declaration": "### Mode 6: Trace-to-Eval"
+        },
+        {
+          "mode_slug": "promotion",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 448,
+          "raw_declaration": "### Mode 7: Promotion"
+        }
+      ]
+    },
+    {
+      "path": ".grok/skills/engos-optimization-auto-research/resources/capability.json",
+      "sha256": "885a84c23c4300b3fedfdfb9cae8fa662bb5b564d64852a8ba1a8543f845000e",
+      "modes": [
+        {
+          "mode_slug": "goal-setup",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 386,
+          "raw_declaration": "### Mode 1: Goal Setup"
+        },
+        {
+          "mode_slug": "minimal-loop",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 395,
+          "raw_declaration": "### Mode 2: Minimal Loop"
+        },
+        {
+          "mode_slug": "search-design",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 406,
+          "raw_declaration": "### Mode 3: Search Design"
+        },
+        {
+          "mode_slug": "experiment-loop",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 415,
+          "raw_declaration": "### Mode 4: Experiment Loop"
+        },
+        {
+          "mode_slug": "capability-evaluation",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 428,
+          "raw_declaration": "### Mode 5: Capability Evaluation"
+        },
+        {
+          "mode_slug": "trace-to-eval",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 439,
+          "raw_declaration": "### Mode 6: Trace-to-Eval"
+        },
+        {
+          "mode_slug": "promotion",
+          "source": "ssot/engos-optimization-auto-research.md",
+          "source_line": 448,
+          "raw_declaration": "### Mode 7: Promotion"
+        }
+      ]
+    }
+  ],
+  "topologies": [
+    {
+      "slug": "engos-meta-supercharge",
+      "resource_bundle_sha256": "d8d24995c3850e817a179b19e0f84bb3a612725293d9525950038e9811b9660d",
+      "compiled_matches_checked_in": true,
+      "clauses": 118
+    },
+    {
+      "slug": "engos-optimization-auto-research",
+      "resource_bundle_sha256": "c4e7ae7c1151f437e3defe3c60d36afc371240e47059b80bf842c939f631e2e3",
+      "compiled_matches_checked_in": true,
+      "clauses": 68
+    }
+  ],
+  "mode_rows": 200,
+  "clause_rows": 186,
+  "source_hash_rows": 26
+}

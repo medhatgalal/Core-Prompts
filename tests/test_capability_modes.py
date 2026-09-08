@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from intent_pipeline.uac_modes import extract_declared_modes
+from intent_pipeline.uac_modes import extract_capability_modes, extract_declared_modes
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -13,7 +13,22 @@ def test_multi_mode_capabilities_have_descriptor_modes() -> None:
     for slug in ("engos-meta-supercharge", "engos-triage-my-inbox-chat-pulse", "engos-optimization-auto-research", "engos-operations-ic-assistant", "engos-meta-instruction-editor"):
         descriptor = json.loads((ROOT / ".meta" / "capabilities" / f"{slug}.json").read_text(encoding="utf-8"))
         assert descriptor["modes"], f"{slug} descriptor lost its declared mode index"
-        assert all(mode["source_refs"] == [f"ssot/{slug}.md"] for mode in descriptor["modes"])
+        for mode in descriptor["modes"]:
+            assert len(mode["source_refs"]) == 1
+            source_ref = mode["source_refs"][0]
+            assert source_ref == f"ssot/{slug}.md" or source_ref.startswith(f"sources/capability-resources/{slug}/")
+            source_text = (ROOT / source_ref).read_text(encoding="utf-8")
+            if not (ROOT / "sources/capability-resources" / slug / "resource-map.json").is_file():
+                # Existing curated legacy descriptors have no line field. New
+                # resource-backed descriptors must carry exact source locations.
+                continue
+            assert 1 <= mode["source_line"] <= len(source_text.splitlines())
+            assert any(
+                declaration["mode_slug"] == mode["mode_slug"]
+                and declaration["entry_kind"] == mode["entry_kind"]
+                and declaration["source_line"] == mode["source_line"]
+                for declaration in extract_declared_modes(slug, source_text)
+            ), f"{slug} mode points to a line that does not declare it: {mode}"
 
 
 def test_generated_descriptors_do_not_expose_legacy_ship_as_promotion() -> None:
@@ -24,7 +39,7 @@ def test_generated_descriptors_do_not_expose_legacy_ship_as_promotion() -> None:
 
 def test_supercharge_index_contains_only_explicit_modules() -> None:
     body = (ROOT / "ssot" / "engos-meta-supercharge.md").read_text(encoding="utf-8")
-    entries = extract_declared_modes("engos-meta-supercharge", body)
+    entries = extract_capability_modes(ROOT, "engos-meta-supercharge", body)
     names = {entry["display_name"] for entry in entries}
 
     assert "/ult — ULT-Agent++ (Prompt Engineer Mode)" in names

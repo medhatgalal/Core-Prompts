@@ -415,8 +415,10 @@ def build_capability_manifest(
             "deployment guidance",
         ],
         "tool_policy": {
+            "scope": "uac_intake_only",
             "allowed": ["deterministic classification", "metadata publication", "surface generation"],
             "forbidden": ["orchestration", "delegation decisions", "runtime execution control"],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority.",
         },
         "resources": [persisted_source],
         "packaging_profile": packaging_profile(capability_type, emitted_surfaces),

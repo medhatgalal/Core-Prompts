@@ -1,0 +1,125 @@
+{
+  "schema": "IndependentNeutralPairReview.v1",
+  "agent_task": "/root/verify_live_skill_behaviors/grade_cedar",
+  "CODEX_THREAD_ID": "01a0823c-a467-7173-938b-6c5cbead3781",
+  "workspace": {
+    "cwd": "/Users/medhat.galal/.codex/worktrees/921d/Core-Prompts",
+    "branch": "AI/frontier-capability-modernization",
+    "head": "c9d6de07b4d1918970a5f70350cf50200a6a0ff4",
+    "dirty_state_observed": true,
+    "dirty_entry_count_at_identity_read": 558,
+    "unrelated_state_preserved": true
+  },
+  "resource_delivery": {
+    "route": "/grade",
+    "command": "python3 .codex/skills/engos-meta-supercharge/resources/scripts/load_module.py --route /grade --format text",
+    "full_delivery_chunk_id": "e7dc67",
+    "complete_payload_observed": true,
+    "bundle_sha256": "cc455648f3db75347d131cfae2ca86a434458112a522a7dbcaeda5a6ae43b21f",
+    "manifest_sha256": "56fee7ec78e0bac117fb3f517e8577890cfa638c3ac3a758f236ec64ee3df91f",
+    "initial_attempt_chunk_id": "616d7d",
+    "recovery_note": "Initial combined tool wrapper was truncated by large git status output. The route was reloaded alone and fully delivered in e7dc67 before grading."
+  },
+  "actual_tool_chunks": [
+    {
+      "chunk_id": "41d6cc",
+      "purpose": "Initial cwd, dirty state, branch, HEAD, and CODEX_THREAD_ID inspection; combined wrapper truncated."
+    },
+    {
+      "chunk_id": "616d7d",
+      "purpose": "Initial grade route load; superseded by standalone complete delivery."
+    },
+    {
+      "chunk_id": "e7dc67",
+      "purpose": "Complete actual grade route and shared-review payload."
+    },
+    {
+      "chunk_id": "4b4f5b",
+      "purpose": "Complete SKILL.md and frozen rubric, then meadow, then cedar in declared order."
+    },
+    {
+      "chunk_id": "81f4e1",
+      "purpose": "Compact verified identity and SHA-256 hashes."
+    }
+  ],
+  "resource_and_input_hashes_sha256": {
+    ".codex/skills/engos-meta-supercharge/SKILL.md": "3ecc726652ceae81c5e50bc48b4833bd9f22428c651786b91357a29622e09892",
+    ".codex/skills/engos-meta-supercharge/resources/resource-map.json": "56fee7ec78e0bac117fb3f517e8577890cfa638c3ac3a758f236ec64ee3df91f",
+    ".codex/skills/engos-meta-supercharge/resources/scripts/load_module.py": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+    ".codex/skills/engos-meta-supercharge/resources/references/shared-review.md": "92fe588ebc996fa935204ced17e9761dd8927d7ee6906466988af0ee2285d791",
+    ".codex/skills/engos-meta-supercharge/resources/references/modules/grade.md": "a605e4d384f5d9b16e459a96c7e10d7dec52e6496c3e650b7fdbbc32d94af86a",
+    "reports/frontier-modernization/live-checks/grade/rubric.txt": "5de20310821cd007e878c453aca633eada800f06c048fd64ee5038cd78b4d6d3",
+    "reports/frontier-modernization/live-checks/grade/neutral/meadow.md": "8f948745f0796315d3fc554ce46445eb07cde45af49d6bd37738b28ac102bdc6",
+    "reports/frontier-modernization/live-checks/grade/neutral/cedar.md": "7453797863cd83edecdb3a86fe1896ebf21357e3277dbab6abdf0075cb793236"
+  },
+  "input_read_order": [
+    ".codex/skills/engos-meta-supercharge/SKILL.md",
+    "reports/frontier-modernization/live-checks/grade/rubric.txt",
+    "reports/frontier-modernization/live-checks/grade/neutral/meadow.md",
+    "reports/frontier-modernization/live-checks/grade/neutral/cedar.md"
+  ],
+  "independence": {
+    "author_scores_supplied": false,
+    "preferred_verdict_supplied": false,
+    "round_numbers_supplied": false,
+    "prior_reviews_consulted": false,
+    "canonical_candidate_files_consulted": false,
+    "trial_intent_notes_consulted": false,
+    "parent_history_consulted": false
+  },
+  "rubric": {
+    "dimensions": 5,
+    "weights": "equal",
+    "mean_target": 9,
+    "dimension_floor": 8,
+    "protected_violation_allowance": 0,
+    "tie_rule": "Retain the prior incumbent unless independent review identifies a material advantage without added risk; avoid cosmetic replacements."
+  },
+  "grades": {
+    "meadow": {
+      "scores": {
+        "factual_fidelity": 10,
+        "observation_channel_reasoning": 10,
+        "measurement_scope_and_uncertainty": 10,
+        "usefulness_and_execution_clarity": 10,
+        "proportionality_and_readability": 9
+      },
+      "mean": 9.8,
+      "protected_violations": [],
+      "target_met": true
+    },
+    "cedar": {
+      "scores": {
+        "factual_fidelity": 10,
+        "observation_channel_reasoning": 10,
+        "measurement_scope_and_uncertainty": 10,
+        "usefulness_and_execution_clarity": 10,
+        "proportionality_and_readability": 9
+      },
+      "mean": 9.8,
+      "protected_violations": [],
+      "target_met": true
+    }
+  },
+  "comparison": {
+    "candidate": "cedar",
+    "relative_to": "meadow",
+    "outcome": "tied",
+    "adoption_decision": "retain meadow",
+    "evidence": "Both preserve all substantive safety and evidence boundaries. Cedar improves scanning with labels but repeats uncertainty and mixes generation guidance into the Assessment template; no material net advantage is established."
+  },
+  "material_gaps": [],
+  "minor_refinements": [
+    "Meadow has a dense single-paragraph presentation.",
+    "Cedar repeats overall-health uncertainty and places a generation directive inside the Assessment output template."
+  ],
+  "limits": [
+    "Instruction-quality judgment only.",
+    "No operational checks or system modifications performed.",
+    "No source edits or external messages.",
+    "No model CLI calls or execution of candidate text.",
+    "No downstream behavioral or promotion evidence claimed.",
+    "No global plateau or trial-count judgment."
+  ],
+  "completion": "Assigned independent pair review complete."
+}

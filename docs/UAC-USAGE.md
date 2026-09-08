@@ -154,7 +154,7 @@ What you are asking UAC to do:
 Typical response shape:
 
 ```text
-Quality status: ship
+Quality status: manual_review
 
 Judge summary:
 - benchmark profile: architecture
@@ -165,7 +165,7 @@ Artifacts:
 - reports/quality-reviews/architecture/LATEST.md
 
 Decision:
-- candidate is ready for apply after expanding invocation examples
+- revise the identified gaps, then rerun judge on the exact candidate before apply
 ```
 
 Use `judge` when you want the quality decision, evidence, and blockers without changing the repo.
@@ -326,3 +326,13 @@ For a local generated skill named `SKILL.md`, UAC resolves the capability slug f
 - [Baseline source library](../sources/ssot-baselines/README.md)
 - [CLI reference](CLI-REFERENCE.md)
 - [Orchestrator contract](ORCHESTRATOR-CONTRACT.md)
+
+## Resource-aware and reviewed modernization
+
+UAC checks the entry and declared `resource-map.json` dependencies together. The map binds route-specific resources; missing files, cycles, path escapes, and invalid references are errors. The bundled `resources/scripts/load_module.py` emits complete selected content and content hashes. Assembly is not proof of model consumption or compliance.
+
+The quality loop produces structural diagnostics and semantic repair requests. It normalizes an equivalent existing section before asking for missing content, does not append generic executable stubs, and stops automatic refinement on stagnation or cycles. Source preservation remains the default.
+
+For an independently reviewed semantic modernization, supply `--requirement-review <review.json>` to plan, judge, and apply. The `UACRequirementReview.v1` record binds slug, original source, candidate entry, effective resource content, reviewer/author identities, and a complete line-span requirement map. Dispositions are preserved, reformulated, relocated, or retired; retirement includes authorization. The operator establishes provenance from the actual independent review; code checks hashes and coverage and does not authenticate an identity string or certify semantic equivalence. Multiple records may cover the current input and historical baseline.
+
+This attestation cannot authorize behavioral promotion or rewrite historical baseline lineage. `PromotionVerdict.v2` remains separate. Read the exact passing candidate and proposed write set before apply; a changed entry or resource invalidates its review bindings. [Implementation and verification overview](FRONTIER-MODERNIZATION.md).

@@ -36,6 +36,7 @@
         "`Auto-Research Handoff`"
       ],
       "tool_policy": {
+        "scope": "uac_intake_only",
         "allowed": [
           "deterministic classification",
           "metadata publication",
@@ -45,7 +46,8 @@
           "orchestration",
           "delegation decisions",
           "runtime execution control"
-        ]
+        ],
+        "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
       },
       "resources": [
         "ssot/engos-meta-supercharge.md"
@@ -136,7 +138,7 @@
       "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
       "review_status": "ready_for_orchestrator_review",
       "display_name": "SuperCharge \u2014 Prompt Engineering, Planning Hardening, and Graded Improvement",
-      "version": "v4.2"
+      "version": "v5.0"
     },
     "expanded": {
       "relationship_suggestions": [
@@ -202,312 +204,255 @@
     "Do not bloat the answer with every module when a smaller route is enough.",
     "Do not pretend the model knows user preferences it has not been given.",
     "Do not turn grading into generic praise.",
-    "Do not claim orchestration, approval, or runtime delegation authority."
+    "Use authorized subagent tools without claiming host orchestration ownership or new approval authority."
   ],
   "modes": [
     {
-      "mode_slug": "agentic-orchestration-core-principle-not-a-module",
-      "display_name": "Agentic Orchestration (Core Principle, Not a Module)",
-      "source_refs": [
-        "ssot/engos-meta-supercharge.md"
+      "mode_slug": "ult",
+      "display_name": "/ult \u2014 ULT-Agent++ (Prompt Engineer Mode)",
+      "entry_kind": "module",
+      "invocations": [
+        "/ult"
       ],
-      "mode_summary": "Declared by the canonical `Agentic Orchestration (Core Principle, Not a Module)` section.",
+      "source_refs": [
+        "sources/capability-resources/engos-meta-supercharge/references/modules/ult.md"
+      ],
+      "source_line": 1,
+      "mode_summary": "Explicitly declared module in the canonical skill.",
       "required_inputs": [],
       "expected_outputs": [],
       "examples": [],
       "uplift_notes": [
-        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-      ],
-      "entry_kind": "mode",
-      "invocations": []
+        "Composition and state rules belong to CapabilityTopology.v1."
+      ]
     },
     {
-      "mode_slug": "module-usage",
-      "display_name": "Module Usage",
-      "source_refs": [
-        "ssot/engos-meta-supercharge.md"
+      "mode_slug": "catchup",
+      "display_name": "/catchup \u2014 Deep Forensic Catchup (Multi-Intent)",
+      "entry_kind": "module",
+      "invocations": [
+        "/catchup"
       ],
-      "mode_summary": "Declared by the canonical `Module Usage` section.",
+      "source_refs": [
+        "sources/capability-resources/engos-meta-supercharge/references/modules/catchup.md"
+      ],
+      "source_line": 1,
+      "mode_summary": "Explicitly declared module in the canonical skill.",
       "required_inputs": [],
       "expected_outputs": [],
       "examples": [],
       "uplift_notes": [
-        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-      ],
-      "entry_kind": "mode",
-      "invocations": []
+        "Composition and state rules belong to CapabilityTopology.v1."
+      ]
     },
     {
-      "mode_slug": "per-module-examples",
-      "display_name": "Per-Module Examples",
-      "source_refs": [
-        "ssot/engos-meta-supercharge.md"
+      "mode_slug": "basis",
+      "display_name": "/basis \u2014 First-Principles Reasoning and Irreducible Simplicity",
+      "entry_kind": "module",
+      "invocations": [
+        "/basis"
       ],
-      "mode_summary": "Declared by the canonical `Per-Module Examples` section.",
+      "source_refs": [
+        "sources/capability-resources/engos-meta-supercharge/references/modules/basis.md"
+      ],
+      "source_line": 1,
+      "mode_summary": "Explicitly declared module in the canonical skill.",
       "required_inputs": [],
       "expected_outputs": [],
       "examples": [],
       "uplift_notes": [
-        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-      ],
-      "entry_kind": "mode",
-      "invocations": []
+        "Composition and state rules belong to CapabilityTopology.v1."
+      ]
     },
     {
-      "mode_slug": "module-reference-full-spec",
-      "display_name": "MODULE REFERENCE (Full Spec)",
-      "source_refs": [
-        "ssot/engos-meta-supercharge.md"
+      "mode_slug": "simple",
+      "display_name": "/simple \u2014 Decomplecting Lens (\"Simple Made Easy\")",
+      "entry_kind": "module",
+      "invocations": [
+        "/simple"
       ],
-      "mode_summary": "Declared by the canonical `MODULE REFERENCE (Full Spec)` section.",
+      "source_refs": [
+        "sources/capability-resources/engos-meta-supercharge/references/modules/simple.md"
+      ],
+      "source_line": 1,
+      "mode_summary": "Explicitly declared module in the canonical skill.",
       "required_inputs": [],
       "expected_outputs": [],
       "examples": [],
       "uplift_notes": [
-        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-      ],
-      "entry_kind": "mode",
-      "invocations": []
+        "Composition and state rules belong to CapabilityTopology.v1."
+      ]
     },
     {
-      "mode_slug": "module-ult-ult-agent-prompt-engineer-mode",
-      "display_name": "MODULE: /ult \u2014 ULT-Agent++ (Prompt Engineer Mode)",
-      "source_refs": [
-        "ssot/engos-meta-supercharge.md"
+      "mode_slug": "invert",
+      "display_name": "/invert \u2014 Inversion Lens (\"Invert, Always Invert\")",
+      "entry_kind": "module",
+      "invocations": [
+        "/invert"
       ],
-      "mode_summary": "Declared by the canonical `MODULE: /ult \u2014 ULT-Agent++ (Prompt Engineer Mode)` section.",
+      "source_refs": [
+        "sources/capability-resources/engos-meta-supercharge/references/modules/invert.md"
+      ],
+      "source_line": 1,
+      "mode_summary": "Explicitly declared module in the canonical skill.",
       "required_inputs": [],
       "expected_outputs": [],
       "examples": [],
       "uplift_notes": [
-        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-      ],
-      "entry_kind": "mode",
-      "invocations": []
+        "Composition and state rules belong to CapabilityTopology.v1."
+      ]
     },
     {
-      "mode_slug": "mode-behavior",
-      "display_name": "Mode Behavior",
-      "source_refs": [
-        "ssot/engos-meta-supercharge.md"
+      "mode_slug": "adversarial",
+      "display_name": "/adversarial \u2014 Adversarial Red-Teaming (Devil's Advocate)",
+      "entry_kind": "module",
+      "invocations": [
+        "/adversarial"
       ],
-      "mode_summary": "Declared by the canonical `Mode Behavior` section.",
+      "source_refs": [
+        "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md"
+      ],
+      "source_line": 1,
+      "mode_summary": "Explicitly declared module in the canonical skill.",
       "required_inputs": [],
       "expected_outputs": [],
       "examples": [],
       "uplift_notes": [
-        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-      ],
-      "entry_kind": "mode",
-      "invocations": []
+        "Composition and state rules belong to CapabilityTopology.v1."
+      ]
     },
     {
-      "mode_slug": "module-catchup-deep-forensic-catchup-multi-intent",
-      "display_name": "MODULE: /catchup \u2014 Deep Forensic Catchup (Multi-Intent)",
-      "source_refs": [
-        "ssot/engos-meta-supercharge.md"
+      "mode_slug": "adversarial-debate",
+      "display_name": "/adversarial /debate \u2014 Surface Bull/Bear/Decider Debate",
+      "entry_kind": "module",
+      "invocations": [
+        "/adversarial /debate"
       ],
-      "mode_summary": "Declared by the canonical `MODULE: /catchup \u2014 Deep Forensic Catchup (Multi-Intent)` section.",
+      "source_refs": [
+        "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md"
+      ],
+      "source_line": 24,
+      "mode_summary": "Explicitly declared module in the canonical skill.",
       "required_inputs": [],
       "expected_outputs": [],
       "examples": [],
       "uplift_notes": [
-        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-      ],
-      "entry_kind": "mode",
-      "invocations": []
+        "Composition and state rules belong to CapabilityTopology.v1."
+      ]
     },
     {
-      "mode_slug": "module-basis-first-principles-cost-and-complexity-accounting",
-      "display_name": "MODULE: /basis \u2014 First-Principles Cost and Complexity Accounting",
-      "source_refs": [
-        "ssot/engos-meta-supercharge.md"
+      "mode_slug": "adversarial-debate-deep",
+      "display_name": "/adversarial /debate /deep \u2014 Deep Bull/Bear/Decider Debate",
+      "entry_kind": "module",
+      "invocations": [
+        "/adversarial /debate /deep"
       ],
-      "mode_summary": "Declared by the canonical `MODULE: /basis \u2014 First-Principles Cost and Complexity Accounting` section.",
+      "source_refs": [
+        "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md"
+      ],
+      "source_line": 56,
+      "mode_summary": "Explicitly declared module in the canonical skill.",
       "required_inputs": [],
       "expected_outputs": [],
       "examples": [],
       "uplift_notes": [
-        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-      ],
-      "entry_kind": "mode",
-      "invocations": []
+        "Composition and state rules belong to CapabilityTopology.v1."
+      ]
     },
     {
-      "mode_slug": "module-simple-decomplecting-lens-simple-made-easy",
-      "display_name": "MODULE: /simple \u2014 Decomplecting Lens (\"Simple Made Easy\")",
-      "source_refs": [
-        "ssot/engos-meta-supercharge.md"
+      "mode_slug": "contract",
+      "display_name": "/contract \u2014 2026 Contract + QA (Unified Spec + Evaluation)",
+      "entry_kind": "module",
+      "invocations": [
+        "/contract"
       ],
-      "mode_summary": "Declared by the canonical `MODULE: /simple \u2014 Decomplecting Lens (\"Simple Made Easy\")` section.",
+      "source_refs": [
+        "sources/capability-resources/engos-meta-supercharge/references/modules/contract.md"
+      ],
+      "source_line": 1,
+      "mode_summary": "Explicitly declared module in the canonical skill.",
       "required_inputs": [],
       "expected_outputs": [],
       "examples": [],
       "uplift_notes": [
-        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-      ],
-      "entry_kind": "mode",
-      "invocations": []
+        "Composition and state rules belong to CapabilityTopology.v1."
+      ]
     },
     {
-      "mode_slug": "module-invert-inversion-lens-invert-always-invert",
-      "display_name": "MODULE: /invert \u2014 Inversion Lens (\"Invert, Always Invert\")",
-      "source_refs": [
-        "ssot/engos-meta-supercharge.md"
+      "mode_slug": "grade",
+      "display_name": "/grade \u2014 Graded Candidate Improvement Ladder (Score 1\u201310)",
+      "entry_kind": "module",
+      "invocations": [
+        "/grade"
       ],
-      "mode_summary": "Declared by the canonical `MODULE: /invert \u2014 Inversion Lens (\"Invert, Always Invert\")` section.",
+      "source_refs": [
+        "sources/capability-resources/engos-meta-supercharge/references/modules/grade.md"
+      ],
+      "source_line": 1,
+      "mode_summary": "Explicitly declared module in the canonical skill.",
       "required_inputs": [],
       "expected_outputs": [],
       "examples": [],
       "uplift_notes": [
-        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-      ],
-      "entry_kind": "mode",
-      "invocations": []
+        "Composition and state rules belong to CapabilityTopology.v1."
+      ]
     },
     {
-      "mode_slug": "module-adversarial-adversarial-red-teaming-devil-s-advocate",
-      "display_name": "MODULE: /adversarial \u2014 Adversarial Red-Teaming (Devil's Advocate)",
-      "source_refs": [
-        "ssot/engos-meta-supercharge.md"
+      "mode_slug": "full",
+      "display_name": "/full \u2014 Illumination Gauntlet (No Execution)",
+      "entry_kind": "module",
+      "invocations": [
+        "/full"
       ],
-      "mode_summary": "Declared by the canonical `MODULE: /adversarial \u2014 Adversarial Red-Teaming (Devil's Advocate)` section.",
+      "source_refs": [
+        "sources/capability-resources/engos-meta-supercharge/references/modules/full.md"
+      ],
+      "source_line": 1,
+      "mode_summary": "Explicitly declared module in the canonical skill.",
       "required_inputs": [],
       "expected_outputs": [],
       "examples": [],
       "uplift_notes": [
-        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-      ],
-      "entry_kind": "mode",
-      "invocations": []
+        "Composition and state rules belong to CapabilityTopology.v1."
+      ]
     },
     {
-      "mode_slug": "nested-module-adversarial-debate-surface-bull-bear-decider-debate",
-      "display_name": "Nested Module: /adversarial /debate \u2014 Surface Bull/Bear/Decider Debate",
-      "source_refs": [
-        "ssot/engos-meta-supercharge.md"
+      "mode_slug": "gaslight",
+      "display_name": "/gaslight \u2014 GASLIGHT 13 (Explicit Only)",
+      "entry_kind": "module",
+      "invocations": [
+        "/gaslight"
       ],
-      "mode_summary": "Declared by the canonical `Nested Module: /adversarial /debate \u2014 Surface Bull/Bear/Decider Debate` section.",
+      "source_refs": [
+        "sources/capability-resources/engos-meta-supercharge/references/modules/gaslight.md"
+      ],
+      "source_line": 1,
+      "mode_summary": "Explicitly declared module in the canonical skill.",
       "required_inputs": [],
       "expected_outputs": [],
       "examples": [],
       "uplift_notes": [
-        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-      ],
-      "entry_kind": "mode",
-      "invocations": []
+        "Composition and state rules belong to CapabilityTopology.v1."
+      ]
     },
     {
-      "mode_slug": "nested-module-adversarial-debate-deep-deep-bull-bear-decider-debate",
-      "display_name": "Nested Module: /adversarial /debate /deep \u2014 Deep Bull/Bear/Decider Debate",
-      "source_refs": [
-        "ssot/engos-meta-supercharge.md"
+      "mode_slug": "stop-ult",
+      "display_name": "/stop-ult \u2014 Exit ULT Mode",
+      "entry_kind": "module",
+      "invocations": [
+        "/stop-ult"
       ],
-      "mode_summary": "Declared by the canonical `Nested Module: /adversarial /debate /deep \u2014 Deep Bull/Bear/Decider Debate` section.",
+      "source_refs": [
+        "sources/capability-resources/engos-meta-supercharge/references/modules/stop-ult.md"
+      ],
+      "source_line": 1,
+      "mode_summary": "Explicitly declared module in the canonical skill.",
       "required_inputs": [],
       "expected_outputs": [],
       "examples": [],
       "uplift_notes": [
-        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-      ],
-      "entry_kind": "mode",
-      "invocations": []
-    },
-    {
-      "mode_slug": "module-contract-2026-contract-qa-unified-spec-evaluation",
-      "display_name": "MODULE: /contract \u2014 2026 Contract + QA (Unified Spec + Evaluation)",
-      "source_refs": [
-        "ssot/engos-meta-supercharge.md"
-      ],
-      "mode_summary": "Declared by the canonical `MODULE: /contract \u2014 2026 Contract + QA (Unified Spec + Evaluation)` section.",
-      "required_inputs": [],
-      "expected_outputs": [],
-      "examples": [],
-      "uplift_notes": [
-        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-      ],
-      "entry_kind": "mode",
-      "invocations": []
-    },
-    {
-      "mode_slug": "module-grade-10-iteration-improvement-ladder-score-1-10",
-      "display_name": "MODULE: /grade \u2014 10-Iteration Improvement Ladder (Score 1\u201310)",
-      "source_refs": [
-        "ssot/engos-meta-supercharge.md"
-      ],
-      "mode_summary": "Declared by the canonical `MODULE: /grade \u2014 10-Iteration Improvement Ladder (Score 1\u201310)` section.",
-      "required_inputs": [],
-      "expected_outputs": [],
-      "examples": [],
-      "uplift_notes": [
-        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-      ],
-      "entry_kind": "mode",
-      "invocations": []
-    },
-    {
-      "mode_slug": "module-full-illumination-gauntlet-no-execution",
-      "display_name": "MODULE: /full \u2014 Illumination Gauntlet (No Execution)",
-      "source_refs": [
-        "ssot/engos-meta-supercharge.md"
-      ],
-      "mode_summary": "Declared by the canonical `MODULE: /full \u2014 Illumination Gauntlet (No Execution)` section.",
-      "required_inputs": [],
-      "expected_outputs": [],
-      "examples": [],
-      "uplift_notes": [
-        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-      ],
-      "entry_kind": "mode",
-      "invocations": []
-    },
-    {
-      "mode_slug": "module-gaslight-gaslight-13-explicit-only",
-      "display_name": "MODULE: /gaslight \u2014 GASLIGHT 13 (Explicit Only)",
-      "source_refs": [
-        "ssot/engos-meta-supercharge.md"
-      ],
-      "mode_summary": "Declared by the canonical `MODULE: /gaslight \u2014 GASLIGHT 13 (Explicit Only)` section.",
-      "required_inputs": [],
-      "expected_outputs": [],
-      "examples": [],
-      "uplift_notes": [
-        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-      ],
-      "entry_kind": "mode",
-      "invocations": []
-    },
-    {
-      "mode_slug": "module-stop-ult-exit-ult-mode",
-      "display_name": "MODULE: /stop-ult \u2014 Exit ULT Mode",
-      "source_refs": [
-        "ssot/engos-meta-supercharge.md"
-      ],
-      "mode_summary": "Declared by the canonical `MODULE: /stop-ult \u2014 Exit ULT Mode` section.",
-      "required_inputs": [],
-      "expected_outputs": [],
-      "examples": [],
-      "uplift_notes": [
-        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-      ],
-      "entry_kind": "mode",
-      "invocations": []
-    },
-    {
-      "mode_slug": "failure-mode-to-avoid",
-      "display_name": "Failure Mode To Avoid",
-      "source_refs": [
-        "ssot/engos-meta-supercharge.md"
-      ],
-      "mode_summary": "Declared by the canonical `Failure Mode To Avoid` section.",
-      "required_inputs": [],
-      "expected_outputs": [],
-      "examples": [],
-      "uplift_notes": [
-        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-      ],
-      "entry_kind": "mode",
-      "invocations": []
+        "Composition and state rules belong to CapabilityTopology.v1."
+      ]
     }
   ],
   "benchmark_sources": [],
@@ -607,7 +552,7 @@
           "title": "Source Fidelity and Uplift",
           "score": 10,
           "blockers": [],
-          "classification": "additive",
+          "classification": "reviewed_modernization",
           "scenario_results": [
             {
               "id": "individual_ult",
@@ -634,8 +579,10 @@
               "id": "agentic_overlay",
               "kind": "agentic",
               "label": "agentic orchestration guidance",
-              "passed": true,
-              "missing_markers": []
+              "passed": false,
+              "missing_markers": [
+                "### Agentic Orchestration (Core Principle, Not a Module)"
+              ]
             },
             {
               "id": "help_output_contract",
@@ -645,6 +592,14 @@
               "missing_markers": []
             }
           ],
+          "reviewed_deltas": [
+            "baseline scenario failed: agentic_overlay missing ### Agentic Orchestration (Core Principle, Not a Module)"
+          ],
+          "requirement_review": {
+            "status": "bound_attestation",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
           "scorecard": {
             "baseline_richness": 19,
             "candidate_richness": 24,
@@ -670,13 +625,13 @@
         {
           "judge": "benchmark_readiness",
           "title": "Benchmark Readiness and Template Fit",
-          "score": 10,
+          "score": 9,
           "blockers": [],
           "scorecard": {
             "title_clarity": 10,
             "description_richness": 10,
             "intent_coverage": 10,
-            "boundary_clarity": 10,
+            "boundary_clarity": 8,
             "output_specificity": 10,
             "metadata_completeness": 8,
             "surface_usability": 10
@@ -693,16 +648,41 @@
         "baseline_preserved_in_resource": false,
         "operational_richness": 10,
         "metadata_integrity": 10,
-        "benchmark_readiness": 10,
+        "benchmark_readiness": 9,
         "title_clarity": 10,
         "description_richness": 10,
         "intent_coverage": 10,
-        "boundary_clarity": 10,
+        "boundary_clarity": 8,
         "output_specificity": 10,
         "metadata_completeness": 8,
         "surface_usability": 10
       },
-      "template_name": "both"
+      "template_name": "both",
+      "effective_sha256": "3cca08e07f6caf656915f8641810bf8d00ad05decc0e2dd359d0b877a57d3524",
+      "semantic_findings": [],
+      "repair_requests": [],
+      "dimension_inventory": [
+        {
+          "dimension": "source_fidelity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "operational_richness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "metadata_integrity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "benchmark_readiness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "semantic_consistency",
+          "status": "no_detected_conflict_not_semantic_proof"
+        }
+      ]
     }
   ],
   "consumption_hints": {},
@@ -825,7 +805,7 @@
       "kind": "agentic",
       "label": "agentic orchestration guidance",
       "must_contain": [
-        "### Agentic Orchestration (Core Principle, Not a Module)",
+        "### Independent Subagents",
         "### Auto-Routing (Smart Defaults)",
         "### Reflective Controls (Optional Modifiers)"
       ]
