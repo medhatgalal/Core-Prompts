@@ -1023,7 +1023,7 @@ def test_build_surfaces_emits_auto_research_bootstrap_resource(tmp_path: Path) -
     )
 
     subprocess.run(
-        ["/opt/homebrew/bin/python3.14", str(workspace / "scripts" / "build-surfaces.py")],
+        [sys.executable, str(workspace / "scripts" / "build-surfaces.py")],
         cwd=workspace,
         check=True,
         capture_output=True,
