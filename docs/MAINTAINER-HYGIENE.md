@@ -103,6 +103,10 @@ The modernization and v1.14.0 delivery produced these reusable lessons:
 
 For the next harvest, the useful questions are: what decision would this lesson change, where does that decision already live, what evidence supports it, and what would make the lesson obsolete? An entry adds value when it improves that existing home or a regression check. Repeated advice, transient statuses, and untested prompting theories do not need new standing rules.
 
+A compact harvest can record the evidence reference, the existing owner, and a disposition such as incorporated, proposed follow-up, or retained as case evidence. For example, a confirmed defect that survived an inconclusive pilot can inform development guidance while an adapter protection remains proposed work owned by the evaluator. That distinction makes the next action visible without describing the protection as implemented. The [development scope rules](../.kiro/steering/repo-workflow.md#scope-rules) govern this closeout; a small change may need only a short disposition in its PR/MR rather than a new report.
+
+The [archived experience-design harvest](https://github.com/medhatgalal/Core-Prompts/blob/aa1e3201c3a43751b5de2c537c1026875beddc75/reports/design-experience-v55/LESSONS.md) illustrates this separation between observed defects, development lessons, and proposed evaluator work. It remains draft research with stated limits. [Learning from bounded pilots](CAPABILITY-EVALUATION.md#learning-from-bounded-pilots) explains how those lessons inform comparable inputs, measurement preflight, and an inconclusive closeout that retains known failures. The governing evaluation rules stay in [agent behavior steering](../.kiro/steering/agent-behavior.md#comparative-evaluation-and-bounded-work).
+
 ## Suggested Review Rhythm
 
 - commit: check the touched commands, paths, examples, and any adjacent docs that may now drift
