@@ -1,0 +1,47 @@
+{
+  "schema_version": "RuntimeProbe.v1",
+  "providers": [
+    {
+      "host": "codex",
+      "result": "available",
+      "binary": "/Users/medhat.galal/.volta/bin/codex",
+      "version": "codex-cli 0.153.4",
+      "native_discovery": false,
+      "promotion_evidence_grade": "A",
+      "model_calls": 0
+    },
+    {
+      "host": "gemini",
+      "result": "available",
+      "binary": "/opt/homebrew/bin/gemini",
+      "version": "0.46.0",
+      "native_discovery": true,
+      "promotion_evidence_grade": "A",
+      "model_calls": 0
+    },
+    {
+      "host": "claude",
+      "result": "available",
+      "binary": "/Users/medhat.galal/.local/bin/claude",
+      "version": "2.1.9 (Claude Code)",
+      "native_discovery": false,
+      "promotion_evidence_grade": "A",
+      "model_calls": 0
+    },
+    {
+      "host": "kiro",
+      "result": "available",
+      "binary": "/Users/medhat.galal/.local/bin/kiro-cli",
+      "version": "kiro-cli 2.21.2",
+      "native_discovery": true,
+      "promotion_evidence_grade": "B",
+      "model_calls": 0
+    }
+  ],
+  "inspect": {
+    "available": false,
+    "version": null,
+    "role": "replaceable_execution_substrate"
+  },
+  "model_calls": 0
+}

@@ -1,0 +1,53 @@
+{
+  "artifact_dir": "review-evidence",
+  "docs_failure_controls": [
+    "stale_flag: injected fault observed",
+    "broken_path: injected fault observed",
+    "broken_anchor: injected fault observed",
+    "generated_drift: injected fault observed",
+    "wrong_audience: injected fault observed",
+    "release_guidance: injected fault observed",
+    "tree mutation: detected",
+    "tree addition: detected"
+  ],
+  "docs_status": "pass",
+  "model_calls": 0,
+  "python": "3.14.7",
+  "snapshots": {
+    "docs": {
+      "files": 31,
+      "sha256": "26f0d7774f22887c882f13727623fb73a6888b91ef4e8aa2e40a0e328cf98fb6"
+    },
+    "testing": {
+      "files": 13,
+      "sha256": "e83c1131bdbb882d456833ce1c00743641c531fd70aa445a810bcf87aae33f42"
+    }
+  },
+  "testing_observations": 52,
+  "testing_reproducible": true,
+  "testing_variants": [
+    "expired_renewal",
+    "expiry_inclusive",
+    "extra_attempt",
+    "failed_acquire_clobbers",
+    "missing_close",
+    "reference",
+    "retry_programming_error",
+    "safe_alternative",
+    "swallowed_exhaustion",
+    "wrong_owner_release",
+    "zero_attempt_accepted"
+  ],
+  "unchanged": true,
+  "scope": "Independent public authored-fixture checks; not behavioral efficacy, model runtime admission or held-out evaluation.",
+  "reviewer": "/root/admission_assessment",
+  "setup_review": {
+    "reviewer": "/root/setup_review",
+    "verdict": "pass after two corrections",
+    "baseline_hashes_verified": 275,
+    "resolved": [
+      "two missing invocation surfaces",
+      "prospective experimental budget distinguished from unknown prior preparation usage"
+    ]
+  }
+}

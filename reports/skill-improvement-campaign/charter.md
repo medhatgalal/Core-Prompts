@@ -1,0 +1,43 @@
+# Core-Prompts skill-improvement campaign
+
+This development campaign seeks useful, measured downstream improvements, not uniformly rewritten prompts or higher prose grades. The user requested one fresh owner task and isolated branch per admitted skill. This charter preserves that request; [ledger.md](ledger.md) is the only campaign status and decision ledger. [owner-brief.md](owner-brief.md) is the reusable parameterized dispatch template; immutable instantiated requests and task identities live in `launches/`. Per-skill assessment files hold detailed public evidence, not competing campaign trackers.
+
+## Source and baseline
+
+Originating task: `01a07fad-1776-7a12-8151-338f2e36e693`. Coordinator: `01a08880-cb62-7703-8061-659a0cf7ae45`, assigned worktree `/Users/medhat.galal/.codex/worktrees/6c79/Core-Prompts`, branch `AI/skill-improvement-campaign`. Both freshly fetched mains and clean launch HEAD were `9d481a2da04e672e3b52d79bba6cf466af597fa0` on 2026-09-09. The [baseline inventory](baseline-inventory.json) binds canonical SSOT, authored resources, generated Codex skill entry/resources, contract, topology and descriptor bytes for all 27 capabilities. Git at that commit retains complete original bytes. Historical lineage remains distinct from this campaign's original baseline and incumbent.
+
+Follow [repo workflow](../../.kiro/steering/repo-workflow.md), [evaluation discipline](../../.kiro/steering/agent-behavior.md), [docs governance](../../.kiro/steering/docs-governance.md), [capability evaluation](../../docs/CAPABILITY-EVALUATION.md), SSOT/UAC and existing metadata/tests. The full Auto-Research experiment route was loaded, including shared guidance and dependent templates. Auto-Research supplies the method; it is excluded from editing.
+
+The [archived V5.5 lessons](https://github.com/medhatgalal/Core-Prompts/blob/aa1e3201c3a43751b5de2c537c1026875beddc75/reports/design-experience-v55/LESSONS.md) establish an inconclusive trial caused by an unproven effective tool/hook boundary, not a candidate loss. Do not restart that study or touch its historical workspaces.
+
+## Scope, ownership and finite setup
+
+There are 27 canonical capabilities, 26 first-party, 24 eligible. Exclude `engos-meta-supercharge`, `engos-optimization-auto-research`, hash-pinned upstream `loopy`, and `engos-design-experience` (absent from main, including its unmerged V5.5 draft). Prior source/structural/editorial uplift exists; no accepted comparison found in an evidence index is not proof no earlier improvement occurred.
+
+Initial capacity is two skill owners, Docs Review and Testing Review, leaving room for independent review. Queue GitOps then Architecture. This is an initial operating limit, not a permanent topology. Reuse owner tasks for continuations; missing app-list entries do not authorize duplicate creation. Ordinary owner tasks are neither independent producers nor judges.
+
+Each owner controls only its named SSOT candidate, matching authored resources and `skills/<slug>/` public assessment/fixtures. Coordinator owns shared evaluator/schema integration, templates, steering, aggregate metadata, overlapping docs, serialized regeneration and merge queue. Owners may generate locally for inspection but must not mechanically merge aggregate outputs. For accepted behavior changes, use same-slug UAC plan/judge/apply, update user docs, independently review, validate, run both-provider CI, integrate current main, verify parity and preserve evidence before task-owned cleanup. Installation, versioned release and formal promotion are separate scopes.
+
+Setup ends with this charter, parameterized brief, complete inventory/ledger, two actual owner identities and reviewed public fixture/proposal commits, an owned admission gap and budget decision. It does not require every eligible task to launch. If admission remains unavailable, stop experimental dispatch with exact unresolved criteria and useful completed fixtures; do not repeat setup indefinitely.
+
+## Comparison contract
+
+Freeze original full baseline, current incumbent, trial, public inputs, starting state, complete selected resources, invocation surface, model/effort/settings, permitted tools, budgets and score meaning before candidate evaluation. Default three treatments are strong model plus public task/context only, full incumbent skill, and full proposed skill. Bind the actual supplied bytes. Prevent target-skill auto-loading in the bare treatment. Match data, settings, opportunities, budgets and environment; intentional resource differences are the treatment. Repeated independent builds are the experimental units; additional judges do not increase build count.
+
+Candidate authors receive public contracts and permitted aggregate feedback. Independent benchmark producers and judges start without author history and require verified relevant access boundaries. Hidden evaluator code, held-out cases/answers and signing material cannot be accessible through shared Git metadata, files, tools, MCP, hooks or browsers. Worktrees prevent normal edit collisions; they do not establish this boundary. Public fixtures authored here are development examples with known answers, never held-out validation. Limit holdout use to one final frozen candidate; changing the candidate after feedback requires new independently owned validation data.
+
+Before expensive dispatch, representative success and failure must travel through the actual observation, normalization, verifier and scorer path. Prove the injected fault fired. Unexpected effective tool/hook/browser/file exposure or a missing material boundary makes dependent comparisons inconclusive. Retain confirmed defects, partial/failed-call usage, reservations, original clock and deviations. Never reclassify unknown usage as zero.
+
+Domain outcomes: Docs Review uses actionable precision/recall for drift and broken guidance with safe controls; Testing Review uses executable defect/mutant detection, false failures and maintainability; GitOps uses correct readiness decisions on synthetic Git/CI/release states, unsafe approvals and false alarms; Architecture uses constraint satisfaction, failure/recovery, viable migration/rollback and justified trade-offs. Testing Review remains skill-only and does not automatically run tests; a separate evaluator runs its emitted tests. No live release or destructive benchmark operation is allowed.
+
+Owners may propose substantial coordinated redesign when a hypothesis warrants it. Preserve intended authority and user-facing contracts. Do not impose a uniform template, council size, three proposals, aesthetic style, model folklore, or private reasoning output. Define gain, vetoes, cost/latency/operator burden, repetitions and stop conditions prospectively. Valid terminal outcomes are accepted improvement, retained incumbent/no improvement, inconclusive, or blocked on a named prerequisite. A small failed study proves neither universal uselessness nor a theoretical ceiling.
+
+## Execution and authority
+
+Use local task worktrees for preparation, edits, native checks and GitHub/GitLab integration. No separately paid API use, credits/reset redemption, new credentials, broad cloud/data exposure or privileged workaround is authorized. The model/settings configured for owner tasks are not automatically the experimental runtime selection.
+
+Cloud remains optional. Before adopting it verify a real project environment, setup/cache revision, tools, network/auth/data boundary, model/settings and execution receipts. Keep comparators in equivalent environments unless environment itself is the preregistered factor. Official documentation describes [worktree lifecycle](https://learn.chatgpt.com/docs/environments/git-worktrees), [cloud setup/cache](https://learn.chatgpt.com/docs/environments/cloud-environment), and [sandbox/approval controls](https://learn.chatgpt.com/docs/agent-approvals-security); those product descriptions do not verify this campaign's effective runtime. No Core-Prompts cloud environment was verified or adopted in setup.
+
+Development-trial acceptance, reviewed source shipping and formal behavioral promotion are separate gates. Missing `PromotionVerdict.v2` does not prohibit ordinary development; static evidence cannot become measured improvement or formal promotion. A substantive behavioral candidate uses the existing impact planner's required profile; a lower campaign spending ceiling does not lower the minimum profile or relax its proof requirements.
+
+Reusable findings belong in existing evaluator/test/doc owners. Record evidence and disposition in this ledger. Do not modify excluded Auto-Research resources or add standing instructions merely to memorialize hypotheses.
