@@ -1,0 +1,126 @@
+{
+  "disclosure": "PUBLIC AUTHOR EXAMPLES, NOT HELD OUT",
+  "mutants": [
+    {
+      "id": "expiry_inclusive",
+      "case": "lease",
+      "contract": "L2",
+      "public_illustrative": true,
+      "edits": [
+        {
+          "before": "now < current[1]",
+          "after": "now <= current[1]"
+        }
+      ],
+      "expected_failure": "test_exact_expiry"
+    },
+    {
+      "id": "failed_acquire_clobbers",
+      "case": "lease",
+      "contract": "L1",
+      "public_illustrative": true,
+      "edits": [
+        {
+          "before": "if current is not None and now < current[1]:\n            return False",
+          "after": "if current is not None and now < current[1]:\n            self._leases[key] = (owner, now + ttl)\n            return False"
+        }
+      ],
+      "expected_failure": "test_failed_acquire_preserves_owner_and_expiry"
+    },
+    {
+      "id": "expired_renewal",
+      "case": "lease",
+      "contract": "L3",
+      "public_illustrative": true,
+      "edits": [
+        {
+          "before": "current is None or current[0] != owner or now >= current[1]",
+          "after": "current is None or current[0] != owner"
+        }
+      ],
+      "expected_failure": "test_renew_live_and_expired"
+    },
+    {
+      "id": "wrong_owner_release",
+      "case": "lease",
+      "contract": "L4",
+      "public_illustrative": true,
+      "edits": [
+        {
+          "before": "if current is None or current[0] != owner:\n            return False\n        del",
+          "after": "if current is None:\n            return False\n        del"
+        }
+      ],
+      "expected_failure": "test_release_requires_owner_and_is_idempotent"
+    },
+    {
+      "id": "missing_close",
+      "case": "retry",
+      "contract": "R4",
+      "public_illustrative": true,
+      "edits": [
+        {
+          "before": "stream.close()",
+          "after": "pass  # PUBLIC MUTANT: leak"
+        }
+      ],
+      "expected_failure": "test_success_closes_including_empty_bytes"
+    },
+    {
+      "id": "extra_attempt",
+      "case": "retry",
+      "contract": "R1",
+      "public_illustrative": true,
+      "edits": [
+        {
+          "before": "range(attempts):",
+          "after": "range(attempts + 1):"
+        },
+        {
+          "before": "if attempt == attempts - 1:",
+          "after": "if attempt == attempts:"
+        }
+      ],
+      "expected_failure": "test_exhaustion_reraises_last_open_error_at_limit"
+    },
+    {
+      "id": "swallowed_exhaustion",
+      "case": "retry",
+      "contract": "R3",
+      "public_illustrative": true,
+      "edits": [
+        {
+          "before": "if attempt == attempts - 1:\n                raise",
+          "after": "if attempt == attempts - 1:\n                return None"
+        }
+      ],
+      "expected_failure": "test_exhaustion_reraises_last_open_error_at_limit"
+    },
+    {
+      "id": "retry_programming_error",
+      "case": "retry",
+      "contract": "R3",
+      "public_illustrative": true,
+      "edits": [
+        {
+          "before": "except OSError:",
+          "after": "except Exception:"
+        }
+      ],
+      "expected_failure": "test_non_oserror_propagates_without_retry_and_closes"
+    },
+    {
+      "id": "zero_attempt_accepted",
+      "case": "retry",
+      "contract": "R2",
+      "public_illustrative": true,
+      "edits": [
+        {
+          "before": "if attempts < 1:",
+          "after": "if attempts < 0:"
+        }
+      ],
+      "expected_failure": "test_invalid_budget_never_opens"
+    }
+  ]
+}

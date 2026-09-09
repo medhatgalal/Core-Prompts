@@ -1,0 +1,783 @@
+{
+  "input_sha256": {
+    "README.md": "b0c4e55cb5b45c75fb23c4dc8bd5eb52b2fdcfea151d251cfa4d8834df5984fa",
+    "check_public_fixtures.py": "694b9b113d7fe4635a490873927c79d4acf3201521d2a2134fe1d4c6ac6f57f6",
+    "lease/TASK.md": "e1f6c367588f6fed74e2c5dd7929a57ab748e5fb764acacbee8eb6394b94bf3f",
+    "lease/public-controls/safe_alternative.py": "0c535a6e5a763f4fd75225310394803b2b743d277867af0a43f5e3bee54dc48c",
+    "lease/public-controls/test_example.py": "b7c3f54efe1f9267e026c1a6033f2e506b209d0a8db48c37fd48b4d997d18c2a",
+    "lease/sut.py": "f3a1abf739dad0de8a0ba16b0b6c79e87716a307d136fb00ab0bf7585e9272ab",
+    "lease/tests/test_existing.py": "9cea983e1eaa0b7c32a094d89c011bfea994890495a86074dc394a6535ad083b",
+    "mutants.json": "32eefed3560121d61202bef9358288f5ff4547044300cdb6f0267ff31231f4af",
+    "retry/TASK.md": "7dde41bb2c793ae638b32f07fca439643303d1d189bf6853b86c895445cb450d",
+    "retry/public-controls/safe_alternative.py": "27fe200c9e565cd515bd0c63d0a90abccbedfe57161db7de50b481af5fa0f5dc",
+    "retry/public-controls/test_example.py": "49f104dcf6ba64f5d573dca61e7e523461dd3d1bdf369e09e366504f7ac04835",
+    "retry/sut.py": "ec480cb0917b1436421e33c4241f226361ca911872fbf5a6cbd9ac2d21f7ae8d",
+    "retry/tests/test_existing.py": "f6b7a0d8adb374e7543e7d3e68a09b99708fb40bd371f519361b367bf6b2a402"
+  },
+  "model_calls": 0,
+  "normalized_reproducible": true,
+  "observations": [
+    {
+      "case": "lease",
+      "control": "correct_implementation",
+      "repetition": 0,
+      "result": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 8
+      },
+      "variant": "reference"
+    },
+    {
+      "case": "lease",
+      "control": "correct_implementation",
+      "repetition": 0,
+      "result": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 8
+      },
+      "variant": "safe_alternative"
+    },
+    {
+      "case": "lease",
+      "control": "assertion_detects_public_mutant",
+      "repetition": 0,
+      "result": {
+        "errors": [],
+        "failures": [
+          "test_example.LeaseContract.test_exact_expiry",
+          "test_example.LeaseContract.test_failed_acquire_preserves_owner_and_expiry",
+          "test_example.LeaseContract.test_invalid_duration_does_not_change_state",
+          "test_example.LeaseContract.test_renew_live_and_expired"
+        ],
+        "skipped": 0,
+        "successful": false,
+        "tests": 8
+      },
+      "variant": "expiry_inclusive"
+    },
+    {
+      "case": "lease",
+      "control": "existing_suite_misses_public_mutant",
+      "repetition": 0,
+      "result": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 1
+      },
+      "variant": "expiry_inclusive"
+    },
+    {
+      "case": "lease",
+      "control": "assertion_detects_public_mutant",
+      "repetition": 0,
+      "result": {
+        "errors": [],
+        "failures": [
+          "test_example.LeaseContract.test_exact_expiry",
+          "test_example.LeaseContract.test_failed_acquire_preserves_owner_and_expiry",
+          "test_example.LeaseContract.test_invalid_duration_does_not_change_state",
+          "test_example.LeaseContract.test_renew_live_and_expired"
+        ],
+        "skipped": 0,
+        "successful": false,
+        "tests": 8
+      },
+      "variant": "failed_acquire_clobbers"
+    },
+    {
+      "case": "lease",
+      "control": "existing_suite_misses_public_mutant",
+      "repetition": 0,
+      "result": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 1
+      },
+      "variant": "failed_acquire_clobbers"
+    },
+    {
+      "case": "lease",
+      "control": "assertion_detects_public_mutant",
+      "repetition": 0,
+      "result": {
+        "errors": [],
+        "failures": [
+          "test_example.LeaseContract.test_recorded_owner_can_release_after_expiry",
+          "test_example.LeaseContract.test_renew_live_and_expired"
+        ],
+        "skipped": 0,
+        "successful": false,
+        "tests": 8
+      },
+      "variant": "expired_renewal"
+    },
+    {
+      "case": "lease",
+      "control": "existing_suite_misses_public_mutant",
+      "repetition": 0,
+      "result": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 1
+      },
+      "variant": "expired_renewal"
+    },
+    {
+      "case": "lease",
+      "control": "assertion_detects_public_mutant",
+      "repetition": 0,
+      "result": {
+        "errors": [],
+        "failures": [
+          "test_example.LeaseContract.test_failed_acquire_preserves_owner_and_expiry",
+          "test_example.LeaseContract.test_release_requires_owner_and_is_idempotent"
+        ],
+        "skipped": 0,
+        "successful": false,
+        "tests": 8
+      },
+      "variant": "wrong_owner_release"
+    },
+    {
+      "case": "lease",
+      "control": "existing_suite_misses_public_mutant",
+      "repetition": 0,
+      "result": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 1
+      },
+      "variant": "wrong_owner_release"
+    },
+    {
+      "case": "lease",
+      "control": "false_failure_is_observed",
+      "repetition": 0,
+      "result": {
+        "errors": [],
+        "failures": [
+          "test_example.Broken.test_false_failure"
+        ],
+        "skipped": 0,
+        "successful": false,
+        "tests": 2
+      },
+      "variant": "reference"
+    },
+    {
+      "case": "lease",
+      "control": "collection_error_is_not_mutant_detection",
+      "repetition": 0,
+      "result": {
+        "errors": [
+          "unittest.loader._FailedTest.test_example"
+        ],
+        "failures": [],
+        "skipped": 0,
+        "successful": false,
+        "tests": 2
+      },
+      "variant": "reference"
+    },
+    {
+      "case": "retry",
+      "control": "correct_implementation",
+      "repetition": 0,
+      "result": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 9
+      },
+      "variant": "reference"
+    },
+    {
+      "case": "retry",
+      "control": "correct_implementation",
+      "repetition": 0,
+      "result": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 9
+      },
+      "variant": "safe_alternative"
+    },
+    {
+      "case": "retry",
+      "control": "assertion_detects_public_mutant",
+      "repetition": 0,
+      "result": {
+        "errors": [],
+        "failures": [
+          "test_example.RetryContract.test_failed_read_closes_before_retry",
+          "test_example.RetryContract.test_last_read_failure_closes_and_next_call_recovers",
+          "test_example.RetryContract.test_non_oserror_propagates_without_retry_and_closes",
+          "test_example.RetryContract.test_open_failure_then_success",
+          "test_example.RetryContract.test_success_closes_including_empty_bytes"
+        ],
+        "skipped": 0,
+        "successful": false,
+        "tests": 9
+      },
+      "variant": "missing_close"
+    },
+    {
+      "case": "retry",
+      "control": "existing_suite_misses_public_mutant",
+      "repetition": 0,
+      "result": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 1
+      },
+      "variant": "missing_close"
+    },
+    {
+      "case": "retry",
+      "control": "assertion_detects_public_mutant",
+      "repetition": 0,
+      "result": {
+        "errors": [],
+        "failures": [
+          "test_example.RetryContract.test_exhaustion_reraises_last_open_error_at_limit",
+          "test_example.RetryContract.test_last_read_failure_closes_and_next_call_recovers"
+        ],
+        "skipped": 0,
+        "successful": false,
+        "tests": 9
+      },
+      "variant": "extra_attempt"
+    },
+    {
+      "case": "retry",
+      "control": "existing_suite_misses_public_mutant",
+      "repetition": 0,
+      "result": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 1
+      },
+      "variant": "extra_attempt"
+    },
+    {
+      "case": "retry",
+      "control": "assertion_detects_public_mutant",
+      "repetition": 0,
+      "result": {
+        "errors": [],
+        "failures": [
+          "test_example.RetryContract.test_exhaustion_reraises_last_open_error_at_limit",
+          "test_example.RetryContract.test_last_read_failure_closes_and_next_call_recovers"
+        ],
+        "skipped": 0,
+        "successful": false,
+        "tests": 9
+      },
+      "variant": "swallowed_exhaustion"
+    },
+    {
+      "case": "retry",
+      "control": "existing_suite_misses_public_mutant",
+      "repetition": 0,
+      "result": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 1
+      },
+      "variant": "swallowed_exhaustion"
+    },
+    {
+      "case": "retry",
+      "control": "assertion_detects_public_mutant",
+      "repetition": 0,
+      "result": {
+        "errors": [],
+        "failures": [
+          "test_example.RetryContract.test_non_oserror_from_open_is_not_retried",
+          "test_example.RetryContract.test_non_oserror_propagates_without_retry_and_closes"
+        ],
+        "skipped": 0,
+        "successful": false,
+        "tests": 9
+      },
+      "variant": "retry_programming_error"
+    },
+    {
+      "case": "retry",
+      "control": "existing_suite_misses_public_mutant",
+      "repetition": 0,
+      "result": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 1
+      },
+      "variant": "retry_programming_error"
+    },
+    {
+      "case": "retry",
+      "control": "assertion_detects_public_mutant",
+      "repetition": 0,
+      "result": {
+        "errors": [],
+        "failures": [
+          "test_example.RetryContract.test_invalid_budget_never_opens"
+        ],
+        "skipped": 0,
+        "successful": false,
+        "tests": 9
+      },
+      "variant": "zero_attempt_accepted"
+    },
+    {
+      "case": "retry",
+      "control": "existing_suite_misses_public_mutant",
+      "repetition": 0,
+      "result": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 1
+      },
+      "variant": "zero_attempt_accepted"
+    },
+    {
+      "case": "retry",
+      "control": "false_failure_is_observed",
+      "repetition": 0,
+      "result": {
+        "errors": [],
+        "failures": [
+          "test_example.Broken.test_false_failure"
+        ],
+        "skipped": 0,
+        "successful": false,
+        "tests": 2
+      },
+      "variant": "reference"
+    },
+    {
+      "case": "retry",
+      "control": "collection_error_is_not_mutant_detection",
+      "repetition": 0,
+      "result": {
+        "errors": [
+          "unittest.loader._FailedTest.test_example"
+        ],
+        "failures": [],
+        "skipped": 0,
+        "successful": false,
+        "tests": 2
+      },
+      "variant": "reference"
+    },
+    {
+      "case": "lease",
+      "control": "correct_implementation",
+      "repetition": 1,
+      "result": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 8
+      },
+      "variant": "reference"
+    },
+    {
+      "case": "lease",
+      "control": "correct_implementation",
+      "repetition": 1,
+      "result": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 8
+      },
+      "variant": "safe_alternative"
+    },
+    {
+      "case": "lease",
+      "control": "assertion_detects_public_mutant",
+      "repetition": 1,
+      "result": {
+        "errors": [],
+        "failures": [
+          "test_example.LeaseContract.test_exact_expiry",
+          "test_example.LeaseContract.test_failed_acquire_preserves_owner_and_expiry",
+          "test_example.LeaseContract.test_invalid_duration_does_not_change_state",
+          "test_example.LeaseContract.test_renew_live_and_expired"
+        ],
+        "skipped": 0,
+        "successful": false,
+        "tests": 8
+      },
+      "variant": "expiry_inclusive"
+    },
+    {
+      "case": "lease",
+      "control": "existing_suite_misses_public_mutant",
+      "repetition": 1,
+      "result": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 1
+      },
+      "variant": "expiry_inclusive"
+    },
+    {
+      "case": "lease",
+      "control": "assertion_detects_public_mutant",
+      "repetition": 1,
+      "result": {
+        "errors": [],
+        "failures": [
+          "test_example.LeaseContract.test_exact_expiry",
+          "test_example.LeaseContract.test_failed_acquire_preserves_owner_and_expiry",
+          "test_example.LeaseContract.test_invalid_duration_does_not_change_state",
+          "test_example.LeaseContract.test_renew_live_and_expired"
+        ],
+        "skipped": 0,
+        "successful": false,
+        "tests": 8
+      },
+      "variant": "failed_acquire_clobbers"
+    },
+    {
+      "case": "lease",
+      "control": "existing_suite_misses_public_mutant",
+      "repetition": 1,
+      "result": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 1
+      },
+      "variant": "failed_acquire_clobbers"
+    },
+    {
+      "case": "lease",
+      "control": "assertion_detects_public_mutant",
+      "repetition": 1,
+      "result": {
+        "errors": [],
+        "failures": [
+          "test_example.LeaseContract.test_recorded_owner_can_release_after_expiry",
+          "test_example.LeaseContract.test_renew_live_and_expired"
+        ],
+        "skipped": 0,
+        "successful": false,
+        "tests": 8
+      },
+      "variant": "expired_renewal"
+    },
+    {
+      "case": "lease",
+      "control": "existing_suite_misses_public_mutant",
+      "repetition": 1,
+      "result": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 1
+      },
+      "variant": "expired_renewal"
+    },
+    {
+      "case": "lease",
+      "control": "assertion_detects_public_mutant",
+      "repetition": 1,
+      "result": {
+        "errors": [],
+        "failures": [
+          "test_example.LeaseContract.test_failed_acquire_preserves_owner_and_expiry",
+          "test_example.LeaseContract.test_release_requires_owner_and_is_idempotent"
+        ],
+        "skipped": 0,
+        "successful": false,
+        "tests": 8
+      },
+      "variant": "wrong_owner_release"
+    },
+    {
+      "case": "lease",
+      "control": "existing_suite_misses_public_mutant",
+      "repetition": 1,
+      "result": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 1
+      },
+      "variant": "wrong_owner_release"
+    },
+    {
+      "case": "lease",
+      "control": "false_failure_is_observed",
+      "repetition": 1,
+      "result": {
+        "errors": [],
+        "failures": [
+          "test_example.Broken.test_false_failure"
+        ],
+        "skipped": 0,
+        "successful": false,
+        "tests": 2
+      },
+      "variant": "reference"
+    },
+    {
+      "case": "lease",
+      "control": "collection_error_is_not_mutant_detection",
+      "repetition": 1,
+      "result": {
+        "errors": [
+          "unittest.loader._FailedTest.test_example"
+        ],
+        "failures": [],
+        "skipped": 0,
+        "successful": false,
+        "tests": 2
+      },
+      "variant": "reference"
+    },
+    {
+      "case": "retry",
+      "control": "correct_implementation",
+      "repetition": 1,
+      "result": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 9
+      },
+      "variant": "reference"
+    },
+    {
+      "case": "retry",
+      "control": "correct_implementation",
+      "repetition": 1,
+      "result": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 9
+      },
+      "variant": "safe_alternative"
+    },
+    {
+      "case": "retry",
+      "control": "assertion_detects_public_mutant",
+      "repetition": 1,
+      "result": {
+        "errors": [],
+        "failures": [
+          "test_example.RetryContract.test_failed_read_closes_before_retry",
+          "test_example.RetryContract.test_last_read_failure_closes_and_next_call_recovers",
+          "test_example.RetryContract.test_non_oserror_propagates_without_retry_and_closes",
+          "test_example.RetryContract.test_open_failure_then_success",
+          "test_example.RetryContract.test_success_closes_including_empty_bytes"
+        ],
+        "skipped": 0,
+        "successful": false,
+        "tests": 9
+      },
+      "variant": "missing_close"
+    },
+    {
+      "case": "retry",
+      "control": "existing_suite_misses_public_mutant",
+      "repetition": 1,
+      "result": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 1
+      },
+      "variant": "missing_close"
+    },
+    {
+      "case": "retry",
+      "control": "assertion_detects_public_mutant",
+      "repetition": 1,
+      "result": {
+        "errors": [],
+        "failures": [
+          "test_example.RetryContract.test_exhaustion_reraises_last_open_error_at_limit",
+          "test_example.RetryContract.test_last_read_failure_closes_and_next_call_recovers"
+        ],
+        "skipped": 0,
+        "successful": false,
+        "tests": 9
+      },
+      "variant": "extra_attempt"
+    },
+    {
+      "case": "retry",
+      "control": "existing_suite_misses_public_mutant",
+      "repetition": 1,
+      "result": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 1
+      },
+      "variant": "extra_attempt"
+    },
+    {
+      "case": "retry",
+      "control": "assertion_detects_public_mutant",
+      "repetition": 1,
+      "result": {
+        "errors": [],
+        "failures": [
+          "test_example.RetryContract.test_exhaustion_reraises_last_open_error_at_limit",
+          "test_example.RetryContract.test_last_read_failure_closes_and_next_call_recovers"
+        ],
+        "skipped": 0,
+        "successful": false,
+        "tests": 9
+      },
+      "variant": "swallowed_exhaustion"
+    },
+    {
+      "case": "retry",
+      "control": "existing_suite_misses_public_mutant",
+      "repetition": 1,
+      "result": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 1
+      },
+      "variant": "swallowed_exhaustion"
+    },
+    {
+      "case": "retry",
+      "control": "assertion_detects_public_mutant",
+      "repetition": 1,
+      "result": {
+        "errors": [],
+        "failures": [
+          "test_example.RetryContract.test_non_oserror_from_open_is_not_retried",
+          "test_example.RetryContract.test_non_oserror_propagates_without_retry_and_closes"
+        ],
+        "skipped": 0,
+        "successful": false,
+        "tests": 9
+      },
+      "variant": "retry_programming_error"
+    },
+    {
+      "case": "retry",
+      "control": "existing_suite_misses_public_mutant",
+      "repetition": 1,
+      "result": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 1
+      },
+      "variant": "retry_programming_error"
+    },
+    {
+      "case": "retry",
+      "control": "assertion_detects_public_mutant",
+      "repetition": 1,
+      "result": {
+        "errors": [],
+        "failures": [
+          "test_example.RetryContract.test_invalid_budget_never_opens"
+        ],
+        "skipped": 0,
+        "successful": false,
+        "tests": 9
+      },
+      "variant": "zero_attempt_accepted"
+    },
+    {
+      "case": "retry",
+      "control": "existing_suite_misses_public_mutant",
+      "repetition": 1,
+      "result": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 1
+      },
+      "variant": "zero_attempt_accepted"
+    },
+    {
+      "case": "retry",
+      "control": "false_failure_is_observed",
+      "repetition": 1,
+      "result": {
+        "errors": [],
+        "failures": [
+          "test_example.Broken.test_false_failure"
+        ],
+        "skipped": 0,
+        "successful": false,
+        "tests": 2
+      },
+      "variant": "reference"
+    },
+    {
+      "case": "retry",
+      "control": "collection_error_is_not_mutant_detection",
+      "repetition": 1,
+      "result": {
+        "errors": [
+          "unittest.loader._FailedTest.test_example"
+        ],
+        "failures": [],
+        "skipped": 0,
+        "successful": false,
+        "tests": 2
+      },
+      "variant": "reference"
+    }
+  ],
+  "promotion_evidence": false,
+  "purpose": "public_fixture_integrity_only",
+  "python": "3.14.7",
+  "repetitions": 2
+}

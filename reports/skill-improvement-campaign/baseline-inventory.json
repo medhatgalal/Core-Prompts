@@ -1,0 +1,1457 @@
+{
+  "note": "Byte identities at launch, not behavioral evidence. Original full bytes retained in baseline Git commit. Historical lineage is distinct from campaign incumbent. Generated skill resources included; symlink targets read at launch.",
+  "skills": [
+    {
+      "skill": "engos-audit-code-health",
+      "eligibility": "eligible",
+      "baseline_commit": "9d481a2da04e672e3b52d79bba6cf466af597fa0",
+      "baseline_files": {
+        "ssot/engos-audit-code-health.md": "d21a66e3ee546ae751e92635b5d4802ebc1418fc1cf1f439617bac6608a61756",
+        ".meta/capabilities/engos-audit-code-health.json": "a05f82ddf02e8168eabd7ff321e684c1d22a1a07543fdc73a1e2a08eaff31976",
+        "evals/contracts/engos-audit-code-health.json": "a6dc5053870800efc2cb1d64004a39c3060d9c54e58868733b7669754925bb0c",
+        "evals/topologies/engos-audit-code-health.json": "e208903ae5f85bea4d88528b4ae1b6328e7e4ac85104edbd86f70f6669271688",
+        "sources/capability-resources/engos-audit-code-health/cruft-report": "21d8afe3d730c78be3a41d92bce78dd230fbb6debe452e2e885e59314e0107ce",
+        "sources/capability-resources/engos-audit-code-health/cruft_report.py": "4ad1c326447eeccc9a6f6abd1c39ac75716c8754278d89879d5f7df579d547d6",
+        ".codex/skills/engos-audit-code-health/SKILL.md": "54539eb1366a12e585e6ddaf2241a272abe89120a6bd891f4ca3cd5c12d3b962",
+        ".codex/skills/engos-audit-code-health/resources/capability.json": "a05f82ddf02e8168eabd7ff321e684c1d22a1a07543fdc73a1e2a08eaff31976",
+        ".codex/skills/engos-audit-code-health/resources/cruft-report": "21d8afe3d730c78be3a41d92bce78dd230fbb6debe452e2e885e59314e0107ce",
+        ".codex/skills/engos-audit-code-health/resources/cruft_report.py": "4ad1c326447eeccc9a6f6abd1c39ac75716c8754278d89879d5f7df579d547d6"
+      },
+      "historical_baseline": {
+        "slug": "engos-audit-code-health",
+        "strategy": "head_snapshot",
+        "group": "derived_current",
+        "baseline_path": "ssot/engos-audit-code-health.md",
+        "selected_commit": null,
+        "richness_score": 3,
+        "line_count": 358,
+        "reason": "No git history was available, so the current SSOT body is the strongest available baseline.",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [
+          {
+            "id": "operational_invocation",
+            "kind": "operational_contract",
+            "label": "operational invocation surface",
+            "must_contain": [
+              "## Invocation"
+            ]
+          }
+        ],
+        "historical_proof": {},
+        "source": "current_ssot",
+        "verified_by_git_history": false,
+        "has_baseline_text": true
+      },
+      "contract_review_status": "draft",
+      "prior_source_history": [
+        "6fbcff2d4a1c3fab4059715c02715d68de00d2cb feat: namespace Core-Prompts capabilities and preserve conversational compatibility"
+      ],
+      "invocation_surface": "skill",
+      "prior_evidence_class": "source/structural history exists; no current accepted comparison verified in indexed evidence"
+    },
+    {
+      "skill": "engos-audit-engineering-progress",
+      "eligibility": "eligible",
+      "baseline_commit": "9d481a2da04e672e3b52d79bba6cf466af597fa0",
+      "baseline_files": {
+        "ssot/engos-audit-engineering-progress.md": "c89b815c182161cde0f17ea686e5ffb9c12d405dceb9ccffbdb90c5e63023b29",
+        ".meta/capabilities/engos-audit-engineering-progress.json": "c8ef15c0c12d5b654cc3409ef0b55c0d281646f384389f07ee44001120cec7e9",
+        "evals/contracts/engos-audit-engineering-progress.json": "2dbf6c94a2f0d63b474a350d66a4804c36bbdbd6b2920e4149e0a83261b50c57",
+        "evals/topologies/engos-audit-engineering-progress.json": "90ca631ac60b5a90fe9a79f9718eb2eb3601f15e17075bad79b20b4c8da3850a",
+        ".codex/skills/engos-audit-engineering-progress/SKILL.md": "f340dcb2d67ac7b4c6facbd1be9404361d8367ce74353d4d7825ddea63d9cb93",
+        ".codex/skills/engos-audit-engineering-progress/resources/capability.json": "c8ef15c0c12d5b654cc3409ef0b55c0d281646f384389f07ee44001120cec7e9"
+      },
+      "historical_baseline": {
+        "slug": "engos-audit-engineering-progress",
+        "strategy": "derived_history",
+        "group": "derived",
+        "baseline_path": null,
+        "selected_commit": "180510c5",
+        "richness_score": 7,
+        "line_count": 539,
+        "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
+        "equivalent_commits": [
+          "465ba8d6",
+          "45a0c978",
+          "a8223b90",
+          "35f9a847",
+          "02ed74c5"
+        ],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [
+          {
+            "id": "stepwise_workflow_contract",
+            "kind": "operational_contract",
+            "label": "stepwise workflow contract",
+            "must_contain": [
+              "## Workflow",
+              "### Step 1"
+            ]
+          },
+          {
+            "id": "configuration_contract",
+            "kind": "operational_contract",
+            "label": "configuration contract",
+            "must_contain": [
+              "## Configuration"
+            ]
+          }
+        ],
+        "historical_proof": {},
+        "source": "git_history",
+        "verified_by_git_history": true,
+        "has_baseline_text": true
+      },
+      "contract_review_status": "draft",
+      "prior_source_history": [
+        "3abbd8a03a62492af9cb0b2491c466701bc6ac3e fix: preserve JSON reports and ship portable engineering CLI",
+        "679d33064104ee6f67ac802682c30d63516e0055 fix: correct two shipped capability file references",
+        "c2c80c46e8ad191a1715a49d4f01d65a0536a076 Merge accepted namespace into harness and Loopy integration"
+      ],
+      "invocation_surface": "skill",
+      "prior_evidence_class": "source/structural history exists; no current accepted comparison verified in indexed evidence"
+    },
+    {
+      "skill": "engos-audit-feature-status",
+      "eligibility": "eligible",
+      "baseline_commit": "9d481a2da04e672e3b52d79bba6cf466af597fa0",
+      "baseline_files": {
+        "ssot/engos-audit-feature-status.md": "75b69d00d4df4277328d616d0c3daf3fbf4b5715d2db01c244097c3805cca9ac",
+        ".meta/capabilities/engos-audit-feature-status.json": "8e76841ad48907c953856e239a4174bc8143ce012f54bf82c29567db564c3aad",
+        "evals/contracts/engos-audit-feature-status.json": "546036fba119d1b07186b90ba4551f650f47ba36f39283d733e677982b680193",
+        "evals/topologies/engos-audit-feature-status.json": "3e06dd2ce38da7efcfa26c982881bce8a09755a282c84918aaea698a7f1aa089",
+        ".codex/skills/engos-audit-feature-status/SKILL.md": "2ac96a54d717e9784fe6cc6db23fb4170367630b97f4ff503e1e6baffc8712e3",
+        ".codex/skills/engos-audit-feature-status/resources/capability.json": "8e76841ad48907c953856e239a4174bc8143ce012f54bf82c29567db564c3aad"
+      },
+      "historical_baseline": {
+        "slug": "engos-audit-feature-status",
+        "strategy": "head_snapshot",
+        "group": "derived_current",
+        "baseline_path": "ssot/engos-audit-feature-status.md",
+        "selected_commit": null,
+        "richness_score": 2,
+        "line_count": 244,
+        "reason": "No git history was available, so the current SSOT body is the strongest available baseline.",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [],
+        "historical_proof": {},
+        "source": "current_ssot",
+        "verified_by_git_history": false,
+        "has_baseline_text": true
+      },
+      "contract_review_status": "draft",
+      "prior_source_history": [
+        "6fbcff2d4a1c3fab4059715c02715d68de00d2cb feat: namespace Core-Prompts capabilities and preserve conversational compatibility"
+      ],
+      "invocation_surface": "skill",
+      "prior_evidence_class": "source/structural history exists; no current accepted comparison verified in indexed evidence"
+    },
+    {
+      "skill": "engos-audit-opex-incident-review",
+      "eligibility": "eligible",
+      "baseline_commit": "9d481a2da04e672e3b52d79bba6cf466af597fa0",
+      "baseline_files": {
+        "ssot/engos-audit-opex-incident-review.md": "2f256da3a7ca86fd6e6ea227c1d3e6a0abe37d19fe6a118b8f473b75e65d5530",
+        ".meta/capabilities/engos-audit-opex-incident-review.json": "6cbe56e3f411587ac409cf27a6c0a3a264836cab774eb8e0d6adc99438c544d2",
+        "evals/contracts/engos-audit-opex-incident-review.json": "6d79af652186b9e65c87fbb35d297a72891bfd24e6977a39ee4f0c94238ea847",
+        "evals/topologies/engos-audit-opex-incident-review.json": "d15c9ee6bf57bde9c3be6f93b74c729e1d755703a304083e29396c3c4fa78a3b",
+        "sources/capability-resources/engos-audit-opex-incident-review/export_report.py": "5bc4738f332fb7c9bf5a3c226aa3d271c8049dc9c5e47816cbe12f7249fc9e3c",
+        "sources/capability-resources/engos-audit-opex-incident-review/opex_digest.py": "8f4e780752d42dbaa5c360fa129a3e3d7fa186beebec3091da6e39c29890f6a2",
+        "sources/capability-resources/engos-audit-opex-incident-review/references/briefing.md": "732f9b25e44d8f940e664a30771b24588333925ab0641bfcaf67979b75179400",
+        "sources/capability-resources/engos-audit-opex-incident-review/snapshot.schema.json": "dcf64986163e0ad096a396bfd1b9968f7f11749481724898e37a6698d16237df",
+        ".codex/skills/engos-audit-opex-incident-review/SKILL.md": "62b565aa05d8c957fa8835c36f587f732a4ff8a92fb545e182ce916cc6c2f6eb",
+        ".codex/skills/engos-audit-opex-incident-review/resources/capability.json": "6cbe56e3f411587ac409cf27a6c0a3a264836cab774eb8e0d6adc99438c544d2",
+        ".codex/skills/engos-audit-opex-incident-review/resources/export_report.py": "5bc4738f332fb7c9bf5a3c226aa3d271c8049dc9c5e47816cbe12f7249fc9e3c",
+        ".codex/skills/engos-audit-opex-incident-review/resources/opex_digest.py": "8f4e780752d42dbaa5c360fa129a3e3d7fa186beebec3091da6e39c29890f6a2",
+        ".codex/skills/engos-audit-opex-incident-review/resources/references/briefing.md": "732f9b25e44d8f940e664a30771b24588333925ab0641bfcaf67979b75179400",
+        ".codex/skills/engos-audit-opex-incident-review/resources/snapshot.schema.json": "dcf64986163e0ad096a396bfd1b9968f7f11749481724898e37a6698d16237df"
+      },
+      "historical_baseline": {
+        "slug": "engos-audit-opex-incident-review",
+        "strategy": "candidate_seed",
+        "group": "new_or_untracked",
+        "baseline_path": null,
+        "selected_commit": null,
+        "richness_score": 5,
+        "line_count": 178,
+        "reason": "No registry entry or git history available; use the candidate as the provisional seed baseline.",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [],
+        "historical_proof": {},
+        "source": "candidate_seed",
+        "verified_by_git_history": false,
+        "has_baseline_text": true
+      },
+      "contract_review_status": "draft",
+      "prior_source_history": [
+        "a5458d6ce798eb8f881591c97ab82d9b43637e94 feat(opex): preserve complete meeting briefing outcomes",
+        "6fbcff2d4a1c3fab4059715c02715d68de00d2cb feat: namespace Core-Prompts capabilities and preserve conversational compatibility",
+        "616e936d6a023157736ff3249411e5e678de78cc fix(opex): preserve incident drilldowns in Markdown"
+      ],
+      "invocation_surface": "skill",
+      "prior_evidence_class": "source/structural history exists; no current accepted comparison verified in indexed evidence"
+    },
+    {
+      "skill": "engos-audit-pitch-review",
+      "eligibility": "eligible",
+      "baseline_commit": "9d481a2da04e672e3b52d79bba6cf466af597fa0",
+      "baseline_files": {
+        "ssot/engos-audit-pitch-review.md": "ce90f8247735e8f50b4a5e9e665446175ae352b5824d20af418edfa76b984b70",
+        ".meta/capabilities/engos-audit-pitch-review.json": "302a86215ce63daecdad2c51e79f606aea86d6a3162cf199d48cdd179ffdf67c",
+        "evals/contracts/engos-audit-pitch-review.json": "8b696191595d1b043d7b8d5e2c27478d756714bbc1f49e3f728334b9652b4369",
+        "evals/topologies/engos-audit-pitch-review.json": "4377a635a63fca537aa481e94b3873fe18961597ce03b2eabdf2e0388ed39323",
+        ".codex/skills/engos-audit-pitch-review/SKILL.md": "addb6556dd0e0fb672a2d84da2702231d8bd33ffab8f7d619ff7ed2884c3e0e9",
+        ".codex/skills/engos-audit-pitch-review/resources/capability.json": "302a86215ce63daecdad2c51e79f606aea86d6a3162cf199d48cdd179ffdf67c"
+      },
+      "historical_baseline": {
+        "slug": "engos-audit-pitch-review",
+        "strategy": "source_library",
+        "group": "applied_baseline",
+        "baseline_path": "sources/ssot-baselines/engos-audit-pitch-review/baseline.md",
+        "selected_commit": "c6b3203b",
+        "richness_score": 5,
+        "line_count": 456,
+        "reason": "Repo-resident baseline source snapshot used as the fidelity oracle for future UAC judging.",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [
+          {
+            "id": "operational_invocation",
+            "kind": "operational_contract",
+            "label": "operational invocation surface",
+            "must_contain": [
+              "## Invocation"
+            ]
+          }
+        ],
+        "historical_proof": {
+          "materialized_from_commit": "c6b3203b",
+          "materialized_from_source_kind": "current_ssot",
+          "materialized_from_path": "ssot/engos-audit-pitch-review.md",
+          "materialized_from_sha256": "2570975eae752eda8e9acb1227f478e4e25ae05f5e0d07ba1385a20ecb3a01d4",
+          "last_materialized_at": "2026-05-21T05:26:42.776827+00:00"
+        },
+        "source": "source_library",
+        "verified_by_git_history": false,
+        "has_baseline_text": true
+      },
+      "contract_review_status": "draft",
+      "prior_source_history": [
+        "6fbcff2d4a1c3fab4059715c02715d68de00d2cb feat: namespace Core-Prompts capabilities and preserve conversational compatibility"
+      ],
+      "invocation_surface": "both",
+      "prior_evidence_class": "source/structural history exists; no current accepted comparison verified in indexed evidence"
+    },
+    {
+      "skill": "engos-audit-weekly-intel",
+      "eligibility": "eligible",
+      "baseline_commit": "9d481a2da04e672e3b52d79bba6cf466af597fa0",
+      "baseline_files": {
+        "ssot/engos-audit-weekly-intel.md": "27feb6683d4d88bdd0ff67f0a8399ca609c2bae0bb7da17f35c7510e3f2b1e9f",
+        ".meta/capabilities/engos-audit-weekly-intel.json": "373c896317fd1e58b59fc52bf25ba132229d9356484d01f11ce8c53df3e9640d",
+        "evals/contracts/engos-audit-weekly-intel.json": "4094937991b4d193bfea9802576532e7956b88a1bdee8bf10575f5c756679548",
+        "evals/topologies/engos-audit-weekly-intel.json": "5bd598570677d20cac8b6bf18f5828452409958d154ec83ac6b0a8baf653fa50",
+        ".codex/skills/engos-audit-weekly-intel/SKILL.md": "c6f0cdb51f299260cc465d1cfe5333327f90b8ba88a5d4ff6a1e8be0accbf087",
+        ".codex/skills/engos-audit-weekly-intel/resources/capability.json": "373c896317fd1e58b59fc52bf25ba132229d9356484d01f11ce8c53df3e9640d"
+      },
+      "historical_baseline": {
+        "slug": "engos-audit-weekly-intel",
+        "strategy": "head_snapshot",
+        "group": "derived_current",
+        "baseline_path": "ssot/engos-audit-weekly-intel.md",
+        "selected_commit": null,
+        "richness_score": 2,
+        "line_count": 236,
+        "reason": "No git history was available, so the current SSOT body is the strongest available baseline.",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [],
+        "historical_proof": {},
+        "source": "current_ssot",
+        "verified_by_git_history": false,
+        "has_baseline_text": true
+      },
+      "contract_review_status": "draft",
+      "prior_source_history": [
+        "6fbcff2d4a1c3fab4059715c02715d68de00d2cb feat: namespace Core-Prompts capabilities and preserve conversational compatibility"
+      ],
+      "invocation_surface": "both",
+      "prior_evidence_class": "source/structural history exists; no current accepted comparison verified in indexed evidence"
+    },
+    {
+      "skill": "engos-browser-demo-recorder",
+      "eligibility": "eligible",
+      "baseline_commit": "9d481a2da04e672e3b52d79bba6cf466af597fa0",
+      "baseline_files": {
+        "ssot/engos-browser-demo-recorder.md": "eb8307c6b2ae6612b6654c4818a7acaf0651980cd011f39f7209b73177e1523b",
+        ".meta/capabilities/engos-browser-demo-recorder.json": "82110cdd41112090a9c358326a516f923ad5617781f15196eb433d9efa9b5fa4",
+        "evals/contracts/engos-browser-demo-recorder.json": "da81e4b1c7e84b00e38ac34271a271bd575c0885d25377b424adf26bbe5855d7",
+        "evals/topologies/engos-browser-demo-recorder.json": "66eb47d4a7cd8b04778ef7c2dc272134afa1fd24c1489dd59687efd7fc97f6e1",
+        ".codex/skills/engos-browser-demo-recorder/SKILL.md": "24c79bd0ac5e7768a72776ca5fbb25743c838c32be9f7c447562b9af3a60f274",
+        ".codex/skills/engos-browser-demo-recorder/resources/capability.json": "82110cdd41112090a9c358326a516f923ad5617781f15196eb433d9efa9b5fa4"
+      },
+      "historical_baseline": {
+        "slug": "engos-browser-demo-recorder",
+        "strategy": "derived_history",
+        "group": "derived",
+        "baseline_path": "sources/ssot-baselines/engos-browser-demo-recorder/baseline.md",
+        "selected_commit": "306bc39c",
+        "richness_score": 5,
+        "line_count": 132,
+        "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [
+          {
+            "id": "operational_invocation",
+            "kind": "operational_contract",
+            "label": "operational invocation surface",
+            "must_contain": [
+              "## Invocation"
+            ]
+          }
+        ],
+        "historical_proof": {},
+        "source": "git_history",
+        "verified_by_git_history": true,
+        "has_baseline_text": true
+      },
+      "contract_review_status": "draft",
+      "prior_source_history": [
+        "6fbcff2d4a1c3fab4059715c02715d68de00d2cb feat: namespace Core-Prompts capabilities and preserve conversational compatibility"
+      ],
+      "invocation_surface": "skill",
+      "prior_evidence_class": "source/structural history exists; no current accepted comparison verified in indexed evidence"
+    },
+    {
+      "skill": "engos-content-dynamic-html-presentations",
+      "eligibility": "eligible",
+      "baseline_commit": "9d481a2da04e672e3b52d79bba6cf466af597fa0",
+      "baseline_files": {
+        "ssot/engos-content-dynamic-html-presentations.md": "56639d171dce30f28e9d770e74a7a68ce589e256fa1258e2ab8a744c2ac339d1",
+        ".meta/capabilities/engos-content-dynamic-html-presentations.json": "2f08ef854eb336f5482a8620284c68f6226e9118a9c0d300e89c6142366e8ca4",
+        "evals/contracts/engos-content-dynamic-html-presentations.json": "d352678f52abd2524760809680670e8d93868b04d692ef85720d65938c62982a",
+        "evals/topologies/engos-content-dynamic-html-presentations.json": "754461d1600fd58aee5c6ee38917741b69a5338ab53b16b1c4c0f24790b682b6",
+        "sources/capability-resources/engos-content-dynamic-html-presentations/example.html": "e9b6c64b18ecd14084ea9d9b3b3d17f231aed6ed5bc8b49d0731fa90c4d1518a",
+        "sources/capability-resources/engos-content-dynamic-html-presentations/export_slides.swift": "c14ba219035bd04d28233af5aa36b5af5272255d886abb489ec24e391415f750",
+        "sources/capability-resources/engos-content-dynamic-html-presentations/images_to_pptx.py": "c3ae776e1868e3894809de63a53e3c37263bfdc1a10ca50e96cc047e7280ea98",
+        ".codex/skills/engos-content-dynamic-html-presentations/SKILL.md": "92adce42bb44c0226abd576c23b4e87e505eb6e461828c76c241be2b6155e2d4",
+        ".codex/skills/engos-content-dynamic-html-presentations/resources/capability.json": "2f08ef854eb336f5482a8620284c68f6226e9118a9c0d300e89c6142366e8ca4",
+        ".codex/skills/engos-content-dynamic-html-presentations/resources/example.html": "e9b6c64b18ecd14084ea9d9b3b3d17f231aed6ed5bc8b49d0731fa90c4d1518a",
+        ".codex/skills/engos-content-dynamic-html-presentations/resources/export_slides.swift": "c14ba219035bd04d28233af5aa36b5af5272255d886abb489ec24e391415f750",
+        ".codex/skills/engos-content-dynamic-html-presentations/resources/images_to_pptx.py": "c3ae776e1868e3894809de63a53e3c37263bfdc1a10ca50e96cc047e7280ea98"
+      },
+      "historical_baseline": {
+        "baseline_path": "sources/ssot-baselines/engos-content-dynamic-html-presentations/baseline.md",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "group": "current_oracle",
+        "has_baseline_text": true,
+        "historical_proof": {
+          "current_head_commit": "848ab93b",
+          "current_head_line_count": 448,
+          "current_head_richness_score": 3,
+          "last_materialized_at": "2026-07-19T09:45:51.008369+00:00",
+          "materialized_from_commit": "848ab93b",
+          "materialized_from_path": "ssot/engos-content-dynamic-html-presentations.md",
+          "materialized_from_sha256": "da45c3dd8143e2c1e74c8ad77f3b2b5b1fb311ba9579ab6b010cf28bc0fd2be6",
+          "materialized_from_source_kind": "current_ssot"
+        },
+        "line_count": 448,
+        "operator_invariants": [],
+        "reason": "Current SSOT baseline source snapshot materialized into the source library because the stored baseline was missing, stale, or structurally degraded.",
+        "richness_score": 3,
+        "scenario_matrix": [],
+        "selected_commit": "848ab93b",
+        "slug": "engos-content-dynamic-html-presentations",
+        "source": "source_library",
+        "strategy": "head_snapshot",
+        "verified_by_git_history": true
+      },
+      "contract_review_status": "draft",
+      "prior_source_history": [
+        "6fbcff2d4a1c3fab4059715c02715d68de00d2cb feat: namespace Core-Prompts capabilities and preserve conversational compatibility"
+      ],
+      "invocation_surface": "skill",
+      "prior_evidence_class": "source/structural history exists; no current accepted comparison verified in indexed evidence"
+    },
+    {
+      "skill": "engos-delivery-address-code-review",
+      "eligibility": "eligible",
+      "baseline_commit": "9d481a2da04e672e3b52d79bba6cf466af597fa0",
+      "baseline_files": {
+        "ssot/engos-delivery-address-code-review.md": "9c59f7627f761033362ee41eecf733ea866240cde82c06adc88916c53f715935",
+        ".meta/capabilities/engos-delivery-address-code-review.json": "7d84ce4c0ab8d0223c268baebe0fb81fd9c1a6efea28c4c068e9d0421537a94b",
+        "evals/contracts/engos-delivery-address-code-review.json": "38286a4857d2f7d480ad7a8a8f3683147002330f5bd7e0fbde458efde6fe4da0",
+        "evals/topologies/engos-delivery-address-code-review.json": "88825bfd57e83bc09dad4a214cc3df4d60c0887f979d2166dc964745f12d9d6f",
+        ".codex/skills/engos-delivery-address-code-review/SKILL.md": "dd7a59d8f20d5e736e5b99a0e91a77b23ca3c52feebff6f5d08445c0aca64151",
+        ".codex/skills/engos-delivery-address-code-review/resources/capability.json": "7d84ce4c0ab8d0223c268baebe0fb81fd9c1a6efea28c4c068e9d0421537a94b"
+      },
+      "historical_baseline": {
+        "slug": "engos-delivery-address-code-review",
+        "strategy": "candidate_seed",
+        "group": "new_or_untracked",
+        "baseline_path": "sources/ssot-baselines/engos-delivery-address-code-review/baseline.md",
+        "selected_commit": null,
+        "richness_score": 5,
+        "line_count": 109,
+        "reason": "No registry entry or git history available; use the candidate as the provisional seed baseline.",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [],
+        "historical_proof": {},
+        "source": "candidate_seed",
+        "verified_by_git_history": false,
+        "has_baseline_text": true
+      },
+      "contract_review_status": "draft",
+      "prior_source_history": [
+        "6fbcff2d4a1c3fab4059715c02715d68de00d2cb feat: namespace Core-Prompts capabilities and preserve conversational compatibility"
+      ],
+      "invocation_surface": "skill",
+      "prior_evidence_class": "source/structural history exists; no current accepted comparison verified in indexed evidence"
+    },
+    {
+      "skill": "engos-delivery-resolve-conflict",
+      "eligibility": "eligible",
+      "baseline_commit": "9d481a2da04e672e3b52d79bba6cf466af597fa0",
+      "baseline_files": {
+        "ssot/engos-delivery-resolve-conflict.md": "0ccc8d01936c017ade5e033d0370a46d4cb60d9ec68f5232754b7455c3896c8d",
+        ".meta/capabilities/engos-delivery-resolve-conflict.json": "cd90bbba5812b8573a302be27ae1b23d0d09c99d73c73eecc03c5075752a8140",
+        "evals/contracts/engos-delivery-resolve-conflict.json": "c5fc73a3d586d59e1bd098ae17ad27a87aa249f4cb6b1e85670dce4fe8686cd9",
+        "evals/topologies/engos-delivery-resolve-conflict.json": "ef717dde8dc8da01ab3c62643ff5d394863629a1674783bed1bbcb26f6add9ed",
+        ".codex/skills/engos-delivery-resolve-conflict/SKILL.md": "97930235d4c842f311a0960a535a96d835cd5021d830e69bb2f866132105394a",
+        ".codex/skills/engos-delivery-resolve-conflict/resources/capability.json": "cd90bbba5812b8573a302be27ae1b23d0d09c99d73c73eecc03c5075752a8140"
+      },
+      "historical_baseline": {
+        "slug": "engos-delivery-resolve-conflict",
+        "strategy": "head_snapshot",
+        "group": "additive_preserved",
+        "baseline_path": "sources/ssot-baselines/engos-delivery-resolve-conflict/baseline.md",
+        "selected_commit": "db5c3789",
+        "richness_score": 2,
+        "line_count": 379,
+        "reason": "Latest additive version preserves the full inversion-led workflow and strengthens boundary and companion guidance without deleting procedure.",
+        "equivalent_commits": [
+          "a78c1c21"
+        ],
+        "expected_companions": [
+          "engos-design-architecture",
+          "engos-quality-gitops-review",
+          "engos-quality-testing-review",
+          "engos-quality-docs-review"
+        ],
+        "operator_invariants": [],
+        "scenario_matrix": [
+          {
+            "id": "inversion_resolution_workflow",
+            "kind": "individual_module",
+            "label": "inversion-led conflict workflow",
+            "must_contain": [
+              "### Phase 1: Inversion Analysis (Charlie Munger Style)",
+              "### Phase 2: Conflict Analysis",
+              "### Phase 3: Resolution Strategy",
+              "### Phase 4: Resolution Plan",
+              "### Phase 5: Expected Outcome"
+            ]
+          }
+        ],
+        "historical_proof": {
+          "current_head_commit": "db5c3789",
+          "current_head_richness_score": 2,
+          "current_head_line_count": 380,
+          "materialized_from_commit": "db5c3789"
+        },
+        "source": "source_library",
+        "verified_by_git_history": true,
+        "has_baseline_text": true
+      },
+      "contract_review_status": "draft",
+      "prior_source_history": [
+        "6fbcff2d4a1c3fab4059715c02715d68de00d2cb feat: namespace Core-Prompts capabilities and preserve conversational compatibility"
+      ],
+      "invocation_surface": "skill",
+      "prior_evidence_class": "source/structural history exists; no current accepted comparison verified in indexed evidence"
+    },
+    {
+      "skill": "engos-design-architecture",
+      "eligibility": "eligible",
+      "baseline_commit": "9d481a2da04e672e3b52d79bba6cf466af597fa0",
+      "baseline_files": {
+        "ssot/engos-design-architecture.md": "fbd582a0e518d8cb1bdbf183fdb9001ec311558b198658b9e6a9f1f4fa8201cb",
+        ".meta/capabilities/engos-design-architecture.json": "07afd9e741b6d5f633214e92bb39ce1c2784532c16a0efae7ed099e57a531c92",
+        "evals/contracts/engos-design-architecture.json": "887d4d3e252f1f5b0afafa34db7872173c3901d3e3ba827822cdee6a1c9f161b",
+        "evals/topologies/engos-design-architecture.json": "bb18d0b182e2dc3d4bd713e8d78393b660e54516e9969c6f5301e1537fb0bdb2",
+        ".codex/skills/engos-design-architecture/SKILL.md": "b308b52bc6a5d0265cab5b9481191fcc83154b32d6390f9ef02d2e6579bc1ca3",
+        ".codex/skills/engos-design-architecture/resources/capability.json": "07afd9e741b6d5f633214e92bb39ce1c2784532c16a0efae7ed099e57a531c92"
+      },
+      "historical_baseline": {
+        "slug": "engos-design-architecture",
+        "strategy": "head_snapshot",
+        "group": "current_oracle",
+        "baseline_path": "sources/ssot-baselines/engos-design-architecture/baseline.md",
+        "selected_commit": "db5c3789",
+        "richness_score": 4,
+        "line_count": 842,
+        "reason": "Current SSOT baseline source snapshot materialized into the source library because no stronger curated pre-SSOT baseline has been recorded yet.",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [],
+        "historical_proof": {
+          "current_head_commit": "db5c3789",
+          "current_head_richness_score": 4,
+          "current_head_line_count": 842,
+          "materialized_from_commit": "db5c3789"
+        },
+        "source": "source_library",
+        "verified_by_git_history": true,
+        "has_baseline_text": true
+      },
+      "contract_review_status": "draft",
+      "prior_source_history": [
+        "6fbcff2d4a1c3fab4059715c02715d68de00d2cb feat: namespace Core-Prompts capabilities and preserve conversational compatibility"
+      ],
+      "invocation_surface": "both",
+      "prior_evidence_class": "source/structural history exists; no current accepted comparison verified in indexed evidence"
+    },
+    {
+      "skill": "engos-design-plan-to-goal",
+      "eligibility": "eligible",
+      "baseline_commit": "9d481a2da04e672e3b52d79bba6cf466af597fa0",
+      "baseline_files": {
+        "ssot/engos-design-plan-to-goal.md": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f",
+        ".meta/capabilities/engos-design-plan-to-goal.json": "14c72b9b256e34b565ce1b93d876d06863043fcf1c144e6ebd930c9abf6f5854",
+        "evals/contracts/engos-design-plan-to-goal.json": "bff8ac5491606281df9db84ccd42d98d5b6e44deb4a5dec411795e54ebc35ac2",
+        "evals/topologies/engos-design-plan-to-goal.json": "3b5e296f0d941ce2659cd56d2c51327efb101310c12623d5c380745feecf16e2",
+        "sources/capability-resources/engos-design-plan-to-goal/adapters/hosts.json": "3e56e00f7ce2e776b1c70e1f693151efade433dbfbd4323d70449ca20c553048",
+        "sources/capability-resources/engos-design-plan-to-goal/goal-lint": "ae126fc5b1d7ad655a0ebc4aa79edc95b93b1f674a7bfac27b319d198619191d",
+        "sources/capability-resources/engos-design-plan-to-goal/references/evidence.md": "1a0985e59bf9036554f45264b4c326385d487fc7895d2f50270464327586ab57",
+        "sources/capability-resources/engos-design-plan-to-goal/references/goal-authoring.md": "ed998401b88da54e776a019eb6ea3c7e948cab83d8224d3c8e82e03849707c30",
+        "sources/capability-resources/engos-design-plan-to-goal/references/goal-design-lessons.md": "583c6d8b46aaf227bf43aaf0de4105b7d06d670b90f325e1c11bc517d2ec4637",
+        "sources/capability-resources/engos-design-plan-to-goal/references/verifier-trust.md": "fef011ae0cf7c47ad1b3ce6393983b25e06849d6aa4e4b81240037ddd246606a",
+        "sources/capability-resources/engos-design-plan-to-goal/schemas/packet.schema.json": "3248411d95ac5c5b42a376ba9a352761f1b89fa8db6459093f988a0096c3efbc",
+        "sources/capability-resources/engos-design-plan-to-goal/scripts/criterion_flip.py": "c3fb05ff903f0bc4390cfdded79caf8ab4180933f6c3d6798451a90bdb59541d",
+        "sources/capability-resources/engos-design-plan-to-goal/scripts/goal_packet.py": "dacff09aabd973852829bd8c3ea4a77ac8469299be4c1fb126eaf4eca6237c2b",
+        "sources/capability-resources/engos-design-plan-to-goal/templates/baseline.json.tmpl": "9e7f0bc3e95d10655e87fa43f05638dfb5fa2c5515631dd1828e19bb97371dfa",
+        "sources/capability-resources/engos-design-plan-to-goal/templates/criterion-flips.json.tmpl": "7bd2fd326fa9f94e955c1a7c8ddde21a7fa67c9f03cb78893c0103633bb1a874",
+        "sources/capability-resources/engos-design-plan-to-goal/templates/goal.txt.tmpl": "ce0eb16dafabe54b658c1dceeb242ddb549aa9593bcd2b2d010aa0a4555f2001",
+        "sources/capability-resources/engos-design-plan-to-goal/templates/judge-amendments.json.tmpl": "adb989a6d8ddecf527a778fe168bcfcaab2ec8f8777ea10edff19a10c2008793",
+        "sources/capability-resources/engos-design-plan-to-goal/templates/packet.json.tmpl": "b8f09376bfbde81a4476122db20cbf1191b067bf1f120d546af80d2fd2936687",
+        "sources/capability-resources/engos-design-plan-to-goal/templates/receipt.json.tmpl": "9e93d1ac697c713a337cc8bef4af1eefd531fa4c6e7f1284944b5ce2a8a725ff",
+        "sources/capability-resources/engos-design-plan-to-goal/templates/spec.md.tmpl": "745dcc9066d548e74acc3da842b843c91858b2438588aac4e79e57fb7aeaf21d",
+        ".codex/skills/engos-design-plan-to-goal/SKILL.md": "b42b10aa166842f9d29c27d64d0480eb6766da835bc03a5db77a56b05a631015",
+        ".codex/skills/engos-design-plan-to-goal/resources/adapters/hosts.json": "3e56e00f7ce2e776b1c70e1f693151efade433dbfbd4323d70449ca20c553048",
+        ".codex/skills/engos-design-plan-to-goal/resources/capability.json": "14c72b9b256e34b565ce1b93d876d06863043fcf1c144e6ebd930c9abf6f5854",
+        ".codex/skills/engos-design-plan-to-goal/resources/goal-lint": "ae126fc5b1d7ad655a0ebc4aa79edc95b93b1f674a7bfac27b319d198619191d",
+        ".codex/skills/engos-design-plan-to-goal/resources/references/evidence.md": "1a0985e59bf9036554f45264b4c326385d487fc7895d2f50270464327586ab57",
+        ".codex/skills/engos-design-plan-to-goal/resources/references/goal-authoring.md": "ed998401b88da54e776a019eb6ea3c7e948cab83d8224d3c8e82e03849707c30",
+        ".codex/skills/engos-design-plan-to-goal/resources/references/goal-design-lessons.md": "583c6d8b46aaf227bf43aaf0de4105b7d06d670b90f325e1c11bc517d2ec4637",
+        ".codex/skills/engos-design-plan-to-goal/resources/references/verifier-trust.md": "fef011ae0cf7c47ad1b3ce6393983b25e06849d6aa4e4b81240037ddd246606a",
+        ".codex/skills/engos-design-plan-to-goal/resources/schemas/packet.schema.json": "3248411d95ac5c5b42a376ba9a352761f1b89fa8db6459093f988a0096c3efbc",
+        ".codex/skills/engos-design-plan-to-goal/resources/scripts/criterion_flip.py": "c3fb05ff903f0bc4390cfdded79caf8ab4180933f6c3d6798451a90bdb59541d",
+        ".codex/skills/engos-design-plan-to-goal/resources/scripts/goal_packet.py": "dacff09aabd973852829bd8c3ea4a77ac8469299be4c1fb126eaf4eca6237c2b",
+        ".codex/skills/engos-design-plan-to-goal/resources/templates/baseline.json.tmpl": "9e7f0bc3e95d10655e87fa43f05638dfb5fa2c5515631dd1828e19bb97371dfa",
+        ".codex/skills/engos-design-plan-to-goal/resources/templates/criterion-flips.json.tmpl": "7bd2fd326fa9f94e955c1a7c8ddde21a7fa67c9f03cb78893c0103633bb1a874",
+        ".codex/skills/engos-design-plan-to-goal/resources/templates/goal.txt.tmpl": "ce0eb16dafabe54b658c1dceeb242ddb549aa9593bcd2b2d010aa0a4555f2001",
+        ".codex/skills/engos-design-plan-to-goal/resources/templates/judge-amendments.json.tmpl": "adb989a6d8ddecf527a778fe168bcfcaab2ec8f8777ea10edff19a10c2008793",
+        ".codex/skills/engos-design-plan-to-goal/resources/templates/packet.json.tmpl": "b8f09376bfbde81a4476122db20cbf1191b067bf1f120d546af80d2fd2936687",
+        ".codex/skills/engos-design-plan-to-goal/resources/templates/receipt.json.tmpl": "9e93d1ac697c713a337cc8bef4af1eefd531fa4c6e7f1284944b5ce2a8a725ff",
+        ".codex/skills/engos-design-plan-to-goal/resources/templates/spec.md.tmpl": "745dcc9066d548e74acc3da842b843c91858b2438588aac4e79e57fb7aeaf21d"
+      },
+      "historical_baseline": {
+        "slug": "engos-design-plan-to-goal",
+        "strategy": "candidate_seed",
+        "group": "new_or_untracked",
+        "baseline_path": null,
+        "selected_commit": null,
+        "richness_score": 5,
+        "line_count": 217,
+        "reason": "No registry entry or git history available; use the candidate as the provisional seed baseline.",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [],
+        "historical_proof": {},
+        "source": "candidate_seed",
+        "verified_by_git_history": false,
+        "has_baseline_text": true
+      },
+      "contract_review_status": "draft",
+      "prior_source_history": [
+        "6fbcff2d4a1c3fab4059715c02715d68de00d2cb feat: namespace Core-Prompts capabilities and preserve conversational compatibility"
+      ],
+      "invocation_surface": "skill",
+      "prior_evidence_class": "source/structural history exists; no current accepted comparison verified in indexed evidence"
+    },
+    {
+      "skill": "engos-memory-context-continuity",
+      "eligibility": "eligible",
+      "baseline_commit": "9d481a2da04e672e3b52d79bba6cf466af597fa0",
+      "baseline_files": {
+        "ssot/engos-memory-context-continuity.md": "1e3479ad869e1065a5c3fe2d102b0a8cda5b1206507745f1a817c3263f0b928b",
+        ".meta/capabilities/engos-memory-context-continuity.json": "d2c3b8b27802461465a4a751b439b700c4b622b55e170ce5ca289fbfa9de36f8",
+        "evals/contracts/engos-memory-context-continuity.json": "2e883de4e3d78dccd082060f6022a186203c6cf48993e2dc488a6d5c16c8b3db",
+        "evals/topologies/engos-memory-context-continuity.json": "466babdb3572d8ae8f3d7438ca535ea989137e702763a0b009defd20b36de2ee",
+        "sources/capability-resources/engos-memory-context-continuity/state_store.py": "f0c6a6d56194185df8b5c8426c53365234c4664425faa516714a5b45b86f976e",
+        ".codex/skills/engos-memory-context-continuity/SKILL.md": "f41ab1dbb502b75626531b31040aad3cf6abd227960bc894e129a272ca276e9d",
+        ".codex/skills/engos-memory-context-continuity/resources/capability.json": "d2c3b8b27802461465a4a751b439b700c4b622b55e170ce5ca289fbfa9de36f8",
+        ".codex/skills/engos-memory-context-continuity/resources/state_store.py": "f0c6a6d56194185df8b5c8426c53365234c4664425faa516714a5b45b86f976e"
+      },
+      "historical_baseline": {
+        "slug": "engos-memory-context-continuity",
+        "strategy": "head_plus_invariants",
+        "group": "hybrid_additive",
+        "baseline_path": "sources/ssot-baselines/engos-memory-context-continuity/baseline.md",
+        "selected_commit": "4bb1f7e5",
+        "richness_score": 2,
+        "line_count": 133,
+        "reason": "Strongest additive body in history; keeps the durable memory workflow and adds explicit boundaries plus companion routing. Selected earlier operator-flow invariants must still survive future rewrites.",
+        "equivalent_commits": [],
+        "expected_companions": [
+          "engos-reconciliation-converge",
+          "engos-memory-threader",
+          "engos-quality-code-review"
+        ],
+        "operator_invariants": [
+          "git status --short --branch",
+          "Process one item at a time.",
+          "After interruption or compaction:",
+          "<task>-context.md",
+          "<task>-todo.md",
+          "<task>-insights.md"
+        ],
+        "scenario_matrix": [
+          {
+            "id": "branch_and_memory_guardrails",
+            "kind": "individual_module",
+            "label": "branch safety and canonical memory files",
+            "must_contain": [
+              "git status --short --branch",
+              ".analyze-context-memory/",
+              "<task>-context.md",
+              "<task>-todo.md",
+              "<task>-insights.md"
+            ]
+          },
+          {
+            "id": "recovery_loop",
+            "kind": "individual_module",
+            "label": "recovery and continuation loop",
+            "must_contain": [
+              "Process one item at a time.",
+              "After interruption or compaction:",
+              "continue from the recorded next item instead of restarting from memory"
+            ]
+          }
+        ],
+        "historical_proof": {
+          "current_head_commit": "4bb1f7e5",
+          "current_head_richness_score": 2,
+          "current_head_line_count": 134,
+          "materialized_from_commit": "4bb1f7e5"
+        },
+        "source": "source_library",
+        "verified_by_git_history": true,
+        "has_baseline_text": true
+      },
+      "contract_review_status": "draft",
+      "prior_source_history": [
+        "6fbcff2d4a1c3fab4059715c02715d68de00d2cb feat: namespace Core-Prompts capabilities and preserve conversational compatibility"
+      ],
+      "invocation_surface": "skill",
+      "prior_evidence_class": "source/structural history exists; no current accepted comparison verified in indexed evidence"
+    },
+    {
+      "skill": "engos-memory-threader",
+      "eligibility": "eligible",
+      "baseline_commit": "9d481a2da04e672e3b52d79bba6cf466af597fa0",
+      "baseline_files": {
+        "ssot/engos-memory-threader.md": "3980433cb346c43e530fd34e800f530fec5759b98ec955ec27f8ed096f4f191c",
+        ".meta/capabilities/engos-memory-threader.json": "5b0f2a00f585363453a25688f843ef6bb36a6d6cfe4c7b55ee47cbd4de010472",
+        "evals/contracts/engos-memory-threader.json": "3ff4f0a33e768f729bc346265a33026463bdd9f719434bc073293b22760334a1",
+        "evals/topologies/engos-memory-threader.json": "94ce2f9bb848d0133d960d115b47050a7561b35448c4f4c40bf6d39b553b39a5",
+        ".codex/skills/engos-memory-threader/SKILL.md": "3ecbff1609e220ecbfd5afe8cd92bdd914ec4e6a3d5520f3e630d5096c216177",
+        ".codex/skills/engos-memory-threader/resources/capability.json": "5b0f2a00f585363453a25688f843ef6bb36a6d6cfe4c7b55ee47cbd4de010472"
+      },
+      "historical_baseline": {
+        "slug": "engos-memory-threader",
+        "strategy": "head_snapshot",
+        "group": "additive_preserved",
+        "baseline_path": "sources/ssot-baselines/engos-memory-threader/baseline.md",
+        "selected_commit": "db5c3789",
+        "richness_score": 4,
+        "line_count": 294,
+        "reason": "Latest additive version preserves the hard export contract and extends it with non-destructive wrapper structure.",
+        "equivalent_commits": [],
+        "expected_companions": [
+          "engos-memory-context-continuity",
+          "engos-reconciliation-converge",
+          "engos-meta-supercharge",
+          "engos-delivery-resolve-conflict"
+        ],
+        "operator_invariants": [],
+        "scenario_matrix": [
+          {
+            "id": "export_contract",
+            "kind": "individual_module",
+            "label": "hard transcript export contract",
+            "must_contain": [
+              "## COMMAND",
+              "/engos-memory-threader export",
+              "## HARD OUTPUT CONTRACT (read carefully)",
+              "## INLINE FALLBACK RULES (only if file creation is unsupported)"
+            ]
+          }
+        ],
+        "historical_proof": {
+          "current_head_commit": "db5c3789",
+          "current_head_richness_score": 4,
+          "current_head_line_count": 295,
+          "materialized_from_commit": "db5c3789"
+        },
+        "source": "source_library",
+        "verified_by_git_history": true,
+        "has_baseline_text": true
+      },
+      "contract_review_status": "draft",
+      "prior_source_history": [
+        "6fbcff2d4a1c3fab4059715c02715d68de00d2cb feat: namespace Core-Prompts capabilities and preserve conversational compatibility"
+      ],
+      "invocation_surface": "skill",
+      "prior_evidence_class": "source/structural history exists; no current accepted comparison verified in indexed evidence"
+    },
+    {
+      "skill": "engos-meta-instruction-editor",
+      "eligibility": "eligible",
+      "baseline_commit": "9d481a2da04e672e3b52d79bba6cf466af597fa0",
+      "baseline_files": {
+        "ssot/engos-meta-instruction-editor.md": "b6803835ccaf0663d270653dfd6d5418adc237da079716b98eddf1ea12a8102c",
+        ".meta/capabilities/engos-meta-instruction-editor.json": "0acb98dad0fa26dab362d1c4ebe96184005eb64b8c3216f07b096b2f440dbf2f",
+        "evals/contracts/engos-meta-instruction-editor.json": "b54e80c54e736cd88b1b7d3c2bfceab584c6d15f391aa978d69b7e2a6b5ea090",
+        "evals/topologies/engos-meta-instruction-editor.json": "62b7a26796c834d3262f5cd9556c197a7e2834cdc1bdead4d26837c91de1a795",
+        "sources/capability-resources/engos-meta-instruction-editor/references/instruction-clarity.md": "cfd61f749bd1dcf07a56a10f36fce091a17d8e9b63b70836fecea8d8a9f63b61",
+        ".codex/skills/engos-meta-instruction-editor/SKILL.md": "f0144508f88f6e3409942a2bdb176b2999fcf149a32875d6dd89d61a50c06d36",
+        ".codex/skills/engos-meta-instruction-editor/resources/capability.json": "0acb98dad0fa26dab362d1c4ebe96184005eb64b8c3216f07b096b2f440dbf2f",
+        ".codex/skills/engos-meta-instruction-editor/resources/references/instruction-clarity.md": "cfd61f749bd1dcf07a56a10f36fce091a17d8e9b63b70836fecea8d8a9f63b61"
+      },
+      "historical_baseline": {
+        "slug": "engos-meta-instruction-editor",
+        "strategy": "head_snapshot",
+        "group": "derived_current",
+        "baseline_path": "ssot/engos-meta-instruction-editor.md",
+        "selected_commit": null,
+        "richness_score": 10,
+        "line_count": 115,
+        "reason": "No git history was available, so the current SSOT body is the strongest available baseline.",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [
+          {
+            "id": "operational_invocation",
+            "kind": "operational_contract",
+            "label": "operational invocation surface",
+            "must_contain": [
+              "## Invocation"
+            ]
+          },
+          {
+            "id": "stepwise_workflow_contract",
+            "kind": "operational_contract",
+            "label": "stepwise workflow contract",
+            "must_contain": [
+              "## Workflow Contract"
+            ]
+          }
+        ],
+        "historical_proof": {},
+        "source": "current_ssot",
+        "verified_by_git_history": false,
+        "has_baseline_text": true
+      },
+      "contract_review_status": "draft",
+      "prior_source_history": [
+        "679d33064104ee6f67ac802682c30d63516e0055 fix: correct two shipped capability file references",
+        "6fbcff2d4a1c3fab4059715c02715d68de00d2cb feat: namespace Core-Prompts capabilities and preserve conversational compatibility"
+      ],
+      "invocation_surface": "skill",
+      "prior_evidence_class": "source/structural history exists; no current accepted comparison verified in indexed evidence"
+    },
+    {
+      "skill": "engos-meta-supercharge",
+      "eligibility": "excluded",
+      "baseline_commit": "9d481a2da04e672e3b52d79bba6cf466af597fa0",
+      "baseline_files": {
+        "ssot/engos-meta-supercharge.md": "8e14b9ae6045083f03b764ec459e5417e6beb89bcd51688225c3308c83433904",
+        ".meta/capabilities/engos-meta-supercharge.json": "90b85c457b991765f8f7f1ccf5b72eba38d9aceb29079b4e511ec3237dfa72af",
+        "evals/contracts/engos-meta-supercharge.json": "b6fb7009892a283075ed0918c485306dae1aee28f74a17a3c6f30f0dfcf617a5",
+        "evals/topologies/engos-meta-supercharge.json": "8fdb6d613c9144cffde8965da8f38e9fb6d22fbaf9f002dbe3e25fa2fe6e8630",
+        "sources/capability-resources/engos-meta-supercharge/references/help-examples.md": "e99377e9262b00bf0c9752c1b0c845dc75d9344b699d2f233588720438e677a7",
+        "sources/capability-resources/engos-meta-supercharge/references/help.md": "9b491928c187ebcc8fe85856754782f7133151a99afc1becf9eeb0f96b9e55a2",
+        "sources/capability-resources/engos-meta-supercharge/references/model-guidance.md": "242cb28d1fedeb07b51e3a016876fb55053463bc610d66ed5202e95bbdc8d5b2",
+        "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md": "2948880659615f25dbcc3ac2d0a27977f20510932a97536b6b9ad24b86b56d49",
+        "sources/capability-resources/engos-meta-supercharge/references/modules/basis.md": "f17ecfb25b1f863ffbdde0909c8900c58b386aa6631ecbed8a26c1dc9d4176c2",
+        "sources/capability-resources/engos-meta-supercharge/references/modules/catchup.md": "4e7a94bf82cc0531b0778efba4c6906fb421ec578fcad3dd9c260ed40e69afa2",
+        "sources/capability-resources/engos-meta-supercharge/references/modules/contract.md": "15f72081c0f36d7ccba4c58c1202e79d96aad9c4ff704b16f08f26c9a91234ea",
+        "sources/capability-resources/engos-meta-supercharge/references/modules/full.md": "f97d60c8609bdbc1da6dc09b94b88b40d8ba6eb076d148f5ada6f850de41231c",
+        "sources/capability-resources/engos-meta-supercharge/references/modules/gaslight.md": "005f349510bd5a6b41760ed66eee9fe31499fd44e5bd51af3421036ed1ad6eca",
+        "sources/capability-resources/engos-meta-supercharge/references/modules/grade.md": "a605e4d384f5d9b16e459a96c7e10d7dec52e6496c3e650b7fdbbc32d94af86a",
+        "sources/capability-resources/engos-meta-supercharge/references/modules/invert.md": "7750f226cc0da7f1237b23f3f13bc5e7212163e8dcaf94d92638e55a14015f40",
+        "sources/capability-resources/engos-meta-supercharge/references/modules/simple.md": "8ee70354b7b346145095eb1081732d93166ef79187e2b312a269f4a741e29770",
+        "sources/capability-resources/engos-meta-supercharge/references/modules/stop-ult.md": "c8485bf36b587b8252c1481669e51d920306c12b55143918692de95540a56425",
+        "sources/capability-resources/engos-meta-supercharge/references/modules/ult.md": "feefa5eeca27af194bf359ab795cae62dfdadc26701b0e6a83425c28f66e68d2",
+        "sources/capability-resources/engos-meta-supercharge/references/shared-review.md": "92fe588ebc996fa935204ced17e9761dd8927d7ee6906466988af0ee2285d791",
+        "sources/capability-resources/engos-meta-supercharge/resource-map.json": "56fee7ec78e0bac117fb3f517e8577890cfa638c3ac3a758f236ec64ee3df91f",
+        ".codex/skills/engos-meta-supercharge/SKILL.md": "45876c214125d46e8bc5d8c9b8dae09d1faedac49a0c039ddd36d2d0eea57e3e",
+        ".codex/skills/engos-meta-supercharge/resources/capability.json": "90b85c457b991765f8f7f1ccf5b72eba38d9aceb29079b4e511ec3237dfa72af",
+        ".codex/skills/engos-meta-supercharge/resources/references/help-examples.md": "e99377e9262b00bf0c9752c1b0c845dc75d9344b699d2f233588720438e677a7",
+        ".codex/skills/engos-meta-supercharge/resources/references/help.md": "9b491928c187ebcc8fe85856754782f7133151a99afc1becf9eeb0f96b9e55a2",
+        ".codex/skills/engos-meta-supercharge/resources/references/model-guidance.md": "242cb28d1fedeb07b51e3a016876fb55053463bc610d66ed5202e95bbdc8d5b2",
+        ".codex/skills/engos-meta-supercharge/resources/references/modules/adversarial.md": "2948880659615f25dbcc3ac2d0a27977f20510932a97536b6b9ad24b86b56d49",
+        ".codex/skills/engos-meta-supercharge/resources/references/modules/basis.md": "f17ecfb25b1f863ffbdde0909c8900c58b386aa6631ecbed8a26c1dc9d4176c2",
+        ".codex/skills/engos-meta-supercharge/resources/references/modules/catchup.md": "4e7a94bf82cc0531b0778efba4c6906fb421ec578fcad3dd9c260ed40e69afa2",
+        ".codex/skills/engos-meta-supercharge/resources/references/modules/contract.md": "15f72081c0f36d7ccba4c58c1202e79d96aad9c4ff704b16f08f26c9a91234ea",
+        ".codex/skills/engos-meta-supercharge/resources/references/modules/full.md": "f97d60c8609bdbc1da6dc09b94b88b40d8ba6eb076d148f5ada6f850de41231c",
+        ".codex/skills/engos-meta-supercharge/resources/references/modules/gaslight.md": "005f349510bd5a6b41760ed66eee9fe31499fd44e5bd51af3421036ed1ad6eca",
+        ".codex/skills/engos-meta-supercharge/resources/references/modules/grade.md": "a605e4d384f5d9b16e459a96c7e10d7dec52e6496c3e650b7fdbbc32d94af86a",
+        ".codex/skills/engos-meta-supercharge/resources/references/modules/invert.md": "7750f226cc0da7f1237b23f3f13bc5e7212163e8dcaf94d92638e55a14015f40",
+        ".codex/skills/engos-meta-supercharge/resources/references/modules/simple.md": "8ee70354b7b346145095eb1081732d93166ef79187e2b312a269f4a741e29770",
+        ".codex/skills/engos-meta-supercharge/resources/references/modules/stop-ult.md": "c8485bf36b587b8252c1481669e51d920306c12b55143918692de95540a56425",
+        ".codex/skills/engos-meta-supercharge/resources/references/modules/ult.md": "feefa5eeca27af194bf359ab795cae62dfdadc26701b0e6a83425c28f66e68d2",
+        ".codex/skills/engos-meta-supercharge/resources/references/shared-review.md": "92fe588ebc996fa935204ced17e9761dd8927d7ee6906466988af0ee2285d791",
+        ".codex/skills/engos-meta-supercharge/resources/resource-map.json": "56fee7ec78e0bac117fb3f517e8577890cfa638c3ac3a758f236ec64ee3df91f",
+        ".codex/skills/engos-meta-supercharge/resources/scripts/load_module.py": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150"
+      },
+      "historical_baseline": {
+        "slug": "engos-meta-supercharge",
+        "strategy": "historical_gold",
+        "group": "flattened_regression",
+        "baseline_path": "sources/ssot-baselines/engos-meta-supercharge/baseline.md",
+        "selected_commit": "3bc88b43",
+        "richness_score": 19,
+        "line_count": 526,
+        "reason": "Latest pre-flatten rich body with full activation grammar, help/details contract, module reference, hard constraints, and executable module sections.",
+        "equivalent_commits": [
+          "e4b12fc3",
+          "f6025ddb",
+          "719fb303"
+        ],
+        "expected_companions": [
+          "engos-reconciliation-converge",
+          "engos-memory-context-continuity"
+        ],
+        "operator_invariants": [],
+        "scenario_matrix": [
+          {
+            "id": "individual_ult",
+            "kind": "individual_module",
+            "label": "/ult module contract",
+            "must_contain": [
+              "### HARD CONSTRAINTS (Non-Negotiable)",
+              "### Critical Execution Rule (ULT)",
+              "### Output Structure (MANDATORY)"
+            ]
+          },
+          {
+            "id": "individual_catchup",
+            "kind": "individual_module",
+            "label": "/catchup forensic contract",
+            "must_contain": [
+              "## MODULE: /catchup",
+              "### HARD CONSTRAINTS (Non-Negotiable)",
+              "Validation Status: PASS | FAIL"
+            ]
+          },
+          {
+            "id": "stacked_and_full",
+            "kind": "stacked_or_full",
+            "label": "stacked modules and /full coverage",
+            "must_contain": [
+              "## HELP OUTPUT",
+              "## MODULE REFERENCE",
+              "/full",
+              "/simple",
+              "/invert",
+              "/adversarial",
+              "/contract",
+              "/grade"
+            ]
+          },
+          {
+            "id": "agentic_overlay",
+            "kind": "agentic",
+            "label": "agentic orchestration guidance",
+            "must_contain": [
+              "### Agentic Orchestration (Core Principle, Not a Module)",
+              "### Auto-Routing (Smart Defaults)",
+              "### Reflective Controls (Optional Modifiers)"
+            ]
+          }
+        ],
+        "historical_proof": {
+          "current_head_commit": "0a2c1e46",
+          "current_head_richness_score": 2,
+          "current_head_line_count": 162,
+          "materialized_from_commit": "3bc88b43"
+        },
+        "source": "source_library",
+        "verified_by_git_history": true,
+        "has_baseline_text": true
+      },
+      "contract_review_status": "draft",
+      "prior_source_history": [
+        "124f2661c07668f68783e8e64de5fdfbd9daada6 Use stable improvement artifacts and preserve bootstrap state",
+        "f5e92c92e74282707fc42b8bb447d4e9b954bbaa feat: modernize capability improvement and verified resource delivery",
+        "b5dbf3179ed10e50028055e2e049bc26a1d0f8c2 refactor(supercharge): load terminal help from bundled references"
+      ],
+      "invocation_surface": "both",
+      "prior_evidence_class": "source/structural history exists; no current accepted comparison verified in indexed evidence"
+    },
+    {
+      "skill": "engos-meta-uac-import",
+      "eligibility": "eligible",
+      "baseline_commit": "9d481a2da04e672e3b52d79bba6cf466af597fa0",
+      "baseline_files": {
+        "ssot/engos-meta-uac-import.md": "4d81b852a81e7d1cc8b18d41c50b36c9ce97515db66aa1984940eae8e3526571",
+        ".meta/capabilities/engos-meta-uac-import.json": "8574843e35eba40ac5054a048e1e4126e7c476f49edf7600fd9b67e4decdf7e1",
+        "evals/contracts/engos-meta-uac-import.json": "3011400365a9b771c6e96ea3be8782fb59d04e294854d3e6174c46fbffe83249",
+        "evals/topologies/engos-meta-uac-import.json": "702975a19979cd2ae91c669d215eabdb3e0f9312ed103b98e77f8b1c87176ee3",
+        ".codex/skills/engos-meta-uac-import/SKILL.md": "d0ee1c30402b02186972ec8a51a5660cdcffb8a2009ef2cecbc5ec918dbb6866",
+        ".codex/skills/engos-meta-uac-import/resources/capability.json": "8574843e35eba40ac5054a048e1e4126e7c476f49edf7600fd9b67e4decdf7e1"
+      },
+      "historical_baseline": {
+        "slug": "engos-meta-uac-import",
+        "strategy": "head_snapshot",
+        "group": "current_oracle",
+        "baseline_path": "sources/ssot-baselines/engos-meta-uac-import/baseline.md",
+        "selected_commit": "4bb1f7e5",
+        "richness_score": 2,
+        "line_count": 145,
+        "reason": "Current SSOT baseline source snapshot materialized into the source library because no stronger curated pre-SSOT baseline has been recorded yet.",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [],
+        "historical_proof": {
+          "current_head_commit": "4bb1f7e5",
+          "current_head_richness_score": 2,
+          "current_head_line_count": 145,
+          "materialized_from_commit": "4bb1f7e5"
+        },
+        "source": "source_library",
+        "verified_by_git_history": true,
+        "has_baseline_text": true
+      },
+      "contract_review_status": "draft",
+      "prior_source_history": [
+        "f5e92c92e74282707fc42b8bb447d4e9b954bbaa feat: modernize capability improvement and verified resource delivery",
+        "6fbcff2d4a1c3fab4059715c02715d68de00d2cb feat: namespace Core-Prompts capabilities and preserve conversational compatibility"
+      ],
+      "invocation_surface": "skill",
+      "prior_evidence_class": "source/structural history exists; no current accepted comparison verified in indexed evidence"
+    },
+    {
+      "skill": "engos-operations-ic-assistant",
+      "eligibility": "eligible",
+      "baseline_commit": "9d481a2da04e672e3b52d79bba6cf466af597fa0",
+      "baseline_files": {
+        "ssot/engos-operations-ic-assistant.md": "6466ebb1f2e1de5533271f3ed99f6b5a5b63e0513f9d262500e0ddaee62bd12e",
+        ".meta/capabilities/engos-operations-ic-assistant.json": "d0ed4ca0edddbe91d30535cb8bbc19483c02828bdc01b180f77757044896f276",
+        "evals/contracts/engos-operations-ic-assistant.json": "c19aaf6e95d61945b205f9f197ebd7a4907a23191e18412eda2631f39fd9d3a9",
+        "evals/topologies/engos-operations-ic-assistant.json": "625b97409d1a14b916230d04fc15f075e69066c730cb1699533a66a08c41ff5c",
+        "sources/capability-resources/engos-operations-ic-assistant/appian-incident-runbook.md": "466b84c35a716a9c9da09bc5d3f19c5b2b2724b55bf52aee62b7df5869f08033",
+        ".codex/skills/engos-operations-ic-assistant/SKILL.md": "7b8a3826ba6506270a86ffeaeaf964ac9efd7e015faff5c8607f7d5da286fa2f",
+        ".codex/skills/engos-operations-ic-assistant/resources/appian-incident-runbook.md": "466b84c35a716a9c9da09bc5d3f19c5b2b2724b55bf52aee62b7df5869f08033",
+        ".codex/skills/engos-operations-ic-assistant/resources/capability.json": "d0ed4ca0edddbe91d30535cb8bbc19483c02828bdc01b180f77757044896f276"
+      },
+      "historical_baseline": {
+        "slug": "engos-operations-ic-assistant",
+        "strategy": "candidate_seed",
+        "group": "new_or_untracked",
+        "baseline_path": "sources/ssot-baselines/engos-operations-ic-assistant/baseline.md",
+        "selected_commit": null,
+        "richness_score": 8,
+        "line_count": 466,
+        "reason": "No registry entry or git history available; use the candidate as the provisional seed baseline.",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [],
+        "historical_proof": {},
+        "source": "candidate_seed",
+        "verified_by_git_history": false,
+        "has_baseline_text": true
+      },
+      "contract_review_status": "draft",
+      "prior_source_history": [
+        "6fbcff2d4a1c3fab4059715c02715d68de00d2cb feat: namespace Core-Prompts capabilities and preserve conversational compatibility"
+      ],
+      "invocation_surface": "both",
+      "prior_evidence_class": "source/structural history exists; no current accepted comparison verified in indexed evidence"
+    },
+    {
+      "skill": "engos-optimization-auto-research",
+      "eligibility": "excluded",
+      "baseline_commit": "9d481a2da04e672e3b52d79bba6cf466af597fa0",
+      "baseline_files": {
+        "ssot/engos-optimization-auto-research.md": "3fa24f3530ead49b7e98afb2ac09469e04244e027cd068e4c1559e41068c411d",
+        ".meta/capabilities/engos-optimization-auto-research.json": "2e5bb852fd98616fef5c59ce3dd7fda57b1c9150d44cdd63e0846279772680bd",
+        "evals/contracts/engos-optimization-auto-research.json": "42d0961cc6162e51efe46bb9e75425d347f8767c47c240a6cb275cc0c32197c7",
+        "evals/topologies/engos-optimization-auto-research.json": "ce373332277eae867e4f2749f77201bab74f3e2da6f1be73172f640c97f5cd92",
+        "sources/capability-resources/engos-optimization-auto-research/bootstrap.py": "3eff93af273920c02740faf7e53550026ef6dfbabbae108048cf93dccca1c6f4",
+        "sources/capability-resources/engos-optimization-auto-research/references/experiment-loop.md": "c913ea95e9a42ad8485f8dd6807021d2f03d84913c8012291c1bc78584b05c57",
+        "sources/capability-resources/engos-optimization-auto-research/references/resource-delivery.md": "e9232c7a9417584fa2f92ad8b5b209af32bb2770ebf3a6cc01e5e1c76c691ed0",
+        "sources/capability-resources/engos-optimization-auto-research/resource-map.json": "a485f7eaf1c508e21d130f75ab04c44966ac9700c0a4d33f0d9ad8443bad9dc8",
+        "sources/capability-resources/engos-optimization-auto-research/templates/experiment-ledger.md.tmpl": "5fb35a2a5f0c25dbbe262ad97f55606978a742e61428f61a8dc59191d37b745b",
+        "sources/capability-resources/engos-optimization-auto-research/templates/goal-contract.md.tmpl": "f5ce6157f5b6030491158f99d56b350dc5a60e1d899f8cf9fdcc50c2977846ed",
+        "sources/capability-resources/engos-optimization-auto-research/templates/promotion-packet.md.tmpl": "baa7a3d81d84cecfa2cc5374e7777b7a196a232b419132b4f7284bfc58b33c77",
+        "sources/capability-resources/engos-optimization-auto-research/templates/scorecard.json.tmpl": "a905e3211e3001698debf4a5bfd9cb45e5c493b3fb29f91e5bad8d69771a243e",
+        ".codex/skills/engos-optimization-auto-research/SKILL.md": "74bd3d63a270ed036f66b71b49383d0b0f630184c11af62aff739dd73755a001",
+        ".codex/skills/engos-optimization-auto-research/resources/bootstrap.py": "3eff93af273920c02740faf7e53550026ef6dfbabbae108048cf93dccca1c6f4",
+        ".codex/skills/engos-optimization-auto-research/resources/capability.json": "2e5bb852fd98616fef5c59ce3dd7fda57b1c9150d44cdd63e0846279772680bd",
+        ".codex/skills/engos-optimization-auto-research/resources/references/experiment-loop.md": "c913ea95e9a42ad8485f8dd6807021d2f03d84913c8012291c1bc78584b05c57",
+        ".codex/skills/engos-optimization-auto-research/resources/references/resource-delivery.md": "e9232c7a9417584fa2f92ad8b5b209af32bb2770ebf3a6cc01e5e1c76c691ed0",
+        ".codex/skills/engos-optimization-auto-research/resources/resource-map.json": "a485f7eaf1c508e21d130f75ab04c44966ac9700c0a4d33f0d9ad8443bad9dc8",
+        ".codex/skills/engos-optimization-auto-research/resources/scripts/load_module.py": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+        ".codex/skills/engos-optimization-auto-research/resources/templates/experiment-ledger.md.tmpl": "5fb35a2a5f0c25dbbe262ad97f55606978a742e61428f61a8dc59191d37b745b",
+        ".codex/skills/engos-optimization-auto-research/resources/templates/goal-contract.md.tmpl": "f5ce6157f5b6030491158f99d56b350dc5a60e1d899f8cf9fdcc50c2977846ed",
+        ".codex/skills/engos-optimization-auto-research/resources/templates/promotion-packet.md.tmpl": "baa7a3d81d84cecfa2cc5374e7777b7a196a232b419132b4f7284bfc58b33c77",
+        ".codex/skills/engos-optimization-auto-research/resources/templates/scorecard.json.tmpl": "a905e3211e3001698debf4a5bfd9cb45e5c493b3fb29f91e5bad8d69771a243e"
+      },
+      "historical_baseline": {
+        "slug": "engos-optimization-auto-research",
+        "strategy": "source_library",
+        "group": "applied_baseline",
+        "baseline_path": "sources/ssot-baselines/engos-optimization-auto-research/baseline.md",
+        "selected_commit": null,
+        "richness_score": 2,
+        "line_count": 186,
+        "reason": "Repo-resident baseline source snapshot used as the fidelity oracle for future UAC judging.",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [],
+        "historical_proof": {
+          "materialized_from_commit": null,
+          "last_materialized_at": "2026-04-04T12:21:31.756292+00:00"
+        },
+        "source": "source_library",
+        "verified_by_git_history": false,
+        "has_baseline_text": true
+      },
+      "contract_review_status": "draft",
+      "prior_source_history": [
+        "124f2661c07668f68783e8e64de5fdfbd9daada6 Use stable improvement artifacts and preserve bootstrap state",
+        "f5e92c92e74282707fc42b8bb447d4e9b954bbaa feat: modernize capability improvement and verified resource delivery",
+        "c2c80c46e8ad191a1715a49d4f01d65a0536a076 Merge accepted namespace into harness and Loopy integration"
+      ],
+      "invocation_surface": "both",
+      "prior_evidence_class": "source/structural history exists; no current accepted comparison verified in indexed evidence"
+    },
+    {
+      "skill": "engos-orchestration-batman",
+      "eligibility": "eligible",
+      "baseline_commit": "9d481a2da04e672e3b52d79bba6cf466af597fa0",
+      "baseline_files": {
+        "ssot/engos-orchestration-batman.md": "b42b9b7ac9aca951e50373b848e156160b868d9b58b0099a971078bf2aca4252",
+        ".meta/capabilities/engos-orchestration-batman.json": "7c7aa767dce2d11f3013a802f3dd65ce70cb7fbd83fde7eabeff3380512ed3d6",
+        "evals/contracts/engos-orchestration-batman.json": "5aed7cb19ca865f0f7d95f2e468630999836e09f0b81996972db7184f475e031",
+        "evals/topologies/engos-orchestration-batman.json": "72dbea2c1616d7b0a3ccc7626f2e3c828737153651972314a08d9f094526be6e",
+        ".codex/skills/engos-orchestration-batman/SKILL.md": "3a3af73bf581c9311165aad3aec9c3b73ce0684fcd25a2d756e86be9fa7ef664",
+        ".codex/skills/engos-orchestration-batman/resources/capability.json": "7c7aa767dce2d11f3013a802f3dd65ce70cb7fbd83fde7eabeff3380512ed3d6"
+      },
+      "historical_baseline": {
+        "slug": "engos-orchestration-batman",
+        "strategy": "candidate_seed",
+        "group": "new_or_untracked",
+        "baseline_path": null,
+        "selected_commit": null,
+        "richness_score": 5,
+        "line_count": 276,
+        "reason": "No registry entry or git history available; use the candidate as the provisional seed baseline.",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [],
+        "historical_proof": {},
+        "source": "candidate_seed",
+        "verified_by_git_history": false,
+        "has_baseline_text": true
+      },
+      "contract_review_status": "draft",
+      "prior_source_history": [
+        "6fbcff2d4a1c3fab4059715c02715d68de00d2cb feat: namespace Core-Prompts capabilities and preserve conversational compatibility"
+      ],
+      "invocation_surface": "both",
+      "prior_evidence_class": "source/structural history exists; no current accepted comparison verified in indexed evidence"
+    },
+    {
+      "skill": "engos-quality-code-review",
+      "eligibility": "eligible",
+      "baseline_commit": "9d481a2da04e672e3b52d79bba6cf466af597fa0",
+      "baseline_files": {
+        "ssot/engos-quality-code-review.md": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5",
+        ".meta/capabilities/engos-quality-code-review.json": "0a95571685b23ca15c1adbd11b2111b8e6017c81533cde4e6f2bad6ae872c414",
+        "evals/contracts/engos-quality-code-review.json": "699b6411ec98770959959558712e118251a93ffa1cab129ee611db879256375a",
+        "evals/topologies/engos-quality-code-review.json": "18b2515e2a5dc6999470564d16dfffe5eb3129039f23325bd3a2232f1dd7ef69",
+        ".codex/skills/engos-quality-code-review/SKILL.md": "f4addcd44481dc440627acb5872c685dda4a7be94c40c7235b5b852772608364",
+        ".codex/skills/engos-quality-code-review/resources/capability.json": "0a95571685b23ca15c1adbd11b2111b8e6017c81533cde4e6f2bad6ae872c414"
+      },
+      "historical_baseline": {
+        "slug": "engos-quality-code-review",
+        "strategy": "head_snapshot",
+        "group": "additive_preserved",
+        "baseline_path": "sources/ssot-baselines/engos-quality-code-review/baseline.md",
+        "selected_commit": "a78c1c21",
+        "richness_score": 4,
+        "line_count": 236,
+        "reason": "Latest additive version preserves the full commit-review procedure and sharpens boundaries plus companion routing.",
+        "equivalent_commits": [],
+        "expected_companions": [
+          "engos-quality-gitops-review",
+          "engos-quality-testing-review",
+          "engos-design-architecture",
+          "engos-quality-docs-review"
+        ],
+        "operator_invariants": [],
+        "scenario_matrix": [
+          {
+            "id": "commit_review_procedure",
+            "kind": "individual_module",
+            "label": "commit review procedure and checklists",
+            "must_contain": [
+              "## Review Process",
+              "### 1. Capture the Commit",
+              "### 3. Commit Message Quality Checklist",
+              "### 4. Check Scope and Complexity",
+              "### 5. Check Code Risk"
+            ]
+          }
+        ],
+        "historical_proof": {
+          "current_head_commit": "a78c1c21",
+          "current_head_richness_score": 4,
+          "current_head_line_count": 237,
+          "materialized_from_commit": "a78c1c21"
+        },
+        "source": "source_library",
+        "verified_by_git_history": true,
+        "has_baseline_text": true
+      },
+      "contract_review_status": "draft",
+      "prior_source_history": [
+        "6fbcff2d4a1c3fab4059715c02715d68de00d2cb feat: namespace Core-Prompts capabilities and preserve conversational compatibility"
+      ],
+      "invocation_surface": "skill",
+      "prior_evidence_class": "source/structural history exists; no current accepted comparison verified in indexed evidence"
+    },
+    {
+      "skill": "engos-quality-docs-review",
+      "eligibility": "eligible",
+      "baseline_commit": "9d481a2da04e672e3b52d79bba6cf466af597fa0",
+      "baseline_files": {
+        "ssot/engos-quality-docs-review.md": "96ee5bbcbc8bc56fc39cd4765324f15fea7c7f947b700e59c799088fc7276017",
+        ".meta/capabilities/engos-quality-docs-review.json": "10c3355a3f80a434f5c10551903ba00a6360d91bb04220fbdffaf28ed43b8367",
+        "evals/contracts/engos-quality-docs-review.json": "dc583027d0c3a331006e74866a3fe6418e7fb5d72a092e257b7fc78001a4605d",
+        "evals/topologies/engos-quality-docs-review.json": "0f67276bb57b0373c948eac2a6a60d11f3808e6acde30b3a089089361dc49003",
+        ".codex/skills/engos-quality-docs-review/SKILL.md": "a7c5e16270b6d3b7d6134e30b9fa21482dd61c338aad737cf66ab3313436a72d",
+        ".codex/skills/engos-quality-docs-review/resources/capability.json": "10c3355a3f80a434f5c10551903ba00a6360d91bb04220fbdffaf28ed43b8367"
+      },
+      "historical_baseline": {
+        "slug": "engos-quality-docs-review",
+        "strategy": "head_snapshot",
+        "group": "current_oracle",
+        "baseline_path": "sources/ssot-baselines/engos-quality-docs-review/baseline.md",
+        "selected_commit": "0a2c1e46",
+        "richness_score": 2,
+        "line_count": 143,
+        "reason": "Current SSOT baseline source snapshot materialized into the source library because no stronger curated pre-SSOT baseline has been recorded yet.",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [],
+        "historical_proof": {
+          "current_head_commit": "0a2c1e46",
+          "current_head_richness_score": 2,
+          "current_head_line_count": 143,
+          "materialized_from_commit": "0a2c1e46"
+        },
+        "source": "source_library",
+        "verified_by_git_history": true,
+        "has_baseline_text": true
+      },
+      "contract_review_status": "draft",
+      "prior_source_history": [
+        "6fbcff2d4a1c3fab4059715c02715d68de00d2cb feat: namespace Core-Prompts capabilities and preserve conversational compatibility"
+      ],
+      "invocation_surface": "both",
+      "prior_evidence_class": "source/structural history exists; no current accepted comparison verified in indexed evidence"
+    },
+    {
+      "skill": "engos-quality-gitops-review",
+      "eligibility": "eligible",
+      "baseline_commit": "9d481a2da04e672e3b52d79bba6cf466af597fa0",
+      "baseline_files": {
+        "ssot/engos-quality-gitops-review.md": "16b0acfd3bf5f4705b8e9dd772cf2cd347bbe656a91a52605cf5d183151de7e9",
+        ".meta/capabilities/engos-quality-gitops-review.json": "2ce8b8ed49f2b6812b7ca33c36b0669290f47a32b978570fb7de9661592355fd",
+        "evals/contracts/engos-quality-gitops-review.json": "9f742944bc108a531a125b311c1c97fe0796743fa17e218ccc29a1233eadac0d",
+        "evals/topologies/engos-quality-gitops-review.json": "584a80952f3fff5e94aae0d13ea841fda1913c85b23740b701038cc8f7f50af4",
+        ".codex/skills/engos-quality-gitops-review/SKILL.md": "e44f6b347bf7ff7b616ce2f6c2598ed72fe31ba4e2b91e9fa4405076354ffde4",
+        ".codex/skills/engos-quality-gitops-review/resources/capability.json": "2ce8b8ed49f2b6812b7ca33c36b0669290f47a32b978570fb7de9661592355fd"
+      },
+      "historical_baseline": {
+        "slug": "engos-quality-gitops-review",
+        "strategy": "head_snapshot",
+        "group": "single_history",
+        "baseline_path": "sources/ssot-baselines/engos-quality-gitops-review/baseline.md",
+        "selected_commit": "4e16d6a4",
+        "richness_score": 2,
+        "line_count": 149,
+        "reason": "Only version currently present in repo history; use as default oracle until a stronger historical body exists.",
+        "equivalent_commits": [],
+        "expected_companions": [
+          "engos-quality-code-review",
+          "engos-quality-docs-review",
+          "engos-quality-testing-review",
+          "engos-design-architecture"
+        ],
+        "operator_invariants": [],
+        "scenario_matrix": [
+          {
+            "id": "gate_and_release_contract",
+            "kind": "individual_module",
+            "label": "gitops gate contract",
+            "must_contain": [
+              "## Workflow",
+              "## Required Output",
+              "## Required Companion Reviews",
+              "## Review Timing"
+            ]
+          }
+        ],
+        "historical_proof": {
+          "current_head_commit": "4e16d6a4",
+          "current_head_richness_score": 2,
+          "current_head_line_count": 150,
+          "materialized_from_commit": "4e16d6a4"
+        },
+        "source": "source_library",
+        "verified_by_git_history": true,
+        "has_baseline_text": true
+      },
+      "contract_review_status": "draft",
+      "prior_source_history": [
+        "6fbcff2d4a1c3fab4059715c02715d68de00d2cb feat: namespace Core-Prompts capabilities and preserve conversational compatibility"
+      ],
+      "invocation_surface": "both",
+      "prior_evidence_class": "source/structural history exists; no current accepted comparison verified in indexed evidence"
+    },
+    {
+      "skill": "engos-quality-testing-review",
+      "eligibility": "eligible",
+      "baseline_commit": "9d481a2da04e672e3b52d79bba6cf466af597fa0",
+      "baseline_files": {
+        "ssot/engos-quality-testing-review.md": "13fe64494de3a09d60ddaad9f6c8824e42b59ff90c456a6a4e0c46018223e71b",
+        ".meta/capabilities/engos-quality-testing-review.json": "e4f1a6aeae7ce9bfb4e77763bc171a58ee68248c6087c3d778c946cacfbce88f",
+        "evals/contracts/engos-quality-testing-review.json": "e3a5ff36e2a9d4bb481eb98367cea6a5d869222263570dea3c1e90a36990329b",
+        "evals/topologies/engos-quality-testing-review.json": "7f59a71ca5732f39de50aede56f441501f67675a58737e982fd991a55d13c14c",
+        ".codex/skills/engos-quality-testing-review/SKILL.md": "4db90293472f89c715895ecb36a1a2133038f7c0a3402cbb4a68bfeb6d2bdfde",
+        ".codex/skills/engos-quality-testing-review/resources/capability.json": "e4f1a6aeae7ce9bfb4e77763bc171a58ee68248c6087c3d778c946cacfbce88f"
+      },
+      "historical_baseline": {
+        "slug": "engos-quality-testing-review",
+        "strategy": "head_snapshot",
+        "group": "current_oracle",
+        "baseline_path": "sources/ssot-baselines/engos-quality-testing-review/baseline.md",
+        "selected_commit": "0a2c1e46",
+        "richness_score": 2,
+        "line_count": 127,
+        "reason": "Current SSOT baseline source snapshot materialized into the source library because no stronger curated pre-SSOT baseline has been recorded yet.",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [],
+        "historical_proof": {
+          "current_head_commit": "0a2c1e46",
+          "current_head_richness_score": 2,
+          "current_head_line_count": 127,
+          "materialized_from_commit": "0a2c1e46"
+        },
+        "source": "source_library",
+        "verified_by_git_history": true,
+        "has_baseline_text": true
+      },
+      "contract_review_status": "draft",
+      "prior_source_history": [
+        "6fbcff2d4a1c3fab4059715c02715d68de00d2cb feat: namespace Core-Prompts capabilities and preserve conversational compatibility"
+      ],
+      "invocation_surface": "skill",
+      "prior_evidence_class": "source/structural history exists; no current accepted comparison verified in indexed evidence"
+    },
+    {
+      "skill": "engos-reconciliation-converge",
+      "eligibility": "eligible",
+      "baseline_commit": "9d481a2da04e672e3b52d79bba6cf466af597fa0",
+      "baseline_files": {
+        "ssot/engos-reconciliation-converge.md": "fbcb272f173f738e769f66d9bf289c862c1bcc851d133a245db5f5f1a056f889",
+        ".meta/capabilities/engos-reconciliation-converge.json": "bfb4ec93aeac20f2e4a944adc2a806229bdace49bf2244cb5b95c38d89e9bd55",
+        "evals/contracts/engos-reconciliation-converge.json": "faeb96931fd56165d8e517a1311f069b5e77a51dde313b30e3b7e734eefd77ec",
+        "evals/topologies/engos-reconciliation-converge.json": "db903d574f0fff7d8d3baeb2bbcd6dac19ad9e1e8a7287dfca52c4df9e7fbd91",
+        ".codex/skills/engos-reconciliation-converge/SKILL.md": "98e2b710728b14c04176d49bddcf01ebb343de77fec0dabf82f0233dc1816633",
+        ".codex/skills/engos-reconciliation-converge/resources/capability.json": "bfb4ec93aeac20f2e4a944adc2a806229bdace49bf2244cb5b95c38d89e9bd55"
+      },
+      "historical_baseline": {
+        "slug": "engos-reconciliation-converge",
+        "strategy": "historical_gold",
+        "group": "flattened_regression",
+        "baseline_path": "sources/ssot-baselines/engos-reconciliation-converge/baseline.md",
+        "selected_commit": "3bc88b43",
+        "richness_score": 5,
+        "line_count": 135,
+        "reason": "Latest portable prompt body that still includes the direct execution prompt, controls, defaults, and explicit phased synthesis behavior.",
+        "equivalent_commits": [
+          "e4b12fc3",
+          "f6025ddb",
+          "0f686cfe"
+        ],
+        "expected_companions": [
+          "engos-meta-supercharge"
+        ],
+        "operator_invariants": [],
+        "scenario_matrix": [
+          {
+            "id": "portable_prompt_body",
+            "kind": "individual_module",
+            "label": "portable prompt block",
+            "must_contain": [
+              "## The Prompt (paste into the target AI)",
+              "~~~~text",
+              "=== PHASE 1: INGEST & MAP ===",
+              "=== PHASE 7: OUTPUT ==="
+            ]
+          },
+          {
+            "id": "controls_and_tradeoffs",
+            "kind": "stacked_or_full",
+            "label": "controls and conflict handling",
+            "must_contain": [
+              "/swot",
+              "/mcda",
+              "/conflicts",
+              "Do NOT create a \u201cFrankenstein\u201d merge",
+              "Final Converged Proposal"
+            ]
+          }
+        ],
+        "historical_proof": {
+          "current_head_commit": "0a2c1e46",
+          "current_head_richness_score": 2,
+          "current_head_line_count": 133,
+          "materialized_from_commit": "3bc88b43"
+        },
+        "source": "source_library",
+        "verified_by_git_history": true,
+        "has_baseline_text": true
+      },
+      "contract_review_status": "draft",
+      "prior_source_history": [
+        "6fbcff2d4a1c3fab4059715c02715d68de00d2cb feat: namespace Core-Prompts capabilities and preserve conversational compatibility"
+      ],
+      "invocation_surface": "both",
+      "prior_evidence_class": "source/structural history exists; no current accepted comparison verified in indexed evidence"
+    },
+    {
+      "skill": "engos-triage-my-inbox-chat-pulse",
+      "eligibility": "eligible",
+      "baseline_commit": "9d481a2da04e672e3b52d79bba6cf466af597fa0",
+      "baseline_files": {
+        "ssot/engos-triage-my-inbox-chat-pulse.md": "060d5a6699fc59a8296075875305e6512b0dcbe82d64884e4c07407a9d2bcbae",
+        ".meta/capabilities/engos-triage-my-inbox-chat-pulse.json": "6d122bf0d0389955160d9e91342b636a66805d38fc154f4b029547e73bb875ca",
+        "evals/contracts/engos-triage-my-inbox-chat-pulse.json": "afa6acacb80813e7ec878a5865757da8811f0f87bc3767985b0adc572e1ce4c9",
+        "evals/topologies/engos-triage-my-inbox-chat-pulse.json": "17646b2fa7442fa8e414c79218f6d564f04425e5f60ca13f3435e4f3d3162111",
+        ".codex/skills/engos-triage-my-inbox-chat-pulse/SKILL.md": "d1e397f8b8ce136b31034bdc73b9b63bb0156b3ca07834a3ce4f035a6c4bb8d2",
+        ".codex/skills/engos-triage-my-inbox-chat-pulse/resources/capability.json": "6d122bf0d0389955160d9e91342b636a66805d38fc154f4b029547e73bb875ca"
+      },
+      "historical_baseline": {
+        "slug": "engos-triage-my-inbox-chat-pulse",
+        "strategy": "derived_history",
+        "group": "derived",
+        "baseline_path": "sources/ssot-baselines/engos-triage-my-inbox-chat-pulse/baseline.md",
+        "selected_commit": "22aa8d5d",
+        "richness_score": 2,
+        "line_count": 86,
+        "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [],
+        "historical_proof": {},
+        "source": "git_history",
+        "verified_by_git_history": true,
+        "has_baseline_text": true
+      },
+      "contract_review_status": "draft",
+      "prior_source_history": [
+        "6fbcff2d4a1c3fab4059715c02715d68de00d2cb feat: namespace Core-Prompts capabilities and preserve conversational compatibility"
+      ],
+      "invocation_surface": "both",
+      "prior_evidence_class": "source/structural history exists; no current accepted comparison verified in indexed evidence"
+    },
+    {
+      "skill": "loopy",
+      "eligibility": "excluded",
+      "baseline_commit": "9d481a2da04e672e3b52d79bba6cf466af597fa0",
+      "baseline_files": {
+        "ssot/loopy.md": "7874aa30ad4fe322876f2c04b7cee447217311213ce6a835846aff298760f73c",
+        ".meta/capabilities/loopy.json": "492911da0015d8c8b39afaad1f7522b045037ba93485fec45a45c934ef8061fb",
+        "evals/contracts/loopy.json": "8b39b24141f525bf69f9443c5ccbedb6292c20f2a20fe5ee96b0df636d1036a5",
+        "evals/topologies/loopy.json": "e633b0b0289ed71767c2010bf722ca527520483729fb3415ec2ab040b97156a3",
+        ".codex/skills/loopy/LICENSE": "499ee96ced52e2f9829abc848119f1e5f2c6d2085a261d654968297839b628cc",
+        ".codex/skills/loopy/SKILL.md": "970840535f113e40d0a3d1ed379d26ec9052e0e2f05ad0c3185cb1b8e289b303",
+        ".codex/skills/loopy/agents/openai.yaml": "192879afaec992ec273aa2795eebd5206baa5c4be88cb725e7f68e369c709102",
+        ".codex/skills/loopy/references/audit.md": "c58d26f53df9a762c40f7d0286f7f0fa31812a2ce85cb8c368adc0bb0fb2906f",
+        ".codex/skills/loopy/references/debrief.md": "909669215acd8aa68c582fbe50aea7d3bdc0195878f12560ce35bcdf029c88da",
+        ".codex/skills/loopy/references/discover.md": "f3c46e4cc66740e99eda7df026e1be8ff582b33c8874eff4aeff2ebe291a453a",
+        ".codex/skills/loopy/references/publish.md": "d4a32db541fa9d619546046acd6adfc20f42c83cce5274d8f060acc9415f4e82",
+        ".codex/skills/loopy/references/run.md": "2f27835d5e4d06b67e334813665aeb6ede5daa8c03c6ffba3765751be8b533c4",
+        ".codex/skills/loopy/resources/capability.json": "492911da0015d8c8b39afaad1f7522b045037ba93485fec45a45c934ef8061fb"
+      },
+      "historical_baseline": {
+        "slug": "loopy",
+        "strategy": "candidate_seed",
+        "group": "new_or_untracked",
+        "baseline_path": null,
+        "selected_commit": null,
+        "richness_score": 5,
+        "line_count": 326,
+        "reason": "No registry entry or git history available; use the candidate as the provisional seed baseline.",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [],
+        "historical_proof": {},
+        "source": "candidate_seed",
+        "verified_by_git_history": false,
+        "has_baseline_text": true
+      },
+      "contract_review_status": "draft",
+      "prior_source_history": [
+        "938595a90425f62eaceb426fe054629e5cbcc8ea feat: preserve and package Loopy through the repaired UAC gate"
+      ],
+      "invocation_surface": "skill",
+      "prior_evidence_class": "source/structural history exists; no current accepted comparison verified in indexed evidence"
+    }
+  ]
+}

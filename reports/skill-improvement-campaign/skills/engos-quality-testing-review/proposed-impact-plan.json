@@ -1,0 +1,14 @@
+{
+  "schema_version": "EvalImpactPlan.v1",
+  "slug": "engos-quality-testing-review",
+  "change_classes": [
+    "module_output",
+    "safety",
+    "state"
+  ],
+  "affected_clause_ids": [],
+  "minimum_profile": "promotion",
+  "hard_token_cap": 5000000,
+  "narrowing_policy": "reviewed waiver required; narrowed runs cannot claim full promotion",
+  "deterministic_fail_fast": true
+}
