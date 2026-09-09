@@ -1,12 +1,12 @@
 # Campaign ledger
 
-Last setup checkpoint: 2026-09-09. Baseline and incumbent for every eligible skill: `9d481a2da04e672e3b52d79bba6cf466af597fa0`; no candidate has advanced an incumbent. [Charter](charter.md) holds scope and comparison contract; [baseline-inventory.json](baseline-inventory.json) holds full file hashes, historical source references and recent source commits. This is development workflow evidence, not a shipped capability.
+Historical setup checkpoint: 2026-09-09. Current delivery state is available through the paired review links below; this record does not infer later CI/merge outcomes. Baseline and incumbent for every eligible skill: `9d481a2da04e672e3b52d79bba6cf466af597fa0`; no candidate has advanced an incumbent. [Charter](charter.md) holds scope and comparison contract; [baseline-inventory.json](baseline-inventory.json) holds full file hashes, historical source references and recent source commits. This is development workflow evidence, not a shipped capability.
 
 ## Owner and delivery state
 
 | Responsibility | Actual identity | State / next action |
 | --- | --- | --- |
-| Coordinator and shared admission | `01a08880-cb62-7703-8061-659a0cf7ae45`, `6c79/Core-Prompts`, `AI/skill-improvement-campaign` | Prepare reviewed setup integration and resolve shared gate below |
+| Coordinator and shared admission | `01a08880-cb62-7703-8061-659a0cf7ae45`, `6c79/Core-Prompts`, `AI/skill-improvement-campaign` | First-wave setup integrated; paired reviews #68 / !70; next shared admission owner |
 | Docs Review | `01a08882-bb6f-79c3-9c1b-4cc08d4d024b`, `8518/Core-Prompts`, `AI/campaign-docs-review` | Setup complete; owner commit 799fe2d integrated as 8a19e76; incumbent retained, blocked G1–G5 |
 | Testing Review | `01a08882-d047-7e80-bea7-f7ebf956d191`, `611a/Core-Prompts`, `AI/campaign-testing-review` | Setup complete; owner commit e534396 integrated as b96c718; incumbent retained, blocked G1–G5 |
 | Independent admission assessment | `/root/admission_assessment`, fresh no-history read-only subagent | Complete; shared defects identified below, zero experimental calls |
@@ -110,7 +110,7 @@ Stop on one frozen candidate pilot completion, exhausted cap/deadline, material 
 - Independent setup review passed after correcting two missing invocation-surface fields and clarifying prospective versus incurred token budgets; [receipt](independent-review.json). Independent public-fixture review passed (Docs six seeded defects plus eight fault controls; Testing nine mutants and 52 reproducible observations), bound snapshots retained under `review-evidence/`.
 - Packaging preparation initially failed 4 tests because `dist/consumer-shell` had not been generated. An attempted `build --help` invoked generation and hit sandbox protection after 16 generated files were removed; exact HEAD bytes/modes were restored. The complete build then passed with `CORE_PROMPTS_RELEASE_BASE_REF=v1.13.2`; its incidental generated STATUS change was restored to keep this setup slice scoped. This is a CLI help-behavior finding for the existing wrapper/test owner, prevention pending, not a new campaign requirement.
 - Packaging checks rerun after required distribution build: 11 passed in 33.25s. Strict surface validation passed; public-doc contract tests: 5 passed.
-- Docs owner commit: `799fe2d`, scoped public assets only, clean owner worktree; Testing owner commit `e534396` integrated as `b96c718`; both source sets match independently reviewed fixture hashes after integration. Hosted PR/MR pending this checkpoint. No capability candidate accepted, shipped, installed, released or formally promoted.
+- Docs owner commit: `799fe2d`, scoped public assets only, clean owner worktree; Testing owner commit `e534396` integrated as `b96c718`; both source sets match independently reviewed fixture hashes after integration. Paired reviews created: [GitHub PR #68](https://github.com/medhatgalal/Core-Prompts/pull/68), [GitLab MR !70](https://gitlab.appian-stratus.com/medhat.galal/core-prompts/-/merge_requests/70). Initial published candidate `9ac7c75faadecc45886399ea828292d373e592df`; checks were running at publication. Follow the reviews for current head/CI/merge state. No capability candidate accepted, shipped, installed, released or formally promoted.
 
 Trace-to-eval ownership: runtime exposure/credential enforcement → adapters/conformance tests; same-start identity and complete attempts → runner/run-plan tests; retained confirmed defects/common score path → existing evaluator/artifact tests; contract review generalization → review schema/compiler tests. All are proposed integration work, not installed prevention. Excluded Auto-Research templates remain unchanged.
 
