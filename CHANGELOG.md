@@ -1,4 +1,7 @@
-## Unreleased
+## v1.14.0 - 2026-09-08
+
+- Added explicit reviewed, addition-only profile migration for new skill resources and receipt-owned runtime updates. Routine updates still reject changed scope or local customizations.
+- Included the modernization guide in both release archives and rejected packaging while Unreleased changes remain.
 
 - Removed timestamped output defaults from Supercharge, Auto-Research, and synthesized UAC wrappers. Requested durable artifacts use stable paths and Git history; experimental working files remain separate from skill resources.
 - Auto-Research bootstrap now requires an explicit destination, preserves existing trial records on rerun, and creates promotion scaffolding only for `promotion-prep`. Source-less UAC previews no longer impose blanket delegation/workflow bans; missing-source application remains blocked.
@@ -6,6 +9,8 @@
 - Strengthened UAC resource completeness, output/boundary diagnostics, targeted repairs, convergence, and hash-bound independent requirement review without treating structural checks as behavioral promotion.
 - Clarified Auto-Research's executed keep/discard loop, incumbent state, protected evaluator, coordinated mutations, and optimization stopping conditions.
 - Added a portable resource assembler, resource-aware evaluator bindings, and updated discovery examples and evidence guidance.
+
+The legacy global `/stop` command is retired; use `/stop-ult` to exit persistent ULT. Supercharge v5.0 and Auto-Research v2.1 preserve their remaining command/output contracts. Bounded native checks do not establish general model superiority or formal behavioral promotion.
 
 ## v1.13.2 - 2026-09-07
 

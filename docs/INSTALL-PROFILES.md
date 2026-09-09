@@ -48,7 +48,9 @@ The receipt and profile are saved under `.core-prompts-state/profile-install`.
 Later calls through the existing updater use the saved approved profile. They
 build and validate a concrete plan internally, update only receipt-owned unchanged
 skills within the same file scope, and verify every written file afterward.
-Changes to targets, selected file scope, or ownership require a reviewed migration.
+Changes to targets, selected file scope, or ownership stop routine sync and require
+separate review. The addition-only migration below handles new resource files
+within unchanged approved packages.
 Local customizations and unknown files block the routine update before any writes.
 
 Release checking pins the bundle inventory from the clean tagged mirror after the
@@ -75,6 +77,45 @@ item, not successful installation parity.
 `slugs` may restrict the profile to canonical entries. An empty list selects all
 canonical skill entries for the selected clients. No home skill directory is used
 as a source. GWS and other third-party packages remain owned by their installers.
+
+## Migrate new resources within the saved profile
+
+When a release adds resource files to already approved skill packages, use the
+existing profile engine's explicit `--migrate` mode. It retains the exact saved
+profile, targets, slugs, and approved profile hash. Existing selected files and
+standalone runtime files must still match their prior ownership identities. New
+skill files must be absent and declared by the generated manifest; new runtime
+files must be absent and declared by the verified standalone bundle inventory.
+The same transaction refreshes owned skills and runtime files and extends their
+receipt. Ordinary `--sync` continues to reject changes to selected file scope.
+
+Run the direct Python CLI from the verified release source. The shell wrappers
+do not expose `--migrate`. Use the saved profile and review the full plan before
+applying it:
+
+```bash
+python3 scripts/deploy-profile.py --repo "$PWD" --target "$HOME" \
+  --profile "$HOME/.core-prompts-state/profile-install/profile.json" \
+  --migrate --dry-run > /tmp/skill-migration-plan.json
+python3 scripts/deploy-profile.py --repo "$PWD" --target "$HOME" \
+  --profile "$HOME/.core-prompts-state/profile-install/profile.json" \
+  --migrate --apply-plan /tmp/skill-migration-plan.json
+```
+
+Both commands require `--migrate`; a plan cannot grant this authority by itself.
+Apply regenerates the plan in the explicitly selected mode and rejects changes
+to the source, destination, saved profile, receipt, or inspected package inventory.
+All `blockers` must be empty. Review `actions`, `state_actions`, and transaction
+artifacts, including runtime refreshes and receipt changes, before applying.
+
+This mode rejects removals, legacy retirement, changed targets or slugs, new skill
+packages even when the profile selects all slugs, missing prior owned files, and
+unknown or customized package members. It preserves symlink boundaries and never
+adopts an existing unowned file, even if its bytes match the source. Those cases
+need a separately scoped migration; changing the saved profile or ownership
+receipt manually does not establish provenance. Rollback uses the same transaction
+commands below, restoring prior bytes and modes and removing only files that the
+transaction added. Later edits still block rollback.
 
 ## Retire and recover exact managed files
 

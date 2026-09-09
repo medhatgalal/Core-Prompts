@@ -8,6 +8,9 @@ Minimum supported runtime: Python `3.11+`.
 Prefer the repo wrappers for build and validate so the runtime selection stays consistent.
 
 ## Local Release Gate
+
+First verify the comparison baseline and run the release build described below. The full test suite includes archive tests that require the generated `dist/consumer-shell` views. On a clean committed checkout, validate the checked-in surfaces before that build, as CI does.
+
 ```bash
 python3 -m pytest -q
 bin/capability-fabric validate --strict
@@ -19,10 +22,10 @@ python3 scripts/smoke-clis.py
 Before the release build, select and record the previous published release:
 
 ```bash
-CORE_PROMPTS_RELEASE_BASE_REF=v1.13.1 bin/capability-fabric build
+CORE_PROMPTS_RELEASE_BASE_REF=v1.13.2 bin/capability-fabric build
 ```
 
-For this v1.13.2 release the comparison baseline is v1.13.1. Choose the preceding
+For this v1.14.0 release the comparison baseline is v1.13.2. Choose the preceding
 published tag for future releases. The generator supports an explicit baseline
 and otherwise selects the latest distinct ancestor tag available locally. Fetch
 and verify the intended baseline; do not let missing local tags silently turn a
@@ -33,7 +36,7 @@ do not hand-edit its capability counts or alter historical published release not
 ## Build and Dry-Run
 ```bash
 bin/capability-fabric build
-bin/capability-fabric deploy --dry-run --cli all
+bin/capability-fabric deploy --target "$HOME" --allow-nonlocal-target --dry-run --cli all
 ```
 
 For a bounded repair or rollout, use `--surface-only` with at least one `--slug`. Review the exact copy set before the real command; surface-only deploy skips updater, launcher, and local-binary refresh.
@@ -75,6 +78,9 @@ Both archive formats and standalone runtime inventories/copies exclude local Cod
 ## Remote CI
 Do not call the repo release-green until the hosted CI surface is green after push.
 
+The GitLab Python container explicitly installs `zip` for the archive tests; GitHub's hosted Ubuntu runner already provides it.
+GitLab also disables the Docker runner's permissive checkout umask and builds with `umask 022`, so recorded file modes survive safe TAR extraction. See [GitLab runner feature flags](https://docs.gitlab.com/runner/configuration/feature-flags/). Installer byte and mode verification remains strict.
+
 - GitHub Actions:
   - runs on pushes to `main` and `AI/**`
   - runs on `pull_request`
@@ -83,6 +89,8 @@ Do not call the repo release-green until the hosted CI surface is green after pu
 - GitLab CI:
   - runs on branch pushes
   - runs on merge request pipelines
+
+Both providers validate the checked-in surfaces before building the distribution views required by the archive tests. This preserves drift detection on fresh checkouts.
 
 Local release gates retain `bin/capability-fabric validate --strict`, including schema cache checks, so transient hosted network or vendor-doc failures do not mask local schema drift review.
 
