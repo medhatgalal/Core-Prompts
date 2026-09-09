@@ -1,0 +1,168 @@
+{
+  "disclosure": "PUBLIC author-written development examples; never held-out validation",
+  "not_a_scorer": true,
+  "seeded_defects": [
+    {
+      "id": "DOC-STALE-FLAG",
+      "category": "stale_flag",
+      "case": "DOC-PUB-001",
+      "should_flag": true,
+      "evidence": {
+        "path": "README.md",
+        "line": 7,
+        "quote": "Run `python3 cli.py --json`."
+      },
+      "corroboration": {
+        "path": "cli.py",
+        "line": 4,
+        "quote": "p.add_argument(\"--format\", choices=[\"text\", \"json\"], default=\"text\")"
+      },
+      "repair": "Replace only quick-use --json with --format json; the current parser rejects --json.",
+      "matched_control_case": "DOC-PUB-002"
+    },
+    {
+      "id": "DOC-BROKEN-PATH",
+      "category": "broken_path",
+      "case": "DOC-PUB-001",
+      "should_flag": true,
+      "evidence": {
+        "path": "README.md",
+        "line": 9,
+        "quote": "Read the [operator guide](docs/OLD-GUIDE.md)."
+      },
+      "corroboration": {
+        "path": "docs/GUIDE.md",
+        "line": 1,
+        "quote": "# Operator guide"
+      },
+      "repair": "Point the operator-guide link to docs/GUIDE.md; do not create a duplicate OLD-GUIDE.md.",
+      "matched_control_case": "DOC-PUB-002"
+    },
+    {
+      "id": "DOC-BROKEN-ANCHOR",
+      "category": "broken_anchor",
+      "case": "DOC-PUB-001",
+      "should_flag": true,
+      "evidence": {
+        "path": "README.md",
+        "line": 10,
+        "quote": "See [fast start](docs/GUIDE.md#fast-start)."
+      },
+      "corroboration": {
+        "path": "docs/GUIDE.md",
+        "line": 3,
+        "quote": "## Quick start"
+      },
+      "repair": "Change only the fragment from #fast-start to #quick-start; do not rename a valid heading to satisfy the stale link.",
+      "matched_control_case": "DOC-PUB-002"
+    },
+    {
+      "id": "DOC-GENERATED-DRIFT",
+      "category": "generated_drift",
+      "case": "DOC-PUB-001",
+      "should_flag": true,
+      "evidence": {
+        "path": "docs/CATALOG.md",
+        "line": 5,
+        "quote": "- `python3 cli.py --json`"
+      },
+      "corroboration": {
+        "path": "catalog.json",
+        "line": 3,
+        "quote": "    \"python3 cli.py --format json\""
+      },
+      "repair": "Regenerate docs/CATALOG.md from catalog.json using scripts/render_catalog.py in a separately authorized edit; do not hand-edit the generated page or change the correct source to match stale output.",
+      "matched_control_case": "DOC-PUB-002"
+    },
+    {
+      "id": "DOC-WRONG-AUDIENCE",
+      "category": "wrong_audience",
+      "case": "DOC-PUB-001",
+      "should_flag": true,
+      "evidence": {
+        "path": "README.md",
+        "line": 13,
+        "quote": "## Signing-key rotation"
+      },
+      "corroboration": {
+        "path": "AGENTS.md",
+        "line": 4,
+        "quote": "README is for first-use operators; signing-key rotation belongs in docs/MAINTAINER.md."
+      },
+      "repair": "Move the existing signing-key section to docs/MAINTAINER.md and leave a README link; preserve its substantive text, invent no key-rotation policy.",
+      "matched_control_case": "DOC-PUB-002"
+    },
+    {
+      "id": "DOC-RELEASE-GUIDANCE",
+      "category": "release_guidance",
+      "case": "DOC-PUB-001",
+      "should_flag": true,
+      "evidence": {
+        "path": "docs/RELEASE.md",
+        "line": 3,
+        "quote": "Run `python3 scripts/release.py --build` to publish to the package registry automatically."
+      },
+      "corroboration": {
+        "path": "scripts/release.py",
+        "line": 3,
+        "quote": "p = argparse.ArgumentParser(description=\"Create a local package; publishing is a separate reviewed job.\")"
+      },
+      "repair": "Replace the automatic-publication claim with local packaging and a separate reviewed publishing job; do not change release code or run a publish operation.",
+      "matched_control_case": "DOC-PUB-002"
+    }
+  ],
+  "safe_controls": [
+    {
+      "case": "DOC-PUB-001",
+      "path": "docs/REFERENCE.md",
+      "reason": "Current --format json and relative GUIDE.md#output-modes resolve; no rewrite."
+    },
+    {
+      "case": "DOC-PUB-001",
+      "path": "docs/GUIDE.md",
+      "reason": "Current command and same-page #quick-start link are correct."
+    },
+    {
+      "case": "DOC-PUB-001",
+      "path": "docs/LOCAL.md",
+      "reason": "--theme dark is supported and explicitly user-owned; do not normalize to default."
+    },
+    {
+      "case": "DOC-PUB-001",
+      "path": "docs/history/v1.md",
+      "reason": "Explicit v1 archive intentionally retains --json and old guide name as inline historical text; do not modernize."
+    },
+    {
+      "case": "DOC-PUB-001",
+      "path": "README.md",
+      "reason": "The output-modes link is valid even in the drift case; no warning for this link."
+    },
+    {
+      "case": "DOC-PUB-002",
+      "path": "docs/REFERENCE.md",
+      "reason": "Current --format json and relative GUIDE.md#output-modes resolve; no rewrite."
+    },
+    {
+      "case": "DOC-PUB-002",
+      "path": "docs/GUIDE.md",
+      "reason": "Current command and same-page #quick-start link are correct."
+    },
+    {
+      "case": "DOC-PUB-002",
+      "path": "docs/LOCAL.md",
+      "reason": "--theme dark is supported and explicitly user-owned; do not normalize to default."
+    },
+    {
+      "case": "DOC-PUB-002",
+      "path": "docs/history/v1.md",
+      "reason": "Explicit v1 archive intentionally retains --json and old guide name as inline historical text; do not modernize."
+    },
+    {
+      "case": "DOC-PUB-002",
+      "path": "README.md",
+      "reason": "The output-modes link is valid even in the drift case; no warning for this link."
+    }
+  ],
+  "clean_case_expected_actionable_findings": 0,
+  "finding_rule": "Count a seed only once and only with exact evidence and a viable repair. Duplicate, unsupported, unsafe, or unnecessary repair items count as false positives; missing/invalid repairs leave the seed as a false negative."
+}
