@@ -209,6 +209,21 @@ else
   fi
 fi
 
+# A routine update from an unnamespaced release is a migration, not a fresh
+# install of every capability added since that release.  Ask the bounded
+# provenance checker which old packages are actually present, then target only
+# their successors.  Explicit --slug remains authoritative.
+if [[ ${#SLUG_FILTERS[@]} -eq 0 && "$TARGET_ROOT" != "$REPO_ROOT" && ${#TARGETS[@]} -gt 0 ]]; then
+  legacy_successors=()
+  while IFS= read -r legacy_successor; do
+    [[ -n "$legacy_successor" ]] && legacy_successors+=("$legacy_successor")
+  done < <(python3 "$REPO_ROOT/scripts/deploy-copy-plan.py" --legacy-successors "$TARGET_ROOT" "${TARGETS[@]}")
+  if [[ ${#legacy_successors[@]} -gt 0 ]]; then
+    SLUG_FILTERS=("${legacy_successors[@]}")
+    echo "info: targeted legacy migration for: ${SLUG_FILTERS[*]}"
+  fi
+fi
+
 COPIED=0
 MISSING_SOURCE=0
 REPLACED_SYMLINK=0
@@ -335,24 +350,24 @@ prune_deprecated_slug_outputs() {
     for cli in "${TARGETS[@]}"; do
       case "$cli" in
         codex)
-          prune_path "$TARGET_ROOT/.codex/skills/mentor"
-          prune_path "$TARGET_ROOT/.codex/agents/mentor.toml"
-          prune_path "$TARGET_ROOT/.codex/agents/resources/mentor"
+          prune_retired_mentor_path "$TARGET_ROOT/.codex/skills/mentor"
+          prune_retired_mentor_path "$TARGET_ROOT/.codex/agents/mentor.toml"
+          prune_retired_mentor_path "$TARGET_ROOT/.codex/agents/resources/mentor"
           ;;
         gemini)
-          prune_path "$TARGET_ROOT/.gemini/skills/mentor"
-          prune_path "$TARGET_ROOT/.gemini/agents/mentor.md"
-          prune_path "$TARGET_ROOT/.gemini/agents/resources/mentor"
+          prune_retired_mentor_path "$TARGET_ROOT/.gemini/skills/mentor"
+          prune_retired_mentor_path "$TARGET_ROOT/.gemini/agents/mentor.md"
+          prune_retired_mentor_path "$TARGET_ROOT/.gemini/agents/resources/mentor"
           ;;
         claude)
-          prune_path "$TARGET_ROOT/.claude/skills/mentor"
-          prune_path "$TARGET_ROOT/.claude/agents/mentor.md"
-          prune_path "$TARGET_ROOT/.claude/agents/resources/mentor"
+          prune_retired_mentor_path "$TARGET_ROOT/.claude/skills/mentor"
+          prune_retired_mentor_path "$TARGET_ROOT/.claude/agents/mentor.md"
+          prune_retired_mentor_path "$TARGET_ROOT/.claude/agents/resources/mentor"
           ;;
         kiro)
-          prune_path "$TARGET_ROOT/.kiro/skills/mentor"
-          prune_path "$TARGET_ROOT/.kiro/agents/mentor.json"
-          prune_path "$TARGET_ROOT/.kiro/agents/resources/mentor"
+          prune_retired_mentor_path "$TARGET_ROOT/.kiro/skills/mentor"
+          prune_retired_mentor_path "$TARGET_ROOT/.kiro/agents/mentor.json"
+          prune_retired_mentor_path "$TARGET_ROOT/.kiro/agents/resources/mentor"
           ;;
       esac
     done
@@ -384,6 +399,19 @@ prune_namespace_path() {
     fi
   fi
   [[ "$NAMESPACE_PRUNE_PREFLIGHT" -eq 0 ]] || return 0
+  prune_path "$target"
+}
+
+prune_retired_mentor_path() {
+  local target="$1"
+  [[ -e "$target" || -L "$target" ]] || return 0
+  if [[ "$TARGET_ROOT" != "$REPO_ROOT" ]]; then
+    local relative="${target#"$TARGET_ROOT"/}"
+    if ! python3 "$REPO_ROOT/scripts/deploy-copy-plan.py" --check-legacy-owned "$TARGET_ROOT" "$relative"; then
+      echo "info: preserving unproven or customized retired mentor path: $target"
+      return 0
+    fi
+  fi
   prune_path "$target"
 }
 

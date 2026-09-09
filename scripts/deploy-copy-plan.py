@@ -8,6 +8,63 @@ import sys
 from pathlib import Path
 
 
+# A successor is selected only after ``legacy_owned`` proves that the entire
+# installed package is an unchanged member of the old standalone bundle.  The
+# installed bundle determines which historical generation is present: the
+# v1.12.2 population has 24 entries; plan-to-goal-design is discovered only
+# from later bundles that actually contain it.
+LEGACY_NAMESPACE_SLUGS = {
+    "address-code-review": "engos-delivery-address-code-review",
+    "analyze-context": "engos-memory-context-continuity",
+    "architecture": "engos-design-architecture",
+    "auto-research": "engos-optimization-auto-research",
+    "batman": "engos-orchestration-batman",
+    "code-review": "engos-quality-code-review",
+    "codebase-health-audit": "engos-audit-code-health",
+    "converge": "engos-reconciliation-converge",
+    "demo-recorder": "engos-browser-demo-recorder",
+    "docs-review-expert": "engos-quality-docs-review",
+    "dynamic-html-presentations": "engos-content-dynamic-html-presentations",
+    "eng-report": "engos-audit-engineering-progress",
+    "feature-status": "engos-audit-feature-status",
+    "gitops-review": "engos-quality-gitops-review",
+    "ic-assistant": "engos-operations-ic-assistant",
+    "instruction-editor": "engos-meta-instruction-editor",
+    "pitch": "engos-audit-pitch-review",
+    "plan-to-goal-design": "engos-design-plan-to-goal",
+    "pulse": "engos-triage-my-inbox-chat-pulse",
+    "resolve-conflict": "engos-delivery-resolve-conflict",
+    "supercharge": "engos-meta-supercharge",
+    "testing": "engos-quality-testing-review",
+    "threader": "engos-memory-threader",
+    "uac-import": "engos-meta-uac-import",
+    "weekly-intel": "engos-audit-weekly-intel",
+}
+RETIRED_LEGACY_SLUGS = {"mentor"}
+CLI_ROOTS = {
+    "codex": ".codex/skills",
+    "gemini": ".gemini/skills",
+    "claude": ".claude/skills",
+    "kiro": ".kiro/skills",
+}
+
+
+def legacy_surface_paths(cli: str, slug: str) -> list[str]:
+    """Return the closed set of historical package roots for one identity."""
+    skill_root = CLI_ROOTS.get(cli)
+    if skill_root is None:
+        return []
+    if cli == "codex":
+        return [f"{skill_root}/{slug}", f".codex/agents/{slug}.toml", f".codex/agents/resources/{slug}"]
+    if cli == "gemini":
+        return [f"{skill_root}/{slug}", f".gemini/agents/{slug}.md", f".gemini/agents/resources/{slug}"]
+    if cli == "claude":
+        return [f"{skill_root}/{slug}", f".claude/agents/{slug}.md", f".claude/agents/resources/{slug}"]
+    if cli == "kiro":
+        return [f"{skill_root}/{slug}", f".kiro/agents/{slug}.json", f".kiro/agents/resources/{slug}"]
+    return [f"{skill_root}/{slug}"]
+
+
 def legacy_owned(target: Path, relative: str) -> bool:
     """Read-only proof for an exact old namespace path before retiring it."""
     rel = Path(relative)
@@ -56,9 +113,32 @@ def legacy_owned(target: Path, relative: str) -> bool:
         return False
 
 
+def legacy_successors(target: Path, clients: list[str]) -> list[str]:
+    """Return only proven legacy successors (and the retired mentor marker).
+
+    This deliberately probes a closed set of exact package paths.  It never
+    scans a skills root, infers ownership from a name, or treats matching bytes
+    without the prior standalone manifest as provenance.
+    """
+    result = set()
+    for cli in clients:
+        for old_slug, successor in LEGACY_NAMESPACE_SLUGS.items():
+            if any(legacy_owned(target, path) for path in legacy_surface_paths(cli, old_slug)):
+                result.add(successor)
+        for old_slug in RETIRED_LEGACY_SLUGS:
+            if any(legacy_owned(target, path) for path in legacy_surface_paths(cli, old_slug)):
+                result.add(old_slug)
+    return sorted(result)
+
+
 def main(argv: list[str]) -> int:
     if argv and argv[0] == '--check-legacy-owned':
         return 0 if len(argv) == 3 and legacy_owned(Path(argv[1]), argv[2]) else 1
+    if argv and argv[0] == '--legacy-successors':
+        if len(argv) < 3:
+            return 2
+        print("\n".join(legacy_successors(Path(argv[1]), argv[2:])))
+        return 0
     separator = argv.index("--")
     repo_root = Path(argv[0]).resolve()
     target_root = Path(argv[1]).resolve()

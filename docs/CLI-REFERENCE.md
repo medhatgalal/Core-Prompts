@@ -219,7 +219,7 @@ Expected result:
 
 When `engos-optimization-auto-research` is deployed, stale installed `autosearch` paths for the selected CLIs are pruned as part of the breaking rename.
 
-The `engos-<category>-<skill-name>` namespace migration also prunes the matching unprefixed skill, agent, and agent-resource paths for the selected slug. Live pruning is recoverable: existing entries are moved under `.core-prompts-state/stale-pruned/<timestamp>/...` and each move prints a `source -> archive` receipt. No duplicate short-name packages or native menu aliases are emitted. Supercharge retains conversational prefix aliases within its canonical instructions. For Codex, matching legacy agent stanzas that point to the target's old managed agent files are removed during registration; unrelated custom stanzas are preserved.
+The `engos-<category>-<skill-name>` namespace migration also prunes the matching unprefixed skill, agent, and agent-resource paths for the selected slug. A routine standalone update first limits itself to successors of proven installed legacy packages, so an old 24-skill installation does not receive unrelated newer skills. Live pruning is recoverable: existing entries are moved under `.core-prompts-state/stale-pruned/<timestamp>/...` and each move prints a `source -> archive` receipt. No duplicate short-name packages or native menu aliases are emitted. Supercharge retains conversational prefix aliases within its canonical instructions. For Codex, matching legacy agent stanzas that point to the target's old managed agent files are removed during registration; unrelated custom stanzas are preserved.
 
 ### Check Or Accept Installed Releases
 

@@ -78,6 +78,23 @@ item, not successful installation parity.
 canonical skill entries for the selected clients. No home skill directory is used
 as a source. GWS and other third-party packages remain owned by their installers.
 
+## Routine legacy namespace migration
+
+The standalone routine updater recognizes an older Core-Prompts installation by
+checking a closed list of historical skill and agent paths against the installed
+standalone bundle's manifest and file identities. When it finds proven entries,
+that run installs only their namespaced successors for the selected CLI targets.
+For example, a v1.12.2 bundle has the historical 24-skill population, so it
+targets those 24 successors rather than every capability added since v1.12.2.
+Later historical identities are included only when their exact installed package
+is present and proven.
+
+`mentor` is retired rather than renamed. Its skill, agent, and agent-resource
+surfaces are moved into the existing recoverable stale archive only when they
+match the old bundle. Missing, partial, customized, symlinked, or unproven
+packages are preserved and reported; routine updates never adopt them or delete
+them by name. KiroCrew's separate member registry remains outside this write set.
+
 ## Migrate new resources within the saved profile
 
 When a release adds resource files to already approved skill packages, use the

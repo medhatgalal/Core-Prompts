@@ -80,6 +80,92 @@ def _collect_register_lines(output: str) -> list[str]:
     return [line for line in output.splitlines() if line.startswith("DRY-RUN REGISTER")]
 
 
+def _seed_proven_legacy_package(
+    target: Path,
+    relative: str,
+    content: str = "legacy\n",
+    surface: str = "codex_skill",
+) -> None:
+    """Seed the smallest exact old standalone-bundle provenance fixture."""
+    support = target / ".core-prompts-updater"
+    for root in (target, support):
+        path = root / relative
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(content, encoding="utf-8")
+    manifest = support / ".meta" / "manifest.json"
+    manifest.parent.mkdir(parents=True, exist_ok=True)
+    manifest.write_text(
+        '{"surfaces":{"' + surface + '":["' + relative + '"]},"resources":{}}\n',
+        encoding="utf-8",
+    )
+
+
+def test_routine_legacy_update_targets_only_proven_successors(tmp_path: Path) -> None:
+    _seed_proven_legacy_package(tmp_path, ".codex/skills/architecture/SKILL.md")
+
+    result = run_script(
+        DEPLOY_SCRIPT,
+        "--cli",
+        "codex",
+        "--dry-run",
+        target_root=tmp_path,
+        cli_bins=("codex",),
+        use_system_bash=True,
+        allow_nonlocal_target=True,
+    )
+
+    assert result.returncode == 0, result.stdout
+    assert "targeted legacy migration for: engos-design-architecture" in result.stdout
+    direct_copies = {
+        path for path in _collect_copy_destinations(result.stdout)
+        if str(path).startswith(str(tmp_path / ".codex" / "skills"))
+    }
+    assert any("engos-design-architecture" in str(path) for path in direct_copies)
+    assert not any("engos-quality-code-review" in str(path) for path in direct_copies)
+
+
+def test_routine_legacy_update_detects_a_proven_corresponding_agent(tmp_path: Path) -> None:
+    _seed_proven_legacy_package(
+        tmp_path,
+        ".codex/agents/architecture.toml",
+        surface="codex_agent",
+    )
+
+    result = run_script(
+        DEPLOY_SCRIPT,
+        "--cli",
+        "codex",
+        "--dry-run",
+        target_root=tmp_path,
+        cli_bins=("codex",),
+        use_system_bash=True,
+        allow_nonlocal_target=True,
+    )
+
+    assert result.returncode == 0, result.stdout
+    assert "targeted legacy migration for: engos-design-architecture" in result.stdout
+    assert f"{tmp_path}/.codex/agents/engos-design-architecture.toml" in result.stdout
+
+
+def test_routine_legacy_update_retires_only_proven_mentor(tmp_path: Path) -> None:
+    _seed_proven_legacy_package(tmp_path, ".codex/skills/mentor/SKILL.md")
+
+    result = run_script(
+        DEPLOY_SCRIPT,
+        "--cli",
+        "codex",
+        target_root=tmp_path,
+        cli_bins=("codex",),
+        use_system_bash=True,
+        allow_nonlocal_target=True,
+    )
+
+    assert result.returncode == 0, result.stdout
+    assert "targeted legacy migration for: mentor" in result.stdout
+    assert not (tmp_path / ".codex" / "skills" / "mentor").exists()
+    assert list((tmp_path / ".core-prompts-state" / "stale-pruned").glob("**/mentor"))
+
+
 def test_deploy_defaults_to_repo_root_for_target_all() -> None:
     result = run_script(
         DEPLOY_SCRIPT,

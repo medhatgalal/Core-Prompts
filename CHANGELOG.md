@@ -1,3 +1,8 @@
+## v1.14.1 - 2026-09-09
+
+- Routine standalone updates now detect the exact legacy Core-Prompts packages and agent surfaces recorded by the installed bundle, then install only their namespaced successors. A v1.12.2 installation therefore targets its 24 renamed skills; later historical entries are included only when actually proven present.
+- Retired `mentor` skills and agents are archived only when bundle provenance matches. Unknown, customized, partial, or symlinked legacy surfaces remain untouched and are reported for manual review.
+
 ## v1.14.0 - 2026-09-08
 
 - Added explicit reviewed, addition-only profile migration for new skill resources and receipt-owned runtime updates. Routine updates still reject changed scope or local customizations.

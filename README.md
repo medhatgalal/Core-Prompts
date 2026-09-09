@@ -2,6 +2,8 @@
 
 Core-Prompts ships installed skills and agent surfaces you use directly in Codex, Gemini, Claude, and Kiro. This repository is the canonical source, intake, build, validation, and release layer that keeps those shipped capabilities aligned.
 
+Routine standalone updates also recognize proven pre-namespace installations. They move only the installed legacy skills and their matching agent surfaces to the current `engos-*` identities; they do not turn a legacy update into a blanket install of newly added capabilities. Retired `mentor` surfaces have no successor and are recoverably archived only when their installed-bundle provenance is intact. See [installation profiles and recovery](docs/INSTALL-PROFILES.md).
+
 The right mental model is simple:
 
 1. installed capabilities first
