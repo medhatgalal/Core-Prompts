@@ -238,6 +238,74 @@ def test_retention_wrapper_does_not_replace_source_outcomes(fixture):
     assert 'source contract' in wrapper
 
 
+@pytest.mark.parametrize('capability_type', ['skill', 'agent', 'both'])
+def test_synthetic_candidate_does_not_impose_report_files(tmp_path, capability_type):
+    imported = payload(tmp_path / 'unavailable.md')
+    imported['manifest']['layers']['minimal']['capability_type'] = capability_type
+    assert UAC._source_body_text(imported) is None
+
+    candidate = UAC._preferred_ssot_text('unregistered-rich-skill', imported)
+    assert '## Imported operating instructions' not in candidate
+    output_policy = candidate.split('## Output Directory\n', 1)[1].split('\n## ', 1)[0]
+    assert 'reports/' not in output_policy
+    assert '<timestamp>' not in output_policy
+    assert 'source contract or caller' in output_policy
+    assert 'inline unless durable output is requested' in output_policy
+    assert 'stable requested artifact path' in output_policy
+    assert 'Git revisions' in output_policy
+    assert 'no automatic archive copies' in output_policy
+
+
+@pytest.mark.parametrize('capability_type', ['agent', 'both'])
+def test_synthetic_agent_preserves_authorized_actions_and_host_boundary(tmp_path, capability_type):
+    imported = payload(tmp_path / 'unavailable.md')
+    imported['manifest']['layers']['minimal']['capability_type'] = capability_type
+    candidate = UAC._preferred_ssot_text('unregistered-rich-skill', imported)
+
+    boundaries = candidate.split('## Tool Boundaries\n', 1)[1].split('\n## ', 1)[0]
+    assert 'delegation, routing, or workflow loops' in boundaries
+    assert 'source contract or caller' in boundaries
+    assert 'host supports' in boundaries
+    assert 'forbidden: claiming host-runtime ownership, granting new authority' in boundaries
+    assert 'resolve missing material authorization before dependent execution' in boundaries
+    assert 'forbidden: runtime routing' not in candidate
+    assert 'hand that off as a separate capability decision' not in candidate
+    assert 'publishing advice, not runtime-control policy' not in candidate
+
+
+@pytest.mark.parametrize('capability_type', ['agent', 'both'])
+def test_synthetic_agent_without_source_cannot_land(tmp_path, monkeypatch, capability_type):
+    imported = payload(tmp_path / 'unavailable.md')
+    imported['manifest']['layers']['minimal']['capability_type'] = capability_type
+    candidate = UAC._preferred_ssot_text('unregistered-rich-skill', imported)
+    imported['quality_result']['final_candidate_text'] = candidate
+    workspace = tmp_path / 'repo'
+    workspace.mkdir()
+    monkeypatch.setattr(UAC, 'ROOT', workspace)
+    monkeypatch.setattr(UAC, '_preferred_ssot_text', lambda *a, **kw: candidate)
+
+    result = UAC._apply_payload(imported, SimpleNamespace(yes=True, quality_loop='off'), [])
+    assert result['status'] == 'manual_review'
+    assert 're-ingest' in result['detail']
+    assert not list(workspace.rglob('*'))
+
+
+def test_source_wrapper_preserves_requested_output_destination():
+    source = ('# Briefing\n\n## Output Directory\n'
+              'Write the requested durable briefing to `deliverables/BRIEFING.md`.\n'
+              'Keep the response inline when no durable briefing is requested.\n')
+    imported = {**payload('remote'), 'source_text': source}
+    candidate = UAC._preferred_ssot_text('unregistered-rich-skill', imported)
+
+    wrapper, retained = candidate.split('## Imported operating instructions\n', 1)
+    assert retained.strip() == source.strip()
+    assert 'original source contract or the caller' in wrapper
+    assert 'no additional report path' in wrapper
+    assert 'reports/' not in wrapper
+    assert '<timestamp>' not in wrapper
+    assert candidate.count('`deliverables/BRIEFING.md`') == 1
+
+
 def test_seven_file_loop_collection_preserves_each_contract():
     from intent_pipeline.uac_quality import evaluate_imported_source_fidelity
     package = FIXTURES / 'loop-package'

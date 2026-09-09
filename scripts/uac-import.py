@@ -2028,19 +2028,19 @@ def _render_ssot_markdown(slug: str, payload: dict[str, Any], *, quality_profile
             'Mission:',
             '- inspect the relevant source or repo context first',
             '- produce deterministic outputs or artifacts for the requested task',
-            '- preserve the provider boundary by publishing advice, not runtime-control policy',
+            '- stay within the source contract or caller authorization and the host runtime boundaries',
             '',
             '## Tool Boundaries',
-            '- allowed: read relevant inputs, inspect current state, and write the intended artifacts when explicitly requested',
-            '- forbidden: runtime routing, delegation decisions, workflow-control loops, or unrelated code execution',
-            '- escalation: if implementation or orchestration is requested, hand that off as a separate capability decision',
+            '- allowed: perform authorized task actions, including delegation, routing, or workflow loops when the source contract or caller authorizes them and the host supports them',
+            '- forbidden: claiming host-runtime ownership, granting new authority, or executing unrelated work',
+            '- escalation: resolve missing material authorization before dependent execution; registration and generated instructions do not grant permission',
             '',
         ])
     if '## Output Directory' in template.required_headings or '## Output Directory' in template.preferred_headings:
         lines.extend([
             '## Output Directory',
-            '- `reports/<slug>/<timestamp>-summary.md` style report paths are the default when file output is requested',
-            '- repo-ready artifacts should be named explicitly when the user asks for direct changes',
+            '- Use destinations specified by the source contract or caller; otherwise respond inline unless durable output is requested.',
+            '- For durable output, use a stable requested artifact path and Git revisions for history; impose no timestamped or versioned filenames and create no automatic archive copies.',
             '',
         ])
     lines.extend([
@@ -2052,8 +2052,8 @@ def _render_ssot_markdown(slug: str, payload: dict[str, Any], *, quality_profile
         '',
         '## Rules',
         '- Keep the capability reusable and deterministic.',
-        '- Publish advisory guidance only unless the caller explicitly requests execution.',
-        '- Do not claim orchestration, delegation, or runtime-control ownership.',
+        '- Execute only within the source contract or caller authorization and host permissions; otherwise remain advisory.',
+        '- Do not claim host orchestration or runtime-control ownership, or grant new authority.',
         '',
         '## Required Inputs',
     ])

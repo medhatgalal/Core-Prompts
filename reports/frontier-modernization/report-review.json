@@ -1,0 +1,77 @@
+{
+  "scope": "Independent read-only reporting audit against the full approved plan; no code implementation audit, new experiment, repository edit, installation, merge or release claim.",
+  "reviewed_head": "61788e8bbe8347b8612dd5df84396c0cdb8da6eb",
+  "verdict": "pass_with_explicit_limits_and_pending_delivery",
+  "blocking_findings": [],
+  "required_report_corrections": [],
+  "evidence": {
+    "approved_attachment": {
+      "path": "/Users/medhat.galal/.codex/attachments/2deb1568-63f2-4d4d-8cc7-e0e461c0fb7e/pasted-text.txt",
+      "approved_plan_path": "reports/frontier-modernization/approved-plan.md",
+      "byte_identical": true,
+      "bytes": 22015,
+      "sha256": "6d47a356c31bc49f9832c6e30391f3da90ad77ae45e6427547f3a65b4d5a5289"
+    },
+    "scope": {
+      "ids": "S01-S19, U01-U07, A01-A06",
+      "count": 32,
+      "step7": "Contract, grade stopping and selected gaslight comparisons retained and connected to recorded native observations.",
+      "surrounding_prose": "Historical delivery-before-relocation gate and relocation-only intermediate remain explicitly unestablished; idempotence and repair stability retained in U06.",
+      "references": [
+        "approved-plan.md:139-184",
+        "approved-plan.md:207-221",
+        "EVIDENCE.md:37-43",
+        "acceptance-register.json:scope_reconciliation"
+      ]
+    },
+    "source_binding": "All four canonical_files SHA-256 values in output-policy-evidence.json match current files. No source implementation correctness inferred merely from hashes.",
+    "pilot_actual_data": {
+      "respondents": 24,
+      "unique_agent_ids": 24,
+      "contract_contexts": 8,
+      "gaslight_contexts": 16,
+      "output_hashes_match": true,
+      "native_host_final_match": "All 24 recorded outputs matched task_complete.last_agent_message in their actual local host session records.",
+      "contract_substantive_scores": "8/8 scored 19/19 after excluding separate burden criterion b10, as specified before scoring.",
+      "gaslight_objective_results": "All 16 actual output JSONs returned counts 144/168 and unknown service health.",
+      "interpretive_dispute": "Four initial gaslight wording findings and independent acquittal/qualification retained; no definitive material-regression ranking asserted."
+    },
+    "council_resource_actual_data": {
+      "native_agent_ids": 7,
+      "completed_phases": 13,
+      "council_phases": 7,
+      "resource_phases": 6,
+      "native_host_final_match": "All 13 outputs matched task_complete.last_agent_message in actual local host session records.",
+      "default_headings": 10,
+      "deep_headings": 12,
+      "independence_scope": "Three distinct council identities; same council continued in deep. Inbound plaintext is not independently recoverable, as disclosed.",
+      "resource_observations": "Missing/stale cases visibly blocked; recovered missing/partial cases produced module critique; changed consumer used fixture-specific lost job_id fact."
+    },
+    "grade_claim_scope": "Actual candidate text and candidate/assessment/stopping ledger examined. Controller assessor is distinct from fresh candidate authors; separate blind-first final recheck occurs later and is described as recheck. Prospective controller prior trajectory exposure, rubric ceiling, planted controls, no downstream execution and wall overrun are explicit.",
+    "output_policy": "Stable filenames and inline defaults are distinguished from disposable trial identities, preserved historical evidence and Git history. Bootstrap repair and UAC reinjection correction have separate recorded evidence; independent report-free build explicitly predates bootstrap repair."
+  },
+  "limits_that_must_remain": [
+    "No claim that the original required historical sequence was followed.",
+    "Astra/Sol only for comparative pilot; Fable/Mythos identities and Grok live coverage unresolved.",
+    "No billed-token, budget-compliant timing, model-only latency or generalized superiority claim.",
+    "Partial resource packet and mutation notifications were explicit fixtures; no spontaneous or universal enforcement claim.",
+    "Deep is continuation of one council, not an independent replicated council.",
+    "No exhaustive every-module/provider or integrated full-with-grade acceptance.",
+    "Monthly refresh configuration is not observed scheduled execution.",
+    "No home installation, versioned release or protected behavioral promotion."
+  ],
+  "pending_delivery_observation": {
+    "finding_type": "Existing acknowledged controller step, not a new audit blocker.",
+    "detail": "PROGRESS.md explicitly leaves final report commit, renewed provider checks, mainline parity and task cleanup pending. Current delivery-receipt.json and final-github-ci.json/final-gitlab-ci.json still describe historical 4ca5853 delivery (PR61/MR63); acceptance-register top-level source_commit/local_suite likewise retain historical evidence with a separate followup_source_commit. Do not cite these historical values as proof of final follow-up delivery. Update or explicitly label them when carrying out the already planned final delivery.",
+    "report_claim_limit": "Pass applies to bounded implementation/evidence reporting. It does not authorize a statement that all original sequencing, all target models, final follow-up delivery or promotion were completed."
+  },
+  "reviewed_file_hashes": {
+    "reports/frontier-modernization/approved-plan.md": "6d47a356c31bc49f9832c6e30391f3da90ad77ae45e6427547f3a65b4d5a5289",
+    "reports/frontier-modernization/EVIDENCE.md": "90367928dd4dc8668136b943e6355e2b47a99326b6b2605fecf578bf5cab948f",
+    "reports/frontier-modernization/acceptance-register.json": "044d0ef2e206c419e2286e70e31c1ae6bf9a1ee52a1549d2a2af074056801913",
+    "reports/frontier-modernization/output-policy-evidence.json": "a48a7573d990d959bbd4716dbc7c2253737d7dd477dc48c09a1be0ff36ec7616",
+    "reports/frontier-modernization/pilot-evidence.json": "70bca3e6e968308b3f9c315eaeec2ff61de9bd91d34699d18f61bf849b1c6558",
+    "reports/frontier-modernization/council-delivery-evidence.json": "1f4047c15bc7188afe1fec93da7507cb1b0edcd4ce749c03a860e3fadcbdd39d",
+    "reports/frontier-modernization/PROGRESS.md": "b1cb7e5e2cc80efba7ee02b3af6ea985f03a25d53c1cc5a8b60e2bfb2c8a6f74"
+  }
+}

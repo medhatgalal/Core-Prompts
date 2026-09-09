@@ -96,15 +96,9 @@ The agent surface must never imply unconditional runtime authority. It may recom
 - escalation: if the target system lacks a measurable goal, a stable baseline, or a safe replay path, stop and require setup before continuing
 
 ## Output Directory
-When file output is requested, default to:
-- `reports/auto-research/<timestamp>-goal-contract.md`
-- `reports/auto-research/<timestamp>-baseline.md`
-- `reports/auto-research/<timestamp>-experiment-ledger.md`
-- `reports/auto-research/<timestamp>-scorecard.json`
-- `reports/auto-research/<timestamp>-promotion-packet.md`
-- `reports/auto-research/<timestamp>-trace-to-eval.md`
+Use the user's requested destination or an appropriate existing project location for requested durable deliverables, with stable filenames such as `goal-contract.md`, `experiment-ledger.md`, and `scorecard.json`. Create a promotion packet or trace-to-eval artifact only when that workflow calls for it. Update the same authorized artifacts; use Git for durable revision history rather than timestamped or numbered copies.
 
-When the host repo already has a preferred experiment, eval, or review layout, preserve it and map these logical artifacts onto the existing structure.
+Executed experiments need one isolated task working area containing the original baseline, current best, active trial, and a single ledger of actual results. Keep disposable trial files in temporary storage, discard rejected active changes, and retain the useful evidence and candidate identities in the ledger or Git. Do not accumulate a directory of permanent prompt versions or load experiment outputs as skill instructions. Preserve unrelated files and active work.
 
 ## Workflow
 1. Identify the target system, the goal, and the operator boundary.
@@ -330,13 +324,14 @@ When that convenience is useful, recommend:
 python3.14 "<resolved-skill-directory>/resources/bootstrap.py" \
   --target "<target>" \
   --goal "<measurable goal>" \
+  --report-dir "<chosen-artifact-parent>" \
   --editable-scope "<what may change>" \
   --must-not-change "<protected surface>" \
   --baseline-evidence "<test, trace, or metric>" \
   --promotion-threshold "<required improvement>"
 ```
 
-Resolve `<resolved-skill-directory>` from the active skill file, then use its bundled `resources/bootstrap.py` on every surface. The helper fills the bundled templates and writes the initial goal contract, experiment ledger, promotion packet, and scorecard under `reports/auto-research/`.
+Resolve `<resolved-skill-directory>` from the active skill file, then use its bundled `resources/bootstrap.py` on every surface. The helper fills the bundled templates under `<chosen-artifact-parent>/<target-slug>/` using stable `goal-contract.md`, `experiment-ledger.md`, and `scorecard.json` filenames. It preserves existing files, including populated trial results, and reports which files were created or preserved. Use `--profile promotion-prep` to also create `promotion-packet.md`. Edit established artifacts through the normal authorized workflow and keep durable revisions in Git; rerunning scaffolding neither overwrites them nor creates dated copies.
 
 ### Default Scorecard
 Use this when the user has not yet defined one:

@@ -17,6 +17,8 @@
     "e9e498ae4987e2dbc18311cfe9a5e3249dda5371030dfe58aac12199fd176a95",
     "3544543b4c3b771c875f41bbe48f2e4de69b1ffa312fb72941939a57f35e7582",
     "01d40c6b796f948458e84e26c0e4e94d756077b493d87378bda101b9bfeab700",
+    "8c902773a407c5d57ab48d41a81a292a66e766793f244a951801a9e6ff783938",
+    "b9ee662317b822d567d2ef2797d08a7ccf6326c9f0e799ff99c175c333adff67",
     "fc5ec02a80d0a34f53ba09bc85df53ba08fa51447938c84ab99124d9fe5cdf33",
     "5cf268c7ff921506a93b3a1a7056dcfe4a10dcb5cb77c69237047b2eb701f997",
     "7508be9ead9c29a6115e024147ba2c4dc22d1da8ffd928a6e77d90be33abf320",
@@ -73,7 +75,8 @@
     "a1a5bd232770d5d0573b5a234e2bb863b42098711932a1295dca82486639efd8",
     "8791a4786f39f1650cdfd7c4a177d68fec5817c70ee766a087b1e0e86225f4de",
     "94f83b18dddd03eef701151b56f7418498f3b9ac7b5aa87e917a9e3fbb7c3254",
-    "80e2eca6e91e2369f66bb0879e5fe1b10903bcb2d48fcd509bd2c6abe1e2022d"
+    "80e2eca6e91e2369f66bb0879e5fe1b10903bcb2d48fcd509bd2c6abe1e2022d",
+    "1d5dcb2a9912d866e1485be080033cb0a8a524210b470062b96c42416b706316"
   ],
   "editable_behavior": [],
   "primary_outcome": {
@@ -159,6 +162,16 @@
       "sha256": "01d40c6b796f948458e84e26c0e4e94d756077b493d87378bda101b9bfeab700",
       "source": "ssot/engos-optimization-auto-research.md",
       "text": "- forbidden: claiming an unmeasured improvement, silently widening the editable scope, hiding regressions behind aggregate scores, or merging changes without explicit policy support"
+    },
+    {
+      "sha256": "8c902773a407c5d57ab48d41a81a292a66e766793f244a951801a9e6ff783938",
+      "source": "ssot/engos-optimization-auto-research.md",
+      "text": "Use the user's requested destination or an appropriate existing project location for requested durable deliverables, with stable filenames such as `goal-contract.md`, `experiment-ledger.md`, and `scorecard.json`. Create a promotion packet or trace-to-eval artifact only when that workflow calls for it. Update the same authorized artifacts; use Git for durable revision history rather than timestamped or numbered copies."
+    },
+    {
+      "sha256": "b9ee662317b822d567d2ef2797d08a7ccf6326c9f0e799ff99c175c333adff67",
+      "source": "ssot/engos-optimization-auto-research.md",
+      "text": "Executed experiments need one isolated task working area containing the original baseline, current best, active trial, and a single ledger of actual results. Keep disposable trial files in temporary storage, discard rejected active changes, and retain the useful evidence and candidate identities in the ledger or Git. Do not accumulate a directory of permanent prompt versions or load experiment outputs as skill instructions. Preserve unrelated files and active work."
     },
     {
       "sha256": "fc5ec02a80d0a34f53ba09bc85df53ba08fa51447938c84ab99124d9fe5cdf33",
@@ -444,6 +457,11 @@
       "sha256": "80e2eca6e91e2369f66bb0879e5fe1b10903bcb2d48fcd509bd2c6abe1e2022d",
       "source": "sources/capability-resources/engos-optimization-auto-research/bootstrap.py",
       "text": "parser.add_argument(\"--must-not-change\", action=\"append\", default=[])"
+    },
+    {
+      "sha256": "1d5dcb2a9912d866e1485be080033cb0a8a524210b470062b96c42416b706316",
+      "source": "sources/capability-resources/engos-optimization-auto-research/bootstrap.py",
+      "text": "parser.add_argument(\"--report-dir\", required=True, help=\"Chosen parent directory for stable task artifacts; existing files are preserved.\")"
     }
   ],
   "review_status": "draft"
