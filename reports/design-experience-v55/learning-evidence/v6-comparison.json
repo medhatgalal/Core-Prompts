@@ -1,0 +1,485 @@
+{
+  "schema": "V6DevelopmentTargets.v1",
+  "scope": "Targeted replay on two known development cases with frozen historical baselines; not fresh validation.",
+  "all_targets_pass": false,
+  "execution_pass": true,
+  "functional_gates_pass": {
+    "editorial": true,
+    "api": true
+  },
+  "api_cost_target_pass": true,
+  "generation": {
+    "R21": {
+      "tokens": 1630387,
+      "turns": 2,
+      "complete": true,
+      "active": 0,
+      "held": 0
+    },
+    "R84": {
+      "tokens": 2146683,
+      "turns": 1,
+      "complete": true,
+      "active": 0,
+      "held": 0
+    },
+    "api_cost_target_pass": true,
+    "api_reduction_fraction": 0.16372492265163674
+  },
+  "quality_targets": {
+    "editorial": {
+      "judges": [
+        {
+          "judge": "v6-editorial-j1",
+          "target_pass": true
+        },
+        {
+          "judge": "v6-editorial-j2",
+          "target_pass": false
+        }
+      ],
+      "target_pass": false
+    },
+    "api": {
+      "judges": [
+        {
+          "judge": "v6-api-j1",
+          "target_pass": false
+        },
+        {
+          "judge": "v6-api-j2",
+          "target_pass": false
+        }
+      ],
+      "target_pass": false
+    }
+  },
+  "judgments": [
+    {
+      "judge": "v6-editorial-j1",
+      "family": "editorial",
+      "presentation_order": [
+        "N17",
+        "N68",
+        "R21"
+      ],
+      "normalized": [
+        {
+          "comparison": "V6-minus-generic",
+          "left": "R21",
+          "right": "N17",
+          "visual": 1,
+          "task": 1,
+          "raw_pair": {
+            "left": "N17",
+            "right": "R21",
+            "visual": -1,
+            "task": -1,
+            "rationale_visual": "R21 gives operational information a stronger readable hierarchy, especially the mobile saved/draft labels and practical text, while fitting the full artwork and caption into its arrival viewport. N17's larger title is expressive, but its small supporting labels create a sharper readability imbalance.",
+            "rationale_task": "R21 presents the saved reference and new draft in readable, sequential blocks before the update action. N17 also achieves mobile co-visibility, but places its smaller saved reference after the action. R21 adds a nearby access link and preserves per-day choices; N17 provides earlier event-date visibility and more protective storage-failure handling. The net advantage is small.",
+            "uncertainty": "Both pass the supplied normal workflow checks. R21's storage-failure divergence is inferred directly from source and was not observed in the supplied checks; its practical frequency is unknown. Giving failure recovery greater weight could erase R21's advantage."
+          }
+        },
+        {
+          "comparison": "V6-minus-V5",
+          "left": "R21",
+          "right": "N68",
+          "visual": 0,
+          "task": 1,
+          "raw_pair": {
+            "left": "N68",
+            "right": "R21",
+            "visual": 0,
+            "task": -1,
+            "rationale_visual": "N68 offers stronger typographic variation and distinct desktop planning panels. R21 offers a more compact mobile image composition and clearer comparison typography. Both maintain coherent object studies and readable long titles; these strengths offset without a clear overall visual advantage.",
+            "rationale_task": "R21's mobile revision capture contains both plans and the explicit update action together. N68 exposes the draft and replacement action while the saved details remain below the viewport, imposing a comparison scroll. N68 supplies opening hours earlier, retains more saved schedule detail on desktop and handles failed storage updates more conservatively. These counterweights limit R21's advantage to one point.",
+            "uncertainty": "The mobile visibility difference is directly evidenced, but its effect on human outcomes is unmeasured. Both satisfy all seven supplied checks. Storage-failure behavior, broader accessibility and other viewport states remain outside those bounded observations."
+          }
+        },
+        {
+          "comparison": "V5-minus-generic",
+          "left": "N68",
+          "right": "N17",
+          "visual": 1,
+          "task": -1,
+          "raw_pair": {
+            "left": "N17",
+            "right": "N68",
+            "visual": -1,
+            "task": 1,
+            "rationale_visual": "N68 has a small advantage through its varied title hierarchy, more compact desktop invitation and clearer sectional separation. Its mobile demonstration metadata is also larger. N17 offers a strong poster-like title and cohesive object studies, so this is a modest craft difference.",
+            "rationale_task": "N17 keeps both the proposed Sunday demonstration and earlier Saturday reference visible with the update control in the matched mobile capture. N68 requires scrolling to inspect the earlier plan. N68 counters with earlier opening-hour information and a fuller desktop saved summary; both satisfy the checked workflow, making N17's advantage small and concentrated on mobile revision.",
+            "uncertainty": "The comparison uses actual viewport captures, not full-page co-visibility. Supplied keyboard checks succeeded for both; no human speed, comprehension or preference evidence establishes the magnitude of the scrolling cost."
+          }
+        }
+      ],
+      "artifact_findings": {
+        "N17": {
+          "strengths": [
+            "Supplied independent checks establish all seven bounded source/state requirements, including complete maker notes, access facts, correct schedules, explicit plan updates and 360px keyboard operation.",
+            "The invitation gives the long title and subtitle generous space. Coordinated object illustrations, numbered sections and the prominent maker link support the editorial narrative.",
+            "Both revision viewport captures show the Sunday-glaze draft, update/discard controls and unchanged Saturday-repair reference together."
+          ],
+          "weaknesses": [
+            "The saved reference appears after the update control and receives substantially smaller typography than the draft. Its small, widely spaced status label is particularly subdued at 360px.",
+            "The tall desktop invitation places the practical strip near the viewport bottom. That strip omits opening hours and the street address, requiring further navigation for those facts.",
+            "Source resets demonstration selection when switching days, including when returning to a previously explored day. This is disclosed and accurate, but requires reselection."
+          ],
+          "blocking_issues": []
+        },
+        "N68": {
+          "strengths": [
+            "Supplied independent checks establish all seven bounded requirements, including full notes, preserved access qualifications, accurate day-specific choices and saved-versus-draft continuity.",
+            "The italic title variation, restrained captions and clear section transitions create a coherent editorial hierarchy. The desktop arrival viewport includes both days' opening hours and the street address.",
+            "The desktop revision capture clearly separates editable choices from the saved plan while displaying both. The saved panel retains its opening hours and quiet period.",
+            "Source commits a replacement only after storage succeeds; its failure branch preserves the earlier plan and offers an explicit retry."
+          ],
+          "weaknesses": [
+            "In the 360px update-focus capture, the earlier saved day and demonstration are below the viewport. Comparing them with the draft requires scrolling away from the replacement control.",
+            "Stacked draft and saved panels repeat headings, explanations and spacing on mobile, increasing the distance between choices and their saved reference.",
+            "Fixed desktop maker-title heights leave noticeable blank space beneath shorter titles before the material information."
+          ],
+          "blocking_issues": []
+        },
+        "R21": {
+          "strengths": [
+            "Supplied independent checks establish all seven bounded requirements, including correct schedules, complete notes/access information and explicit updates that preserve subsequent draft separation.",
+            "The revision card places the saved Saturday plan and unsaved Sunday draft before the update action. Both remain visible in the supplied 360px focus capture, with readable state labels, dates, demonstration names and times.",
+            "The mobile invitation shows the complete artwork and caption within the arrival viewport. Larger mobile practical text and a direct access link in the plan support reading and onward navigation.",
+            "Source retains separate draft data and day-specific demonstration choices, supporting continuity when revisiting choices."
+          ],
+          "weaknesses": [
+            "The 360px arrival viewport does not expose the exact event dates or free-entry information; those appear farther down. Its upper event label supplies only the year.",
+            "During revision, the compact saved snapshot omits the earlier plan's opening hours and quiet period, limiting comparison with the draft's fuller summary.",
+            "Source-only failure concern: updating assigns the new in-memory saved plan before attempting storage. If that write fails, the interface switches to a page-only saved state while an older persisted plan can remain and return after reload. The storage warning does not explain that divergence. This branch is not covered by the supplied execution observations."
+          ],
+          "blocking_issues": []
+        }
+      }
+    },
+    {
+      "judge": "v6-editorial-j2",
+      "family": "editorial",
+      "presentation_order": [
+        "R21",
+        "N68",
+        "N17"
+      ],
+      "normalized": [
+        {
+          "comparison": "V6-minus-generic",
+          "left": "R21",
+          "right": "N17",
+          "visual": 0,
+          "task": 1,
+          "raw_pair": {
+            "left": "R21",
+            "right": "N17",
+            "visual": 0,
+            "task": 1,
+            "rationale_visual": "R21 offers compact, balanced composition, complete mobile vessel silhouettes and clearer secondary labels. N17 offers larger demonstration typography, expressive object drawings and a strong invitation hierarchy. N17's small metadata and staggered maker controls offset those strengths; overall visual craft is comparable.",
+            "rationale_task": "Both mobile revision captures contain the draft, earlier plan and update action. R21 gives the two plans parallel, readable summaries before the action; N17 places the smaller saved reference below it. R21 also provides a direct access link within the summary. N17 counters with qualified quiet-period information beside the schedule and stronger preservation when an existing saved plan cannot be updated.",
+            "uncertainty": "Both pass all seven supplied checks. The small advantage concerns visible information hierarchy, not demonstrated task-success differences. Expanded-note appearance and storage-failure states are not represented in the matched screenshots."
+          }
+        },
+        {
+          "comparison": "V6-minus-V5",
+          "left": "R21",
+          "right": "N68",
+          "visual": -1,
+          "task": 1,
+          "raw_pair": {
+            "left": "R21",
+            "right": "N68",
+            "visual": -1,
+            "task": 1,
+            "rationale_visual": "N68 has a slightly more developed editorial system through coordinated italic headings, illustration annotation and distinct section boundaries. R21 counters with a cleaner mobile illustration and less crowded planning typography. The advantage is small and concerns composition rather than palette.",
+            "rationale_task": "R21's mobile update-focus capture includes both named plans and the action, whereas N68 requires scrolling to inspect the saved Saturday details. This reduces the spatial separation involved in reviewing a replacement. N68 offsets part of that advantage with earlier opening-hour information, fuller desktop comparison and stronger source-level handling of failed persistence.",
+            "uncertainty": "The supplied checks establish bounded functional parity, not comparative human comprehension or speed. Visibility claims use the matched viewport captures; full-page images establish sequence only. Storage-failure behavior is inferred from source."
+          }
+        },
+        {
+          "comparison": "V5-minus-generic",
+          "left": "N68",
+          "right": "N17",
+          "visual": 1,
+          "task": 0,
+          "raw_pair": {
+            "left": "N68",
+            "right": "N17",
+            "visual": 1,
+            "task": 0,
+            "rationale_visual": "N68 balances the desktop invitation more compactly, coordinates italic accents across sections and aligns maker metadata more consistently. N17's generous demonstration titles and detailed object studies remain strong. N68's mobile image cropping and narrow form keep its overall advantage small.",
+            "rationale_task": "N68 exposes opening hours earlier and provides a clearly separated desktop comparison containing both plans' practical details. N17 keeps the earlier Saturday reference visible alongside the Sunday draft and update button in the supplied mobile capture, and links directly from the schedule to access information. These benefits pull in different directions without a clear overall task advantage.",
+            "uncertainty": "The desktop and mobile evidence supports different preferences. The supplied checks establish required functionality but do not measure human outcomes or certify comprehensive accessibility; N17's missing section-label targets remain a source-level defect."
+          }
+        }
+      ],
+      "artifact_findings": {
+        "R21": {
+          "strengths": [
+            "The supplied checks confirm complete maker notes, accurate day schedules, explicit plan updates, retained earlier plans and 360px keyboard operation.",
+            "Revision screenshots 3 and 5 show the saved Saturday repair and Sunday glaze draft together with the update control. Parallel summaries and prominent state labels support direct comparison.",
+            "The invitation gives the title and subtitle generous space, preserves complete vessel silhouettes on mobile, and provides a direct access-information link inside the plan."
+          ],
+          "weaknesses": [
+            "The exact event dates and free-entry information fall below the initial 360x800 viewport; the visible hero identifies only the year.",
+            "During revision, the earlier saved summary omits its opening hours and quiet period, limiting comparison of practical details.",
+            "Source-derived conditional continuity risk: an update replaces the in-memory saved plan before persistence succeeds. If storage fails, page-only wording appears, but an older persisted plan can remain and return on reload. This failure route was not reported as exercised."
+          ],
+          "blocking_issues": []
+        },
+        "N68": {
+          "strengths": [
+            "The supplied checks confirm all seven source/state requirements, including full notes, valid day-specific choices, explicit replacement and 360px keyboard operation.",
+            "Roman and italic display typography, repeated section treatments and annotated illustration create a coherent editorial identity. The desktop event strip exposes both opening schedules early.",
+            "Desktop revision screenshot 3 clearly separates the editable draft from the saved plan and retains opening hours, quiet periods and demonstration details for both days.",
+            "The source preserves the earlier saved plan when a storage write fails and presents the revision as an unsaved draft."
+          ],
+          "weaknesses": [
+            "In mobile revision screenshot 5, the replacement button is visible while the saved Saturday date and repair details remain below the viewport. Comparing them requires additional scrolling.",
+            "Nested panel padding narrows the mobile form, increasing wrapping and vertical separation between choices, actions and the saved reference.",
+            "The tall mobile illustration crops the bowl and jug at the edges and occupies the remainder of the initial viewport, delaying the practical information strip."
+          ],
+          "blocking_issues": []
+        },
+        "N17": {
+          "strengths": [
+            "The supplied checks confirm factual coverage, complete maker notes, correct schedules, explicit revision/discard behavior and 360px keyboard operation.",
+            "The invitation introduces the collective's purpose and provides a direct maker link. Large demonstration titles and individual object illustrations sustain the editorial treatment through the planning section.",
+            "Mobile revision screenshot 5 contains the Sunday draft, update action and unchanged Saturday repair reference together.",
+            "The source preserves an existing persisted plan after an update failure and supports a clearly described page-only plan when initial persistence is unavailable."
+          ],
+          "weaknesses": [
+            "The saved reference follows the update and discard controls and receives substantially smaller typography than the draft. It is available for comparison but visually subordinate.",
+            "Small monospaced state labels, demonstration metadata and plan notices are less prominent at 360px than the main titles; several consequential labels remain only 10\u201312px in the source.",
+            "Desktop maker controls have staggered vertical positions, and the larger invitation pushes the maker section beyond the initial desktop viewport.",
+            "Source inspection shows that the makers and visit sections reference absent heading IDs through aria-labelledby. This programmatic-labeling defect is not resolved by the supplied keyboard-navigation checks."
+          ],
+          "blocking_issues": []
+        }
+      }
+    },
+    {
+      "judge": "v6-api-j1",
+      "family": "api",
+      "presentation_order": [
+        "P86",
+        "R84",
+        "P13"
+      ],
+      "normalized": [
+        {
+          "comparison": "V6-minus-generic",
+          "left": "R84",
+          "right": "P13",
+          "visual": 0,
+          "task": 1,
+          "raw_pair": {
+            "left": "R84",
+            "right": "P13",
+            "visual": 0,
+            "task": 1,
+            "rationale_visual": "R84 offers clearer time emphasis and a more balanced desktop review. P13 offers stronger graphic continuity through its waveform, step underline and confirmation-number band. P13's elongated review and R84's lengthy mobile panels impose different costs; neither establishes a clear overall visual advantage.",
+            "rationale_task": "R84 has a small advantage in the documented selection and transient-recovery flow: its mobile initial view reaches time and capacity sooner, its selected-state continuation remains available, and its failure explanation sits near the retry action with current session context. P13 counters with earlier confirmation-number placement and stronger handling of uncertain responses, limiting the advantage.",
+            "uncertainty": "Both passed all supplied objective checks. R84's possible duplicate-booking path requires an unresolved response followed by editing and was not observed; it warrants separate verification. The full-page images do not establish which complete panels were visible together during keyboard recovery, and no human outcomes are known."
+          }
+        },
+        {
+          "comparison": "V6-minus-V5",
+          "left": "R84",
+          "right": "P86",
+          "visual": -1,
+          "task": 0,
+          "raw_pair": {
+            "left": "P86",
+            "right": "R84",
+            "visual": 1,
+            "task": 0,
+            "rationale_visual": "P86 has a small compositional advantage: its desktop session cards occupy less vertical space, its review panels are more balanced, and its joined confirmation receipt has clearer overall grouping. R84 counters with prominent time typography and a well-integrated error/action area; this is not a palette judgment.",
+            "rationale_task": "The useful advantages differ by stage. P86 exposes all three time/capacity summaries in the initial mobile viewport and puts confirmation identity before the session recap. R84 groups the failure explanation, current session and retry action together, and provides native radio navigation and immediate capacity feedback. Both passed every supplied objective check, so the evidence does not establish an overall task advantage.",
+            "uncertainty": "R84's uncertain-response editing risk is inferred from source and was not exercised in the supplied checks. Full-page recovery screenshots establish content and ordering, not simultaneous viewport visibility. Human effort, preference and comprehensive accessibility remain unknown."
+          }
+        },
+        {
+          "comparison": "V5-minus-generic",
+          "left": "P86",
+          "right": "P13",
+          "visual": 1,
+          "task": 1,
+          "raw_pair": {
+            "left": "P86",
+            "right": "P13",
+            "visual": 1,
+            "task": 1,
+            "rationale_visual": "P86 sustains a more compact, balanced composition across selection, review and confirmation. P13's waveform artwork and confirmation band provide strong focal points, but its tall initial cards and desktop review's largely empty lower-right area weaken overall balance.",
+            "rationale_task": "P86 offers a small useful advantage through its initial mobile comparison of all three times and capacities, more compact review arrangement, and early confirmation identifier followed directly by booked-session information. P13 delays mobile comparison behind artwork and separates the failed-request alert from retry with a longer sequence of panels and promotional copy. Both preserve the required content and pass the same six checks; these are navigation and information-placement differences.",
+            "uncertainty": "No measured human speed or completion advantage is supplied. P86's overview does not compare equipment or access caveats, which still require inspection below. Both implementations guard uncertain submissions in source, but that additional path was not independently exercised."
+          }
+        }
+      ],
+      "artifact_findings": {
+        "P86": {
+          "strengths": [
+            "The supplied independent checks establish all six required API scenarios, including preserved failed requests, unchanged retries, stale recovery, accurate edited reviews and authoritative confirmations.",
+            "Desktop cards align time, capacity, equipment and access notes consistently. The review uses balanced adjacent session and project panels; confirmation joins them into a coherent receipt.",
+            "The actual 360px initial screenshot shows all three session times, durations and capacities in the comparison overview. Confirmation places the returned identifier before the booked-session summary.",
+            "Source explicitly preserves the pending request and pauses editing when a response is uncertain, supporting safe reconciliation through an identical retry."
+          ],
+          "weaknesses": [
+            "The mobile overview adds useful comparison but duplicates information and requires another jump or scroll to inspect equipment and access caveats.",
+            "The transient alert and retry button are separated by the complete session and project panels on mobile. Focusing the alert does not also bring the retry action into that viewport.",
+            "Small metadata and progress labels receive relatively little visual emphasis. The desktop initial screenshot clips the bottom continuation button, despite showing all three card selection buttons.",
+            "Mobile project entry hides equipment and access details in its compact recap; they remain available during selection and return in review."
+          ],
+          "blocking_issues": []
+        },
+        "R84": {
+          "strengths": [
+            "The supplied independent checks establish all six required API scenarios, with actual HTTP availability, truthful failures, preserved drafts and confirmations matching the server.",
+            "Prominent times, restrained headings and consistent card divisions make desktop session attributes easy to locate. Review and confirmation retain a clear project/session relationship.",
+            "The transient error, repeated session identity and retry action form one local recovery area. Source focuses the error heading, reducing the separation between failure feedback and its next action.",
+            "Source provides native radio selection, a skip link, an immediate explanation when a retained group exceeds capacity, and a fixed mobile continuation bar after selection."
+          ],
+          "weaknesses": [
+            "The initial 360px screenshot exposes only the morning option's time and capacity. Comparing later sessions requires scrolling through preceding equipment and access content.",
+            "Mobile confirmation places the returned identifier after the entire booked-session recap, including equipment and access notes.",
+            "The mobile review is lengthy, and repeated unbooked statements add reading volume even though the recovery controls are grouped well.",
+            "Source leaves editing and session changes available after an uncertain connection result. A changed payload receives a new request ID before the original outcome is resolved; if the original request committed but its response was lost, switching sessions could create another reservation. This is an unexecuted conditional risk, not a failure of the checked 503 recovery."
+          ],
+          "blocking_issues": []
+        },
+        "P13": {
+          "strengths": [
+            "The supplied independent checks establish all six required API scenarios, including valid capacity correction, preserved transient drafts, stale alternatives and matching server confirmations.",
+            "The waveform panel, serif hierarchy, active-step underline and prominent confirmation-number band create a consistent visual identity across stages.",
+            "Source uses whole-card radio labels with session details associated through accessible descriptions. Capacity changes explicitly require a valid group-size choice.",
+            "Source preserves request identity and pauses editing when confirmation is uncertain. The mobile confirmation makes the returned identifier prominent near the beginning."
+          ],
+          "weaknesses": [
+            "The decorative waveform remains above selection on mobile. In the actual 360px initial screenshot, the first session's time and capacity are still below the viewport.",
+            "Desktop review stacks project and session details in the left column while the commitment panel occupies only the upper right, producing a tall, uneven composition.",
+            "On mobile, the transient alert and retry button are separated by both complete review panels and additional commitment copy. The stronger button contrast does not remove that navigation distance.",
+            "Selection has no persistent continuation control. Mobile confirmation places the booked session after the project details and notice, separating session identity from the early confirmation number."
+          ],
+          "blocking_issues": []
+        }
+      }
+    },
+    {
+      "judge": "v6-api-j2",
+      "family": "api",
+      "presentation_order": [
+        "P13",
+        "R84",
+        "P86"
+      ],
+      "normalized": [
+        {
+          "comparison": "V6-minus-generic",
+          "left": "R84",
+          "right": "P13",
+          "visual": 0,
+          "task": 0,
+          "raw_pair": {
+            "left": "P13",
+            "right": "R84",
+            "visual": 0,
+            "task": 0,
+            "rationale_visual": "P13 has stronger decorative composition and confirmation-number emphasis; R84 has more prominent session times and a tighter desktop review layout. P13's large mobile submission block and uneven review columns offset its distinctive craft. Neither has a clear overall visual advantage across the supplied states.",
+            "rationale_task": "R84 groups failure explanation, session context and retry more closely, and its source supplies a persistent mobile Continue action. P13 presents the confirmation identifier earlier on mobile and protects unresolved submissions against editing. Both passed every supplied objective check; these competing continuity advantages do not establish a clear overall task advantage.",
+            "uncertainty": "The interrupted-response and identifier-conflict concerns are source-based and outside the six checked scenarios. Selected-state mobile action-bar behavior is not pictured. Full-page images establish ordering and separation, not simultaneous viewport visibility or human performance."
+          }
+        },
+        {
+          "comparison": "V6-minus-V5",
+          "left": "R84",
+          "right": "P86",
+          "visual": -1,
+          "task": -1,
+          "raw_pair": {
+            "left": "R84",
+            "right": "P86",
+            "visual": -1,
+            "task": -1,
+            "rationale_visual": "P86 more consistently groups information through the banded choice cards and unified receipt, while keeping the desktop review balanced. R84 offers strong time typography and readable project values, but its mobile confirmation separates the identifier from the heading through a full intervening session panel. The overall composition advantage is modest.",
+            "rationale_task": "P86's visible three-session mobile comparison and earlier confirmation identifier support comparison and reference retrieval. Its source also prevents changes while a submission outcome is uncertain. R84 has a meaningful recovery advantage from placing the alert, session reminder and retry together, plus a fixed mobile Continue bar. With equal checked API correctness, the net advantage to P86 is small.",
+            "uncertainty": "R84's possible abandonment of an unresolved request is conditional source evidence, not a reproduced duplicate booking. P86's overview adds navigation steps, and its error-to-retry separation remains a cost. The supplied observations do not establish human outcomes or comprehensive accessibility."
+          }
+        },
+        {
+          "comparison": "V5-minus-generic",
+          "left": "P86",
+          "right": "P13",
+          "visual": 1,
+          "task": 1,
+          "raw_pair": {
+            "left": "P13",
+            "right": "P86",
+            "visual": -1,
+            "task": -1,
+            "rationale_visual": "P86's banded session cards, balanced review columns and joined confirmation receipt produce a more economical composition across the matched states. P13 retains useful advantages in its distinctive illustration and prominent confirmation number, so the visual advantage is small.",
+            "rationale_task": "P86 exposes all three time/capacity alternatives in the initial mobile frame, while P13 barely reaches the first session title. P86 also places session and project review side by side on desktop and puts the confirmation identifier before the booked-session receipt on mobile. These improve access to decision and confirmation information, with the cost of duplicated overview controls. Both retain drafts and pass the same booking checks.",
+            "uncertainty": "The screenshots support differences in information placement, not measured speed or completion gains. Both mobile error banners remain far from retry. Neither supplied check set exercises request_id_reused, and comprehensive accessibility remains unknown."
+          }
+        }
+      ],
+      "artifact_findings": {
+        "P13": {
+          "strengths": [
+            "All six supplied objective checks passed, including authoritative confirmation, retained drafts, stale-availability recovery and keyboard transient recovery at 360px.",
+            "The matched images show carefully composed serif headings, aligned session cards and a distinctive waveform illustration. The dark confirmation-number panel gives the returned identifier strong prominence.",
+            "Review exposes project details, session equipment and access notes with explicit editing controls. Source preserves the request identifier on unchanged retries and pauses editing when the server outcome is uncertain.",
+            "Native grouped radios have equipment and access descriptions; source provides focus handling and generous mobile edit targets."
+          ],
+          "weaknesses": [
+            "In the initial 360x800 image, the first session title only appears near the bottom; its time and capacity remain below the frame. Comparing all three choices requires traversing the detailed cards.",
+            "Desktop review stacks the session beneath the project while the submission panel occupies the right column. This separates commitment from the complete session review and leaves substantial unused space below the submission panel.",
+            "Mobile transient review places the error and retry button far apart, with both review panels and a large motivational submission block between them.",
+            "Source handles request_id_reused by locking editing but continues offering a retry that cannot resolve an unchanged identifier conflict. This branch was not covered by the supplied checks."
+          ],
+          "blocking_issues": []
+        },
+        "R84": {
+          "strengths": [
+            "All six supplied objective checks passed, including matching server confirmations, unchanged-request retries, stale refresh and current review after capacity correction.",
+            "Large session times, bold titles and clearly separated equipment/access sections provide a consistent scanning hierarchy in the matched images.",
+            "Desktop review places project and session details alongside each other. The transient alert, a short session recap and retry action are grouped together; source moves focus to the alert heading.",
+            "Source provides a skip link and a fixed mobile Continue bar after selection. It retains an oversized attendee count and explicitly explains the required correction when changing to a smaller session."
+          ],
+          "weaknesses": [
+            "The initial mobile image shows only the morning option; there is no condensed comparison of all three sessions.",
+            "Mobile confirmation places the identifier after the entire booked-session panel, separating the returned reference from the success heading.",
+            "The full session summary precedes mobile project entry, adding vertical distance before the editable fields. Some edit controls remain small in the supplied styling.",
+            "After an interrupted response, source permits editing or changing sessions while the original outcome remains unresolved. A changed submission can abandon the original identifier and eventually create another reservation if the original request committed. This is a conditional source-based continuity risk, not an observed failure in the six checks."
+          ],
+          "blocking_issues": []
+        },
+        "P86": {
+          "strengths": [
+            "All six supplied objective checks passed, including authoritative booking, truthful transient failure, stale recovery, capacity correction and keyboard completion at 360px.",
+            "The initial 360x800 image contains all three sessions' times, durations, capacities and availability in the compact overview. Its controls lead to the corresponding equipment and access details.",
+            "Desktop cards separate time/capacity from descriptive content with consistent bands. Review balances session and project panels, and confirmation groups them into a coherent receipt.",
+            "Confirmation places the returned identifier before the receipt. Source freezes edits during uncertain outcomes and visibly retains an excessive attendee count for correction rather than silently reducing it."
+          ],
+          "weaknesses": [
+            "The mobile overview duplicates information from the detailed cards and adds keyboard stops. Its rows inspect details rather than select a session, so selection still requires reaching a separate control.",
+            "The mobile transient banner and retry action remain separated by the session and project panels, despite the relatively compact overall review.",
+            "Several metadata labels and progress labels are small. The confirmation identifier has less visual emphasis than P13's dedicated number panel.",
+            "Source clears the pending request after request_id_reused and permits a new submission without reconciling the previously successful identifier. That conflict branch was not covered by the supplied checks."
+          ],
+          "blocking_issues": []
+        }
+      }
+    }
+  ],
+  "core_promotion": false,
+  "theoretical_ceiling_established": false,
+  "limitations": [
+    "Two known tasks; no concurrent fresh baseline replications.",
+    "Two same-model independent assessors per family are not human participants or independent model families.",
+    "Native trace audits do not establish OS sibling isolation.",
+    "Observed token totals include cached input and exclude controller/author/verifier/packaging work.",
+    "V5 over-budget artifact remains an execution failure even when quality comparisons favor it."
+  ]
+}

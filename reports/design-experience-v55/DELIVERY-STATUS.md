@@ -23,3 +23,7 @@ For ordinary source delivery after that disposition: verify both exact-head PR/M
 Source and review receipts are indexed by INTEGRATION.md, docs-review.md and final-review.md in this directory. The controlled study and its immutable audit remain in the separately preserved task evidence; research traces do not become runtime skill instructions.
 
 Detailed public integration, preservation, docs-review and local-test receipts are retained in [integration-evidence.zip](integration-evidence.zip). SHA-256: `e4ca95156facc8d8cbc26f26e7d568da0bb42c4ba2accab600fcda8793939b12`. These are historical run records, not current runtime instructions.
+
+## Knowledge harvest
+
+[LESSONS.md](LESSONS.md) records the reusable observations, their evidence limits, what is already incorporated, and the canonical code/resources that own the remaining work. Eight exact case receipts and their source identities are retained under learning-evidence/. This harvest adds no new runtime policy, promotion claim or experiment authorization.

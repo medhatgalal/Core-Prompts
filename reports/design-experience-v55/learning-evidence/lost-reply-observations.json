@@ -1,0 +1,338 @@
+{
+  "scope": "Single newly authorized post-assessment concern outside original six API gates; no baseline rerun or blind-packet change",
+  "artifact": {
+    "path": "/private/tmp/experience-design-v6-01a07fad/final-products/R84/index.html",
+    "sha256": "8a3c7bab77093758ebbfaf8a4f722e1fd782dd893cbca30fa170d64036749ca1",
+    "unchanged": true
+  },
+  "actions": [
+    {
+      "op": "check",
+      "slot": "morning"
+    },
+    {
+      "op": "click",
+      "target": "#continue"
+    },
+    {
+      "op": "fill",
+      "field": "projectAlias",
+      "value": "Cedar voices"
+    },
+    {
+      "op": "fill",
+      "field": "attendees",
+      "value": 2
+    },
+    {
+      "op": "fill",
+      "field": "purpose",
+      "value": "Record a fictional neighborhood story."
+    },
+    {
+      "op": "click",
+      "target": "Review request"
+    },
+    {
+      "op": "click",
+      "target": "button[data-action=reserve]"
+    },
+    {
+      "op": "click",
+      "target": "button[data-action=edit]"
+    },
+    {
+      "op": "fill",
+      "field": "projectAlias",
+      "value": "Willow voices"
+    },
+    {
+      "op": "fill",
+      "field": "attendees",
+      "value": 2
+    },
+    {
+      "op": "fill",
+      "field": "purpose",
+      "value": "Record a revised fictional project."
+    },
+    {
+      "op": "click",
+      "target": "button[data-action=change-session]"
+    },
+    {
+      "op": "check",
+      "slot": "midday"
+    },
+    {
+      "op": "click",
+      "target": "#continue"
+    },
+    {
+      "op": "click",
+      "target": "Review request"
+    },
+    {
+      "op": "click",
+      "target": "button[data-action=reserve]"
+    },
+    {
+      "op": "check",
+      "slot": "midday"
+    },
+    {
+      "op": "click",
+      "target": "#continue"
+    },
+    {
+      "op": "click",
+      "target": "Review request"
+    },
+    {
+      "op": "click",
+      "target": "button[data-action=reserve]"
+    }
+  ],
+  "traffic": [
+    {
+      "event": "request",
+      "method": "GET",
+      "url": "http://127.0.0.1:8787/api/slots",
+      "body": null
+    },
+    {
+      "event": "response",
+      "method": "GET",
+      "url": "http://127.0.0.1:8787/api/slots",
+      "status": 200
+    },
+    {
+      "event": "request",
+      "method": "POST",
+      "url": "http://127.0.0.1:8787/api/reservations",
+      "body": "{\"slotId\":\"morning\",\"availabilityVersion\":1,\"attendees\":2,\"projectAlias\":\"Cedar voices\",\"purpose\":\"Record a fictional neighborhood story.\",\"clientRequestId\":\"c1ecb566-4db4-4949-9015-750a4725d88a\"}"
+    },
+    {
+      "event": "request",
+      "method": "POST",
+      "url": "http://127.0.0.1:8787/api/reservations",
+      "body": "{\"slotId\":\"midday\",\"availabilityVersion\":1,\"attendees\":2,\"projectAlias\":\"Willow voices\",\"purpose\":\"Record a revised fictional project.\",\"clientRequestId\":\"233b550a-69d1-467d-9417-fbdc0584ed62\"}"
+    },
+    {
+      "event": "response",
+      "method": "POST",
+      "url": "http://127.0.0.1:8787/api/reservations",
+      "status": 409
+    },
+    {
+      "event": "request",
+      "method": "GET",
+      "url": "http://127.0.0.1:8787/api/slots",
+      "body": null
+    },
+    {
+      "event": "response",
+      "method": "GET",
+      "url": "http://127.0.0.1:8787/api/slots",
+      "status": 200
+    },
+    {
+      "event": "request",
+      "method": "POST",
+      "url": "http://127.0.0.1:8787/api/reservations",
+      "body": "{\"slotId\":\"midday\",\"availabilityVersion\":2,\"attendees\":2,\"projectAlias\":\"Willow voices\",\"purpose\":\"Record a revised fictional project.\",\"clientRequestId\":\"74ed012c-1e2b-49ff-ab26-6db8f47c6bef\"}"
+    },
+    {
+      "event": "response",
+      "method": "POST",
+      "url": "http://127.0.0.1:8787/api/reservations",
+      "status": 201
+    }
+  ],
+  "errors": [],
+  "intercepted": {
+    "request": {
+      "slotId": "morning",
+      "availabilityVersion": 1,
+      "attendees": 2,
+      "projectAlias": "Cedar voices",
+      "purpose": "Record a fictional neighborhood story.",
+      "clientRequestId": "c1ecb566-4db4-4949-9015-750a4725d88a"
+    },
+    "serverStatus": 201,
+    "serverBody": {
+      "reservation": {
+        "id": "SD-001",
+        "slotId": "morning",
+        "time": "09:30\u201310:30",
+        "projectAlias": "Cedar voices",
+        "purpose": "Record a fictional neighborhood story.",
+        "attendees": 2
+      },
+      "version": 2
+    },
+    "deliveryToBrowser": "aborted after real server response"
+  },
+  "afterLostResponse": {
+    "name": "01-committed-response-lost",
+    "visibleText": "Skip to booking\nSession Desk\n.\nLOCAL PROTOTYPE\n\u2713\nChoose a session\n\u2713\nYour project\n3\nReview & reserve\nOne last sound check.\n\nReview your session and project before reserving.\n\nSTEP 03 / 03\nYOUR SESSION\nChange session\n09:30\u201310:30\n\nThursday 7 October 2032\n\nMorning spoken-word session\n60 minutes\nUp to 2 people\nEQUIPMENT INCLUDED\n\nTwo dynamic microphones, closed-back headphones, and a simple stereo recorder.\n\nACCESS & ROOM NOTES\n\nThe booth has a level entrance. The door is heavy; a studio host can assist.\n\nTen minutes of setup are included within the listed duration.\nYour project\nEdit project\nPROJECT ALIAS\nCedar voices\nGROUP SIZE\n2 people\nRECORDING PURPOSE\nRecord a fictional neighborhood story.\nWe couldn\u2019t confirm your reservation.\n\nThe connection was interrupted. Your request is saved. Retry the same reservation to check its result without creating a duplicate.\n\nMorning spoken-word session\n09:30\u201310:30 \u00b7 2 people\n\nBookings in this prototype exist only in the local mock. No email or calendar notification is sent.\nRetry reservation\n\nYour session is not booked until it is confirmed.\n\nSession DeskSmall room. Big ideas.\nA fictional community studio \u00b7 No accounts or contact details needed",
+    "server": {
+      "status": 200,
+      "body": {
+        "scenario": "normal",
+        "version": 2,
+        "reservations": [
+          {
+            "id": "SD-001",
+            "slotId": "morning",
+            "time": "09:30\u201310:30",
+            "projectAlias": "Cedar voices",
+            "purpose": "Record a fictional neighborhood story.",
+            "attendees": 2
+          }
+        ]
+      }
+    },
+    "buttons": [
+      {
+        "text": "Change session",
+        "action": "change-session",
+        "disabled": false
+      },
+      {
+        "text": "Edit project",
+        "action": "edit",
+        "disabled": false
+      },
+      {
+        "text": "Retry reservation",
+        "action": "reserve",
+        "disabled": false
+      }
+    ],
+    "image": "/private/tmp/experience-design-v6-01a07fad/verification/post-assessment-uncertain-response/01-committed-response-lost.png"
+  },
+  "retainedEditedFields": {
+    "projectAlias": "Willow voices",
+    "purpose": "Record a revised fictional project.",
+    "attendees": "2"
+  },
+  "beforeChangedSubmission": {
+    "name": "02-edited-alternative-review",
+    "visibleText": "Skip to booking\nSession Desk\n.\nLOCAL PROTOTYPE\n\u2713\nChoose a session\n\u2713\nYour project\n3\nReview & reserve\nOne last sound check.\n\nReview your session and project before reserving.\n\nSTEP 03 / 03\nYOUR SESSION\nChange session\n12:00\u201313:30\n\nThursday 7 October 2032\n\nMidday conversation and field-note session\n90 minutes\nUp to 4 people\nEQUIPMENT INCLUDED\n\nFour dynamic microphones, tabletop stands, and a four-channel recorder.\n\nACCESS & ROOM NOTES\n\nThe table has one wheelchair-clear position. A nearby corridor can be audible during the first fifteen minutes.\n\nTen minutes of setup are included within the listed duration.\nYour project\nEdit project\nPROJECT ALIAS\nWillow voices\nGROUP SIZE\n2 people\nRECORDING PURPOSE\nRecord a revised fictional project.\nBookings in this prototype exist only in the local mock. No email or calendar notification is sent.\nReserve session\n\nYour session is not booked until it is confirmed.\n\nSession DeskSmall room. Big ideas.\nA fictional community studio \u00b7 No accounts or contact details needed",
+    "server": {
+      "status": 200,
+      "body": {
+        "scenario": "normal",
+        "version": 2,
+        "reservations": [
+          {
+            "id": "SD-001",
+            "slotId": "morning",
+            "time": "09:30\u201310:30",
+            "projectAlias": "Cedar voices",
+            "purpose": "Record a fictional neighborhood story.",
+            "attendees": 2
+          }
+        ]
+      }
+    },
+    "buttons": [
+      {
+        "text": "Change session",
+        "action": "change-session",
+        "disabled": false
+      },
+      {
+        "text": "Edit project",
+        "action": "edit",
+        "disabled": false
+      },
+      {
+        "text": "Reserve session",
+        "action": "reserve",
+        "disabled": false
+      }
+    ],
+    "image": "/private/tmp/experience-design-v6-01a07fad/verification/post-assessment-uncertain-response/02-edited-alternative-review.png"
+  },
+  "afterChangedSubmission": {
+    "name": "03-changed-request-outcome",
+    "visibleText": "Skip to booking\nSession Desk\n.\nLOCAL PROTOTYPE\n\nA COMMUNITY RECORDING ROOM\n\nRoom for\nyour voice.\n\nA neighborhood recording room for spoken-word experiments, oral histories, and small audio projects.\n\n1\nChoose a session\n2\nYour project\n3\nReview & reserve\nThat session is no longer available.\n\nMidday conversation and field-note session (12:00\u201313:30) couldn\u2019t be reserved. No booking was created. Choose another available session below. Your project details are saved.\n\nFind your session.\n\nChoose the time and setup that fit your project.\n\nThursday 7 October 2032\n01 / MORNING\nUnavailable\n09:30\u201310:30\nMorning spoken-word session\n60 minutes\nUp to 2 people\nEQUIPMENT INCLUDED\n\nTwo dynamic microphones, closed-back headphones, and a simple stereo recorder.\n\nACCESS & ROOM NOTES\n\nThe booth has a level entrance. The door is heavy; a studio host can assist.\n\nSession unavailable\n02 / MIDDAY\nAvailable\n12:00\u201313:30\nMidday conversation and field-note session\n90 minutes\nUp to 4 people\nEQUIPMENT INCLUDED\n\nFour dynamic microphones, tabletop stands, and a four-channel recorder.\n\nACCESS & ROOM NOTES\n\nThe table has one wheelchair-clear position. A nearby corridor can be audible during the first fifteen minutes.\n\nSelect session\n03 / EVENING\nAvailable\n17:30\u201318:30\nEvening solo narration session\n60 minutes\n1 person\nEQUIPMENT INCLUDED\n\nOne condenser microphone with pop shield and a mono recorder.\n\nACCESS & ROOM NOTES\n\nLighting can be dimmed. This fixture does not certify acoustic isolation or hearing-loop availability.\n\nSelect session\n\nSessions include ten minutes of setup within the listed duration.\n\nChoose one session to continue.\nContinue\nSession DeskSmall room. Big ideas.\nA fictional community studio \u00b7 No accounts or contact details needed",
+    "server": {
+      "status": 200,
+      "body": {
+        "scenario": "normal",
+        "version": 2,
+        "reservations": [
+          {
+            "id": "SD-001",
+            "slotId": "morning",
+            "time": "09:30\u201310:30",
+            "projectAlias": "Cedar voices",
+            "purpose": "Record a fictional neighborhood story.",
+            "attendees": 2
+          }
+        ]
+      }
+    },
+    "buttons": [
+      {
+        "text": "Continue",
+        "action": "continue",
+        "disabled": true
+      }
+    ],
+    "image": "/private/tmp/experience-design-v6-01a07fad/verification/post-assessment-uncertain-response/03-changed-request-outcome.png"
+  },
+  "followedOrdinaryStaleRecovery": true,
+  "afterRecovery": {
+    "name": "04-after-normal-stale-recovery",
+    "visibleText": "Skip to booking\nSession Desk\n.\nLOCAL PROTOTYPE\n\u2713\nChoose a session\n\u2713\nYour project\n\u2713\nReview & reserve\nYou\u2019re on the schedule.\n\nYour session is confirmed in the local mock.\n\nBOOKED SESSION\n12:00\u201313:30\n\nThursday 7 October 2032\n\nMidday conversation and field-note session\n90 minutes\nUp to 4 people\nEQUIPMENT INCLUDED\n\nFour dynamic microphones, tabletop stands, and a four-channel recorder.\n\nACCESS & ROOM NOTES\n\nThe table has one wheelchair-clear position. A nearby corridor can be audible during the first fifteen minutes.\n\nTen minutes of setup are included within the listed duration.\n\nBOOKING CONFIRMATION\n\nSD-002\nYour booked project\nConfirmed\nPROJECT ALIAS\nWillow voices\nGROUP SIZE\n2 people\nRECORDING PURPOSE\nRecord a revised fictional project.\nBookings in this prototype exist only in the local mock. No email or calendar notification is sent.\nSession DeskSmall room. Big ideas.\nA fictional community studio \u00b7 No accounts or contact details needed",
+    "server": {
+      "status": 200,
+      "body": {
+        "scenario": "normal",
+        "version": 3,
+        "reservations": [
+          {
+            "id": "SD-001",
+            "slotId": "morning",
+            "time": "09:30\u201310:30",
+            "projectAlias": "Cedar voices",
+            "purpose": "Record a fictional neighborhood story.",
+            "attendees": 2
+          },
+          {
+            "id": "SD-002",
+            "slotId": "midday",
+            "time": "12:00\u201313:30",
+            "projectAlias": "Willow voices",
+            "purpose": "Record a revised fictional project.",
+            "attendees": 2
+          }
+        ]
+      }
+    },
+    "buttons": [],
+    "image": "/private/tmp/experience-design-v6-01a07fad/verification/post-assessment-uncertain-response/04-after-normal-stale-recovery.png"
+  },
+  "finalReservationCount": 2,
+  "outcome": "reproduced",
+  "reason": "First request committed despite lost response; ordinary edit/change and resubmission created a second distinct reservation.",
+  "completedAt": "2026-09-09T14:08:03.964Z",
+  "derived_summary": {
+    "first_commit_id": "SD-001",
+    "final_reservation_ids": [
+      "SD-001",
+      "SD-002"
+    ],
+    "request_ids": [
+      "c1ecb566-4db4-4949-9015-750a4725d88a",
+      "233b550a-69d1-467d-9417-fbdc0584ed62",
+      "74ed012c-1e2b-49ff-ab26-6db8f47c6bef"
+    ],
+    "ordinary_stale_recovery_needed": true,
+    "scope": "Post-assessment additional concern; original six gates and blind packets unchanged"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "status": "guard_tests_pass_full_admission_pending",
+  "reviewed_at_utc": "2026-09-09T17:01:01.180206+00:00",
+  "checks": 56,
+  "passed": 56,
+  "unchanged_test_sha256": "f0a9e929572e0138e45f0396d53bfd2d41e8f597e7c8a1a8a72e6826934b13fa",
+  "before_receipt": "guard-data-ie93pqvo/results.json",
+  "after_receipt": "guard-data-y0_pysrj/results.json",
+  "changed_implementation_inputs": {
+    "harness/revision_runner.py": {
+      "before": "d97caeb6ff13d59cd74388702ed2869d342ba9e62d50df936888fb721e24eef4",
+      "after": "73604c89569e676dce118337418a0c48c33125e152cc6b73801f3b8fd9ecab16"
+    },
+    "harness/study_guards.py": {
+      "before": "874cdc9f8c5a024e6eda44c3d228a01ba6902004c683fc511b28f8583cfaf73d",
+      "after": "14408662dfd9d7fce109fe874ce7f6bbb9539932ccfe8cbf772d2f75413922bf"
+    },
+    "harness/accounting.py": {
+      "before": "0f56932b100a1f4e0caf5509f545cc45c90295286faa496d49510d991ed59201",
+      "after": "3b9f606b276e59e718112dafb35dd0187f2a6fb00769e067f867d514f00d8bb8"
+    },
+    "score_results.py": {
+      "before": "8f1fd0979b70522b83f4c68808267817c9964eba1afa1ef43a07c0cb721185f4",
+      "after": "8b7fa1d64af3c99810aefce7eafe821604755535c84ab6fb4bdd57588b7f3c47"
+    }
+  },
+  "old_file_hashes_checked": 26,
+  "old_files_changed": [],
+  "actual_ledger_exists": false,
+  "model_calls": 0,
+  "fixture_actions": 0,
+  "future_subjective_judge_answers_read": false,
+  "remaining_gates": [
+    "public renderer/API zero-model controls and boundary tests",
+    "fresh runtime credential-denial canary and returned config",
+    "independent verifier semantic/image-role/receipt freeze and negative probes",
+    "complete final amendment and admission input/harness manifests",
+    "post-generation actual input/read traces and final judge packet admission"
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "purpose": "Case evidence for the experience-design knowledge harvest; not runtime instructions or a new evaluation policy.",
+  "basis_commit": "1207981117c778f0d8f8dcd13fdb1563e5be7a8b",
+  "records": [
+    {
+      "file": "v6-comparison.json",
+      "sha256": "bc8d1d82e5f94cf374b3ed96192c55ce3a95a722061577758d3f57b6de2a3b96",
+      "evidence_kind": "bounded model judgments",
+      "source_archive_sha256": "947b22b0276dd9d5db05282675825ca00b1b30d9e08b5b745a4d4c2c8f91a847",
+      "source_member": "experience-design-v6/v6/final-results.json",
+      "copied_without_mutation": true
+    },
+    {
+      "file": "storage-observations.json",
+      "sha256": "534da2b762cdea33df4063b47fcc184dd11e527cd5a0181b9ba2119afd587a28",
+      "evidence_kind": "executed synthetic UI and storage observations",
+      "source_archive_sha256": "947b22b0276dd9d5db05282675825ca00b1b30d9e08b5b745a4d4c2c8f91a847",
+      "source_member": "experience-design-v6/v6/verification/post-assessment-storage/result.json",
+      "copied_without_mutation": true
+    },
+    {
+      "file": "lost-reply-observations.json",
+      "sha256": "73682eea3d5fe27ad4cca1e5806853eb0ae6969b0b85a404ac750033c1c800e1",
+      "evidence_kind": "executed synthetic UI and API observations",
+      "source_archive_sha256": "947b22b0276dd9d5db05282675825ca00b1b30d9e08b5b745a4d4c2c8f91a847",
+      "source_member": "experience-design-v6/v6/verification/post-assessment-uncertain-response/result.json",
+      "copied_without_mutation": true
+    },
+    {
+      "file": "runtime-invalidation.json",
+      "sha256": "e888771f37e9ec3e9aabbce40bf601fc91ade564713ce2d9261191e9466263f2",
+      "evidence_kind": "independent public-trace audit",
+      "source_packet_member": "evidence/audit/wave1-final-invalidation.json",
+      "copied_without_mutation": true,
+      "source_packet": "experience-design-v55 preserved review packet",
+      "source_packet_manifest_sha256": "d3eecc3fdbe013c3a465a2c5a7c32efa1e9710c3f0f25bd5843a8d5e7de5b71d",
+      "source_packet_manifest": "v55-packet-manifest.json"
+    },
+    {
+      "file": "interrupted-closeout.json",
+      "sha256": "90570a057a1cea30b983cbe34d51615ad9f625234d57c168b2f151dc5e0c6a11",
+      "evidence_kind": "controller closeout after unused holds released",
+      "source_packet_member": "evidence/final-results.json",
+      "copied_without_mutation": true,
+      "source_packet": "experience-design-v55 preserved review packet",
+      "source_packet_manifest_sha256": "d3eecc3fdbe013c3a465a2c5a7c32efa1e9710c3f0f25bd5843a8d5e7de5b71d",
+      "source_packet_manifest": "v55-packet-manifest.json"
+    },
+    {
+      "file": "guard-resolution.json",
+      "sha256": "e7039a3bb69257522aa5d1024f3e4c0b3de8659c85456ace4e04786206f9d78f",
+      "evidence_kind": "independent synthetic guard regression check",
+      "source_packet_member": "evidence/audit/guard-resolution.json",
+      "copied_without_mutation": true,
+      "source_packet": "experience-design-v55 preserved review packet",
+      "source_packet_manifest_sha256": "d3eecc3fdbe013c3a465a2c5a7c32efa1e9710c3f0f25bd5843a8d5e7de5b71d",
+      "source_packet_manifest": "v55-packet-manifest.json"
+    },
+    {
+      "file": "failure-preservation-check.json",
+      "sha256": "54ef0c9a4122a7fa96402e16234b776d58187d9d8a7e9f2960b22546190c5823",
+      "evidence_kind": "independent synthetic verifier/scorer integration check",
+      "source_packet_member": "evidence/audit/verifier-scorer-integration.json",
+      "copied_without_mutation": true,
+      "source_packet": "experience-design-v55 preserved review packet",
+      "source_packet_manifest_sha256": "d3eecc3fdbe013c3a465a2c5a7c32efa1e9710c3f0f25bd5843a8d5e7de5b71d",
+      "source_packet_manifest": "v55-packet-manifest.json"
+    },
+    {
+      "file": "failure-loss-before-fix.json",
+      "sha256": "0355a58ef11b83241e3dde94606965ed720e00163ca50026a5bbac0677511423",
+      "evidence_kind": "independent synthetic verifier/scorer integration failure before correction",
+      "source_record_name": "verifier-scorer-integration-first-failure.json",
+      "source_record_sha256": "0355a58ef11b83241e3dde94606965ed720e00163ca50026a5bbac0677511423",
+      "copied_without_mutation": true
+    }
+  ],
+  "limits": [
+    "All product data are synthetic.",
+    "Historical absolute paths inside exact receipts identify their original execution locations; current copies are mapped here.",
+    "Raw native/hook logs and private reasoning are not included.",
+    "Model judgments are not human usability outcomes or general skill superiority."
+  ],
+  "supporting_files": {
+    "v55-packet-manifest.json": "d3eecc3fdbe013c3a465a2c5a7c32efa1e9710c3f0f25bd5843a8d5e7de5b71d"
+  }
+}

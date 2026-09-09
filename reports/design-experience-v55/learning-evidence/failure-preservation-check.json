@@ -1,0 +1,19 @@
+{
+  "schema": "IndependentVerifierScorerIntegrationCheck.v1",
+  "scenario": "Verifier can retain a confirmed hard failure while status becomes inconclusive due to a later evidence gap.",
+  "observed_decision": "inconclusive",
+  "observed_candidate_hard_failures": [
+    {
+      "artifact": "K57",
+      "gate": "event-and-access-meaning",
+      "arm": "v55",
+      "status": "inconclusive",
+      "confirmed_with_other_gaps": true
+    }
+  ],
+  "expected": "inconclusive decision with the confirmed candidate hard failure preserved",
+  "passed": true,
+  "scorer_sha256": "3e2b8d4047592571aa9edd608f305cf8db9b8a864da5f1dfd6cc52eab46d3fd9",
+  "model_calls": 0,
+  "fixture_actions": 0
+}

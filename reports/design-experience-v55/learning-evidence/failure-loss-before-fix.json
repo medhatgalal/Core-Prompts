@@ -1,0 +1,10 @@
+{
+  "schema": "IndependentVerifierScorerIntegrationCheck.v1",
+  "scenario": "Verifier can retain a confirmed hard failure while status becomes inconclusive due to a later evidence gap.",
+  "observed_decision": "inconclusive",
+  "observed_candidate_hard_failures": [],
+  "expected": "inconclusive decision with the confirmed candidate hard failure preserved",
+  "passed": false,
+  "model_calls": 0,
+  "fixture_actions": 0
+}

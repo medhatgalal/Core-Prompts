@@ -1,0 +1,469 @@
+{
+  "schema": "IndependentRuntimeInvalidationAndAccounting.v1",
+  "reviewed_at_utc": "2026-09-09T17:36:24.994097+00:00",
+  "decision": "inconclusive",
+  "valid_comparison": false,
+  "reason": "undeclared_browser_tool_surface",
+  "prior_admission_receipt_sha256": "e9e77511165ee3e66a75597e57464bd886aa3004936cd442955555f34e727511",
+  "prior_admission_manifest_sha256": "1b6c8e51728096026f7a5bf150738655c461093bc58b0e24a80c080e1f766104",
+  "main_runs": [
+    {
+      "id": "K12",
+      "thread_id": "01a08737-673a-7413-9f58-ae48c0a3eb6d",
+      "status": "incomplete",
+      "actual_model_turns": 1,
+      "observed_tokens": 858488,
+      "input_tokens": 854535,
+      "output_tokens": 3953,
+      "cached_input_tokens_subset": 754304,
+      "reasoning_output_tokens_subset": 1448,
+      "per_main_limit": 1250000,
+      "phase_budget_breach": false,
+      "runner_closed": true,
+      "runner_exit_code": -15,
+      "interrupt_requests": 3,
+      "actual_input_matches_admitted": true,
+      "public_trace_lines": 326,
+      "public_trace_sha256": "6e0fef018ed67a4328d216c1ef026bae302b43b2b309939660cf8b2e92ecbfcc",
+      "state_sha256": "21c4117decd60e426153b227a2430dc0566c56f6f67c0f8115a1871b45fd949c",
+      "completed_public_tool_calls": [
+        {
+          "line": 118,
+          "id": "exec-73da50a0-8850-4fe2-a0ae-fa0d3f6a8e16",
+          "type": "dynamicToolCall",
+          "server": null,
+          "tool": "render_page",
+          "status": "completed",
+          "arguments": {
+            "width": 1440,
+            "height": 1000,
+            "fullPage": false
+          }
+        },
+        {
+          "line": 124,
+          "id": "exec-1eb969bf-1236-4a95-bf55-9263a6aad49f",
+          "type": "mcpToolCall",
+          "server": "playwright",
+          "tool": "browser_run_code_unsafe",
+          "status": "failed",
+          "arguments": {
+            "code": "async () => { const fs = await import('node:fs/promises'); const root='/private/tmp/experience-design-v55-01a07fad/runs/K12/workspace'; return {cwd:process.cwd(),files:await fs.readdir(root)}; }"
+          }
+        },
+        {
+          "line": 194,
+          "id": "exec-665c0a71-1c49-4ccd-b51c-31a04351f981",
+          "type": "mcpToolCall",
+          "server": "playwright",
+          "tool": "browser_run_code_unsafe",
+          "status": "failed",
+          "arguments": {
+            "code": "async () => { const fs = require('node:fs/promises'); const root='/private/tmp/experience-design-v55-01a07fad/runs/K12/workspace'; return {cwd:process.cwd(),files:await fs.readdir(root)}; }"
+          }
+        },
+        {
+          "line": 198,
+          "id": "exec-cd9308a1-05fc-4480-9732-cfe8c9ffb15f",
+          "type": "dynamicToolCall",
+          "server": null,
+          "tool": "render_page",
+          "status": "completed",
+          "arguments": {
+            "width": 1440,
+            "height": 1000,
+            "actions": [
+              {
+                "kind": "click",
+                "selector": ".nav-plan"
+              }
+            ]
+          }
+        },
+        {
+          "line": 204,
+          "id": "exec-861f904f-6192-4180-8dbf-3fe16add13f1",
+          "type": "mcpToolCall",
+          "server": "playwright",
+          "tool": "browser_run_code_unsafe",
+          "status": "completed",
+          "arguments": {
+            "code": "async (page) => { return {globals:Object.keys(globalThis),url:page.url()}; }"
+          }
+        },
+        {
+          "line": 214,
+          "id": "exec-eff120d1-f71b-4adb-8c77-0f427f1397c5",
+          "type": "mcpToolCall",
+          "server": "playwright",
+          "tool": "browser_run_code_unsafe",
+          "status": "completed",
+          "arguments": {
+            "code": "async (page) => { await page.goto('file:///private/tmp/experience-design-v55-01a07fad/runs/K12/workspace/'); return await page.locator('body').innerText(); }"
+          }
+        },
+        {
+          "line": 221,
+          "id": "exec-98f06e64-4656-4762-85fa-515c63b3e359",
+          "type": "mcpToolCall",
+          "server": "playwright",
+          "tool": "browser_run_code_unsafe",
+          "status": "completed",
+          "arguments": {
+            "code": "async (page) => { const root='file:///private/tmp/experience-design-v55-01a07fad/runs/K12/workspace/'; await page.goto(root+'input/'); const inputs=await page.locator('body').innerText(); await page.goto(root+'index.html'); return {inputs,title:await page.title(),scripts:await page.locator('script').allTextContents(),localAssets:await page.locator('[src],link[href]').evaluateAll(els=>els.map(e=>e.getAttribute('src')||e.getAttribute('href')))}; }"
+          }
+        },
+        {
+          "line": 230,
+          "id": "exec-c24c79a5-cb7c-4661-9e30-daf12d052f6a",
+          "type": "dynamicToolCall",
+          "server": null,
+          "tool": "render_page",
+          "status": "completed",
+          "arguments": {
+            "width": 360,
+            "height": 800,
+            "actions": [
+              {
+                "kind": "click",
+                "selector": ".nav-plan"
+              },
+              {
+                "kind": "click",
+                "selector": "input[name=\"demo\"][value=\"handle\"]"
+              },
+              {
+                "kind": "click",
+                "selector": "#save-plan"
+              },
+              {
+                "kind": "click",
+                "selector": "input[name=\"day\"][value=\"sun\"]"
+              },
+              {
+                "kind": "click",
+                "selector": "input[name=\"demo\"][value=\"glaze\"]"
+              },
+              {
+                "kind": "storage",
+                "mode": "fail_writes"
+              },
+              {
+                "kind": "click",
+                "selector": "#save-plan"
+              }
+            ]
+          }
+        },
+        {
+          "line": 232,
+          "id": "exec-6c6b7c67-f61a-45b3-9450-137c8744518b",
+          "type": "mcpToolCall",
+          "server": "playwright",
+          "tool": "browser_run_code_unsafe",
+          "status": "completed",
+          "arguments": {
+            "code": "async (page) => { await page.goto('file:///private/tmp/experience-design-v55-01a07fad/runs/K12/workspace/_skill/'); return await page.locator('body').innerText(); }"
+          }
+        },
+        {
+          "line": 302,
+          "id": "exec-d3a355a9-f76b-4e20-9780-7864f5de54ea",
+          "type": "mcpToolCall",
+          "server": "playwright",
+          "tool": "browser_run_code_unsafe",
+          "status": "completed",
+          "arguments": {
+            "code": "async (page) => { await page.goto('file:///private/tmp/experience-design-v55-01a07fad/runs/K12/workspace/index.html'); return await page.locator('script').first().textContent(); }"
+          }
+        }
+      ],
+      "completed_file_changes": [
+        {
+          "line": 206,
+          "id": "exec-8fd6408d-ed12-45fa-875f-02c42afef539",
+          "status": "completed",
+          "changes": [
+            {
+              "path": "/private/tmp/experience-design-v55-01a07fad/runs/K12/workspace/revision-check.md",
+              "kind": {
+                "type": "add"
+              }
+            }
+          ]
+        },
+        {
+          "line": 309,
+          "id": "exec-9d459445-78e5-4165-a4b2-298ac0bd1f1b",
+          "status": "completed",
+          "changes": [
+            {
+              "path": "/private/tmp/experience-design-v55-01a07fad/runs/K12/workspace/index.html",
+              "kind": {
+                "type": "update",
+                "move_path": null
+              }
+            }
+          ]
+        },
+        {
+          "line": 312,
+          "id": "exec-f9f571d2-9d02-4f0e-aea3-5c480f645078",
+          "status": "completed",
+          "changes": [
+            {
+              "path": "/private/tmp/experience-design-v55-01a07fad/runs/K12/workspace/index.html",
+              "kind": {
+                "type": "update",
+                "move_path": null
+              }
+            }
+          ]
+        }
+      ],
+      "partial_product_hashes": {
+        "index.html": "78bc1f05120538e4c5126f7eb86bd6727db16eaf3fef5ca5719e1330aa2ed970",
+        "input/api-and-state-design.md": "4d5251fd12d3bf34f96abcf7305002b4fb6c50a5666f7ee83e51f79d56ee9ff7",
+        "input/brief.md": "5827d74e935b3170fc5c06e9d0530446f32dc198a61309ce9ac60d81e06eb454",
+        "input/revision-brief.md": "3ebd306ef99c047b8be2095967280b696a5e5c371f4146b2d24dcb6ae9606e4d",
+        "input/source.json": "5b4ef5c457dd54b54fdfb93eb7dc20df473b21d5c663d9331fe79a4937d46ba5",
+        "input/state-failure-probes.md": "843ac0a6844dfde9f8906a204fee6121fd3daa4f6c01edf919520a917c101536",
+        "vessels.svg": "b52a20c0cde252d20dd9d405707dc84a2d9cb639bb37eae7c92c81cd488fe173"
+      },
+      "partial_workspace_all_files_sha256": {
+        ".playwright-mcp/console-2026-09-09T17-29-47-853Z.log": "28883190ccef66e2fc0140ac567992f333781f755f62cb6203ffa2fe5167bd74",
+        "_renders/80b027c792.json": "81bccf8586d1bfbe7e30cb0b85e5ec4ec20857ff2587be23d2eb003fcbc9ec19",
+        "_renders/80b027c792.png": "65b1cfea731b800da0c5b556f9bdc99ce78b0cefbd3f7b782ff1b7b9a066a2d8",
+        "_renders/906d48b36e.json": "33c1d420e217e754e388bf1d061b8c2fd4d4ce558a0b8673e0293f4f1a6bf4e6",
+        "_renders/906d48b36e.png": "f86757ba2f8eef1b64504a2d1f8e62b4535c0892aeaa02b6a83332fb0643efbd",
+        "_renders/99736a0523.json": "312b2311e961eb19089ea29f70e6f4c0fb4084fcbd3425be4358bddbece33b9e",
+        "_renders/99736a0523.png": "bd3266afbf3b058e405561bfebdfc94b0392fcb8f670d5cb21f7663f8766c11e",
+        "_skill/SKILL.md": "ceb6bfbdb01c1a23570b6e6c7372eced66a6b6a452471b58fcb4666ecc2732e4",
+        "_skill/resources/capability.json": "c573a12bfaa90714ac66c4f84f27daf4e8ff273e9e797971060c5ebb2e9e2cf9",
+        "_skill/resources/examples/comparison-after.png": "45e81cc7732a873b0f0570bbfe42f785e757f3442210b6cec53d55aae2be20b4",
+        "_skill/resources/examples/comparison-before.png": "d51f5a39f94f81f60f485fafab50182a013e1c1481c8137f0ec9cacf4599868a",
+        "_skill/resources/examples/worked-decisions.md": "ed71042ff42de478e43375ea7f7387b4e1cb01e202b751a1782589edff79e2a7",
+        "_skill/resources/references/api-and-state-design.md": "4d5251fd12d3bf34f96abcf7305002b4fb6c50a5666f7ee83e51f79d56ee9ff7",
+        "_skill/resources/references/compare-edit-compare.md": "d34d8e98c4d94d06dac2f420190c2a5486115eaeb6386481304370ad2aa72e59",
+        "_skill/resources/references/decision-studies.md": "17628d1e64ed25cea67e41b910c5a6b18ccb23fd1668e102642cfe4a2065bb6e",
+        "_skill/resources/references/platform-and-resource-selection.md": "8459c23f0986718f6cd2ed2fbe0c411b922c046aeb241c1f597978ca55b1a90f",
+        "_skill/resources/references/whole-experience-contract.md": "0feacc0f07016afad75a784a46af87718dc11231355ab1fcd564fc1d825abbad",
+        "_starting/index.html": "710a433a62d90798d3e939135710e640e37a7226ebd57fdcf1cdc5ab6c9a6082",
+        "_starting/input/brief.md": "5827d74e935b3170fc5c06e9d0530446f32dc198a61309ce9ac60d81e06eb454",
+        "_starting/input/source.json": "5b4ef5c457dd54b54fdfb93eb7dc20df473b21d5c663d9331fe79a4937d46ba5",
+        "_starting/vessels.svg": "b52a20c0cde252d20dd9d405707dc84a2d9cb639bb37eae7c92c81cd488fe173",
+        "index.html": "78bc1f05120538e4c5126f7eb86bd6727db16eaf3fef5ca5719e1330aa2ed970",
+        "input/api-and-state-design.md": "4d5251fd12d3bf34f96abcf7305002b4fb6c50a5666f7ee83e51f79d56ee9ff7",
+        "input/brief.md": "5827d74e935b3170fc5c06e9d0530446f32dc198a61309ce9ac60d81e06eb454",
+        "input/revision-brief.md": "3ebd306ef99c047b8be2095967280b696a5e5c371f4146b2d24dcb6ae9606e4d",
+        "input/source.json": "5b4ef5c457dd54b54fdfb93eb7dc20df473b21d5c663d9331fe79a4937d46ba5",
+        "input/state-failure-probes.md": "843ac0a6844dfde9f8906a204fee6121fd3daa4f6c01edf919520a917c101536",
+        "revision-check.md": "85a36dfe0352e12bf47cc78a79076e0323912fd0a917790712963bf40484beaa",
+        "runner-audited-own-canary.txt": "5b3975651c3cab92d044c096dc30a1c2d9525497457472de48c51ecb363d1f4a",
+        "vessels.svg": "b52a20c0cde252d20dd9d405707dc84a2d9cb639bb37eae7c92c81cd488fe173"
+      },
+      "unexpected_mcp_call_count": 7,
+      "unexpected_mcp_success_count": 5,
+      "subjective_agent_messages_read": false
+    },
+    {
+      "id": "L68",
+      "thread_id": "01a08737-59bb-75d2-9c2e-a6785a0ebaf6",
+      "status": "incomplete",
+      "actual_model_turns": 1,
+      "observed_tokens": 540747,
+      "input_tokens": 538032,
+      "output_tokens": 2715,
+      "cached_input_tokens_subset": 461440,
+      "reasoning_output_tokens_subset": 1676,
+      "per_main_limit": 1250000,
+      "phase_budget_breach": false,
+      "runner_closed": true,
+      "runner_exit_code": -15,
+      "interrupt_requests": 3,
+      "actual_input_matches_admitted": true,
+      "public_trace_lines": 281,
+      "public_trace_sha256": "339c714ac914c07ee6788adeafdf923b7c87198d0888b03cc9b5d0f15f2b0b47",
+      "state_sha256": "ffba60055f466ff9158582d99b0f8208bdafe178fe0471b4d6b9ca72ff742b8b",
+      "completed_public_tool_calls": [
+        {
+          "line": 113,
+          "id": "exec-62ba86b3-ec29-4e30-b9ff-d800dd9ff4e3",
+          "type": "dynamicToolCall",
+          "server": null,
+          "tool": "render_page",
+          "status": "completed",
+          "arguments": {
+            "entry": "index.html",
+            "width": 1240,
+            "height": 1000
+          }
+        },
+        {
+          "line": 119,
+          "id": "exec-4518b300-73f8-4ebe-881e-89bd7b96606e",
+          "type": "mcpToolCall",
+          "server": "playwright",
+          "tool": "browser_run_code_unsafe",
+          "status": "failed",
+          "arguments": {
+            "code": "async (page) => { const fs = require('node:fs'); const root='/private/tmp/experience-design-v55-01a07fad/runs/L68/workspace'; return {cwd:process.cwd(),files:fs.readdirSync(root),git:fs.existsSync(root+'/.git')}; }"
+          }
+        },
+        {
+          "line": 123,
+          "id": "exec-2706a372-f50b-4e50-ab46-d0b520f3360d",
+          "type": "dynamicToolCall",
+          "server": null,
+          "tool": "render_page",
+          "status": "completed",
+          "arguments": {
+            "entry": "index.html",
+            "width": 1240,
+            "height": 1000
+          }
+        },
+        {
+          "line": 188,
+          "id": "exec-0b132e7d-399a-4a1e-97a3-03ad8662ebca",
+          "type": "dynamicToolCall",
+          "server": null,
+          "tool": "render_page",
+          "status": "completed",
+          "arguments": {
+            "entry": "index.html",
+            "width": 1240,
+            "height": 1000
+          }
+        },
+        {
+          "line": 190,
+          "id": "exec-33268cd8-775f-4e72-886a-1a97777085b1",
+          "type": "mcpToolCall",
+          "server": "playwright",
+          "tool": "browser_run_code_unsafe",
+          "status": "failed",
+          "arguments": {
+            "code": "async (page) => { const fs = await import('node:fs'); const root='/private/tmp/experience-design-v55-01a07fad/runs/L68/workspace'; return {cwd:process.cwd(),files:fs.readdirSync(root),git:fs.existsSync(root+'/.git')}; }"
+          }
+        }
+      ],
+      "completed_file_changes": [
+        {
+          "line": 196,
+          "id": "exec-dfeec6f6-9719-45de-b562-899cbd9aa1b4",
+          "status": "completed",
+          "changes": [
+            {
+              "path": "/private/tmp/experience-design-v55-01a07fad/runs/L68/workspace/revision-notes.md",
+              "kind": {
+                "type": "add"
+              }
+            }
+          ]
+        },
+        {
+          "line": 208,
+          "id": "exec-f44027ca-b4f4-45b1-8386-32582eb50858",
+          "status": "completed",
+          "changes": [
+            {
+              "path": "/private/tmp/experience-design-v55-01a07fad/runs/L68/workspace/index.html",
+              "kind": {
+                "type": "update",
+                "move_path": null
+              }
+            }
+          ]
+        }
+      ],
+      "partial_product_hashes": {
+        "index.html": "e9740b19c4784e9f0a697681682e285f7bf0edd0158b11d0cd0be44cdeafc725",
+        "input/api-and-state-design.md": "4d5251fd12d3bf34f96abcf7305002b4fb6c50a5666f7ee83e51f79d56ee9ff7",
+        "input/api-contract.md": "af86a045a366a17872412d1c3b167fca39bd02836a567f8abbd9465d14570a3d",
+        "input/brief.md": "b463f6b9a4c79ebcd142c797149dc902fa34a22fe222dd6d8ab7d1cb7957f409",
+        "input/revision-brief.md": "3ebd306ef99c047b8be2095967280b696a5e5c371f4146b2d24dcb6ae9606e4d",
+        "input/source.json": "866a9e55579c4d74bba4bd10661774efc5852d398ea802aeed8c732ca27a5d27",
+        "input/state-failure-probes.md": "843ac0a6844dfde9f8906a204fee6121fd3daa4f6c01edf919520a917c101536"
+      },
+      "partial_workspace_all_files_sha256": {
+        "_renders/218d16d750.json": "335b3102d5097f4d938fb71edc9f353702dd3f445e1a499ac7fa3cd3cddcbc89",
+        "_renders/218d16d750.png": "4a594dac2cf37101379117b0ad1df3f6cbabf97ca3ddc3d50492ec1439e4f6e8",
+        "_renders/3e27c58c7b.json": "96e91bcb962fea307329b89a800400fdc04340d3285a43af9bffe5f0f8658241",
+        "_renders/3e27c58c7b.png": "4a594dac2cf37101379117b0ad1df3f6cbabf97ca3ddc3d50492ec1439e4f6e8",
+        "_renders/e5c86a1384.json": "46036874c292d2cc482fae4e16af1dcea375698511f485570b92d961b75b81c3",
+        "_renders/e5c86a1384.png": "4a594dac2cf37101379117b0ad1df3f6cbabf97ca3ddc3d50492ec1439e4f6e8",
+        "_skill/SKILL.md": "ff21661ff1678e7ad4d54e5db8a7685d43004bf58b4805083caef49307e65b9b",
+        "_skill/resources/capability.json": "fbbc4c097fbd9bfcf1bb9cffa1554b5065b7e4560fc06bd02408bf0b52e2b10b",
+        "_skill/resources/examples/comparison-after.png": "45e81cc7732a873b0f0570bbfe42f785e757f3442210b6cec53d55aae2be20b4",
+        "_skill/resources/examples/comparison-before.png": "d51f5a39f94f81f60f485fafab50182a013e1c1481c8137f0ec9cacf4599868a",
+        "_skill/resources/examples/worked-decisions.md": "54de8869d79b26df2431aabacd838b7539576840e2da8ed54a7493b6604b6aab",
+        "_skill/resources/references/api-and-state-design.md": "4d5251fd12d3bf34f96abcf7305002b4fb6c50a5666f7ee83e51f79d56ee9ff7",
+        "_skill/resources/references/compare-edit-compare.md": "e7e1c8751b8f59311bfc700e902ce4d06b2c239cbd4d5791c5aec194456075dd",
+        "_skill/resources/references/decision-studies.md": "17628d1e64ed25cea67e41b910c5a6b18ccb23fd1668e102642cfe4a2065bb6e",
+        "_skill/resources/references/platform-and-resource-selection.md": "f90b92afad3ee9d75e9735310473c2baa095d4c88980fd5b3a47b84e2f507cd8",
+        "_skill/resources/references/state-failure-probes.md": "843ac0a6844dfde9f8906a204fee6121fd3daa4f6c01edf919520a917c101536",
+        "_skill/resources/references/whole-experience-contract.md": "a2368ee2ac48d18020421886cbf50e61514b2be8653b46fabd76268caab77ff4",
+        "_starting/index.html": "edde9cd4ff6afe9cd40b8fd7e4a7c56d3efd2f83e3caf17cc5d2159ba513bc58",
+        "_starting/input/api-contract.md": "af86a045a366a17872412d1c3b167fca39bd02836a567f8abbd9465d14570a3d",
+        "_starting/input/brief.md": "b463f6b9a4c79ebcd142c797149dc902fa34a22fe222dd6d8ab7d1cb7957f409",
+        "_starting/input/source.json": "866a9e55579c4d74bba4bd10661774efc5852d398ea802aeed8c732ca27a5d27",
+        "index.html": "e9740b19c4784e9f0a697681682e285f7bf0edd0158b11d0cd0be44cdeafc725",
+        "input/api-and-state-design.md": "4d5251fd12d3bf34f96abcf7305002b4fb6c50a5666f7ee83e51f79d56ee9ff7",
+        "input/api-contract.md": "af86a045a366a17872412d1c3b167fca39bd02836a567f8abbd9465d14570a3d",
+        "input/brief.md": "b463f6b9a4c79ebcd142c797149dc902fa34a22fe222dd6d8ab7d1cb7957f409",
+        "input/revision-brief.md": "3ebd306ef99c047b8be2095967280b696a5e5c371f4146b2d24dcb6ae9606e4d",
+        "input/source.json": "866a9e55579c4d74bba4bd10661774efc5852d398ea802aeed8c732ca27a5d27",
+        "input/state-failure-probes.md": "843ac0a6844dfde9f8906a204fee6121fd3daa4f6c01edf919520a917c101536",
+        "revision-notes.md": "e4309f1b21bade75239b942cee811af2bb558331e4351f703142139cb0fcd2f0",
+        "runner-audited-own-canary.txt": "5b3975651c3cab92d044c096dc30a1c2d9525497457472de48c51ecb363d1f4a"
+      },
+      "unexpected_mcp_call_count": 2,
+      "unexpected_mcp_success_count": 0,
+      "subjective_agent_messages_read": false
+    }
+  ],
+  "total_model_turns": 2,
+  "main_turns": 2,
+  "judge_turns": 0,
+  "observed_experimental_tokens": 1399235,
+  "input_tokens": 1392567,
+  "output_tokens": 6668,
+  "counting_basis": "Provider input including cached/repeated input plus output; cached input and reasoning output are included subsets, not extra charges. Controller/authoring/ordinary verification not included. Not dollar cost.",
+  "active_model_turns": 0,
+  "global_stop": true,
+  "budget_breach": false,
+  "original_limits_preserved": {
+    "total_tokens": 12000000,
+    "total_turns": 16,
+    "main_tokens_each": 1250000,
+    "main_seconds": 900,
+    "judge_tokens_each": 250000,
+    "judge_seconds": 480,
+    "global_seconds": 10800,
+    "first_generation_at": 1788974947.269429,
+    "deadline_at": 1788985747.269429
+  },
+  "unused_generation_holds_at_readback": 7500000,
+  "unused_generation_hold_count_at_readback": 6,
+  "accounting_sha256_at_readback": "6b3981e11ae8d07f7ea72915a0226080e5fb4a9de4d938b26f15df136bf2ba04",
+  "evidence_findings": [
+    "Both actual main text inputs match their admitted preassembled bytes.",
+    "Only render_page was declared as a dynamic tool, but playwright.browser_run_code_unsafe was exposed through the effective MCP runtime.",
+    "K12 made seven MCP calls: two failed fs imports and five successful browser inspections, including file URLs within its assigned workspace. L68 made two failed fs imports.",
+    "No observed sibling-arm or evaluator read appears in the inspected complete public traces; shared-browser isolation cannot be established from these traces.",
+    "User-level preToolUse hooks also executed during both runs; their effective configuration was not part of the independent admission manifest. No hook contents were read in this audit.",
+    "The preflight dynamic-tool/configuration and credential canary did not establish the complete effective tool surface. Runtime evidence overrides that insufficient admission assumption.",
+    "Both runners emitted terminal close events and both ledger stages are inactive, incomplete and fully charged."
+  ],
+  "frozen_file_mismatches": [],
+  "historical_files_checked": 26,
+  "historical_file_mismatches": [],
+  "quality_judgment_performed": false,
+  "candidate_hard_failure_claimed": false,
+  "formal_promotion_claimed": false,
+  "more_calls_admitted": false,
+  "next_step_boundary": "Preserve this invalidated run and all usage/partial artifacts. No wave2, judge, runtime repair, rearm or retry in this frozen trial. Any future trial needs separate prospective admission that proves the effective native/MCP/hook surface.",
+  "auditor_model_calls": 0,
+  "auditor_fixture_actions": 0
+}

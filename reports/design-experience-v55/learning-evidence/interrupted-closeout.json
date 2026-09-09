@@ -1,0 +1,22 @@
+{
+  "schema": "PairedRevisionInterruptedCloseout.v1",
+  "closedAt": "2026-09-09T17:42:23.303490+00:00",
+  "decision": "inconclusive",
+  "cause": "Runtime inherited undeclared Playwright MCP tools and unfrozen user pre-tool hooks; the admitted tool/context boundary was not established.",
+  "observed_main_tokens": 1399235,
+  "charged_main_turns": 2,
+  "judge_turns": 0,
+  "active_turns": 0,
+  "held_tokens": 0,
+  "budget_breach": false,
+  "original_clock": {
+    "first": 1788974947.269429,
+    "deadline": 1788985747.269429
+  },
+  "no_quality_scores": true,
+  "source_candidate_not_rejected_by_this_result": true,
+  "no_more_model_calls_authorized_in_this_protocol": true,
+  "ledger_sha256": "3cde16a8b930d7316bf3d6b075c75b659c25c0bb7dc99a862209e98844ab50d3",
+  "partial_outputs": "interrupted-products",
+  "root_owned_api_session_62499_stopped": true
+}
