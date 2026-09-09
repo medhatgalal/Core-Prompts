@@ -85,6 +85,28 @@ Follow [Historical evaluation archives](CAPABILITY-EVALUATION.md#historical-eval
 
 They are useful generated inspection aids. They should not replace the real onboarding and example docs.
 
+## Harvesting Lessons From Completed Work
+
+A useful retained lesson connects an observed failure or success to the next decision it changes. Stable operating requirements belong in the linked steering or owning capability; explanations belong beside the relevant workflow; regression cases belong in the existing tests/evals. Run-specific observations stay in evidence with their limits. This keeps lessons discoverable without making every invocation load another playbook.
+
+The modernization and v1.14.0 delivery produced these reusable lessons:
+
+| Lesson | What happened and what carries forward | Durable home |
+| --- | --- | --- |
+| Keep the whole approved scope | A derived checklist omitted comparative work and sequencing prose. Closure now reconciles the original source plus later authorized changes. | [Scope rules](../.kiro/steering/repo-workflow.md#scope-rules); [recorded gap](../reports/frontier-modernization/EVIDENCE.md) |
+| Match claims to evidence | Source review and resource assembly were once described as a live council demonstration. A later run supplied that missing evidence, but could not prove an earlier sequence occurred. | [Verification expectations](../.kiro/steering/repo-workflow.md#verification-expectations); [resource evidence levels](FRONTIER-MODERNIZATION.md#complete-resources-explicit-evidence) |
+| Make evaluations discriminate | Pilot rubrics saturated and reviewers disagreed about wording. Those results support narrower conclusions, not universal model rankings or fixed iteration counts. | [Evaluation discipline](../.kiro/steering/agent-behavior.md#comparative-evaluation-and-bounded-work); [pilot limits](CAPABILITY-EVALUATION.md#learning-from-bounded-pilots) |
+| Budget the entire workflow | Coordination, occupied agent slots, and final verification exceeded planned elapsed windows. Naming the clock and counted phases prevents a model-time measurement from becoming an end-to-end claim. | [Bounded work](../.kiro/steering/agent-behavior.md#comparative-evaluation-and-bounded-work); [timing evidence](../reports/frontier-modernization/EVIDENCE.md#honest-remaining-limits) |
+| Fix every output producer | Changing the prompt text initially left the bootstrap helper and UAC fallback generating dated copies. Stable paths and preservation behavior now cover those producers, with regression coverage. | [Artifact guidance](FRONTIER-MODERNIZATION.md#what-changed-for-users); [bootstrap tests](../tests/test_uac_import.py); [UAC tests](../tests/test_uac_source_integrity.py) |
+| Verify published bytes | During v1.14.0 verification, a private download returned sign-in HTML despite exit zero. Authenticated downloads then matched the reviewed archives. Transport success alone was insufficient. | [Publication verification](RELEASE-PACKAGING.md#recommended-release-order) |
+| Separate pre-existing drift from installer effects | A Codex configuration changed before apply. Its refreshed preservation baseline was recorded; the reviewed install left those bytes, the saved profile, and prior rollback data unchanged. | [Installation preservation](INSTALL-PROFILES.md#review-and-apply-a-plan) |
+
+For the next harvest, the useful questions are: what decision would this lesson change, where does that decision already live, what evidence supports it, and what would make the lesson obsolete? An entry adds value when it improves that existing home or a regression check. Repeated advice, transient statuses, and untested prompting theories do not need new standing rules.
+
+A compact harvest can record the evidence reference, the existing owner, and a disposition such as incorporated, proposed follow-up, or retained as case evidence. For example, a confirmed defect that survived an inconclusive pilot can inform development guidance while an adapter protection remains proposed work owned by the evaluator. That distinction makes the next action visible without describing the protection as implemented. The [development scope rules](../.kiro/steering/repo-workflow.md#scope-rules) govern this closeout; a small change may need only a short disposition in its PR/MR rather than a new report.
+
+The [archived experience-design harvest](https://github.com/medhatgalal/Core-Prompts/blob/aa1e3201c3a43751b5de2c537c1026875beddc75/reports/design-experience-v55/LESSONS.md) illustrates this separation between observed defects, development lessons, and proposed evaluator work. It remains draft research with stated limits. [Learning from bounded pilots](CAPABILITY-EVALUATION.md#learning-from-bounded-pilots) explains how those lessons inform comparable inputs, measurement preflight, and an inconclusive closeout that retains known failures. The governing evaluation rules stay in [agent behavior steering](../.kiro/steering/agent-behavior.md#comparative-evaluation-and-bounded-work).
+
 ## Suggested Review Rhythm
 
 - commit: check the touched commands, paths, examples, and any adjacent docs that may now drift

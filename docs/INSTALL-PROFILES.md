@@ -44,6 +44,15 @@ bash scripts/deploy-surfaces.sh --profile .meta/install-profiles/codex-kiro-grok
 The plan binds the source manifest, every selected source file's hash and mode,
 profile, current destination inventory, ownership receipt, and optional reader
 evidence. Apply refuses a stale plan. Copy uses staged atomic file replacement.
+
+The [preservation check](../.kiro/steering/repo-workflow.md#verification-expectations)
+also distinguishes changes already present before apply from changes caused by the
+installer. A stale baseline for an unrelated, untouched configuration can be refreshed
+after its drift is recorded. That does not waive a stale write-set preimage, grant
+ownership, or permit a profile change. Post-apply comparison uses the reviewed plan,
+transaction afterimages, and that current preservation baseline; a subsequent no-op
+plan and rollback dry-run add evidence without undoing the accepted installation.
+
 The receipt and profile are saved under `.core-prompts-state/profile-install`.
 Later calls through the existing updater use the saved approved profile. They
 build and validate a concrete plan internally, update only receipt-owned unchanged
