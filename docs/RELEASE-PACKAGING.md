@@ -79,6 +79,7 @@ Both archive formats and standalone runtime inventories/copies exclude local Cod
 Do not call the repo release-green until the hosted CI surface is green after push.
 
 The GitLab Python container explicitly installs `zip` for the archive tests; GitHub's hosted Ubuntu runner already provides it.
+GitLab also disables the Docker runner's permissive checkout umask and builds with `umask 022`, so recorded file modes survive safe TAR extraction. See [GitLab runner feature flags](https://docs.gitlab.com/runner/configuration/feature-flags/). Installer byte and mode verification remains strict.
 
 - GitHub Actions:
   - runs on pushes to `main` and `AI/**`
