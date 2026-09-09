@@ -65,6 +65,7 @@ def test_package_boundary_includes_release_watch_contract(tmp_path: Path) -> Non
         ".meta/skill-job-map.json",
         "docs/CAPABILITY-EVALUATION.md",
         "docs/SKILL-JOB-MAP.md",
+        "docs/FRONTIER-MODERNIZATION.md",
         "scripts/eng-report.py",
         "scripts/update-core-prompts.py",
         "scripts/deploy-surfaces.sh",
@@ -74,6 +75,18 @@ def test_package_boundary_includes_release_watch_contract(tmp_path: Path) -> Non
     }
     assert expected <= tar_names
     assert expected <= zip_names
+
+    # The shipped guide must resolve its local skill/resource links in both formats.
+    import re
+    for archive_path, names, opener in [(tar_path, tar_names, tarfile.open), (zip_path, zip_names, zipfile.ZipFile)]:
+        with opener(archive_path) as archive:
+            guide = (archive.extractfile("docs/FRONTIER-MODERNIZATION.md").read() if isinstance(archive, tarfile.TarFile)
+                     else archive.read("docs/FRONTIER-MODERNIZATION.md")).decode()
+        for link in re.findall(r"\]\(([^)]+)\)", guide):
+            if "://" in link or link.startswith("#"):
+                continue
+            target = (ROOT / "docs" / link.split("#", 1)[0]).resolve().relative_to(ROOT).as_posix()
+            assert target in names, (archive_path, link)
 
     retired_package_paths = (
         "skills/opex-briefing/",
@@ -209,3 +222,18 @@ def test_runtime_inventory_is_available_in_a_tagged_git_mirror() -> None:
     tracked = set(subprocess.check_output(['git', 'ls-files'], cwd=ROOT, text=True).splitlines())
     assert set(inventory) <= tracked
     assert not any(path.startswith('dist/') for path in inventory)
+
+
+def test_package_rejects_unreleased_changes_before_archive_creation(tmp_path: Path) -> None:
+    import shutil
+    repo = tmp_path / "repo"
+    (repo / "scripts").mkdir(parents=True)
+    (repo / ".meta").mkdir()
+    shutil.copy2(PACKAGE_SCRIPT, repo / "scripts/package-surfaces.sh")
+    (repo / ".meta/manifest.json").write_text("{}")
+    (repo / "VERSION").write_text("v1.0.0\n")
+    (repo / "CHANGELOG.md").write_text("## Unreleased\n\n- New behavior\n\n## v1.0.0 - 2026-01-01\n\n- Old release\n")
+    result = subprocess.run([str(repo / "scripts/package-surfaces.sh"), "--version", "v1.0.0", "--output-dir", str(tmp_path / "out")], capture_output=True, text=True)
+    assert result.returncode != 0
+    assert "Unreleased content" in result.stdout + result.stderr
+    assert not (tmp_path / "out").exists()

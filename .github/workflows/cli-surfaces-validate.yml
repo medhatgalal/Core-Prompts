@@ -38,3 +38,7 @@ jobs:
         run: bin/capability-eval calibrate --static-only
       - name: Validate generated surfaces
         run: python3 scripts/validate-surfaces.py --strict --skip-schema
+      - name: Build release distribution views after source validation
+        run: bin/capability-fabric build
+      - name: Verify release packaging and profile migration
+        run: python3 -m pytest -q tests/test_package_surfaces.py tests/test_package_local_config.py tests/test_deploy_profile.py tests/test_update_core_prompts.py
