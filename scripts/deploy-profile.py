@@ -128,7 +128,10 @@ def desired_files(repo, profile):
     return result
 
 
-def plan(repo, home, profile, routine=False, release_state=None):
+def plan(repo, home, profile, routine=False, release_state=None, migration=False):
+    if routine and migration:
+        raise ValueError('routine sync and reviewed migration are separate modes')
+    managed = routine or migration
     desired = desired_files(repo, profile)
     receipt = read_receipt(home)
     known = receipt['files']
@@ -155,6 +158,7 @@ def plan(repo, home, profile, routine=False, release_state=None):
         except ValueError as exc:
             blocked.add(bundle)
             inventories[bundle] = {'blocked': str(exc)}
+            preserved.append({'path': bundle, 'reason': str(exc)})
     actions = []
     for rel, item in sorted(desired.items()):
         if item['bundle'] in blocked:
@@ -205,19 +209,21 @@ def plan(repo, home, profile, routine=False, release_state=None):
     updater_observations, blockers = {}, []
     support = safe(home, '.core-prompts-updater')
     bundle = {}
-    if routine and not support.exists():
-        blockers.append('routine updates require an installed standalone bundle')
+    if managed and not support.exists():
+        blockers.append(('routine' if routine else 'migration') + ' updates require an installed standalone bundle')
     if support.exists():
         try:
             bundle = install_bundle.verified(repo)
         except (ValueError, OSError) as exc:
             blockers.append(str(exc))
         prior_bundle = receipt.get('bundle_files', {})
+        if migration and (not prior_bundle or any(not identity for identity in prior_bundle.values())):
+            blockers.append('prior standalone bundle ownership is missing or incomplete')
         for rel, expected in bundle.items():
             target = '.core-prompts-updater/' + rel
             current = snapshot(safe(home, target))
             updater_observations[target] = current
-            if routine:
+            if managed:
                 if current != prior_bundle.get(rel):
                     blockers.append('customized or unknown standalone file: ' + target)
                 elif current != expected:
@@ -225,17 +231,40 @@ def plan(repo, home, profile, routine=False, release_state=None):
                                     'source': rel, 'identity': expected, 'bundle': '.core-prompts-updater'})
             elif current != expected:
                 blockers.append('installed updater requires separate reviewed refresh: ' + target)
-        if routine and set(prior_bundle) - set(bundle):
-            blockers.append('standalone bundle file scope was removed; reviewed migration required')
-    if routine:
+        if managed and set(prior_bundle) - set(bundle):
+            blockers.append('standalone bundle file scope was removed; ' +
+                            ('addition-only migration cannot remove files' if migration else 'reviewed migration required'))
+    if managed:
         if digest(encoded(profile)) != receipt.get('approved_profile_sha256'):
             blockers.append('saved target profile differs from approved ownership scope')
-        if set(desired) != set(receipt.get('skill_scope', [])):
+        if routine and set(desired) != set(receipt.get('skill_scope', [])):
             blockers.append('selected skill file scope changed; reviewed migration required')
         if preserved or any(observations.get(rel) != known.get(rel, {}).get('identity') for rel in desired):
             blockers.append('selected skills have customized, unknown, or missing files')
+    if migration:
+        # Migration only widens file membership inside packages already approved
+        # by the saved receipt. It never adopts existing files or expands clients/slugs.
+        prior_scope = set(receipt.get('skill_scope', []))
+        saved = snapshot(safe(home, PROFILE))
+        if saved != {'sha256': receipt.get('approved_profile_sha256'), 'mode': 0o644}:
+            blockers.append('saved profile file differs from approved ownership scope')
+        if profile.get('retire'):
+            blockers.append('addition-only migration cannot retire files')
+        if prior_scope - set(desired):
+            blockers.append('selected skill file scope was removed; addition-only migration cannot remove files')
+        if not prior_scope or any(not known.get(rel, {}).get('identity')
+                or known[rel].get('source') != desired[rel]['source']
+                for rel in prior_scope & set(desired)):
+            blockers.append('prior skill ownership is missing or differs from the approved source paths')
+        approved_bundles = {'/'.join(Path(rel).parts[:3]) for rel in prior_scope}
+        additions = set(desired) - prior_scope
+        if any(desired[rel]['bundle'] not in approved_bundles for rel in additions):
+            blockers.append('migration additions must stay within already approved skill packages')
+        if any(observations[rel] is not None or rel in known for rel in additions):
+            blockers.append('migration additions must be absent, newly declared skill files')
     result = {'schema': 1, 'owner': 'Core-Prompts', 'repo': str(repo), 'target': str(home),
-            'profile': profile, 'routine': routine, 'release_state': release_state, 'reader_evidence': evidence_hash,
+            'profile': profile, 'routine': routine, 'migration': migration,
+            'release_state': release_state, 'reader_evidence': evidence_hash,
             'manifest_sha256': digest((repo / '.meta/manifest.json').read_bytes()),
             'source_files': desired, 'observed_files': observations, 'inventories': inventories,
             'receipt': snapshot(safe(home, RECEIPT)), 'saved_profile': snapshot(safe(home, PROFILE)),
@@ -249,7 +278,7 @@ def plan(repo, home, profile, routine=False, release_state=None):
         else:
             next_receipt['files'].pop(item['path'], None)
     saved_profile = dict(profile)
-    if not any(a['path'].startswith('.codex/skills/') for a in preserved):
+    if not migration and not any(a['path'].startswith('.codex/skills/') for a in preserved):
         saved_profile['retire'] = []
         saved_profile.pop('reader_evidence', None)
     next_receipt['approved_profile_sha256'] = digest(encoded(saved_profile))
@@ -279,8 +308,11 @@ def plan(repo, home, profile, routine=False, release_state=None):
     return result
 
 
-def apply(repo, home, profile, approved):
-    fresh = plan(repo, home, profile, routine=approved.get('routine', False), release_state=approved.get('release_state'))
+def apply(repo, home, profile, approved, migration=False):
+    if approved.get('migration', False) is not migration:
+        raise ValueError('migration mode must match the reviewed plan and explicit apply opt-in')
+    fresh = plan(repo, home, profile, routine=approved.get('routine', False),
+                 release_state=approved.get('release_state'), migration=migration)
     if fresh != approved:
         raise ValueError('approved plan differs from current source, profile, ownership, or target; regenerate and review')
     if fresh['blockers']:
@@ -382,10 +414,16 @@ def main():
     parser.add_argument('--apply-plan', type=Path)
     parser.add_argument('--rollback')
     parser.add_argument('--sync', action='store_true', help='Use the persisted approved scope for receipt-protected routine updates')
+    parser.add_argument('--migrate', action='store_true',
+                        help='Review/apply absent resource additions within unchanged approved skill packages')
     args = parser.parse_args()
     try:
         if args.apply_plan and (args.dry_run or args.rollback):
             raise ValueError('--apply-plan cannot be combined with --dry-run or --rollback')
+        if args.sync and args.apply_plan:
+            raise ValueError('--sync cannot be combined with --apply-plan')
+        if args.migrate and (args.sync or args.rollback or not (args.dry_run or args.apply_plan)):
+            raise ValueError('--migrate requires --dry-run or --apply-plan and cannot combine with --sync or --rollback')
         repo, home = args.repo.absolute(), args.target.absolute()
         if repo.resolve() == home.resolve():
             raise ValueError('profile installs require a distinct target; build repository surfaces instead')
@@ -399,9 +437,9 @@ def main():
                 approved = plan(repo, home, profile, routine=True)
                 result = approved if args.dry_run else apply(repo, home, profile, approved)
             elif args.dry_run:
-                result = plan(repo, home, profile)
+                result = plan(repo, home, profile, migration=args.migrate)
             elif args.apply_plan:
-                result = apply(repo, home, profile, json.loads(args.apply_plan.read_text()))
+                result = apply(repo, home, profile, json.loads(args.apply_plan.read_text()), migration=args.migrate)
             else:
                 raise ValueError('use --dry-run or an exact reviewed --apply-plan')
         print(json.dumps(result, indent=2, sort_keys=True))

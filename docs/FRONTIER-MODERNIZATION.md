@@ -33,8 +33,8 @@ measured experiments. UAC remains exhaustive onboarding and uplift tooling.
   The bootstrap helper requires `--report-dir`, preserves existing files on repeat
   runs, and creates a promotion packet only with `--profile promotion-prep`.
 
-Canonical behavior is in [Supercharge](../ssot/engos-meta-supercharge.md) and its
-declared resources; this page explains the changes rather than adding rules.
+The shipped operating contract is in [Supercharge](../.codex/skills/engos-meta-supercharge/SKILL.md) and its
+declared resources, generated from the source repository’s canonical SSOT. This page explains the changes rather than adding rules.
 
 ## Complete resources, explicit evidence
 
@@ -58,7 +58,7 @@ this does not make an uninstrumented host mechanically enforce resource use.
 
 ## Measured exploration
 
-For [Auto-Research](../ssot/engos-optimization-auto-research.md), distinguish the
+For [Auto-Research](../.codex/skills/engos-optimization-auto-research/SKILL.md), distinguish the
 original baseline, current best accepted candidate, and active trial. A trial may
 change one thing or a coordinated set under a stated hypothesis. It executes against
 a protected evaluator and scorecard; acceptance advances the incumbent, rejection
@@ -81,7 +81,7 @@ uses hash-bound requirement dispositions without rewriting historical baseline l
 
 ## Model guidance maintenance
 
-One [dated table](../sources/capability-resources/engos-meta-supercharge/references/model-guidance.md)
+One [dated table](../.codex/skills/engos-meta-supercharge/resources/references/model-guidance.md)
 records relevant capabilities, prompting implications, sources, and evidence class.
 One research-only monthly refresh checks for meaningful changes; the same workflow
 can be invoked when a new model or revised practice is identified. Proposed changes

@@ -19,10 +19,10 @@ python3 scripts/smoke-clis.py
 Before the release build, select and record the previous published release:
 
 ```bash
-CORE_PROMPTS_RELEASE_BASE_REF=v1.13.1 bin/capability-fabric build
+CORE_PROMPTS_RELEASE_BASE_REF=v1.13.2 bin/capability-fabric build
 ```
 
-For this v1.13.2 release the comparison baseline is v1.13.1. Choose the preceding
+For this v1.14.0 release the comparison baseline is v1.13.2. Choose the preceding
 published tag for future releases. The generator supports an explicit baseline
 and otherwise selects the latest distinct ancestor tag available locally. Fetch
 and verify the intended baseline; do not let missing local tags silently turn a
@@ -33,7 +33,7 @@ do not hand-edit its capability counts or alter historical published release not
 ## Build and Dry-Run
 ```bash
 bin/capability-fabric build
-bin/capability-fabric deploy --dry-run --cli all
+bin/capability-fabric deploy --target "$HOME" --allow-nonlocal-target --dry-run --cli all
 ```
 
 For a bounded repair or rollout, use `--surface-only` with at least one `--slug`. Review the exact copy set before the real command; surface-only deploy skips updater, launcher, and local-binary refresh.

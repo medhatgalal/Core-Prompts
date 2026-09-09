@@ -66,6 +66,9 @@ from pathlib import Path
 import re
 
 text = Path("CHANGELOG.md").read_text(encoding="utf-8")
+unreleased = re.search(r"^##[ \t]+Unreleased[ \t]*\r?$([\s\S]*?)(?=^##[ \t]|\Z)", text, re.M | re.I)
+if unreleased and unreleased.group(1).strip():
+    raise SystemExit("error: CHANGELOG.md has Unreleased content; finalize the release entry before packaging")
 match = re.search(r"^##[ \t]+([^ \t\r\n]+)[ \t]+-[ \t]+", text, re.M)
 print(match.group(1) if match else "")
 PY
@@ -118,6 +121,7 @@ INCLUDE_PATHS=(
   "docs/ORCHESTRATOR-CONTRACT.md"
   "docs/RELEASE-PACKAGING.md"
   "docs/MAINTAINER-HYGIENE.md"
+  "docs/FRONTIER-MODERNIZATION.md"
   "docs/RELEASE-DELTA.md"
   "docs/STATUS.md"
   "README.md"
