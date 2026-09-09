@@ -39,14 +39,16 @@ For those cases, use [Getting started](GETTING-STARTED.md), [Examples](EXAMPLES.
 
 ## Modes
 
-| Mode | Use it when you want to... | Writes repo state |
+| Mode | Use it when you want to... | Writes canonical state |
 | --- | --- | --- |
-| `import` | inspect one or more sources without mutating the repo | no |
+| `import` | inspect one or more sources without canonical landing | no |
 | `audit` | inspect current SSOT entries and generated surfaces | no |
 | `explain` | print the capability model and deployment matrix | no |
-| `plan` | see the proposed landing shape before writing files | no |
-| `judge` | run the quality loop and get a ship or block decision | no |
+| `plan` | see the proposed landing shape before apply | no |
+| `judge` | run the quality loop and get structural readiness or blockers | no |
 | `apply` | write canonical repo state, then rebuild and validate | yes |
+
+Source snapshots and quality-review reports may be retained by inspection modes. “No canonical state” means no SSOT/descriptor landing, not an absence of local evidence files. See [CLI write effects](CLI-REFERENCE.md#common-commands).
 
 ## The Typical Flow
 
@@ -61,10 +63,10 @@ How to think about that sequence:
 
 - `import` is the low-risk first look
 - `plan` is the proposed landing shape
-- `judge` is the quality and ship decision
+- `judge` is the structural quality decision and evaluation-impact recommendation
 - `apply` is the intentional repo mutation step
 
-If `judge` finds the candidate is structurally close to ready but still needs bounded behavioral proof, keep the landing decision open and route that proof to `engos-optimization-auto-research` before `apply`.
+A `structural_ready` judgment can support canonical apply during the advisory rollout while behavioral status remains `behavioral_pending`. A structural blocker must be resolved before apply. Use `engos-optimization-auto-research` when the intended claim requires behavioral evidence; structural acceptance does not authorize that claim.
 
 ## Update An Existing Capability
 
@@ -96,7 +98,7 @@ For example, importing a reporting skill that declares HTML and Markdown outputs
 
 ## Worked Examples
 
-### Example: Plan A Landing Before You Touch Repo State
+### Example: Plan A Landing Before Canonical Apply
 
 Command:
 
@@ -134,7 +136,7 @@ Recommended next step:
 - run judge with --quality-profile architecture
 ```
 
-Use `plan` when you want the landing shape, naming, and overlap analysis before any repo mutation.
+Use `plan` when you want the landing shape, naming, and overlap analysis before canonical mutation.
 
 ### Example: Judge Before Apply
 
@@ -162,43 +164,33 @@ Judge summary:
 - weak areas: invocation hints are too short and examples need more concrete asks
 
 Artifacts:
-- reports/quality-reviews/architecture/LATEST.md
+- reports/quality-reviews/engos-design-architecture/LATEST.md
 
 Decision:
 - revise the identified gaps, then rerun judge on the exact candidate before apply
 ```
 
-Use `judge` when you want the quality decision, evidence, and blockers without changing the repo.
+Use `judge` for the quality decision, retained evidence, and blockers without changing canonical SSOT or descriptors.
 
-### Example: Judge Escalates To Behavioral Proof
+### Example: Structural Acceptance With Behavioral Evidence Pending
 
 Command:
 
 ```bash
-bin/uac judge /absolute/path/to/prompt-family --quality-profile architecture
+bin/uac judge /absolute/path/to/prompt-family --quality-profile architecture --emit-impact-plan
 ```
 
-Typical escalation shape:
+Illustrative fields for a candidate that passes deterministic gates:
 
 ```text
-Quality status: hold
-
-Judge summary:
-- structural quality is near ship
-- behavioral confidence is still weak against baseline
-
-Next step:
-- route to `engos-optimization-auto-research` with:
-  - baseline artifact
-  - candidate artifact or variants
-  - claimed job
-  - bounded task set
-  - pass/fail threshold
+quality_result.status: structural_ready
+behavioral_status: behavioral_pending
+eval_impact_plan.minimum_profile: promotion
 ```
 
-Use this path when structural quality alone is not enough to justify landing.
+This supports structural landing during the advisory rollout. It does not say the candidate performs better or preserve a behaviorally proven baseline. If promotion is part of the goal, give `engos-optimization-auto-research` the baseline, exact candidate, claimed job, bounded task set, and evaluation criteria. The [evaluation guide](CAPABILITY-EVALUATION.md) explains protected execution and accepted verdicts.
 
-### Example: Apply A Ship-Ready Capability
+### Example: Apply A Structurally Ready Capability
 
 Command:
 
@@ -223,7 +215,7 @@ Typical response shape:
 
 ```text
 Applied capability:
-- slug: architecture
+- slug: engos-design-architecture
 - updated:
   - ssot/engos-design-architecture.md
   - .meta/capabilities/engos-design-architecture.json
@@ -274,14 +266,16 @@ The protected runner may return `inconclusive` before or during evaluation. Comm
 `apply` does not deploy to CLI homes automatically. Deploy is a separate explicit step.
 
 ```bash
-bin/capability-fabric deploy --cli codex --slug engos-optimization-auto-research --target "$HOME" --allow-nonlocal-target
+bin/capability-fabric deploy --dry-run --surface-only --cli codex --slug engos-optimization-auto-research --target "$HOME" --allow-nonlocal-target
 ```
+
+For routine home installation, use the [reviewed profile procedure](INSTALL-PROFILES.md). The command above previews a deliberately scoped legacy copy. Review its exact destinations and current ownership before applying.
 
 Notes:
 
 - `--slug` is repeatable and limits deployment to specific capabilities
 - deployment copies the full emitted bundle for each selected surface
-- deploying `--slug engos-optimization-auto-research` removes stale installed `autosearch` skill, agent, and resource paths for the selected CLIs
+- legacy namespace cleanup checks ownership and archives recognized old paths recoverably; unknown or customized packages stop the operation. See [deployment behavior](CLI-REFERENCE.md#preview-a-deploy-without-mutating-a-target)
 - deploy is copy-only and does not rewrite capability metadata paths
 - for a narrowly approved repair or rollout, add `--surface-only`; it requires at least one `--slug` and skips the standalone updater, launcher, and local binary refresh
 

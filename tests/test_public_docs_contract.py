@@ -19,32 +19,36 @@ def test_version_changelog_and_docs_contract_are_aligned() -> None:
     assert match
     assert match.group(1) == version
 
-    public_docs = {
-        "README.md": read("README.md"),
-        "docs/GETTING-STARTED.md": read("docs/GETTING-STARTED.md"),
-        "docs/CLI-REFERENCE.md": read("docs/CLI-REFERENCE.md"),
-        "docs/RELEASE-PACKAGING.md": read("docs/RELEASE-PACKAGING.md"),
-        "docs/MAINTAINER-HYGIENE.md": read("docs/MAINTAINER-HYGIENE.md"),
-        "docs/README.md": read("docs/README.md"),
+    # Lifecycle guarantees have one canonical home; onboarding must route there.
+    release = read("docs/RELEASE-PACKAGING.md")
+    cli = read("docs/CLI-REFERENCE.md")
+    for needle in (
+        "VERSION", "RELEASE_SOURCE.env", "LOCAL_REPO.env",
+        "--check-release", "--accept-release", "--rollback",
+        "never auto-installs", "explicit install/apply step",
+        "--notify-only", "Saved-profile", "verified release mirror",
+    ):
+        assert needle in release, f"release contract missing {needle}"
+        assert needle in cli, f"CLI reference missing {needle}"
+    assert "`--notify-only` to keep scheduling check-only" in cli
+    assert "`--rollback previous` restores the latest pre-release snapshot" in release
+    assert "two-snapshot pruning policy" in release
+    assert "not applied on that path" in release
+    assert "later edits" in cli
+
+    routes = {
+        "README.md": ("docs/CLI-REFERENCE.md", "docs/RELEASE-PACKAGING.md"),
+        "docs/GETTING-STARTED.md": ("CLI-REFERENCE.md#check-or-accept-installed-releases", "RELEASE-PACKAGING.md#installed-release-watch-contract"),
+        "docs/README.md": ("CLI-REFERENCE.md#check-or-accept-installed-releases", "RELEASE-PACKAGING.md#installed-release-watch-contract"),
+        "docs/MAINTAINER-HYGIENE.md": ("RELEASE-PACKAGING.md#installed-release-watch-contract",),
     }
-
-    required = [
-        "VERSION",
-        "RELEASE_SOURCE.env",
-        "LOCAL_REPO.env",
-        "--check-release",
-        "--accept-release",
-        "--rollback",
-        "never auto-installs",
-        "explicit install/apply step",
-    ]
-    for path, text in public_docs.items():
-        for needle in required:
-            assert needle in text, f"{path} missing {needle}"
-
-    assert "Scheduled runs auto-accept valid releases by default" in public_docs["docs/GETTING-STARTED.md"]
-    assert "`--notify-only` to keep scheduling check-only" in public_docs["docs/CLI-REFERENCE.md"]
-    assert "`--rollback previous` restores the latest pre-release snapshot" in public_docs["docs/RELEASE-PACKAGING.md"]
+    for path, targets in routes.items():
+        text = read(path)
+        for target in targets:
+            assert f"]({target})" in text, f"{path} must link to {target}"
+            target_path = ROOT / Path(path).parent / target.split("#", 1)[0]
+            assert target_path.is_file(), f"{path} has missing target {target}"
+    assert "Scheduled runs auto-accept valid releases by default" in read("docs/GETTING-STARTED.md")
 
 
 def test_public_help_contract_mentions_release_watch() -> None:

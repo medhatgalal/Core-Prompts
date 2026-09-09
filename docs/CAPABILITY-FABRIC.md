@@ -8,7 +8,7 @@ Capability Fabric is the provider layer for reusable prompt capabilities.
 | authored prompt source | canonical prompt body and frontmatter | `ssot/` |
 | fidelity baseline source | strongest preserved prompt-body baseline | `sources/ssot-baselines/` |
 | machine-readable capability metadata | descriptor, manifest, and advisory handoff | `.meta/` |
-| generated vendor surfaces | per-CLI skills, agents, and bundled resources | `.codex/`, `.gemini/`, `.claude/`, `.kiro/` |
+| generated vendor surfaces | per-CLI skills, agents, and bundled resources | `.codex/`, `.gemini/`, `.claude/`, `.kiro/`, `.grok/` |
 
 ## Owns
 - source intake

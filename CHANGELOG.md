@@ -1,3 +1,13 @@
+## v1.15.0 - 2026-09-09
+
+- Added `engos-design-experience` for coherent UI experiences across HTML reports, web, desktop, and mobile: composition, meaningful alternatives, scoped mockups or implementation, actual working-state review, and API/state alignment without a mandatory framework or design process.
+- Added selectable failure probes for persisted versus temporary work, replies lost after commitment, and edits or retries while an operation is unresolved. The guidance checks visible meaning against the actual state owner and keeps mock, native, and live evidence distinct.
+- Simplified onboarding around installed capabilities and concrete asks. Every shipped skill now has a dedicated example; reference details have one canonical home instead of repeated installation and release instructions.
+- Corrected CLI write effects, discovery behavior, capability-type terminology, advisory evaluation states, and release-baseline guidance. Historical assessments remain clearly labeled as historical.
+- Replaced placeholder Loopy and Plan-to-Goal job metadata with descriptions grounded in their unchanged operating contracts. Upstream Loopy pins, authority boundaries, and confirmation settings remain intact.
+
+Experience Design is structurally validated and remains `behavioral_pending`. This release does not claim formal behavioral promotion, general model superiority, human usability results, or native-platform certification. Installation remains a separate operation.
+
 ## v1.14.0 - 2026-09-08
 
 - Added explicit reviewed, addition-only profile migration for new skill resources and receipt-owned runtime updates. Routine updates still reject changed scope or local customizations.

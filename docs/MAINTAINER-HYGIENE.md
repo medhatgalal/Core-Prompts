@@ -6,10 +6,10 @@ Use this page as the human-facing maintainer guide for documentation review, rel
 
 When you need the actual governing rules, read these first:
 
-- `.kiro/steering/repo-workflow.md`
-- `.kiro/steering/docs-governance.md`
-- `.kiro/steering/agent-behavior.md`
-- `AGENTS.md`
+- [Repository workflow](../.kiro/steering/repo-workflow.md)
+- [Documentation governance](../.kiro/steering/docs-governance.md)
+- [Agent behavior](../.kiro/steering/agent-behavior.md)
+- [Repository rules router](../AGENTS.md)
 
 This page explains how to use those rules in practice. It is not the canonical policy source.
 
@@ -43,13 +43,15 @@ Check:
 - does `docs/EXAMPLES.md` still use current shipped capabilities only
 - do any linked docs contradict the README examples
 - if invocation changed, can a user discover that change from README, getting-started, or examples without reading capability source files
+- do platform examples distinguish the requested artifact, implementation scope, checked behavior, and simulation limits
+- do the Skill Job Map and generated catalog route new capabilities against their actual neighboring jobs
 
 ### When commands, paths, or generation changed
 
 Check:
 
 - wrapper help for `bin/uac` and `bin/capability-fabric`
-- actual generated directories under `.codex/`, `.gemini/`, `.claude/`, and `.kiro/`
+- actual generated directories under `.codex/`, `.gemini/`, `.claude/`, `.kiro/`, and `.grok/`
 - any generated user views that depend on the changed behavior
 - any user-facing capability guidance that should change because the feature is now invoked differently or is discoverable in a new way
 - whether the edit touched canonical source rather than hand-patching generated output
@@ -71,7 +73,7 @@ Check:
 - confirm that every dry-run path is actually read-only; treat attempted writes during dry-run as a release blocker
 - direct comparison between generated outputs and installed state when local customizations or prior tool-written state may exist
 - whether concurrent UAC engine work and docs or prompt work should be split into separate worktrees before more edits land
-- release-watch behavior: scheduled runs check first, auto-accept valid releases by default, update the recorded source checkout only when it is clean and fast-forwardable, `--notify-only` preserves check-only scheduling, `--check-release` never auto-installs when run directly, `--accept-release` remains the explicit install/apply step, and `--rollback previous` restores the latest snapshot
+- [release-watch behavior](RELEASE-PACKAGING.md#installed-release-watch-contract), including saved-profile versus legacy acceptance, scheduling, installed version, and recovery evidence
 
 ### When evaluation evidence is archived
 

@@ -254,15 +254,12 @@
   ],
   "consumption_hints": {
     "preferred_use_cases": [
-      "AI-assisted capability selection",
-      "deterministic prompt uplift review"
+      "discover repeated engineering work and find a published loop",
+      "craft, adapt, audit, or repair a bounded loop",
+      "run an identified loop, debrief its receipt, or prepare publication with the required approval"
     ],
-    "artifact_conventions": [
-      "ssot/<slug>.md",
-      ".meta/capabilities/<slug>.json",
-      "reports/quality-reviews/<slug>/LATEST.md"
-    ],
-    "invocation_style": "assistant_first_but_scriptable",
+    "artifact_conventions": [],
+    "invocation_style": "interactive_mode_selection",
     "requires_human_confirmation": true
   },
   "quality_pass_count": 1,
@@ -296,15 +293,18 @@
     }
   ],
   "job_contract": {
-    "primary_job": "Discover, find, compare, audit, repair, adapt, craft, run, debrief, and prepare repeatable AI-agent loops for publication. Use when a user asks to analyze code or coding threads for recurring work, find a published loop, interview them to turn a goal into a bounded loop, review a loop for weak checks or unsafe authority, execute a loop with an evidence receipt, learn from completed runs, or validate and submit a loop to Loop Library.",
-    "use_when": "The request directly matches the canonical purpose of Loopy \u2014 Bounded Agent Loops.",
-    "works_on": "The inputs and target declared by the canonical SSOT.",
-    "main_output": "The required output declared by the canonical SSOT.",
-    "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
-    "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
-    "routing_question": "Does this request directly require Loopy \u2014 Bounded Agent Loops?",
-    "nearest_neighbors": [],
-    "shape": "unclassified_new_skill",
-    "portfolio_action": "draft_new_skill_pending_review"
+    "primary_job": "Discover, find, design, audit, run, or improve a bounded agent loop from scoped evidence.",
+    "use_when": "Repeated work needs a feedback loop, an existing loop needs review, or an identified loop needs execution, debriefing, or publication preparation.",
+    "works_on": "Scoped repositories and coding threads, loop prompts, the live Loop Library catalog, and completed run receipts.",
+    "main_output": "Published-loop recommendations, a concise bounded loop, a loop audit or repair, an evidence-backed run receipt, a debrief, or an approved publication submission for the selected route.",
+    "not_for": "One-shot work with no useful feedback cycle, a host-specific goal packet, or claiming publication from repository content alone.",
+    "authority": "Selecting or crafting does not run a loop. A run permits only ordinary reversible actions in scope; schedules, production changes, destructive or privacy-sensitive actions, purchases, external messages, and publication require their explicit authority.",
+    "routing_question": "Is the need to discover or operate a repeatable feedback loop, or to compile one implementation plan into a host-bound goal packet?",
+    "nearest_neighbors": [
+      "engos-design-plan-to-goal",
+      "engos-optimization-auto-research"
+    ],
+    "shape": "workflow_infrastructure",
+    "portfolio_action": "keep_and_clarify_boundary"
   }
 }

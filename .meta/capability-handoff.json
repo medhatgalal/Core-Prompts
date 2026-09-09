@@ -1144,6 +1144,96 @@
       "advisory_only": true
     },
     {
+      "slug": "engos-design-experience",
+      "display_name": "Experience Design",
+      "capability_type": "skill",
+      "summary": "Design, compare, prototype, or improve whole user experiences across HTML reports, web, desktop, and mobile. Use for composition, interaction, and connected UI behavior; backend architecture and format-only rendering are out of scope.",
+      "role": "architect",
+      "domain_tags": [
+        "architecture",
+        "engos",
+        "design",
+        "experience"
+      ],
+      "required_inputs": [
+        "The task and requested artifact; available content, product foundation, platform and API contracts; selected directions and scope."
+      ],
+      "expected_outputs": [
+        "Deliver the artifact with its advantage, trade-offs, checks, and uncertainty at the requested fidelity."
+      ],
+      "tool_policy": {
+        "scope": "uac_intake_only",
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ],
+        "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
+        ]
+      },
+      "confidence": 0.97,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [
+        "engos-design-architecture",
+        "engos-design-plan-to-goal"
+      ],
+      "relationship_suggestions": [],
+      "quality_status": "structural_ready",
+      "benchmark_profile": "default",
+      "preferred_use_cases": [
+        "whole-experience design and revision",
+        "composition and interaction comparison",
+        "prototypes and connected UI behavior across HTML reports, web, desktop, and mobile"
+      ],
+      "artifact_conventions": [],
+      "invocation_style": "interactive_or_artifact_oriented",
+      "requires_human_confirmation": false,
+      "org_graph": {
+        "org_role": "analyst",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "analysis",
+          "context"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile None."
+      },
+      "advisory_only": true
+    },
+    {
       "slug": "engos-design-plan-to-goal",
       "display_name": "Plan to Goal Design",
       "capability_type": "skill",
@@ -1222,15 +1312,20 @@
       "quality_status": "structural_ready",
       "benchmark_profile": "default",
       "preferred_use_cases": [
-        "AI-assisted capability selection",
-        "deterministic prompt uplift review"
+        "compile an implementation plan into a host-aware goal packet",
+        "research and verify goal, specification, and verifier trust",
+        "seal a durable packet and report its supported launch command"
       ],
       "artifact_conventions": [
-        "ssot/<slug>.md",
-        ".meta/capabilities/<slug>.json",
-        "reports/quality-reviews/<slug>/LATEST.md"
+        "goal.txt",
+        "spec.md",
+        "verify.sh",
+        "packet.json",
+        "baseline.json",
+        "criterion-flips.json",
+        "judge-amendments.json"
       ],
-      "invocation_style": "assistant_first_but_scriptable",
+      "invocation_style": "assistant_first_packet_compilation",
       "requires_human_confirmation": true,
       "org_graph": {
         "org_role": "analyst",
@@ -2781,15 +2876,12 @@
       "quality_status": "structural_ready",
       "benchmark_profile": "default",
       "preferred_use_cases": [
-        "AI-assisted capability selection",
-        "deterministic prompt uplift review"
+        "discover repeated engineering work and find a published loop",
+        "craft, adapt, audit, or repair a bounded loop",
+        "run an identified loop, debrief its receipt, or prepare publication with the required approval"
       ],
-      "artifact_conventions": [
-        "ssot/<slug>.md",
-        ".meta/capabilities/<slug>.json",
-        "reports/quality-reviews/<slug>/LATEST.md"
-      ],
-      "invocation_style": "assistant_first_but_scriptable",
+      "artifact_conventions": [],
+      "invocation_style": "interactive_mode_selection",
       "requires_human_confirmation": true,
       "org_graph": {
         "org_role": "analyst",

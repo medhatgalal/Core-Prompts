@@ -1,7 +1,7 @@
 # FAQ
 
 ## What should I edit when I want behavior changes?
-Edit `ssot/`. Generated surfaces and most descriptor details are derived.
+Prepare a same-slug candidate from `ssot/`, keep helper resources in their canonical resource directories, and follow the [UAC update flow](UAC-USAGE.md#update-an-existing-capability). Generated and installed packages are outputs.
 
 ## What is the difference between `apply`, `deploy`, and `package`?
 - `apply`: writes canonical repo state and rebuilds surfaces

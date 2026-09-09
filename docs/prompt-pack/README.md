@@ -1,4 +1,6 @@
-# Docs Evolution Prompt Pack
+# Archived Docs Evolution Prompt Pack
+
+This is a historical authoring aid. Its draft filenames, fixed defaults, and delivery prompts are not the active repository workflow. For current documentation work, use [Maintainer Hygiene](../MAINTAINER-HYGIENE.md) and the linked steering. Retained prompts below are reference material, not a source of current agent policy.
 
 This pack helps you evolve this repository's documentation into a more approachable, marketing-grade experience while staying factual and verifiable.
 
