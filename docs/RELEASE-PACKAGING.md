@@ -78,6 +78,8 @@ Both archive formats and standalone runtime inventories/copies exclude local Cod
 ## Remote CI
 Do not call the repo release-green until the hosted CI surface is green after push.
 
+The GitLab Python container explicitly installs `zip` for the archive tests; GitHub's hosted Ubuntu runner already provides it.
+
 - GitHub Actions:
   - runs on pushes to `main` and `AI/**`
   - runs on `pull_request`
