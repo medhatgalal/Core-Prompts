@@ -106,6 +106,8 @@ When using `validate --with-cli`, native validator results also honor error-outp
 7. publish the release artifacts and checksums on both remotes
 8. accept or install the released version, then verify installed `VERSION`, surface parity, release-watch state, and rollback metadata separately from repository release evidence
 
+Publication verification includes independent downloads from both providers, as required by the [verification expectations](../.kiro/steering/repo-workflow.md#verification-expectations). The downloaded checksums and archives can be compared with the reviewed package digests and expected file/mode boundary. A successful CLI exit can still accompany an authentication page or other unexpected content; in v1.14.0 verification, authenticated upload-API downloads were needed to establish the private GitLab assets' byte identity. This is a content-verification lesson, not a claim that every download needs the same transport workaround.
+
 ## Installed Release Watch Contract
 
 Initial install writes the installed version, release-source metadata, and local source checkout metadata into the standalone bundle:

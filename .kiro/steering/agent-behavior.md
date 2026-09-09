@@ -33,6 +33,12 @@ Keep rule surfaces machine-readable, keep human docs free of hidden policy, and 
 - When facts are easy to verify locally, verify them before encoding them into docs or rules.
 - When changing Kiro-specific steering, skills, agents, or invocation guidance, verify the current behavior against official Kiro documentation or the Kiro Help Agent before freezing repo policy.
 
+## Comparative Evaluation and Bounded Work
+
+- Before comparative grading, define score meaning, material success/regression criteria, and the baseline. When baseline and candidate saturate the same metric, do not claim improvement on that metric. Resolve reviewer disagreements material to a comparative conclusion, or report that conclusion as uncertain. Preserve the original criteria and judgments; design harder cases or a revised rubric as a subsequent experiment rather than changing the completed comparison to fit a preferred verdict.
+- For a declared task or experiment time budget, record the clock anchor, deadline, included phases, and stop action before dispatch. Account for waiting, coordination, and final verification, or name separate phase budgets. At a hard limit, perform the declared stop action, including stopping new trials, and disclose incomplete work or overruns; do not silently extend the window or report active model time as end-to-end latency.
+- Plan delegation against observed host capacity, including controllers and nested workers. Avoid idle coordination layers that occupy slots needed for productive work. Reuse related agents only while preserving required review independence. After a capacity rejection, retry when capacity changes; do not assume an interrupt releases a slot or substitute simulated reviewers.
+
 ## Policy Placement
 
 - Put cross-surface operating policy in steering.
