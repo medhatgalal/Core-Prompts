@@ -140,6 +140,36 @@ use harder representative outcomes, material defect/safe controls, and an explic
 interpreted scale. An author-prompt grade and measured downstream task performance
 remain different outcomes.
 
+For a development comparison, a short receipt can identify the treatment and control
+requests actually dispatched, their selected resources and public task data, and the
+starting artifact and environment state. For example, two revisions of a planning
+prompt are not a matched pair if one starts from an empty plan and the other inherits
+a saved plan. The same distinction applies to observed tools, hooks, and browser
+context: requesting fresh conversations does not by itself establish runtime
+isolation. The receipt can stay small for a narrow comparison; it does not imply a
+new harness or a full promotion run.
+
+A useful preflight follows a representative success and failure through the actual
+observation, collection, normalization, verification, and scoring path. For example,
+a successful save and an actually fired storage fault should reach the scorecard
+with their status and state evidence intact. Passing syntax checks or testing the
+verifier and scorer separately does not establish that handoff. Any model-mediated
+canary is part of the authorized experiment and its declared budget.
+
+An inconclusive closeout can still contain a confirmed defect. If a verifier
+establishes an additional reservation absent from the UI, then later evidence collection fails, the
+overall result is `inconclusive` with the confirmed defect retained and the
+missing evidence identified separately. The closeout can also retain charged partial
+or failed calls, actual usage, the original clock, and protocol deviations. Missing
+later evidence neither erases the known defect nor establishes the comparative
+result.
+
+The [archived experience-design harvest](https://github.com/medhatgalal/Core-Prompts/blob/aa1e3201c3a43751b5de2c537c1026875beddc75/reports/design-experience-v55/LESSONS.md)
+provides draft research cases behind these examples. It does not establish a
+generally superior skill, proven runtime isolation, or implementation of its proposed
+shared evaluator protections. Development-trial acceptance, reviewed source shipping,
+and formal behavioral promotion remain separate decisions under the gates above.
+
 ## Google-style experiment
 
 `instruction_clarity.v1` is a source-linked local policy that summarizes selected Google developer documentation guidance. It does not weaken UAC's HTML ingestion boundary and does not copy the full style guide.
