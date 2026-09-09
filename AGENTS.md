@@ -75,7 +75,7 @@
 - Kiro steering lives under `.kiro/steering/`.
 - For branch and mutation workflow, consult `.kiro/steering/repo-workflow.md` before making substantial repo changes.
 - For documentation hierarchy, docs drift, and generated-doc positioning, consult `.kiro/steering/docs-governance.md` when editing `README.md`, `docs/`, generated user views, or maintainer docs.
-- For rule-writing discipline and ask evaluation quality, consult `.kiro/steering/agent-behavior.md` before changing rules, docs policy, or execution posture.
+- For rule-writing discipline and ask evaluation quality, consult `.kiro/steering/agent-behavior.md` before changing rules, docs policy, or execution posture, and before designing, running, or judging Core-Prompts capability experiments.
 - Treat these steering files as the durable cross-surface policy location. Keep `AGENTS.md` as the short router and stable repo-wide rule summary.
 
 ## Maintainer hygiene
