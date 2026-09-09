@@ -143,3 +143,7 @@ A verdict binds baseline, candidate, Goal Contract, topology, dataset, scorer, e
 Preserve released evaluation evidence under `evals/history/<slug>/<candidate>/`. Its manifest binds every archived file by byte hash and declares `archive_only: true`, `auto_discovery: false`, and `promotion_eligible: false`.
 
 When canonical SSOT changes, rebuild the active Goal Contract, topology, and review overlay for the new body. An archived verdict remains historical evidence and cannot authorize the current body. Keep structural maintenance fixtures outside the promotion corpus; they make zero behavioral-promotion claim.
+
+## Experience-design lessons
+
+The experience-design knowledge harvest ([GitHub](https://github.com/medhatgalal/Core-Prompts/blob/aa1e3201c3a43751b5de2c537c1026875beddc75/reports/design-experience-v55/LESSONS.md), [GitLab](https://gitlab.appian-stratus.com/medhat.galal/core-prompts/-/blob/aa1e3201c3a43751b5de2c537c1026875beddc75/reports/design-experience-v55/LESSONS.md)) connects nine lessons to original receipts, existing protections and the canonical owners of remaining work. It covers effective runtime isolation, comparable starting states, failure preservation, whole-run accounting and decision-state UX checks. These are bounded case findings and proposed follow-ups; the record establishes neither general skill superiority nor a model ceiling. The links pin the historical evidence so it remains accessible from packaged documentation.
