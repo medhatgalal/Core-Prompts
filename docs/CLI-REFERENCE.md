@@ -1,6 +1,6 @@
 # CLI Reference
 
-Use this page when you need exact commands, paths, generated-surface locations, and deploy behavior. This is still a reference page, but it now includes task-oriented examples so the commands are easier to apply.
+Use this page for exact commands, paths, write effects, and generated-surface locations. For first use, see [Getting started](GETTING-STARTED.md); for task selection, see [Examples](EXAMPLES.md).
 
 Preferred active runtime: Python `3.14`.
 Minimum supported runtime: Python `3.11+`.
@@ -32,24 +32,30 @@ bin/capability-eval report --run <run-id>
 
 Profiles are `static`, `native`, `routing-canary`, `canary`, `promotion`, `cross-host`, and `sweep`. The first two have a hard token cap of zero. `native` reports runtime availability only; it does not prove skill discovery or behavior. A live command also requires a closed run plan, explicit model-call authorization, conforming registered adapters, and a cap no larger than the profile limit. The protected promotion flow adds sealed data, independent scoring and judging, reproduction, signed receipts, and a cumulative token ledger.
 
-| Command | Purpose | Mutates repo state |
+| Command | Purpose | Writes |
 | --- | --- | --- |
-| `bin/capability-fabric build` | generate all CLI surfaces, bundled resources, and generated inspection views | no |
-| `bin/capability-fabric validate --strict` | validate generated surfaces and contracts | no |
-| `bin/capability-fabric deploy --dry-run --cli all` | preview copy-only deployment to a target root | no |
-| `bin/capability-fabric deploy --surface-only --slug <slug> --cli <cli>` | copy only the selected generated surface bundle without refreshing the standalone updater, launcher, or local binaries | yes |
-| `bin/capability-fabric update --check-release` | check installed standalone bundle vs latest immutable release and update release-watch state | no |
-| `bin/capability-fabric update --accept-release` | explicitly accept and apply a pending release from the synced mirror | yes |
-| `bin/capability-fabric update --rollback previous` | restore the latest pre-release snapshot | yes |
-| `bin/capability-fabric update --list-snapshots` | list available rollback snapshots | no |
-| `python3 scripts/smoke-clis.py` | probe installed vendor CLIs and surface visibility | no |
-| `bin/uac audit` | inspect current SSOT and generated surface alignment | no |
-| `bin/uac plan <source...>` | show proposed landing shape for one or more sources | no |
-| `bin/uac judge <source...> --quality-profile architecture` | run the built-in quality loop without writing repo state; may recommend bounded behavioral proof via `engos-optimization-auto-research` when structural quality is close but confidence is weak | no |
-| `bin/uac apply <source...> --yes` | write canonical SSOT and descriptors, then build and validate | yes |
-| `bin/uac apply <source...> --promotion-verdict <path> --promotion-trust-root <path> --approved-trust-policy-sha256 <sha256> --approved-trust-policy-revision <commit> --finalize-existing-candidate --yes` | finalize an already-canonical candidate only after current independent evidence and a pre-candidate approved trust policy pass every gate | yes |
+| `bin/capability-fabric build` | generate all CLI surfaces, bundled resources, and inspection views | generated repository artifacts and build evidence |
+| `bin/capability-fabric validate --strict` | validate generated surfaces and contracts | validation reports |
+| `bin/capability-fabric deploy --dry-run --cli all` | preview deployment to the selected target root | none at the target |
+| `bin/capability-fabric deploy --surface-only --slug <slug> --cli <cli>` | copy the selected emitted bundle without refreshing the standalone runtime | selected destination files and applicable recovery records |
+| `bin/capability-fabric update --check-release` | check the installed bundle against the latest release | release cache and release-watch state; no installation |
+| `bin/capability-fabric update --accept-release` | accept the pending verified release | installed files, ownership/update state, and recovery records |
+| `bin/capability-fabric update --rollback previous` | restore the latest pre-release state | restored installed files and recovery state |
+| `bin/capability-fabric update --list-snapshots` | list available recovery points | none |
+| `python3 scripts/smoke-clis.py` | probe available CLIs and configured discovery surfaces | smoke reports; invoked CLIs may manage their own runtime state |
+| `bin/uac audit` | inspect SSOT and generated alignment | no canonical landing |
+| `bin/uac plan <source...>` | propose the landing shape | no canonical landing; source/quality evidence may be retained |
+| `bin/uac judge <source...> --quality-profile architecture` | check a candidate before apply | quality reports; no canonical landing |
+| `bin/uac apply <source...> --yes` | write canonical state, then build and validate | SSOT, descriptors, generated artifacts, and reports |
+| `bin/uac apply <source...> --promotion-verdict <path> --promotion-trust-root <path> --approved-trust-policy-sha256 <sha256> --approved-trust-policy-revision <commit> --finalize-existing-candidate --yes` | finalize independent proof for an unchanged canonical candidate | accepted behavioral baseline and metadata, generated artifacts, and reports |
+
+`--dry-run` describes the selected deploy mode. The legacy copy mode and receipt-protected profile mode have different ownership and recovery behavior; see [Installation Profiles](INSTALL-PROFILES.md) before a home install.
 
 ## Task-Oriented Examples
+
+### Design An Experience
+
+`engos-design-experience` is an installed skill, not a shell command. Invoke it in your host with the task and relevant artifact, existing product, platform, and API/state contracts. Use the [experience examples](EXAMPLES.md#engos-design-experience) for reports, applications, native limits, and selectable failure probes. Its bundled references support design decisions; they do not provide a renderer, service backend, or native test runtime.
 
 ### Validate Or Render An OpEx Digest Snapshot
 
@@ -223,27 +229,22 @@ The `engos-<category>-<skill-name>` namespace migration also prunes the matching
 
 ### Check Or Accept Installed Releases
 
-Initial home installs write the standalone release-watch contract into `~/.core-prompts-updater/`: installed `VERSION`, `RELEASE_SOURCE.env`, `LOCAL_REPO.env`, updater scripts, and the generated surfaces needed for later checks.
+A complete home installation records `VERSION`, `RELEASE_SOURCE.env`, and `LOCAL_REPO.env` under `~/.core-prompts-updater/`. A disposable skills-only preview does not establish updater enrollment.
 
 ```bash
 bin/capability-fabric update --check-release
 bin/capability-fabric update --accept-release
+bin/capability-fabric update --list-snapshots
 bin/capability-fabric update --rollback previous
 ```
 
-Use this when:
+- `--check-release` fetches tags, syncs the release cache, updates release-watch state, and never auto-installs.
+- `--accept-release` is the explicit install/apply step. It confirms the version and creates recovery records before applying the verified release.
+- Scheduled `--schedule-daily HH:MM` runs auto-accept valid releases by default; add `--notify-only` to keep scheduling check-only.
+- Saved-profile acceptance uses the verified release mirror and a recoverable profile transaction. It does not update the development checkout. Legacy acceptance may fast-forward a clean recorded source checkout and otherwise uses the release mirror.
+- `--list-snapshots` includes available recovery points. `--rollback previous` restores the latest pre-release state; profile rollback protects later edits. Legacy snapshot retention defaults to two, while profile transactions use their own retained recovery records.
 
-- you want to compare the installed standalone bundle against the latest immutable release tag
-- a daily scheduled run reported a pending release
-- you are ready to explicitly refresh the installed bundle from the synced clean mirror
-
-Expected result:
-
-- `--check-release` fetches release tags, syncs `~/.core-prompts-release-cache/repo`, updates `~/.core-prompts-state/release-watch.json`, and never auto-installs
-- scheduled `--schedule-daily HH:MM` runs auto-accept valid releases by default after the release check; they use a deterministic PATH and continue refreshing existing managed CLI surfaces when cron cannot discover a CLI binary; add `--notify-only` to keep scheduling check-only
-- `--accept-release` shows installed vs pending version, prompts for confirmation, snapshots first, fast-forwards the recorded source checkout when it is clean and safe, runs the installer from that checkout, falls back to the synced mirror when needed, and clears pending state on success
-- rollback snapshot retention defaults to the latest 2 snapshots; override with `--snapshot-retention N`
-- `--rollback previous` restores the latest snapshot from `~/.core-prompts-state/snapshots/`
+The [release-watch contract](RELEASE-PACKAGING.md#installed-release-watch-contract) is the canonical lifecycle description. See [Installation Profiles](INSTALL-PROFILES.md) for receipt ownership and transaction recovery.
 
 ## Canonical Inputs
 
@@ -275,6 +276,9 @@ These generated views are derived from canonical metadata and reports. They are 
 | Gemini | `.gemini/skills/<slug>/SKILL.md` | `.gemini/skills/<slug>/resources/capability.json` | `.gemini/agents/<slug>.md` | `.gemini/agents/resources/<slug>/capability.json` |
 | Claude | `.claude/skills/<slug>/SKILL.md` | `.claude/skills/<slug>/resources/capability.json` | `.claude/agents/<slug>.md` | `.claude/agents/resources/<slug>/capability.json` |
 | Kiro | `.kiro/skills/<slug>/SKILL.md` | `.kiro/skills/<slug>/resources/capability.json` | `.kiro/agents/<slug>.json` | `.kiro/agents/resources/<slug>/capability.json` |
+| Grok | `.grok/skills/<slug>/SKILL.md` | `.grok/skills/<slug>/resources/capability.json` | none | none |
+
+These are generated repository paths. The selected Codex home profile writes `.agents/skills`; profile destinations and discovery limits are described in [Installation Profiles](INSTALL-PROFILES.md).
 
 ## Direct Surface Standard
 
@@ -287,15 +291,9 @@ Direct exposure is standardized on `skills/<slug>/SKILL.md` for every supported 
 - deploy is copy-only and never creates symlinks
 - deploy defaults to the repository root unless `--target` is provided
 - `scripts/install-local.sh` is a compatibility wrapper around deploy and remains copy-only
-- home-target install writes `~/.core-prompts-updater/VERSION`, `~/.core-prompts-updater/RELEASE_SOURCE.env`, `~/.core-prompts-updater/LOCAL_REPO.env`, and `~/update_core_prompts.sh`
-- scheduled updater runs check releases first, auto-accept valid releases by default, then run normal sync
-- `bin/capability-fabric update --check-release` checks only and never auto-installs
-- `bin/capability-fabric update --accept-release` is the explicit install/apply step
-- `bin/capability-fabric update --schedule-daily HH:MM --notify-only` preserves check-only scheduling
-- `bin/capability-fabric update --rollback previous` restores the latest pre-release snapshot
-- a Batman-selected Kiro dry-run lists exactly `.kiro/skills/engos-orchestration-batman/PROTOCOL.md`, `.kiro/skills/engos-orchestration-batman/PROMPT-AMENDMENT.md`, and `.kiro/skills/engos-orchestration-batman/CODEX-UAC-INTAKE.md` when present, without moving them
-- the corresponding live deploy archives those exact files under `.core-prompts-state/stale-pruned/<timestamp>/...`, prints `source -> archive` receipts, and preserves `SKILL.md`, `resources/`, and unrelated files
-- archived Batman residues remain individually recoverable from the receipt path; a release install can instead use its rollback snapshot
+- complete home installation and release watch follow the [release contract](RELEASE-PACKAGING.md#installed-release-watch-contract)
+- legacy namespace cleanup is bounded by the selected slug and ownership checks described in [the deploy example](#preview-a-deploy-without-mutating-a-target); customized or unknown old packages stop it
+- profile deployment uses exact plans, receipts, preserved package ownership, and guarded rollback; see [Installation Profiles](INSTALL-PROFILES.md)
 - install and deploy do not rewrite capability metadata paths
 - repeated no-op `build` and `validate` runs should not rewrite `.meta/manifest.json`; volatile run evidence belongs under `reports/`
 
@@ -305,8 +303,9 @@ Direct exposure is standardized on `skills/<slug>/SKILL.md` for every supported 
 - filesystem checks verify expected generated surfaces per CLI
 - discovery checks run only for discovery-backed surfaces:
   - Gemini skills
-  - Claude agents
   - Kiro agents
+  - Grok skills
+- Claude agent discovery is configured but currently disabled in `.meta/surface-rules.json`; availability/help and filesystem checks do not prove active discovery.
 
 ## Validation Contract Notes
 

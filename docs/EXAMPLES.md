@@ -6,13 +6,7 @@ Use this page for full, concrete examples of how to use each currently shipped s
 2. UAC second
 3. repo tooling third
 
-Each current skill example uses the same pattern:
-
-- use when
-- why this skill first
-- ask
-- expected output
-- follow with
+For host-specific invocation, see [Getting started](GETTING-STARTED.md#invoke-a-capability). Use the [Skill Job Map](SKILL-JOB-MAP.md) to compare neighboring jobs, or the [catalog](CAPABILITY-CATALOG.md) to inspect emitted surfaces.
 
 ## Installed Skill Examples
 
@@ -65,6 +59,48 @@ python3 <skill-dir>/resources/state_store.py consolidate --cwd <repo> --task-id 
 At 450 lines or 45,000 bytes in either file, or at milestone closure, the agent performs a deliberate rewrite using the existing atomic `write` path. Insights starts with CURRENT STATE and STANDING RULES / LESSONS, followed by HISTORICAL RECORD. Context starts with ACTIVE CHECKPOINT, followed by SESSION ARC SUMMARY and DECISION-BY-DECISION DETAIL. Unique evidence remains in the files unless a verified durable reference preserves it; Git history is not assumed for external state.
 
 Expected output includes each rewritten file's before/after lines and bytes, the trigger, and evidence references. Missing files trigger recovery. TODOs and task completion are unaffected; passing the check does not mean a rewrite happened.
+
+### `engos-design-experience`
+
+Use for composition, interaction, and connected UI behavior across HTML reports, web, desktop, and mobile. Start from the task, supplied content, existing product foundation, and actual platform. A small correction can inherit the surrounding design; unsettled structural choices benefit from tangible alternatives using comparable content.
+
+Name the fidelity you need: “Assess this flow and show mockup alternatives; stop before implementation.” Assessment, options, mockup, prototype, and implementation requests stay within that scope.
+
+#### Make a report easier to decide from
+
+> Use `engos-design-experience` to improve this HTML report for an executive choosing between delivery options. Make the decisive differences and qualified evidence easy to compare, keep full descriptions accessible, and preserve readable density. Show the smallest useful alternatives before selecting a direction. Implement the selected direction and inspect the final render.
+
+Expect a report that makes the decision, evidence, and action easy to find, with comparison artifacts where useful. The handoff explains the chosen composition, its costs, the checks performed, and remaining gaps. More context or decoration alone does not establish improvement. Source assertions stay tied to the supplied evidence.
+
+#### Connect a web flow to its API
+
+> Use `engos-design-experience` to revise this saved-plan editor against the attached API contract. Preserve the saved baseline and my current draft, keep the selected object's identity visible, and make pending, failed, and confirmed changes truthful. Compare the proposed interaction with the working version, implement within this app, and walk through the result after the final edit.
+
+Expect the working artifact and an explanation of state ownership, submitted intent, commitment, and recovery where they affect the task. Proposed or mocked behavior is labeled. The skill does not invent service capabilities to make an interaction appear complete.
+
+Select a relevant failure probe with a concrete ask:
+
+| Situation | Example ask | Evidence to expect |
+| --- | --- | --- |
+| Persistence may fail | “Check a changed save while persistence is unavailable, then reload. Show which saved value actually returns and what draft can be recovered.” | The state owner's retained value, visible save status, restored version, and actual recovery limits. |
+| An operation commits but its reply is lost | “Let the test service commit while withholding its reply. Inspect how the UI establishes the result and whether offered recovery creates another effect.” | The committed operation's identity, truthful unresolved status, reconciliation or retry semantics, and resulting effects. |
+| The draft changes while an operation is unresolved | “Hold this request unresolved, edit the draft where supported, then release the original response and follow the available next action.” | The original intent remains distinct from later edits; the response and any retry or new operation are correctly associated. |
+
+Use the actual contract and an authorized test environment. A mock can reveal a design gap but cannot prove service behavior. Static reports or edits with no affected state may need none of these probes. Missing test access is a disclosed limit.
+
+#### Respect a desktop or mobile target
+
+> Use `engos-design-experience` to improve this native mobile settings flow. Keep the existing visual system, adapt navigation and input to the target platform, and check focus, scaling, interruption, and return behavior that could affect the task. Implement in the existing native project where supported; clearly identify any simulation and untested native behavior.
+
+Expect platform-appropriate controls and continuity, with checks tied to the actual target and input methods. A narrow browser viewport is an exploratory simulation, not proof of native behavior. The available browser components do not decide the platform or framework.
+
+#### Keep a small change proportional
+
+> Use `engos-design-experience` to fix the hierarchy and action placement in this selected design. Keep the settled direction. Change only what obstructs this task, render after the last edit, and compare with the recoverable draft.
+
+Expect a focused edit, the observed result, and any regression or unresolved limit. Independent task-grounded review is used when it can add value; the skill does not require a fixed number of variants, reviewers, or rounds. Requested options are shown before commitment unless selection is delegated.
+
+Use `engos-design-architecture` for backend boundaries and migrations, `engos-content-dynamic-html-presentations` for slide-deck construction and exports, and `engos-quality-docs-review` for repository documentation placement. Format-only conversion belongs with the relevant renderer.
 
 ### `engos-design-architecture`
 
@@ -562,6 +598,23 @@ Follow with:
 
 > Now give me the exact README and docs outline you would ship.
 
+### `engos-audit-feature-status`
+
+Use when the question is how much of a defined feature is implemented and what remains to ship. Provide the pitch, specification, API contract, or ticket scope together with the code, tests, and configuration to inspect.
+
+Ask:
+
+> Use `engos-audit-feature-status` to compare this feature's ticket, design, and OpenAPI contract with its implementation and tests. Confirm the extracted scope with me first, then identify completion, drift, gaps, and the highest shipping risks.
+
+Expected output:
+
+- a categorized scope checklist for confirmation before the proof pass
+- item-by-item status tied to code, test, configuration, or specification evidence
+- distinctions between complete, implemented without enough tests, partial, not started, drift, and unclear
+- missing evidence and prioritized blocking, high-risk, completeness, and polish work
+
+Reading test code does not prove that tests ran or a deployment works. Missing specifications remain explicit limits. Use `engos-audit-engineering-progress` for Git activity and `engos-audit-code-health` for structural repository health.
+
 ### `engos-audit-engineering-progress`
 
 Use when:
@@ -979,6 +1032,13 @@ Follow with:
 
 > Now shorten that into a one-screen executive update for leadership.
 
+### `loopy`
+
+Use `$loopy` in Codex or `/loopy` in Kiro and Grok to find, audit, craft, run, or
+debrief a loop. For example: “Use Loopy to audit this loop and repair only material
+weaknesses.” Expect a concise verdict and a minimally repaired loop; execution,
+scheduling, and publication retain their separate authorization boundaries.
+
 ## Agent Surface Examples
 
 These examples are for the current agents emitted by the repo. Fabric metadata is advisory; explicit invocation follows each capability's operating contract.
@@ -1077,7 +1137,7 @@ Expected output:
 - blockers or ship decision
 - no canonical repo mutation
 
-### Apply A Ship-Ready Capability
+### Apply A Structurally Ready Capability
 
 ```bash
 bin/uac apply /absolute/path/to/family-folder --yes
@@ -1200,7 +1260,7 @@ Expected output:
 ### Preview Deployment Without Mutating A Target Home
 
 ```bash
-bin/capability-fabric deploy --cli all --dry-run
+bin/capability-fabric deploy --cli all --target "$HOME" --allow-nonlocal-target --dry-run
 ```
 
 Expected output:
@@ -1219,10 +1279,3 @@ Example ask: “Preview the Codex/Kiro/Grok skill profile in a disposable home a
 show preserved customizations and discovery source identities.” Expected result:
 a JSON write plan, ownership evidence, source-path readback, and unresolved
 conflicts; no home installation is implied.
-
-### Loopy: bounded agent loops
-
-Use `$loopy` in Codex or `/loopy` in Kiro and Grok to find, audit, craft, run, or
-debrief a loop. For example: “Use Loopy to audit this loop and repair only material
-weaknesses.” Expect a concise verdict and a minimally repaired loop; execution,
-scheduling, and publication retain their separate authorization boundaries.

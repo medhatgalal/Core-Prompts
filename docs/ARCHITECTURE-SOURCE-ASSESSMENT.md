@@ -1,4 +1,6 @@
-# Architecture Source Assessment
+# Historical Architecture Source Assessment
+
+This records the original architecture capability intake. It is historical source context, not current installation, routing, or validation guidance. Use the [Skill Job Map](SKILL-JOB-MAP.md) and [UAC usage](UAC-USAGE.md) for active workflows.
 
 ## Harish Garg architecture folder
 - Source: `https://github.com/harish-garg/gemini-cli-prompt-library/tree/main/commands/architecture`

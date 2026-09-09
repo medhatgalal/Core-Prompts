@@ -1,0 +1,72 @@
+{
+  "schema_version": "GoalContract.v1",
+  "slug": "engos-design-experience",
+  "target": "Fulfill the canonical intent of engos-design-experience.",
+  "intended_outcome": "Preserve the canonical SSOT objective and required output.",
+  "change_class": "unknown",
+  "non_goals": [],
+  "protected_behaviors": [
+    "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+    "f6b116affb4c9a70b378823566dfb35d0279578f710b20e5d37a47909a4e8955",
+    "41deb202b6079e82297fcc15143af27c4cf92951b8b2911511c709c9bfa9344c",
+    "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+    "e70e8ec99686fa5bf77ea078bcbd4611d32c50a8054da39c74ccc7c094c5ab08"
+  ],
+  "editable_behavior": [],
+  "primary_outcome": {
+    "metric": "skill_specific_task_success",
+    "definition": "Canonical task success with protected behavior preserved.",
+    "threshold": "human_review_required"
+  },
+  "secondary_outcomes": [],
+  "regression_limits": {
+    "protected_binary_margin": 0.02,
+    "critical_deterministic": "exact_pass"
+  },
+  "cost_latency_limits": {
+    "profile_caps": {
+      "static": 0,
+      "native": 0,
+      "routing-canary": 300000,
+      "canary": 1250000,
+      "promotion": 5000000,
+      "cross-host": 12000000,
+      "sweep": 30000000
+    }
+  },
+  "runtime_envelope": {
+    "required_cells": [],
+    "cross_host_required_for_pilot": false,
+    "status": "unresolved"
+  },
+  "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
+  "rollback_trigger": "Any protected regression or stale bound evidence.",
+  "source_clause_hashes": [
+    {
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "source": "ssot/engos-design-experience.md",
+      "text": "## Required Inputs"
+    },
+    {
+      "sha256": "f6b116affb4c9a70b378823566dfb35d0279578f710b20e5d37a47909a4e8955",
+      "source": "ssot/engos-design-experience.md",
+      "text": "- **Make consequential options tangible.** When structure is unsettled, compare the smallest useful sketch, mockup, or working slice with the active draft using comparable content and fidelity. Try the same task; expose benefits and costs. Preserve settled directions. No fixed variants, agents, or steps are required. [The diagnostic example](resources/examples/worked-decisions.md) shows why added context can also weaken a composition."
+    },
+    {
+      "sha256": "41deb202b6079e82297fcc15143af27c4cf92951b8b2911511c709c9bfa9344c",
+      "source": "ssot/engos-design-experience.md",
+      "text": "Do not invent facts, APIs, research, or validation. Distinguish supported, proposed, and mocked behavior. Check relevant access/input in the actual target; disclose gaps. Images cannot prove interaction, browser simulations cannot prove native behavior, and agent reviews cannot establish human outcomes."
+    },
+    {
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "source": "ssot/engos-design-experience.md",
+      "text": "## Required Output"
+    },
+    {
+      "sha256": "e70e8ec99686fa5bf77ea078bcbd4611d32c50a8054da39c74ccc7c094c5ab08",
+      "source": "ssot/engos-design-experience.md",
+      "text": "Judge task fit, composition, continuity, truthful semantics, access, and proportionality from the artifact. More context, novelty, or features do not establish quality."
+    }
+  ],
+  "review_status": "draft"
+}

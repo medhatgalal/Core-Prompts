@@ -1,0 +1,382 @@
+{
+  "slug": "engos-design-experience",
+  "manifest_version": "capability-fabric.v0",
+  "layers": {
+    "minimal": {
+      "capability_type": "skill",
+      "summary": "Design, compare, prototype, or improve whole user experiences across HTML reports, web, desktop, and mobile. Use for composition, interaction, and connected UI behavior; backend architecture and format-only rendering are out of scope.",
+      "role": "architect",
+      "domain_tags": [
+        "architecture",
+        "engos",
+        "design",
+        "experience"
+      ],
+      "required_inputs": [
+        "The task and requested artifact; available content, product foundation, platform and API contracts; selected directions and scope."
+      ],
+      "expected_outputs": [
+        "Deliver the artifact with its advantage, trade-offs, checks, and uncertainty at the requested fidelity."
+      ],
+      "tool_policy": {
+        "scope": "uac_intake_only",
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ],
+        "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
+      },
+      "resources": [
+        "ssot/engos-design-experience.md"
+      ],
+      "packaging_profile": {
+        "capability_type": "skill",
+        "primary_surfaces": {
+          "codex": [
+            "codex_skill"
+          ],
+          "gemini": [
+            "gemini_skill"
+          ],
+          "claude": [
+            "claude_skill"
+          ],
+          "kiro": [
+            "kiro_skill"
+          ],
+          "grok": [
+            "grok_skill"
+          ]
+        },
+        "wrapper_surfaces": {
+          "codex": [],
+          "gemini": [
+            "skill_wrapper"
+          ],
+          "claude": [
+            "skill_wrapper",
+            "plugin_wrapper"
+          ],
+          "kiro": [
+            "skill_wrapper",
+            "power_wrapper"
+          ]
+        },
+        "notes": [
+          "wrapper surfaces are additive deployment forms, not capability types",
+          "orchestrators must not infer execution authority from wrapper presence alone"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
+        ]
+      },
+      "source_provenance": {
+        "source_type": "LOCAL_FILE",
+        "normalized_source": "ssot/engos-design-experience.md",
+        "policy_rule_id": "ssot.engos-design-experience",
+        "content_sha256": "ssot"
+      },
+      "confidence": 0.97,
+      "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+      "review_status": "ready_for_orchestrator_review",
+      "display_name": "Experience Design"
+    },
+    "expanded": {
+      "relationship_suggestions": [],
+      "capability_dependencies": [],
+      "overlap_candidates": [
+        "engos-design-architecture",
+        "engos-design-plan-to-goal"
+      ],
+      "migration_notes": [
+        "New direct skill for UI experience decisions; existing Architecture retains backend and system design, and Plan to Goal retains goal-packet compilation.",
+        "Generated surfaces are structural delivery evidence. Formal behavioral status remains pending; no promoted baseline is introduced."
+      ],
+      "adjustment_recommendations": []
+    },
+    "org_graph": {
+      "org_role": "analyst",
+      "reports_to_suggestions": [],
+      "delegates_to_suggestions": [],
+      "collaborates_with_suggestions": [
+        "analysis",
+        "context"
+      ],
+      "authority_tier": "advisory",
+      "work_graph_impact": "Adds or updates a skill capability with route profile None."
+    }
+  },
+  "display_name": "Experience Design",
+  "declared_capability": "skill",
+  "inferred_capability": "skill",
+  "expected_surface_names": [
+    "codex_skill",
+    "gemini_skill",
+    "claude_skill",
+    "kiro_skill",
+    "grok_skill"
+  ],
+  "rubric_version": "capability-fabric.v0",
+  "descriptor_version": "capability-fabric.descriptor.v0",
+  "family_slug": "engos-design-experience",
+  "shared_summary": "Design, compare, prototype, or improve whole user experiences across HTML reports, web, desktop, and mobile. Use for composition, interaction, and connected UI behavior; backend architecture and format-only rendering are out of scope.",
+  "shared_constraints": [
+    "Honor assessment, options, mockup, prototype, or implementation scope; design selection grants no external-action authority.",
+    "Preserve product foundations and selected directions unless evidence or user direction warrants change.",
+    "Do not invent facts, APIs, research, or validation; distinguish supported, proposed, and mocked behavior.",
+    "Images do not prove interaction, browser simulations do not prove native behavior, and agent reviews do not establish human outcomes.",
+    "Backend architecture and format-only rendering are out of scope."
+  ],
+  "modes": [],
+  "benchmark_sources": [],
+  "quality_profile": "default",
+  "quality_status": "structural_ready",
+  "judge_reports": [
+    {
+      "pass_number": 1,
+      "status": "structural_ready",
+      "historical_baseline": {
+        "slug": "engos-design-experience",
+        "strategy": "head_snapshot",
+        "group": "derived_current",
+        "baseline_path": "ssot/engos-design-experience.md",
+        "selected_commit": null,
+        "richness_score": 8,
+        "line_count": 60,
+        "reason": "No git history was available, so the current SSOT body is the strongest available baseline.",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [
+          {
+            "id": "operational_invocation",
+            "kind": "operational_contract",
+            "label": "operational invocation surface",
+            "must_contain": [
+              "## Invocation"
+            ]
+          },
+          {
+            "id": "stepwise_workflow_contract",
+            "kind": "operational_contract",
+            "label": "stepwise workflow contract",
+            "must_contain": [
+              "## Workflow Contract"
+            ]
+          }
+        ],
+        "historical_proof": {},
+        "source": "current_ssot",
+        "verified_by_git_history": false,
+        "has_baseline_text": true
+      },
+      "judge_reports": [
+        {
+          "judge": "source_fidelity",
+          "title": "Source Fidelity and Uplift",
+          "score": 10,
+          "blockers": [],
+          "classification": "reviewed_modernization",
+          "scenario_results": [
+            {
+              "id": "operational_invocation",
+              "kind": "operational_contract",
+              "label": "operational invocation surface",
+              "passed": true,
+              "missing_markers": []
+            },
+            {
+              "id": "stepwise_workflow_contract",
+              "kind": "operational_contract",
+              "label": "stepwise workflow contract",
+              "passed": true,
+              "missing_markers": []
+            }
+          ],
+          "reviewed_deltas": [
+            "candidate body is materially thinner than the baseline (60 lines vs 60)"
+          ],
+          "requirement_review": {
+            "status": "bound_attestation",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
+          "scorecard": {
+            "baseline_richness": 8,
+            "candidate_richness": 8,
+            "baseline_operational_score": 4,
+            "candidate_operational_score": 4,
+            "baseline_preserved_in_resource": false
+          },
+          "baseline_commit": null,
+          "baseline_slug": "engos-design-experience"
+        },
+        {
+          "judge": "operational_richness",
+          "title": "Operational Richness",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "metadata_integrity",
+          "title": "Metadata and Handoff Integrity",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "benchmark_readiness",
+          "title": "Benchmark Readiness and Template Fit",
+          "score": 9,
+          "blockers": [],
+          "scorecard": {
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 8,
+            "output_specificity": 8,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          }
+        }
+      ],
+      "blockers": [],
+      "scorecard": {
+        "source_fidelity": 10,
+        "baseline_richness": 8,
+        "candidate_richness": 8,
+        "baseline_operational_score": 4,
+        "candidate_operational_score": 4,
+        "baseline_preserved_in_resource": false,
+        "operational_richness": 10,
+        "metadata_integrity": 10,
+        "benchmark_readiness": 9,
+        "title_clarity": 10,
+        "description_richness": 10,
+        "intent_coverage": 10,
+        "boundary_clarity": 8,
+        "output_specificity": 8,
+        "metadata_completeness": 8,
+        "surface_usability": 10
+      },
+      "template_name": "skill",
+      "effective_sha256": "73ff64165b26672ee1be3af086b79f88f7bbea5a5f4b14352af35a477a9202ca",
+      "semantic_findings": [],
+      "repair_requests": [],
+      "dimension_inventory": [
+        {
+          "dimension": "source_fidelity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "operational_richness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "metadata_integrity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "benchmark_readiness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "semantic_consistency",
+          "status": "no_detected_conflict_not_semantic_proof"
+        }
+      ]
+    }
+  ],
+  "consumption_hints": {
+    "preferred_use_cases": [
+      "whole-experience design and revision",
+      "composition and interaction comparison",
+      "prototypes and connected UI behavior across HTML reports, web, desktop, and mobile"
+    ],
+    "artifact_conventions": [],
+    "invocation_style": "interactive_or_artifact_oriented",
+    "requires_human_confirmation": false
+  },
+  "quality_pass_count": 1,
+  "quality_stop_reason": "thresholds_met",
+  "historical_baseline": {
+    "slug": "engos-design-experience",
+    "strategy": "candidate_seed",
+    "group": "new_or_untracked",
+    "baseline_path": null,
+    "selected_commit": null,
+    "richness_score": 8,
+    "line_count": 60,
+    "reason": "No registry entry or git history available; use the candidate as the provisional seed baseline.",
+    "equivalent_commits": [],
+    "expected_companions": [],
+    "operator_invariants": [],
+    "scenario_matrix": [],
+    "historical_proof": {},
+    "source": "candidate_seed",
+    "verified_by_git_history": false,
+    "has_baseline_text": true
+  },
+  "quality_validation_matrix": [
+    {
+      "id": "operational_invocation",
+      "kind": "operational_contract",
+      "label": "operational invocation surface",
+      "must_contain": [
+        "## Invocation"
+      ]
+    },
+    {
+      "id": "stepwise_workflow_contract",
+      "kind": "operational_contract",
+      "label": "stepwise workflow contract",
+      "must_contain": [
+        "## Workflow Contract"
+      ]
+    }
+  ],
+  "job_contract": {
+    "primary_job": "Design or improve a coherent user experience through composition, interaction, and connected UI behavior.",
+    "use_when": "The user needs experience decisions, comparisons, prototypes, or scoped UI implementation.",
+    "works_on": "HTML reports and web, desktop, or mobile interfaces, their content, foundations, and relevant API/state contracts.",
+    "main_output": "The requested artifact with its advantage, trade-offs, checks, and uncertainty at the requested fidelity.",
+    "not_for": "Backend architecture or format-only rendering.",
+    "authority": "Honor the requested assessment, options, mockup, prototype, or implementation scope; design selection grants no external-action authority.",
+    "routing_question": "Does the task require an experience decision or connected UI behavior?",
+    "nearest_neighbors": [
+      "engos-design-architecture"
+    ],
+    "shape": "deep_specialist",
+    "portfolio_action": "experimental_pending_behavioral_validation"
+  }
+}

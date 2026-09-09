@@ -1,0 +1,121 @@
+{
+  "schema_version": "CapabilityTopology.v1",
+  "slug": "engos-design-experience",
+  "ssot_sha256": "73ff64165b26672ee1be3af086b79f88f7bbea5a5f4b14352af35a477a9202ca",
+  "explicit_invocations": [],
+  "semantic_triggers": [],
+  "aliases_shortcuts": [],
+  "auto_routes": [],
+  "nodes": {
+    "commands": [],
+    "modes_modules": [],
+    "controls": [],
+    "modifiers": []
+  },
+  "composition": {
+    "legal_pairs": [],
+    "forbidden_pairs": [],
+    "canonical_order": [],
+    "requirements": [],
+    "supersession": []
+  },
+  "state_machine": {
+    "states": [],
+    "transitions": [],
+    "forbidden_transitions": []
+  },
+  "outputs": [
+    "- Deliver the artifact with its advantage, trade-offs, checks, and uncertainty at the requested fidelity."
+  ],
+  "authority_boundaries": [
+    "engos-design-experience:L33:41deb202b607",
+    "engos-design-experience:L53:e70e8ec99686"
+  ],
+  "resources": [
+    "- **Compose the task.** Establish what leads, how attention moves, and where action belongs. Use the owned foundation or inspect a relevant reference; translate its relationships into a representative render before multiplying screens. Balance readable hierarchy, useful density, and expressive space. [Composition and alternatives](resources/references/decision-studies.md) supports this choice.",
+    "- **Connect the experience to reality.** Ground actions in actual [API/state semantics](resources/references/api-and-state-design.md), including state ownership, commitment and recovery. Preserve draft meaning through relevant transitions. Select [state-failure probes](resources/references/state-failure-probes.md) when persistence or an unresolved operation could change the task. Adapt interaction to the target using [platform guidance and open-ended resources](resources/references/platform-and-resource-selection.md); a browser catalog does not determine the platform.",
+    "- **Keep context through consequential actions.** Preserve object identity, baseline/current distinction, decisive differences, and truthful status through commitment, replacement, and retry. Put brief decision-changing conditions with their claims. Keep full descriptions and secondary evidence directly accessible; bring them forward when they change this decision. Prefer grouping, alignment, and selective detail to repeated paragraphs or shrunken text. Check what recovered space reveals. [Whole-experience guidance](resources/references/whole-experience-contract.md) covers continuity.",
+    "- **Make consequential options tangible.** When structure is unsettled, compare the smallest useful sketch, mockup, or working slice with the active draft using comparable content and fidelity. Try the same task; expose benefits and costs. Preserve settled directions. No fixed variants, agents, or steps are required. [The diagnostic example](resources/examples/worked-decisions.md) shows why added context can also weaken a composition.",
+    "- **Revise both task and composition.** Render and walk through the actual task state after the last edit. Seek independent task-grounded feedback using that working-state evidence when it can add value. Correct the concrete obstacle, then compare with the recoverable draft: context gained, repetition, scanability, readable evidence, action access, and regressions. Retain the better whole result, including reversions. Reuse still-valid checks; stop when the outcome is supported or further work lacks concrete benefit. See [review guidance](resources/references/compare-edit-compare.md)."
+  ],
+  "handoffs": [],
+  "protected_invariants": [
+    {
+      "id": "engos-design-experience:L11:77357dbdaba3",
+      "heading": "Required Inputs",
+      "source": "ssot/engos-design-experience.md",
+      "source_line": 18,
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "text": "## Required Inputs",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-experience:L23:f6b116affb4c",
+      "heading": "Workflow Contract",
+      "source": "ssot/engos-design-experience.md",
+      "source_line": 30,
+      "sha256": "f6b116affb4c9a70b378823566dfb35d0279578f710b20e5d37a47909a4e8955",
+      "text": "- **Make consequential options tangible.** When structure is unsettled, compare the smallest useful sketch, mockup, or working slice with the active draft using comparable content and fidelity. Try the same task; expose benefits and costs. Preserve settled directions. No fixed variants, agents, or steps are required. [The diagnostic example](resources/examples/worked-decisions.md) shows why added context can also weaken a composition.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-experience:L33:41deb202b607",
+      "heading": "Constraints",
+      "source": "ssot/engos-design-experience.md",
+      "source_line": 40,
+      "sha256": "41deb202b6079e82297fcc15143af27c4cf92951b8b2911511c709c9bfa9344c",
+      "text": "Do not invent facts, APIs, research, or validation. Distinguish supported, proposed, and mocked behavior. Check relevant access/input in the actual target; disclose gaps. Images cannot prove interaction, browser simulations cannot prove native behavior, and agent reviews cannot establish human outcomes.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-experience:L35:3d4b9f171064",
+      "heading": "Required Output",
+      "source": "ssot/engos-design-experience.md",
+      "source_line": 42,
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "text": "## Required Output",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-experience:L53:e70e8ec99686",
+      "heading": "Evaluation Rubric",
+      "source": "ssot/engos-design-experience.md",
+      "source_line": 60,
+      "sha256": "e70e8ec99686fa5bf77ea078bcbd4611d32c50a8054da39c74ccc7c094c5ab08",
+      "text": "Judge task fit, composition, continuity, truthful semantics, access, and proportionality from the artifact. More context, novelty, or features do not establish quality.",
+      "kind": "invariant",
+      "mapped_to": []
+    }
+  ],
+  "risk_tiers": {
+    "critical": [],
+    "high": [],
+    "standard": []
+  },
+  "source_references": [
+    {
+      "path": "ssot/engos-design-experience.md",
+      "sha256": "73ff64165b26672ee1be3af086b79f88f7bbea5a5f4b14352af35a477a9202ca"
+    }
+  ],
+  "known_ambiguities": [],
+  "coverage_policy": {
+    "normative_clauses": "100_percent_mapped_or_waived",
+    "nodes": "positive_and_boundary",
+    "transitions": "all_legal_and_forbidden",
+    "module_pairs": "all_legal_pairs",
+    "high_risk_tuples": "assigned_strength",
+    "critical_mutants": "100_percent_killed"
+  },
+  "normative_clause_coverage": {
+    "total": 5,
+    "mapped": 0,
+    "waived": 0
+  },
+  "review_status": "draft",
+  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs."
+}

@@ -53,7 +53,7 @@ flowchart LR
 
 ## From `behavioral_pending` to `promote`
 
-`behavioral_pending` means a structurally accepted candidate has not yet supplied independent evidence that authorizes a new behavioral baseline. The completed status is `promote`, not `done`.
+`behavioral_pending` means a structurally accepted candidate has not yet supplied independent evidence that authorizes a new behavioral baseline. During the advisory rollout, this status may ship structurally; it does not establish behavioral promotion. The promotion status is `promote`, not `done`.
 
 | Status | Meaning | May advance the behavioral baseline |
 | --- | --- | --- |

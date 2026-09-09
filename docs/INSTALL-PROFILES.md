@@ -151,7 +151,7 @@ beside written destinations and removed after replacement.
 Official documentation checked on 2026-09-06:
 
 - [Codex skill locations and metadata](https://learn.chatgpt.com/docs/build-skills)
-- [Kiro CLI native skills and custom-agent resources](https://kiro.dev/docs/cli/skills/)
+- [Kiro native skills and custom-agent resources](https://kiro.dev/docs/skills/)
 - [Grok native skill packages and descriptive tool metadata](https://docs.x.ai/build/features/skills-plugins-marketplaces)
 
 The installed Grok user guide `08-skills.md` additionally documents `.agents`,

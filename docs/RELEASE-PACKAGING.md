@@ -19,23 +19,24 @@ python3 scripts/smoke-clis.py
 
 ## Release comparison baseline
 
-Before the release build, select and record the previous published release:
+Before the release build, fetch and verify the previous published tag, then set `PREVIOUS_RELEASE_TAG` to that exact tag:
 
 ```bash
-CORE_PROMPTS_RELEASE_BASE_REF=v1.13.2 bin/capability-fabric build
+CORE_PROMPTS_RELEASE_BASE_REF="${PREVIOUS_RELEASE_TAG:?Set the verified previous release tag}" bin/capability-fabric build
 ```
 
-For this v1.14.0 release the comparison baseline is v1.13.2. Choose the preceding
-published tag for future releases. The generator supports an explicit baseline
+The generator supports an explicit baseline
 and otherwise selects the latest distinct ancestor tag available locally. Fetch
 and verify the intended baseline; do not let missing local tags silently turn a
 patch-release review into an older cumulative comparison. Check the recorded
 comparison basis in `docs/RELEASE-DELTA.md` before packaging. Regenerate this view;
 do not hand-edit its capability counts or alter historical published release notes.
 
-## Build and Dry-Run
+## Optional deployment dry-run
+
+After the release build above, preview deployment only when installation is in scope. This uses the already-built bundle and preserves the explicit release-comparison baseline.
+
 ```bash
-bin/capability-fabric build
 bin/capability-fabric deploy --target "$HOME" --allow-nonlocal-target --dry-run --cli all
 ```
 

@@ -105,7 +105,7 @@ Supported scopes:
 - `repo_local`
 - `both`
 
-`apply` requires explicit confirmation before writing canonical repo state.
+`apply` prompts before writing canonical repo state unless `--yes` supplies confirmation. An authorized implementation uses the reviewed candidate and write set under the [delivery workflow](../.kiro/steering/repo-workflow.md#delivery-workflow).
 
 ## Related Docs
 - [UAC usage](UAC-USAGE.md)

@@ -13,13 +13,14 @@ This repository uses an SSOT-first architecture for generating and validating mu
   - `.gemini/`
   - `.claude/`
   - `.kiro/`
+  - `.grok/`
 
 ## Build and Validation Pipeline
 
 ```mermaid
 flowchart LR
   A["ssot/*.md"] --> B["scripts/build-surfaces.py"]
-  B --> C["Generated surfaces (.codex/.gemini/.claude/.kiro)"]
+  B --> C["Generated surfaces (.codex/.gemini/.claude/.kiro/.grok)"]
   B --> D[".meta/manifest.json"]
   B --> J["reports/build-surfaces/latest.json"]
   E[".meta/surface-rules.json"] --> F["scripts/validate-surfaces.py"]
@@ -28,7 +29,7 @@ flowchart LR
   F --> G["reports/validation/latest.json"]
   C --> H["scripts/deploy-surfaces.sh"]
   D --> H
-  H --> I["Target root (.codex/.gemini/.claude/.kiro; default repository root)"]
+  H --> I["Target root (legacy paths or selected profile; default repository root)"]
 ```
 
 ## Script Responsibilities
@@ -46,22 +47,24 @@ flowchart LR
 - `scripts/deploy-surfaces.sh`
   - copy-only deployment to target root paths
   - no symlink creation
-  - replaces destination symlinks with regular file copies
+  - legacy deployment replaces destination file symlinks with regular copies
+  - profile deployment preserves unknown or customized packages and rejects unsafe symlink boundaries; see [Installation Profiles](INSTALL-PROFILES.md)
 
 ## Codex Agent Generation and Registration
 
 - Skills are generated under `.codex/skills/<slug>/SKILL.md`.
-- For SSOT entries marked `kind: agent` or `role: agent`, agent config is generated under `.codex/agents/<slug>.toml`.
+- Canonical `capability_type: agent` or `both` entries emit `.codex/agents/<slug>.toml`; the artifact matrix in `.meta/surface-rules.json` determines surface eligibility.
 - Generated Codex agent TOMLs are runtime metadata plus instructions only:
   - `name`
   - `description`
   - `sandbox_mode`
   - `developer_instructions`
 - Do not emit legacy top-level `tools = [...]` arrays in Codex agent TOMLs; current Codex runtime rejects that schema.
-- Deployment updates `<target>/.codex/config.toml` with managed `[agents.<slug>]` entries that point to generated agent TOML files.
+- Deployment that includes agents updates `<target>/.codex/config.toml` with managed `[agents.<slug>]` entries. The selected skills-only profile does not alter agent registrations.
+- Repository skills remain under `.codex/skills`; the selected Codex home profile installs them under `.agents/skills`. See [Installation Profiles](INSTALL-PROFILES.md).
 
 ## Safety and Change Boundaries
 
-- Edit behavior in SSOT files only.
+- Edit capability bodies in `ssot/` and helpers in their canonical resource directories, following the [same-slug UAC flow](UAC-USAGE.md#update-an-existing-capability).
 - Do not hand-edit generated per-CLI artifacts.
 - Keep deployment copy-only and auditable.

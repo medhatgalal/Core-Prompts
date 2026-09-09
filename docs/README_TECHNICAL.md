@@ -1,29 +1,18 @@
 # Technical Documentation Hub
 
-Use this index when you need operational and implementation detail beyond the root README.
+Use this index for repository implementation and operational detail. For using installed capabilities, start with [Getting started](GETTING-STARTED.md) and [Examples](EXAMPLES.md).
 
-## Start Here
+| Need | Canonical guide |
+| --- | --- |
+| Source, resources, generators, validators, and deployment architecture | [Architecture](ARCHITECTURE.md) |
+| Provider responsibilities and advisory boundaries | [Capability Fabric](CAPABILITY-FABRIC.md) |
+| Capability authoring and same-slug updates | [UAC usage](UAC-USAGE.md) |
+| Descriptor and surface metadata | [UAC capability model](UAC-CAPABILITY-MODEL.md) |
+| External orchestrator consumption | [Orchestrator contract](ORCHESTRATOR-CONTRACT.md) |
+| Commands and write effects | [CLI reference](CLI-REFERENCE.md) |
+| Reviewed installation, ownership, discovery, and recovery | [Installation profiles](INSTALL-PROFILES.md) |
+| Structural acceptance and independent behavioral promotion | [Capability evaluation](CAPABILITY-EVALUATION.md) |
+| Hosted checks, packaging, publishing, and release watch | [Release packaging](RELEASE-PACKAGING.md) |
+| Documentation checks and governing policy links | [Maintainer hygiene](MAINTAINER-HYGIENE.md) |
 
-- [Getting Started](GETTING-STARTED.md): first-run setup, common command flow, and troubleshooting.
-- [Examples](EXAMPLES.md): full run examples for each prompt.
-- [CLI Integration Reference](CLI-REFERENCE.md): per-CLI surfaces, deployment targets, and verification commands.
-- [Architecture](ARCHITECTURE.md): SSOT model, generators, validators, manifest, and deployment design.
-- [Maintainer Hygiene Rules](MAINTAINER-HYGIENE.md): durable docs and GitOps review timing, parity, and lessons-capture rules.
-- [FAQ](FAQ.md): common problems and practical fixes.
-
-## Source of Truth Notes
-
-- Authoritative content originates from `ssot/` and `.meta/surface-rules.json`.
-- Generated outputs are in `.codex/`, `.gemini/`, `.claude/`, and `.kiro/`.
-- Automation scripts live in `scripts/`.
-- Persisted local capability source references must stay repo-relative so packaged and installed artifacts remain machine-portable.
-
-## Typical Technical Workflow
-
-1. Edit SSOT files in `ssot/`.
-2. Build surfaces: `bin/capability-fabric build`.
-3. Validate artifacts: `bin/capability-fabric validate --strict`.
-4. Optionally run CLI smoke checks: `python3 scripts/smoke-clis.py --strict`.
-5. Deploy managed files: `bin/capability-fabric deploy --cli all`. For an exact external-target repair, use `--surface-only --slug <slug>` after reviewing the dry-run copy set.
-
-Direct skill exposure is standardized on `skills/<slug>/SKILL.md` across all supported CLIs.
+Canonical capability bodies live in `ssot/`, resources under `sources/`, and surface rules in `.meta/surface-rules.json`. Generated packages live under `.codex/`, `.gemini/`, `.claude/`, `.kiro/`, and `.grok/`. Capability changes follow the [repository delivery workflow](../.kiro/steering/repo-workflow.md); a direct edit followed by deployment does not replace UAC review and delivery.

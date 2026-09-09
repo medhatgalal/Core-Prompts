@@ -12,6 +12,8 @@ Use this page to pick the right documentation path quickly. The intended order i
 | --- | --- |
 | I want to use an installed Core-Prompts skill or agent | [Getting started](GETTING-STARTED.md) |
 | I want richer, copyable example asks | [Examples](EXAMPLES.md) |
+| I want to design or improve a report, web, desktop, or mobile experience | [Experience design examples](EXAMPLES.md#engos-design-experience) |
+| I need a reviewed home installation or discovery diagnosis | [Installation profiles](INSTALL-PROFILES.md) and [home-install quickstart](quickstart.md) |
 | I am importing or uplifting a capability | [UAC usage](UAC-USAGE.md) |
 | I need to choose the right skill or understand neighboring boundaries | [Skill Job Map](SKILL-JOB-MAP.md) |
 | I need to understand structural checks, behavioral proof, or token budgets | [Capability evaluation](CAPABILITY-EVALUATION.md) |
@@ -41,11 +43,11 @@ Use this page to pick the right documentation path quickly. The intended order i
 3. [Release packaging](RELEASE-PACKAGING.md)
 4. [Technical README](README_TECHNICAL.md)
 
-Installed release-watch behavior is documented in [Getting started](GETTING-STARTED.md), [CLI reference](CLI-REFERENCE.md), and [Release packaging](RELEASE-PACKAGING.md). Initial home install writes `VERSION`, `RELEASE_SOURCE.env`, `LOCAL_REPO.env`, and `~/update_core_prompts.sh`; daily scheduled runs check releases, safely update the recorded source checkout when possible, and auto-accept valid releases before normal updates by default; `--check-release` never auto-installs when run directly; `--accept-release` is the explicit install/apply step; `--rollback previous` restores the latest pre-release snapshot.
+Installed update commands live in the [CLI reference](CLI-REFERENCE.md#check-or-accept-installed-releases). The [release-watch contract](RELEASE-PACKAGING.md#installed-release-watch-contract) explains saved-profile and legacy installations, scheduling, acceptance, and recovery.
 
 ## Canonical Homes
 
-- [`../README.md`](../README.md): longer orientation, real usage examples, UAC boundary, and repo-tooling fast path
+- [`../README.md`](../README.md): orientation, first-use examples, and links to authoring and maintenance
 - [`GETTING-STARTED.md`](GETTING-STARTED.md): first-run path in the correct order
 - [`EXAMPLES.md`](EXAMPLES.md): deeper scenario-style asks and expected outputs
 - [`UAC-USAGE.md`](UAC-USAGE.md): intake, uplift, `plan`, `judge`, and `apply`
@@ -73,6 +75,6 @@ These are useful inspection aids, not the main onboarding path:
 
 These stay in-repo but are not the first-stop user docs:
 
-- [Architecture source assessment](ARCHITECTURE-SOURCE-ASSESSMENT.md)
-- [Prompt pack](prompt-pack/README.md)
+- [Historical architecture source assessment](ARCHITECTURE-SOURCE-ASSESSMENT.md)
+- [Archived docs-authoring prompt pack](prompt-pack/README.md)
 - `docs/ASSETS/`
