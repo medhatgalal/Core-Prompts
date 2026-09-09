@@ -979,11 +979,39 @@ def test_auto_research_bootstrap_creates_artifacts(tmp_path: Path) -> None:
     created = payload["created"]
     assert Path(created["goal_contract"]).is_file()
     assert Path(created["experiment_ledger"]).is_file()
-    assert Path(created["promotion_packet"]).is_file()
+    assert "promotion_packet" not in created
+    assert {path.relative_to(report_dir).as_posix() for path in report_dir.rglob('*') if path.is_file()} == {
+        "review-prompt/goal-contract.md", "review-prompt/experiment-ledger.md", "review-prompt/scorecard.json",
+    }
     scorecard_path = Path(created["scorecard"])
     assert scorecard_path.is_file()
     scorecard = json.loads(scorecard_path.read_text(encoding="utf-8"))
     assert scorecard["goal"] == "increase regression catch rate"
+
+
+def test_auto_research_bootstrap_preserves_work_and_adds_only_requested_promotion(tmp_path: Path) -> None:
+    command = [sys.executable, str(BOOTSTRAP_SOURCE_PATH), "--target", "review prompt",
+               "--goal", "better review", "--report-dir", str(tmp_path)]
+    first = json.loads(subprocess.check_output(command, text=True))
+    ledger = Path(first["created"]["experiment_ledger"])
+    ledger.write_text("Actual trial results and user edits.\n")
+    before = {path: path.read_bytes() for path in tmp_path.rglob('*') if path.is_file()}
+    repeat = json.loads(subprocess.check_output(command, text=True))
+    assert repeat["created"] == {}
+    assert set(repeat["preserved"]) == set(first["created"])
+    assert {path: path.read_bytes() for path in tmp_path.rglob('*') if path.is_file()} == before
+    promotion = json.loads(subprocess.check_output(command + ["--profile", "promotion-prep"], text=True))
+    assert set(promotion["created"]) == {"promotion_packet"}
+    assert Path(promotion["created"]["promotion_packet"]).name == "promotion-packet.md"
+    assert all(path.read_bytes() == content for path, content in before.items())
+
+
+def test_auto_research_bootstrap_requires_destination_before_writes(tmp_path: Path) -> None:
+    result = subprocess.run([sys.executable, str(BOOTSTRAP_SOURCE_PATH), "--target", "review",
+                             "--goal", "improve"], cwd=tmp_path, capture_output=True, text=True)
+    assert result.returncode == 2
+    assert "--report-dir" in result.stderr
+    assert list(tmp_path.iterdir()) == []
 
 
 def test_build_surfaces_emits_auto_research_bootstrap_resource(tmp_path: Path) -> None:
@@ -995,7 +1023,7 @@ def test_build_surfaces_emits_auto_research_bootstrap_resource(tmp_path: Path) -
     )
 
     subprocess.run(
-        ["/opt/homebrew/bin/python3.14", str(workspace / "scripts" / "build-surfaces.py")],
+        [sys.executable, str(workspace / "scripts" / "build-surfaces.py")],
         cwd=workspace,
         check=True,
         capture_output=True,

@@ -1,5 +1,7 @@
 ## Unreleased
 
+- Removed timestamped output defaults from Supercharge, Auto-Research, and synthesized UAC wrappers. Requested durable artifacts use stable paths and Git history; experimental working files remain separate from skill resources.
+- Auto-Research bootstrap now requires an explicit destination, preserves existing trial records on rerun, and creates promotion scaffolding only for `promotion-prep`. Source-less UAC previews no longer impose blanket delegation/workflow bans; missing-source application remains blocked.
 - Modernized Supercharge with required independent subagents, resource-backed modules, real graded candidate trials, first-principles/decomplecting/inversion distinctions, and scoped ULT execution. Retired global `/stop`; retained `/stop-ult` and catchup outputs.
 - Strengthened UAC resource completeness, output/boundary diagnostics, targeted repairs, convergence, and hash-bound independent requirement review without treating structural checks as behavioral promotion.
 - Clarified Auto-Research's executed keep/discard loop, incumbent state, protected evaluator, coordinated mutations, and optimization stopping conditions.

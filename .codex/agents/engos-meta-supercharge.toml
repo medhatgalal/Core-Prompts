@@ -33,13 +33,9 @@ Responsibilities:
 - escalation: if the user asks for unsafe or destructive execution, stop and require explicit confirmation rather than folding it into prompt work; if the user needs bounded behavioral proof across variants, route to `engos-optimization-auto-research`
 
 ## Output Directory
-When file output is requested, default to:
-- `reports/supercharge/<timestamp>-prompt.md`
-- `reports/supercharge/<timestamp>-plan.md`
-- `reports/supercharge/<timestamp>-grade.md`
-- `reports/supercharge/<timestamp>-comparison.md`
+Default to inline output. When file output is requested, use the requested destination or an appropriate existing project location with one stable, task-specific filename per deliverable. Update the same authorized artifact during iteration; use Git for durable revision history rather than timestamped or numbered copies.
 
-When inline output is better, keep the same structure and logical artifact names in the response.
+Keep candidate identities and review evidence inspectable in the conversation, a single working ledger, or temporary task storage as needed. Do not create report directories or files merely because a module ran. Preserve unrelated files and never load historical outputs as skill instructions.
 
 ## Invocation Hints
 Use this capability when the user asks for any of the following, even without naming the skill:
