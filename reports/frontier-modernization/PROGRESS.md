@@ -1,4 +1,6 @@
-# Frontier modernization execution state
+# Frontier modernization execution brief and historical checkpoint
+
+This is the verification checkpoint at `61788e8`, before the delivery steps recorded below. The change later landed through [PR62](https://github.com/medhatgalal/Core-Prompts/pull/62) and [MR64](https://gitlab.appian-stratus.com/medhat.galal/core-prompts/-/merge_requests/64); [v1.14.0](https://github.com/medhatgalal/Core-Prompts/releases/tag/v1.14.0) subsequently published it. Pending statements below describe that earlier checkpoint, not a live work queue. Current CI and installed state require fresh readback.
 
 ## Governing execution brief
 
@@ -8,7 +10,7 @@ Remove automatic timestamped output defaults from Supercharge and Auto-Research 
 
 Use actual independent subagents. Review the exact candidate and its requirement map before same-slug UAC plan/judge/apply. Regenerate and validate supported surfaces, update user documentation, and complete paired GitHub/GitLab delivery. Installation and versioned release remain separate scope. Preserve unrelated state and existing historical evidence; no broad cleanup is authorized by an output-policy correction.
 
-## Current execution
+## Execution state at the verification checkpoint
 
 - Task: `01a07fc5-b41c-70b2-9fc3-a29d4f96f721` in the active linked Core-Prompts worktree.
 - Branch: `AI/frontier-plan-completion`; original common main `4ca5853eb24e93b24072998efb00547a81148bfc`.
@@ -23,4 +25,4 @@ Use actual independent subagents. Review the exact candidate and its requirement
 
 The historical record does not establish a reviewed relocation-only intermediate or completed native-host delivery acceptance before relocation. Do not claim the required original sequence was followed. Reconcile relocation versus semantic changes from Git/source evidence and establish current delivery acceptance instead. Source review, package assembly, actual request delivery, bounded model behavior, comparative efficacy, CI, installation, and promotion are separate results.
 
-This file records current execution state. Git preserves its earlier revisions; it is not an append-only collection of stale progress snapshots.
+This file preserves the reviewed brief and checkpoint. Git retains its revisions; subsequent delivery is recorded by the linked provider history, rather than silently treating an old checkpoint as current status.

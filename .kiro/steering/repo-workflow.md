@@ -36,12 +36,17 @@ Use this sequence for implementation, including capability updates requested thr
 
 ## Scope Rules
 
+- When compiling an approved plan or attachment into an execution brief, retain its source reference and carry forward deliverables, limits, prerequisites, sequencing, and verification obligations, including those in surrounding prose. Reconcile completion against that source and later authorized changes, not only the derived checklist. Keep this accounting proportional to the work.
+- Use stable task-specific paths and Git history for maintained artifacts. Distinguish required release/run identities from duplicate drafts; keep disposable variants in scoped scratch. At handoff or closure, update working status or label it as a historical checkpoint and point to later delivery evidence.
 - Keep commits and branches logically scoped.
 - Do not hide unrelated cleanup inside docs, release, or surface-generation changes.
 - If a task crosses docs, generated artifacts, and scripts, call out the dependency chain explicitly.
 
 ## Verification Expectations
 
+- Bind completion claims to the assessed artifact/revision and the evidence actually obtained. Source inspection, package identity, content delivery, observed behavior, comparative benefit, and delivery/install state are distinct; report unverified gates and protocol deviations explicitly.
+- For release publication, verify downloaded assets from each provider against reviewed package digests and the intended archive/source boundary. A zero exit code, successful transfer, or file extension is insufficient evidence of correct content.
+- Before installation, verify the reviewed write set and the current state of protected surfaces. Record pre-existing changes separately from installation effects; refreshing a preservation baseline does not authorize overwriting changed owned files or expanding the approved profile.
 - When command examples or release behavior change, verify them against current wrapper help or script behavior.
 - When generated-surface paths change, verify them against the actual emitted directories.
 - Treat validation failures as blocking until explained or fixed.
