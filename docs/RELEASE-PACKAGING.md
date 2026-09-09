@@ -8,6 +8,9 @@ Minimum supported runtime: Python `3.11+`.
 Prefer the repo wrappers for build and validate so the runtime selection stays consistent.
 
 ## Local Release Gate
+
+First verify the comparison baseline and run the release build described below. The full test suite includes archive tests that require the generated `dist/consumer-shell` views. On a clean committed checkout, validate the checked-in surfaces before that build, as CI does.
+
 ```bash
 python3 -m pytest -q
 bin/capability-fabric validate --strict
@@ -83,6 +86,8 @@ Do not call the repo release-green until the hosted CI surface is green after pu
 - GitLab CI:
   - runs on branch pushes
   - runs on merge request pipelines
+
+Both providers validate the checked-in surfaces before building the distribution views required by the archive tests. This preserves drift detection on fresh checkouts.
 
 Local release gates retain `bin/capability-fabric validate --strict`, including schema cache checks, so transient hosted network or vendor-doc failures do not mask local schema drift review.
 
