@@ -38,7 +38,7 @@ Use this sequence for implementation, including capability updates requested thr
 
 - When compiling an approved plan or attachment into an execution brief, retain its source reference and carry forward deliverables, limits, prerequisites, sequencing, and verification obligations, including those in surrounding prose. Reconcile completion against that source and later authorized changes, not only the derived checklist. Keep this accounting proportional to the work.
 - Use stable task-specific paths and Git history for maintained artifacts. Distinguish required release/run identities from duplicate drafts; keep disposable variants in scoped scratch. At handoff or closure, update working status or label it as a historical checkpoint and point to later delivery evidence.
-- Before closing a development slice with a reusable finding, link its evidence and record the owning rule, documentation or regression location and whether prevention is implemented, pending or deliberately not adopted. Use existing task records; do not add standing rules from untested hypotheses.
+- Before closing a Core-Prompts development slice with a reusable finding, link its evidence and record the owning rule, documentation or regression location and whether prevention is implemented, pending or deliberately not adopted. Use existing task records; do not add standing rules from untested hypotheses.
 - Keep commits and branches logically scoped.
 - Do not hide unrelated cleanup inside docs, release, or surface-generation changes.
 - If a task crosses docs, generated artifacts, and scripts, call out the dependency chain explicitly.
