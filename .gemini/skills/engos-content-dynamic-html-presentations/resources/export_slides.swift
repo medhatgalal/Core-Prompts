@@ -348,11 +348,17 @@ final class SlideExporter: NSObject, WKNavigationDelegate {
 
         let manager = FileManager.default
         let existing = try slidePNGFiles(in: options.output)
+        guard existing.isEmpty || options.force else {
+            throw ExportFailure.invalidInput(
+                "Output contains \(existing.count) slide PNG(s) that appeared after preparation. " +
+                "Refusing replacement without --force: \(options.output.path)"
+            )
+        }
         let backup = options.output.appendingPathComponent(
             ".slide-backup-\(UUID().uuidString)",
             isDirectory: true
         )
-        var promoted: [URL] = []
+        var promoted: [(url: URL, inode: UInt64, bytes: Data)] = []
 
         do {
             try manager.createDirectory(at: backup, withIntermediateDirectories: false)
@@ -360,8 +366,11 @@ final class SlideExporter: NSObject, WKNavigationDelegate {
                 try manager.moveItem(at: file, to: backup.appendingPathComponent(file.lastPathComponent))
             }
             for (staged, final) in zip(stagedFiles, expectedFiles) {
+                let attributes = try manager.attributesOfItem(atPath: staged.path)
+                let inode = (attributes[.systemFileNumber] as? NSNumber)?.uint64Value ?? 0
+                let bytes = try Data(contentsOf: staged)
                 try manager.moveItem(at: staged, to: final)
-                promoted.append(final)
+                promoted.append((final, inode, bytes))
             }
 
             let finalNames = Set(try slidePNGFiles(in: options.output).map(\.lastPathComponent))
@@ -374,25 +383,45 @@ final class SlideExporter: NSObject, WKNavigationDelegate {
             try manager.removeItem(at: backup)
             self.stagingDirectory = nil
         } catch {
-            for file in promoted where manager.fileExists(atPath: file.path) {
-                try? manager.removeItem(at: file)
-            }
-            if manager.fileExists(atPath: backup.path),
-               let backups = try? manager.contentsOfDirectory(
-                   at: backup,
-                   includingPropertiesForKeys: nil,
-                   options: [.skipsHiddenFiles]
-               ) {
-                for file in backups {
-                    let original = options.output.appendingPathComponent(file.lastPathComponent)
-                    if manager.fileExists(atPath: original.path) {
-                        try? manager.removeItem(at: original)
+            var recoveryNeeded = false
+            for record in promoted where manager.fileExists(atPath: record.url.path) {
+                do {
+                    let attributes = try manager.attributesOfItem(atPath: record.url.path)
+                    let inode = (attributes[.systemFileNumber] as? NSNumber)?.uint64Value ?? 0
+                    let currentBytes = try Data(contentsOf: record.url)
+                    guard inode == record.inode && currentBytes == record.bytes else {
+                        recoveryNeeded = true
+                        continue
                     }
-                    try? manager.moveItem(at: file, to: original)
-                }
+                    // A concurrent writer can still race this check and removal.
+                    try manager.removeItem(at: record.url)
+                } catch { recoveryNeeded = true }
             }
-            try? manager.removeItem(at: backup)
-            try? manager.removeItem(at: stagingDirectory)
+            if manager.fileExists(atPath: backup.path) {
+                do {
+                    let backups = try manager.contentsOfDirectory(at: backup, includingPropertiesForKeys: nil)
+                    for file in backups {
+                        let original = options.output.appendingPathComponent(file.lastPathComponent)
+                        if manager.fileExists(atPath: original.path) {
+                            recoveryNeeded = true
+                            continue
+                        }
+                        do { try manager.moveItem(at: file, to: original) }
+                        catch { recoveryNeeded = true }
+                    }
+                } catch { recoveryNeeded = true }
+            }
+            if recoveryNeeded {
+                self.stagingDirectory = nil
+                throw ExportFailure.render("Rollback incomplete: changed or occupied outputs preserved. Recovery backup: \(backup.path); staging: \(stagingDirectory.path). Original error: \(error.localizedDescription)")
+            }
+            do {
+                try manager.removeItem(at: backup)
+                try manager.removeItem(at: stagingDirectory)
+            } catch {
+                self.stagingDirectory = nil
+                throw ExportFailure.render("Rollback cleanup incomplete; inspect backup \(backup.path) and staging \(stagingDirectory.path): \(error.localizedDescription)")
+            }
             self.stagingDirectory = nil
             throw error
         }

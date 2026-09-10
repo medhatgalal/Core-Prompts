@@ -43,18 +43,54 @@
       "durable_regressions": "tests/test_plan_to_goal_design.py",
       "decision": "accepted for scoped source delivery; not formal model behavioral promotion",
       "independent_receipt_sha256": "a2012525f22910b487fb46486c153a43d11837eca3a32c9382e8de745701c99e"
+    },
+    {
+      "skill": "engos-content-dynamic-html-presentations",
+      "scope": "deterministic PNG export publication and rollback helper; SSOT body unchanged",
+      "resource": "sources/capability-resources/engos-content-dynamic-html-presentations/export_slides.swift",
+      "baseline_revision": "2b448e350a66367916d1b08bfd1feeb8f71f26f6",
+      "baseline_sha256": "c14ba219035bd04d28233af5aa36b5af5272255d886abb489ec24e391415f750",
+      "accepted_sha256": "1851e6117c026b1db9a20f35c0a69a20142f460ff9d6ad8a9161c1acf694b973",
+      "experiment_chain": [
+        {
+          "candidate": "P1",
+          "author_case_arm_observations": 10,
+          "independent_case_arm_observations": 18,
+          "result": "closes observed prepare-to-publication no-force overwrite window"
+        },
+        {
+          "candidate": "P2",
+          "author_case_arm_observations": 14,
+          "independent_case_arm_observations": 24,
+          "result": "preserves conflicting replacements and original backups, reports real incomplete-recovery paths; ordinary rollback controls retained"
+        }
+      ],
+      "durable_regressions": "tests/test_presentation_exporter.py",
+      "native_regression_tests": {
+        "passed": 6,
+        "skipped": 0,
+        "platform": "macOS with Swift and WebKit"
+      },
+      "independent_receipt_sha256": "b3399210722332ffcffb5baae5056a96fa507a3aa0d9915d21f3ecc0aa1ba9e7",
+      "decision": "accepted for scoped source delivery; not model layout efficacy",
+      "limits": [
+        "Non-atomic identity/data-check to removal window remains",
+        "Rollback retains PNG bytes in memory; large-deck memory not evaluated",
+        "Concurrent modification of private staging/backup directories is unsupported"
+      ]
     }
   ],
   "validation": {
     "focused_tests_passed": 100,
-    "full_tests_passed": 1077,
+    "full_tests_passed": 1083,
     "subtests_passed": 138,
     "strict_surfaces": "passed",
     "native_smoke": {
       "failures": 0,
       "warnings": 0
     },
-    "final_version_package_docs_tests_passed": 16
+    "final_version_package_docs_tests_passed": 16,
+    "scope_note": "Final combined local suite includes all three accepted helpers, including six real Swift/WebKit regressions with zero skips on this macOS host. Non-macOS CI skips those six explicitly."
   },
   "uac": {
     "same_slug_plan_judge_apply": true,
@@ -68,6 +104,6 @@
     "No live Jira or Google Workspace acceptance",
     "Plan binding does not claim complete ignored-file/submodule coverage or atomic concurrent snapshots",
     "No home installation performed",
-    "Other campaign prompt candidates are excluded from this delivery"
+    "All unproven prompt-body candidates remain excluded from this delivery"
   ]
 }
