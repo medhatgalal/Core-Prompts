@@ -1,0 +1,1859 @@
+{
+  "behavioral_status": "behavioral_pending",
+  "benchmark_sources": [],
+  "clarity": {
+    "advisory_only": true,
+    "behavioral_claim": "none",
+    "finding_count": 0,
+    "findings": [],
+    "policy": "instruction_clarity.v1"
+  },
+  "cross_analysis": {
+    "conflict_report": [],
+    "duplicate_risk": "low",
+    "fit_assessment": "requires_adjustment",
+    "overlap_report": [
+      {
+        "reason": "tag overlap 0.50, shared role analyst",
+        "score": 0.5,
+        "slug": "engos-quality-code-review"
+      },
+      {
+        "reason": "tag overlap 0.50, shared role analyst",
+        "score": 0.5,
+        "slug": "engos-quality-gitops-review"
+      },
+      {
+        "reason": "tag overlap 0.40, shared role analyst",
+        "score": 0.4,
+        "slug": "engos-quality-docs-review"
+      }
+    ],
+    "required_existing_adjustments": [
+      "review engos-quality-code-review for tag/role normalization against engos-quality-testing-review",
+      "review engos-quality-gitops-review for tag/role normalization against engos-quality-testing-review"
+    ],
+    "required_new_entry_adjustments": [
+      "tighten scope for engos-quality-testing-review relative to engos-quality-code-review",
+      "tighten scope for engos-quality-testing-review relative to engos-quality-gitops-review"
+    ],
+    "work_graph_change_summary": "engos-quality-testing-review matches an existing canonical slug and will be treated as an update target for judge/apply."
+  },
+  "eval_impact_plan": {
+    "affected_clause_ids": [
+      "engos-quality-testing-review:candidate:19366b213918",
+      "engos-quality-testing-review:candidate:25617126e980",
+      "engos-quality-testing-review:candidate:2e7c31b79b26",
+      "engos-quality-testing-review:candidate:3c36c3c7cba4",
+      "engos-quality-testing-review:candidate:41871537ab34",
+      "engos-quality-testing-review:candidate:46e987b66adc",
+      "engos-quality-testing-review:candidate:5af4d7f66802",
+      "engos-quality-testing-review:candidate:5e39be0e7377",
+      "engos-quality-testing-review:candidate:662c29f7329e",
+      "engos-quality-testing-review:candidate:792364894f08",
+      "engos-quality-testing-review:candidate:920f1d4b7c3e",
+      "engos-quality-testing-review:candidate:939107dcb54b",
+      "engos-quality-testing-review:candidate:c0688118e68d",
+      "engos-quality-testing-review:candidate:c9c96c90d869",
+      "engos-quality-testing-review:candidate:f9988bc7893f",
+      "engos-quality-testing-review:candidate:fc6899f27616",
+      "engos-quality-testing-review:candidate:fcf19aa2fe68"
+    ],
+    "change_classes": [
+      "invocation_hints",
+      "name_description",
+      "safety"
+    ],
+    "deterministic_fail_fast": true,
+    "hard_token_cap": 5000000,
+    "minimum_profile": "promotion",
+    "narrowing_policy": "reviewed waiver required; narrowed runs cannot claim full promotion",
+    "schema_version": "EvalImpactPlan.v1",
+    "slug": "engos-quality-testing-review"
+  },
+  "extraction": {
+    "prompt_field": null,
+    "wrapper_kind": "frontmatter_markdown"
+  },
+  "handoff_contract": {
+    "advisory_only": true,
+    "capabilities": [
+      {
+        "advisory_only": true,
+        "artifact_conventions": [],
+        "benchmark_profile": null,
+        "capability_type": "skill",
+        "confidence": 0.97,
+        "display_name": null,
+        "domain_tags": [
+          "review",
+          "planning",
+          "engos",
+          "quality",
+          "testing"
+        ],
+        "emitted_surfaces": {
+          "claude": [
+            "claude_skill"
+          ],
+          "codex": [
+            "codex_skill"
+          ],
+          "gemini": [
+            "gemini_skill"
+          ],
+          "grok": [
+            "grok_skill"
+          ],
+          "kiro": [
+            "kiro_skill"
+          ]
+        },
+        "expected_outputs": [
+          "Scope and chosen mode/level, with assumptions that affect the oracle.",
+          "Recommended tests or gaps, tied to behavior and prioritized risk.",
+          "Framework/layout notes and concrete test files when generation was requested.",
+          "Follow-up work: missing evidence, unresolved decisions and bounded run handoff."
+        ],
+        "install_target": {
+          "confidence": 1.0,
+          "confirmation_required_for_apply": true,
+          "rationale": "user override requested global",
+          "recommended": "global",
+          "supported": [
+            "global",
+            "repo_local",
+            "both"
+          ]
+        },
+        "invocation_style": null,
+        "org_graph": {
+          "authority_tier": "advisory",
+          "collaborates_with_suggestions": [
+            "review",
+            "planning"
+          ],
+          "delegates_to_suggestions": [],
+          "org_role": "analyst",
+          "reports_to_suggestions": [],
+          "work_graph_impact": "Adds or updates a skill capability with route profile None."
+        },
+        "overlap_candidates": [
+          "engos-quality-testing-review",
+          "engos-quality-code-review",
+          "engos-quality-gitops-review",
+          "engos-quality-docs-review"
+        ],
+        "preferred_use_cases": [],
+        "quality_status": null,
+        "relationship_suggestions": [],
+        "required_inputs": [
+          "source text",
+          "user intent/context"
+        ],
+        "requires_human_confirmation": null,
+        "review_status": "ready_for_orchestrator_review",
+        "role": "analyst",
+        "slug": "engos-quality-testing-review",
+        "summary": "Intent\n- Help developers and quality engineers decide what testing evidence a behavior needs, then produce the smallest useful test plan, test artifacts, or coverage-gap analysis. Use stated requirements, the actual testing stack, existing assertions and known risks. A test count, a green command, or a coverage percentage alone does not show that the important behavior is protected.\n- Connect each material risk to an observable expectation and the test level that can establish it. Produce actionable, framework-fitting outputs with clear remaining uncertainty and a truthful handoff for execution. Keep test generation separate from test execution and release judgment.\n\nConstraints\n- Design or generate only the requested artifacts. Include normal operation,\n\nRequested Outcome\n- Return priorities, exact artifacts or cases, remaining risks and a bounded\n\nRejected/Out-of-Scope Signals\n- None",
+        "tool_policy": {
+          "allowed": [
+            "deterministic classification",
+            "metadata publication",
+            "surface generation"
+          ],
+          "forbidden": [
+            "orchestration",
+            "delegation decisions",
+            "runtime execution control"
+          ],
+          "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority.",
+          "scope": "uac_intake_only"
+        }
+      }
+    ],
+    "notes": [
+      "Capability Fabric publishes metadata and suggestions only.",
+      "Orchestrators remain responsible for delegation and runtime routing."
+    ],
+    "schema_version": "capability-fabric.handoff.v0"
+  },
+  "manifest": {
+    "invocation_hints": [
+      "what should we test first, and at which level?",
+      "generate unit or integration tests for this behavior",
+      "design end-to-end tests for this journey",
+      "find missing edge cases or state transitions",
+      "interpret this coverage report and recommend useful tests",
+      "reduce brittle or redundant tests while preserving their useful assertions"
+    ],
+    "layers": {
+      "expanded": {
+        "adjustment_recommendations": [
+          "add an explicit primary objective before packaging",
+          "add deterministic in-scope sections to improve routing fitness",
+          "capture quality constraints or non-negotiables"
+        ],
+        "capability_dependencies": [
+          "context"
+        ],
+        "migration_notes": [
+          "If the capability lands, compare it against existing entries before apply.",
+          "Relationship suggestions are advisory only and do not imply runtime routing."
+        ],
+        "overlap_candidates": [
+          "engos-quality-code-review",
+          "engos-quality-gitops-review",
+          "engos-quality-docs-review"
+        ],
+        "relationship_suggestions": []
+      },
+      "minimal": {
+        "capability_type": "skill",
+        "confidence": 0.97,
+        "domain_tags": [
+          "review",
+          "planning",
+          "engos",
+          "quality",
+          "testing"
+        ],
+        "emitted_surfaces": {
+          "claude": [
+            "claude_skill"
+          ],
+          "codex": [
+            "codex_skill"
+          ],
+          "gemini": [
+            "gemini_skill"
+          ],
+          "grok": [
+            "grok_skill"
+          ],
+          "kiro": [
+            "kiro_skill"
+          ]
+        },
+        "expected_outputs": [
+          "Scope and chosen mode/level, with assumptions that affect the oracle.",
+          "Recommended tests or gaps, tied to behavior and prioritized risk.",
+          "Framework/layout notes and concrete test files when generation was requested.",
+          "Follow-up work: missing evidence, unresolved decisions and bounded run handoff."
+        ],
+        "install_target": {
+          "confidence": 1.0,
+          "confirmation_required_for_apply": true,
+          "rationale": "user override requested global",
+          "recommended": "global",
+          "supported": [
+            "global",
+            "repo_local",
+            "both"
+          ]
+        },
+        "packaging_profile": {
+          "capability_type": "skill",
+          "notes": [
+            "wrapper surfaces are additive deployment forms, not capability types",
+            "orchestrators must not infer execution authority from wrapper presence alone"
+          ],
+          "primary_surfaces": {
+            "claude": [
+              "claude_skill"
+            ],
+            "codex": [
+              "codex_skill"
+            ],
+            "gemini": [
+              "gemini_skill"
+            ],
+            "grok": [
+              "grok_skill"
+            ],
+            "kiro": [
+              "kiro_skill"
+            ]
+          },
+          "wrapper_surfaces": {
+            "claude": [
+              "skill_wrapper",
+              "plugin_wrapper"
+            ],
+            "codex": [],
+            "gemini": [
+              "skill_wrapper"
+            ],
+            "kiro": [
+              "skill_wrapper",
+              "power_wrapper"
+            ]
+          }
+        },
+        "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+        "required_inputs": [
+          "source text",
+          "user intent/context"
+        ],
+        "resources": [
+          "reports/skill-improvement-campaign/skills/engos-quality-testing-review/trial/engos-quality-testing-review.md"
+        ],
+        "review_status": "ready_for_orchestrator_review",
+        "role": "analyst",
+        "source_provenance": {
+          "content_sha256": "fb0d6023dd28998d55140848ef587a3b6066ffaaf5b800b1c2a3ac79e448fc9d",
+          "normalized_source": "reports/skill-improvement-campaign/skills/engos-quality-testing-review/trial/engos-quality-testing-review.md",
+          "policy_rule_id": "v1.local.baseline.allow",
+          "source_type": "LOCAL_FILE"
+        },
+        "summary": "Intent\n- Help developers and quality engineers decide what testing evidence a behavior needs, then produce the smallest useful test plan, test artifacts, or coverage-gap analysis. Use stated requirements, the actual testing stack, existing assertions and known risks. A test count, a green command, or a coverage percentage alone does not show that the important behavior is protected.\n- Connect each material risk to an observable expectation and the test level that can establish it. Produce actionable, framework-fitting outputs with clear remaining uncertainty and a truthful handoff for execution. Keep test generation separate from test execution and release judgment.\n\nConstraints\n- Design or generate only the requested artifacts. Include normal operation,\n\nRequested Outcome\n- Return priorities, exact artifacts or cases, remaining risks and a bounded\n\nRejected/Out-of-Scope Signals\n- None",
+        "tool_policy": {
+          "allowed": [
+            "deterministic classification",
+            "metadata publication",
+            "surface generation"
+          ],
+          "forbidden": [
+            "orchestration",
+            "delegation decisions",
+            "runtime execution control"
+          ],
+          "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority.",
+          "scope": "uac_intake_only"
+        }
+      },
+      "org_graph": {
+        "authority_tier": "advisory",
+        "collaborates_with_suggestions": [
+          "review",
+          "planning"
+        ],
+        "delegates_to_suggestions": [],
+        "org_role": "analyst",
+        "reports_to_suggestions": [],
+        "work_graph_impact": "Adds or updates a skill capability with route profile None."
+      }
+    },
+    "manifest_version": "capability-fabric.v0",
+    "slug": "engos-quality-testing-review"
+  },
+  "mode": "judge",
+  "plan": {
+    "capability_type": "skill",
+    "cross_analysis": {
+      "conflict_report": [
+        "slug engos-quality-testing-review already exists"
+      ],
+      "duplicate_risk": "high",
+      "fit_assessment": "manual_review",
+      "overlap_report": [
+        {
+          "reason": "same slug",
+          "score": 1.0,
+          "slug": "engos-quality-testing-review"
+        },
+        {
+          "reason": "tag overlap 0.50, shared role analyst",
+          "score": 0.5,
+          "slug": "engos-quality-code-review"
+        },
+        {
+          "reason": "tag overlap 0.50, shared role analyst",
+          "score": 0.5,
+          "slug": "engos-quality-gitops-review"
+        },
+        {
+          "reason": "tag overlap 0.40, shared role analyst",
+          "score": 0.4,
+          "slug": "engos-quality-docs-review"
+        }
+      ],
+      "required_existing_adjustments": [
+        "review engos-quality-code-review for tag/role normalization against engos-quality-testing-review",
+        "review engos-quality-gitops-review for tag/role normalization against engos-quality-testing-review"
+      ],
+      "required_new_entry_adjustments": [
+        "tighten scope for engos-quality-testing-review relative to engos-quality-code-review",
+        "tighten scope for engos-quality-testing-review relative to engos-quality-gitops-review"
+      ],
+      "work_graph_change_summary": "engos-quality-testing-review risks duplicate or conflicting graph roles and should not auto-apply."
+    },
+    "deployment_intent": "generate",
+    "emitted_surfaces": {
+      "claude": [
+        "claude_skill"
+      ],
+      "codex": [
+        "codex_skill"
+      ],
+      "gemini": [
+        "gemini_skill"
+      ],
+      "grok": [
+        "grok_skill"
+      ],
+      "kiro": [
+        "kiro_skill"
+      ]
+    },
+    "install_target": {
+      "confidence": 1.0,
+      "confirmation_required_for_apply": true,
+      "rationale": "user override requested global",
+      "recommended": "global",
+      "supported": [
+        "global",
+        "repo_local",
+        "both"
+      ]
+    },
+    "landing": {
+      "advisory_handoff_contract": true,
+      "descriptor_file": ".meta/capabilities/engos-quality-testing-review.json",
+      "manifest_layers": [
+        "minimal",
+        "expanded",
+        "org_graph"
+      ],
+      "ssot_file": "ssot/engos-quality-testing-review.md"
+    },
+    "proposed_ssot_slug": "engos-quality-testing-review"
+  },
+  "preview": {
+    "contributor_guidance": [
+      "Tighten scope or normalize metadata against the listed overlap candidates before apply.",
+      "Address the current quality blockers before apply.",
+      "The quality loop exhausted automatic refinement; manual tightening is required."
+    ],
+    "descriptor_delta": {
+      "candidate": {
+        "display_name": "engos-quality-testing-review",
+        "quality_profile": "default",
+        "quality_status": "manual_review"
+      },
+      "change_type": "descriptor_update",
+      "changed_fields": [
+        "display_name",
+        "quality_profile",
+        "quality_status",
+        "quality_pass_count",
+        "quality_stop_reason",
+        "layers.minimal.summary",
+        "layers.minimal.display_name"
+      ],
+      "existing": {
+        "display_name": "Testing Studio \u2014 Test Design and Coverage Analysis",
+        "quality_profile": null,
+        "quality_status": null
+      }
+    },
+    "descriptor_preview": {
+      "benchmark_sources": [],
+      "consumption_hints": {
+        "artifact_conventions": [
+          "ssot/<slug>.md",
+          ".meta/capabilities/<slug>.json",
+          "reports/quality-reviews/<slug>/LATEST.md"
+        ],
+        "invocation_style": "assistant_first_but_scriptable",
+        "preferred_use_cases": [
+          "AI-assisted capability selection",
+          "deterministic prompt uplift review"
+        ],
+        "requires_human_confirmation": true
+      },
+      "descriptor_version": "capability-fabric.descriptor.v0",
+      "display_name": "engos-quality-testing-review",
+      "family_slug": "engos-quality-testing-review",
+      "historical_baseline": {
+        "baseline_path": "sources/ssot-baselines/engos-quality-testing-review/baseline.md",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "group": "current_oracle",
+        "has_baseline_text": true,
+        "historical_proof": {
+          "current_head_commit": "0a2c1e46",
+          "current_head_line_count": 127,
+          "current_head_richness_score": 2,
+          "materialized_from_commit": "0a2c1e46"
+        },
+        "line_count": 127,
+        "operator_invariants": [],
+        "reason": "Current SSOT baseline source snapshot materialized into the source library because no stronger curated pre-SSOT baseline has been recorded yet.",
+        "richness_score": 2,
+        "scenario_matrix": [
+          {
+            "id": "operational_invocation",
+            "kind": "operational_contract",
+            "label": "operational invocation surface",
+            "must_contain": [
+              "## Invocation"
+            ]
+          }
+        ],
+        "selected_commit": "0a2c1e46",
+        "slug": "engos-quality-testing-review",
+        "source": "source_library",
+        "strategy": "head_snapshot",
+        "verified_by_git_history": false
+      },
+      "invocation_hints": [
+        "what should we test first, and at which level?",
+        "generate unit or integration tests for this behavior",
+        "design end-to-end tests for this journey",
+        "find missing edge cases or state transitions",
+        "interpret this coverage report and recommend useful tests",
+        "reduce brittle or redundant tests while preserving their useful assertions"
+      ],
+      "judge_reports": [
+        {
+          "blockers": [
+            "resource contract invalid: Declared resource-map.json is missing for capability: engos-quality-testing-review",
+            "missing operational marker: ## Constraints",
+            "source fidelity failed, so metadata_integrity cannot clear ship independently",
+            "missing template heading: ## Constraints",
+            "source fidelity failed, so benchmark_readiness cannot clear ship independently"
+          ],
+          "dimension_inventory": [
+            {
+              "dimension": "source_fidelity",
+              "status": "unresolved"
+            },
+            {
+              "dimension": "operational_richness",
+              "status": "unresolved"
+            },
+            {
+              "dimension": "metadata_integrity",
+              "status": "unresolved"
+            },
+            {
+              "dimension": "benchmark_readiness",
+              "status": "unresolved"
+            },
+            {
+              "dimension": "semantic_consistency",
+              "status": "no_detected_conflict_not_semantic_proof"
+            }
+          ],
+          "effective_sha256": "fb0d6023dd28998d55140848ef587a3b6066ffaaf5b800b1c2a3ac79e448fc9d",
+          "historical_baseline": {
+            "baseline_path": "sources/ssot-baselines/engos-quality-testing-review/baseline.md",
+            "equivalent_commits": [],
+            "expected_companions": [],
+            "group": "current_oracle",
+            "has_baseline_text": true,
+            "historical_proof": {
+              "current_head_commit": "0a2c1e46",
+              "current_head_line_count": 127,
+              "current_head_richness_score": 2,
+              "materialized_from_commit": "0a2c1e46"
+            },
+            "line_count": 127,
+            "operator_invariants": [],
+            "reason": "Current SSOT baseline source snapshot materialized into the source library because no stronger curated pre-SSOT baseline has been recorded yet.",
+            "richness_score": 2,
+            "scenario_matrix": [
+              {
+                "id": "operational_invocation",
+                "kind": "operational_contract",
+                "label": "operational invocation surface",
+                "must_contain": [
+                  "## Invocation"
+                ]
+              }
+            ],
+            "selected_commit": "0a2c1e46",
+            "slug": "engos-quality-testing-review",
+            "source": "source_library",
+            "strategy": "head_snapshot",
+            "verified_by_git_history": false
+          },
+          "judge_reports": [
+            {
+              "baseline_commit": "0a2c1e46",
+              "baseline_slug": "engos-quality-testing-review",
+              "blockers": [
+                "resource contract invalid: Declared resource-map.json is missing for capability: engos-quality-testing-review"
+              ],
+              "classification": "flattened",
+              "judge": "source_fidelity",
+              "requirement_review": {
+                "behavioral_status": "behavioral_pending",
+                "identity_authenticated": false,
+                "status": "not_supplied_or_invalid"
+              },
+              "reviewed_deltas": [],
+              "scenario_results": [
+                {
+                  "id": "operational_invocation",
+                  "kind": "operational_contract",
+                  "label": "operational invocation surface",
+                  "missing_markers": [],
+                  "passed": true
+                }
+              ],
+              "score": 1,
+              "scorecard": {
+                "baseline_operational_score": 2,
+                "baseline_preserved_in_resource": false,
+                "baseline_richness": 2,
+                "candidate_operational_score": 2,
+                "candidate_richness": 5
+              },
+              "title": "Source Fidelity and Uplift"
+            },
+            {
+              "blockers": [
+                "missing operational marker: ## Constraints"
+              ],
+              "judge": "operational_richness",
+              "score": 7,
+              "title": "Operational Richness"
+            },
+            {
+              "blockers": [
+                "source fidelity failed, so metadata_integrity cannot clear ship independently"
+              ],
+              "judge": "metadata_integrity",
+              "score": 8,
+              "title": "Metadata and Handoff Integrity"
+            },
+            {
+              "blockers": [
+                "missing template heading: ## Constraints",
+                "source fidelity failed, so benchmark_readiness cannot clear ship independently"
+              ],
+              "judge": "benchmark_readiness",
+              "score": 8,
+              "scorecard": {
+                "boundary_clarity": 8,
+                "description_richness": 10,
+                "intent_coverage": 8,
+                "metadata_completeness": 8,
+                "output_specificity": 10,
+                "surface_usability": 10,
+                "title_clarity": 10
+              },
+              "title": "Benchmark Readiness and Template Fit"
+            }
+          ],
+          "pass_number": 1,
+          "repair_requests": [
+            {
+              "disposition": "semantic_review_required",
+              "finding": "resource contract invalid: Declared resource-map.json is missing for capability: engos-quality-testing-review",
+              "instruction": "Locate and repair the authoritative source or supply a reviewed requirement mapping; preserve existing commands, schemas, boundaries, and user intent. Do not insert generic instructions or infer missing domain facts."
+            },
+            {
+              "disposition": "semantic_review_required",
+              "finding": "missing operational marker: ## Constraints",
+              "instruction": "Locate and repair the authoritative source or supply a reviewed requirement mapping; preserve existing commands, schemas, boundaries, and user intent. Do not insert generic instructions or infer missing domain facts."
+            },
+            {
+              "disposition": "repair_required",
+              "finding": "source fidelity failed, so metadata_integrity cannot clear ship independently",
+              "instruction": "Locate and repair the authoritative source or supply a reviewed requirement mapping; preserve existing commands, schemas, boundaries, and user intent. Do not insert generic instructions or infer missing domain facts."
+            },
+            {
+              "disposition": "semantic_review_required",
+              "finding": "missing template heading: ## Constraints",
+              "instruction": "Locate and repair the authoritative source or supply a reviewed requirement mapping; preserve existing commands, schemas, boundaries, and user intent. Do not insert generic instructions or infer missing domain facts."
+            },
+            {
+              "disposition": "repair_required",
+              "finding": "source fidelity failed, so benchmark_readiness cannot clear ship independently",
+              "instruction": "Locate and repair the authoritative source or supply a reviewed requirement mapping; preserve existing commands, schemas, boundaries, and user intent. Do not insert generic instructions or infer missing domain facts."
+            }
+          ],
+          "scorecard": {
+            "baseline_operational_score": 2,
+            "baseline_preserved_in_resource": false,
+            "baseline_richness": 2,
+            "benchmark_readiness": 8,
+            "boundary_clarity": 8,
+            "candidate_operational_score": 2,
+            "candidate_richness": 5,
+            "description_richness": 10,
+            "intent_coverage": 8,
+            "metadata_completeness": 8,
+            "metadata_integrity": 8,
+            "operational_richness": 7,
+            "output_specificity": 10,
+            "source_fidelity": 1,
+            "surface_usability": 10,
+            "title_clarity": 10
+          },
+          "semantic_findings": [],
+          "status": "manual_review",
+          "template_name": "skill"
+        }
+      ],
+      "layers": {
+        "expanded": {
+          "adjustment_recommendations": [
+            "add an explicit primary objective before packaging",
+            "add deterministic in-scope sections to improve routing fitness",
+            "capture quality constraints or non-negotiables"
+          ],
+          "capability_dependencies": [
+            "context"
+          ],
+          "migration_notes": [
+            "If the capability lands, compare it against existing entries before apply.",
+            "Relationship suggestions are advisory only and do not imply runtime routing."
+          ],
+          "overlap_candidates": [
+            "engos-quality-code-review",
+            "engos-quality-gitops-review",
+            "engos-quality-docs-review"
+          ],
+          "relationship_suggestions": []
+        },
+        "minimal": {
+          "capability_type": "skill",
+          "confidence": 0.97,
+          "display_name": "engos-quality-testing-review",
+          "domain_tags": [
+            "review",
+            "planning",
+            "engos",
+            "quality",
+            "testing"
+          ],
+          "emitted_surfaces": {
+            "claude": [
+              "claude_skill"
+            ],
+            "codex": [
+              "codex_skill"
+            ],
+            "gemini": [
+              "gemini_skill"
+            ],
+            "grok": [
+              "grok_skill"
+            ],
+            "kiro": [
+              "kiro_skill"
+            ]
+          },
+          "expected_outputs": [
+            "Scope and chosen mode/level, with assumptions that affect the oracle.",
+            "Recommended tests or gaps, tied to behavior and prioritized risk.",
+            "Framework/layout notes and concrete test files when generation was requested.",
+            "Follow-up work: missing evidence, unresolved decisions and bounded run handoff."
+          ],
+          "install_target": {
+            "confidence": 1.0,
+            "confirmation_required_for_apply": true,
+            "rationale": "user override requested global",
+            "recommended": "global",
+            "supported": [
+              "global",
+              "repo_local",
+              "both"
+            ]
+          },
+          "packaging_profile": {
+            "capability_type": "skill",
+            "notes": [
+              "wrapper surfaces are additive deployment forms, not capability types",
+              "orchestrators must not infer execution authority from wrapper presence alone"
+            ],
+            "primary_surfaces": {
+              "claude": [
+                "claude_skill"
+              ],
+              "codex": [
+                "codex_skill"
+              ],
+              "gemini": [
+                "gemini_skill"
+              ],
+              "grok": [
+                "grok_skill"
+              ],
+              "kiro": [
+                "kiro_skill"
+              ]
+            },
+            "wrapper_surfaces": {
+              "claude": [
+                "skill_wrapper",
+                "plugin_wrapper"
+              ],
+              "codex": [],
+              "gemini": [
+                "skill_wrapper"
+              ],
+              "kiro": [
+                "skill_wrapper",
+                "power_wrapper"
+              ]
+            }
+          },
+          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+          "required_inputs": [
+            "source text",
+            "user intent/context"
+          ],
+          "resources": [
+            "reports/skill-improvement-campaign/skills/engos-quality-testing-review/trial/engos-quality-testing-review.md"
+          ],
+          "review_status": "ready_for_orchestrator_review",
+          "role": "analyst",
+          "source_provenance": {
+            "content_sha256": "fb0d6023dd28998d55140848ef587a3b6066ffaaf5b800b1c2a3ac79e448fc9d",
+            "normalized_source": "reports/skill-improvement-campaign/skills/engos-quality-testing-review/trial/engos-quality-testing-review.md",
+            "policy_rule_id": "v1.local.baseline.allow",
+            "source_type": "LOCAL_FILE"
+          },
+          "summary": "Intent\n- Help developers and quality engineers decide what testing evidence a behavior needs, then produce the smallest useful test plan, test artifacts, or coverage-gap analysis. Use stated requirements, the actual testing stack, existing assertions and known risks. A test count, a green command, or a coverage percentage alone does not show that the important behavior is protected.\n- Connect each material risk to an observable expectation and the test level that can establish it. Produce actionable, framework-fitting outputs with clear remaining uncertainty and a truthful handoff for execution. Keep test generation separate from test execution and release judgment.\n\nConstraints\n- Design or generate only the requested artifacts. Include normal operation,\n\nRequested Outcome\n- Return priorities, exact artifacts or cases, remaining risks and a bounded\n\nRejected/Out-of-Scope Signals\n- None",
+          "tool_policy": {
+            "allowed": [
+              "deterministic classification",
+              "metadata publication",
+              "surface generation"
+            ],
+            "forbidden": [
+              "orchestration",
+              "delegation decisions",
+              "runtime execution control"
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority.",
+            "scope": "uac_intake_only"
+          }
+        },
+        "org_graph": {
+          "authority_tier": "advisory",
+          "collaborates_with_suggestions": [
+            "review",
+            "planning"
+          ],
+          "delegates_to_suggestions": [],
+          "org_role": "analyst",
+          "reports_to_suggestions": [],
+          "work_graph_impact": "Adds or updates a skill capability with route profile None."
+        }
+      },
+      "manifest_version": "capability-fabric.v0",
+      "modes": [],
+      "quality_pass_count": 1,
+      "quality_profile": "default",
+      "quality_status": "manual_review",
+      "quality_stop_reason": "max_passes_reached",
+      "quality_validation_matrix": [
+        {
+          "id": "operational_invocation",
+          "kind": "operational_contract",
+          "label": "operational invocation surface",
+          "must_contain": [
+            "## Invocation"
+          ]
+        }
+      ],
+      "shared_constraints": [],
+      "shared_summary": "Intent\n- Help developers and quality engineers decide what testing evidence a behavior needs, then produce the smallest useful test plan, test artifacts, or coverage-gap analysis. Use stated requirements, the actual testing stack, existing assertions and known risks. A test count, a green command, or a coverage percentage alone does not show that the important behavior is protected.\n- Connect each material risk to an observable expectation and the test level that can establish it. Produce actionable, framework-fitting outputs with clear remaining uncertainty and a truthful handoff for execution. Keep test generation separate from test execution and release judgment.\n\nConstraints\n- Design or generate only the requested artifacts. Include normal operation,\n\nRequested Outcome\n- Return priorities, exact artifacts or cases, remaining risks and a bounded\n\nRejected/Out-of-Scope Signals\n- None",
+      "slug": "engos-quality-testing-review"
+    },
+    "overlap_preview": {
+      "conflict_report": [],
+      "duplicate_risk": "low",
+      "fit_assessment": "requires_adjustment",
+      "overlap_candidates": [
+        {
+          "reason": "tag overlap 0.50, shared role analyst",
+          "score": 0.5,
+          "slug": "engos-quality-code-review"
+        },
+        {
+          "reason": "tag overlap 0.50, shared role analyst",
+          "score": 0.5,
+          "slug": "engos-quality-gitops-review"
+        },
+        {
+          "reason": "tag overlap 0.40, shared role analyst",
+          "score": 0.4,
+          "slug": "engos-quality-docs-review"
+        }
+      ],
+      "required_existing_adjustments": [
+        "review engos-quality-code-review for tag/role normalization against engos-quality-testing-review",
+        "review engos-quality-gitops-review for tag/role normalization against engos-quality-testing-review"
+      ],
+      "required_new_entry_adjustments": [
+        "tighten scope for engos-quality-testing-review relative to engos-quality-code-review",
+        "tighten scope for engos-quality-testing-review relative to engos-quality-gitops-review"
+      ],
+      "work_graph_change_summary": "engos-quality-testing-review matches an existing canonical slug and will be treated as an update target for judge/apply."
+    },
+    "rendered_ssot_markdown": "---\nname: \"engos-quality-testing-review\"\ndescription: \"Choose, design, or generate tests from behavior and risk; analyze edge cases and coverage evidence across unit, integration, and end-to-end testing. Use for test strategy and artifacts without automatic execution; use GitOps review for release readiness.\"\ndisplay_name: \"Testing Studio \u2014 Test Strategy, Design, and Coverage Analysis\"\ncapability_type: \"skill\"\ninstall_target: \"global\"\n---\n\n# Testing Studio \u2014 Test Strategy, Design, and Coverage Analysis\n\n## Purpose\nHelp developers and quality engineers decide what testing evidence a behavior needs,\nthen produce the smallest useful test plan, test artifacts, or coverage-gap analysis.\nUse stated requirements, the actual testing stack, existing assertions and known\nrisks. A test count, a green command, or a coverage percentage alone does not show\nthat the important behavior is protected.\n\n## Primary Objective\nConnect each material risk to an observable expectation and the test level that can\nestablish it. Produce actionable, framework-fitting outputs with clear remaining\nuncertainty and a truthful handoff for execution. Keep test generation separate\nfrom test execution and release judgment.\n\n## Invocation Hints\nUse this capability for requests such as:\n- what should we test first, and at which level?\n- generate unit or integration tests for this behavior\n- design end-to-end tests for this journey\n- find missing edge cases or state transitions\n- interpret this coverage report and recommend useful tests\n- reduce brittle or redundant tests while preserving their useful assertions\n\n## Required Inputs\nUse the available behavior specification, source/change, failure example, or user\njourney; repository test stack/layout and existing tests; and any stated risk,\ntime, environment or dependency constraints. Coverage artifacts are optional.\nInspect supplied context before asking questions. If an expectation is ambiguous,\nidentify the competing interpretations and ask only for a decision that changes\nthe oracle or scope. Continue independent analysis; label assumptions rather than\nencoding implementation behavior as the requirement. Missing coverage data permits\na qualitative gap analysis, never an invented coverage metric.\n\n## Resource Delivery\nLoad `resources/resource-map.json` and the complete applicable route before work\nthat depends on it, including shared guidance. Route `strategy` covers prioritization\nand level selection; `design` covers test generation and edge cases; `coverage`\ncovers evidence interpretation. Combined requests use the union of routes, with\nshared content once. Use actual file-read tools or complete pre-supplied contents;\nresource filenames, hashes, summaries or an assertion of reading are insufficient.\nIf a resource cannot be loaded, state the specific limitation and do not claim its\nchecks were performed. The skill body still supports a bounded preliminary response.\n\n## Workflow\n1. Establish the requested deliverable: strategy, test files, E2E design, edge-case\n   analysis, coverage analysis, or a combination. Read the testing configuration,\n   existing tests and relevant behavior first. Respect explicit design-only scope.\n2. Identify high-impact failures and the observable contract, including material\n   disagreements between requirements and code. Rank risks using supplied impact,\n   likelihood/exposure and change context; avoid invented probabilities or scores.\n3. Choose where each risk is best tested. Keep pure rules local; use integration\n   tests for real boundaries and persisted effects; reserve E2E for journeys whose\n   result spans those boundaries. Explain tradeoffs when isolation hides the risk.\n   Do not force a fixed unit/integration/E2E ratio.\n4. Examine existing assertions before adding tests. Reuse valid coverage, identify\n   missing observations and avoid duplicating the same assurance at several layers\n   without a reason. No additional test is a valid recommendation when justified.\n5. Design or generate only the requested artifacts. Include normal operation,\n   relevant boundaries, failures and recovery. Use observable, specification-derived\n   assertions with controllable inputs; avoid private representation and copied\n   implementation algorithms. A simple independent model or property is useful\n   only when it provides a meaningful oracle and fits the repository stack.\n6. Check the proposed artifacts by reading them against the contract: can a valid\n   implementation pass, can the stated defect make an assertion fail, and can setup\n   or cleanup hide that signal? Separate dependencies, unavailable observations and\n   assumptions from completed artifacts. Do not run tests automatically.\n7. Return priorities, exact artifacts or cases, remaining risks and a bounded\n   execution handoff. If execution evidence was supplied, attribute it to its\n   command/revision/environment; do not turn it into a claim that you ran the tests.\n\n## Modes\n\n### Test Strategy\nFor a change or risk question, produce a prioritized risk-to-evidence map: behavior,\nfailure consequence, current assurance, proposed test level, required observation,\nsetup/dependency boundary and remaining gap. Keep it proportional to the task.\nInclude relevant nonfunctional concerns when context supports them; route a\nspecialized investigation rather than inventing its acceptance threshold.\n\n### Generate Unit Tests\nProduce tests in the repository's established framework/layout with explicit\nassertions and minimum necessary fixtures. Cover meaningful equivalence classes,\nboundary values, errors and state transitions. For stateful APIs, consider a valid\ntransition, a rejected transition that must preserve state, and a later valid\noperation. For resource-owning APIs, cover required cleanup and recovery. Prefer\ndeterministic clocks, randomness and dependency fakes over sleeps or ambient state.\n\n### Generate Integration Tests\nIdentify the real collaborating boundary and what a unit fake cannot prove: for\nexample serialization compatibility, transaction behavior, persisted effects or\nretry/idempotency across adapters. Separate message-contract checks from functional\nside-effect checks. Use isolated, disposable data and explicit cleanup, including\npartial setup. Do not claim an integration test proves a service that it replaces\nentirely with a mock. If the environment is unavailable, deliver a concrete design\nand prerequisites rather than silently substituting a weaker test.\n\n### Generate E2E Tests\nProduce critical journeys with setup, actions, user-visible outcomes, synchronization,\ncleanup and diagnostics. Inspect the actual supported UI/API contract before\ngenerating concrete selectors or commands. Prefer semantic locators and observable\nreadiness over fixed waits. Name mocked boundaries and the resulting limit on\nbackend assurance. Design failures and recovery alongside happy paths; keep tests\nindependent so one journey cannot prepare state another requires.\n\n### Edge Cases\nReturn prioritized missing scenarios with the input or precondition, action,\nexpected observation, consequence and suggested test level. Consider boundaries,\ninvalid combinations, state/retry sequences and dependency failures when relevant.\nDeduplicate equivalent cases. Separate a demonstrated missing assertion from an\nunverified possibility or a requirement needing a decision. Do not silently write\ntest files for an analysis-only request.\n\n### Coverage Analysis\nIdentify the artifact's revision, environment, command, scope, measurement type and\nexclusions when available; mark missing provenance. Distinguish lines/branches\nexecuted from behavior asserted and outcomes protected. Trace high-risk missing\nobservations to actual source/tests. If a report is stale or unavailable, describe\nwhat can be concluded qualitatively and what needs measurement. Treat uncovered,\nsurviving, invalid, ignored and timed-out mutants separately when those data exist;\ndo not invent a mutation score or equate one tool's metric with semantic correctness.\n\n## Required Output\nInclude the following information at a level proportional to the request. Use the\nrepository's expected format when one exists; avoid empty repeated sections.\n- Scope and chosen mode/level, with assumptions that affect the oracle.\n- Recommended tests or gaps, tied to behavior and prioritized risk.\n- Framework/layout notes and concrete test files when generation was requested.\n- Follow-up work: missing evidence, unresolved decisions and bounded run handoff.\n\nFor each material proposed test or representative group, make setup, action,\nexpected observation and the failure it detects understandable. State what valid\nbehavior it must allow. For generated files, explicitly say they are unrun and\nidentify the operator command, required environment, artifact paths and diagnostic\nexpectations. If no reliable command is known, name the missing configuration\ninstead of fabricating an executable invocation. Do not present a design sketch\nas a runnable test or a source-reading check as execution.\n\n## Output Directory\nUse the repository's established test layout for requested test files. If none\nexists, propose a layout before writing them. For analysis artifacts, use the user's\nchosen destination or the existing `reports/testing/<timestamp>-plan.md`,\n`reports/testing/<timestamp>-coverage-gap.md`, or\n`reports/testing/<timestamp>-edge-cases.md` convention. Prefer inline analysis\nwhen no durable file is requested. Preserve unrelated tests and user customizations.\n\n## Rules\n- Allowed: read relevant source, requirements, test configuration, existing tests and\n  supplied execution/coverage evidence; design cases; write requested test artifacts.\n- Do not execute tests automatically, start services, install tools, access secrets,\n  change production code, delete existing tests or mutate external test data merely\n  because a test design mentions those operations. Removal recommendations require\n  retained-behavior evidence; applying them needs the user's edit scope.\n- If a request includes execution, identify that separate operation and hand off\n  the exact command/environment/data boundary to the user's authorized host workflow.\n  Do not invent a generic test-runner capability or a release approval.\n- Use `engos-quality-code-review` for diff correctness and change judgment;\n  `engos-quality-gitops-review` for CI/merge/release readiness;\n  `engos-audit-feature-status` for completeness against full feature scope;\n  `engos-design-architecture` for a material interface or system-design decision;\n  `engos-browser-demo-recorder` for a watchable recording rather than test assurance.\n  Supply the concrete behavior, artifact and unresolved decision to the handoff.\n  Do not dispatch companions automatically when a recommendation suffices.\n\n## Examples\n> Our retry path passes unit tests, but users sometimes see duplicate orders. Tell\n> me what to test first, then generate the smallest integration test we can run.\n\nReturn a risk/level choice, an idempotency and persisted-effect oracle, framework-fit\ntest files when the adapter/environment is known, and an unrun execution handoff.\n\n> This report says 100% lines covered. What behavior is still at risk? Analysis only.\n\nInspect assertion quality and branch/behavior evidence; return prioritized gaps,\nsafe exclusions and provenance limits without writing files or inventing metrics.\n\n> Design Playwright tests for checkout, including a failed payment and retry.\n\nReturn independent journeys, deterministic failure injection at the approved boundary,\nuser-visible assertions, persisted-effect limits, cleanup and diagnostics. Do not\ncopy demo pacing into test synchronization or claim the journeys ran.\n\n## Evaluation Rubric\n| Check | Passing behavior |\n| --- | --- |\n| Job fit | Produces the requested strategy, cases, files or analysis at the right test level |\n| Oracle quality | Assertions express the intended observable behavior and allow valid implementations |\n| Risk and recovery | Prioritizes material failures, boundaries and relevant state/resource recovery |\n| Stack and maintainability | Fits the existing framework, avoids redundant/brittle tests and contains setup state |\n| Evidence quality | Distinguishes supplied observations, static reasoning, generated unrun tests and unknowns |\n| Handoff and authority | Gives a useful bounded next step without automatic execution or release claims |\n",
+    "structural_readiness": {
+      "blockers": [
+        "resource contract invalid: Declared resource-map.json is missing for capability: engos-quality-testing-review",
+        "missing operational marker: ## Constraints",
+        "source fidelity failed, so metadata_integrity cannot clear ship independently",
+        "missing template heading: ## Constraints",
+        "source fidelity failed, so benchmark_readiness cannot clear ship independently"
+      ],
+      "quality_pass_count": 1,
+      "quality_status": "manual_review",
+      "quality_stop_reason": "max_passes_reached"
+    },
+    "user_visible_impact": {
+      "capability_type": "skill",
+      "change_kind": "update_existing_capability",
+      "changed_fields": [
+        "summary",
+        "expected_surface_names",
+        "invocation_hints"
+      ],
+      "compatibility": null,
+      "display_name": null,
+      "expected_outputs": [
+        "Scope and chosen mode/level, with assumptions that affect the oracle.",
+        "Recommended tests or gaps, tied to behavior and prioritized risk.",
+        "Framework/layout notes and concrete test files when generation was requested.",
+        "Follow-up work: missing evidence, unresolved decisions and bounded run handoff."
+      ],
+      "expected_surfaces": [
+        "claude_skill",
+        "codex_skill",
+        "gemini_skill",
+        "grok_skill",
+        "kiro_skill"
+      ],
+      "install_target": "global",
+      "invocation_hints": [
+        "what should we test first, and at which level?",
+        "generate unit or integration tests for this behavior",
+        "design end-to-end tests for this journey",
+        "find missing edge cases or state transitions",
+        "interpret this coverage report and recommend useful tests",
+        "reduce brittle or redundant tests while preserving their useful assertions"
+      ],
+      "supported_agents": []
+    }
+  },
+  "quality_plan": {
+    "artifact_plan": {
+      "latest_review_file": "reports/quality-reviews/engos-quality-testing-review/LATEST.md",
+      "profile_file": ".meta/quality-profiles/default.json",
+      "review_directory": "reports/quality-reviews/engos-quality-testing-review/",
+      "template_file": ".meta/capability-templates/skill.json"
+    },
+    "assessment_scope": "mechanical_structure_only_not_semantic_or_behavioral_proof",
+    "benchmark_sources": [],
+    "external_sources": [
+      "/Users/medhat.galal/.codex/worktrees/611a/Core-Prompts/reports/skill-improvement-campaign/skills/engos-quality-testing-review/trial/engos-quality-testing-review.md"
+    ],
+    "gate_order": [
+      "historical baseline selection",
+      "prompt-body fidelity",
+      "operational richness",
+      "metadata integrity",
+      "benchmark readiness"
+    ],
+    "hard_fail_rules": [
+      "fail if a rich prompt body is replaced by a capability summary",
+      "fail if module-specific sections are reduced to shallow one-liners",
+      "fail if a generic UAC template shape replaces an operational command, mode, help, or workflow contract",
+      "fail if direct operating instructions move into metadata and disappear from the body",
+      "fail if orchestration or portability language weakens user-facing execution semantics"
+    ],
+    "historical_baseline": {
+      "baseline_path": "sources/ssot-baselines/engos-quality-testing-review/baseline.md",
+      "equivalent_commits": [],
+      "expected_companions": [],
+      "group": "current_oracle",
+      "has_baseline_text": true,
+      "historical_proof": {
+        "current_head_commit": "0a2c1e46",
+        "current_head_line_count": 127,
+        "current_head_richness_score": 2,
+        "materialized_from_commit": "0a2c1e46"
+      },
+      "line_count": 127,
+      "operator_invariants": [],
+      "reason": "Current SSOT baseline source snapshot materialized into the source library because no stronger curated pre-SSOT baseline has been recorded yet.",
+      "richness_score": 2,
+      "scenario_matrix": [
+        {
+          "id": "operational_invocation",
+          "kind": "operational_contract",
+          "label": "operational invocation surface",
+          "must_contain": [
+            "## Invocation"
+          ]
+        }
+      ],
+      "selected_commit": "0a2c1e46",
+      "slug": "engos-quality-testing-review",
+      "source": "source_library",
+      "strategy": "head_snapshot",
+      "verified_by_git_history": false
+    },
+    "judge_packets": [
+      {
+        "judge": "source_fidelity",
+        "prompt_fields": {
+          "benchmark_dimensions": [
+            "title clarity",
+            "description richness",
+            "intent coverage",
+            "boundary clarity",
+            "output specificity",
+            "metadata completeness",
+            "surface usability"
+          ],
+          "candidate_ssot_body_or_path": "ssot/engos-quality-testing-review.md",
+          "capability_template": "skill",
+          "descriptor_path": ".meta/capabilities/engos-quality-testing-review.json",
+          "display_name_target": "Default Quality Profile",
+          "external_source_set": [
+            "/Users/medhat.galal/.codex/worktrees/611a/Core-Prompts/reports/skill-improvement-campaign/skills/engos-quality-testing-review/trial/engos-quality-testing-review.md"
+          ],
+          "local_benchmark_files": [
+            "ssot/engos-design-architecture.md",
+            "ssot/engos-quality-code-review.md",
+            "ssot/engos-quality-testing-review.md",
+            "ssot/engos-meta-uac-import.md",
+            "ssot/engos-delivery-resolve-conflict.md"
+          ],
+          "must_exceed": [
+            "architecture operational bar",
+            "code-review operational bar",
+            "testing explicit-output bar",
+            "uac-import metadata and workflow bar",
+            "original source substance when present"
+          ],
+          "pass_number": 1,
+          "prior_pass_blockers": [],
+          "prohibited_regressions": [
+            "thin summary replacing operational procedure",
+            "metadata replacing prompt-body richness",
+            "orchestration leakage",
+            "surface claims unsupported by the capability body"
+          ],
+          "quality_profile": "default",
+          "read_only_instruction": "Read-only judge. Do not propose orchestration ownership or runtime routing.",
+          "scoring_rubric": {
+            "benchmark_readiness": 9,
+            "metadata_integrity": 9,
+            "operational_richness": 9,
+            "source_fidelity": 9
+          },
+          "slug": "engos-quality-testing-review",
+          "stop_target": 9,
+          "target_description": "Generic UAC quality profile for reusable skill or agent uplifts."
+        },
+        "title": "Source Fidelity and Uplift"
+      },
+      {
+        "judge": "operational_richness",
+        "prompt_fields": {
+          "benchmark_dimensions": [
+            "title clarity",
+            "description richness",
+            "intent coverage",
+            "boundary clarity",
+            "output specificity",
+            "metadata completeness",
+            "surface usability"
+          ],
+          "candidate_ssot_body_or_path": "ssot/engos-quality-testing-review.md",
+          "capability_template": "skill",
+          "descriptor_path": ".meta/capabilities/engos-quality-testing-review.json",
+          "display_name_target": "Default Quality Profile",
+          "external_source_set": [
+            "/Users/medhat.galal/.codex/worktrees/611a/Core-Prompts/reports/skill-improvement-campaign/skills/engos-quality-testing-review/trial/engos-quality-testing-review.md"
+          ],
+          "local_benchmark_files": [
+            "ssot/engos-design-architecture.md",
+            "ssot/engos-quality-code-review.md",
+            "ssot/engos-quality-testing-review.md",
+            "ssot/engos-meta-uac-import.md",
+            "ssot/engos-delivery-resolve-conflict.md"
+          ],
+          "must_exceed": [
+            "architecture operational bar",
+            "code-review operational bar",
+            "testing explicit-output bar",
+            "uac-import metadata and workflow bar",
+            "original source substance when present"
+          ],
+          "pass_number": 1,
+          "prior_pass_blockers": [],
+          "prohibited_regressions": [
+            "thin summary replacing operational procedure",
+            "metadata replacing prompt-body richness",
+            "orchestration leakage",
+            "surface claims unsupported by the capability body"
+          ],
+          "quality_profile": "default",
+          "read_only_instruction": "Read-only judge. Do not propose orchestration ownership or runtime routing.",
+          "scoring_rubric": {
+            "benchmark_readiness": 9,
+            "metadata_integrity": 9,
+            "operational_richness": 9,
+            "source_fidelity": 9
+          },
+          "slug": "engos-quality-testing-review",
+          "stop_target": 9,
+          "target_description": "Generic UAC quality profile for reusable skill or agent uplifts."
+        },
+        "title": "Operational Richness"
+      },
+      {
+        "judge": "metadata_integrity",
+        "prompt_fields": {
+          "benchmark_dimensions": [
+            "title clarity",
+            "description richness",
+            "intent coverage",
+            "boundary clarity",
+            "output specificity",
+            "metadata completeness",
+            "surface usability"
+          ],
+          "candidate_ssot_body_or_path": "ssot/engos-quality-testing-review.md",
+          "capability_template": "skill",
+          "descriptor_path": ".meta/capabilities/engos-quality-testing-review.json",
+          "display_name_target": "Default Quality Profile",
+          "external_source_set": [
+            "/Users/medhat.galal/.codex/worktrees/611a/Core-Prompts/reports/skill-improvement-campaign/skills/engos-quality-testing-review/trial/engos-quality-testing-review.md"
+          ],
+          "local_benchmark_files": [
+            "ssot/engos-design-architecture.md",
+            "ssot/engos-quality-code-review.md",
+            "ssot/engos-quality-testing-review.md",
+            "ssot/engos-meta-uac-import.md",
+            "ssot/engos-delivery-resolve-conflict.md"
+          ],
+          "must_exceed": [
+            "architecture operational bar",
+            "code-review operational bar",
+            "testing explicit-output bar",
+            "uac-import metadata and workflow bar",
+            "original source substance when present"
+          ],
+          "pass_number": 1,
+          "prior_pass_blockers": [],
+          "prohibited_regressions": [
+            "thin summary replacing operational procedure",
+            "metadata replacing prompt-body richness",
+            "orchestration leakage",
+            "surface claims unsupported by the capability body"
+          ],
+          "quality_profile": "default",
+          "read_only_instruction": "Read-only judge. Do not propose orchestration ownership or runtime routing.",
+          "scoring_rubric": {
+            "benchmark_readiness": 9,
+            "metadata_integrity": 9,
+            "operational_richness": 9,
+            "source_fidelity": 9
+          },
+          "slug": "engos-quality-testing-review",
+          "stop_target": 9,
+          "target_description": "Generic UAC quality profile for reusable skill or agent uplifts."
+        },
+        "title": "Metadata and Handoff Integrity"
+      },
+      {
+        "judge": "benchmark_readiness",
+        "prompt_fields": {
+          "benchmark_dimensions": [
+            "title clarity",
+            "description richness",
+            "intent coverage",
+            "boundary clarity",
+            "output specificity",
+            "metadata completeness",
+            "surface usability"
+          ],
+          "candidate_ssot_body_or_path": "ssot/engos-quality-testing-review.md",
+          "capability_template": "skill",
+          "descriptor_path": ".meta/capabilities/engos-quality-testing-review.json",
+          "display_name_target": "Default Quality Profile",
+          "external_source_set": [
+            "/Users/medhat.galal/.codex/worktrees/611a/Core-Prompts/reports/skill-improvement-campaign/skills/engos-quality-testing-review/trial/engos-quality-testing-review.md"
+          ],
+          "local_benchmark_files": [
+            "ssot/engos-design-architecture.md",
+            "ssot/engos-quality-code-review.md",
+            "ssot/engos-quality-testing-review.md",
+            "ssot/engos-meta-uac-import.md",
+            "ssot/engos-delivery-resolve-conflict.md"
+          ],
+          "must_exceed": [
+            "architecture operational bar",
+            "code-review operational bar",
+            "testing explicit-output bar",
+            "uac-import metadata and workflow bar",
+            "original source substance when present"
+          ],
+          "pass_number": 1,
+          "prior_pass_blockers": [],
+          "prohibited_regressions": [
+            "thin summary replacing operational procedure",
+            "metadata replacing prompt-body richness",
+            "orchestration leakage",
+            "surface claims unsupported by the capability body"
+          ],
+          "quality_profile": "default",
+          "read_only_instruction": "Read-only judge. Do not propose orchestration ownership or runtime routing.",
+          "scoring_rubric": {
+            "benchmark_readiness": 9,
+            "metadata_integrity": 9,
+            "operational_richness": 9,
+            "source_fidelity": 9
+          },
+          "slug": "engos-quality-testing-review",
+          "stop_target": 9,
+          "target_description": "Generic UAC quality profile for reusable skill or agent uplifts."
+        },
+        "title": "Benchmark Readiness and Template Fit"
+      }
+    ],
+    "judge_targets": {
+      "benchmark_readiness": 9,
+      "metadata_integrity": 9,
+      "operational_richness": 9,
+      "source_fidelity": 9
+    },
+    "local_benchmarks": [
+      "ssot/engos-design-architecture.md",
+      "ssot/engos-quality-code-review.md",
+      "ssot/engos-quality-testing-review.md",
+      "ssot/engos-meta-uac-import.md",
+      "ssot/engos-delivery-resolve-conflict.md"
+    ],
+    "max_passes": 1,
+    "quality_profile": "default",
+    "stop_conditions": {
+      "manual_review": "candidate unchanged or repeated, max passes reached, or blocker remains unresolved",
+      "revise": "thresholds not met and passes remain",
+      "structural_ready": "all structural judge thresholds met, no blocker, validation green when required"
+    },
+    "validation_matrix": [
+      {
+        "id": "operational_invocation",
+        "kind": "operational_contract",
+        "label": "operational invocation surface",
+        "must_contain": [
+          "## Invocation"
+        ]
+      }
+    ]
+  },
+  "quality_result": {
+    "assessment_scope": "mechanical_structure_and_bound_external_review_attestations",
+    "behavioral_status": "behavioral_pending",
+    "consumption_hints": {
+      "artifact_conventions": [
+        "ssot/<slug>.md",
+        ".meta/capabilities/<slug>.json",
+        "reports/quality-reviews/<slug>/LATEST.md"
+      ],
+      "invocation_style": "assistant_first_but_scriptable",
+      "preferred_use_cases": [
+        "AI-assisted capability selection",
+        "deterministic prompt uplift review"
+      ],
+      "requires_human_confirmation": true
+    },
+    "final_candidate_text": "---\nname: \"engos-quality-testing-review\"\ndescription: \"Choose, design, or generate tests from behavior and risk; analyze edge cases and coverage evidence across unit, integration, and end-to-end testing. Use for test strategy and artifacts without automatic execution; use GitOps review for release readiness.\"\ndisplay_name: \"Testing Studio \u2014 Test Strategy, Design, and Coverage Analysis\"\ncapability_type: \"skill\"\ninstall_target: \"global\"\n---\n\n# Testing Studio \u2014 Test Strategy, Design, and Coverage Analysis\n\n## Purpose\nHelp developers and quality engineers decide what testing evidence a behavior needs,\nthen produce the smallest useful test plan, test artifacts, or coverage-gap analysis.\nUse stated requirements, the actual testing stack, existing assertions and known\nrisks. A test count, a green command, or a coverage percentage alone does not show\nthat the important behavior is protected.\n\n## Primary Objective\nConnect each material risk to an observable expectation and the test level that can\nestablish it. Produce actionable, framework-fitting outputs with clear remaining\nuncertainty and a truthful handoff for execution. Keep test generation separate\nfrom test execution and release judgment.\n\n## Invocation Hints\nUse this capability for requests such as:\n- what should we test first, and at which level?\n- generate unit or integration tests for this behavior\n- design end-to-end tests for this journey\n- find missing edge cases or state transitions\n- interpret this coverage report and recommend useful tests\n- reduce brittle or redundant tests while preserving their useful assertions\n\n## Required Inputs\nUse the available behavior specification, source/change, failure example, or user\njourney; repository test stack/layout and existing tests; and any stated risk,\ntime, environment or dependency constraints. Coverage artifacts are optional.\nInspect supplied context before asking questions. If an expectation is ambiguous,\nidentify the competing interpretations and ask only for a decision that changes\nthe oracle or scope. Continue independent analysis; label assumptions rather than\nencoding implementation behavior as the requirement. Missing coverage data permits\na qualitative gap analysis, never an invented coverage metric.\n\n## Resource Delivery\nLoad `resources/resource-map.json` and the complete applicable route before work\nthat depends on it, including shared guidance. Route `strategy` covers prioritization\nand level selection; `design` covers test generation and edge cases; `coverage`\ncovers evidence interpretation. Combined requests use the union of routes, with\nshared content once. Use actual file-read tools or complete pre-supplied contents;\nresource filenames, hashes, summaries or an assertion of reading are insufficient.\nIf a resource cannot be loaded, state the specific limitation and do not claim its\nchecks were performed. The skill body still supports a bounded preliminary response.\n\n## Workflow\n1. Establish the requested deliverable: strategy, test files, E2E design, edge-case\n   analysis, coverage analysis, or a combination. Read the testing configuration,\n   existing tests and relevant behavior first. Respect explicit design-only scope.\n2. Identify high-impact failures and the observable contract, including material\n   disagreements between requirements and code. Rank risks using supplied impact,\n   likelihood/exposure and change context; avoid invented probabilities or scores.\n3. Choose where each risk is best tested. Keep pure rules local; use integration\n   tests for real boundaries and persisted effects; reserve E2E for journeys whose\n   result spans those boundaries. Explain tradeoffs when isolation hides the risk.\n   Do not force a fixed unit/integration/E2E ratio.\n4. Examine existing assertions before adding tests. Reuse valid coverage, identify\n   missing observations and avoid duplicating the same assurance at several layers\n   without a reason. No additional test is a valid recommendation when justified.\n5. Design or generate only the requested artifacts. Include normal operation,\n   relevant boundaries, failures and recovery. Use observable, specification-derived\n   assertions with controllable inputs; avoid private representation and copied\n   implementation algorithms. A simple independent model or property is useful\n   only when it provides a meaningful oracle and fits the repository stack.\n6. Check the proposed artifacts by reading them against the contract: can a valid\n   implementation pass, can the stated defect make an assertion fail, and can setup\n   or cleanup hide that signal? Separate dependencies, unavailable observations and\n   assumptions from completed artifacts. Do not run tests automatically.\n7. Return priorities, exact artifacts or cases, remaining risks and a bounded\n   execution handoff. If execution evidence was supplied, attribute it to its\n   command/revision/environment; do not turn it into a claim that you ran the tests.\n\n## Modes\n\n### Test Strategy\nFor a change or risk question, produce a prioritized risk-to-evidence map: behavior,\nfailure consequence, current assurance, proposed test level, required observation,\nsetup/dependency boundary and remaining gap. Keep it proportional to the task.\nInclude relevant nonfunctional concerns when context supports them; route a\nspecialized investigation rather than inventing its acceptance threshold.\n\n### Generate Unit Tests\nProduce tests in the repository's established framework/layout with explicit\nassertions and minimum necessary fixtures. Cover meaningful equivalence classes,\nboundary values, errors and state transitions. For stateful APIs, consider a valid\ntransition, a rejected transition that must preserve state, and a later valid\noperation. For resource-owning APIs, cover required cleanup and recovery. Prefer\ndeterministic clocks, randomness and dependency fakes over sleeps or ambient state.\n\n### Generate Integration Tests\nIdentify the real collaborating boundary and what a unit fake cannot prove: for\nexample serialization compatibility, transaction behavior, persisted effects or\nretry/idempotency across adapters. Separate message-contract checks from functional\nside-effect checks. Use isolated, disposable data and explicit cleanup, including\npartial setup. Do not claim an integration test proves a service that it replaces\nentirely with a mock. If the environment is unavailable, deliver a concrete design\nand prerequisites rather than silently substituting a weaker test.\n\n### Generate E2E Tests\nProduce critical journeys with setup, actions, user-visible outcomes, synchronization,\ncleanup and diagnostics. Inspect the actual supported UI/API contract before\ngenerating concrete selectors or commands. Prefer semantic locators and observable\nreadiness over fixed waits. Name mocked boundaries and the resulting limit on\nbackend assurance. Design failures and recovery alongside happy paths; keep tests\nindependent so one journey cannot prepare state another requires.\n\n### Edge Cases\nReturn prioritized missing scenarios with the input or precondition, action,\nexpected observation, consequence and suggested test level. Consider boundaries,\ninvalid combinations, state/retry sequences and dependency failures when relevant.\nDeduplicate equivalent cases. Separate a demonstrated missing assertion from an\nunverified possibility or a requirement needing a decision. Do not silently write\ntest files for an analysis-only request.\n\n### Coverage Analysis\nIdentify the artifact's revision, environment, command, scope, measurement type and\nexclusions when available; mark missing provenance. Distinguish lines/branches\nexecuted from behavior asserted and outcomes protected. Trace high-risk missing\nobservations to actual source/tests. If a report is stale or unavailable, describe\nwhat can be concluded qualitatively and what needs measurement. Treat uncovered,\nsurviving, invalid, ignored and timed-out mutants separately when those data exist;\ndo not invent a mutation score or equate one tool's metric with semantic correctness.\n\n## Required Output\nInclude the following information at a level proportional to the request. Use the\nrepository's expected format when one exists; avoid empty repeated sections.\n- Scope and chosen mode/level, with assumptions that affect the oracle.\n- Recommended tests or gaps, tied to behavior and prioritized risk.\n- Framework/layout notes and concrete test files when generation was requested.\n- Follow-up work: missing evidence, unresolved decisions and bounded run handoff.\n\nFor each material proposed test or representative group, make setup, action,\nexpected observation and the failure it detects understandable. State what valid\nbehavior it must allow. For generated files, explicitly say they are unrun and\nidentify the operator command, required environment, artifact paths and diagnostic\nexpectations. If no reliable command is known, name the missing configuration\ninstead of fabricating an executable invocation. Do not present a design sketch\nas a runnable test or a source-reading check as execution.\n\n## Output Directory\nUse the repository's established test layout for requested test files. If none\nexists, propose a layout before writing them. For analysis artifacts, use the user's\nchosen destination or the existing `reports/testing/<timestamp>-plan.md`,\n`reports/testing/<timestamp>-coverage-gap.md`, or\n`reports/testing/<timestamp>-edge-cases.md` convention. Prefer inline analysis\nwhen no durable file is requested. Preserve unrelated tests and user customizations.\n\n## Rules\n- Allowed: read relevant source, requirements, test configuration, existing tests and\n  supplied execution/coverage evidence; design cases; write requested test artifacts.\n- Do not execute tests automatically, start services, install tools, access secrets,\n  change production code, delete existing tests or mutate external test data merely\n  because a test design mentions those operations. Removal recommendations require\n  retained-behavior evidence; applying them needs the user's edit scope.\n- If a request includes execution, identify that separate operation and hand off\n  the exact command/environment/data boundary to the user's authorized host workflow.\n  Do not invent a generic test-runner capability or a release approval.\n- Use `engos-quality-code-review` for diff correctness and change judgment;\n  `engos-quality-gitops-review` for CI/merge/release readiness;\n  `engos-audit-feature-status` for completeness against full feature scope;\n  `engos-design-architecture` for a material interface or system-design decision;\n  `engos-browser-demo-recorder` for a watchable recording rather than test assurance.\n  Supply the concrete behavior, artifact and unresolved decision to the handoff.\n  Do not dispatch companions automatically when a recommendation suffices.\n\n## Examples\n> Our retry path passes unit tests, but users sometimes see duplicate orders. Tell\n> me what to test first, then generate the smallest integration test we can run.\n\nReturn a risk/level choice, an idempotency and persisted-effect oracle, framework-fit\ntest files when the adapter/environment is known, and an unrun execution handoff.\n\n> This report says 100% lines covered. What behavior is still at risk? Analysis only.\n\nInspect assertion quality and branch/behavior evidence; return prioritized gaps,\nsafe exclusions and provenance limits without writing files or inventing metrics.\n\n> Design Playwright tests for checkout, including a failed payment and retry.\n\nReturn independent journeys, deterministic failure injection at the approved boundary,\nuser-visible assertions, persisted-effect limits, cleanup and diagnostics. Do not\ncopy demo pacing into test synchronization or claim the journeys ran.\n\n## Evaluation Rubric\n| Check | Passing behavior |\n| --- | --- |\n| Job fit | Produces the requested strategy, cases, files or analysis at the right test level |\n| Oracle quality | Assertions express the intended observable behavior and allow valid implementations |\n| Risk and recovery | Prioritizes material failures, boundaries and relevant state/resource recovery |\n| Stack and maintainability | Fits the existing framework, avoids redundant/brittle tests and contains setup state |\n| Evidence quality | Distinguishes supplied observations, static reasoning, generated unrun tests and unknowns |\n| Handoff and authority | Gives a useful bounded next step without automatic execution or release claims |\n",
+    "historical_baseline": {
+      "baseline_path": "sources/ssot-baselines/engos-quality-testing-review/baseline.md",
+      "equivalent_commits": [],
+      "expected_companions": [],
+      "group": "current_oracle",
+      "has_baseline_text": true,
+      "historical_proof": {
+        "current_head_commit": "0a2c1e46",
+        "current_head_line_count": 127,
+        "current_head_richness_score": 2,
+        "materialized_from_commit": "0a2c1e46"
+      },
+      "line_count": 127,
+      "operator_invariants": [],
+      "reason": "Current SSOT baseline source snapshot materialized into the source library because no stronger curated pre-SSOT baseline has been recorded yet.",
+      "richness_score": 2,
+      "scenario_matrix": [
+        {
+          "id": "operational_invocation",
+          "kind": "operational_contract",
+          "label": "operational invocation surface",
+          "must_contain": [
+            "## Invocation"
+          ]
+        }
+      ],
+      "selected_commit": "0a2c1e46",
+      "slug": "engos-quality-testing-review",
+      "source": "source_library",
+      "strategy": "head_snapshot",
+      "verified_by_git_history": false
+    },
+    "judge_reports": [
+      {
+        "blockers": [
+          "resource contract invalid: Declared resource-map.json is missing for capability: engos-quality-testing-review",
+          "missing operational marker: ## Constraints",
+          "source fidelity failed, so metadata_integrity cannot clear ship independently",
+          "missing template heading: ## Constraints",
+          "source fidelity failed, so benchmark_readiness cannot clear ship independently"
+        ],
+        "dimension_inventory": [
+          {
+            "dimension": "source_fidelity",
+            "status": "unresolved"
+          },
+          {
+            "dimension": "operational_richness",
+            "status": "unresolved"
+          },
+          {
+            "dimension": "metadata_integrity",
+            "status": "unresolved"
+          },
+          {
+            "dimension": "benchmark_readiness",
+            "status": "unresolved"
+          },
+          {
+            "dimension": "semantic_consistency",
+            "status": "no_detected_conflict_not_semantic_proof"
+          }
+        ],
+        "effective_sha256": "fb0d6023dd28998d55140848ef587a3b6066ffaaf5b800b1c2a3ac79e448fc9d",
+        "historical_baseline": {
+          "baseline_path": "sources/ssot-baselines/engos-quality-testing-review/baseline.md",
+          "equivalent_commits": [],
+          "expected_companions": [],
+          "group": "current_oracle",
+          "has_baseline_text": true,
+          "historical_proof": {
+            "current_head_commit": "0a2c1e46",
+            "current_head_line_count": 127,
+            "current_head_richness_score": 2,
+            "materialized_from_commit": "0a2c1e46"
+          },
+          "line_count": 127,
+          "operator_invariants": [],
+          "reason": "Current SSOT baseline source snapshot materialized into the source library because no stronger curated pre-SSOT baseline has been recorded yet.",
+          "richness_score": 2,
+          "scenario_matrix": [
+            {
+              "id": "operational_invocation",
+              "kind": "operational_contract",
+              "label": "operational invocation surface",
+              "must_contain": [
+                "## Invocation"
+              ]
+            }
+          ],
+          "selected_commit": "0a2c1e46",
+          "slug": "engos-quality-testing-review",
+          "source": "source_library",
+          "strategy": "head_snapshot",
+          "verified_by_git_history": false
+        },
+        "judge_reports": [
+          {
+            "baseline_commit": "0a2c1e46",
+            "baseline_slug": "engos-quality-testing-review",
+            "blockers": [
+              "resource contract invalid: Declared resource-map.json is missing for capability: engos-quality-testing-review"
+            ],
+            "classification": "flattened",
+            "judge": "source_fidelity",
+            "requirement_review": {
+              "behavioral_status": "behavioral_pending",
+              "identity_authenticated": false,
+              "status": "not_supplied_or_invalid"
+            },
+            "reviewed_deltas": [],
+            "scenario_results": [
+              {
+                "id": "operational_invocation",
+                "kind": "operational_contract",
+                "label": "operational invocation surface",
+                "missing_markers": [],
+                "passed": true
+              }
+            ],
+            "score": 1,
+            "scorecard": {
+              "baseline_operational_score": 2,
+              "baseline_preserved_in_resource": false,
+              "baseline_richness": 2,
+              "candidate_operational_score": 2,
+              "candidate_richness": 5
+            },
+            "title": "Source Fidelity and Uplift"
+          },
+          {
+            "blockers": [
+              "missing operational marker: ## Constraints"
+            ],
+            "judge": "operational_richness",
+            "score": 7,
+            "title": "Operational Richness"
+          },
+          {
+            "blockers": [
+              "source fidelity failed, so metadata_integrity cannot clear ship independently"
+            ],
+            "judge": "metadata_integrity",
+            "score": 8,
+            "title": "Metadata and Handoff Integrity"
+          },
+          {
+            "blockers": [
+              "missing template heading: ## Constraints",
+              "source fidelity failed, so benchmark_readiness cannot clear ship independently"
+            ],
+            "judge": "benchmark_readiness",
+            "score": 8,
+            "scorecard": {
+              "boundary_clarity": 8,
+              "description_richness": 10,
+              "intent_coverage": 8,
+              "metadata_completeness": 8,
+              "output_specificity": 10,
+              "surface_usability": 10,
+              "title_clarity": 10
+            },
+            "title": "Benchmark Readiness and Template Fit"
+          }
+        ],
+        "pass_number": 1,
+        "repair_requests": [
+          {
+            "disposition": "semantic_review_required",
+            "finding": "resource contract invalid: Declared resource-map.json is missing for capability: engos-quality-testing-review",
+            "instruction": "Locate and repair the authoritative source or supply a reviewed requirement mapping; preserve existing commands, schemas, boundaries, and user intent. Do not insert generic instructions or infer missing domain facts."
+          },
+          {
+            "disposition": "semantic_review_required",
+            "finding": "missing operational marker: ## Constraints",
+            "instruction": "Locate and repair the authoritative source or supply a reviewed requirement mapping; preserve existing commands, schemas, boundaries, and user intent. Do not insert generic instructions or infer missing domain facts."
+          },
+          {
+            "disposition": "repair_required",
+            "finding": "source fidelity failed, so metadata_integrity cannot clear ship independently",
+            "instruction": "Locate and repair the authoritative source or supply a reviewed requirement mapping; preserve existing commands, schemas, boundaries, and user intent. Do not insert generic instructions or infer missing domain facts."
+          },
+          {
+            "disposition": "semantic_review_required",
+            "finding": "missing template heading: ## Constraints",
+            "instruction": "Locate and repair the authoritative source or supply a reviewed requirement mapping; preserve existing commands, schemas, boundaries, and user intent. Do not insert generic instructions or infer missing domain facts."
+          },
+          {
+            "disposition": "repair_required",
+            "finding": "source fidelity failed, so benchmark_readiness cannot clear ship independently",
+            "instruction": "Locate and repair the authoritative source or supply a reviewed requirement mapping; preserve existing commands, schemas, boundaries, and user intent. Do not insert generic instructions or infer missing domain facts."
+          }
+        ],
+        "scorecard": {
+          "baseline_operational_score": 2,
+          "baseline_preserved_in_resource": false,
+          "baseline_richness": 2,
+          "benchmark_readiness": 8,
+          "boundary_clarity": 8,
+          "candidate_operational_score": 2,
+          "candidate_richness": 5,
+          "description_richness": 10,
+          "intent_coverage": 8,
+          "metadata_completeness": 8,
+          "metadata_integrity": 8,
+          "operational_richness": 7,
+          "output_specificity": 10,
+          "source_fidelity": 1,
+          "surface_usability": 10,
+          "title_clarity": 10
+        },
+        "semantic_findings": [],
+        "status": "manual_review",
+        "template_name": "skill"
+      }
+    ],
+    "pass_count": 1,
+    "quality_profile": "default",
+    "repair_requests": [
+      {
+        "disposition": "semantic_review_required",
+        "finding": "resource contract invalid: Declared resource-map.json is missing for capability: engos-quality-testing-review",
+        "instruction": "Locate and repair the authoritative source or supply a reviewed requirement mapping; preserve existing commands, schemas, boundaries, and user intent. Do not insert generic instructions or infer missing domain facts."
+      },
+      {
+        "disposition": "semantic_review_required",
+        "finding": "missing operational marker: ## Constraints",
+        "instruction": "Locate and repair the authoritative source or supply a reviewed requirement mapping; preserve existing commands, schemas, boundaries, and user intent. Do not insert generic instructions or infer missing domain facts."
+      },
+      {
+        "disposition": "repair_required",
+        "finding": "source fidelity failed, so metadata_integrity cannot clear ship independently",
+        "instruction": "Locate and repair the authoritative source or supply a reviewed requirement mapping; preserve existing commands, schemas, boundaries, and user intent. Do not insert generic instructions or infer missing domain facts."
+      },
+      {
+        "disposition": "semantic_review_required",
+        "finding": "missing template heading: ## Constraints",
+        "instruction": "Locate and repair the authoritative source or supply a reviewed requirement mapping; preserve existing commands, schemas, boundaries, and user intent. Do not insert generic instructions or infer missing domain facts."
+      },
+      {
+        "disposition": "repair_required",
+        "finding": "source fidelity failed, so benchmark_readiness cannot clear ship independently",
+        "instruction": "Locate and repair the authoritative source or supply a reviewed requirement mapping; preserve existing commands, schemas, boundaries, and user intent. Do not insert generic instructions or infer missing domain facts."
+      }
+    ],
+    "scorecard": {
+      "baseline_operational_score": 2,
+      "baseline_preserved_in_resource": false,
+      "baseline_richness": 2,
+      "benchmark_readiness": 8,
+      "boundary_clarity": 8,
+      "candidate_operational_score": 2,
+      "candidate_richness": 5,
+      "description_richness": 10,
+      "intent_coverage": 8,
+      "metadata_completeness": 8,
+      "metadata_integrity": 8,
+      "operational_richness": 7,
+      "output_specificity": 10,
+      "source_fidelity": 1,
+      "surface_usability": 10,
+      "title_clarity": 10
+    },
+    "status": "manual_review",
+    "stop_reason": "max_passes_reached"
+  },
+  "recommendation": {
+    "install_target": {
+      "confidence": 1.0,
+      "confirmation_required_for_apply": true,
+      "rationale": "user override requested global",
+      "recommended": "global",
+      "supported": [
+        "global",
+        "repo_local",
+        "both"
+      ]
+    },
+    "next_actions": [
+      "Normalize into one canonical skill/command source file.",
+      "Preserve explicit examples, constraints, and expected output sections.",
+      "Carry forward route profile NEEDS_REVIEW as advisory packaging context only."
+    ],
+    "primary_target_systems": [
+      "codex",
+      "gemini",
+      "claude",
+      "kiro",
+      "grok"
+    ]
+  },
+  "requirement_review_files": [],
+  "requirement_reviews": [],
+  "routing": {
+    "decision": "NEEDS_REVIEW",
+    "dominant_rule_id": "ROUTE-UNK-001",
+    "missing_evidence": [
+      "intent.in_scope"
+    ],
+    "route_profile": "NEEDS_REVIEW"
+  },
+  "source": {
+    "content_sha256": "fb0d6023dd28998d55140848ef587a3b6066ffaaf5b800b1c2a3ac79e448fc9d",
+    "content_type": "text/plain",
+    "normalized_source": "/Users/medhat.galal/.codex/worktrees/611a/Core-Prompts/reports/skill-improvement-campaign/skills/engos-quality-testing-review/trial/engos-quality-testing-review.md",
+    "policy_rule_id": "v1.local.baseline.allow",
+    "type": "LOCAL_FILE"
+  },
+  "source_text": "---\nname: \"engos-quality-testing-review\"\ndescription: \"Choose, design, or generate tests from behavior and risk; analyze edge cases and coverage evidence across unit, integration, and end-to-end testing. Use for test strategy and artifacts without automatic execution; use GitOps review for release readiness.\"\ndisplay_name: \"Testing Studio \u2014 Test Strategy, Design, and Coverage Analysis\"\ncapability_type: \"skill\"\ninstall_target: \"global\"\n---\n\n# Testing Studio \u2014 Test Strategy, Design, and Coverage Analysis\n\n## Purpose\nHelp developers and quality engineers decide what testing evidence a behavior needs,\nthen produce the smallest useful test plan, test artifacts, or coverage-gap analysis.\nUse stated requirements, the actual testing stack, existing assertions and known\nrisks. A test count, a green command, or a coverage percentage alone does not show\nthat the important behavior is protected.\n\n## Primary Objective\nConnect each material risk to an observable expectation and the test level that can\nestablish it. Produce actionable, framework-fitting outputs with clear remaining\nuncertainty and a truthful handoff for execution. Keep test generation separate\nfrom test execution and release judgment.\n\n## Invocation Hints\nUse this capability for requests such as:\n- what should we test first, and at which level?\n- generate unit or integration tests for this behavior\n- design end-to-end tests for this journey\n- find missing edge cases or state transitions\n- interpret this coverage report and recommend useful tests\n- reduce brittle or redundant tests while preserving their useful assertions\n\n## Required Inputs\nUse the available behavior specification, source/change, failure example, or user\njourney; repository test stack/layout and existing tests; and any stated risk,\ntime, environment or dependency constraints. Coverage artifacts are optional.\nInspect supplied context before asking questions. If an expectation is ambiguous,\nidentify the competing interpretations and ask only for a decision that changes\nthe oracle or scope. Continue independent analysis; label assumptions rather than\nencoding implementation behavior as the requirement. Missing coverage data permits\na qualitative gap analysis, never an invented coverage metric.\n\n## Resource Delivery\nLoad `resources/resource-map.json` and the complete applicable route before work\nthat depends on it, including shared guidance. Route `strategy` covers prioritization\nand level selection; `design` covers test generation and edge cases; `coverage`\ncovers evidence interpretation. Combined requests use the union of routes, with\nshared content once. Use actual file-read tools or complete pre-supplied contents;\nresource filenames, hashes, summaries or an assertion of reading are insufficient.\nIf a resource cannot be loaded, state the specific limitation and do not claim its\nchecks were performed. The skill body still supports a bounded preliminary response.\n\n## Workflow\n1. Establish the requested deliverable: strategy, test files, E2E design, edge-case\n   analysis, coverage analysis, or a combination. Read the testing configuration,\n   existing tests and relevant behavior first. Respect explicit design-only scope.\n2. Identify high-impact failures and the observable contract, including material\n   disagreements between requirements and code. Rank risks using supplied impact,\n   likelihood/exposure and change context; avoid invented probabilities or scores.\n3. Choose where each risk is best tested. Keep pure rules local; use integration\n   tests for real boundaries and persisted effects; reserve E2E for journeys whose\n   result spans those boundaries. Explain tradeoffs when isolation hides the risk.\n   Do not force a fixed unit/integration/E2E ratio.\n4. Examine existing assertions before adding tests. Reuse valid coverage, identify\n   missing observations and avoid duplicating the same assurance at several layers\n   without a reason. No additional test is a valid recommendation when justified.\n5. Design or generate only the requested artifacts. Include normal operation,\n   relevant boundaries, failures and recovery. Use observable, specification-derived\n   assertions with controllable inputs; avoid private representation and copied\n   implementation algorithms. A simple independent model or property is useful\n   only when it provides a meaningful oracle and fits the repository stack.\n6. Check the proposed artifacts by reading them against the contract: can a valid\n   implementation pass, can the stated defect make an assertion fail, and can setup\n   or cleanup hide that signal? Separate dependencies, unavailable observations and\n   assumptions from completed artifacts. Do not run tests automatically.\n7. Return priorities, exact artifacts or cases, remaining risks and a bounded\n   execution handoff. If execution evidence was supplied, attribute it to its\n   command/revision/environment; do not turn it into a claim that you ran the tests.\n\n## Modes\n\n### Test Strategy\nFor a change or risk question, produce a prioritized risk-to-evidence map: behavior,\nfailure consequence, current assurance, proposed test level, required observation,\nsetup/dependency boundary and remaining gap. Keep it proportional to the task.\nInclude relevant nonfunctional concerns when context supports them; route a\nspecialized investigation rather than inventing its acceptance threshold.\n\n### Generate Unit Tests\nProduce tests in the repository's established framework/layout with explicit\nassertions and minimum necessary fixtures. Cover meaningful equivalence classes,\nboundary values, errors and state transitions. For stateful APIs, consider a valid\ntransition, a rejected transition that must preserve state, and a later valid\noperation. For resource-owning APIs, cover required cleanup and recovery. Prefer\ndeterministic clocks, randomness and dependency fakes over sleeps or ambient state.\n\n### Generate Integration Tests\nIdentify the real collaborating boundary and what a unit fake cannot prove: for\nexample serialization compatibility, transaction behavior, persisted effects or\nretry/idempotency across adapters. Separate message-contract checks from functional\nside-effect checks. Use isolated, disposable data and explicit cleanup, including\npartial setup. Do not claim an integration test proves a service that it replaces\nentirely with a mock. If the environment is unavailable, deliver a concrete design\nand prerequisites rather than silently substituting a weaker test.\n\n### Generate E2E Tests\nProduce critical journeys with setup, actions, user-visible outcomes, synchronization,\ncleanup and diagnostics. Inspect the actual supported UI/API contract before\ngenerating concrete selectors or commands. Prefer semantic locators and observable\nreadiness over fixed waits. Name mocked boundaries and the resulting limit on\nbackend assurance. Design failures and recovery alongside happy paths; keep tests\nindependent so one journey cannot prepare state another requires.\n\n### Edge Cases\nReturn prioritized missing scenarios with the input or precondition, action,\nexpected observation, consequence and suggested test level. Consider boundaries,\ninvalid combinations, state/retry sequences and dependency failures when relevant.\nDeduplicate equivalent cases. Separate a demonstrated missing assertion from an\nunverified possibility or a requirement needing a decision. Do not silently write\ntest files for an analysis-only request.\n\n### Coverage Analysis\nIdentify the artifact's revision, environment, command, scope, measurement type and\nexclusions when available; mark missing provenance. Distinguish lines/branches\nexecuted from behavior asserted and outcomes protected. Trace high-risk missing\nobservations to actual source/tests. If a report is stale or unavailable, describe\nwhat can be concluded qualitatively and what needs measurement. Treat uncovered,\nsurviving, invalid, ignored and timed-out mutants separately when those data exist;\ndo not invent a mutation score or equate one tool's metric with semantic correctness.\n\n## Required Output\nInclude the following information at a level proportional to the request. Use the\nrepository's expected format when one exists; avoid empty repeated sections.\n- Scope and chosen mode/level, with assumptions that affect the oracle.\n- Recommended tests or gaps, tied to behavior and prioritized risk.\n- Framework/layout notes and concrete test files when generation was requested.\n- Follow-up work: missing evidence, unresolved decisions and bounded run handoff.\n\nFor each material proposed test or representative group, make setup, action,\nexpected observation and the failure it detects understandable. State what valid\nbehavior it must allow. For generated files, explicitly say they are unrun and\nidentify the operator command, required environment, artifact paths and diagnostic\nexpectations. If no reliable command is known, name the missing configuration\ninstead of fabricating an executable invocation. Do not present a design sketch\nas a runnable test or a source-reading check as execution.\n\n## Output Directory\nUse the repository's established test layout for requested test files. If none\nexists, propose a layout before writing them. For analysis artifacts, use the user's\nchosen destination or the existing `reports/testing/<timestamp>-plan.md`,\n`reports/testing/<timestamp>-coverage-gap.md`, or\n`reports/testing/<timestamp>-edge-cases.md` convention. Prefer inline analysis\nwhen no durable file is requested. Preserve unrelated tests and user customizations.\n\n## Rules\n- Allowed: read relevant source, requirements, test configuration, existing tests and\n  supplied execution/coverage evidence; design cases; write requested test artifacts.\n- Do not execute tests automatically, start services, install tools, access secrets,\n  change production code, delete existing tests or mutate external test data merely\n  because a test design mentions those operations. Removal recommendations require\n  retained-behavior evidence; applying them needs the user's edit scope.\n- If a request includes execution, identify that separate operation and hand off\n  the exact command/environment/data boundary to the user's authorized host workflow.\n  Do not invent a generic test-runner capability or a release approval.\n- Use `engos-quality-code-review` for diff correctness and change judgment;\n  `engos-quality-gitops-review` for CI/merge/release readiness;\n  `engos-audit-feature-status` for completeness against full feature scope;\n  `engos-design-architecture` for a material interface or system-design decision;\n  `engos-browser-demo-recorder` for a watchable recording rather than test assurance.\n  Supply the concrete behavior, artifact and unresolved decision to the handoff.\n  Do not dispatch companions automatically when a recommendation suffices.\n\n## Examples\n> Our retry path passes unit tests, but users sometimes see duplicate orders. Tell\n> me what to test first, then generate the smallest integration test we can run.\n\nReturn a risk/level choice, an idempotency and persisted-effect oracle, framework-fit\ntest files when the adapter/environment is known, and an unrun execution handoff.\n\n> This report says 100% lines covered. What behavior is still at risk? Analysis only.\n\nInspect assertion quality and branch/behavior evidence; return prioritized gaps,\nsafe exclusions and provenance limits without writing files or inventing metrics.\n\n> Design Playwright tests for checkout, including a failed payment and retry.\n\nReturn independent journeys, deterministic failure injection at the approved boundary,\nuser-visible assertions, persisted-effect limits, cleanup and diagnostics. Do not\ncopy demo pacing into test synchronization or claim the journeys ran.\n\n## Evaluation Rubric\n| Check | Passing behavior |\n| --- | --- |\n| Job fit | Produces the requested strategy, cases, files or analysis at the right test level |\n| Oracle quality | Assertions express the intended observable behavior and allow valid implementations |\n| Risk and recovery | Prioritizes material failures, boundaries and relevant state/resource recovery |\n| Stack and maintainability | Fits the existing framework, avoids redundant/brittle tests and contains setup state |\n| Evidence quality | Distinguishes supplied observations, static reasoning, generated unrun tests and unknowns |\n| Handoff and authority | Gives a useful bounded next step without automatic execution or release claims |\n",
+  "status": "accepted",
+  "summary": "Intent\n- Help developers and quality engineers decide what testing evidence a behavior needs, then produce the smallest useful test plan, test artifacts, or coverage-gap analysis. Use stated requirements, the actual testing stack, existing assertions and known risks. A test count, a green command, or a coverage percentage alone does not show that the important behavior is protected.\n- Connect each material risk to an observable expectation and the test level that can establish it. Produce actionable, framework-fitting outputs with clear remaining uncertainty and a truthful handoff for execution. Keep test generation separate from test execution and release judgment.\n\nConstraints\n- Design or generate only the requested artifacts. Include normal operation,\n\nRequested Outcome\n- Return priorities, exact artifacts or cases, remaining risks and a bounded\n\nRejected/Out-of-Scope Signals\n- None\n",
+  "uac": {
+    "capability_type": "skill",
+    "confidence": 0.97,
+    "content_kind": "prompt_like",
+    "deployment_intent": "generate",
+    "deployment_matrix": {
+      "capability_types": {
+        "agent": {
+          "meaning": "Delegated specialist with tool/process autonomy, separate operating identity, or explicit agent/subagent semantics.",
+          "surfaces": {
+            "claude": [
+              "claude_agent"
+            ],
+            "codex": [
+              "codex_agent"
+            ],
+            "gemini": [
+              "gemini_agent"
+            ],
+            "grok": [],
+            "kiro": [
+              "kiro_agent"
+            ]
+          },
+          "wrappers": {
+            "claude": [
+              "claude_agent_wrapper",
+              "claude_plugin_wrapper"
+            ],
+            "codex": [
+              "codex_plugin_wrapper"
+            ],
+            "gemini": [
+              "gemini_agent_wrapper"
+            ],
+            "kiro": [
+              "kiro_agent_wrapper",
+              "kiro_power_wrapper"
+            ]
+          }
+        },
+        "both": {
+          "meaning": "One SSOT entry that should emit both workflow/skill surfaces and agent surfaces.",
+          "surfaces": {
+            "claude": [
+              "claude_skill",
+              "claude_agent"
+            ],
+            "codex": [
+              "codex_skill",
+              "codex_agent"
+            ],
+            "gemini": [
+              "gemini_skill",
+              "gemini_agent"
+            ],
+            "grok": [
+              "grok_skill"
+            ],
+            "kiro": [
+              "kiro_skill",
+              "kiro_agent"
+            ]
+          },
+          "wrappers": {
+            "claude": [
+              "claude_skill_wrapper",
+              "claude_plugin_wrapper",
+              "claude_agent_wrapper"
+            ],
+            "codex": [
+              "codex_plugin_wrapper"
+            ],
+            "gemini": [
+              "gemini_skill_wrapper",
+              "gemini_agent_wrapper"
+            ],
+            "kiro": [
+              "kiro_skill_wrapper",
+              "kiro_power_wrapper",
+              "kiro_agent_wrapper"
+            ]
+          }
+        },
+        "manual_review": {
+          "meaning": "Conflicting, low-structure, or mixed wrapper content that should not deploy automatically.",
+          "surfaces": {
+            "claude": [],
+            "codex": [],
+            "gemini": [],
+            "grok": [],
+            "kiro": []
+          },
+          "wrappers": {
+            "claude": [],
+            "codex": [],
+            "gemini": [],
+            "kiro": []
+          }
+        },
+        "skill": {
+          "meaning": "Reusable prompt/workflow/procedure with explicit task guidance, structure, outputs, and bounded use.",
+          "surfaces": {
+            "claude": [
+              "claude_skill"
+            ],
+            "codex": [
+              "codex_skill"
+            ],
+            "gemini": [
+              "gemini_skill"
+            ],
+            "grok": [
+              "grok_skill"
+            ],
+            "kiro": [
+              "kiro_skill"
+            ]
+          },
+          "wrappers": {
+            "claude": [
+              "claude_skill_wrapper",
+              "claude_plugin_wrapper"
+            ],
+            "codex": [
+              "codex_plugin_wrapper"
+            ],
+            "gemini": [
+              "gemini_skill_wrapper"
+            ],
+            "kiro": [
+              "kiro_skill_wrapper",
+              "kiro_power_wrapper"
+            ]
+          }
+        }
+      },
+      "notes": [
+        "UAC recommends the surface area; the build emits only the canonical SKILL.md skill surfaces or agent surfaces for each CLI",
+        "direct exposure is standardized on skills directories only; commands and prompts are not deployable direct-surface targets in this repo",
+        "both means one SSOT source can emit multiple surfaces without duplicating SSOT entries",
+        "manual_review emits no deployable surfaces until reviewed"
+      ]
+    },
+    "emitted_surfaces": {
+      "claude": [
+        "claude_skill"
+      ],
+      "codex": [
+        "codex_skill"
+      ],
+      "gemini": [
+        "gemini_skill"
+      ],
+      "grok": [
+        "grok_skill"
+      ],
+      "kiro": [
+        "kiro_skill"
+      ]
+    },
+    "modernization_focus": [
+      "normalize prompt sections into deterministic headings",
+      "preserve examples and hard constraints",
+      "emit skill surfaces across supported CLIs"
+    ],
+    "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+    "recommended_surface": "skill",
+    "rubric": {
+      "agent": {
+        "decision_rule": "Choose agent when agent_score is dominant and agent_score >= 4.",
+        "signals": [
+          "kind: agent or role: agent",
+          "max_turns or explicit tool/control-plane metadata",
+          "sub-agent, delegation, or system-prompt framing",
+          "responsibilities / mission / operating-mode sections"
+        ]
+      },
+      "both": {
+        "decision_rule": "Choose both when strong workflow structure and strong agent control semantics are both present (agent_score >= 4 and skill_score >= 4).",
+        "signals": [
+          "reusable workflow/prompt sections plus explicit agent registration markers",
+          "one source needs both skill invocation and agent execution surfaces"
+        ]
+      },
+      "manual_review": {
+        "decision_rule": "Choose manual_review for config-only, low-structure, or mixed-shape sources that cannot be deployed safely.",
+        "signals": [
+          "config markers without prompt structure",
+          "missing semantic sections",
+          "ambiguous or mixed prompt/config content"
+        ]
+      },
+      "scoring": {
+        "agent_score": "weighted sum of agent/control-plane markers",
+        "config_score": "weighted sum of config-only markers",
+        "prompt_marker_hits": "count of coarse prompt marker matches",
+        "semantic_category_count": "count of populated semantic buckets from deterministic intent extraction",
+        "skill_score": "weighted sum of prompt/workflow and semantic-structure markers"
+      },
+      "skill": {
+        "decision_rule": "Choose skill when reusable prompt/workflow structure is strong, skill_score >= 3, and agent control markers are not dominant.",
+        "signals": [
+          "explicit objective / in-scope / out-of-scope / constraints / acceptance sections",
+          "workflow or usage framing",
+          "examples or output format sections",
+          "SKILL.md or prompt-like source shape"
+        ]
+      }
+    },
+    "scorecard": {
+      "agent_score": 0,
+      "config_score": 0,
+      "prompt_marker_hits": 2,
+      "semantic_category_count": 3,
+      "skill_score": 11
+    },
+    "signals": [
+      "skill/workflow markers detected",
+      "explicit objective structure detected",
+      "explicit out-of-scope structure detected",
+      "explicit constraint structure detected",
+      "multi-section prompt/spec structure detected"
+    ],
+    "target_systems": [
+      "codex",
+      "gemini",
+      "claude",
+      "kiro",
+      "grok"
+    ]
+  },
+  "uplift": {
+    "in_scope": [],
+    "out_of_scope": [
+      "Do not execute tests automatically, start services, install tools, access secrets,"
+    ],
+    "primary_objective": "Help developers and quality engineers decide what testing evidence a behavior needs, then produce the smallest useful test plan, test artifacts, or coverage-gap analysis. Use stated requirements, the actual testing stack, existing assertions and known risks. A test count, a green command, or a coverage percentage alone does not show that the important behavior is protected.",
+    "quality_constraints": [
+      "- what should we test first",
+      "and at which level?",
+      "## Required Inputs",
+      "identify the competing interpretations and ask only for a decision that changes",
+      "If a resource cannot be loaded, state the specific limitation and do not claim its",
+      "existing tests and relevant behavior first. Respect explicit design-only scope.",
+      "Do not force a fixed unit/integration/E2E ratio.",
+      "without a reason. No additional test is a valid recommendation when justified.",
+      "5. Design or generate only the requested artifacts. Include normal operation,",
+      "only when it provides a meaningful oracle and fits the repository stack.",
+      "assumptions from completed artifacts. Do not run tests automatically.",
+      "command/revision/environment",
+      "do not turn it into a claim that you ran the tests.",
+      "failure consequence, current assurance, proposed test level, required observation,",
+      "transition, a rejected transition that must preserve state, and a later valid",
+      "operation. For resource-owning APIs",
+      "cover required cleanup and recovery. Prefer",
+      "partial setup. Do not claim an integration test proves a service that it replaces",
+      "independent so one journey cannot prepare state another requires.",
+      "unverified possibility or a requirement needing a decision. Do not silently write",
+      "test files for an analysis-only request.",
+      "do not invent a mutation score or equate one tool's metric with semantic correctness.",
+      "## Required Output",
+      "behavior it must allow. For generated files, explicitly say they are unrun and",
+      "identify the operator command",
+      "required environment",
+      "artifact paths and diagnostic",
+      "expectations. If no reliable command is known, name the missing configuration",
+      "instead of fabricating an executable invocation. Do not present a design sketch",
+      "when no durable file is requested. Preserve unrelated tests and user customizations.",
+      "- Do not execute tests automatically, start services, install tools, access secrets,",
+      "because a test design mentions those operations. Removal recommendations require",
+      "Do not invent a generic test-runner capability or a release approval.",
+      "Do not dispatch companions automatically when a recommendation suffices.",
+      "> This report says 100% lines covered. What behavior is still at risk? Analysis only.",
+      "user-visible assertions",
+      "persisted-effect limits",
+      "cleanup and diagnostics. Do not",
+      "what should we test first",
+      "Design or generate only the requested artifacts. Include normal operation,"
+    ]
+  }
+}

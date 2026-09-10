@@ -1,0 +1,311 @@
+{
+  "case_count": 15,
+  "checkout": "markup_and_javascript_syntax_only_not_browser_execution",
+  "measured_coverage": {
+    "disclosure": "actual authored-fixture coverage observation, not model evidence",
+    "file_report": {
+      "classes": {
+        "": {
+          "excluded_lines": [],
+          "executed_branches": [
+            [
+              5,
+              6
+            ],
+            [
+              5,
+              7
+            ]
+          ],
+          "executed_lines": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "missing_branches": [],
+          "missing_lines": [],
+          "start_line": 1,
+          "summary": {
+            "covered_branches": 2,
+            "covered_lines": 4,
+            "excluded_lines": 0,
+            "missing_branches": 0,
+            "missing_lines": 0,
+            "num_branches": 2,
+            "num_partial_branches": 0,
+            "num_statements": 4,
+            "percent_branches_covered": 100.0,
+            "percent_branches_covered_display": "100",
+            "percent_covered": 100.0,
+            "percent_covered_display": "100",
+            "percent_statements_covered": 100.0,
+            "percent_statements_covered_display": "100"
+          }
+        }
+      },
+      "excluded_lines": [],
+      "executed_branches": [
+        [
+          5,
+          6
+        ],
+        [
+          5,
+          7
+        ]
+      ],
+      "executed_lines": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "functions": {
+        "": {
+          "excluded_lines": [],
+          "executed_branches": [],
+          "executed_lines": [
+            4
+          ],
+          "missing_branches": [],
+          "missing_lines": [],
+          "start_line": 1,
+          "summary": {
+            "covered_branches": 0,
+            "covered_lines": 1,
+            "excluded_lines": 0,
+            "missing_branches": 0,
+            "missing_lines": 0,
+            "num_branches": 0,
+            "num_partial_branches": 0,
+            "num_statements": 1,
+            "percent_branches_covered": 100.0,
+            "percent_branches_covered_display": "100",
+            "percent_covered": 100.0,
+            "percent_covered_display": "100",
+            "percent_statements_covered": 100.0,
+            "percent_statements_covered_display": "100"
+          }
+        },
+        "can_cancel": {
+          "excluded_lines": [],
+          "executed_branches": [
+            [
+              5,
+              6
+            ],
+            [
+              5,
+              7
+            ]
+          ],
+          "executed_lines": [
+            5,
+            6,
+            7
+          ],
+          "missing_branches": [],
+          "missing_lines": [],
+          "start_line": 4,
+          "summary": {
+            "covered_branches": 2,
+            "covered_lines": 3,
+            "excluded_lines": 0,
+            "missing_branches": 0,
+            "missing_lines": 0,
+            "num_branches": 2,
+            "num_partial_branches": 0,
+            "num_statements": 3,
+            "percent_branches_covered": 100.0,
+            "percent_branches_covered_display": "100",
+            "percent_covered": 100.0,
+            "percent_covered_display": "100",
+            "percent_statements_covered": 100.0,
+            "percent_statements_covered_display": "100"
+          }
+        }
+      },
+      "missing_branches": [],
+      "missing_lines": [],
+      "summary": {
+        "covered_branches": 2,
+        "covered_lines": 4,
+        "excluded_lines": 0,
+        "missing_branches": 0,
+        "missing_lines": 0,
+        "num_branches": 2,
+        "num_partial_branches": 0,
+        "num_statements": 4,
+        "percent_branches_covered": 100.0,
+        "percent_branches_covered_display": "100",
+        "percent_covered": 100.0,
+        "percent_covered_display": "100",
+        "percent_statements_covered": 100.0,
+        "percent_statements_covered_display": "100"
+      }
+    },
+    "measurement": "coverage.Coverage(branch=True, source=['sut']); unittest discovery; json_report",
+    "scope": "sut.py only; no exclusions configured",
+    "source_sha256": "13a40818b80983d7b29195a61414c8cc1c5e6372f905ef8aee44bc5162793faf",
+    "test_sha256": "02c89ec08fc1a85d9f529a37fea9ef846c18e0b7bb2d27385b445dafd2be2963",
+    "tool": {
+      "tests": 2,
+      "version": "7.13.4"
+    }
+  },
+  "model_calls": 0,
+  "observations": [
+    {
+      "case": "orders",
+      "correct": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 4
+      },
+      "detected": {
+        "errors": [],
+        "failures": [
+          "test_example.Orders.test_response_corresponds_to_persisted_row",
+          "test_example.Orders.test_retry_is_idempotent_and_conflict_preserves_state"
+        ],
+        "skipped": 0,
+        "successful": false,
+        "tests": 4
+      },
+      "repetition": 0,
+      "weak": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 1
+      }
+    },
+    {
+      "case": "coverage",
+      "correct": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 4
+      },
+      "detected": {
+        "errors": [],
+        "failures": [
+          "test_example.Cancellation.test_owner_cannot_cancel_settled_order"
+        ],
+        "skipped": 0,
+        "successful": false,
+        "tests": 4
+      },
+      "repetition": 0,
+      "weak": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 2
+      }
+    },
+    {
+      "case": "intervals",
+      "correct": {
+        "exit_code": 0,
+        "failures": 0,
+        "passes": 5
+      },
+      "detected": {
+        "exit_code": 1,
+        "failures": 1,
+        "passes": 4
+      },
+      "repetition": 0,
+      "weak": {
+        "exit_code": 0,
+        "failures": 0,
+        "passes": 1
+      }
+    },
+    {
+      "case": "orders",
+      "correct": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 4
+      },
+      "detected": {
+        "errors": [],
+        "failures": [
+          "test_example.Orders.test_response_corresponds_to_persisted_row",
+          "test_example.Orders.test_retry_is_idempotent_and_conflict_preserves_state"
+        ],
+        "skipped": 0,
+        "successful": false,
+        "tests": 4
+      },
+      "repetition": 1,
+      "weak": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 1
+      }
+    },
+    {
+      "case": "coverage",
+      "correct": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 4
+      },
+      "detected": {
+        "errors": [],
+        "failures": [
+          "test_example.Cancellation.test_owner_cannot_cancel_settled_order"
+        ],
+        "skipped": 0,
+        "successful": false,
+        "tests": 4
+      },
+      "repetition": 1,
+      "weak": {
+        "errors": [],
+        "failures": [],
+        "skipped": 0,
+        "successful": true,
+        "tests": 2
+      }
+    },
+    {
+      "case": "intervals",
+      "correct": {
+        "exit_code": 0,
+        "failures": 0,
+        "passes": 5
+      },
+      "detected": {
+        "exit_code": 1,
+        "failures": 1,
+        "passes": 4
+      },
+      "repetition": 1,
+      "weak": {
+        "exit_code": 0,
+        "failures": 0,
+        "passes": 1
+      }
+    }
+  ],
+  "promotion_evidence": false,
+  "purpose": "public_scenario_integrity_only",
+  "reproducible": true
+}

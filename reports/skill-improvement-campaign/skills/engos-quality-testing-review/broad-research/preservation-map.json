@@ -1,0 +1,362 @@
+{
+  "purpose": "public semantic preservation proposal, not an authenticated UACRequirementReview",
+  "baseline_revision": "0d1b07e157763f1f78223894c339c4dc295dbbb5",
+  "baseline_sha256": "13fe64494de3a09d60ddaad9f6c8824e42b59ff90c456a6a4e0c46018223e71b",
+  "candidate_sha256": "fb0d6023dd28998d55140848ef587a3b6066ffaaf5b800b1c2a3ac79e448fc9d",
+  "frontmatter": {
+    "name": "preserve same slug",
+    "capability_type": "preserve skill-only",
+    "install_target": "preserve global",
+    "description_display_name": "intentional strategy/integration discoverability expansion"
+  },
+  "source_sections": [
+    {
+      "source_heading": "Purpose",
+      "source_start_line": 11,
+      "source_end_line": 13,
+      "source_sha256": "8d843c46dee469fb8ad281a4dc2983239878c5f2c82c541482e202b911310d4e",
+      "source_text": "## Purpose\nUse this capability to design tests, identify missing coverage, and turn vague quality concerns into concrete test work without silently running the test suite.\n\n",
+      "candidate_sections": [
+        "Purpose",
+        "Primary Objective"
+      ],
+      "disposition": "preserve_and_expand",
+      "reason": "Risk-to-observation objective made explicit.",
+      "independent_review": "pending"
+    },
+    {
+      "source_heading": "Primary Objective",
+      "source_start_line": 14,
+      "source_end_line": 16,
+      "source_sha256": "e4359c485b645a554b3d216c043a7fc2cd202f1f84db60df79e76607066e0475",
+      "source_text": "## Primary Objective\nProduce deterministic, framework-aware testing recommendations or test artifacts that improve confidence while making assumptions, risk, and remaining gaps explicit.\n\n",
+      "candidate_sections": [
+        "Primary Objective"
+      ],
+      "disposition": "preserve",
+      "reason": "Deterministic framework fit, assumptions, risk and gaps retained.",
+      "independent_review": "pending"
+    },
+    {
+      "source_heading": "Output Directory",
+      "source_start_line": 17,
+      "source_end_line": 24,
+      "source_sha256": "f8edad40730341e9c6d0fbc68b756a9e1ce93934c3a3cae802b6613b7781b477",
+      "source_text": "## Output Directory\nWhen the user wants analysis artifacts instead of direct test files, default to:\n- `reports/testing/<timestamp>-plan.md`\n- `reports/testing/<timestamp>-coverage-gap.md`\n- `reports/testing/<timestamp>-edge-cases.md`\n\nWhen the user asks for concrete test outputs, place them under the repository's existing test layout. If the repo has no established layout, propose one before writing files.\n\n",
+      "candidate_sections": [
+        "Output Directory"
+      ],
+      "disposition": "preserve",
+      "reason": "Same test layout and no-layout proposal requirement; existing reports/testing conventions retained.",
+      "independent_review": "pending"
+    },
+    {
+      "source_heading": "Workflow",
+      "source_start_line": 25,
+      "source_end_line": 31,
+      "source_sha256": "7ad48b76f51d94c6de3a2162ca2fe5b1bb456e4786e78a519232c4aebc6f5c92",
+      "source_text": "## Workflow\n1. Determine whether the task is unit tests, E2E design, edge-case discovery, or coverage analysis.\n2. Inspect the current repository testing stack and existing tests before recommending changes.\n3. Produce the minimum useful test set or gap analysis for the requested mode.\n4. Separate what can be generated now from what still needs repo-specific validation or execution.\n5. End with explicit priorities, risks, and follow-up work.\n\n",
+      "candidate_sections": [
+        "Workflow"
+      ],
+      "disposition": "expand",
+      "reason": "Adds risk/level/oracle choice, existing-assertion review, and evidence handoff.",
+      "independent_review": "pending"
+    },
+    {
+      "source_heading": "Tool Boundaries",
+      "source_start_line": 32,
+      "source_end_line": 36,
+      "source_sha256": "f6033496c8eb54fc7fce6c3e6813192519bfd2f625d432b70a5db5e137126fa0",
+      "source_text": "## Tool Boundaries\n- allowed: inspect source code and existing tests, design test cases, and write test artifacts when asked\n- forbidden: silently executing tests, inventing framework choices that contradict the repo, or claiming coverage numbers without evidence\n- escalation: if the request is actually a release gate or CI readiness question, recommend `engos-quality-gitops-review`\n\n",
+      "candidate_sections": [
+        "Rules"
+      ],
+      "disposition": "preserve_and_clarify",
+      "reason": "No automatic run/framework invention/unsupported coverage; clarify data, install and service boundaries; named adjacent handoffs.",
+      "independent_review": "pending"
+    },
+    {
+      "source_heading": "Invocation Hints",
+      "source_start_line": 37,
+      "source_end_line": 44,
+      "source_sha256": "f9ea84ff720b43da2d2a41328651ddf5c22be13f573f5725d442bc9e22b824d2",
+      "source_text": "## Invocation Hints\nUse this capability when the user asks for any of the following, even without naming the skill:\n- generate unit tests\n- design end-to-end tests\n- find edge cases we are missing\n- show me coverage gaps\n- tell me what to test first for this change\n\n",
+      "candidate_sections": [
+        "Invocation Hints",
+        "Modes"
+      ],
+      "disposition": "expand",
+      "reason": "All prior natural-language jobs retained; strategy/integration/maintainability added.",
+      "independent_review": "pending"
+    },
+    {
+      "source_heading": "Required Inputs",
+      "source_start_line": 45,
+      "source_end_line": 50,
+      "source_sha256": "e89f11fc2d7f3dfa1806ce46d4a1ca3d7eea1bdccea90ae031275153d7ac800f",
+      "source_text": "## Required Inputs\n- source code, feature description, or failing scenario\n- repository testing stack when known\n- risk areas or priority workflows\n- existing tests or coverage report when available\n\n",
+      "candidate_sections": [
+        "Required Inputs"
+      ],
+      "disposition": "preserve_and_clarify",
+      "reason": "Same behavior, stack, risk and tests/evidence; avoid forcing unavailable optional inputs.",
+      "independent_review": "pending"
+    },
+    {
+      "source_heading": "Required Output",
+      "source_start_line": 51,
+      "source_end_line": 59,
+      "source_sha256": "93dd2606ec9b3f0b0019366198e6d402ab701569c162ff5ea3ac289da483df9a",
+      "source_text": "## Required Output\nEvery substantial response must include:\n- `Scope`\n- `Assumptions`\n- `Recommended Tests or Gaps`\n- `Priority or Risk`\n- `Framework Notes`\n- `Follow-up Work`\n\n",
+      "candidate_sections": [
+        "Required Output"
+      ],
+      "disposition": "intentional_format_change",
+      "reason": "Six mandatory heading labels become required information with proportional formatting; Assumptions and Priority remain explicit.",
+      "independent_review": "pending"
+    },
+    {
+      "source_heading": "Rules",
+      "source_start_line": 60,
+      "source_end_line": 66,
+      "source_sha256": "e529c93ea2e16f761ad1f87b40d3eb64d27cf8ee3280448ba289f36ee8feac7d",
+      "source_text": "## Rules\n- Respect the existing test framework and project conventions.\n- Separate generation of tests from execution of tests.\n- Prefer readable test names and explicit assertions.\n- Include failure cases and boundary cases, not only happy path.\n- Call out when a repository needs integration or E2E coverage instead of more unit tests.\n\n",
+      "candidate_sections": [
+        "Workflow",
+        "Rules",
+        "Generate Unit Tests",
+        "Coverage Analysis"
+      ],
+      "disposition": "preserve_and_expand",
+      "reason": "Framework, generation/execution separation, readable assertions, boundaries/failures, and correct unit vs E2E/integration level.",
+      "independent_review": "pending"
+    },
+    {
+      "source_heading": "Modes",
+      "source_start_line": 67,
+      "source_end_line": 67,
+      "source_sha256": "83dacb4ec0bb08c6328b9f53a8603f61d44a9b9ecac2b308c5b36b33c68afece",
+      "source_text": "## Modes\n",
+      "candidate_sections": [
+        "Modes"
+      ],
+      "disposition": "expand",
+      "reason": "Current four mode names retained; add Test Strategy and Generate Integration Tests within same job.",
+      "independent_review": "pending"
+    },
+    {
+      "source_heading": "Generate Unit Tests",
+      "source_start_line": 68,
+      "source_end_line": 76,
+      "source_sha256": "91505af7c8b1e4913bccb65f2c932a27e9aad61f7e45cc99f3df1506567ca8ac",
+      "source_text": "### Generate Unit Tests\nUse when the job is creating or improving isolated tests around functions, classes, or modules.\n\nProduce:\n- framework-aware test file\n- happy-path, error-path, and boundary tests\n- mocks or fixtures only where needed\n- clear assertions and setup notes\n\n",
+      "candidate_sections": [
+        "Generate Unit Tests"
+      ],
+      "disposition": "preserve_and_expand",
+      "reason": "Concrete framework-fit file, happy/error/boundary tests, necessary fixtures, setup; state/properties are conditional.",
+      "independent_review": "pending"
+    },
+    {
+      "source_heading": "Generate E2E Tests",
+      "source_start_line": 77,
+      "source_end_line": 86,
+      "source_sha256": "d215e2151e11a553bc1f4360d1c6901168eb2a101c0d5f6938f364ac1ebbf3d0",
+      "source_text": "### Generate E2E Tests\nUse when the job is validating a real workflow across interfaces or services.\n\nProduce:\n- critical user journeys\n- setup and teardown strategy\n- waiting and synchronization guidance\n- environment and test-data notes\n- failure capture or diagnostics expectations\n\n",
+      "candidate_sections": [
+        "Generate E2E Tests"
+      ],
+      "disposition": "preserve_and_expand",
+      "reason": "Critical journeys, setup/cleanup, waiting, environment/data and diagnostics; avoid false backend claims.",
+      "independent_review": "pending"
+    },
+    {
+      "source_heading": "Edge Cases",
+      "source_start_line": 87,
+      "source_end_line": 95,
+      "source_sha256": "b257e41cc8c6da0cd90ee4880d4b6d78139bce4e419cbb3d43489bfaabe18347",
+      "source_text": "### Edge Cases\nUse when the job is finding what the current design or tests are likely missing.\n\nProduce:\n- categorized edge cases\n- risk level\n- likely impact\n- suggested tests to add first\n\n",
+      "candidate_sections": [
+        "Edge Cases"
+      ],
+      "disposition": "preserve_and_expand",
+      "reason": "Prioritized categorized cases, impact, suggested tests; ambiguity and analysis-only scope made explicit.",
+      "independent_review": "pending"
+    },
+    {
+      "source_heading": "Coverage Analysis",
+      "source_start_line": 96,
+      "source_end_line": 104,
+      "source_sha256": "23efc3bea4b7941a792e39f10b1d06aed17932b573439f881fcdcab7603b70c6",
+      "source_text": "### Coverage Analysis\nUse when the job is deciding where coverage is weak.\n\nProduce:\n- current coverage summary if data exists\n- specific untested branches, functions, or scenarios\n- risk-based prioritization\n- recommended next tests\n\n",
+      "candidate_sections": [
+        "Coverage Analysis"
+      ],
+      "disposition": "preserve_and_expand",
+      "reason": "Summary only when evidenced; source-specific gaps, priorities and next tests; metric provenance strengthened.",
+      "independent_review": "pending"
+    },
+    {
+      "source_heading": "Examples",
+      "source_start_line": 105,
+      "source_end_line": 105,
+      "source_sha256": "838a1c66fbcf853ea5ec5d2823254de82c981c1185e84babeaa43befaf0ff640",
+      "source_text": "## Examples\n",
+      "candidate_sections": [
+        "Examples"
+      ],
+      "disposition": "replace_examples_preserving_intent",
+      "reason": "Old request for highest-value tests remains routed; richer examples cover integration, coverage and E2E.",
+      "independent_review": "pending"
+    },
+    {
+      "source_heading": "Example Request",
+      "source_start_line": 106,
+      "source_end_line": 108,
+      "source_sha256": "a94d6e3e41f80aefc938c7a1db1c8b5d0374a3a1d975f5e853417414f01205b5",
+      "source_text": "### Example Request\n> Review this change and tell me which tests to add first, including edge cases we are currently missing.\n\n",
+      "candidate_sections": [
+        "Examples"
+      ],
+      "disposition": "replace_examples_preserving_intent",
+      "reason": "A source example, not a requirement to reproduce the same words.",
+      "independent_review": "pending"
+    },
+    {
+      "source_heading": "Example Output Shape",
+      "source_start_line": 109,
+      "source_end_line": 114,
+      "source_sha256": "defc4ea25f11bff80eec5b8ed137f1cc8a0effdbf92d9dba698d44601e706564",
+      "source_text": "### Example Output Shape\n- scope and assumptions\n- recommended tests by priority\n- unresolved risks\n- framework-specific notes\n\n",
+      "candidate_sections": [
+        "Required Output",
+        "Examples"
+      ],
+      "disposition": "preserve_information",
+      "reason": "Scope, assumptions, prioritized recommendations, risks, framework notes preserved.",
+      "independent_review": "pending"
+    },
+    {
+      "source_heading": "Evaluation Rubric",
+      "source_start_line": 115,
+      "source_end_line": 123,
+      "source_sha256": "639be0123e6e47761e0b66db44c9935df9665b5b6a21b987997a18f84936c2ce",
+      "source_text": "## Evaluation Rubric\n| Check | What Passing Looks Like |\n| --- | --- |\n| Mode selection | The response chooses the correct testing mode for the task |\n| Framework fit | Recommendations respect the repo\u2019s existing testing stack |\n| Risk coverage | Happy path, failures, and boundary cases are all considered |\n| Actionability | A developer can implement the proposed tests directly |\n| Boundary clarity | The response does not pretend tests were run when they were not |\n\n",
+      "candidate_sections": [
+        "Evaluation Rubric"
+      ],
+      "disposition": "expand",
+      "reason": "Mode fit, framework, risk, actionability and truthful boundary retained; add oracle and maintainability properties.",
+      "independent_review": "pending"
+    },
+    {
+      "source_heading": "Constraints",
+      "source_start_line": 124,
+      "source_end_line": 127,
+      "source_sha256": "00b27d237a960b8281e1301b84fab78caa9314dfd854322cd39780127f746877",
+      "source_text": "## Constraints\n- Do not execute tests automatically.\n- Do not replace project-specific framework decisions when the repository already has a clear testing stack.\n- Do not claim coverage metrics without a coverage artifact or direct evidence.\n",
+      "candidate_sections": [
+        "Rules",
+        "Required Inputs",
+        "Coverage Analysis"
+      ],
+      "disposition": "preserve",
+      "reason": "All three original constraints retained in meaning.",
+      "independent_review": "pending"
+    }
+  ],
+  "compiled_clauses": [
+    {
+      "source_sha256": "a13a67440b6c5a06a087f285cc990291a8adde279824082aa071ed0422bc009c",
+      "source_text": "- forbidden: silently executing tests, inventing framework choices that contradict the repo, or claiming coverage numbers without evidence",
+      "mapped_in_review_sections": [
+        "Rules"
+      ],
+      "independent_review": "pending"
+    },
+    {
+      "source_sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "source_text": "## Required Inputs",
+      "mapped_in_review_sections": [
+        "Required Inputs"
+      ],
+      "independent_review": "pending"
+    },
+    {
+      "source_sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "source_text": "## Required Output",
+      "mapped_in_review_sections": [
+        "Required Output"
+      ],
+      "independent_review": "pending"
+    },
+    {
+      "source_sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+      "source_text": "Every substantial response must include:",
+      "mapped_in_review_sections": [
+        "Required Output"
+      ],
+      "independent_review": "pending"
+    },
+    {
+      "source_sha256": "4fdce19e68b0a2453e14c85026f2d9ed6179af4a17ffc0a48830cedb52fcd93a",
+      "source_text": "- Include failure cases and boundary cases, not only happy path.",
+      "mapped_in_review_sections": [
+        "Generate Unit Tests"
+      ],
+      "independent_review": "pending"
+    },
+    {
+      "source_sha256": "b7a8e70ba8ee249b10c13fd4798a88c5eb6770f0b12fd6c2f75fd49533790f13",
+      "source_text": "- mocks or fixtures only where needed",
+      "mapped_in_review_sections": [
+        "Generate Unit Tests"
+      ],
+      "independent_review": "pending"
+    },
+    {
+      "source_sha256": "efc7137353f02e587b1b56a35f88ea5711adbf9a34348ce88e293222c300cfd8",
+      "source_text": "- Do not execute tests automatically.",
+      "mapped_in_review_sections": [
+        "Rules"
+      ],
+      "independent_review": "pending"
+    },
+    {
+      "source_sha256": "c541168a6a146b24f47259f557c38d55d4ead0716e9257689600034b01f0bd79",
+      "source_text": "- Do not replace project-specific framework decisions when the repository already has a clear testing stack.",
+      "mapped_in_review_sections": [
+        "Rules"
+      ],
+      "independent_review": "pending"
+    },
+    {
+      "source_sha256": "aa421c4141e96d7644768b36e6786d2b9fcffc6ea7c100704a3d67f38eeb91b3",
+      "source_text": "- Do not claim coverage metrics without a coverage artifact or direct evidence.",
+      "mapped_in_review_sections": [
+        "Coverage Analysis"
+      ],
+      "independent_review": "pending"
+    }
+  ],
+  "semantic_review_beyond_compiler": [
+    "strategy and test-level selection",
+    "all six previous required output information elements",
+    "test artifact placement/no-layout behavior",
+    "E2E setup/teardown and synchronization",
+    "integration escalation",
+    "mode-specific output semantics",
+    "risk prioritization",
+    "unrun vs supplied execution evidence"
+  ],
+  "waivers_granted": [],
+  "new_behavior_review": [
+    "resource routes and missing-resource fallback",
+    "strategy and integration explicit modes",
+    "flexible output heading policy",
+    "no-extra-test/consolidation advice",
+    "specific handoff and data/tool boundaries",
+    "coverage/mutation provenance semantics"
+  ]
+}

@@ -1,0 +1,12 @@
+diff --git a/metadata.json b/metadata.json
+--- a/metadata.json
++++ b/metadata.json
+@@ -1 +1 @@
+-{"entrypoint":"python3 cli.py"}
++{"entrypoint":"python3 tools/pebble.py"}
+diff --git a/.github/workflows/docs.yml b/.github/workflows/docs.yml
+--- a/.github/workflows/docs.yml
++++ b/.github/workflows/docs.yml
+@@ -1 +1 @@
+-on: release
++on: pull_request

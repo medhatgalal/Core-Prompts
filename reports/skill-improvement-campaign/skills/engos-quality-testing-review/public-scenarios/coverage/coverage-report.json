@@ -1,0 +1,153 @@
+{
+  "disclosure": "actual authored-fixture coverage observation, not model evidence",
+  "tool": {
+    "version": "7.13.4",
+    "tests": 2
+  },
+  "measurement": "coverage.Coverage(branch=True, source=['sut']); unittest discovery; json_report",
+  "source_sha256": "13a40818b80983d7b29195a61414c8cc1c5e6372f905ef8aee44bc5162793faf",
+  "test_sha256": "02c89ec08fc1a85d9f529a37fea9ef846c18e0b7bb2d27385b445dafd2be2963",
+  "scope": "sut.py only; no exclusions configured",
+  "file_report": {
+    "executed_lines": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "summary": {
+      "covered_lines": 4,
+      "num_statements": 4,
+      "percent_covered": 100.0,
+      "percent_covered_display": "100",
+      "missing_lines": 0,
+      "excluded_lines": 0,
+      "percent_statements_covered": 100.0,
+      "percent_statements_covered_display": "100",
+      "num_branches": 2,
+      "num_partial_branches": 0,
+      "covered_branches": 2,
+      "missing_branches": 0,
+      "percent_branches_covered": 100.0,
+      "percent_branches_covered_display": "100"
+    },
+    "missing_lines": [],
+    "excluded_lines": [],
+    "executed_branches": [
+      [
+        5,
+        6
+      ],
+      [
+        5,
+        7
+      ]
+    ],
+    "missing_branches": [],
+    "functions": {
+      "can_cancel": {
+        "executed_lines": [
+          5,
+          6,
+          7
+        ],
+        "summary": {
+          "covered_lines": 3,
+          "num_statements": 3,
+          "percent_covered": 100.0,
+          "percent_covered_display": "100",
+          "missing_lines": 0,
+          "excluded_lines": 0,
+          "percent_statements_covered": 100.0,
+          "percent_statements_covered_display": "100",
+          "num_branches": 2,
+          "num_partial_branches": 0,
+          "covered_branches": 2,
+          "missing_branches": 0,
+          "percent_branches_covered": 100.0,
+          "percent_branches_covered_display": "100"
+        },
+        "missing_lines": [],
+        "excluded_lines": [],
+        "start_line": 4,
+        "executed_branches": [
+          [
+            5,
+            6
+          ],
+          [
+            5,
+            7
+          ]
+        ],
+        "missing_branches": []
+      },
+      "": {
+        "executed_lines": [
+          4
+        ],
+        "summary": {
+          "covered_lines": 1,
+          "num_statements": 1,
+          "percent_covered": 100.0,
+          "percent_covered_display": "100",
+          "missing_lines": 0,
+          "excluded_lines": 0,
+          "percent_statements_covered": 100.0,
+          "percent_statements_covered_display": "100",
+          "num_branches": 0,
+          "num_partial_branches": 0,
+          "covered_branches": 0,
+          "missing_branches": 0,
+          "percent_branches_covered": 100.0,
+          "percent_branches_covered_display": "100"
+        },
+        "missing_lines": [],
+        "excluded_lines": [],
+        "start_line": 1,
+        "executed_branches": [],
+        "missing_branches": []
+      }
+    },
+    "classes": {
+      "": {
+        "executed_lines": [
+          4,
+          5,
+          6,
+          7
+        ],
+        "summary": {
+          "covered_lines": 4,
+          "num_statements": 4,
+          "percent_covered": 100.0,
+          "percent_covered_display": "100",
+          "missing_lines": 0,
+          "excluded_lines": 0,
+          "percent_statements_covered": 100.0,
+          "percent_statements_covered_display": "100",
+          "num_branches": 2,
+          "num_partial_branches": 0,
+          "covered_branches": 2,
+          "missing_branches": 0,
+          "percent_branches_covered": 100.0,
+          "percent_branches_covered_display": "100"
+        },
+        "missing_lines": [],
+        "excluded_lines": [],
+        "start_line": 1,
+        "executed_branches": [
+          [
+            5,
+            6
+          ],
+          [
+            5,
+            7
+          ]
+        ],
+        "missing_branches": []
+      }
+    }
+  }
+}

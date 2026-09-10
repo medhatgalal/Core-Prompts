@@ -1,3 +1,5 @@
+> Historical unexecuted narrow proposal from setup. Superseded as the whole-skill plan by full-capability-design.md and model-measurement-plan.md. H1 remains a drift sub-hypothesis; its 1.25M budget and Astra/high nomination were never approved or measured.
+
 # Docs-review experiment proposal
 
 This is an unexecuted proposal. No candidate skill has been authored or applied.

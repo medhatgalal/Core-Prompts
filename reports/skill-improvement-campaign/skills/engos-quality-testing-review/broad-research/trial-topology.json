@@ -1,0 +1,663 @@
+{
+  "schema_version": "CapabilityTopology.v1",
+  "slug": "engos-quality-testing-review",
+  "ssot_sha256": "fb0d6023dd28998d55140848ef587a3b6066ffaaf5b800b1c2a3ac79e448fc9d",
+  "explicit_invocations": [],
+  "semantic_triggers": [],
+  "aliases_shortcuts": [],
+  "auto_routes": [],
+  "nodes": {
+    "commands": [],
+    "modes_modules": [
+      {
+        "mode_slug": "test-strategy",
+        "display_name": "Test Strategy",
+        "entry_kind": "mode",
+        "invocations": [],
+        "source_refs": [
+          "ssot/engos-quality-testing-review.md"
+        ],
+        "source_line": 82,
+        "mode_summary": "Explicitly declared mode in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "generate-unit-tests",
+        "display_name": "Generate Unit Tests",
+        "entry_kind": "mode",
+        "invocations": [],
+        "source_refs": [
+          "ssot/engos-quality-testing-review.md"
+        ],
+        "source_line": 89,
+        "mode_summary": "Explicitly declared mode in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "generate-integration-tests",
+        "display_name": "Generate Integration Tests",
+        "entry_kind": "mode",
+        "invocations": [],
+        "source_refs": [
+          "ssot/engos-quality-testing-review.md"
+        ],
+        "source_line": 97,
+        "mode_summary": "Explicitly declared mode in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "generate-e2e-tests",
+        "display_name": "Generate E2E Tests",
+        "entry_kind": "mode",
+        "invocations": [],
+        "source_refs": [
+          "ssot/engos-quality-testing-review.md"
+        ],
+        "source_line": 106,
+        "mode_summary": "Explicitly declared mode in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "edge-cases",
+        "display_name": "Edge Cases",
+        "entry_kind": "mode",
+        "invocations": [],
+        "source_refs": [
+          "ssot/engos-quality-testing-review.md"
+        ],
+        "source_line": 114,
+        "mode_summary": "Explicitly declared mode in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "coverage-analysis",
+        "display_name": "Coverage Analysis",
+        "entry_kind": "mode",
+        "invocations": [],
+        "source_refs": [
+          "ssot/engos-quality-testing-review.md"
+        ],
+        "source_line": 122,
+        "mode_summary": "Explicitly declared mode in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      }
+    ],
+    "controls": [],
+    "modifiers": []
+  },
+  "composition": {
+    "legal_pairs": [],
+    "forbidden_pairs": [],
+    "canonical_order": [],
+    "requirements": [],
+    "supersession": []
+  },
+  "state_machine": {
+    "states": [],
+    "transitions": [],
+    "forbidden_transitions": []
+  },
+  "outputs": [
+    "- Scope and chosen mode/level, with assumptions that affect the oracle.",
+    "- Recommended tests or gaps, tied to behavior and prioritized risk.",
+    "- Framework/layout notes and concrete test files when generation was requested.",
+    "- Follow-up work: missing evidence, unresolved decisions and bounded run handoff."
+  ],
+  "authority_boundaries": [
+    "engos-quality-testing-review:L34:bfb4b20da282",
+    "engos-quality-testing-review:L43:d5250fe19b5c",
+    "engos-quality-testing-review:L56:2777ba3c483d",
+    "engos-quality-testing-review:L68:c22f40d2b764",
+    "engos-quality-testing-review:L71:6a24d6afc1c9",
+    "engos-quality-testing-review:L95:9af2fcd8790a",
+    "engos-quality-testing-review:L112:92935592ace4",
+    "engos-quality-testing-review:L122:6b2a1750d754",
+    "engos-quality-testing-review:L137:7468bfafba74",
+    "engos-quality-testing-review:L151:2e7c31b79b26",
+    "engos-quality-testing-review:L157:0a2813c24fb0",
+    "engos-quality-testing-review:L164:6d8592a5cdb4",
+    "engos-quality-testing-review:L181:774b5966f474",
+    "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/observation-contract.md:L6:39b600552f3d",
+    "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/observation-contract.md:L11:bc37b29c591b",
+    "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/observation-contract.md:L25:2b6106e4b315",
+    "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/level-selection.md:L5:593a76d058b7",
+    "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/level-selection.md:L19:1a33ea982a2e",
+    "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/design-and-recovery.md:L18:ac20f7b679ac",
+    "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/design-and-recovery.md:L25:76385070242d",
+    "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/coverage-evidence.md:L6:db771f12bfbe",
+    "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/coverage-evidence.md:L15:35219d134eef",
+    "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/coverage-evidence.md:L26:8fe85c413ddc"
+  ],
+  "resources": [
+    "| Risk and recovery | Prioritizes material failures, boundaries and relevant state/resource recovery |"
+  ],
+  "handoffs": [
+    "- Follow-up work: missing evidence, unresolved decisions and bounded run handoff.",
+    "Execution handoff: identify the test selection, working directory, verified command,",
+    "Supply the concrete behavior, artifact and unresolved decision to the handoff.",
+    "execution handoff. If execution evidence was supplied, attribute it to its",
+    "test files when the adapter/environment is known, and an unrun execution handoff.",
+    "uncertainty and a truthful handoff for execution. Keep test generation separate",
+    "| Handoff and authority | Gives a useful bounded next step without automatic execution or release claims |"
+  ],
+  "protected_invariants": [
+    {
+      "id": "engos-quality-testing-review:L26:77357dbdaba3",
+      "heading": "Required Inputs",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 33,
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "text": "## Required Inputs",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L31:5300970a15d7",
+      "heading": "Required Inputs",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 38,
+      "sha256": "5300970a15d7f822c735e783f2ede941ec99e61993a3aeac3c43bf6e8ffe2745",
+      "text": "identify the competing interpretations and ask only for a decision that changes",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L34:bfb4b20da282",
+      "heading": "Required Inputs",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 41,
+      "sha256": "bfb4b20da282a1cd8deb08974b7c83e3acb85815b011f45779af823a6ec74214",
+      "text": "a qualitative gap analysis, never an invented coverage metric.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L43:d5250fe19b5c",
+      "heading": "Resource Delivery",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 50,
+      "sha256": "d5250fe19b5cf7f37edfdfdde5f57a94496f395975b9aa0b846ec3154e7ad921",
+      "text": "If a resource cannot be loaded, state the specific limitation and do not claim its",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L49:fb74276e8627",
+      "heading": "Workflow",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 56,
+      "sha256": "fb74276e8627130b30adc45e0a345783f4faa14822f0356c3a3781aad00957fc",
+      "text": "existing tests and relevant behavior first. Respect explicit design-only scope.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L56:2777ba3c483d",
+      "heading": "Workflow",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 63,
+      "sha256": "2777ba3c483dd0a3371dfdbd9d90910ffcce7d4a5854b95a332ea43b3707342b",
+      "text": "Do not force a fixed unit/integration/E2E ratio.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L60:9a88d2e3fb2b",
+      "heading": "Workflow",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 67,
+      "sha256": "9a88d2e3fb2bf2b9b124bad8b8a5c4223eb84d8939129a6b56fcbac85cb62d44",
+      "text": "5. Design or generate only the requested artifacts. Include normal operation,",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L64:ead401718044",
+      "heading": "Workflow",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 71,
+      "sha256": "ead40171804466e35bf5abaa83890ad60c6408446569fd62c8e64bb70e139721",
+      "text": "only when it provides a meaningful oracle and fits the repository stack.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L68:c22f40d2b764",
+      "heading": "Workflow",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 75,
+      "sha256": "c22f40d2b76475fb76502b147730298f801b0f1cb7ab14c2f7f573a1977cc49e",
+      "text": "assumptions from completed artifacts. Do not run tests automatically.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L71:6a24d6afc1c9",
+      "heading": "Workflow",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 78,
+      "sha256": "6a24d6afc1c90ce78a96f0d13bc7abfa81d200e36ca38b3e25fe88ea757422cf",
+      "text": "command/revision/environment; do not turn it into a claim that you ran the tests.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L77:f83f81963419",
+      "heading": "Test Strategy",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 84,
+      "sha256": "f83f819634199cb329b0ddede621135f2c46b6dcd672dac659e78d327a83bc3d",
+      "text": "failure consequence, current assurance, proposed test level, required observation,",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L86:e1ec1ad0df02",
+      "heading": "Generate Unit Tests",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 93,
+      "sha256": "e1ec1ad0df02c49833141c0eddb79a5687ed25353602a7e903544d52a8dd2945",
+      "text": "transition, a rejected transition that must preserve state, and a later valid",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L87:3464ac9b5b82",
+      "heading": "Generate Unit Tests",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 94,
+      "sha256": "3464ac9b5b82945e375e26e94b79b1c60f4e578d1e8f3c8e55f341cb18aa3d8e",
+      "text": "operation. For resource-owning APIs, cover required cleanup and recovery. Prefer",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L95:9af2fcd8790a",
+      "heading": "Generate Integration Tests",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 102,
+      "sha256": "9af2fcd8790ac40049879d70599fe846dbfc82a53a1e97f7c844e9516955bbf2",
+      "text": "partial setup. Do not claim an integration test proves a service that it replaces",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L112:92935592ace4",
+      "heading": "Edge Cases",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 119,
+      "sha256": "92935592ace4739ef13ccfabebd1008cce13d308d31423e065d3e829d6a97688",
+      "text": "unverified possibility or a requirement needing a decision. Do not silently write",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L113:daadbed97512",
+      "heading": "Edge Cases",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 120,
+      "sha256": "daadbed97512d8034c75b4e49afe6d30d8f2beacfb84c49df2e38994bd230f81",
+      "text": "test files for an analysis-only request.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L122:6b2a1750d754",
+      "heading": "Coverage Analysis",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 129,
+      "sha256": "6b2a1750d7542085cbeec00b07ddfed898fc72dfe9a99a20ace20c17e9a4a8d8",
+      "text": "do not invent a mutation score or equate one tool's metric with semantic correctness.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L124:3d4b9f171064",
+      "heading": "Required Output",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 131,
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "text": "## Required Output",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L134:4f3e330d0039",
+      "heading": "Required Output",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 141,
+      "sha256": "4f3e330d00398fe1e61883615595a2b5abf6236ddff3b5a484029d5aad9ce2c2",
+      "text": "behavior it must allow. For generated files, explicitly say they are unrun and",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L135:7ef67f63f9d0",
+      "heading": "Required Output",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 142,
+      "sha256": "7ef67f63f9d0f7b96a71a2dd5f4706d6f9d5ded2e1e7263f666645b163d585bd",
+      "text": "identify the operator command, required environment, artifact paths and diagnostic",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L137:7468bfafba74",
+      "heading": "Required Output",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 144,
+      "sha256": "7468bfafba74b86a687c179da9110d97e17d4e6f18eea6d4d288337b08726992",
+      "text": "instead of fabricating an executable invocation. Do not present a design sketch",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L151:2e7c31b79b26",
+      "heading": "Rules",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 158,
+      "sha256": "2e7c31b79b26a18f3f06876166fcddd0bfc692612cf067e392bcd206d95181c0",
+      "text": "- Do not execute tests automatically, start services, install tools, access secrets,",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L157:0a2813c24fb0",
+      "heading": "Rules",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 164,
+      "sha256": "0a2813c24fb088d3032e9076eee637b217c84a2d530750844b42e02b467dba05",
+      "text": "Do not invent a generic test-runner capability or a release approval.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L164:6d8592a5cdb4",
+      "heading": "Rules",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 171,
+      "sha256": "6d8592a5cdb423bff0f6f2c1d8dd45639005d066089cfc0b879b14e6f19e8f77",
+      "text": "Do not dispatch companions automatically when a recommendation suffices.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L173:bd88a72879c2",
+      "heading": "Examples",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 180,
+      "sha256": "bd88a72879c2908c9cd1eb48b38c4e98353f21ce7798e667b90963821d432ba8",
+      "text": "> This report says 100% lines covered. What behavior is still at risk? Analysis only.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L181:774b5966f474",
+      "heading": "Examples",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 188,
+      "sha256": "774b5966f474ab8ce7ef1d203ce19fac378f14510987d1bcd203431a0a605555",
+      "text": "user-visible assertions, persisted-effect limits, cleanup and diagnostics. Do not",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/observation-contract.md:L6:39b600552f3d",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-testing-review/references/observation-contract.md",
+      "source_line": 6,
+      "sha256": "39b600552f3dca8dc3c2cf2e967257b903d4d4f10c324fd2b7ca4b2c77487a03",
+      "text": "requirements; do not derive the only oracle from the code being tested.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/observation-contract.md:L11:bc37b29c591b",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-testing-review/references/observation-contract.md",
+      "source_line": 11,
+      "sha256": "bc37b29c591b26f5e496bff97d886668d02d0fe2355228703f7f6ba7e4e30cfe",
+      "text": "Do not upgrade one statement into the next without evidence.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/observation-contract.md:L13:4c092ce606d6",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-testing-review/references/observation-contract.md",
+      "source_line": 13,
+      "sha256": "4c092ce606d618d7bf8c5453e7d54a395227ef1608d1df0c31429b2f117fbbc1",
+      "text": "Read assertions as well as coverage. A test that only calls a function, checks a",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/observation-contract.md:L25:2b6106e4b315",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-testing-review/references/observation-contract.md",
+      "source_line": 25,
+      "sha256": "2b6106e4b315b61064a73a65a9d3b189a02aec09549c811a648e1774e4d4a324",
+      "text": "copy of the same algorithm is weak assurance. Do not add framework dependencies",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/level-selection.md:L5:593a76d058b7",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-testing-review/references/level-selection.md",
+      "source_line": 5,
+      "sha256": "593a76d058b71997d0d94bcb04afe4ccb2e0ed9b42bead133e313936b1425738",
+      "text": "recovery or an unavailable critical journey when relevant. Do not infer those risks",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/level-selection.md:L19:1a33ea982a2e",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-testing-review/references/level-selection.md",
+      "source_line": 19,
+      "sha256": "1a33ea982a2ecd42e958d3329b682f3d62cb32c7b0548a380abbba98c8f74a0a",
+      "text": "removes the very interaction at risk. Do not demand a live external service when a",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/level-selection.md:L23:462205adcb88",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-testing-review/references/level-selection.md",
+      "source_line": 23,
+      "sha256": "462205adcb88e2ca7afa31eeb1fed7dc37f3378fd9a33fcc529595e0ad1512ed",
+      "text": "another equivalent scenario. Recommend consolidation only after mapping which",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/design-and-recovery.md:L3:a2dea4104e99",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-testing-review/references/design-and-recovery.md",
+      "source_line": 3,
+      "sha256": "a2dea4104e99f397ce70c2fb86736753482610be7e2f8c44c92c442cb7d48a98",
+      "text": "For relevant state, consider sequences rather than only isolated inputs: create,",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/design-and-recovery.md:L9:1f932583ba1d",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-testing-review/references/design-and-recovery.md",
+      "source_line": 9,
+      "sha256": "1f932583ba1dbe45d3d2f394bb0e5631f17fbd35ea74e0d122fc0e7be2ec1d88",
+      "text": "repository's supported seams. Preserve error type/identity only if it is part of",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/design-and-recovery.md:L18:ac20f7b679ac",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-testing-review/references/design-and-recovery.md",
+      "source_line": 18,
+      "sha256": "ac20f7b679ac2f9703babaf46067995e9ea66e532a6be4bb6619530528b7e46a",
+      "text": "For E2E, prefer user-facing locators and readiness assertions; do not substitute",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/design-and-recovery.md:L25:76385070242d",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-testing-review/references/design-and-recovery.md",
+      "source_line": 25,
+      "sha256": "76385070242df39710077696b927ebf5da0bdc7455c0fa61db056cbde292c3b2",
+      "text": "design plus the missing input; do not bury placeholders in a claimed runnable test.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/coverage-evidence.md:L5:f82b6f80ceb8",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-testing-review/references/coverage-evidence.md",
+      "source_line": 5,
+      "sha256": "f82b6f80ceb8f4c3fd0f87e81ab2f920f7be3f61ae5f04ebaac9f9dcf335a8e8",
+      "text": "the claim; stale line numbers must be reconciled before assigning current gaps.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/coverage-evidence.md:L6:db771f12bfbe",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-testing-review/references/coverage-evidence.md",
+      "source_line": 6,
+      "sha256": "db771f12bfbe61d6229de13ac910c2da57a2adb7f90ef099e8316f65f9573b77",
+      "text": "Distinguish executable lines, branch destinations, assertions and behavior. Do not",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/coverage-evidence.md:L7:afa9612f1cf6",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-testing-review/references/coverage-evidence.md",
+      "source_line": 7,
+      "sha256": "afa9612f1cf6e581d3f77b05a785bccb0fae6bcba65b5a0ea466f52c6870fcaa",
+      "text": "infer a missing assertion only from an uncovered line or infer correctness from",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/coverage-evidence.md:L13:df999bf1336c",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-testing-review/references/coverage-evidence.md",
+      "source_line": 13,
+      "sha256": "df999bf1336cb9238ad496039e2eaaa84d59e4c6803080e9e5af32beb0a045ae",
+      "text": "the contract, say so and avoid a filler list of new tests. If only source and tests",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/coverage-evidence.md:L15:35219d134eef",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-testing-review/references/coverage-evidence.md",
+      "source_line": 15,
+      "sha256": "35219d134eef0f9f1c4df63a92b160c267a95a38fff32d842ad541ae0eec3451",
+      "text": "when known; do not claim a measured rate.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/coverage-evidence.md:L24:6577cca66f42",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-testing-review/references/coverage-evidence.md",
+      "source_line": 24,
+      "sha256": "6577cca66f42b0cd531f4978a326117d71606b7b099cc9e2890e43d75b951d48",
+      "text": "required runtime/configuration and permitted test data; say which logs/report files",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/coverage-evidence.md:L26:8fe85c413ddc",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-testing-review/references/coverage-evidence.md",
+      "source_line": 26,
+      "sha256": "8fe85c413ddc3ce92bf4582b32f8d886b7e962b40ab0c5e88d3d623f477ce411",
+      "text": "or runner failure. Do not run the command automatically or imply release approval.",
+      "kind": "invariant",
+      "mapped_to": []
+    }
+  ],
+  "risk_tiers": {
+    "critical": [],
+    "high": [],
+    "standard": []
+  },
+  "source_references": [
+    {
+      "path": "ssot/engos-quality-testing-review.md",
+      "sha256": "fb0d6023dd28998d55140848ef587a3b6066ffaaf5b800b1c2a3ac79e448fc9d"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-testing-review/references/observation-contract.md",
+      "sha256": "f54db8ae60d3a17915433d841e87639289d019b2227d9a98ccf43adbd682569a"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-testing-review/references/level-selection.md",
+      "sha256": "3040c7c444365d756432b444fbd9a920b5d1824710ad97b4c1f91ef6e99a369f"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-testing-review/references/design-and-recovery.md",
+      "sha256": "0c8cd5d42b7e2903b785b078841e5098df902ff9049de148db19dec609630462"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-testing-review/references/coverage-evidence.md",
+      "sha256": "abab5668dd029dbc8e28331b178e1bd890383bc2d4fbd37ed503b2e25de1a4a6"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-testing-review/resource-map.json",
+      "sha256": "92a39a0361746203a202f5a40fa7811af77f4e8c3d5cf421745b0bddc3f7b122"
+    }
+  ],
+  "known_ambiguities": [],
+  "coverage_policy": {
+    "normative_clauses": "100_percent_mapped_or_waived",
+    "nodes": "positive_and_boundary",
+    "transitions": "all_legal_and_forbidden",
+    "module_pairs": "all_legal_pairs",
+    "high_risk_tuples": "assigned_strength",
+    "critical_mutants": "100_percent_killed"
+  },
+  "normative_clause_coverage": {
+    "total": 44,
+    "mapped": 0,
+    "waived": 0
+  },
+  "review_status": "draft",
+  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs.",
+  "resource_bundle_sha256": "83cade970afb2875973cf7a5f6ede65e03022d837471ddf579efec942d0f11e8"
+}
