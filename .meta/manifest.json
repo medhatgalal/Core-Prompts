@@ -917,11 +917,12 @@
             "strategy": "derived_history",
             "group": "derived",
             "baseline_path": null,
-            "selected_commit": "6fbcff2d",
+            "selected_commit": "a5458d6c",
             "richness_score": 8,
-            "line_count": 355,
+            "line_count": 365,
             "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
             "equivalent_commits": [
+              "6fbcff2d",
               "616e936d",
               "63ef9172"
             ],
@@ -973,6 +974,12 @@
                   "missing_markers": []
                 }
               ],
+              "reviewed_deltas": [],
+              "requirement_review": {
+                "status": "not_supplied_or_invalid",
+                "identity_authenticated": false,
+                "behavioral_status": "behavioral_pending"
+              },
               "scorecard": {
                 "baseline_richness": 8,
                 "candidate_richness": 8,
@@ -980,7 +987,7 @@
                 "candidate_operational_score": 4,
                 "baseline_preserved_in_resource": false
               },
-              "baseline_commit": "6fbcff2d",
+              "baseline_commit": "a5458d6c",
               "baseline_slug": "engos-audit-opex-incident-review"
             },
             {
@@ -1030,7 +1037,32 @@
             "metadata_completeness": 8,
             "surface_usability": 10
           },
-          "template_name": "skill"
+          "template_name": "skill",
+          "effective_sha256": "2f256da3a7ca86fd6e6ea227c1d3e6a0abe37d19fe6a118b8f473b75e65d5530",
+          "semantic_findings": [],
+          "repair_requests": [],
+          "dimension_inventory": [
+            {
+              "dimension": "source_fidelity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "operational_richness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "metadata_integrity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "benchmark_readiness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "semantic_consistency",
+              "status": "no_detected_conflict_not_semantic_proof"
+            }
+          ]
         }
       ],
       "consumption_hints": {
@@ -3587,7 +3619,7 @@
       "display_name": "Plan to Goal Design",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "engos-design-plan-to-goal",
-      "shared_summary": "Turns an inspected implementation plan or intent into a compact, host-aware goal plus a durable specification and verifier packet. Use when a user wants to move from read-only Plan mode into a bounded long-running goal without losing repository evidence, rules, scope, or honest stop conditions.",
+      "shared_summary": "Compile a reviewed plan or intent into a host-aware goal, durable specification, and task-specific verifier with explicit trust, drift, stop, and rollback conditions. Use when a bounded long-running goal packet is needed; do not use for ordinary one-step implementation.",
       "shared_constraints": [
         "Do not mutate source code while compiling a packet in read-only Plan mode.",
         "Do not use chat history as the only durable source for a long-running goal.",
@@ -3610,9 +3642,9 @@
             "strategy": "derived_history",
             "group": "derived",
             "baseline_path": null,
-            "selected_commit": "38da3d0d",
+            "selected_commit": "6fbcff2d",
             "richness_score": 5,
-            "line_count": 231,
+            "line_count": 248,
             "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
             "equivalent_commits": [],
             "expected_companions": [],
@@ -3648,6 +3680,12 @@
                   "missing_markers": []
                 }
               ],
+              "reviewed_deltas": [],
+              "requirement_review": {
+                "status": "not_supplied_or_invalid",
+                "identity_authenticated": false,
+                "behavioral_status": "behavioral_pending"
+              },
               "scorecard": {
                 "baseline_richness": 5,
                 "candidate_richness": 5,
@@ -3655,7 +3693,7 @@
                 "candidate_operational_score": 2,
                 "baseline_preserved_in_resource": false
               },
-              "baseline_commit": "38da3d0d",
+              "baseline_commit": "6fbcff2d",
               "baseline_slug": "engos-design-plan-to-goal"
             },
             {
@@ -3673,13 +3711,13 @@
             {
               "judge": "benchmark_readiness",
               "title": "Benchmark Readiness and Template Fit",
-              "score": 10,
+              "score": 9,
               "blockers": [],
               "scorecard": {
                 "title_clarity": 10,
                 "description_richness": 10,
                 "intent_coverage": 10,
-                "boundary_clarity": 10,
+                "boundary_clarity": 8,
                 "output_specificity": 10,
                 "metadata_completeness": 8,
                 "surface_usability": 10
@@ -3696,16 +3734,41 @@
             "baseline_preserved_in_resource": false,
             "operational_richness": 10,
             "metadata_integrity": 10,
-            "benchmark_readiness": 10,
+            "benchmark_readiness": 9,
             "title_clarity": 10,
             "description_richness": 10,
             "intent_coverage": 10,
-            "boundary_clarity": 10,
+            "boundary_clarity": 8,
             "output_specificity": 10,
             "metadata_completeness": 8,
             "surface_usability": 10
           },
-          "template_name": "skill"
+          "template_name": "skill",
+          "effective_sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f",
+          "semantic_findings": [],
+          "repair_requests": [],
+          "dimension_inventory": [
+            {
+              "dimension": "source_fidelity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "operational_richness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "metadata_integrity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "benchmark_readiness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "semantic_consistency",
+              "status": "no_detected_conflict_not_semantic_proof"
+            }
+          ]
         }
       ],
       "consumption_hints": {

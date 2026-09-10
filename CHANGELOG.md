@@ -1,3 +1,9 @@
+## v1.14.3 - 2026-09-10
+
+- Correct the OpEx digest renderer so completed or cancelled linked DPAs are not described as missing, while preserving outstanding postmortem obligations. Distinguish unset or unknown priorities from missing SLA policy mappings instead of inventing a priority problem or deadline.
+- Bind Plan to Goal packets to staged and working-tree diffs plus untracked contents, modes, and symlink targets, including untracked files hidden by Git display configuration. Detect changes behind unchanged status labels; preserve the packet-directory exclusion and clean legacy bindings, and explain when older dirty-tree packets require revalidation and resealing.
+- Add behavioral regression tests and concrete usage examples for these two independently compared helper changes. These are scoped deterministic improvements in shipped skill resources; the broader prompt experiments remain separate and no unproven prompt candidate or formal behavioral baseline is promoted.
+
 ## v1.14.2 - 2026-09-10
 
 - Preserve intentional empty adapter arguments such as `--tools ""` in the source evaluator while retaining rejection of empty executables, empty substitutions, unresolved placeholders, and invalid fixed-environment values. The evaluator fix is included in the source checkout/tag; it is outside the installable runtime archives. Runtime authentication, conformance, model identity and usage accounting remain separate gates, and the 27 emitted skill packages are unchanged from v1.14.1.

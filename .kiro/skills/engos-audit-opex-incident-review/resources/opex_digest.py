@@ -523,11 +523,18 @@ def build_model(current: dict[str, Any], previous: dict[str, Any]) -> dict[str, 
             }
         )
     for dpa in no_sla_dpas:
+        priority = str(dpa["priority"]).strip()
+        if priority.casefold() in {"not set", "unset", "none", "unprioritized"}:
+            condition = "has no priority and therefore no SLA clock. Set one or park it."
+        elif priority.casefold() in {"unknown", "unavailable"}:
+            condition = "has an unknown priority and no verified SLA clock. Verify its priority and current policy before assigning a deadline."
+        else:
+            condition = f"has priority {priority} but no SLA mapping in the supplied policy. Verify the current policy mapping before assigning a deadline."
         decisions.append(
             {
                 "key": dpa["key"],
                 "rank": 30,
-                "text": f"{dpa['key']} ({dpa['parent']}) has no priority and therefore no SLA clock. Set one or park it.",
+                "text": f"{dpa['key']} ({dpa['parent']}) {condition}",
             }
         )
     decisions.extend(current.get("additional_decisions", []))
@@ -536,7 +543,7 @@ def build_model(current: dict[str, Any], previous: dict[str, Any]) -> dict[str, 
     priority_rank = {"blocker": 4, "critical": 3, "major": 2, "minor": 1}
     for incident in incidents:
         owes: list[str] = []
-        if not incident.get("open_dpa_keys"):
+        if not incident.get("dpa_keys"):
             owes.append("DPAs")
         if incident.get("unlinked_dpa_keys"):
             owes = ["DPA links"]
@@ -597,7 +604,7 @@ def build_model(current: dict[str, Any], previous: dict[str, Any]) -> dict[str, 
         )
     owner_rows.sort(key=lambda item: (-item["weight"], item["owner"]))
 
-    zero_dpa = [item for item in incidents if not item.get("open_dpa_keys")]
+    zero_dpa = [item for item in incidents if not item.get("dpa_keys")]
     zero_dpa_blockers = [
         item for item in zero_dpa if item["priority"].casefold() == "blocker"
     ]
@@ -606,7 +613,7 @@ def build_model(current: dict[str, Any], previous: dict[str, Any]) -> dict[str, 
     one_artifact = [
         item
         for item in cannot_drop
-        if not item.get("open_dpa_keys")
+        if not item.get("dpa_keys")
         and item.get("postmortem", {}).get("state") in {"filled", "not_needed"}
     ]
     patterns = [
@@ -614,7 +621,7 @@ def build_model(current: dict[str, Any], previous: dict[str, Any]) -> dict[str, 
     ]
     if no_sla_dpas:
         patterns.append(
-            f"{len(no_sla_dpas)} open DPA(s) carry no priority, so no SLA clock ({', '.join(item['key'] for item in no_sla_dpas)})."
+            f"{len(no_sla_dpas)} open DPA(s) have no verified SLA deadline; distinguish unset or unknown priority from missing policy mapping ({'; '.join(item['key'] + ': ' + item['priority'] for item in no_sla_dpas)})."
         )
     if unlinked:
         count = sum(len(item["unlinked_dpa_keys"]) for item in unlinked)
