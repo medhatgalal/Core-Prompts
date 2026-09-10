@@ -212,13 +212,16 @@ skill scope on ordinary sync; explicit repair can add independently recognized
 existing agents on those providers. Routine updates reconcile resources within
 owned selected packages, without adding unrelated catalog entries.
 
-Whole unknown, custom, partial, or symlinked packages are preserved. Exit `2`
+Whole unknown, custom, symlinked, or unrecognized partial packages are preserved. Exit `2`
 reports `applied-with-preserved` or `no-op-with-preserved`; it is not full parity.
 Exit `1` reports blockers or failures. Source/runtime blockers prevent surface
 changes, while interrupted apply requires recovery using its reported transaction.
 
 Historical retirement, including `mentor` and namespace predecessors, is based
-on trusted complete package identities and dependency checks. Exact preimages
+on trusted historical identities or valid ownership receipts and dependency checks.
+Schema-1 receipt conversion may restore missing receipted files; see
+[recognition and preservation](INSTALL-PROFILES.md#historical-recognition-and-preservation).
+Exact preimages
 are journaled; the new engine does not remove files solely because their names
 appear on an old prune list. See [installation and recovery](INSTALL-PROFILES.md).
 

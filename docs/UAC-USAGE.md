@@ -271,19 +271,22 @@ The protected runner may return `inconclusive` before or during evaluation. Comm
 
 ## Deploy After Apply
 
-`apply` does not deploy to CLI homes automatically. Deploy is a separate explicit step.
+UAC `apply` changes canonical repository state. Installation is a separate explicit
+step after delivery. Follow [installation preview and apply](INSTALL-PROFILES.md#preview-and-apply)
+to select providers and capabilities, review the `--dry-run` JSON, and apply that
+exact plan with `--apply-plan` from the same source to the same target.
 
-```bash
-bin/capability-fabric deploy --cli codex --slug engos-optimization-auto-research --target "$HOME" --allow-nonlocal-target
-```
+Legacy packages such as `autosearch` migrate only within the selected scope when
+ownership recognition and dependency checks permit replacement. Packages that
+fail recognition, including unrecognized partial packages, are preserved, as are
+symlinked packages. Schema-1 receipt conversion may restore missing receipted
+members; review the exact planned actions. Exit `2` reports preserved conflicts
+and does not establish installation parity. See
+[historical recognition and preservation](INSTALL-PROFILES.md#historical-recognition-and-preservation).
 
-Notes:
-
-- `--slug` is repeatable and limits deployment to specific capabilities
-- deployment copies the full emitted bundle for each selected surface
-- deploying `--slug engos-optimization-auto-research` removes stale installed `autosearch` skill, agent, and resource paths for the selected CLIs
-- deploy is copy-only and does not rewrite capability metadata paths
-- for a narrowly approved repair or rollout, add `--surface-only`; it requires at least one `--slug` and skips the standalone updater, launcher, and local binary refresh
+For a bounded rollout, repeat `--slug` to select capabilities and use
+`--surface-only` to skip updater, launcher, and local-binary refresh. It requires
+at least one slug and still records ownership state in the reviewed plan.
 
 ## Source Kinds
 

@@ -158,8 +158,11 @@ adopt independently recognized existing agents on the saved selected providers.
 
 The resulting `.core-prompts-state/installation.json` saves concrete provider,
 surface, and slug selection. Routine updates reconcile owned package resources
-and keep that selection. Unknown, customized, partial, or symlinked packages are
-preserved and reported; exit `2` means migration still needs attention.
+and keep that selection. Unknown, customized, symlinked, and unrecognized partial
+packages are preserved and reported; exit `2` means migration still needs attention.
+Schema-1 receipt conversion may restore missing receipted files; see
+[recognition and preservation](INSTALL-PROFILES.md#historical-recognition-and-preservation)
+when reviewing the plan.
 
 For a narrow repair, use `--surface-only` with a selected slug to skip updater and
 launcher refresh:

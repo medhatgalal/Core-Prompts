@@ -78,11 +78,14 @@ Each skill and agent is recognized independently. A recognized Kiro skill does
 not authorize installing an absent Kiro agent, and a package on one provider does
 not authorize another provider. Recognized `autosearch` packages migrate to
 `engos-optimization-auto-research`; `mentor` has no successor and is retired only
-when its complete installed package is recognized and no unresolved dependency
+when its package ownership is recognized and no unresolved dependency
 requires it. Replacement files are verified before predecessor files are removed.
 
-Unknown, customized, partial, and symlinked packages are preserved as whole
-packages. A custom successor or unresolved reference from another agent preserves
+Unknown, customized, and symlinked packages are preserved as whole packages,
+including partial packages that fail ownership recognition. During schema-1
+receipt conversion, matching present files can establish ownership even when
+receipted members are missing; the reviewed plan may restore those members.
+Inspect the plan's exact actions before applying it. A custom successor or unresolved reference from another agent preserves
 the affected predecessor. Codex registration changes preserve unrelated custom
 configuration; conflicts preserve affected agents. Third-party packages remain
 with their own installers. In particular, an existing unreceipted third-party
