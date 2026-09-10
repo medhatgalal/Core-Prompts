@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import sys
+from dataclasses import replace
 from pathlib import Path
 
 import pytest
@@ -119,6 +120,81 @@ def test_kiro_argv_renders_preregistered_effort_without_shell() -> None:
 
     assert rendered[rendered.index("--effort") + 1] == "high"
     assert Path(rendered[0]) == resolve_adapter_cli_executable(spec)
+
+
+def test_claude_argv_preserves_literal_empty_tools_argument(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    spec = load_adapter_registry(ROOT)["claude-json-experimental"]
+    executable = tmp_path / "claude-fixture"
+    monkeypatch.setattr(
+        "core_prompts_eval.adapters.resolve_adapter_cli_executable",
+        lambda *args, **kwargs: executable,
+    )
+
+    rendered = render_adapter_argv(
+        spec,
+        {"resolved_model_identifier": "fixture-model"},
+        repo_root=ROOT,
+        workspace=tmp_path,
+        session_dir=tmp_path,
+    )
+
+    assert rendered == (
+        str(executable), "--print", "--output-format", "json",
+        "--model", "fixture-model", "--tools", "",
+        "--disable-slash-commands", "--strict-mcp-config",
+        "--no-session-persistence", "--no-chrome",
+    )
+
+
+@pytest.mark.parametrize(
+    "argv",
+    [
+        ("",),
+        ("{python}", "{model}"),
+        ("{python}", "{effort}"),
+        ("{python}", "{trusted_tools}"),
+        ("{python}", "{unknown}"),
+    ],
+)
+def test_argv_rejects_empty_executable_and_missing_substitutions(
+    argv: tuple[str, ...],
+    tmp_path: Path,
+) -> None:
+    spec = replace(load_adapter_registry(ROOT)["fake"], argv=argv)
+    with pytest.raises(AdapterError, match="unresolved or empty value"):
+        render_adapter_argv(
+            spec,
+            {"resolved_model_identifier": ""},
+            repo_root=ROOT,
+            workspace=tmp_path,
+            session_dir=tmp_path,
+        )
+
+
+@pytest.mark.parametrize("value", ["", "{effort}", "{unknown}"])
+def test_fixed_environment_still_rejects_empty_and_unresolved_values(
+    value: str,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    spec = replace(
+        load_adapter_registry(ROOT)["fake"],
+        fixed_environment=(("FIXTURE_SETTING", value),),
+    )
+    monkeypatch.setattr(
+        "core_prompts_eval.adapters.subprocess.Popen",
+        lambda *args, **kwargs: pytest.fail("invalid environment launched a child"),
+    )
+    with pytest.raises(AdapterError, match="unresolved or empty value"):
+        execute_adapter(
+            spec,
+            {"resolved_model_identifier": "fixture-model"},
+            repo_root=ROOT,
+            timeout_seconds=3,
+            max_output_bytes=8192,
+        )
 
 
 def test_codex_registry_rejects_secret_env_and_mutating_or_broad_tool_controls(
