@@ -1,6 +1,7 @@
-## v1.14.2 - 2026-09-09
+## v1.14.2 - 2026-09-10
 
-- Preserve intentional empty adapter arguments such as `--tools ""` while retaining rejection of empty executables, empty substitutions, unresolved placeholders, and invalid fixed-environment values. This repairs command rendering; runtime authentication, conformance, model identity and usage accounting remain separate gates.
+- Preserve intentional empty adapter arguments such as `--tools ""` in the source evaluator while retaining rejection of empty executables, empty substitutions, unresolved placeholders, and invalid fixed-environment values. The evaluator fix is included in the source checkout/tag; it is outside the installable runtime archives. Runtime authentication, conformance, model identity and usage accounting remain separate gates, and the 27 emitted skill packages are unchanged from v1.14.1.
+- Correct installation guidance to use reviewed ownership-aware plans and describe schema-1 restoration of missing receipted files. Retain the previous published release baseline across release builds, and keep home installation separate from package publication.
 
 ## v1.14.1 - 2026-09-09
 

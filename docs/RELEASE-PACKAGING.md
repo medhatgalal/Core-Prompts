@@ -22,24 +22,26 @@ python3 scripts/smoke-clis.py
 Before the release build, select and record the previous published release:
 
 ```bash
-CORE_PROMPTS_RELEASE_BASE_REF=v1.14.0 bin/capability-fabric build
+export CORE_PROMPTS_RELEASE_BASE_REF=v1.14.1
+bin/capability-fabric build
 ```
 
-For the v1.14.1 candidate the comparison baseline is v1.14.0. Choose the preceding
+For the v1.14.2 candidate the comparison baseline is v1.14.1. Choose the preceding
 published tag for future releases. The generator supports an explicit baseline
 and otherwise selects the latest distinct ancestor tag available locally. Fetch
 and verify the intended baseline; do not let missing local tags silently turn a
 patch-release review into an older cumulative comparison. Check the recorded
 comparison basis in `docs/RELEASE-DELTA.md` before packaging. Regenerate this view;
 do not hand-edit its capability counts or alter historical published release notes.
+Keep the selected variable set for every rebuild, including after merge; repeat
+the export when starting a new shell so a later build retains the reviewed baseline.
 
-## Build and Dry-Run
-```bash
-bin/capability-fabric build
-bin/capability-fabric deploy --target "$HOME" --allow-nonlocal-target --dry-run --cli all
-```
+## Installation Preview (When In Scope)
 
-For a bounded repair or rollout, use `--surface-only` with at least one `--slug`. Review the exact copy set before the real command; surface-only deploy skips updater, launcher, and local-binary refresh.
+After the baseline-bound build above, follow [installation preview and apply](INSTALL-PROFILES.md#preview-and-apply)
+when installation is part of the release scope. Review the exact selection,
+actions, preservation results, and blockers before applying the plan. A package
+release alone does not require a home installation.
 
 ## Package
 ```bash
@@ -126,7 +128,7 @@ When using `validate --with-cli`, native validator results also honor error-outp
 5. build the release package from the merged state
 6. create the tag and push the same tag object to GitHub and GitLab
 7. publish the release artifacts and checksums on both remotes
-8. accept or install the released version, then verify installed `VERSION`, surface parity, release-watch state, and rollback metadata separately from repository release evidence
+8. when installation is in scope, accept or install the released version, then verify installed `VERSION`, surface parity, release-watch state, and rollback metadata separately from repository release evidence
 
 Publication verification includes independent downloads from both providers, as required by the [verification expectations](../.kiro/steering/repo-workflow.md#verification-expectations). The downloaded checksums and archives can be compared with the reviewed package digests and expected file/mode boundary. A successful CLI exit can still accompany an authentication page or other unexpected content; in v1.14.0 verification, authenticated upload-API downloads were needed to establish the private GitLab assets' byte identity. This is a content-verification lesson, not a claim that every download needs the same transport workaround.
 

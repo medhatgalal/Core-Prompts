@@ -1227,8 +1227,11 @@ bash scripts/install-local.sh --target "$HOME" --allow-nonlocal-target \
 
 Expected result: independently recognized skills and agents migrate to their
 current same-provider surfaces; recognized retired packages are recoverable.
-Unknown, partial, customized, symlinked, and dependency-conflicted packages remain
-in place and appear in `preserved`. Exit `2` signals that review is still needed.
+Unknown, customized, symlinked, dependency-conflicted, and unrecognized partial
+packages remain in place and appear in `preserved`. Schema-1 receipt conversion
+may restore missing receipted files; review the plan using the
+[recognition and preservation rules](INSTALL-PROFILES.md#historical-recognition-and-preservation).
+Exit `2` signals that review is still needed.
 The installer supplies the missing updater and saves the concrete selection;
 scheduling is a separate opt-in action.
 
