@@ -1,7 +1,7 @@
 # Release Delta
 
 - Baseline status: `available`
-- Comparison basis: `git:v1.14.1@00995404e402f366907ad43367cc5db28e278e10 .meta/manifest.json`
+- Comparison basis: `git:v1.14.2@931a6dff221c0c8182fffab3e8678a0f8a97edd8 .meta/manifest.json`
 - New capabilities: `0`
 - Removed capabilities: `0`
 - Changed capabilities: `0`

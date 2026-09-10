@@ -31,6 +31,52 @@ def model() -> dict:
     return value
 
 
+@pytest.mark.parametrize("dpa_status", ["Done", "Cancelled"])
+@pytest.mark.parametrize("postmortem_state", ["missing", "blank"])
+def test_completed_linked_dpa_preserves_outstanding_postmortem(
+    dpa_status: str, postmortem_state: str
+) -> None:
+    current = load("current.json")
+    current["incidents"] = [current["incidents"][0]]
+    current["dpas"] = [current["dpas"][0]]
+    current["changes"] = []
+    current["incidents"][0]["postmortem"].update(
+        state=postmortem_state, due="2026-10-01"
+    )
+    current["dpas"][0]["status"] = dpa_status
+
+    previous = deepcopy(current)
+    previous["as_of"] = "2026-09-01T08:52:00-04:00"
+    result = MODULE.build_model(current, previous)
+
+    assert result["metrics"]["open_dpas"] == 0
+    assert len(result["incidents"]) == 1
+    assert len(result["owners"]) == 1
+    assert "postmortem" in result["owners"][0]["owes"]
+    assert "DPAs" not in result["owners"][0]["owes"]
+    assert result["patterns"][0].startswith("0 of 1 active incidents have zero linked DPAs")
+
+
+@pytest.mark.parametrize(
+    ("priority", "expected"),
+    [
+        ("Low", "no SLA mapping in the supplied policy"),
+        ("Unknown", "unknown priority and no verified SLA clock"),
+        ("Not set", "has no priority and therefore no SLA clock"),
+    ],
+)
+def test_no_sla_decision_identifies_the_actual_evidence_gap(
+    priority: str, expected: str
+) -> None:
+    current = load("current.json")
+    current["dpas"][0]["priority"] = priority
+    result = MODULE.build_model(current, load("previous.json"))
+    decisions = [item["text"] for item in result["decisions"] if item["key"] == "DPA-201"]
+
+    assert any(expected in text for text in decisions)
+    assert not any("no priority" in text for text in decisions) or priority == "Not set"
+
+
 def test_snapshot_replay_computes_daily_board_behavior() -> None:
     result = model()
 
@@ -490,10 +536,10 @@ def test_briefing_marker_is_boolean_even_when_falsey(invalid) -> None:
         MODULE.build_model(current, load("previous.json"))
 
 
-def test_non_briefing_rendered_outputs_remain_byte_identical() -> None:
+def test_non_briefing_rendered_outputs_match_reviewed_sla_wording() -> None:
     expected = {
-        "html": "358b04f896639d72a8a24f6859a9be91341224c4eeb6b9e33f9f162625144102",
-        "markdown": "624b0632a7ba80def286f4a5c53943ca36d1e7b8bd625081b662ea33bd312fa6",
+        "html": "1f8c16ea4c1637a3f1d0acc2de7fee49dbcae95877737f750bc7d22fc7582636",
+        "markdown": "9ac7c91af2a10ac8159d35090f0c635620c78c74a8540dd8ddfb9dbbf20550f2",
     }
     value = MODULE.build_model(load("current.json"), load("previous.json"))
     for name, digest in expected.items():
@@ -523,16 +569,20 @@ def test_plain_export_preserves_extended_briefing_evidence() -> None:
         assert marker in text
 
 
-def test_briefing_receipt_binds_current_canonical_resources() -> None:
+def test_briefing_receipt_preserves_historical_resource_bindings() -> None:
     receipt = json.loads((ROOT / "evals/maintenance/engos-audit-opex-incident-review/briefing-preservation-replay.json").read_text())
     for name, path in {
         "candidate_sha256": ROOT / "ssot/engos-audit-opex-incident-review.md",
-        "renderer_sha256": SCRIPT,
         "exporter_sha256": RESOURCE_DIR / "export_report.py",
         "briefing_reference_sha256": RESOURCE_DIR / "references/briefing.md",
         "schema_sha256": RESOURCE_DIR / "snapshot.schema.json",
     }.items():
         assert receipt["bindings"][name] == hashlib.sha256(path.read_bytes()).hexdigest()
+    # The briefing replay predates the linked-DPA/SLA corrections. Keep its
+    # original renderer identity rather than rewriting historical evidence.
+    assert receipt["bindings"]["renderer_sha256"] == (
+        "8f4e780752d42dbaa5c360fa129a3e3d7fa186beebec3091da6e39c29890f6a2"
+    )
     assert receipt["formal_behavioral_status"] == "behavioral_pending"
     assert "No live Google Doc write/readback" in receipt["limitations"]
 

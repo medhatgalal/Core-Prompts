@@ -274,6 +274,104 @@ def test_check_rejects_repository_head_drift(tmp_path: Path) -> None:
         GOAL_PACKET.command_check(args(packet_dir, run_verifier=False))
 
 
+@pytest.mark.parametrize(
+    "change",
+    (
+        "worktree",
+        "index",
+        "mixed-index",
+        "tracked-binary",
+        "untracked",
+        "untracked-binary",
+        "untracked-mode",
+        "untracked-symlink",
+        "hidden-untracked",
+    ),
+)
+def test_repository_binding_rejects_changes_with_identical_git_status(tmp_path: Path, change: str) -> None:
+    repo = make_repo(tmp_path)
+    packet_dir = tmp_path / "packet"
+    target = repo / ("new-file" if "untracked" in change else "README.md")
+    if change == "hidden-untracked":
+        run_git(repo, "config", "status.showUntrackedFiles", "no")
+    if change == "untracked-symlink":
+        target.symlink_to("README.md")
+    else:
+        target.write_bytes(b"\x00before\xff" if "binary" in change else b"before\n")
+        target.chmod(0o644)
+    if change in {"index", "mixed-index"}:
+        run_git(repo, "add", target.name)
+        if change == "mixed-index":
+            target.write_text("unchanged worktree\n", encoding="utf-8")
+    binding = {"repository": GOAL_PACKET.repository_snapshot(repo, packet_dir)}
+    status_before = run_git(repo, "status", "--porcelain=v1")
+    # The exact starting state remains admissible before its content changes.
+    assert GOAL_PACKET.validate_repository_binding(binding, packet_dir) == binding["repository"]
+
+    if change == "untracked-mode":
+        target.chmod(0o755)
+    elif change == "untracked-symlink":
+        target.unlink()
+        target.symlink_to("different-target")
+    else:
+        target.write_bytes(b"\x00after\xff" if "binary" in change else b"after\n")
+    if change in {"index", "mixed-index"}:
+        run_git(repo, "add", target.name)
+        if change == "mixed-index":
+            target.write_text("unchanged worktree\n", encoding="utf-8")
+
+    assert run_git(repo, "status", "--porcelain=v1") == status_before
+    with pytest.raises(GOAL_PACKET.PacketError, match="STALE_PACKET"):
+        GOAL_PACKET.validate_repository_binding(binding, packet_dir)
+
+
+def test_repository_binding_rejects_new_untracked_file_hidden_by_git_config(tmp_path: Path) -> None:
+    repo = make_repo(tmp_path)
+    packet_dir = tmp_path / "packet"
+    run_git(repo, "config", "status.showUntrackedFiles", "no")
+    binding = {"repository": GOAL_PACKET.repository_snapshot(repo, packet_dir)}
+    (repo / "new-input.txt").write_text("material input\n", encoding="utf-8")
+    assert run_git(repo, "status", "--porcelain=v1") == ""
+    with pytest.raises(GOAL_PACKET.PacketError, match="STALE_PACKET"):
+        GOAL_PACKET.validate_repository_binding(binding, packet_dir)
+
+
+@pytest.mark.parametrize("dirty", (False, True))
+def test_repository_binding_preserves_packet_directory_exclusion(tmp_path: Path, dirty: bool) -> None:
+    repo = make_repo(tmp_path)
+    packet_dir = repo / "packet"
+    packet_dir.mkdir()
+    if dirty:
+        (repo / "README.md").write_text("unchanged dirty input\n", encoding="utf-8")
+    (packet_dir / "goal.txt").write_text("before\n", encoding="utf-8")
+    binding = {"repository": GOAL_PACKET.repository_snapshot(repo, packet_dir)}
+    (packet_dir / "goal.txt").write_text("after\n", encoding="utf-8")
+    (packet_dir / "new-artifact.txt").write_text("packet evidence\n", encoding="utf-8")
+    assert GOAL_PACKET.validate_repository_binding(binding, packet_dir) == binding["repository"]
+
+
+@pytest.mark.parametrize("dirty", (False, True))
+def test_repository_binding_handles_legacy_status_only_fingerprint(tmp_path: Path, dirty: bool) -> None:
+    repo = make_repo(tmp_path)
+    packet_dir = tmp_path / "packet"
+    if dirty:
+        (repo / "README.md").write_text("unchanged dirty input\n", encoding="utf-8")
+    legacy_status = subprocess.run(
+        ["git", "status", "--porcelain=v1", "-z", "--", "."],
+        cwd=repo,
+        check=True,
+        capture_output=True,
+    ).stdout
+    snapshot = GOAL_PACKET.repository_snapshot(repo, packet_dir)
+    snapshot["status_sha256"] = GOAL_PACKET.sha256_bytes(legacy_status)
+    binding = {"repository": snapshot}
+    if dirty:
+        with pytest.raises(GOAL_PACKET.PacketError, match="legacy status-only.*reseal"):
+            GOAL_PACKET.validate_repository_binding(binding, packet_dir)
+    else:
+        assert GOAL_PACKET.validate_repository_binding(binding, packet_dir) == snapshot
+
+
 def test_seal_rejects_verifier_that_passes_untouched_tree(tmp_path: Path) -> None:
     body = "#!/bin/sh\n[ \"${1:-}\" = '--list-criteria' ] && { echo C1; exit 0; }\nroot=${ANCHOR_ROOT:-}\n[ -n \"$root\" ] || { echo 'ANCHOR C1 UNVERIFIABLE'; exit 2; }\nif [ -n \"${CRITERION_ID:-}\" ]; then [ -f \"$root/outcome.done\" ] && { echo 'CRITERION C1 PASS'; exit 0; }; echo 'CRITERION C1 FAIL'; exit 1; fi\nanchor_ok=0\n[ \"$anchor_ok\" -ne 1 ] && true\necho 'ANCHOR C1 pass'\nexit 0\n"
     _, packet_dir = make_packet(tmp_path, verifier_body=body)
