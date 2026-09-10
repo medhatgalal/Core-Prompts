@@ -1208,6 +1208,42 @@ Expected output:
 - explicit copy plan
 - no target mutation
 
+## Repair an existing Kiro installation
+
+Example ask:
+
+> Preview my old Core-Prompts Kiro skills and named agents using the current
+> installer. I have no updater or receipts. Include recognized namespace migrations
+> and mentor retirement, preserve custom agents and unresolved dependencies, and
+> show the exact plan before applying it.
+
+```bash
+bash scripts/install-local.sh --target "$HOME" --allow-nonlocal-target \
+  --cli kiro --repair --dry-run > /tmp/core-prompts-kiro-plan.json
+# After reviewing the JSON:
+bash scripts/install-local.sh --target "$HOME" --allow-nonlocal-target \
+  --apply-plan /tmp/core-prompts-kiro-plan.json
+```
+
+Expected result: independently recognized skills and agents migrate to their
+current same-provider surfaces; recognized retired packages are recoverable.
+Unknown, partial, customized, symlinked, and dependency-conflicted packages remain
+in place and appear in `preserved`. Exit `2` signals that review is still needed.
+The installer supplies the missing updater and saves the concrete selection;
+scheduling is a separate opt-in action.
+
+For an existing skills-only profile, ordinary sync retains skills only. Explicit
+repair can adopt recognized existing agents on its selected providers. For a fresh
+installation that should include agents, explicitly use `--with-agents`.
+Subsequent ordinary runs keep the saved selection and reconcile resources within
+owned packages. Review a repeat dry-run for unexpected actions, and use
+`--rollback TRANSACTION_ID --dry-run` to check recovery readiness.
+
+Static package parity does not establish native Kiro discovery or account access.
+Check native agents from a neutral directory as well as your workspace; KiroCrew's
+saved Crew Members roster is separate application state.
+See [installation and recovery](INSTALL-PROFILES.md).
+
 ## Selected local skill targets
 
 Choose Codex, Kiro, and Grok with an explicit skills-only profile. Codex skills install

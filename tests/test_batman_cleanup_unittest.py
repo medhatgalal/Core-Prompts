@@ -1,240 +1,139 @@
+"""Unrecognized obsolete Batman files are user data, not deletion authority."""
 from __future__ import annotations
-
+import json
 import os
-import stat
+from pathlib import Path
 import subprocess
+import sys
 import tempfile
 import unittest
-from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DEPLOY_SCRIPT = ROOT / "scripts" / "deploy-surfaces.sh"
-LEGACY_RELATIVE_PATHS = (
-    Path(".kiro/skills/engos-orchestration-batman/PROTOCOL.md"),
-    Path(".kiro/skills/engos-orchestration-batman/PROMPT-AMENDMENT.md"),
-    Path(".kiro/skills/engos-orchestration-batman/CODEX-UAC-INTAKE.md"),
-)
+DEPLOY_SCRIPT = ROOT / "scripts/deploy-surfaces.sh"
+BATMAN = "engos-orchestration-batman"
+PACKAGE = Path(f".kiro/skills/{BATMAN}")
+LEGACY_RELATIVE_PATHS = tuple(PACKAGE / name for name in (
+    "PROTOCOL.md", "PROMPT-AMENDMENT.md", "CODEX-UAC-INTAKE.md"))
 
 
 class BatmanCleanupTests(unittest.TestCase):
-    def setUp(self) -> None:
+    def setUp(self):
         self.temp_dir = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp_dir.cleanup)
-        self.target = Path(self.temp_dir.name) / "target"
-        self.fake_bin = Path(self.temp_dir.name) / "bin"
-        self.fake_bin.mkdir(parents=True)
+        # macOS tempfile may spell its physical directory through /var; the
+        # installer correctly rejects symlink ancestors, so use its real path.
+        self.base = Path(self.temp_dir.name).resolve()
+        self.target = self.base / "target"
+        self.fake_bin = self.base / "bin"
+        self.fake_bin.mkdir()
         for name in ("kiro-cli", "codex"):
             executable = self.fake_bin / name
-            executable.write_text("#!/bin/sh\nexit 0\n", encoding="utf-8")
-            executable.chmod(executable.stat().st_mode | stat.S_IXUSR)
+            executable.write_text("#!/bin/sh\nexit 0\n")
+            executable.chmod(0o755)
 
-    def run_deploy(self, *args: str) -> subprocess.CompletedProcess[str]:
+    def run_deploy(self, *args):
         env = os.environ.copy()
         env["PATH"] = f"{self.fake_bin}:/usr/bin:/bin"
+        env["PYTHON_BIN"] = sys.executable
         return subprocess.run(
-            [
-                "/bin/bash",
-                str(DEPLOY_SCRIPT),
-                *args,
-                "--target",
-                str(self.target),
-                "--allow-nonlocal-target",
-            ],
-            cwd=ROOT,
-            env=env,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            text=True,
-            check=False,
-        )
+            ["/bin/bash", str(DEPLOY_SCRIPT), *args, "--target", str(self.target), "--allow-nonlocal-target"],
+            cwd=ROOT, env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+            text=True, check=False, timeout=90)
 
-    def seed_legacy_sources(self) -> dict[Path, bytes]:
-        expected: dict[Path, bytes] = {}
-        for index, path in enumerate(LEGACY_RELATIVE_PATHS, start=1):
-            content = bytes([index, 0, 255 - index]) + f" legacy {path.name}\n".encode()
-            target = self.target / path
-            target.parent.mkdir(parents=True, exist_ok=True)
-            target.write_bytes(content)
-            self.assertTrue(target.is_file())
-            self.assertFalse(target.is_symlink())
-            expected[path] = content
+    def seed_unrecognized_files(self):
+        expected = {}
+        for index, relative in enumerate(LEGACY_RELATIVE_PATHS, start=1):
+            content = bytes([index, 0, 255 - index]) + f" custom {relative.name}\n".encode()
+            path = self.target / relative
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(content)
+            expected[relative] = content
         return expected
 
-    def archived_file_bytes(self) -> dict[Path, bytes]:
-        archive = self.target / ".core-prompts-state" / "stale-pruned"
-        if not archive.exists():
-            return {}
-        archived: dict[Path, bytes] = {}
-        for timestamp_dir in archive.iterdir():
-            for path in timestamp_dir.rglob("*"):
-                if path.is_file():
-                    archived[path.relative_to(timestamp_dir)] = path.read_bytes()
-        return archived
+    def assert_preserved(self, expected):
+        self.assertEqual({rel: (self.target / rel).read_bytes() for rel in expected}, expected)
+        self.assertFalse((self.target / ".core-prompts-state/stale-pruned").exists())
 
-    def test_batman_kiro_dry_run_names_exact_legacy_prune_set(self) -> None:
-        original = self.seed_legacy_sources()
+    def document(self, result, code):
+        self.assertEqual(result.returncode, code, result.stdout)
+        return json.loads(result.stdout)
 
-        result = self.run_deploy(
-            "--cli",
-            "kiro",
-            "--slug",
-            "engos-orchestration-batman",
-            "--surface-only",
-            "--dry-run",
-        )
+    def test_dry_run_reports_selected_package_preserved_without_delete_actions(self):
+        original = self.seed_unrecognized_files()
+        plan = self.document(self.run_deploy("--cli", "kiro", "--slug", BATMAN, "--surface-only", "--dry-run"), 0)
+        self.assertTrue(any(row.get("slug") == BATMAN and row.get("kind") == "skill" for row in plan["preserved"]))
+        self.assertFalse(any(action["path"].startswith(PACKAGE.as_posix() + "/") for action in plan["actions"]))
+        self.assertFalse(any(action["op"] == "remove" for action in plan["actions"]))
+        self.assert_preserved(original)
+        self.assertFalse((self.target / ".core-prompts-state").exists())
 
-        self.assertEqual(result.returncode, 0, result.stdout)
-        prune_lines = {
-            line.removeprefix("DRY-RUN PRUNE ")
-            for line in result.stdout.splitlines()
-            if line.startswith("DRY-RUN PRUNE ")
-        }
-        self.assertEqual(
-            prune_lines,
-            {str(self.target / path) for path in LEGACY_RELATIVE_PATHS},
-        )
-        self.assertEqual(
-            {path: (self.target / path).read_bytes() for path in LEGACY_RELATIVE_PATHS},
-            original,
-        )
-        self.assertFalse(
-            (self.target / ".core-prompts-state" / "stale-pruned").exists()
-        )
-
-    def test_batman_kiro_deploy_archives_only_legacy_files(self) -> None:
-        original = self.seed_legacy_sources()
-        valid_skill = self.target / ".kiro/skills/engos-orchestration-batman/SKILL.md"
-        valid_resource = self.target / ".kiro/skills/engos-orchestration-batman/resources/local.json"
-        unrelated = self.target / ".kiro/skills/engos-orchestration-batman/LOCAL-NOTES.md"
-        for path in (valid_skill, valid_resource, unrelated):
+    def test_selected_custom_package_preserves_every_byte_and_reports_attention(self):
+        original = self.seed_unrecognized_files()
+        for relative in (PACKAGE / "SKILL.md", PACKAGE / "resources/local.json", PACKAGE / "LOCAL-NOTES.md"):
+            path = self.target / relative
             path.parent.mkdir(parents=True, exist_ok=True)
-            path.write_text("preserve\n", encoding="utf-8")
+            path.write_bytes(b"preserve custom package bytes\n")
+            original[relative] = path.read_bytes()
+        receipt = self.document(self.run_deploy("--cli", "kiro", "--slug", BATMAN, "--surface-only"), 2)
+        self.assertEqual(receipt["status"], "applied-with-preserved")
+        self.assertTrue(any(row.get("slug") == BATMAN for row in receipt["preserved"]))
+        self.assert_preserved(original)
+        self.assertFalse((self.target / f".kiro/agents/{BATMAN}.json").exists())
+        self.assertFalse((self.target / PACKAGE / "resources/capability.json").exists())
+        journal = self.target / ".core-prompts-state/install-transactions" / receipt["transaction"] / "journal.json"
+        actions = json.loads(journal.read_bytes())["plan"]["actions"]
+        self.assertFalse(any(action["path"].startswith(PACKAGE.as_posix() + "/") for action in actions))
+        self.assertFalse(any(action["op"] == "remove" for action in actions))
 
-        result = self.run_deploy(
-            "--cli",
-            "kiro",
-            "--slug",
-            "engos-orchestration-batman",
-            "--surface-only",
-        )
+    def test_symlink_stays_in_place_and_preserves_external_referent(self):
+        external = self.base / "external-protocol.md"
+        content = b"external source must remain untouched\x00\xff\n"
+        external.write_bytes(content)
+        link = self.target / LEGACY_RELATIVE_PATHS[0]
+        link.parent.mkdir(parents=True)
+        link.symlink_to(external)
+        receipt = self.document(self.run_deploy("--cli", "kiro", "--slug", BATMAN, "--surface-only"), 2)
+        self.assertTrue(any("symlink" in row["reason"] for row in receipt["preserved"]))
+        self.assertTrue(link.is_symlink())
+        self.assertEqual(link.readlink(), external)
+        self.assertEqual(link.read_bytes(), content)
+        self.assertEqual(external.read_bytes(), content)
+        self.assertFalse((self.target / ".core-prompts-state/stale-pruned").exists())
+        self.assertFalse((self.target / PACKAGE / "SKILL.md").exists())
 
-        self.assertEqual(result.returncode, 0, result.stdout)
-        self.assertEqual(self.archived_file_bytes(), original)
-        for path in LEGACY_RELATIVE_PATHS:
-            self.assertFalse((self.target / path).exists())
-        self.assertTrue(valid_skill.is_file())
-        self.assertTrue(valid_resource.is_file())
-        self.assertTrue(unrelated.is_file())
-        self.assertIn("stale_pruned=3", result.stdout)
-        receipt_lines = [
-            line
-            for line in result.stdout.splitlines()
-            if line.startswith("PRUNED stale deprecated surface ")
-        ]
-        self.assertTrue(all(" -> " in line for line in receipt_lines), result.stdout)
-        receipt_destinations = {
-            Path(line.split(" -> ", 1)[1]) for line in receipt_lines
-        }
-        self.assertEqual(len(receipt_destinations), 3, result.stdout)
-        self.assertTrue(all(path.is_file() for path in receipt_destinations))
-        self.assertTrue(
-            all(
-                path.is_relative_to(
-                    self.target / ".core-prompts-state" / "stale-pruned"
-                )
-                for path in receipt_destinations
-            )
-        )
+    def test_other_slug_does_not_touch_or_report_unselected_batman_package(self):
+        original = self.seed_unrecognized_files()
+        review = "engos-quality-code-review"
+        receipt = self.document(self.run_deploy("--cli", "kiro", "--slug", review, "--surface-only"), 0)
+        self.assertEqual(receipt["preserved"], [])
+        self.assert_preserved(original)
+        installed = self.target / f".kiro/skills/{review}/SKILL.md"
+        self.assertEqual(installed.read_bytes(), (ROOT / f".kiro/skills/{review}/SKILL.md").read_bytes())
+        selection = json.loads((self.target / ".core-prompts-state/installation.json").read_bytes())["selection"]
+        self.assertEqual(selection, [f"kiro:skill:{review}"])
 
-    def test_symlink_receipt_names_archive_without_touching_external_target(self) -> None:
-        external = Path(self.temp_dir.name) / "external-protocol.md"
-        external_content = b"external source must remain untouched\x00\xff\n"
-        external.write_bytes(external_content)
-        source = self.target / LEGACY_RELATIVE_PATHS[0]
-        source.parent.mkdir(parents=True, exist_ok=True)
-        source.symlink_to(external)
+    def test_codex_deploy_does_not_touch_or_report_kiro_residues(self):
+        original = self.seed_unrecognized_files()
+        receipt = self.document(self.run_deploy("--cli", "codex", "--slug", BATMAN, "--surface-only"), 0)
+        self.assertEqual(receipt["preserved"], [])
+        self.assert_preserved(original)
+        self.assertTrue((self.target / f".agents/skills/{BATMAN}/SKILL.md").is_file())
+        self.assertTrue((self.target / f".codex/agents/{BATMAN}.toml").is_file())
+        selection = json.loads((self.target / ".core-prompts-state/installation.json").read_bytes())["selection"]
+        self.assertEqual(selection, [f"codex:agent:{BATMAN}", f"codex:skill:{BATMAN}"])
 
-        result = self.run_deploy(
-            "--cli",
-            "kiro",
-            "--slug",
-            "engos-orchestration-batman",
-            "--surface-only",
-        )
-
-        self.assertEqual(result.returncode, 0, result.stdout)
-        self.assertFalse(source.exists())
-        self.assertFalse(source.is_symlink())
-        self.assertEqual(external.read_bytes(), external_content)
-        archived = list(
-            (
-                self.target / ".core-prompts-state" / "stale-pruned"
-            ).glob(f"*/{LEGACY_RELATIVE_PATHS[0]}")
-        )
-        self.assertEqual(len(archived), 1)
-        archived_link = archived[0]
-        self.assertTrue(archived_link.is_symlink())
-        self.assertEqual(archived_link.readlink(), external)
-        self.assertEqual(archived_link.read_bytes(), external_content)
-        receipt_line = next(
-            line
-            for line in result.stdout.splitlines()
-            if line.startswith(f"PRUNED stale deprecated surface {source} -> ")
-        )
-        self.assertEqual(Path(receipt_line.split(" -> ", 1)[1]), archived_link)
-        self.assertIn("stale_pruned=1", result.stdout)
-
-    def test_non_batman_filtered_deploy_does_not_prune_legacy_files(self) -> None:
-        original = self.seed_legacy_sources()
-
-        result = self.run_deploy(
-            "--cli",
-            "kiro",
-            "--slug",
-            "engos-quality-code-review",
-            "--surface-only",
-        )
-
-        self.assertEqual(result.returncode, 0, result.stdout)
-        self.assertEqual(self.archived_file_bytes(), {})
-        self.assertEqual(
-            {path: (self.target / path).read_bytes() for path in LEGACY_RELATIVE_PATHS},
-            original,
-        )
-
-    def test_batman_non_kiro_deploy_does_not_touch_kiro_residues(self) -> None:
-        original = self.seed_legacy_sources()
-
-        result = self.run_deploy(
-            "--cli",
-            "codex",
-            "--slug",
-            "engos-orchestration-batman",
-            "--surface-only",
-        )
-
-        self.assertEqual(result.returncode, 0, result.stdout)
-        self.assertEqual(self.archived_file_bytes(), {})
-        self.assertEqual(
-            {path: (self.target / path).read_bytes() for path in LEGACY_RELATIVE_PATHS},
-            original,
-        )
-
-    def test_full_kiro_install_cleanup_remains_bounded_to_three_files(self) -> None:
-        original = self.seed_legacy_sources()
-        unrelated = self.target / ".kiro/skills/engos-orchestration-batman/KEEP.md"
-        unrelated.write_text("preserve\n", encoding="utf-8")
-
-        result = self.run_deploy("--cli", "kiro")
-
-        self.assertEqual(result.returncode, 0, result.stdout)
-        self.assertEqual(self.archived_file_bytes(), original)
-        self.assertTrue(unrelated.is_file())
-        self.assertTrue((self.target / ".kiro/skills/engos-orchestration-batman/SKILL.md").is_file())
-        self.assertTrue(
-            (self.target / ".kiro/skills/engos-orchestration-batman/resources/capability.json").is_file()
-        )
-        self.assertIn("stale_pruned=3", result.stdout)
+    def test_unfiltered_repair_never_claims_random_named_files_as_owned(self):
+        original = self.seed_unrecognized_files()
+        extra = PACKAGE / "KEEP.md"
+        (self.target / extra).write_bytes(b"preserve extra custom file\n")
+        original[extra] = (self.target / extra).read_bytes()
+        receipt = self.document(self.run_deploy("--cli", "kiro", "--repair"), 2)
+        self.assertTrue(any(row.get("slug") == BATMAN for row in receipt["preserved"]))
+        self.assert_preserved(original)
+        self.assertFalse((self.target / PACKAGE / "SKILL.md").exists())
+        self.assertFalse((self.target / PACKAGE / "resources/capability.json").exists())
+        ownership = json.loads((self.target / ".core-prompts-state/installation.json").read_bytes())
+        self.assertNotIn(f"kiro:skill:{BATMAN}", ownership["packages"])
 
 
 if __name__ == "__main__":

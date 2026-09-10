@@ -10,12 +10,16 @@ validate_cli_surfaces:
   stage: validate
   image: python:3.14
   variables:
+    GIT_DEPTH: "0"
     FF_DISABLE_UMASK_FOR_DOCKER_EXECUTOR: "true"
   script:
     - umask 022
     - apt-get update && apt-get install -y --no-install-recommends zip
     - python3 scripts/sync-surface-specs.py --refresh
     - python3 -m pip install 'pytest>=8,<10' 'jsonschema>=4,<5' 'cryptography>=43'
+    - git fetch --tags origin
+    - python3 scripts/build-install-runtime.py --check
+    - python3 scripts/build-legacy-catalog.py --check
     - python3 -m pytest -q tests/test_capability_resources.py tests/test_resource_delivery.py tests/test_frontier_eval_integration.py tests/test_uac_semantic_uplift.py tests/test_uac_quality.py tests/test_uac_source_integrity.py tests/test_uac_promotion_apply.py tests/test_supercharge_preservation.py tests/test_supercharge_debate.py tests/test_frontier_skill_contracts.py
     - python3 -m pytest -q tests/test_uac_import.py -k bootstrap
     - python3 scripts/smoke-clis.py
@@ -23,4 +27,4 @@ validate_cli_surfaces:
     - bin/capability-eval calibrate --static-only
     - python3 scripts/validate-surfaces.py --strict
     - bin/capability-fabric build
-    - python3 -m pytest -q tests/test_package_surfaces.py tests/test_package_local_config.py tests/test_deploy_profile.py tests/test_update_core_prompts.py
+    - python3 -m pytest -q tests/test_package_surfaces.py tests/test_package_local_config.py tests/test_deploy_profile.py tests/test_update_core_prompts.py tests/test_deploy_surfaces.py tests/test_install_catalog.py tests/test_install_transaction.py tests/test_install_capsule.py tests/test_installation.py tests/test_installation_history.py tests/test_install_bootstrap.py

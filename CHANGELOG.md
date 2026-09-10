@@ -1,3 +1,12 @@
+## v1.14.1 - 2026-09-09
+
+- Unified fresh installation, historical repair, routine updates, and recovery through one ownership-aware engine. Current installers can repair recognized historical skills and independently present agents without an old updater or receipt, including Kiro agents and retired `mentor`.
+- Added a trusted catalog of complete historical package identities and saved provider/surface/slug selection. Existing skills-only profiles retain their skill selection on ordinary sync; explicit repair can adopt independently recognized existing agents on selected providers.
+- Reconcile resource additions and removals within owned selected packages. Preserve custom, partial, symlinked, unowned, and dependency-conflicted packages and report partial completion with exit `2`.
+- Generate the portable installation capsule from modular source while preserving the compatible older runtime allowlist. Older engines that reject the bridge require the current installer once; the next invocation after a supported bridge uses the new engine.
+- Supply a missing updater without creating or changing schedules. Expose exact-file journal recovery through installer and updater commands; retain journals with advisory cleanup candidates and block rollback over later edits.
+- Reworked installation, onboarding, examples, and release guidance around explicit preview/apply, preservation reports, bounded compatibility, and separate package, native-runtime, and application-roster evidence.
+
 ## v1.14.0 - 2026-09-08
 
 - Added explicit reviewed, addition-only profile migration for new skill resources and receipt-owned runtime updates. Routine updates still reject changed scope or local customizations.

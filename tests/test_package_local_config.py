@@ -109,7 +109,7 @@ def test_standalone_copy_excludes_source_local_config(tmp_path: Path) -> None:
     source_before = source_config.read_bytes()
     target = tmp_path / "home"
     result = run_script(
-        repo / "scripts/deploy-surfaces.sh", "--cli", "codex",
+        repo / "scripts/deploy-surfaces.sh", "--cli", "codex", "--with-agents",
         target_root=target, cli_bins=("codex",), allow_nonlocal_target=True,
     )
     assert result.returncode == 0, result.stdout

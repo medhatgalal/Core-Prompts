@@ -6,18 +6,23 @@
   "deployment_policy": {
     "copy_only": true,
     "forbid_symlink_targets": true,
-    "replace_destination_symlink_with_regular_file": true,
+    "replace_destination_symlink_with_regular_file": false,
     "notes": [
       "Deployment must not create symlinks.",
-      "If destination path is a symlink, unlink that path and copy a regular file."
+      "External installation targets preserve symlinks, unrecognized packages, and customizations.",
+      "All external writes use one revalidated package transaction; repository outputs are regenerated from SSOT."
     ],
     "profile_policy": {
       "codex_skill_destination": ".agents/skills",
       "unknown_or_customized": "preserve",
-      "retirement": "exact_receipted_files_only",
+      "retirement": "complete_package_proven_by_receipt_or_trusted_release_catalog",
       "rollback": "hash_guarded",
       "tool_metadata": "descriptive_not_permission",
-      "routine_updates": "saved profile and receipt scope; verified bundle; hash-guarded transaction and rollback"
+      "routine_updates": "persisted provider/surface/slug selection; verified bundle; locked hash-guarded transaction and rollback",
+      "state_schema": 2,
+      "recognition_catalog": ".meta/install-profiles/legacy-installations.json",
+      "legacy_profile_adoption": "preserve skill selection; explicit repair for independently installed agents",
+      "partial_result": "applied-with-preserved; exit 2; never claim installation parity"
     }
   },
   "metadata_policy": {

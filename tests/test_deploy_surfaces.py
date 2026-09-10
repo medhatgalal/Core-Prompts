@@ -1,893 +1,411 @@
+"""Real shell-wrapper contracts, using disposable homes and generated capsules.
+
+Historical population coverage lives in test_installation_history. These tests
+exercise supported runtimes, selection, ownership, JSON preview and recovery.
+"""
 from __future__ import annotations
-
+import io
+import json
 import os
-import stat
-import subprocess
-import tempfile
 from pathlib import Path
-import shutil
-
+import subprocess
+import sys
+import tarfile
+import tempfile
+import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
-DEPLOY_SCRIPT = ROOT / "scripts" / "deploy-surfaces.sh"
-INSTALL_SCRIPT = ROOT / "scripts" / "install-local.sh"
+DEPLOY_SCRIPT = ROOT / "scripts/deploy-surfaces.sh"
+INSTALL_SCRIPT = ROOT / "scripts/install-local.sh"
+ARCH = "engos-design-architecture"
+REVIEW = "engos-quality-code-review"
+AUTO = "engos-optimization-auto-research"
 
 
-def make_fake_cli_bin(bin_dir: Path, *names: str) -> None:
-    bin_dir.mkdir(parents=True, exist_ok=True)
-    for name in names:
-        path = bin_dir / name
-        path.write_text("#!/bin/sh\nexit 0\n", encoding="utf-8")
-        path.chmod(path.stat().st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
+def test_reporting_skill_installs_standalone_command_and_preserves_custom_launcher(tmp_path):
+    reporting='engos-audit-engineering-progress'
+    first=external(INSTALL_SCRIPT,tmp_path,'--cli','kiro','--slug',reporting)
+    document(first)
+    launcher=tmp_path/'.local/bin/eng-report'
+    assert launcher.is_file()
+    result=subprocess.run([str(launcher),'run','--help'],cwd=tmp_path,env={**os.environ,'PYTHON_BIN':sys.executable},capture_output=True,text=True)
+    assert result.returncode==0 and '--json' in result.stdout
+    custom=b'#!/bin/sh\necho custom reporting\n';launcher.write_bytes(custom)
+    report=document(external(INSTALL_SCRIPT,tmp_path),2)
+    assert any(p.get('package')=='runtime:eng-report-launcher' for p in report['preserved'])
+    assert launcher.read_bytes()==custom
 
 
-def run_script(
-    script: Path,
-    *args: str,
-    target_root: Path | None = None,
-    cli_bins: tuple[str, ...] = (),
-    use_system_bash: bool = False,
-    env_overrides: dict[str, str] | None = None,
-    allow_nonlocal_target: bool = False,
-    timeout: float | None = None,
-) -> subprocess.CompletedProcess[str]:
-    bin_dir = target_root / "fake-bin" if target_root is not None else None
-    if cli_bins:
-        if bin_dir is None:
-            bin_dir = Path(tempfile.mkdtemp())
-        make_fake_cli_bin(bin_dir, *cli_bins)
-        path = f"{bin_dir}:/usr/bin:/bin"
-    else:
-        path = "/usr/bin:/bin"
-
-    env = os.environ.copy()
-    if env_overrides:
-        env.update(env_overrides)
-    env["PATH"] = path
-
-    command = [str(script), *args]
-    if target_root is not None:
-        command.extend(["--target", str(target_root)])
-    if target_root is not None and allow_nonlocal_target:
-        command.append("--allow-nonlocal-target")
-    if use_system_bash:
-        command = ["/bin/bash", *command]
-    try:
-        return subprocess.run(
-            command,
-            cwd=ROOT,
-            env=env,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            text=True,
-            timeout=timeout,
-        )
-    finally:
-        if target_root is None and bin_dir is not None:
-            shutil.rmtree(bin_dir, ignore_errors=True)
+def run_script(script, *args, target_root=None, cli_bins=(), use_system_bash=True,
+               env_overrides=None, allow_nonlocal_target=False, timeout=90):
+    # Isolate CLI detection while making the supported test interpreter available.
+    with tempfile.TemporaryDirectory(prefix="core-wrapper-bin-") as directory:
+        bin_dir = Path(directory)
+        (bin_dir / "python3").symlink_to(sys.executable)
+        for name in cli_bins:
+            executable = bin_dir / name
+            executable.write_text("#!/bin/sh\nexit 0\n")
+            executable.chmod(0o755)
+        env = os.environ.copy()
+        env.update(env_overrides or {})
+        env["PATH"] = f"{bin_dir}:/usr/bin:/bin"
+        command = [str(script), *args]
+        if target_root is not None:
+            command += ["--target", str(target_root)]
+        if allow_nonlocal_target:
+            command.append("--allow-nonlocal-target")
+        if use_system_bash:
+            command.insert(0, "/bin/bash")
+        return subprocess.run(command, cwd=ROOT, env=env, stdout=subprocess.PIPE,
+                              stderr=subprocess.STDOUT, text=True, timeout=timeout)
 
 
-def _collect_copy_destinations(output: str) -> set[Path]:
-    copied: set[Path] = set()
-    for line in output.splitlines():
-        if line.startswith(("DRY-RUN COPY ", "COPIED ")):
-            _, dst = line.rsplit(" -> ", 1)
-            copied.add(Path(dst))
+def external(script, target, *args, **kwargs):
+    return run_script(script, *args, target_root=target, allow_nonlocal_target=True, **kwargs)
+
+
+def document(result, code=0):
+    assert result.returncode == code, result.stdout
+    return json.loads(result.stdout)
+
+
+def state(target):
+    return json.loads((target / ".core-prompts-state/installation.json").read_text())
+
+
+def paths(plan):
+    return {action["path"] for action in plan["actions"]}
+
+
+def seed_historical_architecture(target):
+    """Use real catalog-pinned v1.12.2 bytes, never target-authored provenance."""
+    catalog = json.loads((ROOT / ".meta/install-profiles/legacy-installations.json").read_text())
+    commit = subprocess.check_output(["git", "rev-parse", "v1.12.2^{commit}"], cwd=ROOT, text=True).strip()
+    assert commit == catalog["releases"]["v1.12.2"]["commit"]
+    archive = subprocess.check_output(["git", "archive", commit, ".kiro/skills/architecture",
+                                       ".kiro/agents/architecture.json", ".kiro/agents/resources/architecture"], cwd=ROOT)
+    copied = {}
+    with tarfile.open(fileobj=io.BytesIO(archive)) as tree:
+        for member in tree.getmembers():
+            if not member.isfile():
+                continue
+            assert member.name.startswith((".kiro/skills/architecture/", ".kiro/agents/resources/architecture/")) or member.name == ".kiro/agents/architecture.json"
+            content = tree.extractfile(member).read()
+            dest = target / member.name
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            dest.write_bytes(content)
+            dest.chmod(0o755 if member.mode & 0o111 else 0o644)
+            copied[member.name] = content
+    assert copied
     return copied
 
 
-def _collect_register_lines(output: str) -> list[str]:
-    return [line for line in output.splitlines() if line.startswith("DRY-RUN REGISTER")]
-
-
-def test_deploy_defaults_to_repo_root_for_target_all() -> None:
-    result = run_script(
-        DEPLOY_SCRIPT,
-        "--cli",
-        "all",
-        "--dry-run",
-        cli_bins=("codex", "gemini", "claude", "kiro-cli"),
-        use_system_bash=True,
-    )
+def test_deploy_defaults_to_repo_root_for_target_all():
+    result = run_script(DEPLOY_SCRIPT, "--cli", "all", "--dry-run",
+                        cli_bins=("codex", "gemini", "claude", "kiro-cli"))
     assert result.returncode == 0, result.stdout
     assert "Target CLIs: gemini claude kiro codex" in result.stdout
-
-    copy_dests = _collect_copy_destinations(result.stdout)
-    assert copy_dests
-    root = str(ROOT)
-    assert all(str(dst).startswith(root) for dst in copy_dests)
-    for cli in (".codex", ".gemini", ".claude", ".kiro"):
-        assert any(str(dst).startswith(f"{root}/{cli}/") for dst in copy_dests)
-
-    register_lines = _collect_register_lines(result.stdout)
-    assert any(f"DRY-RUN REGISTER codex agents in {ROOT}/.codex/config.toml" in line for line in register_lines)
+    destinations = [Path(line.rsplit(" -> ", 1)[1]) for line in result.stdout.splitlines()
+                    if line.startswith("DRY-RUN COPY ")]
+    assert destinations
+    assert all(p.is_relative_to(ROOT) for p in destinations)
+    assert all(any(p.is_relative_to(ROOT / provider) for p in destinations)
+               for provider in (".codex", ".gemini", ".claude", ".kiro"))
+    assert f"DRY-RUN REGISTER codex agents in {ROOT}/.codex/config.toml" in result.stdout
 
 
-def test_install_wrapper_defaults_to_repo_root_and_does_not_touch_home(tmp_path: Path) -> None:
+def test_install_wrapper_defaults_to_repo_root_and_does_not_touch_home(tmp_path):
     fake_home = tmp_path / "home"
-    result = run_script(
-        INSTALL_SCRIPT,
-        "--cli",
-        "all",
-        "--dry-run",
-        cli_bins=("codex", "gemini", "claude", "kiro-cli"),
-        use_system_bash=True,
-        env_overrides={"HOME": str(fake_home)},
-    )
+    result = run_script(INSTALL_SCRIPT, "--cli", "all", "--dry-run",
+                        cli_bins=("codex", "gemini", "claude", "kiro-cli"), env_overrides={"HOME": str(fake_home)})
     assert result.returncode == 0, result.stdout
-    assert "Target CLIs: gemini claude kiro codex" in result.stdout
-    assert not (fake_home / ".codex" / "config.toml").exists()
-    register_lines = _collect_register_lines(result.stdout)
-    assert any(f"DRY-RUN REGISTER codex agents in {ROOT}/.codex/config.toml" in line for line in register_lines)
+    assert f"DRY-RUN REGISTER codex agents in {ROOT}/.codex/config.toml" in result.stdout
+    assert not fake_home.exists()
 
 
-def test_deploy_succeeds_with_no_clis_in_non_strict_mode_under_system_bash(tmp_path: Path) -> None:
-    result = run_script(
-        DEPLOY_SCRIPT,
-        "--cli",
-        "all",
-        target_root=tmp_path,
-        use_system_bash=True,
-        allow_nonlocal_target=True,
-    )
-    assert result.returncode == 0, result.stdout
-    assert "warning: no target CLIs selected" in result.stdout
-    assert "SUMMARY copied=0 missing_source=0 skipped_cli=1" in result.stdout
-
-
-def test_install_wrapper_succeeds_with_no_clis_in_non_strict_mode(tmp_path: Path) -> None:
-    result = run_script(
-        INSTALL_SCRIPT,
-        "--cli",
-        "all",
-        target_root=tmp_path,
-        allow_nonlocal_target=True,
-    )
-    assert result.returncode == 0, result.stdout
-    assert "warning: no target CLIs selected" in result.stdout
-    assert "SUMMARY copied=0 missing_source=0 skipped_cli=1" in result.stdout
-
-
-def test_installed_bundle_syncs_existing_surfaces_under_cron_path_without_self_copy(tmp_path: Path) -> None:
-    first_install = run_script(
-        INSTALL_SCRIPT,
-        "--cli",
-        "all",
-        target_root=tmp_path,
-        cli_bins=("codex", "gemini", "claude", "kiro-cli"),
-        use_system_bash=True,
-        allow_nonlocal_target=True,
-    )
-    assert first_install.returncode == 0, first_install.stdout
-
-    installed_skill = tmp_path / ".codex" / "skills" / "engos-meta-instruction-editor" / "SKILL.md"
-    bundled_skill = tmp_path / ".core-prompts-updater" / ".codex" / "skills" / "engos-meta-instruction-editor" / "SKILL.md"
-    assert installed_skill.is_file()
-    assert bundled_skill.is_file()
-    installed_skill.write_text("stale installed skill\n", encoding="utf-8")
-
-    bundled_deploy = tmp_path / ".core-prompts-updater" / "scripts" / "deploy-surfaces.sh"
-    scheduled_sync = run_script(
-        bundled_deploy,
-        "--cli",
-        "all",
-        target_root=tmp_path,
-        use_system_bash=True,
-        allow_nonlocal_target=True,
-    )
-
-    assert scheduled_sync.returncode == 0, scheduled_sync.stdout
-    assert "Target CLIs: gemini claude kiro codex" in scheduled_sync.stdout
-    assert "using existing 'codex' target surface" in scheduled_sync.stdout
-    assert "SameFileError" not in scheduled_sync.stdout
-    assert installed_skill.read_text(encoding="utf-8") == bundled_skill.read_text(encoding="utf-8")
-
-
-def test_nonlocal_install_writes_standalone_updater_bundle_and_prunes_stale_files(tmp_path: Path) -> None:
-    stale = tmp_path / ".core-prompts-updater" / "scripts" / "stale.sh"
-    stale.parent.mkdir(parents=True)
-    stale.write_text("stale\n", encoding="utf-8")
-
-    result = run_script(
-        INSTALL_SCRIPT,
-        "--cli",
-        "all",
-        target_root=tmp_path,
-        cli_bins=("codex",),
-        allow_nonlocal_target=True,
-    )
-
-    assert result.returncode == 0, result.stdout
-    assert (tmp_path / "update_core_prompts.sh").is_file()
-    assert os.access(tmp_path / "update_core_prompts.sh", os.X_OK)
-    assert (tmp_path / ".core-prompts-updater" / "VERSION").read_text(encoding="utf-8").strip() == (
-        ROOT / "VERSION"
-    ).read_text(encoding="utf-8").strip()
-    assert (tmp_path / ".core-prompts-updater" / "RELEASE_SOURCE.env").is_file()
-    local_repo = (tmp_path / ".core-prompts-updater" / "LOCAL_REPO.env").read_text(encoding="utf-8")
-    assert f"REPO_PATH={ROOT}" in local_repo
-    assert "REMOTE_NAME=origin" in local_repo
-    assert (tmp_path / ".core-prompts-updater" / "scripts" / "update-core-prompts.py").is_file()
-    assert (tmp_path / ".core-prompts-updater" / "scripts" / "deploy-surfaces.sh").is_file()
-    assert (tmp_path / ".core-prompts-updater" / "scripts" / "install-local.sh").is_file()
-    assert not stale.exists()
-    helper = tmp_path / ".core-prompts-updater/scripts/eng-report.py"
-    launcher = tmp_path / ".local/bin/eng-report"
-    assert helper.read_bytes() == (ROOT / "scripts/eng-report.py").read_bytes()
-    assert str(ROOT) not in launcher.read_text()
-    assert str(helper) in launcher.read_text()
-    # Execute from outside the checkout to prove the standalone launcher resolves.
-    help_result = subprocess.run([str(launcher), "run", "--help"], cwd=tmp_path,
-                                 capture_output=True, text=True, check=True)
-    assert "--json" in help_result.stdout
-
-
-
-def test_install_help_mentions_release_watch_metadata() -> None:
-    result = run_script(INSTALL_SCRIPT, "--help")
-
-    assert result.returncode == 0
-    assert "standalone updater bundle" in result.stdout
-    assert "RELEASE_SOURCE.env" in result.stdout
-
-
-def test_surface_only_requires_an_explicit_slug(tmp_path: Path) -> None:
-    result = run_script(
-        DEPLOY_SCRIPT,
-        "--cli",
-        "kiro",
-        "--surface-only",
-        target_root=tmp_path,
-        cli_bins=("kiro-cli",),
-        use_system_bash=True,
-        allow_nonlocal_target=True,
-    )
-
+@pytest.mark.parametrize("script", [DEPLOY_SCRIPT, INSTALL_SCRIPT])
+def test_nonlocal_target_requires_explicit_opt_in(tmp_path, script):
+    result = run_script(script, "--cli", "codex", target_root=tmp_path)
     assert result.returncode == 1
-    assert "--surface-only requires at least one --slug" in result.stdout
-    assert not (tmp_path / ".kiro").exists()
+    assert "--allow-nonlocal-target" in result.stdout
+    assert list(tmp_path.iterdir()) == []
 
 
-def test_surface_only_nonlocal_deploy_writes_only_selected_kiro_bundle(tmp_path: Path) -> None:
-    result = run_script(
-        DEPLOY_SCRIPT,
-        "--cli",
-        "kiro",
-        "--slug",
-        "engos-quality-code-review",
-        "--surface-only",
-        target_root=tmp_path,
-        cli_bins=("kiro-cli",),
-        use_system_bash=True,
-        allow_nonlocal_target=True,
-    )
+@pytest.mark.parametrize("script", [DEPLOY_SCRIPT, INSTALL_SCRIPT])
+def test_unspecified_provider_without_binaries_requires_selection(tmp_path, script):
+    result = document(external(script, tmp_path), 1)
+    assert result["status"] == "blocked"
+    assert "NO_PROVIDERS" in result["error"]
+    assert list(tmp_path.iterdir()) == []
 
-    assert result.returncode == 0, result.stdout
-    assert (tmp_path / ".kiro" / "skills" / "engos-quality-code-review" / "SKILL.md").is_file()
-    assert (tmp_path / ".kiro" / "skills" / "engos-quality-code-review" / "resources" / "capability.json").is_file()
-    assert not (tmp_path / ".kiro" / "skills" / "engos-design-architecture").exists()
+
+@pytest.mark.parametrize("script", [DEPLOY_SCRIPT, INSTALL_SCRIPT])
+def test_explicit_provider_supports_offline_install(tmp_path, script):
+    result = document(external(script, tmp_path, "--cli", "codex", "--slug", REVIEW, "--surface-only"))
+    assert result["status"] == "complete"
+    skill = tmp_path / ".agents/skills" / REVIEW
+    assert (skill / "SKILL.md").read_bytes() == (ROOT / ".codex/skills" / REVIEW / "SKILL.md").read_bytes()
+    assert (skill / "resources/capability.json").is_file()
+    assert not (tmp_path / ".codex/skills").exists()
+    assert state(tmp_path)["selection"] == [f"codex:skill:{REVIEW}"]
+
+
+@pytest.mark.parametrize("existing", [False, True])
+def test_strict_provider_requires_binary_even_with_existing_surface(tmp_path, existing):
+    if existing:
+        (tmp_path / ".agents/skills").mkdir(parents=True)
+    result = document(external(DEPLOY_SCRIPT, tmp_path, "--cli", "codex", "--strict-cli"), 1)
+    assert "MISSING_CLI: codex" in result["error"]
+    assert not (tmp_path / ".core-prompts-state").exists()
+
+
+def test_surface_only_requires_explicit_slug(tmp_path):
+    result = document(external(DEPLOY_SCRIPT, tmp_path, "--cli", "kiro", "--surface-only"), 1)
+    assert "--surface-only requires --slug" in result["error"]
+    assert list(tmp_path.iterdir()) == []
+
+
+def test_surface_only_installs_selected_skill_agent_and_scoped_receipt(tmp_path):
+    receipt = document(external(DEPLOY_SCRIPT, tmp_path, "--cli", "kiro", "--slug", ARCH, "--surface-only"))
+    assert receipt["transaction"]
+    for rel in (f".kiro/skills/{ARCH}/SKILL.md", f".kiro/skills/{ARCH}/resources/capability.json",
+                f".kiro/agents/{ARCH}.json", f".kiro/agents/resources/{ARCH}/capability.json"):
+        assert (tmp_path / rel).read_bytes() == (ROOT / rel).read_bytes()
+    assert not (tmp_path / ".kiro/skills" / REVIEW).exists()
     assert not (tmp_path / ".core-prompts-updater").exists()
     assert not (tmp_path / "update_core_prompts.sh").exists()
-    assert not (tmp_path / ".local" / "bin" / "engos-audit-engineering-progress").exists()
-    assert "STANDALONE updater=" not in result.stdout
+    assert not (tmp_path / ".local").exists()
+    assert state(tmp_path)["selection"] == [f"kiro:agent:{ARCH}", f"kiro:skill:{ARCH}"]
+    assert state(tmp_path)["runtime"] == {}
 
 
-def test_nonlocal_dry_run_does_not_write_updater_launcher_or_local_binary(tmp_path: Path) -> None:
-    result = run_script(
-        DEPLOY_SCRIPT,
-        "--cli",
-        "kiro",
-        "--slug",
-        "engos-quality-code-review",
-        "--dry-run",
-        target_root=tmp_path,
-        cli_bins=("kiro-cli",),
-        use_system_bash=True,
-        allow_nonlocal_target=True,
-    )
-
-    assert result.returncode == 0, result.stdout
-    assert not (tmp_path / ".kiro").exists()
-    assert not (tmp_path / ".core-prompts-updater").exists()
-    assert not (tmp_path / "update_core_prompts.sh").exists()
-    assert not (tmp_path / ".local" / "bin" / "eng-report").exists()
-    assert f"DRY-RUN WRITE {tmp_path}/.local/bin/eng-report" in result.stdout
+def test_external_dry_run_is_json_and_writes_nothing(tmp_path):
+    plan = document(external(DEPLOY_SCRIPT, tmp_path, "--cli", "kiro", "--slug", REVIEW, "--dry-run"))
+    assert plan["schema"] == 2 and plan["target"] == str(tmp_path)
+    assert plan["blockers"] == []
+    assert f".kiro/skills/{REVIEW}/SKILL.md" in paths(plan)
+    assert ".core-prompts-updater/scripts/deploy-profile.py" in paths(plan)
+    assert "update_core_prompts.sh" in paths(plan)
+    assert ".core-prompts-state/installation.json" in paths(plan)
+    assert list(tmp_path.iterdir()) == []
 
 
-def test_deploy_fails_in_strict_mode_when_selected_cli_is_missing(tmp_path: Path) -> None:
-    result = run_script(
-        DEPLOY_SCRIPT,
-        "--cli",
-        "codex",
-        "--strict-cli",
-        target_root=tmp_path,
-        use_system_bash=True,
-        allow_nonlocal_target=True,
-    )
-    assert result.returncode == 1, result.stdout
-    assert "error: missing required CLI binary for target 'codex'" in result.stdout
+def test_install_wrapper_and_deploy_emit_identical_plans(tmp_path):
+    args = ("--cli", "codex", "--slug", ARCH, "--surface-only", "--dry-run")
+    deploy = document(external(DEPLOY_SCRIPT, tmp_path, *args))
+    install = document(external(INSTALL_SCRIPT, tmp_path, "--mode", "copy", *args))
+    assert install == deploy
+    assert list(tmp_path.iterdir()) == []
 
 
-def test_deploy_strict_mode_still_requires_binary_for_existing_managed_surface(tmp_path: Path) -> None:
-    (tmp_path / ".codex").mkdir()
-    support = tmp_path / ".core-prompts-updater"
-    support.mkdir()
-    (support / "VERSION").write_text("v1.10.1\n", encoding="utf-8")
-
-    result = run_script(
-        DEPLOY_SCRIPT,
-        "--cli",
-        "codex",
-        "--strict-cli",
-        target_root=tmp_path,
-        use_system_bash=True,
-        allow_nonlocal_target=True,
-    )
-
-    assert result.returncode == 1, result.stdout
-    assert "error: missing required CLI binary for target 'codex'" in result.stdout
-
-
-def test_unmanaged_cli_directory_does_not_bypass_binary_detection(tmp_path: Path) -> None:
-    (tmp_path / ".codex").mkdir()
-
-    result = run_script(
-        DEPLOY_SCRIPT,
-        "--cli",
-        "codex",
-        target_root=tmp_path,
-        use_system_bash=True,
-        allow_nonlocal_target=True,
-    )
-
-    assert result.returncode == 0, result.stdout
-    assert "selected CLI 'codex' is unavailable; skipping" in result.stdout
-    assert "Target CLIs:" not in result.stdout
-
-
-def test_deploy_with_only_codex_available_registers_only_codex_agents(tmp_path: Path) -> None:
-    result = run_script(
-        DEPLOY_SCRIPT,
-        "--cli",
-        "all",
-        target_root=tmp_path,
-        cli_bins=("codex",),
-        use_system_bash=True,
-        allow_nonlocal_target=True,
-    )
-    assert result.returncode == 0, result.stdout
-    assert "Target CLIs: codex" in result.stdout
-
-    for slug in ("engos-quality-code-review", "engos-delivery-resolve-conflict"):
-        assert (tmp_path / ".codex" / "skills" / slug / "SKILL.md").is_file()
-        assert (tmp_path / ".codex" / "skills" / slug / "resources" / "capability.json").is_file()
-        assert not (tmp_path / ".codex" / "agents" / f"{slug}.toml").exists()
-
-    assert (tmp_path / ".codex" / "skills" / "engos-optimization-auto-research" / "resources" / "bootstrap.py").is_file()
-    assert (
-        tmp_path
-        / ".codex"
-        / "skills"
-        / "engos-optimization-auto-research"
-        / "resources"
-        / "templates"
-        / "goal-contract.md.tmpl"
-    ).is_file()
-    assert (tmp_path / ".codex" / "agents" / "resources" / "engos-optimization-auto-research" / "bootstrap.py").is_file()
-
-    config_text = (tmp_path / ".codex" / "config.toml").read_text(encoding="utf-8")
-    for slug in ("engos-reconciliation-converge", "engos-meta-supercharge"):
-        assert f"[agents.{slug}]" in config_text
-    for slug in ("engos-quality-code-review", "engos-delivery-resolve-conflict"):
-        assert f"[agents.{slug}]" not in config_text
-
-
-def test_deploy_with_all_clis_available_deploys_new_skill_surfaces(tmp_path: Path) -> None:
-    result = run_script(
-        DEPLOY_SCRIPT,
-        "--cli",
-        "all",
-        target_root=tmp_path,
-        cli_bins=("codex", "gemini", "claude", "kiro-cli"),
-        use_system_bash=True,
-        allow_nonlocal_target=True,
-    )
-    assert result.returncode == 0, result.stdout
-
-    for slug in ("engos-quality-code-review", "engos-delivery-resolve-conflict"):
-        assert (tmp_path / ".codex" / "skills" / slug / "SKILL.md").is_file()
-        assert (tmp_path / ".codex" / "skills" / slug / "resources" / "capability.json").is_file()
-        assert (tmp_path / ".gemini" / "skills" / slug / "SKILL.md").is_file()
-        assert (tmp_path / ".gemini" / "skills" / slug / "resources" / "capability.json").is_file()
-        assert (tmp_path / ".claude" / "skills" / slug / "SKILL.md").is_file()
-        assert (tmp_path / ".claude" / "skills" / slug / "resources" / "capability.json").is_file()
-        assert (tmp_path / ".kiro" / "skills" / slug / "SKILL.md").is_file()
-        assert (tmp_path / ".kiro" / "skills" / slug / "resources" / "capability.json").is_file()
-        assert not (tmp_path / ".gemini" / "agents" / f"{slug}.md").exists()
-        assert not (tmp_path / ".claude" / "agents" / f"{slug}.md").exists()
-        assert not (tmp_path / ".kiro" / "agents" / f"{slug}.json").exists()
-        assert not (tmp_path / ".codex" / "agents" / f"{slug}.toml").exists()
-
-    for slug in ("engos-reconciliation-converge", "engos-meta-supercharge"):
-        assert (tmp_path / ".codex" / "skills" / slug / "SKILL.md").is_file()
-        assert (tmp_path / ".codex" / "skills" / slug / "resources" / "capability.json").is_file()
-        assert (tmp_path / ".codex" / "agents" / f"{slug}.toml").is_file()
-        assert (tmp_path / ".codex" / "agents" / "resources" / slug / "capability.json").is_file()
-        assert (tmp_path / ".gemini" / "skills" / slug / "SKILL.md").is_file()
-        assert (tmp_path / ".gemini" / "skills" / slug / "resources" / "capability.json").is_file()
-        assert (tmp_path / ".gemini" / "agents" / f"{slug}.md").is_file()
-        assert (tmp_path / ".gemini" / "agents" / "resources" / slug / "capability.json").is_file()
-        assert (tmp_path / ".claude" / "skills" / slug / "SKILL.md").is_file()
-        assert (tmp_path / ".claude" / "skills" / slug / "resources" / "capability.json").is_file()
-        assert (tmp_path / ".claude" / "agents" / f"{slug}.md").is_file()
-        assert (tmp_path / ".claude" / "agents" / "resources" / slug / "capability.json").is_file()
-        assert (tmp_path / ".kiro" / "skills" / slug / "SKILL.md").is_file()
-        assert (tmp_path / ".kiro" / "skills" / slug / "resources" / "capability.json").is_file()
-        assert (tmp_path / ".kiro" / "agents" / f"{slug}.json").is_file()
-        assert (tmp_path / ".kiro" / "agents" / "resources" / slug / "capability.json").is_file()
-
-    for cli_dir in (".codex", ".gemini", ".claude", ".kiro"):
-        assert (tmp_path / cli_dir / "skills" / "engos-optimization-auto-research" / "resources" / "bootstrap.py").is_file()
-        assert (
-            tmp_path
-            / cli_dir
-            / "skills"
-            / "engos-optimization-auto-research"
-            / "resources"
-            / "templates"
-            / "scorecard.json.tmpl"
-        ).is_file()
-
-    assert (tmp_path / ".codex" / "agents" / "resources" / "engos-optimization-auto-research" / "bootstrap.py").is_file()
-    assert (
-        tmp_path
-        / ".gemini"
-        / "agents"
-        / "resources"
-        / "engos-optimization-auto-research"
-        / "templates"
-        / "promotion-packet.md.tmpl"
-    ).is_file()
-    assert (
-        tmp_path
-        / ".claude"
-        / "agents"
-        / "resources"
-        / "engos-optimization-auto-research"
-        / "templates"
-        / "experiment-ledger.md.tmpl"
-    ).is_file()
-    assert (
-        tmp_path
-        / ".kiro"
-        / "agents"
-        / "resources"
-        / "engos-optimization-auto-research"
-        / "templates"
-        / "goal-contract.md.tmpl"
-    ).is_file()
-
-    legacy_direct_paths = (
-        tmp_path / ".gemini" / "commands",
-        tmp_path / ".claude" / "commands",
-        tmp_path / ".codex" / "prompts",
-        tmp_path / ".kiro" / "prompts",
-        tmp_path / ".agents" / "prompts",
-        tmp_path / ".agents" / "commands",
-    )
-    assert all(not path.exists() for path in legacy_direct_paths)
-
-
-def test_install_wrapper_matches_deploy_for_partial_cli_targets(tmp_path: Path) -> None:
-    result = run_script(
-        INSTALL_SCRIPT,
-        "--cli",
-        "all",
-        target_root=tmp_path,
-        cli_bins=("codex", "gemini"),
-        use_system_bash=True,
-        allow_nonlocal_target=True,
-    )
-    assert result.returncode == 0, result.stdout
-    assert "Target CLIs: gemini codex" in result.stdout
-    assert (tmp_path / ".gemini" / "skills" / "engos-quality-code-review" / "SKILL.md").is_file()
-    assert (tmp_path / ".codex" / "skills" / "engos-delivery-resolve-conflict" / "SKILL.md").is_file()
+def test_default_detected_providers_install_skills_without_agent_expansion(tmp_path):
+    document(external(DEPLOY_SCRIPT, tmp_path, cli_bins=("codex", "gemini")))
+    installed = state(tmp_path)
+    assert {k.split(":")[0] for k in installed["selection"]} == {"codex", "gemini"}
+    assert {k.split(":")[1] for k in installed["selection"]} == {"skill"}
+    for provider in (".agents", ".gemini"):
+        for slug in (REVIEW, AUTO):
+            assert (tmp_path / provider / "skills" / slug / "SKILL.md").is_file()
+            assert (tmp_path / provider / "skills" / slug / "resources/capability.json").is_file()
+        assert (tmp_path / provider / "skills" / AUTO / "resources/bootstrap.py").is_file()
+    assert not (tmp_path / ".codex/config.toml").exists()
     assert not (tmp_path / ".claude").exists()
     assert not (tmp_path / ".kiro").exists()
+    assert not (tmp_path / ".codex/agents").exists()
 
 
-def test_deploy_codex_registration_is_idempotent(tmp_path: Path) -> None:
-    first = run_script(
-        DEPLOY_SCRIPT,
-        "--cli",
-        "codex",
-        target_root=tmp_path,
-        cli_bins=("codex",),
-        use_system_bash=True,
-        allow_nonlocal_target=True,
-    )
-    assert first.returncode == 0, first.stdout
-
-    second = run_script(
-        DEPLOY_SCRIPT,
-        "--cli",
-        "codex",
-        target_root=tmp_path,
-        cli_bins=("codex",),
-        use_system_bash=True,
-        allow_nonlocal_target=True,
-    )
-    assert second.returncode == 0, second.stdout
-
-    config_text = (tmp_path / ".codex" / "config.toml").read_text(encoding="utf-8")
-    for slug in ("engos-design-architecture", "engos-reconciliation-converge", "engos-quality-docs-review", "engos-quality-gitops-review", "engos-meta-supercharge"):
-        assert config_text.count(f"[agents.{slug}]") == 1
+def test_with_agents_installs_full_resources_for_detected_providers(tmp_path):
+    document(external(DEPLOY_SCRIPT, tmp_path, "--with-agents",
+                      cli_bins=("codex", "gemini", "claude", "kiro-cli")))
+    for provider, skill_root, extension in (("codex", ".agents", "toml"), ("gemini", ".gemini", "md"),
+                                             ("claude", ".claude", "md"), ("kiro", ".kiro", "json")):
+        for slug in (ARCH, AUTO, REVIEW):
+            assert (tmp_path / skill_root / "skills" / slug / "SKILL.md").is_file()
+        assert (tmp_path / f".{provider}/agents/{ARCH}.{extension}").is_file()
+        assert (tmp_path / f".{provider}/agents/resources/{ARCH}/capability.json").is_file()
+        assert (tmp_path / f".{provider}/agents/resources/{AUTO}/bootstrap.py").is_file()
+        assert not (tmp_path / f".{provider}/agents/{REVIEW}.{extension}").exists()
+    text = (tmp_path / ".codex/config.toml").read_text()
+    assert f"[agents.{ARCH}]" in text
+    assert f"[agents.{REVIEW}]" not in text
 
 
-def test_deploy_codex_registration_removes_legacy_duplicate_stanzas(tmp_path: Path) -> None:
-    config_path = tmp_path / ".codex" / "config.toml"
-    config_path.parent.mkdir(parents=True, exist_ok=True)
-    config_path.write_text(
-        "\n".join(
-            [
-                'model = "gpt-5.4"',
-                "",
-                "[agents.engos-meta-supercharge]",
-                'config_file = "/tmp/legacy-supercharge.toml"',
-                "",
-                "[agents.unmanaged-custom]",
-                'config_file = "/tmp/custom.toml"',
-                "",
-                "# >>> core-prompts codex agents start >>>",
-                "[agents.engos-meta-supercharge]",
-                'config_file = "/tmp/stale-supercharge.toml"',
-                "",
-                "[agents.engos-reconciliation-converge]",
-                'config_file = "/tmp/stale-converge.toml"',
-                "",
-                "# <<< core-prompts codex agents end <<<",
-                "",
-                "[agents.engos-quality-docs-review]",
-                'config_file = "/tmp/legacy-docs-review.toml"',
-                "",
-            ]
-        )
-        + "\n",
-        encoding="utf-8",
-    )
-
-    result = run_script(
-        DEPLOY_SCRIPT,
-        "--cli",
-        "codex",
-        target_root=tmp_path,
-        cli_bins=("codex",),
-        use_system_bash=True,
-        allow_nonlocal_target=True,
-    )
-    assert result.returncode == 0, result.stdout
-
-    config_text = config_path.read_text(encoding="utf-8")
-    assert config_text.count("[agents.engos-meta-supercharge]") == 1
-    assert config_text.count("[agents.engos-reconciliation-converge]") == 1
-    assert config_text.count("[agents.engos-quality-docs-review]") == 1
-    assert "[agents.unmanaged-custom]" in config_text
-    assert "/tmp/legacy-supercharge.toml" not in config_text
-    assert "/tmp/stale-supercharge.toml" not in config_text
-    assert "/tmp/stale-converge.toml" not in config_text
-    assert "/tmp/legacy-docs-review.toml" not in config_text
+def test_standalone_runtime_repeats_under_no_cli_path_without_scope_change(tmp_path):
+    document(external(INSTALL_SCRIPT, tmp_path, "--cli", "codex", "--slug", ARCH))
+    snapshot = state(tmp_path)
+    bundled = tmp_path / ".core-prompts-updater"
+    assert (bundled / "VERSION").read_bytes() == (ROOT / "VERSION").read_bytes()
+    for rel in ("RELEASE_SOURCE.env", "scripts/deploy-profile.py", "scripts/deploy-surfaces.sh",
+                "scripts/install-local.sh", "scripts/update-core-prompts.py"):
+        assert (bundled / rel).is_file()
+    assert os.access(tmp_path / "update_core_prompts.sh", os.X_OK)
+    for _ in range(2):
+        receipt = document(external(bundled / "scripts/deploy-surfaces.sh", tmp_path))
+        assert receipt["status"] == "no-op"
+        assert state(tmp_path) == snapshot
+    assert not (tmp_path / ".gemini").exists()
 
 
-def test_deploy_codex_registration_completes_with_populated_home_style_config(tmp_path: Path) -> None:
-    config_path = tmp_path / ".codex" / "config.toml"
-    config_path.parent.mkdir(parents=True, exist_ok=True)
-    config_path.write_text(
-        "\n".join(
-            [
-                'model = "gpt-5.4"',
-                "",
-                "[agents.local-helper]",
-                'config_file = "/tmp/local-helper.toml"',
-                "",
-                "# >>> core-prompts codex agents start >>>",
-                "[agents.autosearch]",
-                'config_file = "/tmp/stale-autosearch.toml"',
-                "",
-                "# <<< core-prompts codex agents end <<<",
-                "",
-            ]
-        )
-        + "\n",
-        encoding="utf-8",
-    )
-
-    result = run_script(
-        DEPLOY_SCRIPT,
-        "--cli",
-        "all",
-        target_root=tmp_path,
-        cli_bins=("codex", "gemini", "claude", "kiro-cli"),
-        allow_nonlocal_target=True,
-        timeout=30,
-    )
-    assert result.returncode == 0, result.stdout
-    assert "REGISTERED codex agents in" in result.stdout
-    assert "SUMMARY copied=" in result.stdout
-
-    config_text = config_path.read_text(encoding="utf-8")
-    assert "[agents.local-helper]" in config_text
-    assert "[agents.autosearch]" not in config_text
-    assert "/tmp/stale-autosearch.toml" not in config_text
-    for slug in (
-        "engos-design-architecture",
-        "engos-optimization-auto-research",
-        "engos-reconciliation-converge",
-        "engos-quality-docs-review",
-        "engos-quality-gitops-review",
-        "engos-meta-supercharge",
-        "engos-audit-weekly-intel",
-    ):
-        assert config_text.count(f"[agents.{slug}]") == 1
+def test_runtime_keeps_unknown_extra_files(tmp_path):
+    stale = tmp_path / ".core-prompts-updater/scripts/custom.sh"
+    stale.parent.mkdir(parents=True)
+    stale.write_text("my independent script\n")
+    document(external(INSTALL_SCRIPT, tmp_path, "--cli", "codex", "--slug", REVIEW))
+    assert stale.read_text() == "my independent script\n"
+    assert ".core-prompts-updater/scripts/custom.sh" not in state(tmp_path)["runtime"]
 
 
-def test_deploy_retires_mentor_surfaces_and_registration_without_harming_unrelated_state(
-    tmp_path: Path,
-) -> None:
-    mentor_paths = (
-        tmp_path / ".codex" / "skills" / "mentor",
-        tmp_path / ".codex" / "agents" / "mentor.toml",
-        tmp_path / ".codex" / "agents" / "resources" / "mentor",
-        tmp_path / ".gemini" / "skills" / "mentor",
-        tmp_path / ".gemini" / "agents" / "mentor.md",
-        tmp_path / ".gemini" / "agents" / "resources" / "mentor",
-        tmp_path / ".claude" / "skills" / "mentor",
-        tmp_path / ".claude" / "agents" / "mentor.md",
-        tmp_path / ".claude" / "agents" / "resources" / "mentor",
-        tmp_path / ".kiro" / "skills" / "mentor",
-        tmp_path / ".kiro" / "agents" / "mentor.json",
-        tmp_path / ".kiro" / "agents" / "resources" / "mentor",
-    )
-    for path in mentor_paths:
-        if path.suffix:
-            path.parent.mkdir(parents=True, exist_ok=True)
-            path.write_text("stale mentor\n", encoding="utf-8")
-        else:
-            path.mkdir(parents=True, exist_ok=True)
-            (path / "stale.txt").write_text("stale mentor\n", encoding="utf-8")
-
-    preserved_skill = tmp_path / ".codex" / "skills" / "local-helper" / "SKILL.md"
-    preserved_skill.parent.mkdir(parents=True, exist_ok=True)
-    preserved_skill.write_text("local helper\n", encoding="utf-8")
-    config_path = tmp_path / ".codex" / "config.toml"
-    config_path.write_text(
-        "\n".join(
-            [
-                "[agents.mentor]",
-                f'config_file = "{tmp_path / ".codex" / "agents" / "mentor.toml"}"',
-                "",
-                "[agents.local-helper]",
-                'config_file = "/tmp/local-helper.toml"',
-                "",
-            ]
-        ),
-        encoding="utf-8",
-    )
-
-    result = run_script(
-        DEPLOY_SCRIPT,
-        "--cli",
-        "all",
-        target_root=tmp_path,
-        cli_bins=("codex", "gemini", "claude", "kiro-cli"),
-        use_system_bash=True,
-        allow_nonlocal_target=True,
-    )
-
-    assert result.returncode == 0, result.stdout
-    assert "stale_pruned=12" in result.stdout
-    assert all(not path.exists() for path in mentor_paths)
-    assert preserved_skill.read_text(encoding="utf-8") == "local helper\n"
-    config_text = config_path.read_text(encoding="utf-8")
-    assert "[agents.mentor]" not in config_text
-    assert str(tmp_path / ".codex" / "agents" / "mentor.toml") not in config_text
-    assert "[agents.local-helper]" in config_text
-    assert "/tmp/local-helper.toml" in config_text
-    archived = tmp_path / ".core-prompts-state" / "stale-pruned"
-    assert len(list(archived.glob("**/mentor*"))) == 12
+def test_customized_owned_skill_is_preserved_on_routine_update(tmp_path):
+    document(external(INSTALL_SCRIPT, tmp_path, "--cli", "codex", "--slug", REVIEW))
+    skill = tmp_path / ".agents/skills" / REVIEW / "SKILL.md"
+    skill.write_text("my customized review\n")
+    receipt = document(external(INSTALL_SCRIPT, tmp_path), 2)
+    assert receipt["status"] == "applied-with-preserved"  # persists the newly detected conflict
+    assert any(item.get("slug") == REVIEW for item in receipt["preserved"])
+    assert skill.read_text() == "my customized review\n"
+    repeat = document(external(INSTALL_SCRIPT, tmp_path), 2)
+    assert repeat['status'] == 'no-op-with-preserved'
 
 
-def test_filtered_mentor_retirement_prunes_codex_files_and_registration(
-    tmp_path: Path,
-) -> None:
-    mentor_paths = (
-        tmp_path / ".codex" / "skills" / "mentor",
-        tmp_path / ".codex" / "agents" / "mentor.toml",
-        tmp_path / ".codex" / "agents" / "resources" / "mentor",
-    )
-    for path in mentor_paths:
-        if path.suffix:
-            path.parent.mkdir(parents=True, exist_ok=True)
-            path.write_text("stale mentor\n", encoding="utf-8")
-        else:
-            path.mkdir(parents=True, exist_ok=True)
-            (path / "stale.txt").write_text("stale mentor\n", encoding="utf-8")
-
-    config_path = tmp_path / ".codex" / "config.toml"
-    config_path.write_text(
-        "\n".join(
-            [
-                "# >>> core-prompts codex agents start >>>",
-                "[agents.engos-orchestration-batman]",
-                f'config_file = "{tmp_path / ".codex" / "agents" / "engos-orchestration-batman.toml"}"',
-                "",
-                "[agents.mentor]",
-                f'config_file = "{tmp_path / ".codex" / "agents" / "mentor.toml"}"',
-                "",
-                "# <<< core-prompts codex agents end <<<",
-                "",
-                "[agents.local-helper]",
-                'config_file = "/tmp/local-helper.toml"',
-                "",
-            ]
-        ),
-        encoding="utf-8",
-    )
-
-    result = run_script(
-        DEPLOY_SCRIPT,
-        "--cli",
-        "codex",
-        "--slug",
-        "mentor",
-        target_root=tmp_path,
-        cli_bins=("codex",),
-        use_system_bash=True,
-        allow_nonlocal_target=True,
-    )
-
-    assert result.returncode == 0, result.stdout
-    assert "warning: nothing to deploy for selected CLI targets" in result.stdout
-    assert "stale_pruned=3" in result.stdout
-    assert all(not path.exists() for path in mentor_paths)
-    config_text = config_path.read_text(encoding="utf-8")
-    assert "[agents.mentor]" not in config_text
-    assert str(tmp_path / ".codex" / "agents" / "mentor.toml") not in config_text
-    assert "[agents.engos-orchestration-batman]" in config_text
-    assert str(tmp_path / ".codex" / "agents" / "engos-orchestration-batman.toml") in config_text
-    assert "[agents.local-helper]" in config_text
-    assert "/tmp/local-helper.toml" in config_text
-    archived = tmp_path / ".core-prompts-state" / "stale-pruned"
-    assert len(list(archived.glob("**/mentor*"))) == 3
+def test_historical_repair_migrates_only_proven_kiro_packages_and_can_rollback(tmp_path):
+    original = seed_historical_architecture(tmp_path)
+    receipt = document(external(DEPLOY_SCRIPT, tmp_path, "--cli", "kiro", "--repair"))
+    assert state(tmp_path)["selection"] == [f"kiro:agent:{ARCH}", f"kiro:skill:{ARCH}"]
+    assert all(not (tmp_path / rel).exists() for rel in original)
+    assert (tmp_path / f".kiro/agents/{ARCH}.json").is_file()
+    assert not (tmp_path / ".kiro/skills" / REVIEW).exists()
+    restored = document(external(INSTALL_SCRIPT, tmp_path, "--rollback", receipt["transaction"]))
+    assert restored["status"] == "rolled-back"
+    assert all((tmp_path / rel).read_bytes() == content for rel, content in original.items())
+    assert not (tmp_path / f".kiro/agents/{ARCH}.json").exists()
 
 
-def test_filtered_mentor_retirement_preserves_custom_registration(tmp_path: Path) -> None:
-    config_path = tmp_path / ".codex" / "config.toml"
-    config_path.parent.mkdir(parents=True, exist_ok=True)
-    config_path.write_text(
-        "\n".join(
-            [
-                "[agents.mentor]",
-                'config_file = "/opt/custom-agents/mentor.toml"',
-                "",
-                "[agents.local-helper]",
-                'config_file = "/tmp/local-helper.toml"',
-                "",
-            ]
-        ),
-        encoding="utf-8",
-    )
-
-    result = run_script(
-        DEPLOY_SCRIPT,
-        "--cli",
-        "codex",
-        "--slug",
-        "mentor",
-        target_root=tmp_path,
-        cli_bins=("codex",),
-        use_system_bash=True,
-        allow_nonlocal_target=True,
-    )
-
-    assert result.returncode == 0, result.stdout
-    config_text = config_path.read_text(encoding="utf-8")
-    assert "[agents.mentor]" in config_text
-    assert 'config_file = "/opt/custom-agents/mentor.toml"' in config_text
-    assert "[agents.local-helper]" in config_text
-    assert 'config_file = "/tmp/local-helper.toml"' in config_text
+def test_forged_local_bundle_does_not_prove_legacy_ownership(tmp_path):
+    rel = ".kiro/skills/architecture/SKILL.md"
+    for root in (tmp_path, tmp_path / ".core-prompts-updater"):
+        path = root / rel
+        path.parent.mkdir(parents=True)
+        path.write_text("arbitrary alleged legacy bytes\n")
+    manifest = tmp_path / ".core-prompts-updater/.meta/manifest.json"
+    manifest.parent.mkdir(parents=True)
+    manifest.write_text(json.dumps({"surfaces": {"kiro_skill": [rel]}, "resources": {}}))
+    plan = document(external(DEPLOY_SCRIPT, tmp_path, "--cli", "kiro", "--repair", "--dry-run"))
+    assert any(item.get("slug") == "architecture" for item in plan["preserved"])
+    assert all(action["path"] != rel for action in plan["actions"])
+    blocked = document(external(DEPLOY_SCRIPT, tmp_path, "--cli", "kiro", "--repair"), 1)
+    assert blocked["status"] == "blocked"
+    assert any("RUNTIME_CONFLICT" in item for item in blocked["blockers"])
+    assert (tmp_path / rel).read_text() == "arbitrary alleged legacy bytes\n"
+    assert not (tmp_path / ".core-prompts-state").exists()
 
 
-def test_deploy_slug_filter_limits_copy_and_registration(tmp_path: Path) -> None:
-    stale_skill = tmp_path / ".codex" / "skills" / "autosearch" / "SKILL.md"
-    stale_agent = tmp_path / ".codex" / "agents" / "autosearch.toml"
-    stale_resource = tmp_path / ".codex" / "agents" / "resources" / "autosearch" / "capability.json"
-    for path in (stale_skill, stale_agent, stale_resource):
-        path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text("stale", encoding="utf-8")
-
-    result = run_script(
-        DEPLOY_SCRIPT,
-        "--cli",
-        "codex",
-        "--slug",
-        "engos-optimization-auto-research",
-        target_root=tmp_path,
-        cli_bins=("codex",),
-        use_system_bash=True,
-        allow_nonlocal_target=True,
-    )
-    assert result.returncode == 0, result.stdout
-    assert "Deploying managed slugs: engos-optimization-auto-research" in result.stdout
-    assert (tmp_path / ".codex" / "skills" / "engos-optimization-auto-research" / "SKILL.md").is_file()
-    assert (tmp_path / ".codex" / "skills" / "engos-optimization-auto-research" / "resources" / "bootstrap.py").is_file()
-    assert not (tmp_path / ".codex" / "skills" / "autosearch").exists()
-    assert not (tmp_path / ".codex" / "agents" / "autosearch.toml").exists()
-    assert not (tmp_path / ".codex" / "agents" / "resources" / "autosearch").exists()
-    assert not (tmp_path / ".codex" / "skills" / "engos-quality-code-review" / "SKILL.md").exists()
-
-    config_text = (tmp_path / ".codex" / "config.toml").read_text(encoding="utf-8")
-    assert "[agents.engos-optimization-auto-research]" in config_text
-    assert "[agents.engos-reconciliation-converge]" not in config_text
+def test_custom_mentor_package_and_registration_remain_byte_exact(tmp_path):
+    mentor = tmp_path / ".codex/agents/mentor.toml"
+    mentor.parent.mkdir(parents=True)
+    mentor.write_text('name = "my custom mentor"\n')
+    config = tmp_path / ".codex/config.toml"
+    original = '[agents.mentor]\nconfig_file = "/opt/custom-agents/mentor.toml"\n\n[agents.local-helper]\nconfig_file = "/tmp/local-helper.toml"\n'
+    config.write_text(original)
+    receipt = document(external(DEPLOY_SCRIPT, tmp_path, "--cli", "codex", "--repair"), 2)
+    assert any(item.get("slug") == "mentor" for item in receipt["preserved"])
+    assert mentor.read_text() == 'name = "my custom mentor"\n'
+    assert config.read_text() == original
 
 
-def test_deploy_legacy_autosearch_slug_installs_auto_research_and_prunes_stale(tmp_path: Path) -> None:
-    stale_skill = tmp_path / ".codex" / "skills" / "autosearch" / "SKILL.md"
-    stale_agent = tmp_path / ".codex" / "agents" / "autosearch.toml"
-    stale_resource = tmp_path / ".codex" / "agents" / "resources" / "autosearch" / "capability.json"
-    for path in (stale_skill, stale_agent, stale_resource):
-        path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text("stale", encoding="utf-8")
-
-    result = run_script(
-        DEPLOY_SCRIPT,
-        "--cli",
-        "codex",
-        "--slug",
-        "autosearch",
-        target_root=tmp_path,
-        cli_bins=("codex",),
-        use_system_bash=True,
-        allow_nonlocal_target=True,
-    )
-
-    assert result.returncode == 0, result.stdout
-    assert "Deploying managed slugs: engos-optimization-auto-research" in result.stdout
-    assert "stale_pruned=3" in result.stdout
-    assert (tmp_path / ".codex" / "skills" / "engos-optimization-auto-research" / "SKILL.md").is_file()
-    assert not (tmp_path / ".codex" / "skills" / "autosearch").exists()
-    assert not (tmp_path / ".codex" / "agents" / "autosearch.toml").exists()
-    assert not (tmp_path / ".codex" / "agents" / "resources" / "autosearch").exists()
-    assert list((tmp_path / ".core-prompts-state" / "stale-pruned").glob("**/autosearch*"))
+def test_symlinked_selected_package_preserves_referent_and_reports_attention(tmp_path):
+    custom = tmp_path / "custom"
+    custom.mkdir()
+    (custom / "SKILL.md").write_text("outside package\n")
+    package = tmp_path / ".kiro/skills" / REVIEW
+    package.parent.mkdir(parents=True)
+    package.symlink_to(custom, target_is_directory=True)
+    receipt = document(external(DEPLOY_SCRIPT, tmp_path, "--cli", "kiro", "--slug", REVIEW, "--surface-only"), 2)
+    assert receipt["preserved"]
+    assert package.is_symlink()
+    assert (custom / "SKILL.md").read_text() == "outside package\n"
+    assert not (custom / "resources").exists()
 
 
-def test_namespace_deploy_preserves_unknown_legacy_package_before_any_copy(tmp_path):
-    old = tmp_path / '.kiro/skills/analyze-context/SKILL.md'
-    old.parent.mkdir(parents=True)
-    old.write_text('independent customized continuity')
-    result = run_script(DEPLOY_SCRIPT, '--cli', 'kiro', '--slug', 'engos-memory-context-continuity',
-                        '--surface-only', target_root=tmp_path, cli_bins=('kiro-cli',), allow_nonlocal_target=True)
-    assert result.returncode != 0
-    assert 'preserving unproven or customized legacy package' in result.stdout
-    assert old.read_text() == 'independent customized continuity'
-    assert not (tmp_path / '.kiro/skills/engos-memory-context-continuity').exists()
+def test_codex_registration_is_idempotent_and_preserves_custom_settings(tmp_path):
+    config = tmp_path / ".codex/config.toml"
+    config.parent.mkdir()
+    custom = 'model = "my-custom-model"\n\n[agents.local-helper]\nconfig_file = "/opt/local-helper.toml"\n'
+    config.write_text(custom)
+    args = ("--cli", "codex", "--slug", ARCH, "--surface-only")
+    document(external(DEPLOY_SCRIPT, tmp_path, *args))
+    first = config.read_bytes()
+    result = document(external(INSTALL_SCRIPT, tmp_path, *args))
+    assert result["status"] == "no-op"
+    assert config.read_bytes() == first
+    assert config.read_text().startswith(custom)
+    assert config.read_text().count(f"[agents.{ARCH}]") == 1
 
 
-def test_namespace_deploy_requires_complete_prior_bundle_identity(tmp_path):
-    import json
-    old = tmp_path / '.kiro/skills/analyze-context/SKILL.md'
-    old.parent.mkdir(parents=True); old.write_text('old managed continuity')
-    rel = old.relative_to(tmp_path)
-    prior = tmp_path / '.core-prompts-updater' / rel
-    prior.parent.mkdir(parents=True); prior.write_bytes(old.read_bytes())
-    meta = tmp_path / '.core-prompts-updater/.meta/manifest.json'
-    meta.parent.mkdir(parents=True); meta.write_text(json.dumps({'surfaces': {'kiro_skill': [str(rel)]}, 'resources': {}}))
-    extra = old.parent / 'custom.txt'; extra.write_text('retain me')
-    args = ('--cli', 'kiro', '--slug', 'engos-memory-context-continuity', '--surface-only')
-    refused = run_script(DEPLOY_SCRIPT, *args, target_root=tmp_path, cli_bins=('kiro-cli',), allow_nonlocal_target=True)
-    assert refused.returncode != 0 and extra.read_text() == 'retain me'
-    extra.unlink()  # Disposable fixture only; now the entire package matches prior provenance.
-    result = run_script(DEPLOY_SCRIPT, *args, target_root=tmp_path, cli_bins=('kiro-cli',), allow_nonlocal_target=True)
-    assert result.returncode == 0, result.stdout
-    assert not old.exists()
-    assert (tmp_path / '.kiro/skills/engos-memory-context-continuity/SKILL.md').is_file()
-    assert list((tmp_path / '.core-prompts-state/stale-pruned').rglob('SKILL.md'))
+def test_invalid_duplicate_registration_is_preserved_instead_of_rewritten(tmp_path):
+    config = tmp_path / ".codex/config.toml"
+    config.parent.mkdir()
+    original = f'[agents.{ARCH}]\nconfig_file = "/opt/one.toml"\n\n[agents.{ARCH}]\nconfig_file = "/opt/two.toml"\n'
+    config.write_text(original)
+    result = document(external(DEPLOY_SCRIPT, tmp_path, "--cli", "codex", "--slug", ARCH, "--surface-only"), 2)
+    assert any(".codex/config.toml" in item.get("roots", []) for item in result["preserved"])
+    assert config.read_text() == original
+    assert not (tmp_path / f".codex/agents/{ARCH}.toml").exists()
+
+
+def test_reviewed_plan_is_applied_by_wrapper_and_changed_target_rejected(tmp_path):
+    target = tmp_path / "target"
+    target.mkdir()
+    args = ("--cli", "kiro", "--slug", REVIEW, "--surface-only")
+    plan = document(external(DEPLOY_SCRIPT, target, *args, "--dry-run"))
+    saved = tmp_path / "approved.json"
+    saved.write_text(json.dumps(plan))
+    receipt = document(external(INSTALL_SCRIPT, target, "--apply-plan", str(saved)))
+    assert receipt["status"] == "complete"
+    second = document(external(INSTALL_SCRIPT, target, "--apply-plan", str(saved)), 1)
+    assert second["code"] == "stale-plan"
+    assert (target / f".kiro/skills/{REVIEW}/SKILL.md").is_file()
+
+
+def test_install_help_and_copy_compatibility_contract(tmp_path):
+    help_result = run_script(INSTALL_SCRIPT, "--help")
+    assert help_result.returncode == 0
+    assert "standalone updater bundle" in help_result.stdout
+    assert "RELEASE_SOURCE.env" in help_result.stdout
+    rejected = external(INSTALL_SCRIPT, tmp_path, "--mode", "link")
+    assert rejected.returncode == 1
+    assert "no longer supports link mode" in rejected.stdout
+    assert list(tmp_path.iterdir()) == []
+
+
+def test_explicit_unsupported_python_stops_before_capsule_or_target_changes(tmp_path):
+    unsupported = tmp_path / "unsupported-python"
+    unsupported.write_text("#!/bin/sh\nexit 1\n")
+    unsupported.chmod(0o755)
+    target = tmp_path / "target"
+    target.mkdir()
+    result = external(DEPLOY_SCRIPT, target, "--cli", "codex", env_overrides={"PYTHON_BIN": str(unsupported)})
+    assert result.returncode == 1
+    assert "requires Python 3.11+" in result.stdout
+    assert "Traceback" not in result.stdout
+    assert list(target.iterdir()) == []
+
+
+def test_symlinked_target_root_is_rejected_without_changing_referent(tmp_path):
+    real = tmp_path / "real"
+    real.mkdir()
+    alias = tmp_path / "alias"
+    alias.symlink_to(real, target_is_directory=True)
+    result = document(external(DEPLOY_SCRIPT, alias, "--cli", "kiro", "--slug", REVIEW, "--surface-only"), 1)
+    assert "symlink" in result["error"]
+    assert alias.is_symlink()
+    assert list(real.iterdir()) == []
+
+
+def test_legacy_slug_alias_selects_canonical_codex_skill_and_agent(tmp_path):
+    document(external(DEPLOY_SCRIPT, tmp_path, "--cli", "codex", "--slug", "autosearch", "--surface-only"))
+    assert state(tmp_path)["selection"] == [f"codex:agent:{AUTO}", f"codex:skill:{AUTO}"]
+    assert (tmp_path / f".agents/skills/{AUTO}/resources/bootstrap.py").is_file()
+    assert (tmp_path / f".codex/agents/resources/{AUTO}/bootstrap.py").is_file()
+    assert (tmp_path / f".codex/agents/{AUTO}.toml").is_file()
+    assert not (tmp_path / ".codex/skills/autosearch").exists()
+    assert not (tmp_path / ".agents/skills" / REVIEW).exists()

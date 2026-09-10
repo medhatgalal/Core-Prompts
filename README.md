@@ -2,6 +2,8 @@
 
 Core-Prompts ships installed skills and agent surfaces you use directly in Codex, Gemini, Claude, and Kiro. This repository is the canonical source, intake, build, validation, and release layer that keeps those shipped capabilities aligned.
 
+Install or repair an existing setup with the current installer, even if it has no updater or receipts. It recognizes complete historical skill and agent packages, migrates their current identities, and preserves custom files. Your selected providers, surfaces, and capabilities persist across routine updates. See [installation and recovery](docs/INSTALL-PROFILES.md).
+
 The right mental model is simple:
 
 1. installed capabilities first
@@ -295,40 +297,42 @@ What this proves:
 - `validate --strict` checks generated surfaces, manifests, and contract integrity
 - `smoke-clis.py` probes local vendor CLIs and expected surface visibility where supported
 
-### Deploy Dry Run
+### Install Or Repair
+
+From a trusted current release or verified checkout, preview your home installation:
 
 ```bash
-bin/capability-fabric deploy --dry-run --cli all
+bash scripts/install-local.sh --target "$HOME" --allow-nonlocal-target \
+  --cli kiro --repair --dry-run > /tmp/core-prompts-install-plan.json
+bash scripts/install-local.sh --target "$HOME" --allow-nonlocal-target \
+  --apply-plan /tmp/core-prompts-install-plan.json
 ```
 
-Use deploy after review when you want generated surfaces copied to a target root. Deploy is copy-only. It does not classify sources and it does not mutate canonical SSOT.
-
-For an exact repair or bounded rollout, require a slug and skip updater/launcher refresh:
-
-```bash
-bin/capability-fabric deploy --dry-run --surface-only --cli kiro --slug engos-quality-code-review --target "$HOME" --allow-nonlocal-target
-```
+Review the JSON before applying. Fresh installs select skills by default; add
+`--with-agents` when you want current named agents too. Repair recognizes existing
+skills and agents independently, including historical `mentor` retirement, without
+requiring an old updater. Saved skills-only profiles keep that scope on ordinary
+sync; explicit repair can adopt recognized existing agents on their selected providers.
+Use `--cli all` for initial provider discovery or omit it to keep saved selection.
 
 ### Installed Release Watch
 
-Initial home installs through `bin/capability-fabric deploy --target "$HOME" --allow-nonlocal-target` or `scripts/install-local.sh --target "$HOME" --allow-nonlocal-target` also write:
-
-- `~/.core-prompts-updater/VERSION`
-- `~/.core-prompts-updater/RELEASE_SOURCE.env`
-- `~/.core-prompts-updater/LOCAL_REPO.env`
-- `~/update_core_prompts.sh`
-
-Use release watch to compare that installed standalone bundle against the latest immutable release tag. Legacy installs without a saved profile record the source checkout; their accepted releases safely fast-forward that checkout first when it is clean, then run the installer from it. If the checkout is dirty, missing, detached, or cannot fast-forward, release-watch falls back to the clean release mirror:
+Installation supplies `~/.core-prompts-updater/` and `~/update_core_prompts.sh`.
+Existing schedules are preserved; creating one is a separate choice.
 
 ```bash
 ~/update_core_prompts.sh --check-release
 ~/update_core_prompts.sh --accept-release
-~/update_core_prompts.sh --rollback previous
+~/update_core_prompts.sh --list-snapshots
 ```
 
-`--check-release` checks only, syncs a dedicated clean mirror, updates local release-watch state, and never auto-installs. `--accept-release` is the explicit install/apply step. Daily scheduled runs auto-accept valid releases by default after the release check; use `--schedule-daily HH:MM --notify-only` for check-only scheduling. The scheduled runner supplies a deterministic PATH, and the deployer refreshes existing managed CLI surfaces even when a non-interactive process cannot see a CLI binary. Legacy accepted releases create rollback snapshots first, retain the latest 2 snapshots by default, update the recorded source checkout when safe, and `--rollback previous` restores the latest installed-state snapshot.
-
-Saved-profile release acceptance uses a verified release mirror and its own recoverable transaction; it does not update the development checkout. The installed version and local checkout may therefore differ. See [Installation Profiles](docs/INSTALL-PROFILES.md).
+Checking never installs. Scheduled runs auto-accept valid releases by default;
+`--schedule-daily HH:MM --notify-only` disables automatic release acceptance;
+routine sync of the existing bundle still runs. New-engine
+updates use the saved installation and verified release mirror. Preserved conflicts
+return exit `2`; runtime freshness alone does not prove every package migrated.
+[Installation and recovery](docs/INSTALL-PROFILES.md) explains older-updater bridge
+limits, explicit repair, rollback, and separate native CLI verification.
 
 ## Generated Inspection Views
 

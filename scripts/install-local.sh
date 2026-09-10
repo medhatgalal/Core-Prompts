@@ -5,16 +5,18 @@ usage() {
   cat <<'EOF'
 Usage: scripts/install-local.sh [--cli gemini|claude|kiro|codex|grok|all] [--target PATH] [--allow-nonlocal-target] [--dry-run] [--strict-cli] [--mode copy]
 
-Legacy compatibility wrapper around deploy-surfaces.sh.
-Copy-only behavior is enforced. Symlink mode is removed.
+Compatibility wrapper around deploy-surfaces.sh and its transactional installer.
+Symlinked and customized packages are preserved; link installation is unsupported.
 When --target points outside this repository, install also writes the standalone updater bundle,
-installed VERSION, RELEASE_SOURCE.env, LOCAL_REPO.env when available, and update_core_prompts.sh
+installed VERSION, RELEASE_SOURCE.env, and update_core_prompts.sh
 for later release checks.
 
 Options:
   --profile PATH                     Use a receipt-protected skills profile
   --apply-plan PATH                  Apply a reviewed JSON plan
-  --rollback ID                      Restore a profile transaction
+  --rollback ID                      Restore an installation transaction
+  --repair                           Recognize historical/current installed skills and agents
+  --with-agents                      Explicitly install current skills and agents
   --cli gemini|claude|kiro|codex|grok|all  Target CLI(s). Default: all
   --target PATH                       Destination root path. Default: repository root
   --allow-nonlocal-target             Allow explicit --target outside repository root
@@ -38,7 +40,7 @@ while [[ $# -gt 0 ]]; do
         exit 1
       fi
       ;;
-    --cli|--target|--profile|--apply-plan|--rollback)
+    --cli|--target|--profile|--apply-plan|--rollback|--slug)
       flag="$1"
       shift
       value="${1:-}"
@@ -49,7 +51,7 @@ while [[ $# -gt 0 ]]; do
       fi
       ARGS+=("$flag" "$value")
       ;;
-    --allow-nonlocal-target|--dry-run|--strict-cli)
+    --allow-nonlocal-target|--dry-run|--strict-cli|--repair|--with-agents|--surface-only|--list-transactions)
       ARGS+=("$1")
       ;;
     -h|--help)

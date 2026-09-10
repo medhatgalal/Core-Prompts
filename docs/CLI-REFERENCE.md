@@ -36,12 +36,12 @@ Profiles are `static`, `native`, `routing-canary`, `canary`, `promotion`, `cross
 | --- | --- | --- |
 | `bin/capability-fabric build` | generate all CLI surfaces, bundled resources, and generated inspection views | no |
 | `bin/capability-fabric validate --strict` | validate generated surfaces and contracts | no |
-| `bin/capability-fabric deploy --dry-run --cli all` | preview copy-only deployment to a target root | no |
-| `bin/capability-fabric deploy --surface-only --slug <slug> --cli <cli>` | copy only the selected generated surface bundle without refreshing the standalone updater, launcher, or local binaries | yes |
+| `bash scripts/install-local.sh --target "$HOME" --allow-nonlocal-target --repair --dry-run` | preview ownership-aware installation JSON | no |
+| `bash scripts/install-local.sh --target "$HOME" --allow-nonlocal-target --apply-plan PLAN.json` | apply an exact reviewed installation plan | yes |
 | `bin/capability-fabric update --check-release` | check installed standalone bundle vs latest immutable release and update release-watch state | no |
 | `bin/capability-fabric update --accept-release` | explicitly accept and apply a pending release from the synced mirror | yes |
-| `bin/capability-fabric update --rollback previous` | restore the latest pre-release snapshot | yes |
-| `bin/capability-fabric update --list-snapshots` | list available rollback snapshots | no |
+| `bin/capability-fabric update --rollback previous` | restore the latest available installation recovery point | yes |
+| `bin/capability-fabric update --list-snapshots` | list installation journals and older rollback snapshots | no |
 | `python3 scripts/smoke-clis.py` | probe installed vendor CLIs and surface visibility | no |
 | `bin/uac audit` | inspect current SSOT and generated surface alignment | no |
 | `bin/uac plan <source...>` | show proposed landing shape for one or more sources | no |
@@ -176,74 +176,80 @@ The packet must contain:
 
 See [Plan to Goal Design](EXAMPLES.md#engos-design-plan-to-goal) for a two-criterion example. These commands establish deterministic packet integrity only. Behavioral promotion still requires independent qualified evaluation.
 
-### Preview A Deploy Without Mutating A Target
+### Preview And Apply An Installation
+
+The external-target path is shared by `install-local.sh` and `deploy-surfaces.sh`:
 
 ```bash
-bin/capability-fabric deploy --dry-run --cli all
+bash scripts/install-local.sh --target "$HOME" --allow-nonlocal-target \
+  --cli kiro --repair --dry-run > /tmp/core-prompts-install-plan.json
+bash scripts/install-local.sh --target "$HOME" --allow-nonlocal-target \
+  --apply-plan /tmp/core-prompts-install-plan.json
 ```
 
-Use this when:
+Review `selection`, `actions`, `outcomes`, `preserved`, and `blockers`. Apply
+replans under the target lock and rejects changed source, state, or destination
+identities. No old updater or receipt is required for trusted historical recognition.
 
-- you want the copy plan before touching a target root
-- you are reviewing install behavior
-- you want to scope deploy to specific CLIs or slugs
+| Option | Meaning |
+| --- | --- |
+| `--cli codex\|kiro\|claude\|gemini\|grok\|all` | Select a provider; initial `all` discovers available or existing providers, while saved selection persists on routine calls. |
+| `--repair` | Adopt independently recognized existing skills and agents within the selected providers. |
+| `--with-agents` | Explicitly select current skills and emitted agents; fresh default is skills. |
+| `--slug SLUG` | Select emitted skills and agents for a capability; repeat for multiple slugs. |
+| `--surface-only` | Require a slug and skip updater/launcher refresh while recording surface ownership. |
+| `--profile PATH` | Use a schema 1 skills selection input; do not combine with CLI/slug/surface-only selection. |
+| `--dry-run` | Print a JSON plan without installation writes. |
+| `--apply-plan PATH` | Apply a reviewed plan for this source and target. |
+| `--strict-cli` | Require selected CLI executables; no runtime or account proof implied. |
+| `--list-transactions` | List installation transaction IDs and status. |
+| `--rollback ID --dry-run` | Check exact recovery preconditions before restoration. |
+| `--rollback ID` | Restore transaction preimages if later edits do not conflict. |
 
-For an intentionally narrow external-target deployment, combine `--surface-only` with one or more `--slug` values. The command fails closed when `--surface-only` has no slug filter.
+Fresh installs save concrete provider/surface/slug selection in
+`.core-prompts-state/installation.json`. Existing schema 1 profiles retain their
+skill scope on ordinary sync; explicit repair can add independently recognized
+existing agents on those providers. Routine updates reconcile resources within
+owned selected packages, without adding unrelated catalog entries.
 
-Example with slug targeting:
+Whole unknown, custom, partial, or symlinked packages are preserved. Exit `2`
+reports `applied-with-preserved` or `no-op-with-preserved`; it is not full parity.
+Exit `1` reports blockers or failures. Source/runtime blockers prevent surface
+changes, while interrupted apply requires recovery using its reported transaction.
 
-```bash
-bin/capability-fabric deploy --dry-run --cli codex --slug engos-optimization-auto-research --slug engos-meta-supercharge
-```
-
-Batman-selected Kiro deploys have one additional, bounded cleanup contract. Preview it before changing an external target:
-
-```bash
-bin/capability-fabric deploy --dry-run --surface-only --cli kiro --slug engos-orchestration-batman --target "$HOME" --allow-nonlocal-target
-```
-
-When present, the dry-run lists exactly these deprecated prune candidates and does not move them:
-
-- `.kiro/skills/engos-orchestration-batman/PROTOCOL.md`
-- `.kiro/skills/engos-orchestration-batman/PROMPT-AMENDMENT.md`
-- `.kiro/skills/engos-orchestration-batman/CODEX-UAC-INTAKE.md`
-
-Removing `--dry-run` copies the current generated Batman surface and recoverably moves only those existing files under `.core-prompts-state/stale-pruned/<timestamp>/...`. Each live move prints a `source -> archive` receipt. The cleanup preserves `.kiro/skills/engos-orchestration-batman/SKILL.md`, its `resources/` tree, and unrelated files. A non-Batman slug or non-Kiro deploy does not trigger this cleanup.
-
-For targeted recovery, use the receipt to restore the archived entry to its original source path. For a release install, the pre-install rollback snapshot remains available through `bin/capability-fabric update --rollback previous`.
-
-Expected result:
-
-- explicit copy plan
-- no target mutation
-
-When `engos-optimization-auto-research` is deployed, stale installed `autosearch` paths for the selected CLIs are pruned as part of the breaking rename.
-
-The `engos-<category>-<skill-name>` namespace migration also prunes the matching unprefixed skill, agent, and agent-resource paths for the selected slug. Live pruning is recoverable: existing entries are moved under `.core-prompts-state/stale-pruned/<timestamp>/...` and each move prints a `source -> archive` receipt. No duplicate short-name packages or native menu aliases are emitted. Supercharge retains conversational prefix aliases within its canonical instructions. For Codex, matching legacy agent stanzas that point to the target's old managed agent files are removed during registration; unrelated custom stanzas are preserved.
+Historical retirement, including `mentor` and namespace predecessors, is based
+on trusted complete package identities and dependency checks. Exact preimages
+are journaled; the new engine does not remove files solely because their names
+appear on an old prune list. See [installation and recovery](INSTALL-PROFILES.md).
 
 ### Check Or Accept Installed Releases
 
-Initial home installs write the standalone release-watch contract into `~/.core-prompts-updater/`: installed `VERSION`, `RELEASE_SOURCE.env`, `LOCAL_REPO.env`, updater scripts, and the generated surfaces needed for later checks.
-
 ```bash
-bin/capability-fabric update --check-release
-bin/capability-fabric update --accept-release
-bin/capability-fabric update --rollback previous
+~/update_core_prompts.sh --check-release
+~/update_core_prompts.sh --accept-release
+~/update_core_prompts.sh --list-snapshots
+~/update_core_prompts.sh --rollback previous
 ```
 
-Use this when:
+`bin/capability-fabric update` exposes the same updater options from a checkout.
+Checking fetches release tags, prepares the dedicated mirror, and updates
+`.core-prompts-state/release-watch.json`, without installing. New-engine acceptance
+uses the verified mirror and saved installation scope in a recoverable transaction;
+it does not update a development checkout.
 
-- you want to compare the installed standalone bundle against the latest immutable release tag
-- a daily scheduled run reported a pending release
-- you are ready to explicitly refresh the installed bundle from the synced clean mirror
+Use `--schedule-daily HH:MM` to explicitly create or change a schedule; scheduled
+runs auto-accept valid releases by default. Add `--notify-only` to disable automatic
+release acceptance; routine sync of the existing bundle still runs. Installation
+and repair preserve existing schedules.
 
-Expected result:
+The updater exposes new installation journals alongside older recovery formats.
+New journals live under `.core-prompts-state/install-transactions/` and are not
+automatically pruned. `retention_candidates` identifies eligible older journals
+beyond the latest two for separately reviewed cleanup. `--snapshot-retention N`
+applies only to the older snapshot path, not new transactions.
 
-- `--check-release` fetches release tags, syncs `~/.core-prompts-release-cache/repo`, updates `~/.core-prompts-state/release-watch.json`, and never auto-installs
-- scheduled `--schedule-daily HH:MM` runs auto-accept valid releases by default after the release check; they use a deterministic PATH and continue refreshing existing managed CLI surfaces when cron cannot discover a CLI binary; add `--notify-only` to keep scheduling check-only
-- `--accept-release` shows installed vs pending version, prompts for confirmation, snapshots first, fast-forwards the recorded source checkout when it is clean and safe, runs the installer from that checkout, falls back to the synced mirror when needed, and clears pending state on success
-- rollback snapshot retention defaults to the latest 2 snapshots; override with `--snapshot-retention N`
-- `--rollback previous` restores the latest snapshot from `~/.core-prompts-state/snapshots/`
+Recovery uses exact package and installation-state identities, with a narrow
+[release-watch observation exception](INSTALL-PROFILES.md#recover-an-installation).
 
 ## Canonical Inputs
 
@@ -282,22 +288,14 @@ Direct exposure is standardized on `skills/<slug>/SKILL.md` for every supported 
 
 ## Deploy Contract
 
-- `apply` mutates canonical repo state only
-- `deploy` copies generated artifacts to a target root
-- deploy is copy-only and never creates symlinks
-- deploy defaults to the repository root unless `--target` is provided
-- `scripts/install-local.sh` is a compatibility wrapper around deploy and remains copy-only
-- home-target install writes `~/.core-prompts-updater/VERSION`, `~/.core-prompts-updater/RELEASE_SOURCE.env`, `~/.core-prompts-updater/LOCAL_REPO.env`, and `~/update_core_prompts.sh`
-- scheduled updater runs check releases first, auto-accept valid releases by default, then run normal sync
-- `bin/capability-fabric update --check-release` checks only and never auto-installs
-- `bin/capability-fabric update --accept-release` is the explicit install/apply step
-- `bin/capability-fabric update --schedule-daily HH:MM --notify-only` preserves check-only scheduling
-- `bin/capability-fabric update --rollback previous` restores the latest pre-release snapshot
-- a Batman-selected Kiro dry-run lists exactly `.kiro/skills/engos-orchestration-batman/PROTOCOL.md`, `.kiro/skills/engos-orchestration-batman/PROMPT-AMENDMENT.md`, and `.kiro/skills/engos-orchestration-batman/CODEX-UAC-INTAKE.md` when present, without moving them
-- the corresponding live deploy archives those exact files under `.core-prompts-state/stale-pruned/<timestamp>/...`, prints `source -> archive` receipts, and preserves `SKILL.md`, `resources/`, and unrelated files
-- archived Batman residues remain individually recoverable from the receipt path; a release install can instead use its rollback snapshot
-- install and deploy do not rewrite capability metadata paths
-- repeated no-op `build` and `validate` runs should not rewrite `.meta/manifest.json`; volatile run evidence belongs under `reports/`
+- `apply` in UAC changes canonical repository source; installation `--apply-plan` changes the reviewed target.
+- External-target install and deploy use the same ownership-aware engine and create no symlinks.
+- An explicit external `--target` requires `--allow-nonlocal-target`; use `build` for repository surfaces.
+- Normal installation supplies the standalone runtime and `update_core_prompts.sh`; `--surface-only --slug SLUG` skips runtime refresh.
+- Historical packages require trusted catalog identities or valid receipts; customization and dependency conflicts preserve affected packages.
+- Plans bind exact identities; transactions retain recoverable preimages and verify replacements before retirement.
+- Install and deploy do not rewrite portable capability metadata paths.
+- Repeated no-op build/validation should not rewrite `.meta/manifest.json`; run evidence belongs under `reports/`.
 
 ## Smoke Checks
 
