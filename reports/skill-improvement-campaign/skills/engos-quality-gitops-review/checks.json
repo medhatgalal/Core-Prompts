@@ -1,0 +1,39 @@
+{
+  "evidence_class": "static_research_packet_checks",
+  "model_calls": 0,
+  "fixture_checks": {
+    "status": "pass",
+    "cases": 16,
+    "negative_output_controls": 7,
+    "evidence_class": "static_fixture_integrity",
+    "model_calls": 0,
+    "native_preflight": false,
+    "assessor_calibration": "not_run",
+    "public_variants_within_cases": 1,
+    "downstream_improvement": "unmeasured"
+  },
+  "baseline_compile": {
+    "command": "bin/capability-eval compile --skill engos-quality-gitops-review --check",
+    "exit_code": 0,
+    "status": "structural_ready",
+    "check_result": "pass",
+    "drift": []
+  },
+  "uac_body_plan": "structural_ready",
+  "uac_body_judge": "structural_ready",
+  "behavioral_status": "behavioral_pending",
+  "frozen_file_hashes": "pass",
+  "uac_source_exact_match": "pass",
+  "canonical_ssot_unchanged": true,
+  "independent_semantic_review": "pending",
+  "resource_assembly": "pass (four routes using existing loader)",
+  "canonical_resource_integration": "not performed",
+  "model_boundary_preflight": "not admitted",
+  "comparative_improvement": "unmeasured",
+  "baseline_compile_evidence_reused_from_commit": "85d2d5076938d0a7270094b80e25e289e77cc9cd",
+  "body_uac_evidence_reused_from_commit": "85d2d5076938d0a7270094b80e25e289e77cc9cd",
+  "body_uac_scope": "Body unchanged; earlier exact-body static plan/judge reused. Changed release reference assembled separately, full canonical package UAC remains pending.",
+  "assessor_calibration": "not_run",
+  "checked_at": "2026-09-10T01:18:23.345308+00:00",
+  "shared_public_report_current_hash": "pass"
+}

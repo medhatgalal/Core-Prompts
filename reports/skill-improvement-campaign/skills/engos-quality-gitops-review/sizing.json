@@ -1,0 +1,301 @@
+{
+  "schema": "GitOpsProspectiveSizing.v1",
+  "status": "not_admitted",
+  "method": "Known UTF-8 input bytes / 4 heuristic, same method as repo artifact_metrics; not tokenizer output or observed usage",
+  "incumbent": {
+    "name": "engos-quality-gitops-review",
+    "description": "Assess repository hygiene, commit and pull request or merge request readiness, CI, packaging, merge, tag, and release prerequisites across GitHub and GitLab. Use for release or merge gates; do not claim hosted state without current verification.",
+    "lines": 149,
+    "words": 1241,
+    "bytes": 8452,
+    "model_tokens_estimate": 2113,
+    "sha256": "e44f6b347bf7ff7b616ce2f6c2598ed72fe31ba4e2b91e9fa4405076354ffde4"
+  },
+  "candidate_core": {
+    "name": "engos-quality-gitops-review",
+    "description": "Assess repository hygiene, commit and pull request or merge request readiness, CI, packaging, merge, tag, and release prerequisites across GitHub and GitLab. Use for release or merge gates; do not claim hosted state without current verification.",
+    "lines": 125,
+    "words": 2142,
+    "bytes": 15852,
+    "model_tokens_estimate": 3963,
+    "sha256": "b1b1c24a46adba88340a8d51179e602102e5462b39afd80476b21c141f9f061a"
+  },
+  "reference_bytes": {
+    "release": 4841,
+    "cleanup": 2347,
+    "provider-ci": 4356
+  },
+  "common_task_bytes": 1294,
+  "case_inputs": [
+    {
+      "case": "G01",
+      "selected_candidate_references": [],
+      "known_utf8_bytes": {
+        "bare": 2332,
+        "incumbent": 10784,
+        "candidate": 18184
+      },
+      "heuristic_input_tokens": {
+        "bare": 583,
+        "incumbent": 2696,
+        "candidate": 4546
+      }
+    },
+    {
+      "case": "G02",
+      "selected_candidate_references": [
+        "provider-ci"
+      ],
+      "known_utf8_bytes": {
+        "bare": 2050,
+        "incumbent": 10502,
+        "candidate": 22258
+      },
+      "heuristic_input_tokens": {
+        "bare": 513,
+        "incumbent": 2626,
+        "candidate": 5565
+      }
+    },
+    {
+      "case": "G03",
+      "selected_candidate_references": [
+        "provider-ci"
+      ],
+      "known_utf8_bytes": {
+        "bare": 2542,
+        "incumbent": 10994,
+        "candidate": 22750
+      },
+      "heuristic_input_tokens": {
+        "bare": 636,
+        "incumbent": 2749,
+        "candidate": 5688
+      }
+    },
+    {
+      "case": "G04",
+      "selected_candidate_references": [
+        "provider-ci"
+      ],
+      "known_utf8_bytes": {
+        "bare": 2532,
+        "incumbent": 10984,
+        "candidate": 22740
+      },
+      "heuristic_input_tokens": {
+        "bare": 633,
+        "incumbent": 2746,
+        "candidate": 5685
+      }
+    },
+    {
+      "case": "G05",
+      "selected_candidate_references": [
+        "provider-ci"
+      ],
+      "known_utf8_bytes": {
+        "bare": 2382,
+        "incumbent": 10834,
+        "candidate": 22590
+      },
+      "heuristic_input_tokens": {
+        "bare": 596,
+        "incumbent": 2709,
+        "candidate": 5648
+      }
+    },
+    {
+      "case": "G06",
+      "selected_candidate_references": [
+        "provider-ci"
+      ],
+      "known_utf8_bytes": {
+        "bare": 2495,
+        "incumbent": 10947,
+        "candidate": 22703
+      },
+      "heuristic_input_tokens": {
+        "bare": 624,
+        "incumbent": 2737,
+        "candidate": 5676
+      }
+    },
+    {
+      "case": "G07",
+      "selected_candidate_references": [
+        "provider-ci"
+      ],
+      "known_utf8_bytes": {
+        "bare": 2388,
+        "incumbent": 10840,
+        "candidate": 22596
+      },
+      "heuristic_input_tokens": {
+        "bare": 597,
+        "incumbent": 2710,
+        "candidate": 5649
+      }
+    },
+    {
+      "case": "G08",
+      "selected_candidate_references": [
+        "provider-ci"
+      ],
+      "known_utf8_bytes": {
+        "bare": 1964,
+        "incumbent": 10416,
+        "candidate": 22172
+      },
+      "heuristic_input_tokens": {
+        "bare": 491,
+        "incumbent": 2604,
+        "candidate": 5543
+      }
+    },
+    {
+      "case": "G09",
+      "selected_candidate_references": [
+        "provider-ci",
+        "release"
+      ],
+      "known_utf8_bytes": {
+        "bare": 4039,
+        "incumbent": 12491,
+        "candidate": 29088
+      },
+      "heuristic_input_tokens": {
+        "bare": 1010,
+        "incumbent": 3123,
+        "candidate": 7272
+      }
+    },
+    {
+      "case": "G10",
+      "selected_candidate_references": [
+        "release"
+      ],
+      "known_utf8_bytes": {
+        "bare": 2447,
+        "incumbent": 10899,
+        "candidate": 23140
+      },
+      "heuristic_input_tokens": {
+        "bare": 612,
+        "incumbent": 2725,
+        "candidate": 5785
+      }
+    },
+    {
+      "case": "G11",
+      "selected_candidate_references": [
+        "provider-ci",
+        "release"
+      ],
+      "known_utf8_bytes": {
+        "bare": 2563,
+        "incumbent": 11015,
+        "candidate": 27612
+      },
+      "heuristic_input_tokens": {
+        "bare": 641,
+        "incumbent": 2754,
+        "candidate": 6903
+      }
+    },
+    {
+      "case": "G12",
+      "selected_candidate_references": [
+        "release"
+      ],
+      "known_utf8_bytes": {
+        "bare": 2352,
+        "incumbent": 10804,
+        "candidate": 23045
+      },
+      "heuristic_input_tokens": {
+        "bare": 588,
+        "incumbent": 2701,
+        "candidate": 5762
+      }
+    },
+    {
+      "case": "G13",
+      "selected_candidate_references": [
+        "cleanup"
+      ],
+      "known_utf8_bytes": {
+        "bare": 2204,
+        "incumbent": 10656,
+        "candidate": 20403
+      },
+      "heuristic_input_tokens": {
+        "bare": 551,
+        "incumbent": 2664,
+        "candidate": 5101
+      }
+    },
+    {
+      "case": "G14",
+      "selected_candidate_references": [
+        "cleanup"
+      ],
+      "known_utf8_bytes": {
+        "bare": 2172,
+        "incumbent": 10624,
+        "candidate": 20371
+      },
+      "heuristic_input_tokens": {
+        "bare": 543,
+        "incumbent": 2656,
+        "candidate": 5093
+      }
+    },
+    {
+      "case": "G15",
+      "selected_candidate_references": [
+        "provider-ci"
+      ],
+      "known_utf8_bytes": {
+        "bare": 2373,
+        "incumbent": 10825,
+        "candidate": 22581
+      },
+      "heuristic_input_tokens": {
+        "bare": 594,
+        "incumbent": 2707,
+        "candidate": 5646
+      }
+    },
+    {
+      "case": "G16",
+      "selected_candidate_references": [
+        "provider-ci"
+      ],
+      "known_utf8_bytes": {
+        "bare": 2697,
+        "incumbent": 11149,
+        "candidate": 22905
+      },
+      "heuristic_input_tokens": {
+        "bare": 675,
+        "incumbent": 2788,
+        "candidate": 5727
+      }
+    }
+  ],
+  "preflight_cases": [
+    "G03",
+    "G08"
+  ],
+  "host_instruction_tool_schema_overhead": null,
+  "tokenizer_input_count": null,
+  "native_output_reasoning_usage": null,
+  "enforced_raw_token_cap": null,
+  "admitted_wall_deadline": null,
+  "limits": "Current draft uses canonical frontmatter; exact rendered surface and host-added overhead must be bound before dispatch. No cost claim. Candidate body/resource expansion risks the proposed burden guard.",
+  "resource_manifest_bytes": 241,
+  "resource_manifest_note": "Map identity is in resource-checks.json; not counted as model prompt text because routes are preassembled. If a producer reads it, add its bytes and trace before dispatch.",
+  "review_revision_note": "G09 includes one additional negative parameter variant inside the same case. Dispatch count remains 16 cases; known input bytes and release reference bytes are updated.",
+  "checked_at": "2026-09-10T01:18:23.345308+00:00"
+}

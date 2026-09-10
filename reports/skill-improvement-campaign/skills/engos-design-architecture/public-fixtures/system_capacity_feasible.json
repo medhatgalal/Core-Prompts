@@ -1,0 +1,12 @@
+{
+  "assumptions": "Synthetic constant rates, all workers available, initially empty queue, mean service time only; no retries or overhead in fluid estimate. No tail-latency guarantee follows.",
+  "workload": {
+    "arrival_jobs_per_s": 24,
+    "burst_s": 90,
+    "after_jobs_per_s": 8,
+    "workers": 4,
+    "mean_service_s": 0.125,
+    "queue_limit": 512,
+    "completion_target_s": 60
+  }
+}

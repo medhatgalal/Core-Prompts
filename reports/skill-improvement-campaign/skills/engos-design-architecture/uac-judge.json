@@ -1,0 +1,1049 @@
+{
+  "behavioral_status": "behavioral_pending",
+  "benchmark_sources": [],
+  "clarity": {
+    "advisory_only": true,
+    "behavioral_claim": "none",
+    "finding_count": 0,
+    "findings": [],
+    "policy": "instruction_clarity.v1"
+  },
+  "cross_analysis": {
+    "conflict_report": [],
+    "duplicate_risk": "low",
+    "fit_assessment": "requires_adjustment",
+    "overlap_report": [
+      {
+        "reason": "tag overlap 0.40",
+        "score": 0.4,
+        "slug": "engos-audit-pitch-review"
+      },
+      {
+        "reason": "tag overlap 0.40",
+        "score": 0.4,
+        "slug": "engos-design-plan-to-goal"
+      },
+      {
+        "reason": "tag overlap 0.40",
+        "score": 0.4,
+        "slug": "engos-quality-docs-review"
+      }
+    ],
+    "required_existing_adjustments": [],
+    "required_new_entry_adjustments": [],
+    "work_graph_change_summary": "engos-design-architecture matches an existing canonical slug and will be treated as an update target for judge/apply."
+  },
+  "eval_impact_plan": {
+    "affected_clause_ids": [
+      "engos-design-architecture:candidate:044a84beae3f",
+      "engos-design-architecture:candidate:18aee06e3cce",
+      "engos-design-architecture:candidate:351e6476a6da",
+      "engos-design-architecture:candidate:407daa7fe56f",
+      "engos-design-architecture:candidate:492c4fe03199",
+      "engos-design-architecture:candidate:4e0fb4c46230",
+      "engos-design-architecture:candidate:51ca31734e37",
+      "engos-design-architecture:candidate:54732d924993",
+      "engos-design-architecture:candidate:6bbb3292b94e",
+      "engos-design-architecture:candidate:7b280dce4e0c",
+      "engos-design-architecture:candidate:808bd17b0cef",
+      "engos-design-architecture:candidate:8e6e1e71b25c",
+      "engos-design-architecture:candidate:9ed9d822ca83",
+      "engos-design-architecture:candidate:a1f747e4f4ee",
+      "engos-design-architecture:candidate:a903bf6077a3",
+      "engos-design-architecture:candidate:b487027a58b8",
+      "engos-design-architecture:candidate:c64153c4fc47",
+      "engos-design-architecture:candidate:ccfe752a5fc5",
+      "engos-design-architecture:candidate:cf8f0c55be8d",
+      "engos-design-architecture:candidate:d2b83084c806",
+      "engos-design-architecture:candidate:d2f5c4ebda51",
+      "engos-design-architecture:candidate:de998e50e270",
+      "engos-design-architecture:candidate:f2faa567f57e"
+    ],
+    "change_classes": [
+      "invocation_hints",
+      "safety"
+    ],
+    "deterministic_fail_fast": true,
+    "hard_token_cap": 5000000,
+    "minimum_profile": "promotion",
+    "narrowing_policy": "reviewed waiver required; narrowed runs cannot claim full promotion",
+    "schema_version": "EvalImpactPlan.v1",
+    "slug": "engos-design-architecture"
+  },
+  "extraction": {
+    "prompt_field": null,
+    "wrapper_kind": "frontmatter_markdown"
+  },
+  "handoff_contract": {
+    "advisory_only": true,
+    "capabilities": [
+      {
+        "advisory_only": true,
+        "artifact_conventions": [],
+        "benchmark_profile": null,
+        "capability_type": "both",
+        "confidence": 0.9,
+        "display_name": null,
+        "domain_tags": [
+          "architecture",
+          "debugging",
+          "context",
+          "engos",
+          "design"
+        ],
+        "emitted_surfaces": {
+          "claude": [
+            "claude_skill",
+            "claude_agent"
+          ],
+          "codex": [
+            "codex_skill",
+            "codex_agent"
+          ],
+          "gemini": [
+            "gemini_skill",
+            "gemini_agent"
+          ],
+          "grok": [
+            "grok_skill"
+          ],
+          "kiro": [
+            "kiro_skill",
+            "kiro_agent"
+          ]
+        },
+        "expected_outputs": [
+          "**Problem Framing:** objective, stakeholders, In Scope, Out of Scope, Assumptions & Constraints, relevant evidence and unknowns.",
+          "**Architecture Recommendation:** selected mode(s), recommendation and reason; concrete Component or Module Boundaries, state ownership, Interface Contracts and mode-specific artifacts.",
+          "**Trade-offs and Rejected Alternatives:** viable options, costs, unresolved tradeoffs and conditions that would change the decision.",
+          "**Migration / Rollback Plan:** compatibility, phases, gates, triggers, rollback order, data recovery and irreversible boundaries. For no-change or greenfield decisions explain what is inapplicable and give adoption/reversal guidance when relevant.",
+          "**Risks & Validation:** prioritized failure scenarios, observable acceptance conditions, proposed checks and evidence still needed.",
+          "**Decision Log and Confidence:** proposed/accepted/superseded state supported by evidence, owner or owner-to-confirm, confidence reasons and implementation handoff.",
+          "**Architecture Quality Scorecard:** apply the anchored rubric below, with limitations. It is a self-check of the artifact, not independent approval or demonstrated performance."
+        ],
+        "install_target": {
+          "confidence": 0.88,
+          "confirmation_required_for_apply": true,
+          "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+          "recommended": "repo_local",
+          "supported": [
+            "global",
+            "repo_local",
+            "both"
+          ]
+        },
+        "invocation_style": null,
+        "org_graph": {
+          "authority_tier": "advisory",
+          "collaborates_with_suggestions": [
+            "architecture",
+            "debugging"
+          ],
+          "delegates_to_suggestions": [],
+          "org_role": "specialist_with_workflow_surface",
+          "reports_to_suggestions": [],
+          "work_graph_impact": "Adds or updates a both capability with route profile None."
+        },
+        "overlap_candidates": [
+          "engos-design-architecture",
+          "engos-audit-pitch-review",
+          "engos-design-plan-to-goal",
+          "engos-quality-docs-review"
+        ],
+        "preferred_use_cases": [],
+        "quality_status": null,
+        "relationship_suggestions": [
+          "prefer explicit review or analyst companions before high-authority use",
+          "pair with review and analysis capabilities when converging design proposals"
+        ],
+        "required_inputs": [
+          "The problem or decision and who will use the result.",
+          "Current interfaces, schema, dependencies or code when changing an existing system.",
+          "Hard constraints, non-goals, fixed choices, compatibility and ownership boundaries.",
+          "Relevant workload, latency, consistency, recovery, security, staffing and time constraints when known."
+        ],
+        "requires_human_confirmation": null,
+        "review_status": "ready_for_orchestrator_review",
+        "role": "advisor",
+        "slug": "engos-design-architecture",
+        "summary": "Intent\n- Design API, database, pattern, and system decisions that engineers can implement and reviewers can challenge. Connect the user's constraints to concrete interfaces, failure behavior, evolution, and validation. Publish architecture guidance and artifacts only. Do not use this skill to run orchestration, assign sub-agents, choose runtime delegation, harden prompts, judge capability imports, prove behavioral improvements, or maintain persistent analysis memory.\n- Produce the simplest justified design that preserves stated invariants, exposes uncertainty and rejected alternatives, and gives an implementer a usable contract and a safe change path. A recommendation may retain the current design or remain provisional when missing evidence would change it.\n\nConstraints\n- None\n\nRequested Outcome\n- None\n\nRejected/Out-of-Scope Signals\n- None",
+        "tool_policy": {
+          "allowed": [
+            "deterministic classification",
+            "metadata publication",
+            "surface generation"
+          ],
+          "forbidden": [
+            "orchestration",
+            "delegation decisions",
+            "runtime execution control"
+          ],
+          "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority.",
+          "scope": "uac_intake_only"
+        }
+      }
+    ],
+    "notes": [
+      "Capability Fabric publishes metadata and suggestions only.",
+      "Orchestrators remain responsible for delegation and runtime routing."
+    ],
+    "schema_version": "capability-fabric.handoff.v0"
+  },
+  "manifest": {
+    "layers": {
+      "expanded": {
+        "adjustment_recommendations": [
+          "add an explicit primary objective before packaging",
+          "add deterministic in-scope sections to improve routing fitness",
+          "capture quality constraints or non-negotiables"
+        ],
+        "capability_dependencies": [
+          "analysis"
+        ],
+        "migration_notes": [
+          "If the capability lands, compare it against existing entries before apply.",
+          "Relationship suggestions are advisory only and do not imply runtime routing."
+        ],
+        "overlap_candidates": [
+          "engos-audit-pitch-review",
+          "engos-design-plan-to-goal",
+          "engos-quality-docs-review"
+        ],
+        "relationship_suggestions": [
+          "prefer explicit review or analyst companions before high-authority use",
+          "pair with review and analysis capabilities when converging design proposals"
+        ]
+      },
+      "minimal": {
+        "capability_type": "both",
+        "confidence": 0.9,
+        "domain_tags": [
+          "architecture",
+          "debugging",
+          "context",
+          "engos",
+          "design"
+        ],
+        "emitted_surfaces": {
+          "claude": [
+            "claude_skill",
+            "claude_agent"
+          ],
+          "codex": [
+            "codex_skill",
+            "codex_agent"
+          ],
+          "gemini": [
+            "gemini_skill",
+            "gemini_agent"
+          ],
+          "grok": [
+            "grok_skill"
+          ],
+          "kiro": [
+            "kiro_skill",
+            "kiro_agent"
+          ]
+        },
+        "expected_outputs": [
+          "**Problem Framing:** objective, stakeholders, In Scope, Out of Scope, Assumptions & Constraints, relevant evidence and unknowns.",
+          "**Architecture Recommendation:** selected mode(s), recommendation and reason; concrete Component or Module Boundaries, state ownership, Interface Contracts and mode-specific artifacts.",
+          "**Trade-offs and Rejected Alternatives:** viable options, costs, unresolved tradeoffs and conditions that would change the decision.",
+          "**Migration / Rollback Plan:** compatibility, phases, gates, triggers, rollback order, data recovery and irreversible boundaries. For no-change or greenfield decisions explain what is inapplicable and give adoption/reversal guidance when relevant.",
+          "**Risks & Validation:** prioritized failure scenarios, observable acceptance conditions, proposed checks and evidence still needed.",
+          "**Decision Log and Confidence:** proposed/accepted/superseded state supported by evidence, owner or owner-to-confirm, confidence reasons and implementation handoff.",
+          "**Architecture Quality Scorecard:** apply the anchored rubric below, with limitations. It is a self-check of the artifact, not independent approval or demonstrated performance."
+        ],
+        "install_target": {
+          "confidence": 0.88,
+          "confirmation_required_for_apply": true,
+          "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+          "recommended": "repo_local",
+          "supported": [
+            "global",
+            "repo_local",
+            "both"
+          ]
+        },
+        "packaging_profile": {
+          "capability_type": "both",
+          "notes": [
+            "wrapper surfaces are additive deployment forms, not capability types",
+            "orchestrators must not infer execution authority from wrapper presence alone"
+          ],
+          "primary_surfaces": {
+            "claude": [
+              "claude_skill",
+              "claude_agent"
+            ],
+            "codex": [
+              "codex_skill",
+              "codex_agent"
+            ],
+            "gemini": [
+              "gemini_skill",
+              "gemini_agent"
+            ],
+            "grok": [
+              "grok_skill"
+            ],
+            "kiro": [
+              "kiro_skill",
+              "kiro_agent"
+            ]
+          },
+          "wrapper_surfaces": {
+            "claude": [
+              "skill_wrapper",
+              "plugin_wrapper"
+            ],
+            "codex": [
+              "plugin_wrapper"
+            ],
+            "gemini": [
+              "skill_wrapper"
+            ],
+            "kiro": [
+              "skill_wrapper",
+              "power_wrapper"
+            ]
+          }
+        },
+        "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
+        "required_inputs": [
+          "The problem or decision and who will use the result.",
+          "Current interfaces, schema, dependencies or code when changing an existing system.",
+          "Hard constraints, non-goals, fixed choices, compatibility and ownership boundaries.",
+          "Relevant workload, latency, consistency, recovery, security, staffing and time constraints when known."
+        ],
+        "resources": [
+          "reports/skill-improvement-campaign/skills/engos-design-architecture/candidate/engos-design-architecture.md"
+        ],
+        "review_status": "ready_for_orchestrator_review",
+        "role": "advisor",
+        "source_provenance": {
+          "content_sha256": "3b052c3d8942148fe84de682e72ff40bd892294679080da624a31c00db16ad08",
+          "normalized_source": "reports/skill-improvement-campaign/skills/engos-design-architecture/candidate/engos-design-architecture.md",
+          "policy_rule_id": "v1.local.baseline.allow",
+          "source_type": "LOCAL_FILE"
+        },
+        "summary": "Intent\n- Design API, database, pattern, and system decisions that engineers can implement and reviewers can challenge. Connect the user's constraints to concrete interfaces, failure behavior, evolution, and validation. Publish architecture guidance and artifacts only. Do not use this skill to run orchestration, assign sub-agents, choose runtime delegation, harden prompts, judge capability imports, prove behavioral improvements, or maintain persistent analysis memory.\n- Produce the simplest justified design that preserves stated invariants, exposes uncertainty and rejected alternatives, and gives an implementer a usable contract and a safe change path. A recommendation may retain the current design or remain provisional when missing evidence would change it.\n\nConstraints\n- None\n\nRequested Outcome\n- None\n\nRejected/Out-of-Scope Signals\n- None",
+        "tool_policy": {
+          "allowed": [
+            "deterministic classification",
+            "metadata publication",
+            "surface generation"
+          ],
+          "forbidden": [
+            "orchestration",
+            "delegation decisions",
+            "runtime execution control"
+          ],
+          "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority.",
+          "scope": "uac_intake_only"
+        }
+      },
+      "org_graph": {
+        "authority_tier": "advisory",
+        "collaborates_with_suggestions": [
+          "architecture",
+          "debugging"
+        ],
+        "delegates_to_suggestions": [],
+        "org_role": "specialist_with_workflow_surface",
+        "reports_to_suggestions": [],
+        "work_graph_impact": "Adds or updates a both capability with route profile None."
+      }
+    },
+    "manifest_version": "capability-fabric.v0",
+    "slug": "engos-design-architecture"
+  },
+  "mode": "judge",
+  "plan": {
+    "capability_type": "both",
+    "cross_analysis": {
+      "conflict_report": [
+        "slug engos-design-architecture already exists"
+      ],
+      "duplicate_risk": "high",
+      "fit_assessment": "manual_review",
+      "overlap_report": [
+        {
+          "reason": "same slug",
+          "score": 1.0,
+          "slug": "engos-design-architecture"
+        },
+        {
+          "reason": "tag overlap 0.40",
+          "score": 0.4,
+          "slug": "engos-audit-pitch-review"
+        },
+        {
+          "reason": "tag overlap 0.40",
+          "score": 0.4,
+          "slug": "engos-design-plan-to-goal"
+        },
+        {
+          "reason": "tag overlap 0.40",
+          "score": 0.4,
+          "slug": "engos-quality-docs-review"
+        }
+      ],
+      "required_existing_adjustments": [],
+      "required_new_entry_adjustments": [],
+      "work_graph_change_summary": "engos-design-architecture risks duplicate or conflicting graph roles and should not auto-apply."
+    },
+    "deployment_intent": "generate",
+    "emitted_surfaces": {
+      "claude": [
+        "claude_skill",
+        "claude_agent"
+      ],
+      "codex": [
+        "codex_skill",
+        "codex_agent"
+      ],
+      "gemini": [
+        "gemini_skill",
+        "gemini_agent"
+      ],
+      "grok": [
+        "grok_skill"
+      ],
+      "kiro": [
+        "kiro_skill",
+        "kiro_agent"
+      ]
+    },
+    "install_target": {
+      "confidence": 0.88,
+      "confirmation_required_for_apply": true,
+      "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+      "recommended": "repo_local",
+      "supported": [
+        "global",
+        "repo_local",
+        "both"
+      ]
+    },
+    "landing": {
+      "advisory_handoff_contract": true,
+      "descriptor_file": ".meta/capabilities/engos-design-architecture.json",
+      "manifest_layers": [
+        "minimal",
+        "expanded",
+        "org_graph"
+      ],
+      "ssot_file": "ssot/engos-design-architecture.md"
+    },
+    "proposed_ssot_slug": "engos-design-architecture"
+  },
+  "preview": {
+    "contributor_guidance": [
+      "Tighten scope or normalize metadata against the listed overlap candidates before apply."
+    ],
+    "descriptor_delta": {
+      "candidate": {
+        "display_name": "engos-design-architecture",
+        "quality_profile": null,
+        "quality_status": null
+      },
+      "change_type": "descriptor_update",
+      "changed_fields": [
+        "display_name",
+        "quality_profile",
+        "quality_status",
+        "quality_pass_count",
+        "quality_stop_reason",
+        "layers.minimal.summary",
+        "layers.minimal.display_name"
+      ],
+      "existing": {
+        "display_name": "Architecture Studio",
+        "quality_profile": "architecture",
+        "quality_status": "structural_ready"
+      }
+    },
+    "descriptor_preview": {
+      "benchmark_sources": [],
+      "consumption_hints": {},
+      "descriptor_version": "capability-fabric.descriptor.v0",
+      "display_name": "engos-design-architecture",
+      "family_slug": "engos-design-architecture",
+      "layers": {
+        "expanded": {
+          "adjustment_recommendations": [
+            "add an explicit primary objective before packaging",
+            "add deterministic in-scope sections to improve routing fitness",
+            "capture quality constraints or non-negotiables"
+          ],
+          "capability_dependencies": [
+            "analysis"
+          ],
+          "migration_notes": [
+            "If the capability lands, compare it against existing entries before apply.",
+            "Relationship suggestions are advisory only and do not imply runtime routing."
+          ],
+          "overlap_candidates": [
+            "engos-audit-pitch-review",
+            "engos-design-plan-to-goal",
+            "engos-quality-docs-review"
+          ],
+          "relationship_suggestions": [
+            "prefer explicit review or analyst companions before high-authority use",
+            "pair with review and analysis capabilities when converging design proposals"
+          ]
+        },
+        "minimal": {
+          "capability_type": "both",
+          "confidence": 0.9,
+          "display_name": "engos-design-architecture",
+          "domain_tags": [
+            "architecture",
+            "debugging",
+            "context",
+            "engos",
+            "design"
+          ],
+          "emitted_surfaces": {
+            "claude": [
+              "claude_skill",
+              "claude_agent"
+            ],
+            "codex": [
+              "codex_skill",
+              "codex_agent"
+            ],
+            "gemini": [
+              "gemini_skill",
+              "gemini_agent"
+            ],
+            "grok": [
+              "grok_skill"
+            ],
+            "kiro": [
+              "kiro_skill",
+              "kiro_agent"
+            ]
+          },
+          "expected_outputs": [
+            "**Problem Framing:** objective, stakeholders, In Scope, Out of Scope, Assumptions & Constraints, relevant evidence and unknowns.",
+            "**Architecture Recommendation:** selected mode(s), recommendation and reason; concrete Component or Module Boundaries, state ownership, Interface Contracts and mode-specific artifacts.",
+            "**Trade-offs and Rejected Alternatives:** viable options, costs, unresolved tradeoffs and conditions that would change the decision.",
+            "**Migration / Rollback Plan:** compatibility, phases, gates, triggers, rollback order, data recovery and irreversible boundaries. For no-change or greenfield decisions explain what is inapplicable and give adoption/reversal guidance when relevant.",
+            "**Risks & Validation:** prioritized failure scenarios, observable acceptance conditions, proposed checks and evidence still needed.",
+            "**Decision Log and Confidence:** proposed/accepted/superseded state supported by evidence, owner or owner-to-confirm, confidence reasons and implementation handoff.",
+            "**Architecture Quality Scorecard:** apply the anchored rubric below, with limitations. It is a self-check of the artifact, not independent approval or demonstrated performance."
+          ],
+          "install_target": {
+            "confidence": 0.88,
+            "confirmation_required_for_apply": true,
+            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+            "recommended": "repo_local",
+            "supported": [
+              "global",
+              "repo_local",
+              "both"
+            ]
+          },
+          "packaging_profile": {
+            "capability_type": "both",
+            "notes": [
+              "wrapper surfaces are additive deployment forms, not capability types",
+              "orchestrators must not infer execution authority from wrapper presence alone"
+            ],
+            "primary_surfaces": {
+              "claude": [
+                "claude_skill",
+                "claude_agent"
+              ],
+              "codex": [
+                "codex_skill",
+                "codex_agent"
+              ],
+              "gemini": [
+                "gemini_skill",
+                "gemini_agent"
+              ],
+              "grok": [
+                "grok_skill"
+              ],
+              "kiro": [
+                "kiro_skill",
+                "kiro_agent"
+              ]
+            },
+            "wrapper_surfaces": {
+              "claude": [
+                "skill_wrapper",
+                "plugin_wrapper"
+              ],
+              "codex": [
+                "plugin_wrapper"
+              ],
+              "gemini": [
+                "skill_wrapper"
+              ],
+              "kiro": [
+                "skill_wrapper",
+                "power_wrapper"
+              ]
+            }
+          },
+          "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
+          "required_inputs": [
+            "The problem or decision and who will use the result.",
+            "Current interfaces, schema, dependencies or code when changing an existing system.",
+            "Hard constraints, non-goals, fixed choices, compatibility and ownership boundaries.",
+            "Relevant workload, latency, consistency, recovery, security, staffing and time constraints when known."
+          ],
+          "resources": [
+            "reports/skill-improvement-campaign/skills/engos-design-architecture/candidate/engos-design-architecture.md"
+          ],
+          "review_status": "ready_for_orchestrator_review",
+          "role": "advisor",
+          "source_provenance": {
+            "content_sha256": "3b052c3d8942148fe84de682e72ff40bd892294679080da624a31c00db16ad08",
+            "normalized_source": "reports/skill-improvement-campaign/skills/engos-design-architecture/candidate/engos-design-architecture.md",
+            "policy_rule_id": "v1.local.baseline.allow",
+            "source_type": "LOCAL_FILE"
+          },
+          "summary": "Intent\n- Design API, database, pattern, and system decisions that engineers can implement and reviewers can challenge. Connect the user's constraints to concrete interfaces, failure behavior, evolution, and validation. Publish architecture guidance and artifacts only. Do not use this skill to run orchestration, assign sub-agents, choose runtime delegation, harden prompts, judge capability imports, prove behavioral improvements, or maintain persistent analysis memory.\n- Produce the simplest justified design that preserves stated invariants, exposes uncertainty and rejected alternatives, and gives an implementer a usable contract and a safe change path. A recommendation may retain the current design or remain provisional when missing evidence would change it.\n\nConstraints\n- None\n\nRequested Outcome\n- None\n\nRejected/Out-of-Scope Signals\n- None",
+          "tool_policy": {
+            "allowed": [
+              "deterministic classification",
+              "metadata publication",
+              "surface generation"
+            ],
+            "forbidden": [
+              "orchestration",
+              "delegation decisions",
+              "runtime execution control"
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority.",
+            "scope": "uac_intake_only"
+          }
+        },
+        "org_graph": {
+          "authority_tier": "advisory",
+          "collaborates_with_suggestions": [
+            "architecture",
+            "debugging"
+          ],
+          "delegates_to_suggestions": [],
+          "org_role": "specialist_with_workflow_surface",
+          "reports_to_suggestions": [],
+          "work_graph_impact": "Adds or updates a both capability with route profile None."
+        }
+      },
+      "manifest_version": "capability-fabric.v0",
+      "modes": [],
+      "quality_validation_matrix": [],
+      "shared_constraints": [],
+      "shared_summary": "Intent\n- Design API, database, pattern, and system decisions that engineers can implement and reviewers can challenge. Connect the user's constraints to concrete interfaces, failure behavior, evolution, and validation. Publish architecture guidance and artifacts only. Do not use this skill to run orchestration, assign sub-agents, choose runtime delegation, harden prompts, judge capability imports, prove behavioral improvements, or maintain persistent analysis memory.\n- Produce the simplest justified design that preserves stated invariants, exposes uncertainty and rejected alternatives, and gives an implementer a usable contract and a safe change path. A recommendation may retain the current design or remain provisional when missing evidence would change it.\n\nConstraints\n- None\n\nRequested Outcome\n- None\n\nRejected/Out-of-Scope Signals\n- None",
+      "slug": "engos-design-architecture"
+    },
+    "overlap_preview": {
+      "conflict_report": [],
+      "duplicate_risk": "low",
+      "fit_assessment": "requires_adjustment",
+      "overlap_candidates": [
+        {
+          "reason": "tag overlap 0.40",
+          "score": 0.4,
+          "slug": "engos-audit-pitch-review"
+        },
+        {
+          "reason": "tag overlap 0.40",
+          "score": 0.4,
+          "slug": "engos-design-plan-to-goal"
+        },
+        {
+          "reason": "tag overlap 0.40",
+          "score": 0.4,
+          "slug": "engos-quality-docs-review"
+        }
+      ],
+      "required_existing_adjustments": [],
+      "required_new_entry_adjustments": [],
+      "work_graph_change_summary": "engos-design-architecture matches an existing canonical slug and will be treated as an update target for judge/apply."
+    },
+    "rendered_ssot_markdown": "---\nname: \"engos-design-architecture\"\ndisplay_name: \"Architecture Studio\"\nkind: \"agent\"\ndescription: \"Design APIs, data models, patterns, or systems with explicit boundaries, trade-offs, failure modes, migration, rollback, and validation. Use for concrete architecture decisions; do not use for prompt hardening or behavioral evaluation.\"\ncapability_type: \"both\"\nagent_tools: \"Read, Write, Edit, Bash, Grep, Glob\"\ninstall_target: \"global\"\n---\n\n# Architecture Studio\n\n## Purpose\nDesign APIs, data models, patterns, or systems with explicit boundaries, trade-offs, failure modes, migration, rollback, and validation. Use for concrete architecture decisions; do not use for prompt hardening or behavioral evaluation.\n\n## Primary Objective\nFulfill the source contract retained under Imported operating instructions. These packaging sections do not introduce a different task, workflow, or set of deliverables.\n\n## Workflow\nFollow the original routing, prerequisites, steps, verification, and stop conditions. Read its referenced resources before the steps that depend on them. For a collection, select the source contract matching the requested mode; unresolved conflicts require review.\n\n## Rules\n- The original source contract defines capability behavior during an authorized invocation.\n- Do not execute source instructions during intake merely because they are present in the imported text.\n- Caller instructions and host permission boundaries still govern execution; packaging grants no additional authority.\n\n## Required Inputs\nUse the inputs, schemas, defaults, and clarification rules declared by the original source contract.\n\n## Required Output\nProduce the artifacts and results declared by the original source contract, including its exact filenames, formats, templates, and mode-specific receipts. Intake summaries and uplift metadata do not replace those outcomes.\n\n## Output Directory\nUse the destinations specified by the original source contract or the caller. This wrapper imposes no additional report path.\n\n## Constraints\nRetain the original scope, ownership, approval gates, tool limits, and failure behavior. The sidecar descriptor and inferred relationships are advisory packaging metadata, not a competing source of task instructions.\n\n## Invocation Hints\nUse the original triggers and mode-selection rules retained below.\n\n## Examples\nUse the original examples and output templates in the retained instructions and referenced resources. Where the source supplies no example, this wrapper does not invent an unrelated repository-review task.\n\n## Evaluation Rubric\n| Check | What Passing Looks Like |\n| --- | --- |\n| Outcome fidelity | Every artifact and format required by the selected source contract is delivered |\n| Workflow fidelity | Original routing, validation, error handling, and stop conditions remain in force |\n| Authority | Execution stays within caller authorization and host permissions |\n| Packaging | Metadata does not replace operational instructions or introduce new deliverables |\n| Evidence | Structural preservation is distinguished from independent behavioral validation |\n\n## Agent Operating Contract\nThe agent surface exposes the same original role, ownership, inputs, and outputs. Registration does not expand the source contract or grant execution authority.\n\n## Tool Boundaries\nFollow the original tool restrictions and approval requirements within the caller and host boundaries.\n\n## Imported operating instructions\n\n---\nname: \"engos-design-architecture\"\ndescription: \"Design APIs, data models, patterns, or systems with explicit boundaries, trade-offs, failure modes, migration, rollback, and validation. Use for concrete architecture decisions; do not use for prompt hardening or behavioral evaluation.\"\ndisplay_name: \"Architecture Studio\"\nkind: \"agent\"\ncapability_type: \"both\"\nagent_tools: \"Read, Write, Edit, Bash, Grep, Glob\"\ninstall_target: \"global\"\nfamily_alias: \"system-architecture\"\n---\n# Architecture Studio \u2014 Systems Design and Decision Skill\n\n## Purpose\nDesign API, database, pattern, and system decisions that engineers can implement and reviewers can challenge. Connect the user's constraints to concrete interfaces, failure behavior, evolution, and validation. Publish architecture guidance and artifacts only.\n\nDo not use this skill to run orchestration, assign sub-agents, choose runtime delegation, harden prompts, judge capability imports, prove behavioral improvements, or maintain persistent analysis memory.\n\n## Primary Objective\nProduce the simplest justified design that preserves stated invariants, exposes uncertainty and rejected alternatives, and gives an implementer a usable contract and a safe change path. A recommendation may retain the current design or remain provisional when missing evidence would change it.\n\n## Invocation Hints\nUse for designing or reviewing API contracts, schemas/indexes, modular refactors/pattern choices, and system topology/reliability/capacity. Select one or more modes from the request; cross-mode work produces one coherent design.\n\n## Required Inputs\n- The problem or decision and who will use the result.\n- Current interfaces, schema, dependencies or code when changing an existing system.\n- Hard constraints, non-goals, fixed choices, compatibility and ownership boundaries.\n- Relevant workload, latency, consistency, recovery, security, staffing and time constraints when known.\n\nInspect the supplied context before asking. Ask up to two focused questions when their answers would materially change the recommendation. Otherwise proceed with explicit `[ASSUMPTION]` markers, saying how to verify them and what would change. Never fabricate missing source content, measurements, owners or approvals. Conflicting hard constraints require a stated tradeoff or provisional alternatives, not silent priority selection.\n\n## Agent Operating Contract\nAct as an advisory architecture artifact writer on both skill and agent surfaces. Read repository inputs, compare actual interfaces, and run lightweight read-only inspection when useful. Write only requested architecture deliverables. Do not modify product code, execute migrations, deploy, install tools, run orchestration, delegate, or start control loops as a side effect. Proposed commands, specifications and SQL are design artifacts, not execution evidence.\n\nFor a staged-diff bug review recommend `engos-quality-code-review`; structural metrics belong to `engos-audit-code-health`; test generation belongs to `engos-quality-testing-review`; release or merge gates belong to `engos-quality-gitops-review`. These are advisory handoffs, not tool dispatch. Prompt/plan hardening belongs to `engos-meta-supercharge`, import classification to `engos-meta-uac-import`, behavioral comparison to `engos-optimization-auto-research`, and durable investigation state to `engos-memory-context-continuity`. When several proposals need reconciliation, recommend `engos-reconciliation-converge`. Preserve a concrete architecture subproblem if one exists; do not replace the requested job with a neighboring capability.\n\nIf implementation is requested with design, finish the bounded design and identify its separate implementation handoff, including acceptance criteria and unresolved prerequisites. Never imply design approval grants mutation or release authority.\n\n## Resource Delivery and Mode Selection\nRead `resources/resource-map.json` and the complete shared guidance plus each selected mode before producing its design. On skill surfaces the resource root is the skill's `resources` directory; on agent surfaces it is the directory containing bundled `capability.json`. Use the bundled loader when available:\n\n```text\npython3 <resource-root>/scripts/load_module.py --route design-api --format text\n```\n\nSubstitute the mode below. For a mixed design load each applicable route; share one framing, decision log and migration plan. Actual file reads are an equivalent fallback. Missing, changed or truncated resources require recovery; if recovery is unavailable, disclose the missing route and return only a provisional scope/evidence request. Do not claim complete mode guidance was supplied from a filename or a hash alone. Resource assembly is not proof of compliance.\n\n| Mode | Use for | Required resource |\n| --- | --- | --- |\n| `design-api` | HTTP/RPC interfaces, webhooks and API evolution | `resources/references/design-api.md` |\n| `design-database` | Entities, schema, queries, transactions, retention and recovery | `resources/references/design-database.md` |\n| `design-patterns` | Module boundaries, dependencies, extension and refactoring | `resources/references/design-patterns.md` |\n| `system-design` | Topology, messaging, scale, availability and operational viability | `resources/references/system-design.md` |\n\nThe shared resource `resources/references/decision-and-evolution.md` contains decision, migration and validation templates for every route. Mode selection is document selection, not runtime routing or delegation.\n\n## Core Principles\n- Identify the primitives, authoritative state and actors before selecting components.\n- Define each black-box responsibility, owner, interface and lifecycle. Separate module boundaries from deployment boundaries; replaceability does not require a service split.\n- Explain what each major choice improves, costs and rejects. Compare real alternatives including retaining the current design where viable.\n- Tie scalability, reliability and security claims to mechanisms and evidence. Show arithmetic and units for quantities that drive a decision; unknown measurements stay unknown.\n- Prefer simple, maintainable boundaries over fashionable patterns or vendor coupling. Respect an explicitly fixed technology; otherwise recommend a mechanism and justify any product choice.\n- Treat compatibility and recovery as design constraints. A binary rollback is not automatically a data rollback.\n\n## Standard Workflow\n1. **Frame the decision.** State objective, callers/stakeholders, scope/non-goals, constraints and their priority. Identify the decision being made now and deferred choices. Cite relevant source files or supplied evidence; distinguish observed facts, documented platform behavior, assumptions and proposed checks.\n2. **Discover primitives and invariants.** Trace representative read/write paths, state ownership, transactions, external dependencies and trust boundaries. State what must remain true under retries, concurrency, failure and mixed old/new versions. Inspect current pain or change pressure before recommending a pattern.\n3. **Compare viable options.** For material decisions compare at least two reasonable choices. For each give fit, operational cost, implementation effort, failure exposure, migration impact and the evidence that would reverse the preference. Do not invent a straw alternative to fill a quota.\n4. **Specify the recommendation.** Provide responsibilities, interfaces, data flow and selected mode artifacts. Connect important invariants to the mechanism enforcing them. Trace one critical success path and relevant adverse paths. Identify the commit/acknowledgment points and consequences of partial completion where state crosses boundaries.\n5. **Plan evolution and recovery.** Establish compatibility windows, migration checkpoints, backfill/cutover gates, rollback triggers and order. Distinguish reversible phases from irreversible effects and give recovery or roll-forward alternatives. State owners as proposed when not confirmed.\n6. **Challenge and hand off.** Test the design against the constraints and adverse scenarios, without claiming unperformed execution. Return validation criteria, signals, remaining unknowns, confidence and the next useful engineering action. Complete the review gate below.\n\n## Required Output\nPreserve the following information in every substantive architecture recommendation. Use the standard headings for a broad design; combine related sections for a bounded decision or follow the user's format. Exact heading count is not a substitute for useful content. A short routing response does not need a design packet or scorecard.\n\n1. **Problem Framing:** objective, stakeholders, In Scope, Out of Scope, Assumptions & Constraints, relevant evidence and unknowns.\n2. **Architecture Recommendation:** selected mode(s), recommendation and reason; concrete Component or Module Boundaries, state ownership, Interface Contracts and mode-specific artifacts.\n3. **Trade-offs and Rejected Alternatives:** viable options, costs, unresolved tradeoffs and conditions that would change the decision.\n4. **Migration / Rollback Plan:** compatibility, phases, gates, triggers, rollback order, data recovery and irreversible boundaries. For no-change or greenfield decisions explain what is inapplicable and give adoption/reversal guidance when relevant.\n5. **Risks & Validation:** prioritized failure scenarios, observable acceptance conditions, proposed checks and evidence still needed.\n6. **Decision Log and Confidence:** proposed/accepted/superseded state supported by evidence, owner or owner-to-confirm, confidence reasons and implementation handoff.\n7. **Architecture Quality Scorecard:** apply the anchored rubric below, with limitations. It is a self-check of the artifact, not independent approval or demonstrated performance.\n\n## Output Directory\nKeep inline responses inline unless files are requested. When file output is requested, use the user's destination and existing project conventions. Otherwise use `reports/architecture/<timestamp>-summary.md`, `-decision-log.md`, `-migration-plan.md`, and `-validation-plan.md` for the requested report types. For repo-ready artifacts use `architecture/spec.md`, `architecture/decision-log.md`, `architecture/migration-plan.md`, and `architecture/validation-plan.md`. Create only useful requested artifacts, avoid duplicating the same content, and preserve unrelated files and prior decisions. Use a superseding decision reference rather than silently overwriting accepted rationale.\n\n## Review Gate\nBefore finalizing check:\n- Each recommendation solves a named problem and states a concrete cost and rejected alternative.\n- Module/state/trust boundaries and interface obligations agree across prose, examples and diagrams.\n- Critical invariants survive the stated concurrency, partial failure and recovery scenarios; unknown survival is explicitly provisional.\n- API examples, schema constraints, pattern contracts and capacity arithmetic agree with the claimed behavior.\n- Rollback remains compatible with data and versions already written; irreversible effects are not described as undone by reverting code.\n- Operational changes have owner/ownership gap, observability and validation criteria.\n- No external action, benchmark result, test execution, production state or approval has been invented.\n\n## Architecture Quality Scorecard\nRetain seven criteria scored `0`, `1`, or `2`:\n\n| Criterion | 0 | 1 | 2 |\n| --- | --- | --- | --- |\n| Output Completeness | Essential artifact missing | Usable outline with explicit gaps | Requested artifacts cover relevant jobs without conflicting duplication |\n| Scope Discipline | Violates scope or authority | Scope stated but boundary unclear | Scope, non-goals, tool limits and handoff consistent |\n| Technical Specificity | Invalid or unimplementable contract | Plausible but requires material design decisions | Implementable interfaces/invariants and coherent examples |\n| Evidence Quality | Invented evidence | Assumptions marked; material evidence missing | Key claims grounded; uncertainties and verification explicit |\n| Failure-Aware Decisions | Critical failure path absent or unsafe | Failure named; containment incomplete | Mechanism, detection, containment and recovery address relevant adverse paths |\n| Migration Clarity | Unsafe or absent change path | Phases named; a gate remains unresolved | Compatibility, ordered gates, reversal and recovery limitations explicit |\n| Benchmark Fit | Violates task acceptance or substitutes a different job | Partially meets stated task outcomes | Meets task-specific acceptance conditions in the available evidence |\n\nReport the seven values, `Overall Score` out of 14, `Pass: true|false`, and brief reasons for weaknesses. A pass requires total at least 9, no zero for Failure-Aware Decisions, Migration Clarity or Benchmark Fit, and no demonstrated invalid critical contract, authority violation, fabricated evidence or unsafe destructive transition. A provisional design may still be useful; say exactly what prevents implementation readiness. Do not treat your own score as proof of downstream improvement.\n\n## Evaluation Rubric\nAssess objective/scope clarity, concrete replaceable boundaries, meaningful alternatives, operational feasibility, safe evolution and usable validation. The scorecard reviews artifact quality; task-specific independent evaluation establishes actual behavior. Formatting, citations and a high total cannot compensate for a broken invariant.\n\n## Examples\n- **API:** \u201cDesign a tenant-scoped job API. Clients retry after timeouts and poll for completion.\u201d Return an endpoint/operation catalog, concrete success/error examples, tenant authorization and retry contract, version plan and validation cases.\n- **Database:** \u201cWe need tenant-local document IDs and cannot pause old writers during migration.\u201d Return schema/keys, query-index mapping, concurrency rules and mixed-version migration/recovery gates.\n- **Patterns:** \u201cTwo providers return different status semantics; reduce coupling without adding services.\u201d Return observed change pressure, alternatives including the current approach, before/after boundaries, interface/error/lifecycle contracts and a reversible refactor.\n- **System:** \u201cDesign a document pipeline with burst traffic, bounded worker capacity and deletion requirements.\u201d Return topology, event/state flows, workload arithmetic, failure/degradation behavior, SLO measurement and rollout/recovery.\n- **Review:** \u201cAssess this service split, inline only; don't implement it.\u201d Return one coherent decision with state ownership, alternatives, compatibility and rollback, evidence gaps and an implementation handoff only.\n",
+    "structural_readiness": {
+      "blockers": [],
+      "quality_pass_count": null,
+      "quality_status": null,
+      "quality_stop_reason": null
+    },
+    "user_visible_impact": {
+      "capability_type": "both",
+      "change_kind": "update_existing_capability",
+      "changed_fields": [
+        "summary",
+        "expected_surface_names",
+        "invocation_hints"
+      ],
+      "compatibility": null,
+      "display_name": null,
+      "expected_outputs": [
+        "**Problem Framing:** objective, stakeholders, In Scope, Out of Scope, Assumptions & Constraints, relevant evidence and unknowns.",
+        "**Architecture Recommendation:** selected mode(s), recommendation and reason; concrete Component or Module Boundaries, state ownership, Interface Contracts and mode-specific artifacts.",
+        "**Trade-offs and Rejected Alternatives:** viable options, costs, unresolved tradeoffs and conditions that would change the decision.",
+        "**Migration / Rollback Plan:** compatibility, phases, gates, triggers, rollback order, data recovery and irreversible boundaries. For no-change or greenfield decisions explain what is inapplicable and give adoption/reversal guidance when relevant.",
+        "**Risks & Validation:** prioritized failure scenarios, observable acceptance conditions, proposed checks and evidence still needed.",
+        "**Decision Log and Confidence:** proposed/accepted/superseded state supported by evidence, owner or owner-to-confirm, confidence reasons and implementation handoff.",
+        "**Architecture Quality Scorecard:** apply the anchored rubric below, with limitations. It is a self-check of the artifact, not independent approval or demonstrated performance."
+      ],
+      "expected_surfaces": [
+        "claude_agent",
+        "claude_skill",
+        "codex_agent",
+        "codex_skill",
+        "gemini_agent",
+        "gemini_skill",
+        "grok_skill",
+        "kiro_agent",
+        "kiro_skill"
+      ],
+      "install_target": "repo_local",
+      "invocation_hints": [],
+      "supported_agents": []
+    }
+  },
+  "recommendation": {
+    "install_target": {
+      "confidence": 0.88,
+      "confirmation_required_for_apply": true,
+      "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+      "recommended": "repo_local",
+      "supported": [
+        "global",
+        "repo_local",
+        "both"
+      ]
+    },
+    "next_actions": [
+      "Keep one SSOT source and emit both skill/workflow and agent surfaces.",
+      "Separate reusable workflow content from agent-only control metadata.",
+      "Carry forward route profile NEEDS_REVIEW as advisory packaging context only."
+    ],
+    "primary_target_systems": [
+      "codex",
+      "gemini",
+      "claude",
+      "kiro",
+      "grok"
+    ]
+  },
+  "routing": {
+    "decision": "NEEDS_REVIEW",
+    "dominant_rule_id": "ROUTE-UNK-001",
+    "missing_evidence": [
+      "intent.in_scope"
+    ],
+    "route_profile": "NEEDS_REVIEW"
+  },
+  "source": {
+    "content_sha256": "3b052c3d8942148fe84de682e72ff40bd892294679080da624a31c00db16ad08",
+    "content_type": "text/plain",
+    "normalized_source": "/Users/medhat.galal/.codex/worktrees/ccde/Core-Prompts/reports/skill-improvement-campaign/skills/engos-design-architecture/candidate/engos-design-architecture.md",
+    "policy_rule_id": "v1.local.baseline.allow",
+    "type": "LOCAL_FILE"
+  },
+  "source_text": "---\nname: \"engos-design-architecture\"\ndescription: \"Design APIs, data models, patterns, or systems with explicit boundaries, trade-offs, failure modes, migration, rollback, and validation. Use for concrete architecture decisions; do not use for prompt hardening or behavioral evaluation.\"\ndisplay_name: \"Architecture Studio\"\nkind: \"agent\"\ncapability_type: \"both\"\nagent_tools: \"Read, Write, Edit, Bash, Grep, Glob\"\ninstall_target: \"global\"\nfamily_alias: \"system-architecture\"\n---\n# Architecture Studio \u2014 Systems Design and Decision Skill\n\n## Purpose\nDesign API, database, pattern, and system decisions that engineers can implement and reviewers can challenge. Connect the user's constraints to concrete interfaces, failure behavior, evolution, and validation. Publish architecture guidance and artifacts only.\n\nDo not use this skill to run orchestration, assign sub-agents, choose runtime delegation, harden prompts, judge capability imports, prove behavioral improvements, or maintain persistent analysis memory.\n\n## Primary Objective\nProduce the simplest justified design that preserves stated invariants, exposes uncertainty and rejected alternatives, and gives an implementer a usable contract and a safe change path. A recommendation may retain the current design or remain provisional when missing evidence would change it.\n\n## Invocation Hints\nUse for designing or reviewing API contracts, schemas/indexes, modular refactors/pattern choices, and system topology/reliability/capacity. Select one or more modes from the request; cross-mode work produces one coherent design.\n\n## Required Inputs\n- The problem or decision and who will use the result.\n- Current interfaces, schema, dependencies or code when changing an existing system.\n- Hard constraints, non-goals, fixed choices, compatibility and ownership boundaries.\n- Relevant workload, latency, consistency, recovery, security, staffing and time constraints when known.\n\nInspect the supplied context before asking. Ask up to two focused questions when their answers would materially change the recommendation. Otherwise proceed with explicit `[ASSUMPTION]` markers, saying how to verify them and what would change. Never fabricate missing source content, measurements, owners or approvals. Conflicting hard constraints require a stated tradeoff or provisional alternatives, not silent priority selection.\n\n## Agent Operating Contract\nAct as an advisory architecture artifact writer on both skill and agent surfaces. Read repository inputs, compare actual interfaces, and run lightweight read-only inspection when useful. Write only requested architecture deliverables. Do not modify product code, execute migrations, deploy, install tools, run orchestration, delegate, or start control loops as a side effect. Proposed commands, specifications and SQL are design artifacts, not execution evidence.\n\nFor a staged-diff bug review recommend `engos-quality-code-review`; structural metrics belong to `engos-audit-code-health`; test generation belongs to `engos-quality-testing-review`; release or merge gates belong to `engos-quality-gitops-review`. These are advisory handoffs, not tool dispatch. Prompt/plan hardening belongs to `engos-meta-supercharge`, import classification to `engos-meta-uac-import`, behavioral comparison to `engos-optimization-auto-research`, and durable investigation state to `engos-memory-context-continuity`. When several proposals need reconciliation, recommend `engos-reconciliation-converge`. Preserve a concrete architecture subproblem if one exists; do not replace the requested job with a neighboring capability.\n\nIf implementation is requested with design, finish the bounded design and identify its separate implementation handoff, including acceptance criteria and unresolved prerequisites. Never imply design approval grants mutation or release authority.\n\n## Resource Delivery and Mode Selection\nRead `resources/resource-map.json` and the complete shared guidance plus each selected mode before producing its design. On skill surfaces the resource root is the skill's `resources` directory; on agent surfaces it is the directory containing bundled `capability.json`. Use the bundled loader when available:\n\n```text\npython3 <resource-root>/scripts/load_module.py --route design-api --format text\n```\n\nSubstitute the mode below. For a mixed design load each applicable route; share one framing, decision log and migration plan. Actual file reads are an equivalent fallback. Missing, changed or truncated resources require recovery; if recovery is unavailable, disclose the missing route and return only a provisional scope/evidence request. Do not claim complete mode guidance was supplied from a filename or a hash alone. Resource assembly is not proof of compliance.\n\n| Mode | Use for | Required resource |\n| --- | --- | --- |\n| `design-api` | HTTP/RPC interfaces, webhooks and API evolution | `resources/references/design-api.md` |\n| `design-database` | Entities, schema, queries, transactions, retention and recovery | `resources/references/design-database.md` |\n| `design-patterns` | Module boundaries, dependencies, extension and refactoring | `resources/references/design-patterns.md` |\n| `system-design` | Topology, messaging, scale, availability and operational viability | `resources/references/system-design.md` |\n\nThe shared resource `resources/references/decision-and-evolution.md` contains decision, migration and validation templates for every route. Mode selection is document selection, not runtime routing or delegation.\n\n## Core Principles\n- Identify the primitives, authoritative state and actors before selecting components.\n- Define each black-box responsibility, owner, interface and lifecycle. Separate module boundaries from deployment boundaries; replaceability does not require a service split.\n- Explain what each major choice improves, costs and rejects. Compare real alternatives including retaining the current design where viable.\n- Tie scalability, reliability and security claims to mechanisms and evidence. Show arithmetic and units for quantities that drive a decision; unknown measurements stay unknown.\n- Prefer simple, maintainable boundaries over fashionable patterns or vendor coupling. Respect an explicitly fixed technology; otherwise recommend a mechanism and justify any product choice.\n- Treat compatibility and recovery as design constraints. A binary rollback is not automatically a data rollback.\n\n## Standard Workflow\n1. **Frame the decision.** State objective, callers/stakeholders, scope/non-goals, constraints and their priority. Identify the decision being made now and deferred choices. Cite relevant source files or supplied evidence; distinguish observed facts, documented platform behavior, assumptions and proposed checks.\n2. **Discover primitives and invariants.** Trace representative read/write paths, state ownership, transactions, external dependencies and trust boundaries. State what must remain true under retries, concurrency, failure and mixed old/new versions. Inspect current pain or change pressure before recommending a pattern.\n3. **Compare viable options.** For material decisions compare at least two reasonable choices. For each give fit, operational cost, implementation effort, failure exposure, migration impact and the evidence that would reverse the preference. Do not invent a straw alternative to fill a quota.\n4. **Specify the recommendation.** Provide responsibilities, interfaces, data flow and selected mode artifacts. Connect important invariants to the mechanism enforcing them. Trace one critical success path and relevant adverse paths. Identify the commit/acknowledgment points and consequences of partial completion where state crosses boundaries.\n5. **Plan evolution and recovery.** Establish compatibility windows, migration checkpoints, backfill/cutover gates, rollback triggers and order. Distinguish reversible phases from irreversible effects and give recovery or roll-forward alternatives. State owners as proposed when not confirmed.\n6. **Challenge and hand off.** Test the design against the constraints and adverse scenarios, without claiming unperformed execution. Return validation criteria, signals, remaining unknowns, confidence and the next useful engineering action. Complete the review gate below.\n\n## Required Output\nPreserve the following information in every substantive architecture recommendation. Use the standard headings for a broad design; combine related sections for a bounded decision or follow the user's format. Exact heading count is not a substitute for useful content. A short routing response does not need a design packet or scorecard.\n\n1. **Problem Framing:** objective, stakeholders, In Scope, Out of Scope, Assumptions & Constraints, relevant evidence and unknowns.\n2. **Architecture Recommendation:** selected mode(s), recommendation and reason; concrete Component or Module Boundaries, state ownership, Interface Contracts and mode-specific artifacts.\n3. **Trade-offs and Rejected Alternatives:** viable options, costs, unresolved tradeoffs and conditions that would change the decision.\n4. **Migration / Rollback Plan:** compatibility, phases, gates, triggers, rollback order, data recovery and irreversible boundaries. For no-change or greenfield decisions explain what is inapplicable and give adoption/reversal guidance when relevant.\n5. **Risks & Validation:** prioritized failure scenarios, observable acceptance conditions, proposed checks and evidence still needed.\n6. **Decision Log and Confidence:** proposed/accepted/superseded state supported by evidence, owner or owner-to-confirm, confidence reasons and implementation handoff.\n7. **Architecture Quality Scorecard:** apply the anchored rubric below, with limitations. It is a self-check of the artifact, not independent approval or demonstrated performance.\n\n## Output Directory\nKeep inline responses inline unless files are requested. When file output is requested, use the user's destination and existing project conventions. Otherwise use `reports/architecture/<timestamp>-summary.md`, `-decision-log.md`, `-migration-plan.md`, and `-validation-plan.md` for the requested report types. For repo-ready artifacts use `architecture/spec.md`, `architecture/decision-log.md`, `architecture/migration-plan.md`, and `architecture/validation-plan.md`. Create only useful requested artifacts, avoid duplicating the same content, and preserve unrelated files and prior decisions. Use a superseding decision reference rather than silently overwriting accepted rationale.\n\n## Review Gate\nBefore finalizing check:\n- Each recommendation solves a named problem and states a concrete cost and rejected alternative.\n- Module/state/trust boundaries and interface obligations agree across prose, examples and diagrams.\n- Critical invariants survive the stated concurrency, partial failure and recovery scenarios; unknown survival is explicitly provisional.\n- API examples, schema constraints, pattern contracts and capacity arithmetic agree with the claimed behavior.\n- Rollback remains compatible with data and versions already written; irreversible effects are not described as undone by reverting code.\n- Operational changes have owner/ownership gap, observability and validation criteria.\n- No external action, benchmark result, test execution, production state or approval has been invented.\n\n## Architecture Quality Scorecard\nRetain seven criteria scored `0`, `1`, or `2`:\n\n| Criterion | 0 | 1 | 2 |\n| --- | --- | --- | --- |\n| Output Completeness | Essential artifact missing | Usable outline with explicit gaps | Requested artifacts cover relevant jobs without conflicting duplication |\n| Scope Discipline | Violates scope or authority | Scope stated but boundary unclear | Scope, non-goals, tool limits and handoff consistent |\n| Technical Specificity | Invalid or unimplementable contract | Plausible but requires material design decisions | Implementable interfaces/invariants and coherent examples |\n| Evidence Quality | Invented evidence | Assumptions marked; material evidence missing | Key claims grounded; uncertainties and verification explicit |\n| Failure-Aware Decisions | Critical failure path absent or unsafe | Failure named; containment incomplete | Mechanism, detection, containment and recovery address relevant adverse paths |\n| Migration Clarity | Unsafe or absent change path | Phases named; a gate remains unresolved | Compatibility, ordered gates, reversal and recovery limitations explicit |\n| Benchmark Fit | Violates task acceptance or substitutes a different job | Partially meets stated task outcomes | Meets task-specific acceptance conditions in the available evidence |\n\nReport the seven values, `Overall Score` out of 14, `Pass: true|false`, and brief reasons for weaknesses. A pass requires total at least 9, no zero for Failure-Aware Decisions, Migration Clarity or Benchmark Fit, and no demonstrated invalid critical contract, authority violation, fabricated evidence or unsafe destructive transition. A provisional design may still be useful; say exactly what prevents implementation readiness. Do not treat your own score as proof of downstream improvement.\n\n## Evaluation Rubric\nAssess objective/scope clarity, concrete replaceable boundaries, meaningful alternatives, operational feasibility, safe evolution and usable validation. The scorecard reviews artifact quality; task-specific independent evaluation establishes actual behavior. Formatting, citations and a high total cannot compensate for a broken invariant.\n\n## Examples\n- **API:** \u201cDesign a tenant-scoped job API. Clients retry after timeouts and poll for completion.\u201d Return an endpoint/operation catalog, concrete success/error examples, tenant authorization and retry contract, version plan and validation cases.\n- **Database:** \u201cWe need tenant-local document IDs and cannot pause old writers during migration.\u201d Return schema/keys, query-index mapping, concurrency rules and mixed-version migration/recovery gates.\n- **Patterns:** \u201cTwo providers return different status semantics; reduce coupling without adding services.\u201d Return observed change pressure, alternatives including the current approach, before/after boundaries, interface/error/lifecycle contracts and a reversible refactor.\n- **System:** \u201cDesign a document pipeline with burst traffic, bounded worker capacity and deletion requirements.\u201d Return topology, event/state flows, workload arithmetic, failure/degradation behavior, SLO measurement and rollout/recovery.\n- **Review:** \u201cAssess this service split, inline only; don't implement it.\u201d Return one coherent decision with state ownership, alternatives, compatibility and rollback, evidence gaps and an implementation handoff only.\n",
+  "status": "accepted",
+  "summary": "Intent\n- Design API, database, pattern, and system decisions that engineers can implement and reviewers can challenge. Connect the user's constraints to concrete interfaces, failure behavior, evolution, and validation. Publish architecture guidance and artifacts only. Do not use this skill to run orchestration, assign sub-agents, choose runtime delegation, harden prompts, judge capability imports, prove behavioral improvements, or maintain persistent analysis memory.\n- Produce the simplest justified design that preserves stated invariants, exposes uncertainty and rejected alternatives, and gives an implementer a usable contract and a safe change path. A recommendation may retain the current design or remain provisional when missing evidence would change it.\n\nConstraints\n- None\n\nRequested Outcome\n- None\n\nRejected/Out-of-Scope Signals\n- None\n",
+  "uac": {
+    "capability_type": "both",
+    "confidence": 0.9,
+    "content_kind": "hybrid_agent_workflow",
+    "deployment_intent": "generate",
+    "deployment_matrix": {
+      "capability_types": {
+        "agent": {
+          "meaning": "Delegated specialist with tool/process autonomy, separate operating identity, or explicit agent/subagent semantics.",
+          "surfaces": {
+            "claude": [
+              "claude_agent"
+            ],
+            "codex": [
+              "codex_agent"
+            ],
+            "gemini": [
+              "gemini_agent"
+            ],
+            "grok": [],
+            "kiro": [
+              "kiro_agent"
+            ]
+          },
+          "wrappers": {
+            "claude": [
+              "claude_agent_wrapper",
+              "claude_plugin_wrapper"
+            ],
+            "codex": [
+              "codex_plugin_wrapper"
+            ],
+            "gemini": [
+              "gemini_agent_wrapper"
+            ],
+            "kiro": [
+              "kiro_agent_wrapper",
+              "kiro_power_wrapper"
+            ]
+          }
+        },
+        "both": {
+          "meaning": "One SSOT entry that should emit both workflow/skill surfaces and agent surfaces.",
+          "surfaces": {
+            "claude": [
+              "claude_skill",
+              "claude_agent"
+            ],
+            "codex": [
+              "codex_skill",
+              "codex_agent"
+            ],
+            "gemini": [
+              "gemini_skill",
+              "gemini_agent"
+            ],
+            "grok": [
+              "grok_skill"
+            ],
+            "kiro": [
+              "kiro_skill",
+              "kiro_agent"
+            ]
+          },
+          "wrappers": {
+            "claude": [
+              "claude_skill_wrapper",
+              "claude_plugin_wrapper",
+              "claude_agent_wrapper"
+            ],
+            "codex": [
+              "codex_plugin_wrapper"
+            ],
+            "gemini": [
+              "gemini_skill_wrapper",
+              "gemini_agent_wrapper"
+            ],
+            "kiro": [
+              "kiro_skill_wrapper",
+              "kiro_power_wrapper",
+              "kiro_agent_wrapper"
+            ]
+          }
+        },
+        "manual_review": {
+          "meaning": "Conflicting, low-structure, or mixed wrapper content that should not deploy automatically.",
+          "surfaces": {
+            "claude": [],
+            "codex": [],
+            "gemini": [],
+            "grok": [],
+            "kiro": []
+          },
+          "wrappers": {
+            "claude": [],
+            "codex": [],
+            "gemini": [],
+            "kiro": []
+          }
+        },
+        "skill": {
+          "meaning": "Reusable prompt/workflow/procedure with explicit task guidance, structure, outputs, and bounded use.",
+          "surfaces": {
+            "claude": [
+              "claude_skill"
+            ],
+            "codex": [
+              "codex_skill"
+            ],
+            "gemini": [
+              "gemini_skill"
+            ],
+            "grok": [
+              "grok_skill"
+            ],
+            "kiro": [
+              "kiro_skill"
+            ]
+          },
+          "wrappers": {
+            "claude": [
+              "claude_skill_wrapper",
+              "claude_plugin_wrapper"
+            ],
+            "codex": [
+              "codex_plugin_wrapper"
+            ],
+            "gemini": [
+              "gemini_skill_wrapper"
+            ],
+            "kiro": [
+              "kiro_skill_wrapper",
+              "kiro_power_wrapper"
+            ]
+          }
+        }
+      },
+      "notes": [
+        "UAC recommends the surface area; the build emits only the canonical SKILL.md skill surfaces or agent surfaces for each CLI",
+        "direct exposure is standardized on skills directories only; commands and prompts are not deployable direct-surface targets in this repo",
+        "both means one SSOT source can emit multiple surfaces without duplicating SSOT entries",
+        "manual_review emits no deployable surfaces until reviewed"
+      ]
+    },
+    "emitted_surfaces": {
+      "claude": [
+        "claude_skill",
+        "claude_agent"
+      ],
+      "codex": [
+        "codex_skill",
+        "codex_agent"
+      ],
+      "gemini": [
+        "gemini_skill",
+        "gemini_agent"
+      ],
+      "grok": [
+        "grok_skill"
+      ],
+      "kiro": [
+        "kiro_skill",
+        "kiro_agent"
+      ]
+    },
+    "modernization_focus": [
+      "separate reusable workflow guidance from agent-only control metadata",
+      "emit both skill/command and agent surfaces from one canonical SSOT entry",
+      "preserve safety, escalation, and tool-boundary declarations"
+    ],
+    "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
+    "recommended_surface": "both",
+    "rubric": {
+      "agent": {
+        "decision_rule": "Choose agent when agent_score is dominant and agent_score >= 4.",
+        "signals": [
+          "kind: agent or role: agent",
+          "max_turns or explicit tool/control-plane metadata",
+          "sub-agent, delegation, or system-prompt framing",
+          "responsibilities / mission / operating-mode sections"
+        ]
+      },
+      "both": {
+        "decision_rule": "Choose both when strong workflow structure and strong agent control semantics are both present (agent_score >= 4 and skill_score >= 4).",
+        "signals": [
+          "reusable workflow/prompt sections plus explicit agent registration markers",
+          "one source needs both skill invocation and agent execution surfaces"
+        ]
+      },
+      "manual_review": {
+        "decision_rule": "Choose manual_review for config-only, low-structure, or mixed-shape sources that cannot be deployed safely.",
+        "signals": [
+          "config markers without prompt structure",
+          "missing semantic sections",
+          "ambiguous or mixed prompt/config content"
+        ]
+      },
+      "scoring": {
+        "agent_score": "weighted sum of agent/control-plane markers",
+        "config_score": "weighted sum of config-only markers",
+        "prompt_marker_hits": "count of coarse prompt marker matches",
+        "semantic_category_count": "count of populated semantic buckets from deterministic intent extraction",
+        "skill_score": "weighted sum of prompt/workflow and semantic-structure markers"
+      },
+      "skill": {
+        "decision_rule": "Choose skill when reusable prompt/workflow structure is strong, skill_score >= 3, and agent control markers are not dominant.",
+        "signals": [
+          "explicit objective / in-scope / out-of-scope / constraints / acceptance sections",
+          "workflow or usage framing",
+          "examples or output format sections",
+          "SKILL.md or prompt-like source shape"
+        ]
+      }
+    },
+    "scorecard": {
+      "agent_score": 4,
+      "config_score": 0,
+      "prompt_marker_hits": 5,
+      "semantic_category_count": 4,
+      "skill_score": 12
+    },
+    "signals": [
+      "agent control markers detected",
+      "skill/workflow markers detected",
+      "explicit objective structure detected",
+      "explicit out-of-scope structure detected",
+      "explicit constraint structure detected",
+      "explicit acceptance structure detected",
+      "multi-section prompt/spec structure detected"
+    ],
+    "target_systems": [
+      "codex",
+      "gemini",
+      "claude",
+      "kiro",
+      "grok"
+    ]
+  },
+  "uplift": {
+    "in_scope": [],
+    "out_of_scope": [
+      "Hard constraints",
+      "non-goals",
+      "fixed choices",
+      "compatibility and ownership boundaries",
+      "**Frame the decision.** State objective, callers/stakeholders, scope/non-goals, constraints and their priority. Identify the decision being made now and deferred choices. Cite relevant source files or supplied evidence",
+      "distinguish observed facts",
+      "documented platform behavior",
+      "assumptions and proposed checks",
+      "**Problem Framing:** objective",
+      "stakeholders",
+      "In Scope",
+      "Out of Scope",
+      "Assumptions & Constraints",
+      "relevant evidence and unknowns"
+    ],
+    "primary_objective": "Design API, database, pattern, and system decisions that engineers can implement and reviewers can challenge. Connect the user's constraints to concrete interfaces, failure behavior, evolution, and validation. Publish architecture guidance and artifacts only. Do not use this skill to run orchestration, assign sub-agents, choose runtime delegation, harden prompts, judge capability imports, prove behavioral improvements, or maintain persistent analysis memory.",
+    "quality_constraints": [
+      "Design API, database, pattern, and system decisions that engineers can implement and reviewers can challenge. Connect the user's constraints to concrete interfaces, failure behavior, evolution, and validation. Publish architecture guidance and artifacts only.",
+      "Do not use this skill to run orchestration, assign sub-agents, choose runtime delegation, harden prompts, judge capability imports, prove behavioral improvements, or maintain persistent analysis memory.",
+      "## Required Inputs",
+      "Inspect the supplied context before asking. Ask up to two focused questions when their answers would materially change the recommendation. Otherwise proceed with explicit `[ASSUMPTION]` markers, saying how to verify them and what would change. Never fabricate missing source content, measurements, owners or approvals. Conflicting hard constraints require a stated tradeoff or provisional alternatives, not silent priority selection.",
+      "Act as an advisory architecture artifact writer on both skill and agent surfaces. Read repository inputs, compare actual interfaces, and run lightweight read-only inspection when useful. Write only requested architecture deliverables. Do not modify product code, execute migrations, deploy, install tools, run orchestration, delegate, or start control loops as a side effect. Proposed commands, specifications and SQL are design artifacts, not execution evidence.",
+      "For a staged-diff bug review recommend `engos-quality-code-review`",
+      "structural metrics belong to `engos-audit-code-health`",
+      "test generation belongs to `engos-quality-testing-review`",
+      "release or merge gates belong to `engos-quality-gitops-review`. These are advisory handoffs, not tool dispatch. Prompt/plan hardening belongs to `engos-meta-supercharge`, import classification to `engos-meta-uac-import`, behavioral comparison to `engos-optimization-auto-research`, and durable investigation state to `engos-memory-context-continuity`. When several proposals need reconciliation, recommend `engos-reconciliation-converge`. Preserve a concrete architecture subproblem if one exists",
+      "do not replace the requested job with a neighboring capability.",
+      "Substitute the mode below. For a mixed design load each applicable route",
+      "share one framing, decision log and migration plan. Actual file reads are an equivalent fallback. Missing, changed or truncated resources require recovery",
+      "if recovery is unavailable, disclose the missing route and return only a provisional scope/evidence request. Do not claim complete mode guidance was supplied from a filename or a hash alone. Resource assembly is not proof of compliance.",
+      "| Mode | Use for | Required resource |",
+      "- Define each black-box responsibility, owner, interface and lifecycle. Separate module boundaries from deployment boundaries",
+      "replaceability does not require a service split.",
+      "2. **Discover primitives and invariants.** Trace representative read/write paths, state ownership, transactions, external dependencies and trust boundaries. State what must remain true under retries, concurrency, failure and mixed old/new versions. Inspect current pain or change pressure before recommending a pattern.",
+      "3. **Compare viable options.** For material decisions compare at least two reasonable choices. For each give fit, operational cost, implementation effort, failure exposure, migration impact and the evidence that would reverse the preference. Do not invent a straw alternative to fill a quota.",
+      "## Required Output",
+      "4. **Migration / Rollback Plan:** compatibility, phases, gates, triggers, rollback order, data recovery and irreversible boundaries. For no-change or greenfield decisions explain what is inapplicable and give adoption/reversal guidance when relevant.",
+      "Keep inline responses inline unless files are requested. When file output is requested, use the user's destination and existing project conventions. Otherwise use `reports/architecture/<timestamp>-summary.md`, `-decision-log.md`, `-migration-plan.md`, and `-validation-plan.md` for the requested report types. For repo-ready artifacts use `architecture/spec.md`, `architecture/decision-log.md`, `architecture/migration-plan.md`, and `architecture/validation-plan.md`. Create only useful requested artifacts, avoid duplicating the same content, and preserve unrelated files and prior decisions. Use a superseding decision reference rather than silently overwriting accepted rationale.",
+      "- No external action, benchmark result, test execution, production state or approval has been invented.",
+      "| Technical Specificity | Invalid or unimplementable contract | Plausible but requires material design decisions | Implementable interfaces/invariants and coherent examples |",
+      "Report the seven values, `Overall Score` out of 14, `Pass: true|false`, and brief reasons for weaknesses. A pass requires total at least 9, no zero for Failure-Aware Decisions, Migration Clarity or Benchmark Fit, and no demonstrated invalid critical contract, authority violation, fabricated evidence or unsafe destructive transition. A provisional design may still be useful",
+      "say exactly what prevents implementation readiness. Do not treat your own score as proof of downstream improvement.",
+      "- **Review:** \u201cAssess this service split, inline only",
+      "don't implement it.\u201d Return one coherent decision with state ownership, alternatives, compatibility and rollback, evidence gaps and an implementation handoff only.",
+      "Define each black-box responsibility, owner, interface and lifecycle. Separate module boundaries from deployment boundaries",
+      "**Discover primitives and invariants.** Trace representative read/write paths, state ownership, transactions, external dependencies and trust boundaries. State what must remain true under retries, concurrency, failure and mixed old/new versions. Inspect current pain or change pressure before recommending a pattern.",
+      "**Compare viable options.** For material decisions compare at least two reasonable choices. For each give fit, operational cost, implementation effort, failure exposure, migration impact and the evidence that would reverse the preference. Do not invent a straw alternative to fill a quota.",
+      "**Migration / Rollback Plan:** compatibility, phases, gates, triggers, rollback order, data recovery and irreversible boundaries. For no-change or greenfield decisions explain what is inapplicable and give adoption/reversal guidance when relevant.",
+      "No external action, benchmark result, test execution, production state or approval has been invented.",
+      "**Review:** \u201cAssess this service split, inline only"
+    ]
+  }
+}
