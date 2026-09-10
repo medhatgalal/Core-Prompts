@@ -561,7 +561,12 @@ def render_adapter_argv(
     """Render one validated argv tuple without invoking a shell or process."""
 
     replacements = _adapter_replacements(request, repo_root, workspace, session_dir)
-    rendered = tuple(_replace_placeholders(item, replacements) for item in spec.argv)
+    # Literal empty arguments (for example, --tools "") are meaningful; the
+    # executable and values emptied by substitution must still pass validation.
+    rendered = tuple(
+        "" if index > 0 and item == "" else _replace_placeholders(item, replacements)
+        for index, item in enumerate(spec.argv)
+    )
     executable = resolve_adapter_cli_executable(
         spec, command=rendered[0], environment=environment
     )
