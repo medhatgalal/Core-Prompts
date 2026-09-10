@@ -154,6 +154,17 @@ python3 resources/scripts/goal_packet.py seal /absolute/path/to/packet
 python3 resources/scripts/goal_packet.py check /absolute/path/to/packet
 ```
 
+For example, a packet sealed while `parser.py` is already modified becomes stale
+if that file changes again, even when Git still reports the same `M parser.py`.
+The repository binding checks staged and working-tree diffs and untracked file
+contents, modes, and symlink targets, including untracked files hidden by Git's
+display settings. The packet's own directory remains excluded.
+
+Older packets sealed on a dirty tree with the status-only fingerprint require
+current-input revalidation and resealing. Follow the validation sequence above
+after reviewing the changed inputs; do not edit stored hashes to bypass a
+`STALE_PACKET` result. Existing clean-tree bindings remain compatible.
+
 What good output looks like:
 
 - every machine criterion appears in `--list-criteria` and flips in the required direction
@@ -624,6 +635,8 @@ Expected output:
 - R2 data-quality corrections excluded from progress
 - closed incidents retained until the postmortem and DPA drop-off rule passes
 - policy-backed overdue, on-track, and no-SLA DPA states
+- completed or cancelled linked DPAs retained as linked records, without a false request to file another DPA
+- unknown priorities and missing SLA policy mappings identified separately, without an invented deadline
 - all ten daily-board sections in HTML, plus requested Markdown and sourced incident drill-downs
 - current/prior snapshot hashes, complete/partial/blocked coverage, and explicit caveats
 

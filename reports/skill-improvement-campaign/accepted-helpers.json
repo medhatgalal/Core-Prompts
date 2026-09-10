@@ -1,0 +1,73 @@
+{
+  "schema": "AcceptedSkillHelperExperiments.v1",
+  "recorded_at": "2026-09-10T22:17:21.177158+00:00",
+  "user_gate": "Only material evidenced improvements may land on main",
+  "changes": [
+    {
+      "skill": "engos-audit-opex-incident-review",
+      "scope": "deterministic bundled helper behavior; SSOT body unchanged",
+      "resource": "sources/capability-resources/engos-audit-opex-incident-review/opex_digest.py",
+      "baseline_revision": "ec04a5ebd94aba6c70d2bcdf66f5cd5c990e4062",
+      "baseline_sha256": "8f4e780752d42dbaa5c360fa129a3e3d7fa186beebec3091da6e39c29890f6a2",
+      "accepted_sha256": "93b51f013aee678a58a1b20ead80c82d38a15f7a3c8c8a3d8f7c8d9c4c04bb5d",
+      "author_experiment": {
+        "initial": "rejected after independent postmortem regression",
+        "revised_cases": 47,
+        "revised_passed": 47
+      },
+      "independent_experiment": {
+        "cases": 28,
+        "passed": 28
+      },
+      "durable_regressions": "tests/test_opex_incident_review.py",
+      "decision": "accepted for scoped source delivery; not formal model behavioral promotion",
+      "independent_receipt_sha256": "df46fc5608c96d5c1e019b6d4a80f0df1517596ced35c0f820397db230712a82"
+    },
+    {
+      "skill": "engos-design-plan-to-goal",
+      "scope": "deterministic bundled helper behavior; SSOT body unchanged",
+      "resource": "sources/capability-resources/engos-design-plan-to-goal/scripts/goal_packet.py",
+      "baseline_revision": "ec04a5ebd94aba6c70d2bcdf66f5cd5c990e4062",
+      "baseline_sha256": "dacff09aabd973852829bd8c3ea4a77ac8469299be4c1fb126eaf4eca6237c2b",
+      "accepted_sha256": "dd4f3f533ce74967916f87f50453dcec070ee34749ccd9368937b3b0b11ff34f",
+      "author_experiment": {
+        "initial": "revised after independent mode/configuration misses",
+        "incumbent_passed": 9,
+        "revised_cases": 20,
+        "revised_passed": 20
+      },
+      "independent_experiment": {
+        "cases": 17,
+        "passed": 17
+      },
+      "durable_regressions": "tests/test_plan_to_goal_design.py",
+      "decision": "accepted for scoped source delivery; not formal model behavioral promotion",
+      "independent_receipt_sha256": "a2012525f22910b487fb46486c153a43d11837eca3a32c9382e8de745701c99e"
+    }
+  ],
+  "validation": {
+    "focused_tests_passed": 100,
+    "full_tests_passed": 1077,
+    "subtests_passed": 138,
+    "strict_surfaces": "passed",
+    "native_smoke": {
+      "failures": 0,
+      "warnings": 0
+    },
+    "final_version_package_docs_tests_passed": 16
+  },
+  "uac": {
+    "same_slug_plan_judge_apply": true,
+    "quality_status": "structural_ready",
+    "formal_behavioral_status": "behavioral_pending",
+    "original_apply_failure": "OpEx apply generated successfully but validation found missing local schema cache entries; refreshing8sources and subsequent full validation resolved that failure."
+  },
+  "limits": [
+    "No whole-skill or model superiority claim",
+    "No new formal behavioral baseline",
+    "No live Jira or Google Workspace acceptance",
+    "Plan binding does not claim complete ignored-file/submodule coverage or atomic concurrent snapshots",
+    "No home installation performed",
+    "Other campaign prompt candidates are excluded from this delivery"
+  ]
+}

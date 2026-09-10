@@ -166,10 +166,30 @@ def packet_relative_to_repo(packet_dir: Path, repo: Path) -> str | None:
 
 def repository_status(repo: Path, packet_dir: Path) -> bytes:
     relative = packet_relative_to_repo(packet_dir, repo)
-    args = ["status", "--porcelain=v1", "-z", "--", "."]
+    paths = ["."]
     if relative:
-        args.extend([f":(exclude){relative}", f":(exclude){relative}/**"])
-    return run_git(repo, *args)
+        paths.extend([f":(exclude){relative}", f":(exclude){relative}/**"])
+    status = run_git(repo, "status", "--porcelain=v1", "--untracked-files=all", "-z", "--", *paths)
+    if not status:
+        return status
+    # Porcelain identifies changed paths, but unchanged status letters do not
+    # identify their contents. Bind both index and worktree changes separately.
+    fingerprint = bytearray(status)
+    for label, options in ((b"index", ("--cached",)), (b"worktree", ())):
+        diff = run_git(repo, "diff", *options, "--binary", "--no-ext-diff", "--no-textconv", "--no-renames", "--", *paths)
+        fingerprint.extend(b"\0" + label + b"\0" + hashlib.sha256(diff).digest())
+    untracked = run_git(repo, "ls-files", "--others", "--exclude-standard", "-z", "--", *paths)
+    for raw_path in sorted(item for item in untracked.split(b"\0") if item):
+        path = repo / os.fsdecode(raw_path)
+        if path.is_symlink():
+            kind, content = b"symlink", os.fsencode(os.readlink(path))
+        elif path.is_file():
+            kind, content = b"file", path.read_bytes()
+        else:
+            raise PacketError(f"cannot bind untracked input: {path}")
+        mode = str(path.lstat().st_mode & 0o7777).encode("ascii")
+        fingerprint.extend(b"\0" + kind + b"\0" + raw_path + b"\0" + mode + b"\0" + hashlib.sha256(content).digest())
+    return bytes(fingerprint)
 
 
 def repository_snapshot(repo: Path, packet_dir: Path) -> dict[str, Any]:
@@ -323,6 +343,13 @@ def validate_repository_binding(packet: dict[str, Any], packet_dir: Path) -> dic
         if actual[key] != expected.get(key):
             mismatches.append(f"{key}: expected {expected.get(key)!r}, found {actual[key]!r}")
     if mismatches:
+        relative = packet_relative_to_repo(packet_dir, repo)
+        legacy_paths = ["."]
+        if relative:
+            legacy_paths.extend([f":(exclude){relative}", f":(exclude){relative}/**"])
+        legacy_status = run_git(repo, "status", "--porcelain=v1", "-z", "--", *legacy_paths)
+        if expected.get("dirty") and expected.get("status_sha256") == sha256_bytes(legacy_status):
+            raise PacketError("STALE_PACKET legacy status-only repository fingerprint; revalidate current inputs and reseal with content binding")
         raise PacketError("STALE_PACKET repository drift: " + "; ".join(mismatches))
     return actual
 
