@@ -1,0 +1,217 @@
+{
+  "schema": "GitOpsResearchIdentity.v1",
+  "task_id": "01a088c3-24c5-73e2-8bce-cc1a710d8005",
+  "research_base": "192fec56bacf17ae6c58e1b1c64a0711a0fad124",
+  "branch": "AI/campaign-gitops-review",
+  "original_baseline": {
+    "commit": "9d481a2da04e672e3b52d79bba6cf466af597fa0",
+    "path": "ssot/engos-quality-gitops-review.md",
+    "sha256": "16b0acfd3bf5f4705b8e9dd772cf2cd347bbe656a91a52605cf5d183151de7e9"
+  },
+  "incumbent": {
+    "commit": "192fec56bacf17ae6c58e1b1c64a0711a0fad124",
+    "sha256": "16b0acfd3bf5f4705b8e9dd772cf2cd347bbe656a91a52605cf5d183151de7e9",
+    "state": "unchanged"
+  },
+  "baseline_inputs": [
+    {
+      "path": "ssot/engos-quality-gitops-review.md",
+      "sha256": "16b0acfd3bf5f4705b8e9dd772cf2cd347bbe656a91a52605cf5d183151de7e9",
+      "bytes": 8490
+    },
+    {
+      "path": ".codex/skills/engos-quality-gitops-review/SKILL.md",
+      "sha256": "e44f6b347bf7ff7b616ce2f6c2598ed72fe31ba4e2b91e9fa4405076354ffde4",
+      "bytes": 8452
+    },
+    {
+      "path": ".codex/skills/engos-quality-gitops-review/resources/capability.json",
+      "sha256": "2ce8b8ed49f2b6812b7ca33c36b0669290f47a32b978570fb7de9661592355fd",
+      "bytes": 10983
+    },
+    {
+      "path": ".meta/capabilities/engos-quality-gitops-review.json",
+      "sha256": "2ce8b8ed49f2b6812b7ca33c36b0669290f47a32b978570fb7de9661592355fd",
+      "bytes": 10983
+    },
+    {
+      "path": "evals/contracts/engos-quality-gitops-review.json",
+      "sha256": "9f742944bc108a531a125b311c1c97fe0796743fa17e218ccc29a1233eadac0d",
+      "bytes": 7217
+    },
+    {
+      "path": "evals/topologies/engos-quality-gitops-review.json",
+      "sha256": "584a80952f3fff5e94aae0d13ea841fda1913c85b23740b701038cc8f7f50af4",
+      "bytes": 10137
+    },
+    {
+      "path": "sources/ssot-baselines/engos-quality-gitops-review/baseline.md",
+      "sha256": "087c7156e2c9f140df3b9cd67076b2dbd2089dbda3a168044c8630e63893292d",
+      "bytes": 8166
+    }
+  ],
+  "trial": {
+    "id": "gitops-evidence-workflow-reviewed-draft",
+    "state": "unexecuted_unaccepted",
+    "files": [
+      {
+        "path": "reports/skill-improvement-campaign/skills/engos-quality-gitops-review/candidate/engos-quality-gitops-review.md",
+        "sha256": "b1b1c24a46adba88340a8d51179e602102e5462b39afd80476b21c141f9f061a",
+        "bytes": 15852
+      },
+      {
+        "path": "reports/skill-improvement-campaign/skills/engos-quality-gitops-review/candidate/resources/references/cleanup.md",
+        "sha256": "da5091cee586cd1ccd187ce1156c641fbd5753e925fcf4652f7a037b448a581f",
+        "bytes": 2347
+      },
+      {
+        "path": "reports/skill-improvement-campaign/skills/engos-quality-gitops-review/candidate/resources/references/provider-ci.md",
+        "sha256": "047bb87c0c02ac926281daf425e5e82f52b4e6812bd0200a4a6c346185db04b1",
+        "bytes": 4356
+      },
+      {
+        "path": "reports/skill-improvement-campaign/skills/engos-quality-gitops-review/candidate/resources/references/release.md",
+        "sha256": "90d118de2b18083989eb379045a171c3f894adcaac069fdc44fcba9d91781baf",
+        "bytes": 4841
+      },
+      {
+        "path": "reports/skill-improvement-campaign/skills/engos-quality-gitops-review/candidate/resources/resource-map.json",
+        "sha256": "05b98456d91da689e6dc43cebc91d72d611b71f4251d28b0ed7ae9a1d3e15ae6",
+        "bytes": 241
+      }
+    ]
+  },
+  "historical_draft": {
+    "sha256": "54099e8f73bc99637fb6d70ad8dea22fdef9f7b2c7cdbb7f7ecd2c94b1fbc3cb",
+    "state": "static_heading_repair_only",
+    "bytes_recoverable_from": "historical-uac-plan.json:source_text",
+    "evidence": [
+      {
+        "path": "reports/skill-improvement-campaign/skills/engos-quality-gitops-review/historical-uac-plan.json",
+        "sha256": "8d9eecf95252efc055a34a6af845703e10905e6f3e98b0179928366004fc21ff",
+        "bytes": 147308
+      },
+      {
+        "path": "reports/skill-improvement-campaign/skills/engos-quality-gitops-review/historical-uac-judge.json",
+        "sha256": "cbb9010032fa5c20344ad06c79e01a2dee64a60410ef5cdadd76a22d23013e0a",
+        "bytes": 149209
+      }
+    ]
+  },
+  "public_inputs": [
+    {
+      "path": "reports/skill-improvement-campaign/skills/engos-quality-gitops-review/public-controls/README.md",
+      "sha256": "b34082d85239022ff7bba63d116b3a6b2732ba9844db11bb9b5825397c0a5025",
+      "bytes": 3067
+    },
+    {
+      "path": "reports/skill-improvement-campaign/skills/engos-quality-gitops-review/public-controls/cases.jsonl",
+      "sha256": "1bfacd5260c9f40a4827d4023aeecb6cb20015373ffcbba1ccdfbfee47e834c6",
+      "bytes": 18828
+    },
+    {
+      "path": "reports/skill-improvement-campaign/skills/engos-quality-gitops-review/public-controls/check_fixtures.py",
+      "sha256": "28179ec54f45b63b2671bf750f64ac14901a2d366be40a562d377eaa2986b9f7",
+      "bytes": 5254
+    },
+    {
+      "path": "reports/skill-improvement-campaign/skills/engos-quality-gitops-review/public-controls/expected.json",
+      "sha256": "d476be3c26701aba61f24fd69794b3b81c9081cac84d8f0e4f6aaee5103adc48",
+      "bytes": 8837
+    },
+    {
+      "path": "reports/skill-improvement-campaign/skills/engos-quality-gitops-review/public-controls/negative-output-controls.json",
+      "sha256": "887a2c1ed7dc92a3a4086a7fcdcc3d82618e1d7aa5cbd6df2f10c196e0924575",
+      "bytes": 1997
+    },
+    {
+      "path": "reports/skill-improvement-campaign/skills/engos-quality-gitops-review/public-controls/task-contract.md",
+      "sha256": "b3eb3523b803766ffab7942e1092d751226fe537004b9e7523ecc6988fb3633d",
+      "bytes": 1294
+    }
+  ],
+  "shared_model_report": {
+    "path": "/Users/medhat.galal/.codex/worktrees/6c79/Core-Prompts/reports/skill-improvement-campaign/model-suitability.md",
+    "sha256": "1290d7dd76012379a566f89ea7e45714d93a9cb320f6592d0cd574a402358e82",
+    "bytes": 35081,
+    "research_checkpoint": "2026-09-10T00:23:31Z",
+    "public_rebind_at": "2026-09-10T01:18:23.345308+00:00",
+    "reused_not_reprobed": true,
+    "change_basis": "Coordinator reports publication-only redaction; current public report re-read in full. No claim of an independent diff of omitted private content.",
+    "later_admission": "Re-read and bind exact then-current public report before use; no runtime admission inferred."
+  },
+  "experimental_calls": 0,
+  "author_tokens": null,
+  "current_static_evidence": [
+    {
+      "path": "reports/skill-improvement-campaign/skills/engos-quality-gitops-review/uac-plan.json",
+      "sha256": "b844fc23a0f2079f5f01f4e5a0def508307d76ef1be204121648dc0a22d6b8ea",
+      "bytes": 137655
+    },
+    {
+      "path": "reports/skill-improvement-campaign/skills/engos-quality-gitops-review/uac-judge.json",
+      "sha256": "322f144018ac026c23694865593973b0574543c43a74478cf5b5bfa59c023be0",
+      "bytes": 139436
+    },
+    {
+      "path": "reports/skill-improvement-campaign/skills/engos-quality-gitops-review/resource-checks.json",
+      "sha256": "2c42d73f1cee55ecd4d7470d952f3d4e227ee936e20c93fc912a2b552f9c0cca",
+      "bytes": 2592
+    }
+  ],
+  "trial_history": [
+    {
+      "commit": "85d2d5076938d0a7270094b80e25e289e77cc9cd",
+      "identity_path": "reports/skill-improvement-campaign/skills/engos-quality-gitops-review/identity.json",
+      "trial": {
+        "id": "gitops-evidence-workflow-draft",
+        "state": "unexecuted_unaccepted",
+        "files": [
+          {
+            "path": "reports/skill-improvement-campaign/skills/engos-quality-gitops-review/candidate/engos-quality-gitops-review.md",
+            "sha256": "b1b1c24a46adba88340a8d51179e602102e5462b39afd80476b21c141f9f061a",
+            "bytes": 15852
+          },
+          {
+            "path": "reports/skill-improvement-campaign/skills/engos-quality-gitops-review/candidate/resources/references/cleanup.md",
+            "sha256": "da5091cee586cd1ccd187ce1156c641fbd5753e925fcf4652f7a037b448a581f",
+            "bytes": 2347
+          },
+          {
+            "path": "reports/skill-improvement-campaign/skills/engos-quality-gitops-review/candidate/resources/references/provider-ci.md",
+            "sha256": "047bb87c0c02ac926281daf425e5e82f52b4e6812bd0200a4a6c346185db04b1",
+            "bytes": 4356
+          },
+          {
+            "path": "reports/skill-improvement-campaign/skills/engos-quality-gitops-review/candidate/resources/references/release.md",
+            "sha256": "8be02287329371f052ef7e4017627d882dc695d7068908a427d8bd671667150f",
+            "bytes": 4473
+          },
+          {
+            "path": "reports/skill-improvement-campaign/skills/engos-quality-gitops-review/candidate/resources/resource-map.json",
+            "sha256": "05b98456d91da689e6dc43cebc91d72d611b71f4251d28b0ed7ae9a1d3e15ae6",
+            "bytes": 241
+          }
+        ]
+      },
+      "state": "unexecuted_pre_challenge_revision"
+    }
+  ],
+  "public_input_history": [
+    {
+      "commit": "85d2d5076938d0a7270094b80e25e289e77cc9cd",
+      "identity_path": "reports/skill-improvement-campaign/skills/engos-quality-gitops-review/identity.json",
+      "state": "unexecuted_pre_challenge_revision"
+    }
+  ],
+  "shared_model_report_history": [
+    {
+      "path": "/Users/medhat.galal/.codex/worktrees/6c79/Core-Prompts/reports/skill-improvement-campaign/model-suitability.md",
+      "sha256": "76f4da8640995dd47ad56a535f0a4715783d5cd5cda5fdc3daa1d25f4ebf310a",
+      "checkpoint": "2026-09-10T00:23:31Z",
+      "reused_not_reprobed": true,
+      "role": "historical_dated_reuse",
+      "used_in_commit": "85d2d5076938d0a7270094b80e25e289e77cc9cd"
+    }
+  ]
+}

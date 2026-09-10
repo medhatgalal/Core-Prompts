@@ -1,0 +1,19 @@
+{
+  "method": "GET",
+  "path": "/books",
+  "response": {
+    "books": [
+      {
+        "book_id": 17,
+        "title": "A Small Library",
+        "published_on": "2026-01-12",
+        "author_id": 4
+      }
+    ]
+  },
+  "current_order": [
+    "published_on DESC",
+    "book_id DESC"
+  ],
+  "compatibility": "Existing clients rely on books array and these four fields; additive optional metadata is allowed."
+}

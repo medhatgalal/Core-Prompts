@@ -1,0 +1,206 @@
+{
+  "schema_version": "ArchitectureResearchPacket.v1",
+  "trial_id": "C1-revised-after-full-challenge",
+  "status": "authored_unmeasured_not_promoted",
+  "original_baseline_commit": "9d481a2da04e672e3b52d79bba6cf466af597fa0",
+  "incumbent_ssot_sha256": "fbd582a0e518d8cb1bdbf183fdb9001ec311558b198658b9e6a9f1f4fa8201cb",
+  "candidate_entry_sha256": "1d5d9b61d9e968b6482554874bcf4b379155dfc359be58a7a33f20d247a8e6e6",
+  "files": {
+    "candidate/engos-design-architecture.md": {
+      "sha256": "1d5d9b61d9e968b6482554874bcf4b379155dfc359be58a7a33f20d247a8e6e6",
+      "bytes": 14904
+    },
+    "candidate/resources/references/decision-and-evolution.md": {
+      "sha256": "5821554cb405fbfdf61572d5b8795bba1438f1f4b977e7b3d8905e095544aa00",
+      "bytes": 4546
+    },
+    "candidate/resources/references/design-api.md": {
+      "sha256": "b8eee96b3fc320ad599667bca6214cbe83d592edeb9682cb6ffd7c19aeacb1a9",
+      "bytes": 5634
+    },
+    "candidate/resources/references/design-database.md": {
+      "sha256": "8dbc046755a5657be2cd02c6ec79a3d839c03acefe82bfeda2affb719286d5a7",
+      "bytes": 5567
+    },
+    "candidate/resources/references/design-patterns.md": {
+      "sha256": "16677253369f3548a2c8ef2761cf6bf447f8d75cff86f4aa12ee9982951148ec",
+      "bytes": 4041
+    },
+    "candidate/resources/references/system-design.md": {
+      "sha256": "ee2d2c6f4fd3ef2e90a0dd8190ed98e3904e094025fa9764200069b5974c0a85",
+      "bytes": 5680
+    },
+    "candidate/resources/resource-map.json": {
+      "sha256": "e868881b6a93aac64161a12a84a2f865020805100b03cba2562aaf97429bb340",
+      "bytes": 419
+    },
+    "check-attempts.json": {
+      "sha256": "8c64764dbf3effd9be68a2bbd42b99fe290c2ce30871282f817b4b716667d5fd",
+      "bytes": 522
+    },
+    "check_packet.py": {
+      "sha256": "6a35736eef85c3e3199878b9fc61d5b169dafd27ce5c7364f1e9a96503e65802",
+      "bytes": 7019
+    },
+    "docs-impact.md": {
+      "sha256": "58d39f5106ebc8495e31e8d007060c15eaa9f2f4472ef1855630072dce75a016",
+      "bytes": 5225
+    },
+    "evaluation-plan.md": {
+      "sha256": "05ba73478ed2b8426b29096093608156777520580a7276c8f0a15a35da72d2ea",
+      "bytes": 16276
+    },
+    "identity.json": {
+      "sha256": "99a419cc8ed147ca0b4744c4624348e072615364b95e7a146f5f6e83fcc943e8",
+      "bytes": 5030
+    },
+    "incumbent-tests.txt": {
+      "sha256": "1b69ecbb245749d5bb66cf7dace2b87f71d7a2b122b0823e25f5dcc67983132f",
+      "bytes": 98
+    },
+    "preservation-map.json": {
+      "sha256": "7c4d245c451442489fdb1767c403e091f40f1eca3b743cd75a5d6f17b984fa01",
+      "bytes": 28074
+    },
+    "public-cases.jsonl": {
+      "sha256": "b39ea9234540bd2c1858f1ba4733d4cd195f95f64327846cfe6a56259616127d",
+      "bytes": 6030
+    },
+    "public-expectations.json": {
+      "sha256": "c597bdd915baa18d02adf58ba28ca862978b6a7ddd76a6d3c167d6df3120b637",
+      "bytes": 10837
+    },
+    "public-fixtures/README.md": {
+      "sha256": "f8bcdd549e21e24a5021f4d7d4803e682f133ef8f3848d3614d011d377750603",
+      "bytes": 1625
+    },
+    "public-fixtures/api_retry.md": {
+      "sha256": "9bcf2a5f1d0ca834b023d2016fc2f5a98eec74900ef671a99db1575876f07b38",
+      "bytes": 719
+    },
+    "public-fixtures/api_safe.md": {
+      "sha256": "f6cab448494fca802a133fa6115be18286919eac0502f7e5f2a2cd06f4fc4c28",
+      "bytes": 717
+    },
+    "public-fixtures/authority.md": {
+      "sha256": "a4554ce3b96c836b8985748a79e6af6b40b05cd8c96a771efce8a27d5a9718a0",
+      "bytes": 443
+    },
+    "public-fixtures/catalog_artifact.md": {
+      "sha256": "9b72f8d2caa7f21700f689fbce0ad2d1b3884a31c24527c2f225bc04e01d411d",
+      "bytes": 703
+    },
+    "public-fixtures/catalog_context/current-api.json": {
+      "sha256": "63f543828ab36d62d1f2e48ad576c520634aa28159f8b18445c1e78fb4152726",
+      "bytes": 411
+    },
+    "public-fixtures/catalog_context/requirements.md": {
+      "sha256": "eddf78a0b31b8feaba079cc89f1a973f22c4698250ad534827a975900a4e7b71",
+      "bytes": 691
+    },
+    "public-fixtures/catalog_context/schema.sql": {
+      "sha256": "2c6948512dffbb7bc85224031dcfc8bee81efc6249726a858e5d7f57a67a8ad5",
+      "bytes": 385
+    },
+    "public-fixtures/database_concurrency.md": {
+      "sha256": "35d5c8d208d4d85f10acc19cdbe17a051cdd6e2181970223f2ac4ba1fcebb4d3",
+      "bytes": 746
+    },
+    "public-fixtures/database_live_migration.md": {
+      "sha256": "5e7321af7c508b0fe44b3477e4de138028f5406224cc11260b6929d90c3c1070",
+      "bytes": 717
+    },
+    "public-fixtures/database_soft_delete.md": {
+      "sha256": "7aff9822bce02638f8d9c6e01ce19b1f0e8a047d6aeda5975f761ba381d69778",
+      "bytes": 617
+    },
+    "public-fixtures/missing_context.md": {
+      "sha256": "e0c6f5b6fde327636ae8188eb02cd1a15d2a965da6962083290d7fa40480477f",
+      "bytes": 460
+    },
+    "public-fixtures/patterns_adapter.md": {
+      "sha256": "7a7f4cd344a54e0e5018fa78e8941139877b5c0e656e6fdcf8da98096adb959f",
+      "bytes": 661
+    },
+    "public-fixtures/patterns_local_policy.md": {
+      "sha256": "f191e833da3489403426c5846d850edec7088da7c7b10ef305afc2bf1284b963",
+      "bytes": 645
+    },
+    "public-fixtures/patterns_no_change.md": {
+      "sha256": "8b90439f13ad8d739837e8d6f2b01534ff02ff6fcace0789e8cefce7ad36c186",
+      "bytes": 444
+    },
+    "public-fixtures/routing.md": {
+      "sha256": "bea4109d971f2bfef1453d0d6108d3bd665780bd34f7b819a6a816eb9ad41f83",
+      "bytes": 164
+    },
+    "public-fixtures/service_split_request.md": {
+      "sha256": "0a6c68904fce5a5301fcc02721f154542ae9d65d4bf6b4367a1934e6fa04771a",
+      "bytes": 793
+    },
+    "public-fixtures/system_capacity_feasible.json": {
+      "sha256": "4e0c98fa97755d1865521dd5e1954b011201fbf8b5afb11e2efeed91810e71e4",
+      "bytes": 394
+    },
+    "public-fixtures/system_capacity_feasible.md": {
+      "sha256": "94dd73501800bf85dbf7632c8ad86877a78ad79b3c1ce4970c7c227fe9967922",
+      "bytes": 624
+    },
+    "public-fixtures/system_capacity_variant.json": {
+      "sha256": "bf45488d1388e3ec0d90839e59898fd27e55658fd81eef0571f77cf5c673c681",
+      "bytes": 396
+    },
+    "public-fixtures/system_capacity_variant.md": {
+      "sha256": "1b425c10f6592d143d334bc01f9a0025b37fadfd5f669fb23963b8a997ae2a18",
+      "bytes": 476
+    },
+    "public-fixtures/system_dual_write.md": {
+      "sha256": "268ee0b638600e26fcbeee1fd0168d8b3576d032fa84a5261f1e2f5d4ca6ac33",
+      "bytes": 726
+    },
+    "public-fixtures/system_overload.json": {
+      "sha256": "11f8b72baa64b640373e374e4e199684800315c1614244aff304befbb94a8cd9",
+      "bytes": 398
+    },
+    "public-fixtures/system_overload.md": {
+      "sha256": "29544ab7199236a10b87c48c13895b455b687e2bf2971156ee4915ba2833ae51",
+      "bytes": 795
+    },
+    "public-fixtures/uniqueness_scenario.json": {
+      "sha256": "b6201ed6d9e8248ab106f57ec2c44cde8c41963e185903ce5ae660bb0460da16",
+      "bytes": 264
+    },
+    "research.md": {
+      "sha256": "7177a149a681cd970e40a7b111efe988fcad0a7ee4346702ccd3d1fda5197b2e",
+      "bytes": 18594
+    },
+    "revision-record.json": {
+      "sha256": "d4761af2bc3dff2912239734123e8543d283b29de3a48676eb746d44b39998f1",
+      "bytes": 1122
+    },
+    "sizing.json": {
+      "sha256": "74763cdf45e305451eaf6ddda4521cb8e50424e84dd7b40779beef3db3f18ae9",
+      "bytes": 10055
+    },
+    "surface-validation.txt": {
+      "sha256": "eb4f85c9bfb9bf57819b44e6af26a6f19a0ea5d0d84fdf0b15d7f6a23bae201b",
+      "bytes": 598
+    },
+    "uac-judge.json": {
+      "sha256": "91cdc1a4cb476f4a557530265beaa0e3cfe0ad2f25c467b0bf891664bc0d310d",
+      "bytes": 82471
+    },
+    "uac-plan.json": {
+      "sha256": "48b7db86aa14035e6eb762aa95b53a1c4d2322b1480693efcc5f95214221e2a2",
+      "bytes": 82883
+    },
+    "upstream-integration.json": {
+      "sha256": "ec4a8b7c5f26cf8a2abbc1fc19e0a0e988cb672e5e17e053e128d79ab493ab84",
+      "bytes": 587
+    }
+  },
+  "mutable_status_file": "assessment.md",
+  "check_receipt_file": "checks.json",
+  "note": "Hashes freeze public research/candidate/control/protocol bytes. Not independent proof, a model receipt or an approved write set.",
+  "revision_parent_commit": "b4c2939d2b829dfbac14927c851e7c30e66d1996"
+}

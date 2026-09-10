@@ -1,0 +1,13 @@
+{
+  "launch_head": "192fec56bacf17ae6c58e1b1c64a0711a0fad124",
+  "refreshed_origin_main": "00995404e402f366907ad43367cc5db28e278e10",
+  "refreshed_gitlab_main": "00995404e402f366907ad43367cc5db28e278e10",
+  "integration": "git merge --no-edit origin/main; fast-forward",
+  "architecture_scoped_baseline_files_changed": false,
+  "repeat_checks_required": [
+    "check_packet.py",
+    "tests/test_architecture_quality.py",
+    "scripts/validate-surfaces.py"
+  ],
+  "reason": "Remote main advanced during research with installation migration; original baseline and phase clock preserved"
+}

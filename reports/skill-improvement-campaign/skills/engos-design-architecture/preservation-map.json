@@ -1,0 +1,657 @@
+{
+  "status": "author_proposed_not_independent_waiver",
+  "source_contract": "evals/contracts/engos-design-architecture.json",
+  "extracted_clause_mapping": [
+    {
+      "source_clause_sha256": "04d8e6d45308d6386e7f547dfe9628fb74b90b363b0ec31a66131058f0b0412b",
+      "source_text": "Do not use this skill to run orchestration, assign sub-agents, or choose runtime delegation. This skill publishes architecture guidance and decision artifacts only.",
+      "disposition": "preserved semantically",
+      "candidate_location": "Agent Operating Contract",
+      "reason": "Advisory output only; no runtime routing/delegation, product implementation or side-effect execution.",
+      "public_cases": [
+        "AR-FULL-AUTH-01",
+        "AR-FULL-ROUTE-01"
+      ]
+    },
+    {
+      "source_clause_sha256": "2eac6c7a6b1a3e56eceeceb8da2dbdf005eabe3c17ea260d41d387ad0805ba7b",
+      "source_text": "Do not use this skill when the user mainly needs prompt hardening, capability import judgment, behavioral proof, or persistent multi-file analysis memory.",
+      "disposition": "preserved semantically",
+      "candidate_location": "Purpose; Agent Operating Contract",
+      "reason": "Original exclusions retained and neighboring routes made explicit.",
+      "public_cases": [
+        "AR-FULL-ROUTE-01"
+      ]
+    },
+    {
+      "source_clause_sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "source_text": "## Required Inputs",
+      "disposition": "preserved semantically",
+      "candidate_location": "Required Inputs",
+      "reason": "Actual problem/context/constraint inputs retained, not only the heading.",
+      "public_cases": [
+        "AR-FULL-API-01",
+        "AR-FULL-API-02",
+        "AR-FULL-DB-01",
+        "AR-FULL-DB-02",
+        "AR-FULL-PAT-01",
+        "AR-FULL-PAT-02",
+        "AR-FULL-SYS-01",
+        "AR-FULL-SYS-02",
+        "AR-FULL-MIX-01",
+        "AR-FULL-GAP-01"
+      ]
+    },
+    {
+      "source_clause_sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "source_text": "## Required Output",
+      "disposition": "intentional format/applicability change",
+      "candidate_location": "Required Output; Output Directory",
+      "reason": "Preserves substantive output meanings; combines repeated universal/mode sections; routing-only response exempt; author-proposed change requires independent requirement review.",
+      "public_cases": [
+        "AR-FULL-API-01",
+        "AR-FULL-API-02",
+        "AR-FULL-DB-01",
+        "AR-FULL-DB-02",
+        "AR-FULL-PAT-01",
+        "AR-FULL-PAT-02",
+        "AR-FULL-SYS-01",
+        "AR-FULL-SYS-02",
+        "AR-FULL-MIX-01",
+        "AR-FULL-GAP-01"
+      ]
+    },
+    {
+      "source_clause_sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+      "source_text": "Every substantial response must include:",
+      "disposition": "intentional format/applicability change",
+      "candidate_location": "Required Output; Output Directory",
+      "reason": "Preserves substantive output meanings; combines repeated universal/mode sections; routing-only response exempt; author-proposed change requires independent requirement review.",
+      "public_cases": [
+        "AR-FULL-API-01",
+        "AR-FULL-API-02",
+        "AR-FULL-DB-01",
+        "AR-FULL-DB-02",
+        "AR-FULL-PAT-01",
+        "AR-FULL-PAT-02",
+        "AR-FULL-SYS-01",
+        "AR-FULL-SYS-02",
+        "AR-FULL-MIX-01",
+        "AR-FULL-GAP-01"
+      ]
+    },
+    {
+      "source_clause_sha256": "0a8e79a060d12a94d58d864d54fdd538d4106b5e3907ec22a329e6b0446238ea",
+      "source_text": "- forbidden: runtime routing, agent delegation, workflow control loops, or implementing product code as a side effect of architecture analysis",
+      "disposition": "preserved semantically",
+      "candidate_location": "Agent Operating Contract",
+      "reason": "Advisory output only; no runtime routing/delegation, product implementation or side-effect execution.",
+      "public_cases": [
+        "AR-FULL-AUTH-01",
+        "AR-FULL-ROUTE-01"
+      ]
+    },
+    {
+      "source_clause_sha256": "e63ecfee4a9167cfb7d4be3d1f4efa1fbe32cd31e975c5a009ac93a40cadd77c",
+      "source_text": "If the user wants only an inline response, produce the same structure inline and reference the logical artifact names in the output.",
+      "disposition": "intentional format/applicability change",
+      "candidate_location": "Required Output; Output Directory",
+      "reason": "Preserves substantive output meanings; combines repeated universal/mode sections; routing-only response exempt; author-proposed change requires independent requirement review.",
+      "public_cases": [
+        "AR-FULL-API-01",
+        "AR-FULL-API-02",
+        "AR-FULL-DB-01",
+        "AR-FULL-DB-02",
+        "AR-FULL-PAT-01",
+        "AR-FULL-PAT-02",
+        "AR-FULL-SYS-01",
+        "AR-FULL-SYS-02",
+        "AR-FULL-MIX-01",
+        "AR-FULL-GAP-01"
+      ]
+    },
+    {
+      "source_clause_sha256": "4ff9062c57f5f249c310acecb5360535c35367f30c4e356b9de7f72b3e745ad8",
+      "source_text": "- **Replaceability**: every major module should be replaceable using only its interface contract.",
+      "disposition": "intentional applicability change",
+      "candidate_location": "Core Principles; Standard Workflow; design-patterns.md",
+      "reason": "Replaces universal interface-only replaceability for every major module with explicit black-box responsibilities, contracts and lifecycle plus task-relevant replacement reasoning. Some shared storage or transactional boundaries legitimately constrain replacement; do not promise universal independent replacement. Review whether each changed boundary has adequate replacement/compatibility evidence.",
+      "public_cases": [
+        "AR-FULL-PAT-01",
+        "AR-FULL-PAT-03",
+        "AR-FULL-MIX-01"
+      ]
+    },
+    {
+      "source_clause_sha256": "1e23d48db348b19e25103d75ec783bb1a83de301c30b9dc474860f84d7226b29",
+      "source_text": "- **Explicit trade-offs**: every major recommendation must state what it improves, what it costs, and what was rejected.",
+      "disposition": "preserved semantically",
+      "candidate_location": "Standard Workflow; Core Principles; Review Gate",
+      "reason": "Retains the requirement as an explicit shared design obligation.",
+      "public_cases": [
+        "AR-FULL-API-01",
+        "AR-FULL-API-02",
+        "AR-FULL-DB-01",
+        "AR-FULL-DB-02",
+        "AR-FULL-PAT-01",
+        "AR-FULL-PAT-02",
+        "AR-FULL-SYS-01",
+        "AR-FULL-SYS-02",
+        "AR-FULL-MIX-01",
+        "AR-FULL-GAP-01"
+      ]
+    },
+    {
+      "source_clause_sha256": "01bb3eecaf408f8fc638f34416c15eb288c6bfa2580a0b11ec86ec4251b09f31",
+      "source_text": "- external systems and dependencies that must be wrapped or isolated",
+      "disposition": "intentional applicability change",
+      "candidate_location": "Standard Workflow; design-patterns.md; system-design.md",
+      "reason": "Replaces universal wrapping/isolation with boundaries justified by actual semantic mismatch, ownership, trust and change pressure. Direct integration can be valid; disclose coupling and failure/replacement cost. No blanket wrapper or extra deployed service is required.",
+      "public_cases": [
+        "AR-FULL-PAT-02",
+        "AR-FULL-PAT-03",
+        "AR-FULL-SYS-04"
+      ]
+    },
+    {
+      "source_clause_sha256": "764a1f78d93f9f3c01413bd1ea932df452e4540f3e17cea539e861e7a079208b",
+      "source_text": "Every architecture response must include all of the following, even when brief:",
+      "disposition": "intentional format/applicability change",
+      "candidate_location": "Required Output; Output Directory",
+      "reason": "Preserves substantive output meanings; combines repeated universal/mode sections; routing-only response exempt; author-proposed change requires independent requirement review.",
+      "public_cases": [
+        "AR-FULL-API-01",
+        "AR-FULL-API-02",
+        "AR-FULL-DB-01",
+        "AR-FULL-DB-02",
+        "AR-FULL-PAT-01",
+        "AR-FULL-PAT-02",
+        "AR-FULL-SYS-01",
+        "AR-FULL-SYS-02",
+        "AR-FULL-MIX-01",
+        "AR-FULL-GAP-01"
+      ]
+    },
+    {
+      "source_clause_sha256": "72b5a2d0b3c2b951edb7e4f0e9da7359ff8a6f6521149e6633cb81a331fd4bf7",
+      "source_text": "#### Required API Outputs",
+      "disposition": "preserved semantically",
+      "candidate_location": "resources/references/design-api.md: Required API artifacts",
+      "reason": "Moves complete API deliverables to a selected route and adds concurrency/uncertain outcome detail.",
+      "public_cases": [
+        "AR-FULL-API-01",
+        "AR-FULL-API-02"
+      ]
+    },
+    {
+      "source_clause_sha256": "21c4acf6ec7ff046efcc39280e2828227648562f1143529d4a34cab77e86366d",
+      "source_text": "#### Required Database Outputs",
+      "disposition": "preserved semantically",
+      "candidate_location": "resources/references/design-database.md: Required database artifacts",
+      "reason": "Moves complete data deliverables to a selected route; preserves access patterns, consistency, recovery and migration.",
+      "public_cases": [
+        "AR-FULL-DB-01",
+        "AR-FULL-DB-02"
+      ]
+    },
+    {
+      "source_clause_sha256": "5b82684f289535056c917362ffe08540413fb7f3699cfc7c59609dc89762d05b",
+      "source_text": "#### Required Pattern Outputs",
+      "disposition": "preserved semantically",
+      "candidate_location": "resources/references/design-patterns.md: Required pattern artifacts",
+      "reason": "Preserves diagnosis, fit matrix, before/after, testability and replacement plan.",
+      "public_cases": [
+        "AR-FULL-PAT-01",
+        "AR-FULL-PAT-02"
+      ]
+    },
+    {
+      "source_clause_sha256": "825ddb017ea9acd43d53677ddb53689139f714334365452df1b1d96d62ec1690",
+      "source_text": "- Do not default to Singleton for convenience when dependency injection or explicit ownership would keep testability and boundary clarity intact.",
+      "disposition": "preserved semantically",
+      "candidate_location": "resources/references/design-patterns.md: Inspect; fit guidance",
+      "reason": "Retains no-cargo-cult principle and skeptical Singleton treatment; appropriate immutable shared object is not mechanically banned.",
+      "public_cases": [
+        "AR-FULL-PAT-01",
+        "AR-FULL-PAT-02"
+      ]
+    },
+    {
+      "source_clause_sha256": "56dd7611e73fa179a0b67675769339a4c602880433be8fbd4339fc549298c064",
+      "source_text": "- pattern recommendations that do not improve testability, replaceability, or ownership",
+      "disposition": "preserved semantically",
+      "candidate_location": "resources/references/design-patterns.md: Inspect; fit guidance",
+      "reason": "Retains no-cargo-cult principle and skeptical Singleton treatment; appropriate immutable shared object is not mechanically banned.",
+      "public_cases": [
+        "AR-FULL-PAT-01",
+        "AR-FULL-PAT-02"
+      ]
+    },
+    {
+      "source_clause_sha256": "3417c6dd3d4d592ad7f2d15a7fe70eefb29cb9074c82b2875816482e6537a7d9",
+      "source_text": "#### Required System Outputs",
+      "disposition": "preserved semantically",
+      "candidate_location": "resources/references/system-design.md: Required system artifacts",
+      "reason": "Preserves topology, flows, capacity, failure, security, observability and migration.",
+      "public_cases": [
+        "AR-FULL-SYS-01",
+        "AR-FULL-SYS-02",
+        "AR-FULL-MIX-01"
+      ]
+    },
+    {
+      "source_clause_sha256": "c7a2a9e98efd0bf74869f7c5a7c547c7ddbe083d813720ecb4b4a3202c787a50",
+      "source_text": "1. Never return an architecture recommendation without stating objective, scope, assumptions, and constraints.",
+      "disposition": "preserved semantically",
+      "candidate_location": "Standard Workflow; Core Principles; Review Gate",
+      "reason": "Retains the requirement as an explicit shared design obligation.",
+      "public_cases": [
+        "AR-FULL-API-01",
+        "AR-FULL-API-02",
+        "AR-FULL-DB-01",
+        "AR-FULL-DB-02",
+        "AR-FULL-PAT-01",
+        "AR-FULL-PAT-02",
+        "AR-FULL-SYS-01",
+        "AR-FULL-SYS-02",
+        "AR-FULL-MIX-01",
+        "AR-FULL-GAP-01"
+      ]
+    },
+    {
+      "source_clause_sha256": "02e40b3d1442595bd1248ccc3778f403e566faf362024f1d2dabab681e415709",
+      "source_text": "2. Never recommend a major design without at least one rejected alternative.",
+      "disposition": "preserved semantically",
+      "candidate_location": "Standard Workflow; Core Principles; Review Gate",
+      "reason": "Retains the requirement as an explicit shared design obligation.",
+      "public_cases": [
+        "AR-FULL-API-01",
+        "AR-FULL-API-02",
+        "AR-FULL-DB-01",
+        "AR-FULL-DB-02",
+        "AR-FULL-PAT-01",
+        "AR-FULL-PAT-02",
+        "AR-FULL-SYS-01",
+        "AR-FULL-SYS-02",
+        "AR-FULL-MIX-01",
+        "AR-FULL-GAP-01"
+      ]
+    },
+    {
+      "source_clause_sha256": "365f9818c152b00d703a65cba71a754209d74c8fea94a912abb4d8859c4f09cc",
+      "source_text": "3. Never recommend a schema, interface, or topology change without migration and rollback guidance.",
+      "disposition": "preserved semantically",
+      "candidate_location": "Standard Workflow; Core Principles; Review Gate",
+      "reason": "Retains the requirement as an explicit shared design obligation.",
+      "public_cases": [
+        "AR-FULL-API-01",
+        "AR-FULL-API-02",
+        "AR-FULL-DB-01",
+        "AR-FULL-DB-02",
+        "AR-FULL-PAT-01",
+        "AR-FULL-PAT-02",
+        "AR-FULL-SYS-01",
+        "AR-FULL-SYS-02",
+        "AR-FULL-MIX-01",
+        "AR-FULL-GAP-01"
+      ]
+    },
+    {
+      "source_clause_sha256": "c22bdb1b8e81e64035cd0cb2ae6f8bc02bcb07c9445af767638e98202d56eb90",
+      "source_text": "4. Never hide uncertainty. Mark unknowns explicitly.",
+      "disposition": "preserved semantically",
+      "candidate_location": "Standard Workflow; Core Principles; Review Gate",
+      "reason": "Retains the requirement as an explicit shared design obligation.",
+      "public_cases": [
+        "AR-FULL-API-01",
+        "AR-FULL-API-02",
+        "AR-FULL-DB-01",
+        "AR-FULL-DB-02",
+        "AR-FULL-PAT-01",
+        "AR-FULL-PAT-02",
+        "AR-FULL-SYS-01",
+        "AR-FULL-SYS-02",
+        "AR-FULL-MIX-01",
+        "AR-FULL-GAP-01"
+      ]
+    },
+    {
+      "source_clause_sha256": "5f14ddd9ba49c2d925eb639b65add54ddf731260764fe3148f26dd12840cae13",
+      "source_text": "5. Never confuse module boundaries with deployment boundaries.",
+      "disposition": "preserved semantically",
+      "candidate_location": "Standard Workflow; Core Principles; Review Gate",
+      "reason": "Retains the requirement as an explicit shared design obligation.",
+      "public_cases": [
+        "AR-FULL-API-01",
+        "AR-FULL-API-02",
+        "AR-FULL-DB-01",
+        "AR-FULL-DB-02",
+        "AR-FULL-PAT-01",
+        "AR-FULL-PAT-02",
+        "AR-FULL-SYS-01",
+        "AR-FULL-SYS-02",
+        "AR-FULL-MIX-01",
+        "AR-FULL-GAP-01"
+      ]
+    },
+    {
+      "source_clause_sha256": "44bc24df870fbcf16f8a710bdd584336afce4b865a2b66b2228b71dfbcc04a53",
+      "source_text": "6. Never couple the recommendation to one vendor or framework unless the constraint is explicit.",
+      "disposition": "intentional applicability change",
+      "candidate_location": "Core Principles",
+      "reason": "Old rule allowed vendor coupling only when an explicit constraint existed. Candidate permits a justified proposed product choice without that precondition, while now explicitly requiring all caller vendor/framework/portability constraints to be honored and coupling/replacement costs exposed. This is not unchanged behavior and needs independent semantic review.",
+      "public_cases": [
+        "AR-FULL-PAT-03",
+        "AR-FULL-ART-01"
+      ]
+    },
+    {
+      "source_clause_sha256": "822a5d36365e7910204b4640ae4b39cf825644b9ea245c2cd8e45eff9c614223",
+      "source_text": "7. Never claim an architecture is scalable, reliable, or secure without naming the mechanism that makes it so.",
+      "disposition": "preserved semantically",
+      "candidate_location": "Standard Workflow; Core Principles; Review Gate",
+      "reason": "Retains the requirement as an explicit shared design obligation.",
+      "public_cases": [
+        "AR-FULL-API-01",
+        "AR-FULL-API-02",
+        "AR-FULL-DB-01",
+        "AR-FULL-DB-02",
+        "AR-FULL-PAT-01",
+        "AR-FULL-PAT-02",
+        "AR-FULL-SYS-01",
+        "AR-FULL-SYS-02",
+        "AR-FULL-MIX-01",
+        "AR-FULL-GAP-01"
+      ]
+    },
+    {
+      "source_clause_sha256": "46836c815a5ecec4e49e2981742bb7cc8247592e8e2f26b18160025c89c9df84",
+      "source_text": "8. Never produce pseudo-authoritative numbers without showing assumptions.",
+      "disposition": "preserved semantically",
+      "candidate_location": "Standard Workflow; Core Principles; Review Gate",
+      "reason": "Retains the requirement as an explicit shared design obligation.",
+      "public_cases": [
+        "AR-FULL-API-01",
+        "AR-FULL-API-02",
+        "AR-FULL-DB-01",
+        "AR-FULL-DB-02",
+        "AR-FULL-PAT-01",
+        "AR-FULL-PAT-02",
+        "AR-FULL-SYS-01",
+        "AR-FULL-SYS-02",
+        "AR-FULL-MIX-01",
+        "AR-FULL-GAP-01"
+      ]
+    },
+    {
+      "source_clause_sha256": "c05c6928302db122864f383fc826be21b816c2d92b87615a89a3aaaca92dcbf9",
+      "source_text": "9. Never optimize for novelty over maintainability.",
+      "disposition": "preserved semantically",
+      "candidate_location": "Standard Workflow; Core Principles; Review Gate",
+      "reason": "Retains the requirement as an explicit shared design obligation.",
+      "public_cases": [
+        "AR-FULL-API-01",
+        "AR-FULL-API-02",
+        "AR-FULL-DB-01",
+        "AR-FULL-DB-02",
+        "AR-FULL-PAT-01",
+        "AR-FULL-PAT-02",
+        "AR-FULL-SYS-01",
+        "AR-FULL-SYS-02",
+        "AR-FULL-MIX-01",
+        "AR-FULL-GAP-01"
+      ]
+    },
+    {
+      "source_clause_sha256": "e9c762ef592f96f46ab4acca0d1204e5499ccd0498508bf879f7f053c64a3fb0",
+      "source_text": "10. Never omit validation steps for a meaningful change.",
+      "disposition": "preserved semantically",
+      "candidate_location": "Standard Workflow; Core Principles; Review Gate",
+      "reason": "Retains the requirement as an explicit shared design obligation.",
+      "public_cases": [
+        "AR-FULL-API-01",
+        "AR-FULL-API-02",
+        "AR-FULL-DB-01",
+        "AR-FULL-DB-02",
+        "AR-FULL-PAT-01",
+        "AR-FULL-PAT-02",
+        "AR-FULL-SYS-01",
+        "AR-FULL-SYS-02",
+        "AR-FULL-MIX-01",
+        "AR-FULL-GAP-01"
+      ]
+    },
+    {
+      "source_clause_sha256": "4d7c6ba61e19d45e3ec2c1006ffa33fed291f797b9f357773cbf6f2f5c85cbd3",
+      "source_text": "- `Failure-Aware Decisions` must not be `0`",
+      "disposition": "preserved semantically",
+      "candidate_location": "Architecture Quality Scorecard",
+      "reason": "Retains the three required nonzero dimensions and >=9 threshold; anchors meanings and adds hard vetoes.",
+      "public_cases": [
+        "AR-FULL-API-01",
+        "AR-FULL-API-02",
+        "AR-FULL-DB-01",
+        "AR-FULL-DB-02",
+        "AR-FULL-PAT-01",
+        "AR-FULL-PAT-02",
+        "AR-FULL-SYS-01",
+        "AR-FULL-SYS-02",
+        "AR-FULL-MIX-01",
+        "AR-FULL-GAP-01"
+      ]
+    },
+    {
+      "source_clause_sha256": "b820d2fd501dc4012bacc3de2b8561e7ea5f16455e3156af0722f608ac2d5ee1",
+      "source_text": "- `Migration Clarity` must not be `0`",
+      "disposition": "preserved semantically",
+      "candidate_location": "Architecture Quality Scorecard",
+      "reason": "Retains the three required nonzero dimensions and >=9 threshold; anchors meanings and adds hard vetoes.",
+      "public_cases": [
+        "AR-FULL-API-01",
+        "AR-FULL-API-02",
+        "AR-FULL-DB-01",
+        "AR-FULL-DB-02",
+        "AR-FULL-PAT-01",
+        "AR-FULL-PAT-02",
+        "AR-FULL-SYS-01",
+        "AR-FULL-SYS-02",
+        "AR-FULL-MIX-01",
+        "AR-FULL-GAP-01"
+      ]
+    },
+    {
+      "source_clause_sha256": "6f1f8c1439793ec841b24c895e3be6dfd31e680e2a76d7a878141dd99ce01054",
+      "source_text": "- `Benchmark Fit` must not be `0`",
+      "disposition": "preserved semantically",
+      "candidate_location": "Architecture Quality Scorecard",
+      "reason": "Retains the three required nonzero dimensions and >=9 threshold; anchors meanings and adds hard vetoes.",
+      "public_cases": [
+        "AR-FULL-API-01",
+        "AR-FULL-API-02",
+        "AR-FULL-DB-01",
+        "AR-FULL-DB-02",
+        "AR-FULL-PAT-01",
+        "AR-FULL-PAT-02",
+        "AR-FULL-SYS-01",
+        "AR-FULL-SYS-02",
+        "AR-FULL-MIX-01",
+        "AR-FULL-GAP-01"
+      ]
+    }
+  ],
+  "semantic_mapping": [
+    {
+      "id": "four_modes_and_combination",
+      "baseline_location": "Mode Selection; all four playbooks",
+      "candidate_location": "Resource Delivery and Mode Selection; shared mixed-mode workflow",
+      "public_cases": [
+        "AR-FULL-API-01",
+        "AR-FULL-API-02",
+        "AR-FULL-DB-01",
+        "AR-FULL-DB-02",
+        "AR-FULL-PAT-01",
+        "AR-FULL-PAT-02",
+        "AR-FULL-SYS-01",
+        "AR-FULL-SYS-02",
+        "AR-FULL-MIX-01"
+      ],
+      "disposition": "Preserved; mode routes load complete guidance. Baseline topology omitted all four modes."
+    },
+    {
+      "id": "api_details",
+      "baseline_location": "API What to Analyze; outputs; minimum guidance; examples; hard questions",
+      "candidate_location": "design-api.md",
+      "public_cases": [
+        "AR-FULL-API-01",
+        "AR-FULL-API-02"
+      ],
+      "disposition": "Resources, auth, operations, request/success/validation examples, pagination/filter/sort, idempotency, quotas, sync/async, webhooks, versions, contract validation and deprecation retained. HTTP-specific conventions no longer imposed on RPC."
+    },
+    {
+      "id": "data_details",
+      "baseline_location": "Database What to Analyze; Rules; migrations; examples",
+      "candidate_location": "design-database.md",
+      "public_cases": [
+        "AR-FULL-DB-01",
+        "AR-FULL-DB-02"
+      ],
+      "disposition": "Entities/cardinality, integrity, named query paths, read/write ratios, normalization, transaction/consistency, partition trigger, retention/privacy/audit and restore retained. Example SQL changed, no execution claimed."
+    },
+    {
+      "id": "pattern_details",
+      "baseline_location": "Patterns What to Analyze; guidance; exemplars",
+      "candidate_location": "design-patterns.md",
+      "public_cases": [
+        "AR-FULL-PAT-01",
+        "AR-FULL-PAT-02"
+      ],
+      "disposition": "Creation/extension/coupling pressure, composition/inheritance, globals, adapters/facades/builders, fit matrix, before/after and lifecycle preserved; brittle illustrative code replaced by explicit domain contract."
+    },
+    {
+      "id": "system_details",
+      "baseline_location": "System What to Analyze; required outputs; capacity; flows; rules",
+      "candidate_location": "system-design.md",
+      "public_cases": [
+        "AR-FULL-SYS-01",
+        "AR-FULL-SYS-02",
+        "AR-FULL-MIX-01"
+      ],
+      "disposition": "Requirements, traffic/growth, latency, throughput, availability, messaging/storage/cache/security/observability and deployment constraints retained; quantities apply when relevant, with units and assumptions."
+    },
+    {
+      "id": "files_and_inline",
+      "baseline_location": "Output Directory; Artifact Templates",
+      "candidate_location": "Output Directory; shared decision-and-evolution.md",
+      "public_cases": [
+        "AR-FULL-PAT-02",
+        "AR-FULL-AUTH-01"
+      ],
+      "disposition": "Requested files stay scoped to existing/default architecture paths; inline-only stays inline. Four file types available without requiring unused files."
+    },
+    {
+      "id": "alternatives_and_costs",
+      "baseline_location": "Working Style; Candidate Options; Hard Constraints",
+      "candidate_location": "Core Principles; Standard Workflow; shared decision record",
+      "public_cases": [
+        "AR-FULL-API-01",
+        "AR-FULL-API-02",
+        "AR-FULL-DB-01",
+        "AR-FULL-DB-02",
+        "AR-FULL-PAT-01",
+        "AR-FULL-PAT-02",
+        "AR-FULL-SYS-01",
+        "AR-FULL-SYS-02",
+        "AR-FULL-MIX-01",
+        "AR-FULL-GAP-01"
+      ],
+      "disposition": "Two viable choices for material decisions, costs/risks/effort/migration, actual reasons and flip conditions; no new arbitrary quota."
+    },
+    {
+      "id": "failure_recovery",
+      "baseline_location": "Validation and Rollback; system/data red flags",
+      "candidate_location": "shared evolution; each selected mode",
+      "public_cases": [
+        "AR-FULL-DB-01",
+        "AR-FULL-DB-02",
+        "AR-FULL-PAT-01",
+        "AR-FULL-SYS-01",
+        "AR-FULL-SYS-02",
+        "AR-FULL-MIX-01"
+      ],
+      "disposition": "Acceptance observations, rollback triggers/order, compatibility/backfill checkpoints and unresolved questions retained and strengthened."
+    },
+    {
+      "id": "confidence",
+      "baseline_location": "When to Refuse Confidence; Hard Constraints",
+      "candidate_location": "Required Inputs; Review Gate; Confidence; route-specific provisional rules",
+      "public_cases": [
+        "AR-FULL-MIX-01",
+        "AR-FULL-GAP-01"
+      ],
+      "disposition": "Unknown workload, isolation/recovery, ownership, pattern pain and conflicting constraints explicitly limit confidence."
+    },
+    {
+      "id": "scorecard",
+      "baseline_location": "Architecture Quality Scorecard",
+      "candidate_location": "Architecture Quality Scorecard",
+      "public_cases": [
+        "AR-FULL-API-01",
+        "AR-FULL-API-02",
+        "AR-FULL-DB-01",
+        "AR-FULL-DB-02",
+        "AR-FULL-PAT-01",
+        "AR-FULL-PAT-02",
+        "AR-FULL-SYS-01",
+        "AR-FULL-SYS-02",
+        "AR-FULL-MIX-01",
+        "AR-FULL-GAP-01"
+      ],
+      "disposition": "All seven fields, total14/min9, three nonzero gates retained; numerical anchors/hard veto added. Self-check no longer presented as independent acceptance."
+    },
+    {
+      "id": "output_precedence",
+      "baseline_location": "Required Output; Universal Deliverables; four exact output formats",
+      "candidate_location": "Required Output",
+      "public_cases": [
+        "AR-FULL-API-01",
+        "AR-FULL-API-02",
+        "AR-FULL-DB-01",
+        "AR-FULL-DB-02",
+        "AR-FULL-PAT-01",
+        "AR-FULL-PAT-02",
+        "AR-FULL-SYS-01",
+        "AR-FULL-SYS-02",
+        "AR-FULL-MIX-01",
+        "AR-FULL-GAP-01"
+      ],
+      "disposition": "Intentional redesign: one combined response contract retains content, removes competing exact-order requirements; needs independent waiver/requirement review."
+    },
+    {
+      "id": "advisory_handoff",
+      "baseline_location": "Agent Operating Contract; Purpose",
+      "candidate_location": "Agent Operating Contract",
+      "public_cases": [
+        "AR-FULL-ROUTE-01",
+        "AR-FULL-AUTH-01"
+      ],
+      "disposition": "Read/light inspection and requested artifact writes only; implementation/test execution/provider actions remain separate. No authority expansion."
+    }
+  ],
+  "unmeasured": [
+    "behavioral preservation",
+    "effective resource loading",
+    "comparative improvement"
+  ],
+  "coordinator_owned_changes": [
+    "Requirement review for explicit format/applicability changes",
+    "Resource-aware architecture structural tests and metadata",
+    "Topology and reviewed contract coverage",
+    "No candidate author can approve these waivers"
+  ],
+  "intentional_changes_requiring_review": [
+    "Output format and applicability",
+    "Universal interface-only replacement becomes task-relevant replacement obligations",
+    "Universal dependency wrapping becomes evidence-based boundary selection",
+    "Vendor-specific proposals may be justified without a pre-existing fixed vendor, but caller portability and vendor constraints remain binding"
+  ]
+}

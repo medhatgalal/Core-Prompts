@@ -1,0 +1,3 @@
+# Catalog feature requirements
+
+Readers need an optional exact author_id filter. Preserve GET /books and its books array with book_id, title, published_on and author_id. Add bounded cursor pagination: default 20, maximum 100. Sort by published_on descending then book_id descending. This public catalog has no private user data or authenticated endpoint. Define invalid-filter/cursor behavior and examples. Explain behavior if books are added between pages; a snapshot-consistent listing is not required. Deployment is one small application and PostgreSQL. No vendor service or new deployable component is requested. Produce OpenAPI 3.1 JSON and a short decision artifact; do not implement.

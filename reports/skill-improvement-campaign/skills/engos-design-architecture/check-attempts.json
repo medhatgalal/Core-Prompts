@@ -1,0 +1,10 @@
+[
+  {
+    "attempt": 1,
+    "command": "python3 reports/skill-improvement-campaign/skills/engos-design-architecture/check_packet.py",
+    "status": "failed",
+    "error": "ResourceContractError: references/design-api.md references undeclared or unloaded resource: aggregates",
+    "diagnosis": "Existing resource reference regex interpreted the ordinary phrase resources/aggregates as a path.",
+    "correction": "Candidate wording changed to resources, aggregates; no shared loader edit; no experiment dispatched."
+  }
+]
