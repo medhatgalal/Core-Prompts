@@ -1,6 +1,8 @@
 # Installation migration verification
 Status: implementation verified. Current merge/publication status is recorded in [GitHub PR #64](https://github.com/medhatgalal/Core-Prompts/pull/64) and [GitLab MR !66](https://gitlab.appian-stratus.com/medhat.galal/core-prompts/-/merge_requests/66); the observations below are revision-bound evidence.
 
+Post-release lifecycle questions and the portable 36-case characterization probe are preserved in [LIFECYCLE-FOLLOWUP.md](LIFECYCLE-FOLLOWUP.md). That extension is deferred and unimplemented; it is not part of the completed historical migration claim below.
+
 ## Scope
 Replaces the unsafe 6646862 implementation in the same PR64/MR66. Initial main baseline 9d481a2; report-only mainline changes through 192fec5 were integrated at f00237ed282962eaa6e752a5b443db718b34c9dd. The approved source plan is PLAN.md in this directory.
 
