@@ -7,10 +7,10 @@ Current phase: source-design research completed for the four priority skills; ru
 | Responsibility | Actual identity | State / next action |
 | --- | --- | --- |
 | Coordinator and shared admission | `01a08880-cb62-7703-8061-659a0cf7ae45`, `6c79/Core-Prompts`, `AI/campaign-owner-closure` | Coordinator retains runtime admission, experiments, remaining corpus work and final delivery |
-| Docs Review | `01a08882-bb6f-79c3-9c1b-4cc08d4d024b`, `8518/Core-Prompts`, `AI/campaign-docs-review` | Research assignment complete and archive-approved; future evaluation/revisions transferred to coordinator |
-| Testing Review | `01a08882-d047-7e80-bea7-f7ebf956d191`, `611a/Core-Prompts`, `AI/campaign-testing-review` | Research assignment complete and archive-approved; future evaluation/revisions transferred to coordinator |
-| GitOps Review | `01a088c3-24c5-73e2-8bce-cc1a710d8005`, `70cc/Core-Prompts`, `AI/campaign-gitops-review` | Research assignment complete and archive-approved; future evaluation/revisions transferred to coordinator |
-| Architecture | `01a088c3-5155-7422-bcb8-1947c739866c`, `ccde/Core-Prompts`, `AI/campaign-architecture` | Research assignment complete and archive-approved; future evaluation/revisions transferred to coordinator |
+| Docs Review | `01a08882-bb6f-79c3-9c1b-4cc08d4d024b`, `8518/Core-Prompts`, `AI/campaign-docs-review` | Research assignment archived; future evaluation/revisions owned by coordinator |
+| Testing Review | `01a08882-d047-7e80-bea7-f7ebf956d191`, `611a/Core-Prompts`, `AI/campaign-testing-review` | Research assignment archived; future evaluation/revisions owned by coordinator |
+| GitOps Review | `01a088c3-24c5-73e2-8bce-cc1a710d8005`, `70cc/Core-Prompts`, `AI/campaign-gitops-review` | Research assignment archived; future evaluation/revisions owned by coordinator |
+| Architecture | `01a088c3-5155-7422-bcb8-1947c739866c`, `ccde/Core-Prompts`, `AI/campaign-architecture` | Research assignment archived; future evaluation/revisions owned by coordinator |
 | Model/runtime suitability | `/root/model_suitability`, fresh research agent; owns model-suitability.md | Research complete and independently challenged; [model-suitability.md](model-suitability.md); native admission unresolved; detailed local diagnostics withheld; zero experimental calls |
 | Independent admission assessment | `/root/admission_assessment`, fresh no-history read-only subagent | Complete; shared defects identified below, zero experimental calls |
 
@@ -156,9 +156,11 @@ The **research and source-design assignments are complete**. No skill-performanc
 
 | Exact task title | Task ID | Completed owner commit | Evidence on verified main | Closure decision |
 | --- | --- | --- | --- | --- |
-| Improve Docs Review outcomes | `01a08882-bb6f-79c3-9c1b-4cc08d4d024b` | `90682166f03a1ffb2a6a4c3b7f4d681708379bb3` | 78 tracked report files delivered via `42962f7`; 76 identical, two intentionally redacted with original bytes independently verified in local private recovery | Archive completed research assignment |
-| Improve Testing Review outcomes | `01a08882-d047-7e80-bea7-f7ebf956d191` | `2b0d9ef4d59af0cf1f12303a091e9f845b01cdf5` | All 61 tracked report files byte-identical; delivered via `42962f7` | Archive completed research assignment |
-| Research and improve full Architecture… | `01a088c3-5155-7422-bcb8-1947c739866c` | `6fa9b7fde661f0f3cba39c4f9c1e45ee947e7f6b` | All 51 tracked report files byte-identical; delivered via `d52c89d`; three ignored validation reports retained locally before closure | Archive completed research assignment |
-| Research and improve full GitOps capability | `01a088c3-24c5-73e2-8bce-cc1a710d8005` | `0c846b6b2c43e8a55c1e2e199491cc6e15c7e8e4` | All 23 tracked report files byte-identical; delivered via `d52c89d` | Archive completed research assignment |
+| Improve Docs Review outcomes | `01a08882-bb6f-79c3-9c1b-4cc08d4d024b` | `90682166f03a1ffb2a6a4c3b7f4d681708379bb3` | 78 tracked report files delivered via `42962f7`; 76 identical, two intentionally redacted with original bytes independently verified in local private recovery | Archived after final idle/clean check |
+| Improve Testing Review outcomes | `01a08882-d047-7e80-bea7-f7ebf956d191` | `2b0d9ef4d59af0cf1f12303a091e9f845b01cdf5` | All 61 tracked report files byte-identical; delivered via `42962f7` | Archived after final idle/clean check |
+| Research and improve full Architecture… | `01a088c3-5155-7422-bcb8-1947c739866c` | `6fa9b7fde661f0f3cba39c4f9c1e45ee947e7f6b` | All 51 tracked report files byte-identical; delivered via `d52c89d`; three ignored validation reports retained locally before closure | Archived after final idle/clean check |
+| Research and improve full GitOps capability | `01a088c3-24c5-73e2-8bce-cc1a710d8005` | `0c846b6b2c43e8a55c1e2e199491cc6e15c7e8e4` | All 23 tracked report files byte-identical; delivered via `d52c89d` | Archived after final idle/clean check |
 
 Publication redactions and ignored validation evidence were preserved on the existing local-only recovery branch before archiving. Other ignored owner files were only Python bytecode and pytest caches. Original owner branch refs are retained as provenance because authored commits were delivered through cherry-picks/current-tree imports, not ancestry merges; no force deletion is needed. Owner worktrees may be removed by managed-task archiving or by targeted cleanup after archive confirmation. Excluded Experience Design work, the coordinator worktree and private recovery evidence are outside the cleanup scope.
+
+Archive receipt: all four set_thread_archived calls returned archived=true after the transfer commit `b4bc9f5`. No owner experiment was marked complete. The coordinator task remains open and owns every remaining campaign obligation.
