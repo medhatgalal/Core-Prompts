@@ -1,0 +1,136 @@
+{
+  "model_calls": 0,
+  "behavioral_claim": "none",
+  "receipts": [
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "reports/skill-improvement-campaign/skills/engos-quality-docs-review/check_fixtures.py",
+        "--self-test"
+      ],
+      "exit_code": 0,
+      "result": {
+        "kind": "public_static_fixture_integrity",
+        "observations": {
+          "drift": {
+            "seed_observations": {
+              "stale_flag": true,
+              "broken_path": true,
+              "broken_anchor": true,
+              "generated_drift": true,
+              "wrong_audience": true,
+              "release_guidance": true
+            },
+            "safe_controls_pass": true,
+            "tree_unchanged": true,
+            "old_flag_exit": 2,
+            "current_command_exit": 0,
+            "custom_command_exit": 0
+          },
+          "clean": {
+            "seed_observations": {
+              "stale_flag": false,
+              "broken_path": false,
+              "broken_anchor": false,
+              "generated_drift": false,
+              "wrong_audience": false,
+              "release_guidance": false
+            },
+            "safe_controls_pass": true,
+            "tree_unchanged": true,
+            "old_flag_exit": 2,
+            "current_command_exit": 0,
+            "custom_command_exit": 0
+          }
+        },
+        "model_calls": 0,
+        "behavioral_claim": "none",
+        "promotion_eligible": false,
+        "failure_controls": [
+          "stale_flag: injected fault observed",
+          "broken_path: injected fault observed",
+          "broken_anchor: injected fault observed",
+          "generated_drift: injected fault observed",
+          "wrong_audience: injected fault observed",
+          "release_guidance: injected fault observed",
+          "tree mutation: detected",
+          "tree addition: detected"
+        ],
+        "status": "pass"
+      },
+      "stderr": ""
+    },
+    {
+      "command": [
+        "bin/capability-eval",
+        "compile",
+        "--skill",
+        "engos-quality-docs-review",
+        "--check"
+      ],
+      "exit_code": 0,
+      "result": {
+        "status": "structural_ready",
+        "check_result": "pass",
+        "drift": [],
+        "contract_review": "draft",
+        "clause_coverage": {
+          "total": 16,
+          "mapped": 0,
+          "waived": 0
+        },
+        "clarity": {
+          "policy": "instruction_clarity.v1",
+          "finding_count": 0,
+          "findings": [],
+          "advisory_only": true,
+          "behavioral_claim": "none"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "command": [
+        "bin/capability-eval",
+        "calibrate",
+        "--static-only"
+      ],
+      "exit_code": 0,
+      "result": {
+        "schema_version": "EvaluatorCalibration.v1",
+        "status": "structural_ready",
+        "controls_present": 14,
+        "missing_controls": [],
+        "corpus_contract_blockers": [],
+        "pilot_foundations": {
+          "status": "structural_ready",
+          "errors": [],
+          "experiment_count": 4,
+          "case_count": 60,
+          "model_calls": 0,
+          "behavioral_claim": "none"
+        },
+        "judge_qualified": false,
+        "judge_note": "Semantic judges remain unqualified until gold-label agreement and bias checks are run.",
+        "model_calls": 0
+      },
+      "stderr": ""
+    },
+    {
+      "command": "python3 <temporary-owned-copy>/check_fixtures.py after stale-flag mutation in clean README",
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "result": {
+        "status": "fail",
+        "reason": "clean",
+        "model_calls": 0
+      },
+      "mutation_fired": true
+    },
+    {
+      "check": "full incumbent inventory readback",
+      "file_count": 23,
+      "result": "pass"
+    }
+  ]
+}

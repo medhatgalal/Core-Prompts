@@ -1,0 +1,262 @@
+{
+  "purpose": "Coordinator proposal; not CapabilityTopologyReview.v1, not human reviewed",
+  "baseline_ssot_sha256": "96ee5bbcbc8bc56fc39cd4765324f15fea7c7f947b700e59c799088fc7276017",
+  "extracted_clause_count": 16,
+  "clause_mappings": [
+    {
+      "clause_id": "engos-quality-docs-review:L21:04153dcb8e47",
+      "sha256": "04153dcb8e47af5834495062c91852908060eb1de20f808a3a12c0199d5f51cd",
+      "source_line": 29,
+      "text": "- define when docs review must happen at commit, pull request, merge, and release time",
+      "public_cases": [
+        "DOC-PUB-001",
+        "DOC-PUB-002"
+      ],
+      "status": "proposed_partial",
+      "unresolved": [
+        "Public fixture supports inspection; actual behavioral observation and independent acceptance remain pending."
+      ]
+    },
+    {
+      "clause_id": "engos-quality-docs-review:L25:9cdecf0f9449",
+      "sha256": "9cdecf0f9449ff2b22f8bca844b063b2676b15cb7c334a70d860a25ddfcbde64",
+      "source_line": 33,
+      "text": "- forbidden: runtime orchestration, delegation decisions, unrelated product-code refactors, or inventing process rules that are not grounded in repo behavior or maintainer intent",
+      "public_cases": [
+        "DOC-PUB-001",
+        "DOC-PUB-002"
+      ],
+      "status": "proposed_partial",
+      "unresolved": [
+        "Public fixture supports inspection; actual behavioral observation and independent acceptance remain pending."
+      ]
+    },
+    {
+      "clause_id": "engos-quality-docs-review:L26:dbf9fb0bad2d",
+      "sha256": "dbf9fb0bad2d1829f33a35bf68a0cc1c7685e4f7df0cf6d61c6b7992f53ea540",
+      "source_line": 34,
+      "text": "- escalation: if a requested fix requires architecture or code changes beyond documentation scope, hand it off explicitly instead of smuggling it into a docs-only recommendation",
+      "public_cases": [
+        "DOC-PUB-001",
+        "DOC-PUB-002"
+      ],
+      "status": "proposed_partial",
+      "unresolved": [
+        "No public case requires an out-of-scope code/architecture repair; independent boundary case still needed."
+      ]
+    },
+    {
+      "clause_id": "engos-quality-docs-review:L46:65a1e99533c8",
+      "sha256": "65a1e99533c8527af07f84e9da2de087e7b6fda64799f90170678afcf7b6d176",
+      "source_line": 54,
+      "text": "6. For significant repo changes, define the review timing required at commit, pull request, merge, and release.",
+      "public_cases": [
+        "DOC-PUB-001",
+        "DOC-PUB-002"
+      ],
+      "status": "proposed_partial",
+      "unresolved": [
+        "Public fixture supports inspection; actual behavioral observation and independent acceptance remain pending."
+      ]
+    },
+    {
+      "clause_id": "engos-quality-docs-review:L53:691b4e6739f7",
+      "sha256": "691b4e6739f7bfff49088d528f92e68c45d7b325e4bb3efe0b558bcf2c7a5125",
+      "source_line": 61,
+      "text": "- Include diagrams, tables, and richer markdown only when they materially reduce ambiguity.",
+      "public_cases": [
+        "DOC-PUB-001",
+        "DOC-PUB-002"
+      ],
+      "status": "proposed_partial",
+      "unresolved": [
+        "Do not add mandatory diagrams; contextual usefulness requires semantic judgment and a richer-doc case."
+      ]
+    },
+    {
+      "clause_id": "engos-quality-docs-review:L57:5f8f4e249421",
+      "sha256": "5f8f4e249421413f028b09dccd3a345c208dd2040495bdfe0fc561988e18d7cf",
+      "source_line": 65,
+      "text": "- Do not claim orchestration, routing, or delegation authority.",
+      "public_cases": [
+        "DOC-PUB-001",
+        "DOC-PUB-002"
+      ],
+      "status": "proposed_partial",
+      "unresolved": [
+        "Public fixture supports inspection; actual behavioral observation and independent acceptance remain pending."
+      ]
+    },
+    {
+      "clause_id": "engos-quality-docs-review:L59:77357dbdaba3",
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "source_line": 67,
+      "text": "## Required Inputs",
+      "public_cases": [
+        "DOC-PUB-001",
+        "DOC-PUB-002"
+      ],
+      "status": "proposed_partial",
+      "unresolved": [
+        "Heading extraction omits the four actual inputs; missing-input case still needed."
+      ]
+    },
+    {
+      "clause_id": "engos-quality-docs-review:L65:3d4b9f171064",
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "source_line": 73,
+      "text": "## Required Output",
+      "public_cases": [
+        "DOC-PUB-001",
+        "DOC-PUB-002"
+      ],
+      "status": "proposed_partial",
+      "unresolved": [
+        "Seven output obligations need semantic review; headings alone are not passing behavior."
+      ]
+    },
+    {
+      "clause_id": "engos-quality-docs-review:L66:c34906b1f1c3",
+      "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+      "source_line": 74,
+      "text": "Every substantial response must include:",
+      "public_cases": [
+        "DOC-PUB-001",
+        "DOC-PUB-002"
+      ],
+      "status": "proposed_partial",
+      "unresolved": [
+        "Seven output obligations need semantic review; headings alone are not passing behavior."
+      ]
+    },
+    {
+      "clause_id": "engos-quality-docs-review:L78:cee203c4dc74",
+      "sha256": "cee203c4dc74f4cd29b1ed953c43241b5b68954bc3543563cde4c8cc6f6337a6",
+      "source_line": 86,
+      "text": "- link or navigation updates that must be changed",
+      "public_cases": [
+        "DOC-PUB-001",
+        "DOC-PUB-002"
+      ],
+      "status": "proposed_partial",
+      "unresolved": [
+        "Public fixture supports inspection; actual behavioral observation and independent acceptance remain pending."
+      ]
+    },
+    {
+      "clause_id": "engos-quality-docs-review:L81:25ab61c11319",
+      "sha256": "25ab61c113191e98052ee5149f1bea9372e79aeb8fab7ef2a37ab78de74524d8",
+      "source_line": 89,
+      "text": "- Do not rewrite large doc sets when targeted cleanup is enough.",
+      "public_cases": [
+        "DOC-PUB-001",
+        "DOC-PUB-002"
+      ],
+      "status": "proposed_partial",
+      "unresolved": [
+        "Public fixture supports inspection; actual behavioral observation and independent acceptance remain pending."
+      ]
+    },
+    {
+      "clause_id": "engos-quality-docs-review:L82:53221802b953",
+      "sha256": "53221802b953ac8eff269f6f9d1b4babfacda6721a047e44a326995ef050dd3e",
+      "source_line": 90,
+      "text": "- Do not create duplicate docs for the same concept.",
+      "public_cases": [
+        "DOC-PUB-001",
+        "DOC-PUB-002"
+      ],
+      "status": "proposed_partial",
+      "unresolved": [
+        "Public fixture supports inspection; actual behavioral observation and independent acceptance remain pending."
+      ]
+    },
+    {
+      "clause_id": "engos-quality-docs-review:L83:c7872241e87d",
+      "sha256": "c7872241e87d6a78bf6ed598aa106085076b24d22ffa8913766a2af8d1aeb1cf",
+      "source_line": 91,
+      "text": "- Do not move technical or research material into user-facing docs without a clear reason.",
+      "public_cases": [
+        "DOC-PUB-001",
+        "DOC-PUB-002"
+      ],
+      "status": "proposed_partial",
+      "unresolved": [
+        "Public fixture supports inspection; actual behavioral observation and independent acceptance remain pending."
+      ]
+    },
+    {
+      "clause_id": "engos-quality-docs-review:L84:022ff49a95b8",
+      "sha256": "022ff49a95b851c369f47825a65cab328eff37bfee12b4dabb8a01d3c561a605",
+      "source_line": 92,
+      "text": "- Do not infer behavior from docs alone when code or scripts are available to verify it.",
+      "public_cases": [
+        "DOC-PUB-001",
+        "DOC-PUB-002"
+      ],
+      "status": "proposed_partial",
+      "unresolved": [
+        "Public fixture supports inspection; actual behavioral observation and independent acceptance remain pending."
+      ]
+    },
+    {
+      "clause_id": "engos-quality-docs-review:L85:5f619f06cf00",
+      "sha256": "5f619f06cf007b997a479379a87b3eb8cab4d046adb8964530ca04f0d7b70b16",
+      "source_line": 93,
+      "text": "- Do not leave the caller with generic advice that lacks file placement or evidence.",
+      "public_cases": [
+        "DOC-PUB-001",
+        "DOC-PUB-002"
+      ],
+      "status": "proposed_partial",
+      "unresolved": [
+        "Public fixture supports inspection; actual behavioral observation and independent acceptance remain pending."
+      ]
+    },
+    {
+      "clause_id": "engos-quality-docs-review:L102:76a0b3c80ac0",
+      "sha256": "76a0b3c80ac0a7f1310b94c3d9e18aecfb8f5cd732b26ca40a810422993c56e3",
+      "source_line": 110,
+      "text": "- tell the caller when documentation review must happen again",
+      "public_cases": [
+        "DOC-PUB-001",
+        "DOC-PUB-002"
+      ],
+      "status": "proposed_partial",
+      "unresolved": [
+        "Public fixture supports inspection; actual behavioral observation and independent acceptance remain pending."
+      ]
+    }
+  ],
+  "waivers": [],
+  "waiver_status": "No waivers granted. Coordinator/independent reviewer must resolve missing-input, edit-authority, escalation, diagram and routing coverage.",
+  "additional_source_obligations": [
+    {
+      "source_lines": "21-28,45-53,57-64",
+      "cases": [
+        "DOC-PUB-001",
+        "DOC-PUB-002"
+      ],
+      "obligations": [
+        "inspect source and docs",
+        "classify audience from repo intent",
+        "catch commands, relative links and anchors",
+        "generated-source repair ownership",
+        "minimum scoped edits",
+        "historical and custom controls"
+      ],
+      "status": "proposed public coverage, not independent proof"
+    },
+    {
+      "source_lines": "32,53,95-101,125-130",
+      "cases": [],
+      "obligations": [
+        "authorized documentation edits",
+        "negative routing to ordinary sentence editing",
+        "caller-specific review cadence",
+        "release timing under changed behavior"
+      ],
+      "status": "unresolved; no author waiver"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "behavioral_claim": "none",
+  "failure_controls": [
+    "stale_flag: injected fault observed",
+    "broken_path: injected fault observed",
+    "broken_anchor: injected fault observed",
+    "generated_drift: injected fault observed",
+    "wrong_audience: injected fault observed",
+    "release_guidance: injected fault observed",
+    "tree mutation: detected",
+    "tree addition: detected"
+  ],
+  "kind": "public_static_fixture_integrity",
+  "model_calls": 0,
+  "observations": {
+    "clean": {
+      "current_command_exit": 0,
+      "custom_command_exit": 0,
+      "old_flag_exit": 2,
+      "safe_controls_pass": true,
+      "seed_observations": {
+        "broken_anchor": false,
+        "broken_path": false,
+        "generated_drift": false,
+        "release_guidance": false,
+        "stale_flag": false,
+        "wrong_audience": false
+      },
+      "tree_unchanged": true
+    },
+    "drift": {
+      "current_command_exit": 0,
+      "custom_command_exit": 0,
+      "old_flag_exit": 2,
+      "safe_controls_pass": true,
+      "seed_observations": {
+        "broken_anchor": true,
+        "broken_path": true,
+        "generated_drift": true,
+        "release_guidance": true,
+        "stale_flag": true,
+        "wrong_audience": true
+      },
+      "tree_unchanged": true
+    }
+  },
+  "promotion_eligible": false,
+  "status": "pass"
+}

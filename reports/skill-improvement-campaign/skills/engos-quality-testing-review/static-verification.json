@@ -1,0 +1,15 @@
+{
+  "evaluator_tests": {
+    "command": "python3 -m pytest tests/test_capability_eval.py -q -p no:cacheprovider",
+    "exit_code": 0,
+    "output": "............                                                             [100%]\n12 passed in 0.38s\n"
+  },
+  "negative_self_check": {
+    "purpose": "public self-check failure-path control, not model proof",
+    "mutation": "first public mutant expected_failure replaced with nonexistent assertion name",
+    "exit_code": 1,
+    "assertion_error_observed": true,
+    "source_fixtures_modified": false,
+    "model_calls": 0
+  }
+}
