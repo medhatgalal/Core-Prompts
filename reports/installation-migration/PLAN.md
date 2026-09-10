@@ -1,5 +1,5 @@
 # Installation migration delivery plan
-Status: implementation in progress; no installed-state mutation.
+Status: historical execution plan; implementation and local verification completed. Current delivery status is tracked in GitHub PR #64, GitLab MR !66, and VERIFICATION.md. No live home installation was applied.
 Candidate starts at 6646862, rebased by merge onto verified main 9d481a2.
 Source: this task's approved product-wide migration plan and effort/delegation instructions.
 
