@@ -1,0 +1,69 @@
+{
+  "status": "pass",
+  "evidence_class": "static_resource_assembly",
+  "routes": [
+    {
+      "schema_version": "CapabilityResourceBundle.v1",
+      "route": "provider-ci",
+      "manifest_sha256": "05b98456d91da689e6dc43cebc91d72d611b71f4251d28b0ed7ae9a1d3e15ae6",
+      "sha256": "14d3bf0d1d4bc1d050e5293de1579893dc92b3f446fd13c38e00b40fd7585c06",
+      "delivery_claim": "assembled_not_proof_of_consumption",
+      "resources": [
+        {
+          "path": "references/provider-ci.md",
+          "sha256": "047bb87c0c02ac926281daf425e5e82f52b4e6812bd0200a4a6c346185db04b1"
+        }
+      ]
+    },
+    {
+      "schema_version": "CapabilityResourceBundle.v1",
+      "route": "release",
+      "manifest_sha256": "05b98456d91da689e6dc43cebc91d72d611b71f4251d28b0ed7ae9a1d3e15ae6",
+      "sha256": "271421f32bb81de44b16cad793ab2508a8a58a8bdcaba0ee2b6bd2bc0fb24108",
+      "delivery_claim": "assembled_not_proof_of_consumption",
+      "resources": [
+        {
+          "path": "references/release.md",
+          "sha256": "90d118de2b18083989eb379045a171c3f894adcaac069fdc44fcba9d91781baf"
+        }
+      ]
+    },
+    {
+      "schema_version": "CapabilityResourceBundle.v1",
+      "route": "cleanup",
+      "manifest_sha256": "05b98456d91da689e6dc43cebc91d72d611b71f4251d28b0ed7ae9a1d3e15ae6",
+      "sha256": "c33f34ba8b34c098fddc26333763275a4cdad7eeea55714f5a3fad1c56248c10",
+      "delivery_claim": "assembled_not_proof_of_consumption",
+      "resources": [
+        {
+          "path": "references/cleanup.md",
+          "sha256": "da5091cee586cd1ccd187ce1156c641fbd5753e925fcf4652f7a037b448a581f"
+        }
+      ]
+    },
+    {
+      "schema_version": "CapabilityResourceBundle.v1",
+      "route": "all",
+      "manifest_sha256": "05b98456d91da689e6dc43cebc91d72d611b71f4251d28b0ed7ae9a1d3e15ae6",
+      "sha256": "b7f04f4b47c544e6c322a51658f637dec28525e78b755daf0a6d05f70fcc5713",
+      "delivery_claim": "assembled_not_proof_of_consumption",
+      "resources": [
+        {
+          "path": "references/provider-ci.md",
+          "sha256": "047bb87c0c02ac926281daf425e5e82f52b4e6812bd0200a4a6c346185db04b1"
+        },
+        {
+          "path": "references/release.md",
+          "sha256": "90d118de2b18083989eb379045a171c3f894adcaac069fdc44fcba9d91781baf"
+        },
+        {
+          "path": "references/cleanup.md",
+          "sha256": "da5091cee586cd1ccd187ce1156c641fbd5753e925fcf4652f7a037b448a581f"
+        }
+      ]
+    }
+  ],
+  "model_calls": 0,
+  "checked_at": "2026-09-10T01:18:23.345308+00:00",
+  "previous_receipt_commit": "85d2d5076938d0a7270094b80e25e289e77cc9cd"
+}

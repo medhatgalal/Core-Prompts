@@ -1,0 +1,112 @@
+{
+  "schema_version": "ArchitectureResearchIdentity.v1",
+  "task_id": "01a088c3-5155-7422-bcb8-1947c739866c",
+  "coordinator_task_id": "01a08880-cb62-7703-8061-659a0cf7ae45",
+  "cwd": "/Users/medhat.galal/.codex/worktrees/ccde/Core-Prompts",
+  "branch": "AI/campaign-architecture",
+  "phase_start_utc": "2026-09-10T00:41:53Z",
+  "phase_deadline_utc": "2026-09-10T01:41:53Z",
+  "phase": "research-design-public-controls-no-experimental-dispatch",
+  "launch_head": "192fec56bacf17ae6c58e1b1c64a0711a0fad124",
+  "origin_main": "192fec56bacf17ae6c58e1b1c64a0711a0fad124",
+  "gitlab_main": "192fec56bacf17ae6c58e1b1c64a0711a0fad124",
+  "upstream_drift": false,
+  "initial_dirty": false,
+  "original_campaign_baseline": {
+    "skill": "engos-design-architecture",
+    "eligibility": "eligible",
+    "baseline_commit": "9d481a2da04e672e3b52d79bba6cf466af597fa0",
+    "baseline_files": {
+      "ssot/engos-design-architecture.md": "fbd582a0e518d8cb1bdbf183fdb9001ec311558b198658b9e6a9f1f4fa8201cb",
+      ".meta/capabilities/engos-design-architecture.json": "07afd9e741b6d5f633214e92bb39ce1c2784532c16a0efae7ed099e57a531c92",
+      "evals/contracts/engos-design-architecture.json": "887d4d3e252f1f5b0afafa34db7872173c3901d3e3ba827822cdee6a1c9f161b",
+      "evals/topologies/engos-design-architecture.json": "bb18d0b182e2dc3d4bd713e8d78393b660e54516e9969c6f5301e1537fb0bdb2",
+      ".codex/skills/engos-design-architecture/SKILL.md": "b308b52bc6a5d0265cab5b9481191fcc83154b32d6390f9ef02d2e6579bc1ca3",
+      ".codex/skills/engos-design-architecture/resources/capability.json": "07afd9e741b6d5f633214e92bb39ce1c2784532c16a0efae7ed099e57a531c92"
+    },
+    "historical_baseline": {
+      "slug": "engos-design-architecture",
+      "strategy": "head_snapshot",
+      "group": "current_oracle",
+      "baseline_path": "sources/ssot-baselines/engos-design-architecture/baseline.md",
+      "selected_commit": "db5c3789",
+      "richness_score": 4,
+      "line_count": 842,
+      "reason": "Current SSOT baseline source snapshot materialized into the source library because no stronger curated pre-SSOT baseline has been recorded yet.",
+      "equivalent_commits": [],
+      "expected_companions": [],
+      "operator_invariants": [],
+      "scenario_matrix": [],
+      "historical_proof": {
+        "current_head_commit": "db5c3789",
+        "current_head_richness_score": 4,
+        "current_head_line_count": 842,
+        "materialized_from_commit": "db5c3789"
+      },
+      "source": "source_library",
+      "verified_by_git_history": true,
+      "has_baseline_text": true
+    },
+    "contract_review_status": "draft",
+    "prior_source_history": [
+      "6fbcff2d4a1c3fab4059715c02715d68de00d2cb feat: namespace Core-Prompts capabilities and preserve conversational compatibility"
+    ],
+    "invocation_surface": "both",
+    "prior_evidence_class": "source/structural history exists; no current accepted comparison verified in indexed evidence"
+  },
+  "development_incumbent": {
+    "commit": "192fec56bacf17ae6c58e1b1c64a0711a0fad124",
+    "files": {
+      "ssot/engos-design-architecture.md": {
+        "sha256": "fbd582a0e518d8cb1bdbf183fdb9001ec311558b198658b9e6a9f1f4fa8201cb",
+        "bytes": 27572,
+        "lines": 844
+      },
+      ".meta/capabilities/engos-design-architecture.json": {
+        "sha256": "07afd9e741b6d5f633214e92bb39ce1c2784532c16a0efae7ed099e57a531c92",
+        "bytes": 17809,
+        "lines": 499
+      },
+      "evals/contracts/engos-design-architecture.json": {
+        "sha256": "887d4d3e252f1f5b0afafa34db7872173c3901d3e3ba827822cdee6a1c9f161b",
+        "bytes": 10901,
+        "lines": 222
+      },
+      "evals/topologies/engos-design-architecture.json": {
+        "sha256": "bb18d0b182e2dc3d4bd713e8d78393b660e54516e9969c6f5301e1537fb0bdb2",
+        "bytes": 15904,
+        "lines": 400
+      },
+      ".codex/skills/engos-design-architecture/SKILL.md": {
+        "sha256": "b308b52bc6a5d0265cab5b9481191fcc83154b32d6390f9ef02d2e6579bc1ca3",
+        "bytes": 27437,
+        "lines": 841
+      },
+      ".codex/skills/engos-design-architecture/resources/capability.json": {
+        "sha256": "07afd9e741b6d5f633214e92bb39ce1c2784532c16a0efae7ed099e57a531c92",
+        "bytes": 17809,
+        "lines": 499
+      },
+      "sources/ssot-baselines/engos-design-architecture/baseline.md": {
+        "sha256": "b68b463312c76b971a9553b2dc7bf92a7bd6d5f66c3a841326c2012e1cd9cc48",
+        "bytes": 27035,
+        "lines": 842
+      },
+      "evals/cases/public/architecture/core.jsonl": {
+        "sha256": "bd9a275a9f940e8bf64da0a65f7fa1bfd24ba1c512e3d1228dfd4ec767e487e6",
+        "bytes": 415,
+        "lines": 2
+      },
+      "tests/test_architecture_quality.py": {
+        "sha256": "3c08e6fa8cb012d293bd0f7845588b4b411b795ab77c98704d8c0a0a5b711168",
+        "bytes": 2508,
+        "lines": 64
+      }
+    }
+  },
+  "prior_and_current_research_tokens": null,
+  "experimental_producer_calls": 0,
+  "experimental_judge_calls": 0,
+  "original_fixture_missing": true,
+  "baseline_bytes_match_current": true
+}

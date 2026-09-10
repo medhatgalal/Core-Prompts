@@ -1,0 +1,272 @@
+{
+  "status": "input_sizing_only_not_admitted_budget",
+  "measurement": "UTF-8 bytes; includes newlines; not model tokens",
+  "token_estimate_method": "bytes/4 rounded up, uncalibrated; not usage or enforceable limit",
+  "incumbent_ssot_bytes": 27572,
+  "incumbent_generated_entry_bytes": 27437,
+  "trial_entry_bytes": 14904,
+  "all_trial_content_bytes": 40372,
+  "cases": [
+    {
+      "id": "AR-FULL-API-01",
+      "task_bytes": 719,
+      "context_files_bytes": {},
+      "bare_task_and_context_bytes": 719,
+      "incumbent_entry_plus_task_and_context_bytes": 28156,
+      "trial_entry_plus_selected_resources_plus_task_and_context_bytes": 25803,
+      "selected_resource_paths": [
+        "references/decision-and-evolution.md",
+        "references/design-api.md"
+      ],
+      "selected_resource_bytes": 10180,
+      "rough_trial_input_tokens_bytes_div_4": 6451
+    },
+    {
+      "id": "AR-FULL-API-02",
+      "task_bytes": 717,
+      "context_files_bytes": {},
+      "bare_task_and_context_bytes": 717,
+      "incumbent_entry_plus_task_and_context_bytes": 28154,
+      "trial_entry_plus_selected_resources_plus_task_and_context_bytes": 25801,
+      "selected_resource_paths": [
+        "references/decision-and-evolution.md",
+        "references/design-api.md"
+      ],
+      "selected_resource_bytes": 10180,
+      "rough_trial_input_tokens_bytes_div_4": 6451
+    },
+    {
+      "id": "AR-FULL-DB-01",
+      "task_bytes": 746,
+      "context_files_bytes": {},
+      "bare_task_and_context_bytes": 746,
+      "incumbent_entry_plus_task_and_context_bytes": 28183,
+      "trial_entry_plus_selected_resources_plus_task_and_context_bytes": 25763,
+      "selected_resource_paths": [
+        "references/decision-and-evolution.md",
+        "references/design-database.md"
+      ],
+      "selected_resource_bytes": 10113,
+      "rough_trial_input_tokens_bytes_div_4": 6441
+    },
+    {
+      "id": "AR-FULL-DB-02",
+      "task_bytes": 717,
+      "context_files_bytes": {},
+      "bare_task_and_context_bytes": 717,
+      "incumbent_entry_plus_task_and_context_bytes": 28154,
+      "trial_entry_plus_selected_resources_plus_task_and_context_bytes": 25734,
+      "selected_resource_paths": [
+        "references/decision-and-evolution.md",
+        "references/design-database.md"
+      ],
+      "selected_resource_bytes": 10113,
+      "rough_trial_input_tokens_bytes_div_4": 6434
+    },
+    {
+      "id": "AR-FULL-PAT-01",
+      "task_bytes": 661,
+      "context_files_bytes": {},
+      "bare_task_and_context_bytes": 661,
+      "incumbent_entry_plus_task_and_context_bytes": 28098,
+      "trial_entry_plus_selected_resources_plus_task_and_context_bytes": 24152,
+      "selected_resource_paths": [
+        "references/decision-and-evolution.md",
+        "references/design-patterns.md"
+      ],
+      "selected_resource_bytes": 8587,
+      "rough_trial_input_tokens_bytes_div_4": 6038
+    },
+    {
+      "id": "AR-FULL-PAT-02",
+      "task_bytes": 444,
+      "context_files_bytes": {},
+      "bare_task_and_context_bytes": 444,
+      "incumbent_entry_plus_task_and_context_bytes": 27881,
+      "trial_entry_plus_selected_resources_plus_task_and_context_bytes": 23935,
+      "selected_resource_paths": [
+        "references/decision-and-evolution.md",
+        "references/design-patterns.md"
+      ],
+      "selected_resource_bytes": 8587,
+      "rough_trial_input_tokens_bytes_div_4": 5984
+    },
+    {
+      "id": "AR-FULL-SYS-01",
+      "task_bytes": 795,
+      "context_files_bytes": {
+        "public-fixtures/system_overload.json": 398
+      },
+      "bare_task_and_context_bytes": 1193,
+      "incumbent_entry_plus_task_and_context_bytes": 28630,
+      "trial_entry_plus_selected_resources_plus_task_and_context_bytes": 26323,
+      "selected_resource_paths": [
+        "references/decision-and-evolution.md",
+        "references/system-design.md"
+      ],
+      "selected_resource_bytes": 10226,
+      "rough_trial_input_tokens_bytes_div_4": 6581
+    },
+    {
+      "id": "AR-FULL-SYS-02",
+      "task_bytes": 726,
+      "context_files_bytes": {},
+      "bare_task_and_context_bytes": 726,
+      "incumbent_entry_plus_task_and_context_bytes": 28163,
+      "trial_entry_plus_selected_resources_plus_task_and_context_bytes": 25856,
+      "selected_resource_paths": [
+        "references/decision-and-evolution.md",
+        "references/system-design.md"
+      ],
+      "selected_resource_bytes": 10226,
+      "rough_trial_input_tokens_bytes_div_4": 6464
+    },
+    {
+      "id": "AR-FULL-MIX-01",
+      "task_bytes": 793,
+      "context_files_bytes": {},
+      "bare_task_and_context_bytes": 793,
+      "incumbent_entry_plus_task_and_context_bytes": 28230,
+      "trial_entry_plus_selected_resources_plus_task_and_context_bytes": 37124,
+      "selected_resource_paths": [
+        "references/decision-and-evolution.md",
+        "references/design-api.md",
+        "references/design-database.md",
+        "references/system-design.md"
+      ],
+      "selected_resource_bytes": 21427,
+      "rough_trial_input_tokens_bytes_div_4": 9281
+    },
+    {
+      "id": "AR-FULL-GAP-01",
+      "task_bytes": 460,
+      "context_files_bytes": {},
+      "bare_task_and_context_bytes": 460,
+      "incumbent_entry_plus_task_and_context_bytes": 27897,
+      "trial_entry_plus_selected_resources_plus_task_and_context_bytes": 25590,
+      "selected_resource_paths": [
+        "references/decision-and-evolution.md",
+        "references/system-design.md"
+      ],
+      "selected_resource_bytes": 10226,
+      "rough_trial_input_tokens_bytes_div_4": 6398
+    },
+    {
+      "id": "AR-FULL-ROUTE-01",
+      "task_bytes": 164,
+      "context_files_bytes": {},
+      "bare_task_and_context_bytes": 164,
+      "incumbent_entry_plus_task_and_context_bytes": 27601,
+      "trial_entry_plus_selected_resources_plus_task_and_context_bytes": 15068,
+      "selected_resource_paths": [],
+      "selected_resource_bytes": 0,
+      "rough_trial_input_tokens_bytes_div_4": 3767
+    },
+    {
+      "id": "AR-FULL-AUTH-01",
+      "task_bytes": 443,
+      "context_files_bytes": {},
+      "bare_task_and_context_bytes": 443,
+      "incumbent_entry_plus_task_and_context_bytes": 27880,
+      "trial_entry_plus_selected_resources_plus_task_and_context_bytes": 25573,
+      "selected_resource_paths": [
+        "references/decision-and-evolution.md",
+        "references/system-design.md"
+      ],
+      "selected_resource_bytes": 10226,
+      "rough_trial_input_tokens_bytes_div_4": 6394
+    },
+    {
+      "id": "AR-FULL-SYS-03",
+      "task_bytes": 476,
+      "context_files_bytes": {
+        "public-fixtures/system_capacity_variant.json": 396
+      },
+      "bare_task_and_context_bytes": 872,
+      "incumbent_entry_plus_task_and_context_bytes": 28309,
+      "trial_entry_plus_selected_resources_plus_task_and_context_bytes": 26002,
+      "selected_resource_paths": [
+        "references/decision-and-evolution.md",
+        "references/system-design.md"
+      ],
+      "selected_resource_bytes": 10226,
+      "rough_trial_input_tokens_bytes_div_4": 6501
+    },
+    {
+      "id": "AR-FULL-SYS-04",
+      "task_bytes": 624,
+      "context_files_bytes": {
+        "public-fixtures/system_capacity_feasible.json": 394
+      },
+      "bare_task_and_context_bytes": 1018,
+      "incumbent_entry_plus_task_and_context_bytes": 28455,
+      "trial_entry_plus_selected_resources_plus_task_and_context_bytes": 26148,
+      "selected_resource_paths": [
+        "references/decision-and-evolution.md",
+        "references/system-design.md"
+      ],
+      "selected_resource_bytes": 10226,
+      "rough_trial_input_tokens_bytes_div_4": 6537
+    },
+    {
+      "id": "AR-FULL-PAT-03",
+      "task_bytes": 645,
+      "context_files_bytes": {},
+      "bare_task_and_context_bytes": 645,
+      "incumbent_entry_plus_task_and_context_bytes": 28082,
+      "trial_entry_plus_selected_resources_plus_task_and_context_bytes": 24136,
+      "selected_resource_paths": [
+        "references/decision-and-evolution.md",
+        "references/design-patterns.md"
+      ],
+      "selected_resource_bytes": 8587,
+      "rough_trial_input_tokens_bytes_div_4": 6034
+    },
+    {
+      "id": "AR-FULL-DB-03",
+      "task_bytes": 617,
+      "context_files_bytes": {},
+      "bare_task_and_context_bytes": 617,
+      "incumbent_entry_plus_task_and_context_bytes": 28054,
+      "trial_entry_plus_selected_resources_plus_task_and_context_bytes": 25634,
+      "selected_resource_paths": [
+        "references/decision-and-evolution.md",
+        "references/design-database.md"
+      ],
+      "selected_resource_bytes": 10113,
+      "rough_trial_input_tokens_bytes_div_4": 6409
+    },
+    {
+      "id": "AR-FULL-ART-01",
+      "task_bytes": 703,
+      "context_files_bytes": {
+        "public-fixtures/catalog_context/schema.sql": 385,
+        "public-fixtures/catalog_context/current-api.json": 411,
+        "public-fixtures/catalog_context/requirements.md": 691
+      },
+      "bare_task_and_context_bytes": 2190,
+      "incumbent_entry_plus_task_and_context_bytes": 29627,
+      "trial_entry_plus_selected_resources_plus_task_and_context_bytes": 32841,
+      "selected_resource_paths": [
+        "references/decision-and-evolution.md",
+        "references/design-api.md",
+        "references/design-database.md"
+      ],
+      "selected_resource_bytes": 15747,
+      "rough_trial_input_tokens_bytes_div_4": 8211
+    }
+  ],
+  "excluded_or_unknown": [
+    "host system/developer and safety instructions",
+    "skill catalog and tool schemas",
+    "actual descriptor input if loaded",
+    "request wrappers",
+    "resource loader output delimiters and tool calls",
+    "reasoning/output/continuation tokens",
+    "effective compaction",
+    "native billing and subcalls"
+  ],
+  "experimental_dispatch_allowed": false,
+  "trial_surface": "authored entry + selected full guides; final generated surface must be separately bound before its evaluation",
+  "revision_note": "Revision after independent challenge; structured numeric and repository context files now included. Still input sizing only, not an admitted budget."
+}
