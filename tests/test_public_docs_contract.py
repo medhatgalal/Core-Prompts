@@ -28,23 +28,18 @@ def test_version_changelog_and_docs_contract_are_aligned() -> None:
         "docs/README.md": read("docs/README.md"),
     }
 
-    required = [
-        "VERSION",
-        "RELEASE_SOURCE.env",
-        "LOCAL_REPO.env",
-        "--check-release",
-        "--accept-release",
-        "--rollback",
-        "never auto-installs",
-        "explicit install/apply step",
-    ]
+    # Orientation pages route to one canonical installation guide. Requiring the
+    # entire technical contract verbatim on every page encouraged duplicated,
+    # stale descriptions of updater ownership and check-only scheduling.
     for path, text in public_docs.items():
-        for needle in required:
-            assert needle in text, f"{path} missing {needle}"
-
-    assert "Scheduled runs auto-accept valid releases by default" in public_docs["docs/GETTING-STARTED.md"]
-    assert "`--notify-only` to keep scheduling check-only" in public_docs["docs/CLI-REFERENCE.md"]
-    assert "`--rollback previous` restores the latest pre-release snapshot" in public_docs["docs/RELEASE-PACKAGING.md"]
+        assert 'INSTALL-PROFILES.md' in text, f'{path} must route to the installation contract'
+    guide=read('docs/INSTALL-PROFILES.md')
+    for required in ['--repair','--dry-run','--apply-plan','--check-release','--accept-release','--rollback',
+                     'without', 'receipt', 'routine', 'observations', 'installation_preserved']:
+        assert required in guide
+    for required in ['VERSION','RELEASE_SOURCE.env']:
+        assert required in public_docs['docs/RELEASE-PACKAGING.md']
+    assert 'routine sync' in public_docs['docs/CLI-REFERENCE.md'] and 'still runs' in public_docs['docs/CLI-REFERENCE.md']
 
 
 def test_public_help_contract_mentions_release_watch() -> None:

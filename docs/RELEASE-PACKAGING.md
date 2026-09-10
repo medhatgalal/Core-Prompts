@@ -22,10 +22,10 @@ python3 scripts/smoke-clis.py
 Before the release build, select and record the previous published release:
 
 ```bash
-CORE_PROMPTS_RELEASE_BASE_REF=v1.13.2 bin/capability-fabric build
+CORE_PROMPTS_RELEASE_BASE_REF=v1.14.0 bin/capability-fabric build
 ```
 
-For this v1.14.0 release the comparison baseline is v1.13.2. Choose the preceding
+For the v1.14.1 candidate the comparison baseline is v1.14.0. Choose the preceding
 published tag for future releases. The generator supports an explicit baseline
 and otherwise selects the latest distinct ancestor tag available locally. Fetch
 and verify the intended baseline; do not let missing local tags silently turn a
@@ -58,9 +58,9 @@ The package should include:
 - evaluation, clarity, descriptor, and plain-English job-map policy under `.meta/`
 - `dist/consumer-shell/`
 - `sources/ssot-baselines/`
-- deploy/install scripts and `scripts/eng-report.py`; installed launchers resolve the standalone runtime copy, independently of the source checkout
+- deploy/install scripts, the generated `scripts/deploy-profile.py` installation capsule, and `scripts/eng-report.py`; installed runtime execution is independent of the source checkout
 - release-watch updater scripts, `VERSION`, and `RELEASE_SOURCE.env`
-- local source checkout metadata, when a home install is performed from a durable checkout
+- any retained legacy local source checkout metadata; new-engine release acceptance does not advance a development checkout
 - curated operator/integrator docs
 - generated consumer-shell docs (`docs/CAPABILITY-CATALOG.md`, `docs/RELEASE-DELTA.md`, `docs/STATUS.md`)
 - capability-evaluation and Skill Job Map documentation
@@ -74,6 +74,28 @@ The package should not include:
 - stray local artifacts such as `.DS_Store`
 
 Both archive formats and standalone runtime inventories/copies exclude local Codex registration configuration. A runtime inventory claiming this local file is rejected; agent registration still generates configuration at the installation target. ZIP creation uses a fresh temporary archive before replacing the output, so excluded or retired members cannot survive from an earlier package with the same filename.
+
+## Installation runtime verification
+
+The editable installation engine is `scripts/core_install/`.
+`python3 scripts/build-install-runtime.py` deterministically regenerates the
+shipped `scripts/deploy-profile.py` capsule. Verify source/capsule parity before
+building the bundle inventory. The capsule preserves the older v1.14 runtime path
+allowlist; the modular source tree is not required at installation runtime.
+
+Historical package recognition comes from the checked-in
+`.meta/install-profiles/legacy-installations.json` catalog and its pinned
+`legacy-release-refs.json` provenance. Source review must verify those release
+identities; target-authored manifests do not establish ownership. Hash checks bind
+the trusted package contents and modes, without claiming signed-release trust.
+
+The migration candidate requires separate evidence for receipt-less historical
+skills and agents, saved-profile conversion, missing-updater bootstrap, supported
+old-engine bridging followed by the next invocation, repeat routine updates,
+preserved conflicts, recovery, and both archive formats. A package's successful
+extraction does not establish authenticated Kiro discovery, a home installation,
+or hosted CI. Keep current run results under `reports/installation-migration/`;
+this checklist does not assert that those gates have passed.
 
 ## Remote CI
 Do not call the repo release-green until the hosted CI surface is green after push.
@@ -110,18 +132,37 @@ Publication verification includes independent downloads from both providers, as 
 
 ## Installed Release Watch Contract
 
-Initial install writes the installed version, release-source metadata, and local source checkout metadata into the standalone bundle:
+Normal installation supplies `~/.core-prompts-updater/` and
+`~/update_core_prompts.sh` even when no updater existed before. The bundle includes
+`VERSION`, `RELEASE_SOURCE.env`, portable runtime inputs, and generated packages.
+The concrete selection and ownership live in
+`~/.core-prompts-state/installation.json`.
 
-- `~/.core-prompts-updater/VERSION`
-- `~/.core-prompts-updater/RELEASE_SOURCE.env`
-- `~/.core-prompts-updater/LOCAL_REPO.env`
-- `~/update_core_prompts.sh`
+`--check-release` checks canonical remotes, prepares the clean release mirror,
+and records release-watch state without installing. New-engine `--accept-release`
+uses that verified mirror and the saved installation selection in a recoverable
+transaction. It does not advance the development checkout. Preserved package
+conflicts return exit `2` and need attention even if runtime files were refreshed.
+Optional retained consumer views are not certified current by runtime parity.
 
-Daily scheduled updater runs execute `~/update_core_prompts.sh --check-release` before normal update sync. `--check-release` checks only, fetches release tags, syncs a dedicated clean mirror, persists release-watch state, and never auto-installs when run directly. Scheduled runs use a deterministic PATH, treat existing managed CLI surface directories as durable update targets when binaries are unavailable to cron, and auto-accept valid releases by default after the release check; `--schedule-daily HH:MM --notify-only` preserves check-only scheduling. Bundled self-refresh is idempotent when the installed updater is both source and destination. `--accept-release` is the explicit install/apply step for manual acceptance. Legacy installs without a saved profile fast-forward the recorded source checkout and run its installer when it is clean and can fast-forward to the accepted tag; otherwise they fall back to the clean release mirror.
+Existing schedules are preserved. Explicit `--schedule-daily HH:MM` creates or
+changes a schedule; scheduled runs check first and auto-accept valid releases by
+default. `--notify-only` disables automatic release acceptance while retaining
+routine sync of the existing bundle. Scheduled runners supply
+a deterministic executable path, and saved selections survive missing CLI
+binaries in non-interactive environments.
 
-Saved-profile release acceptance uses a verified release mirror and its own recoverable transaction; it does not update the development checkout. The installed version and local checkout may therefore differ. See [Installation Profiles](INSTALL-PROFILES.md).
+A compatible older engine can receive the new capsule through its existing
+allowlist; that invocation remains old-engine execution. The next invocation
+uses the new engine. Older engines that reject changed scope need the current
+installer once. Do not claim universal self-upgrade support or imply that a
+missing-updater installation first needs a separate updater refresh.
 
-Legacy accepted releases write a rollback snapshot under `~/.core-prompts-state/snapshots/` before installing. Older snapshots are pruned so the latest 2 are retained by default; use `--snapshot-retention N` to override that. `--list-snapshots` shows rollback points, and `--rollback previous` restores the latest pre-release snapshot.
-
-
-Saved-profile acceptance records rollback metadata and uses profile transactions; the legacy two-snapshot pruning policy and `--snapshot-retention` setting are not applied on that path. Preserve profile recovery data unless separately reviewed for cleanup.
+New recovery journals live under `~/.core-prompts-state/install-transactions/`.
+`--list-snapshots` and `--rollback previous` expose them through the existing
+updater. Recovery checks exact package and installation-state identities, with the
+[release-watch observation exception](INSTALL-PROFILES.md#recover-an-installation).
+Journals remain retained, with advisory `retention_candidates` beyond the latest
+two and no automatic pruning. `--snapshot-retention` applies only to older
+snapshot compatibility paths. See [installation and recovery](INSTALL-PROFILES.md)
+for reviewed repair and rollback commands.

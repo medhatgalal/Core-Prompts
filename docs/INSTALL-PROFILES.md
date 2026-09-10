@@ -1,248 +1,222 @@
-# Selected skill installation profiles
+# Install, migrate, and recover Core-Prompts
 
-Keep authoring in `ssot/` and canonical packaged resources. Build outputs under
-`.codex`, `.kiro`, `.grok`, `.claude`, and `.gemini` are generated repository
-artifacts. Selecting a local install profile does not remove any supported build
-surface.
+Use the current installer from a trusted release or verified source checkout for
+fresh installs and historical repairs. An older installation does not need a
+standalone updater, profile, or ownership receipt before it can be inspected.
+The installer supplies the updater when absent. Scheduling remains a separate
+opt-in step.
 
-The `codex-kiro-grok.json` profile installs **skills only**. Existing agent files,
-agent registrations, shared harness configuration, launchers, and updater bundles
-are outside this profile's write set. The existing release/updater machinery
-remains responsible for those artifacts; this feature does not add a scheduler
-or another updater.
+Author capabilities in `ssot/` and canonical resources; installed directories are
+destinations, never authoring sources. Generated repository surfaces remain
+available for every supported provider regardless of local installation selection.
 
-| Reader | Generated skill package | Selected home destination | Discovery considerations |
-| --- | --- | --- | --- |
-| Codex | `.codex/skills/<slug>` | `.agents/skills/<slug>` | Codex 0.153.4 lists same-named `.agents` and legacy `.codex` home copies separately. Generated repository copies remain legitimate. |
-| Kiro | `.kiro/skills/<slug>` | `.kiro/skills/<slug>` | Default agent discovers native skills; custom agents require skill resource configuration. |
-| Grok | `.grok/skills/<slug>` | `.grok/skills/<slug>` | Native and `.agents` paths participate in discovery. Repository definitions can override home definitions. Claude/Cursor compatibility and `[skills] ignore` also affect the result. |
-| Claude | `.claude/skills/<slug>` | Not selected by this profile | Build and legacy install support retained. |
-| Gemini | `.gemini/skills/<slug>` | Not selected by this profile | Build and legacy install support retained. |
+## Preview and apply
 
-These are skills, not permission grants. Descriptive tool metadata never overrides
-platform permissions, approval rules, or runtime configuration. Grok receives
-native skill packages; this does not claim native Grok subagent support.
-
-## Review and apply a plan
-
-For initial adoption, an existing standalone updater must match the source
-package's portable `.meta/install-bundle.json` inventory. Old or customized
-updater files block profile activation until a separate reviewed bundle refresh.
-The initial plan pins both the selected skill scope and standalone bundle ownership.
-
-Use a disposable target first. Review all `actions`, `state_actions`, preserved
-packages, and transaction artifacts in the JSON plan:
+From the current release directory, preview an existing Kiro installation:
 
 ```bash
-scratch="$(mktemp -d)"
-bash scripts/deploy-surfaces.sh --profile .meta/install-profiles/codex-kiro-grok.json \
-  --target "$scratch" --allow-nonlocal-target --dry-run > /tmp/skill-install-plan.json
-bash scripts/deploy-surfaces.sh --profile .meta/install-profiles/codex-kiro-grok.json \
-  --target "$scratch" --allow-nonlocal-target --apply-plan /tmp/skill-install-plan.json
+bash scripts/install-local.sh --target "$HOME" --allow-nonlocal-target \
+  --cli kiro --repair --dry-run > /tmp/core-prompts-install-plan.json
 ```
 
-The plan binds the source manifest, every selected source file's hash and mode,
-profile, current destination inventory, ownership receipt, and optional reader
-evidence. Apply refuses a stale plan. Copy uses staged atomic file replacement.
-
-The [preservation check](../.kiro/steering/repo-workflow.md#verification-expectations)
-also distinguishes changes already present before apply from changes caused by the
-installer. A stale baseline for an unrelated, untouched configuration can be refreshed
-after its drift is recorded. That does not waive a stale write-set preimage, grant
-ownership, or permit a profile change. Post-apply comparison uses the reviewed plan,
-transaction afterimages, and that current preservation baseline; a subsequent no-op
-plan and rollback dry-run add evidence without undoing the accepted installation.
-
-The receipt and profile are saved under `.core-prompts-state/profile-install`.
-Later calls through the existing updater use the saved approved profile. They
-build and validate a concrete plan internally, update only receipt-owned unchanged
-skills within the same file scope, and verify every written file afterward.
-Changes to targets, selected file scope, or ownership stop routine sync and require
-separate review. The addition-only migration below handles new resource files
-within unchanged approved packages.
-Local customizations and unknown files block the routine update before any writes.
-
-Release checking pins the bundle inventory from the clean tagged mirror after the
-existing dual-remote tag check. Release acceptance verifies that inventory and
-all runtime file hashes, then refreshes the standalone bundle, selected skills,
-ownership receipt, and release-watch state in one recoverable transaction. It
-uses the verified release mirror, with no development-checkout fallback for profiles.
-Optional `dist/consumer-shell` views are distribution extras rather than updater
-runtime inputs; tagged Git mirrors do not contain them, and existing extras are
-preserved. Release receipts label verification as `managed_runtime` and optional
-views as `retained_unverified`; later release polling reports only `release_version`
-verification. Retained rendered views are never certified as current release data.
-The existing scheduler and `--accept-release`/`--rollback` commands remain in use.
-The updater's rollback menu includes profile transactions; later edits block restore.
-Initial adoption and legacy retirement still require an exact reviewed plan.
-
-Unknown or customized members preserve the **whole skill package**. Identical
-bytes alone do not establish Core-Prompts ownership. An initial migration therefore
-requires separately reviewed provenance before existing installations can become
-managed. The installer never adopts unknown packages automatically and never
-rewrites `.agents/.skill-lock.json`. A preserved package is an unresolved migration
-item, not successful installation parity.
-
-`slugs` may restrict the profile to canonical entries. An empty list selects all
-canonical skill entries for the selected clients. No home skill directory is used
-as a source. GWS and other third-party packages remain owned by their installers.
-
-## Routine legacy namespace migration
-
-The standalone routine updater recognizes an older Core-Prompts installation by
-checking a closed list of historical skill and agent paths against the installed
-standalone bundle's manifest and file identities. When it finds proven entries,
-that run installs only their namespaced successors for the selected CLI targets.
-For example, a v1.12.2 bundle has the historical 24-skill population, so it
-targets those 24 successors rather than every capability added since v1.12.2.
-Later historical identities are included only when their exact installed package
-is present and proven.
-
-`mentor` is retired rather than renamed. Its skill, agent, and agent-resource
-surfaces are moved into the existing recoverable stale archive only when they
-match the old bundle. Missing, partial, customized, symlinked, or unproven
-packages are preserved and reported; routine updates never adopt them or delete
-them by name. KiroCrew's separate member registry remains outside this write set.
-
-## Migrate new resources within the saved profile
-
-When a release adds resource files to already approved skill packages, use the
-existing profile engine's explicit `--migrate` mode. It retains the exact saved
-profile, targets, slugs, and approved profile hash. Existing selected files and
-standalone runtime files must still match their prior ownership identities. New
-skill files must be absent and declared by the generated manifest; new runtime
-files must be absent and declared by the verified standalone bundle inventory.
-The same transaction refreshes owned skills and runtime files and extends their
-receipt. Ordinary `--sync` continues to reject changes to selected file scope.
-
-Run the direct Python CLI from the verified release source. The shell wrappers
-do not expose `--migrate`. Use the saved profile and review the full plan before
-applying it:
+Review `selection`, `actions`, `outcomes`, `preserved`, `installation_preserved`,
+and `blockers` in the JSON.
+Apply the reviewed plan using the same release source and target:
 
 ```bash
-python3 scripts/deploy-profile.py --repo "$PWD" --target "$HOME" \
-  --profile "$HOME/.core-prompts-state/profile-install/profile.json" \
-  --migrate --dry-run > /tmp/skill-migration-plan.json
-python3 scripts/deploy-profile.py --repo "$PWD" --target "$HOME" \
-  --profile "$HOME/.core-prompts-state/profile-install/profile.json" \
-  --migrate --apply-plan /tmp/skill-migration-plan.json
+bash scripts/install-local.sh --target "$HOME" --allow-nonlocal-target \
+  --apply-plan /tmp/core-prompts-install-plan.json
 ```
 
-Both commands require `--migrate`; a plan cannot grant this authority by itself.
-Apply regenerates the plan in the explicitly selected mode and rejects changes
-to the source, destination, saved profile, receipt, or inspected package inventory.
-All `blockers` must be empty. Review `actions`, `state_actions`, and transaction
-artifacts, including runtime refreshes and receipt changes, before applying.
+`scripts/deploy-surfaces.sh` accepts the same external-target commands. Replace
+`$HOME` with a disposable directory to rehearse first. Both wrappers require
+`--allow-nonlocal-target` for an external target. The plan binds source identities,
+selection, ownership state, and inspected destination files. Apply locks the
+target and replans; changed inputs require a new preview. Copies use staged
+per-file replacement, with recoverable journals for the whole transaction.
 
-This mode rejects removals, legacy retirement, changed targets or slugs, new skill
-packages even when the profile selects all slugs, missing prior owned files, and
-unknown or customized package members. It preserves symlink boundaries and never
-adopts an existing unowned file, even if its bytes match the source. Those cases
-need a separately scoped migration; changing the saved profile or ownership
-receipt manually does not establish provenance. Rollback uses the same transaction
-commands below, restoring prior bytes and modes and removing only files that the
-transaction added. Later edits still block rollback.
+| Situation | Selection behavior |
+| --- | --- |
+| Fresh target, `--cli kiro` | Install current Kiro skills; add `--with-agents` to explicitly select skills and emitted agents. |
+| Historical target without saved state | Recognize existing packages on selected providers, then migrate their same-surface successors. `--repair` makes this intent explicit. |
+| Saved schema 1 skills profile | Normal sync carries forward its selected skills; explicit `--repair` also discovers independently recognized existing agents on its selected providers. |
+| Saved schema 2 installation | Routine sync keeps saved provider, surface, and slug selection. Explicit `--repair` discovers additional recognizable installed packages within scope. |
+| Explicit `--slug SLUG` | Select that current capability's emitted skills and agents; repeat for multiple slugs. |
+| `--surface-only --slug SLUG` | Manage the selected surfaces and ownership state without refreshing the updater or launcher. |
 
-## Retire and recover exact managed files
+`--cli` accepts `codex`, `kiro`, `claude`, `gemini`, `grok`, or `all`. On an initial
+unprofiled run, `all` discovers providers through available CLI binaries or
+existing surface directories. It is not a request to expand a saved selection.
+Use a concrete provider for a fresh offline target. `--strict-cli` additionally
+requires selected provider binaries to be present; it does not authenticate or
+exercise them.
 
-`retire` is an explicit list of legacy `.codex/skills/<slug>/...` files. It defaults
-to empty. Before listing any files, verify the prior Core-Prompts ownership receipt,
-all package members, customization state, every relevant reader and its configured
-source, and the retained `.agents` package identity. Record that bounded readback in
-a repo-relative `reader_evidence` file referenced by the local profile. The plan
-binds its hash; it does not manufacture or independently certify that evidence.
-
-Retirement requires every existing legacy package member to be listed, receipt-owned,
-and byte/mode-identical to its retained destination. Any unknown, customized,
-symlinked, or unlisted member preserves the legacy entry point. No directory or
-broad glob is removed. Empty directories may remain. Preimages are saved in the
-transaction before exact files leave discovery.
-
-Review rollback before applying it, using the transaction ID returned by install:
+The optional schema 1 profile `.meta/install-profiles/codex-kiro-grok.json` remains
+a skills-only selection input:
 
 ```bash
-bash scripts/deploy-surfaces.sh --target "$scratch" --allow-nonlocal-target \
+bash scripts/install-local.sh --target "$HOME" --allow-nonlocal-target \
+  --profile .meta/install-profiles/codex-kiro-grok.json --dry-run \
+  > /tmp/core-prompts-profile-plan.json
+```
+
+An empty profile `slugs` list selects current skills for those providers at
+activation. The resulting concrete selection is saved in
+`.core-prompts-state/installation.json`; later new catalog entries are not
+automatically added. Do not edit ownership receipts to grant ownership.
+
+## Historical recognition and preservation
+
+The checked-in `.meta/install-profiles/legacy-installations.json` catalog binds
+complete historical package inventories to exact hashes and modes. Its source
+release refs are recorded in `legacy-release-refs.json`. Recognition uses this
+trusted catalog or an existing valid ownership receipt, not a target-authored
+manifest. The catalog covers 54 pinned release versions; the historical 24-skill
+population is one fixture, not a limit on supported current capabilities.
+
+Each skill and agent is recognized independently. A recognized Kiro skill does
+not authorize installing an absent Kiro agent, and a package on one provider does
+not authorize another provider. Recognized `autosearch` packages migrate to
+`engos-optimization-auto-research`; `mentor` has no successor and is retired only
+when its complete installed package is recognized and no unresolved dependency
+requires it. Replacement files are verified before predecessor files are removed.
+
+Unknown, customized, partial, and symlinked packages are preserved as whole
+packages. A custom successor or unresolved reference from another agent preserves
+the affected predecessor. Codex registration changes preserve unrelated custom
+configuration; conflicts preserve affected agents. Third-party packages remain
+with their own installers. In particular, an existing unreceipted third-party
+Loopy copy is not adopted merely because its bytes match the bundled package.
+
+Preservation is a reported incomplete migration, not installation parity:
+
+- Exit `0`: current operation completed or no-op without preserved conflicts.
+- Exit `2`: `applied-with-preserved` or `no-op-with-preserved`; inspect the report
+  before claiming completion. Independent safe packages may have updated.
+- Exit `1`: blocked or failed. Source/runtime integrity blockers prevent surface
+  changes. An apply failure can leave an unfinished recoverable transaction; use
+  its reported ID before attempting another installation.
+
+`preserved` describes the current operation; `installation_preserved` retains
+unresolved conflicts across the installation. A successful narrow operation does
+not clear unrelated preserved packages or establish installation-wide parity.
+
+## Routine updates and older updaters
+
+The saved installation records package ownership and selected providers, surfaces,
+and slugs. Routine updates reconcile resource additions and removals within those
+unchanged owned packages. They preserve customization conflicts and do not expand
+the installation to unrelated new catalog entries. The earlier addition-only
+`--migrate` procedure is superseded by this package reconciliation.
+
+The installed launcher remains `~/update_core_prompts.sh`:
+
+```bash
+~/update_core_prompts.sh
+~/update_core_prompts.sh --check-release
+~/update_core_prompts.sh --accept-release
+```
+
+Release checking compares the canonical remotes and prepares a verified release
+mirror. Checking alone never installs. New-engine acceptance uses that mirror and
+a recoverable installation transaction; it does not advance a development
+checkout. Runtime parity and optional rendered consumer views are separate:
+retained optional views are not certified current by a runtime update. Hash
+verification assumes a trusted release source; it is not a signature guarantee.
+
+Some compatible older profile engines can receive the new generated runtime
+through their existing file allowlist. That invocation still executes the old
+engine. The **next** ordinary or scheduled invocation runs the new engine and
+converts saved selection. An immutable older engine whose scope guards reject the
+bridge needs the current installer once, using the preview/apply commands above.
+This is not universal self-upgrade support. Missing-updater installations use the
+same current installer directly.
+
+Create a schedule only when wanted:
+
+```bash
+~/update_core_prompts.sh --schedule-daily 09:00
+# Disable automatic release acceptance; existing-bundle sync still runs:
+~/update_core_prompts.sh --schedule-daily 09:00 --notify-only
+```
+
+Scheduled runs check releases first and auto-accept valid releases by default,
+then perform routine sync. `--notify-only` disables automatic release acceptance
+but still runs routine sync of the existing bundle. Existing schedules are preserved during install,
+repair, and runtime refresh; they are not created or modified implicitly.
+
+## Recover an installation
+
+Use the transaction ID returned by apply. Preview recovery before restoring:
+
+```bash
+bash scripts/install-local.sh --target "$HOME" --allow-nonlocal-target \
+  --list-transactions
+bash scripts/install-local.sh --target "$HOME" --allow-nonlocal-target \
   --rollback TRANSACTION_ID --dry-run
-bash scripts/deploy-surfaces.sh --target "$scratch" --allow-nonlocal-target \
+bash scripts/install-local.sh --target "$HOME" --allow-nonlocal-target \
   --rollback TRANSACTION_ID
 ```
 
-Rollback verifies preimage backups and current file hashes before restoring.
-Later edits block rollback instead of being overwritten. Transaction journals
-and backup files are retained for inspection. Temporary staging files are created
-beside written destinations and removed after replacement.
+The existing updater also exposes recovery through `--list-snapshots` and
+`--rollback previous`. Rollback verifies stored preimages and current files,
+restores prior package bytes and modes, and removes only files added by that
+transaction. Later edits to ordinary package files or `installation.json` block
+restoration.
 
-## Discovery evidence and limits
+The operational `release-watch.json` has one narrow exception when a transaction
+updated an existing release-watch file: later release observations and timestamps
+are preserved, `installed_version` is restored, and `pending_version` and `status`
+are recomputed from the retained latest-release observation. Another installed-version
+transition or a changed file mode still blocks rollback. This exception does not
+relax package or installation-state ownership checks.
 
-Official documentation checked on 2026-09-06:
+Multi-file application is recoverable, not atomic; an interrupted transaction
+must be recovered before another apply.
 
-- [Codex skill locations and metadata](https://learn.chatgpt.com/docs/build-skills)
-- [Kiro CLI native skills and custom-agent resources](https://kiro.dev/docs/cli/skills/)
-- [Grok native skill packages and descriptive tool metadata](https://docs.x.ai/build/features/skills-plugins-marketplaces)
+Journals and backups live under `.core-prompts-state/install-transactions/`.
+They are retained. `retention_candidates` is advisory for intact older journals
+beyond the latest two; no automatic pruning or `--snapshot-retention` cleanup is
+performed for these transactions. Older snapshot formats remain a separate
+compatibility path. Empty directories may remain after exact-file retirement.
 
-The installed Grok user guide `08-skills.md` additionally documents `.agents`,
-compatibility switches, path ignore rules, and `inspect --json` source paths.
-Disposable-home runtime probes confirmed Grok 1.0.5 native repository and native
-home selection, `.agents` fallback, exact-path ignore behavior, and Codex 0.153.4 dual home discovery. Compatibility-disabled Claude skills remain listed with `disabled: true`; a listed skill is not necessarily active. The probe compares complete resolved source paths. These results do not certify
-a user's existing home configuration. Kiro 2.21.1 is installed here; its skill
-activation has not been proven in a fresh authenticated session. No model invocation,
-behavioral promotion, home installation, release, or tag is implied by these checks.
+## Provider discovery and evidence
 
-## Complete portable packages
+| Provider | Installed skill root | Agent root |
+| --- | --- | --- |
+| Codex | `.agents/skills/` | `.codex/agents/`, with target-local registrations |
+| Kiro | `.kiro/skills/` | `.kiro/agents/` |
+| Claude | `.claude/skills/` | `.claude/agents/` |
+| Gemini | `.gemini/skills/` | `.gemini/agents/` |
+| Grok | `.grok/skills/` | No native agent surface claimed |
 
-Resources that must remain relative to `SKILL.md`, including `references/` and
-`agents/openai.yaml`, belong in `sources/skill-package-resources/<slug>/`. The builder
-copies them without changing their relative paths into every emitted skill package.
-They are listed in the generated manifest and copied by both deployment paths.
-The reserved generated files `SKILL.md` and `resources/capability.json` cannot be
-shadowed by package resources. Existing `sources/capability-resources/<slug>/`
-continues to supply resources under the generated `resources/` directory.
-
-Loopy's seven-file installed package and installer receipt are pinned under
-`sources/intake/loopy/` as intake evidence. Normal UAC intake passed with only a
-descriptive display-title addition: the original operating body and all companion
-files remain intact. Canonical `ssot/loopy.md` and its package resources generate
-one `loopy` skill per supported client, retaining `$loopy` and `/loopy`. Loopy is
-an upstream-named, hash-pinned exception to first-party `engos-*` naming; no alias
-package is emitted. The pin is the preserved installed package, not a claim of
-byte parity with an unverified historical upstream checkout. Structural
-acceptance remains distinct from behavioral promotion and home ownership adoption.
-
-Reproduce the optional no-model reader checks with explicit native executable paths:
-
-```bash
-python3 scripts/probe-skill-readers.py --codex /path/to/native/codex \
-  --grok /path/to/grok --output /tmp/native-readers.json
-```
-
-Legacy namespace deployment also preflights old paths before any copy or
-registration: every old package member must match its recorded standalone bundle
-and manifest. Unknown, customized, or symlinked packages stop the operation and
-remain discoverable until the controller resolves them explicitly.
+Installed bytes, native CLI discovery, and authenticated capability execution
+require separate verification. For Kiro, inspect agents both from a neutral
+directory and from the project: workspace definitions can override global names.
+Consult [Kiro skills](https://kiro.dev/docs/skills/) and
+[custom-agent configuration](https://kiro.dev/docs/custom-agents/configuration-reference/)
+for the reader configuration applicable to the installed CLI version. Static hash
+parity does not establish account access or runtime activation, and this migration
+does not perform a general Kiro version/configuration upgrade.
 
 ## Discovery and member registries
 
-A capability can emit both a skill and an agent. These are different invocation
-surfaces for one SSOT definition, not competing canonical skills. Repository and
-home copies are intentional; `kiro-cli agent list` inside this repository may warn
-that its same-named workspace agent overrides the global one. Run the list from a
-neutral directory as well to distinguish global and workspace discovery.
+KiroCrew's Crew Members roster is separate application state. Its saved names can
+survive native package retirement. Core-Prompts does not rewrite that registry,
+preferences, favorites, bindings, or history. Verify and manage those through the
+application separately before claiming old roster names are gone.
 
-KiroCrew's Crew Members roster is separate from Kiro CLI's discovered agent files.
-A renamed JSON file does not necessarily rename a previously saved crew member.
-Check both `.kiro/agents` and the application's configured member registry before
-claiming old names are fully retired. Do not infer duplicate skill packages from
-an agent roster screenshot, or treat `Built-in` as proof that Kiro ships that agent.
+## Portable source and package boundary
 
-A local KiroCrew investigation found old Core member names retained alongside their
-namespaced successors: its roster reads saved `agents` configuration, adds newly
-discovered names, and prunes missing package rows but retains rows marked `builtin`.
-This is an application-registry migration, outside the Core skills profile's write
-set. Use supported application management after checking member preferences,
-favorites, bindings and active sessions. Preserve history and avoid wholesale
-config/cache deletion. A routine Core update must not rewrite KiroCrew's config.
+Runtime source lives under `scripts/core_install/`. The deterministic
+`scripts/build-install-runtime.py` generator compiles it into the shipped
+`scripts/deploy-profile.py` capsule, keeping the older v1.14 runtime path allowlist
+compatible. Do not patch the generated capsule as the lasting source fix.
 
-Example: `ic-assistant` maps to `engos-operations-ic-assistant`. Verify that the new
-agent is available and that the old name is absent from native CLI discovery,
-then reconcile the saved application member separately. Installed bytes, native
-CLI discovery and the application's roster require separate verification.
+Skill resources that must stay relative to `SKILL.md`, including `references/`
+and `agents/openai.yaml`, originate in `sources/skill-package-resources/<slug>/`.
+Other canonical capability resources originate in
+`sources/capability-resources/<slug>/`. Generated manifests bind the complete
+emitted packages. Loopy retains its pinned upstream `loopy` identity and companion
+resources; source inclusion does not grant ownership of existing third-party
+installations. See [release packaging](RELEASE-PACKAGING.md) for delivery gates.

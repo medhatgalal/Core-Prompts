@@ -132,64 +132,79 @@ What this proves:
 - `validate --strict` checks generated surfaces, manifests, and contract integrity
 - `smoke-clis.py` probes local vendor CLIs and expected surface visibility where supported
 
-Optional deploy dry run:
+## Install Or Repair Your CLI Setup
+
+Use a trusted current release or verified checkout. The same command handles an
+existing Kiro installation without an updater or receipts:
 
 ```bash
-bin/capability-fabric deploy --dry-run --cli all
+bash scripts/install-local.sh --target "$HOME" --allow-nonlocal-target \
+  --cli kiro --repair --dry-run > /tmp/core-prompts-install-plan.json
 ```
 
-For a narrow external-target repair, use `--surface-only` with an explicit slug. It copies only that emitted bundle and skips the standalone updater, launcher, and local binaries:
+Review the plan's selected packages, file actions, preserved packages, and blockers.
+Then apply that exact plan:
 
 ```bash
-bin/capability-fabric deploy --dry-run --surface-only --cli kiro --slug engos-quality-code-review --target "$HOME" --allow-nonlocal-target
+bash scripts/install-local.sh --target "$HOME" --allow-nonlocal-target \
+  --apply-plan /tmp/core-prompts-install-plan.json
 ```
 
-For Batman on Kiro, the same dry-run also previews the bounded cleanup of obsolete source files:
+For a fresh target, omit `--repair`; skills are selected by default. Add
+`--with-agents` when you want current named agents too. Existing skills and agents
+are recognized independently from trusted historical package identities. A saved
+skills-only profile keeps its selection during ordinary sync; explicit repair can
+adopt independently recognized existing agents on the saved selected providers.
+
+The resulting `.core-prompts-state/installation.json` saves concrete provider,
+surface, and slug selection. Routine updates reconcile owned package resources
+and keep that selection. Unknown, customized, partial, or symlinked packages are
+preserved and reported; exit `2` means migration still needs attention.
+
+For a narrow repair, use `--surface-only` with a selected slug to skip updater and
+launcher refresh:
 
 ```bash
-bin/capability-fabric deploy --dry-run --surface-only --cli kiro --slug engos-orchestration-batman --target "$HOME" --allow-nonlocal-target
+bash scripts/deploy-surfaces.sh --target "$HOME" --allow-nonlocal-target \
+  --cli kiro --slug engos-quality-code-review --surface-only --dry-run \
+  > /tmp/core-prompts-surface-plan.json
 ```
 
-When all three residues exist, the prune plan lists exactly:
-
-- `.kiro/skills/engos-orchestration-batman/PROTOCOL.md`
-- `.kiro/skills/engos-orchestration-batman/PROMPT-AMENDMENT.md`
-- `.kiro/skills/engos-orchestration-batman/CODEX-UAC-INTAKE.md`
-
-Dry-run prints one `DRY-RUN PRUNE` line per existing residue and does not move anything. The live command recoverably archives only those existing files under `.core-prompts-state/stale-pruned/<timestamp>/...` and prints a `source -> archive` receipt for each move. It preserves `.kiro/skills/engos-orchestration-batman/SKILL.md`, `resources/`, and unrelated files in the Batman skill directory.
-
-Use the printed receipt to recover an individual file from its timestamped archive to the original source path. If the cleanup occurred as part of an accepted release install, `~/update_core_prompts.sh --rollback previous` can instead restore the pre-install rollback snapshot.
-
-For the breaking `autosearch` rename, deploy `engos-optimization-auto-research` to replace installed stale surfaces:
-
-```bash
-bin/capability-fabric deploy --cli all --slug engos-optimization-auto-research --target "$HOME" --allow-nonlocal-target
-```
-
-Deploying `engos-optimization-auto-research` prunes the old installed `autosearch` skill, agent, and resource paths for the selected CLIs.
+This uses the same reviewed-plan apply step. It is ownership-aware; a familiar
+filename alone does not authorize removing historical residues or custom files.
 
 ## Installed Release Watch
 
-When you install into a home target, Core-Prompts writes the installed version and release metadata into the standalone updater bundle:
-
-- `~/.core-prompts-updater/VERSION`
-- `~/.core-prompts-updater/RELEASE_SOURCE.env`
-- `~/.core-prompts-updater/LOCAL_REPO.env`
-- `~/update_core_prompts.sh`
-
-Daily scheduled updater runs execute `~/update_core_prompts.sh --check-release` before normal update sync. The check compares the installed standalone bundle against the latest immutable release tag agreed by the canonical remotes, updates `~/.core-prompts-state/release-watch.json`, and never auto-installs when run directly. Scheduled runs auto-accept valid releases by default after that check. Accepted releases safely fast-forward the recorded source checkout first when it is clean, then run the installer from that checkout; if that is unsafe, they install from the clean release mirror.
-
-Use the explicit acceptance step when you want to refresh the installed bundle manually. `--accept-release` is the explicit install/apply step:
+Installation also supplies the standalone updater when absent:
 
 ```bash
 ~/update_core_prompts.sh --check-release
 ~/update_core_prompts.sh --accept-release
-~/update_core_prompts.sh --rollback previous
+~/update_core_prompts.sh --list-snapshots
 ```
 
-Install `--schedule-daily HH:MM --notify-only` if you want scheduled release checks without automatic release acceptance. Scheduled runs use deterministic user, package-manager, and system executable paths; an existing managed CLI surface remains an update target even when cron cannot discover that CLI binary. Legacy accepted releases write a pre-install rollback snapshot under `~/.core-prompts-state/snapshots/`; older snapshots are pruned so the latest 2 are retained by default. `--list-snapshots` lists rollback points and `--rollback previous` restores the latest snapshot.
+Checking compares canonical release tags and prepares a clean release mirror;
+it never installs. New-engine acceptance updates the saved installation through a
+recoverable transaction, independently of the development checkout.
 
-Saved-profile release acceptance uses a verified release mirror and its own recoverable transaction; it does not update the development checkout. The installed version and local checkout may therefore differ. See [Installation Profiles](INSTALL-PROFILES.md).
+Scheduling is optional and separate from install:
+
+```bash
+~/update_core_prompts.sh --schedule-daily 09:00
+# --notify-only disables automatic release acceptance; existing-bundle sync still runs.
+```
+
+Existing schedules are preserved. A compatible older updater may receive the new
+runtime before its next invocation converts the saved selection. If an older
+engine's scope guards reject that bridge, run the current installer once.
+
+Use the installer `--rollback TRANSACTION_ID --dry-run` to preview recovery,
+then `--rollback TRANSACTION_ID` to restore. The updater also supports
+`--rollback previous`. See the [recovery contract](INSTALL-PROFILES.md#recover-an-installation)
+for exact-file checks and the release-watch observation exception. New transaction journals
+are retained; older-journal retention candidates are advisory, not automatic
+deletions. See [installation, migration, and recovery](INSTALL-PROFILES.md)
+for the full selection and recovery contract.
 
 ## What The Generated Views Are For
 

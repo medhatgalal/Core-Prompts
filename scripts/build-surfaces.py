@@ -4,6 +4,7 @@ from __future__ import annotations
 import datetime
 import json
 import shutil
+import subprocess
 import sys
 from pathlib import Path
 
@@ -802,6 +803,9 @@ def main():
     ):
         prune_empty_directory(deprecated_dir)
     sys.path.insert(0, str(ROOT / 'scripts'))
+    # Compile modular installer source to the portable entry point understood by
+    # older installed updaters before recording its runtime identity.
+    subprocess.run([sys.executable, str(ROOT / 'scripts/build-install-runtime.py')], check=True)
     from install_bundle import build as build_install_bundle
     build_install_bundle(ROOT)
     print('Generated', len(entries), 'ssot entries')

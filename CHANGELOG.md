@@ -1,7 +1,11 @@
 ## v1.14.1 - 2026-09-09
 
-- Routine standalone updates now detect the exact legacy Core-Prompts packages and agent surfaces recorded by the installed bundle, then install only their namespaced successors. A v1.12.2 installation therefore targets its 24 renamed skills; later historical entries are included only when actually proven present.
-- Retired `mentor` skills and agents are archived only when bundle provenance matches. Unknown, customized, partial, or symlinked legacy surfaces remain untouched and are reported for manual review.
+- Unified fresh installation, historical repair, routine updates, and recovery through one ownership-aware engine. Current installers can repair recognized historical skills and independently present agents without an old updater or receipt, including Kiro agents and retired `mentor`.
+- Added a trusted catalog of complete historical package identities and saved provider/surface/slug selection. Existing skills-only profiles retain their skill selection on ordinary sync; explicit repair can adopt independently recognized existing agents on selected providers.
+- Reconcile resource additions and removals within owned selected packages. Preserve custom, partial, symlinked, unowned, and dependency-conflicted packages and report partial completion with exit `2`.
+- Generate the portable installation capsule from modular source while preserving the compatible older runtime allowlist. Older engines that reject the bridge require the current installer once; the next invocation after a supported bridge uses the new engine.
+- Supply a missing updater without creating or changing schedules. Expose exact-file journal recovery through installer and updater commands; retain journals with advisory cleanup candidates and block rollback over later edits.
+- Reworked installation, onboarding, examples, and release guidance around explicit preview/apply, preservation reports, bounded compatibility, and separate package, native-runtime, and application-roster evidence.
 
 ## v1.14.0 - 2026-09-08
 

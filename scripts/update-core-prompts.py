@@ -14,7 +14,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 
-STATUSES = {"current", "pending-install", "remote-error", "remote-divergence"}
+STATUSES = {"current", "pending-install", "remote-error", "remote-divergence", "attention-required"}
 SCHEDULE_MARKER = "# CORE_PROMPTS_SCHEDULED_UPDATE"
 DEFAULT_SNAPSHOT_RETENTION = 2
 
@@ -118,10 +118,22 @@ def write_state(paths: Paths, *, installed_version: str, latest_version: str, pe
         "status": status if status in STATUSES else "remote-error",
         "note": note,
     }
-    if (paths.home / '.core-prompts-state/profile-install/profile.json').exists():
+    installation = paths.state_root / 'installation.json'
+    if (paths.home / '.core-prompts-state/profile-install/profile.json').exists() or installation.exists():
         doc['verification_scope'] = 'release_version'
         doc['optional_views_status'] = 'retained_unverified'
         doc['note'] += ' Version observation only; optional consumer views remain unverified.'
+    if installation.exists():
+        try:
+            installed = json.loads(installation.read_text())
+            unresolved = installed.get('preserved', [])
+        except (OSError,ValueError,AttributeError):
+            unresolved = ['unreadable installation state']
+        doc['installation_status'] = 'attention-required' if unresolved else 'managed'
+        if unresolved:
+            doc['note'] += ' Installation has preserved conflicts; inspect the repair report.'
+            if doc['status'] == 'current':
+                doc['status'] = 'attention-required'
     paths.state_file.parent.mkdir(parents=True, exist_ok=True)
     paths.state_file.write_text(json.dumps(doc, indent=2) + "\n", encoding="utf-8")
     return doc
@@ -326,6 +338,11 @@ def list_snapshots(paths: Paths, *, as_json: bool) -> int:
                 "path": str(snapshot),
             }
         )
+    for item in installation_transactions(paths):
+        snapshots.append({'id': item['transaction'], 'created_at': str(item['created_ns']),
+                          'installed_version': '', 'target_version': '',
+                          'path': str(paths.state_root / 'install-transactions' / item['transaction']),
+                          'status': item['status'], 'kind': 'installation_transaction'})
     if as_json:
         print(json.dumps(snapshots, indent=2))
         return 0
@@ -352,6 +369,23 @@ def resolve_snapshot(paths: Paths, selector: str) -> Path | None:
 
 
 def restore_snapshot(paths: Paths, selector: str) -> int:
+    transactions = installation_transactions(paths)
+    selected = next((row for row in transactions if row['transaction'] == selector), None)
+    if selector in {'', 'previous', 'latest'} and transactions:
+        active = [row for row in transactions if row['status'] != 'rolled-back']
+        if active:
+            selected = max(active, key=lambda row: row['created_ns'])
+    if selected is not None:
+        try:
+            result = profile_module(paths).installation_rollback(paths.home, selected['transaction'])
+            print(json.dumps(result, indent=2))
+            return 0
+        except (ValueError, OSError, KeyError) as exc:
+            print('Installation rollback refused: ' + str(exc), file=sys.stderr)
+            return 1
+    if (paths.state_root / 'installation.json').exists():
+        print('Legacy rollback refused while a newer installation state is active; roll back its transaction first.', file=sys.stderr)
+        return 1
     snapshot = resolve_snapshot(paths, selector)
     if snapshot is None:
         print(f"No Core-Prompts rollback snapshot found for selector: {selector or 'previous'}", file=sys.stderr)
@@ -625,7 +659,8 @@ def default_sync(paths: Paths, args: argparse.Namespace) -> int:
     if not deploy.is_file():
         print(f"Missing bundled deploy script: {deploy}", file=sys.stderr)
         return 1
-    command = [str(deploy), "--target", str(paths.home), "--allow-nonlocal-target", *args.deploy_args]
+    forwarded = args.deploy_args[1:] if args.deploy_args[:1] == ['--'] else args.deploy_args
+    command = [str(deploy), "--target", str(paths.home), "--allow-nonlocal-target", *forwarded]
     proc = subprocess.run(command, cwd=paths.support_root)
     return proc.returncode
 
@@ -639,6 +674,26 @@ def profile_module(paths: Paths):
     return module
 
 
+def installation_transactions(paths: Paths):
+    """Expose v2 recovery records through the existing updater commands."""
+    root = paths.state_root / 'install-transactions'
+    if not root.exists():
+        return []
+    engine = profile_module(paths)
+    root = engine.safe(paths.home, '.core-prompts-state/install-transactions')
+    rows = []
+    for child in sorted(root.iterdir()):
+        if len(child.name) != 32 or any(c not in '0123456789abcdef' for c in child.name):
+            continue
+        path = engine.safe(paths.home, f'.core-prompts-state/install-transactions/{child.name}/journal.json')
+        if path.is_file():
+            item = json.loads(path.read_text())
+            if item.get('transaction') != child.name or type(item.get('created_ns')) is not int:
+                raise ValueError('Invalid installation recovery journal')
+            rows.append({k:item[k] for k in ('transaction','status','created_ns')})
+    return rows
+
+
 def accept_profile_release(paths: Paths, state: dict[str, str], mirror: Path) -> int:
     """Use the existing verified release mirror and persisted file scope."""
     try:
@@ -649,12 +704,23 @@ def accept_profile_release(paths: Paths, state: dict[str, str], mirror: Path) ->
             raise ValueError('release bundle lacks the pinned verification receipt from release check')
         if not release_versions_match(read_first_line(mirror / 'VERSION'), state['pending_version']):
             raise ValueError('release bundle version differs from pending version')
-        profile = json.loads(engine.safe(paths.home, engine.PROFILE).read_text())
         current = dict(state)
         current.update(installed_version=state['pending_version'], latest_version=state['pending_version'],
                        pending_version='', status='current', last_checked_at=now_iso(),
                        verification_scope='managed_runtime', optional_views_status='retained_unverified',
                        note='Accepted verified managed runtime; optional consumer views retained unverified')
+        if hasattr(engine, 'installation_plan'):
+            # The executing installed capsule is trusted through its installed
+            # bundle. Incoming source identities are verified by the planner.
+            request = {'mode': 'sync', 'release_state': current}
+            concrete = engine.installation_plan(mirror, paths.home, request)
+            if concrete['blockers']:
+                raise ValueError('; '.join(concrete['blockers']))
+            result = engine.installation_apply(mirror, paths.home, concrete,
+                                               lambda: engine.installation_plan(mirror, paths.home, request))
+            print(json.dumps(result, indent=2))
+            return 2 if result.get('preserved') else 0
+        profile = json.loads(engine.safe(paths.home, engine.PROFILE).read_text())
         concrete = engine.plan(mirror, paths.home, profile, routine=True, release_state=current)
         if concrete['blockers']:
             raise ValueError('; '.join(concrete['blockers']))
@@ -705,7 +771,8 @@ def accept_release(paths: Paths, *, assume_yes: bool, snapshot_retention: int = 
     if not approved:
         print("Release acceptance declined; pending install remains queued.", file=sys.stderr)
         return 0
-    if profile.exists() or profile.is_symlink():
+    has_new_engine = (support / 'scripts/deploy-profile.py').is_file() and hasattr(profile_module(paths), 'installation_plan')
+    if profile.exists() or profile.is_symlink() or (paths.state_root / 'installation.json').exists() or has_new_engine:
         return accept_profile_release(paths, state, mirror_path)
     snapshot = create_snapshot(paths, installed_version=installed, target_version=pending, retention=snapshot_retention)
     print(f"Snapshot saved: {snapshot}", file=sys.stderr)
@@ -741,7 +808,7 @@ def auto_accept_release(paths: Paths, *, snapshot_retention: int) -> int:
     state = check_release(paths, notify_mode=False)
     if state.get("status") != "pending-install":
         print(render_state(state), end="")
-        return 0
+        return 2 if state.get('status') == 'attention-required' else 0
     return accept_release(paths, assume_yes=True, snapshot_retention=snapshot_retention)
 
 
@@ -834,7 +901,7 @@ def main(argv: list[str]) -> int:
         description="Sync installed Core-Prompts surfaces and manage release-watch state.",
         epilog=(
             "--check-release checks only and never auto-installs. "
-            "Scheduled updates auto-accept valid releases by default; use --notify-only to keep scheduling check-only. "
+            "Scheduled updates auto-accept valid releases by default; --notify-only disables acceptance while routine sync still runs. "
             "--rollback previous restores the latest pre-release snapshot."
         ),
     )

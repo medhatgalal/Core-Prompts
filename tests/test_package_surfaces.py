@@ -70,6 +70,8 @@ def test_package_boundary_includes_release_watch_contract(tmp_path: Path) -> Non
         "scripts/update-core-prompts.py",
         "scripts/deploy-surfaces.sh",
         "scripts/deploy-profile.py",
+        "scripts/core_install/planner.py",
+        ".meta/install-profiles/legacy-installations.json",
         ".meta/install-profiles/codex-kiro-grok.json",
         "scripts/install-local.sh",
     }
@@ -178,18 +180,20 @@ def test_packaged_profile_updates_verified_release_and_rolls_back(tmp_path: Path
     prior = skill.read_bytes()
     skill.write_text('independent customization')
     negative = subprocess.run([*base, '--accept-release', '--yes'], cwd=tmp_path, text=True, capture_output=True)
-    assert negative.returncode != 0
-    assert 'customized' in negative.stderr
+    assert negative.returncode == 2
+    assert 'customized' in negative.stdout
     assert skill.read_text() == 'independent customization'
-    assert (support / 'VERSION').read_text().strip() == version
+    assert (support / 'VERSION').read_text().strip() == 'v99.0.0'
+    assert json.loads(state_file.read_text())['status'] == 'attention-required'
     skill.write_bytes(prior)
-    release = subprocess.run([*base, '--accept-release', '--yes'], cwd=tmp_path, text=True, capture_output=True)
+    # Resolve the custom package and reconcile using the already accepted runtime.
+    release = subprocess.run(base, cwd=tmp_path, text=True, capture_output=True)
     assert release.returncode == 0, release.stderr
     assert skill.read_bytes() == changed.read_bytes()
     assert optional_view.read_text() == 'retained optional view'
     assert (support / 'VERSION').read_text().strip() == 'v99.0.0'
     assert not (home / f'.codex/skills/{slug}/SKILL.md').exists()
-    assert json.loads(state_file.read_text())['status'] == 'current'
+    assert json.loads((home / '.core-prompts-state/installation.json').read_text())['preserved'] == []
     assert json.loads(state_file.read_text())['verification_scope'] == 'managed_runtime'
     assert json.loads(state_file.read_text())['optional_views_status'] == 'retained_unverified'
     ordinary = subprocess.run(base, cwd=tmp_path, text=True, capture_output=True)
@@ -200,12 +204,17 @@ def test_packaged_profile_updates_verified_release_and_rolls_back(tmp_path: Path
     altered = json.loads(saved_bytes); altered['targets'].append('kiro')
     saved.write_text(json.dumps(altered))
     widened = subprocess.run(base, cwd=tmp_path, text=True, capture_output=True)
-    assert widened.returncode != 0 and 'scope' in widened.stderr
+    # The old v1 profile is recovery history after promotion, not a second
+    # active authority capable of expanding the v2 installation.
+    assert widened.returncode == 0, widened.stderr
     assert not (home / '.kiro/skills' / slug).exists()
     saved.write_bytes(saved_bytes)
     polled = json.loads(state_file.read_text())
     polled.update(last_checked_at='later scheduled check', note='latest release observation')
     state_file.write_text(json.dumps(polled))
+    restored = subprocess.run([*base, '--rollback', 'previous'], cwd=tmp_path, text=True, capture_output=True)
+    assert restored.returncode == 0, restored.stderr
+    # Undo clean package reconciliation before undoing partial release acceptance.
     restored = subprocess.run([*base, '--rollback', 'previous'], cwd=tmp_path, text=True, capture_output=True)
     assert restored.returncode == 0, restored.stderr
     assert (support / 'VERSION').read_text().strip() == version

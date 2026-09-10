@@ -63,7 +63,7 @@ Check:
 - `docs/UAC-USAGE.md`
 - `docs/RELEASE-PACKAGING.md`
 - `VERSION`, `RELEASE_SOURCE.env`, and `CHANGELOG.md`
-- `LOCAL_REPO.env` handling for home installs and recorded source checkout updates
+- saved installation scope and retained legacy `LOCAL_REPO.env` handling; new-engine acceptance uses a verified mirror without updating development checkouts
 - updater help for `bin/capability-fabric update --help`
 - generated inspection views such as `docs/CAPABILITY-CATALOG.md`, `docs/RELEASE-DELTA.md`, and `docs/STATUS.md`
 - dry-run deploy output before local install when the release overwrites installed home surfaces
@@ -71,7 +71,11 @@ Check:
 - confirm that every dry-run path is actually read-only; treat attempted writes during dry-run as a release blocker
 - direct comparison between generated outputs and installed state when local customizations or prior tool-written state may exist
 - whether concurrent UAC engine work and docs or prompt work should be split into separate worktrees before more edits land
-- release-watch behavior: scheduled runs check first, auto-accept valid releases by default, update the recorded source checkout only when it is clean and fast-forwardable, `--notify-only` preserves check-only scheduling, `--check-release` never auto-installs when run directly, `--accept-release` remains the explicit install/apply step, and `--rollback previous` restores the latest snapshot
+- release-watch behavior: schedules remain separate opt-in, existing schedules persist, scheduled runs check first and auto-accept valid releases by default, `--notify-only` disables automatic release acceptance but retains routine existing-bundle sync, and `--check-release` never auto-installs
+- installation migration: receipt-less historical skills and agents, saved schema 1 selection, missing-updater bootstrap, bounded old-engine bridging, repeated updates, and customization/dependency preservation have distinct evidence
+- generated installation capsule matches `scripts/core_install/` source, catalog refs and complete package identities are trusted, and both archive formats carry the runtime
+- exit `2` preservation reports remain visible; runtime parity does not stand in for full package migration or authenticated native discovery
+- rollback checks exact package and installation-state identities with the documented [release-watch observation exception](INSTALL-PROFILES.md#recover-an-installation); new journals are retained and `retention_candidates` never implies automatic deletion
 
 ### When evaluation evidence is archived
 
@@ -99,7 +103,7 @@ The modernization and v1.14.0 delivery produced these reusable lessons:
 | Budget the entire workflow | Coordination, occupied agent slots, and final verification exceeded planned elapsed windows. Naming the clock and counted phases prevents a model-time measurement from becoming an end-to-end claim. | [Bounded work](../.kiro/steering/agent-behavior.md#comparative-evaluation-and-bounded-work); [timing evidence](../reports/frontier-modernization/EVIDENCE.md#honest-remaining-limits) |
 | Fix every output producer | Changing the prompt text initially left the bootstrap helper and UAC fallback generating dated copies. Stable paths and preservation behavior now cover those producers, with regression coverage. | [Artifact guidance](FRONTIER-MODERNIZATION.md#what-changed-for-users); [bootstrap tests](../tests/test_uac_import.py); [UAC tests](../tests/test_uac_source_integrity.py) |
 | Verify published bytes | During v1.14.0 verification, a private download returned sign-in HTML despite exit zero. Authenticated downloads then matched the reviewed archives. Transport success alone was insufficient. | [Publication verification](RELEASE-PACKAGING.md#recommended-release-order) |
-| Separate pre-existing drift from installer effects | A Codex configuration changed before apply. Its refreshed preservation baseline was recorded; the reviewed install left those bytes, the saved profile, and prior rollback data unchanged. | [Installation preservation](INSTALL-PROFILES.md#review-and-apply-a-plan) |
+| Separate pre-existing drift from installer effects | A Codex configuration changed before apply. Its refreshed preservation baseline was recorded; the reviewed install left those bytes, the saved profile, and prior rollback data unchanged. | [Installation preservation](INSTALL-PROFILES.md#preview-and-apply) |
 
 For the next harvest, the useful questions are: what decision would this lesson change, where does that decision already live, what evidence supports it, and what would make the lesson obsolete? An entry adds value when it improves that existing home or a regression check. Repeated advice, transient statuses, and untested prompting theories do not need new standing rules.
 

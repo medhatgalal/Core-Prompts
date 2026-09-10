@@ -1,26 +1,29 @@
 #!/usr/bin/env bash
 set -euo pipefail
+ORIGINAL_ARGS=("$@")
 
 usage() {
   cat <<'EOF'
 Usage: scripts/deploy-surfaces.sh [--cli gemini|claude|kiro|codex|grok|all] [--slug SLUG] [--target PATH] [--allow-nonlocal-target] [--surface-only] [--dry-run] [--strict-cli]
 
-Copy-only deployment of SSOT-managed generated surfaces to CLI directories under a target root.
-This script never creates symlinks.
-If destination file is a symlink, it is unlinked and replaced with a regular file copy.
-Existing files are overwritten in place with cp -f.
-When --target points outside this repository, deployment also writes a standalone updater bundle under .core-prompts-updater plus update_core_prompts.sh, release-watch metadata, and local source checkout metadata when available.
+Deploy SSOT-managed generated surfaces under a target root.
+External targets use a package ownership plan and recoverable transaction.
+Customized, unknown, incomplete, and symlinked packages are preserved.
+The standalone updater and launcher are installed or refreshed within the same plan.
+Exit 2 means packages were preserved and require attention; exit 1 means blocked.
 
 Options:
   --profile PATH                     Use explicit receipt-protected skills target profile
   --apply-plan PATH                  Apply only a byte/hash-verified reviewed JSON dry-run plan
   --rollback ID                      Restore exact transaction preimages, preserving later edits
+  --repair                           Recognize existing skills and agents and record managed ownership
+  --with-agents                      Explicitly select current skills and agents
   --cli gemini|claude|kiro|codex|grok|all  Target CLI(s). Default: all
   --slug SLUG                         Limit deployment to one slug (repeatable)
   --target PATH                       Destination root path. Default: repository root
   --allow-nonlocal-target             Allow explicit --target outside repository root
   --surface-only                      Copy only selected generated surfaces; requires at least one --slug and skips updater, launcher, and local binaries
-  --dry-run                           Show copy actions without writing
+  --dry-run                           Print the external JSON plan without target writes
   --strict-cli                        Fail when selected CLI binary is not installed
   -h, --help                          Show this help
 EOF
@@ -69,6 +72,9 @@ while [[ $# -gt 0 ]]; do
     --allow-nonlocal-target)
       ALLOW_NONLOCAL_TARGET=1
       ;;
+    --repair|--with-agents|--list-transactions)
+      # The external installation engine handles these options below.
+      ;;
     --surface-only)
       SURFACE_ONLY=1
       ;;
@@ -108,6 +114,25 @@ if [[ "$ALLOW_NONLOCAL_TARGET" -ne 1 && "$TARGET_ROOT" != "$REPO_ROOT" && "$TARG
   echo "error: --target is restricted to repository root by default: $REPO_ROOT"
   echo "Use --allow-nonlocal-target to write outside repository root"
   exit 1
+fi
+
+# Every external install/update uses the same package planner and transaction.
+# The capsule is deliberately shipped at an old, allowlisted runtime path.
+if [[ "$TARGET_ROOT" != "$REPO_ROOT" ]]; then
+  installer_python="${PYTHON_BIN:-}"
+  if [[ -z "$installer_python" ]]; then
+    for candidate in python3.14 python3.13 python3.12 python3.11 /opt/homebrew/bin/python3 /usr/local/bin/python3 python3; do
+      if command -v "$candidate" >/dev/null 2>&1 && "$candidate" -c 'import sys; sys.exit(sys.version_info < (3, 11))' 2>/dev/null; then
+        installer_python="$candidate"
+        break
+      fi
+    done
+  fi
+  if [[ -z "$installer_python" ]] || ! "$installer_python" -c 'import sys; sys.exit(sys.version_info < (3, 11))'; then
+    echo 'error: installation requires Python 3.11+; set PYTHON_BIN to a supported interpreter' >&2
+    exit 1
+  fi
+  exec "$installer_python" "$REPO_ROOT/scripts/deploy-profile.py" --install --repo "$REPO_ROOT" "${ORIGINAL_ARGS[@]}"
 fi
 
 # A saved profile keeps later updater syncs on the selected installation contract.
@@ -206,21 +231,6 @@ else
     echo "warning: selected CLI '$CLI_TARGET' is unavailable; skipping"
   else
     TARGETS+=("$CLI_TARGET")
-  fi
-fi
-
-# A routine update from an unnamespaced release is a migration, not a fresh
-# install of every capability added since that release.  Ask the bounded
-# provenance checker which old packages are actually present, then target only
-# their successors.  Explicit --slug remains authoritative.
-if [[ ${#SLUG_FILTERS[@]} -eq 0 && "$TARGET_ROOT" != "$REPO_ROOT" && ${#TARGETS[@]} -gt 0 ]]; then
-  legacy_successors=()
-  while IFS= read -r legacy_successor; do
-    [[ -n "$legacy_successor" ]] && legacy_successors+=("$legacy_successor")
-  done < <(python3 "$REPO_ROOT/scripts/deploy-copy-plan.py" --legacy-successors "$TARGET_ROOT" "${TARGETS[@]}")
-  if [[ ${#legacy_successors[@]} -gt 0 ]]; then
-    SLUG_FILTERS=("${legacy_successors[@]}")
-    echo "info: targeted legacy migration for: ${SLUG_FILTERS[*]}"
   fi
 fi
 
