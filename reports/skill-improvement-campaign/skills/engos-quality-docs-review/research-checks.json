@@ -1,0 +1,150 @@
+{
+  "checked_at": "2026-09-10T00:23:58.029954+00:00",
+  "model_calls": 0,
+  "behavioral_claim": "none",
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "reports/skill-improvement-campaign/skills/engos-quality-docs-review/check_fixtures.py",
+        "--self-test"
+      ],
+      "exit_code": 0,
+      "result": {
+        "kind": "public_static_fixture_integrity",
+        "observations": {
+          "drift": {
+            "seed_observations": {
+              "stale_flag": true,
+              "broken_path": true,
+              "broken_anchor": true,
+              "generated_drift": true,
+              "wrong_audience": true,
+              "release_guidance": true
+            },
+            "safe_controls_pass": true,
+            "tree_unchanged": true,
+            "old_flag_exit": 2,
+            "current_command_exit": 0,
+            "custom_command_exit": 0
+          },
+          "clean": {
+            "seed_observations": {
+              "stale_flag": false,
+              "broken_path": false,
+              "broken_anchor": false,
+              "generated_drift": false,
+              "wrong_audience": false,
+              "release_guidance": false
+            },
+            "safe_controls_pass": true,
+            "tree_unchanged": true,
+            "old_flag_exit": 2,
+            "current_command_exit": 0,
+            "custom_command_exit": 0
+          }
+        },
+        "model_calls": 0,
+        "behavioral_claim": "none",
+        "promotion_eligible": false,
+        "failure_controls": [
+          "stale_flag: injected fault observed",
+          "broken_path: injected fault observed",
+          "broken_anchor: injected fault observed",
+          "generated_drift: injected fault observed",
+          "wrong_audience: injected fault observed",
+          "release_guidance: injected fault observed",
+          "tree mutation: detected",
+          "tree addition: detected"
+        ],
+        "status": "pass"
+      },
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "reports/skill-improvement-campaign/skills/engos-quality-docs-review/check_full_job_fixtures.py"
+      ],
+      "exit_code": 0,
+      "result": {
+        "kind": "public_full_job_fixture_integrity",
+        "status": "pass",
+        "public_cases": 10,
+        "missing_init_exit": 2,
+        "documented_repair_exit": 0,
+        "observed_output": "events=3",
+        "wrong_output_control_rejected": true,
+        "hidden_setup_control_passes": true,
+        "source_tree_unchanged": true,
+        "draft_relative_links_pass": true,
+        "model_calls": 0,
+        "behavioral_claim": "none"
+      },
+      "stderr": ""
+    },
+    {
+      "command": [
+        "bin/capability-eval",
+        "compile",
+        "--skill",
+        "engos-quality-docs-review",
+        "--check"
+      ],
+      "exit_code": 0,
+      "result": {
+        "status": "structural_ready",
+        "check_result": "pass",
+        "drift": []
+      },
+      "stderr": ""
+    },
+    {
+      "command": [
+        "bin/capability-eval",
+        "calibrate",
+        "--static-only"
+      ],
+      "exit_code": 0,
+      "result": {
+        "schema_version": "EvaluatorCalibration.v1",
+        "status": "structural_ready",
+        "controls_present": 14,
+        "missing_controls": [],
+        "corpus_contract_blockers": [],
+        "pilot_foundations": {
+          "status": "structural_ready",
+          "errors": [],
+          "experiment_count": 4,
+          "case_count": 60,
+          "model_calls": 0,
+          "behavioral_claim": "none"
+        },
+        "judge_qualified": false,
+        "judge_note": "Semantic judges remain unqualified until gold-label agreement and bias checks are run.",
+        "model_calls": 0
+      },
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "pytest",
+        "tests/test_eval_pilot.py",
+        "-q"
+      ],
+      "exit_code": 0,
+      "result": ".......                                                                  [100%]\n7 passed in 2.50s\n",
+      "stderr": ""
+    },
+    {
+      "check": "23 incumbent hashes and exact UAC/candidate readback",
+      "result": "pass"
+    }
+  ],
+  "uac_receipts": [
+    "candidate/uac-plan.json",
+    "candidate/uac-judge.json"
+  ]
+}

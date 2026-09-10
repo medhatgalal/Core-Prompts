@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Public checkout test fixture</title>
+<h1>Checkout</h1>
+<button type="button">Pay</button>
+<p role="status" aria-live="polite">Ready</p>
+<script>
+const button = document.querySelector('button');
+const status = document.querySelector('[role=status]');
+button.addEventListener('click', async () => {
+  button.disabled = true;
+  status.textContent = 'Processing';
+  try {
+    const response = await fetch('/api/pay', { method: 'POST' });
+    if (!response.ok) throw new Error('Payment rejected');
+    status.textContent = 'Order confirmed';
+  } catch {
+    status.textContent = 'Payment failed. Try again.';
+  } finally {
+    button.disabled = false;
+  }
+});
+</script>
+</html>

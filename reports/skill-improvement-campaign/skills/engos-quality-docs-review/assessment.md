@@ -1,5 +1,110 @@
 # Docs-review campaign assessment
 
+## Current phase: independent-challenge revision C1-r1
+
+**Bounded revision complete; mechanical checks pass; independent recheck pending.**
+No experimental model calls or canonical capability changes ran. The large model
+study is withdrawn. Downstream improvement remains unmeasured/inconclusive.
+
+Task `01a08882-bb6f-79c3-9c1b-4cc08d4d024b`; cwd
+`/Users/medhat.galal/.codex/worktrees/8518/Core-Prompts`; branch
+`AI/campaign-docs-review`. Clean revision launch at
+`acce6f6940241e1e7fd340f864e672cd4d760654`. Original phase clock remains
+`2026-09-10 00:07:58 UTC` with deadline `01:07:58 UTC`; this is not a new phase or
+budget reset. Revision started `00:28:23 UTC`. Stop new work at the deadline,
+preserve progress and disclose incomplete checks. Ordinary author usage remains
+unknown; experimental model calls to date are zero.
+
+Verified phase base was `0d1b07e157763f1f78223894c339c4dc295dbbb5`, integrated through
+non-destructive merge `bb227e469da4755632999ef0b7f7d0e32d07330a`. Main refs later moved
+to `192fec5` for the coordinator charter correction; Docs SSOT/generated content was
+unchanged across that advance. The owner snapshot retains its explicit base.
+
+### Independent challenge and resolution
+
+The fresh reviewer found the whole-capability direction defensible, but identified
+real source/contract defects in C1. The original C1, large rejected plan, evidence
+and 59-file inventory remain preserved in `acce6f6`; no prior outcome is rewritten.
+
+| Review finding | C1-r1 response | Proof boundary |
+| --- | --- | --- |
+| PR triggers dropped material docs/workflows/naming/metadata coverage | Restored equivalent coverage along with generated views and release behavior; corrected preservation-map claim. | Candidate source + DOC-FULL-013 public contract; model response unrun. |
+| Shared stable assessment path can overwrite unrelated reports | Update only a verified same-task report; otherwise verify a noncolliding task/timestamp path; preserve unrelated reports without replacement authority. | DOC-FULL-011/012 plus static collision/new-path/same-task controls. |
+| Large grid lacks admission/accounting support | Replaced active plan body with small staged development proposal; no invented numeric raw cap or blanket ordinal score. | Old proposal retained in Git; no dispatch authorized. |
+| Coverage overconcentrated on missing initialization | Added naming/workflow drift, IA move with two incoming references, report ownership, explicit example execution and sampled-corpus cases. | Six additional PUBLIC contracts; executable fixture checks distinguished below. |
+| Incumbent-only model screen cannot establish candidate fit | Proposed frozen-candidate alternative-model crossover on matched sentinels; repeats/confirmation selected prospectively for uncertainty. | Proposal only; runtime/accounting still unadmitted. |
+| Finding fields repeated | Accuracy lens now references the shared Required Output fields. | Output/authority intent retained; size overhead still requires measurement. |
+
+Adaptive output, usable guide drafts, source-derived expected results, protected
+history/customizations and explicit handoff payloads remain. C1-r1 is 2143 words,
+versus original C1 2,117 and incumbent 1,185; larger context is a cost to measure,
+not evidence of better or worse behavior.
+
+### Current artifacts and identities
+
+- [Candidate](candidate/engos-quality-docs-review.md), [identity](candidate/identity.json):
+  C1-r1 SHA256 `0c901af5190e0dab6ed2ac3b3fffafb054557a61795e7e5adf713e08fbe239a8`;
+  prior C1 SHA256 `4f58069f02f09023dc092ebd2d415a37a105aa3314ee27e4394934ebc7ce9f11`.
+- [Full source-backed job/design map](full-capability-design.md) and
+  [preservation/authority map](preservation-map.md), including explicit prior defects.
+- [Sixteen public cases](full-job-cases.json), original [drift controls](public-cases.jsonl),
+  and navigation/naming/journey fixtures. Author-visible examples are not held-out
+  validation. Original ten full-job cases and original fixture bytes are preserved.
+- [Small staged model plan](model-measurement-plan.md): proposed six-job A/B/C pass
+  (18 production outputs), then four matched candidate/alternative-model sentinels.
+  This is not an imposed exact grid, complete cost budget or adequate-power claim.
+  Preflight and any semantic review calls must be prospectively accounted separately.
+- [Native evidence](native-evidence.json) and [baseline](research-baseline.json)
+  remain historical observations; no model account access or effective isolation
+  is inferred from binary/cache/config availability.
+- [Revision checks](revision-checks.json) are current. Original research checks remain
+  in research-checks.json and Git, bound to their earlier input state.
+
+### Actual verification versus unrun outcomes
+
+Current UAC plan/judge use the existing deterministic quality loop and return
+`structural_ready` / `behavioral_pending`, minimum formal profile `promotion`.
+No UAC apply was performed. All 23 incumbent file hashes remain unchanged.
+
+Original drift/clean checks still pass. Full-job fixture checks verify:
+
+- the missing-init failure, documented repair result `events=3`, wrong-output
+  rejection and hidden-setup distinction from the original journey fixture;
+- exclusive creation rejects the planted report collision; a new report and an
+  explicitly identified same-task update preserve unrelated prior report bytes;
+- moving the explanation without updating its two incoming links breaks both;
+  the public repair restores both root-relative and page-relative references while
+  preserving command facts, explanation text and user choices;
+- current naming metadata points to an existing entrypoint while README uses the
+  missing old one, and the PR workflow conflicts with release-only guidance;
+- all 16 public case contracts have unique IDs, requests and expected outcomes.
+
+These are executed static fixture/authored-repair checks. They do not prove that
+any model selects the right report path, performs the move, catches PR drift,
+executes the guide truthfully or respects sampled-corpus limits. Those outcomes
+remain unrun. No duplicate semantic judges or new general evaluator were created.
+
+### Handoff and remaining gates
+
+Coordinator will request the same independent reviewer's recheck of C1-r1. Exact
+generated candidate skill/resource bytes still need private generation and binding
+before a full-bundle comparison; no authored modules were added. Independent
+semantic/preservation review, current task contracts and a named effective native
+boundary with enforceable full prospective accounting/stops remain required before
+model dispatch. Formal promotion infrastructure is a separate gate, not a blanket
+prerequisite to development evaluation.
+
+All changes remain in this owned report subtree. Canonical SSOT, generated outputs,
+shared docs/evaluator/templates/metadata are untouched. Coordinator owns any accepted
+canonical UAC apply, user-doc updates, paired-provider integration and cleanup.
+Copy-ready next action: recheck C1-r1 and the six new regression contracts, then
+choose/admit the smallest complete native development stage supported by actual
+boundary and accounting evidence. No model dispatch is authorized by this packet.
+
+## Historical setup assessment (superseded remit, evidence preserved)
+
+
+
 Single local status record. **Setup complete; experiment state `setup_required`;
 behavioral result `inconclusive`; incumbent retained.** No experimental model calls,
 candidate SSOT changes, generated changes, UAC apply, merge, release or installation.

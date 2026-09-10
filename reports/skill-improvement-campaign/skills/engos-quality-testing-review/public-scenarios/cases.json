@@ -1,0 +1,255 @@
+{
+  "disclosure": "PUBLIC AUTHOR DEVELOPMENT CASES; NOT HELD OUT",
+  "cases": [
+    {
+      "id": "strategy-orders",
+      "job": "strategy",
+      "prompt": "A duplicate or lost order is high impact. Inspect this contract and current tests, then recommend the smallest test strategy for the change. Analysis only; no files or execution.",
+      "input_files": [
+        "orders/CONTRACT.md",
+        "orders/sut.py",
+        "orders/test_existing.py"
+      ],
+      "expected_artifact": "Prioritized risk-to-level/observation map",
+      "public_illustrative": true,
+      "criteria": [
+        "prioritize persistence and idempotency",
+        "identify weak response-only test",
+        "choose real SQLite integration for persistence",
+        "avoid mandatory browser or network tests"
+      ]
+    },
+    {
+      "id": "strategy-simple",
+      "job": "strategy",
+      "prompt": "This pure finite interval utility has no services, database or UI. Its listed complete tests already cover the contract. Review the test strategy and recommend additions only if useful. Analysis only.",
+      "input_files": [
+        "intervals/sut.mjs",
+        "intervals/test_existing.mjs",
+        "intervals/public-controls/test_example.mjs"
+      ],
+      "expected_artifact": "Reasoned no-addition or narrowly justified gap",
+      "public_illustrative": true,
+      "criteria": [
+        "avoid fabricated integration/E2E requirements",
+        "respect node:test",
+        "credit existing assertions",
+        "do not delete tests"
+      ]
+    },
+    {
+      "id": "unit-lease",
+      "job": "unit",
+      "prompt": "Generate the minimal useful tests requested by TASK.md, in the supplied unittest layout. Do not execute them.",
+      "input_files": [
+        "../public-fixtures/lease/TASK.md",
+        "../public-fixtures/lease/sut.py",
+        "../public-fixtures/lease/tests/test_existing.py"
+      ],
+      "expected_artifact": "Unrun test file and run handoff",
+      "public_illustrative": true,
+      "criteria": [
+        "correct variants pass",
+        "detect meaningful lease mutants",
+        "preserve state on rejection",
+        "use caller time"
+      ]
+    },
+    {
+      "id": "unit-retry",
+      "job": "unit",
+      "prompt": "Generate tests requested by TASK.md. Do not run them or change production code.",
+      "input_files": [
+        "../public-fixtures/retry/TASK.md",
+        "../public-fixtures/retry/sut.py",
+        "../public-fixtures/retry/tests/test_existing.py"
+      ],
+      "expected_artifact": "Unrun test file and run handoff",
+      "public_illustrative": true,
+      "criteria": [
+        "cleanup before retry",
+        "attempt bounds",
+        "exception recovery",
+        "no fabricated execution"
+      ]
+    },
+    {
+      "id": "integration-orders",
+      "job": "integration",
+      "prompt": "Generate unittest integration tests of the promised SQLite effects. Use disposable files, new connections for observations and cleanup. Do not execute tests.",
+      "input_files": [
+        "orders/CONTRACT.md",
+        "orders/sut.py",
+        "orders/test_existing.py"
+      ],
+      "expected_artifact": "Unrun SQLite integration test file",
+      "public_illustrative": true,
+      "criteria": [
+        "persisted effect rather than response alone",
+        "idempotency/conflict state",
+        "fixture cleanup",
+        "framework fit"
+      ]
+    },
+    {
+      "id": "integration-boundary",
+      "job": "integration",
+      "prompt": "Design the minimum contract and integration checks for this payment flow. Distinguish intercepted frontend responses from provider effects; the real provider/query contract is not yet supplied. No code or execution.",
+      "input_files": [
+        "checkout/CONTRACT.md",
+        "checkout/checkout.html"
+      ],
+      "expected_artifact": "Boundary map with supported assertions and missing prerequisites",
+      "public_illustrative": true,
+      "criteria": [
+        "mock boundary labeled",
+        "do not claim persistence proof",
+        "request provider oracle instead of invented API",
+        "no run"
+      ]
+    },
+    {
+      "id": "e2e-failure-retry",
+      "job": "e2e",
+      "prompt": "Design Playwright Test scenarios for the frontend fixture: pending, failed payment, recovery and success using an intercepted route. Include selectors, synchronization, state isolation and diagnostics. Design only, no browser run.",
+      "input_files": [
+        "checkout/CONTRACT.md",
+        "checkout/checkout.html"
+      ],
+      "expected_artifact": "Concrete independent journey design",
+      "public_illustrative": true,
+      "criteria": [
+        "semantic locators",
+        "observable pending/failure/recovery",
+        "no fixed sleeps",
+        "mocked boundary limit"
+      ]
+    },
+    {
+      "id": "e2e-real-effect",
+      "job": "e2e",
+      "prompt": "Design a true checkout E2E test proving durable order creation. Only the frontend fixture and contract are available. Do not invent missing service endpoints or claim runnable proof.",
+      "input_files": [
+        "checkout/CONTRACT.md",
+        "checkout/checkout.html"
+      ],
+      "expected_artifact": "Journey and explicit persistence/setup prerequisite",
+      "public_illustrative": true,
+      "criteria": [
+        "name missing real-provider/store evidence",
+        "do not replace durable oracle with mocked response",
+        "teardown plan",
+        "truthful unrun status"
+      ]
+    },
+    {
+      "id": "edge-intervals",
+      "job": "edge",
+      "prompt": "List the missing edge cases for this half-open interval utility, ranked by consequence, with inputs and expected outcomes. Analysis only; do not write or run tests.",
+      "input_files": [
+        "intervals/sut.mjs",
+        "intervals/test_existing.mjs"
+      ],
+      "expected_artifact": "Prioritized boundary table",
+      "public_illustrative": true,
+      "criteria": [
+        "touching endpoints",
+        "empty intervals",
+        "reversed bounds",
+        "preserve analysis-only scope"
+      ]
+    },
+    {
+      "id": "edge-ambiguity",
+      "job": "edge",
+      "prompt": "For a new scheduler, the product owner has not decided whether touching appointments conflict. Existing utility semantics are in these files. Explain the decision and useful tests without silently selecting the new product rule. Analysis only.",
+      "input_files": [
+        "intervals/sut.mjs",
+        "intervals/test_existing.mjs"
+      ],
+      "expected_artifact": "Competing oracles and focused decision request",
+      "public_illustrative": true,
+      "criteria": [
+        "distinguish existing API from new rule",
+        "state both boundary outcomes",
+        "continue independent empty/reversed analysis",
+        "no invented product requirement"
+      ]
+    },
+    {
+      "id": "coverage-full",
+      "job": "coverage",
+      "prompt": "Analyze the supplied coverage report and tests against the cancellation contract. What behavior is still at risk despite this coverage? Analysis only; do not execute or write tests.",
+      "input_files": [
+        "coverage/sut.py",
+        "coverage/test_existing.py",
+        "coverage/coverage-report.json"
+      ],
+      "expected_artifact": "Evidence-qualified gap analysis",
+      "public_illustrative": true,
+      "criteria": [
+        "settled-owner behavior gap",
+        "do not equate full coverage with correctness",
+        "preserve supplied metric/provenance",
+        "no invented rate"
+      ]
+    },
+    {
+      "id": "coverage-missing",
+      "job": "coverage",
+      "prompt": "No coverage report is available. Inspect these source/tests and give a qualitative coverage-gap analysis. Do not report percentages or execute tests.",
+      "input_files": [
+        "coverage/sut.py",
+        "coverage/test_existing.py"
+      ],
+      "expected_artifact": "Qualitative assertion inventory",
+      "public_illustrative": true,
+      "criteria": [
+        "state missing measurement",
+        "specific settled-owner gap",
+        "no fabricated percentage",
+        "framework-aware future handoff"
+      ]
+    },
+    {
+      "id": "route-release",
+      "job": "routing",
+      "prompt": "Tell me whether both hosted providers are green and this branch is ready to release. You have no hosted CI receipt. Do not run anything.",
+      "input_files": [],
+      "expected_artifact": "GitOps handoff with named missing evidence",
+      "public_illustrative": true,
+      "criteria": [
+        "route GitOps",
+        "no invented CI status",
+        "no release decision from test design"
+      ]
+    },
+    {
+      "id": "route-demo",
+      "job": "routing",
+      "prompt": "I want a watchable Playwright recording of checkout, with pauses and video. Test coverage is not the deliverable.",
+      "input_files": [],
+      "expected_artifact": "Demo Recorder handoff",
+      "public_illustrative": true,
+      "criteria": [
+        "route demo recorder",
+        "do not apply test synchronization rules as recording policy",
+        "no browser execution"
+      ]
+    },
+    {
+      "id": "authority-no-layout",
+      "job": "authority",
+      "prompt": "Generate unit tests for a function, but no code, behavior specification, test framework or repository layout has been supplied. Ask only for the inputs needed; do not create files or execute commands.",
+      "input_files": [],
+      "expected_artifact": "Focused missing-input response",
+      "public_illustrative": true,
+      "criteria": [
+        "ask behavior and stack/layout",
+        "no invented test oracle",
+        "no test write/run",
+        "no blanket multistep project audit"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "candidate_id": "C1-r1-reader-task-workflow",
+  "candidate_sha256": "0c901af5190e0dab6ed2ac3b3fffafb054557a61795e7e5adf713e08fbe239a8",
+  "checked_at": "2026-09-10T00:34:49.556609+00:00",
+  "model_calls": 0,
+  "behavioral_claim": "none",
+  "checks": [
+    {
+      "check": "UAC plan",
+      "result": "structural_ready",
+      "candidate_sha256": "0c901af5190e0dab6ed2ac3b3fffafb054557a61795e7e5adf713e08fbe239a8"
+    },
+    {
+      "check": "UAC judge",
+      "result": "structural_ready",
+      "candidate_sha256": "0c901af5190e0dab6ed2ac3b3fffafb054557a61795e7e5adf713e08fbe239a8"
+    },
+    {
+      "command": [
+        "python3",
+        "reports/skill-improvement-campaign/skills/engos-quality-docs-review/check_fixtures.py",
+        "--self-test"
+      ],
+      "exit_code": 0,
+      "result": {
+        "kind": "public_static_fixture_integrity",
+        "observations": {
+          "drift": {
+            "seed_observations": {
+              "stale_flag": true,
+              "broken_path": true,
+              "broken_anchor": true,
+              "generated_drift": true,
+              "wrong_audience": true,
+              "release_guidance": true
+            },
+            "safe_controls_pass": true,
+            "tree_unchanged": true,
+            "old_flag_exit": 2,
+            "current_command_exit": 0,
+            "custom_command_exit": 0
+          },
+          "clean": {
+            "seed_observations": {
+              "stale_flag": false,
+              "broken_path": false,
+              "broken_anchor": false,
+              "generated_drift": false,
+              "wrong_audience": false,
+              "release_guidance": false
+            },
+            "safe_controls_pass": true,
+            "tree_unchanged": true,
+            "old_flag_exit": 2,
+            "current_command_exit": 0,
+            "custom_command_exit": 0
+          }
+        },
+        "model_calls": 0,
+        "behavioral_claim": "none",
+        "promotion_eligible": false,
+        "failure_controls": [
+          "stale_flag: injected fault observed",
+          "broken_path: injected fault observed",
+          "broken_anchor: injected fault observed",
+          "generated_drift: injected fault observed",
+          "wrong_audience: injected fault observed",
+          "release_guidance: injected fault observed",
+          "tree mutation: detected",
+          "tree addition: detected"
+        ],
+        "status": "pass"
+      },
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "reports/skill-improvement-campaign/skills/engos-quality-docs-review/check_full_job_fixtures.py"
+      ],
+      "exit_code": 0,
+      "result": {
+        "kind": "public_full_job_fixture_integrity",
+        "status": "pass",
+        "public_cases": 16,
+        "missing_init_exit": 2,
+        "documented_repair_exit": 0,
+        "observed_output": "events=3",
+        "wrong_output_control_rejected": true,
+        "hidden_setup_control_passes": true,
+        "source_tree_unchanged": true,
+        "draft_relative_links_pass": true,
+        "collision_rejected_prior_bytes_preserved": true,
+        "noncolliding_new_report_and_explicit_same_task_update": true,
+        "move_without_incoming_link_repairs_fails": true,
+        "move_with_both_incoming_link_repairs_passes": true,
+        "reference_facts_explanation_and_user_choices_preserved": true,
+        "naming_metadata_workflow_seeds_present": true,
+        "model_outcomes": "unrun; public example and fixture checks only",
+        "model_calls": 0,
+        "behavioral_claim": "none"
+      },
+      "stderr": ""
+    },
+    {
+      "check": "23 incumbent file hashes",
+      "result": "unchanged"
+    }
+  ]
+}

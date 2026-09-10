@@ -1,0 +1,20 @@
+{
+  "purpose": "final source and public fixture verification, not experimental model evidence",
+  "model_calls": 0,
+  "focused_tests": {
+    "command": "python3 -m pytest tests/test_capability_eval.py tests/test_capability_resources.py tests/test_capability_modes.py -q -p no:cacheprovider",
+    "result": "..........................................................               [100%]\n58 passed in 1.97s\n"
+  },
+  "incumbent_compile": {
+    "check_result": "pass",
+    "drift": []
+  },
+  "original_fixture_receipt_exact_match": true,
+  "broader_fixture_receipt_exact_match": true,
+  "baseline_16_files_unchanged": true,
+  "candidate_6_file_inventory_valid": true,
+  "preservation_candidate_hash_matches": true,
+  "local_markdown_links_valid": true,
+  "python_syntax_and_json_valid": true,
+  "canonical_shared_paths_unchanged": true
+}

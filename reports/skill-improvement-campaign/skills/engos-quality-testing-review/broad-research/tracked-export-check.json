@@ -1,0 +1,47 @@
+{
+  "purpose": "tracked-only delivery verification, not candidate behavioral measurement",
+  "checked_at_utc": "2026-09-10T00:39:27.989282+00:00",
+  "source_commit": "6e0a36674eb970ed4f1d9a751c63c08c277ff4cf",
+  "export_method": "git ls-files scoped to owner packet; exact git show COMMIT:path bytes, no working-tree copies",
+  "tracked_file_count": 60,
+  "case_count": 15,
+  "unique_case_input_files": 17,
+  "all_case_inputs_present": true,
+  "required_coverage_fixtures": [
+    {
+      "path": "reports/skill-improvement-campaign/skills/engos-quality-testing-review/public-scenarios/coverage/sut.py",
+      "tracked": true,
+      "sha256": "13a40818b80983d7b29195a61414c8cc1c5e6372f905ef8aee44bc5162793faf"
+    },
+    {
+      "path": "reports/skill-improvement-campaign/skills/engos-quality-testing-review/public-scenarios/coverage/test_existing.py",
+      "tracked": true,
+      "sha256": "02c89ec08fc1a85d9f529a37fea9ef846c18e0b7bb2d27385b445dafd2be2963"
+    },
+    {
+      "path": "reports/skill-improvement-campaign/skills/engos-quality-testing-review/public-scenarios/coverage/coverage-report.json",
+      "tracked": true,
+      "sha256": "52e5023604fefbb2dddaaece23533a9cc6fe6ad1b413ead713bb14321ba5d5a3"
+    },
+    {
+      "path": "reports/skill-improvement-campaign/skills/engos-quality-testing-review/public-scenarios/coverage/public-controls/test_example.py",
+      "tracked": true,
+      "sha256": "b50b65f9e0b882e50b6b55fd10c2064e8bd30556aba58e838877eab1cef9836d"
+    }
+  ],
+  "checks": {
+    "public-fixtures/check_public_fixtures.py": {
+      "exit_code": 0,
+      "matches_committed_receipt": true,
+      "observations": 52
+    },
+    "public-scenarios/check_scenarios.py": {
+      "exit_code": 0,
+      "matches_committed_receipt": true,
+      "observations": 6
+    }
+  },
+  "model_calls": 0,
+  "check_harness_note": "First containment assertion compared /var and resolved /private/var aliases; normalized export root then repeated fresh export. This was a check path-normalization issue, not a missing fixture.",
+  "conclusion": "All four fixtures were already included in preservation commit; no fixture change required."
+}

@@ -1,0 +1,748 @@
+{
+  "command": [
+    "bin/uac",
+    "judge",
+    "reports/skill-improvement-campaign/skills/engos-quality-docs-review/candidate/engos-quality-docs-review.md",
+    "--benchmark-search",
+    "off",
+    "--use-repomix",
+    "off",
+    "--quality-loop",
+    "on",
+    "--max-quality-passes",
+    "1",
+    "--emit-impact-plan",
+    "--output",
+    "json"
+  ],
+  "exit_code": 0,
+  "raw_stdout_sha256": "6c62a8ea98d5c693a7082ea241fd3171300cb7544f1c07cf001e06d35dda4769",
+  "raw_stdout_bytes": 119335,
+  "receipt_kind": "selected result fields; duplicate source/generated body omitted",
+  "result": {
+    "status": "accepted",
+    "behavioral_status": "behavioral_pending",
+    "source": {
+      "content_sha256": "0c901af5190e0dab6ed2ac3b3fffafb054557a61795e7e5adf713e08fbe239a8",
+      "content_type": "text/plain",
+      "normalized_source": "/Users/medhat.galal/.codex/worktrees/8518/Core-Prompts/reports/skill-improvement-campaign/skills/engos-quality-docs-review/candidate/engos-quality-docs-review.md",
+      "policy_rule_id": "v1.local.baseline.allow",
+      "type": "LOCAL_FILE"
+    },
+    "cross_analysis": {
+      "conflict_report": [],
+      "duplicate_risk": "low",
+      "fit_assessment": "requires_adjustment",
+      "overlap_report": [
+        {
+          "reason": "tag overlap 0.50, shared role analyst",
+          "score": 0.5,
+          "slug": "engos-quality-code-review"
+        },
+        {
+          "reason": "tag overlap 0.50, shared role analyst",
+          "score": 0.5,
+          "slug": "engos-quality-gitops-review"
+        },
+        {
+          "reason": "tag overlap 0.50, shared role analyst",
+          "score": 0.5,
+          "slug": "engos-quality-testing-review"
+        }
+      ],
+      "required_existing_adjustments": [
+        "review engos-quality-code-review for tag/role normalization against engos-quality-docs-review",
+        "review engos-quality-gitops-review for tag/role normalization against engos-quality-docs-review",
+        "review engos-quality-testing-review for tag/role normalization against engos-quality-docs-review"
+      ],
+      "required_new_entry_adjustments": [
+        "tighten scope for engos-quality-docs-review relative to engos-quality-code-review",
+        "tighten scope for engos-quality-docs-review relative to engos-quality-gitops-review",
+        "tighten scope for engos-quality-docs-review relative to engos-quality-testing-review"
+      ],
+      "work_graph_change_summary": "engos-quality-docs-review matches an existing canonical slug and will be treated as an update target for judge/apply."
+    },
+    "eval_impact_plan": {
+      "affected_clause_ids": [
+        "engos-quality-docs-review:candidate:0fa495daa1b2",
+        "engos-quality-docs-review:candidate:13dd5447efe9",
+        "engos-quality-docs-review:candidate:3415c77a1b93",
+        "engos-quality-docs-review:candidate:3d70b6fce160",
+        "engos-quality-docs-review:candidate:4320d80e8def",
+        "engos-quality-docs-review:candidate:489cc7680838",
+        "engos-quality-docs-review:candidate:4b51aff1d6cf",
+        "engos-quality-docs-review:candidate:550b354f232f",
+        "engos-quality-docs-review:candidate:5d4e722d9b72",
+        "engos-quality-docs-review:candidate:5f0ef95c651d",
+        "engos-quality-docs-review:candidate:78109c4cc882",
+        "engos-quality-docs-review:candidate:8a81899c99d4",
+        "engos-quality-docs-review:candidate:95f99453bedb",
+        "engos-quality-docs-review:candidate:9fe61748e3ae",
+        "engos-quality-docs-review:candidate:a5cdee759a6d",
+        "engos-quality-docs-review:candidate:a7ca1b25a9a5",
+        "engos-quality-docs-review:candidate:acd728be737c",
+        "engos-quality-docs-review:candidate:bc19b28c62df",
+        "engos-quality-docs-review:candidate:bd5739ed20df",
+        "engos-quality-docs-review:candidate:cf2b9ad091ba",
+        "engos-quality-docs-review:candidate:d501dd662d60",
+        "engos-quality-docs-review:candidate:fd441a85f457",
+        "engos-quality-docs-review:candidate:fe514e8c76d2"
+      ],
+      "change_classes": [
+        "invocation_hints",
+        "safety"
+      ],
+      "deterministic_fail_fast": true,
+      "hard_token_cap": 5000000,
+      "minimum_profile": "promotion",
+      "narrowing_policy": "reviewed waiver required; narrowed runs cannot claim full promotion",
+      "schema_version": "EvalImpactPlan.v1",
+      "slug": "engos-quality-docs-review"
+    },
+    "clarity": {
+      "advisory_only": true,
+      "behavioral_claim": "none",
+      "finding_count": 1,
+      "findings": [
+        {
+          "class": "lint",
+          "line": 74,
+          "message": "Replace vague catch-all language with explicit scope.",
+          "repair_permitted": false,
+          "risk": "medium",
+          "rule_id": "IC-LINT-002",
+          "source_url": "https://developers.google.com/style/translation"
+        }
+      ],
+      "policy": "instruction_clarity.v1"
+    },
+    "plan": {
+      "capability_type": "both",
+      "cross_analysis": {
+        "conflict_report": [
+          "slug engos-quality-docs-review already exists"
+        ],
+        "duplicate_risk": "high",
+        "fit_assessment": "manual_review",
+        "overlap_report": [
+          {
+            "reason": "same slug",
+            "score": 1.0,
+            "slug": "engos-quality-docs-review"
+          },
+          {
+            "reason": "tag overlap 0.50, shared role analyst",
+            "score": 0.5,
+            "slug": "engos-quality-code-review"
+          },
+          {
+            "reason": "tag overlap 0.50, shared role analyst",
+            "score": 0.5,
+            "slug": "engos-quality-gitops-review"
+          },
+          {
+            "reason": "tag overlap 0.50, shared role analyst",
+            "score": 0.5,
+            "slug": "engos-quality-testing-review"
+          }
+        ],
+        "required_existing_adjustments": [
+          "review engos-quality-code-review for tag/role normalization against engos-quality-docs-review",
+          "review engos-quality-gitops-review for tag/role normalization against engos-quality-docs-review",
+          "review engos-quality-testing-review for tag/role normalization against engos-quality-docs-review"
+        ],
+        "required_new_entry_adjustments": [
+          "tighten scope for engos-quality-docs-review relative to engos-quality-code-review",
+          "tighten scope for engos-quality-docs-review relative to engos-quality-gitops-review",
+          "tighten scope for engos-quality-docs-review relative to engos-quality-testing-review"
+        ],
+        "work_graph_change_summary": "engos-quality-docs-review risks duplicate or conflicting graph roles and should not auto-apply."
+      },
+      "deployment_intent": "generate",
+      "emitted_surfaces": {
+        "claude": [
+          "claude_skill",
+          "claude_agent"
+        ],
+        "codex": [
+          "codex_skill",
+          "codex_agent"
+        ],
+        "gemini": [
+          "gemini_skill",
+          "gemini_agent"
+        ],
+        "grok": [
+          "grok_skill"
+        ],
+        "kiro": [
+          "kiro_skill",
+          "kiro_agent"
+        ]
+      },
+      "install_target": {
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "recommended": "repo_local",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "landing": {
+        "advisory_handoff_contract": true,
+        "descriptor_file": ".meta/capabilities/engos-quality-docs-review.json",
+        "manifest_layers": [
+          "minimal",
+          "expanded",
+          "org_graph"
+        ],
+        "ssot_file": "ssot/engos-quality-docs-review.md"
+      },
+      "proposed_ssot_slug": "engos-quality-docs-review"
+    },
+    "quality_plan": {
+      "artifact_plan": {
+        "latest_review_file": "reports/quality-reviews/engos-quality-docs-review/LATEST.md",
+        "profile_file": ".meta/quality-profiles/default.json",
+        "review_directory": "reports/quality-reviews/engos-quality-docs-review/",
+        "template_file": ".meta/capability-templates/both.json"
+      },
+      "assessment_scope": "mechanical_structure_only_not_semantic_or_behavioral_proof",
+      "benchmark_sources": [],
+      "external_sources": [
+        "/Users/medhat.galal/.codex/worktrees/8518/Core-Prompts/reports/skill-improvement-campaign/skills/engos-quality-docs-review/candidate/engos-quality-docs-review.md"
+      ],
+      "gate_order": [
+        "historical baseline selection",
+        "prompt-body fidelity",
+        "operational richness",
+        "metadata integrity",
+        "benchmark readiness"
+      ],
+      "hard_fail_rules": [
+        "fail if a rich prompt body is replaced by a capability summary",
+        "fail if module-specific sections are reduced to shallow one-liners",
+        "fail if a generic UAC template shape replaces an operational command, mode, help, or workflow contract",
+        "fail if direct operating instructions move into metadata and disappear from the body",
+        "fail if orchestration or portability language weakens user-facing execution semantics"
+      ],
+      "historical_baseline": {
+        "baseline_path": "sources/ssot-baselines/engos-quality-docs-review/baseline.md",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "group": "current_oracle",
+        "has_baseline_text": true,
+        "historical_proof": {
+          "current_head_commit": "0a2c1e46",
+          "current_head_line_count": 143,
+          "current_head_richness_score": 2,
+          "materialized_from_commit": "0a2c1e46"
+        },
+        "line_count": 143,
+        "operator_invariants": [],
+        "reason": "Current SSOT baseline source snapshot materialized into the source library because no stronger curated pre-SSOT baseline has been recorded yet.",
+        "richness_score": 2,
+        "scenario_matrix": [
+          {
+            "id": "operational_invocation",
+            "kind": "operational_contract",
+            "label": "operational invocation surface",
+            "must_contain": [
+              "## Invocation"
+            ]
+          }
+        ],
+        "selected_commit": "0a2c1e46",
+        "slug": "engos-quality-docs-review",
+        "source": "source_library",
+        "strategy": "head_snapshot",
+        "verified_by_git_history": false
+      },
+      "judge_packets": [
+        {
+          "judge": "source_fidelity",
+          "prompt_fields": {
+            "benchmark_dimensions": [
+              "title clarity",
+              "description richness",
+              "intent coverage",
+              "boundary clarity",
+              "output specificity",
+              "metadata completeness",
+              "surface usability"
+            ],
+            "candidate_ssot_body_or_path": "ssot/engos-quality-docs-review.md",
+            "capability_template": "both",
+            "descriptor_path": ".meta/capabilities/engos-quality-docs-review.json",
+            "display_name_target": "Default Quality Profile",
+            "external_source_set": [
+              "/Users/medhat.galal/.codex/worktrees/8518/Core-Prompts/reports/skill-improvement-campaign/skills/engos-quality-docs-review/candidate/engos-quality-docs-review.md"
+            ],
+            "local_benchmark_files": [
+              "ssot/engos-design-architecture.md",
+              "ssot/engos-quality-code-review.md",
+              "ssot/engos-quality-testing-review.md",
+              "ssot/engos-meta-uac-import.md",
+              "ssot/engos-delivery-resolve-conflict.md"
+            ],
+            "must_exceed": [
+              "architecture operational bar",
+              "code-review operational bar",
+              "testing explicit-output bar",
+              "uac-import metadata and workflow bar",
+              "original source substance when present"
+            ],
+            "pass_number": 1,
+            "prior_pass_blockers": [],
+            "prohibited_regressions": [
+              "thin summary replacing operational procedure",
+              "metadata replacing prompt-body richness",
+              "orchestration leakage",
+              "surface claims unsupported by the capability body"
+            ],
+            "quality_profile": "default",
+            "read_only_instruction": "Read-only judge. Do not propose orchestration ownership or runtime routing.",
+            "scoring_rubric": {
+              "benchmark_readiness": 9,
+              "metadata_integrity": 9,
+              "operational_richness": 9,
+              "source_fidelity": 9
+            },
+            "slug": "engos-quality-docs-review",
+            "stop_target": 9,
+            "target_description": "Generic UAC quality profile for reusable skill or agent uplifts."
+          },
+          "title": "Source Fidelity and Uplift"
+        },
+        {
+          "judge": "operational_richness",
+          "prompt_fields": {
+            "benchmark_dimensions": [
+              "title clarity",
+              "description richness",
+              "intent coverage",
+              "boundary clarity",
+              "output specificity",
+              "metadata completeness",
+              "surface usability"
+            ],
+            "candidate_ssot_body_or_path": "ssot/engos-quality-docs-review.md",
+            "capability_template": "both",
+            "descriptor_path": ".meta/capabilities/engos-quality-docs-review.json",
+            "display_name_target": "Default Quality Profile",
+            "external_source_set": [
+              "/Users/medhat.galal/.codex/worktrees/8518/Core-Prompts/reports/skill-improvement-campaign/skills/engos-quality-docs-review/candidate/engos-quality-docs-review.md"
+            ],
+            "local_benchmark_files": [
+              "ssot/engos-design-architecture.md",
+              "ssot/engos-quality-code-review.md",
+              "ssot/engos-quality-testing-review.md",
+              "ssot/engos-meta-uac-import.md",
+              "ssot/engos-delivery-resolve-conflict.md"
+            ],
+            "must_exceed": [
+              "architecture operational bar",
+              "code-review operational bar",
+              "testing explicit-output bar",
+              "uac-import metadata and workflow bar",
+              "original source substance when present"
+            ],
+            "pass_number": 1,
+            "prior_pass_blockers": [],
+            "prohibited_regressions": [
+              "thin summary replacing operational procedure",
+              "metadata replacing prompt-body richness",
+              "orchestration leakage",
+              "surface claims unsupported by the capability body"
+            ],
+            "quality_profile": "default",
+            "read_only_instruction": "Read-only judge. Do not propose orchestration ownership or runtime routing.",
+            "scoring_rubric": {
+              "benchmark_readiness": 9,
+              "metadata_integrity": 9,
+              "operational_richness": 9,
+              "source_fidelity": 9
+            },
+            "slug": "engos-quality-docs-review",
+            "stop_target": 9,
+            "target_description": "Generic UAC quality profile for reusable skill or agent uplifts."
+          },
+          "title": "Operational Richness"
+        },
+        {
+          "judge": "metadata_integrity",
+          "prompt_fields": {
+            "benchmark_dimensions": [
+              "title clarity",
+              "description richness",
+              "intent coverage",
+              "boundary clarity",
+              "output specificity",
+              "metadata completeness",
+              "surface usability"
+            ],
+            "candidate_ssot_body_or_path": "ssot/engos-quality-docs-review.md",
+            "capability_template": "both",
+            "descriptor_path": ".meta/capabilities/engos-quality-docs-review.json",
+            "display_name_target": "Default Quality Profile",
+            "external_source_set": [
+              "/Users/medhat.galal/.codex/worktrees/8518/Core-Prompts/reports/skill-improvement-campaign/skills/engos-quality-docs-review/candidate/engos-quality-docs-review.md"
+            ],
+            "local_benchmark_files": [
+              "ssot/engos-design-architecture.md",
+              "ssot/engos-quality-code-review.md",
+              "ssot/engos-quality-testing-review.md",
+              "ssot/engos-meta-uac-import.md",
+              "ssot/engos-delivery-resolve-conflict.md"
+            ],
+            "must_exceed": [
+              "architecture operational bar",
+              "code-review operational bar",
+              "testing explicit-output bar",
+              "uac-import metadata and workflow bar",
+              "original source substance when present"
+            ],
+            "pass_number": 1,
+            "prior_pass_blockers": [],
+            "prohibited_regressions": [
+              "thin summary replacing operational procedure",
+              "metadata replacing prompt-body richness",
+              "orchestration leakage",
+              "surface claims unsupported by the capability body"
+            ],
+            "quality_profile": "default",
+            "read_only_instruction": "Read-only judge. Do not propose orchestration ownership or runtime routing.",
+            "scoring_rubric": {
+              "benchmark_readiness": 9,
+              "metadata_integrity": 9,
+              "operational_richness": 9,
+              "source_fidelity": 9
+            },
+            "slug": "engos-quality-docs-review",
+            "stop_target": 9,
+            "target_description": "Generic UAC quality profile for reusable skill or agent uplifts."
+          },
+          "title": "Metadata and Handoff Integrity"
+        },
+        {
+          "judge": "benchmark_readiness",
+          "prompt_fields": {
+            "benchmark_dimensions": [
+              "title clarity",
+              "description richness",
+              "intent coverage",
+              "boundary clarity",
+              "output specificity",
+              "metadata completeness",
+              "surface usability"
+            ],
+            "candidate_ssot_body_or_path": "ssot/engos-quality-docs-review.md",
+            "capability_template": "both",
+            "descriptor_path": ".meta/capabilities/engos-quality-docs-review.json",
+            "display_name_target": "Default Quality Profile",
+            "external_source_set": [
+              "/Users/medhat.galal/.codex/worktrees/8518/Core-Prompts/reports/skill-improvement-campaign/skills/engos-quality-docs-review/candidate/engos-quality-docs-review.md"
+            ],
+            "local_benchmark_files": [
+              "ssot/engos-design-architecture.md",
+              "ssot/engos-quality-code-review.md",
+              "ssot/engos-quality-testing-review.md",
+              "ssot/engos-meta-uac-import.md",
+              "ssot/engos-delivery-resolve-conflict.md"
+            ],
+            "must_exceed": [
+              "architecture operational bar",
+              "code-review operational bar",
+              "testing explicit-output bar",
+              "uac-import metadata and workflow bar",
+              "original source substance when present"
+            ],
+            "pass_number": 1,
+            "prior_pass_blockers": [],
+            "prohibited_regressions": [
+              "thin summary replacing operational procedure",
+              "metadata replacing prompt-body richness",
+              "orchestration leakage",
+              "surface claims unsupported by the capability body"
+            ],
+            "quality_profile": "default",
+            "read_only_instruction": "Read-only judge. Do not propose orchestration ownership or runtime routing.",
+            "scoring_rubric": {
+              "benchmark_readiness": 9,
+              "metadata_integrity": 9,
+              "operational_richness": 9,
+              "source_fidelity": 9
+            },
+            "slug": "engos-quality-docs-review",
+            "stop_target": 9,
+            "target_description": "Generic UAC quality profile for reusable skill or agent uplifts."
+          },
+          "title": "Benchmark Readiness and Template Fit"
+        }
+      ],
+      "judge_targets": {
+        "benchmark_readiness": 9,
+        "metadata_integrity": 9,
+        "operational_richness": 9,
+        "source_fidelity": 9
+      },
+      "local_benchmarks": [
+        "ssot/engos-design-architecture.md",
+        "ssot/engos-quality-code-review.md",
+        "ssot/engos-quality-testing-review.md",
+        "ssot/engos-meta-uac-import.md",
+        "ssot/engos-delivery-resolve-conflict.md"
+      ],
+      "max_passes": 1,
+      "quality_profile": "default",
+      "stop_conditions": {
+        "manual_review": "candidate unchanged or repeated, max passes reached, or blocker remains unresolved",
+        "revise": "thresholds not met and passes remain",
+        "structural_ready": "all structural judge thresholds met, no blocker, validation green when required"
+      },
+      "validation_matrix": [
+        {
+          "id": "operational_invocation",
+          "kind": "operational_contract",
+          "label": "operational invocation surface",
+          "must_contain": [
+            "## Invocation"
+          ]
+        }
+      ]
+    },
+    "quality_result": {
+      "assessment_scope": "mechanical_structure_and_bound_external_review_attestations",
+      "behavioral_status": "behavioral_pending",
+      "consumption_hints": {
+        "artifact_conventions": [
+          "ssot/<slug>.md",
+          ".meta/capabilities/<slug>.json",
+          "reports/quality-reviews/<slug>/LATEST.md"
+        ],
+        "invocation_style": "assistant_first_but_scriptable",
+        "preferred_use_cases": [
+          "AI-assisted capability selection",
+          "deterministic prompt uplift review"
+        ],
+        "requires_human_confirmation": true
+      },
+      "historical_baseline": {
+        "baseline_path": "sources/ssot-baselines/engos-quality-docs-review/baseline.md",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "group": "current_oracle",
+        "has_baseline_text": true,
+        "historical_proof": {
+          "current_head_commit": "0a2c1e46",
+          "current_head_line_count": 143,
+          "current_head_richness_score": 2,
+          "materialized_from_commit": "0a2c1e46"
+        },
+        "line_count": 143,
+        "operator_invariants": [],
+        "reason": "Current SSOT baseline source snapshot materialized into the source library because no stronger curated pre-SSOT baseline has been recorded yet.",
+        "richness_score": 2,
+        "scenario_matrix": [
+          {
+            "id": "operational_invocation",
+            "kind": "operational_contract",
+            "label": "operational invocation surface",
+            "must_contain": [
+              "## Invocation"
+            ]
+          }
+        ],
+        "selected_commit": "0a2c1e46",
+        "slug": "engos-quality-docs-review",
+        "source": "source_library",
+        "strategy": "head_snapshot",
+        "verified_by_git_history": false
+      },
+      "judge_reports": [
+        {
+          "blockers": [],
+          "dimension_inventory": [
+            {
+              "dimension": "source_fidelity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "operational_richness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "metadata_integrity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "benchmark_readiness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "semantic_consistency",
+              "status": "no_detected_conflict_not_semantic_proof"
+            }
+          ],
+          "effective_sha256": "0c901af5190e0dab6ed2ac3b3fffafb054557a61795e7e5adf713e08fbe239a8",
+          "historical_baseline": {
+            "baseline_path": "sources/ssot-baselines/engos-quality-docs-review/baseline.md",
+            "equivalent_commits": [],
+            "expected_companions": [],
+            "group": "current_oracle",
+            "has_baseline_text": true,
+            "historical_proof": {
+              "current_head_commit": "0a2c1e46",
+              "current_head_line_count": 143,
+              "current_head_richness_score": 2,
+              "materialized_from_commit": "0a2c1e46"
+            },
+            "line_count": 143,
+            "operator_invariants": [],
+            "reason": "Current SSOT baseline source snapshot materialized into the source library because no stronger curated pre-SSOT baseline has been recorded yet.",
+            "richness_score": 2,
+            "scenario_matrix": [
+              {
+                "id": "operational_invocation",
+                "kind": "operational_contract",
+                "label": "operational invocation surface",
+                "must_contain": [
+                  "## Invocation"
+                ]
+              }
+            ],
+            "selected_commit": "0a2c1e46",
+            "slug": "engos-quality-docs-review",
+            "source": "source_library",
+            "strategy": "head_snapshot",
+            "verified_by_git_history": false
+          },
+          "judge_reports": [
+            {
+              "baseline_commit": "0a2c1e46",
+              "baseline_slug": "engos-quality-docs-review",
+              "blockers": [],
+              "classification": "additive",
+              "judge": "source_fidelity",
+              "requirement_review": {
+                "behavioral_status": "behavioral_pending",
+                "identity_authenticated": false,
+                "status": "not_supplied_or_invalid"
+              },
+              "reviewed_deltas": [],
+              "scenario_results": [
+                {
+                  "id": "operational_invocation",
+                  "kind": "operational_contract",
+                  "label": "operational invocation surface",
+                  "missing_markers": [],
+                  "passed": true
+                }
+              ],
+              "score": 10,
+              "scorecard": {
+                "baseline_operational_score": 2,
+                "baseline_preserved_in_resource": false,
+                "baseline_richness": 2,
+                "candidate_operational_score": 4,
+                "candidate_richness": 8
+              },
+              "title": "Source Fidelity and Uplift"
+            },
+            {
+              "blockers": [],
+              "judge": "operational_richness",
+              "score": 10,
+              "title": "Operational Richness"
+            },
+            {
+              "blockers": [],
+              "judge": "metadata_integrity",
+              "score": 10,
+              "title": "Metadata and Handoff Integrity"
+            },
+            {
+              "blockers": [],
+              "judge": "benchmark_readiness",
+              "score": 9,
+              "scorecard": {
+                "boundary_clarity": 8,
+                "description_richness": 10,
+                "intent_coverage": 10,
+                "metadata_completeness": 8,
+                "output_specificity": 10,
+                "surface_usability": 10,
+                "title_clarity": 10
+              },
+              "title": "Benchmark Readiness and Template Fit"
+            }
+          ],
+          "pass_number": 1,
+          "repair_requests": [],
+          "scorecard": {
+            "baseline_operational_score": 2,
+            "baseline_preserved_in_resource": false,
+            "baseline_richness": 2,
+            "benchmark_readiness": 9,
+            "boundary_clarity": 8,
+            "candidate_operational_score": 4,
+            "candidate_richness": 8,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "metadata_completeness": 8,
+            "metadata_integrity": 10,
+            "operational_richness": 10,
+            "output_specificity": 10,
+            "source_fidelity": 10,
+            "surface_usability": 10,
+            "title_clarity": 10
+          },
+          "semantic_findings": [],
+          "status": "structural_ready",
+          "template_name": "both"
+        }
+      ],
+      "pass_count": 1,
+      "quality_profile": "default",
+      "repair_requests": [],
+      "scorecard": {
+        "baseline_operational_score": 2,
+        "baseline_preserved_in_resource": false,
+        "baseline_richness": 2,
+        "benchmark_readiness": 9,
+        "boundary_clarity": 8,
+        "candidate_operational_score": 4,
+        "candidate_richness": 8,
+        "description_richness": 10,
+        "intent_coverage": 10,
+        "metadata_completeness": 8,
+        "metadata_integrity": 10,
+        "operational_richness": 10,
+        "output_specificity": 10,
+        "source_fidelity": 10,
+        "surface_usability": 10,
+        "title_clarity": 10
+      },
+      "status": "structural_ready",
+      "stop_reason": "thresholds_met",
+      "final_candidate_text_sha256": "0c901af5190e0dab6ed2ac3b3fffafb054557a61795e7e5adf713e08fbe239a8",
+      "final_candidate_matches_authored_source": true
+    },
+    "requirement_review_files": [],
+    "requirement_reviews": []
+  },
+  "stderr": "",
+  "prior_candidate_receipts_commit": "acce6f6940241e1e7fd340f864e672cd4d760654",
+  "prior_static_attempt": {
+    "candidate_sha256": "d01d356a3de05ad94a8b3aa5effac4f2ed5f199f950cccb277279e82e5938aed",
+    "quality_status": "manual_review",
+    "blockers": [
+      "missing operational marker: ## Rules",
+      "missing template heading: ## Rules"
+    ],
+    "repair": "Retained the existing Rules heading for the substantive lens rules; no generic filler or behavioral trial."
+  }
+}

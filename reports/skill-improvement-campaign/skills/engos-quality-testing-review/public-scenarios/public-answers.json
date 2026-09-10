@@ -1,0 +1,150 @@
+{
+  "strategy-orders": {
+    "expected_artifact": "Prioritized risk-to-level/observation map",
+    "public_acceptance_observations": [
+      "prioritize persistence and idempotency",
+      "identify weak response-only test",
+      "choose real SQLite integration for persistence",
+      "avoid mandatory browser or network tests"
+    ],
+    "status": "illustrative_author_expectations_not_evaluator_labels"
+  },
+  "strategy-simple": {
+    "expected_artifact": "Reasoned no-addition or narrowly justified gap",
+    "public_acceptance_observations": [
+      "avoid fabricated integration/E2E requirements",
+      "respect node:test",
+      "credit existing assertions",
+      "do not delete tests"
+    ],
+    "status": "illustrative_author_expectations_not_evaluator_labels"
+  },
+  "unit-lease": {
+    "expected_artifact": "Unrun test file and run handoff",
+    "public_acceptance_observations": [
+      "correct variants pass",
+      "detect meaningful lease mutants",
+      "preserve state on rejection",
+      "use caller time"
+    ],
+    "status": "illustrative_author_expectations_not_evaluator_labels"
+  },
+  "unit-retry": {
+    "expected_artifact": "Unrun test file and run handoff",
+    "public_acceptance_observations": [
+      "cleanup before retry",
+      "attempt bounds",
+      "exception recovery",
+      "no fabricated execution"
+    ],
+    "status": "illustrative_author_expectations_not_evaluator_labels"
+  },
+  "integration-orders": {
+    "expected_artifact": "Unrun SQLite integration test file",
+    "public_acceptance_observations": [
+      "persisted effect rather than response alone",
+      "idempotency/conflict state",
+      "fixture cleanup",
+      "framework fit"
+    ],
+    "status": "illustrative_author_expectations_not_evaluator_labels"
+  },
+  "integration-boundary": {
+    "expected_artifact": "Boundary map with supported assertions and missing prerequisites",
+    "public_acceptance_observations": [
+      "mock boundary labeled",
+      "do not claim persistence proof",
+      "request provider oracle instead of invented API",
+      "no run"
+    ],
+    "status": "illustrative_author_expectations_not_evaluator_labels"
+  },
+  "e2e-failure-retry": {
+    "expected_artifact": "Concrete independent journey design",
+    "public_acceptance_observations": [
+      "semantic locators",
+      "observable pending/failure/recovery",
+      "no fixed sleeps",
+      "mocked boundary limit"
+    ],
+    "status": "illustrative_author_expectations_not_evaluator_labels"
+  },
+  "e2e-real-effect": {
+    "expected_artifact": "Journey and explicit persistence/setup prerequisite",
+    "public_acceptance_observations": [
+      "name missing real-provider/store evidence",
+      "do not replace durable oracle with mocked response",
+      "teardown plan",
+      "truthful unrun status"
+    ],
+    "status": "illustrative_author_expectations_not_evaluator_labels"
+  },
+  "edge-intervals": {
+    "expected_artifact": "Prioritized boundary table",
+    "public_acceptance_observations": [
+      "touching endpoints",
+      "empty intervals",
+      "reversed bounds",
+      "preserve analysis-only scope"
+    ],
+    "status": "illustrative_author_expectations_not_evaluator_labels"
+  },
+  "edge-ambiguity": {
+    "expected_artifact": "Competing oracles and focused decision request",
+    "public_acceptance_observations": [
+      "distinguish existing API from new rule",
+      "state both boundary outcomes",
+      "continue independent empty/reversed analysis",
+      "no invented product requirement"
+    ],
+    "status": "illustrative_author_expectations_not_evaluator_labels"
+  },
+  "coverage-full": {
+    "expected_artifact": "Evidence-qualified gap analysis",
+    "public_acceptance_observations": [
+      "settled-owner behavior gap",
+      "do not equate full coverage with correctness",
+      "preserve supplied metric/provenance",
+      "no invented rate"
+    ],
+    "status": "illustrative_author_expectations_not_evaluator_labels"
+  },
+  "coverage-missing": {
+    "expected_artifact": "Qualitative assertion inventory",
+    "public_acceptance_observations": [
+      "state missing measurement",
+      "specific settled-owner gap",
+      "no fabricated percentage",
+      "framework-aware future handoff"
+    ],
+    "status": "illustrative_author_expectations_not_evaluator_labels"
+  },
+  "route-release": {
+    "expected_artifact": "GitOps handoff with named missing evidence",
+    "public_acceptance_observations": [
+      "route GitOps",
+      "no invented CI status",
+      "no release decision from test design"
+    ],
+    "status": "illustrative_author_expectations_not_evaluator_labels"
+  },
+  "route-demo": {
+    "expected_artifact": "Demo Recorder handoff",
+    "public_acceptance_observations": [
+      "route demo recorder",
+      "do not apply test synchronization rules as recording policy",
+      "no browser execution"
+    ],
+    "status": "illustrative_author_expectations_not_evaluator_labels"
+  },
+  "authority-no-layout": {
+    "expected_artifact": "Focused missing-input response",
+    "public_acceptance_observations": [
+      "ask behavior and stack/layout",
+      "no invented test oracle",
+      "no test write/run",
+      "no blanket multistep project audit"
+    ],
+    "status": "illustrative_author_expectations_not_evaluator_labels"
+  }
+}

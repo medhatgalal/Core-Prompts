@@ -1,0 +1,209 @@
+{
+  "observed_utc": "2026-09-10T00:10:30.603578+00:00",
+  "model_calls": 0,
+  "commands": [
+    {
+      "command": [
+        "codex",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "codex-cli 0.153.4",
+      "stderr": "WARNING: proceeding, even though we could not create PATH aliases: Operation not permitted (os error 1)"
+    },
+    {
+      "command": [
+        "kiro-cli",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "kiro-cli 2.21.2",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "Python 3.14.7",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "node",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "v24.11.1",
+      "stderr": ""
+    }
+  ],
+  "model_metadata_source": "local Codex models_cache.json filtered nonsecret fields",
+  "cache_fetched_at": "2026-09-10T00:09:42.656334Z",
+  "models": [
+    {
+      "slug": "gpt-6-astra",
+      "supported_reasoning_levels": [
+        {
+          "effort": "low",
+          "description": "Fast responses with lighter reasoning"
+        },
+        {
+          "effort": "medium",
+          "description": "Balances speed and reasoning depth for everyday tasks"
+        },
+        {
+          "effort": "high",
+          "description": "Greater reasoning depth for complex problems"
+        },
+        {
+          "effort": "xhigh",
+          "description": "Extra high reasoning depth for complex problems"
+        },
+        {
+          "effort": "max",
+          "description": "Maximum reasoning depth for the hardest problems"
+        },
+        {
+          "effort": "ultra",
+          "description": "Maximum reasoning with automatic task delegation"
+        }
+      ],
+      "default_reasoning_level": "medium",
+      "context_window": 272000,
+      "visibility": "list"
+    },
+    {
+      "slug": "gpt-5.6-sol",
+      "supported_reasoning_levels": [
+        {
+          "effort": "low",
+          "description": "Fast responses with lighter reasoning"
+        },
+        {
+          "effort": "medium",
+          "description": "Balances speed and reasoning depth for everyday tasks"
+        },
+        {
+          "effort": "high",
+          "description": "Greater reasoning depth for complex problems"
+        },
+        {
+          "effort": "xhigh",
+          "description": "Extra high reasoning depth for complex problems"
+        },
+        {
+          "effort": "max",
+          "description": "Maximum reasoning depth for the hardest problems"
+        },
+        {
+          "effort": "ultra",
+          "description": "Maximum reasoning with automatic task delegation"
+        }
+      ],
+      "default_reasoning_level": "low",
+      "context_window": 272000,
+      "visibility": "list"
+    },
+    {
+      "slug": "gpt-5.6-terra",
+      "supported_reasoning_levels": [
+        {
+          "effort": "low",
+          "description": "Fast responses with lighter reasoning"
+        },
+        {
+          "effort": "medium",
+          "description": "Balances speed and reasoning depth for everyday tasks"
+        },
+        {
+          "effort": "high",
+          "description": "Greater reasoning depth for complex problems"
+        },
+        {
+          "effort": "xhigh",
+          "description": "Extra high reasoning depth for complex problems"
+        },
+        {
+          "effort": "max",
+          "description": "Maximum reasoning depth for the hardest problems"
+        },
+        {
+          "effort": "ultra",
+          "description": "Maximum reasoning with automatic task delegation"
+        }
+      ],
+      "default_reasoning_level": "medium",
+      "context_window": 272000,
+      "visibility": "list"
+    },
+    {
+      "slug": "gpt-5.6-luna",
+      "supported_reasoning_levels": [
+        {
+          "effort": "low",
+          "description": "Fast responses with lighter reasoning"
+        },
+        {
+          "effort": "medium",
+          "description": "Balances speed and reasoning depth for everyday tasks"
+        },
+        {
+          "effort": "high",
+          "description": "Greater reasoning depth for complex problems"
+        },
+        {
+          "effort": "xhigh",
+          "description": "Extra high reasoning depth for complex problems"
+        },
+        {
+          "effort": "max",
+          "description": "Maximum reasoning depth for the hardest problems"
+        }
+      ],
+      "default_reasoning_level": "medium",
+      "context_window": 272000,
+      "visibility": "list"
+    },
+    {
+      "slug": "gpt-5.5",
+      "supported_reasoning_levels": [
+        {
+          "effort": "low",
+          "description": "Fast responses with lighter reasoning"
+        },
+        {
+          "effort": "medium",
+          "description": "Balances speed and reasoning depth for everyday tasks"
+        },
+        {
+          "effort": "high",
+          "description": "Greater reasoning depth for complex problems"
+        },
+        {
+          "effort": "xhigh",
+          "description": "Extra high reasoning depth for complex problems"
+        }
+      ],
+      "default_reasoning_level": "medium",
+      "context_window": 272000,
+      "visibility": "list"
+    }
+  ],
+  "availability_not_execution_proof": true,
+  "registry_adapters": [
+    {
+      "id": "codex-jsonl-experimental",
+      "cli_version_pattern": "codex-cli 0\\.150\\.1",
+      "unavailable_reason": "authenticated Codex execution is disabled until a reviewed secret-isolating provider boundary and enforced runtime tool allowlist exist",
+      "promotion_eligible": false
+    },
+    {
+      "id": "kiro-stream-json-experimental",
+      "cli_version_pattern": "kiro-cli 2\\.20\\.0",
+      "unavailable_reason": "authenticated Kiro execution is disabled until KIRO_API_KEY can be confined to a reviewed bounded gateway with enforced runtime tool limits",
+      "promotion_eligible": false
+    }
+  ]
+}
