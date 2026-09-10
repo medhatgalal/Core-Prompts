@@ -1,3 +1,7 @@
+## v1.14.2 - 2026-09-09
+
+- Preserve intentional empty adapter arguments such as `--tools ""` while retaining rejection of empty executables, empty substitutions, unresolved placeholders, and invalid fixed-environment values. This repairs command rendering; runtime authentication, conformance, model identity and usage accounting remain separate gates.
+
 ## v1.14.1 - 2026-09-09
 
 - Unified fresh installation, historical repair, routine updates, and recovery through one ownership-aware engine. Current installers can repair recognized historical skills and independently present agents without an old updater or receipt, including Kiro agents and retired `mentor`.

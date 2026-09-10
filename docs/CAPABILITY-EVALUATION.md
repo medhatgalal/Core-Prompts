@@ -22,6 +22,8 @@ Core-Prompts separates candidate production from behavioral promotion.
 - validate signed, hash-bound promotion evidence and reject missing, stale, self-authorized, or incomplete evidence
 - finalize a candidate that is already canonical without rewriting its reviewed contract or topology
 
+Adapter command rendering preserves explicit empty argument values, such as the empty value after `--tools` in the experimental Claude adapter. Empty executables, dynamically empty required substitutions, unresolved placeholders and invalid fixed-environment values remain rejected. Command-shape checks do not establish authentication, runtime conformance, model identity or complete usage accounting.
+
 ## What is still gated
 
 - each live baseline-versus-candidate execution, which requires explicit operator authorization and protected provider credentials
