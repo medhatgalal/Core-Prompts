@@ -541,6 +541,13 @@ Expected output:
 - clear disclosure that PPTX content is flattened rather than independently editable
 - exact artifact paths, checks run, and unresolved evidence assumptions
 
+Use a dedicated export directory. Without `--force`, the PNG exporter also refuses
+matching outputs that appear while rendering. If files change during a failed
+publication, it preserves conflicting replacements and the original backups,
+then reports the retained recovery paths instead of claiming rollback succeeded.
+Inspect those paths before retrying. This is not an atomic publication mechanism
+for concurrent writers; very large exports also need memory for retained PNG bytes.
+
 Follow with:
 
 > Validate every slide at 1920×1080, confirm there is exactly one active slide, and report any clipping, control collision, broken or distorted image, absolute image path, unapproved network dependency, or unlabeled illustrative value before final export.
