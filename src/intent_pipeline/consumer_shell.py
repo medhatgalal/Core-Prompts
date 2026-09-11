@@ -518,12 +518,16 @@ def render_release_delta_markdown(delta: Mapping[str, Any]) -> str:
     lines = [
         "# Release Delta",
         "",
+        "These counts compare selected capability metadata in `.meta/manifest.json`. "
+        "They do not cover bundled helper/resource changes or measure experimental benefit. "
+        "See [CHANGELOG](../CHANGELOG.md) for release changes.",
+        "",
         f"- Baseline status: `{delta.get('baseline_status', 'unknown')}`",
         f"- Comparison basis: `{delta.get('comparison_basis')}`",
         f"- New capabilities: `{delta.get('summary', {}).get('new_count', 0)}`",
         f"- Removed capabilities: `{delta.get('summary', {}).get('removed_count', 0)}`",
-        f"- Changed capabilities: `{delta.get('summary', {}).get('changed_count', 0)}`",
-        f"- Material changes: `{delta.get('summary', {}).get('material_change_count', 0)}`",
+        f"- Changed capability records: `{delta.get('summary', {}).get('changed_count', 0)}`",
+        f"- Records with contract-facing metadata changes: `{delta.get('summary', {}).get('material_change_count', 0)}`",
         "",
         "## New Capabilities",
     ]
@@ -536,12 +540,12 @@ def render_release_delta_markdown(delta: Mapping[str, Any]) -> str:
         lines.append(f"- `{item.get('slug')}` — {item.get('display_name')}")
     if not (delta.get("removed_capabilities") or []):
         lines.append("- none")
-    lines.extend(["", "## Material Changes"])
+    lines.extend(["", "## Contract-Facing Metadata Changes"])
     for item in delta.get("material_changes") or []:
         lines.append(f"- `{item.get('slug')}` — changed `{', '.join(item.get('material_fields') or [])}`")
     if not (delta.get("material_changes") or []):
         lines.append("- none")
-    lines.extend(["", "## All Changed Capabilities"])
+    lines.extend(["", "## All Changed Capability Records"])
     for item in delta.get("changed_capabilities") or []:
         lines.append(f"- `{item.get('slug')}` — changed `{', '.join(item.get('changed_fields') or [])}`")
     if not (delta.get("changed_capabilities") or []):

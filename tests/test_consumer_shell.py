@@ -176,6 +176,12 @@ def test_build_release_delta_tracks_material_changes() -> None:
     assert "summary" in delta["material_changes"][0]["material_fields"]
     rendered = render_release_delta_markdown(delta)
     assert "# Release Delta" in rendered
+    assert "selected capability metadata" in rendered
+    assert "do not cover bundled helper/resource changes or measure experimental benefit" in rendered
+    assert "[CHANGELOG](../CHANGELOG.md)" in rendered
+    assert "Changed capability records: `1`" in rendered
+    assert "Records with contract-facing metadata changes: `1`" in rendered
+    assert "## Material Changes" not in rendered
     assert "`testing`" in rendered
     assert "## Removed Capabilities" in rendered
     assert "`testing-old`" in rendered
@@ -210,6 +216,8 @@ def test_build_release_delta_tracks_contract_metadata_changes() -> None:
     rendered = render_release_delta_markdown(delta)
     assert "shared_constraints" in rendered
     assert "artifact_conventions" in rendered
+    assert "## Contract-Facing Metadata Changes" in rendered
+    assert "## All Changed Capability Records" in rendered
 
 
 def test_build_status_payload_reports_health_from_validation_and_smoke() -> None:

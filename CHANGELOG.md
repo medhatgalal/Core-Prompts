@@ -4,6 +4,7 @@
 - Bind Plan to Goal packets to staged and working-tree diffs plus untracked contents, modes, and symlink targets, including untracked files hidden by Git display configuration. Detect changes behind unchanged status labels; preserve the packet-directory exclusion and clean legacy bindings, and explain when older dirty-tree packets require revalidation and resealing.
 - Recheck presentation PNG destinations before publication and preserve conflicting user replacements, original backups, and recovery paths when rollback cannot finish safely. Dedicated output directories remain recommended: publication is not atomic against concurrent writers, and rollback ownership checks retain PNG bytes in memory.
 - Add behavioral regression tests and concrete usage examples for these three independently compared helper changes. These are scoped deterministic improvements in shipped skill resources; the broader prompt experiments remain separate and no unproven prompt candidate or formal behavioral baseline is promoted.
+- Clarify that the generated release-delta counts compare selected capability metadata and do not count helper changes or establish experimental benefit; link to this changelog for release changes.
 
 ## v1.14.2 - 2026-09-10
 
