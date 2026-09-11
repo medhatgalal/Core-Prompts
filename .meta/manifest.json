@@ -2216,7 +2216,7 @@
       "display_name": "Dynamic HTML Presentations",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "engos-content-dynamic-html-presentations",
-      "shared_summary": "Creates polished, responsive, standalone HTML slide decks with optional deterministic PNG and image-faithful PPTX export. Use for presentations, pitch decks, reviews, talks, and visual narratives that need browser-native interactivity and portable outputs.",
+      "shared_summary": "Create a self-contained HTML presentation and, when requested, validated PNG or image-only PPTX exports from a topic, outline, or source material. Use for visual narrative deliverables; do not use for browser demos or plain reports.",
       "shared_constraints": [
         "Keep HTML as the canonical editable source.",
         "Do not invent evidence, quotations, metrics, or sources.",
@@ -2314,101 +2314,132 @@
       "quality_status": "structural_ready",
       "judge_reports": [
         {
-          "blockers": [],
+          "pass_number": 1,
+          "status": "structural_ready",
           "historical_baseline": {
+            "slug": "engos-content-dynamic-html-presentations",
+            "strategy": "head_snapshot",
+            "group": "current_oracle",
             "baseline_path": "sources/ssot-baselines/engos-content-dynamic-html-presentations/baseline.md",
+            "selected_commit": "848ab93b",
+            "richness_score": 3,
+            "line_count": 448,
+            "reason": "Current SSOT baseline source snapshot materialized into the source library because the stored baseline was missing, stale, or structurally degraded.",
             "equivalent_commits": [],
             "expected_companions": [],
-            "group": "current_oracle",
-            "has_baseline_text": true,
+            "operator_invariants": [],
+            "scenario_matrix": [],
             "historical_proof": {
               "current_head_commit": "848ab93b",
-              "current_head_line_count": 448,
               "current_head_richness_score": 3,
-              "last_materialized_at": "2026-07-19T09:45:51.008369+00:00",
+              "current_head_line_count": 448,
               "materialized_from_commit": "848ab93b",
+              "materialized_from_source_kind": "current_ssot",
               "materialized_from_path": "ssot/engos-content-dynamic-html-presentations.md",
               "materialized_from_sha256": "da45c3dd8143e2c1e74c8ad77f3b2b5b1fb311ba9579ab6b010cf28bc0fd2be6",
-              "materialized_from_source_kind": "current_ssot"
+              "last_materialized_at": "2026-07-19T09:45:51.008369+00:00"
             },
-            "line_count": 448,
-            "operator_invariants": [],
-            "reason": "Current SSOT baseline source snapshot materialized into the source library because the stored baseline was missing, stale, or structurally degraded.",
-            "richness_score": 3,
-            "scenario_matrix": [],
-            "selected_commit": "848ab93b",
-            "slug": "engos-content-dynamic-html-presentations",
             "source": "source_library",
-            "strategy": "head_snapshot",
-            "verified_by_git_history": true
+            "verified_by_git_history": false,
+            "has_baseline_text": true
           },
           "judge_reports": [
             {
-              "baseline_commit": "848ab93b",
-              "baseline_slug": "engos-content-dynamic-html-presentations",
+              "judge": "source_fidelity",
+              "title": "Source Fidelity and Uplift",
+              "score": 10,
               "blockers": [],
               "classification": "preserved",
-              "judge": "source_fidelity",
               "scenario_results": [],
-              "score": 10,
-              "scorecard": {
-                "baseline_operational_score": 0,
-                "baseline_preserved_in_resource": false,
-                "baseline_richness": 3,
-                "candidate_operational_score": 0,
-                "candidate_richness": 3
+              "reviewed_deltas": [],
+              "requirement_review": {
+                "status": "not_supplied_or_invalid",
+                "identity_authenticated": false,
+                "behavioral_status": "behavioral_pending"
               },
-              "title": "Source Fidelity and Uplift"
-            },
-            {
-              "blockers": [],
-              "judge": "operational_richness",
-              "score": 10,
-              "title": "Operational Richness"
-            },
-            {
-              "blockers": [],
-              "judge": "metadata_integrity",
-              "score": 10,
-              "title": "Metadata and Handoff Integrity"
-            },
-            {
-              "blockers": [],
-              "judge": "benchmark_readiness",
-              "score": 9,
               "scorecard": {
-                "boundary_clarity": 8,
+                "baseline_richness": 3,
+                "candidate_richness": 3,
+                "baseline_operational_score": 0,
+                "candidate_operational_score": 0,
+                "baseline_preserved_in_resource": false
+              },
+              "baseline_commit": "848ab93b",
+              "baseline_slug": "engos-content-dynamic-html-presentations"
+            },
+            {
+              "judge": "operational_richness",
+              "title": "Operational Richness",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "metadata_integrity",
+              "title": "Metadata and Handoff Integrity",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "benchmark_readiness",
+              "title": "Benchmark Readiness and Template Fit",
+              "score": 9,
+              "blockers": [],
+              "scorecard": {
+                "title_clarity": 10,
                 "description_richness": 10,
                 "intent_coverage": 10,
-                "metadata_completeness": 8,
+                "boundary_clarity": 8,
                 "output_specificity": 10,
-                "surface_usability": 10,
-                "title_clarity": 10
-              },
-              "title": "Benchmark Readiness and Template Fit"
+                "metadata_completeness": 8,
+                "surface_usability": 10
+              }
             }
           ],
-          "pass_number": 1,
+          "blockers": [],
           "scorecard": {
-            "baseline_operational_score": 0,
-            "baseline_preserved_in_resource": false,
+            "source_fidelity": 10,
             "baseline_richness": 3,
-            "benchmark_readiness": 9,
-            "boundary_clarity": 8,
-            "candidate_operational_score": 0,
             "candidate_richness": 3,
+            "baseline_operational_score": 0,
+            "candidate_operational_score": 0,
+            "baseline_preserved_in_resource": false,
+            "operational_richness": 10,
+            "metadata_integrity": 10,
+            "benchmark_readiness": 9,
+            "title_clarity": 10,
             "description_richness": 10,
             "intent_coverage": 10,
-            "metadata_completeness": 8,
-            "metadata_integrity": 10,
-            "operational_richness": 10,
+            "boundary_clarity": 8,
             "output_specificity": 10,
-            "source_fidelity": 10,
-            "surface_usability": 10,
-            "title_clarity": 10
+            "metadata_completeness": 8,
+            "surface_usability": 10
           },
-          "status": "ship",
-          "template_name": "skill"
+          "template_name": "skill",
+          "effective_sha256": "56639d171dce30f28e9d770e74a7a68ce589e256fa1258e2ab8a744c2ac339d1",
+          "semantic_findings": [],
+          "repair_requests": [],
+          "dimension_inventory": [
+            {
+              "dimension": "source_fidelity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "operational_richness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "metadata_integrity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "benchmark_readiness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "semantic_consistency",
+              "status": "no_detected_conflict_not_semantic_proof"
+            }
+          ]
         }
       ],
       "consumption_hints": {

@@ -2,7 +2,8 @@
 
 - Correct the OpEx digest renderer so completed or cancelled linked DPAs are not described as missing, while preserving outstanding postmortem obligations. Distinguish unset or unknown priorities from missing SLA policy mappings instead of inventing a priority problem or deadline.
 - Bind Plan to Goal packets to staged and working-tree diffs plus untracked contents, modes, and symlink targets, including untracked files hidden by Git display configuration. Detect changes behind unchanged status labels; preserve the packet-directory exclusion and clean legacy bindings, and explain when older dirty-tree packets require revalidation and resealing.
-- Add behavioral regression tests and concrete usage examples for these two independently compared helper changes. These are scoped deterministic improvements in shipped skill resources; the broader prompt experiments remain separate and no unproven prompt candidate or formal behavioral baseline is promoted.
+- Recheck presentation PNG destinations before publication and preserve conflicting user replacements, original backups, and recovery paths when rollback cannot finish safely. Dedicated output directories remain recommended: publication is not atomic against concurrent writers, and rollback ownership checks retain PNG bytes in memory.
+- Add behavioral regression tests and concrete usage examples for these three independently compared helper changes. These are scoped deterministic improvements in shipped skill resources; the broader prompt experiments remain separate and no unproven prompt candidate or formal behavioral baseline is promoted.
 
 ## v1.14.2 - 2026-09-10
 
