@@ -1,8 +1,12 @@
 # Campaign ledger
 
-Current phase: source-design research completed for the four priority skills; runtime admission and measured iteration remain outstanding. **Skill/model-comparison experiments executed: 0. Accepted skill-performance improvements: 0.** A separate deterministic adapter-rendering defect has a reviewed red/green repair; it is not a skill-efficacy result. Setup was delivered on both mains at `0d1b07e` through PR #68 / MR !70; its fixture/control results remain historical evidence, not skill-performance results. Baseline and incumbent for every eligible skill: `9d481a2da04e672e3b52d79bba6cf466af597fa0`; no candidate has advanced an incumbent. [Charter](charter.md) holds scope and comparison contract; [baseline-inventory.json](baseline-inventory.json) holds full file hashes, historical source references and recent source commits. This is development workflow evidence, not a shipped capability.
+Current phase: bounded work is complete for all 24 eligible skills. Three scoped helper fixes qualified and are merged on both mains at `59e6830cce46c787105fb99fcc32a7f038710cd3` through PRs #76/#77 and MRs !78/!79. No prompt-body candidate qualified. [Final assessment](final-assessment.md) and [machine assessment](final-assessment.json) record the per-skill outcomes, 234 unique experimental attempts (231 completed), separate preflight accounting, retained failures and limitations. [Accepted helpers](accepted-helpers.json) binds the source changes. Final package/tag/publication evidence belongs to the v1.14.3 release records and attached verification receipt; no user-home installation is claimed. The historical tables below preserve launch and handoff facts, not current backlog.
 
-## Owner and delivery state
+## Execution reopened by user
+
+The user explicitly authorized experiments across all 24 eligible skills and delivery only of materially evidenced improvements. The local-only `execution-plan.json` supersedes historical statements that experimental dispatch is unapproved; it does not waive runtime, observation, regression or disclosure controls. Coordinator branch is now `AI/skill-improvement-campaign`, based on both-provider main `ec04a5e`. The canonical skill/resource baseline remains byte-identical to original `9d481a2`. No skill improvement is counted until its executed evidence and acceptance are recorded.
+
+## Historical owner handoff
 
 | Responsibility | Actual identity | State / next action |
 | --- | --- | --- |
@@ -16,7 +20,7 @@ Current phase: source-design research completed for the four priority skills; ru
 
 Worktrees are under `/Users/medhat.galal/.codex/worktrees/`. Both owners and coordinator started from freshly verified matching main. Native app create returned queued client identities; actual task/worktree/branch identities were subsequently verified, without duplicating tasks. Source-task recommendation puts GitOps before Architecture next.
 
-## Inventory and admission
+## Historical launch inventory and admission
 
 All 27 active Goal Contracts are draft. The four priority skills have no current accepted comparison/promotion in the checked-in indexed evidence inspected at launch. This is an index result, not an exhaustive history verdict. Source/structural work is evidenced for every skill by the inventory's Git history and descriptor lineage. The table's `unassessed` means comparative evidence still needs assessment; it does not mean never improved.
 
@@ -62,7 +66,7 @@ The following unexecuted proposals are preserved as potential subtests, not the 
 - Both: disaggregated results follow the skill-specific prospective repetition rules below and final confirmation; any disagreement material to acceptance is unresolved/inconclusive. These small pilots are scoped development evidence, not powered population claims. Do not relax thresholds if all arms saturate; retain incumbent and preregister a later harder task.
 - Cost/effort: apply the skill-specific limits in the reconciled budget section below; no more than one extra operator clarification per task. A trade-off outside these limits requires a new prospective protocol, not a retrospective waiver.
 
-## Shared admission findings: scoped to dependent execution, one coordinator owner
+## Historical protected-runner findings: preserve limits on that execution path
 
 | Gate | Verified issue and existing owner | Required completion evidence |
 | --- | --- | --- |
@@ -106,7 +110,7 @@ Setup timing: coordinator turn began 2026-09-09T23:28:58Z. Owners began approxim
 
 Stop on one frozen candidate pilot completion, exhausted cap/deadline, material boundary failure, or user interruption. No forced winner and no automatic repeat. Subsequent candidate search needs remaining declared budget and a new prospective round/holdout plan; preserve prior outcome. No use of extra judges as independent builds.
 
-## Verification and durable delivery
+## Historical setup verification and delivery
 
 - `bin/capability-eval compile --all --check`: pass, 27 skills, no drift, all draft; compact [receipt](compile-receipt.json).
 - `bin/capability-eval calibrate --static-only`: 14 controls, 60 pilot cases, structural-ready, semantic judge unqualified; [receipt](calibrate-receipt.json).
@@ -119,7 +123,7 @@ Stop on one frozen candidate pilot completion, exhausted cap/deadline, material 
 
 Trace-to-eval ownership: runtime exposure/credential enforcement → adapters/conformance tests; same-start identity and complete attempts → runner/run-plan tests; retained confirmed defects/common score path → existing evaluator/artifact tests; contract review generalization → review schema/compiler tests. All are proposed integration work, not installed prevention. Excluded Auto-Research templates remain unchanged.
 
-## Current decision and next milestone
+## Historical research-phase decision and next milestone
 
 The setup-only scope and preselected narrow H1 designs are superseded as the campaign remit. Preserve all prior fixture/receipt bytes and original baseline lineage. Docs and Testing have been reactivated with self-contained full-capability assignments; GitOps and Architecture research launches follow as the two-owner research slots free, without waiting for comparison admission. Fresh independent challenge reviews coverage and candidate choices; it is not an experimental judge.
 
@@ -148,7 +152,7 @@ Shared renderer repair: literal empty non-executable argv values such as the dec
 
 Clock/accounting disclosure: coordinator corrective turn began `2026-09-10T00:05:11Z`; the stated90-minute research target ended at `01:35:11Z` and was exceeded during publication redaction, remaining delivery and the newly confirmed renderer defect. The original clock was not reset. Renderer implementation itself ran01:45:03–01:49:01 within its separate15-minute bound; integration/documentation/hosted verification continued afterward. Ordinary assistant/review usage remains unavailable rather than zero. No expensive model-study budget, paid API use or inference dispatch was added. Detailed local runtime/security diagnostics were excluded after automatic publication review rejection and remain in local recovery records.
 
-## Completed research-owner closure, 2026-09-10
+## Historical research-owner closure, 2026-09-10
 
 The user explicitly requested closing completed owner sessions once their work is delivered. All four latest task turns are completed; no active turn, pending research/review response, dirty tracked file, ordinary untracked file or change outside the owned report subtree was found. Current GitHub/GitLab main is `931a6dff221c0c8182fffab3e8678a0f8a97edd8`. The earlier delivery checkpoints above remain historical; this section and the current owner table supersede their instruction to retain research sessions for trials.
 
