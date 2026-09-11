@@ -1,0 +1,1037 @@
+{
+  "schema": "Final24SkillCampaignAssessment.v1",
+  "assessor": "/root/runtime_review",
+  "as_of": "2026-09-10T23:59:44.780002+00:00",
+  "status": "bounded_outcomes_complete_three_source_fixes_merged_release_record_separate",
+  "summary": {
+    "eligible_skills": 24,
+    "recorded_full_source_resource_mode_assessments": 24,
+    "skills_with_executed_bounded_comparison": 24,
+    "skills_with_native_comparison": 22,
+    "skills_with_only_deterministic_helper_comparison": 2,
+    "accepted_resource_improvements": 3,
+    "accepted_prompt_body_improvements": 0,
+    "resource_changes_merged": 3,
+    "accepted_resource_change_delivery_pending": 0,
+    "pending_native_calls": 0,
+    "all_modes_or_live_acceptance_established": false
+  },
+  "exclusions": [
+    {
+      "skill": "engos-meta-supercharge",
+      "reason": "Explicit campaign exclusion;method resource not edited."
+    },
+    {
+      "skill": "engos-optimization-auto-research",
+      "reason": "Explicit method exclusion."
+    },
+    {
+      "skill": "loopy",
+      "reason": "Hash-pinned upstream exception explicitly excluded."
+    },
+    {
+      "skill": "engos-design-experience",
+      "reason": "Not among27active baseline capabilities;unmerged prior draft explicitly excluded and not resumed."
+    }
+  ],
+  "skills": [
+    {
+      "skill": "engos-audit-code-health",
+      "source_breadth_assessment": "completed_recorded",
+      "source_assessment_limit": "Full body/resource/mode assessment is recorded in campaign evidence; this final audit did not repeat a fresh full-source audit.",
+      "accepted_resource_change": false,
+      "accepted_prompt_body_change": false,
+      "scope_assessed": "Structural audit,hotspots,coupling,dead-code candidates,prior claims,sampling/cruft",
+      "actual_experiments": "6 completed native turns:3 public cases\u00d7bare/incumbent",
+      "completed_native_turns": 6,
+      "native_turn_attempts": 6,
+      "experiment_focus": "Metrics/cycle,registered callback and excluded-prior uncertainty",
+      "outcome": "retained_incumbent_no_qualifying_change",
+      "outcome_detail": "Initial authored screen did not reproduce its proposed incumbent failure; no speculative candidate was accepted.",
+      "remaining_limitations": "Supplied source only; no large-repository or live cleanup proof.",
+      "evidence": [
+        "corpus-a.md",
+        "corpus-a/engos-audit-code-health/assembly.json",
+        "corpus-a/screening-report.md",
+        "corpus-a/screen-final-accounting.json"
+      ],
+      "independent_semantic_grading": "Full independent item-level grading not located; author screen observations are not upgraded to independently confirmed superiority."
+    },
+    {
+      "skill": "engos-audit-engineering-progress",
+      "source_breadth_assessment": "completed_recorded",
+      "source_assessment_limit": "Full body/resource/mode assessment is recorded in campaign evidence; this final audit did not repeat a fresh full-source audit.",
+      "accepted_resource_change": false,
+      "accepted_prompt_body_change": false,
+      "scope_assessed": "Single/fleet Git reports,filters,configuration,help,HTML/upload modes",
+      "actual_experiments": "6 completed native turns:3 public cases\u00d7bare/incumbent",
+      "completed_native_turns": 6,
+      "native_turn_attempts": 6,
+      "experiment_focus": "Supported report cards,linked worktrees,configuration preservation",
+      "outcome": "retained_incumbent_no_qualifying_change",
+      "outcome_detail": "Initial authored screen did not reproduce its proposed incumbent failure; no speculative candidate was accepted.",
+      "remaining_limitations": "Skill-only bundled help knowledge differs from bare; no live fleet/upload/config execution.",
+      "evidence": [
+        "corpus-a.md",
+        "corpus-a/engos-audit-engineering-progress/assembly.json",
+        "corpus-a/screening-report.md",
+        "corpus-a/screen-final-accounting.json"
+      ],
+      "independent_semantic_grading": "Full independent item-level grading not located; author screen observations are not upgraded to independently confirmed superiority."
+    },
+    {
+      "skill": "engos-audit-feature-status",
+      "source_breadth_assessment": "completed_recorded",
+      "source_assessment_limit": "Full body/resource/mode assessment is recorded in campaign evidence; this final audit did not repeat a fresh full-source audit.",
+      "accepted_resource_change": false,
+      "accepted_prompt_body_change": false,
+      "scope_assessed": "Scope extraction,completion states,proof/drift,gaps and prioritization",
+      "actual_experiments": "6 completed native turns:3 public cases\u00d7bare/incumbent",
+      "completed_native_turns": 6,
+      "native_turn_attempts": 6,
+      "experiment_focus": "Static versus executed/live evidence,conflicting specs,missing scope",
+      "outcome": "retained_incumbent_no_qualifying_change",
+      "outcome_detail": "Initial authored screen did not reproduce its proposed incumbent failure; no speculative candidate was accepted.",
+      "remaining_limitations": "No live trackers or broad feature implementation acceptance.",
+      "evidence": [
+        "corpus-a.md",
+        "corpus-a/engos-audit-feature-status/assembly.json",
+        "corpus-a/screening-report.md",
+        "corpus-a/screen-final-accounting.json"
+      ],
+      "independent_semantic_grading": "Full independent item-level grading not located; author screen observations are not upgraded to independently confirmed superiority."
+    },
+    {
+      "skill": "engos-audit-opex-incident-review",
+      "source_breadth_assessment": "completed_recorded",
+      "source_assessment_limit": "Full body/resource/mode assessment is recorded in campaign evidence; this final audit did not repeat a fresh full-source audit.",
+      "accepted_resource_change": true,
+      "accepted_prompt_body_change": false,
+      "scope_assessed": "Digest/estate/DPA/postmortem/briefing/export and evidence policy",
+      "actual_experiments": "A1 rejected;A2 author47cases and independent28cases; deterministic renderer comparison",
+      "completed_native_turns": 0,
+      "native_turn_attempts": 0,
+      "outcome": "accepted_resource_fix_merged",
+      "outcome_detail": "Correct linked completed/cancelled DPA obligations and distinguish unset/unknown priority from absent SLA mapping.",
+      "remaining_limitations": "No live Jira/GWS collection,full briefing/export-chain or whole-skill efficacy claim.",
+      "evidence": [
+        "corpus-a.md",
+        "opex-independent-review.json",
+        "accepted-helpers.json"
+      ]
+    },
+    {
+      "skill": "engos-audit-pitch-review",
+      "source_breadth_assessment": "completed_recorded",
+      "source_assessment_limit": "Full body/resource/mode assessment is recorded in campaign evidence; this final audit did not repeat a fresh full-source audit.",
+      "accepted_resource_change": false,
+      "accepted_prompt_body_change": false,
+      "scope_assessed": "Create/review/score/improve,portfolio,appetite,seams,tabbed-doc export",
+      "actual_experiments": "6 completed native turns:3 public cases\u00d7bare/incumbent",
+      "completed_native_turns": 6,
+      "native_turn_attempts": 6,
+      "experiment_focus": "Appetite,unsupported proof,duplicate tabs and unknown context",
+      "outcome": "retained_incumbent_no_qualifying_change",
+      "outcome_detail": "Initial authored screen did not reproduce its proposed incumbent failure; no speculative candidate was accepted.",
+      "remaining_limitations": "Real document/API acquisition and full betting workflow untested.",
+      "evidence": [
+        "corpus-a.md",
+        "corpus-a/engos-audit-pitch-review/assembly.json",
+        "corpus-a/screening-report.md",
+        "corpus-a/screen-final-accounting.json"
+      ],
+      "independent_semantic_grading": "Full independent item-level grading not located; author screen observations are not upgraded to independently confirmed superiority."
+    },
+    {
+      "skill": "engos-audit-weekly-intel",
+      "source_breadth_assessment": "completed_recorded",
+      "source_assessment_limit": "Full body/resource/mode assessment is recorded in campaign evidence; this final audit did not repeat a fresh full-source audit.",
+      "accepted_resource_change": false,
+      "accepted_prompt_body_change": false,
+      "scope_assessed": "Multi-source status,reconciliation,team/executive reports,confidence",
+      "actual_experiments": "6 completed native turns:3 public cases\u00d7bare/incumbent",
+      "completed_native_turns": 6,
+      "native_turn_attempts": 6,
+      "experiment_focus": "Partial sources,reopening,self-report and deployment/acceptance separation",
+      "outcome": "retained_incumbent_no_qualifying_change",
+      "outcome_detail": "Initial authored screen did not reproduce its proposed incumbent failure; no speculative candidate was accepted.",
+      "remaining_limitations": "No live multi-source acquisition or longitudinal reporting.",
+      "evidence": [
+        "corpus-a.md",
+        "corpus-a/engos-audit-weekly-intel/assembly.json",
+        "corpus-a/screening-report.md",
+        "corpus-a/screen-final-accounting.json"
+      ],
+      "independent_semantic_grading": "Full independent item-level grading not located; author screen observations are not upgraded to independently confirmed superiority."
+    },
+    {
+      "skill": "engos-browser-demo-recorder",
+      "source_breadth_assessment": "completed_recorded",
+      "source_assessment_limit": "Full body/resource/mode assessment is recorded in campaign evidence; this final audit did not repeat a fresh full-source audit.",
+      "accepted_resource_change": false,
+      "accepted_prompt_body_change": false,
+      "scope_assessed": "Auth-aware walkthrough scripts,pacing,capture and handoff",
+      "actual_experiments": "6 completed native turns:3 public cases\u00d7bare/incumbent",
+      "completed_native_turns": 6,
+      "native_turn_attempts": 6,
+      "experiment_focus": "Capture/finalization,readiness,pacing and unavailable contracts",
+      "outcome": "retained_incumbent_no_qualifying_change",
+      "outcome_detail": "Initial authored screen did not reproduce its proposed incumbent failure; no speculative candidate was accepted.",
+      "remaining_limitations": "Scripts received syntax checks only; no browser/video run. Bare recording wording is ambiguous.",
+      "evidence": [
+        "corpus-a.md",
+        "corpus-a/engos-browser-demo-recorder/assembly.json",
+        "corpus-a/screening-report.md",
+        "corpus-a/screen-final-accounting.json"
+      ],
+      "independent_semantic_grading": "Full independent item-level grading not located; author screen observations are not upgraded to independently confirmed superiority."
+    },
+    {
+      "skill": "engos-content-dynamic-html-presentations",
+      "source_breadth_assessment": "completed_recorded",
+      "source_assessment_limit": "Full body/resource/mode assessment is recorded in campaign evidence; this final audit did not repeat a fresh full-source audit.",
+      "accepted_resource_change": true,
+      "accepted_prompt_body_change": false,
+      "scope_assessed": "Narrative/interactive HTML,geometry,assets,PNG/PPTX export and recovery",
+      "actual_experiments": "6native screen+1timeout;H1 6native layout turns/54views;P2 author14checks+independent24compiled observations",
+      "completed_native_turns": 12,
+      "native_turn_attempts": 13,
+      "outcome": "accepted_resource_fix_source_merged_prompt_held",
+      "outcome_detail": "Swift P2 recovery/publication helper accepted;layout H1 held:original pairs tie,fresh collision fix insufficient,font floor unmet.",
+      "remaining_limitations": "P2 is not atomic no-clobber proof;H1 is6turns,not54trials;no fullPNG/PPTX/installed chain.H1 closeout exceeded budget76.506s.",
+      "evidence": [
+        "corpus-a.md",
+        "corpus-a/screening-report.md",
+        "presentation-independent-exporter-review.json",
+        "exporter-delivery-review.json",
+        "presentation-layout-native-h1/result.json"
+      ]
+    },
+    {
+      "skill": "engos-delivery-address-code-review",
+      "source_breadth_assessment": "completed_recorded",
+      "source_assessment_limit": "Full body/resource/mode assessment is recorded in campaign evidence; this final audit did not repeat a fresh full-source audit.",
+      "accepted_resource_change": false,
+      "accepted_prompt_body_change": false,
+      "scope_assessed": "Selected feedback,relocation,narrow edits,staging/re-review handoff",
+      "actual_experiments": "6 completed native turns:3 public cases\u00d7bare/incumbent",
+      "completed_native_turns": 6,
+      "native_turn_attempts": 6,
+      "experiment_focus": "Outdated feedback,same-file user edit and plan-only boundaries",
+      "outcome": "retained_incumbent_no_qualifying_change",
+      "outcome_detail": "Initial authored screen did not reproduce its proposed incumbent failure; no speculative candidate was accepted.",
+      "remaining_limitations": "Proposed edits only; actual staging/provider feedback application untested.",
+      "evidence": [
+        "corpus-a.md",
+        "corpus-a/engos-delivery-address-code-review/assembly.json",
+        "corpus-a/screening-report.md",
+        "corpus-a/screen-final-accounting.json"
+      ],
+      "independent_semantic_grading": "Full independent item-level grading not located; author screen observations are not upgraded to independently confirmed superiority."
+    },
+    {
+      "skill": "engos-delivery-resolve-conflict",
+      "source_breadth_assessment": "completed_recorded",
+      "source_assessment_limit": "Full body/resource/mode assessment is recorded in campaign evidence; this final audit did not repeat a fresh full-source audit.",
+      "accepted_resource_change": false,
+      "accepted_prompt_body_change": false,
+      "scope_assessed": "Merge/rebase/preview conflict analysis,preservation and verification",
+      "actual_experiments": "6 completed native turns:3 public cases\u00d7bare/incumbent",
+      "completed_native_turns": 6,
+      "native_turn_attempts": 6,
+      "experiment_focus": "Rebase stages,policy-required deletion,nonmutating preview",
+      "outcome": "retained_incumbent_no_qualifying_change",
+      "outcome_detail": "Initial authored screen did not reproduce its proposed incumbent failure; no speculative candidate was accepted.",
+      "remaining_limitations": "No actual Git conflict resolution or document merge execution.",
+      "evidence": [
+        "corpus-a.md",
+        "corpus-a/engos-delivery-resolve-conflict/assembly.json",
+        "corpus-a/screening-report.md",
+        "corpus-a/screen-final-accounting.json"
+      ],
+      "independent_semantic_grading": "Full independent item-level grading not located; author screen observations are not upgraded to independently confirmed superiority."
+    },
+    {
+      "skill": "engos-design-architecture",
+      "source_breadth_assessment": "completed_recorded",
+      "source_assessment_limit": "Full body/resource/mode assessment is recorded in campaign evidence; this final audit did not repeat a fresh full-source audit.",
+      "accepted_resource_change": false,
+      "accepted_prompt_body_change": false,
+      "scope_assessed": "API/database/pattern/system design,tradeoffs,evolution,recovery",
+      "actual_experiments": "9completed native turns+1original timeout;3OpenAPI parse/reference/example checks",
+      "completed_native_turns": 9,
+      "native_turn_attempts": 10,
+      "outcome": "held_incumbent_retained",
+      "outcome_detail": "All9capacity/pattern/catalog designs meet core outcomes;no material candidate benefit.Vendor constraint restored before dispatch.",
+      "remaining_limitations": "ARTrecovery matched360s;noHTTP/SQL execution,fullOpenAPIrootmetavalidation or performance proof;date/client assumptions remain.",
+      "evidence": [
+        "skills/engos-design-architecture/assessment.md",
+        "skills/engos-design-architecture/native-screen-plan/decision.json",
+        "skills/engos-design-architecture/native-screen-plan/independent-scores.json"
+      ]
+    },
+    {
+      "skill": "engos-design-plan-to-goal",
+      "source_breadth_assessment": "completed_recorded",
+      "source_assessment_limit": "Full body/resource/mode assessment is recorded in campaign evidence; this final audit did not repeat a fresh full-source audit.",
+      "accepted_resource_change": true,
+      "accepted_prompt_body_change": false,
+      "scope_assessed": "Planning,host binding,goal/spec/verifier,anchors,sealing,drift,launch",
+      "actual_experiments": "PG1 rejected;PG1-v2 author20cases(9\u219220passes),independent17cases all pass",
+      "completed_native_turns": 0,
+      "native_turn_attempts": 0,
+      "outcome": "accepted_resource_fix_merged",
+      "outcome_detail": "Bind index/worktree/untracked content and modes; hidden-untracked config covered; legacy dirty reseal diagnostic.",
+      "remaining_limitations": "No complete ignored/submodule census,atomic snapshots or live host-goal lifecycle proof.",
+      "evidence": [
+        "corpus-b.md",
+        "plan-to-goal-independent-review.json",
+        "accepted-helpers.json"
+      ]
+    },
+    {
+      "skill": "engos-memory-context-continuity",
+      "source_breadth_assessment": "completed_recorded",
+      "source_assessment_limit": "Full body/resource/mode assessment is recorded in campaign evidence; this final audit did not repeat a fresh full-source audit.",
+      "accepted_resource_change": false,
+      "accepted_prompt_body_change": false,
+      "scope_assessed": "Init/recovery,migration,checkpoint/consolidation,one-writer handoff",
+      "actual_experiments": "6 turns:3cases\u00d7bare/incumbent",
+      "completed_native_turns": 6,
+      "native_turn_attempts": 6,
+      "outcome": "retained_incumbent_no_qualifying_change",
+      "outcome_detail": "Incumbent retained; checkpoint/recovery plans preserve active work and unsupported-test uncertainty.",
+      "remaining_limitations": "No actual persistent-state writes,recovery under failure or full lifecycle execution.",
+      "evidence": [
+        "corpus-b.md",
+        "corpus-b/engos-memory-context-continuity/design.json",
+        "corpus-b/remaining-native/screen-report.md",
+        "corpus-b/remaining-native/accounting.json"
+      ],
+      "independent_semantic_grading": "Separate full blinded semantic score receipt not located; completed observations and author descriptions are distinguished from confirmation."
+    },
+    {
+      "skill": "engos-memory-threader",
+      "source_breadth_assessment": "completed_recorded",
+      "source_assessment_limit": "Full body/resource/mode assessment is recorded in campaign evidence; this final audit did not repeat a fresh full-source audit.",
+      "accepted_resource_change": false,
+      "accepted_prompt_body_change": false,
+      "scope_assessed": "Transcript/fallback/chunking,literal fidelity,missing history,catchup",
+      "actual_experiments": "9 turns:3cases\u00d7bare/incumbent/preexisting candidate",
+      "completed_native_turns": 9,
+      "native_turn_attempts": 9,
+      "outcome": "retained_incumbent_no_qualifying_change",
+      "outcome_detail": "No substantive candidate advantage observed in authored screen; no byte-perfect promotion from ambiguous whitespace.",
+      "remaining_limitations": "Full history acquisition/export and independent confirmation remain untested.",
+      "evidence": [
+        "corpus-b.md",
+        "corpus-b/engos-memory-threader/design.json",
+        "corpus-b/remaining-native/screen-report.md",
+        "corpus-b/remaining-native/accounting.json"
+      ],
+      "independent_semantic_grading": "Separate full blinded semantic score receipt not located; completed observations and author descriptions are distinguished from confirmation."
+    },
+    {
+      "skill": "engos-meta-instruction-editor",
+      "source_breadth_assessment": "completed_recorded",
+      "source_assessment_limit": "Full body/resource/mode assessment is recorded in campaign evidence; this final audit did not repeat a fresh full-source audit.",
+      "accepted_resource_change": false,
+      "accepted_prompt_body_change": false,
+      "scope_assessed": "Audit/rewrite/diff/verify,policy lint,provenance and preservation",
+      "actual_experiments": "1 initial completion+1timeout;6 matched recovery completions",
+      "completed_native_turns": 7,
+      "native_turn_attempts": 8,
+      "outcome": "retained_incumbent_no_qualifying_change",
+      "outcome_detail": "Incumbent retained; recovery screen complete; original missing output/usage retained.",
+      "remaining_limitations": "No accepted new candidate; literal-preservation outcomes are authored screen observations,not full independent confirmation.",
+      "evidence": [
+        "corpus-b.md",
+        "corpus-b/engos-meta-instruction-editor/design.json",
+        "corpus-b/remaining-native/screen-report.md",
+        "corpus-b/remaining-native/accounting.json",
+        "corpus-b/editor-recovery/screen-report.md"
+      ],
+      "independent_semantic_grading": "Separate full blinded semantic score receipt not located; completed observations and author descriptions are distinguished from confirmation."
+    },
+    {
+      "skill": "engos-meta-uac-import",
+      "source_breadth_assessment": "completed_recorded",
+      "source_assessment_limit": "Full body/resource/mode assessment is recorded in campaign evidence; this final audit did not repeat a fresh full-source audit.",
+      "accepted_resource_change": false,
+      "accepted_prompt_body_change": false,
+      "scope_assessed": "Intake/classification,terminal routing,plan/judge/apply,resource closure",
+      "actual_experiments": "6 turns:3cases\u00d7bare/incumbent",
+      "completed_native_turns": 6,
+      "native_turn_attempts": 6,
+      "outcome": "retained_incumbent_no_qualifying_change",
+      "outcome_detail": "Incumbent retained; supplied-route and evidence-stage outcomes screened.",
+      "remaining_limitations": "No actual UAC/provider pipeline execution or broad independent outcome grading.",
+      "evidence": [
+        "corpus-b.md",
+        "corpus-b/engos-meta-uac-import/design.json",
+        "corpus-b/remaining-native/screen-report.md",
+        "corpus-b/remaining-native/accounting.json"
+      ],
+      "independent_semantic_grading": "Separate full blinded semantic score receipt not located; completed observations and author descriptions are distinguished from confirmation."
+    },
+    {
+      "skill": "engos-operations-ic-assistant",
+      "source_breadth_assessment": "completed_recorded",
+      "source_assessment_limit": "Full body/resource/mode assessment is recorded in campaign evidence; this final audit did not repeat a fresh full-source audit.",
+      "accepted_resource_change": false,
+      "accepted_prompt_body_change": false,
+      "scope_assessed": "Generic/internal modes,cadence,postmortem,handoff,recurrence,sanitization",
+      "actual_experiments": "6 turns:3generic cases\u00d7bare/incumbent",
+      "completed_native_turns": 6,
+      "native_turn_attempts": 6,
+      "outcome": "retained_incumbent_no_qualifying_change",
+      "outcome_detail": "Incumbent retained; generic supplied-input workflow screened.",
+      "remaining_limitations": "Restricted internal overlay deliberately omitted; no live incident/messages or internal-mode acceptance.",
+      "evidence": [
+        "corpus-b.md",
+        "corpus-b/engos-operations-ic-assistant/design.json",
+        "corpus-b/remaining-native/screen-report.md",
+        "corpus-b/remaining-native/accounting.json"
+      ],
+      "independent_semantic_grading": "Separate full blinded semantic score receipt not located; completed observations and author descriptions are distinguished from confirmation."
+    },
+    {
+      "skill": "engos-orchestration-batman",
+      "source_breadth_assessment": "completed_recorded",
+      "source_assessment_limit": "Full body/resource/mode assessment is recorded in campaign evidence; this final audit did not repeat a fresh full-source audit.",
+      "accepted_resource_change": false,
+      "accepted_prompt_body_change": false,
+      "scope_assessed": "Invocation/preflight,topology,TDD/reviews,retries,verification,delivery",
+      "actual_experiments": "6 turns:3cases\u00d7bare/incumbent",
+      "completed_native_turns": 6,
+      "native_turn_attempts": 6,
+      "outcome": "retained_incumbent_no_qualifying_change",
+      "outcome_detail": "Incumbent retained; authorization/topology/evidence planning screened.",
+      "remaining_limitations": "No actual worker orchestration,TDD throughput,hosted delivery or long-run behavior.",
+      "evidence": [
+        "corpus-b.md",
+        "corpus-b/engos-orchestration-batman/design.json",
+        "corpus-b/remaining-native/screen-report.md",
+        "corpus-b/remaining-native/accounting.json"
+      ],
+      "independent_semantic_grading": "Separate full blinded semantic score receipt not located; completed observations and author descriptions are distinguished from confirmation."
+    },
+    {
+      "skill": "engos-quality-code-review",
+      "source_breadth_assessment": "completed_recorded",
+      "source_assessment_limit": "Full body/resource/mode assessment is recorded in campaign evidence; this final audit did not repeat a fresh full-source audit.",
+      "accepted_resource_change": false,
+      "accepted_prompt_body_change": false,
+      "scope_assessed": "Diff/scope/correctness,lifecycle/API risks,message/readiness/handoff",
+      "actual_experiments": "6 turns:3cases\u00d7bare/incumbent",
+      "completed_native_turns": 6,
+      "native_turn_attempts": 6,
+      "outcome": "retained_incumbent_no_qualifying_change",
+      "outcome_detail": "Incumbent retained; supplied-diff review behavior screened.",
+      "remaining_limitations": "No broad production-code defect study or independent confirmation.",
+      "evidence": [
+        "corpus-b.md",
+        "corpus-b/engos-quality-code-review/design.json",
+        "corpus-b/remaining-native/screen-report.md",
+        "corpus-b/remaining-native/accounting.json"
+      ],
+      "independent_semantic_grading": "Separate full blinded semantic score receipt not located; completed observations and author descriptions are distinguished from confirmation."
+    },
+    {
+      "skill": "engos-quality-docs-review",
+      "source_breadth_assessment": "completed_recorded",
+      "source_assessment_limit": "Full body/resource/mode assessment is recorded in campaign evidence; this final audit did not repeat a fresh full-source audit.",
+      "accepted_resource_change": false,
+      "accepted_prompt_body_change": false,
+      "scope_assessed": "Accuracy,navigation,audiences,first-use,authoring/repair,release maintenance",
+      "actual_experiments": "12turn initial screen+20turn D2;4exact repair applications and independent semantic scoring",
+      "completed_native_turns": 32,
+      "native_turn_attempts": 32,
+      "outcome": "held_incumbent_retained",
+      "outcome_detail": "D2 candidate10/10vsincumbent7/10,but completion-burden reduction21.015% misses preset30%;initial screen also failed material gate.",
+      "remaining_limitations": "Public development cases only;not independently authored confirmation. No human reading-time,live doc acquisition or broad all-mode efficacy.",
+      "evidence": [
+        "skills/engos-quality-docs-review/assessment.md",
+        "skills/engos-quality-docs-review/executed-screen/independent-scores.json",
+        "skills/engos-quality-docs-review/second-experiment/executed/decision.json",
+        "skills/engos-quality-docs-review/second-experiment/executed/independent-scores.json"
+      ]
+    },
+    {
+      "skill": "engos-quality-gitops-review",
+      "source_breadth_assessment": "completed_recorded",
+      "source_assessment_limit": "Full body/resource/mode assessment is recorded in campaign evidence; this final audit did not repeat a fresh full-source audit.",
+      "accepted_resource_change": false,
+      "accepted_prompt_body_change": false,
+      "scope_assessed": "Commit/PR/CI,package/release,parity,cleanup,recovery,handoffs",
+      "actual_experiments": "9native turns:staleCI,optional-attestation package and cleanup cases",
+      "completed_native_turns": 9,
+      "native_turn_attempts": 9,
+      "outcome": "held_incumbent_retained",
+      "outcome_detail": "9/9core gate decisions correct;7/9fully useful outputs;candidate avoids one unsupported review prerequisite but no material gain.",
+      "remaining_limitations": "Synthetic supplied provider facts only;no live acquisition,package verification or cleanup execution.",
+      "evidence": [
+        "skills/engos-quality-gitops-review/assessment.md",
+        "skills/engos-quality-gitops-review/native-screen-plan/decision.json",
+        "skills/engos-quality-gitops-review/native-screen-plan/independent-scores.json"
+      ]
+    },
+    {
+      "skill": "engos-quality-testing-review",
+      "source_breadth_assessment": "completed_recorded",
+      "source_assessment_limit": "Full body/resource/mode assessment is recorded in campaign evidence; this final audit did not repeat a fresh full-source audit.",
+      "accepted_resource_change": false,
+      "accepted_prompt_body_change": false,
+      "scope_assessed": "Strategy,unit/integration/E2E,edge cases,coverage and routing",
+      "actual_experiments": "9native turns;6emitted suites+3source-only outputs;85external subprocesses",
+      "completed_native_turns": 9,
+      "native_turn_attempts": 9,
+      "outcome": "held_incumbent_retained",
+      "outcome_detail": "Incumbent/candidate suites pass valid references and reject all primary public mutants;no qualifying primary gain.",
+      "remaining_limitations": "85subprocesses=51suite variants+34public controls,not modeltrials;no browserE2E or measured coverage; supplemental mutants reported separately.",
+      "evidence": [
+        "skills/engos-quality-testing-review/assessment.md",
+        "skills/engos-quality-testing-review/native-screen-plan/decision.json",
+        "skills/engos-quality-testing-review/native-screen-plan/independent-testing-review.json"
+      ]
+    },
+    {
+      "skill": "engos-reconciliation-converge",
+      "source_breadth_assessment": "completed_recorded",
+      "source_assessment_limit": "Full body/resource/mode assessment is recorded in campaign evidence; this final audit did not repeat a fresh full-source audit.",
+      "accepted_resource_change": false,
+      "accepted_prompt_body_change": false,
+      "scope_assessed": "Conflict/gap analysis,decision methods,uncertainty,recommendation",
+      "actual_experiments": "6 turns:3cases\u00d7bare/incumbent",
+      "completed_native_turns": 6,
+      "native_turn_attempts": 6,
+      "outcome": "retained_incumbent_no_qualifying_change",
+      "outcome_detail": "Incumbent retained; supplied-proposal reconciliation screened.",
+      "remaining_limitations": "No live source collection,human tradeoff acceptance or robust repeated comparison.",
+      "evidence": [
+        "corpus-b.md",
+        "corpus-b/engos-reconciliation-converge/design.json",
+        "corpus-b/remaining-native/screen-report.md",
+        "corpus-b/remaining-native/accounting.json"
+      ],
+      "independent_semantic_grading": "Separate full blinded semantic score receipt not located; completed observations and author descriptions are distinguished from confirmation."
+    },
+    {
+      "skill": "engos-triage-my-inbox-chat-pulse",
+      "source_breadth_assessment": "completed_recorded",
+      "source_assessment_limit": "Full body/resource/mode assessment is recorded in campaign evidence; this final audit did not repeat a fresh full-source audit.",
+      "accepted_resource_change": false,
+      "accepted_prompt_body_change": false,
+      "scope_assessed": "Triage/filters/identity,resolution,help,cleanup,memory/actions/source errors",
+      "actual_experiments": "24turn screen+36independently authored confirmation turns",
+      "completed_native_turns": 60,
+      "native_turn_attempts": 60,
+      "outcome": "held_incumbent_retained",
+      "outcome_detail": "Initial25pp candidate signal disappears on confirmation:incumbent12/12,candidate12/12;0gain fails preset0.15.",
+      "remaining_limitations": "No actual mailbox/chat mutation or fullconfig/memory/mute/deep workflow;confirmation limited to6cases,two repeats.",
+      "evidence": [
+        "corpus-b.md",
+        "corpus-b/Pulse/independent-scores.json",
+        "corpus-b/Pulse/confirmation/decision.json",
+        "corpus-b/Pulse/confirmation/independent-scores.json"
+      ]
+    }
+  ],
+  "native_accounting": {
+    "scope": "Campaign observation receipts under reports only. Raw private configuration,security diagnostics and credentials were excluded.",
+    "schema": "NativeDevelopmentObservation.v1",
+    "observation_files_seen": 342,
+    "unique_turns": 234,
+    "duplicate_copies_removed": 108,
+    "conflicting_duplicates": 0,
+    "completed_turns": 231,
+    "missing_terminal_turns": 3,
+    "known_usage": {
+      "totalTokens": {
+        "known_sum": 3568831,
+        "records_with_value": 231
+      },
+      "inputTokens": {
+        "known_sum": 3359871,
+        "records_with_value": 231
+      },
+      "outputTokens": {
+        "known_sum": 208960,
+        "records_with_value": 231
+      },
+      "cachedInputTokens": {
+        "known_sum": 1431296,
+        "records_with_value": 231
+      },
+      "cacheWriteInputTokens": {
+        "known_sum": 0,
+        "records_with_value": 231
+      },
+      "reasoningOutputTokens": {
+        "known_sum": 42877,
+        "records_with_value": 231
+      }
+    },
+    "true_total_usage": "unknown;three experimental turn usages unavailable,plus prep/author/reviewer/host overhead not fully observed",
+    "charges": "unknown;noAPI invoice or zero-charge inference",
+    "preflight_separate": {
+      "turn_attempts": 3,
+      "completed": 2,
+      "interrupted": 1,
+      "known_completed_tokens": 19462,
+      "interrupted_usage": "unavailable",
+      "source": "native-development-preflight.json",
+      "individual_receipts_outside_report_census": "Preflight individual observations were in temporary storage; public preflight receipt supplies this separate aggregate."
+    },
+    "combined_identified_turn_attempts_including_preflight": 237,
+    "combined_known_token_lower_bound": 3588293,
+    "non_turn_disruptions": [
+      "CorpusA first host initialization failed before an observed turn.",
+      "Pulse final shell redirection failed before producer start,then authorized correction.",
+      "CorpusB resume approval timed out before process start;one permitted retry."
+    ],
+    "non_turn_usage": "unknown;not counted as successful model turns or zero cost",
+    "parse_exclusions": {
+      "count": 1,
+      "classification": "Non-JSON pre-turn host-initialization stdout; local-only,not a valid observation or zero-usage record."
+    },
+    "by_phase": {
+      "Docs initial": {
+        "turn_attempts": 12,
+        "completed": 12,
+        "missing_terminal": 0,
+        "known_usage_total_tokens": 148928,
+        "unknown_usage_turns": 0
+      },
+      "Corpus A initial/recovery": {
+        "turn_attempts": 55,
+        "completed": 54,
+        "missing_terminal": 1,
+        "known_usage_total_tokens": 767826,
+        "unknown_usage_turns": 1
+      },
+      "Pulse initial": {
+        "turn_attempts": 24,
+        "completed": 24,
+        "missing_terminal": 0,
+        "known_usage_total_tokens": 448423,
+        "unknown_usage_turns": 0
+      },
+      "Pulse confirmation": {
+        "turn_attempts": 36,
+        "completed": 36,
+        "missing_terminal": 0,
+        "known_usage_total_tokens": 717712,
+        "unknown_usage_turns": 0
+      },
+      "Corpus B remaining eight": {
+        "turn_attempts": 47,
+        "completed": 46,
+        "missing_terminal": 1,
+        "known_usage_total_tokens": 559183,
+        "unknown_usage_turns": 1
+      },
+      "Docs D2": {
+        "turn_attempts": 20,
+        "completed": 20,
+        "missing_terminal": 0,
+        "known_usage_total_tokens": 259132,
+        "unknown_usage_turns": 0
+      },
+      "Instruction Editor recovery": {
+        "turn_attempts": 6,
+        "completed": 6,
+        "missing_terminal": 0,
+        "known_usage_total_tokens": 70711,
+        "unknown_usage_turns": 0
+      },
+      "Testing initial": {
+        "turn_attempts": 9,
+        "completed": 9,
+        "missing_terminal": 0,
+        "known_usage_total_tokens": 116896,
+        "unknown_usage_turns": 0
+      },
+      "GitOps initial": {
+        "turn_attempts": 9,
+        "completed": 9,
+        "missing_terminal": 0,
+        "known_usage_total_tokens": 118095,
+        "unknown_usage_turns": 0
+      },
+      "Architecture initial/recovery": {
+        "turn_attempts": 10,
+        "completed": 9,
+        "missing_terminal": 1,
+        "known_usage_total_tokens": 152665,
+        "unknown_usage_turns": 1
+      },
+      "Presentation H1": {
+        "turn_attempts": 6,
+        "completed": 6,
+        "missing_terminal": 0,
+        "known_usage_total_tokens": 209260,
+        "unknown_usage_turns": 0
+      }
+    },
+    "method": "Use last cumulative usage observation once per fresh turn;cached input and reasoning output are reported as subsets and not added again.",
+    "local_only_census_binding": {
+      "unique_turn_count": 234,
+      "records_publication": "Individual turn IDs,threads,prompt/output identities and receipt copies remain local-only; not embedded in this compact publication.",
+      "reconstruction": "Select NativeDevelopmentObservation.v1 receipts from the declared local campaign observation collections and group by turn_id. Equivalent copies must match thread,status,prompt/output hashes and last cumulative usage. Sorted ID-set hash is independently reproducible; record snapshot hash also binds the observed representative/copy ordering.",
+      "local_only_collections": [
+        "corpus-a/*/screening/",
+        "corpus-b/remaining-native/runs/",
+        "corpus-b/editor-recovery/runs/",
+        "corpus-b/Pulse/observations/",
+        "corpus-b/Pulse/confirmation/pulse-confirm-*.json",
+        "skills/engos-quality-docs-review/executed-screen/docs-screen-*.json",
+        "skills/engos-quality-docs-review/second-experiment/executed/docs-d2-*.json",
+        "skills/engos-quality-testing-review/native-screen-plan/observations/",
+        "skills/engos-quality-gitops-review/native-screen-plan/observations/",
+        "skills/engos-design-architecture/native-screen-plan/observations/ and artifact-recovery/",
+        "presentation-layout-native-h1/*/observation.json"
+      ],
+      "observed_record_snapshot_sha256": "0811f2129511942c667c6e569692957b82d87ea9ccba18f23304a102d967592f",
+      "sorted_turn_id_set_sha256": "46f7ffeaac287c7ded9248929a4ad54594ae6ab1fe15a3eb45fd9d7b0796e4d4",
+      "turn_id_set_hash_recipe": "SHA-256 of UTF-8 sorted unique turn_id strings,joined by newline with one trailing newline."
+    }
+  },
+  "decisive_holds": {
+    "Pulse": "0confirmed gain versus required0.15;12/12incumbent and12/12candidate.",
+    "DocsD2": "Quality improves10/10versus7/10,but21.015%completion proxy reduction fails frozen30%;raw input+output128918versus130214.",
+    "Testing": "Primary published mutant/reference results saturated;diagnostic/supplemental distinctions do not satisfy primary gain.",
+    "GitOps": "Allprimary gate outcomes correct;no material gain.",
+    "Architecture": "9/9useful designs;no material gain.",
+    "PresentationH1": "Original pairs tie;one fresh collision fix cannot override original-task/font-floor requirements."
+  },
+  "presentation_h1": {
+    "result_sha256": "deaccb560b983e76cb78ef1e4c0ae2eb16d61bfe3a4017500a9775ee1665b45a",
+    "decision": "hold",
+    "native_turns": 6,
+    "observed_tokens": 209260,
+    "artifact_view_measurements": 54,
+    "screenshots": 70,
+    "measurements_are_not_extra_model_trials": true,
+    "deadline_overrun_seconds": 76.506458,
+    "budget_compliant": false,
+    "deviation": "Native/browser work completed before deadline;final serialization/verification exceeded30min by76.506s.Noadditional calls afterdeadline.",
+    "limits": [
+      "Publicdevelopment, notformalblind/heldout. Freshcaseauthoredbyevaluator, candidateauthoredbydifferentagent.",
+      "54views are repeatedartifact measurements, not54modeltrials. Sixruns cannot establishgeneralsuperiority.",
+      "Producers correctly disclosed unperformedchecks; browser execution wasexternal.",
+      "No PNG/PPTXpipeline or installedsurface validation; SwiftP2 evidence staysseparate.",
+      "Latencies onsharedhost aredescriptive.",
+      "Original screen/candidate/thresholds unchanged; noadditionalproducer calls."
+    ]
+  },
+  "delivery": {
+    "verification_provenance": "Coordinator verified both provider main refs and matching code tree after the paired source merges. Final release publication proof is a separate artifact.",
+    "source_main": "59e6830cce46c787105fb99fcc32a7f038710cd3",
+    "merged_skills": [
+      "engos-audit-opex-incident-review",
+      "engos-design-plan-to-goal",
+      "engos-content-dynamic-html-presentations"
+    ],
+    "source_reviews": [
+      {
+        "github_pr": 76,
+        "gitlab_mr": 78
+      },
+      {
+        "github_pr": 77,
+        "gitlab_mr": 79
+      }
+    ],
+    "release": {
+      "version": "v1.14.3",
+      "github_record": "https://github.com/medhatgalal/Core-Prompts/releases/tag/v1.14.3",
+      "gitlab_record": "https://gitlab.appian-stratus.com/medhat.galal/core-prompts/-/releases/v1.14.3",
+      "publication_proof": "provider release notes and attached release-verification.json; not asserted by this experiment report",
+      "installed_home_acceptance": "not_performed"
+    },
+    "updated_at": "2026-09-11T00:15:16.354392+00:00",
+    "experimental_verdicts_changed": false,
+    "earlier_checkpoint_preserved_locally": true
+  },
+  "gaps_and_confidence": [
+    "All24worked through means recorded breadth assessment plus an executed bounded question,not allmode coverage,universal skill improvement or production acceptance.",
+    "Most CorpusA/remainingCorpusB native conclusions are author screening observations;no separate full independent item-level grading receipt was located. This final audit verifies their collection/provenance and conservative disposition,not every output anew.",
+    "No task-specific model superiority was established;native trials use Astra/high. Configured/catalog availability is not a comparative model win.",
+    "Public authored examples are not held-out evidence;only Pulse received new independent repeated confirmation here,and it did not confirm improvement.",
+    "Source-only transport controls exclude live tool acquisition and mutation behavior. GenericIC deliberately omits its restricted internal overlay.",
+    "Current ledger summary reconciles with this census. Historical charter/ledger zero-call,unapproved or unassessed launch language remains provenance; dated completed decision/observation receipts govern actual outcomes.",
+    "No new capability addition was demonstrated as necessary by an accepted measured comparison.",
+    "Deterministic tests,compiled Swift observations,JSON checks,screenshots and model turns are separate units;none is substituted for another."
+  ],
+  "source_evidence": {
+    "accepted-helpers.json": {
+      "path": "reports/skill-improvement-campaign/accepted-helpers.json",
+      "sha256": "52bbf6ea83d905ed567346cbed973590d502a649a543a3efd5676775fd67892e",
+      "availability": "tracked research or public summary; hosted revision may require delivery binding"
+    },
+    "baseline-inventory.json": {
+      "path": "reports/skill-improvement-campaign/baseline-inventory.json",
+      "sha256": "536fda8f559ca351cc433e315d78cec3f49ddb53c2f7fa51fbe60bb963fc67f3",
+      "availability": "tracked research or public summary; hosted revision may require delivery binding"
+    },
+    "charter.md": {
+      "path": "reports/skill-improvement-campaign/charter.md",
+      "sha256": "8c99fab4bda2ffc0999944faaa6dfdfa86540bbed76e153e480e2c6c2cd403be",
+      "availability": "tracked research or public summary; hosted revision may require delivery binding"
+    },
+    "corpus-a.md": {
+      "path": "reports/skill-improvement-campaign/corpus-a.md",
+      "sha256": "b73d300535feca89e3280f7c057dc50178f428a06f72495f7dbeb43fb5140570",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "corpus-a/engos-audit-code-health/assembly.json": {
+      "path": "reports/skill-improvement-campaign/corpus-a/engos-audit-code-health/assembly.json",
+      "sha256": "60fd74e87f0450d04d321083ece23fc23b40def11f65e2bde219ef8e487528f3",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "corpus-a/engos-audit-engineering-progress/assembly.json": {
+      "path": "reports/skill-improvement-campaign/corpus-a/engos-audit-engineering-progress/assembly.json",
+      "sha256": "1ecc00fe6334d9b7154af268f69c7a1839daa650ce47ec7240acd9229a294e55",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "corpus-a/engos-audit-feature-status/assembly.json": {
+      "path": "reports/skill-improvement-campaign/corpus-a/engos-audit-feature-status/assembly.json",
+      "sha256": "c4821f1b39a3bed3f719b338c0640b3cbb69059ba9b7e3c100becfe6d57fa35f",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "corpus-a/engos-audit-pitch-review/assembly.json": {
+      "path": "reports/skill-improvement-campaign/corpus-a/engos-audit-pitch-review/assembly.json",
+      "sha256": "111f8c6a090a74853a188f0a728ab5b3142c5ac310ac8e5f318f8c0975efd9b5",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "corpus-a/engos-audit-weekly-intel/assembly.json": {
+      "path": "reports/skill-improvement-campaign/corpus-a/engos-audit-weekly-intel/assembly.json",
+      "sha256": "27f36321e6fe8a733e4e29f5f74a30187db04f8b3ed02f26672fffe9ed9d2377",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "corpus-a/engos-browser-demo-recorder/assembly.json": {
+      "path": "reports/skill-improvement-campaign/corpus-a/engos-browser-demo-recorder/assembly.json",
+      "sha256": "4309c401f634f97ca7c7377c929e061a8e1da36de1dc32933ee62f787d215bad",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "corpus-a/engos-delivery-address-code-review/assembly.json": {
+      "path": "reports/skill-improvement-campaign/corpus-a/engos-delivery-address-code-review/assembly.json",
+      "sha256": "f753422e81c1c57dbb2edf509ef615cd592acca9f2a76e388f254d988537e27a",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "corpus-a/engos-delivery-resolve-conflict/assembly.json": {
+      "path": "reports/skill-improvement-campaign/corpus-a/engos-delivery-resolve-conflict/assembly.json",
+      "sha256": "b99d98b5ec80438704fb6cffc2338911614e9be0226e4bf0d9257147371fb409",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "corpus-a/screen-final-accounting.json": {
+      "path": "reports/skill-improvement-campaign/corpus-a/screen-final-accounting.json",
+      "sha256": "170883597943116209415ea2beefb42a8e6b06ff3703860155458f556fc0fc45",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "corpus-a/screening-report.md": {
+      "path": "reports/skill-improvement-campaign/corpus-a/screening-report.md",
+      "sha256": "0990dad4295b55448d1a450447578d28043018a82aa7403b0a0098afefc597e4",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "corpus-b.md": {
+      "path": "reports/skill-improvement-campaign/corpus-b.md",
+      "sha256": "e9a5fabdc2b2cc319f40f4da62eb202f0eb14644bc9b55811e1370516f9ffe32",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "corpus-b/Pulse/confirmation/decision.json": {
+      "path": "reports/skill-improvement-campaign/corpus-b/Pulse/confirmation/decision.json",
+      "sha256": "4be77a874f65c45de518948e58f9ee157b21cb796daf63eb3cbcccf4e2fdb513",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "corpus-b/Pulse/confirmation/independent-scores.json": {
+      "path": "reports/skill-improvement-campaign/corpus-b/Pulse/confirmation/independent-scores.json",
+      "sha256": "e94a526e8276997506a8117438ae7d304acb96d9465e3e838c054ea10e30f996",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "corpus-b/Pulse/independent-scores.json": {
+      "path": "reports/skill-improvement-campaign/corpus-b/Pulse/independent-scores.json",
+      "sha256": "edefd999d105713a65cf78e922090a95d29900a91508e86b7e561441405d3f0d",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "corpus-b/editor-recovery/ledger.json": {
+      "path": "reports/skill-improvement-campaign/corpus-b/editor-recovery/ledger.json",
+      "sha256": "f1a8b5d25963bf56edb2352368e92029b6abcdc64b78ea2775c6b8f857e01176",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "corpus-b/editor-recovery/screen-report.md": {
+      "path": "reports/skill-improvement-campaign/corpus-b/editor-recovery/screen-report.md",
+      "sha256": "51b083067c7b93446fe23ad64c3d5759383dfd4da633e580a2e507bf3a7dd862",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "corpus-b/engos-memory-context-continuity/design.json": {
+      "path": "reports/skill-improvement-campaign/corpus-b/engos-memory-context-continuity/design.json",
+      "sha256": "b6b1c1765ab8b59475b650c6f26441505fe11eaa4de38bc75d5f6b08c24b6828",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "corpus-b/engos-memory-threader/design.json": {
+      "path": "reports/skill-improvement-campaign/corpus-b/engos-memory-threader/design.json",
+      "sha256": "b358b56c95bcfa7ad71995b3553b81ed178ca4a496a2c5cc867361d8ce4ab45b",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "corpus-b/engos-meta-instruction-editor/design.json": {
+      "path": "reports/skill-improvement-campaign/corpus-b/engos-meta-instruction-editor/design.json",
+      "sha256": "d3e84cd103538e942282125baaf7dc3dd556a85c1aba2bf9497692cd5b8043aa",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "corpus-b/engos-meta-uac-import/design.json": {
+      "path": "reports/skill-improvement-campaign/corpus-b/engos-meta-uac-import/design.json",
+      "sha256": "9e8f139597c345a7c75f0a06db7000af5e5cea2717fa595974bcc2f57d0023bc",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "corpus-b/engos-operations-ic-assistant/design.json": {
+      "path": "reports/skill-improvement-campaign/corpus-b/engos-operations-ic-assistant/design.json",
+      "sha256": "00227e22550e2c53fbad614cb55a0b27e1d8aba7a262c845c268c948525549a6",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "corpus-b/engos-orchestration-batman/design.json": {
+      "path": "reports/skill-improvement-campaign/corpus-b/engos-orchestration-batman/design.json",
+      "sha256": "4edd48c2101460b9c72cbfd918803d037bcf7bd194643acfb8040795add2edef",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "corpus-b/engos-quality-code-review/design.json": {
+      "path": "reports/skill-improvement-campaign/corpus-b/engos-quality-code-review/design.json",
+      "sha256": "3a95b8de3e11e8d7bc025a8c4b509d56ff7dacb01a5fb47621460113df83616a",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "corpus-b/engos-reconciliation-converge/design.json": {
+      "path": "reports/skill-improvement-campaign/corpus-b/engos-reconciliation-converge/design.json",
+      "sha256": "1e7dcf5dc9056e6512f34b4a53f4af5bfbb89d5563953487942d4a301aeb4687",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "corpus-b/remaining-native/accounting.json": {
+      "path": "reports/skill-improvement-campaign/corpus-b/remaining-native/accounting.json",
+      "sha256": "116c849d82c102590b610bac8dbef0a5c11efe0d21d770a4a543c4a52eb5459b",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "corpus-b/remaining-native/screen-report.md": {
+      "path": "reports/skill-improvement-campaign/corpus-b/remaining-native/screen-report.md",
+      "sha256": "edcaf66cc6af75c7a23590030ba26641d627dd924f9c55bda230683d10d70442",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "exporter-delivery-review.json": {
+      "path": "reports/skill-improvement-campaign/exporter-delivery-review.json",
+      "sha256": "101f5525db4e4e7513f0c438d8000dd68ca3bd806956eaae0266422864445a67",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "ledger.md": {
+      "path": "reports/skill-improvement-campaign/ledger.md",
+      "sha256": "7335045819de0c20333aec852ad427657cbd363730f46b244399e07566bd8b0b",
+      "availability": "tracked research or public summary; hosted revision may require delivery binding"
+    },
+    "native-development-independent-review.json": {
+      "path": "reports/skill-improvement-campaign/native-development-independent-review.json",
+      "sha256": "ef7e10d601290c95820319d65d4f1c7615d6b65768edafcfb58c70e0a4b102e7",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "native-development-preflight.json": {
+      "path": "reports/skill-improvement-campaign/native-development-preflight.json",
+      "sha256": "5526d033abffcd258eb4ba711b6424255de9d9b8e7a3e6ca8f61be8fa498f081",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "opex-independent-review.json": {
+      "path": "reports/skill-improvement-campaign/opex-independent-review.json",
+      "sha256": "df46fc5608c96d5c1e019b6d4a80f0df1517596ced35c0f820397db230712a82",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "plan-to-goal-independent-review.json": {
+      "path": "reports/skill-improvement-campaign/plan-to-goal-independent-review.json",
+      "sha256": "a2012525f22910b487fb46486c153a43d11837eca3a32c9382e8de745701c99e",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "presentation-independent-exporter-review.json": {
+      "path": "reports/skill-improvement-campaign/presentation-independent-exporter-review.json",
+      "sha256": "b3399210722332ffcffb5baae5056a96fa507a3aa0d9915d21f3ecc0aa1ba9e7",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "presentation-layout-native-h1/result.json": {
+      "path": "reports/skill-improvement-campaign/presentation-layout-native-h1/result.json",
+      "sha256": "deaccb560b983e76cb78ef1e4c0ae2eb16d61bfe3a4017500a9775ee1665b45a",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "presentation-layout-native-h1/run-ledger.json": {
+      "path": "reports/skill-improvement-campaign/presentation-layout-native-h1/run-ledger.json",
+      "sha256": "b6362a6eb05ec51ef87d08db534793b4e1154b036f72f2a4ff767e2816b8ec25",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "skills/engos-design-architecture/assessment.md": {
+      "path": "reports/skill-improvement-campaign/skills/engos-design-architecture/assessment.md",
+      "sha256": "e787f6c654ff9de56d4d8aa30f304ada77b440072912f16526e04dc960fde553",
+      "availability": "tracked research or public summary; hosted revision may require delivery binding"
+    },
+    "skills/engos-design-architecture/native-screen-plan/decision.json": {
+      "path": "reports/skill-improvement-campaign/skills/engos-design-architecture/native-screen-plan/decision.json",
+      "sha256": "672d71ead1a780ef71092cbd10d83354e2a3fbd83177c45341a4b64f19b12a65",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "skills/engos-design-architecture/native-screen-plan/independent-scores.json": {
+      "path": "reports/skill-improvement-campaign/skills/engos-design-architecture/native-screen-plan/independent-scores.json",
+      "sha256": "6070abea5045b854f13de2bc947063fe9c6fd3b438b9df243a546145a79230cb",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "skills/engos-quality-docs-review/assessment.md": {
+      "path": "reports/skill-improvement-campaign/skills/engos-quality-docs-review/assessment.md",
+      "sha256": "bdd978504700b179ea142c5d283e2b944b77838c3a7ea2416f550eb18d323bc9",
+      "availability": "tracked research or public summary; hosted revision may require delivery binding"
+    },
+    "skills/engos-quality-docs-review/executed-screen/independent-scores.json": {
+      "path": "reports/skill-improvement-campaign/skills/engos-quality-docs-review/executed-screen/independent-scores.json",
+      "sha256": "e09c9f735af81f43142b56cda11e631d0210e3fcceb20fec455f0179d81a859d",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "skills/engos-quality-docs-review/second-experiment/executed/decision.json": {
+      "path": "reports/skill-improvement-campaign/skills/engos-quality-docs-review/second-experiment/executed/decision.json",
+      "sha256": "914bf7a09989ef2325215fb40714b856310df7f0d1b67965d28abe3dbeb98d72",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "skills/engos-quality-docs-review/second-experiment/executed/independent-scores.json": {
+      "path": "reports/skill-improvement-campaign/skills/engos-quality-docs-review/second-experiment/executed/independent-scores.json",
+      "sha256": "d3f85ddcd4d3bfde3bdc78ead0a956cb32fff507434032bc4279c4fbca83b7b4",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "skills/engos-quality-gitops-review/assessment.md": {
+      "path": "reports/skill-improvement-campaign/skills/engos-quality-gitops-review/assessment.md",
+      "sha256": "0890270e5bebfa7a8bc2fe96efc97d825e607160c90d272bb83286213ad827da",
+      "availability": "tracked research or public summary; hosted revision may require delivery binding"
+    },
+    "skills/engos-quality-gitops-review/native-screen-plan/decision.json": {
+      "path": "reports/skill-improvement-campaign/skills/engos-quality-gitops-review/native-screen-plan/decision.json",
+      "sha256": "b7cdbde7dc57c170905d7e1a48d1dfb2d4196440ce780b6a28d7aff0eff70620",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "skills/engos-quality-gitops-review/native-screen-plan/independent-scores.json": {
+      "path": "reports/skill-improvement-campaign/skills/engos-quality-gitops-review/native-screen-plan/independent-scores.json",
+      "sha256": "9b11db4ebb2b24eecec08702f573560adf14745922d9217d6a45e37d4c662d74",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "skills/engos-quality-testing-review/assessment.md": {
+      "path": "reports/skill-improvement-campaign/skills/engos-quality-testing-review/assessment.md",
+      "sha256": "cada2a30b929103825e8dffb515f4e5bd4001f50a77fb03be9f417de1eb8499e",
+      "availability": "tracked research or public summary; hosted revision may require delivery binding"
+    },
+    "skills/engos-quality-testing-review/native-screen-plan/decision.json": {
+      "path": "reports/skill-improvement-campaign/skills/engos-quality-testing-review/native-screen-plan/decision.json",
+      "sha256": "aff135c05bc3163d1c4dde7766502412ae6bbd6dcc6839c20fad537b140f0dab",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    },
+    "skills/engos-quality-testing-review/native-screen-plan/independent-testing-review.json": {
+      "path": "reports/skill-improvement-campaign/skills/engos-quality-testing-review/native-screen-plan/independent-testing-review.json",
+      "sha256": "30db6a237ef852776e43de4946f6ada264bad6054c33afd7953e60aeba926ad2",
+      "availability": "local-only receipt; logical path and hash,not a published link"
+    }
+  },
+  "assessor_native_calls": 0,
+  "assessor_token_usage": "unavailable,not zero",
+  "publication": {
+    "scope": "Compact outcome/count summary only. Full native traces,candidate bodies and detailed local evaluator receipts are not included.",
+    "local_evidence_reference_rule": "Plain logical paths/hashes identify retained local-only evidence; they must not be treated as public URLs.",
+    "pending_delivery_bindings": true
+  },
+  "publication_review_completed_at": "2026-09-11T00:02:44.411313+00:00"
+}
