@@ -169,6 +169,8 @@ def test_packaged_profile_updates_verified_release_and_rolls_back(tmp_path: Path
     (release_root / 'VERSION').write_text('v99.0.0\n')
     changed = release_root / f'.codex/skills/{slug}/SKILL.md'
     changed.write_text(changed.read_text() + '\nReleased update fixture.\n')
+    # A real regenerated release keeps both shared skill surfaces equivalent.
+    (release_root / f'.gemini/skills/{slug}/SKILL.md').write_bytes(changed.read_bytes())
     module.install_bundle.build(release_root)
     state = {'installed_version': version, 'pending_version': 'v99.0.0', 'latest_version': 'v99.0.0',
              'status': 'pending-install', 'mirror_path': str(release_root),

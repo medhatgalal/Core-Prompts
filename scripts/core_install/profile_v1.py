@@ -22,7 +22,7 @@ STATE = '.core-prompts-state/profile-install'
 RECEIPT = f'{STATE}/ownership.json'
 PROFILE = f'{STATE}/profile.json'
 ROOTS = {'codex': '.agents/skills', 'kiro': '.kiro/skills', 'grok': '.grok/skills',
-         'claude': '.claude/skills', 'gemini': '.gemini/skills'}
+         'claude': '.claude/skills', 'gemini': '.agents/skills'}
 
 
 def digest(data):
@@ -110,11 +110,23 @@ def desired_files(repo, profile):
             surface = cli + '_skill'
             if surface not in entry['expected_surface_names']:
                 continue
-            skill = f'.{cli}/skills/{slug}/SKILL.md'
+            source_cli = 'codex' if cli == 'gemini' else cli
+            if cli == 'gemini':
+                prefix = f'.gemini/skills/{slug}/'
+                gemini_members = [prefix + 'SKILL.md', *[r for r in manifest.get('resources', {}).get(surface, []) if r.startswith(prefix)]]
+                codex_members = {f'.codex/skills/{slug}/SKILL.md', *manifest.get('resources', {}).get('codex_skill', [])}
+                for rel in gemini_members:
+                    other = rel.replace('.gemini/skills/', '.codex/skills/', 1)
+                    if other not in codex_members or safe(repo, rel).read_bytes() != safe(repo, other).read_bytes():
+                        raise ValueError(f'shared skill differs across generated providers: {rel}')
+            surface = source_cli + '_skill'
+            if surface not in entry['expected_surface_names']:
+                raise ValueError(f'shared skill requires portable surface: {slug}')
+            skill = f'.{source_cli}/skills/{slug}/SKILL.md'
             # Full package membership comes from the generated manifest, not home scans.
             members = [skill, *manifest.get('resources', {}).get(surface, [])]
             for rel in members:
-                prefix = f'.{cli}/skills/{slug}/'
+                prefix = f'.{source_cli}/skills/{slug}/'
                 if not rel.startswith(prefix):
                     continue
                 source = safe(repo, rel)
