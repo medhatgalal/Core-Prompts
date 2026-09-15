@@ -42,7 +42,7 @@ def _init_repo(path: Path) -> Path:
     return path
 
 
-def test_docs_review_and_gitops_review_land_as_both() -> None:
+def test_docs_review_and_gitops_review_land_as_skills() -> None:
     docs = json.loads((ROOT / '.meta' / 'capabilities' / 'engos-quality-docs-review.json').read_text(encoding='utf-8'))
     gitops_path = ROOT / '.meta' / 'capabilities' / 'engos-quality-gitops-review.json'
     if gitops_path.exists():
@@ -50,12 +50,12 @@ def test_docs_review_and_gitops_review_land_as_both() -> None:
     else:
         gitops = None
 
-    assert docs['layers']['minimal']['capability_type'] == 'both'
-    assert docs['layers']['minimal']['emitted_surfaces']['codex'] == ['codex_skill', 'codex_agent']
+    assert docs['layers']['minimal']['capability_type'] == 'skill'
+    assert docs['layers']['minimal']['emitted_surfaces']['codex'] == ['codex_skill']
     assert docs['display_name'].startswith('Docs Review Expert')
     assert gitops is not None
-    assert gitops['layers']['minimal']['capability_type'] == 'both'
-    assert 'codex_agent' in gitops['layers']['minimal']['emitted_surfaces']['codex']
+    assert gitops['layers']['minimal']['capability_type'] == 'skill'
+    assert gitops['layers']['minimal']['emitted_surfaces']['codex'] == ['codex_skill']
 
 
 def test_rewritten_ssot_files_have_single_frontmatter_and_required_sections() -> None:
