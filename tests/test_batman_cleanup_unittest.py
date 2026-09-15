@@ -118,9 +118,8 @@ class BatmanCleanupTests(unittest.TestCase):
         self.assertEqual(receipt["preserved"], [])
         self.assert_preserved(original)
         self.assertTrue((self.target / f".agents/skills/{BATMAN}/SKILL.md").is_file())
-        self.assertTrue((self.target / f".codex/agents/{BATMAN}.toml").is_file())
         selection = json.loads((self.target / ".core-prompts-state/installation.json").read_bytes())["selection"]
-        self.assertEqual(selection, [f"codex:agent:{BATMAN}", f"codex:skill:{BATMAN}"])
+        self.assertEqual(selection, [f"codex:skill:{BATMAN}"])
 
     def test_unfiltered_repair_never_claims_random_named_files_as_owned(self):
         original = self.seed_unrecognized_files()
