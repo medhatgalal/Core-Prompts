@@ -194,8 +194,8 @@ identities. No old updater or receipt is required for trusted historical recogni
 | Option | Meaning |
 | --- | --- |
 | `--cli codex\|kiro\|claude\|gemini\|grok\|all` | Select a provider; initial `all` discovers available or existing providers, while saved selection persists on routine calls. |
-| `--repair` | Adopt independently recognized existing skills and agents within the selected providers. |
-| `--with-agents` | Explicitly select current skills and emitted agents; fresh default is skills. |
+| `--repair` | Recognize existing packages within selected providers and apply declared migrations, including retired agent-to-skill transitions. |
+| `--with-agents` | Compatibility selector for skills and currently emitted approved agents (none ship); it cannot authorize agent creation. |
 | `--slug SLUG` | Select emitted skills and agents for a capability; repeat for multiple slugs. |
 | `--surface-only` | Require a slug and skip updater/launcher refresh while recording surface ownership. |
 | `--profile PATH` | Use a schema 1 skills selection input; do not combine with CLI/slug/surface-only selection. |
@@ -208,9 +208,11 @@ identities. No old updater or receipt is required for trusted historical recogni
 
 Fresh installs save concrete provider/surface/slug selection in
 `.core-prompts-state/installation.json`. Existing schema 1 profiles retain their
-skill scope on ordinary sync; explicit repair can add independently recognized
-existing agents on those providers. Routine updates reconcile resources within
-owned selected packages, without adding unrelated catalog entries.
+skill scope on ordinary sync; explicit repair discovers independently recognized
+existing agents on those providers and plans declared retirement transitions.
+Recognized owned retired agents map to their exact same-job, same-provider skill,
+including agent-only saved selections. Routine updates reconcile owned selected
+packages and declared retirements without adding unrelated catalog entries.
 
 Whole unknown, custom, symlinked, or unrecognized partial packages are preserved. Exit `2`
 reports `applied-with-preserved` or `no-op-with-preserved`; it is not full parity.
@@ -224,6 +226,11 @@ Schema-1 receipt conversion may restore missing receipted files; see
 Exact preimages
 are journaled; the new engine does not remove files solely because their names
 appear on an old prune list. See [installation and recovery](INSTALL-PROFILES.md).
+
+The tested v1.14 updater cannot perform this skills-only transition: removed
+bundle paths trigger its scope guard, and old `--migrate` only adds files. Run the
+current installer with `--repair --dry-run`, then `--apply-plan` against the
+reviewed JSON. See [older updater boundaries](INSTALL-PROFILES.md#routine-updates-and-older-updaters).
 
 ### Check Or Accept Installed Releases
 
@@ -278,12 +285,21 @@ These generated views are derived from canonical metadata and reports. They are 
 
 ## Generated Surfaces
 
+The current inventory emits 27 skills across all five CLIs and no named agents.
+The table documents supported output formats, not a list of installed or shipped
+agents. Agent columns apply only to future explicitly user-approved native
+adapters. UAC improvement within an existing surface does not authorize adding
+another surface; neither installer selection nor `--with-agents` grants that
+approval. See [agent admission](UAC-CAPABILITY-MODEL.md#skill-first-classification).
+
+
 | CLI | Direct skill surface | Bundled skill resource | Agent surface | Bundled agent resource |
 | --- | --- | --- | --- | --- |
 | Codex | `.codex/skills/<slug>/SKILL.md` | `.codex/skills/<slug>/resources/capability.json` | `.codex/agents/<slug>.toml` | `.codex/agents/resources/<slug>/capability.json` |
 | Gemini | `.gemini/skills/<slug>/SKILL.md` | `.gemini/skills/<slug>/resources/capability.json` | `.gemini/agents/<slug>.md` | `.gemini/agents/resources/<slug>/capability.json` |
 | Claude | `.claude/skills/<slug>/SKILL.md` | `.claude/skills/<slug>/resources/capability.json` | `.claude/agents/<slug>.md` | `.claude/agents/resources/<slug>/capability.json` |
 | Kiro | `.kiro/skills/<slug>/SKILL.md` | `.kiro/skills/<slug>/resources/capability.json` | `.kiro/agents/<slug>.json` | `.kiro/agents/resources/<slug>/capability.json` |
+| Grok | `.grok/skills/<slug>/SKILL.md` | `.grok/skills/<slug>/resources/capability.json` | Not emitted | Not emitted |
 
 ## Direct Surface Standard
 
@@ -304,7 +320,7 @@ Direct exposure is standardized on `skills/<slug>/SKILL.md` for every supported 
 
 - version and help probes run for configured CLIs
 - filesystem checks verify expected generated surfaces per CLI
-- discovery checks run only for discovery-backed surfaces:
+- discovery checks run only when the selected inventory emits discovery-backed surfaces:
   - Gemini skills
   - Claude agents
   - Kiro agents

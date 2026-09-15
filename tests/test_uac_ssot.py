@@ -22,26 +22,21 @@ def test_audit_ssot_entries_reports_known_entries() -> None:
     assert 'engos-meta-uac-import' in slugs
 
 
-def test_audit_ssot_entries_detects_hybrid_capability() -> None:
-    audits = {entry.slug: entry for entry in audit_ssot_entries(ROOT)}
-
-    assert audits['engos-meta-supercharge'].inferred.capability_type == 'both'
-    assert audits['engos-orchestration-batman'].inferred.capability_type == 'both'
-    # Pulse previously relied on lexical inference: freeze its released agents.
-    pulse = audits['engos-triage-my-inbox-chat-pulse']
-    assert pulse.declared_capability == 'both'
-    assert {name for name in pulse.expected_surface_names if name.endswith('_agent')} == {
-        'codex_agent', 'claude_agent', 'gemini_agent', 'kiro_agent',
-    }
+def test_shipped_capabilities_are_skills_only() -> None:
+    audits = audit_ssot_entries(ROOT)
+    assert len(audits) == 27
+    for audit in audits:
+        assert audit.manifest['layers']['minimal']['capability_type'] == 'skill'
+        assert all(name.endswith('_skill') for name in audit.expected_surface_names)
 
 
-def test_architecture_entry_publishes_display_name_and_agent_surfaces() -> None:
+def test_architecture_entry_publishes_display_name_and_skill_surfaces() -> None:
     audits = {entry.slug: entry for entry in audit_ssot_entries(ROOT)}
     architecture = audits['engos-design-architecture']
 
     assert architecture.manifest['display_name'] == 'Architecture Studio'
-    assert 'codex_agent' in architecture.expected_surface_names
-    assert 'kiro_agent' in architecture.expected_surface_names
+    assert 'codex_agent' not in architecture.expected_surface_names
+    assert 'kiro_agent' not in architecture.expected_surface_names
     assert 'gemini_skill' in architecture.expected_surface_names
     assert 'claude_skill' in architecture.expected_surface_names
     assert 'kiro_prompt' not in architecture.expected_surface_names

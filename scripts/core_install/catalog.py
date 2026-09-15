@@ -45,6 +45,31 @@ SUCCESSORS["engos-audit-opex-incident-review"] = "engos-audit-opex-incident-revi
 PROVIDERS = {"codex": "toml", "gemini": "md", "claude": "md", "kiro": "json", "grok": None}
 
 
+# Retirement is a provider/surface decision: the same-named skill survives.
+RETIRED_AGENT_SLUGS = frozenset({
+    "engos-audit-pitch-review", "engos-audit-weekly-intel",
+    "engos-design-architecture", "engos-meta-supercharge",
+    "engos-operations-ic-assistant", "engos-optimization-auto-research",
+    "engos-orchestration-batman", "engos-quality-docs-review",
+    "engos-quality-gitops-review", "engos-reconciliation-converge",
+    "engos-triage-my-inbox-chat-pulse",
+})
+
+
+def successor(provider: str, kind: str, slug: str) -> str | None:
+    mapped = SUCCESSORS.get(slug, slug)
+    if provider in PROVIDERS and PROVIDERS[provider] and kind == "agent" and mapped in RETIRED_AGENT_SLUGS:
+        return None
+    return mapped
+
+
+def retired_key(key: str) -> bool:
+    parts = key.split(":")
+    return (len(parts) == 3 and parts[0] in PROVIDERS
+            and parts[1] in ("skill", "agent") and parts[2] in SUCCESSORS
+            and successor(*parts) is None)
+
+
 def _require(ok: bool, message: str) -> None:
     if not ok:
         raise ValueError(f"invalid legacy catalog: {message}")
@@ -79,7 +104,7 @@ def validate_catalog(data: dict) -> dict:
         provider, kind, slug = (spec.get(k) for k in ("provider", "kind", "slug"))
         _require(isinstance(provider, str) and provider in PROVIDERS, "provider")
         _require(isinstance(slug, str) and slug in SUCCESSORS, "first-party slug")
-        _require(spec.get("successor") == SUCCESSORS[slug], "successor")
+        _require(spec.get("successor") == successor(provider, kind, slug), "successor")
         roots = spec.get("roots")
         if kind == "skill":
             expected = [f".{provider}/skills/{slug}"]

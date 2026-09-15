@@ -3,9 +3,9 @@
   "manifest_version": "capability-fabric.v0",
   "layers": {
     "minimal": {
-      "capability_type": "both",
+      "capability_type": "skill",
       "summary": "Compare multiple sources, drafts, or proposals, surface conflicts and gaps, and produce one defensible recommendation with explicit trade-offs. Use when competing inputs must converge; do not hide incompatible ideas in a blended summary.",
-      "role": "specialist_workflow",
+      "role": "workflow",
       "domain_tags": [
         "packaging",
         "engos",
@@ -46,32 +46,26 @@
         "ssot/engos-reconciliation-converge.md"
       ],
       "packaging_profile": {
-        "capability_type": "both",
+        "capability_type": "skill",
         "primary_surfaces": {
           "codex": [
-            "codex_skill",
-            "codex_agent"
+            "codex_skill"
           ],
           "gemini": [
-            "gemini_skill",
-            "gemini_agent"
+            "gemini_skill"
           ],
           "claude": [
-            "claude_skill",
-            "claude_agent"
+            "claude_skill"
           ],
           "kiro": [
-            "kiro_skill",
-            "kiro_agent"
+            "kiro_skill"
           ],
           "grok": [
             "grok_skill"
           ]
         },
         "wrapper_surfaces": {
-          "codex": [
-            "plugin_wrapper"
-          ],
+          "codex": [],
           "gemini": [
             "skill_wrapper"
           ],
@@ -102,20 +96,16 @@
       },
       "emitted_surfaces": {
         "codex": [
-          "codex_skill",
-          "codex_agent"
+          "codex_skill"
         ],
         "gemini": [
-          "gemini_skill",
-          "gemini_agent"
+          "gemini_skill"
         ],
         "claude": [
-          "claude_skill",
-          "claude_agent"
+          "claude_skill"
         ],
         "kiro": [
-          "kiro_skill",
-          "kiro_agent"
+          "kiro_skill"
         ],
         "grok": [
           "grok_skill"
@@ -166,17 +156,13 @@
     }
   },
   "display_name": "Converge \u2014 Multi-Source Synthesis, Conflict Surfacing, and Final Recommendation",
-  "declared_capability": "both",
-  "inferred_capability": "both",
+  "declared_capability": "skill",
+  "inferred_capability": "skill",
   "expected_surface_names": [
     "codex_skill",
-    "codex_agent",
     "gemini_skill",
-    "gemini_agent",
     "claude_skill",
-    "claude_agent",
     "kiro_skill",
-    "kiro_agent",
     "grok_skill"
   ],
   "rubric_version": "capability-fabric.v0",

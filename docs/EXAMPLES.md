@@ -297,7 +297,7 @@ Follow with:
 - `supercharge /basis /full <plan>` — run the basis pass first, then all five full passes.
 - `supercharge /stop-ult /full` — exit persistent ULT mode without running the full stack.
 
-The short conversational prefix routes within `engos-meta-supercharge`. Help is bundled with the skill and agent resources; no separate short-name skill or native menu alias is added.
+The short conversational prefix routes within `engos-meta-supercharge`. Help is bundled with the skill resources; no separate short-name skill or native menu alias is added.
 
 ### `engos-meta-supercharge /basis`
 
@@ -1023,77 +1023,13 @@ Follow with:
 
 > Now shorten that into a one-screen executive update for leadership.
 
-## Agent Surface Examples
-
-These examples are for the current agents emitted by the repo. Fabric metadata is advisory; explicit invocation follows each capability's operating contract.
-
-### `engos-quality-docs-review`
-
-> Use `engos-quality-docs-review` to review the docs set before release and call out drift.
-
-Use this when you want documentation findings, rewrite targets, and release-facing doc checks.
-
-### `engos-quality-gitops-review`
-
-> Use `engos-quality-gitops-review` to judge whether we are ready to merge and release.
-
-Use this when you want a merge or release gate with blockers and next actions.
-
-### `engos-optimization-auto-research`
-
-> Use `engos-optimization-auto-research` to improve this workflow and prove which version wins.
-
-Use this when you want an experiment loop, not a one-shot rewrite.
-
-### `engos-meta-supercharge`
-
-> Use `engos-meta-supercharge /basis` to harden this operating prompt by finding the irreducible work, waste, and proof gaps before we ship it.
-
-Use this when you want a stronger plan or prompt before execution.
-
-> Use `engos-meta-supercharge /adversarial /debate /deep` to run a Bull/Bear/Decider debate on this operating decision before we ship it.
-
-Use this when you want structured dissent before committing to a plan.
-
-### `engos-reconciliation-converge`
-
-> Use `engos-reconciliation-converge` to synthesize these sources into one final recommendation.
-
-Use this when several proposals overlap and you want one coherent answer.
-
-### `engos-design-architecture`
-
-> Use `engos-design-architecture` to review this system change for migration and rollback risk.
-
-Use this when the decision will shape interfaces or system boundaries.
-
-### `engos-operations-ic-assistant`
-
-> Use `engos-operations-ic-assistant` to track this incident and keep me on the required checklist.
-
-Use this when you need phase-aware Incident Commander process guidance without taking incident decisions for the IC. It uses generic guidance by default and consults the internal runbook resource only when explicitly requested.
-
-### `engos-audit-pitch-review`
-
-> Use `engos-audit-pitch-review` to review this Shape Up pitch before betting.
-
-Use this when you want pitch scoring, risks, and rewrite guidance.
-
-### `engos-triage-my-inbox-chat-pulse`
-
-> Use `engos-triage-my-inbox-chat-pulse` to triage Gmail and Google Chat and propose next actions without sending anything.
-
-Use this when you want communication prioritization with explicit approval boundaries.
-
-### `engos-audit-weekly-intel`
-
-> Use `engos-audit-weekly-intel` to produce a weekly status report from these sources.
-
-Use this when you want a multi-source weekly report with fact-checking.
-
 ## UAC Examples
 
-Use these only when you are importing or uplifting capabilities into canonical repo state.
+Use these only when you are importing or uplifting capabilities into canonical repo state. UAC preserves an existing capability’s surface scope during improvement. New workflows default to skills.
+
+> Improve this skill without adding any agent surface.
+
+Expected result: a same-slug plan, independent judge evidence, and an improved skill. Adding, reintroducing, or expanding a named agent requires your explicit approval for the capability and providers plus independent execution-need review. Neither `--yes` nor a good grade grants it.
 
 ### Plan A Landing
 
@@ -1258,7 +1194,7 @@ Example ask:
 
 > Preview my old Core-Prompts Kiro skills and named agents using the current
 > installer. I have no updater or receipts. Include recognized namespace migrations
-> and mentor retirement, preserve custom agents and unresolved dependencies, and
+> and retirement of owned first-party agent variants, preserve custom agents and unresolved dependencies, and
 > show the exact plan before applying it.
 
 ```bash
@@ -1269,8 +1205,9 @@ bash scripts/install-local.sh --target "$HOME" --allow-nonlocal-target \
   --apply-plan /tmp/core-prompts-kiro-plan.json
 ```
 
-Expected result: independently recognized skills and agents migrate to their
-current same-provider surfaces; recognized retired packages are recoverable.
+Expected result: recognized skills migrate to current identities; recognized owned
+retired agents migrate to their same-job, same-provider skills. Agent removals are
+recoverable through the existing transaction.
 Unknown, customized, symlinked, dependency-conflicted, and unrecognized partial
 packages remain in place and appear in `preserved`. Schema-1 receipt conversion
 may restore missing receipted files; review the plan using the
@@ -1280,8 +1217,8 @@ The installer supplies the missing updater and saves the concrete selection;
 scheduling is a separate opt-in action.
 
 For an existing skills-only profile, ordinary sync retains skills only. Explicit
-repair can adopt recognized existing agents on its selected providers. For a fresh
-installation that should include agents, explicitly use `--with-agents`.
+repair discovers recognized existing agents on selected providers and plans their
+declared retirement transitions. `--with-agents` only selects emitted agents; the current skills-only package emits none. It does not authorize new agent surfaces.
 Subsequent ordinary runs keep the saved selection and reconcile resources within
 owned packages. Review a repeat dry-run for unexpected actions, and use
 `--rollback TRANSACTION_ID --dry-run` to check recovery readiness.

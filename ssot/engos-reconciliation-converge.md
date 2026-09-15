@@ -3,7 +3,7 @@ name: "engos-reconciliation-converge"
 description: "Compare multiple sources, drafts, or proposals, surface conflicts and gaps, and produce one defensible recommendation with explicit trade-offs. Use when competing inputs must converge; do not hide incompatible ideas in a blended summary."
 display_name: "Converge — Multi-Source Synthesis, Conflict Surfacing, and Final Recommendation"
 kind: "agent"
-capability_type: "both"
+capability_type: "skill"
 agent_tools: "Read, Write, Edit, Bash, Grep, Glob"
 ---
 # Converge — Multi-Source Synthesis, Conflict Surfacing, and Final Recommendation

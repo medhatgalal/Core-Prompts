@@ -3,7 +3,7 @@ name: "engos-quality-docs-review"
 description: "Review repository documentation for information architecture, stale commands, broken links, misplaced content, drift, and release hygiene. Use when docs quality or discoverability is the primary concern; do not use for ordinary sentence editing."
 display_name: "Docs Review Expert — Documentation IA, Drift, and Release Hygiene"
 kind: "agent"
-capability_type: "both"
+capability_type: "skill"
 agent_tools: "Read, Write, Edit, Bash, Grep, Glob"
 ---
 # Docs Review Expert — Documentation IA, Drift, and Release Hygiene

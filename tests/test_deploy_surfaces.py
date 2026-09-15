@@ -111,7 +111,7 @@ def test_deploy_defaults_to_repo_root_for_target_all():
     assert all(p.is_relative_to(ROOT) for p in destinations)
     assert all(any(p.is_relative_to(ROOT / provider) for p in destinations)
                for provider in (".codex", ".gemini", ".claude", ".kiro"))
-    assert f"DRY-RUN REGISTER codex agents in {ROOT}/.codex/config.toml" in result.stdout
+    assert "DRY-RUN REGISTER codex agents" not in result.stdout
 
 
 def test_install_wrapper_defaults_to_repo_root_and_does_not_touch_home(tmp_path):
@@ -119,7 +119,7 @@ def test_install_wrapper_defaults_to_repo_root_and_does_not_touch_home(tmp_path)
     result = run_script(INSTALL_SCRIPT, "--cli", "all", "--dry-run",
                         cli_bins=("codex", "gemini", "claude", "kiro-cli"), env_overrides={"HOME": str(fake_home)})
     assert result.returncode == 0, result.stdout
-    assert f"DRY-RUN REGISTER codex agents in {ROOT}/.codex/config.toml" in result.stdout
+    assert "DRY-RUN REGISTER codex agents" not in result.stdout
     assert not fake_home.exists()
 
 
@@ -165,17 +165,16 @@ def test_surface_only_requires_explicit_slug(tmp_path):
     assert list(tmp_path.iterdir()) == []
 
 
-def test_surface_only_installs_selected_skill_agent_and_scoped_receipt(tmp_path):
+def test_surface_only_installs_selected_skill_and_scoped_receipt(tmp_path):
     receipt = document(external(DEPLOY_SCRIPT, tmp_path, "--cli", "kiro", "--slug", ARCH, "--surface-only"))
     assert receipt["transaction"]
-    for rel in (f".kiro/skills/{ARCH}/SKILL.md", f".kiro/skills/{ARCH}/resources/capability.json",
-                f".kiro/agents/{ARCH}.json", f".kiro/agents/resources/{ARCH}/capability.json"):
+    for rel in (f".kiro/skills/{ARCH}/SKILL.md", f".kiro/skills/{ARCH}/resources/capability.json"):
         assert (tmp_path / rel).read_bytes() == (ROOT / rel).read_bytes()
     assert not (tmp_path / ".kiro/skills" / REVIEW).exists()
     assert not (tmp_path / ".core-prompts-updater").exists()
     assert not (tmp_path / "update_core_prompts.sh").exists()
     assert not (tmp_path / ".local").exists()
-    assert state(tmp_path)["selection"] == [f"kiro:agent:{ARCH}", f"kiro:skill:{ARCH}"]
+    assert state(tmp_path)["selection"] == [f"kiro:skill:{ARCH}"]
     assert state(tmp_path)["runtime"] == {}
 
 
@@ -215,20 +214,16 @@ def test_default_detected_providers_install_skills_without_agent_expansion(tmp_p
     assert not (tmp_path / ".codex/agents").exists()
 
 
-def test_with_agents_installs_full_resources_for_detected_providers(tmp_path):
+def test_with_agents_cannot_recreate_retired_stock_agents(tmp_path):
     document(external(DEPLOY_SCRIPT, tmp_path, "--with-agents",
                       cli_bins=("codex", "gemini", "claude", "kiro-cli")))
     for provider, skill_root, extension in (("codex", ".agents", "toml"), ("gemini", ".agents", "md"),
                                              ("claude", ".claude", "md"), ("kiro", ".kiro", "json")):
         for slug in (ARCH, AUTO, REVIEW):
             assert (tmp_path / skill_root / "skills" / slug / "SKILL.md").is_file()
-        assert (tmp_path / f".{provider}/agents/{ARCH}.{extension}").is_file()
-        assert (tmp_path / f".{provider}/agents/resources/{ARCH}/capability.json").is_file()
-        assert (tmp_path / f".{provider}/agents/resources/{AUTO}/bootstrap.py").is_file()
-        assert not (tmp_path / f".{provider}/agents/{REVIEW}.{extension}").exists()
-    text = (tmp_path / ".codex/config.toml").read_text()
-    assert f"[agents.{ARCH}]" in text
-    assert f"[agents.{REVIEW}]" not in text
+        assert not (tmp_path / f".{provider}/agents").exists()
+        assert (tmp_path / skill_root / "skills" / AUTO / "resources/bootstrap.py").is_file()
+    assert not (tmp_path / ".codex/config.toml").exists()
 
 
 def test_standalone_runtime_repeats_under_no_cli_path_without_scope_change(tmp_path):
@@ -271,9 +266,10 @@ def test_customized_owned_skill_is_preserved_on_routine_update(tmp_path):
 def test_historical_repair_migrates_only_proven_kiro_packages_and_can_rollback(tmp_path):
     original = seed_historical_architecture(tmp_path)
     receipt = document(external(DEPLOY_SCRIPT, tmp_path, "--cli", "kiro", "--repair"))
-    assert state(tmp_path)["selection"] == [f"kiro:agent:{ARCH}", f"kiro:skill:{ARCH}"]
+    assert state(tmp_path)["selection"] == [f"kiro:skill:{ARCH}"]
     assert all(not (tmp_path / rel).exists() for rel in original)
-    assert (tmp_path / f".kiro/agents/{ARCH}.json").is_file()
+    assert (tmp_path / f".kiro/skills/{ARCH}/SKILL.md").is_file()
+    assert not (tmp_path / f".kiro/agents/{ARCH}.json").exists()
     assert not (tmp_path / ".kiro/skills" / REVIEW).exists()
     restored = document(external(INSTALL_SCRIPT, tmp_path, "--rollback", receipt["transaction"]))
     assert restored["status"] == "rolled-back"
@@ -339,7 +335,7 @@ def test_codex_registration_is_idempotent_and_preserves_custom_settings(tmp_path
     assert result["status"] == "no-op"
     assert config.read_bytes() == first
     assert config.read_text().startswith(custom)
-    assert config.read_text().count(f"[agents.{ARCH}]") == 1
+    assert config.read_text().count(f"[agents.{ARCH}]") == 0
 
 
 def test_invalid_duplicate_registration_is_preserved_instead_of_rewritten(tmp_path):
@@ -347,8 +343,8 @@ def test_invalid_duplicate_registration_is_preserved_instead_of_rewritten(tmp_pa
     config.parent.mkdir()
     original = f'[agents.{ARCH}]\nconfig_file = "/opt/one.toml"\n\n[agents.{ARCH}]\nconfig_file = "/opt/two.toml"\n'
     config.write_text(original)
-    result = document(external(DEPLOY_SCRIPT, tmp_path, "--cli", "codex", "--slug", ARCH, "--surface-only"), 2)
-    assert any(".codex/config.toml" in item.get("roots", []) for item in result["preserved"])
+    result = document(external(DEPLOY_SCRIPT, tmp_path, "--cli", "codex", "--slug", ARCH, "--surface-only"))
+    assert not result["preserved"]
     assert config.read_text() == original
     assert not (tmp_path / f".codex/agents/{ARCH}.toml").exists()
 
@@ -402,11 +398,11 @@ def test_symlinked_target_root_is_rejected_without_changing_referent(tmp_path):
     assert list(real.iterdir()) == []
 
 
-def test_legacy_slug_alias_selects_canonical_codex_skill_and_agent(tmp_path):
+def test_legacy_slug_alias_selects_canonical_codex_skill(tmp_path):
     document(external(DEPLOY_SCRIPT, tmp_path, "--cli", "codex", "--slug", "autosearch", "--surface-only"))
-    assert state(tmp_path)["selection"] == [f"codex:agent:{AUTO}", f"codex:skill:{AUTO}"]
+    assert state(tmp_path)["selection"] == [f"codex:skill:{AUTO}"]
     assert (tmp_path / f".agents/skills/{AUTO}/resources/bootstrap.py").is_file()
-    assert (tmp_path / f".codex/agents/resources/{AUTO}/bootstrap.py").is_file()
-    assert (tmp_path / f".codex/agents/{AUTO}.toml").is_file()
+    assert not (tmp_path / f".codex/agents/resources/{AUTO}/bootstrap.py").exists()
+    assert not (tmp_path / f".codex/agents/{AUTO}.toml").exists()
     assert not (tmp_path / ".codex/skills/autosearch").exists()
     assert not (tmp_path / ".agents/skills" / REVIEW).exists()

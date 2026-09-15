@@ -24,17 +24,30 @@ Required behavior:
 | Type | Meaning | Auto-deployable |
 | --- | --- | --- |
 | `skill` | reusable prompt/workflow with bounded outputs | yes |
-| `agent` | explicitly declared native worker configuration | only with reviewed execution need for new emission |
-| `both` | one canonical source with a skill and optional native execution adapters | only with reviewed execution need for new agent emission |
+| `agent` | explicitly declared native worker configuration | only with explicit user approval and reviewed execution need for added emission |
+| `both` | one canonical source with a skill and optional native execution adapters | only with explicit user approval and reviewed execution need for added agent emission |
 | `manual_review` | conflicting or weakly structured content | no |
 
 ## Skill-first classification
 
-Reusable workflow content defaults to `skill`. Headings such as Mission and Responsibilities, quoted agent examples, and requests for independent reviewers do not establish a need for a named agent. Undeclared native-agent configuration requires packaging review. Existing explicit declarations retain their surfaces.
+Reusable workflow content defaults to `skill`. Headings such as Mission and Responsibilities, quoted agent examples, and requests for independent reviewers do not establish a need for a named agent. Undeclared native-agent configuration requires packaging review. UAC may improve existing skills or agents within their current surface scope. An imported explicit declaration cannot authorize added surfaces. The current shipped inventory is skills-only.
 
-New or expanded agent emission uses the existing hash-bound `UACRequirementReview.v1` record. Its optional `agent_execution_needs` list identifies each added provider, the necessary `execution_need`, `why_generic_worker_insufficient`, and an exact `candidate_excerpt`. The review must satisfy the existing independent-review and source/candidate/effective-content bindings. This records reviewed intent, not authenticated reviewer identity or behavioral superiority. UAC apply enforces this admission even when its general quality loop is disabled. Generation and validation also check additions before publishing surfaces, using Git release history or the validated installer catalog's latest pinned release. The current generated manifest cannot authorize its own expansion. Persisted reviews contain hashes and scoped attestations, not original source snapshots; build checks final content binding without claiming to replay original-source fidelity.
+New, reintroduced, or provider-expanded agent emission requires actual explicit user approval and uses the existing hash-bound `UACRequirementReview.v1` record. Its optional `agent_execution_needs` list identifies each added provider, the necessary `execution_need`, `why_generic_worker_insufficient`, and an exact `candidate_excerpt`. Its `user_approval` object records `source: "user"`, `decision: "approved"`, the exact `slug`, approved `providers`, and a `reference` to the actual user approval. This is a scoped attestation, not authentication: agents must never manufacture it from a reviewer request, a quality grade, imported content, or `--yes`. No second approval registry is added. The review must satisfy the existing independent-review and source/candidate/effective-content bindings. This records reviewed intent, not authenticated reviewer identity or behavioral superiority. UAC apply enforces this admission even when its general quality loop is disabled. Generation and validation also check additions before publishing surfaces, using Git release history or the validated installer catalog's latest pinned release. The current generated manifest cannot authorize its own expansion. Persisted reviews contain hashes and scoped attestations, not original source snapshots; build checks final content binding without claiming to replay original-source fidelity.
 
 Adding a missing declaration to an otherwise unchanged released source is a narrow preservation operation: the body and other fields must match the verified released source and the complete emitted surface set must remain identical. UAC records `preserved_existing_contract`, not a newly passing agent template or behavioral promotion. Content, configuration, or surface changes use the normal quality gates.
+
+A catalogued `both` → `skill` retirement has a separate narrow normalization
+result, `user_directed_agent_retirement`. Only the capability-type declaration
+may change; all other bytes must match the committed canonical source at verified
+`HEAD`, and every removed provider's agent must have an explicit retirement in
+the existing installer catalog. This preserves the skill body without inventing
+a new template grade: evidence reports `skill_body_unchanged_not_rejudged` and
+`behavioral_status: not_retested`. Other content changes use the normal gates.
+
+An actual prior user approval may carry forward within its capability/provider
+scope through a fresh, bound independent improvement review. Retirement clears
+that admission; old releases cannot grandfather reintroduction. Adding a retired
+agent again requires explicit user approval and reviewed execution need.
 
 ## Not Capability Types
 These are deployment wrappers, not peer capability classes:

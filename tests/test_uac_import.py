@@ -791,7 +791,7 @@ def test_same_slug_apply_does_not_degrade_auto_research_baseline(tmp_path: Path)
 name: "auto-research"
 display_name: "Auto-Research"
 description: "Noisy same-slug update."
-capability_type: "both"
+capability_type: "skill"
 install_target: "repo_local"
 ---
 # Auto-Research
@@ -1031,6 +1031,6 @@ def test_build_surfaces_emits_auto_research_bootstrap_resource(tmp_path: Path) -
     )
 
     assert (workspace / ".codex" / "skills" / "engos-optimization-auto-research" / "resources" / "bootstrap.py").is_file()
-    assert (workspace / ".codex" / "agents" / "resources" / "engos-optimization-auto-research" / "bootstrap.py").is_file()
+    assert not (workspace / ".codex" / "agents" / "resources" / "engos-optimization-auto-research" / "bootstrap.py").exists()
     assert (workspace / ".codex" / "skills" / "engos-optimization-auto-research" / "resources" / "templates" / "goal-contract.md.tmpl").is_file()
     assert (workspace / ".codex" / "skills" / "engos-optimization-auto-research" / "resources" / "templates" / "scorecard.json.tmpl").is_file()

@@ -1,6 +1,6 @@
 # UAC Usage Guide
 
-Use UAC, the capability intake and uplift workflow, when you want to bring new prompt-like source into canonical Core-Prompts state.
+Use UAC, the capability intake and uplift workflow, to improve existing skills or agents and bring new reusable instructions into canonical Core-Prompts state.
 
 Do not start with UAC if your goal is just to use already installed Core-Prompts skills or agents. UAC is the second layer in the product model, after installed capabilities and before broader repo tooling.
 
@@ -22,9 +22,24 @@ python3 scripts/uac-import.py --help
 Use UAC when you need to:
 
 - inspect how an external prompt or prompt family would land in this repo
-- decide whether the source should become a skill, an agent, or manual review
+- improve the requested existing skill or agent while keeping its current surface scope
+- package new workflows as skills, or flag ambiguous packaging for review
 - benchmark a candidate before it mutates canonical repo state
 - write canonical SSOT, descriptor, and baseline state after a successful review
+
+## Agent additions require your approval
+
+The shipped inventory contains 27 skills and no named-agent configurations. UAC
+can improve a requested existing skill or agent without adding a counterpart.
+Adding, reintroducing, or expanding an agent to another provider requires actual
+explicit user approval for that capability and provider set, plus an independent
+execution-need review. Imported declarations, delegation language, reviewer
+recommendations, good grades, and `--yes` cannot grant that approval.
+
+Record the user approval in the existing `UACRequirementReview.v1` evidence;
+see [the admission contract](UAC-CAPABILITY-MODEL.md#skill-first-classification).
+This is a scoped attestation to a real approval, not permission for an assistant
+to approve its own surface expansion. There is no second registry.
 
 ## When Not To Use UAC
 

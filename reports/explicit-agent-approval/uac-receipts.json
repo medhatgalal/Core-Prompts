@@ -1,0 +1,474 @@
+[
+  {
+    "slug": "engos-audit-pitch-review",
+    "status": "applied",
+    "normalization": {
+      "authorization_basis": "explicit kind-specific retirement in existing installation catalog",
+      "behavioral_status": "not_retested",
+      "candidate_sha256": "d974fc494af5c4d1ad1917614e71d0355b9d78ce7f26f4c7a252ea81436d9ccc",
+      "original_sha256": "ce90f8247735e8f50b4a5e9e665446175ae352b5824d20af418edfa76b984b70",
+      "quality_evidence": "skill_body_unchanged_not_rejudged",
+      "removed_surfaces": [
+        "claude_agent",
+        "codex_agent",
+        "gemini_agent",
+        "kiro_agent"
+      ],
+      "retained_surfaces": [
+        "claude_skill",
+        "codex_skill",
+        "gemini_skill",
+        "grok_skill",
+        "kiro_skill"
+      ],
+      "status": "user_directed_agent_retirement"
+    },
+    "build": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "installer capsule: generated\nGenerated 27 ssot entries"
+    },
+    "compile": {
+      "behavioral_claim": "none",
+      "goal_contract": "evals/contracts/engos-audit-pitch-review.json",
+      "status": "structural_ready",
+      "topology": "evals/topologies/engos-audit-pitch-review.json"
+    },
+    "validate": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Validation passed.\nSSOT files: 27"
+    }
+  },
+  {
+    "slug": "engos-audit-weekly-intel",
+    "status": "applied",
+    "normalization": {
+      "authorization_basis": "explicit kind-specific retirement in existing installation catalog",
+      "behavioral_status": "not_retested",
+      "candidate_sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36",
+      "original_sha256": "27feb6683d4d88bdd0ff67f0a8399ca609c2bae0bb7da17f35c7510e3f2b1e9f",
+      "quality_evidence": "skill_body_unchanged_not_rejudged",
+      "removed_surfaces": [
+        "claude_agent",
+        "codex_agent",
+        "gemini_agent",
+        "kiro_agent"
+      ],
+      "retained_surfaces": [
+        "claude_skill",
+        "codex_skill",
+        "gemini_skill",
+        "grok_skill",
+        "kiro_skill"
+      ],
+      "status": "user_directed_agent_retirement"
+    },
+    "build": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "installer capsule: generated\nGenerated 27 ssot entries"
+    },
+    "compile": {
+      "behavioral_claim": "none",
+      "goal_contract": "evals/contracts/engos-audit-weekly-intel.json",
+      "status": "structural_ready",
+      "topology": "evals/topologies/engos-audit-weekly-intel.json"
+    },
+    "validate": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Validation passed.\nSSOT files: 27"
+    }
+  },
+  {
+    "slug": "engos-design-architecture",
+    "status": "applied",
+    "normalization": {
+      "authorization_basis": "explicit kind-specific retirement in existing installation catalog",
+      "behavioral_status": "not_retested",
+      "candidate_sha256": "5e282148a1bb97269630c29aefceec556330ec8fedbaab5436fa497cee48f216",
+      "original_sha256": "fbd582a0e518d8cb1bdbf183fdb9001ec311558b198658b9e6a9f1f4fa8201cb",
+      "quality_evidence": "skill_body_unchanged_not_rejudged",
+      "removed_surfaces": [
+        "claude_agent",
+        "codex_agent",
+        "gemini_agent",
+        "kiro_agent"
+      ],
+      "retained_surfaces": [
+        "claude_skill",
+        "codex_skill",
+        "gemini_skill",
+        "grok_skill",
+        "kiro_skill"
+      ],
+      "status": "user_directed_agent_retirement"
+    },
+    "build": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "installer capsule: generated\nGenerated 27 ssot entries"
+    },
+    "compile": {
+      "behavioral_claim": "none",
+      "goal_contract": "evals/contracts/engos-design-architecture.json",
+      "status": "structural_ready",
+      "topology": "evals/topologies/engos-design-architecture.json"
+    },
+    "validate": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Validation passed.\nSSOT files: 27"
+    }
+  },
+  {
+    "slug": "engos-meta-supercharge",
+    "status": "applied",
+    "normalization": {
+      "authorization_basis": "explicit kind-specific retirement in existing installation catalog",
+      "behavioral_status": "not_retested",
+      "candidate_sha256": "1d90ae31771a0ca5c11be5b0a1b5d2621d8aafa4b6d7fd445e776c88ed4b9f3b",
+      "original_sha256": "8e14b9ae6045083f03b764ec459e5417e6beb89bcd51688225c3308c83433904",
+      "quality_evidence": "skill_body_unchanged_not_rejudged",
+      "removed_surfaces": [
+        "claude_agent",
+        "codex_agent",
+        "gemini_agent",
+        "kiro_agent"
+      ],
+      "retained_surfaces": [
+        "claude_skill",
+        "codex_skill",
+        "gemini_skill",
+        "grok_skill",
+        "kiro_skill"
+      ],
+      "status": "user_directed_agent_retirement"
+    },
+    "build": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "installer capsule: generated\nGenerated 27 ssot entries"
+    },
+    "compile": {
+      "behavioral_claim": "none",
+      "goal_contract": "evals/contracts/engos-meta-supercharge.json",
+      "status": "structural_ready",
+      "topology": "evals/topologies/engos-meta-supercharge.json"
+    },
+    "validate": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Validation passed.\nSSOT files: 27"
+    }
+  },
+  {
+    "slug": "engos-meta-uac-import",
+    "status": "applied",
+    "normalization": null,
+    "build": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "installer capsule: generated\nGenerated 27 ssot entries"
+    },
+    "compile": {
+      "behavioral_claim": "none",
+      "goal_contract": "evals/contracts/engos-meta-uac-import.json",
+      "status": "structural_ready",
+      "topology": "evals/topologies/engos-meta-uac-import.json"
+    },
+    "validate": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Validation passed.\nSSOT files: 27"
+    }
+  },
+  {
+    "slug": "engos-operations-ic-assistant",
+    "status": "applied",
+    "normalization": {
+      "authorization_basis": "explicit kind-specific retirement in existing installation catalog",
+      "behavioral_status": "not_retested",
+      "candidate_sha256": "2d01884b2ef835f3c9b4ab841ef09066d0a27c4fcb9828c093ab5583e4bcebe0",
+      "original_sha256": "6466ebb1f2e1de5533271f3ed99f6b5a5b63e0513f9d262500e0ddaee62bd12e",
+      "quality_evidence": "skill_body_unchanged_not_rejudged",
+      "removed_surfaces": [
+        "claude_agent",
+        "codex_agent",
+        "gemini_agent",
+        "kiro_agent"
+      ],
+      "retained_surfaces": [
+        "claude_skill",
+        "codex_skill",
+        "gemini_skill",
+        "grok_skill",
+        "kiro_skill"
+      ],
+      "status": "user_directed_agent_retirement"
+    },
+    "build": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "installer capsule: generated\nGenerated 27 ssot entries"
+    },
+    "compile": {
+      "behavioral_claim": "none",
+      "goal_contract": "evals/contracts/engos-operations-ic-assistant.json",
+      "status": "structural_ready",
+      "topology": "evals/topologies/engos-operations-ic-assistant.json"
+    },
+    "validate": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Validation passed.\nSSOT files: 27"
+    }
+  },
+  {
+    "slug": "engos-optimization-auto-research",
+    "status": "applied",
+    "normalization": {
+      "authorization_basis": "explicit kind-specific retirement in existing installation catalog",
+      "behavioral_status": "not_retested",
+      "candidate_sha256": "50515be8f59b2bf3fe33b503dcedeca4b9c7f60e0875fd01771d29a3ced37b52",
+      "original_sha256": "3fa24f3530ead49b7e98afb2ac09469e04244e027cd068e4c1559e41068c411d",
+      "quality_evidence": "skill_body_unchanged_not_rejudged",
+      "removed_surfaces": [
+        "claude_agent",
+        "codex_agent",
+        "gemini_agent",
+        "kiro_agent"
+      ],
+      "retained_surfaces": [
+        "claude_skill",
+        "codex_skill",
+        "gemini_skill",
+        "grok_skill",
+        "kiro_skill"
+      ],
+      "status": "user_directed_agent_retirement"
+    },
+    "build": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "installer capsule: generated\nGenerated 27 ssot entries"
+    },
+    "compile": {
+      "behavioral_claim": "none",
+      "goal_contract": "evals/contracts/engos-optimization-auto-research.json",
+      "status": "structural_ready",
+      "topology": "evals/topologies/engos-optimization-auto-research.json"
+    },
+    "validate": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Validation passed.\nSSOT files: 27"
+    }
+  },
+  {
+    "slug": "engos-orchestration-batman",
+    "status": "applied",
+    "normalization": {
+      "authorization_basis": "explicit kind-specific retirement in existing installation catalog",
+      "behavioral_status": "not_retested",
+      "candidate_sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec",
+      "original_sha256": "b42b9b7ac9aca951e50373b848e156160b868d9b58b0099a971078bf2aca4252",
+      "quality_evidence": "skill_body_unchanged_not_rejudged",
+      "removed_surfaces": [
+        "claude_agent",
+        "codex_agent",
+        "gemini_agent",
+        "kiro_agent"
+      ],
+      "retained_surfaces": [
+        "claude_skill",
+        "codex_skill",
+        "gemini_skill",
+        "grok_skill",
+        "kiro_skill"
+      ],
+      "status": "user_directed_agent_retirement"
+    },
+    "build": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "installer capsule: generated\nGenerated 27 ssot entries"
+    },
+    "compile": {
+      "behavioral_claim": "none",
+      "goal_contract": "evals/contracts/engos-orchestration-batman.json",
+      "status": "structural_ready",
+      "topology": "evals/topologies/engos-orchestration-batman.json"
+    },
+    "validate": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Validation passed.\nSSOT files: 27"
+    }
+  },
+  {
+    "slug": "engos-quality-docs-review",
+    "status": "applied",
+    "normalization": {
+      "authorization_basis": "explicit kind-specific retirement in existing installation catalog",
+      "behavioral_status": "not_retested",
+      "candidate_sha256": "fe55a0b0f3e494ef8812f2e3bf390fb3083a3ae5080640a28fe5909031172e3b",
+      "original_sha256": "96ee5bbcbc8bc56fc39cd4765324f15fea7c7f947b700e59c799088fc7276017",
+      "quality_evidence": "skill_body_unchanged_not_rejudged",
+      "removed_surfaces": [
+        "claude_agent",
+        "codex_agent",
+        "gemini_agent",
+        "kiro_agent"
+      ],
+      "retained_surfaces": [
+        "claude_skill",
+        "codex_skill",
+        "gemini_skill",
+        "grok_skill",
+        "kiro_skill"
+      ],
+      "status": "user_directed_agent_retirement"
+    },
+    "build": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "installer capsule: generated\nGenerated 27 ssot entries"
+    },
+    "compile": {
+      "behavioral_claim": "none",
+      "goal_contract": "evals/contracts/engos-quality-docs-review.json",
+      "status": "structural_ready",
+      "topology": "evals/topologies/engos-quality-docs-review.json"
+    },
+    "validate": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Validation passed.\nSSOT files: 27"
+    }
+  },
+  {
+    "slug": "engos-quality-gitops-review",
+    "status": "applied",
+    "normalization": {
+      "authorization_basis": "explicit kind-specific retirement in existing installation catalog",
+      "behavioral_status": "not_retested",
+      "candidate_sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146",
+      "original_sha256": "16b0acfd3bf5f4705b8e9dd772cf2cd347bbe656a91a52605cf5d183151de7e9",
+      "quality_evidence": "skill_body_unchanged_not_rejudged",
+      "removed_surfaces": [
+        "claude_agent",
+        "codex_agent",
+        "gemini_agent",
+        "kiro_agent"
+      ],
+      "retained_surfaces": [
+        "claude_skill",
+        "codex_skill",
+        "gemini_skill",
+        "grok_skill",
+        "kiro_skill"
+      ],
+      "status": "user_directed_agent_retirement"
+    },
+    "build": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "installer capsule: generated\nGenerated 27 ssot entries"
+    },
+    "compile": {
+      "behavioral_claim": "none",
+      "goal_contract": "evals/contracts/engos-quality-gitops-review.json",
+      "status": "structural_ready",
+      "topology": "evals/topologies/engos-quality-gitops-review.json"
+    },
+    "validate": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Validation passed.\nSSOT files: 27"
+    }
+  },
+  {
+    "slug": "engos-reconciliation-converge",
+    "status": "applied",
+    "normalization": {
+      "authorization_basis": "explicit kind-specific retirement in existing installation catalog",
+      "behavioral_status": "not_retested",
+      "candidate_sha256": "b4f97657b8645cbac13688d881b251a00ff71c0b7f095c316a933eb9097b37ac",
+      "original_sha256": "fbcb272f173f738e769f66d9bf289c862c1bcc851d133a245db5f5f1a056f889",
+      "quality_evidence": "skill_body_unchanged_not_rejudged",
+      "removed_surfaces": [
+        "claude_agent",
+        "codex_agent",
+        "gemini_agent",
+        "kiro_agent"
+      ],
+      "retained_surfaces": [
+        "claude_skill",
+        "codex_skill",
+        "gemini_skill",
+        "grok_skill",
+        "kiro_skill"
+      ],
+      "status": "user_directed_agent_retirement"
+    },
+    "build": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "installer capsule: generated\nGenerated 27 ssot entries"
+    },
+    "compile": {
+      "behavioral_claim": "none",
+      "goal_contract": "evals/contracts/engos-reconciliation-converge.json",
+      "status": "structural_ready",
+      "topology": "evals/topologies/engos-reconciliation-converge.json"
+    },
+    "validate": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Validation passed.\nSSOT files: 27"
+    }
+  },
+  {
+    "slug": "engos-triage-my-inbox-chat-pulse",
+    "status": "applied",
+    "normalization": {
+      "authorization_basis": "explicit kind-specific retirement in existing installation catalog",
+      "behavioral_status": "not_retested",
+      "candidate_sha256": "0906d36f4878b6713871ab6ffb5524eaf71443d8556acc213f542051388eebd3",
+      "original_sha256": "4d820e9f4656533e7183a97485a4e38f27bcf869494645e748ff9971f5eea021",
+      "quality_evidence": "skill_body_unchanged_not_rejudged",
+      "removed_surfaces": [
+        "claude_agent",
+        "codex_agent",
+        "gemini_agent",
+        "kiro_agent"
+      ],
+      "retained_surfaces": [
+        "claude_skill",
+        "codex_skill",
+        "gemini_skill",
+        "grok_skill",
+        "kiro_skill"
+      ],
+      "status": "user_directed_agent_retirement"
+    },
+    "build": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "installer capsule: generated\nGenerated 27 ssot entries"
+    },
+    "compile": {
+      "behavioral_claim": "none",
+      "goal_contract": "evals/contracts/engos-triage-my-inbox-chat-pulse.json",
+      "status": "structural_ready",
+      "topology": "evals/topologies/engos-triage-my-inbox-chat-pulse.json"
+    },
+    "validate": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Validation passed.\nSSOT files: 27"
+    }
+  }
+]

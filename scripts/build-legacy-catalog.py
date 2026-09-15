@@ -16,7 +16,7 @@ from pathlib import Path
 import re
 import subprocess
 
-from core_install.catalog import CATALOG_PATH, PROVIDERS, SUCCESSORS, validate_catalog
+from core_install.catalog import CATALOG_PATH, PROVIDERS, SUCCESSORS, successor as package_successor, validate_catalog
 
 PIN_PATH = ".meta/install-profiles/legacy-release-refs.json"
 
@@ -151,7 +151,7 @@ def build(repo: Path) -> dict:
             if ident not in values:
                 values.append(ident)
         for provider, kind, slug, successor, roots, names in package_files:
-            spec = {"provider": provider, "kind": kind, "slug": slug, "successor": successor,
+            spec = {"provider": provider, "kind": kind, "slug": slug, "successor": package_successor(provider, kind, slug),
                     "roots": roots, "files": {p: file_ids[p] for p in names}}
             key = json.dumps(spec, sort_keys=True)
             if key not in package_versions:

@@ -50,7 +50,7 @@ def test_package_excludes_local_codex_registration(
     for names in (tar_names, zip_names):
         assert ".codex/config.toml" not in names
         assert "stale-output-only.txt" not in names
-        assert any(
+        assert not any(
             name.startswith(".codex/agents/") and name.endswith(".toml")
             for name in names
         )
@@ -58,7 +58,7 @@ def test_package_excludes_local_codex_registration(
             name.startswith(".codex/skills/") and name.endswith("/SKILL.md")
             for name in names
         )
-        assert any(
+        assert not any(
             name.startswith(".codex/agents/resources/")
             and name.endswith("/capability.json")
             for name in names
@@ -114,5 +114,5 @@ def test_standalone_copy_excludes_source_local_config(tmp_path: Path) -> None:
     )
     assert result.returncode == 0, result.stdout
     assert not (target / ".core-prompts-updater/.codex/config.toml").exists()
-    assert (target / ".codex/config.toml").is_file()
+    assert not (target / ".codex/config.toml").exists()
     assert source_config.read_bytes() == source_before

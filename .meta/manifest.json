@@ -1096,7 +1096,7 @@
       "manifest_version": "capability-fabric.v0",
       "layers": {
         "minimal": {
-          "capability_type": "both",
+          "capability_type": "skill",
           "summary": "Create, review, score, improve, or export Shape Up pitches by checking problem framing, appetite, architecture, dependencies, integration proof, risks, and betting readiness. Use for pitch artifacts; do not use for feature status or general proposal synthesis.",
           "role": "analyst",
           "domain_tags": [
@@ -1146,32 +1146,26 @@
             "ssot/engos-audit-pitch-review.md"
           ],
           "packaging_profile": {
-            "capability_type": "both",
+            "capability_type": "skill",
             "primary_surfaces": {
               "codex": [
-                "codex_skill",
-                "codex_agent"
+                "codex_skill"
               ],
               "gemini": [
-                "gemini_skill",
-                "gemini_agent"
+                "gemini_skill"
               ],
               "claude": [
-                "claude_skill",
-                "claude_agent"
+                "claude_skill"
               ],
               "kiro": [
-                "kiro_skill",
-                "kiro_agent"
+                "kiro_skill"
               ],
               "grok": [
                 "grok_skill"
               ]
             },
             "wrapper_surfaces": {
-              "codex": [
-                "plugin_wrapper"
-              ],
+              "codex": [],
               "gemini": [
                 "skill_wrapper"
               ],
@@ -1202,20 +1196,16 @@
           },
           "emitted_surfaces": {
             "codex": [
-              "codex_skill",
-              "codex_agent"
+              "codex_skill"
             ],
             "gemini": [
-              "gemini_skill",
-              "gemini_agent"
+              "gemini_skill"
             ],
             "claude": [
-              "claude_skill",
-              "claude_agent"
+              "claude_skill"
             ],
             "kiro": [
-              "kiro_skill",
-              "kiro_agent"
+              "kiro_skill"
             ],
             "grok": [
               "grok_skill"
@@ -1547,17 +1537,13 @@
       },
       "quality_pass_count": 1,
       "quality_stop_reason": "thresholds_met",
-      "declared_capability": "both",
-      "inferred_capability": "both",
+      "declared_capability": "skill",
+      "inferred_capability": "skill",
       "expected_surface_names": [
         "codex_skill",
-        "codex_agent",
         "gemini_skill",
-        "gemini_agent",
         "claude_skill",
-        "claude_agent",
         "kiro_skill",
-        "kiro_agent",
         "grok_skill"
       ],
       "rubric_version": "capability-fabric.v0",
@@ -1578,7 +1564,7 @@
       "manifest_version": "capability-fabric.v0",
       "layers": {
         "minimal": {
-          "capability_type": "both",
+          "capability_type": "skill",
           "summary": "Collect and fact-check project information from issue trackers, Git, code review, Chat, and documents, then produce one executive report with technical appendices and source confidence. Use for multi-source periodic intelligence; do not use for Git-only reports, inbox triage, or feature audits.",
           "role": "analyst",
           "domain_tags": [
@@ -1615,32 +1601,26 @@
             "ssot/engos-audit-weekly-intel.md"
           ],
           "packaging_profile": {
-            "capability_type": "both",
+            "capability_type": "skill",
             "primary_surfaces": {
               "codex": [
-                "codex_skill",
-                "codex_agent"
+                "codex_skill"
               ],
               "gemini": [
-                "gemini_skill",
-                "gemini_agent"
+                "gemini_skill"
               ],
               "claude": [
-                "claude_skill",
-                "claude_agent"
+                "claude_skill"
               ],
               "kiro": [
-                "kiro_skill",
-                "kiro_agent"
+                "kiro_skill"
               ],
               "grok": [
                 "grok_skill"
               ]
             },
             "wrapper_surfaces": {
-              "codex": [
-                "plugin_wrapper"
-              ],
+              "codex": [],
               "gemini": [
                 "skill_wrapper"
               ],
@@ -1671,20 +1651,16 @@
           },
           "emitted_surfaces": {
             "codex": [
-              "codex_skill",
-              "codex_agent"
+              "codex_skill"
             ],
             "gemini": [
-              "gemini_skill",
-              "gemini_agent"
+              "gemini_skill"
             ],
             "claude": [
-              "claude_skill",
-              "claude_agent"
+              "claude_skill"
             ],
             "kiro": [
-              "kiro_skill",
-              "kiro_agent"
+              "kiro_skill"
             ],
             "grok": [
               "grok_skill"
@@ -1746,17 +1722,13 @@
       "modes": [],
       "benchmark_sources": [],
       "consumption_hints": {},
-      "declared_capability": "both",
-      "inferred_capability": "both",
+      "declared_capability": "skill",
+      "inferred_capability": "skill",
       "expected_surface_names": [
         "codex_skill",
-        "codex_agent",
         "gemini_skill",
-        "gemini_agent",
         "claude_skill",
-        "claude_agent",
         "kiro_skill",
-        "kiro_agent",
         "grok_skill"
       ],
       "rubric_version": "capability-fabric.v0",
@@ -3048,7 +3020,7 @@
       "manifest_version": "capability-fabric.v0",
       "layers": {
         "minimal": {
-          "capability_type": "both",
+          "capability_type": "skill",
           "summary": "Design APIs, data models, patterns, or systems with explicit boundaries, trade-offs, failure modes, migration, rollback, and validation. Use for concrete architecture decisions; do not use for prompt hardening or behavioral evaluation.",
           "role": "architect",
           "domain_tags": [
@@ -3098,32 +3070,26 @@
             "ssot/engos-design-architecture.md"
           ],
           "packaging_profile": {
-            "capability_type": "both",
+            "capability_type": "skill",
             "primary_surfaces": {
               "codex": [
-                "codex_skill",
-                "codex_agent"
+                "codex_skill"
               ],
               "gemini": [
-                "gemini_skill",
-                "gemini_agent"
+                "gemini_skill"
               ],
               "claude": [
-                "claude_skill",
-                "claude_agent"
+                "claude_skill"
               ],
               "kiro": [
-                "kiro_skill",
-                "kiro_agent"
+                "kiro_skill"
               ],
               "grok": [
                 "grok_skill"
               ]
             },
             "wrapper_surfaces": {
-              "codex": [
-                "plugin_wrapper"
-              ],
+              "codex": [],
               "gemini": [
                 "skill_wrapper"
               ],
@@ -3154,20 +3120,16 @@
           },
           "emitted_surfaces": {
             "codex": [
-              "codex_skill",
-              "codex_agent"
+              "codex_skill"
             ],
             "gemini": [
-              "gemini_skill",
-              "gemini_agent"
+              "gemini_skill"
             ],
             "claude": [
-              "claude_skill",
-              "claude_agent"
+              "claude_skill"
             ],
             "kiro": [
-              "kiro_skill",
-              "kiro_agent"
+              "kiro_skill"
             ],
             "grok": [
               "grok_skill"
@@ -3471,17 +3433,13 @@
       },
       "quality_pass_count": 1,
       "quality_stop_reason": "thresholds_met",
-      "declared_capability": "both",
-      "inferred_capability": "both",
+      "declared_capability": "skill",
+      "inferred_capability": "skill",
       "expected_surface_names": [
         "codex_skill",
-        "codex_agent",
         "gemini_skill",
-        "gemini_agent",
         "claude_skill",
-        "claude_agent",
         "kiro_skill",
-        "kiro_agent",
         "grok_skill"
       ],
       "rubric_version": "capability-fabric.v0",
@@ -4620,7 +4578,7 @@
       "manifest_version": "capability-fabric.v0",
       "layers": {
         "minimal": {
-          "capability_type": "both",
+          "capability_type": "skill",
           "summary": "Harden a prompt, plan, proposal, or workflow through the smallest useful sequence of simplification, inversion, adversarial critique, contract checks, debate, or grading. Use when the artifact needs stronger reasoning or execution guidance; use behavioral evaluation for proof.",
           "role": "advisor",
           "domain_tags": [
@@ -4670,32 +4628,26 @@
             "ssot/engos-meta-supercharge.md"
           ],
           "packaging_profile": {
-            "capability_type": "both",
+            "capability_type": "skill",
             "primary_surfaces": {
               "codex": [
-                "codex_skill",
-                "codex_agent"
+                "codex_skill"
               ],
               "gemini": [
-                "gemini_skill",
-                "gemini_agent"
+                "gemini_skill"
               ],
               "claude": [
-                "claude_skill",
-                "claude_agent"
+                "claude_skill"
               ],
               "kiro": [
-                "kiro_skill",
-                "kiro_agent"
+                "kiro_skill"
               ],
               "grok": [
                 "grok_skill"
               ]
             },
             "wrapper_surfaces": {
-              "codex": [
-                "plugin_wrapper"
-              ],
+              "codex": [],
               "gemini": [
                 "skill_wrapper"
               ],
@@ -4726,20 +4678,16 @@
           },
           "emitted_surfaces": {
             "codex": [
-              "codex_skill",
-              "codex_agent"
+              "codex_skill"
             ],
             "gemini": [
-              "gemini_skill",
-              "gemini_agent"
+              "gemini_skill"
             ],
             "claude": [
-              "claude_skill",
-              "claude_agent"
+              "claude_skill"
             ],
             "kiro": [
-              "kiro_skill",
-              "kiro_agent"
+              "kiro_skill"
             ],
             "grok": [
               "grok_skill"
@@ -5281,17 +5229,13 @@
       "consumption_hints": {},
       "quality_pass_count": 1,
       "quality_stop_reason": "thresholds_met",
-      "declared_capability": "both",
-      "inferred_capability": "both",
+      "declared_capability": "skill",
+      "inferred_capability": "skill",
       "expected_surface_names": [
         "codex_skill",
-        "codex_agent",
         "gemini_skill",
-        "gemini_agent",
         "claude_skill",
-        "claude_agent",
         "kiro_skill",
-        "kiro_agent",
         "grok_skill"
       ],
       "rubric_version": "capability-fabric.v0",
@@ -5312,12 +5256,12 @@
       "layers": {
         "minimal": {
           "capability_type": "skill",
-          "summary": "Import external instructions as reusable skills, reviewing native execution needs before adding agents, through Core-Prompts plan, judge, and apply. Use for capability intake; do not use for ordinary prompt editing or deployment.",
+          "summary": "Improve skills and agents through Core-Prompts plan, judge, and apply while preserving their surface scope. New agent surfaces require explicit user approval. Use for capability intake and improvement; do not use for ordinary prose editing or deployment.",
           "role": "importer",
           "domain_tags": [
+            "packaging",
             "import",
             "planning",
-            "prompting",
             "engos",
             "meta"
           ],
@@ -5475,7 +5419,7 @@
       "display_name": "UAC Import \u2014 Capability Intake, Quality Review, and Uplift",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "engos-meta-uac-import",
-      "shared_summary": "Import external instructions as reusable skills, reviewing native execution needs before adding agents, through Core-Prompts plan, judge, and apply. Use for capability intake; do not use for ordinary prompt editing or deployment.",
+      "shared_summary": "Improve skills and agents through Core-Prompts plan, judge, and apply while preserving their surface scope. New agent surfaces require explicit user approval. Use for capability intake and improvement; do not use for ordinary prose editing or deployment.",
       "shared_constraints": [
         "No hidden execution. UAC coordinates exhaustive onboarding checks; it does not require a separate paid model API for every import. The invoking agent may prepare semantic repairs within authorized scope, and a separate subagent reviews them.",
         "No packaging claims without evidence.",
@@ -5611,13 +5555,12 @@
             "surface_usability": 10
           },
           "template_name": "skill",
-          "effective_sha256": "d045011af816a2106ec8af8a737b5a79a5379604d484ff3345f8625206dfe69a",
+          "effective_sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6",
           "semantic_findings": [],
           "agent_surface_review": {
             "status": "unchanged",
             "added_providers": [],
             "blockers": [],
-            "review_attestations": [],
             "source_fidelity": "not_required",
             "identity_authenticated": false,
             "behavioral_status": "behavioral_pending"
@@ -5686,9 +5629,9 @@
       "manifest_version": "capability-fabric.v0",
       "layers": {
         "minimal": {
-          "capability_type": "both",
+          "capability_type": "skill",
           "summary": "Guide an Incident Commander through phase tracking, status cadence, artifact checks, escalation prompts, handoff, resolution, and postmortem work without making incident decisions. Use during an active incident or postmortem.",
-          "role": "specialist_workflow",
+          "role": "workflow",
           "domain_tags": [
             "engos",
             "operations",
@@ -5727,32 +5670,26 @@
             "ssot/engos-operations-ic-assistant.md"
           ],
           "packaging_profile": {
-            "capability_type": "both",
+            "capability_type": "skill",
             "primary_surfaces": {
               "codex": [
-                "codex_skill",
-                "codex_agent"
+                "codex_skill"
               ],
               "gemini": [
-                "gemini_skill",
-                "gemini_agent"
+                "gemini_skill"
               ],
               "claude": [
-                "claude_skill",
-                "claude_agent"
+                "claude_skill"
               ],
               "kiro": [
-                "kiro_skill",
-                "kiro_agent"
+                "kiro_skill"
               ],
               "grok": [
                 "grok_skill"
               ]
             },
             "wrapper_surfaces": {
-              "codex": [
-                "plugin_wrapper"
-              ],
+              "codex": [],
               "gemini": [
                 "skill_wrapper"
               ],
@@ -5783,20 +5720,16 @@
           },
           "emitted_surfaces": {
             "codex": [
-              "codex_skill",
-              "codex_agent"
+              "codex_skill"
             ],
             "gemini": [
-              "gemini_skill",
-              "gemini_agent"
+              "gemini_skill"
             ],
             "claude": [
-              "claude_skill",
-              "claude_agent"
+              "claude_skill"
             ],
             "kiro": [
-              "kiro_skill",
-              "kiro_agent"
+              "kiro_skill"
             ],
             "grok": [
               "grok_skill"
@@ -6118,17 +6051,13 @@
       },
       "quality_pass_count": 2,
       "quality_stop_reason": "thresholds_met",
-      "declared_capability": "both",
-      "inferred_capability": "both",
+      "declared_capability": "skill",
+      "inferred_capability": "skill",
       "expected_surface_names": [
         "codex_skill",
-        "codex_agent",
         "gemini_skill",
-        "gemini_agent",
         "claude_skill",
-        "claude_agent",
         "kiro_skill",
-        "kiro_agent",
         "grok_skill"
       ],
       "rubric_version": "capability-fabric.v0",
@@ -6148,9 +6077,9 @@
       "manifest_version": "capability-fabric.v0",
       "layers": {
         "minimal": {
-          "capability_type": "both",
+          "capability_type": "skill",
           "summary": "Run bounded, baseline-controlled experiments to improve prompts, skills, workflows, tools, or code and decide whether a candidate is ready for promotion. Use when better behavior must be measured; do not use for unmeasured brainstorming.",
-          "role": "specialist_workflow",
+          "role": "workflow",
           "domain_tags": [
             "engos",
             "optimization",
@@ -6216,32 +6145,26 @@
             "ssot/engos-optimization-auto-research.md"
           ],
           "packaging_profile": {
-            "capability_type": "both",
+            "capability_type": "skill",
             "primary_surfaces": {
               "codex": [
-                "codex_skill",
-                "codex_agent"
+                "codex_skill"
               ],
               "gemini": [
-                "gemini_skill",
-                "gemini_agent"
+                "gemini_skill"
               ],
               "claude": [
-                "claude_skill",
-                "claude_agent"
+                "claude_skill"
               ],
               "kiro": [
-                "kiro_skill",
-                "kiro_agent"
+                "kiro_skill"
               ],
               "grok": [
                 "grok_skill"
               ]
             },
             "wrapper_surfaces": {
-              "codex": [
-                "plugin_wrapper"
-              ],
+              "codex": [],
               "gemini": [
                 "skill_wrapper"
               ],
@@ -6272,20 +6195,16 @@
           },
           "emitted_surfaces": {
             "codex": [
-              "codex_skill",
-              "codex_agent"
+              "codex_skill"
             ],
             "gemini": [
-              "gemini_skill",
-              "gemini_agent"
+              "gemini_skill"
             ],
             "claude": [
-              "claude_skill",
-              "claude_agent"
+              "claude_skill"
             ],
             "kiro": [
-              "kiro_skill",
-              "kiro_agent"
+              "kiro_skill"
             ],
             "grok": [
               "grok_skill"
@@ -6648,17 +6567,13 @@
       },
       "quality_pass_count": 1,
       "quality_stop_reason": "thresholds_met",
-      "declared_capability": "both",
-      "inferred_capability": "both",
+      "declared_capability": "skill",
+      "inferred_capability": "skill",
       "expected_surface_names": [
         "codex_skill",
-        "codex_agent",
         "gemini_skill",
-        "gemini_agent",
         "claude_skill",
-        "claude_agent",
         "kiro_skill",
-        "kiro_agent",
         "grok_skill"
       ],
       "rubric_version": "capability-fabric.v0",
@@ -6679,9 +6594,9 @@
       "manifest_version": "capability-fabric.v0",
       "layers": {
         "minimal": {
-          "capability_type": "both",
+          "capability_type": "skill",
           "summary": "Run the explicitly requested, evidence-gated delivery protocol through independent subagents, TDD, blocking reviews, verification, documentation, Git health, and authorized landing. Use for implementation work that requires controller-owned sequencing and evidence.",
-          "role": "specialist_workflow",
+          "role": "workflow",
           "domain_tags": [
             "engos",
             "orchestration",
@@ -6727,32 +6642,26 @@
             "ssot/engos-orchestration-batman.md"
           ],
           "packaging_profile": {
-            "capability_type": "both",
+            "capability_type": "skill",
             "primary_surfaces": {
               "codex": [
-                "codex_skill",
-                "codex_agent"
+                "codex_skill"
               ],
               "gemini": [
-                "gemini_skill",
-                "gemini_agent"
+                "gemini_skill"
               ],
               "claude": [
-                "claude_skill",
-                "claude_agent"
+                "claude_skill"
               ],
               "kiro": [
-                "kiro_skill",
-                "kiro_agent"
+                "kiro_skill"
               ],
               "grok": [
                 "grok_skill"
               ]
             },
             "wrapper_surfaces": {
-              "codex": [
-                "plugin_wrapper"
-              ],
+              "codex": [],
               "gemini": [
                 "skill_wrapper"
               ],
@@ -6783,20 +6692,16 @@
           },
           "emitted_surfaces": {
             "codex": [
-              "codex_skill",
-              "codex_agent"
+              "codex_skill"
             ],
             "gemini": [
-              "gemini_skill",
-              "gemini_agent"
+              "gemini_skill"
             ],
             "claude": [
-              "claude_skill",
-              "claude_agent"
+              "claude_skill"
             ],
             "kiro": [
-              "kiro_skill",
-              "kiro_agent"
+              "kiro_skill"
             ],
             "grok": [
               "grok_skill"
@@ -6997,17 +6902,13 @@
       },
       "quality_pass_count": 1,
       "quality_stop_reason": "thresholds_met",
-      "declared_capability": "both",
-      "inferred_capability": "both",
+      "declared_capability": "skill",
+      "inferred_capability": "skill",
       "expected_surface_names": [
         "codex_skill",
-        "codex_agent",
         "gemini_skill",
-        "gemini_agent",
         "claude_skill",
-        "claude_agent",
         "kiro_skill",
-        "kiro_agent",
         "grok_skill"
       ],
       "rubric_version": "capability-fabric.v0",
@@ -7209,7 +7110,7 @@
       "manifest_version": "capability-fabric.v0",
       "layers": {
         "minimal": {
-          "capability_type": "both",
+          "capability_type": "skill",
           "summary": "Review repository documentation for information architecture, stale commands, broken links, misplaced content, drift, and release hygiene. Use when docs quality or discoverability is the primary concern; do not use for ordinary sentence editing.",
           "role": "analyst",
           "domain_tags": [
@@ -7255,32 +7156,26 @@
             "ssot/engos-quality-docs-review.md"
           ],
           "packaging_profile": {
-            "capability_type": "both",
+            "capability_type": "skill",
             "primary_surfaces": {
               "codex": [
-                "codex_skill",
-                "codex_agent"
+                "codex_skill"
               ],
               "gemini": [
-                "gemini_skill",
-                "gemini_agent"
+                "gemini_skill"
               ],
               "claude": [
-                "claude_skill",
-                "claude_agent"
+                "claude_skill"
               ],
               "kiro": [
-                "kiro_skill",
-                "kiro_agent"
+                "kiro_skill"
               ],
               "grok": [
                 "grok_skill"
               ]
             },
             "wrapper_surfaces": {
-              "codex": [
-                "plugin_wrapper"
-              ],
+              "codex": [],
               "gemini": [
                 "skill_wrapper"
               ],
@@ -7311,20 +7206,16 @@
           },
           "emitted_surfaces": {
             "codex": [
-              "codex_skill",
-              "codex_agent"
+              "codex_skill"
             ],
             "gemini": [
-              "gemini_skill",
-              "gemini_agent"
+              "gemini_skill"
             ],
             "claude": [
-              "claude_skill",
-              "claude_agent"
+              "claude_skill"
             ],
             "kiro": [
-              "kiro_skill",
-              "kiro_agent"
+              "kiro_skill"
             ],
             "grok": [
               "grok_skill"
@@ -7428,17 +7319,13 @@
         "invocation_style": "review_or_artifact_oriented",
         "requires_human_confirmation": false
       },
-      "declared_capability": "both",
-      "inferred_capability": "both",
+      "declared_capability": "skill",
+      "inferred_capability": "skill",
       "expected_surface_names": [
         "codex_skill",
-        "codex_agent",
         "gemini_skill",
-        "gemini_agent",
         "claude_skill",
-        "claude_agent",
         "kiro_skill",
-        "kiro_agent",
         "grok_skill"
       ],
       "rubric_version": "capability-fabric.v0",
@@ -7455,7 +7342,7 @@
       "manifest_version": "capability-fabric.v0",
       "layers": {
         "minimal": {
-          "capability_type": "both",
+          "capability_type": "skill",
           "summary": "Assess repository hygiene, commit and pull request or merge request readiness, CI, packaging, merge, tag, and release prerequisites across GitHub and GitLab. Use for release or merge gates; do not claim hosted state without current verification.",
           "role": "analyst",
           "domain_tags": [
@@ -7500,32 +7387,26 @@
             "ssot/engos-quality-gitops-review.md"
           ],
           "packaging_profile": {
-            "capability_type": "both",
+            "capability_type": "skill",
             "primary_surfaces": {
               "codex": [
-                "codex_skill",
-                "codex_agent"
+                "codex_skill"
               ],
               "gemini": [
-                "gemini_skill",
-                "gemini_agent"
+                "gemini_skill"
               ],
               "claude": [
-                "claude_skill",
-                "claude_agent"
+                "claude_skill"
               ],
               "kiro": [
-                "kiro_skill",
-                "kiro_agent"
+                "kiro_skill"
               ],
               "grok": [
                 "grok_skill"
               ]
             },
             "wrapper_surfaces": {
-              "codex": [
-                "plugin_wrapper"
-              ],
+              "codex": [],
               "gemini": [
                 "skill_wrapper"
               ],
@@ -7556,20 +7437,16 @@
           },
           "emitted_surfaces": {
             "codex": [
-              "codex_skill",
-              "codex_agent"
+              "codex_skill"
             ],
             "gemini": [
-              "gemini_skill",
-              "gemini_agent"
+              "gemini_skill"
             ],
             "claude": [
-              "claude_skill",
-              "claude_agent"
+              "claude_skill"
             ],
             "kiro": [
-              "kiro_skill",
-              "kiro_agent"
+              "kiro_skill"
             ],
             "grok": [
               "grok_skill"
@@ -7674,17 +7551,13 @@
         "invocation_style": "review_or_execution_assist",
         "requires_human_confirmation": true
       },
-      "declared_capability": "both",
-      "inferred_capability": "both",
+      "declared_capability": "skill",
+      "inferred_capability": "skill",
       "expected_surface_names": [
         "codex_skill",
-        "codex_agent",
         "gemini_skill",
-        "gemini_agent",
         "claude_skill",
-        "claude_agent",
         "kiro_skill",
-        "kiro_agent",
         "grok_skill"
       ],
       "rubric_version": "capability-fabric.v0",
@@ -8020,9 +7893,9 @@
       "manifest_version": "capability-fabric.v0",
       "layers": {
         "minimal": {
-          "capability_type": "both",
+          "capability_type": "skill",
           "summary": "Compare multiple sources, drafts, or proposals, surface conflicts and gaps, and produce one defensible recommendation with explicit trade-offs. Use when competing inputs must converge; do not hide incompatible ideas in a blended summary.",
-          "role": "specialist_workflow",
+          "role": "workflow",
           "domain_tags": [
             "packaging",
             "engos",
@@ -8063,32 +7936,26 @@
             "ssot/engos-reconciliation-converge.md"
           ],
           "packaging_profile": {
-            "capability_type": "both",
+            "capability_type": "skill",
             "primary_surfaces": {
               "codex": [
-                "codex_skill",
-                "codex_agent"
+                "codex_skill"
               ],
               "gemini": [
-                "gemini_skill",
-                "gemini_agent"
+                "gemini_skill"
               ],
               "claude": [
-                "claude_skill",
-                "claude_agent"
+                "claude_skill"
               ],
               "kiro": [
-                "kiro_skill",
-                "kiro_agent"
+                "kiro_skill"
               ],
               "grok": [
                 "grok_skill"
               ]
             },
             "wrapper_surfaces": {
-              "codex": [
-                "plugin_wrapper"
-              ],
+              "codex": [],
               "gemini": [
                 "skill_wrapper"
               ],
@@ -8119,20 +7986,16 @@
           },
           "emitted_surfaces": {
             "codex": [
-              "codex_skill",
-              "codex_agent"
+              "codex_skill"
             ],
             "gemini": [
-              "gemini_skill",
-              "gemini_agent"
+              "gemini_skill"
             ],
             "claude": [
-              "claude_skill",
-              "claude_agent"
+              "claude_skill"
             ],
             "kiro": [
-              "kiro_skill",
-              "kiro_agent"
+              "kiro_skill"
             ],
             "grok": [
               "grok_skill"
@@ -8213,17 +8076,13 @@
       ],
       "benchmark_sources": [],
       "consumption_hints": {},
-      "declared_capability": "both",
-      "inferred_capability": "both",
+      "declared_capability": "skill",
+      "inferred_capability": "skill",
       "expected_surface_names": [
         "codex_skill",
-        "codex_agent",
         "gemini_skill",
-        "gemini_agent",
         "claude_skill",
-        "claude_agent",
         "kiro_skill",
-        "kiro_agent",
         "grok_skill"
       ],
       "rubric_version": "capability-fabric.v0",
@@ -8240,9 +8099,9 @@
       "manifest_version": "capability-fabric.v0",
       "layers": {
         "minimal": {
-          "capability_type": "both",
+          "capability_type": "skill",
           "summary": "Triage Gmail and Google Chat into a deterministic attention queue with priority, links, and approved follow-up actions. Use when deciding what communications need attention; triage is read-only and actions require explicit approval.",
-          "role": "specialist_workflow",
+          "role": "workflow",
           "domain_tags": [
             "engos",
             "triage",
@@ -8278,32 +8137,26 @@
             "ssot/engos-triage-my-inbox-chat-pulse.md"
           ],
           "packaging_profile": {
-            "capability_type": "both",
+            "capability_type": "skill",
             "primary_surfaces": {
               "codex": [
-                "codex_skill",
-                "codex_agent"
+                "codex_skill"
               ],
               "gemini": [
-                "gemini_skill",
-                "gemini_agent"
+                "gemini_skill"
               ],
               "claude": [
-                "claude_skill",
-                "claude_agent"
+                "claude_skill"
               ],
               "kiro": [
-                "kiro_skill",
-                "kiro_agent"
+                "kiro_skill"
               ],
               "grok": [
                 "grok_skill"
               ]
             },
             "wrapper_surfaces": {
-              "codex": [
-                "plugin_wrapper"
-              ],
+              "codex": [],
               "gemini": [
                 "skill_wrapper"
               ],
@@ -8334,20 +8187,16 @@
           },
           "emitted_surfaces": {
             "codex": [
-              "codex_skill",
-              "codex_agent"
+              "codex_skill"
             ],
             "gemini": [
-              "gemini_skill",
-              "gemini_agent"
+              "gemini_skill"
             ],
             "claude": [
-              "claude_skill",
-              "claude_agent"
+              "claude_skill"
             ],
             "kiro": [
-              "kiro_skill",
-              "kiro_agent"
+              "kiro_skill"
             ],
             "grok": [
               "grok_skill"
@@ -8979,17 +8828,13 @@
       },
       "quality_pass_count": 1,
       "quality_stop_reason": "thresholds_met",
-      "declared_capability": "both",
-      "inferred_capability": "both",
+      "declared_capability": "skill",
+      "inferred_capability": "skill",
       "expected_surface_names": [
         "codex_skill",
-        "codex_agent",
         "gemini_skill",
-        "gemini_agent",
         "claude_skill",
-        "claude_agent",
         "kiro_skill",
-        "kiro_agent",
         "grok_skill"
       ],
       "rubric_version": "capability-fabric.v0",
@@ -9332,19 +9177,7 @@
       ".gemini/skills/engos-triage-my-inbox-chat-pulse/SKILL.md",
       ".gemini/skills/loopy/SKILL.md"
     ],
-    "gemini_agent": [
-      ".gemini/agents/engos-audit-pitch-review.md",
-      ".gemini/agents/engos-audit-weekly-intel.md",
-      ".gemini/agents/engos-design-architecture.md",
-      ".gemini/agents/engos-meta-supercharge.md",
-      ".gemini/agents/engos-operations-ic-assistant.md",
-      ".gemini/agents/engos-optimization-auto-research.md",
-      ".gemini/agents/engos-orchestration-batman.md",
-      ".gemini/agents/engos-quality-docs-review.md",
-      ".gemini/agents/engos-quality-gitops-review.md",
-      ".gemini/agents/engos-reconciliation-converge.md",
-      ".gemini/agents/engos-triage-my-inbox-chat-pulse.md"
-    ],
+    "gemini_agent": [],
     "claude_skill": [
       ".claude/skills/engos-audit-code-health/SKILL.md",
       ".claude/skills/engos-audit-engineering-progress/SKILL.md",
@@ -9374,32 +9207,8 @@
       ".claude/skills/engos-triage-my-inbox-chat-pulse/SKILL.md",
       ".claude/skills/loopy/SKILL.md"
     ],
-    "claude_agent": [
-      ".claude/agents/engos-audit-pitch-review.md",
-      ".claude/agents/engos-audit-weekly-intel.md",
-      ".claude/agents/engos-design-architecture.md",
-      ".claude/agents/engos-meta-supercharge.md",
-      ".claude/agents/engos-operations-ic-assistant.md",
-      ".claude/agents/engos-optimization-auto-research.md",
-      ".claude/agents/engos-orchestration-batman.md",
-      ".claude/agents/engos-quality-docs-review.md",
-      ".claude/agents/engos-quality-gitops-review.md",
-      ".claude/agents/engos-reconciliation-converge.md",
-      ".claude/agents/engos-triage-my-inbox-chat-pulse.md"
-    ],
-    "kiro_agent": [
-      ".kiro/agents/engos-audit-pitch-review.json",
-      ".kiro/agents/engos-audit-weekly-intel.json",
-      ".kiro/agents/engos-design-architecture.json",
-      ".kiro/agents/engos-meta-supercharge.json",
-      ".kiro/agents/engos-operations-ic-assistant.json",
-      ".kiro/agents/engos-optimization-auto-research.json",
-      ".kiro/agents/engos-orchestration-batman.json",
-      ".kiro/agents/engos-quality-docs-review.json",
-      ".kiro/agents/engos-quality-gitops-review.json",
-      ".kiro/agents/engos-reconciliation-converge.json",
-      ".kiro/agents/engos-triage-my-inbox-chat-pulse.json"
-    ],
+    "claude_agent": [],
+    "kiro_agent": [],
     "kiro_skill": [
       ".kiro/skills/engos-audit-code-health/SKILL.md",
       ".kiro/skills/engos-audit-engineering-progress/SKILL.md",
@@ -9458,19 +9267,7 @@
       ".codex/skills/engos-triage-my-inbox-chat-pulse/SKILL.md",
       ".codex/skills/loopy/SKILL.md"
     ],
-    "codex_agent": [
-      ".codex/agents/engos-audit-pitch-review.toml",
-      ".codex/agents/engos-audit-weekly-intel.toml",
-      ".codex/agents/engos-design-architecture.toml",
-      ".codex/agents/engos-meta-supercharge.toml",
-      ".codex/agents/engos-operations-ic-assistant.toml",
-      ".codex/agents/engos-optimization-auto-research.toml",
-      ".codex/agents/engos-orchestration-batman.toml",
-      ".codex/agents/engos-quality-docs-review.toml",
-      ".codex/agents/engos-quality-gitops-review.toml",
-      ".codex/agents/engos-reconciliation-converge.toml",
-      ".codex/agents/engos-triage-my-inbox-chat-pulse.toml"
-    ]
+    "codex_agent": []
   },
   "resources": {
     "grok_skill": [
@@ -9653,46 +9450,7 @@
       ".codex/skills/loopy/references/publish.md",
       ".codex/skills/loopy/references/run.md"
     ],
-    "codex_agent": [
-      ".codex/agents/resources/engos-audit-pitch-review/capability.json",
-      ".codex/agents/resources/engos-audit-weekly-intel/capability.json",
-      ".codex/agents/resources/engos-design-architecture/capability.json",
-      ".codex/agents/resources/engos-meta-supercharge/capability.json",
-      ".codex/agents/resources/engos-meta-supercharge/references/help-examples.md",
-      ".codex/agents/resources/engos-meta-supercharge/references/help.md",
-      ".codex/agents/resources/engos-meta-supercharge/references/model-guidance.md",
-      ".codex/agents/resources/engos-meta-supercharge/references/modules/adversarial.md",
-      ".codex/agents/resources/engos-meta-supercharge/references/modules/basis.md",
-      ".codex/agents/resources/engos-meta-supercharge/references/modules/catchup.md",
-      ".codex/agents/resources/engos-meta-supercharge/references/modules/contract.md",
-      ".codex/agents/resources/engos-meta-supercharge/references/modules/full.md",
-      ".codex/agents/resources/engos-meta-supercharge/references/modules/gaslight.md",
-      ".codex/agents/resources/engos-meta-supercharge/references/modules/grade.md",
-      ".codex/agents/resources/engos-meta-supercharge/references/modules/invert.md",
-      ".codex/agents/resources/engos-meta-supercharge/references/modules/simple.md",
-      ".codex/agents/resources/engos-meta-supercharge/references/modules/stop-ult.md",
-      ".codex/agents/resources/engos-meta-supercharge/references/modules/ult.md",
-      ".codex/agents/resources/engos-meta-supercharge/references/shared-review.md",
-      ".codex/agents/resources/engos-meta-supercharge/resource-map.json",
-      ".codex/agents/resources/engos-meta-supercharge/scripts/load_module.py",
-      ".codex/agents/resources/engos-operations-ic-assistant/capability.json",
-      ".codex/agents/resources/engos-operations-ic-assistant/appian-incident-runbook.md",
-      ".codex/agents/resources/engos-optimization-auto-research/capability.json",
-      ".codex/agents/resources/engos-optimization-auto-research/bootstrap.py",
-      ".codex/agents/resources/engos-optimization-auto-research/references/experiment-loop.md",
-      ".codex/agents/resources/engos-optimization-auto-research/references/resource-delivery.md",
-      ".codex/agents/resources/engos-optimization-auto-research/resource-map.json",
-      ".codex/agents/resources/engos-optimization-auto-research/templates/experiment-ledger.md.tmpl",
-      ".codex/agents/resources/engos-optimization-auto-research/templates/goal-contract.md.tmpl",
-      ".codex/agents/resources/engos-optimization-auto-research/templates/promotion-packet.md.tmpl",
-      ".codex/agents/resources/engos-optimization-auto-research/templates/scorecard.json.tmpl",
-      ".codex/agents/resources/engos-optimization-auto-research/scripts/load_module.py",
-      ".codex/agents/resources/engos-orchestration-batman/capability.json",
-      ".codex/agents/resources/engos-quality-docs-review/capability.json",
-      ".codex/agents/resources/engos-quality-gitops-review/capability.json",
-      ".codex/agents/resources/engos-reconciliation-converge/capability.json",
-      ".codex/agents/resources/engos-triage-my-inbox-chat-pulse/capability.json"
-    ],
+    "codex_agent": [],
     "gemini_skill": [
       ".gemini/skills/engos-audit-code-health/resources/capability.json",
       ".gemini/skills/engos-audit-code-health/resources/cruft-report",
@@ -9783,46 +9541,7 @@
       ".gemini/skills/loopy/references/publish.md",
       ".gemini/skills/loopy/references/run.md"
     ],
-    "gemini_agent": [
-      ".gemini/agents/resources/engos-audit-pitch-review/capability.json",
-      ".gemini/agents/resources/engos-audit-weekly-intel/capability.json",
-      ".gemini/agents/resources/engos-design-architecture/capability.json",
-      ".gemini/agents/resources/engos-meta-supercharge/capability.json",
-      ".gemini/agents/resources/engos-meta-supercharge/references/help-examples.md",
-      ".gemini/agents/resources/engos-meta-supercharge/references/help.md",
-      ".gemini/agents/resources/engos-meta-supercharge/references/model-guidance.md",
-      ".gemini/agents/resources/engos-meta-supercharge/references/modules/adversarial.md",
-      ".gemini/agents/resources/engos-meta-supercharge/references/modules/basis.md",
-      ".gemini/agents/resources/engos-meta-supercharge/references/modules/catchup.md",
-      ".gemini/agents/resources/engos-meta-supercharge/references/modules/contract.md",
-      ".gemini/agents/resources/engos-meta-supercharge/references/modules/full.md",
-      ".gemini/agents/resources/engos-meta-supercharge/references/modules/gaslight.md",
-      ".gemini/agents/resources/engos-meta-supercharge/references/modules/grade.md",
-      ".gemini/agents/resources/engos-meta-supercharge/references/modules/invert.md",
-      ".gemini/agents/resources/engos-meta-supercharge/references/modules/simple.md",
-      ".gemini/agents/resources/engos-meta-supercharge/references/modules/stop-ult.md",
-      ".gemini/agents/resources/engos-meta-supercharge/references/modules/ult.md",
-      ".gemini/agents/resources/engos-meta-supercharge/references/shared-review.md",
-      ".gemini/agents/resources/engos-meta-supercharge/resource-map.json",
-      ".gemini/agents/resources/engos-meta-supercharge/scripts/load_module.py",
-      ".gemini/agents/resources/engos-operations-ic-assistant/capability.json",
-      ".gemini/agents/resources/engos-operations-ic-assistant/appian-incident-runbook.md",
-      ".gemini/agents/resources/engos-optimization-auto-research/capability.json",
-      ".gemini/agents/resources/engos-optimization-auto-research/bootstrap.py",
-      ".gemini/agents/resources/engos-optimization-auto-research/references/experiment-loop.md",
-      ".gemini/agents/resources/engos-optimization-auto-research/references/resource-delivery.md",
-      ".gemini/agents/resources/engos-optimization-auto-research/resource-map.json",
-      ".gemini/agents/resources/engos-optimization-auto-research/templates/experiment-ledger.md.tmpl",
-      ".gemini/agents/resources/engos-optimization-auto-research/templates/goal-contract.md.tmpl",
-      ".gemini/agents/resources/engos-optimization-auto-research/templates/promotion-packet.md.tmpl",
-      ".gemini/agents/resources/engos-optimization-auto-research/templates/scorecard.json.tmpl",
-      ".gemini/agents/resources/engos-optimization-auto-research/scripts/load_module.py",
-      ".gemini/agents/resources/engos-orchestration-batman/capability.json",
-      ".gemini/agents/resources/engos-quality-docs-review/capability.json",
-      ".gemini/agents/resources/engos-quality-gitops-review/capability.json",
-      ".gemini/agents/resources/engos-reconciliation-converge/capability.json",
-      ".gemini/agents/resources/engos-triage-my-inbox-chat-pulse/capability.json"
-    ],
+    "gemini_agent": [],
     "claude_skill": [
       ".claude/skills/engos-audit-code-health/resources/capability.json",
       ".claude/skills/engos-audit-code-health/resources/cruft-report",
@@ -9913,46 +9632,7 @@
       ".claude/skills/loopy/references/publish.md",
       ".claude/skills/loopy/references/run.md"
     ],
-    "claude_agent": [
-      ".claude/agents/resources/engos-audit-pitch-review/capability.json",
-      ".claude/agents/resources/engos-audit-weekly-intel/capability.json",
-      ".claude/agents/resources/engos-design-architecture/capability.json",
-      ".claude/agents/resources/engos-meta-supercharge/capability.json",
-      ".claude/agents/resources/engos-meta-supercharge/references/help-examples.md",
-      ".claude/agents/resources/engos-meta-supercharge/references/help.md",
-      ".claude/agents/resources/engos-meta-supercharge/references/model-guidance.md",
-      ".claude/agents/resources/engos-meta-supercharge/references/modules/adversarial.md",
-      ".claude/agents/resources/engos-meta-supercharge/references/modules/basis.md",
-      ".claude/agents/resources/engos-meta-supercharge/references/modules/catchup.md",
-      ".claude/agents/resources/engos-meta-supercharge/references/modules/contract.md",
-      ".claude/agents/resources/engos-meta-supercharge/references/modules/full.md",
-      ".claude/agents/resources/engos-meta-supercharge/references/modules/gaslight.md",
-      ".claude/agents/resources/engos-meta-supercharge/references/modules/grade.md",
-      ".claude/agents/resources/engos-meta-supercharge/references/modules/invert.md",
-      ".claude/agents/resources/engos-meta-supercharge/references/modules/simple.md",
-      ".claude/agents/resources/engos-meta-supercharge/references/modules/stop-ult.md",
-      ".claude/agents/resources/engos-meta-supercharge/references/modules/ult.md",
-      ".claude/agents/resources/engos-meta-supercharge/references/shared-review.md",
-      ".claude/agents/resources/engos-meta-supercharge/resource-map.json",
-      ".claude/agents/resources/engos-meta-supercharge/scripts/load_module.py",
-      ".claude/agents/resources/engos-operations-ic-assistant/capability.json",
-      ".claude/agents/resources/engos-operations-ic-assistant/appian-incident-runbook.md",
-      ".claude/agents/resources/engos-optimization-auto-research/capability.json",
-      ".claude/agents/resources/engos-optimization-auto-research/bootstrap.py",
-      ".claude/agents/resources/engos-optimization-auto-research/references/experiment-loop.md",
-      ".claude/agents/resources/engos-optimization-auto-research/references/resource-delivery.md",
-      ".claude/agents/resources/engos-optimization-auto-research/resource-map.json",
-      ".claude/agents/resources/engos-optimization-auto-research/templates/experiment-ledger.md.tmpl",
-      ".claude/agents/resources/engos-optimization-auto-research/templates/goal-contract.md.tmpl",
-      ".claude/agents/resources/engos-optimization-auto-research/templates/promotion-packet.md.tmpl",
-      ".claude/agents/resources/engos-optimization-auto-research/templates/scorecard.json.tmpl",
-      ".claude/agents/resources/engos-optimization-auto-research/scripts/load_module.py",
-      ".claude/agents/resources/engos-orchestration-batman/capability.json",
-      ".claude/agents/resources/engos-quality-docs-review/capability.json",
-      ".claude/agents/resources/engos-quality-gitops-review/capability.json",
-      ".claude/agents/resources/engos-reconciliation-converge/capability.json",
-      ".claude/agents/resources/engos-triage-my-inbox-chat-pulse/capability.json"
-    ],
+    "claude_agent": [],
     "kiro_skill": [
       ".kiro/skills/engos-audit-code-health/resources/capability.json",
       ".kiro/skills/engos-audit-code-health/resources/cruft-report",
@@ -10043,45 +9723,6 @@
       ".kiro/skills/loopy/references/publish.md",
       ".kiro/skills/loopy/references/run.md"
     ],
-    "kiro_agent": [
-      ".kiro/agents/resources/engos-audit-pitch-review/capability.json",
-      ".kiro/agents/resources/engos-audit-weekly-intel/capability.json",
-      ".kiro/agents/resources/engos-design-architecture/capability.json",
-      ".kiro/agents/resources/engos-meta-supercharge/capability.json",
-      ".kiro/agents/resources/engos-meta-supercharge/references/help-examples.md",
-      ".kiro/agents/resources/engos-meta-supercharge/references/help.md",
-      ".kiro/agents/resources/engos-meta-supercharge/references/model-guidance.md",
-      ".kiro/agents/resources/engos-meta-supercharge/references/modules/adversarial.md",
-      ".kiro/agents/resources/engos-meta-supercharge/references/modules/basis.md",
-      ".kiro/agents/resources/engos-meta-supercharge/references/modules/catchup.md",
-      ".kiro/agents/resources/engos-meta-supercharge/references/modules/contract.md",
-      ".kiro/agents/resources/engos-meta-supercharge/references/modules/full.md",
-      ".kiro/agents/resources/engos-meta-supercharge/references/modules/gaslight.md",
-      ".kiro/agents/resources/engos-meta-supercharge/references/modules/grade.md",
-      ".kiro/agents/resources/engos-meta-supercharge/references/modules/invert.md",
-      ".kiro/agents/resources/engos-meta-supercharge/references/modules/simple.md",
-      ".kiro/agents/resources/engos-meta-supercharge/references/modules/stop-ult.md",
-      ".kiro/agents/resources/engos-meta-supercharge/references/modules/ult.md",
-      ".kiro/agents/resources/engos-meta-supercharge/references/shared-review.md",
-      ".kiro/agents/resources/engos-meta-supercharge/resource-map.json",
-      ".kiro/agents/resources/engos-meta-supercharge/scripts/load_module.py",
-      ".kiro/agents/resources/engos-operations-ic-assistant/capability.json",
-      ".kiro/agents/resources/engos-operations-ic-assistant/appian-incident-runbook.md",
-      ".kiro/agents/resources/engos-optimization-auto-research/capability.json",
-      ".kiro/agents/resources/engos-optimization-auto-research/bootstrap.py",
-      ".kiro/agents/resources/engos-optimization-auto-research/references/experiment-loop.md",
-      ".kiro/agents/resources/engos-optimization-auto-research/references/resource-delivery.md",
-      ".kiro/agents/resources/engos-optimization-auto-research/resource-map.json",
-      ".kiro/agents/resources/engos-optimization-auto-research/templates/experiment-ledger.md.tmpl",
-      ".kiro/agents/resources/engos-optimization-auto-research/templates/goal-contract.md.tmpl",
-      ".kiro/agents/resources/engos-optimization-auto-research/templates/promotion-packet.md.tmpl",
-      ".kiro/agents/resources/engos-optimization-auto-research/templates/scorecard.json.tmpl",
-      ".kiro/agents/resources/engos-optimization-auto-research/scripts/load_module.py",
-      ".kiro/agents/resources/engos-orchestration-batman/capability.json",
-      ".kiro/agents/resources/engos-quality-docs-review/capability.json",
-      ".kiro/agents/resources/engos-quality-gitops-review/capability.json",
-      ".kiro/agents/resources/engos-reconciliation-converge/capability.json",
-      ".kiro/agents/resources/engos-triage-my-inbox-chat-pulse/capability.json"
-    ]
+    "kiro_agent": []
   }
 }

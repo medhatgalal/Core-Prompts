@@ -108,3 +108,11 @@ Emit a deterministic summary.
     assert result["status"] == "manual_review"
     assert any("source fidelity failed" in blocker for blocker in metadata["blockers"])
     assert any("source fidelity failed" in blocker for blocker in benchmark["blockers"])
+
+
+def test_skill_usability_does_not_require_agent_emission_or_renamed_contract():
+    from intent_pipeline.uac_quality import _surface_usability_score
+    text = "## Agent Operating Contract\nInspect the evidence and return findings.\n## Examples\nReview this plan.\n"
+    assert _surface_usability_score(text, {'capability_type':'skill'},'skill',{'codex':['codex_skill']})==10
+    fenced = "```markdown\n"+text+"```\n"
+    assert _surface_usability_score(fenced, {'capability_type':'skill'},'skill',{'codex':['codex_skill']})==6

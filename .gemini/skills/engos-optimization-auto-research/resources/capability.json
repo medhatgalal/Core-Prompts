@@ -3,9 +3,9 @@
   "manifest_version": "capability-fabric.v0",
   "layers": {
     "minimal": {
-      "capability_type": "both",
+      "capability_type": "skill",
       "summary": "Run bounded, baseline-controlled experiments to improve prompts, skills, workflows, tools, or code and decide whether a candidate is ready for promotion. Use when better behavior must be measured; do not use for unmeasured brainstorming.",
-      "role": "specialist_workflow",
+      "role": "workflow",
       "domain_tags": [
         "engos",
         "optimization",
@@ -71,32 +71,26 @@
         "ssot/engos-optimization-auto-research.md"
       ],
       "packaging_profile": {
-        "capability_type": "both",
+        "capability_type": "skill",
         "primary_surfaces": {
           "codex": [
-            "codex_skill",
-            "codex_agent"
+            "codex_skill"
           ],
           "gemini": [
-            "gemini_skill",
-            "gemini_agent"
+            "gemini_skill"
           ],
           "claude": [
-            "claude_skill",
-            "claude_agent"
+            "claude_skill"
           ],
           "kiro": [
-            "kiro_skill",
-            "kiro_agent"
+            "kiro_skill"
           ],
           "grok": [
             "grok_skill"
           ]
         },
         "wrapper_surfaces": {
-          "codex": [
-            "plugin_wrapper"
-          ],
+          "codex": [],
           "gemini": [
             "skill_wrapper"
           ],
@@ -127,20 +121,16 @@
       },
       "emitted_surfaces": {
         "codex": [
-          "codex_skill",
-          "codex_agent"
+          "codex_skill"
         ],
         "gemini": [
-          "gemini_skill",
-          "gemini_agent"
+          "gemini_skill"
         ],
         "claude": [
-          "claude_skill",
-          "claude_agent"
+          "claude_skill"
         ],
         "kiro": [
-          "kiro_skill",
-          "kiro_agent"
+          "kiro_skill"
         ],
         "grok": [
           "grok_skill"
@@ -197,17 +187,13 @@
     }
   },
   "display_name": "Auto-Research \u2014 Goal-Driven Improvement Research, Evaluation, and Promotion",
-  "declared_capability": "both",
-  "inferred_capability": "both",
+  "declared_capability": "skill",
+  "inferred_capability": "skill",
   "expected_surface_names": [
     "codex_skill",
-    "codex_agent",
     "gemini_skill",
-    "gemini_agent",
     "claude_skill",
-    "claude_agent",
     "kiro_skill",
-    "kiro_agent",
     "grok_skill"
   ],
   "rubric_version": "capability-fabric.v0",

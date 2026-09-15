@@ -3,7 +3,7 @@
   "manifest_version": "capability-fabric.v0",
   "layers": {
     "minimal": {
-      "capability_type": "both",
+      "capability_type": "skill",
       "summary": "Design APIs, data models, patterns, or systems with explicit boundaries, trade-offs, failure modes, migration, rollback, and validation. Use for concrete architecture decisions; do not use for prompt hardening or behavioral evaluation.",
       "role": "architect",
       "domain_tags": [
@@ -53,32 +53,26 @@
         "ssot/engos-design-architecture.md"
       ],
       "packaging_profile": {
-        "capability_type": "both",
+        "capability_type": "skill",
         "primary_surfaces": {
           "codex": [
-            "codex_skill",
-            "codex_agent"
+            "codex_skill"
           ],
           "gemini": [
-            "gemini_skill",
-            "gemini_agent"
+            "gemini_skill"
           ],
           "claude": [
-            "claude_skill",
-            "claude_agent"
+            "claude_skill"
           ],
           "kiro": [
-            "kiro_skill",
-            "kiro_agent"
+            "kiro_skill"
           ],
           "grok": [
             "grok_skill"
           ]
         },
         "wrapper_surfaces": {
-          "codex": [
-            "plugin_wrapper"
-          ],
+          "codex": [],
           "gemini": [
             "skill_wrapper"
           ],
@@ -109,20 +103,16 @@
       },
       "emitted_surfaces": {
         "codex": [
-          "codex_skill",
-          "codex_agent"
+          "codex_skill"
         ],
         "gemini": [
-          "gemini_skill",
-          "gemini_agent"
+          "gemini_skill"
         ],
         "claude": [
-          "claude_skill",
-          "claude_agent"
+          "claude_skill"
         ],
         "kiro": [
-          "kiro_skill",
-          "kiro_agent"
+          "kiro_skill"
         ],
         "grok": [
           "grok_skill"
@@ -186,17 +176,13 @@
     }
   },
   "display_name": "Architecture Studio",
-  "declared_capability": "both",
-  "inferred_capability": "both",
+  "declared_capability": "skill",
+  "inferred_capability": "skill",
   "expected_surface_names": [
     "codex_skill",
-    "codex_agent",
     "gemini_skill",
-    "gemini_agent",
     "claude_skill",
-    "claude_agent",
     "kiro_skill",
-    "kiro_agent",
     "grok_skill"
   ],
   "rubric_version": "capability-fabric.v0",

@@ -37,10 +37,10 @@ per-file replacement, with recoverable journals for the whole transaction.
 
 | Situation | Selection behavior |
 | --- | --- |
-| Fresh target, `--cli kiro` | Install current Kiro skills; add `--with-agents` to explicitly select skills and emitted agents. |
-| Historical target without saved state | Recognize existing packages on selected providers, then migrate their same-surface successors. `--repair` makes this intent explicit. |
+| Fresh target, `--cli kiro` | Install current Kiro skills. `--with-agents` selects only emitted agents, currently none. |
+| Historical target without saved state | Recognize existing packages on selected providers, then migrate declared successors, including retired agent-to-skill transitions. `--repair` makes this intent explicit. |
 | Saved schema 1 skills profile | Normal sync carries forward its selected skills; explicit `--repair` also discovers independently recognized existing agents on its selected providers. |
-| Saved schema 2 installation | Routine sync keeps saved provider, surface, and slug selection. Explicit `--repair` discovers additional recognizable installed packages within scope. |
+| Saved schema 2 installation | Routine sync keeps saved selection except declared retirement transitions. Explicit `--repair` discovers additional recognizable installed packages within scope. |
 | Explicit `--slug SLUG` | Select that current capability's emitted skills and agents; repeat for multiple slugs. |
 | `--surface-only --slug SLUG` | Manage the selected surfaces and ownership state without refreshing the updater or launcher. |
 
@@ -80,6 +80,24 @@ not authorize another provider. Recognized `autosearch` packages migrate to
 `engos-optimization-auto-research`; `mentor` has no successor and is retired only
 when its package ownership is recognized and no unresolved dependency
 requires it. Replacement files are verified before predecessor files are removed.
+
+The current release retires all 11 first-party named-agent variants on Codex,
+Gemini, Claude, and Kiro (44 entrypoints), retaining all 27 skill capabilities.
+The existing historical catalog and ownership receipts identify the affected
+packages; no second registry is needed. A recognized owned retired agent maps
+to the exact same capability's skill on the same provider. Its skill is retained
+or installed before removal, including for an agent-only saved selection.
+Customized, unowned, symlinked, or dependency-conflicted agents are preserved;
+a customized or conflicting skill counterpart also preserves the affected agent.
+Owned removals and registration updates use the existing recoverable transaction.
+A source retirement alone does not clean an installation: apply and verify that
+target's reviewed plan before claiming it has no remaining agents.
+
+`--with-agents` remains a compatibility selector for emitted agent packages. It
+selects none in the current inventory and cannot authorize UAC to create an agent.
+Future added or reintroduced agent surfaces require explicit user approval and
+independent execution-need review before they can be emitted.
+
 
 Unknown, customized, and symlinked packages are preserved as whole packages,
 including partial packages that fail ownership recognition. During schema-1
@@ -126,6 +144,14 @@ a recoverable installation transaction; it does not advance a development
 checkout. Runtime parity and optional rendered consumer views are separate:
 retained optional views are not certified current by a runtime update. Hash
 verification assumes a trusted release source; it is not a signature guarantee.
+
+For this skills-only transition, the tested v1.14 updater rejects the smaller
+bundle with `standalone bundle file scope was removed; reviewed migration required`.
+Its old `--migrate` path only adds files and cannot retire the removed agent files.
+Use the **current installer once with `--repair`**, reviewing its dry-run JSON and
+applying that exact plan as shown above. Do not claim that an old ordinary or
+scheduled update has removed the agents. The current installer can bootstrap the
+replacement runtime and perform the ownership-aware migration in one transaction.
 
 Some compatible older profile engines can receive the new generated runtime
 through their existing file allowlist. That invocation still executes the old
@@ -185,13 +211,16 @@ compatibility path. Empty directories may remain after exact-file retirement.
 
 ## Provider discovery and evidence
 
+The agent paths below are historical cleanup and future-adapter locations; the
+current package emits no named agents.
+
 | Provider | Installed skill root | Agent root |
 | --- | --- | --- |
 | Codex | `.agents/skills/` | `.codex/agents/`, with target-local registrations |
 | Kiro | `.kiro/skills/` | `.kiro/agents/` |
 | Claude | `.claude/skills/` | `.claude/agents/` |
 | Gemini | `.agents/skills/` | `.gemini/agents/` |
-| Grok | `.grok/skills/` | No native agent surface claimed |
+| Grok | `.grok/skills/` | No repository-generated agent surface |
 
 Codex and Gemini share the portable generated skill package, including bundled
 resources. Provider selection still controls agents and configuration. A scoped

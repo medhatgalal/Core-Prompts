@@ -3,7 +3,7 @@ name: "engos-audit-weekly-intel"
 description: "Collect and fact-check project information from issue trackers, Git, code review, Chat, and documents, then produce one executive report with technical appendices and source confidence. Use for multi-source periodic intelligence; do not use for Git-only reports, inbox triage, or feature audits."
 display_name: "Weekly Intelligence — Multi-Source Progress Report with Fact-Check Audit"
 kind: "agent"
-capability_type: "both"
+capability_type: "skill"
 agent_tools: "Read, Write, Edit, Bash, Grep, Glob"
 ---
 # Weekly Intelligence — Multi-Source Progress Report with Fact-Check Audit

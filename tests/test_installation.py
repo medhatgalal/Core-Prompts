@@ -10,7 +10,7 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from core_install import planner, transaction
-from core_install import providers
+from core_install import providers, catalog
 import install_bundle
 
 
@@ -51,9 +51,9 @@ def installation(tmp_path):
                 data = ('{"name":"'+old+'","resources":[]}') if provider == 'kiro' and kind == 'agent' else token + '\n'
                 identities[token] = {'sha256': hashlib.sha256(data.encode()).hexdigest(), 'mode': 0o644}
                 roots = [str(Path(rel).parent)] if kind == 'skill' else [rel, f'.{provider}/agents/resources/{old}']
-                packages.append(dict(provider=provider,kind=kind,slug=old,successor=successor,roots=roots,files={rel:token},releases=['v1.12.2']))
-    catalog = dict(schema=1,releases={'v1.12.2':{'commit':'a'*40,'tag_object':'a'*40}},identities=identities,packages=packages,runtime={},launchers={})
-    put(repo, '.meta/install-profiles/legacy-installations.json',json.dumps(catalog))
+                packages.append(dict(provider=provider,kind=kind,slug=old,successor=catalog.successor(provider,kind,old),roots=roots,files={rel:token},releases=['v1.12.2']))
+    trusted_catalog = dict(schema=1,releases={'v1.12.2':{'commit':'a'*40,'tag_object':'a'*40}},identities=identities,packages=packages,runtime={},launchers={})
+    put(repo, '.meta/install-profiles/legacy-installations.json',json.dumps(trusted_catalog))
     install_bundle.build(repo)
     return repo,target
 

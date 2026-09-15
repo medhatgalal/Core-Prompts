@@ -3,7 +3,7 @@ name: "engos-meta-supercharge"
 description: "Harden a prompt, plan, proposal, or workflow through the smallest useful sequence of simplification, inversion, adversarial critique, contract checks, debate, or grading. Use when the artifact needs stronger reasoning or execution guidance; use behavioral evaluation for proof."
 display_name: "SuperCharge — Prompt Engineering, Planning Hardening, and Graded Improvement"
 kind: "agent"
-capability_type: "both"
+capability_type: "skill"
 agent_tools: "Read, Write, Edit, Bash, Grep, Glob"
 version: "v5.0"
 ---
