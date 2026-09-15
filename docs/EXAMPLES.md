@@ -1194,7 +1194,8 @@ Example ask:
 
 > Preview my old Core-Prompts Kiro skills and named agents using the current
 > installer. I have no updater or receipts. Include recognized namespace migrations
-> and retirement of owned first-party agent variants, preserve custom agents and unresolved dependencies, and
+> and retirement of identified Core-Prompts agent variants, including modified copies.
+> Preserve third-party agents and unresolved dependencies, and
 > show the exact plan before applying it.
 
 ```bash
@@ -1208,17 +1209,18 @@ bash scripts/install-local.sh --target "$HOME" --allow-nonlocal-target \
 Expected result: recognized skills migrate to current identities; recognized owned
 retired agents migrate to their same-job, same-provider skills. Agent removals are
 recoverable through the existing transaction.
-Unknown, customized, symlinked, dependency-conflicted, and unrecognized partial
-packages remain in place and appear in `preserved`. Schema-1 receipt conversion
+Identified retired Core-Prompts agents are removed even when locally modified;
+their customized skill counterparts remain unchanged. Other unknown, customized,
+symlinked, dependency-conflicted, and unrecognized partial packages remain in place and appear in `preserved`. Schema-1 receipt conversion
 may restore missing receipted files; review the plan using the
 [recognition and preservation rules](INSTALL-PROFILES.md#historical-recognition-and-preservation).
 Exit `2` signals that review is still needed.
 The installer supplies the missing updater and saves the concrete selection;
 scheduling is a separate opt-in action.
 
-For an existing skills-only profile, ordinary sync retains skills only. Explicit
-repair discovers recognized existing agents on selected providers and plans their
-declared retirement transitions. `--with-agents` only selects emitted agents; the current skills-only package emits none. It does not authorize new agent surfaces.
+For an existing skills-only profile, ordinary sync retains skills and automatically
+cleans identified retired Core-Prompts agents on the saved providers. Explicit
+repair also discovers other recognized historical packages within scope. `--with-agents` only selects emitted agents; the current skills-only package emits none. It does not authorize new agent surfaces.
 Subsequent ordinary runs keep the saved selection and reconcile resources within
 owned packages. Review a repeat dry-run for unexpected actions, and use
 `--rollback TRANSACTION_ID --dry-run` to check recovery readiness.

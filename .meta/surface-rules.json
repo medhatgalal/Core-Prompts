@@ -16,6 +16,7 @@
       "codex_skill_destination": ".agents/skills",
       "unknown_or_customized": "preserve",
       "retirement": "complete_package_proven_by_receipt_or_trusted_release_catalog",
+      "retired_core_agent_cleanup": "Routine sync removes exact catalogued engos agent identities, including modified packages and exact .bak siblings, when definition name and bundled capability metadata identify the Core-Prompts package. Preserve symlinks, ambiguous identity, third-party agents and external dependencies. Preserve an existing customized skill counterpart without adopting or overwriting it. Bind removal to fresh file hashes and the normal recovery journal.",
       "rollback": "hash_guarded",
       "tool_metadata": "descriptive_not_permission",
       "routine_updates": "persisted provider/surface/slug selection; verified bundle; locked hash-guarded transaction and rollback",

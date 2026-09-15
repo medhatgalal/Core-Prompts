@@ -387,3 +387,7 @@ Use `$loopy` in Codex or `/loopy` in Kiro and Grok to find, audit, craft, run, o
 debrief a loop. For example: “Use Loopy to audit this loop and repair only material
 weaknesses.” Expect a concise verdict and a minimally repaired loop; execution,
 scheduling, and publication retain their separate authorization boundaries.
+
+Routine updates automatically remove identified retired Core-Prompts agents,
+including locally modified copies, while retaining skills and third-party agents
+such as Kiro Crew. See [installation cleanup](docs/INSTALL-PROFILES.md#automatic-agent-cleanup-on-update).

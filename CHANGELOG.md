@@ -1,5 +1,7 @@
 ## v1.15.0 - 2026-09-15
 
+- Automatically clean identified retired Core-Prompts agent packages and their definition backups during routine updates, including modified copies. Preserve custom skills, third-party agents, and dependency boundaries.
+
 Source version prepared for skills-only distribution; publication and installed-state verification are separate.
 
 - Ship all 27 capabilities as skills and retire the eleven first-party named-agent packages across Codex, Claude, Gemini, and Kiro. Generic independent workers and the skill contracts remain available.
