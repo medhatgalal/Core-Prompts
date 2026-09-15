@@ -14,9 +14,15 @@ For engineering activity, start with `engos-audit-engineering-progress help`. Su
 
 ## Step 1: Use Installed Capabilities
 
-Start in your CLI, not in the repo.
+Start in your CLI with the job you want done:
 
-If Core-Prompts is already installed in Codex, Gemini, Claude, or Kiro, begin with one of these asks:
+> Supercharge this plan: replace our onboarding checklist with the fewest steps that still verify access, setup, and a successful first task.
+
+Expect a stronger plan with tradeoffs, failure modes, and acceptance criteria. The assistant must arrange any required independent review; unavailable workers are a reported limitation, not a reason to call self-review independent. If the skill is not discovered, explicitly select `engos-meta-supercharge` and repeat the request. Ordinary-language discovery depends on the host and installed setup.
+
+You can start with skills only, which is the fresh-install default. [Skills, agents, and prompts](FAQ.md#what-is-the-difference-between-a-skill-an-agent-and-a-prompt) explains optional execution configurations. Batman remains explicitly invoked.
+
+If Core-Prompts is already installed in Codex, Gemini, Claude, Kiro, or Grok, begin with one of these asks:
 
 | Capability | Example ask | What good output looks like |
 | --- | --- | --- |
@@ -41,15 +47,7 @@ For complete OpEx meeting preparation, request `briefing` with incident keys; it
 
 For a complete Plan to Goal walkthrough, including a two-criterion verifier and the lint/seal/check commands, see [Plan to Goal Design](EXAMPLES.md#engos-design-plan-to-goal).
 
-If you want an agent surface rather than a direct skill invocation, start with the table below. Capability Fabric metadata is advisory; explicit invocation follows the selected capability's operating contract.
-
-| Agent | Example ask | Best when you need... |
-| --- | --- | --- |
-| `engos-orchestration-batman` | "Batman: take this implementation through instruction integrity, a Host-Fit Plan, independent-subagent TDD, all applicable blocking reviews, and authorized landing. Report initial, stage, blocker, and 15-minute progress." | explicitly invoked implementation through subagents, all applicable blocking milestone reviews, evidence-class honesty, and authorized landing |
-| `engos-quality-docs-review` | "Use `engos-quality-docs-review` to review our onboarding docs for drift before release." | structured documentation review |
-| `engos-quality-gitops-review` | "Use `engos-quality-gitops-review` to judge whether we are ready to merge and release." | a merge or release gate |
-| `engos-operations-ic-assistant` | "Use `engos-operations-ic-assistant` to keep the incident process on-track and flag the next required action." | generic phase-aware guidance, with internal runbook mode only on request |
-| `engos-audit-weekly-intel` | "Use `engos-audit-weekly-intel` to produce this week's update from our source set." | a multi-source status summary |
+For optional named agent configurations, use the [agent FAQ](FAQ.md#what-is-the-difference-between-a-skill-an-agent-and-a-prompt) and [current inventory](CAPABILITY-CATALOG.md). You can use the skill examples above without selecting an agent package.
 
 ### How Batman starts and resolves companions
 

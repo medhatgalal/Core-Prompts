@@ -1,6 +1,7 @@
 ---
 name: "engos-triage-my-inbox-chat-pulse"
 description: "Triage Gmail and Google Chat into a deterministic attention queue with priority, links, and approved follow-up actions. Use when deciding what communications need attention; triage is read-only and actions require explicit approval."
+capability_type: "both"
 ---
 # Pulse — Comms Triage
 

@@ -137,8 +137,8 @@
             "policy_rule_id": "ssot.engos-audit-code-health",
             "content_sha256": "ssot"
           },
-          "confidence": 0.96,
-          "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
+          "confidence": 1.0,
+          "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "Codebase Health Audit \u2014 Brownfield Structural Risk Report"
         },
@@ -207,7 +207,7 @@
       "benchmark_sources": [],
       "consumption_hints": {},
       "declared_capability": "skill",
-      "inferred_capability": "both",
+      "inferred_capability": "skill",
       "expected_surface_names": [
         "codex_skill",
         "gemini_skill",
@@ -675,8 +675,8 @@
             "policy_rule_id": "ssot.engos-audit-feature-status",
             "content_sha256": "ssot"
           },
-          "confidence": 0.97,
-          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+          "confidence": 1.0,
+          "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "Feature Status \u2014 Deep Completeness Analysis"
         },
@@ -859,8 +859,8 @@
             "policy_rule_id": "ssot.engos-audit-opex-incident-review",
             "content_sha256": "ssot"
           },
-          "confidence": 0.97,
-          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+          "confidence": 1.0,
+          "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "EngOS Audit \u2014 Operational Excellence Incident Review",
           "version": "3.0.0",
@@ -1227,8 +1227,8 @@
             "policy_rule_id": "ssot.engos-audit-pitch-review",
             "content_sha256": "ssot"
           },
-          "confidence": 0.9,
-          "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
+          "confidence": 1.0,
+          "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "Pitch \u2014 Shape Up Pitch Creation, Review, Scoring, and Improvement",
           "version": "v1.1"
@@ -1696,8 +1696,8 @@
             "policy_rule_id": "ssot.engos-audit-weekly-intel",
             "content_sha256": "ssot"
           },
-          "confidence": 0.98,
-          "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
+          "confidence": 1.0,
+          "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "Weekly Intelligence \u2014 Multi-Source Progress Report with Fact-Check Audit"
         },
@@ -1883,8 +1883,8 @@
             "policy_rule_id": "ssot.engos-browser-demo-recorder",
             "content_sha256": "ssot"
           },
-          "confidence": 0.97,
-          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+          "confidence": 1.0,
+          "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "Demo Recorder \u2014 Automated Playwright Demo Generation"
         },
@@ -2185,8 +2185,8 @@
             "policy_rule_id": "ssot.engos-content-dynamic-html-presentations",
             "content_sha256": "ssot"
           },
-          "confidence": 0.97,
-          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+          "confidence": 1.0,
+          "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "Dynamic HTML Presentations",
           "compatibility": "HTML works in modern browsers; bundled PNG exporter requires macOS 13+; PPTX helper requires Python 3.9+."
@@ -2589,8 +2589,8 @@
             "policy_rule_id": "ssot.engos-delivery-address-code-review",
             "content_sha256": "ssot"
           },
-          "confidence": 0.97,
-          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+          "confidence": 1.0,
+          "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "Address Code Review \u2014 PR/MR Feedback Resolution"
         },
@@ -2974,8 +2974,8 @@
             "policy_rule_id": "ssot.engos-delivery-resolve-conflict",
             "content_sha256": "ssot"
           },
-          "confidence": 0.97,
-          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+          "confidence": 1.0,
+          "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "Merge Conflict Resolution \u2014 Structured Conflict Analysis"
         },
@@ -3179,8 +3179,8 @@
             "policy_rule_id": "ssot.engos-design-architecture",
             "content_sha256": "ssot"
           },
-          "confidence": 0.98,
-          "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
+          "confidence": 1.0,
+          "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "Architecture Studio"
         },
@@ -3614,8 +3614,8 @@
             "policy_rule_id": "ssot.engos-design-plan-to-goal",
             "content_sha256": "ssot"
           },
-          "confidence": 0.97,
-          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+          "confidence": 1.0,
+          "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "Plan to Goal Design"
         },
@@ -3951,8 +3951,8 @@
             "policy_rule_id": "ssot.engos-memory-context-continuity",
             "content_sha256": "ssot"
           },
-          "confidence": 0.97,
-          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+          "confidence": 1.0,
+          "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "Analyze Context \u2014 Durable Multi-File Investigation"
         },
@@ -4210,7 +4210,7 @@
         "minimal": {
           "capability_type": "skill",
           "summary": "Export the current conversation as a faithful transcript or durable handoff, preserving turn order, AI output fidelity, artifacts, and missing-history disclosure. Use for archival or transfer; do not blend export with analysis.",
-          "role": "specialist_workflow",
+          "role": "workflow",
           "domain_tags": [
             "context",
             "engos",
@@ -4318,8 +4318,8 @@
             "policy_rule_id": "ssot.engos-memory-threader",
             "content_sha256": "ssot"
           },
-          "confidence": 0.86,
-          "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
+          "confidence": 1.0,
+          "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "Threader \u2014 Full-Thread Transcript Export and Recall Capture"
         },
@@ -4358,7 +4358,7 @@
       "benchmark_sources": [],
       "consumption_hints": {},
       "declared_capability": "skill",
-      "inferred_capability": "both",
+      "inferred_capability": "skill",
       "expected_surface_names": [
         "codex_skill",
         "gemini_skill",
@@ -4492,8 +4492,8 @@
             "policy_rule_id": "ssot.engos-meta-instruction-editor",
             "content_sha256": "ssot"
           },
-          "confidence": 0.96,
-          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+          "confidence": 1.0,
+          "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "Instruction Editor"
         },
@@ -4751,8 +4751,8 @@
             "policy_rule_id": "ssot.engos-meta-supercharge",
             "content_sha256": "ssot"
           },
-          "confidence": 0.98,
-          "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
+          "confidence": 1.0,
+          "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "SuperCharge \u2014 Prompt Engineering, Planning Hardening, and Graded Improvement",
           "version": "v5.0"
@@ -5312,7 +5312,7 @@
       "layers": {
         "minimal": {
           "capability_type": "skill",
-          "summary": "Inspect an external prompt-like source, classify its fit, and prepare a quality-gated Core-Prompts plan, judge, or apply result. Use for capability intake; do not use for ordinary prompt editing or deployment.",
+          "summary": "Import external instructions as reusable skills, reviewing native execution needs before adding agents, through Core-Prompts plan, judge, and apply. Use for capability intake; do not use for ordinary prompt editing or deployment.",
           "role": "importer",
           "domain_tags": [
             "import",
@@ -5438,8 +5438,8 @@
             "policy_rule_id": "ssot.engos-meta-uac-import",
             "content_sha256": "ssot"
           },
-          "confidence": 0.86,
-          "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
+          "confidence": 1.0,
+          "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "UAC Import \u2014 Capability Intake, Quality Review, and Uplift"
         },
@@ -5475,7 +5475,7 @@
       "display_name": "UAC Import \u2014 Capability Intake, Quality Review, and Uplift",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "engos-meta-uac-import",
-      "shared_summary": "Inspect an external prompt-like source, classify its fit, and prepare a quality-gated Core-Prompts plan, judge, or apply result. Use for capability intake; do not use for ordinary prompt editing or deployment.",
+      "shared_summary": "Import external instructions as reusable skills, reviewing native execution needs before adding agents, through Core-Prompts plan, judge, and apply. Use for capability intake; do not use for ordinary prompt editing or deployment.",
       "shared_constraints": [
         "No hidden execution. UAC coordinates exhaustive onboarding checks; it does not require a separate paid model API for every import. The invoking agent may prepare semantic repairs within authorized scope, and a separate subagent reviews them.",
         "No packaging claims without evidence.",
@@ -5530,7 +5530,7 @@
               "title": "Source Fidelity and Uplift",
               "score": 10,
               "blockers": [],
-              "classification": "reviewed_modernization",
+              "classification": "additive",
               "scenario_results": [
                 {
                   "id": "operational_invocation",
@@ -5549,7 +5549,7 @@
               ],
               "reviewed_deltas": [],
               "requirement_review": {
-                "status": "bound_attestation",
+                "status": "not_supplied_or_invalid",
                 "identity_authenticated": false,
                 "behavioral_status": "behavioral_pending"
               },
@@ -5610,9 +5610,18 @@
             "metadata_completeness": 8,
             "surface_usability": 10
           },
-          "template_name": "both",
-          "effective_sha256": "4d81b852a81e7d1cc8b18d41c50b36c9ce97515db66aa1984940eae8e3526571",
+          "template_name": "skill",
+          "effective_sha256": "d045011af816a2106ec8af8a737b5a79a5379604d484ff3345f8625206dfe69a",
           "semantic_findings": [],
+          "agent_surface_review": {
+            "status": "unchanged",
+            "added_providers": [],
+            "blockers": [],
+            "review_attestations": [],
+            "source_fidelity": "not_required",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
           "repair_requests": [],
           "dimension_inventory": [
             {
@@ -5655,7 +5664,7 @@
       "quality_pass_count": 1,
       "quality_stop_reason": "thresholds_met",
       "declared_capability": "skill",
-      "inferred_capability": "both",
+      "inferred_capability": "skill",
       "expected_surface_names": [
         "codex_skill",
         "gemini_skill",
@@ -5799,8 +5808,8 @@
             "policy_rule_id": "ssot.engos-operations-ic-assistant",
             "content_sha256": "ssot"
           },
-          "confidence": 0.92,
-          "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
+          "confidence": 1.0,
+          "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "Incident Commander Assistant"
         },
@@ -6288,8 +6297,8 @@
             "policy_rule_id": "ssot.engos-optimization-auto-research",
             "content_sha256": "ssot"
           },
-          "confidence": 0.98,
-          "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
+          "confidence": 1.0,
+          "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "Auto-Research \u2014 Goal-Driven Improvement Research, Evaluation, and Promotion",
           "version": "v2.1"
@@ -6799,8 +6808,8 @@
             "policy_rule_id": "ssot.engos-orchestration-batman",
             "content_sha256": "ssot"
           },
-          "confidence": 0.98,
-          "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
+          "confidence": 1.0,
+          "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "Batman \u2014 Evidence-Gated Delivery Controller"
         },
@@ -7124,8 +7133,8 @@
             "policy_rule_id": "ssot.engos-quality-code-review",
             "content_sha256": "ssot"
           },
-          "confidence": 0.97,
-          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+          "confidence": 1.0,
+          "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "Commit Review \u2014 Git Commit Quality Gate"
         },
@@ -7327,8 +7336,8 @@
             "policy_rule_id": "ssot.engos-quality-docs-review",
             "content_sha256": "ssot"
           },
-          "confidence": 0.96,
-          "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
+          "confidence": 1.0,
+          "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "Docs Review Expert \u2014 Documentation IA, Drift, and Release Hygiene"
         },
@@ -7572,8 +7581,8 @@
             "policy_rule_id": "ssot.engos-quality-gitops-review",
             "content_sha256": "ssot"
           },
-          "confidence": 0.96,
-          "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
+          "confidence": 1.0,
+          "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "GitOps Review \u2014 Repo Hygiene, CI, Release, and Merge Gate"
         },
@@ -7805,8 +7814,8 @@
             "policy_rule_id": "ssot.engos-quality-testing-review",
             "content_sha256": "ssot"
           },
-          "confidence": 0.97,
-          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+          "confidence": 1.0,
+          "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "Testing Studio \u2014 Test Design and Coverage Analysis"
         },
@@ -8135,8 +8144,8 @@
             "policy_rule_id": "ssot.engos-reconciliation-converge",
             "content_sha256": "ssot"
           },
-          "confidence": 0.98,
-          "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
+          "confidence": 1.0,
+          "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "Converge \u2014 Multi-Source Synthesis, Conflict Surfacing, and Final Recommendation"
         },
@@ -8350,8 +8359,8 @@
             "policy_rule_id": "ssot.engos-triage-my-inbox-chat-pulse",
             "content_sha256": "ssot"
           },
-          "confidence": 0.9,
-          "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
+          "confidence": 1.0,
+          "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "Pulse \u2014 Comms Triage"
         },
@@ -8970,7 +8979,7 @@
       },
       "quality_pass_count": 1,
       "quality_stop_reason": "thresholds_met",
-      "declared_capability": null,
+      "declared_capability": "both",
       "inferred_capability": "both",
       "expected_surface_names": [
         "codex_skill",
@@ -9105,8 +9114,8 @@
             "policy_rule_id": "ssot.loopy",
             "content_sha256": "ssot"
           },
-          "confidence": 0.97,
-          "rationale": "Source contains reusable workflow/prompt structure with explicit objectives, constraints, or usage framing and is best shipped as a skill surface.",
+          "confidence": 1.0,
+          "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "Loopy \u2014 Bounded Agent Loops"
         },

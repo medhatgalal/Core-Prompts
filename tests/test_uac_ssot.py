@@ -27,6 +27,12 @@ def test_audit_ssot_entries_detects_hybrid_capability() -> None:
 
     assert audits['engos-meta-supercharge'].inferred.capability_type == 'both'
     assert audits['engos-orchestration-batman'].inferred.capability_type == 'both'
+    # Pulse previously relied on lexical inference: freeze its released agents.
+    pulse = audits['engos-triage-my-inbox-chat-pulse']
+    assert pulse.declared_capability == 'both'
+    assert {name for name in pulse.expected_surface_names if name.endswith('_agent')} == {
+        'codex_agent', 'claude_agent', 'gemini_agent', 'kiro_agent',
+    }
 
 
 def test_architecture_entry_publishes_display_name_and_agent_surfaces() -> None:

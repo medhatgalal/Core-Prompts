@@ -1,6 +1,6 @@
 # UAC Capability Model
 
-UAC is the authoritative classifier for imported sources and SSOT entries.
+UAC recommends packaging for imported sources and preserves explicit canonical declarations. Classification does not establish runtime benefit. The canonical policy lives in [surface rules](../.meta/surface-rules.json).
 
 ## Template-Backed Landing Rule
 Before `apply` lands a new or uplifted capability, UAC must judge it against:
@@ -24,9 +24,17 @@ Required behavior:
 | Type | Meaning | Auto-deployable |
 | --- | --- | --- |
 | `skill` | reusable prompt/workflow with bounded outputs | yes |
-| `agent` | delegated specialist with explicit agent semantics | yes |
-| `both` | one canonical source that emits workflow and agent surfaces | yes |
+| `agent` | explicitly declared native worker configuration | only with reviewed execution need for new emission |
+| `both` | one canonical source with a skill and optional native execution adapters | only with reviewed execution need for new agent emission |
 | `manual_review` | conflicting or weakly structured content | no |
+
+## Skill-first classification
+
+Reusable workflow content defaults to `skill`. Headings such as Mission and Responsibilities, quoted agent examples, and requests for independent reviewers do not establish a need for a named agent. Undeclared native-agent configuration requires packaging review. Existing explicit declarations retain their surfaces.
+
+New or expanded agent emission uses the existing hash-bound `UACRequirementReview.v1` record. Its optional `agent_execution_needs` list identifies each added provider, the necessary `execution_need`, `why_generic_worker_insufficient`, and an exact `candidate_excerpt`. The review must satisfy the existing independent-review and source/candidate/effective-content bindings. This records reviewed intent, not authenticated reviewer identity or behavioral superiority. UAC apply enforces this admission even when its general quality loop is disabled. Generation and validation also check additions before publishing surfaces, using Git release history or the validated installer catalog's latest pinned release. The current generated manifest cannot authorize its own expansion. Persisted reviews contain hashes and scoped attestations, not original source snapshots; build checks final content binding without claiming to replay original-source fidelity.
+
+Adding a missing declaration to an otherwise unchanged released source is a narrow preservation operation: the body and other fields must match the verified released source and the complete emitted surface set must remain identical. UAC records `preserved_existing_contract`, not a newly passing agent template or behavioral promotion. Content, configuration, or surface changes use the normal quality gates.
 
 ## Not Capability Types
 These are deployment wrappers, not peer capability classes:

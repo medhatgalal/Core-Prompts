@@ -1,0 +1,107 @@
+{
+  "schema": "SkillFirstPilotResult.v1",
+  "status": "admission_only_hold",
+  "baseline": "55f9ed0de75ac3d62afb5d3756cac81915e7a003",
+  "anchor_epoch": 1789482537.263965,
+  "hard_limit_seconds": 3600,
+  "native_model_calls": 0,
+  "comparative_trials": 0,
+  "retired_agents": 0,
+  "providers": [
+    {
+      "provider": "codex",
+      "version": "codex-cli 0.154.0",
+      "comparison": "not_run",
+      "decision": "retain",
+      "blockers": [
+        "authenticated Codex execution is disabled until a reviewed secret-isolating provider boundary and enforced runtime tool allowlist exist",
+        "Native success/fault/resource/action observations and complete A/B accounting have not passed."
+      ],
+      "model_calls": 0,
+      "complete_native_tokens": null,
+      "help_exit_codes": [
+        0,
+        0
+      ]
+    },
+    {
+      "provider": "claude",
+      "version": "2.1.9 (Claude Code)",
+      "comparison": "not_run",
+      "decision": "retain",
+      "blockers": [
+        "Registered adapter cannot observe native delegated resource and tool-boundary cases.",
+        "Native success/fault/resource/action observations and complete A/B accounting have not passed."
+      ],
+      "model_calls": 0,
+      "complete_native_tokens": null,
+      "help_exit_codes": [
+        0,
+        0
+      ]
+    },
+    {
+      "provider": "gemini",
+      "version": "0.46.0",
+      "comparison": "not_run",
+      "decision": "retain",
+      "blockers": [
+        "No registered native collection adapter for this provider.",
+        "Native success/fault/resource/action observations and complete A/B accounting have not passed."
+      ],
+      "model_calls": 0,
+      "complete_native_tokens": null,
+      "help_exit_codes": [
+        0,
+        0
+      ]
+    },
+    {
+      "provider": "kiro",
+      "version": "kiro-cli 2.21.4",
+      "comparison": "not_run",
+      "decision": "retain",
+      "blockers": [
+        "authenticated Kiro execution is disabled until KIRO_API_KEY can be confined to a reviewed bounded gateway with enforced runtime tool limits",
+        "Native success/fault/resource/action observations and complete A/B accounting have not passed."
+      ],
+      "model_calls": 0,
+      "complete_native_tokens": null,
+      "help_exit_codes": [
+        0,
+        0
+      ]
+    },
+    {
+      "provider": "grok",
+      "version": "grok 1.0.30 (04b7ffed98c6) [stable]",
+      "comparison": "inapplicable",
+      "decision": "retain",
+      "blockers": [
+        "No registered native collection adapter for this provider.",
+        "Native success/fault/resource/action observations and complete A/B accounting have not passed."
+      ],
+      "model_calls": 0,
+      "complete_native_tokens": null,
+      "help_exit_codes": [
+        0,
+        0
+      ]
+    }
+  ],
+  "stop_reason": "All five fixed diagnostic passes completed; no native comparison met required admission. Unused budget released, not transferred.",
+  "unperformed": [
+    "model-mediated resource success/fault preflight",
+    "direct-skill control",
+    "native action-boundary verification",
+    "A/B and B/A comparisons",
+    "behavioral terminal controls",
+    "retirement migration tests (no eligible retirement)"
+  ],
+  "diagnostic_decision_elapsed_seconds": 102.4902197078336,
+  "diagnostic_decision_epoch": 1789482639.754991,
+  "initial_summary_written_epoch": 1789482721.7019787,
+  "closed_epoch": 1789483090.9719381,
+  "end_to_end_wall_seconds": 553.707973241806,
+  "closure_includes": "diagnostics, synthesis, independent evidence audit and accounting; concurrent implementation time not subtracted"
+}
