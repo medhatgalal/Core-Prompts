@@ -4,7 +4,7 @@ ORIGINAL_ARGS=("$@")
 
 usage() {
   cat <<'EOF'
-Usage: scripts/deploy-surfaces.sh [--cli gemini|claude|kiro|codex|grok|all] [--slug SLUG] [--target PATH] [--allow-nonlocal-target] [--surface-only] [--dry-run] [--strict-cli]
+Usage: scripts/deploy-surfaces.sh [--cli agy|gemini|claude|kiro|codex|grok|all] [--slug SLUG] [--target PATH] [--allow-nonlocal-target] [--surface-only] [--dry-run] [--strict-cli]
 
 Deploy SSOT-managed generated surfaces under a target root.
 External targets use a package ownership plan and recoverable transaction.
@@ -18,7 +18,7 @@ Options:
   --rollback ID                      Restore exact transaction preimages, preserving later edits
   --repair                           Recognize existing skills and agents and record managed ownership
   --with-agents                      Explicitly select current skills and agents
-  --cli gemini|claude|kiro|codex|grok|all  Target CLI(s). Default: all
+  --cli agy|gemini|claude|kiro|codex|grok|all  Target CLI(s). Default: all
   --slug SLUG                         Limit deployment to one slug (repeatable)
   --target PATH                       Destination root path. Default: repository root
   --allow-nonlocal-target             Allow explicit --target outside repository root
@@ -158,8 +158,14 @@ if [[ "$SURFACE_ONLY" -eq 1 && ${#SLUG_FILTERS[@]} -eq 0 ]]; then
   exit 1
 fi
 
+# agy is a home installation reader, not an additional generated repo surface.
+if [[ "$CLI_TARGET" == "agy" ]]; then
+  echo 'agy installation requires --target HOME --allow-nonlocal-target; build repository artifacts with scripts/build-surfaces.py' >&2
+  exit 1
+fi
+
 case "$CLI_TARGET" in
-  gemini|claude|kiro|codex|grok|all) ;;
+  agy|gemini|claude|kiro|codex|grok|all) ;;
   *)
     echo "error: invalid --cli value: $CLI_TARGET"
     usage

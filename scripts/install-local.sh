@@ -3,7 +3,7 @@ set -euo pipefail
 
 usage() {
   cat <<'EOF'
-Usage: scripts/install-local.sh [--cli gemini|claude|kiro|codex|grok|all] [--target PATH] [--allow-nonlocal-target] [--dry-run] [--strict-cli] [--mode copy]
+Usage: scripts/install-local.sh [--cli agy|gemini|claude|kiro|codex|grok|all] [--target PATH] [--allow-nonlocal-target] [--dry-run] [--strict-cli] [--mode copy]
 
 Compatibility wrapper around deploy-surfaces.sh and its transactional installer.
 Symlinked and customized packages are preserved; link installation is unsupported.
@@ -17,7 +17,7 @@ Options:
   --rollback ID                      Restore an installation transaction
   --repair                           Recognize historical/current installed skills and agents
   --with-agents                      Explicitly install current skills and agents
-  --cli gemini|claude|kiro|codex|grok|all  Target CLI(s). Default: all
+  --cli agy|gemini|claude|kiro|codex|grok|all  Target CLI(s). Default: all
   --target PATH                       Destination root path. Default: repository root
   --allow-nonlocal-target             Allow explicit --target outside repository root
   --dry-run                           Show copy actions without writing

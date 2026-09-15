@@ -353,3 +353,61 @@ def test_distinct_gemini_behavior_is_not_silently_replaced(installation):
     with pytest.raises(ValueError, match='differs across generated providers'):
         planner.plan(repo, target, dict(mode='install', providers=['gemini'], runtime=False))
     assert not list(target.iterdir())
+
+
+def test_agy_installs_native_skills_without_recreating_gemini_duplicates(installation):
+    repo, target = installation
+    slug = 'engos-design-architecture'
+    shared = put(target, f'.agents/skills/{slug}/SKILL.md', 'user shared skill\n')
+    config = put(target, '.gemini/antigravity-cli/settings.json', '{"permissions":{"ask":["command(*)"]}}')
+    before = config.read_bytes()
+    result = execute(repo, target, mode='install', providers=['agy'], kinds=['skill'], runtime=False)
+    assert (target / f'.gemini/config/skills/{slug}/SKILL.md').read_text() == 'current skill\n'
+    assert shared.read_text() == 'user shared skill\n'
+    assert config.read_bytes() == before
+    assert not (target / '.gemini/skills').exists()
+    assert not (target / '.gemini/config/agents').exists()
+    assert planner.read_state(target)['selection'] == [f'agy:skill:{slug}']
+    assert not planner.plan(repo, target, dict(mode='sync', runtime=False))['actions']
+    transaction.rollback(target, result['transaction'])
+    assert not (target / f'.gemini/config/skills/{slug}/SKILL.md').exists()
+    assert shared.read_text() == 'user shared skill\n' and config.read_bytes() == before
+
+
+def test_agy_custom_native_package_is_preserved(installation):
+    repo, target = installation
+    rel = '.gemini/config/skills/engos-design-architecture/SKILL.md'
+    put(target, rel, 'custom native skill')
+    proposal = planner.plan(repo, target, dict(mode='install', providers=['agy'], kinds=['skill'], runtime=False))
+    assert proposal['preserved']
+    assert not any(a['path'] == rel for a in proposal['actions'])
+
+
+def test_agy_does_not_obstruct_native_legacy_migration(installation):
+    repo, target = installation
+    legacy = put(target, '.gemini/antigravity-cli/skills/custom/SKILL.md', 'legacy user skill')
+    with pytest.raises(ValueError, match='AGY_LEGACY_LAYOUT'):
+        planner.plan(repo, target, dict(mode='install', providers=['agy'], kinds=['skill'], runtime=False))
+    assert legacy.read_text() == 'legacy user skill'
+    assert not (target / '.gemini/config').exists()
+
+
+def test_agy_repairs_catalog_identified_native_copy_without_touching_shared(installation):
+    repo, target = installation
+    old = put(target, '.gemini/config/skills/architecture/SKILL.md', 'gemini-architecture-skill\n')
+    shared = put(target, '.agents/skills/personal/SKILL.md', 'personal')
+    execute(repo, target, mode='repair', providers=['agy'], runtime=False)
+    assert not old.exists()
+    assert (target / '.gemini/config/skills/engos-design-architecture/SKILL.md').read_text() == 'current skill\n'
+    assert shared.read_text() == 'personal'
+
+
+@pytest.mark.parametrize('agent', ['.gemini/config/agents/custom/agent.json', '.gemini/config/plugins/local/agents/custom/agent.json'])
+def test_agy_agent_references_preserve_legacy_skill(installation, agent):
+    repo, target = installation
+    old = '.gemini/config/skills/architecture/SKILL.md'
+    put(target, old, 'gemini-architecture-skill\n')
+    put(target, agent, json.dumps({'instructions': 'Read ' + old}))
+    proposal = planner.plan(repo, target, dict(mode='repair', providers=['agy'], runtime=False))
+    assert proposal['preserved']
+    assert not any(a['path'] == old for a in proposal['actions'])

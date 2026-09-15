@@ -15,9 +15,10 @@ import tomllib
 from pathlib import Path
 from urllib.parse import unquote
 
-PROVIDERS = ('codex', 'kiro', 'claude', 'gemini', 'grok')
+PROVIDERS = ('codex', 'kiro', 'claude', 'gemini', 'grok', 'agy')
 AGENT_EXTENSIONS = {'codex': 'toml', 'kiro': 'json', 'claude': 'md', 'gemini': 'md'}
 SKILL_ROOTS = {p: ('.agents/skills' if p in ('codex', 'gemini') else f'.{p}/skills') for p in PROVIDERS}
+SKILL_ROOTS['agy'] = '.gemini/config/skills'
 
 
 def reporting_launchers(target):
@@ -62,6 +63,23 @@ def skill_source_provider(repo, entry, manifest, provider, safe):
     return 'codex'
 
 
+def agy_skill_package(package):
+    """Map a trusted portable skill package to agy's native global root."""
+    if package['kind'] != 'skill' or package['provider'] not in ('codex', 'gemini'):
+        raise ValueError('agy adapts portable skills only')
+    old_root = package['roots'][0]
+    root = f"{SKILL_ROOTS['agy']}/{package['slug']}"
+    def relocate(rel):
+        return root + rel[len(old_root):]
+    result = dict(package, provider='agy', roots=[root],
+                  files={relocate(r): v for r, v in package['files'].items()})
+    if 'entrypoint' in package:
+        result['entrypoint'] = relocate(package['entrypoint'])
+    if 'sources' in package:
+        result['sources'] = {relocate(r): v for r, v in package['sources'].items()}
+    return result
+
+
 def current_packages(repo, manifest, snapshot, safe):
     """Expand declared source membership, preserving provider and surface identity."""
     result = {}
@@ -102,6 +120,12 @@ def current_packages(repo, manifest, snapshot, safe):
                 sources[convert(rel)] = rel
             result[key(provider, kind, slug)] = dict(provider=provider, kind=kind, slug=slug,
                 roots=roots, files=files, sources=sources, entrypoint=convert(entrypoint))
+    # agy is an installation reader for the portable Gemini skill package.
+    # It has no inferred named-agent surface and never shares an ownership root.
+    for package in list(result.values()):
+        if package['provider'] != 'gemini' or package['kind'] != 'skill':
+            continue
+        result[key('agy', 'skill', package['slug'])] = agy_skill_package(package)
     return result
 
 
