@@ -44,7 +44,7 @@ per-file replacement, with recoverable journals for the whole transaction.
 | Explicit `--slug SLUG` | Select that current capability's emitted skills and agents; repeat for multiple slugs. |
 | `--surface-only --slug SLUG` | Manage the selected surfaces and ownership state without refreshing the updater or launcher. |
 
-`--cli` accepts `codex`, `kiro`, `claude`, `gemini`, `grok`, or `all`. On an initial
+`--cli` accepts `agy`, `codex`, `kiro`, `claude`, `gemini`, `grok`, or `all`. On an initial
 unprofiled run, `all` discovers providers through available CLI binaries or
 existing surface directories. It is not a request to expand a saved selection.
 Use a concrete provider for a fresh offline target. `--strict-cli` additionally
@@ -227,6 +227,7 @@ current package emits no named agents.
 | Kiro | `.kiro/skills/` | `.kiro/agents/` |
 | Claude | `.claude/skills/` | `.claude/agents/` |
 | Gemini | `.agents/skills/` | `.gemini/agents/` |
+| agy | `.gemini/config/skills/` | No named-agent translation |
 | Grok | `.grok/skills/` | No repository-generated agent surface |
 
 Codex and Gemini share the portable generated skill package, including bundled
@@ -267,6 +268,7 @@ emitted packages. Loopy retains its pinned upstream `loopy` identity and compani
 resources; source inclusion does not grant ownership of existing third-party
 installations. See [release packaging](RELEASE-PACKAGING.md) for delivery gates.
 
+
 ### Automatic agent cleanup on update
 
 Once this installer is installed, `~/update_core_prompts.sh` automatically reconciles
@@ -275,3 +277,29 @@ per-agent approval flag is required. Removals use the ordinary installation reco
 journal and fresh hash checks. A repeated update proposes no further cleanup.
 Older installed updaters keep their older behavior until upgraded; a source merge
 alone does not update them. Check the installed result before claiming cleanup.
+
+
+
+## Antigravity CLI (agy)
+
+agy is a supported installation reader for the portable Gemini skill package.
+It uses `~/.gemini/config/skills`, separate from the legacy Gemini CLI shared root.
+Settings remain in `~/.gemini/antigravity-cli/settings.json`. This deployment adds
+skills and complete resource bundles; it does not translate named agents or copy
+Gemini authentication, trust, MCP, or permission settings.
+
+```bash
+scripts/install-local.sh --cli agy --target "$HOME" --allow-nonlocal-target --dry-run > agy-plan.json
+scripts/install-local.sh --target "$HOME" --allow-nonlocal-target --apply-plan agy-plan.json
+```
+
+An explicit `--cli agy` installs its skills even when an older saved selection did
+not include agy. Existing selections survive; subsequent syncs maintain the new
+agy selection. Customized native packages remain protected and reported.
+
+The repository continues to generate `.gemini` distribution artifacts. It does
+not invent an `.agy` source surface. For project reuse, agy supports
+`.agents/skills` and `.agents/skills.json` registrations. The installed 1.2.3
+customization guide and the [current global skill documentation](https://antigravity.google/docs/skills)
+identify `.gemini/config/skills`; older CLI migration examples show the superseded
+`.gemini/antigravity-cli/skills` path. Recheck the installed guide when upgrading.

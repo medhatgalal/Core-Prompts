@@ -29,6 +29,8 @@ def main(argv=None):
     args=parser.parse_args(argv)
     try:
         repo,target=args.repo.expanduser().absolute(),args.target.expanduser().absolute()
+        if args.cli == 'agy' and args.with_agents:
+            raise ValueError('agy deployment supports skills; named-agent translation is not provided')
         if args.apply_plan and (args.dry_run or args.rollback):
             raise ValueError('INVALID_REQUEST: apply-plan cannot combine with dry-run or rollback')
         if args.surface_only and not args.slug:
@@ -63,11 +65,13 @@ def main(argv=None):
                 request.update(profile=profile,providers=profile['targets'],mode='repair')
             elif args.cli!='all':
                 request['providers']=[args.cli]
+                if args.cli == 'agy' and not args.repair:
+                    request.update(mode='install', kinds=['skill'])
             elif args.repair and saved:
                 request['providers']=saved['targets']
             elif not state and not saved:
-                binaries={'codex':'codex','kiro':'kiro-cli','claude':'claude','gemini':'gemini','grok':'grok'}
-                selected=[p for p,binary in binaries.items() if shutil.which(binary) or (target/f'.{p}/skills').is_dir() or (target/f'.{p}/agents').is_dir() or (p=='codex' and (target/'.agents/skills').is_dir())]
+                binaries={'codex':'codex','kiro':'kiro-cli','claude':'claude','gemini':'gemini','grok':'grok','agy':'agy'}
+                selected=[p for p,binary in binaries.items() if shutil.which(binary) or (target/providers.SKILL_ROOTS[p]).is_dir() or (target/f'.{p}/agents').is_dir() or (p=='codex' and (target/'.agents/skills').is_dir())]
                 if not selected:
                     raise ValueError('NO_PROVIDERS: select --cli for an offline or fresh installation')
                 request['providers']=selected

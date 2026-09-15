@@ -1,3 +1,7 @@
+## v1.15.1 - 2026-09-15
+
+- Support `--cli agy` as a skills-only installation reader using `.gemini/config/skills`, with existing profile preservation, native-package customization protection, and rollback. Reuse generated portable resources without creating an unreviewed agent surface.
+
 ## v1.15.0 - 2026-09-15
 
 - Automatically clean identified retired Core-Prompts agent packages and their definition backups during routine updates, including modified copies. Preserve custom skills, third-party agents, and dependency boundaries.
@@ -12,6 +16,7 @@ Source version prepared for skills-only distribution; publication and installed-
 - Stop inferring agent emission from ordinary headings or delegation language. Preserve explicit declarations and require provider-specific independent execution-need review for new or expanded UAC agent emission. Regenerated advisory metadata does not establish runtime superiority.
 - Add a bounded five-provider pilot with explicit admission, stopping, and retention rules. Agent retirement and home installation remain separate evidence gates.
 - Install Codex and Gemini skills once under `.agents/skills`, with shared ownership tracking, verified generated-package equivalence, receipt/catalog-bound migration, customization preservation, and rollback. Gemini settings and agents remain under `.gemini`.
+
 
 ## v1.14.3 - 2026-09-10
 

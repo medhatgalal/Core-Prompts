@@ -22,11 +22,11 @@ python3 scripts/smoke-clis.py
 Before the release build, select and record the previous published release:
 
 ```bash
-export CORE_PROMPTS_RELEASE_BASE_REF=v1.14.3
+export CORE_PROMPTS_RELEASE_BASE_REF=v1.15.0
 bin/capability-fabric build
 ```
 
-For the v1.15.0 candidate the comparison baseline is v1.14.3. Choose the preceding
+For the v1.15.1 candidate the comparison baseline is v1.15.0. Choose the preceding
 published tag for future releases. The generator supports an explicit baseline
 and otherwise selects the latest distinct ancestor tag available locally. Fetch
 and verify the intended baseline; do not let missing local tags silently turn a

@@ -406,3 +406,21 @@ def test_legacy_slug_alias_selects_canonical_codex_skill(tmp_path):
     assert not (tmp_path / f".codex/agents/{AUTO}.toml").exists()
     assert not (tmp_path / ".codex/skills/autosearch").exists()
     assert not (tmp_path / ".agents/skills" / REVIEW).exists()
+
+
+def test_agy_adds_native_skills_to_existing_selection(tmp_path):
+    document(external(DEPLOY_SCRIPT, tmp_path, '--cli', 'codex', '--slug', REVIEW, '--surface-only'))
+    prior = state(tmp_path)['selection']
+    document(external(DEPLOY_SCRIPT, tmp_path, '--cli', 'agy', '--slug', ARCH, '--surface-only'))
+    assert set(state(tmp_path)['selection']) == set(prior) | {f'agy:skill:{ARCH}'}
+    assert (tmp_path / f'.gemini/config/skills/{ARCH}/SKILL.md').is_file()
+    assert (tmp_path / f'.gemini/config/skills/{ARCH}/resources/capability.json').is_file()
+    assert not (tmp_path / '.gemini/skills').exists()
+    assert not (tmp_path / '.gemini/config/agents').exists()
+    assert (tmp_path / f'.agents/skills/{REVIEW}/SKILL.md').is_file()
+
+
+def test_agy_does_not_claim_named_agent_translation(tmp_path):
+    result = document(external(DEPLOY_SCRIPT, tmp_path, '--cli', 'agy', '--with-agents'), 1)
+    assert 'named-agent translation' in result['error']
+    assert list(tmp_path.iterdir()) == []

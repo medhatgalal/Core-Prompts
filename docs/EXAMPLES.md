@@ -1248,3 +1248,11 @@ Use `$loopy` in Codex or `/loopy` in Kiro and Grok to find, audit, craft, run, o
 debrief a loop. For example: “Use Loopy to audit this loop and repair only material
 weaknesses.” Expect a concise verdict and a minimally repaired loop; execution,
 scheduling, and publication retain their separate authorization boundaries.
+
+## Use a skill from agy
+
+Deploy with `scripts/install-local.sh --cli agy --target "$HOME" --allow-nonlocal-target --dry-run`,
+review and apply the saved plan as described in [installation profiles](INSTALL-PROFILES.md),
+then start `agy` and use `/skills` to inspect the available names. For example,
+ask `Use engos-quality-code-review to review this diff` and expect source-linked
+findings. Deployment does not grant tool permissions or establish account access.

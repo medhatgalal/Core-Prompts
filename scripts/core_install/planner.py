@@ -170,6 +170,8 @@ def plan(repo: Path, target: Path, request: dict):
         clients = sorted({k.split(':')[0] for k in previous['selection']}) if state else list(providers.PROVIDERS)
     if not isinstance(clients, list) or len(clients) != len(set(clients)) or set(clients) - set(providers.PROVIDERS):
         raise ValueError('INVALID_REQUEST: unknown or repeated provider')
+    if 'agy' in clients and safe(target, '.gemini/antigravity-cli/skills').exists():
+        raise ValueError('AGY_LEGACY_LAYOUT: legacy agy skills require migration review before installing into .gemini/config/skills')
     def in_scope(provider,kind,slug,old_slug=None):
         if provider not in clients:
             return False
@@ -189,6 +191,8 @@ def plan(repo: Path, target: Path, request: dict):
     observations, preserved, blockers, actions, outcomes = {}, [], [], [], []
     discovered, inventories = {}, {}
     specs = list(catalog.packages(trusted))
+    specs += [providers.agy_skill_package(p) for p in list(specs)
+              if p['provider'] in ('codex', 'gemini') and p['kind'] == 'skill']
     # Gemini recognizes the shared portable Codex layout as well as its old
     # provider-specific layout. Historical hashes remain catalog-bound.
     specs += [dict(v, provider='gemini') for raw in list(specs)
@@ -370,11 +374,19 @@ def plan(repo: Path, target: Path, request: dict):
                         if k in package_actions and k not in blocked_keys
                         for source in sources if source['kind']=='agent'
                         for rel in source['files'] if '/agents/resources/' not in rel}
-    for provider in providers.AGENT_EXTENSIONS:
-        root = safe(target, f'.{provider}/agents')
+    agent_roots = [(p, f'.{p}/agents', False) for p in providers.AGENT_EXTENSIONS]
+    # Inspect native agy dependencies without emitting or translating agents.
+    agent_roots.append(('agy', '.gemini/config/agents', True))
+    plugin_root = safe(target, '.gemini/config/plugins')
+    if plugin_root.is_dir():
+        agent_roots.extend(('agy', p.relative_to(target).as_posix(), True)
+                           for p in sorted(plugin_root.glob('*/agents')))
+    for provider, relative_root, recursive in agent_roots:
+        root = safe(target, relative_root)
         if not root.is_dir():
             continue
-        files = sorted(p for p in root.iterdir() if p.suffix in ('.json','.toml','.md'))
+        files = sorted(p for p in (root.rglob('*') if recursive else root.iterdir())
+                       if p.suffix in ('.json','.toml','.md','.yaml','.yml') and not p.is_dir())
         if len(files) > 1000:
             blockers.append('DISCOVERY_LIMIT: more than 1000 agent definitions')
             continue

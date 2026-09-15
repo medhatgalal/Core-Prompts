@@ -22,7 +22,7 @@ STATE = '.core-prompts-state/profile-install'
 RECEIPT = f'{STATE}/ownership.json'
 PROFILE = f'{STATE}/profile.json'
 ROOTS = {'codex': '.agents/skills', 'kiro': '.kiro/skills', 'grok': '.grok/skills',
-         'claude': '.claude/skills', 'gemini': '.agents/skills'}
+         'claude': '.claude/skills', 'gemini': '.agents/skills', 'agy': '.gemini/config/skills'}
 
 
 def digest(data):
@@ -107,10 +107,10 @@ def desired_files(repo, profile):
         if slugs and slug not in slugs:
             continue
         for cli in targets:
-            surface = cli + '_skill'
+            surface = ('gemini' if cli == 'agy' else cli) + '_skill'
             if surface not in entry['expected_surface_names']:
                 continue
-            source_cli = 'codex' if cli == 'gemini' else cli
+            source_cli = 'codex' if cli == 'gemini' else ('gemini' if cli == 'agy' else cli)
             if cli == 'gemini':
                 prefix = f'.gemini/skills/{slug}/'
                 gemini_members = [prefix + 'SKILL.md', *[r for r in manifest.get('resources', {}).get(surface, []) if r.startswith(prefix)]]
@@ -153,6 +153,8 @@ def _guard_newer_installation(home):
 
 def plan(repo, home, profile, routine=False, release_state=None, migration=False):
     _guard_newer_installation(home)
+    if 'agy' in profile.get('targets', []) and safe(home, '.gemini/antigravity-cli/skills').exists():
+        raise ValueError('AGY_LEGACY_LAYOUT: legacy agy skills require migration review')
     if routine and migration:
         raise ValueError('routine sync and reviewed migration are separate modes')
     managed = routine or migration
