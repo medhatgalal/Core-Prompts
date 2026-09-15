@@ -52,6 +52,7 @@ from intent_pipeline.uac_baselines import (
     text_sha256,
 )
 from intent_pipeline.uac_templates import load_capability_template
+from intent_pipeline.uac_agent_review import agent_surface_review, declaration_normalization
 from intent_pipeline.capability_resources import effective_capability_text
 from intent_pipeline.uac_modes import extract_capability_modes
 from intent_pipeline.uac_repomix import collect_repomix_candidates, materialize_repomix_candidate, repomix_available
@@ -896,6 +897,8 @@ def _preview_payload(
     quality_result: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     rendered_ssot = str((quality_result or {}).get('final_candidate_text') or _render_ssot_markdown(str(payload['manifest']['slug']), dict(payload)))
+    if payload.get('declaration_normalization'):
+        rendered_ssot = _source_body_text(payload) or rendered_ssot
     descriptor_preview, descriptor_delta = _build_descriptor_preview(
         payload,
         quality_plan=quality_plan,
@@ -918,9 +921,34 @@ def _preview_payload(
     }
 
 
+def _agent_review_for_payload(payload: Mapping[str, Any], candidate_text: str) -> dict[str, Any]:
+    captured = _source_fidelity_input(payload)
+    originals = [captured] if isinstance(captured, str) else list(captured or ())
+    slug = str(payload['manifest']['slug'])
+    return agent_surface_review(
+        ROOT, slug=slug, candidate_text=candidate_text,
+        effective_text=effective_capability_text(ROOT, slug, candidate_text),
+        reviews=payload.get('requirement_reviews') or (), original_texts=originals,
+    )
+
+
 def _run_quality_for_payload(payload: dict[str, Any], args: argparse.Namespace) -> dict[str, Any]:
-    if payload.get('status') != 'accepted' or (args.quality_loop == 'off' and not getattr(args, 'requirement_review', None)):
+    if payload.get('status') != 'accepted':
         return payload
+    slug = str(payload['manifest']['slug'])
+    raw_candidate = _source_body_text(payload)
+    normalization = declaration_normalization(ROOT, slug=slug, candidate_text=raw_candidate) if raw_candidate else None
+    if normalization and not getattr(args, 'requirement_review', None):
+        result = dict(payload)
+        result.pop('quality_result', None)
+        result.pop('quality_plan', None)
+        result['declaration_normalization'] = normalization
+        result['behavioral_status'] = 'behavioral_pending'
+        return result
+    if args.quality_loop == 'off' and not getattr(args, 'requirement_review', None):
+        result = dict(payload)
+        result['agent_surface_review'] = _agent_review_for_payload(payload, _preferred_ssot_text(str(payload['manifest']['slug']), payload))
+        return result
     slug = str(payload['manifest']['slug'])
     descriptor_seed = _quality_descriptor_seed(payload)
     profile = load_quality_profile(ROOT, slug, args.quality_profile)
@@ -1785,6 +1813,8 @@ def _normalize_payload_for_same_slug_update(payload: Mapping[str, Any]) -> dict[
 
 def _preferred_ssot_text(slug: str, payload: Mapping[str, Any], *, quality_result: Mapping[str, Any] | None = None) -> str:
     source_text = _source_body_text(payload)
+    if source_text and payload.get('declaration_normalization'):
+        return source_text
     if source_text and not payload.get('items') and _should_preserve_source_body(slug, payload, source_text):
         return source_text
     if source_text and not payload.get('items'):
@@ -1818,6 +1848,15 @@ def _safe_apply_ssot_text(
     *,
     quality_result: Mapping[str, Any] | None = None,
 ) -> tuple[str, dict[str, Any] | None]:
+    raw_candidate = _source_body_text(payload)
+    normalization = declaration_normalization(ROOT, slug=slug, candidate_text=raw_candidate) if raw_candidate else None
+    if normalization and not payload.get('requirement_reviews'):
+        expected = payload.get('declaration_normalization')
+        if expected is not None and expected != normalization:
+            raise ValueError('Declaration normalization changed after judgment')
+        return raw_candidate, {'declaration_normalization': normalization}
+    if payload.get('declaration_normalization'):
+        raise ValueError('Declaration normalization no longer matches the current source and released surfaces')
     captured = _source_fidelity_input(payload)
     review_originals = [captured] if isinstance(captured, str) else list(captured or ())
     canonical = ROOT / 'ssot' / f'{slug}.md'
@@ -1827,6 +1866,9 @@ def _safe_apply_ssot_text(
     if historical:
         review_originals.append(historical)
     def check_final_quality(selected_text: str) -> None:
+        agent_review = _agent_review_for_payload(payload, selected_text)
+        if agent_review['blockers']:
+            raise ValueError('Apply refused agent emission: ' + '; '.join(agent_review['blockers']))
         if quality_result is not None or payload.get('requirement_reviews'):
             # Canonicalization/source selection is itself a transformation. Never
             # reuse an earlier quality verdict for different final text/resources.
@@ -2302,6 +2344,21 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
     slug = str(result['manifest']['slug'])
     quality_plan = result.get('quality_plan')
     quality_result = result.get('quality_result')
+    # Admission precedes quality report persistence or any canonical writes,
+    # including runs that explicitly disable the quality loop.
+    admission_text = _canonicalize_same_slug_ssot(
+        slug, _preferred_ssot_text(slug, result, quality_result=quality_result),
+    )
+    captured_source = _source_fidelity_input(result)
+    if isinstance(captured_source, str) and not captured_source.strip():
+        result['status'] = 'manual_review'
+        result['detail'] = 'Apply refused to land a regressed SSOT body: imported source content is unavailable; re-ingest before judging or applying'
+        return result
+    result['agent_surface_review'] = _agent_review_for_payload(result, admission_text)
+    if result['agent_surface_review']['blockers']:
+        result['status'] = 'manual_review'
+        result['detail'] = 'Agent emission refused: ' + '; '.join(result['agent_surface_review']['blockers'])
+        return result
     promotion_baseline_preflight = None
     if promotion_verdict and promotion_verdict.get('status') == 'promote':
         try:
@@ -2572,6 +2629,7 @@ def main() -> int:
                 affected_clause_ids,
             )
             payload['behavioral_status'] = (
+                'behavioral_pending' if payload.get('declaration_normalization') else
                 'behavioral_pending'
                 if payload['eval_impact_plan']['minimum_profile'] not in {'static', 'native'}
                 else 'structural_ready'

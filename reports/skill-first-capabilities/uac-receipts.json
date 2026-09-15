@@ -1,0 +1,76 @@
+[
+  {
+    "candidate": "uac",
+    "status": "applied",
+    "detail": "SSOT, descriptor, draft evaluation contracts, and generated surfaces landed; validation passed.",
+    "normalization": null,
+    "build": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "installer capsule: generated\nGenerated 27 ssot entries"
+    },
+    "compile": {
+      "behavioral_claim": "none",
+      "goal_contract": "evals/contracts/engos-meta-uac-import.json",
+      "status": "structural_ready",
+      "topology": "evals/topologies/engos-meta-uac-import.json"
+    },
+    "validate": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Validation passed.\nSSOT files: 27"
+    },
+    "behavioral_evidence": {
+      "apply_mode": null,
+      "enforcement": "advisory",
+      "run_id": null,
+      "status": "behavioral_pending"
+    }
+  },
+  {
+    "candidate": "pulse",
+    "status": "applied",
+    "detail": "SSOT, descriptor, draft evaluation contracts, and generated surfaces landed; validation passed.",
+    "normalization": {
+      "baseline": "git:v1.14.2@931a6dff221c0c8182fffab3e8678a0f8a97edd8 .meta/manifest.json",
+      "behavioral_status": "not_retested",
+      "candidate_sha256": "4d820e9f4656533e7183a97485a4e38f27bcf869494645e748ff9971f5eea021",
+      "original_sha256": "060d5a6699fc59a8296075875305e6512b0dcbe82d64884e4c07407a9d2bcbae",
+      "quality_evidence": "retained_not_rejudged",
+      "status": "preserved_existing_contract",
+      "surfaces": [
+        "claude_agent",
+        "claude_skill",
+        "codex_agent",
+        "codex_skill",
+        "gemini_agent",
+        "gemini_skill",
+        "grok_skill",
+        "kiro_agent",
+        "kiro_skill"
+      ]
+    },
+    "build": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "installer capsule: generated\nGenerated 27 ssot entries"
+    },
+    "compile": {
+      "behavioral_claim": "none",
+      "goal_contract": "evals/contracts/engos-triage-my-inbox-chat-pulse.json",
+      "status": "structural_ready",
+      "topology": "evals/topologies/engos-triage-my-inbox-chat-pulse.json"
+    },
+    "validate": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Validation passed.\nSSOT files: 27"
+    },
+    "behavioral_evidence": {
+      "apply_mode": null,
+      "enforcement": "advisory",
+      "run_id": null,
+      "status": "behavioral_pending"
+    }
+  }
+]

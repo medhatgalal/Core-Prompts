@@ -1,0 +1,49 @@
+{
+  "provider": "claude",
+  "admitted": false,
+  "decision": "retain",
+  "comparison": "not_run",
+  "blockers": [
+    "Registered adapter cannot observe native delegated resource and tool-boundary cases.",
+    "Native success/fault/resource/action observations and complete A/B accounting have not passed."
+  ],
+  "comparative_model_calls": 0,
+  "metrics_available_before_trials": {
+    "elapsed_seconds": true,
+    "complete_native_tokens": false
+  },
+  "clock_state_sha256": "908bdd89849fac11f43785b7c2ca94e42d66b2cc6c08bbb604c75b1f19f74460",
+  "registry_sha256": "b0c5c2cd0dc7006d93cd7ac44293bca7f0c626d9204fe6779829924ac8afefff",
+  "probes": [
+    {
+      "argv": [
+        "/Users/medhat.galal/.local/bin/claude",
+        "--version"
+      ],
+      "status": "completed",
+      "exit_code": 0,
+      "elapsed_seconds": 1.4296022499911487,
+      "stdout": "2.1.9 (Claude Code)\n",
+      "stderr": "",
+      "containment_scope": "owned process group only; detached descendants unverified",
+      "model_admission": false,
+      "model_calls": 0,
+      "tokens": null
+    },
+    {
+      "argv": [
+        "/Users/medhat.galal/.local/bin/claude",
+        "--help"
+      ],
+      "status": "completed",
+      "exit_code": 0,
+      "elapsed_seconds": 0.45116012496873736,
+      "stdout": "Usage: claude [options] [command] [prompt]\n\nClaude Code - starts an interactive session by default, use -p/--print for\nnon-interactive output\n\nArguments:\n  prompt                                            Your prompt\n\nOptions:\n  --add-dir <directories...>                        Additional directories to allow tool access to\n  --agent <agent>                                   Agent for the current session. Overrides the 'agent' setting.\n  --agents <json>                                   JSON object defining custom agents (e.g. '{\"reviewer\": {\"description\": \"Reviews code\", \"prompt\": \"You are a code reviewer\"}}')\n  --allow-dangerously-skip-permissions              Enable bypassing all permission checks as an option, without it being enabled by default. Recommended only for sandboxes with no internet access.\n  --allowedTools, --allowed-tools <tools...>        Comma or space-separated list of tool names to allow (e.g. \"Bash(git:*) Edit\")\n  --append-system-prompt <prompt>                   Append a system prompt to the default system prompt\n  --betas <betas...>                                Beta headers to include in API requests (API key users only)\n  --chrome                                          Enable Claude in Chrome integration\n  -c, --continue                                    Continue the most recent conversation in the current directory\n  --dangerously-skip-permissions                    Bypass all permission checks. Recommended only for sandboxes with no internet access.\n  -d, --debug [filter]                              Enable debug mode with optional category filtering (e.g., \"api,hooks\" or \"!statsig,!file\")\n  --disable-slash-commands                          Disable all skills\n  --disallowedTools, --disallowed-tools <tools...>  Comma or space-separated list of tool names to deny (e.g. \"Bash(git:*) Edit\")\n  --fallback-model <model>                          Enable automatic fallback to specified model when default model is overloaded (only works with --print)\n  --file <specs...>                                 File resources to download at startup. Format: file_id:relative_path (e.g., --file file_abc:doc.txt file_def:img.png)\n  --fork-session                                    When resuming, create a new session ID instead of reusing the original (use with --resume or --continue)\n  -h, --help                                        Display help for command\n  --ide                                             Automatically connect to IDE on startup if exactly one valid IDE is available\n  --include-partial-messages                        Include partial message chunks as they arrive (only works with --print and --output-format=stream-json)\n  --input-format <format>                           Input format (only works with --print): \"text\" (default), or \"stream-json\" (realtime streaming input) (choices: \"text\", \"stream-json\")\n  --json-schema <schema>                            JSON Schema for structured output validation. Example: {\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"}},\"required\":[\"name\"]}\n  --max-budget-usd <amount>                         Maximum dollar amount to spend on API calls (only works with --print)\n  --mcp-config <configs...>                         Load MCP servers from JSON files or strings (space-separated)\n  --mcp-debug                                       [DEPRECATED. Use --debug instead] Enable MCP debug mode (shows MCP server errors)\n  --model <model>                                   Model for the current session. Provide an alias for the latest model (e.g. 'sonnet' or 'opus') or a model's full name (e.g. 'claude-sonnet-4-5-20250929').\n  --no-chrome                                       Disable Claude in Chrome integration\n  --no-session-persistence                          Disable session persistence - sessions will not be saved to disk and cannot be resumed (only works with --print)\n  --output-format <format>                          Output format (only works with --print): \"text\" (default), \"json\" (single result), or \"stream-json\" (realtime streaming) (choices: \"text\", \"json\", \"stream-json\")\n  --permission-mode <mode>                          Permission mode to use for the session (choices: \"acceptEdits\", \"bypassPermissions\", \"default\", \"delegate\", \"dontAsk\", \"plan\")\n  --plugin-dir <paths...>                           Load plugins from directories for this session only (repeatable)\n  -p, --print                                       Print response and exit (useful for pipes). Note: The workspace trust dialog is skipped when Claude is run with the -p mode. Only use this flag in directories you trust.\n  --replay-user-messages                            Re-emit user messages from stdin back on stdout for acknowledgment (only works with --input-format=stream-json and --output-format=stream-json)\n  -r, --resume [value]                              Resume a conversation by session ID, or open interactive picker with optional search term\n  --session-id <uuid>                               Use a specific session ID for the conversation (must be a valid UUID)\n  --setting-sources <sources>                       Comma-separated list of setting sources to load (user, project, local).\n  --settings <file-or-json>                         Path to a settings JSON file or a JSON string to load additional settings from\n  --strict-mcp-config                               Only use MCP servers from --mcp-config, ignoring all other MCP configurations\n  --system-prompt <prompt>                          System prompt to use for the session\n  --tools <tools...>                                Specify the list of available tools from the built-in set. Use \"\" to disable all tools, \"default\" to use all tools, or specify tool names (e.g. \"Bash,Edit,Read\").\n  --verbose                                         Override verbose mode setting from config\n  -v, --version                                     Output the version number\n\nCommands:\n  doctor                                            Check the health of your Claude Code auto-updater\n  install [options] [target]                        Install Claude Code native build. Use [target] to specify version (stable, latest, or specific version)\n  mcp                                               Configure and manage MCP servers\n  plugin                                            Manage Claude Code plugins\n  setup-token                                       Set up a long-lived authentication token (requires Claude subscription)\n  update                                            Check for updates and install if available\n",
+      "stderr": "",
+      "containment_scope": "owned process group only; detached descendants unverified",
+      "model_admission": false,
+      "model_calls": 0,
+      "tokens": null
+    }
+  ]
+}

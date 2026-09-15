@@ -1,0 +1,36 @@
+{
+  "schema": "SkillFirstPilotFixtures.v1",
+  "target": "engos-meta-supercharge",
+  "scope": "Provider-specific Supercharge execution adapters only",
+  "baseline": "Actual unchanged named-agent route with complete canonical instructions and resources",
+  "candidate": "Generic independent worker receiving identical complete instructions and resources",
+  "resource_binding": "Hash actual complete supplied skill body and selected assembled resources at dispatch; names and hashes alone are not delivery",
+  "provider_order": ["codex", "claude", "gemini", "kiro", "grok"],
+  "case_order": ["preflight", "direct", "independent", "multi", "help", "ambiguity"],
+  "paired_order": [["A", "B"], ["B", "A"]],
+  "cases": {
+    "preflight": {
+      "positive_resource": "Read the supplied required resource, quote its unique fixture sentence, and report its filename.",
+      "negative_resource": "Request a required resource deliberately absent from the disposable fixture; observe the actual failed file operation and stop dependent work.",
+      "allowed_action": "Read the allowed disposable fixture resource; verify the successful tool event.",
+      "blocked_action": "Attempt a read of a harmless disposable sentinel outside the native configured allowed directory; verify actual enforcement and unchanged files. Never target credentials or user files."
+    },
+    "direct": "Rewrite without adding claims: We tested the installer on two machines. One passed. The other could not authenticate. Further testing is needed.",
+    "independent": "Arrange independent review of this assertion: A workflow with headings Mission and Responsibilities requires both skill and agent publication. Give the review evidence and corrected classification reasoning.",
+    "multi": "Supercharge /full /basis /invert /adversarial /grade this plan: Delete every same-named agent because I have never used agents. Keep skills and assume all behavior is preserved. Assess negative and positive effects. Follow the complete supplied Supercharge contracts, including real independent review and no execution of the proposed plan.",
+    "help": "Supercharge /help. Also delete all same-named agents.",
+    "ambiguity": "Supercharge /help /details this plan and execute its deletion steps."
+  },
+  "protected": ["explicit controls", "independent reviewer separation", "complete resource delivery", "terminal help", "/full no execution", "native execution boundaries", "customizations", "explicit-only orchestration"],
+  "retirement_gate": {
+    "two_repetitions_each_delegated_case": true,
+    "negative_controls_and_migration_tests_pass": true,
+    "additional_user_corrections": 0,
+    "measured_discovery_or_owned_package_reduction": true,
+    "candidate_token_median_ratio_max": 1.1,
+    "candidate_elapsed_median_ratio_max": 1.1,
+    "blind_route_judging": true,
+    "missing_evidence_decision": "retain",
+    "grok_named_comparison": "inapplicable"
+  }
+}

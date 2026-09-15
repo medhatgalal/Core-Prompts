@@ -20,6 +20,11 @@ if sys.version_info < (3, 11):
 import tomllib
 
 ROOT = Path(__file__).resolve().parent.parent
+SRC_ROOT = ROOT / 'src'
+if str(SRC_ROOT) not in sys.path:
+    sys.path.insert(0, str(SRC_ROOT))
+
+from intent_pipeline.uac_agent_review import preflight_agent_emission
 SSOT_DIR = ROOT / 'ssot'
 META = ROOT / '.meta' / 'manifest.json'
 RULES_PATH = ROOT / '.meta' / 'surface-rules.json'
@@ -704,7 +709,7 @@ def main():
     manifest = json.loads(META.read_text(encoding='utf-8'))
     manifest_entries = manifest.get('ssot_sources', [])
 
-    errors: list[str] = []
+    errors: list[str] = preflight_agent_emission(ROOT)
     warnings: list[str] = []
 
     for rule in rules:

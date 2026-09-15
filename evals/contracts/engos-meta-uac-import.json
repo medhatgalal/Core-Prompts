@@ -11,6 +11,7 @@
     "83466994e31cb2c5e6568d5df77cc763081ee051e50abf72e348e72013992fb1",
     "0246bb0452fe016af5e26128122b13e5ef8d943ff6ccd5b437ec5bc65ecf7a89",
     "e22510630d6f328dddd3035251d13d56bc2d43006fa3f3f6d5e6af8460d4850a",
+    "936ef934761fbd0d5cc28a2ffa89abd02f889685ab9bdd5b0273d03f559a9935",
     "63afafdd71cc6cdcf95ef2a1cbc255b7841377f88479f27209f457262a84a2e1",
     "4d6263b784139fcdeeeddd1cd03f337fc233055c2de3a8137c9e2a0c287ec390",
     "508b32565297a9501887f58024f855d563b375c159cece377080ea9830e29d10",
@@ -89,6 +90,11 @@
       "sha256": "e22510630d6f328dddd3035251d13d56bc2d43006fa3f3f6d5e6af8460d4850a",
       "source": "ssot/engos-meta-uac-import.md",
       "text": "Canonical application writes `ssot/<slug>.md` and `.meta/capabilities/<slug>.json`, plus generated surfaces and evaluation contracts. Quality review evidence belongs in `reports/quality-reviews/<slug>/`; baseline lineage lives in `sources/ssot-baselines/<slug>/` and changes only under the independent promotion policy. These are UAC-owned onboarding artifacts, not output paths imposed on the imported capability's own task."
+    },
+    {
+      "sha256": "936ef934761fbd0d5cc28a2ffa89abd02f889685ab9bdd5b0273d03f559a9935",
+      "source": "ssot/engos-meta-uac-import.md",
+      "text": "7. Classify reusable workflows as `skill` by default. Agent-related headings, quoted examples, and independent-review requirements do not justify a named agent. Route undeclared native-agent configuration to `manual_review`; preserve existing explicit `agent` or `both` declarations until a reviewed surface change. New or expanded agent emission requires a hash-bound independent UAC requirement review explaining each provider's necessary execution guarantee and why a skill delivered to a generic worker is insufficient."
     },
     {
       "sha256": "63afafdd71cc6cdcf95ef2a1cbc255b7841377f88479f27209f457262a84a2e1",

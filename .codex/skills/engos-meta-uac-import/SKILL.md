@@ -1,6 +1,6 @@
 ---
 name: "engos-meta-uac-import"
-description: "Inspect an external prompt-like source, classify its fit, and prepare a quality-gated Core-Prompts plan, judge, or apply result. Use for capability intake; do not use for ordinary prompt editing or deployment."
+description: "Import external instructions as reusable skills, reviewing native execution needs before adding agents, through Core-Prompts plan, judge, and apply. Use for capability intake; do not use for ordinary prompt editing or deployment."
 ---
 # UAC Import — Capability Intake, Quality Review, and Uplift
 
@@ -61,7 +61,7 @@ Canonical application writes `ssot/<slug>.md` and `.meta/capabilities/<slug>.jso
 4. Run semantic routing.
 5. If the source is a folder or repo subtree, inventory prompt-like files and classify them one by one.
 6. Cluster broad repos into candidate families before recommending any landing.
-7. Classify accepted sources as `skill`, `agent`, `both`, or `manual_review`.
+7. Classify reusable workflows as `skill` by default. Agent-related headings, quoted examples, and independent-review requirements do not justify a named agent. Route undeclared native-agent configuration to `manual_review`; preserve existing explicit `agent` or `both` declarations until a reviewed surface change. New or expanded agent emission requires a hash-bound independent UAC requirement review explaining each provider's necessary execution guarantee and why a skill delivered to a generic worker is insufficient.
 8. Build layered manifests, cross-analysis, and advisory handoff data.
 9. Select a quality profile and benchmark set.
 10. Resolve the canonical baseline source from `sources/ssot-baselines/` before judging fidelity.

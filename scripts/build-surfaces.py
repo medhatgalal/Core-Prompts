@@ -28,6 +28,7 @@ from intent_pipeline.skill_jobs import (
     render_skill_job_map,
 )
 from intent_pipeline.uac_baselines import resolve_historical_baseline
+from intent_pipeline.uac_agent_review import preflight_agent_emission
 from intent_pipeline.uac_descriptors import (
     build_descriptor,
     load_descriptor,
@@ -691,6 +692,9 @@ def write_build_report(generator: dict[str, object], manifest_changed: bool, han
 
 
 def main():
+    admission_errors = preflight_agent_emission(ROOT)
+    if admission_errors:
+        raise SystemExit("Agent emission preflight failed:\n" + "\n".join(admission_errors))
     entries = load_ssot_entries(SSOT_DIR)
     if not entries:
         raise SystemExit('No SSOT files found in ssot/')
