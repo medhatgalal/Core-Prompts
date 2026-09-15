@@ -100,6 +100,13 @@ def plan(repo: Path, target: Path, request: dict):
     trusted = catalog.load_catalog(repo)
     manifest = read_json(repo, '.meta/manifest.json')
     current = providers.current_packages(repo, manifest, identity, safe)
+    def successor(provider, kind, slug):
+        mapped = catalog.SUCCESSORS.get(slug, slug)
+        # Explicitly reintroduced source agents supersede historical retirement.
+        if mapped and providers.key(provider, kind, mapped) in current:
+            return mapped
+        return catalog.successor(provider, kind, slug)
+
     state = read_state(target)
     previous = state or dict(schema=2, owner='Core-Prompts', selection=[], packages={}, runtime={}, registrations={})
     profile = request['profile'] if 'profile' in request else (read_json(target, V1_PROFILE) if state is None else None)
@@ -130,14 +137,14 @@ def plan(repo: Path, target: Path, request: dict):
             return False
         if request.get('legacy_slugs'):
             return old_slug in request['legacy_slugs']
-        if request.get('slugs') and slug not in request['slugs']:
+        if request.get('slugs') and (slug or catalog.SUCCESSORS.get(old_slug, old_slug)) not in request['slugs']:
             return False
         return not request.get('kinds') or kind in request['kinds']
     selection = set(previous['selection'])
     profile_selection = _profile_selection(profile, current) if profile else None
     if profile:
         selection |= profile_selection
-    missing_selected = selection - set(current)
+    missing_selected = {k for k in selection - set(current) if not catalog.retired_key(k)}
     # Explicitly retired identities disappear only under a catalog retirement.
     if missing_selected:
         raise ValueError('SOURCE_SCOPE_REMOVED: ' + ', '.join(sorted(missing_selected)))
@@ -175,6 +182,11 @@ def plan(repo: Path, target: Path, request: dict):
     for (provider, kind, slug, roots), variants in sorted(candidates.items()):
         files, error = _observe(target, list(roots), observations)
         if not files and not error:
+            k = providers.key(provider, kind, slug)
+            if k in selection and catalog.retired_key(k) and in_scope(provider, kind, slug):
+                assessed_keys.add(k)
+                preserved.append(dict(package=k, provider=provider, kind=kind, slug=slug,
+                                      roots=list(roots), reason='selected retired package is missing; ownership retained for repair'))
             continue
         k = providers.key(provider, kind, slug)
         present_keys.add(k)
@@ -186,22 +198,36 @@ def plan(repo: Path, target: Path, request: dict):
                           and p['roots'] == list(roots) and p['files'] == files), owned)
         if owned and list(roots) == owned.get('roots') and files == owned.get('files') and not error:
             known = dict(owned, provider=provider, kind=kind, slug=slug,
-                         successor=catalog.SUCCESSORS.get(slug, slug), releases=['ownership-receipt'])
+                         successor=successor(provider, kind, slug), releases=['ownership-receipt'])
         if old_receipt and not error and files and all(old_receipt.get('files', {}).get(r, {}).get('identity') == i for r, i in files.items()):
             # v1 only owned skills. It cannot assert agent ownership indirectly.
             if kind == 'skill':
                 known = dict(provider=provider,kind=kind,slug=slug,roots=list(roots),files=files,
-                             successor=catalog.SUCCESSORS.get(slug,slug),releases=['schema1-receipt'])
-        successor = catalog.SUCCESSORS.get(slug, slug)
-        newkey = providers.key(provider,kind,successor) if successor else None
-        eligible = mode != 'sync' or newkey in selection
-        eligible = eligible and in_scope(provider,kind,successor,slug)
+                             successor=successor(provider, kind, slug),releases=['schema1-receipt'])
+        next_slug = successor(provider, kind, slug)
+        newkey = providers.key(provider,kind,next_slug) if next_slug else None
+        # The approved agent retirement preserves the same job as a skill.
+        # It never enrolls another capability or provider.
+        retiring_agent = (kind == 'agent' and next_slug is None
+                          and catalog.SUCCESSORS.get(slug, slug) in catalog.RETIRED_AGENT_SLUGS)
+        if retiring_agent:
+            skill_slug = catalog.SUCCESSORS.get(slug, slug)
+            skill_key = providers.key(provider, 'skill', skill_slug) if skill_slug else None
+            if skill_key in current:
+                next_slug, newkey = skill_slug, skill_key
+        eligible = (mode != 'sync' or (newkey or k) in selection
+                    or retiring_agent or (next_slug is None and catalog.retired_key(k)))
+        eligible = eligible and in_scope(provider,kind,next_slug,slug)
         if profile_selection is not None and kind == 'skill' and newkey not in profile_selection:
             eligible = False
         if eligible:
             assessed_keys.add(newkey or k)
+        if known and eligible and retiring_agent and newkey is None:
+            preserved.append(dict(package=k, provider=provider, kind=kind, slug=slug,
+                                  roots=list(roots), reason='retired agent has no available skill counterpart'))
+            continue
         if known and eligible:
-            record = dict(known, roots=list(roots), files=files)
+            record = dict(known, roots=list(roots), files=files, successor=next_slug)
             discovered.setdefault(newkey or k, []).append(record)
             if newkey:
                 selection.add(newkey)
@@ -235,7 +261,8 @@ def plan(repo: Path, target: Path, request: dict):
                 to_retire[k] = sources
                 package_actions[k] = []
             continue
-        if not in_scope(desired['provider'],desired['kind'],desired['slug']):
+        same_job_retirement = any(s['kind'] == 'agent' and catalog.retired_key(providers.key(s['provider'], s['kind'], s['slug'])) for s in sources)
+        if not same_job_retirement and not in_scope(desired['provider'],desired['kind'],desired['slug']):
             continue
         assessed_keys.add(k)
         files, error = _observe(target, desired['roots'], observations)
@@ -389,8 +416,15 @@ def plan(repo: Path, target: Path, request: dict):
             continue
         actions.extend(package_actions[k])
         for old in to_retire.get(k,[]):
+            old_key = providers.key(old['provider'], old['kind'], old['slug'])
+            if old_key != k:
+                selection.discard(old_key)
+                next_packages.pop(old_key, None)
             for rel,before in sorted(old['files'].items()):
                 actions.append(dict(op='remove',path=rel,before=before,after=None))
+        if k not in current:
+            selection.discard(k)
+            next_packages.pop(k, None)
         outcomes.append(dict(package=k,status='retired' if k not in current else 'managed',historical=[s.get('releases',[]) for s in discovered.get(k,[])]))
 
     # Refresh existing co-owner receipts when a scoped update changes their

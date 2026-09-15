@@ -37,7 +37,7 @@ JUDGE_TITLES = {
 }
 
 MARKER_ALIASES = {
-    "## workflow": ("## Invocation", "## Commands", "## Workflow Contract", "## Standard Workflow"),
+    "## workflow": ("## Invocation", "## Commands", "## Workflow Contract", "## Standard Workflow", "## Agent Operating Contract"),
     "## rules": (
         "## Rules",
         "### Gate Condition",
@@ -47,6 +47,7 @@ MARKER_ALIASES = {
         "### Scoring Thresholds",
         "Non-Negotiable",
         "## Core Principles",
+        "## Tool Boundaries",
     ),
     "## tool boundaries": ("Tool Boundaries:",),
     "## constraints": ("## Constraints", "## Tool Boundaries", "No-Gos & Boundaries", "Forbidden:"),
@@ -953,7 +954,9 @@ def _surface_usability_score(
         return 10 if agentish and both_surfaces and has_examples else 6
     if capability_type == "agent":
         return 10 if "## Agent Operating Contract" in candidate_text and has_examples else 6
-    return 10 if has_examples and "## Workflow" in candidate_text else 6
+    workflows = _section_bodies(candidate_text, ("Workflow", "Workflow Contract", "Standard Workflow", "Agent Operating Contract", "Invocation", "Commands"))
+    examples = _section_bodies(candidate_text, ("Examples", "Usage Examples"))
+    return 10 if any(body.strip() for body in workflows) and any(body.strip() for body in examples) else 6
 
 
 def _pass_scorecard(judge_reports: Sequence[Mapping[str, Any]]) -> dict[str, int]:

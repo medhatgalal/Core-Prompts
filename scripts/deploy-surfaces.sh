@@ -705,11 +705,11 @@ prune_retired_codex_agent_registration() {
   local config_path="$TARGET_ROOT/.codex/config.toml"
   [[ -f "$config_path" ]] || return 0
   if [[ "$DRY_RUN" -eq 1 ]]; then
-    echo "DRY-RUN PRUNE retired codex agent registration in $config_path: mentor"
+    echo "DRY-RUN PRUNE retired codex agent registrations in $config_path (selected catalogue scope)"
     return 0
   fi
-  python3 scripts/register-codex-agents.py --prune-retired-only "$config_path" "$TARGET_ROOT"
-  echo "PRUNED retired codex agent registration in $config_path: mentor"
+  python3 scripts/register-codex-agents.py --prune-retired-only "$config_path" "$TARGET_ROOT" "${SLUG_FILTERS[@]-}"
+  echo "PRUNED retired codex agent registrations in $config_path (selected catalogue scope)"
 }
 
 NAMESPACE_PRUNE_PREFLIGHT=1

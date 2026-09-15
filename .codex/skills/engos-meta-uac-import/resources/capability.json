@@ -4,12 +4,12 @@
   "layers": {
     "minimal": {
       "capability_type": "skill",
-      "summary": "Import external instructions as reusable skills, reviewing native execution needs before adding agents, through Core-Prompts plan, judge, and apply. Use for capability intake; do not use for ordinary prompt editing or deployment.",
+      "summary": "Improve skills and agents through Core-Prompts plan, judge, and apply while preserving their surface scope. New agent surfaces require explicit user approval. Use for capability intake and improvement; do not use for ordinary prose editing or deployment.",
       "role": "importer",
       "domain_tags": [
+        "packaging",
         "import",
         "planning",
-        "prompting",
         "engos",
         "meta"
       ],
@@ -184,7 +184,7 @@
   ],
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "engos-meta-uac-import",
-  "shared_summary": "Import external instructions as reusable skills, reviewing native execution needs before adding agents, through Core-Prompts plan, judge, and apply. Use for capability intake; do not use for ordinary prompt editing or deployment.",
+  "shared_summary": "Improve skills and agents through Core-Prompts plan, judge, and apply while preserving their surface scope. New agent surfaces require explicit user approval. Use for capability intake and improvement; do not use for ordinary prose editing or deployment.",
   "shared_constraints": [
     "No hidden execution. UAC coordinates exhaustive onboarding checks; it does not require a separate paid model API for every import. The invoking agent may prepare semantic repairs within authorized scope, and a separate subagent reviews them.",
     "No packaging claims without evidence.",
@@ -320,13 +320,12 @@
         "surface_usability": 10
       },
       "template_name": "skill",
-      "effective_sha256": "d045011af816a2106ec8af8a737b5a79a5379604d484ff3345f8625206dfe69a",
+      "effective_sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6",
       "semantic_findings": [],
       "agent_surface_review": {
         "status": "unchanged",
         "added_providers": [],
         "blockers": [],
-        "review_attestations": [],
         "source_fidelity": "not_required",
         "identity_authenticated": false,
         "behavioral_status": "behavioral_pending"

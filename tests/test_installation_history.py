@@ -179,7 +179,6 @@ def test_all_24_skills_and_11_agents_migrate_without_receipt_or_updater(source, 
     proposal, _ = execute(repo, target, mode="repair", providers=["kiro"])
     assert not proposal["preserved"], proposal["preserved"]
     expected = {f"kiro:skill:{s}" for s in V1122.values()}
-    expected |= {f"kiro:agent:{V1122[s]}" for s in V1122_AGENTS}
     assert set(state(target)["selection"]) == expected
     assert set(state(target)["packages"]) == expected
     for package in state(target)["packages"].values():
@@ -192,10 +191,8 @@ def test_all_24_skills_and_11_agents_migrate_without_receipt_or_updater(source, 
         new = V1122[old]
         assert not (target / f".kiro/agents/{old}.json").exists()
         assert not list((target / f".kiro/agents/resources/{old}").rglob("*.*"))
-        payload = json.loads((target / f".kiro/agents/{new}.json").read_text())
-        for resource in payload["resources"]:
-            if resource.startswith(("file://", "skill://")) and "*" not in resource:
-                assert (target / resource.split("://", 1)[1]).is_file(), resource
+        assert not (target / f".kiro/agents/{new}.json").exists()
+        assert (target / f".kiro/skills/{new}/SKILL.md").is_file()
     assert (target / "update_core_prompts.sh").stat().st_mode & 0o777 == 0o755
     for _ in range(2):
         repeat, _ = execute(repo, target, mode="sync")
@@ -229,14 +226,14 @@ def test_older_autosearch_maps_directly_to_current_skill_without_agent_expansion
     assert not (target / f".kiro/skills/{ARCH}/SKILL.md").exists()
 
 
-def test_agent_only_history_preserved_when_new_agent_requires_missing_skill(source, target):
+def test_agent_only_history_migrates_to_same_job_skill(source, target):
     repo = source()
     before = historical(target, "architecture", "agent")
     proposal, _ = execute(repo, target, mode="repair", providers=["kiro"])
-    assert_files(target, before)
-    assert any("dependency" in item["reason"] for item in proposal["preserved"])
-    assert not state(target)["packages"]
-    assert not (target / ".kiro/skills").exists()
+    assert not proposal["preserved"]
+    assert all(not (target / rel).exists() for rel in before)
+    assert state(target)["selection"] == [f"kiro:skill:{ARCH}"]
+    assert (target / f".kiro/skills/{ARCH}/SKILL.md").is_file()
     assert not (target / f".kiro/agents/{ARCH}.json").exists()
 
 
@@ -246,7 +243,7 @@ def test_custom_agent_packages_and_their_legacy_resources_survive(source, target
     before = historical(target, "architecture", "agent")
     historical(target, "architecture")
     if customization == "successor":
-        custom = put(target, f".kiro/agents/{ARCH}.json", '{"name":"mine","prompt":"local successor"}\n')
+        custom = put(target, f".kiro/skills/{ARCH}/SKILL.md", "local successor skill\n")
     elif customization == "extra-resource":
         custom = put(target, ".kiro/agents/resources/architecture/local.md", "local notes\n")
     else:
@@ -264,7 +261,7 @@ def test_custom_agent_packages_and_their_legacy_resources_survive(source, target
     assert f"kiro:agent:{ARCH}" not in state(target)["packages"]
 
 
-def test_saved_schema1_scope_converts_then_explicit_repair_adopts_agents(source, target):
+def test_saved_schema1_scope_converts_and_retires_agents(source, target):
     repo = source((ARCH, REVIEW))
     old = historical(target, "architecture")
     agent = historical(target, "architecture", "agent")
@@ -277,9 +274,9 @@ def test_saved_schema1_scope_converts_then_explicit_repair_adopts_agents(source,
     put(target, planner.V1_RECEIPT, transaction.encoded(receipt))
     execute(repo, target, mode="sync")
     assert state(target)["selection"] == [f"kiro:skill:{ARCH}"]
-    assert_files(target, agent)
+    assert all(not (target / rel).exists() for rel in agent)
     execute(repo, target, mode="repair", providers=["kiro"])
-    expected = {f"kiro:{kind}:{ARCH}" for kind in ("skill", "agent")}
+    expected = {f"kiro:skill:{ARCH}"}
     assert set(state(target)["packages"]) == expected
     assert set(state(target)["selection"]) == expected
     assert not (target / f".kiro/skills/{REVIEW}/SKILL.md").exists()

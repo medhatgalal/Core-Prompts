@@ -642,6 +642,11 @@ def resolve_descriptor(entry, manifest_entry: dict[str, object], job_contract: d
                 for item in artifact_conventions
             ]
     resolved['job_contract'] = json.loads(json.dumps(job_contract))
+    # A skill-only rebuild also revokes prior agent admission. Otherwise a
+    # direct retirement followed by restored old text could revive the grant.
+    if not any(name.endswith('_agent') for name in manifest_entry.get('expected_surface_names', [])):
+        for report in resolved.get('judge_reports', []):
+            report.get('agent_surface_review', {}).pop('review_attestations', None)
     save_descriptor(ROOT, entry.slug, resolved)
     return resolved
 

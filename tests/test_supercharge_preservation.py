@@ -61,8 +61,7 @@ def test_generated_resources_match_canonical_bytes_on_every_supported_surface(cl
             continue
         relative = canonical.relative_to(RESOURCE)
         surfaces = [ROOT / f".{cli}/skills/{SLUG}/resources" / relative]
-        if cli != "grok":
-            surfaces.append(ROOT / f".{cli}/agents/resources/{SLUG}" / relative)
+        assert not (ROOT / f".{cli}/agents/resources/{SLUG}" / relative).exists()
         for surface in surfaces:
             assert surface.read_bytes() == canonical.read_bytes(), str(surface)
     assert not (ROOT / f".{cli}/skills/supercharge").exists()

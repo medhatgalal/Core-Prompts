@@ -3,7 +3,7 @@ name: "engos-operations-ic-assistant"
 description: "Guide an Incident Commander through phase tracking, status cadence, artifact checks, escalation prompts, handoff, resolution, and postmortem work without making incident decisions. Use during an active incident or postmortem."
 display_name: "Incident Commander Assistant"
 kind: "both"
-capability_type: "both"
+capability_type: "skill"
 agent_tools: "Read, Bash, Grep, Glob"
 ---
 # Incident Commander Assistant

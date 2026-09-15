@@ -40,11 +40,20 @@ LEGACY_NAMESPACE_AGENT_SLUGS = {
 def drop_retired_agent_stanzas(
     source_lines: list[str],
     target_root: Path,
+    include_catalog_retirements: bool = False,
+    selected_slugs: tuple[str, ...] = (),
 ) -> list[str]:
-    retired_headers = {f"[agents.{slug}]" for slug in RETIRED_AGENT_SLUGS}
+    retired = set(RETIRED_AGENT_SLUGS)
+    if include_catalog_retirements:
+        from core_install.catalog import RETIRED_AGENT_SLUGS as catalog_retired, SUCCESSORS
+        selected = {SUCCESSORS.get(slug, slug) for slug in selected_slugs}
+        retired.update(slug for slug, successor in SUCCESSORS.items()
+                       if successor in catalog_retired and (not selected or successor in selected)
+                       and not (target_root / ".codex" / "agents" / f"{slug}.toml").exists())
+    retired_headers = {f"[agents.{slug}]" for slug in retired}
     managed_files = {
         slug: (target_root / ".codex" / "agents" / f"{slug}.toml").resolve()
-        for slug in RETIRED_AGENT_SLUGS
+        for slug in retired
     }
     config_file_pattern = re.compile(r'^\s*config_file\s*=\s*(["\'])(.*?)\1\s*$')
     cleaned: list[str] = []
@@ -84,7 +93,7 @@ def drop_retired_agent_stanzas(
             and Path(match.group(2)).expanduser().resolve() == managed_files[slug]
             for candidate in stanza[1:]
         )
-        if not in_managed_block and not targets_managed_file:
+        if not targets_managed_file and not (in_managed_block and slug in RETIRED_AGENT_SLUGS):
             cleaned.extend(stanza)
         index = stanza_end
 
@@ -140,11 +149,11 @@ def drop_legacy_managed_agent_stanzas(
     return cleaned
 
 
-def prune_retired_only(config_path: Path, target_root: Path) -> int:
+def prune_retired_only(config_path: Path, target_root: Path, selected_slugs: tuple[str, ...] = ()) -> int:
     if not config_path.exists():
         return 0
     original = config_path.read_text(encoding="utf-8")
-    cleaned_lines = drop_retired_agent_stanzas(original.splitlines(), target_root)
+    cleaned_lines = drop_retired_agent_stanzas(original.splitlines(), target_root, include_catalog_retirements=True, selected_slugs=selected_slugs)
     updated = "\n".join(cleaned_lines).rstrip("\n")
     if updated:
         updated += "\n"
@@ -154,10 +163,11 @@ def prune_retired_only(config_path: Path, target_root: Path) -> int:
 
 
 def main() -> int:
-    if len(sys.argv) == 4 and sys.argv[1] == "--prune-retired-only":
+    if len(sys.argv) >= 4 and sys.argv[1] == "--prune-retired-only":
         return prune_retired_only(
             Path(sys.argv[2]).expanduser(),
             Path(sys.argv[3]).expanduser().resolve(),
+            tuple(slug for slug in sys.argv[4:] if slug),
         )
     if len(sys.argv) < 4:
         raise SystemExit(

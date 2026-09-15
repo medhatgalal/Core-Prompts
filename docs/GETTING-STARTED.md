@@ -20,7 +20,7 @@ Start in your CLI with the job you want done:
 
 Expect a stronger plan with tradeoffs, failure modes, and acceptance criteria. The assistant must arrange any required independent review; unavailable workers are a reported limitation, not a reason to call self-review independent. If the skill is not discovered, explicitly select `engos-meta-supercharge` and repeat the request. Ordinary-language discovery depends on the host and installed setup.
 
-You can start with skills only, which is the fresh-install default. [Skills, agents, and prompts](FAQ.md#what-is-the-difference-between-a-skill-an-agent-and-a-prompt) explains optional execution configurations. Batman remains explicitly invoked.
+The shipped setup is skills-only. [Skills, agents, and prompts](FAQ.md#what-is-the-difference-between-a-skill-an-agent-and-a-prompt) explains optional execution configurations. Batman remains explicitly invoked.
 
 If Core-Prompts is already installed in Codex, Gemini, Claude, Kiro, or Grok, begin with one of these asks:
 
@@ -47,7 +47,7 @@ For complete OpEx meeting preparation, request `briefing` with incident keys; it
 
 For a complete Plan to Goal walkthrough, including a two-criterion verifier and the lint/seal/check commands, see [Plan to Goal Design](EXAMPLES.md#engos-design-plan-to-goal).
 
-For optional named agent configurations, use the [agent FAQ](FAQ.md#what-is-the-difference-between-a-skill-an-agent-and-a-prompt) and [current inventory](CAPABILITY-CATALOG.md). You can use the skill examples above without selecting an agent package.
+No named-agent configurations ship. Use the skill examples above directly; independent workers receive the same skill and required resources. Future named adapters require explicit user approval. See the [agent FAQ](FAQ.md#what-is-the-difference-between-a-skill-an-agent-and-a-prompt).
 
 ### How Batman starts and resolves companions
 
@@ -148,11 +148,12 @@ bash scripts/install-local.sh --target "$HOME" --allow-nonlocal-target \
   --apply-plan /tmp/core-prompts-install-plan.json
 ```
 
-For a fresh target, omit `--repair`; skills are selected by default. Add
-`--with-agents` when you want current named agents too. Existing skills and agents
-are recognized independently from trusted historical package identities. A saved
-skills-only profile keeps its selection during ordinary sync; explicit repair can
-adopt independently recognized existing agents on the saved selected providers.
+For a fresh target, omit `--repair`; the current package contains skills only.
+Existing skills and agents are recognized independently from trusted historical
+identities. Repair plans retirement of recognized owned agent variants and keeps
+or installs their same-job skill on the selected provider. Customized or unowned
+packages remain preserved. `--with-agents` selects only emitted agents (currently
+none) and cannot authorize source creation.
 
 The resulting `.core-prompts-state/installation.json` saves concrete provider,
 surface, and slug selection. Routine updates reconcile owned package resources

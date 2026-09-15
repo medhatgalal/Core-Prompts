@@ -5,11 +5,11 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Capability count: `27`
 
 ## Start Here
+- `engos-quality-testing-review` — Testing Studio — Test Design and Coverage Analysis: Design or generate tests, edge cases, and coverage-gap analysis for a defined behavior without claiming tests were run. Use when test design is the primary deliverable; use GitOps review for release readiness.
 - `engos-quality-docs-review` — Docs Review Expert — Documentation IA, Drift, and Release Hygiene: Review repository documentation for information architecture, stale commands, broken links, misplaced content, drift, and release hygiene. Use when docs quality or discoverability is the primary concern; do not use for ordinary sentence editing.
 - `engos-design-architecture` — Architecture Studio: Design APIs, data models, patterns, or systems with explicit boundaries, trade-offs, failure modes, migration, rollback, and validation. Use for concrete architecture decisions; do not use for prompt hardening or behavioral evaluation.
-- `engos-quality-testing-review` — Testing Studio — Test Design and Coverage Analysis: Design or generate tests, edge cases, and coverage-gap analysis for a defined behavior without claiming tests were run. Use when test design is the primary deliverable; use GitOps review for release readiness.
-- `engos-quality-gitops-review` — GitOps Review — Repo Hygiene, CI, Release, and Merge Gate: Assess repository hygiene, commit and pull request or merge request readiness, CI, packaging, merge, tag, and release prerequisites across GitHub and GitLab. Use for release or merge gates; do not claim hosted state without current verification.
 - `engos-delivery-resolve-conflict` — Merge Conflict Resolution — Structured Conflict Analysis: Analyze and plan the safe resolution of Git or document conflicts while preserving valuable content, exposing contradictions, and defining verification. Use when an actual merge or content conflict exists; do not use for ordinary proposal disagreement without conflict markers.
+- `loopy` — Loopy — Bounded Agent Loops: Discover, find, compare, audit, repair, adapt, craft, run, debrief, and prepare repeatable AI-agent loops for publication. Use when a user asks to analyze code or coding threads for recurring work, find a published loop, interview them to turn a goal into a bounded loop, review a loop for weak checks or unsafe authority, execute a loop with an evidence receipt, learn from completed runs, or validate and submit a loop to Loop Library.
 
 ## By CLI
 - `claude`: `engos-audit-code-health`, `engos-audit-engineering-progress`, `engos-audit-feature-status`, `engos-audit-opex-incident-review`, `engos-audit-pitch-review`, `engos-audit-weekly-intel`, `engos-browser-demo-recorder`, `engos-content-dynamic-html-presentations`, `engos-delivery-address-code-review`, `engos-delivery-resolve-conflict`, `engos-design-architecture`, `engos-design-plan-to-goal`, `engos-memory-context-continuity`, `engos-memory-threader`, `engos-meta-instruction-editor`, `engos-meta-supercharge`, `engos-meta-uac-import`, `engos-operations-ic-assistant`, `engos-optimization-auto-research`, `engos-orchestration-batman`, `engos-quality-code-review`, `engos-quality-docs-review`, `engos-quality-gitops-review`, `engos-quality-testing-review`, `engos-reconciliation-converge`, `engos-triage-my-inbox-chat-pulse`, `loopy`
@@ -60,13 +60,13 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `opex`: `engos-audit-opex-incident-review`
 - `optimization`: `engos-optimization-auto-research`
 - `orchestration`: `engos-orchestration-batman`
-- `packaging`: `engos-reconciliation-converge`
+- `packaging`: `engos-meta-uac-import`, `engos-reconciliation-converge`
 - `pitch`: `engos-audit-pitch-review`
 - `plan`: `engos-design-plan-to-goal`
 - `planning`: `engos-browser-demo-recorder`, `engos-delivery-resolve-conflict`, `engos-design-plan-to-goal`, `engos-meta-supercharge`, `engos-meta-uac-import`
 - `presentations`: `engos-content-dynamic-html-presentations`
 - `progress`: `engos-audit-engineering-progress`
-- `prompting`: `engos-design-architecture`, `engos-meta-supercharge`, `engos-meta-uac-import`
+- `prompting`: `engos-design-architecture`, `engos-meta-supercharge`
 - `pulse`: `engos-triage-my-inbox-chat-pulse`
 - `quality`: `engos-quality-code-review`, `engos-quality-docs-review`, `engos-quality-gitops-review`, `engos-quality-testing-review`
 - `reconciliation`: `engos-reconciliation-converge`
@@ -113,7 +113,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 
 ### Architecture Studio
 - Slug: `engos-design-architecture`
-- Type: `both`
+- Type: `skill`
 - Install target: `global`
 - Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
@@ -126,7 +126,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 
 ### Auto-Research — Goal-Driven Improvement Research, Evaluation, and Promotion
 - Slug: `engos-optimization-auto-research`
-- Type: `both`
+- Type: `skill`
 - Install target: `repo_local`
 - Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Version: `v2.1`
@@ -144,7 +144,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 
 ### Batman — Evidence-Gated Delivery Controller
 - Slug: `engos-orchestration-batman`
-- Type: `both`
+- Type: `skill`
 - Install target: `repo_local`
 - Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
@@ -185,7 +185,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 
 ### Converge — Multi-Source Synthesis, Conflict Surfacing, and Final Recommendation
 - Slug: `engos-reconciliation-converge`
-- Type: `both`
+- Type: `skill`
 - Install target: `repo_local`
 - Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
@@ -209,7 +209,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 
 ### Docs Review Expert — Documentation IA, Drift, and Release Hygiene
 - Slug: `engos-quality-docs-review`
-- Type: `both`
+- Type: `skill`
 - Install target: `repo_local`
 - Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
@@ -269,7 +269,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 
 ### GitOps Review — Repo Hygiene, CI, Release, and Merge Gate
 - Slug: `engos-quality-gitops-review`
-- Type: `both`
+- Type: `skill`
 - Install target: `repo_local`
 - Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
@@ -283,7 +283,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 
 ### Incident Commander Assistant
 - Slug: `engos-operations-ic-assistant`
-- Type: `both`
+- Type: `skill`
 - Install target: `repo_local`
 - Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
@@ -332,7 +332,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 
 ### Pitch — Shape Up Pitch Creation, Review, Scoring, and Improvement
 - Slug: `engos-audit-pitch-review`
-- Type: `both`
+- Type: `skill`
 - Install target: `repo_local`
 - Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Version: `v1.1`
@@ -363,7 +363,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 
 ### Pulse — Comms Triage
 - Slug: `engos-triage-my-inbox-chat-pulse`
-- Type: `both`
+- Type: `skill`
 - Install target: `repo_local`
 - Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:
@@ -377,7 +377,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 
 ### SuperCharge — Prompt Engineering, Planning Hardening, and Graded Improvement
 - Slug: `engos-meta-supercharge`
-- Type: `both`
+- Type: `skill`
 - Install target: `repo_local`
 - Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Version: `v5.0`
@@ -428,11 +428,11 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
   - explain how this external source would land into SSOT and descriptors
   - judge whether a candidate is ready to apply
   - tell me whether this import needs stronger behavioral proof before landing
-- Summary: Import external instructions as reusable skills, reviewing native execution needs before adding agents, through Core-Prompts plan, judge, and apply. Use for capability intake; do not use for ordinary prompt editing or deployment.
+- Summary: Improve skills and agents through Core-Prompts plan, judge, and apply while preserving their surface scope. New agent surfaces require explicit user approval. Use for capability intake and improvement; do not use for ordinary prose editing or deployment.
 
 ### Weekly Intelligence — Multi-Source Progress Report with Fact-Check Audit
 - Slug: `engos-audit-weekly-intel`
-- Type: `both`
+- Type: `skill`
 - Install target: `repo_local`
 - Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Invocation hints:

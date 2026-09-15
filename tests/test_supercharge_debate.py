@@ -166,9 +166,9 @@ def test_supercharge_descriptor_and_resources_preserve_uac_boundaries() -> None:
     descriptor = json.loads((ROOT / ".meta" / "capabilities" / "engos-meta-supercharge.json").read_text(encoding="utf-8"))
     descriptor_text = json.dumps(descriptor, sort_keys=True)
 
-    assert descriptor["layers"]["minimal"]["capability_type"] == "both"
+    assert descriptor["layers"]["minimal"]["capability_type"] == "skill"
     assert descriptor["layers"]["minimal"]["version"] == "v5.0"
-    assert descriptor["declared_capability"] == "both"
+    assert descriptor["declared_capability"] == "skill"
     assert descriptor["layers"]["minimal"]["tool_policy"]["scope"] == "uac_intake_only"
     assert "orchestration" in descriptor["layers"]["minimal"]["tool_policy"]["forbidden"]
     assert "delegation decisions" in descriptor["layers"]["minimal"]["tool_policy"]["forbidden"]
@@ -176,8 +176,7 @@ def test_supercharge_descriptor_and_resources_preserve_uac_boundaries() -> None:
     assert "adversarial debate" in descriptor_text.lower()
     assert any("run adversarial debate" in hint for hint in descriptor["invocation_hints"])
 
-    codex_agent = (ROOT / ".codex" / "agents" / "engos-meta-supercharge.toml").read_text(encoding="utf-8")
-    assert "\ntools =" not in codex_agent
+    assert not (ROOT / ".codex" / "agents" / "engos-meta-supercharge.toml").exists()
 
     resource_paths = [
         ROOT / ".codex" / "skills" / "engos-meta-supercharge" / "resources" / "capability.json",
@@ -187,7 +186,7 @@ def test_supercharge_descriptor_and_resources_preserve_uac_boundaries() -> None:
     ]
     for path in resource_paths:
         payload = json.loads(path.read_text(encoding="utf-8"))
-        assert payload["layers"]["minimal"]["capability_type"] == "both"
+        assert payload["layers"]["minimal"]["capability_type"] == "skill"
         assert payload["layers"]["minimal"]["version"] == "v5.0"
 
 

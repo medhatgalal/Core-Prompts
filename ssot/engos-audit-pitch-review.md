@@ -3,7 +3,7 @@ name: "engos-audit-pitch-review"
 description: "Create, review, score, improve, or export Shape Up pitches by checking problem framing, appetite, architecture, dependencies, integration proof, risks, and betting readiness. Use for pitch artifacts; do not use for feature status or general proposal synthesis."
 display_name: "Pitch — Shape Up Pitch Creation, Review, Scoring, and Improvement"
 kind: "agent"
-capability_type: "both"
+capability_type: "skill"
 agent_tools: "Read, Write, Edit, Bash, Grep, Glob, GWS"
 version: "v1.1"
 ---

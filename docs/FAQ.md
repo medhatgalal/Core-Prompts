@@ -13,7 +13,11 @@ Start with the job and its skill. A named agent can make an execution configurat
 
 Independent workers can isolate a review from the author's context and perform separate investigations concurrently. They also need context and resources, consume additional model and tool work, and can lose information during handoff. A generic independent worker can apply a skill when the host supports it, but must actually receive its instructions and required resources. It is not automatically equivalent to a named configuration: permissions, startup context, model settings, and delegation support can differ.
 
-Choose a named configuration when those settings are useful for the task. Keep it when replacement behavior has not been verified. Core-Prompts currently generates agent adapters for Codex, Gemini, Claude, and Kiro. It emits skills for Grok but no Grok agent adapter; that is this repository's support boundary, not a statement that Grok cannot run subagents.
+Core-Prompts currently ships 27 skills and no named-agent configurations across the five providers. Generic workers remain available when the host supports them. Tooling still supports future native adapters for Codex, Gemini, Claude, and Kiro, but adding one requires your explicit approval plus independent execution-need review. Grok has no repository-generated agent adapter; this is a repository boundary, not a claim about its native capabilities.
+
+## Can UAC add an agent automatically?
+
+No. UAC can improve existing skills and agents within their existing surface scope. Adding, reintroducing, or expanding an agent to another provider requires actual explicit user approval for that capability and provider set, recorded alongside independent execution-need review. A high grade, reviewer recommendation, imported agent declaration, or `--yes` does not supply that approval. See [the admission contract](UAC-CAPABILITY-MODEL.md#skill-first-classification).
 
 ## Do I need agents installed to use Supercharge?
 
@@ -21,7 +25,7 @@ Use the Supercharge skill as the normal entry point. Ask “Supercharge this pla
 
 Supercharge's substantive reviews require real independent workers. A suitable generic worker can receive the skill and its resources without a matching named Supercharge package. If the host cannot provide the required independent review, the assistant must report that limitation. A named package alone does not prove independent review occurred. See [the direct and delegated examples](EXAMPLES.md#one-skill-in-the-main-session-or-an-independent-worker).
 
-Fresh installs select skills by default. `--with-agents` opts into named configurations; existing saved selections remain in effect during routine updates. Do not remove existing packages solely because their names match skills. Review ownership and customizations through the [installation plan](INSTALL-PROFILES.md).
+Fresh installs are skills-only. The installer uses its existing registry to retire recognized owned agent variants and preserve their same-job skills. Customized, unowned, symlinked, or dependency-conflicted packages remain preserved with an incomplete-migration report. `--with-agents` only selects agents actually emitted by an approved source (currently none). Preview the exact [installation plan](INSTALL-PROFILES.md); repository retirement does not prove that a home installation has been cleaned.
 
 ## Are Supercharge and Converge the same capability?
 

@@ -48,3 +48,11 @@ Keep rule surfaces machine-readable, keep human docs free of hidden policy, and 
 - Put short routing guidance in `AGENTS.md`.
 - Put user guidance, maintainer explanation, and examples in `README.md` or `docs/`.
 - If a human doc starts reading like agent policy, move that content into steering and leave behind a short explanatory reference.
+
+## Agent Surface Approval
+
+- Improve the requested existing skill or agent without adding another surface or expanding provider scope.
+- Default reusable capability intake to skills. Do not convert a skill to `agent` or `both`, reintroduce a retired agent, or add an agent on another provider without the user's explicit approval for those identities.
+- A recommendation, score, independent reviewer verdict, general implementation request, or `--yes` is not approval to add an agent surface. If approval is absent, return the proposed addition for the user to decide; do not fabricate an approval record.
+- Record the actual approval reference and approved capability/provider identities in the existing UAC requirement review's `user_approval` field. Keep that approval separate from execution-need review. Existing approved registration scope can be retained during improvements; it cannot authorize additional identities.
+- Named agent packages are distinct from generic independent workers. Keep required independent review and host permission boundaries when named packages are retired.

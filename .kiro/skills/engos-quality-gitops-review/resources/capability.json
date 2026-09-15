@@ -3,7 +3,7 @@
   "manifest_version": "capability-fabric.v0",
   "layers": {
     "minimal": {
-      "capability_type": "both",
+      "capability_type": "skill",
       "summary": "Assess repository hygiene, commit and pull request or merge request readiness, CI, packaging, merge, tag, and release prerequisites across GitHub and GitLab. Use for release or merge gates; do not claim hosted state without current verification.",
       "role": "analyst",
       "domain_tags": [
@@ -48,32 +48,26 @@
         "ssot/engos-quality-gitops-review.md"
       ],
       "packaging_profile": {
-        "capability_type": "both",
+        "capability_type": "skill",
         "primary_surfaces": {
           "codex": [
-            "codex_skill",
-            "codex_agent"
+            "codex_skill"
           ],
           "gemini": [
-            "gemini_skill",
-            "gemini_agent"
+            "gemini_skill"
           ],
           "claude": [
-            "claude_skill",
-            "claude_agent"
+            "claude_skill"
           ],
           "kiro": [
-            "kiro_skill",
-            "kiro_agent"
+            "kiro_skill"
           ],
           "grok": [
             "grok_skill"
           ]
         },
         "wrapper_surfaces": {
-          "codex": [
-            "plugin_wrapper"
-          ],
+          "codex": [],
           "gemini": [
             "skill_wrapper"
           ],
@@ -104,20 +98,16 @@
       },
       "emitted_surfaces": {
         "codex": [
-          "codex_skill",
-          "codex_agent"
+          "codex_skill"
         ],
         "gemini": [
-          "gemini_skill",
-          "gemini_agent"
+          "gemini_skill"
         ],
         "claude": [
-          "claude_skill",
-          "claude_agent"
+          "claude_skill"
         ],
         "kiro": [
-          "kiro_skill",
-          "kiro_agent"
+          "kiro_skill"
         ],
         "grok": [
           "grok_skill"
@@ -167,17 +157,13 @@
     }
   },
   "display_name": "GitOps Review \u2014 Repo Hygiene, CI, Release, and Merge Gate",
-  "declared_capability": "both",
-  "inferred_capability": "both",
+  "declared_capability": "skill",
+  "inferred_capability": "skill",
   "expected_surface_names": [
     "codex_skill",
-    "codex_agent",
     "gemini_skill",
-    "gemini_agent",
     "claude_skill",
-    "claude_agent",
     "kiro_skill",
-    "kiro_agent",
     "grok_skill"
   ],
   "rubric_version": "capability-fabric.v0",

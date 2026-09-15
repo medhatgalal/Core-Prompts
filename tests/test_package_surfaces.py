@@ -54,8 +54,10 @@ def test_package_boundary_includes_release_watch_contract(tmp_path: Path) -> Non
 
     with tarfile.open(tar_path, "r:gz") as archive:
         tar_names = set(archive.getnames())
+        tar_files = {member.name for member in archive.getmembers() if member.isfile()}
     with zipfile.ZipFile(zip_path) as archive:
         zip_names = set(archive.namelist())
+        zip_files = {member.filename for member in archive.infolist() if not member.is_dir()}
 
     expected = {
         "VERSION",
@@ -77,6 +79,10 @@ def test_package_boundary_includes_release_watch_contract(tmp_path: Path) -> Non
     }
     assert expected <= tar_names
     assert expected <= zip_names
+    for names in (tar_files, zip_files):
+        assert not any(name.startswith(tuple(f".{p}/agents/" for p in ("codex", "claude", "gemini", "kiro")))
+                       and not name.endswith("/") for name in names)
+        assert sum(name.endswith("/SKILL.md") for name in names) == 135
 
     # The shipped guide must resolve its local skill/resource links in both formats.
     import re
@@ -107,7 +113,7 @@ def test_package_boundary_includes_release_watch_contract(tmp_path: Path) -> Non
         ".kiro/agents/resources/mentor/",
         "sources/ssot-baselines/mentor/",
     )
-    for names in (tar_names, zip_names):
+    for names in (tar_files, zip_files):
         assert not any(
             name == retired.rstrip("/") or name.startswith(retired)
             for name in names

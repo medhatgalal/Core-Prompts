@@ -13,6 +13,8 @@
 
 ## Surface rules
 
+- Ship skills by default. UAC preserves the requested existing surface; adding, reintroducing, or expanding an agent surface requires explicit user approval for that capability and provider, separately from independent review and `--yes`. Follow `.kiro/steering/agent-behavior.md`.
+
 - UAC is advisory and recommends the surface area for each SSOT entry.
 - Direct/workflow capabilities emit:
   - `.codex/skills/<slug>/SKILL.md`

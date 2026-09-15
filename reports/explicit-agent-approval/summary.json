@@ -1,0 +1,40 @@
+{
+  "baseline": "0ff6e23e0271631a506f824e32316e55cea9296b",
+  "source_version": "v1.15.0",
+  "shipped_skills": 135,
+  "shipped_named_agents": 0,
+  "retired_capabilities": [
+    "engos-audit-pitch-review",
+    "engos-audit-weekly-intel",
+    "engos-design-architecture",
+    "engos-meta-supercharge",
+    "engos-operations-ic-assistant",
+    "engos-optimization-auto-research",
+    "engos-orchestration-batman",
+    "engos-quality-docs-review",
+    "engos-quality-gitops-review",
+    "engos-reconciliation-converge",
+    "engos-triage-my-inbox-chat-pulse"
+  ],
+  "regression_tests": {
+    "passed": 539,
+    "subtests_passed": 16,
+    "elapsed_seconds": 189.27
+  },
+  "approval": "User approval is distinct from independent review; scoped recorded approval is required for added or reintroduced agent identities.",
+  "identity_authentication": "Records are attestations, not identity authentication. Operators must reference an actual user instruction.",
+  "home_checkpoint": {
+    "applied": false,
+    "known_codex_agents_eligible": 11,
+    "unrecognized_agent_packages": 33,
+    "unrecognized_agent_files": 86,
+    "archive_choice": "pending",
+    "unrecognized_claude_uac_skill": "preserved"
+  },
+  "release_publication": "not_performed",
+  "native_behavioral_comparison": "not_claimed",
+  "subsequent_approval_lifecycle_check": {
+    "passed": 16,
+    "scope": "UAC apply and direct skill-only generation both revoke old creation admission"
+  }
+}

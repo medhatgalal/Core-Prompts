@@ -52,7 +52,7 @@ from intent_pipeline.uac_baselines import (
     text_sha256,
 )
 from intent_pipeline.uac_templates import load_capability_template
-from intent_pipeline.uac_agent_review import agent_surface_review, declaration_normalization
+from intent_pipeline.uac_agent_review import agent_surface_review, agent_providers, declaration_normalization
 from intent_pipeline.capability_resources import effective_capability_text
 from intent_pipeline.uac_modes import extract_capability_modes
 from intent_pipeline.uac_repomix import collect_repomix_candidates, materialize_repomix_candidate, repomix_available
@@ -2456,6 +2456,22 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
         ssot_text=ssot_text,
         quality_result=quality_result,
     )
+    # Persist admission for the exact bytes that will be written, including
+    # quality-loop-off improvements. Retain quality history, but keep only the
+    # current agent admission instead of accumulating stale creation evidence.
+    ssot_text = ssot_text + ('\n' if not ssot_text.endswith('\n') else '')
+    final_admission = _agent_review_for_payload(result, ssot_text)
+    if final_admission['blockers']:
+        result['status'] = 'manual_review'
+        result['detail'] = 'Agent emission refused: ' + '; '.join(final_admission['blockers'])
+        return result
+    result['agent_surface_review'] = final_admission
+    if final_admission.get('review_attestations') or not agent_providers(ssot_text):
+        reports = json.loads(json.dumps(descriptor.get('judge_reports') or [{}]))
+        for report in reports:
+            report.get('agent_surface_review', {}).pop('review_attestations', None)
+        reports[-1]['agent_surface_review'] = final_admission
+        descriptor['judge_reports'] = reports
     if not quality_bound and load_descriptor(ROOT, slug):
         apply_guard = dict(apply_guard or {})
         apply_guard['descriptor_preservation'] = 'existing curated descriptor retained because quality evidence did not bind the applied SSOT text'

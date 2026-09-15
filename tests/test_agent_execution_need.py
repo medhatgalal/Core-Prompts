@@ -21,6 +21,8 @@ def review(original=SKILL, candidate=BOTH):
         'schema_version': 'UACRequirementReview.v1', 'slug': 'fixture',
         'original_sha256': text_sha256(original), 'candidate_sha256': text_sha256(candidate),
         'effective_sha256': text_sha256(candidate), 'verdict': 'approved',
+        'user_approval': {'source': 'user', 'decision': 'approved', 'slug': 'fixture',
+                          'providers': list(PROVIDERS), 'reference': 'test-user-message:explicit-agent-addition'},
         'reviewer': {'agent_id': 'reviewer', 'author_agent_id': 'author', 'independent': True},
         'requirements': [{'id': 'all', 'source_start_line': 1, 'source_end_line': len(original.splitlines()),
                           'rationale': 'The workflow remains intact.', 'disposition': 'preserved',
@@ -47,7 +49,7 @@ def test_new_or_expanded_agent_requires_review_for_every_provider(tmp_path, curr
     result = check(tmp_path, current=current)
     assert result['status'] == 'manual_review'
     assert set(result['added_providers']) == set(PROVIDERS)
-    assert len(result['blockers']) == 4
+    assert len(result['blockers']) == 8
 
 
 def test_existing_explicit_agents_are_preserved_without_new_attestation(tmp_path):
@@ -140,7 +142,7 @@ def test_archive_uses_latest_pinned_catalog_without_self_blessing_manifest(tmp_p
     shutil.copyfile(ROOT / '.meta/install-profiles/legacy-installations.json', catalog)
     (tmp_path / 'ssot').mkdir()
     (tmp_path / 'ssot' / 'engos-meta-supercharge.md').write_text(BOTH)
-    assert preflight_agent_emission(tmp_path) == []
+    assert any('explicit user approval' in error for error in preflight_agent_emission(tmp_path))
     (tmp_path / 'ssot' / 'fixture.md').write_text(BOTH)
     (tmp_path / '.meta' / 'manifest.json').write_text(json.dumps({'ssot_sources': [
         {'slug': 'fixture', 'expected_surface_names': [f'{p}_agent' for p in PROVIDERS]}]}))
@@ -310,3 +312,60 @@ def test_normalization_plan_judge_and_final_apply_revalidate(released_undeclared
     (root / 'ssot/fixture.md').write_text(current + '\nChanged after judgment.\n')
     with pytest.raises(ValueError, match='no longer matches'):
         module._safe_apply_ssot_text('fixture', normalized)
+
+
+def test_independent_review_is_not_user_approval(tmp_path):
+    value = review()
+    value.pop('user_approval')
+    result = check(tmp_path, reviews=[value])
+    assert result['status'] == 'manual_review'
+    assert all('explicit user approval' in item for item in result['blockers'])
+
+
+@pytest.mark.parametrize('change', ['wrong_slug', 'reviewer_source', 'missing_reference', 'one_provider', 'not_approved'])
+def test_user_approval_is_scoped_and_explicit(tmp_path, change):
+    value = review()
+    approval = value['user_approval']
+    if change == 'wrong_slug': approval['slug'] = 'another-skill'
+    elif change == 'reviewer_source': approval['source'] = 'reviewer'
+    elif change == 'missing_reference': approval['reference'] = ''
+    elif change == 'one_provider': approval['providers'] = ['codex']
+    else: approval['decision'] = 'recommended'
+    result = check(tmp_path, reviews=[value])
+    assert result['status'] == 'manual_review'
+    assert any('explicit user approval' in item for item in result['blockers'])
+
+
+def test_existing_agent_improvement_does_not_require_new_creation_approval(tmp_path):
+    result = check(tmp_path, current=BOTH, candidate=BOTH+'\nClarify the existing review output.\n')
+    assert result['status'] == 'unchanged'
+    assert not result['added_providers']
+
+
+def test_retired_git_baseline_cannot_authorize_reintroduction(tmp_path, monkeypatch):
+    from intent_pipeline import consumer_shell
+    from intent_pipeline.uac_agent_review import preflight_agent_emission
+    slug = 'engos-meta-supercharge'
+    candidate = BOTH.replace('name: fixture', 'name: '+slug)
+    (tmp_path/'ssot').mkdir()
+    (tmp_path/'ssot'/f'{slug}.md').write_text(candidate)
+    baseline = {'ssot_sources':[{'slug':slug,'expected_surface_names':[f'{p}_agent' for p in PROVIDERS]}]}
+    monkeypatch.setattr(consumer_shell, 'resolve_release_baseline', lambda root:(baseline,'test-pinned-release'))
+    errors = preflight_agent_emission(tmp_path)
+    assert sum('explicit user approval required' in error for error in errors)==4
+
+
+def test_retired_agent_can_be_reintroduced_with_actual_scoped_approval_record(tmp_path, monkeypatch):
+    import json
+    from intent_pipeline import consumer_shell
+    from intent_pipeline.uac_agent_review import preflight_agent_emission, _persisted_attestation
+    slug = 'engos-meta-supercharge'
+    original = SKILL.replace('name: fixture','name: '+slug)
+    candidate = BOTH.replace('name: fixture','name: '+slug)
+    (tmp_path/'ssot').mkdir(); (tmp_path/'ssot'/f'{slug}.md').write_text(candidate)
+    approved = review(original,candidate)
+    approved['slug']=slug; approved['user_approval']['slug']=slug
+    directory=tmp_path/'.meta'/'capabilities'; directory.mkdir(parents=True)
+    (directory/f'{slug}.json').write_text(json.dumps({'judge_reports':[{'agent_surface_review':{'review_attestations':[_persisted_attestation(approved)]}}]}))
+    monkeypatch.setattr(consumer_shell,'resolve_release_baseline',lambda root:({'ssot_sources':[]},'test-pinned-release'))
+    assert preflight_agent_emission(tmp_path)==[]

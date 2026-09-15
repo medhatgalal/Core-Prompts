@@ -394,12 +394,15 @@
     "command_note": "skill is the canonical direct invocation surface; command and prompt variants are deprecated in this repo",
     "classification_policy": {
       "default_reusable_surface": "skill",
+      "surface_quality": "Assess substantive workflow and boundary sections independently of emitted agent count; Agent Operating Contract is a workflow alias for skills and Tool Boundaries can express Rules.",
       "agent_vocabulary_is_execution_evidence": false,
       "quoted_examples_are_execution_evidence": false,
       "undeclared_native_agent_configuration": "manual_review",
       "existing_explicit_declarations": "preserve_until_reviewed_surface_change",
       "declaration_normalization": "Only add a missing capability_type when source body and all other fields are unchanged and match verified released source, and the complete released surface set is preserved; do not claim a template uplift.",
-      "new_or_expanded_agents": "require_reviewed_provider_specific_execution_need",
+      "new_or_expanded_agents": "require_explicit_user_approval_and_reviewed_provider_specific_execution_need",
+      "catalogued_agent_retirement": "A committed both source may change only capability_type to skill for explicitly catalogued agent retirements; all other source bytes remain identical. Record retirement, not a new template or behavioral pass.",
+      "user_approval": "Required for each new capability/provider agent surface; --yes, recommendations and reviewer approval are not user approval. Existing surface improvements retain their kind and provider scope.",
       "evidence_location": "existing UAC quality review",
       "necessary_execution_need": "Explain the required native guarantee and why a skill delivered to a generic worker is insufficient.",
       "review_contract": {

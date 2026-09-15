@@ -414,7 +414,7 @@
     {
       "slug": "engos-audit-pitch-review",
       "display_name": "Pitch \u2014 Shape Up Pitch Creation, Review, Scoring, and Improvement",
-      "capability_type": "both",
+      "capability_type": "skill",
       "summary": "Create, review, score, improve, or export Shape Up pitches by checking problem framing, appetite, architecture, dependencies, integration proof, risks, and betting readiness. Use for pitch artifacts; do not use for feature status or general proposal synthesis.",
       "role": "analyst",
       "domain_tags": [
@@ -473,20 +473,16 @@
       },
       "emitted_surfaces": {
         "codex": [
-          "codex_skill",
-          "codex_agent"
+          "codex_skill"
         ],
         "gemini": [
-          "gemini_skill",
-          "gemini_agent"
+          "gemini_skill"
         ],
         "claude": [
-          "claude_skill",
-          "claude_agent"
+          "claude_skill"
         ],
         "kiro": [
-          "kiro_skill",
-          "kiro_agent"
+          "kiro_skill"
         ],
         "grok": [
           "grok_skill"
@@ -530,7 +526,7 @@
     {
       "slug": "engos-audit-weekly-intel",
       "display_name": "Weekly Intelligence \u2014 Multi-Source Progress Report with Fact-Check Audit",
-      "capability_type": "both",
+      "capability_type": "skill",
       "summary": "Collect and fact-check project information from issue trackers, Git, code review, Chat, and documents, then produce one executive report with technical appendices and source confidence. Use for multi-source periodic intelligence; do not use for Git-only reports, inbox triage, or feature audits.",
       "role": "analyst",
       "domain_tags": [
@@ -576,20 +572,16 @@
       },
       "emitted_surfaces": {
         "codex": [
-          "codex_skill",
-          "codex_agent"
+          "codex_skill"
         ],
         "gemini": [
-          "gemini_skill",
-          "gemini_agent"
+          "gemini_skill"
         ],
         "claude": [
-          "claude_skill",
-          "claude_agent"
+          "claude_skill"
         ],
         "kiro": [
-          "kiro_skill",
-          "kiro_agent"
+          "kiro_skill"
         ],
         "grok": [
           "grok_skill"
@@ -1026,7 +1018,7 @@
     {
       "slug": "engos-design-architecture",
       "display_name": "Architecture Studio",
-      "capability_type": "both",
+      "capability_type": "skill",
       "summary": "Design APIs, data models, patterns, or systems with explicit boundaries, trade-offs, failure modes, migration, rollback, and validation. Use for concrete architecture decisions; do not use for prompt hardening or behavioral evaluation.",
       "role": "architect",
       "domain_tags": [
@@ -1085,20 +1077,16 @@
       },
       "emitted_surfaces": {
         "codex": [
-          "codex_skill",
-          "codex_agent"
+          "codex_skill"
         ],
         "gemini": [
-          "gemini_skill",
-          "gemini_agent"
+          "gemini_skill"
         ],
         "claude": [
-          "claude_skill",
-          "claude_agent"
+          "claude_skill"
         ],
         "kiro": [
-          "kiro_skill",
-          "kiro_agent"
+          "kiro_skill"
         ],
         "grok": [
           "grok_skill"
@@ -1519,7 +1507,7 @@
     {
       "slug": "engos-meta-supercharge",
       "display_name": "SuperCharge \u2014 Prompt Engineering, Planning Hardening, and Graded Improvement",
-      "capability_type": "both",
+      "capability_type": "skill",
       "summary": "Harden a prompt, plan, proposal, or workflow through the smallest useful sequence of simplification, inversion, adversarial critique, contract checks, debate, or grading. Use when the artifact needs stronger reasoning or execution guidance; use behavioral evaluation for proof.",
       "role": "advisor",
       "domain_tags": [
@@ -1578,20 +1566,16 @@
       },
       "emitted_surfaces": {
         "codex": [
-          "codex_skill",
-          "codex_agent"
+          "codex_skill"
         ],
         "gemini": [
-          "gemini_skill",
-          "gemini_agent"
+          "gemini_skill"
         ],
         "claude": [
-          "claude_skill",
-          "claude_agent"
+          "claude_skill"
         ],
         "kiro": [
-          "kiro_skill",
-          "kiro_agent"
+          "kiro_skill"
         ],
         "grok": [
           "grok_skill"
@@ -1627,12 +1611,12 @@
       "slug": "engos-meta-uac-import",
       "display_name": "UAC Import \u2014 Capability Intake, Quality Review, and Uplift",
       "capability_type": "skill",
-      "summary": "Import external instructions as reusable skills, reviewing native execution needs before adding agents, through Core-Prompts plan, judge, and apply. Use for capability intake; do not use for ordinary prompt editing or deployment.",
+      "summary": "Improve skills and agents through Core-Prompts plan, judge, and apply while preserving their surface scope. New agent surfaces require explicit user approval. Use for capability intake and improvement; do not use for ordinary prose editing or deployment.",
       "role": "importer",
       "domain_tags": [
+        "packaging",
         "import",
         "planning",
-        "prompting",
         "engos",
         "meta"
       ],
@@ -1740,9 +1724,9 @@
     {
       "slug": "engos-operations-ic-assistant",
       "display_name": "Incident Commander Assistant",
-      "capability_type": "both",
+      "capability_type": "skill",
       "summary": "Guide an Incident Commander through phase tracking, status cadence, artifact checks, escalation prompts, handoff, resolution, and postmortem work without making incident decisions. Use during an active incident or postmortem.",
-      "role": "specialist_workflow",
+      "role": "workflow",
       "domain_tags": [
         "engos",
         "operations",
@@ -1790,20 +1774,16 @@
       },
       "emitted_surfaces": {
         "codex": [
-          "codex_skill",
-          "codex_agent"
+          "codex_skill"
         ],
         "gemini": [
-          "gemini_skill",
-          "gemini_agent"
+          "gemini_skill"
         ],
         "claude": [
-          "claude_skill",
-          "claude_agent"
+          "claude_skill"
         ],
         "kiro": [
-          "kiro_skill",
-          "kiro_agent"
+          "kiro_skill"
         ],
         "grok": [
           "grok_skill"
@@ -1843,9 +1823,9 @@
     {
       "slug": "engos-optimization-auto-research",
       "display_name": "Auto-Research \u2014 Goal-Driven Improvement Research, Evaluation, and Promotion",
-      "capability_type": "both",
+      "capability_type": "skill",
       "summary": "Run bounded, baseline-controlled experiments to improve prompts, skills, workflows, tools, or code and decide whether a candidate is ready for promotion. Use when better behavior must be measured; do not use for unmeasured brainstorming.",
-      "role": "specialist_workflow",
+      "role": "workflow",
       "domain_tags": [
         "engos",
         "optimization",
@@ -1920,20 +1900,16 @@
       },
       "emitted_surfaces": {
         "codex": [
-          "codex_skill",
-          "codex_agent"
+          "codex_skill"
         ],
         "gemini": [
-          "gemini_skill",
-          "gemini_agent"
+          "gemini_skill"
         ],
         "claude": [
-          "claude_skill",
-          "claude_agent"
+          "claude_skill"
         ],
         "kiro": [
-          "kiro_skill",
-          "kiro_agent"
+          "kiro_skill"
         ],
         "grok": [
           "grok_skill"
@@ -1982,9 +1958,9 @@
     {
       "slug": "engos-orchestration-batman",
       "display_name": "Batman \u2014 Evidence-Gated Delivery Controller",
-      "capability_type": "both",
+      "capability_type": "skill",
       "summary": "Run the explicitly requested, evidence-gated delivery protocol through independent subagents, TDD, blocking reviews, verification, documentation, Git health, and authorized landing. Use for implementation work that requires controller-owned sequencing and evidence.",
-      "role": "specialist_workflow",
+      "role": "workflow",
       "domain_tags": [
         "engos",
         "orchestration",
@@ -2039,20 +2015,16 @@
       },
       "emitted_surfaces": {
         "codex": [
-          "codex_skill",
-          "codex_agent"
+          "codex_skill"
         ],
         "gemini": [
-          "gemini_skill",
-          "gemini_agent"
+          "gemini_skill"
         ],
         "claude": [
-          "claude_skill",
-          "claude_agent"
+          "claude_skill"
         ],
         "kiro": [
-          "kiro_skill",
-          "kiro_agent"
+          "kiro_skill"
         ],
         "grok": [
           "grok_skill"
@@ -2189,7 +2161,7 @@
     {
       "slug": "engos-quality-docs-review",
       "display_name": "Docs Review Expert \u2014 Documentation IA, Drift, and Release Hygiene",
-      "capability_type": "both",
+      "capability_type": "skill",
       "summary": "Review repository documentation for information architecture, stale commands, broken links, misplaced content, drift, and release hygiene. Use when docs quality or discoverability is the primary concern; do not use for ordinary sentence editing.",
       "role": "analyst",
       "domain_tags": [
@@ -2244,20 +2216,16 @@
       },
       "emitted_surfaces": {
         "codex": [
-          "codex_skill",
-          "codex_agent"
+          "codex_skill"
         ],
         "gemini": [
-          "gemini_skill",
-          "gemini_agent"
+          "gemini_skill"
         ],
         "claude": [
-          "claude_skill",
-          "claude_agent"
+          "claude_skill"
         ],
         "kiro": [
-          "kiro_skill",
-          "kiro_agent"
+          "kiro_skill"
         ],
         "grok": [
           "grok_skill"
@@ -2300,7 +2268,7 @@
     {
       "slug": "engos-quality-gitops-review",
       "display_name": "GitOps Review \u2014 Repo Hygiene, CI, Release, and Merge Gate",
-      "capability_type": "both",
+      "capability_type": "skill",
       "summary": "Assess repository hygiene, commit and pull request or merge request readiness, CI, packaging, merge, tag, and release prerequisites across GitHub and GitLab. Use for release or merge gates; do not claim hosted state without current verification.",
       "role": "analyst",
       "domain_tags": [
@@ -2354,20 +2322,16 @@
       },
       "emitted_surfaces": {
         "codex": [
-          "codex_skill",
-          "codex_agent"
+          "codex_skill"
         ],
         "gemini": [
-          "gemini_skill",
-          "gemini_agent"
+          "gemini_skill"
         ],
         "claude": [
-          "claude_skill",
-          "claude_agent"
+          "claude_skill"
         ],
         "kiro": [
-          "kiro_skill",
-          "kiro_agent"
+          "kiro_skill"
         ],
         "grok": [
           "grok_skill"
@@ -2511,9 +2475,9 @@
     {
       "slug": "engos-reconciliation-converge",
       "display_name": "Converge \u2014 Multi-Source Synthesis, Conflict Surfacing, and Final Recommendation",
-      "capability_type": "both",
+      "capability_type": "skill",
       "summary": "Compare multiple sources, drafts, or proposals, surface conflicts and gaps, and produce one defensible recommendation with explicit trade-offs. Use when competing inputs must converge; do not hide incompatible ideas in a blended summary.",
-      "role": "specialist_workflow",
+      "role": "workflow",
       "domain_tags": [
         "packaging",
         "engos",
@@ -2563,20 +2527,16 @@
       },
       "emitted_surfaces": {
         "codex": [
-          "codex_skill",
-          "codex_agent"
+          "codex_skill"
         ],
         "gemini": [
-          "gemini_skill",
-          "gemini_agent"
+          "gemini_skill"
         ],
         "claude": [
-          "claude_skill",
-          "claude_agent"
+          "claude_skill"
         ],
         "kiro": [
-          "kiro_skill",
-          "kiro_agent"
+          "kiro_skill"
         ],
         "grok": [
           "grok_skill"
@@ -2611,9 +2571,9 @@
     {
       "slug": "engos-triage-my-inbox-chat-pulse",
       "display_name": "Pulse \u2014 Comms Triage",
-      "capability_type": "both",
+      "capability_type": "skill",
       "summary": "Triage Gmail and Google Chat into a deterministic attention queue with priority, links, and approved follow-up actions. Use when deciding what communications need attention; triage is read-only and actions require explicit approval.",
-      "role": "specialist_workflow",
+      "role": "workflow",
       "domain_tags": [
         "engos",
         "triage",
@@ -2658,20 +2618,16 @@
       },
       "emitted_surfaces": {
         "codex": [
-          "codex_skill",
-          "codex_agent"
+          "codex_skill"
         ],
         "gemini": [
-          "gemini_skill",
-          "gemini_agent"
+          "gemini_skill"
         ],
         "claude": [
-          "claude_skill",
-          "claude_agent"
+          "claude_skill"
         ],
         "kiro": [
-          "kiro_skill",
-          "kiro_agent"
+          "kiro_skill"
         ],
         "grok": [
           "grok_skill"

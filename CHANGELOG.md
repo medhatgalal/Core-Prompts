@@ -1,3 +1,12 @@
+## v1.15.0 - 2026-09-15
+
+Source version prepared for skills-only distribution; publication and installed-state verification are separate.
+
+- Ship all 27 capabilities as skills and retire the eleven first-party named-agent packages across Codex, Claude, Gemini, and Kiro. Generic independent workers and the skill contracts remain available.
+- Improve existing skills and agents without silently adding another surface. New, reintroduced, or provider-expanded agent surfaces require explicit scoped user approval as well as an independent execution-need review. General implementation approval, grades, reviewer recommendations, and `--yes` do not authorize agent creation.
+- Reuse the installation catalog and transaction journal to migrate recognized agent-only installations to their same-job skills. Preserve customized, unowned, symlinked, unavailable, or dependency-conflicted packages; reconcile ownership and registrations and support rollback.
+- Record metadata-only, user-directed agent retirement without claiming a new template pass or measured behavioral equivalence.
+
 ## v1.14.4 - 2026-09-15
 
 Source version prepared for delivery; release publication and installation are separate.

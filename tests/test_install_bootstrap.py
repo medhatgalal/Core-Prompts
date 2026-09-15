@@ -1,4 +1,4 @@
-"""Execute the real v1.14.0 installer across the portable-runtime bridge.
+"""Verify the real v1.14.0 scope guard and explicit current-runtime repair.
 
 Every legacy call runs in an isolated interpreter with the historical sibling
 install_bundle.py. No current in-process installer can stand in for that proof.
@@ -29,15 +29,16 @@ from pathlib import Path
 old, source, target = (Path(p) for p in sys.argv[1:4])
 profile = json.loads(sys.argv[4])
 routine = sys.argv[5] == 'routine'
+migration = sys.argv[5] == 'migration'
 spec = importlib.util.spec_from_file_location('historical_engine', old / 'scripts/deploy-profile.py')
 engine = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(engine)
 assert Path(engine.install_bundle.__file__).resolve() == old / 'scripts/install_bundle.py'
 assert '_CAPSULE_PAYLOAD' not in engine.__dict__
-plan = engine.plan(source, target, profile, routine=routine)
+plan = engine.plan(source, target, profile, routine=routine, migration=migration)
 print(json.dumps({'plan': plan, 'bundle_module': engine.install_bundle.__file__,
     'engine_sha256': hashlib.sha256((old / 'scripts/deploy-profile.py').read_bytes()).hexdigest()}), flush=True)
-result = engine.apply(source, target, profile, plan)
+result = engine.apply(source, target, profile, plan, migration=migration)
 print(json.dumps({'result': result}), flush=True)
 '''
 
@@ -86,10 +87,10 @@ def output(process):
     return f"exit={process.returncode}\nstdout:\n{process.stdout}\nstderr:\n{process.stderr}"
 
 
-def old_call(old, source, target, profile=PROFILE, routine=False):
+def old_call(old, source, target, profile=PROFILE, routine=False, migration=False):
     return subprocess.run(
         [sys.executable, "-I", "-B", "-c", OLD_DRIVER, str(old), str(source),
-         str(target), json.dumps(profile), "routine" if routine else "seed"],
+         str(target), json.dumps(profile), "routine" if routine else "migration" if migration else "seed"],
         cwd=target.parent, text=True, capture_output=True, timeout=90)
 
 
@@ -145,23 +146,51 @@ def bridged(old_runtime, tmp_path):
     assert not (target / ".kiro/agents").exists()
     assert not (target / ".codex/agents").exists()
 
-    bridge = old_call(old_runtime, ROOT, target, routine=True)
-    assert bridge.returncode == 0, output(bridge)
-    proposal, applied = [json.loads(line) for line in bridge.stdout.splitlines()]
-    plan = proposal["plan"]
-    assert not plan["blockers"], plan["blockers"]
-    assert not plan["preserved"], plan["preserved"]
-    assert set(plan["source_files"]) == expected_skills
-    assert all(a["path"] in expected_skills or a["path"].startswith(".core-prompts-updater/")
-               for a in plan["actions"])
-    assert {a["path"] for a in plan["state_actions"]} <= {V1_PROFILE, V1_RECEIPT}
-    assert applied["result"]["status"] == "applied"
+    # Seed real recognized agent packages outside the schema1 skill receipt.
+    agent_files = []
+    for provider, ext in (("codex", "toml"), ("kiro", "json")):
+        entry = f".{provider}/agents/{ARCH}.{ext}"
+        prefix = f".{provider}/agents/resources/{ARCH}/"
+        for rel in snapshot(old_runtime):
+            if rel == entry or rel.startswith(prefix):
+                put(target, rel, (old_runtime / rel).read_bytes())
+                agent_files.append(rel)
+    assert agent_files
+    before = snapshot(target)
+    refused = old_call(old_runtime, ROOT, target, routine=True)
+    assert refused.returncode != 0
+    assert "standalone bundle file scope was removed" in refused.stderr
+    assert snapshot(target) == before
+
+    refused_migration = old_call(old_runtime, ROOT, target, migration=True)
+    assert refused_migration.returncode != 0
+    assert "addition-only migration cannot remove files" in refused_migration.stderr
+    assert snapshot(target) == before
+
+    # The historical --migrate is addition-only. Use the current installer and
+    # an exact reviewed plan to replace its runtime and retire owned agents.
+    args = [sys.executable, "-I", "-B", str(ROOT / "scripts/deploy-profile.py"),
+            "--install", "--repo", str(ROOT), "--target", str(target), "--repair"]
+    preview = subprocess.run([*args, "--dry-run"], text=True, capture_output=True, timeout=90)
+    assert preview.returncode == 0, output(preview)
+    plan = json.loads(preview.stdout)
+    assert not plan["blockers"] and not plan["preserved"]
+    assert set(plan["selection"]) == {f"{p}:skill:{ARCH}" for p in ("codex", "kiro")}
+    assert set(agent_files) <= {a["path"] for a in plan["actions"] if a["op"] == "remove"}
+    assert snapshot(target) == before
+    plan_path = tmp_path / "approved-repair.json"
+    plan_path.write_text(preview.stdout)
+    repaired = subprocess.run([*args, "--apply-plan", str(plan_path)], text=True, capture_output=True, timeout=90)
+    assert repaired.returncode == 0, output(repaired)
+    result = json.loads(repaired.stdout)
+    assert result["status"] == "complete"
+    assert all(not (target / rel).exists() for rel in agent_files)
     installed = target / ".core-prompts-updater/scripts/deploy-profile.py"
     assert installed.read_bytes() == (ROOT / "scripts/deploy-profile.py").read_bytes()
     assert b"_CAPSULE_PAYLOAD" in installed.read_bytes()
     assert not (target / ".core-prompts-updater/scripts/core_install").exists()
-    assert not (target / V2_STATE).exists()
-    return target, applied["result"]["transaction"]
+    assert (target / V2_STATE).exists()
+    return target, seed_result["result"]["transaction"], result["transaction"]
 
 
 def promote(old, target):
@@ -171,18 +200,18 @@ def promote(old, target):
     return json.loads(result.stdout)
 
 
-def test_actual_old_engine_delivers_capsule_then_runs_without_source_checkout(old_runtime, bridged):
-    target, _ = bridged
+def test_current_repair_upgrades_old_install_then_runs_without_source_checkout(old_runtime, bridged):
+    target, _, _ = bridged
     saved_profile = (target / V1_PROFILE).read_bytes()
     promoted = promote(old_runtime, target)
-    assert promoted["status"] == "complete"
+    assert promoted["status"] == "no-op"
     state = json.loads((target / V2_STATE).read_text())
     expected = {f"{provider}:skill:{ARCH}" for provider in ("codex", "kiro")}
     assert set(state["selection"]) == expected
     assert set(state["packages"]) == expected
     assert (target / V1_PROFILE).read_bytes() == saved_profile
-    assert not (target / ".kiro/agents").exists()
-    assert not (target / ".codex/agents").exists()
+    assert not list((target / ".kiro/agents").glob("*.json"))
+    assert not list((target / ".codex/agents").glob("*.toml"))
     assert (target / "update_core_prompts.sh").is_file()
     before = snapshot(target)
     repeat = promote(old_runtime, target)
@@ -215,18 +244,18 @@ def test_incompatible_pre_rename_saved_scope_fails_without_target_writes(old_run
     assert not (target / V2_STATE).exists()
 
 
-def test_legacy_bridge_rollback_cannot_cross_completed_v2_promotion(old_runtime, bridged):
-    target, bridge_transaction = bridged
-    promoted = promote(old_runtime, target)
+def test_legacy_rollback_cannot_cross_completed_current_repair(old_runtime, bridged):
+    target, bridge_transaction, repair_transaction = bridged
+    promote(old_runtime, target)
     before = snapshot(target)
     rollback = detached_call(old_runtime, target, "--repo", str(target / ".core-prompts-updater"),
                              "--target", str(target), "--rollback", bridge_transaction)
     assert rollback.returncode != 0, output(rollback)
     assert "rollback" in rollback.stderr.lower(), output(rollback)
     assert snapshot(target) == before
-    # Recovery remains possible in reverse order: undo v2 before the v1 bridge.
+    # Recovery remains possible in reverse order: undo current repair before the old seed.
     undo_v2 = detached_call(old_runtime, target, "--install", "--repo", str(target / ".core-prompts-updater"),
-                            "--target", str(target), "--rollback", promoted["transaction"])
+                            "--target", str(target), "--rollback", repair_transaction)
     assert undo_v2.returncode == 0, output(undo_v2)
     undo_bridge = detached_call(old_runtime, target, "--repo", str(target / ".core-prompts-updater"),
                                 "--target", str(target), "--rollback", bridge_transaction)

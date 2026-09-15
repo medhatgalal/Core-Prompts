@@ -1,6 +1,6 @@
 ---
 name: "engos-meta-uac-import"
-description: "Import external instructions as reusable skills, reviewing native execution needs before adding agents, through Core-Prompts plan, judge, and apply. Use for capability intake; do not use for ordinary prompt editing or deployment."
+description: "Improve skills and agents through Core-Prompts plan, judge, and apply while preserving their surface scope. New agent surfaces require explicit user approval. Use for capability intake and improvement; do not use for ordinary prose editing or deployment."
 ---
 # UAC Import — Capability Intake, Quality Review, and Uplift
 
@@ -26,7 +26,7 @@ Supported modes:
 Deterministic clarity lint from `instruction_clarity.v1` is available in every mode and enabled by default for `audit`, `plan`, and `judge`. It is advisory and never counts as behavioral evidence.
 
 ## Primary Objective
-Exhaustively improve the source’s clarity, completeness, coherence, structure, and usability during onboarding while preserving its intended capability. Classify safely, recommend the right surfaces, and refuse landing until the structural and reviewed requirement gates pass. Structural diagnostics do not prove downstream model efficacy.
+Improve the supplied skill or agent’s clarity, completeness, coherence, structure, and usability while preserving its intended capability and existing surface kind and provider scope. Classify safely, recommend the right surfaces, and refuse landing until the structural and reviewed requirement gates pass. Structural diagnostics do not prove downstream model efficacy.
 
 When structural quality is near the bar but behavioral confidence is still weak, escalate to a bounded behavioral proof workflow instead of overstating readiness.
 
@@ -61,7 +61,7 @@ Canonical application writes `ssot/<slug>.md` and `.meta/capabilities/<slug>.jso
 4. Run semantic routing.
 5. If the source is a folder or repo subtree, inventory prompt-like files and classify them one by one.
 6. Cluster broad repos into candidate families before recommending any landing.
-7. Classify reusable workflows as `skill` by default. Agent-related headings, quoted examples, and independent-review requirements do not justify a named agent. Route undeclared native-agent configuration to `manual_review`; preserve existing explicit `agent` or `both` declarations until a reviewed surface change. New or expanded agent emission requires a hash-bound independent UAC requirement review explaining each provider's necessary execution guarantee and why a skill delivered to a generic worker is insufficient.
+7. Classify reusable workflows as `skill` by default. Agent-related headings, quoted examples, and independent-review requirements do not justify a named agent. Route undeclared native-agent configuration to `manual_review`; preserve existing explicit `agent` or `both` declarations until a reviewed surface change. New or expanded agent emission requires the user's explicit approval for the capability and each provider, plus a hash-bound independent UAC requirement review explaining the execution need. A general improvement request, reviewer verdict, score, or `--yes` does not grant creation approval. Record the actual user approval reference and scoped identities in the existing review's `user_approval` field; never synthesize approval from an inferred preference. Preserve an existing approval reference when improving the same approved registration; ask only for genuinely new identities.
 8. Build layered manifests, cross-analysis, and advisory handoff data.
 9. Select a quality profile and benchmark set.
 10. Resolve the canonical baseline source from `sources/ssot-baselines/` before judging fidelity.

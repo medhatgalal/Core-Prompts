@@ -3,7 +3,7 @@
   "manifest_version": "capability-fabric.v0",
   "layers": {
     "minimal": {
-      "capability_type": "both",
+      "capability_type": "skill",
       "summary": "Collect and fact-check project information from issue trackers, Git, code review, Chat, and documents, then produce one executive report with technical appendices and source confidence. Use for multi-source periodic intelligence; do not use for Git-only reports, inbox triage, or feature audits.",
       "role": "analyst",
       "domain_tags": [
@@ -40,32 +40,26 @@
         "ssot/engos-audit-weekly-intel.md"
       ],
       "packaging_profile": {
-        "capability_type": "both",
+        "capability_type": "skill",
         "primary_surfaces": {
           "codex": [
-            "codex_skill",
-            "codex_agent"
+            "codex_skill"
           ],
           "gemini": [
-            "gemini_skill",
-            "gemini_agent"
+            "gemini_skill"
           ],
           "claude": [
-            "claude_skill",
-            "claude_agent"
+            "claude_skill"
           ],
           "kiro": [
-            "kiro_skill",
-            "kiro_agent"
+            "kiro_skill"
           ],
           "grok": [
             "grok_skill"
           ]
         },
         "wrapper_surfaces": {
-          "codex": [
-            "plugin_wrapper"
-          ],
+          "codex": [],
           "gemini": [
             "skill_wrapper"
           ],
@@ -96,20 +90,16 @@
       },
       "emitted_surfaces": {
         "codex": [
-          "codex_skill",
-          "codex_agent"
+          "codex_skill"
         ],
         "gemini": [
-          "gemini_skill",
-          "gemini_agent"
+          "gemini_skill"
         ],
         "claude": [
-          "claude_skill",
-          "claude_agent"
+          "claude_skill"
         ],
         "kiro": [
-          "kiro_skill",
-          "kiro_agent"
+          "kiro_skill"
         ],
         "grok": [
           "grok_skill"
@@ -157,17 +147,13 @@
     }
   },
   "display_name": "Weekly Intelligence \u2014 Multi-Source Progress Report with Fact-Check Audit",
-  "declared_capability": "both",
-  "inferred_capability": "both",
+  "declared_capability": "skill",
+  "inferred_capability": "skill",
   "expected_surface_names": [
     "codex_skill",
-    "codex_agent",
     "gemini_skill",
-    "gemini_agent",
     "claude_skill",
-    "claude_agent",
     "kiro_skill",
-    "kiro_agent",
     "grok_skill"
   ],
   "rubric_version": "capability-fabric.v0",

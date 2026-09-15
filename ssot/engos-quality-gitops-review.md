@@ -2,7 +2,7 @@
 name: "engos-quality-gitops-review"
 description: "Assess repository hygiene, commit and pull request or merge request readiness, CI, packaging, merge, tag, and release prerequisites across GitHub and GitLab. Use for release or merge gates; do not claim hosted state without current verification."
 kind: "agent"
-capability_type: "both"
+capability_type: "skill"
 agent_tools: "Read, Write, Edit, Bash, Grep, Glob"
 ---
 # GitOps Review — Repo Hygiene, CI, Release, and Merge Gate

@@ -1,12 +1,12 @@
 # Core-Prompts / Capability Fabric
 
-Core-Prompts ships reusable skills for Codex, Gemini, Claude, Kiro, and Grok, with optional named agent configurations on supported surfaces. This repository is the canonical source, intake, build, validation, and release layer that keeps those shipped capabilities aligned.
+Core-Prompts ships reusable skills for Codex, Gemini, Claude, Kiro, and Grok, with no shipped named-agent configurations. This repository is the canonical source, intake, build, validation, and release layer that keeps those shipped capabilities aligned.
 
 Install or repair an existing setup with the current installer, even if it has no updater or receipts. It recognizes complete historical skill and agent packages, migrates their current identities, and preserves custom files. Your selected providers, surfaces, and capabilities persist across routine updates. See [installation and recovery](docs/INSTALL-PROFILES.md).
 
 **Start by asking for the job:** “Supercharge this plan.” Use the installed skill as the normal entry point; the assistant arranges independent review when the capability requires it. You do not need to choose a second capability called an agent. If your host does not discover the skill, select its full name, such as `engos-meta-supercharge`.
 
-Skills are selected by default for a fresh installation. Named agents remain available when their execution configuration is useful. See [skills, agents, and prompts](docs/FAQ.md#what-is-the-difference-between-a-skill-an-agent-and-a-prompt) for the distinction and its limits. Explicit-only workflows such as Batman still require an explicit request.
+The shipped setup is skills-only. Generic independent workers can apply these skills; future named-agent surfaces require your explicit approval. See [skills, agents, and prompts](docs/FAQ.md#what-is-the-difference-between-a-skill-an-agent-and-a-prompt) for the distinction and its limits. Explicit-only workflows such as Batman still require an explicit request.
 
 Use this repository in this order:
 
@@ -16,7 +16,7 @@ Use this repository in this order:
 
 If you are already using Core-Prompts in a CLI, start there. If you are importing a new capability family, go to UAC next. If you are rebuilding surfaces, validating state, deploying, or preparing release work, use the repo tooling after that.
 
-The current generated surfaces ship `27` skills across all supported CLIs and `11` agents on agent-capable surfaces. Capability Fabric metadata is advisory; explicit invocation follows the selected capability's operating contract.
+The current generated surfaces ship `27` skills across all supported CLIs and `0` named-agent configurations. Capability Fabric metadata is advisory; explicit invocation follows the selected capability's operating contract.
 
 First-party skills use the `engos-<category>-<skill-name>` namespace so Core-Prompts capabilities stay together in CLI and app autocomplete. The upstream-pinned Loopy package retains the single name `loopy`, without an alias package. The category identifies the primary job; the final segment identifies the capability. For example, use `engos-memory-context-continuity` for durable investigation state, `engos-quality-code-review` for diff review, and `engos-triage-my-inbox-chat-pulse` for Gmail and Chat triage.
 
@@ -89,29 +89,11 @@ Use `engos-audit-opex-incident-review briefing <ticket...>` for complete meeting
 | `engos-quality-testing-review` | decide what to test first and what edge cases matter | "Use `engos-quality-testing-review` to identify the highest-value tests and edge cases for this change." | prioritized test ideas, edge cases, and coverage gaps |
 | `engos-design-architecture` | review interfaces, boundaries, and migration safety | "Use `engos-design-architecture` to recommend the safest design for this capability layout." | tradeoffs, boundary decisions, migration thinking, and rollback-aware recommendations |
 
-### Optional Agent Configurations
+### Independent Workers
 
-These are additional execution configurations for existing capabilities, not another set of jobs to choose from. The repo emits them on supported agent surfaces; see the [agent FAQ](docs/FAQ.md#what-is-the-difference-between-a-skill-an-agent-and-a-prompt) before opting in. Their Fabric metadata is advisory; explicit invocation follows the capability contract, including Batman's implementation authority and review gates.
+Use the same skill in the main session or supply it and its required resources to a fresh independent worker. No matching named-agent package is required. If the host cannot provide the independent review a capability requires, report the limitation and stop the dependent gate.
 
-Batman first checks whether the request has a coherent outcome, success criteria, boundaries, and authority. It then publishes a Host-Fit Plan from the live repository and host inventory: implementation language, build/test/lint/type/smoke/CI tools, available independent subagents and companion surfaces, safe parallelism, and declared cost/quality/speed trade-offs. This plan adapts execution; it cannot waive a gate, combine independent roles, invent a budget, or grant authority.
-
-Batman companion names identify capabilities, not guaranteed agent registrations. Batman prefers a usable registered agent, falls back to a fresh default independent subagent applying the installed skill, and stops the dependent stage or gate when neither surface exists. The controller owns flow, evidence, and status; implementers author code and failing tests; fresh reviewers and attackers provide milestone backpressure. No role approves its own work.
-
-Evidence is state-specific. Controller-authored tests, tests inherited from an earlier session, and tests not observed failing against the unfixed behavior do not establish red. Local or offline verification does not establish hosted CI, a live deployment, a release, or an installed state. UAC `structural_ready` also does not establish behavioral promotion. Batman reports these states separately and cleans run-scoped scratch only after durable evidence has been preserved; branch or worktree cleanup requires authorization and a truthful cleanup receipt.
-
-| Agent | Use it for | Example ask | What good output looks like |
-| --- | --- | --- | --- |
-| `engos-orchestration-batman` | explicitly invoked, subagent-driven implementation delivery | "Batman: take this contract change through subagent TDD, all applicable blocking reviews, PR, merge, and cleanup." | controller-owned flow and status, independent implementation evidence, current CI, and mainline verification |
-| `engos-quality-docs-review` | documentation IA, drift review, and release-facing docs checks | "Use `engos-quality-docs-review` to review our onboarding docs for drift and weak entrypoints." | concrete doc findings and rewrite targets |
-| `engos-quality-gitops-review` | repo hygiene, CI, merge, and release gates | "Use `engos-quality-gitops-review` to judge whether we are ready to merge and release." | a go or no-go recommendation with evidence and next actions |
-| `engos-operations-ic-assistant` | phase-aware Incident Commander process guidance with optional internal runbook mode | "Use `engos-operations-ic-assistant` to track this incident and keep me on the required checklist." | mode, phase, next action, overdue items, and escalation flags |
-| `engos-audit-pitch-review` | Shape Up pitch creation, review, and scoring | "Use `engos-audit-pitch-review` to harden this pitch before betting." | pitch quality score, risks, appetite fit, and rewrite guidance |
-| `engos-triage-my-inbox-chat-pulse` | Gmail and Google Chat triage | "Use `engos-triage-my-inbox-chat-pulse` to triage what needs my attention and propose next actions without sending anything." | prioritized comms, source summaries, and proposed actions |
-| `engos-optimization-auto-research` | experiment-driven improvement loops | "Use `engos-optimization-auto-research` to improve this workflow and prove which variant wins." | bounded experiments, evaluation, and promotion guidance |
-| `engos-meta-supercharge` | plan, prompt, or adversarial debate hardening before execution | "Use `engos-meta-supercharge /debate /deep` to stress-test this operating decision before we ship it." | stronger prompt structure, clearer failure handling, and Bull/Bear/Decider trade-off analysis |
-| `engos-reconciliation-converge` | synthesis across competing proposals | "Use `engos-reconciliation-converge` to synthesize these competing proposals into one decision." | overlap map, decision logic, and one coherent recommendation |
-| `engos-design-architecture` | architecture review and migration-safe design | "Use `engos-design-architecture` to review this interface change for rollback risk." | architecture findings and a defensible direction |
-| `engos-audit-weekly-intel` | multi-source weekly reporting | "Use `engos-audit-weekly-intel` to produce a weekly status report from these sources." | executive summary, technical appendix, and fact-check audit |
+Batman remains explicitly invoked. It checks the request and live host, preserves controller/implementer/reviewer separation, and reports local, hosted, release, and installation evidence separately. See [the delivery contract](docs/GETTING-STARTED.md#how-batman-starts-and-resolves-companions).
 
 ### If You Only Try Three Things
 
@@ -231,7 +213,8 @@ Do not start with UAC if your goal is just to use what is already installed. Sta
 Use UAC when you need to:
 
 - inspect how an external prompt or prompt family would land in this repo
-- decide whether the source should become a skill, an agent, or manual review
+- improve an existing skill or agent without automatically expanding its surfaces
+- package new reusable workflows as skills; require your explicit approval and independent execution-need review before adding any agent surface
 - benchmark a candidate before it mutates canonical repo state
 - write canonical SSOT, descriptor, and baseline state after a successful review
 
@@ -316,11 +299,12 @@ bash scripts/install-local.sh --target "$HOME" --allow-nonlocal-target \
   --apply-plan /tmp/core-prompts-install-plan.json
 ```
 
-Review the JSON before applying. Fresh installs select skills by default; add
-`--with-agents` when you want current named agents too. Repair recognizes existing
-skills and agents independently, including historical `mentor` retirement, without
-requiring an old updater. Saved skills-only profiles keep that scope on ordinary
-sync; explicit repair can adopt recognized existing agents on their selected providers.
+Review the JSON before applying. The shipped setup contains skills only. Repair
+recognizes historical skills and agents without requiring an old updater and plans
+owned agent retirements with the same capability’s skill as successor. Customized
+or unowned packages are preserved and reported as incomplete migration.
+`--with-agents` remains compatible but selects only emitted agents (currently none);
+it cannot authorize creating an agent surface.
 Use `--cli all` for initial provider discovery or omit it to keep saved selection.
 
 ### Installed Release Watch

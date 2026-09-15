@@ -3,7 +3,7 @@ name: "engos-orchestration-batman"
 description: "Run the explicitly requested, evidence-gated delivery protocol through independent subagents, TDD, blocking reviews, verification, documentation, Git health, and authorized landing. Use for implementation work that requires controller-owned sequencing and evidence."
 display_name: "Batman — Evidence-Gated Delivery Controller"
 kind: "agent"
-capability_type: "both"
+capability_type: "skill"
 agent_tools: "Read, Write, Edit, Bash, Grep, Glob"
 install_target: "repo_local"
 ---
