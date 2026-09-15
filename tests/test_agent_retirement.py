@@ -194,3 +194,119 @@ def test_agent_migration_does_not_enroll_other_jobs(tmp_path):
     assert plan['selection'] == [f'kiro:skill:{SLUG}']
     assert not (target/f'.kiro/skills/{other}/SKILL.md').exists()
     assert not (target/agent).exists()
+
+
+def identify_core(target, provider, agent, resource):
+    """Modified generated package: identity survives while byte hashes differ."""
+    if provider == 'kiro':
+        body = json.dumps({'name': SLUG, 'prompt': 'locally modified'})
+    elif provider == 'codex':
+        body = f'name = "{SLUG}"\ndeveloper_instructions = "locally modified"\n'
+    else:
+        body = f'---\nname: {SLUG}\n---\nlocally modified\n'
+    put(target,agent,body)
+    descriptor = str(Path(resource).parent/'capability.json')
+    put(target,descriptor,json.dumps(dict(slug=SLUG,descriptor_version='CapabilityDescriptor.v1',
+                                         expected_surface_names=[provider+'_agent'])))
+    return descriptor
+
+
+@pytest.mark.parametrize('provider', EXT)
+@pytest.mark.parametrize('custom_skill', [False, True])
+def test_routine_sync_cleans_identified_core_modifications_and_backups(tmp_path,provider,custom_skill):
+    repo,target,agent,resource,key = fixture(tmp_path,provider,SLUG,True)
+    descriptor=identify_core(target,provider,agent,resource)
+    backup=put(target,agent+'.bak.2','old local instructions')
+    unrelated=put(target,f'.{provider}/agents/kirocrew.json','{"name":"kirocrew"}')
+    skill_root='.agents' if provider in ('codex','gemini') else f'.{provider}'
+    skill=f'{skill_root}/skills/{SLUG}/SKILL.md'
+    if custom_skill: put(target,skill,'my customized skill')
+    before=transaction.inventory(target,[agent,resource,descriptor,agent+'.bak.2'])
+    request=dict(mode='sync',runtime=False)
+    plan,result=execute(repo,target,request)
+    assert not plan['blockers']
+    assert not (target/agent).exists() and not backup.exists()
+    assert not (target/descriptor).exists() and not (target/resource).exists()
+    assert unrelated.read_text()=='{"name":"kirocrew"}'
+    assert (target/skill).read_text()==('my customized skill' if custom_skill else 'skill survives\n')
+    again=planner.plan(repo,target,request)
+    assert not again['actions']
+    transaction.rollback(target,result['transaction'])
+    assert transaction.inventory(target,[agent,resource,descriptor,agent+'.bak.2'])==before
+
+
+@pytest.mark.parametrize('case',['wrong_name','wrong_slug','no_agent_surface','dependent','backup_symlink','backup_directory'])
+def test_identified_retirement_still_protects_other_owners_and_readers(tmp_path,case):
+    repo,target,agent,resource,key=fixture(tmp_path,'kiro',SLUG,True)
+    descriptor=identify_core(target,'kiro',agent,resource)
+    if case=='wrong_name': put(target,agent,'{"name":"kirocrew"}')
+    if case=='wrong_slug': put(target,descriptor,'{"slug":"kirocrew"}')
+    if case=='no_agent_surface': put(target,descriptor,json.dumps(dict(slug=SLUG,descriptor_version='1',expected_surface_names=['kiro_skill'])))
+    if case=='dependent': put(target,'.kiro/agents/kirocrew.json',json.dumps({'resources':[resource]}))
+    if case=='backup_symlink': (target/(agent+'.bak')).symlink_to(target/agent)
+    if case=='backup_directory': put(target,agent+'.bak/personal.txt','unrelated')
+    plan=planner.plan(repo,target,dict(mode='sync',runtime=False))
+    assert plan['preserved'] or plan['blockers']
+    assert not any(a['path']==agent and a['op']=='remove' for a in plan['actions'])
+
+
+def test_added_backup_after_preview_stales_cleanup(tmp_path):
+    repo,target,agent,resource,key=fixture(tmp_path,'kiro',SLUG,True)
+    identify_core(target,'kiro',agent,resource)
+    request=dict(mode='sync',runtime=False)
+    plan=planner.plan(repo,target,request)
+    put(target,agent+'.bak','new backup')
+    with pytest.raises(transaction.InstallError):
+        transaction.apply(repo,target,plan,lambda:planner.plan(repo,target,request))
+    assert (target/agent).exists()
+
+
+@pytest.mark.parametrize('release', [False, True])
+def test_installed_updater_automatically_cleans_core_agents(tmp_path,release):
+    import hashlib
+    import subprocess
+    target=tmp_path/'home';target.mkdir()
+    seed=dict(mode='install',providers=['kiro'],kinds=['skill'],slugs=[SLUG])
+    execute(ROOT,target,seed)
+    agent=f'.kiro/agents/{SLUG}.json'
+    resource=f'.kiro/agents/resources/{SLUG}/guide.md'
+    put(target,resource,'old core resource')
+    identify_core(target,'kiro',agent,resource)
+    crew=put(target,'.kiro/agents/kirocrew.json','{"name":"kirocrew"}')
+    script=target/'.core-prompts-updater/scripts/update-core-prompts.py'
+    cmd=[sys.executable,str(script),'--target-home',str(target)]
+    if release:
+        put(target,'.core-prompts-state/release-watch.json',json.dumps(dict(
+            status='pending-install',pending_version=(ROOT/'VERSION').read_text().strip(),
+            mirror_path=str(ROOT),verified_bundle_sha256=hashlib.sha256((ROOT/'.meta/install-bundle.json').read_bytes()).hexdigest())))
+        cmd+=['--accept-release','--yes']
+    result=subprocess.run(cmd,cwd=tmp_path,text=True,capture_output=True,timeout=60)
+    assert result.returncode==0,result.stdout+result.stderr
+    assert not (target/agent).exists() and not (target/resource).exists()
+    assert crew.read_text()=='{"name":"kirocrew"}'
+    again=subprocess.run([sys.executable,str(script),'--target-home',str(target)],cwd=tmp_path,text=True,capture_output=True,timeout=60)
+    assert again.returncode==0,again.stdout+again.stderr
+    assert json.loads(again.stdout)['actions']==0
+
+
+def test_retirement_preserves_both_shared_skill_receipts(tmp_path):
+    repo,target,agent,resource,key=fixture(tmp_path,'gemini',SLUG,True)
+    identify_core(target,'gemini',agent,resource)
+    rel=f'.agents/skills/{SLUG}/SKILL.md'
+    put(target,rel,'previous owned skill')
+    old_files={rel:transaction.identity(target/rel)}
+    state=planner.read_state(target)
+    for host in ['codex','gemini']:
+        k=f'{host}:skill:{SLUG}'
+        state['selection'].append(k)
+        state['packages'][k]=dict(provider=host,kind='skill',slug=SLUG,roots=[str(Path(rel).parent)],files=old_files)
+    put(target,planner.STATE,transaction.encoded(state))
+    put(target,rel,'user customized shared skill')
+    request=dict(mode='sync',providers=['gemini'],runtime=False)
+    _,result=execute(repo,target,request)
+    after=planner.read_state(target)
+    for host in ['codex','gemini']:
+        assert after['packages'][f'{host}:skill:{SLUG}']==state['packages'][f'{host}:skill:{SLUG}']
+    assert (target/rel).read_text()=='user customized shared skill'
+    assert not (target/agent).exists()
+    assert not planner.plan(repo,target,request)['actions']

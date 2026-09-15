@@ -87,8 +87,13 @@ The existing historical catalog and ownership receipts identify the affected
 packages; no second registry is needed. A recognized owned retired agent maps
 to the exact same capability's skill on the same provider. Its skill is retained
 or installed before removal, including for an agent-only saved selection.
-Customized, unowned, symlinked, or dependency-conflicted agents are preserved;
-a customized or conflicting skill counterpart also preserves the affected agent.
+Routine updates also remove locally modified copies of the exact retired `engos-*`
+identities when the definition name and bundled capability metadata identify the
+Core-Prompts package. Exact `.bak` and `.bak.N` definition backups are removed too.
+An existing customized skill is retained without being overwritten or adopted;
+it does not keep an identified retired agent active. Symlinks, ambiguous identity,
+configuration conflicts, and external file dependencies still stop affected removals.
+Kiro Crew and other third-party agents are outside the retirement list.
 Owned removals and registration updates use the existing recoverable transaction.
 A source retirement alone does not clean an installation: apply and verify that
 target's reviewed plan before claiming it has no remaining agents.
@@ -99,12 +104,14 @@ Future added or reintroduced agent surfaces require explicit user approval and
 independent execution-need review before they can be emitted.
 
 
-Unknown, customized, and symlinked packages are preserved as whole packages,
+Except for the identified retired Core-Prompts agents described above, unknown,
+customized, and symlinked packages are preserved as whole packages,
 including partial packages that fail ownership recognition. During schema-1
 receipt conversion, matching present files can establish ownership even when
 receipted members are missing; the reviewed plan may restore those members.
-Inspect the plan's exact actions before applying it. A custom successor or unresolved reference from another agent preserves
-the affected predecessor. Codex registration changes preserve unrelated custom
+Inspect the plan's exact actions before applying it. A custom successor normally preserves its predecessor; the explicit Core-agent
+retirement above retains the custom skill and removes the agent. An unresolved
+reference from another agent still preserves the affected predecessor. Codex registration changes preserve unrelated custom
 configuration; conflicts preserve affected agents. Third-party packages remain
 with their own installers. In particular, an existing unreceipted third-party
 Loopy copy is not adopted merely because its bytes match the bundled package.
@@ -260,6 +267,18 @@ Other canonical capability resources originate in
 emitted packages. Loopy retains its pinned upstream `loopy` identity and companion
 resources; source inclusion does not grant ownership of existing third-party
 installations. See [release packaging](RELEASE-PACKAGING.md) for delivery gates.
+
+
+### Automatic agent cleanup on update
+
+Once this installer is installed, `~/update_core_prompts.sh` automatically reconciles
+retired Core-Prompts agents in the saved provider scope. No archive command or
+per-agent approval flag is required. Removals use the ordinary installation recovery
+journal and fresh hash checks. A repeated update proposes no further cleanup.
+Older installed updaters keep their older behavior until upgraded; a source merge
+alone does not update them. Check the installed result before claiming cleanup.
+
+
 
 ## Antigravity CLI (agy)
 

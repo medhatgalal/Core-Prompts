@@ -342,11 +342,11 @@ They help maintainers, release reviewers, and packaged users answer "what ships,
 
 ## What Ships
 
-- canonical authored source in [`ssot/`](/Users/medhat.galal/Desktop/Core-Prompts/ssot)
-- preserved strongest baselines in [`sources/ssot-baselines/`](/Users/medhat.galal/Desktop/Core-Prompts/sources/ssot-baselines)
-- machine-readable descriptors in [`.meta/capabilities/`](/Users/medhat.galal/Desktop/Core-Prompts/.meta/capabilities)
-- generated surfaces under [`.codex/`](/Users/medhat.galal/Desktop/Core-Prompts/.codex), [`.gemini/`](/Users/medhat.galal/Desktop/Core-Prompts/.gemini), [`.claude/`](/Users/medhat.galal/Desktop/Core-Prompts/.claude), and [`.kiro/`](/Users/medhat.galal/Desktop/Core-Prompts/.kiro)
-- generated user-facing views in [docs/CAPABILITY-CATALOG.md](/Users/medhat.galal/Desktop/Core-Prompts/docs/CAPABILITY-CATALOG.md), [docs/RELEASE-DELTA.md](/Users/medhat.galal/Desktop/Core-Prompts/docs/RELEASE-DELTA.md), and [docs/STATUS.md](/Users/medhat.galal/Desktop/Core-Prompts/docs/STATUS.md)
+- canonical authored source in [`ssot/`](ssot/)
+- preserved strongest baselines in [`sources/ssot-baselines/`](sources/ssot-baselines/)
+- machine-readable descriptors in [`.meta/capabilities/`](.meta/capabilities/)
+- generated surfaces under [`.codex/`](.codex/), [`.gemini/`](.gemini/), [`.claude/`](.claude/), and [`.kiro/`](.kiro/)
+- generated user-facing views in [docs/CAPABILITY-CATALOG.md](docs/CAPABILITY-CATALOG.md), [docs/RELEASE-DELTA.md](docs/RELEASE-DELTA.md), and [docs/STATUS.md](docs/STATUS.md)
 
 ## Documentation Map
 
@@ -389,3 +389,7 @@ Use `$loopy` in Codex or `/loopy` in Kiro and Grok to find, audit, craft, run, o
 debrief a loop. For example: “Use Loopy to audit this loop and repair only material
 weaknesses.” Expect a concise verdict and a minimally repaired loop; execution,
 scheduling, and publication retain their separate authorization boundaries.
+
+Routine updates automatically remove identified retired Core-Prompts agents,
+including locally modified copies, while retaining skills and third-party agents
+such as Kiro Crew. See [installation cleanup](docs/INSTALL-PROFILES.md#automatic-agent-cleanup-on-update).

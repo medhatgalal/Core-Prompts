@@ -4,6 +4,8 @@ from __future__ import annotations
 import base64
 import hashlib
 import json
+import re
+import tomllib
 from pathlib import Path
 
 import install_bundle
@@ -73,6 +75,42 @@ def _observe(target, roots, observations):
     except (ValueError, OSError) as exc:
         observations[signature] = {'roots': roots, 'error': str(exc)}
         return {}, str(exc)
+
+
+def _identified_retired_core_agent(target, provider, slug, roots, files):
+    """Recognize the exact retired first-party identity, never a name wildcard.
+
+    Full byte ownership is deliberately not required for this explicit retirement
+    policy: local edits to these packages are removed too. Other packages keep
+    the normal complete-hash ownership rule.
+    """
+    if slug not in catalog.RETIRED_AGENT_SLUGS or len(roots) != 2:
+        return False
+    entry, resources = roots
+    descriptor = resources + '/capability.json'
+    if entry not in files or descriptor not in files:
+        return False
+    try:
+        meta = json.loads(safe(target, descriptor).read_text())
+        if (meta.get('slug') != slug or not meta.get('descriptor_version')
+                or not isinstance(meta.get('expected_surface_names'), list)
+                or provider + '_agent' not in meta['expected_surface_names']):
+            return False
+        text = safe(target, entry).read_text()
+        if provider == 'kiro':
+            name = json.loads(text).get('name')
+        elif provider == 'codex':
+            name = tomllib.loads(text).get('name')
+        else:
+            # Generated Markdown uses a simple name field in YAML frontmatter.
+            if not text.startswith('---\n') or '\n---' not in text[4:]:
+                return False
+            header = text[4:].split('\n---', 1)[0]
+            names = re.findall(r'^name:\s*["\']?([a-z0-9-]+)["\']?\s*$', header, re.M)
+            name = names[0] if len(names) == 1 else None
+        return name == slug
+    except (ValueError, OSError, UnicodeError, AttributeError):
+        return False
 
 
 def plan(repo: Path, target: Path, request: dict):
@@ -214,6 +252,21 @@ def plan(repo: Path, target: Path, request: dict):
         # It never enrolls another capability or provider.
         retiring_agent = (kind == 'agent' and next_slug is None
                           and catalog.SUCCESSORS.get(slug, slug) in catalog.RETIRED_AGENT_SLUGS)
+        if retiring_agent and not error and _identified_retired_core_agent(target, provider, slug, roots, files):
+            # Include only exact backup siblings, not other agents or glob roots.
+            entry = safe(target, roots[0])
+            backup_roots = [p.relative_to(target).as_posix() for p in sorted(entry.parent.iterdir())
+                            if re.fullmatch(re.escape(entry.name) + r'\.bak(?:\.\d+)?', p.name)]
+            expanded_roots = [*roots, *backup_roots]
+            expanded_files, backup_error = _observe(target, expanded_roots, observations)
+            if not backup_error and any(safe(target, rel).is_dir() for rel in backup_roots):
+                backup_error = 'agent backup path is a directory; package preserved'
+            if backup_error:
+                known, error = None, backup_error
+            else:
+                roots, files = tuple(expanded_roots), expanded_files
+                known = dict(provider=provider, kind=kind, slug=slug, files=files,
+                             releases=['identified-core-agent-retirement'])
         if retiring_agent:
             skill_slug = catalog.SUCCESSORS.get(slug, slug)
             skill_key = providers.key(provider, 'skill', skill_slug) if skill_slug else None
@@ -256,6 +309,7 @@ def plan(repo: Path, target: Path, request: dict):
         selection |= {k for k,p in current.items() if p['provider'] in clients and p['kind'] in request.get('kinds',['skill'])}
     next_packages = dict(previous['packages'])
     package_actions, blocked_keys, to_retire = {}, set(), {}
+    retirement_only = set()
     for k in sorted(selection | set(discovered)):
         sources = discovered.get(k, [])
         desired = current.get(k)
@@ -278,8 +332,21 @@ def plan(repo: Path, target: Path, request: dict):
         source_match = next((s for s in sources if s['roots'] == desired['roots'] and s['files'] == files), None)
         receipt_match = old_receipt and files and all(old_receipt.get('files',{}).get(r,{}).get('identity') == v for r,v in files.items())
         if error or (files and not source_match and not (owned and files == owned.get('files')) and not receipt_match):
+            identified_retirements = [s for s in sources if s['kind'] == 'agent'
+                                     and s.get('releases') == ['identified-core-agent-retirement']]
+            if (not error and identified_retirements and desired['entrypoint'] in files
+                    and safe(target, desired['entrypoint']).stat().st_size > 0):
+                # Keep the user's same-job skill byte-for-byte without adopting
+                # it. Its customization does not keep an obsolete agent alive.
+                package_actions[k] = []
+                retirement_only.add(k)
+                to_retire[k] = identified_retirements
+                preserved.append(dict(package=k, provider=desired['provider'], kind='skill',
+                                      slug=desired['slug'], roots=desired['roots'],
+                                      reason='skill or successor is unowned or customized; existing bytes retained'))
+                continue
             blocked_keys.add(k)
-            preserved.append(dict(package=k,provider=desired['provider'],kind=desired['kind'],slug=desired['slug'],roots=desired['roots'],reason=error or 'successor is unowned or customized; predecessor retained'))
+            preserved.append(dict(package=k,provider=desired['provider'],kind=desired['kind'],slug=desired['slug'],roots=desired['roots'],reason=error or 'skill or successor is unowned or customized; existing bytes retained'))
             continue
         if owned and owned.get('roots') == desired['roots'] and not files:
             blocked_keys.add(k)
@@ -437,12 +504,12 @@ def plan(repo: Path, target: Path, request: dict):
         if k not in current:
             selection.discard(k)
             next_packages.pop(k, None)
-        outcomes.append(dict(package=k,status='retired' if k not in current else 'managed',historical=[s.get('releases',[]) for s in discovered.get(k,[])]))
+        outcomes.append(dict(package=k,status='retired-agent-with-preserved-skill' if k in retirement_only else 'retired' if k not in current else 'managed',historical=[s.get('releases',[]) for s in discovered.get(k,[])]))
 
     # Refresh existing co-owner receipts when a scoped update changes their
     # shared tree. Do not enroll a provider that the user has not selected.
     for k in sorted(package_actions):
-        if k in blocked_keys or k not in current:
+        if k in blocked_keys or k not in current or k in retirement_only:
             continue
         desired = current[k]
         if desired['kind'] != 'skill' or desired['provider'] not in ('codex', 'gemini'):
