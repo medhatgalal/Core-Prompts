@@ -15,6 +15,7 @@ from intent_pipeline.uac_baselines import (
     validate_requirement_reviews,
 )
 from intent_pipeline.uac_templates import load_capability_template
+from intent_pipeline.uac_agent_review import agent_surface_review
 
 
 QUALITY_PROFILE_DIR = ".meta/quality-profiles"
@@ -338,6 +339,11 @@ def evaluate_quality_pass(
         for judge in judge_reports
         for issue in judge["blockers"]
     ]
+    agent_review = agent_surface_review(
+        REPO_ROOT, slug=slug, candidate_text=candidate_text, effective_text=effective_text,
+        reviews=semantic_reviews, original_texts=review_original_texts,
+    )
+    blockers.extend(agent_review["blockers"])
     semantic_findings = semantic_review_findings(effective_text)
     blockers.extend(f"semantic review required: {finding['message']}" for finding in semantic_findings)
     meets_targets = all(judge["score"] >= int(thresholds.get(judge["judge"]) or 0) for judge in judge_reports)
@@ -357,6 +363,7 @@ def evaluate_quality_pass(
         "template_name": template_name,
         "effective_sha256": text_sha256(effective_text),
         "semantic_findings": semantic_findings,
+        "agent_surface_review": agent_review,
         "repair_requests": _repair_requests(blockers, semantic_findings),
         "dimension_inventory": [
             {"dimension": judge["judge"], "status": "unresolved" if judge["blockers"] else "mechanical_checks_passed"}

@@ -391,7 +391,30 @@
       "manual_review"
     ],
     "source_of_truth": "UAC manifest and SSOT metadata",
-    "command_note": "skill is the canonical direct invocation surface; command and prompt variants are deprecated in this repo"
+    "command_note": "skill is the canonical direct invocation surface; command and prompt variants are deprecated in this repo",
+    "classification_policy": {
+      "default_reusable_surface": "skill",
+      "agent_vocabulary_is_execution_evidence": false,
+      "quoted_examples_are_execution_evidence": false,
+      "undeclared_native_agent_configuration": "manual_review",
+      "existing_explicit_declarations": "preserve_until_reviewed_surface_change",
+      "declaration_normalization": "Only add a missing capability_type when source body and all other fields are unchanged and match verified released source, and the complete released surface set is preserved; do not claim a template uplift.",
+      "new_or_expanded_agents": "require_reviewed_provider_specific_execution_need",
+      "evidence_location": "existing UAC quality review",
+      "necessary_execution_need": "Explain the required native guarantee and why a skill delivered to a generic worker is insufficient.",
+      "review_contract": {
+        "schema": "UACRequirementReview.v1",
+        "field": "agent_execution_needs",
+        "identity": "provider",
+        "required_fields": [
+          "provider",
+          "execution_need",
+          "why_generic_worker_insufficient",
+          "candidate_excerpt"
+        ],
+        "binding": "existing independent author/reviewer attestation and source/candidate/effective content hashes"
+      }
+    }
   },
   "deployment_matrix": {
     "skill": {

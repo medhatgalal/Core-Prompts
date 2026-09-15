@@ -1,0 +1,35 @@
+{
+  "regression_tests": {
+    "passed": 472,
+    "subtests_passed": 16,
+    "elapsed_seconds": 367.35
+  },
+  "pilot_safety_tests": {
+    "passed": 6
+  },
+  "contract_compile": "pass_no_drift",
+  "static_calibration": "pass_zero_model_calls_semantic_judges_unqualified",
+  "strict_surface_validation": "pass_27_ssot",
+  "installer_capsule": "verified",
+  "historical_catalog": "verified_54_releases",
+  "smoke": {
+    "exit_code": 0,
+    "failures": [],
+    "warnings": [
+      "gemini: discovery command returned 41"
+    ],
+    "gemini_followup": "Discovery exit41: Vertex project/location or express API key configuration missing; no environment changes made. Later smoke version0.59.0 differs from pilot0.46.0; not treated as same runtime."
+  },
+  "entrypoints": {
+    "skills": 135,
+    "agents": 44
+  },
+  "independent_code_review": "no remaining actionable findings after two fixes",
+  "home_installation": "not_performed",
+  "release_publication": "not_performed",
+  "source_version": "v1.14.4",
+  "generated_view_and_validator_tests": {
+    "passed": 34,
+    "elapsed_seconds": 9.83
+  }
+}

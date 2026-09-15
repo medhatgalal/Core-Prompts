@@ -428,7 +428,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
   - explain how this external source would land into SSOT and descriptors
   - judge whether a candidate is ready to apply
   - tell me whether this import needs stronger behavioral proof before landing
-- Summary: Inspect an external prompt-like source, classify its fit, and prepare a quality-gated Core-Prompts plan, judge, or apply result. Use for capability intake; do not use for ordinary prompt editing or deployment.
+- Summary: Import external instructions as reusable skills, reviewing native execution needs before adding agents, through Core-Prompts plan, judge, and apply. Use for capability intake; do not use for ordinary prompt editing or deployment.
 
 ### Weekly Intelligence — Multi-Source Progress Report with Fact-Check Audit
 - Slug: `engos-audit-weekly-intel`

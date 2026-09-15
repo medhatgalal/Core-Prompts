@@ -1,0 +1,87 @@
+{
+  "schema": "SkillFirstPilotPreparation.v1",
+  "clock_started": false,
+  "model_calls": 0,
+  "source_bindings": {
+    "reports/skill-first-capabilities/pilot.py": "22d09a9640c2e71f58e4c6fc26d69378732558814551cd0d7c941819f4185518",
+    "reports/skill-first-capabilities/fixtures.json": "19b2372c40a75072c088f3785d57424d1581699ad542b3eb879787ec581578a5",
+    "evals/adapters/registry.json": "b0c5c2cd0dc7006d93cd7ac44293bca7f0c626d9204fe6779829924ac8afefff"
+  },
+  "admission": [
+    {
+      "provider": "codex",
+      "admitted": false,
+      "decision": "retain",
+      "comparison": "not_run",
+      "blockers": [
+        "authenticated Codex execution is disabled until a reviewed secret-isolating provider boundary and enforced runtime tool allowlist exist",
+        "Native success/fault/resource/action observations and complete A/B accounting have not passed."
+      ],
+      "comparative_model_calls": 0,
+      "metrics_available_before_trials": {
+        "elapsed_seconds": true,
+        "complete_native_tokens": false
+      }
+    },
+    {
+      "provider": "claude",
+      "admitted": false,
+      "decision": "retain",
+      "comparison": "not_run",
+      "blockers": [
+        "Registered adapter cannot observe native delegated resource and tool-boundary cases.",
+        "Native success/fault/resource/action observations and complete A/B accounting have not passed."
+      ],
+      "comparative_model_calls": 0,
+      "metrics_available_before_trials": {
+        "elapsed_seconds": true,
+        "complete_native_tokens": false
+      }
+    },
+    {
+      "provider": "gemini",
+      "admitted": false,
+      "decision": "retain",
+      "comparison": "not_run",
+      "blockers": [
+        "No registered native collection adapter for this provider.",
+        "Native success/fault/resource/action observations and complete A/B accounting have not passed."
+      ],
+      "comparative_model_calls": 0,
+      "metrics_available_before_trials": {
+        "elapsed_seconds": true,
+        "complete_native_tokens": false
+      }
+    },
+    {
+      "provider": "kiro",
+      "admitted": false,
+      "decision": "retain",
+      "comparison": "not_run",
+      "blockers": [
+        "authenticated Kiro execution is disabled until KIRO_API_KEY can be confined to a reviewed bounded gateway with enforced runtime tool limits",
+        "Native success/fault/resource/action observations and complete A/B accounting have not passed."
+      ],
+      "comparative_model_calls": 0,
+      "metrics_available_before_trials": {
+        "elapsed_seconds": true,
+        "complete_native_tokens": false
+      }
+    },
+    {
+      "provider": "grok",
+      "admitted": false,
+      "decision": "retain",
+      "comparison": "inapplicable",
+      "blockers": [
+        "No registered native collection adapter for this provider.",
+        "Native success/fault/resource/action observations and complete A/B accounting have not passed."
+      ],
+      "comparative_model_calls": 0,
+      "metrics_available_before_trials": {
+        "elapsed_seconds": true,
+        "complete_native_tokens": false
+      }
+    }
+  ]
+}

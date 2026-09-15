@@ -122,8 +122,8 @@
         "policy_rule_id": "ssot.engos-triage-my-inbox-chat-pulse",
         "content_sha256": "ssot"
       },
-      "confidence": 0.9,
-      "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
+      "confidence": 1.0,
+      "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
       "review_status": "ready_for_orchestrator_review",
       "display_name": "Pulse \u2014 Comms Triage"
     },
@@ -158,7 +158,7 @@
     }
   },
   "display_name": "Pulse \u2014 Comms Triage",
-  "declared_capability": null,
+  "declared_capability": "both",
   "inferred_capability": "both",
   "expected_surface_names": [
     "codex_skill",

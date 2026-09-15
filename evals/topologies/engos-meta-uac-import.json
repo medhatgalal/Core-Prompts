@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-meta-uac-import",
-  "ssot_sha256": "4d81b852a81e7d1cc8b18d41c50b36c9ce97515db66aa1984940eae8e3526571",
+  "ssot_sha256": "d045011af816a2106ec8af8a737b5a79a5379604d484ff3345f8625206dfe69a",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -50,6 +50,7 @@
     "engos-meta-uac-import:L22:f0d947235149",
     "engos-meta-uac-import:L25:797beb40cd37",
     "engos-meta-uac-import:L44:83466994e31c",
+    "engos-meta-uac-import:L60:936ef934761f",
     "engos-meta-uac-import:L64:63afafdd71cc",
     "engos-meta-uac-import:L75:8ba44b003e78",
     "engos-meta-uac-import:L79:0314ee5563a4",
@@ -122,6 +123,16 @@
       "source_line": 58,
       "sha256": "e22510630d6f328dddd3035251d13d56bc2d43006fa3f3f6d5e6af8460d4850a",
       "text": "Canonical application writes `ssot/<slug>.md` and `.meta/capabilities/<slug>.json`, plus generated surfaces and evaluation contracts. Quality review evidence belongs in `reports/quality-reviews/<slug>/`; baseline lineage lives in `sources/ssot-baselines/<slug>/` and changes only under the independent promotion policy. These are UAC-owned onboarding artifacts, not output paths imposed on the imported capability's own task.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-meta-uac-import:L60:936ef934761f",
+      "heading": "Workflow",
+      "source": "ssot/engos-meta-uac-import.md",
+      "source_line": 67,
+      "sha256": "936ef934761fbd0d5cc28a2ffa89abd02f889685ab9bdd5b0273d03f559a9935",
+      "text": "7. Classify reusable workflows as `skill` by default. Agent-related headings, quoted examples, and independent-review requirements do not justify a named agent. Route undeclared native-agent configuration to `manual_review`; preserve existing explicit `agent` or `both` declarations until a reviewed surface change. New or expanded agent emission requires a hash-bound independent UAC requirement review explaining each provider's necessary execution guarantee and why a skill delivered to a generic worker is insufficient.",
       "kind": "invariant",
       "mapped_to": []
     },
@@ -344,7 +355,7 @@
   "source_references": [
     {
       "path": "ssot/engos-meta-uac-import.md",
-      "sha256": "4d81b852a81e7d1cc8b18d41c50b36c9ce97515db66aa1984940eae8e3526571"
+      "sha256": "d045011af816a2106ec8af8a737b5a79a5379604d484ff3345f8625206dfe69a"
     }
   ],
   "known_ambiguities": [],
@@ -357,7 +368,7 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 26,
+    "total": 27,
     "mapped": 0,
     "waived": 0
   },

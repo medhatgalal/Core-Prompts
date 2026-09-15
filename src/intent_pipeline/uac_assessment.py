@@ -16,20 +16,45 @@ from intent_pipeline.uac_capabilities import (
 )
 
 _DEFAULT_TARGET_SYSTEMS = ("codex", "gemini", "claude", "kiro", "grok")
+# Native declarations are review signals, never evidence of runtime benefit.
 _AGENT_SIGNAL_PATTERNS = (
-    re.compile(r"^kind\s*:\s*[\"']?agent[\"']?\b", re.IGNORECASE | re.MULTILINE),
-    re.compile(r"^role\s*:\s*[\"']?agent[\"']?\b", re.IGNORECASE | re.MULTILINE),
-    re.compile(r"^max_turns\s*:\s*\d+\b", re.IGNORECASE | re.MULTILINE),
-    re.compile(r"\bsub-?agent\b", re.IGNORECASE),
-    re.compile(r"\bagentspawn\b", re.IGNORECASE),
-    re.compile(r"\bdeveloper_instructions\b", re.IGNORECASE),
-    re.compile(r"\bsystem prompt\b", re.IGNORECASE),
-    re.compile(r"\byou are\b", re.IGNORECASE),
-    re.compile(r"\bresponsibilities\b", re.IGNORECASE),
-    re.compile(r"\bmission\b", re.IGNORECASE),
-    re.compile(r"\bmode of operation\b", re.IGNORECASE),
-    re.compile(r"\btool boundaries\b", re.IGNORECASE),
+    re.compile(r"^(?:kind|role)\s*:\s*[\"']?agent[\"']?\s*$", re.IGNORECASE | re.MULTILINE),
+    re.compile(r"^\s*(?:max_turns|timeout_mins|developer_instructions|sandbox_mode)\s*[:=]", re.MULTILINE),
 )
+
+
+def _unquoted_source(text: str) -> str:
+    """Exclude examples from source-shape inference; retain actual frontmatter."""
+    lines: list[str] = []
+    fence = ""
+    fence_length = 0
+    for line in text.splitlines():
+        stripped = line.lstrip()
+        marker = re.match(r"(`{3,}|~{3,})", stripped)
+        if marker:
+            token = marker.group(1)
+            if not fence:
+                fence, fence_length = token[0], len(token)
+            elif token[0] == fence and len(token) >= fence_length:
+                fence = ""
+            continue
+        if not fence and not stripped.startswith(">"):
+            lines.append(re.sub(r"`[^`]*`", "", line))
+    return "\n".join(lines)
+
+
+def _explicit_capability(text: str) -> str | None:
+    # Only a leading canonical declaration counts, not prose or an example.
+    frontmatter = re.match(r"\A---\s*\n(.*?)\n---(?:\s*\n|$)", text, re.DOTALL)
+    if not frontmatter:
+        return None
+    match = re.search(
+        r"^capability_type\s*:\s*[\"']?(skill|agent|both)[\"']?\s*$",
+        frontmatter.group(1), re.MULTILINE,
+    )
+    return match.group(1) if match else None
+
+
 _SKILL_SIGNAL_PATTERNS = (
     re.compile(r"^#\s+.+", re.MULTILINE),
     re.compile(r"\bworkflow\b", re.IGNORECASE),
@@ -104,7 +129,9 @@ def assess_uac_source(
     source_type = _normalize_metadata_value(source_metadata, "source_type", default="LOCAL_FILE")
     normalized_source = _normalize_source(source_metadata, source_hint)
     source_path = Path(normalized_source) if source_type == "LOCAL_FILE" else None
-    lower_text = raw_text.casefold()
+    inference_text = _unquoted_source(raw_text)
+    lower_text = inference_text.casefold()
+    declared = _explicit_capability(raw_text)
     analysis_basis = analysis_text if isinstance(analysis_text, str) and analysis_text.strip() else raw_text
     structure = extract_intent_structure(analysis_basis)
 
@@ -125,19 +152,19 @@ def assess_uac_source(
             signals.append("source file is JSON")
 
     for pattern in _AGENT_SIGNAL_PATTERNS:
-        if pattern.search(raw_text):
+        if pattern.search(inference_text):
             agent_score += 2
     if agent_score:
-        signals.append("agent control markers detected")
+        signals.append("native agent configuration requires packaging review")
 
     for pattern in _SKILL_SIGNAL_PATTERNS:
-        if pattern.search(raw_text):
+        if pattern.search(inference_text):
             skill_score += 1
     if skill_score:
         signals.append("skill/workflow markers detected")
 
     for pattern in _CONFIG_SIGNAL_PATTERNS:
-        if pattern.search(raw_text):
+        if pattern.search(inference_text):
             config_score += 1
     if config_score:
         signals.append("config-like structure detected")
@@ -165,10 +192,6 @@ def assess_uac_source(
     if prompt_marker_hits >= 2:
         skill_score += 1
 
-    if "developer_instructions" in lower_text or "system prompt" in lower_text:
-        agent_score += 2
-        signals.append("agent/system prompt framing detected")
-
     if "usage examples" in lower_text or "output format" in lower_text:
         skill_score += 1
 
@@ -186,45 +209,31 @@ def assess_uac_source(
     rationale: str
     modernization_focus: tuple[str, ...]
 
-    if config_score >= 2 and not semantic_count and skill_score <= 1 and agent_score <= 2:
+    if declared is not None:
+        capability_type = declared
+        content_kind = "declared_capability"
+        confidence = 1.0
+        rationale = (
+            "Preserve the explicit capability declaration. It specifies packaging, not proven "
+            "agent benefit; new or expanded agent emission requires reviewed execution evidence."
+        )
+        modernization_focus = ("preserve the declared surface set", "review changes to native execution requirements")
+        signals.append("explicit capability_type declaration preserved")
+    elif config_score >= 2 and not semantic_count and skill_score <= 1 and agent_score <= 2:
         capability_type = "manual_review"
         content_kind = "config_like"
         confidence = 0.71
+        rationale = "Configuration-only sources require a prompt body and packaging review."
+        modernization_focus = ("locate canonical prompt body", "review native configuration")
+    elif agent_score:
+        capability_type = "manual_review"
+        content_kind = "agent_configuration"
+        confidence = 0.71
         rationale = (
-            "Source is mostly configuration or registration data. It should be paired with a prompt body "
-            "before attempting automatic uplift into a user-facing skill or agent."
+            "Native agent configuration indicates a possible adapter requirement. Review its "
+            "provider-specific execution need before declaring agent or both; wording is not proof."
         )
-        modernization_focus = (
-            "locate canonical prompt body",
-            "pair config with executable prompt instructions",
-            "review target platform-specific fields manually",
-        )
-    elif agent_score >= 4 and skill_score >= 4:
-        capability_type = "both"
-        content_kind = "hybrid_agent_workflow"
-        confidence = min(0.98, 0.58 + (agent_score + skill_score) * 0.02)
-        rationale = (
-            "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. "
-            "Keep one SSOT entry and emit both workflow and agent surfaces."
-        )
-        modernization_focus = (
-            "separate reusable workflow guidance from agent-only control metadata",
-            "emit both skill/command and agent surfaces from one canonical SSOT entry",
-            "preserve safety, escalation, and tool-boundary declarations",
-        )
-    elif agent_score >= max(skill_score + 2, 4):
-        capability_type = "agent"
-        content_kind = "agent_like"
-        confidence = min(0.98, 0.55 + (agent_score - skill_score) * 0.08)
-        rationale = (
-            "Source reads like an orchestrated agent definition with explicit behavior, "
-            "control-plane markers, or agent-only metadata."
-        )
-        modernization_focus = (
-            "normalize role and tool declarations",
-            "preserve explicit safety and escalation rules",
-            "emit target agent registrations where supported",
-        )
+        modernization_focus = ("identify the necessary native execution guarantee", "review skill plus generic worker alternative")
     elif skill_score >= 3:
         capability_type = "skill"
         content_kind = "prompt_like" if semantic_count >= 2 else "skill_like"
@@ -271,7 +280,7 @@ def assess_uac_source(
 def classification_rubric_payload() -> dict[str, object]:
     return {
         "skill": {
-            "decision_rule": "Choose skill when reusable prompt/workflow structure is strong, skill_score >= 3, and agent control markers are not dominant.",
+            "decision_rule": "Choose skill when reusable prompt/workflow structure is strong, skill_score >= 3, without using agent vocabulary as evidence of execution need.",
             "signals": [
                 "explicit objective / in-scope / out-of-scope / constraints / acceptance sections",
                 "workflow or usage framing",
@@ -280,16 +289,15 @@ def classification_rubric_payload() -> dict[str, object]:
             ],
         },
         "agent": {
-            "decision_rule": "Choose agent when agent_score is dominant and agent_score >= 4.",
+            "decision_rule": "Preserve an explicit agent declaration; require reviewed native execution need for new or expanded emission.",
             "signals": [
                 "kind: agent or role: agent",
                 "max_turns or explicit tool/control-plane metadata",
-                "sub-agent, delegation, or system-prompt framing",
-                "responsibilities / mission / operating-mode sections",
+                "reviewed provider-specific execution need",
             ],
         },
         "both": {
-            "decision_rule": "Choose both when strong workflow structure and strong agent control semantics are both present (agent_score >= 4 and skill_score >= 4).",
+            "decision_rule": "Preserve an explicit both declaration; workflow headings and independent-review requirements never imply both.",
             "signals": [
                 "reusable workflow/prompt sections plus explicit agent registration markers",
                 "one source needs both skill invocation and agent execution surfaces",
@@ -304,7 +312,7 @@ def classification_rubric_payload() -> dict[str, object]:
             ],
         },
         "scoring": {
-            "agent_score": "weighted sum of agent/control-plane markers",
+            "agent_score": "native configuration review signals; not an emission or benefit score",
             "skill_score": "weighted sum of prompt/workflow and semantic-structure markers",
             "config_score": "weighted sum of config-only markers",
             "semantic_category_count": "count of populated semantic buckets from deterministic intent extraction",

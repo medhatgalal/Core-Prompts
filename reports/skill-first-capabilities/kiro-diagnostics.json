@@ -1,0 +1,49 @@
+{
+  "provider": "kiro",
+  "admitted": false,
+  "decision": "retain",
+  "comparison": "not_run",
+  "blockers": [
+    "authenticated Kiro execution is disabled until KIRO_API_KEY can be confined to a reviewed bounded gateway with enforced runtime tool limits",
+    "Native success/fault/resource/action observations and complete A/B accounting have not passed."
+  ],
+  "comparative_model_calls": 0,
+  "metrics_available_before_trials": {
+    "elapsed_seconds": true,
+    "complete_native_tokens": false
+  },
+  "clock_state_sha256": "14fa92d4fd0f73a44d5e55ae8b5c983427975a1682d9185c31176dc4c208c844",
+  "registry_sha256": "b0c5c2cd0dc7006d93cd7ac44293bca7f0c626d9204fe6779829924ac8afefff",
+  "probes": [
+    {
+      "argv": [
+        "/Users/medhat.galal/.local/bin/kiro-cli",
+        "--version"
+      ],
+      "status": "completed",
+      "exit_code": 0,
+      "elapsed_seconds": 0.01893079187721014,
+      "stdout": "kiro-cli 2.21.4\n",
+      "stderr": "",
+      "containment_scope": "owned process group only; detached descendants unverified",
+      "model_admission": false,
+      "model_calls": 0,
+      "tokens": null
+    },
+    {
+      "argv": [
+        "/Users/medhat.galal/.local/bin/kiro-cli",
+        "--help"
+      ],
+      "status": "completed",
+      "exit_code": 0,
+      "elapsed_seconds": 0.019600374856963754,
+      "stdout": "\nkiro-cli (Kiro CLI)\n\nPopular Subcommands              Usage: kiro-cli [subcommand]\n\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502 chat         Chat with Kiro CLI                    \u2502\n\u2502 agent        Manage AI agents                      \u2502\n\u2502 doctor       Debug installation issues             \u2502 \n\u2502 settings     Customize appearance & behavior       \u2502\n\u2502 quit         Quit the app                          \u2502\n\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\nUse --agent AGENT_NAME to start chat with a specific agent\n\nTo see all subcommands, use:\n \u276f kiro-cli --help-all\n\u3164\n",
+      "stderr": "",
+      "containment_scope": "owned process group only; detached descendants unverified",
+      "model_admission": false,
+      "model_calls": 0,
+      "tokens": null
+    }
+  ]
+}

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 import subprocess
 from datetime import datetime, timezone
 from dataclasses import dataclass
@@ -103,24 +104,34 @@ def text_sha256(text: str) -> str:
 
 
 def validate_requirement_review(
-    review: Mapping[str, Any], *, slug: str, original_text: str,
-    candidate_text: str, effective_text: str,
+    review: Mapping[str, Any], *, slug: str, original_text: str | None,
+    candidate_text: str, effective_text: str, require_original_text: bool = True,
 ) -> list[str]:
     """Validate the binding and coverage of an operator-supplied review attestation.
 
     This checks neither reviewer identity authenticity nor semantic correctness.
     The caller must independently establish review provenance. It is never a
     PromotionVerdict or evidence of behavioral efficacy.
+
+    require_original_text=False is only for rechecking persisted execution
+    attestations during build: source hash and line coverage are attested from
+    intake, not replayed against original bytes. Candidate binding remains exact.
     """
     if not isinstance(review, Mapping):
         return ["requirement review must be an object"]
     failures: list[str] = []
     expected = {
         "schema_version": "UACRequirementReview.v1", "slug": slug,
-        "original_sha256": text_sha256(original_text),
         "candidate_sha256": text_sha256(candidate_text),
         "effective_sha256": text_sha256(effective_text), "verdict": "approved",
     }
+    if require_original_text:
+        if not isinstance(original_text, str):
+            failures.append("requirement review original source is unavailable")
+        else:
+            expected["original_sha256"] = text_sha256(original_text)
+    elif not isinstance(review.get("original_sha256"), str) or not re.fullmatch(r"[0-9a-f]{64}", review["original_sha256"]):
+        failures.append("requirement review original_sha256 is malformed")
     failures.extend(f"requirement review {key} does not match" for key, value in expected.items() if review.get(key) != value)
     reviewer = review.get("reviewer")
     if not isinstance(reviewer, Mapping) or any(
@@ -130,12 +141,34 @@ def validate_requirement_review(
         failures.append("requirement review lacks reviewer/author provenance")
     elif reviewer.get("independent") is not True or reviewer["agent_id"] == reviewer["author_agent_id"]:
         failures.append("requirement review does not attest independent authorship")
+    needs = review.get("agent_execution_needs", [])
+    if not isinstance(needs, list):
+        failures.append("agent_execution_needs must be a list")
+    else:
+        providers: set[str] = set()
+        for need in needs:
+            if not isinstance(need, Mapping):
+                failures.append("agent execution need must be an object")
+                continue
+            provider = need.get("provider")
+            if not isinstance(provider, str) or provider not in {"codex", "gemini", "claude", "kiro"} or provider in providers:
+                failures.append("agent execution need provider is unsupported or duplicated")
+            else:
+                providers.add(provider)
+            for key in ("execution_need", "why_generic_worker_insufficient"):
+                if not isinstance(need.get(key), str) or not need[key].strip():
+                    failures.append(f"agent execution need lacks {key}")
+            excerpt = need.get("candidate_excerpt")
+            if not isinstance(excerpt, str) or not excerpt.strip() or excerpt not in effective_text:
+                failures.append("agent execution need excerpt is absent from the effective package")
     requirements = review.get("requirements")
     if not isinstance(requirements, list) or not requirements:
         return failures + ["requirement review lacks complete source requirement mapping"]
     next_line = 1
     ids: set[str] = set()
-    line_count = len(original_text.splitlines())
+    line_count = len(original_text.splitlines()) if isinstance(original_text, str) and require_original_text else review.get("source_line_count")
+    if type(line_count) is not int or line_count < 1:
+        return failures + ["requirement review source line count is invalid"]
     for item in requirements:
         if not isinstance(item, Mapping):
             failures.append("requirement mapping must be an object")
@@ -150,11 +183,11 @@ def validate_requirement_review(
             failures.append(f"requirement {identifier} source coverage is missing, overlapping, or out of range")
         else:
             next_line = end + 1
-        if not isinstance(item.get("rationale"), str) or not item["rationale"].strip():
+        if require_original_text and (not isinstance(item.get("rationale"), str) or not item["rationale"].strip()):
             failures.append(f"requirement {identifier} lacks review rationale")
         disposition = item.get("disposition")
         if disposition == "retired":
-            if not isinstance(item.get("authorization"), str) or not item["authorization"].strip():
+            if require_original_text and (not isinstance(item.get("authorization"), str) or not item["authorization"].strip()):
                 failures.append(f"requirement {identifier} retirement lacks explicit authorization reference")
         elif isinstance(disposition, str) and disposition in {"preserved", "reformulated", "relocated"}:
             excerpt = item.get("candidate_excerpt")

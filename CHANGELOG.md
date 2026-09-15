@@ -1,5 +1,11 @@
 ## v1.14.4 - 2026-09-15
 
+Source version prepared for delivery; release publication and installation are separate.
+
+- Make reusable skills the ordinary entry point and explain optional named agents once, with direct and independent-review examples. Preserve existing selections and capability boundaries.
+- Stop inferring agent emission from ordinary headings or delegation language. Preserve explicit declarations and require provider-specific independent execution-need review for new or expanded UAC agent emission. Regenerated advisory metadata does not establish runtime superiority.
+- Add a bounded five-provider pilot with explicit admission, stopping, and retention rules. Agent retirement and home installation remain separate evidence gates.
+
 - Install Codex and Gemini skills once under `.agents/skills`, with shared ownership tracking, verified generated-package equivalence, receipt/catalog-bound migration, customization preservation, and rollback. Gemini settings and agents remain under `.gemini`.
 
 ## v1.14.3 - 2026-09-10

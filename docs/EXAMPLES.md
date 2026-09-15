@@ -14,6 +14,30 @@ Each current skill example uses the same pattern:
 - expected output
 - follow with
 
+## One skill in the main session or an independent worker
+
+Start with the job:
+
+> Supercharge this plan: remove duplicate onboarding steps while preserving access checks, setup verification, and a successful first task.
+
+Expect a stronger plan with assumptions, failure modes, and acceptance criteria. Select `engos-meta-supercharge` explicitly if the host does not discover it. You do not need to choose between two same-named packages. See [skills and agents](FAQ.md#what-is-the-difference-between-a-skill-an-agent-and-a-prompt) for the execution distinction.
+
+For a review in the main session:
+
+> Use `engos-quality-code-review` to review this diff and report actionable findings with evidence.
+
+For an independent review of work already discussed in the main session:
+
+> Assign a fresh independent worker to review this diff using `engos-quality-code-review`. Give it the skill and required resources, the diff, and relevant requirements. Ask it to report findings with evidence.
+
+These are conversational requests, not provider-native commands. The second requires a real worker and verified resource delivery. If that is unavailable, report the limitation; a second answer in the same session does not establish independent review. Neither request authorizes edits or invokes Batman's delivery workflow.
+
+For the full plan-hardening stack:
+
+> Supercharge /full /basis /invert /adversarial /grade this plan: delete every named agent whose name matches a skill because I have never selected agents myself.
+
+Expect the necessary outcomes and assumptions, failure scenarios, strongest objections, a corrected plan, and actual independent candidate grades. `/full` reviews the plan without executing its deletion proposal. It preserves the review requirements even when the host cannot complete them; missing independent evidence must be reported.
+
 ## Installed Skill Examples
 
 ### `engos-memory-context-continuity`

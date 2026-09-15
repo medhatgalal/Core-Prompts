@@ -130,8 +130,8 @@
         "policy_rule_id": "ssot.engos-audit-code-health",
         "content_sha256": "ssot"
       },
-      "confidence": 0.96,
-      "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
+      "confidence": 1.0,
+      "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
       "review_status": "ready_for_orchestrator_review",
       "display_name": "Codebase Health Audit \u2014 Brownfield Structural Risk Report"
     },
@@ -168,7 +168,7 @@
   },
   "display_name": "Codebase Health Audit \u2014 Brownfield Structural Risk Report",
   "declared_capability": "skill",
-  "inferred_capability": "both",
+  "inferred_capability": "skill",
   "expected_surface_names": [
     "codex_skill",
     "gemini_skill",

@@ -1,10 +1,14 @@
 # Core-Prompts / Capability Fabric
 
-Core-Prompts ships installed skills and agent surfaces you use directly in Codex, Gemini, Claude, and Kiro. This repository is the canonical source, intake, build, validation, and release layer that keeps those shipped capabilities aligned.
+Core-Prompts ships reusable skills for Codex, Gemini, Claude, Kiro, and Grok, with optional named agent configurations on supported surfaces. This repository is the canonical source, intake, build, validation, and release layer that keeps those shipped capabilities aligned.
 
 Install or repair an existing setup with the current installer, even if it has no updater or receipts. It recognizes complete historical skill and agent packages, migrates their current identities, and preserves custom files. Your selected providers, surfaces, and capabilities persist across routine updates. See [installation and recovery](docs/INSTALL-PROFILES.md).
 
-The right mental model is simple:
+**Start by asking for the job:** “Supercharge this plan.” Use the installed skill as the normal entry point; the assistant arranges independent review when the capability requires it. You do not need to choose a second capability called an agent. If your host does not discover the skill, select its full name, such as `engos-meta-supercharge`.
+
+Skills are selected by default for a fresh installation. Named agents remain available when their execution configuration is useful. See [skills, agents, and prompts](docs/FAQ.md#what-is-the-difference-between-a-skill-an-agent-and-a-prompt) for the distinction and its limits. Explicit-only workflows such as Batman still require an explicit request.
+
+Use this repository in this order:
 
 1. installed capabilities first
 2. UAC, the capability intake and uplift workflow, second
@@ -85,9 +89,9 @@ Use `engos-audit-opex-incident-review briefing <ticket...>` for complete meeting
 | `engos-quality-testing-review` | decide what to test first and what edge cases matter | "Use `engos-quality-testing-review` to identify the highest-value tests and edge cases for this change." | prioritized test ideas, edge cases, and coverage gaps |
 | `engos-design-architecture` | review interfaces, boundaries, and migration safety | "Use `engos-design-architecture` to recommend the safest design for this capability layout." | tradeoffs, boundary decisions, migration thinking, and rollback-aware recommendations |
 
-### Agent Surfaces Available Now
+### Optional Agent Configurations
 
-These current agents are emitted by the repo and available on agent-capable surfaces. Their Fabric metadata is advisory; explicit invocation follows the capability contract, including Batman's implementation authority and review gates.
+These are additional execution configurations for existing capabilities, not another set of jobs to choose from. The repo emits them on supported agent surfaces; see the [agent FAQ](docs/FAQ.md#what-is-the-difference-between-a-skill-an-agent-and-a-prompt) before opting in. Their Fabric metadata is advisory; explicit invocation follows the capability contract, including Batman's implementation authority and review gates.
 
 Batman first checks whether the request has a coherent outcome, success criteria, boundaries, and authority. It then publishes a Host-Fit Plan from the live repository and host inventory: implementation language, build/test/lint/type/smoke/CI tools, available independent subagents and companion surfaces, safe parallelism, and declared cost/quality/speed trade-offs. This plan adapts execution; it cannot waive a gate, combine independent roles, invent a budget, or grant authority.
 
@@ -222,7 +226,7 @@ In plain English: this release adds the checklist, contracts, static controls, a
 
 Use UAC, the capability intake and uplift workflow, when adding or changing canonical capability behavior. Existing-skill improvements use the [same-slug update flow](docs/UAC-USAGE.md#update-an-existing-capability).
 
-Do not start with UAC if your goal is just to use what is already installed. Start with installed skills and agents for that.
+Do not start with UAC if your goal is just to use what is already installed. Start with an installed skill for that.
 
 Use UAC when you need to:
 

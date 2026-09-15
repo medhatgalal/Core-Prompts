@@ -134,8 +134,8 @@
         "policy_rule_id": "ssot.engos-audit-pitch-review",
         "content_sha256": "ssot"
       },
-      "confidence": 0.9,
-      "rationale": "Source carries both strong workflow/prompt structure and explicit agent-only control semantics. Keep one SSOT entry and emit both workflow and agent surfaces.",
+      "confidence": 1.0,
+      "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
       "review_status": "ready_for_orchestrator_review",
       "display_name": "Pitch \u2014 Shape Up Pitch Creation, Review, Scoring, and Improvement",
       "version": "v1.1"
