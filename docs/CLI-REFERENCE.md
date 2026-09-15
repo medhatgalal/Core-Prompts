@@ -193,7 +193,7 @@ identities. No old updater or receipt is required for trusted historical recogni
 
 | Option | Meaning |
 | --- | --- |
-| `--cli codex\|kiro\|claude\|gemini\|grok\|all` | Select a provider; initial `all` discovers available or existing providers, while saved selection persists on routine calls. |
+| `--cli agy\|codex\|kiro\|claude\|gemini\|grok\|all` | Select a provider; initial `all` discovers available or existing providers, while saved selection persists on routine calls. |
 | `--repair` | Recognize existing packages within selected providers and apply declared migrations, including retired agent-to-skill transitions. |
 | `--with-agents` | Compatibility selector for skills and currently emitted approved agents (none ship); it cannot authorize agent creation. |
 | `--slug SLUG` | Select emitted skills and agents for a capability; repeat for multiple slugs. |
