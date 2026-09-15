@@ -1,3 +1,7 @@
+## v1.14.4 - 2026-09-15
+
+- Install Codex and Gemini skills once under `.agents/skills`, with shared ownership tracking, verified generated-package equivalence, receipt/catalog-bound migration, customization preservation, and rollback. Gemini settings and agents remain under `.gemini`.
+
 ## v1.14.3 - 2026-09-10
 
 - Correct the OpEx digest renderer so completed or cancelled linked DPAs are not described as missing, while preserving outstanding postmortem obligations. Distinguish unset or unknown priorities from missing SLA policy mappings instead of inventing a priority problem or deadline.

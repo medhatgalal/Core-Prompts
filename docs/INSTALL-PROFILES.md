@@ -190,8 +190,15 @@ compatibility path. Empty directories may remain after exact-file retirement.
 | Codex | `.agents/skills/` | `.codex/agents/`, with target-local registrations |
 | Kiro | `.kiro/skills/` | `.kiro/agents/` |
 | Claude | `.claude/skills/` | `.claude/agents/` |
-| Gemini | `.gemini/skills/` | `.gemini/agents/` |
+| Gemini | `.agents/skills/` | `.gemini/agents/` |
 | Grok | `.grok/skills/` | No native agent surface claimed |
+
+Codex and Gemini share the portable generated skill package, including bundled
+resources. Provider selection still controls agents and configuration. A scoped
+skill update refreshes existing shared ownership records for both clients.
+Recognized legacy `.gemini/skills` packages migrate through the exact installation
+plan; customized copies are preserved. The repository still emits `.gemini/skills`
+as distribution artifacts. Gemini settings and agents remain under `.gemini`.
 
 Installed bytes, native CLI discovery, and authenticated capability execution
 require separate verification. For Kiro, inspect agents both from a neutral

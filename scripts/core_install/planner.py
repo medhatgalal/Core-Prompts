@@ -144,6 +144,12 @@ def plan(repo: Path, target: Path, request: dict):
     observations, preserved, blockers, actions, outcomes = {}, [], [], [], []
     discovered, inventories = {}, {}
     specs = list(catalog.packages(trusted))
+    # Gemini recognizes the shared portable Codex layout as well as its old
+    # provider-specific layout. Historical hashes remain catalog-bound.
+    specs += [dict(v, provider='gemini') for raw in list(specs)
+              if raw['provider'] == 'codex' and raw['kind'] == 'skill'
+              for v in providers.codex_layouts(raw)
+              if v['roots'][0].startswith('.agents/skills/')]
     # Current names matter for inspection, but current bytes alone do not prove
     # historical ownership. Initial adoption requires trusted history or receipt.
     candidates = {}
@@ -155,6 +161,11 @@ def plan(repo: Path, target: Path, request: dict):
                 continue
             signature = (spec['provider'], spec['kind'], spec['slug'], tuple(spec['roots']))
             candidates.setdefault(signature, []).append(spec)
+    # Receipts retain old roots even after a layout migration.
+    for p in previous['packages'].values():
+        if p['provider'] in clients:
+            signature = (p['provider'], p['kind'], p['slug'], tuple(p['roots']))
+            candidates.setdefault(signature, [])
     for k, p in current.items():
         if p['provider'] in clients:
             signature = (p['provider'], p['kind'], p['slug'], tuple(p['roots']))
@@ -169,6 +180,10 @@ def plan(repo: Path, target: Path, request: dict):
         present_keys.add(k)
         known = next((v for v in variants if files == v['files']), None) if not error else None
         owned = previous['packages'].get(k)
+        if kind == 'skill' and provider in ('codex', 'gemini') and roots[0].startswith('.agents/skills/'):
+            owned = next((p for p in previous['packages'].values()
+                          if p['kind'] == 'skill' and p['provider'] in ('codex', 'gemini')
+                          and p['roots'] == list(roots) and p['files'] == files), owned)
         if owned and list(roots) == owned.get('roots') and files == owned.get('files') and not error:
             known = dict(owned, provider=provider, kind=kind, slug=slug,
                          successor=catalog.SUCCESSORS.get(slug, slug), releases=['ownership-receipt'])
@@ -225,13 +240,17 @@ def plan(repo: Path, target: Path, request: dict):
         assessed_keys.add(k)
         files, error = _observe(target, desired['roots'], observations)
         owned = previous['packages'].get(k)
+        if desired['kind'] == 'skill' and desired['provider'] in ('codex', 'gemini'):
+            owned = next((p for p in previous['packages'].values()
+                          if p['kind'] == 'skill' and p['provider'] in ('codex', 'gemini')
+                          and p['roots'] == desired['roots'] and p['files'] == files), owned)
         source_match = next((s for s in sources if s['roots'] == desired['roots'] and s['files'] == files), None)
         receipt_match = old_receipt and files and all(old_receipt.get('files',{}).get(r,{}).get('identity') == v for r,v in files.items())
         if error or (files and not source_match and not (owned and files == owned.get('files')) and not receipt_match):
             blocked_keys.add(k)
             preserved.append(dict(package=k,provider=desired['provider'],kind=desired['kind'],slug=desired['slug'],roots=desired['roots'],reason=error or 'successor is unowned or customized; predecessor retained'))
             continue
-        if owned and not files:
+        if owned and owned.get('roots') == desired['roots'] and not files:
             blocked_keys.add(k)
             preserved.append(dict(package=k,provider=desired['provider'],kind=desired['kind'],slug=desired['slug'],roots=desired['roots'],reason='owned package is missing; repair explicitly before updating'))
             continue
@@ -373,6 +392,20 @@ def plan(repo: Path, target: Path, request: dict):
             for rel,before in sorted(old['files'].items()):
                 actions.append(dict(op='remove',path=rel,before=before,after=None))
         outcomes.append(dict(package=k,status='retired' if k not in current else 'managed',historical=[s.get('releases',[]) for s in discovered.get(k,[])]))
+
+    # Refresh existing co-owner receipts when a scoped update changes their
+    # shared tree. Do not enroll a provider that the user has not selected.
+    for k in sorted(package_actions):
+        if k in blocked_keys or k not in current:
+            continue
+        desired = current[k]
+        if desired['kind'] != 'skill' or desired['provider'] not in ('codex', 'gemini'):
+            continue
+        for other_key, other in previous['packages'].items():
+            if (other_key != k and other['kind'] == 'skill'
+                    and other['provider'] in ('codex', 'gemini')
+                    and other['roots'] == desired['roots']):
+                next_packages[other_key] = dict(other, files=desired['files'])
 
     runtime, runtime_observations = {}, {}
     manage_runtime = request.get('runtime', True)

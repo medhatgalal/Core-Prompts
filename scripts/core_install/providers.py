@@ -17,7 +17,7 @@ from urllib.parse import unquote
 
 PROVIDERS = ('codex', 'kiro', 'claude', 'gemini', 'grok')
 AGENT_EXTENSIONS = {'codex': 'toml', 'kiro': 'json', 'claude': 'md', 'gemini': 'md'}
-SKILL_ROOTS = {p: ('.agents/skills' if p == 'codex' else f'.{p}/skills') for p in PROVIDERS}
+SKILL_ROOTS = {p: ('.agents/skills' if p in ('codex', 'gemini') else f'.{p}/skills') for p in PROVIDERS}
 
 
 def reporting_launchers(target):
@@ -44,6 +44,24 @@ def key(provider, kind, slug):
     return f'{provider}:{kind}:{slug}'
 
 
+def skill_source_provider(repo, entry, manifest, provider, safe):
+    """Share only equivalent generated packages; never discard Gemini behavior."""
+    if provider != 'gemini':
+        return provider
+    slug = entry['slug']
+    if 'codex_skill' not in entry['expected_surface_names']:
+        raise ValueError(f'shared skill requires portable surface: {slug}')
+    prefix = f'.gemini/skills/{slug}/'
+    members = [prefix + 'SKILL.md', *[r for r in manifest.get('resources', {}).get('gemini_skill', [])
+                                     if r.startswith(prefix)]]
+    portable = {f'.codex/skills/{slug}/SKILL.md', *manifest.get('resources', {}).get('codex_skill', [])}
+    for rel in members:
+        other = rel.replace('.gemini/skills/', '.codex/skills/', 1)
+        if other not in portable or safe(repo, rel).read_bytes() != safe(repo, other).read_bytes():
+            raise ValueError(f'shared skill differs across generated providers: {rel}')
+    return 'codex'
+
+
 def current_packages(repo, manifest, snapshot, safe):
     """Expand declared source membership, preserving provider and surface identity."""
     result = {}
@@ -56,12 +74,17 @@ def current_packages(repo, manifest, snapshot, safe):
             if provider not in PROVIDERS or kind not in ('skill', 'agent'):
                 raise ValueError(f'unsupported source surface: {surface}')
             if kind == 'skill':
-                source_root = f'.{provider}/skills/{slug}'
+                # Both readers consume the same portable generated package.
+                source_provider = skill_source_provider(repo, entry, manifest, provider, safe)
+                source_surface = source_provider + '_skill'
+                if source_surface not in entry['expected_surface_names']:
+                    raise ValueError(f'shared skill requires portable surface: {slug}')
+                source_root = f'.{source_provider}/skills/{slug}'
                 root = f'{SKILL_ROOTS[provider]}/{slug}'
                 entrypoint = f'{source_root}/SKILL.md'
                 roots = [root]
                 convert = lambda rel: root + rel[len(source_root):]
-                members = [entrypoint, *[r for r in manifest.get('resources', {}).get(surface, []) if r.startswith(source_root + '/')]]
+                members = [entrypoint, *[r for r in manifest.get('resources', {}).get(source_surface, []) if r.startswith(source_root + '/')]]
             else:
                 if provider not in AGENT_EXTENSIONS:
                     raise ValueError(f'provider has no agent surface: {provider}')

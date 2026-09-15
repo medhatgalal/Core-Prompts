@@ -203,11 +203,12 @@ def test_default_detected_providers_install_skills_without_agent_expansion(tmp_p
     installed = state(tmp_path)
     assert {k.split(":")[0] for k in installed["selection"]} == {"codex", "gemini"}
     assert {k.split(":")[1] for k in installed["selection"]} == {"skill"}
-    for provider in (".agents", ".gemini"):
+    for provider in (".agents",):
         for slug in (REVIEW, AUTO):
             assert (tmp_path / provider / "skills" / slug / "SKILL.md").is_file()
             assert (tmp_path / provider / "skills" / slug / "resources/capability.json").is_file()
         assert (tmp_path / provider / "skills" / AUTO / "resources/bootstrap.py").is_file()
+    assert not (tmp_path / ".gemini/skills").exists()
     assert not (tmp_path / ".codex/config.toml").exists()
     assert not (tmp_path / ".claude").exists()
     assert not (tmp_path / ".kiro").exists()
@@ -217,7 +218,7 @@ def test_default_detected_providers_install_skills_without_agent_expansion(tmp_p
 def test_with_agents_installs_full_resources_for_detected_providers(tmp_path):
     document(external(DEPLOY_SCRIPT, tmp_path, "--with-agents",
                       cli_bins=("codex", "gemini", "claude", "kiro-cli")))
-    for provider, skill_root, extension in (("codex", ".agents", "toml"), ("gemini", ".gemini", "md"),
+    for provider, skill_root, extension in (("codex", ".agents", "toml"), ("gemini", ".agents", "md"),
                                              ("claude", ".claude", "md"), ("kiro", ".kiro", "json")):
         for slug in (ARCH, AUTO, REVIEW):
             assert (tmp_path / skill_root / "skills" / slug / "SKILL.md").is_file()

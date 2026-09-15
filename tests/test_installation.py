@@ -298,3 +298,58 @@ def test_narrow_update_keeps_unresolved_conflicts_outside_its_scope(installation
     assert not result['preserved']
     assert planner.read_state(target)['preserved']==before
     assert (target/custom).read_text()=='my edits\n'
+
+
+def test_gemini_and_codex_share_one_tree_with_scoped_updates(installation):
+    repo, target = installation
+    slug = 'engos-design-architecture'
+    shared = f'.agents/skills/{slug}/SKILL.md'
+    put(target, '.gemini/settings.json', '{"custom":true}')
+    execute(repo, target, mode='install', providers=['codex', 'gemini'], kinds=['skill'], runtime=False)
+    assert (target / shared).read_text() == 'current skill\n'
+    assert not (target / '.gemini/skills').exists()
+    assert (target / '.gemini/settings.json').read_text() == '{"custom":true}'
+    for provider in ('codex', 'gemini'):
+        put(repo, f'.{provider}/skills/{slug}/SKILL.md', 'updated shared skill\n')
+    install_bundle.build(repo)
+    execute(repo, target, mode='sync', providers=['gemini'], runtime=False)
+    state = json.loads((target / planner.STATE).read_text())
+    assert state['packages'][f'codex:skill:{slug}']['files'] == state['packages'][f'gemini:skill:{slug}']['files']
+    again = planner.plan(repo, target, dict(mode='sync', providers=['codex'], runtime=False))
+    assert not again['preserved'] and not again['blockers'] and not again['actions']
+
+
+def test_gemini_migrates_receipt_owned_provider_tree_and_rolls_back(installation):
+    repo, target = installation
+    slug = 'engos-design-architecture'
+    old = f'.gemini/skills/{slug}/SKILL.md'
+    put(target, old, 'old gemini skill\n')
+    key = f'gemini:skill:{slug}'
+    put(target, planner.STATE, json.dumps(dict(schema=2, owner='Core-Prompts', selection=[key],
+        packages={key: dict(provider='gemini', kind='skill', slug=slug, roots=[str(Path(old).parent)],
+                           files={old: transaction.identity(target / old)})}, runtime={}, registrations={})))
+    result = execute(repo, target, mode='sync', providers=['gemini'], runtime=False)
+    assert not (target / old).exists()
+    assert (target / f'.agents/skills/{slug}/SKILL.md').exists()
+    transaction.rollback(target, result['transaction'])
+    assert (target / old).read_text() == 'old gemini skill\n'
+    assert not (target / f'.agents/skills/{slug}/SKILL.md').exists()
+
+
+def test_custom_shared_skill_blocks_gemini_migration(installation):
+    repo, target = installation
+    put(target, '.gemini/skills/architecture/SKILL.md', 'gemini-architecture-skill\n')
+    shared = '.agents/skills/engos-design-architecture/SKILL.md'
+    put(target, shared, 'my customization\n')
+    proposal = planner.plan(repo, target, dict(mode='repair', providers=['gemini'], runtime=False))
+    assert proposal['preserved']
+    assert not any(a['path'].endswith('/SKILL.md') for a in proposal['actions'])
+
+
+def test_distinct_gemini_behavior_is_not_silently_replaced(installation):
+    repo, target = installation
+    put(repo, '.gemini/skills/engos-design-architecture/SKILL.md', 'Gemini-only behavior')
+    install_bundle.build(repo)
+    with pytest.raises(ValueError, match='differs across generated providers'):
+        planner.plan(repo, target, dict(mode='install', providers=['gemini'], runtime=False))
+    assert not list(target.iterdir())
