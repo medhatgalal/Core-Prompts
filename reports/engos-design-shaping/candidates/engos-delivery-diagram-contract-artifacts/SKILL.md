@@ -19,6 +19,13 @@ Make the shaped solution understandable at the exemplar's level: boundaries,
 component interactions, data movement, interface state, security responsibility
 and explicit negative space, all supported by the research and scope decisions.
 
+## Invocation Hints
+
+Use for “make this shaped solution visual,” “show the interfaces and who owns
+security,” or the conductor's required Stage 3 output. A request for a vague
+problem to become a pitch starts with engos-design-shaping. Direct artifact-only
+use is supported, but reports earlier stages unassessed.
+
 ## Required Inputs
 
 Passing G1/G2 receipts and their current frame/evidence; the shaped solution
@@ -28,6 +35,8 @@ outside a full shaping run, label upstream stages unassessed and make no
 full-pipeline readiness claim.
 
 ## Workflow
+
+Read `resources/diagram-style.md` before authoring or rendering diagrams.
 
 1. Verify the frame and research revisions. Every selected-scope open question
    must have an evidence-backed answer. Return needs_spike if any material seam
@@ -64,6 +73,16 @@ The three Mermaid sources and render evidence; complete contracts and security
 tables; captions/negative space; evidence links; and manifest with actual hashes,
 row inventories, statuses and unresolved gaps. The package is part of the full
 pitch folder, alongside the problem/solution, no-gos and workstream artifacts.
+
+```text
+artifact_id: stable pitch identity
+source_manifest: paths and SHA256 for source prose, three diagrams and full tables
+diagram_inventory: component, sequence, data-flow; captions and evidence references
+table_inventory: all contract and security row IDs and counts
+render_receipts: source hash, renderer, image path and actual pixel observations
+upstream_status: G1/G2 receipt references, or unassessed for artifact-only use
+gaps: explicit unresolved items
+```
 
 ## Rules
 

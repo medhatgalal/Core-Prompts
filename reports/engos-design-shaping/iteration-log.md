@@ -42,3 +42,24 @@ The real input passed G0 under another independent worker. G1 returned
 decision_pending for appetite and walk-away provenance. No full-run success or
 later-stage exercise is claimed. Private full receipts remain with the local
 exercise, outside this public repository.
+
+## Supplemental reference exercise
+
+The user's request to compare actual framed/shaped examples and Discovery work
+produced a bounded source comparison and four constructed cases across two
+independent axes: complexity and initial vagueness. Two authors each handled two
+cases, retaining two rounds; independent reviewers assessed each batch.
+
+Round 1 caught missing framing decisions, unresolved critical chat seams,
+configuration race/empty/capacity gaps, overlong pitches and actual Mermaid
+sequence parser failures. Round 2 used explicit new scenario inputs, shortened
+the decision pitches and resolved the configuration contract gaps. The independent
+review supports G0–G2 for three cases but holds G3 at 47/12; chat still holds G2.
+Configuration rose from 34/12, with new inputs as an explicit confounder. Capacity
+remains 47/12 despite useful editorial improvements and a limited schema check.
+
+The controller then inspected all nine PNGs, repaired overflowing sequence notes
+and one ignored palette, rerendered three sequences and recorded final hashes.
+Native HTML rendered nine SVGs; long diagrams now pan instead of shrinking into
+unreadability. No Google Doc or Bet-ready receipt was fabricated. The full
+before/after findings and a rubric-calibration question are in examples/README.md.

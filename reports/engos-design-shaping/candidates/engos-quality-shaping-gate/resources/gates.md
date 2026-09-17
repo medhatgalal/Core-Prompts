@@ -32,7 +32,9 @@ spike fulfills triage, not advancement.
 
 G3 exemplar checklist:
 
-1. Holistic problem and solution, appetite fit and explicit exclusions.
+1. Holistic problem and solution, guiding use case/business win, observable
+   success, appetite fit, In/Out/Later, ordered safe cuts and objective kill
+   criteria. Distinguish feature exclusions from tempting technical no-go paths.
 2. Component diagram with seams and boundaries; sequence with actual/proposed
    interactions; data-flow with stores and transformations. Source is Mermaid
    unless an expressiveness limit is demonstrated and alternative source retained.

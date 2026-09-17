@@ -28,6 +28,28 @@ Private DOCX import/image placement, native table completeness and target pixels
 in this run; wiki macro support; chat Mermaid support; five-stage success from
 the real input. The earlier session's HTML rendering does not discharge these.
 
+## Additional reference exercise, 2026-09-17
+
+The source comparison now includes an actual Framed/Shaped pair, a Discovery
+template, alignment notes and three selected pitch tabs. Raw company content
+stays private. Sanitized lessons and four explicitly constructed teaching cases
+are in reference-findings.md and examples/. Two author rounds retain actual
+independent review feedback, supplied hypothetical clarifications and correct
+stops. They do not retroactively approve the real exercise's appetite.
+
+All nine second-round diagrams were rendered and pixel-inspected. Two sequence
+note layouts and one ignored style directive required a further visual repair.
+Escaped double-quoted selectors worked in this cached Mermaid 11.17.2 renderer;
+the originally authored single-quoted configuration did not take effect. Treat
+that as an observed compatibility issue, not a universal ban on single quotes.
+Parser success did not prove readable labels. Native HTML rendered nine SVGs;
+long horizontal diagrams need pan/zoom rather than illegible shrink-to-fit.
+The full-size PNG links preserve a readable alternate view without public hosting.
+
+Reference content on HTML is not a Bet-ready receipt. No Google Doc import or
+saved-target parity was executed for this supplemental library. Keep per-surface
+proof separate from source review and production feasibility.
+
 ## Durable lessons represented in the candidate
 
 1. A named spike records uncertainty but cannot pass Research as if executed.

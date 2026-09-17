@@ -13,6 +13,10 @@ native registrations, home installations and production services are unchanged.
 5. candidates/engos-design-shaping/AGENT-DESIGN.md — agent role and host boundary.
 6. validation-plan.md and iteration-log.md — preregistered checks and actual repairs.
 7. validation-report.md — observed results and outstanding acceptance criteria.
+8. [Worked-example library](examples/README.md) — four complexity/vagueness cases,
+   two actual author/reviewer rounds, rendered diagrams and honest stop states.
+9. reference-findings.md — sanitized lessons from real Framed/Shaped and Discovery
+   documents; private source extracts are intentionally outside this public repo.
 
 ## How the design is exercised
 

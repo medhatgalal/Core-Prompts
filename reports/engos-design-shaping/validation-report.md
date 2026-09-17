@@ -4,7 +4,11 @@
 
 Design drafted and iterated. Full real-input acceptance is incomplete. The real
 exercise reached Framed and stopped at G1 for unconfirmed appetite and walk-away.
-No Research, Shaped, Bet-ready or two-surface completion is claimed. No production
+No real-input Research, Shaped, Bet-ready or two-surface completion is claimed. A
+separate four-case teaching library now has two actual author/reviewer rounds:
+three content-complete shaped drafts held below the numeric G3 threshold and one
+correct G2 needs_spike stop. Nine diagrams were rendered and pixel-inspected;
+native HTML reference placement was exercised, not certified under G4. No production
 capability was applied, generated, registered, installed, released or merged.
 
 ## Actual observations
@@ -18,7 +22,13 @@ capability was applied, generated, registered, installed, released or merged.
 | Revised model gate smoke | 10/10 expected decisions, including sequencing/hash controls | probes/observed-revised.json |
 | Real rough input G0 | Independent pass | Private g0-review.json |
 | Real frame G1 | Independent decision_pending; advance=false | Private g1-review.json |
-| Native target placement | Not executed | G1 prevents later-stage work |
+| Real-input target placement | Not executed | G1 prevents later-stage work |
+| Real document comparison | Framed/Shaped pair, Discovery template/alignment and three selected pitches read | reference-findings.md; private source catalog |
+| Teaching examples | Four cases, two author/reviewer rounds each | examples/README.md and both review JSONs |
+| Teaching G3 review | Three drafts at 47/12 = 3.9167, below 4.0; no pass | examples/review-round-2-content.json |
+| Teaching local renders | Nine PNGs inspected; three sequences repaired and reinspected | examples/engos-quality-example-render-observations.md |
+| Teaching HTML | Nine native SVGs, zero Mermaid error elements; representative target views inspected | examples/engos-design-shaping-examples.html |
+| Limited contract check | Ten declared schema cases matched expectations; no application behavior tested | examples/engos-example-model-capacity/contract-checks/observed.json |
 
 Smoke cases are explicitly synthetic with trusted test premises. They exercise
 a real model applying the proposed gate; they do not prove production enforcement,
@@ -32,14 +42,15 @@ UAC plan and judge ran without apply. Current results:
   flags architecture/plan-to-goal overlap for explicit future job metadata.
 - engos-design-frame-from-vague: structural_ready, behavioral_pending.
 - engos-quality-shaping-gate: structural_ready, behavioral_pending.
-- engos-delivery-diagram-contract-artifacts revision: manual_review; baseline
-  invocation marker missing and heuristic richness regression from 7 to 1.
-- engos-delivery-artifact-embed revision: same manual_review diagnostics.
+- engos-delivery-diagram-contract-artifacts revision: structural_ready,
+  behavioral_pending after restoring invocation guidance and concrete output contract.
+- engos-delivery-artifact-embed revision: structural_ready, behavioral_pending
+  after the same targeted preservation repair.
 
-Existing-skill rewrites need a targeted preservation pass against their current
-canonical sources and independent fidelity mapping before apply. They are draft
-designs, not approved replacements. UAC's top-level accepted input status was
-not mistaken for a passing structural quality result.
+All five were rerun through plan/judge. Current mechanical results are preserved
+in engos-quality-candidate-structural-review.json. These checks do not establish
+semantic preservation, full behavioral reliability or approval to replace the
+shipped helpers. They remain draft designs; no apply was run.
 
 ## Requested judgment dimensions
 
@@ -48,9 +59,9 @@ not mistaken for a passing structural quality result.
 | Team rubric | Seven dimensions, blockers override averages | Not assessed on a shaped pitch; G1 pending |
 | Shape Up | Outcome/mechanism separation, appetite and risk provenance | G0 passed; G1 held proposed decisions |
 | Pitch-review rubrics | Five dimensions and explicit independent-review overlay | No real G3 review yet |
-| Authoring standard | Names/layout/source mappings; three ready, two manual review | Draft only, not apply-ready |
+| Authoring standard | Names/layout/source mappings; five mechanically structural_ready | Draft only, not behaviorally promoted |
 | Vague input reaches exemplar | Real brief and gate observations retained | Incomplete; not Bet-ready |
-| Observed iteration | Six findings repaired and rechecked | Design iteration complete; output iteration pending |
+| Observed iteration | Six original design findings repaired; four teaching cases iterated twice | Real-input output iteration pending |
 
 ## Acceptance accounting
 
@@ -66,8 +77,10 @@ does not discharge these requirements. No later-stage success has been invented.
 Obtain the exercise appetite and walk-away decision already requested, record
 actual provenance, and rerun G1 under the revised contract. Adopting the historical
 five weeks/two engineers as replay input would not commit a real team or constitute
-a production bet. Complete the two draft preservation reviews while progressing
-the authorized exercise. Any material unknown must remain needs_spike until
+a production bet. Before promotion, calibrate the exposed numeric-gate issue
+against authoritative shaping standards and test the stated policy without
+changing historical scores. Do not require production implementation merely to
+give an otherwise bounded proposal more points. Any material unknown must remain needs_spike until
 resolved or validly excluded; it cannot be hidden for a demonstration pass.
 
 ## Recovery

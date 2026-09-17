@@ -1,0 +1,65 @@
+{
+  "review": "round-1 addendum",
+  "source_integrity": {
+    "previously_reviewed_files_rechecked": 41,
+    "changed": [],
+    "status": "Source bindings remain current; new controller observations supplement the prior review.",
+    "observation_file": "examples/round-one-render-observations.md",
+    "sha256": "0d67d4e0b86107a09aa6afb795bf0cdf70b54cf03c7f9e971d4a67f70505e5a3"
+  },
+  "cases": [
+    {
+      "case": "engos-example-model-capacity",
+      "semantic_assessment": "Prior findings and scores unchanged.",
+      "visual_assessment": {
+        "component": "Controller reports successful rendering and pixel inspection: labels, boundaries and proposed addition visible without clipping.",
+        "sequence": "Actual render failed, exit 1: parse error on renderer line 8 at 'bind response data' before 'else Invalid candidate'.",
+        "data_flow": "Not attempted; serial loop stopped.",
+        "evidence": "round-one-render-observations.md:3-11,20-22",
+        "sequence_sha256": "761d023eb4dd5d1a91e7b0f7aad2fe88f4a07bf0ae3e61eb98567c8148285f1e",
+        "G3": "blocked by actual render failure and incomplete visual coverage",
+        "G4": "not reached"
+      },
+      "usability_finding": {
+        "severity": "nonblocking editorial",
+        "evidence": "pitch.md:30-89; 1366 whitespace-delimited words",
+        "finding": "Disproportionate paperwork for a two-day scalar addition. Repeated disclaimers, traceability and overlapping risks/no-gos obscure the small proposal. Cuts largely defer work already outside scope.",
+        "revision": "Keep the decision-facing pitch to problem, appetite, copy/omit semantics, protected boundaries, acceptance and kill conditions. Link detailed contracts, security and traceability as supporting material. State plainly when the core has no meaningful safe feature cut."
+      }
+    },
+    {
+      "case": "engos-example-config-deployment",
+      "semantic_assessment": "Prior race, empty-state and capacity findings and scores unchanged.",
+      "visual_assessment": {
+        "component": "PNG generated; no pixel inspection reported.",
+        "sequence": "Actual render failed, exit 1: parse error on renderer line 11 at 'Denied; no writes' before 'else Authorized'.",
+        "data_flow": "Not attempted; serial loop stopped.",
+        "evidence": "round-one-render-observations.md:13-18",
+        "sequence_sha256": "853ada5a7cdee10680ed3d6b6a4e99a03ef81cef2be23383d9b31a32eb7d6ae8",
+        "G3": "blocked by actual render failure and incomplete visual coverage, independently of semantic blockers",
+        "G4": "not reached"
+      },
+      "usability_finding": {
+        "severity": "nonblocking editorial",
+        "evidence": "pitch.md:35-79; 1347 whitespace-delimited words",
+        "finding": "The five-minute proposal competes with workstream, proof, risk and no-go inventories that repeat supporting tables. 'Later' mixes product scope with review/render tasks; presentation cuts do little to explain engineering appetite tradeoffs.",
+        "revision": "Lead with the deployment flow and preservation guarantees. Consolidate repeated constraints, distinguish deferred product scope from validation tasks, and put detailed proof inventories in supporting artifacts. Explain whether the protected core is indivisible within the week."
+      }
+    },
+    {
+      "case": "engos-example-insight-visibility",
+      "assessment": "Correct G1 stop unchanged; concise and actionable. No unwritten pitch scored."
+    },
+    {
+      "case": "engos-example-unified-chat",
+      "assessment": "Correct G2 stop unchanged; bounded evidence requests remain actionable. No unwritten pitch scored."
+    }
+  ],
+  "revision_request": "Preserve round-one sources. In round two, replace ambiguous semicolon-bearing sequence labels with unambiguous wording, rerender all three diagrams per shaped case, and inspect every output's pixels. Parser success alone is insufficient.",
+  "limitations": [
+    "Render execution and pixel observations are controller-reported and recorded in the inspected observation file; reviewer did not independently rerender or inspect pixels.",
+    "Only the model-capacity component has a reported pixel pass; neither complete bundle passes G3.",
+    "Visual failures remain separate from semantic scores.",
+    "No files modified; round-two-clarifications was not read."
+  ]
+}

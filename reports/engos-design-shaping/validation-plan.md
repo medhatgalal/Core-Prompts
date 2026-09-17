@@ -38,6 +38,12 @@ that case plus its matched control. Preserve initial result and actual correctio
 
 ## Full exercise checks
 
+The user's subsequent request expands the validation scope to source comparison
+and multiple worked examples spanning complexity and vagueness. The bounded
+additional plan is in examples/experiment-plan.md: four cases, two rounds each,
+independent review and actual render inspection. Original outcomes and criteria
+remain recorded; this additional exercise does not rewrite their results.
+
 G0: known/assumed/missing and no selected solution.
 G1: complete solution-free frame with actual appetite decision.
 G2: every question answered/excluded with provenance; named spike stays pending.

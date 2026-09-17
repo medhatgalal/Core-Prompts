@@ -43,13 +43,17 @@ before asking again for something the user already answered.
 5. Initialize `decisions.md` with each decision, its source, status and rationale;
    include appetite and walk-away, explicitly pending until resolved. Write
    `framed.md` using the following fields: problem and affected people;
-   why-now with evidence or clearly attributed intent; desired outcome; appetite
+   why-now with evidence or clearly attributed intent; guiding user/scenario,
+   business win and observable success criteria; desired outcome; appetite
    as willingness to spend and source; walk-away condition; included and excluded
    outcomes; hard constraints; question IDs and what evidence could answer them.
 6. Inspect the full frame for selected mechanisms: architecture, algorithms,
    endpoint proposals, diagrammed solutions, scheduling frequencies and build
    steps. Remove them from the frame, preserving supplied suggestions in intake.
    Existing-system constraints may remain if labeled as constraints and sourced.
+   Concrete user outcomes and an engineering research/spike ask are allowed:
+   "the conversation survives reload" specifies the outcome, whereas selecting
+   a persistence engine specifies a solution. Judge the distinction by meaning.
 7. Request G1. Advance only when its verdict passes with complete decision
    provenance. A proposed appetite does not pass until accepted by the user or
    explicitly delegated to the agent within a stated boundary.

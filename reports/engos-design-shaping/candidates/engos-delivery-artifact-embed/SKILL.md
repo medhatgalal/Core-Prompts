@@ -60,6 +60,27 @@ target/revision, content inventory comparison, render/readback evidence and
 status. Valid completion states are placed or verified_native_passthrough.
 human_step_required and blocked retain placement_pending.
 
+```text
+surface: actual selected target type
+artifact_id: unchanged source identity
+adapter: capability-checked route
+representation: native Mermaid, rendered images, native/Markdown tables
+source_hash: actual source-content manifest hash
+target: saved document/page ID and revision
+placement_status: placed | verified_native_passthrough | human_step_required | blocked
+verified_by: current content inventory and pixel observations
+changed_meaning: false only after full parity comparison
+blockers: missing permission, capability, content or human step
+```
+
+## Invocation Hints
+
+Use for “put this approved pitch in the target document” or the conductor's
+Stage 4. Supply the already-authored bundle and actual target; do not ask the
+caller to select a rendering technology that the target determines. An artifact-
+only request may inspect placement independently, without claiming upstream
+shaping readiness. Diagnostic preflight must not be reported as final placement.
+
 ## Rules
 
 Preserve the full pitch, not only its diagrams. Detect content drift before

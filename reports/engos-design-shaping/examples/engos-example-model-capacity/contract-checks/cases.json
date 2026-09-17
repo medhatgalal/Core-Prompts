@@ -1,0 +1,12 @@
+[
+  {"id":"absent-is-unknown","value":{},"valid":true},
+  {"id":"positive-capacity","value":{"inputCapacityTokens":8192},"valid":true},
+  {"id":"minimum-positive","value":{"inputCapacityTokens":1},"valid":true},
+  {"id":"zero-is-not-unknown","value":{"inputCapacityTokens":0},"valid":false},
+  {"id":"negative-invalid","value":{"inputCapacityTokens":-1},"valid":false},
+  {"id":"null-not-absence","value":{"inputCapacityTokens":null},"valid":false},
+  {"id":"string-invalid","value":{"inputCapacityTokens":"8192"},"valid":false},
+  {"id":"boolean-invalid","value":{"inputCapacityTokens":true},"valid":false},
+  {"id":"fraction-invalid","value":{"inputCapacityTokens":8192.5},"valid":false},
+  {"id":"other-fields-preserved","value":{"unrelatedExistingField":"unchanged"},"valid":true}
+]

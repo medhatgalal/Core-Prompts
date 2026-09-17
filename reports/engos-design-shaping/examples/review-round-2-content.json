@@ -1,0 +1,556 @@
+{
+  "review": "Independent round-2 semantic content review",
+  "reviewer": {
+    "identity": "Codex",
+    "task_id": "01a0b086-ba24-7583-86f6-ea356cc20106",
+    "authored_reviewed_artifacts": false,
+    "observed_at_utc": "2026-09-17T18:03:06Z"
+  },
+  "root": "/private/tmp/engos-full-shaping-design/reports/engos-design-shaping",
+  "path_convention": "Shared paths are relative to root. Case evidence and file_hashes are relative to each case_root.",
+  "scope": {
+    "performed": "Read-only inspection of governing contracts, four inputs, round-two clarifications, all round-2 textual artifacts and nine Mermaid sources; subsequent comparison against the original round-1 content/render JSON.",
+    "premise_policy": "Declared fictional facts and investment decisions are accepted within the exercise. They are not production observations.",
+    "proof_policy": "No production tests are required merely to repeat unchanged, bounded fixture contracts. Missing material seam evidence remains blocking where the fixture explicitly leaves compatibility unresolved.",
+    "excluded": [
+      "Visual or style certification",
+      "G4 or target-placement certification",
+      "Production feasibility certification",
+      "Statistical promotion conclusions",
+      "Writes, commits, publishing, application, cloud operations and production implementation"
+    ],
+    "skill_use": "Pitch-review completeness guidance was used; the supplied teaching contract and seven-team/five-pitch rubric controlled judgments and output."
+  },
+  "summary": {
+    "model_capacity": "G2 supported; semantically complete shaped draft; numeric threshold not met.",
+    "insight_visibility": "G2 supported following new I1/I2 inputs; semantically complete shaped draft; numeric threshold not met.",
+    "config_deployment": "G2 now supported following C2-C4; original material contract findings resolved within the exercise; numeric threshold not met.",
+    "unified_chat": "G1 is the last supported gate; G2 needs_spike remains the correct stop.",
+    "G3_certified": false,
+    "G4_certified": false,
+    "reference_ready_certified": false
+  },
+  "scoring": {
+    "scale": {
+      "1": "Missing or contradictory",
+      "2": "Incomplete or materially unsupported",
+      "3": "Adequate and supported for selected scope",
+      "4": "Strong with bounded risks",
+      "5": "Strong with relevant observed proof"
+    },
+    "aggregation": "Equal-weight arithmetic means: seven team dimensions, five pitch dimensions, twelve overall. Threshold checks use unrounded values.",
+    "required": "Every required dimension >=3 and overall mean >=4, plus all hard gates.",
+    "calibration": "The three shaped drafts each earn eleven 4s and Confidence 3. Concrete contracts support their proposed designs, but neither prose nor the model-capacity schema receipt establishes integrated behavior. No score was raised to reach the threshold. Capacity arithmetic supports bounded workload, not measured operating cost or runtime performance."
+  },
+  "integrity": {
+    "algorithm": "SHA-256",
+    "current_files_hashed_and_rechecked": 54,
+    "changes_between_final_hash_checks": [],
+    "round1_case_files_checked_against_original_review": 35,
+    "round1_case_hash_mismatches": [],
+    "round2_textual_artifacts_read": 38,
+    "round2_mermaid_sources_read": 9,
+    "schema_probe_files_read": 3,
+    "pixels_independently_inspected": 0,
+    "runtime_or_schema_tests_executed_by_this_reviewer": 0,
+    "historical_execution_order": "Author journals record sequential G0-G2 checks and clarification-drift reconciliation. Their historical execution order was not independently witnessed; current gate conditions were rechecked.",
+    "sequence_revision_reconciliation": "All three current sequence hashes differ from their author-journal manifests. Current sources were reread and hashed; their semantic flows remain consistent with the contracts. The current hashes below supersede those journal entries for this review. This does not validate rendering, overflow or style repairs.",
+    "future_drift": "This receipt binds the enumerated bytes only. Subsequent source changes require affected-content reconciliation; controller render evidence must identify the final source revision.",
+    "repository": {
+      "cwd": "/Users/medhat.galal/Desktop/Core-Prompts",
+      "branch": "main",
+      "head": "ccf62d9188697fc4323c310ce37140a96f92cddc",
+      "dirty_at_start": false,
+      "dirty_at_finish": false
+    }
+  },
+  "shared_hashes": {
+    "examples/teaching-contract.md": "b5dca88642fdd2b26486d956a1ecb0ea823cb4e739f8a02fb5e8990635abae95",
+    "examples/experiment-plan.md": "aae998c1c4badf4132ed3b2f6f4cb99b3b35446a676b06bd9dce38da28a5718b",
+    "examples/round-two-clarifications.md": "39bfdb6c9052c85909adcf2f7fd689e2f22fd99601b7af6a42a528a2e2d46e11",
+    "candidates/engos-quality-shaping-gate/SKILL.md": "256a0c82438468bf70098f269852ac9fc9b285aa752f1390fa06433b4477c2eb",
+    "candidates/engos-quality-shaping-gate/resources/gates.md": "56afad00973988186824b82f8a5ca7937477a001ad76c2b3ebac33f9eb7e8620",
+    "candidates/engos-quality-shaping-gate/resources/rubrics.md": "08b066ebca4927958619b1ad5396d1ab4948a84a16e6584084835cb77b8b27f2",
+    "examples/review-round-1-content.json": "9bf18e521f6206828ccc602a883c477e2c06bb10e8c27f702735cc0e58488b7a",
+    "examples/review-round-1-render.json": "d525764d938ba62290479ddf6077381a0bbbde8fcd5b29c4383705b3da734acf",
+    "examples/round-one-render-observations.md": "0d67d4e0b86107a09aa6afb795bf0cdf70b54cf03c7f9e971d4a67f70505e5a3"
+  },
+  "cases": [
+    {
+      "case": "engos-example-model-capacity",
+      "case_root": "/private/tmp/engos-full-shaping-design/reports/engos-design-shaping/examples/engos-example-model-capacity",
+      "last_supported_gate": "G2",
+      "reached_stage": "Shaped draft",
+      "gates": {
+        "G0": {
+          "verdict": "pass",
+          "evidence": "round-2/intake.md:5-22",
+          "reason": "Original request retained verbatim; fixture facts, missing research and unselected catalog direction are distinguished."
+        },
+        "G1": {
+          "verdict": "pass",
+          "evidence": "round-2/framed.md:5-20; round-2/decisions.md:7-10",
+          "reason": "User problem, desired semantics, two-engineer-day appetite, walk-away and four research questions are explicit. No response encoding or implementation is selected in the frame."
+        },
+        "G2": {
+          "verdict": "pass_within_teaching_premises",
+          "evidence": "round-2/research-notes.md:7-12; input.md:18-28",
+          "reason": "All four questions have premise-backed answers covering input units, absence, additive compatibility, authorization, activation, revision consistency and bounded workload."
+        },
+        "G3": {
+          "verdict": "not_passed",
+          "semantic_content": "complete_for_declared_scope",
+          "numeric_threshold": "fail",
+          "visual_status": "not_certified_by_this_review"
+        },
+        "G4": {
+          "verdict": "not_assessed_or_certified"
+        }
+      },
+      "semantic_assessment": {
+        "blocking_content_findings": [],
+        "coverage": "The 589-word pitch connects the guiding use case, intended business win, appetite, In/Out/Later, polish-only cuts and kill criteria. C1-C4, A1-A5, S1-S5, R1-R4 and three workstream slices cover the selected interfaces, security responsibilities, negative space and future acceptance.",
+        "diagram_content": "Component, sequence and data-flow sources agree on the existing config/API boundary, authorization, active revision and proposed copy-or-omit response extension.",
+        "evidence_limit": "The ten-case schema receipt supports optional-positive-integer shape only. It does not prove exact mapping, legacy behavior, original-field preservation, input-token units, authorization or revision consistency. The draft states this correctly."
+      },
+      "team_scores": {
+        "Simplicity": [4, "round-2/pitch.md:16-18: one optional scalar through an existing additive contract; smallest sufficient implementation has not been demonstrated."],
+        "Testability": [4, "round-2/contracts.md:20-28: A1-A5 provide precise observable checks; application checks remain unexecuted."],
+        "Security": [4, "round-2/security-owners.md:7-11: access, metadata, activation and interpretation responsibilities are explicit; controls were not exercised."],
+        "Architecture": [4, "round-2/contracts.md:7-10: existing interfaces and proposed extension are separated; internals are appropriately left unspecified."],
+        "Cost": [4, "round-2/research-notes.md:10: at most one million scalar lookups/day, no new storage or provider calls; no measured resource cost."],
+        "Feasibility": [4, "input.md:18-26: additive tolerance, matching units and config validation support the bounded proposal without a material unanswered seam."],
+        "Confidence": [3, "round-2/contracts.md:30-36: schema-only evidence does not exercise the proposed API/consumer behavior."]
+      },
+      "pitch_scores": {
+        "Problem clarity": [4, "round-2/pitch.md:7-10: late limit discovery and information delivery are clear; actual prevention and measured benefit are not overclaimed."],
+        "Appetite fit": [4, "round-2/pitch.md:14,22-24: original appetite and walk-away remain; indivisible core and polish-only cuts are honest."],
+        "Solution sharpness": [4, "round-2/pitch.md:16-18: exact positive copy, omission for unknown and same-revision behavior are unambiguous."],
+        "Contract quality": [4, "round-2/contracts.md:7-10,20-28: payload meaning, failures, compatibility and acceptance are sufficiently specific without invented endpoints."],
+        "Boundary discipline": [4, "round-2/pitch.md:22-38: no selection, provider, required-UI or security expansion; slices inherit the constraints."]
+      },
+      "means": {
+        "team_sum": 27,
+        "team_mean": 3.857143,
+        "pitch_sum": 20,
+        "pitch_mean": 4.0,
+        "overall_sum": 47,
+        "overall_mean": 3.916667,
+        "all_dimensions_at_least_3": true,
+        "overall_at_least_4": false
+      },
+      "unresolved_gaps": [
+        {
+          "kind": "numeric_readiness",
+          "finding": "Overall remains 47/12, below 4. Confidence has not acquired relevant integrated evidence.",
+          "owner": "Controller",
+          "next_action": "Retain the score and draft status. Do not turn unchanged-seam production tests into a prerequisite merely to improve the score."
+        },
+        {
+          "kind": "visual_and_receipt_scope",
+          "finding": "Current sequence bytes supersede the author manifest; final render/style correspondence is outside this verdict.",
+          "owner": "Controller",
+          "next_action": "Bind any separate visual receipt to the final enumerated source hashes."
+        }
+      ],
+      "round1_comparison": {
+        "resolved": [
+          "Decision-facing pitch reduced from the recorded 1366 words to a verified 589.",
+          "Cuts of already-excluded work replaced with an explicit indivisible core and polish-only cuts.",
+          "A1-A5 sharpen exact known/absent, legacy, invalid-candidate and denied-access expectations."
+        ],
+        "persisting": [
+          "Confidence remains 3 and overall remains 3.92 when rounded.",
+          "Schema shape evidence does not resolve integrated-behavior limits.",
+          "Round-1 sequence failure and missing data-flow rendering cannot be declared visually resolved by this semantic review."
+        ],
+        "score_change": {
+          "team": 0,
+          "pitch": 0,
+          "overall": 0
+        },
+        "interpretation": "Useful editorial and acceptance improvements without a rubric-score improvement or capability-promotion claim."
+      },
+      "file_hashes": {
+        "input.md": "3674653a028c6ef3cfc8ecd7dff600d8adb1c929ce128ca4f7b3c4db73c0ccc2",
+        "round-2/intake.md": "4618f558c6b232ecff33d549348a67cc0e8f1ab230c6bedc0a1571c6d8df3b06",
+        "round-2/framed.md": "9abfe30000e265b2b985780b2c27377f26b61901f37db6fd415d065e74cd5e03",
+        "round-2/decisions.md": "6e3775cf7e1924545db26b89305e1bc0d6e32a916507a796c6ed45e91d336bb3",
+        "round-2/research-notes.md": "8545373884f654b4a9c59c7ab167a4e07a515f504d4a479882513e2e0033bffb",
+        "round-2/pitch.md": "01d92fd1a31736788e69013b242bd9142f3c88b01ccae31144ff00851b1f3a8f",
+        "round-2/contracts.md": "b600499bd4c28fe1a4b3b9a3ff25594309481d80ae2af87823270a1c1dab3695",
+        "round-2/security-owners.md": "adb7615f0326a64efb709e2132770e483ba8a6ccc91b88361911c5ef1ff2a3e9",
+        "round-2/component.mmd": "f15f6fb6c6c1cc936de4f4ebeb2887e790c91118baacb18b1c2a0ce051073543",
+        "round-2/sequence.mmd": "fe73f39d292d8622f92c4e986559a39e62ff569a4f698ccb7df3288b3a509573",
+        "round-2/data-flow.mmd": "49bd53a7e5d2c55d4fad323a6555611d84b20988177453eed52870a338a5f571",
+        "round-2/journal.md": "0f98c27b10f7c1b8e51a42700360d67ecba6f80e4f76b56f4f68d84543fd2fd8",
+        "contract-checks/engos-example-capacity.schema.json": "f02c8c25593be28f32861aa3d6311d2f8f2d475a0a77e708e5b0f731d103ea86",
+        "contract-checks/cases.json": "88c8504791e602c78e77bfb5b958fa928e3dccf55474c93bcc43549f3603e862",
+        "contract-checks/observed.json": "08c531d0eba3e5e29a936adec36c93fc3d98620774d64c0d435d1337fc8382ca"
+      }
+    },
+    {
+      "case": "engos-example-insight-visibility",
+      "case_root": "/private/tmp/engos-full-shaping-design/reports/engos-design-shaping/examples/engos-example-insight-visibility",
+      "last_supported_gate": "G2",
+      "reached_stage": "Shaped draft",
+      "gates": {
+        "G0": {
+          "verdict": "pass",
+          "evidence": "round-2/intake.md:5-21",
+          "reason": "Original aspiration preserved; I1/I2 identified as newly supplied decisions and facts; no publication mechanism selected."
+        },
+        "G1": {
+          "verdict": "pass",
+          "evidence": "round-2/framed.md:5-26; round-2/decisions.md:7-13",
+          "reason": "I1 supplies the previously missing outcome, appetite, success and kill decisions. The frame remains outcome-oriented and asks four bounded research questions."
+        },
+        "G2": {
+          "verdict": "pass_within_teaching_premises",
+          "evidence": "round-2/research-notes.md:7-12,23-25",
+          "reason": "Approved fields, existing replacement semantics, credentials/roles, workload and retention are supplied. Pre-activation history is validly excluded; proposed failure behavior is not misrepresented as existing implementation."
+        },
+        "G3": {
+          "verdict": "not_passed",
+          "semantic_content": "complete_for_declared_scope",
+          "numeric_threshold": "fail",
+          "visual_status": "not_certified_by_this_review"
+        },
+        "G4": {
+          "verdict": "not_assessed_or_certified"
+        }
+      },
+      "semantic_assessment": {
+        "blocking_content_findings": [],
+        "coverage": "The 526-word pitch includes the PM use case, support-reporting benefit, one-week appetite, protected two-count outcome, In/Out/Later, ordered cuts and explicit kill conditions. C1-C5, A1-A6, S1-S5, R1-R4 and three workstreams cover selected interfaces and responsibilities.",
+        "diagram_content": "All three sources consistently show proposed aggregate-only publication through existing intake and role-gated reporting. Customer content has no outbound data-flow path.",
+        "bounded_builder_choices": "Scheduling details, progress presentation and recovery internals remain builder choices, constrained by serialization, current-source reconciliation, quota, retention and truthful incomplete status. They are not asserted as existing capabilities.",
+        "evidence_limit": "Idempotent replacement does not establish exactly-once delivery, sender ordering, quota availability or complete publication; the draft explicitly preserves these distinctions."
+      },
+      "team_scores": {
+        "Simplicity": [4, "round-2/pitch.md:15-17: existing aggregates and intake avoid a new analytics service; the publication step remains proposed."],
+        "Testability": [4, "round-2/contracts.md:19-24: A1-A6 cover projection, replacement, access, failures and absence; checks are unexecuted."],
+        "Security": [4, "round-2/security-owners.md:7-13: sender minimization, source credential and reporting role have explicit owners and negative responsibilities."],
+        "Architecture": [4, "round-2/contracts.md:7-11: existing receiving contracts and new publication policy are clearly separated."],
+        "Cost": [4, "round-2/contracts.md:13: 1000 nominal records/day against 10000 quota; retries and available quota remain bounded rather than assumed free."],
+        "Feasibility": [4, "round-2/research-notes.md:7-12: approved S1 and existing intake/access premises support the selected integration."],
+        "Confidence": [3, "round-2/pitch.md:3; round-2/contracts.md:15-26: no integrated publication or acceptance observation is supplied."]
+      },
+      "pitch_scores": {
+        "Problem clarity": [4, "round-2/pitch.md:7-9: I1 selects daily adoption visibility without inventing ranking or content-quality defects."],
+        "Appetite fit": [4, "round-2/pitch.md:13,21-23: one engineer/week, activation-forward scope and protected core are explicit."],
+        "Solution sharpness": [4, "round-2/pitch.md:15-17,27-35: aggregate projection, replacement, access and incomplete publication form a coherent flow."],
+        "Contract quality": [4, "round-2/contracts.md:7-26: field meaning, key identity, replacement, failures and future acceptance are concrete at shaping depth."],
+        "Boundary discipline": [4, "round-2/security-owners.md:7-13; round-2/pitch.md:21-23: no content leakage, new metrics, new service or hidden history requirement."]
+      },
+      "means": {
+        "team_sum": 27,
+        "team_mean": 3.857143,
+        "pitch_sum": 20,
+        "pitch_mean": 4.0,
+        "overall_sum": 47,
+        "overall_mean": 3.916667,
+        "all_dimensions_at_least_3": true,
+        "overall_at_least_4": false
+      },
+      "unresolved_gaps": [
+        {
+          "kind": "numeric_readiness",
+          "finding": "The bounded contract proposal is supported, but integrated confidence remains 3 and overall is below 4.",
+          "owner": "Controller",
+          "next_action": "Retain draft status and current scores. A future evidence-bearing iteration should distinguish successful delivery from duplicate replacement and truthful partial failure."
+        },
+        {
+          "kind": "visual_and_receipt_scope",
+          "finding": "Current sequence bytes supersede the author manifest; no visual verdict is supplied here.",
+          "owner": "Controller",
+          "next_action": "Associate separate final render observations with the current source revision."
+        }
+      ],
+      "round1_comparison": {
+        "resolved": [
+          "I1 explicitly resolves the four missing framing decisions.",
+          "I2 supplies approved schema, replacement, access, volume, retention and activation-forward boundaries.",
+          "Fresh G1/G2 assessments precede the new shaped draft; the prior stop is preserved as correct."
+        ],
+        "persisting": [
+          "No production or integrated-delivery evidence is supplied.",
+          "Visual and placement readiness remain outside this review."
+        ],
+        "round1_scores": null,
+        "score_delta": null,
+        "interpretation": "Progress from a correct G1 stop to a supported shaped draft results from additional input. There is no comparable round-1 pitch score or demonstrated capability improvement."
+      },
+      "file_hashes": {
+        "input.md": "89b941a77ff191a870aec666b8b7f642a0f24cedc2abe6d4afcb06c3f7defe1a",
+        "round-2/intake.md": "aa81f4fb46796be952ba1ace1d35eb1bdfd1f1a8f6e0c9a57af2d1c9972ba724",
+        "round-2/framed.md": "2262394cc009ef696159f6dd93f8846f0dcfc52ffbc9cdfa64ee3c239f78c44c",
+        "round-2/decisions.md": "710993ad44487f2336672cb68c9155291ffddfd1988b8f5e5591ee00280acf70",
+        "round-2/research-notes.md": "066580496b1a0f877fc339c710ea6d3cc7b3c8dfb9f776fccdeb56dc0cd7d5c8",
+        "round-2/pitch.md": "14f8f60cc5a62d5f9ceeb970af313d8f5cc6077ebc6e33741a9e722155aad02d",
+        "round-2/contracts.md": "7451198733500851a8ffafa98336aeaed731a0b5780ee1f5582d176dda61c1e3",
+        "round-2/security-owners.md": "6e74590ff18f99c1a3d80b1cfeeb8e18675a40070de146dab1941f351cff3220",
+        "round-2/component.mmd": "5c9181e61db5328841e580460c528da92dfa9f56b43447ffea33a3bc664ee496",
+        "round-2/sequence.mmd": "d4347a2f992a483e7367c382d4f2df0a56179ed15d6a3a0aad279e0d8db16626",
+        "round-2/data-flow.mmd": "ffc8f805d8407a3a1d3d761d387d19ac3c0e7cb70d0006473f8895c23cc93f90",
+        "round-2/journal.md": "04fa6e00ccbd258d0177736f92b368487d8b701db144fd054fbdef9f23652c92"
+      }
+    },
+    {
+      "case": "engos-example-config-deployment",
+      "case_root": "/private/tmp/engos-full-shaping-design/reports/engos-design-shaping/examples/engos-example-config-deployment",
+      "last_supported_gate": "G2",
+      "reached_stage": "Shaped draft",
+      "gates": {
+        "G0": {
+          "verdict": "pass",
+          "evidence": "round-2/intake.md:5-28",
+          "reason": "Original request retained; C2-C4 are attributed as new premises, with the packaging direction unselected at intake."
+        },
+        "G1": {
+          "verdict": "pass",
+          "evidence": "round-2/framed.md:5-25",
+          "reason": "Problem, appetite, preservation outcome, exclusions and five research questions are explicit. Supplied compatibility and preservation constraints are not assistant-selected architecture."
+        },
+        "G2": {
+          "verdict": "pass_within_teaching_premises",
+          "evidence": "round-2/research-notes.md:7-11; round-2/decisions.md:7-14",
+          "reason": "C3 supplies commit-time comparison and full rollback. C2-C4 resolve empty/currency-only/read-failure semantics. C4 bounds complete package occupancy at 24100, including 4000 other records. No original-round unsupported closure is reused."
+        },
+        "G3": {
+          "verdict": "not_passed",
+          "semantic_content": "complete_for_declared_scope",
+          "numeric_threshold": "fail",
+          "visual_status": "not_certified_by_this_review"
+        },
+        "G4": {
+          "verdict": "not_assessed_or_certified"
+        }
+      },
+      "semantic_assessment": {
+        "blocking_content_findings": [],
+        "coverage": "The 550-word pitch covers use case, business win, indivisible protected core, one-week appetite, In/Out/Later, ordered editorial cuts and objective kills. C01-C08, V1-V6, S01-S07 and P1-P7 cover contracts, state distinctions, ownership, risks and W1-W3 proof criteria.",
+        "diagram_content": "Sources preserve source/target boundaries, explicit admin authority, commit-time conflict with whole-package rollback, additive state semantics and normal scheduled analysis consumption.",
+        "capacity": {
+          "activity_records": 20000,
+          "currency_records": 100,
+          "other_records": 4000,
+          "maximum_total": 24100,
+          "stated_capacity": 25000,
+          "headroom": 900,
+          "qualification": "Calculated from new C4 premises; not measured occupancy or performance."
+        },
+        "force_semantics": "The fresh-attempt interaction is explicitly proposed. It preserves the supplied distinction between authorized override of a reviewed state and an unapproved edit occurring before commit. No locking implementation or existing UI behavior is invented.",
+        "evidence_limit": "P1-P7 are future acceptance criteria. C3 is contract evidence within the exercise, not an executed concurrency test."
+      },
+      "team_scores": {
+        "Simplicity": [4, "round-2/pitch.md:13-23: existing deployment and transaction paths are reused; separate transactions and recomputation are excluded."],
+        "Testability": [4, "round-2/research-notes.md:19-25: P1-P7 now cover valid states, failed reads, intervening edits, force, bounds and scheduled consumption."],
+        "Security": [4, "round-2/security-owners.md:7-15: importer, admin and transaction responsibilities remain distinct, including subsequent-edit protection."],
+        "Architecture": [4, "round-2/contracts.md:9-16: explicit commit invariant resolves the prior coupling gap without inventing transaction internals."],
+        "Cost": [4, "round-2/research-notes.md:11: all supported record classes are now bounded; actual latency and resource costs remain unmeasured."],
+        "Feasibility": [4, "round-2/research-notes.md:7-11: C2-C4 discharge the material fixture questions; proposed integration is not represented as already implemented."],
+        "Confidence": [3, "round-2/research-notes.md:15-25: contract-backed acceptance is well defined, but none of P1-P7 is an observed integrated result."]
+      },
+      "pitch_scores": {
+        "Problem clarity": [4, "round-2/pitch.md:7: repeated entry, target preservation and older-package compatibility are explicit."],
+        "Appetite fit": [4, "round-2/pitch.md:9,25-27: original week/two-engineer bound and indivisible core are honest; no false functional cut is offered."],
+        "Solution sharpness": [4, "round-2/pitch.md:13-19: truthful export, additive interpretation, commit protection and scheduled consumption connect coherently."],
+        "Contract quality": [4, "round-2/contracts.md:9-29: C01-C08 and V1-V6 resolve race, absence, empty, currency-only, malformed and failed-read behavior."],
+        "Boundary discipline": [4, "round-2/pitch.md:25-31; round-2/security-owners.md:7-15: deletion, oversized packages, unrelated changes and immediate recomputation are explicitly excluded."]
+      },
+      "means": {
+        "team_sum": 27,
+        "team_mean": 3.857143,
+        "pitch_sum": 20,
+        "pitch_mean": 4.0,
+        "overall_sum": 47,
+        "overall_mean": 3.916667,
+        "all_dimensions_at_least_3": true,
+        "overall_at_least_4": false
+      },
+      "unresolved_gaps": [
+        {
+          "kind": "numeric_readiness",
+          "finding": "The earlier material semantic gaps are closed by new premises, but integrated confidence remains 3 and the overall mean remains below 4.",
+          "owner": "Controller",
+          "next_action": "Preserve the distinction between resolved exercise contracts and unexecuted implementation acceptance; retain draft status."
+        },
+        {
+          "kind": "visual_and_receipt_scope",
+          "finding": "The current sequence hash supersedes the author manifest. Overflow/style repair and final pixel correspondence are not certified here.",
+          "owner": "Controller",
+          "next_action": "Bind separate visual findings to the final sequence and accompanying source hashes."
+        }
+      ],
+      "round1_comparison": {
+        "resolved": [
+          {
+            "id": "C-RACE",
+            "evidence": "round-2/contracts.md:13-14; round-2/research-notes.md:22-23",
+            "resolution": "C3 supplies commit-time comparison/full rollback; P4 explicitly places an edit after validation and before commit, including after an earlier force choice."
+          },
+          {
+            "id": "C-EMPTY",
+            "evidence": "round-2/contracts.md:24-29",
+            "resolution": "V1-V6 distinguish truthful absence, valid empty, currency-only, valid nonempty including zero, invalid data and failed source reads."
+          },
+          {
+            "id": "C-CAPACITY",
+            "evidence": "round-2/decisions.md:14; round-2/contracts.md:16",
+            "resolution": "C4 supplies the missing other-record bound and explicit supported envelope. Original unconditional fit is withdrawn rather than retrospectively justified."
+          },
+          {
+            "id": "EDITORIAL",
+            "evidence": "round-2/pitch.md:9,25-33",
+            "resolution": "Pitch reduced from the recorded 1347 words to a verified 550; Later is product scope, and the protected core is explicitly indivisible."
+          }
+        ],
+        "persisting": [
+          "No race test or production execution is evidenced or required to accept C3 as a teaching premise.",
+          "Round-1 rendering failures cannot be declared visually resolved from source inspection."
+        ],
+        "score_changes": {
+          "team": {
+            "Simplicity": "4 -> 4",
+            "Testability": "3 -> 4",
+            "Security": "3 -> 4",
+            "Architecture": "3 -> 4",
+            "Cost": "2 -> 4",
+            "Feasibility": "2 -> 4",
+            "Confidence": "2 -> 3"
+          },
+          "pitch": {
+            "Problem clarity": "4 -> 4",
+            "Appetite fit": "3 -> 4",
+            "Solution sharpness": "3 -> 4",
+            "Contract quality": "2 -> 4",
+            "Boundary discipline": "3 -> 4"
+          },
+          "overall_exact": "34/12 -> 47/12"
+        },
+        "interpretation": "The artifact improves on the unchanged rubric because material contract gaps were answered and propagated. Added C2-C4 inputs prevent attributing the improvement to capability performance alone."
+      },
+      "file_hashes": {
+        "input.md": "ca990acce7eb1c85a049e4c0f655930696f7f98802beb2e4e302840af5671174",
+        "round-2/intake.md": "1966f322eca605c8b381bcbd94bd4c72348ebde6bd4295d86e77fa932213ccf5",
+        "round-2/framed.md": "073145ae7a0357ce7a999c1efa2c20f3096ac3c89bca604309792554d9cf6e89",
+        "round-2/decisions.md": "5fe37e5df4ba5bb9c3bf524519b65e49a815072ebcb000fee5b81d34d9a31a8c",
+        "round-2/research-notes.md": "1cf232d9657897ef778e9ad348a12516a6990d84e5f939d295499aaf9d9d329b",
+        "round-2/pitch.md": "acbf72240548175fb253bed7b8652108919810e6b19e78917bf0f3e78aceb34f",
+        "round-2/contracts.md": "961a2cd74a66d5190332da22140e26bd9afff4ab55b50d5cf014814b0ee9b8c8",
+        "round-2/security-owners.md": "d2ac557a438914bdd33f56c92bded7ceeb9f5ac5afa9d14033dca1931143b4ba",
+        "round-2/component.mmd": "f4f84211f97c00bcd769a1a00740608e32e7d69d57c2b4937fe111baa3c84197",
+        "round-2/sequence.mmd": "c0a628664a620d2f91b24278aa7bda02046d4ab1ce2f01218fa7f800bc2d711a",
+        "round-2/data-flow.mmd": "9e79050034e104024f3481b27e4198247a65c12051e3e1dce8edaaa572cb27a1",
+        "round-2/journal.md": "71c91f3987b4f77e54408153510cb9e6c44db45439f48c62084647701c3565c0"
+      }
+    },
+    {
+      "case": "engos-example-unified-chat",
+      "case_root": "/private/tmp/engos-full-shaping-design/reports/engos-design-shaping/examples/engos-example-unified-chat",
+      "last_supported_gate": "G1",
+      "reached_stage": "Research",
+      "gates": {
+        "G0": {
+          "verdict": "pass",
+          "evidence": "round-2/intake.md:5-25",
+          "reason": "Original aspiration preserved; known decisions, unsupported assumptions, missing evidence and reuse candidate are distinguished."
+        },
+        "G1": {
+          "verdict": "pass",
+          "evidence": "round-2/framed.md:5-22; round-2/decisions.md:5-12",
+          "reason": "Persistence and all-mode preview remain core, streaming activity is Later, and the month/two-engineer appetite is unchanged. No topology or replacement delivery mechanism is selected."
+        },
+        "G2": {
+          "verdict": "needs_spike",
+          "evidence": "round-2/research-notes.md:7-10,18-20",
+          "reason": "U-Q1, U-Q2 and U-Q4 remain materially unresolved. U-Q3 correctly establishes that the unsupported prototype label supplies no clearance."
+        },
+        "G3": {
+          "verdict": "not_reached"
+        },
+        "G4": {
+          "verdict": "not_reached"
+        }
+      },
+      "semantic_assessment": {
+        "stop_correct": true,
+        "assessment": "The example correctly stops before Shaped. U-S1-U-S3 now specify owner, proposed effort cap, evidence provenance, observable positive/negative outcomes and decision consequences. Their combined five-engineer-day cap is proposed within the month, not approved spending or completed work.",
+        "unwritten_artifacts": "No pitch, diagrams, contracts or security matrix is required at this correct stop.",
+        "invented_evidence_found": false
+      },
+      "team_scores": null,
+      "pitch_scores": null,
+      "means": null,
+      "score_reason": "No shaped draft exists; assigning twelve pitch scores would score unwritten work.",
+      "unresolved_gaps": [
+        {
+          "id": "U-Q1",
+          "finding": "Persistence API existence does not establish combined-session, reload or navigation continuity.",
+          "evidence": "round-2/research-notes.md:7,18",
+          "owner": "Engineering",
+          "required_evidence": "Attributable contract and run records covering reload during planning, after entering building and navigation away/back, with conversation/session identity and access integrity."
+        },
+        {
+          "id": "U-Q2",
+          "finding": "Preview/auth specifications, supported-mode inventory and per-mode integration outcomes are absent.",
+          "evidence": "round-2/research-notes.md:8,19",
+          "owner": "Engineering",
+          "required_evidence": "Current mode inventory and authorized/denied/expired-session preview results for every supported mode."
+        },
+        {
+          "id": "U-Q4",
+          "finding": "Moving streaming activity Later does not establish that the retained core is independent of unfinished sub-agent functionality.",
+          "evidence": "round-2/research-notes.md:10,20",
+          "owner": "Engineering",
+          "required_evidence": "Source/specification dependency trace demonstrating independence or completed compatible required dependencies."
+        }
+      ],
+      "next_permitted_action": "Receive the missing Engineering evidence and recheck G2. ProductOwner owns any changed core decision; that would require G1 reconciliation first. This review authorizes no spike execution.",
+      "round1_comparison": {
+        "resolved": [
+          "U2 resolves preview/all-auth-mode scope and permits streaming activity Later.",
+          "Spike requests now specify concrete transition cases, negative auth checks, evidence provenance, caps and decision impacts."
+        ],
+        "persisting": [
+          "Persistence/session compatibility remains unproved.",
+          "All-mode preview compatibility remains unproved.",
+          "Retained-core dependency on unfinished functionality remains unresolved.",
+          "Unsupported prototype claims remain insufficient."
+        ],
+        "round1_scores": null,
+        "score_delta": null,
+        "interpretation": "A clearer, correctly repeated G2 stop. Scope clarification is not seam proof or quantified capability improvement."
+      },
+      "file_hashes": {
+        "input.md": "457f010413727217e1ef55d5592cae07f60c1bd4ac0ac6bc7384b9fed24a1328",
+        "round-2/intake.md": "6089403f5a55c4e2623d4e2d252946021ca8ad1761041d6d5d8b0295aecc45ad",
+        "round-2/framed.md": "f43de6a78e787b16c190d2036756bda6f147c4b77e0147b0caafe4619b2e509c",
+        "round-2/decisions.md": "8a8d52437f109c50fd70e984e30e8874eb27e670f152c9b93f20c8cd12f54d36",
+        "round-2/research-notes.md": "87481b8813a0f9bcee553d609bf366cb5ffe43f5717e8153a09586a91fabdf13",
+        "round-2/journal.md": "18510d93d5eae02e28c842aaf71bb301da41038d6e727c94edbe30d2cdb26803"
+      }
+    }
+  ],
+  "three_hardest_questions": [
+    {
+      "question": "What attributable evidence would establish that unified chat preserves the same authorized conversation through reload/navigation, supports preview in every authentication mode, and does not depend on unfinished functionality?",
+      "why_hard": "These are unresolved material seams, not missing prose. Reuse and the old prototype label answer none of them.",
+      "owner": "Engineering; ProductOwner for any reshape",
+      "next_iteration": "Supply U-S1-U-S3 evidence or retain G2 needs_spike within the unchanged month."
+    },
+    {
+      "question": "In configuration deployment, how would a future acceptance observation distinguish an authorized override of the reviewed target state from a later unapproved edit, while proving that every package change rolls back and the target edit survives?",
+      "why_hard": "C3 resolves the exercise contract, but successful initial validation or a prior force choice is not an observed commit-time guarantee.",
+      "owner": "PackageImporter and deployment transaction; target admin owns force",
+      "next_iteration": "Preserve P4/P5 as the concrete interleaving checks for any separately authorized implementation validation. No production test is demanded for this content review."
+    },
+    {
+      "question": "What evidence would demonstrate end-to-end data integrity in the two smaller examples: exact same-revision capacity or honest absence for legacy callers, and unchanged account/day counts with replacement and truthful incomplete publication?",
+      "why_hard": "A valid optional-field schema and an idempotent receiving contract do not independently prove projection, caller compatibility, ordering or complete delivery.",
+      "owner": "Catalog API/consumers and InsightService/MetricsPlatform",
+      "next_iteration": "Use the existing A1-A5 and A1-A6 acceptance inventories if further validation is separately authorized; retain Confidence 3 until relevant evidence exists."
+    }
+  ]
+}

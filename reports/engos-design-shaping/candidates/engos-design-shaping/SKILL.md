@@ -125,6 +125,12 @@ inspect pixels, not just parser success. Each contract states whether it exists,
 is proposed, is broken or remains unknown; a proposal must cite the precedent it
 adapts without pretending to exist today.
 
+Include a guiding use case and business win, separate In/Out/Later boundaries,
+an ordered cut list and objective kill criteria. Explain when no safe further
+cut preserves the core outcome. Cuts never waive quality, usability or security.
+A continuation pitch records observed current state, unfinished outcome and a
+new explicit appetite decision rather than silently extending the old bet.
+
 Mark work `ready`, `needs_spike` or `excluded`. `needs_spike` that blocks the
 selected solution prevents G3 passing; excluded work has an explicit reason and
 decision reference. Mitigations bound risks without claiming to have eliminated

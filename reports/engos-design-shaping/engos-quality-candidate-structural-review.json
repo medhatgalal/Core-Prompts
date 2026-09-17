@@ -1,0 +1,281 @@
+{
+  "observed": "2026-09-17",
+  "scope": "UAC plan and judge only; no apply. Current structural heuristics are not semantic preservation or behavioral proof.",
+  "results": [
+    {
+      "slug": "engos-design-shaping",
+      "input_status": "accepted",
+      "structural_status": "structural_ready",
+      "behavioral_status": "behavioral_pending",
+      "profile": "default",
+      "scorecard": {
+        "baseline_operational_score": 2,
+        "baseline_preserved_in_resource": false,
+        "baseline_richness": 5,
+        "benchmark_readiness": 9,
+        "boundary_clarity": 8,
+        "candidate_operational_score": 2,
+        "candidate_richness": 5,
+        "description_richness": 10,
+        "intent_coverage": 10,
+        "metadata_completeness": 8,
+        "metadata_integrity": 10,
+        "operational_richness": 10,
+        "output_specificity": 10,
+        "source_fidelity": 10,
+        "surface_usability": 10,
+        "title_clarity": 10
+      },
+      "passes": [
+        {
+          "effective_sha256": "10e5bced372a2fc104a78b596b6a9f28341c6960efda73ea4d7b59e4a49e00d8",
+          "status": "structural_ready",
+          "blockers": [],
+          "repair_requests": [],
+          "dimension_inventory": [
+            {
+              "dimension": "source_fidelity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "operational_richness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "metadata_integrity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "benchmark_readiness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "semantic_consistency",
+              "status": "no_detected_conflict_not_semantic_proof"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "engos-design-frame-from-vague",
+      "input_status": "accepted",
+      "structural_status": "structural_ready",
+      "behavioral_status": "behavioral_pending",
+      "profile": "default",
+      "scorecard": {
+        "baseline_operational_score": 0,
+        "baseline_preserved_in_resource": false,
+        "baseline_richness": 1,
+        "benchmark_readiness": 9,
+        "boundary_clarity": 8,
+        "candidate_operational_score": 0,
+        "candidate_richness": 1,
+        "description_richness": 10,
+        "intent_coverage": 10,
+        "metadata_completeness": 8,
+        "metadata_integrity": 10,
+        "operational_richness": 10,
+        "output_specificity": 10,
+        "source_fidelity": 10,
+        "surface_usability": 10,
+        "title_clarity": 10
+      },
+      "passes": [
+        {
+          "effective_sha256": "5fff54d4b516fee3166f63ce11f088aa070cd542c62b9c304befad55a05af632",
+          "status": "structural_ready",
+          "blockers": [],
+          "repair_requests": [],
+          "dimension_inventory": [
+            {
+              "dimension": "source_fidelity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "operational_richness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "metadata_integrity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "benchmark_readiness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "semantic_consistency",
+              "status": "no_detected_conflict_not_semantic_proof"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "engos-quality-shaping-gate",
+      "input_status": "accepted",
+      "structural_status": "structural_ready",
+      "behavioral_status": "behavioral_pending",
+      "profile": "default",
+      "scorecard": {
+        "baseline_operational_score": 0,
+        "baseline_preserved_in_resource": false,
+        "baseline_richness": 1,
+        "benchmark_readiness": 9,
+        "boundary_clarity": 8,
+        "candidate_operational_score": 0,
+        "candidate_richness": 1,
+        "description_richness": 10,
+        "intent_coverage": 10,
+        "metadata_completeness": 8,
+        "metadata_integrity": 10,
+        "operational_richness": 10,
+        "output_specificity": 10,
+        "source_fidelity": 10,
+        "surface_usability": 10,
+        "title_clarity": 10
+      },
+      "passes": [
+        {
+          "effective_sha256": "256a0c82438468bf70098f269852ac9fc9b285aa752f1390fa06433b4477c2eb",
+          "status": "structural_ready",
+          "blockers": [],
+          "repair_requests": [],
+          "dimension_inventory": [
+            {
+              "dimension": "source_fidelity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "operational_richness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "metadata_integrity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "benchmark_readiness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "semantic_consistency",
+              "status": "no_detected_conflict_not_semantic_proof"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "engos-delivery-diagram-contract-artifacts",
+      "input_status": "accepted",
+      "structural_status": "structural_ready",
+      "behavioral_status": "behavioral_pending",
+      "profile": "default",
+      "scorecard": {
+        "baseline_operational_score": 2,
+        "baseline_preserved_in_resource": false,
+        "baseline_richness": 7,
+        "benchmark_readiness": 9,
+        "boundary_clarity": 8,
+        "candidate_operational_score": 2,
+        "candidate_richness": 7,
+        "description_richness": 10,
+        "intent_coverage": 10,
+        "metadata_completeness": 8,
+        "metadata_integrity": 10,
+        "operational_richness": 10,
+        "output_specificity": 10,
+        "source_fidelity": 10,
+        "surface_usability": 10,
+        "title_clarity": 10
+      },
+      "passes": [
+        {
+          "effective_sha256": "0900c4cf63e854f7bd8cf45bed959d208ebbf9238ef1a2e30ec3b277dccaa4ef",
+          "status": "structural_ready",
+          "blockers": [],
+          "repair_requests": [],
+          "dimension_inventory": [
+            {
+              "dimension": "source_fidelity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "operational_richness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "metadata_integrity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "benchmark_readiness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "semantic_consistency",
+              "status": "no_detected_conflict_not_semantic_proof"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "engos-delivery-artifact-embed",
+      "input_status": "accepted",
+      "structural_status": "structural_ready",
+      "behavioral_status": "behavioral_pending",
+      "profile": "default",
+      "scorecard": {
+        "baseline_operational_score": 2,
+        "baseline_preserved_in_resource": false,
+        "baseline_richness": 7,
+        "benchmark_readiness": 9,
+        "boundary_clarity": 8,
+        "candidate_operational_score": 2,
+        "candidate_richness": 7,
+        "description_richness": 10,
+        "intent_coverage": 10,
+        "metadata_completeness": 8,
+        "metadata_integrity": 10,
+        "operational_richness": 10,
+        "output_specificity": 10,
+        "source_fidelity": 10,
+        "surface_usability": 10,
+        "title_clarity": 10
+      },
+      "passes": [
+        {
+          "effective_sha256": "a401451b00b40e579f375e073e7ec5f7e3b198a3b2c74f7f667fb7f6d03f47a4",
+          "status": "structural_ready",
+          "blockers": [],
+          "repair_requests": [],
+          "dimension_inventory": [
+            {
+              "dimension": "source_fidelity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "operational_richness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "metadata_integrity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "benchmark_readiness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "semantic_consistency",
+              "status": "no_detected_conflict_not_semantic_proof"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
