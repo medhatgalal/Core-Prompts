@@ -82,7 +82,7 @@ when its package ownership is recognized and no unresolved dependency
 requires it. Replacement files are verified before predecessor files are removed.
 
 The current release retires all 11 first-party named-agent variants on Codex,
-Gemini, Claude, and Kiro (44 entrypoints), retaining all 27 skill capabilities.
+Gemini, Claude, and Kiro (44 entrypoints), retaining all 29 skill capabilities.
 The existing historical catalog and ownership receipts identify the affected
 packages; no second registry is needed. A recognized owned retired agent maps
 to the exact same capability's skill on the same provider. Its skill is retained

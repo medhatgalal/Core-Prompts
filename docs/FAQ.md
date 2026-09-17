@@ -13,7 +13,7 @@ Start with the job and its skill. A named agent can make an execution configurat
 
 Independent workers can isolate a review from the author's context and perform separate investigations concurrently. They also need context and resources, consume additional model and tool work, and can lose information during handoff. A generic independent worker can apply a skill when the host supports it, but must actually receive its instructions and required resources. It is not automatically equivalent to a named configuration: permissions, startup context, model settings, and delegation support can differ.
 
-Core-Prompts currently ships 27 skills and no named-agent configurations across the five providers. Generic workers remain available when the host supports them. Tooling still supports future native adapters for Codex, Gemini, Claude, and Kiro, but adding one requires your explicit approval plus independent execution-need review. Grok has no repository-generated agent adapter; this is a repository boundary, not a claim about its native capabilities.
+Core-Prompts currently ships 29 skills and no named-agent configurations across the five providers. Generic workers remain available when the host supports them. Tooling still supports future native adapters for Codex, Gemini, Claude, and Kiro, but adding one requires your explicit approval plus independent execution-need review. Grok has no repository-generated agent adapter; this is a repository boundary, not a claim about its native capabilities.
 
 ## Can UAC add an agent automatically?
 

@@ -1,7 +1,7 @@
 ---
 name: "engos-audit-pitch-review"
-description: "Create, review, score, improve, or export Shape Up pitches by checking problem framing, appetite, architecture, dependencies, integration proof, risks, and betting readiness. Use for pitch artifacts; do not use for feature status or general proposal synthesis."
-version: "v1.1"
+description: "Create, review, score, improve, or export Shape Up pitches by checking problem framing, appetite, architecture, rendered diagram and contract artifacts, dependencies, integration proof, risks, and betting readiness. Use for pitch artifacts; do not use for feature status or general proposal synthesis."
+version: "v1.2"
 ---
 # Pitch — Shape Up Pitch Creation, Review, Scoring, and Improvement
 
@@ -67,6 +67,8 @@ A pitch that skips this work pushes the risk into build week 1, where it's too l
 - Sequence diagram or listing: how does data flow through components?
 - API specs: what APIs does this pitch PROVIDE? What APIs does it REQUIRE?
 - Contract state for each API: exists / broken / missing
+- Artifact bundle status: component, sequence, and data-flow Mermaid source; rendered/placed status per target surface
+- Security-owner matrix: responsibility, owner, enforcement/control, and evidence or explicit gap
 
 🔗 Dependencies & Decoupling
 - Which teams/streams does this cross?
@@ -279,6 +281,38 @@ To reach bet-ready (score 8+): [concrete deliverables list]
 
 ### Gate Condition
 **If Architecture = 0 AND the pitch crosses an architectural seam, the total score is CAPPED at 5/10** regardless of other dimensions. A pitch with no technical substance cannot pass the betting threshold on the strength of framing alone.
+
+### Shaping Artifact Completeness Gate
+
+When a pitch names or crosses an architectural seam, the review must inspect an
+artifact manifest from `engos-delivery-diagram-contract-artifacts` before it can
+be `yes` or "Ready to bet". The required bundle is:
+
+| Artifact | Required evidence |
+| --- | --- |
+| Component diagram | Mermaid source, named components/seams, evidence references, render status |
+| Sequence diagram | Mermaid source, representative flow, contract/edge labels, render status |
+| Data-flow diagram | Mermaid source, data movement/stores, render status |
+| API / contracts table | Provided and required interfaces, contract state, owner/action, evidence |
+| Security-owner matrix | Responsibility, owner, control/enforcement, evidence or explicit gap |
+| Surface placement | Target surface, adapter, source identity, `placed`/`passthrough`/`blocked` status |
+
+The gate fails closed when a required artifact is absent, unsupported, fabricated,
+or marked only as an unverified assumption. A `blocked` placement can remain a
+named rabbit hole only when the review records the exact human/platform step,
+keeps the source bundle intact, and does not claim bet-ready status. A pitch
+that does not cross an architectural seam may omit the bundle only if the
+review explains why and records the simpler evidence path.
+
+Use the existing score dimensions for judgment; this gate is a completeness
+prerequisite, not a new weighted score. The review output must report:
+
+- artifact bundle identity and source hash/reference
+- each required artifact's authoring, render, and placement status
+- no-fabrication findings
+- the weakest artifact dimension and one concrete iteration or mitigation
+- whether the result is `yes`, `partial`, or `no` under the existing shaped
+  status rules
 
 ### Integration Proof Graduated Scale
 

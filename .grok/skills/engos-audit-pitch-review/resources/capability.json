@@ -4,7 +4,7 @@
   "layers": {
     "minimal": {
       "capability_type": "skill",
-      "summary": "Create, review, score, improve, or export Shape Up pitches by checking problem framing, appetite, architecture, dependencies, integration proof, risks, and betting readiness. Use for pitch artifacts; do not use for feature status or general proposal synthesis.",
+      "summary": "Create, review, score, improve, or export Shape Up pitches by checking problem framing, appetite, architecture, rendered diagram and contract artifacts, dependencies, integration proof, risks, and betting readiness. Use for pitch artifacts; do not use for feature status or general proposal synthesis.",
       "role": "analyst",
       "domain_tags": [
         "architecture",
@@ -128,7 +128,7 @@
       "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
       "review_status": "ready_for_orchestrator_review",
       "display_name": "Pitch \u2014 Shape Up Pitch Creation, Review, Scoring, and Improvement",
-      "version": "v1.1"
+      "version": "v1.2"
     },
     "expanded": {
       "relationship_suggestions": [
@@ -188,7 +188,7 @@
   ],
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "engos-audit-pitch-review",
-  "shared_summary": "Creates, reviews, scores, improves, and critiques Shape Up pitch documents. Use when working with pitches at any stage: from bootstrapping a new pitch from a goal statement, to hardening an existing pitch for betting, to auditing pitch quality across a portfolio.",
+  "shared_summary": "Create, review, score, improve, or export Shape Up pitches by checking problem framing, appetite, architecture, rendered diagram and contract artifacts, dependencies, integration proof, risks, and betting readiness. Use for pitch artifacts; do not use for feature status or general proposal synthesis.",
   "shared_constraints": [],
   "modes": [
     {
@@ -342,7 +342,7 @@
   "judge_reports": [
     {
       "pass_number": 1,
-      "status": "ship",
+      "status": "structural_ready",
       "historical_baseline": {
         "slug": "engos-audit-pitch-review",
         "strategy": "source_library",
@@ -370,7 +370,7 @@
           "materialized_from_source_kind": "current_ssot",
           "materialized_from_path": "ssot/engos-audit-pitch-review.md",
           "materialized_from_sha256": "2570975eae752eda8e9acb1227f478e4e25ae05f5e0d07ba1385a20ecb3a01d4",
-          "last_materialized_at": "2026-05-21T05:26:42.776827+00:00"
+          "last_materialized_at": "2026-05-21T05:35:48.457257+00:00"
         },
         "source": "source_library",
         "verified_by_git_history": false,
@@ -392,11 +392,18 @@
               "missing_markers": []
             }
           ],
+          "reviewed_deltas": [],
+          "requirement_review": {
+            "status": "not_supplied_or_invalid",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
           "scorecard": {
             "baseline_richness": 5,
             "candidate_richness": 5,
             "baseline_operational_score": 2,
-            "candidate_operational_score": 2
+            "candidate_operational_score": 2,
+            "baseline_preserved_in_resource": false
           },
           "baseline_commit": "c6b3203b",
           "baseline_slug": "engos-audit-pitch-review"
@@ -436,6 +443,7 @@
         "candidate_richness": 5,
         "baseline_operational_score": 2,
         "candidate_operational_score": 2,
+        "baseline_preserved_in_resource": false,
         "operational_richness": 10,
         "metadata_integrity": 10,
         "benchmark_readiness": 9,
@@ -447,7 +455,40 @@
         "metadata_completeness": 8,
         "surface_usability": 10
       },
-      "template_name": "both"
+      "template_name": "skill",
+      "effective_sha256": "ca6ddabc14caee2cf1bf3a3f47fcc7971cff27830a4027471e25a048b6ad6bd3",
+      "semantic_findings": [],
+      "agent_surface_review": {
+        "status": "unchanged",
+        "added_providers": [],
+        "blockers": [],
+        "source_fidelity": "not_required",
+        "identity_authenticated": false,
+        "behavioral_status": "behavioral_pending"
+      },
+      "repair_requests": [],
+      "dimension_inventory": [
+        {
+          "dimension": "source_fidelity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "operational_richness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "metadata_integrity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "benchmark_readiness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "semantic_consistency",
+          "status": "no_detected_conflict_not_semantic_proof"
+        }
+      ]
     }
   ],
   "consumption_hints": {

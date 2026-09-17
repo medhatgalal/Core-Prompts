@@ -1,0 +1,231 @@
+{
+  "schema_version": "CapabilityTopology.v1",
+  "slug": "engos-delivery-artifact-embed",
+  "ssot_sha256": "32773e71e5a87bfba82046253c673536c4174e935c7ee20e168bdb8bad2c97ff",
+  "explicit_invocations": [],
+  "semantic_triggers": [],
+  "aliases_shortcuts": [],
+  "auto_routes": [],
+  "nodes": {
+    "commands": [],
+    "modes_modules": [],
+    "controls": [],
+    "modifiers": []
+  },
+  "composition": {
+    "legal_pairs": [],
+    "forbidden_pairs": [],
+    "canonical_order": [],
+    "requirements": [],
+    "supersession": []
+  },
+  "state_machine": {
+    "states": [],
+    "transitions": [],
+    "forbidden_transitions": []
+  },
+  "outputs": [],
+  "authority_boundaries": [
+    "engos-delivery-artifact-embed:L23:e9b26fa242f4",
+    "engos-delivery-artifact-embed:L52:2249d446eb28",
+    "engos-delivery-artifact-embed:L62:7a831e6561cb",
+    "engos-delivery-artifact-embed:L88:8ab98e316c4e",
+    "engos-delivery-artifact-embed:L96:ddd6b07b2348",
+    "engos-delivery-artifact-embed:L97:0b71127f1803",
+    "engos-delivery-artifact-embed:L102:23f42e842b8d",
+    "engos-delivery-artifact-embed:L110:2282cb4864a2"
+  ],
+  "resources": [
+    "| Chat / review | Mermaid or embedded image reference | Markdown/inline table | Prefer Mermaid/text; verify the sent message if sending is authorized |"
+  ],
+  "handoffs": [],
+  "protected_invariants": [
+    {
+      "id": "engos-delivery-artifact-embed:L16:58d34e103ea8",
+      "heading": "Primary Objective",
+      "source": "ssot/engos-delivery-artifact-embed.md",
+      "source_line": 24,
+      "sha256": "58d34e103ea89bc43cc2aa709565c57c0066485788f7942d294a55c98e5c7039",
+      "text": "when available, use a render-and-place path only when required, and stop with a",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:L23:e9b26fa242f4",
+      "heading": "Invocation Hints",
+      "source": "ssot/engos-delivery-artifact-embed.md",
+      "source_line": 31,
+      "sha256": "e9b26fa242f4e52f3864ba16a52a7a7616aff98a0e05633e87e4eeec709850af",
+      "text": "for the target surface only when it is not present in the pitch context. Do not",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:L27:77357dbdaba3",
+      "heading": "Required Inputs",
+      "source": "ssot/engos-delivery-artifact-embed.md",
+      "source_line": 35,
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "text": "## Required Inputs",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:L35:3d4b9f171064",
+      "heading": "Required Output",
+      "source": "ssot/engos-delivery-artifact-embed.md",
+      "source_line": 43,
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "text": "## Required Output",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:L52:2249d446eb28",
+      "heading": "Required Output",
+      "source": "ssot/engos-delivery-artifact-embed.md",
+      "source_line": 60,
+      "sha256": "2249d446eb28f2ddf8a75a9ca90d9659c2f5dbaca0cf27f1fc59d428f1d16b0d",
+      "text": "runtime capability, or human action. Do not report `placed` from a successful",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:L62:7a831e6561cb",
+      "heading": "Adapter Matrix",
+      "source": "ssot/engos-delivery-artifact-embed.md",
+      "source_line": 70,
+      "sha256": "7a831e6561cb398a2e8cdbf33562d2a87bd7a45008215ad0d80d3c3958ed5e11",
+      "text": "| Google Doc | Rendered PNG/SVG inserted inline | Native Docs tables plus source link/hash | Render, upload through the supported path, insert, then read back; never rely on a public URL assumption |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:L73:45cbde27ffa7",
+      "heading": "Workflow",
+      "source": "ssot/engos-delivery-artifact-embed.md",
+      "source_line": 81,
+      "sha256": "45cbde27ffa75f570dd46c117d0e36bfd86b19cfe1ed7dec08b615be04cdcac0",
+      "text": "4. For Google Docs, render Mermaid to an image only at the adapter boundary.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:L88:8ab98e316c4e",
+      "heading": "Workflow",
+      "source": "ssot/engos-delivery-artifact-embed.md",
+      "source_line": 96,
+      "sha256": "8ab98e316c4e881b80ec86b4ef919d68d234111cf32c3adc3500bb24df02f7c3",
+      "text": "ledger. Never silently downgrade a failed image placement to an untracked",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:L89:59a720e69924",
+      "heading": "Workflow",
+      "source": "ssot/engos-delivery-artifact-embed.md",
+      "source_line": 97,
+      "sha256": "59a720e69924a9ff9273916cb26b11ef2ecf55f7c566bd8bc585af221813423a",
+      "text": "text-only result.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:L95:4beff92419c1",
+      "heading": "Rules",
+      "source": "ssot/engos-delivery-artifact-embed.md",
+      "source_line": 103,
+      "sha256": "4beff92419c10c6c262efaa1abb9e058eb134ba78a7c2f1d541fe87950d30c1b",
+      "text": "- Rendered images are derived and must carry a source identity.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:L96:ddd6b07b2348",
+      "heading": "Rules",
+      "source": "ssot/engos-delivery-artifact-embed.md",
+      "source_line": 104,
+      "sha256": "ddd6b07b2348849d64bafa9e7ebe5e92fe5cade0b15a3e0742f7ab7b21e4b0d8",
+      "text": "- Never make a document public merely to unblock image insertion.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:L97:0b71127f1803",
+      "heading": "Rules",
+      "source": "ssot/engos-delivery-artifact-embed.md",
+      "source_line": 105,
+      "sha256": "0b71127f1803d2265453b841f1e88db8ae67d318b1ef254c52d977fab99c600f",
+      "text": "- Never transmit a pitch or personal file to an external target without the",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:L102:23f42e842b8d",
+      "heading": "Rules",
+      "source": "ssot/engos-delivery-artifact-embed.md",
+      "source_line": 110,
+      "sha256": "23f42e842b8d739f2971dd094e8ca22027ace598e49edff8e37fb579e0cfc08f",
+      "text": "- Do not create Jira tickets, implementation code, or a native agent surface.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:L106:04979d5c9f0e",
+      "heading": "Constraints",
+      "source": "ssot/engos-delivery-artifact-embed.md",
+      "source_line": 114,
+      "sha256": "04979d5c9f0e72784ee30e930786902cf808c53a1322e2769ef02f976b0cd2ef",
+      "text": "- The adapter must not rewrite component names, contract states, owners, or",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:L110:2282cb4864a2",
+      "heading": "Constraints",
+      "source": "ssot/engos-delivery-artifact-embed.md",
+      "source_line": 118,
+      "sha256": "2282cb4864a29c76dace482e7d117d116df8b97972e3221ea93aae3601b5666f",
+      "text": "- Public Drive sharing is never a required prerequisite for a private Google",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:L111:2c4d789ada86",
+      "heading": "Constraints",
+      "source": "ssot/engos-delivery-artifact-embed.md",
+      "source_line": 119,
+      "sha256": "2c4d789ada86e85afef6cf96dfd4daa1c07943974227b8168e0f35585f17e078",
+      "text": "Doc. If the only available image insertion path requires a public URL, stop",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    }
+  ],
+  "risk_tiers": {
+    "critical": [],
+    "high": [],
+    "standard": []
+  },
+  "source_references": [
+    {
+      "path": "ssot/engos-delivery-artifact-embed.md",
+      "sha256": "32773e71e5a87bfba82046253c673536c4174e935c7ee20e168bdb8bad2c97ff"
+    }
+  ],
+  "known_ambiguities": [],
+  "coverage_policy": {
+    "normative_clauses": "100_percent_mapped_or_waived",
+    "nodes": "positive_and_boundary",
+    "transitions": "all_legal_and_forbidden",
+    "module_pairs": "all_legal_pairs",
+    "high_risk_tuples": "assigned_strength",
+    "critical_mutants": "100_percent_killed"
+  },
+  "normative_clause_coverage": {
+    "total": 16,
+    "mapped": 0,
+    "waived": 0
+  },
+  "review_status": "draft",
+  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs."
+}

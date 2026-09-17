@@ -285,7 +285,7 @@ These generated views are derived from canonical metadata and reports. They are 
 
 ## Generated Surfaces
 
-The current inventory emits 27 skills across all five CLIs and no named agents.
+The current inventory emits 29 skills across all five CLIs and no named agents.
 The table documents supported output formats, not a list of installed or shipped
 agents. Agent columns apply only to future explicitly user-approved native
 adapters. UAC improvement within an existing surface does not authorize adding

@@ -1,0 +1,380 @@
+{
+  "slug": "engos-delivery-artifact-embed",
+  "manifest_version": "capability-fabric.v0",
+  "layers": {
+    "minimal": {
+      "capability_type": "skill",
+      "summary": "Place an authored shaping-artifact bundle onto a selected HTML, PR/MR, chat, Google Doc, or wiki surface through explicit adapters. Use Mermaid/Markdown passthrough where native rendering exists and fail loudly with a named human step when a surface cannot prove placement.",
+      "role": "workflow",
+      "domain_tags": [
+        "packaging",
+        "engos",
+        "delivery",
+        "artifact",
+        "embed"
+      ],
+      "required_inputs": [
+        "a complete authored artifact bundle and manifest",
+        "one target surface: `html`, `github_pr`, `gitlab_mr`, `chat`, `google_doc`,",
+        "target identity and write authorization when the surface is external",
+        "renderer capability and placement evidence available in the current runtime"
+      ],
+      "expected_outputs": [
+        "deterministic summary",
+        "uplift payload",
+        "capability recommendation",
+        "deployment guidance"
+      ],
+      "tool_policy": {
+        "scope": "uac_intake_only",
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ],
+        "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
+      },
+      "resources": [
+        "ssot/engos-delivery-artifact-embed.md"
+      ],
+      "packaging_profile": {
+        "capability_type": "skill",
+        "primary_surfaces": {
+          "codex": [
+            "codex_skill"
+          ],
+          "gemini": [
+            "gemini_skill"
+          ],
+          "claude": [
+            "claude_skill"
+          ],
+          "kiro": [
+            "kiro_skill"
+          ],
+          "grok": [
+            "grok_skill"
+          ]
+        },
+        "wrapper_surfaces": {
+          "codex": [],
+          "gemini": [
+            "skill_wrapper"
+          ],
+          "claude": [
+            "skill_wrapper",
+            "plugin_wrapper"
+          ],
+          "kiro": [
+            "skill_wrapper",
+            "power_wrapper"
+          ]
+        },
+        "notes": [
+          "wrapper surfaces are additive deployment forms, not capability types",
+          "orchestrators must not infer execution authority from wrapper presence alone"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
+        ]
+      },
+      "source_provenance": {
+        "source_type": "LOCAL_FILE",
+        "normalized_source": "ssot/engos-delivery-artifact-embed.md",
+        "policy_rule_id": "ssot.engos-delivery-artifact-embed",
+        "content_sha256": "ssot"
+      },
+      "confidence": 1.0,
+      "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
+      "review_status": "ready_for_orchestrator_review",
+      "display_name": "Shaping Artifact Embed \u2014 Surface Adapters and Placement Evidence",
+      "version": "v1.0"
+    },
+    "expanded": {
+      "relationship_suggestions": [
+        "pair with review and analysis capabilities when converging design proposals"
+      ],
+      "capability_dependencies": [
+        "analysis"
+      ],
+      "overlap_candidates": [
+        "engos-design-architecture"
+      ],
+      "migration_notes": [
+        "If the capability lands, compare it against existing entries before apply.",
+        "Relationship suggestions are advisory only and do not imply runtime routing."
+      ],
+      "adjustment_recommendations": [
+        "add an explicit primary objective before packaging",
+        "add deterministic in-scope sections to improve routing fitness",
+        "capture quality constraints or non-negotiables"
+      ]
+    },
+    "org_graph": {
+      "org_role": "architect",
+      "reports_to_suggestions": [],
+      "delegates_to_suggestions": [],
+      "collaborates_with_suggestions": [
+        "architecture",
+        "packaging"
+      ],
+      "authority_tier": "advisory",
+      "work_graph_impact": "Adds or updates a skill capability with route profile None."
+    }
+  },
+  "display_name": "Shaping Artifact Embed \u2014 Surface Adapters and Placement Evidence",
+  "declared_capability": "skill",
+  "inferred_capability": "skill",
+  "expected_surface_names": [
+    "codex_skill",
+    "gemini_skill",
+    "claude_skill",
+    "kiro_skill",
+    "grok_skill"
+  ],
+  "rubric_version": "capability-fabric.v0",
+  "descriptor_version": "capability-fabric.descriptor.v0",
+  "family_slug": "engos-delivery-artifact-embed",
+  "shared_summary": "Place an authored shaping-artifact bundle onto a selected HTML, PR/MR, chat, Google Doc, or wiki surface through explicit adapters. Use Mermaid/Markdown passthrough where native rendering exists and fail loudly with a named human step when a surface cannot prove placement.",
+  "shared_constraints": [
+    "The adapter must not rewrite component names, contract states, owners, or",
+    "Google Docs placement is not considered complete until the saved revision is",
+    "Public Drive sharing is never a required prerequisite for a private Google",
+    "External write actions require target-specific authorization and should be"
+  ],
+  "modes": [],
+  "benchmark_sources": [],
+  "quality_profile": "default",
+  "quality_status": "structural_ready",
+  "judge_reports": [
+    {
+      "pass_number": 1,
+      "status": "structural_ready",
+      "historical_baseline": {
+        "slug": "engos-delivery-artifact-embed",
+        "strategy": "head_snapshot",
+        "group": "derived_current",
+        "baseline_path": "ssot/engos-delivery-artifact-embed.md",
+        "selected_commit": null,
+        "richness_score": 7,
+        "line_count": 151,
+        "reason": "No git history was available, so the current SSOT body is the strongest available baseline.",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [
+          {
+            "id": "operational_invocation",
+            "kind": "operational_contract",
+            "label": "operational invocation surface",
+            "must_contain": [
+              "## Invocation"
+            ]
+          }
+        ],
+        "historical_proof": {},
+        "source": "current_ssot",
+        "verified_by_git_history": false,
+        "has_baseline_text": true
+      },
+      "judge_reports": [
+        {
+          "judge": "source_fidelity",
+          "title": "Source Fidelity and Uplift",
+          "score": 10,
+          "blockers": [],
+          "classification": "preserved",
+          "scenario_results": [
+            {
+              "id": "operational_invocation",
+              "kind": "operational_contract",
+              "label": "operational invocation surface",
+              "passed": true,
+              "missing_markers": []
+            }
+          ],
+          "reviewed_deltas": [],
+          "requirement_review": {
+            "status": "not_supplied_or_invalid",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
+          "scorecard": {
+            "baseline_richness": 7,
+            "candidate_richness": 7,
+            "baseline_operational_score": 2,
+            "candidate_operational_score": 2,
+            "baseline_preserved_in_resource": false
+          },
+          "baseline_commit": null,
+          "baseline_slug": "engos-delivery-artifact-embed"
+        },
+        {
+          "judge": "operational_richness",
+          "title": "Operational Richness",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "metadata_integrity",
+          "title": "Metadata and Handoff Integrity",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "benchmark_readiness",
+          "title": "Benchmark Readiness and Template Fit",
+          "score": 9,
+          "blockers": [],
+          "scorecard": {
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 8,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          }
+        }
+      ],
+      "blockers": [],
+      "scorecard": {
+        "source_fidelity": 10,
+        "baseline_richness": 7,
+        "candidate_richness": 7,
+        "baseline_operational_score": 2,
+        "candidate_operational_score": 2,
+        "baseline_preserved_in_resource": false,
+        "operational_richness": 10,
+        "metadata_integrity": 10,
+        "benchmark_readiness": 9,
+        "title_clarity": 10,
+        "description_richness": 10,
+        "intent_coverage": 10,
+        "boundary_clarity": 8,
+        "output_specificity": 10,
+        "metadata_completeness": 8,
+        "surface_usability": 10
+      },
+      "template_name": "skill",
+      "effective_sha256": "32773e71e5a87bfba82046253c673536c4174e935c7ee20e168bdb8bad2c97ff",
+      "semantic_findings": [],
+      "agent_surface_review": {
+        "status": "unchanged",
+        "added_providers": [],
+        "blockers": [],
+        "source_fidelity": "not_required",
+        "identity_authenticated": false,
+        "behavioral_status": "behavioral_pending"
+      },
+      "repair_requests": [],
+      "dimension_inventory": [
+        {
+          "dimension": "source_fidelity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "operational_richness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "metadata_integrity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "benchmark_readiness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "semantic_consistency",
+          "status": "no_detected_conflict_not_semantic_proof"
+        }
+      ]
+    }
+  ],
+  "consumption_hints": {
+    "preferred_use_cases": [
+      "AI-assisted capability selection",
+      "deterministic prompt uplift review"
+    ],
+    "artifact_conventions": [
+      "ssot/<slug>.md",
+      ".meta/capabilities/<slug>.json",
+      "reports/quality-reviews/<slug>/LATEST.md"
+    ],
+    "invocation_style": "assistant_first_but_scriptable",
+    "requires_human_confirmation": true
+  },
+  "quality_pass_count": 1,
+  "quality_stop_reason": "thresholds_met",
+  "historical_baseline": {
+    "slug": "engos-delivery-artifact-embed",
+    "strategy": "candidate_seed",
+    "group": "new_or_untracked",
+    "baseline_path": null,
+    "selected_commit": null,
+    "richness_score": 7,
+    "line_count": 151,
+    "reason": "No registry entry or git history available; use the candidate as the provisional seed baseline.",
+    "equivalent_commits": [],
+    "expected_companions": [],
+    "operator_invariants": [],
+    "scenario_matrix": [],
+    "historical_proof": {},
+    "source": "candidate_seed",
+    "verified_by_git_history": false,
+    "has_baseline_text": true
+  },
+  "quality_validation_matrix": [
+    {
+      "id": "operational_invocation",
+      "kind": "operational_contract",
+      "label": "operational invocation surface",
+      "must_contain": [
+        "## Invocation"
+      ]
+    }
+  ],
+  "job_contract": {
+    "primary_job": "Place an authored shaping-artifact bundle onto a selected HTML, PR/MR, chat, Google Doc, or wiki surface through explicit adapters. Use Mermaid/Markdown passthrough where native rendering exists and fail loudly with a named human step when a surface cannot prove placement.",
+    "use_when": "The request directly matches the canonical purpose of Shaping Artifact Embed \u2014 Surface Adapters and Placement Evidence.",
+    "works_on": "The inputs and target declared by the canonical SSOT.",
+    "main_output": "The required output declared by the canonical SSOT.",
+    "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
+    "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
+    "routing_question": "Does this request directly require Shaping Artifact Embed \u2014 Surface Adapters and Placement Evidence?",
+    "nearest_neighbors": [],
+    "shape": "unclassified_new_skill",
+    "portfolio_action": "draft_new_skill_pending_review"
+  }
+}

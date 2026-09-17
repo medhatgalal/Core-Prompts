@@ -1097,7 +1097,7 @@
       "layers": {
         "minimal": {
           "capability_type": "skill",
-          "summary": "Create, review, score, improve, or export Shape Up pitches by checking problem framing, appetite, architecture, dependencies, integration proof, risks, and betting readiness. Use for pitch artifacts; do not use for feature status or general proposal synthesis.",
+          "summary": "Create, review, score, improve, or export Shape Up pitches by checking problem framing, appetite, architecture, rendered diagram and contract artifacts, dependencies, integration proof, risks, and betting readiness. Use for pitch artifacts; do not use for feature status or general proposal synthesis.",
           "role": "analyst",
           "domain_tags": [
             "architecture",
@@ -1221,7 +1221,7 @@
           "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "Pitch \u2014 Shape Up Pitch Creation, Review, Scoring, and Improvement",
-          "version": "v1.1"
+          "version": "v1.2"
         },
         "expanded": {
           "relationship_suggestions": [
@@ -1260,7 +1260,7 @@
       "display_name": "Pitch \u2014 Shape Up Pitch Creation, Review, Scoring, and Improvement",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "engos-audit-pitch-review",
-      "shared_summary": "Creates, reviews, scores, improves, and critiques Shape Up pitch documents. Use when working with pitches at any stage: from bootstrapping a new pitch from a goal statement, to hardening an existing pitch for betting, to auditing pitch quality across a portfolio.",
+      "shared_summary": "Create, review, score, improve, or export Shape Up pitches by checking problem framing, appetite, architecture, rendered diagram and contract artifacts, dependencies, integration proof, risks, and betting readiness. Use for pitch artifacts; do not use for feature status or general proposal synthesis.",
       "shared_constraints": [],
       "modes": [
         {
@@ -1414,7 +1414,7 @@
       "judge_reports": [
         {
           "pass_number": 1,
-          "status": "ship",
+          "status": "structural_ready",
           "historical_baseline": {
             "slug": "engos-audit-pitch-review",
             "strategy": "source_library",
@@ -1442,7 +1442,7 @@
               "materialized_from_source_kind": "current_ssot",
               "materialized_from_path": "ssot/engos-audit-pitch-review.md",
               "materialized_from_sha256": "2570975eae752eda8e9acb1227f478e4e25ae05f5e0d07ba1385a20ecb3a01d4",
-              "last_materialized_at": "2026-05-21T05:26:42.776827+00:00"
+              "last_materialized_at": "2026-05-21T05:35:48.457257+00:00"
             },
             "source": "source_library",
             "verified_by_git_history": false,
@@ -1464,11 +1464,18 @@
                   "missing_markers": []
                 }
               ],
+              "reviewed_deltas": [],
+              "requirement_review": {
+                "status": "not_supplied_or_invalid",
+                "identity_authenticated": false,
+                "behavioral_status": "behavioral_pending"
+              },
               "scorecard": {
                 "baseline_richness": 5,
                 "candidate_richness": 5,
                 "baseline_operational_score": 2,
-                "candidate_operational_score": 2
+                "candidate_operational_score": 2,
+                "baseline_preserved_in_resource": false
               },
               "baseline_commit": "c6b3203b",
               "baseline_slug": "engos-audit-pitch-review"
@@ -1508,6 +1515,7 @@
             "candidate_richness": 5,
             "baseline_operational_score": 2,
             "candidate_operational_score": 2,
+            "baseline_preserved_in_resource": false,
             "operational_richness": 10,
             "metadata_integrity": 10,
             "benchmark_readiness": 9,
@@ -1519,7 +1527,40 @@
             "metadata_completeness": 8,
             "surface_usability": 10
           },
-          "template_name": "both"
+          "template_name": "skill",
+          "effective_sha256": "ca6ddabc14caee2cf1bf3a3f47fcc7971cff27830a4027471e25a048b6ad6bd3",
+          "semantic_findings": [],
+          "agent_surface_review": {
+            "status": "unchanged",
+            "added_providers": [],
+            "blockers": [],
+            "source_fidelity": "not_required",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
+          "repair_requests": [],
+          "dimension_inventory": [
+            {
+              "dimension": "source_fidelity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "operational_richness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "metadata_integrity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "benchmark_readiness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "semantic_consistency",
+              "status": "no_detected_conflict_not_semantic_proof"
+            }
+          ]
         }
       ],
       "consumption_hints": {
@@ -2825,6 +2866,686 @@
         "address selected reviewer comments",
         "implement requested changes from MR discussions"
       ]
+    },
+    {
+      "slug": "engos-delivery-artifact-embed",
+      "manifest_version": "capability-fabric.v0",
+      "layers": {
+        "minimal": {
+          "capability_type": "skill",
+          "summary": "Place an authored shaping-artifact bundle onto a selected HTML, PR/MR, chat, Google Doc, or wiki surface through explicit adapters. Use Mermaid/Markdown passthrough where native rendering exists and fail loudly with a named human step when a surface cannot prove placement.",
+          "role": "workflow",
+          "domain_tags": [
+            "packaging",
+            "engos",
+            "delivery",
+            "artifact",
+            "embed"
+          ],
+          "required_inputs": [
+            "a complete authored artifact bundle and manifest",
+            "one target surface: `html`, `github_pr`, `gitlab_mr`, `chat`, `google_doc`,",
+            "target identity and write authorization when the surface is external",
+            "renderer capability and placement evidence available in the current runtime"
+          ],
+          "expected_outputs": [
+            "deterministic summary",
+            "uplift payload",
+            "capability recommendation",
+            "deployment guidance"
+          ],
+          "tool_policy": {
+            "scope": "uac_intake_only",
+            "allowed": [
+              "deterministic classification",
+              "metadata publication",
+              "surface generation"
+            ],
+            "forbidden": [
+              "orchestration",
+              "delegation decisions",
+              "runtime execution control"
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
+          },
+          "resources": [
+            "ssot/engos-delivery-artifact-embed.md"
+          ],
+          "packaging_profile": {
+            "capability_type": "skill",
+            "primary_surfaces": {
+              "codex": [
+                "codex_skill"
+              ],
+              "gemini": [
+                "gemini_skill"
+              ],
+              "claude": [
+                "claude_skill"
+              ],
+              "kiro": [
+                "kiro_skill"
+              ],
+              "grok": [
+                "grok_skill"
+              ]
+            },
+            "wrapper_surfaces": {
+              "codex": [],
+              "gemini": [
+                "skill_wrapper"
+              ],
+              "claude": [
+                "skill_wrapper",
+                "plugin_wrapper"
+              ],
+              "kiro": [
+                "skill_wrapper",
+                "power_wrapper"
+              ]
+            },
+            "notes": [
+              "wrapper surfaces are additive deployment forms, not capability types",
+              "orchestrators must not infer execution authority from wrapper presence alone"
+            ]
+          },
+          "install_target": {
+            "recommended": "repo_local",
+            "confidence": 0.88,
+            "confirmation_required_for_apply": true,
+            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+            "supported": [
+              "global",
+              "repo_local",
+              "both"
+            ]
+          },
+          "emitted_surfaces": {
+            "codex": [
+              "codex_skill"
+            ],
+            "gemini": [
+              "gemini_skill"
+            ],
+            "claude": [
+              "claude_skill"
+            ],
+            "kiro": [
+              "kiro_skill"
+            ],
+            "grok": [
+              "grok_skill"
+            ]
+          },
+          "source_provenance": {
+            "source_type": "LOCAL_FILE",
+            "normalized_source": "ssot/engos-delivery-artifact-embed.md",
+            "policy_rule_id": "ssot.engos-delivery-artifact-embed",
+            "content_sha256": "ssot"
+          },
+          "confidence": 1.0,
+          "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "Shaping Artifact Embed \u2014 Surface Adapters and Placement Evidence",
+          "version": "v1.0"
+        },
+        "expanded": {
+          "relationship_suggestions": [
+            "pair with review and analysis capabilities when converging design proposals"
+          ],
+          "capability_dependencies": [
+            "analysis"
+          ],
+          "overlap_candidates": [
+            "engos-design-architecture"
+          ],
+          "migration_notes": [
+            "If the capability lands, compare it against existing entries before apply.",
+            "Relationship suggestions are advisory only and do not imply runtime routing."
+          ],
+          "adjustment_recommendations": [
+            "add an explicit primary objective before packaging",
+            "add deterministic in-scope sections to improve routing fitness",
+            "capture quality constraints or non-negotiables"
+          ]
+        },
+        "org_graph": {
+          "org_role": "architect",
+          "reports_to_suggestions": [],
+          "delegates_to_suggestions": [],
+          "collaborates_with_suggestions": [
+            "architecture",
+            "packaging"
+          ],
+          "authority_tier": "advisory",
+          "work_graph_impact": "Adds or updates a skill capability with route profile None."
+        }
+      },
+      "display_name": "Shaping Artifact Embed \u2014 Surface Adapters and Placement Evidence",
+      "descriptor_version": "capability-fabric.descriptor.v0",
+      "family_slug": "engos-delivery-artifact-embed",
+      "shared_summary": "Place an authored shaping-artifact bundle onto a selected HTML, PR/MR, chat, Google Doc, or wiki surface through explicit adapters. Use Mermaid/Markdown passthrough where native rendering exists and fail loudly with a named human step when a surface cannot prove placement.",
+      "shared_constraints": [
+        "The adapter must not rewrite component names, contract states, owners, or",
+        "Google Docs placement is not considered complete until the saved revision is",
+        "Public Drive sharing is never a required prerequisite for a private Google",
+        "External write actions require target-specific authorization and should be"
+      ],
+      "modes": [],
+      "benchmark_sources": [],
+      "quality_profile": "default",
+      "quality_status": "structural_ready",
+      "judge_reports": [
+        {
+          "pass_number": 1,
+          "status": "structural_ready",
+          "historical_baseline": {
+            "slug": "engos-delivery-artifact-embed",
+            "strategy": "head_snapshot",
+            "group": "derived_current",
+            "baseline_path": "ssot/engos-delivery-artifact-embed.md",
+            "selected_commit": null,
+            "richness_score": 7,
+            "line_count": 151,
+            "reason": "No git history was available, so the current SSOT body is the strongest available baseline.",
+            "equivalent_commits": [],
+            "expected_companions": [],
+            "operator_invariants": [],
+            "scenario_matrix": [
+              {
+                "id": "operational_invocation",
+                "kind": "operational_contract",
+                "label": "operational invocation surface",
+                "must_contain": [
+                  "## Invocation"
+                ]
+              }
+            ],
+            "historical_proof": {},
+            "source": "current_ssot",
+            "verified_by_git_history": false,
+            "has_baseline_text": true
+          },
+          "judge_reports": [
+            {
+              "judge": "source_fidelity",
+              "title": "Source Fidelity and Uplift",
+              "score": 10,
+              "blockers": [],
+              "classification": "preserved",
+              "scenario_results": [
+                {
+                  "id": "operational_invocation",
+                  "kind": "operational_contract",
+                  "label": "operational invocation surface",
+                  "passed": true,
+                  "missing_markers": []
+                }
+              ],
+              "reviewed_deltas": [],
+              "requirement_review": {
+                "status": "not_supplied_or_invalid",
+                "identity_authenticated": false,
+                "behavioral_status": "behavioral_pending"
+              },
+              "scorecard": {
+                "baseline_richness": 7,
+                "candidate_richness": 7,
+                "baseline_operational_score": 2,
+                "candidate_operational_score": 2,
+                "baseline_preserved_in_resource": false
+              },
+              "baseline_commit": null,
+              "baseline_slug": "engos-delivery-artifact-embed"
+            },
+            {
+              "judge": "operational_richness",
+              "title": "Operational Richness",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "metadata_integrity",
+              "title": "Metadata and Handoff Integrity",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "benchmark_readiness",
+              "title": "Benchmark Readiness and Template Fit",
+              "score": 9,
+              "blockers": [],
+              "scorecard": {
+                "title_clarity": 10,
+                "description_richness": 10,
+                "intent_coverage": 10,
+                "boundary_clarity": 8,
+                "output_specificity": 10,
+                "metadata_completeness": 8,
+                "surface_usability": 10
+              }
+            }
+          ],
+          "blockers": [],
+          "scorecard": {
+            "source_fidelity": 10,
+            "baseline_richness": 7,
+            "candidate_richness": 7,
+            "baseline_operational_score": 2,
+            "candidate_operational_score": 2,
+            "baseline_preserved_in_resource": false,
+            "operational_richness": 10,
+            "metadata_integrity": 10,
+            "benchmark_readiness": 9,
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 8,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          },
+          "template_name": "skill",
+          "effective_sha256": "32773e71e5a87bfba82046253c673536c4174e935c7ee20e168bdb8bad2c97ff",
+          "semantic_findings": [],
+          "agent_surface_review": {
+            "status": "unchanged",
+            "added_providers": [],
+            "blockers": [],
+            "source_fidelity": "not_required",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
+          "repair_requests": [],
+          "dimension_inventory": [
+            {
+              "dimension": "source_fidelity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "operational_richness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "metadata_integrity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "benchmark_readiness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "semantic_consistency",
+              "status": "no_detected_conflict_not_semantic_proof"
+            }
+          ]
+        }
+      ],
+      "consumption_hints": {
+        "preferred_use_cases": [
+          "AI-assisted capability selection",
+          "deterministic prompt uplift review"
+        ],
+        "artifact_conventions": [
+          "ssot/<slug>.md",
+          ".meta/capabilities/<slug>.json",
+          "reports/quality-reviews/<slug>/LATEST.md"
+        ],
+        "invocation_style": "assistant_first_but_scriptable",
+        "requires_human_confirmation": true
+      },
+      "quality_pass_count": 1,
+      "quality_stop_reason": "thresholds_met",
+      "declared_capability": "skill",
+      "inferred_capability": "skill",
+      "expected_surface_names": [
+        "codex_skill",
+        "gemini_skill",
+        "claude_skill",
+        "kiro_skill",
+        "grok_skill"
+      ],
+      "rubric_version": "capability-fabric.v0"
+    },
+    {
+      "slug": "engos-delivery-diagram-contract-artifacts",
+      "manifest_version": "capability-fabric.v0",
+      "layers": {
+        "minimal": {
+          "capability_type": "skill",
+          "summary": "Author a surface-agnostic shaped-pitch artifact bundle with Mermaid component, sequence, and data-flow diagrams plus API/contracts and security-owner tables. Use when a shaped solution needs durable visual and contract evidence before review or betting; do not invent component internals or place artifacts on external surfaces.",
+          "role": "analyst",
+          "domain_tags": [
+            "review",
+            "packaging",
+            "engos",
+            "delivery",
+            "diagram",
+            "contract",
+            "artifacts"
+          ],
+          "required_inputs": [
+            "the shaped pitch or solution brief",
+            "appetite, no-gos, and known rabbit holes",
+            "cited research or source references for components and seams",
+            "any stated contract states: `exists_and_works`, `exists_but_broken`,",
+            "target surface hint, if known; the authoring output remains surface-agnostic"
+          ],
+          "expected_outputs": [
+            "deterministic summary",
+            "uplift payload",
+            "capability recommendation",
+            "deployment guidance"
+          ],
+          "tool_policy": {
+            "scope": "uac_intake_only",
+            "allowed": [
+              "deterministic classification",
+              "metadata publication",
+              "surface generation"
+            ],
+            "forbidden": [
+              "orchestration",
+              "delegation decisions",
+              "runtime execution control"
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
+          },
+          "resources": [
+            "ssot/engos-delivery-diagram-contract-artifacts.md"
+          ],
+          "packaging_profile": {
+            "capability_type": "skill",
+            "primary_surfaces": {
+              "codex": [
+                "codex_skill"
+              ],
+              "gemini": [
+                "gemini_skill"
+              ],
+              "claude": [
+                "claude_skill"
+              ],
+              "kiro": [
+                "kiro_skill"
+              ],
+              "grok": [
+                "grok_skill"
+              ]
+            },
+            "wrapper_surfaces": {
+              "codex": [],
+              "gemini": [
+                "skill_wrapper"
+              ],
+              "claude": [
+                "skill_wrapper",
+                "plugin_wrapper"
+              ],
+              "kiro": [
+                "skill_wrapper",
+                "power_wrapper"
+              ]
+            },
+            "notes": [
+              "wrapper surfaces are additive deployment forms, not capability types",
+              "orchestrators must not infer execution authority from wrapper presence alone"
+            ]
+          },
+          "install_target": {
+            "recommended": "repo_local",
+            "confidence": 0.88,
+            "confirmation_required_for_apply": true,
+            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+            "supported": [
+              "global",
+              "repo_local",
+              "both"
+            ]
+          },
+          "emitted_surfaces": {
+            "codex": [
+              "codex_skill"
+            ],
+            "gemini": [
+              "gemini_skill"
+            ],
+            "claude": [
+              "claude_skill"
+            ],
+            "kiro": [
+              "kiro_skill"
+            ],
+            "grok": [
+              "grok_skill"
+            ]
+          },
+          "source_provenance": {
+            "source_type": "LOCAL_FILE",
+            "normalized_source": "ssot/engos-delivery-diagram-contract-artifacts.md",
+            "policy_rule_id": "ssot.engos-delivery-diagram-contract-artifacts",
+            "content_sha256": "ssot"
+          },
+          "confidence": 1.0,
+          "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "Shaping Artifact Author \u2014 Diagrams, Contracts, and Security Ownership",
+          "version": "v1.0"
+        },
+        "expanded": {
+          "relationship_suggestions": [],
+          "capability_dependencies": [
+            "context"
+          ],
+          "overlap_candidates": [],
+          "migration_notes": [
+            "If the capability lands, compare it against existing entries before apply.",
+            "Relationship suggestions are advisory only and do not imply runtime routing."
+          ],
+          "adjustment_recommendations": [
+            "add an explicit primary objective before packaging",
+            "add deterministic in-scope sections to improve routing fitness",
+            "capture quality constraints or non-negotiables"
+          ]
+        },
+        "org_graph": {
+          "org_role": "analyst",
+          "reports_to_suggestions": [],
+          "delegates_to_suggestions": [],
+          "collaborates_with_suggestions": [
+            "review",
+            "packaging"
+          ],
+          "authority_tier": "advisory",
+          "work_graph_impact": "Adds or updates a skill capability with route profile None."
+        }
+      },
+      "display_name": "Shaping Artifact Author \u2014 Diagrams, Contracts, and Security Ownership",
+      "descriptor_version": "capability-fabric.descriptor.v0",
+      "family_slug": "engos-delivery-diagram-contract-artifacts",
+      "shared_summary": "Author a surface-agnostic shaped-pitch artifact bundle with Mermaid component, sequence, and data-flow diagrams plus API/contracts and security-owner tables. Use when a shaped solution needs durable visual and contract evidence before review or betting; do not invent component internals or place artifacts on external surfaces.",
+      "shared_constraints": [
+        "This skill does not score or approve the pitch; `engos-audit-pitch-review`",
+        "This skill does not choose a native agent surface or delegate work.",
+        "This skill does not upload, share, publish, or edit external documents.",
+        "It must work from pasted content, a local file, or a read-only source export.",
+        "If evidence is insufficient, return a partial bundle with explicit blockers;"
+      ],
+      "modes": [],
+      "benchmark_sources": [],
+      "quality_profile": "default",
+      "quality_status": "structural_ready",
+      "judge_reports": [
+        {
+          "pass_number": 1,
+          "status": "structural_ready",
+          "historical_baseline": {
+            "slug": "engos-delivery-diagram-contract-artifacts",
+            "strategy": "head_snapshot",
+            "group": "derived_current",
+            "baseline_path": "ssot/engos-delivery-diagram-contract-artifacts.md",
+            "selected_commit": null,
+            "richness_score": 7,
+            "line_count": 163,
+            "reason": "No git history was available, so the current SSOT body is the strongest available baseline.",
+            "equivalent_commits": [],
+            "expected_companions": [],
+            "operator_invariants": [],
+            "scenario_matrix": [
+              {
+                "id": "operational_invocation",
+                "kind": "operational_contract",
+                "label": "operational invocation surface",
+                "must_contain": [
+                  "## Invocation"
+                ]
+              }
+            ],
+            "historical_proof": {},
+            "source": "current_ssot",
+            "verified_by_git_history": false,
+            "has_baseline_text": true
+          },
+          "judge_reports": [
+            {
+              "judge": "source_fidelity",
+              "title": "Source Fidelity and Uplift",
+              "score": 10,
+              "blockers": [],
+              "classification": "preserved",
+              "scenario_results": [
+                {
+                  "id": "operational_invocation",
+                  "kind": "operational_contract",
+                  "label": "operational invocation surface",
+                  "passed": true,
+                  "missing_markers": []
+                }
+              ],
+              "reviewed_deltas": [],
+              "requirement_review": {
+                "status": "not_supplied_or_invalid",
+                "identity_authenticated": false,
+                "behavioral_status": "behavioral_pending"
+              },
+              "scorecard": {
+                "baseline_richness": 7,
+                "candidate_richness": 7,
+                "baseline_operational_score": 2,
+                "candidate_operational_score": 2,
+                "baseline_preserved_in_resource": false
+              },
+              "baseline_commit": null,
+              "baseline_slug": "engos-delivery-diagram-contract-artifacts"
+            },
+            {
+              "judge": "operational_richness",
+              "title": "Operational Richness",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "metadata_integrity",
+              "title": "Metadata and Handoff Integrity",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "benchmark_readiness",
+              "title": "Benchmark Readiness and Template Fit",
+              "score": 9,
+              "blockers": [],
+              "scorecard": {
+                "title_clarity": 10,
+                "description_richness": 10,
+                "intent_coverage": 10,
+                "boundary_clarity": 8,
+                "output_specificity": 10,
+                "metadata_completeness": 8,
+                "surface_usability": 10
+              }
+            }
+          ],
+          "blockers": [],
+          "scorecard": {
+            "source_fidelity": 10,
+            "baseline_richness": 7,
+            "candidate_richness": 7,
+            "baseline_operational_score": 2,
+            "candidate_operational_score": 2,
+            "baseline_preserved_in_resource": false,
+            "operational_richness": 10,
+            "metadata_integrity": 10,
+            "benchmark_readiness": 9,
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 8,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          },
+          "template_name": "skill",
+          "effective_sha256": "3b4f723779b4b9298366efeaf15827173bd06004c28f8e8872b7da93c5fa024e",
+          "semantic_findings": [],
+          "agent_surface_review": {
+            "status": "unchanged",
+            "added_providers": [],
+            "blockers": [],
+            "source_fidelity": "not_required",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
+          "repair_requests": [],
+          "dimension_inventory": [
+            {
+              "dimension": "source_fidelity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "operational_richness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "metadata_integrity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "benchmark_readiness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "semantic_consistency",
+              "status": "no_detected_conflict_not_semantic_proof"
+            }
+          ]
+        }
+      ],
+      "consumption_hints": {
+        "preferred_use_cases": [
+          "AI-assisted capability selection",
+          "deterministic prompt uplift review"
+        ],
+        "artifact_conventions": [
+          "ssot/<slug>.md",
+          ".meta/capabilities/<slug>.json",
+          "reports/quality-reviews/<slug>/LATEST.md"
+        ],
+        "invocation_style": "assistant_first_but_scriptable",
+        "requires_human_confirmation": true
+      },
+      "quality_pass_count": 1,
+      "quality_stop_reason": "thresholds_met",
+      "declared_capability": "skill",
+      "inferred_capability": "skill",
+      "expected_surface_names": [
+        "codex_skill",
+        "gemini_skill",
+        "claude_skill",
+        "kiro_skill",
+        "grok_skill"
+      ],
+      "rubric_version": "capability-fabric.v0"
     },
     {
       "slug": "engos-delivery-resolve-conflict",
@@ -9129,6 +9850,8 @@
       ".grok/skills/engos-browser-demo-recorder/SKILL.md",
       ".grok/skills/engos-content-dynamic-html-presentations/SKILL.md",
       ".grok/skills/engos-delivery-address-code-review/SKILL.md",
+      ".grok/skills/engos-delivery-artifact-embed/SKILL.md",
+      ".grok/skills/engos-delivery-diagram-contract-artifacts/SKILL.md",
       ".grok/skills/engos-delivery-resolve-conflict/SKILL.md",
       ".grok/skills/engos-design-architecture/SKILL.md",
       ".grok/skills/engos-design-plan-to-goal/SKILL.md",
@@ -9158,6 +9881,8 @@
       ".gemini/skills/engos-browser-demo-recorder/SKILL.md",
       ".gemini/skills/engos-content-dynamic-html-presentations/SKILL.md",
       ".gemini/skills/engos-delivery-address-code-review/SKILL.md",
+      ".gemini/skills/engos-delivery-artifact-embed/SKILL.md",
+      ".gemini/skills/engos-delivery-diagram-contract-artifacts/SKILL.md",
       ".gemini/skills/engos-delivery-resolve-conflict/SKILL.md",
       ".gemini/skills/engos-design-architecture/SKILL.md",
       ".gemini/skills/engos-design-plan-to-goal/SKILL.md",
@@ -9188,6 +9913,8 @@
       ".claude/skills/engos-browser-demo-recorder/SKILL.md",
       ".claude/skills/engos-content-dynamic-html-presentations/SKILL.md",
       ".claude/skills/engos-delivery-address-code-review/SKILL.md",
+      ".claude/skills/engos-delivery-artifact-embed/SKILL.md",
+      ".claude/skills/engos-delivery-diagram-contract-artifacts/SKILL.md",
       ".claude/skills/engos-delivery-resolve-conflict/SKILL.md",
       ".claude/skills/engos-design-architecture/SKILL.md",
       ".claude/skills/engos-design-plan-to-goal/SKILL.md",
@@ -9219,6 +9946,8 @@
       ".kiro/skills/engos-browser-demo-recorder/SKILL.md",
       ".kiro/skills/engos-content-dynamic-html-presentations/SKILL.md",
       ".kiro/skills/engos-delivery-address-code-review/SKILL.md",
+      ".kiro/skills/engos-delivery-artifact-embed/SKILL.md",
+      ".kiro/skills/engos-delivery-diagram-contract-artifacts/SKILL.md",
       ".kiro/skills/engos-delivery-resolve-conflict/SKILL.md",
       ".kiro/skills/engos-design-architecture/SKILL.md",
       ".kiro/skills/engos-design-plan-to-goal/SKILL.md",
@@ -9248,6 +9977,8 @@
       ".codex/skills/engos-browser-demo-recorder/SKILL.md",
       ".codex/skills/engos-content-dynamic-html-presentations/SKILL.md",
       ".codex/skills/engos-delivery-address-code-review/SKILL.md",
+      ".codex/skills/engos-delivery-artifact-embed/SKILL.md",
+      ".codex/skills/engos-delivery-diagram-contract-artifacts/SKILL.md",
       ".codex/skills/engos-delivery-resolve-conflict/SKILL.md",
       ".codex/skills/engos-design-architecture/SKILL.md",
       ".codex/skills/engos-design-plan-to-goal/SKILL.md",
@@ -9289,6 +10020,8 @@
       ".grok/skills/engos-content-dynamic-html-presentations/resources/export_slides.swift",
       ".grok/skills/engos-content-dynamic-html-presentations/resources/images_to_pptx.py",
       ".grok/skills/engos-delivery-address-code-review/resources/capability.json",
+      ".grok/skills/engos-delivery-artifact-embed/resources/capability.json",
+      ".grok/skills/engos-delivery-diagram-contract-artifacts/resources/capability.json",
       ".grok/skills/engos-delivery-resolve-conflict/resources/capability.json",
       ".grok/skills/engos-design-architecture/resources/capability.json",
       ".grok/skills/engos-design-plan-to-goal/resources/capability.json",
@@ -9379,6 +10112,8 @@
       ".codex/skills/engos-content-dynamic-html-presentations/resources/export_slides.swift",
       ".codex/skills/engos-content-dynamic-html-presentations/resources/images_to_pptx.py",
       ".codex/skills/engos-delivery-address-code-review/resources/capability.json",
+      ".codex/skills/engos-delivery-artifact-embed/resources/capability.json",
+      ".codex/skills/engos-delivery-diagram-contract-artifacts/resources/capability.json",
       ".codex/skills/engos-delivery-resolve-conflict/resources/capability.json",
       ".codex/skills/engos-design-architecture/resources/capability.json",
       ".codex/skills/engos-design-plan-to-goal/resources/capability.json",
@@ -9470,6 +10205,8 @@
       ".gemini/skills/engos-content-dynamic-html-presentations/resources/export_slides.swift",
       ".gemini/skills/engos-content-dynamic-html-presentations/resources/images_to_pptx.py",
       ".gemini/skills/engos-delivery-address-code-review/resources/capability.json",
+      ".gemini/skills/engos-delivery-artifact-embed/resources/capability.json",
+      ".gemini/skills/engos-delivery-diagram-contract-artifacts/resources/capability.json",
       ".gemini/skills/engos-delivery-resolve-conflict/resources/capability.json",
       ".gemini/skills/engos-design-architecture/resources/capability.json",
       ".gemini/skills/engos-design-plan-to-goal/resources/capability.json",
@@ -9561,6 +10298,8 @@
       ".claude/skills/engos-content-dynamic-html-presentations/resources/export_slides.swift",
       ".claude/skills/engos-content-dynamic-html-presentations/resources/images_to_pptx.py",
       ".claude/skills/engos-delivery-address-code-review/resources/capability.json",
+      ".claude/skills/engos-delivery-artifact-embed/resources/capability.json",
+      ".claude/skills/engos-delivery-diagram-contract-artifacts/resources/capability.json",
       ".claude/skills/engos-delivery-resolve-conflict/resources/capability.json",
       ".claude/skills/engos-design-architecture/resources/capability.json",
       ".claude/skills/engos-design-plan-to-goal/resources/capability.json",
@@ -9652,6 +10391,8 @@
       ".kiro/skills/engos-content-dynamic-html-presentations/resources/export_slides.swift",
       ".kiro/skills/engos-content-dynamic-html-presentations/resources/images_to_pptx.py",
       ".kiro/skills/engos-delivery-address-code-review/resources/capability.json",
+      ".kiro/skills/engos-delivery-artifact-embed/resources/capability.json",
+      ".kiro/skills/engos-delivery-diagram-contract-artifacts/resources/capability.json",
       ".kiro/skills/engos-delivery-resolve-conflict/resources/capability.json",
       ".kiro/skills/engos-design-architecture/resources/capability.json",
       ".kiro/skills/engos-design-plan-to-goal/resources/capability.json",
