@@ -82,7 +82,7 @@ def test_package_boundary_includes_release_watch_contract(tmp_path: Path) -> Non
     for names in (tar_files, zip_files):
         assert not any(name.startswith(tuple(f".{p}/agents/" for p in ("codex", "claude", "gemini", "kiro")))
                        and not name.endswith("/") for name in names)
-        assert sum(name.endswith("/SKILL.md") for name in names) == 135
+        assert sum(name.endswith("/SKILL.md") for name in names) == 145
 
     # The shipped guide must resolve its local skill/resource links in both formats.
     import re
