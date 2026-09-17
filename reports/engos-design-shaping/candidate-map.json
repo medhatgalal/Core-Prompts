@@ -1,0 +1,21 @@
+{
+  "schema_version": "ShapingDesignCandidateMap.v1",
+  "status": "design_exercise_only",
+  "path_base": "repository_root",
+  "skills": {
+    "engos-design-shaping": "reports/engos-design-shaping/candidates/engos-design-shaping/SKILL.md",
+    "engos-design-frame-from-vague": "reports/engos-design-shaping/candidates/engos-design-frame-from-vague/SKILL.md",
+    "engos-quality-shaping-gate": "reports/engos-design-shaping/candidates/engos-quality-shaping-gate/SKILL.md",
+    "engos-delivery-diagram-contract-artifacts": "reports/engos-design-shaping/candidates/engos-delivery-diagram-contract-artifacts/SKILL.md",
+    "engos-delivery-artifact-embed": "reports/engos-design-shaping/candidates/engos-delivery-artifact-embed/SKILL.md",
+    "engos-audit-pitch-review": "ssot/engos-audit-pitch-review.md"
+  },
+  "required_resources": [
+    "reports/engos-design-shaping/candidates/engos-quality-shaping-gate/resources/gates.md",
+    "reports/engos-design-shaping/candidates/engos-quality-shaping-gate/resources/rubrics.md",
+    "reports/engos-design-shaping/candidates/engos-delivery-artifact-embed/resources/surfaces.md"
+  ],
+  "review_overlay": "reports/engos-design-shaping/pitch-review-integration.md",
+  "review_precedence": "For full-shaping gate review only, the overlay and its loaded gate/resources override the base pitch review's combined shaped/bet-ready verdict and old scoring. Read both; do not silently use installed baseline rules.",
+  "registration": "none; supplied candidate map only"
+}
