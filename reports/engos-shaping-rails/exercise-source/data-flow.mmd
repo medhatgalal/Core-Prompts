@@ -1,0 +1,34 @@
+flowchart TB
+  subgraph ADSNS["ADS process_mining namespace"]
+    subgraph SYNC["Synced record tables"]
+      EVENTS["Events"]
+      CASES["Cases"]
+    end
+    subgraph FLAT["Flat tables / CTAS"]
+      FE["{logUuid}__flat_events"]
+      FC["{logUuid}__flat_cases"]
+    end
+    subgraph ANALYTICAL["Analytical tables"]
+      FOL["{logUuid}__followers_case"]
+      VAR["{logUuid}__variant_registry"]
+      OBJ["{logUuid}__object_buffer"]
+      SEM["{logUuid}__semantics"]
+    end
+    EVENTS -->|"sync"| FE
+    CASES -->|"sync"| FC
+    FE -->|"CTAS"| FOL
+    FE -->|"CTAS"| VAR
+    FE -->|"CTAS"| OBJ
+    FE -->|"derive"| SEM
+    FC -->|"derive"| SEM
+  end
+  PRE["pm-query-lib preprocessor"] -->|"Binge :5410"| FE
+  PRE -->|"Binge :5410"| FC
+  LIB["pm-query-lib query path"] -->|"qualified table names"| ANALYTICAL
+
+  style ADSNS fill:#fafafa,stroke:#bdbdbd,color:#212121
+  style SYNC fill:#e8f5e9,stroke:#2e7d32,color:#1b5e20
+  style FLAT fill:#e1f5fe,stroke:#0277bd,color:#01579b
+  style ANALYTICAL fill:#f3e5f5,stroke:#6a1b9a,color:#4a148c
+  style PRE fill:#fff3e0,stroke:#e65100,color:#bf360c
+  style LIB fill:#326ce5,stroke:#1a3e7a,color:#ffffff

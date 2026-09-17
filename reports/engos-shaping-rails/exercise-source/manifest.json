@@ -1,0 +1,24 @@
+{
+  "schema_version": "ShapingArtifactManifest.v1",
+  "artifact_id": "pm-query-lib-architecture-2026-09-17",
+  "source_pitch": "https://docs.appian-stratus.io/process-mining/new-arch/",
+  "source_description": "PM Query Library Architecture Overview",
+  "source_hash": "c44623c2c1ad5189ff636bae7fa811480a1cb1ee626802ed24c7e842c238a73b",
+  "appetite": "Exercise only; no production implementation or external document mutation",
+  "diagrams": [
+    {"id": "component", "path": "component.mmd", "kind": "component", "status": "rendered", "rendered_path": "../rendered/component.png"},
+    {"id": "sequence", "path": "sequence.mmd", "kind": "sequence", "status": "rendered", "rendered_path": "../rendered/sequence.png"},
+    {"id": "data-flow", "path": "data-flow.mmd", "kind": "data-flow", "status": "rendered", "rendered_path": "../rendered/data-flow.png"}
+  ],
+  "tables": [
+    {"id": "contracts", "path": "contracts.md", "kind": "api-contracts", "status": "authored"},
+    {"id": "security-owners", "path": "security-owners.md", "kind": "security-ownership", "status": "authored"}
+  ],
+  "evidence": "evidence-ledger.md",
+  "no_gos": "no-gos.md",
+  "surface_neutral": true,
+  "surface_receipts": {
+    "html": {"adapter": "mermaid-markdown-passthrough", "status": "passthrough", "receipt": "../html-surface.md", "verified": true},
+    "google_doc": {"adapter": "render-upload-insert-readback", "status": "human_step_required", "receipt": "../google-doc-placement.md"}
+  }
+}

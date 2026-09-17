@@ -415,7 +415,7 @@
       "slug": "engos-audit-pitch-review",
       "display_name": "Pitch \u2014 Shape Up Pitch Creation, Review, Scoring, and Improvement",
       "capability_type": "skill",
-      "summary": "Create, review, score, improve, or export Shape Up pitches by checking problem framing, appetite, architecture, dependencies, integration proof, risks, and betting readiness. Use for pitch artifacts; do not use for feature status or general proposal synthesis.",
+      "summary": "Create, review, score, improve, or export Shape Up pitches by checking problem framing, appetite, architecture, rendered diagram and contract artifacts, dependencies, integration proof, risks, and betting readiness. Use for pitch artifacts; do not use for feature status or general proposal synthesis.",
       "role": "analyst",
       "domain_tags": [
         "architecture",
@@ -909,6 +909,207 @@
         "collaborates_with_suggestions": [
           "review",
           "address"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile None."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "engos-delivery-artifact-embed",
+      "display_name": "Shaping Artifact Embed \u2014 Surface Adapters and Placement Evidence",
+      "capability_type": "skill",
+      "summary": "Place an authored shaping-artifact bundle onto a selected HTML, PR/MR, chat, Google Doc, or wiki surface through explicit adapters. Use Mermaid/Markdown passthrough where native rendering exists and fail loudly with a named human step when a surface cannot prove placement.",
+      "role": "workflow",
+      "domain_tags": [
+        "packaging",
+        "engos",
+        "delivery",
+        "artifact",
+        "embed"
+      ],
+      "required_inputs": [
+        "a complete authored artifact bundle and manifest",
+        "one target surface: `html`, `github_pr`, `gitlab_mr`, `chat`, `google_doc`,",
+        "target identity and write authorization when the surface is external",
+        "renderer capability and placement evidence available in the current runtime"
+      ],
+      "expected_outputs": [
+        "deterministic summary",
+        "uplift payload",
+        "capability recommendation",
+        "deployment guidance"
+      ],
+      "tool_policy": {
+        "scope": "uac_intake_only",
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ],
+        "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
+        ]
+      },
+      "confidence": 1.0,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [
+        "engos-design-architecture"
+      ],
+      "relationship_suggestions": [
+        "pair with review and analysis capabilities when converging design proposals"
+      ],
+      "quality_status": "structural_ready",
+      "benchmark_profile": "default",
+      "preferred_use_cases": [
+        "AI-assisted capability selection",
+        "deterministic prompt uplift review"
+      ],
+      "artifact_conventions": [
+        "ssot/<slug>.md",
+        ".meta/capabilities/<slug>.json",
+        "reports/quality-reviews/<slug>/LATEST.md"
+      ],
+      "invocation_style": "assistant_first_but_scriptable",
+      "requires_human_confirmation": true,
+      "org_graph": {
+        "org_role": "architect",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "architecture",
+          "packaging"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile None."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "engos-delivery-diagram-contract-artifacts",
+      "display_name": "Shaping Artifact Author \u2014 Diagrams, Contracts, and Security Ownership",
+      "capability_type": "skill",
+      "summary": "Author a surface-agnostic shaped-pitch artifact bundle with Mermaid component, sequence, and data-flow diagrams plus API/contracts and security-owner tables. Use when a shaped solution needs durable visual and contract evidence before review or betting; do not invent component internals or place artifacts on external surfaces.",
+      "role": "analyst",
+      "domain_tags": [
+        "review",
+        "packaging",
+        "engos",
+        "delivery",
+        "diagram",
+        "contract",
+        "artifacts"
+      ],
+      "required_inputs": [
+        "the shaped pitch or solution brief",
+        "appetite, no-gos, and known rabbit holes",
+        "cited research or source references for components and seams",
+        "any stated contract states: `exists_and_works`, `exists_but_broken`,",
+        "target surface hint, if known; the authoring output remains surface-agnostic"
+      ],
+      "expected_outputs": [
+        "deterministic summary",
+        "uplift payload",
+        "capability recommendation",
+        "deployment guidance"
+      ],
+      "tool_policy": {
+        "scope": "uac_intake_only",
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ],
+        "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
+        ]
+      },
+      "confidence": 1.0,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [],
+      "quality_status": "structural_ready",
+      "benchmark_profile": "default",
+      "preferred_use_cases": [
+        "AI-assisted capability selection",
+        "deterministic prompt uplift review"
+      ],
+      "artifact_conventions": [
+        "ssot/<slug>.md",
+        ".meta/capabilities/<slug>.json",
+        "reports/quality-reviews/<slug>/LATEST.md"
+      ],
+      "invocation_style": "assistant_first_but_scriptable",
+      "requires_human_confirmation": true,
+      "org_graph": {
+        "org_role": "analyst",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "review",
+          "packaging"
         ],
         "authority_tier": "advisory",
         "work_graph_impact": "Adds or updates a skill capability with route profile None."

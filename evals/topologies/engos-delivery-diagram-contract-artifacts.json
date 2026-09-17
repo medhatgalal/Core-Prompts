@@ -1,0 +1,293 @@
+{
+  "schema_version": "CapabilityTopology.v1",
+  "slug": "engos-delivery-diagram-contract-artifacts",
+  "ssot_sha256": "3b4f723779b4b9298366efeaf15827173bd06004c28f8e8872b7da93c5fa024e",
+  "explicit_invocations": [],
+  "semantic_triggers": [],
+  "aliases_shortcuts": [],
+  "auto_routes": [],
+  "nodes": {
+    "commands": [],
+    "modes_modules": [],
+    "controls": [],
+    "modifiers": []
+  },
+  "composition": {
+    "legal_pairs": [],
+    "forbidden_pairs": [],
+    "canonical_order": [],
+    "requirements": [],
+    "supersession": []
+  },
+  "state_machine": {
+    "states": [],
+    "transitions": [],
+    "forbidden_transitions": []
+  },
+  "outputs": [
+    "| Required table | Minimum columns |",
+    "| --- | --- |",
+    "| API / contracts | Direction, interface, purpose, producer, consumer, contract state, evidence, owner/action |",
+    "| Security ownership | Responsibility, owner, enforcement/control, boundary, evidence, unresolved gap |"
+  ],
+  "authority_boundaries": [
+    "engos-delivery-diagram-contract-artifacts:L87:9c0891e45ac1",
+    "engos-delivery-diagram-contract-artifacts:L95:186400690de0",
+    "engos-delivery-diagram-contract-artifacts:L101:41acc42318df",
+    "engos-delivery-diagram-contract-artifacts:L106:d16090ea15c3",
+    "engos-delivery-diagram-contract-artifacts:L125:1b8335e57c12"
+  ],
+  "resources": [
+    "- cited research or source references for components and seams"
+  ],
+  "handoffs": [],
+  "protected_invariants": [
+    {
+      "id": "engos-delivery-diagram-contract-artifacts:L24:9c5bc9af028b",
+      "heading": "Invocation Hints",
+      "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
+      "source_line": 32,
+      "sha256": "9c5bc9af028bf1642d65973a40451facc5c1b8a1e6944729db55deb12e09816f",
+      "text": "`engos-delivery-artifact-embed` skill only after the bundle has passed this",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-diagram-contract-artifacts:L27:77357dbdaba3",
+      "heading": "Required Inputs",
+      "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
+      "source_line": 35,
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "text": "## Required Inputs",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-diagram-contract-artifacts:L36:3d4b9f171064",
+      "heading": "Required Output",
+      "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
+      "source_line": 44,
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "text": "## Required Output",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-diagram-contract-artifacts:L55:b6c640e423ed",
+      "heading": "Required Output",
+      "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
+      "source_line": 63,
+      "sha256": "b6c640e423ed221bcb691b7ea2d725e3cda101b1dee46ad01b5d6ddfd9d2aee0",
+      "text": "`blocked`. The Markdown tables must include at least:",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-diagram-contract-artifacts:L57:d1a96beb5b94",
+      "heading": "Required Output",
+      "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
+      "source_line": 65,
+      "sha256": "d1a96beb5b94ac57063c07c91061969729b8a9228c7024e542fb0b30593bd138",
+      "text": "| Required table | Minimum columns |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-diagram-contract-artifacts:L62:de03f385e6be",
+      "heading": "Required Output",
+      "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
+      "source_line": 70,
+      "sha256": "de03f385e6beb1789c8306668bafaf81d84c4b493c86ecc112acfea4f889bf32",
+      "text": "Each diagram source must have a caption, diagram type, evidence references, and",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-diagram-contract-artifacts:L69:770880d8b8f5",
+      "heading": "Workflow",
+      "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
+      "source_line": 77,
+      "sha256": "770880d8b8f51430d356c78492079faa127fb37f800d2587b0a355d858b1e9d3",
+      "text": "1. Read the pitch and evidence ledger before drawing. Extract only components,",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-diagram-contract-artifacts:L72:615a1acbad36",
+      "heading": "Workflow",
+      "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
+      "source_line": 80,
+      "sha256": "615a1acbad36edd29859ecdaf8ea58e2a121cc27355e576092ab7331bab2d060",
+      "text": "that covers the required seams; if the source cannot support a diagram,",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-diagram-contract-artifacts:L77:b84887955cf4",
+      "heading": "Workflow",
+      "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
+      "source_line": 85,
+      "sha256": "b84887955cf475a536a511dcf08cfff38e7d520cf0de66b9977186fac816c9f4",
+      "text": "4. Author the contract table for both provided and required interfaces. Record",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-diagram-contract-artifacts:L79:b2c405ae372f",
+      "heading": "Workflow",
+      "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
+      "source_line": 87,
+      "sha256": "b2c405ae372f77fd4c536f94afe969b805f4925d9e5f51dedc0a99ff0a848048",
+      "text": "5. Author the security-owner matrix. Assign responsibility only when the pitch",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-diagram-contract-artifacts:L87:9c0891e45ac1",
+      "heading": "Workflow",
+      "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
+      "source_line": 95,
+      "sha256": "9c0891e45ac11c8dd48c55034a6f0c41becb1d90f2e96d48502c2cc2505617dd",
+      "text": "8. Return the bundle and a short judgment. Do not place it on a Google Doc,",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-diagram-contract-artifacts:L93:ca72a2af1eba",
+      "heading": "Rules",
+      "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
+      "source_line": 101,
+      "sha256": "ca72a2af1ebae6f3f68c8790f21881843892b3c687b02d54323dfb63a83fe924",
+      "text": "use SVG-to-PNG only when the target surface cannot accept Mermaid or SVG and",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-diagram-contract-artifacts:L95:186400690de0",
+      "heading": "Rules",
+      "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
+      "source_line": 103,
+      "sha256": "186400690de02716671138281f6baa35fcb46e2c31ffea8a1376dddc83649ff8",
+      "text": "- Never invent methods, classes, endpoints, internal algorithms, retries,",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-diagram-contract-artifacts:L97:1a4566c7955e",
+      "heading": "Rules",
+      "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
+      "source_line": 105,
+      "sha256": "1a4566c7955e8c3f27fd5aeb0c1e21bd6505b473f2fcc52c708ed27f79a0e6b6",
+      "text": "- A diagram is not complete merely because it parses. It must cover the named",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-diagram-contract-artifacts:L101:41acc42318df",
+      "heading": "Rules",
+      "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
+      "source_line": 109,
+      "sha256": "41acc42318df7524dbf49873e78bfef1d5b0314205a97511823f6a4545424965",
+      "text": "- Treat an unresolved rabbit hole as a mitigation or blocker, never as a",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-diagram-contract-artifacts:L106:d16090ea15c3",
+      "heading": "Rules",
+      "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
+      "source_line": 114,
+      "sha256": "d16090ea15c3ccd3854f803bf90d7563cbdf7fda3a59422a61a718fbb3474654",
+      "text": "- Contracts and interfaces only; do not produce implementation code or Jira",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-diagram-contract-artifacts:L114:55ee342d593d",
+      "heading": "Surface Contract",
+      "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
+      "source_line": 122,
+      "sha256": "55ee342d593d7a6e0ac677d63972b29150629a739325e3863f4b0df73793d0be",
+      "text": "place an image, but they must retain a link or hash to the source bundle and",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-diagram-contract-artifacts:L115:30beea8c5094",
+      "heading": "Surface Contract",
+      "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
+      "source_line": 123,
+      "sha256": "30beea8c5094a61ac9833a0bffb1e6be440671bde2b0a36adcedb3e4958283f2",
+      "text": "must report placement evidence separately.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-diagram-contract-artifacts:L123:0631f7278479",
+      "heading": "Constraints",
+      "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
+      "source_line": 131,
+      "sha256": "0631f727847900799ea0a724c034bbac2e58b933476ef79b896b1292482d4d68",
+      "text": "- It must work from pasted content, a local file, or a read-only source export.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-diagram-contract-artifacts:L125:1b8335e57c12",
+      "heading": "Constraints",
+      "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
+      "source_line": 133,
+      "sha256": "1b8335e57c127b3caa8fbc30540e2507c78232a375ca4cd91f82e63b2348bb3e",
+      "text": "never return a polished but unsupported diagram.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-diagram-contract-artifacts:L132:c06f32ebed1a",
+      "heading": "Example Request",
+      "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
+      "source_line": 140,
+      "sha256": "c06f32ebed1a3f6494eb842e264892baacdf21709a4db708df73e24729227630",
+      "text": "> the component and request flow visible, list provided and required",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-diagram-contract-artifacts:L151:4caf107c3c83",
+      "heading": "Evaluation Rubric",
+      "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
+      "source_line": 159,
+      "sha256": "4caf107c3c8307cba5d06ccde8e8761b456390035fc92ee18ca20ab1767fca2e",
+      "text": "| Contract completeness | Provided/required interfaces have state, owner/action, and evidence |",
+      "kind": "invariant",
+      "mapped_to": []
+    }
+  ],
+  "risk_tiers": {
+    "critical": [],
+    "high": [],
+    "standard": []
+  },
+  "source_references": [
+    {
+      "path": "ssot/engos-delivery-diagram-contract-artifacts.md",
+      "sha256": "3b4f723779b4b9298366efeaf15827173bd06004c28f8e8872b7da93c5fa024e"
+    }
+  ],
+  "known_ambiguities": [],
+  "coverage_policy": {
+    "normative_clauses": "100_percent_mapped_or_waived",
+    "nodes": "positive_and_boundary",
+    "transitions": "all_legal_and_forbidden",
+    "module_pairs": "all_legal_pairs",
+    "high_risk_tuples": "assigned_strength",
+    "critical_mutants": "100_percent_killed"
+  },
+  "normative_clause_coverage": {
+    "total": 22,
+    "mapped": 0,
+    "waived": 0
+  },
+  "review_status": "draft",
+  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs."
+}
