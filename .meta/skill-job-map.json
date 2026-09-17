@@ -419,6 +419,30 @@
       "nearest_neighbors": [],
       "shape": "unclassified_new_skill",
       "portfolio_action": "draft_new_skill_pending_review"
+    },
+    "engos-delivery-diagram-contract-artifacts": {
+      "primary_job": "Author a surface-agnostic shaped-pitch artifact bundle with Mermaid component, sequence, and data-flow diagrams plus API/contracts and security-owner tables. Use when a shaped solution needs durable visual and contract evidence before review or betting; do not invent component internals or place artifacts on external surfaces.",
+      "use_when": "The request directly matches the canonical purpose of Shaping Artifact Author \u2014 Diagrams, Contracts, and Security Ownership.",
+      "works_on": "The inputs and target declared by the canonical SSOT.",
+      "main_output": "The required output declared by the canonical SSOT.",
+      "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
+      "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
+      "routing_question": "Does this request directly require Shaping Artifact Author \u2014 Diagrams, Contracts, and Security Ownership?",
+      "nearest_neighbors": [],
+      "shape": "unclassified_new_skill",
+      "portfolio_action": "draft_new_skill_pending_review"
+    },
+    "engos-delivery-artifact-embed": {
+      "primary_job": "Place an authored shaping-artifact bundle onto a selected HTML, PR/MR, chat, Google Doc, or wiki surface through explicit adapters. Use Mermaid/Markdown passthrough where native rendering exists and fail loudly with a named human step when a surface cannot prove placement.",
+      "use_when": "The request directly matches the canonical purpose of Shaping Artifact Embed \u2014 Surface Adapters and Placement Evidence.",
+      "works_on": "The inputs and target declared by the canonical SSOT.",
+      "main_output": "The required output declared by the canonical SSOT.",
+      "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
+      "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
+      "routing_question": "Does this request directly require Shaping Artifact Embed \u2014 Surface Adapters and Placement Evidence?",
+      "nearest_neighbors": [],
+      "shape": "unclassified_new_skill",
+      "portfolio_action": "draft_new_skill_pending_review"
     }
   }
 }

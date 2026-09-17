@@ -795,6 +795,59 @@ Follow with:
 
 > Hand the baseline, candidate, preservation map, and Goal Contract to `engos-optimization-auto-research`; do not promote the rewrite from style evidence alone.
 
+### `engos-delivery-diagram-contract-artifacts`
+
+Use when:
+
+- a shaped pitch needs rendered component, sequence, and data-flow diagrams
+- the pitch needs an API/contracts table and security-owner matrix
+- the output must remain portable across docs, PR/MR, chat, or Google Docs
+
+Why this skill first:
+
+- it authors the durable source bundle without deciding the pitch verdict or inventing implementation details
+
+Ask:
+
+> Use `engos-delivery-diagram-contract-artifacts` on this shaped pitch. Produce the Mermaid component, sequence, and data-flow diagrams, the API/contracts table, the security-owner matrix, the evidence ledger, and the no-gos. Mark every unsupported claim instead of guessing.
+
+Expected output:
+
+- source-backed artifact manifest
+- Mermaid sources and rendered-status fields
+- API/contracts and security-owner tables
+- evidence ledger, no-gos, and completeness judgment
+
+Follow with:
+
+> Use `engos-delivery-artifact-embed` to place this unchanged bundle on the target pitch surface and return a placement receipt.
+
+### `engos-delivery-artifact-embed`
+
+Use when:
+
+- the authored bundle needs to land on an HTML site, PR/MR, chat, Google Doc, or wiki
+- the target surface has different native diagram support
+- you need placement evidence rather than another architecture rewrite
+
+Why this skill first:
+
+- it chooses a thin target adapter and fails loudly when private image placement or readback cannot be verified
+
+Ask:
+
+> Use `engos-delivery-artifact-embed` to place this bundle on the HTML docs surface and Google Doc. Prefer Mermaid passthrough, preserve the source hash, and name the exact human step if private image insertion cannot be proven.
+
+Expected output:
+
+- one receipt per surface
+- source-preserving representation and adapter choice
+- observed render/readback evidence, or a precise blocker/human step
+
+Follow with:
+
+> Use `engos-audit-pitch-review` to judge whether the artifact completeness gate and the existing Shape Up rubric make this pitch bet-ready.
+
 ### `engos-audit-pitch-review`
 
 Use when:

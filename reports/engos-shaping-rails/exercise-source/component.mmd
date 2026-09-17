@@ -1,0 +1,26 @@
+flowchart TB
+  subgraph LCP["LCP / AE site"]
+    PHQ["ProcessHQ UI<br/>browser-facing"]
+    GATE["ProcessMiningGatingService<br/>resolve and gate"]
+    CLIENT["AdsProcessMiningClientService<br/>feature-toggle route"]
+    LIB["pm-query-lib<br/>in-process Kotlin library"]
+  end
+  DC["ADS Data Client<br/>shared gRPC client"]
+  ADS["ADS<br/>DuckDB query and storage"]
+  USER["User / browser"]
+
+  USER -->|"HTTPS + session + CSRF"| PHQ
+  PHQ -->|"REST request"| GATE
+  GATE -->|"authorized appianId -> logUuid"| CLIENT
+  CLIENT -->|"in-process call"| LIB
+  LIB -->|"SQL via DataClient"| DC
+  DC -->|"gRPC :5450+"| ADS
+
+  style USER fill:#e3f2fd,stroke:#1565c0,color:#0d47a1
+  style PHQ fill:#bbdefb,stroke:#1565c0,color:#0d47a1
+  style GATE fill:#fce4ec,stroke:#c62828,color:#b71c1c
+  style CLIENT fill:#4fc3f7,stroke:#0277bd,color:#01579b
+  style LIB fill:#326ce5,stroke:#1a3e7a,color:#ffffff
+  style DC fill:#4fc3f7,stroke:#0277bd,color:#01579b
+  style ADS fill:#e8f5e9,stroke:#2e7d32,color:#1b5e20
+  style LCP fill:#f3e5f5,stroke:#6a1b9a,color:#4a148c
