@@ -29,7 +29,7 @@ Use UAC when you need to:
 
 ## Agent additions require your approval
 
-The shipped inventory contains 27 skills and no named-agent configurations. UAC
+The shipped inventory contains 29 skills and no named-agent configurations. UAC
 can improve a requested existing skill or agent without adding a counterpart.
 Adding, reintroducing, or expanding an agent to another provider requires actual
 explicit user approval for that capability and provider set, plus an independent
