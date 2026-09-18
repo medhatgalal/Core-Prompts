@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "policy_id": "shaping-gates.v1+rubric.v2",
+  "references": {"gates": "sources/gates.md", "rubric": "sources/rubrics.md"},
+  "gates": {
+    "G0": {
+      "predicates": ["original_preserved", "source_coverage", "fact_classification", "no_selected_solution"],
+      "required_outputs": ["brief.md", "intake.md"]
+    },
+    "G1": {
+      "predicates": ["problem_frame", "confirmed_appetite_walkaway", "boundaries_uncertainties", "no_selected_solution"],
+      "required_outputs": ["framed.md"]
+    },
+    "G2": {
+      "predicates": ["uncertainties_resolved", "evidence_sufficiency", "grounded_risks"],
+      "required_outputs": ["research-notes.md"]
+    },
+    "G3": {
+      "predicates": ["coherent_bounded_solution", "exemplar_coverage", "diagrams_visual", "contracts_security", "workstreams_proof", "constraints_traceability", "author_audit", "independent_review", "rubric_assessment"],
+      "required_outputs": ["pitch.md", "pitch-summary.md", "workstreams.md", "traceability.md", "contracts.md", "security-owners.md", "component.mmd", "sequence.mmd", "data-flow.mmd"]
+    },
+    "G4": {
+      "predicates": ["saved_target_parity", "target_revision_pixels", "faithful_betting_prep", "no_delivery_discrepancy"],
+      "required_outputs": ["betting-table-prep.md"]
+    }
+  },
+  "scoring": {
+    "dimensions": ["simplicity", "testability", "security", "architecture", "cost", "feasibility", "confidence", "problem_clarity", "appetite_fit", "solution_sharpness", "contract_quality", "boundary_discipline"],
+    "minimum_dimension": 3,
+    "minimum_overall": 4
+  },
+  "delivery_targets": [
+    {"surface": "html", "destination": "REPLACE-with-authorized-html-location"},
+    {"surface": "google-doc", "destination": "REPLACE-with-authorized-private-location"}
+  ]
+}

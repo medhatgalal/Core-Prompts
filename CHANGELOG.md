@@ -1,3 +1,17 @@
+## v1.16.0 - 2026-09-17
+
+Source version prepared for guided shaping. Publication, installation and complete
+pilot acceptance are separate; this entry does not claim a released or deployed bundle.
+
+- Add a guided Shape Up entry and framing/gate capabilities with bounded role
+  contexts, product/engineering question assistance, human-led research and
+  explicit handoff/recovery contracts. Native agent registrations are unchanged.
+- Add source-bound local pitch exports and stage-state validation. Mechanical
+  checks, independent semantic review, real-user pilot and saved-target evidence
+  remain separate. See the guided Shape Up runbook for current validation limits.
+- Extend existing artifact and pitch-review helpers for full shaping without
+  removing standalone artifact placement or existing-pitch review.
+
 ## v1.15.1 - 2026-09-15
 
 - Support `--cli agy` as a skills-only installation reader using `.gemini/config/skills`, with existing profile preservation, native-package customization protection, and rollback. Reuse generated portable resources without creating an unreviewed agent surface.

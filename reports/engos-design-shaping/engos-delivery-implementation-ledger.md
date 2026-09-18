@@ -1,0 +1,182 @@
+# engos-delivery-shaping implementation ledger
+
+Authority: user explicitly requested "Proceed with implementation and the pilot
+under the reviewed plan." This supersedes the plan snapshot's no-implementation
+scope, not its safety/acceptance requirements. Original instruction: fresh worktree,
+land on main when done. No runtime goal was requested or started. No new native
+agent registrations, home installation, Jira work or product implementation.
+
+Reviewed plan: engos-design-shaping-operating-plan.md, SHA256
+1bfb7f01766dbaf8b7c134d3515bd2cf6ebe7162c43cee666e58dd59942b5766.
+Task 01a0af1e-f573-7af2-9e64-b2c5abdd4774; worktree
+/private/tmp/engos-full-shaping-design; branch AI/engos-full-shaping-design.
+Pre-implementation HEAD 59488c0; GitHub main ccf62d9 verified by fresh fetch.
+GitLab fetch and authenticated API returned HTTP 403 AccessDenied. Local cached
+GitLab a92e0ff has the same tree but does not establish current remote parity.
+Continue local work; dual-remote landing remains blocked until normal access returns.
+
+## Fixed acceptance and ownership
+
+C01–C12 and P1–P10 in the reviewed plan remain the contract. Every row below needs
+actual evidence, not only files or a self-grade. Public-safe fixtures only in repo;
+private company documents/pilot artifacts remain in the existing private research root.
+
+| Slice | Owner | Evidence needed | Status |
+| --- | --- | --- | --- |
+| Intake/framing/research/shaping procedures and context work orders | Prompt worker | Resource-complete instructions, same-slug UAC, independent review | pending |
+| Atomic runtime/receipt/gate checks and recovery | Runtime worker | Focused pytest positive/negative cases, independent code review | pending |
+| Artifact/export adapters and calibration | Controller | Fidelity checks, rendering, calibrated controls | pending |
+| User onboarding/runbook and examples | Controller | Discoverable entry, cold-start worker trial, docs review | pending |
+| Real user/engineering pilot | Named humans, controller facilitator | Attributable decisions and uncoached observations | awaiting participants |
+| HTML + private Google Doc | Controller publisher, independent reviewer | Same bundle, saved readback, full rows/images and pixels | pending |
+| Build, regression, independent checks | Controller/reviewers | Exact reviewed source/generated revision | pending |
+| GitHub/GitLab checks, merge, parity, cleanup | Controller | Hosted CI and post-merge refs | GitLab access blocked |
+
+## Observed implementation checks
+
+- Prompt worker authored two new skill candidates and phase resources. Independent
+  instruction review found workstream naming/ownership, standalone-scope leakage,
+  and JSON-only pixel-check conflicts. Narrow fixes, including publisher dispatch,
+  were rechecked with no residual instruction finding in that scope. Receipts live
+  in engos-quality-implementation-instruction-review.md and its recheck.
+- Runtime worker initially reported 86 focused tests on Python 3.14 and 84 plus
+  two optional-dependency skips on Python 3.11. Controller's initial combined
+  runtime/export/resource tests observed 140 passing. These did not waive review.
+- Independent code review reproduced seven defects, including a policy pin masked
+  by ordinary inputs. Four runtime regressions and three native DOCX regressions
+  failed before repair. Repaired runtime policy checks and content/delivery drift;
+  repaired exporter no-follow/exclusive publication, buffered verified images,
+  bounded renderer process group and literal code preservation. Re-review pending.
+- Corrected focused run: 107 passed, three optional DOCX tests skipped under system
+  Python. Those same three native DOCX cases passed separately in the approved
+  bundled document runtime. Do not count skips as passes. Both CI files now include
+  these suites and install the optional document dependencies.
+- An exploratory full-suite run overlapped initial generation and later source
+  edits; it is not final release evidence. It reported 1297 passed, 13 failed and
+  138 subtests. Failures were packaging's Unreleased-entry rule (five), sandboxed
+  macOS WebKit tests (six), and stale skill-count assertions/docs (two). The six
+  unchanged WebKit tests subsequently passed outside the restricted sandbox.
+  Source version is prepared as v1.16.0 (not tagged/released/installed); README and
+  catalog-count test reflect 32 skills. Serial final regression remains required.
+- UAC single-candidate plan/judge/apply succeeded for all six candidates after
+  public vendor-schema cache refresh. The attempted multi-source apply raised a
+  resource-map error for multi-source-import before applying the collection; no
+  core UAC bypass/fix was introduced. First framing apply wrote files but strict
+  validation held on missing schema cache; refresh and repeat passed. Later code
+  repairs require regeneration/rebinding before final verification.
+- Local exporter diagnostic: three Mermaid PNGs and an eight-page sanitized DOCX
+  from an explicitly synthetic teaching bundle. All pages inspected after layout
+  repairs; native table rows 3/4/5/5 and three images confirmed. This is not real
+  pitch/G4 completion. Exact private Google Doc upload was blocked before execution
+  by automatic safety review pending payload/destination approval. User was asked;
+  no alternate upload path or retry was used.
+- A cold-start generated-package worker found the guided entry and returned a
+  solution-free first response plus tailored human-research help. Two scripted
+  unknown-answer follow-ups are bounded in engos-quality-pilot-acceptance.md.
+  This is a simulated model preflight; real participants and decisions remain
+  unanswered. Its inherited host instructions and an out-of-path Git metadata
+  read are recorded limitations, not proven enforced context isolation.
+
+Current external/human holds: normal GitLab access; exact private upload approval;
+real product/engineering pilot participants and historical exercise appetite.
+Do not merge, claim complete pilot acceptance, or clean unique work while held.
+
+## Local checkpoint outcome
+
+All six capability candidates have been applied through same-slug UAC into SSOT,
+canonical resources and five generated provider packages. Count: 32 skills, zero
+new named-agent configurations. The state helper and exporter are implemented;
+no global installation, release, main merge or real-user acceptance is claimed.
+
+Independent source review closed the original seven code findings and a subsequent
+empty-target issue: frame/draft-only runs now work without publication targets,
+while G4 still rejects empty/unrequested targets. Final source verdict and exact
+hashes: engos-quality-implementation-code-final.md. Independent docs review closed
+runbook packaging, evidence-link and resource-root command defects, comparing all
+five generated runtime references: engos-quality-implementation-docs-final.md.
+
+Actual verification:
+- Serial full suite: 1319 passed, 3 optional DOCX skips, 138 subtests passed, exit 0.
+- All three skipped native DOCX regressions passed separately in the approved
+  bundled document runtime; both CI files install those dependencies and run them.
+- Subsequent docs/archive corrections: 56 focused package/docs/resource tests passed.
+- Strict surface validation: passed, 32 SSOT entries. Installer capsule and legacy
+  catalog checks passed. Zero-token contract compile/check: 32, no blockers;
+  contracts remain draft and no behavioral promotion is asserted.
+- Static evaluator calibration: 14 controls present, no missing controls, zero
+  model calls; semantic judges explicitly unqualified for formal promotion.
+- CLI smoke completed with Gemini discovery exit-41 warning. Do not claim live
+  invocation/discovery success for every provider.
+
+Observed model preflight:
+- Initial simulated run exposed over-batched delegated asks and incomplete
+  preference assistance. Source guidance was repaired, then the same case rerun
+  in a fresh worker with the same two scripted follow-ups.
+- Independent rerun assessment found the visible conversational criteria met:
+  relevant 3/2/0 request counts, illustrative trade-offs, preserved unknowns and a
+  useful stop/handoff. It expressly withholds human usability, successful evidence
+  return, actual resume/stage acceptance, enforced sandbox and complete protocol
+  claims. See engos-quality-pilot-preflight-initial.json and rerun.json.
+- The read-boundary rule was prospectively corrected to allow mandatory host
+  identity metadata; the initial deviation remains recorded, not retroactively
+  passed. Guidance and criteria changes prevent causal/statistical superiority claims.
+- Worker-run before/after package manifests matched. After that run completed, the
+  controller corrected the unused runtime guide's working-directory text and
+  regenerated packages while the outcome assessor inspected the live tree. That
+  explains its later package mismatch/transient missing-file observation. It is
+  not evidence of in-run worker mutation, nor a full-package reproducibility pass.
+- Some retained trace outputs cannot independently establish full resource ingestion.
+  No further trial is silently added to the bounded preflight; address observation
+  capture and host boundaries before broader P1–P10/real-user acceptance.
+
+Merge/release gate remains closed: required real-input/human and saved Google Doc
+proof is incomplete; the exact upload is approval-blocked, GitLab is access-blocked,
+and no hosted PR/MR checks have run. Useful source work and evidence are retained
+locally for resumption. Do not relabel this checkpoint as completion of the request.
+
+## Requirement accounting at handoff
+
+| Requirement | Implemented and observed | Still required |
+| --- | --- | --- |
+| C01 entry/input help | Guided entry discovered in two model preflights; source coverage rules/resources | Real uncoached participants and positive complete-evidence case |
+| C02 product/engineering questions | Assistance ladder, question/uncertainty split, request-budget repair observed on known scenario | Human decisions, real disagreement/return flow |
+| C03 research modes | AI/human/hybrid protocols, explicit code-scan boundaries, teammate/evidence cards | Actual returned engineering evidence and full research progression |
+| C04 framing versus shaping | Stage predicates, no-fabrication guidance, model holds rather than invented solution | Real input through all stages |
+| C05 scoped worker roles | Role/context work orders and actual independent reviewers; limitations disclosed | Effective host-boundary audit; no enforced-sandbox claim |
+| C06 state/handoff/recovery | Atomic accepted snapshot, replay/reopen and regressions; candidate handoff observed | Uncoached real resume and full stage-worker handoffs |
+| C07 formats/delivery | JSON/HTML/DOCX helper, actual Mermaid render and eight-page DOCX QA; full rows/images retained locally | Saved Google Doc approval/readback/pixels; real approved bundle on both targets |
+| C08 validators | Positive/negative mechanics, reproduced defects repaired and independently rechecked | Live semantic gate evidence, not fake fixture receipts |
+| C09 exemplar/rubric | Three-diagram/full-table policy, source-specific anchors and bounded comprehension controls | Complete real-pitch judgment and exemplar calibration |
+| C10 iteration | Actual independent design/instruction/code/docs findings and repaired rechecks retained | No additional design-only acceptance substituted for live proof |
+| C11 repo delivery | Same-slug UAC, source-first regeneration, strict checks, tests, packaged runbook | GitLab access, exact-head hosted PR/MR CI, merge/parity/cleanup |
+| C12 pilot/goal boundary | Bounded model preflight with explicit protocol amendment and limitations | Human pilot; no runtime goal was created implicitly |
+
+The full suite passed before the final documentation-only working-directory and
+archive-membership corrections. Those corrections were followed by the 56 passing
+focused package/docs/resource checks and strict regeneration/validation. Semantic
+model proof remains bounded; do not convert the test counts into a readiness score.
+
+## Implementation boundaries
+
+Canonical skill bodies enter through UAC from task-owned candidates. Helpers live
+under sources/capability-resources/<slug>; generated surfaces are never hand-edited.
+Runtime is a small portable Python helper, not a new agent orchestration service.
+It enforces mechanical consistency when used by the controller; host permissions
+and actual worker provenance remain a separately observed trust boundary. Do not
+claim OS isolation or authentication from a supplied identity string.
+
+Runtime public interface target: init, status, prepare, seal, accept, reopen,
+delivery-intent, delivery-record; exact arguments and schemas must be documented
+and tested before skill prompts invoke them. Worker output directories are separate
+from controller-owned accepted state. G0–G4 require current dependency bindings;
+G3 independent review; G4 saved-target evidence. Code must distinguish success,
+validation failure and unverifiable/error. Positive fixtures must advance and
+negative mutations must fail without state mutation. Source/decision changes
+invalidate affected later acceptance, preserving history.
+
+Scope for current tests: first implementation acceptance, not statistical
+superiority or formal behavioral promotion. Earlier examples remain training
+material. Freeze concrete pilot inputs before trials; do not give expected answers
+to trial workers. Human pilot cannot be replaced by simulated stakeholder approval.
+User has been asked for actual participants and the historical replay appetite;
+other authorized work continues while those decisions are pending.

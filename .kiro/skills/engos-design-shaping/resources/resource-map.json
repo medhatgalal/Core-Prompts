@@ -1,0 +1,32 @@
+{
+  "schema_version": "CapabilityResourceMap.v1",
+  "shared": ["routing.md"],
+  "routes": {
+    "start": ["start-resume.md", "sources.md", "questions.md"],
+    "resume": ["start-resume.md"],
+    "intake": ["dispatch.md", "sources.md"],
+    "frame": ["dispatch.md", "questions.md", "decisions.md"],
+    "questions": ["questions.md"],
+    "research": ["stages/research.md"],
+    "code-scan": ["code-scan.md"],
+    "human-evidence": ["human-evidence.md"],
+    "shape": ["stages/shape.md", "templates/shaped-bundle.md"],
+    "review": ["stages/review.md"],
+    "publish": ["stages/publish.md", "representations.md"],
+    "reconcile": ["reconciliation.md"],
+    "fallback": ["fallback.md"]
+  },
+  "dependencies": {
+    "start-resume.md": ["decisions.md"],
+    "dispatch.md": ["sources.md"],
+    "questions.md": ["decisions.md"],
+    "human-evidence.md": ["questions.md", "sources.md"],
+    "code-scan.md": ["sources.md"],
+    "stages/research.md": ["dispatch.md", "questions.md"],
+    "stages/shape.md": ["dispatch.md"],
+    "stages/review.md": ["dispatch.md"],
+    "stages/publish.md": ["dispatch.md"],
+    "representations.md": ["sources.md"],
+    "reconciliation.md": ["decisions.md", "representations.md"]
+  }
+}

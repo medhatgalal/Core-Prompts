@@ -1,0 +1,14 @@
+{
+  "schema_version": "CapabilityResourceMap.v1",
+  "shared": ["references/gates.md"],
+  "routes": {
+    "intake": [],
+    "frame": [],
+    "research": [],
+    "shaped": ["references/rubrics.md"],
+    "delivery": [],
+    "runtime": ["references/runtime.md"],
+    "runtime-tools": ["scripts/shaping_run.py", "schemas/runtime.schema.json", "schemas/policy.example.json"]
+  },
+  "dependencies": {}
+}

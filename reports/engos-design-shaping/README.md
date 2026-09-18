@@ -1,8 +1,13 @@
 # engos-design-shaping design packet
 
-This packet designs the entire Intake → Framed → Research → Shaped → Bet-ready
-process. It is not a shipped capability bundle. Canonical SSOT, generated skills,
-native registrations, home installations and production services are unchanged.
+This packet preserves design and implementation evidence for Intake → Framed →
+Research → Shaped → Bet-ready. The user authorized implementation and the pilot;
+canonical sources and generated skill packages are changed in the isolated
+worktree. This is not shipped to main. Native registrations, home installations
+and production services remain unchanged.
+
+The current status is [the implementation ledger](engos-delivery-implementation-ledger.md),
+including local verification and the still-open human, publication and GitLab gates.
 
 ## Read in order
 

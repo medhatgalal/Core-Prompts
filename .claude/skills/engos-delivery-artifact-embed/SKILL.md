@@ -1,7 +1,7 @@
 ---
 name: "engos-delivery-artifact-embed"
 description: "Place an authored shaping-artifact bundle onto a selected HTML, PR/MR, chat, Google Doc, or wiki surface through explicit adapters. Use Mermaid/Markdown passthrough where native rendering exists and fail loudly with a named human step when a surface cannot prove placement."
-version: "v1.0"
+version: "v1.1"
 ---
 # Shaping Artifact Embed — Surface Adapters and Placement Evidence
 
@@ -64,7 +64,7 @@ file upload, a zero exit code, or a stale page view alone.
 | HTML docs site | Mermaid fenced blocks | Markdown tables | Passthrough; verify the built page renders the diagrams and tables |
 | GitHub PR / GitLab MR | Mermaid fenced blocks | Markdown tables | Passthrough; verify the exact description revision |
 | Chat / review | Mermaid or embedded image reference | Markdown/inline table | Prefer Mermaid/text; verify the sent message if sending is authorized |
-| Google Doc | Rendered PNG/SVG inserted inline | Native Docs tables plus source link/hash | Render, upload through the supported path, insert, then read back; never rely on a public URL assumption |
+| Google Doc | Rendered PNG embedded through verified private DOCX conversion | Native Docs tables plus source link/hash | Render, upload through the supported path, insert, then read back; never rely on a public URL assumption |
 | Wiki / Confluence | Native Mermaid macro when supported, otherwise attachment | Native table | Detect the page capability, choose one path, and verify the saved page |
 
 ## Workflow
@@ -73,8 +73,9 @@ file upload, a zero exit code, or a stale page view alone.
    the caller explicitly requests a diagnostic receipt.
 2. Detect the target surface and its native diagram/table capabilities. Keep
    the core bundle unchanged.
-3. For HTML, PR/MR, and chat, emit the same Mermaid fences and Markdown tables
-   as a passthrough adapter. No image hosting step is needed.
+3. For HTML, PR/MR, and chat, verify native Mermaid support before emitting
+   the same fences and full Markdown tables. If unsupported, select the authorized
+   image adapter and verify its actual saved representation.
 4. For Google Docs, render Mermaid to an image only at the adapter boundary.
    Use the environment-supported Drive upload form (`--upload`, not a blocked
    `--upload-file` form when the runtime exposes that distinction), retain the
@@ -146,6 +147,34 @@ file upload, a zero exit code, or a stale page view alone.
 | Failure honesty | Upload, public-sharing, click, or renderer blockers are explicit and fail closed |
 | Security boundary | No public sharing or external transmission is performed implicitly |
 | Extensibility | Adding a surface requires one adapter entry and its verification contract |
+
+## Full Shaping and Local Export Contract
+
+For a full engos-design-shaping run, use the current G3-approved entire pitch
+bundle, not only diagrams. This section refines the artifact-only workflow above:
+read resources/references/surfaces.md, then resources/references/export.md for
+local conversion or resources/references/reconciliation.md for external edits.
+The user's declared appetite, account and requested target list are authoritative.
+
+The bundled resources/scripts/artifact_export.py helper creates source-bound JSON,
+HTML, PNGs and optional DOCX using documented dependencies. It does not publish,
+inspect pixels or approve a stage. Read its --help and resource instructions before
+use. Do not substitute artifact existence or successful conversion for validation.
+Render and inspect DOCX pages, use the supported native import path, then read back
+and inspect the saved Google Doc with all native tables and inline PNGs. Preserve
+source inventories and keep render/placement receipts outside immutable content.
+
+Record publication intent before external writes. Reconcile uncertain success
+before retrying; never silently duplicate a target. G4 verifies all requested
+surfaces, content parity and current revisions. Report content-ready separately
+from delivery-pending. A human step does not satisfy successful two-surface proof.
+External changes become candidates compared with both the published base and current
+source; preserve comments and edits, obtain decisions and reopen affected gates.
+No automatic sharing, notifications, public image hosting or source overwrites.
+
+Blast radius: all hosts invoking this existing helper receive the additional
+capability-detection and fidelity checks; full-run gating applies only when a
+shaping run is supplied. Standalone artifact placement retains its own scope.
 
 
 Capability resource: `resources/capability.json`

@@ -1,0 +1,328 @@
+{
+  "schema_version": "CapabilityTopology.v1",
+  "slug": "engos-design-frame-from-vague",
+  "ssot_sha256": "5d3a354f410194a3dba6e37aa6ac01001fc4e10e7d6f9cfa373cf8db3482d883",
+  "explicit_invocations": [],
+  "semantic_triggers": [],
+  "aliases_shortcuts": [],
+  "auto_routes": [],
+  "nodes": {
+    "commands": [],
+    "modes_modules": [],
+    "controls": [],
+    "modifiers": []
+  },
+  "composition": {
+    "legal_pairs": [],
+    "forbidden_pairs": [],
+    "canonical_order": [],
+    "requirements": [],
+    "supersession": []
+  },
+  "state_machine": {
+    "states": [],
+    "transitions": [],
+    "forbidden_transitions": []
+  },
+  "outputs": [],
+  "authority_boundaries": [
+    "engos-design-frame-from-vague:L35:08cb865841aa",
+    "engos-design-frame-from-vague:L41:f6f7e8bba51c",
+    "engos-design-frame-from-vague:L52:f822c3d3b58b",
+    "engos-design-frame-from-vague:L67:caa14cc6d618",
+    "engos-design-frame-from-vague:L91:8beedaf8a22f",
+    "engos-design-frame-from-vague:sources/capability-resources/engos-design-frame-from-vague/routing.md:L10:80aad2d49cc9",
+    "engos-design-frame-from-vague:sources/capability-resources/engos-design-frame-from-vague/templates.md:L5:78e7b5f5aff0",
+    "engos-design-frame-from-vague:sources/capability-resources/engos-design-frame-from-vague/templates.md:L20:39fe3d732ad1",
+    "engos-design-frame-from-vague:sources/capability-resources/engos-design-frame-from-vague/stages/intake.md:L11:3150b93119c3",
+    "engos-design-frame-from-vague:sources/capability-resources/engos-design-frame-from-vague/stages/frame.md:L13:2d3afd1575ec",
+    "engos-design-frame-from-vague:sources/capability-resources/engos-design-frame-from-vague/stages/frame.md:L27:f8c9c85176d2"
+  ],
+  "resources": [
+    "- Human decisions: accepted references, candidate events, relay/direct distinction,",
+    "- Run and source IDs, original request or approved precise reference, date/revision."
+  ],
+  "handoffs": [
+    "- Handoff: what is settled, what awaits humans, technical research questions,"
+  ],
+  "protected_invariants": [
+    {
+      "id": "engos-design-frame-from-vague:L6:e3ceae65cff6",
+      "heading": "Purpose",
+      "source": "ssot/engos-design-frame-from-vague.md",
+      "source_line": 13,
+      "sha256": "e3ceae65cff6c6e8d9a21db13ad9d0bf49cf375032bf0ea33d8fa917c6f9d838",
+      "text": "frame-only use is also supported without requiring a second user workflow.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-frame-from-vague:L17:7cec8b40125c",
+      "heading": "Invocation Hints",
+      "source": "ssot/engos-design-frame-from-vague.md",
+      "source_line": 24,
+      "sha256": "7cec8b40125cae6987aecb8d58f910f283e33540c5c713d4567b2e1fa10ed5d6",
+      "text": "Use for a rough complaint, a mechanism presented as a problem, or framing-only",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-frame-from-vague:L22:77357dbdaba3",
+      "heading": "Required Inputs",
+      "source": "ssot/engos-design-frame-from-vague.md",
+      "source_line": 29,
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "text": "## Required Inputs",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-frame-from-vague:L29:3d4b9f171064",
+      "heading": "Required Output",
+      "source": "ssot/engos-design-frame-from-vague.md",
+      "source_line": 36,
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "text": "## Required Output",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-frame-from-vague:L35:08cb865841aa",
+      "heading": "Required Output",
+      "source": "ssot/engos-design-frame-from-vague.md",
+      "source_line": 42,
+      "sha256": "08cb865841aa95e69eda53b954ec052545aef0dfac2d1d73a5ef6609ca6cc3c1",
+      "text": "may return an unaccepted frame, never a fabricated acceptance.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-frame-from-vague:L41:f6f7e8bba51c",
+      "heading": "Workflow",
+      "source": "ssot/engos-design-frame-from-vague.md",
+      "source_line": 48,
+      "sha256": "f6f7e8bba51c64270723e9fc07b4d40e4ac6a6d06b343b24fbf68462bd7ef2bf",
+      "text": "root, never by a machine-specific or guessed relative package path.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-frame-from-vague:L51:a959eeecd57d",
+      "heading": "Workflow",
+      "source": "ssot/engos-design-frame-from-vague.md",
+      "source_line": 58,
+      "sha256": "a959eeecd57daa2e9ab01336e402f0eeac3cf810fd5b26c35a51e0b489caf097",
+      "text": "Human authority must confirm investment and scope decisions; job titles or",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-frame-from-vague:L52:f822c3d3b58b",
+      "heading": "Workflow",
+      "source": "ssot/engos-design-frame-from-vague.md",
+      "source_line": 59,
+      "sha256": "f822c3d3b58b3b6b7980ee50cff25d139beab4d6f09c7c27cb684bd801fafa27",
+      "text": "relayed agreement alone do not establish authority or technical observation.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-frame-from-vague:L67:caa14cc6d618",
+      "heading": "Rules",
+      "source": "ssot/engos-design-frame-from-vague.md",
+      "source_line": 74,
+      "sha256": "caa14cc6d618da47cda09a81218497590441824f4e60f4b5b72874536a692f0b",
+      "text": "- Do not manufacture facts, risks, owners, agreement, evidence or approvals. Do not",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-frame-from-vague:L75:4d220a78c9c8",
+      "heading": "Rules",
+      "source": "ssot/engos-design-frame-from-vague.md",
+      "source_line": 82,
+      "sha256": "4d220a78c9c85342417e01f8b2877a862b98646a66ce6007f3f417e1dbcaa0c8",
+      "text": "shared contracts. Only a current accepted snapshot may supply resume state.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-frame-from-vague:L91:8beedaf8a22f",
+      "heading": "Examples",
+      "source": "ssot/engos-design-frame-from-vague.md",
+      "source_line": 98,
+      "sha256": "8beedaf8a22f57458144b4b91bbd925e5470a05f2eccae7a3a1903b2511e59b3",
+      "text": "small teammate card. Keep `owner_unassigned` until confirmed; never assign a name",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-frame-from-vague:sources/capability-resources/engos-design-frame-from-vague/routing.md:L3:28032da80042",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-frame-from-vague/routing.md",
+      "source_line": 3,
+      "sha256": "28032da80042d53f54b77a9f36cba7685cee8a8badfad043d5267ce1ef9322b4",
+      "text": "Read only `intake` or `frame` and its complete dependency closure. The route is a",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-frame-from-vague:sources/capability-resources/engos-design-frame-from-vague/routing.md:L10:80aad2d49cc9",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-frame-from-vague/routing.md",
+      "source_line": 10,
+      "sha256": "80aad2d49cc9b15f165f6ebafabb5dc8c18f8569b63572ea93a28667e15f8e04",
+      "text": "the current bound originals and state; do not restart the interview.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-frame-from-vague:sources/capability-resources/engos-design-frame-from-vague/routing.md:L13:0108945eecfa",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-frame-from-vague/routing.md",
+      "source_line": 13,
+      "sha256": "0108945eecfaa84fa4b610a62a5c27a0e2ea9142c831e9cb9a74f331508e84f7",
+      "text": "its `dispatch.md`, `questions.md` and `decisions.md`; load `human-evidence.md` only",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-frame-from-vague:sources/capability-resources/engos-design-frame-from-vague/routing.md:L14:f4c7c6b02f92",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-frame-from-vague/routing.md",
+      "source_line": 14,
+      "sha256": "f4c7c6b02f92c5273ddd40680c8358e7b7a9f1163c3651398e4b0a0e48d3443a",
+      "text": "when a teammate/evidence request is needed. Read all required dependencies of those",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-frame-from-vague:sources/capability-resources/engos-design-frame-from-vague/routing.md:L19:09f364a03ce9",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-frame-from-vague/routing.md",
+      "source_line": 19,
+      "sha256": "09f364a03ce9a25386b9ef936cdc90896e9f4e4d67ac9b8479e510b89709724b",
+      "text": "resources. Gate predicates belong there. A missing required package routes to the",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-frame-from-vague:sources/capability-resources/engos-design-frame-from-vague/templates.md:L5:78e7b5f5aff0",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-frame-from-vague/templates.md",
+      "source_line": 5,
+      "sha256": "78e7b5f5aff0fbc75455244f10c83764b67f23b96234292c5e4a3eab88c5c6c0",
+      "text": "question/uncertainty IDs. Never fill placeholders with invented answers.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-frame-from-vague:sources/capability-resources/engos-design-frame-from-vague/templates.md:L20:39fe3d732ad1",
+      "heading": "intake.md",
+      "source": "sources/capability-resources/engos-design-frame-from-vague/templates.md",
+      "source_line": 20,
+      "sha256": "39fe3d732ad190716ae724d2456347b9df3879ec15fd045cc9f6c30fa3de53df",
+      "text": "- Assumed: attributed interpretations to verify, never silently promoted to facts.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-frame-from-vague:sources/capability-resources/engos-design-frame-from-vague/templates.md:L44:9e7db1275859",
+      "heading": "framed.md",
+      "source": "sources/capability-resources/engos-design-frame-from-vague/templates.md",
+      "source_line": 44,
+      "sha256": "9e7db12758593a53caec0cc7fd4a7203dccc2914f1f4c2f36febf24a77ce3f91",
+      "text": "Frame-only completion after actual G1 supplies the frame and open research needs.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-frame-from-vague:sources/capability-resources/engos-design-frame-from-vague/stages/intake.md:L11:3150b93119c3",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-frame-from-vague/stages/intake.md",
+      "source_line": 11,
+      "sha256": "3150b93119c3767f75ab3d404b94ecf84fb32f30fa9b49647909e60f8ab28aae",
+      "text": "> coverage gaps, candidate questions/events and artifacts for G0 review. Do not",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-frame-from-vague:sources/capability-resources/engos-design-frame-from-vague/stages/frame.md:L9:ada4a553d6fc",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-frame-from-vague/stages/frame.md",
+      "source_line": 9,
+      "sha256": "ada4a553d6fc4b05763e87806c36ff3a7db8792e240512a038cb185f09c76951",
+      "text": "> and scope authority. Keep missing decisions pending. Ask only consequential",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-frame-from-vague:sources/capability-resources/engos-design-frame-from-vague/stages/frame.md:L13:2d3afd1575ec",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-frame-from-vague/stages/frame.md",
+      "source_line": 13,
+      "sha256": "2d3afd1575ec85849aab49eccd4484aefa95c1c100e714fcb070d0b3a7a98430",
+      "text": "> exact blockers and G1 review request. Do not accept state, solve the architecture",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-frame-from-vague:sources/capability-resources/engos-design-frame-from-vague/stages/frame.md:L27:f8c9c85176d2",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-frame-from-vague/stages/frame.md",
+      "source_line": 27,
+      "sha256": "f8c9c85176d260717db3890223ecf15aac866d8f1880427d8d5d72ddd5560603",
+      "text": "hold; never select answers merely to meet a question limit.",
+      "kind": "invariant",
+      "mapped_to": []
+    }
+  ],
+  "risk_tiers": {
+    "critical": [],
+    "high": [],
+    "standard": []
+  },
+  "source_references": [
+    {
+      "path": "ssot/engos-design-frame-from-vague.md",
+      "sha256": "5d3a354f410194a3dba6e37aa6ac01001fc4e10e7d6f9cfa373cf8db3482d883"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-frame-from-vague/routing.md",
+      "sha256": "3f722867d8cc63acb4e3a3e4c504c52ffd8932aa885fcfb8fee066b4d5d824d2"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-frame-from-vague/templates.md",
+      "sha256": "60eca5101295243a80228ce451cfcb292d47102882e192acde38c1a7ea4807e0"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-frame-from-vague/stages/intake.md",
+      "sha256": "ea7a85a647380f4bafda12dc9e76c03080e72416683c493e660e061d85714376"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-frame-from-vague/stages/frame.md",
+      "sha256": "6b60b6ef45824a8f728fdca31e224ce6201437edb6d028f7490cfb5b70a14f97"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-frame-from-vague/resource-map.json",
+      "sha256": "1ccc940ce018dfff17a68cf5a8c97e5b10ba650a96af8f931a56bd1429f4fd51"
+    }
+  ],
+  "known_ambiguities": [],
+  "coverage_policy": {
+    "normative_clauses": "100_percent_mapped_or_waived",
+    "nodes": "positive_and_boundary",
+    "transitions": "all_legal_and_forbidden",
+    "module_pairs": "all_legal_pairs",
+    "high_risk_tuples": "assigned_strength",
+    "critical_mutants": "100_percent_killed"
+  },
+  "normative_clause_coverage": {
+    "total": 23,
+    "mapped": 0,
+    "waived": 0
+  },
+  "review_status": "draft",
+  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs.",
+  "resource_bundle_sha256": "d7ee44d531dcc628af5018b35f93d9bb8a1ecb5aba4bb4102c365f9deba6bbc5"
+}

@@ -1,0 +1,197 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "shaping-runtime.v1",
+  "title": "Shaping runtime v1 input contracts",
+  "description": "Select a definitions entry with $ref. Structural schemas do not authenticate identities, establish semantic truth, verify pixel quality or authorize external actions. The stdlib runtime additionally validates cross-field policy, hashes, paths, predicates, scores, versions and predecessor bindings.",
+  "oneOf": [
+    {"$ref": "#/definitions/policy"},
+    {"$ref": "#/definitions/prepare"},
+    {"$ref": "#/definitions/review"},
+    {"$ref": "#/definitions/deliveryRecord"}
+  ],
+  "definitions": {
+    "text": {"type": "string", "minLength": 1, "pattern": "\\S"},
+    "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,99}$"},
+    "hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "path": {"type": "string", "minLength": 1, "description": "Portable run-relative POSIX path; runtime rejects absolute paths, backslashes, colons, empty/dot/parent segments, symlinks and nonregular files."},
+    "texts": {"type": "array", "items": {"$ref": "#/definitions/text"}, "uniqueItems": true},
+    "refs": {"allOf": [{"$ref": "#/definitions/texts"}], "minItems": 1},
+    "gate": {"enum": ["G0", "G1", "G2", "G3", "G4"]},
+    "target": {
+      "type": "object", "additionalProperties": false, "required": ["surface", "destination"],
+      "properties": {"surface": {"$ref": "#/definitions/text"}, "destination": {"$ref": "#/definitions/text"}}
+    },
+    "gatePolicy": {
+      "type": "object", "additionalProperties": false, "required": ["predicates", "required_outputs"],
+      "properties": {
+        "predicates": {"$ref": "#/definitions/refs", "description": "Mandatory IDs are mapped to gates.md in runtime.md; additions allowed, omissions refused."},
+        "required_outputs": {"$ref": "#/definitions/refs", "description": "Minimum per-gate inventories in runtime.md are enforced in code; additions allowed."}
+      }
+    },
+    "policy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema_version", "policy_id", "gates", "scoring", "delivery_targets", "references"],
+      "properties": {
+        "schema_version": {"const": 1, "type": "integer"},
+        "policy_id": {"$ref": "#/definitions/text"},
+        "references": {
+          "type": "object", "additionalProperties": false, "required": ["gates", "rubric"],
+          "properties": {"gates": {"$ref": "#/definitions/path"}, "rubric": {"$ref": "#/definitions/path"}}
+        },
+        "gates": {
+          "type": "object", "additionalProperties": false, "required": ["G0", "G1", "G2", "G3", "G4"],
+          "properties": {
+            "G0": {"$ref": "#/definitions/gatePolicy"}, "G1": {"$ref": "#/definitions/gatePolicy"},
+            "G2": {"$ref": "#/definitions/gatePolicy"}, "G3": {"$ref": "#/definitions/gatePolicy"},
+            "G4": {"$ref": "#/definitions/gatePolicy"}
+          }
+        },
+        "scoring": {
+          "type": "object", "additionalProperties": false,
+          "required": ["dimensions", "minimum_dimension", "minimum_overall"],
+          "properties": {
+            "dimensions": {"const": ["simplicity", "testability", "security", "architecture", "cost", "feasibility", "confidence", "problem_clarity", "appetite_fit", "solution_sharpness", "contract_quality", "boundary_discipline"]},
+            "minimum_dimension": {"type": "number", "minimum": 3, "maximum": 5},
+            "minimum_overall": {"type": "number", "minimum": 4, "maximum": 5}
+          }
+        },
+        "delivery_targets": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/definitions/target"}}
+      }
+    },
+    "reviewerAssignment": {
+      "type": "object", "additionalProperties": false,
+      "required": ["identity", "independent", "assignment_evidence", "context_evidence"],
+      "properties": {
+        "identity": {"$ref": "#/definitions/text"}, "independent": {"const": true},
+        "assignment_evidence": {"$ref": "#/definitions/path"}, "context_evidence": {"$ref": "#/definitions/path"}
+      },
+      "description": "Controller records BEFORE dispatch. Both evidence paths must be in inputs. Runtime compares labels and hashes, not actual host identity or context isolation."
+    },
+    "prepare": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema_version", "work_order_id", "gate", "author", "reviewer", "inputs", "source_revision", "resource_revision", "skill_allowlist", "original_constraints", "assigned_questions", "source_access_scope", "effort_bound", "stop_conditions"],
+      "properties": {
+        "schema_version": {"type": "integer", "const": 1},
+        "work_order_id": {"$ref": "#/definitions/id"}, "gate": {"$ref": "#/definitions/gate"},
+        "author": {"$ref": "#/definitions/text"}, "reviewer": {"$ref": "#/definitions/reviewerAssignment"},
+        "inputs": {"$ref": "#/definitions/refs"}, "source_revision": {"$ref": "#/definitions/text"},
+        "resource_revision": {"$ref": "#/definitions/text"}, "skill_allowlist": {"$ref": "#/definitions/refs"},
+        "original_constraints": {"$ref": "#/definitions/refs"}, "assigned_questions": {"$ref": "#/definitions/texts"},
+        "source_access_scope": {"$ref": "#/definitions/text"}, "effort_bound": {"$ref": "#/definitions/text"},
+        "stop_conditions": {"$ref": "#/definitions/refs"}
+      }
+    },
+    "question": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "blocking", "in_scope", "status", "evidence_standard", "evidence", "decision_id", "dependency_evidence"],
+      "properties": {
+        "id": {"$ref": "#/definitions/id"}, "blocking": {"type": "boolean"}, "in_scope": {"type": "boolean"},
+        "status": {"enum": ["proposed", "accepted-for-investigation", "answered", "disputed", "deferred", "excluded"]},
+        "evidence_standard": {"$ref": "#/definitions/text"}, "evidence": {"$ref": "#/definitions/texts"},
+        "decision_id": {"oneOf": [{"$ref": "#/definitions/id"}, {"type": "null"}]},
+        "dependency_evidence": {"$ref": "#/definitions/texts"},
+        "details": {"type": "object", "description": "Preserved question wording/history, source gap, rationale, respondent, answer provenance, dissent and decision affected. Reviewers assess meaning."}
+      },
+      "description": "G2 onward in-scope blockers must be answered with evidence. Exclusion requires in_scope=false, status=excluded, confirmed decision and dependency evidence. IDs cannot disappear or downgrade blocking."
+    },
+    "questions": {"type": "array", "items": {"$ref": "#/definitions/question"}},
+    "decision": {
+      "type": "object", "additionalProperties": false, "required": ["id", "status", "authority", "reason", "evidence"],
+      "properties": {
+        "id": {"$ref": "#/definitions/id"}, "status": {"enum": ["proposed", "confirmed", "disputed"]},
+        "authority": {"$ref": "#/definitions/text"}, "reason": {"$ref": "#/definitions/text"},
+        "evidence": {"$ref": "#/definitions/texts"}, "details": {"type": "object"}
+      },
+      "description": "Confirmed decisions require existing hashed evidence. A string does not authenticate a human or prove approval. Changing any accepted decision requires reopening its stage."
+    },
+    "decisions": {"type": "array", "items": {"$ref": "#/definitions/decision"}},
+    "assessment": {
+      "type": "object", "additionalProperties": false, "required": ["outcome", "evidence_ids", "explanation"],
+      "properties": {
+        "outcome": {"enum": ["pass", "fail", "unverifiable"]},
+        "evidence_ids": {"$ref": "#/definitions/refs"}, "explanation": {"$ref": "#/definitions/text"}
+      },
+      "description": "Acceptance requires pass for every policy predicate. This is an actual reviewer assessment, never author keyword scoring."
+    },
+    "score": {
+      "type": "object", "additionalProperties": false, "required": ["score", "rationale", "evidence_ids"],
+      "properties": {
+        "score": {"type": "number", "minimum": 1, "maximum": 5},
+        "rationale": {"$ref": "#/definitions/text"}, "evidence_ids": {"$ref": "#/definitions/refs"}
+      }
+    },
+    "scores": {
+      "type": "object", "additionalProperties": false, "required": ["dimensions", "team_mean", "pitch_mean", "overall"],
+      "properties": {
+        "dimensions": {
+          "type": "object", "minProperties": 12, "maxProperties": 12,
+          "required": ["simplicity", "testability", "security", "architecture", "cost", "feasibility", "confidence", "problem_clarity", "appetite_fit", "solution_sharpness", "contract_quality", "boundary_discipline"],
+          "additionalProperties": {"$ref": "#/definitions/score"}
+        },
+        "team_mean": {"type": "number", "minimum": 1, "maximum": 5},
+        "pitch_mean": {"type": "number", "minimum": 1, "maximum": 5},
+        "overall": {"type": "number", "minimum": 1, "maximum": 5}
+      },
+      "description": "All twelve scores >=3; overall >=4. Overall=sum(all twelve scores)/12, checked to absolute tolerance 1e-9. Category means are reporting only. Use source-specific rubric anchors; no generic all-5 implementation rule."
+    },
+    "targetReview": {
+      "type": "object", "additionalProperties": false, "required": ["operation_id", "readback", "inventory"],
+      "properties": {
+        "operation_id": {"$ref": "#/definitions/hash"},
+        "readback": {"$ref": "#/definitions/refs"}, "pixels": {"$ref": "#/definitions/refs"}, "inventory": {"$ref": "#/definitions/refs"},
+        "structured": {"$ref": "#/definitions/refs"}
+      },
+      "oneOf": [{"required": ["pixels"], "not": {"required": ["structured"]}}, {"required": ["structured"], "not": {"required": ["pixels"]}}],
+      "description": "Operation surface=json requires structured parity, not pixels; all visual surfaces require pixels. Runtime binds representation to the previously recorded target."
+    },
+    "review": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema_version", "run_id", "gate", "work_order_id", "generation", "policy_hash", "resource_revision", "predecessor", "return_hash", "subject", "reviewer", "authored_candidate", "independence_confirmed", "evidence", "assessments", "findings", "unresolved_blockers", "verdict", "next_state", "scores", "render_evidence", "targets"],
+      "properties": {
+        "schema_version": {"type": "integer", "const": 1}, "run_id": {"$ref": "#/definitions/id"},
+        "gate": {"$ref": "#/definitions/gate"}, "work_order_id": {"$ref": "#/definitions/id"},
+        "generation": {"type": "integer", "minimum": 0}, "policy_hash": {"$ref": "#/definitions/hash"},
+        "resource_revision": {"$ref": "#/definitions/text"},
+        "predecessor": {"oneOf": [{"$ref": "#/definitions/hash"}, {"type": "null"}]},
+        "return_hash": {"$ref": "#/definitions/hash"},
+        "subject": {"type": "object", "minProperties": 1, "additionalProperties": {"$ref": "#/definitions/hash"}},
+        "reviewer": {"$ref": "#/definitions/text"}, "authored_candidate": {"type": "boolean"},
+        "independence_confirmed": {"type": "boolean"},
+        "evidence": {"type": "object", "minProperties": 1, "propertyNames": {"$ref": "#/definitions/id"}, "additionalProperties": {"$ref": "#/definitions/path"}},
+        "assessments": {"type": "object", "minProperties": 1, "additionalProperties": {"$ref": "#/definitions/assessment"}},
+        "findings": {"$ref": "#/definitions/texts"}, "unresolved_blockers": {"$ref": "#/definitions/texts"},
+        "verdict": {"enum": ["pass", "fail", "unverifiable"]}, "next_state": {"$ref": "#/definitions/gate"},
+        "scores": {"oneOf": [{"$ref": "#/definitions/scores"}, {"type": "null"}]},
+        "render_evidence": {
+          "type": "object", "additionalProperties": false,
+          "properties": {"component.mmd": {"$ref": "#/definitions/refs"}, "sequence.mmd": {"$ref": "#/definitions/refs"}, "data-flow.mmd": {"$ref": "#/definitions/refs"}}
+        },
+        "targets": {"type": "array", "items": {"$ref": "#/definitions/targetReview"}}
+      },
+      "allOf": [
+        {"if": {"properties": {"gate": {"const": "G3"}}},
+         "then": {"properties": {"scores": {"$ref": "#/definitions/scores"}, "render_evidence": {"required": ["component.mmd", "sequence.mmd", "data-flow.mmd"]}}},
+         "else": {"properties": {"scores": {"type": "null"}, "render_evidence": {"maxProperties": 0}}}},
+        {"if": {"properties": {"gate": {"const": "G4"}}},
+         "then": {"properties": {"targets": {"minItems": 1}}},
+         "else": {"properties": {"targets": {"maxItems": 0}}}}
+      ]
+    },
+    "deliveryRecord": {
+      "type": "object", "additionalProperties": false, "required": ["status", "note"],
+      "properties": {
+        "status": {"enum": ["uncertain", "verified"]}, "note": {"$ref": "#/definitions/text"},
+        "target_id": {"$ref": "#/definitions/text"}, "revision": {"$ref": "#/definitions/text"},
+        "evidence": {
+          "type": "object", "additionalProperties": false, "required": ["readback", "inventory"],
+          "properties": {"readback": {"$ref": "#/definitions/path"}, "pixels": {"$ref": "#/definitions/path"}, "inventory": {"$ref": "#/definitions/path"}, "structured": {"$ref": "#/definitions/path"}},
+          "oneOf": [{"required": ["pixels"], "not": {"required": ["structured"]}}, {"required": ["structured"], "not": {"required": ["pixels"]}}],
+          "description": "surface=json requires structured parity evidence and actual parseable JSON readback. Visual targets require saved pixels. Inventory covers source/sections/rows/diagrams for both."
+        }
+      },
+      "allOf": [{"if": {"properties": {"status": {"const": "verified"}}},
+                 "then": {"required": ["target_id", "revision", "evidence"]},
+                 "else": {"maxProperties": 2}}]
+    }
+  }
+}

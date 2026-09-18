@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-delivery-artifact-embed",
-  "ssot_sha256": "32773e71e5a87bfba82046253c673536c4174e935c7ee20e168bdb8bad2c97ff",
+  "ssot_sha256": "d1f7106c9c35fb7673de1737bbe37ef3594abcfeddade9d98597528647854d9f",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -28,12 +28,26 @@
   "authority_boundaries": [
     "engos-delivery-artifact-embed:L23:e9b26fa242f4",
     "engos-delivery-artifact-embed:L52:2249d446eb28",
-    "engos-delivery-artifact-embed:L62:7a831e6561cb",
-    "engos-delivery-artifact-embed:L88:8ab98e316c4e",
-    "engos-delivery-artifact-embed:L96:ddd6b07b2348",
-    "engos-delivery-artifact-embed:L97:0b71127f1803",
-    "engos-delivery-artifact-embed:L102:23f42e842b8d",
-    "engos-delivery-artifact-embed:L110:2282cb4864a2"
+    "engos-delivery-artifact-embed:L62:a962c6cdb57b",
+    "engos-delivery-artifact-embed:L89:8ab98e316c4e",
+    "engos-delivery-artifact-embed:L97:ddd6b07b2348",
+    "engos-delivery-artifact-embed:L98:0b71127f1803",
+    "engos-delivery-artifact-embed:L103:23f42e842b8d",
+    "engos-delivery-artifact-embed:L111:2282cb4864a2",
+    "engos-delivery-artifact-embed:L157:f9f42d2f21f7",
+    "engos-delivery-artifact-embed:L163:21223df3733c",
+    "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/references/surfaces.md:L23:a12267449d98",
+    "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/references/surfaces.md:L38:889ba4f834b5",
+    "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/references/surfaces.md:L42:85788bad1996",
+    "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/references/export.md:L11:81e7d1b09c44",
+    "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/references/export.md:L15:1f9fe2f6c61e",
+    "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/references/export.md:L26:38ab3bd2b71c",
+    "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/references/reconciliation.md:L6:64cda4d692d7",
+    "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/references/reconciliation.md:L17:45d1c7fd5079",
+    "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/references/reconciliation.md:L21:29ac94792740",
+    "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/scripts/artifact_export.py:L1:6b5f6d480544",
+    "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/scripts/artifact_export.py:L45:644b1100ab22",
+    "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/scripts/artifact_export.py:L170:1a9ad6772def"
   ],
   "resources": [
     "| Chat / review | Mermaid or embedded image reference | Markdown/inline table | Prefer Mermaid/text; verify the sent message if sending is authorized |"
@@ -91,113 +105,413 @@
       "mapped_to": []
     },
     {
-      "id": "engos-delivery-artifact-embed:L62:7a831e6561cb",
+      "id": "engos-delivery-artifact-embed:L62:a962c6cdb57b",
       "heading": "Adapter Matrix",
       "source": "ssot/engos-delivery-artifact-embed.md",
       "source_line": 70,
-      "sha256": "7a831e6561cb398a2e8cdbf33562d2a87bd7a45008215ad0d80d3c3958ed5e11",
-      "text": "| Google Doc | Rendered PNG/SVG inserted inline | Native Docs tables plus source link/hash | Render, upload through the supported path, insert, then read back; never rely on a public URL assumption |",
+      "sha256": "a962c6cdb57b116e72ed4d5383a7a7274333cdd79c129c997f751dd232bdc444",
+      "text": "| Google Doc | Rendered PNG embedded through verified private DOCX conversion | Native Docs tables plus source link/hash | Render, upload through the supported path, insert, then read back; never rely on a public URL assumption |",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-delivery-artifact-embed:L73:45cbde27ffa7",
+      "id": "engos-delivery-artifact-embed:L74:45cbde27ffa7",
       "heading": "Workflow",
       "source": "ssot/engos-delivery-artifact-embed.md",
-      "source_line": 81,
+      "source_line": 82,
       "sha256": "45cbde27ffa75f570dd46c117d0e36bfd86b19cfe1ed7dec08b615be04cdcac0",
       "text": "4. For Google Docs, render Mermaid to an image only at the adapter boundary.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-delivery-artifact-embed:L88:8ab98e316c4e",
+      "id": "engos-delivery-artifact-embed:L89:8ab98e316c4e",
       "heading": "Workflow",
       "source": "ssot/engos-delivery-artifact-embed.md",
-      "source_line": 96,
+      "source_line": 97,
       "sha256": "8ab98e316c4e881b80ec86b4ef919d68d234111cf32c3adc3500bb24df02f7c3",
       "text": "ledger. Never silently downgrade a failed image placement to an untracked",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-delivery-artifact-embed:L89:59a720e69924",
+      "id": "engos-delivery-artifact-embed:L90:59a720e69924",
       "heading": "Workflow",
       "source": "ssot/engos-delivery-artifact-embed.md",
-      "source_line": 97,
+      "source_line": 98,
       "sha256": "59a720e69924a9ff9273916cb26b11ef2ecf55f7c566bd8bc585af221813423a",
       "text": "text-only result.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-delivery-artifact-embed:L95:4beff92419c1",
+      "id": "engos-delivery-artifact-embed:L96:4beff92419c1",
       "heading": "Rules",
       "source": "ssot/engos-delivery-artifact-embed.md",
-      "source_line": 103,
+      "source_line": 104,
       "sha256": "4beff92419c10c6c262efaa1abb9e058eb134ba78a7c2f1d541fe87950d30c1b",
       "text": "- Rendered images are derived and must carry a source identity.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-delivery-artifact-embed:L96:ddd6b07b2348",
+      "id": "engos-delivery-artifact-embed:L97:ddd6b07b2348",
       "heading": "Rules",
       "source": "ssot/engos-delivery-artifact-embed.md",
-      "source_line": 104,
+      "source_line": 105,
       "sha256": "ddd6b07b2348849d64bafa9e7ebe5e92fe5cade0b15a3e0742f7ab7b21e4b0d8",
       "text": "- Never make a document public merely to unblock image insertion.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-delivery-artifact-embed:L97:0b71127f1803",
+      "id": "engos-delivery-artifact-embed:L98:0b71127f1803",
       "heading": "Rules",
       "source": "ssot/engos-delivery-artifact-embed.md",
-      "source_line": 105,
+      "source_line": 106,
       "sha256": "0b71127f1803d2265453b841f1e88db8ae67d318b1ef254c52d977fab99c600f",
       "text": "- Never transmit a pitch or personal file to an external target without the",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-delivery-artifact-embed:L102:23f42e842b8d",
+      "id": "engos-delivery-artifact-embed:L103:23f42e842b8d",
       "heading": "Rules",
       "source": "ssot/engos-delivery-artifact-embed.md",
-      "source_line": 110,
+      "source_line": 111,
       "sha256": "23f42e842b8d739f2971dd094e8ca22027ace598e49edff8e37fb579e0cfc08f",
       "text": "- Do not create Jira tickets, implementation code, or a native agent surface.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-delivery-artifact-embed:L106:04979d5c9f0e",
+      "id": "engos-delivery-artifact-embed:L107:04979d5c9f0e",
       "heading": "Constraints",
       "source": "ssot/engos-delivery-artifact-embed.md",
-      "source_line": 114,
+      "source_line": 115,
       "sha256": "04979d5c9f0e72784ee30e930786902cf808c53a1322e2769ef02f976b0cd2ef",
       "text": "- The adapter must not rewrite component names, contract states, owners, or",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-delivery-artifact-embed:L110:2282cb4864a2",
+      "id": "engos-delivery-artifact-embed:L111:2282cb4864a2",
       "heading": "Constraints",
       "source": "ssot/engos-delivery-artifact-embed.md",
-      "source_line": 118,
+      "source_line": 119,
       "sha256": "2282cb4864a29c76dace482e7d117d116df8b97972e3221ea93aae3601b5666f",
       "text": "- Public Drive sharing is never a required prerequisite for a private Google",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-delivery-artifact-embed:L111:2c4d789ada86",
+      "id": "engos-delivery-artifact-embed:L112:2c4d789ada86",
       "heading": "Constraints",
       "source": "ssot/engos-delivery-artifact-embed.md",
-      "source_line": 119,
+      "source_line": 120,
       "sha256": "2c4d789ada86e85afef6cf96dfd4daa1c07943974227b8168e0f35585f17e078",
       "text": "Doc. If the only available image insertion path requires a public URL, stop",
       "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:L149:a88db5cd38ab",
+      "heading": "Full Shaping and Local Export Contract",
+      "source": "ssot/engos-delivery-artifact-embed.md",
+      "source_line": 157,
+      "sha256": "a88db5cd38abbf7b5155442404fb2bfc7019a7f23e457f00141b30ee36277a1e",
+      "text": "bundle, not only diagrams. This section refines the artifact-only workflow above:",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:L157:f9f42d2f21f7",
+      "heading": "Full Shaping and Local Export Contract",
+      "source": "ssot/engos-delivery-artifact-embed.md",
+      "source_line": 165,
+      "sha256": "f9f42d2f21f794440ba3c78365ebcacce56b029b6e13fd9ae0f13857777a3213",
+      "text": "use. Do not substitute artifact existence or successful conversion for validation.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:L163:21223df3733c",
+      "heading": "Full Shaping and Local Export Contract",
+      "source": "ssot/engos-delivery-artifact-embed.md",
+      "source_line": 171,
+      "sha256": "21223df3733cddbc5ef6418539f25f778999f4fc3108c69d1d1d2b54260e25dd",
+      "text": "before retrying; never silently duplicate a target. G4 verifies all requested",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:L171:1538fe5f3466",
+      "heading": "Full Shaping and Local Export Contract",
+      "source": "ssot/engos-delivery-artifact-embed.md",
+      "source_line": 179,
+      "sha256": "1538fe5f3466ef4815b812b85392a6794dd252f4582fcc2a9fa098d3ab5402a6",
+      "text": "capability-detection and fidelity checks; full-run gating applies only when a",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/references/surfaces.md:L10:8328ec39f39b",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-delivery-artifact-embed/references/surfaces.md",
+      "source_line": 10,
+      "sha256": "8328ec39f39be39959609a6ea45d9076393c1cf2807fd833e0f130ca17bc792d",
+      "text": "source inventory. Artifact-only placement remains allowed without claiming the",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/references/surfaces.md:L23:a12267449d98",
+      "heading": "Private Google Docs path",
+      "source": "sources/capability-resources/engos-delivery-artifact-embed/references/surfaces.md",
+      "source_line": 23,
+      "sha256": "a12267449d98ee8a76816792a6345699f77a44d22fad495fa7f8190ca727331c",
+      "text": "public-URL restriction. An actual policy denial stops that operation. Do not",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/references/surfaces.md:L31:9479100f5c96",
+      "heading": "Private Google Docs path",
+      "source": "sources/capability-resources/engos-delivery-artifact-embed/references/surfaces.md",
+      "source_line": 31,
+      "sha256": "9479100f5c96fd567c1258eb1bced4e2ebae31aadcb8ffc10016ac550042bb91",
+      "text": "instead of creating a duplicate. Current saved native Doc must contain every",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/references/surfaces.md:L38:889ba4f834b5",
+      "heading": "Private Google Docs path",
+      "source": "sources/capability-resources/engos-delivery-artifact-embed/references/surfaces.md",
+      "source_line": 38,
+      "sha256": "889ba4f834b5d186305cc99bc99c502d8ab43f6f0c89b7fe9cc511d7bbb83855",
+      "text": "or deliberate widths; do not drop rows to fit a screenshot.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/references/surfaces.md:L42:85788bad1996",
+      "heading": "Private Google Docs path",
+      "source": "sources/capability-resources/engos-delivery-artifact-embed/references/surfaces.md",
+      "source_line": 42,
+      "sha256": "85788bad1996a82f042210dfe7cbb6d31aa23bd8009635c0822655498d6c173d",
+      "text": "Keep content review passed while reporting delivery blocked. Do not auto-share,",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/references/export.md:L10:7a2f01dc9995",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-delivery-artifact-embed/references/export.md",
+      "source_line": 10,
+      "sha256": "7a2f01dc9995910a82e9e4f0368b2587da8b37ca08e9ddf06af3e91aeed184b0",
+      "text": "`--documents` option adds required source sidecars to the export; it must retain",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/references/export.md:L11:81e7d1b09c44",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-delivery-artifact-embed/references/export.md",
+      "source_line": 11,
+      "sha256": "81e7d1b09c44697ee2e6ca57e6115167bc38aa53309224488f01171db0871c43",
+      "text": "the three required prose files. Never export unrelated raw private input merely",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/references/export.md:L14:dc16d5bcd98f",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-delivery-artifact-embed/references/export.md",
+      "source_line": 14,
+      "sha256": "dc16d5bcd98f01a4dda4e196cccb359390620183af93d50b1bee323ee8c94e2e",
+      "text": "artifact-only placement can use the existing host formatter/native passthrough",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/references/export.md:L15:1f9fe2f6c61e",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-delivery-artifact-embed/references/export.md",
+      "source_line": 15,
+      "sha256": "1f9fe2f6c61e4bb045b9dbab7f44c64d8f3846681f95a263900d35c367bd82d8",
+      "text": "with its actual bundle inventory; do not invent a pitch document just to run this",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/references/export.md:L26:38ab3bd2b71c",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-delivery-artifact-embed/references/export.md",
+      "source_line": 26,
+      "sha256": "38ab3bd2b71ca692f243edc663df81a8eca3455b998dfe9b72662d017629a79f",
+      "text": "must already be trusted/available; the helper never installs it. JSON/HTML need",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/references/export.md:L50:1455d1441328",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-delivery-artifact-embed/references/export.md",
+      "source_line": 50,
+      "sha256": "1455d1441328f86df63d42a36cb342823931dd34b6943b3fd18588c79d8d734f",
+      "text": "document workflow requires it, then use only the verified version for import.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/references/reconciliation.md:L6:64cda4d692d7",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-delivery-artifact-embed/references/reconciliation.md",
+      "source_line": 6,
+      "sha256": "64cda4d692d7e129b2712aae8985a135fff4a0e38fdc0fcc556916f56aad3e83",
+      "text": "is uncertain: preserve both and ask for the intended base, never last-write-wins.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/references/reconciliation.md:L16:0f7e0ede58eb",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-delivery-artifact-embed/references/reconciliation.md",
+      "source_line": 16,
+      "sha256": "0f7e0ede58eb48cedd90fd4ba2a4317daede2f617a7571d5cb6124f61614d049",
+      "text": "the accepted source only through the controller. Re-export from that revision.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/references/reconciliation.md:L17:45d1c7fd5079",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-delivery-artifact-embed/references/reconciliation.md",
+      "source_line": 17,
+      "sha256": "45d1c7fd5079554698dd7cb893cc2ffa4af0c50e01ebf8f866270063793db711",
+      "text": "Use target revision preconditions when updating. If unavailable, do not overwrite",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/references/reconciliation.md:L21:29ac94792740",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-delivery-artifact-embed/references/reconciliation.md",
+      "source_line": 21,
+      "sha256": "29ac94792740b943a501d0e92eecf1ef95f6467adbb648e867a88c8decfda41c",
+      "text": "detection. Do not secretly edit an external document to add that warning. No",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/scripts/artifact_export.py:L1:6b5f6d480544",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-delivery-artifact-embed/scripts/artifact_export.py",
+      "source_line": 1,
+      "sha256": "6b5f6d480544cfe8907a2a26c5bc1cfb03fd847acfb5e7c25752ada523893b04",
+      "text": "\"\"\"Local shaping exports. Never publishes or certifies review/visual quality.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/scripts/artifact_export.py:L45:644b1100ab22",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-delivery-artifact-embed/scripts/artifact_export.py",
+      "source_line": 45,
+      "sha256": "644b1100ab2254a16c7abb9ea7ad87b31cf9bc6f50a37236a87cfb5ed3f4dd00",
+      "text": "# Escaped pipe is content, never an extra cell. Preserve other backslashes.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/scripts/artifact_export.py:L69:b32d74699dfb",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-delivery-artifact-embed/scripts/artifact_export.py",
+      "source_line": 69,
+      "sha256": "b32d74699dfba7dd6b61e0a8e055ccf2befb936a63ae295dbc9843c2ba5b9a71",
+      "text": "raise ExportError(\"tables must have explicit closing pipes\")",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/scripts/artifact_export.py:L88:943260a0e698",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-delivery-artifact-embed/scripts/artifact_export.py",
+      "source_line": 88,
+      "sha256": "943260a0e6980a0b6f34a3f9d7a7c8b9a04438ff4e9ea6886e6a63d46ec542ed",
+      "text": "raise ExportError(\"bundle root must be a real directory\")",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/scripts/artifact_export.py:L90:b6691d1d3833",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-delivery-artifact-embed/scripts/artifact_export.py",
+      "source_line": 90,
+      "sha256": "b6691d1d383307649a6dc0ac97d1dc1823a4acdb78d163672d3997e01c4036b5",
+      "text": "raise ExportError(\"include each required document once\")",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/scripts/artifact_export.py:L97:dffab8642e42",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-delivery-artifact-embed/scripts/artifact_export.py",
+      "source_line": 97,
+      "sha256": "dffab8642e42b132fc3d76563ae155bb6c7532775c78e9f34bf51004c9e8b6eb",
+      "text": "raise ExportError(f\"empty required source: {name}\")",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/scripts/artifact_export.py:L115:eb0fc6764f45",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-delivery-artifact-embed/scripts/artifact_export.py",
+      "source_line": 115,
+      "sha256": "eb0fc6764f45f04811855ee17bdbefef70dcaeda462f4fee8c244a67c155ae15",
+      "text": "raise ExportError(f\"required table has no data rows: {name}\")",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/scripts/artifact_export.py:L123:dcc21a9159bb",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-delivery-artifact-embed/scripts/artifact_export.py",
+      "source_line": 123,
+      "sha256": "dcc21a9159bb4599efc0961d6f28b9468cf8b58649cb79b02f7b261c56ae4e6f",
+      "text": "result[\"verification\"] = \"source_export_only; semantic, visual and saved-target review required\"",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/scripts/artifact_export.py:L170:1a9ad6772def",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-delivery-artifact-embed/scripts/artifact_export.py",
+      "source_line": 170,
+      "sha256": "1a9ad6772deffa57e0247834c4c34f8bac37792a641957907501c2820c8e4fcd",
+      "text": "raise ExportError(\"render to a fresh directory; never overwrite previous evidence\")",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/scripts/artifact_export.py:L297:04e30280c507",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-delivery-artifact-embed/scripts/artifact_export.py",
+      "source_line": 297,
+      "sha256": "04e30280c5076b27fb6aebd88c4729f1aa0ed8562423d04271b4afdddcdc6ae7",
+      "text": "p.add_argument('--bundle', type=Path, required=True)",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-artifact-embed:sources/capability-resources/engos-delivery-artifact-embed/scripts/artifact_export.py:L298:3037f4970865",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-delivery-artifact-embed/scripts/artifact_export.py",
+      "source_line": 298,
+      "sha256": "3037f49708653bea90b3ef1a28f6391d385f0c16e426a25203489344f4bbe307",
+      "text": "p.add_argument('--output', type=Path, required=True)",
+      "kind": "invariant",
       "mapped_to": []
     }
   ],
@@ -209,7 +523,27 @@
   "source_references": [
     {
       "path": "ssot/engos-delivery-artifact-embed.md",
-      "sha256": "32773e71e5a87bfba82046253c673536c4174e935c7ee20e168bdb8bad2c97ff"
+      "sha256": "d1f7106c9c35fb7673de1737bbe37ef3594abcfeddade9d98597528647854d9f"
+    },
+    {
+      "path": "sources/capability-resources/engos-delivery-artifact-embed/references/surfaces.md",
+      "sha256": "c015c90032fa09f095662ab23975972f70cc639a2cd79037de07332ae1fb5202"
+    },
+    {
+      "path": "sources/capability-resources/engos-delivery-artifact-embed/references/export.md",
+      "sha256": "32094f3c4eae9c8afeb4bb443fcc7e6219ae98672a8435359d86b2e33f9231d4"
+    },
+    {
+      "path": "sources/capability-resources/engos-delivery-artifact-embed/references/reconciliation.md",
+      "sha256": "c167272a034c6e81bbd99b4699a38dc9301b9e592daedef69fd34003c14e8a67"
+    },
+    {
+      "path": "sources/capability-resources/engos-delivery-artifact-embed/scripts/artifact_export.py",
+      "sha256": "9f80917e97159c380b8b92b0d7c7a0cac6ae5e93697a4dd1f969afd5daa4813e"
+    },
+    {
+      "path": "sources/capability-resources/engos-delivery-artifact-embed/resource-map.json",
+      "sha256": "e56522f78a8a9368635ad04927acc7e604a0d494699f8af0453f26b03e957383"
     }
   ],
   "known_ambiguities": [],
@@ -222,10 +556,11 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 16,
+    "total": 46,
     "mapped": 0,
     "waived": 0
   },
   "review_status": "draft",
-  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs."
+  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs.",
+  "resource_bundle_sha256": "dea7843b052a9b78e7a48ce87b4546ae17c2931c965e167d500c678eb8b31c9a"
 }

@@ -118,6 +118,7 @@ INCLUDE_PATHS=(
   "docs/CAPABILITY-EVALUATION.md"
   "docs/SKILL-JOB-MAP.md"
   "docs/GETTING-STARTED.md"
+  "docs/engos-design-shaping.md"
   "docs/EXAMPLES.md"
   "docs/FAQ.md"
   "docs/README.md"

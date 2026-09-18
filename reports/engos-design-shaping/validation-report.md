@@ -2,6 +2,11 @@
 
 ## Verdict
 
+Historical design/exercise report. Subsequent authorized implementation, source
+reviews, regressions and bounded conversational preflight are accounted separately
+in engos-delivery-implementation-ledger.md. This report is not the current source
+packaging status and its earlier scores are not retroactively revised.
+
 Design drafted and iterated. Full real-input acceptance is incomplete. The real
 exercise reached Framed and stopped at G1 for unconfirmed appetite and walk-away.
 No real-input Research, Shaped, Bet-ready or two-surface completion is claimed. A

@@ -40,6 +40,50 @@ Expect the necessary outcomes and assumptions, failure scenarios, strongest obje
 
 ## Installed Skill Examples
 
+### `engos-design-shaping`
+
+> Help us frame and shape this problem using these documents. Explain what you
+> understand, propose engineering questions and guide us through the decisions.
+
+Expect one conversational entry, a solution-free frame before solutioning,
+evidence-backed research and a shaped pitch with all three diagrams and full
+contracts/security ownership. The assistant arranges scoped workers and independent
+review. Missing human decisions, source access or critical proof remain explicit
+holds; success is not inferred from a filled template.
+
+Without repo access:
+
+> We can provide specifications and ask engineers for evidence, but you cannot
+> access our repository. Help us collect only what is needed to shape the bet.
+
+Expect actionable research/teammate cards, a helpful response to “I don't know,”
+and the same evidence standard as AI-led research. A returned claim is not
+automatically a verified answer. See the [runbook](engos-design-shaping.md).
+
+To resume or reconcile:
+
+> Resume this shaping folder and review edits in its Google Doc. Preserve our
+> changes, show any conflicts and reopen only the affected decisions or reviews.
+
+Expect a current accepted revision, comparison against the published baseline,
+preserved edits and separate content/delivery status. No silent source overwrite,
+automatic sharing, new staffing commitment or Jira work.
+
+### `engos-design-frame-from-vague`
+
+> Frame this rough idea only. Separate facts from assumptions, identify the
+> outcome and ask for the appetite and walk-away decisions we haven't made.
+
+Expect intake and Framed artifacts; no selected mechanism or later-stage success.
+
+### `engos-quality-shaping-gate`
+
+> Check whether this research handoff can advance. Read its evidence and show
+> any in-scope blocking uncertainty that is still unanswered.
+
+Expect a current, attributable verdict. Renaming a question, rejecting its wording
+or naming an unexecuted spike cannot make the underlying uncertainty disappear.
+
 ### `engos-memory-context-continuity`
 
 Use when:

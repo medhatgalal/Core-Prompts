@@ -16,7 +16,7 @@ Use this repository in this order:
 
 If you are already using Core-Prompts in a CLI, start there. If you are importing a new capability family, go to UAC next. If you are rebuilding surfaces, validating state, deploying, or preparing release work, use the repo tooling after that.
 
-The current generated surfaces ship `29` skills across all supported CLIs and `0` named-agent configurations. Capability Fabric metadata is advisory; explicit invocation follows the selected capability's operating contract.
+The current generated surfaces ship `32` skills across all supported CLIs and `0` named-agent configurations. Capability Fabric metadata is advisory; explicit invocation follows the selected capability's operating contract.
 
 First-party skills use the `engos-<category>-<skill-name>` namespace so Core-Prompts capabilities stay together in CLI and app autocomplete. The upstream-pinned Loopy package retains the single name `loopy`, without an alias package. The category identifies the primary job; the final segment identifies the capability. For example, use `engos-memory-context-continuity` for durable investigation state, `engos-quality-code-review` for diff review, and `engos-triage-my-inbox-chat-pulse` for Gmail and Chat triage.
 
@@ -27,6 +27,12 @@ Supercharge responds inline unless a file is requested. Requested Supercharge an
 For Git activity, ask `engos-audit-engineering-progress help` for usage and examples without starting a report. Its `eng-report run --json` pass preserves existing reports; see the [metrics-first example](docs/EXAMPLES.md#engos-audit-engineering-progress).
 
 For review work, pick the capability by intent:
+
+For a rough product or engineering idea, start with `engos-design-shaping`:
+“Help us frame and shape this; here are our notes.” It coordinates framing,
+AI-led or human-led research, independent review and verified output delivery.
+You do not need to orchestrate its helpers. See the [guided Shape Up runbook](docs/engos-design-shaping.md)
+for inputs, questions, teammate handoffs, resume and current pilot limitations.
 
 | Intent | Use | Boundary |
 | --- | --- | --- |
@@ -49,6 +55,9 @@ These are the currently shipped skills with a concrete starter ask for each one:
 
 | Skill | Use it when you need to... | Starter ask | What good output looks like |
 | --- | --- | --- | --- |
+| `engos-design-shaping` | guide a rough idea through framing, evidence and a shaped pitch | "Help us frame and shape this from these notes; guide product and engineering through the missing decisions." | accepted stage, source-backed documents, scoped worker/reviewer handoffs and honest delivery status |
+| `engos-design-frame-from-vague` | frame an idea without choosing its solution | "Frame this problem only; identify missing appetite and boundaries without inventing answers." | original intake, solution-free frame, attributable decisions and useful open questions |
+| `engos-quality-shaping-gate` | assess a shaping stage or resumed handoff | "Check this stage against its actual evidence and tell us whether it can advance." | predicate-level verdict, current bindings, actionable holds and no invented approval |
 | `engos-memory-context-continuity` | work through a broad repo investigation without losing context | "Use `engos-memory-context-continuity` to inspect this subsystem over several files and keep its context, todo, and insights files current until the work is complete." | one three-file task set under `~/.analyze-context/<project>/<task-id>/`, accumulated findings, checked progress, and a scoped next action; branch and worktree paths are metadata only |
 | `engos-design-architecture` | design or review interfaces, boundaries, and migration safety | "Use `engos-design-architecture` to recommend the safest design for this capability layout." | options, tradeoffs, migration guidance, and a rollback-aware recommendation |
 | `engos-optimization-auto-research` | improve a prompt, workflow, or system through experiments | "Use `engos-optimization-auto-research` to improve our review prompt so it catches more behavioral regressions without increasing noise." | goal contract, evaluation plan, experiments, and a winner only after evidence |
