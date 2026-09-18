@@ -6,6 +6,18 @@ native registrations, home installations and production services are unchanged.
 
 ## Read in order
 
+Start with [the revised operating proposal](engos-design-shaping-operating-plan.md)
+for the document-first product/engineering workshop, isolated roles, assistance,
+handoffs, formats, validators and proposed pilot. Independent review recommends
+proceeding to pilot design, not team rollout. It supersedes earlier execution recommendations
+where explicitly revised, but does not silently rewrite or install the candidate
+skills below. Those require a later reviewed adoption pass.
+
+The [final plan QA](engos-quality-shaping-operating-plan-final-qa.json) binds v3
+hash 1bfb7f01766dbaf8b7c134d3515bd2cf6ebe7162c43cee666e58dd59942b5766.
+The proposal is frozen at its review-submission state; this separate receipt is
+the latest verdict. It resolves design clarifications, not missing operational proof.
+
 1. research-notes.md — authoring authority, actual upstream chain, source revisions.
 2. gap-analysis.md — failures mapped to missing stages, gates and Shape Up principles.
 3. candidate-map.json — exact proposed skill/resource dependency map.
@@ -17,6 +29,8 @@ native registrations, home installations and production services are unchanged.
    two actual author/reviewer rounds, rendered diagrams and honest stop states.
 9. reference-findings.md — sanitized lessons from real Framed/Shaped and Discovery
    documents; private source extracts are intentionally outside this public repo.
+10. engos-quality-shaping-operating-plan-review.md — original independent UX and
+    engineering critiques of the operating proposal, retained without rewriting.
 
 ## How the design is exercised
 

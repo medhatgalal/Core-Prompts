@@ -52,6 +52,15 @@ proof separate from source review and production feasibility.
 
 ## Durable lessons represented in the candidate
 
+The later operating proposal (engos-design-shaping-operating-plan.md) was refined
+through actual independent critique. It separates question wording from unresolved
+uncertainty, human assistance from interrogation, content readiness from delivery,
+and source judgment from representation. It specifies an immutable accepted
+snapshot for questions/decisions/content rather than separately mutable approval
+state. These are reviewed design decisions, not implemented preventive controls.
+The final plan QA recommends pilot design; uncoached use, context boundaries,
+recovery and actual Google Doc parity remain to be tested.
+
 1. A named spike records uncertainty but cannot pass Research as if executed.
 2. Distinguish immutable reviewed source from appended render/placement receipts.
 3. Do not make an earlier gate depend on an artifact first created after it.

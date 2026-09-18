@@ -36,6 +36,17 @@ statistical reliability, or that the real input reached a later gate.
 
 ## Structural checks
 
+Subsequent operating-plan review is separate: engos-design-shaping-operating-plan.md
+proposes assisted collaboration, explicit context/work-order boundaries, mechanical
+transition checks and an uncoached pilot. Two independent first-pass critiques
+are preserved in engos-quality-shaping-operating-plan-review.md; their repairs
+passed a contract review plus focused residual recheck at plan level. Final receipt:
+engos-quality-shaping-operating-plan-final-qa.json, bound to the frozen v3 hash.
+Recommendation: proceed to pilot design; operability and delivery proof remain
+pending. No validators, new agent registrations or revised
+installed workflow were implemented. The structural results below apply to the
+earlier candidate skills, not every behavior in the expanded operating proposal.
+
 UAC plan and judge ran without apply. Current results:
 
 - engos-design-shaping: structural_ready, behavioral_pending. Cross-analysis
