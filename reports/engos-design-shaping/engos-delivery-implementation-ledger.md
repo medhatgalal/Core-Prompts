@@ -17,6 +17,44 @@ Continue local work; dual-remote landing remains blocked until normal access ret
 
 ## Current continuation status — presentation and progress verification
 
+Conditional landing/readiness continuation: user requested remaining work to land
+cleanly if ready, updated frontpage/docs/examples, and how to start. Independent
+readiness reviewer01a0b590-ffc2-7e43-9b70-8c9aea3fc6d1 returned No-Go: the original
+real-input pilot still has no acceptedG0–G4 chain, attributable replay appetite
+and walk-away remain pending, and the same accepted real pitch is not verified
+on HTML plus Google Docs. The prior exploratory47/12 score remains below4.0;
+presentation repairs are not a new content verdict. Human recruitment is NOT
+required for the user-selected subagent pilot. Generic merge permission is already
+given; specific public-disclosure/private-Doc decisions remain unresolved.
+
+Asked three scoped asynchronous questions: explicit public GitHub PR/gated-merge
+approval; historical five-week/two-engineer replay appetite with correctness/
+ownership walk-away (no team commitment); one new private Continuous Update pilot
+Doc in the work account, no sharing/notifications. No answers received at this
+checkpoint. No additional external writes, PR/MR, push or main changes occurred.
+
+Frontpage now has a copyable guided starter and progress/reuse/resume examples.
+Runbook includes all six core skills plus three optional advisors and exact
+surface-only dry-plan/apply instructions. Readiness status does not imply a real
+human trial or completion. Docs reviewer01a0b596-0af2-7662-b33a-ac0e3d0cb470 found
+twoP2 issues: ambiguous private artifact home and entry-only setup check. Both
+fixed and independently rechecked: docs-onlyPASS, no remainingP1/P2 findings.
+
+Setup rehearsal used a fresh disposable physical tmp directory, never real HOME.
+Reviewed68new-write actions:67package files for9Codex skills plus one installation
+state file; no blockers/preserved conflicts, updater/launcher or native-agent
+configuration. Installer returned complete transaction39248f5d9cd74a99aed06bd8157545f2.
+All67package hashes matched,9entrypoints present, installed runtime/exporter help
+worked, and repeating the documented dry-run returned0actions. The logging helper
+initially failed after saving the successful apply receipt because actions was an
+integer, not an array; corrected logging and readback/no-op verification established
+the result without repeating apply. This proves the disposable installation path,
+not real-home installation, live discovery or source-pilot success.
+
+Docs/resource checks66passed after the wording repairs; strict32-entry validation
+passed. No capability source/generated bundle change in this docs slice. Preserve
+unique evidence and the unmerged worktree; do not relabel this as mainline delivery.
+
 Repository-fit continuation (user approved application plus testing): both existing
 conductor/gate skills now include scoped capability investigation, justified
 reuse/non-reuse, conditional architecture/code-health/testing advice and two new

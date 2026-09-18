@@ -42,6 +42,30 @@ Expect the necessary outcomes and assumptions, failure scenarios, strongest obje
 
 ### `engos-design-shaping`
 
+Start with documents and a destination:
+
+> Use engos-design-shaping. Read the attached notes and this specification first.
+> Keep source documents in my authorized private project's planning/report-freshness/
+> folder, outside Core-Prompts, and generate Markdown plus a self-contained HTML review.
+> Start with framing, ask for missing decisions,
+> and do not publish or implement anything yet.
+
+Expected first response: what the assistant understood, known versus missing
+evidence, the next stage and at most three useful requests. It should not ask you
+to manually coordinate the skills or fabricate a finished pitch. If the skill is
+missing, follow the [bundle setup](engos-design-shaping.md#enable-the-shaping-bundle).
+
+Choose a cloud or repository target later:
+
+> When the content passes review, publish to this private Drive folder in this
+> work account, or prepare the approved Markdown at this repository path. Confirm
+> the exact destination and sharing settings, preserve existing edits, and verify
+> the saved result. Do not merge repository changes or notify people automatically.
+
+Expect a recorded target and separate delivery status, with required access or a
+specific manual step if unsupported. A Drive folder link does not itself grant
+access; local HTML success does not verify a saved Google Doc.
+
 > Before proposing another service, inspect the relevant existing capabilities.
 > Explain what we can configure or extend, what does not fit, and whether bounded
 > architecture or code-health advice would help. Keep unrelated refactoring out.

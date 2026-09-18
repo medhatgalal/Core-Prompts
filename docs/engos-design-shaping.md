@@ -8,8 +8,9 @@ stage. You retain decisions about appetite, scope and whether to bet.
 This capability is under pilot validation. Generated packages and mechanical tests
 do not establish that every host or external publishing path has been verified.
 Current source-candidate status: local mechanical tests, independent source reviews
-and simulated conversational preflights have run. The simulations do not replace a
-real product/engineering pilot. A private Google Docs teaching-fixture import has
+and simulated conversational preflights have run. The user-selected pilot uses
+independent subagents; real-person usability remains unmeasured, not an extra
+recruitment requirement for that pilot. A private Google Docs teaching-fixture import has
 passed saved-content and independent nine-page visual checks; this is adapter
 evidence, not real-pitch acceptance. A subsequent six-role product/engineering
 simulation exercised framing, evidence handoffs and a complete candidate draft.
@@ -17,8 +18,12 @@ Its result was partial. The source candidate now adds rich presentation profiles
 and evidence-derived progress views; visual iterations and independent checks
 are recorded separately from the earlier pilot. Worker access limits must not
 be turned into product requirements. Role-play does not
-establish real-person usability. Real-human pilot acceptance, a complete real
-pitch on both requested surfaces, hosted CI and dual-remote landing remain pending.
+establish real-person usability. The repository-fit exercises additionally cover
+reuse, justified new work, intentional separation, missing access and specialist
+scope; two request-overload findings were repaired and replayed successfully.
+A complete real-input pitch on both requested surfaces, latest-candidate hosted
+checks and dual-remote landing remain pending. Earlier hosted checks passed for an
+older candidate; they are not evidence for later changes.
 No automatic implementation, tickets, staffing, sharing or global installation
 follows from shaping a pitch.
 
@@ -27,6 +32,11 @@ run evidence when available. Reports are not included in release archives; this
 runbook's status and limitations are self-contained and do not depend on that folder.
 
 ## Start here
+
+Verify that all six core skills from the reviewed bundle are available, not just
+the entry. If any are missing or outdated, follow
+[Enable the shaping bundle](#enable-the-shaping-bundle) to preview installation.
+If the complete current core bundle is available, no new installation is needed.
 
 Ask your assistant to use `engos-design-shaping`:
 
@@ -52,6 +62,64 @@ identify the artifact home and account before exporting or publishing.
 The first response should summarize the problem, identify material uncertainty,
 suggest the next step and ask no more than three useful questions. It should not
 invent your budget or choose an architecture before framing.
+
+## Enable the shaping bundle
+
+Use a trusted release containing these skills or a verified source checkout that
+contains the reviewed implementation. A merge to main does not create a release
+or update an existing installation. Older saved selections do not automatically
+add newly introduced skills. Verify the entry and its dependencies before use.
+
+The core bundle is six skills: `engos-design-shaping`,
+`engos-design-frame-from-vague`, `engos-quality-shaping-gate`,
+`engos-delivery-diagram-contract-artifacts`, `engos-delivery-artifact-embed`, and
+`engos-audit-pitch-review`. The command below also selects three optional advisors:
+architecture, code health and testing. Omit those three only if you want the
+conductor to report unavailable advice and use its bounded fallback.
+
+From the trusted checkout root, preview a Codex installation. Replace `codex` with
+your selected supported provider (`claude`, `gemini`, `kiro`, `grok` or `agy`) as
+appropriate. Do not run against a source checkout you have not reviewed.
+
+```bash
+SHAPING_PLAN="$(mktemp -t engos-shaping-plan.XXXXXX)"
+bash scripts/deploy-surfaces.sh --target "$HOME" --allow-nonlocal-target \
+  --cli codex --surface-only \
+  --slug engos-design-shaping \
+  --slug engos-design-frame-from-vague \
+  --slug engos-quality-shaping-gate \
+  --slug engos-delivery-diagram-contract-artifacts \
+  --slug engos-delivery-artifact-embed \
+  --slug engos-audit-pitch-review \
+  --slug engos-design-architecture \
+  --slug engos-audit-code-health \
+  --slug engos-quality-testing-review \
+  --dry-run > "$SHAPING_PLAN"
+```
+
+Review the plan's exact selection, actions, preserved files and blockers. Only
+after accepting that plan, apply from the same unchanged checkout and target:
+
+```bash
+bash scripts/deploy-surfaces.sh --target "$HOME" --allow-nonlocal-target \
+  --apply-plan "$SHAPING_PLAN"
+```
+
+This surface-only selection skips updater/launcher refresh and does not create
+named agents. Customized or unknown packages are preserved, not forcibly replaced;
+resolve reported conflicts before claiming installation complete. See
+[installation and recovery](INSTALL-PROFILES.md) for saved selections and rollback.
+
+Start a fresh assistant session, confirm `engos-design-shaping` and its supporting
+skills are available, and use the starter request above. Codex's selected skills
+install under `~/.agents/skills`, shared with Gemini; other provider locations are
+listed in the installation guide. Ordinary-language discovery depends on the host;
+explicitly name/select the skill if it is not discovered.
+
+Keep business documents in your own authorized project folder, not this public
+capability repository. CLI/source access, independent workers, diagram rendering
+and cloud credentials are host capabilities, not permissions created by the bundle.
+Missing capabilities must produce a useful hold or documented manual handoff.
 
 ## Choose how research happens
 

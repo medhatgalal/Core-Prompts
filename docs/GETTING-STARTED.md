@@ -24,6 +24,11 @@ reuse or new work. It brings in bounded architecture/code-health/testing advice
 when needed; neither reuse nor a whole-repo audit is compulsory.
 Check that page's current pilot status before assuming every host or publishing
 adapter has been validated.
+Verify all six core skills from the reviewed bundle are available. If any are
+missing or outdated, use the [shaping bundle setup](engos-design-shaping.md#enable-the-shaping-bundle)
+to preview their installation plus optional advisors. Naming the
+entry skill alone does not install its dependencies. Installation, mainline merge
+and release are separate steps.
 
 During a shaping run, ask “Show the current stage, blocker, owner and next step.”
 The assistant uses the existing run record, marks simulated/unknown evidence and

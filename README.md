@@ -8,6 +8,35 @@ Install or repair an existing setup with the current installer, even if it has n
 
 The shipped setup is skills-only. Generic independent workers can apply these skills; future named-agent surfaces require your explicit approval. See [skills, agents, and prompts](docs/FAQ.md#what-is-the-difference-between-a-skill-an-agent-and-a-prompt) for the distinction and its limits. Explicit-only workflows such as Batman still require an explicit request.
 
+## Guided Shape Up: start with your notes
+
+Use **`engos-design-shaping`** to guide product and engineering through Intake,
+Framed, Research, Shaped and Bet-ready. Start with a complaint, meeting notes or
+an existing specification; you do not need to choose the supporting skills.
+
+> Use engos-design-shaping. Read these notes and help us frame the problem before
+> choosing a solution. Keep the working documents in my authorized private project's
+> planning/report-freshness/ folder, outside the Core-Prompts repository.
+> Ask for missing decisions, investigate what already exists, and guide us toward
+> a shaped pitch with Markdown and HTML outputs.
+
+Expect a problem summary and a few useful questions first—not an instant finished
+pitch. Later stages add source-backed diagrams, contracts, ownership, independent
+review and verified delivery. You retain appetite, scope and betting decisions.
+
+| Along the way, ask… | What you receive |
+| --- | --- |
+| “Frame only; help me decide the appetite and walk-away.” | A solution-free frame, with undecided items made explicit |
+| “What already exists, and why reuse, extend or build new?” | Scoped evidence and architectural trade-offs, with specialist help when useful |
+| “Where are we, what is blocked, and what do you need from me?” | Accepted versus draft state, blocker, needed owner and next action |
+| “Resume this folder; preserve the edits in its registered Doc.” | Reconciled changes and refreshed reviews where needed |
+
+**Setup:** install the [shaping bundle](docs/engos-design-shaping.md#enable-the-shaping-bundle),
+not just the entry skill. You choose local/repository output paths and authorized
+Drive destinations; unavailable access is reported, never silently substituted.
+This capability remains under pilot validation: check [current evidence and limits](docs/engos-design-shaping.md)
+before treating it as fully accepted or deployed. [More examples](docs/EXAMPLES.md#engos-design-shaping).
+
 Use this repository in this order:
 
 1. installed capabilities first
@@ -28,17 +57,9 @@ For Git activity, ask `engos-audit-engineering-progress help` for usage and exam
 
 For review work, pick the capability by intent:
 
-For a rough product or engineering idea, start with `engos-design-shaping`:
-“Help us frame and shape this; here are our notes.” It coordinates framing,
-AI-led or human-led research, independent review and verified output delivery.
-You do not need to orchestrate its helpers. See the [guided Shape Up runbook](docs/engos-design-shaping.md)
-for inputs, questions, teammate handoffs, resume and current pilot limitations.
-Ask “Where are we, what is blocking us, and what do you need from me?” for an
-as-of progress view. Accepted content, newer drafts and saved-target verification
-remain distinct; a polished export is not an approved bet.
-Ask it to check what already exists before proposing new components. Technical
-shaping includes evidence-backed reuse or non-reuse decisions and conditionally
-uses architecture, code-health and testing advice without requiring a full audit.
+For a rough product or engineering idea, use [guided Shape Up](#guided-shape-up-start-with-your-notes).
+For an already written pitch, use `engos-audit-pitch-review` for assessment without
+claiming the earlier shaping stages ran.
 
 | Intent | Use | Boundary |
 | --- | --- | --- |

@@ -3,6 +3,10 @@
 Source version prepared for guided shaping. Publication, installation and complete
 pilot acceptance are separate; this entry does not claim a released or deployed bundle.
 
+- Add a front-page guided-shaping starter, private-project examples and a reviewed
+  nine-skill setup walkthrough. Verify all six core dependencies before skipping
+  setup; keep optional advisors, mainline merge, release and installation distinct.
+
 - Add bounded repository-fit investigation and explicit reuse/non-reuse decisions
   to guided shaping, with conditional architecture/code-health/testing advice and
   versioned Research/Shaped predicates. Existing runs keep their pinned history;
