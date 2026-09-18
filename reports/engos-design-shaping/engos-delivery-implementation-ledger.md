@@ -17,6 +17,14 @@ Continue local work; dual-remote landing remains blocked until normal access ret
 
 ## Current continuation status
 
+Next scoped work is defined in
+[the presentation/progress plan](engos-design-presentation-progress-plan.md), with
+an independently reviewed initial proposal and preserved reviewer recommendations.
+It covers reference-matched SVG/PNG/document presentation and a read-only flow
+status projection over existing gate state. Clarifications address concrete review
+findings; visual baseline capture, implementation and runtime/visual proof remain
+pending. No new progress dashboard or polished renderer is claimed shipped.
+
 Latest: the user assigned the controller as pilot judge and six separate subagents
 as junior/mid/senior product/engineering participants. That simulated-role pilot
 has now run; see [the role-pilot judgment](engos-quality-role-pilot.md). It is a
