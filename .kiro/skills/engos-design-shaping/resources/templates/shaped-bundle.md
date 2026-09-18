@@ -17,6 +17,15 @@ Unknown fields are gaps, not invitations to fill plausible values.
 | `evidence-ledger.md` | Claim/evidence ID, source/revision/locator, coverage, fact/proposal/opinion/observation, inspection mode, limitations and unresolved status |
 | Source-content manifest | Artifact IDs/paths and actual hashes; full prose sections, row IDs/counts and diagrams/captions; upstream binding; separate render/placement receipts to avoid recursive hashes |
 
+## Architecture-fit decision
+
+For material technical capabilities/seams, pitch.md includes the architecture-fit
+decision from architecture-fit.md: existing evidence IDs, credible options,
+disposition and rationale, relevant constraints, and applicable evolution/validation
+boundaries. Reuse, justified new work and intentional separation are valid outcomes.
+Keep these decisions consistent with diagram roles and contract ownership; no
+second inventory or exhaustive option matrix is required.
+
 ## Required diagram fields
 
 `component.mmd`: components, callers, ownership boundaries and seams.

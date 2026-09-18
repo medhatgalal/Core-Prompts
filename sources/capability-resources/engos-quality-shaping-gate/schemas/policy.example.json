@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "policy_id": "shaping-gates.v1+rubric.v2",
+  "policy_id": "shaping-gates.v2+rubric.v3",
   "references": {"gates": "sources/gates.md", "rubric": "sources/rubrics.md"},
   "gates": {
     "G0": {
@@ -12,11 +12,11 @@
       "required_outputs": ["framed.md"]
     },
     "G2": {
-      "predicates": ["uncertainties_resolved", "evidence_sufficiency", "grounded_risks"],
+      "predicates": ["uncertainties_resolved", "evidence_sufficiency", "grounded_risks", "existing_capability_evidence"],
       "required_outputs": ["research-notes.md"]
     },
     "G3": {
-      "predicates": ["coherent_bounded_solution", "exemplar_coverage", "diagrams_visual", "contracts_security", "workstreams_proof", "constraints_traceability", "author_audit", "independent_review", "rubric_assessment"],
+      "predicates": ["coherent_bounded_solution", "exemplar_coverage", "diagrams_visual", "contracts_security", "workstreams_proof", "constraints_traceability", "author_audit", "independent_review", "rubric_assessment", "architecture_fit"],
       "required_outputs": ["pitch.md", "pitch-summary.md", "workstreams.md", "traceability.md", "contracts.md", "security-owners.md", "component.mmd", "sequence.mmd", "data-flow.mmd"]
     },
     "G4": {

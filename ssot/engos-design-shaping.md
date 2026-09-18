@@ -11,7 +11,8 @@ capability_type: skill
 
 Give the user one entry for a bounded Shape Up workshop. Coordinate framing,
 research, synthesis, review and representation through generic worker roles when
-the host permits them. The conductor alone accepts state; humans own investment
+the host permits them. The conductor records acceptance against independent gate
+verdicts; humans own investment
 and scope decisions. This skill adds neither native agents nor tool permissions.
 
 ## Primary Objective
@@ -64,12 +65,17 @@ stages. The phase templates define fields, not gate verdicts.
 4. Use `research` to set evidence requirements and answer assigned uncertainties.
    Add `code-scan` only for authorized repository inspection; add `human-evidence`
    for supplied evidence or teammate returns. Research plans and opinions are
-   not observed results. G2 uses the gate owner's criteria.
+   not observed results. Load the architecture-fit route for material technical
+   capabilities/seams; investigate existing options and source coverage without
+   requiring a positive reuse finding. G2 uses the gate owner's criteria.
 5. Use `shape` to compare bounded options, rough out the selected solution and
    challenge dependencies, usability, security, cost and recovery. Use the existing
    artifact helper for all three diagrams and full contract/security tables.
    New feasibility uncertainty reopens Research; changed scope reopens Framed.
    Resolve material uncertainty while leaving non-load-bearing internals to builders.
+   Record evidence-backed reuse, extension, evolution, replacement, new or intentional
+   separation decisions at material seams; request bounded specialist advice only
+   when a concrete trade-off or structural concern warrants it.
 6. Use `review` for author audit followed by actual independent review under the
    gate policy and existing pitch reviewer integration. Only the conductor may
    accept current-generation results. Draft-only scope finishes at G3 as a shaped
@@ -150,3 +156,22 @@ status explicitly; no automatic external status updates or background monitoring
 
 Blast radius: all existing conductor invocations gain the progress route and
 presentation handoff; no new native agent, permission or external-write authority.
+
+## Repository Fit and Specialist Advice
+
+Use resources/architecture-fit.md during technical Research/Shaped and review.
+Extend existing research, uncertainty and pitch records, not a second inventory.
+Explain why architecture, code-health or testing advice is useful; resolve actual
+registry or approved candidate bindings and respect each skill's scope. No full
+repository audit by default, forced reuse, automatic refactor or silent installation.
+Missing optional specialist access alone is not a hold; missing required evidence
+or independent review remains a hold. Current runs use the gate's updated policy;
+legacy pinned runs must not be presented as having passed new predicates.
+
+Example: investigate an existing reporting scheduler before proposing another;
+justify a new capability when the existing one conflicts with required trust or
+lifecycle constraints. Repeated authorization checks at independent trust boundaries
+may be intentional, not duplicate responsibility that must be centralized.
+
+Blast radius: guided technical research/shaping and its reviewers gain this route;
+standalone specialist skills and nontechnical/frame-only scope remain unchanged.

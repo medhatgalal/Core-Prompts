@@ -177,11 +177,13 @@
         "strategy": "derived_history",
         "group": "derived",
         "baseline_path": null,
-        "selected_commit": "e866aa80",
+        "selected_commit": "7e94f9eb",
         "richness_score": 5,
-        "line_count": 96,
+        "line_count": 118,
         "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
-        "equivalent_commits": [],
+        "equivalent_commits": [
+          "e866aa80"
+        ],
         "expected_companions": [],
         "operator_invariants": [],
         "scenario_matrix": [
@@ -228,7 +230,7 @@
             "candidate_operational_score": 2,
             "baseline_preserved_in_resource": false
           },
-          "baseline_commit": "e866aa80",
+          "baseline_commit": "7e94f9eb",
           "baseline_slug": "engos-quality-shaping-gate"
         },
         {
@@ -279,7 +281,7 @@
         "surface_usability": 10
       },
       "template_name": "skill",
-      "effective_sha256": "f1c392ce04a7bc447cdd22ea6efc674e76bf4049c0548572392327443b25cf83",
+      "effective_sha256": "a218acee4a9e670c10e5aacce6b2f3f320ace29b99126a4eaaf271a072bf32ad",
       "semantic_findings": [],
       "agent_surface_review": {
         "status": "unchanged",

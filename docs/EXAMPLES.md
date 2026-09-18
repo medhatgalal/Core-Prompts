@@ -42,6 +42,15 @@ Expect the necessary outcomes and assumptions, failure scenarios, strongest obje
 
 ### `engos-design-shaping`
 
+> Before proposing another service, inspect the relevant existing capabilities.
+> Explain what we can configure or extend, what does not fit, and whether bounded
+> architecture or code-health advice would help. Keep unrelated refactoring out.
+
+Expected: scoped evidence in the research notes, justified reuse/non-reuse choices
+in the pitch, and only relevant specialist handoffs. An unavailable optional skill
+is disclosed, not installed automatically; missing material evidence holds the
+affected decision. Separate trust boundaries may justify similar-looking logic.
+
 > Help us frame and shape this problem using these documents. Explain what you
 > understand, propose engineering questions and guide us through the decisions.
 

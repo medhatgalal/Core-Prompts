@@ -19,6 +19,9 @@ documents you already have. It should summarize the problem and ask a few useful
 questions, not require a complete form or choose an architecture immediately.
 No repository access is required merely to start: choose AI-led, human-led or
 hybrid research. [Start or resume guided Shape Up](engos-design-shaping.md).
+For technical pitches, ask it to investigate existing capabilities and justify
+reuse or new work. It brings in bounded architecture/code-health/testing advice
+when needed; neither reuse nor a whole-repo audit is compulsory.
 Check that page's current pilot status before assuming every host or publishing
 adapter has been validated.
 

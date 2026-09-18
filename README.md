@@ -36,6 +36,9 @@ for inputs, questions, teammate handoffs, resume and current pilot limitations.
 Ask “Where are we, what is blocking us, and what do you need from me?” for an
 as-of progress view. Accepted content, newer drafts and saved-target verification
 remain distinct; a polished export is not an approved bet.
+Ask it to check what already exists before proposing new components. Technical
+shaping includes evidence-backed reuse or non-reuse decisions and conditionally
+uses architecture, code-health and testing advice without requiring a full audit.
 
 | Intent | Use | Boundary |
 | --- | --- | --- |

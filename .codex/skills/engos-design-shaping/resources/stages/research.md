@@ -2,6 +2,10 @@
 
 Use the common work order and prompt in `dispatch.md`; append this instruction:
 
+Read architecture-fit.md for bounded existing-capability investigation and
+conditional specialist routing. Extend these same research notes/evidence IDs;
+do not create a parallel inventory or select a solution before framing passes.
+
 > Act as the engineering researcher/challenger. Read the accepted frame, assigned
 > uncertainties and their declared evidence requirements. Inspect authorized
 > evidence to answer each assigned question or produce a bounded human evidence

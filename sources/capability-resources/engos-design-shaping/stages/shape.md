@@ -2,6 +2,10 @@
 
 Use the common work order and prompt in `dispatch.md`; append:
 
+Read architecture-fit.md. Include evidence-backed reuse/non-reuse decisions for
+material capabilities/seams in pitch.md, with conditional specialist contributions.
+No positive reuse finding or implementation refactor is required to shape a pitch.
+
 > Act as the shaper. Verify the current passing frame/research and accepted
 > decisions, then compare bounded options and rough out the smallest supported
 > solution. Explain why it fits the actual appetite and walk-away. Write the

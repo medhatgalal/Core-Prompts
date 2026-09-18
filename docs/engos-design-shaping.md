@@ -68,6 +68,32 @@ designated independent human with its scope and limitations recorded.
 
 ## Work through the stages
 
+### Check what already exists
+
+For technical work, the assistant investigates relevant code, configuration,
+services, libraries and architecture decisions before recommending new components.
+It cites the inspected scope and revision, or requests attributable evidence from
+an engineer when access is unavailable. No search hits do not prove global absence.
+
+Research notes retain the findings; the shaped pitch explains whether to configure
+or reuse, extend, evolve/refactor, replace, build new, or intentionally keep separate
+responsibilities. Only credible alternatives need comparison. Applicable replacement
+decisions cover compatibility, ownership, migration/rollback and retirement.
+Existing code is not automatically the right answer; unrelated cleanup stays out.
+
+The conductor may suggest architecture advice for a material boundary decision,
+code-health advice for an observed structural concern, or testing advice for a
+compatibility/migration proof plan. It explains why and manages bounded handoffs.
+You do not need to choose skill names. Missing an optional skill does not stop
+work with sufficient evidence; missing a load-bearing fact or required independent
+review does. No automatic installation, full-repo audit or product refactor follows.
+
+Current-profile G2/G3 reviews explicitly check existing-capability evidence and
+architecture fit. Old runs retain their original pinned policy and must be rebound
+and reassessed before claiming the new checks. Framing remains solution-free.
+
+### Stage outputs and gates
+
 | Stage | You receive | What permits the next stage |
 | --- | --- | --- |
 | Intake | What is known, assumed, missing and merely suggested | Faithful original input, honest source coverage, no invented solution |

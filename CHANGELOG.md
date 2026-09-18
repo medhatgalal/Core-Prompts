@@ -3,6 +3,11 @@
 Source version prepared for guided shaping. Publication, installation and complete
 pilot acceptance are separate; this entry does not claim a released or deployed bundle.
 
+- Add bounded repository-fit investigation and explicit reuse/non-reuse decisions
+  to guided shaping, with conditional architecture/code-health/testing advice and
+  versioned Research/Shaped predicates. Existing runs keep their pinned history;
+  no specialist installation, forced reuse or automatic refactoring is implied.
+
 - Add a guided Shape Up entry and framing/gate capabilities with bounded role
   contexts, product/engineering question assistance, human-led research and
   explicit handoff/recovery contracts. Native agent registrations are unchanged.

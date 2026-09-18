@@ -17,6 +17,25 @@ Continue local work; dual-remote landing remains blocked until normal access ret
 
 ## Current continuation status — presentation and progress verification
 
+Repository-fit continuation (user approved application plus testing): both existing
+conductor/gate skills now include scoped capability investigation, justified
+reuse/non-reuse, conditional architecture/code-health/testing advice and two new
+current-profile predicates. Same-slug UAC and five-provider regeneration complete.
+See engos-quality-repository-fit-validation.md for frozen criteria, red/green
+tests, nine actual actor calls across seven cases and the corrective handoff
+iteration. Initial specialist replies exposed request overload; the direct route
+now includes question guidance and distinguishes active asks from queued unknowns.
+No specialist source or runtime executable changed. Final local checks:272shaping,
+72package/resource and92UAC/contract passes;1optionalrenderer test skipped.
+Strict32-entry and contract/topology checks pass. Independent outcome assessment
+confirms scoped validation: initial5pass/2partial, both repaired replays pass;
+latest observations cover7scenarios. Five initial cases were not rerun after the
+narrow repair; no causal superiority or full-pipeline claim. Nine actor calls,
+one outcome assessment under the disclosed amended ceiling and original deadline.
+No new push, PR/MR, merge, install or release.
+Earlier hosted pipelines have now succeeded for7e94f9e only; no hosted evidence
+exists for this newer local change. Existing publication and full-pilot holds remain.
+
 Delivery update: implementation committed as7e94f9eb217bc998356b8767e45db9b1e6c4a0b5.
 The branch was pushed to both configured remotes. Subsequent GitHub draft-PR
 creation was blocked by automatic review pending explicit approval for public

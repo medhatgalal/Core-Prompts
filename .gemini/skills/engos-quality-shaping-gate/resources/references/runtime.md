@@ -65,6 +65,12 @@ resource dependencies, decisions/authority records and source index into authori
 dependencies or silently track changes to the remote originals of local copies.
 Refresh copies when upstream changes; reopen the earliest affected gate.
 
+The current profile is `shaping-gates.v2+rubric.v3`. It uses the existing extensible
+predicate mechanism to add G2 `existing_capability_evidence` and G3
+`architecture_fit`; it does not change the executable or runtime schema. Keep the
+two reference keys and paths unchanged: `gates` -> `sources/gates.md` and `rubric`
+-> `sources/rubrics.md`. No additional policy resource or tracker is required.
+
 Frame-only and shaped-draft runs may set delivery_targets to an empty array.
 G0–G3 remain available without publication. This never permits empty-target G4
 acceptance or an unrequested delivery operation. The example retains HTML and
@@ -110,7 +116,7 @@ Exact `prepare` input (replace labels and evidence with actual host records):
   },
   "inputs": ["sources/original.md", "sources/index.json", "sources/reviewer-assignment.json", "sources/reviewer-context.json"],
   "source_revision": "source-index-revision-1",
-  "resource_revision": "shaping-gates.v1+rubric.v2",
+  "resource_revision": "shaping-gates.v2+rubric.v3",
   "skill_allowlist": ["engos-design-frame-from-vague"],
   "original_constraints": ["Preserve the supplied problem; do not choose a solution in the frame."],
   "assigned_questions": [],
@@ -135,20 +141,30 @@ Every candidate contains `questions.json` and `decisions.json`, independently of
 prose. Accepted bundles are cumulative. Earlier accepted files remain byte-identical;
 later stages may add files but must reopen the owning stage to change earlier prose.
 Registers may evolve under the checks below. Policy may add mandatory outputs or
-predicates, but cannot remove these minima or lower thresholds.
+predicates, but cannot remove runtime minima or lower thresholds. The table below
+describes the current profile; the two repository-fit IDs extend the runtime's
+legacy minimum predicates and are mandatory when this profile is bound.
 
 | Gate | Required new artifacts | Mandatory semantic IDs mapped to gates.md |
 | --- | --- | --- |
 | G0 | `brief.md`, `intake.md` | `original_preserved`; `source_coverage`; `fact_classification`; `no_selected_solution` |
 | G1 | `framed.md` | `problem_frame` (people/problem/why-now/outcome); `confirmed_appetite_walkaway`; `boundaries_uncertainties`; `no_selected_solution` |
-| G2 | `research-notes.md` | `uncertainties_resolved`; `evidence_sufficiency` (including actual spikes/private-review limitations); `grounded_risks` |
-| G3 | `pitch.md`, `pitch-summary.md`, `workstreams.md`, `traceability.md`, `contracts.md`, `security-owners.md`, `component.mmd`, `sequence.mmd`, `data-flow.mmd` | `coherent_bounded_solution`; `exemplar_coverage` (scope/cuts/no-gos/mitigations); `diagrams_visual`; `contracts_security`; `workstreams_proof`; `constraints_traceability`; `author_audit`; `independent_review`; `rubric_assessment` |
+| G2 | `research-notes.md` | `uncertainties_resolved`; `evidence_sufficiency` (including actual spikes/private-review limitations); `grounded_risks`; `existing_capability_evidence` (scoped existing-candidate inventory, citations, coverage and unknowns) |
+| G3 | `pitch.md`, `pitch-summary.md`, `workstreams.md`, `traceability.md`, `contracts.md`, `security-owners.md`, `component.mmd`, `sequence.mmd`, `data-flow.mmd` | `coherent_bounded_solution`; `exemplar_coverage` (scope/cuts/no-gos/mitigations); `diagrams_visual`; `contracts_security`; `workstreams_proof`; `constraints_traceability`; `author_audit`; `independent_review`; `rubric_assessment`; `architecture_fit` (material dispositions and evidence of fit) |
 | G4 | `betting-table-prep.md` | `saved_target_parity` (all text/rows/diagrams/style); `target_revision_pixels` (revision plus representation-appropriate verification); `faithful_betting_prep`; `no_delivery_discrepancy` |
 
 Predecessor/current-generation/input hash checks are mechanical, in addition to
 these semantic assessments. No schema proves the table rows are substantively
 complete. G3 reviewers evaluate contracts/security coverage in gates.md, inspect
 each of the three rendered diagrams, and apply the source-specific rubric anchors.
+
+The repository-fit assessments use the same ReviewReceipt fields and evidence
+bindings as every other predicate. Their semantics, including scoped negative
+findings, credible alternatives, conditional lifecycle implications and explicit
+nontechnical applicability reasons, are defined in [gates.md](gates.md). Optional
+architecture/code-health/testing skills are not runtime prerequisites. Missing
+mandatory evidence or review still holds. A passing FAKE test receipt demonstrates
+only that these fields and bindings are mechanically acceptable.
 
 ## ReviewReceipt
 
@@ -294,6 +310,17 @@ solution uncertainty reopens G2. Reopen the earliest stage that depends on chang
 input bytes. Policy/resource changes conservatively require G0 reopen with
 `--policy <current-policy-path>` to rebind all policy dependencies. Target-scope
 changes are policy changes; they cannot retroactively satisfy previous G4 scope.
+
+Existing runs may continue under their original pinned policy and resource bytes;
+their passes make no claim about new predicates absent from that policy. To adopt
+`shaping-gates.v2+rubric.v3`, the controller explicitly stages the current policy
+and both matching references, then calls `reopen --gate G0 --policy` with the
+actual expected version and adoption reason. Changed staged bytes cause drift
+until rebound. G2/G3-only rebinding is refused. G0 rebinding invalidates all current
+gate acceptances and increments generation; prepare fresh work orders and reassess
+G0 onward. Retain historical snapshots, policy hashes and receipt bytes unchanged.
+Old receipts cannot be replayed to satisfy the current policy. This conservative
+adoption uses existing runtime behavior, not an automatic history migration.
 
 ## Delivery intent and saved-target records
 

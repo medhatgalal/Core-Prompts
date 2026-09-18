@@ -19,6 +19,10 @@ installed versions. Record missing or conflicting bindings as dependencies.
 | Stage acceptance | `engos-quality-shaping-gate` SKILL and its current gate/receipt policy; rubric when applicable |
 | Runtime invocation or recovery | Gate resource map's `runtime` route and selected `runtime.md`, then resolved `scripts/shaping_run.py --help` using the documented interpreter; subcommand help before execution |
 | Shaped bundle | `engos-delivery-diagram-contract-artifacts` SKILL and its selected authoring/style resources |
+| Technical Research/Shaped or review | `architecture-fit` route; investigate existing options and justify material dispositions in existing records |
+| Material boundary or evolution trade-off | Conditionally resolve `engos-design-architecture`; scope through architecture-fit.md |
+| Relevant observed structural risk | Conditionally resolve `engos-audit-code-health`; no automatic full-repo audit |
+| Compatibility or migration proof planning | Conditionally resolve `engos-quality-testing-review`; planned checks are not execution |
 | Independent pitch assessment | `engos-audit-pitch-review` SKILL plus the gate owner's current full-shaping integration and calibrated rubric |
 | Approved placement | `engos-delivery-artifact-embed` SKILL and target-specific resources |
 | Missing capability | This bundle's `fallback` route |

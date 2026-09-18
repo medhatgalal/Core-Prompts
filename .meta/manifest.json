@@ -5011,11 +5011,13 @@
             "strategy": "derived_history",
             "group": "derived",
             "baseline_path": null,
-            "selected_commit": "e866aa80",
+            "selected_commit": "7e94f9eb",
             "richness_score": 5,
-            "line_count": 131,
+            "line_count": 152,
             "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
-            "equivalent_commits": [],
+            "equivalent_commits": [
+              "e866aa80"
+            ],
             "expected_companions": [],
             "operator_invariants": [],
             "scenario_matrix": [
@@ -5062,7 +5064,7 @@
                 "candidate_operational_score": 2,
                 "baseline_preserved_in_resource": false
               },
-              "baseline_commit": "e866aa80",
+              "baseline_commit": "7e94f9eb",
               "baseline_slug": "engos-design-shaping"
             },
             {
@@ -5113,7 +5115,7 @@
             "surface_usability": 10
           },
           "template_name": "skill",
-          "effective_sha256": "81557fefec48b148c2bd1e1cdeb680a4c88636a9fc279e8d434ec8944480fb86",
+          "effective_sha256": "0484e6d4f88c097d5cb025e1db3cba961d9f20f7f8d91caa5bfed7c23b4df616",
           "semantic_findings": [],
           "agent_surface_review": {
             "status": "unchanged",
@@ -9120,11 +9122,13 @@
             "strategy": "derived_history",
             "group": "derived",
             "baseline_path": null,
-            "selected_commit": "e866aa80",
+            "selected_commit": "7e94f9eb",
             "richness_score": 5,
-            "line_count": 96,
+            "line_count": 118,
             "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
-            "equivalent_commits": [],
+            "equivalent_commits": [
+              "e866aa80"
+            ],
             "expected_companions": [],
             "operator_invariants": [],
             "scenario_matrix": [
@@ -9171,7 +9175,7 @@
                 "candidate_operational_score": 2,
                 "baseline_preserved_in_resource": false
               },
-              "baseline_commit": "e866aa80",
+              "baseline_commit": "7e94f9eb",
               "baseline_slug": "engos-quality-shaping-gate"
             },
             {
@@ -9222,7 +9226,7 @@
             "surface_usability": 10
           },
           "template_name": "skill",
-          "effective_sha256": "f1c392ce04a7bc447cdd22ea6efc674e76bf4049c0548572392327443b25cf83",
+          "effective_sha256": "a218acee4a9e670c10e5aacce6b2f3f320ace29b99126a4eaaf271a072bf32ad",
           "semantic_findings": [],
           "agent_surface_review": {
             "status": "unchanged",
@@ -11067,6 +11071,7 @@
       ".grok/skills/engos-design-plan-to-goal/resources/templates/receipt.json.tmpl",
       ".grok/skills/engos-design-plan-to-goal/resources/templates/spec.md.tmpl",
       ".grok/skills/engos-design-shaping/resources/capability.json",
+      ".grok/skills/engos-design-shaping/resources/architecture-fit.md",
       ".grok/skills/engos-design-shaping/resources/code-scan.md",
       ".grok/skills/engos-design-shaping/resources/decisions.md",
       ".grok/skills/engos-design-shaping/resources/dispatch.md",
@@ -11208,6 +11213,7 @@
       ".codex/skills/engos-design-plan-to-goal/resources/templates/receipt.json.tmpl",
       ".codex/skills/engos-design-plan-to-goal/resources/templates/spec.md.tmpl",
       ".codex/skills/engos-design-shaping/resources/capability.json",
+      ".codex/skills/engos-design-shaping/resources/architecture-fit.md",
       ".codex/skills/engos-design-shaping/resources/code-scan.md",
       ".codex/skills/engos-design-shaping/resources/decisions.md",
       ".codex/skills/engos-design-shaping/resources/dispatch.md",
@@ -11350,6 +11356,7 @@
       ".gemini/skills/engos-design-plan-to-goal/resources/templates/receipt.json.tmpl",
       ".gemini/skills/engos-design-plan-to-goal/resources/templates/spec.md.tmpl",
       ".gemini/skills/engos-design-shaping/resources/capability.json",
+      ".gemini/skills/engos-design-shaping/resources/architecture-fit.md",
       ".gemini/skills/engos-design-shaping/resources/code-scan.md",
       ".gemini/skills/engos-design-shaping/resources/decisions.md",
       ".gemini/skills/engos-design-shaping/resources/dispatch.md",
@@ -11492,6 +11499,7 @@
       ".claude/skills/engos-design-plan-to-goal/resources/templates/receipt.json.tmpl",
       ".claude/skills/engos-design-plan-to-goal/resources/templates/spec.md.tmpl",
       ".claude/skills/engos-design-shaping/resources/capability.json",
+      ".claude/skills/engos-design-shaping/resources/architecture-fit.md",
       ".claude/skills/engos-design-shaping/resources/code-scan.md",
       ".claude/skills/engos-design-shaping/resources/decisions.md",
       ".claude/skills/engos-design-shaping/resources/dispatch.md",
@@ -11634,6 +11642,7 @@
       ".kiro/skills/engos-design-plan-to-goal/resources/templates/receipt.json.tmpl",
       ".kiro/skills/engos-design-plan-to-goal/resources/templates/spec.md.tmpl",
       ".kiro/skills/engos-design-shaping/resources/capability.json",
+      ".kiro/skills/engos-design-shaping/resources/architecture-fit.md",
       ".kiro/skills/engos-design-shaping/resources/code-scan.md",
       ".kiro/skills/engos-design-shaping/resources/decisions.md",
       ".kiro/skills/engos-design-shaping/resources/dispatch.md",

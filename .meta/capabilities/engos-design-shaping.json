@@ -175,11 +175,13 @@
         "strategy": "derived_history",
         "group": "derived",
         "baseline_path": null,
-        "selected_commit": "e866aa80",
+        "selected_commit": "7e94f9eb",
         "richness_score": 5,
-        "line_count": 131,
+        "line_count": 152,
         "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
-        "equivalent_commits": [],
+        "equivalent_commits": [
+          "e866aa80"
+        ],
         "expected_companions": [],
         "operator_invariants": [],
         "scenario_matrix": [
@@ -226,7 +228,7 @@
             "candidate_operational_score": 2,
             "baseline_preserved_in_resource": false
           },
-          "baseline_commit": "e866aa80",
+          "baseline_commit": "7e94f9eb",
           "baseline_slug": "engos-design-shaping"
         },
         {
@@ -277,7 +279,7 @@
         "surface_usability": 10
       },
       "template_name": "skill",
-      "effective_sha256": "81557fefec48b148c2bd1e1cdeb680a4c88636a9fc279e8d434ec8944480fb86",
+      "effective_sha256": "0484e6d4f88c097d5cb025e1db3cba961d9f20f7f8d91caa5bfed7c23b4df616",
       "semantic_findings": [],
       "agent_surface_review": {
         "status": "unchanged",

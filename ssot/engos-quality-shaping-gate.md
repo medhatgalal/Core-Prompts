@@ -116,3 +116,22 @@ compatible; the resource contract specifies the actual new interface.
 Blast radius: all full-shaping gate users receive the added visual criteria and
 optional progress projection; standalone pitch review still does not fabricate
 historical stage acceptance or infer a live monitor.
+
+## Existing Capabilities and Architecture Fit
+
+The current gate policy adds existing_capability_evidence at G2 and architecture_fit
+at G3. Read their meanings in resources/references/gates.md and current rubric;
+use the current policy example for new runs. Assess scoped investigation, credible
+options and evidence-backed disposition, not a mandatory reusable-component find.
+Justified new capability and intentionally separate responsibilities may pass.
+Missing optional specialist participation alone is not failure; missing material
+proof, contradictory responsibilities or unreasoned duplicate capability hold.
+For nontechnical/no-material-seam work require an explicit reasoned applicability
+assessment. Do not invent code findings or force architecture into framing.
+
+Use the existing receipt mechanism for these mandatory current-profile predicates;
+the helper checks outcomes/evidence bindings, not semantic fit. Preserve old pinned
+policy history. Adopting current policy requires the documented policy-rebind path,
+not silently adding assessments to historical receipts. All shared full-shaping
+gate consumers receive this policy; standalone review reports actual coverage
+without fabricating earlier stages or implying new checks already passed.
