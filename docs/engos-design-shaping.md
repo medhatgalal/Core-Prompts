@@ -11,7 +11,11 @@ Current source-candidate status: local mechanical tests, independent source revi
 and simulated conversational preflights have run. The simulations do not replace a
 real product/engineering pilot. A private Google Docs teaching-fixture import has
 passed saved-content and independent nine-page visual checks; this is adapter
-evidence, not real-pitch acceptance. Real-human pilot acceptance, a complete real
+evidence, not real-pitch acceptance. A subsequent six-role product/engineering
+simulation exercised framing, evidence handoffs and a complete candidate draft.
+Its result is partial: wide-table HTML readability and the distinction between
+worker access limits and product requirements need repair. Role-play does not
+establish real-person usability. Real-human pilot acceptance, a complete real
 pitch on both requested surfaces, hosted CI and dual-remote landing remain pending.
 No automatic implementation, tickets, staffing, sharing or global installation
 follows from shaping a pitch.

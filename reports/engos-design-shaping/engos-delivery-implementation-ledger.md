@@ -17,6 +17,16 @@ Continue local work; dual-remote landing remains blocked until normal access ret
 
 ## Current continuation status
 
+Latest: the user assigned the controller as pilot judge and six separate subagents
+as junior/mid/senior product/engineering participants. That simulated-role pilot
+has now run; see [the role-pilot judgment](engos-quality-role-pilot.md). It is a
+partial pass, with confirmed HTML readability, boundary-classification and test-spy
+repair work. Real people are not a prerequisite to the user-requested simulation;
+their usability/authority evidence remains a distinct untested claim. No real
+accepted G0–G4 or two-surface new-pitch completion is inferred. The following
+participant request is retained as historical context, superseded for this pilot
+by the user's explicit role-play choice.
+
 After the implementation checkpoint, the user approved the exact private upload.
 The teaching-fixture Google Doc was created without sharing; saved readback and
 independent nine-page pixel review passed. See
