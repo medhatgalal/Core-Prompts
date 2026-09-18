@@ -343,6 +343,124 @@
       "engos-content-dynamic-html-presentations"
     ],
     "shape": "focused_specialist",
-    "portfolio_action": "keep"
+    "portfolio_action": "keep",
+    "routing_fitness": {
+      "schema_version": "RoutingFitness.v1",
+      "mapping_status": "source_derived_draft",
+      "task_phases": {
+        "kind": "source_conditions",
+        "clauses": [
+          {
+            "text": "3. **Write Playwright script** \u2014 Produce a complete script (TypeScript or Python per user preference) that:\n   - Opens the target URL\n   - Authenticates (JWT injection, OAuth flow, or cookie-based)\n   - Executes each demo step with realistic timing (`slowMo`, `waitForTimeout`)\n   - Adds visual polish (scrolling into view, brief pauses after key actions)\n   - Enables video recording via `recordVideo` or coordinates with system capture",
+            "heading": "Workflow",
+            "source": {
+              "path": "ssot/engos-browser-demo-recorder.md",
+              "start_line": 25,
+              "end_line": 30,
+              "sha256": "eb8307c6b2ae6612b6654c4818a7acaf0651980cd011f39f7209b73177e1523b"
+            }
+          }
+        ]
+      },
+      "activation": {
+        "mode": "unknown",
+        "evidence": []
+      },
+      "risk_authority_ceiling": {
+        "grants_authority": false,
+        "clauses": [
+          {
+            "text": "- Executing the Playwright script \u2014 provide it for the user to run\n- Storing, transmitting, or reading credentials directly \u2014 reference environment variables only\n- Mutating the target service beyond what demo steps require\n- Writing test assertions, test expectations, or CI integration \u2014 this is a demo recorder, not a test framework\n- Producing marketing copy, narration, or presentation decks\n- Generating partial or placeholder scripts \u2014 every output must be complete and runnable\n- Guaranteeing recording success without user verification of prerequisites",
+            "heading": "Out of Scope",
+            "source": {
+              "path": "ssot/engos-browser-demo-recorder.md",
+              "start_line": 47,
+              "end_line": 53,
+              "sha256": "eb8307c6b2ae6612b6654c4818a7acaf0651980cd011f39f7209b73177e1523b"
+            }
+          },
+          {
+            "text": "- Read file system to inspect existing Playwright configs or project structure\n- Write Playwright script files to the user's specified output directory\n- Do not execute shell commands to run Playwright or start services\n- Do not access `.env` files, credential stores, or secret managers",
+            "heading": "Tool Boundaries",
+            "source": {
+              "path": "ssot/engos-browser-demo-recorder.md",
+              "start_line": 57,
+              "end_line": 60,
+              "sha256": "eb8307c6b2ae6612b6654c4818a7acaf0651980cd011f39f7209b73177e1523b"
+            }
+          },
+          {
+            "text": "- Do not invent service behavior or assume API shapes without user confirmation.\n- Do not replace operational procedure with vague summaries.\n- Do not imply execution authority that the capability does not own.\n- Do not produce scripts that depend on undeclared external tools beyond Playwright itself.\n- Do not mix demo recording concerns with testing, CI, or deployment concerns.",
+            "heading": "Constraints",
+            "source": {
+              "path": "ssot/engos-browser-demo-recorder.md",
+              "start_line": 128,
+              "end_line": 132,
+              "sha256": "eb8307c6b2ae6612b6654c4818a7acaf0651980cd011f39f7209b73177e1523b"
+            }
+          }
+        ]
+      },
+      "negative_examples": {
+        "kind": "source_exclusions_not_synthetic_prompts",
+        "clauses": [
+          {
+            "text": "- Executing the Playwright script \u2014 provide it for the user to run\n- Storing, transmitting, or reading credentials directly \u2014 reference environment variables only\n- Mutating the target service beyond what demo steps require\n- Writing test assertions, test expectations, or CI integration \u2014 this is a demo recorder, not a test framework\n- Producing marketing copy, narration, or presentation decks\n- Generating partial or placeholder scripts \u2014 every output must be complete and runnable\n- Guaranteeing recording success without user verification of prerequisites",
+            "heading": "Out of Scope",
+            "source": {
+              "path": "ssot/engos-browser-demo-recorder.md",
+              "start_line": 47,
+              "end_line": 53,
+              "sha256": "eb8307c6b2ae6612b6654c4818a7acaf0651980cd011f39f7209b73177e1523b"
+            }
+          },
+          {
+            "text": "- Do not invent service behavior or assume API shapes without user confirmation.\n- Do not replace operational procedure with vague summaries.\n- Do not imply execution authority that the capability does not own.\n- Do not produce scripts that depend on undeclared external tools beyond Playwright itself.\n- Do not mix demo recording concerns with testing, CI, or deployment concerns.",
+            "heading": "Constraints",
+            "source": {
+              "path": "ssot/engos-browser-demo-recorder.md",
+              "start_line": 128,
+              "end_line": 132,
+              "sha256": "eb8307c6b2ae6612b6654c4818a7acaf0651980cd011f39f7209b73177e1523b"
+            }
+          }
+        ]
+      },
+      "conditional_companions": [],
+      "pack_hints": {
+        "lead": "engos-browser-demo-recorder",
+        "companions": "only_after_applicable_source_conditions_are_checked",
+        "default_bulk_activation": false
+      },
+      "provenance": {
+        "ssot_path": "ssot/engos-browser-demo-recorder.md",
+        "ssot_sha256": "eb8307c6b2ae6612b6654c4818a7acaf0651980cd011f39f7209b73177e1523b",
+        "effective_sha256": "eb8307c6b2ae6612b6654c4818a7acaf0651980cd011f39f7209b73177e1523b",
+        "resources": [],
+        "extractor_version": "source-clauses.v1",
+        "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+        "field_sources": {},
+        "unresolved_companion_clauses": [],
+        "curated_fields": [
+          "authority",
+          "main_output",
+          "nearest_neighbors",
+          "not_for",
+          "portfolio_action",
+          "primary_job",
+          "routing_question",
+          "shape",
+          "use_when",
+          "works_on"
+        ],
+        "curated_binding": "preserved_not_independently_revalidated",
+        "mapping_sha256": "3e0da781ce29fb0c08ca64eb82ec94aca77ff0aea6b0d0aebe60f50c6ab87e52"
+      },
+      "unresolved_fields": [
+        "task_phase_interpretation",
+        "risk_authority_interpretation",
+        "implicit_activation_eligibility"
+      ]
+    }
   }
 }

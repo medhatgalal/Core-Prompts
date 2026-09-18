@@ -354,3 +354,39 @@ The quality loop produces structural diagnostics and semantic repair requests. I
 For an independently reviewed semantic modernization, supply `--requirement-review <review.json>` to plan, judge, and apply. The `UACRequirementReview.v1` record binds slug, original source, candidate entry, effective resource content, reviewer/author identities, and a complete line-span requirement map. Dispositions are preserved, reformulated, relocated, or retired; retirement includes authorization. The operator establishes provenance from the actual independent review; code checks hashes and coverage and does not authenticate an identity string or certify semantic equivalence. Multiple records may cover the current input and historical baseline.
 
 This attestation cannot authorize behavioral promotion or rewrite historical baseline lineage. `PromotionVerdict.v2` remains separate. Read the exact passing candidate and proposed write set before apply; a changed entry or resource invalidates its review bindings. [Implementation and verification overview](FRONTIER-MODERNIZATION.md).
+
+## Source-backed routing fitness
+
+UAC plan, judge and apply use the same compiler as surface generation to produce
+`job_contract.routing_fitness` (`RoutingFitness.v1`). New skill jobs use their
+actual objective, invocation hints, inputs, outputs and boundaries where present.
+Existing curated job fields are preserved. The descriptor is the admitted machine
+metadata source; `.meta/skill-job-map.json` is its generated `SkillJobMap.v2` view.
+The map no longer overwrites descriptor curation during a build.
+
+The preview exposes changes under `job_contract`. For example:
+
+```sh
+bin/uac plan path/to/candidate.md --benchmark-search off
+bin/uac judge path/to/candidate.md --benchmark-search off
+```
+
+After the ordinary UAC review/apply gates, apply regenerates the mapping from the
+exact landed source. Its embedded receipt binds SSOT, declared effective resource
+content and mapping content. Rebuilding an unchanged source is idempotent. A source
+or declared-resource change marks previous mapping state stale. Legacy v1 maps and
+descriptors without fitness remain readable; their absence of evidence is not approval.
+
+The current compiler collects source clauses, not semantic permissions. Phase and
+authority interpretation remain explicitly unresolved; implicit eligibility stays
+unknown. A clear owner invocation restriction can be represented as explicit-only.
+Examples and fenced code do not become operating rules. Companion references are
+conditional evidence requiring stage review, never an automatically expanded pack.
+This version emits drafts or stale records and cannot self-assert reviewed status.
+
+These fields do **not** activate native routing. Inspection of Codex 0.154.0 found
+name/description/path discovery, but no pre-selection reader for this map or bundled
+`capability.json`. The metadata-only native comparison is therefore on hold, and no
+lazy-prompt behavior improvement is claimed. Adding a consumer or changing discovery
+descriptions requires its own reviewed scope. No installer or global instruction
+change accompanies this metadata.

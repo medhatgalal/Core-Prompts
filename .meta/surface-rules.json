@@ -28,6 +28,15 @@
   },
   "metadata_policy": {
     "portable_local_source_refs": true,
+    "routing_fitness": {
+      "contract": ".meta/capability-descriptor-contract.json",
+      "map_schema": "SkillJobMap.v2",
+      "source": "SSOT and declared resources; preserve descriptor curation",
+      "map_role": "generated advisory view, not a runtime policy or permission grant",
+      "review_binding": "source, effective content and mapping content",
+      "missing_fields": "explicit unresolved, never inferred permission",
+      "generated_body_changes": false
+    },
     "local_source_ref_format": "repo_relative",
     "forbid_absolute_local_source_refs_in_persisted_metadata": true,
     "notes": [

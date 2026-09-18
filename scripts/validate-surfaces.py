@@ -332,6 +332,13 @@ def validate_capability_descriptor_contract(path: Path, contract_path: Path | No
         if missing:
             errors.append(f'{path}: job_contract missing fields: {", ".join(missing)}')
 
+    if isinstance(job_contract, dict):
+        from intent_pipeline.skill_jobs import validate_routing_fitness
+        try:
+            validate_routing_fitness(job_contract, ROOT, descriptor.get('slug'))
+        except (ValueError, KeyError, TypeError, AttributeError, OSError) as exc:
+            errors.append(f'{path}: invalid routing fitness: {exc}')
+
     forbidden_statuses = set(contract.get('forbidden_quality_statuses') or [])
     if descriptor.get('quality_status') in forbidden_statuses:
         errors.append(

@@ -1,3 +1,8 @@
+## Unreleased
+
+- Derive advisory UAC routing fitness from source clauses, preserve curated descriptor jobs, and regenerate a versioned source-bound job map. Add preview/apply/idempotence and false-authority regression checks.
+- Keep native routing behavior unverified: no Codex pre-selection map consumer was found. No skill bodies, descriptions, installers, global instructions or named-agent surfaces change.
+
 ## v1.15.1 - 2026-09-15
 
 - Support `--cli agy` as a skills-only installation reader using `.gemini/config/skills`, with existing profile preservation, native-package customization protection, and rollback. Reuse generated portable resources without creating an unreviewed agent surface.

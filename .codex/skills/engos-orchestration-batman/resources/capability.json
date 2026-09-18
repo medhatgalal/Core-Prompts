@@ -373,6 +373,344 @@
       "engos-quality-gitops-review"
     ],
     "shape": "implementation_delivery_controller",
-    "portfolio_action": "ship_single_batman_identity"
+    "portfolio_action": "ship_single_batman_identity",
+    "routing_fitness": {
+      "schema_version": "RoutingFitness.v1",
+      "mapping_status": "source_derived_draft",
+      "task_phases": {
+        "kind": "source_conditions",
+        "clauses": [
+          {
+            "text": "If the host cannot provide independent implementation and review contexts, stop before implementation and report that Batman cannot run faithfully.",
+            "heading": "Workflow",
+            "source": {
+              "path": "ssot/engos-orchestration-batman.md",
+              "start_line": 168,
+              "end_line": 168,
+              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+            }
+          },
+          {
+            "text": "After Preflight and before Size, produce one controller-owned Host-Fit Plan from the live host and recorded repository revision. This step is not a second controller, autonomous router, or gate.",
+            "heading": "Workflow",
+            "source": {
+              "path": "ssot/engos-orchestration-batman.md",
+              "start_line": 173,
+              "end_line": 173,
+              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+            }
+          },
+          {
+            "text": "Every Host-Fit Plan must declare exactly one topology from the currently authorized written plan's acyclic child-dependency graph. Classify by first match: `sequential` when child nodes form one total order with at most one dispatched child at a time; `fan-out/fan-in` when the graph contains exactly one independent concurrency group and one all-required controller join before any downstream child dispatch; `dependency-pipeline` for every other acyclic graph, including multiple waves, partial joins, or named fan-out groups. Reject a cycle. Assign a monotonic, run-unique `plan_generation` to the Host-Fit Plan. Refresh the Host-Fit Plan atomically whenever approved scope or any dispatch-relevant child contract changes, including nodes, dependencies, task or owner IDs, role brief, read scope, write scope, isolation boundary, evidence contract, stop condition, reviewed revision or diff, or authority; increment `plan_generation`, record the change, interrupt affected in-flight children when supported, and mark every superseded-generation child and late result abandoned. Dispatch current-generation work after refresh only when each stale child is read-only, isolated from shared state, or all live write scopes are verified mutually disjoint; otherwise stop the dependent node or gate. Before any gate, verify that the reviewed revision or diff contains no abandoned-generation writes. Require Gate 2 to review the refreshed topology before TDD. Only current-generation result and evidence may pass a gate. Initial topology selection never approves scope or design. Controller checkpoints enforce gates; they do not self-decide verdicts. Controller checkpoints may own dispatch, reconciliation, gate enforcement, ledger/status, deterministic generation and validation, authorized Git checks, and authorized landing actions; they never own implementation, test, fix, or review work.",
+            "heading": "Workflow",
+            "source": {
+              "path": "ssot/engos-orchestration-batman.md",
+              "start_line": 192,
+              "end_line": 192,
+              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+            }
+          },
+          {
+            "text": "For every child node, record `task_id`, a run-unique host-visible `owner_id`, `plan_generation`, role brief, dependency task IDs, read scope, write scope, isolation boundary, a bounded evidence contract tied to a revision, diff, artifact, or command, and a stop condition. Each child may send bounded progress receipts only to the sole controller; they cannot satisfy a gate and cannot become consolidated user status or final completion. Every child must return exactly one terminal result only to the sole controller with the same task and owner IDs and `plan_generation`, status `completed`, `blocked`, or `failed`, observed revision or diff, evidence references, findings, blockers, and an advisory next action. Each reviewer child issues an evidence-bound `PASS` or `FAIL` verdict; each non-reviewer child cannot decide a gate. No child may advance the workflow or waive a gate. A reviewer result is gate-eligible if and only if it has current `plan_generation`, matching task and owner IDs, status `completed`, its evidence contract is satisfied, blockers are empty, every finding is evidence-backed and has an allowed resolved disposition, and its verdict is `PASS`. A Critical or Important finding remains a blocker until resolved. `PASS` with an unresolved or significant finding fails closed. Malformed, duplicate, blocked, failed, incomplete, evidence-unsatisfied, blocker-bearing, stale, or non-`PASS` result fails closed. For each gate, record the exact required reviewer `task_id` and `owner_id` set and one reviewed revision or diff. A gate passes if and only if every and only required reviewer node returns exactly one individually gate-eligible `PASS` for the same current `plan_generation` and the same reviewed revision or diff. Missing, unexpected, duplicate, mismatched-revision, stale, or non-`PASS` reviewer result fails closed. The controller records and enforces the reviewer verdict and cannot turn `FAIL` into `PASS`. After a bounded wait for a missing or timed-out result, the controller records that receipt and interrupts when supported. If interruption cannot be confirmed, dispatch current-generation work only when the stale child is read-only, isolated from shared state, or all live write scopes are verified mutually disjoint; mark any late original result abandoned and ineligible to pass a gate. Otherwise stop the dependent node or gate. The controller never fabricates a result or treats a missing result as pass.",
+            "heading": "Workflow",
+            "source": {
+              "path": "ssot/engos-orchestration-batman.md",
+              "start_line": 194,
+              "end_line": 194,
+              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+            }
+          },
+          {
+            "text": "1. Dispatch a fresh context researcher role brief to explain observed behavior with repository evidence. It must not design.\n2. Dispatch a fresh independent challenger role brief that applies `engos-meta-supercharge /adversarial /debate` through the companion resolution rule to test the premise, falsifiers, and smallest valid slice. Use `/full` only when the written plan justifies the full gauntlet; `/full` never means run every capability.\n3. Apply `engos-reconciliation-converge` through the companion resolution rule to produce one recommendation, name conflicts, and refuse a blended compromise that breaks the contract.\n4. Run milestone gate 1. If the problem is misframed, revise scope before design.\n5. Report the stage transition.",
+            "heading": "Workflow",
+            "source": {
+              "path": "ssot/engos-orchestration-batman.md",
+              "start_line": 216,
+              "end_line": 220,
+              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+            }
+          },
+          {
+            "text": "1. Apply `engos-design-architecture` through the companion resolution rule to define interfaces, contracts, failure modes, migration, rollback, and observable acceptance.\n2. Apply `engos-meta-supercharge /simple`, followed by `/adversarial /debate`, through the companion resolution rule to test separability and degradation paths.\n3. Apply the Simple Made Easy gate: simplicity means separable concerns, not fewer files. If complexity or a braid appears, revise the design before task creation.\n4. Write the specification: problem, scope, invariants, claims, acceptance criteria, and done-when evidence.\n5. Write the delivery plan: ordered controller stages, owners, dependencies, gates, and stop conditions.\n6. Write the implementation plan: design moves, file and interface impact, rollback, and verification strategy.\n7. Write ordered tasks: bounded subagent briefs with inputs, expected outputs, proof, and stop conditions.\n8. Record the selected decision and rejected alternatives with reasons.\n9. Run milestone gate 2. Do not begin TDD until the specification, delivery plan, implementation plan, and tasks exist, agree, and pass review.\n10. Report the stage transition.",
+            "heading": "Workflow",
+            "source": {
+              "path": "ssot/engos-orchestration-batman.md",
+              "start_line": 225,
+              "end_line": 234,
+              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+            }
+          },
+          {
+            "text": "1. Create a dedicated branch from current main, preferably in an isolated worktree. Never implement on `main` unless the user explicitly requires it and repository policy allows it.\n2. Dispatch one fresh independent implementer role brief per bounded task. Provide only the task brief and required context, not a session-history dump.\n3. Prior-session or controller-authored tests are dirty input and cannot satisfy observed-red evidence unchanged. After Gate 2, a fresh implementer may inspect and validate it only to decide whether to revise, rewrite, or discard it. The fresh implementer must author the evidence-bearing version independently, bind its provenance to the recorded unfixed revision, and freshly observe the intended failure. Mere adoption never converts controller authorship into independent test evidence.\n4. The implementer writes any remaining failing test first and runs it against the unfixed behavior.\n5. The implementer reports the exact command and a sanitized relevant red excerpt. A test that was never observed red is not evidence.\n6. The implementer makes the smallest change that turns the test green.\n7. The implementer performs a task-scoped mutation check: temporarily remove or reverse the owned fix, confirm the specific tests fail for the expected reason, restore the fix, and rerun green. Protect unrelated changes throughout.\n8. Test design lives in the failing tests. Do not add a second post-hoc test-design ceremony after implementation.\n9. Run milestone gate 3 against the saved task diff. Implementer self-review does not count.\n10. Critical or Important findings return to the implementer or a bounded default fixer; the controller does not edit the fix.\n11. Re-review the fix diff. After five unresolved rounds, stop for a human ruling. Do not silently park a Critical or Important finding.\n12. Do not begin the next task while a Critical or Important finding remains unresolved.\n13. Report each task gate and the stage transition.",
+            "heading": "Workflow",
+            "source": {
+              "path": "ssot/engos-orchestration-batman.md",
+              "start_line": 249,
+              "end_line": 261,
+              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+            }
+          },
+          {
+            "text": "1. Update documentation and examples in the same slice when behavior, commands, setup, naming, or discoverability changed.\n2. Open a scoped PR or MR whose description reports measurements and evidence, not only intent.\n3. Verify current hosted CI on every required forge. Do not infer hosted CI from local tests.\n4. Run milestone gate 4 with fresh documentation and GitOps reviewer role briefs that apply `engos-quality-docs-review` and `engos-quality-gitops-review` through the companion resolution rule against the PR or MR diff and completed hosted CI, while a fresh adversarial reviewer role brief applies `engos-meta-supercharge /adversarial` through the companion resolution rule. Route selected PR or MR comments through `engos-delivery-address-code-review` using the companion resolution rule when fixes are accepted, wait for hosted CI on the updated revision, and repeat the gate.\n5. When landing is authorized, merge to main through repository policy.\n6. Re-verify mainline at the merged revision, including the relevant tests and generated-state checks.\n7. Handle tag, package release, deployment, and installation separately after mainline verification. Execute an action only when it is separately authorized and its repository preconditions pass. For each action, perform it and record its receipt, mark it skipped when it was not requested or does not apply, or refuse it when authority or required proof is missing. Report each actual, skipped, or refused state and reason; never infer one action's authority from another.\n8. Persist required run-scoped facts durably before cleanup, including all actual, skipped, and refused delivery states. Never delete the only live receipt. Remove only authorized run-scoped scratch, branch, and worktree targets after readback confirms the durable record.\n9. Report the final mainline revision, evidence, remaining tracked work, exact removed and retained targets, and cleanup state.",
+            "heading": "Workflow",
+            "source": {
+              "path": "ssot/engos-orchestration-batman.md",
+              "start_line": 292,
+              "end_line": 300,
+              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+            }
+          }
+        ]
+      },
+      "activation": {
+        "mode": "explicit_only",
+        "evidence": [
+          {
+            "text": "Batman is active only when the user invokes `engos-orchestration-batman` or explicitly asks for this evidence-gated delivery protocol. Metadata does not auto-route work or grant execution authority.",
+            "heading": "Agent Operating Contract",
+            "source": {
+              "path": "ssot/engos-orchestration-batman.md",
+              "start_line": 34,
+              "end_line": 34,
+              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+            }
+          }
+        ]
+      },
+      "risk_authority_ceiling": {
+        "grants_authority": false,
+        "clauses": [
+          {
+            "text": "- production-code, failing-test, or implementation-fix authorship by the controller\n- automatic runtime routing by descriptors or metadata\n- a duplicate Batman capability or a Batman module inside SuperCharge\n- unauthorized live writes, deployment, push, publish, merge, or destructive cleanup",
+            "heading": "Out of Scope",
+            "source": {
+              "path": "ssot/engos-orchestration-batman.md",
+              "start_line": 28,
+              "end_line": 31,
+              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+            }
+          },
+          {
+            "text": "- allowed: inspect task and repository state, use the host's subagent dispatch mechanism, maintain controller artifacts, run controller-owned validation and Git checks, and perform authorized landing actions\n- forbidden: hidden routing, undeclared delegation, production code, failing tests, or implementation fixes by the controller, reviewer self-approval, unauthorized live writes, or destructive actions without approval\n- escalation: stop for unavailable independent subagents, missing permissions, destructive or irreversible actions, security-sensitive actions, critical decisions, unverified live claims, or landing actions outside granted authority",
+            "heading": "Tool Boundaries",
+            "source": {
+              "path": "ssot/engos-orchestration-batman.md",
+              "start_line": 76,
+              "end_line": 78,
+              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+            }
+          },
+          {
+            "text": "Batman does not expand host authority. Approval-gated mutations remain approval-gated.",
+            "heading": "Tool Boundaries",
+            "source": {
+              "path": "ssot/engos-orchestration-batman.md",
+              "start_line": 80,
+              "end_line": 80,
+              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+            }
+          },
+          {
+            "text": "- One canonical Batman SSOT body.\n- One active public identity: `engos-orchestration-batman`. Do not create a second SSOT, descriptor, skill, agent, route, invocation hint, example, or generated surface for this capability.\n- No provider-specific orchestration API, machine-specific path, or arbitrary external capability dependency.\n- No instruction to use every agent, skill, or tool.\n- No controller implementation, failing-test authorship, review-fix authorship, or self-approval.\n- No claim weakening, fabricated evidence, invented score, or behavioral-promotion claim from structural validation.\n- No live write, deployment, push, publish, merge, destructive cleanup, or security-sensitive action without the required authority.\n- No committed run-scoped scratch or secrets in evidence excerpts.",
+            "heading": "Constraints",
+            "source": {
+              "path": "ssot/engos-orchestration-batman.md",
+              "start_line": 313,
+              "end_line": 320,
+              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+            }
+          }
+        ]
+      },
+      "negative_examples": {
+        "kind": "source_exclusions_not_synthetic_prompts",
+        "clauses": [
+          {
+            "text": "- production-code, failing-test, or implementation-fix authorship by the controller\n- automatic runtime routing by descriptors or metadata\n- a duplicate Batman capability or a Batman module inside SuperCharge\n- unauthorized live writes, deployment, push, publish, merge, or destructive cleanup",
+            "heading": "Out of Scope",
+            "source": {
+              "path": "ssot/engos-orchestration-batman.md",
+              "start_line": 28,
+              "end_line": 31,
+              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+            }
+          },
+          {
+            "text": "Batman delivers implementation through independent subagents. The controller owns the flow, written plan, task briefs, review backpressure, evidence, status, and authorized landing actions. It never becomes the implementer or reviewer of its own work.",
+            "heading": "Purpose",
+            "source": {
+              "path": "ssot/engos-orchestration-batman.md",
+              "start_line": 13,
+              "end_line": 13,
+              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+            }
+          },
+          {
+            "text": "Batman has one canonical name and body. Do not create, register, route, or generate another public identity for this capability.",
+            "heading": "Purpose",
+            "source": {
+              "path": "ssot/engos-orchestration-batman.md",
+              "start_line": 15,
+              "end_line": 15,
+              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+            }
+          },
+          {
+            "text": "- Use `engos-orchestration-batman` for end-to-end implementation through subagent-driven development and blocking review gates.\n- Use Batman for a contract, metric, safety path, shipped defect, or other implementation that requires independent evidence and landing.\n- Do not invoke Batman for advice, a one-pass edit, or a review that excludes implementation.",
+            "heading": "Invocation Hints",
+            "source": {
+              "path": "ssot/engos-orchestration-batman.md",
+              "start_line": 83,
+              "end_line": 85,
+              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+            }
+          },
+          {
+            "text": "- One canonical Batman SSOT body.\n- One active public identity: `engos-orchestration-batman`. Do not create a second SSOT, descriptor, skill, agent, route, invocation hint, example, or generated surface for this capability.\n- No provider-specific orchestration API, machine-specific path, or arbitrary external capability dependency.\n- No instruction to use every agent, skill, or tool.\n- No controller implementation, failing-test authorship, review-fix authorship, or self-approval.\n- No claim weakening, fabricated evidence, invented score, or behavioral-promotion claim from structural validation.\n- No live write, deployment, push, publish, merge, destructive cleanup, or security-sensitive action without the required authority.\n- No committed run-scoped scratch or secrets in evidence excerpts.",
+            "heading": "Constraints",
+            "source": {
+              "path": "ssot/engos-orchestration-batman.md",
+              "start_line": 313,
+              "end_line": 320,
+              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+            }
+          }
+        ]
+      },
+      "conditional_companions": [
+        {
+          "skill": "engos-delivery-address-code-review",
+          "condition_and_handoff": "Named companions:\n- `engos-design-architecture` for interfaces, failure modes, migration, rollback, and design review\n- `engos-optimization-auto-research` for bounded behavioral comparison when proof is required\n- `engos-meta-supercharge` for `/simple`, `/adversarial`, `/debate`, or justified `/full` lenses\n- `engos-reconciliation-converge` for conflicts and one coherent recommendation\n- `engos-quality-testing-review` for test and edge-case analysis when the implementer needs a specialist\n- `engos-quality-code-review` for independent task and branch review\n- `engos-delivery-address-code-review` only for selected comments on an existing PR or MR\n- `engos-quality-docs-review` for documentation drift and discoverability\n- `engos-quality-gitops-review` for branch, commit, PR or MR, CI, merge, and cleanup gates",
+          "source": {
+            "path": "ssot/engos-orchestration-batman.md",
+            "start_line": 62,
+            "end_line": 71,
+            "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+          },
+          "interpretation": "source_clause_requires_stage_review"
+        },
+        {
+          "skill": "engos-design-architecture",
+          "condition_and_handoff": "Named companions:\n- `engos-design-architecture` for interfaces, failure modes, migration, rollback, and design review\n- `engos-optimization-auto-research` for bounded behavioral comparison when proof is required\n- `engos-meta-supercharge` for `/simple`, `/adversarial`, `/debate`, or justified `/full` lenses\n- `engos-reconciliation-converge` for conflicts and one coherent recommendation\n- `engos-quality-testing-review` for test and edge-case analysis when the implementer needs a specialist\n- `engos-quality-code-review` for independent task and branch review\n- `engos-delivery-address-code-review` only for selected comments on an existing PR or MR\n- `engos-quality-docs-review` for documentation drift and discoverability\n- `engos-quality-gitops-review` for branch, commit, PR or MR, CI, merge, and cleanup gates",
+          "source": {
+            "path": "ssot/engos-orchestration-batman.md",
+            "start_line": 62,
+            "end_line": 71,
+            "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+          },
+          "interpretation": "source_clause_requires_stage_review"
+        },
+        {
+          "skill": "engos-meta-supercharge",
+          "condition_and_handoff": "Named companions:\n- `engos-design-architecture` for interfaces, failure modes, migration, rollback, and design review\n- `engos-optimization-auto-research` for bounded behavioral comparison when proof is required\n- `engos-meta-supercharge` for `/simple`, `/adversarial`, `/debate`, or justified `/full` lenses\n- `engos-reconciliation-converge` for conflicts and one coherent recommendation\n- `engos-quality-testing-review` for test and edge-case analysis when the implementer needs a specialist\n- `engos-quality-code-review` for independent task and branch review\n- `engos-delivery-address-code-review` only for selected comments on an existing PR or MR\n- `engos-quality-docs-review` for documentation drift and discoverability\n- `engos-quality-gitops-review` for branch, commit, PR or MR, CI, merge, and cleanup gates",
+          "source": {
+            "path": "ssot/engos-orchestration-batman.md",
+            "start_line": 62,
+            "end_line": 71,
+            "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+          },
+          "interpretation": "source_clause_requires_stage_review"
+        },
+        {
+          "skill": "engos-optimization-auto-research",
+          "condition_and_handoff": "Named companions:\n- `engos-design-architecture` for interfaces, failure modes, migration, rollback, and design review\n- `engos-optimization-auto-research` for bounded behavioral comparison when proof is required\n- `engos-meta-supercharge` for `/simple`, `/adversarial`, `/debate`, or justified `/full` lenses\n- `engos-reconciliation-converge` for conflicts and one coherent recommendation\n- `engos-quality-testing-review` for test and edge-case analysis when the implementer needs a specialist\n- `engos-quality-code-review` for independent task and branch review\n- `engos-delivery-address-code-review` only for selected comments on an existing PR or MR\n- `engos-quality-docs-review` for documentation drift and discoverability\n- `engos-quality-gitops-review` for branch, commit, PR or MR, CI, merge, and cleanup gates",
+          "source": {
+            "path": "ssot/engos-orchestration-batman.md",
+            "start_line": 62,
+            "end_line": 71,
+            "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+          },
+          "interpretation": "source_clause_requires_stage_review"
+        },
+        {
+          "skill": "engos-quality-code-review",
+          "condition_and_handoff": "Named companions:\n- `engos-design-architecture` for interfaces, failure modes, migration, rollback, and design review\n- `engos-optimization-auto-research` for bounded behavioral comparison when proof is required\n- `engos-meta-supercharge` for `/simple`, `/adversarial`, `/debate`, or justified `/full` lenses\n- `engos-reconciliation-converge` for conflicts and one coherent recommendation\n- `engos-quality-testing-review` for test and edge-case analysis when the implementer needs a specialist\n- `engos-quality-code-review` for independent task and branch review\n- `engos-delivery-address-code-review` only for selected comments on an existing PR or MR\n- `engos-quality-docs-review` for documentation drift and discoverability\n- `engos-quality-gitops-review` for branch, commit, PR or MR, CI, merge, and cleanup gates",
+          "source": {
+            "path": "ssot/engos-orchestration-batman.md",
+            "start_line": 62,
+            "end_line": 71,
+            "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+          },
+          "interpretation": "source_clause_requires_stage_review"
+        },
+        {
+          "skill": "engos-quality-docs-review",
+          "condition_and_handoff": "Named companions:\n- `engos-design-architecture` for interfaces, failure modes, migration, rollback, and design review\n- `engos-optimization-auto-research` for bounded behavioral comparison when proof is required\n- `engos-meta-supercharge` for `/simple`, `/adversarial`, `/debate`, or justified `/full` lenses\n- `engos-reconciliation-converge` for conflicts and one coherent recommendation\n- `engos-quality-testing-review` for test and edge-case analysis when the implementer needs a specialist\n- `engos-quality-code-review` for independent task and branch review\n- `engos-delivery-address-code-review` only for selected comments on an existing PR or MR\n- `engos-quality-docs-review` for documentation drift and discoverability\n- `engos-quality-gitops-review` for branch, commit, PR or MR, CI, merge, and cleanup gates",
+          "source": {
+            "path": "ssot/engos-orchestration-batman.md",
+            "start_line": 62,
+            "end_line": 71,
+            "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+          },
+          "interpretation": "source_clause_requires_stage_review"
+        },
+        {
+          "skill": "engos-quality-gitops-review",
+          "condition_and_handoff": "Named companions:\n- `engos-design-architecture` for interfaces, failure modes, migration, rollback, and design review\n- `engos-optimization-auto-research` for bounded behavioral comparison when proof is required\n- `engos-meta-supercharge` for `/simple`, `/adversarial`, `/debate`, or justified `/full` lenses\n- `engos-reconciliation-converge` for conflicts and one coherent recommendation\n- `engos-quality-testing-review` for test and edge-case analysis when the implementer needs a specialist\n- `engos-quality-code-review` for independent task and branch review\n- `engos-delivery-address-code-review` only for selected comments on an existing PR or MR\n- `engos-quality-docs-review` for documentation drift and discoverability\n- `engos-quality-gitops-review` for branch, commit, PR or MR, CI, merge, and cleanup gates",
+          "source": {
+            "path": "ssot/engos-orchestration-batman.md",
+            "start_line": 62,
+            "end_line": 71,
+            "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+          },
+          "interpretation": "source_clause_requires_stage_review"
+        },
+        {
+          "skill": "engos-quality-testing-review",
+          "condition_and_handoff": "Named companions:\n- `engos-design-architecture` for interfaces, failure modes, migration, rollback, and design review\n- `engos-optimization-auto-research` for bounded behavioral comparison when proof is required\n- `engos-meta-supercharge` for `/simple`, `/adversarial`, `/debate`, or justified `/full` lenses\n- `engos-reconciliation-converge` for conflicts and one coherent recommendation\n- `engos-quality-testing-review` for test and edge-case analysis when the implementer needs a specialist\n- `engos-quality-code-review` for independent task and branch review\n- `engos-delivery-address-code-review` only for selected comments on an existing PR or MR\n- `engos-quality-docs-review` for documentation drift and discoverability\n- `engos-quality-gitops-review` for branch, commit, PR or MR, CI, merge, and cleanup gates",
+          "source": {
+            "path": "ssot/engos-orchestration-batman.md",
+            "start_line": 62,
+            "end_line": 71,
+            "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+          },
+          "interpretation": "source_clause_requires_stage_review"
+        },
+        {
+          "skill": "engos-reconciliation-converge",
+          "condition_and_handoff": "Named companions:\n- `engos-design-architecture` for interfaces, failure modes, migration, rollback, and design review\n- `engos-optimization-auto-research` for bounded behavioral comparison when proof is required\n- `engos-meta-supercharge` for `/simple`, `/adversarial`, `/debate`, or justified `/full` lenses\n- `engos-reconciliation-converge` for conflicts and one coherent recommendation\n- `engos-quality-testing-review` for test and edge-case analysis when the implementer needs a specialist\n- `engos-quality-code-review` for independent task and branch review\n- `engos-delivery-address-code-review` only for selected comments on an existing PR or MR\n- `engos-quality-docs-review` for documentation drift and discoverability\n- `engos-quality-gitops-review` for branch, commit, PR or MR, CI, merge, and cleanup gates",
+          "source": {
+            "path": "ssot/engos-orchestration-batman.md",
+            "start_line": 62,
+            "end_line": 71,
+            "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+          },
+          "interpretation": "source_clause_requires_stage_review"
+        }
+      ],
+      "pack_hints": {
+        "lead": "engos-orchestration-batman",
+        "companions": "only_after_applicable_source_conditions_are_checked",
+        "default_bulk_activation": false
+      },
+      "provenance": {
+        "ssot_path": "ssot/engos-orchestration-batman.md",
+        "ssot_sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec",
+        "effective_sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec",
+        "resources": [],
+        "extractor_version": "source-clauses.v1",
+        "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+        "field_sources": {},
+        "unresolved_companion_clauses": [],
+        "curated_fields": [
+          "authority",
+          "main_output",
+          "nearest_neighbors",
+          "not_for",
+          "portfolio_action",
+          "primary_job",
+          "routing_question",
+          "shape",
+          "use_when",
+          "works_on"
+        ],
+        "curated_binding": "preserved_not_independently_revalidated",
+        "mapping_sha256": "a33f44ec71a6ce7683ae5c46a349bcf4abf07c9eab23b0ebd52499df791f9894"
+      },
+      "unresolved_fields": [
+        "task_phase_interpretation",
+        "risk_authority_interpretation"
+      ]
+    }
   }
 }

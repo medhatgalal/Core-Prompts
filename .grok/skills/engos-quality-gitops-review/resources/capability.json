@@ -297,6 +297,149 @@
       "engos-quality-testing-review"
     ],
     "shape": "workflow_specialist",
-    "portfolio_action": "keep"
+    "portfolio_action": "keep",
+    "routing_fitness": {
+      "schema_version": "RoutingFitness.v1",
+      "mapping_status": "source_derived_draft",
+      "task_phases": {
+        "kind": "source_conditions",
+        "clauses": [
+          {
+            "text": "Default GitOps review timing:\n- commit: inspect message quality, scope discipline, and unintended file spread\n- pull request or merge request: inspect logical scope, validation evidence, and companion review coverage\n- merge: inspect integration risk, adjacent doc drift, and final CI state\n- release: inspect changelog, package artifacts, tag target, hosted CI, and remote parity before publish",
+            "heading": "Review Timing",
+            "source": {
+              "path": "ssot/engos-quality-gitops-review.md",
+              "start_line": 131,
+              "end_line": 135,
+              "sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146"
+            }
+          }
+        ]
+      },
+      "activation": {
+        "mode": "unknown",
+        "evidence": []
+      },
+      "risk_authority_ceiling": {
+        "grants_authority": false,
+        "clauses": [
+          {
+            "text": "- allowed: inspect git state, git history, local release artifacts, CI metadata, PR or MR state, and deterministic packaging or release commands when explicitly requested\n- forbidden: hidden force-push behavior, destructive git resets, silent release mutation, or claiming approval authority that belongs to branch protection or human review\n- escalation: if a requested action is destructive, policy-changing, or crosses into architecture or code changes, stop and hand it off as a separate explicit decision",
+            "heading": "Tool Boundaries",
+            "source": {
+              "path": "ssot/engos-quality-gitops-review.md",
+              "start_line": 32,
+              "end_line": 34,
+              "sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146"
+            }
+          },
+          {
+            "text": "- Do not hide destructive git behavior behind helper language.\n- Do not claim CI is green unless the current hosted runs were verified.\n- Do not merge, tag, package, or release without stating the prerequisite checks.\n- Do not invent GitHub or GitLab state from local git alone.\n- Do not replace companion capability reviews with generic \u201clooks good\u201d language.",
+            "heading": "Constraints",
+            "source": {
+              "path": "ssot/engos-quality-gitops-review.md",
+              "start_line": 88,
+              "end_line": 92,
+              "sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146"
+            }
+          }
+        ]
+      },
+      "negative_examples": {
+        "kind": "source_exclusions_not_synthetic_prompts",
+        "clauses": [
+          {
+            "text": "- Do not hide destructive git behavior behind helper language.\n- Do not claim CI is green unless the current hosted runs were verified.\n- Do not merge, tag, package, or release without stating the prerequisite checks.\n- Do not invent GitHub or GitLab state from local git alone.\n- Do not replace companion capability reviews with generic \u201clooks good\u201d language.",
+            "heading": "Constraints",
+            "source": {
+              "path": "ssot/engos-quality-gitops-review.md",
+              "start_line": 88,
+              "end_line": 92,
+              "sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146"
+            }
+          }
+        ]
+      },
+      "conditional_companions": [
+        {
+          "skill": "engos-design-architecture",
+          "condition_and_handoff": "Invoke or recommend these capabilities at the right time:\n- `engos-quality-code-review` when commit scope, commit messages, or over-engineering risk matters\n- `engos-quality-docs-review` when user-facing commands, setup, examples, docs layout, or release-facing docs changed\n- `engos-quality-testing-review` when behavior changed and test or coverage risk exists\n- `engos-design-architecture` when the change affects interfaces, boundaries, migration, or rollback risk",
+          "source": {
+            "path": "ssot/engos-quality-gitops-review.md",
+            "start_line": 104,
+            "end_line": 108,
+            "sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146"
+          },
+          "interpretation": "source_clause_requires_stage_review"
+        },
+        {
+          "skill": "engos-quality-code-review",
+          "condition_and_handoff": "Invoke or recommend these capabilities at the right time:\n- `engos-quality-code-review` when commit scope, commit messages, or over-engineering risk matters\n- `engos-quality-docs-review` when user-facing commands, setup, examples, docs layout, or release-facing docs changed\n- `engos-quality-testing-review` when behavior changed and test or coverage risk exists\n- `engos-design-architecture` when the change affects interfaces, boundaries, migration, or rollback risk",
+          "source": {
+            "path": "ssot/engos-quality-gitops-review.md",
+            "start_line": 104,
+            "end_line": 108,
+            "sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146"
+          },
+          "interpretation": "source_clause_requires_stage_review"
+        },
+        {
+          "skill": "engos-quality-docs-review",
+          "condition_and_handoff": "Invoke or recommend these capabilities at the right time:\n- `engos-quality-code-review` when commit scope, commit messages, or over-engineering risk matters\n- `engos-quality-docs-review` when user-facing commands, setup, examples, docs layout, or release-facing docs changed\n- `engos-quality-testing-review` when behavior changed and test or coverage risk exists\n- `engos-design-architecture` when the change affects interfaces, boundaries, migration, or rollback risk",
+          "source": {
+            "path": "ssot/engos-quality-gitops-review.md",
+            "start_line": 104,
+            "end_line": 108,
+            "sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146"
+          },
+          "interpretation": "source_clause_requires_stage_review"
+        },
+        {
+          "skill": "engos-quality-testing-review",
+          "condition_and_handoff": "Invoke or recommend these capabilities at the right time:\n- `engos-quality-code-review` when commit scope, commit messages, or over-engineering risk matters\n- `engos-quality-docs-review` when user-facing commands, setup, examples, docs layout, or release-facing docs changed\n- `engos-quality-testing-review` when behavior changed and test or coverage risk exists\n- `engos-design-architecture` when the change affects interfaces, boundaries, migration, or rollback risk",
+          "source": {
+            "path": "ssot/engos-quality-gitops-review.md",
+            "start_line": 104,
+            "end_line": 108,
+            "sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146"
+          },
+          "interpretation": "source_clause_requires_stage_review"
+        }
+      ],
+      "pack_hints": {
+        "lead": "engos-quality-gitops-review",
+        "companions": "only_after_applicable_source_conditions_are_checked",
+        "default_bulk_activation": false
+      },
+      "provenance": {
+        "ssot_path": "ssot/engos-quality-gitops-review.md",
+        "ssot_sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146",
+        "effective_sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146",
+        "resources": [],
+        "extractor_version": "source-clauses.v1",
+        "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+        "field_sources": {},
+        "unresolved_companion_clauses": [],
+        "curated_fields": [
+          "authority",
+          "main_output",
+          "nearest_neighbors",
+          "not_for",
+          "portfolio_action",
+          "primary_job",
+          "routing_question",
+          "shape",
+          "use_when",
+          "works_on"
+        ],
+        "curated_binding": "preserved_not_independently_revalidated",
+        "mapping_sha256": "12bd2b2e59d9a132c09d732d456b292983a4cf110234ed636b81666bc16a2884"
+      },
+      "unresolved_fields": [
+        "task_phase_interpretation",
+        "risk_authority_interpretation",
+        "implicit_activation_eligibility"
+      ]
+    }
   }
 }

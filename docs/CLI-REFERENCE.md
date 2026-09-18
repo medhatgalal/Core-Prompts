@@ -360,3 +360,7 @@ python3 resources/scripts/load_module.py --route "/adversarial /debate /deep" --
 The helper is read-only and uses the standard library. It emits the selected dependency closure and bound content identifiers; output can be large because required text is not summarized. On agent surfaces, locate the helper relative to the directory containing the bundled `capability.json`.
 
 For reviewed semantic intake, `bin/uac judge <candidate> --requirement-review <review.json>` and `bin/uac apply <candidate> --requirement-review <review.json> --yes` accept independently reviewed, hash-bound requirement dispositions. They do not imply behavioral promotion. See [UAC usage](UAC-USAGE.md#resource-aware-and-reviewed-modernization).
+
+## Advisory routing metadata
+
+UAC plan/judge exposes `preview.descriptor_preview.job_contract` and lists job-contract changes in its descriptor delta. `job_contract.routing_fitness` uses `RoutingFitness.v1`; generated `.meta/skill-job-map.json` uses `SkillJobMap.v2` with a `SkillJobMapReceipt.v1` content receipt. Generation and validation share the source compiler. The metadata is not a runtime consumer or permission grant. [Contract and limits](UAC-USAGE.md#source-backed-routing-fitness).
