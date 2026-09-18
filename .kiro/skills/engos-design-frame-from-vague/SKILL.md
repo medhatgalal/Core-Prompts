@@ -102,5 +102,20 @@ Provide evidence for input fidelity, source coverage, fact/assumption separation
 actual investment decisions, solution-free meaning, actionable uncertainty and
 honest holds. This is an evidence checklist, not another score or gate policy.
 
+## Present the Frame Clearly
+
+Keep the human-facing frame readable: subject/stage and appetite, clear problem
+and scenario, why-now, boundaries, decisions and open questions. Apply the house
+heading hierarchy, meaningful emphasis and spacing through the embed adapter's
+explicit framed-document profile when rendering is requested. Do not fabricate
+solution diagrams or shaped-pitch sidecars to satisfy an exporter. Appearance is
+not gate acceptance; missing decisions remain visible. When an existing conductor
+run is present, use its current progress projection instead of a competing status
+record. Direct standalone framing without a run returns an unaccepted draft with
+gate state unavailable; do not create a conductor/runtime solely to report status.
+
+Blast radius: frame-only and conductor framing gain clearer representation
+boundaries without changing the solution-free or actual-authority gates.
+
 
 Capability resource: `resources/capability.json`

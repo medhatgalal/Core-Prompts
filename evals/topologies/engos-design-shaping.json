@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-design-shaping",
-  "ssot_sha256": "e16fd7a2d3e8b1b30869faa7d28896eeacf1d5a81c1e1b028c22b76a87fa18c7",
+  "ssot_sha256": "4ad29b47c038492a52224fffb6a5dac8bdf702e30db79573266ec780795fcdfc",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -33,6 +33,9 @@
     "engos-design-shaping:L91:1976f49e7e0f",
     "engos-design-shaping:L99:d3ca4a00c975",
     "engos-design-shaping:L108:d51267738d0f",
+    "engos-design-shaping:L132:bd1cf951097c",
+    "engos-design-shaping:L133:f4d96d523267",
+    "engos-design-shaping:L137:4d5624b59c24",
     "engos-design-shaping:sources/capability-resources/engos-design-shaping/routing.md:L4:5b487a2a581f",
     "engos-design-shaping:sources/capability-resources/engos-design-shaping/routing.md:L13:ba595cf0e670",
     "engos-design-shaping:sources/capability-resources/engos-design-shaping/routing.md:L26:d57cd1ca8882",
@@ -49,12 +52,21 @@
     "engos-design-shaping:sources/capability-resources/engos-design-shaping/sources.md:L16:a78bea824b4c",
     "engos-design-shaping:sources/capability-resources/engos-design-shaping/sources.md:L31:57a15c52db8b",
     "engos-design-shaping:sources/capability-resources/engos-design-shaping/questions.md:L17:c0459c2bde81",
-    "engos-design-shaping:sources/capability-resources/engos-design-shaping/questions.md:L30:890c050962b3",
-    "engos-design-shaping:sources/capability-resources/engos-design-shaping/questions.md:L40:77580b421851",
+    "engos-design-shaping:sources/capability-resources/engos-design-shaping/questions.md:L21:32c8fb43844b",
+    "engos-design-shaping:sources/capability-resources/engos-design-shaping/questions.md:L40:0c55ab7b168f",
+    "engos-design-shaping:sources/capability-resources/engos-design-shaping/questions.md:L43:890c050962b3",
+    "engos-design-shaping:sources/capability-resources/engos-design-shaping/questions.md:L53:77580b421851",
+    "engos-design-shaping:sources/capability-resources/engos-design-shaping/progress.md:L6:bc9451e15133",
+    "engos-design-shaping:sources/capability-resources/engos-design-shaping/progress.md:L19:8aeb8224459f",
+    "engos-design-shaping:sources/capability-resources/engos-design-shaping/progress.md:L24:d7991bd3ce35",
+    "engos-design-shaping:sources/capability-resources/engos-design-shaping/progress.md:L33:694abb94b732",
+    "engos-design-shaping:sources/capability-resources/engos-design-shaping/progress.md:L42:f463ebc40576",
     "engos-design-shaping:sources/capability-resources/engos-design-shaping/dispatch.md:L8:d6f186769e24",
     "engos-design-shaping:sources/capability-resources/engos-design-shaping/dispatch.md:L25:0192a0f4ba52",
     "engos-design-shaping:sources/capability-resources/engos-design-shaping/dispatch.md:L43:355283777967",
     "engos-design-shaping:sources/capability-resources/engos-design-shaping/dispatch.md:L56:acc23a6f7e85",
+    "engos-design-shaping:sources/capability-resources/engos-design-shaping/dispatch.md:L64:53ff1b594886",
+    "engos-design-shaping:sources/capability-resources/engos-design-shaping/dispatch.md:L67:f757bbe68de2",
     "engos-design-shaping:sources/capability-resources/engos-design-shaping/stages/research.md:L9:6d0d18aa6a00",
     "engos-design-shaping:sources/capability-resources/engos-design-shaping/stages/research.md:L12:1e7066113b3d",
     "engos-design-shaping:sources/capability-resources/engos-design-shaping/stages/research.md:L17:fec5d4733f52",
@@ -64,7 +76,7 @@
     "engos-design-shaping:sources/capability-resources/engos-design-shaping/code-scan.md:L21:e5b1c188e428",
     "engos-design-shaping:sources/capability-resources/engos-design-shaping/code-scan.md:L27:15a7d9db3bc0",
     "engos-design-shaping:sources/capability-resources/engos-design-shaping/human-evidence.md:L5:9f46a2eae738",
-    "engos-design-shaping:sources/capability-resources/engos-design-shaping/human-evidence.md:L42:a1244ebc06af",
+    "engos-design-shaping:sources/capability-resources/engos-design-shaping/human-evidence.md:L48:a1244ebc06af",
     "engos-design-shaping:sources/capability-resources/engos-design-shaping/stages/shape.md:L12:bb789c24c371",
     "engos-design-shaping:sources/capability-resources/engos-design-shaping/stages/shape.md:L17:533e539596dd",
     "engos-design-shaping:sources/capability-resources/engos-design-shaping/templates/shaped-bundle.md:L5:506f5e62c858",
@@ -106,6 +118,9 @@
   ],
   "handoffs": [
     "appetite, review checklist, three evidence-backed hard questions and handoff.",
+    "material handoff, and on resume. Resolve the existing run and load the gate",
+    "presentation handoff; no new native agent, permission or external-write authority.",
+    "route to the authorized controller/publisher where appropriate, and change product",
     "| Runtime helper/documented interface | Preserve candidate files and a human-readable handoff with IDs/hashes; ask controller to restore compatible helper | Mechanical acceptance/recovery; do not edit accepted pointer by hand or claim CAS/replay proof |"
   ],
   "protected_invariants": [
@@ -316,6 +331,56 @@
       "source_line": 115,
       "sha256": "d51267738d0f6a597a08c2a1739c9b6fa29f08db6e7af124775f932e02638567",
       "text": "the smallest evidence request. Do not choose streaming or invent a time budget.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-shaping:L132:bd1cf951097c",
+      "heading": "Readable Artifacts and Flow Progress",
+      "source": "ssot/engos-design-shaping.md",
+      "source_line": 139,
+      "sha256": "bd1cf951097c188580d71e98e8679b83524bc229ca9f9def0415bdca8b8faf5b",
+      "text": "newer drafts and per-target delivery. Never infer advancement from files, elapsed",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-shaping:L133:f4d96d523267",
+      "heading": "Readable Artifacts and Flow Progress",
+      "source": "ssot/engos-design-shaping.md",
+      "source_line": 140,
+      "sha256": "f4d96d52326775d09fd9269e2cc8217d1aa0a61b2578159a57fb4b5af26407ad",
+      "text": "time or a worker label, and never turn gate counts into effort percentages.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-shaping:L135:65e6392f79a0",
+      "heading": "Readable Artifacts and Flow Progress",
+      "source": "ssot/engos-design-shaping.md",
+      "source_line": 142,
+      "sha256": "65e6392f79a0ccdc23b3ab975cc20558972e6e3f884ae17da6d2db74e4d739e5",
+      "text": "Match rendered references, not only section inventories. For Framed local output,",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-shaping:L136:cc923baa4722",
+      "heading": "Readable Artifacts and Flow Progress",
+      "source": "ssot/engos-design-shaping.md",
+      "source_line": 143,
+      "sha256": "cc923baa472231a8d775e0c42c3c801cac774e7fb7ea739ddb8cfa10b17b0366",
+      "text": "use the embed adapter's explicit framed-only profile and declared prose inventory;",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-shaping:L137:4d5624b59c24",
+      "heading": "Readable Artifacts and Flow Progress",
+      "source": "ssot/engos-design-shaping.md",
+      "source_line": 144,
+      "sha256": "4d5624b59c243da30caf48a99778d890d62fa230718727afb393ee589cacbed7",
+      "text": "do not invoke the shaped-artifact author or manufacture its required solution.",
       "kind": "invariant",
       "mapped_to": []
     },
@@ -620,32 +685,142 @@
       "mapped_to": []
     },
     {
-      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/questions.md:L30:890c050962b3",
+      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/questions.md:L21:32c8fb43844b",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-shaping/questions.md",
+      "source_line": 21,
+      "sha256": "32c8fb43844b7eba68222df63655e5c32b64896464d71ade6a9d597ecba1868e",
+      "text": "not numbered bullets or question marks. Do not hide six investigations in one",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/questions.md:L40:0c55ab7b168f",
       "heading": "Assistance ladder",
       "source": "sources/capability-resources/engos-design-shaping/questions.md",
-      "source_line": 30,
+      "source_line": 40,
+      "sha256": "0c55ab7b168f214606bb69e364b3b8afe0e8c17f6e5744d5a28e51b1cde8d985",
+      "text": "accept unknown rather than forcing it. Do not prescribe polling, streaming or UI.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/questions.md:L43:890c050962b3",
+      "heading": "Assistance ladder",
+      "source": "sources/capability-resources/engos-design-shaping/questions.md",
+      "source_line": 43,
       "sha256": "890c050962b3541e74be7115b54349b28b639fe4b5631eb1dae21797da8e5724",
       "text": "card; do not send it automatically or require the novice to design the protocol.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/questions.md:L40:77580b421851",
+      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/questions.md:L53:77580b421851",
       "heading": "Total effort checkpoint",
       "source": "sources/capability-resources/engos-design-shaping/questions.md",
-      "source_line": 40,
+      "source_line": 53,
       "sha256": "77580b4218516ee1523cbd742ee84783f41cffc5a65ff151f459c0fb5c06e05d",
       "text": "and few blocking gaps; offer continue, narrow, delegate or hold. Do not silently",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/questions.md:L42:57498c9c2169",
+      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/questions.md:L55:57498c9c2169",
       "heading": "Total effort checkpoint",
       "source": "sources/capability-resources/engos-design-shaping/questions.md",
-      "source_line": 42,
+      "source_line": 55,
       "sha256": "57498c9c2169cedacd126e0291484bb59679ed4f565b22f07ea519a441173608",
       "text": "optional precision is not a new blocker. Show the complete catalog only on request.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/progress.md:L6:bc9451e15133",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-shaping/progress.md",
+      "source_line": 6,
+      "sha256": "bc9451e1513362e40871b17026a1628a8f92ba8112cb6992dd51d8a00d32d043",
+      "text": "Use its versioned projection for all views; do not derive a competing state from",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/progress.md:L10:c1df84441e5e",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-shaping/progress.md",
+      "source_line": 10,
+      "sha256": "c1df84441e5e91623f577011b9ab12459f9b318c49843dd65d97b3f79e2dc739",
+      "text": "Research, Shaped and Bet-ready only as applicable to the requested stopping point.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/progress.md:L11:b8bd5a56e252",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-shaping/progress.md",
+      "source_line": 11,
+      "sha256": "b8bd5a56e2524578eca2798c869f28b8fad25a50e6061f4e4b67ab92845fd979",
+      "text": "Framing-only completion leaves later stages outside scope, not failed. Keep latest",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/progress.md:L19:8aeb8224459f",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-shaping/progress.md",
+      "source_line": 19,
+      "sha256": "8aeb8224459fef1667398bf30b635009b11835929ac225292302cce88d828b42",
+      "text": "describe gate coverage, never percentage of effort, savings or predicted finish.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/progress.md:L24:d7991bd3ce35",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-shaping/progress.md",
+      "source_line": 24,
+      "sha256": "d7991bd3ce352e95a73c40b8a07cb88f88670aa5fe540310e9531c0158493e55",
+      "text": "Distinguish an assigned worker from an unassigned human respondent. Do not invent",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/progress.md:L27:906d879c0579",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-shaping/progress.md",
+      "source_line": 27,
+      "sha256": "906d879c05790121953ffb0941379cbd0019aee795d7e30f23d9c8bd1023d194",
+      "text": "Only the controller records attributable host observations, bound to current",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/progress.md:L29:55f940629b68",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-shaping/progress.md",
+      "source_line": 29,
+      "sha256": "55f940629b685275733f7604d60ca63ba22e3ffa2e3e9c1aebdbcc6f5fef9945",
+      "text": "Dispatch is queued, not proof of execution; an old started event is only last",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/progress.md:L33:694abb94b732",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-shaping/progress.md",
+      "source_line": 33,
+      "sha256": "694abb94b73298caf4b2bd420ff7435143e10bf88a1ee43da5e7bc893178bb2c",
+      "text": "Simulation must remain prominent in every projection. Do not assign a real owner,",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/progress.md:L42:f463ebc40576",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-shaping/progress.md",
+      "source_line": 42,
+      "sha256": "f463ebc405762e558e2812cbfe3786ba068fb8fc816800f59ad8e6ec2226cdbf",
+      "text": "last readback. A delivery-only failure preserves unchanged content approval.",
       "kind": "invariant",
       "mapped_to": []
     },
@@ -790,6 +965,26 @@
       "mapped_to": []
     },
     {
+      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/dispatch.md:L64:53ff1b594886",
+      "heading": "Keep execution constraints separate from the product",
+      "source": "sources/capability-resources/engos-design-shaping/dispatch.md",
+      "source_line": 64,
+      "sha256": "53ff1b59488666c41e90093cf107ddefeb796059e6a4fc0bdb5e693414f231ca",
+      "text": "do not create product requirements such as offline operation, a new platform or",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/dispatch.md:L67:f757bbe68de2",
+      "heading": "Keep execution constraints separate from the product",
+      "source": "sources/capability-resources/engos-design-shaping/dispatch.md",
+      "source_line": 67,
+      "sha256": "f757bbe68de2c3e49b7893392a9e2ef702ec07b9f49a0d08e49000a8513b9d22",
+      "text": "scope only through the proper attributable decision. Do not turn a stage-specific",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
       "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/stages/research.md:L9:6d0d18aa6a00",
       "heading": "root",
       "source": "sources/capability-resources/engos-design-shaping/stages/research.md",
@@ -930,30 +1125,30 @@
       "mapped_to": []
     },
     {
-      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/human-evidence.md:L40:24637f8fe38c",
+      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/human-evidence.md:L46:24637f8fe38c",
       "heading": "Teammate question/decision card template",
       "source": "sources/capability-resources/engos-design-shaping/human-evidence.md",
-      "source_line": 40,
+      "source_line": 46,
       "sha256": "24637f8fe38c3e51db0a2757a8954ca891f8e767b567b445902e981e2dd4d7a9",
       "text": "trade-offs; engineering assertions remain opinion unless backed by the required",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/human-evidence.md:L42:a1244ebc06af",
+      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/human-evidence.md:L48:a1244ebc06af",
       "heading": "Teammate question/decision card template",
       "source": "sources/capability-resources/engos-design-shaping/human-evidence.md",
-      "source_line": 42,
+      "source_line": 48,
       "sha256": "a1244ebc06af783ad7f5d1c6b64c5767447addcede2a39c3c821e8c48b34a7ad",
       "text": "assessment described in `sources.md`; never label it AI-verified. Reconcile with",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/human-evidence.md:L43:0a469703d6fd",
+      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/human-evidence.md:L49:0a469703d6fd",
       "heading": "Teammate question/decision card template",
       "source": "sources/capability-resources/engos-design-shaping/human-evidence.md",
-      "source_line": 43,
+      "source_line": 49,
       "sha256": "0a469703d6fd8a8c81b2bdd76cdec684a86bdb97003617aab6e3341ee0adddf2",
       "text": "the same evidence standard as AI acquisition and reopen only affected stages.",
       "kind": "invariant",
@@ -1398,7 +1593,7 @@
   "source_references": [
     {
       "path": "ssot/engos-design-shaping.md",
-      "sha256": "e16fd7a2d3e8b1b30869faa7d28896eeacf1d5a81c1e1b028c22b76a87fa18c7"
+      "sha256": "4ad29b47c038492a52224fffb6a5dac8bdf702e30db79573266ec780795fcdfc"
     },
     {
       "path": "sources/capability-resources/engos-design-shaping/routing.md",
@@ -1418,11 +1613,15 @@
     },
     {
       "path": "sources/capability-resources/engos-design-shaping/questions.md",
-      "sha256": "f3b82a2421fb7b5eae0fc5e5c49ed34636a8a6dab7a512094f369e1731c24cdd"
+      "sha256": "2adcdfb3502841a79f53dd6044e2dbb6c803266c085ed8515611d9218c2a98aa"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-shaping/progress.md",
+      "sha256": "693c3f935229ba4373399d0dc4856cc05d92134ccb982f0eae11ea31527f42cb"
     },
     {
       "path": "sources/capability-resources/engos-design-shaping/dispatch.md",
-      "sha256": "9d361edfc08334f507deb61992e8a888f383b3c98db324ffec7e267f65fc2603"
+      "sha256": "2c1ecce235404930984151deb4f256d4bb7f98577686f49efeca86c046ad64f7"
     },
     {
       "path": "sources/capability-resources/engos-design-shaping/stages/research.md",
@@ -1434,7 +1633,7 @@
     },
     {
       "path": "sources/capability-resources/engos-design-shaping/human-evidence.md",
-      "sha256": "2612476ff4d68c77a62cabd5535e3ea258bd6b233f9f3b8ed8674b1b986325f7"
+      "sha256": "5342694ba348481d7070293bd331013644e3bfe74c7a24a7db74ac53c99b2686"
     },
     {
       "path": "sources/capability-resources/engos-design-shaping/stages/shape.md",
@@ -1466,7 +1665,7 @@
     },
     {
       "path": "sources/capability-resources/engos-design-shaping/resource-map.json",
-      "sha256": "a0a44f73ec606b3e9e92385dbca0cb214e2e9cc8cca3fc88f85ca6ebc6b70b06"
+      "sha256": "3997331ce2c6ccfe1f60bae548cc980b1356c646ceb9947c10fe6afa1a30b38b"
     }
   ],
   "known_ambiguities": [],
@@ -1479,11 +1678,11 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 128,
+    "total": 146,
     "mapped": 0,
     "waived": 0
   },
   "review_status": "draft",
   "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs.",
-  "resource_bundle_sha256": "e3331a1c81e0dc78d49d3b9fb122b8f9d70e2316f70dae3686b2aed0671c6b77"
+  "resource_bundle_sha256": "8c38587768c3ddb121cd9c5039594321fa78df8f43c0265aef98898a7eb1d4f1"
 }

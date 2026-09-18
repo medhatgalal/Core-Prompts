@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-design-frame-from-vague",
-  "ssot_sha256": "5d3a354f410194a3dba6e37aa6ac01001fc4e10e7d6f9cfa373cf8db3482d883",
+  "ssot_sha256": "d194971bf322bdbe86abbd4b60128a5c1a717d201469d77148d4261b03863074",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -31,6 +31,8 @@
     "engos-design-frame-from-vague:L52:f822c3d3b58b",
     "engos-design-frame-from-vague:L67:caa14cc6d618",
     "engos-design-frame-from-vague:L91:8beedaf8a22f",
+    "engos-design-frame-from-vague:L106:2291d87d2f13",
+    "engos-design-frame-from-vague:L111:8d830655a6e5",
     "engos-design-frame-from-vague:sources/capability-resources/engos-design-frame-from-vague/routing.md:L10:80aad2d49cc9",
     "engos-design-frame-from-vague:sources/capability-resources/engos-design-frame-from-vague/templates.md:L5:78e7b5f5aff0",
     "engos-design-frame-from-vague:sources/capability-resources/engos-design-frame-from-vague/templates.md:L20:39fe3d732ad1",
@@ -157,6 +159,36 @@
       "mapped_to": []
     },
     {
+      "id": "engos-design-frame-from-vague:L106:2291d87d2f13",
+      "heading": "Present the Frame Clearly",
+      "source": "ssot/engos-design-frame-from-vague.md",
+      "source_line": 113,
+      "sha256": "2291d87d2f137877a4f15b38267ff16ba800955868edae064a683eacb8dd485b",
+      "text": "explicit framed-document profile when rendering is requested. Do not fabricate",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-frame-from-vague:L111:8d830655a6e5",
+      "heading": "Present the Frame Clearly",
+      "source": "ssot/engos-design-frame-from-vague.md",
+      "source_line": 118,
+      "sha256": "8d830655a6e515d8e031ed1bd598c96cf256a3ad1f6437d09a055e8201092d34",
+      "text": "gate state unavailable; do not create a conductor/runtime solely to report status.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-frame-from-vague:L113:963852a7c485",
+      "heading": "Present the Frame Clearly",
+      "source": "ssot/engos-design-frame-from-vague.md",
+      "source_line": 120,
+      "sha256": "963852a7c48559c81223a5f0234d53b1e4882b9b7062d1e3dadb1c05a69337fc",
+      "text": "Blast radius: frame-only and conductor framing gain clearer representation",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
       "id": "engos-design-frame-from-vague:sources/capability-resources/engos-design-frame-from-vague/routing.md:L3:28032da80042",
       "heading": "root",
       "source": "sources/capability-resources/engos-design-frame-from-vague/routing.md",
@@ -237,6 +269,16 @@
       "mapped_to": []
     },
     {
+      "id": "engos-design-frame-from-vague:sources/capability-resources/engos-design-frame-from-vague/templates.md:L57:f28d927dae7e",
+      "heading": "Human-facing composition",
+      "source": "sources/capability-resources/engos-design-frame-from-vague/templates.md",
+      "source_line": 57,
+      "sha256": "f28d927dae7ebe13b7582479a7da85c2643140d0f0b51db512590a6f0043fbc8",
+      "text": "Shaped-only file is required merely for presentation.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
       "id": "engos-design-frame-from-vague:sources/capability-resources/engos-design-frame-from-vague/stages/intake.md:L11:3150b93119c3",
       "heading": "root",
       "source": "sources/capability-resources/engos-design-frame-from-vague/stages/intake.md",
@@ -285,7 +327,7 @@
   "source_references": [
     {
       "path": "ssot/engos-design-frame-from-vague.md",
-      "sha256": "5d3a354f410194a3dba6e37aa6ac01001fc4e10e7d6f9cfa373cf8db3482d883"
+      "sha256": "d194971bf322bdbe86abbd4b60128a5c1a717d201469d77148d4261b03863074"
     },
     {
       "path": "sources/capability-resources/engos-design-frame-from-vague/routing.md",
@@ -293,7 +335,7 @@
     },
     {
       "path": "sources/capability-resources/engos-design-frame-from-vague/templates.md",
-      "sha256": "60eca5101295243a80228ce451cfcb292d47102882e192acde38c1a7ea4807e0"
+      "sha256": "5250bfcc6c9bff8ca9b8d45259be23a89ae15a8c792f4b357bd461f1ecf75902"
     },
     {
       "path": "sources/capability-resources/engos-design-frame-from-vague/stages/intake.md",
@@ -318,11 +360,11 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 23,
+    "total": 27,
     "mapped": 0,
     "waived": 0
   },
   "review_status": "draft",
   "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs.",
-  "resource_bundle_sha256": "d7ee44d531dcc628af5018b35f93d9bb8a1ecb5aba4bb4102c365f9deba6bbc5"
+  "resource_bundle_sha256": "6bd3b75109ccdf6430d4bad263c1c54d27bad6f67fec220cf84fdbb12bf41d0d"
 }

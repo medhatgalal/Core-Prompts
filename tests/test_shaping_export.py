@@ -102,14 +102,25 @@ def test_render_refuses_symlink_parent_before_launch(source, tmp_path, monkeypat
     real = tmp_path/'real'; real.mkdir()
     link = tmp_path/'link'; link.symlink_to(real, target_is_directory=True)
     calls = []
-    def fake_run(argv, **kwargs):
+    def fake_popen(argv, **kwargs):
         calls.append(argv)
-        Path(argv[argv.index('-o')+1]).write_bytes(b'fixture image')
-    monkeypatch.setattr(export.subprocess, 'run', fake_run)
+        raise AssertionError('renderer launched before output path validation')
+    monkeypatch.setattr(export.subprocess, 'Popen', fake_popen)
     with pytest.raises(export.ExportError):
         export.render(export.bundle(source), source, link/'rendered', 'renderer')
     assert calls == []
     assert not (real/'rendered').exists()
+
+
+def test_no_launch_spy_detects_injected_launch(source, tmp_path, monkeypatch):
+    """Mutation control: the real no-launch test must catch an early launch."""
+    original = export.render
+    def premature_launch(*args, **kwargs):
+        export.subprocess.Popen(['injected-renderer'])
+        return original(*args, **kwargs)
+    monkeypatch.setattr(export, 'render', premature_launch)
+    with pytest.raises(AssertionError, match='renderer launched'):
+        test_render_refuses_symlink_parent_before_launch(source, tmp_path, monkeypatch)
 
 
 def test_renderer_timeout_and_nonzero_are_bounded(tmp_path):
@@ -132,3 +143,24 @@ def test_exclusive_publication_rejects_late_destination_substitution(tmp_path, m
     monkeypatch.setattr(export.os, 'open', racing_open)
     with pytest.raises(export.ExportError): export.write_new(target, b'generated')
     assert target.read_bytes() == b'user content'
+
+
+def test_source_swap_before_open_never_reads_outside(tmp_path,monkeypatch):
+    root = tmp_path/'bundle'; root.mkdir()
+    source = root/'framed.md'; source.write_bytes(b'expected')
+    outside = tmp_path/'outside'; outside.write_bytes(b'outside private fixture')
+    real_open, real_read = os.open, Path.read_bytes
+    swapped = []
+    def swap():
+        if not swapped:
+            source.unlink(); source.symlink_to(outside); swapped.append(True)
+    def race_open(path,flags,*args,**kwargs):
+        if str(path) in (str(source),'framed.md'): swap()
+        return real_open(path,flags,*args,**kwargs)
+    def race_read(path):
+        if path == source: swap()
+        return real_read(path)
+    monkeypatch.setattr(export.os,'open',race_open)
+    monkeypatch.setattr(Path,'read_bytes',race_read)
+    with pytest.raises(export.ExportError): export.read_source(root,'framed.md')
+    assert swapped, 'fault must fire at the actual source-read boundary'

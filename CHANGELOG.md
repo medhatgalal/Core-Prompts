@@ -11,6 +11,10 @@ pilot acceptance are separate; this entry does not claim a released or deployed 
   remain separate. See the guided Shape Up runbook for current validation limits.
 - Extend existing artifact and pitch-review helpers for full shaping without
   removing standalone artifact placement or existing-pitch review.
+- Add reference-oriented presentation profiles with source-bound SVG/PNG and
+  field-preserving table detail, plus controller-owned progress observations and
+  JSON/Markdown/HTML status views. Visual acceptance, real-user usability and
+  saved external-target verification remain separate from local source checks.
 
 ## v1.15.1 - 2026-09-15
 

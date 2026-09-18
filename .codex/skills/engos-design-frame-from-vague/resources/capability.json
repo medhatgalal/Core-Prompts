@@ -169,13 +169,13 @@
       "status": "structural_ready",
       "historical_baseline": {
         "slug": "engos-design-frame-from-vague",
-        "strategy": "head_snapshot",
-        "group": "derived_current",
-        "baseline_path": "ssot/engos-design-frame-from-vague.md",
-        "selected_commit": null,
+        "strategy": "derived_history",
+        "group": "derived",
+        "baseline_path": null,
+        "selected_commit": "e866aa80",
         "richness_score": 5,
         "line_count": 106,
-        "reason": "No git history was available, so the current SSOT body is the strongest available baseline.",
+        "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
         "equivalent_commits": [],
         "expected_companions": [],
         "operator_invariants": [],
@@ -190,8 +190,8 @@
           }
         ],
         "historical_proof": {},
-        "source": "current_ssot",
-        "verified_by_git_history": false,
+        "source": "git_history",
+        "verified_by_git_history": true,
         "has_baseline_text": true
       },
       "judge_reports": [
@@ -223,7 +223,7 @@
             "candidate_operational_score": 2,
             "baseline_preserved_in_resource": false
           },
-          "baseline_commit": null,
+          "baseline_commit": "e866aa80",
           "baseline_slug": "engos-design-frame-from-vague"
         },
         {
@@ -274,7 +274,7 @@
         "surface_usability": 10
       },
       "template_name": "skill",
-      "effective_sha256": "45ae1d40a0614adb2dd170033fe4a91bc2280a292aac95a95f4ae46b50a8eb29",
+      "effective_sha256": "d5efc8e8455cd38744814619d9c4aaf05f08cb70781cd527a758421ce7a6a8ae",
       "semantic_findings": [],
       "agent_surface_review": {
         "status": "unchanged",

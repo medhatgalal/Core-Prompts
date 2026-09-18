@@ -44,3 +44,14 @@ question/uncertainty IDs. Never fill placeholders with invented answers.
 Frame-only completion after actual G1 supplies the frame and open research needs.
 It does not imply a selected solution, investment approval beyond the recorded
 decision, feasibility proof, publication or a human bet.
+
+## Human-facing composition
+
+Use a clear subject/stage title and short sections for problem/scenario, why-now,
+appetite/walk-away, boundaries and open questions. Keep substantive decision and
+uncertainty labels visible; use meaningful headings, paragraphs and lists rather
+than a wall of operational metadata. Preserve run/source bindings in the linked
+register or concise provenance line, not repeated administrative prose throughout
+the reader's frame. A simulated example needs a clear label, not a claim of real
+approval. Local rendering uses the framed profile; no architecture diagram or
+Shaped-only file is required merely for presentation.

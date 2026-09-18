@@ -1,8 +1,9 @@
 # engos-design-presentation-progress-plan
 
-Status: revised implementation slice after independent review, contract v1 retained;
-clarifications below are unimplemented and not visually
-accepted. Extends the reviewed full-shaping plan without replacing its gates.
+Status: preserved reviewed plan, contract v1 retained. Implementation and local
+visual checks now exist; see engos-quality-presentation-progress-verification.md
+for current evidence and remaining gates. This plan is not itself a completion
+receipt. Extends the reviewed full-shaping plan without replacing its gates.
 Source baseline 75a1b1f164f6eedd589818cc8ea4ac84aa436f78 in the existing isolated
 AI/engos-full-shaping-design worktree. Main remains read-only.
 

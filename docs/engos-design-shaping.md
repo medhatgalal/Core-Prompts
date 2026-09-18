@@ -13,8 +13,10 @@ real product/engineering pilot. A private Google Docs teaching-fixture import ha
 passed saved-content and independent nine-page visual checks; this is adapter
 evidence, not real-pitch acceptance. A subsequent six-role product/engineering
 simulation exercised framing, evidence handoffs and a complete candidate draft.
-Its result is partial: wide-table HTML readability and the distinction between
-worker access limits and product requirements need repair. Role-play does not
+Its result was partial. The source candidate now adds rich presentation profiles
+and evidence-derived progress views; visual iterations and independent checks
+are recorded separately from the earlier pilot. Worker access limits must not
+be turned into product requirements. Role-play does not
 establish real-person usability. Real-human pilot acceptance, a complete real
 pitch on both requested surfaces, hosted CI and dual-remote landing remain pending.
 No automatic implementation, tickets, staffing, sharing or global installation
@@ -123,6 +125,28 @@ The engineering pitch includes component, sequence and data-flow diagrams, compl
 interface and security-owner tables, and explicit boundaries. These are required
 outputs of shaping, not a substitute for the earlier work.
 
+### Reader presentation
+
+Ask to match supplied references, not merely copy their headings. The assistant
+should compare rendered pages, use a clear stage/appetite introduction and heading
+hierarchy, and place figures beside the narrative they explain. Mermaid remains
+editable source; rich exports can include source-bound SVG for HTML and PNG for
+documents. The shaped profile uses explicit section anchors, captions, alternative
+text and optional visible titles/legends. A frame-only profile reads `framed.md`
+without demanding solution diagrams or a fabricated pitch.
+
+Wide contract tables can have a concise primary view and linked detail retaining
+every original field. Tables remain editable, not screenshots. Native acceptance
+tables retain their own schema. Self-contained HTML uses validated local assets
+and no runtime CDN; it must actually be opened offline before that claim is made.
+Native-Mermaid surfaces remain supported. Neither a polished page nor successful
+conversion changes acceptance or authorizes external placement.
+
+Source Markdown/JSON remains available alongside representations. Unsupported or
+unsafe input, stale assets, missing anchors and oversized rows fail with a specific
+repair request. Rendering and saved-target inspection are required; a parser pass
+or row count cannot establish readable figures or complete Google Docs placement.
+
 If people edit a published Doc, ask:
 
 > Review the edits in this Doc against the current pitch. Preserve our changes,
@@ -146,6 +170,43 @@ The run is stored in the project's artifact home, normally `planning/<task-slug>
 The assistant maintains candidate outputs, immutable accepted revisions, question
 and decision snapshots, reviews and delivery receipts. You should not need to
 shuffle these files manually.
+
+### See the current flow
+
+> Where are we? Show what is accepted, what is blocked, who is needed and the
+> next permitted action. Keep the latest accepted document separate from its draft.
+
+The progress view is an as-of snapshot from the existing run record, available in
+conversation and JSON/Markdown/HTML. It leads with the stage, next action, assigned
+worker, needed input/respondent and the requested result. Stage indicators include
+verified, waiting for review/input, blocked, stale, queued and outside scope.
+Technical revisions and the full evidence projection remain available in details.
+
+For example, a requested frame can finish with two verified gates and later stages
+outside scope. A changed Google Doc can leave accepted Shaped content intact while
+Bet-ready needs fresh target verification. Counts are gates, not percentages of
+effort. Missing owners stay unassigned; lack of activity does not prove a worker
+is hung. Simulation is labelled, and unknown provenance stays unknown.
+
+Recorded placement and local receipt integrity are distinct from the latest target
+observation. The view does not poll remote documents or update them automatically.
+Its accepted-artifact link is an immutable evidence snapshot; the assistant can
+also provide a separately rendered reader-document link. Direct standalone framing
+without a run reports an unaccepted draft, not invented gate history.
+
+For operators, resolve the gate package's resource root and inspect its current
+help. From that resource root, the read-only calls are:
+
+```text
+python3 scripts/shaping_run.py progress --run RUN_DIRECTORY
+python3 scripts/shaping_run.py progress --run RUN_DIRECTORY --format markdown
+python3 scripts/shaping_run.py progress --run RUN_DIRECTORY --format html
+```
+
+`RUN_DIRECTORY` is the actual controller-owned run, not a new status database.
+Only the controller records context and host observations through the documented
+`progress-context` and `observe` operations with exact expected versions. Status
+queries do not themselves advance stages, create assignments or approve spending.
 
 ## Maintainer and pilot notes
 

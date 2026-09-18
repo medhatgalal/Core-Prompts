@@ -4,10 +4,9 @@
   "layers": {
     "minimal": {
       "capability_type": "skill",
-      "summary": "Place an authored shaping-artifact bundle onto a selected HTML, PR/MR, chat, Google Doc, or wiki surface through explicit adapters. Use Mermaid/Markdown passthrough where native rendering exists and fail loudly with a named human step when a surface cannot prove placement.",
+      "summary": "Format Framed or Shaped documents and place authored shaping bundles through explicit HTML, PR/MR, chat, Google Doc or wiki adapters. Use native Mermaid or source-bound SVG/PNG, preserve native tables and report unverified placement explicitly.",
       "role": "workflow",
       "domain_tags": [
-        "packaging",
         "engos",
         "delivery",
         "artifact",
@@ -165,7 +164,7 @@
   "rubric_version": "capability-fabric.v0",
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "engos-delivery-artifact-embed",
-  "shared_summary": "Place an authored shaping-artifact bundle onto a selected HTML, PR/MR, chat, Google Doc, or wiki surface through explicit adapters. Use Mermaid/Markdown passthrough where native rendering exists and fail loudly with a named human step when a surface cannot prove placement.",
+  "shared_summary": "Format Framed or Shaped documents and place authored shaping bundles through explicit HTML, PR/MR, chat, Google Doc or wiki adapters. Use native Mermaid or source-bound SVG/PNG, preserve native tables and report unverified placement explicitly.",
   "shared_constraints": [
     "The adapter must not rewrite component names, contract states, owners, or",
     "Google Docs placement is not considered complete until the saved revision is",
@@ -185,11 +184,13 @@
         "strategy": "derived_history",
         "group": "derived",
         "baseline_path": null,
-        "selected_commit": "2c994a21",
+        "selected_commit": "e866aa80",
         "richness_score": 7,
-        "line_count": 151,
+        "line_count": 180,
         "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
-        "equivalent_commits": [],
+        "equivalent_commits": [
+          "2c994a21"
+        ],
         "expected_companions": [],
         "operator_invariants": [],
         "scenario_matrix": [
@@ -236,7 +237,7 @@
             "candidate_operational_score": 2,
             "baseline_preserved_in_resource": false
           },
-          "baseline_commit": "2c994a21",
+          "baseline_commit": "e866aa80",
           "baseline_slug": "engos-delivery-artifact-embed"
         },
         {
@@ -287,7 +288,7 @@
         "surface_usability": 10
       },
       "template_name": "skill",
-      "effective_sha256": "4625e42969a392ba98415bffeb4547108c10eab11cb3b8807d6fe3c9f00dd1a6",
+      "effective_sha256": "69b3715665c397fff5f7fafa65495be907d90b73b32d1d39aeb7883add713edf",
       "semantic_findings": [],
       "agent_surface_review": {
         "status": "unchanged",

@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "shaping-progress.v1",
+  "title": "Controller observations and read-only progress projection",
+  "description": "Select context, observation or projection. Runtime additionally checks versions, assignments, subject/evidence hashes, timestamps, current generations and safe paths. These records do not authenticate a human/host or grant acceptance.",
+  "oneOf": [
+    {"$ref": "#/definitions/context"},
+    {"$ref": "#/definitions/observation"},
+    {"$ref": "#/definitions/projection"}
+  ],
+  "definitions": {
+    "text": {"type": "string", "minLength": 1, "pattern": "\\S"},
+    "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,99}$"},
+    "time": {"type": "string", "format": "date-time", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"},
+    "gate": {"enum": ["G0", "G1", "G2", "G3", "G4"]},
+    "state": {"enum": ["not_reached", "queued", "last_observed_active", "awaiting_input", "blocked", "review_pending", "changes_requested", "verified", "stale", "outside_scope", "unverifiable"]},
+    "context": {
+      "type": "object", "additionalProperties": false,
+      "required": ["name", "evidence_mode", "requested_stop", "observed_at", "evidence", "investment_appetite"],
+      "properties": {
+        "name": {"$ref": "#/definitions/text"},
+        "evidence_mode": {"enum": ["real", "simulated"]},
+        "requested_stop": {"$ref": "#/definitions/gate"},
+        "observed_at": {"$ref": "#/definitions/time"},
+        "evidence": {"$ref": "#/definitions/text", "description": "Existing run-relative source evidence for provenance, scope and appetite; hashed by controller."},
+        "investment_appetite": {"$ref": "#/definitions/text", "description": "Attributed human investment limit or unknown; distinct from checkpoint effort."}
+      }
+    },
+    "observation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["event_id", "run_id", "version", "generation", "work_order_id", "kind", "observed_at", "actor", "evidence"],
+      "properties": {
+        "event_id": {"$ref": "#/definitions/id"}, "run_id": {"$ref": "#/definitions/id"},
+        "version": {"type": "integer", "minimum": 0}, "generation": {"type": "integer", "minimum": 0},
+        "work_order_id": {"$ref": "#/definitions/id"},
+        "kind": {"enum": ["dispatched", "started", "candidate_returned", "review_requested", "review_returned", "held", "released", "stopped", "accepted", "reopened", "delivery_result"]},
+        "observed_at": {"$ref": "#/definitions/time"}, "actor": {"$ref": "#/definitions/text"},
+        "evidence": {"$ref": "#/definitions/text"},
+        "hold_type": {"enum": ["prerequisite", "decision"]},
+        "reason": {"$ref": "#/definitions/text"}, "needed": {"$ref": "#/definitions/text"},
+        "respondent": {"oneOf": [{"$ref": "#/definitions/text"}, {"type": "null"}]},
+        "next_action": {"$ref": "#/definitions/text"},
+        "resolves": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/definitions/id"}},
+        "operation_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "result": {"enum": ["changed", "failed", "unchanged"]},
+        "target_revision": {"$ref": "#/definitions/text"}
+      },
+      "allOf": [
+        {"if": {"properties": {"kind": {"const": "held"}}},
+         "then": {"required": ["hold_type", "reason", "needed", "respondent", "next_action"]},
+         "else": {"not": {"anyOf": [{"required": ["hold_type"]}, {"required": ["reason"]}, {"required": ["needed"]}, {"required": ["respondent"]}, {"required": ["next_action"]}]}}},
+        {"if": {"properties": {"kind": {"const": "released"}}},
+         "then": {"required": ["resolves"]}, "else": {"not": {"required": ["resolves"]}}},
+        {"if": {"properties": {"kind": {"const": "delivery_result"}}},
+         "then": {"required": ["operation_id", "result", "target_revision"]},
+         "else": {"not": {"anyOf": [{"required": ["operation_id"]}, {"required": ["result"]}, {"required": ["target_revision"]}]}}}
+      ]
+    },
+    "projection": {
+      "type": "object",
+      "required": ["schema_version", "status", "snapshot_at", "gates", "verified_count", "applicable_count", "requested_complete"],
+      "properties": {
+        "schema_version": {"const": "shaping-progress.v1"}, "status": {"enum": ["projected", "unverifiable"]},
+        "snapshot_at": {"$ref": "#/definitions/time"},
+        "verified_count": {"type": "integer", "minimum": 0, "maximum": 5},
+        "applicable_count": {"type": ["integer", "null"], "minimum": 1, "maximum": 5},
+        "requested_complete": {"type": ["boolean", "null"]},
+        "gates": {"type": "array", "minItems": 5, "maxItems": 5, "items": {
+          "type": "object", "required": ["gate", "state"],
+          "properties": {"gate": {"$ref": "#/definitions/gate"}, "state": {"$ref": "#/definitions/state"}}
+        }}
+      },
+      "allOf": [{"if": {"properties": {"status": {"const": "projected"}}},
+                 "then": {"required": ["run_id", "name", "version", "generation", "revision", "evidence", "requested_stop", "current", "activity", "latest_accepted", "latest_draft", "targets", "local_integrity", "remote_freshness", "policy_drift", "observations", "invalid_observations", "warnings", "investment_appetite", "checkpoint_effort", "registers", "content_review", "visual_review"]},
+                 "else": {"required": ["reason"], "properties": {"verified_count": {"const": 0}, "requested_complete": {"const": false}}}}]
+    }
+  }
+}

@@ -33,6 +33,9 @@ For a rough product or engineering idea, start with `engos-design-shaping`:
 AI-led or human-led research, independent review and verified output delivery.
 You do not need to orchestrate its helpers. See the [guided Shape Up runbook](docs/engos-design-shaping.md)
 for inputs, questions, teammate handoffs, resume and current pilot limitations.
+Ask “Where are we, what is blocking us, and what do you need from me?” for an
+as-of progress view. Accepted content, newer drafts and saved-target verification
+remain distinct; a polished export is not an approved bet.
 
 | Intent | Use | Boundary |
 | --- | --- | --- |

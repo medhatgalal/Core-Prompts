@@ -1,6 +1,6 @@
 ---
 name: "engos-delivery-artifact-embed"
-description: "Place an authored shaping-artifact bundle onto a selected HTML, PR/MR, chat, Google Doc, or wiki surface through explicit adapters. Use Mermaid/Markdown passthrough where native rendering exists and fail loudly with a named human step when a surface cannot prove placement."
+description: "Format Framed or Shaped documents and place authored shaping bundles through explicit HTML, PR/MR, chat, Google Doc or wiki adapters. Use native Mermaid or source-bound SVG/PNG, preserve native tables and report unverified placement explicitly."
 display_name: "Shaping Artifact Embed — Surface Adapters and Placement Evidence"
 kind: "workflow"
 capability_type: "skill"
@@ -33,6 +33,13 @@ ask the user to pick a rendering technology when the target has a documented
 native path.
 
 ## Required Inputs
+
+The bundle requirements below apply to artifact placement and Shaped export.
+Local Framed-only rendering is a separate representation route: take the explicit
+framing prose inventory and selected style/profile, without a shaped solution,
+contracts, diagrams or historic gate receipts. Its completeness check covers only
+those requested framing sources. It creates local output, not external placement;
+the full shaping publish route still requires G3 and exact target authority.
 
 - a complete authored artifact bundle and manifest
 - one target surface: `html`, `github_pr`, `gitlab_mr`, `chat`, `google_doc`,
@@ -72,7 +79,10 @@ file upload, a zero exit code, or a stale page view alone.
 
 ## Workflow
 
-1. Validate the input manifest and source hash. Refuse incomplete bundles unless
+1. Select local Framed rendering versus authored-artifact placement first. For
+   local Framed rendering, load the current framed profile contract and validate
+   only its declared prose inventory; do not apply the shaped-bundle minima below.
+   For artifact placement, validate the input manifest and source hash. Refuse incomplete bundles unless
    the caller explicitly requests a diagnostic receipt.
 2. Detect the target surface and its native diagram/table capabilities. Keep
    the core bundle unchanged.
@@ -178,3 +188,25 @@ No automatic sharing, notifications, public image hosting or source overwrites.
 Blast radius: all hosts invoking this existing helper receive the additional
 capability-detection and fidelity checks; full-run gating applies only when a
 shaping run is supplied. Standalone artifact placement retains its own scope.
+
+## Reader Presentation Profiles
+
+For rich document creation or reformatted shaping output, load the current export
+and presentation resources before invoking the helper. Use explicit stage/profile
+and section/figure/table mappings where supported. A Framed-only source must not
+require a fabricated shaped bundle. Rich Shaped views preserve every required
+source field and embed source-bound SVG/PNG beside the relevant narrative, with
+captions, alternatives and full-size access. Native Docs tables remain editable.
+
+Follow the inspected reference hierarchy and house styles. Compact primary tables
+may link stable-ID supporting detail, but every original field/value must survive.
+Use safe local assets for a self-contained profile and verify it without network;
+native Mermaid remains valid on a surface that actually renders it. Missing assets,
+unsafe SVG, stale hashes or unsupported syntax produce an explicit failure, not a
+quiet text/image downgrade. Do not infer an offline product requirement from one
+worker's network restrictions. Inspect all rendered regions/pages and saved target
+content before reporting presentation or placement verified.
+
+Blast radius: existing embed/export users gain richer optional profiles and assets;
+legacy source conversion remains scoped, and no new publication or sharing is
+implicitly authorized by conversion or by a progress-view request.

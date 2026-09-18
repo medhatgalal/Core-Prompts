@@ -1,6 +1,6 @@
 ---
 name: engos-design-shaping
-description: Guide product and engineering from rough notes through solution-free framing, evidence collection, shaping, independent review and verified delivery. Use for a guided shaping workshop or resume; use pitch review alone for a finished pitch assessment.
+description: Guide product and engineering from rough notes through solution-free framing, evidence collection, shaping, independent review and verified delivery. Use for a shaping workshop, run progress or resume; use pitch review alone for a finished pitch assessment.
 display_name: Shape a Problem into a Pitch
 kind: workflow
 capability_type: skill
@@ -129,3 +129,24 @@ and question quality, human decision provenance, source sufficiency, stage/conte
 boundaries, full artifact coverage, independent review and saved-target fidelity.
 Report unobserved behavior as untested; assembled resources or compliant prose do
 not prove pilot success or enforcement.
+
+## Readable Artifacts and Flow Progress
+
+On status questions and material handoffs, load resources/progress.md through the
+progress route. Use the gate capability's actual versioned projection for the run;
+show current action, assigned actor or unassigned, blocker, needed input, next step,
+artifact revision and observation time. Keep latest accepted content separate from
+newer drafts and per-target delivery. Never infer advancement from files, elapsed
+time or a worker label, and never turn gate counts into effort percentages.
+
+Match rendered references, not only section inventories. For Framed local output,
+use the embed adapter's explicit framed-only profile and declared prose inventory;
+do not invoke the shaped-artifact author or manufacture its required solution.
+For Shaped documents use the artifact author's presentation guidance and the embed
+adapter's actual profiles/assets. Framing remains solution-free. Product requirements remain
+distinct from temporary worker/tool limitations; a publisher may have capabilities
+a stage worker lacks without changing the product bet. Report simulation and as-of
+status explicitly; no automatic external status updates or background monitoring.
+
+Blast radius: all existing conductor invocations gain the progress route and
+presentation handoff; no new native agent, permission or external-write authority.

@@ -2873,10 +2873,9 @@
       "layers": {
         "minimal": {
           "capability_type": "skill",
-          "summary": "Place an authored shaping-artifact bundle onto a selected HTML, PR/MR, chat, Google Doc, or wiki surface through explicit adapters. Use Mermaid/Markdown passthrough where native rendering exists and fail loudly with a named human step when a surface cannot prove placement.",
+          "summary": "Format Framed or Shaped documents and place authored shaping bundles through explicit HTML, PR/MR, chat, Google Doc or wiki adapters. Use native Mermaid or source-bound SVG/PNG, preserve native tables and report unverified placement explicitly.",
           "role": "workflow",
           "domain_tags": [
-            "packaging",
             "engos",
             "delivery",
             "artifact",
@@ -3024,7 +3023,7 @@
       "display_name": "Shaping Artifact Embed \u2014 Surface Adapters and Placement Evidence",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "engos-delivery-artifact-embed",
-      "shared_summary": "Place an authored shaping-artifact bundle onto a selected HTML, PR/MR, chat, Google Doc, or wiki surface through explicit adapters. Use Mermaid/Markdown passthrough where native rendering exists and fail loudly with a named human step when a surface cannot prove placement.",
+      "shared_summary": "Format Framed or Shaped documents and place authored shaping bundles through explicit HTML, PR/MR, chat, Google Doc or wiki adapters. Use native Mermaid or source-bound SVG/PNG, preserve native tables and report unverified placement explicitly.",
       "shared_constraints": [
         "The adapter must not rewrite component names, contract states, owners, or",
         "Google Docs placement is not considered complete until the saved revision is",
@@ -3044,11 +3043,13 @@
             "strategy": "derived_history",
             "group": "derived",
             "baseline_path": null,
-            "selected_commit": "2c994a21",
+            "selected_commit": "e866aa80",
             "richness_score": 7,
-            "line_count": 151,
+            "line_count": 180,
             "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
-            "equivalent_commits": [],
+            "equivalent_commits": [
+              "2c994a21"
+            ],
             "expected_companions": [],
             "operator_invariants": [],
             "scenario_matrix": [
@@ -3095,7 +3096,7 @@
                 "candidate_operational_score": 2,
                 "baseline_preserved_in_resource": false
               },
-              "baseline_commit": "2c994a21",
+              "baseline_commit": "e866aa80",
               "baseline_slug": "engos-delivery-artifact-embed"
             },
             {
@@ -3146,7 +3147,7 @@
             "surface_usability": 10
           },
           "template_name": "skill",
-          "effective_sha256": "4625e42969a392ba98415bffeb4547108c10eab11cb3b8807d6fe3c9f00dd1a6",
+          "effective_sha256": "69b3715665c397fff5f7fafa65495be907d90b73b32d1d39aeb7883add713edf",
           "semantic_findings": [],
           "agent_surface_review": {
             "status": "unchanged",
@@ -3384,11 +3385,13 @@
             "strategy": "derived_history",
             "group": "derived",
             "baseline_path": null,
-            "selected_commit": "2c994a21",
+            "selected_commit": "e866aa80",
             "richness_score": 7,
-            "line_count": 163,
+            "line_count": 182,
             "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
-            "equivalent_commits": [],
+            "equivalent_commits": [
+              "2c994a21"
+            ],
             "expected_companions": [],
             "operator_invariants": [],
             "scenario_matrix": [
@@ -3435,7 +3438,7 @@
                 "candidate_operational_score": 2,
                 "baseline_preserved_in_resource": false
               },
-              "baseline_commit": "2c994a21",
+              "baseline_commit": "e866aa80",
               "baseline_slug": "engos-delivery-diagram-contract-artifacts"
             },
             {
@@ -3486,7 +3489,7 @@
             "surface_usability": 10
           },
           "template_name": "skill",
-          "effective_sha256": "c2318034aeabc01c736b270b49fe1ace5006712fa79520743cb743ed440ea8c8",
+          "effective_sha256": "3e557c2e53f29bc69e3c1709061c56e036911d40cbe7805d42265d04449fd340",
           "semantic_findings": [],
           "agent_surface_review": {
             "status": "unchanged",
@@ -4333,13 +4336,13 @@
           "status": "structural_ready",
           "historical_baseline": {
             "slug": "engos-design-frame-from-vague",
-            "strategy": "head_snapshot",
-            "group": "derived_current",
-            "baseline_path": "ssot/engos-design-frame-from-vague.md",
-            "selected_commit": null,
+            "strategy": "derived_history",
+            "group": "derived",
+            "baseline_path": null,
+            "selected_commit": "e866aa80",
             "richness_score": 5,
             "line_count": 106,
-            "reason": "No git history was available, so the current SSOT body is the strongest available baseline.",
+            "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
             "equivalent_commits": [],
             "expected_companions": [],
             "operator_invariants": [],
@@ -4354,8 +4357,8 @@
               }
             ],
             "historical_proof": {},
-            "source": "current_ssot",
-            "verified_by_git_history": false,
+            "source": "git_history",
+            "verified_by_git_history": true,
             "has_baseline_text": true
           },
           "judge_reports": [
@@ -4387,7 +4390,7 @@
                 "candidate_operational_score": 2,
                 "baseline_preserved_in_resource": false
               },
-              "baseline_commit": null,
+              "baseline_commit": "e866aa80",
               "baseline_slug": "engos-design-frame-from-vague"
             },
             {
@@ -4438,7 +4441,7 @@
             "surface_usability": 10
           },
           "template_name": "skill",
-          "effective_sha256": "45ae1d40a0614adb2dd170033fe4a91bc2280a292aac95a95f4ae46b50a8eb29",
+          "effective_sha256": "d5efc8e8455cd38744814619d9c4aaf05f08cb70781cd527a758421ce7a6a8ae",
           "semantic_findings": [],
           "agent_surface_review": {
             "status": "unchanged",
@@ -4847,7 +4850,7 @@
       "layers": {
         "minimal": {
           "capability_type": "skill",
-          "summary": "Guide product and engineering from rough notes through solution-free framing, evidence collection, shaping, independent review and verified delivery. Use for a guided shaping workshop or resume; use pitch review alone for a finished pitch assessment.",
+          "summary": "Guide product and engineering from rough notes through solution-free framing, evidence collection, shaping, independent review and verified delivery. Use for a shaping workshop, run progress or resume; use pitch review alone for a finished pitch assessment.",
           "role": "analyst",
           "domain_tags": [
             "review",
@@ -4993,7 +4996,7 @@
       "display_name": "Shape a Problem into a Pitch",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "engos-design-shaping",
-      "shared_summary": "Guide product and engineering from rough notes through solution-free framing, evidence collection, shaping, independent review and verified delivery. Use for a guided shaping workshop or resume; use pitch review alone for a finished pitch assessment.",
+      "shared_summary": "Guide product and engineering from rough notes through solution-free framing, evidence collection, shaping, independent review and verified delivery. Use for a shaping workshop, run progress or resume; use pitch review alone for a finished pitch assessment.",
       "shared_constraints": [],
       "modes": [],
       "benchmark_sources": [],
@@ -5005,20 +5008,29 @@
           "status": "structural_ready",
           "historical_baseline": {
             "slug": "engos-design-shaping",
-            "strategy": "candidate_seed",
-            "group": "new_or_untracked",
+            "strategy": "derived_history",
+            "group": "derived",
             "baseline_path": null,
-            "selected_commit": null,
+            "selected_commit": "e866aa80",
             "richness_score": 5,
             "line_count": 131,
-            "reason": "No registry entry or git history available; use the candidate as the provisional seed baseline.",
+            "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
             "equivalent_commits": [],
             "expected_companions": [],
             "operator_invariants": [],
-            "scenario_matrix": [],
+            "scenario_matrix": [
+              {
+                "id": "operational_invocation",
+                "kind": "operational_contract",
+                "label": "operational invocation surface",
+                "must_contain": [
+                  "## Invocation"
+                ]
+              }
+            ],
             "historical_proof": {},
-            "source": "candidate_seed",
-            "verified_by_git_history": false,
+            "source": "git_history",
+            "verified_by_git_history": true,
             "has_baseline_text": true
           },
           "judge_reports": [
@@ -5028,7 +5040,15 @@
               "score": 10,
               "blockers": [],
               "classification": "preserved",
-              "scenario_results": [],
+              "scenario_results": [
+                {
+                  "id": "operational_invocation",
+                  "kind": "operational_contract",
+                  "label": "operational invocation surface",
+                  "passed": true,
+                  "missing_markers": []
+                }
+              ],
               "reviewed_deltas": [],
               "requirement_review": {
                 "status": "not_supplied_or_invalid",
@@ -5042,7 +5062,7 @@
                 "candidate_operational_score": 2,
                 "baseline_preserved_in_resource": false
               },
-              "baseline_commit": null,
+              "baseline_commit": "e866aa80",
               "baseline_slug": "engos-design-shaping"
             },
             {
@@ -5093,7 +5113,7 @@
             "surface_usability": 10
           },
           "template_name": "skill",
-          "effective_sha256": "f1729824a0e60ec1afff7f293cd88284bbb6ac64c13523075490edadd7bc7d79",
+          "effective_sha256": "81557fefec48b148c2bd1e1cdeb680a4c88636a9fc279e8d434ec8944480fb86",
           "semantic_findings": [],
           "agent_surface_review": {
             "status": "unchanged",
@@ -9097,20 +9117,29 @@
           "status": "structural_ready",
           "historical_baseline": {
             "slug": "engos-quality-shaping-gate",
-            "strategy": "candidate_seed",
-            "group": "new_or_untracked",
+            "strategy": "derived_history",
+            "group": "derived",
             "baseline_path": null,
-            "selected_commit": null,
+            "selected_commit": "e866aa80",
             "richness_score": 5,
             "line_count": 96,
-            "reason": "No registry entry or git history available; use the candidate as the provisional seed baseline.",
+            "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
             "equivalent_commits": [],
             "expected_companions": [],
             "operator_invariants": [],
-            "scenario_matrix": [],
+            "scenario_matrix": [
+              {
+                "id": "operational_invocation",
+                "kind": "operational_contract",
+                "label": "operational invocation surface",
+                "must_contain": [
+                  "## Invocation"
+                ]
+              }
+            ],
             "historical_proof": {},
-            "source": "candidate_seed",
-            "verified_by_git_history": false,
+            "source": "git_history",
+            "verified_by_git_history": true,
             "has_baseline_text": true
           },
           "judge_reports": [
@@ -9119,8 +9148,16 @@
               "title": "Source Fidelity and Uplift",
               "score": 10,
               "blockers": [],
-              "classification": "preserved",
-              "scenario_results": [],
+              "classification": "additive",
+              "scenario_results": [
+                {
+                  "id": "operational_invocation",
+                  "kind": "operational_contract",
+                  "label": "operational invocation surface",
+                  "passed": true,
+                  "missing_markers": []
+                }
+              ],
               "reviewed_deltas": [],
               "requirement_review": {
                 "status": "not_supplied_or_invalid",
@@ -9134,7 +9171,7 @@
                 "candidate_operational_score": 2,
                 "baseline_preserved_in_resource": false
               },
-              "baseline_commit": null,
+              "baseline_commit": "e866aa80",
               "baseline_slug": "engos-quality-shaping-gate"
             },
             {
@@ -9185,7 +9222,7 @@
             "surface_usability": 10
           },
           "template_name": "skill",
-          "effective_sha256": "0fc7c5b3bae5702b1403a568d16dd271678ed96b241082bda64e64aa2d501f56",
+          "effective_sha256": "f1c392ce04a7bc447cdd22ea6efc674e76bf4049c0548572392327443b25cf83",
           "semantic_findings": [],
           "agent_surface_review": {
             "status": "unchanged",
@@ -11000,6 +11037,7 @@
       ".grok/skills/engos-delivery-diagram-contract-artifacts/resources/capability.json",
       ".grok/skills/engos-delivery-diagram-contract-artifacts/resources/references/bundle.md",
       ".grok/skills/engos-delivery-diagram-contract-artifacts/resources/references/diagram-style.md",
+      ".grok/skills/engos-delivery-diagram-contract-artifacts/resources/references/presentation.md",
       ".grok/skills/engos-delivery-diagram-contract-artifacts/resources/resource-map.json",
       ".grok/skills/engos-delivery-diagram-contract-artifacts/resources/scripts/load_module.py",
       ".grok/skills/engos-delivery-resolve-conflict/resources/capability.json",
@@ -11034,6 +11072,7 @@
       ".grok/skills/engos-design-shaping/resources/dispatch.md",
       ".grok/skills/engos-design-shaping/resources/fallback.md",
       ".grok/skills/engos-design-shaping/resources/human-evidence.md",
+      ".grok/skills/engos-design-shaping/resources/progress.md",
       ".grok/skills/engos-design-shaping/resources/questions.md",
       ".grok/skills/engos-design-shaping/resources/reconciliation.md",
       ".grok/skills/engos-design-shaping/resources/representations.md",
@@ -11089,10 +11128,12 @@
       ".grok/skills/engos-quality-gitops-review/resources/capability.json",
       ".grok/skills/engos-quality-shaping-gate/resources/capability.json",
       ".grok/skills/engos-quality-shaping-gate/resources/references/gates.md",
+      ".grok/skills/engos-quality-shaping-gate/resources/references/progress.md",
       ".grok/skills/engos-quality-shaping-gate/resources/references/rubrics.md",
       ".grok/skills/engos-quality-shaping-gate/resources/references/runtime.md",
       ".grok/skills/engos-quality-shaping-gate/resources/resource-map.json",
       ".grok/skills/engos-quality-shaping-gate/resources/schemas/policy.example.json",
+      ".grok/skills/engos-quality-shaping-gate/resources/schemas/progress.schema.json",
       ".grok/skills/engos-quality-shaping-gate/resources/schemas/runtime.schema.json",
       ".grok/skills/engos-quality-shaping-gate/resources/scripts/shaping_run.py",
       ".grok/skills/engos-quality-shaping-gate/resources/scripts/load_module.py",
@@ -11137,6 +11178,7 @@
       ".codex/skills/engos-delivery-diagram-contract-artifacts/resources/capability.json",
       ".codex/skills/engos-delivery-diagram-contract-artifacts/resources/references/bundle.md",
       ".codex/skills/engos-delivery-diagram-contract-artifacts/resources/references/diagram-style.md",
+      ".codex/skills/engos-delivery-diagram-contract-artifacts/resources/references/presentation.md",
       ".codex/skills/engos-delivery-diagram-contract-artifacts/resources/resource-map.json",
       ".codex/skills/engos-delivery-diagram-contract-artifacts/resources/scripts/load_module.py",
       ".codex/skills/engos-delivery-resolve-conflict/resources/capability.json",
@@ -11171,6 +11213,7 @@
       ".codex/skills/engos-design-shaping/resources/dispatch.md",
       ".codex/skills/engos-design-shaping/resources/fallback.md",
       ".codex/skills/engos-design-shaping/resources/human-evidence.md",
+      ".codex/skills/engos-design-shaping/resources/progress.md",
       ".codex/skills/engos-design-shaping/resources/questions.md",
       ".codex/skills/engos-design-shaping/resources/reconciliation.md",
       ".codex/skills/engos-design-shaping/resources/representations.md",
@@ -11226,10 +11269,12 @@
       ".codex/skills/engos-quality-gitops-review/resources/capability.json",
       ".codex/skills/engos-quality-shaping-gate/resources/capability.json",
       ".codex/skills/engos-quality-shaping-gate/resources/references/gates.md",
+      ".codex/skills/engos-quality-shaping-gate/resources/references/progress.md",
       ".codex/skills/engos-quality-shaping-gate/resources/references/rubrics.md",
       ".codex/skills/engos-quality-shaping-gate/resources/references/runtime.md",
       ".codex/skills/engos-quality-shaping-gate/resources/resource-map.json",
       ".codex/skills/engos-quality-shaping-gate/resources/schemas/policy.example.json",
+      ".codex/skills/engos-quality-shaping-gate/resources/schemas/progress.schema.json",
       ".codex/skills/engos-quality-shaping-gate/resources/schemas/runtime.schema.json",
       ".codex/skills/engos-quality-shaping-gate/resources/scripts/shaping_run.py",
       ".codex/skills/engos-quality-shaping-gate/resources/scripts/load_module.py",
@@ -11275,6 +11320,7 @@
       ".gemini/skills/engos-delivery-diagram-contract-artifacts/resources/capability.json",
       ".gemini/skills/engos-delivery-diagram-contract-artifacts/resources/references/bundle.md",
       ".gemini/skills/engos-delivery-diagram-contract-artifacts/resources/references/diagram-style.md",
+      ".gemini/skills/engos-delivery-diagram-contract-artifacts/resources/references/presentation.md",
       ".gemini/skills/engos-delivery-diagram-contract-artifacts/resources/resource-map.json",
       ".gemini/skills/engos-delivery-diagram-contract-artifacts/resources/scripts/load_module.py",
       ".gemini/skills/engos-delivery-resolve-conflict/resources/capability.json",
@@ -11309,6 +11355,7 @@
       ".gemini/skills/engos-design-shaping/resources/dispatch.md",
       ".gemini/skills/engos-design-shaping/resources/fallback.md",
       ".gemini/skills/engos-design-shaping/resources/human-evidence.md",
+      ".gemini/skills/engos-design-shaping/resources/progress.md",
       ".gemini/skills/engos-design-shaping/resources/questions.md",
       ".gemini/skills/engos-design-shaping/resources/reconciliation.md",
       ".gemini/skills/engos-design-shaping/resources/representations.md",
@@ -11364,10 +11411,12 @@
       ".gemini/skills/engos-quality-gitops-review/resources/capability.json",
       ".gemini/skills/engos-quality-shaping-gate/resources/capability.json",
       ".gemini/skills/engos-quality-shaping-gate/resources/references/gates.md",
+      ".gemini/skills/engos-quality-shaping-gate/resources/references/progress.md",
       ".gemini/skills/engos-quality-shaping-gate/resources/references/rubrics.md",
       ".gemini/skills/engos-quality-shaping-gate/resources/references/runtime.md",
       ".gemini/skills/engos-quality-shaping-gate/resources/resource-map.json",
       ".gemini/skills/engos-quality-shaping-gate/resources/schemas/policy.example.json",
+      ".gemini/skills/engos-quality-shaping-gate/resources/schemas/progress.schema.json",
       ".gemini/skills/engos-quality-shaping-gate/resources/schemas/runtime.schema.json",
       ".gemini/skills/engos-quality-shaping-gate/resources/scripts/shaping_run.py",
       ".gemini/skills/engos-quality-shaping-gate/resources/scripts/load_module.py",
@@ -11413,6 +11462,7 @@
       ".claude/skills/engos-delivery-diagram-contract-artifacts/resources/capability.json",
       ".claude/skills/engos-delivery-diagram-contract-artifacts/resources/references/bundle.md",
       ".claude/skills/engos-delivery-diagram-contract-artifacts/resources/references/diagram-style.md",
+      ".claude/skills/engos-delivery-diagram-contract-artifacts/resources/references/presentation.md",
       ".claude/skills/engos-delivery-diagram-contract-artifacts/resources/resource-map.json",
       ".claude/skills/engos-delivery-diagram-contract-artifacts/resources/scripts/load_module.py",
       ".claude/skills/engos-delivery-resolve-conflict/resources/capability.json",
@@ -11447,6 +11497,7 @@
       ".claude/skills/engos-design-shaping/resources/dispatch.md",
       ".claude/skills/engos-design-shaping/resources/fallback.md",
       ".claude/skills/engos-design-shaping/resources/human-evidence.md",
+      ".claude/skills/engos-design-shaping/resources/progress.md",
       ".claude/skills/engos-design-shaping/resources/questions.md",
       ".claude/skills/engos-design-shaping/resources/reconciliation.md",
       ".claude/skills/engos-design-shaping/resources/representations.md",
@@ -11502,10 +11553,12 @@
       ".claude/skills/engos-quality-gitops-review/resources/capability.json",
       ".claude/skills/engos-quality-shaping-gate/resources/capability.json",
       ".claude/skills/engos-quality-shaping-gate/resources/references/gates.md",
+      ".claude/skills/engos-quality-shaping-gate/resources/references/progress.md",
       ".claude/skills/engos-quality-shaping-gate/resources/references/rubrics.md",
       ".claude/skills/engos-quality-shaping-gate/resources/references/runtime.md",
       ".claude/skills/engos-quality-shaping-gate/resources/resource-map.json",
       ".claude/skills/engos-quality-shaping-gate/resources/schemas/policy.example.json",
+      ".claude/skills/engos-quality-shaping-gate/resources/schemas/progress.schema.json",
       ".claude/skills/engos-quality-shaping-gate/resources/schemas/runtime.schema.json",
       ".claude/skills/engos-quality-shaping-gate/resources/scripts/shaping_run.py",
       ".claude/skills/engos-quality-shaping-gate/resources/scripts/load_module.py",
@@ -11551,6 +11604,7 @@
       ".kiro/skills/engos-delivery-diagram-contract-artifacts/resources/capability.json",
       ".kiro/skills/engos-delivery-diagram-contract-artifacts/resources/references/bundle.md",
       ".kiro/skills/engos-delivery-diagram-contract-artifacts/resources/references/diagram-style.md",
+      ".kiro/skills/engos-delivery-diagram-contract-artifacts/resources/references/presentation.md",
       ".kiro/skills/engos-delivery-diagram-contract-artifacts/resources/resource-map.json",
       ".kiro/skills/engos-delivery-diagram-contract-artifacts/resources/scripts/load_module.py",
       ".kiro/skills/engos-delivery-resolve-conflict/resources/capability.json",
@@ -11585,6 +11639,7 @@
       ".kiro/skills/engos-design-shaping/resources/dispatch.md",
       ".kiro/skills/engos-design-shaping/resources/fallback.md",
       ".kiro/skills/engos-design-shaping/resources/human-evidence.md",
+      ".kiro/skills/engos-design-shaping/resources/progress.md",
       ".kiro/skills/engos-design-shaping/resources/questions.md",
       ".kiro/skills/engos-design-shaping/resources/reconciliation.md",
       ".kiro/skills/engos-design-shaping/resources/representations.md",
@@ -11640,10 +11695,12 @@
       ".kiro/skills/engos-quality-gitops-review/resources/capability.json",
       ".kiro/skills/engos-quality-shaping-gate/resources/capability.json",
       ".kiro/skills/engos-quality-shaping-gate/resources/references/gates.md",
+      ".kiro/skills/engos-quality-shaping-gate/resources/references/progress.md",
       ".kiro/skills/engos-quality-shaping-gate/resources/references/rubrics.md",
       ".kiro/skills/engos-quality-shaping-gate/resources/references/runtime.md",
       ".kiro/skills/engos-quality-shaping-gate/resources/resource-map.json",
       ".kiro/skills/engos-quality-shaping-gate/resources/schemas/policy.example.json",
+      ".kiro/skills/engos-quality-shaping-gate/resources/schemas/progress.schema.json",
       ".kiro/skills/engos-quality-shaping-gate/resources/schemas/runtime.schema.json",
       ".kiro/skills/engos-quality-shaping-gate/resources/scripts/shaping_run.py",
       ".kiro/skills/engos-quality-shaping-gate/resources/scripts/load_module.py",

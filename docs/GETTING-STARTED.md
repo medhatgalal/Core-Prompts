@@ -22,6 +22,11 @@ hybrid research. [Start or resume guided Shape Up](engos-design-shaping.md).
 Check that page's current pilot status before assuming every host or publishing
 adapter has been validated.
 
+During a shaping run, ask “Show the current stage, blocker, owner and next step.”
+The assistant uses the existing run record, marks simulated/unknown evidence and
+keeps the latest accepted revision separate from drafts. A framing-only request
+can finish without treating later shaping/publication as failed work.
+
 Start in your CLI with the job you want done:
 
 > Supercharge this plan: replace our onboarding checklist with the fewest steps that still verify access, setup, and a successful first task.

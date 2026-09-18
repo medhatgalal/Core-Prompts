@@ -85,7 +85,9 @@ python3 scripts/shaping_run.py seal --run /private/tmp/shaping-demo --expected-v
 python3 scripts/shaping_run.py accept --run /private/tmp/shaping-demo --expected-version 2 --receipt /private/tmp/shaping-demo/reviews/G0.json
 ```
 
-All eight commands have `--help`. Every mutation except `init` requires
+All commands have `--help`. The optional read-only `progress` projection and
+controller observation inputs are documented in [progress.md](progress.md).
+Existing `status` retains its default JSON interface. Every mutation except `init` requires
 `--expected-version`. Successful JSON output exits 0; invalid, stale, conflicting
 or unmet conditions exit 2 with `status: hold`; unverifiable persistent state exits
 3 with `status: recovery_pending`; filesystem/IO failures exit 3 with `status: error`.

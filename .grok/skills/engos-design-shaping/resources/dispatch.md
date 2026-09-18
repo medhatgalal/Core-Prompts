@@ -57,3 +57,12 @@ requests, effort used/remaining and next action. Proposals do not close accepted
 state. The conductor records the actual worker identity and supplied context from
 host evidence; an author-written identity string or `pass=true` cannot establish
 independence or advance a stage. Recheck dependencies before accepting any return.
+
+## Keep execution constraints separate from the product
+
+Worker read/network/write limits constrain that worker's current assignment. They
+do not create product requirements such as offline operation, a new platform or
+a different delivery target. Record a host limitation as a capability/access gap,
+route to the authorized controller/publisher where appropriate, and change product
+scope only through the proper attributable decision. Do not turn a stage-specific
+tool restriction into a load-bearing feature or unrequested workstream.

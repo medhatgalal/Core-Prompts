@@ -92,5 +92,27 @@ pitch retains content-ready status when only its requested publication is blocke
 | Recovery | Replayed/stale work cannot double-apply or overwrite accepted state |
 | Honesty | Mechanical, semantic, visual and human evidence remain distinct |
 
+## Visual Quality and Evidence-Derived Progress
+
+Visual review checks readability and reference fidelity in addition to existence
+and semantic coverage. Inspect labels, captions, legends, hierarchy and all table
+fields at the intended surface size. Reject broken-word table columns or missing
+linked detail even when row counts match. Source, visual review and saved-target
+proof remain distinct. Preserve every original field and source-bound SVG/PNG.
+
+For a status/progress request, load the progress/runtime route from the current
+resource map and read helper help. Derive views from controller state and actual
+observations, not author assertions. Distinguish accepted versus candidate, queued
+versus last-observed active, blocked versus awaiting input, and local receipt
+integrity versus remote freshness. Requested stopping points govern which stages
+are applicable. Simulation, snapshot time and unknown activity must remain visible.
+The projection never accepts a stage, overrides drift, appoints owners, publishes
+externally or grants betting authority. Existing default status behavior remains
+compatible; the resource contract specifies the actual new interface.
+
+Blast radius: all full-shaping gate users receive the added visual criteria and
+optional progress projection; standalone pitch review still does not fabricate
+historical stage acceptance or infer a live monitor.
+
 
 Capability resource: `resources/capability.json`

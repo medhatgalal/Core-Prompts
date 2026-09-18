@@ -27,6 +27,11 @@
     "1976f49e7e0fb5d766a99791018fe2df7b4c74a717eefde99188abce313d4332",
     "d3ca4a00c97547a7639faab794c130d0dd56b8a3bec1596dcebcc7f18240aaae",
     "d51267738d0f6a597a08c2a1739c9b6fa29f08db6e7af124775f932e02638567",
+    "bd1cf951097c188580d71e98e8679b83524bc229ca9f9def0415bdca8b8faf5b",
+    "f4d96d52326775d09fd9269e2cc8217d1aa0a61b2578159a57fb4b5af26407ad",
+    "65e6392f79a0ccdc23b3ab975cc20558972e6e3f884ae17da6d2db74e4d739e5",
+    "cc923baa472231a8d775e0c42c3c801cac774e7fb7ea739ddb8cfa10b17b0366",
+    "4d5624b59c243da30caf48a99778d890d62fa230718727afb393ee589cacbed7",
     "76c865f3647df46f4d0741f16d31f24907be2582e661642948aedde36e96da7f",
     "5b487a2a581f48de53608c7819fd8a7000768f538b3c4519d1e32fb0cc08d6ab",
     "ee85f01f7fbf9f769e5646ff155509de3d9531bf3821730f906274ca4f192657",
@@ -57,9 +62,20 @@
     "e6d4e36dfee79c0acbdea069f3c92d988aed4cc73f93f3d4a351a1ee7d674c1d",
     "1ee9c90d42724964a7f085de3e784390b30d454f8cfb02f1140f342b882b8d0f",
     "c0459c2bde814aa73ae060f7cb3303ec16f7849a5026593e3530e619ebedfc42",
+    "32c8fb43844b7eba68222df63655e5c32b64896464d71ade6a9d597ecba1868e",
+    "0c55ab7b168f214606bb69e364b3b8afe0e8c17f6e5744d5a28e51b1cde8d985",
     "890c050962b3541e74be7115b54349b28b639fe4b5631eb1dae21797da8e5724",
     "77580b4218516ee1523cbd742ee84783f41cffc5a65ff151f459c0fb5c06e05d",
     "57498c9c2169cedacd126e0291484bb59679ed4f565b22f07ea519a441173608",
+    "bc9451e1513362e40871b17026a1628a8f92ba8112cb6992dd51d8a00d32d043",
+    "c1df84441e5e91623f577011b9ab12459f9b318c49843dd65d97b3f79e2dc739",
+    "b8bd5a56e2524578eca2798c869f28b8fad25a50e6061f4e4b67ab92845fd979",
+    "8aeb8224459fef1667398bf30b635009b11835929ac225292302cce88d828b42",
+    "d7991bd3ce352e95a73c40b8a07cb88f88670aa5fe540310e9531c0158493e55",
+    "906d879c05790121953ffb0941379cbd0019aee795d7e30f23d9c8bd1023d194",
+    "55f940629b685275733f7604d60ca63ba22e3ffa2e3e9c1aebdbcc6f5fef9945",
+    "694abb94b73298caf4b2bd420ff7435143e10bf88a1ee43da5e7bc893178bb2c",
+    "f463ebc405762e558e2812cbfe3786ba068fb8fc816800f59ad8e6ec2226cdbf",
     "b807df77389d9bef3e9a270c414ec2d758f03d72e59a6e293e9d0c0e6e65beae",
     "d6f186769e242bec3c3e2dbf48700dc1e1b5af56ec0dbb6cdc1fcc202626e5c3",
     "7974f2482dc45d1fdc359844a76c08ce7d3c1e484d40912db33de5f3975bddfc",
@@ -74,6 +90,8 @@
     "355283777967a2e644b71e76e29add19ccd578e66dfd54434ceca3f7e9bb68a8",
     "62b8f662eb020e7c28a676ab228d0a5537f5e91b53793c2728874681bf5b2a36",
     "acc23a6f7e85255150d1fc81795415dce704945d6eeb56718c3964772efa3c1d",
+    "53ff1b59488666c41e90093cf107ddefeb796059e6a4fc0bdb5e693414f231ca",
+    "f757bbe68de2c3e49b7893392a9e2ef702ec07b9f49a0d08e49000a8513b9d22",
     "6d0d18aa6a00247ebdc8141b31f38c2dbafd5c901634bd122dfb5759532c2ffa",
     "1e7066113b3d6493a2f1a6cfc7c50e1d8cacccfc24da9eea7d31e8789bdecb6c",
     "fec5d4733f524eafd620eefddba147280035e21c1b9d900ce73bfb311959f9d3",
@@ -271,6 +289,31 @@
       "text": "the smallest evidence request. Do not choose streaming or invent a time budget."
     },
     {
+      "sha256": "bd1cf951097c188580d71e98e8679b83524bc229ca9f9def0415bdca8b8faf5b",
+      "source": "ssot/engos-design-shaping.md",
+      "text": "newer drafts and per-target delivery. Never infer advancement from files, elapsed"
+    },
+    {
+      "sha256": "f4d96d52326775d09fd9269e2cc8217d1aa0a61b2578159a57fb4b5af26407ad",
+      "source": "ssot/engos-design-shaping.md",
+      "text": "time or a worker label, and never turn gate counts into effort percentages."
+    },
+    {
+      "sha256": "65e6392f79a0ccdc23b3ab975cc20558972e6e3f884ae17da6d2db74e4d739e5",
+      "source": "ssot/engos-design-shaping.md",
+      "text": "Match rendered references, not only section inventories. For Framed local output,"
+    },
+    {
+      "sha256": "cc923baa472231a8d775e0c42c3c801cac774e7fb7ea739ddb8cfa10b17b0366",
+      "source": "ssot/engos-design-shaping.md",
+      "text": "use the embed adapter's explicit framed-only profile and declared prose inventory;"
+    },
+    {
+      "sha256": "4d5624b59c243da30caf48a99778d890d62fa230718727afb393ee589cacbed7",
+      "source": "ssot/engos-design-shaping.md",
+      "text": "do not invoke the shaped-artifact author or manufacture its required solution."
+    },
+    {
       "sha256": "76c865f3647df46f4d0741f16d31f24907be2582e661642948aedde36e96da7f",
       "source": "sources/capability-resources/engos-design-shaping/routing.md",
       "text": "Read only the selected route plus its declared dependency closure in"
@@ -421,6 +464,16 @@
       "text": "know,\u201d delegate, defer or stop. Do not invent preference answers or turn a question"
     },
     {
+      "sha256": "32c8fb43844b7eba68222df63655e5c32b64896464d71ade6a9d597ecba1868e",
+      "source": "sources/capability-resources/engos-design-shaping/questions.md",
+      "text": "not numbered bullets or question marks. Do not hide six investigations in one"
+    },
+    {
+      "sha256": "0c55ab7b168f214606bb69e364b3b8afe0e8c17f6e5744d5a28e51b1cde8d985",
+      "source": "sources/capability-resources/engos-design-shaping/questions.md",
+      "text": "accept unknown rather than forcing it. Do not prescribe polling, streaming or UI."
+    },
+    {
       "sha256": "890c050962b3541e74be7115b54349b28b639fe4b5631eb1dae21797da8e5724",
       "source": "sources/capability-resources/engos-design-shaping/questions.md",
       "text": "card; do not send it automatically or require the novice to design the protocol."
@@ -434,6 +487,51 @@
       "sha256": "57498c9c2169cedacd126e0291484bb59679ed4f565b22f07ea519a441173608",
       "source": "sources/capability-resources/engos-design-shaping/questions.md",
       "text": "optional precision is not a new blocker. Show the complete catalog only on request."
+    },
+    {
+      "sha256": "bc9451e1513362e40871b17026a1628a8f92ba8112cb6992dd51d8a00d32d043",
+      "source": "sources/capability-resources/engos-design-shaping/progress.md",
+      "text": "Use its versioned projection for all views; do not derive a competing state from"
+    },
+    {
+      "sha256": "c1df84441e5e91623f577011b9ab12459f9b318c49843dd65d97b3f79e2dc739",
+      "source": "sources/capability-resources/engos-design-shaping/progress.md",
+      "text": "Research, Shaped and Bet-ready only as applicable to the requested stopping point."
+    },
+    {
+      "sha256": "b8bd5a56e2524578eca2798c869f28b8fad25a50e6061f4e4b67ab92845fd979",
+      "source": "sources/capability-resources/engos-design-shaping/progress.md",
+      "text": "Framing-only completion leaves later stages outside scope, not failed. Keep latest"
+    },
+    {
+      "sha256": "8aeb8224459fef1667398bf30b635009b11835929ac225292302cce88d828b42",
+      "source": "sources/capability-resources/engos-design-shaping/progress.md",
+      "text": "describe gate coverage, never percentage of effort, savings or predicted finish."
+    },
+    {
+      "sha256": "d7991bd3ce352e95a73c40b8a07cb88f88670aa5fe540310e9531c0158493e55",
+      "source": "sources/capability-resources/engos-design-shaping/progress.md",
+      "text": "Distinguish an assigned worker from an unassigned human respondent. Do not invent"
+    },
+    {
+      "sha256": "906d879c05790121953ffb0941379cbd0019aee795d7e30f23d9c8bd1023d194",
+      "source": "sources/capability-resources/engos-design-shaping/progress.md",
+      "text": "Only the controller records attributable host observations, bound to current"
+    },
+    {
+      "sha256": "55f940629b685275733f7604d60ca63ba22e3ffa2e3e9c1aebdbcc6f5fef9945",
+      "source": "sources/capability-resources/engos-design-shaping/progress.md",
+      "text": "Dispatch is queued, not proof of execution; an old started event is only last"
+    },
+    {
+      "sha256": "694abb94b73298caf4b2bd420ff7435143e10bf88a1ee43da5e7bc893178bb2c",
+      "source": "sources/capability-resources/engos-design-shaping/progress.md",
+      "text": "Simulation must remain prominent in every projection. Do not assign a real owner,"
+    },
+    {
+      "sha256": "f463ebc405762e558e2812cbfe3786ba068fb8fc816800f59ad8e6ec2226cdbf",
+      "source": "sources/capability-resources/engos-design-shaping/progress.md",
+      "text": "last readback. A delivery-only failure preserves unchanged content approval."
     },
     {
       "sha256": "b807df77389d9bef3e9a270c414ec2d758f03d72e59a6e293e9d0c0e6e65beae",
@@ -504,6 +602,16 @@
       "sha256": "acc23a6f7e85255150d1fc81795415dce704945d6eeb56718c3964772efa3c1d",
       "source": "sources/capability-resources/engos-design-shaping/dispatch.md",
       "text": "requests, effort used/remaining and next action. Proposals do not close accepted"
+    },
+    {
+      "sha256": "53ff1b59488666c41e90093cf107ddefeb796059e6a4fc0bdb5e693414f231ca",
+      "source": "sources/capability-resources/engos-design-shaping/dispatch.md",
+      "text": "do not create product requirements such as offline operation, a new platform or"
+    },
+    {
+      "sha256": "f757bbe68de2c3e49b7893392a9e2ef702ec07b9f49a0d08e49000a8513b9d22",
+      "source": "sources/capability-resources/engos-design-shaping/dispatch.md",
+      "text": "scope only through the proper attributable decision. Do not turn a stage-specific"
     },
     {
       "sha256": "6d0d18aa6a00247ebdc8141b31f38c2dbafd5c901634bd122dfb5759532c2ffa",

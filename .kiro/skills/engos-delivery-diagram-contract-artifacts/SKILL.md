@@ -97,8 +97,9 @@ request or event path; the data-flow diagram shows data movement and stores.
 ## Rules
 
 - Mermaid source is the durable artifact. Rendered SVG/PNG is a derived view;
-  use SVG-to-PNG only when the target surface cannot accept Mermaid or SVG and
-  record the reason.
+  use SVG-to-PNG when PNG is explicitly requested or the target surface cannot
+  accept Mermaid or SVG, and record the reason. A native-Mermaid-only request
+  does not require unnecessary derived images.
 - Never invent methods, classes, endpoints, internal algorithms, retries,
   owners, security controls, or data stores. Unknowns become explicit gaps.
 - A diagram is not complete merely because it parses. It must cover the named
@@ -177,6 +178,24 @@ source hashes and separate render observations to engos-quality-shaping-gate.
 Blast radius: all users of this shared authoring helper gain explicit rendering,
 source-bound receipts and exemplar contract coverage; no upstream source repository
 or installed native agent configuration is changed by using it.
+
+## Reference-Matched Visual Authoring
+
+Read resources/references/presentation.md with the author route when composing a
+shaped bundle. Give every figure an explicit owning section, visible title/caption,
+legend and state labels; match rendered samples, not just file inventories. Use
+Mermaid-first editable source and the derivatives requested by the selected rich
+presentation profile; native-Mermaid-only requests need no extra image step. A curated SVG may
+address a documented layout limitation only with preserved source identity and a
+semantic cross-check; it may not invent components or hide unknowns.
+
+Keep primary tables readable and retain all richer contract/security fields in
+stable-ID supporting detail where needed. The embed adapter owns representation,
+asset validation and placement; the author owns coherent source meaning. Complete
+source, successful parsing, visual quality and saved-target proof are distinct.
+
+Blast radius: existing artifact authoring gains explicit visual composition and
+field-preserving table guidance; stage and external-write authority are unchanged.
 
 
 Capability resource: `resources/capability.json`

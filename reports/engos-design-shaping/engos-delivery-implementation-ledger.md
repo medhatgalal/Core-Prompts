@@ -15,7 +15,85 @@ GitLab fetch and authenticated API returned HTTP 403 AccessDenied. Local cached
 GitLab a92e0ff has the same tree but does not establish current remote parity.
 Continue local work; dual-remote landing remains blocked until normal access returns.
 
-## Current continuation status
+## Current continuation status — presentation and progress verification
+
+2026-09-18: the five same-slug candidates have passed UAC judge and apply, and
+all five provider bundles are regenerated. Canonical exporter SHA256 is
+353efb6e917d5c58027613347a5db630cc22759c2f3e1794daffa34771b8c9bd;
+runtime SHA256 is 2e56fa597d1493f7f9a0cff9d6705b1678e9d003e332367b07feb02751388247.
+Independent instruction/code/docs reviews resolved their blocking findings.
+Framed two-page and Shaped eleven-page local renders passed independent pixel
+review. HTML loads at 375/1280/1920 with no page overflow, missing images, broken
+internal anchors, scripts or external requests. A real narrow-screen hash overflow
+was caught, fixed and independently reviewed. Complete details and limits are in
+[the presentation/progress verification](engos-quality-presentation-progress-verification.md).
+
+Six distinct product/engineering role simulations passed the focused status-card
+comprehension check; that does not establish human usability or complete G0–G4.
+The user explicitly selected subagents for the pilot: named human participants are
+not a prerequisite to that simulation. The historical real-input exercise still
+lacks an attributable appetite decision; do not invent it or relabel simulation
+as real approval. Earlier successful private Google Doc placement remains evidence
+only for its previous payload. The new richer private Doc awaits exact approval;
+the old Doc is untouched. No new upload, sharing or notification has occurred.
+
+Strict surface validation and contract/topology checks pass. All twelve native
+DOCX regressions pass; the HTML/presentation focused suite has 71 passes and one
+optional renderer skip (actual renderer execution is separate evidence). Six
+macOS presentation tests passed outside the sandbox after native-service denial.
+Broad rerun:1445passed,13skipped,138subtests,3 build/test-race failures caused by
+controller regeneration during package copying. After freezing generation, all72
+package/resource checks pass, including those cases. This combined evidence is
+not a single clean full-suite run. Final frozen-source shaping checks:244passed,
+1optional renderer skip; native DOCX12passed separately. Inventory/manifest hashes
+remained unchanged through the final serial runs. Final caption contrast7.58:1 is pixel-reviewed;
+the final sanitized DOCX hash is recorded in the verification report. Hosted
+checks, main merge, release and home
+installation have not occurred. Freshly fetched GitHub/GitLab base trees match;
+historical GitLab403 is resolved. Preserve worktree/evidence while gates remain.
+
+## Historical in-progress checkpoint — superseded by the status above
+
+Current implementation checkpoint (2026-09-18): five same-slug presentation/status
+candidates are under presentation-candidates/; UAC apply/regeneration has NOT run.
+Semantic reviewer Schrodinger closed four instruction conflicts; report retained
+in engos-quality-presentation-instruction-review.md. Controller subsequently added
+discovery wording and reader-composition guidance; final binding review still due.
+Runtime author reported 137 then 154 passing tests; controller independently ran
+154 passing. Reviewer Laplace 01a0b41c-374b-7350-9ab4-b99b30226651 confirmed five
+initial repairs but found F6–F8 (visual-summary conflict, resurrected old activity,
+unverifiable-scope completion message). Aristotle is fixing those in the same scope.
+Renderer reviewer Averroes 01a0b41f-e4c5-79f2-a2bf-78c36540a747 found seven current
+issues plus inherited source-read TOCTOU; Parfit is repairing them. No review pass
+or merge readiness is claimed. Full suite/hosted checks remain unrun for this slice.
+
+Controller observed a real static Mermaid render failing passive SVG validation on
+the renderer's unused animation CSS; exact private diagnostic SVG retained. Added
+and red/green tested an explicit native-table map for acceptance tables that must
+not be forced into the interface schema. New teaching layout preserves the exact
+previous source hash 976b809ae57aa5e3bdda2d58e3197bffdb4060b230f9e22323e49b2339e51308.
+Actual framed DOCX was generated with the one-time document-operation marker,
+sanitized and rendered using bundled LibreOffice; its one page was inspected.
+This is local format evidence, not G1 or saved-target proof. Do not rerun that marker
+in this turn. The new private teaching Doc request is awaiting the user's exact
+approval; the previous test Doc is untouched. All private captures/fixtures stay
+under the established task research root, outside this public repo.
+
+Three progress-view scenarios were generated through the real runtime using
+explicitly FAKE unit-fixture receipts: waiting at G2, framing-only completion, and
+changed saved target retaining G3. They are marked simulated and prove no actual
+semantic stage acceptance; human-view/render/role checks still remain.
+
+Implementation of the presentation/progress slice is now authorized by the user's
+latest "proceed". Source baseline bf6c44e. Both main refs fetched successfully;
+base trees still match. Actual private Framed/Shaped PDFs were exported read-only
+and all seven pages inspected before renderer edits; frozen acceptance is in
+engos-quality-visual-baseline.md. Progress worker Aristotle
+01a0b409-b745-7db2-a923-5a59b3243849 owns canonical gate runtime/resources/tests;
+renderer worker Parfit 01a0b40c-7b76-7001-94a5-ea3e4037b7bf owns canonical embed
+resources/export tests. Controller owns capability candidates, conductor/diagram
+guidance, docs, UAC, integration and actual render checks. No new target write,
+native registration, release or home installation is included implicitly.
 
 Next scoped work is defined in
 [the presentation/progress plan](engos-design-presentation-progress-plan.md), with

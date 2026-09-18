@@ -68,7 +68,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `opex`: `engos-audit-opex-incident-review`
 - `optimization`: `engos-optimization-auto-research`
 - `orchestration`: `engos-orchestration-batman`
-- `packaging`: `engos-delivery-artifact-embed`, `engos-delivery-diagram-contract-artifacts`, `engos-meta-uac-import`, `engos-reconciliation-converge`
+- `packaging`: `engos-delivery-diagram-contract-artifacts`, `engos-meta-uac-import`, `engos-reconciliation-converge`
 - `pitch`: `engos-audit-pitch-review`
 - `plan`: `engos-design-plan-to-goal`
 - `planning`: `engos-browser-demo-recorder`, `engos-delivery-resolve-conflict`, `engos-design-plan-to-goal`, `engos-meta-supercharge`, `engos-meta-uac-import`
@@ -397,7 +397,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Type: `skill`
 - Install target: `repo_local`
 - Supported CLIs: `claude, codex, gemini, grok, kiro`
-- Summary: Guide product and engineering from rough notes through solution-free framing, evidence collection, shaping, independent review and verified delivery. Use for a guided shaping workshop or resume; use pitch review alone for a finished pitch assessment.
+- Summary: Guide product and engineering from rough notes through solution-free framing, evidence collection, shaping, independent review and verified delivery. Use for a shaping workshop, run progress or resume; use pitch review alone for a finished pitch assessment.
 
 ### Shape Up Stage Gate
 - Slug: `engos-quality-shaping-gate`
@@ -421,7 +421,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Install target: `repo_local`
 - Supported CLIs: `claude, codex, gemini, grok, kiro`
 - Version: `v1.1`
-- Summary: Place an authored shaping-artifact bundle onto a selected HTML, PR/MR, chat, Google Doc, or wiki surface through explicit adapters. Use Mermaid/Markdown passthrough where native rendering exists and fail loudly with a named human step when a surface cannot prove placement.
+- Summary: Format Framed or Shaped documents and place authored shaping bundles through explicit HTML, PR/MR, chat, Google Doc or wiki adapters. Use native Mermaid or source-bound SVG/PNG, preserve native tables and report unverified placement explicitly.
 
 ### SuperCharge — Prompt Engineering, Planning Hardening, and Graded Improvement
 - Slug: `engos-meta-supercharge`

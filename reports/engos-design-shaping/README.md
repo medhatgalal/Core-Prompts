@@ -7,7 +7,10 @@ worktree. This is not shipped to main. Native registrations, home installations
 and production services remain unchanged.
 
 The current status is [the implementation ledger](engos-delivery-implementation-ledger.md),
-including local verification and the still-open human, publication and GitLab gates.
+including local verification and the still-open input, new-target and hosted
+delivery gates. The current visual/status slice is assessed in
+[presentation and progress verification](engos-quality-presentation-progress-verification.md).
+The user's six-role subagent pilot is simulation, not a request to recruit humans.
 
 ## Read in order
 
@@ -15,8 +18,9 @@ Start with [the revised operating proposal](engos-design-shaping-operating-plan.
 for the document-first product/engineering workshop, isolated roles, assistance,
 handoffs, formats, validators and proposed pilot. Independent review recommends
 proceeding to pilot design, not team rollout. It supersedes earlier execution recommendations
-where explicitly revised, but does not silently rewrite or install the candidate
-skills below. Those require a later reviewed adoption pass.
+where explicitly revised. Canonical adoption has now run through reviewed UAC
+apply and regeneration; historical candidates below remain design evidence, not
+the user entry point. Use docs/engos-design-shaping.md for the adopted runbook.
 
 The [final plan QA](engos-quality-shaping-operating-plan-final-qa.json) binds v3
 hash 1bfb7f01766dbaf8b7c134d3515bd2cf6ebe7162c43cee666e58dd59942b5766.
@@ -51,10 +55,10 @@ reviewer is loaded with an explicit design overlay. The agent role uses this
 same process; native provider configuration is neither necessary nor emitted
 for this experiment. Future native admission remains a separate repo gate.
 
-These are instruction-level rails with observed model gate probes. This design
-does not claim executable platform enforcement or automatic installation.
-Canonical adoption would require the repository's normal UAC apply, generation,
-review and authorized delivery workflow after the remaining exercise succeeds.
+The adopted runtime enforces mechanical stage bindings and invalidation when the
+controller uses it; semantic judgments, host isolation and real authority remain
+separate. UAC adoption is not installation or mainline delivery. Earlier model
+probes and candidate files remain historical evidence, not stronger acceptance.
 
 ## Current real-input exercise
 

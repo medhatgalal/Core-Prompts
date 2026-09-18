@@ -181,6 +181,7 @@
       "type": "object", "additionalProperties": false, "required": ["status", "note"],
       "properties": {
         "status": {"enum": ["uncertain", "verified"]}, "note": {"$ref": "#/definitions/text"},
+        "observed_at": {"type": "string", "format": "date-time", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$", "description": "Optional actual UTC saved-target readback time; not the local commit time. Unknown for legacy records. Runtime rejects future timestamps."},
         "target_id": {"$ref": "#/definitions/text"}, "revision": {"$ref": "#/definitions/text"},
         "evidence": {
           "type": "object", "additionalProperties": false, "required": ["readback", "inventory"],

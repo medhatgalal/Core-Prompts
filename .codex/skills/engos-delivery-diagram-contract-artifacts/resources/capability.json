@@ -185,11 +185,13 @@
         "strategy": "derived_history",
         "group": "derived",
         "baseline_path": null,
-        "selected_commit": "2c994a21",
+        "selected_commit": "e866aa80",
         "richness_score": 7,
-        "line_count": 163,
+        "line_count": 182,
         "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
-        "equivalent_commits": [],
+        "equivalent_commits": [
+          "2c994a21"
+        ],
         "expected_companions": [],
         "operator_invariants": [],
         "scenario_matrix": [
@@ -236,7 +238,7 @@
             "candidate_operational_score": 2,
             "baseline_preserved_in_resource": false
           },
-          "baseline_commit": "2c994a21",
+          "baseline_commit": "e866aa80",
           "baseline_slug": "engos-delivery-diagram-contract-artifacts"
         },
         {
@@ -287,7 +289,7 @@
         "surface_usability": 10
       },
       "template_name": "skill",
-      "effective_sha256": "c2318034aeabc01c736b270b49fe1ace5006712fa79520743cb743ed440ea8c8",
+      "effective_sha256": "3e557c2e53f29bc69e3c1709061c56e036911d40cbe7805d42265d04449fd340",
       "semantic_findings": [],
       "agent_surface_review": {
         "status": "unchanged",

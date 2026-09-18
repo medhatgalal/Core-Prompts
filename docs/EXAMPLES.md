@@ -60,6 +60,27 @@ Expect actionable research/teammate cards, a helpful response to “I don't know
 and the same evidence standard as AI-led research. A returned claim is not
 automatically a verified answer. See the [runbook](engos-design-shaping.md).
 
+For progress:
+
+> Where are we in this flow? Show what is accepted, what is being worked on,
+> what is blocked, who is needed and the next permitted action.
+
+Expect an as-of card derived from the run record, not a new tracker: current
+stage, accepted/draft revisions, actual assignment or unassigned, needed input,
+and separate content/visual/target status. Dispatch alone is not proof an agent
+is running. Counts describe verified gates, not percentage of effort or an ETA.
+
+For a readable pitch:
+
+> Format this frame and shaped pitch like the supplied references. Use SVG for
+> the HTML diagrams and PNG in the document, keep the tables editable, and retain
+> every contract field without squeezing the main table into thirteen columns.
+
+Expect source-bound assets, meaningful headings/lists/emphasis, figures with their
+explanations, compact primary tables and stable-ID supporting detail. Framed output
+must not gain solution diagrams. External placement still needs target authority
+and saved-result checks; formatting cannot turn a pending review into a pass.
+
 To resume or reconcile:
 
 > Resume this shaping folder and review edits in its Google Doc. Preserve our

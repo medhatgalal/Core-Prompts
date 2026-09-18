@@ -18,7 +18,7 @@
     "b84887955cf475a536a511dcf08cfff38e7d520cf0de66b9977186fac816c9f4",
     "b2c405ae372f77fd4c536f94afe969b805f4925d9e5f51dedc0a99ff0a848048",
     "9c0891e45ac11c8dd48c55034a6f0c41becb1d90f2e96d48502c2cc2505617dd",
-    "ca72a2af1ebae6f3f68c8790f21881843892b3c687b02d54323dfb63a83fe924",
+    "66b1e93fd7b2990d62d1f1de9a7349c6a008ec8fa620cc3c4f88077071fe7020",
     "186400690de02716671138281f6baa35fcb46e2c31ffea8a1376dddc83649ff8",
     "1a4566c7955e8c3f27fd5aeb0c1e21bd6505b473f2fcc52c708ed27f79a0e6b6",
     "41acc42318df7524dbf49873e78bfef1d5b0314205a97511823f6a4545424965",
@@ -31,6 +31,8 @@
     "4caf107c3c8307cba5d06ccde8e8761b456390035fc92ee18ca20ab1767fca2e",
     "4b1a79e106154c65883ee0b8095d76ace0a04fe0dc024ae2f36b4c9dd4ad590e",
     "2c96789dff12f489bfdce38e988131e99bdea15fadd8d4bb8e716a98f33225e7",
+    "9ffe403cd4e55eb3d058ee0a8d002de68e2018838b8a1b7ccc3a9f20851961e9",
+    "760ec65bef6b123753ae6a450f60d4f1ec02291172e3d5521d69e29b0930bee7",
     "e3b8cda6b6547d8583be884a1f5376f244a8382ab4d62448e9ce9acaf0466b0a",
     "ebb5ee5bdf465570e82fbd8614e17faacb1aa6d31a80f49868bc2c5f2196e873",
     "9c035ebdbf6ff83a0dab8a91266dd8d9da19e151e661fbfe75c7db43f07ac62e",
@@ -41,7 +43,15 @@
     "65a198124406358e2bd144cfb8e652e3cc01f25250e706238691f4ccd4fe2414",
     "629f831d8edd758ca8b10933563c128a9beb3af65a69c70236c7fd31689d3cf4",
     "03b286b40d7ce5bf19a6a71e528b71d369a4af9ce628728aa770468662ff110d",
-    "2d460b31252acb2552dcaa870ed500f4eb06b44190ee10e8746e7a8df0b3e63d"
+    "2d460b31252acb2552dcaa870ed500f4eb06b44190ee10e8746e7a8df0b3e63d",
+    "f25ce22abdebb54efed7d4198ded3fabb1503e31c03ea916a94e2206ad71f08a",
+    "b409c1d5062d7c50c4a99dcd56293a7a3d7bcb915ab45e2b720f19139491621d",
+    "84c874ea702a44617e7cb2478c2f481fc742e4108b3f143dccab1e382750c59e",
+    "bec337b6894f51ef05c9b8bb2072c800ab02c223fbc987bf277d1c71c4491411",
+    "5931e0814bc1c2e04a871cdea5076a0daae82bcab933a5e11dc4d8c0ba0fdd7c",
+    "e9a9d7d87a83ed0bd81c95fb2358cfa9402bd5eae911a0590099d762c52444c0",
+    "bfa68624f640d9f9b1891c0fb604541a4a19e1bda4ab9e78e02a2c3f1422fad5",
+    "1399e56a429ee795eabbdb6f01a7db3bc6482a94b9da02ff1f31230b880ea81b"
   ],
   "editable_behavior": [],
   "primary_outcome": {
@@ -134,9 +144,9 @@
       "text": "8. Return the bundle and a short judgment. Do not place it on a Google Doc,"
     },
     {
-      "sha256": "ca72a2af1ebae6f3f68c8790f21881843892b3c687b02d54323dfb63a83fe924",
+      "sha256": "66b1e93fd7b2990d62d1f1de9a7349c6a008ec8fa620cc3c4f88077071fe7020",
       "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
-      "text": "use SVG-to-PNG only when the target surface cannot accept Mermaid or SVG and"
+      "text": "accept Mermaid or SVG, and record the reason. A native-Mermaid-only request"
     },
     {
       "sha256": "186400690de02716671138281f6baa35fcb46e2c31ffea8a1376dddc83649ff8",
@@ -199,6 +209,16 @@
       "text": "placement occurs only after full-run G3 passes. Return complete row/diagram inventory,"
     },
     {
+      "sha256": "9ffe403cd4e55eb3d058ee0a8d002de68e2018838b8a1b7ccc3a9f20851961e9",
+      "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
+      "text": "presentation profile; native-Mermaid-only requests need no extra image step. A curated SVG may"
+    },
+    {
+      "sha256": "760ec65bef6b123753ae6a450f60d4f1ec02291172e3d5521d69e29b0930bee7",
+      "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
+      "text": "address a documented layout limitation only with preserved source identity and a"
+    },
+    {
       "sha256": "e3b8cda6b6547d8583be884a1f5376f244a8382ab4d62448e9ce9acaf0466b0a",
       "source": "sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/diagram-style.md",
       "text": "proposal accompanies every node, edge and control; never invent component internals."
@@ -252,6 +272,46 @@
       "sha256": "2d460b31252acb2552dcaa870ed500f4eb06b44190ee10e8746e7a8df0b3e63d",
       "source": "sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/bundle.md",
       "text": "Render and placement receipts are separate references to that inventory. Do not"
+    },
+    {
+      "sha256": "f25ce22abdebb54efed7d4198ded3fabb1503e31c03ea916a94e2206ad71f08a",
+      "source": "sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/presentation.md",
+      "text": "style. Record the reference/revision and visual criteria; do not copy unsupported"
+    },
+    {
+      "sha256": "b409c1d5062d7c50c4a99dcd56293a7a3d7bcb915ab45e2b720f19139491621d",
+      "source": "sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/presentation.md",
+      "text": "boundaries and questions. Do not add architecture merely to make the page visual."
+    },
+    {
+      "sha256": "84c874ea702a44617e7cb2478c2f481fc742e4108b3f143dccab1e382750c59e",
+      "source": "sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/presentation.md",
+      "text": "multi-surface request for both authorizes both; otherwise create PNG only when"
+    },
+    {
+      "sha256": "bec337b6894f51ef05c9b8bb2072c800ab02c223fbc987bf277d1c71c4491411",
+      "source": "sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/presentation.md",
+      "text": "the requested surface needs it. Native-Mermaid-only requests need no image step."
+    },
+    {
+      "sha256": "5931e0814bc1c2e04a871cdea5076a0daae82bcab933a5e11dc4d8c0ba0fdd7c",
+      "source": "sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/presentation.md",
+      "text": "Only use the embed adapter's validated asset path; arbitrary SVG is untrusted."
+    },
+    {
+      "sha256": "e9a9d7d87a83ed0bd81c95fb2358cfa9402bd5eae911a0590099d762c52444c0",
+      "source": "sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/presentation.md",
+      "text": "stable row IDs. Enumerate every original field and compare converted values; never"
+    },
+    {
+      "sha256": "bfa68624f640d9f9b1891c0fb604541a4a19e1bda4ab9e78e02a2c3f1422fad5",
+      "source": "sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/presentation.md",
+      "text": "State colors also need explicit text; proposed/unknown/needs-spike must not look"
+    },
+    {
+      "sha256": "1399e56a429ee795eabbdb6f01a7db3bc6482a94b9da02ff1f31230b880ea81b",
+      "source": "sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/presentation.md",
+      "text": "browser console do not establish readability. Authoring/G3 inspects local rendered"
     }
   ],
   "review_status": "draft"
