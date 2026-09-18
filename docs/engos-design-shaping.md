@@ -9,10 +9,12 @@ This capability is under pilot validation. Generated packages and mechanical tes
 do not establish that every host or external publishing path has been verified.
 Current source-candidate status: local mechanical tests, independent source reviews
 and simulated conversational preflights have run. The simulations do not replace a
-real product/engineering pilot. Saved Google Docs verification, real-human pilot
-acceptance, hosted CI and dual-remote landing remain pending. No automatic
-implementation, tickets, staffing, sharing or global installation follows from
-shaping a pitch.
+real product/engineering pilot. A private Google Docs teaching-fixture import has
+passed saved-content and independent nine-page visual checks; this is adapter
+evidence, not real-pitch acceptance. Real-human pilot acceptance, a complete real
+pitch on both requested surfaces, hosted CI and dual-remote landing remain pending.
+No automatic implementation, tickets, staffing, sharing or global installation
+follows from shaping a pitch.
 
 Repository maintainers can inspect `reports/engos-design-shaping/` for detailed
 run evidence when available. Reports are not included in release archives; this

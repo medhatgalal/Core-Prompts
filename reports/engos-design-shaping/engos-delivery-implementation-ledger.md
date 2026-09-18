@@ -15,7 +15,25 @@ GitLab fetch and authenticated API returned HTTP 403 AccessDenied. Local cached
 GitLab a92e0ff has the same tree but does not establish current remote parity.
 Continue local work; dual-remote landing remains blocked until normal access returns.
 
-## Fixed acceptance and ownership
+## Current continuation status
+
+After the implementation checkpoint, the user approved the exact private upload.
+The teaching-fixture Google Doc was created without sharing; saved readback and
+independent nine-page pixel review passed. See
+[the adapter receipt](engos-quality-google-doc-adapter-receipt.md).
+Normal GitLab fetch now succeeds. Both freshly fetched main trees match, although
+their commit IDs differ. No hosted branch checks or merge have run.
+
+Remaining holds: named product/engineering pilot participants, attributable
+appetite/walk-away decisions, complete real-input progression and same-bundle
+two-surface proof, then required hosted checks and dual-remote landing. Approval
+of the private teaching upload does not invent these human decisions or pass G4.
+
+The sections below preserve the earlier implementation checkpoint and its then-open
+holds. This continuation supersedes its upload-approval and GitLab-access blockers
+only; its test counts and remaining semantic/pilot limitations are unchanged.
+
+## Fixed acceptance and ownership (implementation checkpoint)
 
 C01–C12 and P1–P10 in the reviewed plan remain the contract. Every row below needs
 actual evidence, not only files or a self-grade. Public-safe fixtures only in repo;
