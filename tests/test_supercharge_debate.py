@@ -89,10 +89,10 @@ def test_supercharge_help_exposes_debate_deep_and_examples() -> None:
     text = _text(SSOT_PATH)
     help_text = _text(ROOT / "sources/capability-resources/engos-meta-supercharge/references/help.md")
 
-    assert 'version: "v5.0"' in text
-    assert "# End of SuperCharge v5.0" in text
+    assert 'version: "v5.1"' in text
+    assert "# End of SuperCharge v5.1" in text
     assert "# End of SuperCharge v4.1" not in text
-    assert "SuperCharge v5.0" in help_text
+    assert "SuperCharge v5.1" in help_text
     assert "Ask `engos-meta-supercharge /help examples`" in help_text
     assert "`engos-meta-supercharge /adversarial /debate <task>`" in help_text
     assert "`engos-meta-supercharge /adversarial /debate /deep <task>`" in help_text
@@ -153,7 +153,7 @@ def test_supercharge_generated_surfaces_include_debate_contract() -> None:
 
     for path in generated_paths:
         text = effective_capability_text(ROOT, "engos-meta-supercharge", _text(path))
-        assert "SuperCharge v5.0" in text
+        assert "SuperCharge v5.1" in text
         assert "/adversarial /debate <task>" in text
         assert "/adversarial /debate /deep <task>" in text
         assert text.index("/adversarial /debate <task>") < text.index("/adversarial /debate /deep <task>")
@@ -167,7 +167,7 @@ def test_supercharge_descriptor_and_resources_preserve_uac_boundaries() -> None:
     descriptor_text = json.dumps(descriptor, sort_keys=True)
 
     assert descriptor["layers"]["minimal"]["capability_type"] == "skill"
-    assert descriptor["layers"]["minimal"]["version"] == "v5.0"
+    assert descriptor["layers"]["minimal"]["version"] == "v5.1"
     assert descriptor["declared_capability"] == "skill"
     assert descriptor["layers"]["minimal"]["tool_policy"]["scope"] == "uac_intake_only"
     assert "orchestration" in descriptor["layers"]["minimal"]["tool_policy"]["forbidden"]
@@ -187,7 +187,7 @@ def test_supercharge_descriptor_and_resources_preserve_uac_boundaries() -> None:
     for path in resource_paths:
         payload = json.loads(path.read_text(encoding="utf-8"))
         assert payload["layers"]["minimal"]["capability_type"] == "skill"
-        assert payload["layers"]["minimal"]["version"] == "v5.0"
+        assert payload["layers"]["minimal"]["version"] == "v5.1"
 
 
 def test_supercharge_namespace_keeps_conversational_prefix_and_dispatch_contract():

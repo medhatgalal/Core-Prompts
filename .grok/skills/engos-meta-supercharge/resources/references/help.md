@@ -1,6 +1,6 @@
 ## HELP OUTPUT (Quick Guide)
 
-**SuperCharge v5.0** — Prompt Engineering Swiss Army Knife (portable)
+**SuperCharge v5.1** — Prompt Engineering Swiss Army Knife (portable)
 
 ### Common Commands
 - `engos-meta-supercharge <task>` -> Auto-route to best sequence

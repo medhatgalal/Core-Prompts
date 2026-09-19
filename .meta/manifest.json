@@ -5300,7 +5300,7 @@
       "layers": {
         "minimal": {
           "capability_type": "skill",
-          "summary": "Harden a prompt, plan, proposal, or workflow through the smallest useful sequence of simplification, inversion, adversarial critique, contract checks, debate, or grading. Use when the artifact needs stronger reasoning or execution guidance; use behavioral evaluation for proof.",
+          "summary": "Harden a prompt, plan, proposal, or workflow through the smallest useful sequence of simplification, inversion, adversarial critique, contract checks, debate, or grading. Supports `/catchup` for verified session reconstruction with exact tables, status markers, and validation. Use when the artifact needs stronger reasoning or execution guidance; use behavioral evaluation for proof.",
           "role": "advisor",
           "domain_tags": [
             "planning",
@@ -5424,7 +5424,7 @@
           "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "SuperCharge \u2014 Prompt Engineering, Planning Hardening, and Graded Improvement",
-          "version": "v5.0"
+          "version": "v5.1"
         },
         "expanded": {
           "relationship_suggestions": [
@@ -5919,9 +5919,17 @@
             "metadata_completeness": 8,
             "surface_usability": 10
           },
-          "template_name": "both",
-          "effective_sha256": "a5ea73e2f1ddd87a4d605ed03a7a261fc5959bb35e88dbcea6d05c321fc5cb55",
+          "template_name": "skill",
+          "effective_sha256": "e7be36c70fc397af1c4ca5e3305eb5d65a7fe079fba0f2090fac435de7ec2d55",
           "semantic_findings": [],
+          "agent_surface_review": {
+            "status": "unchanged",
+            "added_providers": [],
+            "blockers": [],
+            "source_fidelity": "not_required",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
           "repair_requests": [],
           "dimension_inventory": [
             {
