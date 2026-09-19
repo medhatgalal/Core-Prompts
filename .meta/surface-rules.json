@@ -90,10 +90,12 @@
         "--help"
       ],
       "discovery_args": [
-        "--skip-trust",
         "skills",
         "list"
       ],
+      "discovery_env": {
+        "GEMINI_CLI_TRUST_WORKSPACE": "true"
+      },
       "discovery_surface_names": [
         "gemini_skill"
       ],

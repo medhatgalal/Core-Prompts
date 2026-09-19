@@ -6,6 +6,8 @@
 
 - Allow explicitly approved, task-owned Swift module-cache reuse in native exporter tests; retain fresh executable compilation, behavioral assertions, and the 120-second compile limit. Reject cache drift and concurrent use, and retain per-run cleanup/readback receipts.
 
+- Fix Gemini native discovery to use its skill-list subcommand with process-only workspace trust, preserving saved authentication and trust settings.
+
 ## v1.15.2 - 2026-09-19
 
 - SuperCharge v5.1 makes `/catchup` discoverable in the skill description, preserves its exact table/emoji/validation contract, and fails closed when route resources are missing or stale instead of falling back to generic catch-up output. Added route-loader and cross-surface resource parity regression checks for all resource-backed skills.

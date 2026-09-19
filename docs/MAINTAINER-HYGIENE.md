@@ -151,3 +151,10 @@ that directory with `--basetemp` inside the task evidence area. Task owners reta
 the cache, immutable approval, state, lock, and receipts together until their
 evidence-retention boundary permits cleanup; no global cache or automatic cache
 deleting service is used. No cache option is enabled in CI by default.
+
+Gemini discovery uses `gemini skills list` with the documented
+`GEMINI_CLI_TRUST_WORKSPACE=true` override confined to that child process. This
+lets the native CLI inspect the reviewed checkout without changing saved trust
+or authentication settings. Keep the subcommand first: the installed CLI can
+route a leading `--skip-trust` invocation through ordinary authentication instead
+of the skill-list handler. Startup/listing evidence does not prove skill execution.
