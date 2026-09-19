@@ -1,10 +1,15 @@
-## v1.15.2 - 2026-09-18
+## v1.15.3 - Unreleased
 
 - Derive advisory UAC routing fitness from source clauses, preserve curated descriptor jobs, and regenerate a versioned source-bound job map. Add preview/apply/idempotence and false-authority regression checks.
 - Keep automatic routing disabled: no consumer, skill body, description, installer, global instruction or named-agent surface is added or changed. Metadata remains advisory and cannot grant authority.
 - Make the historical routing corpus self-contained and report current adapter declarations without enabling execution. Preserve the original draft oracle and recorded HOLD results; the project-local experiment does not qualify global activation.
 
 - Allow explicitly approved, task-owned Swift module-cache reuse in native exporter tests; retain fresh executable compilation, behavioral assertions, and the 120-second compile limit. Reject cache drift and concurrent use, and retain per-run cleanup/readback receipts.
+
+## v1.15.2 - 2026-09-19
+
+- SuperCharge v5.1 makes `/catchup` discoverable in the skill description, preserves its exact table/emoji/validation contract, and fails closed when route resources are missing or stale instead of falling back to generic catch-up output. Added route-loader and cross-surface resource parity regression checks for all resource-backed skills.
+- Include the shaping artifact embed and diagram/contract artifact capabilities, plus the associated Shape Up pitch-review contract updates, in the v1.15.2 release delta.
 
 ## v1.15.1 - 2026-09-15
 

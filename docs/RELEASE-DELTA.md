@@ -3,21 +3,20 @@
 These counts compare selected capability metadata in `.meta/manifest.json`. They do not cover bundled helper/resource changes or measure experimental benefit. See [CHANGELOG](../CHANGELOG.md) for release changes.
 
 - Baseline status: `available`
-- Comparison basis: `git:v1.15.1@293573e1b2be53e765186ef3892a00a199262b5d .meta/manifest.json`
-- New capabilities: `2`
+- Comparison basis: `git:v1.15.2@4e22178b645d5098e5cf5a853c200ef89fd60b95 .meta/manifest.json`
+- New capabilities: `0`
 - Removed capabilities: `0`
-- Changed capability records: `1`
-- Records with contract-facing metadata changes: `1`
+- Changed capability records: `0`
+- Records with contract-facing metadata changes: `0`
 
 ## New Capabilities
-- `engos-delivery-artifact-embed` — Shaping Artifact Embed — Surface Adapters and Placement Evidence
-- `engos-delivery-diagram-contract-artifacts` — Shaping Artifact Author — Diagrams, Contracts, and Security Ownership
+- none
 
 ## Removed Capabilities
 - none
 
 ## Contract-Facing Metadata Changes
-- `engos-audit-pitch-review` — changed `summary`
+- none
 
 ## All Changed Capability Records
-- `engos-audit-pitch-review` — changed `summary, version`
+- none

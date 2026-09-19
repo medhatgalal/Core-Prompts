@@ -404,7 +404,7 @@ performs **preflight only** and exits 2 with null decisions and scores. It obser
 the current adapter registry. A route-only declaration may change the diagnostic
 to runtime-review-required, but cannot grant execution: this utility contains no
 dispatcher and starts no provider, skill, tool, or agent process. Actual evaluation
-requires separately reviewed runtime and input bindings; ordinary CI is offline.
+requires separately reviewed runtime and input bindings; routing checks in CI make no model calls.
 
 ### Evidence and limits
 

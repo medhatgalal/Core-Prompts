@@ -4,7 +4,7 @@
   "layers": {
     "minimal": {
       "capability_type": "skill",
-      "summary": "Harden a prompt, plan, proposal, or workflow through the smallest useful sequence of simplification, inversion, adversarial critique, contract checks, debate, or grading. Use when the artifact needs stronger reasoning or execution guidance; use behavioral evaluation for proof.",
+      "summary": "Harden a prompt, plan, proposal, or workflow through the smallest useful sequence of simplification, inversion, adversarial critique, contract checks, debate, or grading. Supports `/catchup` for verified session reconstruction with exact tables, status markers, and validation. Use when the artifact needs stronger reasoning or execution guidance; use behavioral evaluation for proof.",
       "role": "advisor",
       "domain_tags": [
         "planning",
@@ -128,7 +128,7 @@
       "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
       "review_status": "ready_for_orchestrator_review",
       "display_name": "SuperCharge \u2014 Prompt Engineering, Planning Hardening, and Graded Improvement",
-      "version": "v5.0"
+      "version": "v5.1"
     },
     "expanded": {
       "relationship_suggestions": [
@@ -643,9 +643,17 @@
         "metadata_completeness": 8,
         "surface_usability": 10
       },
-      "template_name": "both",
-      "effective_sha256": "a5ea73e2f1ddd87a4d605ed03a7a261fc5959bb35e88dbcea6d05c321fc5cb55",
+      "template_name": "skill",
+      "effective_sha256": "e7be36c70fc397af1c4ca5e3305eb5d65a7fe079fba0f2090fac435de7ec2d55",
       "semantic_findings": [],
+      "agent_surface_review": {
+        "status": "unchanged",
+        "added_providers": [],
+        "blockers": [],
+        "source_fidelity": "not_required",
+        "identity_authenticated": false,
+        "behavioral_status": "behavioral_pending"
+      },
       "repair_requests": [],
       "dimension_inventory": [
         {
@@ -814,7 +822,7 @@
     "portfolio_action": "keep_but_review_scope",
     "routing_fitness": {
       "schema_version": "RoutingFitness.v1",
-      "mapping_status": "source_derived_draft",
+      "mapping_status": "stale",
       "task_phases": {
         "kind": "source_conditions",
         "clauses": [
@@ -823,9 +831,9 @@
             "heading": "Review Timing",
             "source": {
               "path": "ssot/engos-meta-supercharge.md",
-              "start_line": 286,
-              "end_line": 286,
-              "sha256": "1d90ae31771a0ca5c11be5b0a1b5d2621d8aafa4b6d7fd445e776c88ed4b9f3b"
+              "start_line": 294,
+              "end_line": 294,
+              "sha256": "d5da37b0d385e1c678a972cea51ad422209b5d6d4637fa8973b0bff53a5ea62a"
             }
           }
         ]
@@ -844,7 +852,7 @@
               "path": "ssot/engos-meta-supercharge.md",
               "start_line": 36,
               "end_line": 38,
-              "sha256": "1d90ae31771a0ca5c11be5b0a1b5d2621d8aafa4b6d7fd445e776c88ed4b9f3b"
+              "sha256": "d5da37b0d385e1c678a972cea51ad422209b5d6d4637fa8973b0bff53a5ea62a"
             }
           },
           {
@@ -854,7 +862,7 @@
               "path": "ssot/engos-meta-supercharge.md",
               "start_line": 86,
               "end_line": 90,
-              "sha256": "1d90ae31771a0ca5c11be5b0a1b5d2621d8aafa4b6d7fd445e776c88ed4b9f3b"
+              "sha256": "d5da37b0d385e1c678a972cea51ad422209b5d6d4637fa8973b0bff53a5ea62a"
             }
           },
           {
@@ -864,7 +872,7 @@
               "path": "ssot/engos-meta-supercharge.md",
               "start_line": 92,
               "end_line": 92,
-              "sha256": "1d90ae31771a0ca5c11be5b0a1b5d2621d8aafa4b6d7fd445e776c88ed4b9f3b"
+              "sha256": "d5da37b0d385e1c678a972cea51ad422209b5d6d4637fa8973b0bff53a5ea62a"
             }
           }
         ]
@@ -879,7 +887,7 @@
               "path": "ssot/engos-meta-supercharge.md",
               "start_line": 86,
               "end_line": 90,
-              "sha256": "1d90ae31771a0ca5c11be5b0a1b5d2621d8aafa4b6d7fd445e776c88ed4b9f3b"
+              "sha256": "d5da37b0d385e1c678a972cea51ad422209b5d6d4637fa8973b0bff53a5ea62a"
             }
           }
         ]
@@ -892,8 +900,8 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-meta-supercharge.md",
-        "ssot_sha256": "1d90ae31771a0ca5c11be5b0a1b5d2621d8aafa4b6d7fd445e776c88ed4b9f3b",
-        "effective_sha256": "f567c32398322b47b97f712d2eeb85b8682e44c69d35fcaac4271114d2ee2a8b",
+        "ssot_sha256": "d5da37b0d385e1c678a972cea51ad422209b5d6d4637fa8973b0bff53a5ea62a",
+        "effective_sha256": "e7be36c70fc397af1c4ca5e3305eb5d65a7fe079fba0f2090fac435de7ec2d55",
         "resources": [
           {
             "path": "sources/capability-resources/engos-meta-supercharge/references/shared-review.md",
@@ -905,7 +913,7 @@
           },
           {
             "path": "sources/capability-resources/engos-meta-supercharge/references/modules/catchup.md",
-            "sha256": "4e7a94bf82cc0531b0778efba4c6906fb421ec578fcad3dd9c260ed40e69afa2"
+            "sha256": "024463bfd8cb186533d62788b63bed2457decc1cb3e1b6aa1efc7dc226860138"
           },
           {
             "path": "sources/capability-resources/engos-meta-supercharge/references/modules/basis.md",
@@ -945,7 +953,7 @@
           },
           {
             "path": "sources/capability-resources/engos-meta-supercharge/references/help.md",
-            "sha256": "9b491928c187ebcc8fe85856754782f7133151a99afc1becf9eeb0f96b9e55a2"
+            "sha256": "bcc7f46f9a66dc92fa4e21be22ba4bf3a0cb2631ad740ff99bd9a9c9d4ec5c98"
           },
           {
             "path": "sources/capability-resources/engos-meta-supercharge/references/help-examples.md",
@@ -973,7 +981,7 @@
           "works_on"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "2534cd35076c18f3c2bea29fa81a186d50ff2ad307a157f303215d9f31eb5d09"
+        "mapping_sha256": "642b685fe272a8948c63b81022580bc298c0a9f17a3aae60ce2de52e26f44784"
       },
       "unresolved_fields": [
         "task_phase_interpretation",
