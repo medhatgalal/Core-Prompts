@@ -1,11 +1,11 @@
 ---
 name: "engos-meta-supercharge"
-description: "Harden a prompt, plan, proposal, or workflow through the smallest useful sequence of simplification, inversion, adversarial critique, contract checks, debate, or grading. Use when the artifact needs stronger reasoning or execution guidance; use behavioral evaluation for proof."
+description: "Harden a prompt, plan, proposal, or workflow through the smallest useful sequence of simplification, inversion, adversarial critique, contract checks, debate, or grading. Supports `/catchup` for verified session reconstruction with exact tables, status markers, and validation. Use when the artifact needs stronger reasoning or execution guidance; use behavioral evaluation for proof."
 display_name: "SuperCharge — Prompt Engineering, Planning Hardening, and Graded Improvement"
 kind: "agent"
 capability_type: "skill"
 agent_tools: "Read, Write, Edit, Bash, Grep, Glob"
-version: "v5.0"
+version: "v5.1"
 ---
 # SuperCharge — Prompt Engineering, Planning Hardening, and Graded Improvement
 
@@ -221,6 +221,13 @@ For skill surfaces, resolve paths relative to the skill directory. For agent sur
 
 If a required resource is missing, stale, changed during execution, or incompletely delivered, recover it before dependent work. Do not guess its contents or silently shorten the route. Delivery does not prove comprehension; independent checks must use behavior that depends on the resource. Do not claim host enforcement unless a verified host actually supplies it.
 
+### Resource Delivery Failure (Fail Closed)
+For every explicit route, including `/catchup`, resolve and load the selected resource before producing route output. If the resource map, loader, or selected resource is unavailable or stale:
+- report `Resource delivery blocked: <route> (<resource path>)`
+- do not claim that the route is unsupported
+- do not substitute a generic response, a shortened route, or another module
+- do not execute the requested route until the resource is recovered and rechecked
+
 ### Output Precedence
 Terminal help/examples/details and `/gaslight list` or `/gaslight help` return only their specified output. `/catchup` retains its exact tables and validation text, without generic wrapper sections. `/contract` retains `Contract Spec` and its exact QA JSON schema; when the user explicitly requests JSON-only, return only that JSON with missing context or gaps represented in its existing fields. Other stacks retain canonical pass order and module output shapes under the general wrapper; `/full` supplies its own pass wrappers. `/ult /full` does not execute the generated task and says so explicitly. No precedence rule permits fabricated results or skipping independent review.
 
@@ -233,6 +240,7 @@ After completing major work that began with SuperCharge, SuperCharge SHOULD appe
 - Only run capstone when a deliverable is complete or the user says done, ship, or finish.
 - Do not run capstone after small replies.
 - The user can disable per run with "skip catchup" or "no catchup".
+- The capstone uses the `/catchup` resource-delivery gate. If that route cannot be loaded, report the delivery block and do not append an improvised or generic catch-up.
 
 ## HELP OUTPUT (Quick Guide)
 For a terminal help request, load route `help` from the resource map and read `resources/references/help.md` and return its help content only. Do not execute its examples or continue into an operational module.
@@ -285,4 +293,4 @@ Produce real candidates and independent grades, retain the best, and show only a
 ## Review Timing
 Use before a major prompt rewrite, plan adoption, high-stakes workflow decision, or UAC onboarding. Behavioral superiority requires comparative evidence from Auto-Research, not a high self-score.
 
-# End of SuperCharge v5.0
+# End of SuperCharge v5.1

@@ -35,9 +35,13 @@
     "3dde2d8c29aff165982054544e0ef311b03e95b39daf8209bbdf94b160afab9d",
     "135a5be3cdc7446bc11536bc4d2a162de614736bef72a90cad9d35edf2267250",
     "01bab8d2672760842d0a6f540634b25f3504968a7940276be5a243b2deb053d6",
+    "2c2a3cd3d57153892d544391edc59cda90e526955ecccfa6d1696bb4d257339a",
+    "6c7c3fc931a09bd50661b58e0b4bdacfc021616f24c8e2cdac239c133f7058c3",
+    "3d574abfbdc7e45dcd3cf8aa317e1d124b3f2f81f83a0d06c5fc1ed4e1c01dc7",
     "4c695efce4a93f80586c41a7222a97f652812bddd20a0e9489bfdf744ff8ba54",
     "1f2f66d251cf2341cfc491f9858cf5894c47d33e810a06a3d1c77e3e3284b4ce",
     "0f7011d4f63204ffbe768e8ca1563c9c913aaa43b10d7b02b88e54f85e37be3f",
+    "811378a9f2b4cead606e14ff92a39523941643cb6b2fc9e91636c264d9de7ef0",
     "bf84a9ca15a8049a88b6c106a56714ead4283e4e414046ba35c5e9a4d79d9a96",
     "bd45ef1c4189a860f61d205742bac16d6b82f46864747e88ce7eca12b7585427",
     "bc6e78faf2d2f8a6f485af354eff43935a788e688825b2e17fdfd55c77156d0d",
@@ -60,6 +64,7 @@
     "8b00a5c5e381665565cf315c900a95ab090b672033fcbd896a7cf23e0227f370",
     "0fce815130135c0c5743295967f64cb29cc1fcc9282b19bcc6a22d6342ade716",
     "420f6fefd3529cb047e47f3d61d5c067824bd35a61d16acd83fcac8cbb3e07a5",
+    "2a1e26e97cd5a7a6c447a9823f6df78273b6ba0b8c236edcef42f28e559ee16c",
     "44413d93afe2b69cf124a53541db57ac97d5866167be733d05cf93f11c65420e",
     "f3a3aecb6094efc3a122d10c2a55818e9705dca69dd892a34abcc24fb8ed53ad",
     "8ddc2b232a74d1498b493d3ebf26238140b14d1f3c777f3839a2399078b612af",
@@ -304,6 +309,21 @@
       "text": "If a required resource is missing, stale, changed during execution, or incompletely delivered, recover it before dependent work. Do not guess its contents or silently shorten the route. Delivery does not prove comprehension; independent checks must use behavior that depends on the resource. Do not claim host enforcement unless a verified host actually supplies it."
     },
     {
+      "sha256": "2c2a3cd3d57153892d544391edc59cda90e526955ecccfa6d1696bb4d257339a",
+      "source": "ssot/engos-meta-supercharge.md",
+      "text": "- do not claim that the route is unsupported"
+    },
+    {
+      "sha256": "6c7c3fc931a09bd50661b58e0b4bdacfc021616f24c8e2cdac239c133f7058c3",
+      "source": "ssot/engos-meta-supercharge.md",
+      "text": "- do not substitute a generic response, a shortened route, or another module"
+    },
+    {
+      "sha256": "3d574abfbdc7e45dcd3cf8aa317e1d124b3f2f81f83a0d06c5fc1ed4e1c01dc7",
+      "source": "ssot/engos-meta-supercharge.md",
+      "text": "- do not execute the requested route until the resource is recovered and rechecked"
+    },
+    {
       "sha256": "4c695efce4a93f80586c41a7222a97f652812bddd20a0e9489bfdf744ff8ba54",
       "source": "ssot/engos-meta-supercharge.md",
       "text": "Terminal help/examples/details and `/gaslight list` or `/gaslight help` return only their specified output. `/catchup` retains its exact tables and validation text, without generic wrapper sections. `/contract` retains `Contract Spec` and its exact QA JSON schema; when the user explicitly requests JSON-only, return only that JSON with missing context or gaps represented in its existing fields. Other stacks retain canonical pass order and module output shapes under the general wrapper; `/full` supplies its own pass wrappers. `/ult /full` does not execute the generated task and says so explicitly. No precedence rule permits fabricated results or skipping independent review."
@@ -317,6 +337,11 @@
       "sha256": "0f7011d4f63204ffbe768e8ca1563c9c913aaa43b10d7b02b88e54f85e37be3f",
       "source": "ssot/engos-meta-supercharge.md",
       "text": "- Do not run capstone after small replies."
+    },
+    {
+      "sha256": "811378a9f2b4cead606e14ff92a39523941643cb6b2fc9e91636c264d9de7ef0",
+      "source": "ssot/engos-meta-supercharge.md",
+      "text": "- The capstone uses the `/catchup` resource-delivery gate. If that route cannot be loaded, report the delivery block and do not append an improvised or generic catch-up."
     },
     {
       "sha256": "bf84a9ca15a8049a88b6c106a56714ead4283e4e414046ba35c5e9a4d79d9a96",
@@ -427,6 +452,11 @@
       "sha256": "420f6fefd3529cb047e47f3d61d5c067824bd35a61d16acd83fcac8cbb3e07a5",
       "source": "sources/capability-resources/engos-meta-supercharge/references/modules/catchup.md",
       "text": "- Do not invent missing info; label unknowns as `[Unclear]`."
+    },
+    {
+      "sha256": "2a1e26e97cd5a7a6c447a9823f6df78273b6ba0b8c236edcef42f28e559ee16c",
+      "source": "sources/capability-resources/engos-meta-supercharge/references/modules/catchup.md",
+      "text": "`/catchup` is a supported SuperCharge route. When this module is delivered, use its exact table and validation contract below. If delivery fails, follow the SSOT `Resource Delivery Failure (Fail Closed)` rule; never reinterpret `/catchup` as an unsupported command or a generic catch-up request."
     },
     {
       "sha256": "44413d93afe2b69cf124a53541db57ac97d5866167be733d05cf93f11c65420e",

@@ -9,6 +9,7 @@ import json
 import re
 
 import pytest
+from intent_pipeline.capability_resources import load_resource_bundle
 
 ROOT = Path(__file__).resolve().parents[1]
 SLUG = "engos-meta-supercharge"
@@ -26,6 +27,31 @@ def test_catchup_table_and_visible_validation_preserve_original_bytes():
     validation = text[text.index("### Catchup Validation"):].strip()
     assert digest(table) == "1649a7a6f7c56a6c9fa1051ba241ecb7bd9cba4afde16ec8f22168fc62d3df3b"
     assert digest(validation) == "604abae6f45d5eb7e4ae4c7e3ae6847822fb273a9cf0cfe55abfe608adf20a97"
+
+
+def test_catchup_route_is_explicit_and_fail_closed_when_resources_are_unavailable():
+    text = (ROOT / "ssot" / f"{SLUG}.md").read_text()
+    bundle = load_resource_bundle(RESOURCE, "/catchup")
+    delivered = "\n".join(item["content"] for item in bundle["resources"])
+
+    assert "`/catchup` is a supported SuperCharge route" in delivered
+    assert "Resource Delivery Failure (Fail Closed)" in text
+    assert "do not claim that the route is unsupported" in text
+    for marker in ("✅ Confirmed", "🟡 Proposed", "🔴 Not decided", "/VALIDATE-CATCHUP", "Validation Status: PASS | FAIL"):
+        assert marker in delivered
+
+
+def test_catchup_acceptance_fixture_is_bound_to_the_delivered_contract():
+    payload = json.loads((ROOT / "tests/fixtures/supercharge-acceptance-cases.json").read_text())
+    case = next(item for item in payload["cases"] if item["id"] == "catchup")
+    text = (ROOT / "ssot" / f"{SLUG}.md").read_text()
+    delivered = "\n".join(item["content"] for item in load_resource_bundle(RESOURCE, "/catchup")["resources"])
+
+    assert case["ask"] == "engos-meta-supercharge /catchup"
+    for expected in case["expect"]:
+        assert expected in text or expected in delivered
+    for forbidden in case["forbid"]:
+        assert forbidden not in delivered.lower()
 
 
 def test_contract_json_preserves_original_shape_and_bytes():
