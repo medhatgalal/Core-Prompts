@@ -12,6 +12,9 @@ If multiple intent-result threads exist, decomplect them and output one table pe
 - Temporal discipline: Initially, Then, Afterward, Currently, Not yet decided.
 - If timestamps are present, include them; otherwise use turn numbers or sequence indices.
 
+### Invocation Contract
+`/catchup` is a supported SuperCharge route. When this module is delivered, use its exact table and validation contract below. If delivery fails, follow the SSOT `Resource Delivery Failure (Fail Closed)` rule; never reinterpret `/catchup` as an unsupported command or a generic catch-up request.
+
 ### Evidence and Cognitive Load
 Restore the user's understanding of the session in plain English: work categories, original goals, resolved work, decisions, current activity, and recorded next steps. Keep recognizable task names and preserve the exact table and validation output below.
 Verify the reconstruction against accessible conversation history, artifacts, and subagent results. An independent subagent checks substantial reconstruction before finalization. Mark inaccessible history `[Unclear]`; distinguish agent-reported completion from independently verified completion where it changes the current state.
