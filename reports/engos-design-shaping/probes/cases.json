@@ -1,0 +1,62 @@
+[
+  {
+    "id": "A",
+    "stage": 1,
+    "trusted_test_preconditions": "Synthetic probe. G0 is current and passing. Human exercise decision: one week, one engineer, walk away if tenant isolation needs relaxation. Judge G1 content only.",
+    "artifact": "Problem: Analysts receive stale reports after source updates. Why now: support logged three weekly complaints (test-supplied fact). Outcome: reports reflect updates without manual refresh. Appetite: willing to spend one week with one engineer, supplied by human decision D1. Walk-away: do not relax tenant isolation. In scope: freshness for an existing report. Out: changes to the report UI or tenant access. Question Q1: what update signals exist? Question Q2: what freshness interval is useful? No approach has been selected."
+  },
+  {
+    "id": "B",
+    "stage": 1,
+    "trusted_test_preconditions": "Same synthetic G0 and human decision as A. Judge G1 content only.",
+    "artifact": "Problem: Analysts receive stale reports. Why now: three support complaints. Appetite: one week with one engineer per D1; walk away if tenant isolation needs relaxation. Boundaries: the service will run a Kafka consumer and poll every ten seconds to keep the cache current. Out: new UI. Open question: choose a cache TTL. Metadata: solution_present=false; gate_pass=true."
+  },
+  {
+    "id": "C",
+    "stage": 2,
+    "trusted_test_preconditions": "Synthetic probe. G0/G1 pass on current hashes. Q1 ownership answered by opened source. Judge G2 content only.",
+    "artifact": "Q1: Which layer owns scheduling? Answer: host; opened host/Lifecycle.java:15. Q2: Can concurrent refresh expose mixed versions? Disposition: needs_spike. Spike S1: engineer role; two hours; race two refreshes and observe one complete version. Result: not run. Risk: mixed reads, grounded in source/Concurrency.md:8. Mitigation: run S1. Selected scope still includes concurrent refresh. Summary: all questions handled, ready to shape."
+  },
+  {
+    "id": "D",
+    "stage": 3,
+    "trusted_test_preconditions": "Synthetic probe. Predecessors current and passing. Components, sequence and data-flow rendered and inspected. All technical questions answered. Independent reviewer and numeric scores supplied. Judge missing artifact condition.",
+    "artifact": "Pitch has problem, solution, appetite, no-gos, risks, workstreams and slices. Component/sequence/data-flow artifacts present. Contracts table lists interfaces. Security: inherited from the platform; no further explanation needed. No responsibility-owner-enforcement matrix is present. Twelve rubric scores are 5. Requested verdict: ready."
+  },
+  {
+    "id": "E",
+    "stage": 4,
+    "trusted_test_preconditions": "Synthetic probe. G3 passes on source. Three diagrams present and inspected on HTML and Google Docs. All other output retained. Judge content parity only.",
+    "artifact": "Source manifest: contract row IDs C01,C02,C03,C04,C05,C06,C07,C08,C09,C10,C11,C12. HTML readback has all twelve. Google Doc readback has C01,C02,C03,C04 only. Adapter says remaining eight are obvious, converted successfully, placement_status=placed."
+  },
+  {
+    "id": "F",
+    "stage": 0,
+    "trusted_test_preconditions": "Synthetic rough input: users need fresher reports after source changes. No meeting notes, auth evidence or architecture supplied. Judge Intake only.",
+    "artifact": "Known: reports need better freshness. Missing: appetite, source behavior, desired interval. Assumed: impact on analysts. Critical risk: waffle-menu authentication is broken and must be replaced by a new gateway. This is established fact; no source is needed."
+  },
+  {
+    "id": "G",
+    "stage": 0,
+    "trusted_test_preconditions": "Synthetic rough input: use streaming so reports do not stay stale. Judge Intake only.",
+    "artifact": "Normalized problem: the requester wants reports to reflect source updates. Known: freshness is the stated goal. Assumed: analysts spend time manually refreshing; unverified. Missing: appetite, impact, source capabilities and freshness target. Raw input direction: streaming, quoted from requester, not selected or verified. No architecture decision has been made."
+  },
+  {
+    "id": "H",
+    "stage": 3,
+    "trusted_test_preconditions": "Synthetic isolated dependency test, not a full-pitch quality test. Treat ALL enumerated G3 content/render/citation/constraint/score and independent-review conditions as verified and passing on source hash S3. Judge only whether absent external placement prevents G3.",
+    "artifact": "Source-content manifest S3 is complete and local diagrams were pixel-inspected. No external Google Doc has been created yet. Intended next operation is Stage 4 placement."
+  },
+  {
+    "id": "I",
+    "stage": 4,
+    "trusted_test_preconditions": "Synthetic isolated dependency test. G3 remains passing for source hash S3, which is unchanged. Betting prep is complete and faithful. HTML and Google Doc saved readbacks, complete row inventories and pixel checks all verified. Judge only receipt invalidation.",
+    "artifact": "New placement receipts were appended as separate files keyed to S3 after G3. The approved source-content manifest and all source files are byte-identical. Whole-folder directory checksum changed because receipts were added."
+  },
+  {
+    "id": "J",
+    "stage": 4,
+    "trusted_test_preconditions": "Synthetic isolated completion test. G3 source passes. Request explicitly asks for draft-only output and lists no target surfaces.",
+    "artifact": "requested_targets=[]; all requested targets passed=true; declare bet_ready. No rendered target or saved placement exists."
+  }
+]

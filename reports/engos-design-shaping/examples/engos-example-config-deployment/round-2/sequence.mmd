@@ -1,0 +1,42 @@
+%% D02 caption: Proposed cost import with explicit commit-time race outcome.
+%% Identity: engos-example-config-deployment/input.md plus C2-C4.
+%% Evidence: input.md:11-12, input.md:16-27, round-two-clarifications.md:38-62.
+%% Exact team palette: A client, E internal, I primary, T security, C data. Notes mark security constraints.
+%% Participant-specific palette targets named actor rectangles and adjacent text in the cached Mermaid renderer.
+%% Static selector inspection is not render proof. Controller must check both header and footer colors.
+%% Messages are semantic descriptions, not method names. Cost participation is proposed.
+%% Omits source-read failure and analysis timing, shown in D03 and C01/C07.
+%% review_pending / render_pending. All messages use plain text without semicolons.
+%%{init: {"theme":"base","themeVariables":{"fontFamily":"Arial","fontSize":"14px","actorBkg":"#4fc3f7","actorBorder":"#0277bd","actorTextColor":"#01579b","noteBkgColor":"#fce4ec","noteBorderColor":"#c62828","noteTextColor":"#b71c1c"},"themeCSS":"rect.actor[name=\"I\"]{fill:#326ce5!important;stroke:#1a3e7a!important;} rect.actor[name=\"I\"] ~ text.actor,rect.actor[name=\"I\"] ~ text.actor tspan{fill:#ffffff!important;}rect.actor[name=\"T\"]{fill:#fce4ec!important;stroke:#c62828!important;} rect.actor[name=\"T\"] ~ text.actor,rect.actor[name=\"T\"] ~ text.actor tspan{fill:#b71c1c!important;}rect.actor[name=\"C\"]{fill:#e8f5e9!important;stroke:#2e7d32!important;} rect.actor[name=\"C\"] ~ text.actor,rect.actor[name=\"C\"] ~ text.actor tspan{fill:#1b5e20!important;}rect.actor[name=\"A\"]{fill:#e3f2fd!important;stroke:#1565c0!important;} rect.actor[name=\"A\"] ~ text.actor,rect.actor[name=\"A\"] ~ text.actor tspan{fill:#0d47a1!important;}"}}%%
+sequenceDiagram
+  participant A as Target admin
+  participant E as PackageExporter
+  participant I as PackageImporter
+  participant T as Deployment transaction
+  participant C as CostConfigStore
+  E->>I: Package on existing encrypted channel
+  I->>I: Check permission, compatibility and C4 bounds
+  alt Denied or invalid or outside C4
+    I-->>A: Reject intact, no package changes
+  else Authorized compatible supported package
+    Note over A,I: Force only by explicit choice for the reviewed target state
+    I->>T: Validate all included configuration
+    alt Invalid values
+      T-->>I: Validation failure, prior state retained
+      I-->>A: Rejected without package changes
+    else Valid values
+      Note over A,T: Critical case, target edit occurs after validation
+      T->>T: Compare revision at commit
+      alt Intervening target edit
+        T-->>I: Conflict, roll back ALL package changes
+        I-->>A: Visible conflict, target edit retained
+        Note over A,I: Any explicit override requires a fresh authorized attempt
+      else No intervening edit and override checks satisfied
+        T->>C: Apply supplied definitions in atomic package commit
+        Note over T,C: Absence preserves both, empty activities preserve activities
+        Note over T,C: Currency-only updates currency, no deletion
+        T-->>I: Whole package committed
+        I-->>A: Deployment complete
+      end
+    end
+  end

@@ -1,0 +1,35 @@
+{
+  "schema_version": "CapabilityResourceMap.v1",
+  "shared": ["routing.md"],
+  "routes": {
+    "start": ["start-resume.md", "sources.md", "questions.md"],
+    "resume": ["start-resume.md", "progress.md"],
+    "progress": ["progress.md"],
+    "intake": ["dispatch.md", "sources.md"],
+    "frame": ["dispatch.md", "questions.md", "decisions.md"],
+    "questions": ["questions.md"],
+    "research": ["stages/research.md"],
+    "architecture-fit": ["architecture-fit.md"],
+    "code-scan": ["code-scan.md"],
+    "human-evidence": ["human-evidence.md"],
+    "shape": ["stages/shape.md", "templates/shaped-bundle.md"],
+    "review": ["stages/review.md"],
+    "publish": ["stages/publish.md", "representations.md"],
+    "reconcile": ["reconciliation.md"],
+    "fallback": ["fallback.md"]
+  },
+  "dependencies": {
+    "architecture-fit.md": ["questions.md"],
+    "start-resume.md": ["decisions.md"],
+    "dispatch.md": ["sources.md"],
+    "questions.md": ["decisions.md"],
+    "human-evidence.md": ["questions.md", "sources.md"],
+    "code-scan.md": ["sources.md"],
+    "stages/research.md": ["dispatch.md", "questions.md", "architecture-fit.md"],
+    "stages/shape.md": ["dispatch.md", "architecture-fit.md"],
+    "stages/review.md": ["dispatch.md", "architecture-fit.md"],
+    "stages/publish.md": ["dispatch.md"],
+    "representations.md": ["sources.md"],
+    "reconciliation.md": ["decisions.md", "representations.md"]
+  }
+}

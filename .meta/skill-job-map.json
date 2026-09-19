@@ -443,6 +443,42 @@
       "nearest_neighbors": [],
       "shape": "unclassified_new_skill",
       "portfolio_action": "draft_new_skill_pending_review"
+    },
+    "engos-design-frame-from-vague": {
+      "primary_job": "Normalize rough input and draft a solution-free frame with affected people, outcome, why-now, actual appetite, walk-away and answerable uncertainties. Supports the shaping conductor; does not choose architecture or invent human decisions.",
+      "use_when": "The request directly matches the canonical purpose of Frame a Vague Problem.",
+      "works_on": "The inputs and target declared by the canonical SSOT.",
+      "main_output": "The required output declared by the canonical SSOT.",
+      "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
+      "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
+      "routing_question": "Does this request directly require Frame a Vague Problem?",
+      "nearest_neighbors": [],
+      "shape": "unclassified_new_skill",
+      "portfolio_action": "draft_new_skill_pending_review"
+    },
+    "engos-design-shaping": {
+      "primary_job": "Guide product and engineering from rough notes through solution-free framing, evidence collection, shaping, independent review and verified delivery. Use for a guided shaping workshop or resume; use pitch review alone for a finished pitch assessment.",
+      "use_when": "The request directly matches the canonical purpose of Shape a Problem into a Pitch.",
+      "works_on": "The inputs and target declared by the canonical SSOT.",
+      "main_output": "The required output declared by the canonical SSOT.",
+      "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
+      "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
+      "routing_question": "Does this request directly require Shape a Problem into a Pitch?",
+      "nearest_neighbors": [],
+      "shape": "unclassified_new_skill",
+      "portfolio_action": "draft_new_skill_pending_review"
+    },
+    "engos-quality-shaping-gate": {
+      "primary_job": "Check whether a shaping stage may advance from its actual artifacts, evidence and prior receipts. Reject solution-in-framing, invented evidence, unresolved material questions, stale reviews and incomplete publication. Use within guided shaping or independent pitch review.",
+      "use_when": "The request directly matches the canonical purpose of Shape Up Stage Gate.",
+      "works_on": "The inputs and target declared by the canonical SSOT.",
+      "main_output": "The required output declared by the canonical SSOT.",
+      "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
+      "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
+      "routing_question": "Does this request directly require Shape Up Stage Gate?",
+      "nearest_neighbors": [],
+      "shape": "unclassified_new_skill",
+      "portfolio_action": "draft_new_skill_pending_review"
     }
   }
 }

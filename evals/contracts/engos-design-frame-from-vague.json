@@ -1,0 +1,204 @@
+{
+  "schema_version": "GoalContract.v1",
+  "slug": "engos-design-frame-from-vague",
+  "target": "Fulfill the canonical intent of engos-design-frame-from-vague.",
+  "intended_outcome": "Preserve the canonical SSOT objective and required output.",
+  "change_class": "unknown",
+  "non_goals": [],
+  "protected_behaviors": [
+    "e3ceae65cff6c6e8d9a21db13ad9d0bf49cf375032bf0ea33d8fa917c6f9d838",
+    "7cec8b40125cae6987aecb8d58f910f283e33540c5c713d4567b2e1fa10ed5d6",
+    "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+    "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+    "08cb865841aa95e69eda53b954ec052545aef0dfac2d1d73a5ef6609ca6cc3c1",
+    "f6f7e8bba51c64270723e9fc07b4d40e4ac6a6d06b343b24fbf68462bd7ef2bf",
+    "a959eeecd57daa2e9ab01336e402f0eeac3cf810fd5b26c35a51e0b489caf097",
+    "f822c3d3b58b3b6b7980ee50cff25d139beab4d6f09c7c27cb684bd801fafa27",
+    "caa14cc6d618da47cda09a81218497590441824f4e60f4b5b72874536a692f0b",
+    "4d220a78c9c85342417e01f8b2877a862b98646a66ce6007f3f417e1dbcaa0c8",
+    "8beedaf8a22f57458144b4b91bbd925e5470a05f2eccae7a3a1903b2511e59b3",
+    "2291d87d2f137877a4f15b38267ff16ba800955868edae064a683eacb8dd485b",
+    "8d830655a6e515d8e031ed1bd598c96cf256a3ad1f6437d09a055e8201092d34",
+    "963852a7c48559c81223a5f0234d53b1e4882b9b7062d1e3dadb1c05a69337fc",
+    "28032da80042d53f54b77a9f36cba7685cee8a8badfad043d5267ce1ef9322b4",
+    "80aad2d49cc9b15f165f6ebafabb5dc8c18f8569b63572ea93a28667e15f8e04",
+    "0108945eecfaa84fa4b610a62a5c27a0e2ea9142c831e9cb9a74f331508e84f7",
+    "f4c7c6b02f92c5273ddd40680c8358e7b7a9f1163c3651398e4b0a0e48d3443a",
+    "09f364a03ce9a25386b9ef936cdc90896e9f4e4d67ac9b8479e510b89709724b",
+    "78e7b5f5aff0fbc75455244f10c83764b67f23b96234292c5e4a3eab88c5c6c0",
+    "39fe3d732ad190716ae724d2456347b9df3879ec15fd045cc9f6c30fa3de53df",
+    "9e7db12758593a53caec0cc7fd4a7203dccc2914f1f4c2f36febf24a77ce3f91",
+    "f28d927dae7ebe13b7582479a7da85c2643140d0f0b51db512590a6f0043fbc8",
+    "3150b93119c3767f75ab3d404b94ecf84fb32f30fa9b49647909e60f8ab28aae",
+    "ada4a553d6fc4b05763e87806c36ff3a7db8792e240512a038cb185f09c76951",
+    "2d3afd1575ec85849aab49eccd4484aefa95c1c100e714fcb070d0b3a7a98430",
+    "f8c9c85176d260717db3890223ecf15aac866d8f1880427d8d5d72ddd5560603"
+  ],
+  "editable_behavior": [],
+  "primary_outcome": {
+    "metric": "skill_specific_task_success",
+    "definition": "Canonical task success with protected behavior preserved.",
+    "threshold": "human_review_required"
+  },
+  "secondary_outcomes": [],
+  "regression_limits": {
+    "protected_binary_margin": 0.02,
+    "critical_deterministic": "exact_pass"
+  },
+  "cost_latency_limits": {
+    "profile_caps": {
+      "static": 0,
+      "native": 0,
+      "routing-canary": 300000,
+      "canary": 1250000,
+      "promotion": 5000000,
+      "cross-host": 12000000,
+      "sweep": 30000000
+    }
+  },
+  "runtime_envelope": {
+    "required_cells": [],
+    "cross_host_required_for_pilot": false,
+    "status": "unresolved"
+  },
+  "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
+  "rollback_trigger": "Any protected regression or stale bound evidence.",
+  "source_clause_hashes": [
+    {
+      "sha256": "e3ceae65cff6c6e8d9a21db13ad9d0bf49cf375032bf0ea33d8fa917c6f9d838",
+      "source": "ssot/engos-design-frame-from-vague.md",
+      "text": "frame-only use is also supported without requiring a second user workflow."
+    },
+    {
+      "sha256": "7cec8b40125cae6987aecb8d58f910f283e33540c5c713d4567b2e1fa10ed5d6",
+      "source": "ssot/engos-design-frame-from-vague.md",
+      "text": "Use for a rough complaint, a mechanism presented as a problem, or framing-only"
+    },
+    {
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "source": "ssot/engos-design-frame-from-vague.md",
+      "text": "## Required Inputs"
+    },
+    {
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "source": "ssot/engos-design-frame-from-vague.md",
+      "text": "## Required Output"
+    },
+    {
+      "sha256": "08cb865841aa95e69eda53b954ec052545aef0dfac2d1d73a5ef6609ca6cc3c1",
+      "source": "ssot/engos-design-frame-from-vague.md",
+      "text": "may return an unaccepted frame, never a fabricated acceptance."
+    },
+    {
+      "sha256": "f6f7e8bba51c64270723e9fc07b4d40e4ac6a6d06b343b24fbf68462bd7ef2bf",
+      "source": "ssot/engos-design-frame-from-vague.md",
+      "text": "root, never by a machine-specific or guessed relative package path."
+    },
+    {
+      "sha256": "a959eeecd57daa2e9ab01336e402f0eeac3cf810fd5b26c35a51e0b489caf097",
+      "source": "ssot/engos-design-frame-from-vague.md",
+      "text": "Human authority must confirm investment and scope decisions; job titles or"
+    },
+    {
+      "sha256": "f822c3d3b58b3b6b7980ee50cff25d139beab4d6f09c7c27cb684bd801fafa27",
+      "source": "ssot/engos-design-frame-from-vague.md",
+      "text": "relayed agreement alone do not establish authority or technical observation."
+    },
+    {
+      "sha256": "caa14cc6d618da47cda09a81218497590441824f4e60f4b5b72874536a692f0b",
+      "source": "ssot/engos-design-frame-from-vague.md",
+      "text": "- Do not manufacture facts, risks, owners, agreement, evidence or approvals. Do not"
+    },
+    {
+      "sha256": "4d220a78c9c85342417e01f8b2877a862b98646a66ce6007f3f417e1dbcaa0c8",
+      "source": "ssot/engos-design-frame-from-vague.md",
+      "text": "shared contracts. Only a current accepted snapshot may supply resume state."
+    },
+    {
+      "sha256": "8beedaf8a22f57458144b4b91bbd925e5470a05f2eccae7a3a1903b2511e59b3",
+      "source": "ssot/engos-design-frame-from-vague.md",
+      "text": "small teammate card. Keep `owner_unassigned` until confirmed; never assign a name"
+    },
+    {
+      "sha256": "2291d87d2f137877a4f15b38267ff16ba800955868edae064a683eacb8dd485b",
+      "source": "ssot/engos-design-frame-from-vague.md",
+      "text": "explicit framed-document profile when rendering is requested. Do not fabricate"
+    },
+    {
+      "sha256": "8d830655a6e515d8e031ed1bd598c96cf256a3ad1f6437d09a055e8201092d34",
+      "source": "ssot/engos-design-frame-from-vague.md",
+      "text": "gate state unavailable; do not create a conductor/runtime solely to report status."
+    },
+    {
+      "sha256": "963852a7c48559c81223a5f0234d53b1e4882b9b7062d1e3dadb1c05a69337fc",
+      "source": "ssot/engos-design-frame-from-vague.md",
+      "text": "Blast radius: frame-only and conductor framing gain clearer representation"
+    },
+    {
+      "sha256": "28032da80042d53f54b77a9f36cba7685cee8a8badfad043d5267ce1ef9322b4",
+      "source": "sources/capability-resources/engos-design-frame-from-vague/routing.md",
+      "text": "Read only `intake` or `frame` and its complete dependency closure. The route is a"
+    },
+    {
+      "sha256": "80aad2d49cc9b15f165f6ebafabb5dc8c18f8569b63572ea93a28667e15f8e04",
+      "source": "sources/capability-resources/engos-design-frame-from-vague/routing.md",
+      "text": "the current bound originals and state; do not restart the interview."
+    },
+    {
+      "sha256": "0108945eecfaa84fa4b610a62a5c27a0e2ea9142c831e9cb9a74f331508e84f7",
+      "source": "sources/capability-resources/engos-design-frame-from-vague/routing.md",
+      "text": "its `dispatch.md`, `questions.md` and `decisions.md`; load `human-evidence.md` only"
+    },
+    {
+      "sha256": "f4c7c6b02f92c5273ddd40680c8358e7b7a9f1163c3651398e4b0a0e48d3443a",
+      "source": "sources/capability-resources/engos-design-frame-from-vague/routing.md",
+      "text": "when a teammate/evidence request is needed. Read all required dependencies of those"
+    },
+    {
+      "sha256": "09f364a03ce9a25386b9ef936cdc90896e9f4e4d67ac9b8479e510b89709724b",
+      "source": "sources/capability-resources/engos-design-frame-from-vague/routing.md",
+      "text": "resources. Gate predicates belong there. A missing required package routes to the"
+    },
+    {
+      "sha256": "78e7b5f5aff0fbc75455244f10c83764b67f23b96234292c5e4a3eab88c5c6c0",
+      "source": "sources/capability-resources/engos-design-frame-from-vague/templates.md",
+      "text": "question/uncertainty IDs. Never fill placeholders with invented answers."
+    },
+    {
+      "sha256": "39fe3d732ad190716ae724d2456347b9df3879ec15fd045cc9f6c30fa3de53df",
+      "source": "sources/capability-resources/engos-design-frame-from-vague/templates.md",
+      "text": "- Assumed: attributed interpretations to verify, never silently promoted to facts."
+    },
+    {
+      "sha256": "9e7db12758593a53caec0cc7fd4a7203dccc2914f1f4c2f36febf24a77ce3f91",
+      "source": "sources/capability-resources/engos-design-frame-from-vague/templates.md",
+      "text": "Frame-only completion after actual G1 supplies the frame and open research needs."
+    },
+    {
+      "sha256": "f28d927dae7ebe13b7582479a7da85c2643140d0f0b51db512590a6f0043fbc8",
+      "source": "sources/capability-resources/engos-design-frame-from-vague/templates.md",
+      "text": "Shaped-only file is required merely for presentation."
+    },
+    {
+      "sha256": "3150b93119c3767f75ab3d404b94ecf84fb32f30fa9b49647909e60f8ab28aae",
+      "source": "sources/capability-resources/engos-design-frame-from-vague/stages/intake.md",
+      "text": "> coverage gaps, candidate questions/events and artifacts for G0 review. Do not"
+    },
+    {
+      "sha256": "ada4a553d6fc4b05763e87806c36ff3a7db8792e240512a038cb185f09c76951",
+      "source": "sources/capability-resources/engos-design-frame-from-vague/stages/frame.md",
+      "text": "> and scope authority. Keep missing decisions pending. Ask only consequential"
+    },
+    {
+      "sha256": "2d3afd1575ec85849aab49eccd4484aefa95c1c100e714fcb070d0b3a7a98430",
+      "source": "sources/capability-resources/engos-design-frame-from-vague/stages/frame.md",
+      "text": "> exact blockers and G1 review request. Do not accept state, solve the architecture"
+    },
+    {
+      "sha256": "f8c9c85176d260717db3890223ecf15aac866d8f1880427d8d5d72ddd5560603",
+      "source": "sources/capability-resources/engos-design-frame-from-vague/stages/frame.md",
+      "text": "hold; never select answers merely to meet a question limit."
+    }
+  ],
+  "review_status": "draft"
+}

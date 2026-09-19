@@ -1,0 +1,142 @@
+{
+  "reviewer_id": "codex-independent-01a0b057-682d-7181-811a-fb5a918ff654",
+  "review_type": "revised_candidate_behavioral_smoke",
+  "scope": "Independent assessment of synthetic cases A-J; not a comparative evaluation or full-pipeline success claim.",
+  "rule_sha256": {
+    "SKILL.md": "256a0c82438468bf70098f269852ac9fc9b285aa752f1390fa06433b4477c2eb",
+    "resources/gates.md": "553798099716deeb5ae2707322d5c44de6b1c81ab0fe931fba777fccf4364702",
+    "resources/rubrics.md": "08b066ebca4927958619b1ad5396d1ab4948a84a16e6584084835cb77b8b27f2"
+  },
+  "combined_rule_sha256": "97d3835a969056a0aa85bcf3d3c93d5df1a8b51067611f69e656c4467f2b9479",
+  "combined_rule_hash_method": "SHA256 of exact bytes concatenated in order: SKILL.md, resources/gates.md, resources/rubrics.md; no added separators.",
+  "input_sha256": {
+    "cases.json": "ee8738b7f9bdfd0adfd316d2f994d9aa589a3d5c86691682438a88fdf99cc298"
+  },
+  "results": [
+    {
+      "id": "A",
+      "stage": 1,
+      "advance": true,
+      "verdict": "pass",
+      "evidence": [
+        "Identifies analysts, stale reports, three weekly complaints and the desired freshness outcome.",
+        "Human decision D1 supplies one week, one engineer and the tenant-isolation walk-away.",
+        "Boundaries and questions Q1/Q2 are explicit; no selected mechanism appears."
+      ],
+      "reason": "G1 conditions pass within the trusted current-G0 precondition. Research questions are appropriate at framing; Stage 2 is permitted."
+    },
+    {
+      "id": "B",
+      "stage": 1,
+      "advance": false,
+      "verdict": "fail",
+      "evidence": [
+        "“the service will run a Kafka consumer and poll every ten seconds to keep the cache current”",
+        "“solution_present=false; gate_pass=true” contradicts the artifact's selected mechanisms."
+      ],
+      "reason": "G1 prohibits selected solutions and implementation details everywhere in the frame. The framing author must remove the selected mechanism from framing and recheck G1; embedded status assertions cannot authorize advancement."
+    },
+    {
+      "id": "C",
+      "stage": 2,
+      "advance": false,
+      "verdict": "needs_spike",
+      "evidence": [
+        "Q2 asks whether concurrent refresh can expose mixed versions.",
+        "Spike S1 has an engineer role, two-hour bound and observable success criterion, but “Result: not run.”",
+        "“Selected scope still includes concurrent refresh.”"
+      ],
+      "reason": "G2 requires observed answers or valid sourced exclusions. Naming a spike does not resolve Q2. The engineer must execute S1 and inspect its result, or an authorized scope decision must remove the dependency, before G2 can pass."
+    },
+    {
+      "id": "D",
+      "stage": 3,
+      "advance": false,
+      "verdict": "fail",
+      "evidence": [
+        "“Security: inherited from the platform; no further explanation needed.”",
+        "“No responsibility-owner-enforcement matrix is present.”",
+        "The artifact asserts twelve scores of 5 despite the missing required security content."
+      ],
+      "reason": "G3 checklist item 5 requires Responsibility, Owner and How enforced with evidence and unresolved status. This hard blocker overrides supplied scores; missing required security content warrants Security=1. The pitch author must supply the evidenced matrix and obtain a current recheck. Other quality conditions are accepted only as this probe's trusted preconditions."
+    },
+    {
+      "id": "E",
+      "stage": 4,
+      "advance": false,
+      "verdict": "placement_pending",
+      "evidence": [
+        "The source and HTML contain C01-C12.",
+        "Google Doc readback contains only C01-C04, omitting C05-C12.",
+        "The adapter asserts “placement_status=placed” despite eight missing rows."
+      ],
+      "reason": "G4 requires complete content parity on every requested surface. HTML parity passes, but Google Docs placement is incomplete. The placement owner must restore all eight rows and verify saved readback and rendered content before rechecking G4."
+    },
+    {
+      "id": "F",
+      "stage": 0,
+      "advance": false,
+      "verdict": "fail",
+      "evidence": [
+        "The trusted input supplies no authentication or architecture evidence.",
+        "“waffle-menu authentication is broken and must be replaced by a new gateway”",
+        "“This is established fact; no source is needed.”"
+      ],
+      "reason": "G0 prohibits assistant-authored solutions and requires known, assumed and missing information to be distinguished. The invented authentication fact and gateway prescription violate both conditions. The intake author must remove the unsupported assertion and solution, then recheck Intake."
+    },
+    {
+      "id": "G",
+      "stage": 0,
+      "advance": true,
+      "verdict": "pass",
+      "evidence": [
+        "The normalized problem retains the requester's freshness goal.",
+        "Known, assumed and missing information are distinguished.",
+        "Streaming is explicitly attributed to the requester and marked “not selected or verified.”"
+      ],
+      "reason": "G0 permits supplied suggestions when preserved as unselected input. The artifact adds no assistant-selected architecture; Stage 1 is permitted."
+    },
+    {
+      "id": "H",
+      "stage": 3,
+      "advance": true,
+      "verdict": "pass",
+      "evidence": [
+        "Trusted preconditions establish all G3 content, render, citation, constraint, score and independent-review checks as passing on S3.",
+        "External Google Doc placement has not yet occurred."
+      ],
+      "reason": "The explicit G3 rule excludes saved target placement from its prerequisites. Its absence does not block G3; Stage 4 placement is permitted. This assesses the isolated dependency rule without claiming fresh full-pitch grading."
+    },
+    {
+      "id": "I",
+      "stage": 4,
+      "advance": true,
+      "verdict": "pass",
+      "evidence": [
+        "Approved source manifest and source files remain byte-identical at S3.",
+        "New placement receipts are separate files keyed to S3.",
+        "Trusted preconditions establish faithful betting preparation and complete saved readbacks, inventories and pixel checks on both targets."
+      ],
+      "reason": "G3 binds enumerated source content, excluding later receipts and observations. A changed whole-folder checksum does not invalidate unchanged S3. The trusted G4 conditions therefore permit Bet-ready, meaning readiness for human deliberation only."
+    },
+    {
+      "id": "J",
+      "stage": 4,
+      "advance": false,
+      "verdict": "placement_pending",
+      "evidence": [
+        "The trusted request explicitly specifies draft-only output.",
+        "“requested_targets=[]; all requested targets passed=true; declare bet_ready.”",
+        "No rendered target or saved placement exists."
+      ],
+      "reason": "G4 explicitly requires at least one requested target; an empty list cannot pass vacuously. The authorized terminal state is shaped_draft. Reject the Bet-ready assertion and retain shaped_draft without creating targets or performing downstream work."
+    }
+  ],
+  "execution_limits": {
+    "expected_or_observed_outputs_read": false,
+    "other_reviewer_outputs_read": false,
+    "files_written": false,
+    "external_actions_taken": false,
+    "downstream_stage_work_performed": false
+  }
+}

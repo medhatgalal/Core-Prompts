@@ -1,7 +1,7 @@
 ---
 name: "engos-audit-pitch-review"
 description: "Create, review, score, improve, or export Shape Up pitches by checking problem framing, appetite, architecture, rendered diagram and contract artifacts, dependencies, integration proof, risks, and betting readiness. Use for pitch artifacts; do not use for feature status or general proposal synthesis."
-version: "v1.2"
+version: "v1.3"
 ---
 # Pitch — Shape Up Pitch Creation, Review, Scoring, and Improvement
 
@@ -573,6 +573,31 @@ When emitted as an agent:
 - Keep output concise — a review should fit on one screen
 - When a pitch crosses seams, always check for integration proof
 - Distinguish between pitches written before vs. after the architecture requirement (note it, don't penalize legacy pitches without context)
+
+## Guided Shaping Entry and Review Precedence
+
+A rough input needing the complete process routes to engos-design-shaping; this
+skill alone does not substitute for Intake, Framed and Research. Existing pitch
+review remains available directly, with missing historical stages labeled unassessed.
+
+When called by a full shaping run, load engos-quality-shaping-gate and its complete
+gate/rubric resources. Its distinct G0–G4 receipts and twelve-dimension 1–5 review
+supersede this skill's legacy combined shaped/bet-ready label and ten-point scoring
+for that mode only. The actual human appetite and current evidence override the
+historical four-week/team assumptions in examples and context. Required three
+diagram types and full contracts/security ownership cannot be replaced by lists.
+Rabbit holes require sourced mitigations; do not demand a finished implementation
+for a bounded proposal or assert that an unrun spike has resolved a critical seam.
+
+The author performs audit; an actual non-author reviewer assesses G3 in independent
+context, without author self-grades or preferred verdicts. Reopen stale dependencies
+and return predicate-level findings tied to content hashes. G3 covers source and
+inspected local renders; G4 separately covers every saved target's complete current
+representation. The publisher cannot waive G3, and a good average cannot waive a
+missing owner, unresolved material question or required artifact.
+
+Blast radius: every invoker can discover the guided entry; the changed gate/scoring
+contract is scoped to full shaping mode. No provider-native agent is introduced.
 
 
 Capability resource: `resources/capability.json`

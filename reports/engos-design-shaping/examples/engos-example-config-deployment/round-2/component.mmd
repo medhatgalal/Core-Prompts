@@ -1,0 +1,25 @@
+%% D01 caption: Optional cost section within existing deployment boundaries.
+%% Identity: engos-example-config-deployment/input.md plus C2-C4.
+%% Evidence: input.md:16-33, round-two-clarifications.md:38-62.
+%% Exact team palette: importer primary, exporter internal, admin client, transaction security, store data, analysis async.
+%% Dashed edges are proposed cost participation. Role colors do not introduce new services or ownership.
+%% Omits methods and locking internals. No results, transaction data or new security service.
+%% review_pending / render_pending. Controller must render and inspect this source revision.
+%%{init: {"theme":"base","themeVariables":{"fontFamily":"Arial","fontSize":"14px","lineColor":"#1a3e7a"}}}%%
+flowchart LR
+  subgraph Source["Source environment"]
+    S[(CostConfigStore)]:::data -->|C01 truthful read| E[PackageExporter]:::internal
+  end
+  subgraph Target["Target environment"]
+    I[PackageImporter]:::primary -->|C03-C05 validation and authority| T[Deployment transaction]:::security
+    T -.->|C06 commit comparison and atomic costs| C[(CostConfigStore)]:::data
+    C -->|C07 next normal run| R[RunningAnalysis]:::async
+  end
+  E -.->|C02 existing encrypted channel| I
+  A[Target admin]:::client -->|explicit force decision| I
+  classDef primary fill:#326ce5,stroke:#1a3e7a,color:#ffffff
+  classDef internal fill:#4fc3f7,stroke:#0277bd,color:#01579b
+  classDef client fill:#e3f2fd,stroke:#1565c0,color:#0d47a1
+  classDef data fill:#e8f5e9,stroke:#2e7d32,color:#1b5e20
+  classDef security fill:#fce4ec,stroke:#c62828,color:#b71c1c
+  classDef async fill:#fff3e0,stroke:#e65100,color:#bf360c

@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-audit-pitch-review",
-  "ssot_sha256": "ca6ddabc14caee2cf1bf3a3f47fcc7971cff27830a4027471e25a048b6ad6bd3",
+  "ssot_sha256": "9c3b03b32fb6c493edcd09b462ea9728a69485ad6361b5260e425f22e8e8f2f9",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -198,7 +198,8 @@
     "engos-audit-pitch-review:L465:e65ea8fc2cdb",
     "engos-audit-pitch-review:L528:2cb8c82423bb",
     "engos-audit-pitch-review:L549:3f409f81bf49",
-    "engos-audit-pitch-review:L558:8862702a682e"
+    "engos-audit-pitch-review:L558:8862702a682e",
+    "engos-audit-pitch-review:L584:2fa57cd93caf"
   ],
   "resources": [
     "- All contracts exist and work \u2192 \"Integration proof is satisfied by reference. No spike needed.\"",
@@ -550,6 +551,46 @@
       "text": "- **Forbidden:** Write directly to the delivery tracker spreadsheet. Change pitch priority or goal mapping without user approval. Approve pitches for betting (that's leadership's call).",
       "kind": "invariant",
       "mapped_to": []
+    },
+    {
+      "id": "engos-audit-pitch-review:L581:7c1abbd4f7b2",
+      "heading": "Guided Shaping Entry and Review Precedence",
+      "source": "ssot/engos-audit-pitch-review.md",
+      "source_line": 590,
+      "sha256": "7c1abbd4f7b26cd9e35f9516a7f552784c20e9973bbad8138ba72805958bbe68",
+      "text": "for that mode only. The actual human appetite and current evidence override the",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-audit-pitch-review:L582:95f76c66d454",
+      "heading": "Guided Shaping Entry and Review Precedence",
+      "source": "ssot/engos-audit-pitch-review.md",
+      "source_line": 591,
+      "sha256": "95f76c66d454e7435eee0d91799935db050d0b1c6c57c0f462b43535949d7913",
+      "text": "historical four-week/team assumptions in examples and context. Required three",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-audit-pitch-review:L584:2fa57cd93caf",
+      "heading": "Guided Shaping Entry and Review Precedence",
+      "source": "ssot/engos-audit-pitch-review.md",
+      "source_line": 593,
+      "sha256": "2fa57cd93caf9c46329210af42fd6a35952cab6a209ee527aff49d778a356880",
+      "text": "Rabbit holes require sourced mitigations; do not demand a finished implementation",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-audit-pitch-review:L592:99b3fadaa7eb",
+      "heading": "Guided Shaping Entry and Review Precedence",
+      "source": "ssot/engos-audit-pitch-review.md",
+      "source_line": 601,
+      "sha256": "99b3fadaa7eb56b501767aa23138306659308fe3f00d1d8bb8c16dd040e75506",
+      "text": "missing owner, unresolved material question or required artifact.",
+      "kind": "invariant",
+      "mapped_to": []
     }
   ],
   "risk_tiers": {
@@ -560,7 +601,7 @@
   "source_references": [
     {
       "path": "ssot/engos-audit-pitch-review.md",
-      "sha256": "ca6ddabc14caee2cf1bf3a3f47fcc7971cff27830a4027471e25a048b6ad6bd3"
+      "sha256": "9c3b03b32fb6c493edcd09b462ea9728a69485ad6361b5260e425f22e8e8f2f9"
     }
   ],
   "known_ambiguities": [],
@@ -573,7 +614,7 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 34,
+    "total": 38,
     "mapped": 0,
     "waived": 0
   },

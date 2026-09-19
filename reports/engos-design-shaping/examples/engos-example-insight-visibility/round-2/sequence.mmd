@@ -1,0 +1,33 @@
+%% D2 Caption: Proposed daily publication and existing role gated access, with explicit failure behavior.
+%% Source identity: engos-example-insight-visibility/input.md plus round-two-clarifications.md I1/I2.
+%% Evidence: input.md:9-12 and round-two-clarifications.md:27-34.
+%% Legend: primary service blue, internal platform cyan, client pale blue, async orange, authorization pink.
+%% Style: exact team palette from diagram-style.md, source-only conformance pending controller pixels.
+%% Omits callable names and scheduling internals. Messages describe contracts, not executed methods. render_pending.
+%%{init: {"theme":"base","themeVariables":{"actorBkg":"#326ce5","actorBorder":"#1a3e7a","actorTextColor":"#ffffff","noteBkgColor":"#fff3e0","noteBorderColor":"#e65100","noteTextColor":"#bf360c","labelBoxBkgColor":"#fce4ec","labelBoxBorderColor":"#c62828","labelTextColor":"#b71c1c","loopTextColor":"#b71c1c","signalColor":"#1a3e7a","signalTextColor":"#0d47a1"},"themeCSS":"rect.actor[name=\"IS\"]{fill:#326ce5!important;stroke:#1a3e7a!important;} rect.actor[name=\"IS\"] ~ text.actor,rect.actor[name=\"IS\"] ~ text.actor tspan{fill:#ffffff!important;}rect.actor[name=\"MP\"]{fill:#4fc3f7!important;stroke:#0277bd!important;} rect.actor[name=\"MP\"] ~ text.actor,rect.actor[name=\"MP\"] ~ text.actor tspan{fill:#01579b!important;}rect.actor[name=\"PM\"]{fill:#e3f2fd!important;stroke:#1565c0!important;} rect.actor[name=\"PM\"] ~ text.actor,rect.actor[name=\"PM\"] ~ text.actor tspan{fill:#0d47a1!important;}"}}%%
+sequenceDiagram
+  participant IS as InsightService
+  participant MP as MetricsPlatform
+  participant PM as Product managers
+  rect rgb(255,243,224)
+    Note over IS: Proposed aggregate read<br/>With existing credential
+    alt Read denied or S1 projection invalid
+      Note over IS: Proposed stop<br/>Without publication
+    else Permitted S1 record
+      IS->>MP: Proposed submission to existing daily intake
+      alt Accepted
+        Note over MP: Existing replacement<br/>Same account and UTC day
+        MP-->>IS: Intake result
+      else Failed or unconfirmed
+        Note over IS: Proposed incomplete state<br/>Bounded reconciliation
+      end
+    end
+  end
+  PM->>MP: Existing reporting access
+  rect rgb(252,228,236)
+    alt Permitted role
+      MP-->>PM: Accepted daily counts
+    else Role denied
+      MP-->>PM: No records disclosed
+    end
+  end

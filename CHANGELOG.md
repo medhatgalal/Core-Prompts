@@ -1,3 +1,30 @@
+## v1.16.0 - 2026-09-17
+
+Source version prepared for guided shaping. Publication, installation and complete
+pilot acceptance are separate; this entry does not claim a released or deployed bundle.
+
+- Add a front-page guided-shaping starter, private-project examples and a reviewed
+  nine-skill setup walkthrough. Verify all six core dependencies before skipping
+  setup; keep optional advisors, mainline merge, release and installation distinct.
+
+- Add bounded repository-fit investigation and explicit reuse/non-reuse decisions
+  to guided shaping, with conditional architecture/code-health/testing advice and
+  versioned Research/Shaped predicates. Existing runs keep their pinned history;
+  no specialist installation, forced reuse or automatic refactoring is implied.
+
+- Add a guided Shape Up entry and framing/gate capabilities with bounded role
+  contexts, product/engineering question assistance, human-led research and
+  explicit handoff/recovery contracts. Native agent registrations are unchanged.
+- Add source-bound local pitch exports and stage-state validation. Mechanical
+  checks, independent semantic review, real-user pilot and saved-target evidence
+  remain separate. See the guided Shape Up runbook for current validation limits.
+- Extend existing artifact and pitch-review helpers for full shaping without
+  removing standalone artifact placement or existing-pitch review.
+- Add reference-oriented presentation profiles with source-bound SVG/PNG and
+  field-preserving table detail, plus controller-owned progress observations and
+  JSON/Markdown/HTML status views. Visual acceptance, real-user usability and
+  saved external-target verification remain separate from local source checks.
+
 ## v1.15.2 - 2026-09-19
 
 - SuperCharge v5.1 makes `/catchup` discoverable in the skill description, preserves its exact table/emoji/validation contract, and fails closed when route resources are missing or stale instead of falling back to generic catch-up output. Added route-loader and cross-surface resource parity regression checks for all resource-backed skills.

@@ -1,0 +1,42 @@
+{
+  "overall_score": 83,
+  "critical_escalations": [],
+  "step_by_step_critique": [
+    {
+      "step": "R1 — Reference-matched presentation",
+      "critique": "The plan correctly replaces structural proxies with rendered comparison, but 'reference-quality' remains subjective until step A produces its acceptance sheet. Reference typography and accessibility may also conflict.",
+      "actionable_recommendation": "Before implementation, freeze identified reference versions, representative fixtures, viewport and print dimensions, readable text thresholds, contrast checks, and permitted deviations. Record which criteria are mandatory and who resolves reference-versus-accessibility conflicts."
+    },
+    {
+      "step": "R2 — Durable SVG/PNG and figure placement",
+      "critique": "html_document currently appends all diagrams after document sections, fetches Mermaid from a CDN, and forces intrinsic SVG width. The proposed embedded, offline-capable presentation therefore requires explicit placement and asset contracts, beyond styling changes.",
+      "actionable_recommendation": "Define stable diagram anchors in document blocks and an asset manifest binding source hash, renderer version, SVG/PNG hashes, dimensions, captions and alternatives. Verify offline rendering, full-size access, readable labels and explicit renderer failure. Specify SVG sanitization and permitted resource/link schemes."
+    },
+    {
+      "step": "R3 — Readable tables without semantic loss",
+      "critique": "The exporter gives every table full width with overflow-wrap:anywhere, supporting the reported fragmentation risk. Moving detail into supporting sections is sensible, but stable row IDs alone do not prove complete, navigable field preservation.",
+      "actionable_recommendation": "Define each primary/supporting table mapping with every required field accounted for. Verify row and field equivalence, working cross-links, repeated print headers, long-cell pagination and native editability in saved Docs. Include the actual 13-column failure fixture."
+    },
+    {
+      "step": "R4 — Trustworthy stage, activity and ownership",
+      "critique": "The inspected status method exposes the latest accepted stage, orders and deliveries, but does not define the proposed friendly state vocabulary. 'Consistent' is returned even when drift exists. Without a mapping and precedence rules, consumers could disagree or show misleading green states.",
+      "actionable_recommendation": "Specify one deterministic projection table mapping gate IDs, receipts, orders and observations to displayed states. Define precedence for stale, blocked and review-pending conditions; actor assignment provenance; and handling of unknown/corrupt state. Keep controller acceptance distinct from observed worker activity, with all views consuming the same projection."
+    },
+    {
+      "step": "R5 — Freshness, reopening and requested stopping points",
+      "critique": "Content-versus-delivery separation is strong. However, 'exactly applicable' invalidation is not yet a dependency rule, and the inspected delivery check hashes local evidence rather than establishing current remote target state. The fixed five-stage display also needs semantics for intentionally shorter flows.",
+      "actionable_recommendation": "Define invalidation dependencies for content, presentation, policy and each target. Separate local receipt integrity from last remote readback. For a framing-only request, show completion at the requested stop and later gates as outside requested scope. Test that a target-only failure preserves content acceptance while a changed contract invalidates dependent reviews."
+    },
+    {
+      "step": "R6 — Execution and verification evidence",
+      "critique": "The plan appropriately distinguishes review, simulation, visual acceptance and delivery. It lacks the contract module's explicit obligation-to-source/evidence mapping, and step D could be read as postponing canonical resource changes until after implementation.",
+      "actionable_recommendation": "Add an R1–R6 evidence matrix with source, acceptance check, responsible verifier and required receipt. Make B/C edits canonical from the outset and regeneration dependent on those edits. Bind screenshots, assets, tests and review results to the same candidate revision; record failed checks and recovery, not only successful outputs."
+    },
+    {
+      "step": "Publication scope and authority",
+      "critique": "No unsafe publication is authorized: the plan explicitly separates external targets and protects private references. The remaining ambiguity is how representative Docs verification proceeds when no target has write authority.",
+      "actionable_recommendation": "Make target-specific validation conditional on an explicitly authorized private destination. Otherwise report Docs placement as unverified while completing local checks. Keep private captures outside source-control publication paths and publish only sanitized fixtures and evidence summaries."
+    }
+  ],
+  "intent_alignment_summary": "Strong plan coherence: it addresses readable documents and understandable progress while preserving gate authority and separating content, presentation, placement and human decisions. Resolve projection semantics, dependency rules and concrete visual acceptance before implementation. This assessment is based only on the specified plan, resources and implementation excerpts; it establishes no behavioral, rendered-visual or publication proof."
+}
