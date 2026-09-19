@@ -1,5 +1,24 @@
 {
   "schema_version": "CapabilityDescriptorContract.v1",
+  "routing_fitness_contract": {
+    "schema_version": "RoutingFitness.v1",
+    "location": "job_contract.routing_fitness",
+    "required_fields": [
+      "schema_version",
+      "mapping_status",
+      "task_phases",
+      "activation",
+      "risk_authority_ceiling",
+      "negative_examples",
+      "conditional_companions",
+      "pack_hints",
+      "provenance",
+      "unresolved_fields"
+    ],
+    "advisory_only": true,
+    "behavioral_claim": "none",
+    "legacy_policy": "accept missing fitness; never imply reviewed or behavioral readiness"
+  },
   "required_top_level": [
     "benchmark_sources",
     "consumption_hints",

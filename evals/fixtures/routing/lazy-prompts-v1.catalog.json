@@ -1,0 +1,181 @@
+{
+  "schema": "LazyRoutingCatalog.v1",
+  "source_commit": "6b0a5290cbcb195ba8de950df25dbc1cdbc1f3e6",
+  "catalog_scope": "core_prompts_29_only_not_global_native_catalog",
+  "skills": {
+    "engos-audit-code-health": {
+      "description": "Perform a read-only structural audit of a brownfield codebase, measuring hotspots, coupling, god objects, dead-code candidates, prior findings, and drift. Use for repository health; do not use for feature completeness or diff review.",
+      "ssot_sha256": "d21a66e3ee546ae751e92635b5d4802ebc1418fc1cf1f439617bac6608a61756",
+      "native_skill_path": ".codex/skills/engos-audit-code-health/SKILL.md",
+      "native_skill_sha256": "54539eb1366a12e585e6ddaf2241a272abe89120a6bd891f4ca3cd5c12d3b962"
+    },
+    "engos-audit-engineering-progress": {
+      "description": "Generate a Git-derived engineering progress dashboard for one repository or a configured fleet, including activity, churn, authors, and releases. Use for periodic engineering activity audits; do not use for Jira story points, feature completeness, code review, or code-quality approval.",
+      "ssot_sha256": "c89b815c182161cde0f17ea686e5ffb9c12d405dceb9ccffbdb90c5e63023b29",
+      "native_skill_path": ".codex/skills/engos-audit-engineering-progress/SKILL.md",
+      "native_skill_sha256": "f340dcb2d67ac7b4c6facbd1be9404361d8367ce74353d4d7825ddea63d9cb93"
+    },
+    "engos-audit-feature-status": {
+      "description": "Audit a feature\u2019s stated scope against code, tests, configuration, specifications, tickets, and Git history, then report completion states, drift, gaps, and shipping priorities. Use for feature readiness; do not use for repository-wide health or Git-only activity reports.",
+      "ssot_sha256": "75b69d00d4df4277328d616d0c3daf3fbf4b5715d2db01c244097c3805cca9ac",
+      "native_skill_path": ".codex/skills/engos-audit-feature-status/SKILL.md",
+      "native_skill_sha256": "2ac96a54d717e9784fe6cc6db23fb4170367630b97f4ff503e1e6baffc8712e3"
+    },
+    "engos-audit-opex-incident-review": {
+      "description": "Generate an evidence-backed Daily OpEx Digest and optional incident drill-downs from current Jira incidents, prior snapshots, DPAs, and postmortems. Use for decisions, owner accountability, daily progress, stalled work, estate patterns, SLA tracking, Five Whys, and executive meeting preparation.",
+      "ssot_sha256": "2f256da3a7ca86fd6e6ea227c1d3e6a0abe37d19fe6a118b8f473b75e65d5530",
+      "native_skill_path": ".codex/skills/engos-audit-opex-incident-review/SKILL.md",
+      "native_skill_sha256": "62b565aa05d8c957fa8835c36f587f732a4ff8a92fb545e182ce916cc6c2f6eb"
+    },
+    "engos-audit-pitch-review": {
+      "description": "Create, review, score, improve, or export Shape Up pitches by checking problem framing, appetite, architecture, rendered diagram and contract artifacts, dependencies, integration proof, risks, and betting readiness. Use for pitch artifacts; do not use for feature status or general proposal synthesis.",
+      "ssot_sha256": "ca6ddabc14caee2cf1bf3a3f47fcc7971cff27830a4027471e25a048b6ad6bd3",
+      "native_skill_path": ".codex/skills/engos-audit-pitch-review/SKILL.md",
+      "native_skill_sha256": "6e284b7c8db5f8a563f3768b33f35897683d34d8faf8bd4126affa39d57e447b"
+    },
+    "engos-audit-weekly-intel": {
+      "description": "Collect and fact-check project information from issue trackers, Git, code review, Chat, and documents, then produce one executive report with technical appendices and source confidence. Use for multi-source periodic intelligence; do not use for Git-only reports, inbox triage, or feature audits.",
+      "ssot_sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36",
+      "native_skill_path": ".codex/skills/engos-audit-weekly-intel/SKILL.md",
+      "native_skill_sha256": "c6f0cdb51f299260cc465d1cfe5333327f90b8ba88a5d4ff6a1e8be0accbf087"
+    },
+    "engos-browser-demo-recorder": {
+      "description": "Plan and generate a complete Playwright browser walkthrough with authentication, realistic pacing, and video capture. Use when the goal is a shareable product demo; do not use for test coverage or CI.",
+      "ssot_sha256": "eb8307c6b2ae6612b6654c4818a7acaf0651980cd011f39f7209b73177e1523b",
+      "native_skill_path": ".codex/skills/engos-browser-demo-recorder/SKILL.md",
+      "native_skill_sha256": "24c79bd0ac5e7768a72776ca5fbb25743c838c32be9f7c447562b9af3a60f274"
+    },
+    "engos-content-dynamic-html-presentations": {
+      "description": "Create a self-contained HTML presentation and, when requested, validated PNG or image-only PPTX exports from a topic, outline, or source material. Use for visual narrative deliverables; do not use for browser demos or plain reports.",
+      "ssot_sha256": "56639d171dce30f28e9d770e74a7a68ce589e256fa1258e2ab8a744c2ac339d1",
+      "native_skill_path": ".codex/skills/engos-content-dynamic-html-presentations/SKILL.md",
+      "native_skill_sha256": "92adce42bb44c0226abd576c23b4e87e505eb6e461828c76c241be2b6155e2d4"
+    },
+    "engos-delivery-address-code-review": {
+      "description": "Apply selected pull request or merge request feedback with tightly scoped edits, then prepare the fix for re-review. Use only when actionable reviewer comments already exist; use code review for pre-commit or pre-push judgment.",
+      "ssot_sha256": "9c59f7627f761033362ee41eecf733ea866240cde82c06adc88916c53f715935",
+      "native_skill_path": ".codex/skills/engos-delivery-address-code-review/SKILL.md",
+      "native_skill_sha256": "dd7a59d8f20d5e736e5b99a0e91a77b23ca3c52feebff6f5d08445c0aca64151"
+    },
+    "engos-delivery-artifact-embed": {
+      "description": "Place an authored shaping-artifact bundle onto a selected HTML, PR/MR, chat, Google Doc, or wiki surface through explicit adapters. Use Mermaid/Markdown passthrough where native rendering exists and fail loudly with a named human step when a surface cannot prove placement.",
+      "ssot_sha256": "32773e71e5a87bfba82046253c673536c4174e935c7ee20e168bdb8bad2c97ff",
+      "native_skill_path": ".codex/skills/engos-delivery-artifact-embed/SKILL.md",
+      "native_skill_sha256": "97df59d1cffa5898ea19725163c57e0ae8c2537b51c5f35b6b6221383b712f2d"
+    },
+    "engos-delivery-diagram-contract-artifacts": {
+      "description": "Author a surface-agnostic shaped-pitch artifact bundle with Mermaid component, sequence, and data-flow diagrams plus API/contracts and security-owner tables. Use when a shaped solution needs durable visual and contract evidence before review or betting; do not invent component internals or place artifacts on external surfaces.",
+      "ssot_sha256": "3b4f723779b4b9298366efeaf15827173bd06004c28f8e8872b7da93c5fa024e",
+      "native_skill_path": ".codex/skills/engos-delivery-diagram-contract-artifacts/SKILL.md",
+      "native_skill_sha256": "5dfb76c74f4638988865915c92ef0ec9d91ffbabd00d0d88575093aa208dbc77"
+    },
+    "engos-delivery-resolve-conflict": {
+      "description": "Analyze and plan the safe resolution of Git or document conflicts while preserving valuable content, exposing contradictions, and defining verification. Use when an actual merge or content conflict exists; do not use for ordinary proposal disagreement without conflict markers.",
+      "ssot_sha256": "0ccc8d01936c017ade5e033d0370a46d4cb60d9ec68f5232754b7455c3896c8d",
+      "native_skill_path": ".codex/skills/engos-delivery-resolve-conflict/SKILL.md",
+      "native_skill_sha256": "97930235d4c842f311a0960a535a96d835cd5021d830e69bb2f866132105394a"
+    },
+    "engos-design-architecture": {
+      "description": "Design APIs, data models, patterns, or systems with explicit boundaries, trade-offs, failure modes, migration, rollback, and validation. Use for concrete architecture decisions; do not use for prompt hardening or behavioral evaluation.",
+      "ssot_sha256": "5e282148a1bb97269630c29aefceec556330ec8fedbaab5436fa497cee48f216",
+      "native_skill_path": ".codex/skills/engos-design-architecture/SKILL.md",
+      "native_skill_sha256": "b308b52bc6a5d0265cab5b9481191fcc83154b32d6390f9ef02d2e6579bc1ca3"
+    },
+    "engos-design-plan-to-goal": {
+      "description": "Compile a reviewed plan or intent into a host-aware goal, durable specification, and task-specific verifier with explicit trust, drift, stop, and rollback conditions. Use when a bounded long-running goal packet is needed; do not use for ordinary one-step implementation.",
+      "ssot_sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f",
+      "native_skill_path": ".codex/skills/engos-design-plan-to-goal/SKILL.md",
+      "native_skill_sha256": "b42b10aa166842f9d29c27d64d0480eb6766da835bc03a5db77a56b05a631015"
+    },
+    "engos-memory-context-continuity": {
+      "description": "Maintain durable context, todo, and insight state for a multi-file or multi-source investigation that must survive compaction, session changes, branch changes, or worktree removal. Use when analysis must be resumed; do not use for a one-off report or final decision.",
+      "ssot_sha256": "1e3479ad869e1065a5c3fe2d102b0a8cda5b1206507745f1a817c3263f0b928b",
+      "native_skill_path": ".codex/skills/engos-memory-context-continuity/SKILL.md",
+      "native_skill_sha256": "f41ab1dbb502b75626531b31040aad3cf6abd227960bc894e129a272ca276e9d"
+    },
+    "engos-memory-threader": {
+      "description": "Export the current conversation as a faithful transcript or durable handoff, preserving turn order, AI output fidelity, artifacts, and missing-history disclosure. Use for archival or transfer; do not blend export with analysis.",
+      "ssot_sha256": "3980433cb346c43e530fd34e800f530fec5759b98ec955ec27f8ed096f4f191c",
+      "native_skill_path": ".codex/skills/engos-memory-threader/SKILL.md",
+      "native_skill_sha256": "3ecbff1609e220ecbfd5afe8cd92bdd914ec4e6a3d5520f3e630d5096c216177"
+    },
+    "engos-meta-instruction-editor": {
+      "description": "Audit, rewrite, diff, or verify prompts, skills, and agent instructions for clarity while preserving commands, authority, safety boundaries, and behavior. Use when instruction preservation is the central task; do not use for general prose editing.",
+      "ssot_sha256": "b6803835ccaf0663d270653dfd6d5418adc237da079716b98eddf1ea12a8102c",
+      "native_skill_path": ".codex/skills/engos-meta-instruction-editor/SKILL.md",
+      "native_skill_sha256": "f0144508f88f6e3409942a2bdb176b2999fcf149a32875d6dd89d61a50c06d36"
+    },
+    "engos-meta-supercharge": {
+      "description": "Harden a prompt, plan, proposal, or workflow through the smallest useful sequence of simplification, inversion, adversarial critique, contract checks, debate, or grading. Use when the artifact needs stronger reasoning or execution guidance; use behavioral evaluation for proof.",
+      "ssot_sha256": "1d90ae31771a0ca5c11be5b0a1b5d2621d8aafa4b6d7fd445e776c88ed4b9f3b",
+      "native_skill_path": ".codex/skills/engos-meta-supercharge/SKILL.md",
+      "native_skill_sha256": "45876c214125d46e8bc5d8c9b8dae09d1faedac49a0c039ddd36d2d0eea57e3e"
+    },
+    "engos-meta-uac-import": {
+      "description": "Improve skills and agents through Core-Prompts plan, judge, and apply while preserving their surface scope. New agent surfaces require explicit user approval. Use for capability intake and improvement; do not use for ordinary prose editing or deployment.",
+      "ssot_sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6",
+      "native_skill_path": ".codex/skills/engos-meta-uac-import/SKILL.md",
+      "native_skill_sha256": "1981ec8f736030cedd60e11c2cdd63361dc8e72b3c39c74c5206d84519aaa200"
+    },
+    "engos-operations-ic-assistant": {
+      "description": "Guide an Incident Commander through phase tracking, status cadence, artifact checks, escalation prompts, handoff, resolution, and postmortem work without making incident decisions. Use during an active incident or postmortem.",
+      "ssot_sha256": "2d01884b2ef835f3c9b4ab841ef09066d0a27c4fcb9828c093ab5583e4bcebe0",
+      "native_skill_path": ".codex/skills/engos-operations-ic-assistant/SKILL.md",
+      "native_skill_sha256": "7b8a3826ba6506270a86ffeaeaf964ac9efd7e015faff5c8607f7d5da286fa2f"
+    },
+    "engos-optimization-auto-research": {
+      "description": "Run bounded, baseline-controlled experiments to improve prompts, skills, workflows, tools, or code and decide whether a candidate is ready for promotion. Use when better behavior must be measured; do not use for unmeasured brainstorming.",
+      "ssot_sha256": "50515be8f59b2bf3fe33b503dcedeca4b9c7f60e0875fd01771d29a3ced37b52",
+      "native_skill_path": ".codex/skills/engos-optimization-auto-research/SKILL.md",
+      "native_skill_sha256": "74bd3d63a270ed036f66b71b49383d0b0f630184c11af62aff739dd73755a001"
+    },
+    "engos-orchestration-batman": {
+      "description": "Run the explicitly requested, evidence-gated delivery protocol through independent subagents, TDD, blocking reviews, verification, documentation, Git health, and authorized landing. Use for implementation work that requires controller-owned sequencing and evidence.",
+      "ssot_sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec",
+      "native_skill_path": ".codex/skills/engos-orchestration-batman/SKILL.md",
+      "native_skill_sha256": "3a3af73bf581c9311165aad3aec9c3b73ce0684fcd25a2d756e86be9fa7ef664"
+    },
+    "engos-quality-code-review": {
+      "description": "Review a staged change, diff, commit, or branch for correctness, scope, simplicity, lifecycle risk, and merge readiness before commit, push, merge, or release. Use for judgment; do not use to apply reviewer feedback.",
+      "ssot_sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5",
+      "native_skill_path": ".codex/skills/engos-quality-code-review/SKILL.md",
+      "native_skill_sha256": "f4addcd44481dc440627acb5872c685dda4a7be94c40c7235b5b852772608364"
+    },
+    "engos-quality-docs-review": {
+      "description": "Review repository documentation for information architecture, stale commands, broken links, misplaced content, drift, and release hygiene. Use when docs quality or discoverability is the primary concern; do not use for ordinary sentence editing.",
+      "ssot_sha256": "fe55a0b0f3e494ef8812f2e3bf390fb3083a3ae5080640a28fe5909031172e3b",
+      "native_skill_path": ".codex/skills/engos-quality-docs-review/SKILL.md",
+      "native_skill_sha256": "a7c5e16270b6d3b7d6134e30b9fa21482dd61c338aad737cf66ab3313436a72d"
+    },
+    "engos-quality-gitops-review": {
+      "description": "Assess repository hygiene, commit and pull request or merge request readiness, CI, packaging, merge, tag, and release prerequisites across GitHub and GitLab. Use for release or merge gates; do not claim hosted state without current verification.",
+      "ssot_sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146",
+      "native_skill_path": ".codex/skills/engos-quality-gitops-review/SKILL.md",
+      "native_skill_sha256": "e44f6b347bf7ff7b616ce2f6c2598ed72fe31ba4e2b91e9fa4405076354ffde4"
+    },
+    "engos-quality-testing-review": {
+      "description": "Design or generate tests, edge cases, and coverage-gap analysis for a defined behavior without claiming tests were run. Use when test design is the primary deliverable; use GitOps review for release readiness.",
+      "ssot_sha256": "13fe64494de3a09d60ddaad9f6c8824e42b59ff90c456a6a4e0c46018223e71b",
+      "native_skill_path": ".codex/skills/engos-quality-testing-review/SKILL.md",
+      "native_skill_sha256": "4db90293472f89c715895ecb36a1a2133038f7c0a3402cbb4a68bfeb6d2bdfde"
+    },
+    "engos-reconciliation-converge": {
+      "description": "Compare multiple sources, drafts, or proposals, surface conflicts and gaps, and produce one defensible recommendation with explicit trade-offs. Use when competing inputs must converge; do not hide incompatible ideas in a blended summary.",
+      "ssot_sha256": "b4f97657b8645cbac13688d881b251a00ff71c0b7f095c316a933eb9097b37ac",
+      "native_skill_path": ".codex/skills/engos-reconciliation-converge/SKILL.md",
+      "native_skill_sha256": "98e2b710728b14c04176d49bddcf01ebb343de77fec0dabf82f0233dc1816633"
+    },
+    "engos-triage-my-inbox-chat-pulse": {
+      "description": "Triage Gmail and Google Chat into a deterministic attention queue with priority, links, and approved follow-up actions. Use when deciding what communications need attention; triage is read-only and actions require explicit approval.",
+      "ssot_sha256": "0906d36f4878b6713871ab6ffb5524eaf71443d8556acc213f542051388eebd3",
+      "native_skill_path": ".codex/skills/engos-triage-my-inbox-chat-pulse/SKILL.md",
+      "native_skill_sha256": "d1e397f8b8ce136b31034bdc73b9b63bb0156b3ca07834a3ce4f035a6c4bb8d2"
+    },
+    "loopy": {
+      "description": "Discover, find, compare, audit, repair, adapt, craft, run, debrief, and prepare repeatable AI-agent loops for publication. Use when a user asks to analyze code or coding threads for recurring work, find a published loop, interview them to turn a goal into a bounded loop, review a loop for weak checks or unsafe authority, execute a loop with an evidence receipt, learn from completed runs, or validate and submit a loop to Loop Library.",
+      "ssot_sha256": "7874aa30ad4fe322876f2c04b7cee447217311213ce6a835846aff298760f73c",
+      "native_skill_path": ".codex/skills/loopy/SKILL.md",
+      "native_skill_sha256": "970840535f113e40d0a3d1ed379d26ec9052e0e2f05ad0c3185cb1b8e289b303"
+    }
+  }
+}

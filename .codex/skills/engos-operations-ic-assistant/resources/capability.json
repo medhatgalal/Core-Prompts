@@ -494,6 +494,84 @@
       "engos-triage-my-inbox-chat-pulse"
     ],
     "shape": "stateful_specialist",
-    "portfolio_action": "keep"
+    "portfolio_action": "keep",
+    "routing_fitness": {
+      "schema_version": "RoutingFitness.v1",
+      "mapping_status": "source_derived_draft",
+      "task_phases": {
+        "kind": "source_conditions",
+        "clauses": [
+          {
+            "text": "Use this capability when serving as, supporting, or advising an Incident Commander during an active incident, resolution phase, handoff, or postmortem. It provides phase-aware process guidance, checklist tracking, status-update reminders, escalation prompts, and artifact validation without taking command or making incident decisions.",
+            "heading": "Purpose",
+            "source": {
+              "path": "ssot/engos-operations-ic-assistant.md",
+              "start_line": 12,
+              "end_line": 12,
+              "sha256": "2d01884b2ef835f3c9b4ab841ef09066d0a27c4fcb9828c093ab5583e4bcebe0"
+            }
+          }
+        ]
+      },
+      "activation": {
+        "mode": "unknown",
+        "evidence": []
+      },
+      "risk_authority_ceiling": {
+        "grants_authority": false,
+        "clauses": [
+          {
+            "text": "- Allowed: read incident tickets or user-provided incident context, validate process compliance, generate checklists and templates, calculate deadlines, surface reminders, and prompt for escalation confirmation.\n- Forbidden: making Incident Commander decisions, escalating without IC confirmation, modifying tickets or artifacts without explicit instruction, exposing internal runbook details in generic mode, or treating private links as public documentation.\n- Escalation: if the IC is unresponsive, process compliance is dangerous, or customer impact crosses a declared threshold, flag the risk and ask the IC to confirm the next action.",
+            "heading": "Tool Boundaries",
+            "source": {
+              "path": "ssot/engos-operations-ic-assistant.md",
+              "start_line": 69,
+              "end_line": 71,
+              "sha256": "2d01884b2ef835f3c9b4ab841ef09066d0a27c4fcb9828c093ab5583e4bcebe0"
+            }
+          }
+        ]
+      },
+      "negative_examples": {
+        "kind": "source_exclusions_not_synthetic_prompts",
+        "clauses": []
+      },
+      "conditional_companions": [],
+      "pack_hints": {
+        "lead": "engos-operations-ic-assistant",
+        "companions": "only_after_applicable_source_conditions_are_checked",
+        "default_bulk_activation": false
+      },
+      "provenance": {
+        "ssot_path": "ssot/engos-operations-ic-assistant.md",
+        "ssot_sha256": "2d01884b2ef835f3c9b4ab841ef09066d0a27c4fcb9828c093ab5583e4bcebe0",
+        "effective_sha256": "2d01884b2ef835f3c9b4ab841ef09066d0a27c4fcb9828c093ab5583e4bcebe0",
+        "resources": [],
+        "extractor_version": "source-clauses.v1",
+        "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+        "field_sources": {},
+        "unresolved_companion_clauses": [],
+        "curated_fields": [
+          "authority",
+          "main_output",
+          "nearest_neighbors",
+          "not_for",
+          "portfolio_action",
+          "primary_job",
+          "routing_question",
+          "shape",
+          "use_when",
+          "works_on"
+        ],
+        "curated_binding": "preserved_not_independently_revalidated",
+        "mapping_sha256": "aabc7f6b4b282335f9655758a097e8cdb8667e5f464b584b3e76533d6b86199f"
+      },
+      "unresolved_fields": [
+        "task_phase_interpretation",
+        "risk_authority_interpretation",
+        "implicit_activation_eligibility",
+        "negative_examples"
+      ]
+    }
   }
 }

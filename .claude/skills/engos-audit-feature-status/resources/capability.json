@@ -225,6 +225,84 @@
       "engos-audit-pitch-review"
     ],
     "shape": "product_analysis_specialist",
-    "portfolio_action": "keep_and_clarify_boundary"
+    "portfolio_action": "keep_and_clarify_boundary",
+    "routing_fitness": {
+      "schema_version": "RoutingFitness.v1",
+      "mapping_status": "source_derived_draft",
+      "task_phases": {
+        "kind": "source_conditions",
+        "clauses": [
+          {
+            "text": "Present the checklist and ask the developer to confirm or adjust before proceeding. Do not proceed to Phase 2 until confirmed.",
+            "heading": "Workflow",
+            "source": {
+              "path": "ssot/engos-audit-feature-status.md",
+              "start_line": 36,
+              "end_line": 36,
+              "sha256": "75b69d00d4df4277328d616d0c3daf3fbf4b5715d2db01c244097c3805cca9ac"
+            }
+          }
+        ]
+      },
+      "activation": {
+        "mode": "unknown",
+        "evidence": []
+      },
+      "risk_authority_ceiling": {
+        "grants_authority": false,
+        "clauses": [
+          {
+            "text": "- allowed: read source code, tests, config, specs, git history, and any documents the developer provides; produce status reports, gap analyses, and recommendations\n- forbidden: modifying code, running tests, deploying, or making changes without explicit developer approval; guessing scope from code alone when no spec is provided\n- escalation: if the audit reveals architecture concerns, route to `engos-design-architecture`; if it reveals test generation needs, route to `engos-quality-testing-review`; if it reveals docs drift, route to `engos-quality-docs-review`",
+            "heading": "Tool Boundaries",
+            "source": {
+              "path": "ssot/engos-audit-feature-status.md",
+              "start_line": 77,
+              "end_line": 79,
+              "sha256": "75b69d00d4df4277328d616d0c3daf3fbf4b5715d2db01c244097c3805cca9ac"
+            }
+          }
+        ]
+      },
+      "negative_examples": {
+        "kind": "source_exclusions_not_synthetic_prompts",
+        "clauses": []
+      },
+      "conditional_companions": [],
+      "pack_hints": {
+        "lead": "engos-audit-feature-status",
+        "companions": "only_after_applicable_source_conditions_are_checked",
+        "default_bulk_activation": false
+      },
+      "provenance": {
+        "ssot_path": "ssot/engos-audit-feature-status.md",
+        "ssot_sha256": "75b69d00d4df4277328d616d0c3daf3fbf4b5715d2db01c244097c3805cca9ac",
+        "effective_sha256": "75b69d00d4df4277328d616d0c3daf3fbf4b5715d2db01c244097c3805cca9ac",
+        "resources": [],
+        "extractor_version": "source-clauses.v1",
+        "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+        "field_sources": {},
+        "unresolved_companion_clauses": [],
+        "curated_fields": [
+          "authority",
+          "main_output",
+          "nearest_neighbors",
+          "not_for",
+          "portfolio_action",
+          "primary_job",
+          "routing_question",
+          "shape",
+          "use_when",
+          "works_on"
+        ],
+        "curated_binding": "preserved_not_independently_revalidated",
+        "mapping_sha256": "04ee4f41e360228fdb35a80dc87a51fc1b194e69204360e49f63e35e87ba0dbb"
+      },
+      "unresolved_fields": [
+        "task_phase_interpretation",
+        "risk_authority_interpretation",
+        "implicit_activation_eligibility",
+        "negative_examples"
+      ]
+    }
   }
 }

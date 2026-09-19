@@ -442,6 +442,7 @@ def _merge_descriptor_overlay(repo_root: Path, slug: str, manifest: dict[str, ob
         "quality_status",
         "judge_reports",
         "consumption_hints",
+        "job_contract",
         "quality_pass_count",
         "quality_stop_reason",
     ):

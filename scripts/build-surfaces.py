@@ -24,7 +24,8 @@ from intent_pipeline.consumer_shell import (
     resolve_release_baseline,
 )
 from intent_pipeline.skill_jobs import (
-    load_skill_job_map_for_build,
+    build_advisory_job_map,
+    compile_skill_job,
     render_skill_job_map,
 )
 from intent_pipeline.uac_baselines import resolve_historical_baseline
@@ -703,13 +704,13 @@ def main():
     entries = load_ssot_entries(SSOT_DIR)
     if not entries:
         raise SystemExit('No SSOT files found in ssot/')
-    job_map = load_skill_job_map_for_build(
-        SKILL_JOB_MAP_PATH,
-        {
-            entry.slug: {"display_name": entry.display_name, "description": entry.description}
-            for entry in entries
-        },
-    )
+    job_map = build_advisory_job_map({
+        entry.slug: compile_skill_job(
+            ROOT, entry.slug, entry.raw_text, display_name=entry.display_name,
+            description=entry.description,
+            existing=(load_descriptor(ROOT, entry.slug) or {}).get('job_contract'),
+        ) for entry in entries
+    })
     write_json_if_changed(SKILL_JOB_MAP_PATH, job_map)
 
     generator = {

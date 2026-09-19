@@ -479,7 +479,7 @@ def test_uac_apply_writes_ssot_and_descriptor_in_workspace_copy(tmp_path: Path) 
     shutil.copytree(
         ROOT,
         workspace,
-        ignore=shutil.ignore_patterns('.git', '.pytest_cache', '__pycache__', '.DS_Store', '.venv', 'node_modules'),
+        ignore=shutil.ignore_patterns('.git', '.pytest_cache', '__pycache__', '.DS_Store', '.venv', 'node_modules', 'reports'),
     )
     sample = tmp_path / "capability-fabric-sample.md"
     sample.write_text(
@@ -535,6 +535,17 @@ Constraints:
         encoding="utf-8",
     )
 
+    def intake(mode):
+        result = subprocess.run([
+            sys.executable, str(workspace / "scripts" / "uac-import.py"),
+            "--mode", mode, "--source", str(sample), "--benchmark-search", "off", "--use-repomix", "off",
+        ], cwd=workspace, check=True, capture_output=True, text=True)
+        return json.loads(result.stdout)
+    planned = intake("plan")
+    judged = intake("judge")
+    assert planned["preview"]["descriptor_preview"]["job_contract"]["routing_fitness"]["schema_version"] == "RoutingFitness.v1"
+    preview_job = judged["preview"]["descriptor_preview"]["job_contract"]
+
     result = subprocess.run(
         [
             sys.executable,
@@ -584,6 +595,15 @@ Constraints:
     assert "docs/SKILL-JOB-MAP.md" in payload["apply_result"]["changed_paths"]
     assert payload["apply_result"]["validate"]["returncode"] in {0, 2}
 
+
+    # The previewed advisory mapping binds the exact applied source/effective content.
+    assert descriptor["job_contract"] == preview_job
+    mapping = json.loads((workspace / ".meta/skill-job-map.json").read_text())
+    assert mapping["skills"][slug] == preview_job
+    subprocess.run([sys.executable, str(workspace / "scripts/build-surfaces.py")], cwd=workspace,
+                   check=True, capture_output=True, text=True)
+    assert json.loads(descriptor_path.read_text())["job_contract"] == preview_job
+    assert json.loads((workspace / ".meta/skill-job-map.json").read_text()) == mapping
 
 def test_uac_apply_refuses_landing_when_quality_gate_fails(tmp_path: Path) -> None:
     workspace = tmp_path / "workspace"

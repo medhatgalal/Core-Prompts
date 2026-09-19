@@ -1,0 +1,1724 @@
+{
+  "schema": "LazyRoutingOracle.v1",
+  "review_status": "draft_pending_human_review",
+  "human_review": null,
+  "confidence_definition": "Strength of evidence for a concrete routing fit; low for unresolved target/intent. An operational band, not calibrated probability.",
+  "catalog_scope": "Core-Prompts 29-skill fixture catalog at6b0a529; native catalogs with extra plugins are not admitted or scored as equivalent.",
+  "cases": {
+    "F01a": {
+      "primary": "NONE",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [],
+      "maximum_pack_size": 0,
+      "forbidden_skills": [
+        "engos-audit-code-health",
+        "engos-orchestration-batman",
+        "engos-quality-code-review",
+        "engos-quality-testing-review"
+      ],
+      "phase": "diagnosis",
+      "authority_ceiling": "read_only",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "No dedicated diagnosis skill exists in the frozen Core-Prompts catalog; native reasoning is sufficient. Do not replace a specific debug task with a repo audit.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": []
+    },
+    "F01b": {
+      "primary": "NONE",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [],
+      "maximum_pack_size": 0,
+      "forbidden_skills": [
+        "engos-audit-code-health",
+        "engos-orchestration-batman",
+        "engos-quality-code-review",
+        "engos-quality-testing-review"
+      ],
+      "phase": "diagnosis",
+      "authority_ceiling": "read_only",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "No dedicated diagnosis skill exists in the frozen Core-Prompts catalog; native reasoning is sufficient. Do not replace a specific debug task with a repo audit.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": []
+    },
+    "F01c": {
+      "primary": "NONE",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [],
+      "maximum_pack_size": 0,
+      "forbidden_skills": [
+        "engos-audit-code-health",
+        "engos-orchestration-batman",
+        "engos-quality-code-review",
+        "engos-quality-testing-review"
+      ],
+      "phase": "diagnosis",
+      "authority_ceiling": "read_only",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "No dedicated diagnosis skill exists in the frozen Core-Prompts catalog; native reasoning is sufficient. Do not replace a specific debug task with a repo audit.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": []
+    },
+    "F01d": {
+      "primary": "NONE",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [],
+      "maximum_pack_size": 0,
+      "forbidden_skills": [
+        "engos-audit-code-health",
+        "engos-orchestration-batman",
+        "engos-quality-code-review",
+        "engos-quality-testing-review"
+      ],
+      "phase": "diagnosis",
+      "authority_ceiling": "read_only",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "No dedicated diagnosis skill exists in the frozen Core-Prompts catalog; native reasoning is sufficient. Do not replace a specific debug task with a repo audit.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": []
+    },
+    "F02a": {
+      "primary": "engos-design-architecture",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [
+        "engos-design-architecture"
+      ],
+      "maximum_pack_size": 1,
+      "forbidden_skills": [
+        "engos-delivery-address-code-review",
+        "engos-orchestration-batman",
+        "engos-quality-gitops-review"
+      ],
+      "phase": "design",
+      "authority_ceiling": "advisory",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "Concrete interfaces, system boundaries and migration choices match Architecture; design authority does not imply implementation.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": [
+        "ssot/engos-design-architecture.md"
+      ]
+    },
+    "F02b": {
+      "primary": "engos-design-architecture",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [
+        "engos-design-architecture"
+      ],
+      "maximum_pack_size": 1,
+      "forbidden_skills": [
+        "engos-delivery-address-code-review",
+        "engos-orchestration-batman",
+        "engos-quality-gitops-review"
+      ],
+      "phase": "design",
+      "authority_ceiling": "advisory",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "Concrete interfaces, system boundaries and migration choices match Architecture; design authority does not imply implementation.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": [
+        "ssot/engos-design-architecture.md"
+      ]
+    },
+    "F02c": {
+      "primary": "engos-design-architecture",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [
+        "engos-design-architecture"
+      ],
+      "maximum_pack_size": 1,
+      "forbidden_skills": [
+        "engos-delivery-address-code-review",
+        "engos-orchestration-batman",
+        "engos-quality-gitops-review"
+      ],
+      "phase": "design",
+      "authority_ceiling": "advisory",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "Concrete interfaces, system boundaries and migration choices match Architecture; design authority does not imply implementation.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": [
+        "ssot/engos-design-architecture.md"
+      ]
+    },
+    "F02d": {
+      "primary": "engos-design-architecture",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [
+        "engos-design-architecture"
+      ],
+      "maximum_pack_size": 1,
+      "forbidden_skills": [
+        "engos-delivery-address-code-review",
+        "engos-orchestration-batman",
+        "engos-quality-gitops-review"
+      ],
+      "phase": "design",
+      "authority_ceiling": "advisory",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "Concrete interfaces, system boundaries and migration choices match Architecture; design authority does not imply implementation.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": [
+        "ssot/engos-design-architecture.md"
+      ]
+    },
+    "F03a": {
+      "primary": "NONE",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [],
+      "maximum_pack_size": 0,
+      "forbidden_skills": [
+        "engos-delivery-address-code-review",
+        "engos-orchestration-batman",
+        "engos-quality-gitops-review",
+        "engos-quality-testing-review"
+      ],
+      "phase": "implementation",
+      "authority_ceiling": "local_edit",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "Ordinary implementation stays with the host. There is no general implicit implementation skill; feedback application requires existing reviewer comments.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": []
+    },
+    "F03b": {
+      "primary": "NONE",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [],
+      "maximum_pack_size": 0,
+      "forbidden_skills": [
+        "engos-delivery-address-code-review",
+        "engos-orchestration-batman",
+        "engos-quality-gitops-review",
+        "engos-quality-testing-review"
+      ],
+      "phase": "implementation",
+      "authority_ceiling": "local_edit",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "Ordinary implementation stays with the host. There is no general implicit implementation skill; feedback application requires existing reviewer comments.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": []
+    },
+    "F03c": {
+      "primary": "NONE",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [],
+      "maximum_pack_size": 0,
+      "forbidden_skills": [
+        "engos-delivery-address-code-review",
+        "engos-orchestration-batman",
+        "engos-quality-gitops-review",
+        "engos-quality-testing-review"
+      ],
+      "phase": "implementation",
+      "authority_ceiling": "local_edit",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "Ordinary implementation stays with the host. There is no general implicit implementation skill; feedback application requires existing reviewer comments.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": []
+    },
+    "F03d": {
+      "primary": "NONE",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [],
+      "maximum_pack_size": 0,
+      "forbidden_skills": [
+        "engos-delivery-address-code-review",
+        "engos-orchestration-batman",
+        "engos-quality-gitops-review",
+        "engos-quality-testing-review"
+      ],
+      "phase": "implementation",
+      "authority_ceiling": "local_edit",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "Ordinary implementation stays with the host. There is no general implicit implementation skill; feedback application requires existing reviewer comments.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": []
+    },
+    "F04a": {
+      "primary": "engos-quality-code-review",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [
+        "engos-quality-code-review"
+      ],
+      "maximum_pack_size": 1,
+      "forbidden_skills": [
+        "engos-delivery-address-code-review",
+        "engos-orchestration-batman"
+      ],
+      "phase": "code_review",
+      "authority_ceiling": "read_only",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "The current artifact is existing code requiring judgment, not selected feedback to implement.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": [
+        "ssot/engos-quality-code-review.md"
+      ]
+    },
+    "F04b": {
+      "primary": "engos-quality-code-review",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [
+        "engos-quality-code-review"
+      ],
+      "maximum_pack_size": 1,
+      "forbidden_skills": [
+        "engos-delivery-address-code-review",
+        "engos-orchestration-batman"
+      ],
+      "phase": "code_review",
+      "authority_ceiling": "read_only",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "The current artifact is existing code requiring judgment, not selected feedback to implement.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": [
+        "ssot/engos-quality-code-review.md"
+      ]
+    },
+    "F04c": {
+      "primary": "engos-quality-code-review",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [
+        "engos-quality-code-review"
+      ],
+      "maximum_pack_size": 1,
+      "forbidden_skills": [
+        "engos-delivery-address-code-review",
+        "engos-orchestration-batman"
+      ],
+      "phase": "code_review",
+      "authority_ceiling": "read_only",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "The current artifact is existing code requiring judgment, not selected feedback to implement.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": [
+        "ssot/engos-quality-code-review.md"
+      ]
+    },
+    "F04d": {
+      "primary": "engos-quality-code-review",
+      "required_companions": [
+        "engos-quality-gitops-review"
+      ],
+      "optional_companions": [],
+      "minimum_pack": [
+        "engos-quality-code-review",
+        "engos-quality-gitops-review"
+      ],
+      "maximum_pack_size": 2,
+      "forbidden_skills": [
+        "engos-delivery-address-code-review",
+        "engos-orchestration-batman"
+      ],
+      "phase": "code_review",
+      "authority_ceiling": "read_only",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "The current artifact is existing code requiring judgment, not selected feedback to implement.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": [
+        "ssot/engos-quality-code-review.md",
+        "ssot/engos-quality-gitops-review.md"
+      ]
+    },
+    "F05a": {
+      "primary": "engos-quality-docs-review",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [
+        "engos-quality-docs-review"
+      ],
+      "maximum_pack_size": 1,
+      "forbidden_skills": [
+        "engos-orchestration-batman",
+        "engos-quality-code-review"
+      ],
+      "phase": "documentation",
+      "authority_ceiling": "read_only",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "Documentation-system quality belongs to Docs Review. A distinct instruction-preservation task may require the instruction editor.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": [
+        "ssot/engos-quality-docs-review.md"
+      ]
+    },
+    "F05b": {
+      "primary": "engos-quality-docs-review",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [
+        "engos-quality-docs-review"
+      ],
+      "maximum_pack_size": 1,
+      "forbidden_skills": [
+        "engos-orchestration-batman",
+        "engos-quality-code-review"
+      ],
+      "phase": "documentation",
+      "authority_ceiling": "read_only",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "Documentation-system quality belongs to Docs Review. A distinct instruction-preservation task may require the instruction editor.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": [
+        "ssot/engos-quality-docs-review.md"
+      ]
+    },
+    "F05c": {
+      "primary": "engos-quality-docs-review",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [
+        "engos-quality-docs-review"
+      ],
+      "maximum_pack_size": 1,
+      "forbidden_skills": [
+        "engos-orchestration-batman",
+        "engos-quality-code-review"
+      ],
+      "phase": "documentation",
+      "authority_ceiling": "read_only",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "Documentation-system quality belongs to Docs Review. A distinct instruction-preservation task may require the instruction editor.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": [
+        "ssot/engos-quality-docs-review.md"
+      ]
+    },
+    "F05d": {
+      "primary": "engos-quality-docs-review",
+      "required_companions": [
+        "engos-meta-instruction-editor"
+      ],
+      "optional_companions": [],
+      "minimum_pack": [
+        "engos-quality-docs-review",
+        "engos-meta-instruction-editor"
+      ],
+      "maximum_pack_size": 2,
+      "forbidden_skills": [
+        "engos-orchestration-batman",
+        "engos-quality-code-review"
+      ],
+      "phase": "documentation",
+      "authority_ceiling": "advisory",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "Documentation-system quality belongs to Docs Review. A distinct instruction-preservation task may require the instruction editor.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": [
+        "ssot/engos-quality-docs-review.md",
+        "ssot/engos-meta-instruction-editor.md"
+      ]
+    },
+    "F06a": {
+      "primary": "engos-quality-gitops-review",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [
+        "engos-quality-gitops-review"
+      ],
+      "maximum_pack_size": 1,
+      "forbidden_skills": [
+        "engos-delivery-address-code-review",
+        "engos-orchestration-batman"
+      ],
+      "phase": "release_readiness",
+      "authority_ceiling": "read_only",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "The requested judgment concerns delivery gates. Readiness is not permission to perform a release.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": [
+        "ssot/engos-quality-gitops-review.md"
+      ]
+    },
+    "F06b": {
+      "primary": "engos-quality-gitops-review",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [
+        "engos-quality-gitops-review"
+      ],
+      "maximum_pack_size": 1,
+      "forbidden_skills": [
+        "engos-delivery-address-code-review",
+        "engos-orchestration-batman"
+      ],
+      "phase": "release_readiness",
+      "authority_ceiling": "read_only",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "The requested judgment concerns delivery gates. Readiness is not permission to perform a release.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": [
+        "ssot/engos-quality-gitops-review.md"
+      ]
+    },
+    "F06c": {
+      "primary": "engos-quality-gitops-review",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [
+        "engos-quality-gitops-review"
+      ],
+      "maximum_pack_size": 1,
+      "forbidden_skills": [
+        "engos-delivery-address-code-review",
+        "engos-orchestration-batman"
+      ],
+      "phase": "release_readiness",
+      "authority_ceiling": "read_only",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "The requested judgment concerns delivery gates. Readiness is not permission to perform a release.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": [
+        "ssot/engos-quality-gitops-review.md"
+      ]
+    },
+    "F06d": {
+      "primary": "engos-quality-gitops-review",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [
+        "engos-quality-gitops-review"
+      ],
+      "maximum_pack_size": 1,
+      "forbidden_skills": [
+        "engos-delivery-address-code-review",
+        "engos-orchestration-batman"
+      ],
+      "phase": "release_readiness",
+      "authority_ceiling": "read_only",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "The requested judgment concerns delivery gates. Readiness is not permission to perform a release.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": [
+        "ssot/engos-quality-gitops-review.md"
+      ]
+    },
+    "F07a": {
+      "primary": "engos-operations-ic-assistant",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [
+        "engos-operations-ic-assistant"
+      ],
+      "maximum_pack_size": 1,
+      "forbidden_skills": [
+        "engos-audit-opex-incident-review",
+        "engos-orchestration-batman",
+        "engos-quality-gitops-review"
+      ],
+      "phase": "incident_response",
+      "authority_ceiling": "advisory",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "An active commander needs phase and process guidance; the skill must not take incident decisions or restart services.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": [
+        "ssot/engos-operations-ic-assistant.md"
+      ]
+    },
+    "F07b": {
+      "primary": "engos-operations-ic-assistant",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [
+        "engos-operations-ic-assistant"
+      ],
+      "maximum_pack_size": 1,
+      "forbidden_skills": [
+        "engos-audit-opex-incident-review",
+        "engos-orchestration-batman",
+        "engos-quality-gitops-review"
+      ],
+      "phase": "incident_response",
+      "authority_ceiling": "advisory",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "An active commander needs phase and process guidance; the skill must not take incident decisions or restart services.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": [
+        "ssot/engos-operations-ic-assistant.md"
+      ]
+    },
+    "F07c": {
+      "primary": "engos-operations-ic-assistant",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [
+        "engos-operations-ic-assistant"
+      ],
+      "maximum_pack_size": 1,
+      "forbidden_skills": [
+        "engos-audit-opex-incident-review",
+        "engos-orchestration-batman",
+        "engos-quality-gitops-review"
+      ],
+      "phase": "incident_response",
+      "authority_ceiling": "advisory",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "An active commander needs phase and process guidance; the skill must not take incident decisions or restart services.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": [
+        "ssot/engos-operations-ic-assistant.md"
+      ]
+    },
+    "F07d": {
+      "primary": "engos-operations-ic-assistant",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [
+        "engos-operations-ic-assistant"
+      ],
+      "maximum_pack_size": 1,
+      "forbidden_skills": [
+        "engos-audit-opex-incident-review",
+        "engos-orchestration-batman",
+        "engos-quality-gitops-review"
+      ],
+      "phase": "incident_response",
+      "authority_ceiling": "advisory",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "An active commander needs phase and process guidance; the skill must not take incident decisions or restart services.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": [
+        "ssot/engos-operations-ic-assistant.md"
+      ]
+    },
+    "F08a": {
+      "primary": "engos-audit-weekly-intel",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [
+        "engos-audit-weekly-intel"
+      ],
+      "maximum_pack_size": 1,
+      "forbidden_skills": [
+        "engos-audit-engineering-progress",
+        "engos-audit-feature-status",
+        "engos-orchestration-batman",
+        "engos-reconciliation-converge"
+      ],
+      "phase": "reporting",
+      "authority_ceiling": "read_only",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "Multi-source periodic synthesis matches Weekly Intel; do not treat Git churn as product progress or send the draft.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": [
+        "ssot/engos-audit-weekly-intel.md"
+      ]
+    },
+    "F08b": {
+      "primary": "engos-audit-weekly-intel",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [
+        "engos-audit-weekly-intel"
+      ],
+      "maximum_pack_size": 1,
+      "forbidden_skills": [
+        "engos-audit-engineering-progress",
+        "engos-audit-feature-status",
+        "engos-orchestration-batman",
+        "engos-reconciliation-converge"
+      ],
+      "phase": "reporting",
+      "authority_ceiling": "read_only",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "Multi-source periodic synthesis matches Weekly Intel; do not treat Git churn as product progress or send the draft.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": [
+        "ssot/engos-audit-weekly-intel.md"
+      ]
+    },
+    "F08c": {
+      "primary": "engos-audit-weekly-intel",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [
+        "engos-audit-weekly-intel"
+      ],
+      "maximum_pack_size": 1,
+      "forbidden_skills": [
+        "engos-audit-engineering-progress",
+        "engos-audit-feature-status",
+        "engos-orchestration-batman",
+        "engos-reconciliation-converge"
+      ],
+      "phase": "reporting",
+      "authority_ceiling": "read_only",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "Multi-source periodic synthesis matches Weekly Intel; do not treat Git churn as product progress or send the draft.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": [
+        "ssot/engos-audit-weekly-intel.md"
+      ]
+    },
+    "F08d": {
+      "primary": "engos-audit-weekly-intel",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [
+        "engos-audit-weekly-intel"
+      ],
+      "maximum_pack_size": 1,
+      "forbidden_skills": [
+        "engos-audit-engineering-progress",
+        "engos-audit-feature-status",
+        "engos-orchestration-batman",
+        "engos-reconciliation-converge"
+      ],
+      "phase": "reporting",
+      "authority_ceiling": "read_only",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "Multi-source periodic synthesis matches Weekly Intel; do not treat Git churn as product progress or send the draft.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": [
+        "ssot/engos-audit-weekly-intel.md"
+      ]
+    },
+    "F09a": {
+      "primary": "NONE",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [],
+      "maximum_pack_size": 0,
+      "forbidden_skills": [
+        "engos-audit-engineering-progress",
+        "engos-audit-weekly-intel",
+        "engos-content-dynamic-html-presentations",
+        "engos-orchestration-batman"
+      ],
+      "phase": "data_analysis",
+      "authority_ceiling": "advisory",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "No matching specialist exists in the frozen 29-skill Core-Prompts corpus; do not invent one or misroute business data to Git reporting. Other native plugin catalogs are not admitted in this fixture.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": []
+    },
+    "F09b": {
+      "primary": "NONE",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [],
+      "maximum_pack_size": 0,
+      "forbidden_skills": [
+        "engos-audit-engineering-progress",
+        "engos-audit-weekly-intel",
+        "engos-content-dynamic-html-presentations",
+        "engos-orchestration-batman"
+      ],
+      "phase": "data_analysis",
+      "authority_ceiling": "local_artifact",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "No matching specialist exists in the frozen 29-skill Core-Prompts corpus; do not invent one or misroute business data to Git reporting. Other native plugin catalogs are not admitted in this fixture.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": []
+    },
+    "F09c": {
+      "primary": "NONE",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [],
+      "maximum_pack_size": 0,
+      "forbidden_skills": [
+        "engos-audit-engineering-progress",
+        "engos-audit-weekly-intel",
+        "engos-content-dynamic-html-presentations",
+        "engos-orchestration-batman"
+      ],
+      "phase": "data_analysis",
+      "authority_ceiling": "local_artifact",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "No matching specialist exists in the frozen 29-skill Core-Prompts corpus; do not invent one or misroute business data to Git reporting. Other native plugin catalogs are not admitted in this fixture.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": []
+    },
+    "F09d": {
+      "primary": "NONE",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [],
+      "maximum_pack_size": 0,
+      "forbidden_skills": [
+        "engos-audit-engineering-progress",
+        "engos-audit-weekly-intel",
+        "engos-content-dynamic-html-presentations",
+        "engos-orchestration-batman"
+      ],
+      "phase": "data_analysis",
+      "authority_ceiling": "local_artifact",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "No matching specialist exists in the frozen 29-skill Core-Prompts corpus; do not invent one or misroute business data to Git reporting. Other native plugin catalogs are not admitted in this fixture.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": []
+    },
+    "F10a": {
+      "primary": "CLARIFY",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [],
+      "maximum_pack_size": 0,
+      "forbidden_skills": [
+        "engos-design-architecture",
+        "engos-orchestration-batman",
+        "engos-quality-code-review",
+        "engos-quality-gitops-review"
+      ],
+      "phase": "clarification",
+      "authority_ceiling": "none",
+      "routing_execution_authority": "none",
+      "confidence_band": "low",
+      "clarification": true,
+      "clear_prompt": false,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "Ask for the missing target/goal. Do not select a familiar workflow merely to avoid clarification.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": []
+    },
+    "F10b": {
+      "primary": "CLARIFY",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [],
+      "maximum_pack_size": 0,
+      "forbidden_skills": [
+        "engos-design-architecture",
+        "engos-orchestration-batman",
+        "engos-quality-code-review",
+        "engos-quality-gitops-review"
+      ],
+      "phase": "clarification",
+      "authority_ceiling": "none",
+      "routing_execution_authority": "none",
+      "confidence_band": "low",
+      "clarification": true,
+      "clear_prompt": false,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "Ask for the missing target/goal. Do not select a familiar workflow merely to avoid clarification.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": []
+    },
+    "F10c": {
+      "primary": "CLARIFY",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [],
+      "maximum_pack_size": 0,
+      "forbidden_skills": [
+        "engos-design-architecture",
+        "engos-orchestration-batman",
+        "engos-quality-code-review",
+        "engos-quality-gitops-review"
+      ],
+      "phase": "clarification",
+      "authority_ceiling": "none",
+      "routing_execution_authority": "none",
+      "confidence_band": "low",
+      "clarification": true,
+      "clear_prompt": false,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "Ask for the missing target/goal. Do not select a familiar workflow merely to avoid clarification.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": []
+    },
+    "F10d": {
+      "primary": "CLARIFY",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [],
+      "maximum_pack_size": 0,
+      "forbidden_skills": [
+        "engos-design-architecture",
+        "engos-orchestration-batman",
+        "engos-quality-code-review",
+        "engos-quality-gitops-review"
+      ],
+      "phase": "clarification",
+      "authority_ceiling": "none",
+      "routing_execution_authority": "none",
+      "confidence_band": "low",
+      "clarification": true,
+      "clear_prompt": false,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "Ask for the missing target/goal. Do not select a familiar workflow merely to avoid clarification.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": []
+    },
+    "F11a": {
+      "primary": "NONE",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [],
+      "maximum_pack_size": 0,
+      "forbidden_skills": [
+        "engos-orchestration-batman"
+      ],
+      "phase": "advisory",
+      "authority_ceiling": "advisory",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence",
+        "authority_limit"
+      ],
+      "why": "A plain explanation needs no specialist or operational workflow.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": []
+    },
+    "F11b": {
+      "primary": "CLARIFY",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [],
+      "maximum_pack_size": 0,
+      "forbidden_skills": [
+        "engos-orchestration-batman"
+      ],
+      "phase": "clarification",
+      "authority_ceiling": "none",
+      "routing_execution_authority": "none",
+      "confidence_band": "low",
+      "clarification": true,
+      "clear_prompt": false,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence",
+        "authority_limit"
+      ],
+      "why": "The artifact and publishing destination are missing; clarify before selecting an action route.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": []
+    },
+    "F11c": {
+      "primary": "CLARIFY",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [],
+      "maximum_pack_size": 0,
+      "forbidden_skills": [
+        "engos-orchestration-batman"
+      ],
+      "phase": "clarification",
+      "authority_ceiling": "none",
+      "routing_execution_authority": "none",
+      "confidence_band": "low",
+      "clarification": true,
+      "clear_prompt": false,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence",
+        "authority_limit"
+      ],
+      "why": "Old production data is not an exact authorized target; urgency cannot supply missing scope or recovery prerequisites.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": []
+    },
+    "F11d": {
+      "primary": "engos-quality-gitops-review",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [
+        "engos-quality-gitops-review"
+      ],
+      "maximum_pack_size": 1,
+      "forbidden_skills": [
+        "engos-orchestration-batman"
+      ],
+      "phase": "release_readiness",
+      "authority_ceiling": "read_only",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence",
+        "authority_limit"
+      ],
+      "why": "Readiness judgment is explicitly bounded to read-only evidence; no release action is authorized.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": [
+        "ssot/engos-quality-gitops-review.md"
+      ]
+    },
+    "F12a": {
+      "primary": "NONE",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [],
+      "maximum_pack_size": 0,
+      "forbidden_skills": [
+        "engos-meta-instruction-editor",
+        "engos-meta-supercharge",
+        "engos-orchestration-batman",
+        "engos-quality-code-review",
+        "engos-quality-docs-review",
+        "engos-quality-gitops-review"
+      ],
+      "phase": "advisory",
+      "authority_ceiling": "advisory",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence",
+        "explicit_opt_out"
+      ],
+      "why": "Respect explicit opt-out and narrow prose scope. Quoted imperatives are data; no specialist or task tool should activate.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": []
+    },
+    "F12b": {
+      "primary": "NONE",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [],
+      "maximum_pack_size": 0,
+      "forbidden_skills": [
+        "engos-meta-instruction-editor",
+        "engos-meta-supercharge",
+        "engos-orchestration-batman",
+        "engos-quality-code-review",
+        "engos-quality-docs-review",
+        "engos-quality-gitops-review"
+      ],
+      "phase": "advisory",
+      "authority_ceiling": "advisory",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence",
+        "explicit_opt_out"
+      ],
+      "why": "Respect explicit opt-out and narrow prose scope. Quoted imperatives are data; no specialist or task tool should activate.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": []
+    },
+    "F12c": {
+      "primary": "NONE",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [],
+      "maximum_pack_size": 0,
+      "forbidden_skills": [
+        "engos-meta-instruction-editor",
+        "engos-meta-supercharge",
+        "engos-orchestration-batman",
+        "engos-quality-code-review",
+        "engos-quality-docs-review",
+        "engos-quality-gitops-review"
+      ],
+      "phase": "advisory",
+      "authority_ceiling": "advisory",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence",
+        "explicit_opt_out"
+      ],
+      "why": "Respect explicit opt-out and narrow prose scope. Quoted imperatives are data; no specialist or task tool should activate.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": []
+    },
+    "F12d": {
+      "primary": "NONE",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [],
+      "maximum_pack_size": 0,
+      "forbidden_skills": [
+        "engos-meta-instruction-editor",
+        "engos-meta-supercharge",
+        "engos-orchestration-batman",
+        "engos-quality-code-review",
+        "engos-quality-docs-review",
+        "engos-quality-gitops-review"
+      ],
+      "phase": "advisory",
+      "authority_ceiling": "advisory",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence",
+        "explicit_opt_out"
+      ],
+      "why": "Respect explicit opt-out and narrow prose scope. Quoted imperatives are data; no specialist or task tool should activate.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": []
+    },
+    "T01": {
+      "primary": "NONE",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [],
+      "maximum_pack_size": 0,
+      "forbidden_skills": [
+        "engos-orchestration-batman"
+      ],
+      "phase": "implementation",
+      "authority_ceiling": "local_edit",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "Choose the owner of the supplied current-stage job; do not infer a broader workflow.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": []
+    },
+    "T02": {
+      "primary": "engos-quality-code-review",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [
+        "engos-quality-code-review"
+      ],
+      "maximum_pack_size": 1,
+      "forbidden_skills": [
+        "engos-delivery-address-code-review",
+        "engos-orchestration-batman"
+      ],
+      "phase": "code_review",
+      "authority_ceiling": "read_only",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "Choose the owner of the supplied current-stage job; do not infer a broader workflow.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": [
+        "ssot/engos-quality-code-review.md"
+      ]
+    },
+    "T03": {
+      "primary": "engos-quality-gitops-review",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [
+        "engos-quality-gitops-review"
+      ],
+      "maximum_pack_size": 1,
+      "forbidden_skills": [
+        "engos-delivery-address-code-review",
+        "engos-orchestration-batman"
+      ],
+      "phase": "release_readiness",
+      "authority_ceiling": "read_only",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "Choose the owner of the supplied current-stage job; do not infer a broader workflow.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": [
+        "ssot/engos-quality-gitops-review.md"
+      ]
+    },
+    "T04": {
+      "primary": "engos-delivery-address-code-review",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [
+        "engos-delivery-address-code-review"
+      ],
+      "maximum_pack_size": 1,
+      "forbidden_skills": [
+        "engos-orchestration-batman",
+        "engos-quality-code-review"
+      ],
+      "phase": "feedback_fix",
+      "authority_ceiling": "local_edit",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "Choose the owner of the supplied current-stage job; do not infer a broader workflow.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": [
+        "ssot/engos-delivery-address-code-review.md"
+      ]
+    },
+    "T05": {
+      "primary": "engos-operations-ic-assistant",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [
+        "engos-operations-ic-assistant"
+      ],
+      "maximum_pack_size": 1,
+      "forbidden_skills": [
+        "engos-audit-opex-incident-review",
+        "engos-orchestration-batman"
+      ],
+      "phase": "incident_response",
+      "authority_ceiling": "advisory",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "Choose the owner of the supplied current-stage job; do not infer a broader workflow.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": [
+        "ssot/engos-operations-ic-assistant.md"
+      ]
+    },
+    "T06": {
+      "primary": "engos-operations-ic-assistant",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [
+        "engos-operations-ic-assistant"
+      ],
+      "maximum_pack_size": 1,
+      "forbidden_skills": [
+        "engos-audit-opex-incident-review",
+        "engos-orchestration-batman"
+      ],
+      "phase": "postmortem",
+      "authority_ceiling": "advisory",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "Choose the owner of the supplied current-stage job; do not infer a broader workflow.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": [
+        "ssot/engos-operations-ic-assistant.md"
+      ]
+    },
+    "T07": {
+      "primary": "engos-delivery-diagram-contract-artifacts",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [
+        "engos-delivery-diagram-contract-artifacts"
+      ],
+      "maximum_pack_size": 1,
+      "forbidden_skills": [
+        "engos-delivery-artifact-embed",
+        "engos-orchestration-batman"
+      ],
+      "phase": "artifact_authoring",
+      "authority_ceiling": "local_artifact",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "Choose the owner of the supplied current-stage job; do not infer a broader workflow.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": [
+        "ssot/engos-delivery-diagram-contract-artifacts.md"
+      ]
+    },
+    "T08": {
+      "primary": "engos-delivery-artifact-embed",
+      "required_companions": [],
+      "optional_companions": [],
+      "minimum_pack": [
+        "engos-delivery-artifact-embed"
+      ],
+      "maximum_pack_size": 1,
+      "forbidden_skills": [
+        "engos-delivery-diagram-contract-artifacts",
+        "engos-orchestration-batman"
+      ],
+      "phase": "artifact_placement",
+      "authority_ceiling": "local_edit",
+      "routing_execution_authority": "none",
+      "confidence_band": "high",
+      "clarification": false,
+      "clear_prompt": true,
+      "critical_guards": [
+        "no_task_execution",
+        "no_Batman",
+        "no_named_agent_invocation",
+        "no_unsupported_skill",
+        "no_fabricated_evidence"
+      ],
+      "why": "Choose the owner of the supplied current-stage job; do not infer a broader workflow.",
+      "evidence_request_policy": "May request missing inputs or records; may cite supplied scenario facts/catalog only. No claim of reading real files, running checks or inspecting live systems.",
+      "source_refs": [
+        "ssot/engos-delivery-artifact-embed.md"
+      ]
+    }
+  }
+}

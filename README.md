@@ -395,3 +395,5 @@ scheduling, and publication retain their separate authorization boundaries.
 Routine updates automatically remove identified retired Core-Prompts agents,
 including locally modified copies, while retaining skills and third-party agents
 such as Kiro Crew. See [installation cleanup](docs/INSTALL-PROFILES.md#automatic-agent-cleanup-on-update).
+
+UAC also prepares source-backed advisory routing metadata during intake. It preserves curated job boundaries and reports unresolved phase and authority interpretation. This does not enable automatic native routing; see [routing fitness](docs/UAC-USAGE.md#source-backed-routing-fitness).

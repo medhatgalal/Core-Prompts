@@ -460,6 +460,212 @@
       "engos-memory-threader"
     ],
     "shape": "workflow_infrastructure",
-    "portfolio_action": "keep_and_clarify_boundary"
+    "portfolio_action": "keep_and_clarify_boundary",
+    "routing_fitness": {
+      "schema_version": "RoutingFitness.v1",
+      "mapping_status": "source_derived_draft",
+      "task_phases": {
+        "kind": "source_conditions",
+        "clauses": [
+          {
+            "text": "1. Establish a stable task ID, goal, success criteria, scope, and exclusions.\n2. Use the bundled `resources/state_store.py` helper to resolve or initialize the task directory; migrate matching legacy state before writing.\n3. Claim one-writer ownership or receive an explicit handoff, then record the current branch and worktree as metadata.\n4. Process one item at a time. Update the three files atomically after meaningful progress and before likely context loss or worktree cleanup.\n5. Mark the task complete only after every TODO is checked and the insights file contains the final summary.",
+            "heading": "Workflow",
+            "source": {
+              "path": "ssot/engos-memory-context-continuity.md",
+              "start_line": 21,
+              "end_line": 25,
+              "sha256": "1e3479ad869e1065a5c3fe2d102b0a8cda5b1206507745f1a817c3263f0b928b"
+            }
+          },
+          {
+            "text": "Use this capability when the user asks for any of the following, even without naming the skill:\n- analyze several files or transcripts over a long session\n- keep durable analysis notes that survive context loss\n- continue an investigation after its branch or worktree was removed\n- process a broad repo investigation one item at a time\n- recover and continue a previously interrupted analysis\n- preserve progress across a long research or audit workflow before a later recommendation step",
+            "heading": "Invocation Hints",
+            "source": {
+              "path": "ssot/engos-memory-context-continuity.md",
+              "start_line": 85,
+              "end_line": 91,
+              "sha256": "1e3479ad869e1065a5c3fe2d102b0a8cda5b1206507745f1a817c3263f0b928b"
+            }
+          }
+        ]
+      },
+      "activation": {
+        "mode": "unknown",
+        "evidence": []
+      },
+      "risk_authority_ceiling": {
+        "grants_authority": false,
+        "clauses": [
+          {
+            "text": "- allowed: use the bundled helper to resolve, initialize, and atomically update the external canonical state set; inspect source material, summarize findings, migrate legacy state, and keep durable progress state\n- forbidden: pretending analysis is implementation, silently changing unrelated repo state, treating provider-native memory as canonical, or replacing canonical source documents with temporary notes\n- escalation: if the work becomes design, review, testing, or decision synthesis, route to the companion capability instead of overextending this one",
+            "heading": "Tool Boundaries",
+            "source": {
+              "path": "ssot/engos-memory-context-continuity.md",
+              "start_line": 45,
+              "end_line": 47,
+              "sha256": "1e3479ad869e1065a5c3fe2d102b0a8cda5b1206507745f1a817c3263f0b928b"
+            }
+          },
+          {
+            "text": "- Canonical state must live outside every Git working tree and survive session, branch, or worktree removal.\n- Branch and worktree paths are execution metadata, not task identity.\n- Do not create multiple competing sets for one task.\n- Do not allow concurrent writers for one task without explicit handoff.\n- Do not let insights remain only in the todo file.\n- Do not clean up an incomplete task.",
+            "heading": "Constraints",
+            "source": {
+              "path": "ssot/engos-memory-context-continuity.md",
+              "start_line": 119,
+              "end_line": 124,
+              "sha256": "1e3479ad869e1065a5c3fe2d102b0a8cda5b1206507745f1a817c3263f0b928b"
+            }
+          }
+        ]
+      },
+      "negative_examples": {
+        "kind": "source_exclusions_not_synthetic_prompts",
+        "clauses": [
+          {
+            "text": "Large context windows and conversation compaction reduce recovery frequency. They do not replace durable state on disk.",
+            "heading": "Purpose",
+            "source": {
+              "path": "ssot/engos-memory-context-continuity.md",
+              "start_line": 13,
+              "end_line": 13,
+              "sha256": "1e3479ad869e1065a5c3fe2d102b0a8cda5b1206507745f1a817c3263f0b928b"
+            }
+          },
+          {
+            "text": "Do not use this capability when the main job is to make a final decision, harden a prompt or plan, import a capability, design a system, or prove one variant performs better than another.",
+            "heading": "Purpose",
+            "source": {
+              "path": "ssot/engos-memory-context-continuity.md",
+              "start_line": 15,
+              "end_line": 15,
+              "sha256": "1e3479ad869e1065a5c3fe2d102b0a8cda5b1206507745f1a817c3263f0b928b"
+            }
+          },
+          {
+            "text": "- Canonical state must live outside every Git working tree and survive session, branch, or worktree removal.\n- Branch and worktree paths are execution metadata, not task identity.\n- Do not create multiple competing sets for one task.\n- Do not allow concurrent writers for one task without explicit handoff.\n- Do not let insights remain only in the todo file.\n- Do not clean up an incomplete task.",
+            "heading": "Constraints",
+            "source": {
+              "path": "ssot/engos-memory-context-continuity.md",
+              "start_line": 119,
+              "end_line": 124,
+              "sha256": "1e3479ad869e1065a5c3fe2d102b0a8cda5b1206507745f1a817c3263f0b928b"
+            }
+          }
+        ]
+      },
+      "conditional_companions": [
+        {
+          "skill": "engos-reconciliation-converge",
+          "condition_and_handoff": "| The user now needs one final recommendation from several competing findings | `engos-reconciliation-converge` | option set, trade-offs, blocking uncertainties, recommendation criteria |",
+          "source": {
+            "path": "ssot/engos-memory-context-continuity.md",
+            "start_line": 110,
+            "end_line": 110,
+            "sha256": "1e3479ad869e1065a5c3fe2d102b0a8cda5b1206507745f1a817c3263f0b928b"
+          },
+          "interpretation": "source_clause_requires_stage_review"
+        },
+        {
+          "skill": "engos-design-architecture",
+          "condition_and_handoff": "| The analysis turns into architecture or system design | `engos-design-architecture` | constraints, candidate patterns, affected components, unresolved decisions |",
+          "source": {
+            "path": "ssot/engos-memory-context-continuity.md",
+            "start_line": 111,
+            "end_line": 111,
+            "sha256": "1e3479ad869e1065a5c3fe2d102b0a8cda5b1206507745f1a817c3263f0b928b"
+          },
+          "interpretation": "source_clause_requires_stage_review"
+        },
+        {
+          "skill": "engos-meta-supercharge",
+          "condition_and_handoff": "| The analysis turns into prompt, plan, or workflow hardening | `engos-meta-supercharge` | draft artifact, weak sections, improvement goal, constraints |",
+          "source": {
+            "path": "ssot/engos-memory-context-continuity.md",
+            "start_line": 112,
+            "end_line": 112,
+            "sha256": "1e3479ad869e1065a5c3fe2d102b0a8cda5b1206507745f1a817c3263f0b928b"
+          },
+          "interpretation": "source_clause_requires_stage_review"
+        },
+        {
+          "skill": "engos-optimization-auto-research",
+          "condition_and_handoff": "| The analysis needs behavioral proof that one variant beats baseline | `engos-optimization-auto-research` | baseline artifact, candidate artifact or variants, representative tasks, desired pass/fail bar |",
+          "source": {
+            "path": "ssot/engos-memory-context-continuity.md",
+            "start_line": 113,
+            "end_line": 113,
+            "sha256": "1e3479ad869e1065a5c3fe2d102b0a8cda5b1206507745f1a817c3263f0b928b"
+          },
+          "interpretation": "source_clause_requires_stage_review"
+        },
+        {
+          "skill": "engos-memory-threader",
+          "condition_and_handoff": "| The user wants a durable transcript or full thread export | `engos-memory-threader` | target thread scope, fidelity expectations, file or inline export preference |",
+          "source": {
+            "path": "ssot/engos-memory-context-continuity.md",
+            "start_line": 114,
+            "end_line": 114,
+            "sha256": "1e3479ad869e1065a5c3fe2d102b0a8cda5b1206507745f1a817c3263f0b928b"
+          },
+          "interpretation": "source_clause_requires_stage_review"
+        },
+        {
+          "skill": "engos-quality-testing-review",
+          "condition_and_handoff": "| The analysis identifies a testing or verification gap | `engos-quality-testing-review` | changed area, risk hotspots, existing test stack, missing scenarios |",
+          "source": {
+            "path": "ssot/engos-memory-context-continuity.md",
+            "start_line": 115,
+            "end_line": 115,
+            "sha256": "1e3479ad869e1065a5c3fe2d102b0a8cda5b1206507745f1a817c3263f0b928b"
+          },
+          "interpretation": "source_clause_requires_stage_review"
+        },
+        {
+          "skill": "engos-quality-code-review",
+          "condition_and_handoff": "| The analysis identifies implementation quality or review risk | `engos-quality-code-review` | diff or commit scope, review goals, suspected regressions or over-engineering risks |",
+          "source": {
+            "path": "ssot/engos-memory-context-continuity.md",
+            "start_line": 116,
+            "end_line": 116,
+            "sha256": "1e3479ad869e1065a5c3fe2d102b0a8cda5b1206507745f1a817c3263f0b928b"
+          },
+          "interpretation": "source_clause_requires_stage_review"
+        }
+      ],
+      "pack_hints": {
+        "lead": "engos-memory-context-continuity",
+        "companions": "only_after_applicable_source_conditions_are_checked",
+        "default_bulk_activation": false
+      },
+      "provenance": {
+        "ssot_path": "ssot/engos-memory-context-continuity.md",
+        "ssot_sha256": "1e3479ad869e1065a5c3fe2d102b0a8cda5b1206507745f1a817c3263f0b928b",
+        "effective_sha256": "1e3479ad869e1065a5c3fe2d102b0a8cda5b1206507745f1a817c3263f0b928b",
+        "resources": [],
+        "extractor_version": "source-clauses.v1",
+        "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+        "field_sources": {},
+        "unresolved_companion_clauses": [],
+        "curated_fields": [
+          "authority",
+          "main_output",
+          "nearest_neighbors",
+          "not_for",
+          "portfolio_action",
+          "primary_job",
+          "routing_question",
+          "shape",
+          "use_when",
+          "works_on"
+        ],
+        "curated_binding": "preserved_not_independently_revalidated",
+        "mapping_sha256": "ef9bb06852a17c0444c5896eb8350d633a282a2e4f434b96a785dc31dd1a0289"
+      },
+      "unresolved_fields": [
+        "task_phase_interpretation",
+        "risk_authority_interpretation",
+        "implicit_activation_eligibility"
+      ]
+    }
   }
 }
