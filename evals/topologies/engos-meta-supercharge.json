@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-meta-supercharge",
-  "ssot_sha256": "1d90ae31771a0ca5c11be5b0a1b5d2621d8aafa4b6d7fd445e776c88ed4b9f3b",
+  "ssot_sha256": "d5da37b0d385e1c678a972cea51ad422209b5d6d4637fa8973b0bff53a5ea62a",
   "explicit_invocations": [
     "/adversarial",
     "/adversarial /debate",
@@ -317,12 +317,16 @@
     "engos-meta-supercharge:L201:832fa678350d",
     "engos-meta-supercharge:L204:cf9a08cacbfd",
     "engos-meta-supercharge:L213:01bab8d26727",
-    "engos-meta-supercharge:L225:0f7011d4f632",
-    "engos-meta-supercharge:L229:bf84a9ca15a8",
-    "engos-meta-supercharge:L232:bd45ef1c4189",
-    "engos-meta-supercharge:L237:1086282a839e",
-    "engos-meta-supercharge:L253:feaefefe1746",
-    "engos-meta-supercharge:L274:92b53a938b79",
+    "engos-meta-supercharge:L218:2c2a3cd3d571",
+    "engos-meta-supercharge:L219:6c7c3fc931a0",
+    "engos-meta-supercharge:L220:3d574abfbdc7",
+    "engos-meta-supercharge:L232:0f7011d4f632",
+    "engos-meta-supercharge:L234:811378a9f2b4",
+    "engos-meta-supercharge:L237:bf84a9ca15a8",
+    "engos-meta-supercharge:L240:bd45ef1c4189",
+    "engos-meta-supercharge:L245:1086282a839e",
+    "engos-meta-supercharge:L261:feaefefe1746",
+    "engos-meta-supercharge:L282:92b53a938b79",
     "engos-meta-supercharge:sources/capability-resources/engos-meta-supercharge/references/shared-review.md:L3:7ddb52414079",
     "engos-meta-supercharge:sources/capability-resources/engos-meta-supercharge/references/shared-review.md:L5:409e75d00592",
     "engos-meta-supercharge:sources/capability-resources/engos-meta-supercharge/references/shared-review.md:L7:6ee469de75a9",
@@ -333,7 +337,8 @@
     "engos-meta-supercharge:sources/capability-resources/engos-meta-supercharge/references/modules/ult.md:L20:4c086a67af32",
     "engos-meta-supercharge:sources/capability-resources/engos-meta-supercharge/references/modules/catchup.md:L8:0fce81513013",
     "engos-meta-supercharge:sources/capability-resources/engos-meta-supercharge/references/modules/catchup.md:L10:420f6fefd352",
-    "engos-meta-supercharge:sources/capability-resources/engos-meta-supercharge/references/modules/catchup.md:L18:44413d93afe2",
+    "engos-meta-supercharge:sources/capability-resources/engos-meta-supercharge/references/modules/catchup.md:L16:2a1e26e97cd5",
+    "engos-meta-supercharge:sources/capability-resources/engos-meta-supercharge/references/modules/catchup.md:L21:44413d93afe2",
     "engos-meta-supercharge:sources/capability-resources/engos-meta-supercharge/references/modules/basis.md:L9:332d859e79d5",
     "engos-meta-supercharge:sources/capability-resources/engos-meta-supercharge/references/modules/basis.md:L12:340145caa900",
     "engos-meta-supercharge:sources/capability-resources/engos-meta-supercharge/references/modules/basis.md:L13:1654795fd8fc",
@@ -368,8 +373,11 @@
     "engos-meta-supercharge:sources/capability-resources/engos-meta-supercharge/references/model-guidance.md:L18:8ea78236f3ba"
   ],
   "resources": [
+    "- The capstone uses the `/catchup` resource-delivery gate. If that route cannot be loaded, report the delivery block and do not append an improvised or generic catch-up.",
     "- `[CONTEXT]` Target for evaluation + relevant references provided by the user",
     "- `engos-meta-supercharge details` -> prints the module reference",
+    "- do not execute the requested route until the resource is recovered and rechecked",
+    "- report `Resource delivery blocked: <route> (<resource path>)`",
     "| Fable 5.1 / Mythos 5.1 | Effort and resource use differ across versions; long work depends on continuity and tool context. | Test effort on the actual task; preserve decisions through compaction, support focused visual inspection, and correct observed behavior rather than copying all remedies. | [Provider guide](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-1), 2026-09-08; provider guidance, locally unmeasured. |",
     "| Resource delivery | Selected full module content is supplied by real tools or host context before dependent work, including subagents |",
     "| Route | Required module resource | Purpose |",
@@ -682,140 +690,180 @@
       "mapped_to": []
     },
     {
-      "id": "engos-meta-supercharge:L216:4c695efce4a9",
+      "id": "engos-meta-supercharge:L218:2c2a3cd3d571",
+      "heading": "Resource Delivery Failure (Fail Closed)",
+      "source": "ssot/engos-meta-supercharge.md",
+      "source_line": 227,
+      "sha256": "2c2a3cd3d57153892d544391edc59cda90e526955ecccfa6d1696bb4d257339a",
+      "text": "- do not claim that the route is unsupported",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-meta-supercharge:L219:6c7c3fc931a0",
+      "heading": "Resource Delivery Failure (Fail Closed)",
+      "source": "ssot/engos-meta-supercharge.md",
+      "source_line": 228,
+      "sha256": "6c7c3fc931a09bd50661b58e0b4bdacfc021616f24c8e2cdac239c133f7058c3",
+      "text": "- do not substitute a generic response, a shortened route, or another module",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-meta-supercharge:L220:3d574abfbdc7",
+      "heading": "Resource Delivery Failure (Fail Closed)",
+      "source": "ssot/engos-meta-supercharge.md",
+      "source_line": 229,
+      "sha256": "3d574abfbdc7e45dcd3cf8aa317e1d124b3f2f81f83a0d06c5fc1ed4e1c01dc7",
+      "text": "- do not execute the requested route until the resource is recovered and rechecked",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-meta-supercharge:L223:4c695efce4a9",
       "heading": "Output Precedence",
       "source": "ssot/engos-meta-supercharge.md",
-      "source_line": 225,
+      "source_line": 232,
       "sha256": "4c695efce4a93f80586c41a7222a97f652812bddd20a0e9489bfdf744ff8ba54",
       "text": "Terminal help/examples/details and `/gaslight list` or `/gaslight help` return only their specified output. `/catchup` retains its exact tables and validation text, without generic wrapper sections. `/contract` retains `Contract Spec` and its exact QA JSON schema; when the user explicitly requests JSON-only, return only that JSON with missing context or gaps represented in its existing fields. Other stacks retain canonical pass order and module output shapes under the general wrapper; `/full` supplies its own pass wrappers. `/ult /full` does not execute the generated task and says so explicitly. No precedence rule permits fabricated results or skipping independent review.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-meta-supercharge:L224:1f2f66d251cf",
+      "id": "engos-meta-supercharge:L231:1f2f66d251cf",
       "heading": "HARD CONSTRAINTS",
       "source": "ssot/engos-meta-supercharge.md",
-      "source_line": 233,
+      "source_line": 240,
       "sha256": "1f2f66d251cf2341cfc491f9858cf5894c47d33e810a06a3d1c77e3e3284b4ce",
       "text": "- Only run capstone when a deliverable is complete or the user says done, ship, or finish.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-meta-supercharge:L225:0f7011d4f632",
+      "id": "engos-meta-supercharge:L232:0f7011d4f632",
       "heading": "HARD CONSTRAINTS",
       "source": "ssot/engos-meta-supercharge.md",
-      "source_line": 234,
+      "source_line": 241,
       "sha256": "0f7011d4f63204ffbe768e8ca1563c9c913aaa43b10d7b02b88e54f85e37be3f",
       "text": "- Do not run capstone after small replies.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-meta-supercharge:L229:bf84a9ca15a8",
+      "id": "engos-meta-supercharge:L234:811378a9f2b4",
+      "heading": "HARD CONSTRAINTS",
+      "source": "ssot/engos-meta-supercharge.md",
+      "source_line": 243,
+      "sha256": "811378a9f2b4cead606e14ff92a39523941643cb6b2fc9e91636c264d9de7ef0",
+      "text": "- The capstone uses the `/catchup` resource-delivery gate. If that route cannot be loaded, report the delivery block and do not append an improvised or generic catch-up.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-meta-supercharge:L237:bf84a9ca15a8",
       "heading": "HELP OUTPUT (Quick Guide)",
       "source": "ssot/engos-meta-supercharge.md",
-      "source_line": 238,
+      "source_line": 246,
       "sha256": "bf84a9ca15a8049a88b6c106a56714ead4283e4e414046ba35c5e9a4d79d9a96",
       "text": "For a terminal help request, load route `help` from the resource map and read `resources/references/help.md` and return its help content only. Do not execute its examples or continue into an operational module.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-meta-supercharge:L232:bd45ef1c4189",
+      "id": "engos-meta-supercharge:L240:bd45ef1c4189",
       "heading": "HELP EXAMPLES OUTPUT (Auto-Generated Examples)",
       "source": "ssot/engos-meta-supercharge.md",
-      "source_line": 241,
+      "source_line": 249,
       "sha256": "bd45ef1c4189a860f61d205742bac16d6b82f46864747e88ce7eca12b7585427",
       "text": "For a terminal help-examples request, load route `examples` and read `resources/references/help-examples.md` and follow its exact example-generation and output contract. Do not execute the examples.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-meta-supercharge:L234:bc6e78faf2d2",
+      "id": "engos-meta-supercharge:L242:bc6e78faf2d2",
       "heading": "HELP EXAMPLES OUTPUT (Auto-Generated Examples)",
       "source": "ssot/engos-meta-supercharge.md",
-      "source_line": 243,
+      "source_line": 251,
       "sha256": "bc6e78faf2d2f8a6f485af354eff43935a788e688825b2e17fdfd55c77156d0d",
       "text": "For a skill surface, these paths are relative to the skill directory. For an agent surface, resolve `references/help.md` and `references/help-examples.md` relative to the directory containing its bundled `capability.json`. If a required help resource is unavailable, report the missing resource instead of inventing or silently shortening the help contract.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-meta-supercharge:L237:1086282a839e",
+      "id": "engos-meta-supercharge:L245:1086282a839e",
       "heading": "MODULE REFERENCE (Full Spec)",
       "source": "ssot/engos-meta-supercharge.md",
-      "source_line": 246,
+      "source_line": 254,
       "sha256": "1086282a839e815707d3b9b3c2aa3111e41ed792875b654e67c2d580189747dc",
       "text": "For `/details`, load route `details` and return the complete module resources in their declared order below. Do not return this routing table in place of the full specification. Do not execute listed modules or examples.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-meta-supercharge:L239:574ba4b9ebae",
+      "id": "engos-meta-supercharge:L247:574ba4b9ebae",
       "heading": "MODULE REFERENCE (Full Spec)",
       "source": "ssot/engos-meta-supercharge.md",
-      "source_line": 248,
+      "source_line": 256,
       "sha256": "574ba4b9ebaede6d38ab6dd32e90ffe5119fa403bd711d9a7f799c51ae4185b4",
       "text": "| Route | Required module resource | Purpose |",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-meta-supercharge:L246:8d803f12c532",
+      "id": "engos-meta-supercharge:L254:8d803f12c532",
       "heading": "MODULE REFERENCE (Full Spec)",
       "source": "ssot/engos-meta-supercharge.md",
-      "source_line": 255,
+      "source_line": 263,
       "sha256": "8d803f12c5325162c8bcea53165f67d1c6e253093b36f160233642f2db53eb15",
       "text": "| `/adversarial`, `/debate`, `/debate /deep` | `resources/references/modules/adversarial.md` | Attack or independent Bull/Bear/Decider council; `/deep` is valid only with `/debate` |",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-meta-supercharge:L250:8f31056600ef",
+      "id": "engos-meta-supercharge:L258:8f31056600ef",
       "heading": "MODULE REFERENCE (Full Spec)",
       "source": "ssot/engos-meta-supercharge.md",
-      "source_line": 259,
+      "source_line": 267,
       "sha256": "8f31056600efa04e5b57f9bd6a7096ebfb3abaa833636e6d36085800538b7cd0",
       "text": "| `/gaslight` | `resources/references/modules/gaslight.md` | All 13 IDs, 1\u20133 selected techniques, explicit-only experimental framing |",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-meta-supercharge:L251:fe096be639ab",
+      "id": "engos-meta-supercharge:L259:fe096be639ab",
       "heading": "MODULE REFERENCE (Full Spec)",
       "source": "ssot/engos-meta-supercharge.md",
-      "source_line": 260,
+      "source_line": 268,
       "sha256": "fe096be639aba6e4fa117dff16ecd8c40f0788ec7f3a49798a59bcccb78b9ee3",
       "text": "| `/stop-ult` | `resources/references/modules/stop-ult.md` | Exit ULT mode only |",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-meta-supercharge:L253:feaefefe1746",
+      "id": "engos-meta-supercharge:L261:feaefefe1746",
       "heading": "MODULE REFERENCE (Full Spec)",
       "source": "ssot/engos-meta-supercharge.md",
-      "source_line": 262,
+      "source_line": 270,
       "sha256": "feaefefe17465fe21316d214e11d8564f8096e6419fccd8a5be4f804c20c8057",
       "text": "Optional model-adaptation resource: `resources/references/model-guidance.md` (route `model-guidance`). Use its single research-only refresh workflow monthly or on new model/guidance triggers; it never silently edits skills.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-meta-supercharge:L263:d64ae5a71161",
+      "id": "engos-meta-supercharge:L271:d64ae5a71161",
       "heading": "Examples",
       "source": "ssot/engos-meta-supercharge.md",
-      "source_line": 272,
+      "source_line": 280,
       "sha256": "d64ae5a71161e0cf76d03b7bd2822eef3365c186603302e3864a9ef7e23c0d55",
       "text": "Produce real candidates and independent grades, retain the best, and show only actual trials under the unchanged four-section output format.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-meta-supercharge:L274:92b53a938b79",
+      "id": "engos-meta-supercharge:L282:92b53a938b79",
       "heading": "Evaluation Rubric",
       "source": "ssot/engos-meta-supercharge.md",
-      "source_line": 283,
+      "source_line": 291,
       "sha256": "92b53a938b793f5527e146dcd6bf532abf854a4b24140d197f0d37785801edc1",
       "text": "| Boundaries | User scope and host authority govern execution; `/full` never executes its generated task |",
       "kind": "invariant",
@@ -932,20 +980,30 @@
       "mapped_to": []
     },
     {
-      "id": "engos-meta-supercharge:sources/capability-resources/engos-meta-supercharge/references/modules/catchup.md:L18:44413d93afe2",
+      "id": "engos-meta-supercharge:sources/capability-resources/engos-meta-supercharge/references/modules/catchup.md:L16:2a1e26e97cd5",
+      "heading": "Invocation Contract",
+      "source": "sources/capability-resources/engos-meta-supercharge/references/modules/catchup.md",
+      "source_line": 16,
+      "sha256": "2a1e26e97cd5a7a6c447a9823f6df78273b6ba0b8c236edcef42f28e559ee16c",
+      "text": "`/catchup` is a supported SuperCharge route. When this module is delivered, use its exact table and validation contract below. If delivery fails, follow the SSOT `Resource Delivery Failure (Fail Closed)` rule; never reinterpret `/catchup` as an unsupported command or a generic catch-up request.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-meta-supercharge:sources/capability-resources/engos-meta-supercharge/references/modules/catchup.md:L21:44413d93afe2",
       "heading": "Evidence and Cognitive Load",
       "source": "sources/capability-resources/engos-meta-supercharge/references/modules/catchup.md",
-      "source_line": 18,
+      "source_line": 21,
       "sha256": "44413d93afe2b69cf124a53541db57ac97d5866167be733d05cf93f11c65420e",
       "text": "Keep evidence collection details in working records. Do not turn the table into a source-log dump. `Next Steps` contains recorded commitments, not a new plan; if fewer than 3\u20135 are recorded, say so in that cell instead of inventing actions. Preserve all rows and visible validation checks.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-meta-supercharge:sources/capability-resources/engos-meta-supercharge/references/modules/catchup.md:L43:f3a3aecb6094",
+      "id": "engos-meta-supercharge:sources/capability-resources/engos-meta-supercharge/references/modules/catchup.md:L46:f3a3aecb6094",
       "heading": "Catchup Validation (Run After Each Intent Table)",
       "source": "sources/capability-resources/engos-meta-supercharge/references/modules/catchup.md",
-      "source_line": 43,
+      "source_line": 46,
       "sha256": "f3a3aecb6094efc3a122d10c2a55818e9705dca69dd892a34abcc24fb8ed53ad",
       "text": "1) Reconstruction only (no new solution)",
       "kind": "invariant",
@@ -1590,7 +1648,7 @@
   "source_references": [
     {
       "path": "ssot/engos-meta-supercharge.md",
-      "sha256": "1d90ae31771a0ca5c11be5b0a1b5d2621d8aafa4b6d7fd445e776c88ed4b9f3b"
+      "sha256": "d5da37b0d385e1c678a972cea51ad422209b5d6d4637fa8973b0bff53a5ea62a"
     },
     {
       "path": "sources/capability-resources/engos-meta-supercharge/references/shared-review.md",
@@ -1602,7 +1660,7 @@
     },
     {
       "path": "sources/capability-resources/engos-meta-supercharge/references/modules/catchup.md",
-      "sha256": "4e7a94bf82cc0531b0778efba4c6906fb421ec578fcad3dd9c260ed40e69afa2"
+      "sha256": "024463bfd8cb186533d62788b63bed2457decc1cb3e1b6aa1efc7dc226860138"
     },
     {
       "path": "sources/capability-resources/engos-meta-supercharge/references/modules/basis.md",
@@ -1642,7 +1700,7 @@
     },
     {
       "path": "sources/capability-resources/engos-meta-supercharge/references/help.md",
-      "sha256": "9b491928c187ebcc8fe85856754782f7133151a99afc1becf9eeb0f96b9e55a2"
+      "sha256": "bcc7f46f9a66dc92fa4e21be22ba4bf3a0cb2631ad740ff99bd9a9c9d4ec5c98"
     },
     {
       "path": "sources/capability-resources/engos-meta-supercharge/references/help-examples.md",
@@ -1667,11 +1725,11 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 119,
+    "total": 124,
     "mapped": 0,
     "waived": 0
   },
   "review_status": "draft",
   "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs.",
-  "resource_bundle_sha256": "d8d24995c3850e817a179b19e0f84bb3a612725293d9525950038e9811b9660d"
+  "resource_bundle_sha256": "86ca9235c3fce6ca955f60388d5a3bccfddf8c0c62c517ab9918cb1715ea9e16"
 }

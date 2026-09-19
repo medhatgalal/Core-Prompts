@@ -108,6 +108,24 @@
       ]
     },
     {
+      "id": "catchup",
+      "ask": "engos-meta-supercharge /catchup",
+      "expect": [
+        "supported SuperCharge route",
+        "one table per intent group",
+        "✅ Confirmed",
+        "🟡 Proposed",
+        "🔴 Not decided",
+        "/VALIDATE-CATCHUP",
+        "Validation Status: PASS | FAIL"
+      ],
+      "forbid": [
+        "route is unsupported",
+        "generic catch-up substitution",
+        "freeform response without the table and validation contract"
+      ]
+    },
+    {
       "id": "help_precedence",
       "ask": "supercharge /route /full /help examples",
       "expect": [

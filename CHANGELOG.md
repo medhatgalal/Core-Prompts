@@ -25,6 +25,11 @@ pilot acceptance are separate; this entry does not claim a released or deployed 
   JSON/Markdown/HTML status views. Visual acceptance, real-user usability and
   saved external-target verification remain separate from local source checks.
 
+## v1.15.2 - 2026-09-19
+
+- SuperCharge v5.1 makes `/catchup` discoverable in the skill description, preserves its exact table/emoji/validation contract, and fails closed when route resources are missing or stale instead of falling back to generic catch-up output. Added route-loader and cross-surface resource parity regression checks for all resource-backed skills.
+- Include the shaping artifact embed and diagram/contract artifact capabilities, plus the associated Shape Up pitch-review contract updates, in the v1.15.2 release delta.
+
 ## v1.15.1 - 2026-09-15
 
 - Support `--cli agy` as a skills-only installation reader using `.gemini/config/skills`, with existing profile preservation, native-package customization protection, and rollback. Reuse generated portable resources without creating an unreviewed agent surface.

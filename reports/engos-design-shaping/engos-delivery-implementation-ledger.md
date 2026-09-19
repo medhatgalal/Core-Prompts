@@ -17,6 +17,37 @@ Continue local work; dual-remote landing remains blocked until normal access ret
 
 ## Current continuation status — presentation and progress verification
 
+Approved replay execution now uses an actual runtime journal with separate fresh
+junior-product author and junior-engineering reviewer per stage. G0 passed actual
+independent review and was accepted; replaying that same receipt returned replayed
+without a second acceptance. G1 passed confirmed appetite/walk-away and solution
+purity but failed problem/outcome and human scope-boundary predicates. Actual CLI
+acceptance returned hold/gate-not-passed with no pointer mutation. The accepted
+stage remainsG0; progress records G1changes_requested andG2–G4not_reached.
+
+The missing items are product choices, not renewed publication permission:
+affected user/action and freshness/success, intended scope/exclusions, and why-now.
+Three focused proposed replay choices were asked asynchronously, grounded in the
+historical note. No answer received at this checkpoint. No solutioning or Doc
+publication occurs past this failed gate. Preserve the original/corrected failed
+receipt: reviewer initially used last-acceptedG0 in next_state; a corrected copy
+uses assessedG1 per runtime contract without changing any semanticFAIL findings.
+This exposed a documentation-clarity follow-up for failed-receipt field semantics,
+not permission to manufacture a passing verdict.
+
+Private replay root remains outside the public repo. Runtime and input/skill bytes
+are pinned there; integration builds do not rewrite them. Actual source/review
+provenance is labelled real historical replay, not a live product/staffing bet.
+Current actors: G0author01a0b92c-0e3e-7b43-b35a-52106c3491e4,
+G0reviewer01a0b92c-1dc2-7651-9c80-5615fbdd5d38;
+G1author01a0b937-1237-7261-afac-4beac86c8454,
+G1reviewer01a0b937-1e79-70b1-a37e-a49c51cb2462. All stopped after their scope.
+
+Upstream integration preserves thev1.15.2/Supercharge fixes and both CI test sets;
+see reports/merge-conflicts/engos-delivery-shaping-upstream.md for actual conflicts,
+two discovered integration defects and their reviewed repairs. Final affected
+suite147passed; strict32-entry and contract/topology checks passed after regeneration.
+
 2026-09-19 approval update: user explicitly said "approve all three" in this task.
 This confirms public GitHub code/sanitized-evidence PR and gated landing; historical
 replay appetite five weeks/two engineers and the correctness/ownership walk-away;

@@ -1,10 +1,12 @@
 # Local export and render helper
 
-Run `python3 resources/scripts/artifact_export.py --help` from the resolved skill
-package. This helper converts a selected local inventory; it does not publish,
+Run `python3 scripts/artifact_export.py --help` from the resolved skill's
+resources directory (not the skill package root). This helper converts a selected local inventory; it does not publish,
 review semantics, certify visual quality or advance a gate. Python standard
 library suffices for JSON, HTML and invoking a trusted renderer. DOCX needs
 python-docx in the approved host document runtime. No installation is performed.
+Use absolute authorized bundle/output/image paths when they live outside this
+resource directory, so generated documents stay in the project's artifact home.
 
 ## Profiles and exact arguments
 
@@ -32,13 +34,13 @@ actual section's usable width/height with reserved caption/paragraph space;
 long captions and page layout still need rendered visual inspection.
 
 ```text
-python3 resources/scripts/artifact_export.py json --bundle BUNDLE --output NEW_EXPORT/pitch.json
-python3 resources/scripts/artifact_export.py html --profile framed --documents framed.md --bundle FRAME_BUNDLE --self-contained --output NEW_EXPORT/frame.html
-python3 resources/scripts/artifact_export.py docx --profile framed --documents framed.md --bundle FRAME_BUNDLE --output NEW_EXPORT/frame.docx
-python3 resources/scripts/artifact_export.py json --profile shaped --presentation presentation.json --bundle BUNDLE --output NEW_EXPORT/pitch.json
-python3 resources/scripts/artifact_export.py render --profile shaped --presentation presentation.json --bundle BUNDLE --output FRESH_IMAGES --mmdc TRUSTED_MERMAID_CLI
-python3 resources/scripts/artifact_export.py html --profile shaped --presentation presentation.json --bundle BUNDLE --images FRESH_IMAGES --self-contained --output NEW_EXPORT/pitch.html
-python3 resources/scripts/artifact_export.py docx --profile shaped --presentation presentation.json --bundle BUNDLE --images FRESH_IMAGES --output NEW_EXPORT/pitch.docx
+python3 scripts/artifact_export.py json --bundle BUNDLE --output NEW_EXPORT/pitch.json
+python3 scripts/artifact_export.py html --profile framed --documents framed.md --bundle FRAME_BUNDLE --self-contained --output NEW_EXPORT/frame.html
+python3 scripts/artifact_export.py docx --profile framed --documents framed.md --bundle FRAME_BUNDLE --output NEW_EXPORT/frame.docx
+python3 scripts/artifact_export.py json --profile shaped --presentation presentation.json --bundle BUNDLE --output NEW_EXPORT/pitch.json
+python3 scripts/artifact_export.py render --profile shaped --presentation presentation.json --bundle BUNDLE --output FRESH_IMAGES --mmdc TRUSTED_MERMAID_CLI
+python3 scripts/artifact_export.py html --profile shaped --presentation presentation.json --bundle BUNDLE --images FRESH_IMAGES --self-contained --output NEW_EXPORT/pitch.html
+python3 scripts/artifact_export.py docx --profile shaped --presentation presentation.json --bundle BUNDLE --images FRESH_IMAGES --output NEW_EXPORT/pitch.docx
 ```
 
 Replace uppercase placeholders with actual scoped paths. Differing outputs are

@@ -6,8 +6,8 @@ These counts compare selected capability metadata in `.meta/manifest.json`. They
 - Comparison basis: `git:v1.15.1@293573e1b2be53e765186ef3892a00a199262b5d .meta/manifest.json`
 - New capabilities: `5`
 - Removed capabilities: `0`
-- Changed capability records: `1`
-- Records with contract-facing metadata changes: `1`
+- Changed capability records: `2`
+- Records with contract-facing metadata changes: `2`
 
 ## New Capabilities
 - `engos-delivery-artifact-embed` — Shaping Artifact Embed — Surface Adapters and Placement Evidence
@@ -21,6 +21,8 @@ These counts compare selected capability metadata in `.meta/manifest.json`. They
 
 ## Contract-Facing Metadata Changes
 - `engos-audit-pitch-review` — changed `summary`
+- `engos-meta-supercharge` — changed `summary`
 
 ## All Changed Capability Records
 - `engos-audit-pitch-review` — changed `summary, version`
+- `engos-meta-supercharge` — changed `summary, version`

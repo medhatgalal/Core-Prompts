@@ -3043,11 +3043,12 @@
             "strategy": "derived_history",
             "group": "derived",
             "baseline_path": null,
-            "selected_commit": "e866aa80",
+            "selected_commit": "7e94f9eb",
             "richness_score": 7,
-            "line_count": 180,
+            "line_count": 212,
             "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
             "equivalent_commits": [
+              "e866aa80",
               "2c994a21"
             ],
             "expected_companions": [],
@@ -3096,7 +3097,7 @@
                 "candidate_operational_score": 2,
                 "baseline_preserved_in_resource": false
               },
-              "baseline_commit": "e866aa80",
+              "baseline_commit": "7e94f9eb",
               "baseline_slug": "engos-delivery-artifact-embed"
             },
             {
@@ -3147,7 +3148,7 @@
             "surface_usability": 10
           },
           "template_name": "skill",
-          "effective_sha256": "69b3715665c397fff5f7fafa65495be907d90b73b32d1d39aeb7883add713edf",
+          "effective_sha256": "1ebaa0319a0b04e762e4aeb30601e3ddb1f6fbc92f116572ee37a403ad733f1f",
           "semantic_findings": [],
           "agent_surface_review": {
             "status": "unchanged",
@@ -5962,7 +5963,7 @@
       "layers": {
         "minimal": {
           "capability_type": "skill",
-          "summary": "Harden a prompt, plan, proposal, or workflow through the smallest useful sequence of simplification, inversion, adversarial critique, contract checks, debate, or grading. Use when the artifact needs stronger reasoning or execution guidance; use behavioral evaluation for proof.",
+          "summary": "Harden a prompt, plan, proposal, or workflow through the smallest useful sequence of simplification, inversion, adversarial critique, contract checks, debate, or grading. Supports `/catchup` for verified session reconstruction with exact tables, status markers, and validation. Use when the artifact needs stronger reasoning or execution guidance; use behavioral evaluation for proof.",
           "role": "advisor",
           "domain_tags": [
             "planning",
@@ -6086,7 +6087,7 @@
           "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
           "review_status": "ready_for_orchestrator_review",
           "display_name": "SuperCharge \u2014 Prompt Engineering, Planning Hardening, and Graded Improvement",
-          "version": "v5.0"
+          "version": "v5.1"
         },
         "expanded": {
           "relationship_suggestions": [
@@ -6581,9 +6582,17 @@
             "metadata_completeness": 8,
             "surface_usability": 10
           },
-          "template_name": "both",
-          "effective_sha256": "a5ea73e2f1ddd87a4d605ed03a7a261fc5959bb35e88dbcea6d05c321fc5cb55",
+          "template_name": "skill",
+          "effective_sha256": "e7be36c70fc397af1c4ca5e3305eb5d65a7fe079fba0f2090fac435de7ec2d55",
           "semantic_findings": [],
+          "agent_surface_review": {
+            "status": "unchanged",
+            "added_providers": [],
+            "blockers": [],
+            "source_fidelity": "not_required",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
           "repair_requests": [],
           "dimension_inventory": [
             {

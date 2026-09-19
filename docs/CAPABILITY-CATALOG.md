@@ -428,7 +428,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Type: `skill`
 - Install target: `repo_local`
 - Supported CLIs: `claude, codex, gemini, grok, kiro`
-- Version: `v5.0`
+- Version: `v5.1`
 - Invocation hints:
   - make this prompt better
   - harden this plan
@@ -438,7 +438,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
   - run adversarial debate, Bull/Bear/Decider analysis, or `/debate /deep`
   - grade this output and iterate it upward
   - design an agentic workflow or prompt stack
-- Summary: Harden a prompt, plan, proposal, or workflow through the smallest useful sequence of simplification, inversion, adversarial critique, contract checks, debate, or grading. Use when the artifact needs stronger reasoning or execution guidance; use behavioral evaluation for proof.
+- Summary: Harden a prompt, plan, proposal, or workflow through the smallest useful sequence of simplification, inversion, adversarial critique, contract checks, debate, or grading. Supports `/catchup` for verified session reconstruction with exact tables, status markers, and validation. Use when the artifact needs stronger reasoning or execution guidance; use behavioral evaluation for proof.
 
 ### Testing Studio — Test Design and Coverage Analysis
 - Slug: `engos-quality-testing-review`
