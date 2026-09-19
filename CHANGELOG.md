@@ -1,7 +1,8 @@
-## Unreleased
+## v1.15.2 - 2026-09-18
 
 - Derive advisory UAC routing fitness from source clauses, preserve curated descriptor jobs, and regenerate a versioned source-bound job map. Add preview/apply/idempotence and false-authority regression checks.
-- Keep native routing behavior unverified: no Codex pre-selection map consumer was found. No skill bodies, descriptions, installers, global instructions or named-agent surfaces change.
+- Keep automatic routing disabled: no consumer, skill body, description, installer, global instruction or named-agent surface is added or changed. Metadata remains advisory and cannot grant authority.
+- Make the historical routing corpus self-contained and report current adapter declarations without enabling execution. Preserve the original draft oracle and recorded HOLD results; the project-local experiment does not qualify global activation.
 
 ## v1.15.1 - 2026-09-15
 

@@ -17,6 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 FIXTURES = ROOT / 'evals/fixtures/routing'
 PREFIX = 'lazy-prompts-v1'
 BATMAN = 'engos-orchestration-batman'
+FIXTURE_SUFFIXES = ('.jsonl', '.oracle.json', '.catalog.json', '.protocol.json', '.md', '.oracle.md')
 
 
 def sha(path):
@@ -103,18 +104,27 @@ def routing_input(case, catalog):
 
 
 def admission(root=ROOT):
-    root=Path(root)
-    registry=json.loads((root/'evals/adapters/registry.json').read_text())
-    # New entries or capabilities cannot silently authorize execution in this harness.
+    """Observe current declarations without granting this preflight a dispatcher."""
+    registry_path=Path(root)/'evals/adapters/registry.json'
+    registry=json.loads(registry_path.read_text())
     records=[]
     for adapter in registry['adapters']:
         records.append({'id':adapter['id'],'tool_modes':adapter.get('supported_tool_policy_modes'),
                         'unavailable_reason':adapter.get('unavailable_reason'),
                         'bootstrap_agent':adapter.get('bootstrap_agent'),
-                        'route_only_skill_pack_protocol':False})
-    return {'status':'blocked_no_admitted_luna_native_route_only_consumer','native':{'admitted':False,'reason':'No admitted Luna/native adapter returns a closed skill/pack-only decision with enforced no-work policy. The semantic router returns broad profiles. Generic models may classify via a newly specified prompt/parser, but that consumer is not admitted here.'},
-            'agents_bootstrap':{'admitted':False,'reason':'No admitted route-only AGENTS bootstrap consumer exists. A project instruction file alone is not a selector endpoint.'},
-            'adapters_observed':records,'source_bindings':{p:sha(root/p) for p in ['evals/adapters/registry.json','src/intent_pipeline/routing/semantic_router.py','src/intent_pipeline/routing/contracts.py','AGENTS.md']},
+                        'route_only_skill_pack_protocol':adapter.get('route_only_skill_pack_protocol',False)})
+    candidates=[r['id'] for r in records
+                if r['route_only_skill_pack_protocol'] is True
+                and r['tool_modes']==['none']
+                and not r['unavailable_reason'] and not r['bootstrap_agent']]
+    reason='This preflight has no dispatcher. Registry declarations are not reviewed runtime evidence or execution permission.'
+    return {'status':'blocked_runtime_review_required' if candidates else 'blocked_no_declared_route_only_adapter',
+            'execution_enabled':False,
+            'native':{'admitted':False,'reason':reason},
+            'agents_bootstrap':{'admitted':False,'reason':reason},
+            'declared_candidates':candidates,
+            'adapters_observed':records,
+            'source_bindings':{'evals/adapters/registry.json':sha(registry_path)},
             'tool_or_provider_processes_started':0,'task_execution':False}
 
 
@@ -125,7 +135,7 @@ def blocked_results(cases, catalog, evidence):
         size=len(json.dumps(payload,ensure_ascii=False))
         arms={}
         for arm in ['native_baseline','agents_bootstrap']:
-            arms[arm]={'status':'blocked_consumer_unavailable','primary':None,'selected_skills':None,'excluded_skills':None,'pack_size':None,'phase':None,'confidence_band':None,'clarification':None,'authority_decision':None,'evidence_requested':None,'mismatches':None,
+            arms[arm]={'status':evidence['status'],'primary':None,'selected_skills':None,'excluded_skills':None,'pack_size':None,'phase':None,'confidence_band':None,'clarification':None,'authority_decision':None,'evidence_requested':None,'mismatches':None,
                        'context_cost_estimate':{'serialized_case_and_fixture_catalog_chars':size,'rough_tokens_chars_div4':math.ceil(size/4),'basis':'unexecuted input estimate only; excludes native system/bootstrap context; not billed tokens','actual_tokens':None,'actual_credits':None},
                        'task_execution':False,'provider_calls':0}
         result.append({'case_id':c['id'],'arms':arms})
@@ -133,30 +143,35 @@ def blocked_results(cases, catalog, evidence):
 
 
 def verify_freeze(root=ROOT):
+    """Verify immutable fixture bytes; old source hashes are provenance, not CI pins.
+
+    Replaying or promoting an experiment must separately bind its current runtime
+    and effective inputs. This historical corpus does not certify today's skills.
+    """
     root=Path(root).resolve()
     manifest=json.loads((root/'evals/fixtures/routing'/ (PREFIX+'.manifest.json')).read_text())
-    expected_paths={f'evals/fixtures/routing/{PREFIX}{suffix}' for suffix in ['.jsonl','.oracle.json','.catalog.json','.protocol.json','.md','.oracle.md']} | {'evals/adapters/registry.json','src/intent_pipeline/routing/semantic_router.py','src/intent_pipeline/routing/contracts.py','AGENTS.md','.meta/skill-job-map.json','scripts/eval-routing-only.py','tests/test_route_only_battery.py','src/intent_pipeline/uac_ssot.py'}
+    fixture_paths={f'evals/fixtures/routing/{PREFIX}{suffix}' for suffix in FIXTURE_SUFFIXES}
+    expected_paths=fixture_paths | {'evals/adapters/registry.json','src/intent_pipeline/routing/semantic_router.py','src/intent_pipeline/routing/contracts.py','AGENTS.md','.meta/skill-job-map.json','scripts/eval-routing-only.py','tests/test_route_only_battery.py','src/intent_pipeline/uac_ssot.py'}
     if manifest.get('status')!='frozen_unscored_pending_human_review' or set(manifest['files'])!=expected_paths or manifest.get('schema')!='RoutingBatteryFreeze.v1' or manifest.get('baseline_commit')!='6b0a5290cbcb195ba8de950df25dbc1cdbc1f3e6' or manifest.get('consumer_admitted') is not False or manifest.get('human_oracle_approved') is not False:
         raise ValueError('Freeze membership, identity or approval drift')
     for relative,expected in manifest['files'].items():
+        if not isinstance(expected,str) or len(expected)!=64 or any(c not in '0123456789abcdef' for c in expected):
+            raise ValueError('Invalid historical digest: '+relative)
+        if relative not in fixture_paths:
+            continue
         path=root/relative
         if not path.resolve().is_relative_to(root) or path.is_symlink() or sha(path)!=expected:
             raise ValueError('Frozen input drift or unsafe path: '+relative)
     catalog=json.loads((root/'evals/fixtures/routing'/(PREFIX+'.catalog.json')).read_text())
-    import sys
-    if str(root/'src') not in sys.path:sys.path.insert(0,str(root/'src'))
-    from intent_pipeline.uac_ssot import parse_ssot_frontmatter_and_body
-    actual_slugs={p.stem for p in (root/'ssot').glob('*.md')}
-    if set(catalog['skills'])!=actual_slugs:raise ValueError('Frozen corpus differs')
     for slug,entry in catalog['skills'].items():
-        if sha(root/'ssot'/f'{slug}.md')!=entry['ssot_sha256']:
-            raise ValueError('Frozen SSOT drift: '+slug)
         if entry['native_skill_path']!=f'.codex/skills/{slug}/SKILL.md':raise ValueError('Unexpected native skill path')
-        if sha(root/entry['native_skill_path'])!=entry['native_skill_sha256']:
-            raise ValueError('Frozen native skill drift: '+slug)
-        actual_description=parse_ssot_frontmatter_and_body((root/entry['native_skill_path']).read_text())[0].get('description')
-        if entry['description']!=actual_description:raise ValueError('Catalog misrepresents native description: '+slug)
-    return manifest
+        for field in ('ssot_sha256','native_skill_sha256'):
+            digest=entry.get(field)
+            if not isinstance(digest,str) or len(digest)!=64 or any(c not in '0123456789abcdef' for c in digest):
+                raise ValueError('Invalid historical skill digest: '+slug)
+    return {**manifest,'verified_fixture_files':sorted(fixture_paths),
+            'historical_source_files':sorted(expected_paths-fixture_paths),
+            'live_source_parity_checked':False}
 
 
 def main():
@@ -177,10 +192,10 @@ def main():
     evidence=admission()
     records=blocked_results(cases,catalog,evidence)
     bindings={p.name:sha(p) for p in FIXTURES.glob(PREFIX+'.*') if p.is_file()}
-    report={'schema':'RouteOnlyBatteryRun.v1','status':'BLOCKED','disposition':'HOLD','iteration':0,'preflight_receipt':output.name,'consumer_admission':evidence,'battery_validation':validation,'fixture_hashes':bindings,'oracle_human_review':'pending','decisions_produced':0,'provider_calls':0,'task_executions':0,'coverage':{'cases':56,'arms':2,'decision_records_required':112,'decision_records_observed':0},'scores':None,'cases':records,'limits':['No result inferred from metadata, oracle or dry-run placeholders.','Routing-only success would not establish task-outcome improvement.','The fixture catalog is Core-Prompts only; broader native catalog compatibility is not admitted.']}
+    report={'schema':'RouteOnlyBatteryRun.v1','status':'BLOCKED','disposition':'HOLD','iteration':0,'preflight_receipt':output.name,'consumer_admission':evidence,'battery_validation':validation,'freeze_verification':frozen,'fixture_hashes':bindings,'oracle_human_review':'pending','decisions_produced':0,'provider_calls':0,'task_executions':0,'coverage':{'cases':56,'arms':2,'decision_records_required':112,'decision_records_observed':0},'scores':None,'cases':records,'limits':['No result inferred from metadata, oracle or dry-run placeholders.','Historical source hashes are retained provenance, not verification of the live checkout.','Routing-only success would not establish task-outcome improvement.','The fixture catalog is Core-Prompts only; broader native catalog compatibility is not admitted.']}
     (output/'results.json').write_text(json.dumps(report,indent=2)+'\n')
     (output/'iteration-diff.json').write_text(json.dumps({'iteration':0,'status':'blocked_before_baseline','routing_guidance_changes':[],'metadata_changes':[],'negative_example_treatment_changes':[],'skill_body_changes':[],'installer_provider_changes':[],'baseline_and_battery_hashes':bindings,'note':'Battery/oracle construction is test data, not a routing-treatment iteration. No baseline run, candidate run or improvement claim.'},indent=2)+'\n')
-    (output/'RESULTS.md').write_text('# Routing-only battery: HOLD\n\n56cases structurally validated;112arm/case decision slots have **no observed decision**.\n\nNative and AGENTS-bootstrap consumers are blocked. Human oracle approval is pending. No model/provider call, task execution, skill/agent invocation, task write, publish or install occurred. Null selections are not NONE predictions; null mismatch/score fields are unscored.\n\nNo admitted existing Luna/native route-only adapter with a closed skill/pack contract was found. The repo router selects broad profiles; native adapters are general task runners, Codex is disabled with stale conformance, and Kiro selects Batman. A generic model may classify under a new prompt/parser, but that consumer has not been admitted. No replacement classifier or bootstrap was added.\n\nSee results.json for each unexecuted case and estimated serialized input size; these estimates are not actual context or billed costs. iteration-diff.json preserves the zero-treatment-change disposition.\n')
+    (output/'RESULTS.md').write_text('# Routing-only battery: HOLD\n\n56cases structurally validated;112arm/case decision slots have **no observed decision**.\n\nNative and AGENTS-bootstrap consumers are blocked. Human oracle approval is pending. No model/provider call, task execution, skill/agent invocation, task write, publish or install occurred. Null selections are not NONE predictions; null mismatch/score fields are unscored.\n\nThis utility reports current adapter declarations but contains no dispatcher. Declarations never establish runtime admission or authorize execution. Historical source hashes are retained as provenance and are not checked against the live checkout. A separate model-mediated pilot has its own evidence and limitations; this preflight does not reproduce it.\n\nSee results.json for each unexecuted case and estimated serialized input size; these estimates are not actual context or billed costs. iteration-diff.json preserves the zero-treatment-change disposition.\n')
     print(json.dumps({'status':'BLOCKED','cases':56,'decisions':0,'output':str(output)}));return 2
 
 if __name__=='__main__':raise SystemExit(main())

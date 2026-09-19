@@ -1,6 +1,8 @@
 from pathlib import Path
 import copy
 import importlib.util
+import json
+import shutil
 import pytest
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -22,9 +24,17 @@ def test_oracle_never_enters_router_input():
         assert 'oracle' not in incoming and 'expected_primary' not in incoming
 
 
-def test_blocked_results_are_unknown_not_faked_none_or_success():
-    c,o,k,p=m.load_battery();a=m.admission();rows=m.blocked_results(c,k,a)
-    assert a['status']=='blocked_no_admitted_luna_native_route_only_consumer'
+def registry_root(tmp_path, adapters):
+    path=tmp_path/'evals/adapters/registry.json'
+    path.parent.mkdir(parents=True,exist_ok=True)
+    path.write_text(json.dumps({'adapters':adapters}))
+    return tmp_path
+
+
+def test_blocked_results_are_unknown_not_faked_none_or_success(tmp_path):
+    c,o,k,p=m.load_battery()
+    a=m.admission(registry_root(tmp_path,[]));rows=m.blocked_results(c,k,a)
+    assert a['status']=='blocked_no_declared_route_only_adapter'
     assert len(rows)==56
     for row in rows:
         for arm in row['arms'].values():
@@ -34,11 +44,38 @@ def test_blocked_results_are_unknown_not_faked_none_or_success():
             assert arm['context_cost_estimate']['actual_tokens'] is None
 
 
-def test_registry_is_not_a_route_only_dispatcher():
+def test_current_registry_observations_do_not_hardcode_provider_state():
+    registry=json.loads((ROOT/'evals/adapters/registry.json').read_text())
     a=m.admission();ids={x['id']:x for x in a['adapters_observed']}
-    assert ids['kiro-stream-json-experimental']['bootstrap_agent']=='engos-orchestration-batman'
-    assert ids['codex-jsonl-experimental']['unavailable_reason']
+    assert set(ids)=={x['id'] for x in registry['adapters']}
+    for declared in registry['adapters']:
+        observed=ids[declared['id']]
+        assert observed['unavailable_reason']==declared.get('unavailable_reason')
+        assert observed['bootstrap_agent']==declared.get('bootstrap_agent')
+        assert observed['route_only_skill_pack_protocol']==declared.get('route_only_skill_pack_protocol',False)
     assert not a['native']['admitted'] and not a['agents_bootstrap']['admitted']
+    assert not a['execution_enabled']
+
+
+def test_route_only_declaration_changes_diagnostic_but_never_dispatches(tmp_path):
+    adapter={'id':'future-route-only','supported_tool_policy_modes':['none'],
+             'route_only_skill_pack_protocol':True}
+    root=registry_root(tmp_path,[adapter]);a=m.admission(root)
+    assert a['declared_candidates']==['future-route-only']
+    assert a['status']=='blocked_runtime_review_required'
+    assert not a['execution_enabled'] and not a['native']['admitted']
+    assert a['tool_or_provider_processes_started']==0 and not a['task_execution']
+
+
+@pytest.mark.parametrize('extra',[{'unavailable_reason':'not reviewed'},
+    {'bootstrap_agent':'some-agent'}, {'supported_tool_policy_modes':['repo-write-subagents']},
+    {'route_only_skill_pack_protocol':'true'}])
+def test_ineligible_declarations_are_not_route_only_candidates(tmp_path,extra):
+    adapter={'id':'candidate','supported_tool_policy_modes':['none'],
+             'route_only_skill_pack_protocol':True,**extra}
+    a=m.admission(registry_root(tmp_path,[adapter]))
+    assert a['declared_candidates']==[]
+    assert not a['execution_enabled']
 
 
 @pytest.mark.parametrize('mutation',['human_review','unknown_skill','forbidden_overlap','critical_gate','execution','missing_case'])
@@ -64,9 +101,37 @@ def test_every_case_requires_critical_guards():
     with pytest.raises(ValueError,match='base guards'):m.validate(c,o,k,p)
 
 
-def test_frozen_files_and_current_catalog_match():
-    freeze=m.verify_freeze()
+def historical_root(tmp_path):
+    directory=tmp_path/'evals/fixtures/routing';directory.mkdir(parents=True)
+    for suffix in (*m.FIXTURE_SUFFIXES,'.manifest.json'):
+        shutil.copy2(m.FIXTURES/(m.PREFIX+suffix),directory/(m.PREFIX+suffix))
+    return tmp_path
+
+
+def test_historical_fixture_is_self_contained_and_not_a_live_checkout_pin(tmp_path):
+    root=historical_root(tmp_path)
+    freeze=m.verify_freeze(root)
     assert freeze['consumer_admitted'] is False and freeze['human_oracle_approved'] is False
+    assert len(freeze['verified_fixture_files'])==6
+    assert freeze['live_source_parity_checked'] is False
+    assert not (root/'ssot').exists()
+    (root/'AGENTS.md').write_text('Unrelated current project instructions.\n')
+    (root/'ssot').mkdir();(root/'ssot/new-skill.md').write_text('# A later skill\n')
+    assert m.verify_freeze(root)==freeze
+    assert m.validate(*m.load_battery(root))['cases']==56
+
+
+@pytest.mark.parametrize('suffix',m.FIXTURE_SUFFIXES)
+def test_historical_fixture_tampering_still_fails(tmp_path,suffix):
+    root=historical_root(tmp_path);p=root/'evals/fixtures/routing'/(m.PREFIX+suffix)
+    p.write_text(p.read_text()+'\nchanged\n')
+    with pytest.raises(ValueError,match='Frozen input drift'):m.verify_freeze(root)
+
+
+def test_historical_fixture_symlink_is_rejected(tmp_path):
+    root=historical_root(tmp_path);p=root/'evals/fixtures/routing'/(m.PREFIX+'.md')
+    saved=tmp_path/'outside.md';p.rename(saved);p.symlink_to(saved)
+    with pytest.raises(ValueError,match='unsafe path'):m.verify_freeze(root)
 
 
 def test_catalog_scope_is_visible_without_oracle_leakage():

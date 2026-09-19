@@ -386,7 +386,51 @@ This version emits drafts or stale records and cannot self-assert reviewed statu
 
 These fields do **not** activate native routing. Inspection of Codex 0.154.0 found
 name/description/path discovery, but no pre-selection reader for this map or bundled
-`capability.json`. The metadata-only native comparison is therefore on hold, and no
-lazy-prompt behavior improvement is claimed. Adding a consumer or changing discovery
-descriptions requires its own reviewed scope. No installer or global instruction
-change accompanies this metadata.
+`capability.json`. A later, explicitly supplied project bootstrap was tested on
+Codex 0.155.0; it does not add a native reader to this repository. No installer,
+global instruction, skill body, or named-agent change accompanies this foundation.
+
+### Historical corpus and current admission
+
+`python3 scripts/eval-routing-only.py --validate` checks the self-contained
+`lazy-prompts-v1` corpus: 48 ordinary requests and eight stage follow-ups, with a
+29-skill catalog and a draft oracle. The six fixture documents and their original
+manifest stay unchanged. Recorded hashes of the old source tree remain provenance;
+they do not require current SSOT, generated skills, AGENTS, or compiler files to
+match that historical revision. This check does not certify today's catalog.
+
+The optional `--run --output reports/uac-routing-fitness/routing-only/<new-run>`
+performs **preflight only** and exits 2 with null decisions and scores. It observes
+the current adapter registry. A route-only declaration may change the diagnostic
+to runtime-review-required, but cannot grant execution: this utility contains no
+dispatcher and starts no provider, skill, tool, or agent process. Actual evaluation
+requires separately reviewed runtime and input bindings; ordinary CI is offline.
+
+### Evidence and limits
+
+The separate September 18, 2026 project-bootstrap pilot collected 112 decisions:
+56 per arm. The descriptions-plus-common-contract baseline and the full-map arm
+both matched all 56 expected primary choices, including NONE and CLARIFY. Minimum
+packs matched 55/56 and 54/56 respectively. Bulk input/output tokens were 123,120
+and 194,193: the full-map arm used 57.7% more tokens without a primary-choice gain.
+The baseline was a controlled classifier, not an untouched native assistant.
+
+The result remains **HOLD**, not behavioral promotion. Authority labels lacked the
+full definitions used by the draft scorer. Both arms missed the declared critical
+and combined stage-transition gates: label/pack flags were four versus three, and
+route/pack/authority agreement on follow-ups was 6/8 versus 7/8. These are draft-oracle
+mismatches, not observed unauthorized actions. Native per-run SQLite also contained
+pre-existing thread metadata, so fresh history isolation and sole causal attribution
+were not established. No historical retrieval, simulated task execution, tool use,
+or project mutation was observed. Those limitations remain part of the result;
+the original oracle and responses were not rewritten to improve scores. Real task
+completion and other providers were not tested. Private raw evidence and recovery
+bundles remain outside the source/package boundary.
+
+Metadata growth is separate from activation. For the initial foundation, the 29
+Codex descriptor resources grew from 404,244 to 645,650 bytes, with equivalent
+metadata emitted for five providers. The generated SKILL.md bodies and their
+existing resource pointers were unchanged. Repository routing modules do not read
+these descriptors or the map by default, but reading an enlarged resource can still
+increase context. Source inspection does not establish unchanged native token cost.
+Any runtime consumer or default-load change needs its own review and measured proof.
