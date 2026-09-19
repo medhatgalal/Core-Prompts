@@ -51,6 +51,31 @@ def test_legacy_consistency_is_not_acceptance(workshop):
     assert all(g["state"] == "not_reached" for g in p["gates"])
 
 
+def test_failed_review_next_state_names_assessed_gate_not_accepted_stage(workshop):
+    rt = workshop
+    advance(rt, 0)
+    order, candidate = prepare(rt, 'G1')
+    seal = rt.seal(order['work_order_id'], version(rt))
+    receipt = fake_receipt(rt, order, seal)
+    receipt['verdict'] = 'fail'
+    receipt['assessments']['problem_frame']['outcome'] = 'fail'
+    receipt['unresolved_blockers'] = ['FAKE missing framing decision']
+    path = 'sources/failing-G1-review.json'
+    receipt['next_state'] = 'G0'
+    write_json(rt.root/path, receipt)
+    before = version(rt)
+    with pytest.raises(rt.Hold, match='verdict/state'):
+        observe(rt, order, 'review_returned', actor=order['reviewer']['identity'], evidence=path)
+    assert version(rt) == before
+    receipt['next_state'] = 'G1'
+    write_json(rt.root/path, receipt)
+    observe(rt, order, 'review_returned', actor=order['reviewer']['identity'], evidence=path)
+    before = version(rt)
+    with pytest.raises(rt.Hold, match='gate not passed'):
+        rt.accept(rt.root/path, before)
+    assert version(rt) == before and rt.status()['stage'] == 'G0'
+
+
 def test_scoped_frame_finish_and_repeatable_read_only_projection(workshop):
     rt = workshop
     context(rt, "G1")

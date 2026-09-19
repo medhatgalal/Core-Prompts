@@ -17,6 +17,31 @@ Continue local work; dual-remote landing remains blocked until normal access ret
 
 ## Current continuation status — presentation and progress verification
 
+Public-disclosure approval has been exercised: GitHub draftPR89 and internal
+GitLab draftMR92 are open for AI/engos-full-shaping-design. Integrated candidate
+1d5d9e8 contains both current main ancestries and preserves the upstream release
+and shaping changes. GitHub branch/PR checks succeeded; GitLab branch check
+6855208 succeeded, with the separate MR pipeline tracked throughMR92. Do not
+infer merge readiness from these checks: the actual replay remains at acceptedG0
+with G1changes_requested on product outcome/scope. No Google Doc was created,
+because publishing before currentG3 would bypass the agreed pipeline.
+
+The failed-review control-field ambiguity is now clarified in canonical gate
+runtime.md: every verdict uses next_state=the assessedorder.gate, while fail
+leaves acceptance unchanged. Same-slug UACplan/judge/apply succeeded; no runtime
+code change or semantic verdict was made. A regression verifies malformedG0
+binding rejects, correctedfailedG1canberecorded, andacceptance staysG0. The focused
+progress/docs suite passed82tests, and independent reviewer01a0b93c-b8ba-79a0-b52c-aef7c9878e54
+found noP1/P2; all five generated copies and manifest hashes match. This is a
+follow-up to1d5d9e8 and requires its own hosted checks after push.
+
+Current next action: obtain the three proposed framing choices asked in this
+continuation (correctness-first saved-insight refresh goal, bounded existing-schema/
+object scope with external data-layer prerequisites, historical migration rationale),
+record direct response as new decisions, and create a freshG1attempt. Earlier
+"approve all three" resolved public publication, appetite/walk-away and private
+Doc permission only; it must not be reused as answers to these later questions.
+
 Approved replay execution now uses an actual runtime journal with separate fresh
 junior-product author and junior-engineering reviewer per stage. G0 passed actual
 independent review and was accepted; replaying that same receipt returned replayed

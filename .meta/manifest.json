@@ -9131,11 +9131,12 @@
             "strategy": "derived_history",
             "group": "derived",
             "baseline_path": null,
-            "selected_commit": "7e94f9eb",
+            "selected_commit": "e077ae86",
             "richness_score": 5,
-            "line_count": 118,
+            "line_count": 137,
             "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
             "equivalent_commits": [
+              "7e94f9eb",
               "e866aa80"
             ],
             "expected_companions": [],
@@ -9161,7 +9162,7 @@
               "title": "Source Fidelity and Uplift",
               "score": 10,
               "blockers": [],
-              "classification": "additive",
+              "classification": "preserved",
               "scenario_results": [
                 {
                   "id": "operational_invocation",
@@ -9184,7 +9185,7 @@
                 "candidate_operational_score": 2,
                 "baseline_preserved_in_resource": false
               },
-              "baseline_commit": "7e94f9eb",
+              "baseline_commit": "e077ae86",
               "baseline_slug": "engos-quality-shaping-gate"
             },
             {
@@ -9235,7 +9236,7 @@
             "surface_usability": 10
           },
           "template_name": "skill",
-          "effective_sha256": "a218acee4a9e670c10e5aacce6b2f3f320ace29b99126a4eaaf271a072bf32ad",
+          "effective_sha256": "99d7893cd603441283c2d7ba285fc462fe30ca1bd07fff19dc224dd6ed15a0f4",
           "semantic_findings": [],
           "agent_surface_review": {
             "status": "unchanged",

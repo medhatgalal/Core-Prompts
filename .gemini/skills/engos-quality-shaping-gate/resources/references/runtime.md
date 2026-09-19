@@ -176,6 +176,11 @@ is integer `1`. `reviewer` must match the assigned identity. For acceptance,
 `next_state` equals this gate, and `unresolved_blockers` is an empty array.
 `findings` is an array of nonempty strings (empty permitted).
 
+For every receipt verdict, including `fail` and `unverifiable`, `next_state` is
+bound to the assessed `order.gate`; it is not the last accepted stage or permission
+to advance. A failed G1 receipt therefore uses `next_state: G1`, while the actual
+accepted stage remains G0. Explain the hold separately in findings/blockers.
+
 `evidence` maps IDs such as `E1` to files in the sealed cumulative subject; include
 actual observation files/render artifacts in the candidate before sealing.
 `assessments` has exactly one entry for every required predicate:
