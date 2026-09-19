@@ -78,3 +78,14 @@ def test_build_ssot_manifest_entry_honors_install_target_frontmatter() -> None:
 
     assert install_target["recommended"] == "global"
     assert install_target["confidence"] == 1.0
+
+
+def test_every_generated_routing_draft_revalidates_against_canonical_source():
+    import json
+    from intent_pipeline.skill_jobs import validate_routing_fitness, load_skill_job_map
+    slugs=sorted(path.stem for path in (ROOT/'ssot').glob('*.md'))
+    jobs=load_skill_job_map(ROOT/'.meta/skill-job-map.json',slugs)['skills']
+    for slug in slugs:
+        descriptor=json.loads((ROOT/'.meta/capabilities'/f'{slug}.json').read_text())
+        assert descriptor['job_contract']==jobs[slug]
+        validate_routing_fitness(descriptor['job_contract'],ROOT,slug)

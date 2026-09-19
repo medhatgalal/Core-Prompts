@@ -3,7 +3,8 @@
 Requires macOS 13+, Swift, a macOS SDK and a working local AppKit/WebKit session.
 Other platforms or missing toolchains skip explicitly. Compilation is bounded at
 120 seconds; each exporter has a 20-second internal and 35-second outer timeout.
-The helper is compiled once per module, using an isolated temporary module cache.
+The helper is compiled once per module. The default cache is fresh and temporary;
+an explicit task-owned receipt can opt into verified module-cache reuse.
 No dependencies are installed, and the synthetic HTML has no network resources.
 These tests cover particular writer orderings, not atomic concurrency safety.
 """
@@ -20,6 +21,8 @@ import sys
 from pathlib import Path
 
 import pytest
+
+from presentation_cache import CACHE_RECEIPT_ENV, compile_exporter, identity, selected_cache
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -114,14 +117,10 @@ def exporter_binary(tmp_path_factory: pytest.TempPathFactory) -> Path:
     work = tmp_path_factory.mktemp("presentation-exporter-build")
     source = work / "exporter.swift"
     source.write_text(_instrument(EXPORTER.read_text(encoding="utf-8")), encoding="utf-8")
-    cache = work / "module-cache"
-    cache.mkdir()
+    inputs = identity(source, compiler, xcrun, sdk.stdout.strip()) if os.environ.get(CACHE_RECEIPT_ENV) else None
     executable = work / "exporter"
-    result = subprocess.run(
-        [compiler, str(source), "-o", str(executable), "-module-cache-path", str(cache)],
-        capture_output=True, text=True, timeout=120, check=False,
-    )
-    assert result.returncode == 0, result.stdout + result.stderr
+    with selected_cache(work, inputs) as (cache, _record):
+        compile_exporter(compiler, source, executable, cache)
     return executable
 
 

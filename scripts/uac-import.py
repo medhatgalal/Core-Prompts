@@ -769,7 +769,7 @@ def _compact_descriptor_delta(existing: Mapping[str, Any] | None, candidate: Map
         }
 
     changed_fields: list[str] = []
-    for key in ('display_name', 'family_slug', 'quality_profile', 'quality_status', 'quality_pass_count', 'quality_stop_reason'):
+    for key in ('display_name', 'family_slug', 'quality_profile', 'quality_status', 'quality_pass_count', 'quality_stop_reason', 'job_contract'):
         if existing.get(key) != candidate.get(key):
             changed_fields.append(key)
 
@@ -793,6 +793,15 @@ def _compact_descriptor_delta(existing: Mapping[str, Any] | None, candidate: Map
             'quality_status': candidate.get('quality_status'),
         },
     }
+
+
+def _routing_job_for_text(slug: str, text: str, existing: Mapping[str, Any] | None) -> dict[str, Any]:
+    from intent_pipeline.skill_jobs import compile_skill_job
+    fields, body = parse_ssot_frontmatter_and_body(text)
+    return compile_skill_job(ROOT, slug, text,
+        display_name=str(fields.get('display_name') or slug),
+        description=str(fields.get('description') or ''),
+        existing=(existing or {}).get('job_contract'))
 
 
 def _build_descriptor_preview(
@@ -819,6 +828,9 @@ def _build_descriptor_preview(
         quality_validation_matrix=tuple((quality_plan or {}).get('validation_matrix') or ()),
     )
     existing_descriptor = load_descriptor(ROOT, slug)
+    candidate_text = _canonicalize_same_slug_ssot(slug, _preferred_ssot_text(slug, payload, quality_result=quality_result))
+    candidate_text += '' if candidate_text.endswith('\n') else '\n'
+    descriptor['job_contract'] = _routing_job_for_text(slug, candidate_text, existing_descriptor)
     return descriptor, _compact_descriptor_delta(existing_descriptor, descriptor)
 
 
@@ -2516,6 +2528,7 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
     if promotion_verdict and quality_plan and quality_result:
         quality_paths = _persist_quality_reviews(slug, quality_plan, quality_result)
     ssot_path.write_text(ssot_text + ('\n' if not ssot_text.endswith('\n') else ''), encoding='utf-8')
+    descriptor['job_contract'] = _routing_job_for_text(slug, ssot_path.read_text(encoding='utf-8'), descriptor)
     descriptor_path = save_descriptor(ROOT, slug, descriptor)
     source_note = None
     source_refs = []

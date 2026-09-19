@@ -35,8 +35,16 @@ jobs:
           tests/test_uac_source_integrity.py tests/test_uac_promotion_apply.py
           tests/test_supercharge_preservation.py tests/test_supercharge_debate.py
           tests/test_frontier_skill_contracts.py tests/test_resource_backed_skill_surfaces.py
-      - name: Verify stable Auto-Research bootstrap artifacts
-        run: python3 -m pytest -q tests/test_uac_import.py -k bootstrap
+      - name: Verify native exporter cache lifecycle
+        run: python3 -m pytest -q tests/test_presentation_cache.py tests/test_presentation_exporter.py
+      - name: Verify advisory routing metadata and historical fixtures
+        run: >-
+          python3 -m pytest -q tests/test_skill_job_map.py
+          tests/test_uac_routing_fitness.py tests/test_route_only_battery.py
+      - name: Verify UAC apply/readback and stable bootstrap artifacts
+        run: >-
+          python3 -m pytest -q tests/test_uac_import.py
+          -k 'bootstrap or writes_ssot_and_descriptor_in_workspace_copy'
       - name: Run CLI startup smoke checks
         run: python3 scripts/smoke-clis.py
       - name: Compile capability contracts and topology (zero-token)

@@ -362,6 +362,104 @@
       "engos-browser-demo-recorder"
     ],
     "shape": "focused_specialist",
-    "portfolio_action": "keep"
+    "portfolio_action": "keep",
+    "routing_fitness": {
+      "schema_version": "RoutingFitness.v1",
+      "mapping_status": "source_derived_draft",
+      "task_phases": {
+        "kind": "source_conditions",
+        "clauses": [
+          {
+            "text": "1. Determine whether the task is unit tests, E2E design, edge-case discovery, or coverage analysis.\n2. Inspect the current repository testing stack and existing tests before recommending changes.\n3. Produce the minimum useful test set or gap analysis for the requested mode.\n4. Separate what can be generated now from what still needs repo-specific validation or execution.\n5. End with explicit priorities, risks, and follow-up work.",
+            "heading": "Workflow",
+            "source": {
+              "path": "ssot/engos-quality-testing-review.md",
+              "start_line": 26,
+              "end_line": 30,
+              "sha256": "13fe64494de3a09d60ddaad9f6c8824e42b59ff90c456a6a4e0c46018223e71b"
+            }
+          }
+        ]
+      },
+      "activation": {
+        "mode": "unknown",
+        "evidence": []
+      },
+      "risk_authority_ceiling": {
+        "grants_authority": false,
+        "clauses": [
+          {
+            "text": "- allowed: inspect source code and existing tests, design test cases, and write test artifacts when asked\n- forbidden: silently executing tests, inventing framework choices that contradict the repo, or claiming coverage numbers without evidence\n- escalation: if the request is actually a release gate or CI readiness question, recommend `engos-quality-gitops-review`",
+            "heading": "Tool Boundaries",
+            "source": {
+              "path": "ssot/engos-quality-testing-review.md",
+              "start_line": 33,
+              "end_line": 35,
+              "sha256": "13fe64494de3a09d60ddaad9f6c8824e42b59ff90c456a6a4e0c46018223e71b"
+            }
+          },
+          {
+            "text": "- Do not execute tests automatically.\n- Do not replace project-specific framework decisions when the repository already has a clear testing stack.\n- Do not claim coverage metrics without a coverage artifact or direct evidence.",
+            "heading": "Constraints",
+            "source": {
+              "path": "ssot/engos-quality-testing-review.md",
+              "start_line": 125,
+              "end_line": 127,
+              "sha256": "13fe64494de3a09d60ddaad9f6c8824e42b59ff90c456a6a4e0c46018223e71b"
+            }
+          }
+        ]
+      },
+      "negative_examples": {
+        "kind": "source_exclusions_not_synthetic_prompts",
+        "clauses": [
+          {
+            "text": "- Do not execute tests automatically.\n- Do not replace project-specific framework decisions when the repository already has a clear testing stack.\n- Do not claim coverage metrics without a coverage artifact or direct evidence.",
+            "heading": "Constraints",
+            "source": {
+              "path": "ssot/engos-quality-testing-review.md",
+              "start_line": 125,
+              "end_line": 127,
+              "sha256": "13fe64494de3a09d60ddaad9f6c8824e42b59ff90c456a6a4e0c46018223e71b"
+            }
+          }
+        ]
+      },
+      "conditional_companions": [],
+      "pack_hints": {
+        "lead": "engos-quality-testing-review",
+        "companions": "only_after_applicable_source_conditions_are_checked",
+        "default_bulk_activation": false
+      },
+      "provenance": {
+        "ssot_path": "ssot/engos-quality-testing-review.md",
+        "ssot_sha256": "13fe64494de3a09d60ddaad9f6c8824e42b59ff90c456a6a4e0c46018223e71b",
+        "effective_sha256": "13fe64494de3a09d60ddaad9f6c8824e42b59ff90c456a6a4e0c46018223e71b",
+        "resources": [],
+        "extractor_version": "source-clauses.v1",
+        "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+        "field_sources": {},
+        "unresolved_companion_clauses": [],
+        "curated_fields": [
+          "authority",
+          "main_output",
+          "nearest_neighbors",
+          "not_for",
+          "portfolio_action",
+          "primary_job",
+          "routing_question",
+          "shape",
+          "use_when",
+          "works_on"
+        ],
+        "curated_binding": "preserved_not_independently_revalidated",
+        "mapping_sha256": "4790f3faabc04b46f968ee9126ac9240ee5d178b33b553f8cf4235fe5cb22451"
+      },
+      "unresolved_fields": [
+        "task_phase_interpretation",
+        "risk_authority_interpretation",
+        "implicit_activation_eligibility"
+      ]
+    }
   }
 }

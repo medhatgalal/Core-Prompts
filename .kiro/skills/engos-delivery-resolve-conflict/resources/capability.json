@@ -257,6 +257,119 @@
       "engos-reconciliation-converge"
     ],
     "shape": "focused_specialist",
-    "portfolio_action": "keep"
+    "portfolio_action": "keep",
+    "routing_fitness": {
+      "schema_version": "RoutingFitness.v1",
+      "mapping_status": "source_derived_draft",
+      "task_phases": {
+        "kind": "source_conditions",
+        "clauses": []
+      },
+      "activation": {
+        "mode": "unknown",
+        "evidence": []
+      },
+      "risk_authority_ceiling": {
+        "grants_authority": false,
+        "clauses": [
+          {
+            "text": "- allowed: inspect conflict markers, inspect branch diffs, propose merged structures, and write conflict-analysis artifacts\n- forbidden: silently choosing between incompatible options without explanation, hiding dropped content, or pretending a conflict is resolved without verification\n- escalation: if the conflict is really an architecture, policy, or release decision, surface it and route to `engos-design-architecture` or `engos-quality-gitops-review` instead of burying it in the merge",
+            "heading": "Tool Boundaries",
+            "source": {
+              "path": "ssot/engos-delivery-resolve-conflict.md",
+              "start_line": 31,
+              "end_line": 33,
+              "sha256": "0ccc8d01936c017ade5e033d0370a46d4cb60d9ec68f5232754b7455c3896c8d"
+            }
+          }
+        ]
+      },
+      "negative_examples": {
+        "kind": "source_exclusions_not_synthetic_prompts",
+        "clauses": []
+      },
+      "conditional_companions": [
+        {
+          "skill": "engos-design-architecture",
+          "condition_and_handoff": "| interface, migration, or boundary decisions are materially in conflict | `engos-design-architecture` | the merge needs design judgment, not just textual reconciliation |",
+          "source": {
+            "path": "ssot/engos-delivery-resolve-conflict.md",
+            "start_line": 40,
+            "end_line": 40,
+            "sha256": "0ccc8d01936c017ade5e033d0370a46d4cb60d9ec68f5232754b7455c3896c8d"
+          },
+          "interpretation": "source_clause_requires_stage_review"
+        },
+        {
+          "skill": "engos-quality-gitops-review",
+          "condition_and_handoff": "| release, CI, or branch-policy implications are part of the conflict | `engos-quality-gitops-review` | merge readiness and release sequencing should be checked explicitly |",
+          "source": {
+            "path": "ssot/engos-delivery-resolve-conflict.md",
+            "start_line": 41,
+            "end_line": 41,
+            "sha256": "0ccc8d01936c017ade5e033d0370a46d4cb60d9ec68f5232754b7455c3896c8d"
+          },
+          "interpretation": "source_clause_requires_stage_review"
+        },
+        {
+          "skill": "engos-quality-testing-review",
+          "condition_and_handoff": "| behavior changed and the merged result needs stronger coverage | `engos-quality-testing-review` | verification should include test recommendations, not only conflict cleanup |",
+          "source": {
+            "path": "ssot/engos-delivery-resolve-conflict.md",
+            "start_line": 42,
+            "end_line": 42,
+            "sha256": "0ccc8d01936c017ade5e033d0370a46d4cb60d9ec68f5232754b7455c3896c8d"
+          },
+          "interpretation": "source_clause_requires_stage_review"
+        },
+        {
+          "skill": "engos-quality-docs-review",
+          "condition_and_handoff": "| docs structure and placement are in conflict | `engos-quality-docs-review` | documentation IA drift should be resolved with its own rubric |",
+          "source": {
+            "path": "ssot/engos-delivery-resolve-conflict.md",
+            "start_line": 43,
+            "end_line": 43,
+            "sha256": "0ccc8d01936c017ade5e033d0370a46d4cb60d9ec68f5232754b7455c3896c8d"
+          },
+          "interpretation": "source_clause_requires_stage_review"
+        }
+      ],
+      "pack_hints": {
+        "lead": "engos-delivery-resolve-conflict",
+        "companions": "only_after_applicable_source_conditions_are_checked",
+        "default_bulk_activation": false
+      },
+      "provenance": {
+        "ssot_path": "ssot/engos-delivery-resolve-conflict.md",
+        "ssot_sha256": "0ccc8d01936c017ade5e033d0370a46d4cb60d9ec68f5232754b7455c3896c8d",
+        "effective_sha256": "0ccc8d01936c017ade5e033d0370a46d4cb60d9ec68f5232754b7455c3896c8d",
+        "resources": [],
+        "extractor_version": "source-clauses.v1",
+        "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+        "field_sources": {},
+        "unresolved_companion_clauses": [],
+        "curated_fields": [
+          "authority",
+          "main_output",
+          "nearest_neighbors",
+          "not_for",
+          "portfolio_action",
+          "primary_job",
+          "routing_question",
+          "shape",
+          "use_when",
+          "works_on"
+        ],
+        "curated_binding": "preserved_not_independently_revalidated",
+        "mapping_sha256": "2dc3b138ef3b53ae57bea70dda8ca3955ec3c923389a38e4c428afe5855eef84"
+      },
+      "unresolved_fields": [
+        "task_phase_interpretation",
+        "risk_authority_interpretation",
+        "implicit_activation_eligibility",
+        "task_phases",
+        "negative_examples"
+      ]
+    }
   }
 }

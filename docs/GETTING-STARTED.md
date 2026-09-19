@@ -258,3 +258,5 @@ For measured optimization, ask Auto-Research to run a stated number of trials ag
 Routine updates automatically remove identified retired Core-Prompts agents,
 including locally modified copies, while retaining skills and third-party agents
 such as Kiro Crew. See [installation cleanup](INSTALL-PROFILES.md#automatic-agent-cleanup-on-update).
+
+When importing a new skill, inspect the `job_contract` delta in UAC plan/judge: the mapping should describe the actual job and exclusions, with source references and explicit unknowns. The generated map does not make the host consume it. See [source-backed routing fitness](UAC-USAGE.md#source-backed-routing-fitness).

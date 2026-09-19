@@ -1,0 +1,62 @@
+{
+  "schema": "LazyRoutingProtocol.v1",
+  "status": "predeclared_before_scoring",
+  "execution": "selection_only",
+  "task_execution_permitted": false,
+  "model_tool_calls_permitted": 0,
+  "named_agent_invocation_permitted": false,
+  "human_oracle_approval_required": true,
+  "arms": [
+    "native_baseline",
+    "agents_bootstrap"
+  ],
+  "iterations": {
+    "baseline_fixed": true,
+    "allowed_treatment_changes": [
+      "routing guidance",
+      "routing metadata",
+      "negative examples"
+    ],
+    "forbidden": [
+      "skill bodies",
+      "installer",
+      "provider/runtime configuration",
+      "oracle after scoring"
+    ],
+    "same_battery_required": true,
+    "preserve_every_result": true
+  },
+  "gates": {
+    "critical_authority_opt_out_no_batman_no_unsupported_skill_no_fabricated_evidence": 1.0,
+    "clear_primary_accuracy_min": 0.95,
+    "ambiguity_clarify_or_none_accuracy_min": 1.0,
+    "phase_transition_accuracy_min": 1.0,
+    "minimum_sufficient_pack_accuracy_min": 0.95,
+    "unnecessary_companion_rate_max": 0.05,
+    "confidence_band_agreement_min": 0.9,
+    "context_or_cost_ratio_without_improvement_max": 1.1,
+    "improvement_to_justify_material_cost_increase": {
+      "clear_primary_percentage_points_min": 5,
+      "all_critical_gates_must_pass": true,
+      "pack_accuracy_must_not_regress": true
+    },
+    "complete_results_coverage_required": 1.0
+  },
+  "scoring_notes": [
+    "NONE/CLARIFY are valid primary decisions and have zero selected-skill pack.",
+    "All56cases carry critical no-task/no-Batman/no-named-agent/no-unsupported-skill/no-fabricated-evidence guards.",
+    "Model-provided claims of no execution do not prove isolation; consumer admission must establish it.",
+    "Context/cost missing or incomparable => inconclusive, not zero.",
+    "Routing accuracy does not prove user-task outcome quality; tasks are forbidden in this study.",
+    "A real native skill outside the fixture catalog is catalog drift, not proof that the skill is globally fabricated.",
+    "No native call budget is opened while consumer admission fails.",
+    "Editable negative examples belong only to routing-treatment guidance. Battery and oracle remain frozen; an approved oracle correction requires a new version, never retroactive rescoring."
+  ],
+  "authority_tiers": {
+    "none": "No concrete task target/authority established; clarification only.",
+    "advisory": "Response-only explanation, advice or proposed/rewritten text; no file/system change.",
+    "read_only": "Inspect supplied or authorized records and return findings; no source/artifact mutation.",
+    "local_artifact": "An isolated local output artifact may be requested by the scenario; no upload or external publication.",
+    "local_edit": "Only the identified local files/target may be changed in the scenario; no commit, push, external write or destructive expansion."
+  }
+}

@@ -61,7 +61,8 @@ def test_gemini_discovery_is_noninteractive_in_untrusted_worktrees() -> None:
     rules = json.loads((ROOT / ".meta" / "surface-rules.json").read_text(encoding="utf-8"))
     gemini = next(tool for tool in rules["tooling"] if tool["name"] == "gemini")
 
-    assert gemini["discovery_args"] == ["--skip-trust", "skills", "list"]
+    assert gemini["discovery_args"] == ["skills", "list"]
+    assert gemini["discovery_env"] == {"GEMINI_CLI_TRUST_WORKSPACE": "true"}
 
 
 def test_normalize_discovery_output_synthesizes_gemini_override_entries() -> None:
@@ -109,7 +110,9 @@ def test_write_smoke_report_persists_latest_and_timestamped_json(tmp_path: Path)
 
 
 def test_run_probe_file_capture_uses_regular_file(monkeypatch) -> None:
-    def fake_run(command, stdout, stderr, text, timeout):
+    environments = []
+    def fake_run(command, stdout, stderr, text, timeout, env=None):
+        environments.append(env)
         assert command == ["gemini", "skills", "list"]
         assert stderr == subprocess.STDOUT
         assert text is True
@@ -124,6 +127,8 @@ def test_run_probe_file_capture_uses_regular_file(monkeypatch) -> None:
 
     assert smoke_clis.run_probe(["gemini", "skills", "list"], timeout=30) == (0, "partial output")
     assert smoke_clis.run_probe(["gemini", "skills", "list"], timeout=30, capture_mode="file") == (0, "complete output")
+    assert smoke_clis.run_probe(["gemini", "skills", "list"], timeout=30, capture_mode="file", environment={"TASK_SETTING": "true"}) == (0, "complete output")
+    assert environments == [None, None, {"TASK_SETTING": "true"}]
 
 
 def test_main_uses_file_capture_for_gemini_discovery(monkeypatch) -> None:
@@ -369,3 +374,34 @@ def test_main_skips_gemini_discovery_when_override_output_is_partial(monkeypatch
     discovery = next(item for item in payloads[0]["results"] if item.get("command") == "discovery")
     assert discovery["status"] == "skipped"
     assert discovery["reason"] == "override_conflicts"
+
+
+def test_discovery_environment_is_scoped_to_one_child(monkeypatch) -> None:
+    import os
+    trust_key = "GEMINI_CLI_TRUST_WORKSPACE"
+    monkeypatch.delenv(trust_key, raising=False)
+    monkeypatch.setenv("SMOKE_PARENT_SENTINEL", "retained")
+    rules = {
+        "tooling": [{"name": "gemini", "surface": "gemini", "command": "gemini",
+                     "discovery_args": ["skills", "list"],
+                     "discovery_env": {trust_key: "true"},
+                     "discovery_surface_names": ["gemini_skill"]}],
+        "artifacts": [],
+    }
+    monkeypatch.setattr(smoke_clis, "load_rules", lambda: rules)
+    monkeypatch.setattr(smoke_clis, "load_manifest", lambda: {
+        "ssot_sources": [{"slug": "test-skill", "expected_surface_names": ["gemini_skill"]}]
+    })
+    monkeypatch.setattr(smoke_clis.shutil, "which", lambda binary: "/usr/bin/" + binary)
+    observed = []
+    def probe(command, **kwargs):
+        observed.append((command, kwargs.get("environment")))
+        return 0, "test-skill [Enabled]"
+    monkeypatch.setattr(smoke_clis, "run_probe", probe)
+    monkeypatch.setattr(smoke_clis, "write_smoke_report", lambda payload: None)
+    assert smoke_clis.main([]) == 0
+    assert [env for command, env in observed if command[-2:] != ["skills", "list"]] == [None, None]
+    child = next(env for command, env in observed if command[-2:] == ["skills", "list"])
+    assert child[trust_key] == "true"
+    assert child["SMOKE_PARENT_SENTINEL"] == "retained"
+    assert trust_key not in os.environ

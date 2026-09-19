@@ -560,6 +560,183 @@
       "engos-meta-instruction-editor"
     ],
     "shape": "swiss_army_research_workflow",
-    "portfolio_action": "keep_but_review_scope"
+    "portfolio_action": "keep_but_review_scope",
+    "routing_fitness": {
+      "schema_version": "RoutingFitness.v1",
+      "mapping_status": "source_derived_draft",
+      "task_phases": {
+        "kind": "source_conditions",
+        "clauses": [
+          {
+            "text": "Auto-Research exists to make self-improvement operational:\n- clarify the goal before changing anything\n- define the scorecard before running experiments\n- search within a bounded editable surface\n- replay candidates in isolation\n- compare them against a frozen baseline\n- retain verified trial improvements and prepare formal promotion separately when requested\n- turn failures and strong traces into future regression assets",
+            "heading": "Purpose",
+            "source": {
+              "path": "ssot/engos-optimization-auto-research.md",
+              "start_line": 18,
+              "end_line": 25,
+              "sha256": "50515be8f59b2bf3fe33b503dcedeca4b9c7f60e0875fd01771d29a3ced37b52"
+            }
+          },
+          {
+            "text": "1. Identify the target system, the goal, and the operator boundary.\n2. Freeze the baseline:\n   - what exists now\n   - how it performs now\n   - which metrics matter\n   - what counts as regression\n3. Define the goal contract:\n   - target outcome\n   - non-goals\n   - search budget\n   - editable scope\n   - pass/fail thresholds\n4. Build the scorecard:\n   - primary outcome metric\n   - regression checks\n   - cost and latency limits\n   - reliability or repeatability thresholds\n   - human-review burden where relevant\n5. Design the search space:\n   - prompts and instructions\n   - config and policy\n   - workflow or routing steps\n   - code or component boundary\n   - model or retrieval settings\n6. Choose the cheapest discriminating step that can separate the leading hypotheses before widening the search:\n   - static inspection\n   - single repro\n   - paired experiment\n   - repeated-trial search\n7. For diagnosis, use the cheapest discriminating check. For authorized optimization, generate bounded trial candidates from the best accepted state and replay them in isolation using the protected evaluation. Setup checks must not replace the requested search loop.\n8. Score each candidate over repeated trials when the target is non-deterministic, the first checks conflict, or a single run would be too noisy to trust.\n9. Distill failures, strong traces, and representative successes into eval assets for future reuse.\n10. Keep accepted trial improvements, discard rejected active changes while retaining results, and continue the declared search. When formal promotion is requested, prepare only for verified winners:\n   - change summary\n   - commit plan\n   - review packet\n   - merge readiness checklist\n11. Update the standing regression set so the same failure is harder to reintroduce.",
+            "heading": "Workflow",
+            "source": {
+              "path": "ssot/engos-optimization-auto-research.md",
+              "start_line": 108,
+              "end_line": 145,
+              "sha256": "50515be8f59b2bf3fe33b503dcedeca4b9c7f60e0875fd01771d29a3ced37b52"
+            }
+          },
+          {
+            "text": "Use this capability before:\n- editing a prompt, workflow, component, or system without a measurable target\n- claiming an optimization win\n- converting traces into standing evals\n- preparing a commit or pull request for an \u201cimprovement\u201d that has not yet been measured\n- merging changes whose quality depends on multi-trial behavior rather than static inspection alone",
+            "heading": "Review Timing",
+            "source": {
+              "path": "ssot/engos-optimization-auto-research.md",
+              "start_line": 681,
+              "end_line": 686,
+              "sha256": "50515be8f59b2bf3fe33b503dcedeca4b9c7f60e0875fd01771d29a3ced37b52"
+            }
+          }
+        ]
+      },
+      "activation": {
+        "mode": "unknown",
+        "evidence": []
+      },
+      "risk_authority_ceiling": {
+        "grants_authority": false,
+        "clauses": [
+          {
+            "text": "- unbounded internet research with no evaluation plan\n- silent auto-merge behavior\n- workflow orchestration ownership across the host system\n- speculative changes with no measurable target\n- replacing the host repo's review, CI, or policy systems",
+            "heading": "Out of Scope",
+            "source": {
+              "path": "ssot/engos-optimization-auto-research.md",
+              "start_line": 72,
+              "end_line": 76,
+              "sha256": "50515be8f59b2bf3fe33b503dcedeca4b9c7f60e0875fd01771d29a3ced37b52"
+            }
+          },
+          {
+            "text": "- allowed: inspect target context, define scorecards, write experiment plans, generate evaluation assets, run bounded comparisons, draft commits and pull request packets when explicitly requested\n- forbidden: claiming an unmeasured improvement, silently widening the editable scope, hiding regressions behind aggregate scores, or merging changes without explicit policy support\n- escalation: if the target system lacks a measurable goal, a stable baseline, or a safe replay path, stop and require setup before continuing",
+            "heading": "Tool Boundaries",
+            "source": {
+              "path": "ssot/engos-optimization-auto-research.md",
+              "start_line": 98,
+              "end_line": 100,
+              "sha256": "50515be8f59b2bf3fe33b503dcedeca4b9c7f60e0875fd01771d29a3ced37b52"
+            }
+          },
+          {
+            "text": "- Do not start search without a measurable goal.\n- Do not claim a winner from a single run unless the system is strictly deterministic and the user agrees.\n- Do not hide regressions inside one aggregate \u201cscore improved\u201d claim.\n- Do not assume the host repo allows auto-commit or auto-merge.\n- Do not let the capability degrade into generic brainstorming or generic testing advice.\n- Do not confuse public inspiration with local proof.\n- Do not promote any candidate whose score is ambiguous, unstable, or unrepeatable.\n- For diagnosis test a sharply framed hypothesis first. For optimization, let evidence guide the next trial within the authorized search rather than treating the first narrow test as a substitute for exploration.\n- Do not parallelize dependent verification steps when regenerated artifacts are involved.",
+            "heading": "Constraints",
+            "source": {
+              "path": "ssot/engos-optimization-auto-research.md",
+              "start_line": 689,
+              "end_line": 697,
+              "sha256": "50515be8f59b2bf3fe33b503dcedeca4b9c7f60e0875fd01771d29a3ced37b52"
+            }
+          }
+        ]
+      },
+      "negative_examples": {
+        "kind": "source_exclusions_not_synthetic_prompts",
+        "clauses": [
+          {
+            "text": "- unbounded internet research with no evaluation plan\n- silent auto-merge behavior\n- workflow orchestration ownership across the host system\n- speculative changes with no measurable target\n- replacing the host repo's review, CI, or policy systems",
+            "heading": "Out of Scope",
+            "source": {
+              "path": "ssot/engos-optimization-auto-research.md",
+              "start_line": 72,
+              "end_line": 76,
+              "sha256": "50515be8f59b2bf3fe33b503dcedeca4b9c7f60e0875fd01771d29a3ced37b52"
+            }
+          },
+          {
+            "text": "Do not use this capability when the main job is prompt hardening, import classification, architecture design, or durable long-running analysis memory without a behavioral comparison goal.",
+            "heading": "Purpose",
+            "source": {
+              "path": "ssot/engos-optimization-auto-research.md",
+              "start_line": 16,
+              "end_line": 16,
+              "sha256": "50515be8f59b2bf3fe33b503dcedeca4b9c7f60e0875fd01771d29a3ced37b52"
+            }
+          },
+          {
+            "text": "- Do not start search without a measurable goal.\n- Do not claim a winner from a single run unless the system is strictly deterministic and the user agrees.\n- Do not hide regressions inside one aggregate \u201cscore improved\u201d claim.\n- Do not assume the host repo allows auto-commit or auto-merge.\n- Do not let the capability degrade into generic brainstorming or generic testing advice.\n- Do not confuse public inspiration with local proof.\n- Do not promote any candidate whose score is ambiguous, unstable, or unrepeatable.\n- For diagnosis test a sharply framed hypothesis first. For optimization, let evidence guide the next trial within the authorized search rather than treating the first narrow test as a substitute for exploration.\n- Do not parallelize dependent verification steps when regenerated artifacts are involved.",
+            "heading": "Constraints",
+            "source": {
+              "path": "ssot/engos-optimization-auto-research.md",
+              "start_line": 689,
+              "end_line": 697,
+              "sha256": "50515be8f59b2bf3fe33b503dcedeca4b9c7f60e0875fd01771d29a3ced37b52"
+            }
+          }
+        ]
+      },
+      "conditional_companions": [],
+      "pack_hints": {
+        "lead": "engos-optimization-auto-research",
+        "companions": "only_after_applicable_source_conditions_are_checked",
+        "default_bulk_activation": false
+      },
+      "provenance": {
+        "ssot_path": "ssot/engos-optimization-auto-research.md",
+        "ssot_sha256": "50515be8f59b2bf3fe33b503dcedeca4b9c7f60e0875fd01771d29a3ced37b52",
+        "effective_sha256": "7b53f4bac024f490af73a3953f2e5b9c79197ded5af3e8839cb4b9e91da6260b",
+        "resources": [
+          {
+            "path": "sources/capability-resources/engos-optimization-auto-research/references/resource-delivery.md",
+            "sha256": "e9232c7a9417584fa2f92ad8b5b209af32bb2770ebf3a6cc01e5e1c76c691ed0"
+          },
+          {
+            "path": "sources/capability-resources/engos-optimization-auto-research/templates/goal-contract.md.tmpl",
+            "sha256": "f5ce6157f5b6030491158f99d56b350dc5a60e1d899f8cf9fdcc50c2977846ed"
+          },
+          {
+            "path": "sources/capability-resources/engos-optimization-auto-research/templates/experiment-ledger.md.tmpl",
+            "sha256": "5fb35a2a5f0c25dbbe262ad97f55606978a742e61428f61a8dc59191d37b745b"
+          },
+          {
+            "path": "sources/capability-resources/engos-optimization-auto-research/templates/scorecard.json.tmpl",
+            "sha256": "a905e3211e3001698debf4a5bfd9cb45e5c493b3fb29f91e5bad8d69771a243e"
+          },
+          {
+            "path": "sources/capability-resources/engos-optimization-auto-research/references/experiment-loop.md",
+            "sha256": "c913ea95e9a42ad8485f8dd6807021d2f03d84913c8012291c1bc78584b05c57"
+          },
+          {
+            "path": "sources/capability-resources/engos-optimization-auto-research/templates/promotion-packet.md.tmpl",
+            "sha256": "baa7a3d81d84cecfa2cc5374e7777b7a196a232b419132b4f7284bfc58b33c77"
+          },
+          {
+            "path": "sources/capability-resources/engos-optimization-auto-research/bootstrap.py",
+            "sha256": "3eff93af273920c02740faf7e53550026ef6dfbabbae108048cf93dccca1c6f4"
+          }
+        ],
+        "extractor_version": "source-clauses.v1",
+        "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+        "field_sources": {},
+        "unresolved_companion_clauses": [],
+        "curated_fields": [
+          "authority",
+          "main_output",
+          "nearest_neighbors",
+          "not_for",
+          "portfolio_action",
+          "primary_job",
+          "routing_question",
+          "shape",
+          "use_when",
+          "works_on"
+        ],
+        "curated_binding": "preserved_not_independently_revalidated",
+        "mapping_sha256": "15a99058ecf763bacb904a372fe87464c9a72f46916e6a9c47592a37cfc660ac"
+      },
+      "unresolved_fields": [
+        "task_phase_interpretation",
+        "risk_authority_interpretation",
+        "implicit_activation_eligibility"
+      ]
+    }
   }
 }
