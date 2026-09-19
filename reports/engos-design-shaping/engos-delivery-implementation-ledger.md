@@ -17,6 +17,17 @@ Continue local work; dual-remote landing remains blocked until normal access ret
 
 ## Current continuation status — presentation and progress verification
 
+2026-09-19 approval update: user explicitly said "approve all three" in this task.
+This confirms public GitHub code/sanitized-evidence PR and gated landing; historical
+replay appetite five weeks/two engineers and the correctness/ownership walk-away;
+one private work-account Continuous Update pilot Doc, no sharing/notifications.
+It does not approve a production bet, new scope exclusions, fabricated feasibility,
+release/tagging or real-home installation. Earlier pending-approval statements below
+are historical and superseded. Resume the real-input replay at current G0/G1 with
+fresh bound receipts; retain the earlier failed/held reviews without rewriting them.
+Primary checkout/main is read-only. Fresh upstream main now contains the separate
+Supercharge/v1.15.2 work; integrate and renew affected delivery checks before landing.
+
 Conditional landing/readiness continuation: user requested remaining work to land
 cleanly if ready, updated frontpage/docs/examples, and how to start. Independent
 readiness reviewer01a0b590-ffc2-7e43-9b70-8c9aea3fc6d1 returned No-Go: the original
