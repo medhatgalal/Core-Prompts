@@ -14,7 +14,7 @@ validate_cli_surfaces:
     FF_DISABLE_UMASK_FOR_DOCKER_EXECUTOR: "true"
   script:
     - umask 022
-    - apt-get update && apt-get install -y --no-install-recommends zip
+    - apt-get update && apt-get install -y --no-install-recommends zip procps
     - python3 scripts/sync-surface-specs.py --refresh
     - python3 -m pip install 'pytest>=8,<10' 'jsonschema>=4,<5' 'cryptography>=43'
     - git fetch --tags origin
