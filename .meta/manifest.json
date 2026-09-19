@@ -1528,7 +1528,7 @@
             "surface_usability": 10
           },
           "template_name": "skill",
-          "effective_sha256": "9c3b03b32fb6c493edcd09b462ea9728a69485ad6361b5260e425f22e8e8f2f9",
+          "effective_sha256": "9fc43c2cff2cdd1c13de462021a279864839b1fcd3458180b8c0e0ba11c9dd2b",
           "semantic_findings": [],
           "agent_surface_review": {
             "status": "unchanged",
@@ -5012,11 +5012,12 @@
             "strategy": "derived_history",
             "group": "derived",
             "baseline_path": null,
-            "selected_commit": "7e94f9eb",
+            "selected_commit": "e077ae86",
             "richness_score": 5,
-            "line_count": 152,
+            "line_count": 177,
             "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
             "equivalent_commits": [
+              "7e94f9eb",
               "e866aa80"
             ],
             "expected_companions": [],
@@ -5065,7 +5066,7 @@
                 "candidate_operational_score": 2,
                 "baseline_preserved_in_resource": false
               },
-              "baseline_commit": "7e94f9eb",
+              "baseline_commit": "e077ae86",
               "baseline_slug": "engos-design-shaping"
             },
             {
@@ -5116,7 +5117,7 @@
             "surface_usability": 10
           },
           "template_name": "skill",
-          "effective_sha256": "0484e6d4f88c097d5cb025e1db3cba961d9f20f7f8d91caa5bfed7c23b4df616",
+          "effective_sha256": "d75210f48727b6d4aa881d85a6757f21691e0bfe8d12a06c1e2a3119d1710f81",
           "semantic_findings": [],
           "agent_surface_review": {
             "status": "unchanged",
@@ -11090,6 +11091,7 @@
       ".grok/skills/engos-design-shaping/resources/progress.md",
       ".grok/skills/engos-design-shaping/resources/questions.md",
       ".grok/skills/engos-design-shaping/resources/reconciliation.md",
+      ".grok/skills/engos-design-shaping/resources/repository-discovery.md",
       ".grok/skills/engos-design-shaping/resources/representations.md",
       ".grok/skills/engos-design-shaping/resources/resource-map.json",
       ".grok/skills/engos-design-shaping/resources/routing.md",
@@ -11232,6 +11234,7 @@
       ".codex/skills/engos-design-shaping/resources/progress.md",
       ".codex/skills/engos-design-shaping/resources/questions.md",
       ".codex/skills/engos-design-shaping/resources/reconciliation.md",
+      ".codex/skills/engos-design-shaping/resources/repository-discovery.md",
       ".codex/skills/engos-design-shaping/resources/representations.md",
       ".codex/skills/engos-design-shaping/resources/resource-map.json",
       ".codex/skills/engos-design-shaping/resources/routing.md",
@@ -11375,6 +11378,7 @@
       ".gemini/skills/engos-design-shaping/resources/progress.md",
       ".gemini/skills/engos-design-shaping/resources/questions.md",
       ".gemini/skills/engos-design-shaping/resources/reconciliation.md",
+      ".gemini/skills/engos-design-shaping/resources/repository-discovery.md",
       ".gemini/skills/engos-design-shaping/resources/representations.md",
       ".gemini/skills/engos-design-shaping/resources/resource-map.json",
       ".gemini/skills/engos-design-shaping/resources/routing.md",
@@ -11518,6 +11522,7 @@
       ".claude/skills/engos-design-shaping/resources/progress.md",
       ".claude/skills/engos-design-shaping/resources/questions.md",
       ".claude/skills/engos-design-shaping/resources/reconciliation.md",
+      ".claude/skills/engos-design-shaping/resources/repository-discovery.md",
       ".claude/skills/engos-design-shaping/resources/representations.md",
       ".claude/skills/engos-design-shaping/resources/resource-map.json",
       ".claude/skills/engos-design-shaping/resources/routing.md",
@@ -11661,6 +11666,7 @@
       ".kiro/skills/engos-design-shaping/resources/progress.md",
       ".kiro/skills/engos-design-shaping/resources/questions.md",
       ".kiro/skills/engos-design-shaping/resources/reconciliation.md",
+      ".kiro/skills/engos-design-shaping/resources/repository-discovery.md",
       ".kiro/skills/engos-design-shaping/resources/representations.md",
       ".kiro/skills/engos-design-shaping/resources/resource-map.json",
       ".kiro/skills/engos-design-shaping/resources/routing.md",

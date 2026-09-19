@@ -6,6 +6,7 @@ assessment, reviewer independence, or rubric calibration.
 """
 import json
 from copy import deepcopy
+from pathlib import Path
 
 import pytest
 
@@ -18,6 +19,19 @@ from test_shaping_runtime import (
 CURRENT = "shaping-gates.v2+rubric.v3"
 LEGACY = "shaping-gates.v1+rubric.v2"
 FIT = [("G2", "existing_capability_evidence"), ("G3", "architecture_fit")]
+ROOT = Path(__file__).resolve().parents[1]
+SHAPING_SKILLS = (
+    "engos-design-shaping",
+    "engos-design-frame-from-vague",
+    "engos-quality-shaping-gate",
+    "engos-delivery-diagram-contract-artifacts",
+    "engos-delivery-artifact-embed",
+    "engos-audit-pitch-review",
+)
+APPIAN_READER_EXAMPLE_MARKERS = (
+    "lcp-mcp-server", "AE site", "AIP wiring", "createInterface",
+    "broken SAIL", "Composer and Agents",
+)
 
 
 def test_direct_specialist_route_delivers_question_budget_and_decision_guidance():
@@ -27,6 +41,34 @@ def test_direct_specialist_route_delivers_question_budget_and_decision_guidance(
     assert {'architecture-fit.md', 'questions.md', 'decisions.md'} <= files
     frame_files = {item['path'] for item in load_resource_bundle(root, 'frame')['resources']}
     assert 'architecture-fit.md' not in frame_files
+    assert 'code-scan.md' not in frame_files
+    assert 'repository-discovery.md' not in frame_files
+
+
+def test_code_scan_route_loads_runtime_repository_discovery():
+    from intent_pipeline.capability_resources import load_resource_bundle
+    root = RESOURCE.parent / "engos-design-shaping"
+    files = {item["path"] for item in load_resource_bundle(root, "code-scan")["resources"]}
+    assert {"code-scan.md", "repository-discovery.md", "sources.md"} <= files
+
+
+def test_appian_worked_example_is_reader_docs_only():
+    skill = (ROOT / "ssot/engos-audit-pitch-review.md").read_text()
+    docs = (ROOT / "docs/EXAMPLES.md").read_text()
+    for marker in APPIAN_READER_EXAMPLE_MARKERS:
+        assert marker not in skill, f"reader example leaked into skill: {marker!r}"
+        assert marker in docs, f"reader example not retained in docs: {marker!r}"
+
+
+def test_shipped_shaping_skills_have_no_task_local_machine_paths():
+    for slug in SHAPING_SKILLS:
+        paths = [ROOT / "ssot" / f"{slug}.md"]
+        resource_root = ROOT / "sources" / "capability-resources" / slug
+        if resource_root.is_dir():
+            paths.extend(path for path in resource_root.rglob("*") if path.is_file())
+        text = "\n".join(path.read_text(errors="replace") for path in paths)
+        assert "/Users/medhat.galal/" not in text
+        assert "/private/tmp/engos-shaping-research-" not in text
 
 
 def stage_policy(rt, legacy=False):

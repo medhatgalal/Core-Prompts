@@ -13,7 +13,9 @@ version: "v1.3"
 Use this capability when working with Shape Up pitch documents at any lifecycle stage. A pitch is the atomic unit of shaped work — it defines a problem, constrains the appetite, proposes a rough solution, identifies risks, and draws boundaries. This skill ensures pitches are clear, complete, buildable, and aligned to delivery goals.
 
 ## Primary Objective
-Ensure every pitch that reaches the betting table is shaped well enough that a pod of 2-3 engineers can pick it up and build it within a 4-week cycle without needing to come back for clarification on scope, architecture, boundaries, or how things connect across seams.
+Ensure every pitch that reaches the betting table is shaped well enough that its
+intended team can build it within the declared appetite without returning for
+load-bearing clarification on scope, architecture, boundaries, or seams.
 
 ## Context
 
@@ -103,11 +105,14 @@ A pitch that skips this work pushes the risk into build week 1, where it's too l
 ```
 
 ### Delivery Context
-- **Cycle length:** 4 weeks
-- **Pod size:** 2-3 engineers
-- **Products:** Composer and Agents, shipping GA by end of June 2026
-- **Operating model:** Contract-first development. Work is "done" when built against a defined contract. Integration testing is separate.
-- **Shaping exit criteria:** Architecture defined, dependencies decoupled, integration proof at seams (spike minimum).
+- **Appetite/cycle:** Read the supplied pitch or accepted framing decision; never
+  substitute a house default.
+- **Team and target product:** Use only supplied project context. Unknown ownership
+  or staffing remains unknown.
+- **Operating model:** Preserve the repository/project's actual conventions while
+  requiring explicit contracts and evidence at material seams.
+- **Shaping exit criteria:** Apply the selected rubric at shaping depth; do not
+  require product implementation merely to make a pitch reviewable.
 
 ### Goal Alignment
 Every pitch should map to a committed goal. Goals are prioritized and divided into:
@@ -210,11 +215,11 @@ engos-audit-pitch-review export https://docs.google.com/document/d/... --output 
 **Frontmatter example:**
 ```yaml
 ---
-title: "MCP Server Auth"
-contributors: ["Tom Klancer"]
-appetite: "1/2 dev-week"
-goal: "Expose Appian features via MCP"
-cycle: 5
+title: "Service Integration Boundary"
+contributors: ["Product", "Engineering"]
+appetite: "two weeks"
+goal: "Connect the approved client to the target service"
+cycle: "current"
 shaped: yes
 score: 7.5
 last_reviewed: 2026-05-18
@@ -360,7 +365,9 @@ Integration proof depends on the **contract state** of each dependency:
 
 ### Shaping Contributors
 Shaping is always done between Product, Engineering, and UX (at minimum Product + Engineering). A blank Product contributor field is:
-- **Acceptable** if the pitch is in an "Engineering-led" stream (LCP APIs, AI Platform)
+- **Acceptable** only when the pitch explicitly explains why Product participation
+  is not required and identifies the person or role with authority over the problem,
+  appetite and scope decisions. Assess UX applicability separately.
 - **A gap** for all other streams — shaping without Product is incomplete
 
 ### Review Output Rules
@@ -494,10 +501,10 @@ Output:
 
 ### Example: pitch create
 ```
-User: engos-audit-pitch-review create "Agents need to handle environment-wide guardrails"
+User: engos-audit-pitch-review create "Teams need consistent project guardrails"
 
 Output:
-📄 Shaped Pitch: Environment-Wide Guardrails for Agents
+📄 Shaped Pitch: Project Guardrails Across Environments
 [Full template scaffolded with TODO markers for sections needing human input]
 ```
 
@@ -527,7 +534,7 @@ Output:
 
 ### Seam-by-Seam Proof Requirements
 
-#### Seam 1: Auth + Transport Swap (lcp-mcp-server → AE site)
+#### Seam 1: Auth + Transport Swap (local tool host → target application)
 - **Contract state:** missing
 - **What to prove:** IDE spawns MCP server over stdio, authenticates with API key, calls one tool, gets response
 - **Acceptable evidence:** Branch with one read + one write tool call working
@@ -539,9 +546,9 @@ Output:
 - Docker packaging (distribution, not integration)
 
 ### Spike Plan
-1. Strip AIP wiring, add env-var auth, enable stdio — 2h — proves Seam 1
-2. Call createInterface with broken SAIL, verify 422 shape — 1h — proves Seam 2
-3. Confirm plug-in JAR loads on target AE version — 1h — proves Seam 3
+1. Replace the legacy transport adapter, add environment-based auth, enable stdio — 2h — proves Seam 1
+2. Send an invalid create request and verify the documented validation-error shape — 1h — proves Seam 2
+3. Confirm the integration package loads on the target application version — 1h — proves Seam 3
 
 ### Gap to Close
 Complete the 3-step spike plan and document results in the pitch.

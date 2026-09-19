@@ -969,6 +969,26 @@ Expected output:
 - missing decisions
 - concrete rewrite guidance
 
+Familiar worked example (illustrative only): an Appian integration pitch may name
+an auth and transport seam such as `lcp-mcp-server → AE site`, ask for one read and
+one write call through stdio with API-key authentication, and separately prove the
+plug-in JAR loads on the target AE version. Those names come from the pitch being
+reviewed; they are not repositories, modules, tools or defaults built into the
+skill. When another repository invokes the skill, its own components and contracts
+replace every part of this example.
+
+For example, an Appian-specific spike plan might strip AIP wiring, call
+`createInterface` with deliberately broken SAIL to verify the expected 422 shape,
+and confirm the integration JAR against the selected AE version. A related pitch
+may be titled “MCP Server Auth,” name its actual contributor and goal, or discuss
+Composer and Agents. Keep those details in that pitch or this reader example;
+the reusable reviewer derives equivalent seams from whatever project it receives.
+In the same familiar vocabulary, an engineering-led stream such as LCP APIs or
+AI Platform may omit a Product contributor only when the pitch explains why and
+names the authority for problem, appetite and scope decisions. UX applicability
+is assessed separately. The reusable rule is the supported authority/applicability
+decision, not those stream names.
+
 Follow with:
 
 > Now rewrite the weakest section so it is ready for betting.

@@ -17,6 +17,75 @@ Continue local work; dual-remote landing remains blocked until normal access ret
 
 ## Current continuation status — presentation and progress verification
 
+Repository-neutral correction (2026-09-19): user confirmed that shipped skills
+must use the repository in which they run and may ask for relevant folders/modules;
+project knowledge, LSP/semantic indexes or other available capabilities should
+accelerate bounded scans without becoming tool requirements. The Appian pitch
+example remains reader-facing in docs only. Canonical engos-design-shaping and
+engos-audit-pitch-review were updated through same-slug UAC plan/judge/apply, with
+one new routed repository-discovery resource and five-provider regeneration.
+
+Independent instruction review found and drove three repairs: residual product
+defaults in pitch-review, brittle wording/blacklist tests, and an invalid UX-based
+exception for missing Product participation. Final review PASS has no P1/P2.
+Behavioral exercises covered clear single-repo, ambiguous monorepo and docs-only
+input. The initial single-repo run exposed premature code scanning; after a bounded
+iteration, framing deferred scanning until acceptedG1/G2, monorepo Research asked
+which module applied, and docs-only framing skipped repo discovery. Reused worker
+contexts are disclosed; no fresh-sandbox or real-user claim. Verification:
+276shaping passed/13 optional renderer skips;40focused docs/resource passed;
+strict32-entry validation passed. See engos-quality-repository-neutral-validation.md.
+This corrects the earlier planning error: AE/product branches are pilot evidence,
+not capability dependencies or release blockers.
+
+Latest pilot checkpoint (2026-09-19): G1-frame-2 passed all four independent
+predicates and was accepted immutably at version12, snapshot768e936dfee204a2989baa3b28b810f951b155ca350f8e70cfa9198c47328048.
+The first G2 research attempt correctly failed before sealing because U2/U3 were
+still blocking. A clean local AE checkout was then discovered and bound at exact
+revisionbf4b8e023b69413e16280e993d10b0e9af327a19 for G2-research-2.
+
+G2-research-2 produced and sealed revision-bound pm-core, process-mining,
+pm-dev-tools and AE evidence, but independent reviewer
+01a0ba8a-16a7-7762-abde-123ecef931de returned FAIL. Grounded risks passed; the
+other three predicates failed because the pinned AE revision remains remote/Thor
+facing while pm-core exposes separate in-process preprocess/generateInsights APIs.
+No inspected adapter, integration result or attributable assessment proves the
+status/failure/read-visibility/result-contract mapping. Actual runtime acceptance
+returned hold/gate-not-passed; state remains acceptedG1 at version15. Local AE
+refs prepr-min and ads-prepr were inspected without checkout/fetch: they contain
+partial preprocessing adapters but retain the old asynchronous insight path and
+do not close the mapping. Do not advance G3 or waive D2.
+
+Smallest unblock: supply an exact AE integration/adapter revision, executed
+compatibility result, or attributable scoped technical assessment mapping
+pm-query-lib preprocessing publication and insight generation onto AE completion,
+polling/failure and persisted-result contracts. If unavailable, explicitly decide
+whether this replay remains a demonstrated G2 hold and a different fully evidenced
+problem supplies the successful G0-G4 acceptance pilot. No merge/release yet.
+
+2026-09-19 continuation: direct user reply "Use the proposed replay framing"
+confirms the three previously proposed historical-replay framing choices. Exact
+private decision provenance is recorded separately without rewriting earlier
+approvals or failed reviews. G1 reopened at version9/generation1; acceptedG0 is
+unchanged. Fresh junior-product author01a0b9b3-ab02-78e2-b8e6-d653754e6570 and
+junior-engineering reviewer01a0b9b3-adaa-7ee1-9253-6d514e457835 are assigned to
+G1-frame-2. Technical feasibility and owner evidence are not inferred from this
+human confirmation. Release publication is now in scope per the user's later
+request for a new version; real-home installation remains outside scope.
+
+Current-head hosted refresh: GitHub branch35439066408 and PR35439068283 both
+SUCCESS for a491bd4818c2ddba5725e7aedebbb283a60fb6cf; GitLab MR pipeline6855248
+SUCCESS for that same SHA. Both reviews remain draft; no merge/release claimed.
+PR89 is attached to the task. The artifact tool rejected internal GitLab MR92's
+URL as unsupported; the MR itself remains accessible and linked in this ledger.
+
+Model-switch checkpoint: user asked about a smaller model to reduce token use.
+Controller interrupted the active G1-frame-2 author for a safe checkpoint; reviewer
+has only acknowledged its role and has not inspected a candidate. No G1-frame-2
+seal or acceptance occurred. Resume that exact unsealed attempt after checking
+the author's return/files, or assign a new attempt if actor identity changes.
+Do not redo G0, restart research, or infer a passing G1 from the user confirmation.
+
 Public-disclosure approval has been exercised: GitHub draftPR89 and internal
 GitLab draftMR92 are open for AI/engos-full-shaping-design. Integrated candidate
 1d5d9e8 contains both current main ancestries and preserves the upstream release

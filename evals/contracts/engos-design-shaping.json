@@ -15,13 +15,19 @@
     "bbc24da080af49a3b1e256674463e63405240174023da0bdbdad1489513982a8",
     "3f5c4ef9396a3058a35c8891862909db4f456191acd93607eefeab102a848f1b",
     "33e020771d5885c414c87fbbaf3875073e799b9104133eae13589a8054c24a95",
-    "3f2e9fa4fbbbf1c06c9ef499646513f026ea3e17565f46cb7d8c957db81e3186",
+    "7253cf161f292943f609108d5041edad8d5424a24d4268c2b988fd80edcaaf6a",
+    "20d7fe1cb751522cabf6fb475efb08a59c369334fff033cc17abf9a88a11c0b2",
+    "e683d14e3986c455fe808cb3c10805dbcd3928b4aad0c6633a27c9865948858b",
     "c25a8fa5c3e8b3d55a96d0467d183f5ce26d4286dcde05979cbff8bef8e21fc8",
+    "1b52c91bda0fc0f9d66a74f7716f7325e38e02b9e9dd652be9e82d49b3cdef18",
+    "104f8d441395a1ffa9558a1f592096842ca434e6db5423a08ee457fb4f8caf65",
     "f3426b26a972cee6f5478df313d77deac52354ab15332d8ff261d7e71c6ef8bc",
     "b2b0544574885cec00d1e8e6e3c9237f561a29f60d920feb652fa333df72b3f0",
     "d72ee7f08e8f877dfa3b3c4d28794dd71f66fafb5ee037ecca545e780a752e7b",
     "770c44d7d3ce8b7895a8fe1e8570f38a197c0ae05d1c36cf78ea741269bc675e",
     "ba060fee059d3802399e002288f8671c9cd7a8b32d92935b1e6e7365e0309ea2",
+    "177ee9f456a1c9fbac0bd261303f043e0a8503930bb04400d5b5515cda91e640",
+    "1ad5233344819fedd75ee2b05cf1ba8ffa5a60f148e5cd073ece2f007a2f1a56",
     "0be9da2ffb8a74273e2f6c4fdcddfde8e6768c6135eae25293942c6c135654f1",
     "0672a3c6738e59ef093733675dcc5da48c5de2f8bd12ef65050e1d1b28f96e45",
     "ee96a8ed6d4adea9b7432fffdad7a92b2989bd885310785757f3f85c1e8d805e",
@@ -123,8 +129,18 @@
     "88aeb6ef9016075009ee8025d10850a885dfb63bd92f7c3f423e1704e6e53f05",
     "9b33fa7de1c82934c5e5dbc22db26126027d2f153a7c6511222380bcf4f0809b",
     "ada46d9f2329489e9745d3e736291deec2afa33fd65194b935a6f980c4150c93",
+    "d8bb5e75d6c8f9d25f33d6d7a58ea6b7afbe49e8e4a569c0d6d2ae825a9cb62f",
+    "221d5d0012d93ddeb4adfb0b3eb7d39604fb158c67a812e0eef76ea873af5378",
+    "13322f97601323a807785182ea9a0745de84dca9a6191d92074d94a6d6fb6c5b",
+    "08d1fb6d5ef3799ff420ea6a61550ede3ebf7178066021cebfea1b84b211acd8",
+    "8cb35c874d2c3281814ff7a6af81b3d7d6871d0c44f96fb2cd8dedfe2c5a4fcb",
+    "8c656075d0f2f7c0f18f3049c68e3195c28de187358841016bbf7e6df1663501",
+    "4baeaaef10c5d1cbb01c6c0891b2b7d44b73813c95e1e9b37827a44225ea2fd7",
+    "11d0db2266e39c0be4699de384d909f72e32e79382beb7e2738eb1273ab1e96d",
     "d7ff72cc14450ef5912ad4a47d506c2e290967ec2fc36f2c6d97c46b92bc93b2",
     "d34369b885f6dd3a0a127e0d4e0a217880297b066820c46e1ae2e3961f201761",
+    "0a16a0e0477bb0057f0eb27d27c6f8f1b9829db683845512bd89221851e5ff7e",
+    "ae6e7737fe5a56f6e082bd9a5e7ad54282b7871950e13a9591efc8a5f63d53bc",
     "34fcd9703d3cacc85afddf0dd7feb54078bb38c7e1df69c2f06003bf50243083",
     "e5b1c188e428a1398dae2fd9193fcbc193ad4a45780701dab5b8212f1afd73aa",
     "15a7d9db3bc0b532d88600868fcf14d31cd493ef8a0f464c7bf9a082b87274e9",
@@ -255,14 +271,34 @@
       "text": "Reuse existing supported content after auditing current prerequisites; do not"
     },
     {
-      "sha256": "3f2e9fa4fbbbf1c06c9ef499646513f026ea3e17565f46cb7d8c957db81e3186",
+      "sha256": "7253cf161f292943f609108d5041edad8d5424a24d4268c2b988fd80edcaaf6a",
       "source": "ssot/engos-design-shaping.md",
-      "text": "invent historic receipts. Frame-only scope finishes after G1."
+      "text": "registered for Research; it does not bypass G1. Inspect only a narrowly needed"
+    },
+    {
+      "sha256": "20d7fe1cb751522cabf6fb475efb08a59c369334fff033cc17abf9a88a11c0b2",
+      "source": "ssot/engos-design-shaping.md",
+      "text": "solution-free fact when framing cannot proceed without it, and do not load"
+    },
+    {
+      "sha256": "e683d14e3986c455fe808cb3c10805dbcd3928b4aad0c6633a27c9865948858b",
+      "source": "ssot/engos-design-shaping.md",
+      "text": "Frame-only scope finishes after G1."
     },
     {
       "sha256": "c25a8fa5c3e8b3d55a96d0467d183f5ce26d4286dcde05979cbff8bef8e21fc8",
       "source": "ssot/engos-design-shaping.md",
       "text": "Add `code-scan` only for authorized repository inspection; add `human-evidence`"
+    },
+    {
+      "sha256": "1b52c91bda0fc0f9d66a74f7716f7325e38e02b9e9dd652be9e82d49b3cdef18",
+      "source": "ssot/engos-design-shaping.md",
+      "text": "workspace or user-supplied locations. Ask which folders/modules matter only"
+    },
+    {
+      "sha256": "104f8d441395a1ffa9558a1f592096842ca434e6db5423a08ee457fb4f8caf65",
+      "source": "ssot/engos-design-shaping.md",
+      "text": "when scope is ambiguous; never assume product repositories or sibling checkouts."
     },
     {
       "sha256": "f3426b26a972cee6f5478df313d77deac52354ab15332d8ff261d7e71c6ef8bc",
@@ -288,6 +324,16 @@
       "sha256": "ba060fee059d3802399e002288f8671c9cd7a8b32d92935b1e6e7365e0309ea2",
       "source": "ssot/engos-design-shaping.md",
       "text": "do not substitute the legacy pitch review's combined content/delivery verdict."
+    },
+    {
+      "sha256": "177ee9f456a1c9fbac0bd261303f043e0a8503930bb04400d5b5515cda91e640",
+      "source": "ssot/engos-design-shaping.md",
+      "text": "- Do not begin code-scan or repository-fit work merely because a repository is"
+    },
+    {
+      "sha256": "1ad5233344819fedd75ee2b05cf1ba8ffa5a60f148e5cd073ece2f007a2f1a56",
+      "source": "ssot/engos-design-shaping.md",
+      "text": "explicitly narrow framing fact check must remain solution-free and be recorded."
     },
     {
       "sha256": "0be9da2ffb8a74273e2f6c4fdcddfde8e6768c6135eae25293942c6c135654f1",
@@ -795,6 +841,46 @@
       "text": "Optional builder choices do not become mandatory spikes merely to raise a score."
     },
     {
+      "sha256": "d8bb5e75d6c8f9d25f33d6d7a58ea6b7afbe49e8e4a569c0d6d2ae825a9cb62f",
+      "source": "sources/capability-resources/engos-design-shaping/repository-discovery.md",
+      "text": "Use this resource only when Research needs repository evidence. Repository context"
+    },
+    {
+      "sha256": "221d5d0012d93ddeb4adfb0b3eb7d39604fb158c67a812e0eef76ea873af5378",
+      "source": "sources/capability-resources/engos-design-shaping/repository-discovery.md",
+      "text": "the user explicitly supplies. Never encode a product repository, sibling checkout,"
+    },
+    {
+      "sha256": "13322f97601323a807785182ea9a0745de84dca9a6191d92074d94a6d6fb6c5b",
+      "source": "sources/capability-resources/engos-design-shaping/repository-discovery.md",
+      "text": "capability, inspect the smallest relevant scope directly. Do not ask the user"
+    },
+    {
+      "sha256": "08d1fb6d5ef3799ff420ea6a61550ede3ebf7178066021cebfea1b84b211acd8",
+      "source": "sources/capability-resources/engos-design-shaping/repository-discovery.md",
+      "text": "3. Ask which folders or modules are relevant only when multiple roots are plausible,"
+    },
+    {
+      "sha256": "8cb35c874d2c3281814ff7a6af81b3d7d6871d0c44f96fb2cd8dedfe2c5a4fcb",
+      "source": "sources/capability-resources/engos-design-shaping/repository-discovery.md",
+      "text": "4. Do not scan outside the current repository/workspace, assume sibling repositories,"
+    },
+    {
+      "sha256": "8c656075d0f2f7c0f18f3049c68e3195c28de187358841016bbf7e6df1663501",
+      "source": "sources/capability-resources/engos-design-shaping/repository-discovery.md",
+      "text": "5. A human-evidence request when required sources or capabilities are unavailable."
+    },
+    {
+      "sha256": "4baeaaef10c5d1cbb01c6c0891b2b7d44b73813c95e1e9b37827a44225ea2fd7",
+      "source": "sources/capability-resources/engos-design-shaping/repository-discovery.md",
+      "text": "Capability names vary by host. Detect what is actually available; do not require"
+    },
+    {
+      "sha256": "11d0db2266e39c0be4699de384d909f72e32e79382beb7e2738eb1273ab1e96d",
+      "source": "sources/capability-resources/engos-design-shaping/repository-discovery.md",
+      "text": "No repository is required for document-only shaping. When repository evidence is"
+    },
+    {
       "sha256": "d7ff72cc14450ef5912ad4a47d506c2e290967ec2fc36f2c6d97c46b92bc93b2",
       "source": "sources/capability-resources/engos-design-shaping/code-scan.md",
       "text": "This is a read-only evidence acquisition procedure, not the research acceptance"
@@ -803,6 +889,16 @@
       "sha256": "d34369b885f6dd3a0a127e0d4e0a217880297b066820c46e1ae2e3961f201761",
       "source": "sources/capability-resources/engos-design-shaping/code-scan.md",
       "text": "policy. Use it only when the work order includes repository access. The research"
+    },
+    {
+      "sha256": "0a16a0e0477bb0057f0eb27d27c6f8f1b9829db683845512bd89221851e5ff7e",
+      "source": "sources/capability-resources/engos-design-shaping/code-scan.md",
+      "text": "return `deferred_to_research`; do not load architecture-fit or begin a capability"
+    },
+    {
+      "sha256": "ae6e7737fe5a56f6e082bd9a5e7ad54282b7871950e13a9591efc8a5f63d53bc",
+      "source": "sources/capability-resources/engos-design-shaping/code-scan.md",
+      "text": "current workspace or user-supplied locations; never assume a product repository,"
     },
     {
       "sha256": "34fcd9703d3cacc85afddf0dd7feb54078bb38c7e1df69c2f06003bf50243083",

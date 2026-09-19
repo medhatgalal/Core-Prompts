@@ -55,6 +55,14 @@ Supply what you have:
 - Optional repository path/link and relevant revision, with authorized read access.
 - Any actual appetite, constraints, exclusions and decision owners already agreed.
 
+Repository context is resolved when Research begins. The current repository is the
+default boundary; the assistant may ask which folders or modules matter when a
+monorepo or multi-root workspace is ambiguous. It should use maintained project
+knowledge and an active language server or semantic/indexed search when available,
+then bounded text search such as `rg`. These are runtime capabilities, not required
+tools or product-specific defaults. A repository supplied during framing is recorded
+for later Research and does not permit solutioning before the Framed gate passes.
+
 Keep confidential material in an approved private project location. Do not put
 company source documents into a public capability repository. The assistant should
 identify the artifact home and account before exporting or publishing.

@@ -61,11 +61,19 @@ stages. The phase templates define fields, not gate verdicts.
 3. Dispatch Intake and Framed through `engos-design-frame-from-vague`; obtain G0
    then G1 from `engos-quality-shaping-gate`. Keep mechanisms out of the frame.
    Reuse existing supported content after auditing current prerequisites; do not
-   invent historic receipts. Frame-only scope finishes after G1.
+   invent historic receipts. A supplied repository or request to inspect it is
+   registered for Research; it does not bypass G1. Inspect only a narrowly needed
+   solution-free fact when framing cannot proceed without it, and do not load
+   architecture-fit or make repository dispositions during Intake/Framed.
+   Frame-only scope finishes after G1.
 4. Use `research` to set evidence requirements and answer assigned uncertainties.
    Add `code-scan` only for authorized repository inspection; add `human-evidence`
    for supplied evidence or teammate returns. Research plans and opinions are
-   not observed results. Load the architecture-fit route for material technical
+   not observed results. Resolve repository context at runtime from the current
+   workspace or user-supplied locations. Ask which folders/modules matter only
+   when scope is ambiguous; never assume product repositories or sibling checkouts.
+   Use available project knowledge, language-server semantics, indexed search or
+   bounded text search, recording actual coverage and limitations. Load the architecture-fit route for material technical
    capabilities/seams; investigate existing options and source coverage without
    requiring a positive reuse finding. G2 uses the gate owner's criteria.
 5. Use `shape` to compare bounded options, rough out the selected solution and
@@ -93,6 +101,9 @@ stages. The phase templates define fields, not gate verdicts.
   do not substitute the legacy pitch review's combined content/delivery verdict.
 - Keep questions and uncertainties separate. Rejected wording, deferral or risk
   acceptance cannot erase a blocking uncertainty or manufacture technical proof.
+- Do not begin code-scan or repository-fit work merely because a repository is
+  available at entry. Bind it to a G2 work order after Framed acceptance; an
+  explicitly narrow framing fact check must remain solution-free and be recorded.
 - Bind decisions to attributable human input and confirmed authority. Preserve
   proposed, relayed, disputed and superseded events; never silently rewrite them.
 - Workers write candidates only. Prompt context allowlists are not host isolation.
@@ -164,6 +175,9 @@ Extend existing research, uncertainty and pitch records, not a second inventory.
 Explain why architecture, code-health or testing advice is useful; resolve actual
 registry or approved candidate bindings and respect each skill's scope. No full
 repository audit by default, forced reuse, automatic refactor or silent installation.
+Repository/module names, roots and search tools are run inputs, not durable skill
+defaults. The current workspace is the default boundary; additional roots require
+an explicit supplied location or separately authorized discovery.
 Missing optional specialist access alone is not a hold; missing required evidence
 or independent review remains a hold. Current runs use the gate's updated policy;
 legacy pinned runs must not be presented as having passed new predicates.

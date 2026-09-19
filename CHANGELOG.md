@@ -12,6 +12,12 @@ pilot acceptance are separate; this entry does not claim a released or deployed 
   versioned Research/Shaped predicates. Existing runs keep their pinned history;
   no specialist installation, forced reuse or automatic refactoring is implied.
 
+- Resolve repository context when shaping runs: use the current workspace or
+  user-supplied roots, ask for relevant modules only when ambiguous, and prefer
+  available project knowledge/LSP/indexed search before bounded text search.
+  Product repositories and familiar Appian examples are not skill defaults; the
+  latter remain labeled reader examples in the examples guide.
+
 - Add a guided Shape Up entry and framing/gate capabilities with bounded role
   contexts, product/engineering question assistance, human-led research and
   explicit handoff/recovery contracts. Native agent registrations are unchanged.

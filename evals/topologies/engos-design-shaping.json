@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-design-shaping",
-  "ssot_sha256": "e679c2926fa68e9242bd400f0ec1bb05b5d94521039cd734b17f2e96d4ffe5f1",
+  "ssot_sha256": "8b55e39c8a980de69fdb5bd2873c04a511ac41910c4068abda61747ba21efce6",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -28,14 +28,17 @@
   "authority_boundaries": [
     "engos-design-shaping:L42:bbc24da080af",
     "engos-design-shaping:L56:33e020771d58",
-    "engos-design-shaping:L86:ba060fee059d",
-    "engos-design-shaping:L90:0be9da2ffb8a",
-    "engos-design-shaping:L97:1976f49e7e0f",
-    "engos-design-shaping:L105:d3ca4a00c975",
-    "engos-design-shaping:L114:d51267738d0f",
-    "engos-design-shaping:L138:bd1cf951097c",
-    "engos-design-shaping:L139:f4d96d523267",
-    "engos-design-shaping:L143:4d5624b59c24",
+    "engos-design-shaping:L59:20d7fe1cb751",
+    "engos-design-shaping:L67:104f8d441395",
+    "engos-design-shaping:L94:ba060fee059d",
+    "engos-design-shaping:L97:177ee9f456a1",
+    "engos-design-shaping:L101:0be9da2ffb8a",
+    "engos-design-shaping:L108:1976f49e7e0f",
+    "engos-design-shaping:L116:d3ca4a00c975",
+    "engos-design-shaping:L125:d51267738d0f",
+    "engos-design-shaping:L149:bd1cf951097c",
+    "engos-design-shaping:L150:f4d96d523267",
+    "engos-design-shaping:L154:4d5624b59c24",
     "engos-design-shaping:sources/capability-resources/engos-design-shaping/routing.md:L4:5b487a2a581f",
     "engos-design-shaping:sources/capability-resources/engos-design-shaping/routing.md:L13:ba595cf0e670",
     "engos-design-shaping:sources/capability-resources/engos-design-shaping/routing.md:L30:d57cd1ca8882",
@@ -82,9 +85,15 @@
     "engos-design-shaping:sources/capability-resources/engos-design-shaping/stages/research.md:L21:fec5d4733f52",
     "engos-design-shaping:sources/capability-resources/engos-design-shaping/stages/research.md:L42:9b33fa7de1c8",
     "engos-design-shaping:sources/capability-resources/engos-design-shaping/stages/research.md:L45:ada46d9f2329",
-    "engos-design-shaping:sources/capability-resources/engos-design-shaping/code-scan.md:L9:34fcd9703d3c",
-    "engos-design-shaping:sources/capability-resources/engos-design-shaping/code-scan.md:L21:e5b1c188e428",
-    "engos-design-shaping:sources/capability-resources/engos-design-shaping/code-scan.md:L27:15a7d9db3bc0",
+    "engos-design-shaping:sources/capability-resources/engos-design-shaping/repository-discovery.md:L5:221d5d0012d9",
+    "engos-design-shaping:sources/capability-resources/engos-design-shaping/repository-discovery.md:L14:13322f976013",
+    "engos-design-shaping:sources/capability-resources/engos-design-shaping/repository-discovery.md:L19:8cb35c874d2c",
+    "engos-design-shaping:sources/capability-resources/engos-design-shaping/repository-discovery.md:L35:4baeaaef10c5",
+    "engos-design-shaping:sources/capability-resources/engos-design-shaping/code-scan.md:L9:0a16a0e0477b",
+    "engos-design-shaping:sources/capability-resources/engos-design-shaping/code-scan.md:L14:ae6e7737fe5a",
+    "engos-design-shaping:sources/capability-resources/engos-design-shaping/code-scan.md:L21:34fcd9703d3c",
+    "engos-design-shaping:sources/capability-resources/engos-design-shaping/code-scan.md:L33:e5b1c188e428",
+    "engos-design-shaping:sources/capability-resources/engos-design-shaping/code-scan.md:L39:15a7d9db3bc0",
     "engos-design-shaping:sources/capability-resources/engos-design-shaping/human-evidence.md:L5:9f46a2eae738",
     "engos-design-shaping:sources/capability-resources/engos-design-shaping/human-evidence.md:L48:a1244ebc06af",
     "engos-design-shaping:sources/capability-resources/engos-design-shaping/stages/shape.md:L16:bb789c24c371",
@@ -225,230 +234,290 @@
       "mapped_to": []
     },
     {
-      "id": "engos-design-shaping:L57:3f2e9fa4fbbb",
+      "id": "engos-design-shaping:L58:7253cf161f29",
       "heading": "Workflow",
       "source": "ssot/engos-design-shaping.md",
-      "source_line": 64,
-      "sha256": "3f2e9fa4fbbbf1c06c9ef499646513f026ea3e17565f46cb7d8c957db81e3186",
-      "text": "invent historic receipts. Frame-only scope finishes after G1.",
+      "source_line": 65,
+      "sha256": "7253cf161f292943f609108d5041edad8d5424a24d4268c2b988fd80edcaaf6a",
+      "text": "registered for Research; it does not bypass G1. Inspect only a narrowly needed",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-shaping:L59:c25a8fa5c3e8",
+      "id": "engos-design-shaping:L59:20d7fe1cb751",
       "heading": "Workflow",
       "source": "ssot/engos-design-shaping.md",
       "source_line": 66,
+      "sha256": "20d7fe1cb751522cabf6fb475efb08a59c369334fff033cc17abf9a88a11c0b2",
+      "text": "solution-free fact when framing cannot proceed without it, and do not load",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-shaping:L61:e683d14e3986",
+      "heading": "Workflow",
+      "source": "ssot/engos-design-shaping.md",
+      "source_line": 68,
+      "sha256": "e683d14e3986c455fe808cb3c10805dbcd3928b4aad0c6633a27c9865948858b",
+      "text": "Frame-only scope finishes after G1.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-shaping:L63:c25a8fa5c3e8",
+      "heading": "Workflow",
+      "source": "ssot/engos-design-shaping.md",
+      "source_line": 70,
       "sha256": "c25a8fa5c3e8b3d55a96d0467d183f5ce26d4286dcde05979cbff8bef8e21fc8",
       "text": "Add `code-scan` only for authorized repository inspection; add `human-evidence`",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-shaping:L70:f3426b26a972",
+      "id": "engos-design-shaping:L66:1b52c91bda0f",
       "heading": "Workflow",
       "source": "ssot/engos-design-shaping.md",
-      "source_line": 77,
+      "source_line": 73,
+      "sha256": "1b52c91bda0fc0f9d66a74f7716f7325e38e02b9e9dd652be9e82d49b3cdef18",
+      "text": "workspace or user-supplied locations. Ask which folders/modules matter only",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-shaping:L67:104f8d441395",
+      "heading": "Workflow",
+      "source": "ssot/engos-design-shaping.md",
+      "source_line": 74,
+      "sha256": "104f8d441395a1ffa9558a1f592096842ca434e6db5423a08ee457fb4f8caf65",
+      "text": "when scope is ambiguous; never assume product repositories or sibling checkouts.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-shaping:L78:f3426b26a972",
+      "heading": "Workflow",
+      "source": "ssot/engos-design-shaping.md",
+      "source_line": 85,
       "sha256": "f3426b26a972cee6f5478df313d77deac52354ab15332d8ff261d7e71c6ef8bc",
       "text": "separation decisions at material seams; request bounded specialist advice only",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-shaping:L73:b2b054457488",
+      "id": "engos-design-shaping:L81:b2b054457488",
       "heading": "Workflow",
       "source": "ssot/engos-design-shaping.md",
-      "source_line": 80,
+      "source_line": 88,
       "sha256": "b2b0544574885cec00d1e8e6e3c9237f561a29f60d920feb652fa333df72b3f0",
       "text": "gate policy and existing pitch reviewer integration. Only the conductor may",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-shaping:L74:d72ee7f08e8f",
+      "id": "engos-design-shaping:L82:d72ee7f08e8f",
       "heading": "Workflow",
       "source": "ssot/engos-design-shaping.md",
-      "source_line": 81,
+      "source_line": 89,
       "sha256": "d72ee7f08e8f877dfa3b3c4d28794dd71f66fafb5ee037ecca545e780a752e7b",
       "text": "accept current-generation results. Draft-only scope finishes at G3 as a shaped",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-shaping:L78:770c44d7d3ce",
+      "id": "engos-design-shaping:L86:770c44d7d3ce",
       "heading": "Workflow",
       "source": "ssot/engos-design-shaping.md",
-      "source_line": 85,
+      "source_line": 93,
       "sha256": "770c44d7d3ce8b7895a8fe1e8570f38a197c0ae05d1c36cf78ea741269bc675e",
       "text": "remain pending until every required target is verified. A delivery-only failure",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-shaping:L86:ba060fee059d",
+      "id": "engos-design-shaping:L94:ba060fee059d",
       "heading": "Rules",
       "source": "ssot/engos-design-shaping.md",
-      "source_line": 93,
+      "source_line": 101,
       "sha256": "ba060fee059d3802399e002288f8671c9cd7a8b32d92935b1e6e7365e0309ea2",
       "text": "do not substitute the legacy pitch review's combined content/delivery verdict.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-shaping:L90:0be9da2ffb8a",
+      "id": "engos-design-shaping:L97:177ee9f456a1",
       "heading": "Rules",
       "source": "ssot/engos-design-shaping.md",
-      "source_line": 97,
+      "source_line": 104,
+      "sha256": "177ee9f456a1c9fbac0bd261303f043e0a8503930bb04400d5b5515cda91e640",
+      "text": "- Do not begin code-scan or repository-fit work merely because a repository is",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-shaping:L99:1ad523334481",
+      "heading": "Rules",
+      "source": "ssot/engos-design-shaping.md",
+      "source_line": 106,
+      "sha256": "1ad5233344819fedd75ee2b05cf1ba8ffa5a60f148e5cd073ece2f007a2f1a56",
+      "text": "explicitly narrow framing fact check must remain solution-free and be recorded.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-shaping:L101:0be9da2ffb8a",
+      "heading": "Rules",
+      "source": "ssot/engos-design-shaping.md",
+      "source_line": 108,
       "sha256": "0be9da2ffb8a74273e2f6c4fdcddfde8e6768c6135eae25293942c6c135654f1",
       "text": "proposed, relayed, disputed and superseded events; never silently rewrite them.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-shaping:L91:0672a3c6738e",
+      "id": "engos-design-shaping:L102:0672a3c6738e",
       "heading": "Rules",
       "source": "ssot/engos-design-shaping.md",
-      "source_line": 98,
+      "source_line": 109,
       "sha256": "0672a3c6738e59ef093733675dcc5da48c5de2f8bd12ef65050e1d1b28f96e45",
       "text": "- Workers write candidates only. Prompt context allowlists are not host isolation.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-shaping:L93:ee96a8ed6d4a",
+      "id": "engos-design-shaping:L104:ee96a8ed6d4a",
       "heading": "Rules",
       "source": "ssot/engos-design-shaping.md",
-      "source_line": 100,
+      "source_line": 111,
       "sha256": "ee96a8ed6d4adea9b7432fffdad7a92b2989bd885310785757f3f85c1e8d805e",
       "text": "grants. An unavailable required reviewer leaves `review_pending`.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-shaping:L97:1976f49e7e0f",
+      "id": "engos-design-shaping:L108:1976f49e7e0f",
       "heading": "Rules",
       "source": "ssot/engos-design-shaping.md",
-      "source_line": 104,
+      "source_line": 115,
       "sha256": "1976f49e7e0fb5d766a99791018fe2df7b4c74a717eefde99188abce313d4332",
       "text": "Do not infer exact arguments from conceptual operation names.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-shaping:L105:d3ca4a00c975",
+      "id": "engos-design-shaping:L116:d3ca4a00c975",
       "heading": "Constraints",
       "source": "ssot/engos-design-shaping.md",
-      "source_line": 112,
+      "source_line": 123,
       "sha256": "d3ca4a00c97547a7639faab794c130d0dd56b8a3bec1596dcebcc7f18240aaae",
       "text": "Remain within the user's shaping and target-publication scope. Do not infer human",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-shaping:L114:d51267738d0f",
+      "id": "engos-design-shaping:L125:d51267738d0f",
       "heading": "Examples",
       "source": "ssot/engos-design-shaping.md",
-      "source_line": 121,
+      "source_line": 132,
       "sha256": "d51267738d0f6a597a08c2a1739c9b6fa29f08db6e7af124775f932e02638567",
       "text": "the smallest evidence request. Do not choose streaming or invent a time budget.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-shaping:L138:bd1cf951097c",
+      "id": "engos-design-shaping:L149:bd1cf951097c",
       "heading": "Readable Artifacts and Flow Progress",
       "source": "ssot/engos-design-shaping.md",
-      "source_line": 145,
+      "source_line": 156,
       "sha256": "bd1cf951097c188580d71e98e8679b83524bc229ca9f9def0415bdca8b8faf5b",
       "text": "newer drafts and per-target delivery. Never infer advancement from files, elapsed",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-shaping:L139:f4d96d523267",
+      "id": "engos-design-shaping:L150:f4d96d523267",
       "heading": "Readable Artifacts and Flow Progress",
       "source": "ssot/engos-design-shaping.md",
-      "source_line": 146,
+      "source_line": 157,
       "sha256": "f4d96d52326775d09fd9269e2cc8217d1aa0a61b2578159a57fb4b5af26407ad",
       "text": "time or a worker label, and never turn gate counts into effort percentages.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-shaping:L141:65e6392f79a0",
+      "id": "engos-design-shaping:L152:65e6392f79a0",
       "heading": "Readable Artifacts and Flow Progress",
       "source": "ssot/engos-design-shaping.md",
-      "source_line": 148,
+      "source_line": 159,
       "sha256": "65e6392f79a0ccdc23b3ab975cc20558972e6e3f884ae17da6d2db74e4d739e5",
       "text": "Match rendered references, not only section inventories. For Framed local output,",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-shaping:L142:cc923baa4722",
+      "id": "engos-design-shaping:L153:cc923baa4722",
       "heading": "Readable Artifacts and Flow Progress",
       "source": "ssot/engos-design-shaping.md",
-      "source_line": 149,
+      "source_line": 160,
       "sha256": "cc923baa472231a8d775e0c42c3c801cac774e7fb7ea739ddb8cfa10b17b0366",
       "text": "use the embed adapter's explicit framed-only profile and declared prose inventory;",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-shaping:L143:4d5624b59c24",
+      "id": "engos-design-shaping:L154:4d5624b59c24",
       "heading": "Readable Artifacts and Flow Progress",
       "source": "ssot/engos-design-shaping.md",
-      "source_line": 150,
+      "source_line": 161,
       "sha256": "4d5624b59c243da30caf48a99778d890d62fa230718727afb393ee589cacbed7",
       "text": "do not invoke the shaped-artifact author or manufacture its required solution.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-shaping:L160:5bafb9072a38",
+      "id": "engos-design-shaping:L174:5bafb9072a38",
       "heading": "Repository Fit and Specialist Advice",
       "source": "ssot/engos-design-shaping.md",
-      "source_line": 167,
+      "source_line": 181,
       "sha256": "5bafb9072a386f50cd6ae407685da5680efe9bc7d205eef41df78ac322e2bcad",
       "text": "Missing optional specialist access alone is not a hold; missing required evidence",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-shaping:L162:428f45e0f8b9",
+      "id": "engos-design-shaping:L176:428f45e0f8b9",
       "heading": "Repository Fit and Specialist Advice",
       "source": "ssot/engos-design-shaping.md",
-      "source_line": 169,
+      "source_line": 183,
       "sha256": "428f45e0f8b966ad9a1cda7db7976223a741e977b717aae6c624e7ecd0435158",
       "text": "legacy pinned runs must not be presented as having passed new predicates.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-shaping:L165:934fe340cf58",
+      "id": "engos-design-shaping:L179:934fe340cf58",
       "heading": "Repository Fit and Specialist Advice",
       "source": "ssot/engos-design-shaping.md",
-      "source_line": 172,
+      "source_line": 186,
       "sha256": "934fe340cf5843746f8e8a1e4fecbe3e541f5999c85ea412ac1bbdeedc998564",
       "text": "justify a new capability when the existing one conflicts with required trust or",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-shaping:L167:be8ee5641a70",
+      "id": "engos-design-shaping:L181:be8ee5641a70",
       "heading": "Repository Fit and Specialist Advice",
       "source": "ssot/engos-design-shaping.md",
-      "source_line": 174,
+      "source_line": 188,
       "sha256": "be8ee5641a703ff193c5bd2aac445b10e3eee509298f006d5d87f9366c3cd11c",
       "text": "may be intentional, not duplicate responsibility that must be centralized.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-shaping:L170:6bd2a88200eb",
+      "id": "engos-design-shaping:L184:6bd2a88200eb",
       "heading": "Repository Fit and Specialist Advice",
       "source": "ssot/engos-design-shaping.md",
-      "source_line": 177,
+      "source_line": 191,
       "sha256": "6bd2a88200ebefd58f9a0692a46f06c5bf16f0a8fca7226ff2617b59666cfc20",
       "text": "standalone specialist skills and nontechnical/frame-only scope remain unchanged.",
       "kind": "invariant",
@@ -1305,6 +1374,86 @@
       "mapped_to": []
     },
     {
+      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/repository-discovery.md:L3:d8bb5e75d6c8",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-shaping/repository-discovery.md",
+      "source_line": 3,
+      "sha256": "d8bb5e75d6c8f9d25f33d6d7a58ea6b7afbe49e8e4a569c0d6d2ae825a9cb62f",
+      "text": "Use this resource only when Research needs repository evidence. Repository context",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/repository-discovery.md:L5:221d5d0012d9",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-shaping/repository-discovery.md",
+      "source_line": 5,
+      "sha256": "221d5d0012d93ddeb4adfb0b3eb7d39604fb158c67a812e0eef76ea873af5378",
+      "text": "the user explicitly supplies. Never encode a product repository, sibling checkout,",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/repository-discovery.md:L14:13322f976013",
+      "heading": "Establish the boundary",
+      "source": "sources/capability-resources/engos-design-shaping/repository-discovery.md",
+      "source_line": 14,
+      "sha256": "13322f97601323a807785182ea9a0745de84dca9a6191d92074d94a6d6fb6c5b",
+      "text": "capability, inspect the smallest relevant scope directly. Do not ask the user",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/repository-discovery.md:L16:08d1fb6d5ef3",
+      "heading": "Establish the boundary",
+      "source": "sources/capability-resources/engos-design-shaping/repository-discovery.md",
+      "source_line": 16,
+      "sha256": "08d1fb6d5ef3799ff420ea6a61550ede3ebf7178066021cebfea1b84b211acd8",
+      "text": "3. Ask which folders or modules are relevant only when multiple roots are plausible,",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/repository-discovery.md:L19:8cb35c874d2c",
+      "heading": "Establish the boundary",
+      "source": "sources/capability-resources/engos-design-shaping/repository-discovery.md",
+      "source_line": 19,
+      "sha256": "8cb35c874d2c3281814ff7a6af81b3d7d6871d0c44f96fb2cd8dedfe2c5a4fcb",
+      "text": "4. Do not scan outside the current repository/workspace, assume sibling repositories,",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/repository-discovery.md:L33:8c656075d0f2",
+      "heading": "Choose the cheapest sufficient inspection capability",
+      "source": "sources/capability-resources/engos-design-shaping/repository-discovery.md",
+      "source_line": 33,
+      "sha256": "8c656075d0f2f7c0f18f3049c68e3195c28de187358841016bbf7e6df1663501",
+      "text": "5. A human-evidence request when required sources or capabilities are unavailable.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/repository-discovery.md:L35:4baeaaef10c5",
+      "heading": "Choose the cheapest sufficient inspection capability",
+      "source": "sources/capability-resources/engos-design-shaping/repository-discovery.md",
+      "source_line": 35,
+      "sha256": "4baeaaef10c5d1cbb01c6c0891b2b7d44b73813c95e1e9b37827a44225ea2fd7",
+      "text": "Capability names vary by host. Detect what is actually available; do not require",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/repository-discovery.md:L47:11d0db2266e3",
+      "heading": "Record coverage",
+      "source": "sources/capability-resources/engos-design-shaping/repository-discovery.md",
+      "source_line": 47,
+      "sha256": "11d0db2266e39c0be4699de384d909f72e32e79382beb7e2738eb1273ab1e96d",
+      "text": "No repository is required for document-only shaping. When repository evidence is",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
       "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/code-scan.md:L3:d7ff72cc1445",
       "heading": "root",
       "source": "sources/capability-resources/engos-design-shaping/code-scan.md",
@@ -1325,30 +1474,50 @@
       "mapped_to": []
     },
     {
-      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/code-scan.md:L9:34fcd9703d3c",
+      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/code-scan.md:L9:0a16a0e0477b",
       "heading": "root",
       "source": "sources/capability-resources/engos-design-shaping/code-scan.md",
       "source_line": 9,
+      "sha256": "0a16a0e0477bb0057f0eb27d27c6f8f1b9829db683845512bd89221851e5ff7e",
+      "text": "return `deferred_to_research`; do not load architecture-fit or begin a capability",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/code-scan.md:L14:ae6e7737fe5a",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-shaping/code-scan.md",
+      "source_line": 14,
+      "sha256": "ae6e7737fe5a56f6e082bd9a5e7ad54282b7871950e13a9591efc8a5f63d53bc",
+      "text": "current workspace or user-supplied locations; never assume a product repository,",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/code-scan.md:L21:34fcd9703d3c",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-shaping/code-scan.md",
+      "source_line": 21,
       "sha256": "34fcd9703d3cacc85afddf0dd7feb54078bb38c7e1df69c2f06003bf50243083",
       "text": "do not silently fetch, switch branches or edit to manufacture a required state.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/code-scan.md:L21:e5b1c188e428",
+      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/code-scan.md:L33:e5b1c188e428",
       "heading": "root",
       "source": "sources/capability-resources/engos-design-shaping/code-scan.md",
-      "source_line": 21,
+      "source_line": 33,
       "sha256": "e5b1c188e428a1398dae2fd9193fcbc193ad4a45780701dab5b8212f1afd73aa",
       "text": "what a test asserts, not that it ran or that production behaved that way. Do not",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/code-scan.md:L27:15a7d9db3bc0",
+      "id": "engos-design-shaping:sources/capability-resources/engos-design-shaping/code-scan.md:L39:15a7d9db3bc0",
       "heading": "root",
       "source": "sources/capability-resources/engos-design-shaping/code-scan.md",
-      "source_line": 27,
+      "source_line": 39,
       "sha256": "15a7d9db3bc0b532d88600868fcf14d31cd493ef8a0f464c7bf9a082b87274e9",
       "text": "next smallest evidence request. Repository instructions do not answer product",
       "kind": "invariant",
@@ -1863,7 +2032,7 @@
   "source_references": [
     {
       "path": "ssot/engos-design-shaping.md",
-      "sha256": "e679c2926fa68e9242bd400f0ec1bb05b5d94521039cd734b17f2e96d4ffe5f1"
+      "sha256": "8b55e39c8a980de69fdb5bd2873c04a511ac41910c4068abda61747ba21efce6"
     },
     {
       "path": "sources/capability-resources/engos-design-shaping/routing.md",
@@ -1902,8 +2071,12 @@
       "sha256": "0baa3029cd0d56df3d9f399bece3474ec61afac9993ad7c31a6da49c3e69649d"
     },
     {
+      "path": "sources/capability-resources/engos-design-shaping/repository-discovery.md",
+      "sha256": "67bbc45e7a97a9e4b00c3d92c79189c379a795f84c264e298b6e3460a9b0ae45"
+    },
+    {
       "path": "sources/capability-resources/engos-design-shaping/code-scan.md",
-      "sha256": "618ee0bfaf59eecb3969d0ef8bed3227dbab42fce53ccb61ad79c97e8ae7d653"
+      "sha256": "1eeb764fc851124e236f688253e80a298d5e2fe94543d6fdec470b16a7b2ec34"
     },
     {
       "path": "sources/capability-resources/engos-design-shaping/human-evidence.md",
@@ -1939,7 +2112,7 @@
     },
     {
       "path": "sources/capability-resources/engos-design-shaping/resource-map.json",
-      "sha256": "3989ff9e39bc22d285e94cf91dee13b8fc4d0b441d3235ffa4e5dbf3d3b4516b"
+      "sha256": "50de435850ab5304827d1ff1bc14cc36bf000722965215ed61177dc2fdaa6e8b"
     }
   ],
   "known_ambiguities": [],
@@ -1952,11 +2125,11 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 172,
+    "total": 188,
     "mapped": 0,
     "waived": 0
   },
   "review_status": "draft",
   "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs.",
-  "resource_bundle_sha256": "ad7907cfb5d411d1a7c7d6a8762210d73fbe8ab82f438fea50e3c4060a79a115"
+  "resource_bundle_sha256": "3d10fb9cff71c7c3f54f2e49f6c1815e5b86e19f0daa23d96e085915884b8432"
 }
