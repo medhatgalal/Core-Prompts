@@ -4,6 +4,8 @@
 - Keep automatic routing disabled: no consumer, skill body, description, installer, global instruction or named-agent surface is added or changed. Metadata remains advisory and cannot grant authority.
 - Make the historical routing corpus self-contained and report current adapter declarations without enabling execution. Preserve the original draft oracle and recorded HOLD results; the project-local experiment does not qualify global activation.
 
+- Allow explicitly approved, task-owned Swift module-cache reuse in native exporter tests; retain fresh executable compilation, behavioral assertions, and the 120-second compile limit. Reject cache drift and concurrent use, and retain per-run cleanup/readback receipts.
+
 ## v1.15.1 - 2026-09-15
 
 - Support `--cli agy` as a skills-only installation reader using `.gemini/config/skills`, with existing profile preservation, native-package customization protection, and rollback. Reuse generated portable resources without creating an unreviewed agent surface.
