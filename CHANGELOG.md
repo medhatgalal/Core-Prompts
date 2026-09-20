@@ -1,4 +1,6 @@
-## v1.15.3 - Unreleased
+## v1.15.3 - 2026-09-19
+
+- Assign home-global model, effort, and context policy to Dotfiles while Core-Prompts retains only narrower repository and capability constraints.
 
 - Derive advisory UAC routing fitness from source clauses, preserve curated descriptor jobs, and regenerate a versioned source-bound job map. Add preview/apply/idempotence and false-authority regression checks.
 - Keep automatic routing disabled: no consumer, skill body, description, installer, global instruction or named-agent surface is added or changed. Metadata remains advisory and cannot grant authority.
