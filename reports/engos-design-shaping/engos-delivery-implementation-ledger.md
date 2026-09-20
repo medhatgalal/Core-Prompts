@@ -17,6 +17,25 @@ Continue local work; dual-remote landing remains blocked until normal access ret
 
 ## Current continuation status — presentation and progress verification
 
+Main/MR reconciliation (2026-09-19): Scott's pending work is one GitLab MR!82
+containing four independent skills: answer discipline, outbound writing, review
+flow and claim discipline. It is not subsumed by shaping and is not included in
+v1.16.0. MR!82 remains conflict-blocked at22c7e595 and lacks current routing-fitness
+metadata/current-main docs regeneration; its historical pipeline does not establish
+current readiness. No shaping dependency or mention was added. Native skill
+descriptions plus current advisory routing metadata remain the cheapest future
+route after that MR is independently refreshed and accepted.
+
+Current origin/main now includes gitlab/main and the mergedv1.15.3 routing/model-
+guidance work. It was merged into this branch. Conflicts were additive: both
+shaping and current-main CI tests survive; VERSION remainsv1.16.0; CHANGELOG keeps
+v1.16.0 above v1.15.3; generated manifests/job maps/status/release delta were rebuilt
+against the actual publishedv1.15.2 baseline. A cheap Luna mechanical reviewer and
+Terra docs reviewer found staging/source-only wording issues; both were repaired.
+Focused result:97passed/1docs-contract failure, followed by5/5docs-contract pass;
+strict validation passed32SSOT. No broad historical suite was repeated per user
+direction. Merge review remains pending exact staged recheck and hosted CI.
+
 Repository-neutral correction (2026-09-19): user confirmed that shipped skills
 must use the repository in which they run and may ask for relevant folders/modules;
 project knowledge, LSP/semantic indexes or other available capabilities should

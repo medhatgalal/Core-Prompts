@@ -395,6 +395,134 @@
       "engos-audit-weekly-intel"
     ],
     "shape": "report_specialist",
-    "portfolio_action": "keep_and_clarify_boundary"
+    "portfolio_action": "keep_and_clarify_boundary",
+    "routing_fitness": {
+      "schema_version": "RoutingFitness.v1",
+      "mapping_status": "source_derived_draft",
+      "task_phases": {
+        "kind": "source_conditions",
+        "clauses": [
+          {
+            "text": "1. **Drive folder** \u2014 \"Where should reports be saved in Google Drive?\" (default: `Engineering Reports`)\n2. **Local sync path** \u2014 \"Where should reports be synced locally?\" (default: `~/eng-reports`)\n3. **Notifications** \u2014 \"Email address for weekly summary? (leave blank to skip)\"\n4. **Chat** \u2014 \"Google Chat space ID? (leave blank to skip)\"\n5. **Repos** \u2014 For each repo the user wants to add:\n   a. \"Repo name (display label, e.g. AI Platform):\"\n   b. \"Local path (e.g. ~/repo/ai-platform) \u2014 leave blank if not cloned:\"\n   c. If no local path: \"Remote git URL (e.g. git@github.com:appian/ae.git):\" \u2014 script will auto-clone on first run\n   d. \"Is this a large monorepo like ae? (y/n)\" \u2014 if yes, offer scope setup:\n      - \"Filter by org unit? Enter tribe/group name or leave blank for whole repo:\"\n      - If tribe entered: call `sync-authors` immediately to resolve members from Home MCP\n   e. Repeat until user enters blank for repo name\n6. Write `config.yaml`\n7. Offer to run `sync-authors` now to resolve all org memberships: \"Resolve team memberships from Home MCP now? (y/n)\"\n   - If yes: run `sync-authors` workflow for all scoped entries\n8. Validate git access: for each `remote:` URL, run `git ls-remote <url> HEAD` \u2014 warn if unreachable\n9. Use the installed CLI `~/.local/bin/eng-report`:\n   - The standalone runtime ships `~/.core-prompts-updater/scripts/eng-report.py`; the launcher must resolve that installed copy, not a temporary checkout.\n   - If the launcher is missing, resolve that exact installed helper and prepare a wrapper calling `python3` with forwarded arguments. Compare any existing launcher before replacement and preserve customizations.\n   - If the helper is missing, request the Core-Prompts installation workflow; do not search the home directory for an arbitrary checkout.\n   - Verify: `eng-report --help`\n10. Confirm: \"Configuration saved. {N} repos configured. Run `eng-report run` to generate your first reports.\"",
+            "heading": "Workflow",
+            "source": {
+              "path": "ssot/engos-audit-engineering-progress.md",
+              "start_line": 260,
+              "end_line": 281,
+              "sha256": "c89b815c182161cde0f17ea686e5ffb9c12d405dceb9ccffbdb90c5e63023b29"
+            }
+          },
+          {
+            "text": "**CRITICAL RULES \u2014 VIOLATIONS WILL PRODUCE GARBAGE REPORTS:**\n1. You MUST first run `eng-report run --json --config <config>` and READ the actual JSON output.\n2. You MUST synthesize narratives from the REAL metrics data you just read \u2014 not from memory, assumptions, or prior knowledge of the repos.\n3. You MUST NOT pre-write narrative JSON before reading metrics. The narrative is a RESPONSE to the data.\n4. You MUST NOT write a Python script to generate narratives \u2014 use your own synthesis capabilities on the real data.",
+            "heading": "Workflow",
+            "source": {
+              "path": "ssot/engos-audit-engineering-progress.md",
+              "start_line": 316,
+              "end_line": 320,
+              "sha256": "c89b815c182161cde0f17ea686e5ffb9c12d405dceb9ccffbdb90c5e63023b29"
+            }
+          },
+          {
+            "text": "After fleet run completes (and Drive upload if applicable):",
+            "heading": "Workflow",
+            "source": {
+              "path": "ssot/engos-audit-engineering-progress.md",
+              "start_line": 393,
+              "end_line": 393,
+              "sha256": "c89b815c182161cde0f17ea686e5ffb9c12d405dceb9ccffbdb90c5e63023b29"
+            }
+          },
+          {
+            "text": "**If notification is requested without a target:** Ask for the recipient or Chat space before sending.",
+            "heading": "Workflow",
+            "source": {
+              "path": "ssot/engos-audit-engineering-progress.md",
+              "start_line": 413,
+              "end_line": 413,
+              "sha256": "c89b815c182161cde0f17ea686e5ffb9c12d405dceb9ccffbdb90c5e63023b29"
+            }
+          }
+        ]
+      },
+      "activation": {
+        "mode": "unknown",
+        "evidence": []
+      },
+      "risk_authority_ceiling": {
+        "grants_authority": false,
+        "clauses": [
+          {
+            "text": "Allowed:\n- read git history and file-level change statistics from configured repositories\n- generate deterministic JSON metrics and standalone HTML reports\n- use caller-provided narrative JSON to render final report text\n- use Home MCP only to refresh configured author lists when `sync-authors` is requested\n- use Drive, Chat, or email integrations only for explicit upload, sync, or notification flows",
+            "heading": "Tool Boundaries",
+            "source": {
+              "path": "ssot/engos-audit-engineering-progress.md",
+              "start_line": 46,
+              "end_line": 51,
+              "sha256": "c89b815c182161cde0f17ea686e5ffb9c12d405dceb9ccffbdb90c5e63023b29"
+            }
+          },
+          {
+            "text": "Forbidden:\n- modifying source repositories, branches, commits, tests, or tracked files\n- inventing metrics that are not available from git data or caller-provided configuration\n- reporting Jira story points, sprint status, PR review latency, or planning commitments\n- judging code quality, approving releases, or replacing `engos-quality-code-review` or `engos-quality-gitops-review`\n- requiring Home MCP, Drive, Chat, or email for the basic local git-reporting path",
+            "heading": "Tool Boundaries",
+            "source": {
+              "path": "ssot/engos-audit-engineering-progress.md",
+              "start_line": 53,
+              "end_line": 58,
+              "sha256": "c89b815c182161cde0f17ea686e5ffb9c12d405dceb9ccffbdb90c5e63023b29"
+            }
+          }
+        ]
+      },
+      "negative_examples": {
+        "kind": "source_exclusions_not_synthetic_prompts",
+        "clauses": [
+          {
+            "text": "Do not invoke this capability for sprint planning, Jira status, story-point reporting, PR review, test execution, incident management, or any request that requires modifying source code.",
+            "heading": "Invocation Hints",
+            "source": {
+              "path": "ssot/engos-audit-engineering-progress.md",
+              "start_line": 108,
+              "end_line": 108,
+              "sha256": "c89b815c182161cde0f17ea686e5ffb9c12d405dceb9ccffbdb90c5e63023b29"
+            }
+          }
+        ]
+      },
+      "conditional_companions": [],
+      "pack_hints": {
+        "lead": "engos-audit-engineering-progress",
+        "companions": "only_after_applicable_source_conditions_are_checked",
+        "default_bulk_activation": false
+      },
+      "provenance": {
+        "ssot_path": "ssot/engos-audit-engineering-progress.md",
+        "ssot_sha256": "c89b815c182161cde0f17ea686e5ffb9c12d405dceb9ccffbdb90c5e63023b29",
+        "effective_sha256": "c89b815c182161cde0f17ea686e5ffb9c12d405dceb9ccffbdb90c5e63023b29",
+        "resources": [],
+        "extractor_version": "source-clauses.v1",
+        "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+        "field_sources": {},
+        "unresolved_companion_clauses": [],
+        "curated_fields": [
+          "authority",
+          "main_output",
+          "nearest_neighbors",
+          "not_for",
+          "portfolio_action",
+          "primary_job",
+          "routing_question",
+          "shape",
+          "use_when",
+          "works_on"
+        ],
+        "curated_binding": "preserved_not_independently_revalidated",
+        "mapping_sha256": "0cc9f20655d8e75824a41d6f0d1d94cdda9b12f159093364ccd43cc1afd2480f"
+      },
+      "unresolved_fields": [
+        "task_phase_interpretation",
+        "risk_authority_interpretation",
+        "implicit_activation_eligibility"
+      ]
+    }
   }
 }

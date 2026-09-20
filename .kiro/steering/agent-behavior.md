@@ -33,6 +33,12 @@ Keep rule surfaces machine-readable, keep human docs free of hidden policy, and 
 - When facts are easy to verify locally, verify them before encoding them into docs or rules.
 - When changing Kiro-specific steering, skills, agents, or invocation guidance, verify the current behavior against official Kiro documentation or the Kiro Help Agent before freezing repo policy.
 
+## Global Guidance Ownership
+
+- Dotfiles owns home-global model, reasoning-effort, context, and generic subagent policy plus its provider-native copies. Do not duplicate or redefine that global policy in Core-Prompts.
+- Core-Prompts may add stricter repository rules and capability-specific delegation, review, safety, or evidence requirements. Those additions must identify their narrower trigger and must not weaken the global policy.
+- Capability bodies should inherit host model and effort routing unless the task contract requires an explicit setting. Keep any explicit provider or model guidance current, scoped, and separate from authority decisions.
+
 ## Comparative Evaluation and Bounded Work
 
 - Before comparative grading, define score meaning, material success/regression criteria, and the baseline. When baseline and candidate saturate the same metric, do not claim improvement on that metric. Resolve reviewer disagreements material to a comparative conclusion, or report that conclusion as uncertain. Preserve the original criteria and judgments; design harder cases or a revised rubric as a subsequent experiment rather than changing the completed comparison to fit a preferred verdict.

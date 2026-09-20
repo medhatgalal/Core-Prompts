@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 import re
 import subprocess
 import tempfile
@@ -33,6 +34,7 @@ def run_probe(
     timeout: int = 15,
     max_chars: int | None = 4000,
     capture_mode: str = 'pipe',
+    environment: dict[str, str] | None = None,
 ) -> tuple[int, str]:
     if capture_mode == 'file':
         with tempfile.TemporaryFile(mode='w+', encoding='utf-8') as handle:
@@ -42,6 +44,7 @@ def run_probe(
                 stderr=subprocess.STDOUT,
                 text=True,
                 timeout=timeout,
+                env=environment,
             )
             handle.seek(0)
             out = handle.read().strip()
@@ -52,6 +55,7 @@ def run_probe(
             stderr=subprocess.STDOUT,
             text=True,
             timeout=timeout,
+            env=environment,
         )
         out = proc.stdout.strip()
     if max_chars is not None and len(out) > max_chars:
@@ -235,12 +239,15 @@ def main(argv: list[str] | None = None) -> int:
             discovery_cmd = [binary, *discovery_args]
             try:
                 capture_mode = 'file' if name == 'gemini' else 'pipe'
-                code, out = run_probe(
-                    discovery_cmd,
-                    timeout=discovery_timeout,
-                    max_chars=100000,
-                    capture_mode=capture_mode,
-                )
+                probe_options = {
+                    'timeout': discovery_timeout,
+                    'max_chars': 100000,
+                    'capture_mode': capture_mode,
+                }
+                discovery_env = tool.get('discovery_env') or {}
+                if discovery_env:
+                    probe_options['environment'] = {**os.environ, **discovery_env}
+                code, out = run_probe(discovery_cmd, **probe_options)
                 override_slugs = gemini_override_discovery_slugs(out) if name == 'gemini' else []
                 clean_out = normalize_discovery_output(name, out) if tool.get('discovery_strip_ansi', True) else out
                 if code != 0:

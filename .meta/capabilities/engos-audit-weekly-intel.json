@@ -221,6 +221,209 @@
       "engos-reconciliation-converge"
     ],
     "shape": "report_workflow",
-    "portfolio_action": "keep_and_clarify_boundary"
+    "portfolio_action": "keep_and_clarify_boundary",
+    "routing_fitness": {
+      "schema_version": "RoutingFitness.v1",
+      "mapping_status": "source_derived_draft",
+      "task_phases": {
+        "kind": "source_conditions",
+        "clauses": [
+          {
+            "text": "For each substantive claim, verify:\n- **Quantitative claims** (ticket counts, MR counts, scores) \u2014 re-run the query and confirm; note methodology caveats (e.g., broad JQL, created-after vs merged-after)\n- **Qualitative claims** (\"X is fixed\", \"Y is done\") \u2014 find the primary source (chat message, ticket transition, MR merge) and cite it\n- **Quotes and numbers from chat** \u2014 verify they are exact, not paraphrased in a way that changes meaning\n- **Attribution** \u2014 verify the person who said something is correctly identified",
+            "heading": "Workflow",
+            "source": {
+              "path": "ssot/engos-audit-weekly-intel.md",
+              "start_line": 152,
+              "end_line": 156,
+              "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+            }
+          },
+          {
+            "text": "**Main Body** (exec-readable, no jargon, no ticket numbers):\n1. **The Short Version** \u2014 2\u20133 sentences: where we were, where we are, what's at risk\n2. **What We Can Do Now That We Couldn't Before** \u2014 capabilities delivered, plain language\n3. **What's Not Working Yet** \u2014 honest, specific, with severity context\n4. **What We Need** \u2014 decisions or support required from leadership\n5. **By the Numbers** \u2014 table with metrics, each with a Notes column for caveats",
+            "heading": "Workflow",
+            "source": {
+              "path": "ssot/engos-audit-weekly-intel.md",
+              "start_line": 170,
+              "end_line": 175,
+              "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+            }
+          },
+          {
+            "text": "**Appendices** (ordered by reader intent after the exec body):\n- **Appendix A: Work Stream Detail** \u2014 per-initiative breakdown with inline links to tickets, MRs, chat threads, and docs (the narrative evidence behind the exec body)\n- **Appendix B: Risks & Mitigations** \u2014 risk table with severity, status, and recommended actions\n- **Appendix C: Jira Detail** \u2014 closed tickets table, in-progress tickets, open bugs by priority, initiative/epic status; every row links to the Jira ticket\n- **Appendix D: Code Changes** \u2014 GitLab MR table with links, git commit summary, repo activity metrics\n- **Appendix E: Chat & Meeting Intelligence** \u2014 key decisions, blockers, and quotes from chat spaces and Gemini meeting notes; each item links to the source space or doc\n- **Appendix F: Sources & Confidence** \u2014 table rating each source (High/Medium/Low) with methodology notes",
+            "heading": "Workflow",
+            "source": {
+              "path": "ssot/engos-audit-weekly-intel.md",
+              "start_line": 177,
+              "end_line": 183,
+              "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+            }
+          },
+          {
+            "text": "Before delivering, verify the document is internally consistent:",
+            "heading": "Workflow",
+            "source": {
+              "path": "ssot/engos-audit-weekly-intel.md",
+              "start_line": 202,
+              "end_line": 202,
+              "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+            }
+          },
+          {
+            "text": "1. Every number in the main body must match the corresponding appendix data\n2. Every claim in the body must have supporting evidence in an appendix\n3. Initiative/epic counts in the body must match Appendix A\n4. The By the Numbers table must match Appendix C and D totals\n5. Fix any discrepancies before delivering",
+            "heading": "Workflow",
+            "source": {
+              "path": "ssot/engos-audit-weekly-intel.md",
+              "start_line": 204,
+              "end_line": 208,
+              "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+            }
+          }
+        ]
+      },
+      "activation": {
+        "mode": "unknown",
+        "evidence": []
+      },
+      "risk_authority_ceiling": {
+        "grants_authority": false,
+        "clauses": [
+          {
+            "text": "- Modifying any source system (tickets, repos, chat, docs)\n- Making recommendations about what the team should do next (unless explicitly asked)\n- Comparing teams against each other\n- Forecasting future delivery dates\n- Accessing private or restricted data beyond what the authenticated user can see",
+            "heading": "Out of Scope",
+            "source": {
+              "path": "ssot/engos-audit-weekly-intel.md",
+              "start_line": 25,
+              "end_line": 29,
+              "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+            }
+          },
+          {
+            "text": "- allowed: read from issue trackers, git repos, code review platforms, chat APIs, document APIs; write report files; run convergence and audit passes\n- forbidden: modifying tickets, merging code, sending messages, or taking any action beyond reading and reporting\n- escalation: if a claim cannot be verified from primary sources, mark it as unverified rather than asserting it",
+            "heading": "Tool Boundaries",
+            "source": {
+              "path": "ssot/engos-audit-weekly-intel.md",
+              "start_line": 54,
+              "end_line": 56,
+              "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+            }
+          },
+          {
+            "text": "- Do not modify any source system (tickets, repos, chat). Read only.\n- Do not assert a bug is \"fixed\" based on a single chat message without corroboration from the tracker or code.\n- Do not inflate ticket counts by including unrelated teams' work without disclosure.\n- Do not present created-after queries as merged-after without noting the caveat.\n- Do not skip the internal consistency check between body and appendices.\n- Do not use the word \"impressive\" or \"amazing\" in the main body. Let the numbers speak.",
+            "heading": "Constraints",
+            "source": {
+              "path": "ssot/engos-audit-weekly-intel.md",
+              "start_line": 231,
+              "end_line": 236,
+              "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+            }
+          }
+        ]
+      },
+      "negative_examples": {
+        "kind": "source_exclusions_not_synthetic_prompts",
+        "clauses": [
+          {
+            "text": "- Modifying any source system (tickets, repos, chat, docs)\n- Making recommendations about what the team should do next (unless explicitly asked)\n- Comparing teams against each other\n- Forecasting future delivery dates\n- Accessing private or restricted data beyond what the authenticated user can see",
+            "heading": "Out of Scope",
+            "source": {
+              "path": "ssot/engos-audit-weekly-intel.md",
+              "start_line": 25,
+              "end_line": 29,
+              "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+            }
+          },
+          {
+            "text": "- Do not modify any source system (tickets, repos, chat). Read only.\n- Do not assert a bug is \"fixed\" based on a single chat message without corroboration from the tracker or code.\n- Do not inflate ticket counts by including unrelated teams' work without disclosure.\n- Do not present created-after queries as merged-after without noting the caveat.\n- Do not skip the internal consistency check between body and appendices.\n- Do not use the word \"impressive\" or \"amazing\" in the main body. Let the numbers speak.",
+            "heading": "Constraints",
+            "source": {
+              "path": "ssot/engos-audit-weekly-intel.md",
+              "start_line": 231,
+              "end_line": 236,
+              "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+            }
+          }
+        ]
+      },
+      "conditional_companions": [
+        {
+          "skill": "engos-reconciliation-converge",
+          "condition_and_handoff": "| Body claims don't match appendix data | `engos-reconciliation-converge` | the document, the specific inconsistencies |",
+          "source": {
+            "path": "ssot/engos-audit-weekly-intel.md",
+            "start_line": 251,
+            "end_line": 251,
+            "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+          },
+          "interpretation": "source_clause_requires_stage_review"
+        },
+        {
+          "skill": "engos-meta-supercharge",
+          "condition_and_handoff": "| The main body needs quality hardening | `engos-meta-supercharge` | the draft body, audience, quality bar |",
+          "source": {
+            "path": "ssot/engos-audit-weekly-intel.md",
+            "start_line": 252,
+            "end_line": 252,
+            "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+          },
+          "interpretation": "source_clause_requires_stage_review"
+        },
+        {
+          "skill": "engos-memory-context-continuity",
+          "condition_and_handoff": "| The data collection spans multiple sessions or is interrupted | `engos-memory-context-continuity` | the canonical memory files, progress state |",
+          "source": {
+            "path": "ssot/engos-audit-weekly-intel.md",
+            "start_line": 253,
+            "end_line": 253,
+            "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+          },
+          "interpretation": "source_clause_requires_stage_review"
+        },
+        {
+          "skill": "engos-quality-code-review",
+          "condition_and_handoff": "| The report surfaces code quality or review concerns | `engos-quality-code-review` | the specific commits or MRs in question |",
+          "source": {
+            "path": "ssot/engos-audit-weekly-intel.md",
+            "start_line": 254,
+            "end_line": 254,
+            "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+          },
+          "interpretation": "source_clause_requires_stage_review"
+        }
+      ],
+      "pack_hints": {
+        "lead": "engos-audit-weekly-intel",
+        "companions": "only_after_applicable_source_conditions_are_checked",
+        "default_bulk_activation": false
+      },
+      "provenance": {
+        "ssot_path": "ssot/engos-audit-weekly-intel.md",
+        "ssot_sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36",
+        "effective_sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36",
+        "resources": [],
+        "extractor_version": "source-clauses.v1",
+        "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+        "field_sources": {},
+        "unresolved_companion_clauses": [],
+        "curated_fields": [
+          "authority",
+          "main_output",
+          "nearest_neighbors",
+          "not_for",
+          "portfolio_action",
+          "primary_job",
+          "routing_question",
+          "shape",
+          "use_when",
+          "works_on"
+        ],
+        "curated_binding": "preserved_not_independently_revalidated",
+        "mapping_sha256": "7100e72eaf50afbb8b388a08de8b80bae6225ea0f88bd8c8887070a2f1a0295a"
+      },
+      "unresolved_fields": [
+        "task_phase_interpretation",
+        "risk_authority_interpretation",
+        "implicit_activation_eligibility"
+      ]
+    }
   }
 }

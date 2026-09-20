@@ -1,7 +1,8 @@
-## v1.16.0 - 2026-09-17
+## v1.16.0 - 2026-09-19
 
-Source version prepared for guided shaping. Publication, installation and complete
-pilot acceptance are separate; this entry does not claim a released or deployed bundle.
+Guided shaping source release. Package publication, installation and complete
+pilot acceptance are separate; this entry does not claim deployment or complete
+pilot acceptance.
 
 - Add a front-page guided-shaping starter, private-project examples and a reviewed
   nine-skill setup walkthrough. Verify all six core dependencies before skipping
@@ -30,6 +31,18 @@ pilot acceptance are separate; this entry does not claim a released or deployed 
   field-preserving table detail, plus controller-owned progress observations and
   JSON/Markdown/HTML status views. Visual acceptance, real-user usability and
   saved external-target verification remain separate from local source checks.
+
+## v1.15.3 - 2026-09-19
+
+- Assign home-global model, effort, and context policy to Dotfiles while Core-Prompts retains only narrower repository and capability constraints.
+
+- Derive advisory UAC routing fitness from source clauses, preserve curated descriptor jobs, and regenerate a versioned source-bound job map. Add preview/apply/idempotence and false-authority regression checks.
+- Keep automatic routing disabled: no consumer, skill body, description, installer, global instruction or named-agent surface is added or changed. Metadata remains advisory and cannot grant authority.
+- Make the historical routing corpus self-contained and report current adapter declarations without enabling execution. Preserve the original draft oracle and recorded HOLD results; the project-local experiment does not qualify global activation.
+
+- Allow explicitly approved, task-owned Swift module-cache reuse in native exporter tests; retain fresh executable compilation, behavioral assertions, and the 120-second compile limit. Reject cache drift and concurrent use, and retain per-run cleanup/readback receipts.
+
+- Fix Gemini native discovery to use its skill-list subcommand with process-only workspace trust, preserving saved authentication and trust settings.
 
 ## v1.15.2 - 2026-09-19
 

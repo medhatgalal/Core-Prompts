@@ -361,15 +361,173 @@
     }
   ],
   "job_contract": {
-    "primary_job": "Check whether a shaping stage may advance from its actual artifacts, evidence and prior receipts. Reject solution-in-framing, invented evidence, unresolved material questions, stale reviews and incomplete publication. Use within guided shaping or independent pitch review.",
-    "use_when": "The request directly matches the canonical purpose of Shape Up Stage Gate.",
-    "works_on": "The inputs and target declared by the canonical SSOT.",
-    "main_output": "The required output declared by the canonical SSOT.",
+    "primary_job": "Permit only supported, current stage transitions. A useful hold identifies the\nfailed condition, evidence or decision needed, responsible person/role and next\npermitted action. It does not discard useful drafts or reopen unrelated decisions.",
+    "use_when": "Use at each engos-design-shaping handoff, to inspect a resumed run, or as the\ngate component of engos-audit-pitch-review. A standalone pitch can be reviewed\nwithout fabricating historical gates; report unassessed prerequisites explicitly.",
+    "works_on": "Stage, original brief/constraints, candidate inventory, prior receipts, current\nsource/policy identities, question/decision snapshots, source access, actual host\nreviewer identity, authorship and targets. Read resources/references/gates.md in\nfull. For G3 also read resources/references/rubrics.md. For any runtime operation\nread resources/references/runtime.md and the helper's current --help first.",
+    "main_output": "A structured receipt and a short explanation: current stage; pass/fail/unverifiable\nconditions; inspected content hashes; evidence; actual reviewer/authorship; blockers;\nrepair owner; next permitted stage. G3 adds all twelve scores, rationales, means,\ntop fixes and three hardest questions. Never substitute `complete` for a verdict.",
     "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
     "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
     "routing_question": "Does this request directly require Shape Up Stage Gate?",
     "nearest_neighbors": [],
     "shape": "unclassified_new_skill",
-    "portfolio_action": "draft_new_skill_pending_review"
+    "portfolio_action": "draft_new_skill_pending_review",
+    "routing_fitness": {
+      "schema_version": "RoutingFitness.v1",
+      "mapping_status": "source_derived_draft",
+      "task_phases": {
+        "kind": "source_conditions",
+        "clauses": [
+          {
+            "text": "1. Verify subject identity, predecessor hashes and source coverage. Hold missing,\n   stale or contradictory dependencies before evaluating a later stage.\n2. Inspect actual prose, citations and required artifacts. Explain each failed\n   predicate with a quote or missing item. Read source evidence instead of trusting\n   manifest claims. A named spike or rejected question is not uncertainty closure.\n3. Distinguish product decisions, engineering evidence and expert judgments. Ask\n   the designated human when authority is missing; continue independent work only.\n4. For G3 inspect every local render and all contract/security rows, cross-check\n   their meaning, apply both scorecards and keep author audit separate from actual\n   independent review. Lack of independent context means review_pending.\n5. For G4 inspect each saved target's revision, content, tables and diagrams. A\n   successful upload, empty target list or source-only image check is insufficient.\n6. Return the documented predicate-level ReviewReceipt with exact subject/policy\n   and evidence bindings. The controller checks and accepts it using the runtime;\n   the reviewing worker never writes accepted state or approves its own work.\n7. After repairs, reevaluate the affected conditions and dependencies. Preserve\n   failed receipts and changes. New scope reopens framing; new material design\n   uncertainty reopens research. Keep content readiness distinct from delivery.",
+            "heading": "Workflow",
+            "source": {
+              "path": "ssot/engos-quality-shaping-gate.md",
+              "start_line": 39,
+              "end_line": 56,
+              "sha256": "28183ee46400a6d697ac6ec44013eb30e43b5f6d722e94392e5094897b12c70f"
+            }
+          }
+        ]
+      },
+      "activation": {
+        "mode": "unknown",
+        "evidence": []
+      },
+      "risk_authority_ceiling": {
+        "grants_authority": false,
+        "clauses": [
+          {
+            "text": "The script checks mechanical consistency, not truth or human authority. Host-bound\nworker provenance and permission boundaries must be observed separately. It is not\na sandbox against a caller who can rewrite its state. No sharing, production code,\nJira work, betting decision, native agent registration or privilege expansion.",
+            "heading": "Constraints",
+            "source": {
+              "path": "ssot/engos-quality-shaping-gate.md",
+              "start_line": 75,
+              "end_line": 78,
+              "sha256": "28183ee46400a6d697ac6ec44013eb30e43b5f6d722e94392e5094897b12c70f"
+            }
+          }
+        ]
+      },
+      "negative_examples": {
+        "kind": "source_exclusions_not_synthetic_prompts",
+        "clauses": []
+      },
+      "conditional_companions": [],
+      "pack_hints": {
+        "lead": "engos-quality-shaping-gate",
+        "companions": "only_after_applicable_source_conditions_are_checked",
+        "default_bulk_activation": false
+      },
+      "provenance": {
+        "ssot_path": "ssot/engos-quality-shaping-gate.md",
+        "ssot_sha256": "28183ee46400a6d697ac6ec44013eb30e43b5f6d722e94392e5094897b12c70f",
+        "effective_sha256": "99d7893cd603441283c2d7ba285fc462fe30ca1bd07fff19dc224dd6ed15a0f4",
+        "resources": [
+          {
+            "path": "sources/capability-resources/engos-quality-shaping-gate/references/gates.md",
+            "sha256": "24e49e2a349beb340361ab2eb9e2e48b1d43e5b8008cf44947fe97b635833bc5"
+          },
+          {
+            "path": "sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md",
+            "sha256": "5e79656c6854b09c9989d035b401ca606233d0938bdedd1614c295a4b2b1c4c7"
+          },
+          {
+            "path": "sources/capability-resources/engos-quality-shaping-gate/references/runtime.md",
+            "sha256": "db7ce9dba07f22a780fd36d5fe040c8dfb2673b52e7dc548a327afd4c3ddfaa3"
+          },
+          {
+            "path": "sources/capability-resources/engos-quality-shaping-gate/references/progress.md",
+            "sha256": "22940bd478122faf3d8544be8968c7ca0ecf13a2af9b66f67fb1d03fa1285ee1"
+          },
+          {
+            "path": "sources/capability-resources/engos-quality-shaping-gate/schemas/progress.schema.json",
+            "sha256": "9888082079239b50e34e8ef500c655bc6423133b4e58a9e18ce2e20d9b584d1e"
+          },
+          {
+            "path": "sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py",
+            "sha256": "2e56fa597d1493f7f9a0cff9d6705b1678e9d003e332367b07feb02751388247"
+          },
+          {
+            "path": "sources/capability-resources/engos-quality-shaping-gate/schemas/runtime.schema.json",
+            "sha256": "0902115d25c4c3e74e32d705eaa565a740adbf2f1bec0dee0d6274584520caae"
+          },
+          {
+            "path": "sources/capability-resources/engos-quality-shaping-gate/schemas/policy.example.json",
+            "sha256": "6ba041ad93985ba050deafbe0d33bcc077f1b5d4a768503e27e80d3069301b24"
+          }
+        ],
+        "extractor_version": "source-clauses.v1",
+        "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+        "field_sources": {
+          "primary_job": [
+            {
+              "text": "Permit only supported, current stage transitions. A useful hold identifies the\nfailed condition, evidence or decision needed, responsible person/role and next\npermitted action. It does not discard useful drafts or reopen unrelated decisions.",
+              "heading": "Primary Objective",
+              "source": {
+                "path": "ssot/engos-quality-shaping-gate.md",
+                "start_line": 19,
+                "end_line": 21,
+                "sha256": "28183ee46400a6d697ac6ec44013eb30e43b5f6d722e94392e5094897b12c70f"
+              }
+            }
+          ],
+          "use_when": [
+            {
+              "text": "Use at each engos-design-shaping handoff, to inspect a resumed run, or as the\ngate component of engos-audit-pitch-review. A standalone pitch can be reviewed\nwithout fabricating historical gates; report unassessed prerequisites explicitly.",
+              "heading": "Invocation Hints",
+              "source": {
+                "path": "ssot/engos-quality-shaping-gate.md",
+                "start_line": 25,
+                "end_line": 27,
+                "sha256": "28183ee46400a6d697ac6ec44013eb30e43b5f6d722e94392e5094897b12c70f"
+              }
+            }
+          ],
+          "works_on": [
+            {
+              "text": "Stage, original brief/constraints, candidate inventory, prior receipts, current\nsource/policy identities, question/decision snapshots, source access, actual host\nreviewer identity, authorship and targets. Read resources/references/gates.md in\nfull. For G3 also read resources/references/rubrics.md. For any runtime operation\nread resources/references/runtime.md and the helper's current --help first.",
+              "heading": "Required Inputs",
+              "source": {
+                "path": "ssot/engos-quality-shaping-gate.md",
+                "start_line": 31,
+                "end_line": 35,
+                "sha256": "28183ee46400a6d697ac6ec44013eb30e43b5f6d722e94392e5094897b12c70f"
+              }
+            }
+          ],
+          "main_output": [
+            {
+              "text": "A structured receipt and a short explanation: current stage; pass/fail/unverifiable\nconditions; inspected content hashes; evidence; actual reviewer/authorship; blockers;\nrepair owner; next permitted stage. G3 adds all twelve scores, rationales, means,\ntop fixes and three hardest questions. Never substitute `complete` for a verdict.",
+              "heading": "Required Output",
+              "source": {
+                "path": "ssot/engos-quality-shaping-gate.md",
+                "start_line": 60,
+                "end_line": 63,
+                "sha256": "28183ee46400a6d697ac6ec44013eb30e43b5f6d722e94392e5094897b12c70f"
+              }
+            }
+          ]
+        },
+        "unresolved_companion_clauses": [],
+        "curated_fields": [
+          "authority",
+          "nearest_neighbors",
+          "not_for",
+          "portfolio_action",
+          "routing_question",
+          "shape"
+        ],
+        "curated_binding": "preserved_not_independently_revalidated",
+        "mapping_sha256": "95dbac8b666dadd1b9fb7b7c0395505f4647aaac00729b5df981b3d3942d9c1a"
+      },
+      "unresolved_fields": [
+        "task_phase_interpretation",
+        "risk_authority_interpretation",
+        "job_contract.authority",
+        "job_contract.not_for",
+        "implicit_activation_eligibility",
+        "negative_examples"
+      ]
+    }
   }
 }

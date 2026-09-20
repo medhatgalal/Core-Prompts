@@ -337,11 +337,26 @@ class BatmanContractTests(unittest.TestCase):
         self.assertEqual(job_map["shape"], "implementation_delivery_controller")
         self.assertEqual(job_map["portfolio_action"], "ship_single_batman_identity")
         self.assertNotIn(FORMER_ALIAS, json.dumps(job_map).lower())
-        self.assertNotIn("draft", " ".join(str(value) for value in job_map.values()).lower())
-        self.assertNotIn("pending", " ".join(str(value) for value in job_map.values()).lower())
+        # Capability readiness is distinct from the added advisory routing draft.
+        curated_fields = (
+            "primary_job", "use_when", "works_on", "main_output", "not_for",
+            "authority", "routing_question", "nearest_neighbors", "shape",
+            "portfolio_action",
+        )
+        curated_text = " ".join(str(job_map[field]) for field in curated_fields).lower()
+        self.assertNotIn("draft", curated_text)
+        self.assertNotIn("pending", curated_text)
         # The historical benchmark predates the public namespace migration.
         self.assertIn("| batman | 5 | 5 | 5 | 5 | 5 | 5 | 5 | structural_ready |", benchmark)
         self.assertNotIn(FORMER_ALIAS, benchmark.lower())
+
+    def test_batman_routing_fitness_remains_advisory_and_explicit_only(self) -> None:
+        job_map = json.loads(_read(".meta/skill-job-map.json"))["skills"]["engos-orchestration-batman"]
+        fitness = job_map["routing_fitness"]
+        self.assertEqual(fitness["mapping_status"], "source_derived_draft")
+        self.assertEqual(fitness["activation"]["mode"], "explicit_only")
+        self.assertIs(fitness["risk_authority_ceiling"]["grants_authority"], False)
+        self.assertIs(fitness["pack_hints"]["default_bulk_activation"], False)
 
 
 if __name__ == "__main__":

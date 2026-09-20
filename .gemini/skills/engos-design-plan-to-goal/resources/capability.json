@@ -368,15 +368,250 @@
     }
   ],
   "job_contract": {
-    "primary_job": "Turns an inspected implementation plan or intent into a compact, host-aware goal plus a durable specification and verifier packet. Use when a user wants to move from read-only Plan mode into a bounded long-running goal without losing repository evidence, rules, scope, or honest stop conditions.",
-    "use_when": "The request directly matches the canonical purpose of Plan to Goal Design.",
-    "works_on": "The inputs and target declared by the canonical SSOT.",
-    "main_output": "The required output declared by the canonical SSOT.",
-    "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
-    "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
+    "primary_job": "Return a compact goal whose details live in sealed, durable artifacts; prove that the packet matches the current repository and host; and refuse launch when the runner, research, verifier, or storage contract is not ready.",
+    "use_when": "Invoke this skill for requests such as:\n- turn this approved plan into a goal\n- prepare a copyable Goal-mode objective and iteration setting\n- convert this implementation brief into a durable goal packet\n- make this long-running goal research the repository before it edits\n- create a goal, spec, and verifier without assuming every CLI has `/goal`\n\nThis skill compiles and validates a packet. It does not grant implementation authority, start a goal implicitly, install a custom runner, approve operator checks, or promote its own behavioral quality.",
+    "works_on": "- an implementation plan, intent, issue, or approved planning artifact\n- the target repository or working context\n- the active host/runtime when detectable\n- any user-supplied iteration, token, time, or cost bound\n- explicit protected surfaces, approvals, or operator checks when already known",
+    "main_output": "Return these fields in order:\n1. `Research Receipt`\n2. `Goal Packet Status`\n3. `Artifact Manifest`\n4. `Goal Prose`\n5. `Host Budget`\n6. `Verification Trust`\n7. `Launch Command`\n8. `Next Action`\n\nFor `DRAFTED_UNSEALED`, `Launch Command` must be `null`. For `UNSUPPORTED_NATIVE_GOAL`, keep the packet useful but state which runner contract is missing. For `SEALED_READY`, report goal characters, UTF-8 bytes, adapter version, repository binding, artifact hashes, baseline verifier result, and exact command.\n\nAlso report the `goal-lint` result, each criterion-flip result, the falsifiability exit, the hostile-pass exit, the anchor identifier and sample size, the population/exclusion intersection, judge amendment state, and whether all five written answers are present.",
+    "not_for": "- implementing the compiled goal or changing product source while the skill is in read-only planning mode\n- inventing, installing, or operating a Claude, Gemini, or custom Goal runner\n- treating a visible checksum as independent verification or treating self-review as completion\n- choosing behavioral promotion, deployment, commit, merge, or external approval on the user's behalf\n- manufacturing a long-running goal for a completed, one-step, watch-only, or otherwise unsuitable task",
+    "authority": "- Do not mutate source code while compiling a packet in read-only Plan mode.\n- Do not use chat history as the only durable source for a long-running goal.\n- Do not exceed 3,500 characters or bytes even when a host permits more.\n- Do not hide unknowns, unsupported behavior, manual checks, or external-state dependencies.\n- Do not rely on an execute bit for bundled scripts or task verifiers; invoke Bash and Python resources through their interpreters.\n- Do not create, replace, pause, resume, or clear a goal unless the user separately requests that runtime action.\n- Do not deploy, commit, merge, or alter global skill installations merely because the packet is ready.",
     "routing_question": "Does this request directly require Plan to Goal Design?",
     "nearest_neighbors": [],
     "shape": "unclassified_new_skill",
-    "portfolio_action": "draft_new_skill_pending_review"
+    "portfolio_action": "draft_new_skill_pending_review",
+    "routing_fitness": {
+      "schema_version": "RoutingFitness.v1",
+      "mapping_status": "source_derived_draft",
+      "task_phases": {
+        "kind": "source_conditions",
+        "clauses": [
+          {
+            "text": "Compile a reviewed plan or implementation intent into a host-aware goal packet that a long-running coding agent can execute without treating chat memory as the source of truth. Use this skill after or during read-only planning when the user wants a durable goal, specification, and verifier. Do not use it for a simple one-step task, an ordinary implementation request that does not need a goal loop, or a request to run an unsupported native Goal command.",
+            "heading": "Purpose",
+            "source": {
+              "path": "ssot/engos-design-plan-to-goal.md",
+              "start_line": 12,
+              "end_line": 12,
+              "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+            }
+          },
+          {
+            "text": "Read `resources/references/goal-design-lessons.md` and `resources/references/goal-authoring.md` before drafting goal prose. Read `resources/references/verifier-trust.md` before assigning a verification trust level. Read `resources/references/evidence.md` when current external facts or research claims affect the packet.",
+            "heading": "Purpose",
+            "source": {
+              "path": "ssot/engos-design-plan-to-goal.md",
+              "start_line": 14,
+              "end_line": 14,
+              "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+            }
+          },
+          {
+            "text": "Invoke this skill for requests such as:\n- turn this approved plan into a goal\n- prepare a copyable Goal-mode objective and iteration setting\n- convert this implementation brief into a durable goal packet\n- make this long-running goal research the repository before it edits\n- create a goal, spec, and verifier without assuming every CLI has `/goal`",
+            "heading": "Invocation Hints",
+            "source": {
+              "path": "ssot/engos-design-plan-to-goal.md",
+              "start_line": 34,
+              "end_line": 39,
+              "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+            }
+          },
+          {
+            "text": "1. Inspect the plan, repository, rules, runtime, and relevant external evidence.\n2. Decide whether a long-running goal is warranted. Return `NO_GOAL_NEEDED` for a truly complete or one-step outcome only after evidence supports that decision.\n3. Select and verify the host adapter.\n4. Draft `goal.txt`, `spec.md`, `baseline.json`, `criterion-flips.json`, `judge-amendments.json`, a task-specific `verify.sh`, per-criterion synthetic trees, an untouched tree, a cheapest-fake hostile tree, and `packet.json` from the bundled templates.\n5. In read-only Plan mode, return the exact draft as `DRAFTED_UNSEALED` and name the required materialization action.\n6. After writes are authorized, materialize the packet in the resolved durable location.\n7. Run `bash resources/goal-lint --tree <untouched-tree> --hostile-tree <cheapest-fake-tree> <packet-dir>`. Fix every finding; warnings must be acknowledged in the spec.\n8. Run `python3 resources/scripts/goal_packet.py lint <packet-dir> --host <host>`.\n9. Run `python3 resources/scripts/goal_packet.py seal <packet-dir>`. Seal only when size, schema, paths, repository binding, artifact hashes, adapter support, falsifiability, and hostile-pass checks succeed.\n10. Run `python3 resources/scripts/goal_packet.py check <packet-dir>` immediately before launch.\n11. Emit the wrapper-free goal, host-native budget, and launch command only when the adapter supports one.\n12. Honor a user-supplied budget. Otherwise use a verified host default when one exists. Never invent Claude/Gemini iteration flags or convert iteration counts into Codex token budgets.\n13. During execution, require a compact `receipt.json` with the terminal state, current revision, hashes, verifier evidence, operator checks, remaining work, and successor packet when applicable.",
+            "heading": "Workflow",
+            "source": {
+              "path": "ssot/engos-design-plan-to-goal.md",
+              "start_line": 155,
+              "end_line": 167,
+              "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+            }
+          }
+        ]
+      },
+      "activation": {
+        "mode": "unknown",
+        "evidence": []
+      },
+      "risk_authority_ceiling": {
+        "grants_authority": false,
+        "clauses": [
+          {
+            "text": "- implementing the compiled goal or changing product source while the skill is in read-only planning mode\n- inventing, installing, or operating a Claude, Gemini, or custom Goal runner\n- treating a visible checksum as independent verification or treating self-review as completion\n- choosing behavioral promotion, deployment, commit, merge, or external approval on the user's behalf\n- manufacturing a long-running goal for a completed, one-step, watch-only, or otherwise unsuitable task",
+            "heading": "Out of Scope",
+            "source": {
+              "path": "ssot/engos-design-plan-to-goal.md",
+              "start_line": 27,
+              "end_line": 31,
+              "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+            }
+          },
+          {
+            "text": "- Do not mutate source code while compiling a packet in read-only Plan mode.\n- Do not use chat history as the only durable source for a long-running goal.\n- Do not exceed 3,500 characters or bytes even when a host permits more.\n- Do not hide unknowns, unsupported behavior, manual checks, or external-state dependencies.\n- Do not rely on an execute bit for bundled scripts or task verifiers; invoke Bash and Python resources through their interpreters.\n- Do not create, replace, pause, resume, or clear a goal unless the user separately requests that runtime action.\n- Do not deploy, commit, merge, or alter global skill installations merely because the packet is ready.",
+            "heading": "Constraints",
+            "source": {
+              "path": "ssot/engos-design-plan-to-goal.md",
+              "start_line": 209,
+              "end_line": 215,
+              "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+            }
+          }
+        ]
+      },
+      "negative_examples": {
+        "kind": "source_exclusions_not_synthetic_prompts",
+        "clauses": [
+          {
+            "text": "- implementing the compiled goal or changing product source while the skill is in read-only planning mode\n- inventing, installing, or operating a Claude, Gemini, or custom Goal runner\n- treating a visible checksum as independent verification or treating self-review as completion\n- choosing behavioral promotion, deployment, commit, merge, or external approval on the user's behalf\n- manufacturing a long-running goal for a completed, one-step, watch-only, or otherwise unsuitable task",
+            "heading": "Out of Scope",
+            "source": {
+              "path": "ssot/engos-design-plan-to-goal.md",
+              "start_line": 27,
+              "end_line": 31,
+              "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+            }
+          },
+          {
+            "text": "Compile a reviewed plan or implementation intent into a host-aware goal packet that a long-running coding agent can execute without treating chat memory as the source of truth. Use this skill after or during read-only planning when the user wants a durable goal, specification, and verifier. Do not use it for a simple one-step task, an ordinary implementation request that does not need a goal loop, or a request to run an unsupported native Goal command.",
+            "heading": "Purpose",
+            "source": {
+              "path": "ssot/engos-design-plan-to-goal.md",
+              "start_line": 12,
+              "end_line": 12,
+              "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+            }
+          },
+          {
+            "text": "- Do not mutate source code while compiling a packet in read-only Plan mode.\n- Do not use chat history as the only durable source for a long-running goal.\n- Do not exceed 3,500 characters or bytes even when a host permits more.\n- Do not hide unknowns, unsupported behavior, manual checks, or external-state dependencies.\n- Do not rely on an execute bit for bundled scripts or task verifiers; invoke Bash and Python resources through their interpreters.\n- Do not create, replace, pause, resume, or clear a goal unless the user separately requests that runtime action.\n- Do not deploy, commit, merge, or alter global skill installations merely because the packet is ready.",
+            "heading": "Constraints",
+            "source": {
+              "path": "ssot/engos-design-plan-to-goal.md",
+              "start_line": 209,
+              "end_line": 215,
+              "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+            }
+          }
+        ]
+      },
+      "conditional_companions": [],
+      "pack_hints": {
+        "lead": "engos-design-plan-to-goal",
+        "companions": "only_after_applicable_source_conditions_are_checked",
+        "default_bulk_activation": false
+      },
+      "provenance": {
+        "ssot_path": "ssot/engos-design-plan-to-goal.md",
+        "ssot_sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f",
+        "effective_sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f",
+        "resources": [],
+        "extractor_version": "source-clauses.v1",
+        "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+        "field_sources": {
+          "primary_job": [
+            {
+              "text": "Return a compact goal whose details live in sealed, durable artifacts; prove that the packet matches the current repository and host; and refuse launch when the runner, research, verifier, or storage contract is not ready.",
+              "heading": "Primary Objective",
+              "source": {
+                "path": "ssot/engos-design-plan-to-goal.md",
+                "start_line": 17,
+                "end_line": 17,
+                "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+              }
+            }
+          ],
+          "use_when": [
+            {
+              "text": "Invoke this skill for requests such as:\n- turn this approved plan into a goal\n- prepare a copyable Goal-mode objective and iteration setting\n- convert this implementation brief into a durable goal packet\n- make this long-running goal research the repository before it edits\n- create a goal, spec, and verifier without assuming every CLI has `/goal`",
+              "heading": "Invocation Hints",
+              "source": {
+                "path": "ssot/engos-design-plan-to-goal.md",
+                "start_line": 34,
+                "end_line": 39,
+                "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+              }
+            },
+            {
+              "text": "This skill compiles and validates a packet. It does not grant implementation authority, start a goal implicitly, install a custom runner, approve operator checks, or promote its own behavioral quality.",
+              "heading": "Invocation Hints",
+              "source": {
+                "path": "ssot/engos-design-plan-to-goal.md",
+                "start_line": 41,
+                "end_line": 41,
+                "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+              }
+            }
+          ],
+          "works_on": [
+            {
+              "text": "- an implementation plan, intent, issue, or approved planning artifact\n- the target repository or working context\n- the active host/runtime when detectable\n- any user-supplied iteration, token, time, or cost bound\n- explicit protected surfaces, approvals, or operator checks when already known",
+              "heading": "Required Inputs",
+              "source": {
+                "path": "ssot/engos-design-plan-to-goal.md",
+                "start_line": 187,
+                "end_line": 191,
+                "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+              }
+            }
+          ],
+          "main_output": [
+            {
+              "text": "Return these fields in order:\n1. `Research Receipt`\n2. `Goal Packet Status`\n3. `Artifact Manifest`\n4. `Goal Prose`\n5. `Host Budget`\n6. `Verification Trust`\n7. `Launch Command`\n8. `Next Action`",
+              "heading": "Required Output",
+              "source": {
+                "path": "ssot/engos-design-plan-to-goal.md",
+                "start_line": 194,
+                "end_line": 202,
+                "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+              }
+            },
+            {
+              "text": "For `DRAFTED_UNSEALED`, `Launch Command` must be `null`. For `UNSUPPORTED_NATIVE_GOAL`, keep the packet useful but state which runner contract is missing. For `SEALED_READY`, report goal characters, UTF-8 bytes, adapter version, repository binding, artifact hashes, baseline verifier result, and exact command.",
+              "heading": "Required Output",
+              "source": {
+                "path": "ssot/engos-design-plan-to-goal.md",
+                "start_line": 204,
+                "end_line": 204,
+                "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+              }
+            },
+            {
+              "text": "Also report the `goal-lint` result, each criterion-flip result, the falsifiability exit, the hostile-pass exit, the anchor identifier and sample size, the population/exclusion intersection, judge amendment state, and whether all five written answers are present.",
+              "heading": "Required Output",
+              "source": {
+                "path": "ssot/engos-design-plan-to-goal.md",
+                "start_line": 206,
+                "end_line": 206,
+                "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+              }
+            }
+          ],
+          "not_for": [
+            {
+              "text": "- implementing the compiled goal or changing product source while the skill is in read-only planning mode\n- inventing, installing, or operating a Claude, Gemini, or custom Goal runner\n- treating a visible checksum as independent verification or treating self-review as completion\n- choosing behavioral promotion, deployment, commit, merge, or external approval on the user's behalf\n- manufacturing a long-running goal for a completed, one-step, watch-only, or otherwise unsuitable task",
+              "heading": "Out of Scope",
+              "source": {
+                "path": "ssot/engos-design-plan-to-goal.md",
+                "start_line": 27,
+                "end_line": 31,
+                "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+              }
+            }
+          ]
+        },
+        "unresolved_companion_clauses": [],
+        "curated_fields": [
+          "authority",
+          "nearest_neighbors",
+          "portfolio_action",
+          "routing_question",
+          "shape"
+        ],
+        "curated_binding": "preserved_not_independently_revalidated",
+        "mapping_sha256": "9c125b9f9bd05743314ba0cdf2bc470f78b45b971a6d24c4e9edc31d4a0539aa"
+      },
+      "unresolved_fields": [
+        "task_phase_interpretation",
+        "risk_authority_interpretation",
+        "job_contract.authority",
+        "implicit_activation_eligibility"
+      ]
+    }
   }
 }

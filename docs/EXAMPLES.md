@@ -1,6 +1,6 @@
 # Examples
 
-Use this page for full, concrete examples of how to use each currently shipped skill. The order matches the intended product order:
+Use this page for full, concrete examples of the current generated skill set. The order matches the intended product order:
 
 1. installed capabilities first
 2. UAC second
@@ -1427,3 +1427,9 @@ review and apply the saved plan as described in [installation profiles](INSTALL-
 then start `agy` and use `/skills` to inspect the available names. For example,
 ask `Use engos-quality-code-review to review this diff` and expect source-linked
 findings. Deployment does not grant tool permissions or establish account access.
+
+## Inspect a new skill’s routing fit
+
+> Import this workflow and show when it fits, when it should stay out, and what evidence supports those boundaries. Keep the existing skill instructions and authority unchanged.
+
+Expect UAC’s source-backed job mapping, hashes, conditional companion clauses and unresolved interpretations. Do not expect automatic runtime activation from the metadata alone. See [routing fitness](UAC-USAGE.md#source-backed-routing-fitness).

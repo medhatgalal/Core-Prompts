@@ -45,7 +45,7 @@ Use this repository in this order:
 
 If you are already using Core-Prompts in a CLI, start there. If you are importing a new capability family, go to UAC next. If you are rebuilding surfaces, validating state, deploying, or preparing release work, use the repo tooling after that.
 
-The current generated surfaces ship `32` skills across all supported CLIs and `0` named-agent configurations. Capability Fabric metadata is advisory; explicit invocation follows the selected capability's operating contract.
+The current generated surfaces contain `32` skills across all supported CLIs and `0` named-agent configurations. Capability Fabric metadata is advisory; explicit invocation follows the selected capability's operating contract.
 
 First-party skills use the `engos-<category>-<skill-name>` namespace so Core-Prompts capabilities stay together in CLI and app autocomplete. The upstream-pinned Loopy package retains the single name `loopy`, without an alias package. The category identifies the primary job; the final segment identifies the capability. For example, use `engos-memory-context-continuity` for durable investigation state, `engos-quality-code-review` for diff review, and `engos-triage-my-inbox-chat-pulse` for Gmail and Chat triage.
 
@@ -78,7 +78,7 @@ Start with the shipped capabilities when you want direct help on a real task.
 
 ### Full Skill Index
 
-These are the currently shipped skills with a concrete starter ask for each one:
+These are the current source capabilities with a concrete starter ask for each one:
 
 | Skill | Use it when you need to... | Starter ask | What good output looks like |
 | --- | --- | --- | --- |
@@ -431,3 +431,5 @@ scheduling, and publication retain their separate authorization boundaries.
 Routine updates automatically remove identified retired Core-Prompts agents,
 including locally modified copies, while retaining skills and third-party agents
 such as Kiro Crew. See [installation cleanup](docs/INSTALL-PROFILES.md#automatic-agent-cleanup-on-update).
+
+UAC also prepares source-backed advisory routing metadata during intake. It preserves curated job boundaries and reports unresolved phase and authority interpretation. This does not enable automatic native routing; see [routing fitness](docs/UAC-USAGE.md#source-backed-routing-fitness).

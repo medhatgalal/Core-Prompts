@@ -296,15 +296,140 @@
     }
   ],
   "job_contract": {
-    "primary_job": "Discover, find, compare, audit, repair, adapt, craft, run, debrief, and prepare repeatable AI-agent loops for publication. Use when a user asks to analyze code or coding threads for recurring work, find a published loop, interview them to turn a goal into a bounded loop, review a loop for weak checks or unsafe authority, execute a loop with an evidence receipt, learn from completed runs, or validate and submit a loop to Loop Library.",
-    "use_when": "The request directly matches the canonical purpose of Loopy \u2014 Bounded Agent Loops.",
-    "works_on": "The inputs and target declared by the canonical SSOT.",
-    "main_output": "The required output declared by the canonical SSOT.",
-    "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
-    "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
+    "primary_job": "Fulfill the source contract retained under Imported operating instructions. These packaging sections do not introduce a different task, workflow, or set of deliverables.",
+    "use_when": "Use the original triggers and mode-selection rules retained below.",
+    "works_on": "Use the inputs, schemas, defaults, and clarification rules declared by the original source contract.",
+    "main_output": "Produce the artifacts and results declared by the original source contract, including its exact filenames, formats, templates, and mode-specific receipts. Intake summaries and uplift metadata do not replace those outcomes.",
+    "not_for": "Retain the original scope, ownership, approval gates, tool limits, and failure behavior. The sidecar descriptor and inferred relationships are advisory packaging metadata, not a competing source of task instructions.",
+    "authority": "Retain the original scope, ownership, approval gates, tool limits, and failure behavior. The sidecar descriptor and inferred relationships are advisory packaging metadata, not a competing source of task instructions.",
     "routing_question": "Does this request directly require Loopy \u2014 Bounded Agent Loops?",
     "nearest_neighbors": [],
     "shape": "unclassified_new_skill",
-    "portfolio_action": "draft_new_skill_pending_review"
+    "portfolio_action": "draft_new_skill_pending_review",
+    "routing_fitness": {
+      "schema_version": "RoutingFitness.v1",
+      "mapping_status": "source_derived_draft",
+      "task_phases": {
+        "kind": "source_conditions",
+        "clauses": [
+          {
+            "text": "Follow the original routing, prerequisites, steps, verification, and stop conditions. Read its referenced resources before the steps that depend on them. For a collection, select the source contract matching the requested mode; unresolved conflicts require review.",
+            "heading": "Workflow",
+            "source": {
+              "path": "ssot/loopy.md",
+              "start_line": 18,
+              "end_line": 18,
+              "sha256": "7874aa30ad4fe322876f2c04b7cee447217311213ce6a835846aff298760f73c"
+            }
+          }
+        ]
+      },
+      "activation": {
+        "mode": "unknown",
+        "evidence": []
+      },
+      "risk_authority_ceiling": {
+        "grants_authority": false,
+        "clauses": [
+          {
+            "text": "Retain the original scope, ownership, approval gates, tool limits, and failure behavior. The sidecar descriptor and inferred relationships are advisory packaging metadata, not a competing source of task instructions.",
+            "heading": "Constraints",
+            "source": {
+              "path": "ssot/loopy.md",
+              "start_line": 35,
+              "end_line": 35,
+              "sha256": "7874aa30ad4fe322876f2c04b7cee447217311213ce6a835846aff298760f73c"
+            }
+          }
+        ]
+      },
+      "negative_examples": {
+        "kind": "source_exclusions_not_synthetic_prompts",
+        "clauses": []
+      },
+      "conditional_companions": [],
+      "pack_hints": {
+        "lead": "loopy",
+        "companions": "only_after_applicable_source_conditions_are_checked",
+        "default_bulk_activation": false
+      },
+      "provenance": {
+        "ssot_path": "ssot/loopy.md",
+        "ssot_sha256": "7874aa30ad4fe322876f2c04b7cee447217311213ce6a835846aff298760f73c",
+        "effective_sha256": "7874aa30ad4fe322876f2c04b7cee447217311213ce6a835846aff298760f73c",
+        "resources": [],
+        "extractor_version": "source-clauses.v1",
+        "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+        "field_sources": {
+          "primary_job": [
+            {
+              "text": "Fulfill the source contract retained under Imported operating instructions. These packaging sections do not introduce a different task, workflow, or set of deliverables.",
+              "heading": "Primary Objective",
+              "source": {
+                "path": "ssot/loopy.md",
+                "start_line": 15,
+                "end_line": 15,
+                "sha256": "7874aa30ad4fe322876f2c04b7cee447217311213ce6a835846aff298760f73c"
+              }
+            }
+          ],
+          "use_when": [
+            {
+              "text": "Use the original triggers and mode-selection rules retained below.",
+              "heading": "Invocation Hints",
+              "source": {
+                "path": "ssot/loopy.md",
+                "start_line": 38,
+                "end_line": 38,
+                "sha256": "7874aa30ad4fe322876f2c04b7cee447217311213ce6a835846aff298760f73c"
+              }
+            }
+          ],
+          "works_on": [
+            {
+              "text": "Use the inputs, schemas, defaults, and clarification rules declared by the original source contract.",
+              "heading": "Required Inputs",
+              "source": {
+                "path": "ssot/loopy.md",
+                "start_line": 26,
+                "end_line": 26,
+                "sha256": "7874aa30ad4fe322876f2c04b7cee447217311213ce6a835846aff298760f73c"
+              }
+            }
+          ],
+          "main_output": [
+            {
+              "text": "Produce the artifacts and results declared by the original source contract, including its exact filenames, formats, templates, and mode-specific receipts. Intake summaries and uplift metadata do not replace those outcomes.",
+              "heading": "Required Output",
+              "source": {
+                "path": "ssot/loopy.md",
+                "start_line": 29,
+                "end_line": 29,
+                "sha256": "7874aa30ad4fe322876f2c04b7cee447217311213ce6a835846aff298760f73c"
+              }
+            }
+          ]
+        },
+        "unresolved_companion_clauses": [],
+        "curated_fields": [
+          "authority",
+          "nearest_neighbors",
+          "not_for",
+          "portfolio_action",
+          "routing_question",
+          "shape"
+        ],
+        "curated_binding": "preserved_not_independently_revalidated",
+        "mapping_sha256": "d14e7ac2e48d8b905671c78ffb0781529323276dda920342e84c37ff24f934b4"
+      },
+      "unresolved_fields": [
+        "task_phase_interpretation",
+        "risk_authority_interpretation",
+        "job_contract.authority",
+        "job_contract.not_for",
+        "implicit_activation_eligibility",
+        "negative_examples"
+      ]
+    }
   }
 }

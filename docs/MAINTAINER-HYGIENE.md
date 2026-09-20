@@ -127,3 +127,34 @@ The [archived experience-design harvest](https://github.com/medhatgalal/Core-Pro
 ## Archived OpEx source
 
 The original OpEx briefing source and metadata are retained as [archive-only history](../sources/retired/opex-briefing/README.md). The active capability is `engos-audit-opex-incident-review`; its optional `briefing` module carries the preserved meeting-preparation outcomes. The archive is not an installable skill or promotion baseline.
+
+## Native exporter test cache
+
+The macOS presentation exporter tests normally create a fresh temporary Swift
+module cache. For a reviewed, task-scoped validation run,
+`CORE_PROMPTS_EXPORTER_CACHE_RECEIPT` can point to an absolute approval JSON in a
+task-owned temporary directory. Its schema and input fingerprint are defined in
+[`tests/presentation_cache.py`](../tests/presentation_cache.py). The receipt binds
+the exact `module-cache` path, owner, instrumented source, compiler/frontend, SDK,
+compile configuration, and initial file hashes. Creating that receipt requires
+verified build provenance; the fixture does not adopt an arbitrary existing cache.
+
+Reuse stays at the original path because Swift precompiled modules can embed it.
+A nonblocking lock prevents concurrent use. Successful compiles advance a separate
+cache inventory; drift or failed compilation fails the test without retrying.
+Every invocation builds a new executable within the same 120-second limit and
+runs the existing behavior assertions. This is warm-cache behavioral acceptance,
+not evidence that a cold compile now meets the time limit.
+
+Compile and cache readback receipts live in the pytest build directory. Retain
+that directory with `--basetemp` inside the task evidence area. Task owners retain
+the cache, immutable approval, state, lock, and receipts together until their
+evidence-retention boundary permits cleanup; no global cache or automatic cache
+deleting service is used. No cache option is enabled in CI by default.
+
+Gemini discovery uses `gemini skills list` with the documented
+`GEMINI_CLI_TRUST_WORKSPACE=true` override confined to that child process. This
+lets the native CLI inspect the reviewed checkout without changing saved trust
+or authentication settings. Keep the subcommand first: the installed CLI can
+route a leading `--skip-trust` invocation through ordinary authentication instead
+of the skill-list handler. Startup/listing evidence does not prove skill execution.

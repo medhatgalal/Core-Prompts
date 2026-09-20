@@ -305,6 +305,104 @@
       "engos-meta-uac-import"
     ],
     "shape": "experimental_specialist",
-    "portfolio_action": "experimental_keep_pending_evidence"
+    "portfolio_action": "experimental_keep_pending_evidence",
+    "routing_fitness": {
+      "schema_version": "RoutingFitness.v1",
+      "mapping_status": "source_derived_draft",
+      "task_phases": {
+        "kind": "source_conditions",
+        "clauses": [
+          {
+            "text": "Read `resources/references/instruction-clarity.md` before applying the policy or proposing a rewrite.",
+            "heading": "Purpose",
+            "source": {
+              "path": "ssot/engos-meta-instruction-editor.md",
+              "start_line": 17,
+              "end_line": 17,
+              "sha256": "b6803835ccaf0663d270653dfd6d5418adc237da079716b98eddf1ea12a8102c"
+            }
+          }
+        ]
+      },
+      "activation": {
+        "mode": "unknown",
+        "evidence": []
+      },
+      "risk_authority_ceiling": {
+        "grants_authority": false,
+        "clauses": [
+          {
+            "text": "- allowed: read artifacts, run deterministic clarity lint, propose edits, compute size deltas, and emit preservation evidence\n- forbidden: promote the editor's own output, weaken behavior for fluency, invent missing intent, fetch Google HTML through UAC, or treat style compliance as task success\n- escalation: route semantic comparisons to `engos-optimization-auto-research`; route unresolved capability contracts back to the owner or UAC reviewer",
+            "heading": "Tool Boundaries",
+            "source": {
+              "path": "ssot/engos-meta-instruction-editor.md",
+              "start_line": 57,
+              "end_line": 59,
+              "sha256": "b6803835ccaf0663d270653dfd6d5418adc237da079716b98eddf1ea12a8102c"
+            }
+          }
+        ]
+      },
+      "negative_examples": {
+        "kind": "source_exclusions_not_synthetic_prompts",
+        "clauses": [
+          {
+            "text": "Make instruction artifacts easier to read and invoke while preserving their behavior. Treat clarity as an editorial hypothesis, never as proof that an agent will perform better.",
+            "heading": "Purpose",
+            "source": {
+              "path": "ssot/engos-meta-instruction-editor.md",
+              "start_line": 15,
+              "end_line": 15,
+              "sha256": "b6803835ccaf0663d270653dfd6d5418adc237da079716b98eddf1ea12a8102c"
+            }
+          },
+          {
+            "text": "Do not auto-route ordinary prose editing, general documentation architecture, prompt hardening, or capability intake here unless instruction preservation is the central job.",
+            "heading": "Invocation Hints",
+            "source": {
+              "path": "ssot/engos-meta-instruction-editor.md",
+              "start_line": 70,
+              "end_line": 70,
+              "sha256": "b6803835ccaf0663d270653dfd6d5418adc237da079716b98eddf1ea12a8102c"
+            }
+          }
+        ]
+      },
+      "conditional_companions": [],
+      "pack_hints": {
+        "lead": "engos-meta-instruction-editor",
+        "companions": "only_after_applicable_source_conditions_are_checked",
+        "default_bulk_activation": false
+      },
+      "provenance": {
+        "ssot_path": "ssot/engos-meta-instruction-editor.md",
+        "ssot_sha256": "b6803835ccaf0663d270653dfd6d5418adc237da079716b98eddf1ea12a8102c",
+        "effective_sha256": "b6803835ccaf0663d270653dfd6d5418adc237da079716b98eddf1ea12a8102c",
+        "resources": [],
+        "extractor_version": "source-clauses.v1",
+        "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+        "field_sources": {},
+        "unresolved_companion_clauses": [],
+        "curated_fields": [
+          "authority",
+          "main_output",
+          "nearest_neighbors",
+          "not_for",
+          "portfolio_action",
+          "primary_job",
+          "routing_question",
+          "shape",
+          "use_when",
+          "works_on"
+        ],
+        "curated_binding": "preserved_not_independently_revalidated",
+        "mapping_sha256": "0896254a420374fbded2d57f1cff959d0bf783e5e22a16afe07fea4fb482e5ea"
+      },
+      "unresolved_fields": [
+        "task_phase_interpretation",
+        "risk_authority_interpretation",
+        "implicit_activation_eligibility"
+      ]
+    }
   }
 }

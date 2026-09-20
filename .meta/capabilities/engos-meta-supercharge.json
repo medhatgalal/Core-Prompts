@@ -819,6 +819,175 @@
       "engos-meta-instruction-editor"
     ],
     "shape": "swiss_army_artifact_workflow",
-    "portfolio_action": "keep_but_review_scope"
+    "portfolio_action": "keep_but_review_scope",
+    "routing_fitness": {
+      "schema_version": "RoutingFitness.v1",
+      "mapping_status": "stale",
+      "task_phases": {
+        "kind": "source_conditions",
+        "clauses": [
+          {
+            "text": "Use before a major prompt rewrite, plan adoption, high-stakes workflow decision, or UAC onboarding. Behavioral superiority requires comparative evidence from Auto-Research, not a high self-score.",
+            "heading": "Review Timing",
+            "source": {
+              "path": "ssot/engos-meta-supercharge.md",
+              "start_line": 294,
+              "end_line": 294,
+              "sha256": "d5da37b0d385e1c678a972cea51ad422209b5d6d4637fa8973b0bff53a5ea62a"
+            }
+          }
+        ]
+      },
+      "activation": {
+        "mode": "unknown",
+        "evidence": []
+      },
+      "risk_authority_ceiling": {
+        "grants_authority": false,
+        "clauses": [
+          {
+            "text": "- allowed: inspect current source material, compare alternatives, generate improved prompts or plans, and produce grading outputs or execution scaffolds\n- forbidden: hidden chain-of-thought exposure, fake certainty, claiming runtime orchestration ownership, or destructive execution without explicit approval\n- escalation: if the user asks for unsafe or destructive execution, stop and require explicit confirmation rather than folding it into prompt work; if the user needs bounded behavioral proof across variants, route to `engos-optimization-auto-research`",
+            "heading": "Tool Boundaries",
+            "source": {
+              "path": "ssot/engos-meta-supercharge.md",
+              "start_line": 36,
+              "end_line": 38,
+              "sha256": "d5da37b0d385e1c678a972cea51ad422209b5d6d4637fa8973b0bff53a5ea62a"
+            }
+          },
+          {
+            "text": "- Do not stack heavy frameworks concurrently without reason.\n- Do not bloat the answer with every module when a smaller route is enough.\n- Do not pretend the model knows user preferences it has not been given.\n- Do not turn grading into generic praise.\n- Use authorized subagent tools without claiming host orchestration ownership or new approval authority.",
+            "heading": "Constraints",
+            "source": {
+              "path": "ssot/engos-meta-supercharge.md",
+              "start_line": 86,
+              "end_line": 90,
+              "sha256": "d5da37b0d385e1c678a972cea51ad422209b5d6d4637fa8973b0bff53a5ea62a"
+            }
+          },
+          {
+            "text": "---",
+            "heading": "Constraints",
+            "source": {
+              "path": "ssot/engos-meta-supercharge.md",
+              "start_line": 92,
+              "end_line": 92,
+              "sha256": "d5da37b0d385e1c678a972cea51ad422209b5d6d4637fa8973b0bff53a5ea62a"
+            }
+          }
+        ]
+      },
+      "negative_examples": {
+        "kind": "source_exclusions_not_synthetic_prompts",
+        "clauses": [
+          {
+            "text": "- Do not stack heavy frameworks concurrently without reason.\n- Do not bloat the answer with every module when a smaller route is enough.\n- Do not pretend the model knows user preferences it has not been given.\n- Do not turn grading into generic praise.\n- Use authorized subagent tools without claiming host orchestration ownership or new approval authority.",
+            "heading": "Constraints",
+            "source": {
+              "path": "ssot/engos-meta-supercharge.md",
+              "start_line": 86,
+              "end_line": 90,
+              "sha256": "d5da37b0d385e1c678a972cea51ad422209b5d6d4637fa8973b0bff53a5ea62a"
+            }
+          }
+        ]
+      },
+      "conditional_companions": [],
+      "pack_hints": {
+        "lead": "engos-meta-supercharge",
+        "companions": "only_after_applicable_source_conditions_are_checked",
+        "default_bulk_activation": false
+      },
+      "provenance": {
+        "ssot_path": "ssot/engos-meta-supercharge.md",
+        "ssot_sha256": "d5da37b0d385e1c678a972cea51ad422209b5d6d4637fa8973b0bff53a5ea62a",
+        "effective_sha256": "e7be36c70fc397af1c4ca5e3305eb5d65a7fe079fba0f2090fac435de7ec2d55",
+        "resources": [
+          {
+            "path": "sources/capability-resources/engos-meta-supercharge/references/shared-review.md",
+            "sha256": "92fe588ebc996fa935204ced17e9761dd8927d7ee6906466988af0ee2285d791"
+          },
+          {
+            "path": "sources/capability-resources/engos-meta-supercharge/references/modules/ult.md",
+            "sha256": "feefa5eeca27af194bf359ab795cae62dfdadc26701b0e6a83425c28f66e68d2"
+          },
+          {
+            "path": "sources/capability-resources/engos-meta-supercharge/references/modules/catchup.md",
+            "sha256": "024463bfd8cb186533d62788b63bed2457decc1cb3e1b6aa1efc7dc226860138"
+          },
+          {
+            "path": "sources/capability-resources/engos-meta-supercharge/references/modules/basis.md",
+            "sha256": "f17ecfb25b1f863ffbdde0909c8900c58b386aa6631ecbed8a26c1dc9d4176c2"
+          },
+          {
+            "path": "sources/capability-resources/engos-meta-supercharge/references/modules/simple.md",
+            "sha256": "8ee70354b7b346145095eb1081732d93166ef79187e2b312a269f4a741e29770"
+          },
+          {
+            "path": "sources/capability-resources/engos-meta-supercharge/references/modules/invert.md",
+            "sha256": "7750f226cc0da7f1237b23f3f13bc5e7212163e8dcaf94d92638e55a14015f40"
+          },
+          {
+            "path": "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md",
+            "sha256": "2948880659615f25dbcc3ac2d0a27977f20510932a97536b6b9ad24b86b56d49"
+          },
+          {
+            "path": "sources/capability-resources/engos-meta-supercharge/references/modules/contract.md",
+            "sha256": "15f72081c0f36d7ccba4c58c1202e79d96aad9c4ff704b16f08f26c9a91234ea"
+          },
+          {
+            "path": "sources/capability-resources/engos-meta-supercharge/references/modules/grade.md",
+            "sha256": "a605e4d384f5d9b16e459a96c7e10d7dec52e6496c3e650b7fdbbc32d94af86a"
+          },
+          {
+            "path": "sources/capability-resources/engos-meta-supercharge/references/modules/full.md",
+            "sha256": "f97d60c8609bdbc1da6dc09b94b88b40d8ba6eb076d148f5ada6f850de41231c"
+          },
+          {
+            "path": "sources/capability-resources/engos-meta-supercharge/references/modules/gaslight.md",
+            "sha256": "005f349510bd5a6b41760ed66eee9fe31499fd44e5bd51af3421036ed1ad6eca"
+          },
+          {
+            "path": "sources/capability-resources/engos-meta-supercharge/references/modules/stop-ult.md",
+            "sha256": "c8485bf36b587b8252c1481669e51d920306c12b55143918692de95540a56425"
+          },
+          {
+            "path": "sources/capability-resources/engos-meta-supercharge/references/help.md",
+            "sha256": "bcc7f46f9a66dc92fa4e21be22ba4bf3a0cb2631ad740ff99bd9a9c9d4ec5c98"
+          },
+          {
+            "path": "sources/capability-resources/engos-meta-supercharge/references/help-examples.md",
+            "sha256": "e99377e9262b00bf0c9752c1b0c845dc75d9344b699d2f233588720438e677a7"
+          },
+          {
+            "path": "sources/capability-resources/engos-meta-supercharge/references/model-guidance.md",
+            "sha256": "242cb28d1fedeb07b51e3a016876fb55053463bc610d66ed5202e95bbdc8d5b2"
+          }
+        ],
+        "extractor_version": "source-clauses.v1",
+        "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+        "field_sources": {},
+        "unresolved_companion_clauses": [],
+        "curated_fields": [
+          "authority",
+          "main_output",
+          "nearest_neighbors",
+          "not_for",
+          "portfolio_action",
+          "primary_job",
+          "routing_question",
+          "shape",
+          "use_when",
+          "works_on"
+        ],
+        "curated_binding": "preserved_not_independently_revalidated",
+        "mapping_sha256": "642b685fe272a8948c63b81022580bc298c0a9f17a3aae60ce2de52e26f44784"
+      },
+      "unresolved_fields": [
+        "task_phase_interpretation",
+        "risk_authority_interpretation",
+        "implicit_activation_eligibility"
+      ]
+    }
   }
 }
