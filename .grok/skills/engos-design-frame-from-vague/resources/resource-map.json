@@ -1,0 +1,12 @@
+{
+  "schema_version": "CapabilityResourceMap.v1",
+  "shared": ["routing.md"],
+  "routes": {
+    "intake": ["stages/intake.md"],
+    "frame": ["stages/frame.md"]
+  },
+  "dependencies": {
+    "stages/intake.md": ["templates.md"],
+    "stages/frame.md": ["templates.md"]
+  }
+}

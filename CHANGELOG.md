@@ -1,3 +1,37 @@
+## v1.16.0 - 2026-09-19
+
+Guided shaping source release. Package publication, installation and complete
+pilot acceptance are separate; this entry does not claim deployment or complete
+pilot acceptance.
+
+- Add a front-page guided-shaping starter, private-project examples and a reviewed
+  nine-skill setup walkthrough. Verify all six core dependencies before skipping
+  setup; keep optional advisors, mainline merge, release and installation distinct.
+
+- Add bounded repository-fit investigation and explicit reuse/non-reuse decisions
+  to guided shaping, with conditional architecture/code-health/testing advice and
+  versioned Research/Shaped predicates. Existing runs keep their pinned history;
+  no specialist installation, forced reuse or automatic refactoring is implied.
+
+- Resolve repository context when shaping runs: use the current workspace or
+  user-supplied roots, ask for relevant modules only when ambiguous, and prefer
+  available project knowledge/LSP/indexed search before bounded text search.
+  Product repositories and familiar Appian examples are not skill defaults; the
+  latter remain labeled reader examples in the examples guide.
+
+- Add a guided Shape Up entry and framing/gate capabilities with bounded role
+  contexts, product/engineering question assistance, human-led research and
+  explicit handoff/recovery contracts. Native agent registrations are unchanged.
+- Add source-bound local pitch exports and stage-state validation. Mechanical
+  checks, independent semantic review, real-user pilot and saved-target evidence
+  remain separate. See the guided Shape Up runbook for current validation limits.
+- Extend existing artifact and pitch-review helpers for full shaping without
+  removing standalone artifact placement or existing-pitch review.
+- Add reference-oriented presentation profiles with source-bound SVG/PNG and
+  field-preserving table detail, plus controller-owned progress observations and
+  JSON/Markdown/HTML status views. Visual acceptance, real-user usability and
+  saved external-target verification remain separate from local source checks.
+
 ## v1.15.3 - 2026-09-19
 
 - Assign home-global model, effort, and context policy to Dotfiles while Core-Prompts retains only narrower repository and capability constraints.

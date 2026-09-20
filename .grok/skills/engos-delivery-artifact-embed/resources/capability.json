@@ -4,10 +4,9 @@
   "layers": {
     "minimal": {
       "capability_type": "skill",
-      "summary": "Place an authored shaping-artifact bundle onto a selected HTML, PR/MR, chat, Google Doc, or wiki surface through explicit adapters. Use Mermaid/Markdown passthrough where native rendering exists and fail loudly with a named human step when a surface cannot prove placement.",
+      "summary": "Format Framed or Shaped documents and place authored shaping bundles through explicit HTML, PR/MR, chat, Google Doc or wiki adapters. Use native Mermaid or source-bound SVG/PNG, preserve native tables and report unverified placement explicitly.",
       "role": "workflow",
       "domain_tags": [
-        "packaging",
         "engos",
         "delivery",
         "artifact",
@@ -118,7 +117,7 @@
       "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
       "review_status": "ready_for_orchestrator_review",
       "display_name": "Shaping Artifact Embed \u2014 Surface Adapters and Placement Evidence",
-      "version": "v1.0"
+      "version": "v1.1"
     },
     "expanded": {
       "relationship_suggestions": [
@@ -165,7 +164,7 @@
   "rubric_version": "capability-fabric.v0",
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "engos-delivery-artifact-embed",
-  "shared_summary": "Place an authored shaping-artifact bundle onto a selected HTML, PR/MR, chat, Google Doc, or wiki surface through explicit adapters. Use Mermaid/Markdown passthrough where native rendering exists and fail loudly with a named human step when a surface cannot prove placement.",
+  "shared_summary": "Format Framed or Shaped documents and place authored shaping bundles through explicit HTML, PR/MR, chat, Google Doc or wiki adapters. Use native Mermaid or source-bound SVG/PNG, preserve native tables and report unverified placement explicitly.",
   "shared_constraints": [
     "The adapter must not rewrite component names, contract states, owners, or",
     "Google Docs placement is not considered complete until the saved revision is",
@@ -182,14 +181,17 @@
       "status": "structural_ready",
       "historical_baseline": {
         "slug": "engos-delivery-artifact-embed",
-        "strategy": "head_snapshot",
-        "group": "derived_current",
-        "baseline_path": "ssot/engos-delivery-artifact-embed.md",
-        "selected_commit": null,
+        "strategy": "derived_history",
+        "group": "derived",
+        "baseline_path": null,
+        "selected_commit": "7e94f9eb",
         "richness_score": 7,
-        "line_count": 151,
-        "reason": "No git history was available, so the current SSOT body is the strongest available baseline.",
-        "equivalent_commits": [],
+        "line_count": 212,
+        "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
+        "equivalent_commits": [
+          "e866aa80",
+          "2c994a21"
+        ],
         "expected_companions": [],
         "operator_invariants": [],
         "scenario_matrix": [
@@ -203,8 +205,8 @@
           }
         ],
         "historical_proof": {},
-        "source": "current_ssot",
-        "verified_by_git_history": false,
+        "source": "git_history",
+        "verified_by_git_history": true,
         "has_baseline_text": true
       },
       "judge_reports": [
@@ -236,7 +238,7 @@
             "candidate_operational_score": 2,
             "baseline_preserved_in_resource": false
           },
-          "baseline_commit": null,
+          "baseline_commit": "7e94f9eb",
           "baseline_slug": "engos-delivery-artifact-embed"
         },
         {
@@ -287,7 +289,7 @@
         "surface_usability": 10
       },
       "template_name": "skill",
-      "effective_sha256": "32773e71e5a87bfba82046253c673536c4174e935c7ee20e168bdb8bad2c97ff",
+      "effective_sha256": "1ebaa0319a0b04e762e4aeb30601e3ddb1f6fbc92f116572ee37a403ad733f1f",
       "semantic_findings": [],
       "agent_surface_review": {
         "status": "unchanged",
@@ -368,7 +370,7 @@
   "job_contract": {
     "primary_job": "Make surface choice and placement deterministic: use native Mermaid/Markdown\nwhen available, use a render-and-place path only when required, and stop with a\nspecific human action when environment constraints prevent verified placement.",
     "use_when": "Use when a user asks to put shaping diagrams and contract tables into a docs\nsite, Google Doc, wiki/Confluence page, PR/MR description, or review chat. Ask\nfor the target surface only when it is not present in the pitch context. Do not\nask the user to pick a rendering technology when the target has a documented\nnative path.",
-    "works_on": "- a complete authored artifact bundle and manifest\n- one target surface: `html`, `github_pr`, `gitlab_mr`, `chat`, `google_doc`,\n  or `wiki`\n- target identity and write authorization when the surface is external\n- renderer capability and placement evidence available in the current runtime",
+    "works_on": "The bundle requirements below apply to artifact placement and Shaped export.\nLocal Framed-only rendering is a separate representation route: take the explicit\nframing prose inventory and selected style/profile, without a shaped solution,\ncontracts, diagrams or historic gate receipts. Its completeness check covers only\nthose requested framing sources. It creates local output, not external placement;\nthe full shaping publish route still requires G3 and exact target authority.\n\n- a complete authored artifact bundle and manifest\n- one target surface: `html`, `github_pr`, `gitlab_mr`, `chat`, `google_doc`,\n  or `wiki`\n- target identity and write authorization when the surface is external\n- renderer capability and placement evidence available in the current runtime",
     "main_output": "Return a placement receipt:\n\nFor `blocked` or `human_step_required`, name the exact missing permission,\nruntime capability, or human action. Do not report `placed` from a successful\nfile upload, a zero exit code, or a stale page view alone.",
     "not_for": "- The adapter must not rewrite component names, contract states, owners, or\n  evidence claims.\n- Google Docs placement is not considered complete until the saved revision is\n  read back and the image/table is observable there.\n- Public Drive sharing is never a required prerequisite for a private Google\n  Doc. If the only available image insertion path requires a public URL, stop\n  and name the human or platform-level unblock.\n- External write actions require target-specific authorization and should be\n  prepared as a dry-run receipt before execution.",
     "authority": "- The adapter must not rewrite component names, contract states, owners, or\n  evidence claims.\n- Google Docs placement is not considered complete until the saved revision is\n  read back and the image/table is observable there.\n- Public Drive sharing is never a required prerequisite for a private Google\n  Doc. If the only available image insertion path requires a public URL, stop\n  and name the human or platform-level unblock.\n- External write actions require target-specific authorization and should be\n  prepared as a dry-run receipt before execution.",
@@ -378,18 +380,18 @@
     "portfolio_action": "draft_new_skill_pending_review",
     "routing_fitness": {
       "schema_version": "RoutingFitness.v1",
-      "mapping_status": "source_derived_draft",
+      "mapping_status": "stale",
       "task_phases": {
         "kind": "source_conditions",
         "clauses": [
           {
-            "text": "1. Validate the input manifest and source hash. Refuse incomplete bundles unless\n   the caller explicitly requests a diagnostic receipt.\n2. Detect the target surface and its native diagram/table capabilities. Keep\n   the core bundle unchanged.\n3. For HTML, PR/MR, and chat, emit the same Mermaid fences and Markdown tables\n   as a passthrough adapter. No image hosting step is needed.\n4. For Google Docs, render Mermaid to an image only at the adapter boundary.\n   Use the environment-supported Drive upload form (`--upload`, not a blocked\n   `--upload-file` form when the runtime exposes that distinction), retain the\n   source link/hash, use a supported insertion mechanism, and read back the\n   saved document revision. `insertInlineImage` behavior that requires a\n   public URL is not a valid fallback when corporate Drive sharing blocks\n   public publication; report `human_step_required` if no supported insertion\n   path is available.\n5. For a wiki, probe the documented native macro or attachment path once. If\n   capability detection is unavailable, return a blocker rather than trying\n   undocumented APIs.\n6. Verify the resulting surface: Mermaid is rendered rather than shown as\n   broken source where native rendering is promised; tables retain all rows;\n   source identity is recoverable; and the page/file revision is current.\n7. Return the placement receipt and preserve any blockers in the evidence\n   ledger. Never silently downgrade a failed image placement to an untracked\n   text-only result.",
+            "text": "1. Select local Framed rendering versus authored-artifact placement first. For\n   local Framed rendering, load the current framed profile contract and validate\n   only its declared prose inventory; do not apply the shaped-bundle minima below.\n   For artifact placement, validate the input manifest and source hash. Refuse incomplete bundles unless\n   the caller explicitly requests a diagnostic receipt.\n2. Detect the target surface and its native diagram/table capabilities. Keep\n   the core bundle unchanged.\n3. For HTML, PR/MR, and chat, verify native Mermaid support before emitting\n   the same fences and full Markdown tables. If unsupported, select the authorized\n   image adapter and verify its actual saved representation.\n4. For Google Docs, render Mermaid to an image only at the adapter boundary.\n   Use the environment-supported Drive upload form (`--upload`, not a blocked\n   `--upload-file` form when the runtime exposes that distinction), retain the\n   source link/hash, use a supported insertion mechanism, and read back the\n   saved document revision. `insertInlineImage` behavior that requires a\n   public URL is not a valid fallback when corporate Drive sharing blocks\n   public publication; report `human_step_required` if no supported insertion\n   path is available.\n5. For a wiki, probe the documented native macro or attachment path once. If\n   capability detection is unavailable, return a blocker rather than trying\n   undocumented APIs.\n6. Verify the resulting surface: Mermaid is rendered rather than shown as\n   broken source where native rendering is promised; tables retain all rows;\n   source identity is recoverable; and the page/file revision is current.\n7. Return the placement receipt and preserve any blockers in the evidence\n   ledger. Never silently downgrade a failed image placement to an untracked\n   text-only result.",
             "heading": "Workflow",
             "source": {
               "path": "ssot/engos-delivery-artifact-embed.md",
-              "start_line": 75,
-              "end_line": 97,
-              "sha256": "32773e71e5a87bfba82046253c673536c4174e935c7ee20e168bdb8bad2c97ff"
+              "start_line": 82,
+              "end_line": 108,
+              "sha256": "61124134e12aeb7a3a411622068ca73168435a98f7f820f480acce89d0a6a8de"
             }
           }
         ]
@@ -406,9 +408,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-delivery-artifact-embed.md",
-              "start_line": 114,
-              "end_line": 122,
-              "sha256": "32773e71e5a87bfba82046253c673536c4174e935c7ee20e168bdb8bad2c97ff"
+              "start_line": 125,
+              "end_line": 133,
+              "sha256": "61124134e12aeb7a3a411622068ca73168435a98f7f820f480acce89d0a6a8de"
             }
           }
         ]
@@ -423,7 +425,7 @@
               "path": "ssot/engos-delivery-artifact-embed.md",
               "start_line": 29,
               "end_line": 33,
-              "sha256": "32773e71e5a87bfba82046253c673536c4174e935c7ee20e168bdb8bad2c97ff"
+              "sha256": "61124134e12aeb7a3a411622068ca73168435a98f7f820f480acce89d0a6a8de"
             }
           },
           {
@@ -431,9 +433,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-delivery-artifact-embed.md",
-              "start_line": 114,
-              "end_line": 122,
-              "sha256": "32773e71e5a87bfba82046253c673536c4174e935c7ee20e168bdb8bad2c97ff"
+              "start_line": 125,
+              "end_line": 133,
+              "sha256": "61124134e12aeb7a3a411622068ca73168435a98f7f820f480acce89d0a6a8de"
             }
           }
         ]
@@ -446,9 +448,26 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-delivery-artifact-embed.md",
-        "ssot_sha256": "32773e71e5a87bfba82046253c673536c4174e935c7ee20e168bdb8bad2c97ff",
-        "effective_sha256": "32773e71e5a87bfba82046253c673536c4174e935c7ee20e168bdb8bad2c97ff",
-        "resources": [],
+        "ssot_sha256": "61124134e12aeb7a3a411622068ca73168435a98f7f820f480acce89d0a6a8de",
+        "effective_sha256": "1ebaa0319a0b04e762e4aeb30601e3ddb1f6fbc92f116572ee37a403ad733f1f",
+        "resources": [
+          {
+            "path": "sources/capability-resources/engos-delivery-artifact-embed/references/surfaces.md",
+            "sha256": "c015c90032fa09f095662ab23975972f70cc639a2cd79037de07332ae1fb5202"
+          },
+          {
+            "path": "sources/capability-resources/engos-delivery-artifact-embed/references/export.md",
+            "sha256": "d3203b7590fbbba81348ada661d3cfb8e9c03b5256545384c09cf9c5c836f56d"
+          },
+          {
+            "path": "sources/capability-resources/engos-delivery-artifact-embed/references/reconciliation.md",
+            "sha256": "c167272a034c6e81bbd99b4699a38dc9301b9e592daedef69fd34003c14e8a67"
+          },
+          {
+            "path": "sources/capability-resources/engos-delivery-artifact-embed/scripts/artifact_export.py",
+            "sha256": "353efb6e917d5c58027613347a5db630cc22759c2f3e1794daffa34771b8c9bd"
+          }
+        ],
         "extractor_version": "source-clauses.v1",
         "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
         "field_sources": {
@@ -460,7 +479,7 @@
                 "path": "ssot/engos-delivery-artifact-embed.md",
                 "start_line": 23,
                 "end_line": 25,
-                "sha256": "32773e71e5a87bfba82046253c673536c4174e935c7ee20e168bdb8bad2c97ff"
+                "sha256": "61124134e12aeb7a3a411622068ca73168435a98f7f820f480acce89d0a6a8de"
               }
             }
           ],
@@ -472,19 +491,29 @@
                 "path": "ssot/engos-delivery-artifact-embed.md",
                 "start_line": 29,
                 "end_line": 33,
-                "sha256": "32773e71e5a87bfba82046253c673536c4174e935c7ee20e168bdb8bad2c97ff"
+                "sha256": "61124134e12aeb7a3a411622068ca73168435a98f7f820f480acce89d0a6a8de"
               }
             }
           ],
           "works_on": [
             {
-              "text": "- a complete authored artifact bundle and manifest\n- one target surface: `html`, `github_pr`, `gitlab_mr`, `chat`, `google_doc`,\n  or `wiki`\n- target identity and write authorization when the surface is external\n- renderer capability and placement evidence available in the current runtime",
+              "text": "The bundle requirements below apply to artifact placement and Shaped export.\nLocal Framed-only rendering is a separate representation route: take the explicit\nframing prose inventory and selected style/profile, without a shaped solution,\ncontracts, diagrams or historic gate receipts. Its completeness check covers only\nthose requested framing sources. It creates local output, not external placement;\nthe full shaping publish route still requires G3 and exact target authority.",
               "heading": "Required Inputs",
               "source": {
                 "path": "ssot/engos-delivery-artifact-embed.md",
                 "start_line": 37,
-                "end_line": 41,
-                "sha256": "32773e71e5a87bfba82046253c673536c4174e935c7ee20e168bdb8bad2c97ff"
+                "end_line": 42,
+                "sha256": "61124134e12aeb7a3a411622068ca73168435a98f7f820f480acce89d0a6a8de"
+              }
+            },
+            {
+              "text": "- a complete authored artifact bundle and manifest\n- one target surface: `html`, `github_pr`, `gitlab_mr`, `chat`, `google_doc`,\n  or `wiki`\n- target identity and write authorization when the surface is external\n- renderer capability and placement evidence available in the current runtime",
+              "heading": "Required Inputs",
+              "source": {
+                "path": "ssot/engos-delivery-artifact-embed.md",
+                "start_line": 44,
+                "end_line": 48,
+                "sha256": "61124134e12aeb7a3a411622068ca73168435a98f7f820f480acce89d0a6a8de"
               }
             }
           ],
@@ -494,9 +523,9 @@
               "heading": "Required Output",
               "source": {
                 "path": "ssot/engos-delivery-artifact-embed.md",
-                "start_line": 45,
-                "end_line": 45,
-                "sha256": "32773e71e5a87bfba82046253c673536c4174e935c7ee20e168bdb8bad2c97ff"
+                "start_line": 52,
+                "end_line": 52,
+                "sha256": "61124134e12aeb7a3a411622068ca73168435a98f7f820f480acce89d0a6a8de"
               }
             },
             {
@@ -504,9 +533,9 @@
               "heading": "Required Output",
               "source": {
                 "path": "ssot/engos-delivery-artifact-embed.md",
-                "start_line": 59,
-                "end_line": 61,
-                "sha256": "32773e71e5a87bfba82046253c673536c4174e935c7ee20e168bdb8bad2c97ff"
+                "start_line": 66,
+                "end_line": 68,
+                "sha256": "61124134e12aeb7a3a411622068ca73168435a98f7f820f480acce89d0a6a8de"
               }
             }
           ]
@@ -521,7 +550,7 @@
           "shape"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "cb39ea381213a37ead4dda5fd5445c8c554c53f72c6f93281f1b4d4b61c986a8"
+        "mapping_sha256": "8d5e569516ece67764fc7f2e1266a1c09bf62d7b450dd18d082619280f6c2b32"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

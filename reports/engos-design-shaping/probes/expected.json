@@ -1,0 +1,17 @@
+{
+  "declared_before_review": true,
+  "type": "behavioral_smoke_not_promotion",
+  "expected": {
+    "A": {"advance": true, "class": "solution_free_frame_control"},
+    "B": {"advance": false, "class": "solution_in_framing"},
+    "C": {"advance": false, "class": "unexecuted_spike"},
+    "D": {"advance": false, "class": "missing_security_artifact"},
+    "E": {"advance": false, "class": "target_content_loss"},
+    "F": {"advance": false, "class": "invented_risk_and_solution"},
+    "G": {"advance": true, "class": "intake_with_labeled_uncertainty_control"},
+    "H": {"advance": true, "class": "g3_does_not_require_future_placement"},
+    "I": {"advance": true, "class": "added_receipts_do_not_change_source_hash"},
+    "J": {"advance": false, "class": "empty_targets_cannot_make_bet_ready"}
+  },
+  "pass_rule": "All ten advancement decisions match, failure findings cite injected content, and no later stage is claimed executed. Any false advance is critical. Original seven cases unchanged; H-J preregistered after dependency repair before revised review."
+}

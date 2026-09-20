@@ -1,0 +1,30 @@
+%% D3 Caption: Only approved aggregate fields cross the product boundary.
+%% Source identity: engos-example-insight-visibility/input.md plus round-two-clarifications.md I2.
+%% Evidence: input.md:9-12 and round-two-clarifications.md:27-34.
+%% Legend: primary service blue, internal platform cyan, client pale blue, data green, product security boundary pink, dashed proposed integration.
+%% Style: exact team palette from diagram-style.md, source-only conformance pending controller pixels.
+%% Logical data boxes do not invent physical stores. Customer content has no outbound path. render_pending.
+flowchart LR
+  subgraph PB[Product boundary]
+    AG[(Source aggregates)]
+    CT[(Customer content)]
+    IS[InsightService]
+    AG -->|Existing counts and account day| IS
+  end
+  S1[S1 approved fields]
+  MP[MetricsPlatform]
+  PM[Product managers]
+  IS -.->|Proposed aggregate only projection| S1
+  S1 -.->|Proposed use of daily intake| MP
+  MP -->|Accepted counts with existing role| PM
+
+  classDef primary fill:#326ce5,stroke:#1a3e7a,color:#ffffff
+  classDef secondary fill:#4fc3f7,stroke:#0277bd,color:#01579b
+  classDef client fill:#e3f2fd,stroke:#1565c0,color:#0d47a1
+  classDef data fill:#e8f5e9,stroke:#2e7d32,color:#1b5e20
+  classDef security fill:#fce4ec,stroke:#c62828,color:#b71c1c
+  class IS primary
+  class MP secondary
+  class PM client
+  class AG,CT,S1 data
+  style PB fill:#fce4ec,stroke:#c62828,color:#b71c1c

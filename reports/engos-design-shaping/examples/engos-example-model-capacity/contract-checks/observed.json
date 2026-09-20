@@ -1,0 +1,57 @@
+{
+  "scope": "declared extension schema only, not application behavior",
+  "schema_sha256": "f02c8c25593be28f32861aa3d6311d2f8f2d475a0a77e708e5b0f731d103ea86",
+  "cases_sha256": "88c8504791e602c78e77bfb5b958fa928e3dccf55474c93bcc43549f3603e862",
+  "results": [
+    {
+      "id": "absent-is-unknown",
+      "expected": true,
+      "observed": true
+    },
+    {
+      "id": "positive-capacity",
+      "expected": true,
+      "observed": true
+    },
+    {
+      "id": "minimum-positive",
+      "expected": true,
+      "observed": true
+    },
+    {
+      "id": "zero-is-not-unknown",
+      "expected": false,
+      "observed": false
+    },
+    {
+      "id": "negative-invalid",
+      "expected": false,
+      "observed": false
+    },
+    {
+      "id": "null-not-absence",
+      "expected": false,
+      "observed": false
+    },
+    {
+      "id": "string-invalid",
+      "expected": false,
+      "observed": false
+    },
+    {
+      "id": "boolean-invalid",
+      "expected": false,
+      "observed": false
+    },
+    {
+      "id": "fraction-invalid",
+      "expected": false,
+      "observed": false
+    },
+    {
+      "id": "other-fields-preserved",
+      "expected": true,
+      "observed": true
+    }
+  ]
+}

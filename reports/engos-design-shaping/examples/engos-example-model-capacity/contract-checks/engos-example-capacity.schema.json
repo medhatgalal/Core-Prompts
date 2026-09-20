@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Proposed optional input capacity extension",
+  "description": "Contract-only teaching probe. Checks the optional extension's shape without inventing existing model-field names, mapping implementation or production behavior.",
+  "type": "object",
+  "properties": {
+    "inputCapacityTokens": {"type": "integer", "minimum": 1}
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,42 @@
+%% ID: D02. Caption: Proposed included-cost import, preserving existing permission/conflict/atomicity.
+%% Source identity: engos-example-config-deployment/input.md.
+%% Evidence: input.md:11-12; input.md:16-29; input.md:32-33.
+%% Legend: actor = existing authority; labels describe semantic operations, never method names.
+%% Package cost section and cost transaction participation are proposed; controls are fixture premises.
+%% Omitted: export store read (D01/D03), transport internals, revision-fetch implementation, runtime proof.
+%% Status: review_pending / render_pending. Old-format absence skips cost mutation, not process deployment.
+%%{init: {"theme":"base","themeVariables":{"fontFamily":"Arial","fontSize":"14px","actorBkg":"#eff6ff","actorBorder":"#1d4ed8","noteBkgColor":"#fffbeb","noteBorderColor":"#b45309"}}}%%
+sequenceDiagram
+  actor A as Target admin
+  participant E as PackageExporter
+  participant I as PackageImporter
+  participant T as Deployment transaction
+  participant C as CostConfigStore
+  participant R as RunningAnalysis
+  E->>I: Package via existing encrypted channel (C02-C03)
+  I->>I: Verify deployment permission
+  alt Permission denied
+    I-->>A: Denied; no writes
+  else Authorized
+    I->>I: Compare base and target revision (C04)
+    alt Mismatch without explicit authorized force
+      I-->>A: Visible conflict; no writes
+    else Match or explicit authorized admin force
+      Note over A,I: Force is existing explicit choice, never automatic
+      I->>T: Validate all included configuration (C05)
+      alt Invalid data or proposed total-count limit exceeded
+        T-->>I: Reject; retain prior state
+        I-->>A: Validation failure; no writes
+      else Valid and revision guard retained
+        opt Cost section present
+          T->>C: Cost definitions in atomic deployment commit (C06)
+        end
+        Note over T,C: Absent section leaves costs unchanged; all included changes commit together
+        T-->>I: Deployment committed
+        I-->>A: Deployment outcome
+      end
+    end
+  end
+  Note over C,R: At the next ordinary scheduled run, not triggered by deployment
+  R->>C: Read current committed cost configuration (C07)
+  C-->>R: Current definitions; prior settings if import failed

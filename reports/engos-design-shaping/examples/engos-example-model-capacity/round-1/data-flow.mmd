@@ -1,0 +1,19 @@
+%% D3 Caption: Metadata projection from config to an authorized catalog consumer, with unknown values preserved.
+%% Source identity: engos-example-model-capacity/input.md; fixture only.
+%% Evidence: input.md:16-28. Proposed omission/copy mapping adapts input.md:18-22.
+%% Legend: green = existing data; blue = existing component; dashed = proposed data projection; amber border = existing authorization boundary.
+%% Omits: new stores, customer text, credentials, provider retrieval and selection changes. No claimed implementation layout. render_pending.
+flowchart LR
+  CFG[(CatalogConfig)]
+  API[Catalog API]
+  MC[ModelCatalog]
+  UI[Builder UI]
+  CFG -->|Active validated revision| API
+  API -->|ID, name, provider| MC
+  API -.->|Proposed: positive capacity or omitted field| MC
+  MC -->|Authorized catalog response| UI
+  classDef component fill:#EAF2FF,stroke:#315D91,color:#152D48
+  classDef data fill:#E8F5EC,stroke:#39754C,color:#183B23
+  class API,UI component
+  class CFG,MC data
+  style API stroke:#94702A,stroke-width:3px

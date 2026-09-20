@@ -1,7 +1,7 @@
 ---
 name: "engos-delivery-diagram-contract-artifacts"
 description: "Author a surface-agnostic shaped-pitch artifact bundle with Mermaid component, sequence, and data-flow diagrams plus API/contracts and security-owner tables. Use when a shaped solution needs durable visual and contract evidence before review or betting; do not invent component internals or place artifacts on external surfaces."
-version: "v1.0"
+version: "v1.1"
 ---
 # Shaping Artifact Author — Diagrams, Contracts, and Security Ownership
 
@@ -56,12 +56,13 @@ shaping-artifacts/
 
 `manifest.json` records the pitch identity, appetite, source hashes or links,
 diagram inventory, contract row count, security-owner row count, target-neutral
-format, and status for each artifact: `authored`, `rendered`, `placed`, or
-`blocked`. The Markdown tables must include at least:
+format, and source status for each artifact: `authored` or `blocked`. Store render
+and placement observations in separate receipts bound to these source hashes; they
+must not mutate the reviewed source inventory. The Markdown tables must include at least:
 
 | Required table | Minimum columns |
 | --- | --- |
-| API / contracts | Direction, interface, purpose, producer, consumer, contract state, evidence, owner/action |
+| API / contracts | Method, endpoint (network only), purpose, direction, interface, producer, consumer, contract state, evidence, owner/action |
 | Security ownership | Responsibility, owner, enforcement/control, boundary, evidence, unresolved gap |
 
 Each diagram source must have a caption, diagram type, evidence references, and
@@ -76,8 +77,9 @@ request or event path; the data-flow diagram shows data movement and stores.
 2. Set the artifact budget from the appetite. Choose the smallest diagram set
    that covers the required seams; if the source cannot support a diagram,
    record `blocked` with the missing evidence rather than guessing.
-3. Author Mermaid first. Use `graph LR` for request/event flows and `graph TB`
-   for component hierarchy. Apply the team's semantic style palette, keep node
+3. Read resources/references/diagram-style.md and resources/references/bundle.md.
+   Author Mermaid first. Prefer LR for flows and TB for hierarchy when legible.
+   Apply the team's semantic style palette, keep node
    labels short, and label edges with protocol, port, or contract context.
 4. Author the contract table for both provided and required interfaces. Record
    contract state and distinguish observed behavior from assumption.
@@ -95,8 +97,9 @@ request or event path; the data-flow diagram shows data movement and stores.
 ## Rules
 
 - Mermaid source is the durable artifact. Rendered SVG/PNG is a derived view;
-  use SVG-to-PNG only when the target surface cannot accept Mermaid or SVG and
-  record the reason.
+  use SVG-to-PNG when PNG is explicitly requested or the target surface cannot
+  accept Mermaid or SVG, and record the reason. A native-Mermaid-only request
+  does not require unnecessary derived images.
 - Never invent methods, classes, endpoints, internal algorithms, retries,
   owners, security controls, or data stores. Unknowns become explicit gaps.
 - A diagram is not complete merely because it parses. It must cover the named
@@ -158,6 +161,41 @@ must report placement evidence separately.
 | No fabrication | Every claim is cited or marked assumed; no invented internals appear |
 | Shape Up fit | Appetite, rabbit holes, and no-gos remain visible and the output stays fat-marker |
 | Gate readiness | Manifest and statuses let the pitch reviewer fail closed on missing artifacts |
+
+## Full Shaping Handoff
+
+For full runs, require the conductor's current accepted frame/evidence before
+Stage 3 authoring; direct artifact requests can remain artifact-only with upstream
+status unassessed. Follow the bundle resource for complete contracts and explicit
+negative security responsibilities. Keep existing/proposed/unknown contracts distinct.
+
+Render component, sequence and data-flow sources and inspect all pixels for labels,
+arrows, boundaries, contrast and evidence fidelity. Syntax success is insufficient.
+The embed helper may perform local conversion without permission to publish; actual
+placement occurs only after full-run G3 passes. Return complete row/diagram inventory,
+source hashes and separate render observations to engos-quality-shaping-gate.
+
+Blast radius: all users of this shared authoring helper gain explicit rendering,
+source-bound receipts and exemplar contract coverage; no upstream source repository
+or installed native agent configuration is changed by using it.
+
+## Reference-Matched Visual Authoring
+
+Read resources/references/presentation.md with the author route when composing a
+shaped bundle. Give every figure an explicit owning section, visible title/caption,
+legend and state labels; match rendered samples, not just file inventories. Use
+Mermaid-first editable source and the derivatives requested by the selected rich
+presentation profile; native-Mermaid-only requests need no extra image step. A curated SVG may
+address a documented layout limitation only with preserved source identity and a
+semantic cross-check; it may not invent components or hide unknowns.
+
+Keep primary tables readable and retain all richer contract/security fields in
+stable-ID supporting detail where needed. The embed adapter owns representation,
+asset validation and placement; the author owns coherent source meaning. Complete
+source, successful parsing, visual quality and saved-target proof are distinct.
+
+Blast radius: existing artifact authoring gains explicit visual composition and
+field-preserving table guidance; stage and external-write authority are unchanged.
 
 
 Capability resource: `resources/capability.json`

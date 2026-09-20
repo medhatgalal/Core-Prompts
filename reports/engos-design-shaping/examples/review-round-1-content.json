@@ -1,0 +1,329 @@
+{
+  "reviewer": "Codex independent reviewer, task 01a0b06e-e0ca-7401-a00c-f59b8bac6817",
+  "root": "/private/tmp/engos-full-shaping-design/reports/engos-design-shaping",
+  "round": 1,
+  "method": "Synthetic facts and supplied decisions accepted as authoritative exercise premises. Proposed behavior assessed separately from existing behavior.",
+  "integrity": {
+    "algorithm": "SHA-256",
+    "original_files_checked": 41,
+    "original_files_changed": [],
+    "original_files_deleted": [],
+    "inventory_status": "stale_for_complete_folder_review",
+    "reason": "A controller render appeared during review. Original reviewed source bytes remained unchanged; this receipt covers those bytes only.",
+    "unreviewed_addition": {
+      "path": "examples/engos-example-model-capacity/round-1/rendered/component.png",
+      "sha256": "b3b142cc3f0eddae2d015d3d7d10f6e06abefad26a1617353003804089591048"
+    }
+  },
+  "shared_hashes": {
+    "examples/teaching-contract.md": "b5dca88642fdd2b26486d956a1ecb0ea823cb4e739f8a02fb5e8990635abae95",
+    "examples/experiment-plan.md": "aae998c1c4badf4132ed3b2f6f4cb99b3b35446a676b06bd9dce38da28a5718b",
+    "candidates/engos-quality-shaping-gate/SKILL.md": "256a0c82438468bf70098f269852ac9fc9b285aa752f1390fa06433b4477c2eb",
+    "candidates/engos-quality-shaping-gate/resources/gates.md": "56afad00973988186824b82f8a5ca7937477a001ad76c2b3ebac33f9eb7e8620",
+    "candidates/engos-quality-shaping-gate/resources/rubrics.md": "08b066ebca4927958619b1ad5396d1ab4948a84a16e6584084835cb77b8b27f2",
+    "candidates/engos-quality-shaping-gate/resources/resource-map.json": "bd3380168a7fd71224a9b982776b65307f92c7db568d42d4bc6f5c6e569a4c9b"
+  },
+  "cases": [
+    {
+      "case": "engos-example-model-capacity",
+      "reached_stage": "3: shaped draft",
+      "progression": {
+        "G0": "pass: original request preserved; catalog suggestion attributed and unselected",
+        "G1": "pass: known/unknown outcome and supplied appetite are not an invented implementation",
+        "G2": "pass: input.md:18-28 answers units, compatibility, validation, revision and workload questions",
+        "advance": false,
+        "reason": "Content is coherent, but overall score is below 4; controller visual proof remains pending. Newly added render is unreviewed.",
+        "G3": "not passed",
+        "G4": "not reached"
+      },
+      "blocking_content_findings": [],
+      "assessment": "Omission means unknown, never zero or unlimited. Proposed response field, existing configuration and future acceptance checks are distinguished. Contracts and negative/security responsibilities preserve selection, authorization and revision binding. In/Out/Later and kill criteria are explicit. Fat-marker depth is appropriate, although repeated caveats and cuts of already-excluded work dilute concision.",
+      "team_scores": {
+        "Simplicity": [
+          4,
+          "pitch.md:24-28; one optional scalar using existing configuration and consumer tolerance"
+        ],
+        "Testability": [
+          4,
+          "pitch.md:49-58; concrete known/unknown, legacy, invalid-config and denied-access checks; unexecuted"
+        ],
+        "Security": [
+          4,
+          "security-owners.md:7-11; access, activation and consumer responsibilities explicitly separated"
+        ],
+        "Architecture": [
+          4,
+          "contracts.md:7-10; bounded existing seams and clearly proposed payload extension"
+        ],
+        "Cost": [
+          4,
+          "pitch.md:81; bounded 1,000,000 scalar lookups/day, no new storage/provider calls; no latency measurement"
+        ],
+        "Feasibility": [
+          4,
+          "input.md:18-26; additive compatibility, matching units and validation are authoritative premises"
+        ],
+        "Confidence": [
+          3,
+          "research-notes.md:9-14; supported fixture precedent, but proposed end-to-end behavior has not been exercised"
+        ]
+      },
+      "pitch_scores": {
+        "Problem clarity": [
+          4,
+          "pitch.md:14-16; late discovery, consumer outcome and intended benefit distinguished"
+        ],
+        "Appetite fit": [
+          4,
+          "pitch.md:20,38-45; two-day bound and protected guarantees; cuts offer little further scope reduction"
+        ],
+        "Solution sharpness": [
+          4,
+          "pitch.md:24-28; explicit copy/omit semantics and bounded alternatives"
+        ],
+        "Contract quality": [
+          4,
+          "contracts.md:7-12; units, absence, authorization, revision and invalid-source behavior retained"
+        ],
+        "Boundary discipline": [
+          4,
+          "pitch.md:34-36,76-81; scope and no-gos inherited by testable slices"
+        ]
+      },
+      "means": {
+        "team": 3.86,
+        "pitch": 4,
+        "overall": 3.92
+      },
+      "lowest_dimension": {
+        "name": "Confidence",
+        "score": 3
+      },
+      "specific_revision_request": "Retain the design. Consolidate repeated teaching/proof disclaimers and state that the selected core has no material safe feature cut. Strengthen the unexecuted acceptance table with exact known/absent, legacy-consumer and invalid-candidate expectations; do not relabel these as observed proof.",
+      "hardest_questions": [
+        "Does every representation preserve absent versus zero/unlimited?",
+        "Can configured capacity and original fields ever represent different active revisions?",
+        "Does the legacy-consumer check preserve selection without introducing hidden UI work?"
+      ],
+      "limitations": [
+        "Confidence cannot be raised by additional prose alone.",
+        "Content assessment remains bound to unchanged sources; complete-folder assessment is stale because a render appeared.",
+        "No visual, placement or live feasibility approval."
+      ],
+      "file_hashes": {
+        "input.md": "3674653a028c6ef3cfc8ecd7dff600d8adb1c929ce128ca4f7b3c4db73c0ccc2",
+        "round-1/intake.md": "049d662697afb167d868755e7c451667ab47a1fbcbd06c3e262c7076c7784dfc",
+        "round-1/framed.md": "c325e05824dbd91aff335f77456e6e978289da4d227fe4d04c3fad3e8396165f",
+        "round-1/decisions.md": "7026c87734f667da90f41703b02c7e86a67be07010735d2999a988fe5a56db79",
+        "round-1/research-notes.md": "c5f6c78c50f1dc4adb993dd4c26f5940aa03f227fe204ab180cf3953040c7365",
+        "round-1/pitch.md": "288200b1dbe6ad2d33551b2c22b774382ba7df43d465a92c19c1a7d99411a9d9",
+        "round-1/contracts.md": "7f62c4479e7ecda2a7e80f4cde9de33946e492841b380307a2d7d54638fa3719",
+        "round-1/security-owners.md": "8d1946514a43528bf10cf1bce116f8c5048f66a9fdd60a7e43c9134f23bc0082",
+        "round-1/component.mmd": "9421f2d7659548c9160f7f3e364fcf86bbd8f3f62f7c0fcade3bba54b5c0e497",
+        "round-1/sequence.mmd": "761d023eb4dd5d1a91e7b0f7aad2fe88f4a07bf0ae3e61eb98567c8148285f1e",
+        "round-1/data-flow.mmd": "bf146e628bb3b3c65ac9bc491061998ad847ac59934ec62baff35706db4902d3",
+        "round-1/journal.md": "eb3d409ce9b67f174849704119b5de4a419d635e6c20cd8fd7a8b60180ac9579"
+      }
+    },
+    {
+      "case": "engos-example-insight-visibility",
+      "reached_stage": "1: framed, decision_pending",
+      "progression": {
+        "G0": "pass",
+        "G1": "decision_pending: correct stop",
+        "G2": "not reached",
+        "advance": false,
+        "G3": "not reached",
+        "G4": "not reached"
+      },
+      "blocking_content_findings": [
+        {
+          "type": "correctly exposed missing input",
+          "evidence": "input.md:16-19; framed.md:19-22",
+          "finding": "Outcome/beneficiary, appetite, success measure and walk-away remain undecided. Monthly count requests do not select a dashboard or establish an insight-quality defect."
+        }
+      ],
+      "assessment": "Clear, actionable stop with four precise decisions and a named exercise decision source. Customer-content and no-new-metrics constraints survive. No mechanism, research result or unsupported investment is invented. Later-stage scope, contracts and security tables are correctly unwritten.",
+      "scores": null,
+      "lowest_dimension": null,
+      "specific_revision_request": "Controller supplies Q1-Q4 as explicit scenario decisions; author updates frame and provenance and reruns G1 before research. Preserve round one.",
+      "limitations": [
+        "Unwritten pitch intentionally unscored; no later-stage readiness inferred."
+      ],
+      "file_hashes": {
+        "input.md": "89b941a77ff191a870aec666b8b7f642a0f24cedc2abe6d4afcb06c3f7defe1a",
+        "round-1/intake.md": "7fda39b6b9f4da835dc504b1d6227bb7a1c6e964b83d881a8d907666daf06da3",
+        "round-1/framed.md": "d9f36bdb922bda7b01eeb2ace8fd20cfc4a5867245896a66af7792102ffb1f81",
+        "round-1/decisions.md": "b9bb4bb9a1e58c63a5eae4a7bf66e417e67c715eae7bf4f2498479941a7fcefe",
+        "round-1/journal.md": "a66637d215d02d08b30a0bbd1c2846351594fece26d80565b7b6334952bef098"
+      }
+    },
+    {
+      "case": "engos-example-config-deployment",
+      "reached_stage": "3: shaped draft authored",
+      "progression": {
+        "G0": "pass",
+        "G1": "pass: deployment outcome and existing controls are sourced constraints, not an invented topology",
+        "G2": "pass not sustained: protection and workload closure exceed the demonstrated contract detail",
+        "last_supported_gate": "G1",
+        "advance": false,
+        "next_permitted_action": "Reopen research/contract questions, then reassess G2 and refresh dependent draft artifacts.",
+        "G3": "not passed",
+        "G4": "not reached"
+      },
+      "blocking_content_findings": [
+        {
+          "id": "C-RACE",
+          "evidence": "input.md:16-21,26-27; research-notes.md:7,20; sequence.mmd:21-34; contracts.md:12-14",
+          "finding": "The fixture supplies revision comparison and atomic writes, but does not explicitly connect comparison validity to commit. 'Guarded application' and 'revision guard retained' leave the concurrent-edit case unresolved; the acceptance plan checks an already-stale base, not an edit occurring after comparison.",
+          "revision": "State the commit-time invariant and responsible boundary: a target edit after initial comparison must cause conflict/no writes unless covered by an explicit authorized force choice. Obtain a fixture clarification or keep the existing capability unresolved; add that interleaving to the proposed checks without inventing a locking/CAS implementation."
+        },
+        {
+          "id": "C-EMPTY",
+          "evidence": "input.md:22-25,30; pitch.md:22; contracts.md:9-10,13,17",
+          "finding": "Absent old-package sections are handled correctly. However, rejecting 'malformed/empty' sections leaves valid zero-entry configuration, currency-only configuration, missing source configuration and read failure insufficiently distinguished. The fixture's 'at most 200' does not establish a nonempty collection requirement.",
+          "revision": "Define separate contract cases for absent section, valid present empty collection, valid currency-only data, malformed data and source-read failure. Clarify merge/removal semantics and reject only states established as invalid. Keep new choices labeled proposals and obtain a scenario decision where they narrow the required outcome."
+        },
+        {
+          "id": "C-CAPACITY",
+          "evidence": "research-notes.md:11,28; journal.md:28; pitch.md:58,70",
+          "finding": "20,100 proposed cost records fit alone; the other included configuration count is unknown. Rejecting totals above 25,000 protects integrity but does not establish that the stated 100-process workload fits. C-Q5 is therefore conditional, not fully answered.",
+          "revision": "Supply a bound of at most 4,900 other records, or an explicit decision accepting a smaller supported package envelope. Until then retain capacity as unresolved and remove unconditional workload-fit closure."
+        }
+      ],
+      "assessment": "Strong component ownership, negative responsibilities, default-preserve intent and clearly labeled proposals. No fake execution evidence found. In/Out/Later and objective kill criteria are present, but cuts mostly remove presentation effort. Contract ambiguity and unsupported closure matter more than missing renders.",
+      "team_scores": {
+        "Simplicity": [
+          4,
+          "pitch.md:20-33; reuses deployment path, avoids separate transaction or recomputation"
+        ],
+        "Testability": [
+          3,
+          "pitch.md:51-58; concrete slices, but no concurrent-edit or valid-empty case"
+        ],
+        "Security": [
+          3,
+          "security-owners.md:7-13; authority and force ownership clear; commit-time protection remains incomplete"
+        ],
+        "Architecture": [
+          3,
+          "contracts.md:9-15; boundaries coherent, revision-check/commit coupling underspecified"
+        ],
+        "Cost": [
+          2,
+          "research-notes.md:11; total configuration occupancy unknown"
+        ],
+        "Feasibility": [
+          2,
+          "research-notes.md:20,28; guarded application and full workload closure not established by cited premises"
+        ],
+        "Confidence": [
+          2,
+          "journal.md:28-30; G2 closure overlooks material race, empty-state and capacity questions"
+        ]
+      },
+      "pitch_scores": {
+        "Problem clarity": [
+          4,
+          "pitch.md:12; repeated entry and preservation outcome are concrete"
+        ],
+        "Appetite fit": [
+          3,
+          "pitch.md:16,43-47; supplied week and stops retained, with little meaningful scope flexibility"
+        ],
+        "Solution sharpness": [
+          3,
+          "pitch.md:20-24; macro flow clear, but empty-state and commit semantics need resolution"
+        ],
+        "Contract quality": [
+          2,
+          "contracts.md:10,12-14; empty versus malformed and commit-time revision semantics incomplete"
+        ],
+        "Boundary discipline": [
+          3,
+          "pitch.md:39-47,73; exclusions and protected qualities clear; supported workload boundary unresolved"
+        ]
+      },
+      "means": {
+        "team": 2.71,
+        "pitch": 3,
+        "overall": 2.83
+      },
+      "lowest_dimension": {
+        "name": "Contract quality",
+        "score": 2,
+        "tied_with": [
+          "Cost",
+          "Feasibility",
+          "Confidence"
+        ]
+      },
+      "specific_revision_request": "Resolve C-RACE, C-EMPTY and C-CAPACITY at semantic-contract depth; update questions, decisions, contracts, sequence, security ownership and acceptance slices consistently. Rerun G2 before requesting another G3 content assessment.",
+      "hardest_questions": [
+        "What happens when a target edit commits between revision comparison and deployment commit?",
+        "Which valid empty source states must deploy successfully, and how do they differ from omission or read failure?",
+        "What bounds the complete package, including non-cost configuration, below 25,000 records?"
+      ],
+      "limitations": [
+        "These are contract/evidence gaps, not findings of a demonstrated runtime defect.",
+        "Synthetic premises are accepted; no production spike is demanded merely because the example is synthetic.",
+        "Visual and placement proof remain separately pending."
+      ],
+      "file_hashes": {
+        "input.md": "ca990acce7eb1c85a049e4c0f655930696f7f98802beb2e4e302840af5671174",
+        "round-1/intake.md": "af8e8ed56ea88e81e70a25b8a1e85fc883827e999f646a60b932aad34130d92c",
+        "round-1/framed.md": "610b24ccdc9be8253a2024c9966a4a37cc62f49ae8f9f3e4d9942e8bb29ea9f0",
+        "round-1/decisions.md": "80875e7b443c1c7817658c0165ee6b044bd240e369787af1d7c53144b5e7839f",
+        "round-1/research-notes.md": "6f0852b8189194c14ec41351d6870dd8a89735c49b37b45ca8463208cebf5f06",
+        "round-1/pitch.md": "11c5eabfd13541c97f426badba7762915c6dc5bb5f70687f9403da0b4449a1b7",
+        "round-1/contracts.md": "14c1cc49042a31053963e2ba9e5056dbc1dce5bdd7dcbd84176f3eb26851a1ed",
+        "round-1/security-owners.md": "2995afa08548420ab4ed9e5951be49a33f98e8bfdb7a3c4ae64ce7113d937954",
+        "round-1/component.mmd": "1524a517bc44bfea706f690f9cba534a0b9b444f1ebe780a81ae5cf9d3bf1c94",
+        "round-1/sequence.mmd": "853ada5a7cdee10680ed3d6b6a4e99a03ef81cef2be23383d9b31a32eb7d6ae8",
+        "round-1/data-flow.mmd": "53f3029151ac28b6249a49ce3473e99acc1b273db0472b0c68997f4a08ad8d5d",
+        "round-1/journal.md": "7e5a05bc96397a7a604d05588259530587a4077d4035f2954611c6c03762d899"
+      }
+    },
+    {
+      "case": "engos-example-unified-chat",
+      "reached_stage": "2: research, needs_spike",
+      "progression": {
+        "G0": "pass",
+        "G1": "pass: persistent continuity is the supplied desired outcome; no persistence implementation selected",
+        "G2": "needs_spike: correct stop",
+        "advance": false,
+        "G3": "not reached",
+        "G4": "not reached"
+      },
+      "blocking_content_findings": [
+        {
+          "type": "correctly exposed missing evidence",
+          "evidence": "research-notes.md:7-10; input.md:19-26",
+          "finding": "Persistence/reload/session compatibility, all-mode preview behavior, unfinished-feature dependency and result-experience decision remain unresolved. Unsupported prototype labels correctly provide no clearance."
+        }
+      ],
+      "assessment": "Stop is clear and actionable. Three bounded proposed investigations identify owners, success/failure criteria and scope consequences. Engineering evidence and ProductOwner choices remain distinct. Exclusions cannot silently remove the core continuity requirement. No fabricated API, selected streaming mechanism or unwritten pitch is scored.",
+      "scores": null,
+      "lowest_dimension": null,
+      "specific_revision_request": "Engineering supplies U-S1/U-S2 seam evidence and U-S3 dependency findings; ProductOwner resolves preview scope and streaming/completion-only choice. Preserve the stop until questions are answered or validly excluded. If scope changes, rerun G1 before G2.",
+      "limitations": [
+        "The five-engineer-day investigation is explicitly proposed, not approved or executed.",
+        "No stage-three contracts, security matrix, cuts or diagrams required at this correct research stop."
+      ],
+      "file_hashes": {
+        "input.md": "457f010413727217e1ef55d5592cae07f60c1bd4ac0ac6bc7384b9fed24a1328",
+        "round-1/intake.md": "a8b20039393a77d1d1276210aead94a45b2f07c74c946271d21fe321e302f5e4",
+        "round-1/framed.md": "b15fc0a32eba59a2b251bb76e2d97efa3129ef0ab524da3534c3e34193017a7f",
+        "round-1/decisions.md": "306c569fdc66d6cee1dcfcc6ad3bd941e6a168188e983ad01f0dd74b62d9fc86",
+        "round-1/research-notes.md": "18dcba3c3e9a1e4391aa777d380c257037fd367f03801d62d1bed1b4d3fc3bc3",
+        "round-1/journal.md": "d43569be231cc07b4fd4d4b26e2f4b76fd1029f967b0b7569485b06a5254e107"
+      }
+    }
+  ],
+  "global_limitations": [
+    "No writes performed; round-two-clarifications.md was not read.",
+    "Author journals and their hash bindings were inspected; historical execution order was not independently observed.",
+    "Scores assess content against fixture premises. Missing renders were not used to lower content scores.",
+    "No G3/G4 success, reference-ready certification, live feasibility, executed spike or placement success is claimed."
+  ]
+}

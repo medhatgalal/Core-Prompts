@@ -128,7 +128,7 @@
       "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
       "review_status": "ready_for_orchestrator_review",
       "display_name": "Pitch \u2014 Shape Up Pitch Creation, Review, Scoring, and Improvement",
-      "version": "v1.2"
+      "version": "v1.3"
     },
     "expanded": {
       "relationship_suggestions": [
@@ -456,7 +456,7 @@
         "surface_usability": 10
       },
       "template_name": "skill",
-      "effective_sha256": "ca6ddabc14caee2cf1bf3a3f47fcc7971cff27830a4027471e25a048b6ad6bd3",
+      "effective_sha256": "9fc43c2cff2cdd1c13de462021a279864839b1fcd3458180b8c0e0ba11c9dd2b",
       "semantic_findings": [],
       "agent_surface_review": {
         "status": "unchanged",
@@ -566,7 +566,7 @@
     "portfolio_action": "keep",
     "routing_fitness": {
       "schema_version": "RoutingFitness.v1",
-      "mapping_status": "source_derived_draft",
+      "mapping_status": "stale",
       "task_phases": {
         "kind": "source_conditions",
         "clauses": []
@@ -583,9 +583,9 @@
             "heading": "Tool Boundaries",
             "source": {
               "path": "ssot/engos-audit-pitch-review.md",
-              "start_line": 566,
-              "end_line": 568,
-              "sha256": "ca6ddabc14caee2cf1bf3a3f47fcc7971cff27830a4027471e25a048b6ad6bd3"
+              "start_line": 573,
+              "end_line": 575,
+              "sha256": "9fc43c2cff2cdd1c13de462021a279864839b1fcd3458180b8c0e0ba11c9dd2b"
             }
           }
         ]
@@ -602,8 +602,8 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-audit-pitch-review.md",
-        "ssot_sha256": "ca6ddabc14caee2cf1bf3a3f47fcc7971cff27830a4027471e25a048b6ad6bd3",
-        "effective_sha256": "ca6ddabc14caee2cf1bf3a3f47fcc7971cff27830a4027471e25a048b6ad6bd3",
+        "ssot_sha256": "9fc43c2cff2cdd1c13de462021a279864839b1fcd3458180b8c0e0ba11c9dd2b",
+        "effective_sha256": "9fc43c2cff2cdd1c13de462021a279864839b1fcd3458180b8c0e0ba11c9dd2b",
         "resources": [],
         "extractor_version": "source-clauses.v1",
         "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -622,7 +622,7 @@
           "works_on"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "95017723daf11bcac204d88e2fc9cd56ba18fd4d8fe0ada7994b469ffece88aa"
+        "mapping_sha256": "34b42c876341c1b2363e8310cfe23bb89f4b0be05b2d3a17232cde79c1dd6898"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

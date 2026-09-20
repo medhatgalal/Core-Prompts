@@ -1,0 +1,22 @@
+%% ID: D01. Caption: Proposed cost-section extension across existing deployment boundaries.
+%% Source identity: engos-example-config-deployment/input.md.
+%% Evidence: input.md:16-27; input.md:28-33. All existing behavior is fixture premise.
+%% Legend: blue = component; green = data; amber = existing control boundary.
+%% Solid = existing fixture responsibility; dashed = proposed cost-section participation.
+%% Omitted: internal methods, wire formats, results and transaction data; no new services.
+%% Status: review_pending / render_pending; source only, no inspected pixels.
+%%{init: {"theme":"base","themeVariables":{"fontFamily":"Arial","fontSize":"14px","lineColor":"#475569"}}}%%
+flowchart LR
+  subgraph Source["Source environment"]
+    SC[(CostConfigStore)]:::data -->|definitions C01| E[PackageExporter]:::component
+  end
+  subgraph Target["Target environment"]
+    I[PackageImporter]:::component -->|permission and revision C04| T[Deployment transaction]:::control
+    T -.->|atomic cost update C05-C06| TC[(CostConfigStore)]:::data
+    TC -->|ordinary next run C07| R[RunningAnalysis]:::component
+  end
+  E -.->|optional section; existing encrypted channel C02-C03| I
+  A[Target admin]:::control -->|explicit force choice only| I
+  classDef component fill:#eff6ff,stroke:#1d4ed8,color:#0f172a
+  classDef data fill:#ecfdf5,stroke:#047857,color:#0f172a
+  classDef control fill:#fffbeb,stroke:#b45309,color:#0f172a

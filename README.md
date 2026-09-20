@@ -8,6 +8,35 @@ Install or repair an existing setup with the current installer, even if it has n
 
 The shipped setup is skills-only. Generic independent workers can apply these skills; future named-agent surfaces require your explicit approval. See [skills, agents, and prompts](docs/FAQ.md#what-is-the-difference-between-a-skill-an-agent-and-a-prompt) for the distinction and its limits. Explicit-only workflows such as Batman still require an explicit request.
 
+## Guided Shape Up: start with your notes
+
+Use **`engos-design-shaping`** to guide product and engineering through Intake,
+Framed, Research, Shaped and Bet-ready. Start with a complaint, meeting notes or
+an existing specification; you do not need to choose the supporting skills.
+
+> Use engos-design-shaping. Read these notes and help us frame the problem before
+> choosing a solution. Keep the working documents in my authorized private project's
+> planning/report-freshness/ folder, outside the Core-Prompts repository.
+> Ask for missing decisions, investigate what already exists, and guide us toward
+> a shaped pitch with Markdown and HTML outputs.
+
+Expect a problem summary and a few useful questions first—not an instant finished
+pitch. Later stages add source-backed diagrams, contracts, ownership, independent
+review and verified delivery. You retain appetite, scope and betting decisions.
+
+| Along the way, ask… | What you receive |
+| --- | --- |
+| “Frame only; help me decide the appetite and walk-away.” | A solution-free frame, with undecided items made explicit |
+| “What already exists, and why reuse, extend or build new?” | Scoped evidence and architectural trade-offs, with specialist help when useful |
+| “Where are we, what is blocked, and what do you need from me?” | Accepted versus draft state, blocker, needed owner and next action |
+| “Resume this folder; preserve the edits in its registered Doc.” | Reconciled changes and refreshed reviews where needed |
+
+**Setup:** install the [shaping bundle](docs/engos-design-shaping.md#enable-the-shaping-bundle),
+not just the entry skill. You choose local/repository output paths and authorized
+Drive destinations; unavailable access is reported, never silently substituted.
+This capability remains under pilot validation: check [current evidence and limits](docs/engos-design-shaping.md)
+before treating it as fully accepted or deployed. [More examples](docs/EXAMPLES.md#engos-design-shaping).
+
 Use this repository in this order:
 
 1. installed capabilities first
@@ -16,7 +45,7 @@ Use this repository in this order:
 
 If you are already using Core-Prompts in a CLI, start there. If you are importing a new capability family, go to UAC next. If you are rebuilding surfaces, validating state, deploying, or preparing release work, use the repo tooling after that.
 
-The current generated surfaces ship `29` skills across all supported CLIs and `0` named-agent configurations. Capability Fabric metadata is advisory; explicit invocation follows the selected capability's operating contract.
+The current generated surfaces contain `32` skills across all supported CLIs and `0` named-agent configurations. Capability Fabric metadata is advisory; explicit invocation follows the selected capability's operating contract.
 
 First-party skills use the `engos-<category>-<skill-name>` namespace so Core-Prompts capabilities stay together in CLI and app autocomplete. The upstream-pinned Loopy package retains the single name `loopy`, without an alias package. The category identifies the primary job; the final segment identifies the capability. For example, use `engos-memory-context-continuity` for durable investigation state, `engos-quality-code-review` for diff review, and `engos-triage-my-inbox-chat-pulse` for Gmail and Chat triage.
 
@@ -27,6 +56,10 @@ Supercharge responds inline unless a file is requested. Requested Supercharge an
 For Git activity, ask `engos-audit-engineering-progress help` for usage and examples without starting a report. Its `eng-report run --json` pass preserves existing reports; see the [metrics-first example](docs/EXAMPLES.md#engos-audit-engineering-progress).
 
 For review work, pick the capability by intent:
+
+For a rough product or engineering idea, use [guided Shape Up](#guided-shape-up-start-with-your-notes).
+For an already written pitch, use `engos-audit-pitch-review` for assessment without
+claiming the earlier shaping stages ran.
 
 | Intent | Use | Boundary |
 | --- | --- | --- |
@@ -45,10 +78,13 @@ Start with the shipped capabilities when you want direct help on a real task.
 
 ### Full Skill Index
 
-These are the currently shipped skills with a concrete starter ask for each one:
+These are the current source capabilities with a concrete starter ask for each one:
 
 | Skill | Use it when you need to... | Starter ask | What good output looks like |
 | --- | --- | --- | --- |
+| `engos-design-shaping` | guide a rough idea through framing, evidence and a shaped pitch | "Help us frame and shape this from these notes; guide product and engineering through the missing decisions." | accepted stage, source-backed documents, scoped worker/reviewer handoffs and honest delivery status |
+| `engos-design-frame-from-vague` | frame an idea without choosing its solution | "Frame this problem only; identify missing appetite and boundaries without inventing answers." | original intake, solution-free frame, attributable decisions and useful open questions |
+| `engos-quality-shaping-gate` | assess a shaping stage or resumed handoff | "Check this stage against its actual evidence and tell us whether it can advance." | predicate-level verdict, current bindings, actionable holds and no invented approval |
 | `engos-memory-context-continuity` | work through a broad repo investigation without losing context | "Use `engos-memory-context-continuity` to inspect this subsystem over several files and keep its context, todo, and insights files current until the work is complete." | one three-file task set under `~/.analyze-context/<project>/<task-id>/`, accumulated findings, checked progress, and a scoped next action; branch and worktree paths are metadata only |
 | `engos-design-architecture` | design or review interfaces, boundaries, and migration safety | "Use `engos-design-architecture` to recommend the safest design for this capability layout." | options, tradeoffs, migration guidance, and a rollback-aware recommendation |
 | `engos-optimization-auto-research` | improve a prompt, workflow, or system through experiments | "Use `engos-optimization-auto-research` to improve our review prompt so it catches more behavioral regressions without increasing noise." | goal contract, evaluation plan, experiments, and a winner only after evidence |

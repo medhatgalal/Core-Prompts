@@ -1,0 +1,30 @@
+%% D2 Caption: Config lifecycle precedes catalog reads, proposed addition preserves existing access and revision behavior.
+%% Round 2, source repair only. M2 evidence: round-two-clarifications.md:10-16. Controller rerender required.
+%% Source identity: engos-example-model-capacity/input.md, fixture only.
+%% Evidence: input.md:16-26, proposed response extension adapts input.md:18-22.
+%% Legend: primary service blue, UI light blue, config/data green, authorization pink.
+%% Style: exact team palette from diagram-style.md, source-only conformance pending controller pixels.
+%% Omits: HTTP names, internal method signatures, timing and provider calls. Arrows describe contracts, not observed runtime or invented methods. render_pending.
+%%{init: {"theme":"base","themeVariables":{"actorBkg":"#326ce5","actorBorder":"#1a3e7a","actorTextColor":"#ffffff","noteBkgColor":"#e8f5e9","noteBorderColor":"#2e7d32","noteTextColor":"#1b5e20","labelBoxBkgColor":"#fce4ec","labelBoxBorderColor":"#c62828","labelTextColor":"#b71c1c","loopTextColor":"#b71c1c","signalColor":"#1a3e7a","signalTextColor":"#0d47a1"},"themeCSS":"rect.actor[name=\"CFG\"]{fill:#e8f5e9!important;stroke:#2e7d32!important;} rect.actor[name=\"CFG\"] ~ text.actor,rect.actor[name=\"CFG\"] ~ text.actor tspan{fill:#1b5e20!important;}rect.actor[name=\"API\"]{fill:#326ce5!important;stroke:#1a3e7a!important;} rect.actor[name=\"API\"] ~ text.actor,rect.actor[name=\"API\"] ~ text.actor tspan{fill:#ffffff!important;}rect.actor[name=\"UI\"]{fill:#bbdefb!important;stroke:#1565c0!important;} rect.actor[name=\"UI\"] ~ text.actor,rect.actor[name=\"UI\"] ~ text.actor tspan{fill:#0d47a1!important;}"}}%%
+sequenceDiagram
+  participant CFG as CatalogConfig
+  participant API as Catalog API
+  participant UI as Builder UI
+  Note over CFG,API: Existing config loading<br/>No per-request provider work
+  CFG->>API: Candidate configuration
+  alt Valid candidate
+    Note over API: Activate revision<br/>Bind response data
+  else Invalid candidate
+    Note over API: Reject candidate<br/>Retain active catalog
+  end
+  UI->>API: Existing catalog read with session context
+  rect rgb(252,228,236)
+    alt Authorization denied
+      API-->>UI: Existing access failure, no catalog
+    else Authorized
+      rect rgb(232,245,233)
+        Note over API: Proposed: copy present capacity<br/>Omit absent capacity
+        API-->>UI: ModelCatalog from one revision, original fields retained
+      end
+    end
+  end

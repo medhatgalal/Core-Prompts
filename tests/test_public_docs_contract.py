@@ -62,7 +62,7 @@ def test_readme_skill_count_matches_generated_manifest() -> None:
     manifest = json.loads(read(".meta/manifest.json"))
     shipped_skills = manifest["surfaces"]["codex_skill"]
     readme = read("README.md")
-    match = re.search(r"current generated surfaces ship `(\d+)` skills", readme)
+    match = re.search(r"current generated surfaces contain `(\d+)` skills", readme)
     assert match, "README.md must publish the current generated skill count"
     assert int(match.group(1)) == len(shipped_skills)
 
