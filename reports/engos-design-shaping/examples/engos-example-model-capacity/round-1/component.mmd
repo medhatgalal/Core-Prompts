@@ -1,0 +1,20 @@
+%% D1 Caption: Existing catalog boundaries with a proposed optional response field.
+%% Source identity: engos-example-model-capacity/input.md; fixture only.
+%% Evidence: input.md:16-26; no live-provider path per input.md:9-10 and input.md:27-28.
+%% Legend: blue = existing component; green = existing config data; amber = existing access boundary; dashed = proposed payload addition.
+%% Omits: provider internals, deployment topology, actual endpoint names and UI implementation. render_pending.
+flowchart LR
+  UI[Builder UI]
+  subgraph AUTH[Existing user/session authorization]
+    API[Catalog API]
+  end
+  CFG[(CatalogConfig)]
+  UI -->|Existing catalog read| API
+  CFG -->|Validated config revision| API
+  API -->|Existing ModelCatalog fields| UI
+  API -.->|Proposed optional inputCapacityTokens| UI
+  classDef component fill:#EAF2FF,stroke:#315D91,color:#152D48
+  classDef data fill:#E8F5EC,stroke:#39754C,color:#183B23
+  class UI,API component
+  class CFG data
+  style AUTH fill:#FFF4DB,stroke:#94702A,color:#4B3918

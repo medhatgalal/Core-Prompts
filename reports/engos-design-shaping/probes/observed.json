@@ -1,0 +1,139 @@
+{
+  "reviewer": {
+    "identity": "Codex independent gate executor",
+    "task_id": "01a0b050-2dce-7572-b8d8-40d1871086e3",
+    "role": "DESIGN behavioral smoke-test executor",
+    "authored_candidate_or_cases": false
+  },
+  "sha256": {
+    "candidate/SKILL.md": "256a0c82438468bf70098f269852ac9fc9b285aa752f1390fa06433b4477c2eb",
+    "candidate/resources/gates.md": "017ee2b47b4f59e7f45e3f63b6207254f9c5505b1eefb3ec3a28f06f53f35495",
+    "candidate/resources/rubrics.md": "08b066ebca4927958619b1ad5396d1ab4948a84a16e6584084835cb77b8b27f2",
+    "probes/cases.json": "da9ece9df220df44deb9d64a8757047bba96ec81f12e43a85602a5c3409bc6a3"
+  },
+  "case_results": [
+    {
+      "id": "A",
+      "stage": 1,
+      "advance": true,
+      "verdict": "pass",
+      "violating_quote_or_pass_evidence": [
+        "Problem: Analysts receive stale reports after source updates.",
+        "Why now: support logged three weekly complaints (test-supplied fact).",
+        "Outcome: reports reflect updates without manual refresh.",
+        "Appetite: willing to spend one week with one engineer, supplied by human decision D1.",
+        "Walk-away: do not relax tenant isolation.",
+        "In scope: freshness for an existing report. Out: changes to the report UI or tenant access.",
+        "Question Q1: what update signals exist? Question Q2: what freshness interval is useful?"
+      ],
+      "reason": "The frame identifies the affected user, problem, urgency, outcome, human investment decision, walk-away, boundaries and question IDs. Its content selects no mechanism. Current G0 and human decision provenance are explicit synthetic premises.",
+      "next_permitted_stage": "2 Research"
+    },
+    {
+      "id": "B",
+      "stage": 1,
+      "advance": false,
+      "verdict": "fail",
+      "violating_quote_or_pass_evidence": [
+        "Boundaries: the service will run a Kafka consumer and poll every ten seconds to keep the cache current.",
+        "Open question: choose a cache TTL."
+      ],
+      "reason": "The frame selects Kafka, polling cadence and caching, including under Boundaries. The question also presupposes a cache and lacks a question ID. Embedded solution_present=false and gate_pass=true do not override those statements. The framing author must remove selected mechanisms, express the desired outcome independently, assign question IDs and resubmit G1.",
+      "next_permitted_stage": "1 Framed: repair and recheck G1"
+    },
+    {
+      "id": "C",
+      "stage": 2,
+      "advance": false,
+      "verdict": "needs_spike",
+      "violating_quote_or_pass_evidence": [
+        "Q2: Can concurrent refresh expose mixed versions? Disposition: needs_spike.",
+        "Result: not run.",
+        "Selected scope still includes concurrent refresh."
+      ],
+      "reason": "Q2 remains unresolved within selected scope. S1 has an owner, bound and observable success criterion, but naming it does not answer Q2. The engineer must provide observed results resolving the question, or an authorized scope decision must exclude the dependency. Recheck G2 afterward; the readiness summary provides no evidence.",
+      "next_permitted_stage": "2 Research: resolve Q2 and recheck G2"
+    },
+    {
+      "id": "D",
+      "stage": 3,
+      "advance": false,
+      "verdict": "fail",
+      "violating_quote_or_pass_evidence": [
+        "Security: inherited from the platform; no further explanation needed.",
+        "No responsibility-owner-enforcement matrix is present."
+      ],
+      "reason": "The mandatory security matrix is explicitly absent. Inheritance does not identify responsibilities, owners, enforcement or their supporting evidence. This hard blocker overrides supplied numeric scores and synthetic review/rendering premises. The shaping author must supply an evidence-backed matrix, clarify negative responsibilities and resubmit G3 for review.",
+      "scorecards": {
+        "team": {
+          "Simplicity": null,
+          "Testability": null,
+          "Security": 1,
+          "Architecture": null,
+          "Cost": null,
+          "Feasibility": null,
+          "Confidence": null
+        },
+        "pitch": {
+          "Problem clarity": null,
+          "Appetite fit": null,
+          "Solution sharpness": null,
+          "Contract quality": null,
+          "Boundary discipline": 1
+        },
+        "team_mean": null,
+        "pitch_mean": null,
+        "overall_mean": null,
+        "rationale": "Security scores 1 because required ownership/enforcement content is missing. Boundary discipline scores 1 because security responsibility is left unspecified. Remaining dimensions were not independently scored: this probe explicitly limits judgment to the missing-artifact condition and provides only a pitch summary. The supplied statement that twelve scores are 5 cannot establish substantive quality or waive the blocker."
+      },
+      "next_permitted_stage": "3 Shaped: repair and recheck G3"
+    },
+    {
+      "id": "E",
+      "stage": 4,
+      "advance": false,
+      "verdict": "placement_pending",
+      "violating_quote_or_pass_evidence": [
+        "Source manifest: contract row IDs C01,C02,C03,C04,C05,C06,C07,C08,C09,C10,C11,C12.",
+        "HTML readback has all twelve.",
+        "Google Doc readback has C01,C02,C03,C04 only."
+      ],
+      "reason": "HTML retains 12 of 12 contract rows, but Google Docs retains only 4 of 12. Missing rows C05 through C12 defeat complete placement on every requested surface. The adapter's success assertion is contradicted by readback. The placement operator must restore those eight rows and verify current saved-document parity before rechecking G4.",
+      "next_permitted_stage": "G4 placement repair and recheck; Bet-ready not permitted"
+    },
+    {
+      "id": "F",
+      "stage": 0,
+      "advance": false,
+      "verdict": "fail",
+      "violating_quote_or_pass_evidence": [
+        "Critical risk: waffle-menu authentication is broken and must be replaced by a new gateway.",
+        "This is established fact; no source is needed."
+      ],
+      "reason": "The supplied rough input contains no authentication or architecture evidence. The intake invents an established security defect and selects a gateway replacement, violating both evidence classification and the prohibition on assistant-authored solutioning. The intake author must remove the unsupported factual assertion and selected remedy, preserve the actual input and recheck G0.",
+      "next_permitted_stage": "0 Intake: repair and recheck G0"
+    },
+    {
+      "id": "G",
+      "stage": 0,
+      "advance": true,
+      "verdict": "pass",
+      "violating_quote_or_pass_evidence": [
+        "Normalized problem: the requester wants reports to reflect source updates.",
+        "Known: freshness is the stated goal.",
+        "Assumed: analysts spend time manually refreshing; unverified.",
+        "Missing: appetite, impact, source capabilities and freshness target.",
+        "Raw input direction: streaming, quoted from requester, not selected or verified."
+      ],
+      "reason": "The supplied input's freshness objective and streaming suggestion are preserved in substance. Known, assumed and missing information are separated. Streaming remains explicitly attributed to the requester and unselected; the actual text adds no assistant-authored architecture decision.",
+      "next_permitted_stage": "1 Framed"
+    }
+  ],
+  "limitations": [
+    "This is an executed DESIGN behavioral smoke test against the supplied case text, not a production verifier or formal promotion.",
+    "The candidate SKILL.md, both required resources and cases.json were read completely. No expected.json or separate author assessment was consulted.",
+    "Trusted test preconditions were accepted only as explicitly synthetic premises. Referenced source files, renders, review observations and target readbacks were not independently inspected outside the supplied cases.",
+    "Case D supports a decisive missing-artifact failure, not a complete independent twelve-dimension pitch assessment; unassessed scores and means are null.",
+    "Next permitted stages describe gate decisions only. No downstream stages, repairs, edits or external actions were executed."
+  ]
+}

@@ -1,0 +1,585 @@
+{
+  "slug": "engos-design-shaping",
+  "manifest_version": "capability-fabric.v0",
+  "layers": {
+    "minimal": {
+      "capability_type": "skill",
+      "summary": "Guide product and engineering from rough notes through solution-free framing, evidence collection, shaping, independent review and verified delivery. Use for a shaping workshop, run progress or resume; use pitch review alone for a finished pitch assessment.",
+      "role": "analyst",
+      "domain_tags": [
+        "review",
+        "engos",
+        "design",
+        "shaping"
+      ],
+      "required_inputs": [
+        "source text",
+        "user intent/context"
+      ],
+      "expected_outputs": [
+        "deterministic summary",
+        "uplift payload",
+        "capability recommendation",
+        "deployment guidance"
+      ],
+      "tool_policy": {
+        "scope": "uac_intake_only",
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ],
+        "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
+      },
+      "resources": [
+        "ssot/engos-design-shaping.md"
+      ],
+      "packaging_profile": {
+        "capability_type": "skill",
+        "primary_surfaces": {
+          "codex": [
+            "codex_skill"
+          ],
+          "gemini": [
+            "gemini_skill"
+          ],
+          "claude": [
+            "claude_skill"
+          ],
+          "kiro": [
+            "kiro_skill"
+          ],
+          "grok": [
+            "grok_skill"
+          ]
+        },
+        "wrapper_surfaces": {
+          "codex": [],
+          "gemini": [
+            "skill_wrapper"
+          ],
+          "claude": [
+            "skill_wrapper",
+            "plugin_wrapper"
+          ],
+          "kiro": [
+            "skill_wrapper",
+            "power_wrapper"
+          ]
+        },
+        "notes": [
+          "wrapper surfaces are additive deployment forms, not capability types",
+          "orchestrators must not infer execution authority from wrapper presence alone"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
+        ]
+      },
+      "source_provenance": {
+        "source_type": "LOCAL_FILE",
+        "normalized_source": "ssot/engos-design-shaping.md",
+        "policy_rule_id": "ssot.engos-design-shaping",
+        "content_sha256": "ssot"
+      },
+      "confidence": 1.0,
+      "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
+      "review_status": "ready_for_orchestrator_review",
+      "display_name": "Shape a Problem into a Pitch"
+    },
+    "expanded": {
+      "relationship_suggestions": [],
+      "capability_dependencies": [
+        "context"
+      ],
+      "overlap_candidates": [
+        "engos-design-architecture",
+        "engos-design-plan-to-goal"
+      ],
+      "migration_notes": [
+        "If the capability lands, compare it against existing entries before apply.",
+        "Relationship suggestions are advisory only and do not imply runtime routing."
+      ],
+      "adjustment_recommendations": [
+        "add an explicit primary objective before packaging",
+        "add deterministic in-scope sections to improve routing fitness",
+        "capture quality constraints or non-negotiables"
+      ]
+    },
+    "org_graph": {
+      "org_role": "analyst",
+      "reports_to_suggestions": [],
+      "delegates_to_suggestions": [],
+      "collaborates_with_suggestions": [
+        "review",
+        "engos"
+      ],
+      "authority_tier": "advisory",
+      "work_graph_impact": "Adds or updates a skill capability with route profile None."
+    }
+  },
+  "display_name": "Shape a Problem into a Pitch",
+  "declared_capability": "skill",
+  "inferred_capability": "skill",
+  "expected_surface_names": [
+    "codex_skill",
+    "gemini_skill",
+    "claude_skill",
+    "kiro_skill",
+    "grok_skill"
+  ],
+  "rubric_version": "capability-fabric.v0",
+  "descriptor_version": "capability-fabric.descriptor.v0",
+  "family_slug": "engos-design-shaping",
+  "shared_summary": "Guide product and engineering from rough notes through solution-free framing, evidence collection, shaping, independent review and verified delivery. Use for a shaping workshop, run progress or resume; use pitch review alone for a finished pitch assessment.",
+  "shared_constraints": [],
+  "modes": [],
+  "benchmark_sources": [],
+  "quality_profile": "default",
+  "quality_status": "structural_ready",
+  "judge_reports": [
+    {
+      "pass_number": 1,
+      "status": "structural_ready",
+      "historical_baseline": {
+        "slug": "engos-design-shaping",
+        "strategy": "derived_history",
+        "group": "derived",
+        "baseline_path": null,
+        "selected_commit": "e077ae86",
+        "richness_score": 5,
+        "line_count": 177,
+        "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
+        "equivalent_commits": [
+          "7e94f9eb",
+          "e866aa80"
+        ],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [
+          {
+            "id": "operational_invocation",
+            "kind": "operational_contract",
+            "label": "operational invocation surface",
+            "must_contain": [
+              "## Invocation"
+            ]
+          }
+        ],
+        "historical_proof": {},
+        "source": "git_history",
+        "verified_by_git_history": true,
+        "has_baseline_text": true
+      },
+      "judge_reports": [
+        {
+          "judge": "source_fidelity",
+          "title": "Source Fidelity and Uplift",
+          "score": 10,
+          "blockers": [],
+          "classification": "preserved",
+          "scenario_results": [
+            {
+              "id": "operational_invocation",
+              "kind": "operational_contract",
+              "label": "operational invocation surface",
+              "passed": true,
+              "missing_markers": []
+            }
+          ],
+          "reviewed_deltas": [],
+          "requirement_review": {
+            "status": "not_supplied_or_invalid",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
+          "scorecard": {
+            "baseline_richness": 5,
+            "candidate_richness": 5,
+            "baseline_operational_score": 2,
+            "candidate_operational_score": 2,
+            "baseline_preserved_in_resource": false
+          },
+          "baseline_commit": "e077ae86",
+          "baseline_slug": "engos-design-shaping"
+        },
+        {
+          "judge": "operational_richness",
+          "title": "Operational Richness",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "metadata_integrity",
+          "title": "Metadata and Handoff Integrity",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "benchmark_readiness",
+          "title": "Benchmark Readiness and Template Fit",
+          "score": 9,
+          "blockers": [],
+          "scorecard": {
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 8,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          }
+        }
+      ],
+      "blockers": [],
+      "scorecard": {
+        "source_fidelity": 10,
+        "baseline_richness": 5,
+        "candidate_richness": 5,
+        "baseline_operational_score": 2,
+        "candidate_operational_score": 2,
+        "baseline_preserved_in_resource": false,
+        "operational_richness": 10,
+        "metadata_integrity": 10,
+        "benchmark_readiness": 9,
+        "title_clarity": 10,
+        "description_richness": 10,
+        "intent_coverage": 10,
+        "boundary_clarity": 8,
+        "output_specificity": 10,
+        "metadata_completeness": 8,
+        "surface_usability": 10
+      },
+      "template_name": "skill",
+      "effective_sha256": "d75210f48727b6d4aa881d85a6757f21691e0bfe8d12a06c1e2a3119d1710f81",
+      "semantic_findings": [],
+      "agent_surface_review": {
+        "status": "unchanged",
+        "added_providers": [],
+        "blockers": [],
+        "source_fidelity": "not_required",
+        "identity_authenticated": false,
+        "behavioral_status": "behavioral_pending"
+      },
+      "repair_requests": [],
+      "dimension_inventory": [
+        {
+          "dimension": "source_fidelity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "operational_richness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "metadata_integrity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "benchmark_readiness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "semantic_consistency",
+          "status": "no_detected_conflict_not_semantic_proof"
+        }
+      ]
+    }
+  ],
+  "consumption_hints": {
+    "preferred_use_cases": [
+      "AI-assisted capability selection",
+      "deterministic prompt uplift review"
+    ],
+    "artifact_conventions": [
+      "ssot/<slug>.md",
+      ".meta/capabilities/<slug>.json",
+      "reports/quality-reviews/<slug>/LATEST.md"
+    ],
+    "invocation_style": "assistant_first_but_scriptable",
+    "requires_human_confirmation": true
+  },
+  "quality_pass_count": 1,
+  "quality_stop_reason": "thresholds_met",
+  "historical_baseline": {
+    "slug": "engos-design-shaping",
+    "strategy": "candidate_seed",
+    "group": "new_or_untracked",
+    "baseline_path": null,
+    "selected_commit": null,
+    "richness_score": 5,
+    "line_count": 131,
+    "reason": "No registry entry or git history available; use the candidate as the provisional seed baseline.",
+    "equivalent_commits": [],
+    "expected_companions": [],
+    "operator_invariants": [],
+    "scenario_matrix": [],
+    "historical_proof": {},
+    "source": "candidate_seed",
+    "verified_by_git_history": false,
+    "has_baseline_text": true
+  },
+  "quality_validation_matrix": [
+    {
+      "id": "operational_invocation",
+      "kind": "operational_contract",
+      "label": "operational invocation surface",
+      "must_contain": [
+        "## Invocation"
+      ]
+    }
+  ],
+  "job_contract": {
+    "primary_job": "Produce an evidence-backed pitch with current acceptance receipts and faithful\nrequested outputs, or a useful hold naming the missing decision/evidence, owner\nand next action. Keep content readiness, delivery, human betting and implementation\ndistinct. A complete-looking document is not a passing review.",
+    "use_when": "\u201cHelp us frame and shape this; here are our notes\u201d starts the workshop. \u201cFrame\nonly,\u201d \u201ccontinue shaping,\u201d \u201creview this existing pitch,\u201d and \u201cresume this folder\nor registered Doc\u201d select its scope. The user need not invoke each phase.\nStandalone diagram or finished-pitch review requests use their existing helpers.",
+    "works_on": "Start with one sentence or available documents; no repository or complete form is\nrequired. Recover the original request, available source access, artifact home,\nhuman decisions and current state when present. Ask only for missing load-bearing\ninputs. Actual appetite, walk-away and decision authority must be established\nbefore accepting a frame, not invented as entry defaults.",
+    "main_output": "Return friendly links and a short status: accepted stage/revision, changed facts,\ncontent review, delivery per target, open blockers and next action. Maintain\nMarkdown brief/intake/frame/research/pitch, question and decision provenance,\nsource coverage, work orders and receipts in the project's authorized artifact\nhome. Reached shaping stages add the full diagram/contract/security bundle,\nsummary, provisional workstreams/proof slices and traceability. HTML and full\nJSON are derived exports; requested Google Docs get saved-target verification\nand an explicit reconciliation path. Do not fabricate artifacts for unreached\nstages. The phase templates define fields, not gate verdicts.",
+    "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
+    "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
+    "routing_question": "Does this request directly require Shape a Problem into a Pitch?",
+    "nearest_neighbors": [],
+    "shape": "unclassified_new_skill",
+    "portfolio_action": "draft_new_skill_pending_review",
+    "routing_fitness": {
+      "schema_version": "RoutingFitness.v1",
+      "mapping_status": "source_derived_draft",
+      "task_phases": {
+        "kind": "source_conditions",
+        "clauses": [
+          {
+            "text": "1. Read `resources/resource-map.json` and `resources/routing.md`. Load only the\n   selected route and its dependencies, reading each selected file completely.\n   Resolve cross-skill roots through the registry or explicit candidate binding.\n2. Use `start` or `resume`. Preserve original intent, inspect source coverage,\n   identify human decision owners, and offer AI-led, human-led or hybrid research.\n   Show understood problem, uncertainty, next step and at most three useful\n   questions. Bound total interview effort separately from implementation appetite.\n3. Dispatch Intake and Framed through `engos-design-frame-from-vague`; obtain G0\n   then G1 from `engos-quality-shaping-gate`. Keep mechanisms out of the frame.\n   Reuse existing supported content after auditing current prerequisites; do not\n   invent historic receipts. A supplied repository or request to inspect it is\n   registered for Research; it does not bypass G1. Inspect only a narrowly needed\n   solution-free fact when framing cannot proceed without it, and do not load\n   architecture-fit or make repository dispositions during Intake/Framed.\n   Frame-only scope finishes after G1.\n4. Use `research` to set evidence requirements and answer assigned uncertainties.\n   Add `code-scan` only for authorized repository inspection; add `human-evidence`\n   for supplied evidence or teammate returns. Research plans and opinions are\n   not observed results. Resolve repository context at runtime from the current\n   workspace or user-supplied locations. Ask which folders/modules matter only\n   when scope is ambiguous; never assume product repositories or sibling checkouts.\n   Use available project knowledge, language-server semantics, indexed search or\n   bounded text search, recording actual coverage and limitations. Load the architecture-fit route for material technical\n   capabilities/seams; investigate existing options and source coverage without\n   requiring a positive reuse finding. G2 uses the gate owner's criteria.\n5. Use `shape` to compare bounded options, rough out the selected solution and\n   challenge dependencies, usability, security, cost and recovery. Use the existing\n   artifact helper for all three diagrams and full contract/security tables.\n   New feasibility uncertainty reopens Research; changed scope reopens Framed.\n   Resolve material uncertainty while leaving non-load-bearing internals to builders.\n   Record evidence-backed reuse, extension, evolution, replacement, new or intentional\n   separation decisions at material seams; request bounded specialist advice only\n   when a concrete trade-off or structural concern warrants it.\n6. Use `review` for author audit followed by actual independent review under the\n   gate policy and existing pitch reviewer integration. Only the conductor may\n   accept current-generation results. Draft-only scope finishes at G3 as a shaped\n   draft, without claiming target delivery or Bet-ready.\n7. Use `publish` after G3 for approved target writes and full saved-result checks.\n   Use `reconcile` for external edits or uncertain publication. G4 and Bet-ready\n   remain pending until every required target is verified. A delivery-only failure\n   does not reopen unchanged content. An explicit target-scope change gets a new\n   decision/revision; it does not retroactively satisfy an earlier target contract.",
+            "heading": "Workflow",
+            "source": {
+              "path": "ssot/engos-design-shaping.md",
+              "start_line": 54,
+              "end_line": 95,
+              "sha256": "8b55e39c8a980de69fdb5bd2873c04a511ac41910c4068abda61747ba21efce6"
+            }
+          }
+        ]
+      },
+      "activation": {
+        "mode": "unknown",
+        "evidence": []
+      },
+      "risk_authority_ceiling": {
+        "grants_authority": false,
+        "clauses": [
+          {
+            "text": "Remain within the user's shaping and target-publication scope. Do not infer human\ndecisions, waive failed gates, or expand access. Host capabilities limit worker\nisolation and source inspection; disclose unverified boundaries. Stage state and\nreview receipts are evidence, not authority to implement or approve a human bet.",
+            "heading": "Constraints",
+            "source": {
+              "path": "ssot/engos-design-shaping.md",
+              "start_line": 123,
+              "end_line": 126,
+              "sha256": "8b55e39c8a980de69fdb5bd2873c04a511ac41910c4068abda61747ba21efce6"
+            }
+          }
+        ]
+      },
+      "negative_examples": {
+        "kind": "source_exclusions_not_synthetic_prompts",
+        "clauses": [
+          {
+            "text": "Remain within the user's shaping and target-publication scope. Do not infer human\ndecisions, waive failed gates, or expand access. Host capabilities limit worker\nisolation and source inspection; disclose unverified boundaries. Stage state and\nreview receipts are evidence, not authority to implement or approve a human bet.",
+            "heading": "Constraints",
+            "source": {
+              "path": "ssot/engos-design-shaping.md",
+              "start_line": 123,
+              "end_line": 126,
+              "sha256": "8b55e39c8a980de69fdb5bd2873c04a511ac41910c4068abda61747ba21efce6"
+            }
+          }
+        ]
+      },
+      "conditional_companions": [],
+      "pack_hints": {
+        "lead": "engos-design-shaping",
+        "companions": "only_after_applicable_source_conditions_are_checked",
+        "default_bulk_activation": false
+      },
+      "provenance": {
+        "ssot_path": "ssot/engos-design-shaping.md",
+        "ssot_sha256": "8b55e39c8a980de69fdb5bd2873c04a511ac41910c4068abda61747ba21efce6",
+        "effective_sha256": "d75210f48727b6d4aa881d85a6757f21691e0bfe8d12a06c1e2a3119d1710f81",
+        "resources": [
+          {
+            "path": "sources/capability-resources/engos-design-shaping/routing.md",
+            "sha256": "4059feede1b33685883b56fb405aef678fbf43d6f442328d9e480c255f700855"
+          },
+          {
+            "path": "sources/capability-resources/engos-design-shaping/decisions.md",
+            "sha256": "755649a7e4e94fdab041f551b2988936181099288d2edd63c0d2cd54c95fa1d6"
+          },
+          {
+            "path": "sources/capability-resources/engos-design-shaping/start-resume.md",
+            "sha256": "ed648b365d4f0d94a3d305206c00d2fc84382527d6ec81e9fbeb97a9f5a184cf"
+          },
+          {
+            "path": "sources/capability-resources/engos-design-shaping/sources.md",
+            "sha256": "d011714d16be04d77ddd5801926c68744ee664599064ad1f850d83a40475d96a"
+          },
+          {
+            "path": "sources/capability-resources/engos-design-shaping/questions.md",
+            "sha256": "2adcdfb3502841a79f53dd6044e2dbb6c803266c085ed8515611d9218c2a98aa"
+          },
+          {
+            "path": "sources/capability-resources/engos-design-shaping/progress.md",
+            "sha256": "693c3f935229ba4373399d0dc4856cc05d92134ccb982f0eae11ea31527f42cb"
+          },
+          {
+            "path": "sources/capability-resources/engos-design-shaping/dispatch.md",
+            "sha256": "2c1ecce235404930984151deb4f256d4bb7f98577686f49efeca86c046ad64f7"
+          },
+          {
+            "path": "sources/capability-resources/engos-design-shaping/architecture-fit.md",
+            "sha256": "e7bbc98d865d2465099ae00d1e4a230d201e2b2302bfdf3ac49d4eb101793037"
+          },
+          {
+            "path": "sources/capability-resources/engos-design-shaping/stages/research.md",
+            "sha256": "0baa3029cd0d56df3d9f399bece3474ec61afac9993ad7c31a6da49c3e69649d"
+          },
+          {
+            "path": "sources/capability-resources/engos-design-shaping/repository-discovery.md",
+            "sha256": "67bbc45e7a97a9e4b00c3d92c79189c379a795f84c264e298b6e3460a9b0ae45"
+          },
+          {
+            "path": "sources/capability-resources/engos-design-shaping/code-scan.md",
+            "sha256": "1eeb764fc851124e236f688253e80a298d5e2fe94543d6fdec470b16a7b2ec34"
+          },
+          {
+            "path": "sources/capability-resources/engos-design-shaping/human-evidence.md",
+            "sha256": "5342694ba348481d7070293bd331013644e3bfe74c7a24a7db74ac53c99b2686"
+          },
+          {
+            "path": "sources/capability-resources/engos-design-shaping/stages/shape.md",
+            "sha256": "76073e5306e0cce779e4820f878d68da9d8bd39fc9aa4c4cb7ae8200e8c50425"
+          },
+          {
+            "path": "sources/capability-resources/engos-design-shaping/templates/shaped-bundle.md",
+            "sha256": "d3959d1abd59b02d5ae1476e932c0e628f878a6fa5964636b4711c4b54d2b916"
+          },
+          {
+            "path": "sources/capability-resources/engos-design-shaping/stages/review.md",
+            "sha256": "9cf6534b100dea7cd7ab9dc6edaea0f356ff9855883644ec73c156e116ea7d6a"
+          },
+          {
+            "path": "sources/capability-resources/engos-design-shaping/stages/publish.md",
+            "sha256": "180c3fe533ac29921780e70224bfbdc6e9d4e4e41002bef86d6d030e25a5d1e4"
+          },
+          {
+            "path": "sources/capability-resources/engos-design-shaping/representations.md",
+            "sha256": "b7febb17ab1c232a9a596a7c542f204608f3092d6830df1f47b9b09486d82c64"
+          },
+          {
+            "path": "sources/capability-resources/engos-design-shaping/reconciliation.md",
+            "sha256": "13b1c1ac0b7901b5816c226a789e71bbc6378f6cff04444840c55a908167e757"
+          },
+          {
+            "path": "sources/capability-resources/engos-design-shaping/fallback.md",
+            "sha256": "a4b205b3d283210773c1032c433f5ea5780e6248c889a0a7cbe1ebe6a7bac49d"
+          }
+        ],
+        "extractor_version": "source-clauses.v1",
+        "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+        "field_sources": {
+          "primary_job": [
+            {
+              "text": "Produce an evidence-backed pitch with current acceptance receipts and faithful\nrequested outputs, or a useful hold naming the missing decision/evidence, owner\nand next action. Keep content readiness, delivery, human betting and implementation\ndistinct. A complete-looking document is not a passing review.",
+              "heading": "Primary Objective",
+              "source": {
+                "path": "ssot/engos-design-shaping.md",
+                "start_line": 20,
+                "end_line": 23,
+                "sha256": "8b55e39c8a980de69fdb5bd2873c04a511ac41910c4068abda61747ba21efce6"
+              }
+            }
+          ],
+          "use_when": [
+            {
+              "text": "\u201cHelp us frame and shape this; here are our notes\u201d starts the workshop. \u201cFrame\nonly,\u201d \u201ccontinue shaping,\u201d \u201creview this existing pitch,\u201d and \u201cresume this folder\nor registered Doc\u201d select its scope. The user need not invoke each phase.\nStandalone diagram or finished-pitch review requests use their existing helpers.",
+              "heading": "Invocation Hints",
+              "source": {
+                "path": "ssot/engos-design-shaping.md",
+                "start_line": 27,
+                "end_line": 30,
+                "sha256": "8b55e39c8a980de69fdb5bd2873c04a511ac41910c4068abda61747ba21efce6"
+              }
+            }
+          ],
+          "works_on": [
+            {
+              "text": "Start with one sentence or available documents; no repository or complete form is\nrequired. Recover the original request, available source access, artifact home,\nhuman decisions and current state when present. Ask only for missing load-bearing\ninputs. Actual appetite, walk-away and decision authority must be established\nbefore accepting a frame, not invented as entry defaults.",
+              "heading": "Required Inputs",
+              "source": {
+                "path": "ssot/engos-design-shaping.md",
+                "start_line": 34,
+                "end_line": 38,
+                "sha256": "8b55e39c8a980de69fdb5bd2873c04a511ac41910c4068abda61747ba21efce6"
+              }
+            }
+          ],
+          "main_output": [
+            {
+              "text": "Return friendly links and a short status: accepted stage/revision, changed facts,\ncontent review, delivery per target, open blockers and next action. Maintain\nMarkdown brief/intake/frame/research/pitch, question and decision provenance,\nsource coverage, work orders and receipts in the project's authorized artifact\nhome. Reached shaping stages add the full diagram/contract/security bundle,\nsummary, provisional workstreams/proof slices and traceability. HTML and full\nJSON are derived exports; requested Google Docs get saved-target verification\nand an explicit reconciliation path. Do not fabricate artifacts for unreached\nstages. The phase templates define fields, not gate verdicts.",
+              "heading": "Required Output",
+              "source": {
+                "path": "ssot/engos-design-shaping.md",
+                "start_line": 42,
+                "end_line": 50,
+                "sha256": "8b55e39c8a980de69fdb5bd2873c04a511ac41910c4068abda61747ba21efce6"
+              }
+            }
+          ]
+        },
+        "unresolved_companion_clauses": [],
+        "curated_fields": [
+          "authority",
+          "nearest_neighbors",
+          "not_for",
+          "portfolio_action",
+          "routing_question",
+          "shape"
+        ],
+        "curated_binding": "preserved_not_independently_revalidated",
+        "mapping_sha256": "4d14e2c17f53d2abaf9ff220a877c7875e4f1ef786dc6e68f39b6b5f7a31d94a"
+      },
+      "unresolved_fields": [
+        "task_phase_interpretation",
+        "risk_authority_interpretation",
+        "job_contract.authority",
+        "job_contract.not_for",
+        "implicit_activation_eligibility"
+      ]
+    }
+  }
+}

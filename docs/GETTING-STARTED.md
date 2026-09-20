@@ -14,6 +14,27 @@ For engineering activity, start with `engos-audit-engineering-progress help`. Su
 
 ## Step 1: Use Installed Capabilities
 
+For a product/engineering shaping workshop, use `engos-design-shaping` with the
+documents you already have. It should summarize the problem and ask a few useful
+questions, not require a complete form or choose an architecture immediately.
+No repository access is required merely to start: choose AI-led, human-led or
+hybrid research. [Start or resume guided Shape Up](engos-design-shaping.md).
+For technical pitches, ask it to investigate existing capabilities and justify
+reuse or new work. It brings in bounded architecture/code-health/testing advice
+when needed; neither reuse nor a whole-repo audit is compulsory.
+Check that page's current pilot status before assuming every host or publishing
+adapter has been validated.
+Verify all six core skills from the reviewed bundle are available. If any are
+missing or outdated, use the [shaping bundle setup](engos-design-shaping.md#enable-the-shaping-bundle)
+to preview their installation plus optional advisors. Naming the
+entry skill alone does not install its dependencies. Installation, mainline merge
+and release are separate steps.
+
+During a shaping run, ask “Show the current stage, blocker, owner and next step.”
+The assistant uses the existing run record, marks simulated/unknown evidence and
+keeps the latest accepted revision separate from drafts. A framing-only request
+can finish without treating later shaping/publication as failed work.
+
 Start in your CLI with the job you want done:
 
 > Supercharge this plan: replace our onboarding checklist with the fewest steps that still verify access, setup, and a successful first task.

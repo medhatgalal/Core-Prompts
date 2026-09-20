@@ -1,0 +1,127 @@
+{
+  "worker_id": "01a0b242-e3c9-7a91-b205-5ff59f1c936c",
+  "assessment": "Bounded simulated first-use preflight with observed defects; not an unqualified pass.",
+  "evidence_order": "Read recorded turns oldest first.",
+  "hash_algorithm": "SHA-256",
+  "assessed_artifacts": [
+    {
+      "path": "/private/tmp/engos-full-shaping-design/reports/engos-design-shaping/engos-quality-pilot-acceptance.md",
+      "hash": "8044121b76237d8f853d9f2b0bac9200e8805f8bbad829f74a3d78b8ed7431b8"
+    },
+    {
+      "path": "/private/tmp/engos-shaping-research-kKcBNJ/implementation-pilot/entry/observed-trace.json",
+      "hash": "49c8d748fa86752548f2bce5b52588b05bc68fc4e3d718da0237d57a62583701"
+    },
+    {
+      "path": "/private/tmp/engos-shaping-research-kKcBNJ/implementation-pilot/entry/brief.md",
+      "hash": "c83b2f2d9f7de6c90ab35702a98c97e8f2606f37f5ce34de05624779d7a97142"
+    },
+    {
+      "path": "/private/tmp/engos-shaping-research-kKcBNJ/implementation-pilot/entry/output/HANDOFF.md",
+      "hash": "ba22360ccc6ee43703de506f5c556cf0df609db02c4d57fcd411d2427bba0a27"
+    },
+    {
+      "path": "/private/tmp/engos-full-shaping-design/docs/engos-design-shaping.md",
+      "hash": "80f12651058c1ccb86f1c261d10789e6ebedcbc9ff984c81176c355550489e14"
+    }
+  ],
+  "criteria": [
+    {
+      "criterion": "Selected entry",
+      "outcome": "pass",
+      "evidence": "Selected engos-design-shaping with engos-design-frame-from-vague support; recorded commands target their generated skills/resources. Did not substitute pitch formatting."
+    },
+    {
+      "criterion": "Reported facts versus assumptions",
+      "outcome": "pass",
+      "evidence": "Attributed the complaint to the note; kept stale downloads, misleading indicators and frequency unresolved. Handoff explicitly says the note is not independently verified."
+    },
+    {
+      "criterion": "Question relevance",
+      "outcome": "pass",
+      "evidence": "Asked about affected users/actions, a concrete incident and investment authority, each relevant to framing."
+    },
+    {
+      "criterion": "At most three consequential questions per turn",
+      "outcome": "fail",
+      "evidence": "Initial response has three grouped questions. The follow-up's drafted request bundles user task, input change, displayed indication, checked download/result, intended-behavior contact and investment-authority contact.",
+      "qualification": "Counting only direct questions to the simulated user would miss the delegated burden. Failure uses substantive asks, not numbered bullets or question marks; the frozen criteria do not define counting granularity."
+    },
+    {
+      "criterion": "Interview effort checkpoint",
+      "outcome": "pass",
+      "evidence": "Proposed a two-round checkpoint, bounded subsequent work to one request using existing material, and stopped when asked.",
+      "qualification": "The checkpoint was proposed, not agreed. Handoff preserves that distinction; agreed-budget handling was not tested."
+    },
+    {
+      "criterion": "Unknown factual answers",
+      "outcome": "pass",
+      "evidence": "Requested an existing permitted example, accepted 'not checked' and 'no example available', and did not infer download behavior."
+    },
+    {
+      "criterion": "Undecided freshness preference",
+      "outcome": "fail",
+      "evidence": "Explained that freshness depends on the user's task and consequences, but supplied no concrete alternatives or trade-offs to help decide 'fresh enough', as the user guidance requires.",
+      "qualification": "Leaving the target open was correct; decision assistance remained incomplete."
+    },
+    {
+      "criterion": "Unknown decision owner",
+      "outcome": "pass",
+      "evidence": "Suggested asking the note supplier for contacts, distinguished behavior expertise from investment authority, and stated that a suggested contact is not approval."
+    },
+    {
+      "criterion": "Actionable human evidence request",
+      "outcome": "pass",
+      "evidence": "Produced an unsent request for existing evidence. Handoff specifies source/version, observed versus intended behavior, attribution and remaining uncertainty.",
+      "qualification": "Actionability does not erase the question-batch defect. No human received or answered the request."
+    },
+    {
+      "criterion": "Stop and resume handoff",
+      "outcome": "pass",
+      "evidence": "Stopped after the final scripted request. Actual HANDOFF.md preserves the complaint, unresolved gaps, boundaries, next action and explicit candidate-only status.",
+      "qualification": "Resume execution and runtime recovery were not tested."
+    },
+    {
+      "criterion": "No fabricated decisions, solution or stage pass",
+      "outcome": "pass",
+      "evidence": "No owner, appetite, threshold, architecture, accepted frame, approved bet or stage result was invented. No polished pitch was produced."
+    },
+    {
+      "criterion": "Pilot read boundary",
+      "outcome": "fail",
+      "evidence": "Initial command read enclosing primary-checkout Git metadata outside the requested pilot paths; the worker disclosed this deviation."
+    },
+    {
+      "criterion": "Isolation and absence of disallowed activity",
+      "outcome": "unverifiable",
+      "evidence": "Recorded commands show no production access or prior-report reads, but the worker inherited host instructions. The supplied trace is not a complete tool or enforcement audit."
+    },
+    {
+      "criterion": "Runtime acceptance and independent stage review",
+      "outcome": "unverifiable",
+      "evidence": "Neither occurred. This outcome assessment does not constitute an independent shaping-stage review."
+    }
+  ],
+  "violations_and_limitations": [
+    "Observed out-of-scope primary-checkout metadata read prevents a clean protocol-compliance claim.",
+    "A separate worker identity does not establish fresh context or an enforced sandbox.",
+    "Several recorded command outputs were truncated; commands demonstrate attempted reads, not complete resource ingestion.",
+    "The trace omits command output bodies and a complete write-tool history; the existing handoff can be assessed, but exclusive-write compliance cannot be independently certified.",
+    "Hashes identify artifacts at assessment time; no run-time package hashes establish an immutable skill binding.",
+    "One scripted case, two follow-ups and one assessment cannot establish human usability, successful evidence return, positive-case progression or full-pipeline correctness.",
+    "The acceptance file references C01–C12 and P1–P10 without reproducing them; those broader contracts were not assessed.",
+    "Pre-run freezing and absence of an author-supplied grade are supplied provenance, not independently timestamp-verified facts."
+  ],
+  "allowed_claims": [
+    "In this recorded simulation, the worker selected guided shaping, preserved uncertainty and produced a useful paused candidate handoff.",
+    "Observed behavior avoided invented decisions, solutions and stage acceptance.",
+    "The preflight exposed a scope violation, excessive delegated question batching and incomplete preference trade-off assistance."
+  ],
+  "withheld_claims": [
+    "Unqualified preflight acceptance or clean cold-start isolation.",
+    "Human usability or stakeholder acceptance.",
+    "Enforced sandbox or complete access/write compliance.",
+    "Runtime acceptance, actual independent stage review or demonstrated resume execution.",
+    "Full-pipeline validation, promotion readiness, superiority, cost or time savings."
+  ]
+}

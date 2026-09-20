@@ -475,7 +475,7 @@
       "portfolio_action": "keep",
       "routing_fitness": {
         "schema_version": "RoutingFitness.v1",
-        "mapping_status": "source_derived_draft",
+        "mapping_status": "stale",
         "task_phases": {
           "kind": "source_conditions",
           "clauses": []
@@ -492,9 +492,9 @@
               "heading": "Tool Boundaries",
               "source": {
                 "path": "ssot/engos-audit-pitch-review.md",
-                "start_line": 566,
-                "end_line": 568,
-                "sha256": "ca6ddabc14caee2cf1bf3a3f47fcc7971cff27830a4027471e25a048b6ad6bd3"
+                "start_line": 573,
+                "end_line": 575,
+                "sha256": "9fc43c2cff2cdd1c13de462021a279864839b1fcd3458180b8c0e0ba11c9dd2b"
               }
             }
           ]
@@ -511,8 +511,8 @@
         },
         "provenance": {
           "ssot_path": "ssot/engos-audit-pitch-review.md",
-          "ssot_sha256": "ca6ddabc14caee2cf1bf3a3f47fcc7971cff27830a4027471e25a048b6ad6bd3",
-          "effective_sha256": "ca6ddabc14caee2cf1bf3a3f47fcc7971cff27830a4027471e25a048b6ad6bd3",
+          "ssot_sha256": "9fc43c2cff2cdd1c13de462021a279864839b1fcd3458180b8c0e0ba11c9dd2b",
+          "effective_sha256": "9fc43c2cff2cdd1c13de462021a279864839b1fcd3458180b8c0e0ba11c9dd2b",
           "resources": [],
           "extractor_version": "source-clauses.v1",
           "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -531,7 +531,7 @@
             "works_on"
           ],
           "curated_binding": "preserved_not_independently_revalidated",
-          "mapping_sha256": "95017723daf11bcac204d88e2fc9cd56ba18fd4d8fe0ada7994b469ffece88aa"
+          "mapping_sha256": "34b42c876341c1b2363e8310cfe23bb89f4b0be05b2d3a17232cde79c1dd6898"
         },
         "unresolved_fields": [
           "task_phase_interpretation",
@@ -1200,7 +1200,7 @@
     "engos-delivery-artifact-embed": {
       "primary_job": "Make surface choice and placement deterministic: use native Mermaid/Markdown\nwhen available, use a render-and-place path only when required, and stop with a\nspecific human action when environment constraints prevent verified placement.",
       "use_when": "Use when a user asks to put shaping diagrams and contract tables into a docs\nsite, Google Doc, wiki/Confluence page, PR/MR description, or review chat. Ask\nfor the target surface only when it is not present in the pitch context. Do not\nask the user to pick a rendering technology when the target has a documented\nnative path.",
-      "works_on": "- a complete authored artifact bundle and manifest\n- one target surface: `html`, `github_pr`, `gitlab_mr`, `chat`, `google_doc`,\n  or `wiki`\n- target identity and write authorization when the surface is external\n- renderer capability and placement evidence available in the current runtime",
+      "works_on": "The bundle requirements below apply to artifact placement and Shaped export.\nLocal Framed-only rendering is a separate representation route: take the explicit\nframing prose inventory and selected style/profile, without a shaped solution,\ncontracts, diagrams or historic gate receipts. Its completeness check covers only\nthose requested framing sources. It creates local output, not external placement;\nthe full shaping publish route still requires G3 and exact target authority.\n\n- a complete authored artifact bundle and manifest\n- one target surface: `html`, `github_pr`, `gitlab_mr`, `chat`, `google_doc`,\n  or `wiki`\n- target identity and write authorization when the surface is external\n- renderer capability and placement evidence available in the current runtime",
       "main_output": "Return a placement receipt:\n\nFor `blocked` or `human_step_required`, name the exact missing permission,\nruntime capability, or human action. Do not report `placed` from a successful\nfile upload, a zero exit code, or a stale page view alone.",
       "not_for": "- The adapter must not rewrite component names, contract states, owners, or\n  evidence claims.\n- Google Docs placement is not considered complete until the saved revision is\n  read back and the image/table is observable there.\n- Public Drive sharing is never a required prerequisite for a private Google\n  Doc. If the only available image insertion path requires a public URL, stop\n  and name the human or platform-level unblock.\n- External write actions require target-specific authorization and should be\n  prepared as a dry-run receipt before execution.",
       "authority": "- The adapter must not rewrite component names, contract states, owners, or\n  evidence claims.\n- Google Docs placement is not considered complete until the saved revision is\n  read back and the image/table is observable there.\n- Public Drive sharing is never a required prerequisite for a private Google\n  Doc. If the only available image insertion path requires a public URL, stop\n  and name the human or platform-level unblock.\n- External write actions require target-specific authorization and should be\n  prepared as a dry-run receipt before execution.",
@@ -1210,18 +1210,18 @@
       "portfolio_action": "draft_new_skill_pending_review",
       "routing_fitness": {
         "schema_version": "RoutingFitness.v1",
-        "mapping_status": "source_derived_draft",
+        "mapping_status": "stale",
         "task_phases": {
           "kind": "source_conditions",
           "clauses": [
             {
-              "text": "1. Validate the input manifest and source hash. Refuse incomplete bundles unless\n   the caller explicitly requests a diagnostic receipt.\n2. Detect the target surface and its native diagram/table capabilities. Keep\n   the core bundle unchanged.\n3. For HTML, PR/MR, and chat, emit the same Mermaid fences and Markdown tables\n   as a passthrough adapter. No image hosting step is needed.\n4. For Google Docs, render Mermaid to an image only at the adapter boundary.\n   Use the environment-supported Drive upload form (`--upload`, not a blocked\n   `--upload-file` form when the runtime exposes that distinction), retain the\n   source link/hash, use a supported insertion mechanism, and read back the\n   saved document revision. `insertInlineImage` behavior that requires a\n   public URL is not a valid fallback when corporate Drive sharing blocks\n   public publication; report `human_step_required` if no supported insertion\n   path is available.\n5. For a wiki, probe the documented native macro or attachment path once. If\n   capability detection is unavailable, return a blocker rather than trying\n   undocumented APIs.\n6. Verify the resulting surface: Mermaid is rendered rather than shown as\n   broken source where native rendering is promised; tables retain all rows;\n   source identity is recoverable; and the page/file revision is current.\n7. Return the placement receipt and preserve any blockers in the evidence\n   ledger. Never silently downgrade a failed image placement to an untracked\n   text-only result.",
+              "text": "1. Select local Framed rendering versus authored-artifact placement first. For\n   local Framed rendering, load the current framed profile contract and validate\n   only its declared prose inventory; do not apply the shaped-bundle minima below.\n   For artifact placement, validate the input manifest and source hash. Refuse incomplete bundles unless\n   the caller explicitly requests a diagnostic receipt.\n2. Detect the target surface and its native diagram/table capabilities. Keep\n   the core bundle unchanged.\n3. For HTML, PR/MR, and chat, verify native Mermaid support before emitting\n   the same fences and full Markdown tables. If unsupported, select the authorized\n   image adapter and verify its actual saved representation.\n4. For Google Docs, render Mermaid to an image only at the adapter boundary.\n   Use the environment-supported Drive upload form (`--upload`, not a blocked\n   `--upload-file` form when the runtime exposes that distinction), retain the\n   source link/hash, use a supported insertion mechanism, and read back the\n   saved document revision. `insertInlineImage` behavior that requires a\n   public URL is not a valid fallback when corporate Drive sharing blocks\n   public publication; report `human_step_required` if no supported insertion\n   path is available.\n5. For a wiki, probe the documented native macro or attachment path once. If\n   capability detection is unavailable, return a blocker rather than trying\n   undocumented APIs.\n6. Verify the resulting surface: Mermaid is rendered rather than shown as\n   broken source where native rendering is promised; tables retain all rows;\n   source identity is recoverable; and the page/file revision is current.\n7. Return the placement receipt and preserve any blockers in the evidence\n   ledger. Never silently downgrade a failed image placement to an untracked\n   text-only result.",
               "heading": "Workflow",
               "source": {
                 "path": "ssot/engos-delivery-artifact-embed.md",
-                "start_line": 75,
-                "end_line": 97,
-                "sha256": "32773e71e5a87bfba82046253c673536c4174e935c7ee20e168bdb8bad2c97ff"
+                "start_line": 82,
+                "end_line": 108,
+                "sha256": "61124134e12aeb7a3a411622068ca73168435a98f7f820f480acce89d0a6a8de"
               }
             }
           ]
@@ -1238,9 +1238,9 @@
               "heading": "Constraints",
               "source": {
                 "path": "ssot/engos-delivery-artifact-embed.md",
-                "start_line": 114,
-                "end_line": 122,
-                "sha256": "32773e71e5a87bfba82046253c673536c4174e935c7ee20e168bdb8bad2c97ff"
+                "start_line": 125,
+                "end_line": 133,
+                "sha256": "61124134e12aeb7a3a411622068ca73168435a98f7f820f480acce89d0a6a8de"
               }
             }
           ]
@@ -1255,7 +1255,7 @@
                 "path": "ssot/engos-delivery-artifact-embed.md",
                 "start_line": 29,
                 "end_line": 33,
-                "sha256": "32773e71e5a87bfba82046253c673536c4174e935c7ee20e168bdb8bad2c97ff"
+                "sha256": "61124134e12aeb7a3a411622068ca73168435a98f7f820f480acce89d0a6a8de"
               }
             },
             {
@@ -1263,9 +1263,9 @@
               "heading": "Constraints",
               "source": {
                 "path": "ssot/engos-delivery-artifact-embed.md",
-                "start_line": 114,
-                "end_line": 122,
-                "sha256": "32773e71e5a87bfba82046253c673536c4174e935c7ee20e168bdb8bad2c97ff"
+                "start_line": 125,
+                "end_line": 133,
+                "sha256": "61124134e12aeb7a3a411622068ca73168435a98f7f820f480acce89d0a6a8de"
               }
             }
           ]
@@ -1278,9 +1278,26 @@
         },
         "provenance": {
           "ssot_path": "ssot/engos-delivery-artifact-embed.md",
-          "ssot_sha256": "32773e71e5a87bfba82046253c673536c4174e935c7ee20e168bdb8bad2c97ff",
-          "effective_sha256": "32773e71e5a87bfba82046253c673536c4174e935c7ee20e168bdb8bad2c97ff",
-          "resources": [],
+          "ssot_sha256": "61124134e12aeb7a3a411622068ca73168435a98f7f820f480acce89d0a6a8de",
+          "effective_sha256": "1ebaa0319a0b04e762e4aeb30601e3ddb1f6fbc92f116572ee37a403ad733f1f",
+          "resources": [
+            {
+              "path": "sources/capability-resources/engos-delivery-artifact-embed/references/surfaces.md",
+              "sha256": "c015c90032fa09f095662ab23975972f70cc639a2cd79037de07332ae1fb5202"
+            },
+            {
+              "path": "sources/capability-resources/engos-delivery-artifact-embed/references/export.md",
+              "sha256": "d3203b7590fbbba81348ada661d3cfb8e9c03b5256545384c09cf9c5c836f56d"
+            },
+            {
+              "path": "sources/capability-resources/engos-delivery-artifact-embed/references/reconciliation.md",
+              "sha256": "c167272a034c6e81bbd99b4699a38dc9301b9e592daedef69fd34003c14e8a67"
+            },
+            {
+              "path": "sources/capability-resources/engos-delivery-artifact-embed/scripts/artifact_export.py",
+              "sha256": "353efb6e917d5c58027613347a5db630cc22759c2f3e1794daffa34771b8c9bd"
+            }
+          ],
           "extractor_version": "source-clauses.v1",
           "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
           "field_sources": {
@@ -1292,7 +1309,7 @@
                   "path": "ssot/engos-delivery-artifact-embed.md",
                   "start_line": 23,
                   "end_line": 25,
-                  "sha256": "32773e71e5a87bfba82046253c673536c4174e935c7ee20e168bdb8bad2c97ff"
+                  "sha256": "61124134e12aeb7a3a411622068ca73168435a98f7f820f480acce89d0a6a8de"
                 }
               }
             ],
@@ -1304,19 +1321,29 @@
                   "path": "ssot/engos-delivery-artifact-embed.md",
                   "start_line": 29,
                   "end_line": 33,
-                  "sha256": "32773e71e5a87bfba82046253c673536c4174e935c7ee20e168bdb8bad2c97ff"
+                  "sha256": "61124134e12aeb7a3a411622068ca73168435a98f7f820f480acce89d0a6a8de"
                 }
               }
             ],
             "works_on": [
               {
-                "text": "- a complete authored artifact bundle and manifest\n- one target surface: `html`, `github_pr`, `gitlab_mr`, `chat`, `google_doc`,\n  or `wiki`\n- target identity and write authorization when the surface is external\n- renderer capability and placement evidence available in the current runtime",
+                "text": "The bundle requirements below apply to artifact placement and Shaped export.\nLocal Framed-only rendering is a separate representation route: take the explicit\nframing prose inventory and selected style/profile, without a shaped solution,\ncontracts, diagrams or historic gate receipts. Its completeness check covers only\nthose requested framing sources. It creates local output, not external placement;\nthe full shaping publish route still requires G3 and exact target authority.",
                 "heading": "Required Inputs",
                 "source": {
                   "path": "ssot/engos-delivery-artifact-embed.md",
                   "start_line": 37,
-                  "end_line": 41,
-                  "sha256": "32773e71e5a87bfba82046253c673536c4174e935c7ee20e168bdb8bad2c97ff"
+                  "end_line": 42,
+                  "sha256": "61124134e12aeb7a3a411622068ca73168435a98f7f820f480acce89d0a6a8de"
+                }
+              },
+              {
+                "text": "- a complete authored artifact bundle and manifest\n- one target surface: `html`, `github_pr`, `gitlab_mr`, `chat`, `google_doc`,\n  or `wiki`\n- target identity and write authorization when the surface is external\n- renderer capability and placement evidence available in the current runtime",
+                "heading": "Required Inputs",
+                "source": {
+                  "path": "ssot/engos-delivery-artifact-embed.md",
+                  "start_line": 44,
+                  "end_line": 48,
+                  "sha256": "61124134e12aeb7a3a411622068ca73168435a98f7f820f480acce89d0a6a8de"
                 }
               }
             ],
@@ -1326,9 +1353,9 @@
                 "heading": "Required Output",
                 "source": {
                   "path": "ssot/engos-delivery-artifact-embed.md",
-                  "start_line": 45,
-                  "end_line": 45,
-                  "sha256": "32773e71e5a87bfba82046253c673536c4174e935c7ee20e168bdb8bad2c97ff"
+                  "start_line": 52,
+                  "end_line": 52,
+                  "sha256": "61124134e12aeb7a3a411622068ca73168435a98f7f820f480acce89d0a6a8de"
                 }
               },
               {
@@ -1336,9 +1363,9 @@
                 "heading": "Required Output",
                 "source": {
                   "path": "ssot/engos-delivery-artifact-embed.md",
-                  "start_line": 59,
-                  "end_line": 61,
-                  "sha256": "32773e71e5a87bfba82046253c673536c4174e935c7ee20e168bdb8bad2c97ff"
+                  "start_line": 66,
+                  "end_line": 68,
+                  "sha256": "61124134e12aeb7a3a411622068ca73168435a98f7f820f480acce89d0a6a8de"
                 }
               }
             ]
@@ -1353,7 +1380,7 @@
             "shape"
           ],
           "curated_binding": "preserved_not_independently_revalidated",
-          "mapping_sha256": "cb39ea381213a37ead4dda5fd5445c8c554c53f72c6f93281f1b4d4b61c986a8"
+          "mapping_sha256": "8d5e569516ece67764fc7f2e1266a1c09bf62d7b450dd18d082619280f6c2b32"
         },
         "unresolved_fields": [
           "task_phase_interpretation",
@@ -1368,7 +1395,7 @@
       "primary_job": "Produce one inspectable artifact package that can be rendered or embedded on\nmultiple target surfaces while preserving the same component seams, flow,\ncontract states, ownership, assumptions, no-gos, and evidence references.",
       "use_when": "Use when the user asks to make a shaped pitch visual, add architecture\ndiagrams, define API contracts for a pitch, document security ownership, or\nprepare a pitch for a review/betting gate. Use the companion\n`engos-delivery-artifact-embed` skill only after the bundle has passed this\nskill's completeness checks.",
       "works_on": "- the shaped pitch or solution brief\n- appetite, no-gos, and known rabbit holes\n- cited research or source references for components and seams\n- any stated contract states: `exists_and_works`, `exists_but_broken`,\n  `missing`, or `unknown`\n- target surface hint, if known; the authoring output remains surface-agnostic",
-      "main_output": "Write or return a bundle with this stable shape:\n\n`manifest.json` records the pitch identity, appetite, source hashes or links,\ndiagram inventory, contract row count, security-owner row count, target-neutral\nformat, and status for each artifact: `authored`, `rendered`, `placed`, or\n`blocked`. The Markdown tables must include at least:\n\n| Required table | Minimum columns |\n\n| API / contracts | Direction, interface, purpose, producer, consumer, contract state, evidence, owner/action |\n\n| Security ownership | Responsibility, owner, enforcement/control, boundary, evidence, unresolved gap |\n\nEach diagram source must have a caption, diagram type, evidence references, and\nan explicit statement of what it does not show. The component diagram shows\nnamed components and seams; the sequence diagram shows a representative\nrequest or event path; the data-flow diagram shows data movement and stores.",
+      "main_output": "Write or return a bundle with this stable shape:\n\n`manifest.json` records the pitch identity, appetite, source hashes or links,\ndiagram inventory, contract row count, security-owner row count, target-neutral\nformat, and source status for each artifact: `authored` or `blocked`. Store render\nand placement observations in separate receipts bound to these source hashes; they\nmust not mutate the reviewed source inventory. The Markdown tables must include at least:\n\n| Required table | Minimum columns |\n\n| API / contracts | Method, endpoint (network only), purpose, direction, interface, producer, consumer, contract state, evidence, owner/action |\n\n| Security ownership | Responsibility, owner, enforcement/control, boundary, evidence, unresolved gap |\n\nEach diagram source must have a caption, diagram type, evidence references, and\nan explicit statement of what it does not show. The component diagram shows\nnamed components and seams; the sequence diagram shows a representative\nrequest or event path; the data-flow diagram shows data movement and stores.",
       "not_for": "- This skill does not score or approve the pitch; `engos-audit-pitch-review`\n  owns the betting judgment.\n- This skill does not choose a native agent surface or delegate work.\n- This skill does not upload, share, publish, or edit external documents.\n- It must work from pasted content, a local file, or a read-only source export.\n- If evidence is insufficient, return a partial bundle with explicit blockers;\n  never return a polished but unsupported diagram.",
       "authority": "- This skill does not score or approve the pitch; `engos-audit-pitch-review`\n  owns the betting judgment.\n- This skill does not choose a native agent surface or delegate work.\n- This skill does not upload, share, publish, or edit external documents.\n- It must work from pasted content, a local file, or a read-only source export.\n- If evidence is insufficient, return a partial bundle with explicit blockers;\n  never return a polished but unsupported diagram.",
       "routing_question": "Does this request directly require Shaping Artifact Author \u2014 Diagrams, Contracts, and Security Ownership?",
@@ -1377,7 +1404,7 @@
       "portfolio_action": "draft_new_skill_pending_review",
       "routing_fitness": {
         "schema_version": "RoutingFitness.v1",
-        "mapping_status": "source_derived_draft",
+        "mapping_status": "stale",
         "task_phases": {
           "kind": "source_conditions",
           "clauses": [
@@ -1388,7 +1415,7 @@
                 "path": "ssot/engos-delivery-diagram-contract-artifacts.md",
                 "start_line": 13,
                 "end_line": 19,
-                "sha256": "3b4f723779b4b9298366efeaf15827173bd06004c28f8e8872b7da93c5fa024e"
+                "sha256": "b3123faa8812d82521631c7b6cbf46333ef03815c8f912ef509ecd096dc3aa72"
               }
             },
             {
@@ -1398,17 +1425,17 @@
                 "path": "ssot/engos-delivery-diagram-contract-artifacts.md",
                 "start_line": 29,
                 "end_line": 33,
-                "sha256": "3b4f723779b4b9298366efeaf15827173bd06004c28f8e8872b7da93c5fa024e"
+                "sha256": "b3123faa8812d82521631c7b6cbf46333ef03815c8f912ef509ecd096dc3aa72"
               }
             },
             {
-              "text": "1. Read the pitch and evidence ledger before drawing. Extract only components,\n   interfaces, stores, owners, and flows that the pitch or cited evidence names.\n2. Set the artifact budget from the appetite. Choose the smallest diagram set\n   that covers the required seams; if the source cannot support a diagram,\n   record `blocked` with the missing evidence rather than guessing.\n3. Author Mermaid first. Use `graph LR` for request/event flows and `graph TB`\n   for component hierarchy. Apply the team's semantic style palette, keep node\n   labels short, and label edges with protocol, port, or contract context.\n4. Author the contract table for both provided and required interfaces. Record\n   contract state and distinguish observed behavior from assumption.\n5. Author the security-owner matrix. Assign responsibility only when the pitch\n   or evidence names an owner; otherwise record `unassigned` and a concrete\n   decision needed.\n6. Run the no-fabrication check: every node, edge, table row, owner, and\n   enforcement claim has an evidence reference or is visibly marked assumed.\n7. Run the completeness check: component, sequence, data-flow, contracts, and\n   security ownership exist; source and evidence status are recorded; no-go and\n   appetite constraints are carried forward.\n8. Return the bundle and a short judgment. Do not place it on a Google Doc,\n   wiki, PR/MR, or chat surface; hand that action to the embed skill.",
+              "text": "1. Read the pitch and evidence ledger before drawing. Extract only components,\n   interfaces, stores, owners, and flows that the pitch or cited evidence names.\n2. Set the artifact budget from the appetite. Choose the smallest diagram set\n   that covers the required seams; if the source cannot support a diagram,\n   record `blocked` with the missing evidence rather than guessing.\n3. Read resources/references/diagram-style.md and resources/references/bundle.md.\n   Author Mermaid first. Prefer LR for flows and TB for hierarchy when legible.\n   Apply the team's semantic style palette, keep node\n   labels short, and label edges with protocol, port, or contract context.\n4. Author the contract table for both provided and required interfaces. Record\n   contract state and distinguish observed behavior from assumption.\n5. Author the security-owner matrix. Assign responsibility only when the pitch\n   or evidence names an owner; otherwise record `unassigned` and a concrete\n   decision needed.\n6. Run the no-fabrication check: every node, edge, table row, owner, and\n   enforcement claim has an evidence reference or is visibly marked assumed.\n7. Run the completeness check: component, sequence, data-flow, contracts, and\n   security ownership exist; source and evidence status are recorded; no-go and\n   appetite constraints are carried forward.\n8. Return the bundle and a short judgment. Do not place it on a Google Doc,\n   wiki, PR/MR, or chat surface; hand that action to the embed skill.",
               "heading": "Workflow",
               "source": {
                 "path": "ssot/engos-delivery-diagram-contract-artifacts.md",
-                "start_line": 77,
-                "end_line": 96,
-                "sha256": "3b4f723779b4b9298366efeaf15827173bd06004c28f8e8872b7da93c5fa024e"
+                "start_line": 78,
+                "end_line": 98,
+                "sha256": "b3123faa8812d82521631c7b6cbf46333ef03815c8f912ef509ecd096dc3aa72"
               }
             }
           ]
@@ -1425,9 +1452,9 @@
               "heading": "Constraints",
               "source": {
                 "path": "ssot/engos-delivery-diagram-contract-artifacts.md",
-                "start_line": 127,
-                "end_line": 133,
-                "sha256": "3b4f723779b4b9298366efeaf15827173bd06004c28f8e8872b7da93c5fa024e"
+                "start_line": 130,
+                "end_line": 136,
+                "sha256": "b3123faa8812d82521631c7b6cbf46333ef03815c8f912ef509ecd096dc3aa72"
               }
             }
           ]
@@ -1440,9 +1467,9 @@
               "heading": "Constraints",
               "source": {
                 "path": "ssot/engos-delivery-diagram-contract-artifacts.md",
-                "start_line": 127,
-                "end_line": 133,
-                "sha256": "3b4f723779b4b9298366efeaf15827173bd06004c28f8e8872b7da93c5fa024e"
+                "start_line": 130,
+                "end_line": 136,
+                "sha256": "b3123faa8812d82521631c7b6cbf46333ef03815c8f912ef509ecd096dc3aa72"
               }
             }
           ]
@@ -1455,9 +1482,22 @@
         },
         "provenance": {
           "ssot_path": "ssot/engos-delivery-diagram-contract-artifacts.md",
-          "ssot_sha256": "3b4f723779b4b9298366efeaf15827173bd06004c28f8e8872b7da93c5fa024e",
-          "effective_sha256": "3b4f723779b4b9298366efeaf15827173bd06004c28f8e8872b7da93c5fa024e",
-          "resources": [],
+          "ssot_sha256": "b3123faa8812d82521631c7b6cbf46333ef03815c8f912ef509ecd096dc3aa72",
+          "effective_sha256": "3e557c2e53f29bc69e3c1709061c56e036911d40cbe7805d42265d04449fd340",
+          "resources": [
+            {
+              "path": "sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/diagram-style.md",
+              "sha256": "5fb462bc09f53e091c6e54473dade920bc166d96df5ec21dccab17d348fc42f4"
+            },
+            {
+              "path": "sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/bundle.md",
+              "sha256": "fda17a368888b85bb6af2b93e7ae44243ab324fa705dbc002736edf6d6d5a9bb"
+            },
+            {
+              "path": "sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/presentation.md",
+              "sha256": "38e23c43c4b3a19d21d155ea76aa9896bbd8f376b1cec59e19a9a0eecd4206d0"
+            }
+          ],
           "extractor_version": "source-clauses.v1",
           "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
           "field_sources": {
@@ -1469,7 +1509,7 @@
                   "path": "ssot/engos-delivery-diagram-contract-artifacts.md",
                   "start_line": 23,
                   "end_line": 25,
-                  "sha256": "3b4f723779b4b9298366efeaf15827173bd06004c28f8e8872b7da93c5fa024e"
+                  "sha256": "b3123faa8812d82521631c7b6cbf46333ef03815c8f912ef509ecd096dc3aa72"
                 }
               }
             ],
@@ -1481,7 +1521,7 @@
                   "path": "ssot/engos-delivery-diagram-contract-artifacts.md",
                   "start_line": 29,
                   "end_line": 33,
-                  "sha256": "3b4f723779b4b9298366efeaf15827173bd06004c28f8e8872b7da93c5fa024e"
+                  "sha256": "b3123faa8812d82521631c7b6cbf46333ef03815c8f912ef509ecd096dc3aa72"
                 }
               }
             ],
@@ -1493,7 +1533,7 @@
                   "path": "ssot/engos-delivery-diagram-contract-artifacts.md",
                   "start_line": 37,
                   "end_line": 42,
-                  "sha256": "3b4f723779b4b9298366efeaf15827173bd06004c28f8e8872b7da93c5fa024e"
+                  "sha256": "b3123faa8812d82521631c7b6cbf46333ef03815c8f912ef509ecd096dc3aa72"
                 }
               }
             ],
@@ -1505,17 +1545,17 @@
                   "path": "ssot/engos-delivery-diagram-contract-artifacts.md",
                   "start_line": 46,
                   "end_line": 46,
-                  "sha256": "3b4f723779b4b9298366efeaf15827173bd06004c28f8e8872b7da93c5fa024e"
+                  "sha256": "b3123faa8812d82521631c7b6cbf46333ef03815c8f912ef509ecd096dc3aa72"
                 }
               },
               {
-                "text": "`manifest.json` records the pitch identity, appetite, source hashes or links,\ndiagram inventory, contract row count, security-owner row count, target-neutral\nformat, and status for each artifact: `authored`, `rendered`, `placed`, or\n`blocked`. The Markdown tables must include at least:",
+                "text": "`manifest.json` records the pitch identity, appetite, source hashes or links,\ndiagram inventory, contract row count, security-owner row count, target-neutral\nformat, and source status for each artifact: `authored` or `blocked`. Store render\nand placement observations in separate receipts bound to these source hashes; they\nmust not mutate the reviewed source inventory. The Markdown tables must include at least:",
                 "heading": "Required Output",
                 "source": {
                   "path": "ssot/engos-delivery-diagram-contract-artifacts.md",
                   "start_line": 60,
-                  "end_line": 63,
-                  "sha256": "3b4f723779b4b9298366efeaf15827173bd06004c28f8e8872b7da93c5fa024e"
+                  "end_line": 64,
+                  "sha256": "b3123faa8812d82521631c7b6cbf46333ef03815c8f912ef509ecd096dc3aa72"
                 }
               },
               {
@@ -1523,19 +1563,19 @@
                 "heading": "Required Output",
                 "source": {
                   "path": "ssot/engos-delivery-diagram-contract-artifacts.md",
-                  "start_line": 65,
-                  "end_line": 65,
-                  "sha256": "3b4f723779b4b9298366efeaf15827173bd06004c28f8e8872b7da93c5fa024e"
+                  "start_line": 66,
+                  "end_line": 66,
+                  "sha256": "b3123faa8812d82521631c7b6cbf46333ef03815c8f912ef509ecd096dc3aa72"
                 }
               },
               {
-                "text": "| API / contracts | Direction, interface, purpose, producer, consumer, contract state, evidence, owner/action |",
+                "text": "| API / contracts | Method, endpoint (network only), purpose, direction, interface, producer, consumer, contract state, evidence, owner/action |",
                 "heading": "Required Output",
                 "source": {
                   "path": "ssot/engos-delivery-diagram-contract-artifacts.md",
-                  "start_line": 67,
-                  "end_line": 67,
-                  "sha256": "3b4f723779b4b9298366efeaf15827173bd06004c28f8e8872b7da93c5fa024e"
+                  "start_line": 68,
+                  "end_line": 68,
+                  "sha256": "b3123faa8812d82521631c7b6cbf46333ef03815c8f912ef509ecd096dc3aa72"
                 }
               },
               {
@@ -1543,9 +1583,9 @@
                 "heading": "Required Output",
                 "source": {
                   "path": "ssot/engos-delivery-diagram-contract-artifacts.md",
-                  "start_line": 68,
-                  "end_line": 68,
-                  "sha256": "3b4f723779b4b9298366efeaf15827173bd06004c28f8e8872b7da93c5fa024e"
+                  "start_line": 69,
+                  "end_line": 69,
+                  "sha256": "b3123faa8812d82521631c7b6cbf46333ef03815c8f912ef509ecd096dc3aa72"
                 }
               },
               {
@@ -1553,9 +1593,9 @@
                 "heading": "Required Output",
                 "source": {
                   "path": "ssot/engos-delivery-diagram-contract-artifacts.md",
-                  "start_line": 70,
-                  "end_line": 73,
-                  "sha256": "3b4f723779b4b9298366efeaf15827173bd06004c28f8e8872b7da93c5fa024e"
+                  "start_line": 71,
+                  "end_line": 74,
+                  "sha256": "b3123faa8812d82521631c7b6cbf46333ef03815c8f912ef509ecd096dc3aa72"
                 }
               }
             ]
@@ -1570,7 +1610,7 @@
             "shape"
           ],
           "curated_binding": "preserved_not_independently_revalidated",
-          "mapping_sha256": "e75e47dc99c37cd4e90d9511ef6f49cc8d269a3e8a222668c861c3414a5b76af"
+          "mapping_sha256": "c223f2d65deb2f9293de6212e376299d58a643ff40e9cf79af910eb79b08b3bc"
         },
         "unresolved_fields": [
           "task_phase_interpretation",
@@ -1790,6 +1830,160 @@
           "implicit_activation_eligibility",
           "task_phases",
           "risk_authority_ceiling"
+        ]
+      }
+    },
+    "engos-design-frame-from-vague": {
+      "primary_job": "Return a bounded problem ready for solution research, or a resumable candidate\nwith exact missing decisions. A frame states what matters and within what\ninvestment; it does not prescribe how to build it.",
+      "use_when": "Use for a rough complaint, a mechanism presented as a problem, or framing-only\nwork. The conductor selects `intake` or `frame`; direct requests use the same\nresources and gate owner. Researching solution feasibility belongs to the next\nphase. No selected topology, algorithm, endpoint or implementation steps here.",
+      "works_on": "Original text and available sources; source coverage/classification; any accepted\npredecessor; actual human constraints and decisions; candidate write location and\neffort bound. Missing inputs stay explicit. Read supplied context before asking\nagain. No complete intake form, repository access or preselected mechanism needed.",
+      "main_output": "Candidate `brief.md` and `intake.md`; after G0, candidate `framed.md`; linked\nquestion/uncertainty and decision events with evidence; work-order return and\nrequested gate review. Use `resources/templates.md` for fields. The conductor\nowns accepted snapshots and gate receipts. Direct use without a runtime or gate\nmay return an unaccepted frame, never a fabricated acceptance.",
+      "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
+      "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
+      "routing_question": "Does this request directly require Frame a Vague Problem?",
+      "nearest_neighbors": [],
+      "shape": "unclassified_new_skill",
+      "portfolio_action": "draft_new_skill_pending_review",
+      "routing_fitness": {
+        "schema_version": "RoutingFitness.v1",
+        "mapping_status": "source_derived_draft",
+        "task_phases": {
+          "kind": "source_conditions",
+          "clauses": [
+            {
+              "text": "1. Read `resources/resource-map.json` and `resources/routing.md`, then the complete\n   selected phase resources. Resolve the conductor's shared resources by registry\n   root, never by a machine-specific or guessed relative package path.\n2. Intake preserves raw input and provenance, inventories coverage, and classifies\n   Known, Assumed, Missing and Input directions not yet selected. Keep supplied\n   mechanisms visibly unendorsed; add no solution. Request G0 before framing.\n3. Frame from the current passing intake. Use source evidence to answer factual\n   gaps first. Product/engineering can propose, accept, edit or reject questions.\n   Ask one to three consequential questions per turn; permit unknown, delegate,\n   defer or stop. Use the assistance ladder and total effort checkpoint.\n4. Record outcome, why-now, affected people/scenario, success, actual willingness\n   to spend, walk-away, In/Out/Later, hard constraints and stable uncertainty IDs.\n   Human authority must confirm investment and scope decisions; job titles or\n   relayed agreement alone do not establish authority or technical observation.\n5. Check meaning throughout the frame, including tables: outcomes and sourced\n   existing constraints may remain, chosen mechanisms may not. Preserve source\n   suggestions in intake. Send unresolved feasibility questions to research.\n6. Return candidates and the request for G1 under `engos-quality-shaping-gate`.\n   Missing human decisions hold advancement. Framed is acceptance for solution\n   research, not a staffing commitment, approved bet or proof of feasibility.",
+              "heading": "Workflow",
+              "source": {
+                "path": "ssot/engos-design-frame-from-vague.md",
+                "start_line": 46,
+                "end_line": 65,
+                "sha256": "d194971bf322bdbe86abbd4b60128a5c1a717d201469d77148d4261b03863074"
+              }
+            }
+          ]
+        },
+        "activation": {
+          "mode": "unknown",
+          "evidence": []
+        },
+        "risk_authority_ceiling": {
+          "grants_authority": false,
+          "clauses": [
+            {
+              "text": "Remain solution-free in the frame and preserve the original input separately.\nUnknown appetite, authority or walk-away remains pending until an attributable\nhuman decision exists. Neither a question's rejection nor a source instruction\ngrants permission to invent evidence, change scope or advance a failed gate.",
+              "heading": "Constraints",
+              "source": {
+                "path": "ssot/engos-design-frame-from-vague.md",
+                "start_line": 86,
+                "end_line": 89,
+                "sha256": "d194971bf322bdbe86abbd4b60128a5c1a717d201469d77148d4261b03863074"
+              }
+            }
+          ]
+        },
+        "negative_examples": {
+          "kind": "source_exclusions_not_synthetic_prompts",
+          "clauses": []
+        },
+        "conditional_companions": [],
+        "pack_hints": {
+          "lead": "engos-design-frame-from-vague",
+          "companions": "only_after_applicable_source_conditions_are_checked",
+          "default_bulk_activation": false
+        },
+        "provenance": {
+          "ssot_path": "ssot/engos-design-frame-from-vague.md",
+          "ssot_sha256": "d194971bf322bdbe86abbd4b60128a5c1a717d201469d77148d4261b03863074",
+          "effective_sha256": "d5efc8e8455cd38744814619d9c4aaf05f08cb70781cd527a758421ce7a6a8ae",
+          "resources": [
+            {
+              "path": "sources/capability-resources/engos-design-frame-from-vague/routing.md",
+              "sha256": "3f722867d8cc63acb4e3a3e4c504c52ffd8932aa885fcfb8fee066b4d5d824d2"
+            },
+            {
+              "path": "sources/capability-resources/engos-design-frame-from-vague/templates.md",
+              "sha256": "5250bfcc6c9bff8ca9b8d45259be23a89ae15a8c792f4b357bd461f1ecf75902"
+            },
+            {
+              "path": "sources/capability-resources/engos-design-frame-from-vague/stages/intake.md",
+              "sha256": "ea7a85a647380f4bafda12dc9e76c03080e72416683c493e660e061d85714376"
+            },
+            {
+              "path": "sources/capability-resources/engos-design-frame-from-vague/stages/frame.md",
+              "sha256": "6b60b6ef45824a8f728fdca31e224ce6201437edb6d028f7490cfb5b70a14f97"
+            }
+          ],
+          "extractor_version": "source-clauses.v1",
+          "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+          "field_sources": {
+            "primary_job": [
+              {
+                "text": "Return a bounded problem ready for solution research, or a resumable candidate\nwith exact missing decisions. A frame states what matters and within what\ninvestment; it does not prescribe how to build it.",
+                "heading": "Primary Objective",
+                "source": {
+                  "path": "ssot/engos-design-frame-from-vague.md",
+                  "start_line": 18,
+                  "end_line": 20,
+                  "sha256": "d194971bf322bdbe86abbd4b60128a5c1a717d201469d77148d4261b03863074"
+                }
+              }
+            ],
+            "use_when": [
+              {
+                "text": "Use for a rough complaint, a mechanism presented as a problem, or framing-only\nwork. The conductor selects `intake` or `frame`; direct requests use the same\nresources and gate owner. Researching solution feasibility belongs to the next\nphase. No selected topology, algorithm, endpoint or implementation steps here.",
+                "heading": "Invocation Hints",
+                "source": {
+                  "path": "ssot/engos-design-frame-from-vague.md",
+                  "start_line": 24,
+                  "end_line": 27,
+                  "sha256": "d194971bf322bdbe86abbd4b60128a5c1a717d201469d77148d4261b03863074"
+                }
+              }
+            ],
+            "works_on": [
+              {
+                "text": "Original text and available sources; source coverage/classification; any accepted\npredecessor; actual human constraints and decisions; candidate write location and\neffort bound. Missing inputs stay explicit. Read supplied context before asking\nagain. No complete intake form, repository access or preselected mechanism needed.",
+                "heading": "Required Inputs",
+                "source": {
+                  "path": "ssot/engos-design-frame-from-vague.md",
+                  "start_line": 31,
+                  "end_line": 34,
+                  "sha256": "d194971bf322bdbe86abbd4b60128a5c1a717d201469d77148d4261b03863074"
+                }
+              }
+            ],
+            "main_output": [
+              {
+                "text": "Candidate `brief.md` and `intake.md`; after G0, candidate `framed.md`; linked\nquestion/uncertainty and decision events with evidence; work-order return and\nrequested gate review. Use `resources/templates.md` for fields. The conductor\nowns accepted snapshots and gate receipts. Direct use without a runtime or gate\nmay return an unaccepted frame, never a fabricated acceptance.",
+                "heading": "Required Output",
+                "source": {
+                  "path": "ssot/engos-design-frame-from-vague.md",
+                  "start_line": 38,
+                  "end_line": 42,
+                  "sha256": "d194971bf322bdbe86abbd4b60128a5c1a717d201469d77148d4261b03863074"
+                }
+              }
+            ]
+          },
+          "unresolved_companion_clauses": [],
+          "curated_fields": [
+            "authority",
+            "nearest_neighbors",
+            "not_for",
+            "portfolio_action",
+            "routing_question",
+            "shape"
+          ],
+          "curated_binding": "preserved_not_independently_revalidated",
+          "mapping_sha256": "6386061d3347a50af07122ce84a89845f78ed454c5e3bbd099396a5e52770af3"
+        },
+        "unresolved_fields": [
+          "task_phase_interpretation",
+          "risk_authority_interpretation",
+          "job_contract.authority",
+          "job_contract.not_for",
+          "implicit_activation_eligibility",
+          "negative_examples"
         ]
       }
     },
@@ -2036,6 +2230,230 @@
           "task_phase_interpretation",
           "risk_authority_interpretation",
           "job_contract.authority",
+          "implicit_activation_eligibility"
+        ]
+      }
+    },
+    "engos-design-shaping": {
+      "primary_job": "Produce an evidence-backed pitch with current acceptance receipts and faithful\nrequested outputs, or a useful hold naming the missing decision/evidence, owner\nand next action. Keep content readiness, delivery, human betting and implementation\ndistinct. A complete-looking document is not a passing review.",
+      "use_when": "\u201cHelp us frame and shape this; here are our notes\u201d starts the workshop. \u201cFrame\nonly,\u201d \u201ccontinue shaping,\u201d \u201creview this existing pitch,\u201d and \u201cresume this folder\nor registered Doc\u201d select its scope. The user need not invoke each phase.\nStandalone diagram or finished-pitch review requests use their existing helpers.",
+      "works_on": "Start with one sentence or available documents; no repository or complete form is\nrequired. Recover the original request, available source access, artifact home,\nhuman decisions and current state when present. Ask only for missing load-bearing\ninputs. Actual appetite, walk-away and decision authority must be established\nbefore accepting a frame, not invented as entry defaults.",
+      "main_output": "Return friendly links and a short status: accepted stage/revision, changed facts,\ncontent review, delivery per target, open blockers and next action. Maintain\nMarkdown brief/intake/frame/research/pitch, question and decision provenance,\nsource coverage, work orders and receipts in the project's authorized artifact\nhome. Reached shaping stages add the full diagram/contract/security bundle,\nsummary, provisional workstreams/proof slices and traceability. HTML and full\nJSON are derived exports; requested Google Docs get saved-target verification\nand an explicit reconciliation path. Do not fabricate artifacts for unreached\nstages. The phase templates define fields, not gate verdicts.",
+      "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
+      "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
+      "routing_question": "Does this request directly require Shape a Problem into a Pitch?",
+      "nearest_neighbors": [],
+      "shape": "unclassified_new_skill",
+      "portfolio_action": "draft_new_skill_pending_review",
+      "routing_fitness": {
+        "schema_version": "RoutingFitness.v1",
+        "mapping_status": "source_derived_draft",
+        "task_phases": {
+          "kind": "source_conditions",
+          "clauses": [
+            {
+              "text": "1. Read `resources/resource-map.json` and `resources/routing.md`. Load only the\n   selected route and its dependencies, reading each selected file completely.\n   Resolve cross-skill roots through the registry or explicit candidate binding.\n2. Use `start` or `resume`. Preserve original intent, inspect source coverage,\n   identify human decision owners, and offer AI-led, human-led or hybrid research.\n   Show understood problem, uncertainty, next step and at most three useful\n   questions. Bound total interview effort separately from implementation appetite.\n3. Dispatch Intake and Framed through `engos-design-frame-from-vague`; obtain G0\n   then G1 from `engos-quality-shaping-gate`. Keep mechanisms out of the frame.\n   Reuse existing supported content after auditing current prerequisites; do not\n   invent historic receipts. A supplied repository or request to inspect it is\n   registered for Research; it does not bypass G1. Inspect only a narrowly needed\n   solution-free fact when framing cannot proceed without it, and do not load\n   architecture-fit or make repository dispositions during Intake/Framed.\n   Frame-only scope finishes after G1.\n4. Use `research` to set evidence requirements and answer assigned uncertainties.\n   Add `code-scan` only for authorized repository inspection; add `human-evidence`\n   for supplied evidence or teammate returns. Research plans and opinions are\n   not observed results. Resolve repository context at runtime from the current\n   workspace or user-supplied locations. Ask which folders/modules matter only\n   when scope is ambiguous; never assume product repositories or sibling checkouts.\n   Use available project knowledge, language-server semantics, indexed search or\n   bounded text search, recording actual coverage and limitations. Load the architecture-fit route for material technical\n   capabilities/seams; investigate existing options and source coverage without\n   requiring a positive reuse finding. G2 uses the gate owner's criteria.\n5. Use `shape` to compare bounded options, rough out the selected solution and\n   challenge dependencies, usability, security, cost and recovery. Use the existing\n   artifact helper for all three diagrams and full contract/security tables.\n   New feasibility uncertainty reopens Research; changed scope reopens Framed.\n   Resolve material uncertainty while leaving non-load-bearing internals to builders.\n   Record evidence-backed reuse, extension, evolution, replacement, new or intentional\n   separation decisions at material seams; request bounded specialist advice only\n   when a concrete trade-off or structural concern warrants it.\n6. Use `review` for author audit followed by actual independent review under the\n   gate policy and existing pitch reviewer integration. Only the conductor may\n   accept current-generation results. Draft-only scope finishes at G3 as a shaped\n   draft, without claiming target delivery or Bet-ready.\n7. Use `publish` after G3 for approved target writes and full saved-result checks.\n   Use `reconcile` for external edits or uncertain publication. G4 and Bet-ready\n   remain pending until every required target is verified. A delivery-only failure\n   does not reopen unchanged content. An explicit target-scope change gets a new\n   decision/revision; it does not retroactively satisfy an earlier target contract.",
+              "heading": "Workflow",
+              "source": {
+                "path": "ssot/engos-design-shaping.md",
+                "start_line": 54,
+                "end_line": 95,
+                "sha256": "8b55e39c8a980de69fdb5bd2873c04a511ac41910c4068abda61747ba21efce6"
+              }
+            }
+          ]
+        },
+        "activation": {
+          "mode": "unknown",
+          "evidence": []
+        },
+        "risk_authority_ceiling": {
+          "grants_authority": false,
+          "clauses": [
+            {
+              "text": "Remain within the user's shaping and target-publication scope. Do not infer human\ndecisions, waive failed gates, or expand access. Host capabilities limit worker\nisolation and source inspection; disclose unverified boundaries. Stage state and\nreview receipts are evidence, not authority to implement or approve a human bet.",
+              "heading": "Constraints",
+              "source": {
+                "path": "ssot/engos-design-shaping.md",
+                "start_line": 123,
+                "end_line": 126,
+                "sha256": "8b55e39c8a980de69fdb5bd2873c04a511ac41910c4068abda61747ba21efce6"
+              }
+            }
+          ]
+        },
+        "negative_examples": {
+          "kind": "source_exclusions_not_synthetic_prompts",
+          "clauses": [
+            {
+              "text": "Remain within the user's shaping and target-publication scope. Do not infer human\ndecisions, waive failed gates, or expand access. Host capabilities limit worker\nisolation and source inspection; disclose unverified boundaries. Stage state and\nreview receipts are evidence, not authority to implement or approve a human bet.",
+              "heading": "Constraints",
+              "source": {
+                "path": "ssot/engos-design-shaping.md",
+                "start_line": 123,
+                "end_line": 126,
+                "sha256": "8b55e39c8a980de69fdb5bd2873c04a511ac41910c4068abda61747ba21efce6"
+              }
+            }
+          ]
+        },
+        "conditional_companions": [],
+        "pack_hints": {
+          "lead": "engos-design-shaping",
+          "companions": "only_after_applicable_source_conditions_are_checked",
+          "default_bulk_activation": false
+        },
+        "provenance": {
+          "ssot_path": "ssot/engos-design-shaping.md",
+          "ssot_sha256": "8b55e39c8a980de69fdb5bd2873c04a511ac41910c4068abda61747ba21efce6",
+          "effective_sha256": "d75210f48727b6d4aa881d85a6757f21691e0bfe8d12a06c1e2a3119d1710f81",
+          "resources": [
+            {
+              "path": "sources/capability-resources/engos-design-shaping/routing.md",
+              "sha256": "4059feede1b33685883b56fb405aef678fbf43d6f442328d9e480c255f700855"
+            },
+            {
+              "path": "sources/capability-resources/engos-design-shaping/decisions.md",
+              "sha256": "755649a7e4e94fdab041f551b2988936181099288d2edd63c0d2cd54c95fa1d6"
+            },
+            {
+              "path": "sources/capability-resources/engos-design-shaping/start-resume.md",
+              "sha256": "ed648b365d4f0d94a3d305206c00d2fc84382527d6ec81e9fbeb97a9f5a184cf"
+            },
+            {
+              "path": "sources/capability-resources/engos-design-shaping/sources.md",
+              "sha256": "d011714d16be04d77ddd5801926c68744ee664599064ad1f850d83a40475d96a"
+            },
+            {
+              "path": "sources/capability-resources/engos-design-shaping/questions.md",
+              "sha256": "2adcdfb3502841a79f53dd6044e2dbb6c803266c085ed8515611d9218c2a98aa"
+            },
+            {
+              "path": "sources/capability-resources/engos-design-shaping/progress.md",
+              "sha256": "693c3f935229ba4373399d0dc4856cc05d92134ccb982f0eae11ea31527f42cb"
+            },
+            {
+              "path": "sources/capability-resources/engos-design-shaping/dispatch.md",
+              "sha256": "2c1ecce235404930984151deb4f256d4bb7f98577686f49efeca86c046ad64f7"
+            },
+            {
+              "path": "sources/capability-resources/engos-design-shaping/architecture-fit.md",
+              "sha256": "e7bbc98d865d2465099ae00d1e4a230d201e2b2302bfdf3ac49d4eb101793037"
+            },
+            {
+              "path": "sources/capability-resources/engos-design-shaping/stages/research.md",
+              "sha256": "0baa3029cd0d56df3d9f399bece3474ec61afac9993ad7c31a6da49c3e69649d"
+            },
+            {
+              "path": "sources/capability-resources/engos-design-shaping/repository-discovery.md",
+              "sha256": "67bbc45e7a97a9e4b00c3d92c79189c379a795f84c264e298b6e3460a9b0ae45"
+            },
+            {
+              "path": "sources/capability-resources/engos-design-shaping/code-scan.md",
+              "sha256": "1eeb764fc851124e236f688253e80a298d5e2fe94543d6fdec470b16a7b2ec34"
+            },
+            {
+              "path": "sources/capability-resources/engos-design-shaping/human-evidence.md",
+              "sha256": "5342694ba348481d7070293bd331013644e3bfe74c7a24a7db74ac53c99b2686"
+            },
+            {
+              "path": "sources/capability-resources/engos-design-shaping/stages/shape.md",
+              "sha256": "76073e5306e0cce779e4820f878d68da9d8bd39fc9aa4c4cb7ae8200e8c50425"
+            },
+            {
+              "path": "sources/capability-resources/engos-design-shaping/templates/shaped-bundle.md",
+              "sha256": "d3959d1abd59b02d5ae1476e932c0e628f878a6fa5964636b4711c4b54d2b916"
+            },
+            {
+              "path": "sources/capability-resources/engos-design-shaping/stages/review.md",
+              "sha256": "9cf6534b100dea7cd7ab9dc6edaea0f356ff9855883644ec73c156e116ea7d6a"
+            },
+            {
+              "path": "sources/capability-resources/engos-design-shaping/stages/publish.md",
+              "sha256": "180c3fe533ac29921780e70224bfbdc6e9d4e4e41002bef86d6d030e25a5d1e4"
+            },
+            {
+              "path": "sources/capability-resources/engos-design-shaping/representations.md",
+              "sha256": "b7febb17ab1c232a9a596a7c542f204608f3092d6830df1f47b9b09486d82c64"
+            },
+            {
+              "path": "sources/capability-resources/engos-design-shaping/reconciliation.md",
+              "sha256": "13b1c1ac0b7901b5816c226a789e71bbc6378f6cff04444840c55a908167e757"
+            },
+            {
+              "path": "sources/capability-resources/engos-design-shaping/fallback.md",
+              "sha256": "a4b205b3d283210773c1032c433f5ea5780e6248c889a0a7cbe1ebe6a7bac49d"
+            }
+          ],
+          "extractor_version": "source-clauses.v1",
+          "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+          "field_sources": {
+            "primary_job": [
+              {
+                "text": "Produce an evidence-backed pitch with current acceptance receipts and faithful\nrequested outputs, or a useful hold naming the missing decision/evidence, owner\nand next action. Keep content readiness, delivery, human betting and implementation\ndistinct. A complete-looking document is not a passing review.",
+                "heading": "Primary Objective",
+                "source": {
+                  "path": "ssot/engos-design-shaping.md",
+                  "start_line": 20,
+                  "end_line": 23,
+                  "sha256": "8b55e39c8a980de69fdb5bd2873c04a511ac41910c4068abda61747ba21efce6"
+                }
+              }
+            ],
+            "use_when": [
+              {
+                "text": "\u201cHelp us frame and shape this; here are our notes\u201d starts the workshop. \u201cFrame\nonly,\u201d \u201ccontinue shaping,\u201d \u201creview this existing pitch,\u201d and \u201cresume this folder\nor registered Doc\u201d select its scope. The user need not invoke each phase.\nStandalone diagram or finished-pitch review requests use their existing helpers.",
+                "heading": "Invocation Hints",
+                "source": {
+                  "path": "ssot/engos-design-shaping.md",
+                  "start_line": 27,
+                  "end_line": 30,
+                  "sha256": "8b55e39c8a980de69fdb5bd2873c04a511ac41910c4068abda61747ba21efce6"
+                }
+              }
+            ],
+            "works_on": [
+              {
+                "text": "Start with one sentence or available documents; no repository or complete form is\nrequired. Recover the original request, available source access, artifact home,\nhuman decisions and current state when present. Ask only for missing load-bearing\ninputs. Actual appetite, walk-away and decision authority must be established\nbefore accepting a frame, not invented as entry defaults.",
+                "heading": "Required Inputs",
+                "source": {
+                  "path": "ssot/engos-design-shaping.md",
+                  "start_line": 34,
+                  "end_line": 38,
+                  "sha256": "8b55e39c8a980de69fdb5bd2873c04a511ac41910c4068abda61747ba21efce6"
+                }
+              }
+            ],
+            "main_output": [
+              {
+                "text": "Return friendly links and a short status: accepted stage/revision, changed facts,\ncontent review, delivery per target, open blockers and next action. Maintain\nMarkdown brief/intake/frame/research/pitch, question and decision provenance,\nsource coverage, work orders and receipts in the project's authorized artifact\nhome. Reached shaping stages add the full diagram/contract/security bundle,\nsummary, provisional workstreams/proof slices and traceability. HTML and full\nJSON are derived exports; requested Google Docs get saved-target verification\nand an explicit reconciliation path. Do not fabricate artifacts for unreached\nstages. The phase templates define fields, not gate verdicts.",
+                "heading": "Required Output",
+                "source": {
+                  "path": "ssot/engos-design-shaping.md",
+                  "start_line": 42,
+                  "end_line": 50,
+                  "sha256": "8b55e39c8a980de69fdb5bd2873c04a511ac41910c4068abda61747ba21efce6"
+                }
+              }
+            ]
+          },
+          "unresolved_companion_clauses": [],
+          "curated_fields": [
+            "authority",
+            "nearest_neighbors",
+            "not_for",
+            "portfolio_action",
+            "routing_question",
+            "shape"
+          ],
+          "curated_binding": "preserved_not_independently_revalidated",
+          "mapping_sha256": "4d14e2c17f53d2abaf9ff220a877c7875e4f1ef786dc6e68f39b6b5f7a31d94a"
+        },
+        "unresolved_fields": [
+          "task_phase_interpretation",
+          "risk_authority_interpretation",
+          "job_contract.authority",
+          "job_contract.not_for",
           "implicit_activation_eligibility"
         ]
       }
@@ -3996,6 +4414,176 @@
         ]
       }
     },
+    "engos-quality-shaping-gate": {
+      "primary_job": "Permit only supported, current stage transitions. A useful hold identifies the\nfailed condition, evidence or decision needed, responsible person/role and next\npermitted action. It does not discard useful drafts or reopen unrelated decisions.",
+      "use_when": "Use at each engos-design-shaping handoff, to inspect a resumed run, or as the\ngate component of engos-audit-pitch-review. A standalone pitch can be reviewed\nwithout fabricating historical gates; report unassessed prerequisites explicitly.",
+      "works_on": "Stage, original brief/constraints, candidate inventory, prior receipts, current\nsource/policy identities, question/decision snapshots, source access, actual host\nreviewer identity, authorship and targets. Read resources/references/gates.md in\nfull. For G3 also read resources/references/rubrics.md. For any runtime operation\nread resources/references/runtime.md and the helper's current --help first.",
+      "main_output": "A structured receipt and a short explanation: current stage; pass/fail/unverifiable\nconditions; inspected content hashes; evidence; actual reviewer/authorship; blockers;\nrepair owner; next permitted stage. G3 adds all twelve scores, rationales, means,\ntop fixes and three hardest questions. Never substitute `complete` for a verdict.",
+      "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
+      "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
+      "routing_question": "Does this request directly require Shape Up Stage Gate?",
+      "nearest_neighbors": [],
+      "shape": "unclassified_new_skill",
+      "portfolio_action": "draft_new_skill_pending_review",
+      "routing_fitness": {
+        "schema_version": "RoutingFitness.v1",
+        "mapping_status": "source_derived_draft",
+        "task_phases": {
+          "kind": "source_conditions",
+          "clauses": [
+            {
+              "text": "1. Verify subject identity, predecessor hashes and source coverage. Hold missing,\n   stale or contradictory dependencies before evaluating a later stage.\n2. Inspect actual prose, citations and required artifacts. Explain each failed\n   predicate with a quote or missing item. Read source evidence instead of trusting\n   manifest claims. A named spike or rejected question is not uncertainty closure.\n3. Distinguish product decisions, engineering evidence and expert judgments. Ask\n   the designated human when authority is missing; continue independent work only.\n4. For G3 inspect every local render and all contract/security rows, cross-check\n   their meaning, apply both scorecards and keep author audit separate from actual\n   independent review. Lack of independent context means review_pending.\n5. For G4 inspect each saved target's revision, content, tables and diagrams. A\n   successful upload, empty target list or source-only image check is insufficient.\n6. Return the documented predicate-level ReviewReceipt with exact subject/policy\n   and evidence bindings. The controller checks and accepts it using the runtime;\n   the reviewing worker never writes accepted state or approves its own work.\n7. After repairs, reevaluate the affected conditions and dependencies. Preserve\n   failed receipts and changes. New scope reopens framing; new material design\n   uncertainty reopens research. Keep content readiness distinct from delivery.",
+              "heading": "Workflow",
+              "source": {
+                "path": "ssot/engos-quality-shaping-gate.md",
+                "start_line": 39,
+                "end_line": 56,
+                "sha256": "28183ee46400a6d697ac6ec44013eb30e43b5f6d722e94392e5094897b12c70f"
+              }
+            }
+          ]
+        },
+        "activation": {
+          "mode": "unknown",
+          "evidence": []
+        },
+        "risk_authority_ceiling": {
+          "grants_authority": false,
+          "clauses": [
+            {
+              "text": "The script checks mechanical consistency, not truth or human authority. Host-bound\nworker provenance and permission boundaries must be observed separately. It is not\na sandbox against a caller who can rewrite its state. No sharing, production code,\nJira work, betting decision, native agent registration or privilege expansion.",
+              "heading": "Constraints",
+              "source": {
+                "path": "ssot/engos-quality-shaping-gate.md",
+                "start_line": 75,
+                "end_line": 78,
+                "sha256": "28183ee46400a6d697ac6ec44013eb30e43b5f6d722e94392e5094897b12c70f"
+              }
+            }
+          ]
+        },
+        "negative_examples": {
+          "kind": "source_exclusions_not_synthetic_prompts",
+          "clauses": []
+        },
+        "conditional_companions": [],
+        "pack_hints": {
+          "lead": "engos-quality-shaping-gate",
+          "companions": "only_after_applicable_source_conditions_are_checked",
+          "default_bulk_activation": false
+        },
+        "provenance": {
+          "ssot_path": "ssot/engos-quality-shaping-gate.md",
+          "ssot_sha256": "28183ee46400a6d697ac6ec44013eb30e43b5f6d722e94392e5094897b12c70f",
+          "effective_sha256": "99d7893cd603441283c2d7ba285fc462fe30ca1bd07fff19dc224dd6ed15a0f4",
+          "resources": [
+            {
+              "path": "sources/capability-resources/engos-quality-shaping-gate/references/gates.md",
+              "sha256": "24e49e2a349beb340361ab2eb9e2e48b1d43e5b8008cf44947fe97b635833bc5"
+            },
+            {
+              "path": "sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md",
+              "sha256": "5e79656c6854b09c9989d035b401ca606233d0938bdedd1614c295a4b2b1c4c7"
+            },
+            {
+              "path": "sources/capability-resources/engos-quality-shaping-gate/references/runtime.md",
+              "sha256": "db7ce9dba07f22a780fd36d5fe040c8dfb2673b52e7dc548a327afd4c3ddfaa3"
+            },
+            {
+              "path": "sources/capability-resources/engos-quality-shaping-gate/references/progress.md",
+              "sha256": "22940bd478122faf3d8544be8968c7ca0ecf13a2af9b66f67fb1d03fa1285ee1"
+            },
+            {
+              "path": "sources/capability-resources/engos-quality-shaping-gate/schemas/progress.schema.json",
+              "sha256": "9888082079239b50e34e8ef500c655bc6423133b4e58a9e18ce2e20d9b584d1e"
+            },
+            {
+              "path": "sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py",
+              "sha256": "2e56fa597d1493f7f9a0cff9d6705b1678e9d003e332367b07feb02751388247"
+            },
+            {
+              "path": "sources/capability-resources/engos-quality-shaping-gate/schemas/runtime.schema.json",
+              "sha256": "0902115d25c4c3e74e32d705eaa565a740adbf2f1bec0dee0d6274584520caae"
+            },
+            {
+              "path": "sources/capability-resources/engos-quality-shaping-gate/schemas/policy.example.json",
+              "sha256": "6ba041ad93985ba050deafbe0d33bcc077f1b5d4a768503e27e80d3069301b24"
+            }
+          ],
+          "extractor_version": "source-clauses.v1",
+          "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+          "field_sources": {
+            "primary_job": [
+              {
+                "text": "Permit only supported, current stage transitions. A useful hold identifies the\nfailed condition, evidence or decision needed, responsible person/role and next\npermitted action. It does not discard useful drafts or reopen unrelated decisions.",
+                "heading": "Primary Objective",
+                "source": {
+                  "path": "ssot/engos-quality-shaping-gate.md",
+                  "start_line": 19,
+                  "end_line": 21,
+                  "sha256": "28183ee46400a6d697ac6ec44013eb30e43b5f6d722e94392e5094897b12c70f"
+                }
+              }
+            ],
+            "use_when": [
+              {
+                "text": "Use at each engos-design-shaping handoff, to inspect a resumed run, or as the\ngate component of engos-audit-pitch-review. A standalone pitch can be reviewed\nwithout fabricating historical gates; report unassessed prerequisites explicitly.",
+                "heading": "Invocation Hints",
+                "source": {
+                  "path": "ssot/engos-quality-shaping-gate.md",
+                  "start_line": 25,
+                  "end_line": 27,
+                  "sha256": "28183ee46400a6d697ac6ec44013eb30e43b5f6d722e94392e5094897b12c70f"
+                }
+              }
+            ],
+            "works_on": [
+              {
+                "text": "Stage, original brief/constraints, candidate inventory, prior receipts, current\nsource/policy identities, question/decision snapshots, source access, actual host\nreviewer identity, authorship and targets. Read resources/references/gates.md in\nfull. For G3 also read resources/references/rubrics.md. For any runtime operation\nread resources/references/runtime.md and the helper's current --help first.",
+                "heading": "Required Inputs",
+                "source": {
+                  "path": "ssot/engos-quality-shaping-gate.md",
+                  "start_line": 31,
+                  "end_line": 35,
+                  "sha256": "28183ee46400a6d697ac6ec44013eb30e43b5f6d722e94392e5094897b12c70f"
+                }
+              }
+            ],
+            "main_output": [
+              {
+                "text": "A structured receipt and a short explanation: current stage; pass/fail/unverifiable\nconditions; inspected content hashes; evidence; actual reviewer/authorship; blockers;\nrepair owner; next permitted stage. G3 adds all twelve scores, rationales, means,\ntop fixes and three hardest questions. Never substitute `complete` for a verdict.",
+                "heading": "Required Output",
+                "source": {
+                  "path": "ssot/engos-quality-shaping-gate.md",
+                  "start_line": 60,
+                  "end_line": 63,
+                  "sha256": "28183ee46400a6d697ac6ec44013eb30e43b5f6d722e94392e5094897b12c70f"
+                }
+              }
+            ]
+          },
+          "unresolved_companion_clauses": [],
+          "curated_fields": [
+            "authority",
+            "nearest_neighbors",
+            "not_for",
+            "portfolio_action",
+            "routing_question",
+            "shape"
+          ],
+          "curated_binding": "preserved_not_independently_revalidated",
+          "mapping_sha256": "95dbac8b666dadd1b9fb7b7c0395505f4647aaac00729b5df981b3d3942d9c1a"
+        },
+        "unresolved_fields": [
+          "task_phase_interpretation",
+          "risk_authority_interpretation",
+          "job_contract.authority",
+          "job_contract.not_for",
+          "implicit_activation_eligibility",
+          "negative_examples"
+        ]
+      }
+    },
     "engos-quality-testing-review": {
       "primary_job": "Design or generate tests, edge cases, and coverage improvements for a defined target.",
       "use_when": "The primary deliverable is a unit, integration, end-to-end, edge-case, or coverage test plan or implementation.",
@@ -4486,7 +5074,7 @@
   },
   "receipt": {
     "schema_version": "SkillJobMapReceipt.v1",
-    "skills_sha256": "edf151ab536daf951d5fb7ff454dc90c3cca5d3e7a0d4a64cfc619bf44a5ace4",
+    "skills_sha256": "3eeb728994088fc4d234b3b748fa8ceb88996d524778150c1bfd82cc25062b57",
     "advisory_only": true,
     "behavioral_verified": false,
     "source_bindings": {
@@ -4511,9 +5099,9 @@
         "mapping_sha256": "db1bbde50436a71c15cb6bedc0bc616ce0e30a82c81cab80037ffc7c6ce00a39"
       },
       "engos-audit-pitch-review": {
-        "ssot_sha256": "ca6ddabc14caee2cf1bf3a3f47fcc7971cff27830a4027471e25a048b6ad6bd3",
-        "effective_sha256": "ca6ddabc14caee2cf1bf3a3f47fcc7971cff27830a4027471e25a048b6ad6bd3",
-        "mapping_sha256": "95017723daf11bcac204d88e2fc9cd56ba18fd4d8fe0ada7994b469ffece88aa"
+        "ssot_sha256": "9fc43c2cff2cdd1c13de462021a279864839b1fcd3458180b8c0e0ba11c9dd2b",
+        "effective_sha256": "9fc43c2cff2cdd1c13de462021a279864839b1fcd3458180b8c0e0ba11c9dd2b",
+        "mapping_sha256": "34b42c876341c1b2363e8310cfe23bb89f4b0be05b2d3a17232cde79c1dd6898"
       },
       "engos-audit-weekly-intel": {
         "ssot_sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36",
@@ -4536,14 +5124,14 @@
         "mapping_sha256": "3d494097518437715c21ac9b8ff22213e60ebb73f35d5c18dd43888bde205c0c"
       },
       "engos-delivery-artifact-embed": {
-        "ssot_sha256": "32773e71e5a87bfba82046253c673536c4174e935c7ee20e168bdb8bad2c97ff",
-        "effective_sha256": "32773e71e5a87bfba82046253c673536c4174e935c7ee20e168bdb8bad2c97ff",
-        "mapping_sha256": "cb39ea381213a37ead4dda5fd5445c8c554c53f72c6f93281f1b4d4b61c986a8"
+        "ssot_sha256": "61124134e12aeb7a3a411622068ca73168435a98f7f820f480acce89d0a6a8de",
+        "effective_sha256": "1ebaa0319a0b04e762e4aeb30601e3ddb1f6fbc92f116572ee37a403ad733f1f",
+        "mapping_sha256": "8d5e569516ece67764fc7f2e1266a1c09bf62d7b450dd18d082619280f6c2b32"
       },
       "engos-delivery-diagram-contract-artifacts": {
-        "ssot_sha256": "3b4f723779b4b9298366efeaf15827173bd06004c28f8e8872b7da93c5fa024e",
-        "effective_sha256": "3b4f723779b4b9298366efeaf15827173bd06004c28f8e8872b7da93c5fa024e",
-        "mapping_sha256": "e75e47dc99c37cd4e90d9511ef6f49cc8d269a3e8a222668c861c3414a5b76af"
+        "ssot_sha256": "b3123faa8812d82521631c7b6cbf46333ef03815c8f912ef509ecd096dc3aa72",
+        "effective_sha256": "3e557c2e53f29bc69e3c1709061c56e036911d40cbe7805d42265d04449fd340",
+        "mapping_sha256": "c223f2d65deb2f9293de6212e376299d58a643ff40e9cf79af910eb79b08b3bc"
       },
       "engos-delivery-resolve-conflict": {
         "ssot_sha256": "0ccc8d01936c017ade5e033d0370a46d4cb60d9ec68f5232754b7455c3896c8d",
@@ -4555,10 +5143,20 @@
         "effective_sha256": "5e282148a1bb97269630c29aefceec556330ec8fedbaab5436fa497cee48f216",
         "mapping_sha256": "bed4c6e655536e5e2cfe07d33baa380af75d23c0e7ca7b52b1225274669dee3d"
       },
+      "engos-design-frame-from-vague": {
+        "ssot_sha256": "d194971bf322bdbe86abbd4b60128a5c1a717d201469d77148d4261b03863074",
+        "effective_sha256": "d5efc8e8455cd38744814619d9c4aaf05f08cb70781cd527a758421ce7a6a8ae",
+        "mapping_sha256": "6386061d3347a50af07122ce84a89845f78ed454c5e3bbd099396a5e52770af3"
+      },
       "engos-design-plan-to-goal": {
         "ssot_sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f",
         "effective_sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f",
         "mapping_sha256": "9c125b9f9bd05743314ba0cdf2bc470f78b45b971a6d24c4e9edc31d4a0539aa"
+      },
+      "engos-design-shaping": {
+        "ssot_sha256": "8b55e39c8a980de69fdb5bd2873c04a511ac41910c4068abda61747ba21efce6",
+        "effective_sha256": "d75210f48727b6d4aa881d85a6757f21691e0bfe8d12a06c1e2a3119d1710f81",
+        "mapping_sha256": "4d14e2c17f53d2abaf9ff220a877c7875e4f1ef786dc6e68f39b6b5f7a31d94a"
       },
       "engos-memory-context-continuity": {
         "ssot_sha256": "1e3479ad869e1065a5c3fe2d102b0a8cda5b1206507745f1a817c3263f0b928b",
@@ -4614,6 +5212,11 @@
         "ssot_sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146",
         "effective_sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146",
         "mapping_sha256": "12bd2b2e59d9a132c09d732d456b292983a4cf110234ed636b81666bc16a2884"
+      },
+      "engos-quality-shaping-gate": {
+        "ssot_sha256": "28183ee46400a6d697ac6ec44013eb30e43b5f6d722e94392e5094897b12c70f",
+        "effective_sha256": "99d7893cd603441283c2d7ba285fc462fe30ca1bd07fff19dc224dd6ed15a0f4",
+        "mapping_sha256": "95dbac8b666dadd1b9fb7b7c0395505f4647aaac00729b5df981b3d3942d9c1a"
       },
       "engos-quality-testing-review": {
         "ssot_sha256": "13fe64494de3a09d60ddaad9f6c8824e42b59ff90c456a6a4e0c46018223e71b",
