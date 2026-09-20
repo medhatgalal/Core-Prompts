@@ -15,6 +15,21 @@ ROOT = Path(__file__).resolve().parents[1]
 SURFACES = ("codex", "gemini", "claude", "kiro", "grok")
 
 
+def distributable_files(root: Path) -> list[Path]:
+    # Match build-surfaces.copy_capability_resources: interpreter caches are
+    # incidental local state, not distributable capability resources.
+    return sorted(path for path in root.rglob('*') if path.is_file()
+                  and '__pycache__' not in path.relative_to(root).parts
+                  and path.suffix != '.pyc')
+
+
+def test_resource_inventory_ignores_bytecode_not_real_resources(tmp_path: Path):
+    (tmp_path / 'scripts/__pycache__').mkdir(parents=True)
+    for name in ['scripts/helper.py', 'guide.md', 'scripts/loose.pyc', 'scripts/__pycache__/helper.pyc']:
+        (tmp_path / name).write_text('fixture')
+    assert [p.relative_to(tmp_path).as_posix() for p in distributable_files(tmp_path)] == ['guide.md', 'scripts/helper.py']
+
+
 def test_resource_backed_skill_bundles_are_complete_and_installed_in_manifest():
     install_files = json.loads((ROOT / ".meta" / "install-bundle.json").read_text(encoding="utf-8"))["files"]
     canonical_roots = sorted(
@@ -24,7 +39,7 @@ def test_resource_backed_skill_bundles_are_complete_and_installed_in_manifest():
     assert canonical_roots
     for canonical_root in canonical_roots:
         slug = canonical_root.name
-        canonical_files = sorted(path for path in canonical_root.rglob("*") if path.is_file())
+        canonical_files = distributable_files(canonical_root)
         assert (ROOT / "ssot" / f"{slug}.md").is_file()
 
         for surface in SURFACES:

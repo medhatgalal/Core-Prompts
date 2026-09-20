@@ -1,6 +1,6 @@
 # Examples
 
-Use this page for full, concrete examples of how to use each currently shipped skill. The order matches the intended product order:
+Use this page for full, concrete examples of the current generated skill set. The order matches the intended product order:
 
 1. installed capabilities first
 2. UAC second
@@ -39,6 +39,104 @@ For the full plan-hardening stack:
 Expect the necessary outcomes and assumptions, failure scenarios, strongest objections, a corrected plan, and actual independent candidate grades. `/full` reviews the plan without executing its deletion proposal. It preserves the review requirements even when the host cannot complete them; missing independent evidence must be reported.
 
 ## Installed Skill Examples
+
+### `engos-design-shaping`
+
+Start with documents and a destination:
+
+> Use engos-design-shaping. Read the attached notes and this specification first.
+> Keep source documents in my authorized private project's planning/report-freshness/
+> folder, outside Core-Prompts, and generate Markdown plus a self-contained HTML review.
+> Start with framing, ask for missing decisions,
+> and do not publish or implement anything yet.
+
+Expected first response: what the assistant understood, known versus missing
+evidence, the next stage and at most three useful requests. It should not ask you
+to manually coordinate the skills or fabricate a finished pitch. If the skill is
+missing, follow the [bundle setup](engos-design-shaping.md#enable-the-shaping-bundle).
+
+Choose a cloud or repository target later:
+
+> When the content passes review, publish to this private Drive folder in this
+> work account, or prepare the approved Markdown at this repository path. Confirm
+> the exact destination and sharing settings, preserve existing edits, and verify
+> the saved result. Do not merge repository changes or notify people automatically.
+
+Expect a recorded target and separate delivery status, with required access or a
+specific manual step if unsupported. A Drive folder link does not itself grant
+access; local HTML success does not verify a saved Google Doc.
+
+> Before proposing another service, inspect the relevant existing capabilities.
+> Explain what we can configure or extend, what does not fit, and whether bounded
+> architecture or code-health advice would help. Keep unrelated refactoring out.
+
+Expected: scoped evidence in the research notes, justified reuse/non-reuse choices
+in the pitch, and only relevant specialist handoffs. An unavailable optional skill
+is disclosed, not installed automatically; missing material evidence holds the
+affected decision. Separate trust boundaries may justify similar-looking logic.
+
+> Help us frame and shape this problem using these documents. Explain what you
+> understand, propose engineering questions and guide us through the decisions.
+
+Expect one conversational entry, a solution-free frame before solutioning,
+evidence-backed research and a shaped pitch with all three diagrams and full
+contracts/security ownership. The assistant arranges scoped workers and independent
+review. Missing human decisions, source access or critical proof remain explicit
+holds; success is not inferred from a filled template.
+
+Without repo access:
+
+> We can provide specifications and ask engineers for evidence, but you cannot
+> access our repository. Help us collect only what is needed to shape the bet.
+
+Expect actionable research/teammate cards, a helpful response to “I don't know,”
+and the same evidence standard as AI-led research. A returned claim is not
+automatically a verified answer. See the [runbook](engos-design-shaping.md).
+
+For progress:
+
+> Where are we in this flow? Show what is accepted, what is being worked on,
+> what is blocked, who is needed and the next permitted action.
+
+Expect an as-of card derived from the run record, not a new tracker: current
+stage, accepted/draft revisions, actual assignment or unassigned, needed input,
+and separate content/visual/target status. Dispatch alone is not proof an agent
+is running. Counts describe verified gates, not percentage of effort or an ETA.
+
+For a readable pitch:
+
+> Format this frame and shaped pitch like the supplied references. Use SVG for
+> the HTML diagrams and PNG in the document, keep the tables editable, and retain
+> every contract field without squeezing the main table into thirteen columns.
+
+Expect source-bound assets, meaningful headings/lists/emphasis, figures with their
+explanations, compact primary tables and stable-ID supporting detail. Framed output
+must not gain solution diagrams. External placement still needs target authority
+and saved-result checks; formatting cannot turn a pending review into a pass.
+
+To resume or reconcile:
+
+> Resume this shaping folder and review edits in its Google Doc. Preserve our
+> changes, show any conflicts and reopen only the affected decisions or reviews.
+
+Expect a current accepted revision, comparison against the published baseline,
+preserved edits and separate content/delivery status. No silent source overwrite,
+automatic sharing, new staffing commitment or Jira work.
+
+### `engos-design-frame-from-vague`
+
+> Frame this rough idea only. Separate facts from assumptions, identify the
+> outcome and ask for the appetite and walk-away decisions we haven't made.
+
+Expect intake and Framed artifacts; no selected mechanism or later-stage success.
+
+### `engos-quality-shaping-gate`
+
+> Check whether this research handoff can advance. Read its evidence and show
+> any in-scope blocking uncertainty that is still unanswered.
+
+Expect a current, attributable verdict. Renaming a question, rejecting its wording
+or naming an unexecuted spike cannot make the underlying uncertainty disappear.
 
 ### `engos-memory-context-continuity`
 
@@ -870,6 +968,26 @@ Expected output:
 - strengths and risks
 - missing decisions
 - concrete rewrite guidance
+
+Familiar worked example (illustrative only): an Appian integration pitch may name
+an auth and transport seam such as `lcp-mcp-server → AE site`, ask for one read and
+one write call through stdio with API-key authentication, and separately prove the
+plug-in JAR loads on the target AE version. Those names come from the pitch being
+reviewed; they are not repositories, modules, tools or defaults built into the
+skill. When another repository invokes the skill, its own components and contracts
+replace every part of this example.
+
+For example, an Appian-specific spike plan might strip AIP wiring, call
+`createInterface` with deliberately broken SAIL to verify the expected 422 shape,
+and confirm the integration JAR against the selected AE version. A related pitch
+may be titled “MCP Server Auth,” name its actual contributor and goal, or discuss
+Composer and Agents. Keep those details in that pitch or this reader example;
+the reusable reviewer derives equivalent seams from whatever project it receives.
+In the same familiar vocabulary, an engineering-led stream such as LCP APIs or
+AI Platform may omit a Product contributor only when the pitch explains why and
+names the authority for problem, appetite and scope decisions. UX applicability
+is assessed separately. The reusable rule is the supported authority/applicability
+decision, not those stream names.
 
 Follow with:
 

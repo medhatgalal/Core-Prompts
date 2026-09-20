@@ -1,0 +1,28 @@
+%% D2 Caption: Config lifecycle precedes catalog reads; proposed addition preserves existing access and revision behavior.
+%% Source identity: engos-example-model-capacity/input.md; fixture only.
+%% Evidence: input.md:16-26; proposed response extension adapts input.md:18-22.
+%% Legend: blue participants = existing components/data; amber block = existing access check; green block = proposed response semantics.
+%% Omits: HTTP names, internal method signatures, timing and provider calls. Arrows describe contracts, not observed runtime or invented methods. render_pending.
+%%{init: {'theme':'base','themeVariables':{'actorBkg':'#EAF2FF','actorBorder':'#315D91','actorTextColor':'#152D48','noteBkgColor':'#FFF4DB','noteTextColor':'#4B3918'}}}%%
+sequenceDiagram
+  participant CFG as CatalogConfig
+  participant API as Catalog API
+  participant UI as Builder UI
+  Note over CFG,API: Existing config loading, not per-request provider work
+  CFG->>API: Candidate configuration
+  alt Valid candidate
+    Note over API: Activate revision; bind response data
+  else Invalid candidate
+    Note over API: Reject candidate; retain active catalog
+  end
+  UI->>API: Existing catalog read with session context
+  rect rgb(255,244,219)
+    alt Authorization denied
+      API-->>UI: Existing access failure; no catalog
+    else Authorized
+      rect rgb(232,245,236)
+        Note over API: Proposed: present capacity copied; absent omitted
+        API-->>UI: ModelCatalog from one revision; original fields retained
+      end
+    end
+  end

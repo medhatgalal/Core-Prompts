@@ -7,6 +7,9 @@
   "non_goals": [],
   "protected_behaviors": [
     "1f12a8ae4884f5bb77c4e17af2dbed2798f851275d9c97062df43f211a50cee4",
+    "4fa5085199bb9580ec4aba8e344c9156fc25c08c3f0ad6032d23ad1ba34e1606",
+    "c2c14fd10fb03bebaa1fa20aaabc15e3bcfcca7872a830c64d8d985dc927f709",
+    "e08acdebc7f11f78dea95f2fa66ead9a670a764fd23feb2e27f04d00307521e8",
     "9c1655933ac1952f2c40c6f8d15f790558497fa2073641e829f78cc65c8f8006",
     "ded09ee944d3bd722a516ab22ad28d33af9831a4e2f1a70b12b06dbd97ddcfd6",
     "01082470313d9a12f3baf5e6bee8af0e1bc27d93accd00d7a3bcd6b7db9b7ea8",
@@ -30,6 +33,8 @@
     "8122b0b659dc140ffca0b213f06e07af2646032a4b0e300ff07dbc519bae9e59",
     "a24e26f1e6ab71b90d217e56d01503aea468125d80688a3c7b2e066a3621641e",
     "d678721563279d04b01868241f2a4d964146a93a98196428c393480d8fa4ea6c",
+    "fe96762105acda5e852f2bfb890230dab147ba94771de1b405f27452e4f5cc7f",
+    "ad96b6efc4f26c8510e5ec676d05bc1c6ee5cc3bdf4131216833f56d88b3b8da",
     "5772c336924c3a9029d790c9f4d2ef7e9fa41c7fbe0fd94464aad016842034e3",
     "bbfde09aa596af6b19a1188bf1ea48ba4adf45e24c055af1dae3fce8ce893743",
     "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
@@ -39,7 +44,11 @@
     "2cb8c82423bbf65482a53508075b2648530c4be27392436d40b3417e48399932",
     "3f409f81bf498a3744f2f94a21c81d8972f254564b5b010e550d0e3b03e1f203",
     "d267c1f0186bb6e7a2decf8b4e1917b3d52c43d984f5d5666b7966f16f7045b1",
-    "8862702a682ef182057d03212b0f4a8b9914bae7c26beb903bbc3a43c7bf02bb"
+    "8862702a682ef182057d03212b0f4a8b9914bae7c26beb903bbc3a43c7bf02bb",
+    "7c1abbd4f7b26cd9e35f9516a7f552784c20e9973bbad8138ba72805958bbe68",
+    "95f76c66d454e7435eee0d91799935db050d0b1c6c57c0f462b43535949d7913",
+    "2fa57cd93caf9c46329210af42fd6a35952cab6a209ee527aff49d778a356880",
+    "99b3fadaa7eb56b501767aa23138306659308fe3f00d1d8bb8c16dd040e75506"
   ],
   "editable_behavior": [],
   "primary_outcome": {
@@ -75,6 +84,21 @@
       "sha256": "1f12a8ae4884f5bb77c4e17af2dbed2798f851275d9c97062df43f211a50cee4",
       "source": "ssot/engos-audit-pitch-review.md",
       "text": "- [Required when crossing seams. Strongly recommended otherwise.]"
+    },
+    {
+      "sha256": "4fa5085199bb9580ec4aba8e344c9156fc25c08c3f0ad6032d23ad1ba34e1606",
+      "source": "ssot/engos-audit-pitch-review.md",
+      "text": "- **Appetite/cycle:** Read the supplied pitch or accepted framing decision; never"
+    },
+    {
+      "sha256": "c2c14fd10fb03bebaa1fa20aaabc15e3bcfcca7872a830c64d8d985dc927f709",
+      "source": "ssot/engos-audit-pitch-review.md",
+      "text": "- **Team and target product:** Use only supplied project context. Unknown ownership"
+    },
+    {
+      "sha256": "e08acdebc7f11f78dea95f2fa66ead9a670a764fd23feb2e27f04d00307521e8",
+      "source": "ssot/engos-audit-pitch-review.md",
+      "text": "- **Shaping exit criteria:** Apply the selected rubric at shaping depth; do not"
     },
     {
       "sha256": "9c1655933ac1952f2c40c6f8d15f790558497fa2073641e829f78cc65c8f8006",
@@ -192,6 +216,16 @@
       "text": "- Verdict must match shaped status. A `partial` pitch CANNOT have a \"ready to bet\" verdict."
     },
     {
+      "sha256": "fe96762105acda5e852f2bfb890230dab147ba94771de1b405f27452e4f5cc7f",
+      "source": "ssot/engos-audit-pitch-review.md",
+      "text": "- **Acceptable** only when the pitch explicitly explains why Product participation"
+    },
+    {
+      "sha256": "ad96b6efc4f26c8510e5ec676d05bc1c6ee5cc3bdf4131216833f56d88b3b8da",
+      "source": "ssot/engos-audit-pitch-review.md",
+      "text": "is not required and identifies the person or role with authority over the problem,"
+    },
+    {
       "sha256": "5772c336924c3a9029d790c9f4d2ef7e9fa41c7fbe0fd94464aad016842034e3",
       "source": "ssot/engos-audit-pitch-review.md",
       "text": "- **Next actions must be specific to THIS pitch.** Not generic template advice. If the advice could apply to any pitch without modification, it doesn't belong in the review."
@@ -240,6 +274,26 @@
       "sha256": "8862702a682ef182057d03212b0f4a8b9914bae7c26beb903bbc3a43c7bf02bb",
       "source": "ssot/engos-audit-pitch-review.md",
       "text": "- **Forbidden:** Write directly to the delivery tracker spreadsheet. Change pitch priority or goal mapping without user approval. Approve pitches for betting (that's leadership's call)."
+    },
+    {
+      "sha256": "7c1abbd4f7b26cd9e35f9516a7f552784c20e9973bbad8138ba72805958bbe68",
+      "source": "ssot/engos-audit-pitch-review.md",
+      "text": "for that mode only. The actual human appetite and current evidence override the"
+    },
+    {
+      "sha256": "95f76c66d454e7435eee0d91799935db050d0b1c6c57c0f462b43535949d7913",
+      "source": "ssot/engos-audit-pitch-review.md",
+      "text": "historical four-week/team assumptions in examples and context. Required three"
+    },
+    {
+      "sha256": "2fa57cd93caf9c46329210af42fd6a35952cab6a209ee527aff49d778a356880",
+      "source": "ssot/engos-audit-pitch-review.md",
+      "text": "Rabbit holes require sourced mitigations; do not demand a finished implementation"
+    },
+    {
+      "sha256": "99b3fadaa7eb56b501767aa23138306659308fe3f00d1d8bb8c16dd040e75506",
+      "source": "ssot/engos-audit-pitch-review.md",
+      "text": "missing owner, unresolved material question or required artifact."
     }
   ],
   "review_status": "draft"

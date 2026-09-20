@@ -1,0 +1,19 @@
+%% ID: D03. Caption: Proposed definition-only movement and transformation; no results export.
+%% Source identity: engos-example-config-deployment/input.md.
+%% Evidence: input.md:10-12; input.md:16-33.
+%% Legend: green = store; blue = transformation/component; amber = validation/commit boundary.
+%% Dashed = proposed package cost data; solid = fixture read/responsibility.
+%% Omitted: customer transactions, cost results, historical recompute and transport internals.
+%% Status: review_pending / render_pending; no runtime or pixel claims.
+%%{init: {"theme":"base","themeVariables":{"fontFamily":"Arial","fontSize":"14px","lineColor":"#475569"}}}%%
+flowchart LR
+  S[(Source CostConfigStore)]:::data -->|UUID and definitions C01| E[PackageExporter]:::component
+  E -.->|optional cost section C02; encrypted channel C03| I[PackageImporter]:::component
+  I -.->|present: associated definitions C04-C05| T[Deployment transaction]:::control
+  I -->|absent section| N[Leave target costs unchanged]:::control
+  T -.->|validate then atomic commit C06| D[(Target CostConfigStore)]:::data
+  D -->|committed settings at next scheduled run C07| R[RunningAnalysis]:::component
+  T -->|invalid or stale without authorized force| X[No writes; visible rejection]:::control
+  classDef component fill:#eff6ff,stroke:#1d4ed8,color:#0f172a
+  classDef data fill:#ecfdf5,stroke:#047857,color:#0f172a
+  classDef control fill:#fffbeb,stroke:#b45309,color:#0f172a

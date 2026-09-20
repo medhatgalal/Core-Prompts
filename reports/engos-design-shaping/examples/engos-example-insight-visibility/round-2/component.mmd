@@ -1,0 +1,24 @@
+%% D1 Caption: Proposed publication within InsightService uses existing MetricsPlatform intake and reporting.
+%% Source identity: engos-example-insight-visibility/input.md plus round-two-clarifications.md I1/I2.
+%% Evidence: input.md:9-12 and round-two-clarifications.md:20-34.
+%% Legend: primary service blue, internal platform cyan, client pale blue, data green, product security boundary pink, dashed proposed integration.
+%% Style: exact team palette from diagram-style.md, source-only conformance pending controller pixels.
+%% Omits internal jobs, endpoints, deployment and new services. No runtime or render proof, render_pending.
+flowchart LR
+  subgraph PB[Product boundary]
+    IS[InsightService]
+  end
+  MP[MetricsPlatform]
+  PM[Product managers]
+  IS -.->|Proposed S1 publication| MP
+  MP -->|Existing role gated reporting| PM
+
+  classDef primary fill:#326ce5,stroke:#1a3e7a,color:#ffffff
+  classDef secondary fill:#4fc3f7,stroke:#0277bd,color:#01579b
+  classDef client fill:#e3f2fd,stroke:#1565c0,color:#0d47a1
+  classDef data fill:#e8f5e9,stroke:#2e7d32,color:#1b5e20
+  classDef security fill:#fce4ec,stroke:#c62828,color:#b71c1c
+  class IS primary
+  class MP secondary
+  class PM client
+  style PB fill:#fce4ec,stroke:#c62828,color:#b71c1c

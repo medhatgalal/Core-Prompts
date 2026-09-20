@@ -1,0 +1,22 @@
+%% D03 caption: Truthful source states become checked additive updates, then scheduled consumption.
+%% Identity: engos-example-config-deployment/input.md plus C2-C4.
+%% Evidence: input.md:22-33, round-two-clarifications.md:38-62.
+%% Exact team palette: primary importer, internal exporter, data stores, security controls, async analysis.
+%% Dashed edge is proposed payload. Outcome boxes describe existing or required controls, not new services.
+%% Omits wire schema, customer transaction data, cost results and internal concurrency mechanisms.
+%% review_pending / render_pending. No runtime or visual success asserted.
+%%{init: {"theme":"base","themeVariables":{"fontFamily":"Arial","fontSize":"14px","lineColor":"#1a3e7a"}}}%%
+flowchart LR
+  S[(Source CostConfigStore)]:::data -->|C01 definitions or truthful absence| E[PackageExporter]:::internal
+  E -->|failed read| F[Abort export]:::security
+  E -.->|C02 optional definitions by UUID| I[PackageImporter]:::primary
+  I -->|C04 valid states and C08 supported envelope| T[Deployment transaction]:::security
+  I -->|invalid or outside C4| X[No package changes]:::security
+  T -->|commit-time conflict and rollback| X
+  T -->|C06 atomic additive updates| C[(Target CostConfigStore)]:::data
+  C -->|C07 next normal scheduled read| R[RunningAnalysis]:::async
+  classDef primary fill:#326ce5,stroke:#1a3e7a,color:#ffffff
+  classDef internal fill:#4fc3f7,stroke:#0277bd,color:#01579b
+  classDef data fill:#e8f5e9,stroke:#2e7d32,color:#1b5e20
+  classDef security fill:#fce4ec,stroke:#c62828,color:#b71c1c
+  classDef async fill:#fff3e0,stroke:#e65100,color:#bf360c
