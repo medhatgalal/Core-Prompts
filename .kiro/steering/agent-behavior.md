@@ -33,18 +33,11 @@ Keep rule surfaces machine-readable, keep human docs free of hidden policy, and 
 - When facts are easy to verify locally, verify them before encoding them into docs or rules.
 - When changing Kiro-specific steering, skills, agents, or invocation guidance, verify the current behavior against official Kiro documentation or the Kiro Help Agent before freezing repo policy.
 
-## Model, Effort, Context, and Delegation
+## Global Guidance Ownership
 
-- Use the least expensive model and lowest reasoning effort that can reliably meet the task's requirements. Honor explicit user choices and stricter project rules.
-- Route clear, repeatable work to a fast, low-cost tier; everyday tool-using work to a balanced tier; ambiguous or high-value work to a deeper reasoning tier; and only the hardest end-to-end work to the strongest tier. For the current OpenAI family, those tiers are Luna, Terra, Sol, and Astra respectively; recheck provider guidance when the roster changes.
-- Use low effort for narrow deterministic work, medium for ordinary multi-step work, and high for complex logic, edge cases, or consequential trade-offs. Use maximum effort only when depth matters more than latency or cost.
-- Escalate model or effort only for a concrete task need or after a lower tier fails. Return to a lower tier for routine follow-up work.
-- Use subagents only when the user explicitly requests delegation, an applicable skill or rule requires independent review, or the task contains genuinely independent work whose benefit exceeds coordination cost. Do not enable proactive delegation by default.
-- Give each subagent one bounded outcome, the minimum complete context, required evidence, and a stop condition. Set its model and effort explicitly when the host supports that; otherwise use inheritance intentionally.
-- Keep one controller responsible for scope, authority, synthesis, and final verification. Agreement among agents is not independent evidence, and delegation does not grant new write, merge, deploy, release, or cleanup authority.
-- Load skills, rules, tools, files, and external sources on demand. Search narrowly first, batch compatible reads, request selected fields, and preserve decisive diagnostics and exit status.
-- Before compaction, handoff, or a model change on a long task, preserve requirements, decisions, evidence, current state, and pending checks in the project's existing durable state.
-- Do not treat configuration, invocation, shorter output, or fewer tool calls as proof of quality, savings, or completion.
+- Dotfiles owns home-global model, reasoning-effort, context, and generic subagent policy plus its provider-native copies. Do not duplicate or redefine that global policy in Core-Prompts.
+- Core-Prompts may add stricter repository rules and capability-specific delegation, review, safety, or evidence requirements. Those additions must identify their narrower trigger and must not weaken the global policy.
+- Capability bodies should inherit host model and effort routing unless the task contract requires an explicit setting. Keep any explicit provider or model guidance current, scoped, and separate from authority decisions.
 
 ## Comparative Evaluation and Bounded Work
 
