@@ -5506,7 +5506,8 @@
             "problem statement, feature request, or architectural question",
             "current system context when refactoring or integrating with existing code",
             "explicit constraints such as scale, latency, compliance, staffing, timeline, or vendor boundaries",
-            "any non-goals, fixed decisions, or compatibility requirements"
+            "any non-goals, fixed decisions, or compatibility requirements",
+            "optional structural audit findings, with their source and measurement date; use these as design inputs rather than re-measuring codebase health"
           ],
           "expected_outputs": [
             "`Problem Framing`",
@@ -5667,7 +5668,7 @@
       "display_name": "Architecture Studio",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "engos-design-architecture",
-      "shared_summary": "Architecture Studio for API design, database design, design-pattern selection, and system design with black-box boundaries, concrete artifacts, and migration-safe recommendations.",
+      "shared_summary": "Architecture Studio for API, database, pattern, and system design with enforceable boundaries, explicit falsifiers for removal claims, and migration-safe recommendations.",
       "shared_constraints": [
         "Publish architecture guidance only; do not orchestrate or delegate work.",
         "Use deterministic, sectioned outputs with explicit scorecards.",
@@ -5860,17 +5861,74 @@
       "judge_reports": [
         {
           "pass_number": 1,
-          "status": "ship",
-          "judge_reports": [
-            {
-              "judge": "operational_richness",
-              "title": "Operational Richness",
-              "score": 10,
-              "blockers": []
+          "status": "structural_ready",
+          "historical_baseline": {
+            "slug": "engos-design-architecture",
+            "strategy": "head_snapshot",
+            "group": "current_oracle",
+            "baseline_path": "sources/ssot-baselines/engos-design-architecture/baseline.md",
+            "selected_commit": "db5c3789",
+            "richness_score": 4,
+            "line_count": 842,
+            "reason": "Current SSOT baseline source snapshot materialized into the source library because no stronger curated pre-SSOT baseline has been recorded yet.",
+            "equivalent_commits": [],
+            "expected_companions": [],
+            "operator_invariants": [],
+            "scenario_matrix": [
+              {
+                "id": "operational_invocation",
+                "kind": "operational_contract",
+                "label": "operational invocation surface",
+                "must_contain": [
+                  "## Invocation"
+                ]
+              }
+            ],
+            "historical_proof": {
+              "current_head_commit": "db5c3789",
+              "current_head_richness_score": 4,
+              "current_head_line_count": 842,
+              "materialized_from_commit": "db5c3789"
             },
+            "source": "source_library",
+            "verified_by_git_history": false,
+            "has_baseline_text": true
+          },
+          "judge_reports": [
             {
               "judge": "source_fidelity",
               "title": "Source Fidelity and Uplift",
+              "score": 10,
+              "blockers": [],
+              "classification": "additive",
+              "scenario_results": [
+                {
+                  "id": "operational_invocation",
+                  "kind": "operational_contract",
+                  "label": "operational invocation surface",
+                  "passed": true,
+                  "missing_markers": []
+                }
+              ],
+              "reviewed_deltas": [],
+              "requirement_review": {
+                "status": "not_supplied_or_invalid",
+                "identity_authenticated": false,
+                "behavioral_status": "behavioral_pending"
+              },
+              "scorecard": {
+                "baseline_richness": 4,
+                "candidate_richness": 7,
+                "baseline_operational_score": 2,
+                "candidate_operational_score": 2,
+                "baseline_preserved_in_resource": false
+              },
+              "baseline_commit": "db5c3789",
+              "baseline_slug": "engos-design-architecture"
+            },
+            {
+              "judge": "operational_richness",
+              "title": "Operational Richness",
               "score": 10,
               "blockers": []
             },
@@ -5879,9 +5937,76 @@
               "title": "Metadata and Handoff Integrity",
               "score": 10,
               "blockers": []
+            },
+            {
+              "judge": "benchmark_readiness",
+              "title": "Benchmark Readiness and Template Fit",
+              "score": 9,
+              "blockers": [],
+              "scorecard": {
+                "title_clarity": 10,
+                "description_richness": 10,
+                "intent_coverage": 10,
+                "boundary_clarity": 8,
+                "output_specificity": 10,
+                "metadata_completeness": 8,
+                "surface_usability": 10
+              }
             }
           ],
-          "blockers": []
+          "blockers": [],
+          "scorecard": {
+            "source_fidelity": 10,
+            "baseline_richness": 4,
+            "candidate_richness": 7,
+            "baseline_operational_score": 2,
+            "candidate_operational_score": 2,
+            "baseline_preserved_in_resource": false,
+            "operational_richness": 10,
+            "metadata_integrity": 10,
+            "benchmark_readiness": 9,
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 8,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          },
+          "template_name": "skill",
+          "effective_sha256": "5d474ec75ac039475dbceef89b5970173cd1427b2897325437361673ac88bbaf",
+          "semantic_findings": [],
+          "agent_surface_review": {
+            "status": "unchanged",
+            "added_providers": [],
+            "blockers": [],
+            "source_fidelity": "not_required",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
+          "repair_requests": [],
+          "dimension_inventory": [
+            {
+              "dimension": "source_fidelity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "operational_richness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "metadata_integrity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "benchmark_readiness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "semantic_consistency",
+              "status": "no_detected_conflict_not_semantic_proof"
+            }
+          ]
         }
       ],
       "consumption_hints": {
@@ -5919,7 +6044,7 @@
         "portfolio_action": "keep_and_clarify_boundary",
         "routing_fitness": {
           "schema_version": "RoutingFitness.v1",
-          "mapping_status": "source_derived_draft",
+          "mapping_status": "stale",
           "task_phases": {
             "kind": "source_conditions",
             "clauses": []
@@ -5942,7 +6067,7 @@
                   "path": "ssot/engos-design-architecture.md",
                   "start_line": 23,
                   "end_line": 24,
-                  "sha256": "5e282148a1bb97269630c29aefceec556330ec8fedbaab5436fa497cee48f216"
+                  "sha256": "5d474ec75ac039475dbceef89b5970173cd1427b2897325437361673ac88bbaf"
                 }
               }
             ]
@@ -5955,8 +6080,8 @@
           },
           "provenance": {
             "ssot_path": "ssot/engos-design-architecture.md",
-            "ssot_sha256": "5e282148a1bb97269630c29aefceec556330ec8fedbaab5436fa497cee48f216",
-            "effective_sha256": "5e282148a1bb97269630c29aefceec556330ec8fedbaab5436fa497cee48f216",
+            "ssot_sha256": "5d474ec75ac039475dbceef89b5970173cd1427b2897325437361673ac88bbaf",
+            "effective_sha256": "5d474ec75ac039475dbceef89b5970173cd1427b2897325437361673ac88bbaf",
             "resources": [],
             "extractor_version": "source-clauses.v1",
             "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -5975,7 +6100,7 @@
               "works_on"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "bed4c6e655536e5e2cfe07d33baa380af75d23c0e7ca7b52b1225274669dee3d"
+            "mapping_sha256": "dedb0c2e47b530605da60096a52fe60801aace4f45c1b409426f23d703f3889d"
           },
           "unresolved_fields": [
             "task_phase_interpretation",

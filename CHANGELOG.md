@@ -1,3 +1,13 @@
+## v1.16.1 - 2026-09-25
+
+- Strengthen Architecture Studio design guidance for enforceable boundaries,
+  proposed versus observed falsifiers, explicit context, ratchet decisions, and
+  optional design lenses. Preserve its four modes and keep code-health
+  measurement in the separate read-only audit skill.
+- Add a falsifiability criterion to the architecture self-check, retaining the
+  prior effective pass threshold when that criterion does not apply.
+  UAC structural validation passed; behavioral improvement remains unmeasured.
+
 ## v1.16.0 - 2026-09-19
 
 Guided shaping source release. Package publication, installation and complete
