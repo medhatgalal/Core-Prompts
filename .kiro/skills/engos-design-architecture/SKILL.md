@@ -33,6 +33,7 @@ Use this capability when the user asks for any of the following, even without na
 - current system context when refactoring or integrating with existing code
 - explicit constraints such as scale, latency, compliance, staffing, timeline, or vendor boundaries
 - any non-goals, fixed decisions, or compatibility requirements
+- optional structural audit findings, with their source and measurement date; use these as design inputs rather than re-measuring codebase health
 
 ## Required Output
 Every substantial response must include:
@@ -100,12 +101,29 @@ If the user wants only an inline response, produce the same structure inline and
 - **Black-box boundaries**: define what a component does before discussing how it works internally.
 - **Primitive-first design**: identify the core data types, events, entities, or requests that the system moves around.
 - **Replaceability**: every major module should be replaceable using only its interface contract.
+- **Falsifiable replaceability**: for a claim of removal, isolation, or decoupling, name a check that would fail if the old dependency or behavior returned. Distinguish a proposed check from observed evidence and state whether proof is runtime or static.
+- **Enforced seams**: when multiple implementations share a boundary, define a common contract and conformance check. For dependency rules, name an enforceable check rather than relying on convention.
+- **Explicit context**: resolve context that must remain stable at the relevant operation entry point and pass it through interfaces; avoid ambient rediscovery in lower layers. Re-resolve at a new request or operation boundary when context can legitimately change.
 - **Single-responsibility modules**: one module, one obvious job, one owner-sized mental model.
 - **Operational realism**: architecture is not complete until failure modes, rollout, and observability are specified.
 - **Evidence over aesthetics**: recommend designs because they fit the constraints, not because they are fashionable.
 - **Explicit trade-offs**: every major recommendation must state what it improves, what it costs, and what was rejected.
 - **Migration safety**: interface changes, schema changes, and topology changes require phased rollout and rollback steps.
 - **Human maintainability**: optimize for long-term developer comprehension, not short-term cleverness.
+
+## Ratchet & Debt Discipline
+When a design affects an existing size, complexity, or coupling ratchet, use its measured baseline as an input. Classify proposed growth as avoidable or intrinsic to required behavior. Simplify avoidable growth. For intrinsic growth, propose a documented exception for the authorized owner and a bounded consolidation path. Never silently recommend raising a baseline. Leave repository-wide measurement, drift analysis, and health scoring to `engos-audit-code-health` when that audit is available; otherwise identify the missing measurement rather than inventing it.
+
+## Design Lenses
+Use only lenses relevant to the decision as questions, not output requirements or substitutes for evidence:
+- Kent Beck: What small, reversible refactor makes the intended change easier?
+- Robert C. Martin: Do dependencies point toward stable policy, and does an abstraction earn its cost?
+- Martin Fowler: Can the old path be replaced incrementally behind a seam?
+- Sam Newman: What changes independently, and does the boundary contain that change?
+- Rob Pike: Would simple duplication cost less than another dependency?
+- Rich Hickey: Which independent concerns are entangled, and can data and effects be separated?
+
+When lenses conflict, explain the relevant trade-off within the existing output sections. Treat each as a prior, not a verdict. Assess newer patterns against the same constraints and evidence; do not reject a pattern solely for lacking a classical precedent or cite a thinker as proof. Do not add a mandatory output section for lenses.
 
 ## Working Style
 1. Clarify the problem before proposing structure.
@@ -114,6 +132,7 @@ If the user wants only an inline response, produce the same structure inline and
 4. Recommend one design with explicit reasons.
 5. Show migration, rollback, validation, and ownership impact.
 6. Keep the output deterministic and implementation-usable.
+7. Keep optional enhancements separate from acceptance of the core design; give deferred work its own scope and validation.
 
 ## Mode Selection
 Choose the best-fit mode from the request. If multiple modes apply, produce one unified response with clearly labeled subsections.
@@ -484,6 +503,8 @@ Use this exact structure for `design-database` responses:
 - Prefer dependency inversion over hidden globals.
 - Treat Singleton as suspicious by default.
 - Use adapters and facades to isolate external or legacy interfaces.
+- Where several adapters implement one capability, consider a registry behind a shared port; specify conformance cases and a check that fails when callers bypass the port.
+- Where read needs differ from transactional ownership, consider a projection separate from the source of record; specify ownership, freshness, rebuild behavior, and a check for divergence.
 - Use builders when construction complexity is real, not hypothetical.
 - Separate pattern recommendation from refactor sequencing.
 
@@ -783,6 +804,10 @@ Example:
 8. Never produce pseudo-authoritative numbers without showing assumptions.
 9. Never optimize for novelty over maintainability.
 10. Never omit validation steps for a meaningful change.
+11. Never claim a component is removable, isolated, or decoupled without naming a falsifier and stating whether the check is proposed or observed.
+12. Never present a convention as an enforced boundary; identify its contract or check.
+13. Never silently recommend raising an existing ratchet baseline; state the avoidable-versus-intrinsic design judgment.
+14. Never turn an architecture recommendation into a code-health metric scan or drift report; use supplied measurements with attribution.
 
 ## Review Gate
 Before finalizing, verify all of the following:
@@ -794,6 +819,7 @@ Before finalizing, verify all of the following:
 - Are rejected alternatives concrete rather than generic?
 - Are module responsibilities clear enough for ownership?
 - Are observability and validation included where operational behavior changes?
+- For removal or decoupling claims, is the falsifier named, with its proof basis and execution status clear?
 
 ## When to Refuse Confidence
 Reduce confidence sharply or state that the recommendation is provisional when:
@@ -814,12 +840,14 @@ Score each criterion as `0`, `1`, or `2`.
 - `Failure-Aware Decisions`
 - `Migration Clarity`
 - `Benchmark Fit`
+- `Falsifiability` (score `2` when no removal, isolation, or decoupling claim applies)
 
 Pass rules:
-- `Overall Score >= 9`
+- `Overall Score >= 11`
 - `Failure-Aware Decisions` must not be `0`
 - `Migration Clarity` must not be `0`
 - `Benchmark Fit` must not be `0`
+- `Falsifiability` must not be `0`
 
 Include this block at the end of every substantive response:
 
@@ -832,7 +860,8 @@ Include this block at the end of every substantive response:
 - Failure-Aware Decisions: 0|1|2
 - Migration Clarity: 0|1|2
 - Benchmark Fit: 0|1|2
-- Overall Score: 0-14
+- Falsifiability: 0|1|2
+- Overall Score: 0-16
 - Pass: true|false
 - Rationale: short explanation for any weakness
 ```
