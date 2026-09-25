@@ -208,6 +208,7 @@ Expected output:
 
 - options and tradeoffs
 - boundary decisions
+- an enforceable contract and a proposed or observed falsifier when claiming removal or decoupling
 - migration and rollback guidance
 - a final recommendation
 
@@ -550,7 +551,7 @@ Expected output:
 
 Follow with:
 
-> Now route only the high-severity structural findings to `engos-design-architecture` for remediation design, without editing files yet.
+> Now give the high-severity findings to `engos-design-architecture` as measured inputs. Design the target boundaries, contracts, validation, and migration without repeating the metric scan or editing files yet.
 
 ### `engos-delivery-address-code-review`
 

@@ -14,7 +14,11 @@
     "0a8e79a060d12a94d58d864d54fdd538d4106b5e3907ec22a329e6b0446238ea",
     "e63ecfee4a9167cfb7d4be3d1f4efa1fbe32cd31e975c5a009ac93a40cadd77c",
     "4ff9062c57f5f249c310acecb5360535c35367f30c4e356b9de7f72b3e745ad8",
+    "5d75081885d75c65981714fbf392cffa483bbf5b6a8049fdabad62b7cde7a5af",
     "1e23d48db348b19e25103d75ec783bb1a83de301c30b9dc474860f84d7226b29",
+    "4685a785eec81730e6cf8f9154862828419c24fa7bf1cc32d72de1d62c8c4b35",
+    "40411b6b20574a4701571d1f51b35dca3b5fe8420f200e5d493b282b171100e1",
+    "3289c94da7709262a822cd3c3415b2757a2e7d6bc9a20ca314b176214e45708b",
     "01bb3eecaf408f8fc638f34416c15eb288c6bfa2580a0b11ec86ec4251b09f31",
     "764a1f78d93f9f3c01413bd1ea932df452e4540f3e17cea539e861e7a079208b",
     "72b5a2d0b3c2b951edb7e4f0e9da7359ff8a6f6521149e6633cb81a331fd4bf7",
@@ -33,9 +37,14 @@
     "46836c815a5ecec4e49e2981742bb7cc8247592e8e2f26b18160025c89c9df84",
     "c05c6928302db122864f383fc826be21b816c2d92b87615a89a3aaaca92dcbf9",
     "e9c762ef592f96f46ab4acca0d1204e5499ccd0498508bf879f7f053c64a3fb0",
+    "37eab6d753da10803ff5466fd12973ad267daa0f8ea47d09fc0ec32850fc87ec",
+    "31def904306a60116d15d7d0b9945803f4970bf44d60ab782fb0f621adb7e0fb",
+    "819a3b3c1df533483a07094dbf597dee2658654e19c4178d3494a6cc6ab8c146",
+    "e1734b6c6f198831520795df6228039639e107630c563ce1822b4a4c3c38b1a7",
     "4d7c6ba61e19d45e3ec2c1006ffa33fed291f797b9f357773cbf6f2f5c85cbd3",
     "b820d2fd501dc4012bacc3de2b8561e7ea5f16455e3156af0722f608ac2d5ee1",
-    "6f1f8c1439793ec841b24c895e3be6dfd31e680e2a76d7a878141dd99ce01054"
+    "6f1f8c1439793ec841b24c895e3be6dfd31e680e2a76d7a878141dd99ce01054",
+    "429ddefa0e5546ecb284dfb8469eaab48d630a7b197e78bff9eb08dd4e616016"
   ],
   "editable_behavior": [],
   "primary_outcome": {
@@ -108,9 +117,29 @@
       "text": "- **Replaceability**: every major module should be replaceable using only its interface contract."
     },
     {
+      "sha256": "5d75081885d75c65981714fbf392cffa483bbf5b6a8049fdabad62b7cde7a5af",
+      "source": "ssot/engos-design-architecture.md",
+      "text": "- **Explicit context**: resolve context that must remain stable at the relevant operation entry point and pass it through interfaces; avoid ambient rediscovery in lower layers. Re-resolve at a new request or operation boundary when context can legitimately change."
+    },
+    {
       "sha256": "1e23d48db348b19e25103d75ec783bb1a83de301c30b9dc474860f84d7226b29",
       "source": "ssot/engos-design-architecture.md",
       "text": "- **Explicit trade-offs**: every major recommendation must state what it improves, what it costs, and what was rejected."
+    },
+    {
+      "sha256": "4685a785eec81730e6cf8f9154862828419c24fa7bf1cc32d72de1d62c8c4b35",
+      "source": "ssot/engos-design-architecture.md",
+      "text": "When a design affects an existing size, complexity, or coupling ratchet, use its measured baseline as an input. Classify proposed growth as avoidable or intrinsic to required behavior. Simplify avoidable growth. For intrinsic growth, propose a documented exception for the authorized owner and a bounded consolidation path. Never silently recommend raising a baseline. Leave repository-wide measurement, drift analysis, and health scoring to `engos-audit-code-health` when that audit is available; otherwise identify the missing measurement rather than inventing it."
+    },
+    {
+      "sha256": "40411b6b20574a4701571d1f51b35dca3b5fe8420f200e5d493b282b171100e1",
+      "source": "ssot/engos-design-architecture.md",
+      "text": "Use only lenses relevant to the decision as questions, not output requirements or substitutes for evidence:"
+    },
+    {
+      "sha256": "3289c94da7709262a822cd3c3415b2757a2e7d6bc9a20ca314b176214e45708b",
+      "source": "ssot/engos-design-architecture.md",
+      "text": "When lenses conflict, explain the relevant trade-off within the existing output sections. Treat each as a prior, not a verdict. Assess newer patterns against the same constraints and evidence; do not reject a pattern solely for lacking a classical precedent or cite a thinker as proof. Do not add a mandatory output section for lenses."
     },
     {
       "sha256": "01bb3eecaf408f8fc638f34416c15eb288c6bfa2580a0b11ec86ec4251b09f31",
@@ -203,6 +232,26 @@
       "text": "10. Never omit validation steps for a meaningful change."
     },
     {
+      "sha256": "37eab6d753da10803ff5466fd12973ad267daa0f8ea47d09fc0ec32850fc87ec",
+      "source": "ssot/engos-design-architecture.md",
+      "text": "11. Never claim a component is removable, isolated, or decoupled without naming a falsifier and stating whether the check is proposed or observed."
+    },
+    {
+      "sha256": "31def904306a60116d15d7d0b9945803f4970bf44d60ab782fb0f621adb7e0fb",
+      "source": "ssot/engos-design-architecture.md",
+      "text": "12. Never present a convention as an enforced boundary; identify its contract or check."
+    },
+    {
+      "sha256": "819a3b3c1df533483a07094dbf597dee2658654e19c4178d3494a6cc6ab8c146",
+      "source": "ssot/engos-design-architecture.md",
+      "text": "13. Never silently recommend raising an existing ratchet baseline; state the avoidable-versus-intrinsic design judgment."
+    },
+    {
+      "sha256": "e1734b6c6f198831520795df6228039639e107630c563ce1822b4a4c3c38b1a7",
+      "source": "ssot/engos-design-architecture.md",
+      "text": "14. Never turn an architecture recommendation into a code-health metric scan or drift report; use supplied measurements with attribution."
+    },
+    {
       "sha256": "4d7c6ba61e19d45e3ec2c1006ffa33fed291f797b9f357773cbf6f2f5c85cbd3",
       "source": "ssot/engos-design-architecture.md",
       "text": "- `Failure-Aware Decisions` must not be `0`"
@@ -216,6 +265,11 @@
       "sha256": "6f1f8c1439793ec841b24c895e3be6dfd31e680e2a76d7a878141dd99ce01054",
       "source": "ssot/engos-design-architecture.md",
       "text": "- `Benchmark Fit` must not be `0`"
+    },
+    {
+      "sha256": "429ddefa0e5546ecb284dfb8469eaab48d630a7b197e78bff9eb08dd4e616016",
+      "source": "ssot/engos-design-architecture.md",
+      "text": "- `Falsifiability` must not be `0`"
     }
   ],
   "review_status": "draft"
