@@ -175,11 +175,12 @@
         "strategy": "derived_history",
         "group": "derived",
         "baseline_path": null,
-        "selected_commit": "e077ae86",
+        "selected_commit": "f51b2762",
         "richness_score": 5,
-        "line_count": 177,
+        "line_count": 191,
         "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
         "equivalent_commits": [
+          "e077ae86",
           "7e94f9eb",
           "e866aa80"
         ],
@@ -229,7 +230,7 @@
             "candidate_operational_score": 2,
             "baseline_preserved_in_resource": false
           },
-          "baseline_commit": "e077ae86",
+          "baseline_commit": "f51b2762",
           "baseline_slug": "engos-design-shaping"
         },
         {
@@ -280,7 +281,7 @@
         "surface_usability": 10
       },
       "template_name": "skill",
-      "effective_sha256": "d75210f48727b6d4aa881d85a6757f21691e0bfe8d12a06c1e2a3119d1710f81",
+      "effective_sha256": "9c1f8a623d6259baa1028ae25cc4e5388182e3c2ec6365d0a2b0b553128d338b",
       "semantic_findings": [],
       "agent_surface_review": {
         "status": "unchanged",
@@ -371,18 +372,18 @@
     "portfolio_action": "draft_new_skill_pending_review",
     "routing_fitness": {
       "schema_version": "RoutingFitness.v1",
-      "mapping_status": "source_derived_draft",
+      "mapping_status": "stale",
       "task_phases": {
         "kind": "source_conditions",
         "clauses": [
           {
-            "text": "1. Read `resources/resource-map.json` and `resources/routing.md`. Load only the\n   selected route and its dependencies, reading each selected file completely.\n   Resolve cross-skill roots through the registry or explicit candidate binding.\n2. Use `start` or `resume`. Preserve original intent, inspect source coverage,\n   identify human decision owners, and offer AI-led, human-led or hybrid research.\n   Show understood problem, uncertainty, next step and at most three useful\n   questions. Bound total interview effort separately from implementation appetite.\n3. Dispatch Intake and Framed through `engos-design-frame-from-vague`; obtain G0\n   then G1 from `engos-quality-shaping-gate`. Keep mechanisms out of the frame.\n   Reuse existing supported content after auditing current prerequisites; do not\n   invent historic receipts. A supplied repository or request to inspect it is\n   registered for Research; it does not bypass G1. Inspect only a narrowly needed\n   solution-free fact when framing cannot proceed without it, and do not load\n   architecture-fit or make repository dispositions during Intake/Framed.\n   Frame-only scope finishes after G1.\n4. Use `research` to set evidence requirements and answer assigned uncertainties.\n   Add `code-scan` only for authorized repository inspection; add `human-evidence`\n   for supplied evidence or teammate returns. Research plans and opinions are\n   not observed results. Resolve repository context at runtime from the current\n   workspace or user-supplied locations. Ask which folders/modules matter only\n   when scope is ambiguous; never assume product repositories or sibling checkouts.\n   Use available project knowledge, language-server semantics, indexed search or\n   bounded text search, recording actual coverage and limitations. Load the architecture-fit route for material technical\n   capabilities/seams; investigate existing options and source coverage without\n   requiring a positive reuse finding. G2 uses the gate owner's criteria.\n5. Use `shape` to compare bounded options, rough out the selected solution and\n   challenge dependencies, usability, security, cost and recovery. Use the existing\n   artifact helper for all three diagrams and full contract/security tables.\n   New feasibility uncertainty reopens Research; changed scope reopens Framed.\n   Resolve material uncertainty while leaving non-load-bearing internals to builders.\n   Record evidence-backed reuse, extension, evolution, replacement, new or intentional\n   separation decisions at material seams; request bounded specialist advice only\n   when a concrete trade-off or structural concern warrants it.\n6. Use `review` for author audit followed by actual independent review under the\n   gate policy and existing pitch reviewer integration. Only the conductor may\n   accept current-generation results. Draft-only scope finishes at G3 as a shaped\n   draft, without claiming target delivery or Bet-ready.\n7. Use `publish` after G3 for approved target writes and full saved-result checks.\n   Use `reconcile` for external edits or uncertain publication. G4 and Bet-ready\n   remain pending until every required target is verified. A delivery-only failure\n   does not reopen unchanged content. An explicit target-scope change gets a new\n   decision/revision; it does not retroactively satisfy an earlier target contract.",
+            "text": "1. Read `resources/resource-map.json` and `resources/routing.md`. Load only the\n   selected route and its dependencies, reading each selected file completely.\n   Resolve cross-skill roots through the registry or explicit candidate binding.\n2. Use `start` or `resume`. Preserve original intent, inspect source coverage,\n   identify human decision owners, and offer AI-led, human-led or hybrid research.\n   Show understood problem, uncertainty, next step and at most three useful\n   questions. Bound total interview effort separately from implementation appetite.\n3. Dispatch Intake and Framed through `engos-design-frame-from-vague`; obtain G0\n   then G1 from `engos-quality-shaping-gate`. Keep mechanisms out of the frame.\n   Reuse existing supported content after auditing current prerequisites; do not\n   invent historic receipts. A supplied repository or request to inspect it is\n   registered for Research; it does not bypass G1. Inspect only a narrowly needed\n   solution-free fact when framing cannot proceed without it, and do not load\n   architecture-fit or make repository dispositions during Intake/Framed.\n   Frame-only scope finishes after G1.\n4. Use `research` to set evidence requirements and answer assigned uncertainties.\n   Add `code-scan` only for authorized repository inspection; add `human-evidence`\n   for supplied evidence or teammate returns. Research plans and opinions are\n   not observed results. Resolve repository context at runtime from the current\n   workspace or user-supplied locations. Ask which folders/modules matter only\n   when scope is ambiguous; never assume product repositories or sibling checkouts.\n   Use available project knowledge, language-server semantics, indexed search or\n   bounded text search, recording actual coverage and limitations. Load the architecture-fit route for material technical\n   capabilities/seams; investigate existing options and source coverage without\n   requiring a positive reuse finding. G2 uses the gate owner's criteria.\n5. Use `shape` to compare bounded options, rough out the selected solution and\n   challenge dependencies, usability, security, cost and recovery. Use the existing\n   artifact helper for all three diagrams and full contract/security tables.\n   New feasibility uncertainty reopens Research; changed scope reopens Framed.\n   Resolve material uncertainty while leaving non-load-bearing internals to builders.\n   Record evidence-backed reuse, extension, evolution, replacement, new or intentional\n   separation decisions at material seams; request bounded specialist advice only\n   when a concrete trade-off or structural concern warrants it.\n   Judge the selected pieces as one set. A confirmed decision absent from opened\n   code is a proposed extension, not a reason to select nothing. A set selecting\n   no work is a hold naming the walk-away item; do not send it for scoring.\n6. Use `review` for author audit followed by actual independent review under the\n   gate policy and its twelve-score rubric. Before reviewer dispatch, compare every\n   load-bearing existing claim with accepted Research coverage; a false citation or\n   unopened material fact reopens G2. Only the conductor may\n   accept current-generation results. Draft-only scope finishes at G3 as a shaped\n   draft, without claiming target delivery or Bet-ready.\n7. Use `publish` after G3 for approved target writes and full saved-result checks.\n   Use `reconcile` for external edits or uncertain publication. G4 and Bet-ready\n   remain pending until every required target is verified. A delivery-only failure\n   does not reopen unchanged content. An explicit target-scope change gets a new\n   decision/revision; it does not retroactively satisfy an earlier target contract.",
             "heading": "Workflow",
             "source": {
               "path": "ssot/engos-design-shaping.md",
               "start_line": 54,
-              "end_line": 95,
-              "sha256": "8b55e39c8a980de69fdb5bd2873c04a511ac41910c4068abda61747ba21efce6"
+              "end_line": 100,
+              "sha256": "0a532ee7d64f0361572d99c61e14ed3b6a1ebf8e9619a24518c11417a28ca768"
             }
           }
         ]
@@ -399,9 +400,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-design-shaping.md",
-              "start_line": 123,
-              "end_line": 126,
-              "sha256": "8b55e39c8a980de69fdb5bd2873c04a511ac41910c4068abda61747ba21efce6"
+              "start_line": 140,
+              "end_line": 143,
+              "sha256": "0a532ee7d64f0361572d99c61e14ed3b6a1ebf8e9619a24518c11417a28ca768"
             }
           }
         ]
@@ -414,9 +415,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-design-shaping.md",
-              "start_line": 123,
-              "end_line": 126,
-              "sha256": "8b55e39c8a980de69fdb5bd2873c04a511ac41910c4068abda61747ba21efce6"
+              "start_line": 140,
+              "end_line": 143,
+              "sha256": "0a532ee7d64f0361572d99c61e14ed3b6a1ebf8e9619a24518c11417a28ca768"
             }
           }
         ]
@@ -429,12 +430,12 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-design-shaping.md",
-        "ssot_sha256": "8b55e39c8a980de69fdb5bd2873c04a511ac41910c4068abda61747ba21efce6",
-        "effective_sha256": "d75210f48727b6d4aa881d85a6757f21691e0bfe8d12a06c1e2a3119d1710f81",
+        "ssot_sha256": "0a532ee7d64f0361572d99c61e14ed3b6a1ebf8e9619a24518c11417a28ca768",
+        "effective_sha256": "9c1f8a623d6259baa1028ae25cc4e5388182e3c2ec6365d0a2b0b553128d338b",
         "resources": [
           {
             "path": "sources/capability-resources/engos-design-shaping/routing.md",
-            "sha256": "4059feede1b33685883b56fb405aef678fbf43d6f442328d9e480c255f700855"
+            "sha256": "f4a1bc9920c1711e2cc656d36fdad12ec8b612c3d29be4626179adcf8bb3c612"
           },
           {
             "path": "sources/capability-resources/engos-design-shaping/decisions.md",
@@ -466,7 +467,7 @@
           },
           {
             "path": "sources/capability-resources/engos-design-shaping/stages/research.md",
-            "sha256": "0baa3029cd0d56df3d9f399bece3474ec61afac9993ad7c31a6da49c3e69649d"
+            "sha256": "66154a324c91bacb991401580c35f58a906a768ac895d9bbe2b650824f315402"
           },
           {
             "path": "sources/capability-resources/engos-design-shaping/repository-discovery.md",
@@ -482,15 +483,15 @@
           },
           {
             "path": "sources/capability-resources/engos-design-shaping/stages/shape.md",
-            "sha256": "76073e5306e0cce779e4820f878d68da9d8bd39fc9aa4c4cb7ae8200e8c50425"
+            "sha256": "3bab9127ed22919a18dc141ee8df187f262f036d21ea8e8675e8d0ec38014601"
           },
           {
             "path": "sources/capability-resources/engos-design-shaping/templates/shaped-bundle.md",
-            "sha256": "d3959d1abd59b02d5ae1476e932c0e628f878a6fa5964636b4711c4b54d2b916"
+            "sha256": "485de33ff31eabd2751f4e30211c889289ea53b935c7850f369650821fbc4309"
           },
           {
             "path": "sources/capability-resources/engos-design-shaping/stages/review.md",
-            "sha256": "9cf6534b100dea7cd7ab9dc6edaea0f356ff9855883644ec73c156e116ea7d6a"
+            "sha256": "98554aded4ec577727227f27f0d7a06625e0a91a8cd652efd8eb61b3088d6f9b"
           },
           {
             "path": "sources/capability-resources/engos-design-shaping/stages/publish.md",
@@ -520,7 +521,7 @@
                 "path": "ssot/engos-design-shaping.md",
                 "start_line": 20,
                 "end_line": 23,
-                "sha256": "8b55e39c8a980de69fdb5bd2873c04a511ac41910c4068abda61747ba21efce6"
+                "sha256": "0a532ee7d64f0361572d99c61e14ed3b6a1ebf8e9619a24518c11417a28ca768"
               }
             }
           ],
@@ -532,7 +533,7 @@
                 "path": "ssot/engos-design-shaping.md",
                 "start_line": 27,
                 "end_line": 30,
-                "sha256": "8b55e39c8a980de69fdb5bd2873c04a511ac41910c4068abda61747ba21efce6"
+                "sha256": "0a532ee7d64f0361572d99c61e14ed3b6a1ebf8e9619a24518c11417a28ca768"
               }
             }
           ],
@@ -544,7 +545,7 @@
                 "path": "ssot/engos-design-shaping.md",
                 "start_line": 34,
                 "end_line": 38,
-                "sha256": "8b55e39c8a980de69fdb5bd2873c04a511ac41910c4068abda61747ba21efce6"
+                "sha256": "0a532ee7d64f0361572d99c61e14ed3b6a1ebf8e9619a24518c11417a28ca768"
               }
             }
           ],
@@ -556,7 +557,7 @@
                 "path": "ssot/engos-design-shaping.md",
                 "start_line": 42,
                 "end_line": 50,
-                "sha256": "8b55e39c8a980de69fdb5bd2873c04a511ac41910c4068abda61747ba21efce6"
+                "sha256": "0a532ee7d64f0361572d99c61e14ed3b6a1ebf8e9619a24518c11417a28ca768"
               }
             }
           ]
@@ -571,7 +572,7 @@
           "shape"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "4d14e2c17f53d2abaf9ff220a877c7875e4f1ef786dc6e68f39b6b5f7a31d94a"
+        "mapping_sha256": "5d5b5a526c7a1e3c98563d9bf0fd2eb5b0d663905cdc93242f2cfb9c2138f488"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

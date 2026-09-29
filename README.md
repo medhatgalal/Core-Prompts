@@ -24,6 +24,11 @@ Expect a problem summary and a few useful questions first—not an instant finis
 pitch. Later stages add source-backed diagrams, contracts, ownership, independent
 review and verified delivery. You retain appetite, scope and betting decisions.
 
+If a review misses only the twelve-score average on unchanged evidence, the
+workshop stops rewriting pitches and asks for a new fact, a named spike or a hold.
+An unselected solution set is held before scoring; a missing material fact returns
+to Research before another review. [Evidence-directed iteration](docs/engos-design-shaping.md#evidence-directed-iteration).
+
 | Along the way, ask… | What you receive |
 | --- | --- |
 | “Frame only; help me decide the appetite and walk-away.” | A solution-free frame, with undecided items made explicit |

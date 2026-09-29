@@ -81,8 +81,13 @@ stages. The phase templates define fields, not gate verdicts.
    Record evidence-backed reuse, extension, evolution, replacement, new or intentional
    separation decisions at material seams; request bounded specialist advice only
    when a concrete trade-off or structural concern warrants it.
+   Judge the selected pieces as one set. A confirmed decision absent from opened
+   code is a proposed extension, not a reason to select nothing. A set selecting
+   no work is a hold naming the walk-away item; do not send it for scoring.
 6. Use `review` for author audit followed by actual independent review under the
-   gate policy and existing pitch reviewer integration. Only the conductor may
+   gate policy and its twelve-score rubric. Before reviewer dispatch, compare every
+   load-bearing existing claim with accepted Research coverage; a false citation or
+   unopened material fact reopens G2. Only the conductor may
    accept current-generation results. Draft-only scope finishes at G3 as a shaped
    draft, without claiming target delivery or Bet-ready.
 7. Use `publish` after G3 for approved target writes and full saved-result checks.
@@ -101,6 +106,18 @@ stages. The phase templates define fields, not gate verdicts.
 - Do not begin code-scan or repository-fit work merely because a repository is
   available at entry. Bind it to a G2 work order after Framed acceptance; an
   explicitly narrow framing fact check must remain solution-free and be recorded.
+- Record independent review returns, including failures, in the existing runtime
+  journal before deciding the next attempt. If every score is at least 3, the
+  twelve-score average is below 4, and that average is the only miss, do not open
+  another pitch on the same opened source evidence. The next step is a new fact,
+  a named spike, or a hold. Rewording, a new draft filename or another appetite
+  sentence is not new evidence; run the runtime prepare check before dispatch.
+- A restatement of appetite supports Cost 3. "One send, one row, two reads" is
+  that restatement; repeating it cannot make Cost 4. The gate owns this anchor.
+- The proof slice observes the frame's requested stop, including the job after
+  send when required. A queue line alone is insufficient for that outcome.
+- Accepted G3 PASS is the only door to design; a proposal, low-average review,
+  no-selection hold or Research pass does not authorize design or implementation.
 - Bind decisions to attributable human input and confirmed authority. Preserve
   proposed, relayed, disputed and superseded events; never silently rewrite them.
 - Workers write candidates only. Prompt context allowlists are not host isolation.
@@ -137,7 +154,7 @@ a three-way comparison, not a blind overwrite.
 
 ## Evaluation Rubric
 
-Use the gate owner's versioned rubric and existing pitch review for assessment;
+Use the gate owner's versioned twelve-score rubric for assessment;
 this skill defines no second scoring system. Supply traceable evidence of entry
 and question quality, human decision provenance, source sufficiency, stage/context
 boundaries, full artifact coverage, independent review and saved-target fidelity.

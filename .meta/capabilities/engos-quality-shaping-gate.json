@@ -208,7 +208,7 @@
           "title": "Source Fidelity and Uplift",
           "score": 10,
           "blockers": [],
-          "classification": "preserved",
+          "classification": "additive",
           "scenario_results": [
             {
               "id": "operational_invocation",
@@ -282,7 +282,7 @@
         "surface_usability": 10
       },
       "template_name": "skill",
-      "effective_sha256": "99d7893cd603441283c2d7ba285fc462fe30ca1bd07fff19dc224dd6ed15a0f4",
+      "effective_sha256": "0482c14b04a85e6132f9ebd3e16e105027686dd22ab7ad0e6b24c5e237cc501a",
       "semantic_findings": [],
       "agent_surface_review": {
         "status": "unchanged",
@@ -373,18 +373,18 @@
     "portfolio_action": "draft_new_skill_pending_review",
     "routing_fitness": {
       "schema_version": "RoutingFitness.v1",
-      "mapping_status": "source_derived_draft",
+      "mapping_status": "stale",
       "task_phases": {
         "kind": "source_conditions",
         "clauses": [
           {
-            "text": "1. Verify subject identity, predecessor hashes and source coverage. Hold missing,\n   stale or contradictory dependencies before evaluating a later stage.\n2. Inspect actual prose, citations and required artifacts. Explain each failed\n   predicate with a quote or missing item. Read source evidence instead of trusting\n   manifest claims. A named spike or rejected question is not uncertainty closure.\n3. Distinguish product decisions, engineering evidence and expert judgments. Ask\n   the designated human when authority is missing; continue independent work only.\n4. For G3 inspect every local render and all contract/security rows, cross-check\n   their meaning, apply both scorecards and keep author audit separate from actual\n   independent review. Lack of independent context means review_pending.\n5. For G4 inspect each saved target's revision, content, tables and diagrams. A\n   successful upload, empty target list or source-only image check is insufficient.\n6. Return the documented predicate-level ReviewReceipt with exact subject/policy\n   and evidence bindings. The controller checks and accepts it using the runtime;\n   the reviewing worker never writes accepted state or approves its own work.\n7. After repairs, reevaluate the affected conditions and dependencies. Preserve\n   failed receipts and changes. New scope reopens framing; new material design\n   uncertainty reopens research. Keep content readiness distinct from delivery.",
+            "text": "1. Verify subject identity, predecessor hashes and source coverage. Hold missing,\n   stale or contradictory dependencies before evaluating a later stage.\n2. Inspect actual prose, citations and required artifacts. Explain each failed\n   predicate with a quote or missing item. Read source evidence instead of trusting\n   manifest claims. A named spike or rejected question is not uncertainty closure.\n3. Distinguish product decisions, engineering evidence and expert judgments. Ask\n   the designated human when authority is missing; continue independent work only.\n4. For G3 inspect every local render and all contract/security rows, cross-check\n   their meaning, apply the existing twelve-score rubric and keep author audit separate from actual\n   independent review. Lack of independent context means review_pending.\n   A set with no selected work is an unscored hold naming the walk-away item.\n   Check proposed extensions as proposals; absent code is not proof they cannot\n   be selected. Check the whole set and the frame's requested observable stop.\n5. For G4 inspect each saved target's revision, content, tables and diagrams. A\n   successful upload, empty target list or source-only image check is insufficient.\n6. Return the documented predicate-level ReviewReceipt with exact subject/policy\n   and evidence bindings. The controller checks and accepts it using the runtime;\n   the reviewing worker never writes accepted state or approves its own work.\n7. After repairs, reevaluate the affected conditions and dependencies. Preserve\n   failed receipts and changes. New scope reopens framing; new material design\n   uncertainty reopens research. Keep content readiness distinct from delivery.",
             "heading": "Workflow",
             "source": {
               "path": "ssot/engos-quality-shaping-gate.md",
               "start_line": 39,
-              "end_line": 56,
-              "sha256": "28183ee46400a6d697ac6ec44013eb30e43b5f6d722e94392e5094897b12c70f"
+              "end_line": 59,
+              "sha256": "846bb854b7e129ef072494a4e79cf8604f777be07c19babda8bb11e6f3738576"
             }
           }
         ]
@@ -401,9 +401,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-quality-shaping-gate.md",
-              "start_line": 75,
-              "end_line": 78,
-              "sha256": "28183ee46400a6d697ac6ec44013eb30e43b5f6d722e94392e5094897b12c70f"
+              "start_line": 86,
+              "end_line": 89,
+              "sha256": "846bb854b7e129ef072494a4e79cf8604f777be07c19babda8bb11e6f3738576"
             }
           }
         ]
@@ -420,20 +420,20 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-quality-shaping-gate.md",
-        "ssot_sha256": "28183ee46400a6d697ac6ec44013eb30e43b5f6d722e94392e5094897b12c70f",
-        "effective_sha256": "99d7893cd603441283c2d7ba285fc462fe30ca1bd07fff19dc224dd6ed15a0f4",
+        "ssot_sha256": "846bb854b7e129ef072494a4e79cf8604f777be07c19babda8bb11e6f3738576",
+        "effective_sha256": "0482c14b04a85e6132f9ebd3e16e105027686dd22ab7ad0e6b24c5e237cc501a",
         "resources": [
           {
             "path": "sources/capability-resources/engos-quality-shaping-gate/references/gates.md",
-            "sha256": "24e49e2a349beb340361ab2eb9e2e48b1d43e5b8008cf44947fe97b635833bc5"
+            "sha256": "a0be87b5fb6f21c82b54a7bfa09d5bd0375781a90b91b3d1539ec77aac4085c6"
           },
           {
             "path": "sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md",
-            "sha256": "5e79656c6854b09c9989d035b401ca606233d0938bdedd1614c295a4b2b1c4c7"
+            "sha256": "98e4150b60b5a3e2c1ec4a395616f07d1bfc83411829248ece114c66ff2d3236"
           },
           {
             "path": "sources/capability-resources/engos-quality-shaping-gate/references/runtime.md",
-            "sha256": "db7ce9dba07f22a780fd36d5fe040c8dfb2673b52e7dc548a327afd4c3ddfaa3"
+            "sha256": "d49cf2dfde1d9b7d43024837daaa3ba1e27863e97f87520cbeb3ede7a524642a"
           },
           {
             "path": "sources/capability-resources/engos-quality-shaping-gate/references/progress.md",
@@ -445,15 +445,15 @@
           },
           {
             "path": "sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py",
-            "sha256": "2e56fa597d1493f7f9a0cff9d6705b1678e9d003e332367b07feb02751388247"
+            "sha256": "c939d4e00d0566e036d21860f1582c6ba0d72ab714e2470bb29d14987a634e21"
           },
           {
             "path": "sources/capability-resources/engos-quality-shaping-gate/schemas/runtime.schema.json",
-            "sha256": "0902115d25c4c3e74e32d705eaa565a740adbf2f1bec0dee0d6274584520caae"
+            "sha256": "1b224f344dc1d50f6aa3fc0184b9602ea680bb2573fc11dbdaf850baca6c2478"
           },
           {
             "path": "sources/capability-resources/engos-quality-shaping-gate/schemas/policy.example.json",
-            "sha256": "6ba041ad93985ba050deafbe0d33bcc077f1b5d4a768503e27e80d3069301b24"
+            "sha256": "d08e168e26897ced90bbc0a789714d00bfcbe5f362a5e8f290a2e55eb524269c"
           }
         ],
         "extractor_version": "source-clauses.v1",
@@ -467,7 +467,7 @@
                 "path": "ssot/engos-quality-shaping-gate.md",
                 "start_line": 19,
                 "end_line": 21,
-                "sha256": "28183ee46400a6d697ac6ec44013eb30e43b5f6d722e94392e5094897b12c70f"
+                "sha256": "846bb854b7e129ef072494a4e79cf8604f777be07c19babda8bb11e6f3738576"
               }
             }
           ],
@@ -479,7 +479,7 @@
                 "path": "ssot/engos-quality-shaping-gate.md",
                 "start_line": 25,
                 "end_line": 27,
-                "sha256": "28183ee46400a6d697ac6ec44013eb30e43b5f6d722e94392e5094897b12c70f"
+                "sha256": "846bb854b7e129ef072494a4e79cf8604f777be07c19babda8bb11e6f3738576"
               }
             }
           ],
@@ -491,7 +491,7 @@
                 "path": "ssot/engos-quality-shaping-gate.md",
                 "start_line": 31,
                 "end_line": 35,
-                "sha256": "28183ee46400a6d697ac6ec44013eb30e43b5f6d722e94392e5094897b12c70f"
+                "sha256": "846bb854b7e129ef072494a4e79cf8604f777be07c19babda8bb11e6f3738576"
               }
             }
           ],
@@ -501,9 +501,9 @@
               "heading": "Required Output",
               "source": {
                 "path": "ssot/engos-quality-shaping-gate.md",
-                "start_line": 60,
-                "end_line": 63,
-                "sha256": "28183ee46400a6d697ac6ec44013eb30e43b5f6d722e94392e5094897b12c70f"
+                "start_line": 63,
+                "end_line": 66,
+                "sha256": "846bb854b7e129ef072494a4e79cf8604f777be07c19babda8bb11e6f3738576"
               }
             }
           ]
@@ -518,7 +518,7 @@
           "shape"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "95dbac8b666dadd1b9fb7b7c0395505f4647aaac00729b5df981b3d3942d9c1a"
+        "mapping_sha256": "d10b5ca79b88f88d35e4bb2b166fbf175449c616a2d76c063b667b352ff30cf5"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

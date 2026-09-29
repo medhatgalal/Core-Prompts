@@ -1,3 +1,17 @@
+## v1.16.2 - 2026-09-29
+
+Source version prepared for the shaping-loop correction. Merge, selected-package
+installation and versioned release publication have separate verification receipts.
+
+- Correct the guided shaping loop in the conductor, shape-stage resources and
+  existing twelve-score gate. Block empty selections and missing Research facts
+  before scoring; stop sole-average-failure rewrites on unchanged opened evidence.
+  Keep per-dimension/overall thresholds at 3/4 and preserve Research source checks.
+- Treat confirmed missing behavior as proposed extensions, judge pieces as one
+  set, and require proof slices to observe the framed stop. Retain true sequence
+  diagrams under renderer limits using colored bands, short labels and white
+  backgrounds. Include the diagram skill in the Grok shaping installation.
+
 ## v1.16.1 - 2026-09-25
 
 - Strengthen Architecture Studio design guidance for enforceable boundaries,

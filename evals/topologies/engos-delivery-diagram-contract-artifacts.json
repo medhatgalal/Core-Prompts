@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-delivery-diagram-contract-artifacts",
-  "ssot_sha256": "b3123faa8812d82521631c7b6cbf46333ef03815c8f912ef509ecd096dc3aa72",
+  "ssot_sha256": "6762940d898fc730a057f6197a12c352b360e74e5c9d00e6746293fab9f52929",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -31,11 +31,11 @@
     "| Security ownership | Responsibility, owner, enforcement/control, boundary, evidence, unresolved gap |"
   ],
   "authority_boundaries": [
-    "engos-delivery-diagram-contract-artifacts:L89:9c0891e45ac1",
-    "engos-delivery-diagram-contract-artifacts:L98:186400690de0",
-    "engos-delivery-diagram-contract-artifacts:L104:41acc42318df",
-    "engos-delivery-diagram-contract-artifacts:L109:d16090ea15c3",
-    "engos-delivery-diagram-contract-artifacts:L128:1b8335e57c12",
+    "engos-delivery-diagram-contract-artifacts:L93:9c0891e45ac1",
+    "engos-delivery-diagram-contract-artifacts:L102:186400690de0",
+    "engos-delivery-diagram-contract-artifacts:L111:41acc42318df",
+    "engos-delivery-diagram-contract-artifacts:L116:d16090ea15c3",
+    "engos-delivery-diagram-contract-artifacts:L136:1b8335e57c12",
     "engos-delivery-diagram-contract-artifacts:sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/diagram-style.md:L6:e3b8cda6b654",
     "engos-delivery-diagram-contract-artifacts:sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/diagram-style.md:L20:ebb5ee5bdf46",
     "engos-delivery-diagram-contract-artifacts:sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/diagram-style.md:L26:20e9d759279a",
@@ -43,8 +43,9 @@
     "engos-delivery-diagram-contract-artifacts:sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/bundle.md:L29:2d460b31252a",
     "engos-delivery-diagram-contract-artifacts:sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/presentation.md:L4:f25ce22abdeb",
     "engos-delivery-diagram-contract-artifacts:sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/presentation.md:L9:b409c1d5062d",
-    "engos-delivery-diagram-contract-artifacts:sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/presentation.md:L27:e9a9d7d87a83",
-    "engos-delivery-diagram-contract-artifacts:sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/presentation.md:L41:1399e56a429e"
+    "engos-delivery-diagram-contract-artifacts:sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/presentation.md:L26:ea483ae2ef40",
+    "engos-delivery-diagram-contract-artifacts:sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/presentation.md:L31:e9a9d7d87a83",
+    "engos-delivery-diagram-contract-artifacts:sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/presentation.md:L45:1399e56a429e"
   ],
   "resources": [
     "- cited research or source references for components and seams"
@@ -144,180 +145,190 @@
       "mapped_to": []
     },
     {
-      "id": "engos-delivery-diagram-contract-artifacts:L79:b84887955cf4",
+      "id": "engos-delivery-diagram-contract-artifacts:L83:b84887955cf4",
       "heading": "Workflow",
       "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
-      "source_line": 87,
+      "source_line": 91,
       "sha256": "b84887955cf475a536a511dcf08cfff38e7d520cf0de66b9977186fac816c9f4",
       "text": "4. Author the contract table for both provided and required interfaces. Record",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-delivery-diagram-contract-artifacts:L81:b2c405ae372f",
+      "id": "engos-delivery-diagram-contract-artifacts:L85:b2c405ae372f",
       "heading": "Workflow",
       "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
-      "source_line": 89,
+      "source_line": 93,
       "sha256": "b2c405ae372f77fd4c536f94afe969b805f4925d9e5f51dedc0a99ff0a848048",
       "text": "5. Author the security-owner matrix. Assign responsibility only when the pitch",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-delivery-diagram-contract-artifacts:L89:9c0891e45ac1",
+      "id": "engos-delivery-diagram-contract-artifacts:L93:9c0891e45ac1",
       "heading": "Workflow",
       "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
-      "source_line": 97,
+      "source_line": 101,
       "sha256": "9c0891e45ac11c8dd48c55034a6f0c41becb1d90f2e96d48502c2cc2505617dd",
       "text": "8. Return the bundle and a short judgment. Do not place it on a Google Doc,",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-delivery-diagram-contract-artifacts:L96:66b1e93fd7b2",
+      "id": "engos-delivery-diagram-contract-artifacts:L100:66b1e93fd7b2",
       "heading": "Rules",
       "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
-      "source_line": 104,
+      "source_line": 108,
       "sha256": "66b1e93fd7b2990d62d1f1de9a7349c6a008ec8fa620cc3c4f88077071fe7020",
       "text": "accept Mermaid or SVG, and record the reason. A native-Mermaid-only request",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-delivery-diagram-contract-artifacts:L98:186400690de0",
+      "id": "engos-delivery-diagram-contract-artifacts:L102:186400690de0",
       "heading": "Rules",
       "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
-      "source_line": 106,
+      "source_line": 110,
       "sha256": "186400690de02716671138281f6baa35fcb46e2c31ffea8a1376dddc83649ff8",
       "text": "- Never invent methods, classes, endpoints, internal algorithms, retries,",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-delivery-diagram-contract-artifacts:L100:1a4566c7955e",
+      "id": "engos-delivery-diagram-contract-artifacts:L104:1a4566c7955e",
       "heading": "Rules",
       "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
-      "source_line": 108,
+      "source_line": 112,
       "sha256": "1a4566c7955e8c3f27fd5aeb0c1e21bd6505b473f2fcc52c708ed27f79a0e6b6",
       "text": "- A diagram is not complete merely because it parses. It must cover the named",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-delivery-diagram-contract-artifacts:L104:41acc42318df",
+      "id": "engos-delivery-diagram-contract-artifacts:L108:d48b5da667b6",
       "heading": "Rules",
       "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
-      "source_line": 112,
+      "source_line": 116,
+      "sha256": "d48b5da667b6c0641d63c2ea88b4e59a1a1a59bad419442297a91f6124668282",
+      "text": "diagram type. Role-color fills remain required through sequence bands.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-diagram-contract-artifacts:L111:41acc42318df",
+      "heading": "Rules",
+      "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
+      "source_line": 119,
       "sha256": "41acc42318df7524dbf49873e78bfef1d5b0314205a97511823f6a4545424965",
       "text": "- Treat an unresolved rabbit hole as a mitigation or blocker, never as a",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-delivery-diagram-contract-artifacts:L109:d16090ea15c3",
+      "id": "engos-delivery-diagram-contract-artifacts:L116:d16090ea15c3",
       "heading": "Rules",
       "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
-      "source_line": 117,
+      "source_line": 124,
       "sha256": "d16090ea15c3ccd3854f803bf90d7563cbdf7fda3a59422a61a718fbb3474654",
       "text": "- Contracts and interfaces only; do not produce implementation code or Jira",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-delivery-diagram-contract-artifacts:L117:55ee342d593d",
+      "id": "engos-delivery-diagram-contract-artifacts:L124:55ee342d593d",
       "heading": "Surface Contract",
       "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
-      "source_line": 125,
+      "source_line": 132,
       "sha256": "55ee342d593d7a6e0ac677d63972b29150629a739325e3863f4b0df73793d0be",
       "text": "place an image, but they must retain a link or hash to the source bundle and",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-delivery-diagram-contract-artifacts:L118:30beea8c5094",
+      "id": "engos-delivery-diagram-contract-artifacts:L125:30beea8c5094",
       "heading": "Surface Contract",
       "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
-      "source_line": 126,
+      "source_line": 133,
       "sha256": "30beea8c5094a61ac9833a0bffb1e6be440671bde2b0a36adcedb3e4958283f2",
       "text": "must report placement evidence separately.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-delivery-diagram-contract-artifacts:L126:0631f7278479",
+      "id": "engos-delivery-diagram-contract-artifacts:L134:0631f7278479",
       "heading": "Constraints",
       "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
-      "source_line": 134,
+      "source_line": 142,
       "sha256": "0631f727847900799ea0a724c034bbac2e58b933476ef79b896b1292482d4d68",
       "text": "- It must work from pasted content, a local file, or a read-only source export.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-delivery-diagram-contract-artifacts:L128:1b8335e57c12",
+      "id": "engos-delivery-diagram-contract-artifacts:L136:1b8335e57c12",
       "heading": "Constraints",
       "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
-      "source_line": 136,
+      "source_line": 144,
       "sha256": "1b8335e57c127b3caa8fbc30540e2507c78232a375ca4cd91f82e63b2348bb3e",
       "text": "never return a polished but unsupported diagram.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-delivery-diagram-contract-artifacts:L135:c06f32ebed1a",
+      "id": "engos-delivery-diagram-contract-artifacts:L143:c06f32ebed1a",
       "heading": "Example Request",
       "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
-      "source_line": 143,
+      "source_line": 151,
       "sha256": "c06f32ebed1a3f6494eb842e264892baacdf21709a4db708df73e24729227630",
       "text": "> the component and request flow visible, list provided and required",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-delivery-diagram-contract-artifacts:L154:4caf107c3c83",
+      "id": "engos-delivery-diagram-contract-artifacts:L162:4caf107c3c83",
       "heading": "Evaluation Rubric",
       "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
-      "source_line": 162,
+      "source_line": 170,
       "sha256": "4caf107c3c8307cba5d06ccde8e8761b456390035fc92ee18ca20ab1767fca2e",
       "text": "| Contract completeness | Provided/required interfaces have state, owner/action, and evidence |",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-delivery-diagram-contract-artifacts:L163:4b1a79e10615",
+      "id": "engos-delivery-diagram-contract-artifacts:L171:4b1a79e10615",
       "heading": "Full Shaping Handoff",
       "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
-      "source_line": 171,
+      "source_line": 179,
       "sha256": "4b1a79e106154c65883ee0b8095d76ace0a04fe0dc024ae2f36b4c9dd4ad590e",
       "text": "Stage 3 authoring; direct artifact requests can remain artifact-only with upstream",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-delivery-diagram-contract-artifacts:L170:2c96789dff12",
+      "id": "engos-delivery-diagram-contract-artifacts:L178:2c96789dff12",
       "heading": "Full Shaping Handoff",
       "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
-      "source_line": 178,
+      "source_line": 186,
       "sha256": "2c96789dff12f489bfdce38e988131e99bdea15fadd8d4bb8e716a98f33225e7",
       "text": "placement occurs only after full-run G3 passes. Return complete row/diagram inventory,",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-delivery-diagram-contract-artifacts:L183:9ffe403cd4e5",
+      "id": "engos-delivery-diagram-contract-artifacts:L191:9ffe403cd4e5",
       "heading": "Reference-Matched Visual Authoring",
       "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
-      "source_line": 191,
+      "source_line": 199,
       "sha256": "9ffe403cd4e55eb3d058ee0a8d002de68e2018838b8a1b7ccc3a9f20851961e9",
       "text": "presentation profile; native-Mermaid-only requests need no extra image step. A curated SVG may",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-delivery-diagram-contract-artifacts:L184:760ec65bef6b",
+      "id": "engos-delivery-diagram-contract-artifacts:L192:760ec65bef6b",
       "heading": "Reference-Matched Visual Authoring",
       "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
-      "source_line": 192,
+      "source_line": 200,
       "sha256": "760ec65bef6b123753ae6a450f60d4f1ec02291172e3d5521d69e29b0930bee7",
       "text": "address a documented layout limitation only with preserved source identity and a",
       "kind": "invariant",
@@ -484,30 +495,40 @@
       "mapped_to": []
     },
     {
-      "id": "engos-delivery-diagram-contract-artifacts:sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/presentation.md:L27:e9a9d7d87a83",
+      "id": "engos-delivery-diagram-contract-artifacts:sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/presentation.md:L26:ea483ae2ef40",
       "heading": "root",
       "source": "sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/presentation.md",
-      "source_line": 27,
+      "source_line": 26,
+      "sha256": "ea483ae2ef40eafd27efeaad06c54ab5274b6d70e9821c60a5b085fe31343ada",
+      "text": "Do not replace the sequence diagram with a flowchart to obtain colored nodes.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-diagram-contract-artifacts:sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/presentation.md:L31:e9a9d7d87a83",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/presentation.md",
+      "source_line": 31,
       "sha256": "e9a9d7d87a83ed0bd81c95fb2358cfa9402bd5eae911a0590099d762c52444c0",
       "text": "stable row IDs. Enumerate every original field and compare converted values; never",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-delivery-diagram-contract-artifacts:sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/presentation.md:L32:bfa68624f640",
+      "id": "engos-delivery-diagram-contract-artifacts:sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/presentation.md:L36:bfa68624f640",
       "heading": "root",
       "source": "sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/presentation.md",
-      "source_line": 32,
+      "source_line": 36,
       "sha256": "bfa68624f640d9f9b1891c0fb604541a4a19e1bda4ab9e78e02a2c3f1422fad5",
       "text": "State colors also need explicit text; proposed/unknown/needs-spike must not look",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-delivery-diagram-contract-artifacts:sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/presentation.md:L41:1399e56a429e",
+      "id": "engos-delivery-diagram-contract-artifacts:sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/presentation.md:L45:1399e56a429e",
       "heading": "root",
       "source": "sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/presentation.md",
-      "source_line": 41,
+      "source_line": 45,
       "sha256": "1399e56a429ee795eabbdb6f01a7db3bc6482a94b9da02ff1f31230b880ea81b",
       "text": "browser console do not establish readability. Authoring/G3 inspects local rendered",
       "kind": "invariant",
@@ -522,11 +543,11 @@
   "source_references": [
     {
       "path": "ssot/engos-delivery-diagram-contract-artifacts.md",
-      "sha256": "b3123faa8812d82521631c7b6cbf46333ef03815c8f912ef509ecd096dc3aa72"
+      "sha256": "6762940d898fc730a057f6197a12c352b360e74e5c9d00e6746293fab9f52929"
     },
     {
       "path": "sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/diagram-style.md",
-      "sha256": "5fb462bc09f53e091c6e54473dade920bc166d96df5ec21dccab17d348fc42f4"
+      "sha256": "284e1303e033fba957b5936d856ff7019e9183cd46fabec00664c80533a0c7ef"
     },
     {
       "path": "sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/bundle.md",
@@ -534,7 +555,7 @@
     },
     {
       "path": "sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/presentation.md",
-      "sha256": "38e23c43c4b3a19d21d155ea76aa9896bbd8f376b1cec59e19a9a0eecd4206d0"
+      "sha256": "203a256196396a7dbddabb83628ef0dddaa3e4630a4802f42de920877ead92e3"
     },
     {
       "path": "sources/capability-resources/engos-delivery-diagram-contract-artifacts/resource-map.json",
@@ -551,11 +572,11 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 46,
+    "total": 48,
     "mapped": 0,
     "waived": 0
   },
   "review_status": "draft",
   "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs.",
-  "resource_bundle_sha256": "043b12fea10932ee30f6274082c275bbef1183f5e9f279d582c0279859d95c67"
+  "resource_bundle_sha256": "b58eff3c421c15caab8e72c2332d8298a0f441c13fd153e7cd76ca320b22c249"
 }

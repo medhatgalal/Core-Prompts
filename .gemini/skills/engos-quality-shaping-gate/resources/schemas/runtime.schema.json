@@ -14,12 +14,40 @@
     "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,99}$"},
     "hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
     "path": {"type": "string", "minLength": 1, "description": "Portable run-relative POSIX path; runtime rejects absolute paths, backslashes, colons, empty/dot/parent segments, symlinks and nonregular files."},
+    "lineLocator": {"type": "string", "pattern": "^[1-9][0-9]*:[1-9][0-9]*$", "description": "Canonical 1-based inclusive N:M line range, checked against retained UTF-8 bytes."},
+    "lineLocators": {"type": "array", "items": {"$ref": "#/definitions/lineLocator"}, "minItems": 1, "uniqueItems": true},
     "texts": {"type": "array", "items": {"$ref": "#/definitions/text"}, "uniqueItems": true},
     "refs": {"allOf": [{"$ref": "#/definitions/texts"}], "minItems": 1},
+    "ids": {"type": "array", "items": {"$ref": "#/definitions/id"}, "uniqueItems": true},
     "gate": {"enum": ["G0", "G1", "G2", "G3", "G4"]},
     "target": {
       "type": "object", "additionalProperties": false, "required": ["surface", "destination"],
       "properties": {"surface": {"$ref": "#/definitions/text"}, "destination": {"$ref": "#/definitions/text"}}
+    },
+    "openedEvidence": {
+      "type": "object", "additionalProperties": false, "required": ["path", "sha256", "locators"],
+      "properties": {"path": {"$ref": "#/definitions/path"}, "sha256": {"$ref": "#/definitions/hash"}, "locators": {"$ref": "#/definitions/lineLocators"}}
+    },
+    "researchCoverage": {
+      "type": "object", "additionalProperties": false, "required": ["schema_version", "opened"],
+      "properties": {"schema_version": {"type": "integer", "const": 1}, "opened": {"type": "array", "items": {"$ref": "#/definitions/openedEvidence"}}}
+    },
+    "shapeClaim": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "status", "load_bearing", "evidence", "basis_claims"],
+      "properties": {
+        "id": {"$ref": "#/definitions/id"}, "status": {"enum": ["existing", "proposed_extension"]},
+        "load_bearing": {"type": "boolean"}, "evidence": {"type": "array", "items": {"$ref": "#/definitions/openedEvidence"}},
+        "basis_claims": {"$ref": "#/definitions/ids"}
+      }
+    },
+    "shapeSet": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema_version", "selected_parts", "walk_away_item", "claims"],
+      "properties": {
+        "schema_version": {"type": "integer", "const": 1}, "selected_parts": {"$ref": "#/definitions/ids"},
+        "walk_away_item": {"$ref": "#/definitions/text"}, "claims": {"type": "array", "items": {"$ref": "#/definitions/shapeClaim"}}
+      }
     },
     "gatePolicy": {
       "type": "object", "additionalProperties": false, "required": ["predicates", "required_outputs"],
@@ -34,6 +62,7 @@
       "properties": {
         "schema_version": {"const": 1, "type": "integer"},
         "policy_id": {"$ref": "#/definitions/text"},
+        "shaping_loop": {"type": "boolean", "default": false, "description": "Enables mechanical G2/G3 shaping-loop checks; omitted policies retain historical behavior."},
         "references": {
           "type": "object", "additionalProperties": false, "required": ["gates", "rubric"],
           "properties": {"gates": {"$ref": "#/definitions/path"}, "rubric": {"$ref": "#/definitions/path"}}
@@ -56,7 +85,9 @@
           }
         },
         "delivery_targets": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/definitions/target"}}
-      }
+      },
+      "allOf": [{"if": {"properties": {"policy_id": {"const": "shaping-gates.v3+rubric.v4"}}},
+        "then": {"required": ["shaping_loop"], "properties": {"shaping_loop": {"const": true}}}}]
     },
     "reviewerAssignment": {
       "type": "object", "additionalProperties": false,
@@ -78,7 +109,9 @@
         "resource_revision": {"$ref": "#/definitions/text"}, "skill_allowlist": {"$ref": "#/definitions/refs"},
         "original_constraints": {"$ref": "#/definitions/refs"}, "assigned_questions": {"$ref": "#/definitions/texts"},
         "source_access_scope": {"$ref": "#/definitions/text"}, "effort_bound": {"$ref": "#/definitions/text"},
-        "stop_conditions": {"$ref": "#/definitions/refs"}
+        "stop_conditions": {"$ref": "#/definitions/refs"},
+        "shape_basis": {"type": "array", "items": {"$ref": "#/definitions/openedEvidence"},
+          "description": "Required by runtime for G3 under shaping_loop=true; every span must be covered by accepted G2 research-coverage.json."}
       }
     },
     "question": {

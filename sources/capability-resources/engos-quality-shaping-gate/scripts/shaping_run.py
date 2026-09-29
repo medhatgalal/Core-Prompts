@@ -130,6 +130,21 @@ def digest(data):
     return hashlib.sha256(data).hexdigest()
 
 
+def line_span(data, locator):
+    """Validate canonical 1-based N:M locators and return exact retained UTF-8 line bytes."""
+    string(locator)
+    match = re.fullmatch(r"([1-9][0-9]*):([1-9][0-9]*)", locator)
+    require(match is not None, "locator must use canonical N:M line-range form")
+    try:
+        data.decode("utf-8")
+    except UnicodeDecodeError as exc:
+        raise Hold("opened source must be valid UTF-8") from exc
+    lines = data.splitlines(keepends=True)
+    first, last = map(int, match.groups())
+    require(first <= last <= len(lines), f"locator {locator} is outside retained source line bounds")
+    return tuple(lines[first - 1:last])
+
+
 def encoded(value):
     return (json.dumps(value, sort_keys=True, separators=(",", ":"), allow_nan=False) + "\n").encode()
 
@@ -202,9 +217,15 @@ def atomic_write(path, data):
 
 
 def validate_policy(policy):
-    shape(policy, ["schema_version", "policy_id", "gates", "scoring", "delivery_targets", "references"])
+    shape(policy, ["schema_version", "policy_id", "gates", "scoring", "delivery_targets", "references"],
+          ["shaping_loop"])
     require(type(policy["schema_version"]) is int and policy["schema_version"] == 1, "unsupported policy schema")
     string(policy["policy_id"])
+    if "shaping_loop" in policy:
+        boolean(policy["shaping_loop"])
+    if policy["policy_id"] == "shaping-gates.v3+rubric.v4":
+        require(policy.get("shaping_loop") is True,
+                "shaping-gates.v3+rubric.v4 requires shaping_loop=true")
     shape(policy["gates"], GATES)
     for i, gate in enumerate(GATES):
         entry = shape(policy["gates"][gate], ["predicates", "required_outputs"])
@@ -214,6 +235,11 @@ def validate_policy(policy):
         require(set(MIN_OUTPUTS[i]) <= set(entry["required_outputs"]), f"missing mandatory {gate} outputs")
         for name in entry["required_outputs"]:
             safe_relative(name)
+    if policy.get("shaping_loop", False):
+        require("research-coverage.json" in policy["gates"]["G2"]["required_outputs"],
+                "shaping loop requires G2 research-coverage.json")
+        require("shape-set.json" in policy["gates"]["G3"]["required_outputs"],
+                "shaping loop requires G3 shape-set.json")
     score = shape(policy["scoring"], ["dimensions", "minimum_dimension", "minimum_overall"])
     require(strings(score["dimensions"]) == TEAM + PITCH, "rubric requires the ordered twelve dimensions")
     number(score["minimum_dimension"], 3, 5)
@@ -854,7 +880,7 @@ class Runtime:
     def prepare(self, spec, expected):
         shape(spec, ["schema_version", "work_order_id", "gate", "author", "reviewer", "inputs", "source_revision",
                      "resource_revision", "skill_allowlist", "original_constraints", "assigned_questions",
-                     "source_access_scope", "effort_bound", "stop_conditions"])
+                     "source_access_scope", "effort_bound", "stop_conditions"], ["shape_basis"])
         require(type(spec["schema_version"]) is int and spec["schema_version"] == 1, "unsupported work-order schema")
         order_id = identifier(spec["work_order_id"])
         require(spec["gate"] in GATES, "invalid gate")
@@ -868,11 +894,21 @@ class Runtime:
         require(reviewer["independent"] is True and reviewer["identity"] != spec["author"], "independent reviewer required before dispatch")
         for key in ("assignment_evidence", "context_evidence"):
             require(reviewer[key] in spec["inputs"], f"reviewer {key} must be a hashed input")
+        retry_new_facts = []
         with self.lock():
             state = self._load()
             self._expected(state, expected)
             require(order_id not in state["orders"], "work-order ID already used")
             require(len(state["accepted"]) < 5 and spec["gate"] == GATES[len(state["accepted"])] , "gate skip or already accepted; reopen first")
+            if spec["gate"] == "G3" and state["policy"].get("shaping_loop", False):
+                require("shape_basis" in spec and isinstance(spec["shape_basis"], list),
+                        "current shaping-loop G3 prepare requires shape_basis evidence")
+                g2_key = state["accepted"].get("G2")
+                require(g2_key is not None, "accepted G2 evidence coverage is required before G3 prepare")
+                opened = {"snapshot": self.snapshot(g2_key), "sources": self._opened_index(self.snapshot(g2_key))}
+                declared_basis_facts = self._evidence_line_facts(
+                    spec["shape_basis"], opened, purpose="declared shape_basis", state=state)
+                retry_new_facts = self._check_floor_only_repeat(state, declared_basis_facts)
             require(not self.path(f"candidates/{order_id}").exists(), "candidate directory exists before reviewer assignment")
             for name in spec["inputs"]:
                 self._input_name(name)
@@ -892,6 +928,8 @@ class Runtime:
                           "accepted_decisions": predecessor.get("decisions", []),
                           "write_targets": [f"candidates/{order_id}"],
                           "required_return_schema": "shaping-runtime.v1#/definitions/review"})
+            if spec["gate"] == "G3" and state["policy"].get("shaping_loop", False):
+                order["retry_new_facts"] = retry_new_facts
             self._check_bindings(state, order)
             state["orders"][order_id] = order
             self._commit(state, expected)
@@ -932,6 +970,8 @@ class Runtime:
         for name in cumulative.keys() & files.keys() - {"questions.json", "decisions.json"}:
             require(cumulative[name] == files[name], f"upstream artifact changed: {name}; reopen its stage")
         cumulative.update(files)
+        if state["policy"].get("shaping_loop", False):
+            self._validate_shaping_candidate(state, order, files)
         questions = decode(base64.b64decode(files["questions.json"]["base64"]))
         decisions = decode(base64.b64decode(files["decisions.json"]["base64"]))
         self._registers(questions, decisions, cumulative, order, require_closed=order["gate"] in ("G2", "G3", "G4"))
@@ -951,6 +991,277 @@ class Runtime:
                                 "evidence", "decision_id", "dependency_evidence")),
                             "blocking uncertainty changed after Research; reopen G2")
         return cumulative, questions, decisions
+
+    def _bookkeeping_path(self, snapshot, path, state=None):
+        reviewer = snapshot["work_order"]["reviewer"]
+        excluded = (set(snapshot["policy_bindings"]) | set(snapshot["files"])
+                    | {reviewer["assignment_evidence"], reviewer["context_evidence"]})
+        if state is not None:
+            for event in state.get("observations", []):
+                record = event.get("record", {}) if isinstance(event, dict) else {}
+                if isinstance(record, dict) and record.get("kind") in ("review_requested", "review_returned"):
+                    provenance = event.get("provenance", {})
+                    if isinstance(provenance, dict) and isinstance(provenance.get("path"), str):
+                        excluded.add(provenance["path"])
+        return path in excluded or PurePosixPath(path).parts[0] in {"state", "accepted", "candidates"}
+
+    def _snapshot_source_bytes(self, snapshot, path, expected_hash):
+        artifact = snapshot["files"].get(path)
+        if artifact is not None:
+            data = base64.b64decode(artifact["base64"], validate=True)
+        elif path in snapshot["work_order"]["inputs"]:
+            data = read_bytes(self.path(path))
+        else:
+            raise Hold(f"research source is not retained by accepted G2: {path}")
+        require(digest(data) == expected_hash, f"research source bytes changed: {path}")
+        return data
+
+    def _opened_index(self, snapshot):
+        """Map eligible opened sources to covered line numbers and exact line bytes."""
+        try:
+            raw = base64.b64decode(snapshot["files"]["research-coverage.json"]["base64"], validate=True)
+            coverage = decode(raw)
+            shape(coverage, ["schema_version", "opened"])
+            require(type(coverage["schema_version"]) is int and coverage["schema_version"] == 1,
+                    "unsupported research coverage schema")
+            require(isinstance(coverage["opened"], list), "research coverage opened must be an array")
+            index = {}
+            for item in coverage["opened"]:
+                shape(item, ["path", "sha256", "locators"])
+                path, sha = safe_relative(item["path"]), item["sha256"]
+                require(isinstance(sha, str) and re.fullmatch(r"[0-9a-f]{64}", sha),
+                        "invalid research source sha256")
+                locators = strings(item["locators"])
+                data = self._snapshot_source_bytes(snapshot, path, sha)
+                lines = data.splitlines(keepends=True)
+                row = index.setdefault((path, sha), {"data": data, "opened_lines": set()})
+                require(row["data"] == data, "conflicting retained source bytes")
+                for locator in locators:
+                    line_span(data, locator)
+                    first, last = map(int, locator.split(":"))
+                    row["opened_lines"].update(range(first, last + 1))
+            return index
+        except (KeyError, TypeError, ValueError, binascii.Error) as exc:
+            raise Hold("return to research: accepted G2 research-coverage.json is missing or invalid") from exc
+
+    def _evidence_line_facts(self, evidence, opened, *, purpose, state=None):
+        require(isinstance(evidence, list), f"{purpose} must be an evidence array")
+        facts = set()
+        for item in evidence:
+            shape(item, ["path", "sha256", "locators"])
+            path, sha = safe_relative(item["path"]), item["sha256"]
+            require(isinstance(sha, str) and re.fullmatch(r"[0-9a-f]{64}", sha),
+                    f"invalid {purpose} sha256")
+            require(not self._bookkeeping_path(opened["snapshot"], path, state),
+                    f"{purpose} cannot use policy, resource, review, assignment, context, or draft evidence: {path}")
+            row = opened["sources"].get((path, sha))
+            require(row is not None, f"return to research: {purpose} source was not opened in accepted G2: {path}")
+            locators = strings(item["locators"])
+            lines = row["data"].splitlines(keepends=True)
+            for locator in locators:
+                span = line_span(row["data"], locator)
+                first, last = map(int, locator.split(":"))
+                positions = set(range(first, last + 1))
+                require(positions <= row["opened_lines"],
+                        f"return to research: {purpose} span was not opened in accepted G2: {path}:{locator}")
+                for position in positions:
+                    facts.add((path, sha, digest(lines[position - 1])))
+        return facts
+
+    def _opened_facts(self, snapshot, state=None):
+        """Identity is the exact bytes of opened source lines, independent of path/locator format."""
+        opened = {"snapshot": snapshot, "sources": self._opened_index(snapshot)}
+        return {fact[2] for key, row in opened["sources"].items()
+                if not self._bookkeeping_path(snapshot, key[0], state)
+                for line_no in row["opened_lines"]
+                for fact in [(key[0], key[1], digest(row["data"].splitlines(keepends=True)[line_no - 1]))]}
+
+    def _validate_coverage(self, state, order, files):
+        raw = base64.b64decode(files["research-coverage.json"]["base64"], validate=True)
+        coverage = decode(raw)
+        shape(coverage, ["schema_version", "opened"])
+        require(type(coverage["schema_version"]) is int and coverage["schema_version"] == 1,
+                "unsupported research coverage schema")
+        require(isinstance(coverage["opened"], list), "research coverage opened must be an array")
+        predecessor = self.snapshot(order["predecessor"]) if order["predecessor"] else {}
+        source_hashes = dict(order["input_hashes"])
+        for name, item in predecessor.get("files", {}).items():
+            source_hashes[name] = item["sha256"]
+        seen = set()
+        for item in coverage["opened"]:
+            shape(item, ["path", "sha256", "locators"])
+            path = safe_relative(item["path"])
+            sha = item["sha256"]
+            require(isinstance(sha, str) and re.fullmatch(r"[0-9a-f]{64}", sha),
+                    "invalid research source sha256")
+            locators = strings(item["locators"])
+            key = (path, sha, tuple(locators))
+            require(key not in seen, "duplicate research coverage record")
+            seen.add(key)
+            require(source_hashes.get(path) == sha,
+                    f"return to research: {path} is not a hashed G2 input or cumulative artifact")
+            if path in order["input_hashes"]:
+                data = read_bytes(self.path(path))
+            else:
+                artifact = predecessor.get("files", {}).get(path)
+                require(artifact is not None, f"return to research: source is not a hashed G2 input or cumulative artifact: {path}")
+                data = base64.b64decode(artifact["base64"], validate=True)
+            require(digest(data) == sha, f"return to research: source bytes do not match coverage for {path}")
+            for locator in locators:
+                line_span(data, locator)
+        return coverage
+
+    def _validate_shaping_candidate(self, state, order, files):
+        if order["gate"] == "G2":
+            self._validate_coverage(state, order, files)
+            return
+        if order["gate"] != "G3":
+            return
+        g2_key = state["accepted"].get("G2")
+        require(g2_key is not None, "return to research: accepted G2 evidence coverage is required")
+        g2 = self.snapshot(g2_key)
+        opened = {"snapshot": g2, "sources": self._opened_index(g2)}
+        basis_facts = self._evidence_line_facts(order["shape_basis"], opened,
+                                                purpose="declared shape_basis", state=state)
+        raw = base64.b64decode(files["shape-set.json"]["base64"], validate=True)
+        shape_set = decode(raw)
+        shape(shape_set, ["schema_version", "selected_parts", "walk_away_item", "claims"])
+        require(type(shape_set["schema_version"]) is int and shape_set["schema_version"] == 1,
+                "unsupported shape-set schema")
+        selected = strings(shape_set["selected_parts"], False)
+        for part in selected:
+            identifier(part)
+        string(shape_set["walk_away_item"])
+        if not selected:
+            raise Hold(f"no selected solution; walk-away item: {shape_set['walk_away_item']}")
+        require(isinstance(shape_set["claims"], list), "shape-set claims must be an array")
+        claims_by_id, grounded_existing = {}, set()
+        for claim in shape_set["claims"]:
+            shape(claim, ["id", "status", "load_bearing", "evidence", "basis_claims"])
+            claim_id = identifier(claim["id"])
+            require(claim_id not in claims_by_id, "duplicate shape claim ID")
+            require(claim["status"] in ("existing", "proposed_extension"), "invalid shape claim status")
+            boolean(claim["load_bearing"])
+            require(isinstance(claim["evidence"], list), "claim evidence must be an array")
+            for basis_id in strings(claim["basis_claims"], False):
+                identifier(basis_id)
+            evidence_facts = self._evidence_line_facts(claim["evidence"], opened,
+                                                       purpose=f"claim {claim_id} evidence", state=state)
+            require(evidence_facts <= basis_facts,
+                    f"claim {claim_id} evidence is outside the declared shape_basis")
+            if claim["status"] == "existing" and claim["load_bearing"]:
+                require(evidence_facts, f"return to research: load-bearing existing claim {claim_id} lacks opened evidence")
+            if claim["status"] == "existing" and evidence_facts:
+                grounded_existing.add(claim_id)
+            claims_by_id[claim_id] = {"status": claim["status"], "evidence": evidence_facts,
+                                      "basis": strings(claim["basis_claims"], False)}
+        for claim in shape_set["claims"]:
+            if claim["status"] == "proposed_extension":
+                basis = strings(claim["basis_claims"])
+                require(set(basis) <= grounded_existing,
+                        f"proposed extension {claim['id']} needs grounded existing basis claims")
+        used_facts = set()
+        for selected_id in selected:
+            claim = claims_by_id.get(selected_id)
+            require(claim is not None, f"selected part {selected_id} has no corresponding shape claim")
+            if claim["status"] == "existing":
+                require(claim["evidence"], f"selected existing claim {selected_id} needs opened evidence")
+                used_facts.update(fact[2] for fact in claim["evidence"])
+            else:
+                require(claim["basis"] and set(claim["basis"]) <= grounded_existing,
+                        f"selected extension {selected_id} needs grounded existing basis claims")
+                for basis_id in claim["basis"]:
+                    used_facts.update(fact[2] for fact in claims_by_id[basis_id]["evidence"])
+        if order.get("retry_new_facts"):
+            require(bool(used_facts & set(order["retry_new_facts"])),
+                    "floor-only G3 retry blocked: selected claim basis does not use newly opened evidence")
+        self._validate_sequence(files)
+
+    @staticmethod
+    def _validate_sequence(files):
+        raw = base64.b64decode(files["sequence.mmd"]["base64"], validate=True)
+        try:
+            text = raw.decode("utf-8")
+        except UnicodeDecodeError as exc:
+            raise Hold("sequence.mmd must be valid UTF-8 Mermaid source") from exc
+        lines = [line.strip() for line in text.splitlines() if line.strip() and not line.lstrip().startswith("%%")]
+        require(bool(lines) and lines[0] == "sequenceDiagram",
+                "shaping loop requires sequence.mmd to be a Mermaid sequenceDiagram")
+        require(not any(re.match(r"^(?:alt|else)(?:\s|$)", line) for line in lines[1:]),
+                "sequence.mmd alt/else blocks are unsupported by the shaping renderer")
+
+    def _floor_only_failure_facts(self, state):
+        failures = []
+        events = state.get("observations", [])
+        if not isinstance(events, list):
+            raise Hold("recovery_pending: observation journal is not an array")
+        for index, event in enumerate(events):
+            if not isinstance(event, dict):
+                raise Hold("recovery_pending: malformed observation may hide a G3 review_returned failure")
+            record = event.get("record", {})
+            if not isinstance(record, dict):
+                if event.get("gate") == "G3":
+                    raise Hold("recovery_pending: malformed G3 review_returned observation record")
+                continue
+            kind = record.get("kind")
+            if kind != "review_returned":
+                if event.get("gate") == "G3" and kind is None:
+                    raise Hold("recovery_pending: malformed G3 observation kind")
+                continue
+            order = state["orders"].get(record.get("work_order_id"))
+            if not isinstance(order, dict):
+                raise Hold("recovery_pending: review_returned observation references an unknown work order")
+            if order.get("gate") != "G3":
+                if event.get("gate") == "G3":
+                    raise Hold("recovery_pending: G3 review_returned observation references a non-G3 work order")
+                continue
+            try:
+                require(event.get("gate") == "G3" and order.get("seal") is not None,
+                        "review event gate/seal binding is missing")
+                require(event.get("return_hash") == order["seal"].get("return_hash"),
+                        "review event return hash does not match its sealed G3 subject")
+                provenance = shape(event.get("provenance"), ["path", "sha256"])
+                require(record.get("evidence") == provenance["path"], "review receipt path binding is missing")
+                safe_relative(provenance["path"])
+                require(isinstance(provenance["sha256"], str)
+                        and re.fullmatch(r"[0-9a-f]{64}", provenance["sha256"]),
+                        "review receipt digest is malformed")
+                review = event.get("review")
+                subject_files = {name: {"sha256": sha} for name, sha in order["seal"]["subject"].items()}
+                review_policy = deepcopy(state["policy"])
+                review_policy["gates"]["G3"]["predicates"] = order["required_predicates"]
+                self._review(review, {**state, "policy": review_policy}, order, subject_files,
+                             acceptance=False)
+                if review["verdict"] != "fail":
+                    continue
+                scores = review["scores"]["dimensions"]
+                values = [scores[key]["score"] for key in TEAM + PITCH]
+                assessments = review["assessments"]
+                if min(values) < 3 or sum(values) / 12 >= 4:
+                    continue
+                if any(assessments[name]["outcome"] != "pass"
+                       for name in order["required_predicates"] if name != "rubric_assessment"):
+                    continue
+                predecessor = order.get("predecessor")
+                require(predecessor is not None, "floor-only G3 review has no immutable G2 predecessor")
+                failures.append((index, self._opened_facts(self.snapshot(predecessor), state)))
+            except (Hold, KeyError, TypeError, ValueError, binascii.Error) as exc:
+                raise Hold(f"recovery_pending: cannot classify recorded G3 review_returned event "
+                           f"{record.get('event_id', '<unknown>')}: {exc}") from exc
+        return failures[-1][1] if failures else None
+
+    def _check_floor_only_repeat(self, state, declared_basis_facts):
+        failed_facts = self._floor_only_failure_facts(state)
+        if failed_facts is None:
+            return []
+        current = self.snapshot(state["accepted"]["G2"])
+        new_facts = self._opened_facts(current, state) - failed_facts
+        require(bool(new_facts),
+                "floor-only G3 retry blocked: return to research and open new evidence before preparing another writer")
+        declared_lines = {fact[2] for fact in declared_basis_facts}
+        require(bool(new_facts & declared_lines),
+                "floor-only G3 retry blocked: newly opened evidence must be included in declared shape_basis")
+        return sorted(new_facts)
 
     def _registers(self, questions, decisions, files, order, require_closed):
         require(isinstance(questions, list) and isinstance(decisions, list), "registers must be JSON arrays")

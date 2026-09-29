@@ -4,6 +4,8 @@ These tests never establish actual independent review, source truth, or pixel QA
 """
 from __future__ import annotations
 
+import base64
+import hashlib
 import importlib.util
 import json
 import subprocess
@@ -60,25 +62,61 @@ def version(rt):
     return rt.status()["version"]
 
 
-def prepare(rt, gate, suffix="a", extra_inputs=()):
+def prepare(rt, gate, suffix="a", extra_inputs=(), assignment_evidence="sources/assignment.txt",
+            context_evidence="sources/context.txt", shape_basis=None):
     spec = {
         "schema_version": 1, "work_order_id": f"{gate}-{suffix}", "gate": gate,
         "author": "fixture-author", "reviewer": {
             "identity": "fixture-reviewer", "independent": True,
-            "assignment_evidence": "sources/assignment.txt",
-            "context_evidence": "sources/context.txt"},
+            "assignment_evidence": assignment_evidence,
+            "context_evidence": context_evidence},
         "inputs": [f"sources/{n}.txt" for n in ("original", "assignment", "context", "rubric")],
         "source_revision": "fixture-source-1", "resource_revision": "fixture-resource-1",
         "skill_allowlist": ["fixture-only"], "original_constraints": ["Fixture, never real review"],
         "assigned_questions": [], "source_access_scope": "fixture sources only",
         "effort_bound": "one fake assessment", "stop_conditions": ["missing evidence"],
     }
-    spec['inputs'].extend(extra_inputs)
+    for evidence_path in (assignment_evidence, context_evidence):
+        if evidence_path not in spec["inputs"]:
+            spec["inputs"].append(evidence_path)
+    for name in extra_inputs:
+        if name not in spec["inputs"]:
+            spec["inputs"].append(name)
+    if gate == "G3" and rt.policy().get("shaping_loop", False):
+        g2 = rt.snapshot(rt.status()["accepted"]["G2"])
+        coverage = json.loads(base64.b64decode(g2["files"]["research-coverage.json"]["base64"]))
+        reviewer = g2["work_order"]["reviewer"]
+        excluded = set(g2["policy_bindings"]) | set(g2["files"]) | {
+            reviewer["assignment_evidence"], reviewer["context_evidence"]}
+        if shape_basis is None:
+            shape_basis = [item for item in coverage["opened"] if item["path"] not in excluded]
+        spec["shape_basis"] = shape_basis
     order = rt.prepare(spec, version(rt))
     candidate = rt.root / order["candidate_root"]
     candidate.mkdir(parents=True)
     for name in rt.policy()["gates"][gate]["required_outputs"]:
         (candidate / name).write_text(f"FAKE fixture content for {name}\n")
+    if rt.policy().get("shaping_loop", False):
+        if gate == "G2":
+            source = "sources/original.txt"
+            write_json(candidate / "research-coverage.json", {
+                "schema_version": 1,
+                "opened": [{"path": source, "sha256": hashlib.sha256((rt.root / source).read_bytes()).hexdigest(),
+                            "locators": ["1:1"]}],
+            })
+        if gate == "G3":
+            source = "sources/original.txt"
+            evidence = {"path": source,
+                        "sha256": hashlib.sha256((rt.root / source).read_bytes()).hexdigest(),
+                        "locators": ["1:1"]}
+            write_json(candidate / "shape-set.json", {
+                "schema_version": 1, "selected_parts": ["fixture-existing"],
+                "walk_away_item": "Fixture selection withdrawn",
+                "claims": [{"id": "fixture-existing", "status": "existing", "load_bearing": True,
+                            "evidence": [evidence], "basis_claims": []}],
+            })
+            (candidate / "sequence.mmd").write_text(
+                "sequenceDiagram\n    participant Author\n    Author->>Reviewer: FAKE fixture\n", encoding="utf-8")
     (candidate / "evidence.txt").write_text("FAKE semantic evidence; no truth claim\n")
     write_json(candidate / "questions.json", [])
     write_json(candidate / "decisions.json", [])

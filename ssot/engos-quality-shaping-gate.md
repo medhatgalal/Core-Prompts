@@ -44,8 +44,11 @@ read resources/references/runtime.md and the helper's current --help first.
 3. Distinguish product decisions, engineering evidence and expert judgments. Ask
    the designated human when authority is missing; continue independent work only.
 4. For G3 inspect every local render and all contract/security rows, cross-check
-   their meaning, apply both scorecards and keep author audit separate from actual
+   their meaning, apply the existing twelve-score rubric and keep author audit separate from actual
    independent review. Lack of independent context means review_pending.
+   A set with no selected work is an unscored hold naming the walk-away item.
+   Check proposed extensions as proposals; absent code is not proof they cannot
+   be selected. Check the whole set and the frame's requested observable stop.
 5. For G4 inspect each saved target's revision, content, tables and diagrams. A
    successful upload, empty target list or source-only image check is insufficient.
 6. Return the documented predicate-level ReviewReceipt with exact subject/policy
@@ -69,6 +72,14 @@ assessment or unverified material feasibility holds regardless of average. Inter
 score anchors at shaping depth; do not demand a built feature solely for points.
 Question deletion cannot waive a risk. Human-reviewed private evidence is labeled
 accurately, not AI-verified. Preserve typed scope and source identity across exports.
+
+Cost 3 includes a restatement of appetite such as "one send, one row, two reads";
+more wording of the same bound cannot earn 4. A failed average below 4 with all
+scores at least 3 and no other miss requires new evidence, a named spike or a
+hold before another pitch. Floors remain 3 per dimension and 4 overall. Unopened
+load-bearing facts return to Research before scoring; Research notes contradicting
+opened code still fail. Reviewers inspect sequence pixels and assess independently;
+no conductor message supplies the preferred verdict.
 
 ## Constraints
 

@@ -3,7 +3,7 @@
 These counts compare selected capability metadata in `.meta/manifest.json`. They do not cover bundled helper/resource changes or measure experimental benefit. See [CHANGELOG](../CHANGELOG.md) for release changes.
 
 - Baseline status: `available`
-- Comparison basis: `git:v1.16.0@e7e47f94a4f1d4677da5800230551330a3c09a64 .meta/manifest.json`
+- Comparison basis: `git:v1.16.1@e3ebb8fcb941fb0b8880f742a3d3e3825bc84929 .meta/manifest.json`
 - New capabilities: `0`
 - Removed capabilities: `0`
 - Changed capability records: `1`
@@ -16,7 +16,7 @@ These counts compare selected capability metadata in `.meta/manifest.json`. They
 - none
 
 ## Contract-Facing Metadata Changes
-- `engos-design-architecture` — changed `required_inputs`
+- `engos-delivery-diagram-contract-artifacts` — changed `shared_constraints`
 
 ## All Changed Capability Records
-- `engos-design-architecture` — changed `required_inputs`
+- `engos-delivery-diagram-contract-artifacts` — changed `shared_constraints`

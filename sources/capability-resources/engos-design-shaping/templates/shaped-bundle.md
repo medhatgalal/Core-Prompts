@@ -11,6 +11,7 @@ Unknown fields are gaps, not invitations to fill plausible values.
 | `pitch-summary.md` | Same outcome, appetite, solution, key trade-off, uncertainty/readiness and evidence links without new claims |
 | `workstreams.md` | Provisional coarse workstreams, responsibilities/non-responsibilities, ready/needs_spike/excluded with evidence or exclusion decision, first observable slice, dependencies and No-Gos; no tickets or invented commitments |
 | `traceability.md` | Original requirement/decision -> frame -> research evidence -> solution/diagram/table/slice -> review; explicit unresolved gaps |
+| `shape-set.json` | Current-policy selected piece IDs, walk-away item if empty, existing/proposed-extension claims, load-bearing flag and exact opened evidence/basis claim references; no-selection holds before scoring |
 | `journal.md` | Attributable actual iterations, decisions, holds, repairs and resource/revision changes; no reconstructed successful history |
 | `pitch-report.json` | Machine-readable pointers to source revision, inventories, content/review and per-target delivery status; not an independently edited pitch |
 | `no-gos.md` | Load-bearing forbidden paths, rationale/evidence, affected seams/slices, decision authority and stop conditions |
@@ -29,8 +30,9 @@ second inventory or exhaustive option matrix is required.
 ## Required diagram fields
 
 `component.mmd`: components, callers, ownership boundaries and seams.
-`sequence.mmd`: representative request/event path with relevant alternative/failure
-paths. `data-flow.mmd`: movement, transformations, persistence and trust boundaries.
+`sequence.mmd`: real sequenceDiagram for representative request/event and stop,
+with separate failure sequences as needed for the limited renderer (no alt/else).
+`data-flow.mmd`: movement, transformations, persistence and trust boundaries.
 Each has a caption, legend, evidence refs, existing/proposed/unknown labels and
 explicit omissions. Keep negative responsibilities visible. Render receipts bind
 source hash, renderer, saved image and observed pixels/limitations; parser success

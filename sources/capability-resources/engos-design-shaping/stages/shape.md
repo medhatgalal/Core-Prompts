@@ -6,6 +6,26 @@ Read architecture-fit.md. Include evidence-backed reuse/non-reuse decisions for
 material capabilities/seams in pitch.md, with conditional specialist contributions.
 No positive reuse finding or implementation refactor is required to shape a pitch.
 
+## Select one supported set
+
+A confirmed decision that opened code does not perform is a proposed extension.
+Name the existing seam and the proposed write/behavior separately. "Do not show a
+question that was never written" prevents invented existing state; it does not
+prevent proposing the write that creates the question. Judge the pieces together:
+one piece too small alone does not discard a set that delivers the accepted frame.
+
+Record selected piece IDs and existing/proposed-extension claims in shape-set.json
+under the current runtime policy. A set that selects nothing is a hold naming the
+load-bearing walk-away item, not a pitch for the twelve scores. Stop before review.
+Do not manufacture a trivial selected piece to bypass this semantic check.
+
+Before reviewer dispatch, check each load-bearing existing claim against accepted
+G2 research-coverage.json and the actual opened source. A missing or false fact
+returns to G2; do not spend G3 review to discover an already visible research gap.
+Proposed extensions need grounded existing basis claims; their new behavior need
+not be implemented during shaping. An unsupported assumption masquerading as a
+proposal remains a research gap. Keep research reviews' code-agreement standard.
+
 > Act as the shaper. Verify the current passing frame/research and accepted
 > decisions, then compare bounded options and rough out the smallest supported
 > solution. Explain why it fits the actual appetite and walk-away. Write the
@@ -33,4 +53,8 @@ Cuts must preserve core outcome, usability, quality and security; state when no
 safe further cut remains. Design one pitch-wide proof slice and coarse workstreams
 with observable first slices, not a production ticket breakdown. A new technical
 unknown returns to Research; changed outcome/scope/appetite returns to Framed.
+The proof slice must observe the stop the frame requested. If the frame asks to
+follow a job after send, observe that job through the required terminal state;
+watching only a queue row does not count. Describe the observation as a future
+acceptance check unless it actually ran. No proof or ownership is invented.
 Author audit precedes the `review` route. Gate criteria and scoring remain there.

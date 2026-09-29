@@ -1,6 +1,7 @@
 {
   "schema_version": 1,
-  "policy_id": "shaping-gates.v2+rubric.v3",
+  "policy_id": "shaping-gates.v3+rubric.v4",
+  "shaping_loop": true,
   "references": {"gates": "sources/gates.md", "rubric": "sources/rubrics.md"},
   "gates": {
     "G0": {
@@ -13,11 +14,11 @@
     },
     "G2": {
       "predicates": ["uncertainties_resolved", "evidence_sufficiency", "grounded_risks", "existing_capability_evidence"],
-      "required_outputs": ["research-notes.md"]
+      "required_outputs": ["research-notes.md", "research-coverage.json"]
     },
     "G3": {
       "predicates": ["coherent_bounded_solution", "exemplar_coverage", "diagrams_visual", "contracts_security", "workstreams_proof", "constraints_traceability", "author_audit", "independent_review", "rubric_assessment", "architecture_fit"],
-      "required_outputs": ["pitch.md", "pitch-summary.md", "workstreams.md", "traceability.md", "contracts.md", "security-owners.md", "component.mmd", "sequence.mmd", "data-flow.mmd"]
+      "required_outputs": ["pitch.md", "pitch-summary.md", "workstreams.md", "traceability.md", "contracts.md", "security-owners.md", "component.mmd", "sequence.mmd", "data-flow.mmd", "shape-set.json"]
     },
     "G4": {
       "predicates": ["saved_target_parity", "target_revision_pixels", "faithful_betting_prep", "no_delivery_discrepancy"],

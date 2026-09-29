@@ -65,9 +65,10 @@ resource dependencies, decisions/authority records and source index into authori
 dependencies or silently track changes to the remote originals of local copies.
 Refresh copies when upstream changes; reopen the earliest affected gate.
 
-The current profile is `shaping-gates.v2+rubric.v3`. It uses the existing extensible
-predicate mechanism to add G2 `existing_capability_evidence` and G3
-`architecture_fit`; it does not change the executable or runtime schema. Keep the
+The current profile is `shaping-gates.v3+rubric.v4`. It retains G2
+`existing_capability_evidence`, G3 `architecture_fit` and the same twelve scores
+and 3/4 thresholds. Optional policy `shaping_loop: true` enables the current
+dispatch/seal checks; absent/false preserves historical runtime behavior. Keep the
 two reference keys and paths unchanged: `gates` -> `sources/gates.md` and `rubric`
 -> `sources/rubrics.md`. No additional policy resource or tracker is required.
 
@@ -116,7 +117,7 @@ Exact `prepare` input (replace labels and evidence with actual host records):
   },
   "inputs": ["sources/original.md", "sources/index.json", "sources/reviewer-assignment.json", "sources/reviewer-context.json"],
   "source_revision": "source-index-revision-1",
-  "resource_revision": "shaping-gates.v2+rubric.v3",
+  "resource_revision": "shaping-gates.v3+rubric.v4",
   "skill_allowlist": ["engos-design-frame-from-vague"],
   "original_constraints": ["Preserve the supplied problem; do not choose a solution in the frame."],
   "assigned_questions": [],
@@ -149,8 +150,8 @@ legacy minimum predicates and are mandatory when this profile is bound.
 | --- | --- | --- |
 | G0 | `brief.md`, `intake.md` | `original_preserved`; `source_coverage`; `fact_classification`; `no_selected_solution` |
 | G1 | `framed.md` | `problem_frame` (people/problem/why-now/outcome); `confirmed_appetite_walkaway`; `boundaries_uncertainties`; `no_selected_solution` |
-| G2 | `research-notes.md` | `uncertainties_resolved`; `evidence_sufficiency` (including actual spikes/private-review limitations); `grounded_risks`; `existing_capability_evidence` (scoped existing-candidate inventory, citations, coverage and unknowns) |
-| G3 | `pitch.md`, `pitch-summary.md`, `workstreams.md`, `traceability.md`, `contracts.md`, `security-owners.md`, `component.mmd`, `sequence.mmd`, `data-flow.mmd` | `coherent_bounded_solution`; `exemplar_coverage` (scope/cuts/no-gos/mitigations); `diagrams_visual`; `contracts_security`; `workstreams_proof`; `constraints_traceability`; `author_audit`; `independent_review`; `rubric_assessment`; `architecture_fit` (material dispositions and evidence of fit) |
+| G2 | `research-notes.md`, `research-coverage.json` | `uncertainties_resolved`; `evidence_sufficiency` (including actual spikes/private-review limitations); `grounded_risks`; `existing_capability_evidence` (scoped existing-candidate inventory, citations, coverage and unknowns) |
+| G3 | `pitch.md`, `pitch-summary.md`, `workstreams.md`, `traceability.md`, `contracts.md`, `security-owners.md`, `component.mmd`, `sequence.mmd`, `data-flow.mmd`, `shape-set.json` | `coherent_bounded_solution`; `exemplar_coverage` (scope/cuts/no-gos/mitigations); `diagrams_visual`; `contracts_security`; `workstreams_proof`; `constraints_traceability`; `author_audit`; `independent_review`; `rubric_assessment`; `architecture_fit` (material dispositions and evidence of fit) |
 | G4 | `betting-table-prep.md` | `saved_target_parity` (all text/rows/diagrams/style); `target_revision_pixels` (revision plus representation-appropriate verification); `faithful_betting_prep`; `no_delivery_discrepancy` |
 
 Predecessor/current-generation/input hash checks are mechanical, in addition to
@@ -318,14 +319,100 @@ changes are policy changes; they cannot retroactively satisfy previous G4 scope.
 
 Existing runs may continue under their original pinned policy and resource bytes;
 their passes make no claim about new predicates absent from that policy. To adopt
-`shaping-gates.v2+rubric.v3`, the controller explicitly stages the current policy
+`shaping-gates.v3+rubric.v4`, the controller explicitly stages the current policy
 and both matching references, then calls `reopen --gate G0 --policy` with the
 actual expected version and adoption reason. Changed staged bytes cause drift
 until rebound. G2/G3-only rebinding is refused. G0 rebinding invalidates all current
 gate acceptances and increments generation; prepare fresh work orders and reassess
 G0 onward. Retain historical snapshots, policy hashes and receipt bytes unchanged.
 Old receipts cannot be replayed to satisfy the current policy. This conservative
-adoption uses existing runtime behavior, not an automatic history migration.
+adoption uses explicit policy rebind, not an automatic history migration.
+
+## Evidence-directed dispatch and sealing
+
+With `shaping_loop: true`, G2 also requires `research-coverage.json`; G3 also
+requires `shape-set.json`. Both are sealed/accepted with existing artifacts and
+registers. Additions do not introduce a scoring rubric or external dispatcher.
+
+Research coverage has this shape (replace fixture paths/hashes/locators with
+actual opened and retained source evidence):
+
+```json
+{
+  "schema_version": 1,
+  "opened": [
+    {"path": "sources/source-code.txt", "sha256": "ACTUAL_SHA256", "locators": ["12:24"]}
+  ]
+}
+```
+
+Each path is a hashed G2 input or cumulative source artifact with matching bytes.
+Locator coverage is an inspected claim, not proof of truth; the Research reviewer
+checks the actual code/extract and rejects false notes. An empty opened list may
+represent genuinely nontechnical scope, with reasoned applicability in Research.
+It cannot ground a technical claim. Never claim an opened range from a filename.
+
+The shape set distinguishes existing basis from the proposed extension:
+
+```json
+{
+  "schema_version": 1,
+  "selected_parts": ["write-question", "follow-job"],
+  "walk_away_item": "Required persistence or terminal observation cannot be supported",
+  "claims": [
+    {"id": "existing-seam", "status": "existing", "load_bearing": true,
+     "evidence": [{"path": "sources/source-code.txt", "sha256": "ACTUAL_SHA256", "locators": ["12:24"]}],
+     "basis_claims": []},
+    {"id": "write-question", "status": "proposed_extension", "load_bearing": true,
+     "evidence": [], "basis_claims": ["existing-seam"]},
+    {"id": "follow-job", "status": "proposed_extension", "load_bearing": true,
+     "evidence": [], "basis_claims": ["existing-seam"]}
+  ]
+}
+```
+
+Seal refuses empty selected_parts before a reviewer is dispatched, returning a
+hold naming walk_away_item without twelve scores. It rejects existing load-bearing
+claims lacking opened G2 coverage and proposed extensions lacking grounded existing
+basis. A declaration is not semantic proof: the conductor checks prose/claims agree
+and no hidden load-bearing fact is omitted. New facts reopen G2 before scoring.
+
+Seal also requires sequence.mmd to start with a real Mermaid sequenceDiagram
+(after comments/configuration), and refuses alt/else for the limited renderer.
+Actual parse, role-band/background/readability and pixel inspection remain reviewer
+obligations; diagram-type validation cannot establish them.
+
+After **every** independent review return, the controller uses `observe` with
+kind review_returned and the real receipt, including failures. This journals the
+validated review. `accept` still holds on failure and leaves acceptance unchanged;
+calling only failed accept does not record the review for retry control.
+
+Before new G3 writer assignment, `prepare` inspects these journaled G3 failures.
+When the sole miss was average <4 with all twelve scores >=3 and every other
+predicate passed, unchanged opened facts block prepare before state mutation.
+Reopening/renaming a draft or source with the same bytes does not reset the stop.
+Only new opened evidence in freshly accepted G2 enables a new attempt. Additional
+source locators or changed source bytes are candidate facts; source truth/novelty
+still require independent Research review. A named, unrun spike or another recap
+is not a new fact. Coordination/policy/accepted-artifact entries cannot clear the
+stop. The remedy is a new fact, named spike or hold; scores/floors are unchanged.
+
+Current-policy G3 `prepare` supplies `shape_basis` as an array of openedEvidence
+records using the same path/SHA256/locators structure. This declares the evidence
+the writer will actually use, and every entry must be in accepted G2 coverage.
+After a sole-average failure, at least one assigned basis fact must be new. At
+seal, each selected part ID must name a grounded claim; selected extension claims
+may reference existing basis claims instead of pretending the write already exists.
+The selected set must actually use the new fact through its claim/basis closure.
+Adding an unrelated fact to G2 or declaring then ignoring a fact is insufficient.
+
+Source locators use canonical inclusive line ranges `N:M` over retained UTF-8
+source bytes. Range syntax and bounds are checked against the actual source;
+arbitrary locator labels or reformatted equivalent ranges do not create a fact.
+Splitting/coalescing the same opened lines is not new coverage. Novelty binds to
+the opened source content, while Research review still judges its material meaning.
+Assignments, review receipts and coordination records are not product evidence.
+Applicable malformed failure history holds for recovery rather than being skipped.
 
 ## Delivery intent and saved-target records
 

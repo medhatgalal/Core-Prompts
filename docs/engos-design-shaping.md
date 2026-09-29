@@ -27,13 +27,45 @@ older candidate; they are not evidence for later changes.
 No automatic implementation, tickets, staffing, sharing or global installation
 follows from shaping a pitch.
 
+## Evidence-directed iteration
+
+Use engos-design-shaping as conductor and engos-quality-shaping-gate as the sole
+workshop reviewer/rubric owner. The legacy ten-point pitch-review is available
+for standalone assessment; it does not score this loop.
+
+The current policy is shaping-gates.v3+rubric.v4. Research adds a hashed opened-
+source inventory, research-coverage.json. Shape adds shape-set.json with selected
+piece IDs, existing/proposed-extension claims and their evidence/basis references.
+These extend the existing journal; old runs retain their pinned history and need
+an explicit G0 policy rebind before claiming these checks.
+
+| Observation | Next step |
+| --- | --- |
+| Research note contradicts opened code | Fail Research and inspect/repair that fact |
+| Load-bearing existing claim has no opened Research evidence | Reopen Research before pitch review |
+| Confirmed behavior is absent from code | Shape it as a proposed extension with researched basis |
+| Set selects no pieces | Unscored hold naming the walk-away item |
+| Only average <4 fails, every score >=3, evidence unchanged | Stop pitch dispatch; acquire a new fact, name a spike or hold |
+| Actual independent G3 pass | Handoff to design within the user's authority and requested delivery scope |
+
+Cost 3 includes restating appetite: “one send, one row, two reads.” More prose
+cannot make it 4. Proposed writes are not required to already exist, but an
+unsupported current-state assumption cannot be relabeled as a proposal. Evaluate
+the pieces jointly, and make the proof observe the frame's requested stop. If it
+asks to follow a job after send, a queue-row observation alone does not satisfy it.
+
+For the limited workshop renderer, use a real sequenceDiagram, short labels,
+white background and no alt/else. Gray actor fills are a known limitation; use
+role-colored bands and a legend, retain the real sequence and open its rendered
+pixels in independent review. Color limitations do not justify a flowchart.
+
 Repository maintainers can inspect `reports/engos-design-shaping/` for detailed
 run evidence when available. Reports are not included in release archives; this
 runbook's status and limitations are self-contained and do not depend on that folder.
 
 ## Start here
 
-Verify that all six core skills from the reviewed bundle are available, not just
+Verify that all five core skills from the reviewed bundle are available, not just
 the entry. If any are missing or outdated, follow
 [Enable the shaping bundle](#enable-the-shaping-bundle) to preview installation.
 If the complete current core bundle is available, no new installation is needed.
@@ -78,10 +110,12 @@ contains the reviewed implementation. A merge to main does not create a release
 or update an existing installation. Older saved selections do not automatically
 add newly introduced skills. Verify the entry and its dependencies before use.
 
-The core bundle is six skills: `engos-design-shaping`,
+The workshop core bundle is five skills: `engos-design-shaping`,
 `engos-design-frame-from-vague`, `engos-quality-shaping-gate`,
-`engos-delivery-diagram-contract-artifacts`, `engos-delivery-artifact-embed`, and
-`engos-audit-pitch-review`. The command below also selects three optional advisors:
+`engos-delivery-diagram-contract-artifacts`, and `engos-delivery-artifact-embed`.
+The legacy `engos-audit-pitch-review` is optional for standalone ten-point review;
+it is not a second scorer or required installation for this workshop.
+The command below also selects three optional advisors:
 architecture, code health and testing. Omit those three only if you want the
 conductor to report unavailable advice and use its bounded fallback.
 
@@ -98,12 +132,28 @@ bash scripts/deploy-surfaces.sh --target "$HOME" --allow-nonlocal-target \
   --slug engos-quality-shaping-gate \
   --slug engos-delivery-diagram-contract-artifacts \
   --slug engos-delivery-artifact-embed \
-  --slug engos-audit-pitch-review \
   --slug engos-design-architecture \
   --slug engos-audit-code-health \
   --slug engos-quality-testing-review \
   --dry-run > "$SHAPING_PLAN"
 ```
+
+For an existing Grok workshop, preview the updated conductor and gate together
+with the previously missing diagram helper:
+
+```bash
+bash scripts/deploy-surfaces.sh --target "$HOME" --allow-nonlocal-target \
+  --cli grok --surface-only \
+  --slug engos-design-shaping \
+  --slug engos-quality-shaping-gate \
+  --slug engos-delivery-diagram-contract-artifacts \
+  --dry-run > "$SHAPING_PLAN"
+```
+
+This is an explicit selection; routine saved-profile updates do not add a missing
+diagram package. Apply the reviewed plan as described below and confirm the three
+Grok package hashes match the merged generated source. Customized files are retained
+and reported by the installer.
 
 Review the plan's exact selection, actions, preserved files and blockers. Only
 after accepting that plan, apply from the same unchanged checkout and target:
