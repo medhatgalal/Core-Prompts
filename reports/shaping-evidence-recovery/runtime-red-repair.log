@@ -1,0 +1,2057 @@
+COMMAND: ["/opt/homebrew/opt/python@3.14/bin/python3.14", "-m", "pytest", "-q", "tests/test_shaping_policy_recovery.py"]
+EXIT: 1
+STDOUT:
+........................FF..FFFF....FFF                                  [100%]
+=================================== FAILURES ===================================
+___________ test_json_list_order_id_is_cli_recovery[previous-policy] ___________
+
+workshop = <shaping_runtime.Runtime object at 0x1072b0d70>
+runtime = <module 'shaping_runtime' from '/private/tmp/core-prompts-shaping-recovery-01a0af1e/sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py'>
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-1286/test_json_list_order_id_is_cli0')
+old_policy = True
+
+    @pytest.mark.parametrize("old_policy", [True, False], ids=["previous-policy", "current-policy"])
+    def test_json_list_order_id_is_cli_recovery(workshop, runtime, tmp_path, old_policy):
+        rt = workshop
+        work_order = recorded_failure(rt, old_policy=old_policy)
+        state = rt._load()
+        event = next(item for item in state["observations"]
+                     if item["record"]["work_order_id"] == work_order)
+        event["record"]["work_order_id"] = ["malformed-json-list"]
+        rt._commit(state, version(rt))
+        before = (rt.root / "state/run.json").read_bytes()
+        result = cli_prepare(rt, runtime, tmp_path)
+>       assert_cli(result, 3, "recovery_pending")
+
+tests/test_shaping_policy_recovery.py:178: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = CompletedProcess(args=['/opt/homebrew/opt/python@3.14/bin/python3.14', '/private/tmp/core-prompts-shaping-recovery-01a...ts\n    order = orders.get(work_order_id)\nTypeError: cannot use \'list\' as a dict key (unhashable type: \'list\')\n')
+exit_code = 3, status = 'recovery_pending'
+
+    def assert_cli(result, exit_code, status):
+>       assert result.returncode == exit_code, (result.returncode, result.stdout, result.stderr)
+E       AssertionError: (1, '', 'Traceback (most recent call last):
+E           File "/private/tmp/core-prompts-shaping-recovery-01a0af1e/sources/capab...ts
+E             order = orders.get(work_order_id)
+E         TypeError: cannot use \'list\' as a dict key (unhashable type: \'list\')
+E         ')
+E       assert 1 == 3
+E        +  where 1 = CompletedProcess(args=['/opt/homebrew/opt/python@3.14/bin/python3.14', '/private/tmp/core-prompts-shaping-recovery-01a...ts\n    order = orders.get(work_order_id)\nTypeError: cannot use \'list\' as a dict key (unhashable type: \'list\')\n').returncode
+
+tests/test_shaping_policy_recovery.py:152: AssertionError
+___________ test_json_list_order_id_is_cli_recovery[current-policy] ____________
+
+workshop = <shaping_runtime.Runtime object at 0x1072b1010>
+runtime = <module 'shaping_runtime' from '/private/tmp/core-prompts-shaping-recovery-01a0af1e/sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py'>
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-1286/test_json_list_order_id_is_cli1')
+old_policy = False
+
+    @pytest.mark.parametrize("old_policy", [True, False], ids=["previous-policy", "current-policy"])
+    def test_json_list_order_id_is_cli_recovery(workshop, runtime, tmp_path, old_policy):
+        rt = workshop
+        work_order = recorded_failure(rt, old_policy=old_policy)
+        state = rt._load()
+        event = next(item for item in state["observations"]
+                     if item["record"]["work_order_id"] == work_order)
+        event["record"]["work_order_id"] = ["malformed-json-list"]
+        rt._commit(state, version(rt))
+        before = (rt.root / "state/run.json").read_bytes()
+        result = cli_prepare(rt, runtime, tmp_path)
+>       assert_cli(result, 3, "recovery_pending")
+
+tests/test_shaping_policy_recovery.py:178: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+result = CompletedProcess(args=['/opt/homebrew/opt/python@3.14/bin/python3.14', '/private/tmp/core-prompts-shaping-recovery-01a...ts\n    order = orders.get(work_order_id)\nTypeError: cannot use \'list\' as a dict key (unhashable type: \'list\')\n')
+exit_code = 3, status = 'recovery_pending'
+
+    def assert_cli(result, exit_code, status):
+>       assert result.returncode == exit_code, (result.returncode, result.stdout, result.stderr)
+E       AssertionError: (1, '', 'Traceback (most recent call last):
+E           File "/private/tmp/core-prompts-shaping-recovery-01a0af1e/sources/capab...ts
+E             order = orders.get(work_order_id)
+E         TypeError: cannot use \'list\' as a dict key (unhashable type: \'list\')
+E         ')
+E       assert 1 == 3
+E        +  where 1 = CompletedProcess(args=['/opt/homebrew/opt/python@3.14/bin/python3.14', '/private/tmp/core-prompts-shaping-recovery-01a...ts\n    order = orders.get(work_order_id)\nTypeError: cannot use \'list\' as a dict key (unhashable type: \'list\')\n').returncode
+
+tests/test_shaping_policy_recovery.py:152: AssertionError
+_ test_captured_history_survives_original_receipt_availability[deleted-previous-policy] _
+
+self = <shaping_runtime.Runtime object at 0x107252ba0>
+state = {'accepted': {'G0': '1f6fa03ea4ed5d9707bbe472aa906dd6612e9979a89fa048c713b7356d015db9', 'G1': '8067c5028609cdb90f99f5b...db90f99f5bf5214892b6a2f3c3a8cbe75a69e1649d18b5d1645'}, ...}, 'controller': 'fixture-controller', 'deliveries': {}, ...}
+
+    def _floor_only_failure_facts(self, state):
+        failures = []
+        events = state.get("observations", [])
+        if not isinstance(events, list):
+            raise Recovery("observation journal is not an array")
+        current_bindings = state.get("policy_bindings")
+        if not isinstance(current_bindings, dict) or not current_bindings:
+            raise Recovery("current policy bindings are missing or malformed")
+        current_policy_hash = digest(encoded(current_bindings))
+        for index, event in enumerate(events):
+            if not isinstance(event, dict):
+                raise Recovery("malformed observation may hide a G3 review_returned failure")
+            record = event.get("record", {})
+            if not isinstance(record, dict):
+                if event.get("gate") == "G3":
+                    raise Recovery("malformed G3 review_returned observation record")
+                continue
+            kind = record.get("kind")
+            if kind != "review_returned":
+                if event.get("gate") == "G3" and kind is None:
+                    raise Recovery("malformed G3 observation kind")
+                continue
+            work_order_id = record.get("work_order_id")
+            orders = state.get("orders")
+            if not isinstance(orders, dict):
+                raise Recovery("work-order journal is missing or malformed")
+            order = orders.get(work_order_id)
+            if not isinstance(order, dict):
+                raise Recovery("review_returned observation references an unknown work order")
+            if order.get("gate") != "G3":
+                if event.get("gate") == "G3":
+                    raise Recovery("G3 review_returned observation references a non-G3 work order")
+                continue
+            try:
+                bindings = order.get("policy_bindings")
+                require(isinstance(bindings, dict) and bool(bindings), "work-order policy bindings are missing")
+                for path, pinned_hash in bindings.items():
+                    safe_relative(path)
+                    require(isinstance(pinned_hash, str) and re.fullmatch(r"[0-9a-f]{64}", pinned_hash),
+                            "work-order policy binding digest is malformed")
+                recorded_policy_hash = order.get("policy_hash")
+                require(isinstance(recorded_policy_hash, str)
+                        and re.fullmatch(r"[0-9a-f]{64}", recorded_policy_hash),
+                        "work-order policy hash is missing or malformed")
+                require(recorded_policy_hash == digest(encoded(bindings)),
+                        "work-order policy hash does not match its stored policy bindings")
+    
+                require(record.get("event_id") and record.get("run_id") == state.get("run_id")
+                        and record.get("generation") == order.get("generation")
+                        and record.get("work_order_id") == work_order_id,
+                        "review observation identity does not match its work order")
+                integer(record.get("version"))
+                integer(event.get("recorded_version"), 1)
+                require(event["recorded_version"] == record["version"] + 1,
+                        "review observation version binding is invalid")
+                require(event.get("gate") == "G3" and order.get("run_id") == state.get("run_id"),
+                        "review event gate/run binding is missing")
+                require(record.get("actor") == order.get("reviewer", {}).get("identity"),
+                        "review observation actor does not match its assigned reviewer")
+                seal = shape(order.get("seal"), ["subject", "questions", "decisions", "work_order_id",
+                                                  "generation", "predecessor", "return_hash"])
+                require(seal["work_order_id"] == work_order_id
+                        and seal["generation"] == order.get("generation")
+                        and seal["predecessor"] == order.get("predecessor"),
+                        "sealed subject identity does not match its work order")
+                require(isinstance(seal["subject"], dict), "sealed subject inventory is malformed")
+                for name, sha in seal["subject"].items():
+                    safe_relative(name)
+                    require(isinstance(sha, str) and re.fullmatch(r"[0-9a-f]{64}", sha),
+                            "sealed subject digest is malformed")
+                seal_payload = {key: seal[key] for key in
+                                ("subject", "questions", "decisions", "work_order_id", "generation", "predecessor")}
+                require(isinstance(seal["return_hash"], str)
+                        and seal["return_hash"] == digest(encoded(seal_payload)),
+                        "sealed subject return hash is invalid")
+                require(event.get("return_hash") == seal["return_hash"],
+                        "review event return hash does not match its sealed G3 subject")
+    
+                provenance = shape(event.get("provenance"), ["path", "sha256"])
+                require(record.get("evidence") == provenance["path"], "review receipt path binding is missing")
+                safe_relative(provenance["path"])
+                require(isinstance(provenance["sha256"], str)
+                        and re.fullmatch(r"[0-9a-f]{64}", provenance["sha256"]),
+                        "review receipt digest is malformed")
+>               receipt_bytes = read_bytes(self.path(provenance["path"]))
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py:1277: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-1286/test_captured_history_survives0/workshop/reviews/fake-G3-failure.json')
+
+    def read_bytes(path):
+        path = guarded(path)
+        flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0) | getattr(os, "O_NONBLOCK", 0)
+>       descriptor = os.open(path, flags)
+                     ^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-1286/test_captured_history_survives0/workshop/reviews/fake-G3-failure.json'
+
+sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py:185: FileNotFoundError
+
+The above exception was the direct cause of the following exception:
+
+workshop = <shaping_runtime.Runtime object at 0x107252ba0>
+runtime = <module 'shaping_runtime' from '/private/tmp/core-prompts-shaping-recovery-01a0af1e/sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py'>
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-1286/test_captured_history_survives0')
+old_policy = True, raw_receipt = 'deleted'
+
+    @pytest.mark.parametrize("old_policy", [True, False], ids=["previous-policy", "current-policy"])
+    @pytest.mark.parametrize("raw_receipt", ["deleted", "overwritten"])
+    def test_captured_history_survives_original_receipt_availability(
+            workshop, runtime, tmp_path, old_policy, raw_receipt):
+        rt = workshop
+        work_order = recorded_failure(rt, old_policy=old_policy)
+        state = rt._load()
+        event = next(item for item in state["observations"]
+                     if item["record"]["work_order_id"] == work_order)
+        receipt_path = rt.root / event["provenance"]["path"]
+        if raw_receipt == "deleted":
+            receipt_path.unlink()
+        else:
+            receipt_path.write_text('{"unrelated":"FAKE overwritten receipt"}\n', encoding="utf-8")
+        before = (rt.root / "state/run.json").read_bytes()
+>       facts = rt._floor_only_failure_facts(rt._load())
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_shaping_policy_recovery.py:283: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shaping_runtime.Runtime object at 0x107252ba0>
+state = {'accepted': {'G0': '1f6fa03ea4ed5d9707bbe472aa906dd6612e9979a89fa048c713b7356d015db9', 'G1': '8067c5028609cdb90f99f5b...db90f99f5bf5214892b6a2f3c3a8cbe75a69e1649d18b5d1645'}, ...}, 'controller': 'fixture-controller', 'deliveries': {}, ...}
+
+    def _floor_only_failure_facts(self, state):
+        failures = []
+        events = state.get("observations", [])
+        if not isinstance(events, list):
+            raise Recovery("observation journal is not an array")
+        current_bindings = state.get("policy_bindings")
+        if not isinstance(current_bindings, dict) or not current_bindings:
+            raise Recovery("current policy bindings are missing or malformed")
+        current_policy_hash = digest(encoded(current_bindings))
+        for index, event in enumerate(events):
+            if not isinstance(event, dict):
+                raise Recovery("malformed observation may hide a G3 review_returned failure")
+            record = event.get("record", {})
+            if not isinstance(record, dict):
+                if event.get("gate") == "G3":
+                    raise Recovery("malformed G3 review_returned observation record")
+                continue
+            kind = record.get("kind")
+            if kind != "review_returned":
+                if event.get("gate") == "G3" and kind is None:
+                    raise Recovery("malformed G3 observation kind")
+                continue
+            work_order_id = record.get("work_order_id")
+            orders = state.get("orders")
+            if not isinstance(orders, dict):
+                raise Recovery("work-order journal is missing or malformed")
+            order = orders.get(work_order_id)
+            if not isinstance(order, dict):
+                raise Recovery("review_returned observation references an unknown work order")
+            if order.get("gate") != "G3":
+                if event.get("gate") == "G3":
+                    raise Recovery("G3 review_returned observation references a non-G3 work order")
+                continue
+            try:
+                bindings = order.get("policy_bindings")
+                require(isinstance(bindings, dict) and bool(bindings), "work-order policy bindings are missing")
+                for path, pinned_hash in bindings.items():
+                    safe_relative(path)
+                    require(isinstance(pinned_hash, str) and re.fullmatch(r"[0-9a-f]{64}", pinned_hash),
+                            "work-order policy binding digest is malformed")
+                recorded_policy_hash = order.get("policy_hash")
+                require(isinstance(recorded_policy_hash, str)
+                        and re.fullmatch(r"[0-9a-f]{64}", recorded_policy_hash),
+                        "work-order policy hash is missing or malformed")
+                require(recorded_policy_hash == digest(encoded(bindings)),
+                        "work-order policy hash does not match its stored policy bindings")
+    
+                require(record.get("event_id") and record.get("run_id") == state.get("run_id")
+                        and record.get("generation") == order.get("generation")
+                        and record.get("work_order_id") == work_order_id,
+                        "review observation identity does not match its work order")
+                integer(record.get("version"))
+                integer(event.get("recorded_version"), 1)
+                require(event["recorded_version"] == record["version"] + 1,
+                        "review observation version binding is invalid")
+                require(event.get("gate") == "G3" and order.get("run_id") == state.get("run_id"),
+                        "review event gate/run binding is missing")
+                require(record.get("actor") == order.get("reviewer", {}).get("identity"),
+                        "review observation actor does not match its assigned reviewer")
+                seal = shape(order.get("seal"), ["subject", "questions", "decisions", "work_order_id",
+                                                  "generation", "predecessor", "return_hash"])
+                require(seal["work_order_id"] == work_order_id
+                        and seal["generation"] == order.get("generation")
+                        and seal["predecessor"] == order.get("predecessor"),
+                        "sealed subject identity does not match its work order")
+                require(isinstance(seal["subject"], dict), "sealed subject inventory is malformed")
+                for name, sha in seal["subject"].items():
+                    safe_relative(name)
+                    require(isinstance(sha, str) and re.fullmatch(r"[0-9a-f]{64}", sha),
+                            "sealed subject digest is malformed")
+                seal_payload = {key: seal[key] for key in
+                                ("subject", "questions", "decisions", "work_order_id", "generation", "predecessor")}
+                require(isinstance(seal["return_hash"], str)
+                        and seal["return_hash"] == digest(encoded(seal_payload)),
+                        "sealed subject return hash is invalid")
+                require(event.get("return_hash") == seal["return_hash"],
+                        "review event return hash does not match its sealed G3 subject")
+    
+                provenance = shape(event.get("provenance"), ["path", "sha256"])
+                require(record.get("evidence") == provenance["path"], "review receipt path binding is missing")
+                safe_relative(provenance["path"])
+                require(isinstance(provenance["sha256"], str)
+                        and re.fullmatch(r"[0-9a-f]{64}", provenance["sha256"]),
+                        "review receipt digest is malformed")
+                receipt_bytes = read_bytes(self.path(provenance["path"]))
+                require(digest(receipt_bytes) == provenance["sha256"], "review receipt bytes do not match provenance")
+                review = decode(receipt_bytes)
+                require(encoded(review) == encoded(event.get("review")),
+                        "journaled review differs from its bound receipt bytes")
+                shape(review, ["schema_version", "run_id", "gate", "work_order_id", "generation", "policy_hash",
+                               "resource_revision", "predecessor", "return_hash", "subject", "reviewer",
+                               "authored_candidate", "independence_confirmed", "evidence", "assessments",
+                               "findings", "unresolved_blockers", "verdict", "next_state", "scores",
+                               "render_evidence", "targets"])
+                require(type(review["schema_version"]) is int and review["schema_version"] == 1,
+                        "unsupported review receipt schema")
+                for key in ("run_id", "gate", "work_order_id", "generation", "policy_hash",
+                            "resource_revision", "predecessor"):
+                    expected = "G3" if key == "gate" else order.get(key)
+                    require(review[key] == expected, f"review receipt binding mismatch: {key}")
+                require(review["return_hash"] == seal["return_hash"]
+                        and review["subject"] == seal["subject"], "review receipt subject binding mismatch")
+                require(review["reviewer"] == order.get("reviewer", {}).get("identity")
+                        and review["authored_candidate"] is False
+                        and review["independence_confirmed"] is True,
+                        "review receipt reviewer binding is invalid")
+                require(review["next_state"] == "G3"
+                        and review["verdict"] in ("pass", "fail", "unverifiable"),
+                        "review receipt verdict/state binding is invalid")
+    
+                predecessor = order.get("predecessor")
+                require(isinstance(predecessor, str) and re.fullmatch(r"[0-9a-f]{64}", predecessor),
+                        "G3 review has no immutable G2 predecessor")
+                prior = self.snapshot(predecessor)
+                require(prior.get("gate") == "G2" and prior.get("run_id") == state.get("run_id")
+                        and prior.get("policy_bindings") == bindings,
+                        "G3 predecessor does not match the recorded policy binding")
+    
+                # Older policy receipts remain auditable history. Their scoring
+                # and coverage contracts cannot be interpreted through today's policy.
+                if recorded_policy_hash != current_policy_hash:
+                    continue
+    
+                subject_files = {name: {"sha256": sha} for name, sha in seal["subject"].items()}
+                review_policy = deepcopy(state["policy"])
+                review_policy["gates"]["G3"]["predicates"] = order["required_predicates"]
+                self._review(review, {**state, "policy": review_policy}, order, subject_files,
+                             acceptance=False)
+                if review["verdict"] != "fail":
+                    continue
+                scores = review["scores"]["dimensions"]
+                values = [scores[key]["score"] for key in TEAM + PITCH]
+                assessments = review["assessments"]
+                if min(values) < 3 or sum(values) / 12 >= 4:
+                    continue
+                if any(assessments[name]["outcome"] != "pass"
+                       for name in order["required_predicates"] if name != "rubric_assessment"):
+                    continue
+                failures.append((index, self._opened_facts(self.snapshot(predecessor), state)))
+            except (Hold, OSError, KeyError, TypeError, ValueError, AttributeError,
+                    IndexError, binascii.Error) as exc:
+>               raise Recovery(f"cannot verify recorded G3 review_returned event "
+                               f"{record.get('event_id', '<unknown>')}: {exc}") from exc
+E               shaping_runtime.Recovery: cannot verify recorded G3 review_returned event fake-review-G3-historical-failure: [Errno 2] No such file or directory: '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-1286/test_captured_history_survives0/workshop/reviews/fake-G3-failure.json'
+
+sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py:1334: Recovery
+_ test_captured_history_survives_original_receipt_availability[deleted-current-policy] _
+
+self = <shaping_runtime.Runtime object at 0x1072b3770>
+state = {'accepted': {'G0': '0a74b974dd9c9d951bb2fde071ab4301ff46202a738267953c3d142c5ef5bda6', 'G1': '2dd8f2b1e37f8d3c44c7e32...eefee56097fbaa96e5bea473a832b0a9515ace007c301fd604054892'}}, 'controller': 'fixture-controller', 'deliveries': {}, ...}
+
+    def _floor_only_failure_facts(self, state):
+        failures = []
+        events = state.get("observations", [])
+        if not isinstance(events, list):
+            raise Recovery("observation journal is not an array")
+        current_bindings = state.get("policy_bindings")
+        if not isinstance(current_bindings, dict) or not current_bindings:
+            raise Recovery("current policy bindings are missing or malformed")
+        current_policy_hash = digest(encoded(current_bindings))
+        for index, event in enumerate(events):
+            if not isinstance(event, dict):
+                raise Recovery("malformed observation may hide a G3 review_returned failure")
+            record = event.get("record", {})
+            if not isinstance(record, dict):
+                if event.get("gate") == "G3":
+                    raise Recovery("malformed G3 review_returned observation record")
+                continue
+            kind = record.get("kind")
+            if kind != "review_returned":
+                if event.get("gate") == "G3" and kind is None:
+                    raise Recovery("malformed G3 observation kind")
+                continue
+            work_order_id = record.get("work_order_id")
+            orders = state.get("orders")
+            if not isinstance(orders, dict):
+                raise Recovery("work-order journal is missing or malformed")
+            order = orders.get(work_order_id)
+            if not isinstance(order, dict):
+                raise Recovery("review_returned observation references an unknown work order")
+            if order.get("gate") != "G3":
+                if event.get("gate") == "G3":
+                    raise Recovery("G3 review_returned observation references a non-G3 work order")
+                continue
+            try:
+                bindings = order.get("policy_bindings")
+                require(isinstance(bindings, dict) and bool(bindings), "work-order policy bindings are missing")
+                for path, pinned_hash in bindings.items():
+                    safe_relative(path)
+                    require(isinstance(pinned_hash, str) and re.fullmatch(r"[0-9a-f]{64}", pinned_hash),
+                            "work-order policy binding digest is malformed")
+                recorded_policy_hash = order.get("policy_hash")
+                require(isinstance(recorded_policy_hash, str)
+                        and re.fullmatch(r"[0-9a-f]{64}", recorded_policy_hash),
+                        "work-order policy hash is missing or malformed")
+                require(recorded_policy_hash == digest(encoded(bindings)),
+                        "work-order policy hash does not match its stored policy bindings")
+    
+                require(record.get("event_id") and record.get("run_id") == state.get("run_id")
+                        and record.get("generation") == order.get("generation")
+                        and record.get("work_order_id") == work_order_id,
+                        "review observation identity does not match its work order")
+                integer(record.get("version"))
+                integer(event.get("recorded_version"), 1)
+                require(event["recorded_version"] == record["version"] + 1,
+                        "review observation version binding is invalid")
+                require(event.get("gate") == "G3" and order.get("run_id") == state.get("run_id"),
+                        "review event gate/run binding is missing")
+                require(record.get("actor") == order.get("reviewer", {}).get("identity"),
+                        "review observation actor does not match its assigned reviewer")
+                seal = shape(order.get("seal"), ["subject", "questions", "decisions", "work_order_id",
+                                                  "generation", "predecessor", "return_hash"])
+                require(seal["work_order_id"] == work_order_id
+                        and seal["generation"] == order.get("generation")
+                        and seal["predecessor"] == order.get("predecessor"),
+                        "sealed subject identity does not match its work order")
+                require(isinstance(seal["subject"], dict), "sealed subject inventory is malformed")
+                for name, sha in seal["subject"].items():
+                    safe_relative(name)
+                    require(isinstance(sha, str) and re.fullmatch(r"[0-9a-f]{64}", sha),
+                            "sealed subject digest is malformed")
+                seal_payload = {key: seal[key] for key in
+                                ("subject", "questions", "decisions", "work_order_id", "generation", "predecessor")}
+                require(isinstance(seal["return_hash"], str)
+                        and seal["return_hash"] == digest(encoded(seal_payload)),
+                        "sealed subject return hash is invalid")
+                require(event.get("return_hash") == seal["return_hash"],
+                        "review event return hash does not match its sealed G3 subject")
+    
+                provenance = shape(event.get("provenance"), ["path", "sha256"])
+                require(record.get("evidence") == provenance["path"], "review receipt path binding is missing")
+                safe_relative(provenance["path"])
+                require(isinstance(provenance["sha256"], str)
+                        and re.fullmatch(r"[0-9a-f]{64}", provenance["sha256"]),
+                        "review receipt digest is malformed")
+>               receipt_bytes = read_bytes(self.path(provenance["path"]))
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py:1277: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-1286/test_captured_history_survives1/workshop/reviews/fake-G3-failure.json')
+
+    def read_bytes(path):
+        path = guarded(path)
+        flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0) | getattr(os, "O_NONBLOCK", 0)
+>       descriptor = os.open(path, flags)
+                     ^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-1286/test_captured_history_survives1/workshop/reviews/fake-G3-failure.json'
+
+sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py:185: FileNotFoundError
+
+The above exception was the direct cause of the following exception:
+
+workshop = <shaping_runtime.Runtime object at 0x1072b3770>
+runtime = <module 'shaping_runtime' from '/private/tmp/core-prompts-shaping-recovery-01a0af1e/sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py'>
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-1286/test_captured_history_survives1')
+old_policy = False, raw_receipt = 'deleted'
+
+    @pytest.mark.parametrize("old_policy", [True, False], ids=["previous-policy", "current-policy"])
+    @pytest.mark.parametrize("raw_receipt", ["deleted", "overwritten"])
+    def test_captured_history_survives_original_receipt_availability(
+            workshop, runtime, tmp_path, old_policy, raw_receipt):
+        rt = workshop
+        work_order = recorded_failure(rt, old_policy=old_policy)
+        state = rt._load()
+        event = next(item for item in state["observations"]
+                     if item["record"]["work_order_id"] == work_order)
+        receipt_path = rt.root / event["provenance"]["path"]
+        if raw_receipt == "deleted":
+            receipt_path.unlink()
+        else:
+            receipt_path.write_text('{"unrelated":"FAKE overwritten receipt"}\n', encoding="utf-8")
+        before = (rt.root / "state/run.json").read_bytes()
+>       facts = rt._floor_only_failure_facts(rt._load())
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_shaping_policy_recovery.py:283: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shaping_runtime.Runtime object at 0x1072b3770>
+state = {'accepted': {'G0': '0a74b974dd9c9d951bb2fde071ab4301ff46202a738267953c3d142c5ef5bda6', 'G1': '2dd8f2b1e37f8d3c44c7e32...eefee56097fbaa96e5bea473a832b0a9515ace007c301fd604054892'}}, 'controller': 'fixture-controller', 'deliveries': {}, ...}
+
+    def _floor_only_failure_facts(self, state):
+        failures = []
+        events = state.get("observations", [])
+        if not isinstance(events, list):
+            raise Recovery("observation journal is not an array")
+        current_bindings = state.get("policy_bindings")
+        if not isinstance(current_bindings, dict) or not current_bindings:
+            raise Recovery("current policy bindings are missing or malformed")
+        current_policy_hash = digest(encoded(current_bindings))
+        for index, event in enumerate(events):
+            if not isinstance(event, dict):
+                raise Recovery("malformed observation may hide a G3 review_returned failure")
+            record = event.get("record", {})
+            if not isinstance(record, dict):
+                if event.get("gate") == "G3":
+                    raise Recovery("malformed G3 review_returned observation record")
+                continue
+            kind = record.get("kind")
+            if kind != "review_returned":
+                if event.get("gate") == "G3" and kind is None:
+                    raise Recovery("malformed G3 observation kind")
+                continue
+            work_order_id = record.get("work_order_id")
+            orders = state.get("orders")
+            if not isinstance(orders, dict):
+                raise Recovery("work-order journal is missing or malformed")
+            order = orders.get(work_order_id)
+            if not isinstance(order, dict):
+                raise Recovery("review_returned observation references an unknown work order")
+            if order.get("gate") != "G3":
+                if event.get("gate") == "G3":
+                    raise Recovery("G3 review_returned observation references a non-G3 work order")
+                continue
+            try:
+                bindings = order.get("policy_bindings")
+                require(isinstance(bindings, dict) and bool(bindings), "work-order policy bindings are missing")
+                for path, pinned_hash in bindings.items():
+                    safe_relative(path)
+                    require(isinstance(pinned_hash, str) and re.fullmatch(r"[0-9a-f]{64}", pinned_hash),
+                            "work-order policy binding digest is malformed")
+                recorded_policy_hash = order.get("policy_hash")
+                require(isinstance(recorded_policy_hash, str)
+                        and re.fullmatch(r"[0-9a-f]{64}", recorded_policy_hash),
+                        "work-order policy hash is missing or malformed")
+                require(recorded_policy_hash == digest(encoded(bindings)),
+                        "work-order policy hash does not match its stored policy bindings")
+    
+                require(record.get("event_id") and record.get("run_id") == state.get("run_id")
+                        and record.get("generation") == order.get("generation")
+                        and record.get("work_order_id") == work_order_id,
+                        "review observation identity does not match its work order")
+                integer(record.get("version"))
+                integer(event.get("recorded_version"), 1)
+                require(event["recorded_version"] == record["version"] + 1,
+                        "review observation version binding is invalid")
+                require(event.get("gate") == "G3" and order.get("run_id") == state.get("run_id"),
+                        "review event gate/run binding is missing")
+                require(record.get("actor") == order.get("reviewer", {}).get("identity"),
+                        "review observation actor does not match its assigned reviewer")
+                seal = shape(order.get("seal"), ["subject", "questions", "decisions", "work_order_id",
+                                                  "generation", "predecessor", "return_hash"])
+                require(seal["work_order_id"] == work_order_id
+                        and seal["generation"] == order.get("generation")
+                        and seal["predecessor"] == order.get("predecessor"),
+                        "sealed subject identity does not match its work order")
+                require(isinstance(seal["subject"], dict), "sealed subject inventory is malformed")
+                for name, sha in seal["subject"].items():
+                    safe_relative(name)
+                    require(isinstance(sha, str) and re.fullmatch(r"[0-9a-f]{64}", sha),
+                            "sealed subject digest is malformed")
+                seal_payload = {key: seal[key] for key in
+                                ("subject", "questions", "decisions", "work_order_id", "generation", "predecessor")}
+                require(isinstance(seal["return_hash"], str)
+                        and seal["return_hash"] == digest(encoded(seal_payload)),
+                        "sealed subject return hash is invalid")
+                require(event.get("return_hash") == seal["return_hash"],
+                        "review event return hash does not match its sealed G3 subject")
+    
+                provenance = shape(event.get("provenance"), ["path", "sha256"])
+                require(record.get("evidence") == provenance["path"], "review receipt path binding is missing")
+                safe_relative(provenance["path"])
+                require(isinstance(provenance["sha256"], str)
+                        and re.fullmatch(r"[0-9a-f]{64}", provenance["sha256"]),
+                        "review receipt digest is malformed")
+                receipt_bytes = read_bytes(self.path(provenance["path"]))
+                require(digest(receipt_bytes) == provenance["sha256"], "review receipt bytes do not match provenance")
+                review = decode(receipt_bytes)
+                require(encoded(review) == encoded(event.get("review")),
+                        "journaled review differs from its bound receipt bytes")
+                shape(review, ["schema_version", "run_id", "gate", "work_order_id", "generation", "policy_hash",
+                               "resource_revision", "predecessor", "return_hash", "subject", "reviewer",
+                               "authored_candidate", "independence_confirmed", "evidence", "assessments",
+                               "findings", "unresolved_blockers", "verdict", "next_state", "scores",
+                               "render_evidence", "targets"])
+                require(type(review["schema_version"]) is int and review["schema_version"] == 1,
+                        "unsupported review receipt schema")
+                for key in ("run_id", "gate", "work_order_id", "generation", "policy_hash",
+                            "resource_revision", "predecessor"):
+                    expected = "G3" if key == "gate" else order.get(key)
+                    require(review[key] == expected, f"review receipt binding mismatch: {key}")
+                require(review["return_hash"] == seal["return_hash"]
+                        and review["subject"] == seal["subject"], "review receipt subject binding mismatch")
+                require(review["reviewer"] == order.get("reviewer", {}).get("identity")
+                        and review["authored_candidate"] is False
+                        and review["independence_confirmed"] is True,
+                        "review receipt reviewer binding is invalid")
+                require(review["next_state"] == "G3"
+                        and review["verdict"] in ("pass", "fail", "unverifiable"),
+                        "review receipt verdict/state binding is invalid")
+    
+                predecessor = order.get("predecessor")
+                require(isinstance(predecessor, str) and re.fullmatch(r"[0-9a-f]{64}", predecessor),
+                        "G3 review has no immutable G2 predecessor")
+                prior = self.snapshot(predecessor)
+                require(prior.get("gate") == "G2" and prior.get("run_id") == state.get("run_id")
+                        and prior.get("policy_bindings") == bindings,
+                        "G3 predecessor does not match the recorded policy binding")
+    
+                # Older policy receipts remain auditable history. Their scoring
+                # and coverage contracts cannot be interpreted through today's policy.
+                if recorded_policy_hash != current_policy_hash:
+                    continue
+    
+                subject_files = {name: {"sha256": sha} for name, sha in seal["subject"].items()}
+                review_policy = deepcopy(state["policy"])
+                review_policy["gates"]["G3"]["predicates"] = order["required_predicates"]
+                self._review(review, {**state, "policy": review_policy}, order, subject_files,
+                             acceptance=False)
+                if review["verdict"] != "fail":
+                    continue
+                scores = review["scores"]["dimensions"]
+                values = [scores[key]["score"] for key in TEAM + PITCH]
+                assessments = review["assessments"]
+                if min(values) < 3 or sum(values) / 12 >= 4:
+                    continue
+                if any(assessments[name]["outcome"] != "pass"
+                       for name in order["required_predicates"] if name != "rubric_assessment"):
+                    continue
+                failures.append((index, self._opened_facts(self.snapshot(predecessor), state)))
+            except (Hold, OSError, KeyError, TypeError, ValueError, AttributeError,
+                    IndexError, binascii.Error) as exc:
+>               raise Recovery(f"cannot verify recorded G3 review_returned event "
+                               f"{record.get('event_id', '<unknown>')}: {exc}") from exc
+E               shaping_runtime.Recovery: cannot verify recorded G3 review_returned event fake-review-G3-historical-failure: [Errno 2] No such file or directory: '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-1286/test_captured_history_survives1/workshop/reviews/fake-G3-failure.json'
+
+sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py:1334: Recovery
+_ test_captured_history_survives_original_receipt_availability[overwritten-previous-policy] _
+
+self = <shaping_runtime.Runtime object at 0x1072501a0>
+state = {'accepted': {'G0': '1f6fa03ea4ed5d9707bbe472aa906dd6612e9979a89fa048c713b7356d015db9', 'G1': '8067c5028609cdb90f99f5b...db90f99f5bf5214892b6a2f3c3a8cbe75a69e1649d18b5d1645'}, ...}, 'controller': 'fixture-controller', 'deliveries': {}, ...}
+
+    def _floor_only_failure_facts(self, state):
+        failures = []
+        events = state.get("observations", [])
+        if not isinstance(events, list):
+            raise Recovery("observation journal is not an array")
+        current_bindings = state.get("policy_bindings")
+        if not isinstance(current_bindings, dict) or not current_bindings:
+            raise Recovery("current policy bindings are missing or malformed")
+        current_policy_hash = digest(encoded(current_bindings))
+        for index, event in enumerate(events):
+            if not isinstance(event, dict):
+                raise Recovery("malformed observation may hide a G3 review_returned failure")
+            record = event.get("record", {})
+            if not isinstance(record, dict):
+                if event.get("gate") == "G3":
+                    raise Recovery("malformed G3 review_returned observation record")
+                continue
+            kind = record.get("kind")
+            if kind != "review_returned":
+                if event.get("gate") == "G3" and kind is None:
+                    raise Recovery("malformed G3 observation kind")
+                continue
+            work_order_id = record.get("work_order_id")
+            orders = state.get("orders")
+            if not isinstance(orders, dict):
+                raise Recovery("work-order journal is missing or malformed")
+            order = orders.get(work_order_id)
+            if not isinstance(order, dict):
+                raise Recovery("review_returned observation references an unknown work order")
+            if order.get("gate") != "G3":
+                if event.get("gate") == "G3":
+                    raise Recovery("G3 review_returned observation references a non-G3 work order")
+                continue
+            try:
+                bindings = order.get("policy_bindings")
+                require(isinstance(bindings, dict) and bool(bindings), "work-order policy bindings are missing")
+                for path, pinned_hash in bindings.items():
+                    safe_relative(path)
+                    require(isinstance(pinned_hash, str) and re.fullmatch(r"[0-9a-f]{64}", pinned_hash),
+                            "work-order policy binding digest is malformed")
+                recorded_policy_hash = order.get("policy_hash")
+                require(isinstance(recorded_policy_hash, str)
+                        and re.fullmatch(r"[0-9a-f]{64}", recorded_policy_hash),
+                        "work-order policy hash is missing or malformed")
+                require(recorded_policy_hash == digest(encoded(bindings)),
+                        "work-order policy hash does not match its stored policy bindings")
+    
+                require(record.get("event_id") and record.get("run_id") == state.get("run_id")
+                        and record.get("generation") == order.get("generation")
+                        and record.get("work_order_id") == work_order_id,
+                        "review observation identity does not match its work order")
+                integer(record.get("version"))
+                integer(event.get("recorded_version"), 1)
+                require(event["recorded_version"] == record["version"] + 1,
+                        "review observation version binding is invalid")
+                require(event.get("gate") == "G3" and order.get("run_id") == state.get("run_id"),
+                        "review event gate/run binding is missing")
+                require(record.get("actor") == order.get("reviewer", {}).get("identity"),
+                        "review observation actor does not match its assigned reviewer")
+                seal = shape(order.get("seal"), ["subject", "questions", "decisions", "work_order_id",
+                                                  "generation", "predecessor", "return_hash"])
+                require(seal["work_order_id"] == work_order_id
+                        and seal["generation"] == order.get("generation")
+                        and seal["predecessor"] == order.get("predecessor"),
+                        "sealed subject identity does not match its work order")
+                require(isinstance(seal["subject"], dict), "sealed subject inventory is malformed")
+                for name, sha in seal["subject"].items():
+                    safe_relative(name)
+                    require(isinstance(sha, str) and re.fullmatch(r"[0-9a-f]{64}", sha),
+                            "sealed subject digest is malformed")
+                seal_payload = {key: seal[key] for key in
+                                ("subject", "questions", "decisions", "work_order_id", "generation", "predecessor")}
+                require(isinstance(seal["return_hash"], str)
+                        and seal["return_hash"] == digest(encoded(seal_payload)),
+                        "sealed subject return hash is invalid")
+                require(event.get("return_hash") == seal["return_hash"],
+                        "review event return hash does not match its sealed G3 subject")
+    
+                provenance = shape(event.get("provenance"), ["path", "sha256"])
+                require(record.get("evidence") == provenance["path"], "review receipt path binding is missing")
+                safe_relative(provenance["path"])
+                require(isinstance(provenance["sha256"], str)
+                        and re.fullmatch(r"[0-9a-f]{64}", provenance["sha256"]),
+                        "review receipt digest is malformed")
+                receipt_bytes = read_bytes(self.path(provenance["path"]))
+>               require(digest(receipt_bytes) == provenance["sha256"], "review receipt bytes do not match provenance")
+
+sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py:1278: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+condition = False, message = 'review receipt bytes do not match provenance'
+
+    def require(condition, message):
+        if not condition:
+>           raise Hold(message)
+E           shaping_runtime.Hold: review receipt bytes do not match provenance
+
+sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py:85: Hold
+
+The above exception was the direct cause of the following exception:
+
+workshop = <shaping_runtime.Runtime object at 0x1072501a0>
+runtime = <module 'shaping_runtime' from '/private/tmp/core-prompts-shaping-recovery-01a0af1e/sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py'>
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-1286/test_captured_history_survives2')
+old_policy = True, raw_receipt = 'overwritten'
+
+    @pytest.mark.parametrize("old_policy", [True, False], ids=["previous-policy", "current-policy"])
+    @pytest.mark.parametrize("raw_receipt", ["deleted", "overwritten"])
+    def test_captured_history_survives_original_receipt_availability(
+            workshop, runtime, tmp_path, old_policy, raw_receipt):
+        rt = workshop
+        work_order = recorded_failure(rt, old_policy=old_policy)
+        state = rt._load()
+        event = next(item for item in state["observations"]
+                     if item["record"]["work_order_id"] == work_order)
+        receipt_path = rt.root / event["provenance"]["path"]
+        if raw_receipt == "deleted":
+            receipt_path.unlink()
+        else:
+            receipt_path.write_text('{"unrelated":"FAKE overwritten receipt"}\n', encoding="utf-8")
+        before = (rt.root / "state/run.json").read_bytes()
+>       facts = rt._floor_only_failure_facts(rt._load())
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_shaping_policy_recovery.py:283: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shaping_runtime.Runtime object at 0x1072501a0>
+state = {'accepted': {'G0': '1f6fa03ea4ed5d9707bbe472aa906dd6612e9979a89fa048c713b7356d015db9', 'G1': '8067c5028609cdb90f99f5b...db90f99f5bf5214892b6a2f3c3a8cbe75a69e1649d18b5d1645'}, ...}, 'controller': 'fixture-controller', 'deliveries': {}, ...}
+
+    def _floor_only_failure_facts(self, state):
+        failures = []
+        events = state.get("observations", [])
+        if not isinstance(events, list):
+            raise Recovery("observation journal is not an array")
+        current_bindings = state.get("policy_bindings")
+        if not isinstance(current_bindings, dict) or not current_bindings:
+            raise Recovery("current policy bindings are missing or malformed")
+        current_policy_hash = digest(encoded(current_bindings))
+        for index, event in enumerate(events):
+            if not isinstance(event, dict):
+                raise Recovery("malformed observation may hide a G3 review_returned failure")
+            record = event.get("record", {})
+            if not isinstance(record, dict):
+                if event.get("gate") == "G3":
+                    raise Recovery("malformed G3 review_returned observation record")
+                continue
+            kind = record.get("kind")
+            if kind != "review_returned":
+                if event.get("gate") == "G3" and kind is None:
+                    raise Recovery("malformed G3 observation kind")
+                continue
+            work_order_id = record.get("work_order_id")
+            orders = state.get("orders")
+            if not isinstance(orders, dict):
+                raise Recovery("work-order journal is missing or malformed")
+            order = orders.get(work_order_id)
+            if not isinstance(order, dict):
+                raise Recovery("review_returned observation references an unknown work order")
+            if order.get("gate") != "G3":
+                if event.get("gate") == "G3":
+                    raise Recovery("G3 review_returned observation references a non-G3 work order")
+                continue
+            try:
+                bindings = order.get("policy_bindings")
+                require(isinstance(bindings, dict) and bool(bindings), "work-order policy bindings are missing")
+                for path, pinned_hash in bindings.items():
+                    safe_relative(path)
+                    require(isinstance(pinned_hash, str) and re.fullmatch(r"[0-9a-f]{64}", pinned_hash),
+                            "work-order policy binding digest is malformed")
+                recorded_policy_hash = order.get("policy_hash")
+                require(isinstance(recorded_policy_hash, str)
+                        and re.fullmatch(r"[0-9a-f]{64}", recorded_policy_hash),
+                        "work-order policy hash is missing or malformed")
+                require(recorded_policy_hash == digest(encoded(bindings)),
+                        "work-order policy hash does not match its stored policy bindings")
+    
+                require(record.get("event_id") and record.get("run_id") == state.get("run_id")
+                        and record.get("generation") == order.get("generation")
+                        and record.get("work_order_id") == work_order_id,
+                        "review observation identity does not match its work order")
+                integer(record.get("version"))
+                integer(event.get("recorded_version"), 1)
+                require(event["recorded_version"] == record["version"] + 1,
+                        "review observation version binding is invalid")
+                require(event.get("gate") == "G3" and order.get("run_id") == state.get("run_id"),
+                        "review event gate/run binding is missing")
+                require(record.get("actor") == order.get("reviewer", {}).get("identity"),
+                        "review observation actor does not match its assigned reviewer")
+                seal = shape(order.get("seal"), ["subject", "questions", "decisions", "work_order_id",
+                                                  "generation", "predecessor", "return_hash"])
+                require(seal["work_order_id"] == work_order_id
+                        and seal["generation"] == order.get("generation")
+                        and seal["predecessor"] == order.get("predecessor"),
+                        "sealed subject identity does not match its work order")
+                require(isinstance(seal["subject"], dict), "sealed subject inventory is malformed")
+                for name, sha in seal["subject"].items():
+                    safe_relative(name)
+                    require(isinstance(sha, str) and re.fullmatch(r"[0-9a-f]{64}", sha),
+                            "sealed subject digest is malformed")
+                seal_payload = {key: seal[key] for key in
+                                ("subject", "questions", "decisions", "work_order_id", "generation", "predecessor")}
+                require(isinstance(seal["return_hash"], str)
+                        and seal["return_hash"] == digest(encoded(seal_payload)),
+                        "sealed subject return hash is invalid")
+                require(event.get("return_hash") == seal["return_hash"],
+                        "review event return hash does not match its sealed G3 subject")
+    
+                provenance = shape(event.get("provenance"), ["path", "sha256"])
+                require(record.get("evidence") == provenance["path"], "review receipt path binding is missing")
+                safe_relative(provenance["path"])
+                require(isinstance(provenance["sha256"], str)
+                        and re.fullmatch(r"[0-9a-f]{64}", provenance["sha256"]),
+                        "review receipt digest is malformed")
+                receipt_bytes = read_bytes(self.path(provenance["path"]))
+                require(digest(receipt_bytes) == provenance["sha256"], "review receipt bytes do not match provenance")
+                review = decode(receipt_bytes)
+                require(encoded(review) == encoded(event.get("review")),
+                        "journaled review differs from its bound receipt bytes")
+                shape(review, ["schema_version", "run_id", "gate", "work_order_id", "generation", "policy_hash",
+                               "resource_revision", "predecessor", "return_hash", "subject", "reviewer",
+                               "authored_candidate", "independence_confirmed", "evidence", "assessments",
+                               "findings", "unresolved_blockers", "verdict", "next_state", "scores",
+                               "render_evidence", "targets"])
+                require(type(review["schema_version"]) is int and review["schema_version"] == 1,
+                        "unsupported review receipt schema")
+                for key in ("run_id", "gate", "work_order_id", "generation", "policy_hash",
+                            "resource_revision", "predecessor"):
+                    expected = "G3" if key == "gate" else order.get(key)
+                    require(review[key] == expected, f"review receipt binding mismatch: {key}")
+                require(review["return_hash"] == seal["return_hash"]
+                        and review["subject"] == seal["subject"], "review receipt subject binding mismatch")
+                require(review["reviewer"] == order.get("reviewer", {}).get("identity")
+                        and review["authored_candidate"] is False
+                        and review["independence_confirmed"] is True,
+                        "review receipt reviewer binding is invalid")
+                require(review["next_state"] == "G3"
+                        and review["verdict"] in ("pass", "fail", "unverifiable"),
+                        "review receipt verdict/state binding is invalid")
+    
+                predecessor = order.get("predecessor")
+                require(isinstance(predecessor, str) and re.fullmatch(r"[0-9a-f]{64}", predecessor),
+                        "G3 review has no immutable G2 predecessor")
+                prior = self.snapshot(predecessor)
+                require(prior.get("gate") == "G2" and prior.get("run_id") == state.get("run_id")
+                        and prior.get("policy_bindings") == bindings,
+                        "G3 predecessor does not match the recorded policy binding")
+    
+                # Older policy receipts remain auditable history. Their scoring
+                # and coverage contracts cannot be interpreted through today's policy.
+                if recorded_policy_hash != current_policy_hash:
+                    continue
+    
+                subject_files = {name: {"sha256": sha} for name, sha in seal["subject"].items()}
+                review_policy = deepcopy(state["policy"])
+                review_policy["gates"]["G3"]["predicates"] = order["required_predicates"]
+                self._review(review, {**state, "policy": review_policy}, order, subject_files,
+                             acceptance=False)
+                if review["verdict"] != "fail":
+                    continue
+                scores = review["scores"]["dimensions"]
+                values = [scores[key]["score"] for key in TEAM + PITCH]
+                assessments = review["assessments"]
+                if min(values) < 3 or sum(values) / 12 >= 4:
+                    continue
+                if any(assessments[name]["outcome"] != "pass"
+                       for name in order["required_predicates"] if name != "rubric_assessment"):
+                    continue
+                failures.append((index, self._opened_facts(self.snapshot(predecessor), state)))
+            except (Hold, OSError, KeyError, TypeError, ValueError, AttributeError,
+                    IndexError, binascii.Error) as exc:
+>               raise Recovery(f"cannot verify recorded G3 review_returned event "
+                               f"{record.get('event_id', '<unknown>')}: {exc}") from exc
+E               shaping_runtime.Recovery: cannot verify recorded G3 review_returned event fake-review-G3-historical-failure: review receipt bytes do not match provenance
+
+sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py:1334: Recovery
+_ test_captured_history_survives_original_receipt_availability[overwritten-current-policy] _
+
+self = <shaping_runtime.Runtime object at 0x107143770>
+state = {'accepted': {'G0': '0a74b974dd9c9d951bb2fde071ab4301ff46202a738267953c3d142c5ef5bda6', 'G1': '2dd8f2b1e37f8d3c44c7e32...eefee56097fbaa96e5bea473a832b0a9515ace007c301fd604054892'}}, 'controller': 'fixture-controller', 'deliveries': {}, ...}
+
+    def _floor_only_failure_facts(self, state):
+        failures = []
+        events = state.get("observations", [])
+        if not isinstance(events, list):
+            raise Recovery("observation journal is not an array")
+        current_bindings = state.get("policy_bindings")
+        if not isinstance(current_bindings, dict) or not current_bindings:
+            raise Recovery("current policy bindings are missing or malformed")
+        current_policy_hash = digest(encoded(current_bindings))
+        for index, event in enumerate(events):
+            if not isinstance(event, dict):
+                raise Recovery("malformed observation may hide a G3 review_returned failure")
+            record = event.get("record", {})
+            if not isinstance(record, dict):
+                if event.get("gate") == "G3":
+                    raise Recovery("malformed G3 review_returned observation record")
+                continue
+            kind = record.get("kind")
+            if kind != "review_returned":
+                if event.get("gate") == "G3" and kind is None:
+                    raise Recovery("malformed G3 observation kind")
+                continue
+            work_order_id = record.get("work_order_id")
+            orders = state.get("orders")
+            if not isinstance(orders, dict):
+                raise Recovery("work-order journal is missing or malformed")
+            order = orders.get(work_order_id)
+            if not isinstance(order, dict):
+                raise Recovery("review_returned observation references an unknown work order")
+            if order.get("gate") != "G3":
+                if event.get("gate") == "G3":
+                    raise Recovery("G3 review_returned observation references a non-G3 work order")
+                continue
+            try:
+                bindings = order.get("policy_bindings")
+                require(isinstance(bindings, dict) and bool(bindings), "work-order policy bindings are missing")
+                for path, pinned_hash in bindings.items():
+                    safe_relative(path)
+                    require(isinstance(pinned_hash, str) and re.fullmatch(r"[0-9a-f]{64}", pinned_hash),
+                            "work-order policy binding digest is malformed")
+                recorded_policy_hash = order.get("policy_hash")
+                require(isinstance(recorded_policy_hash, str)
+                        and re.fullmatch(r"[0-9a-f]{64}", recorded_policy_hash),
+                        "work-order policy hash is missing or malformed")
+                require(recorded_policy_hash == digest(encoded(bindings)),
+                        "work-order policy hash does not match its stored policy bindings")
+    
+                require(record.get("event_id") and record.get("run_id") == state.get("run_id")
+                        and record.get("generation") == order.get("generation")
+                        and record.get("work_order_id") == work_order_id,
+                        "review observation identity does not match its work order")
+                integer(record.get("version"))
+                integer(event.get("recorded_version"), 1)
+                require(event["recorded_version"] == record["version"] + 1,
+                        "review observation version binding is invalid")
+                require(event.get("gate") == "G3" and order.get("run_id") == state.get("run_id"),
+                        "review event gate/run binding is missing")
+                require(record.get("actor") == order.get("reviewer", {}).get("identity"),
+                        "review observation actor does not match its assigned reviewer")
+                seal = shape(order.get("seal"), ["subject", "questions", "decisions", "work_order_id",
+                                                  "generation", "predecessor", "return_hash"])
+                require(seal["work_order_id"] == work_order_id
+                        and seal["generation"] == order.get("generation")
+                        and seal["predecessor"] == order.get("predecessor"),
+                        "sealed subject identity does not match its work order")
+                require(isinstance(seal["subject"], dict), "sealed subject inventory is malformed")
+                for name, sha in seal["subject"].items():
+                    safe_relative(name)
+                    require(isinstance(sha, str) and re.fullmatch(r"[0-9a-f]{64}", sha),
+                            "sealed subject digest is malformed")
+                seal_payload = {key: seal[key] for key in
+                                ("subject", "questions", "decisions", "work_order_id", "generation", "predecessor")}
+                require(isinstance(seal["return_hash"], str)
+                        and seal["return_hash"] == digest(encoded(seal_payload)),
+                        "sealed subject return hash is invalid")
+                require(event.get("return_hash") == seal["return_hash"],
+                        "review event return hash does not match its sealed G3 subject")
+    
+                provenance = shape(event.get("provenance"), ["path", "sha256"])
+                require(record.get("evidence") == provenance["path"], "review receipt path binding is missing")
+                safe_relative(provenance["path"])
+                require(isinstance(provenance["sha256"], str)
+                        and re.fullmatch(r"[0-9a-f]{64}", provenance["sha256"]),
+                        "review receipt digest is malformed")
+                receipt_bytes = read_bytes(self.path(provenance["path"]))
+>               require(digest(receipt_bytes) == provenance["sha256"], "review receipt bytes do not match provenance")
+
+sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py:1278: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+condition = False, message = 'review receipt bytes do not match provenance'
+
+    def require(condition, message):
+        if not condition:
+>           raise Hold(message)
+E           shaping_runtime.Hold: review receipt bytes do not match provenance
+
+sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py:85: Hold
+
+The above exception was the direct cause of the following exception:
+
+workshop = <shaping_runtime.Runtime object at 0x107143770>
+runtime = <module 'shaping_runtime' from '/private/tmp/core-prompts-shaping-recovery-01a0af1e/sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py'>
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-1286/test_captured_history_survives3')
+old_policy = False, raw_receipt = 'overwritten'
+
+    @pytest.mark.parametrize("old_policy", [True, False], ids=["previous-policy", "current-policy"])
+    @pytest.mark.parametrize("raw_receipt", ["deleted", "overwritten"])
+    def test_captured_history_survives_original_receipt_availability(
+            workshop, runtime, tmp_path, old_policy, raw_receipt):
+        rt = workshop
+        work_order = recorded_failure(rt, old_policy=old_policy)
+        state = rt._load()
+        event = next(item for item in state["observations"]
+                     if item["record"]["work_order_id"] == work_order)
+        receipt_path = rt.root / event["provenance"]["path"]
+        if raw_receipt == "deleted":
+            receipt_path.unlink()
+        else:
+            receipt_path.write_text('{"unrelated":"FAKE overwritten receipt"}\n', encoding="utf-8")
+        before = (rt.root / "state/run.json").read_bytes()
+>       facts = rt._floor_only_failure_facts(rt._load())
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_shaping_policy_recovery.py:283: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shaping_runtime.Runtime object at 0x107143770>
+state = {'accepted': {'G0': '0a74b974dd9c9d951bb2fde071ab4301ff46202a738267953c3d142c5ef5bda6', 'G1': '2dd8f2b1e37f8d3c44c7e32...eefee56097fbaa96e5bea473a832b0a9515ace007c301fd604054892'}}, 'controller': 'fixture-controller', 'deliveries': {}, ...}
+
+    def _floor_only_failure_facts(self, state):
+        failures = []
+        events = state.get("observations", [])
+        if not isinstance(events, list):
+            raise Recovery("observation journal is not an array")
+        current_bindings = state.get("policy_bindings")
+        if not isinstance(current_bindings, dict) or not current_bindings:
+            raise Recovery("current policy bindings are missing or malformed")
+        current_policy_hash = digest(encoded(current_bindings))
+        for index, event in enumerate(events):
+            if not isinstance(event, dict):
+                raise Recovery("malformed observation may hide a G3 review_returned failure")
+            record = event.get("record", {})
+            if not isinstance(record, dict):
+                if event.get("gate") == "G3":
+                    raise Recovery("malformed G3 review_returned observation record")
+                continue
+            kind = record.get("kind")
+            if kind != "review_returned":
+                if event.get("gate") == "G3" and kind is None:
+                    raise Recovery("malformed G3 observation kind")
+                continue
+            work_order_id = record.get("work_order_id")
+            orders = state.get("orders")
+            if not isinstance(orders, dict):
+                raise Recovery("work-order journal is missing or malformed")
+            order = orders.get(work_order_id)
+            if not isinstance(order, dict):
+                raise Recovery("review_returned observation references an unknown work order")
+            if order.get("gate") != "G3":
+                if event.get("gate") == "G3":
+                    raise Recovery("G3 review_returned observation references a non-G3 work order")
+                continue
+            try:
+                bindings = order.get("policy_bindings")
+                require(isinstance(bindings, dict) and bool(bindings), "work-order policy bindings are missing")
+                for path, pinned_hash in bindings.items():
+                    safe_relative(path)
+                    require(isinstance(pinned_hash, str) and re.fullmatch(r"[0-9a-f]{64}", pinned_hash),
+                            "work-order policy binding digest is malformed")
+                recorded_policy_hash = order.get("policy_hash")
+                require(isinstance(recorded_policy_hash, str)
+                        and re.fullmatch(r"[0-9a-f]{64}", recorded_policy_hash),
+                        "work-order policy hash is missing or malformed")
+                require(recorded_policy_hash == digest(encoded(bindings)),
+                        "work-order policy hash does not match its stored policy bindings")
+    
+                require(record.get("event_id") and record.get("run_id") == state.get("run_id")
+                        and record.get("generation") == order.get("generation")
+                        and record.get("work_order_id") == work_order_id,
+                        "review observation identity does not match its work order")
+                integer(record.get("version"))
+                integer(event.get("recorded_version"), 1)
+                require(event["recorded_version"] == record["version"] + 1,
+                        "review observation version binding is invalid")
+                require(event.get("gate") == "G3" and order.get("run_id") == state.get("run_id"),
+                        "review event gate/run binding is missing")
+                require(record.get("actor") == order.get("reviewer", {}).get("identity"),
+                        "review observation actor does not match its assigned reviewer")
+                seal = shape(order.get("seal"), ["subject", "questions", "decisions", "work_order_id",
+                                                  "generation", "predecessor", "return_hash"])
+                require(seal["work_order_id"] == work_order_id
+                        and seal["generation"] == order.get("generation")
+                        and seal["predecessor"] == order.get("predecessor"),
+                        "sealed subject identity does not match its work order")
+                require(isinstance(seal["subject"], dict), "sealed subject inventory is malformed")
+                for name, sha in seal["subject"].items():
+                    safe_relative(name)
+                    require(isinstance(sha, str) and re.fullmatch(r"[0-9a-f]{64}", sha),
+                            "sealed subject digest is malformed")
+                seal_payload = {key: seal[key] for key in
+                                ("subject", "questions", "decisions", "work_order_id", "generation", "predecessor")}
+                require(isinstance(seal["return_hash"], str)
+                        and seal["return_hash"] == digest(encoded(seal_payload)),
+                        "sealed subject return hash is invalid")
+                require(event.get("return_hash") == seal["return_hash"],
+                        "review event return hash does not match its sealed G3 subject")
+    
+                provenance = shape(event.get("provenance"), ["path", "sha256"])
+                require(record.get("evidence") == provenance["path"], "review receipt path binding is missing")
+                safe_relative(provenance["path"])
+                require(isinstance(provenance["sha256"], str)
+                        and re.fullmatch(r"[0-9a-f]{64}", provenance["sha256"]),
+                        "review receipt digest is malformed")
+                receipt_bytes = read_bytes(self.path(provenance["path"]))
+                require(digest(receipt_bytes) == provenance["sha256"], "review receipt bytes do not match provenance")
+                review = decode(receipt_bytes)
+                require(encoded(review) == encoded(event.get("review")),
+                        "journaled review differs from its bound receipt bytes")
+                shape(review, ["schema_version", "run_id", "gate", "work_order_id", "generation", "policy_hash",
+                               "resource_revision", "predecessor", "return_hash", "subject", "reviewer",
+                               "authored_candidate", "independence_confirmed", "evidence", "assessments",
+                               "findings", "unresolved_blockers", "verdict", "next_state", "scores",
+                               "render_evidence", "targets"])
+                require(type(review["schema_version"]) is int and review["schema_version"] == 1,
+                        "unsupported review receipt schema")
+                for key in ("run_id", "gate", "work_order_id", "generation", "policy_hash",
+                            "resource_revision", "predecessor"):
+                    expected = "G3" if key == "gate" else order.get(key)
+                    require(review[key] == expected, f"review receipt binding mismatch: {key}")
+                require(review["return_hash"] == seal["return_hash"]
+                        and review["subject"] == seal["subject"], "review receipt subject binding mismatch")
+                require(review["reviewer"] == order.get("reviewer", {}).get("identity")
+                        and review["authored_candidate"] is False
+                        and review["independence_confirmed"] is True,
+                        "review receipt reviewer binding is invalid")
+                require(review["next_state"] == "G3"
+                        and review["verdict"] in ("pass", "fail", "unverifiable"),
+                        "review receipt verdict/state binding is invalid")
+    
+                predecessor = order.get("predecessor")
+                require(isinstance(predecessor, str) and re.fullmatch(r"[0-9a-f]{64}", predecessor),
+                        "G3 review has no immutable G2 predecessor")
+                prior = self.snapshot(predecessor)
+                require(prior.get("gate") == "G2" and prior.get("run_id") == state.get("run_id")
+                        and prior.get("policy_bindings") == bindings,
+                        "G3 predecessor does not match the recorded policy binding")
+    
+                # Older policy receipts remain auditable history. Their scoring
+                # and coverage contracts cannot be interpreted through today's policy.
+                if recorded_policy_hash != current_policy_hash:
+                    continue
+    
+                subject_files = {name: {"sha256": sha} for name, sha in seal["subject"].items()}
+                review_policy = deepcopy(state["policy"])
+                review_policy["gates"]["G3"]["predicates"] = order["required_predicates"]
+                self._review(review, {**state, "policy": review_policy}, order, subject_files,
+                             acceptance=False)
+                if review["verdict"] != "fail":
+                    continue
+                scores = review["scores"]["dimensions"]
+                values = [scores[key]["score"] for key in TEAM + PITCH]
+                assessments = review["assessments"]
+                if min(values) < 3 or sum(values) / 12 >= 4:
+                    continue
+                if any(assessments[name]["outcome"] != "pass"
+                       for name in order["required_predicates"] if name != "rubric_assessment"):
+                    continue
+                failures.append((index, self._opened_facts(self.snapshot(predecessor), state)))
+            except (Hold, OSError, KeyError, TypeError, ValueError, AttributeError,
+                    IndexError, binascii.Error) as exc:
+>               raise Recovery(f"cannot verify recorded G3 review_returned event "
+                               f"{record.get('event_id', '<unknown>')}: {exc}") from exc
+E               shaping_runtime.Recovery: cannot verify recorded G3 review_returned event fake-review-G3-historical-failure: review receipt bytes do not match provenance
+
+sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py:1334: Recovery
+_ test_legacy_provenance_digest_is_structural_not_raw_byte_authentication[previous-policy] _
+
+self = <shaping_runtime.Runtime object at 0x1072512b0>
+state = {'accepted': {'G0': '1f6fa03ea4ed5d9707bbe472aa906dd6612e9979a89fa048c713b7356d015db9', 'G1': '8067c5028609cdb90f99f5b...db90f99f5bf5214892b6a2f3c3a8cbe75a69e1649d18b5d1645'}, ...}, 'controller': 'fixture-controller', 'deliveries': {}, ...}
+
+    def _floor_only_failure_facts(self, state):
+        failures = []
+        events = state.get("observations", [])
+        if not isinstance(events, list):
+            raise Recovery("observation journal is not an array")
+        current_bindings = state.get("policy_bindings")
+        if not isinstance(current_bindings, dict) or not current_bindings:
+            raise Recovery("current policy bindings are missing or malformed")
+        current_policy_hash = digest(encoded(current_bindings))
+        for index, event in enumerate(events):
+            if not isinstance(event, dict):
+                raise Recovery("malformed observation may hide a G3 review_returned failure")
+            record = event.get("record", {})
+            if not isinstance(record, dict):
+                if event.get("gate") == "G3":
+                    raise Recovery("malformed G3 review_returned observation record")
+                continue
+            kind = record.get("kind")
+            if kind != "review_returned":
+                if event.get("gate") == "G3" and kind is None:
+                    raise Recovery("malformed G3 observation kind")
+                continue
+            work_order_id = record.get("work_order_id")
+            orders = state.get("orders")
+            if not isinstance(orders, dict):
+                raise Recovery("work-order journal is missing or malformed")
+            order = orders.get(work_order_id)
+            if not isinstance(order, dict):
+                raise Recovery("review_returned observation references an unknown work order")
+            if order.get("gate") != "G3":
+                if event.get("gate") == "G3":
+                    raise Recovery("G3 review_returned observation references a non-G3 work order")
+                continue
+            try:
+                bindings = order.get("policy_bindings")
+                require(isinstance(bindings, dict) and bool(bindings), "work-order policy bindings are missing")
+                for path, pinned_hash in bindings.items():
+                    safe_relative(path)
+                    require(isinstance(pinned_hash, str) and re.fullmatch(r"[0-9a-f]{64}", pinned_hash),
+                            "work-order policy binding digest is malformed")
+                recorded_policy_hash = order.get("policy_hash")
+                require(isinstance(recorded_policy_hash, str)
+                        and re.fullmatch(r"[0-9a-f]{64}", recorded_policy_hash),
+                        "work-order policy hash is missing or malformed")
+                require(recorded_policy_hash == digest(encoded(bindings)),
+                        "work-order policy hash does not match its stored policy bindings")
+    
+                require(record.get("event_id") and record.get("run_id") == state.get("run_id")
+                        and record.get("generation") == order.get("generation")
+                        and record.get("work_order_id") == work_order_id,
+                        "review observation identity does not match its work order")
+                integer(record.get("version"))
+                integer(event.get("recorded_version"), 1)
+                require(event["recorded_version"] == record["version"] + 1,
+                        "review observation version binding is invalid")
+                require(event.get("gate") == "G3" and order.get("run_id") == state.get("run_id"),
+                        "review event gate/run binding is missing")
+                require(record.get("actor") == order.get("reviewer", {}).get("identity"),
+                        "review observation actor does not match its assigned reviewer")
+                seal = shape(order.get("seal"), ["subject", "questions", "decisions", "work_order_id",
+                                                  "generation", "predecessor", "return_hash"])
+                require(seal["work_order_id"] == work_order_id
+                        and seal["generation"] == order.get("generation")
+                        and seal["predecessor"] == order.get("predecessor"),
+                        "sealed subject identity does not match its work order")
+                require(isinstance(seal["subject"], dict), "sealed subject inventory is malformed")
+                for name, sha in seal["subject"].items():
+                    safe_relative(name)
+                    require(isinstance(sha, str) and re.fullmatch(r"[0-9a-f]{64}", sha),
+                            "sealed subject digest is malformed")
+                seal_payload = {key: seal[key] for key in
+                                ("subject", "questions", "decisions", "work_order_id", "generation", "predecessor")}
+                require(isinstance(seal["return_hash"], str)
+                        and seal["return_hash"] == digest(encoded(seal_payload)),
+                        "sealed subject return hash is invalid")
+                require(event.get("return_hash") == seal["return_hash"],
+                        "review event return hash does not match its sealed G3 subject")
+    
+                provenance = shape(event.get("provenance"), ["path", "sha256"])
+                require(record.get("evidence") == provenance["path"], "review receipt path binding is missing")
+                safe_relative(provenance["path"])
+                require(isinstance(provenance["sha256"], str)
+                        and re.fullmatch(r"[0-9a-f]{64}", provenance["sha256"]),
+                        "review receipt digest is malformed")
+                receipt_bytes = read_bytes(self.path(provenance["path"]))
+>               require(digest(receipt_bytes) == provenance["sha256"], "review receipt bytes do not match provenance")
+
+sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py:1278: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+condition = False, message = 'review receipt bytes do not match provenance'
+
+    def require(condition, message):
+        if not condition:
+>           raise Hold(message)
+E           shaping_runtime.Hold: review receipt bytes do not match provenance
+
+sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py:85: Hold
+
+The above exception was the direct cause of the following exception:
+
+workshop = <shaping_runtime.Runtime object at 0x1072512b0>
+runtime = <module 'shaping_runtime' from '/private/tmp/core-prompts-shaping-recovery-01a0af1e/sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py'>
+old_policy = True
+
+    @pytest.mark.parametrize("old_policy", [True, False], ids=["previous-policy", "current-policy"])
+    def test_legacy_provenance_digest_is_structural_not_raw_byte_authentication(
+            workshop, runtime, old_policy):
+        rt = workshop
+        work_order = recorded_failure(rt, old_policy=old_policy)
+        state = rt._load()
+        event = next(item for item in state["observations"]
+                     if item["record"]["work_order_id"] == work_order)
+        event["provenance"]["sha256"] = "f" * 64
+        rt._commit(state, version(rt))
+>       facts = rt._floor_only_failure_facts(rt._load())
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_shaping_policy_recovery.py:324: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shaping_runtime.Runtime object at 0x1072512b0>
+state = {'accepted': {'G0': '1f6fa03ea4ed5d9707bbe472aa906dd6612e9979a89fa048c713b7356d015db9', 'G1': '8067c5028609cdb90f99f5b...db90f99f5bf5214892b6a2f3c3a8cbe75a69e1649d18b5d1645'}, ...}, 'controller': 'fixture-controller', 'deliveries': {}, ...}
+
+    def _floor_only_failure_facts(self, state):
+        failures = []
+        events = state.get("observations", [])
+        if not isinstance(events, list):
+            raise Recovery("observation journal is not an array")
+        current_bindings = state.get("policy_bindings")
+        if not isinstance(current_bindings, dict) or not current_bindings:
+            raise Recovery("current policy bindings are missing or malformed")
+        current_policy_hash = digest(encoded(current_bindings))
+        for index, event in enumerate(events):
+            if not isinstance(event, dict):
+                raise Recovery("malformed observation may hide a G3 review_returned failure")
+            record = event.get("record", {})
+            if not isinstance(record, dict):
+                if event.get("gate") == "G3":
+                    raise Recovery("malformed G3 review_returned observation record")
+                continue
+            kind = record.get("kind")
+            if kind != "review_returned":
+                if event.get("gate") == "G3" and kind is None:
+                    raise Recovery("malformed G3 observation kind")
+                continue
+            work_order_id = record.get("work_order_id")
+            orders = state.get("orders")
+            if not isinstance(orders, dict):
+                raise Recovery("work-order journal is missing or malformed")
+            order = orders.get(work_order_id)
+            if not isinstance(order, dict):
+                raise Recovery("review_returned observation references an unknown work order")
+            if order.get("gate") != "G3":
+                if event.get("gate") == "G3":
+                    raise Recovery("G3 review_returned observation references a non-G3 work order")
+                continue
+            try:
+                bindings = order.get("policy_bindings")
+                require(isinstance(bindings, dict) and bool(bindings), "work-order policy bindings are missing")
+                for path, pinned_hash in bindings.items():
+                    safe_relative(path)
+                    require(isinstance(pinned_hash, str) and re.fullmatch(r"[0-9a-f]{64}", pinned_hash),
+                            "work-order policy binding digest is malformed")
+                recorded_policy_hash = order.get("policy_hash")
+                require(isinstance(recorded_policy_hash, str)
+                        and re.fullmatch(r"[0-9a-f]{64}", recorded_policy_hash),
+                        "work-order policy hash is missing or malformed")
+                require(recorded_policy_hash == digest(encoded(bindings)),
+                        "work-order policy hash does not match its stored policy bindings")
+    
+                require(record.get("event_id") and record.get("run_id") == state.get("run_id")
+                        and record.get("generation") == order.get("generation")
+                        and record.get("work_order_id") == work_order_id,
+                        "review observation identity does not match its work order")
+                integer(record.get("version"))
+                integer(event.get("recorded_version"), 1)
+                require(event["recorded_version"] == record["version"] + 1,
+                        "review observation version binding is invalid")
+                require(event.get("gate") == "G3" and order.get("run_id") == state.get("run_id"),
+                        "review event gate/run binding is missing")
+                require(record.get("actor") == order.get("reviewer", {}).get("identity"),
+                        "review observation actor does not match its assigned reviewer")
+                seal = shape(order.get("seal"), ["subject", "questions", "decisions", "work_order_id",
+                                                  "generation", "predecessor", "return_hash"])
+                require(seal["work_order_id"] == work_order_id
+                        and seal["generation"] == order.get("generation")
+                        and seal["predecessor"] == order.get("predecessor"),
+                        "sealed subject identity does not match its work order")
+                require(isinstance(seal["subject"], dict), "sealed subject inventory is malformed")
+                for name, sha in seal["subject"].items():
+                    safe_relative(name)
+                    require(isinstance(sha, str) and re.fullmatch(r"[0-9a-f]{64}", sha),
+                            "sealed subject digest is malformed")
+                seal_payload = {key: seal[key] for key in
+                                ("subject", "questions", "decisions", "work_order_id", "generation", "predecessor")}
+                require(isinstance(seal["return_hash"], str)
+                        and seal["return_hash"] == digest(encoded(seal_payload)),
+                        "sealed subject return hash is invalid")
+                require(event.get("return_hash") == seal["return_hash"],
+                        "review event return hash does not match its sealed G3 subject")
+    
+                provenance = shape(event.get("provenance"), ["path", "sha256"])
+                require(record.get("evidence") == provenance["path"], "review receipt path binding is missing")
+                safe_relative(provenance["path"])
+                require(isinstance(provenance["sha256"], str)
+                        and re.fullmatch(r"[0-9a-f]{64}", provenance["sha256"]),
+                        "review receipt digest is malformed")
+                receipt_bytes = read_bytes(self.path(provenance["path"]))
+                require(digest(receipt_bytes) == provenance["sha256"], "review receipt bytes do not match provenance")
+                review = decode(receipt_bytes)
+                require(encoded(review) == encoded(event.get("review")),
+                        "journaled review differs from its bound receipt bytes")
+                shape(review, ["schema_version", "run_id", "gate", "work_order_id", "generation", "policy_hash",
+                               "resource_revision", "predecessor", "return_hash", "subject", "reviewer",
+                               "authored_candidate", "independence_confirmed", "evidence", "assessments",
+                               "findings", "unresolved_blockers", "verdict", "next_state", "scores",
+                               "render_evidence", "targets"])
+                require(type(review["schema_version"]) is int and review["schema_version"] == 1,
+                        "unsupported review receipt schema")
+                for key in ("run_id", "gate", "work_order_id", "generation", "policy_hash",
+                            "resource_revision", "predecessor"):
+                    expected = "G3" if key == "gate" else order.get(key)
+                    require(review[key] == expected, f"review receipt binding mismatch: {key}")
+                require(review["return_hash"] == seal["return_hash"]
+                        and review["subject"] == seal["subject"], "review receipt subject binding mismatch")
+                require(review["reviewer"] == order.get("reviewer", {}).get("identity")
+                        and review["authored_candidate"] is False
+                        and review["independence_confirmed"] is True,
+                        "review receipt reviewer binding is invalid")
+                require(review["next_state"] == "G3"
+                        and review["verdict"] in ("pass", "fail", "unverifiable"),
+                        "review receipt verdict/state binding is invalid")
+    
+                predecessor = order.get("predecessor")
+                require(isinstance(predecessor, str) and re.fullmatch(r"[0-9a-f]{64}", predecessor),
+                        "G3 review has no immutable G2 predecessor")
+                prior = self.snapshot(predecessor)
+                require(prior.get("gate") == "G2" and prior.get("run_id") == state.get("run_id")
+                        and prior.get("policy_bindings") == bindings,
+                        "G3 predecessor does not match the recorded policy binding")
+    
+                # Older policy receipts remain auditable history. Their scoring
+                # and coverage contracts cannot be interpreted through today's policy.
+                if recorded_policy_hash != current_policy_hash:
+                    continue
+    
+                subject_files = {name: {"sha256": sha} for name, sha in seal["subject"].items()}
+                review_policy = deepcopy(state["policy"])
+                review_policy["gates"]["G3"]["predicates"] = order["required_predicates"]
+                self._review(review, {**state, "policy": review_policy}, order, subject_files,
+                             acceptance=False)
+                if review["verdict"] != "fail":
+                    continue
+                scores = review["scores"]["dimensions"]
+                values = [scores[key]["score"] for key in TEAM + PITCH]
+                assessments = review["assessments"]
+                if min(values) < 3 or sum(values) / 12 >= 4:
+                    continue
+                if any(assessments[name]["outcome"] != "pass"
+                       for name in order["required_predicates"] if name != "rubric_assessment"):
+                    continue
+                failures.append((index, self._opened_facts(self.snapshot(predecessor), state)))
+            except (Hold, OSError, KeyError, TypeError, ValueError, AttributeError,
+                    IndexError, binascii.Error) as exc:
+>               raise Recovery(f"cannot verify recorded G3 review_returned event "
+                               f"{record.get('event_id', '<unknown>')}: {exc}") from exc
+E               shaping_runtime.Recovery: cannot verify recorded G3 review_returned event fake-review-G3-historical-failure: review receipt bytes do not match provenance
+
+sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py:1334: Recovery
+_ test_legacy_provenance_digest_is_structural_not_raw_byte_authentication[current-policy] _
+
+self = <shaping_runtime.Runtime object at 0x107250c20>
+state = {'accepted': {'G0': '0a74b974dd9c9d951bb2fde071ab4301ff46202a738267953c3d142c5ef5bda6', 'G1': '2dd8f2b1e37f8d3c44c7e32...eefee56097fbaa96e5bea473a832b0a9515ace007c301fd604054892'}}, 'controller': 'fixture-controller', 'deliveries': {}, ...}
+
+    def _floor_only_failure_facts(self, state):
+        failures = []
+        events = state.get("observations", [])
+        if not isinstance(events, list):
+            raise Recovery("observation journal is not an array")
+        current_bindings = state.get("policy_bindings")
+        if not isinstance(current_bindings, dict) or not current_bindings:
+            raise Recovery("current policy bindings are missing or malformed")
+        current_policy_hash = digest(encoded(current_bindings))
+        for index, event in enumerate(events):
+            if not isinstance(event, dict):
+                raise Recovery("malformed observation may hide a G3 review_returned failure")
+            record = event.get("record", {})
+            if not isinstance(record, dict):
+                if event.get("gate") == "G3":
+                    raise Recovery("malformed G3 review_returned observation record")
+                continue
+            kind = record.get("kind")
+            if kind != "review_returned":
+                if event.get("gate") == "G3" and kind is None:
+                    raise Recovery("malformed G3 observation kind")
+                continue
+            work_order_id = record.get("work_order_id")
+            orders = state.get("orders")
+            if not isinstance(orders, dict):
+                raise Recovery("work-order journal is missing or malformed")
+            order = orders.get(work_order_id)
+            if not isinstance(order, dict):
+                raise Recovery("review_returned observation references an unknown work order")
+            if order.get("gate") != "G3":
+                if event.get("gate") == "G3":
+                    raise Recovery("G3 review_returned observation references a non-G3 work order")
+                continue
+            try:
+                bindings = order.get("policy_bindings")
+                require(isinstance(bindings, dict) and bool(bindings), "work-order policy bindings are missing")
+                for path, pinned_hash in bindings.items():
+                    safe_relative(path)
+                    require(isinstance(pinned_hash, str) and re.fullmatch(r"[0-9a-f]{64}", pinned_hash),
+                            "work-order policy binding digest is malformed")
+                recorded_policy_hash = order.get("policy_hash")
+                require(isinstance(recorded_policy_hash, str)
+                        and re.fullmatch(r"[0-9a-f]{64}", recorded_policy_hash),
+                        "work-order policy hash is missing or malformed")
+                require(recorded_policy_hash == digest(encoded(bindings)),
+                        "work-order policy hash does not match its stored policy bindings")
+    
+                require(record.get("event_id") and record.get("run_id") == state.get("run_id")
+                        and record.get("generation") == order.get("generation")
+                        and record.get("work_order_id") == work_order_id,
+                        "review observation identity does not match its work order")
+                integer(record.get("version"))
+                integer(event.get("recorded_version"), 1)
+                require(event["recorded_version"] == record["version"] + 1,
+                        "review observation version binding is invalid")
+                require(event.get("gate") == "G3" and order.get("run_id") == state.get("run_id"),
+                        "review event gate/run binding is missing")
+                require(record.get("actor") == order.get("reviewer", {}).get("identity"),
+                        "review observation actor does not match its assigned reviewer")
+                seal = shape(order.get("seal"), ["subject", "questions", "decisions", "work_order_id",
+                                                  "generation", "predecessor", "return_hash"])
+                require(seal["work_order_id"] == work_order_id
+                        and seal["generation"] == order.get("generation")
+                        and seal["predecessor"] == order.get("predecessor"),
+                        "sealed subject identity does not match its work order")
+                require(isinstance(seal["subject"], dict), "sealed subject inventory is malformed")
+                for name, sha in seal["subject"].items():
+                    safe_relative(name)
+                    require(isinstance(sha, str) and re.fullmatch(r"[0-9a-f]{64}", sha),
+                            "sealed subject digest is malformed")
+                seal_payload = {key: seal[key] for key in
+                                ("subject", "questions", "decisions", "work_order_id", "generation", "predecessor")}
+                require(isinstance(seal["return_hash"], str)
+                        and seal["return_hash"] == digest(encoded(seal_payload)),
+                        "sealed subject return hash is invalid")
+                require(event.get("return_hash") == seal["return_hash"],
+                        "review event return hash does not match its sealed G3 subject")
+    
+                provenance = shape(event.get("provenance"), ["path", "sha256"])
+                require(record.get("evidence") == provenance["path"], "review receipt path binding is missing")
+                safe_relative(provenance["path"])
+                require(isinstance(provenance["sha256"], str)
+                        and re.fullmatch(r"[0-9a-f]{64}", provenance["sha256"]),
+                        "review receipt digest is malformed")
+                receipt_bytes = read_bytes(self.path(provenance["path"]))
+>               require(digest(receipt_bytes) == provenance["sha256"], "review receipt bytes do not match provenance")
+
+sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py:1278: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+condition = False, message = 'review receipt bytes do not match provenance'
+
+    def require(condition, message):
+        if not condition:
+>           raise Hold(message)
+E           shaping_runtime.Hold: review receipt bytes do not match provenance
+
+sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py:85: Hold
+
+The above exception was the direct cause of the following exception:
+
+workshop = <shaping_runtime.Runtime object at 0x107250c20>
+runtime = <module 'shaping_runtime' from '/private/tmp/core-prompts-shaping-recovery-01a0af1e/sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py'>
+old_policy = False
+
+    @pytest.mark.parametrize("old_policy", [True, False], ids=["previous-policy", "current-policy"])
+    def test_legacy_provenance_digest_is_structural_not_raw_byte_authentication(
+            workshop, runtime, old_policy):
+        rt = workshop
+        work_order = recorded_failure(rt, old_policy=old_policy)
+        state = rt._load()
+        event = next(item for item in state["observations"]
+                     if item["record"]["work_order_id"] == work_order)
+        event["provenance"]["sha256"] = "f" * 64
+        rt._commit(state, version(rt))
+>       facts = rt._floor_only_failure_facts(rt._load())
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_shaping_policy_recovery.py:324: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shaping_runtime.Runtime object at 0x107250c20>
+state = {'accepted': {'G0': '0a74b974dd9c9d951bb2fde071ab4301ff46202a738267953c3d142c5ef5bda6', 'G1': '2dd8f2b1e37f8d3c44c7e32...eefee56097fbaa96e5bea473a832b0a9515ace007c301fd604054892'}}, 'controller': 'fixture-controller', 'deliveries': {}, ...}
+
+    def _floor_only_failure_facts(self, state):
+        failures = []
+        events = state.get("observations", [])
+        if not isinstance(events, list):
+            raise Recovery("observation journal is not an array")
+        current_bindings = state.get("policy_bindings")
+        if not isinstance(current_bindings, dict) or not current_bindings:
+            raise Recovery("current policy bindings are missing or malformed")
+        current_policy_hash = digest(encoded(current_bindings))
+        for index, event in enumerate(events):
+            if not isinstance(event, dict):
+                raise Recovery("malformed observation may hide a G3 review_returned failure")
+            record = event.get("record", {})
+            if not isinstance(record, dict):
+                if event.get("gate") == "G3":
+                    raise Recovery("malformed G3 review_returned observation record")
+                continue
+            kind = record.get("kind")
+            if kind != "review_returned":
+                if event.get("gate") == "G3" and kind is None:
+                    raise Recovery("malformed G3 observation kind")
+                continue
+            work_order_id = record.get("work_order_id")
+            orders = state.get("orders")
+            if not isinstance(orders, dict):
+                raise Recovery("work-order journal is missing or malformed")
+            order = orders.get(work_order_id)
+            if not isinstance(order, dict):
+                raise Recovery("review_returned observation references an unknown work order")
+            if order.get("gate") != "G3":
+                if event.get("gate") == "G3":
+                    raise Recovery("G3 review_returned observation references a non-G3 work order")
+                continue
+            try:
+                bindings = order.get("policy_bindings")
+                require(isinstance(bindings, dict) and bool(bindings), "work-order policy bindings are missing")
+                for path, pinned_hash in bindings.items():
+                    safe_relative(path)
+                    require(isinstance(pinned_hash, str) and re.fullmatch(r"[0-9a-f]{64}", pinned_hash),
+                            "work-order policy binding digest is malformed")
+                recorded_policy_hash = order.get("policy_hash")
+                require(isinstance(recorded_policy_hash, str)
+                        and re.fullmatch(r"[0-9a-f]{64}", recorded_policy_hash),
+                        "work-order policy hash is missing or malformed")
+                require(recorded_policy_hash == digest(encoded(bindings)),
+                        "work-order policy hash does not match its stored policy bindings")
+    
+                require(record.get("event_id") and record.get("run_id") == state.get("run_id")
+                        and record.get("generation") == order.get("generation")
+                        and record.get("work_order_id") == work_order_id,
+                        "review observation identity does not match its work order")
+                integer(record.get("version"))
+                integer(event.get("recorded_version"), 1)
+                require(event["recorded_version"] == record["version"] + 1,
+                        "review observation version binding is invalid")
+                require(event.get("gate") == "G3" and order.get("run_id") == state.get("run_id"),
+                        "review event gate/run binding is missing")
+                require(record.get("actor") == order.get("reviewer", {}).get("identity"),
+                        "review observation actor does not match its assigned reviewer")
+                seal = shape(order.get("seal"), ["subject", "questions", "decisions", "work_order_id",
+                                                  "generation", "predecessor", "return_hash"])
+                require(seal["work_order_id"] == work_order_id
+                        and seal["generation"] == order.get("generation")
+                        and seal["predecessor"] == order.get("predecessor"),
+                        "sealed subject identity does not match its work order")
+                require(isinstance(seal["subject"], dict), "sealed subject inventory is malformed")
+                for name, sha in seal["subject"].items():
+                    safe_relative(name)
+                    require(isinstance(sha, str) and re.fullmatch(r"[0-9a-f]{64}", sha),
+                            "sealed subject digest is malformed")
+                seal_payload = {key: seal[key] for key in
+                                ("subject", "questions", "decisions", "work_order_id", "generation", "predecessor")}
+                require(isinstance(seal["return_hash"], str)
+                        and seal["return_hash"] == digest(encoded(seal_payload)),
+                        "sealed subject return hash is invalid")
+                require(event.get("return_hash") == seal["return_hash"],
+                        "review event return hash does not match its sealed G3 subject")
+    
+                provenance = shape(event.get("provenance"), ["path", "sha256"])
+                require(record.get("evidence") == provenance["path"], "review receipt path binding is missing")
+                safe_relative(provenance["path"])
+                require(isinstance(provenance["sha256"], str)
+                        and re.fullmatch(r"[0-9a-f]{64}", provenance["sha256"]),
+                        "review receipt digest is malformed")
+                receipt_bytes = read_bytes(self.path(provenance["path"]))
+                require(digest(receipt_bytes) == provenance["sha256"], "review receipt bytes do not match provenance")
+                review = decode(receipt_bytes)
+                require(encoded(review) == encoded(event.get("review")),
+                        "journaled review differs from its bound receipt bytes")
+                shape(review, ["schema_version", "run_id", "gate", "work_order_id", "generation", "policy_hash",
+                               "resource_revision", "predecessor", "return_hash", "subject", "reviewer",
+                               "authored_candidate", "independence_confirmed", "evidence", "assessments",
+                               "findings", "unresolved_blockers", "verdict", "next_state", "scores",
+                               "render_evidence", "targets"])
+                require(type(review["schema_version"]) is int and review["schema_version"] == 1,
+                        "unsupported review receipt schema")
+                for key in ("run_id", "gate", "work_order_id", "generation", "policy_hash",
+                            "resource_revision", "predecessor"):
+                    expected = "G3" if key == "gate" else order.get(key)
+                    require(review[key] == expected, f"review receipt binding mismatch: {key}")
+                require(review["return_hash"] == seal["return_hash"]
+                        and review["subject"] == seal["subject"], "review receipt subject binding mismatch")
+                require(review["reviewer"] == order.get("reviewer", {}).get("identity")
+                        and review["authored_candidate"] is False
+                        and review["independence_confirmed"] is True,
+                        "review receipt reviewer binding is invalid")
+                require(review["next_state"] == "G3"
+                        and review["verdict"] in ("pass", "fail", "unverifiable"),
+                        "review receipt verdict/state binding is invalid")
+    
+                predecessor = order.get("predecessor")
+                require(isinstance(predecessor, str) and re.fullmatch(r"[0-9a-f]{64}", predecessor),
+                        "G3 review has no immutable G2 predecessor")
+                prior = self.snapshot(predecessor)
+                require(prior.get("gate") == "G2" and prior.get("run_id") == state.get("run_id")
+                        and prior.get("policy_bindings") == bindings,
+                        "G3 predecessor does not match the recorded policy binding")
+    
+                # Older policy receipts remain auditable history. Their scoring
+                # and coverage contracts cannot be interpreted through today's policy.
+                if recorded_policy_hash != current_policy_hash:
+                    continue
+    
+                subject_files = {name: {"sha256": sha} for name, sha in seal["subject"].items()}
+                review_policy = deepcopy(state["policy"])
+                review_policy["gates"]["G3"]["predicates"] = order["required_predicates"]
+                self._review(review, {**state, "policy": review_policy}, order, subject_files,
+                             acceptance=False)
+                if review["verdict"] != "fail":
+                    continue
+                scores = review["scores"]["dimensions"]
+                values = [scores[key]["score"] for key in TEAM + PITCH]
+                assessments = review["assessments"]
+                if min(values) < 3 or sum(values) / 12 >= 4:
+                    continue
+                if any(assessments[name]["outcome"] != "pass"
+                       for name in order["required_predicates"] if name != "rubric_assessment"):
+                    continue
+                failures.append((index, self._opened_facts(self.snapshot(predecessor), state)))
+            except (Hold, OSError, KeyError, TypeError, ValueError, AttributeError,
+                    IndexError, binascii.Error) as exc:
+>               raise Recovery(f"cannot verify recorded G3 review_returned event "
+                               f"{record.get('event_id', '<unknown>')}: {exc}") from exc
+E               shaping_runtime.Recovery: cannot verify recorded G3 review_returned event fake-review-G3-historical-failure: review receipt bytes do not match provenance
+
+sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py:1334: Recovery
+____________ test_mixed_policy_history_keeps_current_mean_only_stop ____________
+
+self = <shaping_runtime.Runtime object at 0x1072b3a10>
+state = {'accepted': {'G0': '1f6fa03ea4ed5d9707bbe472aa906dd6612e9979a89fa048c713b7356d015db9', 'G1': '8067c5028609cdb90f99f5b...db90f99f5bf5214892b6a2f3c3a8cbe75a69e1649d18b5d1645'}, ...}, 'controller': 'fixture-controller', 'deliveries': {}, ...}
+
+    def _floor_only_failure_facts(self, state):
+        failures = []
+        events = state.get("observations", [])
+        if not isinstance(events, list):
+            raise Recovery("observation journal is not an array")
+        current_bindings = state.get("policy_bindings")
+        if not isinstance(current_bindings, dict) or not current_bindings:
+            raise Recovery("current policy bindings are missing or malformed")
+        current_policy_hash = digest(encoded(current_bindings))
+        for index, event in enumerate(events):
+            if not isinstance(event, dict):
+                raise Recovery("malformed observation may hide a G3 review_returned failure")
+            record = event.get("record", {})
+            if not isinstance(record, dict):
+                if event.get("gate") == "G3":
+                    raise Recovery("malformed G3 review_returned observation record")
+                continue
+            kind = record.get("kind")
+            if kind != "review_returned":
+                if event.get("gate") == "G3" and kind is None:
+                    raise Recovery("malformed G3 observation kind")
+                continue
+            work_order_id = record.get("work_order_id")
+            orders = state.get("orders")
+            if not isinstance(orders, dict):
+                raise Recovery("work-order journal is missing or malformed")
+            order = orders.get(work_order_id)
+            if not isinstance(order, dict):
+                raise Recovery("review_returned observation references an unknown work order")
+            if order.get("gate") != "G3":
+                if event.get("gate") == "G3":
+                    raise Recovery("G3 review_returned observation references a non-G3 work order")
+                continue
+            try:
+                bindings = order.get("policy_bindings")
+                require(isinstance(bindings, dict) and bool(bindings), "work-order policy bindings are missing")
+                for path, pinned_hash in bindings.items():
+                    safe_relative(path)
+                    require(isinstance(pinned_hash, str) and re.fullmatch(r"[0-9a-f]{64}", pinned_hash),
+                            "work-order policy binding digest is malformed")
+                recorded_policy_hash = order.get("policy_hash")
+                require(isinstance(recorded_policy_hash, str)
+                        and re.fullmatch(r"[0-9a-f]{64}", recorded_policy_hash),
+                        "work-order policy hash is missing or malformed")
+                require(recorded_policy_hash == digest(encoded(bindings)),
+                        "work-order policy hash does not match its stored policy bindings")
+    
+                require(record.get("event_id") and record.get("run_id") == state.get("run_id")
+                        and record.get("generation") == order.get("generation")
+                        and record.get("work_order_id") == work_order_id,
+                        "review observation identity does not match its work order")
+                integer(record.get("version"))
+                integer(event.get("recorded_version"), 1)
+                require(event["recorded_version"] == record["version"] + 1,
+                        "review observation version binding is invalid")
+                require(event.get("gate") == "G3" and order.get("run_id") == state.get("run_id"),
+                        "review event gate/run binding is missing")
+                require(record.get("actor") == order.get("reviewer", {}).get("identity"),
+                        "review observation actor does not match its assigned reviewer")
+                seal = shape(order.get("seal"), ["subject", "questions", "decisions", "work_order_id",
+                                                  "generation", "predecessor", "return_hash"])
+                require(seal["work_order_id"] == work_order_id
+                        and seal["generation"] == order.get("generation")
+                        and seal["predecessor"] == order.get("predecessor"),
+                        "sealed subject identity does not match its work order")
+                require(isinstance(seal["subject"], dict), "sealed subject inventory is malformed")
+                for name, sha in seal["subject"].items():
+                    safe_relative(name)
+                    require(isinstance(sha, str) and re.fullmatch(r"[0-9a-f]{64}", sha),
+                            "sealed subject digest is malformed")
+                seal_payload = {key: seal[key] for key in
+                                ("subject", "questions", "decisions", "work_order_id", "generation", "predecessor")}
+                require(isinstance(seal["return_hash"], str)
+                        and seal["return_hash"] == digest(encoded(seal_payload)),
+                        "sealed subject return hash is invalid")
+                require(event.get("return_hash") == seal["return_hash"],
+                        "review event return hash does not match its sealed G3 subject")
+    
+                provenance = shape(event.get("provenance"), ["path", "sha256"])
+                require(record.get("evidence") == provenance["path"], "review receipt path binding is missing")
+                safe_relative(provenance["path"])
+                require(isinstance(provenance["sha256"], str)
+                        and re.fullmatch(r"[0-9a-f]{64}", provenance["sha256"]),
+                        "review receipt digest is malformed")
+                receipt_bytes = read_bytes(self.path(provenance["path"]))
+>               require(digest(receipt_bytes) == provenance["sha256"], "review receipt bytes do not match provenance")
+
+sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py:1278: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+condition = False, message = 'review receipt bytes do not match provenance'
+
+    def require(condition, message):
+        if not condition:
+>           raise Hold(message)
+E           shaping_runtime.Hold: review receipt bytes do not match provenance
+
+sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py:85: Hold
+
+The above exception was the direct cause of the following exception:
+
+workshop = <shaping_runtime.Runtime object at 0x1072b3a10>
+runtime = <module 'shaping_runtime' from '/private/tmp/core-prompts-shaping-recovery-01a0af1e/sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py'>
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-1286/test_mixed_policy_history_keep0')
+
+    def test_mixed_policy_history_keeps_current_mean_only_stop(workshop, runtime, tmp_path):
+        rt = workshop
+        old_order_id = recorded_failure(rt, old_policy=True)
+        order, candidate = prepare(rt, "G3", "current-failure")
+        failed_g3_review(rt, order, candidate)
+        state = rt._load()
+        assert len(state["observations"]) == 2
+        assert state["orders"][old_order_id]["policy_hash"] != order["policy_hash"]
+        current_review = state["observations"][-1]["review"]
+        assert min(item["score"] for item in current_review["scores"]["dimensions"].values()) >= 3
+        assert current_review["scores"]["overall"] < 4
+        before = (rt.root / "state/run.json").read_bytes()
+        with pytest.raises(runtime.Hold, match="floor-only G3 retry blocked"):
+>           prepare(rt, "G3", "mixed-history-repeat")
+
+tests/test_shaping_policy_recovery.py:341: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_shaping_runtime.py:94: in prepare
+    order = rt.prepare(spec, version(rt))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py:911: in prepare
+    retry_new_facts = self._check_floor_only_repeat(state, declared_basis_facts)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py:1339: in _check_floor_only_repeat
+    failed_facts = self._floor_only_failure_facts(state)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <shaping_runtime.Runtime object at 0x1072b3a10>
+state = {'accepted': {'G0': '1f6fa03ea4ed5d9707bbe472aa906dd6612e9979a89fa048c713b7356d015db9', 'G1': '8067c5028609cdb90f99f5b...db90f99f5bf5214892b6a2f3c3a8cbe75a69e1649d18b5d1645'}, ...}, 'controller': 'fixture-controller', 'deliveries': {}, ...}
+
+    def _floor_only_failure_facts(self, state):
+        failures = []
+        events = state.get("observations", [])
+        if not isinstance(events, list):
+            raise Recovery("observation journal is not an array")
+        current_bindings = state.get("policy_bindings")
+        if not isinstance(current_bindings, dict) or not current_bindings:
+            raise Recovery("current policy bindings are missing or malformed")
+        current_policy_hash = digest(encoded(current_bindings))
+        for index, event in enumerate(events):
+            if not isinstance(event, dict):
+                raise Recovery("malformed observation may hide a G3 review_returned failure")
+            record = event.get("record", {})
+            if not isinstance(record, dict):
+                if event.get("gate") == "G3":
+                    raise Recovery("malformed G3 review_returned observation record")
+                continue
+            kind = record.get("kind")
+            if kind != "review_returned":
+                if event.get("gate") == "G3" and kind is None:
+                    raise Recovery("malformed G3 observation kind")
+                continue
+            work_order_id = record.get("work_order_id")
+            orders = state.get("orders")
+            if not isinstance(orders, dict):
+                raise Recovery("work-order journal is missing or malformed")
+            order = orders.get(work_order_id)
+            if not isinstance(order, dict):
+                raise Recovery("review_returned observation references an unknown work order")
+            if order.get("gate") != "G3":
+                if event.get("gate") == "G3":
+                    raise Recovery("G3 review_returned observation references a non-G3 work order")
+                continue
+            try:
+                bindings = order.get("policy_bindings")
+                require(isinstance(bindings, dict) and bool(bindings), "work-order policy bindings are missing")
+                for path, pinned_hash in bindings.items():
+                    safe_relative(path)
+                    require(isinstance(pinned_hash, str) and re.fullmatch(r"[0-9a-f]{64}", pinned_hash),
+                            "work-order policy binding digest is malformed")
+                recorded_policy_hash = order.get("policy_hash")
+                require(isinstance(recorded_policy_hash, str)
+                        and re.fullmatch(r"[0-9a-f]{64}", recorded_policy_hash),
+                        "work-order policy hash is missing or malformed")
+                require(recorded_policy_hash == digest(encoded(bindings)),
+                        "work-order policy hash does not match its stored policy bindings")
+    
+                require(record.get("event_id") and record.get("run_id") == state.get("run_id")
+                        and record.get("generation") == order.get("generation")
+                        and record.get("work_order_id") == work_order_id,
+                        "review observation identity does not match its work order")
+                integer(record.get("version"))
+                integer(event.get("recorded_version"), 1)
+                require(event["recorded_version"] == record["version"] + 1,
+                        "review observation version binding is invalid")
+                require(event.get("gate") == "G3" and order.get("run_id") == state.get("run_id"),
+                        "review event gate/run binding is missing")
+                require(record.get("actor") == order.get("reviewer", {}).get("identity"),
+                        "review observation actor does not match its assigned reviewer")
+                seal = shape(order.get("seal"), ["subject", "questions", "decisions", "work_order_id",
+                                                  "generation", "predecessor", "return_hash"])
+                require(seal["work_order_id"] == work_order_id
+                        and seal["generation"] == order.get("generation")
+                        and seal["predecessor"] == order.get("predecessor"),
+                        "sealed subject identity does not match its work order")
+                require(isinstance(seal["subject"], dict), "sealed subject inventory is malformed")
+                for name, sha in seal["subject"].items():
+                    safe_relative(name)
+                    require(isinstance(sha, str) and re.fullmatch(r"[0-9a-f]{64}", sha),
+                            "sealed subject digest is malformed")
+                seal_payload = {key: seal[key] for key in
+                                ("subject", "questions", "decisions", "work_order_id", "generation", "predecessor")}
+                require(isinstance(seal["return_hash"], str)
+                        and seal["return_hash"] == digest(encoded(seal_payload)),
+                        "sealed subject return hash is invalid")
+                require(event.get("return_hash") == seal["return_hash"],
+                        "review event return hash does not match its sealed G3 subject")
+    
+                provenance = shape(event.get("provenance"), ["path", "sha256"])
+                require(record.get("evidence") == provenance["path"], "review receipt path binding is missing")
+                safe_relative(provenance["path"])
+                require(isinstance(provenance["sha256"], str)
+                        and re.fullmatch(r"[0-9a-f]{64}", provenance["sha256"]),
+                        "review receipt digest is malformed")
+                receipt_bytes = read_bytes(self.path(provenance["path"]))
+                require(digest(receipt_bytes) == provenance["sha256"], "review receipt bytes do not match provenance")
+                review = decode(receipt_bytes)
+                require(encoded(review) == encoded(event.get("review")),
+                        "journaled review differs from its bound receipt bytes")
+                shape(review, ["schema_version", "run_id", "gate", "work_order_id", "generation", "policy_hash",
+                               "resource_revision", "predecessor", "return_hash", "subject", "reviewer",
+                               "authored_candidate", "independence_confirmed", "evidence", "assessments",
+                               "findings", "unresolved_blockers", "verdict", "next_state", "scores",
+                               "render_evidence", "targets"])
+                require(type(review["schema_version"]) is int and review["schema_version"] == 1,
+                        "unsupported review receipt schema")
+                for key in ("run_id", "gate", "work_order_id", "generation", "policy_hash",
+                            "resource_revision", "predecessor"):
+                    expected = "G3" if key == "gate" else order.get(key)
+                    require(review[key] == expected, f"review receipt binding mismatch: {key}")
+                require(review["return_hash"] == seal["return_hash"]
+                        and review["subject"] == seal["subject"], "review receipt subject binding mismatch")
+                require(review["reviewer"] == order.get("reviewer", {}).get("identity")
+                        and review["authored_candidate"] is False
+                        and review["independence_confirmed"] is True,
+                        "review receipt reviewer binding is invalid")
+                require(review["next_state"] == "G3"
+                        and review["verdict"] in ("pass", "fail", "unverifiable"),
+                        "review receipt verdict/state binding is invalid")
+    
+                predecessor = order.get("predecessor")
+                require(isinstance(predecessor, str) and re.fullmatch(r"[0-9a-f]{64}", predecessor),
+                        "G3 review has no immutable G2 predecessor")
+                prior = self.snapshot(predecessor)
+                require(prior.get("gate") == "G2" and prior.get("run_id") == state.get("run_id")
+                        and prior.get("policy_bindings") == bindings,
+                        "G3 predecessor does not match the recorded policy binding")
+    
+                # Older policy receipts remain auditable history. Their scoring
+                # and coverage contracts cannot be interpreted through today's policy.
+                if recorded_policy_hash != current_policy_hash:
+                    continue
+    
+                subject_files = {name: {"sha256": sha} for name, sha in seal["subject"].items()}
+                review_policy = deepcopy(state["policy"])
+                review_policy["gates"]["G3"]["predicates"] = order["required_predicates"]
+                self._review(review, {**state, "policy": review_policy}, order, subject_files,
+                             acceptance=False)
+                if review["verdict"] != "fail":
+                    continue
+                scores = review["scores"]["dimensions"]
+                values = [scores[key]["score"] for key in TEAM + PITCH]
+                assessments = review["assessments"]
+                if min(values) < 3 or sum(values) / 12 >= 4:
+                    continue
+                if any(assessments[name]["outcome"] != "pass"
+                       for name in order["required_predicates"] if name != "rubric_assessment"):
+                    continue
+                failures.append((index, self._opened_facts(self.snapshot(predecessor), state)))
+            except (Hold, OSError, KeyError, TypeError, ValueError, AttributeError,
+                    IndexError, binascii.Error) as exc:
+>               raise Recovery(f"cannot verify recorded G3 review_returned event "
+                               f"{record.get('event_id', '<unknown>')}: {exc}") from exc
+E               shaping_runtime.Recovery: cannot verify recorded G3 review_returned event fake-review-G3-historical-failure: review receipt bytes do not match provenance
+
+sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py:1334: Recovery
+=========================== short test summary info ============================
+FAILED tests/test_shaping_policy_recovery.py::test_json_list_order_id_is_cli_recovery[previous-policy]
+FAILED tests/test_shaping_policy_recovery.py::test_json_list_order_id_is_cli_recovery[current-policy]
+FAILED tests/test_shaping_policy_recovery.py::test_captured_history_survives_original_receipt_availability[deleted-previous-policy]
+FAILED tests/test_shaping_policy_recovery.py::test_captured_history_survives_original_receipt_availability[deleted-current-policy]
+FAILED tests/test_shaping_policy_recovery.py::test_captured_history_survives_original_receipt_availability[overwritten-previous-policy]
+FAILED tests/test_shaping_policy_recovery.py::test_captured_history_survives_original_receipt_availability[overwritten-current-policy]
+FAILED tests/test_shaping_policy_recovery.py::test_legacy_provenance_digest_is_structural_not_raw_byte_authentication[previous-policy]
+FAILED tests/test_shaping_policy_recovery.py::test_legacy_provenance_digest_is_structural_not_raw_byte_authentication[current-policy]
+FAILED tests/test_shaping_policy_recovery.py::test_mixed_policy_history_keeps_current_mean_only_stop
+9 failed, 30 passed in 13.79s
+
+STDERR:

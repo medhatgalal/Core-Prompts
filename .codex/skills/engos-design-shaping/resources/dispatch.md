@@ -58,6 +58,20 @@ state. The conductor records the actual worker identity and supplied context fro
 host evidence; an author-written identity string or `pass=true` cannot establish
 independence or advance a stage. Recheck dependencies before accepting any return.
 
+The conductor may accept, reopen and dispatch, but must not edit candidate prose,
+diagrams, scores or receipts. Return a correction to the assigned author and seal
+that author's revision. One example of this pattern is a controller replacing a
+contradicted research sentence so the next review can pass; that is not reconciliation.
+
+Before seal, retain the actual host-observed worker return and its artifact
+inventory/hashes, then compare them with the current candidate. Changed bytes need
+a fresh attributable author return; do not silently regenerate its inventory or
+repair a discrepancy. This is a protocol check, not proof of host-enforced authorship.
+The runtime's candidate_returned event requires an already sealed subject; do not
+mislabel that post-seal observation as evidence of who wrote the pre-seal bytes.
+If host return evidence is unavailable, disclose the provenance gap and request
+the author handoff rather than claiming the comparison passed.
+
 ## Keep execution constraints separate from the product
 
 Worker read/network/write limits constrain that worker's current assignment. They

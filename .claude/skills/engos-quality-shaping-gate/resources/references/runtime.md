@@ -398,6 +398,24 @@ still require independent Research review. A named, unrun spike or another recap
 is not a new fact. Coordination/policy/accepted-artifact entries cannot clear the
 stop. The remedy is a new fact, named spike or hold; scores/floors are unchanged.
 
+Classify floor-only reviews only when the work-order policy hash equals the digest
+of the current policy bindings. Validate common journal/work-order/seal/receipt
+bindings and the recorded policy digest before filtering. A valid different-policy
+review stays history: retain it without applying current scoring or requiring its
+predecessor to contain research-coverage.json. Do not rewrite accepted snapshots.
+For current-policy history, missing/invalid predecessor coverage or unverifiable
+bindings require Recovery, exit 3 and status recovery_pending, not an ordinary
+Hold. Clients use the status and exit code, not a status word prefixed to the reason.
+Classification uses the review captured in the content-addressed journal, not
+the continued availability of its original receipt file. Legacy entries retain
+parsed JSON, not raw bytes; digest syntax and bindings do not authenticate a valid
+forged raw-byte digest. The existing controller/journal trust boundary still applies.
+
+Policy rebinding is an explicit, attributable migration with its changed rules,
+reason and impact recorded through G0 reopen. Reaccept every invalidated stage.
+Do not rebind automatically to evade a failed review; a hash change is not a new
+product fact. Older receipts do not become current passes or failures by migration.
+
 Current-policy G3 `prepare` supplies `shape_basis` as an array of openedEvidence
 records using the same path/SHA256/locators structure. This declares the evidence
 the writer will actually use, and every entry must be in accepted G2 coverage.
@@ -413,7 +431,8 @@ arbitrary locator labels or reformatted equivalent ranges do not create a fact.
 Splitting/coalescing the same opened lines is not new coverage. Novelty binds to
 the opened source content, while Research review still judges its material meaning.
 Assignments, review receipts and coordination records are not product evidence.
-Applicable malformed failure history holds for recovery rather than being skipped.
+Unverifiable persistent failure history enters recovery rather than being skipped
+or reported as an ordinary hold. This does not turn invalid new input into recovery.
 
 ## Delivery intent and saved-target records
 

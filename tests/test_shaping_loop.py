@@ -327,7 +327,7 @@ def test_real_resources_module_is_not_bookkeeping(workshop):
     rt.seal(order["work_order_id"], version(rt))
 
 
-def test_malformed_failure_history_holds_before_dispatch(workshop):
+def test_malformed_failure_history_enters_recovery_before_dispatch(workshop):
     rt = loop_policy(workshop)
     advance(rt, 2)
     order, candidate = prepare(rt, "G3", "failed")
@@ -336,7 +336,7 @@ def test_malformed_failure_history_holds_before_dispatch(workshop):
     state["observations"][-1]["review"]["scores"]["dimensions"].pop("cost")
     rt._commit(state, version(rt))  # Deliberate corrupted-journal control.
     before = (rt.root / "state/run.json").read_bytes()
-    with pytest.raises(rt.Hold, match="cannot classify recorded G3"):
+    with pytest.raises(rt.Recovery, match="recorded G3 review_returned"):
         prepare(rt, "G3", "corrupt-history")
     assert (rt.root / "state/run.json").read_bytes() == before
 

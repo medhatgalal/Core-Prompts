@@ -177,11 +177,12 @@
         "strategy": "derived_history",
         "group": "derived",
         "baseline_path": null,
-        "selected_commit": "6f574d69",
+        "selected_commit": "1ee53a73",
         "richness_score": 5,
-        "line_count": 148,
+        "line_count": 149,
         "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
         "equivalent_commits": [
+          "6f574d69",
           "e077ae86",
           "7e94f9eb",
           "e866aa80"
@@ -232,7 +233,7 @@
             "candidate_operational_score": 2,
             "baseline_preserved_in_resource": false
           },
-          "baseline_commit": "6f574d69",
+          "baseline_commit": "1ee53a73",
           "baseline_slug": "engos-quality-shaping-gate"
         },
         {
@@ -283,7 +284,7 @@
         "surface_usability": 10
       },
       "template_name": "skill",
-      "effective_sha256": "0c5ca2a9a1970ec158cf1bd015ca0c2c6c7ca0f551c5cf63b1f261969e339ae2",
+      "effective_sha256": "4da31555681e6184eddf5a4c55d986293d4916847a5eb1209c2f719cbff82b30",
       "semantic_findings": [],
       "agent_surface_review": {
         "status": "unchanged",
@@ -379,13 +380,13 @@
         "kind": "source_conditions",
         "clauses": [
           {
-            "text": "1. Verify subject identity, predecessor hashes and source coverage. Hold missing,\n   stale or contradictory dependencies before evaluating a later stage.\n2. Inspect actual prose, citations and required artifacts. Explain each failed\n   predicate with a quote or missing item. Read source evidence instead of trusting\n   manifest claims. A named spike or rejected question is not uncertainty closure.\n3. Distinguish product decisions, engineering evidence and expert judgments. Ask\n   the designated human when authority is missing; continue independent work only.\n4. For G3 inspect every local render and all contract/security rows, cross-check\n   their meaning, apply the existing twelve-score rubric and keep author audit separate from actual\n   independent review. Lack of independent context means review_pending.\n   A set with no selected work is an unscored hold naming the walk-away item.\n   Check proposed extensions as proposals; absent code is not proof they cannot\n   be selected. Check the whole set and the frame's requested observable stop.\n5. For G4 inspect each saved target's revision, content, tables and diagrams. A\n   successful upload, empty target list or source-only image check is insufficient.\n6. Return the documented predicate-level ReviewReceipt with exact subject/policy\n   and evidence bindings. The controller checks and accepts it using the runtime;\n   the reviewing worker never writes accepted state or approves its own work.\n7. After repairs, reevaluate the affected conditions and dependencies. Preserve\n   failed receipts and changes. New scope reopens framing; new material design\n   uncertainty reopens research. Keep content readiness distinct from delivery.",
+            "text": "1. Verify subject identity, predecessor hashes and source coverage. Hold missing,\n   stale or contradictory dependencies before evaluating a later stage.\n2. Inspect actual prose, citations and required artifacts. Explain each failed\n   predicate with a quote or missing item. Read source evidence instead of trusting\n   manifest claims. A named spike or rejected question is not uncertainty closure.\n   At Research, assess the author's source/summary agreement, range-scoped\n   exclusivity, updated citation referents and material callee evidence.\n3. Distinguish product decisions, engineering evidence and expert judgments. Ask\n   the designated human when authority is missing; continue independent work only.\n4. For G3 inspect every local render and all contract/security rows, cross-check\n   their meaning, apply the existing twelve-score rubric and keep author audit separate from actual\n   independent review. Lack of independent context means review_pending.\n   A set with no selected work is an unscored hold naming the walk-away item.\n   Check proposed extensions as proposals; absent code is not proof they cannot\n   be selected. Check the whole set and the frame's requested observable stop.\n5. For G4 inspect each saved target's revision, content, tables and diagrams. A\n   successful upload, empty target list or source-only image check is insufficient.\n6. Return the documented predicate-level ReviewReceipt with exact subject/policy\n   and evidence bindings. The controller checks and accepts it using the runtime;\n   the reviewing worker never writes accepted state or approves its own work.\n7. After repairs, reevaluate the affected conditions and dependencies. Preserve\n   failed receipts and changes. New scope reopens framing; new material design\n   uncertainty reopens research. Keep content readiness distinct from delivery.",
             "heading": "Workflow",
             "source": {
               "path": "ssot/engos-quality-shaping-gate.md",
               "start_line": 39,
-              "end_line": 59,
-              "sha256": "0a6265ba9d855c4f1a13f737c72249741e26c8afe4b16cb19616f1ecff1ce9c9"
+              "end_line": 61,
+              "sha256": "ab1d142a4fbc439e8a05f4cbb30a996693ac06c6419aae04e40a2be0b72f3249"
             }
           }
         ]
@@ -402,9 +403,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-quality-shaping-gate.md",
-              "start_line": 87,
-              "end_line": 90,
-              "sha256": "0a6265ba9d855c4f1a13f737c72249741e26c8afe4b16cb19616f1ecff1ce9c9"
+              "start_line": 93,
+              "end_line": 96,
+              "sha256": "ab1d142a4fbc439e8a05f4cbb30a996693ac06c6419aae04e40a2be0b72f3249"
             }
           }
         ]
@@ -421,12 +422,12 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-quality-shaping-gate.md",
-        "ssot_sha256": "0a6265ba9d855c4f1a13f737c72249741e26c8afe4b16cb19616f1ecff1ce9c9",
-        "effective_sha256": "0c5ca2a9a1970ec158cf1bd015ca0c2c6c7ca0f551c5cf63b1f261969e339ae2",
+        "ssot_sha256": "ab1d142a4fbc439e8a05f4cbb30a996693ac06c6419aae04e40a2be0b72f3249",
+        "effective_sha256": "4da31555681e6184eddf5a4c55d986293d4916847a5eb1209c2f719cbff82b30",
         "resources": [
           {
             "path": "sources/capability-resources/engos-quality-shaping-gate/references/gates.md",
-            "sha256": "4689157327170acb57d625d2fd8f540b23316e6efb6e507e0661737617a89055"
+            "sha256": "14e1ce48fad71b7035094dce2a336464b63447431cd1bd09a02b36b1c1e14010"
           },
           {
             "path": "sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md",
@@ -434,7 +435,7 @@
           },
           {
             "path": "sources/capability-resources/engos-quality-shaping-gate/references/runtime.md",
-            "sha256": "6f4fee3cc1b4d6594c1ccf14af1211c7dbd230641fc641bd2629c5b7e93825d9"
+            "sha256": "4852e02e46eb3bf1a3b5a90747724985fd538ef5d2ea67226c0e0ecd7a902614"
           },
           {
             "path": "sources/capability-resources/engos-quality-shaping-gate/references/progress.md",
@@ -446,7 +447,7 @@
           },
           {
             "path": "sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py",
-            "sha256": "c939d4e00d0566e036d21860f1582c6ba0d72ab714e2470bb29d14987a634e21"
+            "sha256": "46f33a6796def198d39f7f78832ae3b447141656c7c5e7378344a5a262350b36"
           },
           {
             "path": "sources/capability-resources/engos-quality-shaping-gate/schemas/runtime.schema.json",
@@ -468,7 +469,7 @@
                 "path": "ssot/engos-quality-shaping-gate.md",
                 "start_line": 19,
                 "end_line": 21,
-                "sha256": "0a6265ba9d855c4f1a13f737c72249741e26c8afe4b16cb19616f1ecff1ce9c9"
+                "sha256": "ab1d142a4fbc439e8a05f4cbb30a996693ac06c6419aae04e40a2be0b72f3249"
               }
             }
           ],
@@ -480,7 +481,7 @@
                 "path": "ssot/engos-quality-shaping-gate.md",
                 "start_line": 25,
                 "end_line": 27,
-                "sha256": "0a6265ba9d855c4f1a13f737c72249741e26c8afe4b16cb19616f1ecff1ce9c9"
+                "sha256": "ab1d142a4fbc439e8a05f4cbb30a996693ac06c6419aae04e40a2be0b72f3249"
               }
             }
           ],
@@ -492,7 +493,7 @@
                 "path": "ssot/engos-quality-shaping-gate.md",
                 "start_line": 31,
                 "end_line": 35,
-                "sha256": "0a6265ba9d855c4f1a13f737c72249741e26c8afe4b16cb19616f1ecff1ce9c9"
+                "sha256": "ab1d142a4fbc439e8a05f4cbb30a996693ac06c6419aae04e40a2be0b72f3249"
               }
             }
           ],
@@ -502,9 +503,9 @@
               "heading": "Required Output",
               "source": {
                 "path": "ssot/engos-quality-shaping-gate.md",
-                "start_line": 63,
-                "end_line": 66,
-                "sha256": "0a6265ba9d855c4f1a13f737c72249741e26c8afe4b16cb19616f1ecff1ce9c9"
+                "start_line": 65,
+                "end_line": 68,
+                "sha256": "ab1d142a4fbc439e8a05f4cbb30a996693ac06c6419aae04e40a2be0b72f3249"
               }
             }
           ]
@@ -519,7 +520,7 @@
           "shape"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "04273ec340ffdfd0e6cb599f177fdc27b11de0df0c9658341a6ade015fb1a967"
+        "mapping_sha256": "096d22123563f67d170ec1c0d5f4b9715c67f10c73dbfe31a8a3e4b8d0681338"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

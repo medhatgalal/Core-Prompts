@@ -1,3 +1,19 @@
+## v1.16.3 - 2026-09-30
+
+Source version prepared for shaping evidence/recovery corrections. Mainline
+delivery and selected installation are separate from release publication.
+
+- Scope floor-only review classification to current policy bindings while
+  preserving valid older history without retroactive coverage requirements.
+  Validate common history bindings; report unverifiable state as recovery,
+  not an ordinary gate hold. Keep the twelve-score thresholds unchanged.
+- Add bounded Research author preflight for source contradictions, scoped
+  occurrences, citation referents and material callee claims. Keep candidate
+  repair with workers and compare actual author handoffs before seal.
+- Clarify explicit policy migration and recovery in user-facing guidance.
+  Mechanical regressions and small authoring diagnostics are not full pilot
+  acceptance or formal behavioral promotion.
+
 ## v1.16.2 - 2026-09-29
 
 Source version prepared for the shaping-loop correction. Merge, selected-package
