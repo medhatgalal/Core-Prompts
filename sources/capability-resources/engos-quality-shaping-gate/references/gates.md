@@ -100,8 +100,8 @@ pitch, uncertainty and decision artifacts; do not create a duplicate tracker.
   negative responsibility naming who owns the excluded function.
 - Coarse workstreams, pitch-wide proof slice and observable first slices; mark
   ready/needs_spike/excluded. No selected load-bearing needs_spike work in a passing pitch.
-- Judge those pieces as a set; the proof observes the frame's actual stop (for
-  example, job state after send), not merely the existence of a queue row.
+- Judge those pieces as a set; the proof observes the accepted frame's requested
+  completion or stop condition, not merely an intermediate action.
 - Sourced rabbit holes with mitigation, owner and stop boundary; reasoned No-Gos.
 - Summary and traceability preserve the original constraints. Detailed build tasks
   remain the builder's job, not a reason to demand a completed feature before shaping.

@@ -48,13 +48,14 @@ an explicit G0 policy rebind before claiming these checks.
 | Only average <4 fails, every score >=3, evidence unchanged | Stop pitch dispatch; acquire a new fact, name a spike or hold |
 | Actual independent G3 pass | Handoff to design within the user's authority and requested delivery scope |
 
-Cost 3 includes restating appetite: “one send, one row, two reads.” More prose
-cannot make it 4. Proposed writes are not required to already exist, but an
+Cost 3 includes restating appetite. One example of this pattern is listing the
+same bounded operations again without new supported cost evidence; more prose
+cannot make it 4. Proposed behaviors are not required to already exist, but an
 unsupported current-state assumption cannot be relabeled as a proposal. Evaluate
-the pieces jointly, and make the proof observe the frame's requested stop. If it
-asks to follow a job after send, a queue-row observation alone does not satisfy it.
+the pieces jointly, and make the proof observe the frame's requested completion
+or stop condition. An intermediate observation alone does not satisfy it.
 
-For the limited workshop renderer, use a real sequenceDiagram, short labels,
+For the documented limited renderer, use a real sequenceDiagram, short labels,
 white background and no alt/else. Gray actor fills are a known limitation; use
 role-colored bands and a legend, retain the real sequence and open its rendered
 pixels in independent review. Color limitations do not justify a flowchart.

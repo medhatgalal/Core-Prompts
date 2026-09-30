@@ -5,16 +5,16 @@ sequenceDiagram
     participant S as Store
     Note over U,S: Legend: UI blue<br/>Store green / Async amber
     rect rgb(187, 222, 251)
-        Note over U,A: UI - proposed send
-        U->>A: Send
+        Note over U,A: UI - proposed action
+        U->>A: Invoke
     end
     rect rgb(232, 245, 233)
         Note over A,S: Store - proposed write
-        A->>S: Save job
-        S-->>A: Job row
+        A->>S: Persist change
+        S-->>A: Saved state
     end
     rect rgb(255, 243, 224)
         Note over U,A: Async - observe stop
-        U->>A: Read job
-        A-->>U: Terminal state
+        U->>A: Observe result
+        A-->>U: Required outcome
     end

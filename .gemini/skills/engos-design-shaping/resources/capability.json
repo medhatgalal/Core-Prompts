@@ -175,11 +175,12 @@
         "strategy": "derived_history",
         "group": "derived",
         "baseline_path": null,
-        "selected_commit": "f51b2762",
+        "selected_commit": "6f574d69",
         "richness_score": 5,
-        "line_count": 191,
+        "line_count": 208,
         "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
         "equivalent_commits": [
+          "f51b2762",
           "e077ae86",
           "7e94f9eb",
           "e866aa80"
@@ -230,7 +231,7 @@
             "candidate_operational_score": 2,
             "baseline_preserved_in_resource": false
           },
-          "baseline_commit": "f51b2762",
+          "baseline_commit": "6f574d69",
           "baseline_slug": "engos-design-shaping"
         },
         {
@@ -281,7 +282,7 @@
         "surface_usability": 10
       },
       "template_name": "skill",
-      "effective_sha256": "9c1f8a623d6259baa1028ae25cc4e5388182e3c2ec6365d0a2b0b553128d338b",
+      "effective_sha256": "c5a2f2301aa725ddfba6401fea938e9ed31344db418321f82958892e28f75aac",
       "semantic_findings": [],
       "agent_surface_review": {
         "status": "unchanged",
@@ -363,7 +364,7 @@
     "primary_job": "Produce an evidence-backed pitch with current acceptance receipts and faithful\nrequested outputs, or a useful hold naming the missing decision/evidence, owner\nand next action. Keep content readiness, delivery, human betting and implementation\ndistinct. A complete-looking document is not a passing review.",
     "use_when": "\u201cHelp us frame and shape this; here are our notes\u201d starts the workshop. \u201cFrame\nonly,\u201d \u201ccontinue shaping,\u201d \u201creview this existing pitch,\u201d and \u201cresume this folder\nor registered Doc\u201d select its scope. The user need not invoke each phase.\nStandalone diagram or finished-pitch review requests use their existing helpers.",
     "works_on": "Start with one sentence or available documents; no repository or complete form is\nrequired. Recover the original request, available source access, artifact home,\nhuman decisions and current state when present. Ask only for missing load-bearing\ninputs. Actual appetite, walk-away and decision authority must be established\nbefore accepting a frame, not invented as entry defaults.",
-    "main_output": "Return friendly links and a short status: accepted stage/revision, changed facts,\ncontent review, delivery per target, open blockers and next action. Maintain\nMarkdown brief/intake/frame/research/pitch, question and decision provenance,\nsource coverage, work orders and receipts in the project's authorized artifact\nhome. Reached shaping stages add the full diagram/contract/security bundle,\nsummary, provisional workstreams/proof slices and traceability. HTML and full\nJSON are derived exports; requested Google Docs get saved-target verification\nand an explicit reconciliation path. Do not fabricate artifacts for unreached\nstages. The phase templates define fields, not gate verdicts.",
+    "main_output": "Return friendly links and a short status: accepted stage/revision, changed facts,\ncontent review, delivery per target, open blockers and next action. Maintain\nMarkdown brief/intake/frame/research/pitch, question and decision provenance,\nsource coverage, role assignments and receipts in the project's authorized artifact\nhome. Reached shaping stages add the full diagram/contract/security bundle,\nsummary, provisional workstreams/proof slices and traceability. HTML and full\nJSON are derived exports; requested Google Docs get saved-target verification\nand an explicit reconciliation path. Do not fabricate artifacts for unreached\nstages. The phase templates define fields, not gate verdicts.",
     "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
     "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
     "routing_question": "Does this request directly require Shape a Problem into a Pitch?",
@@ -383,7 +384,7 @@
               "path": "ssot/engos-design-shaping.md",
               "start_line": 54,
               "end_line": 100,
-              "sha256": "0a532ee7d64f0361572d99c61e14ed3b6a1ebf8e9619a24518c11417a28ca768"
+              "sha256": "018c32965c5ef9e73436bd278e6d6ac9e539a8b2bca5d4f85bd21766cd837850"
             }
           }
         ]
@@ -400,9 +401,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-design-shaping.md",
-              "start_line": 140,
-              "end_line": 143,
-              "sha256": "0a532ee7d64f0361572d99c61e14ed3b6a1ebf8e9619a24518c11417a28ca768"
+              "start_line": 141,
+              "end_line": 144,
+              "sha256": "018c32965c5ef9e73436bd278e6d6ac9e539a8b2bca5d4f85bd21766cd837850"
             }
           }
         ]
@@ -415,9 +416,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-design-shaping.md",
-              "start_line": 140,
-              "end_line": 143,
-              "sha256": "0a532ee7d64f0361572d99c61e14ed3b6a1ebf8e9619a24518c11417a28ca768"
+              "start_line": 141,
+              "end_line": 144,
+              "sha256": "018c32965c5ef9e73436bd278e6d6ac9e539a8b2bca5d4f85bd21766cd837850"
             }
           }
         ]
@@ -430,8 +431,8 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-design-shaping.md",
-        "ssot_sha256": "0a532ee7d64f0361572d99c61e14ed3b6a1ebf8e9619a24518c11417a28ca768",
-        "effective_sha256": "9c1f8a623d6259baa1028ae25cc4e5388182e3c2ec6365d0a2b0b553128d338b",
+        "ssot_sha256": "018c32965c5ef9e73436bd278e6d6ac9e539a8b2bca5d4f85bd21766cd837850",
+        "effective_sha256": "c5a2f2301aa725ddfba6401fea938e9ed31344db418321f82958892e28f75aac",
         "resources": [
           {
             "path": "sources/capability-resources/engos-design-shaping/routing.md",
@@ -459,7 +460,7 @@
           },
           {
             "path": "sources/capability-resources/engos-design-shaping/dispatch.md",
-            "sha256": "2c1ecce235404930984151deb4f256d4bb7f98577686f49efeca86c046ad64f7"
+            "sha256": "e6d1434be7f1ea46744de53fedceb7b102d93a3e8e38075638adfe97ff75c74a"
           },
           {
             "path": "sources/capability-resources/engos-design-shaping/architecture-fit.md",
@@ -483,7 +484,7 @@
           },
           {
             "path": "sources/capability-resources/engos-design-shaping/stages/shape.md",
-            "sha256": "3bab9127ed22919a18dc141ee8df187f262f036d21ea8e8675e8d0ec38014601"
+            "sha256": "0fa9ad5a2184573053d349953acc104773c79dc26e33939ccbda9d5321f75624"
           },
           {
             "path": "sources/capability-resources/engos-design-shaping/templates/shaped-bundle.md",
@@ -521,7 +522,7 @@
                 "path": "ssot/engos-design-shaping.md",
                 "start_line": 20,
                 "end_line": 23,
-                "sha256": "0a532ee7d64f0361572d99c61e14ed3b6a1ebf8e9619a24518c11417a28ca768"
+                "sha256": "018c32965c5ef9e73436bd278e6d6ac9e539a8b2bca5d4f85bd21766cd837850"
               }
             }
           ],
@@ -533,7 +534,7 @@
                 "path": "ssot/engos-design-shaping.md",
                 "start_line": 27,
                 "end_line": 30,
-                "sha256": "0a532ee7d64f0361572d99c61e14ed3b6a1ebf8e9619a24518c11417a28ca768"
+                "sha256": "018c32965c5ef9e73436bd278e6d6ac9e539a8b2bca5d4f85bd21766cd837850"
               }
             }
           ],
@@ -545,19 +546,19 @@
                 "path": "ssot/engos-design-shaping.md",
                 "start_line": 34,
                 "end_line": 38,
-                "sha256": "0a532ee7d64f0361572d99c61e14ed3b6a1ebf8e9619a24518c11417a28ca768"
+                "sha256": "018c32965c5ef9e73436bd278e6d6ac9e539a8b2bca5d4f85bd21766cd837850"
               }
             }
           ],
           "main_output": [
             {
-              "text": "Return friendly links and a short status: accepted stage/revision, changed facts,\ncontent review, delivery per target, open blockers and next action. Maintain\nMarkdown brief/intake/frame/research/pitch, question and decision provenance,\nsource coverage, work orders and receipts in the project's authorized artifact\nhome. Reached shaping stages add the full diagram/contract/security bundle,\nsummary, provisional workstreams/proof slices and traceability. HTML and full\nJSON are derived exports; requested Google Docs get saved-target verification\nand an explicit reconciliation path. Do not fabricate artifacts for unreached\nstages. The phase templates define fields, not gate verdicts.",
+              "text": "Return friendly links and a short status: accepted stage/revision, changed facts,\ncontent review, delivery per target, open blockers and next action. Maintain\nMarkdown brief/intake/frame/research/pitch, question and decision provenance,\nsource coverage, role assignments and receipts in the project's authorized artifact\nhome. Reached shaping stages add the full diagram/contract/security bundle,\nsummary, provisional workstreams/proof slices and traceability. HTML and full\nJSON are derived exports; requested Google Docs get saved-target verification\nand an explicit reconciliation path. Do not fabricate artifacts for unreached\nstages. The phase templates define fields, not gate verdicts.",
               "heading": "Required Output",
               "source": {
                 "path": "ssot/engos-design-shaping.md",
                 "start_line": 42,
                 "end_line": 50,
-                "sha256": "0a532ee7d64f0361572d99c61e14ed3b6a1ebf8e9619a24518c11417a28ca768"
+                "sha256": "018c32965c5ef9e73436bd278e6d6ac9e539a8b2bca5d4f85bd21766cd837850"
               }
             }
           ]
@@ -572,7 +573,7 @@
           "shape"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "5d5b5a526c7a1e3c98563d9bf0fd2eb5b0d663905cdc93242f2cfb9c2138f488"
+        "mapping_sha256": "522fd4a6009e2a53fddd1d472dbb95ea129b46e111b5ebca86042570ca214bea"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

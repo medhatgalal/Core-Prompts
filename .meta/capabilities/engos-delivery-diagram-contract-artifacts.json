@@ -185,11 +185,12 @@
         "strategy": "derived_history",
         "group": "derived",
         "baseline_path": null,
-        "selected_commit": "7e94f9eb",
+        "selected_commit": "6f574d69",
         "richness_score": 7,
-        "line_count": 201,
+        "line_count": 209,
         "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
         "equivalent_commits": [
+          "7e94f9eb",
           "e866aa80",
           "2c994a21"
         ],
@@ -239,7 +240,7 @@
             "candidate_operational_score": 2,
             "baseline_preserved_in_resource": false
           },
-          "baseline_commit": "7e94f9eb",
+          "baseline_commit": "6f574d69",
           "baseline_slug": "engos-delivery-diagram-contract-artifacts"
         },
         {
@@ -290,7 +291,7 @@
         "surface_usability": 10
       },
       "template_name": "skill",
-      "effective_sha256": "2ae5c96f7b9f8863e6e33e3faa8f8753290dc92517802173293ed90067fd00f0",
+      "effective_sha256": "9683176b85b455bce0a587504e79dc98c4856eb838f4ad7b28f5fc358710c39a",
       "semantic_findings": [],
       "agent_surface_review": {
         "status": "unchanged",
@@ -460,11 +461,11 @@
       "provenance": {
         "ssot_path": "ssot/engos-delivery-diagram-contract-artifacts.md",
         "ssot_sha256": "6762940d898fc730a057f6197a12c352b360e74e5c9d00e6746293fab9f52929",
-        "effective_sha256": "2ae5c96f7b9f8863e6e33e3faa8f8753290dc92517802173293ed90067fd00f0",
+        "effective_sha256": "9683176b85b455bce0a587504e79dc98c4856eb838f4ad7b28f5fc358710c39a",
         "resources": [
           {
             "path": "sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/diagram-style.md",
-            "sha256": "284e1303e033fba957b5936d856ff7019e9183cd46fabec00664c80533a0c7ef"
+            "sha256": "57c9865c1fbba59d8fda2fd94ed6ba0a15c2fbe000348e64c40a8d8d319a68c3"
           },
           {
             "path": "sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/bundle.md",
@@ -587,7 +588,7 @@
           "shape"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "df0d1133336d38498ba39195d7f66a545a3eff4dd94554c844cb3880e1d092d0"
+        "mapping_sha256": "3e09be3f56b4b352868e81e732b1e3138acdd5514ccee997a7e6f1d81e3e6fd0"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

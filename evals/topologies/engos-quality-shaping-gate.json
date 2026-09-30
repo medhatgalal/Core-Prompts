@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-quality-shaping-gate",
-  "ssot_sha256": "846bb854b7e129ef072494a4e79cf8604f777be07c19babda8bb11e6f3738576",
+  "ssot_sha256": "0a6265ba9d855c4f1a13f737c72249741e26c8afe4b16cb19616f1ecff1ce9c9",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -29,8 +29,8 @@
     "engos-quality-shaping-gate:L48:d4bf498cbc49",
     "engos-quality-shaping-gate:L58:782c78f2e0b2",
     "engos-quality-shaping-gate:L64:6bffcc5574e2",
-    "engos-quality-shaping-gate:L115:9c893fba5324",
-    "engos-quality-shaping-gate:L133:ea9386a5d8cc",
+    "engos-quality-shaping-gate:L116:9c893fba5324",
+    "engos-quality-shaping-gate:L134:ea9386a5d8cc",
     "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/gates.md:L45:02c669626237",
     "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/gates.md:L68:9f9320ecd218",
     "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/gates.md:L71:92144e81907d",
@@ -40,10 +40,10 @@
     "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/gates.md:L121:4048f6768e6f",
     "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/gates.md:L126:e961b75927a0",
     "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/gates.md:L142:dc141f4904b0",
-    "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L32:1d966adee063",
-    "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L36:54cdf619a8fa",
-    "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L38:866250db7d91",
-    "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L63:4f3b790076ee",
+    "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L33:1d966adee063",
+    "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L37:54cdf619a8fa",
+    "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L39:866250db7d91",
+    "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L64:4f3b790076ee",
     "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/runtime.md:L25:efa607fdd32e",
     "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/runtime.md:L36:7c7652fb3b58",
     "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/runtime.md:L76:8894da2a4bd9",
@@ -52,8 +52,8 @@
     "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/runtime.md:L292:acd2858a6630",
     "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/runtime.md:L335:4e4caf1a314c",
     "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/runtime.md:L353:bdf559174a37",
-    "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/runtime.md:L411:cbf70bba97a4",
-    "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/runtime.md:L432:d303aa43b00f",
+    "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/runtime.md:L412:cbf70bba97a4",
+    "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/runtime.md:L433:d303aa43b00f",
     "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/progress.md:L31:cf0745bfcefa",
     "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/progress.md:L39:e8f1b47f6bfb",
     "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/progress.md:L108:3bdca5074185",
@@ -180,50 +180,50 @@
       "mapped_to": []
     },
     {
-      "id": "engos-quality-shaping-gate:L79:8d9e59666788",
+      "id": "engos-quality-shaping-gate:L80:8d9e59666788",
       "heading": "Constraints",
       "source": "ssot/engos-quality-shaping-gate.md",
-      "source_line": 87,
+      "source_line": 88,
       "sha256": "8d9e596667882e483c9744c469f8783994791542251aa94fc7755a59f48151c4",
       "text": "worker provenance and permission boundaries must be observed separately. It is not",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-shaping-gate:L88:fcc05be33755",
+      "id": "engos-quality-shaping-gate:L89:fcc05be33755",
       "heading": "Examples",
       "source": "ssot/engos-quality-shaping-gate.md",
-      "source_line": 96,
+      "source_line": 97,
       "sha256": "fcc05be337553ab7b0c9d6b386c009c8034b303845b1a0c3ffbee5b175ea919f",
       "text": "pitch retains content-ready status when only its requested publication is blocked.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-shaping-gate:L114:b192df10d3d6",
+      "id": "engos-quality-shaping-gate:L115:b192df10d3d6",
       "heading": "Visual Quality and Evidence-Derived Progress",
       "source": "ssot/engos-quality-shaping-gate.md",
-      "source_line": 122,
+      "source_line": 123,
       "sha256": "b192df10d3d66a39ddb758a61751cbe4d42f245f9bb2950145fbdb8dcd7e5018",
       "text": "are applicable. Simulation, snapshot time and unknown activity must remain visible.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-shaping-gate:L115:9c893fba5324",
+      "id": "engos-quality-shaping-gate:L116:9c893fba5324",
       "heading": "Visual Quality and Evidence-Derived Progress",
       "source": "ssot/engos-quality-shaping-gate.md",
-      "source_line": 123,
+      "source_line": 124,
       "sha256": "9c893fba532430ec2a337f4a8dad5a0817e7d81892969e9af3567d5b2c219084",
       "text": "The projection never accepts a stage, overrides drift, appoints owners, publishes",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-shaping-gate:L133:ea9386a5d8cc",
+      "id": "engos-quality-shaping-gate:L134:ea9386a5d8cc",
       "heading": "Existing Capabilities and Architecture Fit",
       "source": "ssot/engos-quality-shaping-gate.md",
-      "source_line": 141,
+      "source_line": 142,
       "sha256": "ea9386a5d8cc9b6a05e7b3f0fcd88fb86557b479b53ad03bad7617f7e603e6db",
       "text": "assessment. Do not invent code findings or force architecture into framing.",
       "kind": "invariant",
@@ -480,130 +480,130 @@
       "mapped_to": []
     },
     {
-      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L32:1d966adee063",
+      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L33:1d966adee063",
       "heading": "root",
       "source": "sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md",
-      "source_line": 32,
+      "source_line": 33,
       "sha256": "1d966adee063d7e5088206a1c83e6c1460396860f4f3f6eb37ea136507c9fc8c",
       "text": "to an old pattern is neither required for a 5 nor sufficient by itself. Do not",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L35:586615794f87",
+      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L36:586615794f87",
       "heading": "root",
       "source": "sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md",
-      "source_line": 35,
+      "source_line": 36,
       "sha256": "586615794f877e28165b273285f7a5befa36f0133a8fa58bc8954c1d95850d8d",
       "text": "credible alternatives only, and assess migration, owner, rollback and retirement",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L36:54cdf619a8fa",
+      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L37:54cdf619a8fa",
       "heading": "root",
       "source": "sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md",
-      "source_line": 36,
+      "source_line": 37,
       "sha256": "54cdf619a8fa82a5b4d36df2bd89037ba5eb257bdc7e4fe38574bbc6febcfc14",
       "text": "implications when applicable. Do not reward forced reuse or DRY consolidation.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L38:866250db7d91",
+      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L39:866250db7d91",
       "heading": "root",
       "source": "sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md",
-      "source_line": 38,
+      "source_line": 39,
       "sha256": "866250db7d91ff2feae899c023c9b063224a23976ff75ff593b0b4cc68200bd5",
       "text": "and its supporting evidence; do not invent a technical requirement to score it.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L39:a012db1526c2",
+      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L40:a012db1526c2",
       "heading": "root",
       "source": "sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md",
-      "source_line": 39,
+      "source_line": 40,
       "sha256": "a012db1526c2bbffee4e2ce3fe4092e72373d7e95da4c6a14a32bc8734380366",
       "text": "All twelve dimensions and existing quality thresholds remain required.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L49:19b0ef7d37d0",
+      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L50:19b0ef7d37d0",
       "heading": "root",
       "source": "sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md",
-      "source_line": 49,
+      "source_line": 50,
       "sha256": "19b0ef7d37d0605bdfc24f9183fa343850d924f90350304cff2bbad954232c44",
       "text": "equal-weight mean of all twelve scores (category means are reporting only, as in",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L52:9582e230aa99",
+      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L53:9582e230aa99",
       "heading": "root",
       "source": "sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md",
-      "source_line": 52,
+      "source_line": 53,
       "sha256": "9582e230aa99fac92a17a8d663944a51dba5461ae606afabbc27cc047788c3b3",
       "text": "average under 4 is the only miss and every score is at least 3, the conductor must",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L57:372f5cf2c0d9",
+      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L58:372f5cf2c0d9",
       "heading": "root",
       "source": "sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md",
-      "source_line": 57,
+      "source_line": 58,
       "sha256": "372f5cf2c0d98c29ccdff349effaf9af2517e8083cf0af752c523d8956a27500",
       "text": "take their appropriate repair route. Ask focused questions only for material gaps.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L59:3166048ccc8a",
+      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L60:3166048ccc8a",
       "heading": "root",
       "source": "sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md",
-      "source_line": 59,
+      "source_line": 60,
       "sha256": "3166048ccc8a87ebdfa04ba267b82f056d55f9300d5ea7a0af1972d88f25b99a",
       "text": "Score only a selected coherent set. A no-selection output is a hold naming the",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L63:4f3b790076ee",
+      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L64:4f3b790076ee",
       "heading": "root",
       "source": "sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md",
-      "source_line": 63,
+      "source_line": 64,
       "sha256": "4f3b790076ee3c281539c9626e80e7c2161a3a5851a71b2d64ec41e519ef2208",
       "text": "its researched seams and feasibility; do not require the proposed write to already",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L64:3c868235627b",
+      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L65:02411724249d",
       "heading": "root",
       "source": "sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md",
-      "source_line": 64,
-      "sha256": "3c868235627bafc7cce888653692846d73ff093ca757a1164b3bcf4242180bc0",
-      "text": "exist. Proof slices must observe the frame's requested stop, not just a queue line.",
+      "source_line": 65,
+      "sha256": "02411724249d3b58a9013e246a154536a78cff8c293bf8b07725a337f12e666f",
+      "text": "exist. Proof slices must observe the accepted frame's requested completion or stop",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L68:3857e0047786",
+      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L70:3857e0047786",
       "heading": "root",
       "source": "sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md",
-      "source_line": 68,
+      "source_line": 70,
       "sha256": "3857e004778607391c8ce074ff2fd4a254cf19ac06676f9841d5c137c3964356",
       "text": "a missing critical compatibility result must still hold at G2/G3; a polished pitch",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L70:62e0fc3c639a",
+      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md:L72:62e0fc3c639a",
       "heading": "root",
       "source": "sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md",
-      "source_line": 70,
+      "source_line": 72,
       "sha256": "62e0fc3c639a76d16c461285edde56d932c05d4b19679e2945f37c53310870a9",
       "text": "must apply these distinctions and compare against actual team exemplars. A",
       "kind": "invariant",
@@ -950,110 +950,110 @@
       "mapped_to": []
     },
     {
-      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/runtime.md:L361:292942f0bb3a",
+      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/runtime.md:L362:07e2861be92f",
       "heading": "Evidence-directed dispatch and sealing",
       "source": "sources/capability-resources/engos-quality-shaping-gate/references/runtime.md",
-      "source_line": 361,
-      "sha256": "292942f0bb3a17f7113380c6d21aaaf7ebf16d4ee367850d2f45e01058b04ca6",
-      "text": "\"walk_away_item\": \"Required persistence or terminal observation cannot be supported\",",
+      "source_line": 362,
+      "sha256": "07e2861be92fe52c1ec7f9f52ee4309cee91556db61b5db713ebecaefdb0ec88",
+      "text": "\"walk_away_item\": \"Required behavior or observable outcome cannot be supported\",",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/runtime.md:L388:f8a2ef0f5a22",
+      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/runtime.md:L389:f8a2ef0f5a22",
       "heading": "Evidence-directed dispatch and sealing",
       "source": "sources/capability-resources/engos-quality-shaping-gate/references/runtime.md",
-      "source_line": 388,
+      "source_line": 389,
       "sha256": "f8a2ef0f5a222fe2558d0c2a8ac4c3b523233a679ca3f9a0e6f093736dff69a6",
       "text": "calling only failed accept does not record the review for retry control.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/runtime.md:L394:c49e0f154f82",
+      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/runtime.md:L395:c49e0f154f82",
       "heading": "Evidence-directed dispatch and sealing",
       "source": "sources/capability-resources/engos-quality-shaping-gate/references/runtime.md",
-      "source_line": 394,
+      "source_line": 395,
       "sha256": "c49e0f154f82a895e2eb386aef4269ea7fc1350f301cd63ea9309b0a0342f27f",
       "text": "Only new opened evidence in freshly accepted G2 enables a new attempt. Additional",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/runtime.md:L402:ad45f24e41df",
+      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/runtime.md:L403:ad45f24e41df",
       "heading": "Evidence-directed dispatch and sealing",
       "source": "sources/capability-resources/engos-quality-shaping-gate/references/runtime.md",
-      "source_line": 402,
+      "source_line": 403,
       "sha256": "ad45f24e41df2b833f8f96085f503fd82bad4128d0e61e7bce89c6772a60d350",
       "text": "the writer will actually use, and every entry must be in accepted G2 coverage.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/runtime.md:L403:1e2dbb18fe66",
+      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/runtime.md:L404:1e2dbb18fe66",
       "heading": "Evidence-directed dispatch and sealing",
       "source": "sources/capability-resources/engos-quality-shaping-gate/references/runtime.md",
-      "source_line": 403,
+      "source_line": 404,
       "sha256": "1e2dbb18fe66fcd3aa562873afac96643e2896fc679c8ff0b76fe04eb4e31efc",
       "text": "After a sole-average failure, at least one assigned basis fact must be new. At",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/runtime.md:L404:90941f14edee",
+      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/runtime.md:L405:90941f14edee",
       "heading": "Evidence-directed dispatch and sealing",
       "source": "sources/capability-resources/engos-quality-shaping-gate/references/runtime.md",
-      "source_line": 404,
+      "source_line": 405,
       "sha256": "90941f14edeec54d7536e1b57654f9b99c4ee41366f9534c7147f13ccfa6006d",
       "text": "seal, each selected part ID must name a grounded claim; selected extension claims",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/runtime.md:L406:fc9b01a18a66",
+      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/runtime.md:L407:fc9b01a18a66",
       "heading": "Evidence-directed dispatch and sealing",
       "source": "sources/capability-resources/engos-quality-shaping-gate/references/runtime.md",
-      "source_line": 406,
+      "source_line": 407,
       "sha256": "fc9b01a18a668577c2ad2c6b31df4b26c63cba30680bbe53dc55b75fb94ba313",
       "text": "The selected set must actually use the new fact through its claim/basis closure.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/runtime.md:L411:cbf70bba97a4",
+      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/runtime.md:L412:cbf70bba97a4",
       "heading": "Evidence-directed dispatch and sealing",
       "source": "sources/capability-resources/engos-quality-shaping-gate/references/runtime.md",
-      "source_line": 411,
+      "source_line": 412,
       "sha256": "cbf70bba97a48f0bdc37e8f8db340591796b246249ddd77a82c8306222dabc95",
       "text": "arbitrary locator labels or reformatted equivalent ranges do not create a fact.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/runtime.md:L421:c0fa270b4f37",
+      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/runtime.md:L422:c0fa270b4f37",
       "heading": "Delivery intent and saved-target records",
       "source": "sources/capability-resources/engos-quality-shaping-gate/references/runtime.md",
-      "source_line": 421,
+      "source_line": 422,
       "sha256": "c0fa270b4f37a223da3d5c6dffb868940cf6fa3be412881bbe4aa20225484396",
       "text": "obtains the required target permissions and emits local evidence.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/runtime.md:L432:d303aa43b00f",
+      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/runtime.md:L433:d303aa43b00f",
       "heading": "Delivery intent and saved-target records",
       "source": "sources/capability-resources/engos-quality-shaping-gate/references/runtime.md",
-      "source_line": 432,
+      "source_line": 433,
       "sha256": "d303aa43b00f1a80f93ff05074624157b5b4f6f85490485843c148219ff4cfe4",
       "text": "already-created target and read it back before recording a result. Do not create",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/runtime.md:L475:d604a2b6ccd3",
+      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/runtime.md:L476:d604a2b6ccd3",
       "heading": "Delivery intent and saved-target records",
       "source": "sources/capability-resources/engos-quality-shaping-gate/references/runtime.md",
-      "source_line": 475,
+      "source_line": 476,
       "sha256": "d604a2b6ccd3257f46927a01aad2008da997d0ecf2d39c55ae68d78c4ad6a786",
       "text": "and cannot be substituted with `structured`. JSON-only runs can reach G4 with these",
       "kind": "invariant",
@@ -1130,12 +1130,12 @@
       "mapped_to": []
     },
     {
-      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/progress.md:L113:ce3fae1f6718",
+      "id": "engos-quality-shaping-gate:sources/capability-resources/engos-quality-shaping-gate/references/progress.md:L113:b143ed6aa8ec",
       "heading": "Host observations in the existing journal",
       "source": "sources/capability-resources/engos-quality-shaping-gate/references/progress.md",
       "source_line": 113,
-      "sha256": "ce3fae1f6718a63bfbe5ff2cc78b5cb23453429bb1bfc2de95b20ceacfe41215",
-      "text": "observations only. Prepared/dispatched orders are queued; only a fresh started",
+      "sha256": "b143ed6aa8ec0991d60b477fd97dc13e0dfe0a4c5c83025f65cb76638b0987c8",
+      "text": "observations only. Prepared/dispatched assignments are queued; only a fresh started",
       "kind": "invariant",
       "mapped_to": []
     },
@@ -2478,23 +2478,23 @@
   "source_references": [
     {
       "path": "ssot/engos-quality-shaping-gate.md",
-      "sha256": "846bb854b7e129ef072494a4e79cf8604f777be07c19babda8bb11e6f3738576"
+      "sha256": "0a6265ba9d855c4f1a13f737c72249741e26c8afe4b16cb19616f1ecff1ce9c9"
     },
     {
       "path": "sources/capability-resources/engos-quality-shaping-gate/references/gates.md",
-      "sha256": "a0be87b5fb6f21c82b54a7bfa09d5bd0375781a90b91b3d1539ec77aac4085c6"
+      "sha256": "4689157327170acb57d625d2fd8f540b23316e6efb6e507e0661737617a89055"
     },
     {
       "path": "sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md",
-      "sha256": "98e4150b60b5a3e2c1ec4a395616f07d1bfc83411829248ece114c66ff2d3236"
+      "sha256": "29fb3704545aad1de0a176f57fd08adf3b845a8873f967265baacc7f259e04ee"
     },
     {
       "path": "sources/capability-resources/engos-quality-shaping-gate/references/runtime.md",
-      "sha256": "d49cf2dfde1d9b7d43024837daaa3ba1e27863e97f87520cbeb3ede7a524642a"
+      "sha256": "6f4fee3cc1b4d6594c1ccf14af1211c7dbd230641fc641bd2629c5b7e93825d9"
     },
     {
       "path": "sources/capability-resources/engos-quality-shaping-gate/references/progress.md",
-      "sha256": "22940bd478122faf3d8544be8968c7ca0ecf13a2af9b66f67fb1d03fa1285ee1"
+      "sha256": "afabc9a153c2bcbef9600ba95dbaee7df9b597b34fa2f17b61a17aa201f2c4f7"
     },
     {
       "path": "sources/capability-resources/engos-quality-shaping-gate/schemas/progress.schema.json",
@@ -2533,5 +2533,5 @@
   },
   "review_status": "draft",
   "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs.",
-  "resource_bundle_sha256": "77dac2e57975ababa3c9556ec304f1658c93a8f81d0c628c22c5bfdc777f734c"
+  "resource_bundle_sha256": "b30cf5a247e7eb6ea78858f4b9d40145c0ab8210033d06057cc17a103d307a03"
 }

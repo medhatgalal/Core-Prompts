@@ -74,5 +74,22 @@ changed. That duplicate is retained rather than silently deleting user-workspace
 content. Candidate/protocol details remain task-local; only sanitized reports and
 the illustrative diagram are selected for public delivery.
 
+## Repository-neutral instruction follow-up
+
+The observed workshop is failure evidence, not the product specification. The
+September 29 follow-up generalizes all shipped instruction examples, including
+routed resources and the rendered sequence sample. No named product or repository
+is required. Each new illustration is explicitly one example of a failure pattern.
+Acceptance remains about unchanged-evidence retries, empty selection, unopened
+load-bearing facts and retaining a real sequence despite renderer color limits.
+Existing runtime work-order protocol field names are unchanged, not business-domain
+requirements. Thresholds, research truth checks and reviewer independence remain.
+The updated generic sequence was rerendered and its actual pixels opened by an
+independent Luna-medium reviewer, who found no remaining instruction contamination
+or cross-file contradiction. See instruction-review.md for that bounded review.
+The generic follow-up passed 38 focused shaping-loop/resource/docs/job-map checks,
+strict surface validation for32SSOT entries and diff whitespace checks. Runtime
+code is unchanged from the previously repaired and independently reviewed version.
+
 Remaining delivery: CI, merge/parity and reviewed Grok installation of the three
 selected packages. This request does not publish a new versioned release.

@@ -323,7 +323,7 @@ their passes make no claim about new predicates absent from that policy. To adop
 and both matching references, then calls `reopen --gate G0 --policy` with the
 actual expected version and adoption reason. Changed staged bytes cause drift
 until rebound. G2/G3-only rebinding is refused. G0 rebinding invalidates all current
-gate acceptances and increments generation; prepare fresh work orders and reassess
+gate acceptances and increments generation; prepare fresh role assignments and reassess
 G0 onward. Retain historical snapshots, policy hashes and receipt bytes unchanged.
 Old receipts cannot be replayed to satisfy the current policy. This conservative
 adoption uses explicit policy rebind, not an automatic history migration.
@@ -352,20 +352,21 @@ checks the actual code/extract and rejects false notes. An empty opened list may
 represent genuinely nontechnical scope, with reasoned applicability in Research.
 It cannot ground a technical claim. Never claim an opened range from a filename.
 
-The shape set distinguishes existing basis from the proposed extension:
+The shape set distinguishes existing basis from the proposed extension. This is
+one example of the pattern, not a prescribed product workflow:
 
 ```json
 {
   "schema_version": 1,
-  "selected_parts": ["write-question", "follow-job"],
-  "walk_away_item": "Required persistence or terminal observation cannot be supported",
+  "selected_parts": ["proposed-change", "observe-outcome"],
+  "walk_away_item": "Required behavior or observable outcome cannot be supported",
   "claims": [
     {"id": "existing-seam", "status": "existing", "load_bearing": true,
      "evidence": [{"path": "sources/source-code.txt", "sha256": "ACTUAL_SHA256", "locators": ["12:24"]}],
      "basis_claims": []},
-    {"id": "write-question", "status": "proposed_extension", "load_bearing": true,
+    {"id": "proposed-change", "status": "proposed_extension", "load_bearing": true,
      "evidence": [], "basis_claims": ["existing-seam"]},
-    {"id": "follow-job", "status": "proposed_extension", "load_bearing": true,
+    {"id": "observe-outcome", "status": "proposed_extension", "load_bearing": true,
      "evidence": [], "basis_claims": ["existing-seam"]}
   ]
 }

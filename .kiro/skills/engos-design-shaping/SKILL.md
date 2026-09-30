@@ -39,7 +39,7 @@ before accepting a frame, not invented as entry defaults.
 Return friendly links and a short status: accepted stage/revision, changed facts,
 content review, delivery per target, open blockers and next action. Maintain
 Markdown brief/intake/frame/research/pitch, question and decision provenance,
-source coverage, work orders and receipts in the project's authorized artifact
+source coverage, role assignments and receipts in the project's authorized artifact
 home. Reached shaping stages add the full diagram/contract/security bundle,
 summary, provisional workstreams/proof slices and traceability. HTML and full
 JSON are derived exports; requested Google Docs get saved-target verification
@@ -112,10 +112,11 @@ stages. The phase templates define fields, not gate verdicts.
   another pitch on the same opened source evidence. The next step is a new fact,
   a named spike, or a hold. Rewording, a new draft filename or another appetite
   sentence is not new evidence; run the runtime prepare check before dispatch.
-- A restatement of appetite supports Cost 3. "One send, one row, two reads" is
-  that restatement; repeating it cannot make Cost 4. The gate owns this anchor.
-- The proof slice observes the frame's requested stop, including the job after
-  send when required. A queue line alone is insufficient for that outcome.
+- A restatement of appetite supports Cost 3; repeating the same bound cannot
+  make Cost 4. The gate owns this anchor. One example of this pattern is describing
+  the same bounded operations twice without additional supported cost evidence.
+- The proof slice observes the accepted frame's requested completion or stop
+  condition. Observing only an intermediate action is insufficient for that outcome.
 - Accepted G3 PASS is the only door to design; a proposal, low-average review,
   no-selection hold or Research pass does not authorize design or implementation.
 - Bind decisions to attributable human input and confirmed authority. Preserve

@@ -177,11 +177,12 @@
         "strategy": "derived_history",
         "group": "derived",
         "baseline_path": null,
-        "selected_commit": "e077ae86",
+        "selected_commit": "6f574d69",
         "richness_score": 5,
-        "line_count": 137,
+        "line_count": 148,
         "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
         "equivalent_commits": [
+          "e077ae86",
           "7e94f9eb",
           "e866aa80"
         ],
@@ -231,7 +232,7 @@
             "candidate_operational_score": 2,
             "baseline_preserved_in_resource": false
           },
-          "baseline_commit": "e077ae86",
+          "baseline_commit": "6f574d69",
           "baseline_slug": "engos-quality-shaping-gate"
         },
         {
@@ -282,7 +283,7 @@
         "surface_usability": 10
       },
       "template_name": "skill",
-      "effective_sha256": "0482c14b04a85e6132f9ebd3e16e105027686dd22ab7ad0e6b24c5e237cc501a",
+      "effective_sha256": "0c5ca2a9a1970ec158cf1bd015ca0c2c6c7ca0f551c5cf63b1f261969e339ae2",
       "semantic_findings": [],
       "agent_surface_review": {
         "status": "unchanged",
@@ -384,7 +385,7 @@
               "path": "ssot/engos-quality-shaping-gate.md",
               "start_line": 39,
               "end_line": 59,
-              "sha256": "846bb854b7e129ef072494a4e79cf8604f777be07c19babda8bb11e6f3738576"
+              "sha256": "0a6265ba9d855c4f1a13f737c72249741e26c8afe4b16cb19616f1ecff1ce9c9"
             }
           }
         ]
@@ -401,9 +402,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-quality-shaping-gate.md",
-              "start_line": 86,
-              "end_line": 89,
-              "sha256": "846bb854b7e129ef072494a4e79cf8604f777be07c19babda8bb11e6f3738576"
+              "start_line": 87,
+              "end_line": 90,
+              "sha256": "0a6265ba9d855c4f1a13f737c72249741e26c8afe4b16cb19616f1ecff1ce9c9"
             }
           }
         ]
@@ -420,24 +421,24 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-quality-shaping-gate.md",
-        "ssot_sha256": "846bb854b7e129ef072494a4e79cf8604f777be07c19babda8bb11e6f3738576",
-        "effective_sha256": "0482c14b04a85e6132f9ebd3e16e105027686dd22ab7ad0e6b24c5e237cc501a",
+        "ssot_sha256": "0a6265ba9d855c4f1a13f737c72249741e26c8afe4b16cb19616f1ecff1ce9c9",
+        "effective_sha256": "0c5ca2a9a1970ec158cf1bd015ca0c2c6c7ca0f551c5cf63b1f261969e339ae2",
         "resources": [
           {
             "path": "sources/capability-resources/engos-quality-shaping-gate/references/gates.md",
-            "sha256": "a0be87b5fb6f21c82b54a7bfa09d5bd0375781a90b91b3d1539ec77aac4085c6"
+            "sha256": "4689157327170acb57d625d2fd8f540b23316e6efb6e507e0661737617a89055"
           },
           {
             "path": "sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md",
-            "sha256": "98e4150b60b5a3e2c1ec4a395616f07d1bfc83411829248ece114c66ff2d3236"
+            "sha256": "29fb3704545aad1de0a176f57fd08adf3b845a8873f967265baacc7f259e04ee"
           },
           {
             "path": "sources/capability-resources/engos-quality-shaping-gate/references/runtime.md",
-            "sha256": "d49cf2dfde1d9b7d43024837daaa3ba1e27863e97f87520cbeb3ede7a524642a"
+            "sha256": "6f4fee3cc1b4d6594c1ccf14af1211c7dbd230641fc641bd2629c5b7e93825d9"
           },
           {
             "path": "sources/capability-resources/engos-quality-shaping-gate/references/progress.md",
-            "sha256": "22940bd478122faf3d8544be8968c7ca0ecf13a2af9b66f67fb1d03fa1285ee1"
+            "sha256": "afabc9a153c2bcbef9600ba95dbaee7df9b597b34fa2f17b61a17aa201f2c4f7"
           },
           {
             "path": "sources/capability-resources/engos-quality-shaping-gate/schemas/progress.schema.json",
@@ -467,7 +468,7 @@
                 "path": "ssot/engos-quality-shaping-gate.md",
                 "start_line": 19,
                 "end_line": 21,
-                "sha256": "846bb854b7e129ef072494a4e79cf8604f777be07c19babda8bb11e6f3738576"
+                "sha256": "0a6265ba9d855c4f1a13f737c72249741e26c8afe4b16cb19616f1ecff1ce9c9"
               }
             }
           ],
@@ -479,7 +480,7 @@
                 "path": "ssot/engos-quality-shaping-gate.md",
                 "start_line": 25,
                 "end_line": 27,
-                "sha256": "846bb854b7e129ef072494a4e79cf8604f777be07c19babda8bb11e6f3738576"
+                "sha256": "0a6265ba9d855c4f1a13f737c72249741e26c8afe4b16cb19616f1ecff1ce9c9"
               }
             }
           ],
@@ -491,7 +492,7 @@
                 "path": "ssot/engos-quality-shaping-gate.md",
                 "start_line": 31,
                 "end_line": 35,
-                "sha256": "846bb854b7e129ef072494a4e79cf8604f777be07c19babda8bb11e6f3738576"
+                "sha256": "0a6265ba9d855c4f1a13f737c72249741e26c8afe4b16cb19616f1ecff1ce9c9"
               }
             }
           ],
@@ -503,7 +504,7 @@
                 "path": "ssot/engos-quality-shaping-gate.md",
                 "start_line": 63,
                 "end_line": 66,
-                "sha256": "846bb854b7e129ef072494a4e79cf8604f777be07c19babda8bb11e6f3738576"
+                "sha256": "0a6265ba9d855c4f1a13f737c72249741e26c8afe4b16cb19616f1ecff1ce9c9"
               }
             }
           ]
@@ -518,7 +519,7 @@
           "shape"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "d10b5ca79b88f88d35e4bb2b166fbf175449c616a2d76c063b667b352ff30cf5"
+        "mapping_sha256": "04273ec340ffdfd0e6cb599f177fdc27b11de0df0c9658341a6ade015fb1a967"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

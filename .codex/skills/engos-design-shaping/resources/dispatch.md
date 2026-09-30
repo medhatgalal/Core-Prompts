@@ -1,4 +1,4 @@
-# Generic role work orders
+# Generic role assignments
 
 The host owns worker creation, permissions and observed identity; the conductor
 owns accepted state. Roles are work assignments, not permanent agents. Use fresh,

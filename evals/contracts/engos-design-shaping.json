@@ -30,7 +30,7 @@
     "177ee9f456a1c9fbac0bd261303f043e0a8503930bb04400d5b5515cda91e640",
     "1ad5233344819fedd75ee2b05cf1ba8ffa5a60f148e5cd073ece2f007a2f1a56",
     "173c251607b4123cceb93e526a5ccd1d12d2f8ec349942dc6bd57ea516938c4f",
-    "17825ba54e33081b380c4787bed5e857ceda5e43dd81ab2f9a56b9ca849f9dc8",
+    "901f1a223df70b12676b5935d2d57656ae99edaee1c188dbe2e7f03837173996",
     "c1e7580e8510ae8d3bde02314c5a7b3c2efc1dc7037d94b951ed7bc48041e7d1",
     "0be9da2ffb8a74273e2f6c4fdcddfde8e6768c6135eae25293942c6c135654f1",
     "0672a3c6738e59ef093733675dcc5da48c5de2f8bd12ef65050e1d1b28f96e45",
@@ -155,16 +155,15 @@
     "a1244ebc06af783ad7f5d1c6b64c5767447addcede2a39c3c821e8c48b34a7ad",
     "0a469703d6fd8a8c81b2bdd76cdec684a86bdb97003617aab6e3341ee0adddf2",
     "6a01188fc9728680e6b96f27f70e6b340f52501ec56d0da20b80e21847f3c3cc",
-    "354d7711041d90a95c2d1387ec136f56606900422fbfe7c6c424050846aa5cd6",
-    "e039b766ef424a82e699a1ba955d493830a7faaba2102d570235c32914f49e53",
+    "eeb0f05bfd742a39a7e7345a8fc913775da32d1a00f89794a7749cb33473eddf",
+    "814408fd04ead5f39ded62cecc88cf39ef1ffe594da7c0a30987ae548388f100",
     "426e23a854b583114f9f7ac998f4d66dd794ca9f3a416cd625728d43596f1d4d",
     "28deebd108276be7535a6e3f7dda7781ce2af6c62f2ed88da4128799d8e0b970",
     "bb789c24c371822ca23a112d49d1af05fd791dc707682f813e7704f399b889ea",
     "533e539596dd9ebdf4aa1f9ea0d97dd1b4f858396983966f2e683be82d0313cf",
     "b2f16965a379cd4dc20393721643cece922f17217e8924fc95cfae9a0a025f07",
-    "06b80a8c2b1bba79d6033307e6e8c854d2456635f62a1ef795016ee368e6bd9f",
-    "ac9141c38079a4f0cedfb224d1de585bd3a880a4690398c490df00d3aee6fb47",
-    "462979d7c696bbbd9c732f3bc769f76704244b70d95670528e158bb557283e85",
+    "92e96e05f19f6b447750406866b230bc2b9e8a08ddb75931504bf6187f60f50d",
+    "54fb7a505885e6cdafb0f9a53ab3548a517a98e93e0d17edffcc094fd91a44fd",
     "bc6e9e0fee543a7e7382d5971b7a418fda52a7e8d998a7fad45d44a7c86c64b3",
     "506f5e62c85887a67a62f389eb39cb8a16e01c324ba792f07bcbbd8f80968389",
     "51e58754e82f77d21f69dc4813d59bdd4dc49807b27a524929a71b3b8b5f8a7f",
@@ -361,9 +360,9 @@
       "text": "twelve-score average is below 4, and that average is the only miss, do not open"
     },
     {
-      "sha256": "17825ba54e33081b380c4787bed5e857ceda5e43dd81ab2f9a56b9ca849f9dc8",
+      "sha256": "901f1a223df70b12676b5935d2d57656ae99edaee1c188dbe2e7f03837173996",
       "source": "ssot/engos-design-shaping.md",
-      "text": "send when required. A queue line alone is insufficient for that outcome."
+      "text": "condition. Observing only an intermediate action is insufficient for that outcome."
     },
     {
       "sha256": "c1e7580e8510ae8d3bde02314c5a7b3c2efc1dc7037d94b951ed7bc48041e7d1",
@@ -986,14 +985,14 @@
       "text": "No positive reuse finding or implementation refactor is required to shape a pitch."
     },
     {
-      "sha256": "354d7711041d90a95c2d1387ec136f56606900422fbfe7c6c424050846aa5cd6",
+      "sha256": "eeb0f05bfd742a39a7e7345a8fc913775da32d1a00f89794a7749cb33473eddf",
       "source": "sources/capability-resources/engos-design-shaping/stages/shape.md",
-      "text": "Name the existing seam and the proposed write/behavior separately. \"Do not show a"
+      "text": "Name the existing seam and the proposed behavior separately. Do not invent an"
     },
     {
-      "sha256": "e039b766ef424a82e699a1ba955d493830a7faaba2102d570235c32914f49e53",
+      "sha256": "814408fd04ead5f39ded62cecc88cf39ef1ffe594da7c0a30987ae548388f100",
       "source": "sources/capability-resources/engos-design-shaping/stages/shape.md",
-      "text": "question that was never written\" prevents invented existing state; it does not"
+      "text": "existing capability, but do not confuse its absence with an exclusion of a grounded"
     },
     {
       "sha256": "426e23a854b583114f9f7ac998f4d66dd794ca9f3a416cd625728d43596f1d4d",
@@ -1021,19 +1020,14 @@
       "text": "Cuts must preserve core outcome, usability, quality and security; state when no"
     },
     {
-      "sha256": "06b80a8c2b1bba79d6033307e6e8c854d2456635f62a1ef795016ee368e6bd9f",
+      "sha256": "92e96e05f19f6b447750406866b230bc2b9e8a08ddb75931504bf6187f60f50d",
       "source": "sources/capability-resources/engos-design-shaping/stages/shape.md",
-      "text": "The proof slice must observe the stop the frame requested. If the frame asks to"
+      "text": "The proof slice must observe the accepted frame's requested completion or stop"
     },
     {
-      "sha256": "ac9141c38079a4f0cedfb224d1de585bd3a880a4690398c490df00d3aee6fb47",
+      "sha256": "54fb7a505885e6cdafb0f9a53ab3548a517a98e93e0d17edffcc094fd91a44fd",
       "source": "sources/capability-resources/engos-design-shaping/stages/shape.md",
-      "text": "follow a job after send, observe that job through the required terminal state;"
-    },
-    {
-      "sha256": "462979d7c696bbbd9c732f3bc769f76704244b70d95670528e158bb557283e85",
-      "source": "sources/capability-resources/engos-design-shaping/stages/shape.md",
-      "text": "watching only a queue row does not count. Describe the observation as a future"
+      "text": "proof that observes initiation but never observes the required user-visible result;"
     },
     {
       "sha256": "bc6e9e0fee543a7e7382d5971b7a418fda52a7e8d998a7fad45d44a7c86c64b3",

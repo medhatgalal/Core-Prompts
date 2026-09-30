@@ -22,8 +22,9 @@ the weakest material evidence per dimension. Unknown load-bearing feasibility
 caps Feasibility at 2. Missing required content scores 1. No dimension below 3
 passes; all hard gates must pass regardless of averages.
 
-A restatement of the appetite is Cost 3. "One send, one row, two reads" is that
-restatement; another sentence saying the same thing cannot become 4. A 4 needs
+A restatement of the appetite is Cost 3; another sentence saying the same thing
+cannot become 4. One example of this pattern is repeating a bounded operation
+count without additional supported cost evidence. A 4 needs
 additional supported workload, frequency or resource-cost evidence between the
 anchors, not rhetorical certainty. Feasibility/confidence 2 remains failure.
 
@@ -61,7 +62,8 @@ walk-away item, with no twelve-score assessment. Judge pieces jointly; a small
 piece alone does not invalidate the set. A confirmed behavior not performed by
 opened code is a proposed extension, not an invented existing capability. Judge
 its researched seams and feasibility; do not require the proposed write to already
-exist. Proof slices must observe the frame's requested stop, not just a queue line.
+exist. Proof slices must observe the accepted frame's requested completion or stop
+condition, not merely an intermediate action.
 
 Calibration controls before first pilot: a supported one-field additive proposal
 can be strong in Simplicity/Security without claiming a finished integration;

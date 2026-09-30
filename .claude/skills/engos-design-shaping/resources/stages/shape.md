@@ -9,9 +9,11 @@ No positive reuse finding or implementation refactor is required to shape a pitc
 ## Select one supported set
 
 A confirmed decision that opened code does not perform is a proposed extension.
-Name the existing seam and the proposed write/behavior separately. "Do not show a
-question that was never written" prevents invented existing state; it does not
-prevent proposing the write that creates the question. Judge the pieces together:
+Name the existing seam and the proposed behavior separately. Do not invent an
+existing capability, but do not confuse its absence with an exclusion of a grounded
+extension. One example of this pattern is proposing a confirmed state change that
+the opened implementation does not yet perform, rather than selecting nothing.
+Judge the pieces together:
 one piece too small alone does not discard a set that delivers the accepted frame.
 
 Record selected piece IDs and existing/proposed-extension claims in shape-set.json
@@ -53,8 +55,9 @@ Cuts must preserve core outcome, usability, quality and security; state when no
 safe further cut remains. Design one pitch-wide proof slice and coarse workstreams
 with observable first slices, not a production ticket breakdown. A new technical
 unknown returns to Research; changed outcome/scope/appetite returns to Framed.
-The proof slice must observe the stop the frame requested. If the frame asks to
-follow a job after send, observe that job through the required terminal state;
-watching only a queue row does not count. Describe the observation as a future
+The proof slice must observe the accepted frame's requested completion or stop
+condition, not merely an intermediate action. One example of this pattern is a
+proof that observes initiation but never observes the required user-visible result;
+that proof is insufficient. Describe the observation as a future
 acceptance check unless it actually ran. No proof or ownership is invented.
 Author audit precedes the `review` route. Gate criteria and scoring remain there.

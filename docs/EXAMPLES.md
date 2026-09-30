@@ -50,9 +50,10 @@ For a stalled workshop:
 > proposed extension, judge the selected pieces together, and make the proof slice
 > observe the stop in the frame. Keep sequence.mmd a real sequence diagram.
 
-Expect a Research handoff or explicit hold when needed. Cost wording such as
-“one send, one row, two reads” remains score 3 until supported new cost evidence
-changes the basis. Gray sequence actors get colored bands, not a flowchart.
+Expect a Research handoff or explicit hold when needed. One example of the
+appetite-restatement pattern is listing the same bounded operations again: Cost
+remains score 3 until supported new cost evidence changes the basis. Gray sequence
+actors get colored bands, not a flowchart.
 
 Start with documents and a destination:
 

@@ -70,8 +70,9 @@ score anchors at shaping depth; do not demand a built feature solely for points.
 Question deletion cannot waive a risk. Human-reviewed private evidence is labeled
 accurately, not AI-verified. Preserve typed scope and source identity across exports.
 
-Cost 3 includes a restatement of appetite such as "one send, one row, two reads";
-more wording of the same bound cannot earn 4. A failed average below 4 with all
+Cost 3 includes a restatement of appetite; more wording of the same bound cannot
+earn 4. One example of this pattern is listing the same bounded operations again
+without additional supported cost evidence. A failed average below 4 with all
 scores at least 3 and no other miss requires new evidence, a named spike or a
 hold before another pitch. Floors remain 3 per dimension and 4 overall. Unopened
 load-bearing facts return to Research before scoring; Research notes contradicting

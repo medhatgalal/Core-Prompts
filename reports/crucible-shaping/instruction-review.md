@@ -1,5 +1,9 @@
 # Independent instruction review: Crucible shaping correction
 
+Historical initial review. Its quoted examples and first-render observation are
+preserved as evidence, not current skill requirements. The repository-neutral
+follow-up and latest rendered-pixel judgment are recorded at the end of this file.
+
 ## Scope and method
 
 Reviewed the three candidate instruction files and the specifically named current prose: conductor `stages/research.md`, `stages/shape.md`, `stages/review.md`, `routing.md`, and `templates/shaped-bundle.md`; gate `references/gates.md` and `references/rubrics.md`; diagram `references/diagram-style.md` and `references/presentation.md`. Compared the changed rubric text with its prior version to check score-count and threshold continuity.
@@ -43,3 +47,23 @@ Opened `reports/crucible-shaping/sequence.png` and compared it with `reports/cru
 ## Conclusion
 
 The current instruction prose covers each supplied requirement without a material cross-file conflict. The one potential ambiguity about a named spike is explicitly resolved by the review and gate instructions. The requested image conforms on diagram type, gray actors, visible role-band fills, white background, readable short labels, and message order; its separate-legend criterion is not visibly satisfied. This is a pixel observation, not a preferred content-review verdict, promotion score, or model-behavior claim.
+# Repository-neutral follow-up review — September 29
+
+Independent reviewer Franklin (gpt-6-luna, medium), identity
+01a0ef9a-31a4-7012-b34c-081a556ea91d, examined the three final candidate
+entrypoints, canonical routed resources, workshop runbook and shaping examples.
+Disposition: PASS for instruction preservation, not product-pitch acceptance or
+formal behavioral promotion. No named product/repository contamination remained
+in instruction prose; existing runtime work-order identifiers remain compatible.
+
+The four failure patterns remain generic: unchanged-evidence average-only retries
+stop; empty sets hold without scores while grounded extensions remain valid;
+unopened load-bearing facts return to Research before review; renderer limitations
+cannot turn a sequence into a flowchart. Completion proof observes the accepted
+frame's outcome. All twelve scores, floor3 and mean4 remain unchanged. New examples
+are explicitly illustrations of patterns, not prescribed product architectures.
+
+The reviewer opened the updated sequence.png pixels: real sequence with lifelines,
+gray actors, blue/green/amber bands, explicit readable legend and white background;
+no flowchart substitution or visible alt/else. Rendering used the retained generic
+sequence.mmd source and cached Mermaid CLI. No further contradiction was found.
