@@ -42,6 +42,19 @@ Expect the necessary outcomes and assumptions, failure scenarios, strongest obje
 
 ### `engos-design-shaping`
 
+For an evidence correction during resume:
+
+> Check this Research note against its opened sources before review. If the
+> summary contradicts a quoted row, an occurrence is omitted, a citation referent
+> is stale, or a material callee has not been inspected, return the issue to the
+> researcher. Preserve the author's handoff hashes; do not silently fix the note
+> as conductor. Keep valid older-policy receipts as history and report corrupt
+> current bindings as recovery_pending.
+
+Expected: supported author revisions or a bounded Research/recovery handoff,
+not a rewritten controller candidate, erased history or a preferred reviewer
+verdict. [Recovery and handoffs](engos-design-shaping.md#recovery-and-author-handoffs).
+
 For a stalled workshop:
 
 > Continue from the accepted frame and research. If the last review failed only

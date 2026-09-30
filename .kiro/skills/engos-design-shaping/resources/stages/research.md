@@ -52,3 +52,31 @@ that disagrees with opened code fails; repair Research rather than paraphrasing
 the claim in a pitch. Load-bearing claims added during shaping reopen G2 first.
 New facts may come from newly inspected source ranges or an observed spike result;
 renaming a recap or adding coordination files is not evidence acquisition.
+
+## Author preflight before returning Research
+
+Apply these checks under the existing evidence-sufficiency predicate; do not add
+a second scorecard. The author repairs its note; the conductor returns findings
+without editing candidate prose. Independent review still checks the actual source.
+
+- Compare each material summary claim with its quoted rows and inspected evidence.
+  An unexplained contradiction fails sufficiency. Repair the statement or document
+  the actual source conflict; a material unresolved conflict remains open.
+- Bound exclusivity to the inspected ranges. A claim such as "only in these
+  ranges" must include every relevant occurrence there, including test calls.
+  Distinguish executable calls, examples and comments rather than treating text
+  matches as semantic proof. One example of this pattern is listing production
+  calls while omitting test calls visible in the same opened ranges.
+- When the citation list changes, revisit dependent wording. Use explicit evidence
+  IDs or restate the intended subset where "those" or "the opened ones" becomes
+  ambiguous. One example of this pattern is extending a list but leaving its
+  following sentence referring to the earlier subset.
+- A call-site citation does not cover the callee body. If a material claim depends
+  on that implementation, open it in Research or obtain sufficient attributable
+  evidence through the human-led route; otherwise retain the research gap. Do not
+  scan an entire call graph without an assigned need. One example of this pattern
+  is treating a callee result as known or unknown from a caller citation alone.
+
+Return the checked note, changed evidence IDs/coverage and actual artifact hashes
+through the assigned worker handoff. These checks require semantic inspection;
+neither a completed checklist nor coverage metadata establishes source truth.

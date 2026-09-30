@@ -29,6 +29,11 @@ workshop stops rewriting pitches and asks for a new fact, a named spike or a hol
 An unselected solution set is held before scoring; a missing material fact returns
 to Research before another review. [Evidence-directed iteration](docs/engos-design-shaping.md#evidence-directed-iteration).
 
+On resume, older-policy receipts stay history; unverifiable current history is
+`recovery_pending`, not a normal pause. Research authors check citations before
+handoff, and the conductor returns corrections to them rather than silently editing
+the note. [Recovery and author handoffs](docs/engos-design-shaping.md#recovery-and-author-handoffs).
+
 | Along the way, ask… | What you receive |
 | --- | --- |
 | “Frame only; help me decide the appetite and walk-away.” | A solution-free frame, with undecided items made explicit |

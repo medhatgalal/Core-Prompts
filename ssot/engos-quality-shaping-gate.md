@@ -41,6 +41,8 @@ read resources/references/runtime.md and the helper's current --help first.
 2. Inspect actual prose, citations and required artifacts. Explain each failed
    predicate with a quote or missing item. Read source evidence instead of trusting
    manifest claims. A named spike or rejected question is not uncertainty closure.
+   At Research, assess the author's source/summary agreement, range-scoped
+   exclusivity, updated citation referents and material callee evidence.
 3. Distinguish product decisions, engineering evidence and expert judgments. Ask
    the designated human when authority is missing; continue independent work only.
 4. For G3 inspect every local render and all contract/security rows, cross-check
@@ -81,6 +83,10 @@ hold before another pitch. Floors remain 3 per dimension and 4 overall. Unopened
 load-bearing facts return to Research before scoring; Research notes contradicting
 opened code still fail. Reviewers inspect sequence pixels and assess independently;
 no conductor message supplies the preferred verdict.
+Floor classification uses the current policy-binding digest; valid older receipts
+stay history after common integrity checks, without current coverage requirements.
+Unverifiable persistent history is recovery_pending, not an ordinary hold. A
+policy migration cannot be used as an automatic retry or counted as a new fact.
 
 ## Constraints
 

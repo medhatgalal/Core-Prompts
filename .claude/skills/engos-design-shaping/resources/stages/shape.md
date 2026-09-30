@@ -27,6 +27,10 @@ returns to G2; do not spend G3 review to discover an already visible research ga
 Proposed extensions need grounded existing basis claims; their new behavior need
 not be implemented during shaping. An unsupported assumption masquerading as a
 proposal remains a research gap. Keep research reviews' code-agreement standard.
+Recheck material callee claims before reviewer dispatch: a caller citation alone
+does not establish the callee body. Return an unopened implementation dependency
+to Research rather than spending the pitch review to discover it. An inaccessible
+body requires the assigned evidence route and an honest gap, not invented behavior.
 
 > Act as the shaper. Verify the current passing frame/research and accepted
 > decisions, then compare bounded options and rough out the smallest supported

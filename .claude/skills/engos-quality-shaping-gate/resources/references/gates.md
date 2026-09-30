@@ -27,6 +27,9 @@ failure is average <4 with every dimension >=3, the runtime refuses a new G3
 work order without newly opened evidence in accepted G2. More prose over the same
 sources cannot clear the stop; offer a new fact, named spike or hold. Reviewer
 source agreement and semantic assessment remain necessary even when bindings pass.
+Floor classification uses the current policy-binding digest; valid older receipts
+stay history after common integrity checks, without new coverage requirements.
+An explicit policy migration is not new product evidence or an automatic retry.
 An actual G3 pass is the only handoff to design, subject to requested delivery and
 the user's separate design authority. No Research pass or score2 can substitute.
 
@@ -45,6 +48,13 @@ human assessment of private evidence must bind source revision, scope, result an
 limitations; never relabel it AI-verified.
 
 ## Repository-fit predicates
+
+At G2, use evidence_sufficiency to assess summary/quote agreement, occurrence
+claims scoped to inspected ranges (including tests), updated citation referents
+and material callee-body evidence. Return repairs to the researcher, not the
+conductor. At G3, reopen Research for a material implementation-dependent callee
+claim whose body has not been opened or supported through the declared evidence
+route. A checklist or matching text alone cannot prove these semantic conditions.
 
 At G2, the author records `existing_capability_evidence` in the existing
 `research-notes.md`. Inventory relevant existing capabilities, components and

@@ -1,5 +1,11 @@
 # Getting Started
 
+For a resumed shaping workshop, ask the conductor to preserve its pinned history,
+distinguish a normal hold from `recovery_pending`, and return note corrections to
+the assigned researcher. The conductor must not silently edit the candidate to
+make a review pass; receive an attributable author revision instead. See
+[recovery and author handoffs](engos-design-shaping.md#recovery-and-author-handoffs).
+
 Use this page in the same order Core-Prompts is meant to be used:
 
 1. installed capabilities first

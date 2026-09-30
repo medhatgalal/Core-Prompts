@@ -35,6 +35,8 @@
     "0be9da2ffb8a74273e2f6c4fdcddfde8e6768c6135eae25293942c6c135654f1",
     "0672a3c6738e59ef093733675dcc5da48c5de2f8bd12ef65050e1d1b28f96e45",
     "ee96a8ed6d4adea9b7432fffdad7a92b2989bd885310785757f3f85c1e8d805e",
+    "94e741a6e3242f08dff7df8d40004c9dadf013a0c2037617fb54099a6995fa16",
+    "d5f7d9f94daac8b538ca4b1c2787060fb57e4d822f99521f8685bab52526f304",
     "1976f49e7e0fb5d766a99791018fe2df7b4c74a717eefde99188abce313d4332",
     "d3ca4a00c97547a7639faab794c130d0dd56b8a3bec1596dcebcc7f18240aaae",
     "d51267738d0f6a597a08c2a1739c9b6fa29f08db6e7af124775f932e02638567",
@@ -107,6 +109,9 @@
     "355283777967a2e644b71e76e29add19ccd578e66dfd54434ceca3f7e9bb68a8",
     "62b8f662eb020e7c28a676ab228d0a5537f5e91b53793c2728874681bf5b2a36",
     "acc23a6f7e85255150d1fc81795415dce704945d6eeb56718c3964772efa3c1d",
+    "3051ad966909c62901d03ca6e4ea045374e08ab74f5dce9eb1d96c295174f083",
+    "aff60676abd1b4e3633a5367af4f9db8d5ca37812a76fa6a463833b8458aa355",
+    "78867b97a544b3dd9e6222e9c02fb3483ff8de6bf7f8db983e3517116ace0854",
     "53ff1b59488666c41e90093cf107ddefeb796059e6a4fc0bdb5e693414f231ca",
     "f757bbe68de2c3e49b7893392a9e2ef702ec07b9f49a0d08e49000a8513b9d22",
     "821859eb67d4dc87009a7137486e7f81b2d31903f22d53d5f5171e50fe4ccc98",
@@ -134,6 +139,10 @@
     "88aeb6ef9016075009ee8025d10850a885dfb63bd92f7c3f423e1704e6e53f05",
     "9b33fa7de1c82934c5e5dbc22db26126027d2f153a7c6511222380bcf4f0809b",
     "ada46d9f2329489e9745d3e736291deec2afa33fd65194b935a6f980c4150c93",
+    "e932b7b60e3b10888f6433167d7cf8f8062b237830e1de1960e9aa8cc9597b82",
+    "83f989857bafa396bc98f271dd24e5f3e52b849e5893b094c04083f600c689fb",
+    "a1f826be43bcabaf0736016b17c2300b592d65328ee5cae6b32028b4feb85af6",
+    "7a866fce97a4b638b7e8b8a986174d3c4555d6f661f2c9252e52e0f9efeed282",
     "d8bb5e75d6c8f9d25f33d6d7a58ea6b7afbe49e8e4a569c0d6d2ae825a9cb62f",
     "221d5d0012d93ddeb4adfb0b3eb7d39604fb158c67a812e0eef76ea873af5378",
     "13322f97601323a807785182ea9a0745de84dca9a6191d92074d94a6d6fb6c5b",
@@ -383,6 +392,16 @@
       "sha256": "ee96a8ed6d4adea9b7432fffdad7a92b2989bd885310785757f3f85c1e8d805e",
       "source": "ssot/engos-design-shaping.md",
       "text": "grants. An unavailable required reviewer leaves `review_pending`."
+    },
+    {
+      "sha256": "94e741a6e3242f08dff7df8d40004c9dadf013a0c2037617fb54099a6995fa16",
+      "source": "ssot/engos-design-shaping.md",
+      "text": "history is recovery_pending, not a normal hold. Policy migration must be"
+    },
+    {
+      "sha256": "d5f7d9f94daac8b538ca4b1c2787060fb57e4d822f99521f8685bab52526f304",
+      "source": "ssot/engos-design-shaping.md",
+      "text": "explicit and attributable; do not rebind automatically to evade a failed review."
     },
     {
       "sha256": "1976f49e7e0fb5d766a99791018fe2df7b4c74a717eefde99188abce313d4332",
@@ -745,6 +764,21 @@
       "text": "requests, effort used/remaining and next action. Proposals do not close accepted"
     },
     {
+      "sha256": "3051ad966909c62901d03ca6e4ea045374e08ab74f5dce9eb1d96c295174f083",
+      "source": "sources/capability-resources/engos-design-shaping/dispatch.md",
+      "text": "The conductor may accept, reopen and dispatch, but must not edit candidate prose,"
+    },
+    {
+      "sha256": "aff60676abd1b4e3633a5367af4f9db8d5ca37812a76fa6a463833b8458aa355",
+      "source": "sources/capability-resources/engos-design-shaping/dispatch.md",
+      "text": "a fresh attributable author return; do not silently regenerate its inventory or"
+    },
+    {
+      "sha256": "78867b97a544b3dd9e6222e9c02fb3483ff8de6bf7f8db983e3517116ace0854",
+      "source": "sources/capability-resources/engos-design-shaping/dispatch.md",
+      "text": "The runtime's candidate_returned event requires an already sealed subject; do not"
+    },
+    {
       "sha256": "53ff1b59488666c41e90093cf107ddefeb796059e6a4fc0bdb5e693414f231ca",
       "source": "sources/capability-resources/engos-design-shaping/dispatch.md",
       "text": "do not create product requirements such as offline operation, a new platform or"
@@ -878,6 +912,26 @@
       "sha256": "ada46d9f2329489e9745d3e736291deec2afa33fd65194b935a6f980c4150c93",
       "source": "sources/capability-resources/engos-design-shaping/stages/research.md",
       "text": "Optional builder choices do not become mandatory spikes merely to raise a score."
+    },
+    {
+      "sha256": "e932b7b60e3b10888f6433167d7cf8f8062b237830e1de1960e9aa8cc9597b82",
+      "source": "sources/capability-resources/engos-design-shaping/stages/research.md",
+      "text": "Apply these checks under the existing evidence-sufficiency predicate; do not add"
+    },
+    {
+      "sha256": "83f989857bafa396bc98f271dd24e5f3e52b849e5893b094c04083f600c689fb",
+      "source": "sources/capability-resources/engos-design-shaping/stages/research.md",
+      "text": "- Bound exclusivity to the inspected ranges. A claim such as \"only in these"
+    },
+    {
+      "sha256": "a1f826be43bcabaf0736016b17c2300b592d65328ee5cae6b32028b4feb85af6",
+      "source": "sources/capability-resources/engos-design-shaping/stages/research.md",
+      "text": "ranges\" must include every relevant occurrence there, including test calls."
+    },
+    {
+      "sha256": "7a866fce97a4b638b7e8b8a986174d3c4555d6f661f2c9252e52e0f9efeed282",
+      "source": "sources/capability-resources/engos-design-shaping/stages/research.md",
+      "text": "evidence through the human-led route; otherwise retain the research gap. Do not"
     },
     {
       "sha256": "d8bb5e75d6c8f9d25f33d6d7a58ea6b7afbe49e8e4a569c0d6d2ae825a9cb62f",

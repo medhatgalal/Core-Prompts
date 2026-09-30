@@ -21,11 +21,15 @@ be turned into product requirements. Role-play does not
 establish real-person usability. The repository-fit exercises additionally cover
 reuse, justified new work, intentional separation, missing access and specialist
 scope; two request-overload findings were repaired and replayed successfully.
-A complete real-input pitch on both requested surfaces, latest-candidate hosted
-checks and dual-remote landing remain pending. Earlier hosted checks passed for an
-older candidate; they are not evidence for later changes.
+A complete real-input pitch on both requested surfaces remains unproven.
+Hosted checks and dual-remote delivery are verified per code revision in the
+corresponding reviews; they do not establish that earlier pilot's acceptance.
 No automatic implementation, tickets, staffing, sharing or global installation
 follows from shaping a pitch.
+
+The source corrections below have their own mechanical and bounded authoring
+evidence. Prior real-input/two-surface pilot limitations remain; mainline delivery
+or a small synthetic check is not a claim of complete workshop acceptance.
 
 ## Evidence-directed iteration
 
@@ -63,6 +67,38 @@ pixels in independent review. Color limitations do not justify a flowchart.
 Repository maintainers can inspect `reports/engos-design-shaping/` for detailed
 run evidence when available. Reports are not included in release archives; this
 runbook's status and limitations are self-contained and do not depend on that folder.
+
+## Recovery and author handoffs
+
+The runtime classifies floor-only failures under the current policy-binding digest.
+A valid older-policy receipt remains in history and need not grow a new coverage
+file. Common journal integrity still matters. Unverifiable current coverage or
+history reports `recovery_pending` with exit 3; an ordinary unmet gate reports
+`hold` with exit 2. Read the status/exit code, not a label in the reason text.
+
+Ask for recovery when state cannot be verified:
+
+> Resume this shaping run under its pinned policy. If its history cannot be
+> verified, name the missing or corrupt binding and the recovery action. Do not
+> delete old observations, rewrite accepted artifacts or change policy to evade
+> the last review.
+
+A policy migration is deliberate: record changed rules, authority and impact,
+then reaccept the gates invalidated by G0 reopen. A policy hash change is not a
+new product fact and never automatically makes an old failed receipt a pass.
+
+The researcher checks summary/quoted-source agreement, occurrence claims across
+the declared ranges (including tests), changed citation referents and material
+callee implementation claims before returning the note. These are semantic
+checks under the existing evidence-sufficiency predicate, not a second rubric or
+proof supplied by a grep match. A call-site citation does not cover the callee.
+
+The conductor accepts, reopens and dispatches; the assigned author repairs prose,
+diagrams and other candidate content. Before seal, compare the actual worker
+return inventory/hashes with the candidate. Drift requires a fresh author return.
+This protocol does not authenticate authorship by itself; host observations and
+permissions remain separate. The runtime's post-seal candidate_returned event is
+not a pre-seal authorship receipt.
 
 ## Start here
 

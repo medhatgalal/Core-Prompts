@@ -72,7 +72,9 @@ stages. The phase templates define fields, not gate verdicts.
    Use available project knowledge, language-server semantics, indexed search or
    bounded text search, recording actual coverage and limitations. Load the architecture-fit route for material technical
    capabilities/seams; investigate existing options and source coverage without
-   requiring a positive reuse finding. G2 uses the gate owner's criteria.
+   requiring a positive reuse finding. The researcher checks summary/source
+   agreement, scoped occurrence claims, citation referents and material callee
+   coverage before returning the note. G2 uses the gate owner's criteria.
 5. Use `shape` to compare bounded options, rough out the selected solution and
    challenge dependencies, usability, security, cost and recovery. Use the existing
    artifact helper for all three diagrams and full contract/security tables.
@@ -122,8 +124,16 @@ stages. The phase templates define fields, not gate verdicts.
 - Bind decisions to attributable human input and confirmed authority. Preserve
   proposed, relayed, disputed and superseded events; never silently rewrite them.
 - Workers write candidates only. Prompt context allowlists are not host isolation.
+  The conductor accepts, reopens and dispatches; it does not repair candidate
+  prose, diagrams, scores or receipts. Return findings to the author, receive its
+  revision and compare the host-observed returned inventory before sealing.
+  Reconciliation compares evidence/decisions; it is not silent authoring.
   No author self-certification, simulated reviewer, automatic messaging or access
   grants. An unavailable required reviewer leaves `review_pending`.
+- Floor classification uses the current policy-binding digest; valid older
+  receipts stay history after common integrity checks. Unverifiable persistent
+  history is recovery_pending, not a normal hold. Policy migration must be
+  explicit and attributable; do not rebind automatically to evade a failed review.
 - Read the gate's `runtime` route and its `runtime.md`, then
   `scripts/shaping_run.py --help` at actual invocation, using the documented
   runtime and script path resolved from that package's resource root.

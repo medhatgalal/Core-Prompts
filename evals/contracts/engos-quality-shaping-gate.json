@@ -95,6 +95,11 @@
     "07e2861be92fe52c1ec7f9f52ee4309cee91556db61b5db713ebecaefdb0ec88",
     "f8a2ef0f5a222fe2558d0c2a8ac4c3b523233a679ca3f9a0e6f093736dff69a6",
     "c49e0f154f82a895e2eb386aef4269ea7fc1350f301cd63ea9309b0a0342f27f",
+    "02a913624547af8a3b785b911838d5abd28123110611a2d24cfb2013354c6286",
+    "23013faefa94c7d22e13411351ebe3b4b3d0f9f609c9165a3e54d5585910c263",
+    "674f91837e2f26d0a2693e86bdfdaea9033acaf1d95def265be8afa4730e990a",
+    "1106aa2390b03ebecfaef08433b49186b3a8509b2d54db3de2c62734f733066e",
+    "e3df40fe4245c8e9154a7d87c45ffb11f2f8412a36fb5c264561ca4488a8201c",
     "ad45f24e41df2b833f8f96085f503fd82bad4128d0e61e7bce89c6772a60d350",
     "1e2dbb18fe66fcd3aa562873afac96643e2896fc679c8ff0b76fe04eb4e31efc",
     "90941f14edeec54d7536e1b57654f9b99c4ee41366f9534c7147f13ccfa6006d",
@@ -174,7 +179,7 @@
     "f1e47bd5452ca08231f1f37fe51ed7d1bec1d1881f41f04007ca1a15c57968dd",
     "eb4ab8769cb58f747301fcce4856ba43623df5e76898aa80b90095e2a6103f77",
     "e079e709fd29e450934233381fe7ba7f468c04c1a376f1d0e985e865b883befe",
-    "7f8fbc4ee969ed951589ab01ba9c39dbee21a19b291298bbc12525006a226aea",
+    "70981522f6c86914bed9c7dde5fc1c965c77b56c984a53b002e2a5cd0bee017e",
     "60b7441e3f9139e39843c892248140a870801d0afe195f6a4bb4ed7d9419bf7b",
     "6357cc863fc43d13d8bbedc17071e9472e4d8424ef73787b86ea64f605d5de0e",
     "e2ddb20b925316cf0b1ebab7378f9c78dc41a0380fd34d309a5d324144b2df60",
@@ -721,6 +726,31 @@
       "text": "Only new opened evidence in freshly accepted G2 enables a new attempt. Additional"
     },
     {
+      "sha256": "02a913624547af8a3b785b911838d5abd28123110611a2d24cfb2013354c6286",
+      "source": "sources/capability-resources/engos-quality-shaping-gate/references/runtime.md",
+      "text": "Classify floor-only reviews only when the work-order policy hash equals the digest"
+    },
+    {
+      "sha256": "23013faefa94c7d22e13411351ebe3b4b3d0f9f609c9165a3e54d5585910c263",
+      "source": "sources/capability-resources/engos-quality-shaping-gate/references/runtime.md",
+      "text": "predecessor to contain research-coverage.json. Do not rewrite accepted snapshots."
+    },
+    {
+      "sha256": "674f91837e2f26d0a2693e86bdfdaea9033acaf1d95def265be8afa4730e990a",
+      "source": "sources/capability-resources/engos-quality-shaping-gate/references/runtime.md",
+      "text": "parsed JSON, not raw bytes; digest syntax and bindings do not authenticate a valid"
+    },
+    {
+      "sha256": "1106aa2390b03ebecfaef08433b49186b3a8509b2d54db3de2c62734f733066e",
+      "source": "sources/capability-resources/engos-quality-shaping-gate/references/runtime.md",
+      "text": "Do not rebind automatically to evade a failed review; a hash change is not a new"
+    },
+    {
+      "sha256": "e3df40fe4245c8e9154a7d87c45ffb11f2f8412a36fb5c264561ca4488a8201c",
+      "source": "sources/capability-resources/engos-quality-shaping-gate/references/runtime.md",
+      "text": "product fact. Older receipts do not become current passes or failures by migration."
+    },
+    {
       "sha256": "ad45f24e41df2b833f8f96085f503fd82bad4128d0e61e7bce89c6772a60d350",
       "source": "sources/capability-resources/engos-quality-shaping-gate/references/runtime.md",
       "text": "the writer will actually use, and every entry must be in accepted G2 coverage."
@@ -1116,9 +1146,9 @@
       "text": "raise Hold(\"sequence.mmd must be valid UTF-8 Mermaid source\") from exc"
     },
     {
-      "sha256": "7f8fbc4ee969ed951589ab01ba9c39dbee21a19b291298bbc12525006a226aea",
+      "sha256": "70981522f6c86914bed9c7dde5fc1c965c77b56c984a53b002e2a5cd0bee017e",
       "source": "sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py",
-      "text": "require(predecessor is not None, \"floor-only G3 review has no immutable G2 predecessor\")"
+      "text": "# Legacy entries do not retain raw bytes: their provenance digest"
     },
     {
       "sha256": "60b7441e3f9139e39843c892248140a870801d0afe195f6a4bb4ed7d9419bf7b",
