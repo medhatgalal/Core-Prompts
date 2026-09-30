@@ -23,7 +23,7 @@ installed versions. Record missing or conflicting bindings as dependencies.
 | Material boundary or evolution trade-off | Conditionally resolve `engos-design-architecture`; scope through architecture-fit.md |
 | Relevant observed structural risk | Conditionally resolve `engos-audit-code-health`; no automatic full-repo audit |
 | Compatibility or migration proof planning | Conditionally resolve `engos-quality-testing-review`; planned checks are not execution |
-| Independent pitch assessment | `engos-audit-pitch-review` SKILL plus the gate owner's current full-shaping integration and calibrated rubric |
+| Independent workshop pitch assessment | `engos-quality-shaping-gate` SKILL and its twelve-score rubric; legacy ten-point review is standalone only |
 | Approved placement | `engos-delivery-artifact-embed` SKILL and target-specific resources |
 | Missing capability | This bundle's `fallback` route |
 

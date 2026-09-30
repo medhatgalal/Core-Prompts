@@ -20,6 +20,10 @@ with a recorded layout reason, source identity and semantic cross-check of every
 component/seam; retain editable source. Use SVG for HTML/full-size viewing and
 high-resolution PNG for Docs. A renderer/format change cannot invent internals.
 Only use the embed adapter's validated asset path; arbitrary SVG is untrusted.
+The sequence source remains a real sequenceDiagram under layout/color limits.
+For the limited sequence renderer follow diagram-style.md: no alt/else, short
+labels, white background and role-colored bands when actor fills stay gray.
+Do not replace the sequence diagram with a flowchart to obtain colored nodes.
 
 Primary tables should be readable at normal viewing size. Preserve Method/Purpose
 or Method/Endpoint/Purpose and Responsibility/Owner/How-enforced shapes. For wide

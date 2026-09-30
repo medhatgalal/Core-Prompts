@@ -110,7 +110,7 @@ reported separately and never becomes good merely because old evidence vanished.
 Supported kinds:
 
 - `dispatched`, `started`, `candidate_returned`, `review_requested`, `stopped`:
-  observations only. Prepared/dispatched orders are queued; only a fresh started
+  observations only. Prepared/dispatched assignments are queued; only a fresh started
   observation supports `last_observed_active`. Completed or invalidated attempts
   cannot remain active. Stopped activity does not revoke an accepted gate.
   Current pending attempts take precedence over a late stop from an accepted

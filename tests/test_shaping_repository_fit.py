@@ -16,7 +16,7 @@ from test_shaping_runtime import (
 )
 
 
-CURRENT = "shaping-gates.v2+rubric.v3"
+CURRENT = "shaping-gates.v3+rubric.v4"
 LEGACY = "shaping-gates.v1+rubric.v2"
 FIT = [("G2", "existing_capability_evidence"), ("G3", "architecture_fit")]
 ROOT = Path(__file__).resolve().parents[1]
@@ -75,6 +75,13 @@ def stage_policy(rt, legacy=False):
     policy = json.loads((RESOURCE / "schemas/policy.example.json").read_text())
     if legacy:
         policy["policy_id"] = LEGACY
+        policy.pop("shaping_loop", None)
+        policy["gates"]["G2"]["required_outputs"] = [
+            name for name in policy["gates"]["G2"]["required_outputs"] if name != "research-coverage.json"
+        ]
+        policy["gates"]["G3"]["required_outputs"] = [
+            name for name in policy["gates"]["G3"]["required_outputs"] if name != "shape-set.json"
+        ]
         for gate, predicate in FIT:
             policy["gates"][gate]["predicates"] = [
                 p for p in policy["gates"][gate]["predicates"] if p != predicate
@@ -110,7 +117,7 @@ def test_current_policy_emits_and_accepts_repository_fit_predicates(current, gat
     }
     order, candidate, receipt = review_at(rt, gate)
     assert predicate in order["required_predicates"]
-    assert order["required_outputs"] == [*rt.MIN_OUTPUTS[int(gate[1])],
+    assert order["required_outputs"] == [*rt.policy()["gates"][gate]["required_outputs"],
                                           "questions.json", "decisions.json"]
     result, _ = accept_fixture(rt, order, candidate, receipt)
     snapshot = rt.snapshot(result["snapshot"])

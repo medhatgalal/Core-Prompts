@@ -1,12 +1,17 @@
 # Independent review dispatch
 
 Resolve and read `engos-quality-shaping-gate` SKILL, applicable gate/receipt
-resources and its calibrated rubric; read `engos-audit-pitch-review` SKILL and
-the bound full-shaping integration. The gate is the sole owner of predicates,
+resources and its calibrated twelve-score rubric. This workshop does not load the
+legacy ten-point engos-audit-pitch-review. The gate is the sole owner of predicates,
 scores and thresholds. Do not duplicate its scorecard, inherit a historic trial
 rubric, average conflicting judgments into a pass or let the legacy combined
 readiness label substitute for separate G3/G4. Missing integration/calibration
 holds dependent review; it does not block an explicitly unaccepted author draft.
+
+Before dispatch, seal only a nonempty selected set with covered load-bearing facts.
+The runtime refuses no-selection and missing-research candidates before scoring.
+The conductor also checks prose against opened code; a fabricated coverage entry
+cannot supply truth. Return the specific gap to G2 before consuming a review.
 
 Minimum reviewer conditions: did not author the candidate; initial work order
 omits author self-grades/preferred verdict and unrelated parent chat; actual
@@ -36,3 +41,10 @@ findings. Malformed, missing, stale or unverifiable mandatory assessments hold.
 Schema validity is not truth. Preserve failed receipts and dissent; repair the
 specific gap and re-review affected inputs. A policy change gets a new version and
 appropriate calibration, never retroactive rescore of earlier judgments.
+
+Record every review_returned receipt in the existing journal. For the sole-average
+failure (every score >=3; average <4; all other predicates pass), prepare must not
+dispatch another pitch on unchanged opened source evidence. Name the next new fact,
+spike hypothesis/owner/bound/signal, or hold. Naming a spike is not proof it ran and
+does not clear the stop. Only fresh accepted Research can supply the missing fact.
+No rescore of the same files, weakened floor or preferred reviewer verdict.

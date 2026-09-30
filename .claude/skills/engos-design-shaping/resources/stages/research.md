@@ -43,3 +43,12 @@ working contracts may suffice by reference when the gate allows; do not require
 building the feature to shape it. New load-bearing unknowns reopen Research.
 An exclusion changing the frame requires a human scope decision and refreshed G1.
 Optional builder choices do not become mandatory spikes merely to raise a score.
+
+Under the current policy, research-coverage.json records each opened run-relative
+source path, its actual SHA256 and the source locators inspected. These are hashed
+inputs or accepted source artifacts, not plausible filenames in a narrative.
+Keep the source bytes available for the runtime and independent review. A note
+that disagrees with opened code fails; repair Research rather than paraphrasing
+the claim in a pitch. Load-bearing claims added during shaping reopen G2 first.
+New facts may come from newly inspected source ranges or an observed spike result;
+renaming a recap or adding coordination files is not evidence acquisition.

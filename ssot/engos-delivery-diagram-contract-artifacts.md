@@ -84,6 +84,10 @@ request or event path; the data-flow diagram shows data movement and stores.
    Author Mermaid first. Prefer LR for flows and TB for hierarchy when legible.
    Apply the team's semantic style palette, keep node
    labels short, and label edges with protocol, port, or contract context.
+   Keep sequence.mmd a real sequenceDiagram. The documented limited renderer
+   uses no alt/else, short labels and white background. When its actors remain
+   one gray fill, use role-colored bands around sequence messages plus a legend;
+   changing color treatment may not replace the sequence with a flowchart.
 4. Author the contract table for both provided and required interfaces. Record
    contract state and distinguish observed behavior from assumption.
 5. Author the security-owner matrix. Assign responsibility only when the pitch
@@ -107,6 +111,9 @@ request or event path; the data-flow diagram shows data movement and stores.
   owners, security controls, or data stores. Unknowns become explicit gaps.
 - A diagram is not complete merely because it parses. It must cover the named
   seams and have evidence references.
+- Render the real sequence and have the reviewer open its pixels. Actor fills
+  that remain gray are an observed renderer limit, not permission to change the
+  diagram type. Role-color fills remain required through sequence bands.
 - Keep fat-marker scope: show what connects and what contract state exists, not
   a production implementation plan.
 - Treat an unresolved rabbit hole as a mitigation or blocker, never as a
@@ -127,8 +134,9 @@ must report placement evidence separately.
 
 ## Constraints
 
-- This skill does not score or approve the pitch; `engos-audit-pitch-review`
-  owns the betting judgment.
+- This skill does not score or approve the pitch; engos-quality-shaping-gate owns
+  the workshop's twelve-score assessment. Standalone legacy pitch review remains
+  a separate request.
 - This skill does not choose a native agent surface or delegate work.
 - This skill does not upload, share, publish, or edit external documents.
 - It must work from pasted content, a local file, or a read-only source export.

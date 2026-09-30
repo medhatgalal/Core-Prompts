@@ -42,7 +42,7 @@ before accepting a frame, not invented as entry defaults.
 Return friendly links and a short status: accepted stage/revision, changed facts,
 content review, delivery per target, open blockers and next action. Maintain
 Markdown brief/intake/frame/research/pitch, question and decision provenance,
-source coverage, work orders and receipts in the project's authorized artifact
+source coverage, role assignments and receipts in the project's authorized artifact
 home. Reached shaping stages add the full diagram/contract/security bundle,
 summary, provisional workstreams/proof slices and traceability. HTML and full
 JSON are derived exports; requested Google Docs get saved-target verification
@@ -84,8 +84,13 @@ stages. The phase templates define fields, not gate verdicts.
    Record evidence-backed reuse, extension, evolution, replacement, new or intentional
    separation decisions at material seams; request bounded specialist advice only
    when a concrete trade-off or structural concern warrants it.
+   Judge the selected pieces as one set. A confirmed decision absent from opened
+   code is a proposed extension, not a reason to select nothing. A set selecting
+   no work is a hold naming the walk-away item; do not send it for scoring.
 6. Use `review` for author audit followed by actual independent review under the
-   gate policy and existing pitch reviewer integration. Only the conductor may
+   gate policy and its twelve-score rubric. Before reviewer dispatch, compare every
+   load-bearing existing claim with accepted Research coverage; a false citation or
+   unopened material fact reopens G2. Only the conductor may
    accept current-generation results. Draft-only scope finishes at G3 as a shaped
    draft, without claiming target delivery or Bet-ready.
 7. Use `publish` after G3 for approved target writes and full saved-result checks.
@@ -104,6 +109,19 @@ stages. The phase templates define fields, not gate verdicts.
 - Do not begin code-scan or repository-fit work merely because a repository is
   available at entry. Bind it to a G2 work order after Framed acceptance; an
   explicitly narrow framing fact check must remain solution-free and be recorded.
+- Record independent review returns, including failures, in the existing runtime
+  journal before deciding the next attempt. If every score is at least 3, the
+  twelve-score average is below 4, and that average is the only miss, do not open
+  another pitch on the same opened source evidence. The next step is a new fact,
+  a named spike, or a hold. Rewording, a new draft filename or another appetite
+  sentence is not new evidence; run the runtime prepare check before dispatch.
+- A restatement of appetite supports Cost 3; repeating the same bound cannot
+  make Cost 4. The gate owns this anchor. One example of this pattern is describing
+  the same bounded operations twice without additional supported cost evidence.
+- The proof slice observes the accepted frame's requested completion or stop
+  condition. Observing only an intermediate action is insufficient for that outcome.
+- Accepted G3 PASS is the only door to design; a proposal, low-average review,
+  no-selection hold or Research pass does not authorize design or implementation.
 - Bind decisions to attributable human input and confirmed authority. Preserve
   proposed, relayed, disputed and superseded events; never silently rewrite them.
 - Workers write candidates only. Prompt context allowlists are not host isolation.
@@ -140,7 +158,7 @@ a three-way comparison, not a blind overwrite.
 
 ## Evaluation Rubric
 
-Use the gate owner's versioned rubric and existing pitch review for assessment;
+Use the gate owner's versioned twelve-score rubric for assessment;
 this skill defines no second scoring system. Supply traceable evidence of entry
 and question quality, human decision provenance, source sufficiency, stage/context
 boundaries, full artifact coverage, independent review and saved-target fidelity.
