@@ -1,0 +1,41 @@
+{
+  "schema_version": "IndependentSkillReview.v1",
+  "round": 5,
+  "scope": "Applied canonical source, five generated skill/resource packages, regenerated descriptors/advisory metadata/evaluation contracts and final tracked diff.",
+  "reviewer_agent_id": "/root/reviewer",
+  "author_agent_id": "/root/writer",
+  "independent": true,
+  "candidate_sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d",
+  "canonical_sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d",
+  "findings": [],
+  "open_findings": 0,
+  "prior_findings_closed": [
+    "R2-01"
+  ],
+  "checks": [
+    "Canonical bytes exactly equal independently reviewed normalized candidate.",
+    "All five generated bodies exactly equal canonical body plus capability-resource footer; YAML only strips SSOT metadata.",
+    "All five capability.json resources semantically equal canonical descriptor.",
+    "Descriptor and generator preserve zero-open independent reviewer gate with resumed writer/reviewer and no round cap; no self-score recommendation gate.",
+    "Compiled contract clauses are exact canonical excerpts and hashes; obsolete scorecard/delegation prohibition not reintroduced.",
+    "Only architecture canonical skill changed; no agent surface or other skill mutation.",
+    "Final diff consists of scoped architecture canonical/profile/generator/tests/docs and corresponding generated metadata/package/evaluation updates."
+  ],
+  "generated_surface_sha256": {
+    ".codex/skills/engos-design-architecture/SKILL.md": "727985fe4eadcbe7745c804f088600455b5c43e151cbd3bf6dee20757960e70a",
+    ".gemini/skills/engos-design-architecture/SKILL.md": "727985fe4eadcbe7745c804f088600455b5c43e151cbd3bf6dee20757960e70a",
+    ".claude/skills/engos-design-architecture/SKILL.md": "727985fe4eadcbe7745c804f088600455b5c43e151cbd3bf6dee20757960e70a",
+    ".kiro/skills/engos-design-architecture/SKILL.md": "727985fe4eadcbe7745c804f088600455b5c43e151cbd3bf6dee20757960e70a",
+    ".grok/skills/engos-design-architecture/SKILL.md": "727985fe4eadcbe7745c804f088600455b5c43e151cbd3bf6dee20757960e70a"
+  },
+  "generated_resource_sha256": {
+    ".codex/skills/engos-design-architecture/resources/capability.json": "e7762f3334ca54a3d9aed17ff0c6f61ef4c49ea81e5da31a280fe3be800285ca",
+    ".gemini/skills/engos-design-architecture/resources/capability.json": "e7762f3334ca54a3d9aed17ff0c6f61ef4c49ea81e5da31a280fe3be800285ca",
+    ".claude/skills/engos-design-architecture/resources/capability.json": "e7762f3334ca54a3d9aed17ff0c6f61ef4c49ea81e5da31a280fe3be800285ca",
+    ".kiro/skills/engos-design-architecture/resources/capability.json": "e7762f3334ca54a3d9aed17ff0c6f61ef4c49ea81e5da31a280fe3be800285ca",
+    ".grok/skills/engos-design-architecture/resources/capability.json": "e7762f3334ca54a3d9aed17ff0c6f61ef4c49ea81e5da31a280fe3be800285ca"
+  },
+  "limits": [
+    "Root owns ongoing test results and hosted delivery. This receipt confirms source/generated consistency, not behavioral efficacy or release."
+  ]
+}

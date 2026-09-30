@@ -65,7 +65,12 @@ def test_shipped_shaping_skills_have_no_task_local_machine_paths():
         paths = [ROOT / "ssot" / f"{slug}.md"]
         resource_root = ROOT / "sources" / "capability-resources" / slug
         if resource_root.is_dir():
-            paths.extend(path for path in resource_root.rglob("*") if path.is_file())
+            paths.extend(
+                path for path in resource_root.rglob("*")
+                if path.is_file()
+                and "__pycache__" not in path.relative_to(resource_root).parts
+                and path.suffix not in {".pyc", ".pyo"}
+            )
         text = "\n".join(path.read_text(errors="replace") for path in paths)
         assert "/Users/medhat.galal/" not in text
         assert "/private/tmp/engos-shaping-research-" not in text

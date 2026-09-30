@@ -1783,13 +1783,13 @@
           "kind": "source_exclusions_not_synthetic_prompts",
           "clauses": [
             {
-              "text": "Do not use this skill to run orchestration, assign sub-agents, or choose runtime delegation. This skill publishes architecture guidance and decision artifacts only.\nDo not use this skill when the user mainly needs prompt hardening, capability import judgment, behavioral proof, or persistent multi-file analysis memory.",
+              "text": "This skill publishes advisory architecture guidance and decision artifacts through the three roles below. Its coordination is limited to this recommendation review; it grants no implementation or wider runtime-control authority.\nDo not use this skill when the user mainly needs prompt hardening, capability import judgment, behavioral proof, or persistent multi-file analysis memory.",
               "heading": "Purpose",
               "source": {
                 "path": "ssot/engos-design-architecture.md",
                 "start_line": 23,
                 "end_line": 24,
-                "sha256": "5d474ec75ac039475dbceef89b5970173cd1427b2897325437361673ac88bbaf"
+                "sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d"
               }
             }
           ]
@@ -1802,8 +1802,8 @@
         },
         "provenance": {
           "ssot_path": "ssot/engos-design-architecture.md",
-          "ssot_sha256": "5d474ec75ac039475dbceef89b5970173cd1427b2897325437361673ac88bbaf",
-          "effective_sha256": "5d474ec75ac039475dbceef89b5970173cd1427b2897325437361673ac88bbaf",
+          "ssot_sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d",
+          "effective_sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d",
           "resources": [],
           "extractor_version": "source-clauses.v1",
           "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -1822,7 +1822,7 @@
             "works_on"
           ],
           "curated_binding": "preserved_not_independently_revalidated",
-          "mapping_sha256": "dedb0c2e47b530605da60096a52fe60801aace4f45c1b409426f23d703f3889d"
+          "mapping_sha256": "f1f884b16803f6d4ae00e9c0fee57fc781ddb53725f5f88d14a6db4d48f0925a"
         },
         "unresolved_fields": [
           "task_phase_interpretation",
@@ -5074,7 +5074,7 @@
   },
   "receipt": {
     "schema_version": "SkillJobMapReceipt.v1",
-    "skills_sha256": "fb9d49b0b86a59822affec0dcb07e5d0b825d5ef81cfc7b4fd9a682ddc483a74",
+    "skills_sha256": "826294e454e8541c395fa7fc884f4e719c2c9238891f8fa76ae1e09ebf0b3941",
     "advisory_only": true,
     "behavioral_verified": false,
     "source_bindings": {
@@ -5139,9 +5139,9 @@
         "mapping_sha256": "2dc3b138ef3b53ae57bea70dda8ca3955ec3c923389a38e4c428afe5855eef84"
       },
       "engos-design-architecture": {
-        "ssot_sha256": "5d474ec75ac039475dbceef89b5970173cd1427b2897325437361673ac88bbaf",
-        "effective_sha256": "5d474ec75ac039475dbceef89b5970173cd1427b2897325437361673ac88bbaf",
-        "mapping_sha256": "dedb0c2e47b530605da60096a52fe60801aace4f45c1b409426f23d703f3889d"
+        "ssot_sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d",
+        "effective_sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d",
+        "mapping_sha256": "f1f884b16803f6d4ae00e9c0fee57fc781ddb53725f5f88d14a6db4d48f0925a"
       },
       "engos-design-frame-from-vague": {
         "ssot_sha256": "d194971bf322bdbe86abbd4b60128a5c1a717d201469d77148d4261b03863074",

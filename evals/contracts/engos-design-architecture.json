@@ -6,12 +6,12 @@
   "change_class": "unknown",
   "non_goals": [],
   "protected_behaviors": [
-    "04d8e6d45308d6386e7f547dfe9628fb74b90b363b0ec31a66131058f0b0412b",
     "2eac6c7a6b1a3e56eceeceb8da2dbdf005eabe3c17ea260d41d387ad0805ba7b",
     "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
     "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
-    "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
-    "0a8e79a060d12a94d58d864d54fdd538d4106b5e3907ec22a329e6b0446238ea",
+    "8ca9c09c26b125fcd13cc8a0e97c61c631ec1902de53495a96133332a2474d7f",
+    "8acf3ef993e9764f7d64521d10630d8a53a5ef5915ed926f55a39f8de84a632f",
+    "73ca0b86fb406a10c76dbfbd68668d917339e77e92b62854efc0d6ceb738cca7",
     "e63ecfee4a9167cfb7d4be3d1f4efa1fbe32cd31e975c5a009ac93a40cadd77c",
     "4ff9062c57f5f249c310acecb5360535c35367f30c4e356b9de7f72b3e745ad8",
     "5d75081885d75c65981714fbf392cffa483bbf5b6a8049fdabad62b7cde7a5af",
@@ -20,7 +20,7 @@
     "40411b6b20574a4701571d1f51b35dca3b5fe8420f200e5d493b282b171100e1",
     "3289c94da7709262a822cd3c3415b2757a2e7d6bc9a20ca314b176214e45708b",
     "01bb3eecaf408f8fc638f34416c15eb288c6bfa2580a0b11ec86ec4251b09f31",
-    "764a1f78d93f9f3c01413bd1ea932df452e4540f3e17cea539e861e7a079208b",
+    "aec9bdea5e3e3be0cf385f2fa8a65329fe79d207f0f45760751dc001f004245a",
     "72b5a2d0b3c2b951edb7e4f0e9da7359ff8a6f6521149e6633cb81a331fd4bf7",
     "21c4acf6ec7ff046efcc39280e2828227648562f1143529d4a34cab77e86366d",
     "5b82684f289535056c917362ffe08540413fb7f3699cfc7c59609dc89762d05b",
@@ -41,10 +41,12 @@
     "31def904306a60116d15d7d0b9945803f4970bf44d60ab782fb0f621adb7e0fb",
     "819a3b3c1df533483a07094dbf597dee2658654e19c4178d3494a6cc6ab8c146",
     "e1734b6c6f198831520795df6228039639e107630c563ce1822b4a4c3c38b1a7",
-    "4d7c6ba61e19d45e3ec2c1006ffa33fed291f797b9f357773cbf6f2f5c85cbd3",
-    "b820d2fd501dc4012bacc3de2b8561e7ea5f16455e3156af0722f608ac2d5ee1",
-    "6f1f8c1439793ec841b24c895e3be6dfd31e680e2a76d7a878141dd99ce01054",
-    "429ddefa0e5546ecb284dfb8469eaab48d630a7b197e78bff9eb08dd4e616016"
+    "6fd80bda8e52ba5a50f5ca2336eb66c116bd167765a026c01ad7d00f9f8cbbea",
+    "9eca3af8a0ce19f969affc68eb1a7da3e060cbb3ec64716249d8c6a77538cafc",
+    "3903553b1d77c60f4c464d709b0f98d8583c9a3e2a53c7031628f81d64fb2b47",
+    "56e72662b3ee1c9164a04352d5413eedfaebd76d4b4ac6c8f9ce51e7d7b3aad8",
+    "d1b53933b583b89fffb5c0925a70fded51248142dda5afa058b036619efa0e69",
+    "de06f47fc160cc836c5f040092a1cb9434b29b7a10233c6e9a3e98113aafe0c8"
   ],
   "editable_behavior": [],
   "primary_outcome": {
@@ -77,11 +79,6 @@
   "rollback_trigger": "Any protected regression or stale bound evidence.",
   "source_clause_hashes": [
     {
-      "sha256": "04d8e6d45308d6386e7f547dfe9628fb74b90b363b0ec31a66131058f0b0412b",
-      "source": "ssot/engos-design-architecture.md",
-      "text": "Do not use this skill to run orchestration, assign sub-agents, or choose runtime delegation. This skill publishes architecture guidance and decision artifacts only."
-    },
-    {
       "sha256": "2eac6c7a6b1a3e56eceeceb8da2dbdf005eabe3c17ea260d41d387ad0805ba7b",
       "source": "ssot/engos-design-architecture.md",
       "text": "Do not use this skill when the user mainly needs prompt hardening, capability import judgment, behavioral proof, or persistent multi-file analysis memory."
@@ -97,14 +94,19 @@
       "text": "## Required Output"
     },
     {
-      "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+      "sha256": "8ca9c09c26b125fcd13cc8a0e97c61c631ec1902de53495a96133332a2474d7f",
       "source": "ssot/engos-design-architecture.md",
-      "text": "Every substantial response must include:"
+      "text": "Every substantial recommendation artifact must include:"
     },
     {
-      "sha256": "0a8e79a060d12a94d58d864d54fdd538d4106b5e3907ec22a329e6b0446238ea",
+      "sha256": "8acf3ef993e9764f7d64521d10630d8a53a5ef5915ed926f55a39f8de84a632f",
       "source": "ssot/engos-design-architecture.md",
-      "text": "- forbidden: runtime routing, agent delegation, workflow control loops, or implementing product code as a side effect of architecture analysis"
+      "text": "The separate reviewer uses the Review Gate below as the acceptance gate. The recommendation must:"
+    },
+    {
+      "sha256": "73ca0b86fb406a10c76dbfbd68668d917339e77e92b62854efc0d6ceb738cca7",
+      "source": "ssot/engos-design-architecture.md",
+      "text": "- forbidden: wider runtime routing or workflow control, or implementing application code as a side effect of architecture analysis"
     },
     {
       "sha256": "e63ecfee4a9167cfb7d4be3d1f4efa1fbe32cd31e975c5a009ac93a40cadd77c",
@@ -147,9 +149,9 @@
       "text": "- external systems and dependencies that must be wrapped or isolated"
     },
     {
-      "sha256": "764a1f78d93f9f3c01413bd1ea932df452e4540f3e17cea539e861e7a079208b",
+      "sha256": "aec9bdea5e3e3be0cf385f2fa8a65329fe79d207f0f45760751dc001f004245a",
       "source": "ssot/engos-design-architecture.md",
-      "text": "Every architecture response must include all of the following, even when brief:"
+      "text": "Every writer-authored recommendation artifact must include all of the following, even when brief. Coordinator dispatches and reviewer finding lists do not use this artifact format:"
     },
     {
       "sha256": "72b5a2d0b3c2b951edb7e4f0e9da7359ff8a6f6521149e6633cb81a331fd4bf7",
@@ -252,24 +254,34 @@
       "text": "14. Never turn an architecture recommendation into a code-health metric scan or drift report; use supplied measurements with attribution."
     },
     {
-      "sha256": "4d7c6ba61e19d45e3ec2c1006ffa33fed291f797b9f357773cbf6f2f5c85cbd3",
+      "sha256": "6fd80bda8e52ba5a50f5ca2336eb66c116bd167765a026c01ad7d00f9f8cbbea",
       "source": "ssot/engos-design-architecture.md",
-      "text": "- `Failure-Aware Decisions` must not be `0`"
+      "text": "- **Writer**: writes the recommendation artifact only and repairs it from the reviewer's findings. Resume the same writer for every revision; do not start a fresh writer for a revision."
     },
     {
-      "sha256": "b820d2fd501dc4012bacc3de2b8561e7ea5f16455e3156af0722f608ac2d5ee1",
+      "sha256": "9eca3af8a0ce19f969affc68eb1a7da3e060cbb3ec64716249d8c6a77538cafc",
       "source": "ssot/engos-design-architecture.md",
-      "text": "- `Migration Clarity` must not be `0`"
+      "text": "- **Reviewer**: did not write the artifact, checks it against the sources and retained domain rules, and writes findings only. The reviewer does not rewrite the artifact. Resume the same reviewer for every later round."
     },
     {
-      "sha256": "6f1f8c1439793ec841b24c895e3be6dfd31e680e2a76d7a878141dd99ce01054",
+      "sha256": "3903553b1d77c60f4c464d709b0f98d8583c9a3e2a53c7031628f81d64fb2b47",
       "source": "ssot/engos-design-architecture.md",
-      "text": "- `Benchmark Fit` must not be `0`"
+      "text": "If separate participants or their resumed contexts are unavailable, report the review as incomplete. Never substitute coordinator authorship, self-review, or simulated roles for a required participant."
     },
     {
-      "sha256": "429ddefa0e5546ecb284dfb8469eaab48d630a7b197e78bff9eb08dd4e616016",
+      "sha256": "56e72662b3ee1c9164a04352d5413eedfaebd76d4b4ac6c8f9ce51e7d7b3aad8",
       "source": "ssot/engos-design-architecture.md",
-      "text": "- `Falsifiability` must not be `0`"
+      "text": "2. The coordinator gives the separate reviewer the artifact, original task, sources and domain rules. The reviewer is hostile in the ordinary sense: verify each material claim, cite the source, and do not invent a defect to fill a section. A source gap is grounds for a finding only when the artifact overstates evidence, misses a required uncertainty, or cannot support a material decision."
+    },
+    {
+      "sha256": "d1b53933b583b89fffb5c0925a70fded51248142dda5afa058b036619efa0e69",
+      "source": "ssot/engos-design-architecture.md",
+      "text": "4. The coordinator returns every open finding to the same writer. The writer repairs the artifact and attaches a disposition to each received identifier: `addressed` with what changed; `wontfix` with a technical reason; or `needs-user-input` when only a human can choose. These dispositions are repair responses, not a replacement finding list or acceptance decision. Human-choice findings remain unresolved while awaiting the answer."
+    },
+    {
+      "sha256": "de06f47fc160cc836c5f040092a1cb9434b29b7a10233c6e9a3e98113aafe0c8",
+      "source": "ssot/engos-design-architecture.md",
+      "text": "6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while findings are open, while a required human answer is pending, or while review is incomplete. A writer's score or checklist cannot satisfy this exit. This inner issue count does not decide any wider workflow's acceptance."
     }
   ],
   "review_status": "draft"

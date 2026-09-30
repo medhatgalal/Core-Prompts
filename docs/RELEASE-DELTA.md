@@ -6,8 +6,8 @@ These counts compare selected capability metadata in `.meta/manifest.json`. They
 - Comparison basis: `git:v1.16.2@c39effe174ab4ff48f406f5ed531f57569f6852d .meta/manifest.json`
 - New capabilities: `0`
 - Removed capabilities: `0`
-- Changed capability records: `0`
-- Records with contract-facing metadata changes: `0`
+- Changed capability records: `1`
+- Records with contract-facing metadata changes: `1`
 
 ## New Capabilities
 - none
@@ -16,7 +16,7 @@ These counts compare selected capability metadata in `.meta/manifest.json`. They
 - none
 
 ## Contract-Facing Metadata Changes
-- none
+- `engos-design-architecture` — changed `shared_constraints, modes`
 
 ## All Changed Capability Records
-- none
+- `engos-design-architecture` — changed `shared_constraints, modes`

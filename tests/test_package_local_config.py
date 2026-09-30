@@ -16,14 +16,9 @@ ROOT = Path(__file__).resolve().parents[1]
 
 @pytest.mark.parametrize("existing_archive", [False, True])
 def test_package_excludes_local_codex_registration(
-    tmp_path: Path, existing_archive: bool
+    tmp_path: Path, existing_archive: bool, finalized_release_tree: Path
 ) -> None:
-    repo = tmp_path / "repo"
-    shutil.copytree(
-        ROOT,
-        repo,
-        ignore=shutil.ignore_patterns(".git", "reports", "__pycache__", ".pytest_cache"),
-    )
+    repo = finalized_release_tree
     config = repo / ".codex" / "config.toml"
     local_config = '[agents.local]\nconfig_file = "/private/local-checkout/agent.toml"\n'
     config.write_text(local_config, encoding="utf-8")

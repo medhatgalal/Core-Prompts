@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from copy import deepcopy
 import sys
+import shutil
 from pathlib import Path
 
 import pytest
@@ -90,3 +91,24 @@ def fixture_phase4_policy_contract_payload(
         "blocked_dominant_rule_ids": [],
         "allowed_route_decisions": ["PASS_ROUTE"],
     }
+
+
+@pytest.fixture
+def finalized_release_tree(tmp_path: Path):
+    """One example finalized-release fixture; never finalize the development checkout."""
+    source_changelog = PROJECT_ROOT / "CHANGELOG.md"
+    source_before = source_changelog.read_bytes()
+    repo = tmp_path / "finalized-release-fixture"
+    shutil.copytree(
+        PROJECT_ROOT,
+        repo,
+        ignore=shutil.ignore_patterns(".git", "reports", "__pycache__", ".pytest_cache"),
+    )
+    version = (repo / "VERSION").read_text(encoding="utf-8").strip()
+    (repo / "CHANGELOG.md").write_text(
+        f"## {version} - 2000-01-01\n\n"
+        "- Synthetic finalized release for package-boundary tests.\n",
+        encoding="utf-8",
+    )
+    yield repo
+    assert source_changelog.read_bytes() == source_before
