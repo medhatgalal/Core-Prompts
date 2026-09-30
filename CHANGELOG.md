@@ -1,3 +1,13 @@
+## Unreleased
+
+- Replace Architecture Studio's writer-filled scorecard with a coordinator,
+  persistent writer and separate source-checking reviewer. Revisions continue
+  until the reviewer reports zero open findings; a reopened technical refusal
+  goes to the user for a final ruling. Preserve architecture domain checks and
+  separate this artifact gate from structural packaging checks.
+- Inventory other skills for the same review structure without applying blanket
+  changes or replacing existing host-owned review protocols.
+
 ## v1.16.3 - 2026-09-30
 
 Source version prepared for shaping evidence/recovery corrections. Mainline

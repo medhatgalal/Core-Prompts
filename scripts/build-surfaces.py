@@ -158,18 +158,16 @@ def descriptor_defaults(slug: str, display_name: str) -> dict[str, object]:
             'layer_overrides': {
                 'expanded': {
                     'quality_criteria': [
-                        'Score against the published architecture scorecard on every significant design branch',
+                        'Require a separate source-checking reviewer to report zero open findings on the current recommendation',
                         'Include rejected alternatives and explicit trade-offs for major design decisions',
                         'Keep migration, rollback, and validation concrete enough to execute',
                         'Meet or exceed the Harish/Alexanderdunlop source bar and the local code-review/resolve-conflict bar',
                     ],
                     'quality_gate': {
-                        'min_pass_score': 9,
-                        'required_no_zero_for': [
-                            'Failure-Aware Decisions',
-                            'Migration Clarity',
-                            'Benchmark Fit',
-                        ],
+                        'reviewer_must_differ_from_writer': True,
+                        'required_open_findings': 0,
+                        'round_cap': None,
+                        'same_writer_and_reviewer_on_revision': True,
                     },
                 },
             },

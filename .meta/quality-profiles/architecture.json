@@ -32,7 +32,7 @@
     "source dilution",
     "worked-example loss",
     "weaker output contracts",
-    "orchestration leakage"
+    "implementation or wider runtime-control leakage"
   ],
   "required_markers": {
     "operational_richness": [
@@ -46,7 +46,9 @@
       "### 3. Design Patterns Playbook",
       "### 4. System Design Playbook",
       "## Review Gate",
-      "## Architecture Quality Scorecard"
+      "## Recommendation Roles",
+      "zero open findings",
+      "There is no round cap"
     ],
     "source_fidelity": [
       "black-box boundaries",
@@ -59,7 +61,7 @@
       "Rejected Alternatives"
     ],
     "metadata_integrity": [
-      "Do not use this skill to run orchestration",
+      "grants no implementation or wider runtime-control authority",
       "advisory",
       "descriptor"
     ]

@@ -14,7 +14,7 @@ Use this skill when the user needs any of the following:
 - system design, topology, reliability, or scale planning
 - migration-safe architecture decisions with explicit rollback guidance
 
-Do not use this skill to run orchestration, assign sub-agents, or choose runtime delegation. This skill publishes architecture guidance and decision artifacts only.
+This skill publishes advisory architecture guidance and decision artifacts through the three roles below. Its coordination is limited to this recommendation review; it grants no implementation or wider runtime-control authority.
 Do not use this skill when the user mainly needs prompt hardening, capability import judgment, behavioral proof, or persistent multi-file analysis memory.
 
 ## Primary Objective
@@ -36,7 +36,7 @@ Use this capability when the user asks for any of the following, even without na
 - optional structural audit findings, with their source and measurement date; use these as design inputs rather than re-measuring codebase health
 
 ## Required Output
-Every substantial response must include:
+Every substantial recommendation artifact must include:
 - `Problem Framing`
 - `Objective`
 - `In Scope`
@@ -53,10 +53,10 @@ Every substantial response must include:
 - `Confidence`
 
 ## Examples
-Representative asks and output patterns appear in `Example Invocation Patterns` below. Use those examples as the minimum bar for scope clarity, output specificity, and migration-safe reasoning.
+Each example below is one example of the pattern, not a prescribed design or closed list. Representative asks and output patterns appear in `Example Invocation Patterns` below. Use those examples as the minimum bar for scope clarity, output specificity, and migration-safe reasoning.
 
 ## Evaluation Rubric
-Use the Architecture Quality Scorecard below as the acceptance gate. A passing response:
+The separate reviewer uses the Review Gate below as the acceptance gate. The recommendation must:
 - states objective, scope, assumptions, and constraints before recommending structure
 - defines replaceable black-box boundaries and explicit interface contracts
 - compares at least one rejected alternative for any material decision
@@ -64,7 +64,7 @@ Use the Architecture Quality Scorecard below as the acceptance gate. A passing r
 - makes operational, reliability, and maintainability trade-offs explicit rather than implied
 
 ## Agent Operating Contract
-When emitted as an agent, this capability acts as an advisory architecture artifact writer.
+The coordinator assigns one architecture writer and one separate reviewer for a substantial recommendation. A participant assigned as writer remains an advisory architecture artifact writer.
 
 Mission:
 - turn ambiguous architecture asks into explicit design artifacts
@@ -78,8 +78,8 @@ Responsibilities:
 
 Tool Boundaries:
 - allowed: read repository inputs, compare existing interfaces, write architecture artifacts, and run lightweight inspection commands when needed
-- forbidden: runtime routing, agent delegation, workflow control loops, or implementing product code as a side effect of architecture analysis
-- escalation rule: if implementation or orchestration is requested, hand that off as a separate capability decision instead of folding it into architecture output
+- forbidden: wider runtime routing or workflow control, or implementing application code as a side effect of architecture analysis
+- escalation rule: if implementation or wider orchestration is requested, hand that off as a separate capability decision instead of folding it into architecture output
 - companion route: if the work is actually prompt or plan hardening, route to `engos-meta-supercharge`; if it is import classification, route to `engos-meta-uac-import`; if it needs durable multi-file analysis memory, route to `engos-memory-context-continuity`
 
 ## Output Directory
@@ -199,7 +199,7 @@ Define:
 - unresolved questions
 
 ## Universal Deliverables
-Every architecture response must include all of the following, even when brief:
+Every writer-authored recommendation artifact must include all of the following, even when brief. Coordinator dispatches and reviewer finding lists do not use this artifact format:
 - `Problem Framing`
 - `Objective`
 - `In Scope`
@@ -216,7 +216,7 @@ Every architecture response must include all of the following, even when brief:
 - `Confidence`
 
 ## Universal Output Format
-Use this exact section order unless the user requests a different format:
+For the writer's recommendation artifact, use this exact section order unless the user requests a different format:
 
 ```markdown
 # Architecture Recommendation
@@ -237,7 +237,7 @@ Use this exact section order unless the user requests a different format:
 ## Confidence
 ```
 
-For significant decisions, include a compact decision table:
+For significant decisions, include a compact decision table. The following is one example of the pattern:
 
 ```markdown
 | Decision | Recommendation | Why | Risk | Mitigation |
@@ -275,7 +275,7 @@ For significant decisions, include a compact decision table:
 - migration and deprecation plan
 
 #### Endpoint Catalog Template
-Use a table like this:
+The following is one example of the endpoint catalog pattern:
 
 ```markdown
 | Method | Path | Purpose | Auth | Request | Response | Errors | Notes |
@@ -294,7 +294,7 @@ Use a table like this:
 - State breaking-change policy explicitly.
 
 #### API Example Snippet
-Provide at least one concrete example like:
+Provide at least one concrete example; the following is one example of the response pattern:
 
 ```json
 {
@@ -311,7 +311,7 @@ Provide at least one concrete example like:
 ```
 
 #### Worked API Example
-For a user-and-orders domain, a minimally acceptable worked example should cover:
+One example of the API pattern uses a user-and-orders domain:
 
 ```markdown
 | Method | Path | Purpose | Auth | Request | Response | Errors | Notes |
@@ -335,7 +335,7 @@ Also include:
 - What is the deprecation and migration window?
 
 #### API Output Format
-Use this exact structure for `design-api` responses:
+Use this exact structure for the writer's `design-api` recommendation artifact:
 
 ```markdown
 ## API Problem Framing
@@ -384,7 +384,7 @@ Use this exact structure for `design-api` responses:
 - operational risks
 
 #### Schema Template
-Use a structure like:
+The following is one example of the schema pattern:
 
 ```text
 Users
@@ -418,6 +418,7 @@ For schema changes, specify:
 - rollback order
 
 #### Database Worked Example
+One example of the relational schema pattern:
 ```sql
 CREATE TABLE users (
   id UUID PRIMARY KEY,
@@ -439,13 +440,13 @@ CREATE INDEX idx_orders_user_created_at
 ```
 
 #### Database Migration Example
-Use expand / migrate / contract when a schema change is not backward compatible:
+Use expand / migrate / contract when a schema change is not backward compatible. The following is one example of the migration pattern:
 1. Expand: add nullable `billing_email` column and dual-write support.
 2. Migrate: backfill from existing contact table and validate row counts.
 3. Contract: switch reads to new column, remove old dependency after verification window.
 
 #### Database Output Format
-Use this exact structure for `design-database` responses:
+Use this exact structure for the writer's `design-database` recommendation artifact:
 
 ```markdown
 ## Database Problem Framing
@@ -490,6 +491,7 @@ Use this exact structure for `design-database` responses:
 - migration and replacement plan
 
 #### Pattern Fit Matrix Template
+One example of the comparison pattern:
 
 ```markdown
 | Pattern | Fit | Why | Risks | Reject / Keep |
@@ -517,6 +519,7 @@ Use this exact structure for `design-database` responses:
 - rollback path
 
 #### Pattern Exemplars
+Each snippet is one example of the named pattern:
 
 **Factory over branching construction**
 ```javascript
@@ -535,9 +538,9 @@ interface PaymentsGateway {
   charge(amountCents: number): Promise<string>;
 }
 
-class StripePaymentsGateway implements PaymentsGateway {
+class ExternalPaymentsAdapter implements PaymentsGateway {
   async charge(amountCents: number): Promise<string> {
-    return stripe.charge({ amount: amountCents });
+    return externalPaymentsClient.charge({ amount: amountCents });
   }
 }
 ```
@@ -558,7 +561,7 @@ class AuditNotifier {
 - Do not default to Singleton for convenience when dependency injection or explicit ownership would keep testability and boundary clarity intact.
 
 #### Pattern Review Output Format
-Use this exact structure for `design-patterns` responses:
+Use this exact structure for the writer's `design-patterns` recommendation artifact:
 
 ```markdown
 ## Pattern Problem Framing
@@ -607,6 +610,7 @@ Use this exact structure for `design-patterns` responses:
 - rollout and rollback plan
 
 #### System Component Template
+One example of the responsibility pattern:
 
 ```markdown
 | Component | Responsibility | State | Scale Driver | Failure Mode | Owner |
@@ -625,6 +629,7 @@ When scale matters, calculate at least:
 Write the math explicitly when assumptions matter.
 
 #### System Diagram Example
+One example of the topology pattern:
 ```text
 Client -> CDN -> API Gateway -> Application Service
                              -> Cache
@@ -634,6 +639,7 @@ Client -> CDN -> API Gateway -> Application Service
 ```
 
 #### Read Flow Example
+One example of the read flow pattern:
 ```text
 1. Client request reaches API Gateway
 2. Service checks cache for document summary
@@ -642,6 +648,7 @@ Client -> CDN -> API Gateway -> Application Service
 ```
 
 #### Write Flow Example
+One example of the write flow pattern:
 ```text
 1. Client submits document
 2. API stores metadata row
@@ -652,6 +659,7 @@ Client -> CDN -> API Gateway -> Application Service
 ```
 
 #### Capacity Calculation Example
+One example of the capacity calculation pattern:
 ```text
 Daily active users: 250,000
 Requests per user per day: 24
@@ -670,7 +678,7 @@ Peak RPS: ~278
 - Wrap third-party or cloud dependencies behind stable internal interfaces.
 
 #### System Design Output Format
-Use this exact structure for `system-design` responses:
+Use this exact structure for the writer's `system-design` recommendation artifact:
 
 ```markdown
 ## System Problem Framing
@@ -705,7 +713,7 @@ Use this exact structure for `system-design` responses:
 - interface contract summary
 - decision table
 
-Example:
+One example of the pattern:
 
 ```markdown
 # Architecture Spec
@@ -724,7 +732,7 @@ Example:
 - impact
 - owner
 
-Example:
+One example of the pattern:
 
 ```markdown
 # Decision Log
@@ -751,7 +759,7 @@ Platform API team
 - rollback order
 - communication or coordination notes
 
-Example:
+One example of the pattern:
 
 ```markdown
 # Migration Plan
@@ -774,23 +782,27 @@ Example:
 ## Example Invocation Patterns
 
 ### API design
+One example of the request pattern:
 ```text
-/engos-design-architecture design an internal billing API for invoices, payments, and credit notes. Include auth, pagination, error model, and versioning.
+design an internal billing API for invoices, payments, and credit notes. Include auth, pagination, error model, and versioning.
 ```
 
 ### Database design
+One example of the request pattern:
 ```text
-/engos-design-architecture design the schema for a multi-tenant issue tracker. Include indexing, retention, and migration strategy.
+design the schema for a multi-tenant issue tracker. Include indexing, retention, and migration strategy.
 ```
 
 ### Pattern selection
+One example of the request pattern:
 ```text
-/engos-design-architecture review this module layout and recommend patterns to reduce coupling and improve testability.
+review this module layout and recommend patterns to reduce coupling and improve testability.
 ```
 
 ### System design
+One example of the request pattern:
 ```text
-/engos-design-architecture design a document-processing system that ingests PDFs, extracts metadata, and serves searchable results with background jobs and audit trails.
+design a document-processing system that ingests PDFs, extracts metadata, and serves searchable results with background jobs and audit trails.
 ```
 
 ## Hard Constraints
@@ -809,17 +821,32 @@ Example:
 13. Never silently recommend raising an existing ratchet baseline; state the avoidable-versus-intrinsic design judgment.
 14. Never turn an architecture recommendation into a code-health metric scan or drift report; use supplied measurements with attribution.
 
+## Recommendation Roles
+For each substantial recommendation, use three actual participants with separate responsibilities:
+- **Coordinator**: dispatches the work and counts the reviewer's open findings. The coordinator does not write the recommendation artifact, findings, or repairs, and cannot waive a finding.
+- **Writer**: writes the recommendation artifact only and repairs it from the reviewer's findings. Resume the same writer for every revision; do not start a fresh writer for a revision.
+- **Reviewer**: did not write the artifact, checks it against the sources and retained domain rules, and writes findings only. The reviewer does not rewrite the artifact. Resume the same reviewer for every later round.
+
+If separate participants or their resumed contexts are unavailable, report the review as incomplete. Never substitute coordinator authorship, self-review, or simulated roles for a required participant.
+
 ## Review Gate
-Before finalizing, verify all of the following:
-- Does each major recommendation say what problem it solves?
-- Does each major recommendation say what it costs?
-- Are failure modes named?
-- Is rollback described?
+1. The coordinator gives the writer the objective, scope, constraints and sources; the writer produces the artifact under the domain workflow above.
+2. The coordinator gives the separate reviewer the artifact, original task, sources and domain rules. The reviewer is hostile in the ordinary sense: verify each material claim, cite the source, and do not invent a defect to fill a section. A source gap is grounds for a finding only when the artifact overstates evidence, misses a required uncertainty, or cannot support a material decision.
+3. Each finding has an identifier, severity, artifact location, what is wrong, a concrete repair, source evidence, and status `open`. If nothing is wrong, the reviewer returns an empty finding list and explicitly reports zero open findings.
+4. The coordinator returns every open finding to the same writer. The writer repairs the artifact and attaches a disposition to each received identifier: `addressed` with what changed; `wontfix` with a technical reason; or `needs-user-input` when only a human can choose. These dispositions are repair responses, not a replacement finding list or acceptance decision. Human-choice findings remain unresolved while awaiting the answer.
+5. The same reviewer rechecks the revised artifact and rewrites the current finding list: drop fixed findings; keep a bad repair open; add any new defect as open. A writer disposition cannot close a finding. If the reviewer reopens a finding marked `wontfix`, that is a stalemate: ask the user and treat the user's answer as final for that finding. The writer applies the answer, and the reviewer honors it when rewriting the list; it does not settle unrelated findings.
+6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while findings are open, while a required human answer is pending, or while review is incomplete. A writer's score or checklist cannot satisfy this exit. This inner issue count does not decide any wider workflow's acceptance.
+
+The reviewer checks at least the following domain questions:
+- Does each major recommendation say what problem it solves and what it costs?
+- Are failure modes named and rollback described?
 - Are interfaces explicit enough that another engineer could implement from them?
 - Are rejected alternatives concrete rather than generic?
-- Are module responsibilities clear enough for ownership?
+- Are module responsibilities clear enough for ownership and distinguished from deployment boundaries?
 - Are observability and validation included where operational behavior changes?
 - For removal or decoupling claims, is the falsifier named, with its proof basis and execution status clear?
+- Are conventions distinguished from enforced seams?
+- Is confidence lowered when ownership or a constraint is unknown?
 
 ## When to Refuse Confidence
 Reduce confidence sharply or state that the recommendation is provisional when:
@@ -829,42 +856,6 @@ Reduce confidence sharply or state that the recommendation is provisional when:
 - the user asks for a pattern recommendation without the current problem or pain being visible
 - constraints conflict with each other and no priority order is given
 - rollout risk is meaningful but no migration window or compatibility constraint is available
-
-## Architecture Quality Scorecard
-Score each criterion as `0`, `1`, or `2`.
-
-- `Output Completeness`
-- `Scope Discipline`
-- `Technical Specificity`
-- `Evidence Quality`
-- `Failure-Aware Decisions`
-- `Migration Clarity`
-- `Benchmark Fit`
-- `Falsifiability` (score `2` when no removal, isolation, or decoupling claim applies)
-
-Pass rules:
-- `Overall Score >= 11`
-- `Failure-Aware Decisions` must not be `0`
-- `Migration Clarity` must not be `0`
-- `Benchmark Fit` must not be `0`
-- `Falsifiability` must not be `0`
-
-Include this block at the end of every substantive response:
-
-```markdown
-## Architecture Quality Scorecard
-- Output Completeness: 0|1|2
-- Scope Discipline: 0|1|2
-- Technical Specificity: 0|1|2
-- Evidence Quality: 0|1|2
-- Failure-Aware Decisions: 0|1|2
-- Migration Clarity: 0|1|2
-- Benchmark Fit: 0|1|2
-- Falsifiability: 0|1|2
-- Overall Score: 0-16
-- Pass: true|false
-- Rationale: short explanation for any weakness
-```
 
 
 Capability resource: `resources/capability.json`

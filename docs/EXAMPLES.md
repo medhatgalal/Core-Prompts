@@ -236,7 +236,8 @@ Expected output:
 - boundary decisions
 - an enforceable contract and a proposed or observed falsifier when claiming removal or decoupling
 - migration and rollback guidance
-- a final recommendation
+- a final recommendation reviewed against the sources by a separate reviewer
+- zero open reviewer findings; revisions resume the same writer and reviewer
 
 Follow with:
 

@@ -23,7 +23,9 @@ def test_package_version_must_match_version_file(tmp_path: Path) -> None:
     assert "must match repo VERSION" in result.stdout
 
 
-def test_package_boundary_includes_release_watch_contract(tmp_path: Path) -> None:
+def test_package_boundary_includes_release_watch_contract(
+    tmp_path: Path, finalized_release_tree: Path
+) -> None:
     retired_repo_paths = (
         ROOT / ".codex" / "skills" / "mentor",
         ROOT / ".codex" / "agents" / "resources" / "mentor",
@@ -37,10 +39,11 @@ def test_package_boundary_includes_release_watch_contract(tmp_path: Path) -> Non
     )
     assert all(not path.exists() for path in retired_repo_paths)
 
-    version = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
+    repo = finalized_release_tree
+    version = (repo / "VERSION").read_text(encoding="utf-8").strip()
     result = subprocess.run(
-        [str(PACKAGE_SCRIPT), "--version", version, "--output-dir", str(tmp_path)],
-        cwd=ROOT,
+        [str(repo / "scripts/package-surfaces.sh"), "--version", version, "--output-dir", str(tmp_path)],
+        cwd=repo,
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
         text=True,
@@ -122,16 +125,19 @@ def test_package_boundary_includes_release_watch_contract(tmp_path: Path) -> Non
         )
 
 
-def test_packaged_profile_updates_verified_release_and_rolls_back(tmp_path: Path) -> None:
+def test_packaged_profile_updates_verified_release_and_rolls_back(
+    tmp_path: Path, finalized_release_tree: Path
+) -> None:
     """No checkout fallback: run only the extracted distribution in a disposable home."""
     import importlib.util
     import json
     import shutil
     import sys
-    version = (ROOT / "VERSION").read_text().strip()
+    repo = finalized_release_tree
+    version = (repo / "VERSION").read_text().strip()
     artifacts = tmp_path / 'artifacts'
-    subprocess.run([str(PACKAGE_SCRIPT), '--version', version, '--output-dir', str(artifacts)],
-                   cwd=ROOT, check=True, capture_output=True)
+    subprocess.run([str(repo / "scripts/package-surfaces.sh"), '--version', version, '--output-dir', str(artifacts)],
+                   cwd=repo, check=True, capture_output=True)
     home = tmp_path / 'home'; support = home / '.core-prompts-updater'
     support.mkdir(parents=True)
     with tarfile.open(artifacts / f'core-prompts-{version}-surfaces.tar.gz') as archive:

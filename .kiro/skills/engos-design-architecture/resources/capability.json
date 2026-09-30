@@ -150,18 +150,16 @@
         "capture quality constraints or non-negotiables"
       ],
       "quality_criteria": [
-        "Score against the published architecture scorecard on every significant design branch",
+        "Require a separate source-checking reviewer to report zero open findings on the current recommendation",
         "Include rejected alternatives and explicit trade-offs for major design decisions",
         "Keep migration, rollback, and validation concrete enough to execute",
         "Meet or exceed the Harish/Alexanderdunlop source bar and the local code-review/resolve-conflict bar"
       ],
       "quality_gate": {
-        "min_pass_score": 9,
-        "required_no_zero_for": [
-          "Failure-Aware Decisions",
-          "Migration Clarity",
-          "Benchmark Fit"
-        ]
+        "reviewer_must_differ_from_writer": true,
+        "required_open_findings": 0,
+        "round_cap": null,
+        "same_writer_and_reviewer_on_revision": true
       }
     },
     "org_graph": {
@@ -196,10 +194,10 @@
   ],
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "engos-design-architecture",
-  "shared_summary": "Architecture Studio for API, database, pattern, and system design with enforceable boundaries, explicit falsifiers for removal claims, and migration-safe recommendations.",
+  "shared_summary": "Design APIs, data models, patterns, or systems with explicit boundaries, trade-offs, failure modes, migration, rollback, and validation. Use for concrete architecture decisions; do not use for prompt hardening or behavioral evaluation.",
   "shared_constraints": [
-    "Publish architecture guidance only; do not orchestrate or delegate work.",
-    "Use deterministic, sectioned outputs with explicit scorecards.",
+    "Publish advisory architecture artifacts through a coordinator, one writer and a separate reviewer; do not implement application code or claim wider runtime-control authority.",
+    "Use deterministic, sectioned artifacts; finalize only when the separate reviewer reports zero open findings.",
     "Prefer replaceable interfaces and stable boundaries over implementation-heavy advice.",
     "Make assumptions, trade-offs, evidence, and rollback explicit.",
     "Validate and report migration impact when designs change interfaces or ownership."
@@ -224,7 +222,7 @@
         "trade-off assessment",
         "rejected alternative",
         "migration and rollback guidance",
-        "quality scorecard",
+        "separate reviewer finding list with zero open findings",
         "validation plan"
       ],
       "examples": [
@@ -257,7 +255,7 @@
         "normalization notes",
         "consistency trade-off",
         "migration and rollback guidance",
-        "quality scorecard"
+        "separate reviewer finding list with zero open findings"
       ],
       "examples": [
         "OLTP schema",
@@ -290,7 +288,7 @@
         "before/after boundary sketch",
         "rejected alternatives",
         "risk assessment",
-        "quality scorecard",
+        "separate reviewer finding list with zero open findings",
         "replacement and rollback strategy"
       ],
       "examples": [
@@ -326,7 +324,7 @@
         "failure model",
         "deployment and rollback plan",
         "dependency ownership map",
-        "quality scorecard"
+        "separate reviewer finding list with zero open findings"
       ],
       "examples": [
         "SaaS control plane",
@@ -428,7 +426,7 @@
           "title": "Source Fidelity and Uplift",
           "score": 10,
           "blockers": [],
-          "classification": "additive",
+          "classification": "reviewed_modernization",
           "scenario_results": [
             {
               "id": "operational_invocation",
@@ -440,7 +438,7 @@
           ],
           "reviewed_deltas": [],
           "requirement_review": {
-            "status": "not_supplied_or_invalid",
+            "status": "bound_attestation",
             "identity_authenticated": false,
             "behavioral_status": "behavioral_pending"
           },
@@ -502,7 +500,7 @@
         "surface_usability": 10
       },
       "template_name": "skill",
-      "effective_sha256": "5d474ec75ac039475dbceef89b5970173cd1427b2897325437361673ac88bbaf",
+      "effective_sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d",
       "semantic_findings": [],
       "agent_surface_review": {
         "status": "unchanged",
@@ -625,13 +623,13 @@
         "kind": "source_exclusions_not_synthetic_prompts",
         "clauses": [
           {
-            "text": "Do not use this skill to run orchestration, assign sub-agents, or choose runtime delegation. This skill publishes architecture guidance and decision artifacts only.\nDo not use this skill when the user mainly needs prompt hardening, capability import judgment, behavioral proof, or persistent multi-file analysis memory.",
+            "text": "This skill publishes advisory architecture guidance and decision artifacts through the three roles below. Its coordination is limited to this recommendation review; it grants no implementation or wider runtime-control authority.\nDo not use this skill when the user mainly needs prompt hardening, capability import judgment, behavioral proof, or persistent multi-file analysis memory.",
             "heading": "Purpose",
             "source": {
               "path": "ssot/engos-design-architecture.md",
               "start_line": 23,
               "end_line": 24,
-              "sha256": "5d474ec75ac039475dbceef89b5970173cd1427b2897325437361673ac88bbaf"
+              "sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d"
             }
           }
         ]
@@ -644,8 +642,8 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-design-architecture.md",
-        "ssot_sha256": "5d474ec75ac039475dbceef89b5970173cd1427b2897325437361673ac88bbaf",
-        "effective_sha256": "5d474ec75ac039475dbceef89b5970173cd1427b2897325437361673ac88bbaf",
+        "ssot_sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d",
+        "effective_sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d",
         "resources": [],
         "extractor_version": "source-clauses.v1",
         "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -664,7 +662,7 @@
           "works_on"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "dedb0c2e47b530605da60096a52fe60801aace4f45c1b409426f23d703f3889d"
+        "mapping_sha256": "f1f884b16803f6d4ae00e9c0fee57fc781ddb53725f5f88d14a6db4d48f0925a"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

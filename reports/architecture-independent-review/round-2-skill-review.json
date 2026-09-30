@@ -1,0 +1,26 @@
+{
+  "schema_version": "IndependentSkillReview.v1",
+  "round": 2,
+  "scope": "Architecture skill output-role contract; full package/inventory review pending.",
+  "reviewer_agent_id": "/root/reviewer",
+  "author_agent_id": "/root/writer",
+  "independent": true,
+  "candidate_path": "reports/architecture-independent-review/engos-design-architecture.candidate.md",
+  "candidate_sha256": "650503f958c772ba13834659039bf8bc9f4262d8f2e1a72125701d5d073d0f2f",
+  "findings": [
+    {
+      "id": "R2-01",
+      "severity": "P2",
+      "location": "reports/architecture-independent-review/engos-design-architecture.candidate.md:208",
+      "what_is_wrong": "Universal Deliverables requires all architecture response sections even for brief responses. This includes reviewer finding responses and coordinator dispatch/count responses, conflicting with the exclusive roles. Required Output was narrowed to recommendation artifacts but this duplicate output requirement was not.",
+      "concrete_repair": "Apply universal and mode recommendation output templates to the writer recommendation artifact only. Keep reviewer finding lists, writer finding dispositions and coordinator dispatch/count returns governed by the role review contract.",
+      "source_evidence": [
+        "User Structure: coordinator does not write artifact/findings; reviewer writes findings only.",
+        "Candidate Recommendation Roles: reviewer writes findings only.",
+        "Candidate Universal Deliverables: Every architecture response must include all ... even when brief."
+      ],
+      "status": "open"
+    }
+  ],
+  "open_findings": 1
+}

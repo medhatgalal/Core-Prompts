@@ -1,0 +1,613 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-design-architecture",
+  "original_sha256": "5d474ec75ac039475dbceef89b5970173cd1427b2897325437361673ac88bbaf",
+  "candidate_sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d",
+  "effective_sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d",
+  "source_line_count": 873,
+  "verdict": "approved",
+  "reviewer": {
+    "agent_id": "/root/reviewer",
+    "author_agent_id": "/root/writer",
+    "independent": true
+  },
+  "review_receipt": "reports/architecture-independent-review/round-4-normalized-review.json",
+  "agent_execution_needs": [],
+  "requirements": [
+    {
+      "id": "current-original-1-22",
+      "source_start_line": 1,
+      "source_end_line": 22,
+      "disposition": "preserved",
+      "candidate_excerpt": "---",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-23-23",
+      "source_start_line": 23,
+      "source_end_line": 23,
+      "disposition": "reformulated",
+      "candidate_excerpt": "This skill publishes advisory architecture guidance and decision artifacts through the three roles below. Its coordination is limited to this recommendation review; it grants no implementation or wider runtime-control authority.",
+      "rationale": "User explicitly requires coordinator/writer/reviewer dispatch. Replace the blanket delegation prohibition with this narrow recommendation-review allowance while preserving no application implementation or wider runtime-control authority."
+    },
+    {
+      "id": "current-original-24-44",
+      "source_start_line": 24,
+      "source_end_line": 44,
+      "disposition": "preserved",
+      "candidate_excerpt": "Do not use this skill when the user mainly needs prompt hardening, capability import judgment, behavioral proof, or persistent multi-file analysis memory.",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-45-45",
+      "source_start_line": 45,
+      "source_end_line": 45,
+      "disposition": "reformulated",
+      "candidate_excerpt": "Every substantial recommendation artifact must include:",
+      "rationale": "Retain all artifact deliverables and ordering; narrow output-format application to the writer recommendation artifact so coordinator and reviewer obey their exclusive roles."
+    },
+    {
+      "id": "current-original-46-61",
+      "source_start_line": 46,
+      "source_end_line": 61,
+      "disposition": "preserved",
+      "candidate_excerpt": "- `Problem Framing`",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-62-62",
+      "source_start_line": 62,
+      "source_end_line": 62,
+      "disposition": "reformulated",
+      "candidate_excerpt": "Each example below is one example of the pattern, not a prescribed design or closed list. Representative asks and output patterns appear in `Example Invocation Patterns` below. Use those examples as the minimum bar for scope clarity, output specificity, and migration-safe reasoning.",
+      "rationale": "Retain the example content or template while explicitly labeling it as one example of the pattern, as requested; it is not a closed design or product contract."
+    },
+    {
+      "id": "current-original-63-64",
+      "source_start_line": 63,
+      "source_end_line": 64,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Evaluation Rubric",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-65-65",
+      "source_start_line": 65,
+      "source_end_line": 65,
+      "disposition": "reformulated",
+      "candidate_excerpt": "The separate reviewer uses the Review Gate below as the acceptance gate. The recommendation must:",
+      "rationale": "User explicitly requires reviewer zero-open acceptance instead of author-filled numeric acceptance. The domain acceptance bullets following this line remain unchanged."
+    },
+    {
+      "id": "current-original-66-72",
+      "source_start_line": 66,
+      "source_end_line": 72,
+      "disposition": "preserved",
+      "candidate_excerpt": "- states objective, scope, assumptions, and constraints before recommending structure",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-73-73",
+      "source_start_line": 73,
+      "source_end_line": 73,
+      "disposition": "reformulated",
+      "candidate_excerpt": "The coordinator assigns one architecture writer and one separate reviewer for a substantial recommendation. A participant assigned as writer remains an advisory architecture artifact writer.",
+      "rationale": "Retain advisory writer purpose while assigning coordinator and independent reviewer; this is generic participant dispatch and creates no native agent surface."
+    },
+    {
+      "id": "current-original-74-86",
+      "source_start_line": 74,
+      "source_end_line": 86,
+      "disposition": "preserved",
+      "candidate_excerpt": "Mission:",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-87-88",
+      "source_start_line": 87,
+      "source_end_line": 88,
+      "disposition": "reformulated",
+      "candidate_excerpt": "- forbidden: wider runtime routing or workflow control, or implementing application code as a side effect of architecture analysis\n- escalation rule: if implementation or wider orchestration is requested, hand that off as a separate capability decision instead of folding it into architecture output",
+      "rationale": "User explicitly requires coordinator/writer/reviewer dispatch. Replace the blanket delegation prohibition with this narrow recommendation-review allowance while preserving no application implementation or wider runtime-control authority."
+    },
+    {
+      "id": "current-original-89-207",
+      "source_start_line": 89,
+      "source_end_line": 207,
+      "disposition": "preserved",
+      "candidate_excerpt": "- companion route: if the work is actually prompt or plan hardening, route to `engos-meta-supercharge`; if it is import classification, route to `engos-meta-uac-import`; if it needs durable multi-file analysis memory, route to `engos-memory-context-continuity`",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-208-208",
+      "source_start_line": 208,
+      "source_end_line": 208,
+      "disposition": "reformulated",
+      "candidate_excerpt": "Every writer-authored recommendation artifact must include all of the following, even when brief. Coordinator dispatches and reviewer finding lists do not use this artifact format:",
+      "rationale": "Retain all artifact deliverables and ordering; narrow output-format application to the writer recommendation artifact so coordinator and reviewer obey their exclusive roles."
+    },
+    {
+      "id": "current-original-209-224",
+      "source_start_line": 209,
+      "source_end_line": 224,
+      "disposition": "preserved",
+      "candidate_excerpt": "- `Problem Framing`",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-225-225",
+      "source_start_line": 225,
+      "source_end_line": 225,
+      "disposition": "reformulated",
+      "candidate_excerpt": "For the writer's recommendation artifact, use this exact section order unless the user requests a different format:",
+      "rationale": "Retain all artifact deliverables and ordering; narrow output-format application to the writer recommendation artifact so coordinator and reviewer obey their exclusive roles."
+    },
+    {
+      "id": "current-original-226-245",
+      "source_start_line": 226,
+      "source_end_line": 245,
+      "disposition": "preserved",
+      "candidate_excerpt": "```markdown",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-246-246",
+      "source_start_line": 246,
+      "source_end_line": 246,
+      "disposition": "reformulated",
+      "candidate_excerpt": "For significant decisions, include a compact decision table. The following is one example of the pattern:",
+      "rationale": "Reformulated without losing the domain obligation; candidate excerpt binds the exact replacement."
+    },
+    {
+      "id": "current-original-247-283",
+      "source_start_line": 247,
+      "source_end_line": 283,
+      "disposition": "preserved",
+      "candidate_excerpt": "```markdown",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-284-284",
+      "source_start_line": 284,
+      "source_end_line": 284,
+      "disposition": "reformulated",
+      "candidate_excerpt": "The following is one example of the endpoint catalog pattern:",
+      "rationale": "Retain the example content or template while explicitly labeling it as one example of the pattern, as requested; it is not a closed design or product contract."
+    },
+    {
+      "id": "current-original-285-302",
+      "source_start_line": 285,
+      "source_end_line": 302,
+      "disposition": "preserved",
+      "candidate_excerpt": "```markdown",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-303-303",
+      "source_start_line": 303,
+      "source_end_line": 303,
+      "disposition": "reformulated",
+      "candidate_excerpt": "Provide at least one concrete example; the following is one example of the response pattern:",
+      "rationale": "Retain the example content or template while explicitly labeling it as one example of the pattern, as requested; it is not a closed design or product contract."
+    },
+    {
+      "id": "current-original-304-319",
+      "source_start_line": 304,
+      "source_end_line": 319,
+      "disposition": "preserved",
+      "candidate_excerpt": "```json",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-320-320",
+      "source_start_line": 320,
+      "source_end_line": 320,
+      "disposition": "reformulated",
+      "candidate_excerpt": "One example of the API pattern uses a user-and-orders domain:",
+      "rationale": "Retain the example content or template while explicitly labeling it as one example of the pattern, as requested; it is not a closed design or product contract."
+    },
+    {
+      "id": "current-original-321-343",
+      "source_start_line": 321,
+      "source_end_line": 343,
+      "disposition": "preserved",
+      "candidate_excerpt": "```markdown",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-344-344",
+      "source_start_line": 344,
+      "source_end_line": 344,
+      "disposition": "reformulated",
+      "candidate_excerpt": "Use this exact structure for the writer's `design-api` recommendation artifact:",
+      "rationale": "Retain all artifact deliverables and ordering; narrow output-format application to the writer recommendation artifact so coordinator and reviewer obey their exclusive roles."
+    },
+    {
+      "id": "current-original-345-392",
+      "source_start_line": 345,
+      "source_end_line": 392,
+      "disposition": "preserved",
+      "candidate_excerpt": "```markdown",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-393-393",
+      "source_start_line": 393,
+      "source_end_line": 393,
+      "disposition": "reformulated",
+      "candidate_excerpt": "The following is one example of the schema pattern:",
+      "rationale": "Retain the example content or template while explicitly labeling it as one example of the pattern, as requested; it is not a closed design or product contract."
+    },
+    {
+      "id": "current-original-394-426",
+      "source_start_line": 394,
+      "source_end_line": 426,
+      "disposition": "preserved",
+      "candidate_excerpt": "```text",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-427-447",
+      "source_start_line": 427,
+      "source_end_line": 447,
+      "disposition": "preserved",
+      "candidate_excerpt": "```sql",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-448-448",
+      "source_start_line": 448,
+      "source_end_line": 448,
+      "disposition": "reformulated",
+      "candidate_excerpt": "Use expand / migrate / contract when a schema change is not backward compatible. The following is one example of the migration pattern:",
+      "rationale": "Reformulated without losing the domain obligation; candidate excerpt binds the exact replacement."
+    },
+    {
+      "id": "current-original-449-453",
+      "source_start_line": 449,
+      "source_end_line": 453,
+      "disposition": "preserved",
+      "candidate_excerpt": "1. Expand: add nullable `billing_email` column and dual-write support.",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-454-454",
+      "source_start_line": 454,
+      "source_end_line": 454,
+      "disposition": "reformulated",
+      "candidate_excerpt": "Use this exact structure for the writer's `design-database` recommendation artifact:",
+      "rationale": "Retain all artifact deliverables and ordering; narrow output-format application to the writer recommendation artifact so coordinator and reviewer obey their exclusive roles."
+    },
+    {
+      "id": "current-original-455-498",
+      "source_start_line": 455,
+      "source_end_line": 498,
+      "disposition": "preserved",
+      "candidate_excerpt": "```markdown",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-499-525",
+      "source_start_line": 499,
+      "source_end_line": 525,
+      "disposition": "preserved",
+      "candidate_excerpt": "```markdown",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-526-543",
+      "source_start_line": 526,
+      "source_end_line": 543,
+      "disposition": "preserved",
+      "candidate_excerpt": "**Factory over branching construction**",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-544-544",
+      "source_start_line": 544,
+      "source_end_line": 544,
+      "disposition": "reformulated",
+      "candidate_excerpt": "class ExternalPaymentsAdapter implements PaymentsGateway {",
+      "rationale": "User prohibits named products in skill text. Preserve the external payment port/adapter example using generic adapter and client names."
+    },
+    {
+      "id": "current-original-545-545",
+      "source_start_line": 545,
+      "source_end_line": 545,
+      "disposition": "preserved",
+      "candidate_excerpt": "  async charge(amountCents: number): Promise<string> {",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-546-546",
+      "source_start_line": 546,
+      "source_end_line": 546,
+      "disposition": "reformulated",
+      "candidate_excerpt": "    return externalPaymentsClient.charge({ amount: amountCents });",
+      "rationale": "User prohibits named products in skill text. Preserve the external payment port/adapter example using generic adapter and client names."
+    },
+    {
+      "id": "current-original-547-566",
+      "source_start_line": 547,
+      "source_end_line": 566,
+      "disposition": "preserved",
+      "candidate_excerpt": "  }",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-567-567",
+      "source_start_line": 567,
+      "source_end_line": 567,
+      "disposition": "reformulated",
+      "candidate_excerpt": "Use this exact structure for the writer's `design-patterns` recommendation artifact:",
+      "rationale": "Retain all artifact deliverables and ordering; narrow output-format application to the writer recommendation artifact so coordinator and reviewer obey their exclusive roles."
+    },
+    {
+      "id": "current-original-568-615",
+      "source_start_line": 568,
+      "source_end_line": 615,
+      "disposition": "preserved",
+      "candidate_excerpt": "```markdown",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-616-633",
+      "source_start_line": 616,
+      "source_end_line": 633,
+      "disposition": "preserved",
+      "candidate_excerpt": "```markdown",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-634-642",
+      "source_start_line": 634,
+      "source_end_line": 642,
+      "disposition": "preserved",
+      "candidate_excerpt": "```text",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-643-650",
+      "source_start_line": 643,
+      "source_end_line": 650,
+      "disposition": "preserved",
+      "candidate_excerpt": "```text",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-651-660",
+      "source_start_line": 651,
+      "source_end_line": 660,
+      "disposition": "preserved",
+      "candidate_excerpt": "```text",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-661-678",
+      "source_start_line": 661,
+      "source_end_line": 678,
+      "disposition": "preserved",
+      "candidate_excerpt": "```text",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-679-679",
+      "source_start_line": 679,
+      "source_end_line": 679,
+      "disposition": "reformulated",
+      "candidate_excerpt": "Use this exact structure for the writer's `system-design` recommendation artifact:",
+      "rationale": "Retain all artifact deliverables and ordering; narrow output-format application to the writer recommendation artifact so coordinator and reviewer obey their exclusive roles."
+    },
+    {
+      "id": "current-original-680-713",
+      "source_start_line": 680,
+      "source_end_line": 713,
+      "disposition": "preserved",
+      "candidate_excerpt": "```markdown",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-714-714",
+      "source_start_line": 714,
+      "source_end_line": 714,
+      "disposition": "reformulated",
+      "candidate_excerpt": "One example of the pattern:",
+      "rationale": "Retain the example content or template while explicitly labeling it as one example of the pattern, as requested; it is not a closed design or product contract."
+    },
+    {
+      "id": "current-original-715-732",
+      "source_start_line": 715,
+      "source_end_line": 732,
+      "disposition": "preserved",
+      "candidate_excerpt": "```markdown",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-733-733",
+      "source_start_line": 733,
+      "source_end_line": 733,
+      "disposition": "reformulated",
+      "candidate_excerpt": "One example of the pattern:",
+      "rationale": "Retain the example content or template while explicitly labeling it as one example of the pattern, as requested; it is not a closed design or product contract."
+    },
+    {
+      "id": "current-original-734-759",
+      "source_start_line": 734,
+      "source_end_line": 759,
+      "disposition": "preserved",
+      "candidate_excerpt": "```markdown",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-760-760",
+      "source_start_line": 760,
+      "source_end_line": 760,
+      "disposition": "reformulated",
+      "candidate_excerpt": "One example of the pattern:",
+      "rationale": "Retain the example content or template while explicitly labeling it as one example of the pattern, as requested; it is not a closed design or product contract."
+    },
+    {
+      "id": "current-original-761-782",
+      "source_start_line": 761,
+      "source_end_line": 782,
+      "disposition": "preserved",
+      "candidate_excerpt": "```markdown",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-783-783",
+      "source_start_line": 783,
+      "source_end_line": 783,
+      "disposition": "preserved",
+      "candidate_excerpt": "```text",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-784-784",
+      "source_start_line": 784,
+      "source_end_line": 784,
+      "disposition": "reformulated",
+      "candidate_excerpt": "design an internal billing API for invoices, payments, and credit notes. Include auth, pagination, error model, and versioning.",
+      "rationale": "User prohibits host commands in skill text. Preserve the same architectural example request content with explicit one-example labeling and remove the host invocation token."
+    },
+    {
+      "id": "current-original-785-787",
+      "source_start_line": 785,
+      "source_end_line": 787,
+      "disposition": "preserved",
+      "candidate_excerpt": "```",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-788-788",
+      "source_start_line": 788,
+      "source_end_line": 788,
+      "disposition": "preserved",
+      "candidate_excerpt": "```text",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-789-789",
+      "source_start_line": 789,
+      "source_end_line": 789,
+      "disposition": "reformulated",
+      "candidate_excerpt": "design the schema for a multi-tenant issue tracker. Include indexing, retention, and migration strategy.",
+      "rationale": "User prohibits host commands in skill text. Preserve the same architectural example request content with explicit one-example labeling and remove the host invocation token."
+    },
+    {
+      "id": "current-original-790-792",
+      "source_start_line": 790,
+      "source_end_line": 792,
+      "disposition": "preserved",
+      "candidate_excerpt": "```",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-793-793",
+      "source_start_line": 793,
+      "source_end_line": 793,
+      "disposition": "preserved",
+      "candidate_excerpt": "```text",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-794-794",
+      "source_start_line": 794,
+      "source_end_line": 794,
+      "disposition": "reformulated",
+      "candidate_excerpt": "review this module layout and recommend patterns to reduce coupling and improve testability.",
+      "rationale": "User prohibits host commands in skill text. Preserve the same architectural example request content with explicit one-example labeling and remove the host invocation token."
+    },
+    {
+      "id": "current-original-795-797",
+      "source_start_line": 795,
+      "source_end_line": 797,
+      "disposition": "preserved",
+      "candidate_excerpt": "```",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-798-798",
+      "source_start_line": 798,
+      "source_end_line": 798,
+      "disposition": "preserved",
+      "candidate_excerpt": "```text",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-799-799",
+      "source_start_line": 799,
+      "source_end_line": 799,
+      "disposition": "reformulated",
+      "candidate_excerpt": "design a document-processing system that ingests PDFs, extracts metadata, and serves searchable results with background jobs and audit trails.",
+      "rationale": "User prohibits host commands in skill text. Preserve the same architectural example request content with explicit one-example labeling and remove the host invocation token."
+    },
+    {
+      "id": "current-original-800-817",
+      "source_start_line": 800,
+      "source_end_line": 817,
+      "disposition": "preserved",
+      "candidate_excerpt": "```",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-818-818",
+      "source_start_line": 818,
+      "source_end_line": 818,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Review Gate",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-819-823",
+      "source_start_line": 819,
+      "source_end_line": 823,
+      "disposition": "reformulated",
+      "candidate_excerpt": "1. The coordinator gives the writer the objective, scope, constraints and sources; the writer produces the artifact under the domain workflow above.\n2. The coordinator gives the separate reviewer the artifact, original task, sources and domain rules. The reviewer is hostile in the ordinary sense: verify each material claim, cite the source, and do not invent a defect to fill a section. A source gap is grounds for a finding only when the artifact overstates evidence, misses a required uncertainty, or cannot support a material decision.\n3. Each finding has an identifier, severity, artifact location, what is wrong, a concrete repair, source evidence, and status `open`. If nothing is wrong, the reviewer returns an empty finding list and explicitly reports zero open findings.\n4. The coordinator returns every open finding to the same writer. The writer repairs the artifact and attaches a disposition to each received identifier: `addressed` with what changed; `wontfix` with a technical reason; or `needs-user-input` when only a human can choose. These dispositions are repair responses, not a replacement finding list or acceptance decision. Human-choice findings remain unresolved while awaiting the answer.\n5. The same reviewer rechecks the revised artifact and rewrites the current finding list: drop fixed findings; keep a bad repair open; add any new defect as open. A writer disposition cannot close a finding. If the reviewer reopens a finding marked `wontfix`, that is a stalemate: ask the user and treat the user's answer as final for that finding. The writer applies the answer, and the reviewer honors it when rewriting the list; it does not settle unrelated findings.\n6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while findings are open, while a required human answer is pending, or while review is incomplete. A writer's score or checklist cannot satisfy this exit. This inner issue count does not decide any wider workflow's acceptance.\n\nThe reviewer checks at least the following domain questions:\n- Does each major recommendation say what problem it solves and what it costs?\n- Are failure modes named and rollback described?",
+      "rationale": "Replace author self-check ownership with separate source-checking reviewer workflow; retained problem/cost/failure/rollback domain questions appear explicitly in the replacement. Include sourced open findings, writer dispositions, resumed identities, uncapped reviewer zero-open exit and user-final stalemate."
+    },
+    {
+      "id": "current-original-824-825",
+      "source_start_line": 824,
+      "source_end_line": 825,
+      "disposition": "preserved",
+      "candidate_excerpt": "- Are interfaces explicit enough that another engineer could implement from them?",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-826-826",
+      "source_start_line": 826,
+      "source_end_line": 826,
+      "disposition": "reformulated",
+      "candidate_excerpt": "- Are module responsibilities clear enough for ownership and distinguished from deployment boundaries?",
+      "rationale": "Retain ownership clarity and explicitly enforce the already-required module-versus-deployment boundary distinction."
+    },
+    {
+      "id": "current-original-827-828",
+      "source_start_line": 827,
+      "source_end_line": 828,
+      "disposition": "preserved",
+      "candidate_excerpt": "- Are observability and validation included where operational behavior changes?",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-829-838",
+      "source_start_line": 829,
+      "source_end_line": 838,
+      "disposition": "preserved",
+      "candidate_excerpt": "## When to Refuse Confidence",
+      "rationale": "All source bytes in this contiguous span are retained exactly; includes any domain rules, templates, examples and layout within the span."
+    },
+    {
+      "id": "current-original-839-873",
+      "source_start_line": 839,
+      "source_end_line": 873,
+      "disposition": "retired",
+      "authorization": "User request A explicitly removes the writer own scorecard as acceptance gate, requires reviewer zero-open findings, and forbids a second scorecard.",
+      "rationale": "Retire the complete writer-filled numeric scorecard and pass thresholds; the independently reviewed zero-open gate replaces acceptance while domain checks remain in the workflow and reviewer questions."
+    }
+  ],
+  "limitations": [
+    "Independent source-preservation review only. No behavioral promotion or new baseline; historical baseline lineage remains unchanged."
+  ]
+}

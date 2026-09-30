@@ -1,0 +1,42 @@
+{
+  "schema_version": "IndependentSkillReview.v1",
+  "round": 4,
+  "scope": "Same revised skill candidate normalized to one terminal newline for canonical UAC hashing; all meaningful text exactly unchanged. Full package review from round 3 remains applicable.",
+  "reviewer_agent_id": "/root/reviewer",
+  "author_agent_id": "/root/writer",
+  "independent": true,
+  "candidate_path": "reports/architecture-independent-review/engos-design-architecture.candidate.md",
+  "candidate_sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d",
+  "reviewed_file_sha256": {
+    ".meta/quality-profiles/architecture.json": "1f293ce0a4262b3f8b1b97efa44202c7f9b4a62cf1859561ff655a7ec67a810e",
+    ".meta/capabilities/engos-design-architecture.json": "1c648a41f06f9e3943e7426a89d45ca30920b67c1c223f2e67c9bf19280aa2d1",
+    "scripts/build-surfaces.py": "f341769829d3e587428ab276fee8538cd1ee6c7621f517ccde691f2040814c6f",
+    "tests/test_architecture_quality.py": "7fa6d73e8f69d1d54629b670e3652893f7dff10acb9a5e9d3048365b45383eef",
+    "README.md": "99a36e47f474b1080dd9726d1c16dfc6031e9272a19d16febe182a33e89930f5",
+    "docs/GETTING-STARTED.md": "be96979adf0cc0d370b7e4664f3c5b3be3a383b3ed301cabbdaab2253687b1e6",
+    "docs/EXAMPLES.md": "924f5b2ee839c2782d5858fe0e2f59de231ec19f804e37d9f1f99108e7b83d88",
+    "CHANGELOG.md": "20245d9d5294c97d3c6c74f01e2d0e1fb764ca3bda94da1bd523a2f6bed8df36",
+    "reports/architecture-independent-review/skill-inventory.md": "51b1f5a0d443bd282b2aae840dbf0f8c96428ed2dc3800830f61979ebd357ea2"
+  },
+  "findings": [],
+  "open_findings": 0,
+  "closed_prior_findings": [
+    "R2-01: universal and four mode output formats now apply exclusively to writer recommendation artifacts; reviewer/coordinator outputs excluded."
+  ],
+  "checks": [
+    "All Structure and A-D clauses checked against current revised skill.",
+    "Seven requested domain rules preserved and four domain playbooks retained.",
+    "Writer scorecard is removed; source-bound reviewer zero-open findings gate is singular.",
+    "All 32 canonical Markdown skills covered in inventory with authoring and acceptance rationale, route-specific limits and exclusions for separate independent protocols.",
+    "Plan-to-goal recommendation is semantic packet-review only; existing trust/sealing/negative-tree/goal-completion gates are retained.",
+    "Battery search found routing-only frozen cases, not the described author/critic owned-root host; no battery amendment inferred.",
+    "Descriptor and generator quality gates aligned with independent zero-open review; packaging static scores remain distinct.",
+    "Architecture profile markers aligned; README, getting-started, examples and unreleased changelog reflect behavior without release.",
+    "Verified SHA256 of normalized candidate plus one newline equals previously reviewed candidate SHA256; EOF blank line removal is the sole change."
+  ],
+  "limits": [
+    "This is source review, not behavioral efficacy, runtime acceptance, generated parity or a release verdict."
+  ],
+  "previous_candidate_sha256": "6efcbadc48aa4fce459f9cc63fe5d2d40895a348c8e327c7790727cf669585d2",
+  "effective_sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d"
+}
